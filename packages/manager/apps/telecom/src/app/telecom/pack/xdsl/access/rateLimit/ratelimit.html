@@ -1,0 +1,54 @@
+<div data-ng-controller="XdslAccessLnsRateLimitCtrl as LnsRateLimitCtrl">
+    <form
+        name="remoteControlForm"
+        data-ng-submit="LnsRateLimitCtrl.changeRate()"
+    >
+        <div class="row">
+            <div class="col-xs-9">
+                <tuc-slider
+                    data-floor="{{LnsRateLimitCtrl.min}}"
+                    data-ceiling="{{LnsRateLimitCtrl.max}}"
+                    data-step="{{LnsRateLimitCtrl.step}}"
+                    class="my-0"
+                    data-ng-model="LnsRateLimitCtrl.rate.value"
+                    data-refresh-trigger="LnsRateLimitCtrl.rate.disabled"
+                    data-display-callback="LnsRateLimitCtrl.reformatValue(value)"
+                    data-disabled="access.tasks.current.lnsApplyRateLimit || LnsRateLimitCtrl.rate.disabled"
+                ></tuc-slider>
+            </div>
+            <div
+                class="col-xs-3"
+                data-ng-if="!LnsRateLimitCtrl.rate.disabled"
+                data-ng-bind="LnsRateLimitCtrl.reformatValue(LnsRateLimitCtrl.rate.value)"
+            ></div>
+        </div>
+        <div class="mt-2">
+            <input
+                type="checkbox"
+                id="limitRateEnabled"
+                name="limitRateEnabled"
+                data-ng-model="LnsRateLimitCtrl.rate.disabled"
+                data-ng-disabled="access.tasks.current.lnsApplyRateLimit || !LnsRateLimitCtrl.rate.canApplyLnsRateLimit"
+            />
+            <label
+                for="limitRateEnabled"
+                data-translate="xdsl_access_lns_ratelimit_activate"
+            ></label>
+        </div>
+        <button
+            class="btn btn-primary mt-2"
+            type="submit"
+            data-ng-disabled="!LnsRateLimitCtrl.rate.canApplyLnsRateLimit || access.tasks.current.lnsApplyRateLimit || !LnsRateLimitCtrl.valueChanged() || (LnsRateLimitCtrl.rate.disabled === true && LnsRateLimitCtrl.undoRate.disabled === true)"
+            data-ng-if="!access.tasks.current.lnsApplyRateLimit"
+            data-uib-tooltip-html-unsafe="<strong class='text-warning'>{{ 'xdsl_access_lns_ratelimit_warning' | translate }}</strong>"
+            data-translate="submit"
+        ></button>
+        <div
+            class="text-center"
+            data-ng-if="access.tasks.current.lnsApplyRateLimit"
+        >
+            <oui-spinner></oui-spinner>
+            <span data-translate="xdsl_access_lns_ratelimit_doing"></span>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,22 @@
+{
+  "veeam_enterprise_tab_dashboard": "Página Inicial",
+  "veeam_enterprise_infos_general_load_error": "Ocorreu um erro aquando do carregamento das informações gerais.",
+  "veeam_enterprise_infos_configuration_load_error": "Ocorreu um erro ao carregar as informações de configuração.",
+  "veeam_enterprise_infos_subscription_load_error": "Ocorreu um erro ao carregar as informações de subscrição.",
+  "veeam_enterprise_infos_license_register_error": "Ocorreu um erro ao ativar a sua licença Veeam Enterprise.",
+  "veeam_enterprise_infos_license_register_success": "Ativação em curso da sua licença Veeam Enterprise.",
+  "veeam_enterprise_infos_license_update_error": "Ocorreu um erro ao atualizar a sua licença Veeam Enterprise.",
+  "veeam_enterprise_infos_license_update_success": "Atualização em curso da sua licença Veeam Enterprise.",
+  "veeam_enterprise_infos_license_already_registered_error": "Já ativou a sua licença Veeam Enterprise.",
+  "veeam_enterprise_manage": "Gerir",
+  "veeam_enterprise_modal_ok": "OK",
+  "veeam_enterprise_modal_cancel": "Cancelar",
+  "veeam_enterprise_tile_subscription": "Subscrição",
+  "veeam_enterprise_tile_subscription_contact": "Contactos",
+  "veeam_enterprise_tile_subscription_contact_admin": "Administrador",
+  "veeam_enterprise_tile_subscription_contact_billing": "Faturação",
+  "veeam_enterprise_tile_subscription_contact_technical": "Técnico",
+  "veeam_enterprise_tile_subscription_creation_date": "Data de criação",
+  "veeam_enterprise_tile_subscription_autorenew": "Renovação automática",
+  "veeam_enterprise_tile_subscription_expiration_date": "Data de expiração"
+}

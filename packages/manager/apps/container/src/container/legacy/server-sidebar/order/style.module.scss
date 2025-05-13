@@ -1,0 +1,29 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+@import '../constants.scss';
+
+.popup {
+  background-color: white;
+  position: absolute;
+  left: 0.5rem;
+  width: 350px;
+  z-index: $sidebar-z-index + 2;
+  border-radius: 8px;
+  box-shadow: 0 0 6px 0 rgba(0, 14, 156, 0.2);
+  margin-top: 5px;
+
+  @media (max-width: $device-breakpoint-tablet-max-width) {
+    top: 4rem !important;
+    right: 0.5rem !important;
+    width: auto;
+  }
+
+  > div {
+    position: relative;
+  }
+}
+
+
+
+

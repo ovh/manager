@@ -2,9 +2,17 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
+import {
+  FREE_HOSTING_OFFER,
+  BANNER_GUIDE_LINK,
+  STARTER_OFFERS,
+} from './hosting-database.constants';
+import { DATABASES_TRACKING } from '../hosting.constants';
+
 angular.module('App').controller(
   'HostingTabDatabasesCtrl',
   class HostingTabDatabasesCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $scope,
@@ -12,9 +20,12 @@ angular.module('App').controller(
       $stateParams,
       $timeout,
       $translate,
+      atInternet,
       Alerter,
+      coreConfig,
       Hosting,
       HostingDatabase,
+      HostingDatabaseOrderPublicService,
       WucConverterService,
     ) {
       this.$q = $q;
@@ -23,21 +34,20 @@ angular.module('App').controller(
       this.$stateParams = $stateParams;
       this.$timeout = $timeout;
       this.$translate = $translate;
+      this.atInternet = atInternet;
       this.alerter = Alerter;
       this.hostingService = Hosting;
       this.hostingDatabaseService = HostingDatabase;
+      this.HostingDatabaseOrderPublicService = HostingDatabaseOrderPublicService;
       this.WucConverterService = WucConverterService;
+      this.bannerGuideLink =
+        BANNER_GUIDE_LINK[coreConfig.getUser().ovhSubsidiary] ||
+        BANNER_GUIDE_LINK.DEFAULT;
     }
 
     $onInit() {
       this.hosting = this.$scope.hosting;
       this.hostingProxy = this.$scope.hostingProxy;
-      this.bddTemplate = 'hosting/database/DATABASE_LIST.html';
-      this.backupType = {
-        DAILY: 'daily.1',
-        WEEKLY: 'weekly.1',
-        NOW: 'now',
-      };
       this.canCreateDatabase =
         this.hosting.databaseMax - this.hosting.databaseCount > 0;
       this.databases = {
@@ -47,12 +57,12 @@ angular.module('App').controller(
       this.loading = {
         databases: false,
         init: true,
+        orderCapabilities: true,
       };
       this.search = {
         value: null,
       };
 
-      this.$scope.goToList = () => this.goToList();
       this.$scope.$on('hosting.databases.backup.restore', () =>
         this.reloadCurrentPage(),
       );
@@ -86,11 +96,35 @@ angular.module('App').controller(
         this.reloadCurrentPage();
       });
 
-      this.loadDatabases();
+      return this.loadDatabases()
+        .then(() => this.loadOrderPublicCapabilities())
+        .finally(() => {
+          this.loading.init = false;
+          this.loading.databases = false;
+          this.loading.orderCapabilities = false;
+        });
+    }
+
+    loadOrderPublicCapabilities() {
+      this.loading.orderCapabilities = true;
+
+      return this.HostingDatabaseOrderPublicService.getCharacteristicsOfAvailableProducts(
+        this.hosting.serviceName,
+      )
+        .then((characteristics) => {
+          this.canOrderPublic = !isEmpty(characteristics);
+        })
+        .finally(() => {
+          this.loading.orderCapabilities = true;
+        });
     }
 
     static formatVersion(version) {
       return (version || '').replace(/_/gi, '.');
+    }
+
+    static formatStatus(type, isDeprecated) {
+      return `hosting_tab_DATABASES_table_header_status_${type}_${isDeprecated}`;
     }
 
     checkQuota(database) {
@@ -152,12 +186,6 @@ angular.module('App').controller(
       return `${PHPMYADMIN_BASE_URL}?${queryString}`;
     }
 
-    goToList() {
-      this.loading.init = true;
-      this.$scope.bdd = null;
-      this.bddTemplate = 'hosting/database/DATABASE_LIST.html';
-    }
-
     loadDatabases() {
       this.loading.databases = true;
       this.databases.ids = null;
@@ -175,10 +203,7 @@ angular.module('App').controller(
           );
         })
         .finally(() => {
-          if (isEmpty(this.databases.ids)) {
-            this.loading.init = false;
-            this.loading.databases = false;
-          } else {
+          if (!isEmpty(this.databases.ids)) {
             this.hasResult = true;
           }
         });
@@ -192,7 +217,9 @@ angular.module('App').controller(
 
     restoreDump(database) {
       this.$scope.bdd = database;
-      this.bddTemplate = 'hosting/database/dump/DUMPS.html';
+      this.$state.go('app.hosting.dashboard.database.dashboard.dump', {
+        name: database.name,
+      });
     }
 
     transformItem(id) {
@@ -231,6 +258,60 @@ angular.module('App').controller(
     onTransformItemDone() {
       this.loading.init = false;
       this.loading.databases = false;
+    }
+
+    isFreeHosting() {
+      return FREE_HOSTING_OFFER.includes(this.hosting.offer);
+    }
+
+    isStarterOffer() {
+      return STARTER_OFFERS.includes(this.hosting.offer);
+    }
+
+    trackClick(hit) {
+      this.atInternet.trackClick({
+        name: hit,
+        type: 'action',
+      });
+    }
+
+    onActionsMenuClick() {
+      this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION);
+    }
+
+    onCreateDatabaseClick() {
+      this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_CREATE_DB);
+
+      this.$scope.setAction('database/add/hosting-database-add');
+    }
+
+    onCopyDatabaseClick(element) {
+      this.$scope.setAction('database/copy/hosting-database-copy', {
+        currentDatabaseName: element.name,
+        serviceName: this.hosting.serviceName,
+      });
+    }
+
+    onOrderDatabaseClick() {
+      this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_ORDER_DB);
+    }
+
+    onActivateWebCloudDatabaseClick() {
+      this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_CREATE_DB);
+    }
+
+    onOrderWebCloudDatabaseClick() {
+      this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_ORDER_WEB_CLOUD_DB);
+    }
+
+    onCreateDatabaseBtnClick() {
+      this.trackClick(DATABASES_TRACKING.GO_TO_CREATE_DATABASE);
+
+      this.$scope.setAction('database/add/hosting-database-add');
+    }
+
+    onDatabaseChangeOfferClick() {
+      this.trackClick(DATABASES_TRACKING.GO_TO_CHANGE_DATABASE);
     }
   },
 );

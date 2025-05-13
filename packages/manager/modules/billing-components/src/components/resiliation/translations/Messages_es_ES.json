@@ -1,0 +1,14 @@
+{
+  "billing_resiliation_title": "Dar de baja mi servicio",
+  "billing_resiliation_service_name": "Nombre del servicio",
+  "billing_resiliation_choice": "Usted quiere:",
+  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Cancelar el compromiso y conservar el servicio sin permanencia.",
+  "billing_resiliation_choice_CANCEL_SERVICE": "Cancelar el compromiso y eliminar el servicio en la fecha de expiración.",
+  "billing_resiliation_commitment_end_date": "Fin del compromiso previsto el:",
+  "billing_resiliation_details_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Una vez superada esta fecha, mantendrá el servicio {{serviceName}} activo. Sin embargo, ya no podrá disfrutar del descuento asociado al período de compromiso. Asimismo, ya no tendrá ningún período de compromiso asociado al servicio y podrá eliminarlo en cualquier momento.",
+  "billing_resiliation_details_CANCEL_SERVICE": "En la fecha de expiración, dejará de tener acceso al servicio y, por lo tanto, a todos los datos almacenados en él. Puede cancelar esta operación hasta 24 horas antes de la fecha de expiración.",
+  "billing_resiliation_success": "La solicitud de baja se ha enviado.",
+  "billing_resiliation_error": "Se ha producido un error al solicitar la baja.",
+  "billing_resiliation_cancel": "Cancelar",
+  "billing_resiliation_validate": "Aceptar"
+}

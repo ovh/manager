@@ -1,0 +1,5 @@
+{
+  "telephony_billingAccount_svaWallet_status_banner_in_progress": "La tua richiesta di conferma dell'identità è stata presa in carico! Prima della conferma è necessario un periodo di conferma di 24 ore su 48 ore!",
+  "telephony_billingAccount_svaWallet_status_banner_incomplete": "Il modulo di conferma è in attesa. Per confermare il tuo ordine di numero SVA, è necessario completare il form.",
+  "telephony_billingAccount_svaWallet_status_banner_edit_kyc": "Completa il form di conferma dell'identità"
+}

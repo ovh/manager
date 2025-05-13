@@ -1,0 +1,8 @@
+{
+  "sidebar_menu": "Menu",
+  "sidebar_menu_order_actions": "Commander",
+  "sidebar_menu_search": "Rechercher",
+  "sidebar_menu_search_no_results": "Aucun résultat trouvé.",
+  "sidebar_menu_search_loading": "Recherche en cours...",
+  "sidebar_menu_error_retry": "Réessayer"
+}

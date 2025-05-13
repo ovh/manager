@@ -1,0 +1,83 @@
+<div id="billing-payment-retraction" class="billing-orders">
+    <oui-header data-heading="{{ :: 'orders_page_title' | translate }}">
+        <oui-guide-menu
+            data-text="{{:: 'orders_guides' | translate }}"
+            data-ng-if="$ctrl.billingGuideUrl"
+        >
+            <oui-guide-menu-item
+                data-ng-href="{{ $ctrl.billingGuideUrl }}"
+                data-external="true"
+            >
+                <span data-translate="orders_billing"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+
+    <div>
+        <oui-back-button data-on-click="$ctrl.goToOrders()"
+            ><span data-translate="orders_retract_title"></span>
+        </oui-back-button>
+
+        <div data-ng-if="$ctrl.success">
+            <div class="mb-4">
+                <oui-message type="success">
+                    <span
+                        data-translate="orders_retract_success"
+                        data-translate-values="{ t0: $ctrl.orderId }"
+                    >
+                    </span>
+                </oui-message>
+            </div>
+            <a
+                class="oui-button oui-button_secondary"
+                data-ui-sref="app.account.billing.orders"
+                data-translate="orders_retract_return_to_orders"
+            >
+            </a>
+        </div>
+
+        <div data-ng-if="!$ctrl.success">
+            <div data-ovh-alert></div>
+
+            <p data-translate="orders_retract_description1"></p>
+            <p data-translate="orders_retract_description2"></p>
+
+            <p
+                data-translate="orders_retract_confirmation"
+                data-translata-values="{ t0: $ctrl.orderId }"
+            ></p>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-ng-model=":: confirmed" />
+                    <span
+                        data-translate="orders_retract_confirmation_text"
+                    ></span>
+                </label>
+            </div>
+
+            <div class="mb-4">
+                <oui-message type="warning">
+                    <span data-translate="orders_retract_alert"></span>
+                </oui-message>
+            </div>
+
+            <oui-spinner data-ng-if="$ctrl.loading"> </oui-spinner>
+
+            <div class="control-group" data-ng-if="!$ctrl.loading">
+                <a
+                    class="oui-button oui-button_secondary"
+                    data-ui-sref="app.account.billing.orders"
+                    data-translate="wizard_cancel"
+                >
+                </a>
+                <button
+                    type="button"
+                    class="oui-button oui-button_primary"
+                    data-ng-disabled="!confirmed"
+                    data-ng-click="$ctrl.retract()"
+                    data-translate="wizard_confirm"
+                ></button>
+            </div>
+        </div>
+    </div>
+</div>

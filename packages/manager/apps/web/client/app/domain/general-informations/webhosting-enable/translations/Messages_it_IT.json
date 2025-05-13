@@ -1,0 +1,22 @@
+{
+  "domain_configuration_enable_web_hosting": "Attiva il tuo hosting Web",
+  "domain_configuration_enable_web_hosting_offer": "La tua soluzione",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-start10m": "Start 10M",
+  "domain_configuration_web_hosting_offer_START_explain": "Free Hosting 100M è incluso nella tua soluzione ma dispone di funzionalità di base.",
+  "domain_configuration_web_hosting_choose_offer_explain": "Per maggiori informazioni sulle nostre offerte e per conoscere le loro specifiche tecniche e le diverse opzioni disponibili, accedi al <a href=\"{{url}}\" target=\"_blank\">nostro sito</a>.",
+  "domain_configuration_enable_web_hosting_dns_configuration": "Configurazione dei DNS",
+  "domain_configuration_web_hosting_dns_info_NO_CHANGE": "Se non viene selezionata nessuna configurazione, il nuovo hosting sarà attivo ma il dominio continuerà a puntare verso i record attuali. Una volta che il nuovo sito sarà pronto, dovrai effettuare le modifiche necessarie nella tua zona DNS. È la soluzione ideale per evitare disservizi a un sito in produzione.",
+  "domain_configuration_enable_web_hosting_dns_configuration_A": "Record DNS A",
+  "domain_configuration_enable_web_hosting_dns_configuration_MX": "Record DNS MX",
+  "domain_configuration_web_hosting_dns_info_A": "Se il tuo dominio dispone di indirizzi email ma nessun sito Internet, puoi scegliere di modificare solo il record A. In questo modo il dominio punterà verso il nuovo hosting e gli indirizzi email continueranno a funzionare sul tuo attuale servizio.",
+  "domain_configuration_web_hosting_dns_info_MX": "Questa opzione permette di utilizzare esclusivamente gli indirizzi email dell’hosting senza modificare il puntamento relativo al sito Web. Il dominio continuerà a puntare verso il sito corrente, ma gli indirizzi email utilizzeranno i server di OVHcloud.",
+  "domain_configuration_enable_web_hosting_offer_price": "Tariffe",
+  "domain_configuration_enable_web_hosting_offer_START_P1Y": "12 mesi",
+  "domain_configuration_enable_web_hosting_offer_START_P0D": "12 mesi",
+  "domain_configuration_enable_web_hosting_activation": "Attivazione",
+  "domain_configuration_enable_web_hosting_activate": "Attiva",
+  "domain_configuration_enable_web_hosting_success": "L’attivazione dell’hosting è in corso. L’operazione potrebbe richiedere alcuni minuti.",
+  "domain_configuration_enable_web_hosting_checkout_error": "Si è verificato un errore: {{message}}",
+  "domain_configuration_enable_web_hosting_error": "Si è verificato un errore durante l'attivazione dell’hosting. {{ message }}",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-free-100m": "Hosting gratuito 100M"
+}

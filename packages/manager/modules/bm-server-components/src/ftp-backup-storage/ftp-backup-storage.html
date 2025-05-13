@@ -1,0 +1,303 @@
+<div>
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div class="row" data-ng-if="!$ctrl.loading">
+        <div class="col-md-9">
+            <div data-ovh-alert="server_tab_ftpbackup_alert"></div>
+
+            <p
+                data-ng-if="!$ctrl.featureAvailable || $ctrl.isNotAvailable"
+                data-translate="server_configuration_ftpbackup_not_available"
+            ></p>
+
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-ng-if="$ctrl.canBeActivated && $ctrl.featureAvailable"
+                data-translate="server_configuration_ftpbackup_none"
+            ></div>
+
+            <div data-ng-if="$ctrl.isActivated">
+                <div class="row">
+                    <dl class="col-md-6">
+                        <dt
+                            data-translate="server_configuration_ftpbackup_name"
+                        ></dt>
+                        <dd data-ng-bind="$ctrl.ftpBackup.model.name"></dd>
+                        <dt
+                            data-translate="server_configuration_ftpbackup_login"
+                        ></dt>
+                        <dd data-ng-bind="$ctrl.ftpBackup.model.login"></dd>
+                        <dt
+                            data-translate="server_configuration_ftpbackup_usage"
+                        ></dt>
+                        <dd>
+                            <div class="progress">
+                                <div
+                                    class="progress-bar"
+                                    role="progressbar"
+                                    aria-valuenow="{{ $ctrl.ftpBackup.model.usage.value }}"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    data-ng-class="{
+                                        'progress-bar-success': $ctrl.ftpBackup.model.usage === null || $ctrl.ftpBackup.model.usage.value < $ctrl.FTP_BACK_UP_USAGE_LIMIT[51],
+                                        'progress-bar-warning' : $ctrl.ftpBackup.model.usage.value > $ctrl.FTP_BACK_UP_USAGE_LIMIT[50] && $ctrl.ftpBackup.model.usage.value < $ctrl.FTP_BACK_UP_USAGE_LIMIT[81],
+                                        'progress-bar-danger' : $ctrl.ftpBackup.model.usage.value > $ctrl.FTP_BACK_UP_USAGE_LIMIT[80]
+                                    }"
+                                    data-ng-style="{ 'width': $ctrl.ftpBackup.model.usage.value + '%' }"
+                                >
+                                    <span class="progress-bar-label">
+                                        <span
+                                            data-ng-bind="$ctrl.ftpBackup.use"
+                                        ></span>
+                                        <span
+                                            data-translate="{{ 'unit_size_'+ $ctrl.ftpBackup.model.quota.unit }}"
+                                        ></span>
+                                        /
+                                        <span
+                                            data-ng-bind="$ctrl.ftpBackup.model.quota.value"
+                                        ></span>
+                                        <span
+                                            data-translate="{{ 'unit_size_'+ $ctrl.ftpBackup.model.quota.unit }}"
+                                        ></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                data-translate="server_configuration_ftpbackup_table_ip"
+                            ></th>
+                            <th
+                                scope="col"
+                                class="text-center"
+                                data-translate="server_configuration_ftpbackup_table_cifs"
+                            ></th>
+                            <th
+                                scope="col"
+                                class="text-center"
+                                data-translate="server_configuration_ftpbackup_table_ftp"
+                            ></th>
+                            <th
+                                scope="col"
+                                class="text-center"
+                                data-translate="server_configuration_ftpbackup_table_nfs"
+                            ></th>
+                            <th
+                                scope="col"
+                                class="text-center"
+                                data-translate="server_configuration_ftpbackup_table_status"
+                            ></th>
+                            <th scope="col" colspan="2" class="text-right">
+                                <button
+                                    type="button"
+                                    class="btn btn-link"
+                                    data-ng-click="$ctrl.refreshTab()"
+                                    data-translate-attr="{ title: 'refresh' }"
+                                >
+                                    <span
+                                        class="fa fa-refresh"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody data-ng-if="$ctrl.loadingTable">
+                        <tr>
+                            <td colspan="7" class="text-center">
+                                <oui-spinner data-size="s"></oui-spinner>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody data-ng-if="!$ctrl.loadingTable">
+                        <tr
+                            data-ng-repeat="ipbackup in $ctrl.ftpBackupTable.list.results track by $index"
+                        >
+                            <td data-ng-bind="ipbackup.ipBlock"></td>
+                            <td class="text-center">
+                                <span
+                                    class="fa"
+                                    aria-hidden="true"
+                                    data-ng-class="{
+                                          'fa-check': ipbackup.cifs === true,
+                                          'fa-ban': ipbackup.cifs === false
+                                      }"
+                                >
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <span
+                                    class="fa"
+                                    aria-hidden="true"
+                                    data-ng-class="{
+                                          'fa-check': ipbackup.ftp === true,
+                                          'fa-ban': ipbackup.ftp === false
+                                      }"
+                                >
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <span
+                                    class="fa"
+                                    aria-hidden="true"
+                                    data-ng-class="{
+                                          'fa-check': ipbackup.nfs === true,
+                                          'fa-ban': ipbackup.nfs === false
+                                      }"
+                                >
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <span
+                                    class="label label-success"
+                                    data-ng-if="ipbackup.isApplied"
+                                    data-translate="server_configuration_ftpbackup_table_ip_enable"
+                                >
+                                </span>
+                                <span
+                                    class="label label-danger"
+                                    data-ng-if="!ipbackup.isApplied"
+                                    data-translate="server_configuration_ftpbackup_table_ip_disable"
+                                >
+                                </span>
+                            </td>
+                            <td colspan="2" class="text-right">
+                                <oui-action-menu
+                                    data-compact
+                                    data-placement="end"
+                                >
+                                    <oui-action-menu-item
+                                        data-ui-sref=".updateAccess({ipbackup})"
+                                        ><span
+                                            data-translate="server_configuration_ftpbackup_table_ip_edit"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-ui-sref=".deleteAccess({ipbackup})"
+                                        ><span
+                                            data-translate="server_configuration_ftpbackup_table_ip_delete"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                </oui-action-menu>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div
+                    data-pagination-server-side="backupTable"
+                    data-pagination-server-side-function="loadFtpBackupTable"
+                    data-pagination-server-side-paginated-stuff="$ctrl.ftpBackupTable"
+                    data-pagination-server-side-table-loading="$ctrl.loadingTable"
+                ></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <button
+                type="button"
+                class="btn btn-default btn-block"
+                data-ng-if="$ctrl.isActivated"
+                data-ui-sref=".addAccess({results: $ctrl.ftpBackupTable.list.results})"
+                data-ng-disabled="$ctrl.disable.deleteFtp"
+                data-translate="server_configuration_ftpbackup_access_add"
+            ></button>
+
+            <button
+                type="button"
+                class="btn btn-default btn-block"
+                data-ng-if="$ctrl.isActivated"
+                data-ui-sref=".passwordRequest({requestData: $ctrl.ftpBackup.model})"
+                data-ng-disabled="$ctrl.disable.passwordFtp || $ctrl.disable.deleteFtp"
+            >
+                <span class="icon-backupftp-password" aria-hidden="true"></span>
+                <span
+                    data-translate="server_configuration_ftpbackup_forgot_password"
+                ></span>
+                <span
+                    class="d-block"
+                    data-ng-if="$ctrl.disable.passwordFtp"
+                    data-translate="server_configuration_doing"
+                >
+                </span>
+            </button>
+
+            <button
+                type="button"
+                class="btn btn-default btn-block"
+                data-ng-if="$ctrl.isActivated"
+                data-ui-sref=".delete({ipbackup: $ctrl.ftpBackup.model})"
+                data-ng-disabled="$ctrl.disable.deleteFtp"
+            >
+                <span class="icon-backupftp-delete" aria-hidden="true"></span>
+                <span
+                    data-translate="server_configuration_ftpbackup_delete"
+                ></span>
+                <span
+                    class="d-block"
+                    data-ng-if="$ctrl.disable.deleteFtp"
+                    data-translate="server_configuration_doing"
+                >
+                </span>
+            </button>
+
+            <button
+                type="button"
+                class="btn btn-default btn-block"
+                data-ng-if="$ctrl.isActivated && $ctrl.isOrderable"
+                data-ui-sref=".order"
+                data-ng-disabled="$ctrl.disable.deleteFtp"
+                data-translate="server_configuration_ftpbackup_access_order"
+            ></button>
+            <button
+                type="button"
+                class="btn btn-default btn-block disabled"
+                data-ng-if="$ctrl.isActivated && !$ctrl.isOrderable"
+                data-translate="server_configuration_ftpbackup_access_order"
+                data-oui-tooltip="{{:: 'server_configuration_ftpbackup_access_order_right' | translate }}"
+                data-oui-tooltip-placement="left"
+            ></button>
+
+            <button
+                type="button"
+                class="btn btn-default btn-block {{ $ctrl.disable.activeFtp && 'disabled' }}"
+                data-ng-if="$ctrl.featureAvailable && $ctrl.canBeActivated"
+                data-ui-sref=".activate"
+            >
+                <span class="icon-backupftp-activate" aria-hidden="true"></span>
+                <span
+                    data-translate="server_configuration_ftpbackup_activate"
+                ></span>
+                <span
+                    class="d-block"
+                    data-ng-if="$ctrl.disable.activeFtp"
+                    data-translate="server_configuration_doing"
+                >
+                </span>
+            </button>
+
+            <a
+                type="button"
+                class="btn btn-default btn-block"
+                data-ng-href="{{$ctrl.guideLink}}"
+                target="_blank"
+            >
+                <span
+                    data-translate="dedicated_server_ftp_backup_documentation"
+                >
+                </span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>

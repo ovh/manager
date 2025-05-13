@@ -28,5 +28,6 @@
   "telephony_alias_config_contactCenterSolution_sounds_get_options_error": "Une erreur est survenue lors de la récupération des options des sons et de l’attente de la file d’appels.",
   "telephony_alias_config_contactCenterSolution_sounds_upload_error": "Une erreur est survenue lors du téléchargement du fichier.",
   "telephony_alias_config_contactCenterSolution_sounds_update_success": "Les options des sons et de l’attente de la file d’appels ont été mises à jour.",
-  "telephony_alias_config_contactCenterSolution_sounds_update_error": "Une erreur est survenue lors la mise à jour des options de la file d’appels."
+  "telephony_alias_config_contactCenterSolution_sounds_update_error": "Une erreur est survenue lors la mise à jour des options de la file d’appels.",
+  "telephony_alias_config_contactCenterSolution_sounds": "Gestisci suoni e attesa"
 }

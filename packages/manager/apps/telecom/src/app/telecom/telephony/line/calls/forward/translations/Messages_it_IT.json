@@ -18,10 +18,20 @@
   "telephony_line_actions_line_calls_forward_fax": "Fax",
   "telephony_line_actions_line_calls_forward_number": "Telefono",
   "telephony_line_actions_line_calls_forward_voicemail": "Segreteria",
-  "telephony_line_actions_line_calls_forward_external": "Numero esterno a OVH",
+  "telephony_line_actions_line_calls_forward_external": "Numero esterno a OVHcloud",
   "telephony_line_actions_line_calls_forward_time_range": "Valore compreso tra 5 e 60",
   "telephony_line_actions_line_calls_forward_bulk_all_success": "La modification du renvoi d'appel a bien été appliquée aux services sélectionnés",
   "telephony_line_actions_line_calls_forward_bulk_some_success": "La modification du renvoi d'appel a bien été appliquée à {{ count }} des services sélectionnés",
   "telephony_line_actions_line_calls_forward_bulk_error": "La modification du renvoi d'appel n'a pu être appliquée au(x) service(s) suivant(s) :",
-  "telephony_line_actions_line_calls_forward_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification du renvoi d'appel"
+  "telephony_line_actions_line_calls_forward_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification du renvoi d'appel",
+  "telephony_line_actions_line_calls_forward_filter_number": "Filtra i numeri",
+  "telephony_line_actions_line_calls_forward_filter_number_by_billing_account": "Gruppi",
+  "telephony_line_actions_line_calls_forward_filter_number_by_billing_account_all_value": "Tutti i gruppi",
+  "telephony_line_actions_line_calls_forward_filter_number_by_line_type": "Tipi",
+  "telephony_line_actions_line_calls_forward_filter_number_by_line_type_fax": "Fax",
+  "telephony_line_actions_line_calls_forward_filter_number_by_line_type_line": "SIP",
+  "telephony_line_actions_line_calls_forward_filter_number_by_line_type_number": "Alias",
+  "telephony_line_actions_line_calls_forward_filter_number_by_line_type_trunk": "Trunk",
+  "telephony_line_actions_line_calls_forward_filter_number_by_line_type_voicemail": "Plug&amp;Phone",
+  "telephony_line_actions_line_calls_forward_configuration": "Configurazione"
 }

@@ -1,343 +1,498 @@
-<div class="container-fluid px-0" data-ng-controller="HostingTabDomainsCtrl">
+<div>
     <div class="text-center" data-ng-if="loading.init">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
-    <div class="row" data-ng-show="!loading.init">
-        <div class="col-md-9">
-            <div data-ovh-alert="{{alerts.main}}"></div>
+    <div data-ng-show="!loading.init">
+        <div data-ovh-alert="{{alerts.main}}"></div>
+        <div data-ovh-alert="cdnSharedSettingsSuccess"></div>
 
-            <div
-                class="alert alert-info"
-                role="alert"
-                data-translate="hosting_tab_DOMAINS_table_empty"
-                data-ng-if="!loading.init && !hasResult"
-            ></div>
+        <div
+            class="alert alert-info"
+            role="alert"
+            data-translate="hosting_tab_DOMAINS_table_empty"
+            data-ng-if="!loading.init && !hasResult"
+        ></div>
 
-            <div data-ng-if="!loading.init && hasResult">
-                <div class="mb-3">
-                    <form
-                        class="form-inline d-md-flex justify-content-md-end"
-                        name="hostingMultisiteSearchForm"
+        <div data-ng-if="!loading.init && hasResult">
+            <div class="mb-3">
+                <oui-dropdown>
+                    <oui-dropdown-trigger
+                        data-text="{{:: 'hosting_multisite_actions' | translate }}"
                     >
-                        <div class="form-group">
-                            <label
-                                class="sr-only"
-                                for="searchMultisiteHosting"
-                            ></label>
-                            <div class="input-group">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="searchMultisiteHosting"
-                                    name="searchMultisiteHosting"
-                                    placeholder="{{:: 'hosting_tab_DOMAINS_search_placeholder' | translate }}"
+                    </oui-dropdown-trigger>
+                    <oui-dropdown-content>
+                        <oui-dropdown-item
+                            on-click="setAction('multisite/add/hosting-multisite-add', {domains: domains})"
+                        >
+                            <span
+                                data-translate="hosting_tab_DOMAINS_configuration_attachDomain_title_button"
+                            ></span>
+                        </oui-dropdown-item>
+                        <oui-dropdown-item
+                            on-click="setAction('ssl/order/hosting-order-ssl')"
+                            disabled="sslCertificate && isSSLCertificateOperationInProgress(sslCertificate)"
+                        >
+                            <span
+                                data-translate="hosting_dashboard_service_order_ssl"
+                            ></span>
+                            <oui-spinner
+                                size="s"
+                                data-ng-if="loading.regeneratingSsl"
+                            ></oui-spinner>
+                        </oui-dropdown-item>
+                        <oui-dropdown-item
+                            on-click="setAction('ssl/regenerate/hosting-ssl-regenerate')"
+                            disabled="sslCertificate
+                                && isLetsEncryptCertificate(sslCertificate)
+                                && isSSLCertificateOperationInProgress(sslCertificate)"
+                        >
+                            <span
+                                data-translate="hosting_ssl_regenerate_title_button"
+                            ></span>
+                            <oui-spinner
+                                data-size="s"
+                                data-ng-if="loading.regeneratingSsl"
+                            ></oui-spinner>
+                        </oui-dropdown-item>
+                    </oui-dropdown-content>
+                </oui-dropdown>
+                <form
+                    class="form-inline float-right"
+                    name="hostingMultisiteSearchForm"
+                >
+                    <div class="form-group">
+                        <label
+                            class="sr-only"
+                            for="searchMultisiteHosting"
+                        ></label>
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="searchMultisiteHosting"
+                                name="searchMultisiteHosting"
+                                placeholder="{{:: 'hosting_tab_DOMAINS_search_placeholder' | translate }}"
+                                data-ng-disabled="domainsLoading"
+                                data-ng-model="search.text"
+                                data-ng-model-options="{ debounce: 800 }"
+                            />
+                            <div
+                                class="input-group-btn"
+                                data-ng-if="search.text"
+                            >
+                                <button
+                                    class="btn btn-default"
+                                    type="button"
+                                    aria-label="{{ 'common_cancel' | translate }}"
+                                    data-ng-click="search.text = ''"
                                     data-ng-disabled="domainsLoading"
-                                    data-ng-model="search.text"
-                                    data-ng-model-options="{ debounce: 800 }"
-                                />
-                                <div
-                                    class="input-group-btn"
-                                    data-ng-if="search.text"
-                                >
-                                    <button
-                                        class="btn btn-default"
-                                        type="button"
-                                        aria-label="{{ 'common_cancel' | translate }}"
-                                        data-ng-click="search.text = ''"
-                                        data-ng-disabled="domainsLoading"
-                                    >
-                                        <span
-                                            class="fa fa-times"
-                                            aria-hidden="true"
-                                        ></span>
-                                    </button>
-                                </div>
-                                <span
-                                    class="input-group-addon"
-                                    data-ng-if="!search.text"
                                 >
                                     <span
-                                        class="fa fa-search"
+                                        class="fa fa-times"
                                         aria-hidden="true"
                                     ></span>
-                                </span>
+                                </button>
                             </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th
-                                    scope="col"
-                                    data-translate="hosting_tab_DOMAINS_table_header_domain"
-                                ></th>
-                                <th
-                                    scope="col"
-                                    data-translate="hosting_tab_DOMAINS_table_header_home"
-                                ></th>
-                                <th
-                                    scope="col"
-                                    data-translate="hosting_tab_DOMAINS_table_header_runtime"
-                                    data-ng-if="hosting.isCloudWeb"
-                                ></th>
-                                <th
-                                    class="text-center"
-                                    scope="col"
-                                    data-translate="hosting_tab_DOMAINS_table_header_ownlog"
-                                ></th>
-                                <th
-                                    class="text-center"
-                                    scope="col"
-                                    data-translate="hosting_tab_DOMAINS_table_header_firewall"
-                                ></th>
-                                <th
-                                    class="text-center"
-                                    scope="col"
-                                    data-translate="hosting_tab_DOMAINS_table_header_cdn"
-                                    data-ng-if="hosting.hasCdn"
-                                ></th>
-                                <th
-                                    class="text-center"
-                                    scope="col"
-                                    data-translate="hosting_tab_DOMAINS_table_header_ssl"
-                                ></th>
-                                <th class="min-width text-right">
-                                    <button
-                                        class="btn btn-icon"
-                                        type="button"
-                                        title="{{ 'hosting_tab_DOMAINS_table_popover_refresh' | translate }}"
-                                        data-ng-click="loadDomains()"
-                                        data-ng-disabled="loading.domains"
-                                    >
-                                        <span
-                                            class="fa fa-refresh"
-                                            aria-hidden="true"
-                                        ></span>
-                                    </button>
-                                </th>
-                            </tr>
-                        </thead>
-
-                        <tbody data-ng-if="loading.domains">
-                            <tr>
-                                <td
-                                    class="text-center"
-                                    colspan="{{hosting.numberOfColumns}}"
-                                >
-                                    <oui-spinner></oui-spinner>
-                                </td>
-                            </tr>
-                        </tbody>
-
-                        <tbody
-                            data-ng-if="!loading.domains && domains.list.results.length <= 0"
-                        >
-                            <tr>
-                                <td
-                                    class="text-center"
-                                    colspan="{{hosting.numberOfColumns}}"
-                                    data-translate="table_search_noresult"
-                                ></td>
-                            </tr>
-                        </tbody>
-
-                        <tbody
-                            data-ng-if="!loading.domains && domains.list.results.length > 0"
-                        >
-                            <tr
-                                data-ng-repeat="domain in domains.list.results track by $index"
+                            <span
+                                class="input-group-addon"
+                                data-ng-if="!search.text"
                             >
-                                <td class="word-break">
-                                    <span
-                                        data-ng-bind="::domain.displayName"
-                                    ></span>
-                                    <oui-spinner
-                                        data-size="s"
-                                        data-ng-if="hosting.isCloudWeb && domain.status === HOSTING_STATUS.UPDATING"
-                                    ></oui-spinner>
-                                </td>
-                                <td data-ng-bind="domain.path"></td>
-                                <td
-                                    data-ng-if="hosting.isCloudWeb"
-                                    data-ng-bind="domain.runtime.name"
-                                ></td>
-                                <td class="text-center">
-                                    <span
-                                        class="oui-status"
-                                        data-ng-bind="(('hosting_tab_DOMAINS_table_cdn_state_' + (domain.ownLog ? 'ACTIVE' : 'NONE') | translate) == 'hosting_tab_DOMAINS_table_cdn_state_' + (domain.ownLog ? 'ACTIVE' : 'NONE'))? domain.ownLog: ('hosting_tab_DOMAINS_table_cdn_state_' + (domain.ownLog ? 'ACTIVE' : 'NONE') | translate)"
-                                        data-ng-class="{
-                                            'oui-status_success': domain.ownLog,
-                                            'oui-status_error': domain.ownLog === 'NONE' || !domain.ownLog
-                                        }"
-                                    >
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    <span
-                                        class="oui-status"
-                                        data-ng-bind="(('hosting_tab_DOMAINS_table_firewall_state_' + domain.firewall | translate) == 'hosting_tab_DOMAINS_table_firewall_state_' + domain.firewall)? domain.firewall: ('hosting_tab_DOMAINS_table_firewall_state_' + domain.firewall | translate)"
-                                        data-ng-class="{
-                                            'oui-status_success': domain.firewall === 'ACTIVE',
-                                            'oui-status_error': domain.firewall === 'NONE'
-                                        }"
-                                    >
-                                    </span>
-                                </td>
-                                <td
-                                    class="text-center"
-                                    data-ng-if="hosting.hasCdn"
-                                >
-                                    <span
-                                        class="oui-status"
-                                        data-ng-bind="(('hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn | translate) == 'hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn)? domain.cdn: ('hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn | translate)"
-                                        data-ng-class="{
-                                            'oui-status_success': domain.cdn === 'ACTIVE',
-                                            'oui-status_error': domain.cdn === 'NONE'
-                                        }"
-                                    >
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    <span
-                                        class="oui-status"
-                                        data-ng-bind="(('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate) == 'hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl)? domain.ssl: ('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate)"
-                                        data-ng-class="{'oui-status_success': domain.ssl === 2, 'oui-status_error': domain.ssl === 0, 'oui-status_warning': domain.ssl === 1}"
-                                        data-oui-tooltip="{{ domain.ssl === 1 ? ('hosting_tab_DOMAINS_table_ssl_state_1_tooltip' | translate) : '' }}"
-                                    >
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    <button
-                                        class="btn btn-icon"
-                                        type="button"
-                                        data-linkedpopover="hosting/popover/multisite.html"
-                                        data-linkedpopover-placement="left"
-                                        data-linkedpopover-single="true"
-                                        data-linkedpopover-remote="true"
-                                        data-linkedpopover-title="{{ 'common_actions' | translate }}"
-                                        data-domain-index="{{$index}}"
-                                    >
-                                        <span
-                                            class="oui-icon oui-icon-gear_line oui-icon_small"
-                                            aria-hidden="true"
-                                        ></span>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                                <span
+                                    class="fa fa-search"
+                                    aria-hidden="true"
+                                ></span>
+                            </span>
+                        </div>
+                    </div>
+                </form>
             </div>
 
-            <div
-                data-ng-show="hasResult"
-                data-pagination-server-side
-                data-pagination-server-side-function="loadDomains"
-                data-pagination-server-side-paginated-stuff="domains"
-                data-pagination-server-side-table-loading="loading.domains"
-            ></div>
+            <div class="table-responsive">
+                <table class="table table-hover multisite">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_table_header_domain"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_table_header_diagnostic"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_table_header_home"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_table_header_git"
+                                data-ng-if="allowedWebsites !== 0"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_table_header_runtime"
+                                data-ng-if="hosting.isCloudWeb"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_table_header_ownlog"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_table_header_firewall"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_table_header_cdn"
+                                data-ng-if="hosting.hasCdn"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_table_header_ssl"
+                            ></th>
+                            <th scope="col" class="min-width text-right">
+                                <button
+                                    class="btn btn-icon"
+                                    type="button"
+                                    title="{{ 'hosting_tab_DOMAINS_table_popover_refresh' | translate }}"
+                                    data-ng-click="loadDomains()"
+                                    data-ng-disabled="loading.domains"
+                                >
+                                    <span
+                                        class="fa fa-refresh"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
 
-            <div class="my-5">
-                <button
-                    class="oui-button oui-button_dropdown mb-0"
-                    data-ng-click="showOvhControl = !showOvhControl"
-                >
-                    <span
-                        data-translate="hosting_tab_DOMAINS_configuration_ovhcontrol"
-                    ></span>
-                    <span
-                        class="oui-icon"
-                        aria-hidden="true"
-                        data-ng-class="{'oui-icon-chevron-down': !showOvhControl, 'oui-icon-chevron-up': showOvhControl}"
-                    ></span>
-                </button>
-                <div class="animated fadeIn mt-4" data-ng-show="showOvhControl">
-                    <p
-                        data-translate="hosting_tab_DOMAINS_configuration_ovhcontrol_info"
-                    ></p>
+                    <!--Domains table is loading-->
+                    <tbody data-ng-if="loading.domains">
+                        <tr>
+                            <td
+                                class="text-center"
+                                colspan="{{numberOfColumns}}"
+                            >
+                                <oui-spinner></oui-spinner>
+                            </td>
+                        </tr>
+                    </tbody>
 
-                    <table class="table table-condensed">
-                        <thead>
-                            <tr>
-                                <th
-                                    scope="col"
-                                    data-translate="hosting_tab_DOMAINS_configuration_ovhcontrol_table_subdomain"
-                                ></th>
-                                <th
-                                    scope="col"
-                                    data-translate="hosting_tab_DOMAINS_configuration_ovhcontrol_table_domain"
-                                ></th>
-                                <th
-                                    scope="col"
-                                    data-translate="hosting_tab_DOMAINS_configuration_ovhcontrol_table_ttl"
-                                ></th>
-                                <th
-                                    scope="col"
-                                    data-translate="hosting_tab_DOMAINS_configuration_ovhcontrol_table_type"
-                                ></th>
-                                <th
-                                    scope="col"
-                                    data-translate="hosting_tab_DOMAINS_configuration_ovhcontrol_table_target"
-                                ></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>ovhcontrol</td>
-                                <td>example.com</td>
-                                <td>0</td>
-                                <td>TXT</td>
-                                <td data-ng-bind="hosting.token"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    <!--No domains table (empty)-->
+                    <tbody
+                        data-ng-if="!loading.domains && domains.list.results.length <= 0"
+                    >
+                        <tr>
+                            <td
+                                class="text-center"
+                                colspan="{{numberOfColumns}}"
+                                data-translate="table_search_noresult"
+                            ></td>
+                        </tr>
+                    </tbody>
+
+                    <!--Domains table-->
+                    <tbody
+                        data-ng-if="!loading.domains && domains.list.results.length > 0"
+                    >
+                        <tr
+                            data-ng-repeat="domain in domains.list.results track by $index"
+                        >
+                            <td class="word-break">
+                                <span
+                                    data-ng-bind="::domain.displayName"
+                                ></span>
+                                <oui-spinner
+                                    data-size="s"
+                                    data-ng-if="domain.status === HOSTING_STATUS.UPDATING"
+                                ></oui-spinner>
+                            </td>
+                            <td class="text-center">
+                                <span
+                                    class="oui-badge"
+                                    data-ng-if="!isMainDomain(hosting, domain)"
+                                    data-ng-click="openDiagnosticModal(domain, HOSTING_TAB_DOMAINS.A_RECORD)"
+                                    data-oui-tooltip="{{ getDiagnosticTooltip(domain, HOSTING_TAB_DOMAINS.A_RECORD) }}"
+                                    data-oui-tooltip-placement="bottom"
+                                    data-ng-class="'oui-badge_' + getDiagnosticBadge(domain, HOSTING_TAB_DOMAINS.A_RECORD)"
+                                    data-ng-bind="HOSTING_TAB_DOMAINS.A_RECORD"
+                                >
+                                </span>
+                                <span
+                                    class="oui-badge"
+                                    data-ng-if="!isMainDomain(hosting, domain)"
+                                    data-ng-click="openDiagnosticModal(domain, HOSTING_TAB_DOMAINS.AAAA_RECORD)"
+                                    data-oui-tooltip="{{ getDiagnosticTooltip(domain, HOSTING_TAB_DOMAINS.AAAA_RECORD) }}"
+                                    data-oui-tooltip-placement="bottom"
+                                    data-ng-class="'oui-badge_' + getDiagnosticBadge(domain, HOSTING_TAB_DOMAINS.AAAA_RECORD)"
+                                    data-ng-bind="HOSTING_TAB_DOMAINS.AAAA_RECORD"
+                                >
+                                </span>
+                            </td>
+                            <td data-ng-bind="domain.path"></td>
+                            <td
+                                class="text-center"
+                                data-ng-if="allowedWebsites !== 0"
+                            >
+                                <span
+                                    class="oui-badge"
+                                    data-translate="{{ 'hosting_tab_DOMAINS_table_git_state_' + domain.vcsStatus }}"
+                                    data-oui-tooltip="{{ :: gitStatusTooltip(domain) }}"
+                                    data-oui-tooltip-placement="right"
+                                    data-ng-class="GIT_BADGES_STATUS[domain.vcsStatus]"
+                                >
+                                </span>
+                            </td>
+                            <td
+                                data-ng-if="hosting.isCloudWeb"
+                                data-ng-bind="domain.runtime.name"
+                            ></td>
+                            <td class="text-center">
+                                <span
+                                    class="oui-badge"
+                                    data-ng-bind="(('hosting_tab_DOMAINS_table_cdn_state_' + (domain.ownLog ? 'ACTIVE' : 'NONE') | translate) == 'hosting_tab_DOMAINS_table_cdn_state_' + (domain.ownLog ? 'ACTIVE' : 'NONE'))? domain.ownLog: ('hosting_tab_DOMAINS_table_cdn_state_' + (domain.ownLog ? 'ACTIVE' : 'NONE') | translate)"
+                                    data-ng-class="{
+                                            'oui-badge_success': domain.ownLog,
+                                            'oui-badge_error': domain.ownLog === 'NONE' || !domain.ownLog
+                                        }"
+                                >
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <span
+                                    class="oui-badge"
+                                    data-ng-bind="(('hosting_tab_DOMAINS_table_firewall_state_' + domain.firewall | translate) == 'hosting_tab_DOMAINS_table_firewall_state_' + domain.firewall)? domain.firewall: ('hosting_tab_DOMAINS_table_firewall_state_' + domain.firewall | translate)"
+                                    data-ng-class="{
+                                            'oui-badge_success': domain.firewall === 'ACTIVE',
+                                            'oui-badge_error': domain.firewall === 'NONE'
+                                        }"
+                                >
+                                </span>
+                            </td>
+                            <td class="text-center" data-ng-if="hosting.hasCdn">
+                                <span
+                                    class="oui-badge"
+                                    data-ng-bind="(('hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn | translate) == 'hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn)? domain.cdn: ('hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn | translate)"
+                                    data-ng-class="{
+                                            'align-bottom': canEditCdn(domain),
+                                            'oui-badge_success': domain.cdn === 'ACTIVE',
+                                            'oui-badge_error': domain.cdn === 'NONE'
+                                        }"
+                                ></span>
+                            </td>
+                            <td class="text-center">
+                                <span
+                                    class="oui-badge"
+                                    data-ng-bind="(('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate) == 'hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl)? domain.ssl: ('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate)"
+                                    data-ng-class="{'oui-badge_success': domain.ssl === 2, 'oui-badge_error': domain.ssl === 0, 'oui-badge_warning': domain.ssl === 1}"
+                                    data-oui-tooltip="{{ domain.ssl === 1 ? ('hosting_tab_DOMAINS_table_ssl_state_1_tooltip' | translate) : '' }}"
+                                >
+                                </span>
+                            </td>
+                            <td
+                                data-ng-controller="HostingTabDomainsMultisiteLogs as MultisiteLogsCtrl"
+                            >
+                                <!-- action menu, oui-dropdown because need button event -->
+                                <oui-dropdown placement="end" arrow>
+                                    <button
+                                        class="oui-action-button"
+                                        data-ng-click="MultisiteLogsCtrl.generateLogHref(domain)"
+                                        oui-dropdown-trigger
+                                        data-ng-disabled="isUpdateDomainDisabled(hosting, domain)"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-ellipsis"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                    <oui-dropdown-content>
+                                        <oui-dropdown-item
+                                            data-on-click="modifyDomain(domain)"
+                                            data-disabled="domain.status !== HOSTING_STATUS.CREATED || hasDoingGitAction(domain)"
+                                            ><span
+                                                data-translate="hosting_tab_DOMAINS_table_popover_modify"
+                                            ></span
+                                        ></oui-dropdown-item>
+
+                                        <div data-ng-if="!!domain.ownLog">
+                                            <oui-dropdown-item
+                                                data-disabled="domain.logsLoading || !domain.logUrl"
+                                                data-href="{{domain.logUrl}}"
+                                                data-ng-click="MultisiteLogsCtrl.goToGeneratedLogHref(domain.logUrl)"
+                                                target="_blank"
+                                            >
+                                                <span
+                                                    data-translate="hosting_tab_DOMAINS_multisite_logs_link"
+                                                ></span>
+                                                <oui-spinner
+                                                    data-size="s"
+                                                    data-ng-if="domain.logsLoading"
+                                                >
+                                                </oui-spinner>
+                                            </oui-dropdown-item>
+                                        </div>
+
+                                        <oui-dropdown-item
+                                            data-on-click="detachDomain(domain)"
+                                            data-disabled="domain.status !== HOSTING_STATUS.CREATED || hasDoingGitAction(domain)"
+                                            data-ng-if="hosting.offer !== HOSTING_OFFER.FREE_100_M"
+                                            ><span
+                                                data-translate="hosting_tab_DOMAINS_table_popover_delete"
+                                            ></span
+                                        ></oui-dropdown-item>
+
+                                        <oui-dropdown-item
+                                            data-on-click="settingCdnDomain(domain)"
+                                            data-disabled="domain.status !== HOSTING_STATUS.CREATED"
+                                            data-ng-if="domain.cdn === CDN_STATUS.ACTIVE && cdnProperties.version === CDN_VERSION.CDN_HOSTING"
+                                            ><span
+                                                data-translate="hosting_tab_DOMAINS_table_popover_modify_cdn"
+                                            ></span
+                                        ></oui-dropdown-item>
+
+                                        <oui-dropdown-item
+                                            data-ng-if="hosting.isCloudWeb"
+                                            data-disabled="domain.status !== HOSTING_STATUS.CREATED"
+                                            data-on-click="restartDomain(domain)"
+                                            ><span
+                                                data-translate="hosting_tab_DOMAINS_table_popover_restart"
+                                            ></span
+                                        ></oui-dropdown-item>
+
+                                        <oui-dropdown-item
+                                            data-ng-if="domain.cdn === CDN_STATUS.ACTIVE"
+                                            data-disabled="domain.status !== HOSTING_STATUS.CREATED"
+                                            data-on-click="goToFlushCdn(domain)"
+                                            ><span
+                                                data-translate="hosting_tab_DOMAINS_table_popover_purge"
+                                            ></span
+                                        ></oui-dropdown-item>
+
+                                        <div data-ng-if="allowedWebsites !== 0">
+                                            <oui-dropdown-item
+                                                data-ng-if=":: canAssociateGit(domain)"
+                                                data-on-click="goToAssociateRepository(domain)"
+                                                ><span
+                                                    data-translate="hosting_tab_DOMAINS_table_popover_git_association"
+                                                ></span
+                                            ></oui-dropdown-item>
+
+                                            <oui-dropdown-item
+                                                data-ng-if=":: canConfigureGit(domain)"
+                                                data-on-click="goToConfigureGit(domain)"
+                                                ><span
+                                                    data-translate="hosting_tab_DOMAINS_table_popover_git_configuration"
+                                                ></span
+                                            ></oui-dropdown-item>
+
+                                            <oui-dropdown-item
+                                                data-ng-if=":: canDeployGit(domain)"
+                                                data-on-click="goToDeployWebSite(domain)"
+                                                ><span
+                                                    data-translate="hosting_tab_DOMAINS_table_popover_git_deployment"
+                                                ></span
+                                            ></oui-dropdown-item>
+
+                                            <oui-dropdown-item
+                                                data-ng-if=":: canViewLastDeploymentGit(domain)"
+                                                data-on-click="goToViewLastDeploy(domain)"
+                                                ><span
+                                                    data-translate="hosting_tab_DOMAINS_table_popover_git_viewLastDeployment"
+                                                ></span
+                                            ></oui-dropdown-item>
+
+                                            <oui-dropdown-item
+                                                data-ng-if=":: canDeleteGit(domain)"
+                                                data-on-click="goToRemoveRepository(domain)"
+                                                ><span
+                                                    data-translate="hosting_tab_DOMAINS_table_popover_git_delete"
+                                                ></span
+                                            ></oui-dropdown-item>
+                                        </div>
+                                    </oui-dropdown-content>
+                                </oui-dropdown>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <aside class="col-md-3 mt-5 mt-lg-0">
-            <div class="mb-5">
-                <button
-                    type="button"
-                    class="oui-button oui-button_full-width oui-button_secondary"
-                    title="{{ 'hosting_tab_DOMAINS_configuration_attachDomain_title_button' | translate }}"
-                    data-translate="hosting_tab_DOMAINS_configuration_attachDomain_title_button"
-                    data-ng-click="setAction('multisite/add/hosting-multisite-add', {domains: domains})"
-                ></button>
-                <button
-                    type="button"
-                    class="oui-button oui-button_full-width oui-button_secondary mt-2"
-                    data-ng-click="setAction('ssl/order/hosting-order-ssl')"
-                    data-ng-disabled="sslCertificate && isSSLCertificateOperationInProgress(sslCertificate)"
-                >
-                    <span
-                        data-translate="hosting_dashboard_service_order_ssl"
-                    ></span>
-                    <oui-spinner
-                        data-size="s"
-                        data-ng-if="loading.regeneratingSsl"
-                    ></oui-spinner>
-                </button>
-                <button
-                    type="button"
-                    class="oui-button oui-button_full-width oui-button_secondary mt-2"
-                    data-ng-click="setAction('ssl/regenerate/hosting-ssl-regenerate')"
-                    data-ng-disabled="sslCertificate
-                        && isLetsEncryptCertificate(sslCertificate)
-                        && isSSLCertificateOperationInProgress(sslCertificate)"
-                >
-                    <span
-                        data-translate="hosting_ssl_regenerate_title_button"
-                    ></span>
-                    <oui-spinner
-                        data-size="s"
-                        data-ng-if="loading.regeneratingSsl"
-                    ></oui-spinner>
-                </button>
+
+        <div
+            data-ng-show="hasResult"
+            data-pagination-server-side
+            data-pagination-server-side-function="loadDomains"
+            data-pagination-server-side-paginated-stuff="domains"
+            data-pagination-server-side-table-loading="loading.domains"
+        ></div>
+
+        <div class="my-5">
+            <button
+                class="oui-button oui-button_dropdown mb-0"
+                data-ng-click="showOvhControl = !showOvhControl"
+            >
+                <span
+                    data-translate="hosting_tab_DOMAINS_configuration_ovhcontrol"
+                ></span>
+                <span
+                    class="oui-icon"
+                    aria-hidden="true"
+                    data-ng-class="{'oui-icon-chevron-down': !showOvhControl, 'oui-icon-chevron-up': showOvhControl}"
+                ></span>
+            </button>
+            <div class="animated fadeIn mt-4" data-ng-show="showOvhControl">
+                <p
+                    data-translate="hosting_tab_DOMAINS_configuration_ovhcontrol_info"
+                ></p>
+
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_configuration_ovhcontrol_table_subdomain"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_configuration_ovhcontrol_table_domain"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_configuration_ovhcontrol_table_ttl"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_configuration_ovhcontrol_table_type"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="hosting_tab_DOMAINS_configuration_ovhcontrol_table_target"
+                            ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ovhcontrol</td>
+                            <td>example.com</td>
+                            <td>0</td>
+                            <td>TXT</td>
+                            <td>
+                                <oui-clipboard
+                                    data-model="hosting.token"
+                                ></oui-clipboard>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </aside>
+        </div>
     </div>
 </div>

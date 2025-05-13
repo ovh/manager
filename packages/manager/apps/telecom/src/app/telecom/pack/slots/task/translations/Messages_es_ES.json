@@ -23,7 +23,6 @@
   "telecom_task_function_createTelephonyLine": "Creación de línea telefónica",
   "telecom_task_function_telephonyLineRenewConfiguration": "Reactivación de una línea telefónica",
   "telecom_task_function_createDomain": "Registro de un dominio",
-  "telecom_task_function_createHubic": "Creación de una cuenta hubiC",
   "telecom_task_function_createHostedEmail": "Creación de una cuenta e-mail",
   "telecom_task_function_createExchange": "Creación de una cuenta Exchange",
   "telecom_task_function_pendingMigration": "Migración de oferta",
@@ -31,5 +30,6 @@
   "telecom_task_function_regeneratePromoCode": "Regeneración del código promocional",
   "telecom_task_function_changePackOffer": "Cambio de oferta",
   "telecom_task_function_packXdslAddressMove": "Traslado",
-  "telecom_task_function_accessDiagnosticRun": "Diagnóstico de la línea"
+  "telecom_task_function_accessDiagnosticRun": "Diagnóstico de la línea",
+  "telecom_task_function_ToDoNothing": "Test OK, ninguna acción pendiente"
 }

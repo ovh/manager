@@ -1,0 +1,10 @@
+{
+  "telephony_line_phone_reboot_title": "Das Telefon neu starten",
+  "telephony_line_phone_reboot_section_title": "Plug &amp; Phone",
+  "telephony_line_phone_reboot_phone_brand": "Modell",
+  "telephony_line_phone_reboot_phone_mac_address": "MAC-Adresse",
+  "telephony_line_phone_reboot_phone": "Neu starten",
+  "telephony_line_phone_reboot_error": "Beim Neustart des Telefons ist ein Fehler aufgetreten.",
+  "telephony_line_phone_reboot_unsupported": "Dieser Telefontyp kann nicht aus der Ferne neu gestartet werden.",
+  "telephony_line_phone_reboot_success": "Neustart wird durchgeführt."
+}

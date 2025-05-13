@@ -1,0 +1,5 @@
+{
+  "telephony_billingAccount_svaWallet_status_banner_in_progress": "Zlecenie potwierdzenia tożsamości zostało przyjęte! Przed zatwierdzeniem operacji należy odczekać 24 godziny/48 godziny!",
+  "telephony_billingAccount_svaWallet_status_banner_incomplete": "Formularz zatwierdzenia jest w trakcie oczekiwania. Aby zatwierdzić zamówienie na numer SVA, wypełnij formularz.",
+  "telephony_billingAccount_svaWallet_status_banner_edit_kyc": "Zakończ formularz potwierdzenia tożsamości"
+}

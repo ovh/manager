@@ -1,0 +1,27 @@
+<h2 data-translate="pci_projects_project_edit_hds_title"></h2>
+<p data-translate="pci_projects_project_edit_hds_description"></p>
+
+<!-- HDS checkbox and banner info -->
+<hds-option
+    data-hds="$ctrl.hds"
+    data-model="$ctrl.model"
+    data-on-hds-checkbox-changed="$ctrl.onHdsCheckboxChanged(hdsCheckbox)"
+>
+</hds-option>
+
+<!-- contracts -->
+<ovh-contracts-summary
+    data-ng-if="$ctrl.isValidForSummary()"
+    data-items="$ctrl.summary.contracts"
+    data-model="$ctrl.model.agreements"
+    data-name="agreements"
+>
+</ovh-contracts-summary>
+
+<oui-button
+    variant="primary"
+    disabled="!$ctrl.isValidToCheckout()"
+    data-ng-click="$ctrl.checkoutCart()"
+>
+    <span data-translate="pci_projects_project_edit_hds_btn_validate"></span>
+</oui-button>

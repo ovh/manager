@@ -1,8 +1,0 @@
-{
- "pci_projects_project_sshKeys_remove_title": "Usuń klucz SSH",
- "pci_projects_project_sshKeys_remove_description": "Operacja ta jest nieodwracalna. Czy chcesz usunąć klucz {{name}}?",
- "pci_projects_project_sshKeys_remove_submit_label": "Usuń",
- "pci_projects_project_sshKeys_remove_cancel_label": "Anuluj",
- "pci_projects_project_sshKeys_remove_success": "Klucz SSH został usunięty.",
- "pci_projects_project_sshKeys_remove_error": "Wystąpił błąd podczas usuwania SSH: {{error}}."
-}

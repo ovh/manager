@@ -1,0 +1,17 @@
+{
+  "restricted_account_logout": "Me déconnecter",
+  "restricted_account_method_user": "Connecté en tant que sous-utilisateur",
+  "restricted_error_default_start": "L'accès à l'espace client OVHcloud nécessite {{count}} droits nécessaires sur votre compte, comme décrit dans le guide ci-dessous :",
+  "restricted_error_default_end": "Veuillez contacter votre administrateur pour ajouter ces permissions.",
+  "restricted_error_title": "Accès restreint",
+  "restricted_guide_card_control-panel-access_description": "Découvrez comment octroyer les droits minimums nécessaires pour vous connecter à votre espace client",
+  "restricted_guide_card_control-panel-access_title": "Se connecter à l'espace client OVHcloud avec l'IAM",
+  "restricted_guide_card_policies-ui_description": "Découvrez comment donner des droits d'accès spécifiques aux utilisateurs depuis un compte OVHcloud",
+  "restricted_guide_card_policies-ui_title": "Créer des politiques IAM depuis votre espace client",
+  "restricted_guide_card_policies-api_description": "Découvrez comment donner des droits d'accès spécifiques aux utilisateurs d'un compte OVHcloud",
+  "restricted_guide_card_policies-api_title": "Créer des politiques IAM via API",
+  "restricted_guide_card_more": "En savoir plus",
+  "restricted_guide_card_title": "Tutoriel",
+  "restricted_language_change": "Changer la langue de l'interface",
+  "restricted_navbar_account": "Mon compte"
+}

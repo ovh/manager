@@ -3,6 +3,7 @@ import includes from 'lodash/includes';
 angular.module('App').controller(
   'PrivateDatabaseRestoreArchiveBDDCtrl',
   class PrivateDatabaseRestoreArchiveBDDCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $translate,

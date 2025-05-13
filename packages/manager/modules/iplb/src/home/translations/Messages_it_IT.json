@@ -17,5 +17,10 @@
   "iplb_home_tile_configuration_quota_unlimited": "Illimitato",
   "iplb_home_tile_configuration_quota_cipher": "Cipher",
   "iplb_home_tile_configuration_quota_datacenter": "Localizzazioni",
-  "iplb_home_tile_configuration_private_network": "Reti private"
+  "iplb_home_tile_configuration_private_network": "Reti private",
+  "iplb_home_tile_configuration_billing_evolution_message_info": "Aggiornamento delle tariffe del Load Balancer e revisione dei prezzi al ribasso",
+  "iplb_home_tile_configuration_billing_issues_message_warn_1": "Il nostro servizio OVHcloud Load Balancer ha registrato negli ultimi mesi alcuni malfunzionamenti tecnici in termini di fatturazione. Ci scusiamo per i possibili disagi causati",
+  "iplb_home_tile_configuration_billing_issues_message_warn_2": "Ti informiamo che non verrà richiesto alcun pagamento per il traffico eccedente non fatturato fino al 1° settembre 2024. A partire dal 1° settembre 2024, la fatturazione riprenderà conformemente alle Condizioni Particolari di Servizio e alle nuove tariffe in vigore.",
+  "iplb_home_tile_configuration_billing_more_information_label": "Maggiori informazioni",
+  "iplb_home_tile_configuration_billing_here_label": "qui"
 }

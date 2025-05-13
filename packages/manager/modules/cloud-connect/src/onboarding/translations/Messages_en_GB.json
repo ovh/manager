@@ -1,0 +1,11 @@
+{
+  "cloud_connect_onboarding_title": "Expand your reach with OVHcloud datacentres",
+  "cloud_connect_onboarding_description": "With our OVHcloud Connect hybrid connection solution, you can form a secure, high-performance link between your company network and the OVHcloud vRack.",
+  "cloud_connect_onboarding_description_part2": "Data is transferred through our infrastructures via our Direct solution, and you get a dedicated connection with 1Gbit/s or 10Gbit/s bandwidth.",
+  "cloud_connect_onboarding_description_part3": "You can also choose our Provider solution, with one of our partners (Equinix, Megaport and more to come). With this solution, you get from 200Mbit/s to 5Gbit/s bandwidth, and even more global coverage.",
+  "cloud_connect_onboarding_order": "Order",
+  "cloud_connect_onboarding_guide1_title": "Concepts overview",
+  "cloud_connect_onboarding_guide1_description": "An introduction to the concepts needed to understand the OVHcloud Connect solution",
+  "cloud_connect_onboarding_guide2_title": "FAQ",
+  "cloud_connect_onboarding_guide2_description": "OVHcloud Connect FAQ"
+}

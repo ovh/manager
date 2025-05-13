@@ -1,0 +1,30 @@
+<oui-modal
+    heading="{{:: 'netapp_volumes_delete' | translate }}"
+    primary-label="{{:: 'netapp_volumes_delete_confirm' | translate }}"
+    primary-disabled="!$ctrl.confirmTermination"
+    primary-action="$ctrl.deleteVolume()"
+    secondary-label="{{:: 'netapp_volumes_delete_cancel' | translate }}"
+    secondary-action="$ctrl.goBack()"
+    loading="$ctrl.isLoading"
+    on-dismiss="$ctrl.goBack()"
+>
+    <p
+        data-translate="netapp_volumes_delete_description"
+        data-translate-values="{
+        volumeId: $ctrl.volumeId }"
+    ></p>
+    <oui-message type="warning">
+        <span data-translate="netapp_volumes_delete_warning"></span>
+    </oui-message>
+    <oui-field
+        label="{{:: 'netapp_volumes_delete_enter_confirmation' | translate}}"
+    >
+        <input
+            class="oui-input"
+            name="confirm"
+            type="text"
+            data-ng-pattern="$ctrl.PATTERN"
+            data-ng-model="$ctrl.confirmTermination"
+        />
+    </oui-field>
+</oui-modal>

@@ -1,0 +1,18 @@
+{
+  "cluster_error_bandwidth_order": "Wystąpił błąd podczas zamawiania przepustowości: {{error}}.",
+  "cluster_order_bandwidth_vrack_title": "Zamów przepustowość",
+  "cluster_order_bandwidth_ready": "Twoje zamówienie jest gotowe. Usługa powinna być dostępna wkrótce po uregulowaniu należności.",
+  "cluster_order_bandwidth_see_order": "Wyświetl zamówienie",
+  "cluster_order_bandwidth_vrack_load": "Trwa pobieranie informacji o usługach...",
+  "cluster_order_bandwidth_empty_plans": "Nie można znaleźć planów aktualizacji",
+  "select_bandwidth_type_label": "Wybierz ofertę",
+  "select_bandwidth_vrack_type_label": "Wybierz ofertę",
+  "select_bandwidth_plan_summary": "Podsumowanie zamówienia",
+  "cluster_order_bandwidth_declaration": "Data odnowienia Twojej opcji zostanie zrównana z datą odnowienia serwera. Wyświetlana kwota odpowiada należności za pierwszy miesiąc fakturowania Twojej opcji i jest obliczana proporcjonalnie do liczby dni korzystania z usługi w danym miesiącu.",
+  "cluster_order_bandwidth_info": "Podana kwota odpowiada kwocie, która zostanie zafakturowana przy kolejnym odnowieniu Twojej opcji.",
+  "cluster_order_bandwidth_warning": "Zmiana przepustowości zostanie wdrożona kilka minut po włączeniu opcji.",
+  "cluster_order_bandwidth_auto_pay": "Zapłać przy użyciu domyślnego sposobu płatności",
+  "plan_price_per_month": "netto/m-c",
+  "wizard_pay": "Zapłać",
+  "wizard_close": "Zamknij"
+}

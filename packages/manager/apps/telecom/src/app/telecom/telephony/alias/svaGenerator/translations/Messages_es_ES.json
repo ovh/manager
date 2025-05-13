@@ -1,6 +1,6 @@
 {
   "telephony_alias_sva_generator_config": "Configuración",
-  "telephony_alias_sva_generator_panpanpan": "Generador de cartucho",
+  "telephony_alias_sva_generator": "Generador de cartucho",
   "telephony_alias_sva_generator_fill": "Color de cartucho",
   "telephony_alias_sva_generator_fill_gradient": "Degradado de color",
   "telephony_alias_sva_generator_fill_simple": "Color liso",

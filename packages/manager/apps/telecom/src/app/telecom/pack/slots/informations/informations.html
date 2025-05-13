@@ -1,0 +1,303 @@
+<div
+    id="pack-informations"
+    data-ng-controller="PackInformationCtrl as PackInformation"
+>
+    <div class="text-center" data-ng-if="PackInformation.isLoading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!PackInformation.isLoading">
+        <div class="oui-tile__body">
+            <ul class="list-unstyled">
+                <!-- PACK STATE -->
+                <li class="oui-tile__item">
+                    <div class="oui-tile__definition">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="pack_xdsl_status"
+                        >
+                        </strong>
+                        <div class="oui-tile__description">
+                            <h5
+                                class="ovh-font ovh-font-success text-success mr-2"
+                                aria-hidden="true"
+                                data-ng-if="Pack.pack.informations.status === 'ok'"
+                            ></h5>
+                            <h5
+                                class="ovh-font ovh-font-failure text-danger mr-2"
+                                aria-hidden="true"
+                                data-ng-if="Pack.pack.informations.status === 'expired'"
+                            ></h5>
+                            <h5
+                                class="ovh-font ovh-font-inprogress text-info mr-2"
+                                data-ng-if="Pack.pack.informations.status === 'inCreation'"
+                                aria-hidden="true"
+                            ></h5>
+                            <span
+                                data-ng-bind="'pack_xdsl_' + Pack.pack.informations.status | translate"
+                            ></span>
+                        </div>
+                    </div>
+                </li>
+                <!-- OFFER NAME -->
+                <li class="oui-tile__item">
+                    <div class="oui-tile__definition">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="pack_xdsl_offer_name"
+                        >
+                        </strong>
+                        <div class="oui-tile__description">
+                            <span
+                                data-ng-if="Pack.pack.informations.status === 'ok'"
+                            >
+                                <span
+                                    class="d-block mb-3"
+                                    data-ng-bind="Pack.pack.offerDescription"
+                                >
+                                </span>
+                                <a
+                                    class="oui-button oui-button_icon-right oui-button_secondary oui-button_block"
+                                    data-ui-sref="telecom.packs.pack.migration"
+                                >
+                                    <span
+                                        data-translate="pack_offer_migration"
+                                    ></span>
+                                    <i
+                                        class="oui-icon oui-icon-chevron-right"
+                                        aria-hidden="true"
+                                    ></i>
+                                </a>
+                            </span>
+                            <span
+                                data-ng-if="Pack.pack.informations.status !== 'ok'"
+                                data-ng-bind="Pack.pack.offerDescription"
+                            >
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="oui-tile__item">
+                    <div class="oui-tile__definition">
+                        <div
+                            class="oui-tile__term"
+                            data-translate="pack_xdsl_followUp_label"
+                        ></div>
+                        <div class="oui-tile__description">
+                            <div class="mb-3">
+                                <p
+                                    class="text-default"
+                                    data-ng-class="{ 'description-title-fullHeight' : !PackInformation.actualOrder.doneDateLocale }"
+                                    data-translate="telecom_pack_xdsl_order_follow_up_step_name_{{PackInformation.actualOrder.name}}"
+                                ></p>
+
+                                <p
+                                    class="text-default"
+                                    data-ng-if="PackInformation.actualOrder.doneDateLocale"
+                                    data-ng-bind="PackInformation.actualOrder.doneDateLocale"
+                                ></p>
+                            </div>
+                            <a
+                                class="oui-button oui-button_icon-right oui-button_secondary oui-button_block"
+                                data-ui-sref="telecom.packs.pack.order-follow-up({ packName: Pack.pack.packName })"
+                            >
+                                <span
+                                    data-translate="pack_xdsl_followUp_label_step_name_detail"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-chevron-right"
+                                    aria-hidden="true"
+                                ></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <!-- PACK NAME -->
+                <li class="oui-tile__item">
+                    <div class="oui-tile__definition">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="pack_xdsl_pack_id"
+                        >
+                        </strong>
+                        <span
+                            class="oui-tile__description"
+                            data-ng-bind="Pack.pack.packName"
+                        >
+                        </span>
+                    </div>
+                </li>
+                <!-- CREATION DATE -->
+                <li class="oui-tile__item">
+                    <div class="oui-tile__definition">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="pack_xdsl_created_date"
+                        >
+                        </strong>
+                        <span
+                            class="oui-tile__description"
+                            data-ng-bind="(Pack.pack.informations.creation | date) || '-'"
+                        >
+                        </span>
+                    </div>
+                </li>
+                <!-- ENGAGED UP TO -->
+                <li class="oui-tile__item">
+                    <div class="oui-tile__definition">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="pack_xdsl_engaged_date"
+                        >
+                        </strong>
+                        <div class="oui-tile__description">
+                            <span
+                                data-ng-if="!PackInformation.resiliationFollowUp && Pack.pack.informations.status === 'ok'"
+                            >
+                                <span
+                                    class="d-block mb-3"
+                                    data-ng-if="!PackInformation.isEngaged"
+                                    data-translate="pack_xdsl_not_engaged"
+                                >
+                                </span>
+                                <span
+                                    class="d-block mb-3"
+                                    data-ng-if="PackInformation.isEngaged"
+                                    data-ng-bind="(Pack.pack.informations.engagedUpTo | date) || '-'"
+                                >
+                                </span>
+                                <a
+                                    class="oui-button oui-button_icon-right oui-button_secondary oui-button_block"
+                                    data-ui-sref="telecom.packs.pack.resiliation"
+                                >
+                                    <span
+                                        data-translate="common_resiliation"
+                                    ></span>
+                                    <i
+                                        class="oui-icon oui-icon-chevron-right"
+                                        aria-hidden="true"
+                                    ></i>
+                                </a>
+                            </span>
+                            <span
+                                data-ng-if="Pack.pack.informations.status !== 'ok'"
+                                data-ng-bind="(Pack.pack.informations.engagedUpTo | date) || '-'"
+                            >
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <!-- RESILIATION DATE -->
+                <li
+                    class="oui-tile__item"
+                    data-ng-if="PackInformation.resiliationFollowUp"
+                >
+                    <div class="oui-tile__definition">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="pack_xdsl_resiliation_date"
+                        >
+                        </strong>
+                        <div class="oui-tile__description">
+                            <a
+                                class="service-button"
+                                data-ui-sref="telecom.packs.pack.resiliation"
+                                data-translate-attr="{ title: 'common_resiliation_cancel' }"
+                            >
+                                <strong
+                                    class="resiliation-date text-warning"
+                                    data-ng-bind="PackInformation.resiliationFollowUp.dateTodo | date"
+                                ></strong>
+                                <span class="link-name">
+                                    <span data-translate="cancel"></span>
+                                    <span
+                                        class="ovh-font ovh-font-arrow-right"
+                                        aria-hidden="true"
+                                    ></span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="oui-tile__item">
+                    <div class="oui-tile__definition">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="pack_xdsl_pack_link_address"
+                        >
+                        </strong>
+                        <div class="oui-tile__description">
+                            <span data-ng-if="Pack.pack.mainAccess.address">
+                                <span
+                                    data-ng-bind="Pack.pack.mainAccess.address.numberStreet"
+                                ></span>
+                                <span
+                                    data-ng-bind="Pack.pack.mainAccess.address.street"
+                                ></span>
+                                <span
+                                    data-ng-bind="Pack.pack.mainAccess.address.zipCode"
+                                ></span>
+                                <span
+                                    data-ng-bind="Pack.pack.mainAccess.address.city"
+                                ></span>
+                            </span>
+                            <span data-ng-if="!Pack.pack.mainAccess.address"
+                                >-</span
+                            >
+                        </div>
+                    </div>
+                </li>
+                <li
+                    class="oui-tile__item"
+                    data-ng-if="!Pack.pack.mainAccess.isFiberPack"
+                >
+                    <div class="oui-tile__definition">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="pack_xdsl_information_associated_line"
+                        >
+                        </strong>
+                        <span
+                            class="oui-tile__description"
+                            data-ng-bind="PackInformation.associatedLine"
+                        >
+                        </span>
+                    </div>
+                </li>
+                <li class="oui-tile__item">
+                    <div class="oui-tile__definition">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="pack_xdsl_information_links"
+                        >
+                        </strong>
+                        <oui-tile-button
+                            data-ng-href="{{:: PackInformation.servicesStateLink.igmap }}"
+                            external
+                        >
+                            <span
+                                data-translate="pack_xdsl_information_links_igmap"
+                            ></span>
+                        </oui-tile-button>
+                        <oui-tile-button
+                            data-ng-href="{{:: PackInformation.servicesStateLink.travaux }}"
+                            external
+                        >
+                            <span
+                                data-translate="pack_xdsl_information_links_travaux"
+                            ></span>
+                        </oui-tile-button>
+                        <oui-tile-button
+                            data-ng-href="{{:: PackInformation.servicesStateLink.guides }}"
+                            external
+                        >
+                            <span
+                                data-translate="pack_xdsl_information_links_guides"
+                            ></span>
+                        </oui-tile-button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

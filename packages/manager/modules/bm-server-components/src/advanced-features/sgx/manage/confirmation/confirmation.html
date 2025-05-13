@@ -1,0 +1,17 @@
+<form
+    name="form"
+    data-ng-submit=":: $ctrl.confirm($ctrl.activationMode, $ctrl.prmrr)"
+    novalidate
+>
+    <oui-modal
+        secondary-action=":: $ctrl.goBack()"
+        secondary-label="{{ ::'dedicated_server_dashboard_advanced_features_sgx_manage_confirm_cancel' | translate }}"
+        primary-label="{{ ::'dedicated_server_dashboard_advanced_features_sgx_manage_confirm_confirm' | translate}}"
+        on-dismiss=":: $ctrl.goBack()"
+        data-heading="{{ ::'dedicated_server_dashboard_advanced_features_sgx_manage_confirm_' + $ctrl.type + '_header' | translate }}"
+    >
+        <span
+            data-translate="{{:: 'dedicated_server_dashboard_advanced_features_sgx_manage_confirm_' + $ctrl.type + '_content' }}"
+        ></span>
+    </oui-modal>
+</form>

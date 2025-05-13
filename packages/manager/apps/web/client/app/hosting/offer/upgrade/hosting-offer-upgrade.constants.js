@@ -1,0 +1,47 @@
+export const DETACH_DEFAULT_OPTIONS = {
+  type: 'detach',
+  durationCode: 'P12M',
+  durationText: '12m',
+  pricingMode: 'default',
+  quantity: 1,
+};
+
+export const OFFERS_WITHOUT_FREEDOM = [
+  'HOSTING_STARTER',
+  'HOSTING_STARTER_OVH',
+  'HOSTING_PERSO',
+  'HOSTING_PERFORMANCE_1',
+  'HOSTING_PERFORMANCE_2',
+  'HOSTING_PERFORMANCE_3',
+  'HOSTING_PERFORMANCE_4',
+  'START_10_M',
+  'HOSTING_FREE_100_M',
+  'KIMSUFI_2015',
+  'PERF_2014_X_1',
+  'PERF_2014_X_2',
+  'PERF_2014_X_3',
+  'PERF_2014_X_4',
+  'PERSO_2014',
+  'PRO_2014',
+  'PERSO_2010',
+  'PRO_2010',
+  'CLOUDWEB_1',
+  'CLOUDWEB_2',
+  'CLOUDWEB_3',
+  'ITPERSO_2012',
+  'ITBUSINESS_2012',
+  'ITPREMIUM_2012',
+  'START_1_G',
+  'START_5_G',
+  'START_10_G',
+  '20_GP',
+  '60_GP',
+  '300_GP',
+  'HOSTING_PRO',
+  '90_PLAN',
+];
+
+export default {
+  DETACH_DEFAULT_OPTIONS,
+  OFFERS_WITHOUT_FREEDOM,
+};

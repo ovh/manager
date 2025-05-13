@@ -1,0 +1,8 @@
+<div class="oui-tile d-flex m-2">
+    <h6 class="w-50" data-ng-bind="$ctrl.title"></h6>
+    <div class="text-right ml-auto mr-3" ng-transclude="price">
+        <p class="oui-heading_6 m-0" data-ng-bind="$ctrl.price"></p>
+        <span data-ng-bind=":: $ctrl.priceSuffix"></span>
+    </div>
+    <div class="oui-tile__body" ng-transclude></div>
+</div>

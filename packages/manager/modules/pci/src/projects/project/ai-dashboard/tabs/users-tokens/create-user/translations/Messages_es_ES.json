@@ -1,0 +1,11 @@
+{
+  "pci_ai_dashboard_create_user_heading": "Crear un usuario AI",
+  "pci_ai_dashboard_create_user_description": "Descripción",
+  "pci_ai_dashboard_create_user_role": "Rol",
+  "pci_ai_dashboard_create_user_add": "Añadir un usuario",
+  "pci_ai_dashboard_create_user_cancel": "Cancelar",
+  "pci_ai_dashboard_create_user_role_name_ai_training_operator": "AI Platform - Operador",
+  "pci_ai_dashboard_create_user_role_name_ai_training_read": "AI Platform - Solo lectura",
+  "pci_ai_dashboard_create_user_success_message": "Se ha añadido el usuario {{ username }} con la contraseña {{ password }}.",
+  "pci_ai_dashboard_create_user_error_message": "Se ha producido un error al añadir el usuario: {{message}}"
+}

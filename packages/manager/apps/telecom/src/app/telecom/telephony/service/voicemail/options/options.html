@@ -1,0 +1,416 @@
+<section class="telephony-group-service-voicemail-options">
+    <div class="text-center" data-ng-if="VoicemailOptionsCtrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <div
+        class="row"
+        data-ng-if="!VoicemailOptionsCtrl.loading && VoicemailOptionsCtrl.settings"
+    >
+        <!-- RECORDING -->
+        <div class="col-md-6 mb-4" data-ng-if="VoicemailOptionsCtrl.settings">
+            <div class="widget-presentation mb-5">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="telephony_line_answer_voicemail_options_recording_title"
+                ></h2>
+            </div>
+            <form
+                name="voicemailRecordingForm"
+                data-ng-submit="VoicemailOptionsCtrl.updateRecording()"
+                novalidate
+            >
+                <div class="form-group">
+                    <label
+                        class="control-label"
+                        for="doNotRecord"
+                        data-translate="telephony_line_answer_voicemail_options_recording"
+                    >
+                    </label>
+                    <div class="oui-switch">
+                        <label class="oui-switch__label-container">
+                            <input
+                                type="checkbox"
+                                class="oui-switch__checkbox"
+                                id="doNotRecord"
+                                data-ng-model="VoicemailOptionsCtrl.recordingForm.doNotRecord"
+                                data-ng-disabled="VoicemailOptionsCtrl.recordingForm.isUpdating ||
+                                                     VoicemailOptionsCtrl.recordingForm.isSuccess"
+                                data-ng-true-value="false"
+                                data-ng-false-value="true"
+                            />
+                            <span
+                                class="oui-switch__slider"
+                                aria-hidden="true"
+                            ></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label
+                        data-translate="telephony_line_answer_voicemail_options_greetings"
+                    ></label>
+                    <div
+                        data-ng-if="VoicemailOptionsCtrl.greetings && !VoicemailOptionsCtrl.recordingForm.uploadedFile && !VoicemailOptionsCtrl.recordingForm.isUpdating"
+                    >
+                        <span
+                            >{{
+                            'telephony_line_answer_voicemail_options_recording_'
+                            + VoicemailOptionsCtrl.greetings.dir | translate
+                            }}&nbsp;:</span
+                        >
+                        <br />
+                        <a
+                            data-ng-href="{{ VoicemailOptionsCtrl.greetings.url }}"
+                            target="_top"
+                        >
+                            <span
+                                data-ng-bind="VoicemailOptionsCtrl.settings.annouceMessage"
+                            ></span>
+                        </a>
+                        <br />
+                        <button
+                            type="button"
+                            class="btn btn-danger"
+                            data-translate="telephony_line_answer_voicemail_options_recording_delete"
+                            data-ng-really-click="VoicemailOptionsCtrl.removeRecordSound()"
+                            data-ng-really-message="{{ 'telephony_line_answer_voicemail_options_recording_delete_confirm' | translate }}"
+                            data-ng-really-confirm="{{ 'common_yes_capitalized' | translate }}"
+                            data-ng-really-cancel="{{ 'common_no_capitalized' | translate }}"
+                            data-ng-really-window-class="revert-really-buttons"
+                        ></button>
+                    </div>
+                    <div class="mt-2">
+                        <tuc-input-file
+                            data-ng-model="VoicemailOptionsCtrl.recordingForm.uploadedFile"
+                            data-ng-accept="audio/*,.wav,.mp3,.m4a,.aac,.ogg,.flac,.opus,.aiff,.au"
+                            data-ng-accept-filter="VoicemailOptionsCtrl.checkValidAudioExtention(file)"
+                        >
+                            <i class="fa fa-upload mr-1"></i>
+                            <span
+                                data-translate="telephony_line_answer_voicemail_options_recording_file"
+                            ></span>
+                        </tuc-input-file>
+                    </div>
+                    <div
+                        data-ng-if="VoicemailOptionsCtrl.recordingForm.uploadedFile && !VoicemailOptionsCtrl.recordingForm.isUpdating"
+                    >
+                        <select
+                            class="form-control mt-1"
+                            data-ng-model="VoicemailOptionsCtrl.recordingForm.dir"
+                            required
+                        >
+                            <option
+                                value="greet"
+                                data-translate="telephony_line_answer_voicemail_options_recording_greet"
+                            ></option>
+                            <option
+                                value="unavail"
+                                data-translate="telephony_line_answer_voicemail_options_recording_unavail"
+                            ></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        data-ng-disabled="voicemailRecordingForm.$invalid ||
+                                              !VoicemailOptionsCtrl.recordingChanged() ||
+                                              VoicemailOptionsCtrl.recordingForm.isUpdating"
+                    >
+                        <span
+                            data-ng-if="!VoicemailOptionsCtrl.recordingForm.isSuccess"
+                            data-translate="telephony_line_answer_voicemail_options_update"
+                        ></span>
+                        <span
+                            data-ng-if="VoicemailOptionsCtrl.recordingForm.isSuccess"
+                            data-translate="telephony_line_answer_voicemail_options_update_success"
+                        ></span>
+                        <i
+                            data-ng-if="VoicemailOptionsCtrl.recordingForm.isSuccess"
+                            class="ovh-font ovh-font-success ml-1"
+                        ></i>
+                        <oui-spinner
+                            class="ml-2"
+                            data-ng-if="VoicemailOptionsCtrl.recordingForm.isUpdating"
+                            data-size="s"
+                        >
+                        </oui-spinner>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- EMAIL SETTINGS -->
+        <div class="col-md-6">
+            <div class="widget-presentation mb-4">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="telephony_line_answer_voicemail_options_mail_title"
+                ></h2>
+            </div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-ng-if="VoicemailOptionsCtrl.settings.redirectionEmails.length === 0"
+            >
+                <p
+                    data-translate="telephony_line_answer_voicemail_options_mail_empty"
+                ></p>
+            </div>
+
+            <div
+                class="row mb-2"
+                data-ng-repeat="redirection in VoicemailOptionsCtrl.settings.redirectionEmails"
+            >
+                <span
+                    class="col-xs-5 mt-1 word-break"
+                    data-ng-bind="redirection.email"
+                ></span>
+                <span
+                    class="col-xs-5 mt-1"
+                    data-ng-bind="'telephony_line_answer_voicemail_options_mail_type_' + redirection.type | translate"
+                ></span>
+                <div class="col-xs-2">
+                    <button
+                        class="btn btn-link p-0 m-0 float-right"
+                        type="button"
+                        data-ng-disabled="VoicemailOptionsCtrl.notificationForm.isUpdating ||
+                                              VoicemailOptionsCtrl.emailForm.isAdding ||
+                                              VoicemailOptionsCtrl.emailForm.isRemoving"
+                        data-ng-click="VoicemailOptionsCtrl.removeEmail(redirection)"
+                    >
+                        <i
+                            class="ovh-font ovh-font-bin"
+                            data-ng-if="!redirection.removing"
+                        ></i>
+                        <oui-spinner
+                            data-ng-if="redirection.removing"
+                            data-size="s"
+                        >
+                        </oui-spinner>
+                    </button>
+                </div>
+            </div>
+
+            <form
+                name="emailForm"
+                class="mt-4"
+                data-ng-submit="VoicemailOptionsCtrl.addEmail()"
+                data-ng-if="VoicemailOptionsCtrl.emailForm.isShown"
+                novalidate
+            >
+                <div
+                    class="form-group"
+                    data-ng-class="{
+                         'has-error': emailForm.email.$touched && emailForm.email.$invalid
+                     }"
+                >
+                    <input
+                        class="form-control"
+                        type="email"
+                        name="email"
+                        data-ng-model="VoicemailOptionsCtrl.emailForm.email"
+                        placeholder="{{:: 'telephony_line_answer_voicemail_options_mail' | translate }}"
+                        autofocus
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <select
+                        class="form-control"
+                        data-ng-model="VoicemailOptionsCtrl.emailForm.type"
+                        data-ng-options="option as ('telephony_line_answer_voicemail_options_mail_type_' + option | translate) for option in VoicemailOptionsCtrl.enums.mailOption"
+                        required
+                    >
+                        <option
+                            value=""
+                            data-translate="telephony_line_answer_voicemail_options_mail_type"
+                        ></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button
+                        type="submit"
+                        data-ng-disabled="emailForm.$invalid ||
+                                              VoicemailOptionsCtrl.emailForm.isAdding ||
+                                              VoicemailOptionsCtrl.emailForm.isRemoving"
+                        class="btn btn-primary"
+                    >
+                        <oui-spinner
+                            class="ml-2"
+                            data-ng-if="VoicemailOptionsCtrl.emailForm.isAdding"
+                            data-size="s"
+                        >
+                        </oui-spinner>
+                        <span
+                            data-translate="telephony_line_answer_voicemail_options_mail_add_confirm"
+                        ></span>
+                    </button>
+                    <button
+                        type="cancel"
+                        class="btn btn-default ml-1"
+                        data-ng-disabled="VoicemailOptionsCtrl.emailForm.isAdding"
+                        data-ng-click="VoicemailOptionsCtrl.cancelAddEmail()"
+                    >
+                        <span
+                            data-translate="telephony_line_answer_voicemail_options_mail_cancel"
+                        ></span>
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-4">
+                <button
+                    type="button"
+                    class="btn btn-primary no-transition mb-4"
+                    data-ng-if="!VoicemailOptionsCtrl.emailForm.isShown && VoicemailOptionsCtrl.settings.redirectionEmails.length < 5"
+                    data-ng-disabled="VoicemailOptionsCtrl.emailForm.isRemoving || VoicemailOptionsCtrl.notificationForm.isUpdating"
+                    data-ng-click="VoicemailOptionsCtrl.emailForm.isShown = true"
+                >
+                    <span
+                        data-translate="telephony_line_answer_voicemail_options_mail_add"
+                    ></span>
+                </button>
+                <p
+                    class="text-info my-4"
+                    data-ng-if="VoicemailOptionsCtrl.settings.redirectionEmails.length >= 5"
+                >
+                    <i class="ovh-font ovh-font-info mr-1"></i>
+                    <span
+                        data-translate="telephony_line_answer_voicemail_options_mail_limit"
+                    ></span>
+                </p>
+            </div>
+        </div>
+        <!-- email settings -->
+    </div>
+    <!-- row -->
+
+    <div
+        class="row"
+        data-ng-if="!VoicemailOptionsCtrl.loading && VoicemailOptionsCtrl.settings"
+    >
+        <!-- NOTIFICATION SETTINGS -->
+        <div class="col-md-6">
+            <div class="widget-presentation mb-4">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="telephony_line_answer_voicemail_options_notification"
+                ></h2>
+            </div>
+            <form
+                name="voicemailNotificationForm"
+                data-ng-submit="VoicemailOptionsCtrl.updateSettings()"
+                novalidate
+            >
+                <div class="form-group">
+                    <label
+                        class="control-label"
+                        for="audioFormat"
+                        data-translate="telephony_line_answer_voicemail_options_audioformat"
+                    >
+                    </label>
+                    <select
+                        id="audioFormat"
+                        name="audioFormat"
+                        class="form-control"
+                        data-ng-model="VoicemailOptionsCtrl.notificationForm.audioFormat"
+                        data-ng-disabled="VoicemailOptionsCtrl.notificationForm.isSuccess"
+                        data-ng-options="format as (format | uppercase) for format in VoicemailOptionsCtrl.enums.audioFormat"
+                    >
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label
+                        class="control-label"
+                        for="keepMessage"
+                        data-translate="telephony_line_answer_voicemail_options_notifications"
+                    >
+                    </label>
+                    <div class="oui-switch">
+                        <label class="oui-switch__label-container">
+                            <input
+                                type="checkbox"
+                                class="oui-switch__checkbox"
+                                id="keepMessage"
+                                data-ng-model="VoicemailOptionsCtrl.notificationForm.keepMessage"
+                                data-ng-disabled="VoicemailOptionsCtrl.notificationForm.isSuccess"
+                            />
+                            <span
+                                class="oui-switch__slider"
+                                aria-hidden="true"
+                            ></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label
+                        class="control-label"
+                        for="fromName"
+                        data-translate="telephony_line_answer_voicemail_options_sender_name"
+                    >
+                    </label>
+                    <input
+                        id="fromName"
+                        name="fromName"
+                        type="text"
+                        class="form-control"
+                        data-ng-model="VoicemailOptionsCtrl.notificationForm.fromName"
+                        data-ng-disabled="VoicemailOptionsCtrl.notificationForm.isSuccess"
+                    />
+                </div>
+                <div class="form-group">
+                    <label
+                        class="control-label"
+                        for="fromEmail"
+                        data-translate="telephony_line_answer_voicemail_options_sender_mail"
+                    >
+                    </label>
+                    <input
+                        id="fromEmail"
+                        name="fromEmail"
+                        type="email"
+                        class="form-control"
+                        data-ng-model="VoicemailOptionsCtrl.notificationForm.fromEmail"
+                        data-ng-disabled="VoicemailOptionsCtrl.notificationForm.isSuccess"
+                    />
+                </div>
+                <div class="form-group">
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        data-ng-disabled="!VoicemailOptionsCtrl.notificationChanged() ||
+                                              VoicemailOptionsCtrl.notificationForm.isUpdating ||
+                                              VoicemailOptionsCtrl.notificationForm.isSuccess ||
+                                              VoicemailOptionsCtrl.emailForm.isAdding ||
+                                              VoicemailOptionsCtrl.emailForm.isRemoving"
+                    >
+                        <span
+                            data-ng-if="!VoicemailOptionsCtrl.notificationForm.isSuccess"
+                            data-translate="telephony_line_answer_voicemail_options_update"
+                        ></span>
+                        <span
+                            data-ng-if="VoicemailOptionsCtrl.notificationForm.isSuccess"
+                            data-translate="telephony_line_answer_voicemail_options_update_success"
+                        ></span>
+                        <i
+                            data-ng-if="VoicemailOptionsCtrl.notificationForm.isSuccess"
+                            class="ovh-font ovh-font-success ml-1"
+                        ></i>
+                        <oui-spinner
+                            class="ml-2"
+                            data-ng-if="VoicemailOptionsCtrl.notificationForm.isUpdating"
+                            data-size="s"
+                        >
+                        </oui-spinner>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!-- notification settings -->
+    </div>
+</section>

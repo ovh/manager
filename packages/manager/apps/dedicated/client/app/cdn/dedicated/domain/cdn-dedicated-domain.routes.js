@@ -1,14 +1,20 @@
-angular.module('App').config(($stateProvider) => {
-  $stateProvider.state('app.networks.cdn.dedicated.domain', {
-    redirectTo: 'app.networks.cdn.dedicated.domain.statistics',
-    url: '/domain/:domain',
+import template from './cdn-dedicated-domain.html';
+import controller from './cdn-dedicated-domain.controller';
+
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app.networks.cdn.dedicated.manage.domain.dashboard', {
+    redirectTo: 'app.networks.cdn.dedicated.manage.domain.dashboard.statistics',
+    url: '/:domain',
     views: {
-      cdnMainView: {
-        templateUrl: 'cdn/dedicated/domain/cdn-dedicated-domain.html',
-        controller: 'CdnDomainCtrl',
+      'cdnMainView@app.networks.cdn.dedicated': {
+        template,
+        controller,
         controllerAs: '$ctrl',
       },
     },
-    translations: { value: ['.'], format: 'json' },
+    resolve: {
+      domain: /* @ngInject */ ($transition$) => $transition$.params().domain,
+      breadcrumb: /* @ngInject */ (domain) => domain,
+    },
   });
-});
+};

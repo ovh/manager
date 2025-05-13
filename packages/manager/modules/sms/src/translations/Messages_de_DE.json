@@ -1,0 +1,16 @@
+{
+  "sms_order": "Bestellen",
+  "sms_channel_label": "Account-Format",
+  "sms_channel_both": "Standard",
+  "sms_channel_marketing": "SMPP Marketing",
+  "sms_channel_transactional": "Transaktionale SMPP",
+  "sms_view_sms_label": "Details",
+  "sms_header_guide": "Anleitungen",
+  "sms_header_guide_start_with_sms": "Erste SMS von OVHcloud",
+  "sms_title": "SMS",
+  "sms_name_label": "Name",
+  "sms_description_label": "Beschreibung",
+  "sms_status_label": "Status",
+  "sms_status_label_enable": "OK",
+  "sms_status_label_disable": "Deaktiviert"
+}

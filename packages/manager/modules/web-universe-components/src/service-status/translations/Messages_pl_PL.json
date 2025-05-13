@@ -1,9 +1,0 @@
-{
-  "status_action_renew_date_label": "Automatyczne odnowienie przewidziane na dzień",
-  "status_action_resiliation_cancel_label": "Anuluj rezygnację",
-  "status_action_wizard_renew": "Odnów",
-  "status_action_resiliation_date_label": "Wypowiedzenie umowy przewidziane na",
-  "status_action_expiration_date_label": "Wygasa",
-  "status_action_expiration_delete_cancel_label": "Rezygnacja",
-  "status_action_renew_management": "Zarządzanie usługami"
-}

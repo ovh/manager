@@ -1,7 +1,0 @@
-{
-  "data_processing_details_logs_title": "Logs",
-  "data_processing_details_logs_swift": "You job is not running anymore. You can find your logs in your Swift Object Storage.",
-  "data_processing_details_logs_swift_download_label": "Download logs",
-  "data_processing_details_logs_terminated": "Your job was terminated, no logs were produced.",
-  "data_processing_details_logs_default_message": "Waiting for logs..."
-}

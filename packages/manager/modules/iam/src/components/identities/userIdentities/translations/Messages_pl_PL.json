@@ -1,0 +1,17 @@
+{
+  "iam_identities_users_title": "Użytkownicy lokalni",
+  "iam_identities_users_empty": "Brak użytkowników lokalnych",
+  "iam_identities_users_user": "Nazwa",
+  "iam_identities_users_group": "Grupa",
+  "iam_identities_users_email": "Adres e-mail",
+  "iam_identities_users_status": "Status",
+  "iam_identities_users_description": "Opis",
+  "iam_identities_users_status_OK": "Włączone",
+  "iam_identities_users_status_DISABLED": "Wyłączone",
+  "iam_identities_users_status_PASSWORD_CHANGE_REQUIRED": "Wymagana zmiana hasła",
+  "iam_identities_users_add": "Dodaj użytkowników",
+  "iam_identities_users_modal_title": "Dodaj użytkowników lokalnych",
+  "iam_identities_users_modal_empty_state": "Brak użytkowników lokalnych do dodania",
+  "iam_identities_users_modal_search_placeholder": "Wyszukaj według nazwy lub adresu e-mail",
+  "iam_identities_users_load_error": "Wystąpił błąd podczas pobierania informacji o użytkownikach lokalnych: {{message}}"
+}

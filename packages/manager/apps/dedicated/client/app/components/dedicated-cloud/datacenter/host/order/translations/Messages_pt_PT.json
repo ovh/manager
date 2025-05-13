@@ -1,0 +1,14 @@
+{
+  "dedicatedCloud_host_order_title": "Encomendar um host",
+  "dedicatedCloud_host_order_info_EPCC": "Pode personalizar o seu Private Cloud adicionando hosts. De seguida, será redirecionado para um novo separador para finalizar a sua encomenda.",
+  "dedicatedCloud_host_order_select": "Selecionar um tipo de host:",
+  "dedicatedCloud_host_order_host": "Host",
+  "dedicatedCloud_host_order_price": "Preço",
+  "dedicatedCloud_host_order_speed": "Frequência CPU",
+  "dedicatedCloud_host_order_memory": "RAM",
+  "dedicatedCloud_host_order_cores": "Número de cores",
+  "dedicatedCloud_host_order_quantity": "Quantidade:",
+  "dedicatedCloud_host_order_confirm": "Confirmar a encomenda",
+  "dedicatedCloud_host_order_loading_error": "Erro ao carregar informações relativas aos hosts.",
+  "dedicatedCloud_host_order_info_MBM": "Pode personalizar o seu serviço Essentials adicionando hosts. De seguida, será redirecionado para um novo separador para finalizar a sua encomenda."
+}

@@ -1,0 +1,8 @@
+{
+  "deleteModalError": "Si è verificato il seguente errore: {{error}}.",
+  "deleteModalCancelButton": "No, annulla",
+  "deleteModalDeleteButton": "Sì, disattiva",
+  "deleteModalDescription": "La disattivazione del servizio comporta la cancellazione definitiva di tutti i dati associati. Vuoi procedere alla disattivazione del servizio?",
+  "deleteModalHeadline": "Disattivare {{serviceType}}?",
+  "deleteModalHeadlineService": "il servizio"
+}

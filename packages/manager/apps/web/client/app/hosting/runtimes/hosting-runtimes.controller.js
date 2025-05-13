@@ -5,15 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 angular.module('App').controller(
   'HostingRuntimesCtrl',
   class HostingRuntimesCtrl {
-    /**
-     * @constructs HostingRuntimesCtrl
-     * @param $scope
-     * @param $stateParams
-     * @param $timeout
-     * @param Alerter
-     * @param Hosting
-     * @param HostingRuntimes
-     */
+    /* @ngInject */
     constructor(
       $q,
       $scope,

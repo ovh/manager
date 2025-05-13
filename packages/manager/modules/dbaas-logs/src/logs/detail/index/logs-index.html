@@ -1,0 +1,102 @@
+<section class="log-index">
+    <h3 data-translate="logs_index_title"></h3>
+    <p data-translate="logs_index_description"></p>
+    <oui-datagrid
+        id="indices-datagrid"
+        data-rows-loader="ctrl.loadIndices($config)"
+    >
+        <oui-datagrid-topbar>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary"
+                data-ng-click="ctrl.add()"
+            >
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span data-translate="logs_index_add_data_feed"></span>
+            </button>
+            <oui-spinner
+                size="s"
+                data-ng-if="ctrl.delete.loading"
+            ></oui-spinner>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title=":: 'logs_index_name_text' | translate"
+            data-property="name"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'logs_index_col_description' | translate"
+            data-property="description"
+            data-type="string"
+            data-sortable
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'logs_index_col_nb_shard' | translate"
+            data-property="nbShard"
+            data-sortable
+            data-type="number"
+        >
+            {{:: $row.nbShard || "-" }}
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'logs_index_col_free_space' | translate"
+            data-type="number"
+            data-property="currentSize"
+        >
+            <span
+                class="oui-badge"
+                data-ng-if="$row.isEditable"
+                data-ng-class="ctrl.storageColor($row)"
+                data-ng-bind="($row.currentSize | bytes:2:true) + '/' + ($row.maxSize | bytes:2:true)"
+            ></span>
+            <span data-ng-if="!$row.isEditable"> - </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'logs_col_last_modified' | translate"
+            data-property="updatedAt"
+            data-sortable
+            data-type="date"
+        >
+            {{ $row.updatedAt | cucMomentFormat:'L'}}
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'logs_index_col_shared' | translate"
+            data-sortable
+            type="string"
+            data-property="isEditable"
+        >
+            <span
+                data-ng-if="!$row.isEditable"
+                data-ng-bind="::'logs_yes' | translate"
+            ></span>
+            <span data-ng-if="$row.isEditable"> - </span>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item
+                data-disabled="!$row.isEditable"
+                data-on-click="ctrl.add($row)"
+                ><span data-translate="logs_edit"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item data-on-click="ctrl.openOpenSearch($row)">
+                <span data-translate="logs_index_access_os_api"></span>
+                <i
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></i>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-disabled="!$row.isEditable"
+                data-on-click="ctrl.showDeleteConfirm($row)"
+                ><span data-translate="logs_delete"></span
+            ></oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</section>

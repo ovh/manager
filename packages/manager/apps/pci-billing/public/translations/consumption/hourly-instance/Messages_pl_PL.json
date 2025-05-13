@@ -1,0 +1,21 @@
+{
+  "cpbc_hourly_instance_col_name": "Nazwisko",
+  "cpbc_hourly_instance_col_consumption": "Zużycie",
+  "cpbc_hourly_instance_col_consumption_tooltip": "Płatności na początku kolejnego miesiąca",
+  "cpbc_hourly_instance_detail_title": "Serwery",
+  "cpbc_object_storage_detail_title": "Object Storage",
+  "cpbc_archive_storage_detail_title": "Cloud Archive",
+  "cpbc_snapshot_detail_title": "Przechowywanie kopii zapasowych",
+  "cpbc_volume_detail_title": "Dodatkowe dyski",
+  "cpbc_hourly_instance_trafic_title": "Ruch wychodzący z instancji do Internetu",
+  "cpbc_hourly_private_registry_title": "Managed Private Registry",
+  "cpbc_hourly_training_title": "AI Training",
+  "cpbc_hourly_notebooks_title": "AI Notebooks",
+  "cpbc_hourly_data_processing_title": "Data processing",
+  "cpbc_hourly_databases_title": "Databases",
+  "cpbc_hourly_floating_ip_title": "Floating IP",
+  "cpbc_hourly_gateway_title": "Gateway",
+  "cpbc_hourly_ai_deploy_title": "AI Deploy",
+  "cpbc_cold_archive_detail_title": "Cold Archive",
+  "cpbc_hourly_public_ip_title": "Publiczne IP"
+}

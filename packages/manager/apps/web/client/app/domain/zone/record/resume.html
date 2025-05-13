@@ -8,7 +8,7 @@
         <dd data-ng-bind="ctrl.model.fieldType"></dd>
 
         <dt data-translate="domain_configuration_dns_entry_add_domain"></dt>
-        <dd data-ng-bind="ctrl.getResumeDomain()"></dd>
+        <dd data-ng-bind="ctrl.getResumeDomain()" class="word-break"></dd>
 
         <dt
             data-ng-show="ctrl.model.ttlSelect === 'custom' && model.ttl !== null"
@@ -26,11 +26,14 @@
     <div data-ng-if="!ctrl.recordConflicts">
         <oui-message type="error">
             <span
-                data-ng-if="ctrl.model.fieldType === 'CNAME'"
+                data-translate="domain_configuration_dns_entry_add_step3_check_warning_info"
+            ></span>
+            <span
+                data-ng-if="ctrl.model.fieldType === 'CNAME' && ctrl.model.subDomainToDisplay"
                 data-translate="domain_configuration_dns_entry_add_step3_check_warning2"
             ></span>
             <span
-                data-ng-if="ctrl.model.fieldType !== 'CNAME'"
+                data-ng-if="ctrl.model.fieldType !== 'CNAME' || !ctrl.model.subDomainToDisplay"
                 data-translate="domain_configuration_dns_entry_add_step3_check_warning3"
             ></span>
         </oui-message>
@@ -39,35 +42,25 @@
             data-rows="ctrl.conflictingRecords"
             data-page-size="5"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title="'domain_tab_ZONE_table_headers_field'|translate"
                 data-property="domainToDisplay"
                 data-sortable="asc"
                 data-type="string"
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'domain_tab_ZONE_table_headers_type'|translate"
                 data-property="fieldType"
                 data-sortable
                 data-type="string"
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'domain_tab_ZONE_table_headers_target'|translate"
                 data-property="targetToDisplay"
                 data-sortable
                 data-type="string"
-            ></oui-column>
+            ></oui-datagrid-column>
         </oui-datagrid>
-    </div>
-
-    <div
-        class="alert alert-warning mt-4"
-        role="alert"
-        data-ng-if="ctrl.getResumeTargetAlert() && ctrl.recordConflicts"
-    >
-        <div
-            data-ng-bind-html="'domain_configuration_dns_entry_add_step3_warning' | translate: { t0: ctrl.getResumeTargetAlert() }"
-        ></div>
     </div>
 
     <div

@@ -2,7 +2,7 @@
 
 > Extensible Rollup configuration to build OVHcloud components.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config?activeTab=dependencies)
 
 ## Install
 
@@ -22,7 +22,6 @@ const config = configGenerator({
 
 // export desired list of target(s)
 export default [
-
   // ES6 module
   config.es(),
 
@@ -55,21 +54,6 @@ export default [
 
 This configuration provides some plugins to facilitate loading and importing of ovh translations ; as well as a plugin to facilitate less imports.
 
-### translation-xml
-
-Convert translation XML files to JavaScript.
-
-```xml
-<translations>
-  <translation id="foo" qtlid="1">Foo</translation>
-  <translation id="bar" qtlid="2">Bar</translation>
-</translations>
-```
-
-```js
-export default { foo: 'Foo', bar: 'Bar' };
-```
-
 ### translation-ui-router
 
 Handle `translations` property in ui-router state declaration to dynamically load ovh translations when state is resolved.
@@ -86,21 +70,15 @@ $stateProvider.state('my-state', {
 
 Handle `@ngTranslationsInject` comment in order to facilitate dynamic import of ovh translations.
 
-The format is as follows: `@ngTranslationsInject:{format} [translations]`
+The format is as follows: `@ngTranslationsInject{:format} [translations]`
 
-`format` is a string which represent the format of translations files (XML, json, ...)
 `translations` is multiple strings separated by a space
 
 ```js
-// Load .translations and ../common/translations in xml
+// Load .translations and ../common/translations in json
 angular
   .module('myModule', [])
   .run(/* @ngTranslationsInject ./translations ../common/translations */);
-
-// Load .translations and ../common/translations in xml
-angular
-  .module('myModule', [])
-  .run(/* @ngTranslationsInject:xml ./translations ../common/translations */);
 
 // Load .translations and ../common/translations in json
 angular
@@ -119,45 +97,15 @@ class MyController {
 
   $onInit() {
     this.isLoading = true;
-    return this.$injector.invoke(
-      /* @ngTranslationsInject ./translations ./some/other/path */
-    ).finally(() => {
-      this.isLoading = false;
-    });
+    return this.$injector
+      .invoke(/* @ngTranslationsInject ./translations ./some/other/path */)
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 }
 
-angular
-  .module('myModule', [])
-  .controller('myController', MyController);
-```
-
-### rollup-plugin-less-tilde-importer
-
-Provides ~ (tilde) prefix to tell less compiler that it should resolve imports using a configured array of paths.
-
-```js
-import configGenerator from '@ovh-ux/component-rollup-config';
-
-const config = configGenerator({
-  input: './src/my-library.js',
-}, {
-  lessTildeImporter: {
-    paths: [
-      '/foo/bar',
-      '/hello/world',
-    ],
-  },
-});
-
-export default [
-  config.cjs(),
-];
-```
-
-```less
-// try importing bootstrap from '/foo/bar/bootstrap' then from '/hello/world/bootstrap'
-@import '~bootstrap';
+angular.module('myModule', []).controller('myController', MyController);
 ```
 
 ### Performance
@@ -167,17 +115,18 @@ Regarding the translations related plugins, it's possible to only process transl
 ```js
 import configGenerator from '@ovh-ux/component-rollup-config';
 
-const config = configGenerator({
-  input: './src/my-library.js',
-}, {
-  translations: {
-    languages: ['fr_FR', 'en_EN'], // only FR and EN translations will be provided
+const config = configGenerator(
+  {
+    input: './src/my-library.js',
   },
-});
+  {
+    translations: {
+      languages: ['fr_FR', 'en_EN'], // only FR and EN translations will be provided
+    },
+  },
+);
 
-export default [
-  config.cjs(),
-];
+export default [config.cjs()];
 ```
 
 You can also specify languages without modifying your rollup config by using the cli and passing the LANGUAGES environment variable. See the example below.
@@ -192,10 +141,6 @@ $ rollup -c --environment LANGUAGES:fr_FR-en_GB-en_US
 ```sh
 $ yarn test
 ```
-
-## Related
-
-- [@ovh-ux/rollup-plugin-less-tilde-importer](https://github.com/ovh-ux/rollup-plugin-less-tilde-importer) - Rollup plugin to facilitate less imports with a ~ (tilde) prefix
 
 ## Contributing
 

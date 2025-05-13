@@ -1,0 +1,594 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Show page > should display datagrid 1`] = `
+<div>
+  <div
+    class="py-8 px-4 md:py-9 md:px-10 md:mt-2"
+  >
+    <div>
+      <ods-breadcrumb>
+        <ods-breadcrumb-item
+          href="mockProjectUrl"
+        />
+        <ods-breadcrumb-item
+          label="pci_projects_project_storages_containers_object_title"
+        />
+        <ods-breadcrumb-item
+          href=""
+          label="name"
+        />
+      </ods-breadcrumb>
+    </div>
+    <div
+      class="mt-[24px]"
+    >
+      <div
+        class="flex items-center justify-between"
+      >
+        <div>
+          <div
+            class=" m-0 p-0 text-[--ods-color-heading] text-[36px] leading-[45px] font-bold mb-[24px]"
+          >
+            name
+          </div>
+        </div>
+        <div
+          class="flex flex-wrap justify-end"
+        >
+          <div />
+        </div>
+      </div>
+    </div>
+    <div
+      class="mb-6"
+    />
+    <div
+      data-testid="notifications"
+    />
+    <div
+      class="grid grid-cols-12 gap-4 border border-solid border-[#bef1ff] bg-[#f5feff] rounded-md mt-6 py-8 px-12"
+    >
+      <div
+        class="grid gap-2 col-span-12 md:col-span-4"
+      >
+        <div
+          class="mb-4"
+        >
+          <ods-text>
+            <span>
+              pci_projects_project_storages_containers_container_region
+            </span>
+          </ods-text>
+        </div>
+        <div
+          class="mb-4"
+        >
+          <ods-text>
+            <span>
+              pci_projects_project_storages_containers_container_object_info_storedObjects
+            </span>
+          </ods-text>
+        </div>
+        <div
+          class="mb-4"
+        >
+          <ods-text>
+            <span>
+              pci_projects_project_storages_containers_container_info_storedBytes
+            </span>
+          </ods-text>
+        </div>
+      </div>
+      <div
+        class="grid col-span-12 md:col-span-8 gap-4"
+      >
+        <ods-form-field>
+          <div
+            class="flex gap-2 items-center"
+            slot="label"
+          >
+            <ods-text
+              class="font-bold-class"
+              preset="caption"
+            >
+              pci_projects_project_storages_containers_container_info_id
+            </ods-text>
+          </div>
+          <ods-clipboard
+            class="w-[100%]"
+            data-testid="clipboard"
+            label-copy="clipboard_copy"
+            label-copy-success="clipboard_copy_success"
+            value="id"
+          />
+        </ods-form-field>
+        <ods-form-field>
+          <div
+            class="flex gap-2 items-center"
+            slot="label"
+          >
+            <ods-text
+              class="font-bold-class"
+              preset="caption"
+            >
+              pci_projects_project_storages_containers_container_info_publicUrl
+            </ods-text>
+            <div>
+              <ods-icon
+                class="cursor-help"
+                id="public-url-popover"
+                name="circle-question"
+              />
+              <ods-popover
+                trigger-id="public-url-popover"
+              >
+                <ods-text
+                  preset="caption"
+                >
+                  pci_projects_project_storages_containers_container_info_publicUrl_help
+                </ods-text>
+              </ods-popover>
+            </div>
+          </div>
+          <ods-clipboard
+            class="w-[100%]"
+            data-testid="clipboard"
+            label-copy="clipboard_copy"
+            label-copy-success="clipboard_copy_success"
+            value="https://api.ovh.com"
+          />
+        </ods-form-field>
+        <ods-form-field>
+          <div
+            class="flex gap-2 items-center"
+            slot="label"
+          >
+            <ods-text
+              class="font-bold-class"
+              preset="caption"
+            >
+              pci_projects_project_storages_containers_container_object_info_staticUrl
+            </ods-text>
+            <div>
+              <ods-icon
+                class="cursor-help"
+                id="virtual-host-popover"
+                name="circle-question"
+              />
+              <ods-popover
+                trigger-id="virtual-host-popover"
+              >
+                <ods-text
+                  preset="caption"
+                >
+                  pci_projects_project_storages_containers_container_object_info_staticUrl_help
+                </ods-text>
+              </ods-popover>
+            </div>
+          </div>
+          <ods-clipboard
+            class="w-[100%]"
+            data-testid="clipboard"
+            label-copy="clipboard_copy"
+            label-copy-success="clipboard_copy_success"
+          />
+        </ods-form-field>
+      </div>
+    </div>
+    <div
+      class="sm:flex items-center justify-between mt-8"
+    >
+      <ods-button
+        icon="plus"
+        label="pci_projects_project_storages_containers_container_add_object_label"
+        size="sm"
+      />
+      <div
+        class="flex justify-center gap-4 ml-auto"
+      >
+         
+        <ods-input
+          class="min-w-[15rem]"
+          name="searchField"
+          value=""
+        />
+        <ods-button
+          icon="magnifying-glass"
+          label=""
+          size="sm"
+        />
+        <ods-button
+          color="primary"
+          icon="filter"
+          id="filterPopoverTrigger"
+          label="common_criteria_adder_filter_label"
+          size="sm"
+          variant="outline"
+        />
+        <ods-popover
+          trigger-id="filterPopoverTrigger"
+        >
+          <div>
+            <ods-form-field
+              class="w-full"
+            >
+              <div
+                slot="label"
+              >
+                <span
+                  class="text-[--ods-color-heading] leading-[22px]"
+                >
+                  common_criteria_adder_column_label
+                </span>
+              </div>
+              <ods-select
+                data-testid="add-filter_select_idColumn"
+                name="add-filter_select_idColumn"
+                value="name"
+              >
+                <option
+                  value="name"
+                >
+                  pci_projects_project_storages_containers_container_name_label
+                </option>
+                <option
+                  value="lastModified"
+                >
+                  pci_projects_project_storages_containers_container_lastModified_label
+                </option>
+                <option
+                  value="storageClass"
+                >
+                  pci_projects_project_storages_containers_container_storage_class_label
+                </option>
+              </ods-select>
+            </ods-form-field>
+          </div>
+          <div>
+            <ods-form-field
+              class="mt-2 w-full"
+            >
+              <div
+                slot="label"
+              >
+                <span
+                  class="text-[--ods-color-heading] leading-[22px]"
+                >
+                  common_criteria_adder_operator_label
+                </span>
+              </div>
+              <div>
+                <ods-select
+                  name="add-operator-name"
+                  value="includes"
+                >
+                  <option
+                    value="includes"
+                  >
+                    common_criteria_adder_operator_includes
+                  </option>
+                  <option
+                    value="starts_with"
+                  >
+                    common_criteria_adder_operator_starts_with
+                  </option>
+                  <option
+                    value="ends_with"
+                  >
+                    common_criteria_adder_operator_ends_with
+                  </option>
+                  <option
+                    value="is_equal"
+                  >
+                    common_criteria_adder_operator_is_equal
+                  </option>
+                  <option
+                    value="is_different"
+                  >
+                    common_criteria_adder_operator_is_different
+                  </option>
+                </ods-select>
+              </div>
+            </ods-form-field>
+          </div>
+          <div>
+            <ods-form-field
+              class="mt-2 w-full"
+            >
+              <div
+                slot="label"
+              >
+                <span
+                  class="text-[--ods-color-heading] leading-[22px]"
+                >
+                  common_criteria_adder_value_label
+                </span>
+              </div>
+              <ods-input
+                class="border"
+                data-testid="filter-add_value-input"
+                name="filter-add_value-input"
+                type="text"
+                value=""
+              />
+            </ods-form-field>
+          </div>
+          <div>
+            <ods-button
+              class="mt-4 w-full filter-add-button-submit"
+              data-testid="filter-add_submit"
+              is-disabled="true"
+              label="common_criteria_adder_submit_label"
+              size="sm"
+            />
+          </div>
+        </ods-popover>
+      </div>
+    </div>
+    <div
+      class="mt-8"
+    />
+    <div
+      class="mt-8"
+    >
+      <div>
+        <div
+          class="contents px-[1px] overflow-x-visible"
+        >
+          <ods-table
+            class="overflow-x-visible"
+          >
+            <!---->
+            <table
+              class="w-full border-collapse"
+              style="--expander-column-width: 2.5rem;"
+            >
+              <thead>
+                <tr>
+                  <th
+                    class="text-left pl-4 h-11 whitespace-nowrap "
+                  >
+                    <div
+                      class="cursor-pointer select-none"
+                      data-testid="header-name"
+                    >
+                      <span>
+                        pci_projects_project_storages_containers_container_name_label
+                      </span>
+                      <span
+                        class="align-middle inline-block h-4 -mt-6"
+                      >
+                        <ods-icon
+                          class="invisible"
+                          name="arrow-down"
+                        />
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="text-left pl-4 h-11 whitespace-nowrap "
+                  >
+                    <div
+                      class="cursor-pointer select-none"
+                      data-testid="header-lastModified"
+                    >
+                      <span>
+                        pci_projects_project_storages_containers_container_lastModified_label
+                      </span>
+                      <span
+                        class="align-middle inline-block h-4 -mt-6"
+                      >
+                        <ods-icon
+                          class="invisible"
+                          name="arrow-down"
+                        />
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="text-left pl-4 h-11 whitespace-nowrap "
+                  >
+                    <div
+                      class="cursor-pointer select-none"
+                      data-testid="header-size"
+                    >
+                      <span>
+                        pci_projects_project_storages_containers_container_size_label
+                      </span>
+                      <span
+                        class="align-middle inline-block h-4 -mt-6"
+                      >
+                        <ods-icon
+                          class="invisible"
+                          name="arrow-down"
+                        />
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="text-left pl-4 h-11 whitespace-nowrap "
+                  >
+                    <div
+                      class="cursor-pointer select-none"
+                      data-testid="header-contentType"
+                    >
+                      <span>
+                        pci_projects_project_storages_containers_container_contentType_label
+                      </span>
+                      <span
+                        class="align-middle inline-block h-4 -mt-6"
+                      >
+                        <ods-icon
+                          class="invisible"
+                          name="arrow-down"
+                        />
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="text-left pl-4 h-11 whitespace-nowrap "
+                  >
+                    <div
+                      class=""
+                      data-testid="header-actions"
+                    >
+                      <span />
+                      <span
+                        class="align-middle inline-block h-4 -mt-6"
+                      >
+                        <ods-icon
+                          class="invisible"
+                          name="arrow-down"
+                        />
+                      </span>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  class="border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]"
+                >
+                  <td
+                    class="text-left pl-4"
+                  >
+                    <div
+                      class=""
+                    >
+                      <div
+                        class="flex flex-col"
+                      >
+                        <ods-text
+                          preset="span"
+                        >
+                          name
+                        </ods-text>
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class="text-left pl-4"
+                  >
+                    <div
+                      class=""
+                    >
+                      <ods-text
+                        preset="span"
+                      >
+                        formattedDate
+                      </ods-text>
+                    </div>
+                  </td>
+                  <td
+                    class="text-left pl-4"
+                  >
+                    <div
+                      class=""
+                    >
+                      <ods-text
+                        preset="span"
+                      >
+                        1 unit_size_B
+                      </ods-text>
+                    </div>
+                  </td>
+                  <td
+                    class="text-left pl-4"
+                  >
+                    <div
+                      class=""
+                    >
+                      <ods-text
+                        preset="span"
+                      >
+                        contentType
+                      </ods-text>
+                    </div>
+                  </td>
+                  <td
+                    class="text-left pl-4"
+                  >
+                    <div
+                      class=""
+                    >
+                      <div
+                        class="w-min"
+                        id="navigation-action-trigger-undefined"
+                      >
+                        <ods-button
+                          data-testid="navigation-action-trigger-action"
+                          icon="ellipsis-vertical"
+                          id="undefined"
+                          is-disabled="false"
+                          is-loading="false"
+                          size="sm"
+                          slot="menu-title"
+                          variant="outline"
+                        />
+                      </div>
+                      <ods-popover
+                        class="py-[8px] px-0 w-max"
+                        data-testid="navigation-action-trigger-action-popover"
+                        trigger-id="navigation-action-trigger-undefined"
+                        with-arrow="true"
+                      >
+                        <div
+                          class="flex flex-col"
+                        >
+                          <ods-button
+                            class="menu-item-button w-full"
+                            display-tooltip="false"
+                            label="pci_projects_project_storages_containers_container_download_label"
+                            size="sm"
+                            variant="ghost"
+                          />
+                          <ods-button
+                            class="menu-item-button w-full"
+                            display-tooltip="false"
+                            label="pci_projects_project_storages_containers_container_delete_label"
+                            size="sm"
+                            variant="ghost"
+                          />
+                        </div>
+                      </ods-popover>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </ods-table>
+        </div>
+        <ods-pagination
+          class="flex xs:justify-start md:justify-end my-8"
+          default-current-page="1"
+          default-items-per-page="10"
+          total-items="1"
+          total-pages="1"
+        >
+          <span
+            class="mr-3"
+            slot="before-total-items"
+          >
+            common_pagination_of
+          </span>
+          <span
+            class="ml-3"
+            slot="after-total-items"
+          >
+            common_pagination_results
+          </span>
+        </ods-pagination>
+      </div>
+    </div>
+    Outlet
+  </div>
+</div>
+`;
+
+exports[`Show page > should display spinner 1`] = `
+<div>
+  <ods-spinner
+    size="md"
+  />
+</div>
+`;

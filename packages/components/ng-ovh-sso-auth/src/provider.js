@@ -9,14 +9,16 @@ import { NIC_STATE_ENUM } from './constants';
  *
  */
 export default function() {
-  let loginUrl = 'https://www.ovh.com/auth';
-  let logoutUrl = 'https://www.ovh.com/auth?action=disconnect';
+  let loginUrl = 'https://www.ovh.com/auth/';
+  let logoutUrl = 'https://www.ovh.com/auth/?action=disconnect';
   let signUpUrl = 'https://www.ovh.com/auth/signup/new/';
   let userUrl = '/engine/api/me';
   let rules = [];
   const urlPrefix = '';
   let ovhSubsidiary = null;
   let allowIncompleteNic = false;
+  let onLoginCallback;
+  let onLogoutCallback;
 
   /**
    * @ngdoc function
@@ -118,6 +120,14 @@ export default function() {
    */
   this.setSignUpUrl = function setSignUpUrl(_signUpUrl) {
     signUpUrl = _signUpUrl;
+  };
+
+  this.setOnLogin = (callback) => {
+    onLoginCallback = callback;
+  };
+
+  this.setOnLogout = (callback) => {
+    onLogoutCallback = callback;
   };
 
   // ---
@@ -316,6 +326,48 @@ export default function() {
 
     /**
      * @ngdoc function
+     * @name onLoginSuccess
+     * @methodOf ovh-angular-sso-auth.ssoAuthentication
+     *
+     * @description
+     * internal method called when user login is successfull
+     */
+    this.onLoginSuccess = function onLoginSuccess(userData) {
+      this.user = userData;
+      isLogged = true;
+      if (userData.state === NIC_STATE_ENUM.incomplete && !allowIncompleteNic) {
+        this.goToSignUpPage();
+      }
+    };
+
+    /**
+     * @ngdoc function
+     * @name onPostLogin
+     * @methodOf ovh-angular-sso-auth.ssoAuthentication
+     *
+     * @description
+     * internal method called after login
+     */
+    this.onPostLogin = function onPostLogin() {
+      this.userId = this.getUserIdCookie(); // store USERID
+      deferredObj.login.resolve();
+    };
+
+    /**
+     * @ngdoc function
+     * @name setLoggedIn
+     * @methodOf ovh-angular-sso-auth.ssoAuthentication
+     *
+     * @description
+     * Set logged in data if login is done in the app
+     */
+    this.setLoggedIn = function setLoggedIn(userData) {
+      this.onLoginSuccess(userData);
+      this.onPostLogin();
+    };
+
+    /**
+     * @ngdoc function
      * @name login
      * @methodOf ovh-angular-sso-auth.ssoAuthentication
      *
@@ -325,27 +377,16 @@ export default function() {
     this.login = function login() {
       const self = this;
 
-      // use jQuery ajax for checking if SESSION cookie setted
-      $.ajax({
-        url: self.getUserUrl(),
-        method: 'GET',
+      // use fetch for checking if SESSION cookie is set
+      fetch(self.getUserUrl(), {
         headers,
+        credentials: 'same-origin',
       })
-        .done((data) => {
-          self.user = data; // store user infos
-          isLogged = true;
-
-          if (data.state === NIC_STATE_ENUM.incomplete && !allowIncompleteNic) {
-            self.goToSignUpPage();
-          }
-        })
-        .fail(() => {
+        .then((data) => this.onLoginSuccess(data.json()))
+        .catch(() => {
           isLogged = false;
         })
-        .always(() => {
-          self.userId = self.getUserIdCookie(); // store USERID
-          deferredObj.login.resolve();
-        });
+        .finally(() => this.onPostLogin());
 
       return deferredObj.login.promise;
     };
@@ -395,6 +436,9 @@ export default function() {
      * Perform logout
      */
     this.logout = function logout(url) {
+      if (angular.isFunction(onLogoutCallback)) {
+        onLogoutCallback();
+      }
       if (!deferredObj.logout) {
         deferredObj.logout = $q.defer();
         isLogged = false;
@@ -411,6 +455,15 @@ export default function() {
               logoutUrl.indexOf('?') > -1 ? '&' : '?'
             }from=${encodeURIComponent(document.referrer)}`;
           }
+          if (
+            !logoutUrl.includes('ovhSubsidiary') &&
+            this.user &&
+            this.user.ovhSubsidiary
+          ) {
+            logoutUrl += `${
+              logoutUrl.indexOf('?') > -1 ? '&' : '?'
+            }ovhSubsidiary=${this.user.ovhSubsidiary}`;
+          }
           $window.location.assign(logoutUrl);
         });
       }
@@ -426,6 +479,9 @@ export default function() {
      * Redirect to login page
      */
     this.goToLoginPage = function goToLoginPage(url) {
+      if (angular.isFunction(onLoginCallback)) {
+        onLoginCallback();
+      }
       if (!deferredObj.loginPage) {
         deferredObj.loginPage = $q.defer();
 
@@ -450,7 +506,6 @@ export default function() {
           );
         });
       }
-      return deferredObj.loginPage.promise;
     };
 
     /**
@@ -492,7 +547,7 @@ export default function() {
             }
           }
 
-          $window.location.assign(
+          $window.top.location.assign(
             destUrl +
               (urlPart.indexOf('?') > -1 ? '&' : '?') +
               params.join('&'),

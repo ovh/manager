@@ -1,0 +1,18 @@
+{
+  "log_subscription_tile_title": "Estos logs se transfieren a Logs Data Platform",
+  "log_subscription_serviceName_tile_label": "Nombre del servicio",
+  "log_subscription_button_unsubscribe_label": "Anular la suscripción",
+  "log_subscription_empty_tile_title": "Flujos",
+  "log_subscription_empty_tile_description": "Al suscribirse a este flujo, podrá transferir sus logs directamente a Logs Data Platform de OVHcloud y, de este modo, realizar búsquedas más avanzadas, crear alertas y visualizaciones o, simplemente, archivarlas.",
+  "log_subscription_empty_tile_button_know_more": "Más información sobre Logs Data Platform",
+  "log_subscription_empty_tile_button_subscribe": "Suscribirse",
+  "log_subscription_list_title": "Utilizar los logs",
+  "log_subscription_list_button_subscribe_more": "Suscribirse a otro flujo de datos",
+  "log_subscription_terminate_modal_headline": "Anular la suscripción",
+  "log_subscription_terminate_modal_delete_input_label": "Por favor, escriba la palabra «TERMINATE» para cancelar la suscripción del flujo de datos.",
+  "log_subscription_terminate_modal_confirm_button_label": "Anular la suscripción",
+  "log_subscription_unsubscribe_success": "La suscripción se ha cancelado correctamente.",
+  "log_subscription_unsubscribe_error": "Se ha producido un error al cancelar su suscripción. {{error}}",
+  "log_subscription_subscribe_success": "La suscripción se ha realizado correctamente.",
+  "log_subscription_subscribe_error": "Se ha producido un error en la suscripción. {{error}}"
+}

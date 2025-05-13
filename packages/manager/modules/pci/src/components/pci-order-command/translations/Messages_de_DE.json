@@ -1,0 +1,14 @@
+{
+  "pci_order_command_title": "Entsprechender Befehl",
+  "pci_order_command_here": "hier,",
+  "pci_order_command_parameters": "Einstellungen:",
+  "pci_order_command_parameters_info": "Weitere Informationen zu den verfügbaren Einstellungen:",
+  "pci_order_command_parameters_info_description": "Name Ihres Dienstes",
+  "pci_order_command_parameters_info_networkId": "OpenStack-ID im privaten Netzwerk",
+  "pci_order_command_parameters_info_subnetId": "Subnetz-ID",
+  "pci_order_command_parameters_info_nodesPattern_flavor": "Ausgewählte Eigenschaften",
+  "pci_order_command_parameters_info_nodesPattern_number": "Anzahl an Nodes",
+  "pci_order_command_parameters_info_nodesPattern_region": "Ausgewählter Standort",
+  "pci_order_command_parameters_info_plan": "Ausgewähltes Angebot",
+  "pci_order_command_parameters_info_version": "Datenbankversion"
+}

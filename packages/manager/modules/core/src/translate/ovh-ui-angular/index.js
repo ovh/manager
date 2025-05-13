@@ -1,8 +1,8 @@
 import angular from 'angular';
 import 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
-import set from 'lodash/set';
+import { set } from 'lodash-es';
 
 const moduleName = 'ovhManagerCoreOuiAngularTranslations';
 
@@ -13,9 +13,11 @@ angular
     (
       $transitions,
       $translate,
+      ouiBackButtonConfiguration,
       ouiClipboardConfiguration,
       ouiCriteriaAdderConfiguration,
       ouiDatagridConfiguration,
+      ouiDualListConfiguration,
       ouiFieldConfiguration,
       ouiFileConfiguration,
       ouiNavbarConfiguration,
@@ -24,6 +26,13 @@ angular
       ouiStepperConfiguration,
     ) => {
       $translate.refresh().then(() => {
+        set(ouiBackButtonConfiguration, 'translations', {
+          backTo: $translate.instant('common_back_button_back_to'),
+          backToPreviousPage: $translate.instant(
+            'common_back_button_back_to_previous_page',
+          ),
+        });
+
         set(ouiClipboardConfiguration, 'translations', {
           copyToClipboardLabel: $translate.instant(
             'common_clipboard_copy_to_clipboard',
@@ -105,6 +114,27 @@ angular
           ),
         });
 
+        set(ouiDualListConfiguration, 'translations', {
+          source: {
+            heading: $translate.instant('common_dual_list_source_heading'),
+            placeholder: $translate.instant(
+              'common_dual_list_source_placeholder',
+            ),
+            move: $translate.instant('common_dual_list_source_move'),
+            moveAll: $translate.instant('common_dual_list_source_move_all'),
+            search: $translate.instant('common_dual_list_source_search'),
+          },
+          target: {
+            heading: $translate.instant('common_dual_list_target_heading'),
+            placeholder: $translate.instant(
+              'common_dual_list_target_placeholder',
+            ),
+            move: $translate.instant('common_dual_list_target_move'),
+            moveAll: $translate.instant('common_dual_list_target_move_all'),
+            search: $translate.instant('common_dual_list_target_search'),
+          },
+        });
+
         set(ouiDatagridConfiguration, 'translations', {
           emptyPlaceholder: $translate.instant('common_datagrid_nodata'),
         });
@@ -135,6 +165,7 @@ angular
             'common_file_attachmentsHeading',
           ),
           dropArea: $translate.instant('common_file_dropArea'),
+          dropAreaSingle: $translate.instant('common_file_dropAreaSingle'),
           dropAreaSelector: $translate.instant('common_file_dropAreaSelector'),
           fileSelector: $translate.instant('common_file_fileSelector'),
           filesSelector: $translate.instant('common_file_filesSelector'),

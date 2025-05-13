@@ -1,6 +1,7 @@
 angular.module('controllers').controller(
   'controllers.Domain.Glue.Delete',
   class DomainGlueDeleteCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, Domain) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

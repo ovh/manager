@@ -2,9 +2,10 @@
     <div
         data-wizard
         data-wizard-bread-crumb
-        data-wizard-confirm-button-text="'wizard_pay' | translate"
+        data-wizard-confirm-button-text="ctrl.isOvhtel ? 'wizard_close' : 'wizard_pay' | translate"
+        data-wizard-hide-previous-button="ctrl.isOvhtel"
         data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="addExchangeAccount"
+        data-wizard-on-finish="ctrl.isOvhtel ? resetAction : addExchangeAccount"
         data-wizard-title="'exchange_ACTION_order_accounts_title' | translate"
     >
         <div data-wizard-step data-wizard-step-valid="isValid()">
@@ -15,10 +16,7 @@
                 role="alert"
                 data-ng-if="ctrl.numConfigureMeAccount"
             >
-                <i
-                    class="oui-icon oui-icon-info_circle oui-icon_bicolor"
-                    aria-hidden="true"
-                ></i>
+                <i class="oui-icon oui-icon-info-circle" aria-hidden="true"></i>
                 <p
                     class="oui-message__body"
                     data-translate="exchange_ACTION_order_accounts_step1_not_configured_account_message"
@@ -80,24 +78,27 @@
                                 for="payTypeGroup-{{$index}}"
                             >
                                 <span class="oui-radio__label">
-                                    <span
-                                        data-ng-bind-html="('exchange_ACTION_order_accounts_step1_pay_type_' + orderAvailable.duration) | translate"
-                                    ></span>
-                                    (<span
-                                        data-ng-if="!ctrl.showPriceWithTaxOnly"
-                                        class="text-danger"
-                                        data-translate="exchange_ACTION_order_accounts_step1_price"
-                                        data-translate-values="{ t0: orderAvailable.prices.withoutTax.text, t1: orderAvailable.prices.withTax.text }"
-                                    >
+                                    <span class="oui-radio__icon"></span>
+                                    <span class="oui-radio__text">
+                                        <span
+                                            data-ng-bind-html="('exchange_ACTION_order_accounts_step1_pay_type_' + orderAvailable.duration) | translate"
+                                        ></span>
+                                        (<span
+                                            data-ng-if="!ctrl.showPriceWithTaxOnly"
+                                            class="text-danger"
+                                            data-translate="exchange_ACTION_order_accounts_step1_price"
+                                            data-translate-values="{ t0: orderAvailable.prices.withoutTax.text, t1: orderAvailable.prices.withTax.text }"
+                                        >
+                                        </span>
+                                        <span
+                                            data-ng-if="ctrl.showPriceWithTaxOnly"
+                                            class="text-danger"
+                                            data-translate="exchange_ACTION_order_accounts_step1_price_with_tax_only"
+                                            data-translate-values="{ t0: orderAvailable.prices.withTax.localizedText }"
+                                        >
+                                        </span
+                                        >)
                                     </span>
-                                    <span
-                                        data-ng-if="ctrl.showPriceWithTaxOnly"
-                                        class="text-danger"
-                                        data-translate="exchange_ACTION_order_accounts_step1_price_with_tax_only"
-                                        data-translate-values="{ t0: orderAvailable.prices.withTax.localizedText }"
-                                    >
-                                    </span
-                                    >)
                                 </span>
                             </label>
                         </div>
@@ -136,10 +137,11 @@
 
                     <oui-checkbox
                         id="worldPart-eu"
-                        data-ng-if="ctrl.worldPart === 'EU'"
+                        data-ng-if="ctrl.showLegal"
                         data-model="ctrl.valid.legalWarning"
-                        data-text="{{::'exchange_ACTION_add_account_legal_warning' | translate}}"
-                    >
+                        ><span
+                            data-translate="exchange_ACTION_add_account_legal_warning"
+                        ></span>
                     </oui-checkbox>
                 </form>
             </div>
@@ -197,7 +199,7 @@
                 ></span>
             </div>
 
-            <div data-ng-if="ctrl.url">
+            <div data-ng-if="ctrl.url && !ctrl.isOvhtel">
                 <p data-translate="exchange_ACTION_order_accounts_step3_bc"></p>
                 <p
                     class="font-weight-bold"
@@ -210,6 +212,17 @@
                     class="alert alert-info"
                     role="alert"
                     data-translate="exchange_ACTION_order_accounts_step3_explication"
+                ></div>
+            </div>
+
+            <div data-ng-if="ctrl.url && ctrl.isOvhtel">
+                <p
+                    data-translate="exchange_ACTION_order_accounts_step3_bc_ovhtel"
+                ></p>
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-translate="exchange_ACTION_order_accounts_step3_explication_ovhtel"
                 ></div>
             </div>
         </div>

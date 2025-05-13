@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_storages_blocks_add_object_label": "Objektcontainer erstellen",
+  "pci_projects_project_storages_containers_my_containers_label": "Meine Container",
+  "pci_projects_project_storages_containers_s3_users_label": "Object Storage User",
+  "pci_projects_project_storages_containers_object_title": "Object Storage",
+  "pci_projects_project_storages_containers_object_description": "Hosten Sie Ihren Datenkatalog in unserer Objektspeicherlösung. Sie können diese Daten von Ihrer Anwendung aus über S3-kompatible APIs verwalten."
+}

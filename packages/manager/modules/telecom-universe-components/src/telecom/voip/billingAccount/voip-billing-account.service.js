@@ -1,12 +1,7 @@
-import filter from 'lodash/filter';
-import has from 'lodash/has';
-import map from 'lodash/map';
-
 /**
  *  @ngdoc service
  *  @name managerApp.service:tucVoipBillingAccount
  *
- *  @requires OvhApiTelephony from ovh-api-services
  *  @requires managerApp.object:TucVoipBillingAccount
  *
  *  @description
@@ -14,8 +9,9 @@ import map from 'lodash/map';
  */
 export default class {
   /* @ngInject */
-  constructor(OvhApiTelephony, TucVoipBillingAccount) {
-    this.OvhApiTelephony = OvhApiTelephony;
+  constructor($http, iceberg, TucVoipBillingAccount) {
+    this.$http = $http;
+    this.iceberg = iceberg;
     this.TucVoipBillingAccount = TucVoipBillingAccount;
   }
 
@@ -25,35 +21,36 @@ export default class {
    *  @methodOf managerApp.service:tucVoipBillingAccount
    *
    *  @description
-   *  Get all billingAccounts of connected user using API v7.
-   *
-   *  @param {Boolean} [withError=true]   Either return billingAccounts and services
-   *                                      with error or not. Should be replaced with better filters
-   *                                      when APIv7 will be able to filter by status code (SOON!!).
+   *  Get all billingAccounts of connected user.
    *
    *  @return {Promise} That return an Array of TucVoipBillingAccount instances.
    */
-  fetchAll(withError = true) {
-    return this.OvhApiTelephony.v7()
+  fetchAll() {
+    return this.iceberg('/telephony')
       .query()
-      .expand()
-      .execute()
-      .$promise.then((result) =>
-        map(
-          filter(
-            result,
-            (res) => has(res, 'value') || (withError && has(res, 'error')),
-          ),
-          (res) => {
-            if (res.value && res.value.billingAccount) {
-              return new this.TucVoipBillingAccount(res.value);
-            }
-            return new this.TucVoipBillingAccount({
-              billingAccount: res.key,
-              error: res.error,
-            });
-          },
+      .expand('CachedObjectList-Pages')
+      .execute(null, true)
+      .$promise.then(({ data }) =>
+        data.map(
+          (billingAccount) => new this.TucVoipBillingAccount(billingAccount),
         ),
       );
+  }
+
+  /**
+   *  @ngdoc method
+   *  @name managerApp.service:tucVoipBillingAccount#fetchServiceInfo
+   *  @methodOf managerApp.service:tucVoipBillingAccount
+   *
+   *  @description
+   *  Get billing account service information.
+   *
+   *
+   *  @return {Promise} That return an billing account service information.
+   */
+  fetchServiceInfo(billingAccount) {
+    return this.$http
+      .get(`/telephony/${billingAccount}/serviceInfos`)
+      .then(({ data }) => data);
   }
 }

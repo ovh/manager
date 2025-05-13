@@ -1,5 +1,5 @@
 {
-  "ovh_payment_type_bank_account": "Bankkonto",
+  "ovh_payment_type_bank_account": "SEPA-Lastschrift",
   "ovh_payment_type_paypal": "Paypal",
   "ovh_payment_type_credit_card": "Kreditkarte",
   "ovh_payment_type_deferred_payment_account": "Stundungskonto",
@@ -25,5 +25,10 @@
   "ovh_payment_status_maintenance": "Wartung läuft",
   "ovh_payment_status_paused": "Angehalten",
   "ovh_payment_status_failed": "Ungültig",
-  "ovh_payment_status_null": "Information nicht verfügbar "
+  "ovh_payment_status_null": "Information nicht verfügbar ",
+  "ovh_payment_type_sepa_direct_debit": "Lastschrift",
+  "ovh_payment_status_validating": "Validierung in Bearbeitung",
+  "ovh_payment_status_rejected": "Verweigert",
+  "ovh_payment_type_rupay": "RuPay",
+  "ovh_payment_method_registration_failure": "Die Registrierung Ihrer Zahlungsart ist fehlgeschlagen. Bei Ihnen wurde nichts abgebucht. Bitte versuchen Sie es erneut oder kontaktieren Sie Ihre Bank, wenn das Problem weiterhin besteht. Sie können auch Ihre Zahlungsart ändern."
 }

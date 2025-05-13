@@ -1,0 +1,407 @@
+<div data-ovh-alert="housing_dashboard_alert"></div>
+
+<div
+    class="text-center mt-5"
+    data-ng-hide="!loadingHousingInformations || loadingHousingError"
+>
+    <oui-spinner data-size="l"></oui-spinner>
+</div>
+
+<div data-ng-hide="loadingHousingInformations || loadingHousingError">
+    <oui-header heading="{{ housing.name }}">
+        <oui-header-tabs
+            data-ng-if="!loadingHousingInformations && !loadingHousingError && !housing.isExpired"
+        >
+            <oui-header-tabs-item
+                href="{{ dashboardLink }}"
+                active="dashboardLink === currentActiveLink()"
+            >
+                <span data-translate="housing_tab_dashboard"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{ backupLink }}"
+                active="backupLink === currentActiveLink()"
+            >
+                <span data-translate="housing_tab_backup"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{ taskLink }}"
+                active="taskLink === currentActiveLink()"
+            >
+                <span data-translate="housing_tab_task"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+
+    <div data-ng-if="housing.isExpired">
+        <div
+            class="alert alert-warning mt-5"
+            role="alert"
+            data-translate="common_expired"
+        ></div>
+    </div>
+    <div
+        data-ng-if="!loadingHousingInformations && !loadingHousingError && !housing.isExpired"
+    >
+        <div
+            class="alert alert-info"
+            role="alert"
+            data-ng-if="user.ovhSubsidiary === 'FR' && !housingPhoneStopBother"
+        >
+            <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                data-ng-click="createStopBotherUserPref()"
+            >
+                &times;
+            </button>
+            <span
+                data-ng-bind-html="'housing_support_phone' | translate:{ t0: housingPhoneNumber }"
+            ></span>
+        </div>
+        <div data-ovh-alert="bandwithError"></div>
+
+        <div data-ui-view>
+            <div class="row d-md-flex mb-5">
+                <div class="col-sm-4">
+                    <div class="oui-tile mb-5 h-100">
+                        <h2
+                            class="oui-tile__title oui-heading_4"
+                            data-translate="housing_tab_stats_legend_general"
+                        ></h2>
+                        <div
+                            class="oui-tile__body text-center"
+                            data-ng-if="loadingHousingInformations"
+                        >
+                            <oui-spinner></oui-spinner>
+                        </div>
+                        <div
+                            class="oui-tile__body"
+                            data-ng-if="!loadingHousingInformations"
+                        >
+                            <div class="oui-tile__item">
+                                <dl class="oui-tile__definition">
+                                    <dt
+                                        class="oui-tile__term"
+                                        data-translate="housing_status"
+                                    ></dt>
+                                    <dd class="oui-tile__description">
+                                        <span
+                                            class="oui-badge"
+                                            data-ng-class="{
+                                    'oui-badge_success': housing.status === 'ok',
+                                    'oui-badge_warning': housing.status === 'error',
+                                    'oui-badge_error': housing.status === 'hacked' || housing.status === 'hacked_blocked'
+                                  }"
+                                            data-ng-bind="('housing_status_' + housing.status) | translate"
+                                        >
+                                        </span>
+                                    </dd>
+                                </dl>
+                                <div class="oui-tile__actions">
+                                    <oui-action-menu
+                                        aria-label="{{:: 'menu_action_label' | translate:{ t0: ('housing_configuration_reboot_title_button' | translate) } }}"
+                                        data-compact
+                                        data-placement="end"
+                                    >
+                                        <oui-action-menu-item
+                                            aria-label="{{:: 'housing_configuration_reboot_title_button' | translate }}"
+                                            data-on-click="!disable.reboot && !disable.byOtherTask && setAction('reboot/dedicated-housing-reboot')"
+                                            data-disabled="disable.reboot || disable.byOtherTask"
+                                            ><span
+                                                data-translate="housing_configuration_reboot_title_button"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                    </oui-action-menu>
+                                </div>
+                            </div>
+                            <div class="oui-tile__item">
+                                <dl class="oui-tile__definition">
+                                    <dt
+                                        class="oui-tile__term"
+                                        data-translate="housing_name"
+                                    ></dt>
+                                    <dd class="oui-tile__description">
+                                        <span
+                                            data-ng-if="housing.name"
+                                            data-ng-bind=":: housing.name"
+                                        >
+                                        </span>
+                                        <span
+                                            class="text-muted"
+                                            data-ng-if="!housing.name"
+                                            data-translate="housing_configuration_name_unavailable"
+                                        >
+                                        </span>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="oui-tile__item">
+                                <dl class="oui-tile__definition">
+                                    <dt
+                                        class="oui-tile__term"
+                                        data-translate="housing_tab_stats_legend_bay"
+                                    ></dt>
+                                    <dd
+                                        class="oui-tile__description"
+                                        data-ng-bind=":: housing.rack"
+                                    ></dd>
+                                </dl>
+                            </div>
+                            <div
+                                class="oui-tile__item"
+                                data-ng-if="housing.securityCode"
+                            >
+                                <dl class="oui-tile__definition">
+                                    <dt
+                                        class="oui-tile__term"
+                                        data-translate="housing_tab_stats_securitycode"
+                                    ></dt>
+                                    <dd
+                                        class="oui-tile__description"
+                                        data-ng-bind=":: housing.securityCode"
+                                    ></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="oui-tile mb-5 h-100">
+                        <h2
+                            class="oui-tile__title oui-heading_4"
+                            data-translate="housing_tab_stats_legend_network"
+                        ></h2>
+                        <div
+                            class="oui-tile__body"
+                            data-ng-repeat="network in housing.network track by $index"
+                        >
+                            <div class="oui-tile__item">
+                                <dl class="oui-tile__definition">
+                                    <dt
+                                        class="oui-tile__term"
+                                        data-translate="housing_tab_stats_ipv4"
+                                    ></dt>
+                                    <dd
+                                        class="oui-tile__description"
+                                        data-ng-bind=":: network.ipv4.network"
+                                    ></dd>
+                                </dl>
+                                <div class="oui-tile__actions">
+                                    <oui-action-menu
+                                        aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_distribution' | translate) } }}"
+                                        data-compact
+                                        data-placement="end"
+                                    >
+                                        <oui-action-menu-item
+                                            data-aria-label="{{:: 'housing_configuration_ipv4_manage' | translate }}"
+                                            data-ui-sref="app.ip({ serviceName: housing.name })"
+                                            ><span
+                                                data-translate="housing_configuration_ipv4_manage"
+                                            ></span
+                                        ></oui-action-menu-item>
+                                    </oui-action-menu>
+                                </div>
+                            </div>
+                            <div class="oui-tile__item">
+                                <dl class="oui-tile__definition">
+                                    <dt
+                                        class="oui-tile__term"
+                                        data-translate="housing_tab_stats_gateway"
+                                    ></dt>
+                                    <dd
+                                        class="oui-tile__description"
+                                        data-ng-bind=":: network.ipv4.gateway || '-'"
+                                    ></dd>
+                                </dl>
+                            </div>
+                            <div class="oui-tile__item">
+                                <dl class="oui-tile__definition">
+                                    <dt
+                                        class="oui-tile__term"
+                                        data-translate="housing_tab_stats_ipv6"
+                                    ></dt>
+                                    <dd
+                                        class="oui-tile__description"
+                                        data-ng-bind=":: network.ipv6.network || '-'"
+                                    ></dd>
+                                </dl>
+                            </div>
+                            <div class="oui-tile__item">
+                                <dl class="oui-tile__definition">
+                                    <dt
+                                        class="oui-tile__term"
+                                        data-translate="housing_tab_stats_gateway"
+                                    ></dt>
+                                    <dd
+                                        class="oui-tile__description"
+                                        data-ng-bind=":: network.ipv6.gateway || '-'"
+                                    ></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="oui-tile mb-5 h-100">
+                        <h2
+                            class="oui-tile__title oui-heading_4"
+                            data-translate="housing_tab_stats_legend_route"
+                        ></h2>
+                        <div
+                            class="oui-tile__body"
+                            data-ng-repeat="network in housing.network track by $index"
+                        >
+                            <div class="oui-tile__item">
+                                <dl class="oui-tile__definition">
+                                    <dt
+                                        class="oui-tile__term"
+                                        data-translate="housing_tab_stats_router"
+                                    ></dt>
+                                    <dd
+                                        class="oui-tile__description"
+                                        data-ng-bind=":: network.link.router || '-'"
+                                    ></dd>
+                                </dl>
+                            </div>
+                            <div class="oui-tile__item">
+                                <dl class="oui-tile__definition">
+                                    <dt
+                                        class="oui-tile__term"
+                                        data-translate="housing_tab_stats_gateway"
+                                    ></dt>
+                                    <dd
+                                        class="oui-tile__description"
+                                        data-ng-bind=":: network.link.port || '-'"
+                                    ></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-md-flex">
+                <div class="col-sm-4">
+                    <div
+                        class="oui-tile mb-5 h-100"
+                        data-ng-if="!loadingHousingInformations"
+                    >
+                        <h2
+                            class="oui-tile__title oui-heading_4"
+                            data-translate="housing_tab_stats_legend_subscription"
+                        ></h2>
+                        <div class="oui-tile__body">
+                            <div class="oui-tile__item">
+                                <dl class="oui-tile__definition">
+                                    <dt class="oui-tile__term">
+                                        <service-expiration-label
+                                            data-service-infos="housing.serviceInfos"
+                                        >
+                                        </service-expiration-label>
+                                    </dt>
+                                    <dd class="oui-link">
+                                        <service-expiration-date
+                                            data-service-name="housing.name"
+                                            data-service-type="'DEDICATED_HOUSING'"
+                                            data-service-infos="housing.serviceInfos"
+                                            data-force-hide-renew-action="true"
+                                        >
+                                        </service-expiration-date>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div
+                                class="oui-tile__item"
+                                data-ng-if="worldPart !== 'US'"
+                            >
+                                <dl class="oui-tile__definition">
+                                    <dt
+                                        class="oui-tile__term"
+                                        data-translate="common_subscription_contacts"
+                                    ></dt>
+                                    <dd class="oui-tile__description">
+                                        <span
+                                            data-ng-bind="housing.serviceInfos.contactAdmin"
+                                        ></span>
+                                        <span
+                                            class="oui-tile__extra"
+                                            data-translate="common_subscription_contacts_admin"
+                                        ></span
+                                        ><br />
+                                        <span
+                                            data-ng-bind="housing.serviceInfos.contactTech"
+                                        ></span>
+                                        <span
+                                            class="oui-tile__extra"
+                                            data-translate="common_subscription_contacts_tech"
+                                        ></span
+                                        ><br />
+                                        <span
+                                            data-ng-bind="housing.serviceInfos.contactBilling"
+                                        ></span>
+                                        <span
+                                            class="oui-tile__extra"
+                                            data-translate="common_subscription_contacts_billing"
+                                        ></span>
+                                    </dd>
+                                </dl>
+                                <div class="oui-tile__actions">
+                                    <oui-action-menu
+                                        aria-label="{{:: 'menu_action_label' | translate:{ t0: ('core_change_owner' | translate)} }}"
+                                        data-compact
+                                        data-placement="end"
+                                    >
+                                        <oui-action-menu-item
+                                            aria-label="{{:: 'core_change_owner' | translate }}"
+                                            data-href="{{changeOwnerUrl}}"
+                                            data-external
+                                            ><span
+                                                data-translate="core_change_owner"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                    </oui-action-menu>
+                                </div>
+                            </div>
+                            <div class="oui-tile__item">
+                                <dl class="oui-tile__definition">
+                                    <dt
+                                        class="oui-tile__term"
+                                        data-translate="common_configuration_creation"
+                                    ></dt>
+                                    <dd
+                                        class="oui-tile__description"
+                                        data-ng-bind="housing.creation | date:'mediumDate'"
+                                    ></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+        id="currentAction"
+        class="modal fade currentAction"
+        data-role="dialog"
+        data-backdrop="static"
+    >
+        <div
+            class="modal-dialog"
+            data-ng-class="{
+                 'modal-lg': bigModalDialog
+             }"
+        >
+            <div
+                id="modal-container"
+                class="modal-content"
+                data-ng-include="stepPath"
+            ></div>
+            <div id="modal-help" class="help4wizards"></div>
+        </div>
+    </div>
+</div>

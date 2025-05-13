@@ -1,0 +1,15 @@
+{
+  "nutanix_dashboard_reinstall_node_title": "Reinstall node",
+  "nutanix_dashboard_reinstall_node_description": "You are about to reinstall AOS and AHV on your node. List any IP addresses in your cluster network that aren’t in use.",
+  "nutanix_dashboard_reinstall_node_tips": "To install on multiple nodes at once, use the API.",
+  "nutanix_dashboard_reinstall_node_label_ahv_ip": "Node IP",
+  "nutanix_dashboard_reinstall_node_label_cvm_ip": "CVM IP",
+  "nutanix_dashboard_reinstall_node_label_version_aos": "AOS version",
+  "nutanix_dashboard_reinstall_node_confirm": "Reinstall",
+  "nutanix_dashboard_reinstall_node_cancel": "Cancel",
+  "nutanix_dashboard_reinstall_node_success_banner": "Your reinstallation request has been processed. This operation may take up to 1 hour",
+  "nutanix_dashboard_reinstall_node_error_banner": "Unable to complete your reinstallation request. If the error persists, please contact Support",
+  "nutanix_dashboard_reinstall_form_not_valid_ip_error": "Invalid IPv4 address",
+  "nutanix_dashboard_reinstall_form_not_private_ip_error": "Only private IPv4 addresses can be entered in this field",
+  "nutanix_dashboard_reinstall_ip_tooltip": "The IP address must be included in the cluster subnet."
+}

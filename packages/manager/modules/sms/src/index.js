@@ -1,23 +1,45 @@
 import angular from 'angular';
-
-import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
+import ovhManagerCore from '@ovh-ux/manager-core';
 
 import sms from './sms';
-import routing from './sms.routing';
-import component from './sms.component';
 
-import { SMS_AVAILABILITY } from './feature-availability/feature-availability.constants';
-
-const moduleName = 'ovhManagerSms';
+const moduleName = 'ovhManagerSmsLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad', 'ovhManagerCore', sms])
-  .config(routing)
-  .component('ovhManagerSms', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .module(moduleName, ['ui.router', 'oc.lazyLoad', sms, ovhManagerCore])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider
+        .state('sms', {
+          url: '/sms',
+          redirectTo: 'sms.index',
+          resolve: {
+            breadcrumb: () => 'SMS',
+          },
+        })
+        .state('sms.onboarding.**', {
+          url: '/onboarding',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-export { SMS_AVAILABILITY };
+            return import('./onboarding/onboarding.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        })
+        .state('sms.index.**', {
+          url: '',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./sms.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        });
+    },
+  );
 
 export default moduleName;

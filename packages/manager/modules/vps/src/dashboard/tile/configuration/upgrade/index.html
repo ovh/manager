@@ -1,0 +1,80 @@
+<div class="vps-dashboard-tile-configuration-upgrade">
+    <!-- Display the catched error -->
+    <div data-ng-if="$ctrl.resolve.upgradeInfo.error">
+        <span
+            data-ng-if="$ctrl.resolve.stateVps.state !== 'rescued'"
+            data-translate="vps_dashboard_tile_configuration_upgrade_catched_error"
+        ></span>
+        <div data-ng-if="$ctrl.resolve.stateVps.state === 'rescued'">
+            <span
+                data-translate="vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_info"
+            ></span>
+            <a href="{{:: $ctrl.resolve.getRebootLink()}}">
+                <span
+                    data-translate="vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_action"
+                ></span>
+            </a>
+        </div>
+    </div>
+
+    <!-- No catched error - display the upgrade informations -->
+    <div
+        data-ng-switch="$ctrl.resolve.upgradeStatus"
+        data-ng-if="!$ctrl.resolve.upgradeInfo.error"
+    >
+        <div data-ng-switch-when="success">
+            <p
+                data-translate="vps_dashboard_tile_configuration_upgrade_success_explain"
+            ></p>
+        </div>
+
+        <div data-ng-switch-default>
+            <span
+                class="d-block"
+                data-translate="{{ 'vps_dashboard_tile_configuration_upgrade_' + $ctrl.resolve.upgradeType + '_action_details' }}"
+                data-translate-values="{ memoryQuantity: $ctrl.resolve.vps.ram.value, storageQuantity: $ctrl.resolve.stateVps.model.disk }"
+            >
+            </span>
+
+            <span
+                class="d-block"
+                data-translate="vps_dashboard_tile_configuration_upgrade_action_price"
+                data-translate-values="{ price: $ctrl.resolve.configurationTile.upgrades[$ctrl.resolve.upgradeType].diff.text }"
+                data-ng-if="!$ctrl.resolve.configurationTile.isUpfront"
+            >
+            </span>
+
+            <span
+                class="d-block"
+                data-translate="vps_dashboard_tile_configuration_upgrade_action_validation"
+                data-translate-values="{ prorataPrice: $ctrl.resolve.upgradeInfo.order.prices.withTax.text }"
+                data-ng-if="!$ctrl.resolve.configurationTile.isUpfront && $ctrl.resolve.hasDefaultPaymentMethod"
+            >
+            </span>
+
+            <span
+                class="d-block"
+                data-translate="vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_monthly"
+                data-translate-values="{ price: $ctrl.resolve.upgradeInfo.order.prices.withTax.text }"
+                data-ng-if="!$ctrl.resolve.configurationTile.isUpfront && !$ctrl.resolve.hasDefaultPaymentMethod"
+            >
+            </span>
+
+            <span
+                class="d-block"
+                data-translate="vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_upfront"
+                data-translate-values="{ price: $ctrl.resolve.upgradeInfo.order.prices.withTax.text }"
+                data-ng-if="$ctrl.resolve.configurationTile.isUpfront && !$ctrl.resolve.hasDefaultPaymentMethod"
+            >
+            </span>
+
+            <span
+                class="d-block"
+                data-translate="vps_dashboard_tile_configuration_upgrade_action_validation_with_payment_method_upfront"
+                data-translate-values="{ price: $ctrl.resolve.upgradeInfo.order.prices.withTax.text }"
+                data-ng-if="$ctrl.resolve.configurationTile.isUpfront && $ctrl.resolve.hasDefaultPaymentMethod"
+            >
+            </span>
+        </div>
+    </div>
+</div>

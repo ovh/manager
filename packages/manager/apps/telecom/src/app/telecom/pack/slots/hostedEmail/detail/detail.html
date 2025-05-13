@@ -1,0 +1,320 @@
+<section class="telecom-section">
+    <header role="banner" class="mb-4">
+        <oui-back-button data-on-click="::$ctrl.goBack()">
+            <span
+                data-ng-bind="$ctrl.pack.description || $ctrl.pack.packName"
+            ></span>
+        </oui-back-button>
+        <h1
+            data-translate="hosted_email_detail_title"
+            data-translate-values="{name: $ctrl.serviceName}"
+        ></h1>
+    </header>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <main role="main">
+        <div class="text-center" data-ng-if="$ctrl.loading">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <div class="row" data-ng-if="!$ctrl.loading">
+            <!-- General information -->
+            <div class="col-md-6 col-xs-12 widget-presentation">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="hosted_email_detail_general_information"
+                ></h2>
+                <dl>
+                    <!-- TYPE -->
+                    <dt
+                        class="service-title"
+                        data-translate="hosted_email_detail_type"
+                    ></dt>
+                    <dd
+                        class="service-item"
+                        data-ng-bind="$ctrl.account.offer.label"
+                    ></dd>
+                    <!-- END OF TYPE -->
+
+                    <!-- STATUS -->
+                    <dt
+                        class="service-title"
+                        data-translate="hosted_email_detail_status"
+                    ></dt>
+                    <dd class="service-item">
+                        <span
+                            data-ng-class="$ctrl.configuration.status.icon"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            data-ng-bind="$ctrl.configuration.status.label"
+                        ></span>
+                    </dd>
+                    <!-- END OF STATUS -->
+
+                    <!-- QUOTA -->
+                    <dt
+                        class="service-title"
+                        data-translate="hosted_email_detail_quota"
+                    ></dt>
+                    <dd
+                        class="service-item"
+                        data-translate="hosted_email_detail_quota_value"
+                        data-translate-values="{
+                              value: $ctrl.account.size.human,
+                              valueUnit: $ctrl.account.size.unit,
+                              total: $ctrl.account.quota.human,
+                              totalUnit: $ctrl.account.quota.unit}"
+                    ></dd>
+                    <!-- END OF QUOTA -->
+
+                    <!-- WEBMAIL -->
+                    <dt
+                        class="service-title"
+                        data-translate="hosted_email_detail_webmail"
+                    ></dt>
+                    <dd class="service-item">
+                        <a
+                            data-ng-href="{{$ctrl.configuration.webmailUrl}}"
+                            data-translate-attr="{title:'hosted_email_detail_open_webmail'}"
+                            title="{{$ctrl.configuration.webmailUrl}} {{::'common_newtab' | translate}}"
+                            rel="noopener"
+                            target="_blank"
+                        >
+                            <span
+                                data-ng-bind="$ctrl.configuration.webmailUrl"
+                            ></span>
+                            <span
+                                class="ovh-font ovh-font-newtab"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </dd>
+                    <!-- END OF WEBMAIL -->
+
+                    <!-- ANTI VIRUS -->
+                    <dt
+                        class="service-title"
+                        data-translate="hosted_email_detail_av"
+                    ></dt>
+                    <dd class="service-item">
+                        <span
+                            class="label label-success"
+                            data-ng-if="$ctrl.account.antivirusEnabled"
+                            data-translate="hosted_email_detail_active"
+                        >
+                        </span>
+                        <span
+                            class="label label-danger"
+                            data-ng-if="!$ctrl.account.antivirusEnabled"
+                            data-translate="hosted_email_detail_inactive"
+                        >
+                        </span>
+                    </dd>
+                    <!-- END OF ANTI VIRUS -->
+
+                    <!-- ANTI SPAM -->
+                    <dt
+                        class="service-title"
+                        data-translate="hosted_email_detail_as"
+                    ></dt>
+                    <dd class="service-item">
+                        <span
+                            class="label label-success"
+                            data-ng-if="$ctrl.account.antispamEnabled"
+                            data-translate="hosted_email_detail_active"
+                        >
+                        </span>
+                        <span
+                            class="label label-danger"
+                            data-ng-if="!$ctrl.account.antispamEnabled"
+                            data-translate="hosted_email_detail_inactive"
+                        >
+                        </span>
+                    </dd>
+                    <!-- END OF ANTI SPAM -->
+                </dl>
+            </div>
+
+            <!-- Client configuration -->
+            <div class="col-md-6 col-xs-12 widget-presentation">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="hosted_email_detail_client_configuration"
+                ></h2>
+                <div
+                    data-ng-repeat="service in $ctrl.configuration.services track by service.type"
+                    class="mb-3"
+                >
+                    <button
+                        type="button"
+                        class="btn btn-link m-0 p-0 py-2"
+                        data-ng-click="service.visible = !service.visible"
+                    >
+                        <i
+                            class="ovh-font"
+                            aria-hidden="true"
+                            data-ng-class="{
+                              'ovh-font-disclosure-right': !service.visible,
+                              'ovh-font-disclosure-down': service.visible
+                           }"
+                        >
+                        </i>
+                        <span
+                            data-ng-bind="('hosted_email_detail_server_' + service.service) | translate"
+                        ></span>
+                    </button>
+                    <div data-ng-if="service.visible">
+                        <!-- Host -->
+                        <div class="row">
+                            <div
+                                class="col-xs-12 col-md-4 service-title"
+                                data-translate="hosted_email_detail_host"
+                            ></div>
+                            <div
+                                class="col-xs-12 col-md-8 service-item"
+                                data-ng-bind="service.host"
+                            ></div>
+                        </div>
+                        <!-- Ip -->
+                        <div class="row">
+                            <div
+                                class="col-xs-12 col-md-4 service-title"
+                                data-translate="hosted_email_detail_ip"
+                            ></div>
+                            <div
+                                class="col-xs-12 col-md-8 service-item"
+                                data-ng-bind="service.ip"
+                            ></div>
+                        </div>
+                        <!-- Port -->
+                        <div class="row">
+                            <div
+                                class="col-xs-12 col-md-4 service-title"
+                                data-translate="hosted_email_detail_port"
+                            ></div>
+                            <div
+                                class="col-xs-12 col-md-8 service-item"
+                                data-ng-bind="service.port"
+                            ></div>
+                        </div>
+                        <!-- smtpAuth -->
+                        <div class="row">
+                            <div
+                                class="col-xs-12 col-md-4 service-title"
+                                data-translate="hosted_email_detail_smtp_auth"
+                            ></div>
+                            <div
+                                class="col-xs-12 col-md-8 service-item"
+                                data-ng-bind="(service.smtpAuth ? 'yes' : 'no') | translate"
+                            ></div>
+                        </div>
+                        <!-- Port -->
+                        <div class="row">
+                            <div
+                                class="col-xs-12 col-md-4 service-title"
+                                data-translate="hosted_email_detail_start_tls"
+                            ></div>
+                            <div
+                                class="col-xs-12 col-md-8 service-item"
+                                data-ng-bind="(service.startTls ? 'yes' : 'no') | translate"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" data-ng-if="!$ctrl.loading">
+            <!-- Change password -->
+            <div class="col-md-6 col-xs-12 widget-presentation">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="hosted_email_detail_client_change_password"
+                ></h2>
+                <form
+                    name="passwordChange"
+                    data-ng-submit="$ctrl.changePassword()"
+                >
+                    <label
+                        for="password"
+                        data-translate="hosted_email_detail_client_change_password_label"
+                    ></label>
+                    <div class="row">
+                        <ovh-ng-input-password
+                            class="col-xs-6"
+                            name="password"
+                            data-ng-model="$ctrl.password"
+                            data-strength="$ctrl.getPasswordStrength(value)"
+                            data-rules="$ctrl.passwordRules"
+                        >
+                        </ovh-ng-input-password>
+                    </div>
+                    <button
+                        class="btn btn-primary"
+                        type="submit"
+                        data-ng-disabled="passwordChange.$invalid || $ctrl.changingPassword"
+                    >
+                        <span
+                            data-translate="hosted_email_detail_client_change_password_submit"
+                        ></span>
+                        <oui-spinner
+                            data-ng-if="$ctrl.changingPassword"
+                            data-size="s"
+                        >
+                        </oui-spinner>
+                    </button>
+                </form>
+            </div>
+
+            <div class="col-md-6 col-xs-12 widget-presentation">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="hosted_email_detail_client_delete_account"
+                ></h2>
+
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    data-translate="hosted_email_detail_client_delete_account_warning"
+                ></div>
+
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    data-ng-click="$ctrl.askForDelete = true"
+                    data-ng-if="!$ctrl.askForDelete"
+                    data-translate="delete"
+                ></button>
+
+                <div data-ng-if="$ctrl.askForDelete">
+                    <button
+                        type="button"
+                        class="btn btn-default"
+                        data-ng-disabled="$ctrl.accountDeleting"
+                        data-translate="cancel"
+                        data-ng-click="$ctrl.askForDelete = false"
+                    ></button>
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-ng-disabled="$ctrl.accountDeleting"
+                        data-ng-click="$ctrl.onDeleteAccountConfirmClick()"
+                    >
+                        <oui-spinner
+                            class="mr-2"
+                            data-ng-if="$ctrl.accountDeleting"
+                            data-size="s"
+                        >
+                        </oui-spinner>
+                        <span
+                            data-translate="hosted_email_detail_client_delete_account_confirm"
+                        ></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</section>

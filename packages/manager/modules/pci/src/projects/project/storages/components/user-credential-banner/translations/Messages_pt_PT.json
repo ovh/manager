@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_storages_containers_add_linked_user_success_message": "As informações de identificação Object Storage para o utilizador {{username}} estão disponíveis.",
+  "pci_projects_project_storages_containers_add_create_user_success_message": "O utilizador Object Storage {{username}} foi gerado com as seguintes informações de identificação:",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_fail_message": "As informações de identificação Object Storage não foram geradas.",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_create_credential_fail_message": "A criação do utilizador {{username}} falhou.",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label": "O seu nome de utilizador:",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label": "A sua descrição:",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label": "A sua chave de acesso:",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label": "A sua chave secreta:",
+  "pci_projects_project_storages_containers_add_container_success": "O container {{containerName}} foi criado com sucesso e o utilizador Object Storage {{username}} foi adicionado enquanto {{role}}."
+}

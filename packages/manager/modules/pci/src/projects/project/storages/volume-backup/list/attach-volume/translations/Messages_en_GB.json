@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_volume_backup_list_attach_volume_title": "Attach your volume",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_description": "Do you want to attach your {{volumeName}} volume to this {{instanceName}} instance?",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_cancel": "Exit",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_attach": "Confirm",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_success": "Your {{volumeName}} volume has been attached to its {{instanceName}} instance.",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_fail": "An error has occurred updating your volume: {{errorMessage}}"
+}

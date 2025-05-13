@@ -1,0 +1,7 @@
+{
+  "dedicatedCloud_configuration_security_policy_modify_title": "Modifica la classe IP",
+  "dedicatedCloud_configuration_security_policy_modify_step1_question": "IP:",
+  "dedicatedCloud_configuration_security_policy_add_step1_description": "Descrizione:",
+  "dedicatedCloud_configuration_SECURITY_policy_modify_success": "La regola di sicurezza sta per essere modificata.",
+  "dedicatedCloud_configuration_SECURITY_policy_modify_fail": "Si è verificato un errore durante la modifica della regola di sicurezza {{t0}}."
+}

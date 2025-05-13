@@ -7,6 +7,8 @@ export default {
     action: '@',
     me: '<',
     onRulesUpdated: '&',
-    model: '<',
+    model: '=',
+    isValid: '=',
+    smsConsent: '=',
   },
 };

@@ -29,23 +29,32 @@
             <span
                 data-translate="pci_projects_project_instances_instance_backup_price"
                 data-translate-values="{
-                    price: $ctrl.monthlyPrice.price.text || '?'
+                    price: $ctrl.formatPrice() || '?'
                 }"
             ></span>
         </oui-field>
 
         <oui-message type="warning" data-ng-if="!$ctrl.storage.isAttachable()">
             <span
-                data-translate="pci_projects_project_instances_instance_backup_warning_message"
+                data-translate="{{ :: $ctrl.instance.flavor.type !== $ctrl.FLAVORS_TYPE.baremetal ?
+                    'pci_projects_project_instances_instance_backup_warning_message' :
+                    'pci_projects_project_instances_instance_backup_warning_message_baremetal' }}"
             ></span>
         </oui-message>
 
         <oui-message
             type="warning"
-            data-ng-if="$ctrl.instance.flavor.type === 'ovh.iops'"
+            data-ng-if="$ctrl.instance.flavor.type === $ctrl.FLAVORS_TYPE.iops"
         >
             <span
                 data-translate="pci_projects_project_instances_instance_backup_warning_iops_message"
+            ></span>
+        </oui-message>
+
+        <!--Trusted PCI: extra amount charge info-->
+        <oui-message type="info" data-ng-if="$ctrl.isTrustedZone">
+            <span
+                data-translate="pci_projects_project_instances_instance_backup_trusted_zone_extra_amount_charge_message"
             ></span>
         </oui-message>
     </oui-modal>

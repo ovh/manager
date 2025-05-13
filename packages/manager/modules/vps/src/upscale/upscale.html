@@ -1,0 +1,315 @@
+<oui-message
+    id="error-message"
+    data-ng-show="$ctrl.errorMessage"
+    type="error"
+    dismissable="true"
+    on-dismiss="$ctrl.errorMessage = null;"
+>
+    <span data-ng-bind-html="$ctrl.errorMessage"></span>
+</oui-message>
+
+<section id="upscaleSection" class="container-fluid mt-4 ml-4">
+    <oui-back-button on-click="$ctrl.goBack()">
+        <span
+            data-translate="{{:: $ctrl.isEliteUpgrade ? 'vps_upscale_title_change' : 'vps_upscale_title' }}"
+        ></span>
+    </oui-back-button>
+
+    <oui-stepper
+        on-finish="$ctrl.performUpscaleService()"
+        current-index="$ctrl.currentIndex"
+        submit-text="{{:: 'vps_common_order' | translate }}"
+    >
+        <oui-step-form
+            data-ng-show="::!$ctrl.isEliteUpgrade"
+            header="{{:: 'vps_upscale_choice_model' | translate }}"
+            description="{{:: 'vps_upscale_choice_model_details' | translate }}"
+            editable="!$ctrl.loading.getUpscaleInformation || $ctrl.loading.performUpscale"
+            prevent-next="true"
+            valid="$ctrl.range"
+            on-focus="$ctrl.resetRangeConfiguration()"
+            on-submit="$ctrl.trackStep(2)"
+        >
+            <div class="row d-md-flex flex-wrap">
+                <div
+                    class="col-md-4 my-3"
+                    data-ng-repeat="range in $ctrl.upscaleRanges track by range.formattedName"
+                >
+                    <oui-select-picker
+                        class="h-100"
+                        name="range.formattedName"
+                        data-model="$ctrl.range"
+                        data-label="{{:: range.formattedName }}"
+                        data-values="[range]"
+                        data-variant="light"
+                        data-disabled="!range.hasUpscaleConfigAvailable"
+                    >
+                        <oui-select-picker-picture
+                            data-ng-if="range.isCurrentRange"
+                        >
+                            <span
+                                class="oui-badge oui-badge_info"
+                                data-translate="vps_upscale_current_model"
+                            ></span>
+                        </oui-select-picker-picture>
+                        <oui-select-picker-description>
+                            <dl
+                                class="oui-description oui-description_horizontal"
+                            >
+                                <dt
+                                    data-translate="vps_upscale_choice_configuration_cpu"
+                                ></dt>
+                                <dd class="align-left">
+                                    <span
+                                        data-ng-bind="range.formattedTechnical.cpu"
+                                    ></span>
+                                    <span
+                                        data-translate="{{:: range.formattedTechnical.cpu === 1 ? 'vps_dashboard_vcore_1' : 'vps_dashboard_vcore_other'}}"
+                                    ></span>
+                                </dd>
+                                <dt
+                                    data-translate="vps_upscale_choice_configuration_memory"
+                                ></dt>
+                                <dd>
+                                    <span
+                                        data-ng-if="!range.formattedTechnical.memory.minEqualMax"
+                                        data-translate="vps_upscale_range_capacity"
+                                        data-translate-values="{
+                                          'max': range.formattedTechnical.memory.max,
+                                          'min': range.formattedTechnical.memory.min,
+                                        }"
+                                    ></span>
+                                    <span
+                                        data-ng-if="range.formattedTechnical.memory.minEqualMax"
+                                        data-translate="vps_upscale_choice_configuration_quantity"
+                                        data-translate-values="{
+                                          'unit': range.formattedTechnical.memory.min,
+                                        }"
+                                    ></span>
+                                </dd>
+                                <dt
+                                    data-translate="vps_upscale_choice_configuration_storage"
+                                ></dt>
+                                <dd>
+                                    <span
+                                        data-ng-if="!range.formattedTechnical.storage.minEqualMax"
+                                        data-translate="vps_upscale_range_capacity"
+                                        data-translate-values="{
+                                        'max': range.formattedTechnical.storage.max,
+                                        'min': range.formattedTechnical.storage.min,
+                                      }"
+                                    ></span>
+                                    <span
+                                        data-ng-if="range.formattedTechnical.storage.minEqualMax"
+                                        data-translate="vps_upscale_choice_configuration_quantity"
+                                        data-translate-values="{
+                                          'unit': range.formattedTechnical.storage.min,
+                                        }"
+                                    ></span>
+                                </dd>
+                                <dt
+                                    data-translate="vps_upscale_choice_configuration_bandwidth"
+                                ></dt>
+                                <dd
+                                    data-ng-bind="range.formattedTechnical.bandwidth | bandwidth:'M':'bit'"
+                                ></dd>
+                            </dl>
+                        </oui-select-picker-description>
+                        <oui-select-picker-footer>
+                            <vps-upscale-model-price
+                                price="range.indicativePricing.price"
+                                language="$ctrl.connectedUser.language"
+                            ></vps-upscale-model-price>
+                        </oui-select-picker-footer>
+                    </oui-select-picker>
+                </div>
+            </div>
+        </oui-step-form>
+        <oui-step-form
+            header="{{:: 'vps_upscale_choice_configuration' | translate }}"
+            editable="!$ctrl.loading.getUpscaleInformation || $ctrl.loading.performUpscale"
+            description="{{:: 'vps_upscale_change_configuration_details' | translate }}"
+            prevent-next="true"
+            valid="$ctrl.isNewPlanCodeDifferent && $ctrl.rangeConfiguration.pricing"
+            on-submit="$ctrl.trackStep($ctrl.isEliteUpgrade ? 2 : 3)"
+        >
+            <p data-translate="vps_upscale_change_configuration_indication"></p>
+            <table class="table pr-5">
+                <thead>
+                    <tr>
+                        <th
+                            scope="col"
+                            data-translate="vps_upscale_choice_configuration_cpu"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="vps_upscale_choice_configuration_memory"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="vps_upscale_choice_configuration_storage"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="vps_upscale_choice_configuration_bandwidth"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="vps_upscale_summary_price_ex_vat_per_month"
+                        ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="align-top">
+                            <oui-radio
+                                class="mt-2"
+                                model="$ctrl.rangeConfiguration.cores"
+                                data-ng-init="$ctrl.initRangeConfiguration($ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'cpu.cores'), 'cores')"
+                                data-ng-repeat="core in $ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'cpu.cores') track by core"
+                                on-change="$ctrl.getRangeConfigurationPricing()"
+                                value="core"
+                            >
+                                <span
+                                    data-translate="vps_upscale_choice_configuration_cpu_vcores"
+                                    data-translate-values="{
+                                        'vcores': core
+                                      }"
+                                ></span>
+                            </oui-radio>
+                        </td>
+                        <td class="align-top">
+                            <oui-select-picker
+                                class="mt-2"
+                                data-ng-init="$ctrl.initRangeConfiguration($ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'memory.size'), 'memory')"
+                                data-ng-repeat="memory in $ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'memory.size') track by memory"
+                                model="$ctrl.rangeConfiguration.memory"
+                                name="{{:: memory }}"
+                                label="{{:: 'vps_upscale_choice_configuration_quantity' | translate:{ unit: memory } }}"
+                                data-values="[memory]"
+                                on-change="$ctrl.getRangeConfigurationPricing()"
+                                variant="light"
+                            >
+                            </oui-select-picker>
+                        </td>
+                        <td class="align-top">
+                            <oui-select-picker
+                                class="mt-2"
+                                data-ng-init="$ctrl.initRangeConfiguration($ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'storage.disks[0].capacity'), 'storage')"
+                                data-ng-repeat="storage in $ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'storage.disks[0].capacity') track by storage"
+                                model="$ctrl.rangeConfiguration.storage"
+                                name="{{:: storage }}"
+                                label="{{:: 'vps_upscale_choice_configuration_quantity' | translate:{ unit: storage } }}"
+                                data-values="[storage]"
+                                on-change="$ctrl.getRangeConfigurationPricing()"
+                                variant="light"
+                                data-disabled="$ctrl.isStorageSelectionDisabled(storage)"
+                            >
+                            </oui-select-picker>
+                        </td>
+                        <td class="align-top">
+                            <oui-select-picker
+                                class="mt-2"
+                                data-ng-init="$ctrl.initRangeConfiguration($ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'bandwidth.level'), 'bandwidth')"
+                                data-ng-repeat="bandwidth in $ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'bandwidth.level') track by bandwidth"
+                                model="$ctrl.rangeConfiguration.bandwidth"
+                                name="{{:: bandwidth }}"
+                                label="{{:: bandwidth | bandwidth:'M':'bit' }}"
+                                data-values="[bandwidth]"
+                                on-change="$ctrl.getRangeConfigurationPricing()"
+                                variant="light"
+                            >
+                            </oui-select-picker>
+                        </td>
+                        <td class="align-top">
+                            <vps-upscale-configuration-price
+                                data-ng-if="$ctrl.rangeConfiguration.pricing && $ctrl.isNewPlanCodeDifferent"
+                                language="$ctrl.connectedUser.language"
+                                price="$ctrl.rangeConfiguration.pricing"
+                            ></vps-upscale-configuration-price>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </oui-step-form>
+        <oui-step-form
+            header="{{:: 'vps_upscale_user_conditions_agreements' | translate }}"
+            on-focus="$ctrl.fetchUpscaleInformation()"
+            loading="$ctrl.loading.getUpscaleInformation"
+            editable="!$ctrl.loading.performUpscale"
+            prevent-next="true"
+            valid="$ctrl.agreeContracts || ($ctrl.order.contracts.length === 0 && !$ctrl.agreements)"
+            on-submit="$ctrl.trackStep($ctrl.isEliteUpgrade ? 3 : 4)"
+        >
+            <div data-ng-if="$ctrl.order">
+                <oui-checkbox
+                    model="$ctrl.agreeContracts"
+                    data-ng-if="$ctrl.order && $ctrl.agreements"
+                >
+                    <span
+                        data-translate="vps_upscale_agreements"
+                        data-translate-values="{
+                            'conditions': $ctrl.agreements.termsOfService,
+                            'policy': $ctrl.agreements.privacyPolicy
+                          }"
+                    ></span>
+                </oui-checkbox>
+                <ovh-contracts-summary
+                    data-ng-if="$ctrl.order && !$ctrl.agreements"
+                    items="$ctrl.order.contracts"
+                    model="$ctrl.agreeContracts"
+                ></ovh-contracts-summary>
+            </div>
+        </oui-step-form>
+        <oui-step-form
+            header="{{ :: 'vps_upscale_summary' | translate }}"
+            on-focus="$ctrl.formatNewRangeInformation()"
+            loading="$ctrl.loading.performUpscale"
+            submit-text="{{:: 'vps_common_order' | translate }}"
+            on-submit="$ctrl.trackStep($ctrl.isEliteUpgrade ? 3 : 4, true)"
+        >
+            <div class="row">
+                <vps-upscale-summary-configuration
+                    class="col-md-3"
+                    connected-user="$ctrl.connectedUser"
+                    configuration="$ctrl.currentRangeConfiguration"
+                    highlight="false"
+                    summary-title="{{:: 'vps_upscale_summary_current_configuration_' + $ctrl.currentRangeConfiguration.pricing.pricingMode | translate:{ 'month': $ctrl.currentRangeConfiguration.pricing.interval } }}"
+                >
+                </vps-upscale-summary-configuration>
+                <vps-upscale-summary-configuration
+                    class="col-md-3"
+                    data-ng-if="$ctrl.newRangeInformation"
+                    connected-user="$ctrl.connectedUser"
+                    configuration="$ctrl.newRangeInformation"
+                    highlight="true"
+                    summary-title="{{:: 'vps_upscale_summary_final_configuration_' + $ctrl.newRangeInformation.pricing.paymentType | translate:{ 'month': $ctrl.newRangeInformation.pricing.interval } }}"
+                >
+                </vps-upscale-summary-configuration>
+            </div>
+
+            <div class="row" data-ng-if="$ctrl.newRangeInformation">
+                <div class="col-md-6">
+                    <vps-upscale-summary-price
+                        language="$ctrl.connectedUser.language"
+                        payment-type="$ctrl.newRangeInformation.pricing.paymentType"
+                        price="{
+                          currency: $ctrl.connectedUser.currency.code,
+                          unit: $ctrl.order.prices.withoutTax.unit,
+                          value: $ctrl.order.prices.withoutTax.value,
+                        }"
+                    >
+                    </vps-upscale-summary-price>
+                    <p
+                        data-translate="{{:: $ctrl.getValidationInformation() }}"
+                        data-translate-values="{
+                          'price': '<strong>' + $ctrl.order.prices.withoutTax.text + '</strong>'
+                        }"
+                    ></p>
+                </div>
+            </div>
+
+            <p data-translate="vps_upscale_new_configuration_refresh_time"></p>
+        </oui-step-form>
+    </oui-stepper>
+</section>

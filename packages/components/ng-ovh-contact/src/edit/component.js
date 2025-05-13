@@ -7,4 +7,8 @@ export default {
   },
   template,
   controller,
+  bindings: {
+    options: '=?ovhContactChoiceOptions',
+    customList: '=?ovhContactChoiceCustomList',
+  },
 };

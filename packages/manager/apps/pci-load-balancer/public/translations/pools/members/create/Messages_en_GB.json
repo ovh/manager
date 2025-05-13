@@ -1,0 +1,9 @@
+{
+  "octavia_load_balancer_pools_detail_members_create_title": "Add Manually",
+  "octavia_load_balancer_pools_detail_members_create_description": "Manually add a member if it is not found in the available instances table.",
+  "octavia_load_balancer_pools_detail_members_create_cancel": "Cancel",
+  "octavia_load_balancer_pools_detail_members_create_confirm": "Add",
+  "octavia_load_balancer_pools_detail_members_create_name_label": "Surname (optional)",
+  "octavia_load_balancer_pools_detail_members_create_address_ip_label": "IP address",
+  "octavia_load_balancer_pools_detail_members_create_port_label": "Port"
+}

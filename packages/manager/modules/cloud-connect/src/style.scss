@@ -1,0 +1,17 @@
+cloud-connect-details {
+  @import 'bootstrap4/scss/_functions.scss';
+  @import 'bootstrap4/scss/_variables.scss';
+  @import 'bootstrap4/scss/_mixins.scss';
+  @import 'bootstrap4/scss/_utilities.scss';
+  @import 'bootstrap4/scss/_grid.scss';
+
+  .datagrid-without-pagination {
+    oui-pagination {
+      display: none;
+    }
+  }
+
+  .statistics-graph {
+    height: 230px;
+  }
+}

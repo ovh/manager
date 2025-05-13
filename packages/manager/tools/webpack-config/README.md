@@ -2,7 +2,7 @@
 
 > Extensible webpack configuration for the OVH Manager.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config?activeTab=dependencies)
 
 ## Install
 
@@ -43,15 +43,14 @@ The following configuration parameters are _optionals_:
 const { config } = require('@ovh-ux/manager-webpack-config')({
   template: './client/index.html',
   basePath: './client',
-  lessPath: [
-    './client/app',
-    './client/components',
-    './node_modules',
-  ],
+  lessPath: ['./client/app', './client/components', './node_modules'],
   root: path.resolve(__dirname, './client/app'),
   assets: {
     files: [
-      { from: path.resolve(__dirname, './client/app/common/assets'), to: 'assets' },
+      {
+        from: path.resolve(__dirname, './client/app/common/assets'),
+        to: 'assets',
+      },
     ],
   },
 });
@@ -70,7 +69,7 @@ module.exports = merge(config, {
 
 ## Related
 
-* [manager-webpack-dev-server](https://github.com/ovh-ux/manager/tree/master/packages/manager/tools/webpack-dev-server) - OVH manager webpack development server configuration
+* [manager-webpack-dev-server](https://github.com/ovh/manager/tree/master/packages/manager/tools/webpack-dev-server) - OVH manager webpack development server configuration
 
 ## Contributing
 

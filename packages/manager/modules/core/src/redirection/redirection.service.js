@@ -1,8 +1,6 @@
-import forOwn from 'lodash/forOwn';
-import get from 'lodash/get';
-import isString from 'lodash/isString';
-import keys from 'lodash/keys';
-import constants from './redirection.constants';
+import { forOwn, get, isString, keys, some, startsWith } from 'lodash-es';
+
+import constants, { SANITIZATION } from './redirection.constants';
 
 export default class RedirectionService {
   /* @ngInject */
@@ -16,7 +14,7 @@ export default class RedirectionService {
 
     // if url is an object, then it depends on the ovhSUbsidiary
     if (!isString(url) && keys(url).length) {
-      url = get(url, params.ovhSubsidiary);
+      url = get(url, this.coreConfig.getUser().ovhSubsidiary) || url.DEFAULT;
     }
 
     // replace dynamic parts of the url with parameters
@@ -33,5 +31,15 @@ export default class RedirectionService {
     }
 
     return url;
+  }
+
+  static isUrlSafeForRedirection(url) {
+    return SANITIZATION.regex.test(url);
+  }
+
+  validate(url) {
+    return some(Object.values(this.coreConfig.getApplicationURLS()), (appURL) =>
+      startsWith(url, appURL),
+    );
   }
 }

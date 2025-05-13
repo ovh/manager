@@ -1,0 +1,54 @@
+@cloud_warning_bg_color: #faefa0;
+
+@cloud_warning_border_color: #e3cd4d;
+
+@cloud_warning_text_color: #8a5300;
+
+.nasha {
+  .info-total-capacity {
+    &-text {
+      color: #bbb;
+    }
+  }
+
+  .monitoring-switch {
+    transform-origin: center;
+    transform: scale(0.8);
+    top: -5px;
+  }
+
+  .monitoring-stich-labels {
+    color: #bbb;
+  }
+
+  &__link {
+    color: black;
+
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  .nasha-warning {
+    background-color: @cloud_warning_bg_color;
+    border: 1px solid @cloud_warning_border_color;
+    border-radius: 5px;
+    display: flex;
+
+    &-text {
+      color: @cloud_warning_text_color;
+      align-self: center;
+    }
+
+    &-icon {
+      height: 30px;
+      align-self: center;
+    }
+  }
+}
+
+.nasha-dashboard {
+  .h-fit-content {
+    height: fit-content;
+  }
+}

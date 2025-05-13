@@ -1,0 +1,8 @@
+{
+  "vps_configuration_veeam_schedule_backup_title": "Zeitpunkt des automatischen Backups konfigurieren",
+  "vps_configuration_veeam_schedule_backup_description": "Das automatische Backup täglich zu dieser Zeit (nach UTC) durchführen: ",
+  "vps_configuration_veeam_schedule_backup_action_confirm": "Bestätigen",
+  "vps_configuration_veeam_schedule_backup_action_cancel": "Abbrechen",
+  "vps_configuration_veeam_schedule_backup_action_success_message": "Der Automatisierungszeitplan wurde geändert.",
+  "vps_configuration_veeam_schedule_backup_action_error_message": "Bei der Änderung des Automatisierungsplans ist ein Fehler aufgetreten: {{ message }}"
+}

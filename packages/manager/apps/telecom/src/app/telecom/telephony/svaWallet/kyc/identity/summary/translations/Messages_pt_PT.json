@@ -1,0 +1,11 @@
+{
+  "telephony_billingAccount_svaWallet_kyc_summary_title": "O meu perfil SVA",
+  "telephony_billingAccount_svaWallet_kyc_summary_message": "Encontrará abaixo as informações relativas ao seu perfil SVA.",
+  "telephony_billingAccount_svaWallet_kyc_summary_bankaccount_title": "As minhas coordenadas bancárias",
+  "telephony_billingAccount_svaWallet_kyc_summary_bankaccount_edit": "Alterar as minhas coordenadas bancárias",
+  "telephony_billingAccount_svaWallet_kyc_summary_beneficiaries_title": "Os meus beneficiários",
+  "telephony_billingAccount_svaWallet_kyc_summary_documents_title": "Os meus documentos",
+  "telephony_billingAccount_svaWallet_kyc_summary_iban_confirmation": "O seu IBAN foi atualizado com êxito!",
+  "telephony_billingAccount_svaWallet_kyc_summary_document_confirmation": "O seu documento foi atualizado com êxito. A validação dos seus novos documentos levará 48h.",
+  "telephony_billingAccount_svaWallet_kyc_summary_edit_identity": "Atualizar os meus dados"
+}

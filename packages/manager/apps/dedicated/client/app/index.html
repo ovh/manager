@@ -20,70 +20,39 @@
         data-ng-controller="SessionCtrl as $ctrl"
         class="h-100 ovh-manager-dedicated-app"
         style="overflow: hidden;"
+        data-ng-class="{'in-container': !$ctrl.isTopLevelApplication}"
     >
         <div class="h-100 d-flex flex-column overflow-hidden ng-cloak">
             <!-- Skip to main content -->
             <div class="skipnav">
                 <a
-                    class="oui-button oui-button_link"
-                    href=""
+                    class="oui-button oui-button_ghost"
+                    href
                     data-translate="common_skip_to_main_content"
                     data-ng-click="scrollTo('maincontent')"
                 >
                 </a>
             </div>
-            <!-- /Skip to main content -->
-            <ovh-manager-navbar
-                data-navbar-options="{
-                    toggle: {
-                        event: 'sidebar:loaded'
-                    },
-                    universe: 'server'
-                }"
-                data-universe-click="$ctrl.openSidebar()"
-            >
-            </ovh-manager-navbar>
-
-            <button
-                style="position: absolute; top: 0; left: 0; width: 48px; height: 44px; background-color: transparent; border: 0;"
-                data-ng-if="$ctrl.sidebarIsOpen"
-                data-ng-click="$ctrl.closeSidebar()"
-            ></button>
-
             <div
                 class="container-fluid h-100 w-100"
-                style="overflow: auto"
+                style="overflow-y: auto; overflow-x: hidden;"
                 data-ui-view="app"
             >
-                <div class="row">
-                    <ovh-manager-server-sidebar
-                        universe="'DEDICATED'"
-                        data-is-open="$ctrl.sidebarIsOpen"
-                        class="col-md-3 col-lg-2 px-0"
-                        data-on-click="$ctrl.closeSidebar()"
-                        data-ng-if="!$ctrl.displayAccountSidebar"
-                    >
-                    </ovh-manager-server-sidebar>
-
-                    <div
-                        class="col-md-3 col-lg-2"
-                        data-ng-if="$ctrl.displayAccountSidebar"
-                        data-sidebar-menu
-                        data-sidebar-namespace="'account'"
-                    ></div>
-
-                    <div
-                        class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 px-0"
-                    >
+                <div class="row h-100">
+                    <div class="px-0 h-100 col-lg-12" ui-view="container">
                         <!-- Skip content target -->
                         <div class="skiptarget">
-                            <a id="maincontent" href="">-</a>
+                            <a id="maincontent" href>-</a>
                         </div>
                         <!-- /Skip content target -->
 
                         <ovh-browser-alert></ovh-browser-alert>
-
-                        <div class="pb-5" data-ui-view></div>
+                        <ovh-manager-banner-text></ovh-manager-banner-text>
+                        <div class="container-fluid px-md-5 px-3 mt-3">
+                            <ui-router-breadcrumb></ui-router-breadcrumb>
+                            <account-migration-notification></account-migration-notification>
+                            <div class="pb-5 mt-3" data-ui-view></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -124,13 +93,7 @@
             </div>
         </div>
 
-        <ovh-chatbot
-            data-ng-if="$ctrl.user.ovhSubsidiary"
-            data-language="{{$ctrl.currentLanguage}}"
-            data-country="{{$ctrl.user.ovhSubsidiary}}"
-        ></ovh-chatbot>
-
-        <div data-otrs-popup></div>
+        <div id="otrs-popup" data-otrs-popup></div>
         <script>
             var CKEDITOR_BASEPATH =
                 (window.location.pathname !== '/'
@@ -143,6 +106,5 @@
                           .join('/')
                     : '') + '/ckeditor/';
         </script>
-        <script src="ckeditor/ckeditor.js"></script>
     </body>
 </html>

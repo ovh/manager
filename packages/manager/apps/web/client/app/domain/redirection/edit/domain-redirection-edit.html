@@ -185,8 +185,9 @@
                                 data-ng-if="ctrl.redirection.fieldDisplayType === 'CNAME'"
                                 data-model="ctrl.shouldIncludeDomain"
                                 data-on-change="ctrl.redirectionTargetChange()"
-                                data-text="{{:: 'domain_tab_REDIRECTION_edit_server_cname_include_domain' | translate }}"
-                            >
+                                ><span
+                                    data-translate="domain_tab_REDIRECTION_edit_server_cname_include_domain"
+                                ></span>
                             </oui-checkbox>
                         </div>
                     </div>

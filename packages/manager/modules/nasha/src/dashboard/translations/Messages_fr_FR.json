@@ -1,0 +1,17 @@
+{
+  "nasha_dashboard_actions": "Actions",
+  "nasha_dashboard_configuration_link": "Créer une partition",
+  "nasha_dashboard_configuration_quota": "Quota",
+  "nasha_dashboard_configuration_title": "Configuration",
+  "nasha_dashboard_edit": "Modifier",
+  "nasha_dashboard_information_datacenter": "Localisation du datacenter",
+  "nasha_dashboard_information_disk_size": "Taille de stockage",
+  "nasha_dashboard_information_disk_type": "Type de disque",
+  "nasha_dashboard_information_id": "ID Service",
+  "nasha_dashboard_information_name": "Nom",
+  "nasha_dashboard_information_title": "Informations",
+  "nasha_dashboard_tab_general_information": "Informations générales",
+  "nasha_dashboard_tab_partitions": "Partitions",
+  "nasha_dashboard_guides_header": "Guides",
+  "nasha_dashboard_guides_title": "Documentation générale"
+}

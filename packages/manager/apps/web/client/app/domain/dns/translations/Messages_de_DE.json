@@ -1,0 +1,13 @@
+{
+  "domain_dns": "DNS-Server",
+  "domain_dns_modify": "Meine DNS-Server ändern",
+  "domain_dns_error_initializing": "Beim Abrufen der DNS-Daten ist ein Fehler aufgetreten: {{message}}",
+  "domain_dns_update_success_message": "Ihre Aktualisierungsanfrage wurde registriert und wird so schnell wie möglich bearbeitet.",
+  "domain_dns_update_same_message": "Die Liste der eingegebenen DNS  wurde nicht geändert, es wird keine Aktion durchgeführt.",
+  "domain_dns_type": "Typ der DNS-Server",
+  "domain_dns_type_external": "Personalisiert",
+  "domain_dns_type_anycast": "Anycast",
+  "domain_dns_type_standard": "Standard",
+  "domain_dns_type_dedicated": "Sekundär",
+  "domain_dns_type_standard_tooltip": "Entscheiden Sie sich für ein Upgrade auf ein Anycast-Angebot, um von mehr Leistung zu profitieren."
+}

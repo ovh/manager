@@ -5,7 +5,7 @@ import isObject from 'lodash/isObject';
 export default class EmailCreationController {
   /* @ngInject */
   constructor(
-    Exchange,
+    wucExchange,
     exchangeStates,
     messaging,
     navigation,
@@ -16,7 +16,7 @@ export default class EmailCreationController {
     wizardHostedCreationDomainConfiguration,
     wizardHostedCreationEmailCreation,
   ) {
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.exchangeStates = exchangeStates;
     this.messaging = messaging;
     this.navigation = navigation;
@@ -29,7 +29,7 @@ export default class EmailCreationController {
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
     this.$rootScope.$on('exchange.wizard.request.done', () => {
       this.retrievingEmailAccounts();
     });

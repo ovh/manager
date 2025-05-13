@@ -1,0 +1,64 @@
+<div data-ng-controller="EmailsUpdateRedirectionCtrl as ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateRedirection"
+        data-wizard-title="'email_tab_modal_update_redirection_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.updateRedirectionForm.$valid"
+        >
+            <p
+                class="font-weight-bold"
+                data-18n-static="email_tab_modal_update_redirection_heading"
+            ></p>
+            <p data-translate="email_tab_modal_create_redirection_info"></p>
+
+            <form class="form-horizontal" name="ctrl.updateRedirectionForm">
+                <p>
+                    <small class="text-danger">*</small>
+                    <small data-translate="emails_required_fields"></small>
+                </p>
+
+                <div class="row mb-4">
+                    <div
+                        class="col-md-4 oui-label text-lg-right"
+                        data-translate="email_tab_modal_redirection_create_from"
+                    ></div>
+                    <div class="col-md-8" data-ng-bind="ctrl.model.from"></div>
+                </div>
+
+                <div
+                    class="form-group"
+                    data-ng-class="{
+                        'has-error': ctrl.updateRedirectionForm.redirectionTo.$dirty && ctrl.updateRedirectionForm.redirectionTo.$invalid,
+                        'has-success': ctrl.updateRedirectionForm.redirectionTo.$dirty && ctrl.updateRedirectionForm.redirectionTo.$valid
+                    }"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="txt-redirection-to"
+                        data-translate="email_tab_modal_redirection_create_to"
+                    ></label>
+                    <div class="col-md-8">
+                        <input
+                            type="email"
+                            class="form-control"
+                            name="redirectionTo"
+                            id="txt-redirection-to"
+                            required
+                            data-ng-change="ctrl.constructor.redirectionToCheck(ctrl.updateRedirectionForm.redirectionTo)"
+                            data-ng-model="ctrl.model.to"
+                        />
+                        <small
+                            class="help-block"
+                            data-translate="email_tab_modal_redirection_create_email_error"
+                            data-ng-if="ctrl.updateRedirectionForm.redirectionTo.$dirty && ctrl.updateRedirectionForm.redirectionTo.$invalid"
+                        ></small>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

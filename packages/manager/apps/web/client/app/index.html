@@ -17,68 +17,44 @@
         data-ng-controller="WebAppCtrl as $ctrl"
         class="h-100 ovh-manager-web-app"
         style="overflow: hidden;"
+        data-ng-class="{'in-container': !$ctrl.isTopLevelApplication}"
     >
         <div class="h-100 d-flex flex-column overflow-hidden ng-cloak">
             <!-- Skip to main content -->
             <div class="skipnav">
                 <a
-                    class="oui-button oui-button_link"
-                    href=""
+                    class="oui-button oui-button_ghost"
+                    href
                     data-translate="common_skip_to_main_content"
                     data-ng-click="scrollTo('maincontent')"
                 >
                 </a>
             </div>
             <!-- /Skip to main content -->
-            <div>
-                <ovh-manager-navbar
-                    data-navbar-options="{
-                      toggle: {
-                        event: 'sidebar:loaded'
-                      },
-                      universe: 'web',
-                    }"
-                    data-universe-click="$ctrl.openSidebar()"
-                >
-                </ovh-manager-navbar>
-                <button
-                    type="button"
-                    class="navbar-toggle position-absolute bg-transparent border-0"
-                    data-ng-if="$ctrl.sidebarIsOpen"
-                    data-ng-click="$ctrl.closeSidebar()"
-                ></button>
-            </div>
             <div
                 class="container-fluid h-100 w-100"
                 style="overflow: auto"
                 data-ui-view="app"
             >
                 <div class="row">
-                    <ovh-manager-server-sidebar
-                        universe="'WEB'"
-                        data-is-open="$ctrl.sidebarIsOpen"
-                        class="col-md-3 col-lg-2 px-0"
-                        data-on-click="$ctrl.closeSidebar()"
-                    >
-                    </ovh-manager-server-sidebar>
-
-                    <div
-                        class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 px-0"
-                    >
+                    <div class="px-0 col-lg-12">
                         <!-- Skip content target -->
                         <div class="skiptarget">
-                            <a id="maincontent" href="">-</a>
+                            <a id="maincontent" href>-</a>
                         </div>
 
-                        <!-- /Skip content target -->
-                        <ovh-chatbot
-                            data-ng-if="$ctrl.user.ovhSubsidiary"
-                            data-universe="WEB"
-                            data-language="{{$ctrl.currentLanguage}}"
-                            data-country="{{$ctrl.user.ovhSubsidiary}}"
-                        ></ovh-chatbot>
+                        <ovh-manager-banner-text></ovh-manager-banner-text>
+                        <account-migration-notification></account-migration-notification>
 
-                        <div data-ui-view class="pb-5"></div>
+                        <!-- /Skip content target -->
+
+                        <div
+                            class="container-fluid px-md-5 px-3 mt-3"
+                            id="topWebUniverse"
+                        >
+                            <ui-router-breadcrumb></ui-router-breadcrumb>
+                            <div data-ui-view class="pb-5 mt-3"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,6 +90,5 @@
                           .join('/')
                     : '') + '/ckeditor/';
         </script>
-        <script src="ckeditor/ckeditor.js"></script>
     </body>
 </html>

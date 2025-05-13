@@ -1,0 +1,91 @@
+<div class="vrack">
+    <oui-header class="mb-2">
+        <oui-header-heading>
+            <div class="d-flex align-items-center justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: $ctrl.header }}"
+                ></h1>
+                <div class="d-flex justify-content-end gap-1 flex-wrap">
+                    <changelog-button
+                        links="$ctrl.constants.CHANGELOG.iplb.links"
+                        chapters="$ctrl.constants.CHANGELOG.iplb.chapters"
+                    ></changelog-button>
+                    <oui-guide-menu
+                        data-text="{{:: 'list_layout_vrack_guides_title' | translate }}"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guideLinks.link1 }}"
+                            data-external="true"
+                        >
+                            <span
+                                data-translate="{{:: 'list_layout_vrack_guides_link1' | translate }}"
+                            ></span>
+                        </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guideLinks.link2 }}"
+                            data-external="true"
+                        >
+                            <span
+                                data-translate="{{:: 'list_layout_vrack_guides_link2' | translate }}"
+                            ></span>
+                        </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-if="$ctrl.user.ovhSubsidiary !== 'US'"
+                            data-ng-href="{{:: $ctrl.guideLinks.link3 }}"
+                            data-external="true"
+                        >
+                            <span
+                                data-translate="{{:: 'list_layout_vrack_guides_link3' | translate }}"
+                            ></span>
+                        </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guideLinks.link4 }}"
+                            data-external="true"
+                        >
+                            <span
+                                data-translate="{{:: 'list_layout_vrack_guides_link4' | translate }}"
+                            ></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
+            </div>
+        </oui-header-heading>
+    </oui-header>
+</div>
+<div data-ovh-alert="InfoErrors"></div>
+<div data-ng-bind-html="$ctrl.description"></div>
+<oui-datagrid
+    rows="$ctrl.resources"
+    id="{{ $ctrl.datagridId }}"
+    row-loader="$ctrl.loadResource($row)"
+    columns="$ctrl.columns"
+    customizable="$ctrl.customizableColumns"
+    criteria="$ctrl.criteria"
+    on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"
+    on-page-change="$ctrl.onPageChange($pagination)"
+    on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+    page-size="{{ $ctrl.paginationSize }}"
+    page="{{ $ctrl.paginationNumber }}"
+    on-sort-change="$ctrl.onSortChange($sort)"
+    data-navi-id="{{ $ctrl.dataNaviId }}"
+>
+    <oui-datagrid-topbar>
+        <oui-button
+            aria-label="{{:: 'vrack_order' | translate }}"
+            data-on-click="$ctrl.gotoVrackOrder()"
+        >
+            <span data-translate="vrack_order"></span>
+        </oui-button>
+    </oui-datagrid-topbar>
+    <oui-action-menu
+        data-compact
+        data-placement="end"
+        data-disabled="$row.state !== 'active'"
+        data-ng-if="$ctrl.isDeleteOptionsAvailable"
+    >
+        <oui-action-menu-item data-on-click="$ctrl.deleteVrack($row)">
+            <span data-translate="vrack_listing_action_delete"></span>
+        </oui-action-menu-item>
+    </oui-action-menu>
+</oui-datagrid>

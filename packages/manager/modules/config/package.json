@@ -1,7 +1,6 @@
 {
   "name": "@ovh-ux/manager-config",
-  "version": "0.4.0",
-  "private": true,
+  "version": "8.3.1",
   "description": "Retrieve configuration based on the environment.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/config#readme",
   "bugs": {
@@ -13,22 +12,27 @@
     "directory": "packages/manager/modules/config"
   },
   "license": "BSD-3-Clause",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/config.js",
+  "author": "OVH SAS",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
+    "build": "tsc",
+    "dev": "tsc",
+    "dev:watch": "tsc --watch",
+    "prepare": "tsc"
+  },
+  "dependencies": {
+    "@ovh-ux/ovh-reket": "^2.1.8"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^7.0.0"
+    "@ovh-ux/request-tagger": "^0.4.1"
+  },
+  "peerDependencies": {
+    "@ovh-ux/request-tagger": "^0.4.0"
   }
 }

@@ -1,0 +1,5 @@
+{
+  "ovh_payment_method_integration_component_adyen_validate": "Ajouter",
+  "ovh_payment_method_integration_component_adyen_cancel": "Annuler",
+  "ovh_payment_method_integration_component_adyen_redirect_error": "Erreur suite à la saisie des informations sur le site du prestataire bancaire."
+}

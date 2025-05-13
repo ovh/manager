@@ -1,0 +1,71 @@
+<div class="container-fluid mx-0 px-0 manager-on-boarding-layout">
+    <div
+        data-ng-if="!$ctrl.hideIllustrationSection"
+        class="row align-items-center"
+    >
+        <div class="w-100">
+            <div class="placeholder p-5 d-flex justify-content-center">
+                <img
+                    data-ng-src="{{:: $ctrl.imageSource || $ctrl.placeholder }}"
+                    data-ng-attr-alt="{{:: $ctrl.imageAlt }}"
+                    alt=""
+                />
+            </div>
+        </div>
+        <div
+            class="w-100 justify-content-center description"
+            data-ng-transclude
+        ></div>
+        <h2
+            class="w-100 d-flex justify-content-center"
+            data-ng-transclude="title"
+        ></h2>
+        <div
+            class="w-100 d-flex justify-content-center description"
+            data-ng-transclude="description"
+        ></div>
+    </div>
+
+    <aside class="row pt-5">
+        <div
+            class="col-md-6 col-lg-4 mb-4"
+            data-ng-repeat="guide in $ctrl.guides track by $index"
+        >
+            <a
+                class="py-2 oui-tile d-flex align-items-start p-3"
+                target="_blank"
+                rel="noopener"
+                data-ng-href="{{:: guide.link }}"
+                data-ng-click="$ctrl.onGuideLinkClick(guide)"
+            >
+                <div class="ml-2">
+                    <h5
+                        class="guide-title"
+                        data-ng-bind-html=":: guide.category || ('onboarding_guide_title' | translate)"
+                    ></h5>
+                    <h3
+                        class="font-weight-bold"
+                        data-ng-bind=":: guide.title"
+                    ></h3>
+                    <div class="oui-tile__body mt-3">
+                        <p
+                            class="oui-tile__description font-weight-normal"
+                            data-ng-bind=":: guide.description"
+                        ></p>
+                        <span class="oui-link oui-link_icon">
+                            <span
+                                data-translate="onboarding_layout_more"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-external-link oui-color-p-600"
+                                aria-hidden="true"
+                            ></span>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </aside>
+
+    <footer class="row pt-5" data-ng-transclude="footer"></footer>
+</div>

@@ -1,0 +1,235 @@
+<div data-ng-controller="IpLegacyOrderCtrl">
+    <div
+        data-wizard
+        data-wizard-bread-crumb="true"
+        data-wizard-on-cancel="cancel"
+        data-wizard-on-finish="confirmOrder"
+        data-wizard-title=":: ('ip_additional_order' | translate) + ADDITIONAL_IP"
+    >
+        <!-- Step 1: Select a service -->
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="getServices"
+            data-wizard-step-on-previous="trackPrevious"
+            data-wizard-step-valid="model.service && orderableIp && !orderableIpError && !loading.serviceCanBeOrdered"
+        >
+            <div data-ng-show="!loading.services && servicesList.length">
+                <p
+                    data-ng-bind=":: ('ip_order_step1_question' | translate) + ADDITIONAL_IP"
+                ></p>
+                <form name="ipIpOrderForm">
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                             'has-error': ipIpOrderForm.serviceSelector.$touched && orderableIpError
+                         }"
+                    >
+                        <label
+                            class="control-label"
+                            for="serviceSelector"
+                            data-translate="ip_table_header_service"
+                        >
+                        </label>
+                        <select
+                            id="serviceSelector"
+                            name="serviceSelector"
+                            class="form-control"
+                            data-ng-model="model.service"
+                            data-ng-options="service as service.serviceName group by ('ip_servicetype_' + service.serviceType | translate) for service in servicesList"
+                            data-ng-disabled="model.service && loading.serviceCanBeOrdered"
+                            data-ng-change="canServiceBeOrdered()"
+                        >
+                            <option
+                                value=""
+                                data-ng-disabled="true"
+                                data-translate="global_select"
+                            >
+                            </option>
+                        </select>
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-show="orderableIpError"
+                            data-translate="{{ 'ip_order_error_'+orderableIpError }}"
+                        >
+                        </span>
+                    </div>
+                </form>
+
+                <!-- Checking... -->
+                <div data-ng-show="loading.serviceCanBeOrdered">
+                    <span data-translate="ip_order_checkservice"></span>
+                    <oui-spinner data-size="s"></oui-spinner>
+                </div>
+
+                <!-- If everything is valid -->
+                <div
+                    data-ng-show="model.service && orderableIp && !orderableIpError && !loading.serviceCanBeOrdered"
+                >
+                    <div
+                        data-ng-show="model.service.serviceType === 'DEDICATED'"
+                    >
+                        <p data-translate="ip_order_step1_info1"></p>
+                        <ul>
+                            <li
+                                data-ng-repeat="ip in orderableIp.ipv4"
+                                data-ng-bind-html="ip | availableIpText"
+                            ></li>
+                        </ul>
+                    </div>
+
+                    <p
+                        data-ng-show="model.service.serviceType === 'VPS'"
+                        data-translate="ip_order_add_ipv4_step1_remaining"
+                        data-translate-values="{ t0: orderableIp.maximumAdditionnalIp }"
+                    ></p>
+
+                    <p data-translate="ip_order_step1_ok"></p>
+                </div>
+            </div>
+
+            <div
+                data-ng-show="!loading.services && !servicesList.length"
+                data-translate="ip_order_noservices"
+            ></div>
+
+            <div data-ng-show="loading.services" class="text-center">
+                <oui-spinner></oui-spinner>
+            </div>
+        </div>
+
+        <!-- Step 2: Form -->
+        <div
+            data-wizard-step
+            data-wizard-step-on-previous="trackPrevious"
+            data-wizard-step-on-load="loadOrderForm"
+            data-wizard-step-valid="orderFormValid()"
+        >
+            <div
+                data-ng-if="model.service.serviceType"
+                data-ng-include="'ip/legacyOrder/' + model.service.serviceType + '.html'"
+                data-ng-hide="loading.form"
+            ></div>
+
+            <div data-ng-show="loading.form" class="text-center">
+                <oui-spinner></oui-spinner>
+            </div>
+        </div>
+
+        <!-- Step 3: Durations -->
+        <div
+            data-wizard-step
+            data-wizard-step-on-previous="trackPrevious"
+            data-wizard-step-on-load="getDurations"
+            data-wizard-step-valid="model.duration"
+        >
+            <div
+                data-ovh-alert="ip_order_alert"
+                data-ovh-alert-hide-remove-button="true"
+            ></div>
+
+            <div
+                data-ng-if="model.service.serviceType"
+                data-ng-include="'ip/legacyOrder/durations' + (model.service.serviceType === 'PCC' ? 'PCC' : '') + '.html'"
+            ></div>
+        </div>
+
+        <!-- Step 4: Contracts -->
+        <div
+            data-wizard-step
+            data-wizard-step-on-previous="trackPrevious"
+            data-wizard-step-on-load="loadContracts"
+            data-wizard-step-valid="agree.value"
+        >
+            <div
+                data-contracts="durations.details[model.duration].contracts"
+                data-full-text="false"
+                data-ng-model="agree.value"
+            ></div>
+        </div>
+
+        <!-- Step 5: Resume and validation -->
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="trackStep(5)"
+            data-wizard-step-on-previous="backToContracts"
+            data-wizard-step-valid="!loading.validation"
+        >
+            <div data-ng-show="!loading.validation">
+                <p data-translate="ip_order_resume"></p>
+                <strong
+                    data-ng-if="model.service.serviceType === 'PCC' && !model.service.usesLegacyOrder"
+                    data-translate="ip_order_resume_short"
+                    data-translate-values="{
+                        blockSize: model.params.size,
+                        price: durations.details[model.duration].price,
+                    }"
+                    class="d-block"
+                ></strong>
+                <div
+                    data-ng-if="model.service.serviceType !== 'PCC' || model.service.usesLegacyOrder"
+                    class="table-responsive"
+                >
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr
+                                data-ng-repeat="detail in durations.details[model.duration].details"
+                            >
+                                <th
+                                    scope="row"
+                                    data-ng-bind="detail.description"
+                                ></th>
+                                <td
+                                    class="text-right font-weight-bold"
+                                    data-ng-bind="getResumePrice(detail.totalPrice || 0)"
+                                ></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <td class="text-right">
+                                    <span
+                                        class="font-weight-bold"
+                                        data-translate="ip_order_price_HT"
+                                    >
+                                    </span>
+                                    <span
+                                        class="text-danger font-weight-bold"
+                                        data-ng-bind="durations.details[model.duration].prices.withoutTax.text"
+                                    >
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">
+                                    <span
+                                        class="font-weight-bold"
+                                        data-translate="ip_order_price_TTC"
+                                    >
+                                    </span>
+                                    <span
+                                        class="text-danger font-weight-bold"
+                                        data-ng-bind="durations.details[model.duration].prices.withTax.text"
+                                    >
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p
+                    class="font-weight-bold"
+                    data-translate="ip_order_final_txt"
+                ></p>
+                <p class="text-muted" data-translate="ip_order_final_txt2"></p>
+            </div>
+
+            <div class="text-center" data-ng-show="loading.validation">
+                <oui-spinner></oui-spinner>
+            </div>
+        </div>
+    </div>
+</div>

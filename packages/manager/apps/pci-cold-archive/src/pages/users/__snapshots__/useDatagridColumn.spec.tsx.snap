@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`useDatagridColumn tests > Should match snapshot 1`] = `
+[
+  {
+    "cell": [Function],
+    "comparators": [
+      "includes",
+      "starts_with",
+      "ends_with",
+      "is_equal",
+      "is_different",
+    ],
+    "id": "username",
+    "isFilterable": true,
+    "label": "pci_projects_project_storages_containers_users_username",
+  },
+  {
+    "cell": [Function],
+    "comparators": [
+      "is_equal",
+      "is_different",
+      "is_before",
+      "is_after",
+    ],
+    "id": "creationDate",
+    "isFilterable": true,
+    "label": "pci_projects_project_storages_containers_users_creation_date",
+  },
+  {
+    "cell": [Function],
+    "comparators": [
+      "includes",
+      "starts_with",
+      "ends_with",
+      "is_equal",
+      "is_different",
+    ],
+    "id": "description",
+    "isFilterable": true,
+    "label": "pci_projects_project_storages_containers_users_description",
+  },
+  {
+    "cell": [Function],
+    "comparators": [
+      "includes",
+      "starts_with",
+      "ends_with",
+      "is_equal",
+      "is_different",
+    ],
+    "id": "access",
+    "isFilterable": true,
+    "label": "pci_projects_project_storages_containers_users_accesskey",
+  },
+  {
+    "cell": [Function],
+    "id": "actions",
+    "isFilterable": false,
+    "isSortable": false,
+    "label": "",
+  },
+]
+`;

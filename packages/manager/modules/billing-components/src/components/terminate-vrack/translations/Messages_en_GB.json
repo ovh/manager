@@ -1,0 +1,9 @@
+{
+  "autorenew_agora_terminate_vrack_blocked_title": "Delete my vRack",
+  "autorenew_agora_terminate_vrack_blocked_description": "To delete your vRack, you have to first disconnect all of the services linked to it",
+  "autorenew_agora_terminate_vrack_blocked_close": "Close",
+  "autorenew_agora_terminate_service_VRACK": "Delete vRack",
+  "autorenew_agora_terminate_service_warning_VRACK": "Please confirm that you want to delete vRack",
+  "autorenew_agora_terminate_service_success_VRACK": "Your vRack deletion request has been submitted. You have been sent an email detailing the steps to follow.",
+  "autorenew_agora_terminate_service_error_VRACK": "An error has occurred submitting your vRack deletion request. {{error}}"
+}

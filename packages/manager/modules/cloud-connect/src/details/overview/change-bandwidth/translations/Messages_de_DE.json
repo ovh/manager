@@ -1,0 +1,7 @@
+{
+  "cloud_connect_change_bandwidth_select": "Neue Bandbreite auswählen",
+  "cloud_connect_change_bandwidth_cancel": "Abbrechen",
+  "cloud_connect_change_bandwidth_confirm": "Bestätigen",
+  "cloud_connect_change_bandwidth_error": "Bei der Änderung der Bandbreite ist ein Fehler aufgetreten: {{message}}",
+  "cloud_connect_change_bandwidth_warning": "Ihre Bestellung <a href='{{url}}' target='_blank'>{{orderId}}</a> wurde erstellt. Vergewissern Sie sich, dass die Geräte auf Kundenseite mit der angeforderten Bandbreite kompatibel sind."
+}

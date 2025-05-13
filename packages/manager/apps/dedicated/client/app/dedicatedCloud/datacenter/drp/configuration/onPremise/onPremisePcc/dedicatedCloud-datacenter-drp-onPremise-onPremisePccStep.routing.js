@@ -1,15 +1,13 @@
-import { DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS } from '../../../dedicatedCloud-datacenter-drp.constants';
-
-import component from './dedicatedCloud-datacenter-drp-onPremise-onPremisePccStep.component';
+import { DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS } from '../../../../../../components/dedicated-cloud/datacenter/drp/dedicatedCloud-datacenter-drp.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.dedicatedClouds.datacenter.drp.onPremise.onPremisePccStep',
+    'app.dedicatedCloud.details.datacenter.details.drp.onPremise.onPremisePccStep',
     {
       url: '/onPremisePcc',
       views: {
-        'innerView@app.dedicatedClouds.datacenter.drp': {
-          component: component.name,
+        'innerView@app.dedicatedCloud.details.datacenter.details.drp': {
+          component: 'dedicatedCloudDatacenterDrpOnPremiseOnPremisePccStep',
         },
       },
       params: {
@@ -22,9 +20,12 @@ export default /* @ngInject */ ($stateProvider) => {
         drpInformations: /* @ngInject */ ($transition$) =>
           $transition$.params().drpInformations,
         goToPreviousStep: /* @ngInject */ ($state) => (drpInformations) =>
-          $state.go('app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep', {
-            drpInformations,
-          }),
+          $state.go(
+            'app.dedicatedCloud.details.datacenter.details.drp.onPremise.ovhPccStep',
+            {
+              drpInformations,
+            },
+          ),
       },
     },
   );

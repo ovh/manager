@@ -1,0 +1,21 @@
+name: 'Stale issues'
+on:
+  schedule:
+    - cron: '0 0 * * *' # Every day at 00:00
+
+permissions:
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v7
+        with:
+          days-before-pr-close: 15
+          days-before-pr-stale: 30
+          close-pr-message: 'This Pull Request is now closed due to inactivity.'
+          stale-pr-label: 'stale'
+          stale-pr-message: 'This Pull Request is stale due to inactivity since 30 days. If no activity happens for 15 more days from now, it will be closed.'
+          remove-pr-stale-when-updated: true
+          exempt-pr-labels: 'blocked'

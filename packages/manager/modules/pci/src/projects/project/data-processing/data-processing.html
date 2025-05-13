@@ -1,125 +1,60 @@
-<div data-ui-view>
-    <oui-page-header data-heading="{{ ::'data_processing_jobs' | translate }}">
-        <oui-guide-menu
-            data-text="{{:: 'pci_project_guides_header' | translate }}"
-        >
-            <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
+<div data-ui-view="content">
+    <oui-header>
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{ ::'data_processing_title' | translate }}"
+                ></h1>
+                <div
+                    class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
+                >
+                    <changelog-button
+                        links="$ctrl.CHANGELOG.data_processing.links"
+                        chapters="$ctrl.CHANGELOG.data_processing.chapters"
+                    ></changelog-button>
+                    <oui-guide-menu
+                        data-text="{{:: 'pci_project_guides_header' | translate }}"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-repeat="guide in $ctrl.guideUrl.data_processing track by $index"
+                            data-href="{{:: guide.url }}"
+                            data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.data_processing + guide.tracking)"
+                            data-external
+                        >
+                            <span
+                                data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+                            ></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
+            </div>
+        </oui-header-heading>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-active="$ctrl.currentActiveLink() === $ctrl.homeLink"
+                data-href="{{:: $ctrl.homeLink }}"
+            >
+                <span data-translate="data_processing_home_title"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.jobsLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.jobsLink"
+            >
+                <span data-translate="data_processing_jobs_title"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.notebooksLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.notebooksLink"
+            >
+                <span data-translate="data_processing_notebooks_title"></span>
                 <span
-                    data-translate="pci_project_guides_header_all_guides"
+                    class="oui-badge oui-badge_s oui-badge_alpha ml-2"
+                    data-translate="data_processing_notebooks_alpha"
                 ></span>
-            </oui-guide-menu-item>
-        </oui-guide-menu>
-    </oui-page-header>
-    <div>
-        <!-- cui messages -->
-        <cui-message-container
-            data-messages="$ctrl.messages"
-        ></cui-message-container>
-        <oui-datagrid
-            data-rows-loader="$ctrl.getJobs($config)"
-            data-refreshable
-        >
-            <oui-column
-                data-title="::'data_processing_job_name' | translate"
-                data-property="name"
-                data-sortable
-                data-type="string"
-                data-searchable
-                data-filterable
-            >
-                <oui-button
-                    data-variant="link"
-                    data-on-click="$ctrl.showJob($row.id)"
-                >
-                    <span data-ng-bind="::$row.name"></span>
-                </oui-button>
-            </oui-column>
-            <oui-column
-                data-title="::'data_processing_region' | translate"
-                data-property="region"
-                data-type="string"
-                data-sortable
-                data-searchable
-                data-filterable
-            >
-                <span
-                    data-ng-bind="::$ctrl.cucRegionService.getTranslatedMicroRegion($row.region)"
-                ></span>
-            </oui-column>
-            <oui-column
-                data-title="::'data_processing_job_type' | translate"
-                data-property="type"
-                data-sortable
-                data-searchable
-                data-filterable
-            >
-                <span data-ng-bind="::$row.type"></span>
-            </oui-column>
-            <oui-column
-                data-title="::'data_processing_job_cores_ram' | translate"
-                data-property="vcores"
-                data-sortable
-            >
-                <span
-                    >{{ $row.vcores }}{{ ::
-                    'data_processing_job_cores_abbreviation' | translate }}/{{
-                    $row.ram }}</span
-                >
-            </oui-column>
-            <oui-column
-                data-title="::'data_processing_job_creation_date' | translate"
-                data-property="creationDate"
-                data-sortable="desc"
-            >
-                <span title="{{ $ctrl.formatDate($row.creationDate) }}"
-                    >{{ $ctrl.formatDateFromNow($row.creationDate) }}</span
-                >
-            </oui-column>
-            <oui-column
-                data-title="::'data_processing_job_status' | translate"
-                data-property="status"
-                data-sortable
-            >
-                <pci-project-data-processing-job-status
-                    data-status="$row.status"
-                ></pci-project-data-processing-job-status>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
-                <oui-action-menu-item data-on-click="$ctrl.showJob($row.id)">
-                    <span
-                        data-translate="data_processing_list_button_job_details"
-                    ></span>
-                </oui-action-menu-item>
-                <oui-action-menu-item
-                    data-href="{{ $ctrl.getDataProcessingUiUrl($row.region, $row.id) }}"
-                    data-ng-if="$ctrl.isJobRunning($row)"
-                    data-external
-                >
-                    <span
-                        data-translate="data_processing_list_button_job_ui"
-                    ></span>
-                </oui-action-menu-item>
-                <oui-action-menu-item
-                    class="text-danger"
-                    data-ng-if="$ctrl.isJobRunning($row)"
-                    data-on-click="$ctrl.terminateJob($row.id, $row.name)"
-                >
-                    <span
-                        data-translate="data_processing_list_button_job_terminate"
-                    ></span>
-                </oui-action-menu-item>
-            </oui-action-menu>
-            <extra-top>
-                <oui-button data-on-click="$ctrl.submitJob()">
-                    <span
-                        class="oui-icon oui-icon-add"
-                        aria-hidden="true"
-                    ></span>
-                    <span
-                        data-translate="data_processing_create_button_label"
-                    ></span>
-                </oui-button>
-            </extra-top>
-        </oui-datagrid>
-    </div>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+
+    <div class="container-fluid" data-ui-view></div>
 </div>

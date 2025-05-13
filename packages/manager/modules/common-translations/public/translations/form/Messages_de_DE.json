@@ -1,0 +1,19 @@
+{
+  "mandatory_fields": "Die mit einem Stern * gekennzeichneten Felder sind Pflichtfelder.",
+  "max_chars": "Maximal {{ value }} Zeichen",
+  "min_chars": "Mindestens {{ value }} Zeichen",
+  "required_field": "Pflichtfeld",
+  "required_fields": "Pflichtfelder",
+  "error_required_field": "Bitte füllen Sie dieses Feld aus.",
+  "error_required_fields": "Bitte füllen Sie diese Felder aus.",
+  "error_number": "Bitte geben Sie einen gültigen numerischen Wert ein.",
+  "error_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+  "error_min_exclusive": "Bitte geben Sie einen Wert größer als {{ value }} ein.",
+  "error_min_inclusive": "Bitte geben Sie einen Wert größer oder gleich {{ value }} ein.",
+  "error_max_exclusive": "Bitte geben Sie einen Wert kleiner als {{ value }} ein.",
+  "error_max_inclusive": "Bitte geben Sie einen Wert kleiner oder gleich {{ value }} ein.",
+  "error_min_chars": "Bitte geben Sie mindestens {{ value }} Zeichen ein.",
+  "error_max_chars": "Bitte geben Sie maximal {{ value }} Zeichen ein.",
+  "error_between_min_max_chars": "Das Feld muss zwischen {{ min }} und {{ max }} Zeichen enthalten.",
+  "error_pattern": "Bitte wählen Sie ein gültiges Format."
+}

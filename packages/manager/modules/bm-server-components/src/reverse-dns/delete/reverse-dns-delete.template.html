@@ -1,0 +1,21 @@
+<oui-modal
+    data-primary-label="{{($ctrl.actionEnabled ? 'server_reversedns_delete_confirm' : 'global_OK') | translate }}"
+    data-primary-action="$ctrl.onDeleteReverseDNSFormSubmit()"
+    data-secondary-label="{{$ctrl.actionEnabled ? ('common_cancel' | translate) : '' }}"
+    data-secondary-action="$ctrl.$state.go('^')"
+    data-on-dismiss="$ctrl.$state.go('^')"
+    data-loading="$ctrl.loading.init || $ctrl.loading.delete"
+    data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}"
+    data-heading="{{:: 'server_reversedns_delete_title' | translate }}"
+>
+    <p
+        data-translate="server_reversedns_delete_loading_error"
+        data-ng-if="!$ctrl.actionEnabled"
+    ></p>
+
+    <p
+        data-translate="server_reversedns_delete_reversedns_confirmation"
+        data-translate-values="{t0: $ctrl.dedicatedServer.reverse}"
+        data-ng-if="$ctrl.actionEnabled && $ctrl.dedicatedServer"
+    ></p>
+</oui-modal>

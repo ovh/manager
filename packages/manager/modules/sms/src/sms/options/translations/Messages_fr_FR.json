@@ -1,6 +1,8 @@
 {
-  "sms_options_manage": "Options générales",
+  "sms_options_breadcrumb": "Options",
+  "sms_options_callback": "Options Callback",
   "sms_options_response": "Options des réponses",
   "sms_options_recredit": "Recharge automatique",
-  "sms_options_blacklist": "Gérer les expéditeurs blacklistés"
+  "sms_options_blacklist": "Gérer les destinataires blacklistés",
+  "sms_options_smpp_parameter": "Paramètres SMPP"
 }

@@ -1,0 +1,52 @@
+<section class="telecom-telephony-line-management-terminate-cancel">
+    <header>
+        <tuc-section-back-link
+            data-tuc-section-back-link-to-state="telecom.telephony.billingAccount.line.dashboard"
+            data-tuc-section-back-link-title="{{ 'telephony_group_line_section_back_link' | translate }}"
+        >
+        </tuc-section-back-link>
+        <h1
+            data-translate="telephony_group_line_terminate_title"
+            data-translate-values="{ line: TerminateCancelCtrl.line.getDisplayedName() }"
+        ></h1>
+    </header>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <div class="text-center" data-ng-if="TerminateCancelCtrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div class="row" data-ng-if="!TerminateCancelCtrl.loading.init">
+        <!-- GROUPE INFORMATIONS-->
+        <div class="col-xs-12 col-md-6 widget-presentation">
+            <header class="widget-presentation-header">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="telephony_group_line_cancel_terminate_action_title"
+                ></h2>
+            </header>
+
+            <form
+                name="terminateFrom"
+                data-ng-submit="TerminateCancelCtrl.cancelTerminate()"
+            >
+                <div class="form-group">
+                    <label
+                        for="reason"
+                        data-translate="telephony_group_line_cancel_terminate_action_label"
+                        data-translate-values="{'executionDate' : TerminateCancelCtrl.taskDetails.executionDate}"
+                    >
+                    </label>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary float-right mt-3"
+                        data-ng-disabled="TerminateCancelCtrl.loading.cancelTerminate"
+                        data-translate="telephony_group_line_cancel_terminate_terminate"
+                    ></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

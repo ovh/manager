@@ -1,73 +1,70 @@
 import angular from 'angular';
-
 import '@uirouter/angularjs';
+import 'oclazyload';
 import 'angular-translate';
-import 'ovh-api-services';
-import 'ovh-ui-angular';
-import 'angular-ui-bootstrap';
-import 'angular-chart.js';
+import ngOvhTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import onboarding from './onboarding';
 
-import ovhManagerCore from '@ovh-ux/manager-core';
-import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
-import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
-import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
+import template from './vps/vps.html';
 
-import VpsTaskService from './vps-task.service';
-import VpsNotificationIpv6Service from './import/notification.service';
-import VpsService from './import/vps.service';
-
-import detailComponent from './detail/vps-detail.component';
-import headerComponent from './header/vps-header.component';
-import routing from './routing';
-
-import ovhManagerVpsAdditionnalDisk from './additional-disk';
-import ovhManagerVpsBackupStorage from './backup-storage';
-import ovhManagerVpsCloudDatabase from './cloud-database';
-import ovhManagerVpsDashboard from './dashboard';
-import ovhManagerVpsMonitoring from './monitoring';
-import ovhManagerVpsSecondaryDns from './secondary-dns';
-import ovhManagerVpsSnapshot from './snapshot';
-import ovhManagerVpsUpgrade from './upgrade';
-import ovhManagerVpsVeeam from './veeam';
-import ovhManagerVpsWindows from './windows';
-
-import 'ovh-ui-kit/dist/oui.css';
-import './vps.less';
-import './vps.scss';
-
-const moduleName = 'ovhManagerVps';
+const moduleName = 'ovhManagerVpsLazyLoading';
 
 angular
   .module(moduleName, [
-    'chart.js',
-    ovhManagerCore,
-    'pascalprecht.translate',
     'ui.router',
-    'ovh-api-services',
-    'oui',
-    'ui.bootstrap',
-    ngAtInternet,
-    ngOvhDocUrl,
-    ngOvhCloudUniverseComponents,
-    ngUiRouterLayout,
-    ovhManagerVpsAdditionnalDisk,
-    ovhManagerVpsBackupStorage,
-    ovhManagerVpsCloudDatabase,
-    ovhManagerVpsDashboard,
-    ovhManagerVpsMonitoring,
-    ovhManagerVpsSecondaryDns,
-    ovhManagerVpsSnapshot,
-    ovhManagerVpsUpgrade,
-    ovhManagerVpsVeeam,
-    ovhManagerVpsWindows,
+    'oc.lazyLoad',
+    'pascalprecht.translate',
+    ngOvhTranslateAsyncLoader,
+    onboarding,
   ])
-  .component(detailComponent.name, detailComponent)
-  .component(headerComponent.name, headerComponent)
-  .service('VpsTaskService', VpsTaskService)
-  .service('VpsNotificationIpv6', VpsNotificationIpv6Service)
-  .service('VpsService', VpsService)
-  .config(routing)
+  .config(
+    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+      $stateProvider
+        .state('vps', {
+          url: '/vps',
+          template,
+          redirectTo: 'vps.index',
+          resolve: {
+            currentUser: /* @ngInject */ (OvhApiMe) =>
+              OvhApiMe.v6().get().$promise,
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('vps_title'),
+          },
+        })
+        .state('vps.index.**', {
+          url: '',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./vps.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        })
+        .state('vps.detail.**', {
+          url: '/{serviceName}',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./vps/vps.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        });
+
+      $urlRouterProvider.when(/^\/iaas\/vps/, () => {
+        window.location.href = window.location.href.replace(
+          '/iaas/vps',
+          '/vps',
+        );
+      });
+    },
+  )
+  .run(
+    /* @ngInject */ ($translate, $transitions) => {
+      $transitions.onBefore({ to: 'vps.**' }, () => $translate.refresh());
+    },
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,0 +1,17 @@
+{
+  "title": "Dzięki naszym zarządzanym bazom danych możesz skoncentrować się na Twoich aplikacjach",
+  "description1": "Wykorzystuj potencjał danych i zyskaj kontrolę nad zasobami.",
+  "description2": "Wybierz odpowiedni silnik bazy danych z szerokiej gamy i uruchom go w ciągu kilku minut. Zarządzamy infrastrukturą i administrujemy Twoimi zarządzanymi usługami.",
+  "description3": "Oszczędzasz czas, pieniądze i możesz skupić się na rozwoju aplikacji oraz tworzeniu wartości dla klientów.",
+  "createServiceButton": "Utwórz zarządzaną bazę danych",
+  "cardGuidestitle": "Przewodniki",
+  "cardGuidesDescription": "Dokumentacja baz danych",
+  "cardGuidesContent": "Poznaj przewodniki i tutoriale dotyczące naszych zarządzanych baz danych",
+  "cardQuickStartTitle": "Quick-Start",
+  "cardQuickStartDescription": "Uruchom Twoją pierwszą bazę danych",
+  "cardQuickStartContent": "Dowiedz się, jak szybko zainstalować pierwszą zarządzaną bazę danych",
+  "cardFreeTierTitle": "Free Tier",
+  "cardFreeTierTescription": "Wypróbuj darmową ofertę MongoDB",
+  "cardFreeTierContent": "Skorzystaj z bezpłatnego zarządzanego klastra MongoDB na stałe",
+  "cardLink": "Dowiedz się więcej"
+}

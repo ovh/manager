@@ -7,8 +7,10 @@ export default {
   bindings: {
     goToHosting: '<',
     me: '<',
+    dbCategories: '<',
+    privateSqlCatalog: '<',
     hosting: '<',
-    versions: '<',
-    services: '<',
+    onError: '<',
+    onSuccess: '<',
   },
 };

@@ -1,0 +1,34 @@
+<div class="mb-3">
+    <span
+        data-translate="pci_project_new_payment_method_save_explain_part_1"
+    ></span>
+    <strong
+        data-translate="pci_project_new_payment_method_save_explain_part_2"
+    ></strong>
+</div>
+<ovh-payment-method-register
+    data-model="$ctrl.model"
+    data-model-name="paymentMethod"
+    data-default-payment-method-type="{{ $ctrl.model.paymentMethod.paymentType }}"
+    data-registered-payment-methods="$ctrl.authorizedPaymentMethods"
+    data-unregistered-payment-methods="$ctrl.unregisteredPaymentMethods"
+    data-force-set-as-default-choice="$ctrl.eligibility.isAddPaymentMethodRequired()"
+    data-show-default-explanation-texts="true"
+    data-default-explanation-texts-options="$ctrl.viewOptions.registerExplanationTexts || $ctrl.defaultExplanationTextsOptions"
+    data-payment-method-types-per-line="$ctrl.paymentsPerLine"
+    data-automatic-select="!!$ctrl.model.paymentMethod"
+    data-required="$ctrl.eligibility.isAddPaymentMethodRequired()"
+>
+    <ovh-payment-method-register-paypal-explanation-text>
+        <oui-message
+            class="text-justify"
+            data-type="warning"
+            data-ng-if="$ctrl.isDisplayablePaypalChargeBanner && $ctrl.model.paymentMethod.type.isPaypal()"
+        >
+            <span
+                data-translate="pci_project_new_payment_method_add_warning_paypal_account"
+                data-translate-values="{ amount: ($ctrl.getPayPalChargeAmount() + $ctrl.customerCurrency) }"
+            ></span>
+        </oui-message>
+    </ovh-payment-method-register-paypal-explanation-text>
+</ovh-payment-method-register>

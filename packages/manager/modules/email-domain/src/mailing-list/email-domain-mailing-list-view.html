@@ -1,0 +1,302 @@
+<div ui-view>
+    <div class="text-center" data-ng-if="ctrlMailingLists.loading.quotas">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <div
+        class="alert alert-info"
+        role="alert"
+        data-ng-if="hosting && ctrlMailingLists.quotas.mailingList <= 0"
+    >
+        <div>
+            <p
+                class="mb-3"
+                data-translate="mailing_list_tab_table_no_quota"
+            ></p>
+            <button
+                class="btn btn-info"
+                type="button"
+                data-translate="hosting_dashboard_service_change_offer"
+                data-ui-sref="app.hosting.dashboard.upgrade({ productId: hosting.serviceName })"
+            ></button>
+        </div>
+    </div>
+
+    <div
+        class="alert alert-warning"
+        role="alert"
+        data-translate="mailing_list_tab_table_no_quota"
+        data-ng-if="!hosting && ctrlMailingLists.quotas.mailingList <= 0"
+    ></div>
+
+    <div class="row" data-ng-if="ctrlMailingLists.quotas.mailingList > 0">
+        <div class="col-md-9">
+            <div data-ovh-alert="{{alerts.main}}"></div>
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-ng-if="ctrlMailingLists.mailingLists.length >= ctrlMailingLists.quotas.mailingList"
+                data-ng-bind="(ctrlMailingLists.quotas.mailingList
+                                    ? (ctrlMailingLists.quotas.mailingList > 1
+                                        ? 'mailing_list_tab_table_quota_excedeed_other'
+                                        : 'mailing_list_tab_table_quota_excedeed_1')
+                                    : 'mailing_list_tab_table_quota_excedeed')
+                               | translate: { t0: ctrlMailingLists.mailingLists.length, t1: ctrlMailingLists.quotas.mailingList }"
+            ></div>
+            <dl
+                class="dl-horizontal dl-lg"
+                data-ng-if="ctrlMailingLists.quotas.mailingList > 0"
+            >
+                <dt data-translate="mailing_list_tab_quotas"></dt>
+                <dd class="text-nowrap">
+                    <oui-spinner
+                        data-size="s"
+                        data-ng-if="ctrlMailingLists.loading.mailingLists"
+                    ></oui-spinner>
+                    <span
+                        data-ng-bind="ctrlMailingLists.mailingLists.length + ' / ' + ctrlMailingLists.quotas.mailingList"
+                        data-ng-if="!ctrlMailingLists.loading.mailingLists"
+                    ></span>
+                </dd>
+            </dl>
+
+            <div class="mb-3">
+                <form
+                    class="form-inline d-md-flex justify-content-md-end"
+                    name="searchMailingListForm"
+                >
+                    <div class="form-group">
+                        <label class="sr-only" for="searchMailingList"></label>
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="searchMailingList"
+                                name="searchMailingList"
+                                placeholder="{{:: 'emails_navigation_left_search' | translate }}"
+                                data-ng-change="ctrlMailingLists.goSearch()"
+                                data-ng-disabled="ctrlMailingLists.loading.mailingLists"
+                                data-ng-model="ctrlMailingLists.search.mailingLists"
+                                data-ng-model-options="{ debounce: 800 }"
+                            />
+                            <div
+                                class="input-group-btn"
+                                data-ng-if="ctrlMailingLists.search.mailingLists"
+                            >
+                                <button
+                                    class="btn btn-default"
+                                    type="button"
+                                    aria-label="{{ 'common_cancel' | translate }}"
+                                    data-ng-click="ctrlMailingLists.emptySearch()"
+                                    data-ng-disabled="ctrlMailingLists.loading.mailingLists"
+                                >
+                                    <span
+                                        class="fa fa-times"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </div>
+                            <span
+                                class="input-group-addon"
+                                data-ng-if="!ctrlMailingLists.search.mailingLists"
+                            >
+                                <span
+                                    class="fa fa-search"
+                                    aria-hidden="true"
+                                ></span>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="table-responsive mb-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                data-translate="mailing_list_tab_table_header_list_name"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="mailing_list_tab_table_header_list_owner_email"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="mailing_list_tab_table_header_list_language"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="mailing_list_tab_table_header_list_reply_to"
+                            ></th>
+                            <th
+                                class="min-width text-center"
+                                scope="col"
+                                data-translate="mailing_list_tab_table_header_list_moderators"
+                            ></th>
+                            <th
+                                class="min-width text-center"
+                                scope="col"
+                                data-translate="mailing_list_tab_table_header_list_subscribers"
+                            ></th>
+                            <th class="min-width text-right" scope="col">
+                                <button
+                                    class="btn btn-icon"
+                                    type="button"
+                                    title="{{:: 'mailing_list_tab_table_header_refresh' | translate }}"
+                                    data-ng-click="ctrlMailingLists.refreshTableMailingLists(true)"
+                                >
+                                    <span
+                                        class="fa fa-refresh"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <!--loader-->
+                    <tbody
+                        data-ng-if="ctrlMailingLists.loading.mailingLists || (ctrlMailingLists.loading.pager && ctrlMailingLists.mailingLists.length)"
+                    >
+                        <tr>
+                            <td class="text-center" colspan="7">
+                                <oui-spinner></oui-spinner>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    <!-- no accounts -->
+                    <tbody
+                        data-ng-if="!ctrlMailingLists.loading.mailingLists && !ctrlMailingLists.mailingLists.length"
+                    >
+                        <tr>
+                            <td
+                                class="text-center"
+                                colspan="7"
+                                data-translate="mailing_list_tab_table_empty"
+                            ></td>
+                        </tr>
+                    </tbody>
+
+                    <!-- accounts -->
+                    <tbody
+                        data-ng-if="!ctrlMailingLists.loading.mailingLists && ctrlMailingLists.mailingLists.length > 0"
+                    >
+                        <tr
+                            data-ng-repeat="mailingList in ctrlMailingLists.mailingListsDetails track by $index"
+                        >
+                            <td data-ng-bind="mailingList.name"></td>
+                            <td data-ng-bind="mailingList.ownerEmail"></td>
+                            <td
+                                data-ng-bind="'language_' + mailingList.language | translate"
+                            ></td>
+                            <td
+                                data-ng-bind="'mailing_list_tab_table_header_list_reply_to_' + mailingList.replyTo | translate"
+                                data-ng-if="mailingList.replyTo === 'mailinglist' || mailingList.replyTo === 'lastuser'"
+                            ></td>
+                            <td
+                                data-ng-bind="mailingList.replyTo"
+                                data-ng-if="mailingList.replyTo !== 'mailinglist' && mailingList.replyTo !== 'lastuser'"
+                            ></td>
+                            <td class="text-center">
+                                <button
+                                    class="btn btn-icon"
+                                    type="button"
+                                    title="{{:: 'email_tab_moderators_management_heading' | translate }}"
+                                    data-ng-click="ctrlMailingLists.goToModerators(mailingList)"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-user_concept"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <button
+                                    class="btn btn-icon"
+                                    type="button"
+                                    title="{{:: 'email_tab_subscribers_management_heading' | translate }}"
+                                    data-ng-click="ctrlMailingLists.goToSubscribers(mailingList)"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-user_concept"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <oui-action-menu
+                                    data-compact
+                                    data-placement="end"
+                                >
+                                    <oui-action-menu-item
+                                        data-on-click="setAction('email-domain/mailing-list/update/email-domain-mailing-list-update', mailingList)"
+                                    >
+                                        <span
+                                            data-translate="mailing_list_tab_popover_update"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-on-click="setAction('email-domain/mailing-list/delete/email-domain-mailing-list-delete', mailingList)"
+                                    >
+                                        <span
+                                            data-translate="mailing_list_tab_popover_delete"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-on-click="setAction('email-domain/mailing-list/send-list-by-email/email-domain-mailing-list-send-list-by-email', mailingList)"
+                                    >
+                                        <span
+                                            data-translate="mailing_list_tab_subscribers_send_list"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                </oui-action-menu>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="clearfix" data-ng-if="ctrlMailingLists.mailingLists">
+                <div
+                    data-pagination-front
+                    data-items="ctrlMailingLists.mailingLists"
+                    data-paginated-items="ctrlMailingLists.mailingListsDetails"
+                    data-current-page="currentPageMailingLists"
+                    data-nb-pages="nbPages"
+                    data-items-per-page="itemsPerPage"
+                    data-transform-item="ctrlMailingLists.transformItem(item)"
+                    data-on-transform-item-done="ctrlMailingLists.onTransformItemDone()"
+                    data-on-page-change="ctrlMailingLists.loading.pager = true"
+                    data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPageMailingLists, last: nbPages } }}"
+                    data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+                    data-ng-show="!ctrlMailingLists.loading.mailingLists && ctrlMailingLists.mailingListsDetails.length > 0"
+                ></div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mt-5 mt-lg-0">
+            <div
+                class="mb-5"
+                data-ng-if="!ctrlMailingLists.loading.mailingLists && ctrlMailingLists.mailingLists.length < ctrlMailingLists.quotas.mailingList"
+            >
+                <button
+                    class="btn btn-block btn-default"
+                    type="button"
+                    data-translate="mailing_list_tab_button_mailing_list_create_list"
+                    data-ng-click="setAction('email-domain/mailing-list/create/email-domain-mailing-list-create', ctrlMailingLists.mailingLists)"
+                ></button>
+            </div>
+
+            <div
+                class="mb-5"
+                data-wuc-guides
+                data-wuc-guides-title="'emails_guide_subtitle' | translate"
+                data-wuc-guides-list="'emailsMailingList'"
+                data-tr="tr"
+            ></div>
+        </div>
+    </div>
+</div>

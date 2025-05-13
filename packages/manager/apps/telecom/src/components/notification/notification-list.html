@@ -4,6 +4,18 @@
 </div>
 
 <div
+    data-ng-if="!NotificationListCtrl.loading"
+    data-ng-repeat="smsDetail in NotificationListCtrl.smsDetails track by smsDetail.name"
+>
+    <oui-message type="warning" data-ng-if="smsDetail.creditsLeft === 0">
+        <span
+            data-translate="components_notification_sms_detail_warning"
+            data-translate-values="{smsAccount: smsDetail.name}"
+        ></span>
+    </oui-message>
+</div>
+
+<div
     class="table-responsive-vertical"
     data-ng-hide="NotificationListCtrl.loading"
 >
@@ -26,7 +38,19 @@
                         data-field-name="type"
                         data-title="{{:: 'table_sort' | translate}}"
                     >
-                        {{:: 'components_notification_type' | translate }}
+                        <span
+                            data-ng-bind=":: 'components_notification_type' | translate"
+                        ></span>
+                    </tuc-col-sort>
+                </th>
+                <th scope="col">
+                    <tuc-col-sort
+                        data-field-name="account"
+                        data-title="{{:: 'table_sort' | translate}}"
+                    >
+                        <span
+                            data-ng-bind=":: 'components_notification_account' | translate"
+                        ></span>
                     </tuc-col-sort>
                 </th>
                 <th scope="col">
@@ -34,7 +58,9 @@
                         data-field-name="contact"
                         data-title="{{:: 'table_sort' | translate}}"
                     >
-                        {{:: 'components_notification_contact' | translate }}
+                        <span
+                            data-ng-bind=":: 'components_notification_contact' | translate"
+                        ></span>
                     </tuc-col-sort>
                 </th>
                 <th scope="col">
@@ -42,7 +68,29 @@
                         data-field-name="frequency"
                         data-title="{{:: 'table_sort' | translate}}"
                     >
-                        {{:: 'components_notification_frequency' | translate }}
+                        <span
+                            data-ng-bind=":: 'components_notification_frequency' | translate"
+                        ></span>
+                    </tuc-col-sort>
+                </th>
+                <th scope="col">
+                    <tuc-col-sort
+                        data-field-name="allowIncident"
+                        data-title="{{:: 'table_sort' | translate}}"
+                    >
+                        <span
+                            data-ng-bind=":: 'components_notification_allowIncident' | translate"
+                        ></span>
+                    </tuc-col-sort>
+                </th>
+                <th scope="col">
+                    <tuc-col-sort
+                        data-field-name="downThreshold"
+                        data-title="{{:: 'table_sort' | translate}}"
+                    >
+                        <span
+                            data-ng-bind=":: 'components_notification_downThreshold' | translate"
+                        ></span>
                     </tuc-col-sort>
                 </th>
                 <th scope="col"></th>
@@ -62,34 +110,69 @@
                 <!-- Type -->
                 <td
                     class="form-group"
-                    data-ng-hide="element.editMode"
+                    data-ng-if="!element.editMode"
                     data-title="{{ 'components_notification_type' | translate }}"
                 >
-                    {{ 'components_notification_' + element.type | translate }}
+                    <em
+                        data-ng-class="{'fa fa-mobile': element.type === 'sms', 'fa fa-envelope-o': element.type === 'mail'}"
+                    ></em>
+                    <span
+                        data-ng-bind="'components_notification_' + element.type | translate"
+                    ></span>
+                </td>
+                <!-- Compte -->
+                <td
+                    class="form-group"
+                    data-ng-if="!element.editMode"
+                    data-title="{{ 'components_notification_account' | translate }}"
+                >
+                    <span
+                        data-ng-bind=":: element.smsAccount"
+                        data-ng-if="element.type === 'sms' "
+                    ></span>
                 </td>
                 <!-- Contact -->
                 <td
                     class="form-group"
-                    data-ng-hide="element.editMode"
+                    data-ng-if="!element.editMode"
                     data-title="{{ 'components_notification_contact' | translate }}"
                 >
-                    <span>{{ element.email || element.phone }}</span>
+                    <span data-ng-bind="element.email || element.phone"></span>
                 </td>
                 <!-- Frequency -->
                 <td
                     class="form-group"
-                    data-ng-hide="element.editMode"
+                    data-ng-if="!element.editMode"
                     data-title="{{ 'components_notification_frequency' | translate }}"
                 >
                     <span
-                        >{{ 'components_notification_' + element.frequency |
-                        translate}}</span
-                    >
+                        data-ng-bind="'components_notification_' + element.frequency |
+                        translate"
+                    ></span>
+                </td>
+                <!-- allowIncident -->
+                <td
+                    class="form-group"
+                    data-ng-if="!element.editMode"
+                    data-title="{{ 'components_notification_allowIncident' | translate }}"
+                >
+                    <span
+                        data-ng-bind="'components_notification_' + element.allowIncident |
+                        translate"
+                    ></span>
+                </td>
+                <!-- downThreshold -->
+                <td
+                    class="form-group"
+                    data-ng-if="!element.editMode"
+                    data-title="{{ 'components_notification_downThreshold' | translate }}"
+                >
+                    <span data-ng-bind="element.downThreshold"></span>
                 </td>
                 <!-- Buttons -->
                 <td
                     class="form-group col-mobile-button-big text-center"
-                    data-ng-hide="element.editMode"
+                    data-ng-if="!element.editMode"
                 >
                     <button
                         type="button"
@@ -109,12 +192,12 @@
                 <!-- Type (edit mode)-->
                 <td
                     data-title="{{ 'components_notification_type' | translate }}"
-                    data-ng-hide="!element.editMode"
+                    data-ng-if="element.editMode"
                     class="form-group"
                 >
                     <span
                         data-translate="components_notification_error_noSmsAccount"
-                        data-ng-hide="NotificationListCtrl.isTypeValid(element.type)"
+                        data-ng-if="!NotificationListCtrl.isTypeValid(element.type)"
                         class="red"
                     >
                     </span>
@@ -129,15 +212,16 @@
                             >{{ notifType.label | translate }}</option
                         >
                     </select>
+                </td>
+                <td
+                    data-title="{{ 'components_notification_account' | translate }}"
+                    data-ng-if="element.editMode"
+                    class="form-group"
+                >
                     <div data-ng-if="element.type === 'sms' ">
                         <div
                             data-ng-show="NotificationListCtrl.accounts.length > 1"
                         >
-                            <label
-                                class="control-label"
-                                data-translate="components_notification_account"
-                                for="account"
-                            ></label>
                             <select
                                 id="account"
                                 class="form-control"
@@ -155,7 +239,7 @@
                 <!-- Contact (edit mode)-->
                 <td
                     data-title="{{ 'components_notification_contact' | translate }}"
-                    data-ng-hide="!element.editMode"
+                    data-ng-if="element.editMode"
                     class="form-group"
                 >
                     <input
@@ -176,7 +260,7 @@
                 <!-- Frequency (edit mode)-->
                 <td
                     data-title="{{ 'components_notification_frequency' | translate }}"
-                    data-ng-hide="!element.editMode"
+                    data-ng-if="element.editMode"
                     class="form-group"
                 >
                     <select
@@ -190,11 +274,41 @@
                         >
                     </select>
                 </td>
+                <!-- allowIncident (edit mode)-->
+                <td
+                    data-title="{{ 'components_notification_allowIncident' | translate }}"
+                    data-ng-if="element.editMode"
+                    class="form-group"
+                >
+                    <select
+                        class="form-control"
+                        data-ng-model="element.allowIncident"
+                    >
+                        <option
+                            data-ng-repeat="fre in NotificationListCtrl.allowIncident"
+                            value="{{fre.name}}"
+                            >{{fre.label | translate}}</option
+                        >
+                    </select>
+                </td>
+                <!-- downThreshold (edit mode)-->
+                <td
+                    data-title="{{ 'components_notification_downThreshold' | translate }}"
+                    data-ng-if="element.editMode"
+                    class="form-group"
+                >
+                    <oui-numeric
+                        min="NotificationListCtrl.downThreshold.min"
+                        max="NotificationListCtrl.downThreshold.max"
+                        model="element.downThreshold"
+                    >
+                    </oui-numeric>
+                </td>
 
                 <!-- Buttons (edit mode)-->
                 <td
                     class="form-group actions col-mobile-button-big text-center"
-                    data-ng-hide="!element.editMode"
+                    data-ng-if="element.editMode"
                 >
                     <button
                         type="submit"

@@ -1,511 +1,858 @@
-<div data-ng-controller="ExchangeUpdateAccountCtrl as ctrl">
-    <div
-        data-wizard
-        data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="updateExchangeAccount"
-        data-wizard-title="'exchange_ACTION_update_account_title' | translate"
+<div>
+    <div class="text-center" data-ng-if="$ctrl.isFetchingUpdateOptions">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <form
+        data-ng-if="!$ctrl.isFetchingUpdateOptions"
+        name="$ctrl.updateAccountForm"
+        class="container m-0"
     >
+        <oui-back-button data-on-click="$ctrl.goBack()">
+            <span data-translate="exchange_account_update_back_button"></span>
+        </oui-back-button>
+
         <div
-            data-wizard-step
-            data-wizard-step-valid="needsUpdate()"
-            data-wizard-step-on-load="loadAccountOptions"
-        >
-            <oui-spinner data-ng-if="!ctrl.newAccountOptions"></oui-spinner>
+            class="mb-3"
+            data-ng-bind=":: 'exchange_account_update_header' | translate"
+        ></div>
 
-            <div
-                class="alert alert-warning my-4"
-                role="alert"
-                data-ng-class="alertType"
-                data-ng-if="ctrl.noDomainMessage"
-            >
-                <div>
-                    <span
-                        class="fa fa-times float-right"
-                        data-ng-click="resetAction()"
-                    ></span>
-                    <span data-ng-bind-html="ctrl.noDomainMessage"></span>
-                </div>
-            </div>
+        <!--Account info-->
+        <div>
+            <!--Title-->
+            <p
+                class="oui-heading_4 p-0"
+                data-translate="exchange_account_update_personal_account_info_title"
+            ></p>
 
-            <form
-                name="ctrl.updateAccountForm"
-                data-ng-if="!ctrl.noDomainMessage"
-            >
-                <div
-                    class="form-group"
-                    data-ng-class="{'has-error': ctrl.updateAccountForm.selectedAccountAddress.$dirty && (ctrl.updateAccountForm.selectedAccountAddress.$invalid || ctrl.takenEmailError)}"
-                >
-                    <label
-                        class="control-label required"
-                        for="selectedAccountAddress"
-                        data-translate="exchange_ACTION_update_account_step1_email_label"
-                    ></label>
-                    <div class="input-group">
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="selectedAccountAddress"
-                            maxlength="256"
-                            name="selectedAccountAddress"
-                            required
-                            data-ng-change="ctrl.checkTakenEmails()"
-                            data-ng-disabled="!ctrl.canChangePrimary()"
-                            data-ng-model="ctrl.selectedAccount.login"
-                            data-ng-pattern="/^[-_a-zA-Z0-9]+((\.|\+)[-_a-zA-Z0-9]+)*$/"
-                        />
-                        <span class="input-group-addon">@</span>
-                        <select
-                            class="form-control"
-                            required
-                            data-ng-change="ctrl.checkTakenEmails()"
-                            data-ng-disabled="!ctrl.canChangePrimary()"
-                            data-ng-model="ctrl.selectedAccount.completeDomain"
-                            data-ng-options="domain.displayName for domain in (ctrl.newAccountOptions.availableDomains | orderBy:'formattedName') track by domain.name"
+            <!--Account section-->
+            <div class="row">
+                <div class="col-sm-12 col-md-8">
+                    <!--Account type-->
+                    <div
+                        class="oui-field"
+                        data-ng-if="$ctrl.updateAccountOptions.availableTypes.length > 1"
+                    >
+                        <label
+                            class="oui-field__label oui-label"
+                            for="selectedAccountType"
+                            data-translate="exchange_account_update_accountType_label"
+                        ></label>
+                        <div class="oui-field__content">
+                            <div class="oui-field-control oui-field-control_3">
+                                <div class="oui-select">
+                                    <select
+                                        class="oui-select__input"
+                                        id="selectedAccountType"
+                                        name="selectedAccountType"
+                                        data-ng-model="$ctrl.selectedAccount.accountLicense"
+                                        data-ng-options="$ctrl.exchangeAccountTypes.getDisplayValue(type) for type in $ctrl.updateAccountOptions.availableTypes track by type"
+                                        data-ng-disabled="$ctrl.selectedAccount.outlook"
+                                        required
+                                    ></select>
+                                    <span
+                                        class="oui-icon oui-icon-chevron-down"
+                                        aria-hidden="true"
+                                    ></span>
+                                </div>
+                            </div>
+                        </div>
+                        <small
+                            class="help-block"
+                            data-translate="exchange_ACTION_update_account_step1_type_cant_change"
+                            data-ng-if="$ctrl.selectedAccount.outlook"
+                        ></small>
+                    </div>
+
+                    <!--Email address-->
+                    <div
+                        class="form-group"
+                        data-ng-class="{'oui-field_error has-error': $ctrl.updateAccountForm.selectedAccountAddress.$dirty && ($ctrl.updateAccountForm.selectedAccountAddress.$invalid || $ctrl.takenEmailError)}"
+                    >
+                        <label
+                            class="control-label"
+                            for="selectedAccountAddress"
+                            data-translate="exchange_account_update_emailAddress_label"
+                        ></label>
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="selectedAccountAddress"
+                                maxlength="256"
+                                name="selectedAccountAddress"
+                                required
+                                data-ng-change="$ctrl.checkTakenEmails()"
+                                data-ng-disabled="!$ctrl.canChangePrimary()"
+                                data-ng-model="$ctrl.selectedAccount.login"
+                                data-ng-pattern="$ctrl.ACCOUNT_EMAIL_ADDRESS_REGEX"
+                            />
+                            <span class="input-group-addon">@</span>
+                            <select
+                                class="form-control"
+                                required
+                                data-ng-change="$ctrl.checkTakenEmails()"
+                                data-ng-disabled="!$ctrl.canChangePrimary()"
+                                data-ng-model="$ctrl.selectedAccount.completeDomain"
+                                data-ng-options="domain.displayName for domain in ($ctrl.updateAccountOptions.availableDomains | orderBy:'formattedName') track by domain.name"
+                            >
+                            </select>
+                        </div>
+                        <small
+                            class="help-block"
+                            data-translate="exchange_tab_ALIAS_taken_error_message"
+                            data-ng-if="$ctrl.takenEmailError"
+                        ></small>
+                        <div
+                            class="oui-field__error"
+                            data-ng-if="$ctrl.newAccountForm.login.$error.required"
+                            role="alert"
                         >
-                        </select>
-                    </div>
-                    <small
-                        class="help-block"
-                        data-translate="exchange_tab_ALIAS_taken_error_message"
-                        data-ng-if="ctrl.takenEmailError"
-                    ></small>
-                </div>
-
-                <div
-                    class="oui-field mb-4"
-                    data-ng-if="ctrl.newAccountOptions.availableTypes.length > 1"
-                >
-                    <label
-                        class="oui-field__label oui-label required"
-                        for="selectedAccountType"
-                        data-translate="exchange_ACTION_update_account_step1_type_label"
-                    ></label>
-                    <div class="oui-field__content">
-                        <div class="oui-field-control oui-field-control_3">
-                            <div class="oui-select">
-                                <select
-                                    class="oui-select__input"
-                                    id="selectedAccountType"
-                                    name="selectedAccountType"
-                                    required
-                                    data-ng-model="ctrl.selectedAccount.accountLicense"
-                                    data-ng-options="ctrl.services.exchangeAccountTypes.getDisplayValue(type) for type in ctrl.newAccountOptions.availableTypes track by type"
-                                    data-ng-disabled="ctrl.selectedAccount.outlook"
-                                ></select>
-                                <span
-                                    class="oui-icon oui-icon-chevron-down"
-                                    aria-hidden="true"
-                                ></span>
-                            </div>
-                        </div>
-                    </div>
-                    <small
-                        class="help-block"
-                        data-translate="exchange_ACTION_update_account_step1_type_cant_change"
-                        data-ng-if="ctrl.selectedAccount.outlook"
-                    ></small>
-                </div>
-
-                <div
-                    class="oui-field mb-4"
-                    data-ng-if="!ctrl.services.exchangeVersion.isVersion(2010)"
-                >
-                    <label
-                        class="oui-field__label oui-label"
-                        for="selectedAccountCompany"
-                        data-translate="exchange_ACTION_update_account_step1_company_label"
-                    ></label>
-                    <div class="oui-field__content">
-                        <div class="oui-field-control">
-                            <input
-                                type="text"
-                                class="oui-input"
-                                id="selectedAccountCompany"
-                                maxlength="256"
-                                name="selectedAccountCompany"
-                                data-ng-model="ctrl.selectedAccount.company"
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="oui-field mb-4">
-                    <label
-                        class="oui-field__label oui-label"
-                        for="selectedAccountFirstName"
-                        data-translate="exchange_ACTION_update_account_step1_first_name_label"
-                    ></label>
-                    <div class="oui-field__content">
-                        <div class="oui-field-control">
-                            <input
-                                type="text"
-                                class="oui-input"
-                                id="selectedAccountFirstName"
-                                maxlength="256"
-                                name="selectedAccountFirstName"
-                                data-ng-change="ctrl.selectedAccount.displayName = ctrl.selectedAccount.firstName + ' ' + ctrl.selectedAccount.lastName"
-                                data-ng-model="ctrl.selectedAccount.firstName"
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="oui-field mb-4">
-                    <label
-                        class="oui-field__label oui-label"
-                        for="selectedAccountLastName"
-                        data-translate="exchange_ACTION_update_account_step1_last_name_label"
-                    ></label>
-                    <div class="oui-field__content">
-                        <div class="oui-field-control">
-                            <input
-                                type="text"
-                                class="oui-input"
-                                id="selectedAccountLastName"
-                                maxlength="256"
-                                name="selectedAccountLastName"
-                                data-ng-change="ctrl.selectedAccount.displayName = ctrl.selectedAccount.firstName + ' ' + ctrl.selectedAccount.lastName"
-                                data-ng-model="ctrl.selectedAccount.lastName"
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="oui-field mb-4">
-                    <label
-                        class="oui-field__label oui-label"
-                        for="selectedAccountDisplayName"
-                        data-translate="exchange_ACTION_update_account_step1_display_name_label"
-                    ></label>
-                    <div class="oui-field__content">
-                        <div class="oui-field-control">
-                            <input
-                                type="text"
-                                class="oui-input"
-                                id="selectedAccountDisplayName"
-                                maxlength="256"
-                                name="selectedAccountDisplayName"
-                                data-ng-change="ctrl.setPasswordsFlag(ctrl.selectedAccount)"
-                                data-ng-model="ctrl.selectedAccount.displayName"
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="oui-field mb-4"
-                    data-ng-class="{'oui-field_error has-error': ctrl.simplePasswordFlag || ctrl.containsNameFlag || ctrl.containsSamAccountNameFlag || ctrl.containsWhitespaces}"
-                >
-                    <label
-                        class="oui-field__label oui-label"
-                        for="selectedAccountPassword"
-                        data-translate="exchange_ACTION_update_account_step1_password_label"
-                        data-ng-class="{'required': !ctrl.selectedAccount.canBeConfigured}"
-                    ></label>
-                    <div class="oui-field__content">
-                        <div class="oui-field-control oui-field-control_3">
-                            <input
-                                type="password"
-                                class="oui-input"
-                                id="selectedAccountPassword"
-                                name="selectedAccountPassword"
-                                placeholder="{{ctrl.getPasswordPlaceholder()}}"
-                                data-ng-change="ctrl.setPasswordsFlag(ctrl.selectedAccount)"
-                                data-ng-class="{'oui-input_error': ctrl.simplePasswordFlag || ctrl.containsNameFlag || ctrl.containsSamAccountNameFlag || ctrl.containsWhitespaces}"
-                                data-ng-model="ctrl.selectedAccount.password"
-                                data-ng-required="!ctrl.selectedAccount.canBeConfigured"
-                                data-oui-tooltip="{{ctrl.passwordTooltip}}"
-                            />
-                            <small
-                                class="help-block"
-                                data-translate="exchange_ACTION_update_account_step1_password_weak"
-                                data-ng-if="ctrl.simplePasswordFlag"
-                            ></small>
-                            <small
-                                class="help-block"
-                                data-translate="exchange_ACTION_update_account_step1_password_contains_name"
-                                data-ng-if="ctrl.containsNameFlag"
-                            ></small>
-                            <small
-                                class="help-block"
-                                data-ng-bind="ctrl.containsSamAccountNameLabel"
-                                data-ng-if="ctrl.containsSamAccountNameFlag"
-                            ></small>
-                            <small
-                                class="help-block"
-                                data-translate="exchange_ACTION_update_account_step1_password_whitespace"
-                                data-ng-if="ctrl.containsWhitespaces"
-                            ></small>
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="oui-field mb-4"
-                    data-ng-class="{'oui-field_error has-error': ctrl.selectedAccount.passwordConfirmation && ctrl.differentPasswordFlag}"
-                >
-                    <label
-                        class="oui-field__label oui-label"
-                        for="selectedAccountPasswordConfirmation"
-                        data-translate="exchange_ACTION_update_account_step1_password_confirmation_label"
-                        data-ng-class="{'required': !ctrl.selectedAccount.canBeConfigured}"
-                    ></label>
-                    <div class="oui-field__content">
-                        <div class="oui-field-control oui-field-control_3">
-                            <input
-                                type="password"
-                                class="oui-input"
-                                id="selectedAccountPasswordConfirmation"
-                                name="selectedAccountPasswordConfirmation"
-                                placeholder="{{ctrl.getPasswordPlaceholder()}}"
-                                data-ng-change="ctrl.setPasswordsFlag(ctrl.selectedAccount)"
-                                data-ng-class="{'oui-input_error': ctrl.selectedAccount.passwordConfirmation && ctrl.differentPasswordFlag}"
-                                data-ng-model="ctrl.selectedAccount.passwordConfirmation"
-                                data-oui-tooltip="{{ctrl.passwordTooltip}}"
-                            />
-                            <small
-                                class="help-block"
-                                data-translate="exchange_ACTION_update_account_step1_password_different"
-                                data-ng-if="ctrl.selectedAccount.passwordConfirmation && ctrl.differentPasswordFlag"
-                            ></small>
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="alert alert-warning"
-                    role="alert"
-                    data-translate="exchange_ACTION_update_account_shared_password_warning"
-                    data-ng-if="ctrl.shouldDisplaySharepointPasswordWarning()"
-                ></div>
-
-                <div
-                    class="oui-field mb-4"
-                    data-ng-if="ctrl.newAccountOptions && ctrl.services.exchangeServiceInfrastructure.isProvider()"
-                >
-                    <label
-                        class="oui-field__label oui-label"
-                        for="selectedAccountQuota"
-                        data-translate="exchange_ACTION_update_account_step1_quota_label"
-                    ></label>
-                    <div class="oui-field__content">
-                        <div class="oui-field-control text-nowrap">
-                            <div class="oui-select oui-select_inline">
-                                <select
-                                    class="oui-select__input"
-                                    id="selectedAccountQuota"
-                                    name="selectedAccountQuota"
-                                    required
-                                    data-ng-model="ctrl.selectedAccount.quota"
-                                    data-ng-options="quota for quota in ctrl.newAccountOptions.quotaArray track by quota"
-                                >
-                                    <option
-                                        value="quota"
-                                        data-ng-bind="ctrl.quota"
-                                    ></option>
-                                </select>
-                                <span
-                                    class="oui-icon oui-icon-chevron-down"
-                                    aria-hidden="true"
-                                ></span>
-                            </div>
                             <span
-                                class="d-inline-block form-control-static ml-2"
-                                data-translate="unit_size_GB"
+                                class="oui-icon oui-icon-error"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-ng-bind=":: 'exchange_account_update_field_error_required' | translate"
                             ></span>
                         </div>
+                        <div
+                            class="oui-field__error"
+                            data-ng-if="$ctrl.newAccountForm.login.$error.pattern"
+                            role="alert"
+                        >
+                            <span
+                                class="oui-icon oui-icon-error"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-ng-bind=":: 'exchange_account_update_field_error_pattern' | translate"
+                            ></span>
+                        </div>
+                        <div
+                            class="oui-field__error"
+                            data-ng-if="$ctrl.newAccountForm.login.$error.emailAddressIsAlreadyTaken"
+                            role="alert"
+                        >
+                            <span
+                                class="oui-icon oui-icon-error"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-ng-bind=":: 'exchange_account_update_emailAddress_error_alreadyExists' | translate"
+                            ></span>
+                        </div>
+                        <div class="oui-field__helper">
+                            <span
+                                data-translate="exchange_account_update_emailAddress_hint"
+                            ></span>
+                            <ul>
+                                <li
+                                    data-translate="exchange_account_update_emailAddress_hint_part_1"
+                                ></li>
+                                <li
+                                    data-translate="exchange_account_update_emailAddress_hint_part_2"
+                                ></li>
+                                <li
+                                    data-translate="exchange_account_update_emailAddress_hint_part_3"
+                                ></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <oui-checkbox
+                                data-model="$ctrl.selectedAccount.hiddenFromGAL"
+                                data-name="accountInfoHiddenFromGAL"
+                            >
+                                <span
+                                    data-translate="exchange_account_update_emailAddress_hide_from_directory"
+                                ></span>
+                            </oui-checkbox>
+                        </div>
+                    </div>
+
+                    <!--Name and first name-->
+                    <div class="row">
+                        <!--First name-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_update_firstName_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="accountInfoFirstName"
+                                name="accountInfoFirstName"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.selectedAccount.firstName"
+                                data-ng-required="$ctrl.selectedAccount.firstName"
+                            />
+                        </oui-field>
+
+                        <!--Last name-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_update_lastName_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="accountInfoLastName"
+                                name="accountInfoLastName"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.selectedAccount.lastName"
+                                data-ng-required="$ctrl.selectedAccount.lastName"
+                            />
+                        </oui-field>
+                    </div>
+
+                    <!--Name to display and Initial-->
+                    <div class="row">
+                        <!--Display name-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_update_displayName_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="accountInfoDisplayName"
+                                name="accountInfoDisplayName"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.selectedAccount.displayName"
+                                required
+                            />
+                        </oui-field>
+
+                        <!--Initials-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_update_initials_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="accountInfoInitial"
+                                name="accountInfoInitial"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.selectedAccount.initial"
+                                data-ng-required="$ctrl.selectedAccount.initial"
+                            />
+                        </oui-field>
+                    </div>
+
+                    <!--Description-->
+                    <oui-field
+                        label="{{:: 'exchange_account_update_description_label' | translate }}"
+                    >
+                        <textarea
+                            class="oui-input"
+                            id="accountInfoDescription"
+                            name="accountInfoDescription"
+                            type="text"
+                            maxlength="256"
+                            data-ng-model="$ctrl.selectedAccount.description"
+                            data-ng-required="$ctrl.selectedAccount.description"
+                        >
+                        </textarea>
+                    </oui-field>
+
+                    <!--Password and confirm password-->
+                    <div class="row">
+                        <!--Password-->
+                        <div
+                            class="col-md-6 oui-field"
+                            data-ng-class="{'oui-field_error has-error': $ctrl.simplePasswordFlag || $ctrl.containsNameFlag || $ctrl.containsSamAccountNameFlag || $ctrl.containsWhitespaces}"
+                        >
+                            <label
+                                class="oui-field__label oui-label"
+                                for="selectedAccountPassword"
+                                data-translate="exchange_ACTION_update_account_step1_password_label"
+                                data-ng-class="{'required': !$ctrl.selectedAccount.canBeConfigured}"
+                            ></label>
+                            <div class="oui-field__content">
+                                <div
+                                    class="oui-field-control oui-field-control_3"
+                                >
+                                    <div class="mb-0 oui-input-overlay">
+                                        <input
+                                            class="oui-input"
+                                            id="selectedAccountPassword"
+                                            name="selectedAccountPassword"
+                                            maxlength="256"
+                                            placeholder="{{$ctrl.getPasswordPlaceholder()}}"
+                                            data-ng-attr-type="{{ $ctrl.shouldDisplayPasswordInput ? 'password' : 'text' }}"
+                                            data-ng-change="$ctrl.onPasswordChange()"
+                                            data-ng-class="{'oui-input_error': $ctrl.simplePasswordFlag || $ctrl.containsNameFlag || $ctrl.containsSamAccountNameFlag || $ctrl.containsWhitespaces}"
+                                            data-ng-model="$ctrl.selectedAccount.password"
+                                            data-ng-required="!$ctrl.selectedAccount.canBeConfigured"
+                                            data-oui-tooltip="{{$ctrl.passwordTooltip}}"
+                                        />
+                                        <button
+                                            data-ng-if="$ctrl.shouldDisplayPasswordInput"
+                                            class="oui-button"
+                                            type="button"
+                                            aria-label="{{:: 'exchange_account_update_password_button_show' | translate }}"
+                                            data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                                        >
+                                            <span
+                                                class="oui-icon oui-icon-eye-open"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </button>
+                                        <button
+                                            data-ng-if="!$ctrl.shouldDisplayPasswordInput"
+                                            class="oui-button"
+                                            type="button"
+                                            aria-label="{{:: 'exchange_account_update_password_button_hide' | translate }}"
+                                            data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                                        >
+                                            <span
+                                                class="oui-icon oui-icon-eye-closed"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </button>
+                                        <small
+                                            class="help-block"
+                                            data-translate="exchange_ACTION_update_account_step1_password_weak"
+                                            data-ng-if="$ctrl.simplePasswordFlag"
+                                        ></small>
+                                        <small
+                                            class="help-block"
+                                            data-translate="exchange_ACTION_update_account_step1_password_contains_name"
+                                            data-ng-if="$ctrl.containsNameFlag"
+                                        ></small>
+                                        <small
+                                            class="help-block"
+                                            data-ng-bind="$ctrl.containsSamAccountNameLabel"
+                                            data-ng-if="$ctrl.containsSamAccountNameFlag"
+                                        ></small>
+                                        <small
+                                            class="help-block"
+                                            data-translate="exchange_ACTION_update_account_step1_password_whitespace"
+                                            data-ng-if="$ctrl.containsWhitespaces"
+                                        ></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Confirm password-->
+                        <div
+                            class="col-md-6 oui-field"
+                            data-ng-class="{'oui-field_error has-error': $ctrl.selectedAccount.passwordConfirmation && $ctrl.differentPasswordFlag}"
+                        >
+                            <label
+                                class="oui-field__label oui-label"
+                                for="selectedAccountPasswordConfirmation"
+                                data-translate="exchange_ACTION_update_account_step1_password_confirmation_label"
+                                data-ng-class="{'required': !$ctrl.selectedAccount.canBeConfigured}"
+                            ></label>
+                            <div class="oui-field__content">
+                                <div
+                                    class="oui-field-control oui-field-control_3"
+                                >
+                                    <div class="mb-0 oui-input-overlay">
+                                        <input
+                                            type="password"
+                                            class="oui-input"
+                                            id="selectedAccountPasswordConfirmation"
+                                            name="selectedAccountPasswordConfirmation"
+                                            placeholder="{{$ctrl.getPasswordPlaceholder()}}"
+                                            data-ng-attr-type="{{ $ctrl.shouldDisplayPasswordInput ? 'password' : 'text' }}"
+                                            data-ng-change="$ctrl.setPasswordsFlag($ctrl.selectedAccount)"
+                                            data-ng-class="{'oui-input_error': $ctrl.selectedAccount.passwordConfirmation && $ctrl.differentPasswordFlag}"
+                                            data-ng-model="$ctrl.selectedAccount.passwordConfirmation"
+                                            data-oui-tooltip="{{$ctrl.passwordTooltip}}"
+                                        />
+                                        <button
+                                            data-ng-if="$ctrl.shouldDisplayPasswordInput"
+                                            class="oui-button"
+                                            type="button"
+                                            aria-label="{{:: 'exchange_account_update_password_button_show' | translate }}"
+                                            data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                                        >
+                                            <span
+                                                class="oui-icon oui-icon-eye-open"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </button>
+                                        <button
+                                            data-ng-if="!$ctrl.shouldDisplayPasswordInput"
+                                            class="oui-button"
+                                            type="button"
+                                            aria-label="{{:: 'exchange_account_update_password_button_hide' | translate }}"
+                                            data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                                        >
+                                            <span
+                                                class="oui-icon oui-icon-eye-closed"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </button>
+                                        <small
+                                            class="help-block"
+                                            data-translate="exchange_ACTION_update_account_step1_password_different"
+                                            data-ng-if="$ctrl.selectedAccount.passwordConfirmation && $ctrl.differentPasswordFlag"
+                                        ></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Password alert-->
+                        <div
+                            class="col-md-12 alert alert-warning"
+                            role="alert"
+                            data-translate="exchange_ACTION_update_account_shared_password_warning"
+                            data-ng-if="$ctrl.shouldDisplaySharepointPasswordWarning()"
+                        ></div>
+                    </div>
+
+                    <!--Email redirection and keep a copy-->
+                    <div class="row">
+                        <!--Email redirection-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_update_email_redirect_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="accountInfoForwardingEmail"
+                                name="accountInfoForwardingEmail"
+                                type="email"
+                                data-ng-model="$ctrl.selectedAccount.forwardingEmail"
+                            />
+                        </oui-field>
+
+                        <!--Email copy-->
+                        <div class="col-md-6 my-4">
+                            <oui-checkbox
+                                data-disabled="!$ctrl.selectedAccount.forwardingEmail"
+                                data-model="$ctrl.selectedAccount.storeCopyOfEmail"
+                                data-name="accountInfoStoreCopyOfEmail"
+                            >
+                                <span
+                                    data-translate="exchange_account_update_email_keep_copy_label"
+                                ></span>
+                            </oui-checkbox>
+                        </div>
+                    </div>
+
+                    <!--Quota-->
+                    <div class="row">
+                        <div
+                            class="col-md-6 oui-field mb-4"
+                            data-ng-if="$ctrl.updateAccountOptions && $ctrl.exchangeServiceInfrastructure.isProvider()"
+                        >
+                            <label
+                                class="oui-field__label oui-label"
+                                for="accountInfoSelectedAccountQuota"
+                                data-translate="exchange_ACTION_update_account_step1_quota_label"
+                            ></label>
+                            <div class="oui-field__content">
+                                <div class="oui-field-control text-nowrap">
+                                    <div class="oui-select oui-select_inline">
+                                        <select
+                                            class="oui-select__input"
+                                            id="accountInfoSelectedAccountQuota"
+                                            name="accountInfoSelectedAccountQuota"
+                                            required
+                                            data-ng-model="$ctrl.selectedAccount.quota"
+                                            data-ng-options="quota for quota in $ctrl.updateAccountOptions.quotaArray track by quota"
+                                        >
+                                            <option
+                                                value="quota"
+                                                data-ng-bind="$ctrl.quota"
+                                            ></option>
+                                        </select>
+                                        <span
+                                            class="oui-icon oui-icon-chevron-down"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </div>
+                                    <span
+                                        class="d-inline-block form-control-static ml-2"
+                                        data-translate="unit_size_GB"
+                                    ></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--ExchangeGuid-->
+                    <div
+                        class="row"
+                        data-ng-if="$ctrl.emailAccount.exchangeGuid"
+                    >
+                        <div class="col-md-6 oui-field mb-4">
+                            <label
+                                class="oui-field__label oui-label"
+                                data-translate="exchange_account_update_exchange_guid"
+                            ></label>
+                            <div class="oui-field__content">
+                                <div class="oui-field-control text-nowrap">
+                                    <span
+                                        data-ng-bind="$ctrl.emailAccount.exchangeGuid"
+                                    ></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Exchange 2010-->
+                    <div
+                        class="row"
+                        data-ng-if="$ctrl.exchangeVersion.isVersion(2010)"
+                    >
+                        <div class="col-md-6 oui-field mb-4">
+                            <label
+                                class="oui-field__label oui-label"
+                                data-translate="exchange_account_update_samAccountName_label"
+                            ></label>
+                            <div class="oui-field__content">
+                                <div class="oui-field-control text-nowrap">
+                                    <span
+                                        data-ng-bind="$ctrl.emailAccount.samaccountName"
+                                    ></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <oui-checkbox
-                    class="mb-4"
-                    id="hiddenFromGAL"
-                    name="selectedAccountHiddenFromGAL"
-                    data-ng-if="ctrl.selectedAccount.canBeConfigured"
-                    data-model="ctrl.selectedAccount.hiddenFromGAL"
-                    data-text="{{::'exchange_ACTION_update_account_step1_GAL_label' | translate}}"
-                >
-                </oui-checkbox>
-
-                <div
-                    class="mb-4"
-                    data-ng-if="ctrl.services.exchangeAccountOutlook.canHaveLicense(ctrl.selectedAccount)"
-                >
-                    <span
-                        class="oui-label"
-                        data-translate="exchange_ACTION_update_account_step1_outlook_label"
-                    ></span>
-                    <span
-                        data-ng-bind="('exchange_ACTION_add_account_outlook_' + ctrl.selectedAccount.outlook) | translate"
-                    ></span>
-                    <span
-                        data-translate="exchange_ACTION_update_account_step1_outlookdel_label"
-                        data-ng-if="ctrl.selectedAccount.outlook && ctrl.selectedAccount.deleteOutlook"
-                    ></span>
-                </div>
-
-                <div
-                    class="mb-4"
-                    data-ng-if="ctrl.selectedAccount.exchangeGuid != null"
-                >
-                    <span
-                        class="oui-label"
-                        data-translate="exchange_ACTION_update_account_step1_exchange_guid_label"
-                    ></span>
-                    <span
-                        data-ng-bind="ctrl.selectedAccount.exchangeGuid"
-                    ></span>
-                </div>
-
-                <div
-                    class="mb-4"
-                    data-ng-if="ctrl.services.exchangeVersion.isVersion(2010) && !ctrl.service.exchangeServiceInfrastructure.isHosted()"
-                >
-                    <span
-                        class="oui-label"
-                        data-translate="exchange_ACTION_update_account_step1_exchange_SAMA_label"
-                    ></span>
-                    <span
-                        class="form-control-static"
-                        data-ng-bind="ctrl.selectedAccount.samaccountName"
-                        data-ng-if="ctrl.selectedAccount.samaccountName"
-                    ></span>
-                </div>
-            </form>
-
-            <div data-wizard-step-help>
-                <h3
-                    data-translate="exchange_ACTION_update_account_helpwizard_title"
-                ></h3>
-                <p
-                    data-ng-bind-html="'exchange_ACTION_update_account_helpwizard_intro' | translate"
-                ></p>
-                <h4
-                    data-translate="exchange_ACTION_update_account_helpwizard_password_title"
-                ></h4>
-                <p
-                    data-ng-bind-html="'exchange_ACTION_update_account_helpwizard_password' | translate:{ t0: ctrl.newAccountOptions.minPasswordLength }"
-                    data-ng-if="ctrl.newAccountOptions.passwordComplexityEnabled"
-                ></p>
-                <p
-                    data-ng-bind-html="'exchange_ACTION_update_account_helpwizard_password_simple' | translate:{ t0: ctrl.newAccountOptions.minPasswordLength }"
-                    data-ng-if="!ctrl.newAccountOptions.passwordComplexityEnabled"
-                ></p>
-                <div data-ng-if="ctrl.selectedAccount.canBeConfigured">
-                    <h4
-                        data-translate="exchange_ACTION_update_account_helpwizard_hide_directory_title"
-                    ></h4>
-                    <p
-                        data-ng-bind-html="'exchange_ACTION_update_account_helpwizard_hide_directory' | translate"
-                    ></p>
-                </div>
-                <h4
-                    data-translate="exchange_ACTION_update_account_helpwizard_guid_title"
-                ></h4>
-                <p
-                    data-ng-bind-html="'exchange_ACTION_update_account_helpwizard_guid' | translate"
-                ></p>
             </div>
         </div>
 
-        <div data-wizard-step>
+        <!--Button to display complementary sections-->
+        <oui-button
+            class="mb-4"
+            data-variant="link"
+            data-icon-right="{{'oui-icon-chevron-' + ($ctrl.displayAdvancedSections ? 'up' : 'down')}}"
+            data-ng-click="$ctrl.displayAdvancedSections = !$ctrl.displayAdvancedSections"
+        >
+            <span
+                data-translate="exchange_account_update_sections_title"
+            ></span>
+        </oui-button>
+
+        <!--Company info-->
+        <div data-ng-if="$ctrl.displayAdvancedSections">
+            <!--Title-->
             <p
-                data-translate="exchange_ACTION_update_account_step2_confirmation_intro"
+                class="oui-heading_4"
+                data-translate="exchange_account_update_company_account_info_title"
             ></p>
-            <dl class="dl-horizontal dl-lg">
-                <dt
-                    data-translate="exchange_ACTION_update_account_step2_email_label"
-                ></dt>
-                <dd
-                    class="word-break"
-                    data-ng-bind="ctrl.selectedAccount.login + '@' + ctrl.selectedAccount.completeDomain.displayName | wucSliceContent: 150"
-                ></dd>
 
-                <dt
-                    data-ng-if="ctrl.newAccountOptions.availableTypes.length > 1"
-                    data-translate="exchange_ACTION_update_account_step1_type_label"
-                ></dt>
-                <dd
-                    data-ng-if="ctrl.newAccountOptions.availableTypes.length > 1"
-                    data-ng-bind="ctrl.services.exchangeAccountTypes.getDisplayValue(ctrl.selectedAccount.accountLicense)"
-                ></dd>
+            <!--Company fields sections-->
+            <div class="row">
+                <div class="col-sm-12 col-md-8">
+                    <!--Company name and Job department name-->
+                    <div class="row">
+                        <!--Company-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_update_company_name_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="companyInfoName"
+                                name="companyInfoName"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.selectedAccount.company"
+                                data-ng-required="$ctrl.selectedAccount.company"
+                            />
+                        </oui-field>
 
-                <dt
-                    data-ng-if="ctrl.selectedAccount.company"
-                    data-translate="exchange_ACTION_update_account_step2_company_label"
-                ></dt>
-                <dd
-                    class="word-break"
-                    data-ng-if="ctrl.selectedAccount.company"
-                    data-ng-bind="ctrl.selectedAccount.company | wucSliceContent: 150"
-                ></dd>
+                        <!--Job department-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_update_company_job_department_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="companyInfoJobDepartment"
+                                name="companyInfoJobDepartment"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.selectedAccount.jobDepartment"
+                                data-ng-required="$ctrl.selectedAccount.jobDepartment"
+                            />
+                        </oui-field>
+                    </div>
 
-                <dt
-                    data-ng-if="ctrl.selectedAccount.firstName"
-                    data-translate="exchange_ACTION_update_account_step2_first_name_label"
-                ></dt>
-                <dd
-                    class="word-break"
-                    data-ng-if="ctrl.selectedAccount.firstName"
-                    data-ng-bind="ctrl.selectedAccount.firstName | wucSliceContent: 150"
-                ></dd>
+                    <!--Job and office location-->
+                    <div class="row">
+                        <!--Job-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_update_company_job_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="companyInfoJobTitle"
+                                name="companyInfoJobTitle"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.selectedAccount.jobTitle"
+                                data-ng-required="$ctrl.selectedAccount.jobTitle"
+                            />
+                        </oui-field>
 
-                <dt
-                    data-ng-if="ctrl.selectedAccount.lastName"
-                    data-translate="exchange_ACTION_update_account_step2_last_name_label"
-                ></dt>
-                <dd
-                    class="word-break"
-                    data-ng-if="ctrl.selectedAccount.lastName"
-                    data-ng-bind="ctrl.selectedAccount.lastName | wucSliceContent: 150"
-                ></dd>
-
-                <dt
-                    data-ng-if="ctrl.selectedAccount.displayName"
-                    data-translate="exchange_ACTION_update_account_step2_display_name_label"
-                ></dt>
-                <dd
-                    class="word-break"
-                    data-ng-if="ctrl.selectedAccount.displayName"
-                    data-ng-bind="ctrl.selectedAccount.displayName | wucSliceContent: 150"
-                ></dd>
-
-                <dt
-                    data-ng-if="ctrl.selectedAccount.password"
-                    data-translate="exchange_ACTION_update_account_step2_password_label"
-                ></dt>
-                <dd data-ng-if="ctrl.selectedAccount.password">
-                    <span
-                        data-ng-repeat="x in ctrl.selectedAccount.password track by $index"
-                        >*</span
-                    >
-                </dd>
-
-                <dt
-                    data-ng-if="ctrl.services.exchangeServiceInfrastructure.isProvider()"
-                    data-translate="exchange_ACTION_update_account_step1_quota_label"
-                ></dt>
-                <dd
-                    data-ng-if="ctrl.services.exchangeServiceInfrastructure.isProvider()"
-                    data-ng-bind="ctrl.selectedAccount.quota + ' ' + ('unit_size_GB' | translate)"
-                ></dd>
-
-                <dt
-                    data-ng-if="ctrl.services.exchangeAccountOutlook.canHaveLicense(ctrl.selectedAccount)"
-                    data-translate="exchange_ACTION_update_account_step2_outlook_label"
-                ></dt>
-                <dd
-                    data-ng-if="ctrl.services.exchangeAccountOutlook.canHaveLicense(ctrl.selectedAccount)"
-                    data-ng-bind="('exchange_ACTION_update_account_outlook_' + ctrl.selectedAccount.outlook) | translate"
-                ></dd>
-
-                <dt
-                    data-translate="exchange_ACTION_update_account_step2_GAL_label"
-                ></dt>
-                <dd
-                    data-ng-bind="('exchange_ACTION_update_account_GAL_' + ctrl.selectedAccount.hiddenFromGAL) | translate"
-                ></dd>
-            </dl>
+                        <!--Office-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_update_company_desk_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="companyInfoDesk"
+                                name="companyInfoOffice"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.selectedAccount.office"
+                                data-ng-required="$ctrl.selectedAccount.office"
+                            />
+                        </oui-field>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+
+        <!--Contact info-->
+        <div data-ng-if="$ctrl.displayAdvancedSections">
+            <!--Contact title-->
+            <p
+                class="oui-heading_4"
+                data-translate="exchange_account_update_contact_account_info_title"
+            ></p>
+
+            <!--Address fields sections-->
+            <div class="row">
+                <div class="col-sm-12 col-md-8">
+                    <div class="row">
+                        <!--Address column-->
+                        <div class="col-md-6">
+                            <!--Street field-->
+                            <oui-field
+                                label="{{:: 'exchange_account_update_contact_street_label' | translate }}"
+                            >
+                                <input
+                                    class="oui-input"
+                                    id="contactInfoStreet"
+                                    name="contactInfoStreet"
+                                    type="text"
+                                    maxlength="256"
+                                    data-ng-model="$ctrl.selectedAccount.streetAddress"
+                                    data-ng-required="$ctrl.selectedAccount.streetAddress"
+                                />
+                            </oui-field>
+
+                            <!--Zipcode and city field-->
+                            <div class="w-100 oui-input-group">
+                                <oui-field
+                                    size="s"
+                                    label="{{:: 'exchange_account_update_contact_postalCode_label' | translate }}"
+                                >
+                                    <input
+                                        class="oui-input"
+                                        id="contactInfoPostalCode"
+                                        name="contactInfoPostalCode"
+                                        type="text"
+                                        data-ng-model="$ctrl.selectedAccount.postalCode"
+                                    />
+                                </oui-field>
+
+                                <oui-field
+                                    class="w-100 ml-2"
+                                    label="{{:: 'exchange_account_update_contact_city_label' | translate }}"
+                                >
+                                    <input
+                                        class="oui-input"
+                                        id="contactInfoCity"
+                                        name="contactInfoCity"
+                                        type="text"
+                                        maxlength="256"
+                                        data-ng-model="$ctrl.selectedAccount.city"
+                                        data-ng-required="$ctrl.selectedAccount.city"
+                                    />
+                                </oui-field>
+                            </div>
+
+                            <!--Country and region field-->
+                            <div class="w-100 oui-input-group">
+                                <oui-field
+                                    size="s"
+                                    label="{{:: 'exchange_account_update_contact_country_label' | translate }}"
+                                >
+                                    <label class="oui-select">
+                                        <select
+                                            class="oui-select__input"
+                                            name="contactInfoCountry"
+                                            id="contactInfoCountry"
+                                            data-ng-model="$ctrl.selectedAccount.countryCode"
+                                            data-ng-options="country.label for country in $ctrl.countries"
+                                            data-ng-required="$ctrl.selectedAccount.countryCode"
+                                        >
+                                        </select>
+                                        <span
+                                            class="oui-icon oui-icon-chevron-down"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </label>
+                                </oui-field>
+
+                                <oui-field
+                                    class="w-100 ml-2"
+                                    label="{{:: 'exchange_account_update_contact_region_label' | translate }}"
+                                >
+                                    <input
+                                        class="oui-input"
+                                        id="contactInfoRegion"
+                                        name="contactInfoRegion"
+                                        type="text"
+                                        data-ng-model="$ctrl.selectedAccount.region"
+                                    />
+                                </oui-field>
+                            </div>
+                        </div>
+
+                        <!--Phone column-->
+                        <div class="col-md-6">
+                            <!--Phone field-->
+                            <div>
+                                <label
+                                    class="control-label"
+                                    for="contactInfoPhone"
+                                    data-ng-bind=":: 'exchange_account_update_contact_phone_label' | translate"
+                                ></label>
+                                <div class="oui-field">
+                                    <div
+                                        class="w-100 oui-input-group_inline"
+                                        data-ng-class="{ 'oui-field_error has-error': $ctrl.updateAccountForm.contactInfoPhone.$invalid && $ctrl.updateAccountForm.contactInfoPhone.$touched }"
+                                    >
+                                        <input
+                                            class="w-100 oui-input"
+                                            id="contactInfoPhone"
+                                            name="contactInfoPhone"
+                                            type="text"
+                                            data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
+                                            data-ng-model="$ctrl.telephonyModel.phone.number"
+                                            data-ng-change="$ctrl.onCountryPhoneCodeChange('phone')"
+                                            data-ng-required="$ctrl.telephonyModel.phone.selected"
+                                            data-oui-tooltip="{{:: 'exchange_account_update_contact_phone_help_text' | translate}}"
+                                        />
+                                    </div>
+                                    <div class="oui-field__footer">
+                                        <div
+                                            class="oui-field__error"
+                                            data-ng-if="$ctrl.updateAccountForm.contactInfoPhone.$error.required"
+                                            role="alert"
+                                        >
+                                            <span
+                                                class="oui-icon oui-icon-error"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Mobile field-->
+                            <div>
+                                <label
+                                    class="control-label"
+                                    for="contactInfoMobile"
+                                    data-ng-bind=":: 'exchange_account_update_contact_mobile_label' | translate"
+                                ></label>
+                                <div class="oui-field">
+                                    <div
+                                        class="w-100 oui-input-group_inline"
+                                        data-ng-class="{ 'oui-field_error has-error': $ctrl.updateAccountForm.contactInfoMobile.$invalid && $ctrl.updateAccountForm.contactInfoMobile.$touched }"
+                                    >
+                                        <input
+                                            class="w-100 oui-input"
+                                            id="contactInfoMobile"
+                                            name="contactInfoMobile"
+                                            type="text"
+                                            data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
+                                            data-ng-model="$ctrl.telephonyModel.mobile.number"
+                                            data-ng-change="$ctrl.onCountryPhoneCodeChange('mobile')"
+                                            data-ng-required="$ctrl.telephonyModel.mobile.selected"
+                                            data-oui-tooltip="{{:: 'exchange_account_update_contact_phone_help_text' | translate}}"
+                                        />
+                                    </div>
+                                    <div class="oui-field__footer">
+                                        <div
+                                            class="oui-field__error"
+                                            data-ng-if="$ctrl.updateAccountForm.contactInfoMobile.$error.required"
+                                            role="alert"
+                                        >
+                                            <span
+                                                class="oui-icon oui-icon-error"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Fax field-->
+                            <div>
+                                <label
+                                    class="control-label"
+                                    for="contactInfoFax"
+                                    data-ng-bind=":: 'exchange_account_update_contact_fax_label' | translate"
+                                ></label>
+                                <div class="oui-field">
+                                    <div
+                                        class="w-100 oui-input-group_inline"
+                                        data-ng-class="{ 'oui-field_error has-error': $ctrl.updateAccountForm.contactInfoFax.$invalid && $ctrl.updateAccountForm.contactInfoFax.$touched }"
+                                    >
+                                        <input
+                                            class="w-100 oui-input"
+                                            id="contactInfoFax"
+                                            name="contactInfoFax"
+                                            type="text"
+                                            data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
+                                            data-ng-model="$ctrl.telephonyModel.fax.number"
+                                            data-ng-change="$ctrl.onCountryPhoneCodeChange('fax')"
+                                            data-ng-required="$ctrl.telephonyModel.fax.selected"
+                                            data-oui-tooltip="{{:: 'exchange_account_update_contact_phone_help_text' | translate}}"
+                                        />
+                                    </div>
+                                    <div class="oui-field__footer">
+                                        <div
+                                            class="oui-field__error"
+                                            data-ng-if="$ctrl.updateAccountForm.contactInfoFax.$error.required"
+                                            role="alert"
+                                        >
+                                            <span
+                                                class="oui-icon oui-icon-error"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Update and cancel buttons-->
+        <div class="m-0">
+            <button
+                type="submit"
+                class="oui-button oui-button_primary"
+                data-ng-disabled="!$ctrl.isFormFieldsChanged() || $ctrl.updateAccountForm.$invalid || $ctrl.isSendingNewAccount"
+                data-ng-bind=":: 'exchange_account_update_confirm_button' | translate"
+                data-ng-click="$ctrl.updateExchangeAccount()"
+            ></button>
+            <button
+                class="oui-button oui-button_secondary"
+                data-translate="exchange_account_update_cancel_button"
+                data-ng-click="$ctrl.goBack()"
+            ></button>
+        </div>
+    </form>
 </div>

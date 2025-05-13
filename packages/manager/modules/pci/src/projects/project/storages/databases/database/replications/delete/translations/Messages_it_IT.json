@@ -1,0 +1,8 @@
+{
+  "pci_databases_replications_delete_replication_confirm": "Conferma",
+  "pci_databases_replications_delete_replication_cancel": "Annulla",
+  "pci_databases_replications_delete_replication": "Elimina una replica",
+  "pci_databases_replications_delete_replication_description": "Vuoi davvero eliminare questa replica?",
+  "pci_databases_replications_delete_replication_success_message": "La replica è stata eliminata correttamente.",
+  "pci_databases_replications_delete_replication_error_message": "Si è verificato un errore durante l'eliminazione della replica: {{ message }}"
+}

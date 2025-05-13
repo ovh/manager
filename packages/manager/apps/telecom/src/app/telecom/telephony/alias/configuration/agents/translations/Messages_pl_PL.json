@@ -29,5 +29,6 @@
   "telephony_alias_configuration_agents_status_loggedOut": "Rozłączony",
   "telephony_alias_configuration_agents_status_onBreak": "Przerwa",
   "telephony_alias_configuration_agents_modal-warning": "Votre configuration possède un ou plusieurs numéros externes. Les appels vers ces numéros vous seront facturés hors forfait quelque soit votre forfait.",
-  "telephony_alias_configuration_agents_modal-question": "Continuer avec cette configuration ?"
+  "telephony_alias_configuration_agents_modal-question": "Continuer avec cette configuration ?",
+  "telephony_alias_configuration_agents_number_add_single": "Dodaj numer"
 }

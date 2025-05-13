@@ -1,0 +1,16 @@
+{
+  "otrs_search_ticket_subject": "Ricerca per oggetto:",
+  "otrs_search_ticket_subject_error": "Le ricerche per oggetto sono disponibili per almeno 3 caratteri.",
+  "otrs_search_ticket_get_status_error": "Si è verificato un errore durante il recupero dello stato del tuo ticket.",
+  "otrs_title": "Le tue richieste di supporto",
+  "otrs_back": "Torna alla lista delle richieste di supporto",
+  "otrs_table_ticket_product": "Categoria del prodotto",
+  "otrs_table_ticket_category": "Categoria",
+  "otrs_table_ticket_type": "Tipo",
+  "otrs_table_ticket_lastMessageFrom_customer": "Tu",
+  "otrs_table_ticket_lastMessageFrom_support": "Supporto OVHcloud",
+  "otrs_table_ticket_state_open": "Aperto",
+  "otrs_table_ticket_state_closed": "Chiuso",
+  "otrs_table_ticket_state_archived": "Archiviato",
+  "otrs_table_ticket_state_unknown": "Altro"
+}

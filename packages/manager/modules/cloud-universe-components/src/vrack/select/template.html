@@ -4,16 +4,17 @@
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{ ::'cuc_vrack_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.cancel()"
-        data-title="{{:: 'cuc_vrack_private_network_activate_title' | translate}}"
         data-loading="$ctrl.loaders.activate"
+        data-heading="{{:: 'cuc_vrack_private_network_activate_title' | translate}}"
     >
         <oui-radio-group model="$ctrl.selectedActivateOption">
             <oui-radio
                 id="existingVrack"
                 name="activateOptions"
-                data-text="{{:: 'cuc_vrack_private_network_activate_existing' | translate }}"
                 data-value="$ctrl.activateOptions.EXISTING"
-            >
+                ><span
+                    data-translate="cuc_vrack_private_network_activate_existing"
+                ></span>
                 <span class="oui-radio__section ml-4">
                     <oui-field>
                         <oui-select
@@ -33,9 +34,10 @@
             <oui-radio
                 id="newVrack"
                 name="activateOptions"
-                data-text="{{:: 'cuc_vrack_private_network_activate_new' | translate }}"
                 data-value="$ctrl.activateOptions.NEW"
-            >
+                ><span
+                    data-translate="cuc_vrack_private_network_activate_new"
+                ></span>
                 <p
                     class="ml-4"
                     data-translate="cuc_vrack_private_network_activate_new_vRack_description"

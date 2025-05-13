@@ -1,10 +1,11 @@
 <div class="sign-up-form-details">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg">
             <!-- legalform -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_legalform' | translate }}"
                 data-label-popover="{{ '' | translate }}"
+                data-ng-class="{'required-field': $ctrl.signUpFormCtrl.rules.legalform.mandatory}"
             >
                 <label class="oui-select">
                     <select
@@ -14,8 +15,8 @@
                         data-ng-options="legalform.value as legalform.label for legalform in $ctrl.signUpFormCtrl.rules.legalform.in"
                         data-ng-model="$ctrl.signUpFormCtrl.model.legalform"
                         data-ng-required="$ctrl.signUpFormCtrl.rules.legalform.mandatory"
-                    >
-                    </select>
+                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.legalform)"
+                    ></select>
                     <span
                         class="oui-icon oui-icon-chevron-down bg-transparent"
                         aria-hidden="true"
@@ -25,29 +26,27 @@
             </oui-field>
             <!-- /select[name="legalform"] -->
         </div>
-
-        <div class="col-lg-6">
+    </div>
+    <div class="row">
+        <div class="col-lg">
             <!-- country -->
             <oui-field
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.country.mandatory}"
                 data-label="{{ 'sign_up_details_field_country' | translate }}"
             >
                 <label class="oui-select">
-                    <select
-                        id="country"
+                    <oui-select
+                        data-disabled="$ctrl.signUpFormCtrl.rules.country.in.length === 1"
+                        data-items="$ctrl.signUpFormCtrl.rules.country.in"
+                        data-match="label"
+                        data-model="$ctrl.signUpFormCtrl.model.country"
+                        data-required="$ctrl.signUpFormCtrl.rules.country.mandatory"
                         name="country"
-                        class="oui-select__input"
-                        data-ng-options="country.value as country.label for country in $ctrl.signUpFormCtrl.rules.country.in"
-                        data-ng-model="$ctrl.signUpFormCtrl.model.country"
-                        data-ng-required="$ctrl.signUpFormCtrl.rules.country.mandatory"
-                        data-ng-disabled="$ctrl.signUpFormCtrl.rules.country.in.length === 1"
-                        data-ng-change="$ctrl.onCountryChange()"
+                        data-value-property="value"
+                        data-on-change="$ctrl.onCountryChange()"
+                        data-searchable
                     >
-                    </select>
-                    <span
-                        class="oui-icon oui-icon-chevron-down bg-transparent"
-                        aria-hidden="true"
-                    >
-                    </span>
+                    </oui-select>
                 </label>
             </oui-field>
             <!-- /select[name="country"] -->
@@ -55,10 +54,65 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg">
+            <!-- language -->
+            <oui-field
+                data-label="{{ 'sign_up_details_field_language' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.language.mandatory}"
+            >
+                <label class="oui-select">
+                    <select
+                        id="language"
+                        name="language"
+                        class="oui-select__input"
+                        data-ng-options="language.value as language.label for language in $ctrl.signUpFormCtrl.rules.language.in"
+                        data-ng-model="$ctrl.signUpFormCtrl.model.language"
+                        data-ng-required="$ctrl.signUpFormCtrl.rules.language.mandatory"
+                        data-ng-disabled="$ctrl.signUpFormCtrl.rules.language.in.length === 0"
+                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.language)"
+                    ></select>
+                    <span
+                        class="oui-icon oui-icon-chevron-down bg-transparent"
+                        aria-hidden="true"
+                    >
+                    </span>
+                </label>
+            </oui-field>
+            <!-- /select[name="language"] -->
+        </div>
+    </div>
+
+    <div class="row" data-ng-if="$ctrl.signUpFormCtrl.rules.phoneType">
+        <div class="col-lg">
+            <oui-field class="required-field">
+                <oui-radio-group
+                    name="phoneType"
+                    data-model="$ctrl.signUpFormCtrl.model.phoneType"
+                    data-required
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.phoneType)"
+                    data-on-change="$ctrl.onPhoneTypeChange()"
+                >
+                    <oui-radio data-value="'mobile'" inline>
+                        <span
+                            data-translate="sign_up_details_field_mobile_phone"
+                        ></span>
+                    </oui-radio>
+                    <oui-radio data-value="'landline'" inline>
+                        <span
+                            data-translate="sign_up_details_field_landline_phone"
+                        ></span>
+                    </oui-radio>
+                </oui-radio-group>
+            </oui-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg">
             <!-- phone -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_phone' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.phone.mandatory}"
             >
                 <div class="oui-input-group phone-number-field">
                     <ui-select
@@ -69,6 +123,7 @@
                         <ui-select-match>
                             <country-flag
                                 data-country="$select.selected.value"
+                                data-label="+{{ $select.selected.prefix }}"
                             ></country-flag>
                         </ui-select-match>
                         <ui-select-choices
@@ -76,7 +131,7 @@
                         >
                             <country-flag
                                 data-country="phoneCountry.value"
-                                data-label="{{ phoneCountry.label }}"
+                                data-label="{{ phoneCountry.label + ' (+' + phoneCountry.prefix + ')' }}"
                             >
                             </country-flag>
                         </ui-select-choices>
@@ -89,30 +144,75 @@
                         data-ng-model="$ctrl.phoneModel.model"
                         data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
                         data-ng-required="$ctrl.signUpFormCtrl.rules.phone.mandatory"
+                        data-ng-maxlength="$ctrl.signUpFormCtrl.rules.phone.maxLength"
+                        data-ng-minlength="$ctrl.signUpFormCtrl.rules.phone.minLength"
                         data-ng-pattern="$ctrl.phoneModel.validator"
                         data-ng-attr-placeholder="{{ $ctrl.signUpFormCtrl.phonePlaceHolder }}"
+                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.phone)"
                     />
                 </div>
             </oui-field>
             <!-- /input[name="phone"] -->
         </div>
+    </div>
 
-        <div class="col-lg-6">
-            <!-- language -->
+    <div class="row" data-ng-if="$ctrl.signUpFormCtrl.rules.phoneType">
+        <div class="col-lg">
+            <oui-field>
+                <oui-checkbox
+                    name="sms-consent"
+                    data-model="$ctrl.signUpFormCtrl.smsConsent"
+                    data-disabled="$ctrl.signUpFormCtrl.model.phoneType !== 'mobile'"
+                    data-on-change="$ctrl.onSmsConsentChange(modelValue)"
+                >
+                    <span
+                        data-translate="sign_up_details_field_sms_consent"
+                    ></span>
+                </oui-checkbox>
+            </oui-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg">
+            <!-- address -->
             <oui-field
-                data-label="{{ 'sign_up_details_field_language' | translate }}"
+                data-label="{{ 'sign_up_details_field_address' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.address.mandatory}"
+            >
+                <input
+                    type="text"
+                    class="oui-input"
+                    name="address"
+                    id="address"
+                    data-ng-model="$ctrl.signUpFormCtrl.model.address"
+                    data-ng-required="$ctrl.signUpFormCtrl.rules.address.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.address.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.address.minLength"
+                    data-ng-pattern="$ctrl.signUpFormCtrl.rules.address.regularExpression"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.address)"
+                />
+            </oui-field>
+            <!-- /input[name="address"] -->
+        </div>
+
+        <div class="col-lg" data-ng-if="$ctrl.signUpFormCtrl.rules.area">
+            <!-- area -->
+            <oui-field
+                data-label="{{ 'sign_up_details_field_' + ($ctrl.signUpFormCtrl.model.country.includes('AU', 'US', 'WE', 'IN') ? 'state' : $ctrl.signUpFormCtrl.model.country === 'CA' ? 'province' : 'area') | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.area.mandatory}"
             >
                 <label class="oui-select">
                     <select
-                        id="language"
-                        name="language"
+                        id="area"
+                        name="area"
                         class="oui-select__input"
-                        data-ng-options="language.value as language.label for language in $ctrl.signUpFormCtrl.rules.language.in"
-                        data-ng-model="$ctrl.signUpFormCtrl.model.language"
-                        data-ng-required="$ctrl.signUpFormCtrl.rules.language.mandatory"
-                        data-ng-disabled="$ctrl.signUpFormCtrl.rules.language.in.length === 0"
-                    >
-                    </select>
+                        data-ng-options="area.value as area.label for area in $ctrl.signUpFormCtrl.rules.area.in"
+                        data-ng-model="$ctrl.signUpFormCtrl.model.area"
+                        data-ng-required="$ctrl.signUpFormCtrl.rules.area.mandatory"
+                        data-ng-change="$ctrl.onAreaChange()"
+                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.area)"
+                    ></select>
                     <span
                         class="oui-icon oui-icon-chevron-down bg-transparent"
                         aria-hidden="true"
@@ -120,15 +220,16 @@
                     </span>
                 </label>
             </oui-field>
-            <!-- /select[name="language"] -->
+            <!-- /select[name="area"] -->
         </div>
     </div>
 
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg">
             <!-- zip -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_zip' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.zip.mandatory}"
             >
                 <div
                     data-ng-class="{ 'oui-input-group zip-group' : $ctrl.signUpFormCtrl.rules.zip.prefix }"
@@ -146,17 +247,23 @@
                         data-ng-model="$ctrl.zipModel.model"
                         data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
                         data-ng-required="$ctrl.signUpFormCtrl.rules.zip.mandatory"
+                        data-ng-maxlength="$ctrl.signUpFormCtrl.rules.zip.maxLength"
+                        data-ng-minlength="$ctrl.signUpFormCtrl.rules.zip.minLength"
                         data-ng-pattern="$ctrl.zipModel.validator"
+                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.zip)"
                     />
                 </div>
             </oui-field>
             <!-- /input[name="zip"] -->
         </div>
+    </div>
 
-        <div class="col-lg-6">
+    <div class="row">
+        <div class="col-lg">
             <!-- city -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_city' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.city.mandatory}"
             >
                 <input
                     type="text"
@@ -165,47 +272,36 @@
                     id="city"
                     data-ng-model="$ctrl.signUpFormCtrl.model.city"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.city.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.city.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.city.minLength"
                     data-ng-pattern="$ctrl.signUpFormCtrl.rules.city.regularExpression"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.city)"
                 />
             </oui-field>
             <!-- /input[name="city"] -->
         </div>
     </div>
 
-    <div class="row">
+    <div
+        class="row"
+        data-ng-if="$ctrl.signUpFormCtrl.rules.sex && $ctrl.signUpFormCtrl.model.country === $ctrl.ALLOWED_COUNTRY_EXTRA_INFO"
+    >
         <div class="col-lg">
-            <!-- address -->
+            <!-- gender -->
             <oui-field
-                data-label="{{ 'sign_up_details_field_address' | translate }}"
-            >
-                <input
-                    type="text"
-                    class="oui-input"
-                    name="address"
-                    id="address"
-                    data-ng-model="$ctrl.signUpFormCtrl.model.address"
-                    data-ng-required="$ctrl.signUpFormCtrl.rules.address.mandatory"
-                    data-ng-pattern="$ctrl.signUpFormCtrl.rules.address.regularExpression"
-                />
-            </oui-field>
-            <!-- /input[name="address"] -->
-        </div>
-
-        <div class="col-lg" data-ng-if="$ctrl.signUpFormCtrl.rules.area">
-            <!-- area -->
-            <oui-field
-                data-label="{{ 'sign_up_details_field_' + ($ctrl.signUpFormCtrl.model.country.includes('US', 'WE') ? 'state' : $ctrl.signUpFormCtrl.model.country === 'CA' ? 'province' : 'area') | translate }}"
+                data-label="{{ 'sign_up_details_field_gender' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.sex.mandatory}"
             >
                 <label class="oui-select">
                     <select
-                        id="area"
-                        name="area"
+                        id="sex"
+                        name="sex"
                         class="oui-select__input"
-                        data-ng-options="area.value as area.label for area in $ctrl.signUpFormCtrl.rules.area.in"
-                        data-ng-model="$ctrl.signUpFormCtrl.model.area"
-                        data-ng-required="$ctrl.signUpFormCtrl.rules.area.mandatory"
-                    >
-                    </select>
+                        data-ng-options="sex.value as sex.label for sex in $ctrl.signUpFormCtrl.rules.sex.in"
+                        data-ng-model="$ctrl.signUpFormCtrl.model.sex"
+                        data-ng-required="$ctrl.signUpFormCtrl.rules.sex.mandatory"
+                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.sex)"
+                    ></select>
                     <span
                         class="oui-icon oui-icon-chevron-down bg-transparent"
                         aria-hidden="true"
@@ -213,7 +309,58 @@
                     </span>
                 </label>
             </oui-field>
-            <!-- /select[name="area"] -->
+            <!-- /select[name="sex"] -->
+        </div>
+    </div>
+
+    <div
+        class="row"
+        data-ng-if="$ctrl.signUpFormCtrl.rules.birthDay && $ctrl.signUpFormCtrl.model.country === $ctrl.ALLOWED_COUNTRY_EXTRA_INFO"
+    >
+        <div class="col-lg">
+            <!-- birthDay -->
+            <oui-field
+                data-label="{{ 'sign_up_details_field_birthday' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.birthDay.mandatory}"
+            >
+                <input
+                    type="date"
+                    class="oui-input"
+                    name="birthDay"
+                    id="birthDay"
+                    data-ng-model="$ctrl.signUpFormCtrl.model.birthDay"
+                    data-ng-required="$ctrl.signUpFormCtrl.rules.birthDay.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.birthDay.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.birthDay.minLength"
+                    data-ng-pattern="$ctrl.signUpFormCtrl.rules.birthDay.regularExpression"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.birthDay)"
+                />
+            </oui-field>
+            <!-- /input[name="birthDay"] -->
+        </div>
+    </div>
+
+    <div class="row" data-ng-if="$ctrl.signUpFormCtrl.rules.purposeOfPurchase">
+        <div class="col-lg">
+            <!-- purchase purpose -->
+            <oui-field
+                data-label="{{ 'sign_up_details_field_purpose_of_purchase' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.purposeOfPurchase.mandatory}"
+            >
+                <oui-select
+                    id="purposeOfPurchase"
+                    name="purposeOfPurchase"
+                    placeholder="{{:: 'sign_up_details_field_purpose_of_purchase_placeholder' | translate }}"
+                    data-model="$ctrl.signUpFormCtrl.model.purposeOfPurchase"
+                    data-items="$ctrl.signUpFormCtrl.rules.purposeOfPurchase.in"
+                    data-value-property="value"
+                    data-match="label"
+                    data-ng-required="$ctrl.signUpFormCtrl.rules.purposeOfPurchase.mandatory"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.purposeOfPurchase)"
+                >
+                </oui-select>
+            </oui-field>
+            <!-- /input[name="purposeOfPurchase"] -->
         </div>
     </div>
 </div>

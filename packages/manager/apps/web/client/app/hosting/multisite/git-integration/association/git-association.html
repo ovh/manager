@@ -1,0 +1,180 @@
+<oui-back-button data-on-click="$ctrl.goBack()"></oui-back-button>
+
+<div data-ovh-alert="git_association_alert"></div>
+
+<oui-header
+    data-heading="{{ ::'hosting_multisite_git_association_title' | translate : { path: $ctrl.path } }}"
+>
+    <oui-guide-menu
+        data-text="{{ ::'hosting_multisite_git_association_guide_title' | translate }}"
+    >
+        <oui-guide-menu-item
+            data-href="{{ ::$ctrl.GIT_ASSOCIATION_GUIDE_LINK }}"
+            data-external="true"
+            ><span
+                data-ng-bind="::'hosting_multisite_git_association_guide_name' | translate"
+            ></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+</oui-header>
+<p data-translate="hosting_multisite_git_association_configure_description"></p>
+
+<form class="form-inline" name="$ctrl.gitAssociationForm">
+    <h3 data-translate="hosting_multisite_git_association_configure"></h3>
+
+    <oui-message type="info">
+        <p
+            class="font-weight-bold"
+            data-translate="hosting_multisite_git_association_configure_info_title"
+        ></p>
+        <ul>
+            <li
+                data-translate="hosting_multisite_git_association_configure_info_description"
+            ></li>
+            <li
+                data-translate="hosting_multisite_git_association_configure_info_https"
+            ></li>
+            <li
+                data-translate="hosting_multisite_git_association_configure_info_ssh"
+            ></li>
+        </ul>
+        <strong
+            data-translate="hosting_multisite_git_association_configure_info_empty_repo"
+        ></strong>
+        <span
+            class="mb-2"
+            data-translate="hosting_multisite_git_association_configure_info_not_empty_repo"
+        ></span>
+        <p
+            class="font-weight-bold"
+            data-translate="hosting_multisite_git_association_configure_info_add_in_paremeters"
+        ></p>
+    </oui-message>
+
+    <div class="row">
+        <oui-field
+            class="col-md-4"
+            data-label="{{ ::'hosting_multisite_git_association_repository' | translate }}"
+            data-error-messages="{
+                pattern: ('hosting_multisite_git_association_incorrect_url_format' | translate)
+            }"
+        >
+            <div class="d-flex oui-input-group oui-input-group_inline">
+                <!-- type "text" and not "url" because the browsers consider urls starting with git@ to be false. -->
+                <input
+                    type="text"
+                    data-ng-disabled="$ctrl.isConfiguration"
+                    data-oui-tooltip="{{ :: $ctrl.isConfiguration ? 'hosting_multisite_git_association_reconfigure_warning_url_tooltip' : '' | translate }}"
+                    id="repository_url"
+                    name="repository_url"
+                    class="oui-input mr-2"
+                    data-ng-pattern="$ctrl.REGEX_GIT_REPO"
+                    data-ng-model="$ctrl.model.repositoryUrl"
+                    placeholder="{{ $ctrl.REPOSITORY_PLACEHOLDER }}"
+                    required
+                />
+            </div>
+            <div class="d-flex">
+                <small
+                    class="w-100"
+                    data-translate="hosting_multisite_git_association_ssh_url_repo_help"
+                    data-translate-values="{ httpsRepo: $ctrl.EXAMPLE_HTTPS_REPOSITORY_URL, sshRepo: $ctrl.EXAMPLE_SSH_REPOSITORY_URL }"
+                ></small>
+            </div>
+        </oui-field>
+    </div>
+
+    <div class="row">
+        <oui-field
+            class="col-md-4"
+            data-label="{{ ::'hosting_multisite_git_association_branch' | translate }}"
+        >
+            <div class="d-flex oui-input-group oui-input-group_inline">
+                <input
+                    type="text"
+                    id="branch"
+                    name="branch"
+                    required
+                    class="oui-input mr-2"
+                    data-ng-model="$ctrl.model.branchName"
+                    placeholder="{{ 'hosting_multisite_git_association_branch' | translate }}"
+                />
+            </div>
+            <div class="d-flex">
+                <small
+                    class="w-100"
+                    data-translate="hosting_multisite_git_association_ssh_branches_names"
+                    data-translate-values="{ branchesNames: $ctrl.EXAMPLE_BRANCHES_NAMES}"
+                ></small>
+            </div>
+        </oui-field>
+    </div>
+
+    <div
+        data-ng-if="$ctrl.model.repositoryUrl && !$ctrl.model.repositoryUrl.startsWith('https://')"
+    >
+        <h3 data-translate="hosting_multisite_git_association_ssh_key"></h3>
+        <p
+            data-translate="hosting_multisite_git_association_ssh_key_description"
+        ></p>
+        <div class="row">
+            <oui-field
+                class="col-md-4"
+                data-label="{{ ::'hosting_multisite_git_association_ssh_key' | translate }}"
+            >
+                <oui-clipboard
+                    name="sshKey"
+                    data-model=":: $ctrl.sshKey"
+                ></oui-clipboard>
+            </oui-field>
+        </div>
+    </div>
+
+    <h3 data-translate="hosting_multisite_git_association_configure_auto"></h3>
+    <p
+        data-translate="hosting_multisite_git_association_webhook_description"
+    ></p>
+    <div class="row">
+        <oui-field
+            class="col-md-4"
+            data-label="{{ ::'hosting_multisite_git_association_webhook_url' | translate }}"
+        >
+            <oui-clipboard
+                name="webhookUrl"
+                data-model="::$ctrl.webHookUrl"
+            ></oui-clipboard>
+        </oui-field>
+    </div>
+</form>
+
+<div class="mb-5">
+    <a
+        class="oui-link_icon row m-0 p-0"
+        target="_blank"
+        rel="noopener"
+        data-ng-href="{{ ::$ctrl.GIT_WEBHOOK_GUIDE_LINK }}"
+    >
+        <span
+            data-translate="hosting_multisite_git_association_guide_configure_webhook"
+        ></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
+    <a
+        class="oui-link_icon row m-0 p-0"
+        target="_blank"
+        rel="noopener"
+        data-ng-href="{{ ::$ctrl.GIT_ASSOCIATION_GUIDE_LINK }}"
+    >
+        <span
+            data-translate="hosting_multisite_git_association_guide_configure_tutorial"
+        ></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
+</div>
+
+<oui-form-actions
+    data-submit-text="{{ ::'hosting_multisite_git_association_apply_configuration' | translate}}"
+    data-disabled="$ctrl.errorMessage || $ctrl.gitAssociationForm.$pristine || $ctrl.gitAssociationForm.$invalid"
+    data-on-submit="$ctrl.applyConfiguration()"
+>
+</oui-form-actions>

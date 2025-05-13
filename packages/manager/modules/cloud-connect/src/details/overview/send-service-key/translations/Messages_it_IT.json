@@ -1,0 +1,7 @@
+{
+  "cloud_connect_service_key_active_send": "Invia la chiave di servizio attiva",
+  "cloud_connect_service_email": "Email",
+  "cloud_connect_email_placeholder": "Inserisci l'indirizzo email",
+  "cloud_connect_service_key_send_error": "Invio della chiave di servizio non andata a buon fine: {{message}}",
+  "cloud_connect_service_key_send_success": "Email inviata"
+}

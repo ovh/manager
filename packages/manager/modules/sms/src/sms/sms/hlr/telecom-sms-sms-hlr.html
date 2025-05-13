@@ -1,274 +1,263 @@
 <section class="telecom-sms-sms-hlr">
     <header>
-        <tuc-section-back-link
-            data-tuc-section-back-link-to-state="sms.service.sms"
-            data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}"
-        >
-        </tuc-section-back-link>
-        <h1 data-translate="sms_sms_hlr_title"></h1>
+        <oui-back-button on-click="SmsHlrCtrl.goBack()">
+            <span data-translate="sms_sms_hlr_title"></span>
+        </oui-back-button>
     </header>
 
-    <div class="telecom-section-content">
-        <tuc-toast-message></tuc-toast-message>
+    <tuc-toast-message></tuc-toast-message>
 
-        <div class="row mb-3">
-            <div class="widget-presentation">
-                <div
-                    class="alert alert-info"
-                    role="alert"
-                    data-ng-if="SmsHlrCtrl.service.creditsLeft <= 0"
+    <div class="row mb-3">
+        <div class="widget-presentation">
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-ng-if="SmsHlrCtrl.service.creditsLeft <= 0"
+            >
+                <p data-translate="sms_sms_hlr_alert_not_enough_credits"></p>
+                <a
+                    title="{{ ::'sms_actions_credit_account' | translate }}"
+                    data-ui-sref="sms.service.order"
                 >
-                    <p
-                        data-translate="sms_sms_hlr_alert_not_enough_credits"
-                    ></p>
-                    <a
-                        title="{{ ::'sms_actions_credit_account' | translate }}"
-                        data-ui-sref="sms.service.order"
-                    >
-                        <span data-translate="sms_actions_credit_account"></span
-                        >.
-                    </a>
-                </div>
-
-                <header class="widget-presentation-header">
-                    <h2
-                        class="widget-presentation-title"
-                        data-translate="sms_sms_hlr_information_title"
-                    ></h2>
-                </header>
-
-                <p data-translate="sms_sms_hlr_information_text_1"></p>
-                <p data-translate="sms_sms_hlr_information_text_2"></p>
-                <p data-translate="sms_sms_hlr_information_text_3"></p>
+                    <span data-translate="sms_actions_credit_account"></span>.
+                </a>
             </div>
-            <!-- .widget-presentation -->
+
+            <header class="widget-presentation-header">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="sms_sms_hlr_information_title"
+                ></h2>
+            </header>
+
+            <p data-translate="sms_sms_hlr_information_text_1"></p>
+            <p data-translate="sms_sms_hlr_information_text_2"></p>
+            <p data-translate="sms_sms_hlr_information_text_3"></p>
         </div>
-        <!-- .row -->
+        <!-- .widget-presentation -->
+    </div>
+    <!-- .row -->
 
-        <div class="row mb-3">
-            <div class="widget-presentation">
-                <header class="widget-presentation-header">
-                    <h2
-                        class="widget-presentation-title"
-                        data-translate="sms_sms_hlr_query_title"
-                    ></h2>
-                </header>
+    <div class="row mb-3">
+        <div class="widget-presentation">
+            <header class="widget-presentation-header">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="sms_sms_hlr_query_title"
+                ></h2>
+            </header>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <form
-                            name="sendHlrQueryForm"
-                            id="sendHlrQueryForm"
-                            data-ng-submit="SmsHlrCtrl.send()"
-                        >
-                            <!-- Number -->
-                            <div
-                                class="form-group"
-                                data-ng-class="{
+            <div class="row">
+                <div class="col-md-6">
+                    <form
+                        name="sendHlrQueryForm"
+                        id="sendHlrQueryForm"
+                        data-ng-submit="SmsHlrCtrl.send()"
+                    >
+                        <!-- Number -->
+                        <div
+                            class="form-group"
+                            data-ng-class="{
                                      'has-error': sendHlrQueryForm.receiver.$touched && sendHlrQueryForm.receiver.$invalid
                                  }"
+                        >
+                            <label
+                                for="receiver"
+                                class="control-label"
+                                data-translate="sms_sms_hlr_query_label_number"
                             >
-                                <label
-                                    for="receiver"
-                                    class="control-label"
-                                    data-translate="sms_sms_hlr_query_label_number"
+                            </label>
+                            <input
+                                type="tel"
+                                name="receiver"
+                                id="receiver"
+                                class="form-control"
+                                autofocus
+                                required
+                                data-ng-model="SmsHlrCtrl.receiver"
+                                data-ng-change="SmsHlrCtrl.restrictInput()"
+                                data-ng-blur="SmsHlrCtrl.computeReceiver()"
+                                data-ng-disabled="SmsHlrCtrl.service.creditsLeft <= 0"
+                                data-translate-attr="{ placeholder: 'sms_sms_hlr_query_label_number' }"
+                            />
+                            <span
+                                class="help-block"
+                                role="alert"
+                                data-ng-if="sendHlrQueryForm.receiver.$touched"
+                                data-ng-messages="sendHlrQueryForm.receiver.$error"
+                            >
+                                <span
+                                    data-ng-message="required"
+                                    data-translate="sms_sms_hlr_query_number_error_required"
                                 >
-                                </label>
+                                </span>
+                            </span>
+                        </div>
+
+                        <!-- CGU -->
+                        <p
+                            data-translate="sms_sms_hlr_query_cgu_text"
+                            data-translate-values="{ url: SmsHlrCtrl.getHlrTermsOfUse() }"
+                        ></p>
+                        <div class="checkbox">
+                            <label>
                                 <input
-                                    type="tel"
-                                    name="receiver"
-                                    id="receiver"
-                                    class="form-control"
-                                    autofocus
-                                    required
-                                    data-ng-model="SmsHlrCtrl.receiver"
-                                    data-ng-change="SmsHlrCtrl.restrictInput()"
-                                    data-ng-blur="SmsHlrCtrl.computeReceiver()"
+                                    type="checkbox"
+                                    name="cgu"
+                                    id="cgu"
+                                    data-ng-init="SmsHlrCtrl.cgu = false"
+                                    data-ng-model="SmsHlrCtrl.cgu"
                                     data-ng-disabled="SmsHlrCtrl.service.creditsLeft <= 0"
-                                    data-translate-attr="{ placeholder: 'sms_sms_hlr_query_label_number' }"
                                 />
                                 <span
-                                    class="help-block"
-                                    role="alert"
-                                    data-ng-if="sendHlrQueryForm.receiver.$touched"
-                                    data-ng-messages="sendHlrQueryForm.receiver.$error"
-                                >
-                                    <span
-                                        data-ng-message="required"
-                                        data-translate="sms_sms_hlr_query_number_error_required"
-                                    >
-                                    </span>
-                                </span>
-                            </div>
+                                    data-translate="sms_sms_hlr_query_label_cgu"
+                                ></span>
+                            </label>
+                        </div>
 
-                            <!-- CGU -->
-                            <p
-                                data-translate="sms_sms_hlr_query_cgu_text"
-                                data-translate-values="{ url: SmsHlrCtrl.getHlrTermsOfUse() }"
-                            ></p>
-                            <div class="checkbox">
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="cgu"
-                                        id="cgu"
-                                        data-ng-init="SmsHlrCtrl.cgu = false"
-                                        data-ng-model="SmsHlrCtrl.cgu"
-                                        data-ng-disabled="SmsHlrCtrl.service.creditsLeft <= 0"
-                                    />
-                                    <span
-                                        data-translate="sms_sms_hlr_query_label_cgu"
-                                    ></span>
-                                </label>
-                            </div>
-
-                            <div class="form-group">
-                                <button
-                                    type="submit"
-                                    class="btn btn-primary"
-                                    data-ng-disabled="sendHlrQueryForm.$invalid || SmsHlrCtrl.hlr.isSending || !SmsHlrCtrl.cgu"
-                                    data-translate="sms_sms_hlr_query_send"
-                                ></button>
-                                <oui-spinner
-                                    class="ml-2"
-                                    data-ng-if="SmsHlrCtrl.hlr.isSending"
-                                    data-size="s"
-                                >
-                                </oui-spinner>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <p data-translate="sms_sms_hlr_query_text_1"></p>
-                        <p>
-                            <span
-                                data-translate="sms_sms_hlr_query_text_2"
-                            ></span>
-                            <a
-                                href="#"
-                                data-ui-sref="sms.service.receivers"
-                                data-translate="sms_sms_hlr_query_text_3"
+                        <div class="form-group">
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                data-ng-disabled="sendHlrQueryForm.$invalid || SmsHlrCtrl.hlr.isSending || !SmsHlrCtrl.cgu"
+                                data-translate="sms_sms_hlr_query_send"
+                            ></button>
+                            <oui-spinner
+                                class="ml-2"
+                                data-ng-if="SmsHlrCtrl.hlr.isSending"
+                                data-size="s"
                             >
-                            </a
-                            >.
-                        </p>
-                    </div>
+                            </oui-spinner>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <p data-translate="sms_sms_hlr_query_text_1"></p>
+                    <p>
+                        <span data-translate="sms_sms_hlr_query_text_2"></span>
+                        <a
+                            href="#"
+                            data-ui-sref="sms.service.receivers"
+                            data-translate="sms_sms_hlr_query_text_3"
+                        >
+                        </a
+                        >.
+                    </p>
                 </div>
             </div>
-            <!-- .widget-presentation -->
         </div>
-        <!-- .row -->
+        <!-- .widget-presentation -->
+    </div>
+    <!-- .row -->
 
-        <div class="row mb-3">
-            <div class="widget-presentation">
-                <header class="widget-presentation-header">
-                    <h2
-                        class="widget-presentation-title"
-                        data-translate="sms_sms_hlr_read_title"
-                    ></h2>
-                </header>
+    <div class="row mb-3">
+        <div class="widget-presentation">
+            <header class="widget-presentation-header">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="sms_sms_hlr_read_title"
+                ></h2>
+            </header>
 
-                <oui-datagrid
-                    data-rows="SmsHlrCtrl.hlr.data"
-                    data-row-loader="SmsHlrCtrl.getDetails($row)"
+            <oui-datagrid
+                data-rows="SmsHlrCtrl.hlr.data"
+                data-row-loader="SmsHlrCtrl.getDetails($row)"
+            >
+                <oui-datagrid-column
+                    data-title="'sms_sms_hlr_read_label_date' | translate"
+                    data-property="datetime"
                 >
-                    <oui-column
-                        data-title="'sms_sms_hlr_read_label_date' | translate"
-                        data-property="datetime"
-                    >
-                        <span
-                            data-ng-bind="$row.datetime | date: 'dd/MM/yyyy'"
-                        ></span>
-                        <span
-                            data-ng-bind="$row.datetime | date: 'HH:mm:ss'"
-                        ></span>
-                    </oui-column>
+                    <span
+                        data-ng-bind="$row.datetime | date: 'dd/MM/yyyy'"
+                    ></span>
+                    <span
+                        data-ng-bind="$row.datetime | date: 'HH:mm:ss'"
+                    ></span>
+                </oui-datagrid-column>
 
-                    <oui-column
-                        data-title="'sms_sms_hlr_read_label_cost' | translate"
-                        data-property="status"
+                <oui-datagrid-column
+                    data-title="'sms_sms_hlr_read_label_cost' | translate"
+                    data-property="status"
+                >
+                    <span
+                        data-translate="sms_sms_hlr_read_cost_value"
+                        data-translate-values="{ credit: $row.status === 'done' ? 0.1 : 0 }"
                     >
-                        <span
-                            data-translate="sms_sms_hlr_read_cost_value"
-                            data-translate-values="{ credit: $row.status === 'done' ? 0.1 : 0 }"
-                        >
-                        </span>
-                    </oui-column>
+                    </span>
+                </oui-datagrid-column>
 
-                    <oui-column
-                        data-title="'sms_sms_hlr_read_label_status' | translate"
-                        data-property="status"
-                    >
-                        <i
-                            class="ovh-font"
-                            data-ng-class="{
+                <oui-datagrid-column
+                    data-title="'sms_sms_hlr_read_label_status' | translate"
+                    data-property="status"
+                >
+                    <i
+                        class="ovh-font"
+                        data-ng-class="{
                                'ovh-font-inprogress text-info': $row.status === 'doing',
                                'ovh-font-success text-success': $row.status === 'done',
                                'ovh-font-failure text-danger': $row.status === 'error',
                                'ovh-font-arrow-rotate text-info': $row.status === 'todo'
                            }"
-                        >
-                        </i>
-                    </oui-column>
-
-                    <oui-column
-                        data-title="'sms_sms_hlr_read_label_number' | translate"
-                        data-property="msisdn"
                     >
-                        {{$row.msisdn}}
-                    </oui-column>
+                    </i>
+                </oui-datagrid-column>
 
-                    <oui-column
-                        data-title="'sms_sms_hlr_read_label_operator_code' | translate"
-                        data-property="operatorName"
-                    >
-                        {{$row.operatorName || '-'}}
-                    </oui-column>
+                <oui-datagrid-column
+                    data-title="'sms_sms_hlr_read_label_number' | translate"
+                    data-property="msisdn"
+                >
+                    {{$row.msisdn}}
+                </oui-datagrid-column>
 
-                    <oui-column
-                        data-title="'sms_sms_hlr_read_label_valid' | translate"
-                        data-property="valid"
-                    >
-                        <span
-                            data-ng-bind="$row.valid ? 'sms_yes' : 'sms_no' | translate"
-                            class="text-capitalize"
-                        ></span>
-                    </oui-column>
+                <oui-datagrid-column
+                    data-title="'sms_sms_hlr_read_label_operator_code' | translate"
+                    data-property="operatorName"
+                >
+                    {{$row.operatorName || '-'}}
+                </oui-datagrid-column>
 
-                    <oui-column
-                        data-title="'sms_sms_hlr_read_label_reachable' | translate"
-                        data-property="reachable"
-                    >
-                        <span
-                            data-ng-bind="$row.reachable ? 'sms_yes' : 'sms_no' | translate"
-                            class="text-capitalize"
-                        ></span>
-                    </oui-column>
+                <oui-datagrid-column
+                    data-title="'sms_sms_hlr_read_label_valid' | translate"
+                    data-property="valid"
+                >
+                    <span
+                        data-ng-bind="$row.valid ? 'sms_yes' : 'sms_no' | translate"
+                        class="text-capitalize"
+                    ></span>
+                </oui-datagrid-column>
 
-                    <oui-column
-                        data-title="'sms_sms_hlr_read_label_ported' | translate"
-                        data-property="ported"
-                    >
-                        <span
-                            data-ng-bind="$row.ported ? 'sms_yes' : 'sms_no' | translate"
-                            class="text-capitalize"
-                        ></span>
-                    </oui-column>
+                <oui-datagrid-column
+                    data-title="'sms_sms_hlr_read_label_reachable' | translate"
+                    data-property="reachable"
+                >
+                    <span
+                        data-ng-bind="$row.reachable ? 'sms_yes' : 'sms_no' | translate"
+                        class="text-capitalize"
+                    ></span>
+                </oui-datagrid-column>
 
-                    <oui-column
-                        data-title="'sms_sms_hlr_read_label_roaming' | translate"
-                        data-property="roaming"
-                    >
-                        <span
-                            data-ng-bind="$row.roaming ? 'sms_yes' : 'sms_no' | translate"
-                            class="text-capitalize"
-                        ></span>
-                    </oui-column>
-                </oui-datagrid>
-            </div>
-            <!-- .widget-presentation -->
+                <oui-datagrid-column
+                    data-title="'sms_sms_hlr_read_label_ported' | translate"
+                    data-property="ported"
+                >
+                    <span
+                        data-ng-bind="$row.ported ? 'sms_yes' : 'sms_no' | translate"
+                        class="text-capitalize"
+                    ></span>
+                </oui-datagrid-column>
+
+                <oui-datagrid-column
+                    data-title="'sms_sms_hlr_read_label_roaming' | translate"
+                    data-property="roaming"
+                >
+                    <span
+                        data-ng-bind="$row.roaming ? 'sms_yes' : 'sms_no' | translate"
+                        class="text-capitalize"
+                    ></span>
+                </oui-datagrid-column>
+            </oui-datagrid>
         </div>
-        <!-- .row -->
+        <!-- .widget-presentation -->
     </div>
-    <!-- .telecom-section-content -->
+    <!-- .row -->
 </section>

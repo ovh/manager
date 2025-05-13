@@ -1,0 +1,16 @@
+{
+  "cloud_connect_datacenter_add_title": "Ajouter une configuration AZ",
+  "cloud_connect_datacenter_add_select_title": "Sélectionnez une zone de disponibilité",
+  "cloud_connect_datacenter_add_select_placeholder": "Sélectionnez",
+  "cloud_connect_datacenter_add_select_asn": "Saisissez l'ASN OVH",
+  "cloud_connect_datacenter_add_network_address": "Saisissez un sous-réseau en /28",
+  "cloud_connect_datacenter_add_network_address_placeholder": "Sous-réseau",
+  "cloud_connect_datacenter_add_success": "Ajout d'une configuration de zone de disponibilité. <a href=\"{{ tasksUrl }}\">Cliquez ici pour voir le statut.</a>",
+  "cloud_connect_datacenter_add_error": "Échec lors de l'ajout d'une configuration de zone de disponibilité: {{message}}",
+  "cloud_connect_datacenter_add_select_asn_placeholder": "ASN OVH",
+  "cloud_connect_datacenter_add_network_address_help_message": "Bloc IPv4 avec une plage de 0 à 28",
+  "cloud_connect_datacenter_add_network_address_invalid_message": "Entrez un bloc IPv4 valide compris entre 0 et 28 (ex: 128.8.2.0/28)",
+  "cloud_connect_datacenter_add_dc_info": "Il ne peut y avoir qu'une seule configuration par AZ.",
+  "cloud_connect_datacenter_add_select_asn_popover": "Le numéro d'AS OVHcloud qui sera configuré sur les routeurs OVHcloud Connect situé dans le zone de disponibilité. Ce numéro peut-être différent de l'ASN choisi pour le PoP.",
+  "cloud_connect_datacenter_add_network_address_popover": "Un sous-réseau privé configuré dans votre vRack dans le zone de disponibilité sélectionné. Cela peut-être un bloc IPv4 de taille /28 ou supérieur."
+}

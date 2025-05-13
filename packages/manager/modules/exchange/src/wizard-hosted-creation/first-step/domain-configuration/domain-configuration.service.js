@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 
+import punycode from 'punycode';
+
 export default class wizardHostedCreationDomainConfiguration {
   /* @ngInject */
   constructor($q, OvhHttp, Poller, $timeout) {

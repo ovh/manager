@@ -1,4 +1,3 @@
-import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import some from 'lodash/some';
@@ -8,22 +7,46 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/new',
     component: 'pciProjectStorageContainersAdd',
     resolve: {
-      regions: /* @ngInject */ (PciProjectRegions, projectId) =>
-        PciProjectRegions.getAvailableRegions(projectId).then((regions) => {
-          const supportedRegions = filter(regions, (region) =>
-            some(get(region, 'services', []), {
-              name: 'storage',
-              status: 'UP',
+      regions: /* @ngInject */ (
+        $http,
+        $q,
+        coreConfig,
+        PciProjectRegions,
+        projectId,
+      ) => {
+        const CLOUD_ARCHIVE_PLAN_CODE = 'archive.consumption';
+        return $q
+          .all([
+            PciProjectRegions.getAvailableRegions(projectId),
+            $http.get(`/cloud/order/rule/availability`, {
+              params: {
+                ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
+                planCode: CLOUD_ARCHIVE_PLAN_CODE,
+              },
             }),
-          );
-          return map(supportedRegions, (region) => ({
-            ...region,
-            hasEnoughQuota: () => true,
-          }));
-        }),
+          ])
+          .then(([projectRegions, { data: availability }]) => {
+            const cloudArchiveRegions =
+              availability.plans.find(
+                (plan) => plan.code === CLOUD_ARCHIVE_PLAN_CODE,
+              )?.regions || [];
+            const supportedRegions = projectRegions.filter((region) => {
+              return (
+                some(get(region, 'services', []), {
+                  name: 'storage',
+                  status: 'UP',
+                }) && cloudArchiveRegions.includes(region.name)
+              );
+            });
+            return map(supportedRegions, (region) => ({
+              ...region,
+              hasEnoughQuota: () => true,
+            }));
+          });
+      },
       goBack: /* @ngInject */ (goToStorageContainers) => goToStorageContainers,
-      cancelLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.storages.archives', {
+      cancelCreate: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.storages.archives', {
           projectId,
         }),
       breadcrumb: /* @ngInject */ ($translate) =>

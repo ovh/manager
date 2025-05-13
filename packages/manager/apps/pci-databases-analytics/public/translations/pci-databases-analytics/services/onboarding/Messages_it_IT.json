@@ -1,0 +1,17 @@
+{
+  "title": "Con i nostri database gestiti, puoi concentrarti sulle tue applicazioni",
+  "description1": "Sfrutta la potenza dei dati mantenendo il controllo sulle risorse.",
+  "description2": "Scegli il motore di database più adatto alle tue esigenze tra una vasta gamma di prodotti e attivalo in pochi minuti. Ci occupiamo dell'infrastruttura e dell'amministrazione dei servizi gestiti.",
+  "description3": "Così risparmi tempo e denaro e puoi concentrarti sullo sviluppo e il valore che le tue applicazioni apportano ai clienti.",
+  "createServiceButton": "Creare un database gestito",
+  "cardGuidestitle": "Guide",
+  "cardGuidesDescription": "Documentazione database",
+  "cardGuidesContent": "Consulta tutte le guide e i tutorial dei nostri database gestiti",
+  "cardQuickStartTitle": "Quick start",
+  "cardQuickStartDescription": "Crea il tuo primo database",
+  "cardQuickStartContent": "Impara come installare rapidamente il tuo primo database gestito",
+  "cardFreeTierTitle": "Free Tier",
+  "cardFreeTierTescription": "Prova il servizio MongoDB gratuito",
+  "cardFreeTierContent": "Usufruisci di un cluster MongoDB gestito al 100% e gratis per sempre",
+  "cardLink": "Scopri di più"
+}

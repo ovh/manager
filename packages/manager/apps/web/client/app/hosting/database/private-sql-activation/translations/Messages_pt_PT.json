@@ -1,7 +1,7 @@
 {
   "privatesql_activation_back": "Retroceder",
   "privatesql_activation_order": "Ativar",
-  "privatesql_activation_step_1": "Ativar uma base de dados SQL Privado",
+  "privatesql_activation_step_1": "Ativar uma base de dados Web Cloud Databases",
   "privatesql_activation_step_2": "Confirmação",
   "privatesql_activation_hosting_select": "Alojamento a utilizar",
   "privatesql_activation_hosting_error": "Ocorreu um erro durante o carregamento das opções",
@@ -27,7 +27,8 @@
   "privatesql_activation_version_v_redis_32": "Redis 3.2",
   "privatesql_activation_version_v_mongodb_40": "MongoDB 4.0",
   "privatesql_activation_version_v_redis_40": "Redis 4.0",
-  "privatesql_activation_option_private-sql-512": "SQL Privado 512 MB",
+  "privatesql_activation_option_private-sql": "SQL Privado {{diskSpace}} MB",
   "privatesql_activation_success": "A ativação da base de dados foi concretizada com êxito. Ver <a href=\"{{ billUrl }}\" target=\"_blank\" rel=\"noopener\">a minha fatura</a>.",
-  "privatesql_activation_success_bc": "A sua <a href=\"{{ bcUrl }}\" target=\"_blank\" rel=\"noopener\">nota de encomenda</a> foi gerada. Efetue o pagamento para ativar a sua base de dados."
+  "privatesql_activation_success_bc": "A sua <a href=\"{{ bcUrl }}\" target=\"_blank\" rel=\"noopener\">nota de encomenda</a> foi gerada. Efetue o pagamento para ativar a sua base de dados.",
+  "privatesql_activation_breadcrumb": "Ativar"
 }

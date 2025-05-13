@@ -1,7 +1,10 @@
+import { EMAILPRO_MX_CONFIG } from '../../dashboard/emailpro.constants';
+
 export default /* @ngInject */ (
   $scope,
   $stateParams,
   $translate,
+  coreConfig,
   EmailPro,
   $rootScope,
   EmailProDomains,
@@ -14,13 +17,9 @@ export default /* @ngInject */ (
     return mxRelay;
   };
 
-  $scope.nonAuthoritativeEmail = [
-    'mx0.mail.ovh.net',
-    'mx1.mail.ovh.net',
-    'mx2.mail.ovh.net',
-    'mx3.mail.ovh.net',
-    'pro1.mail.ovh.net',
-  ];
+  $scope.nonAuthoritativeEmail = EMAILPRO_MX_CONFIG[
+    coreConfig.getRegion()
+  ].spam.map(({ target }) => target);
 
   $scope.selectedDomain = {
     name: $scope.currentActionData.name,

@@ -1,0 +1,9 @@
+{
+  "netapp_volumes_edit_size_title": "Zmień rozmiar wolumenu {{volume}}",
+  "netapp_volumes_edit_size_submit": "Zmień rozmiar",
+  "netapp_volumes_edit_size_cancel": "Anuluj",
+  "netapp_volumes_edit_size_label": "Rozmiar wolumenu {{name}}",
+  "netapp_volumes_edit_size_rules": "Dozwolony rozmiar: minimalnie {{min}} GB, maksymalnie {{max}} GB",
+  "netapp_volumes_edit_size_success": "Rozmiar wolumenu {{volumeName}} zostanie zmieniony w ciągu kilku minut.",
+  "netapp_volumes_edit_size_error": "Wystąpił błąd <br> {{message}} <br> request_id: {{requestId}}"
+}

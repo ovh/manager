@@ -1,0 +1,93 @@
+<section class="telecom-telephony-fax">
+    <!-- LOADING -->
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <div class="mb-4" data-ng-if="!$ctrl.loading.init">
+        <header class="oui-header">
+            <div class="oui-header__container">
+                <div class="oui-header__content">
+                    <tuc-editable-service-name
+                        data-tuc-editable-service-name-title="$ctrl.fax.getDisplayedName()"
+                        data-tuc-editable-service-name-title-on-save="$ctrl.faxNameSave"
+                        data-tuc-editable-service-name-service-name="$ctrl.fax.serviceName"
+                        data-maxlength="25"
+                    >
+                    </tuc-editable-service-name>
+                </div>
+            </div>
+        </header>
+
+        <!-- LINE ACTIONS -->
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                href="{{ $ctrl.faxDashboardLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.faxDashboardLink"
+            >
+                <span data-translate="telephony_fax_tab_manage"></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                href="{{ $ctrl.consumptionLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.consumptionLink"
+            >
+                <span data-translate="telephony_fax_tab_consumption"></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                href="{{ $ctrl.voicemailLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.voicemailLink"
+            >
+                <span data-translate="telephony_fax_tab_voicemail"></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                href="{{ $ctrl.faxLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.faxLink"
+            >
+                <span data-translate="telephony_fax_tab_fax"></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                href="{{ $ctrl.contactLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.contactLink"
+            >
+                <span data-translate="telephony_fax_tab_contact"></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                href="{{ $ctrl.assistLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.assistLink"
+            >
+                <span data-translate="telephony_fax_tab_assist"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </div>
+
+    <div class="telecom-section-alert" data-ng-if="!$ctrl.loading.init">
+        <div
+            class="alert alert-xs alert-warning"
+            role="alert"
+            data-ng-if="$ctrl.terminationTask"
+        >
+            <span
+                data-translate="telephony_fax_termination_warning"
+                data-translate-values="{ date: ($ctrl.terminationTask.executionDate | date) }"
+            >
+            </span>
+            <a
+                data-ui-sref="telecom.telephony.billingAccount.fax.dashboard.management.terminate"
+                data-translate="telephony_fax_termination_warning_cancel"
+            >
+            </a>
+        </div>
+    </div>
+
+    <main
+        role="main"
+        data-ng-if="!$ctrl.loading.init"
+        data-ui-view="faxInnerView"
+    ></main>
+</section>
+<!-- /.telecom-telephony-fax -->

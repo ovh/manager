@@ -1,15 +1,13 @@
-import { DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS } from '../../../dedicatedCloud-datacenter-drp.constants';
-
-import legacyTemplate from '../../../../../../ip/ip/legacyOrder/ip-ip-legacyOrder.html';
-import template from '../../../../../../ip/ip/agoraOrder/ip-ip-agoraOrder.html';
+import { DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS } from '../../../../../../components/dedicated-cloud/datacenter/drp/dedicatedCloud-datacenter-drp.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider
-    .state('app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep', {
+  $stateProvider.state(
+    'app.dedicatedCloud.details.datacenter.details.drp.onPremise.ovhPccStep',
+    {
       url: '/ovhPcc',
       views: {
-        'innerView@app.dedicatedClouds.datacenter.drp': {
-          component: 'dedicatedCloudDatacenterDrpOnPremiseOvhPccStep',
+        'innerView@app.dedicatedCloud.details.datacenter.details.drp': {
+          component: 'ovhManagerDedicatedCloudDatacenterDrpMainPcc',
         },
       },
       params: {
@@ -19,7 +17,6 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       resolve: {
-        configurationStepName: () => 'ovhPccStep',
         datacenterId: /* @ngInject */ ($transition$) =>
           $transition$.params().datacenterId,
         defaultLocalVraNetwork: /* @ngInject */ (
@@ -37,10 +34,12 @@ export default /* @ngInject */ ($stateProvider) => {
         drpInformations: /* @ngInject */ ($transition$) =>
           $transition$.params().drpInformations,
         goBackToChoice: /* @ngInject */ ($state) => (selectedDrpType) =>
-          $state.go('app.dedicatedClouds.datacenter.drp', { selectedDrpType }),
+          $state.go('app.dedicatedCloud.details.datacenter.details.drp', {
+            selectedDrpType,
+          }),
         goToNextStep: /* @ngInject */ ($state) => (drpInformations) =>
           $state.go(
-            'app.dedicatedClouds.datacenter.drp.onPremise.onPremisePccStep',
+            'app.dedicatedCloud.details.datacenter.details.drp.onPremise.onPremisePccStep',
             { drpInformations },
           ),
         ipAddressDetails: /* @ngInject */ (currentService, dedicatedCloudDrp) =>
@@ -48,22 +47,6 @@ export default /* @ngInject */ ($stateProvider) => {
             currentService.serviceName,
           ),
       },
-    })
-    .state(
-      'app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep.legacyOrderIp',
-      {
-        url: '/legacy-order-ip',
-        controller: 'IpLegacyOrderCtrl',
-        template: legacyTemplate,
-        layout: 'modal',
-        translations: { value: ['.'], format: 'json' },
-      },
-    )
-    .state('app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep.orderIp', {
-      url: '/order-ip',
-      controller: 'agoraIpOrderCtrl',
-      template,
-      layout: 'modal',
-      translations: { value: ['.'], format: 'json' },
-    });
+    },
+  );
 };

@@ -1,0 +1,19 @@
+{
+  "domain_anycast": "Attiva DNS Anycast",
+  "domain_dashboard_dns_anycast_order": "Ordina DNS Anycast",
+  "domain_configuration_anycast_order_description": "Attiva l'opzione DNS Anycast sul dominio {{t0}}",
+  "domain_dashboard_dns_anycast_payment": "Pagamento",
+  "domain_dashboard_dns_anycast_duration_choose": "Scegli la durata",
+  "domain_dashboard_dns_anycast_price_without_tax": "{{ price }} +IVA",
+  "domain_dashboard_dns_anycast_prorata_price_without_tax": "Prezzo IVA esclusa:",
+  "domain_dashboard_dns_anycast_prorata_price_with_tax": "Prezzo IVA inclusa:",
+  "domain_dashboard_dns_anycast_prorata_untill": "Prorata fino al",
+  "domain_dashboard_dns_anycast_next": "Continua",
+  "domain_dashboard_dns_anycast_duration": "12 mesi",
+  "domain_dashboard_dns_anycast_pay": "Paga",
+  "domain_configuration_anycast_order_success": "La richiesta di attivazione dell’opzione DNS Anycast è stata presa in carico.",
+  "domain_configuration_anycast_order_success_bc": "Per finalizzare l’operazione è necessario procedere al saldo del buono d’ordine.",
+  "domain_configuration_anycast_order_success_bc_link": "Buono d’ordine",
+  "domain_configuration_anycast_payment_acceptance_delay_info": "L'attivazione di questa opzione viene visualizzata nello Spazio Cliente Web dopo circa 15 minuti a partire dalla conferma dell’avvenuto pagamento.",
+  "domain_configuration_anycast_propagation_delay_info": "Ti ricordiamo inoltre che la propagazione del servizio DNS potrebbe richiedere fino a 48 ore."
+}

@@ -1,0 +1,139 @@
+<h2
+    class="widget-presentation-title"
+    data-translate="pack_move_meeting_slots"
+></h2>
+<!-- LOADER -->
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div
+    class="widget-presentation py-3 move-number-config ft-meeting"
+    data-ng-if="$ctrl.showMeetingSlots && !$ctrl.loading"
+>
+    <div class="row">
+        <div
+            class="font-weight-bold"
+            data-translate="pack_move_meeting_description"
+        ></div>
+
+        <div
+            data-ng-show="$ctrl.meetingSlots.canBookFakeMeeting && $ctrl.meetingSlots.slots.length"
+        >
+            <div class="input-group mt-3 col-md-12">
+                <input
+                    type="radio"
+                    id="radioFakeMeeting"
+                    data-ng-model="$ctrl.offer.meetingSlots.fakeMeeting"
+                    data-ng-disabled="!$ctrl.meetingSlots.canBookFakeMeeting"
+                    data-ng-value="true"
+                />
+                <label
+                    for="radioFakeMeeting"
+                    class="pl-2"
+                    data-translate="pack_move_fake_meeting"
+                >
+                </label>
+            </div>
+            <div class="input-group mt-3 col-md-12">
+                <input
+                    type="radio"
+                    id="radioNoFakeMeeting"
+                    data-ng-model="$ctrl.offer.meetingSlots.fakeMeeting"
+                    data-ng-value="false"
+                />
+                <label
+                    for="radioNoFakeMeeting"
+                    class="pl-2"
+                    data-translate="pack_move_no_fake_meeting"
+                >
+                </label>
+            </div>
+        </div>
+        <div
+            class="alert alert-info"
+            role="alert"
+            data-ng-if="$ctrl.meetingSlots.canBookFakeMeeting &&
+            !$ctrl.meetingSlots.meetingSlots.length"
+            data-translate="pack_move_no_erdv_info"
+        ></div>
+
+        <div class="mt-3" data-translate="pack_move_contact_name_info"></div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label
+                    class="control-label required"
+                    for="contactNameId"
+                    data-translate="pack_move_contact_name"
+                ></label>
+                <input
+                    id="contactNameId"
+                    class="form-control"
+                    required
+                    pattern=".+"
+                    data-ng-model="$ctrl.contactName"
+                    placeholder="{{'pack_move_contact_name'| translate}}"
+                />
+            </div>
+        </div>
+        <div class="row">
+            <div
+                class="col-md-6 mt-2 font-italic font-weight-lighter"
+                data-ng-show="$ctrl.meetingSlots"
+                data-translate="pack_move_mandatory_field"
+            ></div>
+        </div>
+    </div>
+
+    <div
+        class="mt-3"
+        data-ng-show="!$ctrl.offer.meetingSlots.slot"
+        data-translate="pack_move_programmed_meeting_select"
+    ></div>
+    <div
+        class="mt-3"
+        data-ng-show="$ctrl.offer.meetingSlots.slot && !$ctrl.offer.meetingSlots.fakeMeeting"
+        data-ng-bind-html="$ctrl.meetingSelectMessage"
+    ></div>
+
+    <div class="row">
+        <div
+            class="card col-md-2 shadow-sm bg-white rounded"
+            data-ng-repeat="meeting in $ctrl.meetings track by $index"
+        >
+            <div class="card-body meeting">
+                <h5 class="card-title" data-ng-bind="meeting.title"></h5>
+                <oui-radio
+                    data-ng-repeat="slot in meeting.slots track by $index"
+                    data-on-change="$ctrl.selectSlot(slot.id)"
+                    value="slot.start"
+                    data-model="$ctrl.model"
+                >
+                    {{slot.startTime}} - {{slot.endTime}}
+                </oui-radio>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p
+    data-ng-if="$ctrl.noMeetingAvailable && !$ctrl.loading.init"
+    data-translate="pack_move_no_meeting_available"
+></p>
+
+<div class="mt-5" data-ng-if="!$ctrl.loading.init">
+    <a
+        class="btn btn-default"
+        data-translate="pack_move_confirm_cancel_button"
+        data-ui-sref="telecom.packs.pack"
+    >
+    </a>
+    <button
+        type="button"
+        class="btn btn-primary"
+        data-ng-disabled="$ctrl.checkConfirm()"
+        data-translate="pack_move_confirm"
+        data-ng-click="$ctrl.next()"
+    ></button>
+</div>

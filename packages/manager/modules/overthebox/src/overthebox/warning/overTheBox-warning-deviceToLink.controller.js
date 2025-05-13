@@ -1,70 +1,74 @@
-export default /* @ngInject */ function(
-  $scope,
-  $translate,
-  $state,
-  OvhApiOverTheBox,
-  TucToast,
-  TucToastError,
-) {
-  const parent = $scope.OrderOverTheBox;
-  const self = this;
+export default class OverTheBoxWarningDeviceToLinkCtrl {
+  /* @ngInject */
+  constructor(
+    $scope,
+    $translate,
+    $state,
+    OvhApiOverTheBox,
+    TucToast,
+    TucToastError,
+  ) {
+    this.$scope = $scope;
+    this.$translate = $translate;
+    this.$state = $state;
+    this.OvhApiOverTheBox = OvhApiOverTheBox;
+    this.TucToast = TucToast;
+    this.TucToastError = TucToastError;
+  }
 
-  function init() {
-    self.deviceCount = parent.orphanDevices.length;
+  $onInit() {
+    this.parent = this.$scope.OrderOverTheBox;
+    this.deviceCount = this.parent.orphanDevices.length;
     if (
-      parent.orphanDevices.length === 1 &&
-      parent.unlinkedServices.length === 1
+      this.parent.orphanDevices.length === 1 &&
+      this.parent.unlinkedServices.length === 1
     ) {
-      self.link = {
-        service: parent.unlinkedServices[0].service,
-        device: parent.orphanDevices[0].deviceId,
+      this.link = {
+        service: this.parent.unlinkedServices[0].service,
+        device: this.parent.orphanDevices[0].deviceId,
       };
     }
     if (
-      parent.orphanDevices.length !== 1 &&
-      parent.unlinkedServices.length === 1
+      this.parent.orphanDevices.length !== 1 &&
+      this.parent.unlinkedServices.length === 1
     ) {
-      self.configService = {
-        service: parent.unlinkedServices[0].service,
-        url: $state.href('overTheBoxes.overTheBox.details', {
-          serviceName: parent.unlinkedServices[0].service,
+      this.configService = {
+        service: this.parent.unlinkedServices[0].service,
+        url: this.$state.href('overTheBoxes.overTheBox.details', {
+          serviceName: this.parent.unlinkedServices[0].service,
         }),
       };
     }
     if (
-      parent.orphanDevices.length !== 1 &&
-      parent.unlinkedServices.length !== 1
+      this.parent.orphanDevices.length !== 1 &&
+      this.parent.unlinkedServices.length !== 1
     ) {
-      self.unknown = parent.unlinkedServices;
+      this.unknown = this.parent.unlinkedServices;
     }
   }
 
-  self.autoLink = function autoLink() {
-    if (!self.link) {
+  autoLink() {
+    if (!this.link) {
       return;
     }
-    self.loader = true;
-    OvhApiOverTheBox.v6()
+    this.loader = true;
+    this.OvhApiOverTheBox.v6()
       .linkDevice(
         {
-          serviceName: self.link.service,
+          serviceName: this.link.service,
         },
         {
-          deviceId: self.link.device,
+          deviceId: this.link.device,
         },
       )
-      .$promise.then(
-        () => {
-          TucToast.success(
-            $translate.instant('overTheBox_link_device_success'),
-          );
-        },
-        (error) => new TucToastError(error),
-      )
+      .$promise.then(() => {
+        this.TucToast.success(
+          this.$translate.instant('overTheBox_link_device_success'),
+        );
+      })
+      .catch((error) => new this.TucToastError(error))
       .finally(() => {
-        self.loader = false;
+        this.loader = false;
       });
-  };
-
-  init();
+  }
 }

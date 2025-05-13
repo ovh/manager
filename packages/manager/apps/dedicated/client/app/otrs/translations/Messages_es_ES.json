@@ -1,0 +1,16 @@
+{
+  "otrs_search_ticket_subject": "Buscar por asunto:",
+  "otrs_search_ticket_subject_error": "Solo es posible buscar por asunto a partir de 3 caracteres.",
+  "otrs_search_ticket_get_status_error": "Se ha producido un error al cargar los estados de los tíquets.",
+  "otrs_title": "Mis solicitudes de asistencia",
+  "otrs_back": "Volver a la lista de solicitudes de asistencia",
+  "otrs_table_ticket_product": "Categoría de producto",
+  "otrs_table_ticket_category": "Categoría",
+  "otrs_table_ticket_type": "Tipo",
+  "otrs_table_ticket_lastMessageFrom_customer": "Usted",
+  "otrs_table_ticket_lastMessageFrom_support": "Soporte de OVHcloud",
+  "otrs_table_ticket_state_open": "Abierto",
+  "otrs_table_ticket_state_closed": "Cerrado",
+  "otrs_table_ticket_state_archived": "Archivado",
+  "otrs_table_ticket_state_unknown": "Otro"
+}

@@ -31,5 +31,6 @@
   "telephony_line_details_sip_last_rec": "Data dell'ultima registrazione",
   "telephony_line_details_sip_last_rec_info": "Una registrazione in rete è valida per un'ora.",
   "telephony_line_details_sip_ip_local": "IP/Porta locale",
-  "telephony_line_details_sip_ip_public": "IP/Porta pubblica"
+  "telephony_line_details_sip_ip_public": "IP/Porta pubblica",
+  "telephony_line_details_sip_outbound_proxy": "Proxy in uscita"
 }

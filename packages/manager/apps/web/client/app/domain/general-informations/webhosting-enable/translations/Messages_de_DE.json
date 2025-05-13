@@ -1,0 +1,22 @@
+{
+  "domain_configuration_enable_web_hosting": "Ihr Webhosting aktivieren",
+  "domain_configuration_enable_web_hosting_offer": "Ihr Angebot",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-start10m": "Start 10M",
+  "domain_configuration_web_hosting_offer_START_explain": "Das Free Hosting 100M Angebot ist in Ihrem Angebot enthalten, bietet aber nur grundlegende Funktionen.",
+  "domain_configuration_web_hosting_choose_offer_explain": "Wenn Sie mehr über unsere Angebote, technische Details sowie verfügbare Optionen erfahren möchten, besuchen Sie <a href=\"{{url}}\" target=\"_blank\">unsere Webseite</a>.",
+  "domain_configuration_enable_web_hosting_dns_configuration": "Konfiguration Ihrer DNS",
+  "domain_configuration_web_hosting_dns_info_NO_CHANGE": "Wenn Sie keine Konfiguration auswählen, obwohl Ihr neues Webhosting eingerichtet ist, wird Ihr Domainname weiterhin auf die aktuellen Einträge verweisen. Wenn Ihre neue Website fertig ist, müssen Sie die Änderungen selbst in Ihrer DNS Zone vornehmen.  Es ist die ideale Wahl, wenn Sie die Erstellung einer Webseite nicht unterbrechen wollen.",
+  "domain_configuration_enable_web_hosting_dns_configuration_A": "DNS Eintrag A",
+  "domain_configuration_enable_web_hosting_dns_configuration_MX": "DNS Eintrag MX",
+  "domain_configuration_web_hosting_dns_info_A": "Wenn Sie für Ihren Domainnamen nur E-Mail-Adressen und keine Website besitzen, können Sie, wenn Sie möchten, nur den A Eintrag bearbeiten. So verweist Ihre Domain auf Ihr neues Hosting und die E-Mail-Adressen Ihrer aktuellen Dienstleistung werden wie gewohnt funktionieren.",
+  "domain_configuration_web_hosting_dns_info_MX": "Mit dieser Option haben Sie die Möglichkeit, nur die E-Mail-Adressen Ihres Hostings zu nutzen. Den Verweis zu Ihrer Webseite müssen Sie dabei nicht ändern. Ihr Domainname wird weiterhin auf Ihre aktuelle Webseite verweisen. Die E-Mail-Adressen werden ab dann jedoch die Server von OVHcloud nutzen.",
+  "domain_configuration_enable_web_hosting_offer_price": "Preise",
+  "domain_configuration_enable_web_hosting_offer_START_P1Y": "12 Monate",
+  "domain_configuration_enable_web_hosting_offer_START_P0D": "12 Monate",
+  "domain_configuration_enable_web_hosting_activation": "Aktivierung",
+  "domain_configuration_enable_web_hosting_activate": "Aktivieren",
+  "domain_configuration_enable_web_hosting_success": "Das Hosting wird aktiviert. Dies kann einige Minuten in Anspruch nehmen.",
+  "domain_configuration_enable_web_hosting_checkout_error": "Ein Fehler ist aufgetreten: {{message}}",
+  "domain_configuration_enable_web_hosting_error": "Bei der Aktivierung Ihres Hostings ist ein Fehler aufgetreten. {{ message }}",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-free-100m": "Kostenloses Hosting 100M"
+}

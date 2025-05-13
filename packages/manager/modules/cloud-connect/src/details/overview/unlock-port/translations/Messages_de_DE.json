@@ -1,0 +1,7 @@
+{
+  "cloud_connect_pop_port_unblock": "Den Port entsperren",
+  "cloud_connect_pop_unblock_port_confirm": "Möchten Sie wirklich diesen Port {{portNumber}} entsperren?",
+  "cloud_connect_unblock": "Entsperren",
+  "cloud_connect_pop_unblock_port_success": "Der Port {{port}} wird entsperrt. <a href=\"{{ tasksUrl }}\">Klicken Sie hier, um den Status anzuzeigen.</a>",
+  "cloud_connect_pop_unblock_port_error": "Das Entsperren des Ports ist fehlgeschlagen: {{message}}"
+}

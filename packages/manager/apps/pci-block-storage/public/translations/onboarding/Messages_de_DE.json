@@ -1,0 +1,14 @@
+{
+  "pci_projects_project_storages_blocks_onboarding_content1": "Sie haben noch keinen Block Storage eingerichtet.",
+  "pci_projects_project_storages_blocks_onboarding_content2": "Holen Sie sich gesicherte Speichervolumes mit dreifacher Datenreplikation, die Sie als zusätzliche Festplatten verwenden können.",
+  "pci_projects_project_storages_blocks_onboarding_content3": "Fügen Sie Ihren Instanzen mit diesen Volumes ganz einfach Speicherplatz hinzu. Diese können nach Bedarf vergrößert werden und Sie können auch mehrere pro Instanz hinzufügen. Diese Verbindung erfolgt im laufenden Betrieb und Sie können ein Volume anschließend dynamisch von einer Instanz auf eine andere am selben Ort verschieben.",
+  "pci_projects_project_storages_blocks_onboarding_content4": "Wählen Sie die gewünschte Größe, von 10 GB bis hin zu 4 TB. Die Volumes sind auch in zwei Versionen verfügbar: „classic“, um den Kosten pro GB Vorzug zu geben, und „high-speed“, um von der besten Leistung zu profitieren.",
+  "pci_projects_project_storages_blocks_onboarding_action_label": "Volume erstellen",
+  "pci_projects_project_storages_blocks_onboarding_guides_create-attach-volume_title": "Ein zusätzliches Volume erstellen und mit einer Instanz verbinden",
+  "pci_projects_project_storages_blocks_onboarding_guides_create-attach-volume_description": "In dieser Anleitung erfahren Sie Schritt für Schritt, wie Sie eine zusätzliche Festplatte erstellen und mit einem Cloudserver verbinden.",
+  "pci_projects_project_storages_blocks_onboarding_guides_configure-volume_title": "Zusätzliches Volume konfigurieren",
+  "pci_projects_project_storages_blocks_onboarding_guides_configure-volume_description": "Tutorial über die Konfiguration einer zusätzlichen Festplatte auf einem Cloudserver des Public Cloud Angebots",
+  "pci_projects_project_storages_blocks_onboarding_guides_increase-volume-size_title": "Eine zusätzliche Festplatte vergrößern",
+  "pci_projects_project_storages_blocks_onboarding_guides_increase-volume-size_description": "In dieser Anleitung erfahren Sie, wie Sie den Speicher sowie die Hauptpartition Ihrer zusätzlichen Festplatte vergrößern.",
+  "onboarding_guide_title": "Anleitung"
+}

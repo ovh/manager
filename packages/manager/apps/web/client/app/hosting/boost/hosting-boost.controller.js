@@ -12,10 +12,13 @@ angular
       $state,
       $stateParams,
       $translate,
+      atInternet,
       Alerter,
       Hosting,
       HostingBoost,
     ) => {
+      atInternet.trackPage({ name: 'web::hosting::boost' });
+
       $scope.models = {
         product: null,
         boosts: null,

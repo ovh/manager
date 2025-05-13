@@ -1,0 +1,8 @@
+{
+  "sidebar_menu": "Menu",
+  "sidebar_menu_order_actions": "Order",
+  "sidebar_menu_search": "Search",
+  "sidebar_menu_search_no_results": "No results found.",
+  "sidebar_menu_search_loading": "Searching...",
+  "sidebar_menu_error_retry": "Try again"
+}

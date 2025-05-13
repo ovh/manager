@@ -1,161 +1,145 @@
-import filter from 'lodash/filter';
-import find from 'lodash/find';
-import get from 'lodash/get';
-import includes from 'lodash/includes';
-import map from 'lodash/map';
+import {
+  pricingConstants,
+  workflowConstants,
+} from '@ovh-ux/manager-product-offers';
+
+import {
+  DATACENTER_CONFIGURATION_KEY,
+  DB_OFFERS,
+  ENGINE_CONFIGURATION_KEY,
+} from '../order/public/hosting-database-order-public.constants';
+import {
+  ACTIVATION_DATABASE_TRACKING,
+  PRESELECTED_DB_CATEGORY,
+  WEBHOSTING_PRODUCT_NAME,
+} from './private-sql-activation.constants';
 
 export default class PrivateSqlActivationController {
   /* @ngInject */
-  constructor($q, $translate, WucOrderCartService, OvhApiHostingWeb) {
+  constructor($q, $translate, atInternet) {
     this.$q = $q;
     this.$translate = $translate;
-    this.WucOrderCartService = WucOrderCartService;
-    this.OvhApiHostingWeb = OvhApiHostingWeb;
+    this.atInternet = atInternet;
+    this.ACTIVATION_DATABASE_TRACKING = ACTIVATION_DATABASE_TRACKING;
   }
 
   $onInit() {
-    this.loading = {
-      hosting: false,
-      checkout: false,
-    };
-    this.error = {
-      hosting: null,
-      checkout: null,
+    this.preselectDbCategory = PRESELECTED_DB_CATEGORY;
+    const { catalog, catalogItemTypeName } = this.getRightCatalogConfig(true);
+    this.productOffers = {
+      pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,
+      workflowOptions: {
+        expressOrder: true,
+        catalog,
+        catalogItemTypeName,
+        productName: WEBHOSTING_PRODUCT_NAME,
+        serviceNameToAddProduct: this.getServiceNameToAddProduct.bind(this),
+        getPlanCode: this.getPlanCode.bind(this),
+        getRightCatalogConfig: this.getRightCatalogConfig.bind(this),
+        onGetConfiguration: this.getConfiguration.bind(this),
+        onPricingSubmit: (pricing) => {
+          this.trackClick({
+            ...ACTIVATION_DATABASE_TRACKING.PRICING.NEXT,
+            name: ACTIVATION_DATABASE_TRACKING.PRICING.NEXT.name
+              .replace(/{{pricing}}/g, `${pricing.interval}M`)
+              .replace(/{{databaseSolution}}/g, this.databaseSolution()),
+          });
+        },
+      },
+      workflowType: workflowConstants.WORKFLOW_TYPES.ORDER,
     };
 
-    this.acceptContracts = false;
+    this.model = {
+      dbCategory: {},
+    };
+  }
 
-    if (this.hosting) {
-      this.onHostingChange();
+  getPlanCode() {
+    const { selectVersion, selectEngine } = this.model.dbCategory;
+    const { selectEngineVersion } = selectEngine || {};
+
+    return selectEngineVersion?.planCode || selectVersion?.planCode;
+  }
+
+  getServiceNameToAddProduct() {
+    return this.hosting;
+  }
+
+  getConfiguration() {
+    const { productName } = this.model.dbCategory;
+    if (productName === DB_OFFERS.PRIVATE.PRODUCT_NAME) {
+      const { db } = this.model.dbCategory.selectEngine.selectEngineVersion;
+      const [
+        datacenterValue,
+      ] = this.model.dbCategory.selectVersion.configurations.find(
+        (item) => item.name === DATACENTER_CONFIGURATION_KEY,
+      )?.values;
+
+      return [
+        {
+          label: ENGINE_CONFIGURATION_KEY,
+          value: db,
+        },
+        {
+          label: DATACENTER_CONFIGURATION_KEY,
+          value: datacenterValue,
+        },
+      ];
+    }
+    return [];
+  }
+
+  isValidDbConfig() {
+    const { selectEngine } = this.model.dbCategory;
+    const { selectEngineVersion } = selectEngine || {};
+    return !!selectEngineVersion;
+  }
+
+  getRightCatalogConfig() {
+    const { ADDON } = workflowConstants.CATALOG_ITEM_TYPE_NAMES;
+
+    return {
+      catalog: this.privateSqlCatalog,
+      catalogItemTypeName: ADDON,
+    };
+  }
+
+  onDbCategoryClick(dbCategory) {
+    this.model.dbCategory = dbCategory;
+  }
+
+  onDbCategoryEngineClick(db) {
+    this.model.dbCategory.selectEngine = {
+      dbGroup: db.dbName,
+      selectEngineVersion: db,
+    };
+  }
+
+  trackClick(hit) {
+    this.atInternet.trackClick({
+      ...hit,
+      type: 'action',
+    });
+  }
+
+  onGoToNextStepClick() {
+    this.trackClick({
+      ...ACTIVATION_DATABASE_TRACKING.OPTION.NEXT,
+      name: ACTIVATION_DATABASE_TRACKING.OPTION.NEXT.name.replace(
+        /{{databaseSolution}}/g,
+        this.databaseSolution(),
+      ),
+    });
+  }
+
+  onOptionEdit() {
+    if (Object.keys(this.model.dbCategory).length > 0) {
+      this.trackClick(ACTIVATION_DATABASE_TRACKING.OPTION.EDIT);
     }
   }
 
-  onHostingChange() {
-    this.loading.hosting = true;
-    this.error.hosting = null;
-    this.option = undefined;
-    return this.$q
-      .all([this.fetchDataCenter(), this.fetchOptions()])
-      .catch((error) => {
-        this.error.hosting = error;
-      })
-      .finally(() => {
-        this.loading.hosting = false;
-      });
-  }
-
-  fetchOptions() {
-    return this.WucOrderCartService.getProductServiceOptions(
-      'webHosting',
-      this.hosting,
-    )
-      .then((options) =>
-        filter(options, (option) => option.planCode.startsWith('private-sql')),
-      )
-      .then((options) => {
-        this.options = map(options, (option) => {
-          const price = get(
-            find(option.prices, { pricingMode: 'default' }),
-            'price.text',
-          );
-          const planLabel = this.$translate.instant(
-            `privatesql_activation_option_${option.planCode}`,
-          );
-          return {
-            value: option,
-            label: `${planLabel} - ${price}`,
-          };
-        });
-        return this.options;
-      });
-  }
-
-  fetchDataCenter() {
-    return this.OvhApiHostingWeb.v6()
-      .get({
-        serviceName: this.hosting,
-      })
-      .$promise.then(({ datacenter }) => {
-        this.datacenter = datacenter;
-        return datacenter;
-      });
-  }
-
-  fetchCheckoutInformations() {
-    const price = find(this.option.value.prices, ({ capacities }) =>
-      includes(capacities, 'renew'),
-    );
-    this.loading.checkout = true;
-    this.error.checkout = null;
-    return this.WucOrderCartService.createNewCart(this.me.ovhSubsidiary)
-      .then(({ cartId }) => cartId)
-      .then((cartId) =>
-        this.WucOrderCartService.assignCart(cartId).then(() => cartId),
-      )
-      .then((cartId) =>
-        this.WucOrderCartService.addProductServiceOptionToCart(
-          cartId,
-          'webHosting',
-          this.hosting,
-          {
-            duration: price.duration,
-            planCode: this.option.value.planCode,
-            pricingMode: price.pricingMode,
-            quantity: price.minimumQuantity,
-          },
-        ).then(({ itemId }) => ({ itemId, cartId })),
-      )
-      .then(({ itemId, cartId }) =>
-        this.WucOrderCartService.addConfigurationItem(
-          cartId,
-          itemId,
-          'dc',
-          this.datacenter,
-        ).then(() => ({ itemId, cartId })),
-      )
-      .then(({ itemId, cartId }) =>
-        this.WucOrderCartService.addConfigurationItem(
-          cartId,
-          itemId,
-          'engine',
-          this.version.id,
-        ).then(() => cartId),
-      )
-      .then((cartId) =>
-        this.WucOrderCartService.getCheckoutInformations(
-          cartId,
-        ).then((checkout) => ({ cartId, checkout })),
-      )
-      .then(({ cartId, checkout }) => {
-        this.checkout = checkout;
-        this.cartId = cartId;
-      })
-      .catch((error) => {
-        this.error.checkout = error;
-      })
-      .finally(() => {
-        this.loading.checkout = false;
-      });
-  }
-
-  performCheckout() {
-    this.loading.checkout = true;
-    this.error.checkout = null;
-    return this.WucOrderCartService.checkoutCart(this.cartId, {
-      autoPayWithPreferredPaymentMethod: false,
-      waiveRetractionPeriod: false,
-    })
-      .then(({ url }) => {
-        this.success = this.$translate.instant(
-          'privatesql_activation_success',
-          { billUrl: url },
-        );
-      })
-      .catch((error) => {
-        this.error.checkout = error;
-      })
-      .finally(() => {
-        this.loading.checkout = false;
-      });
+  databaseSolution() {
+    const { selectEngine, selectVersion } = this.model.dbCategory;
+    return `${selectEngine.dbGroup}-${selectVersion.productSize}`;
   }
 }

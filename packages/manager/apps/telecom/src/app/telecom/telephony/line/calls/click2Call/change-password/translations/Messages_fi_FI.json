@@ -1,9 +1,0 @@
-{
-  "telephony_group_line_calls_click2call_changePassword_back": "Peru käyttäjän muokkaus",
-  "telephony_group_line_calls_click2call_changePassword_title": "Muokkaa käyttäjän {{name}} salasanaa",
-  "telephony_group_line_calls_click2call_changePassword_password_placeholder": "Salasana",
-  "telephony_group_line_calls_click2call_changePassword_success": "Käytäjän <strong>{{name}}</strong> muokkaus onnistui! ",
-  "telephony_group_line_calls_click2call_changePassword_fail": "Hups! Käyttäjän <strong>{{name}}</strong> salasanaa ei voitu vaihtaa.",
-  "telephony_group_line_calls_click2call_changePassword_rule_size": "Täytyy sisältää 8 - 20 merkkiä",
-  "telephony_group_line_calls_click2call_changePassword_rule_special": "Täytyy sisältää lukuja, kirjaimia tai {{list}}"
-}

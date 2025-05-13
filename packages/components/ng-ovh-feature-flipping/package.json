@@ -1,0 +1,41 @@
+{
+  "name": "@ovh-ux/ng-ovh-feature-flipping",
+  "version": "1.1.4",
+  "description": "Feature flipping library",
+  "keywords": [
+    "angularjs",
+    "feature-flipping",
+    "ovh",
+    "ovhcloud"
+  ],
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/components/ng-ovh-feature-flipping#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/components/ng-ovh-feature-flipping"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/ng-ovh-feature-flipping.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "rollup -c --environment BUILD:development --watch",
+    "prepare": "rollup -c --environment BUILD:production"
+  },
+  "devDependencies": {
+    "@ovh-ux/component-rollup-config": "^13.0.2"
+  },
+  "peerDependencies": {
+    "angular": "^1.7"
+  }
+}

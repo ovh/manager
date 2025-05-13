@@ -1,0 +1,23 @@
+{
+  "vps_dashboard_tile_configuration_title": "Twoja konfiguracja",
+  "vps_dashboard_tile_configuration_vcore_upscale": "Dodaj vCores i zmień gamę na wyższą.",
+  "vps_dashboard_tile_configuration_memory": "Pamięć",
+  "vps_dashboard_tile_configuration_memory_add": "Dodaj pamięć",
+  "vps_dashboard_tile_configuration_memory_add_upscale": "Dodaj pamięć i zmień gamę na wyższą.",
+  "vps_dashboard_tile_configuration_memory_double": "Zwiększ dwukrotnie pamięć za dodatkową opłatą {{additionalPrice}}/m-c, tj. łącznie {{price}}/m-c",
+  "vps_dashboard_tile_configuration_storage": "Przestrzeń dyskowa",
+  "vps_dashboard_tile_configuration_storage_add": "Zwiększ przestrzeń dyskową",
+  "vps_dashboard_tile_configuration_storage_add_upscale": "Zwiększ przestrzeń dyskową i zmień gamę na wyższą.",
+  "vps_dashboard_tile_configuration_storage_double": "Zwiększ dwukrotnie przestrzeń dyskową za dodatkową opłatą {{additionalPrice}}/m-c, tj. łącznie {{price}}/m-c",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_title": "Wprowadzona przez Ciebie zmiana została przyjęta.",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_details": "W ciągu dwóch godzin od wdrożenia zmiany na serwerze VPS otrzymasz e-mail z potwierdzeniem. Nowa konfiguracja zacznie działać po zrestartowaniu serwera.",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_track_order": "Sprawdzanie statusu zamówienia",
+  "vps_dashboard_tile_configuration_upgrade_complete_reboot_required": "Dodałeś zasoby do serwera VPS. Uruchom ponownie maszynę, aby aktywować nową konfigurację.",
+  "vps_dashboard_tile_configuration_vcore": "vCores",
+  "vps_dashboard_tile_configuration_memory_add_upscale_elite": "Zwiększ pamięć i zmień model VPS na wyższy.",
+  "vps_dashboard_tile_configuration_storage_add_upscale_elite": "Zwiększ przestrzeń dyskową i zmień model VPS na wyższy.",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_cpu": "Aby uzyskać więcej vCores, skontaktuj się z kontaktem administracyjnym: {{nichandle}}.",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_memory": "Aby uzyskać więcej pamięci, skontaktuj się z kontaktem administracyjnym: {{nichandle}}.",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_storage": "Aby uzyskać więcej przestrzeni dyskowej, skontaktuj się z kontaktem administracyjnym: {{nichandle}}.",
+  "vps_dashboard_tile_configuration_starter_range_info_message": "Funkcja pozwalająca na zwiększenie pamięci RAM lub przestrzeni dyskowej dostępna jest począwszy od oferty VPS Value."
+}

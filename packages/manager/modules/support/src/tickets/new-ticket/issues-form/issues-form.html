@@ -17,7 +17,15 @@
             data-match="label"
             data-on-change="$ctrl.onCategoryChange()"
             data-name="category"
-        ></oui-select>
+        >
+            <p data-ng-bind="$item.label"></p>
+            <span
+                class="small"
+                data-ng-bind="$item.description"
+                data-ng-if="$item.description"
+            >
+            </span>
+        </oui-select>
     </oui-field>
 
     <div data-ng-if="$ctrl.bindings.serviceType.exists">
@@ -27,18 +35,26 @@
         ></oui-spinner>
 
         <oui-field
+            id="serviceTypeSelector"
             data-ng-if="!$ctrl.bindings.serviceType.isLoading"
             data-label="{{:: 'ovhManagerSupport_new_serviceType' | translate }}"
             data-size="xl"
         >
             <oui-select
                 data-model="$ctrl.bindings.serviceType.value"
-                data-items="$ctrl.bindings.serviceType.values"
+                data-items="$ctrl.getServiceTypesList()"
                 data-match="label"
                 data-on-change="$ctrl.onServiceTypeChange()"
                 data-searchable
                 data-name="serviceType"
             ></oui-select>
+            <oui-checkbox
+                data-model="$ctrl.bindings.serviceType.showAll"
+                data-name="serviceTypeCheckbox"
+                data-on-change="$ctrl.onServiceTypeFilterChange({ modelValue })"
+            >
+                <span data-translate="ovhManagerSupport_all_serviceType"></span>
+            </oui-checkbox>
         </oui-field>
     </div>
 

@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'HostingLocalSeoDeleteCtrl',
   class HostingLocalSeoDeleteCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, HostingLocalSeo) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

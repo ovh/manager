@@ -1,0 +1,8 @@
+{
+  "billing_main_history_postal_mail_options_title": "Alteração das opções de envio de faturas",
+  "billing_main_history_postal_mail_options_activation": "Pretende confirmar a ativação do envio das suas faturas em papel?",
+  "billing_main_history_postal_mail_options_desactivation": "Pretende confirmar a desativação do envio das suas faturas em papel?",
+  "billing_main_history_postal_mail_options_activate_success": "A configuração foi atualizada com êxito. Vai começar a receber as suas faturas em papel.",
+  "billing_main_history_postal_mail_options_desactivate_success": "A configuração foi atualizada com êxito. Vai deixar de receber as suas faturas em papel.",
+  "billing_main_history_postal_mail_options_update_error": "Ocorreu um erro ao atualizar as suas configurações"
+}

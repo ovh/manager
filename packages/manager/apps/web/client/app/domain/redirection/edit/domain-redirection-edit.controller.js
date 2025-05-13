@@ -7,14 +7,7 @@ import pick from 'lodash/pick';
 angular.module('controllers').controller(
   'controllers.Domain.Redirection.edit',
   class RedirectionEdit {
-    /**
-     * @constructs RedirectionEdit
-     * @param {Object} $scope
-     * @param {Object} $rootScope
-     * @param {Object} Alerter
-     * @param {Object} DomainRedirection
-     * @param {Object} WucValidator
-     */
+    /* @ngInject */
     constructor(
       $scope,
       $rootScope,

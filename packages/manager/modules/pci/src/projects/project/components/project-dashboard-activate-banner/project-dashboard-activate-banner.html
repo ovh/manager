@@ -1,0 +1,89 @@
+<oui-message
+    data-ng-if="$ctrl.orderStatus.isRefusedByAntiFraud"
+    data-type="error"
+>
+    <span
+        data-translate="pci_projects_project_discovery_activate_banner_antifraud_refused_message"
+    ></span>
+</oui-message>
+
+<div data-ng-if="$ctrl.orderStatus.isManuallyReviewedByAntiFraud">
+    <oui-message data-type="info">
+        <span
+            data-translate="pci_projects_project_discovery_activate_banner_antifraud_manuel_check_message"
+        ></span>
+    </oui-message>
+</div>
+
+<div
+    data-ng-if="!$ctrl.orderStatus.isManuallyReviewedByAntiFraud && !$ctrl.orderStatus.isRefusedByAntiFraud"
+>
+    <!-- mobile display -->
+    <oui-message class="d-block d-sm-none" data-type="info">
+        <div class="d-flex flex-row justify-content-between align-items-center">
+            <div class="mr-3 mb-3">
+                <h6 data-ng-if="$ctrl.voucherAmount" class="m-0">
+                    <span
+                        data-translate="pci_projects_project_discovery_activate_banner_promotion_title_1"
+                    ></span>
+                    <span
+                        data-translate="pci_projects_project_discovery_activate_banner_promotion_title_2"
+                        data-translate-values="{ amount: $ctrl.voucherAmount }"
+                    >
+                    </span>
+                </h6>
+                <h6 data-ng-if="!$ctrl.voucherAmount" class="m-0">
+                    <span
+                        data-translate="pci_projects_project_discovery_activate_banner_no_promotion_title"
+                    ></span>
+                </h6>
+                <span
+                    data-translate="pci_projects_project_discovery_activate_banner_description"
+                ></span>
+            </div>
+        </div>
+        <oui-button
+            class="d-block d-sm-none"
+            size="l"
+            block
+            data-variant="primary"
+            data-on-click="$ctrl.onClick()"
+        >
+            <span
+                data-translate="pci_projects_project_discovery_activate_banner_cta"
+            ></span>
+        </oui-button>
+    </oui-message>
+
+    <!-- Tablet & desktop display -->
+    <oui-message class="d-none d-sm-block" data-type="info">
+        <div class="d-flex flex-row justify-content-between align-items-center">
+            <div class="mr-3 mb-3">
+                <h6 data-ng-if="$ctrl.voucherAmount" class="m-0">
+                    <span
+                        data-translate="pci_projects_project_discovery_activate_banner_promotion_title_1"
+                    ></span>
+                    <span
+                        class="promotion-value"
+                        data-translate="pci_projects_project_discovery_activate_banner_promotion_title_2"
+                        data-translate-values="{ amount: $ctrl.voucherAmount }"
+                    >
+                    </span>
+                </h6>
+                <h6 data-ng-if="!$ctrl.voucherAmount" class="m-0">
+                    <span
+                        data-translate="pci_projects_project_discovery_activate_banner_no_promotion_title"
+                    ></span>
+                </h6>
+                <span
+                    data-translate="pci_projects_project_discovery_activate_banner_description"
+                ></span>
+            </div>
+            <oui-button data-variant="primary" data-on-click="$ctrl.onClick()">
+                <span
+                    data-translate="pci_projects_project_discovery_activate_banner_cta"
+                ></span>
+            </oui-button>
+        </div>
+    </oui-message>
+</div>

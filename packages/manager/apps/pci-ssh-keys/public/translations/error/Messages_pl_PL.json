@@ -1,0 +1,8 @@
+{
+  "error_page_title": "Ojej...",
+  "error_page_button_cancel": "Anuluj",
+  "error_page_detail_code": "Kod błędu: {{code}}",
+  "error_page_action_reload_label": "Spróbuj ponownie",
+  "error_page_action_home_label": "Powrót do strony głównej",
+  "error_page_default": "Wystąpił błąd podczas ładowania strony."
+}

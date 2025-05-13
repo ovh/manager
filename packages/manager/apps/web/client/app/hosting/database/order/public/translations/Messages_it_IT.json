@@ -1,0 +1,12 @@
+{
+  "ovhManagerHostingDatabaseOrderPublic_title": "Ordinare una soluzione di database",
+  "ovhManagerHostingDatabaseOrderPublic_customization_title": "Scegli la tua soluzione",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_title": "Seleziona le caratteristiche desiderate",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_placeholder": "Seleziona",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_display_1": "{{quantity}} database da {{diskSpace}} MB",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_display_+": "{{quantity}} database da {{diskSpace}} MB",
+  "ovhManagerHostingDatabaseOrderPublic_success_noCheckout": "L’ordine è stato preso in carico La soluzione scelta sarà attiva entro pochi minuti.",
+  "ovhManagerHostingDatabaseOrderPublic_success_checkout": "Il tuo <a href=\"{{url}}\" target=\"_blank\">buono d’ordine</a>è stato generato correttamente! Una volta convalidato, il servizio verrà attivato.",
+  "ovhManagerHostingDatabaseOrderPublic_error": "Si è verificato un errore durante l'ordine del database SQL: {{message}}",
+  "ovhManagerHostingDatabaseOrderPublic_description": "Ti consigliamo di ordinare un database Start SQL disponibile in 3 diverse dimensioni o, per esigenze più avanzate, di optare per una dei nostri servizi Web Cloud Databases SQL/NoSQL con risorse garantite."
+}

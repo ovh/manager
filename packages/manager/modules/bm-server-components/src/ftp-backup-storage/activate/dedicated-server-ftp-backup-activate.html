@@ -1,0 +1,18 @@
+<div>
+    <div
+        data-wizard
+        data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+        data-wizard-on-finish="$ctrl.activateFtpBackup.bind($ctrl)"
+        data-wizard-title="::'server_configuration_ftpbackup_activate' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="!$ctrl.loading">
+            <div class="text-center" data-ng-if="$ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+            <p
+                data-ng-if="!$ctrl.loading"
+                data-translate="server_configuration_ftpbackup_activate_question"
+            ></p>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import has from 'lodash/has';
+import 'moment';
 
 export default class {
   /* @ngInject */
@@ -53,9 +54,11 @@ export default class {
       loaderFunction: () =>
         this.VpsService.getTabVeeam(this.serviceName, 'available', true).then(
           (data) =>
-            data.map((id) => ({
-              id,
-              creationDate: moment(id).format('LLL'),
+            data.map((date) => ({
+              id: date,
+              creationDate: moment(date)
+                .utc()
+                .format('LLL'),
             })),
         ),
     });
@@ -103,5 +106,12 @@ export default class {
       .finally(() => {
         this.veeamTab.loading = false;
       });
+  }
+
+  isValidToSchedule() {
+    return (
+      this.vpsDetails.isValidVersionToRescheduleAutomatedBackup &&
+      this.hasAutomatedBackupOption
+    );
   }
 }

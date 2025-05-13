@@ -1,4 +1,12 @@
-<pci-project-empty guides="$ctrl.guides" image-source="$ctrl.illustration">
+<pci-announcement-banner
+    data-get-state-name="$ctrl.getStateName()"
+    data-on-go-to-region="$ctrl.goToRegion()"
+></pci-announcement-banner>
+
+<manager-on-boarding-layout
+    guides="$ctrl.guides"
+    image-source="$ctrl.illustration"
+>
     <h1
         data-translate="pci_projects_project_storages_instance-backups_title"
     ></h1>
@@ -26,4 +34,4 @@
             data-translate="pci_projects_project_storages_instance-backups_onboarding_action_label"
         ></span>
     </oui-button>
-</pci-project-empty>
+</manager-on-boarding-layout>

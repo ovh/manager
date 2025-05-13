@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_choose_title": "Określ sposób płatności",
+  "pci_project_new_payment_choose_added_payment_methods": "Twoje zarejestrowane sposoby płatności",
+  "pci_project_new_payment_choose_payment_method_expiration": "Data ważności {{date}}",
+  "pci_project_new_payment_choose_payment_method_selected": "Ten sposób płatności będzie używany do automatycznego regulowania należności za Twoje usługi. Możesz zmienić sposób płatności i skonfigurować odnowienie usług w dowolnym momencie w Panelu klienta w sekcji <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">”Moje usługi”</a>. Przed każdym nowym terminem płatności dostaniesz powiadomienie e-mailem.",
+  "pci_project_new_payment_choose_use_new": "Użyj nowego sposobu płatności"
+}

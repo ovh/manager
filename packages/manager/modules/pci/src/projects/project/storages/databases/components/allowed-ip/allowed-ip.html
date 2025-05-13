@@ -1,0 +1,55 @@
+<form name="$ctrl.allowedIpForm">
+    <oui-modal
+        data-heading="{{ ($ctrl.allowedIp
+            ? 'pci_database_allowed_ip_update'
+            : 'pci_database_allowed_ip_add') | translate }}"
+        data-primary-label="{{:: 'pci_database_allowed_ip_submit_label' | translate }}"
+        data-primary-disabled="!$ctrl.allowedIpForm.$valid || !$ctrl.isIpAllowed($ctrl.ipData.ip)"
+        data-primary-action="$ctrl.processIp()"
+        data-secondary-action="$ctrl.cancel()"
+        data-secondary-label="{{:: 'pci_database_allowed_ip_cancel_label' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <oui-field
+            data-label="{{:: 'pci_database_allowed_ip_label' | translate }}"
+            data-error-messages="{ pattern: ('pci_database_allowed_ip_help' | translate) }"
+            data-ng-class="{
+                'oui-field_error': !$ctrl.isIpAllowed($ctrl.ipData.ip)
+            }"
+            data-size="l"
+        >
+            <input
+                type="text"
+                id="ipAddress"
+                name="ipAddress"
+                class="oui-input"
+                data-ng-model="$ctrl.ipData.ip"
+                data-ng-pattern="$ctrl.IPV4_BLOCK_PATTERN"
+                data-ng-readonly="$ctrl.allowedIp"
+                placeholder="{{ ::'pci_database_allowed_ip_placeholder' | translate }}"
+                required
+            />
+            <div
+                class="oui-field__error"
+                data-ng-if="!$ctrl.isIpAllowed($ctrl.ipData.ip)"
+                id="ipNotAllowedError"
+            >
+                <span
+                    role="alert"
+                    data-translate="pci_database_allowed_ip_exits"
+                ></span>
+            </div>
+        </oui-field>
+        <oui-field
+            data-label="{{:: 'pci_database_allowed_ip_description_label' | translate }}"
+            data-size="l"
+        >
+            <oui-textarea
+                data-model="$ctrl.ipData.description"
+                data-id="ipDescription"
+                data-name="ipDescription"
+            ></oui-textarea>
+        </oui-field>
+    </oui-modal>
+</form>

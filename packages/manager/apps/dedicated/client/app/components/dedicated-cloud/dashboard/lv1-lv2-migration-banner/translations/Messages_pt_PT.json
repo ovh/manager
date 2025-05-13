@@ -1,0 +1,4 @@
+{
+  "dedicated_cloud_dashboard_lv1_lv2_migration_banner_info_1": "No âmbito do nosso ciclo de vida das ofertas Hosted Private Cloud VMware®, lançámos no ano passado novos datastores e vamos parar os antigos em 30 de junho de 2023. Sugerimos que antecipe a migração do seu serviço para as novas referências, tal como indicado na comunicação.",
+  "dedicated_cloud_dashboard_lv1_lv2_migration_banner_info_2": "Precisa de ajuda? Descubra este <a href=\"{{ guideLink }}\" target=\"_blank\">guia</a> para migrar os seus dados."
+}

@@ -1,10 +1,7 @@
 angular.module('services').service(
   'HostingFtp',
   class HostingFtp {
-    /**
-     * Constructor
-     * @param OvhHttp
-     */
+    /* @ngInject */
     constructor(OvhHttp) {
       this.OvhHttp = OvhHttp;
     }

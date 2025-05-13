@@ -1,0 +1,9 @@
+{
+  "nutanix_dashboard_general_info": "Informacje ogólne",
+  "nutanix_dashboard_nodes": "Węzły",
+  "nutanix_dashboard_guides_header": "Przewodniki",
+  "nutanix_dashboard_guides_header_all_guides": "Wszystkie przewodniki",
+  "nutanix_dashboard_cluster_warning1": "Należy zarejestrować licencję Nutanix na klastrze w Prism Central przed [{{endDate}}]",
+  "nutanix_dashboard_cluster_warning2": "Zarejestruj licencję",
+  "nutanix_dashboard_service_suspended": "Usługa została zakończona."
+}

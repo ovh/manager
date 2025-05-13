@@ -1,0 +1,17 @@
+{
+  "pci_databases_useracl_title": "ACL",
+  "pci_databases_useracl_tab_title": "ACL OpenSearch",
+  "pci_databases_useracl_tab_username": "Usuario",
+  "pci_databases_useracl_tab_permission": "Permiso",
+  "pci_databases_useracl_tab_pattern": "Modelo de índice",
+  "pci_databases_useracl_tab_add": "Añadir una ACL",
+  "pci_databases_useracl_tab_activate_acl": "Activar las ACL",
+  "pci_databases_useracl_tab_delete": "Eliminar",
+  "pci_databases_useracl_tab_no_user": "No hay configurado ningún usuario.",
+  "pci_databases_useracl_tab_user_link": "Haga clic aquí para añadir uno.",
+  "pci_databases_useracl_permission_admin": "Administrador",
+  "pci_databases_useracl_permission_read": "Solo lectura",
+  "pci_databases_useracl_permission_write": "Escritura",
+  "pci_databases_useracl_permission_readwrite": "Lectura y escritura",
+  "pci_databases_useracl_permission_deny": "Ninguna"
+}

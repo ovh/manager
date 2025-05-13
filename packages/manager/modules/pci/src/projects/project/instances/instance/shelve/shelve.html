@@ -1,0 +1,20 @@
+<oui-modal
+    data-heading="{{:: 'pci_projects_project_instances_instance_shelve_title' | translate }}"
+    data-primary-action="$ctrl.shelveInstance()"
+    data-primary-label="{{:: 'pci_projects_project_instances_instance_shelve_submit_label' | translate }}"
+    data-primary-disabled="$ctrl.isLoading"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'pci_projects_project_instances_instance_shelve_cancel_label' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+>
+    <p
+        data-translate="pci_projects_project_instances_instance_shelve_content"
+        data-translate-values="{ instance: $ctrl.instance.name}"
+    ></p>
+
+    <p
+        class="mt-3"
+        data-translate="pci_projects_project_instances_instance_shelve_content_asterisk_1"
+    ></p>
+</oui-modal>

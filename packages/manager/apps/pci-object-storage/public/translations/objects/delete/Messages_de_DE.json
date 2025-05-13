@@ -1,0 +1,15 @@
+{
+  "pci_projects_project_storages_containers_container_object_delete_archive_title": "Archiv löschen",
+  "pci_projects_project_storages_containers_container_object_delete_object_title": "Objekt löschen",
+  "pci_projects_project_storages_containers_container_object_delete_submit_label": "Bestätigen",
+  "pci_projects_project_storages_containers_container_object_delete_cancel_label": "Abbrechen",
+  "pci_projects_project_storages_containers_container_object_delete_content": "Möchten Sie {{ object }} löschen?",
+  "pci_projects_project_storages_containers_container_object_delete_archive_success_message": "Das Archiv {{ object }} wurde gelöscht.",
+  "pci_projects_project_storages_containers_container_object_delete_object_success_message": "Das Objekt {{ object }} wurde gelöscht.",
+  "pci_projects_project_storages_containers_container_object_delete_archive_error_delete": "Beim Löschen des Archivs {{ object }} ist ein Fehler aufgetreten: {{ message }}.",
+  "pci_projects_project_storages_containers_container_object_delete_object_error_delete": "Beim Löschen des Objekts {{ object }} ist ein Fehler aufgetreten: {{ message }}.",
+  "pci_projects_project_storages_containers_container_object_delete_permanent_delete_version_text": "Möchten Sie diese Version des Objekts {{ object }} endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+  "pci_projects_project_storages_containers_container_object_delete_permanent_delete_help": "Geben Sie zum Bestätigen {{confirmKey}} ein.",
+  "pci_projects_project_storages_containers_container_object_delete_object_permanently_title": "Objekt endgültig löschen",
+  "pci_projects_project_storages_containers_container_object_delete_permanent_delete_no_version_text": "Möchten Sie das Objekt {{ object }} endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden."
+}

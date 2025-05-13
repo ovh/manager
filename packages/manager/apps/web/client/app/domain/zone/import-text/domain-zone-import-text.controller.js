@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'DomainZoneImportTextCtrl',
   class DomainZoneImportTextCtrl {
+    /* @ngInject */
     constructor($scope, $translate, Alerter, Domain) {
       this.$scope = $scope;
       this.$translate = $translate;

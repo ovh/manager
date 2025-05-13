@@ -1,0 +1,16 @@
+<div>
+    <oui-modal
+        data-primary-action="$ctrl.deleteFtpBackupAccess()"
+        data-primary-label="{{:: 'wizard_confirm' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'wizard_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isDeleting"
+        data-heading="{{:: 'server_configuration_ftpbackup_access_delete' | translate }}"
+    >
+        <p
+            data-translate="server_configuration_ftpbackup_access_delete_question"
+            data-translate-values="{ t0: $ctrl.access }"
+        ></p>
+    </oui-modal>
+</div>

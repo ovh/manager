@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'HostingAutomatedEmailsRequestCtrl',
   class HostingAutomatedEmailsRequestCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $stateParams,

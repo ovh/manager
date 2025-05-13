@@ -1,0 +1,14 @@
+{
+  "description-mongodb": "System zarządzania bazami danych zorientowanymi na dokumenty",
+  "description-mysql": "System zarządzania relacyjnymi bazami danych",
+  "description-postgresql": "System zarządzania relacyjnymi i obiektowymi bazami danych",
+  "description-redis": "System przechowywania danych klucz-wartość w pamięci",
+  "description-cassandra": "Rozproszony system przechowywania danych NoSQL",
+  "description-m3db": "System przechowywania szeregów czasowych",
+  "description-m3aggregator": "System agregacji i ponownego próbkowania szeregów czasowych",
+  "versionTag-new": "Nowość",
+  "versionTag-soonDeprecated": "Wkrótce wersja przestarzała",
+  "selectAVersion": "Wybierz wersję",
+  "noVersionFound": "Nie znaleziono żadnej wersji",
+  "description-valkey": "System przechowywania danych klucz-wartość w pamięci"
+}

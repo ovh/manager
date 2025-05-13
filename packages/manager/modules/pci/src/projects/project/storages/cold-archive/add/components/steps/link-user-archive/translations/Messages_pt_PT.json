@@ -1,0 +1,18 @@
+{
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_title": "Associar um utilizador",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_description": "Tem a possibilidade de definir o acesso aos seus containers pelos seus utilizadores predefinidos ou de criar novos utilizadores e obter as suas chaves de acesso.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_label": "Selecionar um utilizador",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_credential": "Credenciais geradas",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_no_credential": "Sem credenciais",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_cta_cancel": "Anular",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_cta_linked": "Ver as credenciais",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create": "Criar um novo utilizador",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_label": "Descrição do utilizador",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_cta_create": "Criar",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_cta_cancel": "Anular",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_description_label": "Descrição do utilizador:",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label": "A sua chave secreta Object Storage:",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_success": "As informações de identificação Object Storage para o utilizador {{userName}} foram geradas.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_fail": "As informações de identificação Object Storage não foram geradas.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select": "Selecionar um utilizador existente"
+}

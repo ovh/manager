@@ -1,7 +1,0 @@
-export const MEMORY_OVERHEAD_RATIO = 0.1;
-export const MIN_MEMORY_OVERHEAD_MB = 384;
-
-export default {
-  MEMORY_OVERHEAD_RATIO,
-  MIN_MEMORY_OVERHEAD_MB,
-};

@@ -1,0 +1,8 @@
+{
+  "billing_commitment_payment_description": "Sparen Sie {{ discount }} % bei Ihrer Hardware-Konfiguration, indem Sie direkt den Gesamtbetrag zahlen.",
+  "billing_commitment_payment_periodic": "Monatliche Zahlung",
+  "billing_commitment_payment_upfront": "Gesamtzahlung",
+  "billing_commitment_payment_upfront_savings": "Sparen Sie {{ price }} zusätzlich",
+  "billing_commitment_payment_monthly": "{{ price }} / Monat für {{ duration }} Monate",
+  "billing_commitment_pricing_price_month": "{{ price }}/Monat"
+}

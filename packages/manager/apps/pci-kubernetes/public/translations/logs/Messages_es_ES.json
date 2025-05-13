@@ -1,0 +1,11 @@
+{
+  "see_more_label": "Más información",
+  "logs_info_link": "Más información",
+  "logs_list_add_data_stream_button": "Añadir un flujo de datos",
+  "logs_list_subscription_success": "La suscripción se ha creado correctamente.",
+  "logs_list_unsubscription_success": "La suscripción se ha eliminado correctamente.",
+  "logs_list_title": "Flujos de datos",
+  "kube_logs_tab_title": "Logs",
+  "kube_logs_main_description": "A continuación se incluyen los logs de auditoría de su clúster Kubernetes, que ofrecen un conjunto cronológico de registros relevantes para su seguridad y documentan la secuencia de acciones en su clúster, incluyendo las actividades generadas por los usuarios, por las aplicaciones que utilizan la API Kubernetes y por el propio plano de control.",
+  "logs_list_description_audit": "Al suscribirse a los logs de auditoría de su clúster Kubernetes, estos registros se transferirán a Logs Data Platform, desde donde podrá gestionarlos de forma centralizada junto con el resto de sus logs. Además, podrá realizar búsquedas más avanzadas, gestionar sus retenciones, definir alertas y «dashboards» para monitorizar fácilmente sus clústeres."
+}

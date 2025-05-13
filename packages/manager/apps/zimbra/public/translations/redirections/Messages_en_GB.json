@@ -1,0 +1,21 @@
+{
+  "zimbra_redirections_cta": "Create a redirection",
+  "zimbra_redirections_from": "From",
+  "zimbra_redirections_to": "To",
+  "zimbra_redirections_organization": "Organisation",
+  "zimbra_redirections_datagrid_tooltip_modification": "Edit",
+  "zimbra_redirections_datagrid_tooltip_delete": "Delete",
+  "zimbra_redirections_account_title": "Manage redirections",
+  "zimbra_redirections_status": "Status",
+  "zimbra_redirections_delete_modal_content": "Do you want to delete the redirection?",
+  "zimbra_redirections_add_header": "Please fill in the information for the redirection.",
+  "zimbra_redirections_add_form_input_from": "From address",
+  "zimbra_redirections_add_form_input_to": "To address",
+  "zimbra_redirections_add_form_input_checkbox": "Keep a copy of the email at OVHcloud",
+  "zimbra_redirections_add_success_message": "Your redirection creation request has been submitted. It will be processed in a few moments.",
+  "zimbra_redirections_add_error_message": "Your request to create a redirection could not be completed. {{ error }}",
+  "zimbra_redirections_edit_success_message": "Your redirection edit request has been submitted. It will be processed in a few moments.",
+  "zimbra_redirections_edit_error_message": "Your request to edit your redirection could not be completed. {{ error }}",
+  "zimbra_redirections_delete_success_message": "Your redirection deletion request has been submitted. It will be processed in a few moments.",
+  "zimbra_redirections_delete_error_message": "Your redirection deletion request could not be completed. {{ error }}"
+}

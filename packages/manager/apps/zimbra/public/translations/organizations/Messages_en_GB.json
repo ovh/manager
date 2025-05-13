@@ -1,0 +1,13 @@
+{
+  "add_organisation_cta": "Add an organisation",
+  "zimbra_organization_cta": "Add an organisation",
+  "zimbra_organization_account_number": "Number of accounts",
+  "zimbra_organization_edit": "Edit",
+  "zimbra_organization_delete": "Delete",
+  "zimbra_organization_label": "Label",
+  "zimbra_organization_name": "Organisation",
+  "zimbra_organization_status": "Status",
+  "zimbra_organization_delete_modal_content": "Are you sure you want to delete the organisation?",
+  "zimbra_organization_delete_modal_message_disabled_part1": "There is at least one domain still linked to this organisation.",
+  "zimbra_organization_delete_modal_message_disabled_part2": "Please delete the linked domains before deleting your organisation."
+}

@@ -1,0 +1,18 @@
+{
+  "cluster_error_bandwidth_order": "Si è verificato un errore durante l'ordine della banda passante: {{error}}",
+  "cluster_order_bandwidth_vrack_title": "Ordina banda passante",
+  "cluster_order_bandwidth_ready": "Il tuo ordine è pronto. Subito dopo il saldo dell’ordine, la banda passante dovrebbe essere disponibile.",
+  "cluster_order_bandwidth_see_order": "Visualizza il buono d'ordine",
+  "cluster_order_bandwidth_vrack_load": "Caricamento delle offerte in corso...",
+  "cluster_order_bandwidth_empty_plans": "Impossibile trovare soluzioni per effettuare l’aggiornamento",
+  "select_bandwidth_type_label": "Seleziona una soluzione",
+  "select_bandwidth_vrack_type_label": "Seleziona una soluzione",
+  "select_bandwidth_plan_summary": "Riepilogo dell’ordine",
+  "cluster_order_bandwidth_declaration": "La data di rinnovo dell’opzione verrà allineata a quella del server. L’importo mostrato corrisponde al primo mese di fatturazione dell’opzione, calcolato sulla base del prorata temporis del mese in corso.",
+  "cluster_order_bandwidth_info": "L’importo indicato corrisponde alla somma che sarà fatturata al prossimo rinnovo dell’opzione.",
+  "cluster_order_bandwidth_warning": "La modifica della banda passante sarà applicata entro qualche minuto dall’attivazione dell’opzione.",
+  "cluster_order_bandwidth_auto_pay": "Paga utilizzando il metodo di pagamento predefinito",
+  "plan_price_per_month": "+IVA/mese",
+  "wizard_pay": "Salda",
+  "wizard_close": "Chiudi"
+}

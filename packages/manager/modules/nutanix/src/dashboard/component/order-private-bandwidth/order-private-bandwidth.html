@@ -1,0 +1,123 @@
+<div
+    data-ng-if="!$ctrl.model.orderUrl"
+    data-wizard
+    data-wizard-on-cancel="$ctrl.cancel.bind($ctrl)"
+    data-wizard-on-finish="$ctrl.order.bind($ctrl)"
+    data-wizard-hide-cancel-button="$ctrl.isLoading"
+    data-wizard-hide-previous-button="$ctrl.isLoading"
+    data-wizard-hide-confirm-button="!$ctrl.isLoading"
+    data-wizard-title=":: 'cluster_order_bandwidth_vrack_title' | translate"
+    data-wizard-bread-crumb
+    data-wizard-confirm-button-text=":: 'wizard_pay' | translate"
+>
+    <div
+        data-wizard-step
+        data-wizard-step-valid="$ctrl.steps[0].isValid()"
+        data-wizard-step-on-load="$ctrl.initFirstStep.bind($ctrl)"
+    >
+        <div class="text-center" data-ng-if="$ctrl.steps[0].isLoading()">
+            <oui-spinner></oui-spinner>
+            <span
+                data-translate="cluster_order_bandwidth_vrack_load"
+                class="d-block"
+            ></span>
+        </div>
+        <span
+            data-ng-if="$ctrl.plans.length === 0"
+            data-translate="cluster_order_bandwidth_empty_plans"
+        ></span>
+        <form
+            data-ng-if="!$ctrl.steps[0].isLoading() && $ctrl.plans.length > 0"
+        >
+            <p data-translate="select_bandwidth_vrack_type_label"></p>
+            <div data-ng-repeat="plan in $ctrl.plans track by $index">
+                <div class="row">
+                    <div class="col-md-9 pr-0 pb-2">
+                        <oui-radio
+                            data-name="bandwidth-plan"
+                            data-model="$ctrl.model.plan"
+                            data-value="plan.planCode"
+                        >
+                            <span data-ng-bind="plan.planCode"></span>
+                        </oui-radio>
+                    </div>
+                    <div class="col-md-3 pl-0">
+                        <ovh-manager-catalog-price
+                            data-price="plan.prices[2].priceInUcents"
+                            data-tax="plan.prices[2].tax"
+                            data-interval-unit="{{plan.intervalUnit}}"
+                            data-user="$ctrl.user"
+                        >
+                        </ovh-manager-catalog-price>
+                    </div>
+                </div>
+            </div>
+
+            <oui-message class="mb-3" data-type="info">
+                <span data-translate="cluster_order_bandwidth_info"></span>
+            </oui-message>
+
+            <oui-message data-type="warning">
+                <span data-translate="cluster_order_bandwidth_warning"></span>
+            </oui-message>
+        </form>
+    </div>
+    <div
+        data-wizard-step
+        data-wizard-step-valid="$ctrl.steps[1].isValid()"
+        data-wizard-step-on-load="$ctrl.initSecondStep.bind($ctrl)"
+    >
+        <div class="text-center" data-ng-if="$ctrl.steps[1].isLoading()">
+            <oui-spinner></oui-spinner>
+            <span
+                data-translate="cluster_order_bandwidth_vrack_load"
+                class="d-block"
+            ></span>
+        </div>
+        <form data-ng-if="!$ctrl.steps[1].isLoading()">
+            <p data-translate="select_bandwidth_plan_summary"></p>
+            <div class="row">
+                <div class="col-md-8 pr-0">
+                    <oui-radio
+                        data-name="bandwidth-plan"
+                        data-model="$ctrl.model.plan"
+                        data-value="$ctrl.provisionalPlan.planCode"
+                    >
+                        <span
+                            data-ng-bind="$ctrl.provisionalPlan.planCode"
+                        ></span>
+                    </oui-radio>
+                </div>
+                <div class="col-md-4 pl-0">
+                    <span
+                        data-ng-bind-html="$ctrl.provisionalPlan.order.prices | ducPrice: $ctrl.user.ovhSubsidiary:'verbose'"
+                    ></span>
+                </div>
+            </div>
+            <oui-checkbox
+                data-model="$ctrl.model.autoPayWithPreferredPaymentMethod"
+                class="mt-3"
+                data-ng-if="!$ctrl.coreConfig.isRegion('US') && $ctrl.hasDefaultPaymentMethod"
+            >
+                <span data-translate="cluster_order_bandwidth_auto_pay"></span>
+            </oui-checkbox>
+
+            <oui-message data-type="info">
+                <span
+                    data-translate="cluster_order_bandwidth_declaration"
+                ></span>
+            </oui-message>
+        </form>
+    </div>
+</div>
+
+<oui-modal
+    data-ng-if="$ctrl.model.orderUrl"
+    data-primary-label="{{:: 'cluster_order_bandwidth_see_order' | translate }}"
+    data-primary-action=":: $ctrl.seeOrder()"
+    data-secondary-label="{{:: 'wizard_close' | translate }}"
+    data-secondary-action=":: $ctrl.goBack()"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <p data-translate="cluster_order_bandwidth_ready"></p>
+</oui-modal>

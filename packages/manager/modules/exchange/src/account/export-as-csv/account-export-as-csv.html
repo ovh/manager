@@ -4,6 +4,9 @@
         data-wizard-on-cancel="cancelExport"
         data-wizard-on-finish="exportAccounts"
         data-wizard-title="'exchange_ACTION_export_accounts_button' | translate"
+        data-wizard-hide-cancel-button="ctrl.loading.exportCsv"
+        data-wizard-hide-close-button="ctrl.loading.exportCsv"
+        data-wizard-hide-confirm-button="!ctrl.loading.exportCsv"
     >
         <div data-wizard-step>
             <oui-spinner data-ng-if="ctrl.loading.exportCsv"></oui-spinner>

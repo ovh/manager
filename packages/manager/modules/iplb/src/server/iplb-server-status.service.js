@@ -28,7 +28,7 @@ export default class IpblServerStatusService {
     }
 
     if (this.constructor.hasNoInfo(server)) {
-      return 'help';
+      return 'N/A';
     }
 
     return 'success';

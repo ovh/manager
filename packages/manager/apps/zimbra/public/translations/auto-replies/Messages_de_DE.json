@@ -1,0 +1,10 @@
+{
+  "zimbra_auto_replies_name": "Adresse",
+  "zimbra_auto_replies_from": "Vom",
+  "zimbra_auto_replies_until": "Bis zum",
+  "zimbra_auto_replies_copyTo": "Kopieren nach",
+  "zimbra_auto_replies_add_cta": "Eine automatische Antwort erstellen",
+  "zimbra_auto_replies_account_title": "Verwaltung der automatischen Antworten",
+  "zimbra_auto_replies_status": "Status",
+  "zimbra_auto_replies_delete_modal_content": "Sind Sie sicher, dass Sie die automatische Antwort löschen möchten?"
+}

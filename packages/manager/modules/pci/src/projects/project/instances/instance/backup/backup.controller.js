@@ -1,5 +1,7 @@
 import get from 'lodash/get';
 
+import { FLAVORS_TYPE, HOURS_PER_MONTH } from './backup.contants';
+
 export default class PciInstanceBackupController {
   /* @ngInject */
   constructor(
@@ -7,11 +9,16 @@ export default class PciInstanceBackupController {
     $translate,
     CucCloudMessage,
     PciProjectsProjectInstanceService,
+    atInternet,
+    coreConfig,
   ) {
     this.$filter = $filter;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
+    this.atInternet = atInternet;
+    this.FLAVORS_TYPE = FLAVORS_TYPE;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -26,6 +33,7 @@ export default class PciInstanceBackupController {
 
   createBackup() {
     this.isLoading = true;
+    this.trackBackupCreate();
     return this.PciProjectsProjectInstanceService.createBackup(
       this.projectId,
       this.instance,
@@ -56,5 +64,26 @@ export default class PciInstanceBackupController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  trackBackupCreate() {
+    this.atInternet.trackClick({
+      name: 'PublicCloud::pci::projects::project::instances::backup::confirm',
+      type: 'action',
+    });
+  }
+
+  formatPrice() {
+    const { price } = this.snapshotAvailability[this.instance.region].plans[0];
+
+    const { value, currencyCode } = price;
+    return `~${new Intl.NumberFormat(
+      this.coreConfig.getUserLocale().replace('_', '-'),
+      {
+        style: 'currency',
+        currency: currencyCode,
+        maximumFractionDigits: 3,
+      },
+    ).format(value * HOURS_PER_MONTH)}`;
   }
 }

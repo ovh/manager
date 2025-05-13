@@ -1,7 +1,0 @@
-{
-  "hubic_activation_total_error": "Tapahtui virhe latauksen aikana.",
-  "hubic_activation_widget-title": "hubiC-palvelun aktivointi",
-  "hubic_activation_widget-intro": "Jotta voit hyödyntää hubiC-palvelua pakettisi yhteydessä, sinulla on oltava hubiC-tili. Mikäli sinulla ei ole vielä tiliä, voit luoda sellaisen ilmaiseksi osoitteessa <a href=\"https://www.hubic.com\" target=\"new\">hubic.com</a>.<br /> Tämän jälkeen, mene seuraavalle sivulle aktivoimaan aktivointikoodit: <a href=\"https://hubic.com/home/gift/\" target=\"new\">hubic.com/home/gift/</a>.",
-  "hubic_activation_widget_hubic_header": "hubiC",
-  "hubic_activation_widget_voucher_header": "Käyttämätön koodi"
-}

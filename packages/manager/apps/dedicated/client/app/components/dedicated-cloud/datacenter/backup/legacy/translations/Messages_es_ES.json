@@ -1,0 +1,7 @@
+{
+  "dedicatedCloud_datacenter_backup_legacy_message_1": "La gama Veeam Backup se actualizó el {{ date }}.",
+  "dedicatedCloud_datacenter_backup_legacy_message_2": "Podrá elegir entre tres nuevos niveles para realizar el backup de sus máquinas virtuales (MV): <strong>Standard</strong>, <strong>Advanced</strong> y <strong>Premium</strong>.",
+  "dedicatedCloud_datacenter_backup_legacy_message_3": "¡Recuerde actualizar su solución de backup!",
+  "dedicatedCloud_datacenter_backup_legacy_message_link": "Consultar los detalles de los precios disponibles para Veeam Backup",
+  "dedicatedCloud_datacenter_backup_legacy_update_button": "Actualizar mi solución de backup"
+}

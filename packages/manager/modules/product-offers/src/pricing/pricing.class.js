@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-import moment from 'moment';
+import 'moment';
 
 import GenericPricingHelper from './generic-pricing.helper';
 

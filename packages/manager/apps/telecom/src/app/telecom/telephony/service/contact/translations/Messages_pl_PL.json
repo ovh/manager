@@ -58,5 +58,14 @@
   "telephony_service_contact_bulk_all_success": "La modification des coordonnées a bien été appliquée aux services sélectionnés.",
   "telephony_service_contact_bulk_some_success": "La modification des coordonnées a bien été appliquée à {{ count }} des services sélectionnés.",
   "telephony_service_contact_bulk_error": "La modification des coordonnées n'a pu être appliquée au(x) service(s) suivant(s) :",
-  "telephony_service_contact_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification des coordonnées."
+  "telephony_service_contact_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification des coordonnées.",
+  "telephony_service_contact_required_fields": "Pola oznaczone gwiazdką są obowiązkowe.",
+  "telephony_service_contact_tva": "Numer VAT",
+  "telephony_service_contact_tva_invalid": "Podany numer VAT jest nieprawidłowy",
+  "telephony_service_contact_sync_error": "Niemożliwa synchronizacja, sprawdź swoje dane.",
+  "telephony_service_contact_sync_na": "Nie dotyczy",
+  "telephony_service_contact_outwardcode": "Kod zewnętrzny",
+  "telephony_service_contact_inwardcode": "Kod wewnętrzny",
+  "telephony_service_contact_bad_outward": "Kod musi składać się z litery i od 1 do 3 znaków alfanumerycznych.",
+  "telephony_service_contact_bad_inward": "Kod musi składać się z cyfry i 2 znaków alfabetycznych."
 }

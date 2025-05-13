@@ -1,0 +1,6 @@
+{
+    "dedicatedCloud_configuration_security_policy_add_title": "Ajout d'une règle de sécurité",
+    "dedicatedCloud_configuration_security_policy_add_step1_question": "Entrez l'ip de la nouvelle règle de sécurité :",
+    "dedicatedCloud_configuration_security_policy_add_step1_description": "Description :",
+    "dedicatedCloud_configuration_security_policy_add_step2_question": "Vous allez ajouter l'ip <b>{{t0}}</b> comme nouvelle règle de sécurité"
+}

@@ -1,0 +1,8 @@
+{
+  "nutanix_redeploy_confirm_title": "Nuovo deploy del cluster",
+  "nutanix_redeploy_confirm_description": "Stai per eseguire un nuovo deploy dell'intero cluster.",
+  "nutanix_redeploy_confirm_warning": "Effettuare un nuovo deploy del cluster comporta l'eliminazione di tutti i dati presenti.",
+  "nutanix_redeploy_confirm_redeploy_label": "Inserisci \"REDEPLOY\" per confermare la tua scelta.",
+  "nutanix_redeploy_confirm_primary_button_label": "Conferma",
+  "nutanix_redeploy_confirm_secondary_button_label": "Annulla"
+}

@@ -1,0 +1,11 @@
+{
+  "pci_databases_pools_information_title": "Pool information",
+  "pci_databases_pools_information_database": "Database ",
+  "pci_databases_pools_information_port": "Port",
+  "pci_databases_pools_information_ssl_mode": "SSL mode",
+  "pci_databases_pools_information_certificate_ca": "CA certificate",
+  "pci_databases_pools_information_service_uri": "URI service",
+  "pci_databases_pools_information_pool_mode": "Mode",
+  "pci_databases_pools_information_pool_size": "Size",
+  "pci_databases_pools_information_certificate_ca_download": "Download the CA Certificate"
+}

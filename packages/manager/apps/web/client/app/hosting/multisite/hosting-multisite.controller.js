@@ -8,30 +8,61 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import union from 'lodash/union';
+import {
+  CDN_STATUS,
+  CDN_VERSION,
+  DIAGNOSTIC_BADGE_STATE,
+  DIAGNOSTIC_STATUS,
+  HOSTING_OFFER,
+  GIT_BADGES_STATUS,
+  GIT_STATUS_WITH_TOOLTIP,
+  GIT_STATUS,
+  HOSTING_TAB_DOMAINS,
+  RECORD_TYPE_TO_IP_TYPE,
+} from './hosting-multisite.constants';
+import { TRACKING_MULTISITE_PREFIX } from './git-integration/git-integration.constants';
 
 angular
   .module('App')
   .controller(
     'HostingTabDomainsCtrl',
     (
+      $http,
       $scope,
       $q,
+      $state,
       $stateParams,
       $location,
       $rootScope,
       $translate,
+      atInternet,
       Hosting,
       HOSTING,
+      HostingCdnSharedService,
       HOSTING_STATUS,
       HostingDomain,
       hostingSSLCertificate,
       hostingSSLCertificateType,
       Alerter,
     ) => {
+      atInternet.trackPage({ name: 'web::hosting::multisites' });
+
+      $scope.HOSTING_OFFER = HOSTING_OFFER;
+
+      $scope.goToCdnConfiguration = function goToCdnConfiguration(domain) {
+        $state.go('app.hosting.dashboard.multisite.cdnConfiguration', {
+          domain,
+        });
+      };
+
       $scope.domains = null;
+      $scope.HOSTING_TAB_DOMAINS = HOSTING_TAB_DOMAINS;
       $scope.sslLinked = [];
       $scope.HOSTING = HOSTING;
       $scope.HOSTING_STATUS = HOSTING_STATUS;
+      $scope.CDN_STATUS = CDN_STATUS;
+      $scope.CDN_VERSION = CDN_VERSION;
+      $scope.GIT_BADGES_STATUS = GIT_BADGES_STATUS;
       $scope.showGuidesStatus = false;
       $scope.search = {
         text: null,
@@ -44,16 +75,134 @@ angular
       };
 
       $scope.certificateTypes = hostingSSLCertificateType.constructor.getCertificateTypes();
+
+      HostingDomain.getZones()
+        .then((zones) => {
+          $scope.listZone = zones;
+        })
+        .catch(() => {
+          $scope.listZone = [];
+        });
+
+      function sendTrackClick(hit) {
+        atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
+      }
+
+      HostingDomain.websiteCreationCapabilities(
+        $scope.hosting.serviceName,
+      ).then(({ allowedWebsites, existingWebsites }) => {
+        $scope.allowedWebsites = allowedWebsites;
+        $scope.existingWebsites = existingWebsites;
+      });
+
+      $scope.wrapperZoneInfo = function wrapperZoneInfo(domainName) {
+        const rootDomain = domainName
+          .split('.')
+          .slice(-2)
+          .join('.');
+
+        return {
+          isOVHZone: $scope.listZone.includes(rootDomain),
+          zone: rootDomain,
+        };
+      };
+
+      $scope.wrapperDigStatus = function wrapperDigStatus({
+        records,
+        recommendedIps,
+      }) {
+        return Object.entries(records).reduce(
+          (acc, [key, { type }]) => ({
+            ...acc,
+            [type]: {
+              ip: key,
+              status: recommendedIps[
+                `recommended${RECORD_TYPE_TO_IP_TYPE[type]}`
+              ].includes(key),
+              recommendedIps:
+                recommendedIps[`recommended${RECORD_TYPE_TO_IP_TYPE[type]}`],
+            },
+          }),
+          {},
+        );
+      };
+
+      $scope.getDiagnosticBadge = function getDiagnosticBadge(
+        { digStatus },
+        recordType,
+      ) {
+        return DIAGNOSTIC_BADGE_STATE[
+          $scope.diagnosticStatus(digStatus[recordType]?.status)
+        ];
+      };
+
+      $scope.getDiagnosticTooltip = function getDiagnosticTooltip(
+        { digStatus },
+        recordType,
+      ) {
+        return $translate.instant(
+          `hosting_tab_DOMAINS_diagnostique_tooltip_${$scope.diagnosticStatus(
+            digStatus[recordType]?.status,
+          )}`,
+          {
+            domainName: digStatus.domain,
+            ip: digStatus[recordType]?.ip,
+          },
+        );
+      };
+
+      $scope.diagnosticStatus = (status) => {
+        if (typeof status === 'boolean') {
+          return status
+            ? DIAGNOSTIC_STATUS.GOOD_CONFIGURATION
+            : DIAGNOSTIC_STATUS.NOT_GOOD_CONFIGURATION;
+        }
+        return DIAGNOSTIC_STATUS.UNCONFIGURED;
+      };
+
+      $scope.openDiagnosticModal = function openDiagnosticModal(
+        { digStatus },
+        recordType,
+      ) {
+        return (
+          !digStatus[recordType]?.status &&
+          $scope.setAction('multisite/diagnostic/dialog', {
+            digStatus,
+            recordType,
+          })
+        );
+      };
+
+      $scope.isMainDomain = function isMainDomain(hosting, domain) {
+        return hosting.defaultAttachedDomain
+          ? domain.name === hosting.defaultAttachedDomain
+          : ['ovh.net', 'hosting.ovh.net']
+              .map(
+                (suffix) =>
+                  `${hosting.primaryLogin}.${hosting.cluster}.${suffix}`,
+              )
+              .some((mainDomain) => mainDomain === domain.name);
+      };
+
+      $scope.isUpdateDomainDisabled = function isUpdateDomainDisabled(
+        hosting,
+        domain,
+      ) {
+        return (
+          domain.status === HOSTING_STATUS.UPDATING ||
+          $scope.isMainDomain(hosting, domain)
+        );
+      };
+
       $scope.loadDomains = function loadDomains(count, offset) {
         $scope.loading.domains = true;
 
         if ($location.search().domain) {
           $scope.search.text = $location.search().domain;
         }
-
-        $scope.excludeAttachedDomains = [
-          $scope.hosting.cluster.replace(/^ftp/, $scope.hosting.primaryLogin),
-        ];
 
         return Hosting.getTabDomains(
           $stateParams.productId,
@@ -62,7 +211,18 @@ angular
           $scope.search.text,
         )
           .then((domains) => {
+            return HostingCdnSharedService.getSharedCDNDomains(
+              $scope.hosting.serviceName,
+            ).then(({ data: sharedDomains }) => {
+              return { domains, sharedDomains };
+            });
+          })
+          .then(({ domains, sharedDomains }) => {
             $scope.domains = domains;
+            $scope.activeDomains = $scope.domains.list.results.filter(
+              (domain) => domain.cdn === CDN_STATUS.ACTIVE,
+            );
+            $scope.sharedDomains = sharedDomains;
             $scope.hasResult = !isEmpty($scope.domains);
             $scope.domains.list.results.forEach((domain) => {
               if (domain.status === HOSTING_STATUS.UPDATING) {
@@ -74,10 +234,38 @@ angular
             });
           })
           .then(() =>
-            hostingSSLCertificate.retrievingLinkedDomains(
-              $stateParams.productId,
+            $q.all(
+              $scope.domains.list.results.map((domain) =>
+                $q
+                  .all([
+                    HostingDomain.getDigStatus(
+                      $stateParams.productId,
+                      domain.name,
+                    ),
+                    $scope.wrapperZoneInfo(domain.name),
+                  ])
+                  .then(([digStatus, zoneInfo]) => ({
+                    ...$scope.wrapperDigStatus(digStatus),
+                    domain: domain.name,
+                    ...zoneInfo,
+                  })),
+              ),
             ),
           )
+          .then((digStatus) => {
+            $scope.domains.list.results = $scope.domains.list.results.map(
+              (domain) => ({
+                ...domain,
+                digStatus: digStatus.find(
+                  ({ domain: digDomain }) => domain.name === digDomain,
+                ),
+              }),
+            );
+
+            return hostingSSLCertificate.retrievingLinkedDomains(
+              $stateParams.productId,
+            );
+          })
           .then((sslLinked) => {
             const linkedSSLs = isArray(sslLinked) ? sslLinked : [sslLinked];
 
@@ -100,7 +288,7 @@ angular
           .then(() => Hosting.getSelected($stateParams.productId))
           .then((hosting) => {
             $scope.hosting = hosting;
-            $scope.numberOfColumns = 5 + hosting.isCloudWeb + hosting.hasCdn;
+            $scope.numberOfColumns = 6 + hosting.isCloudWeb + hosting.hasCdn;
 
             if (hosting.isCloudWeb) {
               const promises = map(
@@ -152,7 +340,77 @@ angular
           });
       };
 
+      $scope.canEditCdn = function canEditCdn(domain) {
+        return (
+          domain.cdn === CDN_STATUS.ACTIVE &&
+          domain.status !== HOSTING_STATUS.CREATING &&
+          $scope.cdnProperties.version === 'cdn-hosting'
+        );
+      };
+
+      $scope.gitStatusTooltip = function gitStatusTooltip({ vcsStatus }) {
+        const allowedWebsites =
+          $scope.allowedWebsites === -1 ? 'unlimitedPath' : 'limitedPath';
+        return GIT_STATUS_WITH_TOOLTIP[allowedWebsites][vcsStatus]
+          ? $translate.instant(
+              `hosting_tab_DOMAINS_table_git_state_tooltip_${GIT_STATUS_WITH_TOOLTIP[allowedWebsites][vcsStatus]}`,
+            )
+          : '';
+      };
+
+      $scope.canAssociateGit = function canAssociateGit({ vcsStatus }) {
+        return (
+          ($scope.existingWebsites < $scope.allowedWebsites ||
+            $scope.allowedWebsites === -1 ||
+            vcsStatus === GIT_STATUS.initialError) &&
+          !$scope.canConfigureGit({ vcsStatus }) &&
+          vcsStatus !== GIT_STATUS.creating
+        );
+      };
+
+      $scope.canConfigureGit = function canConfigureGit({ vcsStatus }) {
+        return [
+          GIT_STATUS.created,
+          GIT_STATUS.error,
+          GIT_STATUS.deploying,
+        ].includes(vcsStatus);
+      };
+
+      $scope.canDeployGit = function canDeployGit({ vcsStatus }) {
+        return [GIT_STATUS.created, GIT_STATUS.error].includes(vcsStatus);
+      };
+
+      $scope.canViewLastDeploymentGit = function canViewLastDeploymentGit({
+        vcsStatus,
+      }) {
+        return [
+          GIT_STATUS.created,
+          GIT_STATUS.error,
+          GIT_STATUS.initialError,
+          GIT_STATUS.deploying,
+          GIT_STATUS.deleting,
+        ].includes(vcsStatus);
+      };
+
+      $scope.canDeleteGit = function canDeleteGit({ vcsStatus }) {
+        return [
+          GIT_STATUS.initialError,
+          GIT_STATUS.created,
+          GIT_STATUS.error,
+          GIT_STATUS.deploying,
+        ].includes(vcsStatus);
+      };
+
+      $scope.hasDoingGitAction = function hasDoingGitAction({ vcsStatus }) {
+        return [
+          GIT_STATUS.creating,
+          GIT_STATUS.deleting,
+          GIT_STATUS.deploying,
+        ].includes(vcsStatus);
+      };
+
       $scope.detachDomain = (domain) => {
+        sendTrackClick('web::hosting::multisites::detach-domain');
         $scope.setAction('multisite/delete/hosting-multisite-delete', domain);
       };
 
@@ -166,7 +424,45 @@ angular
         sslCertificate.status === HOSTING_STATUS.CREATING;
 
       $scope.modifyDomain = (domain) => {
+        sendTrackClick('web::hosting::multisites::modify-domain');
         $scope.setAction('multisite/update/hosting-multisite-update', domain);
+      };
+
+      $scope.goToRemoveRepository = (domain) => {
+        sendTrackClick(`${TRACKING_MULTISITE_PREFIX}::git-removal`);
+        $scope.$resolve.goToRemoveRepository(
+          $scope.hosting.serviceName,
+          domain.path,
+        );
+      };
+
+      $scope.goToAssociateRepository = (domain) => {
+        sendTrackClick(`${TRACKING_MULTISITE_PREFIX}::add-git`);
+        $scope.$resolve.goToAssociateRepository(
+          $scope.hosting.serviceName,
+          domain,
+        );
+      };
+
+      $scope.goToConfigureGit = (domain) =>
+        $scope.$resolve.goToConfigureGit($scope.hosting.serviceName, domain);
+
+      $scope.goToDeployWebSite = (domain) => {
+        sendTrackClick(`${TRACKING_MULTISITE_PREFIX}::git-deployment`);
+        return $scope.$resolve.goToDeployWebSite(
+          $scope.hosting.serviceName,
+          domain,
+        );
+      };
+
+      $scope.goToViewLastDeploy = (domain) => {
+        sendTrackClick(
+          `${TRACKING_MULTISITE_PREFIX}::git-view-last-deployment`,
+        );
+        return $scope.$resolve.goToViewLastDeploy(
+          $scope.hosting.serviceName,
+          domain,
+        );
       };
 
       $scope.restartDomain = (domain) =>
@@ -195,6 +491,30 @@ angular
               $scope.alerts.main,
             );
           });
+
+      $scope.activateDomain = (domain) => {
+        sendTrackClick('web::hosting::multisites::activate-domain');
+        $state.go('app.hosting.dashboard.cdn.shared', {
+          domain,
+          domainName: domain.domain,
+        });
+      };
+
+      $scope.settingCdnDomain = (domain) => {
+        sendTrackClick('web::hosting::multisites::modify-cdn');
+        $state.go('app.hosting.dashboard.cdn.shared', {
+          domain,
+          domainName: domain.domain,
+        });
+      };
+
+      $scope.goToFlushCdn = function goToFlushCdn(domain) {
+        sendTrackClick('web::hosting::multisites::purge-cdn');
+
+        $state.go('app.hosting.dashboard.multisite.cdn-flush', {
+          domain: domain.name,
+        });
+      };
 
       $scope.$on('hostingDomain.restart.done', (response, data) => {
         assign(find($scope.domains.list.results, { name: data.domain }), {
@@ -409,6 +729,10 @@ angular
       $scope.$on('$destroy', () => {
         HostingDomain.killAllPolling();
       });
+
+      $scope.resetAction = function resetAction() {
+        $scope.services.navigation.resetAction();
+      };
 
       startPolling();
     },

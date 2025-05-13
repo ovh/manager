@@ -3,6 +3,7 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'HostingUserLogsModifyCtrl',
   class HostingUserLogsModifyCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, Hosting) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -23,6 +24,7 @@ angular.module('App').controller(
       this.$scope.resetAction();
       return this.Hosting.modifyUserLogs(
         this.$stateParams.productId,
+        this.model.user.ownLogsId,
         this.model.user.login,
         this.model.user.description,
       )

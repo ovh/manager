@@ -9,6 +9,6 @@
   "telephony_billing_actions_billing_purchase_order_title": "Bon de commande",
   "telephony_billing_actions_billing_purchase_order_label": "Nº de bon de commande :",
   "telephony_billing_actions_billing_amount_order_label": "Montant :",
-  "telephony_billing_actions_billing_without_tax": ".",
+  "telephony_billing_actions_billing_without_tax": "HT",
   "telephony_billing_actions_billing_submit": "Commander"
 }

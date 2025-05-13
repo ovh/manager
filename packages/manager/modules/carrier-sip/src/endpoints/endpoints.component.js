@@ -2,7 +2,8 @@ import template from './endpoints.html';
 
 export default {
   bindings: {
-    endpoints: '<',
+    endpointIpList: '<',
+    endpointsWithIncomingCallsAllowed: '<',
   },
   name: 'carrierSipEndpoints',
   template,

@@ -7,7 +7,7 @@ export default class {
     $translate,
     $window,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     OvhApiCloudProjectRegion,
     OvhApiCloudProjectRegionWorkflowBackup,
     PciProjectsProjectInstanceService,
@@ -15,7 +15,7 @@ export default class {
     this.$translate = $translate;
     this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
     this.OvhApiCloudProjectRegionWorkflowBackup = OvhApiCloudProjectRegionWorkflowBackup;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
@@ -65,6 +65,7 @@ export default class {
     return this.PciProjectsProjectInstanceService.getSnapshotMonthlyPrice(
       this.projectId,
       this.workflow.resource,
+      this.catalogEndpoint,
     )
       .then((price) => {
         this.price = price;

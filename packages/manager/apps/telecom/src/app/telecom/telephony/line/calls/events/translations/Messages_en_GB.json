@@ -1,6 +1,6 @@
 {
-  "telephony_line_calls_events_title": "Gérer les fermetures exceptionnelles",
-  "telephony_line_calls_events_info": "Le calendrier vous permet de définir des plages de fermeture de votre entreprise.",
-  "telephony_line_calls_events_warning": "Attention, les créneaux définis ne seront appliqués qu'après activation de vos plages horaires.",
-  "telephony_line_calls_events_load_error": "Oups ! Une erreur est survenue lors du chargement des fermetures exceptionnelles."
+  "telephony_line_calls_events_title": "Manage exceptional closures",
+  "telephony_line_calls_events_info": "The calendar allows you to set closing times for your company.",
+  "telephony_line_calls_events_warning": "Please note that the slots will only be set after you have activated your time conditions.",
+  "telephony_line_calls_events_load_error": "Oops! An error occurred while loading the exceptional closing times."
 }

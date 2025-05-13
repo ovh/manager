@@ -1,0 +1,93 @@
+<div class="telecom-pack-hostedEmail-add">
+    <oui-back-button state="telecom.packs.pack"></oui-back-button>
+    <oui-header heading="{{:: 'hosted_email_add_an_account' | translate }}">
+    </oui-header>
+
+    <div class="row widget-presentation">
+        <div class="col-md-6">
+            <h2
+                class="widget-presentation-title"
+                data-translate="account_informations"
+            ></h2>
+
+            <span data-translate="all_fields_are_required"></span>
+
+            <form name="accountForm" data-ng-submit="ctrl.add()">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-12 input-select">
+                            <div>
+                                <label
+                                    class="control-label"
+                                    data-translate="account_name"
+                                ></label>
+                                <div class="row">
+                                    <div class="col-xs-10">
+                                        <div class="input-select-container">
+                                            <div class="input-group">
+                                                <input
+                                                    name="accountName"
+                                                    class="form-control"
+                                                    data-ng-model="ctrl.account.name"
+                                                    pattern=".{5,}"
+                                                    title="{{ 'title_min_size' | translate }}"
+                                                    required
+                                                    maxlength="50"
+                                                    placeholder="{{ 'account_name' | translate }}"
+                                                />
+                                                <span class="input-group-addon"
+                                                    >@</span
+                                                >
+                                                <select
+                                                    name="accountDomain"
+                                                    class="form-control"
+                                                    data-ng-model="ctrl.account.domain"
+                                                    data-ng-options="item.value as item.label for item in ctrl.availablesDomains"
+                                                    required
+                                                >
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <h5
+                                            data-ng-show="accountForm.accountName.$dirty
+                                                        && accountForm.accountName.$valid
+                                                        && accountForm.accountDomain.$dirty
+                                                        && accountForm.accountDomain.$valid"
+                                            class="ovh-font ovh-font-success text-success"
+                                            aria-hidden="true"
+                                        ></h5>
+                                        <h5
+                                            data-ng-show="(accountForm.accountName.$dirty
+                                                        && accountForm.accountName.$invalid)
+                                                        || (accountForm.accountName.$dirty
+                                                        &&  accountForm.accountDomain.$invalid)"
+                                            class="ovh-font ovh-font-failure text-danger"
+                                            aria-hidden="true"
+                                        ></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    data-tuc-ovh-password
+                    data-ovh-pwd="ctrl.account.password"
+                    data-ovh-pwd-confirm="ctrl.account.passwordConfirmation"
+                ></div>
+                <div class="form-group mt-4">
+                    <button
+                        class="btn btn-primary"
+                        type="submit"
+                        id="submit"
+                        data-ng-disabled="ctrl.pendingOrder"
+                        data-translate="submit"
+                    ></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

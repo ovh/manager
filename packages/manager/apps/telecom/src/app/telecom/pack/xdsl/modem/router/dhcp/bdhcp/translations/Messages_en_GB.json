@@ -1,16 +1,16 @@
 {
-  "xdsl_modem_bdhcp_title": "Baux DHCP",
-  "xdsl_modem_bdhcp_description": "L'adresse MAC permet d'identifier de manière unique un équipement sur le réseau (LAN et Internet). Les baux DHCP servent à assigner une adresse IP fixe à un équipement grâce à cette adresse MAC. Ces baux sont principalements utilisés si vous hébergez des services (serveur web, SSH, etc) et que vous souhaitez les contacter depuis l'extérieur, via des redirections de port (que vous pourrez configurer en parallèle).",
+  "xdsl_modem_bdhcp_title": "DHCP leases",
+  "xdsl_modem_bdhcp_description": "The MAC address is used to uniquely identify devices in the network (LAN and Internet). DHCP leases are used to assign a fixed IP address to a device through this MAC address. These leases are mainly used if you host services (web server, SSH, etc.) and you want to contact them from an external source via port forwarding rules (which you can configure in parallel).",
   "xdsl_modem_bdhcp_name": "Name",
   "xdsl_modem_bdhcp_ip": "IP address",
   "xdsl_modem_bdhcp_mac": "MAC address",
-  "xdsl_modem_bdhcp_ip_tooltip": "L'adresse IP doit appartenir à l'intervalle 192.168.1.64 à 192.168.1.253",
-  "xdsl_modem_bdhcp_delete_really": "Êtes-vous sûr(e) de vouloir supprimer le bail <strong>{{ name }}</strong> ?",
-  "xdsl_modem_bdhcp_add": "Ajouter un Bail",
-  "xdsl_modem_bdhcp_placeholder_name": "Nom du Bail",
-  "xdsl_modem_bdhcp_edit_success": "Le bail <strong>{{ name }}</strong> a été mis à jour.",
-  "xdsl_modem_bdhcp_del_success": "Le bail <strong>{{ name }}</strong> a été supprimé.",
-  "xdsl_modem_bdhcp_add_error": "Oups ! Nous n'avons pas pu ajouter le bail <strong>{{ name }}</strong>.",
-  "xdsl_modem_bdhcp_edit_error": "Oups ! Nous n'avons pas pu mettre à jour le bail <strong>{{ name }}</strong>.",
-  "xdsl_modem_bdhcp_del_error": "Oups ! Nous n'avons pas pu supprimer le bail <strong>{{ name }}</strong>."
+  "xdsl_modem_bdhcp_ip_tooltip": "The IP address must be within the range of 192.168.1.64 to 192.168.1.253",
+  "xdsl_modem_bdhcp_delete_really": "Are you sure you want to delete the lease <strong>{{ name }}</strong>?",
+  "xdsl_modem_bdhcp_add": "Add a lease",
+  "xdsl_modem_bdhcp_placeholder_name": "Lease name",
+  "xdsl_modem_bdhcp_edit_success": "The lease <strong>{{ name }}</strong> has been updated.",
+  "xdsl_modem_bdhcp_del_success": "The lease <strong>{{ name }}</strong> has been deleted.",
+  "xdsl_modem_bdhcp_add_error": "Oops! Unable to add lease <strong>{{ name }}</strong>.",
+  "xdsl_modem_bdhcp_edit_error": "Oops! Unable to update lease <strong>{{ name }}</strong>.",
+  "xdsl_modem_bdhcp_del_error": "Oops! Unable to delete lease <strong>{{ name }}</strong>."
 }

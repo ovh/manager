@@ -2,7 +2,7 @@
 @ovh-progress-bar-gutter: 3%;
 
 .ovh-progress {
-  color: @oui-color-primary;
+  color: @p-500;
   position: relative;
 
   .progress {
@@ -10,16 +10,14 @@
     min-height: unit(@ovh-progress-bar-height, px);
 
     .progress-bar {
-      background-color: @oui-color-jungle;
-      border-right: 1px solid lighten(@oui-color-jungle, 3%);
+      background-color: #27b9a2;
+      border-right: 1px solid lighten(#27b9a2, 3%);
       box-shadow: none;
       min-height: unit(@ovh-progress-bar-height, px);
 
       &::after {
         border-bottom: unit(@ovh-progress-bar-height / 2, px) solid transparent;
-        border-left:
-          unit(@ovh-progress-bar-height / 2, px) solid
-          @oui-color-jungle;
+        border-left: unit(@ovh-progress-bar-height / 2, px) solid #27b9a2;
         border-top: unit(@ovh-progress-bar-height / 2, px) solid transparent;
         content: '';
         display: block;
@@ -65,23 +63,18 @@
         &:first-child,
         &.active {
           &::after {
-            border-left:
-              unit(@ovh-progress-bar-height / 10, px) solid
+            border-left: unit(@ovh-progress-bar-height / 10, px) solid
               transparent;
-            border-right:
-              unit(@ovh-progress-bar-height / 10, px) solid
+            border-right: unit(@ovh-progress-bar-height / 10, px) solid
               transparent;
-            border-top:
-              unit(@ovh-progress-bar-height / 10, px) solid
-              @oui-color-jungle;
+            border-top: unit(@ovh-progress-bar-height / 10, px) solid #27b9a2;
             content: '';
             display: block;
             height: 0;
-            left:
-              unit(
-                (@ovh-progress-bar-height / 4) - (@ovh-progress-bar-height / 10),
-                px
-              );
+            left: unit(
+              (@ovh-progress-bar-height / 4) - (@ovh-progress-bar-height / 10),
+              px
+            );
             position: absolute;
             top: unit(@ovh-progress-bar-height, px);
             width: 0;
@@ -90,21 +83,20 @@
 
         &.active {
           &::after {
-            left:
-              unit(
-                (@ovh-progress-bar-height / 4) - (@ovh-progress-bar-height / 10) +
+            left: unit(
+              (@ovh-progress-bar-height / 4) - (@ovh-progress-bar-height / 10) +
                 2,
-                px
-              );
+              px
+            );
           }
 
           &::before {
-            border: 2px solid @oui-color-primary;
+            border: 2px solid @p-500;
             top: unit((@ovh-progress-bar-height / 4) - 2, px);
           }
 
           & ~ li::before {
-            background-color: @oui-color-silver;
+            background-color: #bbbdbf;
           }
         }
 

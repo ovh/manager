@@ -1,0 +1,19 @@
+{
+  "cloud_connect_tasks_decription": "Zadania oczekujące, w trakcie i nieukończone z powodu błędu.",
+  "cloud_connect_tasks_id": "ID zadania",
+  "cloud_connect_tasks_action": "Operacja",
+  "cloud_connect_tasks_lockInterface": "Interfejs blokowania",
+  "cloud_connect_tasks_unlockInterface": "Odblokuj interfejs",
+  "cloud_connect_tasks_addPopConfiguration": "Dodaj konfigurację PoP",
+  "cloud_connect_tasks_delPopConfiguration": "Usuń konfigurację PoP",
+  "cloud_connect_tasks_addDatacenterConfiguration": "Dodaj konfigurację strefy dostępności.",
+  "cloud_connect_tasks_delDatacenterConfiguration": "Usuń konfigurację strefy dostępności",
+  "cloud_connect_tasks_addDatacenterExtraConfiguration": "Wprowadź dodatkową konfigurację do stref dostępności",
+  "cloud_connect_tasks_delDatacenterExtraConfiguration": "Usuń dodatkową konfigurację ze strefy dostępności",
+  "cloud_connect_tasks_status_todo": "Zaplanowane",
+  "cloud_connect_tasks_status_doing": "W realizacji",
+  "cloud_connect_tasks_status_done": "Zakończone",
+  "cloud_connect_tasks_status_error": "Błąd",
+  "cloud_connect_tasks_status": "Status",
+  "cloud_connect_tasks": "Zadania"
+}

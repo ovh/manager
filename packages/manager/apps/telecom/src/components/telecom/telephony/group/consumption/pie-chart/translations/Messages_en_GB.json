@@ -1,9 +1,9 @@
 {
-  "telephony_group_consumption_pie_chart_incoming_labels": "Entrants",
+  "telephony_group_consumption_pie_chart_incoming_labels": "Incoming",
   "telephony_group_consumption_pie_chart_incoming_label": "Incoming",
-  "telephony_group_consumption_pie_chart_outgoing_labels": "Sortants",
+  "telephony_group_consumption_pie_chart_outgoing_labels": "Outgoing",
   "telephony_group_consumption_pie_chart_outgoing_label": "Outgoing",
-  "telephony_group_consumption_pie_chart_transfer_labels": "Transferred",
-  "telephony_group_consumption_pie_chart_transfer_label": "Transferred",
+  "telephony_group_consumption_pie_chart_transfer_labels": "Forwarded",
+  "telephony_group_consumption_pie_chart_transfer_label": "Forwarded",
   "telephony_group_consumption_pie_chart_total_label": "Total"
 }

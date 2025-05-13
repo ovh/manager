@@ -1,0 +1,7 @@
+{
+  "cloud_connect_service_key_active_send": "Envoyer la clé de service active",
+  "cloud_connect_service_email": "Email",
+  "cloud_connect_email_placeholder": "Entrer l'adresse e-mail",
+  "cloud_connect_service_key_send_error": "Échec de l'envoi d'une clé de service: {{message}}",
+  "cloud_connect_service_key_send_success": "Email envoyé"
+}

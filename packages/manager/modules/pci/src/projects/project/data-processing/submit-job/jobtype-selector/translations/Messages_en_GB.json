@@ -1,3 +1,0 @@
-{
-  "data_processing_submit_job_spark_description": "Submit a Apache Spark job using either Java/Scala JAR package or Python code using Conda requirements."
-}

@@ -1,9 +1,12 @@
 import clone from 'lodash/clone';
 import get from 'lodash/get';
 
+import { OFFERS_UNELIGIBLE_FOR_MODULE } from '../hosting.constants';
+
 angular.module('App').controller(
   'HostingTabModulesController',
   class HostingTabModulesController {
+    /* @ngInject */
     constructor(
       $scope,
       $state,
@@ -11,9 +14,10 @@ angular.module('App').controller(
       $translate,
       $window,
       Alerter,
+      atInternet,
       Hosting,
       HostingModule,
-      User,
+      WucUser,
     ) {
       this.$scope = $scope;
       this.$state = $state;
@@ -21,12 +25,15 @@ angular.module('App').controller(
       this.$translate = $translate;
       this.$window = $window;
       this.Alerter = Alerter;
+      this.atInternet = atInternet;
       this.Hosting = Hosting;
       this.HostingModule = HostingModule;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
+      this.atInternet.trackPage({ name: 'web::hosting::module-1-click' });
+
       this.$scope.$on('hosting.tabs.modules.refresh', () => {
         this.getModules(true);
       });
@@ -45,12 +52,13 @@ angular.module('App').controller(
           );
         });
 
-      this.User.getUrlOf('guides').then((guides) => {
+      this.WucUser.getUrlOf('guides').then((guides) => {
         if (guides && guides.hostingModule) {
           this.guide = guides.hostingModule;
         }
       });
 
+      // No need to be done if offer is uneligible
       this.getModules();
     }
 
@@ -96,6 +104,10 @@ angular.module('App').controller(
 
     goToHref(href, target = '_blank') {
       this.$window.open(href, target);
+    }
+
+    static isOfferUneligible(offer) {
+      return OFFERS_UNELIGIBLE_FOR_MODULE.includes(offer);
     }
   },
 );

@@ -1,0 +1,8 @@
+{
+  "netapp_network_delete_title": "Service Endpoint löschen",
+  "netapp_network_delete_description": "Sie sind im Begriff, den Service Endpoint zu löschen, dem Sie einen Dienst zugeordnet haben. Möchten Sie ihn trotzdem löschen?",
+  "netapp_network_delete_terminate": "Bitte geben Sie das Wort „TERMINATE“ ein, um Ihren Service Endpoint zu löschen.",
+  "netapp_network_delete_cancel": "Abbrechen",
+  "netapp_network_delete_confirm": "Löschen",
+  "netapp_network_delete_success_message": "Ihr Service Endpoint wird gelöscht."
+}

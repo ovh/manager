@@ -1,0 +1,47 @@
+<div class="widget-presentation">
+    <h2
+        class="widget-presentation-title"
+        data-translate="pack_move_ont_shipping_title"
+    ></h2>
+
+    <p data-translate="pack_move_ont_shipping_explain"></p>
+
+    <!-- LOADER -->
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.loading.init" class="row">
+        <!-- CONTACT CHOICE -->
+        <div class="col-xs-12 col-md-6">
+            <h3
+                data-translate="pack_move_ont_shipping_contact"
+                class="mb-3 mt-5"
+            ></h3>
+
+            <ovh-contact
+                data-ng-model="$ctrl.ontShipping.address"
+                data-ovh-contact-choice-options="$ctrl.ovhContactOptions"
+            >
+                <oui-spinner></oui-spinner>
+            </ovh-contact>
+        </div>
+        <!-- CONTACT CHOICE -->
+    </div>
+
+    <div class="mt-5" data-ng-if="!$ctrl.loading.init">
+        <a
+            class="oui-button oui-button_secondary"
+            data-translate="pack_move_confirm_cancel_button"
+            data-ui-sref="telecom.packs.pack"
+        >
+        </a>
+        <button
+            type="button"
+            class="oui-button oui-button_primary"
+            data-ng-disabled="!$ctrl.ontShipping.address"
+            data-translate="pack_move_ont_shipping_confirm"
+            data-ng-click="$ctrl.next()"
+        ></button>
+    </div>
+</div>

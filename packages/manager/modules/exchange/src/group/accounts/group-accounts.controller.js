@@ -9,21 +9,21 @@ export default class ExchangeGroupAccountsCtrl {
   constructor(
     $scope,
     $translate,
-    Exchange,
+    wucExchange,
     messaging,
     navigation,
     ouiDatagridService,
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       messaging,
       navigation,
       $translate,
       ouiDatagridService,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.timeout = null;
     this.selectedGroup = navigation.currentActionData;
@@ -122,10 +122,11 @@ export default class ExchangeGroupAccountsCtrl {
 
   fetchAccountCreationOptions() {
     this.loadingDomains = true;
-    return this.services.Exchange.fetchingAccountCreationOptions(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-    )
+    return this.services.wucExchange
+      .fetchingAccountCreationOptions(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+      )
       .then((accountCreationOptions) => {
         this.availableDomains = [
           this.allDomainsOption,
@@ -157,14 +158,15 @@ export default class ExchangeGroupAccountsCtrl {
       this.selectedDomain = this.allDomainsOption;
     }
     const filter = get(search, 'value') || get(this.selectedDomain, 'name');
-    return this.services.Exchange.getAccountsByGroup(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.selectedGroup.mailingListAddress,
-      pageSize,
-      offset - 1,
-      filter,
-    )
+    return this.services.wucExchange
+      .getAccountsByGroup(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.selectedGroup.mailingListAddress,
+        pageSize,
+        offset - 1,
+        filter,
+      )
       .then((accounts) => {
         this.accountsListBuffer = accounts;
         this.accountsList = angular.copy(accounts);
@@ -193,12 +195,13 @@ export default class ExchangeGroupAccountsCtrl {
       this.services.$translate.instant('exchange_dashboard_action_doing'),
     );
 
-    this.services.Exchange.updateGroups(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.selectedGroup.mailingListAddress,
-      this.model,
-    )
+    this.services.wucExchange
+      .updateGroups(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.selectedGroup.mailingListAddress,
+        this.model,
+      )
       .then((data) => {
         const addGroupMessages = {
           OK: this.services.$translate.instant(

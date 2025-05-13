@@ -1,7 +1,7 @@
 {
   "privatesql_activation_back": "Volver",
   "privatesql_activation_order": "Activar",
-  "privatesql_activation_step_1": "Activar una base de datos SQL privada",
+  "privatesql_activation_step_1": "Activar una base de datos Web Cloud Databases",
   "privatesql_activation_step_2": "Confirmación",
   "privatesql_activation_hosting_select": "Alojamiento a utilizar",
   "privatesql_activation_hosting_error": "Se ha producido un error al cargar las opciones.",
@@ -27,7 +27,8 @@
   "privatesql_activation_version_v_redis_32": "Redis 3.2",
   "privatesql_activation_version_v_mongodb_40": "MongoDB 4.0",
   "privatesql_activation_version_v_redis_40": "Redis 4.0",
-  "privatesql_activation_option_private-sql-512": "SQL Privado 512 MB",
+  "privatesql_activation_option_private-sql": "SQL Privado {{diskSpace}} MB",
   "privatesql_activation_success": "La base de datos se ha activado correctamente. Consultar <a href=\"{{ billUrl }}\" target=\"_blank\" rel=\"noopener\">mi factura</a>.",
-  "privatesql_activation_success_bc": "La <a href=\"{{ bcUrl }}\" target=\"_blank\" rel=\"noopener\">orden de pedido</a> se ha generado correctamente. Por favor, abone la orden de pedido para poder activar la base de datos."
+  "privatesql_activation_success_bc": "La <a href=\"{{ bcUrl }}\" target=\"_blank\" rel=\"noopener\">orden de pedido</a> se ha generado correctamente. Por favor, abone la orden de pedido para poder activar la base de datos.",
+  "privatesql_activation_breadcrumb": "Activar"
 }

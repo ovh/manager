@@ -1,0 +1,14 @@
+{
+  "billing_autorenew_disable_title": "Disable automatic renewal for the services selected",
+  "billing_autorenew_disable_description": "You wanted to disable manual renewal for the services selected.",
+  "billing_autorenew_disable_warning": "With this renewal method, your service will not be renewed automatically when it reaches its expiry date. You will be sent several email notifications in the weeks and days before the expiry date, and they will alert you regarding the expiry.",
+  "billing_autorenew_disable_renew": "You will simply need to renew your service if you want to keep using it.",
+  "billing_autorenew_disable_data": "Please note that once the service expires, it will be immediately suspended. It will no longer be accessible, and the data associated with the service will be permanently deleted within a few days if we do not receive any payment.",
+  "billing_autorenew_disable_bulk_unavailable": "Automatic renewal will be disabled for all of the services selected, excluding {{ count }} services:",
+  "billing_autorenew_disable_success": "The service renewals have been updated",
+  "billing_autorenew_disable_error": "An error has occurred disabling automatic renewal {{ message }}",
+  "billing_autorenew_disable_bulk_unavailable_one": "Automatic renewal will be disabled for all of the services selected, excluding 1 service:",
+  "billing_autorenew_disable_bulk": "Automatic renewal will be disabled for all of the services selected.",
+  "billing_autorenew_disable_bulk_single": "Automatic renewal for the {{ serviceName }} service will be disabled.",
+  "billing_autorenew_disable_breadcrumb": "Disable automatic renewal"
+}

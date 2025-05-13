@@ -1,0 +1,15 @@
+{
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_title": "Modify retention period",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_description": "You are about to change the retention period for your {{ containerName }} container.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_description_2": "By configuring a retention period, your archive will be locked and you will no longer be able to delete your data during the entire retention period.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_submit_label": "Modify",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_cancel_label": "Cancel",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_success_message": "The retention period for the {{ containerName }} container has been modified.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_error_message": "An error has occurred modifying the retention period for the {{ containerName }} container: {{ message }}.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_has_retention": "Schedule a retention period",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_days": "Add the number of retention days",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_help": "Your new retention period will end on <strong> {{ date }}</strong> .",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_help_2": "You can only delete your data once this date has passed.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_wartning_help": "The new retention duration is invalid because the new retention end date is less than or equal to the one already scheduled.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_value_wartning": "Add the number of retention days (minimum 1 day, maximum 4,500 days)"
+}

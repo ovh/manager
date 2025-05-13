@@ -11,12 +11,12 @@ import { IMAGE_ASSETS } from './images.constants';
 export default class ImagesListController {
   /* @ngInject */
   constructor(
-    // $translate,
+    $q,
     OvhApiCloudProjectImage,
     OvhApiCloudProjectSnapshot,
     PciProjectImages,
   ) {
-    // this.$translate = $translate;
+    this.$q = $q;
     this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
     this.OvhApiCloudProjectSnapshot = OvhApiCloudProjectSnapshot;
     this.PciProjectImages = PciProjectImages;
@@ -28,23 +28,32 @@ export default class ImagesListController {
     this.distribution = null;
     this.image = null;
 
-    this.showOnlyAvailable = false;
+    this.showNonAvailable = false;
 
     this.isLoading = true;
 
-    return Promise.all([this.getImages(), this.getSnapshots()])
+    return this.$q
+      .all([this.getImages(), this.getSnapshots()])
       .then(() => this.findDefaultImage())
       .finally(() => {
         this.isLoading = false;
       });
   }
 
+  $onChanges({ osTypes }) {
+    if (osTypes && this.images?.length) {
+      this.updateImages(this.images);
+    }
+  }
+
   getImages() {
-    return this.PciProjectImages.getImages(this.serviceName).then((images) => {
-      this.images = images;
-      this.updateImages(images);
-      return images;
-    });
+    return this.PciProjectImages.getImages(this.serviceName, this.region).then(
+      (images) => {
+        this.images = images;
+        this.updateImages(images);
+        return images;
+      },
+    );
   }
 
   updateImages(images) {
@@ -63,37 +72,79 @@ export default class ImagesListController {
       {},
     );
     this.apps = appImages;
+    this.unavailableAppsPresent = some(
+      appImages,
+      (app) => !this.isCompatible(app),
+    );
 
     this.selectedTab = first(keys(this.os));
+    this.getFilteredImages();
+  }
+
+  getFilteredImages() {
+    this.availableImages = {};
+    this.unavailableImages = {};
+
+    Object.entries(this.os).forEach(([imageType, distributions]) => {
+      // remove the prefix "baremetal-" if it exists to merge the 2 types
+      const formatedType = this.PciProjectImages.removeBaremetalPrefix(
+        imageType,
+      );
+
+      if (!this.availableImages[formatedType]) {
+        this.availableImages[formatedType] = {};
+        this.unavailableImages[formatedType] = {};
+      }
+
+      Object.entries(distributions).forEach(([distribution, images]) => {
+        [
+          this.availableImages[formatedType][distribution],
+          this.unavailableImages[formatedType][distribution],
+        ] = partition(images, (image) => this.isCompatible(image));
+      });
+    });
+  }
+
+  static hasImages(distributions) {
+    return some(distributions, (images) => images.length);
   }
 
   getSnapshots() {
     return this.PciProjectImages.getSnapshots(this.serviceName).then(
       (snapshots) => {
         this.snapshots = snapshots;
+        this.unavailableSnapshotsPresent = some(
+          snapshots,
+          (snapshot) => !this.isCompatible(snapshot),
+        );
       },
     );
   }
 
   findDefaultImage() {
     if (this.defaultImageId) {
-      find(this.os, (osList, osType) => {
-        find(osList, (osSubList, osName) => {
-          find(osSubList, (os) => {
-            const region = find(os.regions, {
-              region: this.region,
-              id: this.defaultImageId,
-            });
-            if (region) {
-              this.selectedTab = osType;
-              this.distribution = osName;
-              this.image = os;
+      // To cover case where image is deprecated
+      if (this.instance.isDeprecatedImage()) {
+        this.selectedTab = this.instance.image.type;
+      } else {
+        find(this.os, (osList, osType) => {
+          find(osList, (osSubList, osName) => {
+            find(osSubList, (os) => {
+              const region = find(os.regions, {
+                region: this.region,
+                id: this.defaultImageId,
+              });
+              if (region) {
+                this.selectedTab = osType;
+                this.distribution = osName;
+                this.image = os;
 
-              this.onImageChange(os);
-            }
+                this.onImageChange(os);
+              }
+            });
           });
         });
-      });
+      }
 
       if (!this.image) {
         find(this.apps, (app) => {
@@ -125,25 +176,21 @@ export default class ImagesListController {
     }
   }
 
-  changeDistribution(distribution, images) {
-    if (images.length === 1) {
-      [this.image] = images;
-    } else {
-      this.image = null;
-    }
-    this.selectedImage = this.image;
-    if (this.onChange) {
-      this.onChange({ image: this.selectedImage });
-    }
-  }
-
-  changeImageType() {
+  changeImageType(imageType) {
     this.imagesFromDistribution = [];
+    this.onTabChange({ tab: imageType });
   }
 
-  onImageChange(image) {
-    if (image.isApp() || image.isBackup()) {
-      this.distribution = null;
+  onImageChange(image, distribution) {
+    if (distribution) {
+      this.distribution = distribution;
+    }
+    this.isImageCompatible = false;
+    if (image) {
+      if (image.isApp() || image.isBackup()) {
+        this.distribution = null;
+      }
+      this.isImageCompatible = this.isCompatible(image);
     }
     this.selectedImage = image;
     if (this.onChange) {
@@ -157,9 +204,5 @@ export default class ImagesListController {
       image.isCompatibleWithFlavor(this.flavorType) &&
       image.isCompatibleWithOsTypes(this.osTypes)
     );
-  }
-
-  isDistributionCompatible(images) {
-    return some(images, (image) => this.isCompatible(image));
   }
 }

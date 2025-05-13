@@ -1,0 +1,11 @@
+{
+  "cpbc_volume_location": "Standort",
+  "cpbc_volume_type": "Typ",
+  "cpbc_volume_size": "Aktueller Festplattenspeicher",
+  "cpbc_volume_state": "Status",
+  "cpbc_server_details_popover_region": "Standort",
+  "cpbc_server_details_popover_image_type": "Typ",
+  "cpbc_server_details_popover_vm_type": "Servertyp",
+  "cpbc_server_details_popover_imagetype_linux": "Linux",
+  "cpbc_server_details_popover_imagetype_windows": "Windows"
+}

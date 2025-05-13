@@ -1,130 +1,155 @@
-import head from 'lodash/head';
+import ChartDatasourcePrometheusPlugin from 'chartjs-plugin-datasource-prometheus';
 import keys from 'lodash/keys';
+import head from 'lodash/head';
 import reduce from 'lodash/reduce';
-import values from 'lodash/values';
 
 export default class IpLoadBalancerGraphCtrl {
   /* @ngInject */
   constructor(
+    $http,
     $stateParams,
-    CucControllerHelper,
+    ChartFactory,
     IpLoadBalancerConstant,
     IpLoadBalancerMetricsService,
   ) {
+    this.$http = $http;
     this.$stateParams = $stateParams;
-    this.CucControllerHelper = CucControllerHelper;
+    this.ChartFactory = ChartFactory;
     this.IpLoadBalancerConstant = IpLoadBalancerConstant;
     this.IpLoadBalancerMetricsService = IpLoadBalancerMetricsService;
+    this.charts = {};
+    this.serviceName = this.$stateParams.serviceName;
   }
 
   $onInit() {
-    this.connLoader = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.getData('conn'),
+    return this.loadScales().then(() => {
+      this.initGraph();
     });
-    this.reqmLoader = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.getData('reqm'),
-    });
-    this.offerLoader = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.IpLoadBalancerMetricsService.getService(
-          this.$stateParams.serviceName,
-        ),
-    });
-
-    this.initGraph();
-    this.loadGraphs();
   }
 
   initGraph() {
-    this.data = {};
-    this.metricsList = this.IpLoadBalancerConstant.graphs;
-    this.options = {
-      scales: {
-        xAxes: [
-          {
-            gridLines: {
-              display: false,
-            },
-          },
-        ],
-        yAxes: [
-          {
-            id: 'y-axe',
-            type: 'linear',
-            ticks: {
-              min: 0,
-              beginAtZero: true,
-            },
-          },
-        ],
-      },
-      elements: {
-        line: {
-          fill: 'bottom',
-          backgroundColor: '#59d2ef',
-          borderColor: '#00a2bf',
-          borderWidth: 4,
-        },
-        point: {
-          radius: 0,
-        },
-      },
+    this.loadingGraph = true;
+    const titles = {
+      conn: 'iplb_graph_connections_title',
+      reqm: 'iplb_graph_rqpersec_title',
     };
+    const queries = {
+      conn: `sum(rate(haproxy_process_connections_total{servicename="${
+        this.serviceName
+      }"}[${this.scales[this.scale].rateInterval}])) `,
+      reqm: `sum(rate(haproxy_process_requests_total{servicename="${
+        this.serviceName
+      }"}[${this.scales[this.scale].rateInterval}])) `,
+    };
+
+    return this.$http
+      .get(`/ipLoadbalancing/${this.serviceName}/metricsToken`)
+      .then((data) => {
+        const { endpoint, token } = data.data;
+        const backgroundColor = '#59d2ef';
+        const borderColor = '#3DD1F0';
+
+        this.IpLoadBalancerConstant.graphs.forEach((g) => {
+          this.charts[g] = {
+            title: titles[g],
+            config: new this.ChartFactory({
+              type: 'line',
+              plugins: [ChartDatasourcePrometheusPlugin],
+              options: {
+                animation: {
+                  duration: 0,
+                },
+                responsive: true,
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                  'datasource-prometheus': {
+                    borderWidth: 4,
+                    fill: true,
+                    findInBackgroundColorMap: () => backgroundColor,
+                    findInBorderColorMap: () => borderColor,
+                    tension: 0.5,
+                    query: (start, end, step) => {
+                      const url = `${endpoint}/prometheus/api/v1/query_range?query=${
+                        queries[g]
+                      }&start=${start.toISOString()}&end=${end.toISOString()}&step=${step}`;
+
+                      const headers = {
+                        authorization: `bearer ${token}`,
+                        'content-type': 'application/x-www-form-urlencoded',
+                      };
+
+                      return fetch(url, { headers })
+                        .then((response) => {
+                          if (response.ok) {
+                            return response.json();
+                          }
+
+                          return null;
+                        })
+                        .then((response) => response.data);
+                    },
+                    timeRange: {
+                      type: 'relative',
+                      start: this.scales[this.scale].timeRange,
+                      end: 0,
+                      step: this.scales[this.scale].step,
+                    },
+                  },
+                },
+                scales: {
+                  x: {
+                    grid: {
+                      display: false,
+                    },
+                  },
+                  y: {
+                    beginAtZero: true,
+                    ticks: {
+                      min: 0,
+                      minStep: 1,
+                    },
+                  },
+                },
+                elements: {
+                  point: {
+                    radius: 0,
+                  },
+                },
+              },
+            }),
+          };
+        });
+      })
+      .finally(() => {
+        this.loadingGraph = false;
+      });
   }
 
-  loadGraphs() {
-    this.offerLoader.load().then((service) => {
-      let scales = this.IpLoadBalancerConstant.graphScales[service.offer];
-      if (!scales) {
-        scales = this.IpLoadBalancerConstant.graphScales.lb1;
-      }
-      this.scales = reduce(
-        scales,
-        (scalesParam, scale) => {
-          // eslint-disable-next-line no-shadow
-          const scales = scalesParam;
-          scales[scale] = this.IpLoadBalancerConstant.graphParams[scale];
-          return scales;
-        },
-        {},
-      );
-      this.scale = head(keys(this.scales));
-      this.connLoader.load();
-      this.reqmLoader.load();
-    });
-  }
-
-  refreshGraphs() {
-    this.connLoader.load();
-    this.reqmLoader.load();
-  }
-
-  getData(metric) {
-    const { downsample } = this.IpLoadBalancerConstant.graphParams[this.scale];
-    const downsampleAggregation = this.metric === 'conn' ? 'sum' : 'max';
-
-    return this.IpLoadBalancerMetricsService.getData(metric, this.scale, null, {
-      downsample: `${downsample}-${downsampleAggregation}`,
-    }).then((data) => {
-      if (data.length && data[0].dps) {
-        return {
-          data: {
-            data: values(data[0].dps),
-            labels: this.constructor.humanizeLabels(keys(data[0].dps)),
+  loadScales() {
+    return this.IpLoadBalancerMetricsService.getService(this.serviceName).then(
+      (service) => {
+        let scales = this.IpLoadBalancerConstant.graphScales[service.offer];
+        if (!scales) {
+          scales = this.IpLoadBalancerConstant.graphScales.lb1;
+        }
+        this.scales = reduce(
+          scales,
+          (scalesParam, scale) => {
+            // eslint-disable-next-line no-shadow
+            const scales = scalesParam;
+            scales[scale] = this.IpLoadBalancerConstant.graphParams[scale];
+            return scales;
           },
-        };
-      }
-      return {};
-    });
-  }
-
-  static humanizeLabels(labels) {
-    return labels.map((label) =>
-      moment(label, 'X').format('MM/DD/YY - HH:mm:ss'),
+          {},
+        );
+        this.scale = head(keys(this.scales));
+      },
     );
   }
 
   onScaleChange() {
-    this.refreshGraphs();
+    this.initGraph();
   }
 }

@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_storages_containers_update_versioning_enable_label": "Enable",
+  "pci_projects_project_storages_containers_update_versioning_enabled_label": "Enabled",
+  "pci_projects_project_storages_containers_update_versioning_disabled_label": "Disabled",
+  "pci_projects_project_storages_containers_update_versioning_suspended_label": "Suspended",
+  "pci_projects_project_storages_containers_update_versioning_cancel_label": "Cancel",
+  "pci_projects_project_storages_containers_update_versioning_title": "Enable versioning",
+  "pci_projects_project_storages_containers_update_versioning_versioning": "Versioning:",
+  "pci_projects_project_storages_containers_update_versioning_enable_success_message": "Versioning has been enabled.",
+  "pci_projects_project_storages_containers_update_versioning_enable_error_message": "An error has occurred. Versioning could not be enabled: {{ message }}.",
+  "pci_projects_project_storages_containers_bucket_versioning_description": "Automatically saves multiple versions of objects to avoid accidental deletion, or when new objects are uploaded."
+}

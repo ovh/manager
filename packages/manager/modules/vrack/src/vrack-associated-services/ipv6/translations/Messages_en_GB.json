@@ -1,0 +1,22 @@
+{
+  "vrack__assigned-ipv6_add_subnet": "Add a subnet",
+  "vrack__assigned-ipv6__subrange_slaac_help": "Enabling SLAAC simplifies IPv6 addressing, but it’s best to avoid using it with multiple vRack regions.",
+  "vrack__assigned-ipv6__subrange_slaac_help_tooltip_link": "More details",
+  "vrack__assigned-ipv6__subnet_add_title": "Add a subnet",
+  "vrack__assigned-ipv6__subnet_add_description": "You are about to add a new routed /64 subnet to your vRack. Please specify the prefix (must not overlap another existing prefix) and the Nexthop address, which must be part of the first /64 (bridged) subnet of your additional IPv6 block.",
+  "vrack__assigned-ipv6__subnet_add_subnet": "Enter subnet address /64",
+  "vrack__assigned-ipv6__subnet_add_address": "Nexthop address",
+  "vrack__assigned-ipv6__subnet_delete_title": "Remove the subnet from your vRack",
+  "vrack__assigned-ipv6__subnet_delete_description": "Are you sure you want to remove the subnet from your vRack?",
+  "vrack__assigned-ipv6_subnet_via": "via {{ ip }} ",
+  "vrack_add_ipv6_modal_title": "Add an IP block in the vRack",
+  "vrack_add_ipv6_modal_description": "You are about to add an IP block: {{ ipblock }} (located in {{ region }}) to your vRack: {{ vrack }}",
+  "vrack_add_ipv6_modal_description1": "This action will allow you to reach the machines in this vRack from the public internet.",
+  "vrack_add_ipv6_modal_description2": "Public traffic will be routed across the {{ region }} region",
+  "vrack_add_ipv6_modal_description3": "For more information, please see",
+  "vrack_add_ipv6_modal_help_link": "our documentation",
+  "vrack_add_ipv6_modal_alert_msg": "We’ve noticed you already have a public IPv6 block, but you’re trying to add a new block to your vRack. To get the expected outcome, please disable the SLAAC option on ALL your IPv6 blocks.",
+  "vrack_delete_ipv6_modal_title": "Move the additional IP",
+  "vrack_delete_ipv6_modal_description": "You are about to delete {{ ip }} from your vRack. All subnets that have been configured with this block will be deleted.",
+  "vrack_delete_ipv6_modal_question": "Do you want to continue?"
+}

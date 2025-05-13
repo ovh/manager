@@ -61,11 +61,11 @@ export default class TicketService {
       );
   }
 
-  query() {
+  query(archived = false) {
     return this.OvhApiSupport.Iceberg()
       .query()
       .expand('CachedObjectList-Pages')
-      .execute({}, true)
+      .execute({ archived }, true)
       .$promise.then((tickets) =>
         map(tickets.data, (ticket) => this.buildFromApi(ticket)),
       );

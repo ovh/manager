@@ -1,7 +1,14 @@
 export default class VpsTakeSnapshotCtrl {
   /* @ngInject */
-  constructor($translate, CucControllerHelper, CucCloudMessage, VpsService) {
+  constructor(
+    $translate,
+    atInternet,
+    CucControllerHelper,
+    CucCloudMessage,
+    VpsService,
+  ) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.VpsService = VpsService;
@@ -11,11 +18,20 @@ export default class VpsTakeSnapshotCtrl {
     };
   }
 
+  trackClick(hit) {
+    this.atInternet.trackClick({
+      name: `vps::detail::dashboard::snapshot-take::${hit}`,
+      type: 'navigation',
+    });
+  }
+
   cancel() {
+    this.trackClick('cancel');
     return this.goBack();
   }
 
   confirm() {
+    this.trackClick('confirm');
     this.save = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
         this.VpsService.takeSnapshot(this.serviceName, this.snapshot)

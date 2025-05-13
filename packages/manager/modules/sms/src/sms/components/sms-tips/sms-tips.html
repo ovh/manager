@@ -1,0 +1,11 @@
+<oui-tile data-heading="{{:: 'sms_tips_title' | translate }}">
+    <oui-tile-button on-click="$ctrl.goToComposeTip()">
+        <span data-translate="sms_tip_compose"></span>
+    </oui-tile-button>
+    <oui-tile-button on-click="$ctrl.goToSizeTip()">
+        <span data-translate="sms_tip_size"></span>
+    </oui-tile-button>
+    <oui-tile-button href="{{:: $ctrl.receiversUrl }}" external>
+        <span data-translate="sms_receivers_add_list"></span>
+    </oui-tile-button>
+</oui-tile>

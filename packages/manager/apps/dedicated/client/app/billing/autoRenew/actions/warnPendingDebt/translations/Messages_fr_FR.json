@@ -1,7 +1,0 @@
-{
-  "autorenew_service_debt_warn_title": "Information importante",
-  "autorenew_service_debt_warn_settle": "Régulariser",
-  "autorenew_service_debt_warn_cancel": "Annuler",
-  "autorenew_service_debt_warn_deletion": "La résiliation de ce service ne peut s’effectuer avant le paiement de la dette restante. Rendez-vous dans l’espace facturation afin de régulariser la facturation pour le service <strong>{{service}}</strong>"
-
-}

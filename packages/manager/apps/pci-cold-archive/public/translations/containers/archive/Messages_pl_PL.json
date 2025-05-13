@@ -1,0 +1,15 @@
+{
+  "pci_projects_project_storages_cold_archive_containers_container_archive_title": "Zarchiwizuj kontener",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_description": "Chcesz zarchiwizować kontener {{containerName}}.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_submit_label": "Zarchiwizuj",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_cancel_label": "Anuluj",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_success_message": "Trwa archiwizacja kontenera {{containerName}}.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_error_message": "Wystąpił błąd podczas archiwizowania kontenera {{containerName}}: {{message}}",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_description_2": "Po ustawieniu czasu retencji Twoje archiwum zostanie zablokowane i nie będziesz mógł usunąć danych przez cały okres retencji.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_has_retention": "Zaplanuj czas retencji",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_has_no_retention": "Nie planuj czasu retencji",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_retention_days": "Dodaj liczbę dni retencji",
+  "pci_projects_project_storages_cold_archive_containers_container_retention_warning": "Czas retencji zakończy się w dniu <strong>{{date}}</strong>.",
+  "pci_projects_project_storages_cold_archive_containers_container_retention_warning_2": "Dane będziesz mógł usunąć dopiero po upływie tego terminu.",
+  "pci_projects_project_storages_cold_archive_containers_container_retention_retention_value_wartning": "Dodaj liczbę dni retencji (minimum 1 dzień, maksimum 4500 dni)"
+}

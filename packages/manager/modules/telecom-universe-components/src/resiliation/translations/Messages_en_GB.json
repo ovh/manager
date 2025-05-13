@@ -3,7 +3,7 @@
   "resiliation_message2": "I acknowledge that if I choose to keep any services, I will be charged the corresponding sum on a pro rata basis as monthly payments, until the end of my subscription period. Communications that fall outside of the ongoing monthly plan will be added to my bill.",
   "resiliation_resiliate": "Cancel {{typeName}} {{name}}",
   "resiliation_button": "Cancel",
-  "resiliation_confirm": "Cancel",
+  "resiliation_confirm": "Confirm",
   "resiliation_confirm_title": "Cancelling your subscription",
   "resiliation_reason": "Why do you want to cancel?",
   "resiliation_choice_addressMove": "Moving",

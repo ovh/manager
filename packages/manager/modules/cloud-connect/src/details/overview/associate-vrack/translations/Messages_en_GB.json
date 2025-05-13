@@ -1,0 +1,8 @@
+{
+  "cloud_connect_vrack_associate": "Attach a vRack ",
+  "cloud_connect_vrack_associate_description": "To configure your service, you will need to attach it to a vRack. Select the vRack from the following dropdown list, or create a new vRack by <a href=\"{{ vrackOrderUrl }}\" target=\"blank\" rel=\"noopener\">clicking here.</a>",
+  "cloud_connect_vrack_select": "select an existing vRack",
+  "cloud_connect_vrack_associate_success": "The vRack has been attached to your service",
+  "cloud_connect_vrack_associate_error": "Unable to attach vRack to your service: {{ message }}",
+  "cloud_connect_associate": "Attach"
+}

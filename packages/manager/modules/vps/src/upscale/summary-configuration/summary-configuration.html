@@ -1,0 +1,30 @@
+<div class="oui-box" data-ng-class="{'oui-box_light': !$ctrl.highlight}">
+    <p>
+        <strong data-ng-bind="::$ctrl.summaryTitle"></strong>
+    </p>
+    <p>
+        <span data-ng-bind="$ctrl.configuration.cpu.cores"></span>
+        <span
+            data-translate="{{ $ctrl.configuration.cpu.cores == 1 ? 'vps_dashboard_vcore_1' : 'vps_dashboard_vcore_other'}}"
+        ></span
+        >,
+        <span
+            data-translate="vps_upscale_choice_configuration_quantity"
+            data-translate-values="{ 'unit': $ctrl.configuration.memory.size }"
+        ></span>
+        <span data-translate="vps_upscale_choice_configuration_memory"></span>,
+        <span
+            data-translate="vps_upscale_choice_configuration_quantity"
+            data-translate-values="{ 'unit': $ctrl.configuration.storage.disks[0].capacity }"
+        ></span>
+        <span data-translate="vps_upscale_choice_configuration_storage"></span>
+    </p>
+    <p>
+        <strong data-ng-bind="$ctrl.buildPrice()"></strong>
+        <!-- <vps-upscale-configuration-price
+            language="$ctrl.connectedUser.language"
+            price="$ctrl.configuration.pricing"
+        >
+        </vps-upscale-configuration-price> -->
+    </p>
+</div>

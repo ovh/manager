@@ -1,0 +1,8 @@
+{
+  "pci_databases_topics_delete_topic_confirm": "Topic löschen",
+  "pci_databases_topics_delete_topic_cancel": "Abbrechen",
+  "pci_databases_topics_delete_topic": "Topic löschen",
+  "pci_databases_topics_delete_topic_description": "Sind Sie sicher, dass Sie das Topic {{topic.name}} löschen möchten?",
+  "pci_databases_topics_delete_topic_success_message": "Topic wurde gelöscht.",
+  "pci_databases_topics_delete_topic_error_message": "Beim Löschen Ihres Topics ist ein Fehler aufgetreten: {{ message }}"
+}

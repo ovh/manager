@@ -1,0 +1,99 @@
+<oui-modal
+    data-on-dismiss="$ctrl.dismissModal()"
+    data-heading="{{ ::'vps_dashboard_snapshot_download_modal_title' | translate }}"
+>
+    <oui-tile
+        data-heading="{{ ::'vps_dashboard_snapshot_download_modal_summary' | translate }}"
+        class="h-100"
+    >
+        <oui-tile-definition>
+            <oui-tile-term
+                data-translate="vps_dashboard_snapshot_download_modal_service_name"
+            >
+            </oui-tile-term>
+            <oui-tile-description data-ng-bind="::$ctrl.serviceName">
+            </oui-tile-description>
+        </oui-tile-definition>
+
+        <oui-tile-definition>
+            <oui-tile-term
+                data-translate="vps_dashboard_snapshot_download_modal_snapshot_creation_date"
+            >
+            </oui-tile-term>
+            <oui-tile-description data-ng-bind="::$ctrl.creationDate">
+            </oui-tile-description>
+        </oui-tile-definition>
+
+        <oui-tile-definition data-ng-if="$ctrl.downloadLink">
+            <oui-tile-term
+                data-translate="vps_dashboard_snapshot_download_modal_snapshot_link_expiration_date"
+            >
+            </oui-tile-term>
+            <oui-tile-description
+                data-ng-bind="::$ctrl.getLinkExpirationDate()"
+            >
+            </oui-tile-description>
+        </oui-tile-definition>
+
+        <oui-tile-definition data-ng-if="$ctrl.size">
+            <oui-tile-term
+                data-translate="vps_dashboard_snapshot_download_modal_snapshot_size"
+            >
+            </oui-tile-term>
+            <oui-tile-description data-ng-bind="::$ctrl.size">
+            </oui-tile-description>
+        </oui-tile-definition>
+    </oui-tile>
+    <div class="my-3">
+        <div
+            class="notification-box oui-message oui-message_info"
+            data-ng-if="$ctrl.isLoading"
+        >
+            <span
+                data-translate="{{$ctrl.getMessage($ctrl.status.LOADING)}}"
+            ></span>
+        </div>
+
+        <div
+            class="notification-box oui-message oui-message_success"
+            data-ng-if="$ctrl.downloadLink"
+        >
+            <span
+                data-translate="{{$ctrl.getMessage($ctrl.status.SUCCESS)}}"
+                data-translate-values="{ curlDocumentationLink: $ctrl.curlDocumentationLink }"
+            ></span>
+        </div>
+
+        <div
+            class="notification-box oui-message oui-message_error"
+            data-ng-if="$ctrl.errorMessage"
+        >
+            <span data-translate="{{$ctrl.errorMessage}}"></span>
+        </div>
+    </div>
+
+    <div
+        class="d-flex justify-content-center mt-3"
+        data-ng-if="!$ctrl.downloadLink"
+        data-ng-hide="$ctrl.isLoading"
+    >
+        <oui-button
+            variant="primary"
+            data-on-click="$ctrl.generateSnapshotDownloadLink()"
+            aria-label="{{ ::'vps_dashboard_snapshot_download_modal_snapshot_button_label' | translate }}"
+            ><span
+                data-translate="vps_dashboard_snapshot_download_modal_snapshot_button_label"
+            ></span>
+        </oui-button>
+    </div>
+    <div data-ng-if="$ctrl.downloadLink">
+        <oui-clipboard data-model="$ctrl.downloadLinkCurlCommand">
+        </oui-clipboard>
+        <div class="notification-box oui-message oui-message_info">
+            <span
+                data-translate="vps_dashboard_snapshot_download_modal_snapshot_curl_info"
+                data-translate-values="{ curlDocumentationLink: $ctrl.curlDocumentationLink }"
+            ></span>
+        </div>
+    </div>
+</oui-modal>

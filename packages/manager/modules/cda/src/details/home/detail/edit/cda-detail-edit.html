@@ -1,0 +1,51 @@
+<form
+    id="editDetailForm"
+    name="editDetailForm"
+    data-ng-submit="editDetailForm.$valid && CdaDetailEditCtrl.editCluster()"
+    novalidate
+>
+    <oui-modal
+        data-primary-label="{{ ::'cda_common_modify' | translate }}"
+        data-secondary-action="CdaDetailEditCtrl.closeModal()"
+        data-secondary-label="{{ ::'cda_common_cancel' | translate }}"
+        data-on-dismiss="CdaDetailEditCtrl.closeModal()"
+        data-loading="CdaDetailEditCtrl.saving"
+    >
+        <cui-message-container
+            data-messages="CdaDetailEditCtrl.messages"
+        ></cui-message-container>
+
+        <h2
+            class="oui-modal__title"
+            data-ng-bind="::'cda_detail_edit_title' | translate "
+        ></h2>
+
+        <oui-field data-label="{{ ::'cda_detail_edit_label' | translate }}">
+            <input
+                class="oui-input"
+                type="text"
+                id="label"
+                name="label"
+                data-ng-model="CdaDetailEditCtrl.model.label"
+                data-ng-maxlength="CdaDetailEditCtrl.options.label.maxLength"
+                data-ng-pattern="/^[^<>]+$/"
+                required
+            />
+        </oui-field>
+
+        <oui-field
+            data-label="{{ ::'cda_detail_edit_crushTunable' | translate }}"
+        >
+            <oui-select
+                name="crushTunable"
+                data-title="{{ ::'cda_detail_edit_crushTunable' | translate }}"
+                placeholder="{{ ::'cda_detail_edit_crushTunable' | translate }}"
+                data-model="CdaDetailEditCtrl.model.crushTunable"
+                data-items="CdaDetailEditCtrl.crushTunableValues"
+                required
+            >
+                <span data-ng-bind="$item"></span>
+            </oui-select>
+        </oui-field>
+    </oui-modal>
+</form>

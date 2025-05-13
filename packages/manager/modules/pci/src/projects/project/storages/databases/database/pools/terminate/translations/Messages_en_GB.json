@@ -1,0 +1,10 @@
+{
+  "pci_databases_pools_terminate_title": "Delete connection pool",
+  "pci_databases_pools_terminate_description": "You are about to permanently delete the {{name}} connection pool",
+  "pci_databases_pools_terminate_warning": "This action cannot be reversed.",
+  "pci_databases_pools_terminate_label": "Enter ‘TERMINATE’ to confirm your choice.",
+  "pci_databases_pools_terminate_cancel": "Cancel",
+  "pci_databases_pools_terminate_confirm": "Confirm",
+  "pci_databases_pools_terminate_success": "Your {{name}} pool has been deleted.",
+  "pci_databases_pools_terminate_error": "An error has occurred deleting your {{name}} pool: {{message}}"
+}

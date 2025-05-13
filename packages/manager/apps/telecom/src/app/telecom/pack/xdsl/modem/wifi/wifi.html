@@ -1,0 +1,72 @@
+<div id="pack-xdsl-modem-wifi">
+    <form name="wifiForm">
+        <div class="form-group service-item px-0">
+            <a
+                class="service-button service-button-checkbox"
+                data-ng-disabled="!WifiCtrl.mediator.info.managedByOvh || !WifiCtrl.wifis.length || (WifiCtrl.wifis.length === 1 && (!WifiCtrl.mediator.capabilities.canChangeWLAN || WifiCtrl.mediator.tasks.changeModemConfigWLAN === true))"
+                data-ui-sref="telecom.packs.pack.xdsl.line.modem.wifi"
+            >
+                <div class="service-button-description">
+                    <div
+                        class="form-group checkbox service-button-description-outside"
+                    >
+                        <label for="wifiEnabled">
+                            <span data-ng-if="WifiCtrl.wifis.length === 1">
+                                <span
+                                    data-ng-show="!WifiCtrl.mediator.tasks.changeModemConfigWLAN"
+                                >
+                                    <input
+                                        type="checkbox"
+                                        id="wifiEnabled"
+                                        name="wifiEnabled"
+                                        data-ng-model="WifiCtrl.defaultWifi.enabled"
+                                        data-ng-disabled="!WifiCtrl.mediator.capabilities.canChangeWLAN"
+                                        data-ng-really-click="WifiCtrl.update()"
+                                        data-ng-really-undo="WifiCtrl.undo()"
+                                        data-ng-really-message="{{ WifiCtrl.defaultWifi.enabled ? 'xdsl_modem_wifi_really_on' : 'xdsl_modem_wifi_really_off' | translate }}"
+                                        data-ng-really-confirm="{{ 'ok' | translate }}"
+                                        data-ng-really-cancel="{{ 'cancel' | translate }}"
+                                        data-ng-really-window-class="revert-really-buttons"
+                                    />
+                                </span>
+                                <span
+                                    data-ng-show="WifiCtrl.mediator.tasks.changeModemConfigWLAN"
+                                >
+                                    <oui-spinner data-size="s"></oui-spinner>
+                                    <span
+                                        data-ng-show="WifiCtrl.defaultWifi.enabled"
+                                        data-translate="xdsl_modem_wifi_success_validation_on"
+                                    >
+                                    </span>
+                                    <span
+                                        data-ng-hide="WifiCtrl.defaultWifi.enabled"
+                                        data-translate="xdsl_modem_wifi_success_validation_off"
+                                    >
+                                    </span>
+                                </span>
+                                <span
+                                    data-ng-if="!WifiCtrl.mediator.tasks.changeModemConfigWLAN && WifiCtrl.wifis.length === 1"
+                                    data-translate="{{ WifiCtrl.defaultWifi.enabled ? 'xdsl_modem_wifi_status_enabled': 'xdsl_modem_wifi_status_disabled' }}"
+                                >
+                                </span>
+                                <span
+                                    data-ng-if="!WifiCtrl.mediator.tasks.changeModemConfigWLAN && WifiCtrl.wifis.length > 1"
+                                    data-translate="{{ WifiCtrl.defaultWifi.enabled ? 'xdsl_modem_detault_wifi_status_enabled': 'xdsl_modem_default_wifi_status_disabled' }}"
+                                >
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="link-name">
+                    <span
+                        data-translate="{{ WifiCtrl.wifis.length === 1 ? 'xdsl_modem_wifi_configure' : 'xdsl_modem_wifi_configure_many' }}"
+                    >
+                    </span>
+                    <i class="ovh-font ovh-font-arrow-right"></i>
+                </div>
+            </a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,9 @@
+<span
+    class="oui-badge pr-3 pl-1"
+    data-ng-class="{
+        'oui-badge_delivery-24-hours': ($ctrl.node.statusGroup === 'READY'),
+        'oui-badge_delivery-10-days': ($ctrl.node.statusGroup === 'PENDING'),
+        'oui-badge_limited-edition': ($ctrl.node.statusGroup === 'ERROR'),
+    }"
+>
+</span>

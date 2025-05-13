@@ -1,0 +1,14 @@
+{
+  "pci_projects_project_storages_containers_update_encryption_enable_label": "Activar",
+  "pci_projects_project_storages_containers_update_encryption_enabled_label": "Activado",
+  "pci_projects_project_storages_containers_update_encryption_disabled_label": "Desactivado",
+  "pci_projects_project_storages_containers_update_encryption_suspended_label": "Suspendido",
+  "pci_projects_project_storages_containers_update_encryption_cancel_label": "Cancelar",
+  "pci_projects_project_storages_containers_update_encryption_title": "Activar el cifrado (SSE-OMK)",
+  "pci_projects_project_storages_containers_update_encryption_encryption": "cifrado:",
+  "pci_projects_project_storages_containers_update_encryption_enable_success_message": "La activación del cifrado (SSE-OMK) se ha realizado correctamente.",
+  "pci_projects_project_storages_containers_update_encryption_enable_error_message": "Se ha producido un error al activar el cifrado: {{ message }}.",
+  "pci_projects_project_storages_containers_bucket_encryption_description": "Activa el cifrado del lado del servidor con claves gestionadas por OVHcloud para proteger sus datos en reposo.",
+  "pci_projects_project_storages_containers_bucket_encryption_banner": "Una vez activado, el cifrado se aplicará solo a los nuevos objetos que se hayan subido y no se podrá desactivar.",
+  "pci_projects_project_storages_containers_update_encryption_link": "Más información"
+}

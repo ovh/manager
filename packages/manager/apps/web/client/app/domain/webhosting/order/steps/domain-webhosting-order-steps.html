@@ -9,31 +9,27 @@
 >
     <ovh-manager-web-domain-webhosting-order-steps-hosting
         data-available-offers="$ctrl.availableOffers"
+        data-catalog="$ctrl.catalog"
         data-user="$ctrl.user"
+        data-stepper-position="0"
     >
     </ovh-manager-web-domain-webhosting-order-steps-hosting>
 
     <ovh-manager-web-domain-webhosting-order-steps-module
-        data-available-modules="$ctrl.availableModules"
+        data-get-available-modules="$ctrl.getAvailableModules({ offer })"
+        data-stepper-position="1"
     >
     </ovh-manager-web-domain-webhosting-order-steps-module>
 
-    <ovh-manager-web-domain-webhosting-order-steps-dns-configuration>
+    <ovh-manager-web-domain-webhosting-order-steps-dns-configuration
+        data-stepper-position="2"
+    >
     </ovh-manager-web-domain-webhosting-order-steps-dns-configuration>
 
     <ovh-manager-web-domain-webhosting-order-steps-duration
         data-available-offers="$ctrl.availableOffers"
         data-user="$ctrl.user"
+        data-stepper-position="3"
     >
     </ovh-manager-web-domain-webhosting-order-steps-duration>
-
-    <ovh-manager-web-domain-webhosting-order-steps-payment
-        data-cart-id="$ctrl.cartId"
-        data-delete-cart-items="$ctrl.deleteCartItems"
-        data-display-error-message="$ctrl.displayErrorMessage"
-        data-domain-name="$ctrl.domainName"
-        data-go-back-to-dashboard="$ctrl.goBackToDashboard"
-        data-prepare-checkout="$ctrl.prepareCheckout"
-    >
-    </ovh-manager-web-domain-webhosting-order-steps-payment>
 </oui-stepper>

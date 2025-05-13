@@ -1,8 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_logs_revoke_access_title": "Revoke access",
-  "enterprise_cloud_database_service_details_logs_revoke_access_description": "Revoke access granted to OVH Logs Data Platform account, {{ldpName}}. After revoke, this account will not be able to access cluster logs.",
-  "enterprise_cloud_database_service_details_logs_revoke_access_warning": "This action cannot be cancelled or reversed.",
-  "enterprise_cloud_database_service_details_logs_revoke_access_action": "Revoke access",
-  "enterprise_cloud_database_service_details_logs_revoke_access_success": "Access revoked from OVH Logs Data Platform account '{{ldpName}}'",
-  "enterprise_cloud_database_service_details_logs_revoke_access_error": "An error occurred while revoking access from OVH Logs Data Platform account: {{message}}"
-}

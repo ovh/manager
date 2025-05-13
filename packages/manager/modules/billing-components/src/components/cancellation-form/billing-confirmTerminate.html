@@ -1,0 +1,68 @@
+<oui-back-button data-ng-if="$ctrl.goBack" on-click="$ctrl.goBack()">
+</oui-back-button>
+
+<oui-header
+    data-heading="{{:: 'billing_confirm_termination_resiliate' | translate:{
+        serviceName: $ctrl.service.domain
+    } }}"
+></oui-header>
+
+<div class="container-fluid mt-3">
+    <div class="mt-3" data-ovh-alert></div>
+
+    <oui-message data-type="warning" data-ng-if="$ctrl.hasSpecialConditions()"
+        ><span
+            data-translate="{{:: 'billing_confirm_termination_information_text_' + $ctrl.user.ovhSubsidiary }}"
+        ></span
+    ></oui-message>
+
+    <form name="terminationForm" novalidate class="mt-3">
+        <oui-field
+            data-ng-repeat="question in $ctrl.questions track by question.question"
+            data-label="{{:: 'billing_confirm_termination_question_' + question.question  | translate}}"
+        >
+            <oui-radio-group
+                data-ng-if="question.type === 'enum'"
+                data-model="$ctrl.model[question.question]"
+                name="{{ question.question }}"
+            >
+                <oui-radio
+                    data-ng-repeat="answer in question.answers track by answer.key"
+                    data-value="answer.key"
+                    data-required="question.mandatory"
+                >
+                    <span
+                        data-translate="{{:: 'billing_confirm_termination_' + question.question + '_' + answer.key }}"
+                    ></span>
+                </oui-radio>
+            </oui-radio-group>
+            <oui-textarea
+                data-ng-if="question.type === 'text'"
+                data-model="$ctrl.model[question.question]"
+                name="{{ question.question }}"
+                data-required="question.mandatory"
+            >
+            </oui-textarea>
+        </oui-field>
+
+        <oui-message
+            data-type="warning"
+            data-ng-if="!$ctrl.hasSpecialConditions()"
+            class="mb-4"
+        >
+            <span
+                data-translate="billing_confirm_termination_information_text"
+            ></span>
+        </oui-message>
+
+        <oui-button
+            data-ng-if="!$ctrl.loading"
+            data-on-click="$ctrl.terminate()"
+            data-variant="primary"
+            data-disabled="!terminationForm.$valid"
+        >
+            <span data-translate="billing_confirm_termination_terminate"></span>
+        </oui-button>
+        <oui-spinner data-size="s" data-ng-if="$ctrl.loading"></oui-spinner>
+    </form>
+</div>

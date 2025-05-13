@@ -1,0 +1,21 @@
+{
+  "hosting_multisite_domain_configuration_home": "Dossier racine",
+  "hosting_multisite_domain_configuration_myfolder": "mondossier",
+  "hosting_multisite_domain_configuration_firewall": "Activer le firewall",
+  "hosting_multisite_domain_configuration_cdn": "Activer le CDN",
+  "hosting_multisite_domain_configuration_information": "Pour que la configuration soit fonctionnelle, vous devrez effectuer les manipulations suivantes sur votre domaine :",
+  "hosting_multisite_domain_configuration_none_options": "Aucune option",
+  "hosting_multisite_domain_configuration_ownlog": "Logs séparés",
+  "hosting_multisite_domain_configuration_runtime": "Moteur d'exécution",
+  "hosting_multisite_domain_configuration_options_choose": "Choisissez une option",
+  "hosting_multisite_domain_configuration_cdn_help": "Activez le CDN afin d'accélérer l'accessibilité de votre site dans le monde.",
+  "hosting_multisite_domain_configuration_country_ip_help": "Activez l'IP du pays pour géolocaliser les parties internationales de votre site afin d'optimiser leur référencement.",
+  "hosting_multisite_domain_configuration_firewall_help": "Activez le firewall pour bénéficier d’une protection renforcée de votre site.",
+  "hosting_multisite_domain_configuration_ownlog_help": "Activez cette option pour avoir des logs séparés pour votre multisite.",
+  "hosting_multisite_domain_configuration_path_help": "Les caractères acceptés pour les dossiers sont les lettres, les chiffres, et les caractères -_./ Par ailleurs, il est interdit d'accéder aux dossiers parents en utilisant ..",
+  "hosting_multisite_domain_configuration_countriesIp": "Ip du pays",
+  "hosting_multisite_domain_configuration_countriesIp_none": "Aucune",
+  "hosting_multisite_domain_configuration_ssl": "SSL",
+  "hosting_multisite_domain_configuration_ssl_help": "Activer l'option SSL pour bénéficier de l'accès à votre site en https",
+  "hosting_multisite_domain_configuration_git_warning": "Si vous souhaitez modifier votre dossier racine, vous devez au préalable supprimer votre configuration Git du répertoire pour prévenir d'éventuels problèmes de suivi des modifications et de gestion des déploiements."
+}

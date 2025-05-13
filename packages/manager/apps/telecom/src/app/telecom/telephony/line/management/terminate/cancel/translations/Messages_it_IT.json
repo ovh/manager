@@ -6,5 +6,6 @@
   "telephony_group_line_cancel_terminate_terminate": "Annulla chiusura ",
   "telephony_group_line_cancel_terminating_ok": "La richiesta di disattivazione è stata annullata.",
   "telephony_group_line_cancel_terminating_ko": "Si è verificato un errore durante la richiesta di annullamento<br/>{{error}}",
-  "telephony_group_line_cancel_terminate_action_label": "Sulla linea è in corso la procedura di disattivazione.<br/>La disattivazione è programmata per il<b class=\"text-danger\">{{executionDate}}</b>.<br/>Per annullare l'operazione, clicca su \"Annulla la disattivazione\"."
+  "telephony_group_line_cancel_terminate_action_label": "Sulla linea è in corso la procedura di disattivazione.<br/>La disattivazione è programmata per il<b class=\"text-danger\">{{executionDate}}</b>.<br/>Per annullare l'operazione, clicca su \"Annulla la disattivazione\".",
+  "telephony_group_line_cancel_terminate": "Annulla disattivazione"
 }

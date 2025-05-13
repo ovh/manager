@@ -1,0 +1,15 @@
+{
+  "pci_database_title": "Databases as a Service para concentrarse en la creación de aplicaciones",
+  "pci_database_onboarding_content1": "Aproveche al máximo la potencia de sus datos y controle todos sus recursos.",
+  "pci_database_onboarding_content2": "Seleccione la base de datos más adecuada de entre una amplia gama de motores open source y despliéguela «as a Service». De este modo, los desarrolladores podrán concentrarse en la creación de aplicaciones.",
+  "pci_database_onboarding_content3": "OVHcloud gestiona la infraestructura y la administración de sus bases de datos. De este modo podrá ahorrar tiempo y dinero, y concentrarse en la creación y el despliegue de sus aplicaciones cloud.",
+  "pci_database_onboarding_action_label": "Crear una instancia de base de datos",
+  "pci_database_guides_documentation_title": "Documentación para bases de datos",
+  "pci_database_guides_documentation_description": "Consulte todas las guías de OVHcloud sobre bases de datos.",
+  "pci_database_guides_public-cloud-database_title": "¿Qué es una base de datos Public Cloud?",
+  "pci_database_guides_public-cloud-database_description": "Cómo crear una base de datos en el universo Public Cloud",
+  "pci_database_guides_deploy-database_title": "Desplegar una base de datos",
+  "pci_database_guides_deploy-database_description": "Cómo instalar rápidamente la primera base de datos en su área de cliente.",
+  "pci_database_guides_troubleshooting_title": "Gestionar el «troubleshooting»",
+  "pci_database_guides_troubleshooting_description": ""
+}

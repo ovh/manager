@@ -1,340 +1,340 @@
-import get from 'lodash/get';
-import keys from 'lodash/keys';
 import set from 'lodash/set';
+import config from '../../../config/config';
 
-angular.module('UserAccount').service('userAccountServiceInfos', [
-  '$http',
-  '$q',
-  'UserAccount.constants',
-  '$window',
-  function UserAccountInfosService($http, $q, constants, $window) {
-    const swsUseraccountInfosPath = `${constants.swsProxyRootPath}me`;
-    const cache = {
+export default class UserAccountInfosService {
+  /* @ngInject */
+  constructor($http, $q, $window) {
+    this.$http = $http;
+    this.$q = $q;
+    this.$window = $window;
+    this.swsUseraccountInfosPath = `${config.swsProxyRootPath}me`;
+    this.cache = {
       me: 'UNIVERS_USER_ME',
     };
+  }
 
-    this.getUseraccountInfos = function getUseraccountInfos() {
-      return $http.get(swsUseraccountInfosPath).then((response) => {
-        const { data } = response;
-        if (response.status < 300) {
-          if (data.phone && data.phone.indexOf('.') > -1) {
-            data.phone = data.phone.replace(/\./g, '');
-          }
-          return data;
-        }
-        return $q.reject(response);
-      });
-    };
+  getUseraccountInfos() {
+    return this.$http.get(this.swsUseraccountInfosPath).then(({ data }) => {
+      if (data.phone && data.phone.includes('.')) {
+        set(data, 'phone', data.phone.replace(/\./g, ''));
+      }
+      return data;
+    });
+  }
 
-    this.updateUseraccountInfos = function updateUseraccountInfos(data) {
-      return $http.put(swsUseraccountInfosPath, data).then((response) => {
+  updateUseraccountInfos(data) {
+    return this.$http
+      .put(this.swsUseraccountInfosPath, data)
+      .then((response) => {
         if (response.status < 300) {
           return response.data;
         }
-        return $q.reject(response);
+        return this.$q.reject(response);
       });
-    };
+  }
 
-    this.changePassword = function changePassword() {
-      return $http
-        .post([swsUseraccountInfosPath, 'changePassword'].join('/'))
-        .then((response) => {
-          if (response.status < 300) {
-            return response.data;
-          }
-          return $q.reject(response);
-        });
-    };
+  changePassword() {
+    return this.$http
+      .post([this.swsUseraccountInfosPath, 'changePassword'].join('/'))
+      .then((response) => {
+        if (response.status < 300) {
+          return response.data;
+        }
+        return this.$q.reject(response);
+      });
+  }
 
-    this.changeEmail = function changeEmail(email) {
-      return $http
-        .post([swsUseraccountInfosPath, 'changeEmail'].join('/'), {
-          newEmail: email,
-        })
-        .then((response) => {
-          if (response.status < 300) {
-            return response.data;
-          }
-          return $q.reject(response);
-        });
-    };
+  changeEmail(email) {
+    return this.$http
+      .post([this.swsUseraccountInfosPath, 'changeEmail'].join('/'), {
+        newEmail: email,
+      })
+      .then((response) => {
+        if (response.status < 300) {
+          return response.data;
+        }
+        return this.$q.reject(response);
+      });
+  }
 
-    this.fetchConsentDecision = function fetchConsentDecision(campaignName) {
-      return $http
-        .get(
-          [swsUseraccountInfosPath, 'consent', campaignName, 'decision'].join(
-            '/',
-          ),
-        )
-        .then((response) => {
-          if (response.status < 300) {
-            return response.data;
-          }
+  fetchMarketingConsentDecision() {
+    return this.$http.get('/me/marketing').then((response) => response.data);
+  }
 
-          return $q.reject(response);
-        });
-    };
+  updateSmsMarketingConsentDecision(value) {
+    return this.$http.put('/me/marketing', {
+      denyAll: false,
+      sms: {
+        events: value,
+        newProductRecommendation: value,
+        newsletter: value,
+        offerAndDiscount: value,
+      },
+    });
+  }
 
-    this.updateConsentDecision = function updateConsentDecision(
-      campaignName,
-      value,
-    ) {
-      return $http
-        .put(
-          [swsUseraccountInfosPath, 'consent', campaignName, 'decision'].join(
-            '/',
-          ),
-          { value },
-        )
-        .then((response) => {
-          if (response.status < 300) {
-            return response.data;
-          }
+  fetchConsentDecision(campaignName) {
+    return this.$http
+      .get(
+        [
+          this.swsUseraccountInfosPath,
+          'consent',
+          campaignName,
+          'decision',
+        ].join('/'),
+      )
+      .then((response) => {
+        if (response.status < 300) {
+          return response.data;
+        }
 
-          return $q.reject(response);
-        });
-    };
+        return this.$q.reject(response);
+      });
+  }
 
-    this.taskEmailChanges = function taskEmailChanges(state) {
-      let options;
-      if (state) {
-        options = {
-          params: {
-            state,
-          },
-        };
-      }
-      return $http
-        .get(
-          [swsUseraccountInfosPath, 'task', 'emailChange'].join('/'),
-          options,
-        )
-        .then((response) => {
-          if (response.status < 300) {
-            return response.data;
-          }
-          return $q.reject(response);
-        });
-    };
+  updateConsentDecision(campaignName, value) {
+    return this.$http
+      .put(
+        [
+          this.swsUseraccountInfosPath,
+          'consent',
+          campaignName,
+          'decision',
+        ].join('/'),
+        { value },
+      )
+      .then((response) => {
+        if (response.status < 300) {
+          return response.data;
+        }
 
-    this.taskEmailChange = function taskEmailChange(id) {
-      return $http
-        .get(
-          [
-            swsUseraccountInfosPath,
-            'task',
-            'emailChange',
-            $window.encodeURIComponent(id),
-          ].join('/'),
-        )
-        .then((response) => {
-          if (response.status < 300) {
-            return response.data;
-          }
-          return $q.reject(response);
-        });
-    };
+        return this.$q.reject(response);
+      });
+  }
 
-    this.taskEmailChangeAccept = function taskEmailChangeAccept(id, token) {
-      return $http
-        .post(
-          [
-            swsUseraccountInfosPath,
-            'task',
-            'emailChange',
-            $window.encodeURIComponent(id),
-            'accept',
-          ].join('/'),
-          { token },
-        )
-        .then((response) => {
-          if (response.status < 300) {
-            return response.data;
-          }
-          return $q.reject(response);
-        });
-    };
+  taskEmailChanges(state) {
+    let options;
+    if (state) {
+      options = {
+        params: {
+          state,
+        },
+      };
+    }
+    return this.$http
+      .get(
+        [this.swsUseraccountInfosPath, 'task', 'emailChange'].join('/'),
+        options,
+      )
+      .then(({ data }) => data);
+  }
 
-    this.taskEmailChangeRefuse = function taskEmailChangeRefuse(id, token) {
-      return $http
-        .post(
-          [
-            swsUseraccountInfosPath,
-            'task',
-            'emailChange',
-            $window.encodeURIComponent(id),
-            'refuse',
-          ].join('/'),
-          { token },
-        )
-        .then((response) => {
-          if (response.status < 300) {
-            return response.data;
-          }
-          return $q.reject(response);
-        });
-    };
+  taskEmailChange(id) {
+    return this.$http
+      .get(
+        [
+          this.swsUseraccountInfosPath,
+          'task',
+          'emailChange',
+          this.$window.encodeURIComponent(id),
+        ].join('/'),
+      )
+      .then((response) => {
+        if (response.status < 300) {
+          return response.data;
+        }
+        return this.$q.reject(response);
+      });
+  }
 
-    this.getListOfRulesFieldName = function getListOfRulesFieldName() {
-      return $http
-        .get(`${constants.swsProxyRootPath}newAccount.json`)
-        .then((response) => {
-          let result = [];
-          const models = get(response, 'data.models');
+  taskEmailChangeAccept(id, token) {
+    return this.$http
+      .post(
+        [
+          this.swsUseraccountInfosPath,
+          'task',
+          'emailChange',
+          this.$window.encodeURIComponent(id),
+          'accept',
+        ].join('/'),
+        { token },
+      )
+      .then((response) => {
+        if (response.status < 300) {
+          return response.data;
+        }
+        return this.$q.reject(response);
+      });
+  }
 
-          if (models) {
-            const rules = models['nichandle.CreationRules'];
-            if (rules) {
-              result = keys(rules.properties);
-            }
-          }
+  taskEmailChangeRefuse(id, token) {
+    return this.$http
+      .post(
+        [
+          this.swsUseraccountInfosPath,
+          'task',
+          'emailChange',
+          this.$window.encodeURIComponent(id),
+          'refuse',
+        ].join('/'),
+        { token },
+      )
+      .then((response) => {
+        if (response.status < 300) {
+          return response.data;
+        }
+        return this.$q.reject(response);
+      });
+  }
 
-          return result;
-        });
-    };
+  getListOfRulesFieldName() {
+    return this.$http
+      .get(`${config.swsProxyRootPath}newAccount.json`)
+      .then(({ data }) => {
+        const { models = {} } = data;
+        return Object.keys(models['nichandle.CreationRules']?.properties) || [];
+      });
+  }
 
-    this.getCreationRules = function getCreationRules(params) {
-      // Get creation Rules by user
-      return $http
-        .get(
-          [constants.swsProxyRootPath, 'newAccount/creationRules'].join(''),
-          {
-            params,
-          },
-        )
-        .then(
-          (response) => {
-            const creationRules = {};
+  postRules(params) {
+    return this.$http
+      .post(`${config.swsProxyRootPath}newAccount/rules`, params)
+      .then(({ data }) => data);
+  }
 
-            angular.forEach(response.data, (v, k) => {
-              creationRules[k] = {
-                mandatory: v.mandatory,
-                regularExpression: v.regularExpression
-                  ? new RegExp(v.regularExpression)
-                  : new RegExp('.*'),
-                example: v.regularExpression
-                  ? new RandExp(new RegExp(v.regularExpression)).gen()
-                  : '',
-              };
-            });
+  getCreationRules(params) {
+    // Get creation Rules by user
+    return this.$http
+      .get([config.swsProxyRootPath, 'newAccount/creationRules'].join(''), {
+        params,
+      })
+      .then(
+        (response) => {
+          const creationRules = {};
 
-            return creationRules;
-          },
-          () => ({}),
-        )
-        .then((returnResponse) =>
-          $http
-            .get(
-              [constants.swsProxyRootPath, 'newAccount/corporationType'].join(
-                '',
-              ),
-              {
-                params: {
-                  country: params.country,
-                },
-              },
-            )
-            .then(
-              (response) => {
-                set(returnResponse, 'availableCorporationType', response.data);
-                return returnResponse;
-              },
-              () => {
-                set(returnResponse, 'availableCorporationType', null);
-                return returnResponse;
-              },
-            ),
-        )
-        .then((returnResponse) =>
-          $http
-            .get(
-              [constants.swsProxyRootPath, 'newAccount/legalform'].join(''),
-              {
-                params: {
-                  country: params.country,
-                },
-              },
-            )
-            .then(
-              (response) => {
-                set(returnResponse, 'availableLegalform', response.data);
-                return returnResponse;
-              },
-              () => {
-                set(returnResponse, 'availableLegalform', null);
-                return returnResponse;
-              },
-            ),
-        )
-        .then((returnResponse) =>
-          $http
-            .get([constants.swsProxyRootPath, 'newAccount/area'].join(''), {
+          angular.forEach(response.data, (v, k) => {
+            creationRules[k] = {
+              mandatory: v.mandatory,
+              regularExpression: v.regularExpression
+                ? new RegExp(v.regularExpression)
+                : new RegExp('.*'),
+              example: v.regularExpression
+                ? new RandExp(new RegExp(v.regularExpression)).gen()
+                : '',
+            };
+          });
+
+          return creationRules;
+        },
+        () => ({}),
+      )
+      .then((returnResponse) =>
+        this.$http
+          .get(
+            [config.swsProxyRootPath, 'newAccount/corporationType'].join(''),
+            {
               params: {
                 country: params.country,
               },
-            })
-            .then(
-              (response) => {
-                set(returnResponse, 'availableArea', response.data);
-                return returnResponse;
-              },
-              () => {
-                set(returnResponse, 'availableArea', null);
-                return returnResponse;
-              },
-            ),
-        )
-        .then((returnResponse) =>
-          $http
-            .get([constants.swsProxyRootPath, 'newAccount.json'].join(''))
-            .then(
-              (response) => {
-                set(
-                  returnResponse,
-                  'availableGender',
-                  response.data.models['nichandle.GenderEnum'].enum,
-                );
-                return returnResponse;
-              },
-              () => {
-                set(returnResponse, 'availableGender', []);
-                return returnResponse;
-              },
-            ),
-        );
-    };
+            },
+          )
+          .then(
+            (response) => {
+              set(returnResponse, 'availableCorporationType', response.data);
+              return returnResponse;
+            },
+            () => {
+              set(returnResponse, 'availableCorporationType', null);
+              return returnResponse;
+            },
+          ),
+      )
+      .then((returnResponse) =>
+        this.$http
+          .get([config.swsProxyRootPath, 'newAccount/legalform'].join(''), {
+            params: {
+              country: params.country,
+            },
+          })
+          .then(
+            (response) => {
+              set(returnResponse, 'availableLegalform', response.data);
+              return returnResponse;
+            },
+            () => {
+              set(returnResponse, 'availableLegalform', null);
+              return returnResponse;
+            },
+          ),
+      )
+      .then((returnResponse) =>
+        this.$http
+          .get([config.swsProxyRootPath, 'newAccount/area'].join(''), {
+            params: {
+              country: params.country,
+            },
+          })
+          .then(
+            (response) => {
+              set(returnResponse, 'availableArea', response.data);
+              return returnResponse;
+            },
+            () => {
+              set(returnResponse, 'availableArea', null);
+              return returnResponse;
+            },
+          ),
+      )
+      .then((returnResponse) =>
+        this.$http
+          .get([config.swsProxyRootPath, 'newAccount.json'].join(''))
+          .then(
+            (response) => {
+              set(
+                returnResponse,
+                'availableGender',
+                response.data.models['nichandle.GenderEnum'].enum,
+              );
+              return returnResponse;
+            },
+            () => {
+              set(returnResponse, 'availableGender', []);
+              return returnResponse;
+            },
+          ),
+      );
+  }
 
-    this.getMeModels = function getMeModels() {
-      return $http
-        .get([constants.swsProxyRootPath, 'me.json'].join(''), {
-          cache: cache.me,
-        })
-        .then((response) => response.data.models);
-    };
+  getMeModels() {
+    return this.$http
+      .get([config.swsProxyRootPath, 'me.json'].join(''), {
+        cache: this.cache.me,
+      })
+      .then((response) => response.data.models);
+  }
 
-    this.getDeveloperMode = function getDeveloperMode() {
-      return $http
-        .get(`${swsUseraccountInfosPath}/accessRestriction/developerMode`)
-        .then((response) => {
-          if (response.status === 200) {
-            return response.data;
-          }
-          return $q.reject(response);
-        });
-    };
+  getDeveloperMode() {
+    return this.$http
+      .get(`${this.swsUseraccountInfosPath}/accessRestriction/developerMode`)
+      .then((response) => {
+        if (response.status === 200) {
+          return response.data;
+        }
+        return this.$q.reject(response);
+      });
+  }
 
-    this.updateDeveloperMode = function updateDeveloperMode(developmentMode) {
-      return $http
-        .put(
-          `${swsUseraccountInfosPath}/accessRestriction/developerMode`,
-          developmentMode,
-        )
-        .then((response) => {
-          if (response.status === 200) {
-            return response.data;
-          }
-          return $q.reject(response);
-        });
-    };
-  },
-]);
+  updateDeveloperMode(developmentMode) {
+    return this.$http
+      .put(
+        `${this.swsUseraccountInfosPath}/accessRestriction/developerMode`,
+        developmentMode,
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          return response.data;
+        }
+        return this.$q.reject(response);
+      });
+  }
+}

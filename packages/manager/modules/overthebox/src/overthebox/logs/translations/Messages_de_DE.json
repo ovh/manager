@@ -1,4 +1,5 @@
 {
- "overTheBox_logs_title": "Logs de mon OverTheBox",
- "overTheBox_logs_no_logs": "Keine Nachrichten"
+  "overTheBox_logs_title": "Logs de mon OverTheBox",
+  "overTheBox_logs_no_logs": "Keine Nachrichten",
+  "overTheBox_logs_breadcrumb": "Logs"
 }

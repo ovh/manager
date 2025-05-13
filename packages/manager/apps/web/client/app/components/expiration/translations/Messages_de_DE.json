@@ -1,0 +1,10 @@
+{
+  "expiration_new_tab": "Wird in einem neuen Tab geöffnet",
+  "expiration_expired_date": "Abgelaufen am <strong>{{t0}}</strong>",
+  "expiration_renew_date": "Automatische Verlängerung geplant in<strong>{{t0}}</strong>",
+  "expiration_resiliation_cancel_label": "Kündigung stornieren",
+  "expiration_wizard_renew": "Verlängern",
+  "expiration_resiliation_date": "Kündigung geplant am <strong>{{t0}}</strong>",
+  "expiration_expiration_date": "Läuft ab am <strong>{{t0}}</strong>",
+  "expiration_wizard_restore": "Wieder herstellen"
+}

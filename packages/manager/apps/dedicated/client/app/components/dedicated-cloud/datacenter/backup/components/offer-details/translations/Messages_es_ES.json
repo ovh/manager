@@ -1,0 +1,13 @@
+{
+  "dedicatedCloud_datacenter_backup_offer_upgrade_custom_report": "Informe de backup personalizable",
+  "dedicatedCloud_datacenter_backup_offer_upgrade_encrypted_backup": "Backup cifrado",
+  "dedicatedCloud_datacenter_backup_offer_upgrade_retention_points": "{{retention}} puntos de retención",
+  "dedicatedCloud_datacenter_backup_offer_upgrade_minimum_retention_points": "Mínimo {{retention}} puntos de retención",
+  "dedicatedCloud_datacenter_backup_offer_upgrade_annual_retention": "1 retención al mes conservada durante un año",
+  "dedicatedCloud_datacenter_backup_offer_upgrade_full_backups": "{{fullBackups}} backups completos",
+  "dedicatedCloud_datacenter_backup_offer_upgrade_minimum_full_backups": "Mínimo {{fullBackups}} backups completos",
+  "dedicatedCloud_datacenter_backup_offer_upgrade_replication": "Replicación fuera del sitio",
+  "dedicatedCloud_datacenter_backup_offer_upgrade_choice_backup_days": "Selección de los días para cada backup",
+  "dedicatedCloud_datacenter_backup_offer_upgrade_choice_backup_time": "Selección de la hora de inicio de los backups",
+  "dedicatedCloud_datacenter_backup_offer_upgrade_proxy_backup": "1 backup proxy por host"
+}

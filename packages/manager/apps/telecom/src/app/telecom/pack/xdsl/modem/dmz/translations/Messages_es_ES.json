@@ -1,6 +1,6 @@
 {
   "xdsl_modem_dmz_status": "DMZ",
-  "xdsl_modem_dmz_description": "La sección DMZ (zona desmilitarizada) en los módems de OVH permite hacer totalmente accesible una máquina desde fuera de su red local. Atención: Para que la DMZ sea efectiva, el cortafuegos deberá estar desactivado y la máquina deberá gestionar su propia protección.",
+  "xdsl_modem_dmz_description": "La sección DMZ (zona desmilitarizada) de los módems de OVHcloud permite que una máquina esté totalmente accesible desde fuera de su red local. Atención: Para que la DMZ sea efectiva, el cortafuegos deberá estar desactivado y la máquina deberá gestionar su propia protección.",
   "xdsl_modem_dmz_warning": "Atención: Cualquier cambio posterior en la configuración de su DMZ (modificación o eliminación) implicará una interrupción de la conexión durante unos minutos.",
   "xdsl_modem_dmz_dmz_address": "Dirección IP de la DMZ",
   "xdsl_modem_dmz_modem_address": "Dirección IP del módem",

@@ -1,54 +1,63 @@
 export default class ExchangeTabTasksCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, messaging, $translate) {
+  constructor($scope, wucExchange, messaging, $translate, $stateParams) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       messaging,
       $translate,
+      $stateParams,
     };
   }
 
   $onInit() {
-    const params = this.services.Exchange.getParams();
+    const params = this.services.wucExchange.getParams();
     this.organization = params.organization;
     this.productId = params.productId;
 
     this.states = {
-      doing: 'DOING',
-      error: 'ERROR',
-      done: 'DONE',
-      cancelled: 'CANCELLED',
-      todo: 'TODO',
+      doing: 'doing',
+      error: 'error',
+      done: 'done',
+      cancelled: 'cancelled',
+      todo: 'todo',
     };
 
-    this.services.$scope.$on(this.services.Exchange.events.tasksChanged, () =>
-      this.refreshTasks(),
+    this.services.$scope.$on(
+      this.services.wucExchange.events.tasksChanged,
+      () => this.refreshTasks(),
     );
+  }
+
+  static toUpperSnakeCase(str) {
+    return str
+      .replace(/([a-z])([A-Z])/g, '$1_$2')
+      .replace(/\s+/g, '_')
+      .toUpperCase();
   }
 
   getTasks({ pageSize, offset }) {
-    return this.services.Exchange.getTasks(
-      this.organization,
-      this.productId,
-      pageSize,
-      offset - 1,
-    );
+    return this.services.wucExchange
+      .getTasks(
+        this.organization,
+        this.productId,
+        pageSize,
+        Math.ceil(offset / pageSize),
+      )
+      .then(({ tasks }) => {
+        this.tasksList = tasks;
+        return tasks;
+      });
   }
 
-  loadPaginated($config) {
-    this.tasksList = null;
-    this.pageSize = $config.pageSize;
-    this.offset = $config.offset;
-    return this.getTasks($config)
-      .then((response) => {
-        this.tasksList = response.list.results;
-        return {
-          data: this.tasksList,
-          meta: {
-            totalCount: response.count,
-          },
-        };
+  loadPaginated({ pageSize, offset }) {
+    this.isLoading = true;
+    const { organization, productId } = this.services.$stateParams;
+    return this.services.wucExchange
+      .getTasks(organization, productId, pageSize, Math.ceil(offset / pageSize))
+      .then((tasks) => {
+        this.tasksList = tasks;
+        return tasks;
       })
       .catch((error) => {
         this.services.messaging.writeError(

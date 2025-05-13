@@ -1,0 +1,10 @@
+{
+  "sms_creditTransfer_title": "Trasferire crediti",
+  "sms_creditTransfer_action_send": "Inviare",
+  "sms_creditTransfer_action_cancel": "Annullare",
+  "sms_creditTransfer_label_your_account": "Il tuo account",
+  "sms_creditTransfer_label_account_to_credit": "Account da accreditare",
+  "sms_creditTransfer_label_number_of_credits": "Indicare il numero degli stanziamenti",
+  "sms_creditTransfer_message_success": "Trasferimento effettuato",
+  "sms_creditTransfer_message_error": "Si è verificato un errore: {{error}}"
+}

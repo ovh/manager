@@ -1,0 +1,32 @@
+<manager-on-boarding-layout data-guides=":: $ctrl.guides">
+    <onboarding-title>
+        <p data-translate="vps_onboarding_title"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <ul class="text-left">
+            <li data-translate="vps_onboarding_description_1"></li>
+            <li data-translate="vps_onboarding_description_2"></li>
+            <li
+                data-ng-if="$ctrl.isUS"
+                data-translate="vps_onboarding_description_3_us"
+            ></li>
+            <li
+                data-ng-if="!$ctrl.isUS"
+                data-translate="vps_onboarding_description_3"
+            ></li>
+        </ul>
+        <a
+            class="oui-button oui-button_primary oui-button_l text-light"
+            data-translate="vps_onboarding_cta"
+            href="{{:: $ctrl.cta }}"
+            target="_blank"
+        >
+        </a>
+    </onboarding-description>
+    <onboarding-footer data-ng-if="!$ctrl.isUS">
+        <p>
+            <span>*&nbsp;</span>
+            <span data-translate="vps_onboarding_traffic_infos"></span>
+        </p>
+    </onboarding-footer>
+</manager-on-boarding-layout>

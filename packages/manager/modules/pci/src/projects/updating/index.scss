@@ -1,0 +1,140 @@
+pci-project-updating {
+  /* stylelint-disable-line */
+  @import 'bootstrap4/scss/_functions';
+  @import 'bootstrap4/scss/_variables';
+  @import 'bootstrap4/scss/mixins/_breakpoints';
+
+  $spinner-size: 350px;
+  $colors: #3d86c3, #3be, #2558c3;
+  $d: 175;
+
+  .pci-project-updating {
+    background-color: rgb(241, 249, 253);
+    overflow-x: auto;
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: normal;
+      line-height: 1.25;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: bold;
+      line-height: 1.25;
+    }
+
+    .action-row {
+      width: 75%;
+
+      a {
+        &:hover {
+          background-color: #eff9fd;
+          text-decoration: none;
+        }
+
+        .oui-icon {
+          color: inherit;
+          font-size: 1.3rem;
+
+          &::before {
+            font-size: inherit;
+          }
+        }
+      }
+    }
+
+    .img-slide-container {
+      top: 50%;
+      transform: translateY(-50%);
+
+      img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        &.ng-enter,
+        &.ng-leave {
+          transition: opacity ease-in-out 1s;
+        }
+
+        &.ng-enter,
+        &.ng-leave.ng-leave-active {
+          opacity: 0;
+        }
+
+        &.ng-leave,
+        &.ng-enter.ng-enter-active {
+          opacity: 1;
+        }
+      }
+
+      @include media-breakpoint-up(md) {
+        .action-row {
+          width: 100%;
+
+          .projects-link-container {
+            border: 0;
+          }
+        }
+
+        img {
+          max-width: $spinner-size;
+        }
+      }
+    }
+
+    .spinner {
+      width: 50vw;
+      height: 50vw;
+      max-width: $spinner-size;
+      max-height: $spinner-size;
+      animation: contanim 2s linear infinite;
+
+      svg {
+        display: block;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: rotate(-90deg);
+
+        @for $i from 1 through 3 {
+          &:nth-child(#{$i}) circle {
+            stroke: nth($colors, $i);
+            stroke-dasharray: 1, 300;
+            stroke-dashoffset: 0;
+            animation: strokeanim 3s calc(0.2s * (#{$i})) ease infinite;
+            transform-origin: center center;
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes strokeanim {
+    0% {
+      stroke-dasharray: 1, 300;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 120, 300;
+      stroke-dashoffset: calc(-#{$d} / 3);
+    }
+
+    100% {
+      stroke-dasharray: 120, 300;
+      stroke-dashoffset: -$d;
+    }
+  }
+
+  @keyframes contanim {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

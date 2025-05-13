@@ -3,6 +3,7 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'DomainDynHostLoginEditCtrl',
   class DomainDynHostLoginEditCtrl {
+    /* @ngInject */
     constructor($scope, $q, $translate, Alerter, Domain, WucValidator) {
       this.$scope = $scope;
       this.$q = $q;

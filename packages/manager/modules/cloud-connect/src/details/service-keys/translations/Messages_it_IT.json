@@ -1,0 +1,16 @@
+{
+  "cloud_connect_service_keys_status_doing": "Da fare",
+  "cloud_connect_service_keys_status_active": "Attivo",
+  "cloud_connect_service_keys_status_cancelled": "Annullato",
+  "cloud_connect_service_keys_status_terminated": "Terminato",
+  "cloud_connect_service_keys_status_toCheck": "Non disponibile",
+  "cloud_connect_service_keys_status": "Stato",
+  "cloud_connect_service_keys_id": "ID",
+  "cloud_connect_service_keys_provider": "Provider",
+  "cloud_connect_service_keys_key": "Chiave di servizio ",
+  "cloud_connect_service_keys_decription": "Lista di tutte le chiavi di servizio Può essere valida una sola chiave di servizio per volta. In assenza di chiavi di servizio attive, verrà visualizzata un'azione per impostare una chiave di servizio come \"attiva\".",
+  "cloud_connect_service_keys_active": "Attiva",
+  "cloud_connect_close": "Chiudi",
+  "cloud_connect_regenerate": "Rigenera",
+  "cloud_connect_service_keys": "Chiavi di servizio"
+}

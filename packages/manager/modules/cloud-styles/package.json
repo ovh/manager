@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-styles",
-  "version": "0.3.1",
+  "version": "1.8.5",
   "private": true,
   "description": "[DEPRECATED] - Collection of stylesheets for the Cloud control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/cloud-styles#readme",
@@ -13,24 +13,20 @@
     "directory": "packages/manager/modules/cloud-styles"
   },
   "license": "BSD-3-Clause",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/cloud-styles.js",
+  "type": "module",
+  "main": "./dist/esm/index.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-cloud-styles' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-cloud-styles' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-cloud-styles' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "rollup -c --environment BUILD:development --watch",
+    "prepare": "rollup -c --environment BUILD:production"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^7.0.0",
+    "@ovh-ux/component-rollup-config": "^13.0.2",
+    "@ovh-ux/ui-kit": "^6.10.5",
     "bootstrap": "~3.3.7",
     "font-awesome": "^4.0.0",
     "ovh-common-style": "^3.2.2",
-    "ovh-ui-kit": "^2.40.0",
-    "ovh-ui-kit-bs": "^2.3.1"
+    "ovh-ui-kit-bs": "^4.2.0"
   }
 }

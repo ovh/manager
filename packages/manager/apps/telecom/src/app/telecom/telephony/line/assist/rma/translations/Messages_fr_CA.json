@@ -30,7 +30,19 @@
   "telephony_line_assist_rma_step_name_equipmentSending": "Envoi du matériel",
   "telephony_line_assist_rma_step_name_parcelValidation": "Validation du colis",
   "telephony_line_assist_rma_step_name_validation": "Validation du changement de téléphone",
+  "telephony_line_assist_rma_step_name_dispatchJustification": "Justification de l'envoi",
   "telephony_line_assist_rma_step_status_todo": "En attente",
-  "telephony_line_assist_rma_step_status_done": "Validée",
-  "telephony_line_assist_rma_pdf_download": "Télécharger le bon de retour"
+  "telephony_line_assist_rma_step_status_done": "Validé",
+  "telephony_line_assist_rma_pdf_download": "Télécharger le bon de retour",
+  "telephony_line_assist_rma_equipment_out_of_order": "Signaler un équipement hors service",
+  "telephony_line_assist_rma_keeping_line": "Conserver la ligne téléphonique sans matériel",
+  "telephony_line_assist_rma_terminate_line": "Résilier la ligne téléphonique associée",
+  "telephony_line_assist_rma_modal_yes": "Oui",
+  "telephony_line_assist_rma_modal_no": "Non",
+  "telephony_line_assist_rma_cancel_modal_content": "Voulez-vous annuler ce RMA ?",
+  "telephony_line_assist_rma_equipment_out_of_order_modal_content": "Voulez-vous signaler un équipement hors service ?{{ breakLine }}(Vous serez alors redirigé vers la page de déclaration d'incident)",
+  "telephony_line_assist_rma_keeping_line_modal_content": "Voulez-vous conserver la ligne téléphonique sans matériel ?",
+  "telephony_line_assist_rma_terminate_line_modal_content": "Voulez-vous résilier la ligne téléphonique associée ?",
+  "telephony_line_assist_rma_keeping_line_success": "Demande de concervation de la ligne sans matériel effectuée avec succès",
+  "telephony_line_assist_rma_terminate_line_success": "Demande de résiliation de la ligne effectuée avec succès"
 }

@@ -64,5 +64,6 @@
   "sms_receivers_remove_receiver_confirm": "Voulez-vous vraiment supprimer le fichier de destinataires <b>«{{ receiver }}»</b> ?",
   "sms_receivers_remove_receiver_removing": "Suppression du fichier de destinataires en cours…",
   "sms_receivers_remove_receiver_removed": "Fichier de destinataires supprimé",
-  "sms_receivers_remove_receiver_ko": "Impossible de supprimer le fichier de destinataires.<br/>{{error}}"
+  "sms_receivers_remove_receiver_ko": "Impossible de supprimer le fichier de destinataires.<br/>{{error}}",
+  "sms_receivers_breadcrumb": "Kontakte"
 }

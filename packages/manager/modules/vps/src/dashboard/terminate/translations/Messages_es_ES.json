@@ -4,5 +4,19 @@
   "vps_terminate_cancel": "Cancelar",
   "vps_terminate_confirm": "Confirmar",
   "vps_terminate_success": "La solicitud de supresión del servicio se ha enviado. Recibirá un mensaje de correo electrónico para confirmar la supresión.",
-  "vps_terminate_error": "Se ha producido un error al eliminar el servicio."
+  "vps_terminate_success_engagement": "Su solicitud se ha registrado y será tratada lo antes posible.",
+  "vps_terminate_error": "Se ha producido un error al eliminar el servicio.",
+  "vps_terminate_unavailable": "Ha contratado el servicio con un compromiso de {{ monthCount }} meses. Si tiene cualquier pregunta o necesita más información, puede ponerse en contacto con nuestro servicio de soporte por chat o mediante un <a class=\"oui-link\" href=\"{{supportTicketLink}}\" target=\"_blank\" rel=\"noopener\">tíquet de asistencia </a>. ¡Gracias por su comprensión!",
+  "vps_terminate_option_terminate_at_expiration": "Eliminar el servicio en la fecha de expiración",
+  "vps_terminate_option_cancel_terminate_at_expiration": "Cancelar la eliminación del servicio",
+  "vps_terminate_option_terminate_now": "Eliminar el servicio de inmediato",
+  "vps_terminate_option_terminate_now_description": "Recibirá por correo electrónico el procedimiento de eliminación del servidor. ",
+  "vps_terminate_option_terminate_now_question": "¿Seguro que quiere continuar?",
+  "vps_terminate_warning_data_deletion": "La eliminación de este elemento provocará el borrado definitivo de todos los datos correspondientes.",
+  "vps_terminate_warning_no_refund": "La acción de eliminación no implica ninguna devolución.",
+  "vps_terminate_warning_manual_refund": "La acción de eliminación no garantiza que se conceda una devolución. Contacte con el soporte si tiene alguna duda relativa a una posible devolución.",
+  "vps_terminate_activate_delete_at_expiration_success": "La solicitud de eliminación de este servidor en la fecha de expiración se ha registrado correctamente.",
+  "vps_terminate_activate_delete_at_expiration_error": "Se ha producido un error al solicitar la eliminación en la fecha de expiración del servidor:",
+  "vps_terminate_deactivate_delete_at_expiration_success": "La solicitud de eliminación de este servidor en la fecha de expiración se ha cancelado correctamente.",
+  "vps_terminate_deactivate_delete_at_expiration_error": "Se ha producido un error al cancelar la solicitud de eliminación en la fecha de expiración del servidor:"
 }

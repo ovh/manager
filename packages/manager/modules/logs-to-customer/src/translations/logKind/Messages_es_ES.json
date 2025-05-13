@@ -1,0 +1,5 @@
+{
+  "log_kind_empty_state_description": "No existe ninguna categoría de log para este producto",
+  "log_kind_selector_select_label": "Seleccionar un tipo de log",
+  "log_kind_no_kind_selected": "Por favor, seleccione un tipo de log"
+}

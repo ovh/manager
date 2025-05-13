@@ -1,0 +1,25 @@
+<manager-on-boarding-layout
+    data-guides=":: $ctrl.guides"
+    data-image-source=":: $ctrl.illustration"
+    on-guide-click="$ctrl.trackClick($ctrl.PREFIX_TRACKING_ONBOARDING_GUIDES, guide.tracking)"
+>
+    <onboarding-title>
+        <p data-translate="nutanix_onboarding_title"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <h4 data-translate="nutanix_onboarding_short_description"></h4>
+        <p
+            class="text-left"
+            data-translate="nutanix_onboarding_description"
+        ></p>
+        <a
+            class="oui-button oui-button_primary oui-button_l text-light"
+            data-ng-click="$ctrl.trackClick($ctrl.PREFIX_TRACKING_ONBOARDING, 'order')"
+            href="{{:: $ctrl.cta }}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span data-translate="nutanix_onboarding_order"></span>
+        </a>
+    </onboarding-description>
+</manager-on-boarding-layout>

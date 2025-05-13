@@ -1,0 +1,6 @@
+{
+  "inputNodeLabel": "Seleziona il numero di nodi del cluster",
+  "inputStorageLabel": "Seleziona lo storage aggiuntivo del cluster",
+  "inputStorageNoneValue": "Nessuna",
+  "storageFlavorDescription": "Il modello di nodo {{flavor}} include {{includedStorage}} di storage, a cui è possibile aggiungere fino a {{maxAdditionalStorage}} di storage supplementare in intervalli di {{step}}."
+}

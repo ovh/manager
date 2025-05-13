@@ -1,0 +1,18 @@
+{
+  "zimbra_account_order": "Zamów konto",
+  "zimbra_account_order_cta_back": "Powrót do kont email",
+  "zimbra_account_order_title": "Zamów konta Zimbra",
+  "zimbra_account_order_subtitle": "Wybierz konta Zimbra",
+  "zimbra_account_order_subtitle_commitment": "Czas trwania umowy",
+  "zimbra_account_order_legal_checkbox": "Akceptuję fakt, że OVH uruchomi usługę natychmiast po zatwierdzeniu zamówienia. W związku z tym rezygnuję z prawa do odstąpienia od umowy na podstawie artykułu L.121-21-8 francuskiego kodeksu konsumenckiego.",
+  "zimbra_account_order_no_product_error_message": "Wystąpił problem podczas pobierania produktu powiązanego z Twoim zamówieniem. Przepraszamy i prosimy spróbować ponownie później.",
+  "zimbra_account_order_commitment_month": "miesiąc",
+  "zimbra_account_order_commitment_months": "miesiąc",
+  "zimbra_account_order_commitment_available_soon": "Dostępne wkrótce",
+  "zimbra_account_order_cta_confirm": "Zapłać",
+  "zimbra_account_order_cta_done": "Powrót",
+  "zimbra_account_order_initiated_title": "Proces zamówienia kont Zimbra został rozpoczęty!",
+  "zimbra_account_order_initiated_subtitle": "Jeżeli nie udało Ci się sfinalizować zamówienia, dokończ je, klikając poniższy link:",
+  "zimbra_account_order_initiated_info": "O dostępności Twoich kont powiadomimy Cię e-mailem.",
+  "zimbra_account_order_initiated_link_label": "Link do zamówienia"
+}

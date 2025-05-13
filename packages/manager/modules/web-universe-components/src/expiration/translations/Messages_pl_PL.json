@@ -1,9 +1,0 @@
-{
-  "expiration_new_tab": "Otworzy się w nowej zakładce",
-  "expiration_expired_date": "Usługa wygasła <strong>{{t0}}</strong>",
-  "expiration_renew_date": "Automatyczne odnowienie usługi zaplanowane na <strong>{{t0}}</strong>",
-  "expiration_resiliation_cancel_label": "Anuluj rezygnację",
-  "expiration_wizard_renew": "Odnów",
-  "expiration_resiliation_date": "Rezygnacja przewidziana na <strong>{{t0}}</strong>",
-  "expiration_expiration_date": "Wygasa w dniu <strong>{{t0}}</strong>"
-}

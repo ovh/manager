@@ -1,0 +1,195 @@
+<div data-ui-view>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+    <pci-projects-project-storages-components-user-credential-banner
+        ng-if="$ctrl.createdContainerInfos"
+        data-user="$ctrl.createdContainerInfos.user"
+        data-role="$ctrl.createdContainerInfos.role"
+        data-credential="$ctrl.createdContainerInfos.userCredentials"
+        data-fields="$ctrl.USER_SUCCESS_BANNER"
+        data-container-name="$ctrl.createdContainerInfos.containerName"
+        data-field-secret-key-label="{{:: 'pci_projects_project_storages_cold_archives_add_container_success_secret_label' | translate}}"
+        data-on-copy-field-click="$ctrl.onClipboardFieldClick(data)"
+    ></pci-projects-project-storages-components-user-credential-banner>
+
+    <oui-datagrid data-rows="$ctrl.containers">
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_storages_containers_name_label' | translate"
+            data-property="name"
+            data-type="string"
+            data-searchable
+            data-sortable="asc"
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'pci_projects_project_storages_cold_archive_containers_creation_date_label' | translate"
+            data-property="gridPropertyCreationDate"
+            data-type="date"
+            data-searchable
+            data-sortable
+            data-filterable
+        >
+            <span data-ng-bind="::$row.createdAt | date: 'short'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_storages_containers_storedObjects_label' | translate"
+            data-property="objectsCount"
+            data-type="number"
+            data-sortable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_storages_containers_storedBytes_label' | translate"
+            data-property="objectsSize"
+            data-type="number"
+            data-sortable
+            data-filterable
+        >
+            <span
+                data-ng-if="$value > 0"
+                data-ng-bind="$value | RAUnitsBits"
+            ></span>
+            <span data-ng-if="!$value">-</span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'pci_projects_project_storages_cold_archive_containers_locked_until_label' | translate"
+            data-property="gridPropertyLockedUntil"
+            data-type="date"
+            data-searchable
+            data-sortable
+            data-filterable
+        >
+            <span
+                data-ng-if="$row.lockedUntil"
+                data-ng-bind="::$row.lockedUntil | date: 'short'"
+            ></span>
+            <span data-ng-if="!$row.lockedUntil">-</span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_storages_cold_archive_containers_status_label' | translate"
+            data-property="translatedStatus"
+            data-type="string"
+            data-sortable
+            data-filterable
+        >
+            <span
+                class="{{$ctrl.constructor.getStatusClass($row.status)}}"
+                data-ng-bind=":: $row.translatedStatus"
+            ></span>
+            <p
+                class="mb-0"
+                oui-tooltip="{{:: 'pci_projects_project_storages_cold_archive_containers_status_restore_date_tooltip' | translate  }}"
+                data-ng-if="$ctrl.displayRestoreDate($row)"
+                data-translate="pci_projects_project_storages_cold_archive_containers_status_restore_date"
+                data-translate-values="{ date: $ctrl.displayRestoreDate($row) }"
+            ></p>
+        </oui-datagrid-column>
+        <oui-datagrid-column>
+            <oui-action-menu
+                data-ng-if="$ctrl.constructor.isActionsAvailable($row)"
+                data-placement="left-bottom"
+                data-compact
+            >
+                <!--Action: add user-->
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.constructor.isActionAddUserAvailable($row)"
+                    data-on-click="$ctrl.onAddUsertoContainerClick($row)"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_cold_archive_container_action_add_user"
+                    ></span>
+                </oui-action-menu-item>
+
+                <!--Action: archive container-->
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.constructor.isActionArchiveAvailable($row)"
+                    data-on-click="$ctrl.onArchiveContainerClick($row)"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_cold_archive_container_action_archive"
+                    ></span>
+                </oui-action-menu-item>
+
+                <!--Action: restored container-->
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.constructor.isActionRestoredAvailable($row)"
+                    data-on-click="$ctrl.onRestoreContainerClick($row)"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_cold_archive_container_action_restore"
+                    ></span>
+                </oui-action-menu-item>
+
+                <!--Action: edit retention-->
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.constructor.isActionEditRetentionContainerAvailable($row)"
+                    data-on-click="$ctrl.onEditRetentionContainerClick($row)"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_cold_archive_container_action_edit_retention"
+                    ></span>
+                </oui-action-menu-item>
+
+                <!--Action: flush container-->
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.constructor.isActionFlushContainerAvailable($row)"
+                    data-on-click="$ctrl.onFlushContainerClick($row)"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_cold_archive_container_action_flush_archive"
+                    ></span>
+                </oui-action-menu-item>
+                <!--Action: delete container-->
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.constructor.isActionDeleteContainerAvailable($row)"
+                    data-on-click="$ctrl.onDeleteContainerClick($row)"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_cold_archive_container_action_delete_container"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid-column>
+
+        <oui-datagrid-topbar>
+            <button
+                class="oui-button oui-button_secondary"
+                data-ng-click="$ctrl.onAddContainerClick()"
+            >
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    data-translate="{{:: 'pci_projects_project_storages_cold_archive_containers_add_container_label' }}"
+                ></span>
+            </button>
+            <button
+                class="oui-button oui-button_primary ml-sm-2"
+                data-ng-click="$ctrl.onManageContainerClick()"
+                type="button"
+            >
+                <span
+                    class="oui-icon oui-icon-info-circle pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    data-translate="{{:: 'pci_projects_project_storages_cold_archive_containers_manage_container_label' }}"
+                ></span>
+            </button>
+            <button
+                class="oui-button oui-button_s oui-button_secondary float-right"
+                data-ng-if="$ctrl.refreshContainers"
+                data-ng-click="$ctrl.refreshContainers()"
+            >
+                <span
+                    class="oui-icon oui-icon-refresh"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

@@ -1,32 +1,32 @@
 <img
     class="vrack__mapper-icon"
     data-ng-show="!$ctrl.loaders.init"
-    alt=""
-    src="{{:: $ctrl.arrowIcon }}"
+    alt
+    data-ng-src="{{:: $ctrl.arrowIcon }}"
 />
 
 <div data-ng-if="$ctrl.isAdding()">
     <button
         class="oui-button oui-button_primary oui-button_icon-right"
-        data-ng-click="$ctrl.addSelectedServices()"
+        data-ng-click="$ctrl.addHandler()"
         data-ng-class="{
                 'hidden': !$ctrl.isAdding() && !$ctrl.isRemoving()
             }"
     >
         <span data-translate="vrack_common_add"></span>
-        <i class="oui-icon oui-icon_circle oui-icon-chevron-right"></i>
+        <i class="oui-icon oui-icon-chevron-right"></i>
     </button>
 </div>
 
 <div data-ng-if="$ctrl.isRemoving()">
     <button
         class="oui-button oui-button_secondary oui-button_icon-left"
-        data-ng-click="$ctrl.deleteSelectedServices()"
+        data-ng-click="$ctrl.deleteHandler()"
         data-ng-class="{
                 'hidden': !$ctrl.isAdding() && !$ctrl.isRemoving()
             }"
     >
-        <i class="oui-icon oui-icon_circle oui-icon-chevron-left"></i>
+        <i class="oui-icon oui-icon-chevron-left"></i>
         <span data-translate="vrack_common_remove"></span>
     </button>
 </div>
@@ -37,3 +37,16 @@
     data-ng-show="$ctrl.isMoving()"
     data-ng-click="$ctrl.moveSelectedService()"
 ></button>
+
+<vrack-add-dialog-modal
+    data-is-open-modal="$ctrl.modals.add.open"
+    data-on-confirm="$ctrl.modals.add.confirm"
+    data-on-cancel="$ctrl.modals.add.cancel"
+    data-services-to-add="$ctrl.modals.add.servicesToAdd"
+></vrack-add-dialog-modal>
+<vrack-delete-dialog-modal
+    data-is-open-modal="$ctrl.modals.delete.open"
+    data-on-confirm="$ctrl.modals.delete.confirm"
+    data-on-cancel="$ctrl.modals.delete.cancel"
+    data-services-to-delete="$ctrl.modals.delete.servicesToDelete"
+></vrack-delete-dialog-modal>

@@ -1,8 +1,0 @@
-{
- "cpbc_no_consumption_data": "No usage for the selected period. ",
- "cpbc_volume_col_name": "Name",
- "cpbc_volume_col_consumption": "Usage",
- "cpbc_volume_consumption_tooltip_part1": "You get billed based on the actual storage space, calculated each hour, rounded to the nearest hour.",
- "cpbc_volume_consumption_tooltip_part2": "Your usage is exactly {{amount}} GiBHours.",
- "cpb_error_message": "Oops, we can not retrieve all the information."
-}

@@ -1,0 +1,19 @@
+{
+  "cloud_connect_tasks_decription": "Tareas en espera, en progreso o en error.",
+  "cloud_connect_tasks_id": "ID de la tarea",
+  "cloud_connect_tasks_action": "Acción",
+  "cloud_connect_tasks_lockInterface": "Interfaz de bloqueo",
+  "cloud_connect_tasks_unlockInterface": "Desbloquear la interfaz",
+  "cloud_connect_tasks_addPopConfiguration": "Añadir una configuración PoP",
+  "cloud_connect_tasks_delPopConfiguration": "Eliminar la configuración PoP",
+  "cloud_connect_tasks_addDatacenterConfiguration": "Añadir la configuración de la zona de disponibilidad",
+  "cloud_connect_tasks_delDatacenterConfiguration": "Eliminar la configuración de la zona de disponibilidad",
+  "cloud_connect_tasks_addDatacenterExtraConfiguration": "Añadir una configuración adicional a las zonas de disponibilidad",
+  "cloud_connect_tasks_delDatacenterExtraConfiguration": "Eliminar la configuración adicional de la zona de disponibilidad",
+  "cloud_connect_tasks_status_todo": "Planificado",
+  "cloud_connect_tasks_status_doing": "En proceso",
+  "cloud_connect_tasks_status_done": "Finalizado",
+  "cloud_connect_tasks_status_error": "Error",
+  "cloud_connect_tasks_status": "Estado",
+  "cloud_connect_tasks": "Tareas"
+}

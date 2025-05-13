@@ -1,0 +1,10 @@
+{
+  "hosting_cdn_terminate_title": "Rezygnacja z usługi CDN",
+  "hosting_cdn_terminate_question_part_1": "Czy chcesz zrezygnować z usługi CDN po zakończeniu abonamentu:",
+  "hosting_cdn_terminate_question_part_2": "{{endEngagementDate}}",
+  "hosting_cdn_terminate_success": "Twoja usługa CDN zostanie wyłączona dnia {{endEngagementDate}}.",
+  "hosting_cdn_terminate_success_link": "Anuluj operację.",
+  "hosting_cdn_terminate_error": "Wystąpił błąd podczas rezygnacji z usługi CDN.",
+  "hosting_cdn_terminate_action_delete": "Zrezygnuj",
+  "hosting_cdn_terminate_action_cancel": "Anuluj"
+}

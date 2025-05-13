@@ -1,35 +1,12 @@
 <oui-modal
     data-heading="{{:: 'pci_projects_project_edit_remove_title' | translate}}"
     data-primary-action="$ctrl.remove()"
-    data-primary-label="{{:: 'pci_projects_project_edit_remove_submit' | translate }}"
+    data-primary-label="{{ $ctrl.getPrimaryButtonLabel() | translate }}"
     data-primary-disabled="$ctrl.isLoading"
-    data-secondary-action="$ctrl.goBack()"
+    data-secondary-action="$ctrl.cancel()"
     data-secondary-label="{{:: 'pci_projects_project_edit_remove_cancel' | translate }}"
-    data-on-dismiss="$ctrl.goBack()"
+    data-on-dismiss="$ctrl.cancel()"
     data-loading="$ctrl.isLoading"
 >
-    <p data-translate="pci_projects_project_edit_remove_please_note"></p>
-    <ul>
-        <li data-translate="pci_projects_project_edit_remove_instances"></li>
-        <li data-translate="pci_projects_project_edit_remove_volumes"></li>
-        <li
-            data-translate="pci_projects_project_edit_remove_object_containers"
-        ></li>
-        <li
-            data-translate="pci_projects_project_edit_remove_object_archives"
-        ></li>
-        <li
-            data-translate="pci_projects_project_edit_remove_object_snapshots"
-        ></li>
-        <li
-            data-translate="pci_projects_project_edit_remove_object_backups"
-        ></li>
-        <li
-            data-translate="pci_projects_project_edit_remove_object_private_network"
-        ></li>
-        <li
-            data-translate="pci_projects_project_edit_remove_object_kubernetes"
-        ></li>
-    </ul>
-    <p data-translate="pci_projects_project_edit_remove_object_ip"></p>
+    <p data-translate="{{$ctrl.getTranslationKey()}}"></p>
 </oui-modal>

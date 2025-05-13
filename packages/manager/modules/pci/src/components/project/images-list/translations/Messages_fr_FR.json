@@ -1,13 +1,14 @@
 {
-
-  "pci_project_instances_available_only": "Masquer les options non disponibles",
+  "pci_project_instances_display_nonavailable": "Montrer les images indisponibles",
   "pci_project_instances_os_linux": "Distributions Unix",
   "pci_project_instances_os_windows": "Distributions Windows",
+  "pci_project_instances_os_baremetal-linux": "Bare Metal distributions",
+  "pci_project_instances_distribution_unknown": "Bare Metal distributions",
   "pci_project_instances_apps": "Distributions + Apps",
   "pci_project_instances_shapshots": "Backups",
   "pci_project_instances_licence": "L'utilisation d'une image est soumise à l'acceptation préalable du Contrat de license utilisateur du fournisseur.",
   "pci_project_instances_distribution_linux": "Linux",
-  "pci_project_instances_distribution_linux_other": "Archlinux",
+  "pci_project_instances_distribution_linux_other": "Arch Linux",
   "pci_project_instances_distribution_centos": "CentOS",
   "pci_project_instances_distribution_coreos": "CoreOS",
   "pci_project_instances_distribution_debian": "Debian",
@@ -17,6 +18,16 @@
   "pci_project_instances_distribution_windows_server_2012": "Windows Server 2012",
   "pci_project_instances_distribution_windows_server_2016": "Windows Server 2016",
   "pci_project_instances_distribution_windows_other": "Autres distributions Windows",
+  "pci_project_instances_distribution_baremetal_linux": "Linux",
+  "pci_project_instances_distribution_baremetal_linux_other": "Arch Linux",
+  "pci_project_instances_distribution_baremetal_centos": "CentOS",
+  "pci_project_instances_distribution_baremetal_coreos": "CoreOS",
+  "pci_project_instances_distribution_baremetal_debian": "Debian",
+  "pci_project_instances_distribution_baremetal_fedora": "Fedora",
+  "pci_project_instances_distribution_baremetal_freebsd": "FreeBSD",
+  "pci_project_instances_distribution_baremetal_ubuntu": "Ubuntu",
+  "pci_project_instances_distribution_baremetal_windows_server_2012": "Windows Server 2012",
+  "pci_project_instances_distribution_baremetal_windows_server_2016": "Windows Server 2016",
+  "pci_project_instances_distribution_baremetal_windows_other": "Autres distributions Windows",
   "pci_project_instances_distribution_version": "Version"
-
 }

@@ -1,0 +1,23 @@
+{
+  "domains_newdnszone_order_title": "Dodawanie strefy DNS",
+  "domains_newdnszone_order_step1_title": "Wpisz nazwę domeny",
+  "domains_newdnszone_order_step1_zonename": "Nazwa domeny",
+  "domains_newdnszone_order_step1_zonename_pending": "Sprawdzanie dostępności nazwy strefy...",
+  "domains_newdnszone_order_step2_title": "Szczegóły",
+  "domains_newdnszone_order_step2_minimized": "Aktywować wpisy minimalne?",
+  "domains_newdnszone_order_step2_minimized_yes": "Tak",
+  "domains_newdnszone_order_step2_minimized_no": "Nie",
+  "domains_newdnszone_order_example": "Przykład zastosowania:",
+  "domains_newdnszone_order_usage": "Posiadasz domenę u innego operatora i chcesz ją przenieść do OVHcloud.  Aby uniknąć przerwy w działaniu usług, przed rozpoczęciem transferu możesz dodać strefę DNS.",
+  "domains_newdnszone_order_reminder": "Nie zapomnij o zmianie serwerów DNS, aby wpisy w strefie działały.",
+  "domains_newdnszone_order_subtitle": "konfiguracja domeny z różnymi usługami.",
+  "domains_newdnszone_zone_invalid_title": "Utworzenie strefy DNS jest możliwe tylko wtedy, jeśli spełnisz wszystkie poniższe warunki:",
+  "domains_newdnszone_zone_invalid_domain_active": "Domena istnieje i jest aktywna.",
+  "domains_newdnszone_zone_invalid_domain_soa": "Wpis SOA domeny powinien zostać poprawnie umieszczony w strefie DNS domeny.",
+  "domains_newdnszone_zone_invalid_domain_a": "Brak operacji i zamówień w trakcie w OVHcloud dla tej domeny",
+  "domains_newdnszone_zone_invalid_domain_zone": "Ta strefa DNS nie musi być już zarejestrowana w OVH.",
+  "domains_newdnszone_zone_invalid_domain_guide": "Zapoznaj się z przewodnikiem.",
+  "domains_newdnszone_order_help_add": "Dodawanie strefy DNS",
+  "domains_newdnszone_order_success": "Włączenie strefy DNS zostało zrealizowane",
+  "domains_newdnszone_order_error": "Wystąpił błąd podczas zamawiania strefy DNS: {{message}}"
+}

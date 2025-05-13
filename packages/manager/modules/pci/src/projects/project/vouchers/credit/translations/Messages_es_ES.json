@@ -1,8 +1,0 @@
-{
-  "cpb_vouchers_add_credit_title": "Comprar crédito cloud",
-  "cpb_vouchers_add_credit_info": "Seleccione el importe que desea recargar (IVA no incluido) para este proyecto. Una vez abonada la orden de pedido, el crédito se utilizará para las cuotas fijas y el consumo de las facturas de este proyecto que se emitan en los próximos 12 meses.",
-  "cpb_vouchers_add_credit_amount": "Importe a recargar ({{ currency }}, IVA no incl.)",
-  "cpb_vouchers_add_credit_valid": "Generar una orden de pedido",
-  "cpb_vouchers_add_credit_success": "La orden de pedido de crédito por un importe de {{ amount }} está disponible <a href=\"{{ url }}\" target=\"_blank\">aquí</a>.",
-  "cpb_vouchers_add_credit_load_err": "¡Vaya! Se ha producido un error al carga la compra de crédito cloud."
-}

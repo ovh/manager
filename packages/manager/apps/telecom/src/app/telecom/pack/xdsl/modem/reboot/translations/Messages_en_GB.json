@@ -1,7 +1,7 @@
 {
-  "xdsl_modem_reboot": "Restart the modem ",
-  "xdsl_modem_reboot_an_error_ocurred": "[Modem restart] There was an error!",
-  "xdsl_modem_reboot_success": "Modem restarting ",
-  "xdsl_modem_reboot_success_end": "Modem restart complete. ",
+  "xdsl_modem_reboot": "Restart the modem",
+  "xdsl_modem_reboot_an_error_ocurred": "[Modem restart] An error occurred.",
+  "xdsl_modem_reboot_success": "Modem restarting...",
+  "xdsl_modem_reboot_success_end": "Modem restart complete.",
   "xdsl_modem_reboot_really": "Are you sure that you want to restart your modem?"
 }

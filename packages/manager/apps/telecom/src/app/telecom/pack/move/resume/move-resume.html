@@ -1,0 +1,604 @@
+<div
+    class="text-center"
+    data-ng-if="$ctrl.loading && $ctrl.moveValidationPending && !$ctrl.moveValidationSuccess"
+>
+    <oui-spinner></oui-spinner>
+    <h3 data-translate="pack_move_doing"></h3>
+</div>
+
+<form name="resumeForm" data-ng-submit="$ctrl.launchMovePack()">
+    <div
+        data-ng-if="!$ctrl.loading && !$ctrl.moveValidationPending && !$ctrl.moveValidationSuccess"
+    >
+        <div class="widget-presentation">
+            <h2
+                class="widget-presentation-title"
+                data-translate="pack_move_confirm_resume_title"
+            ></h2>
+
+            <p
+                data-translate="pack_move_confirm_move_to"
+                data-translate-values="{ toOffer : $ctrl.offer.selected.offer.description }"
+            ></p>
+
+            <div>
+                <div class="responsive-table-line my-3">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th
+                                    scope="col"
+                                    data-translate="pack_move_confirm_header_entitled"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    data-translate="pack_move_confirm_header_price"
+                                    class="text-right"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    data-translate="pack_move_confirm_header_quantity"
+                                    class="text-right"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    data-translate="pack_move_confirm_header_total"
+                                    class="text-right"
+                                ></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th
+                                    scope="row"
+                                    data-translate="pack_move_confirm_current_offer"
+                                    data-translate-values="{ description : $ctrl.offer.selected.offer.description + ' *' }"
+                                    data-title="{{ 'pack_move_confirm_header_entitled' | translate }}"
+                                ></th>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.price.price.text"
+                                    data-title="{{ 'pack_move_confirm_header_price' | translate }}"
+                                ></td>
+                                <td
+                                    class="text-right"
+                                    data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
+                                >
+                                    1
+                                </td>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.price.price.text"
+                                    data-title="{{ 'pack_move_confirm_header_total' | translate }}"
+                                ></td>
+                            </tr>
+                            <tr data-ng-if="$ctrl.firstYearPromo > 0">
+                                <th
+                                    scope="row"
+                                    data-translate="pack_move_resume_first_year_promo"
+                                    data-title="{{ 'pack_move_confirm_header_entitled' | translate }}"
+                                ></th>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.getPriceStruct($ctrl.firstYearPromo, true).text"
+                                    data-title="{{ 'pack_move_confirm_header_price' | translate }}"
+                                ></td>
+                                <td
+                                    class="text-right"
+                                    data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
+                                >
+                                    1
+                                </td>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.getPriceStruct($ctrl.firstYearPromo, true).text"
+                                    data-title="{{ 'pack_move_confirm_header_total' | translate }}"
+                                ></td>
+                            </tr>
+                            <tr
+                                data-ng-if="$ctrl.MODEM_LIST.includes($ctrl.offer.selected.offer.modem)"
+                            >
+                                <th
+                                    scope="row"
+                                    data-translate="pack_move_confirm_modem_rental"
+                                    data-title="{{ 'pack_move_confirm_header_entitled' | translate }}"
+                                ></th>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.modemRental.price.text"
+                                    data-title="{{ 'pack_move_confirm_header_price' | translate }}"
+                                ></td>
+                                <td
+                                    class="text-right"
+                                    data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
+                                >
+                                    1
+                                </td>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.modemRental.price.text"
+                                    data-title="{{ 'pack_move_confirm_header_total' | translate }}"
+                                ></td>
+                            </tr>
+                            <tr
+                                data-ng-if="$ctrl.offer.selected.offer.prices.providerOrange.price"
+                            >
+                                <th
+                                    scope="row"
+                                    data-translate="pack_move_provider_infra_costs"
+                                    data-title="{{ 'pack_move_confirm_header_entitled' | translate }}"
+                                ></th>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.providerOrange.price.text"
+                                    data-title="{{ 'pack_move_confirm_header_price' | translate }}"
+                                ></td>
+                                <td
+                                    class="text-right"
+                                    data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
+                                >
+                                    1
+                                </td>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.providerOrange.price.text"
+                                    data-title="{{ 'pack_move_confirm_header_total' | translate }}"
+                                ></td>
+                            </tr>
+                            <tr
+                                data-ng-if="$ctrl.offer.selected.offer.prices.providerAI.price"
+                            >
+                                <th
+                                    scope="row"
+                                    data-translate="pack_move_provider_infra_costs"
+                                    data-title="{{ 'pack_move_confirm_header_entitled' | translate }}"
+                                ></th>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.providerAI.price.text"
+                                    data-title="{{ 'pack_move_confirm_header_price' | translate }}"
+                                ></td>
+                                <td
+                                    class="text-right"
+                                    data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
+                                >
+                                    1
+                                </td>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.providerAI.price.text"
+                                    data-title="{{ 'pack_move_confirm_header_total' | translate }}"
+                                ></td>
+                            </tr>
+                            <tr
+                                data-ng-repeat="option in $ctrl.choosedAdditionalOptions track by $index"
+                            >
+                                <th
+                                    scope="row"
+                                    data-translate="{{ 'pack_move_confirm_resume_' + option.name }}"
+                                    data-title="{{ 'pack_move_confirm_header_entitled' | translate }}"
+                                ></th>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="option.optionalPrice.text"
+                                    data-title="{{ 'pack_move_confirm_header_price' | translate }}"
+                                ></td>
+                                <td
+                                    data-ng-bind="(option.selected === true)? 1 : option.choosedValue"
+                                    class="text-right"
+                                    data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
+                                ></td>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind=":: $ctrl.getOptionPrice(option).text"
+                                    data-title="{{ 'pack_move_confirm_header_total' | translate }}"
+                                ></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p
+                    class="text-asterisk small"
+                    data-translate="{{ $ctrl.offer.selected.offer.engageMonths ? 'pack_move_confirm_commitment' : 'pack_move_confirm_no_commitment' }}"
+                    data-translate-values="{ month : $ctrl.offer.selected.offer.engageMonths }"
+                ></p>
+
+                <p class="text-right">
+                    <span
+                        data-translate="pack_move_confirm_resume_total"
+                    ></span>
+                    <span
+                        data-ng-bind-html="$ctrl.offer.selected.offer.displayedPrice.text | tucFormatPrice"
+                    ></span>
+                </p>
+            </div>
+
+            <div>
+                <p
+                    data-translate="pack_move_confirm_new_offer_price"
+                    data-translate-values="{ price : $ctrl.offer.selected.offer.displayedPrice.text }"
+                ></p>
+                <p
+                    data-translate="pack_move_resume_promotion"
+                    data-translate-values="{ duration: $ctrl.PROMO_DISPLAY[$ctrl.offer.selected.offer.prices.promotion.subscription.duration].value }"
+                    data-ng-if="$ctrl.offer.selected.offer.prices.promotion"
+                ></p>
+                <p
+                    data-ng-bind-html="$ctrl.displayPrice('pack_move_resume_install_fees', $ctrl.offer.selected.offer.prices.installFees.price.text)"
+                    data-ng-if="!$ctrl.offer.selected.offer.prices.promotion && $ctrl.offer.selected.offer.prices.installFees.price"
+                ></p>
+                <p
+                    data-ng-bind-html="$ctrl.displayPrice('pack_move_resume_creation_line_fees', $ctrl.offer.selected.offer.prices.creationLineFees.price.text)"
+                    data-ng-if="$ctrl.offer.selected.offer.prices.creationLineFees.price"
+                ></p>
+                <p
+                    data-ng-bind-html="$ctrl.displayPrice('pack_move_resume_comfort_activation', $ctrl.offer.selected.offer.prices.gtrComfortFees.price.text)"
+                    data-ng-if="$ctrl.offer.selected.offer.gtrComfortActivated"
+                ></p>
+                <p
+                    data-translate="{{ $ctrl.offer.selected.offer.engageMonths ? 'pack_move_confirm_commitment' : 'pack_move_confirm_no_commitment' }}"
+                    data-translate-values="{ month : $ctrl.offer.selected.offer.engageMonths }"
+                ></p>
+            </div>
+
+            <p
+                data-ng-if="$ctrl.offer.selected.offer.needNewModem && $ctrl.offer.selected.shipping.mode === 'transporter'"
+                data-ng-bind-html="$ctrl.displayPrice('pack_move_confirm_shipping', $ctrl.modemTransportPrice)"
+            ></p>
+
+            <p
+                data-ng-bind-html="$ctrl.displayPrice('pack_move_confirm_first_mensuality', $ctrl.offer.selected.offer.firstMensuality.text)"
+                class="font-weight-bold"
+            ></p>
+
+            <p
+                data-ng-if="$ctrl.offer.selected.form.futureLandline.lineNumber"
+                data-translate="pack_move_contract_action"
+                data-translate-values="{ typeOffer : $ctrl.offer.selected.product.type, lineNumber : $ctrl.offer.selected.form.futureLandline.lineNumber.form.futureLandline }"
+            ></p>
+
+            <div
+                data-ng-if="!$ctrl.offer.selected.form.futureLandline.lineNumber && $ctrl.offer.selected.product.type !== 'FTTH'"
+            >
+                <p
+                    class="mb-3 font-weight-bold"
+                    data-translate="pack_move_contract_action_create"
+                ></p>
+                <div class="ml-3">
+                    <strong
+                        data-ng-bind="$ctrl.offer.selected.address.streetNumber"
+                    ></strong>
+                    <strong
+                        data-ng-bind="$ctrl.offer.selected.address.streetName"
+                    ></strong>
+                </div>
+                <div class="ml-3 mb-3">
+                    <strong
+                        data-ng-bind="$ctrl.offer.selected.address.zipCode"
+                    ></strong>
+                    <strong
+                        data-ng-bind="$ctrl.offer.selected.address.city"
+                    ></strong>
+                </div>
+                <p
+                    class="mb-3 font-weight-bold"
+                    data-ng-if="$ctrl.offer.selected.meetingSlots.fakeMeeting"
+                    data-translate="pack_move_contract_meeting_contact"
+                ></p>
+                <p
+                    class="mb-3 font-weight-bold"
+                    data-ng-if="!$ctrl.offer.selected.meetingSlots.fakeMeeting"
+                    data-ng-bind="$ctrl.getMeeting()"
+                ></p>
+            </div>
+
+            <div data-ng-if="$ctrl.offer.selected.moveOutDate">
+                <p class="mb-3" data-ng-bind="$ctrl.getMoveOutDate()"></p>
+            </div>
+        </div>
+
+        <div data-ng-if="$ctrl.offer.selected.isOfferFTTH">
+            <p
+                class="mb-3 font-weight-bold"
+                data-translate="pack_move_contract_action_create"
+            ></p>
+            <div class="ml-3">
+                <strong
+                    data-ng-bind=":: $ctrl.offer.selected.address.streetNumber"
+                ></strong>
+                <strong
+                    data-ng-bind=":: $ctrl.offer.selected.address.streetName"
+                ></strong>
+            </div>
+            <div class="ml-3 mb-3">
+                <strong
+                    data-ng-bind=":: $ctrl.offer.selected.address.zipCode"
+                ></strong>
+                <strong
+                    data-ng-bind=":: $ctrl.offer.selected.address.city"
+                ></strong>
+            </div>
+            <div>
+                <p
+                    class="mb-3 font-weight-bold"
+                    data-ng-if="$ctrl.offer.selected.meetingSlots.fakeMeeting"
+                    data-translate="pack_move_contract_meeting_contact"
+                ></p>
+                <p
+                    class="mb-3 font-weight-bold"
+                    data-ng-if="!$ctrl.offer.selected.meetingSlots.fakeMeeting"
+                    data-ng-bind="$ctrl.getMeeting()"
+                ></p>
+            </div>
+        </div>
+
+        <oui-message type="info" data-ng-if="$ctrl.offer.selected.technoChange">
+            <p
+                class="mb-0"
+                data-ng-repeat="line in [1,2,3] track by $index"
+                data-translate="{{ 'pack_move_confirm_temporary_pack_creation_line_' + line}}"
+            ></p>
+        </oui-message>
+
+        <div class="widget-presentation">
+            <h2
+                class="widget-presentation-title"
+                data-translate="pack_move_resume_contact_owner"
+            ></h2>
+            <div class="d-inline-flex p-2 bd-highlight">
+                <div
+                    class="form-group"
+                    data-ng-class="{
+                        'has-error': resumeForm.contactPhone.$touched && resumeForm.contactPhone.$invalid
+                    }"
+                >
+                    <label
+                        for="contactPhone"
+                        class="control-label"
+                        data-translate="pack_move_resume_contact_phone"
+                    >
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="contactPhone"
+                        name="contactPhone"
+                        data-ui-validate="{ pattern: '$ctrl.checkContactPhone($value)' }"
+                        data-ng-model="$ctrl.contactPhone"
+                    />
+                    <span
+                        class="help-block"
+                        role="alert"
+                        data-ng-if="resumeForm.contactPhone.$touched"
+                        data-ng-messages="resumeForm.contactPhone.$error"
+                    >
+                        <span
+                            data-ng-message="pattern"
+                            data-translate="pack_move_resume_phone_form_error"
+                        >
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="widget-presentation"
+            data-ng-if="$ctrl.offer.selected.offer.totalSubServiceToKeep > 0"
+        >
+            <h2
+                class="widget-presentation-title"
+                data-translate="pack_move_confirm_service_to_keep_title"
+            ></h2>
+
+            <p
+                data-translate="pack_move_confirm_service_to_keep_total"
+                data-translate-values="{ count : $ctrl.offer.selected.offer.totalSubServiceToKeep }"
+            ></p>
+
+            <div class="responsive-table-line my-3">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                data-translate="pack_move_confirm_service_to_keep_table_service_type"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="pack_move_confirm_service_to_keep_table_service_count"
+                                class="text-right"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="pack_move_confirm_service_to_keep_table_service_names"
+                            ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            data-ng-repeat="serviceToDelete in $ctrl.offer.selected.offer.subServicesToDelete track by $index"
+                        >
+                            <th
+                                scope="row"
+                                data-translate="{{ 'pack_move_confirm_resume_' + serviceToDelete.type }}"
+                                data-title="{{ 'pack_move_confirm_service_to_keep_table_service_type' | translate }}"
+                            ></th>
+                            <td
+                                class="text-right"
+                                data-ng-bind="serviceToDelete.numberToKeep"
+                                data-title="{{ 'pack_move_confirm_service_to_keep_table_service_count' | translate }}"
+                            ></td>
+                            <td
+                                data-ng-bind="$ctrl.constructor.getServiceList(serviceToDelete, true)"
+                                data-title="{{ 'pack_move_confirm_service_to_keep_table_service_names' | translate }}"
+                                class="text-wrap"
+                            ></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div
+            class="widget-presentation"
+            data-ng-if="$ctrl.offer.selected.offer.totalSubServiceToDelete > 0"
+        >
+            <h2
+                class="widget-presentation-title"
+                data-translate="pack_move_confirm_service_to_delete_title"
+            ></h2>
+
+            <p
+                data-translate="pack_move_confirm_service_to_delete_total"
+                data-translate-values="{ count : $ctrl.offer.selected.offer.totalSubServiceToDelete }"
+            ></p>
+
+            <div class="responsive-table-line my-3">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                data-translate="pack_move_confirm_service_to_delete_table_service_type"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="pack_move_confirm_service_to_delete_table_service_count"
+                                class="text-right"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="pack_move_confirm_service_to_delete_table_service_names"
+                            ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            data-ng-repeat="serviceToDelete in $ctrl.offer.selected.offer.subServicesToDelete track by $index"
+                        >
+                            <th
+                                scope="row"
+                                data-translate="{{ 'pack_move_confirm_resume_' + serviceToDelete.type }}"
+                                data-title="{{ 'pack_move_confirm_service_to_delete_table_service_type' | translate }}"
+                            ></th>
+                            <td
+                                class="text-right"
+                                data-ng-bind="serviceToDelete.numberToDelete"
+                                data-title="{{ 'pack_move_confirm_service_to_delete_table_service_count' | translate }}"
+                            ></td>
+                            <td
+                                data-ng-bind="$ctrl.constructor.getServiceList(serviceToDelete, false)"
+                                data-title="{{ 'pack_move_confirm_service_to_delete_table_service_names' | translate }}"
+                                class="text-wrap"
+                            ></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="widget-presentation">
+            <h2
+                class="widget-presentation-title"
+                data-translate="pack_move_confirm_contracts_accept_title"
+            ></h2>
+
+            <div class="checkbox">
+                <label for="acceptContractsRules">
+                    <input
+                        type="checkbox"
+                        id="acceptRules"
+                        name="acceptRules"
+                        data-ng-model="$ctrl.model.acceptRules"
+                    />
+                    <span
+                        data-translate="pack_move_contract_rules"
+                        data-ng-if="!$ctrl.offer.selected.form.currentLandline.portLineNumber"
+                    ></span>
+                    <span
+                        data-translate="pack_move_contract_porta_rules"
+                        data-ng-if="$ctrl.offer.selected.form.currentLandline.portLineNumber"
+                    ></span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label for="acceptContracts">
+                    <input
+                        type="checkbox"
+                        id="acceptContracts"
+                        name="acceptContracts"
+                        data-ng-model="$ctrl.model.acceptContracts"
+                    />
+                    <span
+                        data-translate="pack_move_confirm_contracts_accept_explain"
+                    ></span>
+                </label>
+            </div>
+            <ul class="list-unstyled mb-5">
+                <li
+                    data-ng-repeat="contract in $ctrl.offer.selected.offer.contracts track by $index"
+                >
+                    <a
+                        data-ng-href="{{ contract.url }}"
+                        target="_blank"
+                        title="{{ contract.name }} {{::'common_newtab' | translate }}"
+                    >
+                        <span data-ng-bind="contract.name"></span>
+                        <span
+                            class="ovh-font ovh-font-newtab ml-2"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </li>
+            </ul>
+            <a
+                class="btn btn-default"
+                data-translate="pack_move_confirm_cancel_button"
+                data-ui-sref="telecom.packs.pack"
+            >
+            </a>
+            <button
+                type="submit"
+                class="btn btn-primary"
+                data-ng-class="{
+                    'btn-info': $ctrl.moveValidationPending,
+                    'btn-warning': $ctrl.moveValidationError && !$ctrl.moveValidationPending,
+                    'btn-primary': (!$ctrl.moveValidationPending && !$ctrl.moveValidationError && !$ctrl.moveValidationSuccess) || ($ctrl.moveValidationSuccess && !$ctrl.moveValidationPending)}"
+                data-ng-disabled="!$ctrl.model.acceptContracts || !$ctrl.model.acceptRules || $ctrl.moveValidationPending || $ctrl.moveValidationSuccess"
+                data-translate="pack_move_confirm_contracts_accept_button"
+            >
+                <span
+                    data-ng-show="!$ctrl.moveValidationPending && !$ctrl.moveValidationError && !$ctrl.moveValidationSuccess"
+                    data-translate="pack_move_validate"
+                ></span>
+                <span data-ng-show="$ctrl.moveValidationPending">
+                    <span data-translate="pack_move_pending_validation"></span>
+                    <span
+                        class="fa fa-spin fa-spinner ml-2"
+                        aria-hidden="true"
+                    ></span>
+                </span>
+                <span
+                    data-ng-show="$ctrl.moveValidationError && !$ctrl.moveValidationPending"
+                >
+                    <span data-translate="pack_move_error_validation"></span>
+                    <span
+                        class="ovh-font ovh-font-warning ml-2"
+                        aria-hidden="true"
+                    ></span>
+                </span>
+                <span
+                    data-ng-show="$ctrl.moveValidationSuccess && !$ctrl.moveValidationPending"
+                >
+                    <span data-translate="pack_move_success_validation"></span>
+                    <span
+                        class="ovh-font ovh-font-check ml-2"
+                        aria-hidden="true"
+                    ></span>
+                </span>
+            </button>
+        </div>
+    </div>
+</form>

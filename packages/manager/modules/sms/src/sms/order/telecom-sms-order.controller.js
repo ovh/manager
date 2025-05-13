@@ -9,6 +9,7 @@ export default class {
     $q,
     $translate,
     $filter,
+    $state,
     $stateParams,
     atInternet,
     TucSmsMediator,
@@ -16,10 +17,12 @@ export default class {
     tucDebounce,
     TucToast,
     SMS_ORDER_PREFIELDS_VALUES,
+    SMS_ORDER_ACCOUNT_TYPE_VALUES,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.$filter = $filter;
+    this.$state = $state;
     this.$stateParams = $stateParams;
     this.TucSmsMediator = TucSmsMediator;
     this.api = {
@@ -29,11 +32,15 @@ export default class {
     };
     this.tucDebounce = tucDebounce;
     this.TucToast = TucToast;
-    this.constant = { SMS_ORDER_PREFIELDS_VALUES };
+    this.constant = {
+      SMS_ORDER_PREFIELDS_VALUES,
+    };
+    this.SMS_ORDER_ACCOUNT_TYPE_VALUES = SMS_ORDER_ACCOUNT_TYPE_VALUES;
     this.atInternet = atInternet;
   }
 
   $onInit() {
+    this.needGuidesMenu = this.$state.current.name === 'sms.order';
     this.loading = {
       init: false,
       order: false,
@@ -42,6 +49,7 @@ export default class {
     this.order = {
       account: null,
       credit: null,
+      channel: null,
       customCredit: 100,
       max: 1000000,
       min: 100,
@@ -67,9 +75,7 @@ export default class {
     this.loading.init = true;
     this.TucSmsMediator.initAll()
       .then(() => {
-        const availableAccounts = toArray(
-          this.TucSmsMediator.getAccounts(),
-        ).sort((a, b) => a.name.localeCompare(b.name));
+        const availableAccounts = toArray(this.TucSmsMediator.getAccounts());
 
         // We have to format it to become human readable
         forEach(availableAccounts, (account, idx) => {
@@ -85,8 +91,10 @@ export default class {
           // If we are on a service, preselect
           if (account.name === this.$stateParams.serviceName) {
             this.order.account = availableAccounts[idx];
+            this.order.channel = availableAccounts[idx].channel;
           }
-        });
+        }).sort((a, b) => a.label.localeCompare(b.label));
+
         const newAccount = {
           name: 'new',
           description: '',
@@ -152,6 +160,7 @@ export default class {
     this.contracts = null;
     this.prices = null;
     this.contractsAccepted = false;
+    this.order.channel = this.order.account.channel;
     if (this.isAccountCreation()) {
       return this.api.order.sms
         .getNewSmsAccount({
@@ -190,6 +199,13 @@ export default class {
    * @return {Promise}
    */
   doOrder() {
+    this.atInternet.trackClick({
+      name: `sms::order::generate_order-${
+        this.order.channel
+      }-${this.getSelectedCredit()}`,
+      type: 'action',
+    });
+
     this.loading.order = true;
     this.prices.url = null;
     if (this.isAccountCreation()) {
@@ -198,6 +214,8 @@ export default class {
           {},
           {
             quantity: this.getSelectedCredit(),
+            channel: this.order.channel,
+            smpp: ['transactional', 'marketing'].includes(this.order.channel),
           },
         )
         .$promise.then((newAccountPriceDetails) => {
@@ -226,13 +244,6 @@ export default class {
       .catch(() => this.TucToast.error(this.$translate.instant('sms_order_ko')))
       .finally(() => {
         this.loading.order = false;
-        return this.atInternet.trackClick({
-          cta: 'Generate purchase order',
-          name: 'Generate_BC',
-          type: 'action',
-          level2: 'Telecom',
-          chpater1: 'telecom',
-        });
       });
   }
 }

@@ -26,7 +26,7 @@
   "telephony_line_actions_line_calls_simultaneous_bulk_some_success": "La modification du nombre d'appels simultanés a bien été appliquée à {{ count }} des services sélectionnés.",
   "telephony_line_actions_line_calls_simultaneous_bulk_error": "La modification du nombre d'appels simultanés n'a pu être appliquée au(x) service(s) suivant(s) :",
   "telephony_line_actions_line_calls_simultaneous_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification du nombre d'appels simultanés.",
-  "telephony_line_actions_line_calls_trunk_simultaneous_info1": "Votre offre vous permet d'associer les différents packs de canaux simultanés proposés par OVH afin d'obtenir votre Trunk sur mesure.",
+  "telephony_line_actions_line_calls_trunk_simultaneous_info1": "La tua offerta ti permette di associare i diversi pack di canali simultanei proposti da OVHcloud per ottenere il tuo Trunk su misura.",
   "telephony_line_actions_line_calls_trunk_simultaneous_info2": "Une augmentation du nombre de canaux simultanés est effectuée immédiatement après paiement du bon de commande.",
   "telephony_line_actions_line_calls_trunk_simultaneous_info3": "Une réduction du nombre de canaux simultanés sera effective au 1er du mois suivant la commande.",
   "telephony_line_actions_line_calls_trunk_simultaneous_channels_repartition_title": "Répartition des packs",

@@ -1,0 +1,23 @@
+{
+  "vps_dashboard_tile_configuration_title": "Ihre Konfiguration",
+  "vps_dashboard_tile_configuration_vcore_upscale": "vCores hinzufügen und dazu zur nächsthöheren Serverreihe wechseln.",
+  "vps_dashboard_tile_configuration_memory": "Arbeitsspeicher",
+  "vps_dashboard_tile_configuration_memory_add": "Arbeitsspeicher hinzufügen",
+  "vps_dashboard_tile_configuration_memory_add_upscale": "RAM hinzufügen und dazu zur nächsthöheren Serverreihe wechseln.",
+  "vps_dashboard_tile_configuration_memory_double": "Verdoppelung des Arbeitsspeichers für zusätzliche {{ additionalPrice }}/Monat, was insgesamt {{ price }}/Monat entspricht",
+  "vps_dashboard_tile_configuration_storage": "Speicher",
+  "vps_dashboard_tile_configuration_storage_add": "Speicherkapazität erhöhen",
+  "vps_dashboard_tile_configuration_storage_add_upscale": "Speicherkapazität hinzufügen und dazu zur nächsthöheren Serverreihe wechseln.",
+  "vps_dashboard_tile_configuration_storage_double": "Verdoppelung des Speicherplatzes für zusätzliche {{ additionalPrice }}/Monat, was insgesamt {{ price }}/Monat entspricht",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_title": "Die von Ihnen gewünschte Veränderung wurde registriert.",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_details": "Sie werden innerhalb der nächsten zwei Stunden eine E-Mail erhalten, die bestätigt, dass die Änderungen an Ihrem VPS erfolgt sind. Um Ihre neue Konfiguration zu nutzen, müssen Sie Ihren VPS neu starten.",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_track_order": "Meine Bestellung verfolgen",
+  "vps_dashboard_tile_configuration_upgrade_complete_reboot_required": "Ihrem VPS wurden neue Ressourcen hinzugefügt. Bitte starten Sie Ihren Server neu, um die neue Konfiguration zu aktivieren.",
+  "vps_dashboard_tile_configuration_vcore": "vCores",
+  "vps_dashboard_tile_configuration_memory_add_upscale_elite": "Bauen Sie Ihren VPS aus und fügen Sie Arbeitsspeicher hinzu.",
+  "vps_dashboard_tile_configuration_storage_add_upscale_elite": "Bauen Sie Ihren VPS aus und erweitern Sie die Speicherkapazität.",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_cpu": "Für weitere vCores kontaktieren Sie bitte den Admin-NIC: {{ nichandle }}",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_memory": "Für zusätzlichen RAM kontaktieren Sie bitte den Admin-NIC: {{ nichandle }}",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_storage": "Für mehr Storage kontaktieren Sie bitte den NIC Admin: {{ nichandle }}",
+  "vps_dashboard_tile_configuration_starter_range_info_message": "Die Funktion zur Erhöhung Ihres RAM oder Storage ist nur ab dem VPS Value Angebot verfügbar."
+}

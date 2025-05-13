@@ -1,0 +1,79 @@
+.order-popup-content {
+  display: flex;
+  flex-flow: row wrap;
+  a,
+  button {
+    color: #0050d7;
+    cursor: pointer;
+    font-weight: 600;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    width: 33.33%;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-color: #ccc;
+    display: flex;
+    position: relative;
+    padding-top: 0.625rem;
+    padding-bottom: 0.375rem;
+
+    .order-popup-content-icon {
+      width: 36px;
+
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.75rem;
+    }
+    .order-popup-content-label {
+
+      font-weight: 600;
+      color: rgb(40, 89, 192);
+      display: flex;
+      text-align: center;
+    }
+
+    .order-popup-content-external-link {
+      position: absolute;
+      right: 1rem;
+      font-size: 0.75rem;
+      margin-top: 0px;
+      visibility: hidden;
+    }
+
+
+
+    &:hover {
+      color: #000e9c;
+      text-decoration: none;
+
+      .order-popup-content-external-link {
+        visibility: visible;
+      }
+    }
+    &:nth-child(3n + 1)::after,
+    &:nth-child(3n + 2)::after,
+    &:nth-child(3n)::after {
+      content: '';
+      position: absolute;
+      height: 80%;
+      width: 1px;
+      background: #ccc;
+      top: 1rem;
+      left: 0;
+    }
+
+    &:nth-last-child(-n + 3):nth-child(3n + 1),
+    &:nth-last-child(-n + 3):nth-child(3n + 2),
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.buttonOrder {
+  background-color: white;
+  border: none;
+}

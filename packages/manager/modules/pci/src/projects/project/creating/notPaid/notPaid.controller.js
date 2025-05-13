@@ -1,13 +1,9 @@
-import EnvironmentService from '@ovh-ux/manager-config';
-
 import get from 'lodash/get';
 import has from 'lodash/has';
 
-import { NOT_PAID_REDIRECT_URLS } from './notPaid.constants';
-
 export default class ProjectCreatingNotPaidCtrl {
   /* @ngInject */
-  constructor($state, CucCloudMessage, projectCreating) {
+  constructor($state, CucCloudMessage, coreURLBuilder, projectCreating) {
     // dependencies injections
     this.$state = $state;
     this.CucCloudMessage = CucCloudMessage;
@@ -18,10 +14,9 @@ export default class ProjectCreatingNotPaidCtrl {
       cancel: false,
     };
 
-    this.orderUrl = get(
-      NOT_PAID_REDIRECT_URLS,
-      `${EnvironmentService.Environment.region}.orders`,
-    );
+    this.orderUrl = coreURLBuilder.buildURL('dedicated', '#/billing/orders', {
+      status: 'all',
+    });
   }
 
   onCancelProjectBtnClick() {
@@ -30,8 +25,12 @@ export default class ProjectCreatingNotPaidCtrl {
     return this.projectCreating
       .cancelProjectCreation(this.projectId)
       .then(() => this.$state.go('app'))
-      .catch((error) =>
-        this.$state.go(
+      .catch((error) => {
+        if (get(error, 'status') === 460) {
+          return this.$state.go('pci.projects');
+        }
+
+        return this.$state.go(
           'pci.error',
           {
             detail: {
@@ -44,8 +43,8 @@ export default class ProjectCreatingNotPaidCtrl {
           {
             location: false,
           },
-        ),
-      )
+        );
+      })
       .finally(() => {
         this.loading.cancel = false;
       });

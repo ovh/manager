@@ -1,46 +1,58 @@
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import { getShellClient } from './shell';
+import {
+  SYSTRAN_LOCALE_UNAVAILABLE,
+  URL_SURVEY_SYSTRAN,
+} from './app.constants';
+
 export default class TelecomAppCtrl {
   /* @ngInject */
   constructor(
-    $q,
-    $state,
+    $scope,
+    $timeout,
     $transitions,
-    $translate,
     betaPreferenceService,
-    SessionService,
-    ovhUserPref,
+    coreConfig,
   ) {
     this.displayFallbackMenu = false;
     $transitions.onStart({}, () => this.closeSidebar());
 
-    this.$q = $q;
-    this.$translate = $translate;
-    this.$state = $state;
+    this.$scope = $scope;
+    this.$timeout = $timeout;
     this.betaPreferenceService = betaPreferenceService;
-    this.ovhUserPref = ovhUserPref;
-    this.SessionService = SessionService;
+    this.coreConfig = coreConfig;
+    this.isTopLevelApplication = isTopLevelApplication();
+
+    this.shell = getShellClient();
+
+    this.URL_SURVEY_SYSTRAN = URL_SURVEY_SYSTRAN;
+
+    this.shell.ux.isMenuSidebarVisible().then((isMenuSidebarVisible) => {
+      this.isMenuSidebarVisible = isMenuSidebarVisible;
+    });
   }
 
   $onInit() {
-    [this.currentLanguage] = this.$translate.use().split('_');
+    this.currentLanguage = this.coreConfig.getUserLanguage();
 
-    this.SessionService.getUser().then((user) => {
-      this.user = user;
-    });
+    this.displaySystranMessage = !(
+      SYSTRAN_LOCALE_UNAVAILABLE === this.currentLanguage
+    );
+
+    this.shell.ux.onRequestClientSidebarOpen(() =>
+      this.$timeout(() => this.openSidebar()),
+    );
 
     return this.betaPreferenceService.isBetaActive().then((beta) => {
-      this.globalSearchLink = beta
-        ? this.$state.href('telecomSearch', {})
-        : null;
+      this.sidebarUniverse = beta ? 'TELECOM_BETA' : 'TELECOM';
     });
   }
 
   openSidebar() {
     this.displayFallbackMenu = true;
-    $('#sidebar-menu').addClass('displayFallbackMenu');
   }
 
   closeSidebar() {
     this.displayFallbackMenu = false;
-    $('#sidebar-menu').removeClass('displayFallbackMenu');
   }
 }

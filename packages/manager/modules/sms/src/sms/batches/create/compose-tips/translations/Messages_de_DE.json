@@ -1,0 +1,8 @@
+{
+  "sms_sms_compose_tip_compose_title": "Verfassen einer SMS",
+  "sms_sms_compose_tip_size_paragraphe_1": "Die maximale Größe einer SMS beträgt 160 Zeichen (GSM-Standard 03.38).",
+  "sms_sms_compose_tip_size_paragraphe_2": "Die folgenden 2 Tabellen enthalten die erlaubten Zeichen.",
+  "sms_sms_compose_tip_size_paragraphe_3": "<b>Achtung:</b> Die Verwendung von Zeichen, die nicht in diesen Tabellen aufgeführt sind, führt zum Umschalten der Kodierung auf Unicode und verringert die maximale Größe einer SMS auf 70 Zeichen.",
+  "sms_sms_compose_tip_size_characters_basics": "Basis-Zeichen",
+  "sms_sms_compose_tip_size_characters_extensions": "Erweiterungen"
+}

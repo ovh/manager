@@ -1,0 +1,14 @@
+{
+  "netapp_volumes_snapshots_restore_title": "Przywróć ostatni snapshot",
+  "netapp_volumes_snapshots_restore_description": "Czy na pewno chcesz przywrócić następujący wolumen?",
+  "netapp_volumes_snapshots_restore_volume_label": "Wolumen",
+  "netapp_volumes_snapshots_restore_snapshot_label": "Nazwa snapshota",
+  "netapp_volumes_snapshots_restore_confirm_description": "Uwaga: ta operacja spowoduje przywrócenie danych na wolumenie {{volume}} do stanu, w którym znajdowały się w momencie wykonania snapshota. Dane, które zostały zmodyfikowane na wolumenie po {{date}} zostaną nieodwracalnie usunięte. W razie wątpliwości sprawdź naszą bazę wiedzy lub skontaktuj się bezpośrednio z pomocą techniczną. Potwierdź nazwę wolumenu, który ma zostać przywrócony, aby zatwierdzić operację.",
+  "netapp_volumes_snapshots_restore_confirm_volume_label": "Potwierdź nazwę wolumenu",
+  "netapp_volumes_snapshots_restore_confirm": "Przywróć wolumen",
+  "netapp_volumes_snapshots_restore_cancel": "Anuluj",
+  "netapp_volumes_snapshots_restore_success": "Dyspozycja przywrócenia wolumenu została przyjęta i zostanie wykonana w ciągu kilku minut.",
+  "netapp_volumes_snapshots_restore_error": "Nie można przywrócić wolumenu: <br> {{message}}<br> request_id: {{requestId}}",
+  "netapp_volumes_snapshots_hold_error": "Wystąpił problem podczas zmiany ustawień snapshota na typ ręczny",
+  "netapp_volumes_snapshots_restore_system_message": "Brak snapshotów, które mogłyby zostać użyte do przywrócenia wolumenu. W przypadku wątpliwości sprawdź naszą dokumentację lub skontaktuj się bezpośrednio z pomocą techniczną."
+}

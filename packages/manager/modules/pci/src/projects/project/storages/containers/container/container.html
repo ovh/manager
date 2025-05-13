@@ -1,105 +1,275 @@
-<div data-ui-view>
-    <header class="oui-page-header mb-3">
-        <div class="oui-page-header__container">
-            <div class="oui-page-header__content text-truncate">
+<div data-ui-view ovh-scroll-top>
+    <oui-header>
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
                 <h1
-                    class="oui-page-header__title"
-                    data-ng-bind="$ctrl.container.name"
+                    class="oui-header__title"
+                    data-translate="{{ :: $ctrl.container.name }}"
                 ></h1>
+                <div
+                    class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
+                >
+                    <changelog-button
+                        links="$ctrl.CHANGELOG.object_storage.links"
+                        chapters="$ctrl.CHANGELOG.object_storage.chapters"
+                        data-ng-if="!$ctrl.archive"
+                    ></changelog-button>
+                    <changelog-button
+                        links="$ctrl.CHANGELOG.cloud_archive.links"
+                        chapters="$ctrl.CHANGELOG.cloud_archive.chapters"
+                        data-ng-if="$ctrl.archive"
+                    ></changelog-button>
+                    <oui-guide-menu
+                        data-text="{{:: 'pci_project_guides_header' | translate }}"
+                        data-ng-if="$ctrl.archive"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-repeat="guide in $ctrl.guideUrl.storage track by $index"
+                            data-href="{{:: guide.url }}"
+                            data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.cloud_archive + guide.tracking)"
+                            data-external
+                        >
+                            <span
+                                data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+                            ></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
             </div>
-            <oui-guide-menu
-                data-text="{{:: 'pci_project_guides_header' | translate }}"
+        </oui-header-heading>
+    </oui-header>
+    <!--return to conatiner-->
+    <oui-back-button
+        data-ng-if="!$ctrl.archive"
+        data-on-click="$ctrl.goToStorageContainers()"
+        data-previous-page="{{:: 'pci_projects_project_storages_containers_container_back_button_label' | translate }}"
+    >
+    </oui-back-button>
+
+    <!--Banner messages sections-->
+    <section>
+        <pci-maintenance-banner
+            data-steins="$ctrl.steins"
+            data-customer-regions="$ctrl.customerRegions"
+            data-product-regions="$ctrl.containersRegions"
+            data-is-dashboard-page="true"
+            data-product-service-name="$ctrl.container.name"
+            data-product-region="$ctrl.container.region"
+        ></pci-maintenance-banner>
+
+        <cui-message-container
+            data-messages="$ctrl.messages"
+        ></cui-message-container>
+    </section>
+
+    <oui-message
+        data-type="info"
+        data-ng-if="$ctrl.showReplicationRulesBanner()"
+    >
+        <p>
+            <span
+                data-translate="pci_projects_project_storages_containers_container_add_replication_rules_info"
+            ></span>
+            <a
+                href="{{:: $ctrl.asyncReplicationLink }}"
+                class="oui-link_icon"
+                rel="noopener noreferrer"
+                target="_blank"
             >
-                <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
-                    <span
-                        data-translate="pci_project_guides_header_all_guides"
-                    ></span>
-                </oui-guide-menu-item>
-            </oui-guide-menu>
-        </div>
-    </header>
-    <cui-message-container
-        data-messages="$ctrl.messages"
-    ></cui-message-container>
+                <span
+                    data-translate="pci_projects_project_storages_containers_add_replication_rules_info_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </p>
+    </oui-message>
 
     <div data-ng-if="$ctrl.container">
-        <div class="oui-box">
-            <p
-                data-translate="pci_projects_project_storages_containers_container_archive_info_storedObjects"
-                data-translate-value-count="{{ $ctrl.container.storedObjects }}"
-                data-ng-if="$ctrl.archive"
-            ></p>
-
-            <p
-                data-translate="pci_projects_project_storages_containers_container_object_info_storedObjects"
-                data-translate-value-count="{{ $ctrl.container.storedObjects }}"
-                data-ng-if="!$ctrl.archive"
-            ></p>
-
-            <p
-                data-translate="pci_projects_project_storages_containers_container_info_storedBytes"
-                data-translate-value-bytes="{{$ctrl.container.storedBytes  | RAUnitsBits}}"
-            ></p>
-
-            <div>
+        <div class="row oui-box mx-0 mb-4">
+            <!--Container info-->
+            <div class="col-md-4">
+                <!--Container region-->
                 <p
-                    data-translate="pci_projects_project_storages_containers_container_info_publicUrl"
-                    class="d-inline-block"
+                    data-translate="pci_projects_project_storages_containers_container_region"
+                    data-translate-values="{ region: '<strong>'+ $ctrl.container.region +'</strong>' }"
                 ></p>
-                <button
-                    type="button"
-                    class="oui-popover-button"
-                    data-oui-popover="{{:: 'pci_projects_project_storages_containers_container_info_publicUrl_help' | translate }}"
-                ></button>
-                <oui-clipboard
-                    class="mt-1"
-                    data-model="$ctrl.container.publicUrl"
-                ></oui-clipboard>
-            </div>
 
-            <div data-ng-if="!$ctrl.archive">
+                <!--Container object stored data-->
                 <p
-                    data-translate="pci_projects_project_storages_containers_container_object_info_staticUrl"
-                    class="d-inline-block"
+                    data-ng-if="!$ctrl.archive && !$ctrl.isLocalZone()"
+                    data-translate="pci_projects_project_storages_containers_container_object_info_storedObjects"
+                    data-translate-values="{ count: '<strong>'+ $ctrl.container.storedObjects +'</strong>' }"
                 ></p>
-                <button
-                    type="button"
-                    class="oui-popover-button"
-                    data-oui-popover="{{ 'pci_projects_project_storages_containers_container_object_info_staticUrl_help' | translate }}"
-                ></button>
-                <oui-clipboard
-                    class="mt-1"
-                    data-model="$ctrl.container.staticUrl"
-                ></oui-clipboard>
-            </div>
 
-            <div data-ng-if="$ctrl.archive">
+                <!--Container archive stored data-->
                 <p
-                    data-translate="pci_projects_project_storages_containers_container_archive_info_staticUrl"
+                    data-ng-if="$ctrl.archive"
+                    data-translate="pci_projects_project_storages_containers_container_archive_info_storedObjects"
+                    data-translate-values="{ count: '<strong>'+ $ctrl.container.storedObjects +'</strong>' }"
                 ></p>
-                <oui-clipboard
-                    class="mt-1"
-                    data-model="$ctrl.container.storageGateway"
-                ></oui-clipboard>
 
+                <!--Container Stored -->
                 <p
-                    data-translate="pci_projects_project_storages_containers_container_archive_info_user"
-                    data-translate-value-user="{{:: $ctrl.defaultUser }}"
+                    data-ng-if="!$ctrl.isLocalZone()"
+                    data-translate="pci_projects_project_storages_containers_container_info_storedBytes"
+                    data-translate-values="{ bytes: '<strong>'+ ($ctrl.container.storedBytes | RAUnitsBits) +'</strong>' }"
                 ></p>
-                <p>
+
+                <!--Container without data encryption-->
+                <p
+                    data-ng-if="$ctrl.displayEncryptionData && !$ctrl.container.isEncrypted && !$ctrl.isLocalZone()"
+                    data-translate="pci_projects_project_storages_containers_container_info_data_encryption_disabled"
+                ></p>
+
+                <!--Container with data encryption-->
+                <p
+                    data-ng-if="$ctrl.displayEncryptionData && $ctrl.container.isEncrypted"
+                >
                     <span
-                        data-translate="pci_projects_project_storages_containers_container_archive_info_password"
+                        data-translate="pci_projects_project_storages_containers_container_info_data_encryption_enabled"
                     ></span>
-                    <span data-ng-bind="$ctrl.defaultPassword"></span>
+                    <button
+                        type="button"
+                        class="pl-1 oui-color-p-500 oui-popover-button"
+                        data-oui-popover="{{:: 'pci_projects_project_storages_containers_data_encryption_aes256_tooltip' | translate }}"
+                        data-ng-click="$ctrl.trackEncryptionAction('TOOLTIP_AES256')"
+                    ></button>
                 </p>
+
+                <!-- bucket versioning -->
+                <p data-ng-if="$ctrl.isRightOffer() && !$ctrl.isLocalZone()">
+                    <span
+                        data-translate="pci_projects_project_storages_containers_update_versioning_versioning"
+                    ></span>
+                    <span
+                        class="oui-badge"
+                        data-ng-class="{
+                        'oui-badge_success': $ctrl.container.versioning.status === 'enabled',
+                        'oui-badge_warning': $ctrl.container.versioning.status === 'suspended',
+                        'oui-badge_error': $ctrl.container.versioning.status === 'disabled'
+                        }"
+                        data-translate="{{ 'pci_projects_project_storages_containers_update_versioning_' + $ctrl.container.versioning.status + '_label'}}"
+                    >
+                    </span>
+                </p>
+                <p data-ng-if="$ctrl.isRightOffer() && !$ctrl.isLocalZone()">
+                    <button
+                        class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                        data-ng-if="$ctrl.container.versioning.status === 'suspended' || $ctrl.container.versioning.status === 'disabled'"
+                        data-ng-click="$ctrl.enableVersioning()"
+                    >
+                        <span
+                            data-translate="pci_projects_project_storages_containers_update_versioning_title"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-arrow-right ml-1"
+                            aria-hidden="true"
+                        ></span>
+                    </button>
+                </p>
+
+                <!-- offsite replication -->
+                <p
+                    data-ng-if="$ctrl.isRightOffer() && $ctrl.container.regionDetails.type === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_containers_container_offsite_replication_title"
+                    ></span>
+                    <span>
+                        <button
+                            type="button"
+                            class="pl-1 oui-color-p-500 oui-popover-button"
+                            data-oui-popover="{{:: 'pci_projects_project_storages_containers_container_offsite_replication_tooltip' | translate }}"
+                        ></button>
+                    </span>
+                    &nbsp;
+                    <span
+                        data-translate="pci_projects_project_storages_containers_container_offsite_replication_title_part_2"
+                    ></span>
+                    <span
+                        class="oui-badge"
+                        data-ng-class="{
+                        'oui-badge_success': !$ctrl.showReplicationRulesBanner(),
+                        'oui-badge_error': $ctrl.showReplicationRulesBanner()
+                        }"
+                        data-translate="{{ $ctrl.showReplicationRulesBanner() ?
+                            'pci_projects_project_storages_containers_container_offsite_replication_disabled' :
+                            'pci_projects_project_storages_containers_container_offsite_replication_enabled' }}"
+                    >
+                    </span>
+                </p>
+            </div>
+
+            <!--Container clipboards fields-->
+            <div class="col-md-8">
+                <!--Container id-->
+                <oui-field
+                    data-ng-if="$ctrl.container.id"
+                    data-label="{{:: 'pci_projects_project_storages_containers_container_info_id' | translate}}"
+                >
+                    <oui-clipboard
+                        data-name="containerId"
+                        data-model="$ctrl.container.id"
+                    ></oui-clipboard>
+                </oui-field>
+
+                <!--container public URL-->
+                <oui-field
+                    data-ng-if="!$ctrl.archive"
+                    data-label="{{:: 'pci_projects_project_storages_containers_container_info_publicUrl' | translate }}"
+                    data-label-popover="{{:: 'pci_projects_project_storages_containers_container_info_publicUrl_help' | translate }}"
+                >
+                    <oui-clipboard
+                        data-name="containerPublicUrl"
+                        data-model="$ctrl.container.publicUrl"
+                    ></oui-clipboard>
+                </oui-field>
+
+                <!--Container static URL-->
+                <oui-field
+                    data-ng-if="!$ctrl.archive"
+                    data-label="{{:: $ctrl.container.s3StorageType ? $ctrl.objectS3staticUrlInfo : ('pci_projects_project_storages_containers_container_object_info_staticUrl' | translate) }}"
+                    data-label-popover="{{:: 'pci_projects_project_storages_containers_container_object_info_' + ($ctrl.container.s3StorageType ? 's3_staticUrl_help' : 'staticUrl_help') | translate }}"
+                >
+                    <oui-clipboard
+                        data-name="containerStaticUrl"
+                        data-model="$ctrl.container.staticUrl || $ctrl.container.virtualHost"
+                    ></oui-clipboard>
+                </oui-field>
+
+                <!--container storage gateway-->
+                <oui-field
+                    data-ng-if="$ctrl.archive"
+                    data-label="{{:: 'pci_projects_project_storages_containers_container_archive_info_staticUrl' | translate }}"
+                >
+                    <oui-clipboard
+                        data-name="containerStorageGateway"
+                        data-model="$ctrl.container.storageGateway"
+                    ></oui-clipboard>
+                    <p
+                        class="oui-field__helper"
+                        data-translate="pci_projects_project_storages_containers_container_archive_info_user"
+                        data-translate-value-user="{{:: $ctrl.defaultUser }}"
+                    ></p>
+                    <p class="oui-field__helper">
+                        <span
+                            data-translate="pci_projects_project_storages_containers_container_archive_info_password"
+                        ></span>
+                        <span data-ng-bind="$ctrl.defaultPassword"></span>
+                    </p>
+                </oui-field>
             </div>
         </div>
 
         <oui-datagrid
             data-rows="$ctrl.container.objects"
             data-columns-parameters="$ctrl.columnsParameters"
+            data-criteria="$ctrl.defaultCriteria"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_container_name_label' | translate"
                 data-property="name"
                 data-type="string"
@@ -108,8 +278,8 @@
                 data-filterable
             >
                 <span data-ng-bind="::$value" class="text-truncate"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_container_lastModified_label' | translate"
                 data-property="lastModified"
                 data-type="date"
@@ -117,23 +287,32 @@
                 data-filterable
             >
                 <span data-ng-bind="$value | date:'medium'"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'pci_projects_project_storages_containers_container_storage_class_label' | translate"
+                data-property="storageClass"
+                data-type="string"
+                data-searchable
+                data-sortable="asc"
+                data-filterable
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_container_size_label' | translate"
                 data-property="size"
                 data-type="number"
                 data-sortable
             >
                 <span data-ng-bind="$value | RAUnitsBits"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_container_contentType_label' | translate"
                 data-property="contentType"
                 data-sortable
                 data-type="string"
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 name="retrievalState"
                 data-title=":: 'pci_projects_project_storages_containers_container_retrievalState_label' | translate"
                 data-property="retrievalState"
@@ -148,9 +327,17 @@
                     data-ng-if="$row.retrievalState === 'unsealing'"
                     data-ng-bind="$row.retrievalDate | date:'medium'"
                 ></span>
-            </oui-column>
+            </oui-datagrid-column>
 
-            <oui-action-menu data-align="end" data-compact>
+            <oui-action-menu data-compact data-placement="end">
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.container.s3StorageType && !$ctrl.isLocalZone()"
+                    data-on-click="$ctrl.goToAddUserOnObject($row)"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_containers_container_add_user_label"
+                    ></span>
+                </oui-action-menu-item>
                 <oui-action-menu-item
                     data-on-click="$ctrl.downloadObject($row)"
                     data-ng-if="!$ctrl.archive || $row.retrievalState === 'unsealed'"
@@ -174,7 +361,7 @@
                 </oui-action-menu-item>
             </oui-action-menu>
 
-            <extra-top>
+            <oui-datagrid-topbar>
                 <oui-button data-on-click="$ctrl.addObject()">
                     <span
                         class="oui-icon oui-icon-add pr-1"
@@ -184,7 +371,15 @@
                         data-ng-bind=":: 'pci_projects_project_storages_containers_container_add_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"
                     ></span>
                 </oui-button>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
+
+        <!--Guides-->
+        <manager-on-boarding-layout
+            data-guides="$ctrl.guides"
+            data-hide-illustration-section="true"
+            data-on-guide-click="$ctrl.onDocumentationClick(guide)"
+        >
+        </manager-on-boarding-layout>
     </div>
 </div>

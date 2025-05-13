@@ -4,19 +4,52 @@ angular.module('App').controller(
   'NameEditionCtrl',
   class NameEditionCtrl {
     /* @ngInject */
-    constructor($translate, $uibModalInstance, Alerter, DedicatedCloud, data) {
+    constructor(
+      $translate,
+      $interval,
+      $state,
+      $uibModalInstance,
+      Alerter,
+      DedicatedCloud,
+      data,
+    ) {
       this.$translate = $translate;
+      this.$interval = $interval;
+      this.$state = $state;
       this.$uibModalInstance = $uibModalInstance;
       this.Alerter = Alerter;
       this.DedicatedCloud = DedicatedCloud;
       this.data = data;
+      this.$poll = null;
+    }
+
+    pollTask(taskId) {
+      this.$poll = this.$interval(() => {
+        this.DedicatedCloud.getOperation(this.data.productId, {
+          taskId,
+        })
+          .then(({ state }) => {
+            if (state === 'done') {
+              this.stopPollTask();
+              this.$state.reload();
+            }
+          })
+          .catch(this.stopPollTask);
+      }, 3000);
+    }
+
+    stopPollTask() {
+      if (this.$poll) {
+        this.$interval.cancel(this.$poll);
+        this.$poll = null;
+      }
     }
 
     updateDescription() {
       this.updating = true;
 
       return this.updateName()
-        .then(() => {
+        .then((data) => {
           if (this.data.successText) {
             this.Alerter.success(
               this.data.successText,
@@ -25,6 +58,9 @@ angular.module('App').controller(
           }
 
           this.$uibModalInstance.close(this.newValue);
+          if (data?.taskId) {
+            this.pollTask(data.taskId);
+          }
         })
         .catch((err) => {
           const message = this.$translate.instant(
@@ -59,21 +95,15 @@ angular.module('App').controller(
             );
           break;
         case 'dedicatedCloud_datacenter_name':
-          this.modalContextTitle = 'dedicatedCloud_datacenter_name';
-          this.updateName = () =>
-            this.DedicatedCloud.updateDatacenterName(
-              this.data.productId,
-              this.data.datacenterId,
-              this.newValue,
-            );
-          break;
         case 'dedicatedCloud_datacenter_description':
-          this.modalContextTitle = 'dedicatedCloud_datacenter_description';
+          this.modalContextTitle = this.data.contextTitle;
           this.updateName = () =>
-            this.DedicatedCloud.updateDatacenterDescription(
+            this.DedicatedCloud.updateDatacenterData(
               this.data.productId,
               this.data.datacenterId,
-              this.newValue,
+              this.modalContextTitle.endsWith('name')
+                ? { name: this.newValue }
+                : { description: this.newValue },
             );
           break;
         default:
@@ -81,6 +111,10 @@ angular.module('App').controller(
           this.updateName = angular.noop;
           break;
       }
+    }
+
+    $onDestroy() {
+      this.stopPollTask();
     }
   },
 );

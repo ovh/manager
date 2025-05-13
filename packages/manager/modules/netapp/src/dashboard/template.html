@@ -1,0 +1,44 @@
+<div>
+    <oui-header description="{{ $ctrl.storage.id }}">
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: $ctrl.storage.name }}"
+                ></h1>
+                <changelog-button
+                    links="$ctrl.constants.CHANGELOG.file_storage.links"
+                    chapters="$ctrl.constants.CHANGELOG.file_storage.chapters"
+                ></changelog-button>
+            </div>
+        </oui-header-heading>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                href="{{:: $ctrl.dashboardLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
+            >
+                <span
+                    data-translate="netapp_dashboard_general_information"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{:: $ctrl.volumesLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.volumesLink"
+            >
+                <span data-translate="netapp_dashboard_volumes"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                ng-if="$ctrl.isSnapshotPoliciesAvailable"
+                href="{{:: $ctrl.snapshotPoliciesLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.snapshotPoliciesLink"
+            >
+                <span
+                    data-translate="netapp_dashboard_snapshot_policies"
+                ></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+    <div data-ovh-alert></div>
+    <div data-ovh-alert="netapp.alerts.warning"></div>
+    <div ui-view></div>
+</div>

@@ -1,9 +1,14 @@
-angular.module('App').config(($stateProvider) => {
+import template from './cdn-dedicated-ssl-add.html';
+import controller from './cdn-dedicated-ssl-add.controller';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.networks.cdn.dedicated.manage.ssl.add', {
     url: '/add',
-    templateUrl: 'cdn/dedicated/manage/ssl/add/cdn-dedicated-ssl-add.html',
-    controller: 'CdnAddSslCtrl',
+    template,
+    controller,
     layout: 'modal',
-    translations: { value: ['.'], format: 'json' },
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
-});
+};

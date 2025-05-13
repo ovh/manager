@@ -1,0 +1,23 @@
+{
+  "description": "I nostri servizi sono basati sulla soluzione Veeam Data Platform e sul plugin Veeam per VMware Cloud Director (per il backup). Le nostre soluzioni sono implementate nell'infrastruttura VMware Cloud Foundation e gestiscono direttamente i vCenter per realizzare le operazioni tramite Snapshot VMware (se possibile con un accesso diretto allo storage). La soluzione fornita come standard è condivisa per tutti i clienti della piattaforma. La soluzione funziona senza agenti nelle macchine virtuali.",
+  "select_offer_title": "Seleziona la tua soluzione",
+  "select_offer_description": "Aggiungi il servizio di Veeam Data Platform alla tua infrastruttura VMware Cloud Director. Sarà possibile selezionare l'organizzazione VMware Cloud Director nello step successivo. Maggiori informazioni sulle modalità di fatturazione.",
+  "offer_title": "Attivare {{productName}}",
+  "offer_content_part1": "Il servizio Veeam Data Platform dispone di un plugin VCD per il backup di VM e vApp da qualsiasi Virtual Data Center (VDC) dell’organizzazione.",
+  "offer_content_part2": "È disponibile a livello di organizzazione per tutti gli utenti di VMware Cloud Director che hanno il ruolo di amministratore.",
+  "offer_price": "/VM/mese + consumo di storage",
+  "next_step": "Successivo",
+  "choose_org_title": "Scegli un'organizzazione VMware Cloud Director",
+  "all_organization_backed_up_message_fetch_next_page": "Tutte le organizzazioni VCD sono già associate al servizio Managed Veeam for VCD. È necessario caricare più organizzazioni.",
+  "all_organization_backed_up_message": "Tutte le tue organizzazioni VCD sono già associate al servizio Managed Veeam for VCD. Accedi alla lista dei tuoi servizi.",
+  "name_cell": "Cognome",
+  "region_cell": "Region",
+  "description_cell": "Descrizione",
+  "active_status": "Attivato",
+  "none_status": "Nessuna",
+  "error_status": "Errore",
+  "cancel_button": "Annullare",
+  "order_button": "Ordinare",
+  "location_cell": "Localizzazione",
+  "catalog_error": "Si è verificato un errore: {{error}}"
+}

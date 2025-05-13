@@ -1,0 +1,23 @@
+{
+  "vps_dashboard_tile_configuration_title": "A sua configuração",
+  "vps_dashboard_tile_configuration_vcore_upscale": "Adicionar vCores passando para a gama superior",
+  "vps_dashboard_tile_configuration_memory": "Memória",
+  "vps_dashboard_tile_configuration_memory_add": "Adicionar memória",
+  "vps_dashboard_tile_configuration_memory_add_upscale": "Adicionar memória passando para a gama superior",
+  "vps_dashboard_tile_configuration_memory_double": "Duplicar a memória por um preço adicional de {{ additionalPrice }}/mês, ou seja, um total de {{ price }}/mês",
+  "vps_dashboard_tile_configuration_storage": "Armazenamento",
+  "vps_dashboard_tile_configuration_storage_add": "Aumentar o volume de armazenamento",
+  "vps_dashboard_tile_configuration_storage_add_upscale": "Aumentar o armazenamento passando para a gama superior",
+  "vps_dashboard_tile_configuration_storage_double": "Duplicar o espaço de armazenamento por um preço adicional de {{ additionalPrice }}/mês, ou seja, um total de {{ price }}/mês",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_title": "A sua alteração foi corretamente registada.",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_details": "Depois de as alterações serem aplicadas no seu VPS, receberá um e-mail de confirmação num prazo máximo de duas horas. Será necessário reiniciar a sua máquina para usufruir da nova configuração.",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_track_order": "Seguir a minha encomenda",
+  "vps_dashboard_tile_configuration_upgrade_complete_reboot_required": "A adição de recursos no seu VPS foi realizada com êxito. Reinicie a sua máquina para ativar a sua nova configuração.",
+  "vps_dashboard_tile_configuration_vcore": "vCores",
+  "vps_dashboard_tile_configuration_memory_add_upscale_elite": "Faça evoluir o seu VPS aumentando a sua memória",
+  "vps_dashboard_tile_configuration_storage_add_upscale_elite": "Faça evoluir o seu VPS aumentando o seu armazenamento",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_cpu": "Para mais vCores, contacte o NIC admin: {{ nichandle }}.",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_memory": "Para mais memória, contacte o NIC admin: {{ nichandle }}.",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_storage": "Para mais armazenamento, contacte o NIC admin: {{ nichandle }}.",
+  "vps_dashboard_tile_configuration_starter_range_info_message": "A funcionalidade que lhe permite aumentar a RAM ou o armazenamento só está disponível a partir da oferta VPS Value."
+}

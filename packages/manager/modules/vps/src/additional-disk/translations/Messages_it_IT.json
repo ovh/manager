@@ -1,0 +1,6 @@
+{
+  "vps_additional_disk": "Disco aggiuntivo",
+  "vps_additional_disk_actions_increase_disk": "Aumenta la capacità del disco",
+  "vps_additional_disk_actions_terminate": "Disattiva",
+  "vps_additional_disk_actions_terminate_disabled_info": "Il disco aggiuntivo può essere disattivato al termine dell'impegno del tuo VPS."
+}

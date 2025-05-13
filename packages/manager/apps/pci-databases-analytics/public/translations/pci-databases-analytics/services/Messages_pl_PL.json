@@ -1,0 +1,17 @@
+{
+  "title": "Usługi",
+  "createNewService": "Utwórz usługę",
+  "tableHeaderName": "Nazwa / ID",
+  "tableHeaderEngine": "Engine",
+  "tableHeaderPlan": "Pakiet",
+  "tableHeaderFlavor": "Flavor",
+  "tableHeaderStorage": "Dostępna przestrzeń dyskowa",
+  "tableHeaderLocation": "Lokalizacja",
+  "tableHeaderNodes": "Węzły",
+  "tableHeaderCreationDate": "Data utworzenia",
+  "tableHeaderStatus": "Status",
+  "tableActionManage": "Szczegóły",
+  "tableActionCopy": "Skopiuj ID",
+  "tableActionEditName": "Zmień nazwę",
+  "tableActionDelete": "Usuń"
+}

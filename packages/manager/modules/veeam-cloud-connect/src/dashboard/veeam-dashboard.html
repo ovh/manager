@@ -1,19 +1,19 @@
-<section class="container-fluid cui-page__content cui-page__content-flex">
+<section>
     <div class="row d-lg-flex">
         <div class="col-xm-12 col-md-4">
             <oui-tile
                 data-heading="{{ ::'veeam_tiles_shortcut_title' | translate }}"
                 class="h-100 oui-tile-h-100"
             >
-                <oui-tile-button
-                    data-text="{{ ::'veeam_tiles_shortcut_label_add_storage' | translate }}"
-                    data-on-click="$ctrl.goToStorageAdd()"
-                >
+                <oui-tile-button data-on-click="$ctrl.goToStorageAdd()"
+                    ><span
+                        data-translate="veeam_tiles_shortcut_label_add_storage"
+                    ></span>
                 </oui-tile-button>
-                <oui-tile-button
-                    data-text="{{ ::'veeam_tiles_shortcut_label_change_offer' | translate }}"
-                    data-on-click="$ctrl.changeOffer()"
-                >
+                <oui-tile-button data-on-click="$ctrl.changeOffer()"
+                    ><span
+                        data-translate="veeam_tiles_shortcut_label_change_offer"
+                    ></span>
                 </oui-tile-button>
             </oui-tile>
         </div>
@@ -56,7 +56,7 @@
                     >
                         <oui-tile-description>
                             <i
-                                class="flag-icon {{ ::$ctrl.region.icon }} flag flag__icon-sm mr-1"
+                                class="{{ ::$ctrl.region.icon }} mr-1"
                                 aria-hidden="true"
                             ></i>
                             <span
@@ -98,14 +98,15 @@
                     >
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.uiActions.changeOffer.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{::$ctrl.uiActions.changeOffer.text}}"
                                 aria-label="{{::$ctrl.uiActions.changeOffer.text}}"
                                 data-on-click="$ctrl.uiActions.changeOffer.callback()"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.uiActions.changeOffer.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -115,15 +116,16 @@
                     >
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.uiActions.manageAutorenew.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ ::$ctrl.uiActions.manageAutorenew.text }}"
                                 aria-label="{{ ::$ctrl.uiActions.manageAutorenew.text }}"
                                 data-href="{{ $ctrl.uiActions.manageAutorenew.href }}"
                                 data-external
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.uiActions.manageAutorenew.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -160,15 +162,16 @@
                         </oui-tile-description>
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.uiActions.manageContact.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ ::$ctrl.uiActions.manageContact.text }}"
                                 aria-label="{{ ::$ctrl.uiActions.manageContact.text }}"
                                 data-href="{{ ::$ctrl.uiActions.manageContact.href }}"
                                 data-external
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.uiActions.manageContact.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>

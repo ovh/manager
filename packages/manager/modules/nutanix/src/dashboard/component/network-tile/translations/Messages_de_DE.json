@@ -1,0 +1,13 @@
+{
+  "nutanix_cluster_ipfo": "Reverse",
+  "nutanix_cluster_vrack": "Privates Netzwerk (vRack)",
+  "nutanix_cluster_vrack_none": "Kein vRack verbunden",
+  "nutanix_cluster_network_title": "Cluster-Netzwerk ",
+  "nutanix_cluster_network_manage": "Verwalten",
+  "nutanix_cluster_iplb_none": "Es ist kein Loadbalancer verbunden.",
+  "nutanix_cluster_bandwidth_private": "Private Bandbreite",
+  "nutanix_cluster_bandwidth_incoming": "eingehend",
+  "nutanix_cluster_bandwidth_outgoing": "ausgehend",
+  "nutanix_cluster_bandwidth_vrack_option_released": "(nicht verlängert)",
+  "nutanix_cluster_modify_private_bandwidth": "Private Bandbreite ändern"
+}

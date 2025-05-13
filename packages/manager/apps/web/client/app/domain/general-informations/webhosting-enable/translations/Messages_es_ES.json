@@ -1,0 +1,22 @@
+{
+  "domain_configuration_enable_web_hosting": "Active su alojamiento web",
+  "domain_configuration_enable_web_hosting_offer": "Su solución",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-start10m": "Start 10M",
+  "domain_configuration_web_hosting_offer_START_explain": "El servicio Free Hosting 100M está incluido con su solución, pero solo dispone de funcionalidades básicas.",
+  "domain_configuration_web_hosting_choose_offer_explain": "Para más información sobre nuestras soluciones y para consultar sus especificaciones técnicas y las distintas opciones, visite nuestro <a href=\"{{url}}\" target=\"_blank\">sitio web</a>.",
+  "domain_configuration_enable_web_hosting_dns_configuration": "Configuración de sus DNS",
+  "domain_configuration_web_hosting_dns_info_NO_CHANGE": "Si no selecciona ninguna configuración, aunque su nuevo alojamiento esté configurado, el dominio seguirá apuntando a los registros actuales. Cuando el nuevo sitio esté listo, deberá realizar los cambios necesarios en su zona DNS para evitar que se interrumpa el acceso a un sitio web ya en producción.",
+  "domain_configuration_enable_web_hosting_dns_configuration_A": "Registro DNS A",
+  "domain_configuration_enable_web_hosting_dns_configuration_MX": "Registro DNS MX",
+  "domain_configuration_web_hosting_dns_info_A": "Si dispone de direcciones de correo en su dominio, pero no tiene ningún sitio web, puede modificar únicamente el registro A. De este modo, su dominio apuntará al nuevo alojamiento y sus direcciones de correo seguirán funcionando en su servicio actual.",
+  "domain_configuration_web_hosting_dns_info_MX": "Esta opción le permitirá utilizar solamente las direcciones de correo de su alojamiento sin modificar las direcciones a las que apunta su sitio web. Su dominio seguirá apuntando a su sitio web actual, pero a partir de ahora las direcciones de correo utilizarán los servidores de OVHcloud.",
+  "domain_configuration_enable_web_hosting_offer_price": "Precio",
+  "domain_configuration_enable_web_hosting_offer_START_P1Y": "12 meses",
+  "domain_configuration_enable_web_hosting_offer_START_P0D": "12 meses",
+  "domain_configuration_enable_web_hosting_activation": "Activación",
+  "domain_configuration_enable_web_hosting_activate": "Activar",
+  "domain_configuration_enable_web_hosting_success": "Activando el alojamiento... La operación podría tardar unos minutos.",
+  "domain_configuration_enable_web_hosting_checkout_error": "Se ha producido un error: {{ message }}",
+  "domain_configuration_enable_web_hosting_error": "Se ha producido un error al activar el alojamiento: {{ message }}",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-free-100m": "Alojamiento gratuito 100M"
+}

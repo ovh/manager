@@ -1,0 +1,8 @@
+{
+  "sidebar_menu": "Menu",
+  "sidebar_menu_order_actions": "Zamów",
+  "sidebar_menu_search": "Szukaj",
+  "sidebar_menu_search_no_results": "Brak wyników",
+  "sidebar_menu_search_loading": "Trwa wyszukiwanie...",
+  "sidebar_menu_error_retry": "Spróbuj ponownie"
+}

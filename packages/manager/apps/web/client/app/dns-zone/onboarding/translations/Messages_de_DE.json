@@ -1,0 +1,10 @@
+{
+  "zones_onboarding_title": "DNS-Zone",
+  "zones_onboarding_description": "Die <b>Domain-Name-System-Zone</b> (DNS-Zone) ist die DNS-Konfigurationsdatei, die die gesamte Adressierung einer Domain verwaltet. Mit dieser Datei können zum Beispiel Subdomains oder der Standort eines E-Mail-Servers konfiguriert werden. Die DNS-Zone besteht aus technischen Informationen, den Einträgen, die die Daten zum gewünschten Ziel routen.",
+  "zones_onboarding_description2": "Die Konfiguration einer Subdomain im DNS ermöglicht es Internetnutzern, auf diese Subdomain zuzugreifen. Hierfür braucht es nur einen Klick in Ihrem OVHcloud Kundencenter: Verbinden Sie Ihre Subdomain mit dem Verzeichnis, das die gewünschten Dateien enthält.",
+  "zones_onboarding_order": "Bestellen",
+  "zones_onboarding_guide1_title": "OVHcloud DNS-Zone für eine Domain erstellen",
+  "zones_onboarding_guide1_description": "Hier erfahren Sie, wie Sie über Ihr Kundencenter eine OVHcloud DNS-Zone für Ihre Domain erstellen",
+  "zones_onboarding_guide2_title": "OVHcloud DNS-Zone bearbeiten",
+  "zones_onboarding_guide2_description": "Hier erfahren Sie, wie Sie eine OVHcloud DNS-Zone über Ihr Kundencenter bearbeiten"
+}

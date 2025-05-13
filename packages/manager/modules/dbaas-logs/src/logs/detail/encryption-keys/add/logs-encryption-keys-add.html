@@ -1,0 +1,78 @@
+<div>
+    <oui-back-button data-on-click="$ctrl.goToEncryptionKeysHomePage()">
+        <span data-translate="logs_encryption_keys_add"></span>
+    </oui-back-button>
+
+    <p data-translate="logs_encryption_keys_add_description"></p>
+
+    <form name="$ctrl.form" data-ng-submit="$ctrl.submit()">
+        <oui-field
+            label="{{:: 'logs_encryption_keys_col_title' | translate }}"
+            size="xl"
+        >
+            <input
+                type="text"
+                id="encryption_key_title"
+                name="encryption_key_title"
+                class="oui-input"
+                cuc-autofocus
+                data-ng-model="$ctrl.encryptionKey.title"
+                data-oui-tooltip="{{:: 'logs_encryption_keys_add_title_tooltip' | translate }}"
+                data-oui-tooltip-placement="top"
+                data-ng-minlength="$ctrl.LogsConstants.ENCRYPTION_KEY_TITLE_MIN_LENGTH"
+                data-ng-maxlength="$ctrl.LogsConstants.ENCRYPTION_KEY_TITLE_MAX_LENGTH"
+                placeholder="{{ $ctrl.placeholders.title }}"
+                required
+            />
+        </oui-field>
+
+        <oui-field
+            label="{{:: 'logs_encryption_keys_col_fingerprint' | translate }}"
+            size="xl"
+        >
+            <input
+                type="text"
+                id="encryption_key_fingerprint"
+                name="encryption_key_fingerprint"
+                class="oui-input"
+                data-ng-model="$ctrl.encryptionKey.fingerprint"
+                data-oui-tooltip="{{:: 'logs_encryption_keys_add_fingerprint_tooltip' | translate }}"
+                data-oui-tooltip-placement="top"
+                data-ng-minlength="$ctrl.LogsConstants.ENCRYPTION_KEY_FINGERPRINT_LENGTH"
+                data-ng-maxlength="$ctrl.LogsConstants.ENCRYPTION_KEY_FINGERPRINT_LENGTH"
+                placeholder="{{ $ctrl.placeholders.fingerprint }}"
+                required
+            />
+        </oui-field>
+
+        <oui-field
+            data-label="{{::'logs_encryption_keys_col_content' | translate}}"
+            class="w-40"
+        >
+            <textarea
+                type="text"
+                id="encryption_key_content"
+                name="encryption_key_content"
+                class="oui-textarea"
+                rows="20"
+                data-ng-model="$ctrl.encryptionKey.content"
+                data-ng-class="{'oui-textarea_error': $ctrl.form.$submitted && $ctrl.form.encryption_key_content.$invalid}"
+                data-oui-tooltip="{{:: 'logs_encryption_keys_add_content_tooltip' | translate }}"
+                data-oui-tooltip-placement="top"
+                placeholder="{{ $ctrl.placeholders.content }}"
+                required
+            ></textarea>
+        </oui-field>
+
+        <oui-form-actions
+            data-submit-text="{{ 'logs_save' | translate }}"
+            cancel-text="{{ 'logs_cancel' | translate }}"
+            data-on-cancel="$ctrl.goToEncryptionKeysHomePage()"
+            data-ng-hide="$ctrl.createEncryptionKeyLoading"
+        >
+        </oui-form-actions>
+        <oui-spinner
+            data-ng-show="$ctrl.createEncryptionKeyLoading"
+        ></oui-spinner>
+    </form>
+</div>

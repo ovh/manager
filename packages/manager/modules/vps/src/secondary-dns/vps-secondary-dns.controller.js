@@ -1,4 +1,4 @@
-import map from 'lodash/map';
+import 'moment';
 
 export default class {
   /* @ngInject */
@@ -30,14 +30,14 @@ export default class {
         this.secondaryDns = {
           ...data,
           list: {
-            ...data.list,
-            results: map(data.list.results, (secondaryDns) => ({
+            ...data,
+            results: data.map((secondaryDns) => ({
               ...secondaryDns,
               creationDateLabel: moment(secondaryDns.creationDate).format('LL'),
             })),
           },
         };
-        return data.list.results;
+        return data;
       })
       .catch((err) => this.CucCloudMessage.error(err));
   }

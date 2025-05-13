@@ -1,34 +1,45 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="PrivateDatabaseTasksCtrl as taskCtrl"
->
+<div>
     <div data-ovh-alert="{{alerts.main}}"></div>
 
     <oui-datagrid
+        id="{{:: taskCtrl.datagridId }}"
         data-rows="taskCtrl.taskDetails"
         data-row-loader="taskCtrl.transformItem($row)"
     >
-        <oui-column
+        <oui-datagrid-topbar>
+            <oui-button
+                type="button"
+                class="float-right"
+                data-on-click="taskCtrl.refreshTable()"
+                data-disabled="taskCtrl.isLoading"
+            >
+                <span
+                    class="oui-icon oui-icon-refresh"
+                    aria-hidden="true"
+                ></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
             data-title="'privateDatabase_tabs_tasks_name' | translate"
             data-property="function"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'privateDatabase_tabs_tasks_startDate' | translate"
             data-property="startDate"
         >
             <span data-ng-bind="$row.startDate | date:'medium'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'privateDatabase_tabs_tasks_lastUpdate' | translate"
             data-property="lastUpdate"
         >
             <span data-ng-bind="$row.lastUpdate | date:'medium'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'privateDatabase_tabs_tasks_doneDate' | translate"
             data-property="doneDate"
         >
             <span data-ng-bind="$row.doneDate | date:'medium'"></span>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </div>

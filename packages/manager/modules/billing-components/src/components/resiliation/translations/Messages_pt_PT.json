@@ -1,0 +1,14 @@
+{
+  "billing_resiliation_title": "Rescindir o meu serviço",
+  "billing_resiliation_service_name": "Nome do serviço",
+  "billing_resiliation_choice": "Deseja:",
+  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Interromper o seu compromisso e conservar o seu serviço sem compromisso.",
+  "billing_resiliation_choice_CANCEL_SERVICE": "Interromper o seu compromisso e eliminar o seu serviço na data de expiração.",
+  "billing_resiliation_commitment_end_date": "Fim do compromisso previsto a:",
+  "billing_resiliation_details_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Após esta data, conservará o seu serviço {{serviceName}} ativo. Deixará de beneficiar do desconto associado ao compromisso. O compromisso já não se aplicará e poderá eliminar o seu serviço a qualquer momento.",
+  "billing_resiliation_details_CANCEL_SERVICE": "Nesta data de expiração, perderá o acesso ao seu serviço e, portanto, ao conjunto dos dados que pode conter. Poderá anular esta operação até 24h antes da data de expiração.",
+  "billing_resiliation_success": "O seu pedido de rescisão foi efetuado.",
+  "billing_resiliation_error": "Lamentamos, mas ocorreu um erro aquando do pedido de rescisão.",
+  "billing_resiliation_cancel": "Cancelar",
+  "billing_resiliation_validate": "Validar"
+}

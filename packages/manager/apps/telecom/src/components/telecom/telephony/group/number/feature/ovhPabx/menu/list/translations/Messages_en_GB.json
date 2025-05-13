@@ -1,5 +1,5 @@
 {
-  "telephony_number_feature_ovh_pabx_menu_list_none": "Aucun menu ajouté.",
-  "telephony_number_feature_ovh_pabx_menu_list_delete_error": "Oups ! Une erreur est survenue lors de la suppression du menu interactif.",
-  "telephony_number_feature_ovh_pabx_menu_list_delete_error_used": "Oups ! Une erreur est survenue lors de la suppression du menu interactif. Le menu interactif est utilisé dans un ou plusieurs entrées de menu."
+  "telephony_number_feature_ovh_pabx_menu_list_none": "No menu added.",
+  "telephony_number_feature_ovh_pabx_menu_list_delete_error": "Oops! An error occurred while deleting the interactive menu.",
+  "telephony_number_feature_ovh_pabx_menu_list_delete_error_used": "Oops! An error occurred while deleting the interactive menu. The interactive menu is used in one or more menu entries."
 }

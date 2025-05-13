@@ -1,0 +1,23 @@
+{
+  "cloud_connect_datacenter_add_routing_title": "Dodaj konfigurację routingu",
+  "cloud_connect_datacenter_add_routing_select_title": "Typ",
+  "cloud_connect_datacenter_add_routing_select_placeholder": "Wybierz",
+  "cloud_connect_datacenter_add_routing_select_asn": "Wprowadź ",
+  "cloud_connect_datacenter_add_routing_network_neighbor": "Wprowadź adres IP Neighbor",
+  "cloud_connect_datacenter_add_routing_network_neighbor_placeholder": "IP Neighbor",
+  "cloud_connect_datacenter_add_routing_nexthop": "Wprowadź next hop",
+  "cloud_connect_datacenter_add_routing_nexthop_placeholder": "Next hop",
+  "cloud_connect_datacenter_add_routing_subnet": "Wprowadź podsieć docelową",
+  "cloud_connect_datacenter_add_routing_subnet_placeholder": "Podsieć",
+  "cloud_connect_datacenter_add_routing_bgp_area": "Wprowadź ",
+  "cloud_connect_datacenter_add_routing_bgp_ip": "Wprowadź IP Neighbor",
+  "cloud_connect_datacenter_add_routing_error": "Wystąpił błąd podczas dodawania konfiguracji routingu: {{message}}",
+  "cloud_connect_datacenter_add_routing_success": "Dodanie konfiguracji routingu. <a href=\"{{tasksUrl}}\">Kliknij tutaj, aby sprawdzić status.</a>",
+  "cloud_connect_datacenter_add_routing_bgp_area_placeholder": "Klient ASN",
+  "cloud_connect_datacenter_add_routing_bgp_ip_popover": "Adres IP neighbor BGP Twojego routera w strefie dostępności. Adres ten musi być częścią podsieci skonfigurowanej w sekcji \"Konfiguracja AZ\".",
+  "cloud_connect_datacenter_add_routing_ip_help_message": "Adres IPv4 należący do stref dostępności.",
+  "cloud_connect_datacenter_add_routing_ip_invalid_message": "Wprowadź ważny blok IPV4.",
+  "cloud_connect_datacenter_add_routing_asn_helper": "Liczba dodatnia większa od zera, z wyłączeniem 65501",
+  "cloud_connect_datacenter_add_routing_asn_popover": "Twój numer AS BGP, który jest skonfigurowany w routerze zlokalizowanym w strefie dostępności.",
+  "cloud_connect_datacenter_add_routing_type_helper": "Konfiguracja routingu może być tylko jednego typu."
+}

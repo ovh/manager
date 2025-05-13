@@ -2,16 +2,29 @@
 
 @import 'css/source.less';
 
+.ip-guide-block {
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 .ovh-manager-dedicated-app {
+  &.in-container .sidebar-menu {
+    top: -2px !important;
+  }
+
   #nprogress {
     .peg {
       box-shadow: none;
     }
   }
 
+  .word-break-normal {
+    word-break: normal;
+  }
+
   .ip-clipboard {
     min-width: rem-calc(200);
-    max-width: rem-calc(300);
+    max-width: rem-calc(350);
     margin: 0;
   }
 
@@ -44,5 +57,9 @@
         }
       }
     }
+  }
+
+  #licenseOrderBlockFilters {
+    cursor: pointer;
   }
 }

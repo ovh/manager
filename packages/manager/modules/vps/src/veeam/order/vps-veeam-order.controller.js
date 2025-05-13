@@ -1,29 +1,31 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 
-import { ORDER_EXPRESS_BASE_URL } from '../../constants';
-
 export default class VpsVeeamOrderCtrl {
   /* @ngInject */
   constructor(
     $q,
     $translate,
     $window,
+    atInternet,
     coreConfig,
     CucCloudMessage,
     connectedUser,
     OvhApiOrder,
     stateVps,
+    RedirectionService,
   ) {
     // dependencies injections
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
     this.connectedUser = connectedUser;
     this.OvhApiOrder = OvhApiOrder;
     this.stateVps = stateVps;
+    this.expressOrderUrl = RedirectionService.getURL('expressOrder');
 
     // other attributes used in view
     this.veeamOption = null;
@@ -36,10 +38,33 @@ export default class VpsVeeamOrderCtrl {
   }
 
   static getVeeamMonthlyPrice(option) {
-    const price = find(option.prices, {
-      duration: 'P1M',
-    });
+    const price = find(option.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
     return get(price, 'price');
+  }
+
+  // Returns human readable duration for any given monthly or yearly duration option
+  getVeeamDuration(option) {
+    const price = find(option.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
+    const duration = price?.duration;
+    if (duration === 'P1M' || duration === 'P1Y') {
+      return this.$translate.instant(
+        `vps_configuration_veeam_order_step1_info2_${duration}`,
+      );
+    }
+    const [, amount, type] = duration?.match(/P([0-9]+)(Y|M)/) || [];
+    if (amount && type) {
+      return this.$translate.instant(
+        `vps_configuration_veeam_order_step1_info2_PX${type}`,
+        {
+          amount,
+        },
+      );
+    }
+    return '?';
   }
 
   /* =============================
@@ -47,29 +72,33 @@ export default class VpsVeeamOrderCtrl {
   ============================== */
 
   onVeeamOrderStepperFinish() {
-    let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
-      this.coreConfig.getRegion(),
-      this.connectedUser.ovhSubsidiary,
-    ]);
+    this.atInternet.trackClick({
+      name: 'vps::detail::veeam::order::confirm',
+      type: 'action',
+    });
+
+    const priceOptions = find(this.veeamOption.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
     const expressParams = {
       productId: 'vps',
       serviceName: this.stateVps.name,
       planCode: this.veeamOption.planCode,
-      duration: 'P1M',
-      pricingMode: 'default',
+      duration: priceOptions.duration,
+      pricingMode: priceOptions.pricingMode,
       quantity: 1,
     };
-    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
+    this.expressOrderUrl = `${this.expressOrderUrl}?products=${JSURL.stringify([
       expressParams,
     ])}`;
 
-    this.$window.open(expressOrderUrl, '_blank');
+    this.$window.open(this.expressOrderUrl, '_blank', 'noopener');
 
     this.CucCloudMessage.success({
       textHtml: this.$translate.instant(
         'vps_configuration_veeam_order_success',
         {
-          url: expressOrderUrl,
+          url: this.expressOrderUrl,
         },
       ),
     });

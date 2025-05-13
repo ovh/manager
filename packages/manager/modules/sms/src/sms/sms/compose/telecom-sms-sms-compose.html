@@ -13,39 +13,46 @@
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="telecom-section-content" data-ng-if="!$ctrl.loading.init">
+    <div data-ng-if="!$ctrl.loading.init">
         <tuc-toast-message></tuc-toast-message>
 
         <div class="row">
-            <div class="col-md-3 float-right">
-                <div class="oui-tile">
+            <div class="col-md-3 col-md-push-9">
+                <ovh-manager-sms-sms-credits
+                    credits="$ctrl.service.creditsLeft"
+                    go-to-order-credits="$ctrl.goToOrder"
+                >
+                </ovh-manager-sms-sms-credits>
+                <div class="oui-tile mb-4">
                     <h3
-                        class="oui-header_3 oui-tile__title"
+                        class="oui-tile__title oui-heading_3"
                         data-translate="sms_sms_compose_tips_title"
                     ></h3>
                     <div class="oui-tile__body">
                         <div class="oui-tile__item oui-tile__item_button">
                             <a
                                 href="#"
-                                class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                                class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                                 data-translate="sms_sms_compose_tip_compose_title"
                                 data-ng-click="$ctrl.tips($event, 'compose')"
+                                target="_top"
                             >
                             </a>
                         </div>
                         <div class="oui-tile__item oui-tile__item_button">
                             <a
                                 href="#"
-                                class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                                class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                                 data-translate="sms_sms_compose_tip_size_title"
                                 data-ng-click="$ctrl.tips($event, 'size')"
+                                target="_top"
                             >
                             </a>
                         </div>
                         <div class="oui-tile__item oui-tile__item_button">
                             <a
                                 href="#"
-                                class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                                class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                                 title="{{:: 'sms_sms_compose_add_receivers_select' | translate }} ({{:: 'common_open_new_tab' | translate }})"
                                 target="_blank"
                                 rel="noopener"
@@ -69,29 +76,20 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
-                <div
-                    class="alert alert-warning"
-                    role="alert"
+            <div class="col-md-9 col-md-pull-3">
+                <oui-message
+                    type="error"
                     data-ng-if="$ctrl.service.creditsLeft <= 0 || $ctrl.service.creditsLeft < $ctrl.receivers.records"
                 >
-                    <p
+                    <span
                         data-ng-if="$ctrl.service.creditsLeft <= 0"
                         data-translate="sms_sms_compose_alert_not_enough_credits"
-                    ></p>
-                    <p
+                    ></span>
+                    <span
                         data-ng-if="$ctrl.service.creditsLeft > 0 && $ctrl.service.creditsLeft < $ctrl.receivers.records"
                         data-translate="sms_sms_compose_alert_not_enough_credits_receivers"
-                    ></p>
-                    <a
-                        title="{{ ::'sms_actions_credit_account' | translate }}"
-                        data-ui-sref="sms.service.order"
-                    >
-                        <span data-translate="sms_actions_credit_account"></span
-                        >.
-                    </a>
-                </div>
-
+                    ></span>
+                </oui-message>
                 <form
                     name="sendSmsForm"
                     novalidate
@@ -112,7 +110,7 @@
                             >
                             </label>
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-8 mb-2">
                                     <select
                                         name="sender"
                                         id="sender"
@@ -165,10 +163,11 @@
                                 </div>
                                 <div class="col-md-4">
                                     <a
-                                        class="d-inline-block mt-2"
+                                        class="d-inline-block"
                                         data-ng-href="{{:: $ctrl.sendersLink() }}"
                                         data-translate="sms_sms_compose_sender_manage"
                                         data-translate-attr="{ title: 'sms_sms_compose_sender_manage' }"
+                                        target="_top"
                                     >
                                     </a>
                                 </div>
@@ -193,6 +192,7 @@
                                 <a
                                     data-ng-href="{{:: $ctrl.sendersLink() }}"
                                     data-translate="sms_sms_compose_message_advice_description_2"
+                                    target="_top"
                                 >
                                 </a>
                                 <span
@@ -350,6 +350,7 @@
                                         rows="4"
                                         required
                                         data-ng-model="$ctrl.sms.message"
+                                        data-ng-model-options="{ debounce: 500 }"
                                         data-ng-change="$ctrl.computeRemainingChar()"
                                         data-ng-maxlength="$ctrl.message.maxlength"
                                         data-ng-trim="false"
@@ -689,7 +690,7 @@
                             type="submit"
                             class="btn btn-primary"
                             data-ng-disabled="sendSmsForm.$invalid ||
-                                              $ctrl.service.creditsLeft === 0 ||
+                                              $ctrl.service.creditsLeft <= 0 ||
                                               $ctrl.loading.send"
                         >
                             <oui-spinner

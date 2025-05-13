@@ -1,0 +1,54 @@
+<section class="telecom-telephony-service-assist-orders">
+    <div class="text-center" data-ng-if="OrdersCtrl.orders.isLoading">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <div data-ng-if="!OrdersCtrl.orders.isLoading">
+        <header>
+            <tuc-section-back-link
+                data-tuc-section-back-link-to-state="{{ OrdersCtrl.service.isFax ? 'telecom.telephony.billingAccount.fax.dashboard.assist' : 'telecom.telephony.billingAccount.line.dashboard.assist' }}"
+                data-tuc-section-back-link-title="{{ 'telephony_service_assist_support_logs_title' | translate }}"
+            >
+            </tuc-section-back-link>
+            <h1 data-translate="telephony_line_assist_orders_title"></h1>
+        </header>
+
+        <oui-datagrid data-rows="OrdersCtrl.ordersRaw">
+            <oui-datagrid-column
+                data-title="'telephony_line_assist_orders_column_date' | translate"
+                data-property="date"
+                data-sortable="desc"
+            >
+                <span data-ng-bind="$row.date | date:'mediumDate'"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'telephony_line_assist_orders_column_id' | translate"
+            >
+                <span data-ng-bind="$row.orderId"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'telephony_line_assist_orders_column_status' | translate"
+            >
+                <span data-ng-bind="$row.statusText"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column class="text-right">
+                <a
+                    class="btn btn-default pull-right"
+                    target="_blank"
+                    data-ng-href="{{::$row.url}}"
+                    data-translate-attr="{ title: 'telephony_line_assist_orders_order_url_title' }"
+                    data-translate-values="{ id: $row.orderId }"
+                >
+                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                    <span
+                        class="sr-only"
+                        data-translate="telephony_line_assist_orders_order_url_title"
+                        data-translate-values="{ id: $row.orderId }"
+                    >
+                    </span>
+                </a>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </div>
+</section>
+<!-- /.telecom-telephony-service-assist-orders -->

@@ -1,0 +1,10 @@
+{
+  "ip_byoip_disclaimer_title": "Es necesario confirmar la operación.",
+  "ip_byoip_disclaimer_description": "Declaro que: ",
+  "ip_byoip_disclaimer_description_point_1": " - soy el propietario del rango de direcciones IP introducido;",
+  "ip_byoip_disclaimer_description_point_2": " - que el rango de direcciones IP introducido no está anunciado en internet por varias redes simultáneamente («multihoming»);",
+  "ip_byoip_disclaimer_description_point_3": " - este rango de direcciones IP tiene una buena reputación.",
+  "ip_byoip_disclaimer_confirm_text": "Confirmar",
+  "ip_byoip_disclaimer_cancel_text": "Cancelar",
+  "ip_byoip_disclaimer_ordering_delay_message": "Tenga en cuenta que este proceso puede tardar aproximadamente 3 semanas. Rogamos disculpe las molestias ocasionadas."
+}

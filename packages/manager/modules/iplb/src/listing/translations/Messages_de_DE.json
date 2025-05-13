@@ -1,0 +1,11 @@
+{
+  "iplb_listing_action_delete": "Meinen Dienst löschen",
+  "iplb_listing_action_detail": "Details meines Dienstes ansehen",
+  "iplb_terminate_service": "Meinen Dienst löschen",
+  "iplb_terminate_service_warning": "Bitte bestätigen Sie die Löschung Ihres Dienstes.",
+  "iplb_terminate_service_success": "Ihre Anfrage zum Löschen Ihres Dienstes wurde registriert. Eine E-Mail mit weiteren Informationen zur Vorgehensweise wurde soeben an Sie versandt.",
+  "iplb_terminate_service_error": "Bei der Anfrage zum Löschen Ihres Dienstes ist ein Fehler aufgetreten. {{error}}",
+  "iplb_terminate_service_confirm_input": "Geben Sie im folgenden Feld „TERMINATE\" ein, um den Vorgang zu bestätigen.",
+  "iplb_terminate_service_terminate_valid": "Bestätigen",
+  "iplb_terminate_service_terminate_cancel": "Abbrechen"
+}

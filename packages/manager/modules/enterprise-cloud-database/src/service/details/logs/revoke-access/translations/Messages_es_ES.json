@@ -1,8 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_logs_revoke_access_title": "Revocar el acceso",
-  "enterprise_cloud_database_service_details_logs_revoke_access_description": "Revocar el acceso a la cuenta Logs Data Platform {{ldpName}}. Una vez revocado el acceso, esta cuenta no podrá acceder a sus registros de eventos (logs).",
-  "enterprise_cloud_database_service_details_logs_revoke_access_warning": "Esta acción no se puede deshacer.",
-  "enterprise_cloud_database_service_details_logs_revoke_access_action": "Revocar el acceso",
-  "enterprise_cloud_database_service_details_logs_revoke_access_success": "Acceso revocado a la cuenta Logs Data Platform {{ldpName}}",
-  "enterprise_cloud_database_service_details_logs_revoke_access_error": "Se ha producido un error al revocar el acceso de la cuenta Logs Data Platform: {{message}}."
-}

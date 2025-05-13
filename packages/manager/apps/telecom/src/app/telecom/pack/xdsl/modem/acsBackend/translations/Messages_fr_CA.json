@@ -1,0 +1,6 @@
+{
+  "xdsl_modem_acs_backend_description": "La modification de la valeur du backend de l'ACS est réservée à un usage avancé.",
+  "xdsl_modem_acs_backend_doing": "Modification de la version du backend de l'ACS en cours",
+  "xdsl_modem_acs_backend_submit": "Valider",
+  "xdsl_modem_acs_an_error_ocurred": "Backend ACS : Une erreur est survenue !"
+}

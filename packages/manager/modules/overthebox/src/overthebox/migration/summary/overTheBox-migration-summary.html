@@ -1,0 +1,199 @@
+<div class="widget-presentation">
+    <h2
+        class="widget-presentation-title"
+        data-translate="overthebox_migration_summary_title"
+    ></h2>
+
+    <p
+        data-translate="overthebox_migration_summary_detail"
+        data-translate-values="{'oldOffer': $ctrl.offer.currentOffer.prettyOfferName, 'newOffer': $ctrl.offer.description}"
+    ></p>
+
+    <!-- Loader -->
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.loading">
+        <div>
+            <div class="responsive-table-line my-3">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                data-translate="overthebox_migration_summary_table_title"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="overthebox_migration_summary_table_unit_price"
+                                class="text-right"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="overthebox_migration_summary_table_quantity"
+                                class="text-right"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="overthebox_migration_summary_table_price_per_month"
+                                class="text-right"
+                            ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th
+                                scope="row"
+                                data-translate="overthebox_migration_summary_table_offer"
+                                data-translate-values="{ description : $ctrl.offer.description + ' *' }"
+                                data-title="{{ 'overthebox_migration_summary_table_title' | translate }}"
+                            ></th>
+                            <td
+                                class="text-price text-right"
+                                data-ng-bind="$ctrl.offer.price.text"
+                                data-title="{{ 'overthebox_migration_summary_table_unit_price' | translate }}"
+                            ></td>
+                            <td
+                                class="text-right"
+                                data-title="{{ 'overthebox_migration_summary_table_quantity' | translate }}"
+                                data-ng-bind="$ctrl.offer.offerQuantity"
+                            ></td>
+                            <td
+                                class="text-price text-right"
+                                data-ng-bind="$ctrl.offer.price.text"
+                                data-title="{{ 'overthebox_migration_summary_table_price_per_month' | translate }}"
+                            ></td>
+                        </tr>
+                        <tr
+                            data-ng-if="$ctrl.offer.selectedHardwareName !== $ctrl.NO_HARDWARE"
+                        >
+                            <th
+                                scope="row"
+                                data-translate="overthebox_migration_summary_table_hardware"
+                                data-translate-values="{ 'deviceName': $ctrl.offer.selectedHardware.hardwareDisplayName }"
+                                data-title="{{ 'overthebox_migration_summary_table_title' | translate }}"
+                            ></th>
+                            <td
+                                class="text-price text-right"
+                                data-ng-bind="$ctrl.offer.selectedHardware.hardwarePrice.text"
+                                data-title="{{ 'overthebox_migration_summary_table_unit_price' | translate }}"
+                            ></td>
+                            <td
+                                class="text-right"
+                                data-title="{{ 'overthebox_migration_summary_table_quantity' | translate }}"
+                                data-ng-bind="$ctrl.offer.selectedHardwareQuantity"
+                            ></td>
+                            <td
+                                class="text-price text-right"
+                                data-title="{{ 'overthebox_migration_summary_table_price_per_month' | translate }}"
+                                data-ng-bind="$ctrl.hardwarePrice.text"
+                            ></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="text-right">
+                <span
+                    data-translate="overthebox_migration_summary_total"
+                ></span>
+                <span
+                    data-ng-bind-html="$ctrl.offer.price.text | tucFormatPrice"
+                ></span>
+            </p>
+
+            <p
+                data-translate="overthebox_migration_summary_price_explain"
+                data-translate-values="{price: $ctrl.offer.price.text}"
+            ></p>
+
+            <p
+                data-ng-if="$ctrl.offer.selectedHardware !== $ctrl.NO_HARDWARE"
+                data-translate="overthebox_migration_summary_hardware_price"
+            ></p>
+
+            <p
+                data-ng-if="$ctrl.offer.selectedHardware !== $ctrl.NO_HARDWARE"
+                data-translate="overthebox_migration_summary_first_mensuality"
+                data-translate-values="{price: $ctrl.firstMensuality.text}"
+                class="font-weight-bold"
+            ></p>
+        </div>
+    </div>
+</div>
+
+<div data-ng-if="$ctrl.isMigrationOK && !$ctrl.loading">
+    <p
+        data-translate="overthebox_migration_summary_command_order_explain"
+        data-translate-values="{orderUrl: $ctrl.commandOrder.orderUrl, orderId: $ctrl.commandOrder.orderId}"
+    ></p>
+    <a
+        data-ng-href="{{ $ctrl.HELP_BILLING_URL }}"
+        target="_blank"
+        title="{{::'overthebox_migration_summary_command_order_help' | translate }}"
+    >
+        <span class="oui-icon oui-icon-help mr-2" aria-hidden="true"></span>
+        <span
+            data-translate="overthebox_migration_summary_command_order_help"
+        ></span>
+        <span
+            class="oui-icon oui-icon-external-link ml-2"
+            aria-hidden="true"
+        ></span>
+    </a>
+</div>
+
+<form
+    name="summaryForm"
+    data-ng-submit="$ctrl.launchMigration()"
+    data-ng-if="!$ctrl.isMigrationOK && !$ctrl.loading"
+>
+    <div class="widget-presentation">
+        <h2
+            class="widget-presentation-title"
+            data-translate="overthebox_migration_summary_contracts_title"
+        ></h2>
+
+        <div class="checkbox">
+            <label for="acceptContracts">
+                <input
+                    type="checkbox"
+                    id="acceptContracts"
+                    name="acceptContracts"
+                    data-ng-model="$ctrl.model.acceptContracts"
+                />
+                <span
+                    data-translate="overthebox_migration_summary_check_label"
+                ></span>
+            </label>
+        </div>
+        <ul class="list-unstyled mb-5">
+            <li data-ng-repeat="contract in $ctrl.contracts track by $index">
+                <a
+                    data-ng-href="{{ contract.url }}"
+                    target="_blank"
+                    title="{{ contract.name }} {{::'common_newtab' | translate }}"
+                >
+                    <span data-ng-bind="contract.name"></span>
+                    <span
+                        class="oui-icon oui-icon-external-link ml-2"
+                        aria-hidden="true"
+                    ></span>
+                </a>
+            </li>
+        </ul>
+        <a
+            class="btn btn-default"
+            data-translate="overthebox_migration_cancel"
+            data-ui-sref="overTheBoxes.overTheBox.details"
+        >
+        </a>
+        <button
+            type="submit"
+            class="btn btn-primary"
+            data-ng-disabled="!$ctrl.model.acceptContracts"
+            data-translate="overthebox_migration_summary_apply_change_offer"
+        ></button>
+    </div>
+</form>

@@ -1,0 +1,8 @@
+{
+  "cpbc_no_consumption_data": "No hay consumo en el período seleccionado.",
+  "cpbc_volume_col_name": "Apellido",
+  "cpbc_volume_col_consumption": "Consumo",
+  "cpbc_volume_consumption_tooltip_part1": "Se factura en función del espacio de almacenamiento real, medido cada hora, multiplicado por el número de horas.",
+  "cpbc_volume_consumption_tooltip_part2": "Su consumo es de exactamente {{amount}} GiB hora.",
+  "cpb_error_message": "¡Vaya! No se ha podido cargar toda la información."
+}

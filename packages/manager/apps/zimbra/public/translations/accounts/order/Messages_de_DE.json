@@ -1,0 +1,18 @@
+{
+  "zimbra_account_order": "Einen Account bestellen",
+  "zimbra_account_order_cta_back": "Zurück zu meinen E-Mail-Accounts",
+  "zimbra_account_order_title": "Ihre Zimbra-Accounts bestellen",
+  "zimbra_account_order_subtitle": "Wählen Sie Ihre Zimbra-Accounts aus",
+  "zimbra_account_order_subtitle_commitment": "Laufzeit des Abonnements",
+  "zimbra_account_order_legal_checkbox": "Ich bin damit einverstanden, dass OVHcloud den Dienst sofort nach Validierung meiner Bestellung einrichtet, und erkläre mich damit einverstanden, mein Widerrufsrecht nach Art. L.121-21-8 des Verbrauchergesetzbuchs ausdrücklich aufzugeben.",
+  "zimbra_account_order_no_product_error_message": "Beim Laden des Produkts für Ihre Bestellung ist ein Problem aufgetreten. Bitte entschuldigen Sie die Unannehmlichkeiten und versuchen Sie es später erneut.",
+  "zimbra_account_order_commitment_month": "Monat",
+  "zimbra_account_order_commitment_months": "Monat",
+  "zimbra_account_order_commitment_available_soon": "Demnächst verfügbar",
+  "zimbra_account_order_cta_confirm": "Bezahlen",
+  "zimbra_account_order_cta_done": "Zurück",
+  "zimbra_account_order_initiated_title": "Bestellung Ihrer Zimbra-Accounts initiiert!",
+  "zimbra_account_order_initiated_subtitle": "Wenn Sie Ihre Bestellung nicht abschließen konnten, vervollständigen Sie diese bitte, indem Sie auf folgenden Link klicken:",
+  "zimbra_account_order_initiated_info": "Wir werden Sie per E-Mail über die Verfügbarkeit Ihrer Accounts informieren.",
+  "zimbra_account_order_initiated_link_label": "Link zu Ihrer Bestellung"
+}

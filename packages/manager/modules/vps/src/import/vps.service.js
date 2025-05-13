@@ -1,10 +1,11 @@
-import get from 'lodash/get';
 import head from 'lodash/head';
 import includes from 'lodash/includes';
+import isString from 'lodash/isString';
 import remove from 'lodash/remove';
 import set from 'lodash/set';
+import 'moment';
 
-import { ADDITIONAL_DISK, IP_PRIMARY_TYPE } from './constants';
+import { ADDITIONAL_DISK } from './constants';
 
 export default /* @ngInject */ function VpsService(
   $cacheFactory,
@@ -14,8 +15,8 @@ export default /* @ngInject */ function VpsService(
   $timeout,
   $translate,
   CucServiceHelper,
-  OvhApiIp,
   VpsTaskService,
+  iceberg,
 ) {
   const aapiRootPath = '/sws/vps';
 
@@ -30,6 +31,8 @@ export default /* @ngInject */ function VpsService(
   const vpsInfoCache = $cacheFactory('VPS_INFO_CACHE');
 
   const vpsTabVeeamCache = $cacheFactory('UNIVERS_WEB_VPS_TABS_VEEAM');
+
+  const apiCatalogProductName = 'vps';
 
   const vpsTabBackupStorageCache = $cacheFactory(
     'UNIVERS_WEB_VPS_TABS_BACKUP_STORAGE',
@@ -310,7 +313,7 @@ export default /* @ngInject */ function VpsService(
     templateId,
     language,
     softIds,
-    sshKeys,
+    publicSshKey,
     doNotSendPassword,
   ) {
     if (!templateId) {
@@ -320,7 +323,7 @@ export default /* @ngInject */ function VpsService(
       .post([swsVpsProxypass, serviceName, 'reinstall'].join('/'), {
         language,
         softwareId: softIds,
-        sshKey: sshKeys,
+        publicSshKey,
         doNotSendPassword: Boolean(doNotSendPassword),
         templateId,
       })
@@ -343,62 +346,26 @@ export default /* @ngInject */ function VpsService(
    * return the ip list for this VPS
    */
   this.getIps = function getIps(serviceName) {
-    return $http
-      .get([aapiRootPath, serviceName, 'ips'].join('/'), {
-        serviceType: 'aapi',
-      })
-      .then((data) => data.data)
-      .catch(CucServiceHelper.errorHandler());
+    return iceberg([swsVpsProxypass, serviceName, 'ips'].join('/'))
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => data);
   };
 
   /*
    * Reinstall the VPS using the template identified by templateId
    */
-  this.setReversesDns = function setReversesDns(serviceName, ips) {
-    let result = null;
-    return this.getSelectedVps(serviceName)
-      .then((vps) => {
-        if (!ips) {
-          return $q.reject('No ips');
-        }
-
-        if (vps && vps.name) {
-          const ip = head(ips.results);
-          const ipType = get(ip, 'type');
-
-          if (ipType === IP_PRIMARY_TYPE) {
-            return $http
-              .post([aapiRootPath, vps.name, 'ips', 'reverse'].join('/'), ips, {
-                serviceType: 'aapi',
-              })
-              .then(({ data }) => {
-                result = data;
-              });
-          }
-
-          return OvhApiIp.Reverse()
-            .v6()
-            .create(
-              {
-                ip: ip.ipAddress,
-              },
-              {
-                ipReverse: ip.ipAddress,
-                reverse: ip.reverse,
-              },
-            ).$promise;
-        }
-
-        return $q.reject(vps);
+  this.setReversesDns = function setReversesDns(
+    serviceName,
+    ipAddress,
+    reverse,
+  ) {
+    return $http
+      .put([swsVpsProxypass, serviceName, 'ips', ipAddress].join('/'), {
+        reverse,
       })
-      .then(
-        () => {
-          resetCache();
-          $rootScope.$broadcast('vps.dashboard.refresh');
-          return result;
-        },
-        (http) => $q.reject(http.data),
-      );
+      .then(({ data }) => data);
   };
 
   /*
@@ -446,130 +413,26 @@ export default /* @ngInject */ function VpsService(
         }
         return $q.reject(result);
       })
-      .catch(CucServiceHelper.errorHandler('vps_dashboard_loading_error'));
+      .catch((error) => error);
   };
 
-  /*
-   * Get content of ips tabs
-   */
-  this.getTabIps = function getTabIps(serviceName) {
-    let vpsName = null;
-    return this.getSelectedVps(serviceName)
-      .then((vps) => {
-        if (vps && vps.name) {
-          vpsName = vps.name;
-          const tabSummary = vpsCache.get(`tabIps_${vpsName}`);
-          if (!tabSummary) {
-            vpsCache.put(`tabIps_${vps.name}`, true);
-            return $http
-              .get([aapiRootPath, vps.name, 'tabips'].join('/'), {
-                serviceType: 'aapi',
-              })
-              .then((response) => {
-                if (response.status < 300) {
-                  vpsCache.put(`tabIps_${vpsName}`, response.data);
-                  return vpsCache.get(`tabIps_${vpsName}`);
-                }
-                return $q.reject(response);
-              });
-          }
-          return tabSummary;
-        }
-        return $q.reject(vps);
-      })
-      .then(
-        () => {
-          const result = vpsCache.get(`tabIps_${vpsName}`);
-          if (
-            result &&
-            (!result.messages ||
-              (angular.isArray(result.messages) &&
-                result.messages.length === 0))
-          ) {
-            return result;
-          }
-          if (result && result.messages.length !== 0) {
-            return $q.reject(result.messages);
-          }
-          return $q.reject(result);
-        },
-        (reason) => {
-          if (reason && reason.data !== undefined) {
-            return $q.reject(reason.data);
-          }
-          return $q.reject(reason);
-        },
-      );
+  this.getSnapshotUrl = function getSnapshotUrl(serviceName) {
+    return $http
+      .get(`/vps/${serviceName}/snapshot/download`)
+      .then(({ data }) => data);
   };
 
   /*
    * Get content of secondary DNS tab
    */
-  this.getTabSecondaryDns = function getTabSecondaryDns(
-    serviceName,
-    count,
-    offset,
-  ) {
-    let vpsName = null;
-
-    let offsetFinal = offset;
-
-    let countFinal = count;
-
-    let cacheKey = null;
-    return this.getSelectedVps(serviceName)
-      .then((vps) => {
-        if (vps && vps.name) {
-          vpsName = vps.name;
-          if (!count) {
-            countFinal = 0;
-          }
-          if (!offset) {
-            offsetFinal = 0;
-          }
-          cacheKey = `tabSecondaryDNS_${vpsName}_count=${countFinal}_offset=${offsetFinal}`;
-          const tabSummary = vpsCache.get(cacheKey);
-          if (!tabSummary) {
-            vpsCache.put(cacheKey, true);
-            return $http
-              .get([aapiRootPath, vps.name, 'tabsecondarydns'].join('/'), {
-                serviceType: 'aapi',
-              })
-              .then((response) => {
-                if (response.status < 300) {
-                  vpsCache.put(cacheKey, response.data);
-                  return vpsCache.get(cacheKey);
-                }
-                return $q.reject(response);
-              });
-          }
-          return tabSummary;
-        }
-        return $q.reject(vps);
-      })
-      .then(
-        () => {
-          const result = vpsCache.get(cacheKey);
-          if (
-            result &&
-            (!result.messages ||
-              (angular.isArray(result.messages) &&
-                result.messages.length === 0))
-          ) {
-            return result;
-          }
-          if (result && result.messages.length !== 0) {
-            return $q.reject(result.messages);
-          }
-          return $q.reject(result);
-        },
-        (reason) => {
-          if (reason && reason.data !== undefined) {
-            return $q.reject(reason.data);
-          }
-          return $q.reject(reason);
-        },
-      );
+  this.getTabSecondaryDns = function getTabSecondaryDns(serviceName) {
+    return iceberg(
+      [swsVpsProxypass, serviceName, 'secondaryDnsDomains'].join('/'),
+    )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => data);
   };
 
   /*
@@ -902,6 +765,15 @@ export default /* @ngInject */ function VpsService(
     );
   };
 
+  this.upgradeAdditionalDisk = function upgradeAdditionalDisk(
+    serviceName,
+    planCode,
+  ) {
+    return $http
+      .post(`/order/upgrade/vpsAdditionalDisk/${serviceName}/${planCode}`)
+      .then(({ data }) => data);
+  };
+
   this.getOptionStatus = function getOptionStatus(serviceName, option) {
     return this.getSelectedVps(serviceName).then((vps) =>
       $http
@@ -972,13 +844,15 @@ export default /* @ngInject */ function VpsService(
       );
   };
 
-  /*
+  /**
    * Get content of veeam tab
+   * @param serviceName {String}: Internal VPS service name
+   * @returns {Promise}: return current schedule backup
    */
   this.getVeeamInfo = function getVeeamInfo(serviceName) {
     return $http
       .get([swsVpsProxypass, serviceName, 'automatedBackup'].join('/'))
-      .then((response) => response.data);
+      .then(({ data }) => data);
   };
 
   this.getVeeamAttachedBackup = function getVeeamAttachedBackup(serviceName) {
@@ -1323,15 +1197,6 @@ export default /* @ngInject */ function VpsService(
     );
   };
 
-  // Additional disks
-  this.hasAdditionalDiskOption = (serviceName) =>
-    this.getSelectedVps(serviceName).then((vps) => {
-      if (!includes(vps.availableOptions, 'ADDITIONAL_DISK')) {
-        return $q.reject(ADDITIONAL_DISK.HAS_NO_OPTION);
-      }
-      return this.canOrderOption(serviceName, 'additionalDisk');
-    });
-
   this.canOrderOption = (serviceName, optionName) =>
     $http.get([swsOrderProxypass, serviceName].join('/')).then((response) => {
       if (includes(response.data, optionName)) {
@@ -1454,6 +1319,29 @@ export default /* @ngInject */ function VpsService(
       .catch(CucServiceHelper.errorHandler('vps_dashboard_loading_error'));
   };
 
+  this.getUpgradableAdditionalDisk = function getUpgradableAdditionalDisk(
+    catalog,
+    vpsLinkedDisk,
+  ) {
+    return $http
+      .get(`/order/upgrade/vpsAdditionalDisk/${vpsLinkedDisk.serviceName}`)
+      .then(({ data }) => data)
+      .then((disks) =>
+        disks.map((disk) => {
+          return {
+            ...disk,
+            capacity: catalog.products.find(
+              ({ name }) => name === disk.productName,
+            ).blobs.technical.storage.disks[0].capacity,
+          };
+        }),
+      )
+      .then((disks) =>
+        disks.filter(({ capacity }) => capacity > vpsLinkedDisk.size),
+      )
+      .catch(() => []);
+  };
+
   this.showOnlyAdditionalDisk = function showOnlyAdditionalDisk(disks) {
     remove(disks, (currentObject) => currentObject.type === 'primary');
     return disks;
@@ -1472,9 +1360,76 @@ export default /* @ngInject */ function VpsService(
     );
   };
 
+  this.getEngagement = function getEngagement(serviceId) {
+    return $http
+      .get(`/services/${serviceId}/billing/engagement`)
+      .then((response) => (isString(response.data) ? null : response.data))
+      .catch(() => null);
+  };
+
   this.isAutoRenewable = function isAutoRenewable(serviceName) {
     return this.getSelectedVps(serviceName).then(
       (vps) => moment(vps.expiration).diff(moment().date(), 'days') > 0,
     );
+  };
+
+  this.getCatalog = function(ovhSubsidiary) {
+    return $http
+      .get(`/order/catalog/public/${apiCatalogProductName}`, {
+        params: {
+          ovhSubsidiary,
+        },
+      })
+      .then(({ data }) => data);
+  };
+
+  this.updateServiceInfo = function updateServiceInfo(serviceInfo) {
+    return $http.put(`${swsVpsProxypass}/${serviceInfo.domain}/serviceInfos`, {
+      renew: serviceInfo.renew,
+    });
+  };
+
+  // Schedule backup
+
+  /**
+   * return vps details
+   * @param serviceName {String}: Internal VPS service name
+   * @returns {Promise}
+   */
+  this.getVpsInfo = function getVpsInfo(serviceName) {
+    return $http.get(`/vps/${serviceName}`).then(({ data }) => data);
+  };
+
+  /**
+   * return vps option details
+   * @param serviceName {String}: Internal VPS service name
+   * @param option {String}: Internal option name to get
+   * @returns {Promise}
+   */
+  this.getVpsOption = function getVpsOption(serviceName, option) {
+    return $http
+      .get(`/vps/${serviceName}/option/${option}`)
+      .then(({ data }) => data);
+  };
+
+  /**
+   * Update the scheduled backup time
+   * @param serviceName {String}: Internal VPS service name
+   * @param schedule {datetime}: New scheduled backup time
+   * @returns {Promise}
+   */
+  this.scheduleBackup = function scheduleBackup(serviceName, schedule) {
+    return $http
+      .post(`/vps/${serviceName}/automatedBackup/reschedule`, { schedule })
+      .then(({ data }) => data);
+  };
+
+  this.isResellerResourceProductName = function isResellerResourceProductName(
+    serviceId,
+  ) {
+    return $http
+      .get(`/services/${serviceId}`)
+      .then(({ data }) => data?.resource?.product?.name.includes('-resell'))
+      .catch(() => false);
   };
 }

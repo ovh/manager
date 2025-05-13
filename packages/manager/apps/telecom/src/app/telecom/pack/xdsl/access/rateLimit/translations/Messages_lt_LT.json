@@ -1,9 +1,0 @@
-{
-  "xdsl_access_lns_ratelimit_title": "Interneto prieigos optimizavimas",
-  "xdsl_access_lns_ratelimit_activate": "Ištrinti linijos ribojimą",
-  "xdsl_access_lns_ratelimit_description": "Veikia tik su France Télecom. Pridėkite perdavimo limitą OVH įrangos lygmenyje. Toks keitimas gali palengvinti navigaciją, tačiau kai kuriais atvejais sukelti paketų praradimą.",
-  "xdsl_access_lns_ratelimit_warning": "Ši operacija truks iki 10 minučių ir jungtis bus pertraukta kelis kartus.",
-  "xdsl_access_lns_ratelimit_really_on": "Ar tikrai norite įjungti linijos ribojimą?",
-  "xdsl_access_lns_ratelimit_really_off": "Ar tikrai norite išjungti linijos ribojimą?",
-  "xdsl_access_lns_ratelimit_doing": "Linijos perdavimo limito keitimas"
-}

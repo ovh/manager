@@ -1,0 +1,10 @@
+{
+  "hosting_cdn_terminate_title": "Disattivazione del servizio CDN",
+  "hosting_cdn_terminate_question_part_1": "Vuoi disattivare il servizio CDN alla fine dell’abbonamento:",
+  "hosting_cdn_terminate_question_part_2": "Il {{ endEngagementDate }}",
+  "hosting_cdn_terminate_success": "Il servizio CDN verrà disattivato il {{ endEngagementDate }}.",
+  "hosting_cdn_terminate_success_link": "Annulla l'operazione",
+  "hosting_cdn_terminate_error": "Si è verificato un errore durante la disattivazione della CDN.",
+  "hosting_cdn_terminate_action_delete": "Disattiva",
+  "hosting_cdn_terminate_action_cancel": "Annulla"
+}

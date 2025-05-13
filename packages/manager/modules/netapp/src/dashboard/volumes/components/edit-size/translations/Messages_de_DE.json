@@ -1,0 +1,9 @@
+{
+  "netapp_volumes_edit_size_title": "Größe des Volumes {{volume}} ändern",
+  "netapp_volumes_edit_size_submit": "Größe ändern",
+  "netapp_volumes_edit_size_cancel": "Abbrechen",
+  "netapp_volumes_edit_size_label": "Größe des Volumes {{ name }}",
+  "netapp_volumes_edit_size_rules": "Zulässige Größe: mindestens {{min}} GB, maximal {{max}} GB",
+  "netapp_volumes_edit_size_success": "Die Größe des Volumes {{ volumeName }} wird in Kürze geändert.",
+  "netapp_volumes_edit_size_error": "Es ist ein Fehler aufgetreten. <br> {{message}} <br> request_id: {{requestId}}"
+}

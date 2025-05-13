@@ -1,0 +1,171 @@
+<section class="log-streams">
+    <h3 data-translate="logs_streams_title"></h3>
+    <p data-translate="logs_streams_description"></p>
+    <oui-datagrid
+        data-id="streams-datagrid"
+        data-rows-loader="ctrl.loadStreams($config)"
+    >
+        <oui-datagrid-topbar>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary"
+                data-ng-click="ctrl.add()"
+            >
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span data-translate="logs_streams_add_data_feed"></span>
+            </button>
+            <oui-spinner
+                size="s"
+                data-ng-if="ctrl.delete.loading"
+            ></oui-spinner>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title="::'logs_streams_col_title' | translate"
+            property="title"
+            sortable="asc"
+            type="string"
+            searchable
+            filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'logs_streams_col_description' | translate"
+            property="description"
+            sortable
+            type="string"
+            searchable
+            filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'logs_streams_col_indexing' | translate"
+            property="indexingEnabled"
+            sortable
+            type="string"
+        >
+            <span
+                class="oui-badge"
+                data-translate="{{ $row.indexingEnabled ? 'logs_streams_enabled' : 'logs_streams_disabled' }}"
+                data-ng-class="$row.indexingEnabled ? 'oui-badge_success' : 'oui-badge_warning'"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'logs_streams_col_retention' | translate"
+            data-property="retentionId"
+        >
+            {{ ctrl.retentionInfo($row) || "-" }}
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'logs_streams_col_storage' | translate"
+            sortable
+            data-type="number"
+            data-property="indexingCurrentSize"
+            filterable
+        >
+            <span
+                class="oui-badge oui-badge_info"
+                data-ng-if="$row.isEditable"
+                data-ng-bind="($row.indexingCurrentSize | bytes:2:true)"
+            ></span>
+            <span data-ng-if="!$row.isEditable"> - </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'logs_streams_col_archives' | translate"
+            property="nbArchive"
+            sortable
+            type="number"
+            filterable
+        >
+            {{ $row.nbArchive || "-" }}
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'logs_streams_col_notifications' | translate"
+            property="nbAlertCondition"
+            sortable
+            type="number"
+            filterable
+        >
+            {{ $row.nbAlertCondition || "-" }}
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'logs_streams_col_subscriptions' | translate"
+            property="nbSubscription"
+            sortable
+            type="number"
+            filterable
+        >
+            {{ $row.nbSubscription || "-" }}
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'logs_col_last_modified' | translate"
+            property="updatedAt"
+            sortable
+            type="date"
+        >
+            {{ $row.updatedAt | cucMomentFormat:'L'}}
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'logs_streams_col_shared' | translate"
+            property="isEditable"
+            sortable
+            type="string"
+        >
+            <span data-ng-if="!$row.isEditable"
+                >{{ ::'logs_yes' | translate }}</span
+            >
+            <span data-ng-if="$row.isEditable"> - </span>
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
+            <oui-action-menu-item
+                disabled="!$row.isEditable"
+                on-click="ctrl.edit($row)"
+                ><span data-translate="logs_edit"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                disabled="!$row.indexingEnabled"
+                data-on-click="ctrl.openGrayLog($row)"
+            >
+                <span data-translate="logs_streams_graylog_access"></span>
+                <i
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></i>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                disabled="!$row.isEditable"
+                on-click="ctrl.copyToken($row)"
+                ><span data-translate="logs_streams_copy_token"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item on-click="ctrl.copyStreamId($row)"
+                ><span data-translate="logs_streams_copy_stream_id"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                disabled="!$row.webSocketEnabled"
+                on-click="ctrl.followLive($row)"
+                ><span data-translate="logs_streams_follow_live"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                disabled="!$row.canAlert"
+                on-click="ctrl.manageAlerts($row)"
+                ><span data-translate="logs_streams_manage_alerts"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                disabled="!$row.coldStorageEnabled && $row.nbArchive === 0"
+                on-click="ctrl.goToArchives($row)"
+                ><span data-translate="logs_streams_manage_archives"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                disabled="!$row.isEditable || $row.nbSubscription === 0"
+                on-click="ctrl.goToSubscriptions($row)"
+                ><span data-translate="logs_streams_manage_subscriptions"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                disabled="!$row.isEditable"
+                on-click="ctrl.showDeleteConfirm($row)"
+                ><span data-translate="logs_delete"></span
+            ></oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</section>

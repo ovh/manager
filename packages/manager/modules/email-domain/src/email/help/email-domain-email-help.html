@@ -1,0 +1,68 @@
+<div data-ng-controller="EmailsHelpCtrl as ctrl">
+    <div
+        data-wizard
+        data-wizard-confirm-button-text="'wizard_close' | translate"
+        data-wizard-hide-cancel-button="true"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="configureHelp"
+        data-wizard-title="'email_tab_modal_help_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="!ctrl.loading">
+            <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
+
+            <div data-ng-if="!ctrl.loading">
+                <p data-translate="email_tab_modal_help_explanation"></p>
+
+                <div class="d-flex">
+                    <button
+                        type="button"
+                        class="btn btn-default text-wrap mx-2"
+                        data-translate="email_tab_button_emails_create_account"
+                        data-ng-click="setAction('email-domain/email/account/create/email-domain-email-account-create')"
+                        data-ng-if="ctrl.canCreate.account"
+                    ></button>
+                    <button
+                        type="button"
+                        class="btn btn-default text-wrap mx-2"
+                        data-translate="email_tab_button_emails_create_redirection"
+                        data-ng-click="setAction('email-domain/email/redirection/create/email-domain-email-redirection-create')"
+                        data-ng-if="ctrl.canCreate.redirection"
+                    ></button>
+                    <button
+                        type="button"
+                        class="btn btn-default text-wrap mx-2"
+                        data-translate="email_tab_modal_help_create_mailing_list"
+                        data-ng-click="setAction('email-domain/mailing-list/create/email-domain-mailing-list-create')"
+                        data-ng-if="ctrl.canCreate.mailingList"
+                    ></button>
+                    <button
+                        type="button"
+                        class="btn btn-default text-wrap mx-2"
+                        data-translate="email_tab_modal_create_responder_title"
+                        data-ng-click="setAction('email-domain/email/responder/create/email-domain-email-responder-create', {accounts: ctrl.emails})"
+                        data-ng-if="ctrl.canCreate.responder"
+                    ></button>
+                </div>
+
+                <form class="mt-5" name="ctrl.configureHelpForm">
+                    <oui-checkbox
+                        id="hideEmailsHelpOne"
+                        name="hideEmailsHelpOne"
+                        data-model="ctrl.hideEmailsHelp.one"
+                        ><span
+                            data-translate="email_tab_modal_help_explanation_checkbox_this"
+                        ></span>
+                    </oui-checkbox>
+                    <oui-checkbox
+                        id="hideEmailsHelpAll"
+                        name="hideEmailsHelpAll"
+                        data-model="ctrl.hideEmailsHelp.all"
+                        ><span
+                            data-translate="email_tab_modal_help_explanation_checkbox_all"
+                        ></span>
+                    </oui-checkbox>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

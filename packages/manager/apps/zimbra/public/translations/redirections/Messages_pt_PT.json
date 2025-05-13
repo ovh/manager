@@ -1,0 +1,21 @@
+{
+  "zimbra_redirections_cta": "Criar um reencaminhamento",
+  "zimbra_redirections_from": "De",
+  "zimbra_redirections_to": "Para",
+  "zimbra_redirections_organization": "Organização",
+  "zimbra_redirections_datagrid_tooltip_modification": "Alterar",
+  "zimbra_redirections_datagrid_tooltip_delete": "Eliminar",
+  "zimbra_redirections_account_title": "Gestão dos reencaminhamentos",
+  "zimbra_redirections_status": "Estado",
+  "zimbra_redirections_delete_modal_content": "Pretende eliminar o reencaminhamento?",
+  "zimbra_redirections_add_header": "Preencha as informações para o reencaminhamento.",
+  "zimbra_redirections_add_form_input_from": "Do endereço",
+  "zimbra_redirections_add_form_input_to": "Para o endereço",
+  "zimbra_redirections_add_form_input_checkbox": "Conservar uma cópia do e-mail na OVHcloud",
+  "zimbra_redirections_add_success_message": "O seu pedido de criação de reencaminhamento foi registado. Será tratado dentro de alguns instantes.",
+  "zimbra_redirections_add_error_message": "O seu pedido de criação de reencaminhamento não foi bem-sucedido. {{ error }}",
+  "zimbra_redirections_edit_success_message": "O seu pedido de alteração de reencaminhamento foi registado. Será tratado dentro de alguns instantes.",
+  "zimbra_redirections_edit_error_message": "O seu pedido de alteração de reencaminhamento não foi bem-sucedido. {{ error }}",
+  "zimbra_redirections_delete_success_message": "O seu pedido de eliminação do reencaminhamento foi registado. Será tratado dentro de alguns instantes.",
+  "zimbra_redirections_delete_error_message": "O seu pedido de eliminação do reencaminhamento não foi bem-sucedido. {{ error }}"
+}

@@ -1,0 +1,108 @@
+<table
+    class="oui-datagrid"
+    aria-label="{{ :: 'telephony_billingAccount_svaWallet_kyc_identity_document_document_list' | translate }"
+>
+    <thead>
+        <tr>
+            <th class="oui-datagrid__header" scope="col">
+                <span
+                    data-translate="telephony_billingAccount_svaWallet_kyc_documents_type_title"
+                ></span>
+            </th>
+            <th class="oui-datagrid__header" scope="col">
+                <span
+                    data-translate="telephony_billingAccount_svaWallet_kyc_documents_name_title"
+                ></span>
+            </th>
+            <th class="oui-datagrid__header" scope="col">
+                <span
+                    data-translate="telephony_billingAccount_svaWallet_kyc_documents_status_title"
+                ></span>
+            </th>
+            <th class="oui-datagrid__header" scope="col"></th>
+        </tr>
+    </thead>
+    <tbody data-ng-if="!$ctrl.loading" aria-hidden="false">
+        <tr
+            class="oui-datagrid__row"
+            data-ng-repeat="document in $ctrl.documents | orderBy:id track by document.id"
+        >
+            <td
+                class="oui-datagrid__cell text-wrap"
+                data-title="{{::'telephony_billingAccount_svaWallet_kyc_documents_type_title' | translate }}"
+            >
+                <span
+                    data-translate="{{:: 'telephony_billingAccount_svaWallet_kyc_documents_nature_' + document.nature }}"
+                ></span>
+
+                <span data-ng-if="document.beneficiary">
+                    - {{ document.beneficiary.lastname}} {{
+                    document.beneficiary.firstname}}
+                </span>
+
+                <oui-select
+                    ng-if="document.availableTypes.length > 1"
+                    items="document.availableTypes"
+                    match="name"
+                    name="documentType"
+                    placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_documents_type_title' | translate }}"
+                    searchable
+                    model="document.selectedType"
+                >
+                </oui-select>
+            </td>
+
+            <td
+                class="oui-datagrid__cell "
+                data-title="{{::'telephony_billingAccount_svaWallet_kyc_documents_name_title' | translate }}"
+            >
+                <span data-ng-bind="document.name"></span>
+            </td>
+            <td
+                class="oui-datagrid__cell "
+                data-title="{{::'telephony_billingAccount_svaWallet_kyc_documents_status_title' | translate }}"
+            >
+                <span
+                    data-translate="{{ 'telephony_billingAccount_svaWallet_kyc_documents_status_' + document.status }}"
+                ></span>
+            </td>
+            <td
+                class="oui-datagrid__cell "
+                data-title="{{::'telephony_billingAccount_svaWallet_kyc_documents_actions_title' | translate }}"
+            >
+                <oui-action-menu
+                    aria-label="Actions"
+                    data-placement="left"
+                    compact
+                >
+                    <oui-action-menu-item
+                        on-click="$ctrl.upload(document.id)"
+                        disabled="!document.canUpload || (document.availableTypes.length > 1 && !document.selectedType)"
+                    >
+                        <span
+                            data-ng-if="!$ctrl.updateMode"
+                            data-translate="telephony_billingAccount_svaWallet_kyc_documents_actions_upload"
+                        ></span>
+                        <span
+                            data-ng-if="$ctrl.updateMode"
+                            data-translate="telephony_billingAccount_svaWallet_kyc_documents_actions_update"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </td>
+        </tr>
+    </tbody>
+    <tbody data-ng-if="$ctrl.documents.length === 0 || $ctrl.isLoading">
+        <tr class="oui-datagrid__row oui-datagrid__row_placeholder">
+            <td class="oui-datagrid__cell oui-datagrid-empty" colspan="4">
+                <div ng-if="!$ctrl.isLoading">
+                    <span
+                        class="oui-datagrid-empty__placeholder"
+                        data-translate="Pas de pièces à fournir"
+                    ></span>
+                </div>
+                <oui-spinner ng-if="$ctrl.isLoading"></oui-spinner>
+            </td>
+        </tr>
+    </tbody>
+</table>

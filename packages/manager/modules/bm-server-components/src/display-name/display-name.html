@@ -1,0 +1,35 @@
+<div class="oui-modal oui-modal_shadow">
+    <form
+        name="updateDisplayNameForm"
+        novalidate
+        data-ng-submit="$ctrl.onUpdateDisplayNameFormSubmit()"
+    >
+        <oui-modal
+            data-primary-label="{{($ctrl.actionEnabled ? 'common_change' : 'global_OK') | translate }}"
+            data-primary-disabled="updateDisplayNameForm.$invalid"
+            data-secondary-label="{{$ctrl.actionEnabled ? ('common_cancel' | translate) : '' }}"
+            data-secondary-action="$ctrl.$state.go('^')"
+            data-on-dismiss="$ctrl.$state.go('^')"
+            data-loading="$ctrl.loading.init || $ctrl.loading.update"
+            data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}"
+            data-heading="{{ :: 'server_displaname_edit_title' | translate }}"
+        >
+            <div data-ng-if="$ctrl.actionEnabled">
+                <p data-translate="server_displaname_edit_help"></p>
+                <oui-field
+                    data-label="{{:: 'server_displaname_edit_displayname_label' | translate }}"
+                >
+                    <input
+                        class="oui-input"
+                        type="text"
+                        name="display-name"
+                        id="update-display-name"
+                        data-ng-model="$ctrl.displayName"
+                        data-ng-pattern="/^[^<>]+$/"
+                        required
+                    />
+                </oui-field>
+            </div>
+        </oui-modal>
+    </form>
+</div>

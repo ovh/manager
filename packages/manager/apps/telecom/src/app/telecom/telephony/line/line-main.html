@@ -1,0 +1,162 @@
+<section class="telecom-telephony-line">
+    <!-- LOADING -->
+    <div class="text-center" data-ng-if="LineCtrl.loading.init">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <div class="mb-4" data-ng-if="!LineCtrl.loading.init">
+        <header class="oui-header">
+            <div class="oui-header__container">
+                <div class="oui-header__content">
+                    <tuc-editable-service-name
+                        data-tuc-editable-service-name-title="LineCtrl.line.getDisplayedName()"
+                        data-tuc-editable-service-name-title-on-save="LineCtrl.lineNameSave"
+                        data-tuc-editable-service-name-service-name="LineCtrl.line.serviceName"
+                        data-maxlength="24"
+                    >
+                    </tuc-editable-service-name>
+                </div>
+            </div>
+        </header>
+
+        <oui-message
+            data-type="warning"
+            data-ng-if="LineCtrl.displayMgcpBanner"
+        >
+            <span
+                data-translate="telephony_line_mgcp_banner_description"
+            ></span>
+            <a
+                class="oui-link_icon"
+                data-ng-href="{{:: LineCtrl.orderPhoneLink}}"
+            >
+                <span data-translate="telephony_line_mgcp_banner_link"> </span>
+            </a>
+        </oui-message>
+
+        <!-- LINE ACTIONS -->
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                href="{{LineCtrl.lineLink}}"
+                active="LineCtrl.lineLink === LineCtrl.currentActiveLink()"
+            >
+                <span data-translate="telephony_line_tab_manage"></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                href="{{LineCtrl.consumptionLink}}"
+                active="LineCtrl.consumptionLink === LineCtrl.currentActiveLink()"
+            >
+                <span data-translate="telephony_line_tab_consumption"></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                href="{{LineCtrl.callsLink}}"
+                active="LineCtrl.callsLink === LineCtrl.currentActiveLink()"
+            >
+                <span
+                    data-translate="telephony_line_tab_call_management"
+                ></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                href="{{LineCtrl.tonesLink}}"
+                active="LineCtrl.tonesLink === LineCtrl.currentActiveLink()"
+                data-disabled="LineCtrl.loading.init || LineCtrl.line.isIndividual() || LineCtrl.line.isTrunk() || !LineCtrl.line.isPriceplan()"
+            >
+                <span
+                    data-translate="telephony_line_tab_music_management"
+                ></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                href="{{LineCtrl.answerLink}}"
+                active="LineCtrl.answerLink === LineCtrl.currentActiveLink()"
+            >
+                <span
+                    data-translate="telephony_line_tab_answering_machine"
+                ></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                href="{{LineCtrl.phoneLink}}"
+                active="LineCtrl.phoneLink === LineCtrl.currentActiveLink()"
+            >
+                <span data-translate="telephony_line_tab_phone"></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                data-ng-if="LineCtrl.softphoneStatus.eligibility"
+                data-href="{{LineCtrl.softphoneLink}}"
+                data-active="LineCtrl.softphoneLink === LineCtrl.currentActiveLink()"
+            >
+                <span data-translate="telephony_line_tab_softphone"></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                href="{{LineCtrl.assistLink}}"
+                active="LineCtrl.assistLink === LineCtrl.currentActiveLink()"
+            >
+                <span data-translate="telephony_line_tab_assist"></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                href="{{LineCtrl.contactLink}}"
+                active="LineCtrl.contactLink === LineCtrl.currentActiveLink()"
+            >
+                <span
+                    data-translate="telephony_line_tab_contact_details"
+                ></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                href="{{LineCtrl.faxLink}}"
+                active="LineCtrl.faxLink === LineCtrl.currentActiveLink()"
+                data-disabled="LineCtrl.disableFaxOptionTab"
+            >
+                <span data-translate="telephony_line_tab_fax"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </div>
+    <div class="telecom-section-alert" data-ng-if="!LineCtrl.loading.init">
+        <div
+            class="alert alert-xs alert-warning"
+            role="alert"
+            data-ng-if="LineCtrl.terminating"
+        >
+            <span
+                data-translate="telephony_line_expire_date"
+                data-translate-values="{date: LineCtrl.terminating.executionDate}"
+            >
+            </span>
+            <a
+                data-ui-sref="telecom.telephony.billingAccount.line.dashboard.terminate.cancel"
+                data-translate="telephony_line_expire_link"
+            >
+            </a>
+        </div>
+        <div
+            class="alert alert-xs alert-warning"
+            role="alert"
+            data-ng-if="LineCtrl.converting"
+        >
+            <span
+                data-translate="telephony_line_convert_date"
+                data-translate-values="{ date: (LineCtrl.converting.executionDate | date) }"
+            >
+            </span>
+            <a
+                data-ui-sref="telecom.telephony.billingAccount.line.dashboard.convert"
+                data-translate="telephony_line_convert_link"
+            >
+            </a>
+        </div>
+    </div>
+    <!-- .telecom-section-alert -->
+
+    <main
+        role="main"
+        data-ng-if="!LineCtrl.loading.init"
+        data-ui-view="lineInnerView"
+    ></main>
+</section>

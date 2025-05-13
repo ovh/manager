@@ -1,11 +1,11 @@
 <oui-modal
-    data-title="{{:: 'vps_configuration_reboot_title' | translate}}"
     data-primary-label="{{ ::'vps_common_confirm' | translate }}"
     data-primary-action="$ctrl.confirm()"
     data-secondary-action="$ctrl.cancel()"
     data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
     data-on-dismiss="$ctrl.cancel()"
     data-loading="$ctrl.loader.init || $ctrl.save.loading"
+    data-heading="{{:: 'vps_configuration_reboot_title' | translate}}"
 >
     <div data-ng-if="$ctrl.vps.tools === 'KO'">
         <p
@@ -27,11 +27,10 @@
     ></p>
     <oui-checkbox
         data-ng-if="$ctrl.model.netbootMode !== 'RESCUE'"
-        data-text="{{ 'vps_configuration_reboot_rescue' | translate }}"
         data-description="{{ 'vps_configuration_reboot_rescue_info' | translate }}"
         id="rescue"
         name="rescue"
         data-model="$ctrl.selected.rescue"
-    >
+        ><span data-translate="vps_configuration_reboot_rescue"></span>
     </oui-checkbox>
 </oui-modal>

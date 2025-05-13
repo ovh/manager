@@ -10,5 +10,9 @@
   "telephony_line_mgcp_ip_restriction_error_pattern": "Adresse IP invalide.",
   "telephony_line_mgcp_ip_restriction_submit": "Ajouter l’adresse IP",
   "telephony_line_mgcp_ip_restriction_edit_success": "La modification a bien été prise en compte et sera effective d’ici 5 minutes.",
-  "telephony_line_mgcp_ip_restriction_edit_error": "Oups ! Une erreur est survenue lors de la modification de l’adresse IP autorisée."
+  "telephony_line_mgcp_ip_restriction_edit_error": "Oups ! Une erreur est survenue lors de la modification de l’adresse IP autorisée.",
+  "telephony_line_mgcp_ip_restriction_bulk_all_success": "Die Änderung der MGCP-Einschränkung wurde für die ausgewählten Dienste erfolgreich durchgeführt.",
+  "telephony_line_mgcp_ip_restriction_bulk_some_success": "Die Änderung der MGCP-Leitungseinschränkung wurde für {{ count }} der ausgewählten Dienste durchgeführt.",
+  "telephony_line_mgcp_ip_restriction_bulk_error": "Die Änderung der MGCP-Streckeneinschränkung konnte für folgende Dienstleistung(en) nicht angewendet werden:",
+  "telephony_line_mgcp_ip_restriction_bulk_on_error": "Hoppla! Bei der Änderung der MGCP-Einschränkung der Leitung ist ein Fehler aufgetreten."
 }

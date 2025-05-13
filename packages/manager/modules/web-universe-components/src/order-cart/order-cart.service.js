@@ -1,5 +1,3 @@
-import { FIDELITY_ACCOUNT } from './order-cart.constants';
-
 /**
  * Cart order management service, based on API /order/cart
  * It is, for the moment, aimed to handle order of product, or existing product
@@ -213,7 +211,10 @@ export default class OrderCartService {
         },
       ).$promise;
 
-    if (order.prices.withTax.value === 0) {
+    if (
+      !checkout.autoPayWithPreferredPaymentMethod &&
+      order.prices.withTax.value === 0
+    ) {
       await this.OvhApiMe.Order()
         .v6()
         .payRegisteredPaymentMean(
@@ -221,7 +222,7 @@ export default class OrderCartService {
             orderId: order.orderId,
           },
           {
-            paymentMean: FIDELITY_ACCOUNT,
+            paymentMean: 'fidelityAccount',
           },
         ).$promise;
     }
@@ -282,12 +283,16 @@ export default class OrderCartService {
   ) {
     return this.OvhApiOrder.CartServiceOption()
       .v6()
-      .post({
-        cartId,
-        productName,
-        serviceName,
-        ...serviceOption,
-      }).$promise;
+      .post(
+        {
+          productName,
+          serviceName,
+        },
+        {
+          cartId,
+          ...serviceOption,
+        },
+      ).$promise;
   }
 
   /**

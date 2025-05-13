@@ -1,8 +1,10 @@
 {
-  "vrack_move_dialog_title": "Sposta da un datacenter Private Cloud",
-  "vrack_move_dialog_intro": "Hai selezionato un servizio Private Cloud di tipo “datacenter”. Questa soluzione deve essere necessariamente associata a un altro servizio e deve quindi essere trasferita verso un’altra vRack.",
+  "vrack_move_dialog_title_dedicatedCloudDatacenter": "Sposta da un datacenter Private Cloud",
+  "vrack_move_dialog_intro_dedicatedCloudDatacenter": "Hai selezionato un servizio Private Cloud di tipo “datacenter”. Questa soluzione deve essere necessariamente associata a un altro servizio e deve quindi essere trasferita verso un’altra vRack.",
   "vrack_move_dialog_warning_notice": "Questa operazione comporterà un'interruzione del servizio di circa 5 minuti.",
   "vrack_move_dialog_choose_vrack_label": "vRack di destinazione:",
   "vrack_move_dialog_choose_vrack_default_option": "Seleziona una vRack",
-  "vrack_move_dialog_request_error": "L'operazione di trasferimento del datacenter non è andata a buon fine."
+  "vrack_move_dialog_request_error": "L'operazione di trasferimento del datacenter non è andata a buon fine.",
+  "vrack_move_dialog_title_managedBareMetalDatacenter": "Trasferimento di un datacenter Managed Bare Metal",
+  "vrack_move_dialog_intro_managedBareMetalDatacenter": "Hai selezionato un servizio Managed Bare Metal di tipo “datacenter”. Questa soluzione deve essere necessariamente associata a un altro servizio e deve quindi essere trasferita verso un’altra vRack."
 }

@@ -1,7 +1,0 @@
-{
-  "ovhManagerPccDashboardOptionsDescriptionsCertification_name_undefined": "Ninguna",
-  "ovhManagerPccDashboardOptionsDescriptionsCertification_name_pcidss": "Payment Card Industry Data Security Standard (PCI DSS)",
-  "ovhManagerPccDashboardOptionsDescriptionsCertification_name_hds": "Alojamiento de datos de salud (HDS)",
-  "ovhManagerPccDashboardOptionsDescriptionsCertification_name_hipaa": "Health Insurance Portability and Accountability Act (HIPAA)",
-  "ovhManagerPccDashboardOptionsDescriptionsCertification_linkToManagementInterface": "Interfaz web certificada"
-}

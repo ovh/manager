@@ -1,0 +1,98 @@
+<section class="telecom-sms-options-callback">
+    <header>
+        <tuc-section-back-link
+            data-tuc-section-back-link-to-state="sms.service.options"
+            data-tuc-section-back-link-title="{{:: 'sms_section_back_link' | translate }}"
+        >
+        </tuc-section-back-link>
+        <h1 data-translate="sms_options_callback_title"></h1>
+    </header>
+
+    <main role="main">
+        <tuc-toast-message></tuc-toast-message>
+
+        <div class="row">
+            <div class="col-md-6 widget-presentation">
+                <header class="widget-presentation-header">
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="sms_options_callback_information_title"
+                    ></h2>
+                </header>
+
+                <p data-translate="sms_options_callback_information_text"></p>
+                <p
+                    data-translate="sms_options_callback_information_types_available"
+                ></p>
+                <ul>
+                    <li
+                        data-translate="sms_options_callback_information_type_callback"
+                    ></li>
+                    <li
+                        data-translate="sms_options_callback_information_type_stop_callback"
+                    ></li>
+                </ul>
+            </div>
+
+            <div class="col-md-6 widget-presentation">
+                <header class="widget-presentation-header">
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="sms_options_callback_configure_title"
+                    ></h2>
+                </header>
+
+                <div
+                    class="text-center"
+                    data-ng-if="TelecomSmsOptionsCallbackCtrl.loading.init"
+                >
+                    <oui-spinner></oui-spinner>
+                </div>
+
+                <dl data-ng-if="!TelecomSmsOptionsCallbackCtrl.loading.init">
+                    <dt
+                        data-translate="sms_options_callback_configure_callback_label"
+                    ></dt>
+                    <dd>
+                        <span
+                            data-ng-if="TelecomSmsOptionsCallbackCtrl.service.callBack"
+                            data-ng-bind="TelecomSmsOptionsCallbackCtrl.service.callBack"
+                        >
+                        </span>
+                        <span
+                            data-ng-if="!TelecomSmsOptionsCallbackCtrl.service.callBack"
+                            data-translate="sms_options_callback_configure_callback_empty"
+                        >
+                        </span>
+                    </dd>
+                    <dt
+                        class="mt-3"
+                        data-translate="sms_options_callback_configure_stop_callback_label"
+                    ></dt>
+                    <dd>
+                        <span
+                            data-ng-if="TelecomSmsOptionsCallbackCtrl.service.stopCallBack"
+                            data-ng-bind="TelecomSmsOptionsCallbackCtrl.service.stopCallBack"
+                        >
+                        </span>
+                        <span
+                            data-ng-if="!TelecomSmsOptionsCallbackCtrl.service.stopCallBack"
+                            data-translate="sms_options_callback_configure_callback_empty"
+                        >
+                        </span>
+                    </dd>
+                </dl>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-ng-if="!TelecomSmsOptionsCallbackCtrl.loading.init"
+                    data-ng-click="TelecomSmsOptionsCallbackCtrl.update(TelecomSmsOptionsCallbackCtrl.service)"
+                    data-translate="sms_modify"
+                ></button>
+            </div>
+        </div>
+        <!-- /.row -->
+    </main>
+</section>
+<!-- /.telecom-sms-options-callback -->

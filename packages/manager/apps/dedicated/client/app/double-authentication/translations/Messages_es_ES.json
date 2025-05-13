@@ -3,5 +3,5 @@
   "doubleauth_modal_alert_message": "Atención: Ya no le quedan códigos de seguridad de uso único.",
   "doubleauth_modal_alert_message_1": "Atención: Solo le queda un único código de seguridad de uso único.",
   "doubleauth_modal_alert_message_other": "Atención: Solo le quedan <strong>{{t0}}</strong> códigos de seguridad de uso único.",
-  "doubleauth_modal_alert_message_regenerate": "¿Quiere generar un nuevo juego de códigos de seguridad?"
+  "doubleauth_modal_alert_message_regenerate": "¿Quiere volver a generar un nuevo código de seguridad?"
 }

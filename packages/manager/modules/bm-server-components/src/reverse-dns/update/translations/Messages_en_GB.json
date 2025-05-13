@@ -1,0 +1,5 @@
+{
+  "server_reversedns_update_title": "Modify reverse DNS",
+  "server_reversedns_update_reversedns_label": "Reverse DNS",
+  "server_reversedns_update_loading_error": "An error has occurred loading your service."
+}

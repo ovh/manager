@@ -1,7 +1,0 @@
-{
-  "data_processing_details_metrics_token_modal_title": "Monitor your job",
-  "data_processing_details_metrics_token_modal_dismiss_button": "Dismiss",
-  "data_processing_details_metrics_token_modal_description_1": "You can access detailed metrics about your job using <a href=\"{{grafana_url}}\" target=\"_blank\">Grafana</a>.<a href=\"\">Learn more in documentation</a>",
-  "data_processing_details_metrics_token_modal_description_2": "<a href=\"{{docs_monitoring_url}}\">Learn more in documentation</a>",
-  "data_processing_details_metrics_token_modal_token_label": "Use the following token to retrieve your metrics"
-}

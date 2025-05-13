@@ -1,0 +1,333 @@
+<div data-ovh-alert="{{alerts.page}}"></div>
+<div
+    class="text-center"
+    data-ng-if="loadingHostingInformations && !loadingHostingError"
+>
+    <oui-spinner data-size="l"></oui-spinner>
+</div>
+
+<div
+    class="oui-header"
+    data-ng-if="!loadingHostingInformations && !loadingHostingError"
+>
+    <div class="oui-header__container">
+        <div class="oui-header__content">
+            <div class="row">
+                <div class="col-sm-9">
+                    <form name="formEditDisplayName" novalidate>
+                        <div class="mb-3" data-ng-show="!edit.active">
+                            <div class="d-flex">
+                                <h1 class="d-inline-block mb-0 word-break">
+                                    <span
+                                        data-ng-bind="hosting.displayName"
+                                        data-ng-if="hosting.displayName"
+                                    ></span>
+                                    <span
+                                        data-ng-bind="::hosting.serviceDisplayName"
+                                        data-ng-if="!hosting.displayName"
+                                    ></span>
+                                </h1>
+                                <button
+                                    class="btn btn-icon my-auto ml-2"
+                                    type="button"
+                                    title="{{:: 'wizard_modify' | translate }}"
+                                    data-ng-click="editDisplayName()"
+                                    data-ng-if="!hosting.isExpired"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-pen_concept"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </div>
+                            <span
+                                class="font-italic"
+                                data-ng-bind="::hosting.serviceName"
+                                data-ng-if="hosting.serviceName !== hosting.displayName"
+                            ></span>
+                        </div>
+                        <div
+                            class="form-group my-4"
+                            data-ng-class="{'has-error': formEditDisplayName.txtDisplayName.$dirty && formEditDisplayName.$invalid}"
+                            data-ng-show="edit.active"
+                        >
+                            <div class="oui-input-group">
+                                <input
+                                    type="text"
+                                    class="oui-input"
+                                    name="txtDisplayName"
+                                    data-event-blur="newDisplayName.value = ''"
+                                    data-ng-maxlength="250"
+                                    data-ng-model="newDisplayName.value"
+                                    data-ng-pattern="/^[^<>]+$/"
+                                />
+                                <button
+                                    class="oui-button oui-button_s"
+                                    type="button"
+                                    aria-label="{{ 'common_confirm' | translate }}"
+                                    data-ng-click="saveDisplayName()"
+                                    data-ng-disabled="!formEditDisplayName.txtDisplayName.$dirty || formEditDisplayName.$invalid"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-success"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                                <button
+                                    class="oui-button oui-button_s"
+                                    type="button"
+                                    aria-label="{{ 'common_cancel' | translate }}"
+                                    data-ng-click="resetDisplayName()"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-close"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </div>
+                            <div
+                                class="help-block"
+                                data-ng-if="formEditDisplayName.txtDisplayName.$dirty"
+                                data-ng-messages="formEditDisplayName.txtDisplayName.$error"
+                            >
+                                <span
+                                    data-translate="hosting_displayName_length"
+                                    data-ng-message="maxlength"
+                                ></span>
+                            </div>
+                        </div>
+                        <wuc-service-expiration-date
+                            data-ng-if="hosting.serviceName && hosting.serviceInfos"
+                            service-name="hosting.serviceName"
+                            service-type="HOSTING_WEB"
+                            service-infos="hosting.serviceInfos"
+                        >
+                        </wuc-service-expiration-date>
+                    </form>
+                </div>
+                <div class="col-sm-3 d-flex">
+                    <div
+                        class="d-flex align-items-center justify-content-end flex-wrap gap-1 mt-4"
+                    >
+                        <div class="d-flex">
+                            <changelog-button
+                                links="$ctrl.constants.CHANGELOG.hosting_plan.links"
+                                chapters="$ctrl.constants.CHANGELOG.hosting_plan.chapters"
+                            ></changelog-button>
+                            <oui-guide-menu
+                                data-ng-if="$ctrl.guides"
+                                text="{{ 'hostings_guides_title' | translate }}"
+                            >
+                                <oui-guide-menu-item
+                                    data-ng-repeat="guide in $ctrl.guides track by $index"
+                                    data-href="{{:: guide.href }}"
+                                    data-external
+                                >
+                                    <span data-ng-bind="guide.title"></span>
+                                </oui-guide-menu-item>
+                            </oui-guide-menu>
+                        </div>
+                        <div
+                            class="btn-group ml-auto mt-1"
+                            data-uib-dropdown
+                            data-ng-if="!hosting.isExpired"
+                        >
+                            <button
+                                type="button"
+                                class="oui-button oui-button_dropdown mb-0"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                data-uib-dropdown-toggle
+                            >
+                                <span data-translate="common_actions"></span>
+                                <span
+                                    class="oui-icon oui-icon-chevron-down"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                            <ul
+                                class="dropdown-menu dropdown-menu-right"
+                                data-uib-dropdown-menu
+                            >
+                                <li data-ng-if="urlDomainOrder">
+                                    <button
+                                        class="btn btn-link"
+                                        type="button"
+                                        data-ng-click="setAction('multisite/order/hosting-multisite-order', {domains: domains})"
+                                        data-track-on="click"
+                                        data-track-name="web::hosting::add-domain"
+                                        data-track-click="action"
+                                    >
+                                        <span
+                                            data-translate="hosting_dashboard_add_domain"
+                                        ></span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            href="{{ $ctrl.generalInformationLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.generalInformationLink"
+        >
+            <span data-translate="hosting_tab_GENERAL_INFORMATIONS"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{ $ctrl.multisiteLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.multisiteLink"
+        >
+            <span data-translate="hosting_tab_MULTISITE"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{ $ctrl.moduleLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.moduleLink"
+        >
+            <span data-translate="hosting_tab_MODULE"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{ $ctrl.userLogsLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.userLogsLink"
+        >
+            <span data-translate="hosting_tab_USER_LOGS"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{ $ctrl.ftpLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.ftpLink"
+        >
+            <span data-translate="hosting_tab_FTP"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-on-click="$ctrl.onDatabaseTabClick()"
+            active="$ctrl.currentActiveLink() === $ctrl.databaseLink"
+        >
+            <span data-translate="hosting_tab_DATABASE"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{ $ctrl.taskLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.taskLink"
+        >
+            <span data-translate="hosting_tab_TASK"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="hosting.isCloudWeb"
+            href="{{ $ctrl.runtimesLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.runtimesLink"
+        >
+            <span data-translate="hosting_tab_RUNTIMES"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="hosting.isCloudWeb"
+            href="{{ $ctrl.envvarsLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.envvarsLink"
+        >
+            <span data-translate="hosting_tab_ENVVARS"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-dropdown
+            data-text="{{:: 'hosting_dashboard_tabs_dropdown' | translate }}"
+        >
+            <oui-header-tabs-item
+                href="{{ $ctrl.automatedEmailsLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.automatedEmailsLink"
+            >
+                <span data-translate="hosting_tab_AUTOMATED_EMAILS"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{ $ctrl.cronLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.cronLink"
+            >
+                <span data-translate="hosting_tab_CRON"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="$ctrl.isLocalSeoAvailable"
+                href="{{ $ctrl.localSEOLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.localSEOLink"
+            >
+                <span data-translate="hosting_tab_LOCAL_SEO"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="!$ctrl.hosting.isCloudWeb"
+                href="{{ $ctrl.boostLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.boostLink"
+            >
+                <span data-translate="hosting_tab_BOOST"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="$ctrl.indys.length > 0"
+                href="{{ $ctrl.indyLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.indyLink"
+            >
+                <span data-translate="hosting_tab_INDY"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-divider
+                data-ng-if="!$ctrl.hosting.isCloudWeb && $ctrl.isEmailDomainAvailable"
+            ></oui-header-tabs-divider>
+            <oui-header-tabs-item
+                data-ng-if="!$ctrl.hosting.isCloudWeb && $ctrl.isEmailDomainAvailable"
+                data-on-click="$ctrl.goToEmails($ctrl.associatedEmail)"
+            >
+                <span data-translate="hosting_tab_menu_emails"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs-dropdown>
+    </oui-header-tabs>
+</div>
+<div data-ovh-alert="{{alerts.tabs}}"></div>
+<div
+    data-ng-if="!loadingHostingInformations && hosting.isExpired || serviceError"
+>
+    <oui-message data-type="warning">
+        <span
+            data-translate="common_service_expired_1"
+            data-translate-values="{ t0: '<strong>' + hosting.serviceDisplayName + '</strong>'}"
+        ></span>
+        <a href="{{::autorenew.url}}"
+            ><span data-translate="common_service_expired_2"></span
+        ></a>
+    </oui-message>
+</div>
+
+<div
+    data-ng-if="!loadingHostingInformations && !loadingHostingError && !hosting.isExpired"
+>
+    <wuc-autorenew-invite
+        data-product-type="hosting"
+        data-service-infos="hosting.serviceInfos"
+        data-guide-url="{{:: autorenew.guide }}"
+        data-autorenew-url="{{:: autorenew.url }}"
+    >
+    </wuc-autorenew-invite>
+
+    <div data-ovh-alert="{{alerts.database}}"></div>
+
+    <div
+        class="alert alert-dismissible alert-info"
+        role="alert"
+        data-ng-if="hostingProxy.recommendedOffer"
+    >
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <span
+            data-ng-bind-html="'hosting_dashboard_service_offer_recommanded' | translate: { t0: hostingProxy.recommendedOffer }"
+        ></span>
+        <span
+            data-ng-bind-html="'hosting_dashboard_service_offer_recommanded_actions' | translate: { t0: urls.hosting, t1: '_blank' }"
+            data-ng-if="urls.hosting"
+        ></span>
+    </div>
+
+    <div ui-view></div>
+</div>
+
+<div id="currentAction" class="modal fade currentAction" role="dialog">
+    <div class="modal-dialog">
+        <div
+            id="modal-container"
+            class="modal-content"
+            data-ng-include="stepPath"
+        ></div>
+        <div id="modal-help" class="help4wizards"></div>
+    </div>
+</div>

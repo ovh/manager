@@ -1,0 +1,22 @@
+{
+  "vrack__assigned-ipv6_add_subnet": "Subnetz hinzufügen",
+  "vrack__assigned-ipv6__subrange_slaac_help": "Die Aktivierung von SLAAC vereinfacht die IPv6-Adressierung. Sie sollten es jedoch vermeiden, SLAAC mit mehreren Regionen zu verwenden, die von vRack genutzt werden.",
+  "vrack__assigned-ipv6__subrange_slaac_help_tooltip_link": "Mehr erfahren",
+  "vrack__assigned-ipv6__subnet_add_title": "Subnetz hinzufügen",
+  "vrack__assigned-ipv6__subnet_add_description": "Sie sind im Begriff, ein neues /64-Routing-Subnetz zu Ihrem vRack hinzuzufügen. Bitte geben Sie das Präfix (das sich nicht mit einem anderen bestehenden Präfix überschneiden darf) und die Nexthop-Adresse an, die Teil des ersten /64-Subnetzes (bridged) Ihres zusätzlichen IPv6-Blocks sein muss.",
+  "vrack__assigned-ipv6__subnet_add_subnet": "/64-Subnetzadresse eingeben",
+  "vrack__assigned-ipv6__subnet_add_address": "Nexthop-Adresse",
+  "vrack__assigned-ipv6__subnet_delete_title": "Subnetz aus Ihrem vRack entfernen",
+  "vrack__assigned-ipv6__subnet_delete_description": "Sind Sie sicher, dass Sie das Subnetz aus Ihrem vRack entfernen möchten?",
+  "vrack__assigned-ipv6_subnet_via": "über {{ ip }} ",
+  "vrack_add_ipv6_modal_title": "IP-Block zum vRack hinzufügen",
+  "vrack_add_ipv6_modal_description": "Sie sind im Begriff, einen IP-Block hinzuzufügen: {{ ipblock }} (in {{ region }}) zu Ihrem vRack {{ vrack }}",
+  "vrack_add_ipv6_modal_description1": "Durch diese Aktion werden die Maschinen in diesem vRack über das öffentliche Internet erreichbar.",
+  "vrack_add_ipv6_modal_description2": "Der öffentliche Traffic wird durch die Region {{ region }} geleitet.",
+  "vrack_add_ipv6_modal_description3": "Weitere Informationen finden Sie in",
+  "vrack_add_ipv6_modal_help_link": "unserer Dokumentation.",
+  "vrack_add_ipv6_modal_alert_msg": "Wir haben festgestellt, dass bereits ein öffentlicher IPv6-Block in Ihrem vRack vorhanden ist, aber Sie fügen einen neuen Block hinzu. Bitte stellen Sie sicher, dass die SLAAC-Option für ALLE Ihre IPv6-Blöcke deaktiviert ist, da sonst nicht das gewünschte Ergebnis erzielt wird.",
+  "vrack_delete_ipv6_modal_title": "Zusätzliche IP-Adresse umziehen",
+  "vrack_delete_ipv6_modal_description": "Sie sind im Begriff, {{ ip }} aus Ihrem vRack zu löschen. Alle mit diesem Block konfigurierten Subnetze werden gelöscht.",
+  "vrack_delete_ipv6_modal_question": "Möchten Sie fortfahren?"
+}

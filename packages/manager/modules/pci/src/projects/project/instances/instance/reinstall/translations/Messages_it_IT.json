@@ -1,9 +1,11 @@
 {
- "pci_projects_project_instances_instance_reinstall_title": "Reinstalla un’istanza",
- "pci_projects_project_instances_instance_reinstall_submit_label": "Conferma",
- "pci_projects_project_instances_instance_reinstall_cancel_label": "Annulla",
- "pci_projects_project_instances_instance_reinstall_content": "Vuoi davvero reinstallare l'istanza {{ instance }}?",
- "pci_projects_project_instances_instance_reinstall_erase_message": "Tutti i dati verranno eliminati.",
- "pci_projects_project_instances_instance_reinstall_success_message": "La reinstallazione dell’istanza {{ instance }} è iniziata.",
- "pci_projects_project_instances_instance_reinstall_error_reinstall": "Si è verificato un errore durante la reinstallazione dell'istanza {{ instance }}: {{ message }}."
+  "pci_projects_project_instances_instance_reinstall_title": "Reinstalla un’istanza",
+  "pci_projects_project_instances_instance_reinstall_submit_label": "Conferma",
+  "pci_projects_project_instances_instance_reinstall_cancel_label": "Annulla",
+  "pci_projects_project_instances_instance_reinstall_content": "Vuoi davvero reinstallare l'istanza {{ instance }}?",
+  "pci_projects_project_instances_instance_reinstall_erase_message": "Tutti i dati verranno eliminati.",
+  "pci_projects_project_instances_instance_reinstall_success_message": "La reinstallazione dell’istanza {{ instance }} è iniziata.",
+  "pci_projects_project_instances_instance_reinstall_error_reinstall": "Si è verificato un errore durante la reinstallazione dell'istanza {{ instance }}: {{ message }}.",
+  "pci_projects_project_instances_instance_reinstall_deprecated_image": "L'immagine scelta durante la creazione dell'istanza ( {{ image }} ) non è più supportata e non può quindi essere reinstallata. Puoi comunque installare una nuova immagine tra quelle che ti proponiamo.",
+  "pci_projects_project_instances_instance_reinstall_deprecated_image_format_message": "Attenzione, tutti i dati vengono formattati durante l'installazione di una nuova immagine."
 }

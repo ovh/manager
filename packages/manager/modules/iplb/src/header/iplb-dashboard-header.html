@@ -1,80 +1,74 @@
-<header class="oui-page-header">
-    <div class="oui-page-header__container">
-        <div class="oui-page-header__content">
+<header class="oui-header">
+    <div class="oui-header__container">
+        <div class="oui-header__content">
             <oui-spinner
                 data-size="m"
                 data-ng-if="ctrl.configuration.loading"
             ></oui-spinner>
             <h1
-                class="oui-page-header__title"
+                class="oui-header__title"
                 data-ng-if="!ctrl.configuration.loading"
                 data-ng-bind="ctrl.menuItem.title || ctrl.serviceName"
             ></h1>
             <h2
-                class="oui-page-header__description"
+                class="oui-header__description"
                 data-ng-if="!ctrl.configuration.loading"
                 data-ng-bind="ctrl.menuItem.title === ctrl.serviceName ? '' : ctrl.serviceName"
             ></h2>
         </div>
-        <oui-guide-menu data-text="{{ ctrl.guides.title }}">
-            <oui-guide-menu-item
-                data-ng-repeat="guideItem in ctrl.guides.list track by guideItem.url"
-                data-text="{{ guideItem.name }}"
-                data-href="{{ guideItem.url }}"
-                data-external="guideItem.external"
-            >
-            </oui-guide-menu-item>
-            <oui-guide-menu-divider></oui-guide-menu-divider>
-            <oui-guide-menu-item
-                data-text="{{ ctrl.guides.footer.name }}"
-                data-href="{{ ctrl.guides.footer.url }}"
-                data-external="ctrl.guides.footer.external"
-            >
-            </oui-guide-menu-item>
-        </oui-guide-menu>
+        <div
+            class="col-md-4 col-xs-4 d-flex justify-content-end flex-wrap h-fit-content"
+        >
+            <changelog-button
+                links="ctrl.constants.CHANGELOG.iplb.links"
+                chapters="ctrl.constants.CHANGELOG.iplb.chapters"
+            ></changelog-button>
+            <oui-guide-menu data-text="{{:: 'iplb_guides' | translate }}">
+                <oui-guide-menu-item
+                    data-ng-repeat="guideItem in ctrl.guides track by guideItem.name"
+                    data-href="{{ guideItem.url }}"
+                    data-external="guideItem.external"
+                    ><span data-ng-bind="guideItem.name"></span>
+                </oui-guide-menu-item>
+            </oui-guide-menu>
+        </div>
     </div>
+    <div data-ovh-alert="InfoErrors"></div>
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-text="{{ ::'iplb_tab_home' | translate}}"
-            data-state="network.iplb.detail.home"
+            data-state="iplb.detail.home"
             data-state-params="{ serviceName: ctrl.serviceName }"
-        >
+            ><span data-translate="iplb_tab_home"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'iplb_tab_frontends' | translate }}"
-            data-state="network.iplb.detail.frontends"
+            data-state="iplb.detail.frontends"
             data-state-params="{ serviceName: ctrl.serviceName }"
-        >
+            ><span data-translate="iplb_tab_frontends"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'iplb_tab_server_farm' | translate }}"
-            data-state="network.iplb.detail.server-farm"
+            data-state="iplb.detail.server-farm"
             data-state-params="{ serviceName: ctrl.serviceName }"
-        >
+            ><span data-translate="iplb_tab_server_farm"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'iplb_tab_ssl_certificate' | translate}}"
-            data-state="network.iplb.detail.ssl-certificate"
+            data-state="iplb.detail.ssl-certificate"
             data-state-params="{ serviceName: ctrl.serviceName }"
-        >
+            ><span data-translate="iplb_tab_ssl_certificate"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'iplb_tab_vrack' | translate}}"
-            data-state="network.iplb.detail.vrack"
+            data-state="iplb.detail.vrack"
             data-state-params="{ serviceName: ctrl.serviceName }"
-        >
+            ><span data-translate="iplb_tab_vrack"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'iplb_tab_graph' | translate}}"
-            data-state="network.iplb.detail.graph"
+            data-state="iplb.detail.graph"
             data-state-params="{ serviceName: ctrl.serviceName }"
-        >
+            ><span data-translate="iplb_tab_graph"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'iplb_tab_task' | translate}}"
-            data-state="network.iplb.detail.task"
+            data-state="iplb.detail.task"
             data-state-params="{ serviceName: ctrl.serviceName }"
-        >
+            ><span data-translate="iplb_tab_task"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
 </header>

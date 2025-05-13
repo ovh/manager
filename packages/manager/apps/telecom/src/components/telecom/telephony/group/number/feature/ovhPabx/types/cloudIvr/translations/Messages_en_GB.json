@@ -1,15 +1,15 @@
 {
-  "telephony_number_feature_ovh_pabx_dialplan": "Serveur vocal interactif :",
-  "telephony_number_feature_ovh_pabx_dialplan_edit": "Options du serveur vocal interactif",
-  "telephony_number_feature_ovh_pabx_dialplan_new_name": "Mon serveur vocal interactif",
-  "telephony_number_feature_ovh_pabx_dialplan_action_edit": "Modifier les options du serveur vocal interactif",
-  "telephony_number_feature_ovh_pabx_dialplan_action_delete": "Supprimer la configuration du serveur vocal interactif",
-  "telephony_number_feature_ovh_pabx_dialplan_save_error": "Oups ! Une erreur est survenue lors de la modification de votre serveur vocal interactif.",
-  "telephony_number_feature_ovh_pabx_dialplan_create_error": "Oups ! Une erreur est survenue lors de la création de votre serveur vocal interactif.",
-  "telephony_number_feature_ovh_pabx_dialplan_delete_error": "Oups ! Une erreur est survenue lors de la suppression de la configuration de votre serveur vocal interactif.",
-  "telephony_number_feature_ovh_pabx_dialplan_name_explain": "Ce nom sera présent sur le téléphone appelé lors d'un appel entrant si le numéro à présenter est configuré sur \"SVI\" ou \"les 2 numéros\".",
-  "telephony_number_feature_ovh_pabx_dialplan_name_required": "Veuillez donner un nom à votre serveur vocal interactif.",
-  "telephony_number_feature_ovh_pabx_dialplan_transfer_timeout_explain": "Lorsque le serveur vocal interactif comporte un transfert vers une ligne externe, si cette ligne ne décroche pas avant la durée configurée, l'appel passera à l'étape suivante.",
-  "telephony_number_feature_ovh_pabx_dialplan_show_caller_number_alias": "Le numéro du SVI",
-  "telephony_number_feature_ovh_pabx_dialplan_show_caller_number_alias_explain": "Le téléphone cible (qui reçoit l'appel) verra sur son écran le numéro de la ligne qui compose le numéro du SVI (ligne appelante)."
+  "telephony_number_feature_ovh_pabx_dialplan": "Interactive voice response:",
+  "telephony_number_feature_ovh_pabx_dialplan_edit": "Interactive voice response options",
+  "telephony_number_feature_ovh_pabx_dialplan_new_name": "My interactive voice response",
+  "telephony_number_feature_ovh_pabx_dialplan_action_edit": "Modify interactive voice response options",
+  "telephony_number_feature_ovh_pabx_dialplan_action_delete": "Delete interactive voice response configuration",
+  "telephony_number_feature_ovh_pabx_dialplan_save_error": "Oops! An error occurred while modifying your interactive voice response.",
+  "telephony_number_feature_ovh_pabx_dialplan_create_error": "Oops! An error occurred while creating your interactive voice response.",
+  "telephony_number_feature_ovh_pabx_dialplan_delete_error": "Oops! An error occurred while deleting your interactive voice response configuration.",
+  "telephony_number_feature_ovh_pabx_dialplan_name_explain": "This name will be present on the called phone during an incoming call if the display number is set to “IVR” or “both numbers”",
+  "telephony_number_feature_ovh_pabx_dialplan_name_required": "Please name your interactive voice response.",
+  "telephony_number_feature_ovh_pabx_dialplan_transfer_timeout_explain": "When the interactive voice response includes a transfer to an external line, if this call is not picked up before the set time, the call will move onto the next step.",
+  "telephony_number_feature_ovh_pabx_dialplan_show_caller_number_alias": "IVR number",
+  "telephony_number_feature_ovh_pabx_dialplan_show_caller_number_alias_explain": "The target phone (the one receiving the call) will show the number of the line dialling the IVR (calling line)."
 }

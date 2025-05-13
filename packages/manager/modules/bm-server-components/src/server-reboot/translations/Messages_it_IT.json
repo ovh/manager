@@ -1,0 +1,6 @@
+{
+  "server_reboot_title": "Riavvia il server ",
+  "server_reboot_question": "Vuoi davvero riavviare il server {{t0}}?",
+  "server_reboot_success": "Il tuo server {{t0}} sta per essere riavviato.",
+  "server_reboot_fail": "Si è verificato un errore durante la richiesta di riavvio."
+}

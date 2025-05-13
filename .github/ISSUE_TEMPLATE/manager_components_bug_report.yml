@@ -1,0 +1,50 @@
+name: Bug Report on  Manager Components (Internal)
+description: File a bug report on Manager components
+title: '[manager-components]: <TITLE>'
+labels: ['manager-components', 'bug']
+projects: ["ovh/22"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting an issue 😄! Please fill out this form with all the information you have.
+  - type: input
+    id: item
+    attributes:
+      label: On which entity, you would like to report a bug?
+      placeholder: Provide the name of component/hook/util
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Description
+      placeholder: Please describe your bug.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      placeholder: Provide detailed steps to reproduce the issue
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Browser
+      description: The browser(s) this issue occurred with.
+    validations:
+      required: false
+  - type: "checkboxes"
+    id: "operating-system"
+    attributes:
+      label: "Operating System"
+      description: "The operating system(s) this issue occurred with."
+      options:
+        - label: "macOS"
+        - label: "Windows"
+        - label: "Linux"
+  - type: "textarea"
+    id: "additional-information"
+    attributes:
+      label: "Additional Information"
+      description: |
+        Use this section to provide any additional information you might have
+        like screenshots, notes, or links to ideas.

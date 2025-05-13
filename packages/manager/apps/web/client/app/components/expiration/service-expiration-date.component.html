@@ -1,0 +1,118 @@
+<div class="expiration clearfix">
+    <oui-spinner data-size="s" data-ng-if="$ctrl.loading"></oui-spinner>
+    <div data-ng-if="!$ctrl.loading">
+        <div data-ng-if="!$ctrl.isExpired() && $ctrl.isInAutoRenew()">
+            <div data-ng-if="$ctrl.shouldDeleteAtExpiration()">
+                <span
+                    data-translate="expiration_resiliation_date"
+                    data-translate-values="{ t0: ($ctrl.serviceInfos.expiration | date:'mediumDate') }"
+                >
+                </span>
+                <a
+                    class="oui-link"
+                    data-ng-if="::$ctrl.getCancelTerminationUrl()"
+                    data-ng-href="{{::$ctrl.getCancelTerminationUrl()}}"
+                    data-track-on="click"
+                    data-track-name="web::all_dom::domain::cancel-resiliation"
+                    data-track-click="action"
+                    target="_top"
+                >
+                    <span
+                        data-translate="expiration_resiliation_cancel_label"
+                    ></span>
+                </a>
+            </div>
+            <div data-ng-if="!$ctrl.shouldDeleteAtExpiration()">
+                <span
+                    data-translate="expiration_renew_date"
+                    data-translate-values="{ t0: ($ctrl.serviceInfos.expiration | date:'MMM yyyy') }"
+                >
+                </span>
+            </div>
+        </div>
+        <div
+            data-ng-if="($ctrl.isExpired() || !$ctrl.isInAutoRenew()) && $ctrl.serviceInfos.domain !== $ctrl.serviceName"
+        >
+            <span
+                data-translate="{{:: $ctrl.isExpired() ? 'expiration_expired_date' : 'expiration_expiration_date' }}"
+                data-translate-values="{ t0: ($ctrl.serviceInfos.expiration | date:'mediumDate') }"
+            >
+            </span>
+            <a
+                class="oui-link_icon"
+                target="_blank"
+                rel="noopener"
+                data-ng-href="{{::$ctrl.orderUrl}}"
+                data-track-on="click"
+                data-track-name="renew-{{::$ctrl.serviceType.toLowerCase()}}"
+                data-track-click="action"
+            >
+                <span data-translate="expiration_wizard_renew"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    class="sr-only"
+                    data-translate="expiration_new_tab"
+                ></span>
+            </a>
+        </div>
+        <div
+            data-ng-if="$ctrl.domainState.isDomainServiceStateExpired && ($ctrl.isExpired() || !$ctrl.isInAutoRenew())"
+        >
+            <span
+                data-translate="{{:: $ctrl.isExpired() ? 'expiration_expired_date' : 'expiration_expiration_date' }}"
+                data-translate-values="{ t0: ($ctrl.serviceInfos.expiration | date:'mediumDate') }"
+            >
+            </span>
+            <a
+                class="oui-link_icon"
+                target="_blank"
+                rel="noopener"
+                data-ng-href="{{::$ctrl.orderUrl}}"
+                data-track-on="click"
+                data-track-name="renew-{{::$ctrl.serviceType.toLowerCase()}}"
+                data-track-click="action"
+            >
+                <span data-translate="expiration_wizard_renew"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    class="sr-only"
+                    data-translate="expiration_new_tab"
+                ></span>
+            </a>
+        </div>
+        <div
+            data-ng-if="$ctrl.domainState.isDomainServiceStateRestorable && ($ctrl.isExpired() || !$ctrl.isInAutoRenew())"
+        >
+            <span
+                data-translate="{{:: $ctrl.serviceInfos.state ==='restorable' ? 'expiration_expired_date' : 'expiration_expiration_date' }}"
+                data-translate-values="{ t0: ($ctrl.serviceInfos.expiration | date:'mediumDate') }"
+            >
+            </span>
+            <a
+                class="oui-link_icon"
+                target="_blank"
+                rel="noopener"
+                data-ng-href="{{::$ctrl.orderUrl}}"
+                data-track-on="click"
+                data-track-name="renew-{{::$ctrl.serviceType.toLowerCase()}}"
+                data-track-click="action"
+            >
+                <span data-translate="expiration_wizard_restore"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    class="sr-only"
+                    data-translate="expiration_new_tab"
+                ></span>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_storages_containers_container_cold_archive_flush_title": "Vuoi svuotare l’archivio?",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_description": "Stai per svuotare l'archivio {{ containerName }} dai suoi oggetti.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_terminate_input_label": "Inserisci \"TERMINATE\" in questo campo per confermare l’operazione",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_submit_label": "Confermare",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_cancel_label": "Annullare",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_erase_message": "Tutti i dati presenti nell'archivio {{containerName}} verranno persi.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_status_archived_restored_warning_1": "L’archivio {{containerName}} contiene {{objetsCount}} oggetti.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_status_archived_restored_warning_2": "Stai per svuotare l'archivio da tutti i suoi oggetti.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_success_message": "Eliminazione degli oggetti dell’archivio {{ containerName }} in corso...",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_error_delete": "Si è verificato un errore durante l'eliminazione degli oggetti dall'archivio {{ containerName }}: {{ message }}"
+}

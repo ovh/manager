@@ -1,8 +1,0 @@
-{
- "cpciiac_view_title": "Selecione a infraestrutura que pretende implementar",
- "cpciiac_view_intro": "Implemente de forma rápida e simples uma infraestrutura as code não gerida no seu projeto Cloud. Pode fazê-lo em apenas alguns cliques graças aos nossos scripts de implementação de infraestrutura.",
- "cpciiac_view_general_ERROR": "Ocorreu um erro ao recuperar os modelos de infraestrutura as code: {{message}}",
- "cpciiac_view_stack_terraform-ovh-publiccloud-k8s": "Kubernetes",
- "cpciiac_view_stack_ovh-analytics-openstack": "Hadoop",
- "cpciiac_view_deployment_ERROR": "Ocorreu um erro no pedido de implementação: {{message}}"
-}

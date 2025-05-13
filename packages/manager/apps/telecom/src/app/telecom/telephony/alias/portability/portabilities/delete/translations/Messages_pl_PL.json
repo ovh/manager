@@ -1,0 +1,9 @@
+{
+  "portabilities_delete_title": "Usuń dokument",
+  "portabilities_delete_action": "Czy chcesz usunąć dokument?",
+  "portabilities_delete_document_processing": "Trwa usuwanie dokumentu",
+  "portabilities_delete_document_succeed": "Dokument został usunięty.",
+  "portabilities_delete_document_failed": "Usunięcie dokumentu nie powiodło się.",
+  "portabilities_delete_submit": "Zatwierdź",
+  "portabilities_delete_cancel": "Anuluj"
+}

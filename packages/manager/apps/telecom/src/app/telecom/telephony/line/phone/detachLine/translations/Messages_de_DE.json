@@ -1,0 +1,9 @@
+{
+  "telephony_line_phone_detach_title": "Leitung eines Telefons abtrennen",
+  "telephony_line_phone_detach_info1": "Diese Leitung ist derzeit diesem Plug&amp;Phone zugewiesen: {{phoneName}} ({{phoneMacAddress}}).",
+  "telephony_line_phone_detach_info2": "Um sie abzutrennen geben Sie bitte die öffentliche IP-Adresse des Plug&amp;Phones ein und klicken Sie auf den Button <strong>Abtrennen</strong>.",
+  "telephony_line_phone_detach_device": "Öffentliche IP-Adresse",
+  "telephony_line_phone_detach_device_action": "Trennen",
+  "telephony_line_phone_detach_device_success": "Die Leitung wurde abgetrennt",
+  "telephony_line_phone_detach_device_error": "Es ist ein Fehler aufgetreten: Die Trennung der Leitung konnte nicht durchgeführt werden."
+}

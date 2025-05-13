@@ -1,58 +1,63 @@
-angular
-  .module('managerApp')
-  .controller('XdslModemCtrl', function XdslModemCtrl(
+export default class XdslModemCtrl {
+  /* @ngInject */
+  constructor(
     $scope,
-    $stateParams,
     $translate,
     $q,
     OvhApiXdsl,
-    TucToast,
     TucPackXdslModemMediator,
+    TucToast,
   ) {
-    const self = this;
+    this.$scope = $scope;
+    this.$translate = $translate;
+    this.$q = $q;
+    this.OvhApiXdsl = OvhApiXdsl;
+    this.TucToast = TucToast;
+    this.mediator = TucPackXdslModemMediator;
+    this.TucPackXdslModemMediator = TucPackXdslModemMediator;
+  }
 
-    this.getAccessName = function getAccessName() {
-      return OvhApiXdsl.Modem()
-        .v6()
-        .get({
-          xdslId: $stateParams.serviceName,
-        })
-        .$promise.then((access) => {
-          self.serviceName = access.description || access.packName;
-          return access;
-        })
-        .catch((err) => {
-          TucToast.error($translate.instant('xdsl_model_access_error'));
-          return $q.reject(err);
-        });
+  $onInit() {
+    this.loaders = {
+      modem: true,
     };
 
-    function init() {
-      self.mediator = TucPackXdslModemMediator;
-      self.loaders = {
-        modem: true,
-      };
-      self.number = $stateParams.number;
+    this.$scope.$on('changeAccessNameEvent', (event, data) => {
+      if (this.serviceName === data.xdslId) {
+        this.accessName = data.description;
+      }
+    });
 
-      $scope.$on('changeAccessNameEvent', (event, data) => {
-        if ($stateParams.serviceName === data.xdslId) {
-          self.serviceName = data.description;
-        }
-      });
-
-      $q.all([
-        TucPackXdslModemMediator.open($stateParams.serviceName, () => {
-          TucToast.error($translate.instant('xdsl_model_task_error'));
+    this.$q
+      .all([
+        this.TucPackXdslModemMediator.open(this.serviceName, () => {
+          this.TucToast.error(this.$translate.instant('xdsl_model_task_error'));
         }),
-        self.getAccessName(),
-      ]).finally(() => {
-        self.loaders.modem = false;
+        this.getAccessName(),
+      ])
+      .finally(() => {
+        this.loaders.modem = false;
       });
 
-      $scope.$on('$destroy', () => {
-        TucPackXdslModemMediator.close();
-      });
-    }
+    this.$scope.$on('$destroy', () => {
+      this.TucPackXdslModemMediator.close();
+    });
+  }
 
-    init();
-  });
+  getAccessName() {
+    return this.OvhApiXdsl.Modem()
+      .v6()
+      .get({
+        xdslId: this.serviceName,
+      })
+      .$promise.then((access) => {
+        this.accessName = access.description || access.packName;
+        this.isZyxelBrand = access.brandName === 'Zyxel';
+        return access;
+      })
+      .catch((err) => {
+        this.TucToast.error(this.$translate.instant('xdsl_model_access_error'));
+        return this.$q.reject(err);
+      });
+  }
+}

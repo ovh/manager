@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_updateResource_toMonthly": "Auf monatliche Abrechnung umstellen",
+  "server_tab_USB_STORAGE_order_resume": "Zusammenfassung Ihrer Bestellung",
+  "dedicatedCloud_order_price_HT": "Gesamtpreis zzgl. MwSt.:",
+  "dedicatedCloud_order_price_TTC": "Gesamtpreis inkl. MwSt.:",
+  "dedicatedCloud_order_final_txt": "Klicken Sie auf „Bestätigen“, um Ihre Bestellung abzuschließen.",
+  "dedicatedCloud_order_final_txt2": "Es öffnet sich dann ein neuer Browser-Tab und Sie werden auf das Zahlungsinterface weitergeleitet.",
+  "dedicatedCloud_order_loading_error": "Beim Laden der Informationen ist ein Fehler aufgetreten.",
+  "dedicatedCloud_order_finish_success": "Die Bestellung Nummer <a href='{{t0}}' target='_blank'>{{t1}}</a> wurde erfolgreich durchgeführt.",
+  "dedicatedCloud_order_finish_error": "Bei der Erstellung des Bestellscheins ist ein Fehler aufgetreten."
+}

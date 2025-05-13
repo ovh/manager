@@ -1,0 +1,92 @@
+<form>
+    <div class="from-group">
+        <label
+            class="control-label"
+            for="blockSizeSelect"
+            data-translate="ip_order_ipnbr"
+        >
+        </label>
+        <select
+            id="blockSizeSelect"
+            name="blockSizeSelect"
+            class="form-control"
+            data-ng-model="model.params.blockSize"
+            data-ng-change="checkDedicatedBlockSize()"
+            data-ng-options="r as ((r > 1 ? 'ip_order_ip_count_other' : 'ip_order_ip_count_1') | translate:{ t0: r }) for r in orderableIp.ipv4BlockSizesAll"
+        >
+            <option
+                value=""
+                data-ng-disabled="true"
+                data-translate="global_select"
+            >
+            </option>
+        </select>
+    </div>
+
+    <div
+        class="form-group"
+        data-ng-if="!orderableIp.isCanadianServer || model.params.blockSize == 1"
+    >
+        <label class="control-label" data-translate="ip_order_country"> </label>
+        <select
+            id="countrySelect"
+            name="countrySelect"
+            class="form-control"
+            data-ng-model="model.params.country"
+            data-ng-options="c.code as c.displayValue for c in orderableIp.countries"
+            data-ng-required="true"
+        >
+            <option
+                value=""
+                data-ng-disabled="true"
+                data-translate="global_select"
+            >
+            </option>
+        </select>
+    </div>
+
+    <div data-ng-if="!orderableIp.isCanadianServer">
+        <div
+            class="form-group"
+            data-ng-show="model.params.blockSize > 1 && orderableIp.ipOrganisation.length"
+        >
+            <label
+                class="control-label"
+                for="organisationSelect"
+                data-translate="ip_order_organisation"
+            >
+            </label>
+            <select
+                id="organisationSelect"
+                name="organisationSelect"
+                class="form-control"
+                data-ng-model="model.params.organisationId"
+                data-ng-options="o.organisationId as (o.organisationId + ' (' + o.firstname + ' ' + o.lastname + ')') for o in orderableIp.ipOrganisation"
+                data-ng-required="true"
+            >
+                <option
+                    value=""
+                    data-ng-disabled="true"
+                    data-translate="global_select"
+                >
+                </option>
+            </select>
+        </div>
+
+        <div
+            class="alert alert-danger"
+            role="alert"
+            data-ng-show="model.params.blockSize > 1 && !orderableIp.ipOrganisation.length"
+        >
+            <p data-translate="ip_order_no_organisation_1"></p>
+            <p>
+                <button
+                    type="button"
+                    class="btn btn-link"
+                    data-translate="ip_order_no_organisation_2"
+                    data-ng-click="goToOrganisation()"
+                ></button>
+            </p>
+        </div>
+    </div>
+</form>

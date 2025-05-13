@@ -1,0 +1,10 @@
+{
+  "tableHeadType": "Tipo",
+  "tableHeadCores": "vCore",
+  "tableHeadMemory": "Memoria",
+  "tableHeadStorage": "Storage utile",
+  "tableHeadPrice-hourly": "Costo/ora/nodo (stimato)",
+  "tableHeadPrice-monthly": "Costo/mese/nodo (stimato)",
+  "tableCellStorageRange": "Da {{min}} a {{max}}",
+  "flavorTag-new": "Nuovo"
+}

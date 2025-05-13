@@ -105,3 +105,19 @@
     color: @red_const;
   }
 }
+
+.form-control.oui-input_l,
+.form-control.oui-input_s {
+  width: inherit;
+}
+
+.fix-help-block .help-block {
+  // this is to compensate the move down of the next questions when an error is displayed
+  margin-bottom: -1.563rem;
+  height: 1.25rem;
+}
+
+.fix-help-block .oui-field__footer {
+  // this is to hide the native lib errors because they are customized
+  display: none;
+}

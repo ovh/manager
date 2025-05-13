@@ -1,13 +1,23 @@
-angular.module('Module.license').config(($stateProvider) => {
+import dashboardTemplate from './license.html';
+import dashboardCtrl from './license.controller';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.license', {
-    abstract: true,
-    url: '/configuration/license',
+    url: '/license',
     template: '<ui-view/>',
-    translations: { value: ['.'], format: 'json' },
+    redirectTo: 'app.license.dashboard',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('license_dashboard_title'),
+    },
   });
+
   $stateProvider.state('app.license.dashboard', {
     url: '',
-    templateUrl: 'license/license.html',
-    controller: 'LicenseCtrl',
+    template: dashboardTemplate,
+    controller: dashboardCtrl,
+    resolve: {
+      hideBreadcrumb: () => true,
+    },
   });
-});
+};

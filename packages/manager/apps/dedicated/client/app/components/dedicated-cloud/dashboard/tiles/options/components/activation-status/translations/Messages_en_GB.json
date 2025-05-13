@@ -1,0 +1,14 @@
+{
+  "ovhManagerPccDashboardComponentActivationStatus_beingActivated": "Enabling...",
+  "ovhManagerPccDashboardComponentActivationStatus_beingDeactivated": "Disabling...",
+  "ovhManagerPccDashboardComponentActivationStatus_cancelling": "Cancelling",
+  "ovhManagerPccDashboardComponentActivationStatus_disabled": "Disabled",
+  "ovhManagerPccDashboardComponentActivationStatus_enabled": "Enabled",
+  "ovhManagerPccDashboardComponentActivationStatus_inError": "Error",
+  "ovhManagerPccDashboardComponentActivationStatus_needsConfiguration": "Pending configuration",
+  "ovhManagerPccDashboardComponentActivationStatus_awaitingValidation": "Pending validation ",
+  "ovhManagerPccDashboardComponentActivationStatus_unknown": "Unknown status",
+  "ovhManagerPccDashboardComponentActivationStatus_hosted_on": "Hosted on {{datacenter}}",
+  "ovhManagerPccDashboardComponentActivationStatus_migrating": "Migrating",
+  "ovhManagerPccDashboardComponentActivationStatus_enabling": "Enabling..."
+}

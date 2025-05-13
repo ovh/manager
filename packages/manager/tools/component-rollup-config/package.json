@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/component-rollup-config",
-  "version": "7.0.1",
+  "version": "13.0.2",
   "description": "Extensible Rollup configuration to build OVHcloud components.",
   "keywords": [
     "build",
@@ -11,62 +11,38 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ovh-ux/manager.git",
+    "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager/tools/component-rollup-config"
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "main": "./dist/index.js",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsc",
-    "dev": "yarn run build",
-    "dev:watch": "tsc -w",
-    "lint": "run-p lint:ts lint:md",
-    "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
-    "lint:ts": "eslint --quiet --fix --format=pretty ./src/**/*.ts",
-    "prepare": "yarn run build",
-    "test": "yarn run build && yarn run lint && mocha"
-  },
+  "main": "./src/index.js",
+  "module": "./src/index.js",
   "dependencies": {
-    "@babel/core": "^7.7.5",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/preset-env": "^7.7.6",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.10.3",
     "@ovh-ux/rollup-plugin-less-inject": "^1.0.5",
-    "@ovh-ux/rollup-plugin-less-tilde-importer": "^1.0.3",
+    "@rollup/plugin-babel": "^5.0.0",
     "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-dynamic-import-vars": "^1.1.0",
     "@rollup/plugin-image": "^2.0.4",
     "@rollup/plugin-json": "^4.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@rollup/pluginutils": "^3.0.8",
     "babel-plugin-angularjs-annotate": "^0.10.0",
     "camelcase": "^5.0.0",
+    "core-js": "^3.6.5",
     "estree-walker": "^0.6.0",
     "less": "~3.9.0",
     "less-plugin-remcalc": "^0.1.0",
     "lodash": "^4.17.15",
     "magic-string": "^0.25.4",
-    "node-sass": "^4.10.0",
-    "rollup": "^2.0.2",
-    "rollup-plugin-babel": "^4.4.0",
+    "regenerator-runtime": "^0.13.7",
+    "rollup": "^2.79.2",
     "rollup-plugin-html": "^0.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.2",
-    "rollup-plugin-sass": "^1.2.2",
+    "rollup-plugin-sass": "^1.12.16",
     "slash": "^2.0.0"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.11.0",
-    "@typescript-eslint/parser": "^2.11.0",
-    "eslint": "^6.7.2",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-formatter-pretty": "^3.0.1",
-    "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-markdown": "^1.0.0",
-    "mocha": "^6.2.1",
-    "npm-run-all": "^4.1.5",
-    "rollup-plugin-hypothetical": "^2.1.0",
-    "typescript": "^3.7.3"
   }
 }

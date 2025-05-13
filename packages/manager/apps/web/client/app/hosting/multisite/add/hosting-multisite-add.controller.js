@@ -1,6 +1,7 @@
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
+import { HOSTING_OFFER } from '../hosting-multisite.constants';
 
 angular
   .module('App')
@@ -8,6 +9,7 @@ angular
     'HostingDomainAttachCtrl',
     (
       $scope,
+      $state,
       $stateParams,
       $rootScope,
       $translate,
@@ -41,19 +43,33 @@ angular
       $scope.MAX_DOMAIN_LENGTH = WucValidator.MAX_DOMAIN_LENGTH;
 
       $scope.isStep1Valid = () => {
-        if (!$scope.model.options) {
+        if ($scope.isFreeOffer()) {
+          return true;
+        }
+        if (
+          !$scope.model.options &&
+          !$scope.model.moreThanOneDomainCountWithOneAttached
+        ) {
           return false;
         }
         if (
           $scope.model.capabilities &&
-          $scope.model.domainsCount >= $scope.model.capabilities.attachedDomains
+          $scope.model.domainsCount >=
+            $scope.model.capabilities.attachedDomains &&
+          !$scope.model.moreThanOneDomainCountWithOneAttached
+        ) {
+          return true;
+        }
+        if (
+          !$scope.selected.mode &&
+          !$scope.model.moreThanOneDomainCountWithOneAttached
         ) {
           return false;
         }
-        if (!$scope.selected.mode) {
-          return false;
-        }
-        if ($scope.selected.mode === $scope.model.mode.OVH) {
+        if (
+          $scope.selected.mode === $scope.model.mode.OVH &&
+          !$scope.model.moreThanOneDomainCountWithOneAttached
+        ) {
           return $scope.selected.baseDomain !== null;
         }
         return true;
@@ -68,7 +84,6 @@ angular
           : null,
         domainWww: null,
         domainWwwNeeded: true,
-        ipv6Needed: false,
         mode: $scope.model.mode.OVH,
         path: '',
         pathFinal: null,
@@ -77,7 +92,7 @@ angular
         countryIp: null,
         firewall: 'NONE',
         ownLog: null,
-        ssl: false,
+        ssl: true,
         runtime: null,
       };
 
@@ -98,11 +113,15 @@ angular
         domainWithoutSubdomain: /^([^.]+\.[^.]+)$/,
       };
 
-      $scope.getHostingIp = (hosting, activeCDN, ipv6) =>
-        hosting[
-          (activeCDN === 'ACTIVE' ? 'hostingIp' : 'clusterIp') +
-            (ipv6 ? 'v6' : '')
-        ];
+      $scope.getHostingIp = (hosting, activeCDN, ipv6) => {
+        const selectedCountryIp = $scope.selected.countryIp;
+        return selectedCountryIp
+          ? selectedCountryIp[ipv6 ? 'ipv6' : 'ip']
+          : hosting[
+              (activeCDN === 'ACTIVE' ? 'hostingIp' : 'clusterIp') +
+                (ipv6 ? 'v6' : '')
+            ];
+      };
 
       $scope.isPathValid = () =>
         Hosting.constructor.isPathValid($scope.selected.path);
@@ -143,6 +162,25 @@ angular
         }
       });
 
+      $scope.upgradeProductOnNextButtonClicked = () => {
+        if ($scope.showMessagesNoDomainLeft()) {
+          $state.go('app.hosting.dashboard.upgrade', {
+            productId: $stateParams.productId,
+          });
+        }
+      };
+
+      $scope.showMessagesNoDomainLeft = () => {
+        return (
+          $scope.isFreeOffer() ||
+          ($scope.model.hosting &&
+            $scope.model.options &&
+            $scope.model.domainsCount >=
+              $scope.model.capabilities?.attachedDomains &&
+            !$scope.model.moreThanOneDomainCountWithOneAttached)
+        );
+      };
+
       $scope.loadHosting = () => {
         let futuresOptions;
         let futureHosting;
@@ -157,13 +195,13 @@ angular
             .then((options) => {
               $scope.model.options = options;
             })
-            .catch((err) => {
+            .catch(({ data }) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant(
                   'hosting_tab_DOMAINS_configuration_add_loading_error',
                 ),
-                get(err, 'data', err),
+                data?.message,
                 $scope.alerts.main,
               );
             });
@@ -173,13 +211,13 @@ angular
               $scope.model.hosting = hosting;
               $scope.hosting = hosting;
             })
-            .catch((err) => {
+            .catch(({ data }) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant(
                   'hosting_tab_DOMAINS_configuration_add_loading_error',
                 ),
-                get(err, 'data', err),
+                data?.message,
                 $scope.alerts.main,
               );
             });
@@ -188,13 +226,13 @@ angular
             .then((options) => {
               $scope.model.options = options;
             })
-            .catch((err) => {
+            .catch(({ data }) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant(
                   'hosting_tab_DOMAINS_configuration_add_loading_error',
                 ),
-                get(err, 'data', err),
+                data?.message,
                 $scope.alerts.main,
               );
             });
@@ -203,13 +241,13 @@ angular
             .then((hosting) => {
               $scope.model.hosting = hosting;
             })
-            .catch((err) => {
+            .catch(({ data }) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant(
                   'hosting_tab_DOMAINS_configuration_add_loading_error',
                 ),
-                get(err, 'data', err),
+                data?.message,
                 $scope.alerts.main,
               );
             });
@@ -235,6 +273,20 @@ angular
               $scope.model.domainsCount = resp[1].length;
             }
 
+            $scope.model.moreThanOneDomainCountWithOneAttached =
+              $scope.model.domainsCount >= 1 &&
+              $scope.model.capabilities.attachedDomains === 1;
+
+            if ($scope.model.moreThanOneDomainCountWithOneAttached) {
+              $scope.wizardConfirmButtonText = $translate.instant(
+                'hosting_tab_DOMAINS_configuration_add_buttom_update_offer',
+              );
+              $scope.onFinish = () =>
+                $state.go('app.hosting.dashboard.upgrade', {
+                  productId: $stateParams.productId,
+                });
+            }
+
             if ($scope.currentActionData && $scope.currentActionData.hosting) {
               if (
                 $scope.model.domainsCount <
@@ -254,15 +306,17 @@ angular
               );
             }
           })
-          .catch((err) => {
-            $scope.resetAction();
-            Alerter.alertFromSWS(
-              $translate.instant(
-                'hosting_tab_DOMAINS_configuration_add_loading_error',
-              ),
-              err,
-              $scope.alerts.main,
-            );
+          .catch(({ data }) => {
+            if (!$scope.isFreeOffer()) {
+              $scope.resetAction();
+              Alerter.alertFromSWS(
+                $translate.instant(
+                  'hosting_tab_DOMAINS_configuration_add_loading_error',
+                ),
+                data?.message,
+                $scope.alerts.main,
+              );
+            }
           });
       };
 
@@ -295,7 +349,6 @@ angular
             : null,
           $scope.selected.pathFinal,
           $scope.needWwwDomain(),
-          $scope.selected.ipv6Needed,
           $scope.selected.autoconfigure &&
             $scope.selected.mode === $scope.model.mode.OVH,
           $scope.selected.activeCDN,
@@ -315,12 +368,12 @@ angular
               $scope.alerts.main,
             );
           })
-          .catch((err) => {
+          .catch(({ data }) => {
             Alerter.alertFromSWS(
               $translate.instant(
                 'hosting_tab_DOMAINS_configuration_add_failure',
               ),
-              { message: get(err, 'data', err), type: 'ERROR' },
+              { message: data?.message, type: 'ERROR' },
               $scope.alerts.main,
             );
           })
@@ -349,13 +402,13 @@ angular
             $scope.model.token = data.token;
             $scope.model.tokenSubdomain = data.tokenSubdomain;
           })
-          .catch((err) => {
+          .catch(({ data }) => {
             $scope.resetAction();
             Alerter.alertFromSWS(
               $translate.instant(
                 'hosting_tab_DOMAINS_configuration_add_loading_error',
               ),
-              get(err, 'data', err),
+              data?.message,
               $scope.alerts.main,
             );
           });
@@ -391,12 +444,12 @@ angular
                     $scope.loaders.runtimes = false;
                   });
                 })
-                .catch((err) => {
+                .catch(({ data }) => {
                   Alerter.alertFromSWS(
                     $translate.instant(
                       'hosting_tab_DOMAINS_configuration_add_loading_error',
                     ),
-                    get(err, 'data', err),
+                    data?.message,
                     $scope.alerts.main,
                   );
 
@@ -404,18 +457,25 @@ angular
                 });
             }
           })
-          .catch((err) => {
+          .catch(({ data }) => {
             Alerter.alertFromSWS(
               $translate.instant(
                 'hosting_tab_DOMAINS_configuration_add_loading_error',
               ),
-              get(err, 'data', err),
+              data?.message,
               $scope.alerts.main,
             );
 
             $scope.resetAction();
           });
       };
+
+      $scope.isStartingOffer = () => {
+        return $scope.model.hosting.offer === HOSTING_OFFER.STARTER_OVH;
+      };
+
+      $scope.isFreeOffer = () =>
+        $scope.model.hosting?.offer === HOSTING_OFFER.FREE_100_M;
 
       $scope.domainsAlreadyExists = (wwwNeeded) => {
         if (
@@ -465,7 +525,6 @@ angular
         if ($scope.selected.mode === $scope.model.mode.OVH) {
           $scope.loadingConflicts = true;
           HostingDomain.getExistingConfiguration(
-            $stateParams.productId,
             $scope.selected.baseDomain.name,
             $scope.selected.domain,
             $scope.needWwwDomain(),
@@ -475,13 +534,13 @@ angular
                 $scope.model.conflicts = data;
               }
             })
-            .catch((err) => {
+            .catch(({ data }) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant(
                   'hosting_tab_DOMAINS_configuration_add_loading_error',
                 ),
-                get(err, 'data', err),
+                data?.message,
                 $scope.alerts.main,
               );
             })

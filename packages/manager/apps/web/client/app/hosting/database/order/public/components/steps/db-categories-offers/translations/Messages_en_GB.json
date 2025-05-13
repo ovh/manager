@@ -1,0 +1,8 @@
+{
+  "web_hosting_database_order_components_db_categories_offers_category_starter": "Start SQL",
+  "web_hosting_database_order_components_db_categories_offers_category_starter_description": "Order an additional 250 MB, 500 MB or 1 GB MySQL database.",
+  "web_hosting_database_order_components_db_categories_offers_category_private": "Web Cloud Databases",
+  "web_hosting_database_order_components_db_categories_offers_category_private_description": "With the Web Cloud Databases instance, you can create as many databases as you want, and get more choice in terms of SQL or NoSQL engines as well as more configuration flexibility.",
+  "web_hosting_database_order_components_db_categories_price_select_version_placeholder": "Choose a version",
+  "web_hosting_database_order_components_db_categories_price": "{{priceValue}} ex. VAT/month"
+}

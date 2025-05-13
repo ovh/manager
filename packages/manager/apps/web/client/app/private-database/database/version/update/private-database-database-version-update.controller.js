@@ -4,6 +4,7 @@ import remove from 'lodash/remove';
 angular.module('App').controller(
   'PrivateDatabaseChangeVersionCtrl',
   class PrivateDatabaseChangeVersionCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, PrivateDatabase) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -81,6 +82,14 @@ angular.module('App').controller(
             this.$scope.alerts.main,
           );
         });
+    }
+
+    getDatabaseDisplayName(value) {
+      const keyToTranslate = 'privateDatabase_dashboard_version_';
+      return this.privateDatabaseService.getDatabaseDisplayName(
+        keyToTranslate,
+        value,
+      );
     }
   },
 );

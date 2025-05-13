@@ -1,0 +1,22 @@
+{
+  "cda_user_permission_definition": "Vos utilisateurs peuvent utiliser le cluster avec des permissions spécifiques par pool.",
+  "cda_user_add_button_text": "Ajouter un utilisateur",
+  "cda_user_delete_button_text": "Supprimer",
+  "cda_user_edit_button_text": "Voir les permissions",
+  "cda_user_table_col_username": "Nom",
+  "cda_user_table_col_key": "Clé",
+  "cda_user_table_col_pool": "Pools",
+  "cda_user_table_col_actions": "Actions",
+  "cda_user_add_title": "Ajouter un utilisateur",
+  "cda_user_add_username_label": "Nom",
+  "cda_user_add_username_required": "Le nom est requis.",
+  "cda_user_add_username_pattern": "Le nom ne peut contenir d'espaces.",
+  "cda_user_add_username_maxlength": "Le nom doit avoir une longueur maximale de {{ maxlength }} caractères.",
+  "cda_user_add_success": "Utilisateur ajouté avec succès.",
+  "cda_user_delete_title": "Supprimer un utilisateur",
+  "cda_user_delete_username_label": "Nom :",
+  "cda_user_delete_confirm": "Êtes-vous certain de vouloir supprimer cet utilisateur?",
+  "cda_user_delete_success": "Utilisateur supprimé avec succès.",
+  "cda_user_table_empty": "Aucun utilisateur",
+  "cda_user_breadcrumb": "Utilisateurs"
+}

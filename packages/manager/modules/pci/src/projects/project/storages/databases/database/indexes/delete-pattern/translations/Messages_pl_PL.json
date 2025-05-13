@@ -1,0 +1,8 @@
+{
+  "pci_databases_indexes_delete_pattern_confirm": "Zatwierdź",
+  "pci_databases_indexes_delete_pattern_cancel": "Anuluj",
+  "pci_databases_indexes_delete_index": "Usuń model",
+  "pci_databases_indexes_delete_pattern_description": "Czy na pewno chcesz usunąć ten model?",
+  "pci_databases_indexes_delete_pattern_success_message": "Model został usunięty.",
+  "pci_databases_indexes_delete_pattern_error_message": "Wystąpił błąd podczas usuwania modelu: {{message}}."
+}

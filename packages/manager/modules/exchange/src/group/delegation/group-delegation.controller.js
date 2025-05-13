@@ -6,10 +6,17 @@ import last from 'lodash/last';
 
 export default class ExchangeMailingListDelegationCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, $timeout, messaging, navigation, $translate) {
+  constructor(
+    $scope,
+    wucExchange,
+    $timeout,
+    messaging,
+    navigation,
+    $translate,
+  ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       $timeout,
       messaging,
       navigation,
@@ -18,7 +25,7 @@ export default class ExchangeMailingListDelegationCtrl {
   }
 
   $onInit() {
-    this.$routerParams = this.services.Exchange.getParams();
+    this.$routerParams = this.services.wucExchange.getParams();
     this.availableDomains = [];
     this.loadingDomains = false;
     this.currentAccount = this.services.navigation.currentActionData.mailingListAddress;
@@ -44,7 +51,7 @@ export default class ExchangeMailingListDelegationCtrl {
     this.pageSize = 10;
 
     this.services.$scope.$on(
-      this.services.Exchange.events.accountsChanged,
+      this.services.wucExchange.events.accountsChanged,
       () =>
         this.services.$scope.$broadcast(
           'paginationServerSide.reload',
@@ -149,10 +156,11 @@ export default class ExchangeMailingListDelegationCtrl {
 
   fetchAccountCreationOptions() {
     this.loadingDomains = true;
-    return this.services.Exchange.fetchingAccountCreationOptions(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-    )
+    return this.services.wucExchange
+      .fetchingAccountCreationOptions(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+      )
       .then((accountCreationOptions) => {
         this.availableDomains = [
           this.allDomainsOption,
@@ -181,14 +189,15 @@ export default class ExchangeMailingListDelegationCtrl {
     this.loading = true;
     // filter by domain name or free text search
     const filter = this.form.search || get(this.selectedDomain, 'name');
-    return this.services.Exchange.getMailingListDelegationRights(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.selectedGroup.mailingListName,
-      count,
-      offset - 1,
-      filter,
-    )
+    return this.services.wucExchange
+      .getMailingListDelegationRights(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.selectedGroup.mailingListName,
+        count,
+        offset - 1,
+        filter,
+      )
       .then((accounts) => {
         // make a deep copy of accounts list to use it as model
         this.delegationList = angular.copy(accounts);
@@ -215,11 +224,12 @@ export default class ExchangeMailingListDelegationCtrl {
       ),
     );
 
-    this.services.Exchange.updateMailingListDelegationRights(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.accountChanges,
-    )
+    this.services.wucExchange
+      .updateMailingListDelegationRights(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.accountChanges,
+      )
       .then((data) => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(

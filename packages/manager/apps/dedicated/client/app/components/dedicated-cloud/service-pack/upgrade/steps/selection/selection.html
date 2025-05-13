@@ -1,0 +1,47 @@
+<ovh-manager-no-default-means-of-payment
+    data-ng-if="!$ctrl.hasDefaultMeansOfPayment"
+></ovh-manager-no-default-means-of-payment>
+
+<p data-ng-bind="$ctrl.subHeader"></p>
+
+<form novalidate name="$ctrl.form">
+    <pcc-service-pack-picker
+        class="mb-3"
+        data-default-value="$ctrl.servicePackToOrder"
+        data-on-change="$ctrl.onChangeServicePackPicker(selectedItem)"
+        data-service-packs="$ctrl.orderableServicePacks"
+    ></pcc-service-pack-picker>
+
+    <ovh-manager-service-pack-no-default-means-of-payment
+        class="mb-3 d-block"
+        data-ng-if="!$ctrl.hasDefaultMeansOfPayment && $ctrl.stepper.getStep({ relativeIndex: 1 }).name === 'placeOrder'"
+    >
+    </ovh-manager-service-pack-no-default-means-of-payment>
+
+    <oui-stepper-v-navigation-button
+        data-navigation-type="cancel"
+        data-on-click="$ctrl.onCancelTrack()"
+    >
+    </oui-stepper-v-navigation-button>
+
+    <oui-stepper-v-navigation-button
+        class="ml-3"
+        data-disabled="!$ctrl.form.$valid || !$ctrl.servicePackToOrder || $ctrl.servicePackToOrder.name === $ctrl.currentServicePack.name"
+        data-params="{
+            activationType: $ctrl.activationType,
+            servicePackToOrder: $ctrl.servicePackToOrder,
+        }"
+        data-type="submit"
+        data-navigation-type="next"
+        data-on-click="$ctrl.onSubmitTrack()"
+    >
+        <span
+            data-ng-if="$ctrl.stepper.getStep({ relativeIndex: 1 }).name === 'placeOrder'"
+            data-translate="dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutButton"
+        ></span>
+        <span
+            data-ng-if="$ctrl.stepper.getStep({ relativeIndex: 1 }).name !== 'placeOrder'"
+            data-translate="dedicatedCloudDashboardTilesOptionsOrderSelection_nextButton"
+        ></span>
+    </oui-stepper-v-navigation-button>
+</form>

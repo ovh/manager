@@ -3,6 +3,7 @@ import { state as ticketsState } from '../tickets.routing';
 
 export const state = {
   name: 'support.tickets.ticket',
+  url: '/:id',
   params: {
     id: {
       type: 'int',
@@ -16,13 +17,14 @@ export const state = {
         { ...$state.params, ...params },
         { reload: true, inherit: false },
       ),
+    ticketId: /* @ngInject */ ($transition$) => $transition$.params().id,
     ticket: /* @ngInject */ (
       $transition$,
       ticketMessageService,
       ticketService,
     ) => ticketService.getWithMessages($transition$.params().id),
+    breadcrumb: /* @ngInject */ (ticketId) => ticketId,
   },
-  url: '/:id',
   views: {
     'support@support': component.name,
   },

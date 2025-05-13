@@ -1,0 +1,93 @@
+<!--DB categories-->
+<div class="row">
+    <oui-select-picker
+        class="d-inline-block col-sm-12 col-md-4 my-3"
+        data-ng-repeat="dbCategory in ::$ctrl.dbCategories track by $index"
+        data-values="[dbCategory.category]"
+        data-model="$ctrl.model.dbCategory.category"
+        data-id="db-category-{{dbCategory.category}}"
+        data-name="db-category-{{dbCategory.category}}"
+        data-variant="light"
+        data-on-change="$ctrl.onDbCategoryClick({ dbCategory })"
+    >
+        <!--Offer picker header-->
+        <oui-select-picker-label class="w-100 d-flex">
+            <p
+                class="font-weight-bold"
+                data-ng-bind=":: ('web_hosting_database_order_components_db_categories_offers_category_' + dbCategory.category | translate) | uppercase"
+            ></p>
+        </oui-select-picker-label>
+
+        <!--Offer picker body-->
+        <oui-select-picker-section>
+            <!--Description-->
+            <p
+                data-ng-bind=":: ('web_hosting_database_order_components_db_categories_offers_category_' + dbCategory.category + '_description') | translate"
+            ></p>
+
+            <!--db category offer versions-->
+            <oui-select
+                class="w-100"
+                data-ng-if="dbCategory.versions.length > 1"
+                data-id="db-category-{{dbCategory.category}}-version-{{modelValue.planCode}}"
+                data-name="db-category-{{dbCategory.category}}-version-{{modelValue.planCode}}"
+                data-items="dbCategory.versions"
+                data-match="invoiceName"
+                data-model="dbCategory.selectVersion"
+                data-placeholder="{{ 'web_hosting_database_order_components_db_categories_price_select_version_placeholder' | translate }}"
+                data-on-change="$ctrl.onDbCategoryClick({ dbCategory })"
+                data-inline
+            >
+                <span data-ng-bind=":: $item.invoiceName"></span>
+            </oui-select>
+        </oui-select-picker-section>
+
+        <!--Picker footer-->
+        <oui-select-picker-footer>
+            <p
+                class="text-center my-1"
+                data-translate="web_hosting_database_order_components_db_categories_price"
+                data-translate-values="{ priceValue: '<strong>'+ $ctrl.getDbVersionPrice(dbCategory.selectVersion) +'</strong>'}"
+            ></p>
+        </oui-select-picker-footer>
+    </oui-select-picker>
+</div>
+
+<!--DB engines-->
+<div class="row" data-ng-if="$ctrl.getDbEngines().length > 0">
+    <oui-select-picker
+        class="d-inline-block col-sm-12 col-md-3 my-3"
+        data-ng-repeat="dbEngine in $ctrl.model.dbCategory.selectVersion.engines"
+        data-values="[dbEngine]"
+        data-id="db-engine-{{dbEngine.dbGroup}}"
+        data-name="db-engine-{{dbEngine.dbGroup}}"
+        data-model="$ctrl.model.dbCategory.selectEngine"
+        data-variant="light"
+    >
+        <oui-select-picker-label class="w-100 d-flex">
+            <!--Db group name-->
+            <p
+                class="font-weight-bold"
+                data-ng-bind=":: dbEngine.dbGroup | uppercase"
+            ></p>
+        </oui-select-picker-label>
+
+        <!--Engine versions picker body-->
+        <oui-select-picker-section>
+            <oui-select
+                class="w-100"
+                data-disable="dbEngine.versions.length <= 1"
+                data-id="db-engine-version-{{modelValue.db}}"
+                data-name="db-engine-version-{{modelValue.db}}"
+                data-items="dbEngine.versions"
+                data-match="db"
+                data-model="dbEngine.selectEngineVersion"
+                data-placeholder="{{ 'web_hosting_database_order_components_db_categories_price_select_version_placeholder' | translate }}"
+                data-on-change="$ctrl.onDbCategoryEngineClick({ dbEngine: modelValue })"
+                data-inline
+            >
+                <span data-ng-bind=":: $item.dbVersion"></span>
+            </oui-select>
+        </oui-select-picker-section>
+    </oui-select-picker>
+</div>

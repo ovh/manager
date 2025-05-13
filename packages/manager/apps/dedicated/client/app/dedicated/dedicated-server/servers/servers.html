@@ -1,0 +1,189 @@
+<div class="dedicated-servers">
+    <ovh-manager-auto-renew-2016-deployment-banner
+        data-show="$ctrl.isAutorenew2016DeploymentBannerAvailable"
+    ></ovh-manager-auto-renew-2016-deployment-banner>
+
+    <oui-datagrid
+        class="table-striped"
+        id="dg-servers"
+        data-page-size="{{ $ctrl.paginationSize }}"
+        data-rows-loader="$ctrl.loadServers()"
+        data-criteria="$ctrl.criteria"
+        data-on-page-change="$ctrl.onPageChange($pagination)"
+        data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+        data-on-sort-change="$ctrl.onSortChange($sort)"
+        data-customizable
+    >
+        <oui-datagrid-column
+            data-title=":: 'dedicated_servers_id' | translate"
+            data-property="serverId"
+            data-filterable
+            data-sortable
+            data-type="number"
+            data-hidden
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicated_servers_name' | translate"
+            data-property="iam.displayName"
+            data-filterable
+            data-sortable
+            data-type="string"
+            data-prevent-customization
+        >
+            <a data-ng-href="{{ $ctrl.getServerDashboardLink($row) }}"
+                >{{ $row.iam.displayName }}</a
+            >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicated_servers_ip' | translate"
+            data-property="ip"
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicated_servers_reverse' | translate"
+            data-property="reverse"
+            data-filterable
+            data-sortable
+            data-type="string"
+            data-hidden
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'dedicated_servers_model' | translate"
+            data-property="commercialRange"
+            data-filterable
+            data-sortable
+            data-type="options"
+            data-type-options="$ctrl.modelEnumFilter"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'dedicated_servers_rack' | translate"
+            data-property="rack"
+            data-filterable
+            data-sortable
+            data-type="string"
+            data-hidden
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'dedicated_servers_region' | translate"
+            data-property="region"
+            data-filterable
+            data-sortable
+            data-type="options"
+            data-type-options="$ctrl.regionEnumFilter"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicated_servers_status' | translate"
+            data-property="state"
+            data-filterable
+            data-sortable
+            data-type="options"
+            data-type-options="$ctrl.stateEnumFilter"
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-badge_success': $ctrl.constructor.toUpperSnakeCase($value) === 'OK',
+                    'oui-badge_warning': $ctrl.constructor.toUpperSnakeCase($value) === 'ERROR',
+                    'oui-badge_error': $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED' || $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED_BLOCKED'
+                    }"
+                data-translate="{{:: 'server_configuration_state_' + $ctrl.constructor.toUpperSnakeCase($value) }}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicated_servers_monitoring' | translate"
+            data-property="monitoringStatus"
+            data-type="string"
+            data-hidden
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-badge_success': $value === 'proactive',
+                    'oui-badge_warning': $value !== 'proactive'
+                    }"
+                data-translate="{{:: 'server_configuration_monitoring_status_' + $value }}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
+            <oui-action-menu-item
+                href="{{ $ctrl.getServerDashboardLink($row) }}"
+                ><span
+                    data-translate="dedicated_servers_popover_details"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+        <oui-datagrid-topbar>
+            <a
+                class="oui-button oui-button_secondary oui-button_icon-right"
+                data-track-on="click"
+                data-track-type="action"
+                data-track-name="dedicated::dedicated::servers::order"
+                target="_blank"
+                rel="noopener"
+                data-ng-href="{{:: $ctrl.orderUrl }}"
+                data-ng-if="$ctrl.isOrderAvailable && !$ctrl.isEcoRangeOrderAvailable"
+            >
+                <span
+                    data-translate="dedicated_servers_button_server_order"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+            <oui-dropdown
+                data-ng-if="$ctrl.isOrderAvailable && $ctrl.isEcoRangeOrderAvailable"
+            >
+                <oui-dropdown-trigger
+                    text="{{:: 'dedicated_servers_button_list_order' | translate }}"
+                ></oui-dropdown-trigger>
+                <div class="oui-dropdown-menu" oui-dropdown-content>
+                    <a
+                        class="oui-dropdown-option mb-1"
+                        data-track-on="click"
+                        data-track-type="action"
+                        data-track-name="dedicated::dedicated::servers::order"
+                        target="_blank"
+                        rel="noopener"
+                        data-ng-href="{{:: $ctrl.orderUrl }}"
+                    >
+                        <span
+                            data-translate="dedicated_servers_list_item_order"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        >
+                        </span>
+                    </a>
+                    <a
+                        class="oui-dropdown-option mb-1"
+                        data-track-on="click"
+                        data-track-type="action"
+                        data-track-name="dedicated::dedicated::servers::order-eco"
+                        target="_blank"
+                        rel="noopener"
+                        data-ng-href="{{:: $ctrl.orderEcoRangeUrl }}"
+                    >
+                        <span
+                            data-translate="dedicated_servers_list_item_order_eco"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        >
+                        </span>
+                    </a>
+                </div>
+            </oui-dropdown>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

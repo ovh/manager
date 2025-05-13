@@ -11,5 +11,8 @@
   "pci_projects_project_instances_instance_rescue_infos_linux_with_password": "Per accedere al server “{{instance}}” in modalità Rescue, utilizza <br/><code>ssh {{user}}@{{ip}}</code> con la password visibile nella console VNC o tramite <code>openstack console log show “{{instance}}”</code>. Attenzione: solo il disco principale è accessibile con questa modalità.",
   "pci_projects_project_instances_instance_rescue_infos_windows": "Per accedere al tuo server {{instance}} in modalità Rescue, utilizza <br/><code>rdesktop {{ip}}</code> con la tua chiave SSH abituale. Attenzione: solo il disco principale è accessibile in questa modalità.",
   "pci_projects_project_instances_instance_rescue_infos_windows_with_password": "Per accedere al server {{instance}} in modalità Rescue, utilizza <br/><code>rdesktop {{ip}}</code> o <code>ssh {{user}}@{{ip}}</code> con la password visibile nella console VNC o tramite <code>openstack console log show \"{{instance}}\"</code>. Attenzione: solo il disco principale è accessibile con questa modalità.",
-  "pci_projects_project_instances_instance_rescue_error_rescue": "Si è verificato un errore durante il riavvio dell'istanza {{ instance }}: {{ message }}."
+  "pci_projects_project_instances_instance_rescue_error_rescue": "Si è verificato un errore durante il riavvio dell'istanza {{ instance }}: {{ message }}.",
+  "pci_projects_project_instances_instance_rescue_close_label": "Chiudere",
+  "pci_projects_project_instances_instance_rescue_no_rescue_mode": "Se utilizzi una Metal Instance, consulta la documentazione seguente.",
+  "pci_projects_project_instances_instance_rescue_no_rescue_mode_link": "Consultare la documentazione"
 }

@@ -1,6 +1,0 @@
-{
-  "cpci_private_network_delete_title": "Eliminación de una red privada",
-  "cpci_private_network_delete_confirm": "¿Está seguro(a) que desea eliminar la red privada?",
-  "cpci_private_network_delete_success": "La red privada se ha eliminado correctamente.",
-  "cpci_private_network_delete_error": "Se ha producido un error al eliminar la red privada."
-}

@@ -1,0 +1,10 @@
+{
+  "zimbra_auto_replies_name": "Indirizzo",
+  "zimbra_auto_replies_from": "Dal",
+  "zimbra_auto_replies_until": "Fino al",
+  "zimbra_auto_replies_copyTo": "Copia in",
+  "zimbra_auto_replies_add_cta": "Creare una risposta automatica",
+  "zimbra_auto_replies_account_title": "Gestisci le risposte automatiche",
+  "zimbra_auto_replies_status": "Stato",
+  "zimbra_auto_replies_delete_modal_content": "Vuoi davvero eliminare la risposta automatica?"
+}

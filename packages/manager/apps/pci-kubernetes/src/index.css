@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.application {
+  @apply md:mx-12 mt-8;
+}
+
+a:not([class]),
+.oui-link {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  color: rgb(0, 80, 215);
+  transition: background-size 0.2s ease-in 0s, color 0.1s ease-in-out 0s;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 2px;
+  background-image: linear-gradient(currentcolor, currentcolor);
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: auto;
+
+  &:hover,
+  &:focus {
+    transition: background-size 0.2s ease-out 0s;
+    background-size: 100% 2px;
+  }
+
+  &:active {
+    transition: color ease-in-out 0s;
+  }
+}
+
+code {
+  padding: 2px 4px !important;
+  font-size: 90% !important;
+  color: #c7254e !important;
+  background-color: #f9f2f4 !important;
+  border-radius: 6px !important;
+}
+
+osds-tile,
+osds-input {
+  border-width: var(--ods-size-input-md-border-width);
+  border-color: var(--ods-color-primary-200);
+}
+
+osds-input {
+  border-color: var(--ods-color-primary-200);
+}

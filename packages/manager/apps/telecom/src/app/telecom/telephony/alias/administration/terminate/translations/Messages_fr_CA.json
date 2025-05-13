@@ -22,5 +22,12 @@
   "telephony_alias_administration_terminate": "Résilier",
   "telephony_alias_administration_terminate_success": "Résiliation planifiée avec succès.",
   "telephony_alias_administration_cancel_termination": "Annuler la résiliation",
-  "telephony_alias_administration_cancel_termination_success": "Résiliation annulée."
+  "telephony_alias_administration_cancel_termination_success": "Résiliation annulée.",
+  "telephony_alias_administration_terminate_sva_warning": "Une résiliation étant en cours, les versements seront encore possible pendant les 2 prochains mois (60 jours)",
+  "telephony_alias_administration_terminate_sva_warning_guarantee": "Afin de garantir ses versements il est important de maintenir sur cette période votre KYC valide ainsi que le compte de versement existant.",
+  "telephony_alias_administration_terminate_sva_warning_link": "Vérifier mes coordonnées",
+  "telephony_alias_administration_terminate_confirm_message": "Êtes-vous sur de vouloir supprimer votre numéro ?",
+  "telephony_alias_administration_terminate_confirm_sva_warning": "Votre identité ainsi que votre IBAN doivent être valide pour percevoir vos reversements.",
+  "telephony_alias_administration_terminate_confirm_primary": "Confirmer",
+  "telephony_alias_administration_terminate_confirm_cancel": "Annuler"
 }

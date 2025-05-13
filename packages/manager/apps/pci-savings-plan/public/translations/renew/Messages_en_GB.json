@@ -1,0 +1,8 @@
+{
+  "title": "Change auto-renewal settings",
+  "message_activate": "Your Savings Plan will be renewed for the same period.",
+  "message_deactivate": "Your Savings Plan will not be auto-renewed.",
+  "buttons_cancel": "Cancel",
+  "buttons_activate": "Enable",
+  "buttons_deactivate": "Disable"
+}

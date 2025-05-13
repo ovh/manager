@@ -1,49 +1,33 @@
-<section class="cui-page__content">
-    <cui-page-content-title
-        text="'iplb_graph_title' | translate"
-    ></cui-page-content-title>
+<section>
+    <h3 data-translate="iplb_graph_title"></h3>
 
     <oui-radio-toggle-group
+        class="mb-3"
         data-model="ctrl.scale"
         data-on-change="ctrl.onScaleChange()"
     >
         <oui-radio
             data-ng-repeat="(scale, value) in ctrl.scales track by $index"
-            data-text="{{ ::('iplb_graph_scape_' + scale) | translate }}"
             data-value="scale"
-        >
+            ><span
+                data-ng-bind="::('iplb_graph_scape_' + scale) | translate"
+            ></span>
         </oui-radio>
     </oui-radio-toggle-group>
 
-    <div class="cui-panel">
+    <div
+        class="cui-panel"
+        data-ng-repeat="(name, chart) in ctrl.charts track by name"
+    >
         <div class="cui-panel__header">
-            <h2 data-translate="iplb_graph_connections_title"></h2>
+            <h2 data-translate="{{::chart.title}}"></h2>
         </div>
-        <div class="cui-panel__body">
-            <canvas
-                id="line"
-                class="chart chart-line"
-                data-chart-data="ctrl.connLoader.data.data"
-                data-chart-labels="ctrl.connLoader.data.labels"
-                data-chart-options="ctrl.options"
-            >
-            </canvas>
-        </div>
-    </div>
-
-    <div class="cui-panel">
-        <div class="cui-panel__header">
-            <h2 data-translate="iplb_graph_rqpersec_title"></h2>
-        </div>
-        <div class="cui-panel__body">
-            <canvas
-                id="line2"
-                class="chart chart-line"
-                data-chart-data="ctrl.reqmLoader.data.data"
-                data-chart-labels="ctrl.reqmLoader.data.labels"
-                data-chart-options="ctrl.options"
-            >
-            </canvas>
+        <div class="cui-panel__body" data-ng-if="!ctrl.loadingGraph">
+            <div
+                data-chart
+                data-chartjs="chart.config"
+                data-auto-reload="true"
+            ></div>
         </div>
     </div>
 </section>

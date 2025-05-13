@@ -9,5 +9,8 @@
   "telephony_group_manage_contacts_pending_task": "Richiesta in attesa di conferma",
   "telephony_group_manage_contacts_change_success": "La tua richiesta di modifica del contatto è stata inviata correttamente.",
   "telephony_group_manage_contacts_change_info": "La gestione dei contatti ti consente di assegnare diritti ad altre persone per permettere loro di gestire una linea, un alias o un gruppo.<br/>I diritti cambiano in base al gruppo di contatti scelto:<br/><br/><strong>Contatto amministratore:</strong> il contatto designato può gestire gli aspetti tecnici di una linea e attribuire i diritti di \"contatto tecnico\" a un'altra persona.<br/><strong>Contatto tecnico:</strong> il contatto designato gestisce esclusivamente gli aspetti tecnici di una linea, un alias o un gruppo.<br/><strong>Contatto di fatturazione:</strong> il contatto designato gestisce esclusivamente la fatturazione (pagamento delle fatture, ecc...).",
-  "telephony_group_manage_contacts_disabled": "Non disponibile per questo servizio"
+  "telephony_group_manage_contacts_disabled": "Non disponibile per questo servizio",
+  "telephony_group_manage_contacts_breadcrumb": "Gestisci i contatti",
+  "telephony_group_manage_contacts_change_support": "Per qualsiasi modifica del NIC amministratore o del NIC di fatturazione, <strong>contatta il supporto</strong>",
+  "telephony_group_manage_contacts_change_support_link": "Contattare il supporto"
 }

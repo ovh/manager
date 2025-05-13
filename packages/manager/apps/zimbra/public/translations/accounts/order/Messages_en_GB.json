@@ -1,0 +1,18 @@
+{
+  "zimbra_account_order": "Order an account",
+  "zimbra_account_order_cta_back": "Back to my email accounts",
+  "zimbra_account_order_title": "Order your Zimbra accounts",
+  "zimbra_account_order_subtitle": "Choose your Zimbra accounts",
+  "zimbra_account_order_subtitle_commitment": "Commitment period",
+  "zimbra_account_order_legal_checkbox": "I consent to OVH setting up the service once my order is confirmed, and I expressly waive my right to cancel under Article L.121-21-8 of the French Consumer Code (<i>Code de Consommation</i>).",
+  "zimbra_account_order_no_product_error_message": "Sorry, there was a problem loading your order. Please try again later.",
+  "zimbra_account_order_commitment_month": "month",
+  "zimbra_account_order_commitment_months": "month",
+  "zimbra_account_order_commitment_available_soon": "Coming soon",
+  "zimbra_account_order_cta_confirm": "Pay",
+  "zimbra_account_order_cta_done": "Back",
+  "zimbra_account_order_initiated_title": "Order your Zimbra accounts!",
+  "zimbra_account_order_initiated_subtitle": "If you haven’t finalised your order, please click the link below to complete it.",
+  "zimbra_account_order_initiated_info": "We will notify you via email once your email accounts are ready.",
+  "zimbra_account_order_initiated_link_label": "Link to your order"
+}

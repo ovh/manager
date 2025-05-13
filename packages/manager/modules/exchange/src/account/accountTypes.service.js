@@ -38,10 +38,6 @@ export default class ExchangeAccountTypes {
 
     switch (formattedAccountType) {
       case this.TYPES.BASIC:
-        if (!this.CAN_DO.BASIC()) {
-          throw new Error("Current service doesn't allow Basic account types");
-        }
-
         return this.exchangeServiceInfrastructure.isDedicatedCluster()
           ? this.$translate.instant(
               'exchange_accounts_types_dedicatedCluster_BASIC',

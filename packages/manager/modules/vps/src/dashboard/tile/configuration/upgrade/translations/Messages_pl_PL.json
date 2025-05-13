@@ -1,0 +1,22 @@
+{
+  "vps_dashboard_tile_configuration_upgrade_memory_action_title": "Zwiększ pamięć VPS z {{currentMemory}} do {{nextMemory}} GB",
+  "vps_dashboard_tile_configuration_upgrade_memory_action_details": "Dodajesz {{memoryQuantity}} GB pamięci do VPS.",
+  "vps_dashboard_tile_configuration_upgrade_storage_action_title": "Zwiększ przestrzeń dyskową serwera VPS z {{currentStorage}} do {{nextStorage}} GB",
+  "vps_dashboard_tile_configuration_upgrade_storage_action_details": "Dodajesz {{memoryQuantity}} GB przestrzeni dyskowej do VPS.",
+  "vps_dashboard_tile_configuration_upgrade_action_price": "Miesięczna opłata za zwiększenie zasobów wyniesie {{price}}.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation": "Kiedy zatwierdzisz wybór, naliczymy proporcjonalną płatność za bieżący miesiąc w wysokości {{prorataPrice}}. Pamiętaj, że ostateczna kwota faktury może zawierać dodatkowe opcje, które zamówisz (np. snapshot, automatyczna kopia zapasowa etc.).",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_monthly": "Po kliknięciu przycisku „Zatwierdź i zapłać” zostaniesz przekierowany do zamówienia, abyś mógł zrealizować proporcjonalną płatność za bieżący miesiąc w wysokości {{price}}.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_upfront": "Po kliknięciu przycisku „Zatwierdź i zapłać” zostaniesz przekierowany do zamówienia, abyś mógł zrealizować dodatkową płatność w wysokości {{price}} za czas pozostały do końca umowy.",
+  "vps_dashboard_tile_configuration_upgrade_action_validate_and_pay": "Zatwierdź i zapłać",
+  "vps_dashboard_tile_configuration_upgrade_action_cancel": "Anuluj",
+  "vps_dashboard_tile_configuration_upgrade_success_title": "Wprowadzona przez Ciebie zmiana została przyjęta.",
+  "vps_dashboard_tile_configuration_upgrade_success_explain": "W ciągu dwóch godzin od wdrożenia zmiany na serwerze VPS otrzymasz e-mail z potwierdzeniem. Nowa konfiguracja zacznie działać po zrestartowaniu serwera.",
+  "vps_dashboard_tile_configuration_upgrade_success_follow_order": "Sprawdzanie statusu zamówienia",
+  "vps_dashboard_tile_configuration_upgrade_no_payment_method_success": "Twoje zlecenie zostało zarejestrowane. Upgrade rozpocznie się po zaksięgowaniu płatności za zamówienie <a target=\"_blank\" rel=\"noopener\" href=\"{{href}}\">{{orderId}}</a>.",
+  "vps_dashboard_tile_configuration_upgrade_error": "Wystąpił błąd podczas upgrade’u Twojego VPS.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_payment_method_upfront": "Po kliknięciu przycisku „Zatwierdź i zapłać” naliczymy kwotę całkowitą w wysokości {{price}} za czas pozostały do końca umowy.",
+  "vps_dashboard_tile_configuration_upgrade_catched_error": "Ten VPS nie jest kompatybilny z zamówionym pakietem lub przetwarzane jest już zlecenie upgrade’u tego VPS. ",
+  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_info": "Nie możesz zmienić oferty VPS na wyższą, ponieważ znajduje się on obecnie w trybie rescue.",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_action": "Prosimy o ponowne uruchomienie serwera VPS poprzez wyłączenie trybu rescue."
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@ovh-ux/manager-generator",
+  "version": "0.29.1",
+  "private": true,
+  "description": "",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "type": "module",
+  "bin": {
+    "omg": "./index.js"
+  },
+  "scripts": {
+    "start": "plop"
+  },
+  "dependencies": {
+    "axios": "^1.1.2",
+    "inquirer": "^9.1.0",
+    "inquirer-autocomplete-prompt": "^3.0.0",
+    "minimist": "^1.2.8",
+    "plop": "^3.1.1"
+  },
+  "preferGlobal": true
+}

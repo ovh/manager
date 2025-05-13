@@ -5,18 +5,16 @@ export default /* @ngInject */ function(
   $translate,
   $window,
   coreConfig,
+  coreURLBuilder,
   CucCloudMessage,
   CucControllerHelper,
-  guideUrl,
   OvhApiCloud,
   OvhApiCloudProjectServiceInfos,
-  OvhApiMe,
-  PCI_REDIRECT_URLS,
+  CHANGELOG,
 ) {
   const self = this;
   const serviceName = $stateParams.projectId;
-
-  self.guideUrl = guideUrl;
+  self.CHANGELOG = CHANGELOG;
 
   self.model = {
     owner: '',
@@ -71,19 +69,17 @@ export default /* @ngInject */ function(
         self.contactFormData.owner = infos.contactAdmin;
         self.model.billing = infos.contactBilling;
         self.contactFormData.billing = infos.contactBilling;
-        return OvhApiMe.v6()
-          .get()
-          .$promise.then((me) => {
-            if (me.nichandle === infos.contactAdmin) {
-              self.model.isAdmin = true;
-            }
-            if (me.country) {
-              // check if the user country is USA or Canada, in this case we display
-              // email instead of NIC handle
-              self.model.isUSorCA =
-                indexOf(['US', 'CA'], me.country.toUpperCase()) >= 0;
-            }
-          });
+
+        const me = coreConfig.getUser();
+        if (me.nichandle === infos.contactAdmin) {
+          self.model.isAdmin = true;
+        }
+        if (me.country) {
+          // check if the user country is USA or Canada, in this case we display
+          // email instead of NIC handle
+          self.model.isUSorCA =
+            indexOf(['US', 'CA'], me.country.toUpperCase()) >= 0;
+        }
       });
   }
 
@@ -97,14 +93,20 @@ export default /* @ngInject */ function(
    */
 
   self.canChangeContacts = function canChangeContacts() {
-    return PCI_REDIRECT_URLS[coreConfig.getRegion()].contacts;
+    return coreConfig.isRegion('EU') && !self.isDiscoveryProject;
   };
 
   self.openContacts = function openContacts() {
     if (self.canChangeContacts()) {
-      let redirectUrl = PCI_REDIRECT_URLS[coreConfig.getRegion()].contacts;
-      redirectUrl = redirectUrl.replace('{serviceName}', serviceName);
-      $window.open(redirectUrl, '_blank');
+      const redirectURL = coreURLBuilder.buildURL(
+        'dedicated',
+        '#/contacts/services',
+        {
+          tab: 'SERVICES',
+          serviceName,
+        },
+      );
+      $window.open(redirectURL, '_blank');
     }
   };
 

@@ -1,4 +1,4 @@
-export const DEFAULT_OS = 'linux';
+export const DEFAULT_OS = ['linux', 'baremetal-linux'];
 
 export const CATEGORIES = [
   {
@@ -8,12 +8,12 @@ export const CATEGORIES = [
   },
   {
     category: 'cpu',
-    title: 'CPU',
+    title: 'Compute Optimized',
     pattern: /cpu|hg/,
   },
   {
     category: 'ram',
-    title: 'RAM',
+    title: 'Memory Optimized',
     pattern: /ram/,
   },
   {
@@ -22,19 +22,20 @@ export const CATEGORIES = [
     pattern: /gpu|nvme/,
   },
   {
-    category: 'vps',
-    title: 'Sandbox',
-    pattern: /vps/,
+    category: 'discovery',
+    title: 'Discovery',
+    pattern: /d2/,
   },
   {
     category: 'iops',
-    title: 'IOPS',
+    title: 'Storage Optimized',
     pattern: /ovh\.iops/,
   },
   {
     category: 'baremetal',
-    title: 'Bare Metal',
+    title: 'Metal',
     pattern: /baremetal/,
+    isNew: true,
   },
 ];
 
@@ -42,26 +43,24 @@ export const FLEX_TYPE = /flex$/;
 
 export const LEGACY_FLAVORS = /eg|sp|hg|vps-ssd/;
 
-export const SSD_DISK_TYPES = [/ssd/, /nvme/, /iops/, /baremetal/];
+export const SSD_DISK_TYPES = [/ssd/, /nvme/, /iops/, /baremetal/, /d2/];
 
-export const CPU_FREQUENCY = {
-  'ovh.vps-ssd': 2.4,
-  'ovh.cpu': 3.1,
-  'ovh.ram': 2.4,
-  'ovh.ceph.eg': 2.3,
-  'ovh.ssd.ram': 2.4,
-  'ovh.ssd.cpu': 3.1,
-  'ovh.ssd.eg': 2.3,
-  'ovh.ssd.gpu': 3.1,
-  'ovh.ssd.gpu2': 3.1,
-  'ovh.ssd.gpu3': 3.1,
-  'ovh.raid-nvme.t1': 2.1,
-};
+export const DEFAULT_CATALOG_ENDPOINT = '/order/catalog/public/cloud';
+
+export const LOCAL_ZONE = 'localzone';
+
+export const ONE_AZ_REGION = 'region';
+
+export const THREE_AZ_REGION = 'region-3-az';
 
 export default {
-  CPU_FREQUENCY,
+  CATEGORIES,
   DEFAULT_OS,
   FLEX_TYPE,
   LEGACY_FLAVORS,
   SSD_DISK_TYPES,
+  DEFAULT_CATALOG_ENDPOINT,
+  LOCAL_ZONE,
+  THREE_AZ_REGION,
+  ONE_AZ_REGION,
 };

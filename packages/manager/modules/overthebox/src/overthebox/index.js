@@ -4,10 +4,12 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import migration from './migration';
+
 const moduleName = 'ovhManagerOtb';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad', 'ovhManagerCore'])
+  .module(moduleName, ['ui.router', 'oc.lazyLoad', 'ovhManagerCore', migration])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('overTheBoxes.overTheBox.**', {
@@ -15,7 +17,7 @@ angular
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./overTheBox.component').then((mod) =>
+          return import('./overTheBox.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },

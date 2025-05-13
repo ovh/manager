@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "es2020"],
+    "noEmit": true,
+    "target": "es2020",
+    "types": ["vite/client", "node", "vite-plugin-svgr/client"],
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "declaration": true,
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src", "vite-env.d.ts"],
+  "exclude": ["node_modules", "dist", "types", "src/__tests__"]
+}

@@ -1,8 +1,11 @@
-import component from './tickets.component';
-
 export const state = {
   name: 'support.tickets',
   params: {
+    archived: {
+      type: 'bool',
+      squash: true,
+      value: false,
+    },
     filters: {
       array: true,
       type: 'json',
@@ -35,6 +38,7 @@ export const state = {
     },
   },
   resolve: {
+    archived: /* @ngInject */ ($transition$) => $transition$.params().archived,
     filters: /* @ngInject */ ($transition$) => $transition$.params().filters,
     goToTicket: /* @ngInject */ ($state) => (id) =>
       $state.go('support.tickets.ticket', { id }),
@@ -60,11 +64,13 @@ export const state = {
       $transition$.params().sortOrder,
     tickets: /* @ngInject */ ($transition$, ticketService) =>
       $transition$.params().tickets ||
-      ticketService.query($transition$.params()),
+      ticketService.query($transition$.params().archived),
+    breadcrumb: () => null,
+    hideBreadcrumb: () => true,
   },
-  url: '/tickets?filters&pageNumber&pageSize&sortBy&sortOrder',
+  url: '/tickets?archived&filters&pageNumber&pageSize&sortBy&sortOrder',
   views: {
-    'support@support': component.name,
+    'support@support': 'supportTicketsDataGrid',
   },
 };
 

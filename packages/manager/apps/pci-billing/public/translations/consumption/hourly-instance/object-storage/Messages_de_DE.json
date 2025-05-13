@@ -1,0 +1,11 @@
+{
+  "cpbc_no_consumption_data": "Kein Verbrauch im gewählten Zeitraum.",
+  "cpbc_object_storage_col_location": "Standort",
+  "cpbc_object_storage_col_consumption": "Verbrauch Speicherplatz",
+  "cpbc_object_storage_col_output_traffic": "Verbrauch ausgehender Traffic",
+  "cpbc_object_storage_consumption_info_part1": "Die Abrechnung erfolgt abhängig vom tatsächlichen Speicherplatz, der stündlich und auf die Stunde genau bestimmt wird.",
+  "cpbc_object_storage_consumption_info_part2": "Ihr Verbrauch entspricht genau {{amount}} GiB-Stunden.",
+  "cpbc_object_storage_output_traffic_info_part1": "Jedes ausgehende Gigabyte (unabhängig vom Ziel) kostet",
+  "cpbc_object_storage_output_traffic_info_part2": ". Sie haben im angegebenen Zeitraum {{amount}} GiB verbraucht. Der eingehende Traffic wird nie abgerechnet.",
+  "cpb_error_message": "Leider konnten wir nicht alle Informationen abrufen."
+}

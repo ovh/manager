@@ -1,9 +1,0 @@
-{
- "kube_list_title": "Kubernetes",
- "kube_list_name": "Nazwa klastra",
- "kube_list_region": "Region",
- "kube_list_version": "Wersja",
- "kube_list_cluster_manage": "Zarządzaj klastrem",
- "kube_list_cluster_create": "Utwórz klaster Kubernetes",
- "kube_list_error": "Wystąpił błąd podczas pobierania klastrów."
-}

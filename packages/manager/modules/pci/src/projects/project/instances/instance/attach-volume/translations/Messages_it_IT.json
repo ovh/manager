@@ -3,7 +3,7 @@
   "pci_projects_project_instances_instance_attach-volume_submit_label": "Associa",
   "pci_projects_project_instances_instance_attach-volume_cancel_label": "Annulla",
   "pci_projects_project_instances_instance_attach-volume_volume_placeholder": "Ricerca",
-  "pci_projects_project_instances_instance_attach-volume_error_no_compatible_volume": "Al momento non sono presenti istanze compatibili a cui associare questa istanza.",
+  "pci_projects_project_instances_instance_attach-volume_error_no_compatible_volume": "Nessun volume disponibile nella Region della tua istanza.",
   "pci_projects_project_instances_instance_attach-volume_success_message": "Il volume {{ volume }} ({{ volumeId }}) di tipo {{ type }} è stato associato all’istanza {{ instance }} ({{ instanceId }}).",
   "pci_projects_project_instances_instance_attach-volume_error_attach": "Si è verificato un errore durante l'aggiornamento del volume {{ volume }}: {{ message }}."
 }

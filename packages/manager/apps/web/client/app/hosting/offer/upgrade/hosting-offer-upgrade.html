@@ -1,11 +1,18 @@
-<div
-    class="row tab-content"
-    data-ng-controller="HostingUpgradeOfferCtrl as $ctrl"
->
-    <div class="col-md-8">
-        <oui-back-button data-sref="^">
-            <span data-translate="hosting_order_upgrade_modal_header"></span>
+<div class="row">
+    <div class="w-100">
+        <oui-back-button data-on-click="$ctrl.onPreviousPageClick()">
         </oui-back-button>
+
+        <!--Title + description-->
+        <div class="ml-2">
+            <span
+                class="oui-heading_4"
+                data-translate="hosting_order_upgrade_modal_header"
+            ></span>
+            <p
+                data-translate="hosting_order_upgrade_modal_header_description"
+            ></p>
+        </div>
 
         <oui-spinner
             data-size="l"
@@ -18,7 +25,6 @@
             data-ng-if="!$ctrl.loading.availableOffers
                       && !$ctrl.loading.validation
                       && $ctrl.availableOffers.length === 0"
-            data-dismissable="false"
         >
             <span data-translate="hosting_order_upgrade_no_offer"></span>
         </oui-message>
@@ -31,45 +37,21 @@
         >
             <oui-step-form
                 data-header="{{:: 'hosting_order_upgrade_step_header_offer' | translate }}"
+                data-valid="$ctrl.model.offer"
+                data-prevent-next="true"
+                data-on-submit="$ctrl.onOfferNextStepClick()"
             >
-                <oui-field
-                    data-label="{{::'hostin_order_select_offer' | translate}}"
-                    data-size="m"
-                    data-label-popover="{{:: ($ctrl.hosting.isCloudWeb
-                                                    ? 'hosting_order_upgrade_select_noduration_cloudweb'
-                                                    : 'hosting_order_upgrade_select_noduration') | translate }}"
+                <web-component-hosting-domain-offers
+                    data-ng-if="$ctrl.catalog"
+                    data-user="$ctrl.user"
+                    data-catalog="$ctrl.catalog"
+                    data-offers="$ctrl.availableOffers"
+                    data-current-offer="$ctrl.hosting.offer"
+                    data-customer-region="$ctrl.coreConfig.getRegion()"
+                    data-show-details="true"
+                    data-on-group-offer-click="$ctrl.onHostingGroupOfferClick(groupOffer, versionOffer)"
                 >
-                    <oui-select
-                        data-required
-                        data-placeholder="{{::'select_placeholder' | translate}}"
-                        data-name="availableOffer"
-                        data-model="$ctrl.model.offer"
-                        data-items="$ctrl.availableOffers"
-                        data-match="name"
-                    >
-                        <span data-ng-bind="$item.name"></span>
-                    </oui-select>
-                </oui-field>
-                <oui-message
-                    data-type="info"
-                    data-dismissable="false"
-                    data-ng-if="$ctrl.hosting.isCloudWeb"
-                >
-                    <span
-                        data-translate="hosting_order_upgrade_select_noduration_cloudweb_explanation"
-                    ></span>
-                </oui-message>
-                <oui-field
-                    data-ng-if="$ctrl.model.offer && $ctrl.model.offer.value === 'KS'"
-                    data-label="{{:: 'hosting_dashboard_service_offer_downgrade_KIMSUFI_2015' | translate }}"
-                >
-                    <oui-checkbox
-                        data-required
-                        data-model="$ctrl.model.downgradeAgree"
-                        data-text="{{:: 'hosting_dashboard_service_offer_downgrade_KIMSUFI_2015_agree' | translate }}"
-                    >
-                    </oui-checkbox>
-                </oui-field>
+                </web-component-hosting-domain-offers>
             </oui-step-form>
 
             <oui-step-form
@@ -77,6 +59,8 @@
                 data-description="{{:: 'hosting_order_upgrade_select_duration' | translate }}"
                 data-on-focus="$ctrl.getDurations()"
                 data-loading="$ctrl.loading.durations"
+                data-valid="$ctrl.durations.available"
+                data-prevent-next="true"
             >
                 <oui-radio-group
                     data-required
@@ -105,7 +89,7 @@
 
             <oui-step-form
                 data-header="{{:: 'hosting_order_upgrade_step_header_start_time' | translate }}"
-                data-position="3"
+                data-position="2"
                 data-ng-if="$ctrl.hosting.isCloudWeb"
             >
                 <oui-field
@@ -122,7 +106,7 @@
                         data-ng-bind="$ctrl.formatTime($ctrl.model.startTime)"
                     ></p>
                 </oui-field>
-                <oui-message data-type="info" data-dismissable="false">
+                <oui-message data-type="info">
                     <span
                         data-translate="hosting_order_upgrade_start_time_info"
                     ></span>
@@ -131,14 +115,19 @@
 
             <oui-step-form
                 data-header="{{:: 'hosting_order_upgrade_step_header_contracts' | translate }}"
-                data-valid="$ctrl.model.agree"
+                data-valid="$ctrl.model.agree || !$ctrl.model.duration.contracts.length"
             >
                 <ovh-contracts-summary
                     name="agreeContracts"
+                    data-ng-if="$ctrl.model.duration.contracts.length"
                     data-items="$ctrl.model.duration.contracts"
                     data-model="$ctrl.model.agree"
                 >
                 </ovh-contracts-summary>
+                <span
+                    data-ng-if="!$ctrl.model.duration.contracts.length"
+                    data-translate="hosting_order_upgrade_no_contract"
+                ></span>
             </oui-step-form>
 
             <oui-step-form
@@ -186,7 +175,7 @@
                         </tr>
                     </tfoot>
                 </table>
-                <oui-message data-type="info" data-dismissable="false">
+                <oui-message data-type="info">
                     <span
                         data-translate="hosting_order_upgrade_do_order"
                         data-ng-if="!$ctrl.hosting.isCloudWeb"
@@ -198,8 +187,7 @@
                 </oui-message>
                 <oui-message
                     data-type="warning"
-                    data-dismissable="false"
-                    data-ng-if="!$ctrl.hosting.isCloudWeb"
+                    data-ng-if=":: $ctrl.hasFreedom()"
                 >
                     <strong
                         data-translate="hosting_order_upgrade_freedom_warning"

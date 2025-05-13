@@ -1,0 +1,15 @@
+{
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_title": "Modificare la durata di retention",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_description": "Stai per modificare la durata di retention del container {{ containerName }}.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_description_2": "Configurando una durata di retention, il tuo archivio sarà bloccato e non potrai più eliminare i tuoi dati durante tutto il periodo.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_submit_label": "Modificare",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_cancel_label": "Annullare",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_success_message": "La durata di retention del container {{ containerName }} è stata modificata correttamente.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_error_message": "Si è verificato un errore durante la modifica della durata di retention del container {{ containerName }}: {{ message }}.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_has_retention": "Pianificare una durata di retention",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_days": "Aggiungere il numero di giorni di retention",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_help": "Il nuovo periodo di retention terminerà il <strong>{{ date }}</strong>.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_help_2": "Potrai procedere alla cancellazione deI tuoi dati solo dopo questa data.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_wartning_help": "La nuova durata di retention non è valida perché la data di fine è inferiore o uguale a quella già pianificata.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_value_wartning": "Aggiungere il numero di giorni di retention (minimo 1 giorno, massimo 4.500 giorni)"
+}

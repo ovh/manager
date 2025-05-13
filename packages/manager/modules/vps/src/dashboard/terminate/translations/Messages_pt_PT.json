@@ -4,5 +4,19 @@
   "vps_terminate_cancel": "Anular",
   "vps_terminate_confirm": "Confirmar",
   "vps_terminate_success": "A eliminação do serviço foi efetuada. Receberá um e-mail de confirmação para validar a eliminação.",
-  "vps_terminate_error": "Ocorreu um erro na eliminação do serviço."
+  "vps_terminate_success_engagement": "O seu pedido foi registado e será tratado o mais rapidamente possível.",
+  "vps_terminate_error": "Ocorreu um erro na eliminação do serviço.",
+  "vps_terminate_unavailable": "Subscreveu este plano com um compromisso de {{ monthCount }} meses. Se tiver alguma pergunta, não hesite em contactar o nosso serviço de apoio ao cliente através de chat ou enviando um <a class=\"oui-link\" href=\"{{supportTicketLink}}\" target=\"_blank\" rel=\"noopener\">ticket de assistência</a>. Agradecemos a sua compreensão",
+  "vps_terminate_option_terminate_at_expiration": "Eliminar o serviço na data de expiração.",
+  "vps_terminate_option_cancel_terminate_at_expiration": "Anular eliminação do serviço.",
+  "vps_terminate_option_terminate_now": "Eliminar o serviço agora",
+  "vps_terminate_option_terminate_now_description": "Receberá por e-mail o correto procedimento.",
+  "vps_terminate_option_terminate_now_question": "Deseja continuar?",
+  "vps_terminate_warning_data_deletion": "A eliminação deste elemento apaga definitivamente todos os dados correspondentes.",
+  "vps_terminate_warning_no_refund": "A operação de eliminação não garante o direito a reembolso",
+  "vps_terminate_warning_manual_refund": "A eliminação não garante o direito a um reembolso. Contacte o suporte se tiver alguma pergunta sobre um possível reembolso.",
+  "vps_terminate_activate_delete_at_expiration_success": "O pedido de eliminação do serviço na data expiração foi registado.",
+  "vps_terminate_activate_delete_at_expiration_error": "Ocorreu um erro na execução do pedido de eliminação do serviço na data de expiração:",
+  "vps_terminate_deactivate_delete_at_expiration_success": "O pedido de eliminação do serviço na data de expiração foi suspenso.",
+  "vps_terminate_deactivate_delete_at_expiration_error": "Erro na suspensão do pedido de eliminação do servidor na data expiração:"
 }

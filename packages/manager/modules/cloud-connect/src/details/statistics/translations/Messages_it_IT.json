@@ -1,0 +1,12 @@
+{
+  "cloud_connect_stats_title": "Statistiche",
+  "cloud_connect_stats_type": "Tipo",
+  "cloud_connect_stats_type_light": "Luce",
+  "cloud_connect_stats_type_traffic": "Traffico",
+  "cloud_connect_stats_type_error": "Errore",
+  "cloud_connect_stats_period": "Periodicità",
+  "cloud_connect_stats_period_hourly": "Ogni ora",
+  "cloud_connect_stats_period_daily": "Giornaliera",
+  "cloud_connect_stats_period_weekly": "Settimanale",
+  "cloud_connect_stats_no_data": "Nessun dato trovato"
+}

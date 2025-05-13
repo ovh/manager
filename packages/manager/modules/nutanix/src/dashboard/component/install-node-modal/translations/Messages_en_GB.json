@@ -1,0 +1,16 @@
+{
+  "nutanix_dashboard_install_node_title": "Install node",
+  "nutanix_dashboard_install_node_description": "You are about to install AOS and AHV on your node. List any IP addresses in your cluster network that aren’t in use.",
+  "nutanix_dashboard_install_node_tips": "To install on multiple nodes at once, please use the API.",
+  "nutanix_dashboard_install_node_label_ahv_ip": "Node IP",
+  "nutanix_dashboard_install_node_label_cvm_ip": "CVM IP",
+  "nutanix_dashboard_install_node_label_version_aos": "AOS version",
+  "nutanix_dashboard_install_node_confirm": "Install",
+  "nutanix_dashboard_install_node_cancel": "Cancel",
+  "nutanix_dashboard_install_node_success_banner": "Your installation request has been processed. This operation may take up to 1 hour",
+  "nutanix_dashboard_install_node_error_banner": "Unable to complete your installation request. If the error persists, please contact Support",
+  "nutanix_dashboard_install_ip_unique_error": "This IP is already used on this cluster",
+  "nutanix_dashboard_install_ip_not_in_cidr_subnet_error": "The addresses are not on the same network.",
+  "nutanix_dashboard_install_ip_format_error": "The IP format is not correct",
+  "nutanix_dashboard_install_ip_tooltip": "The IP address must be included in the cluster subnet."
+}

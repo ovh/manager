@@ -1,0 +1,23 @@
+<oui-modal
+    data-heading="{{:: 'dedicated_server_interfaces_attach_private_network_label' | translate }}"
+    data-primary-action=":: $ctrl.attach()"
+    data-primary-label="{{:: 'dedicated_server_interfaces_attach_private_network_button' | translate }}"
+    data-secondary-action=":: $ctrl.goBack()"
+    data-secondary-label="{{:: 'common_cancel' | translate }}"
+    data-on-dismiss=":: $ctrl.goBack()"
+    data-loading="$ctrl.loading"
+>
+    <form name="vrack-attach-form">
+        <oui-field
+            data-label="{{:: 'dedicated_server_interfaces_vrack_select_label' | translate}}"
+        >
+            <oui-select
+                data-placeholder="{{'select_option' | translate}}"
+                data-model="$ctrl.vrack"
+                data-items="$ctrl.vracks"
+                name="select-vrack"
+            >
+            </oui-select>
+        </oui-field>
+    </form>
+</oui-modal>

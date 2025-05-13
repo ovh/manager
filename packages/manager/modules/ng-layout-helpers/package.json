@@ -1,8 +1,8 @@
 {
   "name": "@ovh-ux/manager-ng-layout-helpers",
-  "version": "1.0.1",
+  "version": "2.11.2",
   "private": true,
-  "description": "Set of utilities for layouts",
+  "description": "Set of utilities and components for layouts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
@@ -10,12 +10,27 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "main": "index.js",
+  "type": "module",
+  "main": "./dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "rollup -c --environment BUILD:development --watch",
+    "prepare": "rollup -c --environment BUILD:production"
+  },
   "devDependencies": {
+    "@ovh-ux/component-rollup-config": "^13.0.2",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.6",
-    "angular": "^1.7.9"
+    "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.4",
+    "@ovh-ux/ui-kit": "^6.10.0",
+    "angular": "^1.7.9",
+    "angular-translate": "^2.18.1",
+    "bootstrap4": "^4.0.0"
   }
 }

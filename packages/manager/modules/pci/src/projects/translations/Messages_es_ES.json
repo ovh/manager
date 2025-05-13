@@ -7,5 +7,12 @@
   "pci_projects_status_creating": "Creando...",
   "pci_projects_project_show": "Ver",
   "pci_projects_project_delete": "Eliminar",
-  "pci_projects_project_delete_success": "Acabamos de enviarle la confirmación de la eliminación por correo electrónico."
+  "pci_projects_project_delete_success": "Acabamos de enviarle la confirmación de la eliminación por correo electrónico.",
+  "pci_projects_status_suspended": "Suspendido",
+  "pci_projects_status_pendingDebt": "Factura pendiente",
+  "pci_projects_project_pay_bill": "Abonar la factura",
+  "pci_projects_project_view": "Ver el proyecto",
+  "pci_projects_create_project": "Crear un nuevo proyecto",
+  "pci_projects_redirect_to_dedicated_page": "Para continuar, seleccione un proyecto existente o cree un nuevo proyecto.",
+  "pci_projects_status_deleted": "Eliminado"
 }

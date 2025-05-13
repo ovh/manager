@@ -2,9 +2,9 @@ import find from 'lodash/find';
 
 export default /* @ngInject */ function(
   $q,
+  coreConfig,
   OvhApiCloud,
   OvhApiCloudProjectServiceInfos,
-  OvhApiMe,
 ) {
   function getReadWriteAccounts(projectId) {
     return OvhApiCloud.Project()
@@ -17,9 +17,7 @@ export default /* @ngInject */ function(
   }
 
   function getCurrentUserNic() {
-    return OvhApiMe.v6()
-      .get()
-      .$promise.then((user) => user.nichandle);
+    return $q.when(coreConfig.getUser().nichandle);
   }
 
   function getProjectAdminNic(projectId) {

@@ -12,7 +12,7 @@ import routing from './routing';
 import component from './component';
 import service from './service';
 
-import orderCart from './order-cart.service'; // TODO remove it
+import orderCart from '../order-cart.service'; // TODO remove it
 
 import './index.scss';
 

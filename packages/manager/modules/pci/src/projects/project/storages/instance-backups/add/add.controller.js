@@ -5,19 +5,22 @@ import Datacenter from '../../../../../components/project/regions-list/datacente
 import Quota from '../../../../../components/project/instance/quota/quota.class';
 import { PATTERN } from '../../../../../components/project/instance/name/constants';
 import Instance from '../../../../../components/project/instance/instance.class';
+import { BAREMETAL_LABEL, PUBLIC_NETWORK_TYPE_NAMES } from './add.constants';
+import { THREE_AZ_REGION } from '../../../project.constants';
 
 export default class PciInstancesAddController {
   /* @ngInject */
   constructor(
     $translate,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     PciProjectsProjectInstanceService,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
+    this.THREE_AZ_REGION = THREE_AZ_REGION;
   }
 
   $onInit() {
@@ -61,6 +64,21 @@ export default class PciInstancesAddController {
     ];
 
     this.loadMessages();
+
+    this.regionsTypesAvailability = {};
+    this.fetchRegionsTypesAvailability();
+  }
+
+  fetchRegionsTypesAvailability() {
+    this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
+      this.projectId,
+    ).then((regionsTypesAvailability) => {
+      this.regionsTypesAvailability = regionsTypesAvailability;
+    });
+  }
+
+  IsComingSoonPricingBannerDisplayed() {
+    return !this.model.flavorGroup?.prices?.monthly;
   }
 
   onFlavorChange(flavor) {
@@ -123,12 +141,25 @@ export default class PciInstancesAddController {
     this.messages = this.messageHandler.getMessages();
   }
 
+  isBareMetalBackup() {
+    return !!this.backup.type.includes(BAREMETAL_LABEL);
+  }
+
   onPrivateNetworkChange(modelValue) {
     const networkId = get(modelValue, 'id');
+    const publicNetwork = this.publicNetworks?.find((network) => {
+      const networkName = this.isBareMetalBackup()
+        ? PUBLIC_NETWORK_TYPE_NAMES.BAREMETAL
+        : PUBLIC_NETWORK_TYPE_NAMES.CLASSIC;
+      return network.name === networkName;
+    });
     this.instance.networks = networkId
       ? [
           {
             networkId,
+          },
+          {
+            networkId: publicNetwork?.id,
           },
         ]
       : [];

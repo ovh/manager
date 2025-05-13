@@ -3,12 +3,12 @@ import camelCase from 'lodash/camelCase';
 
 export default class ExchangePublicFolders {
   /* @ngInject */
-  constructor($http, $q, constants, Exchange, OvhHttp, $window) {
+  constructor($http, $q, constants, wucExchange, OvhHttp, $window) {
     this.services = {
       $http,
       $q,
       constants,
-      Exchange,
+      wucExchange,
       OvhHttp,
       $window,
     };
@@ -70,8 +70,8 @@ export default class ExchangePublicFolders {
         data,
       },
     ).then((responseData) => {
-      this.services.Exchange.resetPublicFolder();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetPublicFolder();
+      this.services.wucExchange.resetTasks();
 
       return responseData;
     });
@@ -96,8 +96,8 @@ export default class ExchangePublicFolders {
         data,
       },
     ).then((responseData) => {
-      this.services.Exchange.resetPublicFolder();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetPublicFolder();
+      this.services.wucExchange.resetTasks();
 
       return responseData;
     });
@@ -115,8 +115,8 @@ export default class ExchangePublicFolders {
         },
       },
     ).then((data) => {
-      this.services.Exchange.resetPublicFolder();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetPublicFolder();
+      this.services.wucExchange.resetTasks();
 
       return data;
     });
@@ -185,8 +185,8 @@ export default class ExchangePublicFolders {
         },
       },
     ).then((data) => {
-      this.services.Exchange.resetPublicFolder();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetPublicFolder();
+      this.services.wucExchange.resetTasks();
 
       return data;
     });
@@ -212,8 +212,8 @@ export default class ExchangePublicFolders {
         },
       },
     ).then((data) => {
-      this.services.Exchange.resetPublicFolder();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetPublicFolder();
+      this.services.wucExchange.resetTasks();
 
       return data;
     });

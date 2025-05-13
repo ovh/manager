@@ -7,9 +7,9 @@
   "telephony_fax_tab_fax": "Faks",
   "telephony_fax_tab_contact": "Współrzędne",
   "telephony_fax_tab_assist": "Pomoc",
-  "telephony_fax_no_service_back_link": "Retour à la gestion du groupe",
-  "telephony_fax_section_back_link": "Retour à la gestion du fax",
+  "telephony_fax_section_back_link": "Zarządzanie faksem",
   "telephony_fax_rename_error": "Impossible de renommer votre fax {{serviceName}}.",
   "telephony_fax_termination_warning": "La ligne sera résiliée le <strong>{{ date }}</strong>.",
-  "telephony_fax_termination_warning_cancel": "Możesz anulować kilkając tutaj."
+  "telephony_fax_termination_warning_cancel": "Możesz anulować kilkając tutaj.",
+  "telephony_fax_breadcrumb": "Faks"
 }

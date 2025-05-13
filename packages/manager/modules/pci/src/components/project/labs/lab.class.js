@@ -18,7 +18,7 @@ export default class Lab {
     return this.status === STATUS.OPEN;
   }
 
-  isActivationg() {
+  isActivating() {
     return this.status === STATUS.ACTIVATING;
   }
 

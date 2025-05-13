@@ -1,0 +1,15 @@
+{
+  "hycu_status_activated": "Active",
+  "hycu_status_toActivate": "Enabling required",
+  "hycu_status_pending": "Enabling...",
+  "hycu_status_error": "Activation error",
+  "hycu_cloud_vm_pack_unknown": "Unknown pack",
+  "hycu_name": "Name",
+  "hycu_controller_id": "Controller ID",
+  "hycu_status": "Status",
+  "hycu_commercial_name": "Pack type",
+  "hycu_subscribed_date": "Subscription date",
+  "hycu_order": "Order",
+  "hycu_service_listing_terminate": "Terminate",
+  "hycu_listing_error_loading_data": "Loading error"
+}

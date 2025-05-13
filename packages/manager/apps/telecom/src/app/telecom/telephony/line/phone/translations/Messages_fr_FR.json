@@ -1,4 +1,6 @@
 {
+  "telephony_line_phone_actions_line_details_phone_breadcrumb": "Téléphone",
+  "telephony_line_phone_actions_line_details_softphone_breadcrumb": "Softphone",
   "telephony_line_phone_actions_line_details_phon_offer": "Informations générales",
   "telephony_line_phone_actions_line_codecs_management": "Codecs",
   "telephony_line_phone_actions_line_interface": "Choix de l'interface",
@@ -6,9 +8,13 @@
   "telephony_line_phone_actions_line_programmable_keys": "Touches programmables",
   "telephony_line_phone_actions_line_phone_upgrade_firmware": "Mise à jour du firmware",
   "telephony_line_phone_actions_line_phone_reboot": "Redémarrer",
-  "telephony_line_phone_actions_line_phone_order_plug_and_phone": "Commander un Plug & Phone",
-  "telephony_line_phone_actions_line_phone_change_plug_and_phone": "Changer de téléphone Plug & Phone",
+  "telephony_line_phone_actions_line_phone_order_phone": "Commander un téléphone VoIP",
+  "telephony_line_phone_actions_line_phone_change_phone": "Changer de téléphone",
+  "telephony_line_phone_actions_line_order_headset": "Commander un casque",
   "telephony_line_phone_actions_line_order_accessories": "Commander des accessoires",
   "telephony_line_phone_actions_line_phonebook": "Carnets de contacts",
-  "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone"
+  "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone",
+  "telephony_group_line_phone_section_back_link_target": "la gestion du téléphone",
+  "telephony_line_phone_actions_line_phone_order_attach": "Rattacher la ligne à un équipement actuel",
+  "telephony_line_phone_actions_line_phone_order_detach": "Détacher la ligne d'un téléphone"
 }

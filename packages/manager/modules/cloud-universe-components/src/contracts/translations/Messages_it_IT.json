@@ -1,9 +1,0 @@
-{
-  "contract_next": "Continua",
-  "contract_previous": "Precedente",
-  "contract_download": "Apri il contratto \"{{id}}\" in PDF",
-  "contract_agree": "Ho letto e accetto il contratto",
-  "contracts_agree": "Ho letto e accetto i contratti",
-  "contract_list_title": "C'è 1 contratto da leggere",
-  "contracts_list_title": "Ci sono {{nbr}} contratti da leggere"
-}

@@ -1,0 +1,10 @@
+{
+  "dedicatedCloud_configuration_security_update_session_timeout_title": "Zmień termin wygaśnięcia sesji",
+  "dedicatedCloud_configuration_security_update_session_timeout_step1_never": "sesja nigdy nie wygasa",
+  "dedicatedCloud_configuration_security_update_session_timeout_step1_question": "Liczba minut, po których sesja wygasa",
+  "dedicatedCloud_configuration_security_update_session_timeout_step2_question": "Chcesz zmienić liczbę minut przed wygaśnięciem sesji z „{{t0}}” na „{{t1}}”.",
+  "dedicatedCloud_SECURITY_expiration_session_never": "Nigdy",
+  "dedicatedCloud_SECURITY_expiration_session_value": "{{t0}} minut/y",
+  "dedicatedCloud_configuration_SECURITY_update_session_timeout_success": "Czas wygaśnięcia sesji zostanie zmieniony w ciągu kilku minut.",
+  "dedicatedCloud_configuration_SECURITY_update_session_timeout_fail": "Wystąpił błąd podczas modyfikowania czasu wygaśnięcia sesji."
+}

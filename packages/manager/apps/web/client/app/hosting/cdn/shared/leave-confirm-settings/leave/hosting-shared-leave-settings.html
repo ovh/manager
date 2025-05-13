@@ -1,0 +1,80 @@
+<oui-modal
+    data-heading="{{:: 'hosting_cdn_shared_modal_leave_title' | translate}}"
+    data-primary-action="$ctrl.leave()"
+    data-primary-label="{{'hosting_cdn_shared_modal_leave_btn_validate' | translate}}"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'hosting_cdn_shared_modal_leave_btn_cancel' | translate}}"
+    type="warning"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <!--Description-->
+    <div
+        class="oui-paragraph"
+        data-ng-bind=":: 'hosting_cdn_shared_modal_leave_info' | translate"
+    ></div>
+
+    <dl class="oui-description oui-description_horizontal">
+        <dt><strong>Always online</strong></dt>
+        <dd
+            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.alwaysOnline.enabled ? 'enable' : 'disabled') }}"
+        ></dd>
+        <dt><strong>HTTP/2</strong></dt>
+        <dd
+            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.http.enabled ? 'enable' : 'disabled') }}"
+        ></dd>
+        <dt><strong>Devmode</strong></dt>
+        <dd
+            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.devmode.enabled ? 'enable' : 'disabled') }}"
+        ></dd>
+        <dt><strong>Brotli</strong></dt>
+        <dd
+            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.brotli.enabled ? 'enable' : 'disabled') }}"
+        ></dd>
+        <dt><strong>Cache rule</strong></dt>
+        <dd
+            data-ng-repeat="rule in ::$ctrl.model.rules track by $index"
+            data-ng-bind="::rule.name"
+        ></dd>
+        <div data-ng-if="$ctrl.model.cors">
+            <dt><strong>Cross-Origin Resource Sharing (CORS)</strong></dt>
+            <dd>
+                <span
+                    data-ng-if="!$ctrl.model.cors.enabled"
+                    data-translate="hosting_cdn_shared_state_disabled"
+                ></span>
+                <span
+                    data-ng-if="$ctrl.model.cors.enabled"
+                    data-ng-repeat="origin in ::$ctrl.constructor.getCorsOriginsList($ctrl.model.cors.config.origins) track by origin"
+                >
+                    <span data-ng-bind="::origin"></span>
+                    <span data-ng-if="!$last">, </span>
+                </span>
+            </dd>
+        </div>
+        <div data-ng-if="$ctrl.model.https_redirect">
+            <dt><strong>HTTPS-Redirect</strong></dt>
+            <dd
+                data-ng-bind="$ctrl.model.https_redirect.enabled ? $ctrl.model.https_redirect.config.statusCode : ('hosting_cdn_shared_state_disabled' | translate )"
+            ></dd>
+        </div>
+        <div data-ng-if="$ctrl.model.hsts">
+            <dt><strong>HTTP Strict Transport Security (HSTS)</strong></dt>
+            <dd
+                data-ng-bind="$ctrl.model.hsts.enabled ? $ctrl.model.hsts.config.ttl : ('hosting_cdn_shared_state_disabled' | translate )"
+            ></dd>
+        </div>
+        <div data-ng-if="$ctrl.model.mixed_content">
+            <dt><strong>Mixed-Content</strong></dt>
+            <dd
+                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.mixed_content.enabled ? 'enable' : 'disabled') }}"
+            ></dd>
+        </div>
+
+        <div data-ng-if="$ctrl.model.waf">
+            <dt><strong>Web Application Firewall (WAF)</strong></dt>
+            <dd
+                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.waf.enabled ? 'enable' : 'disabled') }}"
+            ></dd>
+        </div>
+    </dl>
+</oui-modal>

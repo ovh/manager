@@ -1,0 +1,106 @@
+<div class="col-md-5 col-sm-12 col-xs-12 m-0 p-0">
+    <div class="block-emphasis">
+        <div class="block-emphasis__row">
+            <div class="block-emphasis__column block-emphasis__column--first">
+                <span
+                    class="location__icon ovh-font ovh-font-home"
+                    aria-hidden="true"
+                ></span>
+            </div>
+            <div class="block-emphasis__column">
+                <h3 data-translate="pack_move_line_future_address"></h3>
+                <div class="text-center" data-ng-if="$ctrl.loading">
+                    <oui-spinner></oui-spinner>
+                </div>
+                <div
+                    data-ng-if="$ctrl.address.floor || $ctrl.address.door || $ctrl.address.stairs"
+                >
+                    <span data-ng-if="$ctrl.address.door">
+                        <span
+                            data-translate="pack_move_line_address_door"
+                        ></span>
+                        <span data-ng-bind="$ctrl.address.door"></span>
+                    </span>
+                    <span data-ng-if="$ctrl.address.floor">
+                        <span
+                            data-translate="pack_move_line_address_floor"
+                        ></span>
+                        <span data-ng-bind="$ctrl.address.floor"></span>
+                    </span>
+                    <span data-ng-if="$ctrl.address.stairs">
+                        <span
+                            data-translate="pack_move_line_address_stairs"
+                        ></span>
+                        <span data-ng-bind="$ctrl.address.stairs"></span>
+                    </span>
+                </div>
+                <div
+                    data-ng-if="$ctrl.address.residence || $ctrl.address.building"
+                >
+                    <span data-ng-if="$ctrl.address.building">
+                        <span
+                            data-translate="pack_move_line_address_building"
+                        ></span>
+                        <span data-ng-bind="$ctrl.address.building"></span>
+                    </span>
+                    <span data-ng-if="$ctrl.address.residence">
+                        <span
+                            data-translate="pack_move_line_address_residence"
+                        ></span>
+                        <span
+                            data-ng-bind="$ctrl.address.address.residence"
+                        ></span>
+                    </span>
+                </div>
+                <div>
+                    <span data-ng-bind="$ctrl.address.streetNumber"></span>
+                    <span data-ng-bind="$ctrl.address.streetName"></span>
+                </div>
+                <div>
+                    <span data-ng-bind="$ctrl.address.zipCode"></span>
+                    <span data-ng-bind="$ctrl.address.city"></span>
+                </div>
+            </div>
+        </div>
+        <!-- BEGIN: keep new number -->
+        <div data-ng-if="$ctrl.lineNumber">
+            <div class="checkbox mt-3 ml-4 mr-2">
+                <label for="keepLine" class="pl-2">
+                    <input
+                        id="keepLine"
+                        type="checkbox"
+                        data-ng-disabled="!$ctrl.canKeepLineNumber"
+                        data-ng-change="$ctrl.rio = null"
+                        data-ng-model="$ctrl.keepLineNumber"
+                    />
+                    <span
+                        class="service-item"
+                        data-translate="pack_move_keepLine"
+                    ></span>
+                    <strong
+                        class="location__lineNumber"
+                        data-ng-bind="$ctrl.lineNumber"
+                    ></strong>
+                </label>
+            </div>
+            <p
+                data-translate="pack_move_portLine_disabled"
+                class="mt-2"
+                data-ng-if="!$ctrl.canKeepLineNumber"
+            ></p>
+            <!-- END: keep new number -->
+            <!-- BEGIN: rio -->
+            <div data-ng-if="$ctrl.keepLineNumber" class="input-group my-md-2">
+                <input
+                    type="text"
+                    name="rio"
+                    class="form-control"
+                    data-ui-validate="'$ctrl.validator.tucIsRio($value, $ctrl.lineNumber)'"
+                    data-ng-model="$ctrl.rio"
+                    placeholder="{{ 'pack_move_rio' | translate }}"
+                />
+            </div>
+        </div>
+        <!-- END: rio -->
+    </div>
+</div>

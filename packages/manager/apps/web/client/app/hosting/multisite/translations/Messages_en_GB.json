@@ -1,0 +1,9 @@
+{
+  "hosting_multisite": "Multisite",
+  "hosting_multisite_actions": "Actions",
+  "hosting_multisite_dialog_title": "Verify DNS servers",
+  "hosting_multisite_dialog_edit_record_description": "Modify the {{ recordType }} record with the {{ ip }} IP address in the {{ domain }} domain’s DNS zone.",
+  "hosting_multisite_dialog_edit_record_link": "Modify {{ recordType }} type field.",
+  "hosting_multisite_dialog_edit_record_other_nic": "The modification must be done by the DNS zone administrator: {{ nic }}.",
+  "hosting_multisite_dialog_add_record_description": "Add a {{ recordType }} type field with the IP address {{ ip }} in the DNS zone of the {{ domain }} domain."
+}

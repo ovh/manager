@@ -3,6 +3,7 @@
   "iplb_farm_intro_text": "La ferme de serveurs est la partie de votre Load Balancer qui sert à répartir le trafic sur les serveurs.",
   "iplb_farm_add": "Ajouter une ferme de serveurs",
   "iplb_farm_add_server": "Ajouter un serveur",
+  "iplb_farm_edit_server_breadcrumb": "Editer le serveur",
   "iplb_farm_server_status_see": "Voir le statut",
   "iplb_farm_list_accordion_title": "Ferme {{farmId}}",
   "iplb_farm_list_accordion_aside_server_single": "{{serverNumber}} serveur",

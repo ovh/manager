@@ -1,7 +1,0 @@
-{
-  "xdsl_modem_reboot": "Perkrauti modemą",
-  "xdsl_modem_reboot_an_error_ocurred": "[Modemo perkrovimas] Klaida!",
-  "xdsl_modem_reboot_success": "Modemas perkraunamas.",
-  "xdsl_modem_reboot_success_end": "Modemas perkrautas.",
-  "xdsl_modem_reboot_really": "Ar tikrai norite perkrauti modemą?"
-}

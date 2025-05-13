@@ -1,0 +1,131 @@
+<div class="telecom-pack-resiliation">
+    <div class="text-center" data-ng-if="PackXdslResiliation.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div class="row" data-ng-if="!PackXdslResiliation.loading">
+        <div class="col-xs-12 widget-presentation">
+            <header class="widget-presentation-header">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="xdsl_resiliation_title"
+                ></h2>
+            </header>
+
+            <div data-ng-show="PackXdslResiliation.resiliationTerms.status">
+                <div class="row mt-3 pt-0">
+                    <span
+                        class="col-xs-12 col-md-4 service-title"
+                        data-translate="xdsl_resiliation_engaged"
+                    ></span>
+                    <div class="col-xs-12 col-md-4 service-item">
+                        <span
+                            data-ng-if="PackXdslResiliation.resiliationTerms.data.engaged"
+                            data-ng-bind="service.data.engageDate | date:'dd/MM/yyyy'"
+                        ></span>
+                        <span
+                            data-ng-if="!PackXdslResiliation.resiliationTerms.data.engaged"
+                            data-translate="xdsl_resiliation_not_engaged"
+                        ></span>
+                    </div>
+                </div>
+
+                <div class="row mt-3 pt-0">
+                    <span
+                        class="col-xs-12 col-md-4 service-title"
+                        data-translate="xdsl_resiliation_due"
+                    ></span>
+                    <div class="col-xs-12 col-md-4 service-item">
+                        <span
+                            data-ng-if="!PackXdslResiliation.computingPrice"
+                            data-ng-bind="PackXdslResiliation.resiliationTerms.data.due.text"
+                        ></span>
+                        <oui-spinner
+                            data-ng-if="PackXdslResiliation.computingPrice"
+                        >
+                        </oui-spinner>
+                    </div>
+                </div>
+
+                <form
+                    name="dateForm"
+                    data-ng-hide="PackXdslResiliation.resiliationTerms.onGoingResiliation"
+                >
+                    <div class="row mt-3 pt-0">
+                        <label
+                            class="col-xs-12 col-md-4 service-title"
+                            for="expirationDate"
+                            data-translate="xdsl_resiliation_resiliation_date"
+                        ></label>
+                        <div
+                            class="col-xs-12 col-md-4 service-item date-picker-input"
+                        >
+                            <input
+                                id="expirationDate"
+                                name="expirationDate"
+                                placeholder="{{ 'xdsl_resiliation_service_date_format' | translate }}"
+                                data-uib-datepicker-popup="dd/MM/yyyy"
+                                class="form-control input-sm"
+                                data-datepicker-options="PackXdslResiliation.dpOpts"
+                                data-ng-model="PackXdslResiliation.when"
+                                data-ui-validate="'PackXdslResiliation.checkDate($value)'"
+                                data-is-open="PackXdslResiliation.pickerOpened"
+                                data-show-button-bar="false"
+                                current-text="{{:: 'today' | translate }}"
+                                clear-text="{{:: 'reset' | translate }}"
+                                close-text="{{:: 'close' | translate }}"
+                                data-ng-click="PackXdslResiliation.switchDatePickerState($event)"
+                                data-ng-focus="PackXdslResiliation.openDatePicker($event)"
+                            />
+                        </div>
+                    </div>
+                </form>
+
+                <div
+                    class="row mt-3"
+                    data-ng-if="!PackXdslResiliation.resiliationTerms.onGoingResiliation"
+                >
+                    <div class="col-xs-12 col-md-4">
+                        <tuc-resiliation-reason
+                            data-ng-show="PackXdslResiliation.resiliationTerms.status"
+                            data-tuc-resiliation-reason-filter="{{PackXdslResiliation.resiliationTerms.data.resiliationReasons.join(',')}}"
+                            data-tuc-resiliation-reason="{id: PackXdslResiliation.resiliationTerms.serviceName, name:PackXdslResiliation.resiliationTerms.serviceName, type:'service', typeName:PackXdslResiliation.resiliationTerms.typeName}"
+                            on-change="PackXdslResiliation.resiliateService(ELEMENT, SURVEY, ACCEPT)"
+                        >
+                        </tuc-resiliation-reason>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="row mt-3 pt-0"
+                data-ng-if="PackXdslResiliation.resiliationTerms.onGoingResiliation"
+            >
+                <div class="col-xs-12">
+                    <p
+                        data-translate="xdsl_resiliation_terminate_info_1"
+                        data-translate-values="{'date' : PackXdslResiliation.resiliationTerms.onGoingResiliation.dateTodo}"
+                    ></p>
+                </div>
+                <div class="col-xs-12 mt-3">
+                    <button
+                        data-ng-really-click="PackXdslResiliation.cancelServiceResiliation(PackXdslResiliation.resiliationTerms)"
+                        class="float-left btn btn-primary"
+                        data-ng-really-message="{{PackXdslResiliation.serviceDescription}}"
+                        data-ng-really-confirm="{{:: 'ok' | translate }}"
+                        data-ng-really-cancel="{{:: 'cancel' | translate }}"
+                        data-ng-really-window-class="revert-really-buttons"
+                        title="{{:: 'xdsl_resiliation_cancel' | translate }}"
+                        type="button"
+                    >
+                        <span data-translate="xdsl_resiliation_cancel"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div data-ng-hide="PackXdslResiliation.resiliationTerms.status">
+                <em data-translate="xdsl_resiliation_service_forbidden"></em>
+            </div>
+        </div>
+    </div>
+</div>

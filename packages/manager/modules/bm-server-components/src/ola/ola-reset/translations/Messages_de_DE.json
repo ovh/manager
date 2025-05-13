@@ -1,0 +1,5 @@
+{
+  "dedicated_server_interfaces_ola_reset_title": "Die private Aggregation dekonfigurieren",
+  "dedicated_server_interfaces_ola_reset_text": "Sind Sie sicher, dass Sie die private Aggregation auf diesem Server dekonfigurieren möchten?",
+  "dedicated_server_interfaces_ola_reset_error": "Bei der Dekonfiguration der privaten Aggregation ist ein Fehler aufgetreten."
+}

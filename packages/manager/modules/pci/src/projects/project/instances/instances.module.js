@@ -13,17 +13,21 @@ import instance from './instance';
 import instancesDelete from './delete';
 import onboarding from './onboarding';
 import reinstall from './reinstall';
-import regionsList from './add/regions-list';
 import rescue from './rescue';
 import resume from './resume';
+import shelve from './shelve';
 import softReboot from './soft-reboot';
+import start from './start';
+import stop from './stop';
 import unrescue from './unrescue';
-
-import privateNetworks from '../private-networks/private-networks.module';
+import unshelve from './unshelve';
+import createPrivateNetworkWarning from './create-private-network-warning';
 
 import component from './instances.component';
 import routing from './instances.routing';
 import service from './instances.service';
+
+import './instances.scss';
 
 const moduleName = 'ovhManagerPciInstances';
 
@@ -37,13 +41,16 @@ angular
     instance,
     instancesDelete,
     onboarding,
-    privateNetworks,
     reinstall,
-    regionsList,
     rescue,
     resume,
+    shelve,
     softReboot,
+    start,
+    stop,
     unrescue,
+    unshelve,
+    createPrivateNetworkWarning,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ovh-api-services',

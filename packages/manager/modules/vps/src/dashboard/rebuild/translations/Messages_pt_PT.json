@@ -1,5 +1,7 @@
 {
   "vps_configuration_rebuild_cancel": "Anular",
   "vps_configuration_rebuild_confirm": "Confirmar",
-  "vps_configuration_rebuild_doNotSendPassword": "Não quero receber por e-mail os códigos de autenticação do meu VPS."
+  "vps_configuration_rebuild_doNotSendPassword": "Não quero receber os códigos de autenticação do meu VPS por e-mail.",
+  "vps_configuration_rebuild_warning_part_1": "A instalação irá formatar todos os discos do servidor.",
+  "vps_configuration_rebuild_warning_part_2": "<b>Sugestão:</b> para poder voltar atrás, recomendamos que efetue uma snapshot antes de continuar. Para mais informações, consulte <a class=\"oui-link_icon\" href=\"{{ href }}\" target=\"_blank\">o guia <span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>."
 }

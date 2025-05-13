@@ -1,0 +1,6 @@
+{
+  "vps_additional_disk": "Disco adicional",
+  "vps_additional_disk_actions_increase_disk": "Aumentar el tamaño del disco",
+  "vps_additional_disk_actions_terminate": "Dar de baja",
+  "vps_additional_disk_actions_terminate_disabled_info": "Podrá dar de baja el disco adicional una vez finalizado el compromiso de permanencia de su VPS."
+}

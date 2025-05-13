@@ -4,15 +4,16 @@ import { ALLOWED_LANGUAGES, BASE_URL } from './feedback.constants';
 
 export default class {
   /* @ngInject */
-  constructor(TranslateService) {
-    this.TranslateService = TranslateService;
+  constructor(coreConfig) {
+    this.coreConfig = coreConfig;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   getUrl() {
     const defaultLanguage = Object.keys(ALLOWED_LANGUAGES).find(
       (key) => ALLOWED_LANGUAGES[key].isDefault,
     );
-    const userLanguage = this.TranslateService.getUserLocale(true);
+    const userLanguage = this.coreConfig.getUserLanguage();
 
     const languageToUse = isObject(ALLOWED_LANGUAGES[userLanguage])
       ? userLanguage

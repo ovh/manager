@@ -1,0 +1,21 @@
+{
+  "hosting_multisite_domain_configuration_home": "Carpeta raíz",
+  "hosting_multisite_domain_configuration_myfolder": "micarpeta",
+  "hosting_multisite_domain_configuration_firewall": "Activar el firewall",
+  "hosting_multisite_domain_configuration_cdn": "Activar la CDN",
+  "hosting_multisite_domain_configuration_information": "Para que la configuración funcione, debe realizar las siguientes operaciones en el dominio:",
+  "hosting_multisite_domain_configuration_none_options": "Ninguna opción",
+  "hosting_multisite_domain_configuration_ownlog": "Logs separados",
+  "hosting_multisite_domain_configuration_runtime": "Motor de ejecución",
+  "hosting_multisite_domain_configuration_options_choose": "Seleccione una opción",
+  "hosting_multisite_domain_configuration_cdn_help": "Active la CDN para acelerar el acceso a su sitio web desde cualquier lugar del mundo.",
+  "hosting_multisite_domain_configuration_country_ip_help": "Optimice su SEO: active la IP del país para geolocalizar las secciones internacionales de su sitio web.",
+  "hosting_multisite_domain_configuration_firewall_help": "Active el firewall para reforzar la protección de su sitio web.",
+  "hosting_multisite_domain_configuration_ownlog_help": "Active esta opción si desea logs separados para su multisitio.",
+  "hosting_multisite_domain_configuration_path_help": "Los caracteres que se aceptan en los directorios son las letras, las cifras y los caracteres «_./ Se prohíbe acceder al directorio principal utilizando ..",
+  "hosting_multisite_domain_configuration_countriesIp": "IP del país",
+  "hosting_multisite_domain_configuration_countriesIp_none": "Ninguno",
+  "hosting_multisite_domain_configuration_ssl": "SSL",
+  "hosting_multisite_domain_configuration_ssl_help": "Active la opción SSL para disfrutar de acceso por HTTPS al sitio web.",
+  "hosting_multisite_domain_configuration_git_warning": "Si desea cambiar la carpeta raíz, debe eliminar primero la configuración Git del directorio para evitar posibles problemas con el seguimiento de cambios y la gestión de despliegues."
+}

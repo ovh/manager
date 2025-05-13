@@ -18,5 +18,9 @@ export default /* @ngInject */ ($stateProvider) => {
       value: ['./'],
       format: 'json',
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('vps_configuration_veeam_order_title'),
+    },
   });
 };

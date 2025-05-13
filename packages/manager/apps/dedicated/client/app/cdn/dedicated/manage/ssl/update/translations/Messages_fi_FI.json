@@ -1,9 +1,0 @@
-{
-  "cdn_dedicated_ssl_update": "Korvaa omalla varmenteella",
-  "cdn_dedicated_ssl_update_load_error": "Tapahtui virhe SSL-varmennetta koskevien tietojen lataamisessa.",
-  "cdn_dedicated_ssl_update_no_ssl_warning": "Et voi korvata tätä SSL-varmennetta CDN-palvelussasi, sillä siihen ei ole lisätty yhtään SSL-varmennetta.",
-  "cdn_dedicated_ssl_update_operation_warning": "Et voi korvata SSL-varmnnetta CDN-palvelussa, sillä SSL-toimenpide on jo käynnissä.",
-  "cdn_dedicated_ssl_update_explain": "Syötä sertifikaattitiedot:",
-  "cdn_dedicated_ssl_update_success": "SSL-varmennetta muokataan pian.",
-  "cdn_dedicated_ssl_update_error": "Tapahtui virhe muokattaessa SSL-varmennetta"
-}

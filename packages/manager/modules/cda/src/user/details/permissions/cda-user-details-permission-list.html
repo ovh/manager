@@ -1,0 +1,73 @@
+<header>
+    <p data-translate="cda_user_details_permission_description"></p>
+</header>
+<div>
+    <a
+        class="oui-button oui-button_secondary"
+        data-ng-if="!CdaUserDetailsPermissionListCtrl.loading"
+        data-ui-sref="cda.dashboard.cda-user.cda-user-details.cda-user-details-permission-list.cda-user-details-permission-list-edit"
+        role="button"
+    >
+        <span
+            data-translate="cda_user_details_permissions_edit_button_text"
+        ></span>
+    </a>
+</div>
+<div class="text-center" data-ng-if="CdaUserDetailsPermissionListCtrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+<oui-datagrid data-rows="CdaUserDetailsPermissionListCtrl.datas.poolsDisplay">
+    <oui-datagrid-column
+        data-title="'cda_user_details_permissions_table_col_poolname' | translate"
+        data-property="poolName"
+        data-sortable="asc"
+    ></oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'cda_user_details_permissions_table_col_read' | translate"
+        data-property="read"
+        data-sortable
+    >
+        <i data-ng-if="$row.read" class="glyphicon glyphicon-ok-circle"></i>
+        <span class="sr-only" data-ng-bind="$row.read"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'cda_user_details_permissions_table_col_write' | translate"
+        data-property="write"
+        data-sortable
+    >
+        <i data-ng-if="$row.write" class="glyphicon glyphicon-ok-circle"></i>
+        <span class="sr-only" data-ng-bind="$row.write"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'cda_user_details_permissions_table_col_execute' | translate"
+        data-property="execute"
+        data-sortable
+    >
+        <i data-ng-if="$row.execute" class="glyphicon glyphicon-ok-circle"></i>
+        <span class="sr-only" data-ng-bind="$row.execute"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'cda_user_details_permissions_table_col_classread' | translate"
+        data-property="classRead"
+        data-sortable
+    >
+        <i
+            data-ng-if="$row.classRead"
+            class="glyphicon glyphicon-ok-circle"
+        ></i>
+        <span class="sr-only" data-ng-bind="$row.classRead"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'cda_user_details_permissions_table_col_classwrite' | translate"
+        data-property="classWrite"
+        data-sortable
+    >
+        <i
+            data-ng-if="$row.classWrite"
+            class="glyphicon glyphicon-ok-circle"
+        ></i>
+        <span class="sr-only" data-ng-bind="$row.classWrite"></span>
+    </oui-datagrid-column>
+</oui-datagrid>
+
+<div data-ui-view="cdaDetails"></div>

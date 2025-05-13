@@ -1,6 +1,4 @@
-import get from 'lodash/get';
-import merge from 'lodash/merge';
-import snakeCase from 'lodash/snakeCase';
+import { get, merge, snakeCase } from 'lodash-es';
 
 import { VANTIV_IFRAME_CONFIGURATION, VANTIV_RESPONSE_CODE } from './constants';
 
@@ -60,7 +58,8 @@ export default class OvhPaymentMethodRegisterIframeVantivCtrl {
         this.eProtectClient.getPaypageRegistrationId({
           id: `PM${this.integrationCtrl.paymentValidation.paymentMethodId}`,
         });
-      });
+      })
+      .catch(() => {});
   }
 
   onIframeSubmitted(response) {
@@ -69,13 +68,11 @@ export default class OvhPaymentMethodRegisterIframeVantivCtrl {
     if (responseCode === VANTIV_RESPONSE_CODE.SUCCESS) {
       // finalize the payment registration
       // then remove ThreatMetrix script and iframe (defined in directive's link function)
-      return this.integrationCtrl
-        .onIntegrationFinalize({
-          expirationMonth: parseInt(response.expMonth, 10),
-          expirationYear: parseInt(response.expYear, 10),
-          registrationId: response.paypageRegistrationId,
-        })
-        .finally(() => this.removeThreatMetrix());
+      return this.integrationCtrl.onIntegrationFinalize({
+        expirationMonth: parseInt(response.expMonth, 10),
+        expirationYear: parseInt(response.expYear, 10),
+        registrationId: response.paypageRegistrationId,
+      });
     }
 
     // transform response to an error structure similar to $http/$resource
@@ -88,19 +85,6 @@ export default class OvhPaymentMethodRegisterIframeVantivCtrl {
       },
     };
 
-    // remove ThreatMetrix script and iframe (defined in directive's link function)
-    this.removeThreatMetrix();
-
     return this.integrationCtrl.manageCallback('onSubmitError', { error });
   }
-
-  /* ============================
-  =            Hooks            =
-  ============================= */
-
-  $onDestroy() {
-    this.removeThreatMetrix(); // defined in directive's link function
-  }
-
-  /* -----  End of Hooks  ------ */
 }

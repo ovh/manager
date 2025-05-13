@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InstanceDetailPopover > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col gap-3"
+  >
+    <osds-text
+      class="block"
+      color="text"
+      level="body"
+      size="400"
+    >
+      <strong>
+        cpbc_server_details_popover_region : 
+      </strong>
+      GRA-STAGING-A
+    </osds-text>
+    <osds-text
+      class="block"
+      color="text"
+      level="body"
+      size="400"
+    >
+      <strong>
+        cpbc_server_details_popover_image_type : 
+      </strong>
+      cpbc_server_details_popover_imagetype_linux
+    </osds-text>
+    <osds-text
+      class="block"
+      color="text"
+      level="body"
+      size="400"
+    >
+      <strong>
+        cpbc_server_details_popover_vm_type : 
+      </strong>
+      A10-45
+    </osds-text>
+  </div>
+</DocumentFragment>
+`;

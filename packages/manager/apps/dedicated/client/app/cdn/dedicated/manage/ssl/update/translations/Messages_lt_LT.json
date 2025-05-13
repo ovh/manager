@@ -1,9 +1,0 @@
-{
-  "cdn_dedicated_ssl_update": "Pakeisti mano sertifikatu",
-  "cdn_dedicated_ssl_update_load_error": "Klaida įkeliant SSL sertifikato informaciją.",
-  "cdn_dedicated_ssl_update_no_ssl_warning": "Negalite pakeisti CDN SSL sertifikato, nes į CDN neįtrauktas joks SSL.",
-  "cdn_dedicated_ssl_update_operation_warning": "Negalite pakeisti CDN SSL sertifikato, nes vykdoma kita SSL operacija.",
-  "cdn_dedicated_ssl_update_explain": "Įveskite sertifikato duomenis:",
-  "cdn_dedicated_ssl_update_success": "SSL sertifikatas tuojau bus pakeistas.",
-  "cdn_dedicated_ssl_update_error": "Klaida keičiant SSL sertifikatą"
-}

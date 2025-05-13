@@ -1,0 +1,22 @@
+<oui-modal
+    data-heading="{{:: 'dashboard_history_restore_modal_title' | translate }}"
+    data-primary-action="$ctrl.confirmRestoreDnsAtDate()"
+    data-primary-label="{{ :: 'dashboard_history_restore_modal_primary_label' | translate }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{ :: 'dashboard_history_restore_modal_secondary_label' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <p
+        data-translate="dashboard_history_restore_modal_content"
+        data-translate-values="{ date: $ctrl.chosenDate }"
+    ></p>
+    <oui-message type="warning">
+        <p data-translate="dashboard_history_restore_modal_warning_message"></p>
+    </oui-message>
+
+    <oui-message type="info">
+        <p data-translate="dashboard_history_restore_modal_info_message"></p>
+    </oui-message>
+
+    <div data-ovh-alert="dnsZoneAlert"></div>
+</oui-modal>

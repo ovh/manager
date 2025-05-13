@@ -1,0 +1,18 @@
+{
+  "restricted_account_logout": "Wyloguj się",
+  "restricted_account_method_user": "Połączony jako użytkownik konta podlegającego kontu głównemu",
+  "restricted_error_default": "Dostęp do Panelu klienta OVHcloud wymaga minimum niezbędnych praw. Skontaktuj się z Twoim administratorem.",
+  "restricted_error_title": "Ograniczony dostęp",
+  "restricted_guide_card_control-panel-access_description": "Dowiedz się, jak przyznać minimalne uprawnienia niezbędne do logowania do Panelu klienta",
+  "restricted_guide_card_control-panel-access_title": "Logowanie do Panelu klienta OVHcloud przy użyciu narzędzia IAM",
+  "restricted_guide_card_policies-ui_description": "Dowiedz się, jak przypisać użytkownikom określone uprawnienia dostępu z konta OVHcloud",
+  "restricted_guide_card_policies-ui_title": "Tworzenie polityki IAM w Panelu klienta",
+  "restricted_guide_card_policies-api_description": "Dowiedz się, jak przyznać użytkownikom konta OVHcloud określone uprawnienia dostępu",
+  "restricted_guide_card_policies-api_title": "Tworzenie polityki IAM poprzez API",
+  "restricted_guide_card_more": "Dowiedz się więcej",
+  "restricted_guide_card_title": "Tutoriale",
+  "restricted_language_change": "Zmień język interfejsu",
+  "restricted_navbar_account": "Moje konto",
+  "restricted_error_default_start": "Dostęp do Panelu klienta OVHcloud wymaga {{count}} praw niezbędnych do utworzenia konta, zgodnie z opisem w przewodniku:",
+  "restricted_error_default_end": "Skontaktuj się z administratorem, aby dodać te uprawnienia."
+}

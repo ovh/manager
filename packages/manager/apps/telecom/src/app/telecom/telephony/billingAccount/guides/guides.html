@@ -1,0 +1,47 @@
+<section class="telecom-telephony-guides">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.loading.init">
+        <oui-message data-type="info" data-ng-if="!$ctrl.hasGuides()">
+            <span data-translate="telephony_guides_empty"></span>
+        </oui-message>
+
+        <section
+            class="widget-presentation"
+            data-ng-if="$ctrl.hasGuides()"
+            data-ng-repeat="section in $ctrl.guides.sections track by section.label"
+        >
+            <header class="widget-presentation-header">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="{{:: section.label }}"
+                ></h2>
+            </header>
+            <ul>
+                <li
+                    data-ng-repeat="guide in section.guides track by guide.label"
+                >
+                    <a
+                        title="{{:: guide.label | translate }} ({{:: 'common_open_new_tab' | translate }})"
+                        target="_blank"
+                        rel="noopener"
+                        data-ng-href="{{:: guide.url }}"
+                    >
+                        <span>{{:: guide.label | translate }}</span>
+                        <span
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            class="sr-only"
+                            data-translate="common_open_new_tab"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </div>
+</section>

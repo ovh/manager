@@ -1,0 +1,19 @@
+{
+  "vrack_onboarding_title": "Rede privada vRack",
+  "vrack_onboarding_description": "A tecnologia vRack (rack virtual) permite ligar, isolar e repartir os seus produtos da OVH compatíveis numa ou várias redes privadas. Graças a tecnologias de rede únicas, poderá criar infraestruturas privadas híbridas num perímetro multidatacenter mundial.",
+  "vrack_onboarding_description_part2": "O vRack permite-lhe fazer comunicar de forma segura os seus produtos da OVH compatíveis na sua própria rede privada. Assim, poderá tornar os seus serviços acessíveis apenas através da rede privada e/ou da rede pública.",
+  "vrack_onboarding_description_part3": "Essa rede será administrada fisicamente pela OVHcloud, sem a necessidade de qualquer aplicação de software ou configuração de rede.",
+  "vrack_onboarding_order": "Encomendar",
+  "vrack_onboarding_guide1_title": "Configurar o vRack nos seus servidores dedicados",
+  "vrack_onboarding_guide1_description": "Saiba como configurar o vRack em vários servidores dedicados",
+  "vrack_onboarding_guide2_title": "Configurar quadros Jumbo no vRack",
+  "vrack_onboarding_guide2_description": "Saiba como configurar os Jumbo frames no vRack",
+  "vrack_onboarding_guide3_title": "Configurar um bloco de endereços IP no vRack",
+  "vrack_onboarding_guide3_description": "Saiba como configurar um bloco de endereços IP públicos no vRack",
+  "vrack_onboarding_us_guide1_title": "How to Connect a Dedicated Server to vRack",
+  "vrack_onboarding_us_guide1_description": "Find out how to configure the vRack on two or more dedicated servers",
+  "vrack_onboarding_us_guide2_title": "How to Configure vRack for Public Cloud Services",
+  "vrack_onboarding_us_guide2_description": "Find out how to configure the vRack on Public Cloud",
+  "vrack_onboarding_us_guide3_title": "How to Configure a Failover IP Block on a vRack",
+  "vrack_onboarding_us_guide3_description": "This guide will show you how to configure a block of public IP addresses for use with the vRack."
+}

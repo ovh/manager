@@ -1,0 +1,22 @@
+{
+  "vps_dashboard_tile_configuration_upgrade_memory_action_title": "Améliorer la mémoire de votre VPS de {{ currentMemory }} à {{ nextMemory }} Go",
+  "vps_dashboard_tile_configuration_upgrade_memory_action_details": "Vous êtes sur le point d‘ajouter {{ memoryQuantity }} Go de mémoire à votre VPS.",
+  "vps_dashboard_tile_configuration_upgrade_storage_action_title": "Améliorer le stockage de votre VPS de {{ currentStorage }} à {{ nextStorage }} Go",
+  "vps_dashboard_tile_configuration_upgrade_storage_action_details": "Vous êtes sur le point d‘ajouter {{ storageQuantity }} Go de stockage à votre VPS.",
+  "vps_dashboard_tile_configuration_upgrade_action_price": "Cette évolution vous sera facturée {{ price }} supplémentaire(s) par mois.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation": "En validant votre choix, vous serez facturé de {{ prorataPrice }} au prorata pour le mois en cours. Veuillez noter que le montant de la facture finale peut comprendre toute option additionelle dont vous pourriez disposer (ex: snapshot, backup automatisé, etc.)",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_monthly": "En cliquant sur « Valider et payer », vous allez être redirigé vers un bon de commande pour régler la somme de {{ price }} due au prorata temporis.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_upfront": "En cliquant sur « Valider et payer », vous allez être redirigé vers un bon de commande pour régler la somme de {{ price }} pour le temps restant de votre engagement.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_payment_method_upfront": "En cliquant sur « Valider et payer », vous serez facturé de {{ price }} au total pour le temps restant de votre engagement.",
+  "vps_dashboard_tile_configuration_upgrade_action_validate_and_pay": "Valider et payer",
+  "vps_dashboard_tile_configuration_upgrade_action_cancel": "Annuler",
+  "vps_dashboard_tile_configuration_upgrade_success_title": "Votre modification a bien été prise en compte",
+  "vps_dashboard_tile_configuration_upgrade_success_explain": "Une fois l’évolution de votre VPS effectuée dans un délai maximum de 2 heures, vous recevrez un e-mail de confirmation. Le redémarrage de votre VPS sera nécessaire pour profiter de votre nouvelle configuration.",
+  "vps_dashboard_tile_configuration_upgrade_success_follow_order": "Suivre ma commande",
+  "vps_dashboard_tile_configuration_upgrade_no_payment_method_success": "Votre demande a bien été prise en compte. L'upgrade démarrera une fois le paiement du bon de commande suivant <a target=\"_blank\" rel=\"noopener\" href=\"{{ href }}\">{{ orderId }}</a> reçu.",
+  "vps_dashboard_tile_configuration_upgrade_error": "Une erreur est survenue lors de l'amélioration de votre VPS.",
+  "vps_dashboard_tile_configuration_upgrade_catched_error": "Ce VPS n'est pas compatible pour le plan demandé ou vous avez déjà une demande d'upgrade en cours pour ce VPS.",
+  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_info": "Vous ne pouvez pas faire évoluer votre VPS vers une offre supérieure car celui-ci est actuellement en mode rescue.",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_action": "Merci de bien vouloir redémarrer votre VPS au préalable en désactivant le mode rescue."
+}

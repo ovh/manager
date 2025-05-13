@@ -1,0 +1,39 @@
+{
+  "name": "@ovh-ux/ovh-at-internet",
+  "version": "0.21.8",
+  "description": "ATInternet tracking library for OVHcloud.",
+  "keywords": [
+    "at-internet",
+    "tracking"
+  ],
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/components/ovh-at-internet#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/components/ovh-at-internet"
+  },
+  "license": "BSD-3-Clause",
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc",
+    "dev:watch": "tsc --watch",
+    "prepare": "tsc"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-config": "^8.3.1"
+  },
+  "peerDependencies": {
+    "@ovh-ux/manager-config": "^8.0.1"
+  }
+}

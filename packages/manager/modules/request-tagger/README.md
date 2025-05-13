@@ -1,7 +1,7 @@
 # ng-ovh-request-tagger
 
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-request-tagger)](https://npmjs.com/package/@ovh-ux/ng-ovh-request-tagger) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/components/ng-ovh-request-tagger)](https://npmjs.com/package/@ovh-ux/ng-ovh-request-tagger?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/components/ng-ovh-request-tagger)](https://npmjs.com/package/@ovh-ux/ng-ovh-request-tagger?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-request-tagger)](https://npmjs.com/package/@ovh-ux/ng-ovh-request-tagger) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/components/ng-ovh-request-tagger)](https://npmjs.com/package/@ovh-ux/ng-ovh-request-tagger?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/components/ng-ovh-request-tagger)](https://npmjs.com/package/@ovh-ux/ng-ovh-request-tagger?activeTab=dependencies)
 
 ## Install
 
@@ -14,13 +14,11 @@ yarn add @ovh-ux/ng-ovh-request-tagger
 import angular from 'angular';
 import ngOvhRequestTagger from '@ovh-ux/ng-ovh-request-tagger';
 
-angular
-  .module('myApp', [
-    ngOvhRequestTagger,
-  ])
-  .config(/* @ngInject */($httpProvider) => {
+angular.module('myApp', [ngOvhRequestTagger]).config(
+  /* @ngInject */ ($httpProvider) => {
     $httpProvider.interceptors.push('OvhNgRequestTaggerInterceptor');
-  });
+  },
+);
 ```
 
 ## Test

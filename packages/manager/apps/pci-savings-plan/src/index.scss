@@ -1,0 +1,47 @@
+@tailwind utilities;
+@import '@ovhcloud/ods-themes/default';
+
+html {
+  font-family: var(--ods-font-family-default);
+}
+
+.input-at::part(input) {
+  text-align: center;
+}
+
+ods-text::part(text) {
+  width: 100%;
+}
+
+ods-button.action-menu-item::part(button) {
+  width: 100%;
+  justify-content: left;
+}
+
+ods-modal::part(dialog) {
+  max-height: 100vh;
+}
+
+// tag doesn't seems centered if line is bigger
+ods-tag.org-tag::part(tag) {
+  transform: translateY(-10%);
+}
+
+.dns-field {
+  width: 100%;
+
+  &::part(text) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  ods-clipboard {
+    flex: 1;
+    width: 100%;
+
+    &::part(input) {
+      width: 100%;
+    }
+  }
+}

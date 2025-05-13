@@ -1,0 +1,60 @@
+<oui-tile
+    class="h-100"
+    data-heading="{{:: 'server_ola_step_checker_title' | translate }}"
+>
+    <oui-message class="mb-3" data-type="info">
+        <p class="mb-0">
+            <span
+                data-translate="server_ola_alert_configuration_needed_small"
+            ></span>
+            <a
+                class="oui-link_icon"
+                data-ng-href="{{::$ctrl.guideUrl}}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="server_ola_alert_configuration_needed_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    class="sr-only"
+                    data-translate="server_ola_new_tab"
+                ></span>
+            </a>
+        </p>
+    </oui-message>
+
+    <!-- OLA -->
+    <oui-tile-definition data-term="{{:: 'server_ola' | translate}}">
+        <oui-tile-description>
+            <span data-translate="server_ola_active"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <!-- OLA Mode -->
+    <oui-tile-definition data-term="{{:: 'server_ola_mode' | translate}}">
+        <oui-tile-description>
+            <span
+                data-translate="server_ola_mode_{{ $ctrl.ola.getCurrentMode() }}"
+            ></span>
+        </oui-tile-description>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item
+                data-ng-if="$ctrl.ola.isConfigured()"
+                data-ui-sref=".ola-reset"
+            >
+                <span data-translate="server_ola_reset"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="!$ctrl.ola.isConfigured()"
+                data-ui-sref=".ola-configuration"
+            >
+                <span data-translate="server_ola_configure"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-tile-definition>
+</oui-tile>

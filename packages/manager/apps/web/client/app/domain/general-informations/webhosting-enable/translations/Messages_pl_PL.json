@@ -1,0 +1,22 @@
+{
+  "domain_configuration_enable_web_hosting": "Włącz hosting WWW",
+  "domain_configuration_enable_web_hosting_offer": "Twoja oferta",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-start10m": "Start 10M",
+  "domain_configuration_web_hosting_offer_START_explain": "Usługa Free Hosting 100M jest zawarta w Twojej ofercie, ale dostępne w niej są tylko podstawowe funkcje.",
+  "domain_configuration_web_hosting_choose_offer_explain": "Aby uzyskać więcej informacji na temat naszej oferty, przejdź na <a href=\"{{url}}\" target=\"_blank\">naszą stronę</a>.",
+  "domain_configuration_enable_web_hosting_dns_configuration": "Konfiguracja DNS",
+  "domain_configuration_web_hosting_dns_info_NO_CHANGE": "Pomimo uruchomienia nowego hostingu, domena nadal wskazuje na aktualne rekordy. Musisz wprowadzić zmiany w strefie DNS, gdy Twoja nowa strona będzie gotowa.  Jest to idealny wybór, jeśli nie chcesz wyłączyć strony, która jest już online.",
+  "domain_configuration_enable_web_hosting_dns_configuration_A": "Rekord DNS A",
+  "domain_configuration_enable_web_hosting_dns_configuration_MX": "Rekord DNS MX",
+  "domain_configuration_web_hosting_dns_info_A": "Jeśli dysponujesz adresem e-mail dla swojej domeny, ale nie posiadasz strony internetowej, możesz zmienić tylko rekord A. W ten sposób Twoja domena będzie wskazywać na nowy hosting, a konta e-mail będą nadal działać w ramach dotychczasowej usługi.",
+  "domain_configuration_web_hosting_dns_info_MX": "Ta opcja pozwala na używanie wyłącznie adresów e-mail hostingu, bez modyfikowania wpisów dotyczących wskazywania strony www.  Domena nadal wskazuje na aktualną stronę, a adresy e-mail są obsługiwane na serwerach OVH.",
+  "domain_configuration_enable_web_hosting_offer_price": "Cennik",
+  "domain_configuration_enable_web_hosting_offer_START_P1Y": "12 miesięcy",
+  "domain_configuration_enable_web_hosting_offer_START_P0D": "12 miesięcy",
+  "domain_configuration_enable_web_hosting_activation": "Uruchom",
+  "domain_configuration_enable_web_hosting_activate": "Włącz",
+  "domain_configuration_enable_web_hosting_success": "Trwa włączanie hostingu. Może to zająć kilka minut.",
+  "domain_configuration_enable_web_hosting_checkout_error": "Wystąpił błąd: {{message}}",
+  "domain_configuration_enable_web_hosting_error": "Wystąpił błąd podczas włączania Twojego hostingu:{{message}}.",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-free-100m": "Darmowy hosting 100M"
+}

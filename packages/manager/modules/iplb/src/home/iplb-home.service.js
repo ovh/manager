@@ -4,18 +4,18 @@ import set from 'lodash/set';
 export default class IpLoadBalancerHomeService {
   /* @ngInject */
   constructor(
+    $injector,
     $q,
-    SidebarMenu,
     IpLoadBalancerCipherService,
     OvhApiIpLoadBalancing,
-    CucRegionService,
+    ovhManagerRegionService,
     CucServiceHelper,
   ) {
+    this.$injector = $injector;
     this.$q = $q;
-    this.SidebarMenu = SidebarMenu;
     this.IpLoadBalancerCipherService = IpLoadBalancerCipherService;
     this.OvhApiIpLoadBalancing = OvhApiIpLoadBalancing;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.CucServiceHelper = CucServiceHelper;
   }
 
@@ -65,7 +65,11 @@ export default class IpLoadBalancerHomeService {
       )
       .then((quotas) =>
         quotas.map((quota) => {
-          set(quota, 'region', this.CucRegionService.getRegion(quota.zone));
+          set(
+            quota,
+            'region',
+            this.ovhManagerRegionService.getRegion(quota.zone),
+          );
           return quota;
         }),
       )
@@ -104,12 +108,15 @@ export default class IpLoadBalancerHomeService {
     return this.OvhApiIpLoadBalancing.v6()
       .put({ serviceName }, { displayName: newName })
       .$promise.then((response) => {
-        this.getConfiguration(serviceName).then((configuration) =>
-          this.changeMenuTitle(
-            serviceName,
-            configuration.displayName || serviceName,
-          ),
-        );
+        this.getConfiguration(serviceName).then((configuration) => {
+          if (this.$injector.has('shellClient')) {
+            const shellClient = this.$injector.get('shellClient');
+            shellClient.ux.updateMenuSidebarItemLabel(
+              serviceName,
+              configuration.displayName || serviceName,
+            );
+          }
+        });
         return response;
       })
       .catch(
@@ -120,9 +127,9 @@ export default class IpLoadBalancerHomeService {
   }
 
   changeMenuTitle(serviceName, displayName) {
-    const menuItem = this.SidebarMenu.getItemById(serviceName);
-    if (menuItem) {
-      menuItem.title = displayName;
+    if (this.$injector.has('shellClient')) {
+      const shellClient = this.$injector.get('shellClient');
+      shellClient.ux.updateMenuSidebarItemLabel(serviceName, displayName);
     }
   }
 

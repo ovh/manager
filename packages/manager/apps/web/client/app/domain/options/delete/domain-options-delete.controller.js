@@ -1,6 +1,7 @@
 angular.module('controllers').controller(
   'controllers.Domain.Options.Delete',
   class DomainDnsLockCtrl {
+    /* @ngInject */
     constructor($rootScope, $scope, $translate, Alerter, Domain) {
       this.$rootScope = $rootScope;
       this.$scope = $scope;

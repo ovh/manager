@@ -1,16 +1,16 @@
 {
-  "telephony_line_assist_orders_title": "Suivi des bons de commande",
+  "telephony_line_assist_orders_title": "Order tracking",
   "telephony_line_assist_orders_column_date": "Date",
   "telephony_line_assist_orders_column_id": "Order number ",
   "telephony_line_assist_orders_column_status": "Status",
   "telephony_line_assist_orders_order_status_cancelled": "Cancelled",
-  "telephony_line_assist_orders_order_status_cancelling": "Cancelling ",
-  "telephony_line_assist_orders_order_status_checking": "Validation",
+  "telephony_line_assist_orders_order_status_cancelling": "Cancelling...",
+  "telephony_line_assist_orders_order_status_checking": "Confirmation",
   "telephony_line_assist_orders_order_status_delivered": "Complete ",
-  "telephony_line_assist_orders_order_status_delivering": "Being processed ",
-  "telephony_line_assist_orders_order_status_documents_requested": "Documents pending ",
-  "telephony_line_assist_orders_order_status_not_paid": "Unpaid ",
+  "telephony_line_assist_orders_order_status_delivering": "Delivery in progress",
+  "telephony_line_assist_orders_order_status_documents_requested": "Awaiting documents",
+  "telephony_line_assist_orders_order_status_not_paid": "Payment not received",
   "telephony_line_assist_orders_order_status_unknown": "Unknown",
-  "telephony_line_assist_orders_order_url_title": "Voir le bon de commande n°{{ id }}",
-  "telephony_line_assist_orders_empty": "Aucun bon de commande."
+  "telephony_line_assist_orders_order_url_title": "View purchase order no. {{ id }}",
+  "telephony_line_assist_orders_empty": "No purchase order."
 }

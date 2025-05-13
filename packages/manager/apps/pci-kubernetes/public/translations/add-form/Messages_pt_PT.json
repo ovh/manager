@@ -1,0 +1,6 @@
+{
+  "kubernetes_add_node_pool_description": "Pode configurar um ou vários pools de nós desde a criação do cluster. Um pool de nós designa um conjunto de nós de trabalho do mesmo tipo.",
+  "kubernetes_add_node_pool_node_count": "Número de nós",
+  "kubernetes_add_node_pool_node_type": "Tipo de nós",
+  "kube_common_node_pool_model_type_selector": "Selecione um modelo"
+}

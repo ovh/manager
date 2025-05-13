@@ -1,0 +1,14 @@
+<oui-modal
+    heading="{{:: 'hosting_cdn_shared_change_offer_modal_title' | translate }}"
+    primary-action="$ctrl.onCdnChangeOfferConfirm()"
+    primary-label="{{:: 'hosting_cdn_shared_change_offer_modal_action_validate' | translate }}"
+    secondary-action="$ctrl.onCdnChangeOfferCancel()"
+    secondary-label="{{:: 'hosting_cdn_shared_change_offer_modal_action_cancel' | translate }}"
+    type="info"
+    on-dismiss="$ctrl.onCdnChangeOfferCancel()"
+    loading="$ctrl.loading"
+>
+    <p
+        data-ng-bind=":: 'hosting_cdn_shared_change_offer_modal_info' | translate"
+    ></p>
+</oui-modal>

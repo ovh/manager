@@ -1,24 +1,23 @@
-import constant from '../telecom-dashboard.constant';
-
-export default /* @ngInject */ function(OvhApiMeBill, TucToastError) {
+export default /* @ngInject */ function(
+  coreURLBuilder,
+  BillsService,
+  TucToastError,
+) {
   const self = this;
 
   self.links = {
-    billing: constant.billing,
+    billing: coreURLBuilder.buildURL('dedicated', '#/billing/history'),
   };
   self.amountBillsDisplayed = 6;
 
   self.$onInit = function getLastBills() {
-    return OvhApiMeBill.Aapi()
-      .last()
-      .$promise.then(
-        (bills) => {
-          self.lastBills = bills;
-        },
-        (err) => {
-          self.lastBills = [];
-          return TucToastError(err);
-        },
-      );
+    self.lastBills = [];
+    BillsService.getLastBills()
+      .then(({ data }) => {
+        self.lastBills = data;
+      })
+      .catch(({ data }) => {
+        TucToastError(data.message);
+      });
   };
 }

@@ -1,0 +1,7 @@
+{
+  "pci_projects_maintenance_banner_info_project_page": "Manutenzione: l’operazione ha impatto su almeno uno dei servizi associati al progetto {{projectName}}.",
+  "pci_projects_maintenance_banner_info_list_page": "Manutenzione: l’operazione ha impatto su almeno uno dei servizi {{productName}}.",
+  "pci_projects_maintenance_banner_info_product_page": "Manutenzione: il servizio {{productServiceName}} è interessato da un intervento di manutenzione.",
+  "pci_projects_maintenance_banner_info_link": "Scopri di più",
+  "pci_projects_project_network_private": "Private Network"
+}

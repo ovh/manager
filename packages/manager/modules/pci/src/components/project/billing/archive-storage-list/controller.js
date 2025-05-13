@@ -1,24 +1,22 @@
 export default /* @ngInject */ function BillingArchiveStorageListComponentCtrl(
   $q,
   $translate,
+  coreConfig,
   CucCloudMessage,
-  CucRegionService,
-  OvhApiMe,
+  ovhManagerRegionService,
 ) {
   const self = this;
 
-  self.CucRegionService = CucRegionService;
+  self.ovhManagerRegionService = ovhManagerRegionService;
 
   self.currencySymbol = '';
 
   self.loading = false;
 
   function initUserCurrency() {
-    return OvhApiMe.v6()
-      .get()
-      .$promise.then((me) => {
-        self.currencySymbol = me.currency.symbol;
-      });
+    return $q.when(coreConfig.getUser()).then((me) => {
+      self.currencySymbol = me.currency.symbol;
+    });
   }
 
   self.$onInit = () => {

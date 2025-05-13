@@ -1,0 +1,35 @@
+<div data-ng-controller="IpViewVirtualMacCtrl">
+    <div
+        data-wizard
+        data-wizard-hide-cancel-button="true"
+        data-wizard-confirm-button-text=":: 'wizard_close' | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="closeAction"
+        data-wizard-title=":: 'ip_table_manage_view_virtualmac' | translate"
+    >
+        <div data-wizard-step>
+            <div data-ng-show="!loading">
+                <p
+                    data-translate="ip_table_manage_view_virtualmac_question"
+                ></p>
+                <dl class="dl-horizontal">
+                    <dt data-translate="ip_table_header_ip_address"></dt>
+                    <dd data-ng-bind="details.ipAddress || '/'"></dd>
+
+                    <dt data-translate="ip_virtualmac_field"></dt>
+                    <dd data-ng-bind="details.macAddress || '/'"></dd>
+
+                    <dt data-translate="ip_virtualmac_type"></dt>
+                    <dd data-ng-bind="details.type || '/'"></dd>
+
+                    <dt data-translate="ip_virtualmac_machinename"></dt>
+                    <dd data-ng-bind="details.virtualMachineName || '/'"></dd>
+                </dl>
+            </div>
+
+            <div class="text-center" data-ng-show="loading">
+                <oui-spinner></oui-spinner>
+            </div>
+        </div>
+    </div>
+</div>

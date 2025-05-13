@@ -6,33 +6,35 @@ import isString from 'lodash/isString';
 import includes from 'lodash/includes';
 import startsWith from 'lodash/startsWith';
 
+import punycode from 'punycode';
+
 export default class DomainConfigurationController {
   /* @ngInject */
   constructor(
-    Exchange,
+    wucExchange,
     ExchangeDomains,
     exchangeStates,
     messaging,
     $rootScope,
     $timeout,
     $translate,
-    User,
+    WucUser,
     wizardHostedCreationDomainConfiguration,
   ) {
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.ExchangeDomains = ExchangeDomains;
     this.exchangeStates = exchangeStates;
     this.messaging = messaging;
     this.$rootScope = $rootScope;
     this.$timeout = $timeout;
     this.$translate = $translate;
-    this.User = User;
+    this.WucUser = WucUser;
     this.wizardHostedCreationDomainConfiguration = wizardHostedCreationDomainConfiguration;
   }
 
   $onInit() {
     this.initialLoading = true;
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
     this.loaders = {
       isInitialRetrievalRunning: true,
       IsWaitingForDomainAssociation: false,
@@ -106,7 +108,7 @@ export default class DomainConfigurationController {
   }
 
   retrieveURLToOrderDomains() {
-    return this.User.getUrlOf('domainOrder').then((urlToOrderDomains) => {
+    return this.WucUser.getUrlOf('domainOrder').then((urlToOrderDomains) => {
       this.urlToOrderDomains = urlToOrderDomains;
     });
   }

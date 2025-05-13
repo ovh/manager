@@ -1,0 +1,43 @@
+/* Cloud Space Meter - Angular Bootstrap Progress Theme */
+@cloud-space-meter-uib-progress-background-color_used: #64afa0;
+@cloud-space-meter-uib-progress-background-color_usedbysnaphots: #ffcd00;
+
+.cloud-space-meter .progress {
+  margin-bottom: 0;
+}
+
+.cloud-space-meter .progress-bar {
+  box-shadow: none;
+
+  &-used {
+    position: relative;
+    background-color: @cloud-space-meter-uib-progress-background-color_used;
+  }
+
+  &-used::after {
+    @color: rgba(255, 255, 255, 0.2);
+
+    background-image: repeating-linear-gradient(
+      -45deg,
+      @color,
+      @color 40%,
+      transparent 25%,
+      transparent 50%,
+      @color 50%
+    );
+    background-size: 8px 8px;
+    background-position: -1.25rem 0;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  &-usedbysnapshots {
+    background-color: @cloud-space-meter-uib-progress-background-color_usedbysnaphots;
+  }
+}

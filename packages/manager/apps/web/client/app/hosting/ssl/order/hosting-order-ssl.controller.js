@@ -1,9 +1,12 @@
+import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
 
 angular.module('App').controller(
   'hostingOrderSslCtrl',
   class HostingOrderSslCtrl {
+    /* @ngInject */
     constructor(
+      $q,
       $scope,
       $stateParams,
       $translate,
@@ -14,9 +17,10 @@ angular.module('App').controller(
       HostingDomain,
       hostingSSLCertificate,
       hostingSSLCertificateType,
-      User,
+      WucUser,
       WucValidator,
     ) {
+      this.$q = $q;
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -27,7 +31,7 @@ angular.module('App').controller(
       this.HostingDomain = HostingDomain;
       this.hostingSSLCertificate = hostingSSLCertificate;
       this.hostingSSLCertificateType = hostingSSLCertificateType;
-      this.User = User;
+      this.WucUser = WucUser;
       this.WucValidator = WucValidator;
       this.$window = $window;
     }
@@ -35,6 +39,7 @@ angular.module('App').controller(
     $onInit() {
       this.certificateTypes = this.hostingSSLCertificateType.constructor.getCertificateTypes();
       this.selectedCertificateType = this.certificateTypes.LETS_ENCRYPT.name;
+      this.serviceName = this.$stateParams.productId;
 
       this.step1 = {
         loading: {
@@ -71,25 +76,17 @@ angular.module('App').controller(
     onStep1Load() {
       this.step1.loading.isRetrievingInitialData = true;
 
-      return this.HostingDomain.getAttachedDomain(
-        this.$stateParams.productId,
-        this.$stateParams.productId,
-      )
-        .then((attachedDomain) =>
-          !attachedDomain.ssl
-            ? this.HostingDomain.updateAttachedDomain(
-                this.$stateParams.productId,
-                this.$stateParams.productId,
-                {
-                  ssl: true,
-                },
-              )
-            : null,
-        )
+      return this.HostingDomain.getDetailedAttachedDomains(this.serviceName)
+        .then((domains) => {
+          this.availableDomains = domains.filter(
+            ({ domain }) => domain !== this.serviceName,
+          );
+        })
         .then(() => this.Hosting.getSelected(this.$stateParams.productId))
         .then((hosting) => {
           this.step1.canOrderPaidCertificate =
-            hosting.offer !== this.HOSTING.offers.START_10_M;
+            hosting.offer !== this.HOSTING.offers.START_10_M &&
+            !isEmpty(this.availableDomains);
         })
         .catch((err) => {
           this.step1.cannotOrderPaidCertificateErrorMessage = this.$translate.instant(
@@ -122,8 +119,25 @@ angular.module('App').controller(
           this.selectedCertificateType,
         )
       ) {
-        this.creatingCertificate();
+        return this.creatingCertificate();
       }
+
+      if (
+        this.hostingSSLCertificateType.constructor.isPaid(
+          this.selectedCertificateType,
+        ) &&
+        !this.selectedDomain.ssl
+      ) {
+        return this.HostingDomain.updateAttachedDomain(
+          this.serviceName,
+          this.selectedDomain.domain,
+          {
+            ssl: true,
+          },
+        );
+      }
+
+      return this.$q.resolve();
     }
 
     onStep2Load() {
@@ -181,14 +195,13 @@ angular.module('App').controller(
     generatingOrderForm() {
       this.step2.loading.isGeneratingOrderForm = true;
 
-      return this.User.getUrlOfEndsWithSubsidiary(
+      return this.WucUser.getUrlOfEndsWithSubsidiary(
         'domain_order_options_service',
       )
         .then((rawOrderFormURL) => {
-          this.orderFormURL = rawOrderFormURL.replace(
-            '{domain}',
-            this.$stateParams.productId,
-          );
+          this.orderFormURL = rawOrderFormURL
+            .replace('{serviceName}', this.serviceName)
+            .replace('{domainName}', this.selectedDomain.domain);
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(

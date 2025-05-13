@@ -26,7 +26,7 @@
             >
                 <p
                     data-translate="privateDatabase_change_version_step1"
-                    data-translate-values="{ t0: ('privateDatabase_dashboard_version_' + versionCtrl.privateDBToUpdate.version | translate) }"
+                    data-translate-values="{ t0: versionCtrl.getDatabaseDisplayName(versionCtrl.privateDBToUpdate) }"
                 ></p>
 
                 <form class="form-horizontal mt-4">
@@ -42,7 +42,7 @@
                                     class="oui-select__input"
                                     id="changeVersion"
                                     data-ng-model="versionCtrl.model.choice"
-                                    data-ng-options="('privateDatabase_dashboard_version_' + version.replace('.', '') | translate) for version in versionCtrl.model.versions track by version"
+                                    data-ng-options="versionCtrl.getDatabaseDisplayName(version) for version in versionCtrl.model.versions track by version"
                                 >
                                     <option
                                         value=""
@@ -65,8 +65,8 @@
             <p
                 data-translate="privateDatabase_change_version_step2"
                 data-translate-values="{
-                   t0: ('privateDatabase_dashboard_version_' + versionCtrl.privateDBToUpdate.version | translate),
-                   t1: ('privateDatabase_dashboard_version_' + versionCtrl.model.choice.replace('.', '') | translate)
+                   t0: versionCtrl.getDatabaseDisplayName(versionCtrl.privateDBToUpdate),
+                   t1: versionCtrl.getDatabaseDisplayName(versionCtrl.model.choice)
                }"
             ></p>
 

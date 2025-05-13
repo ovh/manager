@@ -1,0 +1,8 @@
+{
+  "cpbc_no_consumption_data": "Nessun consumo per il periodo selezionato.",
+  "cpbc_volume_col_name": "Cognome",
+  "cpbc_volume_col_consumption": "Consumo",
+  "cpbc_volume_consumption_tooltip_part1": "La fatturazione considera lo spazio di storage reale, calcolato ogni ora.",
+  "cpbc_volume_consumption_tooltip_part2": "Il tuo consumo corrisponde esattamente a {{amount}} GiB/ora.",
+  "cpb_error_message": "Ops! Impossibile recuperare tutte le informazioni."
+}

@@ -1,9 +1,11 @@
-@import '~bootstrap4/scss/_functions';
-@import '~bootstrap4/scss/_variables';
-@import '~bootstrap4/scss/_mixins';
-@import '~bootstrap4/scss/_utilities.scss';
-@import '~bootstrap4/scss/_grid.scss';
-@import '~bootstrap4/scss/mixins/_breakpoints';
+@import 'bootstrap4/scss/_functions';
+@import 'bootstrap4/scss/_variables';
+@import 'bootstrap4/scss/_mixins';
+@import 'bootstrap4/scss/_utilities.scss';
+@import 'bootstrap4/scss/_grid.scss';
+@import 'bootstrap4/scss/_modal.scss';
+@import 'bootstrap4/scss/mixins/_breakpoints';
+@import '@ovh-ux/ui-kit/dist/scss/_tokens';
 
 .app-content {
   position: relative;
@@ -13,6 +15,22 @@
   .app-content {
     min-height: 500px;
     box-shadow: 0 0 6px 0 rgba(40, 89, 192, 0.2);
+  }
+}
+
+.manager-cookie-policy-banner {
+  .modal-dialog {
+    transform: none !important;
+
+    .oui-modal {
+      margin: 0;
+    }
+  }
+}
+
+.manager-cookie-policy-banner-backdrop {
+  &.fade {
+    opacity: 0.5;
   }
 }
 
@@ -28,4 +46,8 @@
     opacity: 0;
     visibility: hidden !important;
   }
+}
+
+.mandatory-fields-star {
+  color: $ae-500;
 }

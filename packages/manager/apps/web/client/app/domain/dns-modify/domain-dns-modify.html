@@ -1,0 +1,101 @@
+<div>
+    <div data-ng-if="$ctrl.isLoading" class="text-center">
+        <oui-spinner data-size="l" />
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <oui-back-button
+                data-ng-if="!$ctrl.isLoading"
+                data-on-click="$ctrl.goBack()"
+            >
+                <span data-translate="domain_dns_modify"></span>
+            </oui-back-button>
+
+            <oui-message
+                data-ng-if="alerts.main"
+                data-type="{{ alerts.main.type }}"
+            >
+                <span
+                    data-translate="{{ alerts.main.message }}"
+                    data-translate-values="{{ alerts.main.data }}"
+                ></span>
+                <a
+                    data-ng-if="alerts.main.link"
+                    data-ng-href="{{ alerts.main.link.href }}"
+                    data-translate="{{ alerts.main.link.message }}"
+                >
+                    <span
+                        data-translate="{{ alerts.main.link.message }}"
+                    ></span>
+                </a>
+            </oui-message>
+
+            <div
+                data-ng-if="!$ctrl.isLoading && !$ctrl.isOperationOngoing && !alerts.main"
+            >
+                <p data-ng-if="$ctrl.dns.originalNames.length > 0">
+                    <span data-translate="domain_dns_currently_in_use"></span>
+                    <strong>
+                        {{ ::$ctrl.dns.originalNames.join(", ") }}
+                    </strong>
+                </p>
+
+                <div data-ng-if="$ctrl.dns.original">
+                    <oui-message
+                        data-type="warning"
+                        data-dismissable
+                        aria-close-button-label="{{ ::'domain_dns_close_message_tooltip' | translate }}"
+                    >
+                        <p
+                            class="oui-message__body"
+                            data-translate="domain_dns_warning_line1"
+                        ></p>
+                        <p class="oui-message__body">
+                            <span
+                                data-translate="domain_dns_warning_line2"
+                            ></span>
+                            <a
+                                href="https://help.ovhcloud.com/csm/fr-dns-servers-edit?id=kb_article_view&sysparm_article=KB0063455"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <span
+                                    data-translate="domain_dns_warning_line2_link"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-external-link"
+                                    aria-hidden="true"
+                                ></span>
+                            </a>
+                        </p>
+                    </oui-message>
+
+                    <oui-radio-group
+                        data-model="$ctrl.selectedConfigurationType"
+                        class="mt-4"
+                    >
+                        <div
+                            data-ng-include="$ctrl.constants.COMPONENTS_PATH_PREFIX + 'internal-config-radio.html'"
+                        ></div>
+                        <hr />
+                        <div
+                            data-ng-include="$ctrl.constants.COMPONENTS_PATH_PREFIX + 'external-config-radio.html'"
+                        ></div>
+                        <hr />
+                        <div
+                            data-ng-include="$ctrl.constants.COMPONENTS_PATH_PREFIX + 'mixed-config-radio.html'"
+                        ></div>
+                    </oui-radio-group>
+                    <web-domain-dns-modify-validation-modal
+                        data-ng-if="$ctrl.isValidationModalOpened"
+                        data-is-updating="$ctrl.isUpdating"
+                        data-modified-dns-list="$ctrl.modifiedDnsList"
+                        data-apply-configuration="$ctrl.applyConfiguration()"
+                        data-close-validation-modal="$ctrl.closeValidationModal()"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

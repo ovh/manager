@@ -10,7 +10,7 @@ export default class ExchangeAddSharedAccountCtrl {
   constructor(
     $scope,
     $translate,
-    Exchange,
+    wucExchange,
     ExchangeSharedAccounts,
     formValidation,
     messaging,
@@ -19,14 +19,14 @@ export default class ExchangeAddSharedAccountCtrl {
     this.services = {
       $scope,
       $translate,
-      Exchange,
+      wucExchange,
       ExchangeSharedAccounts,
       formValidation,
       messaging,
       navigation,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.errors = {
       emailIsAlreadyTaken: false,

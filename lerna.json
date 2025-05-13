@@ -1,10 +1,13 @@
 {
   "lerna": "3.15.0",
   "packages": [
+    "docs",
     "packages/components/*",
     "packages/manager/apps/*",
+    "packages/manager/core/*",
     "packages/manager/modules/*",
-    "packages/manager/tools/*"
+    "packages/manager/tools/*",
+    "packages/manager-react-components"
   ],
   "npmClient": "yarn",
   "useWorkspaces": true,
@@ -15,6 +18,10 @@
     },
     "publish": {
       "conventionalCommits": true
+    },
+    "version": {
+      "allowBranch": "master",
+      "ignoreChanges": []
     }
   }
 }

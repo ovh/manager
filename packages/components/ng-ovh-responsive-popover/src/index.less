@@ -1,0 +1,42 @@
+body.responsive-popover-fixed-body {
+  position: fixed;
+}
+
+.responsive-popover {
+  max-width: inherit !important;
+
+  &.popover-full-screen {
+    position: fixed;
+    top: 10px !important;
+    bottom: 10px !important;
+    left: 10px !important;
+    right: 10px !important;
+    margin: 0;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+
+    .arrow {
+      display: none;
+    }
+  }
+}
+
+[responsive-popover-popup].popover.top-left > .arrow,
+[responsive-popover-popup].popover.top-right > .arrow,
+[responsive-popover-popup].popover.bottom-left > .arrow,
+[responsive-popover-popup].popover.bottom-right > .arrow,
+[responsive-popover-popup].popover.left-top > .arrow,
+[responsive-popover-popup].popover.left-bottom > .arrow,
+[responsive-popover-popup].popover.right-top > .arrow,
+[responsive-popover-popup].popover.right-bottom > .arrow {
+  top: auto;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  margin: 0;
+}
+
+[responsive-popover-popup].popover {
+  display: block !important;
+}

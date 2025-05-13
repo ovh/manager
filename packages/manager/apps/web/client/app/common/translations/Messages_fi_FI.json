@@ -1,5 +1,0 @@
-{
-  "common_pagination_page": "Sivu {{currentPage}}/{{nbPages}}",
-  "common_pagination_display": "Näytetään",
-  "common_temporary_error": "Tapahtui tilapäinen virhe. Ole hyvä ja yritä myöhemmin uudelleen."
-}

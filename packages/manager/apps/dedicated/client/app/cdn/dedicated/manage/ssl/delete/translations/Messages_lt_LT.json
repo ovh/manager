@@ -1,9 +1,0 @@
-{
-  "cdn_dedicated_ssl_delete_title": "Ištrinti sertifikatą",
-  "cdn_dedicated_ssl_delete_confirm": "Ar tikrai norite ištrinti sertifikatą <b>{{t0}}</b>?",
-  "cdn_dedicated_ssl_delete_no_ssl_warning": "Negalite ištrinti SSL iš CDN, nes į CDN neįtrauktas joks SSL.",
-  "cdn_dedicated_ssl_delete_operation_warning": "Negalite ištrinti SSL iš CDN, nes vykdoma SSL operacija.",
-  "cdn_dedicated_ssl_delete_success": "Užduotis sukurta. Atlikta operacija įsigalios po 15 min.  ",
-  "cdn_dedicated_ssl_delete_error": "Įvyko klaida trinant sertifikatą {{t0}}.",
-  "cdn_dedicated_ssl_delete_load_error": "Klaida įkeliant SSL sertifikato informaciją."
-}

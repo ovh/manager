@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'DomainAuthInfoCtrl',
   class DomainAuthInfoCtrl {
+    /* @ngInject */
     constructor($scope, $translate, Alerter, Domain) {
       this.$scope = $scope;
       this.$translate = $translate;

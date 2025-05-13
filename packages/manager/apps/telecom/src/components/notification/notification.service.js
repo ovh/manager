@@ -8,6 +8,8 @@ angular.module('managerApp').service('NotificationElement', () => {
     this.xdslService = element.xdslService;
     this.editMode = editMode === true;
     this.id = element.id;
+    this.allowIncident = element.allowIncident;
+    this.downThreshold = element.downThreshold / 60;
   };
 
   NotificationElement.prototype = {
@@ -21,6 +23,8 @@ angular.module('managerApp').service('NotificationElement', () => {
       return (
         this.frequency &&
         this.type &&
+        this.allowIncident &&
+        this.downThreshold &&
         (this.isValidEmail() || this.isValidSms())
       );
     },
@@ -28,6 +32,8 @@ angular.module('managerApp').service('NotificationElement', () => {
       const data = {
         frequency: this.frequency,
         type: this.type,
+        allowIncident: this.allowIncident,
+        downThreshold: this.downThreshold * 60,
       };
       switch (this.type) {
         case 'sms':

@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_instances_instance_start_title": "Avvio dell’istanza",
+  "pci_projects_project_instances_instance_start_submit_label": "Conferma",
+  "pci_projects_project_instances_instance_start_cancel_label": "Annulla",
+  "pci_projects_project_instances_instance_start_content": "La tua istanza {{ instance }} verrà avviata.",
+  "pci_projects_project_instances_instance_start_success_message": "L’istanza {{ instance }} è stata avviata.",
+  "pci_projects_project_instances_instance_start_error_message": "Si è verificato un errore durante l’avvio dell'istanza {{ instance }}: {{ message }}."
+}

@@ -1,0 +1,10 @@
+{
+  "netapp_volumes_delete": "Volume löschen",
+  "netapp_volumes_delete_description": "Sind Sie sicher, dass Sie das Volume {{ volumeId }} löschen möchten?",
+  "netapp_volumes_delete_warning": "Beim Löschvorgang werden automatisch alle zugehörigen Daten unwiderruflich gelöscht. Das Löschen des Dienstes verleiht kein Recht auf Rückerstattung.",
+  "netapp_volumes_delete_enter_confirmation": "Geben Sie im folgenden Feld „DELETE\" ein, um den Vorgang zu bestätigen.",
+  "netapp_volumes_delete_cancel": "Abbrechen",
+  "netapp_volumes_delete_confirm": "Bestätigen",
+  "netapp_volumes_delete_success": "Das Volume {{ volumeId }} wurde gelöscht.",
+  "netapp_volumes_delete_error": "Beim Löschen des Volumes ist ein Fehler aufgetreten: {{ message }}"
+}

@@ -1,5 +1,5 @@
 <div class="sign-up-form-activity">
-    <div class="row">
+    <div class="row" data-ng-if="!$ctrl.siretFieldIsAvailable()">
         <!-- Should only be visible when country IT and legalform individual -->
         <div
             class="col-lg-6"
@@ -8,6 +8,7 @@
             <!-- nationalIdentificationNumber -->
             <oui-field
                 data-label="{{ 'sign_up_activity_field_nationalIdentificationNumber' | translate}}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.mandatory }"
             >
                 <input
                     type="text"
@@ -16,7 +17,10 @@
                     id="nationalIdentificationNumber"
                     data-ng-model="$ctrl.signUpFormCtrl.model.nationalIdentificationNumber"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.minLength"
                     data-ng-pattern="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.regularExpression"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.nationalIdentificationNumber)"
                 />
             </oui-field>
             <!-- /input[name="nationalIdentificationNumber"] -->
@@ -28,7 +32,8 @@
         >
             <!-- organisation -->
             <oui-field
-                data-label="{{ 'sign_up_activity_field_organisation' | translate}}"
+                data-label="{{ 'sign_up_activity_field_organisation_' + $ctrl.signUpFormCtrl.model.legalform | translateDefault:'sign_up_activity_field_organisation' }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.organisation.mandatory }"
             >
                 <input
                     type="text"
@@ -37,6 +42,9 @@
                     id="organisation"
                     data-ng-model="$ctrl.signUpFormCtrl.model.organisation"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.organisation.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.organisation.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.organisation.minLength"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.organisation)"
                 />
             </oui-field>
             <!-- /input[name="organisation"] -->
@@ -45,7 +53,8 @@
         <div class="col-lg-6" data-ng-if="$ctrl.signUpFormCtrl.rules.vat">
             <!-- vat -->
             <oui-field
-                data-label="{{ 'sign_up_activity_field_vat_' + $ctrl.signUpFormCtrl.me.ovhSubsidiary.toLowerCase() | translateDefault:'sign_up_activity_field_vat' }}"
+                data-label="{{ $ctrl.getVatFieldLabel() }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.vat.mandatory }"
             >
                 <input
                     type="text"
@@ -54,7 +63,10 @@
                     id="vat"
                     data-ng-model="$ctrl.signUpFormCtrl.model.vat"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.vat.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.vat.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.vat.minLength"
                     data-ng-pattern="$ctrl.signUpFormCtrl.rules.vat.regularExpression"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.vat)"
                 />
             </oui-field>
             <!-- /input[name="vat"] -->
@@ -67,6 +79,7 @@
             <!-- corporationType -->
             <oui-field
                 data-label="{{ 'sign_up_activity_field_corporationType' | translate}}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.corporationType.mandatory }"
             >
                 <label class="oui-select">
                     <select
@@ -76,6 +89,7 @@
                         data-ng-options="corporationType.value as corporationType.label for corporationType in $ctrl.signUpFormCtrl.rules.corporationType.in"
                         data-ng-model="$ctrl.signUpFormCtrl.model.corporationType"
                         data-ng-required="$ctrl.signUpFormCtrl.rules.corporationType.mandatory"
+                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.corporationType)"
                     >
                     </select>
                     <span
@@ -95,6 +109,8 @@
             <!-- companyNationalIdentificationNumber -->
             <oui-field
                 data-label="{{ 'sign_up_activity_field_companyNationalIdentificationNumber_' + $ctrl.signUpFormCtrl.me.ovhSubsidiary.toLowerCase() | translateDefault:'sign_up_activity_field_companyNationalIdentificationNumber'}}"
+                data-label-popover="{{ 'sign_up_activity_field_companyNationalIdentificationNumber_' + $ctrl.signUpFormCtrl.me.ovhSubsidiary.toLowerCase() + '_tooltip' | translate}}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.mandatory }"
             >
                 <input
                     type="text"
@@ -103,7 +119,10 @@
                     id="companyNationalIdentificationNumber"
                     data-ng-model="$ctrl.signUpFormCtrl.model.companyNationalIdentificationNumber"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.minLength"
                     data-ng-pattern="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.regularExpression"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.companyNationalIdentificationNumber)"
                 />
             </oui-field>
             <!-- /input[name="companyNationalIdentificationNumber"] -->
@@ -116,6 +135,7 @@
             <!-- italianSDI -->
             <oui-field
                 data-label="{{ 'sign_up_activity_field_italian_sdi' | translate}}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.italianSDI.mandatory }"
             >
                 <input
                     type="text"
@@ -124,10 +144,94 @@
                     id="italianSDI"
                     data-ng-model="$ctrl.signUpFormCtrl.model.italianSDI"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.italianSDI.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.italianSDI.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.italianSDI.minLength"
                     data-ng-pattern="$ctrl.signUpFormCtrl.rules.italianSDI.regularExpression"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.italianSDI)"
                 />
             </oui-field>
             <!-- /input[name="italianSDI"] -->
         </div>
+    </div>
+
+    <div data-ng-if="$ctrl.siretFieldIsAvailable()">
+        <oui-select-picker
+            name="ouiSelectPickerCompany"
+            data-model="$ctrl.corporationIsCreated"
+            data-required
+            data-label="{{:: 'sign_up_activity_corporation_created_title' | translate }}"
+            data-values="[true]"
+            data-on-change="$ctrl.onCorporationCreationStatusChange(modelValue)"
+        >
+            <oui-select-picker-description>
+                <span
+                    data-translate="sign_up_activity_corporation_created_description"
+                ></span>
+            </oui-select-picker-description>
+        </oui-select-picker>
+
+        <oui-select-picker
+            class="mb-4"
+            name="ouiSelectPickerCompany"
+            data-model="$ctrl.corporationIsCreated"
+            data-required
+            data-label="{{:: 'sign_up_activity_corporation_not_created_title' | translate }}"
+            data-values="[false]"
+            data-on-change="$ctrl.onCorporationCreationStatusChange(modelValue)"
+        >
+            <oui-select-picker-description>
+                <span
+                    data-translate="sign_up_activity_corporation_not_created_description"
+                ></span>
+            </oui-select-picker-description>
+        </oui-select-picker>
+
+        <div data-ng-if="!$ctrl.corporationIsCreated">
+            <form id="companyForm" name="companyForm">
+                <div class="row">
+                    <oui-field
+                        class="col-lg-6"
+                        data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.organisation.mandatory }"
+                        data-label="{{ 'siret_manual_company_name' | translate }}"
+                    >
+                        <input
+                            class="oui-input"
+                            name="companyName"
+                            placeholder="{{ 'siret_manual_company_name' | translate }}"
+                            type="text"
+                            data-ng-model="$ctrl.signUpFormCtrl.model.organisation"
+                            data-ng-required="$ctrl.signUpFormCtrl.rules.organisation.mandatory"
+                            data-ng-maxlength="$ctrl.signUpFormCtrl.rules.organisation.maxLength"
+                            data-ng-minlength="$ctrl.signUpFormCtrl.rules.organisation.minLength"
+                            data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.companyName)"
+                            data-required
+                        />
+                    </oui-field>
+                    <oui-field
+                        class="col-lg-6"
+                        data-label="{{ 'siret_manual_company_legal_form' | translate }}"
+                    >
+                        <oui-select
+                            data-items="$ctrl.legalFormList"
+                            data-name="corporationType"
+                            data-model="$ctrl.signUpFormCtrl.model.corporationType"
+                            data-on-blur="$ctrl.onFieldBlur($ctrl.formCtrl.corporationType)"
+                            data-required
+                        >
+                        </oui-select>
+                    </oui-field>
+                </div>
+            </form>
+        </div>
+        <siret-component
+            data-ng-if="$ctrl.corporationIsCreated"
+            data-country="$ctrl.signUpFormCtrl.model.country"
+            data-model="$ctrl.signUpFormCtrl.model"
+            data-rules="$ctrl.signUpFormCtrl.rules"
+            data-tracking-mode="'creation'"
+            data-is-valid="$ctrl.signUpFormCtrl.isValid"
+            data-form-ctrl="$ctrl.formCtrl"
+            data-on-field-error="$ctrl.onFieldError"
+        ></siret-component>
     </div>
 </div>

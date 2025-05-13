@@ -4,11 +4,12 @@ export default /* @ngInject */ ($timeout) => ({
   restrict: 'E',
   template,
   scope: {
-    title: '=tucEditableServiceNameTitle',
+    title: '<tucEditableServiceNameTitle',
     serviceName: '=tucEditableServiceNameServiceName',
     onEditStart: '&?tucEditableServiceNameTitleOnEditStart',
     onEditCancel: '&?tucEditableServiceNameTitleOnEditCancel',
     onSave: '&tucEditableServiceNameTitleOnSave', // MUST BE a promise
+    serviceNameAppendix: '@',
     maxlength: '@',
     disabled: '=',
   },

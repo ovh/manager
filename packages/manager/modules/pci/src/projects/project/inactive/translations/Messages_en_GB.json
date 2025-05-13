@@ -1,0 +1,9 @@
+{
+  "pci_projects_project_inactive_title_pending_debt": "An invoice for this project is pending payment",
+  "pci_projects_project_inactive_title_suspended": "Your project is suspended",
+  "pci_projects_project_inactive_title_suspended_pending_debt": "Your project has been suspended due to an outstanding payment",
+  "pci_projects_project_inactive_description_pending_debt": "Please settle the amount. If you do not act quickly, the project will be suspended, and you will lose all of your associated services.",
+  "pci_projects_project_inactive_description_suspended": "This will be permanently deleted.",
+  "pci_projects_project_inactive_description_suspended_pending_debt": "To reactivate your project, please settle the outstanding bill, then contact the Support team.",
+  "pci_projects_project_inactive_close": "Close"
+}

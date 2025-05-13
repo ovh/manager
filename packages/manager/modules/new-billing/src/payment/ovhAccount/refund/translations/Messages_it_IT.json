@@ -1,0 +1,9 @@
+{
+  "billing_ovhaccount_refund": "Richiedi un rimborso",
+  "billing_ovhaccount_refund_cancel": "Annulla",
+  "billing_ovhaccount_refund_confirm": "Conferma la richiesta",
+  "billing_ovhaccount_refund_description": "Stai per procedere al rimborso di {{ amount }}. Verrai rimborsato sul metodo di pagamento originale.",
+  "billing_ovhaccount_refund_description_confirm": "Vuoi procedere al rimborso?",
+  "billing_ovhaccount_refund_success": "La tua richiesta di rimborso di {{amount}} è stata presa in carico e verrà gestita nel minor tempo possibile.",
+  "billing_ovhaccount_refund_error": "Si è verificato un errore durante la richiesta di rimborso."
+}

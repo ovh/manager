@@ -1,16 +1,16 @@
 {
-  "xdsl_modem_device_status": "Appareils connectés",
-  "xdsl_modem_device_connected": "Liste des appareils connectés",
-  "xdsl_modem_device_show_none": "Aucun appareil connecté",
-  "xdsl_modem_device_show_many": "{{count}} appareils connectés",
-  "xdsl_modem_device_show_one": "{{count}} appareil connecté",
+  "xdsl_modem_device_status": "Connected devices",
+  "xdsl_modem_device_connected": "List of connected devices",
+  "xdsl_modem_device_show_none": "No device connected",
+  "xdsl_modem_device_show_many": "{{count}} connected devices",
+  "xdsl_modem_device_show_one": "{{count}} connected device",
   "xdsl_modem_device_mac": "MAC address",
   "xdsl_modem_device_ip": "IP address",
   "xdsl_modem_device_host": "Name",
-  "xdsl_modem_device_connection_type": "type",
+  "xdsl_modem_device_connection_type": "Type",
   "xdsl_modem_device_other": "Other",
-  "xdsl_modem_device_waiting_refresh": "En attente de rafraîchissement",
+  "xdsl_modem_device_waiting_refresh": "Awaiting refresh",
   "xdsl_modem_refresh": "Refresh",
-  "xdsl_modem_refresh_error": "Oups ! Nous n'avons pas pu rafraîchir la liste de vos équipements connectés.",
-  "xdsl_modem_connected_list_error": "Oups ! Nous n'avons pas pu récupérer la liste de vos équippements connectés."
+  "xdsl_modem_refresh_error": "Oops! We were unable to refresh the list of your connected devices.",
+  "xdsl_modem_connected_list_error": "Oops! We were unable to retrieve the list of your connected devices."
 }

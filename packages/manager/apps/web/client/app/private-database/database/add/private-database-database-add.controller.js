@@ -3,6 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 angular.module('App').controller(
   'PrivateDatabaseAddBddCtrl',
   class PrivateDatabaseAddBddCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $q,
@@ -28,15 +29,13 @@ angular.module('App').controller(
     $onInit() {
       this.productId = this.$stateParams.productId;
 
-      if (this.$scope.isDBaaS()) {
-        this.checkAuthorizedIp().then((hasAuthorizedIp) => {
-          // if there are no ip configured,
-          // we check the box to suggest the user to add an ip
-          this.model.addIp = !hasAuthorizedIp;
+      this.checkAuthorizedIp().then((hasAuthorizedIp) => {
+        // if there are no ip configured,
+        // we check the box to suggest the user to add an ip
+        this.model.addIp = !hasAuthorizedIp;
 
-          this.hasAuthorizedIp = hasAuthorizedIp;
-        });
-      }
+        this.hasAuthorizedIp = hasAuthorizedIp;
+      });
 
       this.model = {
         addUser: false,
@@ -48,7 +47,7 @@ angular.module('App').controller(
               min: 1,
               max: 50,
             },
-            reg: /^([\d\w-]){1,50}$/,
+            reg: /^[a-zA-Z0-9]([\w-]){0,49}$/,
           },
         },
         user: {
@@ -82,7 +81,7 @@ angular.module('App').controller(
       };
 
       this.PrivateDatabase.getModels().then((models) => {
-        this.grantEnum = models['hosting.PrivateDatabase.grant.GrantEnum'].enum;
+        this.grantEnum = models['hosting.privateDatabase.grant.GrantEnum'].enum;
       });
 
       this.$scope.addBdd = () => this.addBdd();

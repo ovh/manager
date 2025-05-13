@@ -1,0 +1,34 @@
+<div class="widget-presentation py-3 move-number-config">
+    <h2
+        class="widget-presentation-title"
+        data-translate="pack_move_line_keep_number"
+    ></h2>
+    <div class="row m-0 p-0">
+        <!-- BEGIN: Current Address -->
+        <pack-move-address-current
+            data-loading="$ctrl.loading"
+            data-line-number="{{$ctrl.lineNumber}}"
+            data-port-line-number="$ctrl.portLineNumber"
+            data-portability="$ctrl.portability"
+            data-address="$ctrl.address"
+        >
+        </pack-move-address-current>
+        <!-- END: Current Address -->
+        <!-- BEGIN: New Address -->
+        <pack-move-address-future
+            data-address="$ctrl.futureAddress"
+            data-address-loading="$ctrl.addressLoading"
+            data-rio="$ctrl.rio"
+            data-keep-line-number="$ctrl.keepLineNumber"
+            data-can-keep-line-number="$ctrl.canKeepNumber()"
+            data-line-number="{{$ctrl.futureLineNumber}}"
+        >
+        </pack-move-address-future>
+        <!-- END: New Address -->
+    </div>
+    <div class="m-1">
+        <oui-button variant="primary" data-on-click="$ctrl.next()">
+            <span data-translate="pack_move_confirm"></span>
+        </oui-button>
+    </div>
+</div>

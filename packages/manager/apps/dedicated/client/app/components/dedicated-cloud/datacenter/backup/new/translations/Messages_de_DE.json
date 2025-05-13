@@ -1,0 +1,18 @@
+{
+  "dedicatedCloud_datacenter_backup_new_description1": "Anscheinend haben Sie keinen Backup-Dienst aktiviert",
+  "dedicatedCloud_datacenter_backup_new_description2": "Sie können für das Backup Ihrer virtuellen Maschinen (VMs) aus 3 neuen Angeboten wählen: <strong>Standard</strong>, <strong>Advanced</strong> oder <strong>Premium</strong>.",
+  "dedicatedCloud_datacenter_backup_new_description3_EPCC": "Nur das für dieses Rechenzentrum gewählte Angebot wird auch für alle anderen Rechenzentren dieser Private Cloud verfügbar sein. Es wird als einziges für Ihre virtuellen Maschinen verwendet werden.",
+  "dedicatedCloud_datacenter_backup_new_tariff_url": "Verfügbare Preise für Veeam Backup anzeigen",
+  "dedicatedCloud_datacenter_backup_new_restricted_offer_choice_EPCC": "Das Angebot {{offer}} wurde bereits für das Rechenzentrum {{datacenterName}} Ihrer Private Cloud ausgewählt. Sie können es für dieses Rechenzentrum aktivieren.",
+  "dedicatedCloud_datacenter_backup_new_blocked_EPCC": "Es wird bereits ein Backup-Angebot in einem anderen Datacenter der Private Cloud verwendet. Bevor diese Anwendung beendet ist, können Sie kein neues Angebot aktivieren.",
+  "dedicatedCloud_datacenter_backup_new_choose_offer": "Auswahl des Backup-Angebots",
+  "dedicatedCloud_datacenter_backup_new_choose_offer_action": "Angebot auswählen",
+  "dedicatedCloud_datacenter_backup_new_validate_conditions": "Bestätigung der Nutzungsbedingungen",
+  "dedicatedCloud_datacenter_backup_new_activate_offer_action": "Angebot aktivieren",
+  "dedicatedCloud_datacenter_backup_new_create_success": "Ihre Anfrage zur Aktivierung von Veeam Backup {{offerType}} wird bearbeitet. Sie können den Fortschritt des Vorgangs <a href=\"{{operationsUrl}}\">hier</a> nachverfolgen.",
+  "dedicatedCloud_datacenter_backup_new_create_error": "Backup-Angebot konnte nicht erstellt werden: {{ message }}",
+  "dedicatedCloud_datacenter_backup_new_description3_MBM": "Ausschließlich das Angebot, das Sie für dieses Rechenzentrum wählen, wird für alle anderen Rechenzentren dieses Essentials Produkts zur Verfügung stehen. Es wird auch für alle Ihre virtuellen Maschinen verwendet.",
+  "dedicatedCloud_datacenter_backup_new_restricted_offer_choice_MBM": "Das Angebot {{offer}} wurde bereits für das Rechenzentrum {{datacenterName}} Ihres Essentials Produkts ausgewählt. Sie können es für dieses Rechenzentrum aktivieren.",
+  "dedicatedCloud_datacenter_backup_new_blocked_MBM": "Ein Backup wird gerade in einem anderen Rechenzentrum des Essentials Produkts bearbeitet. Bevor diese Anwendung beendet ist, können Sie kein neues Angebot aktivieren.",
+  "dedicatedCloud_datacenter_backup_new_order_success": "Ihr <a target='_blank' rel='noopener' href='{{orderUrl}}'>Bestellschein</a> zur Aktivierung des Veeam Backup Angebots {{offerType}} wurde erfolgreich erstellt. Wenn Sie den Task bestätigt haben, können Sie den Fortschritt der Arbeiten <a href='{{operationsUrl}}'>hier nachverfolgen</a>."
+}

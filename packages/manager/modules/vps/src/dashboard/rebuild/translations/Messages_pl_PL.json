@@ -1,5 +1,7 @@
 {
   "vps_configuration_rebuild_cancel": "Anuluj",
   "vps_configuration_rebuild_confirm": "Zatwierdź",
-  "vps_configuration_rebuild_doNotSendPassword": "Nie chcę otrzymać wiadomości e-mail z danymi do logowania dla mojego serwera VPS."
+  "vps_configuration_rebuild_doNotSendPassword": "Nie chcę otrzymać wiadomości e-mail z danymi do logowania dla mojego serwera VPS.",
+  "vps_configuration_rebuild_warning_part_1": "Instalacja spowoduje sformatowanie wszystkich dysków serwera.",
+  "vps_configuration_rebuild_warning_part_2": "<b>Sugestia:</b> Jeśli chcesz zrobić krok wstecz, zalecamy wykonanie snapshota przed przystąpieniem do tej czynności. Aby dowiedzieć się więcej, sprawdź<a class=\"oui-link_icon\" href=\"{{ href }}\" target=\"_blank\">przewodnik<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>."
 }

@@ -1,40 +1,17 @@
-@oui-path: '../../../ovh-ui-kit';
-
-@import '~ovh-ui-kit/packages/oui-color/_variables';
-@import '~ovh-ui-kit/packages/oui-typography/_variables';
-@import '~ovh-ui-kit-bs/src/bootstrap/_variables';
+@import '@ovh-ux/ui-kit/dist/less/_tokens';
+@import 'ovh-ui-kit-bs/dist/less/bootstrap/_variables';
 
 .telecom-legacy {
-  .telecom-section-header {
-    clear: both;
-    margin-bottom: 32px;
-    min-height: 92px;
-  }
-
-  .telecom-section-alert,
-  .telecom-section-content {
+  .telecom-section-alert {
     margin: 0 32px;
   }
 
   .contracts-ctnr a.text-muted {
-    color: @oui-color-dodger;
+    color: #32acff;
   }
 
   .overflow-visible {
     overflow: visible !important;
-  }
-
-  // TODO: Delete this custom style once we remove editable service name component
-  // and use page-header ui-kit component with header-tabs
-  .oui-header-tabs {
-    background-color: @oui-color-nurse;
-  }
-
-  .ovh-form-flat {
-    .input-group-btn {
-      box-shadow: none;
-      border: none;
-    }
   }
 
   @import './telecom/button';

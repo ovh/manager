@@ -3,7 +3,7 @@
   "pci_projects_project_instances_instance_attach-volume_submit_label": "Verbinden",
   "pci_projects_project_instances_instance_attach-volume_cancel_label": "Abbrechen",
   "pci_projects_project_instances_instance_attach-volume_volume_placeholder": "Suchen",
-  "pci_projects_project_instances_instance_attach-volume_error_no_compatible_volume": "Sie verfügen über kein kompatibles Volume, mit dem Sie diese Instanz verbinden können.",
-  "pci_projects_project_instances_instance_attach-volume_success_message": "Der {{ type }}-Typ {{ volume }}}-Volume ({{ volumundiId }}) wurde an die {{ instance }} ({{ instanceId }}) angefügt.",
+  "pci_projects_project_instances_instance_attach-volume_error_no_compatible_volume": "In der Region, in der sich Ihre Instanz befindet, ist kein Volumen verfügbar.",
+  "pci_projects_project_instances_instance_attach-volume_success_message": "Das Volume {{ volume }} ({{ volumeId }}) vom Typ {{ type }} wurde mit der Instanz {{ instance }} ({{ instanceId }}) verbunden.",
   "pci_projects_project_instances_instance_attach-volume_error_attach": "Bei der Aktualisierung des Volumes {{ volume }} ist ein Fehler aufgetreten: {{ message }}"
 }

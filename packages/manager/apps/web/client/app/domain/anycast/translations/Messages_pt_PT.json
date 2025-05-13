@@ -1,0 +1,19 @@
+{
+  "domain_anycast": "Ativar DNS Anycast",
+  "domain_dashboard_dns_anycast_order": "Encomendar DNS Anycast",
+  "domain_configuration_anycast_order_description": "Ativação da opção DNS Anycast no domínio {{t0}}",
+  "domain_dashboard_dns_anycast_payment": "Pagamento",
+  "domain_dashboard_dns_anycast_duration_choose": "Selecione a sua duração",
+  "domain_dashboard_dns_anycast_price_without_tax": "{{ price }} + IVA",
+  "domain_dashboard_dns_anycast_prorata_price_without_tax": "Preço s/IVA",
+  "domain_dashboard_dns_anycast_prorata_price_with_tax": "Preço c/ IVA incl.",
+  "domain_dashboard_dns_anycast_prorata_untill": "Prorata até",
+  "domain_dashboard_dns_anycast_next": "Seguinte",
+  "domain_dashboard_dns_anycast_duration": "12 meses",
+  "domain_dashboard_dns_anycast_pay": "Pagar",
+  "domain_configuration_anycast_order_success": "O seu pedido de ativação da opção DNS Anycast foi registado.",
+  "domain_configuration_anycast_order_success_bc": "Para finalizar o processo, proceda ao pagamento da sua nota de encomenda.",
+  "domain_configuration_anycast_order_success_bc_link": "Nota de encomenda",
+  "domain_configuration_anycast_payment_acceptance_delay_info": "Atenção: a ativação pode demorar cerca de 15 minutos até ficar registada na Área de Cliente Web.",
+  "domain_configuration_anycast_propagation_delay_info": "O serviço DNS pode demorar até 48h a ser propagado."
+}

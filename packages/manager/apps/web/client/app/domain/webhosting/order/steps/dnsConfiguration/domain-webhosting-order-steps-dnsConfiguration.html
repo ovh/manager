@@ -3,7 +3,8 @@
     data-editable="!$ctrl.stepper.loadingCheckout"
     data-description="{{:: 'domain_webhosting_order_dns_configuration_step_subtitle' | translate }}"
     data-on-focus="$ctrl.enableHelpers()"
-    data-on-submit="$ctrl.updateDnsConfiguration()"
+    data-on-submit="$ctrl.onGoToNextStepClick()"
+    data-position="{{::$ctrl.stepperPosition}}"
 >
     <div>
         <oui-checkbox
@@ -28,7 +29,7 @@
             data-translate="domain_webhosting_order_dns_configuration_enable_hosting_help"
         ></span>
     </div>
-    <div>
+    <div data-ng-if="$ctrl.emailDnsConfigurationAvailable">
         <oui-checkbox
             class="d-inline-block"
             data-model="$ctrl.dnsConfiguration.enableEmails"

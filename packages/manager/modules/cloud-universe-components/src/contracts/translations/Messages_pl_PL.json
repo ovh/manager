@@ -1,9 +1,0 @@
-{
-  "contract_next": "Dalej",
-  "contract_previous": "Wstecz",
-  "contract_download": "Otwórz regulamin \"{{id}}\" w formacie PDF.",
-  "contract_agree": "Przeczytałem i akceptuję regulamin.",
-  "contracts_agree": "Przeczytałem i akceptuję regulaminy.",
-  "contract_list_title": "Masz 1 regulamin do przeczytania.",
-  "contracts_list_title": "{{nbr}} regulaminy(ów) do przeczytania."
-}

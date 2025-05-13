@@ -1,0 +1,8 @@
+{
+  "nutanix_node_reboot_title": "Reboot server",
+  "nutanix_node_reboot_description": "Are you sure you want to reboot your {{nodeName}} server?",
+  "nutanix_node_reboot_success": "Your {{nodeName}} server will reboot.",
+  "nutanix_node_reboot_error": "An error has occurred processing the reboot request: {{message}}",
+  "nutanix_node_reboot_confirm": "Confirm",
+  "nutanix_node_reboot_cancel": "Cancel"
+}

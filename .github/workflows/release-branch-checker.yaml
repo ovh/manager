@@ -1,0 +1,17 @@
+name: 'Check for Release Branch'
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+jobs:
+  check_branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name
+        uses: actions/github-script@v6
+        if: github.base_ref == 'master'
+        with:
+          script: |
+            if(!context.payload.pull_request.head.ref.startsWith('release/')) {
+              throw new Error(`Only "release/**" branches can be merged to "master".`);
+            }

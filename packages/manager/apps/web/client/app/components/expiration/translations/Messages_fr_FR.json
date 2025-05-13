@@ -1,0 +1,10 @@
+{
+  "expiration_new_tab": "S'ouvre dans un nouvel onglet",
+  "expiration_expired_date": "Expiré le <strong>{{t0}}</strong>",
+  "expiration_renew_date": "Renouvellement automatique prévu en <strong>{{t0}}</strong>",
+  "expiration_resiliation_cancel_label": "Annuler la résiliation",
+  "expiration_wizard_renew": "Renouveler",
+  "expiration_wizard_restore": "Restaurer",
+  "expiration_resiliation_date": "Résiliation prévue le <strong>{{t0}}</strong>",
+  "expiration_expiration_date": "Expire le <strong>{{t0}}</strong>"
+}

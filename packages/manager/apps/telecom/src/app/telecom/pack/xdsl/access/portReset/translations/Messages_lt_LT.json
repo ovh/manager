@@ -1,8 +1,0 @@
-{
-  "xdsl_access_dslam_reset": "Inicijuoti iš naujo",
-  "xdsl_access_dslam_reset_an_error_ocurred": "[Pakartotinis sujungimo prievado inicijavimas] Klaida!",
-  "xdsl_access_dslam_reset_success": "Atliekamas pakartotinis prievado inicijavimas",
-  "xdsl_access_dslam_reset_really": "Ar tikrai norite iš naujo inicijuoti prisijungimo prievadą?",
-  "xdsl_access_dslam_reset_description": "Ši funkcija leidžia perkrauti linijos prijungimo prievadą DSLAM lygmenyje. Dėmesio! Perkraunant kelioms minutėms dings ryšys.",
-  "xdsl_access_dslam_reset_warning": "Dėmesio! Perkraunant kelioms minutėms dings ryšys."
-}

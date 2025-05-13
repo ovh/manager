@@ -1,0 +1,15 @@
+{
+  "carbon_calculator_dashboard_carbon_footprint_explanation": "Hier können Sie sich die Analyse der Treibhausgasemissionen Ihrer Infrastruktur ansehen und herunterladen. Verfolgen Sie die mit der Herstellung, dem Energieverbrauch und den zugehörigen Abläufen Ihrer Cloud-Dienste verbundenen Umweltauswirkungen.",
+  "carbon_calculator_dashboard_carbon_balance_title": "Wie setzt sich die CO2-Bilanz von OVHcloud zusammen?",
+  "carbon_calculator_dashboard_carbon_balance_manufacturing": "Herstellung",
+  "carbon_calculator_dashboard_carbon_balance_electricity": "Strom",
+  "carbon_calculator_dashboard_carbon_balance_operations": "Abläufe",
+  "carbon_calculator_dashboard_carbon_balance_greenhouse_gas": "Treibhausgasemissionen",
+  "carbon_calculator_dashboard_carbon_balance_explanation": "OVHcloud berücksichtigt alle CO2eq-emittierenden Quellen und die Daten wurden mit folgender Formel ermittelt:",
+  "carbon_calculator_dashboard_billing_explanation": "Dieses Dokument enthält die Treibhausgasemissionen des Vormonats:",
+  "carbon_calculator_dashboard_billing_download": "Meinen CO2-Fußabdruck von {{month}} herunterladen",
+  "carbon_calculator_dashboard_billing_explanation_hpc": "Hosted Private Cloud",
+  "carbon_calculator_dashboard_billing_explanation_baremetal": "Bare-Metal-Infrastruktur",
+  "carbon_calculator_dashboard_billing_explanation_service": "Ihrer Dienste <strong>{{serviceName}}</strong>",
+  "carbon_calculator_dashboard_billing_explanation_contact": "für die Sie der <strong>Rechnungskontakt</strong> sind"
+}

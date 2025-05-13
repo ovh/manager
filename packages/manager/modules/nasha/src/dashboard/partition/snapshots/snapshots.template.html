@@ -1,0 +1,223 @@
+<div class="nasha-dashboard-partition-snapshots">
+    <oui-header
+        data-heading="{{:: 'nasha_dashboard_partition_snapshots_heading' | translate }}"
+        data-description="{{:: 'nasha_dashboard_partition_snapshots_description' | translate }}"
+    ></oui-header>
+    <h4 data-translate="nasha_dashboard_partition_snapshots_subtitle"></h4>
+    <p class="d-flex flex-column">
+        <strong
+            data-translate="nasha_dashboard_partition_snapshots_count_title"
+        ></strong>
+        <span data-ng-bind=":: $ctrl.snapshotsCount"> </span>
+    </p>
+    <oui-button
+        class="mb-2"
+        data-icon-left="oui-icon-plus"
+        data-disabled="$ctrl.isCustomSnapshotFormShown || !($ctrl.customSnapshots.length < $ctrl.MAX_CUSTOM_SNAPSHOT)"
+        data-on-click="$ctrl.showCustomSnapshotForm()"
+    >
+        <span
+            data-translate="nasha_dashboard_partition_snapshots_create"
+        ></span>
+    </oui-button>
+    <oui-message
+        class="mt-3 mb-4"
+        data-ng-if="$ctrl.isCustomSnapshotFormShown && !$ctrl.isWarningDismissed"
+        data-type="warning"
+        data-on-dismiss="$ctrl.isWarningDismissed = true"
+        data-dismissable
+    >
+        <p
+            class="my-0"
+            data-translate="nasha_dashboard_partition_snapshots_warning_1"
+        ></p>
+        <p
+            class="my-0"
+            data-translate="nasha_dashboard_partition_snapshots_warning_2"
+        ></p>
+    </oui-message>
+    <table class="oui-datagrid" aria-label="snapshots">
+        <thead>
+            <tr>
+                <th class="oui-datagrid__header" role="heading" tabindex="-1">
+                    <span
+                        data-translate="nasha_dashboard_partition_snapshots_list_type"
+                    ></span>
+                </th>
+                <th class="oui-datagrid__header" role="heading" tabindex="-1">
+                    <span
+                        data-translate="nasha_dashboard_partition_snapshots_list_name"
+                    ></span>
+                </th>
+                <th class="oui-datagrid__header" role="heading" tabindex="-1">
+                    <span
+                        data-translate="nasha_dashboard_partition_snapshots_list_options"
+                    ></span>
+                </th>
+            </tr>
+        </thead>
+        <tbody aria-hidden="false">
+            <!-- Frequencies row -->
+            <tr class="oui-datagrid__row">
+                <td
+                    class="oui-datagrid__cell"
+                    data-translate="nasha_dashboard_partition_snapshots_list_snapshot_types"
+                ></td>
+                <td class="oui-datagrid__cell">-</td>
+                <td
+                    class="oui-datagrid__cell d-flex justify-content-between align-items-center"
+                >
+                    <oui-dropdown>
+                        <oui-dropdown-trigger
+                            text="{{ $ctrl.readableSnapshotTypesModel }}"
+                        ></oui-dropdown-trigger>
+                        <div class="oui-dropdown-menu" oui-dropdown-content>
+                            <oui-dropdown-item
+                                data-ng-repeat="snapshotType in $ctrl.model.snapshotTypes track by snapshotType.value"
+                                data-ng-click="$event.stopPropagation()"
+                            >
+                                <oui-checkbox
+                                    data-id="snapshotType_{{ snapshotType.value }}"
+                                    data-name="snapshotType_{{ snapshotType.value }}"
+                                    data-model="snapshotType.enabled"
+                                >
+                                    <span
+                                        data-ng-bind="snapshotType.label"
+                                    ></span>
+                                </oui-checkbox>
+                            </oui-dropdown-item>
+                        </div>
+                    </oui-dropdown>
+                    <div class="d-flex align-items-center">
+                        <oui-spinner
+                            data-ng-if="$ctrl.isUpdatingSnapshotTypes"
+                            data-size="s"
+                            class="mr-2"
+                        ></oui-spinner>
+                        <oui-button
+                            class="mr-2"
+                            data-on-click="$ctrl.updateSnapshotTypes()"
+                            data-disabled="!$ctrl.canUpdateSnapshotTypes"
+                            data-translate-attr="{ title: 'nasha_dashboard_partition_snapshots_submit_snapshot_types' }"
+                        >
+                            <span
+                                class="oui-icon oui-icon-check"
+                                aria-hidden="true"
+                            ></span>
+                        </oui-button>
+                        <oui-button
+                            data-on-click="$ctrl.onCancelSnapshotTypesClick()"
+                            data-disabled="!$ctrl.canUpdateSnapshotTypes"
+                            data-translate-attr="{ title: 'nasha_dashboard_partition_snapshots_reset_snapshot_types' }"
+                        >
+                            <span
+                                class="oui-icon oui-icon-close"
+                                aria-hidden="true"
+                            ></span>
+                        </oui-button>
+                    </div>
+                </td>
+            </tr>
+            <!-- Custom snapshots rows -->
+            <tr
+                class="oui-datagrid__row"
+                data-ng-repeat="customSnapshot in $ctrl.snapshots.customs track by $index"
+            >
+                <td
+                    class="oui-datagrid__cell"
+                    data-translate="nasha_dashboard_partition_snapshots_list_custom_snapshot"
+                ></td>
+                <td colspan="2" class="oui-datagrid__cell">
+                    <div
+                        class="d-flex justify-content-between align-items-center"
+                    >
+                        <span data-ng-bind="customSnapshot"></span>
+                        <div class="d-flex align-items-center">
+                            <oui-button
+                                data-on-click="$ctrl.onDeleteClick(customSnapshot)"
+                                data-translate-attr="{ title: 'nasha_dashboard_partition_snapshots_delete' }"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-bin"
+                                    aria-hidden="true"
+                                ></span>
+                            </oui-button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- Custom snapshot form row -->
+            <tr
+                class="oui-datagrid__row form"
+                data-ng-if="$ctrl.isCustomSnapshotFormShown"
+            >
+                <td class="oui-datagrid__cell">
+                    <strong
+                        data-translate="nasha_dashboard_partition_snapshots_list_custom_snapshot"
+                    ></strong>
+                </td>
+                <td class="oui-datagrid__cell" colspan="2">
+                    <form
+                        name="$ctrl.customSnapshotForm"
+                        class="d-flex justify-content-between align-items-baseline"
+                        data-ng-submit="$ctrl.createCustomSnapshot()"
+                        data-ng-disabled="$ctrl.isCreatingCustomSnapshot"
+                    >
+                        <div
+                            class="d-flex align-items-baseline oui-input-group oui-input-group_l"
+                        >
+                            <strong
+                                data-ng-bind="$ctrl.customSnapshotNamePrefix"
+                            ></strong>
+                            <strong
+                                data-ng-bind="$ctrl.customSnapshotNameSeparator"
+                            ></strong>
+                            <oui-field
+                                data-help-text="{{:: 'nasha_dashboard_partition_snapshots_create_rule' | translate }}"
+                            >
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    class="oui-input"
+                                    data-ng-model="$ctrl.model.customSnapshotName"
+                                    data-ng-pattern="$ctrl.customSnapshotNamePattern"
+                                    required
+                                />
+                            </oui-field>
+                        </div>
+                        <div>
+                            <oui-spinner
+                                data-ng-if="$ctrl.isCreatingCustomSnapshot"
+                                data-size="s"
+                                class="mr-2"
+                            ></oui-spinner>
+                            <oui-button
+                                class="mr-2"
+                                data-type="submit"
+                                data-disabled="!$ctrl.canCreateCustomSnapshot"
+                                data-translate-attr="{ title: 'nasha_dashboard_partition_snapshots_create' }"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-check"
+                                    aria-hidden="true"
+                                ></span>
+                            </oui-button>
+                            <oui-button
+                                data-on-click="$ctrl.onCancelCustomSnapshotClick()"
+                                data-disabled="$ctrl.isCreatingCustomSnapshot"
+                                data-translate-attr="{ title: 'nasha_dashboard_partition_snapshots_hide_form' }"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-close"
+                                    aria-hidden="true"
+                                ></span>
+                            </oui-button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div data-ui-view></div>
+</div>

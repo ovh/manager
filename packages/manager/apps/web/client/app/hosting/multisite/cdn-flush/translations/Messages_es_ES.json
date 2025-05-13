@@ -1,0 +1,17 @@
+{
+  "hosting_multisite_cdn_flush_title": "Vaciar la caché",
+  "hosting_multisite_cdn_flush_question_true": "¿Seguro que quiere vaciar la caché de su CDN para este dominio?",
+  "hosting_multisite_cdn_flush_question_false": "¿Seguro que quiere vaciar la caché de su CDN?",
+  "hosting_multisite_cdn_flush_success": "Su caché CDN se vaciará enseguida.",
+  "hosting_multisite_cdn_flush_done_success": "La caché CDN se ha vaciado correctamente.",
+  "hosting_multisite_cdn_flush_error": "Se ha producido un error al solicitar el vaciado de su caché CDN.",
+  "hosting_multisite_cdn_flush_domain": "Dominio:",
+  "hosting_multisite_cdn_flush_purge_option_all": "Todo el sitio web",
+  "hosting_multisite_cdn_flush_purge_option_folder": "Carpeta",
+  "hosting_multisite_cdn_flush_purge_option_uri": "URI",
+  "hosting_multisite_cdn_flush_purge_option_extension": "Extensión",
+  "hosting_multisite_cdn_flush_purge_option_regex": "Expresión regular personalizada",
+  "hosting_multisite_cdn_flush_purge_field_value": "Valor",
+  "hosting_multisite_cdn_flush_cancel": "Cancelar",
+  "hosting_multisite_cdn_flush_validate": "Confirmar"
+}

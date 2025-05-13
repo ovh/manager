@@ -1,0 +1,19 @@
+{
+  "cloud_connect_tasks_decription": "Wartende, laufende und fehlgeschlagene Aufgaben.",
+  "cloud_connect_tasks_id": "ID der Aufgabe",
+  "cloud_connect_tasks_action": "Aktion",
+  "cloud_connect_tasks_lockInterface": "Interface zur Sperrung",
+  "cloud_connect_tasks_unlockInterface": "Das Interface entsperren",
+  "cloud_connect_tasks_addPopConfiguration": "Eine PoP-Konfiguration hinzufügen",
+  "cloud_connect_tasks_delPopConfiguration": "Die Pop-Konfiguration löschen",
+  "cloud_connect_tasks_addDatacenterConfiguration": "Konfiguration der Verfügbarkeitszone hinzufügen",
+  "cloud_connect_tasks_delDatacenterConfiguration": "Konfiguration der Verfügbarkeitszone löschen",
+  "cloud_connect_tasks_addDatacenterExtraConfiguration": "Zusätzliche Konfiguration zu Availability Zones hinzufügen",
+  "cloud_connect_tasks_delDatacenterExtraConfiguration": "Zusätzliche Konfiguration der Verfügbarkeitszone löschen",
+  "cloud_connect_tasks_status_todo": "Geplant",
+  "cloud_connect_tasks_status_doing": "Wird bearbeitet",
+  "cloud_connect_tasks_status_done": "Beendet",
+  "cloud_connect_tasks_status_error": "Fehler",
+  "cloud_connect_tasks_status": "Status",
+  "cloud_connect_tasks": "Tasks"
+}

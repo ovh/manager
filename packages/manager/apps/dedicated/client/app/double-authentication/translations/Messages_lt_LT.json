@@ -1,7 +1,0 @@
-{
-  "doubleauth_modal_alert_title": "Saugos kodas",
-  "doubleauth_modal_alert_message": "Dėmesio, jūs neturite unikalaus vieno panaudojimo saugos kodo.",
-  "doubleauth_modal_alert_message_1": "Dėmesio, jūs turite vieną unikalų vieno panaudojimo saugos kodą.",
-  "doubleauth_modal_alert_message_other": "Dėmesio, jūsų turimi unikalūs vieno panaudojimo saugos kodai: <strong>{{t0}}</strong>.",
-  "doubleauth_modal_alert_message_regenerate": "Ar norite iš naujo sugeneruoti naują saugos kodų paketą?"
-}

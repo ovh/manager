@@ -1,0 +1,11 @@
+<oui-modal
+    heading="{{:: 'billing_cancel_commitment' | translate}}"
+    primary-action="$ctrl.cancelCommitment()"
+    secondary-action="$ctrl.goBack()"
+    on-dismiss="$ctrl.goBack()"
+    loading="$ctrl.isLoading"
+    primary-label="{{:: 'billing_cancel_commitment_confirm' | translate }}"
+    secondary-label="{{:: 'billing_cancel_commitment_cancel' | translate }}"
+>
+    <span data-translate="billing_cancel_commitment_description"></span>
+</oui-modal>

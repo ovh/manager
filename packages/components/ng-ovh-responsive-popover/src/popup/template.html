@@ -1,0 +1,21 @@
+<div
+    class="popover responsive-popover-popup responsive-popover responsive-popover-class"
+    data-tooltip-animation-class="fade"
+    data-uib-tooltip-classes
+    data-ng-class="{ in: isOpen() }"
+>
+    <div class="arrow"></div>
+
+    <div class="popover-inner">
+        <h3
+            class="popover-title"
+            data-ng-bind="uibTitle"
+            data-ng-if="uibTitle"
+        ></h3>
+        <div
+            class="popover-content"
+            data-uib-tooltip-template-transclude="contentExp()"
+            data-tooltip-template-transclude-scope="originScope()"
+        ></div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<oui-modal class="cookie-policy-modal">
+    <div
+        class="img-wrapper w-100 d-flex justify-content-center align-items-center"
+    >
+        <img data-ng-src="{{:: $ctrl.ovhImage }}" alt="ovh-cloud-logo" />
+    </div>
+    <h4 data-translate="cookie_policy_title" class="text-center"></h4>
+    <p
+        data-translate="cookie_policy_description_1"
+        data-translate-values="{ url: $ctrl.moreInfoLink }"
+    ></p>
+    <ul>
+        <li data-translate="cookie_policy_description_3"></li>
+    </ul>
+    <p data-translate="cookie_policy_description_2"></p>
+    <span data-translate="cookie_policy_description_4"></span>
+    <span
+        data-ng-if="$ctrl.clickHereLink"
+        data-translate="cookie_policy_description_5"
+        data-translate-values="{ url: $ctrl.clickHereLink }"
+    ></span>
+    <div
+        class="banner-buttons w-100 d-flex justify-content-center align-items-center flex-column"
+    >
+        <oui-button
+            data-ng-click="$ctrl.accept()"
+            variant="primary"
+            data-navi-id="cookie-accept"
+        >
+            <span data-translate="cookie_policy_accept"></span>
+        </oui-button>
+        <oui-button data-ng-click="$ctrl.deny()" variant="secondary">
+            <span data-translate="cookie_policy_refuse"></span>
+        </oui-button>
+    </div>
+</oui-modal>

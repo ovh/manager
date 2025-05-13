@@ -1,0 +1,10 @@
+{
+  "netapp_volumes_delete": "Eliminar el volumen",
+  "netapp_volumes_delete_description": "¿Seguro que quiere eliminar el volumen {{ volumeId }}?",
+  "netapp_volumes_delete_warning": "La eliminación del cluster provocará el borrado definitivo de todos los datos correspondientes. La eliminación no implica ninguna devolución.",
+  "netapp_volumes_delete_enter_confirmation": "Introduzca «DELETE» en el siguiente campo para confirmar la operación.",
+  "netapp_volumes_delete_cancel": "Cancelar",
+  "netapp_volumes_delete_confirm": "Confirmar",
+  "netapp_volumes_delete_success": "El volumen {{ volumeId }} se ha eliminado correctamente.",
+  "netapp_volumes_delete_error": "Se ha producido un error al eliminar el volumen: {{ message }}."
+}

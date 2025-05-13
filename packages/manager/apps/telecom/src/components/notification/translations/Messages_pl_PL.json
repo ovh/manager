@@ -6,7 +6,7 @@
   "components_notification_noNotification": "Brak zarejestrowanych alertów.",
   "components_notification_frequency": "Częstotliwość wysyłania",
   "components_notification_contact": "Kontakt do powiadamiania w przypadku alertów",
-  "components_notification_account": "Konto:",
+  "components_notification_account": "Konto",
   "components_notification_confirm": "Czy chcesz usunąć powiadomienie dotyczące usługi {{service}} dla {{contact}}?",
   "components_notification_add": "Dodaj alert",
   "components_notification_mail": "E-mail",
@@ -14,5 +14,10 @@
   "components_notification_once": "Jeden raz",
   "components_notification_5m": "Co 5 minut",
   "components_notification_1h": "Co godzinę",
-  "components_notification_6h": "Co 6 godzin"
+  "components_notification_6h": "Co 6 godzin",
+  "components_notification_sms_detail_warning": "Uwaga, wszystkie środki na koncie {{smsAccount}} zostały wyczerpane, brak możliwości wysyłania nowych SMS-ów.",
+  "components_notification_allowIncident": "Zgłoszenie awarii",
+  "components_notification_downThreshold": "Czas przed powiadomieniem (w minutach)",
+  "components_notification_true": "Tak",
+  "components_notification_false": "Nie"
 }

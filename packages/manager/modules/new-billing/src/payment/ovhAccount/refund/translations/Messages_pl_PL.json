@@ -1,0 +1,9 @@
+{
+  "billing_ovhaccount_refund": "Wniosek o zwrot",
+  "billing_ovhaccount_refund_cancel": "Anuluj",
+  "billing_ovhaccount_refund_confirm": "Zatwierdź wniosek",
+  "billing_ovhaccount_refund_description": "Składasz wniosek o zwrot środków w wysokości {{amount}}. Zwrot zostanie przekazany na zarejestrowany sposób płatności.",
+  "billing_ovhaccount_refund_description_confirm": "Czy chcesz złożyć wniosek o zwrot?",
+  "billing_ovhaccount_refund_success": "Wniosek o zwrot środków w wysokości {{amount}} został zarejestrowany. Rozpatrzymy go w najbliższym możliwym terminie.",
+  "billing_ovhaccount_refund_error": "Wystąpił błąd podczas składania wniosku o zwrot."
+}

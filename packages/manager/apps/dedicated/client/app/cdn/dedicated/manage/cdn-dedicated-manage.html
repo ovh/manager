@@ -6,32 +6,54 @@
 
 <!-- Section Content -->
 <div data-ng-if="!$ctrl.loading">
-    <oui-page-header heading="{{:: $ctrl.cdn.serviceName }}">
+    <oui-header heading="{{:: $ctrl.cdn.serviceName }}">
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: $ctrl.cdn.serviceName }}"
+                ></h1>
+                <div
+                    class="d-flex justify-content-end align-items-center flex-wrap gap-1"
+                >
+                    <changelog-button
+                        links="$ctrl.constants.CHANGELOG.cdn.links"
+                        chapters="$ctrl.constants.CHANGELOG.cdn.chapters"
+                    ></changelog-button>
+                </div>
+            </div>
+        </oui-header-heading>
         <oui-header-tabs>
             <oui-header-tabs-item
-                text="{{:: 'cdn_tab_statistics' | translate }}"
                 state="app.networks.cdn.dedicated.manage.statistics"
+                ><span data-translate="cdn_tab_statistics"></span
+            ></oui-header-tabs-item>
+            <oui-header-tabs-item state="app.networks.cdn.dedicated.manage.ssl"
+                ><span data-translate="cdn_tab_ssl"></span
+            ></oui-header-tabs-item>
+            <oui-header-tabs-item state="app.networks.cdn.dedicated.manage.logs"
+                ><span data-translate="cdn_tab_logs"></span
             ></oui-header-tabs-item>
             <oui-header-tabs-item
-                text="{{:: 'cdn_tab_ssl' | translate }}"
-                state="app.networks.cdn.dedicated.manage.ssl"
-            ></oui-header-tabs-item>
-            <oui-header-tabs-item
-                text="{{:: 'cdn_tab_logs' | translate }}"
-                state="app.networks.cdn.dedicated.manage.logs"
+                href="{{ $ctrl.domainsLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.domainsLink"
+                ><span data-translate="cdn_tab_domains"></span
             ></oui-header-tabs-item>
         </oui-header-tabs>
-    </oui-page-header>
+    </oui-header>
 
     <!-- Tab Content -->
-    <div class="tab-content">
+    <div>
         <div
             class="alert"
             role="alert"
             data-ng-class="alertType"
             data-ng-if="message"
         >
-            <i class="close icon-remove" data-ng-click="message = null"></i>
+            <i
+                class="close icon-remove"
+                data-ng-click="$ctrl.$scope.message = null"
+            ></i>
             <span data-ng-bind="message"></span>
         </div>
 

@@ -4,7 +4,7 @@
   "telephony_line_assist_troubleshooting_auto_config_fill_ip": "Introduzca la dirección IP de su equipo para proceder a su restauración.",
   "telephony_line_assist_troubleshooting_auto_config_reset_config": "Reconfiguración del teléfono.",
   "telephony_line_assist_troubleshooting_auto_config_reboot": "Por favor, reinicie su equipo.",
-  "telephony_line_assist_troubleshooting_auto_config_after_reboot": "Tras la fase de inicio, su equipo debería conectarse a la red OVH y volver a estar operativo.",
+  "telephony_line_assist_troubleshooting_auto_config_after_reboot": "Tras la fase de inicio, su equipo debería conectarse a la red OVHcloud y volver a estar operativo.",
   "telephony_line_assist_troubleshooting_auto_config_last_ip": "Se ha recuperado la última dirección IP conocida del equipo.",
   "telephony_line_assist_troubleshooting_auto_config_your_ip": "Para su información, la dirección IP con la que se conecta al área de cliente es la siguiente: <strong>{{ ip }}</strong> ({{ domain }}).",
   "telephony_line_assist_troubleshooting_auto_config_check_ip": "Compruebe que se trata de la misma conexión que la de su parque telefónico.",

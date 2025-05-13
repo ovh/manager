@@ -1,12 +1,12 @@
 {
- "pci_projects_project_creating_not_paid_title": "Journeying to the Public Cloud ",
- "pci_projects_project_creating_not_paid_welcome": "Welcome to the Public Cloud ",
- "pci_projects_project_creating_not_paid_almost_done": "You're nearly there!",
- "pci_projects_project_creating_not_paid": "You have a pending purchase order for credits, amounting to a total of {{ amount }}. Please pay this amount by clicking “Finalise my order”.",
- "pci_projects_project_creating_not_paid_explain1": "By clicking on \"Finalise my order\", you will be redirected to a purchase order that will need to be paid via your chosen payment method.",
- "pci_projects_project_creating_not_paid_explain2": "To find your invoice, go to \"My account\", then  <a href=\"{{ href }}\">\"My orders\"</a>.",
- "pci_projects_project_creating_not_paid_finalize": "Finalise my order",
- "pci_projects_project_creating_not_paid_finalize_title": "{{ orderId }}: finalise my order",
- "pci_projects_project_creating_not_paid_cancel": "Cancel my order",
- "pci_projects_project_creating_not_paid_cancel_title": "{{ orderId }}: cancel my order"
+  "pci_projects_project_creating_not_paid_title": "Create a Public Cloud project",
+  "pci_projects_project_creating_not_paid_welcome": "Welcome to the Public Cloud ",
+  "pci_projects_project_creating_not_paid_almost_done": "You're nearly there!",
+  "pci_projects_project_creating_not_paid": "You have a pending purchase order for credits, amounting to a total of {{ amount }}. Please pay this amount by clicking “Finalise my order”.",
+  "pci_projects_project_creating_not_paid_explain1": "By clicking on \"Finalise my order\", you will be redirected to a purchase order that will need to be paid via your chosen payment method.",
+  "pci_projects_project_creating_not_paid_explain2": "To find your invoice, go to \"My account\", then  <a href=\"{{ href }}\">\"My orders\"</a>.",
+  "pci_projects_project_creating_not_paid_finalize": "Finalise my order",
+  "pci_projects_project_creating_not_paid_finalize_title": "{{ orderId }}: finalise my order",
+  "pci_projects_project_creating_not_paid_cancel": "Cancel my order",
+  "pci_projects_project_creating_not_paid_cancel_title": "{{ orderId }}: cancel my order"
 }

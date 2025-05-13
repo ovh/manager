@@ -1,8 +1,0 @@
-{
-  "billing_main_history_debt_pay_title": "Skolos apmokėjimas",
-  "billing_main_history_debt_pay_confirm": "Apmokėti mano skolą",
-  "billing_main_history_debt_pay_explanation": "Atlikus šį veiksmą bus sukurtas užsakymas, leidžiantis nedelsiant apmokėti skolą. Apmokėtas užsakymas įsigalios per valandą.",
-  "billing_main_history_debt_pay_success": "Balanso papildymui sugeneruotas <a href=\"{{t1}}\" target=\"_blank\" rel=\"noopener\">užsakymas nr. {{t0}}</a>.",
-  "billing_main_history_debt_pay_error": "Klaida apmokant papildymą.",
-  "billing_main_history_debt_pay_error_nothing_to_pay": "Vous n'avez actuellement aucun paiement en attente."
-}

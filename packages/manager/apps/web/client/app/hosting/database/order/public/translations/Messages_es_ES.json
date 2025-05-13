@@ -1,0 +1,12 @@
+{
+  "ovhManagerHostingDatabaseOrderPublic_title": "Contratar una solución de bases de datos",
+  "ovhManagerHostingDatabaseOrderPublic_customization_title": "Elija su solución",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_title": "Seleccione las características deseadas",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_placeholder": "Seleccione",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_display_1": "{{quantity}} base de {{diskSpace}} MB",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_display_+": "{{quantity}} bases de {{diskSpace}} MB",
+  "ovhManagerHostingDatabaseOrderPublic_success_noCheckout": "El pedido se ha registrado. El producto se activará en unos instantes.",
+  "ovhManagerHostingDatabaseOrderPublic_success_checkout": "La <a href=\"{{url}}\" target=\"_blank\">orden de pedido</a> se ha generado correctamente. El producto se activará una vez que lo haya validado.",
+  "ovhManagerHostingDatabaseOrderPublic_error": "Se ha producido un error al contratar una base de datos SQL: {{message}}",
+  "ovhManagerHostingDatabaseOrderPublic_description": "Le proponemos contratar una base START SQL, con 3 tamaños a elegir o para necesidades más avanzadas, una de nuestras soluciones Web Cloud Databases SQL/NoSQL con recursos garantizados."
+}

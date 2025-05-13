@@ -1,0 +1,10 @@
+{
+  "billing_payments_request_title": "Richieste di pagamento",
+  "billing_payments_request_info": "Questa lista mostra le fatture il cui pagamento è in fase di elaborazione in seguito al saldo degli importi in sospeso.",
+  "billing_payments_request_table_reference": "Referenza",
+  "billing_payments_request_table_date": "Data",
+  "billing_payments_request_table_paid_date": "Pagamento effettuato il",
+  "billing_payments_request_table_amount": "Importo totale",
+  "billing_payment_request_no_pending": "Nessuna richiesta di pagamento in corso.",
+  "billing_payment_request_load_error": "Si è verificato un errore durante il caricamento delle richieste di pagamento."
+}

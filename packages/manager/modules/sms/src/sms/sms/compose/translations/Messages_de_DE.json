@@ -3,7 +3,7 @@
   "sms_sms_compose_title": "Eine SMS versenden",
   "sms_sms_compose_section_configure": "Configurer l’éxpéditeur et le destinataire",
   "sms_sms_compose_section_compose": "Composer un message",
-  "sms_sms_compose_alert_not_enough_credits": "Votre crédit est insuffisant pour permettre l’envoi de SMS.",
+  "sms_sms_compose_alert_not_enough_credits": "Ihr Guthaben reicht nicht aus, um SMS zu versenden. Account aufladen",
   "sms_sms_compose_alert_not_enough_credits_receivers": "Votre crédit risque d’être insuffisant pour permettre l’envoi à l’ensemble de vos contacts séléctionnés.",
   "sms_sms_compose_sender_label": "Absender",
   "sms_sms_compose_sender_optgroup_label_response": "Expéditeurs permettant les réponses",
@@ -87,8 +87,8 @@
   "sms_sms_compose_add_receivers_selected_multiple": "<strong>{{ count }}</strong> listes sélectionnées",
   "sms_sms_compose_add_receivers_lists_title": "Ajouter une liste de destinataires",
   "sms_sms_compose_add_receivers_select_lists": "Sélectionnez les fichiers contenant les destinataires :",
-  "sms_sms_compose_add_receivers_label": "{{ description }} (<small><b>{{ records }}</b> contact</small>)",
-  "sms_sms_compose_add_receivers_label_plural": "{{ description }} (<small><b>{{ records }}</b> contacts</small>)",
+  "sms_sms_compose_add_receivers_label": "Kontakt",
+  "sms_sms_compose_add_receivers_label_plural": "Kontakte",
   "sms_sms_compose_add_receivers_adding": "Ajout des destinataires…",
   "sms_sms_compose_add_receivers_added": "Destinataires ajoutés",
   "sms_sms_compose_add_receivers_parse_ko": "Impossible de générer la liste des destinataires.",
@@ -114,5 +114,11 @@
   "sms_sms_compose_add_phonebook_contact_empty": "Kein Kontakt gefunden.",
   "sms_sms_compose_add_phonebook_contact_adding": "Mise à jour des contacts…",
   "sms_sms_compose_add_phonebook_contact_added": "Liste des contacts mise à jour !",
-  "sms_sms_compose_add_phonebook_contact_ko": "Oups ! Impossible de récupérer la liste des contacts."
+  "sms_sms_compose_add_phonebook_contact_ko": "Oups ! Impossible de récupérer la liste des contacts.",
+  "sms_credit_balance": "Guthaben",
+  "sms_credit_remaining_sms": "Verbleibende SMS",
+  "sms_credit_manage_credits": "SMS-Guthaben verwalten",
+  "sms_sms_compose_status_invalid_receiver": "Ihre SMS konnte nicht an folgende Nummer versendet werden: {{invalidReceivers}} (ungültiger Empfänger)",
+  "sms_sms_compose_message_commercial_description": "Aus rechtlichen Gründen wird eine kommerzielle SMS von Montag bis Samstag nur <strong>zwischen 8 und 20 Uhr versendet</strong>.",
+  "sms_sms_compose_no_commercial_clause_label": "Ich bestätige hiermit, dass die SMS nicht kommerzieller Natur ist."
 }

@@ -1,0 +1,134 @@
+@import (inline) '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
+
+.log-live-tail {
+  background-color: var(--ods-color-primary-900);
+  color: var(--ods-color-default-000);
+  position: relative;
+  flex: 0 0 70%;
+  max-height: 600px;
+
+  &.fullScreen {
+    flex: 1 1 100%;
+  }
+
+  .logs {
+    font-family: monospace;
+    padding: 10px;
+    height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    font-size: 0.8rem;
+    scroll-behavior: smooth;
+
+    i.cursor {
+      content: '';
+      display: inline-block;
+      background-color: var(--ods-color-default-000);
+      vertical-align: top;
+      width: 8px;
+      height: 17px;
+      animation: tail-logs-blink 1s step-end infinite;
+    }
+
+    span.highlight {
+      background-color: var(--ods-color-default-000);
+      color: var(--ods-color-default-800);
+    }
+  }
+
+  .bottomBtn {
+    position: absolute;
+    right: 20px;
+    z-index: 10;
+    bottom: 10px;
+  }
+
+  .log-key {
+    word-break: break-all;
+
+    &:not(:first-child) {
+      margin-left: 1ch;
+    }
+  }
+
+  .log-date {
+    color: var(--ods-color-warning-050);
+  }
+
+  .log-time {
+    color: var(--ods-color-warning-100);
+  }
+
+  .log-severity {
+    display: inline-block;
+    width: 6ch;
+    text-align: right;
+    text-transform: uppercase;
+  }
+
+  .separator::after {
+    content: '|';
+    color: var(--ods-color-default-000);
+  }
+
+  /*
+  https://en.wikipedia.org/wiki/Syslog#Severity_level
+  */
+
+  // level 0 - emerg
+  .log-severity[data-level='0'] {
+    color: var(--ods-color-error-200);
+  }
+  // level 1 - alert
+  .log-severity[data-level='1'] {
+    color: var(--ods-color-error-200);
+  }
+  // level 2 - crit
+  .log-severity[data-level='2'] {
+    color: var(--ods-color-error-200);
+  }
+  // level 3 - err
+  .log-severity[data-level='3'] {
+    color: var(--ods-color-error-200);
+  }
+  // level 4 - warning
+  .log-severity[data-level='4'] {
+    color: var(--ods-color-warning-400);
+  }
+  // level 5 - notice
+  .log-severity[data-level='5'] {
+    color: var(--ods-color-primary-300);
+  }
+  // level 6 - info
+  .log-severity[data-level='6'] {
+    color: var(--ods-color-primary-300);
+  }
+  // level 7 - debug
+  .log-severity[data-level='7'] {
+    color: var(--ods-color-primary-300);
+  }
+}
+
+.log-tile {
+  flex: 1;
+  max-height: 70vh;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+@keyframes tail-logs-blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

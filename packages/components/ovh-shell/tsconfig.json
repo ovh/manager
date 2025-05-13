@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "moduleResolution": "Node",
+    "lib": ["dom", "es2020"],
+    "module": "ES2020",
+    "removeComments": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "declarationDir": "dist/types",
+    "jsx": "react"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "__tests__", "features"]
+}

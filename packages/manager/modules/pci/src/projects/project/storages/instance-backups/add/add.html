@@ -18,7 +18,7 @@
             ></label>
             <div
                 class="oui-field__control"
-                data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.backup.region)"
+                data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.backup.region)"
             ></div>
         </div>
 
@@ -44,6 +44,10 @@
                 data-region="$ctrl.region"
                 data-image="$ctrl.backup"
                 data-on-change="$ctrl.onFlavorChange(flavor)"
+                data-include-categories="$ctrl.includeCategories"
+                data-exclude-categories="$ctrl.excludeCategories"
+                data-catalog-endpoint="$ctrl.catalogEndpoint"
+                data-are-3az-regions-available="$ctrl.regionsTypesAvailability[$ctrl.THREE_AZ_REGION]"
             >
             </pci-project-flavors-list>
         </oui-field>
@@ -67,12 +71,13 @@
                     data-translate-values="{
                         num: $ctrl.quota.getMaxNumberOfInstances($ctrl.flavor),
                         flavor: $ctrl.flavor.name,
-                        region: $ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.backup.region),
+                        region: $ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.backup.region),
                     }"
                 ></span>
                 <a
                     data-ng-href="{{:: $ctrl.quotaLink }}"
                     data-translate="pci_projects_project_instances_backup_add_numInstances_quotaLink_label"
+                    target="_top"
                 ></a>
             </div>
         </oui-field>
@@ -127,6 +132,7 @@
         >
         </pci-project-instance-ssh-keys>
 
+        <!--Private network-->
         <oui-field
             data-label="{{ :: 'pci_projects_project_instances_backup_add_private_network_label' | translate }}"
             data-size="xl"
@@ -142,9 +148,22 @@
             </oui-select>
         </oui-field>
 
+        <!--Billing period-->
         <oui-field
             data-label="{{ :: 'pci_projects_project_instances_backup_add_billing_label' | translate }}"
         >
+            <oui-message
+                data-type="info"
+                data-ng-if="$ctrl.IsComingSoonPricingBannerDisplayed()"
+            >
+                <h6
+                    data-translate="pci_projects_project_instances_backup_add_coming_soon_message_title"
+                ></h6>
+                <p
+                    data-translate="pci_projects_project_instances_backup_add_coming_soon_message_description"
+                ></p>
+            </oui-message>
+
             <pci-project-flavor-billing
                 data-flavor="$ctrl.flavor"
                 data-number="$ctrl.model.number"
@@ -152,6 +171,10 @@
             >
             </pci-project-flavor-billing>
         </oui-field>
+
+        <!--Trusted zone banner amount charge info-->
+        <pci-trusted-zone-banner data-ng-if="$ctrl.isTrustedZone">
+        </pci-trusted-zone-banner>
 
         <div data-ng-if="$ctrl.isLoading">
             <oui-spinner></oui-spinner>

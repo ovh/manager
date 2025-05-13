@@ -1,0 +1,10 @@
+{
+  "dedicated_server_dashboard_advanced_features_sgx_introduction_go_back": "Ritorna allo stato del server",
+  "dedicated_server_dashboard_advanced_features_sgx_introduction_header": "Intel Software Guard Extensions (SGX)",
+  "dedicated_server_dashboard_advanced_features_sgx_introduction_subheader": "Approfitta subito di questa nuova funzionalità!",
+  "dedicated_server_dashboard_advanced_features_sgx_introduction_presentation": "Intel Software Guard Extensions è una tecnologia che fornisce funzioni di sicurezza avanzate di crittografia hardware della memoria. Disponibile con i processori Intel Xeon E, permette isolare parti di codice e dati specifici di un’applicazione. Attivando questa opzione, i software e i dati più sensibili sono protetti da divulgazioni e modifiche non autorizzate.",
+  "dedicated_server_dashboard_advanced_features_sgx_introduction_manage_button": "Attiva",
+  "dedicated_server_dashboard_advanced_features_sgx_introduction_manage_tile_header": "Perché utilizzare SGX",
+  "dedicated_server_dashboard_advanced_features_sgx_introduction_manage_tile_content": "Scopri di più",
+  "dedicated_server_dashboard_advanced_features_sgx_introduction_manage_tile_content_new_tab": "Questo link si aprirà in una nuova pagina"
+}

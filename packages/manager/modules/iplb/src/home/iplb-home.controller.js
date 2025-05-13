@@ -1,23 +1,31 @@
+import ChartDatasourcePrometheusPlugin from 'chartjs-plugin-datasource-prometheus';
 import filter from 'lodash/filter';
-import get from 'lodash/get';
 import set from 'lodash/set';
 import groupBy from 'lodash/groupBy';
 import head from 'lodash/head';
 import isArray from 'lodash/isArray';
 import map from 'lodash/map';
-import values from 'lodash/values';
+import 'moment';
 
 import IplbHomeUpdateQuotaTemplate from './updateQuota/iplb-update-quota.html';
-
-import { RENEW_URL, CONTACTS_URL } from '../iplb-url.constants';
+import IpLoadBalancerTerminateTemplate from '../modal/terminate/terminate.html';
+import {
+  INFO_LINK,
+  MESSAGE_DISPLAY_DATE,
+  LB_TEMPORARY_WARNING_BANNER_FEATURE,
+  LB_SUBSCRIPTION_CONTACT_SECTION,
+} from './iplb-home.constants';
 
 export default class IpLoadBalancerHomeCtrl {
   /* @ngInject */
   constructor(
+    $http,
     $state,
     $stateParams,
     $translate,
     coreConfig,
+    coreURLBuilder,
+    ChartFactory,
     CucControllerHelper,
     CucCloudMessage,
     CucFeatureAvailabilityService,
@@ -30,13 +38,18 @@ export default class IpLoadBalancerHomeCtrl {
     IpLoadBalancerZoneDeleteService,
     IpLoadBalancerVrackHelper,
     IpLoadBalancerVrackService,
-    CucRegionService,
+    ovhManagerRegionService,
     CucVrackService,
+    ovhFeatureFlipping,
+    isDeleteOptionsAvailable,
   ) {
+    this.$http = $http;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
+    this.ChartFactory = ChartFactory;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
@@ -49,8 +62,10 @@ export default class IpLoadBalancerHomeCtrl {
     this.IpLoadBalancerZoneDeleteService = IpLoadBalancerZoneDeleteService;
     this.IpLoadBalancerVrackHelper = IpLoadBalancerVrackHelper;
     this.IpLoadBalancerVrackService = IpLoadBalancerVrackService;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.VrackService = CucVrackService;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
+    this.isDeleteOptionsAvailable = isDeleteOptionsAvailable;
 
     this.serviceName = this.$stateParams.serviceName;
 
@@ -75,21 +90,29 @@ export default class IpLoadBalancerHomeCtrl {
 
     this.serviceActions = {
       text: this.$translate.instant('iplb_status_apply'),
-      callback: () => this.$state.go('network.iplb.detail.configuration'),
+      callback: () => this.$state.go('iplb.detail.configuration'),
       isAvailable: () => true,
     };
 
     this.frontendsActions = {
       text: this.$translate.instant('iplb_status_details'),
-      callback: () => this.$state.go('network.iplb.detail.frontends'),
+      callback: () => this.$state.go('iplb.detail.frontends'),
       isAvailable: () => true,
     };
 
     this.farmsActions = {
       text: this.$translate.instant('iplb_status_details'),
-      callback: () => this.$state.go('network.iplb.detail.server-farm'),
+      callback: () => this.$state.go('iplb.detail.server-farm'),
       isAvailable: () => true,
     };
+
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability(LB_SUBSCRIPTION_CONTACT_SECTION)
+      .then((lbSubscriptionContactSectionFeatureResult) => {
+        this.showIplbSubscriptionContactSection = lbSubscriptionContactSectionFeatureResult.isFeatureAvailable(
+          LB_SUBSCRIPTION_CONTACT_SECTION,
+        );
+      });
   }
 
   initLoaders() {
@@ -125,6 +148,7 @@ export default class IpLoadBalancerHomeCtrl {
               'expirationFormated',
               moment(subscriptionInfos.expiration).format('LL'),
             );
+            this.showBillingEvolMessages(subscriptionInfos);
             return subscriptionInfos;
           },
         ),
@@ -226,23 +250,39 @@ export default class IpLoadBalancerHomeCtrl {
         text: this.$translate.instant('iplb_edit'),
         isAvailable: () => false,
       },
+      deleteService: {
+        callback: () =>
+          this.CucControllerHelper.modal.showModal({
+            modalConfig: {
+              template: IpLoadBalancerTerminateTemplate,
+              controller: 'IpLoadBalancerTerminateCtrl',
+              controllerAs: '$ctrl',
+              resolve: {
+                service: () => this,
+              },
+            },
+          }),
+        text: this.$translate.instant('iplb_delete'),
+        isAvailable: () =>
+          this.isDeleteOptionsAvailable &&
+          !this.subscription.loading &&
+          !this.subscription.hasErrors,
+      },
       manageAutorenew: {
         text: this.$translate.instant('iplb_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(
-          get(RENEW_URL, this.coreConfig.getRegion(), 'EU'),
-          { serviceName: this.serviceName, serviceType: 'IP_LOADBALANCER' },
-        ),
+        href: this.coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
+          searchText: this.serviceName,
+          selectedType: 'IP_LOADBALANCING',
+        }),
         isAvailable: () =>
           !this.subscription.loading && !this.subscription.hasErrors,
       },
       manageContact: {
         text: this.$translate.instant('iplb_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(
-          get(CONTACTS_URL, this.coreConfig.getRegion(), 'EU'),
-          {
-            serviceName: this.serviceName,
-          },
-        ),
+        href: this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
+          serviceName: this.serviceName,
+          tab: 'SERVICES',
+        }),
         isAvailable: () =>
           this.CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage') &&
           !this.subscription.loading &&
@@ -251,7 +291,7 @@ export default class IpLoadBalancerHomeCtrl {
       addZone: {
         text: this.$translate.instant('iplb_add'),
         callback: () =>
-          this.$state.go('network.iplb.detail.zone.add', {
+          this.$state.go('iplb.detail.zone.add', {
             serviceName: this.serviceName,
           }),
         isAvailable: () =>
@@ -260,7 +300,7 @@ export default class IpLoadBalancerHomeCtrl {
       deleteZone: {
         text: this.$translate.instant('iplb_delete'),
         callback: () =>
-          this.$state.go('network.iplb.detail.zone.delete', {
+          this.$state.go('iplb.detail.zone.delete', {
             serviceName: this.serviceName,
           }),
         isAvailable: () =>
@@ -273,6 +313,25 @@ export default class IpLoadBalancerHomeCtrl {
             1,
       },
     };
+  }
+
+  showBillingEvolMessages(subscriptionInfos) {
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability(LB_TEMPORARY_WARNING_BANNER_FEATURE)
+      .then((tempWarnBannerFeatureResult) => {
+        const isTempWarnBannerAvailable = tempWarnBannerFeatureResult.isFeatureAvailable(
+          LB_TEMPORARY_WARNING_BANNER_FEATURE,
+        );
+        // displayed when this feature is available and only if the
+        // Load balancer is created befor the date 2023-04-01.
+        if (
+          isTempWarnBannerAvailable &&
+          moment(subscriptionInfos?.creation).isBefore(MESSAGE_DISPLAY_DATE)
+        ) {
+          this.displayBillingIssuesWarnMessage();
+          this.displayBillingEvolutionInfoMessage();
+        }
+      });
   }
 
   updateQuotaAlert(quota) {
@@ -295,56 +354,86 @@ export default class IpLoadBalancerHomeCtrl {
   initGraph() {
     this.metricsList = this.IpLoadBalancerConstant.graphs;
     this.metric = head(this.metricsList);
-    this.options = {
-      scales: {
-        xAxes: [
-          {
-            gridLines: {
-              display: false,
-            },
-          },
-        ],
-        yAxes: [
-          {
-            id: 'y-axis-1',
-            type: 'linear',
-            ticks: {
-              min: 0,
-              minStep: 1,
-              beginAtZero: true,
-            },
-          },
-        ],
-      },
-      elements: {
-        line: {
-          fill: false,
-          borderColor: '#3DD1F0',
-          borderWidth: 4,
-        },
-        point: {
-          radius: 0,
-        },
-      },
-    };
     this.loadGraph();
   }
 
   loadGraph() {
-    const downsampleAggregation = this.metric === 'conn' ? 'sum' : 'max';
+    const queries = {
+      conn: `sum(rate(haproxy_process_connections_total{servicename="${this.serviceName}"}[1m])) `,
+      reqm: `sum(rate(haproxy_process_requests_total{servicename="${this.serviceName}"}[1m])) `,
+    };
+    const query = queries[this.metric];
     this.loadingGraph = true;
-    this.IpLoadBalancerMetricsService.getData(this.metric, '40m-ago', null, {
-      // http://opentsdb.net/docs/build/html/user_guide/query/downsampling.html
-      downsample: `5m-${downsampleAggregation}`,
-    })
+    this.$http
+      .get(`/ipLoadbalancing/${this.serviceName}/metricsToken`)
       .then((data) => {
-        if (data.length && data[0].dps) {
-          this.data = values(data[0].dps);
-          this.labels = [];
-          this.data.forEach((value, index) => {
-            this.labels.unshift(`${index * 5}m`);
-          });
-        }
+        const { endpoint, token } = data.data;
+        const borderColor = '#3DD1F0';
+
+        this.graph = new this.ChartFactory({
+          type: 'line',
+          plugins: [ChartDatasourcePrometheusPlugin],
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+              'datasource-prometheus': {
+                borderWidth: 4,
+                findInBorderColorMap: () => borderColor,
+                tension: 0.5,
+                query: (start, end, step) => {
+                  const url = `${endpoint}/prometheus/api/v1/query_range?query=${query}&start=${start.toISOString()}&end=${end.toISOString()}&step=${this
+                    .IpLoadBalancerConstant.graphParams['1h-ago'].step ||
+                    step}`;
+
+                  const headers = {
+                    authorization: `bearer ${token}`,
+                    'content-type': 'application/x-www-form-urlencoded',
+                  };
+
+                  return fetch(url, { headers })
+                    .then((response) => {
+                      if (response.ok) {
+                        return response.json();
+                      }
+
+                      return null;
+                    })
+                    .then((response) => response.data);
+                },
+                timeRange: {
+                  type: 'relative',
+
+                  // from 1h ago to now
+                  start: this.IpLoadBalancerConstant.graphParams['1h-ago']
+                    .timeRange,
+                  end: 0,
+                },
+              },
+            },
+            scales: {
+              x: {
+                grid: {
+                  display: false,
+                },
+              },
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  min: 0,
+                  minStep: 1,
+                },
+              },
+            },
+            elements: {
+              point: {
+                radius: 0,
+              },
+            },
+          },
+        });
       })
       .finally(() => {
         this.loadingGraph = false;
@@ -359,8 +448,10 @@ export default class IpLoadBalancerHomeCtrl {
     this.regionsGroup = [];
     if (regions) {
       this.detailedRegions = !isArray(regions)
-        ? [this.CucRegionService.getRegion(regions)]
-        : map(regions, (region) => this.CucRegionService.getRegion(region));
+        ? [this.ovhManagerRegionService.getRegion(regions)]
+        : map(regions, (region) =>
+            this.ovhManagerRegionService.getRegion(region),
+          );
     }
 
     this.regionsGroup = groupBy(this.detailedRegions, 'country');
@@ -368,5 +459,39 @@ export default class IpLoadBalancerHomeCtrl {
 
   hasMultipleRegions() {
     return isArray(this.detailedRegions) && this.detailedRegions.length > 1;
+  }
+
+  displayBillingEvolutionInfoMessage() {
+    const message = this.$translate.instant(
+      'iplb_home_tile_configuration_billing_evolution_message_info',
+    );
+    const linkLabel = this.$translate.instant(
+      'iplb_home_tile_configuration_billing_more_information_label',
+    );
+    const linkURL =
+      INFO_LINK[this.coreConfig.getUser()?.ovhSubsidiary] || INFO_LINK.DEFAULT;
+    const link = `<a target="_blank" rel="noopener"href=${linkURL}>${linkLabel}</a>`;
+
+    this.CucCloudMessage.info({
+      textHtml: `${message} ${link}`,
+    });
+  }
+
+  displayBillingIssuesWarnMessage() {
+    const message1 = this.$translate.instant(
+      'iplb_home_tile_configuration_billing_issues_message_warn_1',
+    );
+    const message2 = this.$translate.instant(
+      'iplb_home_tile_configuration_billing_issues_message_warn_2',
+    );
+    const linkLabel = this.$translate.instant(
+      'iplb_home_tile_configuration_billing_here_label',
+    );
+    const linkURL = INFO_LINK[this.coreConfig.getUser()?.ovhSubsidiary];
+    const link = `<a target="_blank" rel="noopener"href=${linkURL}>${linkLabel}</a>`;
+
+    this.CucCloudMessage.warning({
+      textHtml: `<p>${message1}</p><p>${message2} ${link}.</p>`,
+    });
   }
 }

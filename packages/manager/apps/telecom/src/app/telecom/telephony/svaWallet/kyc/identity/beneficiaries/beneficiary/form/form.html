@@ -1,0 +1,128 @@
+<form novalidate name="$ctrl.form" data-ng-submit="$ctrl.confirm()">
+    <oui-modal
+        heading="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_'+ $ctrl.mode +'_title' | translate }}"
+        primary-label="{{::'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_'+ $ctrl.mode +'_submit' | translate}}"
+        secondary-action="$ctrl.cancel()"
+        secondary-label="{{::'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_'+ $ctrl.mode +'_cancel' | translate}}"
+        on-dismiss="$ctrl.cancel()"
+    >
+        <oui-field
+            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_lastname' | translate }}"
+            size="xl"
+        >
+            <input
+                class="oui-input"
+                name="beneficiaryLastname"
+                placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_lastname' | translate }}"
+                type="text"
+                data-ng-model="$ctrl.beneficiary.lastname"
+                required
+            />
+        </oui-field>
+
+        <oui-field
+            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_firstname' | translate }}"
+            size="xl"
+        >
+            <input
+                class="oui-input"
+                name="beneficiaryFirstname"
+                placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_firstname' | translate }}"
+                type="text"
+                data-ng-model="$ctrl.beneficiary.firstname"
+                required
+            />
+        </oui-field>
+
+        <oui-field
+            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_birthdate' | translate }}"
+            size="xl"
+        >
+            <oui-calendar
+                name="beneficiaryBirthdate"
+                model="$ctrl.beneficiary.dateOfBirth"
+                format="Y-m-d"
+                placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_birthdate' | translate }}"
+                required
+            >
+            </oui-calendar>
+        </oui-field>
+
+        <oui-field
+            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_birthcity' | translate }}"
+            size="xl"
+        >
+            <input
+                class="oui-input"
+                name="beneficiaryBirthcity"
+                placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_birthcity' | translate }}"
+                type="text"
+                data-ng-model="$ctrl.beneficiary.cityOfBirth"
+                required
+            />
+        </oui-field>
+
+        <oui-field
+            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_countryOfBirth' | translate }}"
+            size="xl"
+        >
+            <oui-select
+                items="$ctrl.countriesValues"
+                match="name"
+                name="beneficiaryCountryOfBirth"
+                model="$ctrl.model.countryOfBirth"
+                placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_countryOfBirth' | translate }}"
+                searchable
+                required
+            >
+            </oui-select>
+        </oui-field>
+
+        <oui-field
+            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_countryOfResidence' | translate }}"
+            size="xl"
+        >
+            <oui-select
+                items="$ctrl.countriesValues"
+                match="name"
+                name="beneficiaryCountryOfResidence"
+                model="$ctrl.model.countryOfResidence"
+                placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_countryOfResidence' | translate }}"
+                searchable
+                required
+            >
+            </oui-select>
+        </oui-field>
+
+        <oui-field
+            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_email' | translate }}"
+            size="xl"
+        >
+            <input
+                class="oui-input"
+                name="beneficiaryEmail"
+                placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_email' | translate }}"
+                type="email"
+                ng-model="$ctrl.beneficiary.email"
+                required
+            />
+        </oui-field>
+
+        <oui-field
+            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_nationality' | translate }}"
+            size="xl"
+        >
+            <oui-select
+                items="$ctrl.countriesValues"
+                match="name"
+                name="beneficiaryNationality"
+                model="$ctrl.model.nationality"
+                placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_nationality' | translate }}"
+                searchable
+                multiple
+                required
+            >
+            </oui-select>
+        </oui-field>
+    </oui-modal>
+</form>

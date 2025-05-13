@@ -1,0 +1,11 @@
+{
+  "sms_cancel_title": "Confirm",
+  "sms_cancel_details_name": "Name",
+  "sms_cancel_details_date": "Creation date",
+  "sms_cancel_details_sender": "Sender",
+  "sms_cancel_details_receivers": "Recipients",
+  "sms_cancel_details_message": "Message",
+  "sms_cancel_question": "Are you sure you want to cancel the campaign displayed below?",
+  "sms_cancel_error": "Unable to cancel campaign. {{error}}",
+  "sms_cancel_success": "Campaign cancelled"
+}

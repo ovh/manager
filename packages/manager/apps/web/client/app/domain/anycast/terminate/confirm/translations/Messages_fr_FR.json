@@ -1,0 +1,6 @@
+{
+  "domain_configuration_dnsanycast_terminate_modal_title": "Résilier DNS Anycast",
+  "domain_configuration_dnsanycast_terminate_modal_question": "Êtes-vous sur de vouloir résilier le service DNS Anycast ?",
+  "domain_configuration_dnsanycast_terminate_modal_confirm": "Confirmer",
+  "domain_configuration_dnsanycast_terminate_modal_cancel": "Annuler"
+}

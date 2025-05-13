@@ -1,4 +1,4 @@
 {
-  "telephony_alias_portability_actions_number_portability_order": "Demander une portabilité",
-  "telephony_alias_portability_actions_number_portability_status": "Portabilités en cours"
+  "telephony_alias_portability_actions_number_portability_order": "Request porting",
+  "telephony_alias_portability_actions_number_portability_status": "Pending porting processes"
 }

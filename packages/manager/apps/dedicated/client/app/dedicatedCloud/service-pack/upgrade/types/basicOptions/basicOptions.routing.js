@@ -1,13 +1,15 @@
-import stepModuleNames from './basicOptions.steps';
-
-import component from '../../upgrade.component';
+import component from '../../../../../components/dedicated-cloud/service-pack/upgrade/upgrade.component';
+import stepModuleNames from '../../../../../components/dedicated-cloud/service-pack/upgrade/types/basicOptions/basicOptions.steps';
 
 export const state = {
-  name: 'app.dedicatedClouds.servicePackUpgrade.basicOptions',
+  name: 'app.dedicatedCloud.details.servicePackUpgrade.basicOptions',
   params: {
     activationType: 'basic',
+    isPremier: null,
   },
   resolve: {
+    isPremier: /* @ngInject */ ($transition$) =>
+      $transition$.params().isPremier,
     backButtonText: /* @ngInject */ ($translate) =>
       $translate.instant('ovhManagerPccServicePackUpgradeBasicOptions_header'),
     orderableServicePacks: /* @ngInject */ (
@@ -18,18 +20,15 @@ export const state = {
       UpgradeBasicOptionsService.getOrderableServicePacks(
         currentService.name,
         currentUser.ovhSubsidiary,
-        currentService.servicePackName,
       ),
     steps: /* @ngInject */ (pccServicePackUpgradeService) =>
       pccServicePackUpgradeService.buildSteps(stepModuleNames),
-  },
-  translations: {
-    format: 'json',
-    value: ['.'],
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('dedicated_cloud_servicepack_upgrade_basicoptions'),
   },
   url: '/basicOptions',
   views: {
-    'pccView@app.dedicatedClouds': component.name,
+    'pccView@app.dedicatedCloud.details': component.name,
   },
 };
 

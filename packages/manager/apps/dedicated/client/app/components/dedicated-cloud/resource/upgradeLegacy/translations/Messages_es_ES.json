@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_updateResource_toMonthly": "Cambiar a tarifa mensual",
+  "server_tab_USB_STORAGE_order_resume": "Resumen del pedido",
+  "dedicatedCloud_order_price_HT": "Precio total (sin IVA):",
+  "dedicatedCloud_order_price_TTC": "Precio total (IVA incl.):",
+  "dedicatedCloud_order_final_txt": "Haga clic en «Aceptar» para confirmar el pedido.",
+  "dedicatedCloud_order_final_txt2": "Se abrirá una nueva pestaña y el sistema le redirigirá automáticamente a la interfaz de pago.",
+  "dedicatedCloud_order_loading_error": "Se ha producido un error al cargar la información.",
+  "dedicatedCloud_order_finish_success": "El pedido número <a href='{{t0}}' target='_blank'>{{t1}}</a> se ha enviado.",
+  "dedicatedCloud_order_finish_error": "Se ha producido un error al crear la orden de pedido."
+}

@@ -1,9 +1,9 @@
 export default class ExchangeRemoveGroupCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, $translate, messaging) {
+  constructor($scope, wucExchange, navigation, $translate, messaging) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       $translate,
       messaging,
@@ -11,7 +11,7 @@ export default class ExchangeRemoveGroupCtrl {
   }
 
   $onInit() {
-    this.$routerParams = this.services.Exchange.getParams();
+    this.$routerParams = this.services.wucExchange.getParams();
     this.ml = this.services.navigation.currentActionData;
 
     this.services.$scope.submit = () => this.submit();
@@ -24,11 +24,12 @@ export default class ExchangeRemoveGroupCtrl {
       'groupsTable',
     );
 
-    this.services.Exchange.deleteGroup(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.ml.mailingListName,
-    )
+    this.services.wucExchange
+      .deleteGroup(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.ml.mailingListName,
+      )
       .then((success) => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(

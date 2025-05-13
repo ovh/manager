@@ -1,249 +1,235 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="ExchangeTabResourcesCtrl as ctrl"
->
-    <div class="row">
-        <div class="col-md-9">
-            <p data-translate="exchange_RESOURCES_description"></p>
-            <p data-ng-if="ctrl.urls.guides.resources">
-                <span class="fa fa-life-ring mr-2" aria-hidden="true"></span>
-                <a
-                    data-ng-href="{{ ctrl.urls.guides.resources }}"
-                    target="_blank"
-                    title="{{:: 'exchange_RESOURCES_guide' | translate }} ({{:: 'exchange_dashboard_new_window' | translate }})"
-                >
-                    <span data-translate="exchange_RESOURCES_guide"></span>
-                    <span class="fa fa-external-link" aria-hidden="true"></span>
-                </a>
-            </p>
-
-            <form
-                class="form-inline d-md-flex justify-content-md-end mb-3"
-                name="searchResourceForm"
+<div class="row">
+    <div class="col-md-9">
+        <p data-translate="exchange_RESOURCES_description"></p>
+        <p data-ng-if="ctrl.urls.guides.resources">
+            <span class="fa fa-life-ring mr-2" aria-hidden="true"></span>
+            <a
+                data-ng-href="{{ ctrl.urls.guides.resources }}"
+                target="_blank"
+                title="{{:: 'exchange_RESOURCES_guide' | translate }} ({{:: 'exchange_dashboard_new_window' | translate }})"
             >
-                <div class="form-group">
-                    <label
-                        class="sr-only"
-                        for="searchResourceSearch"
-                        data-ng-bind="::'common_search' | translate"
-                    ></label>
-                    <div class="input-group">
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="searchResourceSearch"
-                            name="searchResourceSearch"
-                            placeholder="{{::'exchange_tab_ACCOUNTS_table_email' | translate}}"
-                            data-ng-change="ctrl.onSearchValueChanged()"
+                <span data-translate="exchange_RESOURCES_guide"></span>
+                <span class="fa fa-external-link" aria-hidden="true"></span>
+            </a>
+        </p>
+
+        <form
+            class="form-inline d-md-flex justify-content-md-end mb-3"
+            name="searchResourceForm"
+        >
+            <div class="form-group">
+                <label
+                    class="sr-only"
+                    for="searchResourceSearch"
+                    data-ng-bind="::'common_search' | translate"
+                ></label>
+                <div class="input-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="searchResourceSearch"
+                        name="searchResourceSearch"
+                        placeholder="{{::'exchange_tab_ACCOUNTS_table_email' | translate}}"
+                        data-ng-change="ctrl.onSearchValueChanged()"
+                        data-ng-disabled="ctrl.loading"
+                        data-ng-model="ctrl.searchValue"
+                    />
+                    <div class="input-group-btn" data-ng-if="ctrl.searchValue">
+                        <button
+                            class="btn btn-default"
+                            type="button"
+                            aria-label="{{'common_cancel' | translate}}"
+                            data-ng-click="ctrl.resetSearch()"
                             data-ng-disabled="ctrl.loading"
-                            data-ng-model="ctrl.searchValue"
-                        />
-                        <div
-                            class="input-group-btn"
-                            data-ng-if="ctrl.searchValue"
                         >
-                            <button
-                                class="btn btn-default"
-                                type="button"
-                                aria-label="{{'common_cancel' | translate}}"
-                                data-ng-click="ctrl.resetSearch()"
-                                data-ng-disabled="ctrl.loading"
-                            >
-                                <span
-                                    class="fa fa-times"
-                                    aria-hidden="true"
-                                ></span>
-                            </button>
-                        </div>
-                        <span
-                            class="input-group-addon"
-                            data-ng-if="!ctrl.searchValue"
-                        >
-                            <span
-                                class="fa fa-search"
-                                aria-hidden="true"
-                            ></span>
-                        </span>
+                            <span class="fa fa-times" aria-hidden="true"></span>
+                        </button>
                     </div>
+                    <span
+                        class="input-group-addon"
+                        data-ng-if="!ctrl.searchValue"
+                    >
+                        <span class="fa fa-search" aria-hidden="true"></span>
+                    </span>
                 </div>
-            </form>
+            </div>
+        </form>
 
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th
-                                scope="col"
-                                data-translate="exchange_tab_RESOURCES_table_account"
-                            ></th>
-                            <th
-                                scope="col"
-                                data-translate="exchange_tab_RESOURCES_table_type"
-                            ></th>
-                            <th
-                                scope="col"
-                                data-translate="exchange_tab_RESOURCES_table_capacity"
-                            ></th>
-                            <th
-                                scope="col"
-                                data-translate="exchange_tab_RESOURCES_table_email"
-                            ></th>
-                            <th
-                                scope="col"
-                                data-translate="exchange_tab_RESOURCES_table_state"
-                                class="text-center"
-                            ></th>
-                            <th scope="col" class="min-width"></th>
-                        </tr>
-                    </thead>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th
+                            scope="col"
+                            data-translate="exchange_tab_RESOURCES_table_account"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="exchange_tab_RESOURCES_table_type"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="exchange_tab_RESOURCES_table_capacity"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="exchange_tab_RESOURCES_table_email"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="exchange_tab_RESOURCES_table_state"
+                            class="text-center"
+                        ></th>
+                        <th scope="col" class="min-width"></th>
+                    </tr>
+                </thead>
 
-                    <tbody data-ng-if="ctrl.loading">
-                        <tr>
-                            <td class="text-center" colspan="6">
-                                <oui-spinner></oui-spinner>
-                            </td>
-                        </tr>
-                    </tbody>
+                <tbody data-ng-if="ctrl.loading">
+                    <tr>
+                        <td class="text-center" colspan="6">
+                            <oui-spinner></oui-spinner>
+                        </td>
+                    </tr>
+                </tbody>
 
-                    <tbody
-                        data-ng-if="!ctrl.loading && ctrl.resources.list.results.length === 0 && ctrl.resources.list.messages.length === 0"
+                <tbody
+                    data-ng-if="!ctrl.loading && ctrl.resources.list.results.length === 0 && ctrl.resources.list.messages.length === 0"
+                >
+                    <tr>
+                        <td
+                            class="text-center"
+                            colspan="6"
+                            data-translate="exchange_tab_RESOURCES_table_empty"
+                        ></td>
+                    </tr>
+                </tbody>
+
+                <tbody
+                    data-ng-if="!ctrl.loading && (ctrl.resources.list.results.length > 0 || ctrl.resources.list.messages.length > 0)"
+                >
+                    <tr
+                        data-ng-repeat="resource in (ctrl.resources.list.results | orderBy:'displayName':false) track by $index"
+                        data-ng-class="isRowSelected(resource.id)"
                     >
-                        <tr>
-                            <td
-                                class="text-center"
-                                colspan="6"
-                                data-translate="exchange_tab_RESOURCES_table_empty"
-                            ></td>
-                        </tr>
-                    </tbody>
-
-                    <tbody
-                        data-ng-if="!ctrl.loading && (ctrl.resources.list.results.length > 0 || ctrl.resources.list.messages.length > 0)"
-                    >
-                        <tr
-                            data-ng-repeat="resource in (ctrl.resources.list.results | orderBy:'displayName':false) track by $index"
-                            data-ng-class="isRowSelected(resource.id)"
-                        >
-                            <td
-                                class="word-break"
-                                data-ng-bind-html="resource.displayName | wucSliceContent: 150"
-                            ></td>
-                            <td
-                                data-ng-bind="('exchange_tab_RESOURCES_type_' + resource.resourceType) | translate"
-                            ></td>
-                            <td data-ng-bind="resource.capacity"></td>
-                            <td
-                                class="word-break"
-                                data-ng-bind="resource.resourceEmailDisplayName | wucSliceContent: 150"
-                            ></td>
-                            <td class="text-center">
-                                <span
-                                    class="oui-status oui-status_error"
-                                    data-translate="exchange_tab_ACCOUNTS_state_TASK_ON_ERROR"
-                                    data-ng-if="ctrl.services.exchangeStates.constructor.isInError(resource)"
-                                ></span>
-                                <span
-                                    class="oui-status oui-status_info"
-                                    data-translate="exchange_tab_ACCOUNTS_state_TASK_ON_DOING"
-                                    data-ng-if="ctrl.services.exchangeStates.constructor.isDoing(resource) || resource.taskPendingId !== 0"
-                                ></span>
-                                <span
-                                    class="oui-status oui-status_info"
-                                    data-translate="exchange_tab_ACCOUNTS_state_CREATING"
-                                    data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(resource)"
-                                ></span>
-                                <span
-                                    class="oui-status oui-status_info"
-                                    data-translate="exchange_tab_ACCOUNTS_state_DELETING"
-                                    data-ng-if="ctrl.services.exchangeStates.constructor.isDeleting(resource)"
-                                ></span>
-                                <span
-                                    class="oui-status oui-status_warning"
-                                    data-translate="exchange_tab_ACCOUNTS_state_SUSPENDED"
-                                    data-ng-if="ctrl.services.exchangeStates.constructor.isSuspended(resource)"
-                                ></span>
-                                <span
-                                    class="oui-status oui-status_warning"
-                                    data-translate="exchange_tab_ACCOUNTS_state_SUSPENDING"
-                                    data-ng-if="ctrl.services.exchangeStates.constructor.isSuspending(resource)"
-                                ></span>
-                                <span
-                                    class="oui-status oui-status_info"
-                                    data-translate="exchange_tab_ACCOUNTS_state_REOPENING"
-                                    data-ng-if="ctrl.services.exchangeStates.constructor.isReopening(resource)"
-                                ></span>
-                                <span
-                                    class="oui-status oui-status_success"
-                                    data-translate="exchange_tab_ACCOUNTS_state_OK"
-                                    data-ng-if="ctrl.services.exchangeStates.constructor.isOk(resource) && resource.taskPendingId === 0"
-                                ></span>
-                            </td>
-                            <td>
-                                <oui-action-menu
-                                    data-compact
-                                    data-align="end"
-                                    data-disabled="!ctrl.services.exchangeStates.constructor.isOk(resource)"
-                                >
-                                    <oui-action-menu-item
-                                        data-on-click="ctrl.updateResource(resource)"
-                                    >
-                                        <span
-                                            data-translate="exchange_tab_RESOURCES_tooltip_edit"
-                                        ></span>
-                                    </oui-action-menu-item>
-                                    <oui-action-menu-item
-                                        data-on-click="ctrl.resourceDelegation(resource)"
-                                    >
-                                        <span
-                                            data-translate="exchange_tab_ACCOUNTS_popover_delegation"
-                                        ></span>
-                                    </oui-action-menu-item>
-                                    <oui-action-menu-item
-                                        data-on-click="ctrl.deleteResource(resource)"
-                                    >
-                                        <span
-                                            data-translate="exchange_tab_RESOURCES_popover_delete"
-                                        ></span>
-                                    </oui-action-menu-item>
-                                </oui-action-menu>
-                            </td>
-                        </tr>
-                        <tr
-                            data-ng-repeat="resource in (ctrl.resources.list.messages | orderBy:'id':false) track by $index"
-                        >
-                            <td colspan="6">
-                                <div
-                                    data-oui-tooltip="{{'exchange_tab_ACCOUNTS_partial_account' | translate}}"
+                        <td
+                            class="word-break"
+                            data-ng-bind-html="resource.displayName | wucSliceContent: 150"
+                        ></td>
+                        <td
+                            data-ng-bind="('exchange_tab_RESOURCES_type_' + resource.resourceType) | translate"
+                        ></td>
+                        <td data-ng-bind="resource.capacity"></td>
+                        <td
+                            class="word-break"
+                            data-ng-bind="resource.resourceEmailDisplayName | wucSliceContent: 150"
+                        ></td>
+                        <td class="text-center">
+                            <span
+                                class="oui-badge oui-badge_error"
+                                data-translate="exchange_tab_ACCOUNTS_state_TASK_ON_ERROR"
+                                data-ng-if="ctrl.services.exchangeStates.constructor.isInError(resource)"
+                            ></span>
+                            <span
+                                class="oui-badge oui-badge_info"
+                                data-translate="exchange_tab_ACCOUNTS_state_TASK_ON_DOING"
+                                data-ng-if="ctrl.services.exchangeStates.constructor.isDoing(resource) || resource.taskPendingId !== 0"
+                            ></span>
+                            <span
+                                class="oui-badge oui-badge_info"
+                                data-translate="exchange_tab_ACCOUNTS_state_CREATING"
+                                data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(resource)"
+                            ></span>
+                            <span
+                                class="oui-badge oui-badge_info"
+                                data-translate="exchange_tab_ACCOUNTS_state_DELETING"
+                                data-ng-if="ctrl.services.exchangeStates.constructor.isDeleting(resource)"
+                            ></span>
+                            <span
+                                class="oui-badge oui-badge_warning"
+                                data-translate="exchange_tab_ACCOUNTS_state_SUSPENDED"
+                                data-ng-if="ctrl.services.exchangeStates.constructor.isSuspended(resource)"
+                            ></span>
+                            <span
+                                class="oui-badge oui-badge_warning"
+                                data-translate="exchange_tab_ACCOUNTS_state_SUSPENDING"
+                                data-ng-if="ctrl.services.exchangeStates.constructor.isSuspending(resource)"
+                            ></span>
+                            <span
+                                class="oui-badge oui-badge_info"
+                                data-translate="exchange_tab_ACCOUNTS_state_REOPENING"
+                                data-ng-if="ctrl.services.exchangeStates.constructor.isReopening(resource)"
+                            ></span>
+                            <span
+                                class="oui-badge oui-badge_success"
+                                data-translate="exchange_tab_ACCOUNTS_state_OK"
+                                data-ng-if="ctrl.services.exchangeStates.constructor.isOk(resource) && resource.taskPendingId === 0"
+                            ></span>
+                        </td>
+                        <td>
+                            <oui-action-menu
+                                data-compact
+                                data-disabled="!ctrl.services.exchangeStates.constructor.isOk(resource)"
+                                data-placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="ctrl.updateResource(resource)"
                                 >
                                     <span
-                                        class="fa fa-exclamation-triangle mr-2"
-                                        aria-hidden="true"
+                                        data-translate="exchange_tab_RESOURCES_tooltip_edit"
                                     ></span>
-                                    <span data-ng-bind="resource.id"></span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div
-                class="clearfix"
-                data-ng-show="!ctrl.loading && ctrl.resources.list.results.length > 0"
-                data-pagination-server-side="resourcesTable"
-                data-pagination-server-side-function="retrievingResources"
-                data-pagination-server-side-paginated-stuff="ctrl.resources"
-                data-pagination-server-side-table-loading="ctrl.loading"
-            ></div>
+                                </oui-action-menu-item>
+                                <oui-action-menu-item
+                                    data-on-click="ctrl.resourceDelegation(resource)"
+                                >
+                                    <span
+                                        data-translate="exchange_tab_ACCOUNTS_popover_delegation"
+                                    ></span>
+                                </oui-action-menu-item>
+                                <oui-action-menu-item
+                                    data-on-click="ctrl.deleteResource(resource)"
+                                >
+                                    <span
+                                        data-translate="exchange_tab_RESOURCES_popover_delete"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </td>
+                    </tr>
+                    <tr
+                        data-ng-repeat="resource in (ctrl.resources.list.messages | orderBy:'id':false) track by $index"
+                    >
+                        <td colspan="6">
+                            <div
+                                data-oui-tooltip="{{'exchange_tab_ACCOUNTS_partial_account' | translate}}"
+                            >
+                                <span
+                                    class="fa fa-exclamation-triangle mr-2"
+                                    aria-hidden="true"
+                                ></span>
+                                <span data-ng-bind="resource.id"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
-        <div class="col-md-3 mt-5 mt-lg-0">
-            <button
-                class="btn btn-block btn-default"
-                type="button"
-                data-translate="exchange_tab_RESOURCES_action_add_resource_account"
-                data-ng-click="ctrl.addResource()"
-            ></button>
-        </div>
+        <div
+            class="clearfix"
+            data-ng-show="!ctrl.loading && ctrl.resources.list.results.length > 0"
+            data-pagination-server-side="resourcesTable"
+            data-pagination-server-side-function="retrievingResources"
+            data-pagination-server-side-paginated-stuff="ctrl.resources"
+            data-pagination-server-side-table-loading="ctrl.loading"
+        ></div>
+    </div>
+
+    <div class="col-md-3 mt-5 mt-lg-0">
+        <button
+            class="btn btn-block btn-default"
+            type="button"
+            data-translate="exchange_tab_RESOURCES_action_add_resource_account"
+            data-ng-click="ctrl.addResource()"
+        ></button>
     </div>
 </div>

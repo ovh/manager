@@ -1,19 +1,30 @@
+import { getCriteria } from '../../project.utils';
+
 export default class PciStorageSnapshotsController {
   /* @ngInject */
   constructor(
     $translate,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     PciProjectStorageSnapshotsService,
+    CHANGELOG,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectStorageSnapshotsService = PciProjectStorageSnapshotsService;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {
     this.loadMessages();
+    this.criteria = getCriteria('id', this.snapshotId);
+
+    if (this.taskResponse) {
+      const { type, message } = this.taskResponse.cucCloudParams;
+      this.taskResponse = null;
+      this.CucCloudMessage[type](message);
+    }
   }
 
   loadMessages() {

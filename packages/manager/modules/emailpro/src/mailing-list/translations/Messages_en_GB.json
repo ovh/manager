@@ -117,7 +117,7 @@
   "mailing_list_tab_modal_update_list_heading": "Please enter the following information:",
   "mailing_list_tab_modal_update_list_options": "Options:",
   "mailing_list_tab_modal_update_list_reply_to_list": "To the list",
-  "mailing_list_tab_modal_update_list_reply_to_last_user": "To an email sender",
+  "mailing_list_tab_modal_update_list_reply_to_last_user": "To the sender of the message",
   "mailing_list_tab_modal_update_list_reply_to_email": "To an email address",
   "mailing_list_tab_modal_subscriber_create": "Add a subscriber",
   "mailing_list_tab_modal_create_subscriber_title": "You are about to add a subscriber to the {0} mailing list",
@@ -151,5 +151,6 @@
   "mailing_list_tab_delete_subscribers_title": "Remove subscribers from the <strong>{0}</strong> mailing list",
   "mailing_list_tab_delete_subscribers_list": "List of subscribers to remove",
   "mailing_list_tab_delete_moderators_title": "Remove subscribers from the <strong>{0}</strong> mailing list",
-  "mailing_list_tab_delete_moderators_list": "List of moderators to remove"
+  "mailing_list_tab_delete_moderators_list": "List of moderators to remove",
+  "emailpro_mailing_list": "Mailing-lists"
 }

@@ -1,76 +1,96 @@
 <section class="telecom-legacy telecom-sms" data-ui-view="smsView">
     <!-- LOADING -->
-    <div class="text-center" data-ng-if="TelecomSmsCtrl.loading.init">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
         <oui-spinner></oui-spinner>
     </div>
 
-    <div
-        class="telecom-section-header"
-        data-ng-if="!TelecomSmsCtrl.loading.init"
-    >
-        <!-- TITLE -->
-        <header class="page-header" role="banner">
-            <tuc-editable-service-name
-                data-tuc-editable-service-name-title="TelecomSmsCtrl.service.getDisplayedName()"
-                data-tuc-editable-service-name-title-on-save="TelecomSmsCtrl.serviceNameSave"
-                data-tuc-editable-service-name-service-name="TelecomSmsCtrl.service.name"
-                data-maxlength="25"
-            >
-            </tuc-editable-service-name>
+    <div class="mb-4" data-ng-if="!$ctrl.loading.init">
+        <header class="oui-header">
+            <div class="oui-header__container">
+                <div class="oui-header__content d-inline">
+                    <div class="d-flex justify-content-between">
+                        <tuc-editable-service-name
+                            data-tuc-editable-service-name-title="$ctrl.service.getDisplayedName()"
+                            data-tuc-editable-service-name-title-on-save="$ctrl.serviceNameSave"
+                            data-tuc-editable-service-name-service-name="$ctrl.service.name"
+                            data-service-name-appendix="{{ $ctrl.serviceNameAppendix }}"
+                            data-maxlength="25"
+                        >
+                        </tuc-editable-service-name>
+                        <div
+                            class="d-flex justify-content-end align-items-center gap-1 flex-wrap"
+                        >
+                            <changelog-button
+                                links="$ctrl.CHANGELOG.sms.links"
+                                chapters="$ctrl.CHANGELOG.sms.chapters"
+                            ></changelog-button>
+                            <oui-guide-menu
+                                data-text="{{ 'sms_header_guide' | translate }}"
+                                data-placement="end"
+                            >
+                                <oui-guide-menu-item
+                                    data-ng-repeat="guideLink in $ctrl.headerGuideLink track by $index"
+                                    data-href="{{:: guideLink.url }}"
+                                    data-external
+                                >
+                                    <span
+                                        data-ng-bind=":: guideLink.label"
+                                    ></span>
+                                </oui-guide-menu-item>
+                            </oui-guide-menu>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </header>
 
         <oui-header-tabs>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_common_home' | translate }}"
-                data-state="sms.service.dashboard"
+            <oui-header-tabs-item state="sms.service.dashboard"
+                ><span data-translate="sms_common_home"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-dropdown
+                data-ng-if="!$ctrl.isSmppAccount"
+                text="{{:: 'sms_tabs_messages_campaign' | translate }}"
             >
+                <oui-header-tabs-item state="sms.service.sms">
+                    <span data-translate="sms_sublink_sms_compose"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item state="sms.service.batches">
+                    <span data-translate="sms_sublink_sms_campaign"></span>
+                </oui-header-tabs-item>
+            </oui-header-tabs-dropdown>
+            <oui-header-tabs-dropdown
+                data-ng-if="!$ctrl.isSmppAccount"
+                text="{{:: 'sms_tabs_contacts' | translate }}"
+            >
+                <oui-header-tabs-item state="sms.service.phonebooks">
+                    <span data-translate="sms_sublink_phonebooks"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item state="sms.service.receivers">
+                    <span data-translate="sms_sublink_contact_list"></span>
+                </oui-header-tabs-item>
+            </oui-header-tabs-dropdown>
+            <oui-header-tabs-item state="sms.service.senders"
+                ><span data-translate="sms_tabs_senders"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{:: 'sms_tabs_sms' | translate }}"
-                data-state="sms.service.sms"
+                data-ng-if="!$ctrl.isSmppAccount"
+                state="sms.service.users"
             >
+                <span data-translate="sms_tabs_api_users"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_tabs_contacts' | translate }}"
-                data-state="sms.service.receivers"
-            >
+            <oui-header-tabs-item state="sms.service.options"
+                ><span data-translate="sms_tabs_options"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_tabs_phonebooks' | translate }}"
-                data-state="sms.service.phonebooks"
-            >
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_tabs_senders' | translate }}"
-                data-state="sms.service.senders"
-            >
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_tabs_api_users' | translate }}"
-                data-state="sms.service.users"
-            >
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_tabs_options' | translate }}"
-                data-state="sms.service.options"
-            >
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_tabs_guides' | translate }}"
-                data-state="sms.service.guides"
-            >
+            <oui-header-tabs-item state="sms.service.guides"
+                ><span data-translate="sms_tabs_guides"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
     </div>
-    <!-- .telecom-section-header -->
 
-    <main class="telecom-section-content" role="main">
+    <main role="main">
         <tuc-toast-message></tuc-toast-message>
-        <div
-            data-ng-if="!TelecomSmsCtrl.loading.init"
-            data-ui-view="smsInnerView"
-        ></div>
+        <div data-ng-if="!$ctrl.loading.init" data-ui-view="smsInnerView"></div>
     </main>
-    <!-- .telecom-section-content -->
 </section>
 <!-- /.telecom-sms -->

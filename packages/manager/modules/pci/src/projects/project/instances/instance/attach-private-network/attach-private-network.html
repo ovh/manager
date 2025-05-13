@@ -12,19 +12,23 @@
         data-messages="$ctrl.messages"
     ></cui-message-container>
 
-    <div data-ng-if="$ctrl.privateNetworks.length === 0">
+    <div
+        data-ng-if="(!$ctrl.instance.isLocalZone && $ctrl.privateNetworks.length === 0) || ($ctrl.instance.isLocalZone && $ctrl.localPrivateNetworks.length === 0)"
+    >
         <oui-message data-type="warning">
             <span
                 data-translate="pci_projects_project_instances_instance_attach-private-network_error_no_compatible_network"
             ></span>
         </oui-message>
     </div>
-    <div data-ng-if="$ctrl.privateNetworks.length > 0">
+    <div
+        data-ng-if="(!$ctrl.instance.isLocalZone && $ctrl.privateNetworks.length > 0) || ($ctrl.instance.isLocalZone && $ctrl.localPrivateNetworks.length > 0)"
+    >
         <oui-select
             data-name="selectedPrivateNetworks"
             data-model="$ctrl.selectedPrivateNetworks"
             data-placeholder="{{ :: 'pci_projects_project_instances_instance_attach-private-network_network_placeholder' | translate }}"
-            data-items="$ctrl.privateNetworks"
+            data-items="$ctrl.instance.isLocalZone ? $ctrl.localPrivateNetworks : $ctrl.privateNetworks"
             data-match="name"
             data-searchable
             data-multiple

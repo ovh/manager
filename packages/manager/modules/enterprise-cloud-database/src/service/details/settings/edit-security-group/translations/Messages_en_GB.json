@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_settings_edit_security_group_title": "Edit security group",
-  "enterprise_cloud_database_service_details_settings_edit_security_group_choose_group_name": "Choose a new group name",
-  "enterprise_cloud_database_service_details_settings_edit_security_group_success": "Security group saved successfully",
-  "enterprise_cloud_database_service_details_settings_edit_security_group_error": "An error occurred while trying to udpate the security group: {{message}}"
-}

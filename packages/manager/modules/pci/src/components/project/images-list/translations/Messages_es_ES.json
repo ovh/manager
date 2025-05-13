@@ -1,7 +1,8 @@
 {
-  "pci_project_instances_available_only": "Ocultar las opciones no disponibles",
+  "pci_project_instances_display_nonavailable": "Mostrar las imágenes no disponibles",
   "pci_project_instances_os_linux": "Distribuciones Unix",
   "pci_project_instances_os_windows": "Distribuciones Windows",
+  "pci_project_instances_os_baremetal-linux": "Distribuciones Bare Metal",
   "pci_project_instances_apps": "Distribuciones y aplicaciones",
   "pci_project_instances_shapshots": "Backups",
   "pci_project_instances_licence": "La utilización de imágenes está sujeta a la aceptación previa del contrato de licencia para el usuario final del proveedor.",
@@ -15,6 +16,18 @@
   "pci_project_instances_distribution_ubuntu": "Ubuntu",
   "pci_project_instances_distribution_windows_server_2012": "Windows Server 2012",
   "pci_project_instances_distribution_windows_server_2016": "Windows Server 2016",
+  "pci_project_instances_distribution_windows_other": "Otras distribuciones Windows",
   "pci_project_instances_distribution_version": "Versión",
-  "pci_project_instances_distribution_windows_other": "Otras distribuciones Windows"
+  "pci_project_instances_distribution_unknown": "Distribuciones Bare Metal",
+  "pci_project_instances_distribution_baremetal_linux": "Linux",
+  "pci_project_instances_distribution_baremetal_linux_other": "Arch Linux",
+  "pci_project_instances_distribution_baremetal_centos": "CentOS",
+  "pci_project_instances_distribution_baremetal_coreos": "CoreOS",
+  "pci_project_instances_distribution_baremetal_debian": "Debian",
+  "pci_project_instances_distribution_baremetal_fedora": "Fedora",
+  "pci_project_instances_distribution_baremetal_freebsd": "FreeBSD",
+  "pci_project_instances_distribution_baremetal_ubuntu": "Ubuntu",
+  "pci_project_instances_distribution_baremetal_windows_server_2012": "Windows Server 2012",
+  "pci_project_instances_distribution_baremetal_windows_server_2016": "Windows Server 2016",
+  "pci_project_instances_distribution_baremetal_windows_other": "Otras distribuciones Windows"
 }

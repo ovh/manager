@@ -1,0 +1,14 @@
+{
+  "description-mongodb": "Document-orientated database management system",
+  "description-mysql": "Relational database management system",
+  "description-postgresql": "Relational and object database management system",
+  "description-redis": "In-memory key-value data storage system",
+  "description-cassandra": "Distributed NoSQL data storage system",
+  "description-m3db": "Time series storage system",
+  "description-m3aggregator": "Time series aggregation and re-sampling system",
+  "versionTag-new": "New",
+  "versionTag-soonDeprecated": "Soon deprecated",
+  "selectAVersion": "Select a version",
+  "noVersionFound": "No version found",
+  "description-valkey": "In-memory key-value data storage system"
+}

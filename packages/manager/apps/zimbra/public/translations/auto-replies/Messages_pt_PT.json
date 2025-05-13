@@ -1,0 +1,10 @@
+{
+  "zimbra_auto_replies_name": "Morada",
+  "zimbra_auto_replies_from": "De",
+  "zimbra_auto_replies_until": "Até",
+  "zimbra_auto_replies_copyTo": "Copiar para",
+  "zimbra_auto_replies_add_cta": "Criar uma resposta automática",
+  "zimbra_auto_replies_account_title": "Gestão das respostas automáticas",
+  "zimbra_auto_replies_status": "Estado",
+  "zimbra_auto_replies_delete_modal_content": "Tem a certeza de que quer eliminar a resposta automática?"
+}

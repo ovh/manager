@@ -1,0 +1,91 @@
+<div data-ng-controller="IamUsersAddCtrl as $ctrl">
+    <oui-modal
+        data-heading="{{:: 'user_users_add_modal_title' | translate }}"
+        data-primary-action="$ctrl.addUser()"
+        data-primary-label="{{:: 'user_modal_confirm' | translate }}"
+        data-primary-disabled="!$ctrl.iamUsersAddForm.$valid"
+        data-secondary-action="$ctrl.close()"
+        data-secondary-label="{{:: 'user_modal_cancel' | translate }}"
+        data-on-dismiss="$ctrl.close()"
+    >
+        <p
+            data-translate="user_users_info"
+            data-translate-values="{customerCode: $ctrl.me.customerCode}"
+        ></p>
+
+        <h5
+            data-translate="user_users_add_modal_step1_question"
+            data-translate-values="{login: $ctrl.user.login}"
+        ></h5>
+
+        <div class="text-center" data-ng-if="$ctrl.loader">
+            <oui-spinner data-size="s"></oui-spinner>
+        </div>
+
+        <form name="$ctrl.iamUsersAddForm" data-ng-if="!$ctrl.loader">
+            <oui-field
+                data-label="{{:: 'user_users_update_modal_login' | translate }}"
+                data-help-text="{{$ctrl.getUserLogin()}}"
+            >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="login"
+                    name="login"
+                    required
+                    data-ng-model="$ctrl.user.login"
+                    data-ng-pattern="'^[a-zA-Z0-9\._\-]+$'"
+                />
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'user_users_update_modal_email' | translate }}"
+            >
+                <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    required
+                    data-ng-model="$ctrl.user.email"
+                />
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'user_users_add_modal_password' | translate }}"
+            >
+                <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    required
+                    data-ng-minlength="8"
+                    data-ng-model="$ctrl.user.password"
+                />
+            </oui-field>
+            <oui-field data-label="{{:: 'user_users_group' | translate }}">
+                <select
+                    class="form-control"
+                    id="group"
+                    name="group"
+                    required
+                    data-ng-options="group for group in $ctrl.groups"
+                    data-ng-model="$ctrl.user.group"
+                >
+                </select>
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'user_users_add_modal_description' | translate }}"
+            >
+                <textarea
+                    class="py-2 form-control"
+                    id="description"
+                    name="description"
+                    rows="5"
+                    data-ng-maxlength="$ctrl.DESCRIPTION_MAX_LENGTH"
+                    data-ng-model="$ctrl.user.description"
+                >
+                </textarea>
+            </oui-field>
+        </form>
+    </oui-modal>
+</div>

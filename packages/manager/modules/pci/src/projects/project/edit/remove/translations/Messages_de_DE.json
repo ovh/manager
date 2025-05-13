@@ -1,17 +1,11 @@
 {
   "pci_projects_project_edit_remove_title": "Projekt löschen",
-  "pci_projects_project_edit_remove_please_note": "Bitte beachten Sie, dass folgende Elemente endgültig gelöscht werden:",
-  "pci_projects_project_edit_remove_instances": "Ihre Instanzen",
-  "pci_projects_project_edit_remove_volumes": "Ihre Volumes",
-  "pci_projects_project_edit_remove_object_containers": "Ihre Objektcontainer",
-  "pci_projects_project_edit_remove_object_archives": "Ihre Objektarchive",
-  "pci_projects_project_edit_remove_object_snapshots": "Ihre Volume-Snapshots",
-  "pci_projects_project_edit_remove_object_backups": "Ihre Backup-Instanzen",
-  "pci_projects_project_edit_remove_object_private_network": "Ihre privaten Netzwerke",
-  "pci_projects_project_edit_remove_object_kubernetes": "Ihre Kubernetes-Cluster",
-  "pci_projects_project_edit_remove_object_ip": "Ihre Failover-IPs werden geparkt",
+  "pci_projects_project_edit_remove_please_note": "Wichtiger Hinweis: Alle Ihre Dienste, Ressourcen, Einstellungen und Daten werden vernichtet und können später nicht wiederhergestellt werden. Einzige Ausnahme sind die Failover-IPs, die geparkt werden.",
   "pci_projects_project_edit_remove_submit": "Projekt löschen",
   "pci_projects_project_edit_remove_cancel": "Abbrechen",
   "pci_projects_project_edit_remove_error": "Beim Löschen des Projekts ist ein Fehler aufgetreten: {{ error }}",
-  "pci_projects_project_edit_remove_success": "Ihnen wird eine E-Mail zur Bestätigung des Löschvorgangs zugesandt."
+  "pci_projects_project_edit_remove_success": "Ihnen wird eine E-Mail zur Bestätigung des Löschvorgangs zugesandt.",
+  "pci_projects_project_discovery_edit_remove_please_note": "Beachten Sie, dass das Löschen Ihres Projekts nicht rückgängig gemacht werden kann. Sie müssen dann ein neues Projekt erstellen, um das Public-Cloud-Universum wieder nutzen zu können.",
+  "pci_projects_project_discovery_edit_savings_plan": "Sie haben einen aktuellen Savings Plan für dieses Projekt. Eine Löschung ist nicht möglich. Bitte wenden Sie sich an den Kundendienst, um weitere Informationen zum Löschvorgang zu erhalten.",
+  "pci_projects_project_edit_remove_submit_client_service": "Den Kundendienst kontaktieren"
 }

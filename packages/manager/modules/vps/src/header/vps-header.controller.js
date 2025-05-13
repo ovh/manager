@@ -8,6 +8,8 @@ import {
   TAB_FEATURES,
 } from './vps-header.constants';
 
+import { PRODUCT_NAME } from '../vps/constants';
+
 export default class {
   /* @ngInject */
   constructor(
@@ -18,7 +20,7 @@ export default class {
     CucProductsService,
     OvhApiMe,
     VpsNotificationIpv6,
-    VpsService,
+    constants,
   ) {
     this.$rootScope = $rootScope;
     this.$translate = $translate;
@@ -27,14 +29,13 @@ export default class {
     this.CucProductsService = CucProductsService;
     this.OvhApiMe = OvhApiMe;
     this.VpsNotificationIpv6 = VpsNotificationIpv6;
-    this.VpsService = VpsService;
+    this.constants = constants;
 
     this.description = this.serviceName;
 
     this.loaders = {
       init: false,
     };
-    this.vps = {};
     this.stopNotification = {
       autoRenew: true,
       ipV6: true,
@@ -42,41 +43,30 @@ export default class {
   }
 
   $onInit() {
-    this.loaders.init = true;
     this.$rootScope.$on('changeDescription', (event, data) => {
       this.description = data;
     });
-    this.showDatabaseTab = false;
-    this.CucFeatureAvailabilityService.hasFeaturePromise(
-      'VPS',
-      'cloudDatabase',
-    ).then((hasFeature) => {
-      this.showDatabaseTab = hasFeature;
+    this.showDatabaseTab = this.hasCloudDatabaseFeature;
+    this.description = this.vps.displayName;
+    this.checkMessages(this.vps);
+    this.$rootScope.$on('tasks.success', (event, opt) => {
+      if (opt === this.serviceName) {
+        this.checkMessages(this.vps);
+      }
     });
-    this.VpsService.getSelectedVps(this.serviceName)
-      .then((vps) => {
-        this.vps = vps;
-        this.description = vps.displayName;
-        this.checkMessages(vps);
-        this.$rootScope.$on('tasks.success', (event, opt) => {
-          if (opt === this.serviceName) {
-            this.checkMessages(vps);
-          }
-        });
-      })
-      .catch(() =>
-        this.CucCloudMessage.error(
-          this.$translate.instant('vps_dashboard_loading_error'),
-        ),
-      )
-      .finally(() => {
-        this.loaders.init = false;
-      });
+
     this.description = this.CucProductsService.getDisplayName(
-      'VPS',
+      PRODUCT_NAME,
       this.serviceName,
     );
-    this.features = this.getFeatures();
+    const features = this.getFeatures();
+
+    this.features = features.filter(
+      ({ title }) =>
+        title !== TAB_FEATURES[0].title ||
+        (title === TAB_FEATURES[0].title && this.hasBackupStorage),
+    );
+
     [this.feature] = this.features;
   }
 
@@ -86,6 +76,7 @@ export default class {
         this.capabilities.includes(feature),
       ),
       (feature) => ({
+        title: feature,
         textId: `vps_tab_${snakeCase(feature)}`,
         state: `vps.detail.${feature}`,
       }),
@@ -94,7 +85,7 @@ export default class {
 
   checkMessages(vps) {
     this.isExpired(vps);
-    this.isInRescueMode(vps.netbootMode);
+    this.displayWarningForRescueMode(this.isInRescueMode);
     this.checkIfStopNotification('ipV6', true, vps);
   }
 
@@ -112,8 +103,8 @@ export default class {
     }
   }
 
-  isInRescueMode(netbootMode) {
-    if (netbootMode === 'RESCUE') {
+  displayWarningForRescueMode(isInRescueMode) {
+    if (isInRescueMode) {
       this.CucCloudMessage.warning(
         {
           textHtml: this.$translate.instant(

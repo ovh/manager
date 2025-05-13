@@ -1,0 +1,5 @@
+{
+  "account-disable-2fa-error-validation": "Tenemos problemas para validar que usted no es un robot.",
+  "account-disable-2fa-error-verification": "Compruebe que no ha bloqueado los iframes, que no ha impedido la ejecución de Javascript o que ha forzado la ejecución estricta de Javascript en su navegador.",
+  "account-disable-2fa-error-suggestion": "Si surge algún problema, puede intentar de nuevo su solicitud con un nuevo explorador sin configuración personalizada ni extensiones."
+}

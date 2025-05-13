@@ -1,5 +1,0 @@
-{
-  "billing_payment_method_default_title": "Establecer una forma de pago por defecto",
-  "billing_payment_method_default_explain": "Está a punto de establecer la forma de pago <strong>{{ label }}</strong> como forma de pago por defecto.",
-  "billing_payment_method_default_question": "¿Seguro que quiere continuar?"
-}

@@ -1,0 +1,10 @@
+{
+  "zimbra_auto_replies_name": "Address",
+  "zimbra_auto_replies_from": "From",
+  "zimbra_auto_replies_until": "Until",
+  "zimbra_auto_replies_copyTo": "Copy to",
+  "zimbra_auto_replies_add_cta": "Create an auto-reply",
+  "zimbra_auto_replies_account_title": "Manage auto-replies",
+  "zimbra_auto_replies_status": "Status",
+  "zimbra_auto_replies_delete_modal_content": "Are you sure you want to delete the auto-reply?"
+}

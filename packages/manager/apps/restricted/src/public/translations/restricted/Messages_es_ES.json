@@ -1,0 +1,18 @@
+{
+  "restricted_account_logout": "Desconectarse",
+  "restricted_account_method_user": "Conectado como usuario secundario",
+  "restricted_error_default": "El acceso al área de cliente de OVHcloud requiere un mínimo de permisos. Póngase en contacto con su administrador.",
+  "restricted_error_title": "Acceso restringido",
+  "restricted_guide_card_control-panel-access_description": "Esta guía explica cómo conceder los permisos mínimos necesarios para conectarse al área de cliente",
+  "restricted_guide_card_control-panel-access_title": "Conectarse al área de cliente de OVHcloud con el IAM",
+  "restricted_guide_card_policies-ui_description": "Esta guía explica cómo asignar permisos de acceso específicos a los usuarios desde una cuenta de OVHcloud",
+  "restricted_guide_card_policies-ui_title": "Crear políticas IAM desde el área de cliente",
+  "restricted_guide_card_policies-api_description": "Cómo conceder permisos de acceso específicos a los usuarios de una cuenta de OVHcloud",
+  "restricted_guide_card_policies-api_title": "Crear políticas IAM a través de la API",
+  "restricted_guide_card_more": "Más información",
+  "restricted_guide_card_title": "Guía",
+  "restricted_language_change": "Cambiar el idioma de la interfaz",
+  "restricted_navbar_account": "Mi cuenta",
+  "restricted_error_default_start": "Para acceder al área de cliente de OVHcloud necesita disponer de {{count}} permisos necesarios en su cuenta, tal y como se explica en la siguiente guía:",
+  "restricted_error_default_end": "Por favor, póngase en contacto con su administrador para agregar estos permisos."
+}

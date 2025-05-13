@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EstimatePage > should render 1`] = `
+<div>
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2"
+  >
+    <div
+      data-testid="estimate-part"
+    />
+    <div
+      data-testid="alerts-part"
+    />
+  </div>
+</div>
+`;

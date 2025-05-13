@@ -1,8 +1,0 @@
-{
-  "billing_autorenew_service_activation_title": "Enable automatic renewal",
-  "billing_autorenew_service_activation_success": "Automatic renewal is now enabled.",
-  "billing_autorenew_service_activation_error": "An error has occurred enabling automatic renewal {{ message }}",
-  "billing_autorenew_service_activation_confirm": "Confirm",
-  "billing_autorenew_service_activation_cancel": "Cancel",
-  "billing_autorenew_service_activation_confirmation": "Do you want to enable automatic renewal?"
-}

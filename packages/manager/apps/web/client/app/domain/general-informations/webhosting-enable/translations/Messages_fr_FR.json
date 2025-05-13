@@ -1,0 +1,22 @@
+{
+  "domain_configuration_enable_web_hosting": "Activer votre hébergement web",
+  "domain_configuration_enable_web_hosting_offer": "Votre offre",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-start10m": "Start 10M",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-free-100m": "Hébergement gratuit 100M",
+  "domain_configuration_web_hosting_offer_START_explain": "L'offre Free Hosting 100M est incluse dans votre offre mais dispose de fonctionnalités basiques.",
+  "domain_configuration_web_hosting_choose_offer_explain": "Pour en savoir plus sur nos offres et connaître leurs spécifications techniques ainsi que leurs différentes options, rendez-vous sur <a href=\"{{url}}\" target=\"_blank\">notre site</a>.",
+  "domain_configuration_enable_web_hosting_dns_configuration": "Configuration de vos DNS",
+  "domain_configuration_web_hosting_dns_info_NO_CHANGE": "Si vous ne sélectionnez aucune configuration, malgré la mise en place de votre nouvel hébergement, votre nom de domaine continuera de pointer sur les entrées actuelles, vous devrez de votre côté effectuer les modifications dans votre zone DNS lorsque votre nouveau site sera prêt. Il s'agit d'un choix idéal si vous ne souhaitez pas couper un site déjà en production.",
+  "domain_configuration_enable_web_hosting_dns_configuration_A": "Entrée DNS A",
+  "domain_configuration_enable_web_hosting_dns_configuration_MX": "Entrée DNS MX",
+  "domain_configuration_web_hosting_dns_info_A": "Si vous disposez d'adresses e-mail sur votre nom de domaine mais d'aucun site internet, vous pouvez choisir de ne modifier que l'enregistrement A. De cette manière, votre nom de domaine pointera sur votre nouvel hébergement et vos adresses e-mails continueront de fonctionner sur votre service actuel.",
+  "domain_configuration_web_hosting_dns_info_MX": "Cette option vous permettra d'utiliser uniquement les adresses e-mail de votre hébergement sans modifier le pointage relatif à votre site web. Votre nom de domaine continuera de pointer sur votre site actuel, mais les adresses e-mail utiliseront désormais les serveurs d'OVHcloud.",
+  "domain_configuration_enable_web_hosting_offer_price": "Tarification",
+  "domain_configuration_enable_web_hosting_offer_START_P1Y": "12 mois",
+  "domain_configuration_enable_web_hosting_offer_START_P0D": "12 mois",
+  "domain_configuration_enable_web_hosting_activation": "Activation",
+  "domain_configuration_enable_web_hosting_activate": "Activer",
+  "domain_configuration_enable_web_hosting_success": "L'activation de l'hébergement est en cours, cela peut prendre quelques minutes.",
+  "domain_configuration_enable_web_hosting_checkout_error": "Une erreur est survenue {{ message }}",
+  "domain_configuration_enable_web_hosting_error": "Une erreur est survenue lors de l'activation de votre hébergement. {{ message }}"
+}

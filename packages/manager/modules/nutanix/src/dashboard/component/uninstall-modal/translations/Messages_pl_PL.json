@@ -1,0 +1,10 @@
+{
+  "nutanix_dashboard_uninstall_node_title": "Odinstaluj węzeł",
+  "nutanix_dashboard_uninstall_node_description": "Chcesz odinstalować węzeł {{serviceName}}. Dezinstalacja węzła Nutanix może mieć wpływ na klaster. Przed wykonaniem tej operacji sprawdź wymagania wstępne na portalu Nutanix ",
+  "nutanix_dashboard_uninstall_node_uninstall_guidelink": "Przejdź do portalu",
+  "nutanix_dashboard_uninstall_node_confirm": "Odinstaluj",
+  "nutanix_dashboard_uninstall_node_cancel": "Anuluj",
+  "nutanix_dashboard_uninstall_node_input_label": "Wpisz „{{magicword}}”, aby potwierdzić wybór",
+  "nutanix_dashboard_uninstall_node_success_banner": "Dyspozycja dezinstalacji została zarejestrowana. Operacja może potrwać do 10 minut",
+  "nutanix_dashboard_uninstall_node_error_banner": "Dezinstalacja nie powiodła się. Jeśli błąd się powtórzy, prosimy o kontakt z pomocą techniczną"
+}

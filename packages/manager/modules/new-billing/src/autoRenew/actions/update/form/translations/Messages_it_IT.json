@@ -1,0 +1,8 @@
+{
+  "billing_autorenew_service_update_form_description": "Scegli il tipo di rinnovo (automatico o manuale). Per il rinnovo automatico, è possibile scegliere anche la frequenza degli addebiti.",
+  "billing_autorenew_service_update_form_service_renewal": "Tipo di rinnovo",
+  "billing_autorenew_service_update_form_service_automatic": "Automatico",
+  "billing_autorenew_service_update_form_service_manualPayment": "Manuale",
+  "billing_autorenew_service_update_form_service_period": "Frequenza",
+  "billing_autorenew_service_update_form_service_period_value": "{{ month }} mesi"
+}

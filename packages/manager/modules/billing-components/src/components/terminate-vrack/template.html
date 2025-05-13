@@ -1,0 +1,44 @@
+<oui-modal
+    data-heading="{{:: 'autorenew_agora_terminate_vrack_blocked_title' | translate }}"
+    data-primary-action="$ctrl.goBack()"
+    data-primary-label="{{:: 'autorenew_agora_terminate_vrack_blocked_close' | translate }}"
+    data-secondary-disabled="true"
+    data-on-dismiss="$ctrl.goBack()"
+    data-ng-if="!$ctrl.isEmpty"
+>
+    <oui-message data-type="warning" class="mb-2" data-ng-if="!$ctrl.isEmpty">
+        <span
+            data-translate="autorenew_agora_terminate_vrack_blocked_description"
+        ></span>
+    </oui-message>
+</oui-modal>
+
+<oui-modal
+    data-heading="{{:: 'autorenew_agora_terminate_vrack_blocked_title' | translate }}"
+    data-primary-action="$ctrl.terminate()"
+    data-primary-disabled="!$ctrl.terminateConfirmation"
+    data-primary-label="{{:: 'autorenew_service_terminate' | translate }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'autorenew_service_terminate_cancel' | translate }}"
+    data-loading="$ctrl.isDeleting"
+    data-on-dismiss="$ctrl.goBack()"
+    data-ng-if="$ctrl.isEmpty"
+>
+    <oui-message data-type="warning" class="mb-2">
+        <span
+            data-translate="{{:: 'autorenew_agora_terminate_service_warning_VRACK'}}"
+        ></span>
+    </oui-message>
+    <oui-field
+        data-label="{{:: 'autorenew_agora_terminate_service_confirm_input' | translate }}"
+    >
+        <input
+            type="text"
+            class="oui-input"
+            name="terminateInput"
+            data-ng-model="$ctrl.terminateConfirmation"
+            data-ng-pattern="$ctrl.TERMINATE_PATTERN"
+            required
+        />
+    </oui-field>
+</oui-modal>

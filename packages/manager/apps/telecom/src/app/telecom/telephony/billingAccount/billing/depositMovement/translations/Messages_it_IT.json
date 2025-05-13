@@ -16,5 +16,7 @@
   "telephony_group_billing_deposit_movement_error_amount_number": "Inserisci un importo valido.",
   "telephony_group_billing_deposit_movement_error_amount_min": "Il valore minimo di questo campo è {{ min }}.",
   "telephony_group_billing_deposit_movement_error_amount_max": "Il valore massimo di questo campo è {{ max }}.",
-  "telephony_group_billing_deposit_movement_capability_error": "Ops! Impossibile verificare i gruppi di fatturazione trasferibili."
+  "telephony_group_billing_deposit_movement_capability_error": "Ops! Impossibile verificare i gruppi di fatturazione trasferibili.",
+  "telephony_group_billing_deposit_movement_breadcrumb": "Trasferisci i depositi cauzionali",
+  "telephony_group_billing_deposit_movement_error_destination": "Il tuo deposito cauzionale non può essere trasferito su questo gruppo"
 }

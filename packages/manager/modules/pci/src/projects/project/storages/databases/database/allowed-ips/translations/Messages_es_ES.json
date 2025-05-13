@@ -1,0 +1,9 @@
+{
+  "pci_databases_allowed_ips": "IP autorizadas",
+  "pci_databases_allowed_ip_title": "IP autorizadas a acceder a la base de datos",
+  "pci_databases_allowed_ip_ip_network": "IP/máscara",
+  "pci_databases_allowed_ip_description": "Descripción",
+  "pci_databases_allowed_ip_add": "Añadir una dirección IP o un bloque de IP (CIDR)",
+  "pci_databases_allowed_ip_update": "Editar la dirección IP",
+  "pci_databases_allowed_ip_delete": "Eliminar la dirección IP"
+}

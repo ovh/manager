@@ -1,0 +1,14 @@
+{
+  "billing_autorenew_disable_title": "Disattiva il rinnovo automatico sui servizi selezionati.",
+  "billing_autorenew_disable_description": "Hai richiesto di disattivare il rinnovo manuale sui servizi selezionati.",
+  "billing_autorenew_disable_warning": "Questa modalità non consente il rinnovo automatico del servizio alla scadenza. Riceverai alcune email di notifica nelle settimane/giorni precedenti alla scadenza e, per mantenere il servizio attivo, sarà sufficiente rinnovarlo.",
+  "billing_autorenew_disable_renew": "",
+  "billing_autorenew_disable_data": "Attenzione: una volta giunto a scadenza, il servizio viene immediatamente sospeso e non sarà più accessibile. In caso di mancato pagamento da parte tua entro qualche giorno, i dati ad esso associati verranno eliminati definitivamente.",
+  "billing_autorenew_disable_bulk_unavailable": "Il rinnovo automatico verrà disattivato su tutti i servizi selezionati, fatta eccezione per {{ count }} servizi:",
+  "billing_autorenew_disable_success": "Il rinnovo dei servizi è stato aggiornato correttamente",
+  "billing_autorenew_disable_error": "Si è verificato un errore durante la disattivazione del rinnovo automatico: {{ message }}",
+  "billing_autorenew_disable_bulk_unavailable_one": "Il rinnovo automatico verrà disattivato su tutti i servizi selezionati, fatta eccezione per 1 servizio:",
+  "billing_autorenew_disable_bulk": "Il rinnovo automatico verrà disattivato su tutti i servizi selezionati.",
+  "billing_autorenew_disable_bulk_single": "Il rinnovo automatico verrà disattivato sul servizio {{ serviceName }}.",
+  "billing_autorenew_disable_breadcrumb": "Disattiva il rinnovo automatico"
+}

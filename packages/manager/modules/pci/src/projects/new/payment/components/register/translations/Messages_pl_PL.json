@@ -1,9 +1,3 @@
 {
-  "pci_project_new_payment_register_title": "Dodaj sposób płatności",
-  "pci_project_new_payment_register_explain": "Dodanie sposobu płatności jest niezbędne do potwierdzenia Twojej tożsamości. Dopóki nie skorzystasz z usługi, nie zostaniesz obciążony żadnymi kosztami. ",
-  "pci_project_new_payment_register_info_credit_card": "Zostaniesz przekierowany do bezpiecznego interfejsu naszego dostawcy, abyś mógł zarejestrować nową kartę bankową. Zabezpieczyliśmy środki na Twojej karcie w celu potwierdzenia jej numeru i ważności. Karta nie zostanie obciążona.",
-  "pci_project_new_payment_register_info_paypal": "Po kliknięciu „Utwórz projekt” zostaniesz przekierowany do bezpiecznego interfejsu PayPal w celu rejestracji Twojego konta.",
-  "pci_project_new_payment_register_info_bank_account": "Po kliknięciu \"Dodaj\" zostaniesz przekierowany do sekcji „Moje sposoby płatności” w Panelu klienta.",
-  "pci_project_new_payment_register_warning_bank_account": "Twoje konto bankowe zostanie zatwierdzone w ciągu 24 do 48 godzin od otrzymania autoryzacji debetowej, która musi zostać zwrócona pocztą. Następnie można odtworzyć projektu chmury publicznej.",
-  "pci_project_new_payment_register_credit": "Dodawanie kredytów"
+  "pci_project_new_payment_register_title": "Potwierdzenie tożsamości"
 }

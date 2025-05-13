@@ -1,9 +1,0 @@
-{
-  "walkme_title": "Nouveau",
-  "walkme_content_server": "<strong>Votre menu a évolué pour vous faire gagner du temps !</strong> Retrouvez notamment vos produits VPS, serveurs dédiés et Private Cloud",
-  "walkme_content_server_US": "<strong>Votre menu a évolué pour vous faire gagner du temps !</strong> Retrouvez notamment vos produits serveurs dédiés et Private Cloud",
-  "walkme_content_server_mobile": "<strong>Votre menu a changé !</strong> Le nouvel onglet « server » regroupe tous vos produits serveurs dédiés, Private Cloud, etc…",
-  "walkme_content_cloud": "Retrouvez ici tous vos projets Public Cloud et profitez maintenant d'une <span class=\"oui-font-semibold\">nouvelle interface avec activation facilitée…</strong>",
-  "walkme_content_cloud_US": "Retrouvez ici tous vos projets Public Cloud et profitez maintenant d'une <span class=\"oui-font-semibold\">nouvelle interface avec activation facilitée…</strong>",
-  "walkme_content_cloud_mobile": "Retrouvez dans l'onglet Public Cloud tous vos projets et profitez maintenant d'une <span class=\"oui-font-semibold\">nouvelle interface avec activation facilitée…</strong>"
-}

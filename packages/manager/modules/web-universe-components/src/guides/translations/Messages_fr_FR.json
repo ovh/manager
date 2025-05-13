@@ -15,6 +15,7 @@
   "guide_domain_ds_record": "Sécuriser votre domaine avec DNSSEC",
   "guide_domain_dyn_host": "Qu'est-ce qu'un dynhost ?",
   "guide_domain_edit_zone": "Comment éditer ma zone DNS ?",
+  "guide_domain_history_zone": "Gérer l'historique d'une zone DNS",
   "guide_domain_glue_registry": "Activer le GLUE Registry",
   "guide_domain_owner_transfert": "Guides de changements de propriétaires de domaines",
   "guide_domain_owo_activation": "Whois - Activation de OwO",

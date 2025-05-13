@@ -1,0 +1,416 @@
+<form
+    name="updatePhonecontactForm"
+    id="updatePhonecontactForm"
+    data-ng-submit="ContactUpdateCtrl.update()"
+>
+    <div class="modal-header">
+        <button
+            type="button"
+            class="close float-right"
+            aria-label="{{ ::'cancel' | translate }}"
+            data-ng-click="ContactUpdateCtrl.cancel()"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div
+        class="modal-body"
+        data-ng-if="!ContactUpdateCtrl.phonecontactForm.isAdding && !ContactUpdateCtrl.phonecontactForm.hasBeenAdded"
+    >
+        <h3
+            class="modal-title"
+            data-translate="telephony_phonebook_contact_add"
+        ></h3>
+
+        <!-- SURNAME -->
+        <div
+            class="form-group"
+            data-ng-class="{
+                 'has-error': updatePhonecontactForm.surname.$touched && updatePhonecontactForm.surname.$invalid
+             }"
+        >
+            <label
+                for="surname"
+                class="control-label"
+                data-translate="telephony_phonebook_contact_column_surname"
+            >
+            </label>
+            <input
+                type="text"
+                name="surname"
+                id="surname"
+                class="form-control"
+                autofocus
+                required
+                data-ng-model="ContactUpdateCtrl.phonecontactForm.surname"
+                data-ng-pattern="/^[\w\s.\-]*$/"
+                data-ng-maxlength="246"
+                data-translate-attr="{ placeholder: 'telephony_phonebook_contact_add_surname_placeholder' }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="updatePhonecontactForm.surname.$touched"
+                data-ng-messages="updatePhonecontactForm.surname.$error"
+            >
+                <span
+                    data-ng-message="required"
+                    data-translate="telephony_phonebook_contact_add_surname_error_required"
+                >
+                </span>
+                <span
+                    data-ng-message="pattern"
+                    data-translate="telephony_phonebook_contact_add_surname_error_pattern"
+                >
+                </span>
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="telephony_phonebook_contact_add_surname_error_maxlength"
+                >
+                </span>
+            </span>
+        </div>
+
+        <!-- NAME -->
+        <div
+            class="form-group"
+            data-ng-class="{
+                 'has-error': updatePhonecontactForm.name.$touched && updatePhonecontactForm.name.$invalid
+             }"
+        >
+            <label
+                for="name"
+                class="control-label"
+                data-translate="telephony_phonebook_contact_column_name"
+            >
+            </label>
+            <input
+                type="text"
+                name="name"
+                id="name"
+                class="form-control"
+                required
+                data-ng-model="ContactUpdateCtrl.phonecontactForm.name"
+                data-ng-pattern="/^[\w\s.\-]*$/"
+                data-ng-maxlength="246"
+                data-translate-attr="{ placeholder: 'telephony_phonebook_contact_add_name_placeholder' }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="updatePhonecontactForm.name.$touched"
+                data-ng-messages="updatePhonecontactForm.name.$error"
+            >
+                <span
+                    data-ng-message="required"
+                    data-translate="telephony_phonebook_contact_add_name_error_required"
+                >
+                </span>
+                <span
+                    data-ng-message="pattern"
+                    data-translate="telephony_phonebook_contact_add_name_error_pattern"
+                >
+                </span>
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="telephony_phonebook_contact_add_name_error_maxlength"
+                >
+                </span>
+            </span>
+        </div>
+
+        <!-- GROUP -->
+        <div
+            class="form-group"
+            data-ng-class="{
+                 'has-error': updatePhonecontactForm.group.$touched && updatePhonecontactForm.group.$invalid
+             }"
+        >
+            <label
+                for="group"
+                class="control-label"
+                data-translate="telephony_phonebook_contact_column_group"
+            >
+            </label>
+            <div
+                data-ng-class="{ 'input-group': ContactUpdateCtrl.groupsAvailable.length }"
+            >
+                <input
+                    type="text"
+                    name="group"
+                    id="group"
+                    class="form-control"
+                    data-ng-model="ContactUpdateCtrl.phonecontactForm.group"
+                    data-ng-maxlength="50"
+                    data-ng-pattern="/^[\w\s.\-]*$/"
+                    data-translate-attr="{ placeholder: 'telephony_phonebook_contact_column_group' }"
+                />
+                <div
+                    class="input-group-btn"
+                    style="width: auto;"
+                    data-uib-dropdown
+                    data-ng-if="ContactUpdateCtrl.groupsAvailable.length"
+                >
+                    <button
+                        type="button"
+                        class="btn btn-default w-100"
+                        data-uib-dropdown-toggle
+                    >
+                        <span
+                            data-translate="telephony_phonebook_contact_add_group_select"
+                        ></span>
+                        <i
+                            class="ovh-font ovh-font-select-arrow-down ml-2"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+                    <ul
+                        class="dropdown-menu dropdown-menu-right"
+                        role="menu"
+                        data-uib-dropdown-menu
+                    >
+                        <li
+                            role="menuitem"
+                            data-ng-repeat="group in ContactUpdateCtrl.groupsAvailable | orderBy:'' track by $index"
+                        >
+                            <a
+                                href="#"
+                                data-ng-click="ContactUpdateCtrl.setGroup($event, group)"
+                                data-ng-bind="group"
+                                data-translate-attr="{ 'title': group }"
+                                target="_top"
+                            >
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="updatePhonecontactForm.group.$touched"
+                data-ng-messages="updatePhonecontactForm.group.$error"
+            >
+                <span
+                    data-ng-message="pattern"
+                    data-translate="telephony_phonebook_contact_add_group_error_pattern"
+                >
+                </span>
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="telephony_phonebook_contact_add_group_error_maxlength"
+                >
+                </span>
+            </span>
+        </div>
+
+        <p class="text-info">
+            <i class="ovh-font ovh-font-info mr-2" aria-hidden="true"></i>
+            <span
+                data-translate="telephony_phonebook_contact_add_error_numbers"
+            ></span>
+        </p>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <!-- HOMEPHONE -->
+                <div
+                    class="form-group"
+                    data-ng-class="{
+                         'has-error': updatePhonecontactForm.homePhone.$touched && updatePhonecontactForm.homePhone.$invalid
+                     }"
+                >
+                    <label
+                        for="homePhone"
+                        class="control-label"
+                        data-translate="telephony_phonebook_contact_column_home_phone"
+                    >
+                    </label>
+                    <input
+                        type="text"
+                        name="homePhone"
+                        id="homePhone"
+                        class="form-control"
+                        data-ng-model="ContactUpdateCtrl.phonecontactForm.homePhone"
+                        data-ng-change="ContactUpdateCtrl.handleContactPhoneNumber()"
+                        data-ui-validate="{ phoneNumber: 'ContactUpdateCtrl.isValidNumber($value)' }"
+                        data-translate-attr="{ placeholder: 'telephony_phonebook_contact_column_home_phone_title' }"
+                    />
+                    <span
+                        class="help-block"
+                        role="alert"
+                        data-ng-if="updatePhonecontactForm.homePhone.$touched"
+                        data-ng-messages="updatePhonecontactForm.homePhone.$error"
+                    >
+                        <span
+                            data-ng-message="phoneNumber"
+                            data-translate="telephony_phonebook_contact_add_error_phonenumber"
+                        >
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <!-- HOMEMOBILE -->
+                <div
+                    class="form-group"
+                    data-ng-class="{
+                         'has-error': updatePhonecontactForm.homeMobile.$touched && updatePhonecontactForm.homeMobile.$invalid
+                     }"
+                >
+                    <label
+                        for="homeMobile"
+                        class="control-label"
+                        data-translate="telephony_phonebook_contact_column_home_mobile"
+                    >
+                    </label>
+                    <input
+                        type="text"
+                        name="homeMobile"
+                        id="homeMobile"
+                        class="form-control"
+                        data-ng-model="ContactUpdateCtrl.phonecontactForm.homeMobile"
+                        data-ng-change="ContactUpdateCtrl.handleContactPhoneNumber()"
+                        data-ui-validate="{ phoneNumber: 'ContactUpdateCtrl.isValidNumber($value)' }"
+                        data-translate-attr="{ placeholder: 'telephony_phonebook_contact_column_home_mobile_title' }"
+                    />
+                    <span
+                        class="help-block"
+                        role="alert"
+                        data-ng-if="updatePhonecontactForm.homeMobile.$touched"
+                        data-ng-messages="updatePhonecontactForm.homeMobile.$error"
+                    >
+                        <span
+                            data-ng-message="phoneNumber"
+                            data-translate="telephony_phonebook_contact_add_error_phonenumber"
+                        >
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- .row -->
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <!-- WORKPHONE -->
+                <div
+                    class="form-group"
+                    data-ng-class="{
+                         'has-error': updatePhonecontactForm.workPhone.$touched && updatePhonecontactForm.workPhone.$invalid
+                     }"
+                >
+                    <label
+                        for="workPhone"
+                        class="control-label"
+                        data-translate="telephony_phonebook_contact_column_work_phone"
+                    >
+                    </label>
+                    <input
+                        type="text"
+                        name="workPhone"
+                        id="workPhone"
+                        class="form-control"
+                        data-ng-model="ContactUpdateCtrl.phonecontactForm.workPhone"
+                        data-ng-change="ContactUpdateCtrl.handleContactPhoneNumber()"
+                        data-ui-validate="{ phoneNumber: 'ContactUpdateCtrl.isValidNumber($value)' }"
+                        data-translate-attr="{ placeholder: 'telephony_phonebook_contact_column_work_phone_title' }"
+                    />
+                    <span
+                        class="help-block"
+                        role="alert"
+                        data-ng-if="updatePhonecontactForm.workPhone.$touched"
+                        data-ng-messages="updatePhonecontactForm.workPhone.$error"
+                    >
+                        <span
+                            data-ng-message="phoneNumber"
+                            data-translate="telephony_phonebook_contact_add_error_phonenumber"
+                        >
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <!-- WORKMOBILE -->
+                <div
+                    class="form-group"
+                    data-ng-class="{
+                         'has-error': updatePhonecontactForm.workMobile.$touched && updatePhonecontactForm.workMobile.$invalid
+                     }"
+                >
+                    <label
+                        for="workMobile"
+                        class="control-label"
+                        data-translate="telephony_phonebook_contact_column_work_mobile"
+                    >
+                    </label>
+                    <input
+                        type="text"
+                        name="workMobile"
+                        id="workMobile"
+                        class="form-control"
+                        data-ng-model="ContactUpdateCtrl.phonecontactForm.workMobile"
+                        data-ng-change="ContactUpdateCtrl.handleContactPhoneNumber()"
+                        data-ui-validate="{ phoneNumber: 'ContactUpdateCtrl.isValidNumber($value)' }"
+                        data-translate-attr="{ placeholder: 'telephony_phonebook_contact_column_work_mobile_title' }"
+                    />
+                    <span
+                        class="help-block"
+                        role="alert"
+                        data-ng-if="updatePhonecontactForm.workMobile.$touched"
+                        data-ng-messages="updatePhonecontactForm.workMobile.$error"
+                    >
+                        <span
+                            data-ng-message="phoneNumber"
+                            data-translate="telephony_phonebook_contact_add_error_phonenumber"
+                        >
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- .row -->
+    </div>
+    <!-- .modal-body -->
+
+    <div
+        class="modal-body text-center"
+        data-ng-if="ContactUpdateCtrl.phonecontactForm.isAdding"
+    >
+        <oui-spinner></oui-spinner>
+        <h4 data-translate="telephony_phonebook_contact_updating"></h4>
+    </div>
+
+    <div
+        class="modal-body"
+        data-ng-if="ContactUpdateCtrl.phonecontactForm.hasBeenAdded"
+    >
+        <tuc-success-drawing-check
+            data-draw-success-check="ContactUpdateCtrl.phonecontactForm.hasBeenAdded"
+        >
+            <h4 data-translate="telephony_phonebook_contact_updated"></h4>
+        </tuc-success-drawing-check>
+    </div>
+
+    <div class="modal-footer">
+        <button
+            type="button"
+            class="btn btn-default"
+            data-ng-click="ContactUpdateCtrl.cancel()"
+            data-ng-disabled="ContactUpdateCtrl.phonecontactForm.isAdding ||
+                              ContactUpdateCtrl.phonecontactForm.hasBeenAdded"
+            data-translate="cancel"
+        ></button>
+        <button
+            type="submit"
+            class="btn btn-primary"
+            data-ng-disabled="updatePhonecontactForm.$invalid ||
+                              !ContactUpdateCtrl.hasChanged() ||
+                              !ContactUpdateCtrl.handleContactPhoneNumber() ||
+                              ContactUpdateCtrl.phonecontactForm.isAdding ||
+                              ContactUpdateCtrl.phonecontactForm.hasBeenAdded"
+            data-translate="submit"
+        ></button>
+    </div>
+</form>

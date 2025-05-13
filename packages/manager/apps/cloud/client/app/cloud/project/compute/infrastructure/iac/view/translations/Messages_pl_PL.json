@@ -1,8 +1,0 @@
-{
- "cpciiac_view_title": "Wybierz infrastrukturę, którą chcesz wdrożyć",
- "cpciiac_view_intro": "Rozwiń szybko i w prosty sposób niezarządzalny IaaC w Twoim projekcie Cloud, korzystając z naszych skryptów do wdrażania infrastruktury.",
- "cpciiac_view_general_ERROR": "Wystąpił błąd podczas pobierania modeli IaaC: {{message}}",
- "cpciiac_view_stack_terraform-ovh-publiccloud-k8s": "Kubernetes",
- "cpciiac_view_stack_ovh-analytics-openstack": "Hadoop",
- "cpciiac_view_deployment_ERROR": "Wystąpił błąd podczas żądania wdrożenia infrastruktury: {{message}}"
-}

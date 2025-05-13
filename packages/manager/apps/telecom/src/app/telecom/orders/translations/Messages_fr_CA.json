@@ -9,8 +9,8 @@
   "telecom_orders_follow_up_header_type": "Type",
   "telecom_orders_follow_up_header_service": "Identifiant service",
   "telecom_orders_follow_up_header_status": "Statut",
-  "telecom_orders_follow_up_header_step": "Étape",
-  "telecom_orders_follow_up_header_state": "État",
+  "telecom_orders_follow_up_header_step": "Etape",
+  "telecom_orders_follow_up_header_state": "Etat",
   "telecom_orders_follow_up_items_per_view": "Items par page",
   "telecom_orders_follow_up_no_orders": "Actuellement vous n'avez pas de commandes en cours."
 }

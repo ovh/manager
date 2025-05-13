@@ -6,27 +6,31 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 
-import { ORDER_EXPRESS_BASE_URL } from '../../constants';
-
 export default class VpsOrderDiskCtrl {
   /* @ngInject */
   constructor(
     $translate,
     $window,
+    atInternet,
     coreConfig,
     CucCloudMessage,
     connectedUser,
     OvhApiOrder,
     stateVps,
+    goBack,
+    RedirectionService,
   ) {
     // dependencies injections
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
     this.connectedUser = connectedUser;
     this.OvhApiOrder = OvhApiOrder;
     this.stateVps = stateVps;
+    this.goBack = goBack;
+    this.expressOrderUrl = RedirectionService.getURL('expressOrder');
 
     // other attributes used in view
     this.chunkedDiskOptions = null;
@@ -42,10 +46,17 @@ export default class VpsOrderDiskCtrl {
   }
 
   static getDiskMonthlyPrice(disk) {
-    const price = find(disk.prices, {
-      duration: 'P1M',
-    });
+    const price = find(disk.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
     return get(price, 'price');
+  }
+
+  static getDiskDuration(disk) {
+    const price = find(disk.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
+    return price?.duration;
   }
 
   /* =============================
@@ -53,27 +64,31 @@ export default class VpsOrderDiskCtrl {
   ============================== */
 
   onAdditionalDiskOrderStepperFinish() {
-    let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
-      this.coreConfig.getRegion(),
-      this.connectedUser.ovhSubsidiary,
-    ]);
+    this.atInternet.trackClick({
+      name: `vps::detail::additional-disk::order::confirm_${this.model.disk?.capacity?.value}`,
+      type: 'action',
+    });
+
+    const priceOptions = find(this.model.disk.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
     const expressParams = {
       productId: 'vps',
       serviceName: this.stateVps.name,
       planCode: this.model.disk.planCode,
-      duration: 'P1M',
-      pricingMode: 'default',
+      duration: priceOptions.duration,
+      pricingMode: priceOptions.pricingMode,
       quantity: 1,
     };
-    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
+    this.expressOrderUrl = `${this.expressOrderUrl}?products=${JSURL.stringify([
       expressParams,
     ])}`;
 
-    this.$window.open(expressOrderUrl, '_blank');
+    this.$window.open(this.expressOrderUrl, '_blank', 'noopener');
 
     this.CucCloudMessage.success({
       textHtml: this.$translate.instant('vps_order_additional_disk_success', {
-        url: expressOrderUrl,
+        url: this.expressOrderUrl,
       }),
     });
 

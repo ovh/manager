@@ -9,5 +9,6 @@
   "telephony_group_manage_contacts_pending_task": "Solicitud pendiente de validación",
   "telephony_group_manage_contacts_change_success": "La solicitud de cambio de contacto se ha enviado.",
   "telephony_group_manage_contacts_change_info": "Con la gestión de los contactos, puede asignar permisos a otras personas y confiarles la gestión de una línea, alias o grupo.<br/>Según el tipo de contacto elegido, los permisos no son los mismos:<br/><br/><strong>Contacto administrador:</strong> el contacto designado puede gestionar los aspectos técnicos de una línea y asignar los permisos de contacto técnico a otra persona.<br/><strong>Contacto técnico:</strong> el contacto indicado gestiona únicamente los aspectos técnicos de una línea, alias o grupo.<br/><strong>Contacto de facturación:</strong> el contacto designado gestiona únicamente la facturación (como el pago de facturas).",
-  "telephony_group_manage_contacts_disabled": "No disponible para este servicio."
+  "telephony_group_manage_contacts_disabled": "No disponible para este servicio.",
+  "telephony_group_manage_contacts_breadcrumb": "Gestión de contactos"
 }

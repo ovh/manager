@@ -12,7 +12,6 @@ angular
       'exchangeLite',
       'emailPro',
       'voipEcoFax',
-      'hubic',
       'domain',
       'siteBuilderStart',
     ],
@@ -89,70 +88,9 @@ angular
       },
     },
   })
-  .constant('REDIRECT_URLS', {
-    billing:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/history',
-    billingPayments:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/payments',
-    contacts:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/contacts?tab=SERVICES',
-    support: 'https://www.ovh.com/manager/dedicated/index.html#/support',
-    ordersInProgress:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=in-progress',
-    orders:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=all',
-    services:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/autoRenew',
-    servicesAgreements:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/agreements',
-    paymentMeans:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/mean',
-    billingMean:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/mean',
-    billingVouchers:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/vouchers',
-    billingRefunds:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/refunds',
-    billingFidelity:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/fidelity',
-    billingCredits:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/credits',
-    addCreditCard:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/mean/add?meanType=creditCard',
-    ovhAccount:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/ovhaccount',
-    debtAccount:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/statements',
-    userInfos:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/infos',
-    userSecurity:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/security',
-    userEmails:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/emails',
-    userSubscriptions:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/subscriptions',
-    userSSH:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/ssh',
-    userAdvanced:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/advanced',
-
-    telephony:
-      'https://www.ovh.com/managerv3/telephony2-main.pl#rdm/menu/grp/all/menu/number/num/{line}/page/home',
-    faxV4:
-      'https://www.ovh.com/managerv3/telephony2-main.pl#rdm/65459/page/line_fax_options/grp/all/menu/line/num/{fax}',
-    telephonyV4: 'https://www.ovh.com/managerv3/telephony2-main.pl',
-    oldV6ServiceMove:
-      'https://www.ovhtelecom.fr/espaceclient/index.html#/administration/move/',
+  .constant('URLS', {
     oldV6ServiceTransfert:
       'https://www.ovhtelecom.fr/espaceclient/index.html#/administration/changeOffer/',
-    oldV6ServiceResiliate:
-      'https://www.ovhtelecom.fr/espaceclient/index.html#/administration/terminate/',
-    domain: 'https://www.ovh.com/manager/web/#/configuration/domain/{domain}',
-    deskaas: 'https://www.ovh.com/manager/sunrise/index.html#/deskaas',
-    exchangeAccount:
-      'https://www.ovh.com/manager/web/index.html#/configuration/exchange_hosted/{organizationName}/{exchangeService}?tab=ACCOUNT',
-  })
-  .constant('URLS', {
     support: 'https://www.ovh.com/fr/support/',
     support_contact: 'https://www.ovh.com/fr/support/nous-contacter/',
     guides: {
@@ -181,12 +119,9 @@ angular
     orderTelephony: 'http://www.ovhtelecom.fr/telephonie/',
     orderExchange: 'https://www.ovh.com/fr/emails/hosted-exchange-2013/',
     orderFax: 'http://www.ovhtelecom.fr/fax/',
-    orderHubic: 'https://hubic.com/fr/offres/',
     orderSms: 'https://www.ovhtelecom.fr/sms/',
     orderExpressLite: 'https://www.ovhtelecom.fr/adsl/express-lite/',
     orderBoost: 'https://www.ovhtelecom.fr/adsl/offres-de-connexion.xml',
-    hubicVoucher: 'https://hubic.com/home/gift/',
-    hubicLogin: 'https://hubic.com/home/',
     overTheBoxManager: 'http://overthebox.ovh',
     generalConditions: {
       packAdslPro2013:
@@ -243,9 +178,6 @@ angular
     },
     statisticsPeriodEnum: ['preview', 'daily', 'weekly', 'monthly', 'yearly'],
   })
-  .constant('TRACKING', {
-    atInternetConfiguration: { level2: '5' },
-  })
   .constant('ORDER_STATUS', {
     done: {
       class: 'success',
@@ -295,7 +227,6 @@ angular
       business: 'https://www.ovhtelecom.fr/office-365-business/',
       sharepoint: 'https://www.ovhtelecom.fr/sharepoint/?range=mail',
     },
-    hubic: 'https://hubic.com/fr/offres/',
     sms: {
       sms: 'https://www.ovhtelecom.fr/sms/',
       hlr: 'https://www.ovhtelecom.fr/sms/home-location-register/',
@@ -307,8 +238,53 @@ angular
     env: WEBPACK_ENV.production ? 'prod' : 'dev',
     aapiRouteBase: '/engine/2api',
     apiRouteBase: '/engine/apiv6',
-    apiv7RouteBase: '/engine/apiv7',
     wsRouteBase: '/engine/ws',
     loginUrl: WEBPACK_ENV.production ? '/auth' : 'https://www.ovh.com/auth',
     cookieSessionName: 'APIV6_SESSION',
+  })
+  .constant('CHANGELOG', {
+    pack: {
+      links: {
+        changelog:
+          'https://github.com/orgs/ovh/projects/18/views/2?pane=info&sliceBy%5Bvalue%5D=Connectivity',
+        roadmap:
+          'https://github.com/orgs/ovh/projects/18/views/1?sliceBy%5Bvalue%5D=Connectivity&pane=info',
+        'feature-request':
+          'https://github.com/ovh/collaborative-tools-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+      },
+      chapters: ['telecom', 'pack', ''],
+    },
+    overTheBox: {
+      links: {
+        changelog:
+          'https://github.com/orgs/ovh/projects/18/views/2?pane=info&sliceBy%5Bvalue%5D=Connectivity',
+        roadmap:
+          'https://github.com/orgs/ovh/projects/18/views/1?sliceBy%5Bvalue%5D=Connectivity&pane=info',
+        'feature-request':
+          'https://github.com/ovh/collaborative-tools-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+      },
+      chapters: ['telecom', 'overTheBox', ''],
+    },
+    telephony: {
+      links: {
+        changelog:
+          'https://github.com/orgs/ovh/projects/18/views/2?pane=info&sliceBy%5Bvalue%5D=VoIP',
+        roadmap:
+          'https://github.com/orgs/ovh/projects/18/views/1?pane=info&sliceBy%5Bvalue%5D=VoIP',
+        'feature-request':
+          'https://github.com/ovh/collaborative-tools-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+      },
+      chapters: ['telecom', 'telephony', ''],
+    },
+    sms: {
+      links: {
+        changelog:
+          'https://github.com/orgs/ovh/projects/18/views/2?pane=info&sliceBy%5Bvalue%5D=VoIP',
+        roadmap:
+          'https://github.com/orgs/ovh/projects/18/views/1?pane=info&sliceBy%5Bvalue%5D=VoIP',
+        'feature-request':
+          'https://github.com/ovh/collaborative-tools-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+      },
+      chapters: ['telecom', 'sms', ''],
+    },
   });

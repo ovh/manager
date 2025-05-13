@@ -1,9 +1,11 @@
 <oui-back-button data-on-click="$ctrl.handleBackButton()">
     <span data-translate="ovhManagerSupport_new_back"></span>
 </oui-back-button>
-
+<div class="text-center" data-ng-if="$ctrl.fetchingData">
+    <oui-spinner data-size="l"></oui-spinner>
+</div>
 <support-new-issues-form
-    data-ng-show="$ctrl.step === 'issues'"
+    data-ng-show="$ctrl.step === $ctrl.TICKET_STEPS.issues && !$ctrl.preFetchData"
     data-on-submit="$ctrl.onIssuesFormSubmit(result)"
     data-category-name="$ctrl.categoryName"
     data-service-name="$ctrl.serviceName"
@@ -14,17 +16,21 @@
 <support-new-creation-form
     id="creationForm"
     data-issue="$ctrl.issue"
-    data-ng-show="$ctrl.step === 'creation'"
+    data-ng-show="$ctrl.step === $ctrl.TICKET_STEPS.creation"
     data-on-submit="$ctrl.onCreationFormSubmit(result)"
     data-go-back="$ctrl.goBack()"
+    data-hide-info-banner="$ctrl.preFetchData"
 >
 </support-new-creation-form>
 
-<div class="text-center" data-ng-if="$ctrl.step === 'creating'">
+<div
+    class="text-center"
+    data-ng-if="$ctrl.step === $ctrl.TICKET_STEPS.creating"
+>
     <oui-spinner data-size="l"></oui-spinner>
 </div>
 
-<div data-ng-if="$ctrl.step === 'created'">
+<div data-ng-if="$ctrl.step === $ctrl.TICKET_STEPS.created">
     <oui-message data-type="success">
         <span
             data-translate="ovhManagerSupport_new_creation_success"
@@ -51,7 +57,7 @@
         >
             <span data-ng-bind="$ctrl.guideURL"></span>
             <span
-                class="oui-icon oui-icon-external_link"
+                class="oui-icon oui-icon-external-link"
                 aria-hidden="true"
             ></span>
             <span
@@ -70,7 +76,7 @@
         >
             <span data-ng-bind="$ctrl.forumURL"></span>
             <span
-                class="oui-icon oui-icon-external_link"
+                class="oui-icon oui-icon-external-link"
                 aria-hidden="true"
             ></span>
             <span
@@ -89,20 +95,18 @@
     <support-tickets-new-feedback></support-tickets-new-feedback>
 </div>
 
-<oui-message data-type="error" data-ng-if="$ctrl.step === 'error'">
+<oui-message
+    data-type="error"
+    data-ng-if="$ctrl.step === $ctrl.TICKET_STEPS.error"
+>
     <p>
         <strong data-translate="ovhManagerSupport_new_creation_error"></strong>
     </p>
     <p>
-        <span data-ng-bind="$ctrl.error.message"></span>
-        <br />
-        <small data-ng-bind="$ctrl.error.queryId"></small>
+        <span data-ng-bind="$ctrl.getErrorMessage()"></span>
     </p>
-    <oui-button
-        data-variant="secondary"
-        data-text="{{:: 'ovhManagerSupport_new_creation_cancel' | translate }}"
-        data-on-click="$ctrl.goToTickets()"
-    >
+    <oui-button data-variant="secondary" data-on-click="$ctrl.goToTickets()"
+        ><span data-translate="ovhManagerSupport_new_creation_cancel"></span>
     </oui-button>
     <support-tickets-new-feedback></support-tickets-new-feedback>
 </oui-message>

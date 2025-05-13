@@ -1,4 +1,5 @@
 import './address/address.filter';
+import './cpanel-eol-banner';
 import './expiration/service-expiration-date.component.controller';
 import './expiration/service-expiration-date.component';
 import './expiration/service-expiration-label.component.controller';
@@ -13,10 +14,9 @@ import './paymentMethod/vantiv/billing-vantiv-configurator.provider';
 import './paymentMethod/vantiv/billing-vantiv-instance.service';
 import './paymentMethod/vantiv/billing-vantiv.constants';
 import './paymentMethod/vantiv/billing-vantiv.factory';
-import './polling/polling.service';
 import './services/services.constants';
 import './services/services.service';
-import './sidebar-menu/account/sidebar-menu-account.config';
+import './sshkeySwitch/sshkeySwitch';
 import './stepper/components/button/navigation-button.component';
 import './stepper/components/button/navigation-button.constants';
 import './stepper/components/button/navigation-button.controller';

@@ -1,8 +1,8 @@
 {
   "name": "@ovh-ux/manager-hub",
-  "version": "1.0.2",
+  "version": "4.3.8",
   "private": true,
-  "description": "OVHcloud set of components for Manager Hub",
+  "description": "Set of components for Manager Hub",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
@@ -12,28 +12,30 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-models": "^0.0.0 || ^1.0.0"
+    "@ovh-ux/manager-models": "^2.4.4"
   },
   "devDependencies": {
+    "@ovh-ux/ui-kit": "^6.10.5",
     "bootstrap": "^4.4.1",
-    "lodash": "^4.17.15",
-    "oui4": "npm:@ovh-ux/ui-kit"
+    "lodash-es": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
-    "@ovh-ux/manager-ng-layout-helpers": "^0.0.0 || ^1.0.0",
-    "@ovh-ux/ng-at-internet": "^5.0.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
-    "@ovh-ux/ng-ovh-order-tracking": "^0.2.0",
-    "@ovh-ux/ng-ovh-payment-method": "^6.1.0",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
-    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.0",
-    "@ovh-ux/ng-translate-async-loader": "^2.1.0",
+    "@ovh-ux/manager-billing-components": "^2.0.0 || ^3.0.0",
+    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
+    "@ovh-ux/ng-at-internet": "^5.9.1",
+    "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
+    "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",
+    "@ovh-ux/ng-ovh-order-tracking": "^1.1.1 || ^2.0.0",
+    "@ovh-ux/ng-ovh-payment-method": "^9.2.2",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.6.1",
+    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.5",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.4",
+    "@ovh-ux/ui-kit": "^6.10.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "ovh-api-services": "^9.39.1",
-    "ovh-ui-angular": "^3.15.0",
-    "ovh-ui-kit": "^3.6.0"
+    "ovh-api-services": "^14.0.6"
   }
 }

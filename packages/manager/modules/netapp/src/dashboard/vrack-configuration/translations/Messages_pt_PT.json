@@ -1,0 +1,13 @@
+{
+  "netapp_vrack_configuration_title": "Associar um vRack",
+  "netapp_vrack_configuration_previous_link": "Voltar à página anterior",
+  "netapp_vrack_configuration_description": "O serviço Enterprise File Storage é um serviço de armazenamento gerido e exposto através de um endereço IP no vRack. A atribuição do IP do seu sistema de armazenamento faz-se após a seleção ou a criação de um vRack, a ativação dos vRack Services e a criação de uma sub-rede.",
+  "netapp_vrack_configuration_vrack_field_placeholder": "Selecione um vRack",
+  "netapp_vrack_configuration_no_vrack_field": "Não possui um vRack disponível",
+  "netapp_vrack_configuration_create_vrack_text": "Quer criar um novo vRack?",
+  "netapp_vrack_configuration_create_button": "Criar",
+  "netapp_vrack_configuration_associate_button": "Associar",
+  "netapp_vrack_configuration_cancel_button": "Anular",
+  "netapp_vrack_configuration_success_message": "As definições de rede estão a ser criadas",
+  "netapp_vrack_configuration_vrack_association_warning": "Ocorreu um problema aquando da associação do seu vRack aos vRack Services:"
+}

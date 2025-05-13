@@ -3,6 +3,7 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'PrivateDatabaseAddWhitelistCtrl',
   class PrivateDatabaseAddWhitelistCtrl {
+    /* @ngInject */
     constructor(
       Alerter,
       WhitelistService,

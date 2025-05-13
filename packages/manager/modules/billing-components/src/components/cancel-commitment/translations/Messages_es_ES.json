@@ -1,0 +1,8 @@
+{
+  "billing_cancel_commitment": "Cancelar la solicitud de contratación con compromiso de permanencia",
+  "billing_cancel_commitment_description": "¿Seguro que quiere cancelar la solicitud de contratación con compromiso de permanencia? Si la cancela, no podrá disfrutar del descuento en el precio.",
+  "billing_cancel_commitment_success": "La solicitud de cancelación de la contratación con compromiso de permanencia se ha enviado correctamente.",
+  "billing_cancel_commitment_error": "Se ha producido un error al cancelar la solicitud.",
+  "billing_cancel_commitment_confirm": "Aceptar",
+  "billing_cancel_commitment_cancel": "Cancelar"
+}

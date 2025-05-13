@@ -1,0 +1,5 @@
+{
+  "common_field_error_number": "Please enter a valid numerical value.",
+  "common_field_error_min": "Please enter a value greater than or equal to {{min}}.",
+  "common_field_error_max": "Please enter a value less than or equal to {{max}}."
+}

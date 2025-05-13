@@ -1,0 +1,6 @@
+{
+  "ua_price_ht_label": "{{price}} zzgl. MwSt.",
+  "ua_price_ttc_label": "{{price}} inkl. MwSt.",
+  "ua_price_free": "Inklusive",
+  "ua_price_label_yearly": "/ Jahr"
+}

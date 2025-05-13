@@ -4,7 +4,7 @@ export default class ExchangeRemoveAccountCtrl {
     $q,
     $scope,
     $timeout,
-    Exchange,
+    wucExchange,
     exchangeAccount,
     navigation,
     messaging,
@@ -14,7 +14,7 @@ export default class ExchangeRemoveAccountCtrl {
       $q,
       $scope,
       $timeout,
-      Exchange,
+      wucExchange,
       exchangeAccount,
       navigation,
       messaging,
@@ -22,10 +22,10 @@ export default class ExchangeRemoveAccountCtrl {
     };
 
     $scope.getTitle = () => this.getTitle();
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.account = navigation.currentActionData;
-    this.removeAccountInsteadOfReset = Exchange.removeAccountInsteadOfReset(
-      Exchange.value,
+    this.removeAccountInsteadOfReset = wucExchange.removeAccountInsteadOfReset(
+      wucExchange.value,
     );
   }
 
@@ -38,11 +38,12 @@ export default class ExchangeRemoveAccountCtrl {
   submit() {
     this.isLoading = true;
 
-    return this.services.Exchange.removingAccount(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.account.primaryEmailAddress,
-    )
+    return this.services.wucExchange
+      .removingAccount(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.account.primaryEmailAddress,
+      )
       .then((success) => {
         this.services.messaging.writeSuccess(
           this.removeAccountInsteadOfReset

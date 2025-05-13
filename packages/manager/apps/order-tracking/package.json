@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/order-tracking-app",
-  "version": "1.0.4",
+  "version": "3.0.23",
   "private": true,
   "description": "Order tracking standalone application.",
   "repository": {
@@ -10,19 +10,20 @@
   },
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server",
-    "dev:watch": "yarn run dev",
-    "start": "lerna exec --stream --scope='@ovh-ux/order-tracking-app' --include-dependencies -- npm run build --if-present",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/order-tracking-app' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/order-tracking-app' --include-dependencies -- yarn run dev:watch"
+    "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
-    "@ovh-ux/ng-ovh-http": "^5.0.0",
-    "@ovh-ux/ng-ovh-order-tracking": "^0.2.0",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
-    "@ovh-ux/ng-translate-async-loader": "^2.0.3",
+    "@ovh-ux/manager-config": "^8.3.1",
+    "@ovh-ux/manager-core": "^13.1.4",
+    "@ovh-ux/ng-at-internet": "^6.0.14",
+    "@ovh-ux/ng-ovh-http": "^5.1.3",
+    "@ovh-ux/ng-ovh-order-tracking": "^2.5.3",
+    "@ovh-ux/ng-ovh-request-tagger": "^2.0.2",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.8.3",
+    "@ovh-ux/ng-ovh-swimming-poll": "^5.1.3",
+    "@ovh-ux/ng-translate-async-loader": "^2.2.3",
+    "@ovh-ux/request-tagger": "^0.4.1",
+    "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.5",
@@ -33,14 +34,27 @@
     "angular-translate": "^2.18.1",
     "angular-translate-loader-pluggable": "^1.3.1",
     "angular-ui-bootstrap": "^1.3.3",
+    "bloodhound-js": "^1.2.3",
+    "clipboard": "^2.0.4",
+    "core-js": "^3.6.5",
+    "flatpickr": "^4.6.3",
     "jquery": "^2.1.3",
-    "ovh-api-services": "^9.42.0",
-    "ovh-ui-angular": "^3.15.1",
-    "ovh-ui-kit": "^2.40.0",
-    "ovh-ui-kit-bs": "^2.3.1"
+    "lodash-es": "^4.17.15",
+    "ovh-api-services": "^17.0.0",
+    "ovh-ui-kit-bs": "^4.2.0",
+    "popper.js": "^1.16.1",
+    "regenerator-runtime": "^0.13.7",
+    "ui-select": "^0.19.8",
+    "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^3.0.8",
+    "@ovh-ux/manager-webpack-config": "^7.0.7",
+    "glob": "^7.1.6",
     "webpack-merge": "^4.1.4"
-  }
+  },
+  "regions": [
+    "EU",
+    "CA",
+    "US"
+  ]
 }

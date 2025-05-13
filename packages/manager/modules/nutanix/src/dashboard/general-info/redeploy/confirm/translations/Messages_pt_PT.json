@@ -1,0 +1,8 @@
+{
+  "nutanix_redeploy_confirm_title": "Reimplementação do cluster",
+  "nutanix_redeploy_confirm_description": "Vai reimplementar o conjunto do seu cluster.",
+  "nutanix_redeploy_confirm_warning": "A reimplementação do seu cluster levará à eliminação de todos os dados do cluster.",
+  "nutanix_redeploy_confirm_redeploy_label": "Introduza «REDEPLOY» para confirmar a sua escolha",
+  "nutanix_redeploy_confirm_primary_button_label": "Confirmar",
+  "nutanix_redeploy_confirm_secondary_button_label": "Anular"
+}

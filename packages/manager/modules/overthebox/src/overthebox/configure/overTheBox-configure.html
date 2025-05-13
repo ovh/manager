@@ -1,53 +1,47 @@
 <div class="telecom-overTheBox-configure">
     <header>
-        <h1 data-translate="overTheBox_title"></h1>
+        <h1 data-translate="overTheBox_configure_title"></h1>
     </header>
 
-    <div class="telecom-section-content">
-        <tuc-toast-message></tuc-toast-message>
+    <tuc-toast-message></tuc-toast-message>
 
-        <div class="text-center" data-ng-if="OverTheBoxConfigure.loading">
-            <oui-spinner></oui-spinner>
-        </div>
-
-        <div
-            class="widget-presentation mb-5"
-            data-ng-hide="OverTheBoxConfigure.loading || !OverTheBoxConfigure.services.length"
-        >
-            <h2
-                class="widget-presentation-title"
-                data-translate="overthebox_configure_reset"
-            ></h2>
-            <p data-translate="overthebox_configure_reset_explaination"></p>
-            <ul>
-                <li
-                    data-ng-repeat="serviceName in OverTheBoxConfigure.services track by serviceName"
-                >
-                    <a
-                        data-ui-sref="overTheBoxes.overTheBox.details({serviceName: serviceName})"
-                        data-ng-bind="serviceName"
-                    >
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.widget-presentation -->
-
-        <div
-            class="widget-presentation"
-            data-ng-hide="OverTheBoxConfigure.loading"
-        >
-            <h2
-                class="widget-presentation-title"
-                data-translate="overthebox_configure_order"
-            ></h2>
-            <p
-                data-translate="overthebox_configure_order_explaination"
-                data-translate-values="{ 'hash': OverTheBoxConfigure.orderHash }"
-            ></p>
-        </div>
-        <!-- /.widget-presentation -->
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
     </div>
-    <!-- /.telecom-section-content -->
+
+    <div
+        class="widget-presentation mb-5"
+        data-ng-hide="$ctrl.loading || !$ctrl.services.length"
+    >
+        <h2
+            class="widget-presentation-title"
+            data-translate="overthebox_configure_reset"
+        ></h2>
+        <p data-translate="overthebox_configure_reset_explaination"></p>
+        <ul>
+            <li
+                data-ng-repeat="serviceName in $ctrl.services track by serviceName"
+            >
+                <a
+                    data-ui-sref="overTheBoxes.overTheBox.details({serviceName: serviceName})"
+                    data-ng-bind="serviceName"
+                >
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /.widget-presentation -->
+
+    <div class="widget-presentation" data-ng-hide="$ctrl.loading">
+        <h2
+            class="widget-presentation-title"
+            data-translate="overthebox_configure_order"
+        ></h2>
+        <p
+            data-translate="overthebox_configure_order_explaination"
+            data-translate-values="{ 'hash': $ctrl.orderHash }"
+        ></p>
+    </div>
+    <!-- /.widget-presentation -->
 </div>
 <!-- /.telecom-overTheBox-configure -->

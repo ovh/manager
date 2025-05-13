@@ -8,5 +8,5 @@
   "veeam_storage_update_quota_information": "Legen Sie das maximale Quota Ihres Storage fest. Der eingegebene Wert muss zwischen 1000 GB und {{maxquota}} GB liegen.",
   "veeam_storage_update_quota_cancel": "Abbrechen",
   "veeam_storage_update_quota_confirm": "Bearbeiten",
-  "veeam_storage_update_step_error": "Bitte geben Sie ein Vielfaches von {{ Step }}} ein."
+  "veeam_storage_update_step_error": "Bitte geben Sie ein Vielfaches von {{ step }} ein."
 }

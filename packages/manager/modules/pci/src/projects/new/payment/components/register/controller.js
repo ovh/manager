@@ -1,6 +1,5 @@
 import chunk from 'lodash/chunk';
 import filter from 'lodash/filter';
-import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import snakeCase from 'lodash/snakeCase';
@@ -10,11 +9,9 @@ import {
   PREFERRED_PAYMENT_METHOD_ORDER,
 } from './constants';
 
-import { PCI_REDIRECT_URLS } from '../../../../../constants';
-
 export default class PciProjectNewPaymentRegisterCtrl {
   /* @ngInject */
-  constructor($translate, coreConfig, ovhPaymentMethodHelper) {
+  constructor($translate, coreConfig, coreURLBuilder, ovhPaymentMethodHelper) {
     this.$translate = $translate;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
 
@@ -24,9 +21,9 @@ export default class PciProjectNewPaymentRegisterCtrl {
       list: null,
     };
 
-    this.paymentSectionHref = get(
-      PCI_REDIRECT_URLS,
-      `${coreConfig.getRegion()}.paymentMethodAdd`,
+    this.paymentSectionHref = coreURLBuilder.buildURL(
+      'dedicated',
+      '#/billing/payment/method/add',
     );
   }
 

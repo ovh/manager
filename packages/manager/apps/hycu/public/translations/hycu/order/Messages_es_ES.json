@@ -1,0 +1,9 @@
+{
+  "hycu_order_title": "Contratar una licencia HYCU R-Cloud Hybrid Cloud Edition",
+  "hycu_order_description": "HYCU R-Cloud Hybrid Cloud Edition es un software de backup y restauración especialmente diseñado para Nutanix. OVHcloud ofrece diferentes packs de licencias en función del número de máquinas virtuales (MV) utilizadas por sus cargas de trabajo Nutanix.",
+  "hycu_order_subtitle": "Elija el tipo de pack",
+  "hycu_order_subtitle_description": "Seleccione el número de máquinas virtuales (MV) que quiere incluir en la licencia HYCU R-Cloud Hybrid Cloud Edition. Tenga en cuenta que no podrá realizar el backup de un número de MV mayor que el previsto en el pack. Si quiere proteger más de 500 MV, puede ponerse en contacto con nuestro <contact>equipo comercial</contact>.",
+  "hycu_order_initiated_title": "Contratación de su pack",
+  "hycu_order_initiated_description": "Si todavía no ha finalizado el pedido, puede completarlo haciendo clic en el siguiente enlace:",
+  "hycu_order_initiated_info": "Le informaremos de la disponibilidad de su licencia por correo electrónico."
+}

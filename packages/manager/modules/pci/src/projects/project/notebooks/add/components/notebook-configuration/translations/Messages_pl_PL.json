@@ -1,0 +1,11 @@
+{
+  "pci_notebook_add_configuration_name": "Nazwa notebooka",
+  "pci_notebook_add_configuration_label": "Etykiety",
+  "pci_notebook_add_configuration_label_description": "Możesz dodać etykiety do notebooka.",
+  "pci_notebook_add_configuration_label_field_key": "Klucz",
+  "pci_notebook_add_configuration_label_field_key_error_key_already_exist": "Ten klucz już istnieje",
+  "pci_notebook_add_configuration_label_field_value": "Wartość",
+  "pci_notebook_add_configuration_label_btn_add": "Dodaj etykietę",
+  "pci_notebook_add_configuration_label_btn_remove": "Usuń etykietę",
+  "pci_notebook_add_configuration_label_quantity": "{{ numberOfLabels }} / {{ maxLabels }} etykieta(-y)"
+}

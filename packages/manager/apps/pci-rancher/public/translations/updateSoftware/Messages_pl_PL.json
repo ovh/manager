@@ -1,0 +1,22 @@
+{
+  "updateSoftwareRancherTitle": "Dostępna(e) aktualizacja(e)",
+  "updateSoftwareRancherDescription": "Wybierz nowszą wersję usługi i sprawdź changelog, aby dowiedzieć się więcej o wprowadzonych zmianach.",
+  "updateSoftwareRancherTableVersion": "Wersja",
+  "updateSoftwareRancherTableUnavailable": "Niedostępny",
+  "updateSoftwareRancherPreviousButton": "Powrót do poprzedniej strony",
+  "updateSoftwareRancherBreadcrumb": "Aktualizacja Rancher",
+  "updateSoftwareRancherCurrentVersion": "Aktualna wersja",
+  "updateSoftwareRancherDurationInfo": "Średni czas aktualizacji wersji szacuje się na 1 godzinę. Różne komponenty control plane są aktualizowane zgodnie z procedurą rolling update (ciągła aktualizacja) i pozostają dostępne w trakcie aktualizacji (chyba że w powiązanym changelogu wskazano inaczej).",
+  "updateSoftwareRancherImpact": "Aktualizacja ta nie będzie miała wpływu na klastry zarządzane przez Rancher (downstream clusters).",
+  "updateSoftwareRancherUpgradeInfo": "Po aktualizacji control plane możesz uruchomić nowe aktualizacje w sekcji „Upgrade” na dashboardzie Twojego interfejsu Rancher. Możesz je zastosować w wybranym przez Ciebie tempie do każdego \"downstream cluster\".",
+  "updateSoftwareRancherChangelog": "Sprawdź changelog",
+  "updateSoftwareRancherCta": "Aktualizuj",
+  "updateSoftwareAvailableUpdate": "Aktualizuj",
+  "updateSoftwareBannerAvailableUpdate": "Nowa aktualizacja Managed Rancher Service jest już dostępna.",
+  "updateSoftwareBannerUpdateLoading": " Trwa aktualizacja wersji Managed Rancher Service. Może to potrwać kilka minut.",
+  "updateSoftwareBannerDeprecated": "Wersja Twojego Ranchera nie jest już wspierana. Zaktualizuj go do nowszej wersji.",
+  "updateSoftwareBannerError": "Wystąpił błąd podczas aktualizacji Managed Rancher Service",
+  "updateSoftwareModalTitle": "Aktualizacja Managed Rancher Service",
+  "updateSoftwareModalDescription": " Potwierdzając aktualizację, potwierdzasz, że zapoznałeś się z informacjami na temat zmiany wersji oraz potencjalnego wpływu na klastry, aplikacje i specyficzne zastosowania.",
+  "updateSoftwareModalCTAConfirm": "Zatwierdź"
+}

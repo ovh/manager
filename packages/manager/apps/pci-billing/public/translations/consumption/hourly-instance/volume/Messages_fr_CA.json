@@ -1,0 +1,8 @@
+{
+  "cpbc_no_consumption_data": "Pas de consommation pour la période sélectionnée.",
+  "cpbc_volume_col_name": "Nom",
+  "cpbc_volume_col_consumption": "Consommation",
+  "cpbc_volume_consumption_tooltip_part1": "Vous êtes facturé en fonction de l'espace de stockage réel, mesuré chaque heure, à l'heure près.",
+  "cpbc_volume_consumption_tooltip_part2": "Votre consommation correspond exactement à {{amount}} GioHeures.",
+  "cpb_error_message": "Oups, nous n'arrivons pas à récupérer toutes les informations."
+}

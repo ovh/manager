@@ -1,0 +1,38 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Delete > should render correctly 1`] = `
+<div>
+  <osds-modal
+    color="warning"
+    headline="kube_node_pool_delete"
+  >
+    <slot
+      name="content"
+    >
+      <div
+        class=""
+        data-testid="wrapper"
+      >
+        <osds-spinner
+          data-testid="spinner"
+          inline="true"
+          size="md"
+        />
+      </div>
+    </slot>
+    <osds-button
+      color="primary"
+      slot="actions"
+      variant="ghost"
+    >
+      kube_nodes_common_cancel
+    </osds-button>
+    <osds-button
+      color="primary"
+      slot="actions"
+    >
+      kube_nodes_common_delete
+    </osds-button>
+  </osds-modal>
+</div>
+`;

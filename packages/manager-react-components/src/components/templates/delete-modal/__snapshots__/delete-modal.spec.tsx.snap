@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Delete Modal component > renders loading modal 1`] = `
+<DocumentFragment>
+  <ods-modal
+    color="warning"
+    is-open="true"
+  >
+    <div
+      class="flex flex-col gap-4"
+    >
+      <ods-text
+        preset="heading-3"
+      >
+        Résilier serviceType ?
+      </ods-text>
+      <ods-text
+        data-testid="manager-delete-modal-description"
+        preset="paragraph"
+      >
+        La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?
+      </ods-text>
+      <div
+        class="flex justify-end gap-2"
+      >
+        <ods-button
+          color="primary"
+          data-testid="manager-delete-modal-cancel"
+          label="Non, refuser"
+          slot="actions"
+          variant="ghost"
+        />
+        <ods-button
+          data-testid="manager-delete-modal-confirm"
+          is-loading="true"
+          label="Oui, résilier"
+          slot="actions"
+        />
+      </div>
+    </div>
+  </ods-modal>
+</DocumentFragment>
+`;

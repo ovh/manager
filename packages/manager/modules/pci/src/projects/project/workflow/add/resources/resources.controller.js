@@ -5,13 +5,13 @@ import Instance from '../../../../../components/project/instance/instance.class'
 export default class {
   /* @ngInject */
   constructor(
-    CucRegionService,
+    ovhManagerRegionService,
     OvhApiCloudProjectFlavor,
     OvhApiCloudProjectImage,
     OvhApiCloudProjectVolume,
     PciProjectsProjectInstanceService,
   ) {
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
     this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
     this.OvhApiCloudProjectVolume = OvhApiCloudProjectVolume;

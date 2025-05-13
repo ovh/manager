@@ -1,8 +1,0 @@
-{
- "pci_projects_project_instances_instance_unrescue_title": "Exit rescue mode",
- "pci_projects_project_instances_instance_unrescue_submit_label": "Restart",
- "pci_projects_project_instances_instance_unrescue_cancel_label": "Cancel",
- "pci_projects_project_instances_instance_unrescue_content": "You are about to restart your {{ instance }} instance.",
- "pci_projects_project_instances_instance_unrescue_success_message": "Your {{ instance }} instance is being rebooted.",
- "pci_projects_project_instances_instance_unrescue_error_unrescue": "An error has occurred rebooting the {{ instance }} instance: {{ message }}."
-}

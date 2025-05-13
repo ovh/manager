@@ -8,17 +8,17 @@ import isNaN from 'lodash/isNaN';
 
 export default class ExchangeAddGroupCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, messaging, $translate, group) {
+  constructor($scope, wucExchange, navigation, messaging, $translate, group) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       messaging,
       $translate,
       group,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.groupToAdd = {
       auth: false,
@@ -58,7 +58,8 @@ export default class ExchangeAddGroupCtrl {
   }
 
   prepareModel() {
-    this.model.displayName = this.groupToAdd.displayName;
+    this.model.displayName =
+      this.groupToAdd.displayName === '' ? null : this.groupToAdd.displayName;
     this.model.domain = this.groupToAdd.completeDomain.name;
     this.model.address = this.groupToAdd.address;
     this.model.senderAuthentification = this.groupToAdd.auth;
@@ -71,6 +72,8 @@ export default class ExchangeAddGroupCtrl {
       : this.groupToAdd.maxReceiveSize;
     this.model.joinRestriction = this.groupToAdd.subscribeRestriction;
     this.model.departRestriction = this.groupToAdd.unsubscribeRestriction;
+    this.model.company =
+      this.groupToAdd.company === '' ? null : this.groupToAdd.company;
 
     this.saveSelected();
   }
@@ -206,6 +209,7 @@ export default class ExchangeAddGroupCtrl {
     const isSentSizeCorrect =
       this.groupToAdd.sentSizeUnlimited ||
       (!isNaN(maxSendSize) && maxSendSize >= 0 && maxSendSize <= 100);
+
     const isSubscriptionPresent =
       this.groupToAdd.subscribeRestriction != null &&
       this.groupToAdd.unsubscribeRestriction != null;
@@ -228,14 +232,15 @@ export default class ExchangeAddGroupCtrl {
     this.loading = true;
     this.saveSelected();
 
-    this.services.Exchange.getAccountsAndContacts(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      count,
-      offset,
-      this.search.value,
-      1,
-    )
+    this.services.wucExchange
+      .getAccountsAndContacts(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        count,
+        offset,
+        this.search.value,
+        1,
+      )
       .then((accounts) => {
         this.accountsList = accounts;
 
@@ -267,11 +272,12 @@ export default class ExchangeAddGroupCtrl {
     );
 
     this.prepareModel();
-    this.services.Exchange.addExchangeGroup(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.model,
-    )
+    this.services.wucExchange
+      .addExchangeGroup(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.model,
+      )
       .then((data) => {
         const addGroupMessages = {
           OK: this.services.$translate.instant(

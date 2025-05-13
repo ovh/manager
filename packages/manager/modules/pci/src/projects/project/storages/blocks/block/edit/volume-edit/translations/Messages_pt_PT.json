@@ -1,14 +1,12 @@
 {
- "pci_projects_project_storages_blocks_block_volume-edit_region_label": "Localização",
- "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Tipo de volume",
- "pci_projects_project_storages_blocks_block_volume-edit_type_high-speed": "Alto desempenho",
- "pci_projects_project_storages_blocks_block_volume-edit_type_classic": "Clássico",
- "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Nome do volume",
- "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Capacidade do volume",
- "pci_projects_project_storages_blocks_block_volume-edit_size_help": "O tamanho máximo depende do seu limite disponível.",
- "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
- "pci_projects_project_storages_blocks_block_volume-edit_price_text": "Montante estimado: {{ price }}/mês + IVA",
- "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Volume de arranque",
- "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Definir um volume como volume de arranque permite utilizar esse volume ao iniciar a instância.",
- "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Anular"
+  "pci_projects_project_storages_blocks_block_volume-edit_region_label": "Localização",
+  "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Tipo de volume",
+  "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Nome do volume",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Capacidade do volume",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_help": "O tamanho máximo depende do seu limite disponível.",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
+  "pci_projects_project_storages_blocks_block_volume-edit_price_text": "Montante estimado: {{ price }}/mês + IVA",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Volume de arranque",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Definir um volume como volume de arranque permite utilizar esse volume ao iniciar a instância.",
+  "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Anular"
 }

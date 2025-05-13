@@ -1,0 +1,9 @@
+{
+  "nasha_components_edit_name_forbid": "Vous devez choisir un nom différent de {{ name }}",
+  "nasha_components_edit_name_label": "Nom du service {{ name }}",
+  "nasha_components_edit_name_primary": "Modifier le nom du service",
+  "nasha_components_edit_name_secondary": "Fermer",
+  "nasha_components_edit_name_success": "Le nom a été changé avec succès",
+  "nasha_components_edit_name_title": "Modifier le nom du service {{ name }}",
+  "nasha_components_edit_name_rules": "Les caractères < et > ne sont pas autorisés"
+}

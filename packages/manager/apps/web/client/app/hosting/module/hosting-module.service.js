@@ -13,10 +13,7 @@
   angular.module('services').service(
     'HostingModule',
     class HostingModule {
-      /**
-       * Constructor
-       * @param OvhHttp
-       */
+      /* @ngInject */
       constructor(OvhHttp) {
         this.OvhHttp = OvhHttp;
       }
@@ -93,6 +90,17 @@
           {
             rootPath: 'apiv6',
           },
+        );
+      }
+
+      /**
+       * Get database capabilities
+       * @param {string} serviceName
+       */
+      getDatabasesCapabilities(serviceName) {
+        return this.OvhHttp.get(
+          `/hosting/web/${serviceName}/databaseCreationCapabilities`,
+          { rootPath: 'apiv6' },
         );
       }
 

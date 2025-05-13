@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_dashboard_update_title": "Programación de la actualización",
+  "dedicatedCloud_dashboard_update_actual_version": "Versión actual",
+  "dedicatedCloud_dashboard_update_target_version": "Versión de destino",
+  "dedicatedCloud_dashboard_update_software_VSPHERE": "vSphere",
+  "dedicatedCloud_dashboard_update_software_VCLOUD": "vCloud",
+  "dedicatedCloud_dashboard_update_software_SYSTEMCENTER": "VMM",
+  "dedicatedCloud_dashboard_update_software_AZURE": "Azure",
+  "dedicatedCloud_dashboard_update_software_VCSA": "vCSA",
+  "dedicatedCloud_dashboard_update_description": "Esta operación hará que el acceso a la administración de la plataforma vSphere no esté disponible durante unas dos horas.",
+  "dedicatedCloud_dashboard_update_info": "Le enviaremos la fecha de actualización por correo electrónico. Puede modificarla en cualquier momento, antes de que expire.",
+  "dedicatedCloud_dashboard_update_insufficient_rights": "No tiene suficientes permisos para realizar esta operación.",
+  "dedicatedCloud_dashboard_update_cancel": "Cancelar",
+  "dedicatedCloud_dashboard_update_confirm": "Programar la actualización",
+  "dedicatedCloud_dashboard_update_error": "Se ha producido un error al planificar la actualización de vSphere: {{ message }}",
+  "dedicatedCloud_dashboard_update_success": "La actualización de vSphere {{sourceMajor}} (build {{sourceBuild}}) a la versión {{targetMajor}} (build {{targetBuild}}) está programada. Tenga en cuenta que la planificación de la tarea puede tardar hasta 30 segundos. <a href= {{operationsLink}}'>Seguir esta operación</a>"
+}

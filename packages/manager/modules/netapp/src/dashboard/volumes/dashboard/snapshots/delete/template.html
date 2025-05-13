@@ -1,0 +1,34 @@
+<form
+    id="deleteSnapshot"
+    name="deleteSnapshot"
+    data-ng-submit="$ctrl.deleteSnapshot()"
+    novalidate
+>
+    <oui-modal
+        heading="{{ ::'netapp_volumes_snapshots_delete_title' | translate }}"
+        primary-label="{{ ::'netapp_volumes_snapshots_delete_confirm' | translate }}"
+        secondary-label="{{ ::'netapp_volumes_snapshots_delete_cancel' | translate }}"
+        secondary-action="$ctrl.goBack()"
+        on-dismiss="$ctrl.goBack()"
+        loading="$ctrl.isDeleting"
+        type="warning"
+    >
+        <p data-translate="netapp_volumes_snapshots_delete_description"></p>
+        <dl>
+            <dt
+                data-translate="netapp_volumes_snapshots_delete_property_id"
+            ></dt>
+            <dd data-ng-bind="$ctrl.snapshot.id"></dd>
+            <dt
+                data-translate="netapp_volumes_snapshots_delete_property_name"
+                data-ng-if="$ctrl.snapshot.name"
+            ></dt>
+            <dd data-ng-bind="$ctrl.snapshot.name"></dd>
+            <dt
+                data-translate="netapp_volumes_snapshots_delete_property_description"
+                data-ng-if="$ctrl.snapshot.description"
+            ></dt>
+            <dd data-ng-bind="$ctrl.snapshot.description"></dd>
+        </dl>
+    </oui-modal>
+</form>

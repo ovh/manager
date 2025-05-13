@@ -1,0 +1,100 @@
+<oui-modal
+    data-heading="{{ ::'pci_projects_project_storages_containers_container_addUser_' + ($ctrl.objectKey ? 'object' : 'container') + '_title' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+>
+    <div data-ng-if="$ctrl.container">
+        <div data-ng-if="$ctrl.addUserStep === 0">
+            <p
+                data-translate="{{:: 'pci_projects_project_storages_containers_container_addUser_description_' + ($ctrl.objectKey ? 'object' : 'container') + '_step_0' }}"
+            ></p>
+
+            <oui-field
+                data-size="xl"
+                data-label="{{:: 'pci_projects_project_storages_containers_container_addUser_select_user_label' | translate }}"
+            >
+                <oui-select
+                    class="w-100"
+                    data-items="$ctrl.usersCredentials"
+                    data-match="addUserNameDescriptionKey"
+                    data-name="addUserNameDescriptionKey"
+                    data-model="$ctrl.selectedUser"
+                >
+                    <div class="row">
+                        <div
+                            class="col-8 text-truncate"
+                            data-ng-bind=":: $item.addUserNameDescriptionKey"
+                        ></div>
+                        <div class="col-4">
+                            <small
+                                class="ml-4"
+                                data-ng-bind=":: $item.credentialTrad"
+                            ></small>
+                        </div>
+                    </div>
+                </oui-select>
+            </oui-field>
+        </div>
+        <div data-ng-if="$ctrl.addUserStep === 1">
+            <p
+                data-translate="{{:: 'pci_projects_project_storages_containers_container_addUser_description_' + ($ctrl.objectKey ? 'object' : 'container') + '_step_1' }}"
+                data-translate-values="{ value: ($ctrl.objectKey ? $ctrl.objectKey : $ctrl.container.id)}"
+            ></p>
+            <oui-radio-group
+                model="$ctrl.selectedRole"
+                on-change="$ctrl.onRoleSelect(modelValue)"
+            >
+                <oui-radio
+                    ng-repeat="role in $ctrl.OBJECT_CONTAINER_USER_ROLES track by $index"
+                    value="role"
+                    ><span
+                        data-ng-bind="
+                        'pci_projects_project_storages_containers_container_addUser_right_'
+                        + role | translate"
+                    ></span
+                ></oui-radio>
+            </oui-radio-group>
+        </div>
+    </div>
+    <div class="oui-modal__footer p-2">
+        <div class="w-100 row m-2 justify-content-end">
+            <oui-button
+                data-variant="primary"
+                class="mx-auto order-1 order-sm-3 mx-sm-1"
+                data-type="submit"
+                data-size="l"
+                data-on-click="$ctrl.addUserStorage()"
+                data-disabled="!$ctrl.isFormValid()"
+            >
+                <span
+                    data-translate="{{
+                    'pci_projects_project_storages_containers_container_addUser_' + ($ctrl.addUserStep === 0 ? 'next' : 'submit') + '_label'
+                }}"
+                ></span>
+            </oui-button>
+            <div class="w-100 d-sm-none order-2 m-1"></div>
+            <oui-button
+                data-variant="secondary"
+                class="mx-auto order-3 order-sm-2 mx-sm-1"
+                data-size="l"
+                data-on-click="$ctrl.cancel()"
+            >
+                <span
+                    data-translate="pci_projects_project_storages_containers_container_addUser_cancel_label"
+                ></span>
+            </oui-button>
+            <div class="w-100 d-sm-none order-4 m-1"></div>
+            <oui-button
+                data-variant="secondary"
+                class="mx-auto order-5 order-sm-1 mx-sm-1"
+                data-ng-if="$ctrl.addUserStep === 1"
+                data-size="l"
+                data-on-click="$ctrl.stepBack()"
+            >
+                <span
+                    data-translate="pci_projects_project_storages_containers_container_addUser_back_label"
+                ></span>
+            </oui-button>
+        </div>
+    </div>
+</oui-modal>

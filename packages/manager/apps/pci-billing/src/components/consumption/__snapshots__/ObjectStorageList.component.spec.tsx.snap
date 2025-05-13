@@ -1,0 +1,319 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ObjectStorageList > matches snapshot with empty storages 1`] = `
+<DocumentFragment>
+  <div
+    class="my-3"
+  >
+    <osds-text
+      class="mb-5"
+      color="text"
+      level="body"
+      size="400"
+    >
+      cpbc_no_consumption_data
+    </osds-text>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ObjectStorageList > matches snapshot with existing storages 1`] = `
+<DocumentFragment>
+  <div
+    class="my-3"
+  >
+    <div>
+      <div
+        class="contents px-[1px] "
+      >
+        <osds-table
+          class="overflow-x-visible"
+        >
+          <!---->
+          <table
+            class="w-full border-collapse"
+          >
+            <thead>
+              <tr>
+                <th
+                  class="text-left pl-4 h-11 whitespace-nowrap "
+                >
+                  <div
+                    class=""
+                    data-testid="header-location"
+                  >
+                    <span>
+                      <osds-text
+                        color="primary"
+                        hue="800"
+                        level="body"
+                        size="500"
+                      >
+                        cpbc_object_storage_col_location
+                      </osds-text>
+                    </span>
+                    <span
+                      class="align-middle inline-block h-4 -mt-6"
+                    >
+                      <osds-icon
+                        class="invisible"
+                        color="primary"
+                        name="arrow-down"
+                        size="xxs"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  class="text-left pl-4 h-11 whitespace-nowrap "
+                >
+                  <div
+                    class=""
+                    data-testid="header-consumption"
+                  >
+                    <span>
+                      <osds-text
+                        color="primary"
+                        hue="800"
+                        level="body"
+                        size="500"
+                      >
+                        cpbc_object_storage_col_consumption
+                      </osds-text>
+                    </span>
+                    <span
+                      class="align-middle inline-block h-4 -mt-6"
+                    >
+                      <osds-icon
+                        class="invisible"
+                        color="primary"
+                        name="arrow-down"
+                        size="xxs"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  class="text-left pl-4 h-11 whitespace-nowrap "
+                >
+                  <div
+                    class=""
+                    data-testid="header-traffic"
+                  >
+                    <span>
+                      <osds-text
+                        color="primary"
+                        hue="800"
+                        level="body"
+                        size="500"
+                      >
+                        cpbc_object_storage_col_output_traffic
+                      </osds-text>
+                    </span>
+                    <span
+                      class="align-middle inline-block h-4 -mt-6"
+                    >
+                      <osds-icon
+                        class="invisible"
+                        color="primary"
+                        name="arrow-down"
+                        size="xxs"
+                      />
+                    </span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]"
+              >
+                <td
+                  class="text-left pl-4"
+                >
+                  <osds-text
+                    color="text"
+                    level="body"
+                  >
+                    region
+                  </osds-text>
+                </td>
+                <td
+                  class="text-left pl-4"
+                >
+                  <div
+                    class="flex gap-2"
+                  >
+                    <osds-text
+                      color="text"
+                      level="body"
+                    >
+                      0.00 undefined
+                    </osds-text>
+                    <osds-tooltip>
+                      <osds-icon
+                        class="cursor-pointer"
+                        color="text"
+                        name="help"
+                        size="xxs"
+                      />
+                      <osds-tooltip-content
+                        slot="tooltip-content"
+                      >
+                        <osds-text
+                          class="break-normal"
+                          color="text"
+                          level="body"
+                          size="100"
+                        >
+                          cpbc_object_storage_consumption_info_part1cpbc_object_storage_consumption_info_part2
+                        </osds-text>
+                      </osds-tooltip-content>
+                    </osds-tooltip>
+                  </div>
+                </td>
+                <td
+                  class="text-left pl-4"
+                >
+                  <div
+                    class="flex gap-2"
+                  >
+                    <osds-text
+                      color="text"
+                      level="body"
+                    >
+                      0.00 undefined
+                    </osds-text>
+                    <osds-tooltip>
+                      <osds-icon
+                        class="cursor-pointer"
+                        color="text"
+                        name="help"
+                        size="xxs"
+                      />
+                      <osds-tooltip-content
+                        slot="tooltip-content"
+                      >
+                        <osds-text
+                          class="break-normal"
+                          color="text"
+                          level="body"
+                          size="100"
+                        >
+                          cpbc_object_storage_output_traffic_info_part1cpbc_object_storage_output_traffic_info_part2
+                        </osds-text>
+                      </osds-tooltip-content>
+                    </osds-tooltip>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]"
+              >
+                <td
+                  class="text-left pl-4"
+                >
+                  <osds-text
+                    color="text"
+                    level="body"
+                  >
+                    region
+                  </osds-text>
+                </td>
+                <td
+                  class="text-left pl-4"
+                >
+                  <div
+                    class="flex gap-2"
+                  >
+                    <osds-text
+                      color="text"
+                      level="body"
+                    >
+                      0.00 undefined
+                    </osds-text>
+                    <osds-tooltip>
+                      <osds-icon
+                        class="cursor-pointer"
+                        color="text"
+                        name="help"
+                        size="xxs"
+                      />
+                      <osds-tooltip-content
+                        slot="tooltip-content"
+                      >
+                        <osds-text
+                          class="break-normal"
+                          color="text"
+                          level="body"
+                          size="100"
+                        >
+                          cpbc_object_storage_consumption_info_part1cpbc_object_storage_consumption_info_part2
+                        </osds-text>
+                      </osds-tooltip-content>
+                    </osds-tooltip>
+                  </div>
+                </td>
+                <td
+                  class="text-left pl-4"
+                >
+                  <div
+                    class="flex gap-2"
+                  >
+                    <osds-text
+                      color="text"
+                      level="body"
+                    >
+                      0.00 undefined
+                    </osds-text>
+                    <osds-tooltip>
+                      <osds-icon
+                        class="cursor-pointer"
+                        color="text"
+                        name="help"
+                        size="xxs"
+                      />
+                      <osds-tooltip-content
+                        slot="tooltip-content"
+                      >
+                        <osds-text
+                          class="break-normal"
+                          color="text"
+                          level="body"
+                          size="100"
+                        >
+                          cpbc_object_storage_output_traffic_info_part1cpbc_object_storage_output_traffic_info_part2
+                        </osds-text>
+                      </osds-tooltip-content>
+                    </osds-tooltip>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </osds-table>
+      </div>
+      <osds-pagination
+        class="flex xs:justify-start md:justify-end"
+        default-current-page="1"
+        default-items-per-page="10"
+        total-items="2"
+        total-pages="1"
+      >
+        <span
+          class="mr-3"
+          slot="before-total-items"
+        >
+          common_pagination_of
+        </span>
+        <span
+          class="ml-3"
+          slot="after-total-items"
+        >
+          common_pagination_results
+        </span>
+      </osds-pagination>
+    </div>
+  </div>
+</DocumentFragment>
+`;

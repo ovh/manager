@@ -1,0 +1,7 @@
+{
+  "load_balancer_pools_detail_info_tab_title": "Informations générales",
+  "load_balancer_pools_detail_health_monitor_tab_title": "Health monitor",
+  "load_balancer_pools_detail_members_tab_title": "Membres",
+  "load_balancer_pools_detail_previous_page_label": "liste des pools",
+  "octavia_load_balancer_pools_detail_add_ips_instances": "Ajouter des IPs d'instances"
+}

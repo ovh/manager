@@ -3,6 +3,7 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'AddSubdomainCtrl',
   class AddSubdomainCtrl {
+    /* @ngInject */
     constructor($scope, atInternet, Domain, DomainValidator) {
       this.$scope = $scope;
       this.atInternet = atInternet;

@@ -5,13 +5,19 @@ import isNull from 'lodash/isNull';
 import snakeCase from 'lodash/snakeCase';
 import 'moment';
 
-import { DEBT_STATUS } from './billing-service.constants';
+import {
+  DEBT_STATUS,
+  BYOIP_SERVICE_PREFIX,
+  SERVICE_TYPE,
+} from './billing-service.constants';
 
 export default class BillingService {
   constructor(service) {
     Object.assign(this, service);
 
+    this.id = service.id || service.serviceId;
     this.expirationDate = moment(this.expiration);
+    this.creationDate = moment(this.creation);
 
     if (this.status) {
       this.state = this.isSuspended() ? 'EXPIRED' : 'UP';
@@ -26,17 +32,64 @@ export default class BillingService {
     return this.expirationDate.format('LL');
   }
 
+  get formattedCreationDate() {
+    return this.creationDate.format('LL');
+  }
+
+  get renewPeriod() {
+    return this.renew.period;
+  }
+
+  /**
+   * Note:
+   * Converts the renewal period from ISO 8601 format to the total number of months.
+   * Only years Y and months M are considered.
+   */
+  get cleanRenewPeriod() {
+    if (this.renew.period && !Number.isInteger(this.renew.period)) {
+      const matches = this.renew.period.match(/P(?:(\d+)Y)?(?:(\d+)M)?/);
+      if (!matches) return this.renew.period;
+
+      const years = Number(matches[1]) || 0;
+      const months = Number(matches[2]) || 0;
+
+      const totalMonths = years * 12 + months;
+      return Number(totalMonths);
+    }
+    return this.renew.period;
+  }
+
+  isBillingSuspended() {
+    return this.status === 'BILLING_SUSPENDED';
+  }
+
+  isManualForced() {
+    return this.status === 'FORCED_MANUAL';
+  }
+
+  isExtraSqlPerso() {
+    return this.serviceType === SERVICE_TYPE.HOSTING_WEB_EXTRA_SQL_PERSO;
+  }
+
   getRenew() {
+    if (this.isBillingSuspended()) {
+      return this.status.toLowerCase();
+    }
+
+    if (this.isResiliated()) {
+      return 'expired';
+    }
+
+    if (this.isManualForced()) {
+      return this.status.toLowerCase();
+    }
+
     if (this.hasManualRenew()) {
       return 'manualPayment';
     }
 
     if (this.shouldDeleteAtExpiration() && !this.isResiliated()) {
       return 'delete_at_expiration';
-    }
-
-    if (this.isResiliated()) {
-      return 'expired';
     }
 
     if (this.hasAutomaticRenew() || this.hasForcedRenew()) {
@@ -57,7 +110,7 @@ export default class BillingService {
   }
 
   isExpired() {
-    return this.status.toLowerCase() === 'expired';
+    return ['expired', 'unrenewed'].includes(this.status.toLowerCase());
   }
 
   shouldDeleteAtExpiration() {
@@ -74,10 +127,7 @@ export default class BillingService {
 
   isResiliated() {
     return (
-      this.isExpired() ||
-      (moment().isAfter(this.expirationDate) &&
-        !this.hasAutomaticRenew() &&
-        !this.hasForcedRenew())
+      this.isExpired() || ['TERMINATED'].includes(this.status.toUpperCase())
     );
   }
 
@@ -87,6 +137,10 @@ export default class BillingService {
 
   hasEngagement() {
     return !isNull(this.engagedUpTo) && moment().isBefore(this.engagedUpTo);
+  }
+
+  hasEngagementDetails() {
+    return this.engagementDetails != null;
   }
 
   setRenewPeriod(period) {
@@ -119,7 +173,7 @@ export default class BillingService {
   }
 
   canHaveEngagement() {
-    return ['DEDICATED_SERVER'].includes(this.serviceType);
+    return this.canBeEngaged;
   }
 
   setForResiliation() {
@@ -246,12 +300,33 @@ export default class BillingService {
     };
   }
 
+  canCommit() {
+    return (
+      !this.isResiliated() && !this.isExpired() && !this.hasPendingResiliation()
+    );
+  }
+
   hasParticularRenew() {
-    return ['EXCHANGE', 'SMS', 'EMAIL_DOMAIN'].includes(this.serviceType);
+    return [
+      'EXCHANGE',
+      'EMAIL_EXCHANGE',
+      'SMS',
+      'EMAIL_DOMAIN',
+      'VEEAM_ENTERPRISE',
+    ].includes(this.serviceType);
   }
 
   canHandleRenew() {
-    return !['VIP'].includes(this.serviceType);
+    return ![
+      'VIP',
+      'OVH_CLOUD_CONNECT',
+      'PACK_XDSL',
+      'XDSL',
+      'OKMS_RESOURCE',
+      'VRACK_SERVICES_RESOURCE',
+      'VMWARE_CLOUD_DIRECTOR_ORGANIZATION',
+      'VMWARE_CLOUD_DIRECTOR_BACKUP',
+    ].includes(this.serviceType);
   }
 
   isOneShot() {
@@ -262,16 +337,55 @@ export default class BillingService {
     return this.canDeleteAtExpiration && this.hasAdminRights(nichandle);
   }
 
+  canResiliateByEndRule() {
+    return (
+      this.hasEngagementDetails() &&
+      this.engagementDetails.endRule &&
+      this.engagementDetails.endRule.strategy === 'REACTIVATE_ENGAGEMENT' &&
+      this.engagementDetails.endRule.possibleStrategies.length > 0
+    );
+  }
+
+  canCancelResiliationByEndRule() {
+    return (
+      this.engagementDetails &&
+      this.engagementDetails.endRule &&
+      this.engagementDetails.endRule.possibleStrategies.includes(
+        'REACTIVATE_ENGAGEMENT',
+      )
+    );
+  }
+
+  canBeDeleted() {
+    return (
+      [
+        'EMAIL_DOMAIN',
+        'ENTERPRISE_CLOUD_DATABASE',
+        'HOSTING_WEB',
+        'HOSTING_PRIVATE_DATABASE',
+        'WEBCOACH',
+      ].includes(this.serviceType) && !this.isResiliated()
+    );
+  }
+
   hasResiliationRights(nichandle) {
     return this.hasBillingRights(nichandle) || nichandle === this.contactAdmin;
   }
 
   canBeUnresiliated(nichandle) {
-    return this.hasPendingResiliation() && this.hasResiliationRights(nichandle);
+    return (
+      this.shouldDeleteAtExpiration() &&
+      !this.hasManualRenew() &&
+      this.hasResiliationRights(nichandle)
+    );
   }
 
   isSuspended() {
-    return this.status === 'UN_PAID' || this.isResiliated();
+    return DEBT_STATUS.includes(this.status) || this.isResiliated();
+  }
+
+  isByoipService() {
+    return this.domain?.startsWith(BYOIP_SERVICE_PREFIX);
   }
 
   hasPendingResiliation() {
@@ -280,5 +394,9 @@ export default class BillingService {
       !this.hasManualRenew() &&
       !this.isResiliated()
     );
+  }
+
+  get isHostingWeb() {
+    return this.serviceType === 'HOSTING_WEB';
   }
 }

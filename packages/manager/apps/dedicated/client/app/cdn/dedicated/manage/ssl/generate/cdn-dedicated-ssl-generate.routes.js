@@ -1,10 +1,14 @@
-angular.module('App').config(($stateProvider) => {
+import template from './cdn-dedicated-ssl-generate.html';
+import controller from './cdn-dedicated-ssl-generate.controller';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.networks.cdn.dedicated.manage.ssl.generate', {
     url: '/generate',
-    templateUrl:
-      'cdn/dedicated/manage/ssl/generate/cdn-dedicated-ssl-generate.html',
-    controller: 'CdnGenerateSslCtrl',
+    template,
+    controller,
     layout: 'modal',
-    translations: { value: ['.'], format: 'json' },
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
-});
+};

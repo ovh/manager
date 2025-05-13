@@ -1,6 +1,6 @@
 # manager-error-page
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-error-page)](https://www.npmjs.com/package/@ovh-ux/manager-error-page) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-error-page)](https://npmjs.com/package/@ovh-ux/manager-error-page) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/error-page)](https://npmjs.com/package/@ovh-ux/manager-error-page?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/error-page)](https://npmjs.com/package/@ovh-ux/manager-error-page?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-error-page)](https://www.npmjs.com/package/@ovh-ux/manager-error-page) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-error-page)](https://npmjs.com/package/@ovh-ux/manager-error-page) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/error-page)](https://npmjs.com/package/@ovh-ux/manager-error-page?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/error-page)](https://npmjs.com/package/@ovh-ux/manager-error-page?activeTab=dependencies)
 
 ## Install
 
@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-error-page
 import angular from 'angular';
 import ovhManagerError from '@ovh-ux/manager-error-page';
 
-angular
-  .module('myApp', [
-    ovhManagerError,
-  ]);
+angular.module('myApp', [ovhManagerError]);
 ```
 
 ## Contributing

@@ -1,0 +1,9 @@
+{
+  "pci_additional_ips_failoverips_edit": "Zmień przypisaną instancję",
+  "pci_additional_ips_failoverips_edit_submit_label": "Przypisz",
+  "pci_additional_ips_failoverips_edit_cancel_label": "Anuluj",
+  "pci_additional_ips_failoverips_edit_description": "Wybierz instancję, do której chcesz przypisać adres IP {{serviceName}}.",
+  "pci_additional_ips_failoverips_edit_select_instance": "Wybierz instancję",
+  "pci_additional_ips_failoverips_edit_success": "Instancja przypisana do IP {{ip}} została zmieniona.",
+  "pci_additional_ips_failoverips_edit_error": "Wystąpił błąd podczas zmiany przypisanej instancji: {{error}}"
+}

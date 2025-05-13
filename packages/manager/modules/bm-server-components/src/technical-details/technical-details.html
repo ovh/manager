@@ -1,0 +1,136 @@
+<oui-tile
+    class="h-100"
+    heading="{{:: 'dedicated_server_dashboard_technical_details_heading' | translate }}"
+    loading="$ctrl.loading || $ctrl.loadingTechnicalDetails"
+>
+    <oui-message
+        data-ng-if="$ctrl.upgradeTask && !$ctrl.upgradeTask.isTaskInitialized()"
+        type="warning"
+    >
+        <span
+            data-translate="dedicated_server_dashboard_technical_details_upgrade_in_todo"
+        ></span>
+    </oui-message>
+    <oui-tile-definition
+        term="{{:: 'dedicated_server_dashboard_technical_details_cpu' | translate }}"
+    >
+        <oui-tile-description class="word-break-normal">
+            <span data-ng-bind=":: $ctrl.formattedCPU"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition
+        term="{{:: 'dedicated_server_dashboard_technical_details_ram' | translate }}"
+    >
+        <oui-tile-description>
+            <p data-ng-bind=":: $ctrl.formattedRAM"></p>
+        </oui-tile-description>
+        <oui-tile-description
+            data-ng-if="$ctrl.upgradeTask.isUpgradeScheduled($ctrl.UPGRADE_TYPE.RAM)"
+        >
+            <span
+                class="oui-badge oui-badge_warning m-0"
+                data-translate="dedicated_server_dashboard_technical_details_upgrade_in_progress"
+                data-translate-values="{ schedule: ($ctrl.upgradeTask.scheduledTimeSlot | date:'short') }"
+            ></span>
+        </oui-tile-description>
+        <oui-tile-description data-ng-if="$ctrl.isRamUpgradable()">
+            <oui-button
+                variant="link"
+                icon-right="oui-icon-arrow-right"
+                data-on-click="$ctrl.goToUpgrade($ctrl.UPGRADE_TYPE.RAM)"
+            >
+                <span
+                    data-ng-bind=":: ($ctrl.upgradeTask.shouldScheduleUpgrade($ctrl.UPGRADE_TYPE.RAM) ?
+                    'dedicated_server_dashboard_technical_details_plan_upgrade' :
+                    'dedicated_server_dashboard_technical_details_ram_upgrade') | translate"
+                >
+                </span>
+            </oui-button>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <oui-tile-definition>
+        <oui-tile-description
+            data-ng-if="$ctrl.formattedOsDisks.length"
+            class="mb-2"
+        >
+            <strong
+                data-translate="dedicated_server_dashboard_technical_details_system_disk_many"
+            >
+            </strong>
+            <p
+                class="mb-0"
+                data-ng-repeat="formattedDisk in $ctrl.formattedOsDisks track by $index"
+                data-ng-bind=":: formattedDisk.disk"
+            ></p>
+            <p
+                data-ng-bind=":: $ctrl.formattedOsDisks[$ctrl.formattedOsDisks.length-1].raid"
+            ></p>
+        </oui-tile-description>
+        <oui-tile-description
+            class="mb-2"
+            data-ng-if="$ctrl.formattedDataDisks.length"
+        >
+            <strong
+                data-translate="dedicated_server_dashboard_technical_details_data_disk_many"
+            >
+            </strong>
+            <p
+                class="mb-0"
+                data-ng-repeat="formattedDisk in $ctrl.formattedDataDisks track by $index"
+                data-ng-bind=":: formattedDisk.disk"
+            ></p>
+            <p
+                data-ng-bind=":: $ctrl.formattedDataDisks[$ctrl.formattedDataDisks.length-1].raid"
+            ></p>
+        </oui-tile-description>
+        <oui-tile-description
+            class="mb-2"
+            data-ng-if="$ctrl.formattedCacheDisks.length"
+        >
+            <strong
+                data-translate="dedicated_server_dashboard_technical_details_cache_disk_many"
+            >
+            </strong>
+            <p
+                class="mb-0"
+                data-ng-repeat="formattedDisk in $ctrl.formattedCacheDisks track by $index"
+                data-ng-bind=":: formattedDisk.disk"
+            ></p>
+            <p
+                data-ng-bind=":: $ctrl.formattedCacheDisks[$ctrl.formattedCacheDisks.length-1].raid"
+            ></p>
+        </oui-tile-description>
+        <oui-tile-description
+            data-ng-if="$ctrl.upgradeTask.isUpgradeScheduled($ctrl.UPGRADE_TYPE.STORAGE)"
+        >
+            <span
+                class="oui-badge oui-badge_warning m-0"
+                data-translate="dedicated_server_dashboard_technical_details_upgrade_in_progress"
+                data-translate-values="{ schedule: ($ctrl.upgradeTask.scheduledTimeSlot | date:'short') }"
+            ></span>
+        </oui-tile-description>
+        <oui-tile-description data-ng-if="$ctrl.isDisksUpgradable()">
+            <oui-button
+                variant="link"
+                icon-right="oui-icon-arrow-right"
+                data-on-click="$ctrl.goToUpgrade($ctrl.UPGRADE_TYPE.STORAGE)"
+            >
+                <span
+                    data-ng-bind=":: ($ctrl.upgradeTask.shouldScheduleUpgrade($ctrl.UPGRADE_TYPE.STORAGE) ?
+                    'dedicated_server_dashboard_technical_details_plan_upgrade' :
+                    'dedicated_server_dashboard_technical_details_data_disk_upgrade') | translate"
+                >
+                </span>
+            </oui-button>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition
+        term="{{:: 'dedicated_server_dashboard_technical_details_extension_card_many' | translate }}"
+        data-ng-if="$ctrl.formattedGPU"
+    >
+        <oui-tile-description>
+            <span data-ng-bind=":: $ctrl.formattedGPU"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>

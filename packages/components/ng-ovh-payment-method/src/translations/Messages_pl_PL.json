@@ -1,5 +1,5 @@
 {
-  "ovh_payment_type_bank_account": "Konto bankowe",
+  "ovh_payment_type_bank_account": "Przelew SEPA",
   "ovh_payment_type_paypal": "Paypal",
   "ovh_payment_type_credit_card": "Karta bankowa",
   "ovh_payment_type_deferred_payment_account": "Konto z odroczoną płatnością",
@@ -25,5 +25,10 @@
   "ovh_payment_status_maintenance": "Konserwacja w trakcie",
   "ovh_payment_status_paused": "Pauza",
   "ovh_payment_status_failed": "Nieprawidłowy",
-  "ovh_payment_status_null": "Informacja niedostępna"
+  "ovh_payment_status_null": "Informacja niedostępna",
+  "ovh_payment_type_sepa_direct_debit": "Polecenie zapłaty",
+  "ovh_payment_status_validating": "Zatwierdzanie w trakcie",
+  "ovh_payment_status_rejected": "Odrzucony",
+  "ovh_payment_type_rupay": "RuPay",
+  "ovh_payment_method_registration_failure": "Rejestracja sposobu płatności nie powiodła się. Twoje konto nie zostało obciążone. Spróbuj ponownie lub skontaktuj się z bankiem, jeśli problem nadal występuje. Możesz również zmienić sposób płatności."
 }

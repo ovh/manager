@@ -1,0 +1,13 @@
+{
+  "zimbra_account_alias_title": "Gestión de alias",
+  "zimbra_account_alias_cta": "Añadir un alias",
+  "zimbra_account_alias_datagrid_alias_label": "Alias",
+  "zimbra_account_alias_datagrid_status_label": "Estado",
+  "zimbra_account_alias_datagrid_tooltip_delete": "Eliminar",
+  "zimbra_account_alias_delete_modal_description": "¿Seguro/a que quiere eliminarlo?",
+  "zimbra_account_alias_add_description": "Crear un alias para la cuenta <strong>{{ account }}</strong>",
+  "zimbra_account_alias_add_success_message": "La solicitud de creación de alias se ha enviado. Será tratada en unos instantes.",
+  "zimbra_account_alias_add_error_message": "Se ha producido un error al enviar la solicitud de creación del alias. {{ error }}",
+  "zimbra_account_alias_delete_success_message": "Su solicitud de eliminación de alias se ha enviado. Será tratada en unos instantes.",
+  "zimbra_account_alias_delete_error_message": "Se ha producido un error al enviar la solicitud de eliminación de alias. {{ error }}"
+}

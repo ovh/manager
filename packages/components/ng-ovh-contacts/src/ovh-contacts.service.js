@@ -6,7 +6,6 @@ import get from 'lodash/get';
 import keyBy from 'lodash/keyBy';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
-import reject from 'lodash/reject';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
 
@@ -22,15 +21,15 @@ let connectedNic;
 let meSchemas;
 
 export default class OvhContactsService {
+  // @see /src/ovh-contacts.provider.js for dependency injections
   /* @ngInject */
-
-  constructor($q, $translate, OvhApiMe, OvhApiNewAccount, target) {
-    // dependencies injections
+  constructor($q, $translate, OvhApiMe, OvhApiNewAccount, target, iceberg) {
     this.$q = $q;
     this.$translate = $translate;
     this.OvhApiMe = OvhApiMe;
     this.OvhApiNewAccount = OvhApiNewAccount;
     this.target = target;
+    this.iceberg = iceberg;
   }
 
   /**
@@ -107,15 +106,11 @@ export default class OvhContactsService {
     let promise;
 
     if (this.target === 'EU') {
-      promise = this.OvhApiMe.Contact()
-        .v7()
+      promise = this.iceberg('/me/contact')
         .query()
-        .expand()
+        .expand('CachedObjectList-Pages')
         .execute()
-        .$promise.then((contactsList) => {
-          const contacts = reject(contactsList, ['value', null]);
-          return map(contacts, 'value');
-        });
+        .$promise.then(({ data: contacts }) => contacts.filter(Boolean));
     } else {
       promise = this.OvhApiMe.Contact()
         .v6()

@@ -1,0 +1,47 @@
+<div data-ng-controller="PackVoipEcoFaxCtrl as $ctrl">
+    <div class="oui-tile__body" data-ng-if="$ctrl.loaders.services">
+        <div class="oui-tile__definition text-center">
+            <oui-spinner></oui-spinner>
+        </div>
+    </div>
+    <div
+        class="oui-tile__body"
+        data-ng-if="!$ctrl.loaders.services && $ctrl.services.length == 0"
+    >
+        <div
+            class="oui-tile__definition"
+            data-translate="you_dont_have_any_service"
+        ></div>
+    </div>
+    <div class="oui-tile__body" data-ng-if="!$ctrl.loaders.services">
+        <div
+            class="oui-tile__item oui-tile__item_button"
+            data-ng-if="$ctrl.services.length > 0"
+            data-ng-repeat="service in $ctrl.services"
+        >
+            <a
+                class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
+                data-ui-sref="telecom.telephony.billingAccount.fax.dashboard({ serviceName: service, billingAccount: $ctrl.billingAccount })"
+            >
+                <span class="d-inline-block">
+                    <span class="text-secondary" data-ng-bind="service"> </span>
+                    <span class="d-block" data-ng-bind="service"> </span>
+                </span>
+                <i
+                    class="oui-icon oui-icon-chevron-right"
+                    aria-hidden="true"
+                ></i>
+            </a>
+        </div>
+        <div class="oui-tile__item" data-ng-if="service.available > 0">
+            <div class="oui-tile__definition">
+                <a
+                    class="btn btn-default btn-block"
+                    data-ui-sref="telecom.packs.pack.voipEcoFax-activation"
+                    data-translate="common_order_activate_service"
+                >
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,9 +4,7 @@ import filter from 'lodash/filter';
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import groupBy from 'lodash/groupBy';
-import has from 'lodash/has';
 import head from 'lodash/head';
-import keys from 'lodash/keys';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
@@ -30,12 +28,14 @@ export default class {
   /* @ngInject */
   constructor(
     $q,
+    iceberg,
     OvhApiTelephony,
     TucVoipService,
     TucVoipServiceAlias,
     TucVoipServiceLine,
   ) {
     this.$q = $q;
+    this.iceberg = iceberg;
     this.OvhApiTelephony = OvhApiTelephony;
     this.TucVoipService = TucVoipService;
     this.TucVoipServiceAlias = TucVoipServiceAlias;
@@ -48,50 +48,23 @@ export default class {
    *  @methodOf managerApp.service:tucVoipService
    *
    *  @description
-   *  Get all the service of connected user using API v7.
+   *  Get all the service of one billingAccount.
    *
-   *  @param {Boolean} [withError=true]   Either return services with error or not.
-   *                                      Should be replaced with better filters when APIv7
-   *                                      will be able to filter by status code (SOON !!).
+   *  @param {String} billingAccount The billingAccount to which is attached the services.
    *
    *  @return {Promise} That return an Array of TucVoipService instances.
    */
-  fetchAll(withError = true) {
-    return this.OvhApiTelephony.Service()
-      .v7()
+  fetchAll(billingAccount) {
+    return this.iceberg(`/telephony/${billingAccount}/service`)
       .query()
-      .aggregate('billingAccount')
-      .expand()
-      .execute()
-      .$promise.then((result) =>
-        map(
-          filter(
-            result,
-            (res) =>
-              has(res, 'value') ||
-              (withError &&
-                keys(res.value).length &&
-                has(res.value, 'message')),
-          ),
-          (res) => {
-            const billingAccount = get(res.path.split('/'), '[2]');
-
-            // same remark as above :-)
-            if (
-              res.error ||
-              (keys(res.value).length === 1 && has(res.value, 'message'))
-            ) {
-              return new this.TucVoipService({
-                billingAccount,
-                serviceName: res.key,
-                error: res.error || res.value.message,
-              });
-            }
-
-            // ensure that billingAccount option is setted
-            set(res.value, 'billingAccount', billingAccount);
-            return this.constructService(res.value);
-          },
+      .expand('CachedObjectList-Pages')
+      .execute(null, true)
+      .$promise.then(({ data: services }) =>
+        services.map((service) =>
+          this.constructService({
+            ...service,
+            billingAccount,
+          }),
         ),
       );
   }

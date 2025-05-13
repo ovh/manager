@@ -1,4 +1,5 @@
 <div class="pci-project-creating h-100">
+    <account-migration-notification></account-migration-notification>
     <div class="container h-100">
         <div class="row minh-100 justify-content-md-center text-center">
             <div
@@ -24,13 +25,13 @@
                                 data-ng-repeat="image in $ctrl.imageSlider.list track by $index"
                                 data-ng-src="{{ image }}"
                                 data-ng-if="$index === $ctrl.imageSlider.currentIndex"
-                                alt=""
+                                alt
                             />
                         </div>
                         <div class="spinner mx-auto">
                             <svg
                                 data-ng-repeat="svg in [0,1,2] track by $index"
-                                viewBox="0 0 66 66"
+                                viewbox="0 0 66 66"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <circle
@@ -52,7 +53,12 @@
                     >
                     </span>
                     <span
+                        data-ng-if="!$ctrl.isCreatingDiscoveryProject"
                         data-translate="pci_projects_creating_long_time_wait"
+                    ></span>
+                    <span
+                        data-ng-if="$ctrl.isCreatingDiscoveryProject"
+                        data-translate="pci_projects_creating_discovery_project_long_time_wait"
                     ></span>
                 </p>
 
@@ -76,11 +82,13 @@
                         </a>
                     </div>
                     <div
+                        data-ng-if="!$ctrl.isCreatingDiscoveryProject"
                         class="col-md border-left text-center projects-link-container"
                     >
                         <a
                             class="oui-link_icon d-inline-block py-2 px-4 rounded"
                             data-ng-href="{{ $ctrl.pciProjectsHref }}"
+                            target="_top"
                         >
                             <span
                                 class="d-inline-block vertical-middle"
@@ -88,7 +96,7 @@
                             >
                             </span>
                             <span
-                                class="oui-icon oui-icon-folder_extra-thin d-inline-block vertical-middle"
+                                class="oui-icon d-inline-block vertical-middle oui-icon-folder"
                                 aria-hidden="true"
                             >
                             </span>

@@ -1,0 +1,6 @@
+{
+  "clear_session": "Borrar la sesión",
+  "search_placeholder": "Resaltar un elemento",
+  "list_no_logs": "Buscando logs...",
+  "error_get_url": "Se ha producido un error al cargar los logs."
+}

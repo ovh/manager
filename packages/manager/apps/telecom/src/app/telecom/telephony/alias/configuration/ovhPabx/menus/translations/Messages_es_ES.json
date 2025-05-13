@@ -5,5 +5,6 @@
   "telephony_alias_ovh_pabx_menus_add_menu": "Ajouter un menu interactif",
   "telephony_alias_ovh_pabx_menus_new_menu": "Nouveau menu interactif",
   "telephony_alias_ovh_pabx_menus_new_menu_name": "Mon menu interactif {{ index }}",
-  "telephony_alias_ovh_pabx_menus_edit_menu": "Édition du menu interactif {{ name }}"
+  "telephony_alias_ovh_pabx_menus_edit_menu": "Édition du menu interactif {{ name }}",
+  "telephony_alias_ovh_pabx_menus_breadcrumb": "Administrar los menús interactivos"
 }

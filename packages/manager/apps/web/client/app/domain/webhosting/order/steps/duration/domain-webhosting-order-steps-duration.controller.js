@@ -1,9 +1,5 @@
 export default class {
   /* @ngInject */
-  constructor($timeout) {
-    this.$timeout = $timeout;
-  }
-
   getAvailableDurations() {
     this.duration = undefined;
 
@@ -20,11 +16,5 @@ export default class {
 
   updateDuration() {
     this.stepper.cartOption.offer.pricing.duration = this.duration;
-
-    // Necessary as the update of stepper.currentIndex
-    // has to be made after $digest cycle is finished
-    this.$timeout(() => {
-      this.stepper.currentIndex += 1;
-    });
   }
 }

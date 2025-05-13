@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_delete_title": "Stream löschen",
-  "pci_projects_project_streams_stream_delete_submit_label": "Bestätigen",
-  "pci_projects_project_streams_stream_delete_cancel_label": "Abbrechen",
-  "pci_projects_project_streams_stream_delete_content": "Möchten Sie den Stream {{ stream }} löschen?",
-  "pci_projects_project_streams_stream_delete_success_message": "Der Stream {{ stream }} wurde gelöscht.",
-  "pci_projects_project_streams_stream_delete_error_delete": "Beim Löschen des Streams {{ stream }} ist ein Fehler aufgetreten: {{ message }}"
-}

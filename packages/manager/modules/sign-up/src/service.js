@@ -32,7 +32,23 @@ export default class SignUpService {
     });
   }
 
+  getNic() {
+    return this.$http.get('/me').then(({ data }) => data);
+  }
+
   saveNic(nicInfos) {
     return this.$http.put('/me', nicInfos);
+  }
+
+  sendSmsConsent(consent = false) {
+    return this.$http.put('/me/marketing', {
+      denyAll: consent !== true,
+      sms: {
+        events: consent,
+        newProductRecommendation: consent,
+        newsletter: consent,
+        offerAndDiscount: consent,
+      },
+    });
   }
 }

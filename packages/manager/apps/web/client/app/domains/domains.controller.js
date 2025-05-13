@@ -6,20 +6,12 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import some from 'lodash/some';
 import xor from 'lodash/xor';
+import punycode from 'punycode';
 
 angular.module('App').controller(
   'DomainsCtrl',
   class DomainsCtrl {
-    /**
-     * Constructor
-     * @param $scope
-     * @param $rootScope
-     * @param $timeout
-     * @param Domains
-     * @param Navigator
-     * @param Alerter
-     * @param User
-     */
+    /* @ngInject */
     constructor(
       $scope,
       $state,
@@ -29,7 +21,7 @@ angular.module('App').controller(
       Domains,
       Navigator,
       Alerter,
-      User,
+      WucUser,
     ) {
       this.$scope = $scope;
       this.$state = $state;
@@ -39,7 +31,7 @@ angular.module('App').controller(
       this.Domains = Domains;
       this.Navigator = Navigator;
       this.Alerter = Alerter;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -55,7 +47,7 @@ angular.module('App').controller(
       this.search = { value: null };
       this.stepPath = '';
 
-      this.User.getUrlOf('bulkChangeOwner')
+      this.WucUser.getUrlOf('bulkChangeOwner')
         .then((link) => {
           this.urlBulkChangeOwner = link;
         })
@@ -215,6 +207,10 @@ angular.module('App').controller(
           this.stepPath = '';
         }, 300);
       }
+    }
+
+    static convertToPunycode(domain) {
+      return punycode.toUnicode(domain);
     }
   },
 );

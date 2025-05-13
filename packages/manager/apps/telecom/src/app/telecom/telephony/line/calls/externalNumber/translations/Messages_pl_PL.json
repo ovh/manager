@@ -25,5 +25,6 @@
   "telephony_trunk_external_number_load_error": "Oups ! Une erreur est survenue lors du chargement de vos numéros externes.",
   "telephony_trunk_external_number_delete_success": "Le numéro externe a été supprimé avec succès.",
   "telephony_trunk_external_number_add_error": "Oups ! Une erreur est survenue lors de l'ajout du numéro externe.",
-  "telephony_trunk_external_number_delete_error": "Oups ! Une erreur est survenue lors de la suppression du numéro externe."
+  "telephony_trunk_external_number_delete_error": "Oups ! Une erreur est survenue lors de la suppression du numéro externe.",
+  "telephony_trunk_external_number": "Numery zewnętrzne"
 }

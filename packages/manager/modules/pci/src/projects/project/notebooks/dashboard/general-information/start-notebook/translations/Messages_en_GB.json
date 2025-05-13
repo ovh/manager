@@ -1,0 +1,8 @@
+{
+  "pci_notebooks_start_notebook_title": "Start your notebook",
+  "pci_notebooks_start_notebook_submit_label": "Confirm",
+  "pci_notebooks_start_notebook_cancel_label": "Cancel",
+  "pci_notebooks_start_notebook_content": "Are you sure you want to start your {{notebook}} notebook?",
+  "pci_notebooks_start_notebook_success": "Your notebook has been started.",
+  "pci_notebooks_start_notebook_error": "An error has occurred starting the {{notebook}} notebook: {{message}}."
+}

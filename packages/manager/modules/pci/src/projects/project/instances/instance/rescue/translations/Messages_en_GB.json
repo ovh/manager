@@ -11,5 +11,8 @@
   "pci_projects_project_instances_instance_rescue_infos_linux_with_password": "To access your \"{{instance}}\" server in rescue mode, please use:<br/><code>ssh {{user}}@{{ip}}</code> with the password visible in the VNC console, or via <code>openstack console log show \"{{instance}}\"</code>. Important: only the primary disk is accessible in this mode.",
   "pci_projects_project_instances_instance_rescue_infos_windows": "To access your {{instance}} server in rescue mode, use <br/><code>rdesktop {{ip}}</code> with the regular SSH key. Warning, only the primary disk will be available in this mode.",
   "pci_projects_project_instances_instance_rescue_infos_windows_with_password": "To access your \"{{instance}}\" server in rescue mode, please use:<br/><code>rdesktop {{ip}}</code> or <br/><code>ssh {{user}}@{{ip}}</code> with the password visible in the VNC console, or via <code>openstack console log show \"{{instance}}\"</code>. Important: only the primary disk is accessible in this mode.",
-  "pci_projects_project_instances_instance_rescue_error_rescue": "An error has occurred rebooting the {{ instance }} instance: {{ message }}."
+  "pci_projects_project_instances_instance_rescue_error_rescue": "An error has occurred rebooting the {{ instance }} instance: {{ message }}.",
+  "pci_projects_project_instances_instance_rescue_close_label": "Close",
+  "pci_projects_project_instances_instance_rescue_no_rescue_mode": "If you are using a Metal instance, please follow the documentation below.",
+  "pci_projects_project_instances_instance_rescue_no_rescue_mode_link": "Documentation link"
 }

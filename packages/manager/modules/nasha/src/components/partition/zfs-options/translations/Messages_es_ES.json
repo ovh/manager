@@ -1,0 +1,22 @@
+{
+  "nasha_components_partition_zfs_options_atime_deactivate": "Desactivar",
+  "nasha_components_partition_zfs_options_atime_description": "Desactiva la necesidad de que el núcleo actualice el tiempo de acceso a un archivo cada vez que sea solicitado.",
+  "nasha_components_partition_zfs_options_atime": "Actualización de los tiempos de acceso (atime)",
+  "nasha_components_partition_zfs_options_cancel": "Cerrar",
+  "nasha_components_partition_zfs_options_default": "(por defecto)",
+  "nasha_components_partition_zfs_options_recordsize": "ZFS recordsize",
+  "nasha_components_partition_zfs_options_submit": "Modificar la configuración",
+  "nasha_components_partition_zfs_options_sync_always_description": "Perfil muy seguro: en detrimento del rendimiento, las transferencias de archivos tienen una mayor estabilidad.",
+  "nasha_components_partition_zfs_options_sync_disabled_description": "Perfil no seguro: rendimiento muy elevado, aunque arriesgado, ya que el ZFS ignora las peticiones de transferencias síncronas (BDD, NFS...).",
+  "nasha_components_partition_zfs_options_sync_disabled_warning": "Los administradores solo deberían utilizar esta opción si entienden bien los riesgos.",
+  "nasha_components_partition_zfs_options_sync_standard_description": "Perfil seguro: combina la estabilidad con un buen rendimiento. Los archivos se escriben en primer lugar y, a continuación, se limpian todos los elementos para garantizar la estabilidad de los datos.",
+  "nasha_components_partition_zfs_options_sync": "Sync",
+  "nasha_components_partition_zfs_options_title": "Modificar la configuración",
+  "nasha_components_partition_zfs_options_custom_template_selection": "Personalizar su configuración.",
+  "nasha_components_partition_zfs_template_selection_title": "Seleccionar plantilla",
+  "nasha_components_partition_zfs_template_selection_placeholder": "Elija una plantilla...",
+  "nasha_components_partition_zfs_options_template_1_description": "Compartir archivos de gran tamaño (imágenes, vídeos, contendidos en streaming...)",
+  "nasha_components_partition_zfs_options_template_2_description": "Imágenes de máquinas virtuales en ZFS.",
+  "nasha_components_partition_zfs_options_template_3_description": "Almacenamiento de la base de datos.",
+  "nasha_components_partition_zfs_options_template_4_description": "Modelo predeterminado para el uso compartido de archivos."
+}

@@ -1,0 +1,16 @@
+{
+  "sms_title": "SMS",
+  "sms_name_label": "Nome",
+  "sms_description_label": "Descrizione",
+  "sms_status_label": "Stato",
+  "sms_status_label_enable": "OK",
+  "sms_status_label_disable": "Disattivo",
+  "sms_view_sms_label": "Dettagli",
+  "sms_order": "Ordina",
+  "sms_channel_label": "Formato dell'account",
+  "sms_channel_both": "Standard",
+  "sms_channel_marketing": "SMPP marketing",
+  "sms_channel_transactional": "SMPP transazionale",
+  "sms_header_guide": "Guide",
+  "sms_header_guide_start_with_sms": "Come utilizzare gli SMS OVHcloud"
+}

@@ -1,10 +1,22 @@
 {
-  "xdsl_access_profile_tooltip_interleaved": "<b>Interleaved:</b> Perfil auto por defecto.",
-  "xdsl_access_profile_tooltip_fast": "<b>Fast:</b> Perfil auto en fastPath (ping mejorado sin corrección de errores).",
-  "xdsl_access_profile_tooltip_ginp": "<b>G.INP:</b> Esta extensión mejora la corrección de errores sin afectar al rendimiento de la línea. El DSLAM utiliza el modo de protección (INP, Impulse Noise Protection) contra el ruido.",
-  "xdsl_access_profile_tooltip_auto": "<b>AUTO-[valor]M:</b> El DSLAM sincroniza al máximo en el ancho de banda.",
-  "xdsl_access_profile_tooltip_snr": "<b>SNR-[valor]:</b> El DSLAM analiza la calidad de la línea y negocia una relación señal-ruido (SNR) al valor indicado. Cuando mayor es la cifra, mejor es la estabilidad de la línea, pero menor es el ancho de banda. En los perfiles sin SNR forzados, el DSLAM intenta conseguir un SNR de 6.",
   "xdsl_access_profile_tooltip_time": "El cambio se aplicará en los próximos 1-5 minutos.",
   "xdsl_access_dslam_an_error_ocurred": "DSLAM: Se ha producido un error.",
-  "xdsl_access_profile_doing": "Cambiando el perfil..."
+  "xdsl_access_profile_doing": "Cambiando el perfil...",
+  "xdsl_access_profile_tooltip_description": "Cuanto más grande sea la cifra del SNR (relación señal-ruido), mayor será la estabilidad de la línea, pero más reducido será el caudal.",
+  "xdsl_access_profile_tooltip_adsl_24m": "<b>{{profile}}:</b> Caudal máximo de 24000 / 1024 señal a ruido de 6 dB",
+  "xdsl_access_profile_tooltip_adsl_2m": "<b>{{profile}}:</b> Caudal máximo de 2432 / 1024 señal a ruido superior a 6 dB",
+  "xdsl_access_profile_tooltip_adsl_512k": "<b>{{profile}}:</b> Caudal máximo de 608 / 160 señal a ruido superior a 6 dB",
+  "xdsl_access_profile_tooltip_adsl_safe1": "<b>{{profile}}:</b> Caudal máximo de 16128 / 1024 señal a ruido de 10 dB",
+  "xdsl_access_profile_tooltip_adsl_safe2": "<b>{{profile}}:</b> Caudal máximo de 16128 / 1024 señal a ruido de 16 dB",
+  "xdsl_access_profile_tooltip_adsl_perf1": "<b>{{profile}}:</b> Caudal máximo de 24000 / 1024 señal a ruido de 3 dB",
+  "xdsl_access_profile_tooltip_adsl_perf2": "<b>{{profile}}:</b> Caudal máximo de 24000 / 1024 señal a ruido de 1 dB",
+  "xdsl_access_profile_tooltip_vdsl_24m": "<b>{{profile}}:</b> SNR 6 sin límite de caudal",
+  "xdsl_access_profile_tooltip_vdsl_2m": "<b>{{profile}}:</b> SNR 6 con un límite de caudal de 2 M",
+  "xdsl_access_profile_tooltip_vdsl_512k": "<b>{{profile}}:</b> SNR 6 con un límite de caudal de 512 K",
+  "xdsl_access_profile_tooltip_vdsl_safe1": "<b>{{profile}}:</b> SNR 10",
+  "xdsl_access_profile_tooltip_vdsl_other": "<b>{{profile}}:</b> {{snr}}",
+  "xdsl_access_profile_tooltip_vdsl_17a": "<b>{{profile}}:</b> SNR 8",
+  "xdsl_access_profile_tooltip_vdsl_17a_safe1": "<b>{{profile}}:</b> SNR 12",
+  "xdsl_access_profile_tooltip_vdsl_8b": "<b>{{profile}}:</b> SNR 8",
+  "xdsl_access_profile_tooltip_vdsl_8b_safe1": "<b>{{profile}}:</b> SNR 12"
 }

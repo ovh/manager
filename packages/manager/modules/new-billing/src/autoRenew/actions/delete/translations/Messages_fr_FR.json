@@ -1,0 +1,10 @@
+{
+  "autorenew_service_delete_title": "Résilier à date d'échéance",
+  "autorenew_service_delete_confirm": "Le service {{ service }} <strong>sera automatiquement résilié</strong> le {{ date }}.",
+  "autorenew_service_delete_validate": "Valider",
+  "autorenew_service_delete_warn": "Les données liées à ce service seront automatiquement supprimées de manière irréversible. Vous pourrez revenir sur cette décision jusqu'à 24h avant la date d’expiration.",
+  "autorenew_service_delete_support": "Pour résilier ce service, merci de contacter notre support technique au numéro suivant : <strong>{{ phoneNumber }}. Merci pour votre compréhension.",
+  "autorenew_service_delete_success": "La demande de résiliation a bien été prise en compte. Si la modification n'apparaît pas dans la liste, veuillez rafraîchir la page.",
+  "autorenew_service_delete_error": "Une erreur est survenue lors de la résiliation du service {{ message }}",
+  "autorenew_service_delete_cancel": "Annuler la résiliation"
+}

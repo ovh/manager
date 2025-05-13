@@ -3,15 +3,14 @@
     data-description="{{:: 'domain_webhosting_order_module_step_subtitle' | translate }}"
     data-editable="!$ctrl.stepper.loadingCheckout"
     data-navigation="false"
-    data-on-focus="$ctrl.module = undefined"
+    data-loading="$ctrl.isLoading"
+    data-on-focus="$ctrl.getModules()"
+    data-position="{{::$ctrl.stepperPosition}}"
 >
-    <div
-        class="row d-md-flex mb-3"
-        data-ng-repeat="chunkModules in ::$ctrl.availableModules track by $index"
-    >
+    <div class="row d-md-flex flex-wrap">
         <div
-            class="col-md-4"
-            data-ng-repeat="module in ::chunkModules track by module.id"
+            class="col-md-4 mb-3"
+            data-ng-repeat="module in ::$ctrl.availableModules track by $index"
         >
             <oui-select-picker
                 class="h-100"
@@ -20,7 +19,7 @@
                 data-model="$ctrl.module"
                 data-values="[module]"
                 data-variant="light"
-                data-on-change="$ctrl.updateModule()"
+                data-on-change="$ctrl.onModuleClick(modelValue)"
             >
                 <oui-select-picker-description>
                     <p
@@ -45,13 +44,13 @@
                 </oui-select-picker-footer>
             </oui-select-picker>
         </div>
-        <div class="col-md-4" data-ng-if="$last">
+        <div class="col-md-4">
             <oui-select-picker
                 data-label="{{:: 'domain_webhosting_order_module_step_none_label' | translate }}"
                 data-model="$ctrl.module"
                 data-values="[null]"
                 data-variant="light"
-                data-on-change="$ctrl.updateModule()"
+                data-on-change="$ctrl.onModuleClick(null)"
             >
             </oui-select-picker>
         </div>

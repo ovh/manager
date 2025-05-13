@@ -1,23 +1,21 @@
 export default /* @ngInject */ function(
   $q,
   $translate,
+  coreConfig,
   CucCloudMessage,
-  CucRegionService,
-  OvhApiMe,
+  ovhManagerRegionService,
 ) {
   const self = this;
-  self.CucRegionService = CucRegionService;
+  self.ovhManagerRegionService = ovhManagerRegionService;
 
   self.currencySymbol = '';
 
   self.loading = false;
 
   function initUserCurrency() {
-    return OvhApiMe.v6()
-      .get()
-      .$promise.then((me) => {
-        self.currencySymbol = me.currency.symbol;
-      });
+    return $q.when(coreConfig.getUser()).then((me) => {
+      self.currencySymbol = me.currency.symbol;
+    });
   }
 
   self.$onInit = () => {
@@ -57,7 +55,7 @@ export default /* @ngInject */ function(
       .instant('cpbc_object_storage_output_traffic_info_part1')
       .concat(
         $translate.instant('cpbc_object_storage_output_traffic_info_part2', {
-          amount: storage.outgoingBandwidth.quantity.value,
+          amount: storage.outgoingBandwidth?.quantity?.value || 0,
         }),
       );
   };

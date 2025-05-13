@@ -1,0 +1,65 @@
+<a
+    class="actions-menu-item-link oui-link_icon"
+    data-ng-href="{{ $ctrl.actionsMenuItem.href }}"
+    target="{{ $ctrl.actionsMenuItem.target }}"
+    data-ng-if="$ctrl.actionsMenuItem.href"
+    data-ng-click="$ctrl.onClick()($ctrl.actionsMenuItem)"
+>
+    <span class="item-icon" data-ng-if="$ctrl.actionsMenuItem.icon">
+        <i data-ng-class="$ctrl.actionsMenuItem.icon" aria-hidden> </i>
+    </span>
+
+    <span
+        class="item-icon"
+        data-ng-if="$ctrl.actionsMenuItem.svg"
+        data-ng-bind-html="$ctrl.actionsMenuItem.svg"
+    >
+    </span>
+
+    <span class="item-title">
+        <span
+            class="item-title-text"
+            data-ng-bind="$ctrl.actionsMenuItem.title"
+        >
+        </span>
+
+        <span
+            class="external-link oui-icon oui-icon-external-link"
+            data-ng-if="$ctrl.actionsMenuItem.external"
+        >
+        </span>
+    </span>
+</a>
+
+<a
+    class="actions-menu-item-link"
+    data-ui-sref="{{ $ctrl.actionsMenuItem.getFullSref() }}"
+    data-ng-if="$ctrl.actionsMenuItem.state"
+    data-ng-click="$ctrl.onClick()($ctrl.actionsMenuItem)"
+>
+    <span class="item-icon" data-ng-if="$ctrl.actionsMenuItem.icon" aria-hidden>
+        <i data-ng-class="$ctrl.actionsMenuItem.icon" aria-hidden> </i>
+    </span>
+
+    <span class="item-title" data-ng-bind="$ctrl.actionsMenuItem.title"> </span>
+</a>
+
+<button
+    class="actions-menu-item-link"
+    type="button"
+    data-ng-if="$ctrl.actionsMenuItem.hasSubActions()"
+    data-ng-click="$ctrl.onClick()($ctrl.actionsMenuItem)"
+>
+    <span class="item-icon" data-ng-if="$ctrl.actionsMenuItem.icon" aria-hidden>
+        <i data-ng-class="$ctrl.actionsMenuItem.icon" aria-hidden></i>
+    </span>
+
+    <span
+        class="item-icon"
+        data-ng-if="$ctrl.actionsMenuItem.svg"
+        data-ng-bind-html="$ctrl.actionsMenuItem.svg"
+    >
+    </span>
+
+    <span class="item-title" data-ng-bind="$ctrl.actionsMenuItem.title"> </span>
+</button>

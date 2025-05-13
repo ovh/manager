@@ -7,6 +7,7 @@ export default class {
   /* @ngInject */
   constructor(OvhApiMe) {
     this.OvhApiMe = OvhApiMe;
+    this.serviceOptions = [];
   }
 
   /**
@@ -43,5 +44,13 @@ export default class {
           default: true,
         }),
       );
+  }
+
+  getServiceOptions() {
+    return this.serviceOptions;
+  }
+
+  setServiceOptions(serviceOptions = []) {
+    this.serviceOptions = serviceOptions;
   }
 }

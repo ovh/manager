@@ -1,0 +1,14 @@
+{
+  "dedicatedCloud_datacenter_pcc_name_EPCC": "Nazwa Hosted Private Cloud: {{pcc}}",
+  "dedicatedCloud_datacenter_main_datacenter_name_EPCC": "Identyfikator odpowiedniego centrum danych Hosted Private Cloud",
+  "dedicatedCloud_datacenter_main_datacenter_name_placeholder": "Wybierz Twoje główne centrum danych",
+  "dedicatedCloud_datacenter_main_ip_address_pool_available": "Dostępna pula publicznych adresów IP",
+  "dedicatedCloud_datacenter_main_ip_address_pool_available_placeholder": "Wybierz wolny publiczny adres IP",
+  "dedicatedCloud_datacenter_local_vra_network": "Sieć VRA Centrum danych OVHcloud",
+  "dedicatedCloud_datacenter_local_vra_network_help": "Możesz wybrać lokalną podsieć VRA lub użyć sieci zaproponowanej powyżej przez OVH",
+  "dedicatedCloud_datacenter_local_vra_network_placeholder": "Wprowadź lokalną podsieć VRA",
+  "dedicatedCloud_datacenter_no_ip_pool": "Brak dostępnej puli adresów IP.",
+  "dedicatedCloud_datacenter_order_please": "Zamów pulę",
+  "dedicatedCloud_datacenter_pcc_name_MBM": "Nazwa infrastruktury Essentials: {{pcc}}",
+  "dedicatedCloud_datacenter_main_datacenter_name_MBM": "Identyfikator centrum danych, w którym zlokalizowana jest infrastruktura Essentials"
+}

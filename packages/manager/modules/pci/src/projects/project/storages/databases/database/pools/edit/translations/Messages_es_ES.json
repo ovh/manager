@@ -1,0 +1,15 @@
+{
+  "pci_databases_pools_modify_pool_title": "Modificar un pool",
+  "pci_databases_pools_modify_pool_name": "Nombre",
+  "pci_databases_pools_modify_database": "Base de datos",
+  "pci_databases_pools_modify_pool_mode": "Modo",
+  "pci_databases_pools_modify_pool_size": "Tamaño",
+  "pci_databases_pools_modify_pool_user": "Nombre de usuario",
+  "pci_databases_pools_modify_pool_user_title": "Nombre de usuario (opcional)",
+  "pci_databases_pools_modify_pool_cancel": "Cancelar",
+  "pci_databases_pools_modify_pool_confirm": "Confirmar",
+  "pci_databases_pools_modify_pool_success": "El pool {{name}} se ha modificado correctamente.",
+  "pci_databases_pools_modify_pool_error": "Se ha producido un error al modificar el pool {{name}}: {{ message }}",
+  "pci_databases_pools_modify_pool_name_required_error": "Complete este campo.",
+  "pci_databases_pools_modify_pool_name_pattern_error": "Introduzca un formato válido. Solo debe contener números, letras, guiones bajos o guiones, y no debe comenzar con un guion ni estar vacío. Máximo 60 caracteres."
+}

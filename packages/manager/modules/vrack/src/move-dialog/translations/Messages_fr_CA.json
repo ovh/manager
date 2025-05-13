@@ -1,6 +1,8 @@
 {
-  "vrack_move_dialog_title": "Déplacement d'un datacentre Private Cloud",
-  "vrack_move_dialog_intro": "Vous avez selectionné un service de type datacentre Private Cloud. Ce service ne peut être orphelin et doit être transféré obligatoirement vers un autre vRack.",
+  "vrack_move_dialog_title_dedicatedCloudDatacenter": "Déplacement d'un datacentre Private Cloud",
+  "vrack_move_dialog_title_managedBareMetalDatacenter": "Déplacement d'un datacentre Managed Bare Metal",
+  "vrack_move_dialog_intro_dedicatedCloudDatacenter": "Vous avez selectionné un service de type datacentre Private Cloud. Ce service ne peut être orphelin et doit être transféré obligatoirement vers un autre vRack.",
+  "vrack_move_dialog_intro_managedBareMetalDatacenter": "Vous avez selectionné un service de type datacentre Managed Bare Metal. Ce service ne peut être orphelin et doit être transféré obligatoirement vers un autre vRack.",
   "vrack_move_dialog_warning_notice": "Cette opération entraînera une interruption de service d'environ 5 minutes.",
   "vrack_move_dialog_choose_vrack_label": "vRack de destination :",
   "vrack_move_dialog_choose_vrack_default_option": "Sélectionnez un vRack",

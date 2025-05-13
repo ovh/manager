@@ -1,5 +1,0 @@
-{
-  "telephony_abbreviated_numbers_title": "Lyhytvalintanumerot",
-  "telephony_abbreviated_numbers_explaination": "Lyhytvalintanumerot ovat kolmi- tai nelinumeroisia numeroja, jotka alkavat numerolla 7.",
-  "telephony_abbreviated_numbers_pattern_error": "Kentän täytyy sisältää kolmi- tai nelinumeroinen numero, joka alkaa numerolla 7."
-}

@@ -1,9 +1,9 @@
 export default /* @ngInject */ function(
-  CucRegionService,
+  ovhManagerRegionService,
   DetailsPopoverService,
 ) {
   const self = this;
-  self.CucRegionService = CucRegionService;
+  self.ovhManagerRegionService = ovhManagerRegionService;
 
   self.closePopover = function closePopover() {
     DetailsPopoverService.reset();

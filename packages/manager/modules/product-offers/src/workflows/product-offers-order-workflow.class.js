@@ -12,6 +12,8 @@ import { CATALOG_ITEM_TYPE_NAMES } from './product-offers-workflow.constants';
  */
 export default class OrderWorkflow extends Workflow {
   /**
+   * @param {Object} $q              AngularJS provider
+   * @param {Object} $timeout        AngularJS provider
    * @param {Object} $translate      AngularJS provider
    * @param {Object} workflowOptions Specific options for this workflow,
    *  must contains the following values:
@@ -24,9 +26,10 @@ export default class OrderWorkflow extends Workflow {
    *  - {serviceNameToAddProduct}: Service name of which we will add product/addon.
    *  If set, the order will consist to add option to an existing service.
    *  If null, the order concerns an new product.
-   *  - {onBeforePricingGetPlancode}: Method called to get the product/addon plan
-   *  code, which will be called after configuration phase, and before pricing
-   *  step. Plan code example : webHosting, cloudDB.
+   *  - {getPlanCode}:
+   *  method to get the planCode to use. Allows you to set the planCode after the component has been
+   *  created.
+   *  Plan code example : webHosting, cloudDB.
    *  - {onGetConfiguration}:
    *  Method to get configuration items that will be added to the order
    *  cart, called when fetching checkout information.
@@ -65,26 +68,40 @@ export default class OrderWorkflow extends Workflow {
    *  ];
    * @param {Object} WucOrderCartService Service to handle order cart
    */
-  /* @ngInject */
-  constructor($q, $translate, workflowOptions, WucOrderCartService) {
-    super($q, $translate, workflowOptions);
-    this.WucOrderCartService = WucOrderCartService;
 
+  /* @ngInject */
+  constructor(
+    $q,
+    $timeout,
+    $translate,
+    workflowOptions,
+    WucOrderCartService,
+    $window,
+    RedirectionService,
+  ) {
+    super($q, $timeout, $translate, workflowOptions);
+    this.WucOrderCartService = WucOrderCartService;
+    this.$window = $window;
+    this.expressOrderUrl = RedirectionService.getURL('expressOrder');
     if (!this.catalog) {
       throw new Error('ovhProductOffers-OrderWorkflow requires a catalog');
     }
   }
 
   /**
-   * Get the pricings from the catalog, which match the plan code, which is get
-   * by linked method 'onBeforePricingGetPlancode'.
+   * Get the pricings from the catalog matching the planCode
    * @return {Promise} Promise of the catalog pricings
    */
   getPricings() {
     this.pricing = null;
-    this.planCode = this.onBeforePricingGetPlancode();
+    if (typeof this.getRightCatalogConfig === 'function') {
+      const { catalog, catalogItemTypeName } = this.getRightCatalogConfig();
 
-    if (!this.planCode) {
+      this.catalog = catalog;
+      this.catalogItemTypeName = catalogItemTypeName;
+    }
+
+    if (!this.getPlanCode()) {
       throw new Error('ovhProductOffers-OrderWorkflow: Invalid plan code');
     }
 
@@ -98,22 +115,27 @@ export default class OrderWorkflow extends Workflow {
 
     const catalogPricings = get(
       this.catalog[this.catalogItemTypeName].find(
-        ({ planCode }) => planCode === this.planCode,
+        ({ planCode }) => planCode === this.getPlanCode(),
       ),
       'pricings',
     );
 
     if (!catalogPricings) {
       throw new Error(
-        `ovhProductOffers-OrderWorkflow: No pricing found for ${this.planCode}`,
+        `ovhProductOffers-OrderWorkflow: No pricing found for ${this.getPlanCode()}`,
       );
     }
 
     this.pricings = this.computePricing(catalogPricings);
 
-    if (this.hasUniquePricing()) {
-      this.currentIndex += 1;
-      [this.pricing] = this.pricings;
+    if (this.hasUniquePricing() && !this.expressOrder) {
+      this.$timeout(() => {
+        this.currentIndex += 1;
+        [this.pricing] = this.pricings;
+        if (typeof this.onPricingSubmit === 'function') {
+          this.onPricingSubmit(this.pricing);
+        }
+      });
     }
   }
 
@@ -130,12 +152,7 @@ export default class OrderWorkflow extends Workflow {
     );
   }
 
-  /**
-   * Get the information for option order validation
-   * Will tell to upper scope the loading state of the workflow.
-   * @return {Promise}
-   */
-  getValidationInformation() {
+  getCheckoutInformations() {
     this.updateLoadingStatus('getOfferValidationInformation');
     const pricing = this.pricing || this.pricings[0];
 
@@ -143,17 +160,27 @@ export default class OrderWorkflow extends Workflow {
       ? this.onGetConfiguration()
       : [];
 
-    const checkoutInformations = {
+    return {
       product: {
         duration: pricing.getDurationISOFormat(),
-        planCode: this.planCode,
+        planCode: this.getPlanCode(),
         pricingMode: pricing.mode,
         quantity: 1,
       },
       configuration,
     };
+  }
 
-    const serviceName = this.serviceNameToAddProduct;
+  /**
+   * Get the information for option order validation
+   * Will tell to upper scope the loading state of the workflow.
+   * @return {Promise}
+   */
+  getValidationInformation() {
+    const checkoutInformations = this.getCheckoutInformations();
+    const serviceName = isFunction(this.serviceNameToAddProduct)
+      ? this.serviceNameToAddProduct()
+      : this.serviceNameToAddProduct;
 
     return this.$q
       .when()
@@ -162,13 +189,17 @@ export default class OrderWorkflow extends Workflow {
         isString(serviceName) && !isEmpty(serviceName)
           ? this.WucOrderCartService.addProductServiceOptionToCart(
               this.cartId,
-              this.productName,
+              isFunction(this.productName)
+                ? this.productName()
+                : this.productName,
               serviceName,
               checkoutInformations.product,
             )
           : this.WucOrderCartService.addProductToCart(
               this.cartId,
-              this.productName,
+              isFunction(this.productName)
+                ? this.productName()
+                : this.productName,
               checkoutInformations.product,
             ),
       )
@@ -185,7 +216,10 @@ export default class OrderWorkflow extends Workflow {
         ),
       )
       .then(() => this.WucOrderCartService.getCheckoutInformations(this.cartId))
-      .then(({ contracts, prices }) => {
+      .then(({ contracts, prices, details }) => {
+        this.prorataDurationDate = this.constructor.getDurationProrataDate(
+          details,
+        );
         this.contracts = contracts;
         this.prices = prices;
       })
@@ -209,11 +243,36 @@ export default class OrderWorkflow extends Workflow {
 
     const autoPayWithPreferredPaymentMethod = !!this.defaultPaymentMethod;
     const checkoutParameters = {
-      autoPayWithPreferredPaymentMethod: this.isFreePricing()
-        ? true
-        : autoPayWithPreferredPaymentMethod,
+      autoPayWithPreferredPaymentMethod:
+        this.isFreePricing() && this.defaultPaymentMethod
+          ? true
+          : autoPayWithPreferredPaymentMethod,
       waiveRetractationPeriod: false,
     };
+
+    if (this.expressOrder) {
+      const productId =
+        typeof this.productName === 'function'
+          ? this.productName()
+          : this.productName;
+      const checkoutObject = this.getCheckoutInformations();
+      const { configuration } = checkoutObject;
+      const serviceName =
+        typeof this.serviceNameToAddProduct === 'function'
+          ? this.serviceNameToAddProduct()
+          : this.serviceNameToAddProduct;
+      const jsUrlToSend = {
+        productId,
+        ...(configuration.length > 0 ? { configuration } : []),
+        ...checkoutObject.product,
+        ...(serviceName ? { serviceName } : []),
+      };
+      return this.$window.open(
+        `${this.expressOrderUrl}?products=${JSURL.stringify([jsUrlToSend])}`,
+        '_blank',
+        'noopener',
+      );
+    }
 
     return this.$q
       .when()

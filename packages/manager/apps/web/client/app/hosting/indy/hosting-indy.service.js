@@ -7,10 +7,7 @@
   angular.module('services').service(
     'HostingIndy',
     class HostingIndy {
-      /**
-       * Constructor
-       * @param OvhHttp
-       */
+      /* @ngInject */
       constructor(OvhHttp) {
         this.OvhHttp = OvhHttp;
       }

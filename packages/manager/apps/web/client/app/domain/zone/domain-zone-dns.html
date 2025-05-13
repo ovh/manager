@@ -1,4 +1,4 @@
-<div class="container-fluid px-0">
+<div data-ui-view>
     <div class="text-center" data-ng-if="ctrlDomainTabZoneDns.loading.zone">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
@@ -22,13 +22,28 @@
                 ></div>
             </div>
             <div class="col-md-3 text-right">
-                <button
-                    class="btn btn-block btn-default"
-                    type="button"
-                    data-translate="domain_tab_ZONE_no_zone_activate_btn"
-                    data-ng-disabled="!ctrlDomainTabZoneDns.displayActivateZone"
-                    data-ng-click="ctrlDomainTabZoneDns.activateZone()"
-                ></button>
+                <oui-button
+                    variant="secondary"
+                    data-disabled="!ctrlDomainTabZoneDns.displayActivateZone"
+                    data-on-click="ctrlDomainTabZoneDns.activateZone()"
+                    data-ng-if="ctrlDomainTabZoneDns.region !== 'CA'"
+                    block
+                >
+                    <span
+                        data-translate="domain_tab_ZONE_no_zone_activate_btn"
+                    ></span>
+                </oui-button>
+                <oui-button
+                    variant="secondary"
+                    data-disabled="!ctrlDomainTabZoneDns.displayActivateZone"
+                    data-on-click="ctrlDomainTabZoneDns.orderZone()"
+                    data-ng-if="ctrlDomainTabZoneDns.region === 'CA'"
+                    block
+                >
+                    <span
+                        data-translate="domain_tab_ZONE_no_zone_order_btn"
+                    ></span>
+                </oui-button>
             </div>
         </div>
 
@@ -106,7 +121,6 @@
                     data-translate="domain_tab_ZONE_title"
                 ></p>
                 <p data-translate="domain_tab_ZONE_info"></p>
-
                 <div
                     class="alert alert-info mt-5"
                     role="alert"
@@ -176,7 +190,7 @@
                                                 data-ng-options="zoneEntryType for zoneEntryType in ctrlDomainTabZoneDns.zone.fieldsTypes track by zoneEntryType"
                                             >
                                                 <option
-                                                    value=""
+                                                    value
                                                     data-translate="domain_tab_ZONE_type_all"
                                                 ></option>
                                             </select>
@@ -355,28 +369,24 @@
                                         <span
                                             data-ng-bind="record.targetToDisplay"
                                         ></span>
-                                        <span
-                                            class="fa fa-exclamation-triangle text-warning ml-2"
-                                            aria-hidden="true"
-                                            data-ng-if="ctrlDomainTabZoneDns.targetIsRelativeDomain(record)"
-                                            data-oui-tooltip-placement="bottom"
-                                            data-oui-tooltip="{{:: 'domain_configuration_dns_entry_relative_warning_title' | translate }}&nbsp;&laquo;&nbsp;{{record.targetToDisplay}}.{{record.zoneToDisplay}}&nbsp;&raquo;&nbsp;"
-                                        >
-                                        </span>
                                     </td>
                                     <td class="text-right">
                                         <oui-action-menu
                                             data-compact
-                                            data-align="end"
                                             data-ng-if="!(record.fieldType === 'NS' && !record.subDomain) && ctrlDomainTabZoneDns.allowModification"
+                                            data-placement="end"
                                         >
                                             <oui-action-menu-item
-                                                data-text="{{:: 'table_modify_entry' | translate }}"
                                                 data-on-click="setAction('zone/record/edit/domain-zone-record-edit', { domain: ctrlDomainTabZoneDns.domain, fieldTypes: ctrlDomainTabZoneDns.zone.fieldsTypes, edit: record })"
+                                                ><span
+                                                    data-translate="table_modify_entry"
+                                                ></span
                                             ></oui-action-menu-item>
                                             <oui-action-menu-item
-                                                data-text="{{:: 'table_delete_entry' | translate }}"
                                                 data-on-click="setAction('zone/record/delete/domain-zone-record-delete', record)"
+                                                ><span
+                                                    data-translate="table_delete_entry"
+                                                ></span
                                             ></oui-action-menu-item>
                                         </oui-action-menu>
                                     </td>
@@ -408,9 +418,8 @@
                     <button
                         class="btn btn-block btn-default"
                         type="button"
-                        data-translate="domain_configuration_zonedns_reset_title_button"
-                        data-ng-click="setAction('zone/reset/domain-zone-reset', ctrlDomainTabZoneDns.domain)"
-                        data-ng-if="ctrlDomainTabZoneDns.allowModification"
+                        data-translate="domain_tab_ZONE_default_import_button"
+                        data-ng-click="setAction('zone/import-text/domain-zone-import-text', ctrlDomainTabZoneDns.domain)"
                     ></button>
                     <button
                         class="btn btn-block btn-default"
@@ -423,8 +432,16 @@
                     <button
                         class="btn btn-block btn-default"
                         type="button"
-                        data-translate="domain_tab_ZONE_default_import_button"
-                        data-ng-click="setAction('zone/import-text/domain-zone-import-text', ctrlDomainTabZoneDns.domain)"
+                        data-translate="domain_configuration_dns_entry_see_dns_history_button"
+                        data-ng-click="ctrlDomainTabZoneDns.navigateToZoneHistory()"
+                        data-ng-if="!ctrlDomainTabZoneDns.loading.table && ctrlDomainTabZoneDns.hasResult"
+                    ></button>
+                    <button
+                        class="btn btn-block btn-default"
+                        type="button"
+                        data-translate="domain_configuration_zonedns_reset_title_button"
+                        data-ng-click="setAction('zone/reset/domain-zone-reset', ctrlDomainTabZoneDns.domain)"
+                        data-ng-if="ctrlDomainTabZoneDns.allowModification"
                     ></button>
                     <button
                         class="btn btn-block btn-default"

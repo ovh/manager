@@ -1,0 +1,8 @@
+{
+  "voucher_credit_code_add_label": "Add a coupon or voucher",
+  "voucher_credit_code_add_placeholder": "Voucher code",
+  "voucher_credit_code_add_submit": "Add",
+  "voucher_credit_code_success": "Your <strong>{{credit}}</strong> credit has been generated. You can proceed with your order.",
+  "voucher_credit_code_error": "An error has occurred adding the voucher.",
+  "voucher_credit_code_cancel": "Cancel"
+}

@@ -1,6 +1,0 @@
-{
-  "manager_hub_dashboard_feedback": "New dashboard: please feel free to <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">share your feedback</a>",
-  "manager_hub_dashboard": "Dashboard",
-  "manager_hub_dashboard_overview": "View all my activity",
-  "manager_hub_dashboard_services": "My products and services"
-}

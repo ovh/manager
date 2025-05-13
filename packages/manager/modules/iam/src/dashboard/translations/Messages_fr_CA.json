@@ -1,0 +1,9 @@
+{
+  "iam_error": "Vous n'avez pas les droits de réaliser cette action : {{details}}",
+  "iam_dashboard_header_guide_text": "Guides",
+  "iam_dashboard_header_heading": "Gestion des identités et des accès (IAM)",
+  "iam_dashboard_header_tabs_item_identities": "Identités",
+  "iam_dashboard_header_tabs_item_policies": "Politiques",
+  "iam_dashboard_header_tabs_item_resource_groups": "Groupes de ressources",
+  "iam_dashboard_header_tabs_item_applications": "Applications"
+}

@@ -1,0 +1,10 @@
+{
+  "dedicatedCloud_datacenter_backup_delete_title": "Désactivation de la sauvegarde",
+  "dedicatedCloud_datacenter_backup_delete_description_1": "Souhaitez-vous désactiver la sauvegarde pour le datacentre {{datacenter}} ? Vous devrez vérifier la désactivation de la sauvegarde pour chaque machine virtuelle depuis vSphere.",
+  "dedicatedCloud_datacenter_backup_delete_description_2": "Attention, cette action supprimera définitivement toutes vos sauvegardes.",
+  "dedicatedCloud_datacenter_backup_delete_cancel": "Annuler",
+  "dedicatedCloud_datacenter_backup_delete_confirm": "Désactiver la sauvegarde",
+  "dedicatedCloud_datacenter_backup_delete_success": "La demande de désactivation de votre offre Veeam Backup {{name}} est en cours. L'opération prendra 24h.",
+  "dedicatedCloud_datacenter_backup_delete_error": "Une erreur s'est produite lors de la désactivation de votre service de sauvegarde : {{message}}",
+  "dedicatedCloud_datacenter_backup_delete_error_403": "Une erreur s'est produite lors de la désactivation de votre service de sauvegarde : {{message}}. Veuillez contacter notre support pour résoudre ce problème."
+}

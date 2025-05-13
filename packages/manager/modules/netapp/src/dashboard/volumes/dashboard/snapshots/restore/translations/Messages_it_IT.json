@@ -1,0 +1,14 @@
+{
+  "netapp_volumes_snapshots_restore_title": "Ripristinare l'ultimo Snapshot",
+  "netapp_volumes_snapshots_restore_description": "Vuoi davvero ripristinare il seguente volume?",
+  "netapp_volumes_snapshots_restore_volume_label": "Volume",
+  "netapp_volumes_snapshots_restore_snapshot_label": "Nome dello Snapshot",
+  "netapp_volumes_snapshots_restore_confirm_description": "Attenzione: questa azione ripristinerà i dati nel volume {{volume}} allo stato in cui si trovavano al momento dell'acquisizione dello Snapshot. I dati modificati nel volume dopo il {{date}} saranno eliminati in modo irreversibile. In caso di dubbi, consulta la documentazione disponibile o contatta direttamente il nostro supporto. Conferma il nome del volume da ripristinare per confermare l’azione",
+  "netapp_volumes_snapshots_restore_confirm_volume_label": "Confermare il nome del volume",
+  "netapp_volumes_snapshots_restore_confirm": "Ripristinare un volume",
+  "netapp_volumes_snapshots_restore_cancel": "Annullare",
+  "netapp_volumes_snapshots_restore_success": "Il ripristino del volume è stato preso in carico e sarà effettivo entro pochi minuti.",
+  "netapp_volumes_snapshots_restore_error": "Impossibile ripristinare il volume: <br> {{message}}<br> request_id: {{requestId}}",
+  "netapp_volumes_snapshots_hold_error": "Si è verificato un problema durante la modifica del tuo Snapshot in tipo manuale",
+  "netapp_volumes_snapshots_restore_system_message": "Nessuno Snapshot è disponibile per il ripristino del tuo volume. In caso di dubbi, consulta la documentazione disponibile o contatta direttamente il nostro supporto."
+}

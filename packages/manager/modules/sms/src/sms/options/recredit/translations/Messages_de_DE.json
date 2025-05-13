@@ -20,5 +20,6 @@
   "sms_options_recredit_update_quantity_option": "{{ amount }} crédits",
   "sms_options_recredit_updating": "Configuration de la recharge automatique…",
   "sms_options_recredit_updated": "Configuration de la recharge automatique effectuée",
-  "sms_options_recredit_update_ko": "Impossible de mettre à jour la configuration de la recharge automatique.<br/>{{error}}"
+  "sms_options_recredit_update_ko": "Impossible de mettre à jour la configuration de la recharge automatique.<br/>{{error}}",
+  "sms_options_recredit_information_note2": "Diese automatische Aufladung wird von Ihrem OVHcloud Kundenkonto abgebucht."
 }

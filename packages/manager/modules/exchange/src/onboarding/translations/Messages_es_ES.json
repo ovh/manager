@@ -1,0 +1,13 @@
+{
+  "exchange_onboarding_title": "Microsoft Exchange, la solución de correo electrónico profesional de referencia",
+  "exchange_onboarding_order": "Contratar",
+  "exchange_onboarding_guide1_title": "Primeros pasos con el servicio Hosted Exchange",
+  "exchange_onboarding_guide1_description": "Cómo configurar por primera vez el servicio Hosted Exchange",
+  "exchange_onboarding_guide2_title": "Gestionar la facturación de sus cuentas Exchange",
+  "exchange_onboarding_guide2_description": "Cómo gestionar la facturación del servicio Exchange",
+  "exchange_onboarding_guide3_title": "Primeros pasos con el servicio Private Exchange",
+  "exchange_onboarding_guide3_description": "Cómo configurar el servicio Private Exchange",
+  "exchange_onboarding_description_fr": "Aloje sus datos en Francia, disfrutando de la solución de correo profesional más completa",
+  "exchange_onboarding_description_eu": "Aloje sus datos en Europa y disfrute de la solución de correo profesional más completa del mercado",
+  "exchange_onboarding_description_ca": "Aloje sus datos en Canadá y disfrute de la solución de correo profesional más completa del mercado"
+}

@@ -1,0 +1,18 @@
+{
+  "log_subscription_tile_title": "Questi log sono trasferiti in Logs Data Platform",
+  "log_subscription_serviceName_tile_label": "Nome del servizio",
+  "log_subscription_button_unsubscribe_label": "Disattivare l'abbonamento",
+  "log_subscription_empty_tile_title": "Flusso",
+  "log_subscription_empty_tile_description": "Abbonandoti a questo flusso, puoi trasferire i tuoi log direttamente nel servizio Logs Data Platform di OVHcloud, che permette di effettuare ricerche più avanzate, creare alert e grafici, oppure semplicemente archiviarli.",
+  "log_subscription_empty_tile_button_know_more": "Saperne di più su Logs Data Platform",
+  "log_subscription_empty_tile_button_subscribe": "Abbonati",
+  "log_subscription_list_title": "Utilizzare i log",
+  "log_subscription_list_button_subscribe_more": "Abbonati a un altro flusso di dati",
+  "log_subscription_terminate_modal_headline": "Disattivare l'abbonamento",
+  "log_subscription_terminate_modal_delete_input_label": "Inserisci la parola \"TERMINATE\" per disiscriverti dal flusso di dati.",
+  "log_subscription_terminate_modal_confirm_button_label": "Disattivare l'abbonamento",
+  "log_subscription_unsubscribe_success": "La tua disiscrizione è andata a buon fine.",
+  "log_subscription_unsubscribe_error": "Si è verificato un errore durante la disiscrizione: {{error}}",
+  "log_subscription_subscribe_success": "L'iscrizione è andata a buon fine.",
+  "log_subscription_subscribe_error": "Si è verificato un errore durante l’iscrizione: {{error}}"
+}

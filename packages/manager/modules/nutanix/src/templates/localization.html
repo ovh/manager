@@ -1,0 +1,7 @@
+<oui-spinner size="s" data-ng-if="$row.loadingDatacenter"> </oui-spinner>
+<iam-protected-data
+    data-ng-if="!$row.loadingDatacenter"
+    is-hidden="!$row.datacenter"
+>
+    <datacenter-name datacenter="$row.datacenter"> </datacenter-name>
+</iam-protected-data>

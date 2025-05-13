@@ -1,7 +1,0 @@
-{
- "pci_projects_project_users_roles": "Modifica i ruoli",
- "pci_projects_project_users_roles_cancel": "Annulla",
- "pci_projects_project_users_roles_edit": "Conferma",
- "pci_projects_project_users_roles_edit_success": "I diritti dell’utente sono stati modificati correttamente. Le modifiche non vengono applicate in tempo reale e potrebbero richiedere 10 minuti per diventare effettive.",
- "pci_projects_project_users_roles_edit_error": "Si è verificato un errore durante l’aggiornamento dei ruoli dell’utente: {{ message }}"
-}

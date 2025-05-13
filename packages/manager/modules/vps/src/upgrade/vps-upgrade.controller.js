@@ -22,6 +22,9 @@ export default class VpsUpgradeCtrl {
     OvhApiOrder,
     OvhApiVps,
     stateVps,
+    serviceInfo,
+    getRebootLink,
+    VpsUpgradeService,
   ) {
     // dependencies injections
     this.$q = $q;
@@ -32,6 +35,9 @@ export default class VpsUpgradeCtrl {
     this.OvhApiOrder = OvhApiOrder;
     this.OvhApiVps = OvhApiVps;
     this.stateVps = stateVps;
+    this.serviceInfo = serviceInfo;
+    this.getRebootLink = getRebootLink;
+    this.VpsUpgradeService = VpsUpgradeService;
 
     // other attributes used in view
     this.serviceName = this.stateVps.name;
@@ -87,7 +93,10 @@ export default class VpsUpgradeCtrl {
       modelVersion,
       versionInfos.year < 2018 ? '2018v3' : '2018v4',
     );
-    const mappedType = get(OFFER_AGORA_MAPPING, modelType, modelType);
+    const mappedType = VpsUpgradeCtrl.getBillingModelType(
+      modelType,
+      modelVersion,
+    );
     const offerPlanCode = `vps_${mappedType}_${modelName}_${destVersion}`;
 
     return find(availableOffers, {
@@ -96,12 +105,26 @@ export default class VpsUpgradeCtrl {
   }
 
   /**
+   * Get the billing model type of the VPS
+   */
+  static getBillingModelType(modelType, modelVersion) {
+    if (
+      modelType === 'ssd' &&
+      (modelVersion === '2017v1' || modelVersion === '2018v2')
+    ) {
+      return 'ssd-discovery';
+    }
+
+    return get(OFFER_AGORA_MAPPING, modelType, modelType);
+  }
+
+  /**
    *  Find the monthly price object of given offer
    */
   static getMonthlyPrice(offer) {
-    const prices = filter(offer.offer.details.prices, {
-      duration: 'P1M',
-    });
+    const prices = filter(offer.offer.details.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
     const totalPrice = sumBy(prices, 'price.value');
     return {
       ...prices[0].price,
@@ -118,14 +141,12 @@ export default class VpsUpgradeCtrl {
     this.loading.contracts = true;
     this.model.contracts = false;
 
-    return this.OvhApiOrder.Upgrade()
-      .Vps()
-      .v6()
-      .get({
-        serviceName: this.serviceName,
-        planCode: this.model.offer.offer.details.planCode,
-      })
-      .$promise.then((order) => {
+    return this.VpsUpgradeService.getUpgrade(
+      this.serviceInfo.serviceId,
+      this.model.offer.offer.details,
+      false,
+    )
+      .then((order) => {
         this.order = order.order;
         this.order.contracts = map(this.order.contracts, (contractParam) => {
           const contract = contractParam;
@@ -161,19 +182,12 @@ export default class VpsUpgradeCtrl {
   onStepperFinish() {
     this.loading.order = true;
 
-    return this.OvhApiOrder.Upgrade()
-      .Vps()
-      .v6()
-      .save(
-        {
-          serviceName: this.serviceName,
-          planCode: this.model.offer.offer.details.planCode,
-        },
-        {
-          quantity: 1,
-        },
-      )
-      .$promise.then((response) => {
+    return this.VpsUpgradeService.startUpgrade(
+      this.serviceInfo.serviceId,
+      this.model.offer.offer.details,
+      false,
+    )
+      .then((response) => {
         // open order url
         this.$window.open(response.order.url, '_blank');
 
@@ -192,12 +206,21 @@ export default class VpsUpgradeCtrl {
         return this.$onInit();
       })
       .catch((error) => {
-        this.CucCloudMessage.error(
-          [
-            this.$translate.instant('vps_configuration_upgradevps_fail'),
-            get(error, 'data.message'),
-          ].join(' '),
-        );
+        if (error?.status === 400 && this.stateVps.state === 'rescued') {
+          this.CucCloudMessage.error({
+            textHtml: `${this.$translate.instant(
+              'vps_upgrade_fail_vps_in_rescue_info',
+            )} <a href="${this.getRebootLink()}">${this.$translate.instant(
+              'vps_upgrade_fail_vps_in_rescue_action',
+            )}</a>`,
+          });
+        } else {
+          this.CucCloudMessage.error(
+            `${this.$translate.instant('vps_configuration_upgradevps_fail')} ${
+              error?.data?.message
+            }`,
+          );
+        }
       })
       .finally(() => {
         this.loading.order = false;
@@ -214,22 +237,18 @@ export default class VpsUpgradeCtrl {
     this.loading.init = true;
 
     this.model.offer = null;
-
     return this.$q
       .all({
         availableUpgrades: this.OvhApiVps.v6().availableUpgrade({
           serviceName: this.serviceName,
         }).$promise,
-        availableOffers: this.OvhApiOrder.Upgrade()
-          .Vps()
-          .v6()
-          .getAvailableOffers({
-            serviceName: this.serviceName,
-          }).$promise,
+        availableOffers: this.VpsUpgradeService.getAvailableUpgrades(
+          this.serviceInfo.serviceId,
+        ),
       })
       .then(({ availableUpgrades, availableOffers }) => {
         // map available upgrades by adding details with the informations
-        // provided by /order/upgrade/vps API response
+        // provided by /services/vpsServiceId/upgrade API response
         const availableUpgrade = map(availableUpgrades, (upgradeParam) => {
           const upgrade = upgradeParam;
           upgrade.isCurrentOffer = false;

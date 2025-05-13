@@ -29,10 +29,13 @@
                         class="oui-radio__label-container"
                         for="process-rollback"
                     >
-                        <span
-                            class="oui-radio__label"
-                            data-translate="hosting_action_edit_choose_rollback"
-                        ></span>
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-translate="hosting_action_edit_choose_rollback"
+                            ></span>
+                        </span>
                     </label>
                 </div>
                 <div class="oui-radio">
@@ -48,10 +51,13 @@
                         class="oui-radio__label-container"
                         for="process-update"
                     >
-                        <span
-                            class="oui-radio__label"
-                            data-translate="hosting_action_edit_choose_update"
-                        ></span>
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-translate="hosting_action_edit_choose_update"
+                            ></span>
+                        </span>
                     </label>
                 </div>
             </form>
@@ -126,31 +132,6 @@
                 <div class="form-group">
                     <label
                         class="control-label col-md-4"
-                        for="container"
-                        data-translate="hosting_action_config_edit_container_version"
-                    ></label>
-                    <div class="col-md-6">
-                        <div class="oui-select mb-0">
-                            <select
-                                class="oui-select__input"
-                                id="container"
-                                name="container"
-                                data-ng-change="ctrl.updateSelectedConfig()"
-                                data-ng-model="ctrl.model.container"
-                                data-ng-options="('hosting_action_config_edit_container_version_enum_'  + ctrl.constructor.parseLabel(name) | translate) for name in ctrl.apiStruct.models['hosting.web.ovhconfig.ContainerEnum'].enum track by name"
-                            >
-                            </select>
-                            <span
-                                class="oui-icon oui-icon-chevron-down"
-                                aria-hidden="true"
-                            ></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label
-                        class="control-label col-md-4"
                         for="engineVersion"
                         data-translate="hosting_action_config_edit_engine_version"
                     ></label>
@@ -165,7 +146,7 @@
                                 name="engineVersion"
                                 data-ng-change="ctrl.updateSelectedConfig()"
                                 data-ng-model="ctrl.model.engineVersion"
-                                data-ng-options="name for name in ctrl.apiStruct.models['hosting.web.ovhConfig.AvailableEngineVersionEnum'].enum track by name"
+                                data-ng-options="version for version in ctrl.phpVersion track by version"
                             >
                             </select>
                             <span
@@ -173,11 +154,6 @@
                                 aria-hidden="true"
                             ></span>
                         </div>
-                        <p
-                            class="text-danger"
-                            data-translate="hosting_action_config_edit_unavailable_version"
-                            data-ng-if="!ctrl.toggle.isPhpVersionAvailable"
-                        ></p>
                     </div>
                     <div
                         class="col-md-6"
@@ -191,6 +167,31 @@
                                 disabled
                                 data-ng-model="ctrl.model.engineVersion"
                                 data-ng-options="name for name in ctrl.apiStruct.models['hosting.web.ovhConfig.EngineVersionEnum'].enum track by name"
+                            >
+                            </select>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label
+                        class="control-label col-md-4"
+                        for="container"
+                        data-translate="hosting_action_config_edit_container_version"
+                    ></label>
+                    <div class="col-md-6">
+                        <div class="oui-select mb-0">
+                            <select
+                                class="oui-select__input"
+                                id="container"
+                                name="container"
+                                data-ng-change="ctrl.updateSelectedConfig()"
+                                data-ng-model="ctrl.model.container"
+                                data-ng-options="envExecution as envExecution for envExecution in ctrl.envExecutions track by envExecution"
                             >
                             </select>
                             <span
@@ -249,7 +250,7 @@
                                 data-ng-change="ctrl.updateSelectedConfig()"
                                 data-ng-disabled="ctrl.toggle.isRollbackProcess"
                                 data-ng-model="ctrl.model.engineName"
-                                data-ng-options="name for name in ctrl.apiStruct.models['hosting.web.ovhConfig.EngineNameEnum'].enum track by name"
+                                data-ng-options="name for name in ctrl.engineNames track by name"
                             >
                             </select>
                             <span
@@ -344,7 +345,10 @@
                     data-translate="hosting_action_config_edit_container_help_values_title"
                 ></h4>
                 <p
-                    data-ng-bind-html="'hosting_action_config_edit_container_help_values_text' | translate"
+                    data-translate="hosting_action_config_edit_container_help_values_text"
+                    data-translate-values="{
+                        phpVersion: ctrl.recommendedVersion
+                    }"
                 ></p>
             </div>
         </div>

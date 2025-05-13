@@ -3,6 +3,7 @@ import forEach from 'lodash/forEach';
 import has from 'lodash/has';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
+import { DKIM_STATUS, DKIM_STATUS_CLASS } from './domain.constants';
 
 export default class ExchangeTabDomainsCtrl {
   /* @ngInject */
@@ -10,7 +11,7 @@ export default class ExchangeTabDomainsCtrl {
     $http,
     $scope,
     $translate,
-    Exchange,
+    wucExchange,
     ExchangeDomains,
     exchangeServiceInfrastructure,
     exchangeStates,
@@ -22,7 +23,7 @@ export default class ExchangeTabDomainsCtrl {
       $http,
       $scope,
       $translate,
-      Exchange,
+      wucExchange,
       ExchangeDomains,
       exchangeServiceInfrastructure,
       exchangeStates,
@@ -31,7 +32,7 @@ export default class ExchangeTabDomainsCtrl {
       navigation,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.domainTypeAuthoritative = 'AUTHORITATIVE';
     this.domainTypeNonAuthoritative = 'NON_AUTHORITATIVE';
@@ -42,7 +43,7 @@ export default class ExchangeTabDomainsCtrl {
       value: null,
     };
 
-    this.exchange = Exchange.value;
+    this.exchange = wucExchange.value;
 
     if (exchangeServiceInfrastructure.isProvider()) {
       this.cnameRedirection = 'ex-mail.biz';
@@ -50,13 +51,15 @@ export default class ExchangeTabDomainsCtrl {
       this.cnameRedirection = 'ovh.com';
     }
 
-    $scope.$on(Exchange.events.domainsChanged, () =>
+    $scope.$on(wucExchange.events.domainsChanged, () =>
       $scope.$broadcast('paginationServerSide.reload', 'domainsTable'),
     );
 
     $scope.getDomains = (count, offset) => this.getDomains(count, offset);
     $scope.getPaginated = () => this.paginated;
     $scope.getLoading = () => this.loading;
+
+    this.DKIM_STATUS = DKIM_STATUS;
   }
 
   goSearch() {
@@ -102,9 +105,14 @@ export default class ExchangeTabDomainsCtrl {
         if (this.exchange != null) {
           this.setMxTooltip(domain);
           this.setSrvTooltip(domain);
+          this.setSpfTooltip(domain);
         }
       });
     }
+  }
+
+  static getDkimColorClass({ dkimDiagnostics: { state } }) {
+    return DKIM_STATUS_CLASS[state] || '';
   }
 
   setMxTooltip(domain) {
@@ -143,6 +151,27 @@ export default class ExchangeTabDomainsCtrl {
         'srvTooltip',
         this.services.$translate.instant(
           'exchange_tab_domain_diagnostic_srv_toolbox',
+          { t0: this.exchange.hostname },
+        ),
+      );
+    }
+  }
+
+  setSpfTooltip(domain) {
+    if (domain.spfValid) {
+      set(
+        domain,
+        'spfTooltip',
+        this.services.$translate.instant(
+          'exchange_tab_domain_diagnostic_spf_toolbox_ok',
+        ),
+      );
+    } else {
+      set(
+        domain,
+        'spfTooltip',
+        this.services.$translate.instant(
+          'exchange_tab_domain_diagnostic_spf_toolbox',
           { t0: this.exchange.hostname },
         ),
       );

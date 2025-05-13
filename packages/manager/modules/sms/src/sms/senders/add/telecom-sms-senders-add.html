@@ -13,10 +13,7 @@
         <oui-spinner></oui-spinner>
     </div>
 
-    <div
-        class="telecom-section-content"
-        data-ng-if="!SmsSendersAddCtrl.loading.init"
-    >
+    <div data-ng-if="!SmsSendersAddCtrl.loading.init">
         <tuc-toast-message></tuc-toast-message>
 
         <div class="row">
@@ -151,6 +148,17 @@
                             </span>
                         </span>
                     </div>
+
+                    <oui-field
+                        data-label="{{:: 'sms_senders_add_sender_supporting_document' | translate }}"
+                        data-label-popover="{{:: 'sms_senders_add_sender_supporting_document_help' | translate }}"
+                        data-size="xl"
+                    >
+                        <oui-file
+                            data-model="SmsSendersAddCtrl.sender.supportingDocument"
+                            data-accept="application/pdf,image/jpeg,image/png,image/jpg"
+                        ></oui-file>
+                    </oui-field>
 
                     <!-- Description -->
                     <div
@@ -487,6 +495,5 @@
             </div>
         </div>
     </div>
-    <!-- /.telecom-section-content -->
 </section>
 <!-- /.telecom-sms-senders-add -->

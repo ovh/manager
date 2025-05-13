@@ -1,14 +1,12 @@
 {
- "pci_projects_project_storages_blocks_block_volume-edit_region_label": "Region",
- "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Volume type",
- "pci_projects_project_storages_blocks_block_volume-edit_type_high-speed": "High performance",
- "pci_projects_project_storages_blocks_block_volume-edit_type_classic": "Standard",
- "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Volume name",
- "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Volume capacity",
- "pci_projects_project_storages_blocks_block_volume-edit_size_help": "The maximum size depends on your available quota.",
- "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
- "pci_projects_project_storages_blocks_block_volume-edit_price_text": "Estimated amount: {{ price }} ex. VAT/month",
- "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Bootable",
- "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "By defining a volume as bootable, you can use the volume when your instance is booted.",
- "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Cancel"
+  "pci_projects_project_storages_blocks_block_volume-edit_region_label": "Region",
+  "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Volume type",
+  "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Volume name",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Volume capacity",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_help": "The maximum size depends on your available quota.",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
+  "pci_projects_project_storages_blocks_block_volume-edit_price_text": "Estimated amount: {{ price }} ex. VAT/month",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Bootable",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "By defining a volume as bootable, you can use the volume when your instance is booted.",
+  "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Cancel"
 }

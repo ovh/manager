@@ -7,8 +7,8 @@ import '@uirouter/angularjs';
 import '@ovh-ux/ng-at-internet';
 import 'ovh-api-services';
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
 import 'font-awesome/css/font-awesome.css';
 
@@ -17,6 +17,8 @@ import templateService from './telecom-sms-order-service.html';
 import template from './telecom-sms-order.html';
 
 import '../telecom-sms.scss';
+
+import { HEADER_GUIDE_LINK } from '../../sms.constant';
 
 const moduleName = 'ovhManagerSmsOrderComponent';
 
@@ -32,6 +34,9 @@ angular
   .component('smsOrderComponent', {
     controller,
     template: templateService,
+    bindings: {
+      headerGuideLink: '<',
+    },
   })
   .config(($stateProvider) => {
     $stateProvider.state('sms.service.order', {
@@ -41,7 +46,10 @@ angular
           component: 'smsOrderComponent',
         },
       },
-      translations: { value: ['.'], format: 'json' },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('sms_order_title'),
+      },
     });
 
     $stateProvider.state('sms.order', {
@@ -54,9 +62,20 @@ angular
           component: 'smsOrderComponent',
         },
       },
-      translations: { value: ['.'], format: 'json' },
+      resolve: {
+        headerGuideLink: /* @ngInject */ (coreConfig, $translate) =>
+          HEADER_GUIDE_LINK.map(({ translationKey, url }) => ({
+            label: $translate.instant(
+              `sms_order_header_guide_${translationKey}`,
+            ),
+            url: url[coreConfig.getUser().ovhSubsidiary] || url.DEFAULT,
+          })),
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('sms_order_title'),
+      },
     });
   })
+  .run(/* @ngTranslationsInject:json ./translations */)
   .constant('SMS_ORDER_PREFIELDS_VALUES', [
     100,
     500,
@@ -67,6 +86,11 @@ angular
     100000,
     500000,
     NaN,
-  ]);
+  ])
+  .constant('SMS_ORDER_ACCOUNT_TYPE_VALUES', {
+    standard: 'both',
+    marketing: 'marketing',
+    transactional: 'transactional',
+  });
 
 export default moduleName;

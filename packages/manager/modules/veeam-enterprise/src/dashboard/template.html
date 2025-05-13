@@ -1,24 +1,24 @@
-<section class="container-fluid cui-page__content cui-page__content-flex">
+<section>
     <div class="row d-lg-flex">
         <div class="col-xm-12 col-md-4">
             <oui-tile
                 data-heading="{{ ::'veeam_enterprise_shortcut_title' | translate }}"
                 class="h-100 oui-tile-h-100"
             >
-                <oui-tile-button
-                    data-text="{{ ::'veeam_enterprise_shortcut_label_activate_license' | translate }}"
-                    data-on-click="$ctrl.goToLicenseActivate()"
-                >
+                <oui-tile-button data-on-click="$ctrl.goToLicenseActivate()"
+                    ><span
+                        data-translate="veeam_enterprise_shortcut_label_activate_license"
+                    ></span>
                 </oui-tile-button>
-                <oui-tile-button
-                    data-text="{{ ::'veeam_enterprise_shortcut_label_update_informations' | translate }}"
-                    data-on-click="$ctrl.goToLicenseUpdate()"
-                >
+                <oui-tile-button data-on-click="$ctrl.goToLicenseUpdate()"
+                    ><span
+                        data-translate="veeam_enterprise_shortcut_label_update_informations"
+                    ></span>
                 </oui-tile-button>
-                <oui-tile-button
-                    data-text="{{ ::'veeam_enterprise_shortcut_label_cancel_license' | translate }}"
-                    data-on-click="$ctrl.goToLicenseTerminate()"
-                >
+                <oui-tile-button data-on-click="$ctrl.goToLicenseTerminate()"
+                    ><span
+                        data-translate="veeam_enterprise_shortcut_label_cancel_license"
+                    ></span>
                 </oui-tile-button>
             </oui-tile>
         </div>
@@ -44,11 +44,6 @@
                     data-description="{{ ::$ctrl.configurationInfos.data.ip }}"
                 >
                 </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{ ::'veeam_enterprise_configuration_label_port' | translate }}"
-                    data-description="{{ ::$ctrl.configurationInfos.data.port }}"
-                >
-                </oui-tile-definition>
             </oui-tile>
         </div>
 
@@ -64,14 +59,17 @@
                 >
                     <oui-action-menu
                         data-compact
-                        data-align="end"
                         data-ng-if="$ctrl.uiActions.manageAutorenew.isAvailable()"
+                        data-placement="end"
                     >
                         <oui-action-menu-item
-                            data-text="{{ ::$ctrl.uiActions.manageAutorenew.text }}"
                             aria-label="{{ ::$ctrl.uiActions.manageAutorenew.text }}"
                             data-href="{{ $ctrl.uiActions.manageAutorenew.href }}"
-                        >
+                            data-on-click="$ctrl.onAutorenewManageClick()"
+                            top
+                            ><span
+                                data-ng-bind="::$ctrl.uiActions.manageAutorenew.text"
+                            ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>

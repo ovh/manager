@@ -1,0 +1,5 @@
+{
+  "dedicated_server_interfaces_bandwidth_title": "Banda passante",
+  "dedicated_server_interfaces_bandwidth_description": "La banda passante pubblica in entrata (da e verso Internet) non presenta limitazioni. È possibile aumentare la banda passante pubblica e privata attivando l’opzione corrispondente.",
+  "dedicated_server_interfaces_bandwidth_ola_warning": "Nell’ambito di una configurazione di aggregazione completa, l’opzione di banda passante pubblica in uscita non verrà utilizzata perché l’interfaccia dedicata alla rete pubblica sarà usata per la rete privata."
+}

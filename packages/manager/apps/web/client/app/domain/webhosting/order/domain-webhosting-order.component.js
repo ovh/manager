@@ -1,8 +1,10 @@
 import template from './domain-webhosting-order.html';
+import controller from './domain-webhosting-order.controller';
 
 export default {
   bindings: {
-    availableModules: '<',
+    catalog: '<',
+    getAvailableModules: '<',
     availableOffers: '<',
     cartId: '<',
     deleteCartItems: '<',
@@ -15,7 +17,9 @@ export default {
     validateCheckout: '<',
 
     displayErrorMessage: '<',
+    trackClick: '<',
   },
   name: 'ovhManagerWebDomainWebhostingOrder',
   template,
+  controller,
 };

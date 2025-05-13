@@ -1,23 +1,21 @@
-<div data-ng-controller="PrivateDatabaseBDDsExtensionCtrl as extensionCtrl">
+<div>
     <div data-ovh-alert="{{alerts.main}}"></div>
 
-    <oui-back-button data-on-click="goToList()">
-        <span data-translate="common_back"></span>
-    </oui-back-button>
+    <oui-back-button data-on-click="goToList()" />
 
     <h2
-        data-ng-bind-html="'privateDatabase_tabs_list_extensions_info' | translate: { t0: '<strong>' + extensionCtrl.bdd.databaseName + '</strong>' }"
+        data-ng-bind-html="'privateDatabase_tabs_list_extensions_info' | translate: { t0: '<strong>' + extensionCtrl.databaseName + '</strong>' }"
     ></h2>
 
     <oui-datagrid
         data-rows="extensionCtrl.extensions"
         data-row-loader="extensionCtrl.transformItem($row)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title="'privateDatabase_tabs_list_extensions_extension' | translate"
             data-property="extensionName"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'privateDatabase_tabs_list_extensions_enabled' | translate"
             data-property="status"
         >
@@ -32,10 +30,10 @@
                 <i class="oui-icon oui-icon-success" aria-hidden="true"></i>
                 <i class="oui-icon oui-icon-error" aria-hidden="true"></i>
             </label>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'privateDatabase_tabs_list_extensions_description' | translate"
             data-property="description"
-        ></oui-column>
+        ></oui-datagrid-column>
     </oui-datagrid>
 </div>

@@ -1,356 +1,359 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="ExchangeTabDomainsCtrl as ctrl"
->
-    <div class="row">
-        <div class="col-md-9">
-            <div
-                class="alert alert-warning"
-                role="alert"
-                data-translate="exchange_tab_domain_partial"
-                data-ng-if="ctrl.containPartial()"
-            ></div>
+<div class="row">
+    <div class="col-md-9">
+        <div
+            class="alert alert-warning"
+            role="alert"
+            data-translate="exchange_tab_domain_partial"
+            data-ng-if="ctrl.containPartial()"
+        ></div>
 
-            <div
-                class="alert alert-info"
-                role="alert"
-                data-ng-if="!ctrl.loading && ctrl.search.value == null && ctrl.paginated.domains.length === 0"
-            >
-                <div>
+        <div
+            class="alert alert-info"
+            role="alert"
+            data-ng-if="!ctrl.loading && ctrl.search.value == null && ctrl.paginated.domains.length === 0"
+        >
+            <div>
+                <span data-translate="exchange_tab_domain_no_domains_1"></span>
+                <button
+                    class="oui-link"
+                    type="button"
+                    data-translate="exchange_tab_domain_no_domains_2"
+                    data-ng-click="setAction('exchange/domain/add/domain-add')"
+                ></button>
+                <span data-translate="exchange_tab_domain_no_domains_3"></span>
+            </div>
+        </div>
+
+        <form
+            class="form-inline d-md-flex justify-content-md-end mb-3"
+            name="searchDomainForm"
+        >
+            <div class="form-group">
+                <label
+                    class="sr-only"
+                    for="domainSearch"
+                    data-translate="common_search"
+                ></label>
+                <div class="input-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="domainSearch"
+                        maxlength="256"
+                        name="domainSearch"
+                        placeholder="{{::'exchange_tab_domain_search' | translate}}"
+                        data-ng-change="ctrl.goSearch()"
+                        data-ng-disabled="ctrl.loading"
+                        data-ng-model="ctrl.search.value"
+                        data-ng-model-options="{ debounce: 800 }"
+                    />
+                    <div class="input-group-btn" data-ng-if="ctrl.search.value">
+                        <button
+                            class="btn btn-default"
+                            type="button"
+                            aria-label="{{'common_cancel' | translate}}"
+                            data-ng-click="ctrl.emptySearch()"
+                            data-ng-disabled="ctrl.loading"
+                        >
+                            <span class="fa fa-times" aria-hidden="true"></span>
+                        </button>
+                    </div>
                     <span
-                        data-translate="exchange_tab_domain_no_domains_1"
-                    ></span>
-                    <button
-                        class="btn btn-link p-0"
-                        type="button"
-                        data-translate="exchange_tab_domain_no_domains_2"
-                        data-ng-click="ctrl.setAction('exchange/domain/add/domain-add')"
-                    ></button>
-                    <span
-                        data-translate="exchange_tab_domain_no_domains_3"
-                    ></span>
+                        class="input-group-addon"
+                        data-ng-if="!ctrl.search.value"
+                    >
+                        <span class="fa fa-search" aria-hidden="true"></span>
+                    </span>
                 </div>
             </div>
+        </form>
 
-            <form
-                class="form-inline d-md-flex justify-content-md-end mb-3"
-                name="searchDomainForm"
-            >
-                <div class="form-group">
-                    <label
-                        class="sr-only"
-                        for="domainSearch"
-                        data-translate="common_search"
-                    ></label>
-                    <div class="input-group">
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="domainSearch"
-                            maxlength="256"
-                            name="domainSearch"
-                            placeholder="{{::'exchange_tab_domain_search' | translate}}"
-                            data-ng-change="ctrl.goSearch()"
-                            data-ng-disabled="ctrl.loading"
-                            data-ng-model="ctrl.search.value"
-                            data-ng-model-options="{ debounce: 800 }"
-                        />
-                        <div
-                            class="input-group-btn"
-                            data-ng-if="ctrl.search.value"
-                        >
-                            <button
-                                class="btn btn-default"
-                                type="button"
-                                aria-label="{{'common_cancel' | translate}}"
-                                data-ng-click="ctrl.emptySearch()"
-                                data-ng-disabled="ctrl.loading"
-                            >
-                                <span
-                                    class="fa fa-times"
-                                    aria-hidden="true"
-                                ></span>
-                            </button>
-                        </div>
-                        <span
-                            class="input-group-addon"
-                            data-ng-if="!ctrl.search.value"
-                        >
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th
+                            scope="col"
+                            data-translate="exchange_tab_domain_domain"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="exchange_tab_domain_type"
+                        ></th>
+                        <th
+                            class="text-center"
+                            scope="col"
+                            data-translate="exchange_tab_domain_accounts_count"
+                        ></th>
+                        <th
+                            class="text-center"
+                            scope="col"
+                            data-translate="exchange_tab_domain_diagnostic"
+                        ></th>
+                        <th
+                            class="text-center"
+                            scope="col"
+                            data-translate="exchange_tab_domain_status"
+                        ></th>
+                        <th class="text-center min-width" scope="col"></th>
+                    </tr>
+                </thead>
+
+                <tbody data-ng-if="ctrl.loading">
+                    <tr>
+                        <td class="text-center" colspan="6">
+                            <oui-spinner></oui-spinner>
+                        </td>
+                    </tr>
+                </tbody>
+
+                <tbody
+                    data-ng-if="!ctrl.loading && ctrl.paginated.domains.length === 0"
+                >
+                    <tr>
+                        <td
+                            class="text-center"
+                            colspan="6"
+                            data-translate="exchange_tab_domain_table_empty_search"
+                        ></td>
+                    </tr>
+                </tbody>
+
+                <tbody
+                    data-ng-if="!ctrl.loading && ctrl.paginated.domains.length > 0"
+                >
+                    <tr
+                        data-ng-repeat="domain in ctrl.paginated.domains | orderBy:'formattedName':false track by $index"
+                    >
+                        <td colspan="6" data-ng-if="domain.partial">
                             <span
-                                class="fa fa-search"
+                                class="fa fa-warning mr-2"
                                 aria-hidden="true"
                             ></span>
-                        </span>
-                    </div>
-                </div>
-            </form>
+                            <span data-ng-bind="domain.displayName"></span>
+                        </td>
 
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th
-                                scope="col"
-                                data-translate="exchange_tab_domain_domain"
-                            ></th>
-                            <th
-                                scope="col"
-                                data-translate="exchange_tab_domain_type"
-                            ></th>
-                            <th
-                                class="text-center"
-                                scope="col"
-                                data-translate="exchange_tab_domain_accounts_count"
-                            ></th>
-                            <th
-                                class="text-center"
-                                scope="col"
-                                data-translate="exchange_tab_domain_diagnostic"
-                            ></th>
-                            <th
-                                class="text-center"
-                                scope="col"
-                                data-translate="exchange_tab_domain_status"
-                            ></th>
-                            <th class="text-center min-width" scope="col"></th>
-                        </tr>
-                    </thead>
+                        <th
+                            class="word-break"
+                            scope="row"
+                            data-ng-bind="domain.displayName | wucSliceContent: 150"
+                            data-ng-if="!domain.partial"
+                        ></th>
 
-                    <tbody data-ng-if="ctrl.loading">
-                        <tr>
-                            <td class="text-center" colspan="6">
-                                <oui-spinner></oui-spinner>
-                            </td>
-                        </tr>
-                    </tbody>
-
-                    <tbody
-                        data-ng-if="!ctrl.loading && ctrl.paginated.domains.length === 0"
-                    >
-                        <tr>
-                            <td
-                                class="text-center"
-                                colspan="6"
-                                data-translate="exchange_tab_domain_table_empty_search"
-                            ></td>
-                        </tr>
-                    </tbody>
-
-                    <tbody
-                        data-ng-if="!ctrl.loading && ctrl.paginated.domains.length > 0"
-                    >
-                        <tr
-                            data-ng-repeat="domain in ctrl.paginated.domains | orderBy:'formattedName':false track by $index"
+                        <td
+                            data-ng-if="!domain.partial && domain.domainValidated"
                         >
-                            <td colspan="6" data-ng-if="domain.partial">
-                                <span
-                                    class="fa fa-warning mr-2"
-                                    aria-hidden="true"
-                                ></span>
-                                <span data-ng-bind="domain.displayName"></span>
-                            </td>
-
-                            <th
-                                class="word-break"
-                                scope="row"
-                                data-ng-bind="domain.displayName | wucSliceContent: 150"
-                                data-ng-if="!domain.partial"
-                            ></th>
-
-                            <td
-                                data-ng-if="!domain.partial && domain.domainValidated"
-                            >
-                                <span
-                                    data-ng-if="domain.taskInProgress && !domain.partial && ctrl.services.exchangeStates.constructor.isOk(domain) && domain.type === domainTypeAuthoritative"
-                                    data-translate="exchange_tab_domain_modify_in_progress"
-                                    data-translate-values="{
+                            <span
+                                data-ng-if="domain.taskInProgress && !domain.partial && ctrl.services.exchangeStates.constructor.isOk(domain) && domain.type === domainTypeAuthoritative"
+                                data-translate="exchange_tab_domain_modify_in_progress"
+                                data-translate-values="{
                                           t0: ('exchange_tab_domain_inverse_NON_AUTHORITATIVE' | translate)
                                       }"
-                                >
-                                </span>
-                                <span
-                                    data-ng-if="domain.taskInProgress && !domain.partial && ctrl.services.exchangeStates.constructor.isOk(domain) && domain.type === domainTypeNonAuthoritative"
-                                    data-translate="exchange_tab_domain_modify_in_progress"
-                                    data-translate-values="{ t0: ('exchange_tab_domain_inverse_AUTHORITATIVE' | translate) }"
-                                >
-                                </span>
-                                <span
-                                    data-ng-if="!domain.partial && ctrl.services.exchangeStates.constructor.isDeleting(domain)"
-                                    data-ng-bind="('exchange_tab_domain_' + domain.type) | translate"
-                                ></span>
-                                <span
-                                    data-ng-if="!domain.partial && ctrl.services.exchangeStates.constructor.isCreating(domain)"
-                                    data-ng-bind="('exchange_tab_domain_' + domain.type) | translate"
-                                ></span>
-                                <span
-                                    data-ng-hide="domain.taskInProgress || domain.partial || !ctrl.services.exchangeStates.constructor.isOk(domain)"
-                                    data-ng-bind="('exchange_tab_domain_' + domain.type) | translate"
-                                ></span>
-                            </td>
-
-                            <td
-                                class="text-center"
-                                data-ng-bind="domain.accountsCount"
-                                data-ng-if="!domain.partial && domain.domainValidated"
-                            ></td>
-
-                            <td
-                                class="text-center"
-                                colspan="2"
-                                data-ng-if="!domain.partial && !domain.domainValidated"
                             >
-                                <p
-                                    data-translate="exchange_tab_domain_validation_doing"
-                                ></p>
-                                <p
-                                    data-translate="exchange_tab_domain_validation_cname"
-                                    data-ng-if="domain.cname"
-                                ></p>
-                            </td>
-
-                            <td
-                                class="text-center"
-                                data-ng-if="!domain.partial"
+                            </span>
+                            <span
+                                data-ng-if="domain.taskInProgress && !domain.partial && ctrl.services.exchangeStates.constructor.isOk(domain) && domain.type === domainTypeNonAuthoritative"
+                                data-translate="exchange_tab_domain_modify_in_progress"
+                                data-translate-values="{ t0: ('exchange_tab_domain_inverse_AUTHORITATIVE' | translate) }"
                             >
-                                <div data-ng-if="domain.domainValidated">
-                                    <button
-                                        class="oui-status oui-status_error"
-                                        type="button"
-                                        data-translate="exchange_tab_domain_diagnostic_mx"
-                                        data-ng-click="setAction('exchange/domain/mx-autoconfig/domain-mx-autoconfig', domain)"
-                                        data-ng-if="!domain.mxValid"
-                                    ></button>
-                                    <button
-                                        class="oui-status oui-status_success"
-                                        type="button"
-                                        data-translate="exchange_tab_domain_diagnostic_mx"
-                                        data-ng-if="domain.mxValid"
-                                        data-simplepopover="{{domain.mxTooltip}}"
-                                        data-simplepopover-title="{{'exchange_tab_domain_diagnostic_mx_title' | translate}}"
-                                        data-simplepopover-placement="top"
-                                        data-simplepopover-single="true"
-                                    ></button>
-                                    <button
-                                        class="oui-status oui-status_error"
-                                        type="button"
-                                        data-translate="exchange_tab_domain_diagnostic_srv"
-                                        data-ng-click="setAction('exchange/domain/srv-autoconfig/domain-srv-autoconfig', domain)"
-                                        data-ng-if="!domain.srvValid"
-                                    ></button>
-                                    <button
-                                        class="oui-status oui-status_success"
-                                        type="button"
-                                        data-translate="exchange_tab_domain_diagnostic_srv"
-                                        data-ng-if="domain.srvValid"
-                                        data-simplepopover="{{domain.srvTooltip}}"
-                                        data-simplepopover-title="{{'exchange_tab_domain_diagnostic_srv_title' | translate}}"
-                                        data-simplepopover-placement="top"
-                                        data-simplepopover-single="true"
-                                    ></button>
-                                </div>
+                            </span>
+                            <span
+                                data-ng-if="!domain.partial && ctrl.services.exchangeStates.constructor.isDeleting(domain)"
+                                data-ng-bind="('exchange_tab_domain_' + domain.type) | translate"
+                            ></span>
+                            <span
+                                data-ng-if="!domain.partial && ctrl.services.exchangeStates.constructor.isCreating(domain)"
+                                data-ng-bind="('exchange_tab_domain_' + domain.type) | translate"
+                            ></span>
+                            <span
+                                data-ng-hide="domain.taskInProgress || domain.partial || !ctrl.services.exchangeStates.constructor.isOk(domain)"
+                                data-ng-bind="('exchange_tab_domain_' + domain.type) | translate"
+                            ></span>
+                        </td>
 
+                        <td
+                            class="text-center"
+                            data-ng-bind="domain.accountsCount"
+                            data-ng-if="!domain.partial && domain.domainValidated"
+                        ></td>
+
+                        <td
+                            class="text-center"
+                            colspan="2"
+                            data-ng-if="!domain.partial && !domain.domainValidated"
+                        >
+                            <p
+                                data-translate="exchange_tab_domain_validation_doing"
+                            ></p>
+                            <p
+                                data-translate="exchange_tab_domain_validation_cname"
+                                data-ng-if="domain.cname"
+                            ></p>
+                        </td>
+
+                        <td class="text-center" data-ng-if="!domain.partial">
+                            <div
+                                data-ng-if="domain.domainValidated && ctrl.services.exchangeStates.constructor.isOk(domain)"
+                            >
                                 <button
-                                    class="oui-status oui-status_error"
+                                    class="oui-badge oui-badge_error"
                                     type="button"
-                                    data-translate="exchange_tab_domain_diagnostic_cname"
-                                    data-ng-if="!domain.domainValidated && domain.cname"
-                                    data-simplepopover="{{ 'exchange_tab_domain_validation_cname_details' | translate:{ t0: domain.cname, t1: domain.name, t2: ctrl.cnameRedirection } }}"
-                                    data-simplepopover-title="{{'exchange_tab_domain_validation_cname_title' | translate}}"
+                                    data-translate="exchange_tab_domain_diagnostic_mx"
+                                    data-ng-click="setAction('exchange/domain/mx-autoconfig/domain-mx-autoconfig', domain)"
+                                    data-ng-if="!domain.mxValid"
+                                ></button>
+                                <button
+                                    class="oui-badge oui-badge_success"
+                                    type="button"
+                                    data-translate="exchange_tab_domain_diagnostic_mx"
+                                    data-ng-if="domain.mxValid"
+                                    data-simplepopover="{{domain.mxTooltip}}"
+                                    data-simplepopover-title="{{'exchange_tab_domain_diagnostic_mx_title' | translate}}"
                                     data-simplepopover-placement="top"
                                     data-simplepopover-single="true"
                                 ></button>
-                            </td>
-                            <td
-                                class="text-center"
-                                data-ng-if="!domain.partial"
-                            >
-                                <div
-                                    data-ng-if="ctrl.services.exchangeStates.constructor.isOk(domain)"
-                                >
-                                    <span
-                                        class="oui-status oui-status_success"
-                                        data-translate="global_OK"
-                                        data-ng-if="!domain.taskInProgress"
-                                    ></span>
-                                    <span
-                                        class="oui-status oui-status_info"
-                                        data-translate="exchange_tab_domain_task_in_progress"
-                                        data-ng-if="domain.taskInProgress"
-                                    ></span>
-                                </div>
-                                <div
-                                    data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(domain) || ctrl.services.exchangeStates.constructor.isDeleting(domain)"
-                                >
-                                    <span
-                                        class="oui-status oui-status_info"
-                                        data-translate="exchange_tab_domain_validation"
-                                        data-ng-if="!domain.domainValidated && domain.cname"
-                                    ></span>
-                                    <span
-                                        class="oui-status oui-status_info"
-                                        data-translate="exchange_tab_ACCOUNTS_state_CREATING"
-                                        data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(domain) && domain.cname == null"
-                                    ></span>
-                                    <span
-                                        class="oui-status oui-status_error"
-                                        data-translate="exchange_tab_ACCOUNTS_state_DELETING"
-                                        data-ng-if="ctrl.services.exchangeStates.constructor.isDeleting(domain)"
-                                    ></span>
-                                </div>
-                            </td>
+                                <button
+                                    class="oui-badge oui-badge_error"
+                                    type="button"
+                                    data-translate="exchange_tab_domain_diagnostic_srv"
+                                    data-ng-click="setAction('exchange/domain/srv-autoconfig/domain-srv-autoconfig', domain)"
+                                    data-ng-if="!domain.srvValid"
+                                ></button>
+                                <button
+                                    class="oui-badge oui-badge_success"
+                                    type="button"
+                                    data-translate="exchange_tab_domain_diagnostic_srv"
+                                    data-ng-if="domain.srvValid"
+                                    data-simplepopover="{{domain.srvTooltip}}"
+                                    data-simplepopover-title="{{'exchange_tab_domain_diagnostic_srv_title' | translate}}"
+                                    data-simplepopover-placement="top"
+                                    data-simplepopover-single="true"
+                                ></button>
+                                <button
+                                    class="oui-badge oui-badge_error"
+                                    type="button"
+                                    data-translate="exchange_tab_domain_diagnostic_spf"
+                                    data-ng-click="setAction('exchange/domain/spf-autoconfig/domain-spf-autoconfig', domain)"
+                                    data-ng-if="!domain.spfValid"
+                                ></button>
+                                <button
+                                    class="oui-badge oui-badge_success"
+                                    type="button"
+                                    data-translate="exchange_tab_domain_diagnostic_spf"
+                                    data-ng-if="domain.spfValid"
+                                    data-simplepopover="{{domain.spfTooltip}}"
+                                    data-simplepopover-title="{{'exchange_tab_domain_diagnostic_spf_title' | translate}}"
+                                    data-simplepopover-placement="top"
+                                    data-simplepopover-single="true"
+                                ></button>
 
-                            <td
-                                class="text-center"
-                                data-ng-if="!domain.partial"
-                            >
-                                <oui-action-menu
-                                    data-compact
-                                    data-align="end"
-                                    data-disabled="!ctrl.services.exchangeStates.constructor.isOk(domain)"
-                                >
-                                    <oui-action-menu-item
-                                        data-on-click="setAction('exchange/domain/update/domain-update', domain)"
-                                        data-disabled="ctrl.isUpdateDisabled(domain)"
-                                    >
-                                        <span
-                                            data-translate="exchange_tab_domain_popover_update"
-                                        ></span>
-                                    </oui-action-menu-item>
-                                    <oui-action-menu-item
-                                        data-on-click="setAction('exchange/domain/remove/domain-remove', domain)"
-                                        data-disabled="ctrl.isDeleteDisabled(domain)"
-                                    >
-                                        <span
-                                            data-translate="exchange_tab_domain_popover_delete"
-                                            data-oui-tooltip="{{:: ctrl.getDeleteTooltip(domain)}}"
-                                        ></span>
-                                    </oui-action-menu-item>
-                                </oui-action-menu>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                                <!-- dkim -->
+                                <button
+                                    class="oui-badge"
+                                    data-ng-class="ctrl.constructor.getDkimColorClass(domain)"
+                                    data-ng-click="setAction('exchange/domain/dkim-autoconfig/domain-dkim-autoconfig', {
+                                        domain: domain,
+                                    })"
+                                    data-translate="exchange_tab_domain_diagnostic_dkim"
+                                ></button>
+                                <!-- end dkim -->
+                            </div>
 
-            <div
-                class="clearfix"
-                data-pagination-server-side="domainsTable"
-                data-pagination-server-side-function="getDomains"
-                data-pagination-server-side-paginated-stuff="getPaginated()"
-                data-pagination-server-side-table-loading="getLoading()"
-            ></div>
+                            <button
+                                class="oui-badge oui-badge_error"
+                                type="button"
+                                data-translate="exchange_tab_domain_diagnostic_cname"
+                                data-ng-if="!domain.domainValidated && domain.cname"
+                                data-simplepopover="{{ 'exchange_tab_domain_validation_cname_details' | translate:{ t0: domain.cname, t1: domain.name, t2: ctrl.cnameRedirection } }}"
+                                data-simplepopover-title="{{'exchange_tab_domain_validation_cname_title' | translate}}"
+                                data-simplepopover-placement="top"
+                                data-simplepopover-single="true"
+                            ></button>
+                        </td>
+                        <td class="text-center" data-ng-if="!domain.partial">
+                            <div
+                                data-ng-if="ctrl.services.exchangeStates.constructor.isOk(domain)"
+                            >
+                                <span
+                                    class="oui-badge oui-badge_success"
+                                    data-translate="global_OK"
+                                    data-ng-if="!domain.taskInProgress"
+                                ></span>
+                                <span
+                                    class="oui-badge oui-badge_info"
+                                    data-translate="exchange_tab_domain_task_in_progress"
+                                    data-ng-if="domain.taskInProgress"
+                                ></span>
+                            </div>
+                            <div
+                                data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(domain) || ctrl.services.exchangeStates.constructor.isDeleting(domain)"
+                            >
+                                <span
+                                    class="oui-badge oui-badge_info"
+                                    data-translate="exchange_tab_domain_validation"
+                                    data-ng-if="!domain.domainValidated && domain.cname"
+                                ></span>
+                                <span
+                                    class="oui-badge oui-badge_info"
+                                    data-translate="exchange_tab_ACCOUNTS_state_CREATING"
+                                    data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(domain) && (domain.cname == null || domain.domainValidated)"
+                                ></span>
+                                <span
+                                    class="oui-badge oui-badge_error"
+                                    data-translate="exchange_tab_ACCOUNTS_state_DELETING"
+                                    data-ng-if="ctrl.services.exchangeStates.constructor.isDeleting(domain)"
+                                ></span>
+                            </div>
+                        </td>
+
+                        <td class="text-center" data-ng-if="!domain.partial">
+                            <oui-action-menu
+                                data-compact
+                                data-disabled="!ctrl.services.exchangeStates.constructor.isOk(domain)"
+                                data-placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="setAction('exchange/domain/update/domain-update', domain)"
+                                    data-disabled="ctrl.isUpdateDisabled(domain)"
+                                >
+                                    <span
+                                        data-translate="exchange_tab_domain_popover_update"
+                                    ></span>
+                                </oui-action-menu-item>
+                                <oui-action-menu-item
+                                    data-on-click="setAction('exchange/domain/remove/domain-remove', domain)"
+                                    data-disabled="ctrl.isDeleteDisabled(domain)"
+                                >
+                                    <span
+                                        data-translate="exchange_tab_domain_popover_delete"
+                                        data-oui-tooltip="{{:: ctrl.getDeleteTooltip(domain)}}"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
-        <div class="col-md-3 mt-5 mt-lg-0">
-            <button
-                class="btn btn-block btn-default"
-                type="button"
-                data-ng-click="setAction('exchange/domain/add/domain-add', {
+        <div
+            class="clearfix"
+            data-pagination-server-side="domainsTable"
+            data-pagination-server-side-function="getDomains"
+            data-pagination-server-side-paginated-stuff="getPaginated()"
+            data-pagination-server-side-table-loading="getLoading()"
+        ></div>
+    </div>
+
+    <div class="col-md-3 mt-5 mt-lg-0">
+        <button
+            class="btn btn-block btn-default"
+            type="button"
+            data-ng-click="setAction('exchange/domain/add/domain-add', {
                       noDomainAttached: ctrl.paginated.domains.length === 0
                     })"
-            >
-                <span data-translate="exchange_tab_domain_add_domain"></span>
-            </button>
-        </div>
+        >
+            <span data-translate="exchange_tab_domain_add_domain"></span>
+        </button>
     </div>
 </div>

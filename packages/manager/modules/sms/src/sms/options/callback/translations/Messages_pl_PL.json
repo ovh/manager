@@ -1,0 +1,20 @@
+{
+  "sms_section_back_link": "Powrót do opcji",
+  "sms_options_callback_title": "Opcje Callback",
+  "sms_options_callback_information_title": "Informacje",
+  "sms_options_callback_information_text": "OVHcloud umożliwia skonfigurowanie adresów URL callback i otrzymanie ostrzeżenia podczas zdarzenia dotyczącego wiadomości SMS.",
+  "sms_options_callback_information_types_available": "Dostępne są dwa typy usługi callback:",
+  "sms_options_callback_information_type_callback": "<b>Skalowanie zmiany stanu</b>: Kiedy wysłany SMS zmienia status (na przykład: z \"wysłany\" na \"dostarczony\").",
+  "sms_options_callback_information_type_stop_callback": "<b>Katalog STOP</b>: Kiedy w odpowiedzi na Twój SMS odbiorca wysyła komunikat \"STOP\", aby dodać Cię do czarnej listy nadawców.",
+  "sms_options_callback_configure_title": "Skonfiguruj",
+  "sms_options_callback_configure_callback_label": "Adres URL callback zmiana statusu:",
+  "sms_options_callback_configure_stop_callback_label": "Adres URL callback STOP:",
+  "sms_options_callback_configure_callback_empty": "Brak skonfigurowanych adresów URL.",
+  "sms_options_callback_update_title": "Konfiguracja adresów URL",
+  "sms_options_callback_update_callback_label": "Adres URL callback zmiana statusu",
+  "sms_options_callback_update_stopcallback_label": "Adres URL callback STOP",
+  "sms_options_callback_update_callbacks_error_pattern": "Adres musi zaczynać się od http:// lub https://.",
+  "sms_options_callback_update_callbacks_error_url": "Wprowadzony URL jest nieprawidłowy.",
+  "sms_options_callback_updating": "Konfiguracja adresów URL w trakcie…",
+  "sms_options_callback_updated": "Konfiguracja adresów URL została zakończona"
+}

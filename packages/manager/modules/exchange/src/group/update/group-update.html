@@ -58,6 +58,21 @@
                 <div class="form-group">
                     <label
                         class="control-label"
+                        for="selectedGroupCompany"
+                        data-translate="exchange_GROUPS_add_group_company_label"
+                    ></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="selectedGroupCompany"
+                        maxlength="256"
+                        name="selectedGroupCompany"
+                        data-ng-model="ctrl.selectedGroup.company"
+                    />
+                </div>
+                <div class="form-group">
+                    <label
+                        class="control-label"
                         for="selectedGroupDisplayName"
                         data-translate="exchange_GROUPS_add_group_name_label"
                     ></label>
@@ -101,8 +116,9 @@
                         id="receiveSizeUnlimited"
                         data-model="ctrl.selectedGroup.receiveSizeUnlimited"
                         data-on-change="ctrl.onReceiveSizeChange()"
-                        data-text="{{::'exchange_GROUPS_add_group_size_unlimited' | translate}}"
-                    >
+                        ><span
+                            data-translate="exchange_GROUPS_add_group_size_unlimited"
+                        ></span>
                     </oui-checkbox>
                 </div>
 
@@ -136,8 +152,9 @@
                         id="sentSizeUnlimited"
                         data-model="ctrl.selectedGroup.sentSizeUnlimited"
                         data-on-change="ctrl.onSentSizeChange()"
-                        data-text="{{::'exchange_GROUPS_add_group_size_unlimited' | translate}}"
-                    >
+                        ><span
+                            data-translate="exchange_GROUPS_add_group_size_unlimited"
+                        ></span>
                     </oui-checkbox>
                 </div>
 
@@ -192,15 +209,17 @@
                 <oui-checkbox
                     id="hiddenFromGAL"
                     data-model="ctrl.selectedGroup.hiddenFromGAL"
-                    data-text="{{::'exchange_GROUPS_add_group_hide_label' | translate}}"
-                >
+                    ><span
+                        data-translate="exchange_GROUPS_add_group_hide_label"
+                    ></span>
                 </oui-checkbox>
 
                 <oui-checkbox
                     id="senderAuthentification"
                     data-model="ctrl.selectedGroup.senderAuthentification"
-                    data-text="{{::'exchange_GROUPS_add_group_auth_label' | translate}}"
-                >
+                    ><span
+                        data-translate="exchange_GROUPS_add_group_auth_label"
+                    ></span>
                 </oui-checkbox>
             </form>
 
@@ -252,7 +271,15 @@
                     data-ng-bind="ctrl.selectedGroup.displayName | wucSliceContent: 150"
                     class="word-break"
                 ></dd>
-
+                <dt
+                    data-ng-if="ctrl.selectedGroup.company"
+                    data-translate="exchange_GROUPS_add_group_company_label"
+                ></dt>
+                <dd
+                    data-ng-if="ctrl.selectedGroup.company"
+                    data-ng-bind="ctrl.selectedGroup.company | wucSliceContent: 150"
+                    class="word-break"
+                ></dd>
                 <dt
                     data-translate="exchange_GROUPS_add_group_receive_size_label"
                 ></dt>

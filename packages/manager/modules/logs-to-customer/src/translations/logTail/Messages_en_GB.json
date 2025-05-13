@@ -1,0 +1,5 @@
+{
+  "log_tail_search_placeholder": "Highlight an item",
+  "log_tail_polling": "Waiting for logs...",
+  "log_tail_error_get_logs": "An error has occurred retrieving logs"
+}

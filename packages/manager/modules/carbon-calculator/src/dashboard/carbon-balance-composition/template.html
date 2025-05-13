@@ -1,0 +1,66 @@
+<div class="pb-4">
+    <h4 data-translate="carbon_calculator_dashboard_carbon_balance_title"></h4>
+    <p
+        class="row-fluid"
+        data-translate="carbon_calculator_dashboard_carbon_balance_explanation"
+    ></p>
+    <div class="row pb-2">
+        <div class="col-xs-12 col-sm-9">
+            <div class="row text-center">
+                <div class="col-xs-12 col-sm-2">
+                    <img
+                        data-ng-src="{{:: $ctrl.IMG_MANUFACTURING}}"
+                        alt="{{:: 'carbon_calculator_dashboard_carbon_balance_manufacturing' | translate}}"
+                    /><span
+                        class="pl-2"
+                        data-translate="carbon_calculator_dashboard_carbon_balance_manufacturing"
+                    ></span>
+                </div>
+
+                <div class="col-xs-12 col-sm-1">
+                    <span class="sign">&plus;</span>
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                    <img
+                        data-ng-src="{{:: $ctrl.IMG_ELECTRICITY}}"
+                        alt="{{:: 'carbon_calculator_dashboard_carbon_balance_electricity' | translate}}"
+                    /><span
+                        class="pl-2"
+                        data-translate="carbon_calculator_dashboard_carbon_balance_electricity"
+                    ></span>
+                </div>
+                <div class="col-xs-12 col-sm-1">
+                    <span class="sign">&plus;</span>
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                    <img
+                        data-ng-src="{{:: $ctrl.IMG_OPERATIONS}}"
+                        alt="{{:: 'carbon_calculator_dashboard_carbon_balance_operations' | translate}}"
+                    />
+                    <span
+                        class="pl-2"
+                        data-translate="carbon_calculator_dashboard_carbon_balance_operations"
+                    ></span>
+                </div>
+                <div class="col-xs-12 col-sm-1">
+                    <span class="sign">&equals;</span>
+                </div>
+                <div class="col-xs-12 col-sm-3">
+                    <div class="row">
+                        <div class="col-5 text-right">
+                            <img
+                                data-ng-src="{{:: $ctrl.IMG_CARBON}}"
+                                alt="{{:: 'carbon_calculator_dashboard_carbon_balance_greenhouse_gas' | translate}}"
+                            />
+                        </div>
+                        <strong
+                            class="col-6 text-left"
+                            data-translate="carbon_calculator_dashboard_carbon_balance_greenhouse_gas"
+                        ></strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-9 border-bottom pt-3 mx-4"></div>
+    </div>
+</div>

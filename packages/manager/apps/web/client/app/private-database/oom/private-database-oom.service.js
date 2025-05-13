@@ -1,6 +1,7 @@
 angular.module('services').service(
   'OomService',
   class OomService {
+    /* @ngInject */
     constructor($http) {
       this.$http = $http;
 

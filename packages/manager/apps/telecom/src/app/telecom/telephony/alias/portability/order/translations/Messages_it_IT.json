@@ -3,7 +3,7 @@
   "telephony_alias_portability_order_title": "Richiedi la portabilità",
   "telephony_alias_portability_order_order": "Ordina",
   "telephony_alias_portability_order_infos_title": "Informazioni",
-  "telephony_alias_portability_order_infos": "Durant toute la durée de votre contrat, la portabilité de vos numéros géographiques et non-géographiques vers OVH est totalement gratuite.",
+  "telephony_alias_portability_order_infos": "Per tutta la durata del contratto, la portabilità dei tuoi numeri geografici e non geografici verso OVHcloud è totalmente gratuita.",
   "telephony_alias_portability_order_infos_country": "La portabilité est pour le moment restreinte aux pays suivants : <strong>France</strong>, <strong>Belgique</strong> et <strong>Suisse</strong>.",
   "telephony_alias_portability_order_warning_title": "Attenzione:",
   "telephony_alias_portability_order_warning_1": "Afin de vous prémunir contre toute interruption de service de votre numéro porté, demandez la résiliation de votre ligne téléphonique auprès de votre prestataire actuel uniquement <strong>lorsque la portabilité est terminée</strong>.",
@@ -92,5 +92,7 @@
   "telephony_order_specific_typology_relationship_label": "Rapporto azienda-cliente/amministrazione/associazione",
   "telephony_order_specific_typology_content_label": "Suonerie, loghi",
   "telephony_order_specific_typology_general_label": "Generale",
-  "telephony_order_specific_typology_relaxing_label": "Servizi ricreativi"
+  "telephony_order_specific_typology_relaxing_label": "Servizi ricreativi",
+  "telephony_alias_portability_order_sda_sva_warning": "Per la portabilità di un numero speciale, è necessario compilare il modulo di convalida dell'identità.",
+  "telephony_alias_portability_order_sda_sva_go_to_kyc": "Verifica l'identità"
 }

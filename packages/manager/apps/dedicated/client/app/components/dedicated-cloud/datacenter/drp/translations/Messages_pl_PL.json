@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_tab_drp": "Plan Disaster Recovery (DRP)",
+  "dedicatedCloud_datacenter_drp_subtitle": "Stwórz Twój Plan Disaster Recovery w interfejsie Zerto",
+  "dedicatedCloud_datacenter_drp_details_EPCC": "Zadbaj o bezpieczeństwo Twojego systemu informatycznego, konfigurując plan Disaster Recovery. W przypadku awarii lub przerwy w działaniu usługi przełącz Twoją infrastrukturę za pomocą kilku kliknięć. Potrwa to zaledwie kilka minut. Uwaga: aby aktywować tę opcję musisz posiadać zapasową infrastrukturę Private Cloud.",
+  "dedicatedCloud_datacenter_drp_warning": "Brak hostów w Twoim obecnym centrum danych. W Twoim aktualnym centrum danych brak hostów. Zamów host, aby użyć tego centrum danych dla Twojego DRP lub wybierz centrum danych dysponujące co najmniej jednym hostem.",
+  "dedicatedCloud_tab_drp_choice_plan_type": "Wybierz DRP:",
+  "dedicatedCloud_datacenter_ovh_choice_EPCC": "Między dwoma infrastrukturami Private Cloud od OVHcloud",
+  "dedicatedCloud_datacenter_onPremise_choice_EPCC": "Między Twoją infrastrukturą a infrastrukturą Private Cloud od OVHcloud",
+  "dedicatedCloud_datacenter_activate_zerto_drp": "Aktywuj DRP Zerto",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Trwa usuwanie Zerto DRP. Operacja zostanie wykonana w ciągu kilku minut.",
+  "dedicatedCloud_datacenter_drp_get_state_error": "Wystąpił błąd podczas pobierania informacji o Twoim DRP. ",
+  "dedicatedCloud_datacenter_install_plan": "Instaluj",
+  "dedicatedCloud_datacenter_install_in_error": "Wystąpił błąd podczas instalacji planu. Skontaktuj się z Działem Wsparcia Klienta.",
+  "dedicatedCloud_datacenter_drp_details_MBM": "Zadbaj o bezpieczeństwo Twojego systemu informatycznego, konfigurując plan Disaster Recovery. W przypadku awarii lub przerwy w działaniu usługi przełącz Twoją infrastrukturę za pomocą kilku kliknięć. Potrwa to zaledwie kilka minut. Uwaga: aby aktywować tę opcję musisz posiadać zapasową infrastrukturę Managed Bare Metal.",
+  "dedicatedCloud_datacenter_ovh_choice_MBM": "Między dwoma infrastrukturami Managed Bare Metal",
+  "dedicatedCloud_datacenter_onPremise_choice_MBM": "Między Twoją infrastrukturą a infrastrukturą Managed Bare Metal"
+}

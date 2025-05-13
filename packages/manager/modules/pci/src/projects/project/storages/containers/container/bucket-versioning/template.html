@@ -1,0 +1,25 @@
+<div class="mb-3">
+    <p
+        data-translate="pci_projects_project_storages_containers_bucket_versioning_description"
+    ></p>
+
+    <oui-radio-group data-model="$ctrl.isBucketVersioningEnabled">
+        <oui-radio value="false" data-disabled="$ctrl.forceEnableVersioning">
+            <span
+                data-translate="pci_projects_project_storages_containers_bucket_versioning_disabled"
+            ></span>
+        </oui-radio>
+        <oui-radio value="true">
+            <span
+                data-translate="pci_projects_project_storages_containers_bucket_versioning_enabled"
+            ></span>
+            <span data-ng-if="$ctrl.forceEnableVersioning">
+                <button
+                    type="button"
+                    class="pl-1 oui-color-p-500 oui-popover-button"
+                    data-oui-popover="{{:: 'pci_projects_project_storages_containers_bucket_versioning_tooltip' | translate }}"
+                ></button>
+            </span>
+        </oui-radio>
+    </oui-radio-group>
+</div>

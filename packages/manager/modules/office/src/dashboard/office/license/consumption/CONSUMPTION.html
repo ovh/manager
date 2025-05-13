@@ -1,0 +1,69 @@
+<div
+    data-ng-controller="MicrosoftOfficeLicenseConsumptionCtrl as consumptionCtrl"
+>
+    <div data-ovh-alert="{{alerts.main}}"></div>
+
+    <div
+        class="alert alert-warning"
+        role="alert"
+        data-ng-if="consumptionCtrl.errorMessage"
+    >
+        <span data-translate="microsoft_office_license_usage_error"></span>
+        <strong data-ng-bind="consumptionCtrl.errorMessage"></strong>
+    </div>
+
+    <div class="text-center" data-ng-if="consumptionCtrl.loaders.charts">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <div
+        data-ng-if="!consumptionCtrl.errorMessage && !consumptionCtrl.loaders.charts"
+    >
+        <div class="oui-box form-inline mb-5">
+            <div class="oui-field">
+                <label
+                    class="oui-field__label oui-label"
+                    for="selectPeriod"
+                    data-translate="microsoft_office_license_usage_period_label"
+                ></label>
+                <div class="oui-field__content">
+                    <div class="oui-select oui-select_inline mb-0">
+                        <select
+                            class="oui-select__input"
+                            name="datatype"
+                            id="selectPeriod"
+                            data-ng-change="consumptionCtrl.getStat()"
+                            data-ng-model="consumptionCtrl.selectedPeriod"
+                        >
+                            <option
+                                data-ng-repeat="period in consumptionCtrl.periods"
+                                data-ng-bind="'microsoft_office_license_usage_period_' + period.key | translate"
+                                value="{{period.key}}"
+                            ></option>
+                        </select>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="alert alert-info"
+            role="alert"
+            data-translate="microsoft_office_license_empty_usage"
+            data-ng-if="!consumptionCtrl.loaders.charts && consumptionCtrl.stats && !consumptionCtrl.stats.series.length"
+        ></div>
+
+        <div
+            class="chart-container"
+            style="height: 320px;"
+            data-ng-if="!consumptionCtrl.loaders.charts && consumptionCtrl.stats.series.length"
+            data-chart
+            data-chartjs="consumptionCtrl.chart"
+            data-auto-reload="true"
+        ></div>
+    </div>
+</div>

@@ -1,7 +1,17 @@
 import 'script-loader!jquery'; // eslint-disable-line
-import 'script-loader!lodash'; // eslint-disable-line
-import telecomDashboard from '@ovh-ux/manager-telecom-dashboard';
+import 'whatwg-fetch';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+import { bootstrapApplication } from '@ovh-ux/manager-core';
+import { defineApplicationVersion } from '@ovh-ux/request-tagger';
 
-import angular from 'angular';
+defineApplicationVersion(__VERSION__);
 
-angular.module('telecomDashboardApp', [telecomDashboard]);
+bootstrapApplication('telecom-dashboard').then((environment) => {
+  import(`./config-${environment.getRegion()}`)
+    .catch(() => {})
+    .then(() => import('./app.module'))
+    .then(({ default: startApplication }) => {
+      startApplication(document.body, environment);
+    });
+});

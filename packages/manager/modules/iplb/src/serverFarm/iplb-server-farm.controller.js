@@ -36,7 +36,7 @@ export default class IpLoadBalancerServerFarmCtrl {
     this.i18n = {
       preview: this.$translate.instant('iplb_preview_see'),
       update: this.$translate.instant('iplb_modify'),
-      remove: this.$translate.instant('delete'),
+      remove: this.$translate.instant('iplb_delete'),
     };
 
     this.init();
@@ -60,7 +60,7 @@ export default class IpLoadBalancerServerFarmCtrl {
   }
 
   addServer(farm) {
-    this.$state.go('network.iplb.detail.server-farm.server-add', {
+    this.$state.go('iplb.detail.server-farm.dashboard.server.add', {
       farmId: farm.id,
     });
   }
@@ -131,17 +131,20 @@ export default class IpLoadBalancerServerFarmCtrl {
   }
 
   update(farm) {
-    this.$state.go('network.iplb.detail.server-farm.update', {
+    this.$state.go('iplb.detail.server-farm.dashboard.update', {
       serviceName: this.$stateParams.serviceName,
       farmId: farm.farmId,
     });
   }
 
   updateServer(farmId, serverId) {
-    this.$state.go('network.iplb.detail.server-farm.server-update', {
-      farmId,
-      serverId,
-    });
+    this.$state.go(
+      'iplb.detail.server-farm.dashboard.server.dashboard.update',
+      {
+        farmId,
+        serverId,
+      },
+    );
   }
 
   delete(farm) {

@@ -1,0 +1,8 @@
+{
+  "cloud_connect_vrack_associate": "Asociar un vRack",
+  "cloud_connect_vrack_associate_description": "Para configurar su servicio deberá asociar un vRack. Seleccione su vRack en la siguiente lista desplegable o cree un nuevo servicio haciendo clic <a href=\"{{ vrackOrderUrl }}\" target=\"blank\" rel=\"noopener\">aquí.</a>",
+  "cloud_connect_vrack_select": "Seleccionar un vRack existente",
+  "cloud_connect_vrack_associate_success": "El vRack se ha asociado a su servicio.",
+  "cloud_connect_vrack_associate_error": "No es posible asociar el vRack a su servicio: {{ message }}",
+  "cloud_connect_associate": "Asociar"
+}

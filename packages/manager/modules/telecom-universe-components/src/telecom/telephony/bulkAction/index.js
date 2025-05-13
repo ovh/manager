@@ -3,7 +3,7 @@ import translate from 'angular-translate';
 
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-ui-bootstrap';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import tucTelephonyBulkActionModalCtrl from './modal/telephony-bulk-action-modal.controller';
 import tucTelephonyBulkActionCtrl from './telephony-bulk-action.component.controller';

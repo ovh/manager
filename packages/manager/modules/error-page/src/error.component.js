@@ -8,6 +8,7 @@ export default {
     error: '<',
     image: '<',
     message: '<',
+    product: '<',
     submitAction: '<',
     submitLink: '<',
     submitLabel: '<',

@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_instances_instance_start_title": "Início da sua instância",
+  "pci_projects_project_instances_instance_start_submit_label": "Confirmar",
+  "pci_projects_project_instances_instance_start_cancel_label": "Cancelar",
+  "pci_projects_project_instances_instance_start_content": "A instância {{ instance }} vai ser iniciada.",
+  "pci_projects_project_instances_instance_start_success_message": "A instância {{ instance }} foi iniciada.",
+  "pci_projects_project_instances_instance_start_error_message": "Ocorreu um erro ao iniciar a instância {{ instance }}: {{ message }}."
+}

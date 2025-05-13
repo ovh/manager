@@ -1,9 +1,0 @@
-{
-  "cpc_tab_infra": "Infra.",
-  "cpc_tab_snapshot": "Copies instantanées",
-  "cpc_tab_volume": "Disques suppl.",
-  "cpc_tab_ssh": "Clés SSH",
-  "cpc_tab_loadbalancer": "Répartiteur de charge",
-  "cpc_tab_project": "Gestion et conso. du projet",
-  "cpb_tab_quota": "Quota"
-}

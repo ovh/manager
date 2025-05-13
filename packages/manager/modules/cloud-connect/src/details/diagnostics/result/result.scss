@@ -1,0 +1,30 @@
+#ovh-cloudConnect-diagnostic-result-modal {
+  @media (min-width: 48em) {
+    width: 95%;
+    margin: 30px auto;
+  }
+
+  .result-output {
+    border-radius: 0;
+    background-color: black;
+    color: white;
+    white-space: pre-wrap;
+    overflow-y: auto;
+    padding: 1em;
+    max-height: 400px;
+    overflow: auto;
+    word-wrap: break-word;
+    position: relative;
+
+    .action-button {
+      position: absolute;
+      top: 0.2em;
+      right: 0.2em;
+      display: flex;
+      button {
+        background-color: white;
+        margin: 0.1em;
+      }
+    }
+  }
+}

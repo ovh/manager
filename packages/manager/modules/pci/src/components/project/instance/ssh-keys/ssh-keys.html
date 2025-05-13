@@ -2,99 +2,120 @@
 
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
-<div data-ng-if="!$ctrl.loaders.keys">
-    <oui-field
-        data-label="{{:: 'pci_project_instance_ssh_key' | translate }}"
-        data-size="xl"
-        data-ng-if="!$ctrl.addKeyMode"
-        class="oui-input-group"
-    >
-        <div class="d-inline-block">
-            <oui-select
-                class="mr-2 mb-0"
-                data-name="sshKey"
-                data-model="$ctrl.key"
-                data-match="name"
-                placeholder="{{:: 'pci_project_instance_ssh_pick' | translate }}"
-                data-items="$ctrl.availableKeys"
-                data-on-change="$ctrl.selectKey(modelValue)"
-                required
-            >
-                <span data-ng-bind="$item.name"></span>
-            </oui-select>
-        </div>
-        <oui-button
-            data-variant="secondary"
-            data-on-click="$ctrl.displayAddForm()"
-        >
-            <span data-translate="pci_project_instance_ssh_add"></span>
-        </oui-button>
-
-        <div class="oui-field__helper">
-            <span
-                data-translate="pci_project_instance_ssh_key_help_required"
-            ></span>
-        </div>
-    </oui-field>
-
-    <div data-ng-if="$ctrl.addKeyMode" class="pb-4">
+<ng-form name="$ctrl.sshKeyForm" class="ssh-key-config" novalidate>
+    <div data-ng-if="!$ctrl.loaders.keys">
         <oui-field
-            data-label="{{ 'pci_project_instance_ssh_key_name' | translate }}"
-            data-size="m"
-        >
-            <input
-                type="text"
-                class="oui-input"
-                id="sshKeyName"
-                name="newSshKey_name"
-                required
-                data-ng-disabled="$ctrl.loaders.isAdding"
-                data-ng-model="$ctrl.model.name"
-            />
-        </oui-field>
-        <oui-field
-            data-label="{{ 'pci_project_instance_ssh_key' | translate }}"
+            data-label="{{:: 'pci_project_instance_ssh_key' | translate }}"
             data-size="xl"
+            data-ng-if="!$ctrl.addKeyMode"
+            class="oui-input-group"
         >
-            <oui-textarea
-                data-id="sshKeyValue"
-                data-name="newSshKey_value"
-                data-rows="5"
-                data-disabled="$ctrl.loaders.isAdding"
-                data-model="$ctrl.model.publicKey"
-                data-required="true"
-            >
-            </oui-textarea>
+            <div class="row">
+                <div class="col-9">
+                    <oui-select
+                        class="mr-2 mb-0"
+                        data-name="sshKey"
+                        data-model="$ctrl.key"
+                        data-match="name"
+                        data-placeholder="{{:: 'pci_project_instance_ssh_pick' | translate }}"
+                        data-items="$ctrl.availableKeys"
+                        data-on-change="$ctrl.selectKey(modelValue)"
+                        data-required="true"
+                    >
+                        <span data-ng-bind="$item.name"></span>
+                    </oui-select>
+                </div>
+                <div class="col-3">
+                    <oui-button
+                        class="align-top"
+                        data-variant="secondary"
+                        data-on-click="$ctrl.displayAddForm()"
+                    >
+                        <span
+                            data-translate="pci_project_instance_ssh_add"
+                        ></span>
+                    </oui-button>
+                </div>
+            </div>
 
             <div class="oui-field__helper">
-                <span
-                    class="d-inline-block"
+                <p
+                    data-ng-if="!$ctrl.loaders.guide"
                     data-translate="pci_project_instance_ssh_key_help_required"
-                ></span>
-                <span
-                    class="d-inline-block"
-                    data-translate="pci_project_instance_ssh_key_help_availability"
-                ></span>
+                    data-translate-values="{
+                        guideUrl: $ctrl.guideUrl
+                    }"
+                ></p>
+                <p data-translate="pci_project_instance_ssh_key_infos"></p>
             </div>
         </oui-field>
 
-        <oui-spinner data-ng-if="$ctrl.loaders.isAdding"></oui-spinner>
-        <div data-ng-if="!$ctrl.loaders.isAdding">
-            <oui-button
-                data-variant="secondary"
-                data-type="button"
-                data-text="{{ 'pci_project_instance_ssh_add' | translate }}"
-                data-on-click="$ctrl.addKey()"
-                data-disabled="$ctrl.loaders.isAdding"
+        <div data-ng-if="$ctrl.addKeyMode" class="pb-4">
+            <oui-field
+                data-label="{{ 'pci_project_instance_ssh_key_name' | translate }}"
+                data-size="m"
             >
-            </oui-button>
-            <oui-button
-                data-variant="link"
-                data-ng-if="$ctrl.availableKeys.length > 0"
-                data-text="{{ 'pci_project_instance_ssh_cancel' | translate }}"
-                data-on-click="$ctrl.hideAddForm()"
+                <input
+                    type="text"
+                    class="oui-input"
+                    id="sshKeyName"
+                    name="newSshKey_name"
+                    required
+                    data-ng-disabled="$ctrl.loaders.isAdding"
+                    data-ng-model="$ctrl.model.name"
+                />
+            </oui-field>
+            <oui-field
+                data-label="{{ 'pci_project_instance_ssh_key' | translate }}"
+                data-size="xl"
             >
-            </oui-button>
+                <oui-textarea
+                    data-id="sshKeyValue"
+                    data-name="newSshKey_value"
+                    data-rows="5"
+                    data-disabled="$ctrl.loaders.isAdding"
+                    data-model="$ctrl.model.publicKey"
+                    data-required="true"
+                >
+                </oui-textarea>
+
+                <div class="oui-field__helper">
+                    <span
+                        class="d-inline-block"
+                        data-ng-if="!$ctrl.loaders.guide"
+                        data-translate="pci_project_instance_ssh_key_help_required"
+                        data-translate-values="{
+                            guideUrl: $ctrl.guideUrl
+                        }"
+                    ></span>
+                    <span
+                        class="d-inline-block"
+                        data-translate="pci_project_instance_ssh_key_help_availability"
+                    ></span>
+                    <span
+                        class="d-inline-block"
+                        data-translate="pci_project_instance_ssh_key_infos"
+                    ></span>
+                </div>
+            </oui-field>
+
+            <oui-spinner data-ng-if="$ctrl.loaders.isAdding"></oui-spinner>
+            <div data-ng-if="!$ctrl.loaders.isAdding">
+                <oui-button
+                    data-variant="secondary"
+                    data-type="button"
+                    data-on-click="$ctrl.addKey()"
+                    ><span data-translate="pci_project_instance_ssh_add"></span>
+                </oui-button>
+                <oui-button
+                    data-variant="link"
+                    data-ng-if="$ctrl.availableKeys.length > 0"
+                    data-on-click="$ctrl.hideAddForm()"
+                    ><span
+                        data-translate="pci_project_instance_ssh_cancel"
+                    ></span>
+                </oui-button>
+            </div>
         </div>
     </div>
-</div>
+</ng-form>

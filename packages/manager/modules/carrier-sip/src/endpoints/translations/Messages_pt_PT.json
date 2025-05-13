@@ -1,0 +1,13 @@
+{
+  "carrier_sip_endpoints_list_IP": "Lista de endereços IP autorizados para as chamadas de saída",
+  "carrier_sip_endpoints_with_incoming_call_enabled": "Roteamento de chamadas de entrada",
+  "carrier_sip_endpoints_id": "ID",
+  "carrier_sip_endpoints_protocol": "Protocolo",
+  "carrier_sip_endpoints_protocol_tcp": "TCP",
+  "carrier_sip_endpoints_protocol_tis": "TIS",
+  "carrier_sip_endpoints_protocol_udp": "UDP",
+  "carrier_sip_endpoints_ip_sip": "IP SIP",
+  "carrier_sip_endpoints_port": "Porta",
+  "carrier_sip_endpoints_priority": "Prioridade",
+  "carrier_sip_endpoints_weight": "Peso"
+}

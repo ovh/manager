@@ -1,4 +1,5 @@
 import component from './private-database-order-clouddb.component';
+import { ORDER_WEBCLOUD_DATABASE_TRACKING } from './private-database-order-clouddb.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.private-database-order-clouddb', {
@@ -14,8 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       catalog: /* @ngInject */ (user, PrivateDatabaseOrderCloudDb) =>
         PrivateDatabaseOrderCloudDb.getCloudDBCatalog(user.ovhSubsidiary),
-      datacenters: /* @ngInject */ (catalog, PrivateDatabaseOrderCloudDb) =>
-        PrivateDatabaseOrderCloudDb.constructor.getOrderableDatacenters(
+      datacenter: /* @ngInject */ (catalog, PrivateDatabaseOrderCloudDb) =>
+        PrivateDatabaseOrderCloudDb.constructor.getOrderableDatacenter(
           catalog.plans,
         ),
       /* @ngInject */
@@ -27,15 +28,10 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       openBill: /* @ngInject */ ($window) => (billUrl) =>
         $window.open(billUrl, '_blank'),
-      orderApiSchema: /* @ngInject */ (WucOrderCartService) =>
-        WucOrderCartService.getOrderApiSchema(),
       pricings: /* @ngInject */ (catalog, PrivateDatabaseOrderCloudDb) =>
         PrivateDatabaseOrderCloudDb.constructor.getPricings(catalog.plans),
-      ramSizes: /* @ngInject */ (orderApiSchema, PrivateDatabaseOrderCloudDb) =>
-        PrivateDatabaseOrderCloudDb.constructor.getOrderableRamSizes(
-          orderApiSchema,
-        ),
-
+      ramSizes: /* @ngInject */ (catalog, PrivateDatabaseOrderCloudDb) =>
+        PrivateDatabaseOrderCloudDb.getOrderedRamSizes(catalog.plans),
       displayErrorMessage: /* @ngInject */ ($timeout, Alerter) => (
         errorMessage,
       ) =>
@@ -46,6 +42,51 @@ export default /* @ngInject */ ($stateProvider) => {
         $timeout(() => {
           Alerter.success(message, 'cloudDB_order_alert');
         }),
+      hideBreadcrumb: () => true,
+      onError: /* @ngInject */ ($translate, $anchorScroll) => (error) => {
+        $translate.instant('private_database_order_error', {
+          message: error?.data?.message,
+        });
+        return $anchorScroll();
+      },
+      onSuccess: /* @ngInject */ (
+        $translate,
+        $anchorScroll,
+        displaySuccessMessage,
+      ) => (result) => {
+        const { url, autoPayWithPreferredPaymentMethod } = result;
+        displaySuccessMessage(
+          $translate.instant(
+            `private_database_order_clouddb_bill_success_${
+              autoPayWithPreferredPaymentMethod ? 'noCheckout' : 'checkout'
+            }`,
+            { url },
+          ),
+        );
+        return $anchorScroll();
+      },
+      dbCategories: /* @ngInject */ (
+        catalog,
+        webCloudCatalog,
+        PrivateDatabaseOrderCloudDb,
+      ) => {
+        return PrivateDatabaseOrderCloudDb.buildDbCategories(
+          catalog,
+          webCloudCatalog,
+        );
+      },
+      user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
+      webCloudCatalog: /* @ngInject */ (user, PrivateDatabaseOrderCloudDb) => {
+        return PrivateDatabaseOrderCloudDb.getCloudDBCatalog(
+          user.ovhSubsidiary,
+        );
+      },
+    },
+    atInternet: {
+      ignore: true,
+    },
+    onEnter: /* @ngInject */ (atInternet) => {
+      atInternet.trackPage(ORDER_WEBCLOUD_DATABASE_TRACKING.PAGE);
     },
   });
 };

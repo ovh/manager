@@ -1,0 +1,21 @@
+{
+  "dedicated_clouds_onboarding_title": "Our managed virtualization solution",
+  "dedicated_clouds_onboarding_description": "We've designed a platform similar to your on-premises experience, including vSphere, vCenter and vROps.",
+  "dedicated_clouds_onboarding_description2": "With an OVHcloud private cloud infrastructure, you get a cloud service and our ability to innovate. You can also manage your costs, while limiting your environmental impact.",
+  "dedicated_clouds_onboarding_description3": "We manage the maintenance of your hardware and software infrastructure.",
+  "dedicated_clouds_onboarding_order": "Order",
+  "dedicated_clouds_onboarding_guide1_title": "Introduction to the OVHcloud Control Panel",
+  "dedicated_clouds_onboarding_guide1_description": "Explore everything you can do in the VMware Control Panel",
+  "dedicated_clouds_onboarding_guide2_title": "Introduction to Tanzu Kubernetes Grid",
+  "dedicated_clouds_onboarding_guide2_description": "Discover the Tanzu Kubernetes Grid solution, and its integration capabilities in VMware on OVHcloud",
+  "dedicated_clouds_onboarding_guide3_title": "Configure an IP address on a virtual machine",
+  "dedicated_clouds_onboarding_guide3_description": "After you create a virtual machine, you can assign it a public or private IP address",
+  "dedicated_clouds_onboarding_us_guide1_title": "Getting started with NSX",
+  "dedicated_clouds_onboarding_us_guide1_description": "NSX is a Software-Defined Networking (SDN) solution provided by VMware. OVHcloud is offering this service in place of NSX-v in its Hosted Private Cloud Powered by VMware solution. Two hosts are deployed with a dedicated virtual machine for NSX on each host, allowing redundancy in the event of one of the hosts failing.",
+  "dedicated_clouds_onboarding_us_guide2_title": "Find out how to modify the access policy for vCenter in the OVHcloud Control Panel.",
+  "dedicated_clouds_onboarding_us_guide2_description": "To enhance the security of your vSphere infrastructure, you can restrict and manage access to vCenter.",
+  "dedicated_clouds_onboarding_us_guide3_title": "Find out how to authorise IP addresses to connect to vCenter.",
+  "dedicated_clouds_onboarding_us_guide3_description": "By default, access to your vCenter is restricted. You will therefore need to add the IPs that will be authorised to connect to the service.",
+  "dedicated_clouds_onboarding_description4": "You also get high-performance cloud services, with options like NSX, vSAN, and Veeam Backup (for your backups) — as well as Zerto (for your disaster recovery plan).",
+  "dedicated_clouds_onboarding_subtitle": "VMware on OVHcloud"
+}

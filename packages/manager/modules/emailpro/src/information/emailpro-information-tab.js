@@ -1,6 +1,7 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import set from 'lodash/set';
+import { EMAIL_TYPE } from './emailpro-information-tab.constant';
 
 export default class EmailProTabInformationCtrl {
   /* @ngInject */
@@ -10,6 +11,7 @@ export default class EmailProTabInformationCtrl {
     $state,
     $stateParams,
     $translate,
+    coreURLBuilder,
     Alerter,
     EmailPro,
     EmailProMXPlanMailingLists,
@@ -20,10 +22,12 @@ export default class EmailProTabInformationCtrl {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.coreURLBuilder = coreURLBuilder;
     this.Alerter = Alerter;
     this.EmailPro = EmailPro;
     this.EmailProMXPlanMailingLists = EmailProMXPlanMailingLists;
     this.WucEmails = WucEmails;
+    this.EMAIL_TYPE = EMAIL_TYPE;
   }
 
   $onInit() {
@@ -37,17 +41,36 @@ export default class EmailProTabInformationCtrl {
 
     if (this.$scope.exchange.isMXPlan) {
       this.$q.all({
-        quotas: this.getQuotas(),
+        quotas: this.$scope.currentRegionCA
+          ? this.$q.when({})
+          : this.getQuotas(),
         accounts: this.getAccountsConfigured(),
-        emailsDomain: this.getEmailsDomain(),
-        mailingLists: this.getMailingLists(),
-        redirections: this.getRedirections(),
+        emailsDomain: this.$scope.currentRegionCA
+          ? this.$q.when({})
+          : this.getEmailsDomain(),
+        mailingLists: this.$scope.currentRegionCA
+          ? this.$q.when({})
+          : this.getMailingLists(),
+        redirections: this.$scope.currentRegionCA
+          ? this.$q.when({})
+          : this.getRedirections(),
       });
 
-      this.upgradeLink = this.$state.href('app.email.mxplan.upgrade', {
+      this.upgradeLink = this.$state.href('mxplan.dashboard.upgrade', {
         productId: this.$stateParams.productId,
         domain: this.$scope.exchange.associatedDomainName,
       });
+    }
+
+    if (this.$scope.sharepoint) {
+      this.sharepointURL = this.coreURLBuilder.buildURL(
+        'dedicated',
+        '#/sharepoint/:exchangeId/:productId',
+        {
+          exchangeId: this.$scope.exchange.domain,
+          productId: this.$scope.sharepoint?.domain,
+        },
+      );
     }
   }
 

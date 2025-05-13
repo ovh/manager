@@ -1,0 +1,150 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EstimatePart > Prices rae not pending > should render the component if locale is found 1`] = `
+<div>
+  <div>
+    <osds-text
+      color="text"
+      data-testid="osds-text"
+      level="heading"
+      size="500"
+    >
+      consumption | cpbc_tab_forecast
+    </osds-text>
+    <p>
+      <osds-text
+        color="text"
+        data-testid="osds-text"
+        level="body"
+        size="400"
+      >
+        estimate | cpbe_estimate_summary_header
+         
+        <strong>
+          765.00
+           
+          €
+        </strong>
+      </osds-text>
+    </p>
+    <div>
+      <p>
+        <osds-text
+          color="text"
+          data-testid="osds-text"
+          level="body"
+          size="400"
+        >
+          <span>
+            estimate | cpbe_estimate_summary_renew_monthly_sub_label
+          </span>
+        </osds-text>
+      </p>
+      <p>
+        <osds-text
+          color="text"
+          data-testid="osds-text"
+          level="body"
+          size="400"
+        >
+          <span>
+            estimate | cpbe_estimate_summary_hourly_consumption_label
+          </span>
+        </osds-text>
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EstimatePart > Prices rae not pending > should render the component if locale is not found 1`] = `
+<div>
+  <div>
+    <osds-text
+      color="text"
+      data-testid="osds-text"
+      level="heading"
+      size="500"
+    >
+      consumption | cpbc_tab_forecast
+    </osds-text>
+    <p>
+      <osds-text
+        color="text"
+        data-testid="osds-text"
+        level="body"
+        size="400"
+      >
+        estimate | cpbe_estimate_summary_header
+         
+        <strong>
+          765.00
+           
+          €
+        </strong>
+      </osds-text>
+    </p>
+    <div>
+      <p>
+        <osds-text
+          color="text"
+          data-testid="osds-text"
+          level="body"
+          size="400"
+        >
+          <span>
+            estimate | cpbe_estimate_summary_renew_monthly_sub_label
+          </span>
+        </osds-text>
+      </p>
+      <p>
+        <osds-text
+          color="text"
+          data-testid="osds-text"
+          level="body"
+          size="400"
+        >
+          <span>
+            estimate | cpbe_estimate_summary_hourly_consumption_label
+          </span>
+        </osds-text>
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EstimatePart > should render the component if is pending 1`] = `
+<div>
+  <div>
+    <osds-text
+      color="text"
+      data-testid="osds-text"
+      level="heading"
+      size="500"
+    >
+      consumption | cpbc_tab_forecast
+    </osds-text>
+    <p>
+      <osds-text
+        color="text"
+        data-testid="osds-text"
+        level="body"
+        size="400"
+      >
+        estimate | cpbe_estimate_summary_header
+         
+        <strong>
+          765.00
+           
+          €
+        </strong>
+      </osds-text>
+    </p>
+    <osds-spinner
+      data-testid="osds-spinner"
+      inline="true"
+    />
+  </div>
+</div>
+`;

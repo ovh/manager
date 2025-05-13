@@ -1,22 +1,4 @@
 {
-  "veeam_enterprise_tab_dashboard": "Home",
-  "veeam_enterprise_infos_general_load_error": "An error has occurred loading general information.",
-  "veeam_enterprise_infos_configuration_load_error": "Error occurred while loading configuration information. ",
-  "veeam_enterprise_infos_subscription_load_error": "Error occurred while loading subscription information. ",
-  "veeam_enterprise_infos_license_register_error": "An error has occurred activating your Veeam Enterprise licence.",
-  "veeam_enterprise_infos_license_register_success": "Activating your Veeam Enterprise licence",
-  "veeam_enterprise_infos_license_update_error": "An error has occurred updating your Veeam Enterprise licence.",
-  "veeam_enterprise_infos_license_update_success": "Updating your Veeam Enterprise licence",
-  "veeam_enterprise_infos_license_already_registered_error": "You have already activated your Veeam Enterprise licence.",
-  "veeam_enterprise_manage": "Manage",
-  "veeam_enterprise_modal_ok": "OK",
-  "veeam_enterprise_modal_cancel": "Cancel",
-  "veeam_enterprise_tile_subscription": "Plan",
-  "veeam_enterprise_tile_subscription_contact": "Contacts",
-  "veeam_enterprise_tile_subscription_contact_admin": "Administrator",
-  "veeam_enterprise_tile_subscription_contact_billing": "Billing",
-  "veeam_enterprise_tile_subscription_contact_technical": "Technical",
-  "veeam_enterprise_tile_subscription_creation_date": "Creation date",
-  "veeam_enterprise_tile_subscription_autorenew": "Automatic renewal",
-  "veeam_enterprise_tile_subscription_expiration_date": "Expiry date"
+  "veeam_enterprise_title": "Veeam Enterprise",
+  "veeam_enterprise_order": "Order"
 }

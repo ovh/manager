@@ -1,0 +1,13 @@
+{
+  "billing_payment_method_add_bank_account_address_number": "Numero",
+  "billing_payment_method_add_bank_account_address_street": "Nome della via",
+  "billing_payment_method_add_bank_account_address_zip": "Codice postale",
+  "billing_payment_method_add_bank_account_address_city": "Città",
+  "billing_payment_method_add_bank_account_owner_name": "Nome e cognome del proprietario o nome della società proprietaria",
+  "billing_payment_method_add_bank_account_owner_address": "Indirizzo del proprietario dell'account",
+  "billing_payment_method_add_bank_account_owner_notification_info": "Entro 24-48 ore riceverai sull'indirizzo di posta associato al tuo account OVHcloud un'email contenente il link per apporre la firma elettronica del mandato di prelievo.",
+  "billing_payment_method_add_bank_account_owner_info": "Attenzione: il proprietario del conto bancario deve essere identico al proprietario dell'account OVHcloud.",
+  "billing_payment_method_add_bank_account_owner_confirmation_info": "Se approvato, una volta che il mandato viene ricevuto dai nostri servizi è possibile utilizzare questo nuovo metodo di pagamento.",
+  "billing_payment_method_add_bank_account_data_process_by_ovh_info": "I dati raccolti tramite questo modulo sono trattati da OVHcloud in qualità di responsabile del trattamento per l’esecuzione degli addebiti SEPA. <a href=\" {{ dataProtectionOvhLink }} \" target=\" _blank \">Maggiori informazioni</a> sul trattamento dei dati da parte di OVHcloud e sull'esercizio dei propri diritti.",
+  "billing_payment_method_add_bank_account_data_process_by_yousign_info": "L’attivazione di un addebito SEPA richiede la sottoscrizione di un mandato che dovrà essere firmato elettronicamente utilizzando una soluzione fornita da Yousign, un provider abilitato a fornire i servizi fiduciari definiti dal regolamento (UE) “eIDAS” n. 910/2014 del 23 luglio 2014. In tale contesto, I dati saranno comunicati a Yousign. <a href=\" {{ dataProtectionYouSignLink }} \" target=\" _blank \">Maggiori informazioni</a> sulla gestione dei dati da parte di Yousign."
+}

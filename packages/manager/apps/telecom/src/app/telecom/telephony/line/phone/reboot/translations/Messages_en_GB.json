@@ -1,1 +1,10 @@
-{}
+{
+  "telephony_line_phone_reboot_title": "Restart phone",
+  "telephony_line_phone_reboot_section_title": "Plug &amp; Phone",
+  "telephony_line_phone_reboot_phone_brand": "Model",
+  "telephony_line_phone_reboot_phone_mac_address": "MAC address",
+  "telephony_line_phone_reboot_phone": "Restart",
+  "telephony_line_phone_reboot_error": "Oops, an error occurred while restarting the phone.",
+  "telephony_line_phone_reboot_unsupported": "This type of phone cannot be restarted remotely.",
+  "telephony_line_phone_reboot_success": "Restarting..."
+}

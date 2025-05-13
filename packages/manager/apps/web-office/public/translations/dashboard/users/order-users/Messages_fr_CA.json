@@ -1,0 +1,8 @@
+{
+  "dashboard_users_order_users_type": "Type de licence",
+  "dashboard_users_order_users_type_placeholder": "Sélectionner",
+  "dashboard_users_order_users_price": "Prix",
+  "dashboard_users_order_users_message": "Vous serez facturé sur le nombre de licences activées dans le mois en cours.",
+  "dashboard_users_order_users_message_error": "Une erreur est survenue lors de l'ajout de l'utilisateur. {{ error }}",
+  "dashboard_users_order_users_message_success": "Votre demande d'ajout d'utilisateur a bien été pris en compte."
+}

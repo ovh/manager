@@ -3,11 +3,13 @@ import isString from 'lodash/isString';
 
 (() => {
   class ServiceExpirationDateComponentCtrl {
-    constructor($scope, $rootScope, constants, coreConfig) {
+    /* @ngInject */
+    constructor($scope, $rootScope, constants, coreConfig, coreURLBuilder) {
       $scope.tr = $rootScope.tr;
       $scope.i18n = $rootScope.i18n;
       this.constants = constants;
       this.coreConfig = coreConfig;
+      this.coreURLBuilder = coreURLBuilder;
       this.inline = false;
     }
 
@@ -20,7 +22,7 @@ import isString from 'lodash/isString';
     }
 
     getRenewUrl() {
-      return this.coreConfig.getRegion() === 'CA'
+      return this.coreConfig.isRegion('CA')
         ? this.getOrderUrl()
         : this.getAutoRenewUrl();
     }
@@ -32,11 +34,18 @@ import isString from 'lodash/isString';
     }
 
     getAutoRenewUrl() {
-      const url = `#/billing/autoRenew?searchText=${this.serviceName}`;
+      const params = {
+        searchText: this.serviceName,
+      };
       if (isString(this.serviceType)) {
-        return `${url}&selectedType=${this.serviceType}`;
+        params.selectedType = this.serviceType;
       }
-      return url;
+
+      return this.coreURLBuilder.buildURL(
+        'dedicated',
+        '#/billing/autoRenew',
+        params,
+      );
     }
 
     getDate() {

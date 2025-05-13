@@ -1,0 +1,6 @@
+{
+  "pci_notebook_configuration_command_title": "Automatische Erstellung eines identischen Notebooks",
+  "pci_notebook_configuration_command_description": "Erstellen Sie das gleiche Notebook mit Befehlszeilen in Ihrem OVHAI CLI.",
+  "pci_notebook_configuration_command_help": "Mehr erfahren.",
+  "pci_notebook_configuration_command_error": "Beim Abruf der entsprechenden Bestellung ist ein Fehler aufgetreten: {{message}}"
+}

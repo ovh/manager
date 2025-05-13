@@ -1,7 +1,0 @@
-{
-  "telecom_orders_alias_title": "Numeroiden tilaus",
-  "telecom_orders_alias_billing_account_title": "Puhelinryhmä",
-  "telecom_orders_alias_billing_account_label": "Valitse puhelinryhmä:",
-  "telecom_orders_alias_billing_submit_label": "Tilaa numero",
-  "telecom_orders_alias_billing_loading_error": "Puhelinryhmien lataaminen ei onnistu. "
-}

@@ -4,5 +4,7 @@
   "telephony_group_admin_actions_group_new_billing_account": "Dodaj grupę",
   "telephony_group_admin_actions_group_delete_billing_account": "Usuń grupę",
   "telephony_group_admin_actions_portabilities": "Przeniesienie w trakcie",
-  "telephony_group_admin_group_back_link": "Powrót do zarządzania grupą"
+  "telephony_group_admin_group_back_link": "Powrót do zarządzania grupą",
+  "telephony_group_admin_breadcrumb": "Administracja publiczna",
+  "telephony_group_admin_actions_white_label_manager": "Manager"
 }

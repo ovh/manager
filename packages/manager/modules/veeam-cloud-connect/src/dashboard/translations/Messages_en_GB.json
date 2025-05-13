@@ -7,7 +7,7 @@
   "veeam_tiles_configuration_label_offer": "Solution",
   "veeam_tiles_configuration_label_stockage_number": "Storage amount",
   "veeam_tiles_configuration_label_vm_count": "Number of VMs",
-  "veeam_tiles_configuration_label_datacenter": "Datacentre",
+  "veeam_tiles_configuration_label_datacenter": "Datacenter",
   "veeam_tiles_subscription_title": "Plan",
   "veeam_tiles_subscription_label_renewal_date": "Automatic renewal",
   "veeam_tiles_subscription_label_renewal_renew_link": "Manage",

@@ -1,0 +1,6 @@
+{
+  "server_configuration_intervention_type": "Tipo",
+  "server_configuration_intervention_date": "Data",
+  "server_configuration_intervention_empty": "Nessun intervento",
+  "server_configuration_intervention_error": "Si è verificato un errore durante il caricamento delle informazioni"
+}

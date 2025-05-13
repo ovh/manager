@@ -1,8 +1,0 @@
-{
-  "cpciiac_view_title": "Seleccione la infraestructura que desea desplegar",
-  "cpciiac_view_intro": "Despliegue fácil y rápidamente una infraestructura como código no gestionada en su proyecto Cloud, en solo unos clics, con nuestros scripts de despliegue de infraestructura.",
-  "cpciiac_view_general_ERROR": "Se ha producido un error al cargar los modelos de infraestructura como código: {{message}}",
-  "cpciiac_view_stack_terraform-ovh-publiccloud-k8s": "Kubernetes",
-  "cpciiac_view_stack_ovh-analytics-openstack": "Hadoop",
-  "cpciiac_view_deployment_ERROR": "Se ha producido un error al solicitar el despliegue: {{message}}"
-}

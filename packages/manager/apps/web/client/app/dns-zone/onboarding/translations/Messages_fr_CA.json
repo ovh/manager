@@ -1,0 +1,10 @@
+{
+  "zones_onboarding_title": "Zones DNS",
+  "zones_onboarding_description": "On appelle <b>Zone Domain Name System</b> (DNS) le fichier de configuration DNS gérant l’ensemble de l’adressage lié à un domaine. Il permet notamment de paramétrer les sous-domaines ou l’emplacement d’un serveur e-mail. Cette zone DNS se compose d’informations techniques, appelées enregistrements, qui routent les données vers la destination attendue.",
+  "zones_onboarding_description2": "Paramétrer un sous-domaine sur son DNS permet donc de rendre accessible celui-ci auprès des internautes. Vous effectuez cette action en un clic depuis votre espace client OVHcloud, en associant votre sous-domaine au répertoire contenant les fichiers souhaités.",
+  "zones_onboarding_order": "Commander",
+  "zones_onboarding_guide1_title": "Créer une zone DNS OVH pour un nom de domaine",
+  "zones_onboarding_guide1_description": "Apprenez à créer une zone DNS chez OVH pour votre nom de domaine via votre espace client",
+  "zones_onboarding_guide2_title": "Éditer une zone DNS OVHcloud",
+  "zones_onboarding_guide2_description": "Découvrez comment éditer une zone DNS OVHcloud via votre espace client"
+}

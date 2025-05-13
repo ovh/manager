@@ -1,0 +1,20 @@
+{
+  "pci_projects_project_storages_blocks_block_volume-edit_region_label": "Lokalizacja",
+  "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Typ wolumenu",
+  "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Nazwa wolumenu",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Rozmiar wolumenu",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_help": "Maksymalny rozmiar zależy od dostępnego limitu.",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Bootowalny",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Zdefiniowanie wolumenu jako bootowalnego pozwala używać go przy uruchamianiu Twojej instancji.",
+  "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Anuluj",
+  "pci_project_flavors_zone_localzone": "Local Zone",
+  "pci_project_flavors_zone_localzone_tooltip": "Local Zone umożliwia wdrażanie produktów Public Cloud OVHcloud w centrach danych zlokalizowanych jak najbliżej użytkowników końcowych.",
+  "pci_project_flavors_zone_tooltip_link": "Dowiedz się więcej",
+  "pci_project_flavors_zone_global_region": "1-AZ",
+  "pci_project_flavors_zone_globalregions_tooltip": "Region 1-AZ (Availability Zone, strefa dostępności) to jedno lub więcej centrów danych zlokalizowanych w tym samym miejscu.",
+  "pci_project_flavors_zone_globalregions_tooltip_2": "Wraz z pojawieniem się regionów 3-AZ, typ wdrożenia „Regiony” zmienia nazwę. Region 1-AZ (Availability Zone, strefa dostępności) to jedno lub więcej centrów danych zlokalizowanych w tym samym miejscu.",
+  "pci_project_flavors_zone_3az_region": "3-AZ",
+  "pci_project_flavors_zone_3az_tooltip": "Region 3-AZ składa się z trzech stref dostępności zlokalizowanych w tej samej aglomeracji, oddalonych od siebie o kilka kilometrów. Spełnia on najwyższe wymagania w zakresie odporności i gwarantuje wyjątkowo krótki czas odpowiedzi między AZ.",
+  "pci_projects_project_storages_blocks_add_submit_price_text": "Szacowana kwota: {{price}} netto/m-c"
+}

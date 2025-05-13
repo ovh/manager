@@ -1,0 +1,13 @@
+{
+  "nutanix_cluster_ipfo": "Reverse DNS",
+  "nutanix_cluster_vrack": "Private network (vRack)",
+  "nutanix_cluster_vrack_none": "No vRacks attached",
+  "nutanix_cluster_network_title": "Cluster network ",
+  "nutanix_cluster_network_manage": "Manage",
+  "nutanix_cluster_iplb_none": "No Load Balancers attached",
+  "nutanix_cluster_bandwidth_private": "Private bandwidth",
+  "nutanix_cluster_bandwidth_incoming": "incoming",
+  "nutanix_cluster_bandwidth_outgoing": "outgoing",
+  "nutanix_cluster_bandwidth_vrack_option_released": "(not renewed)",
+  "nutanix_cluster_modify_private_bandwidth": "Modify private bandwidth"
+}

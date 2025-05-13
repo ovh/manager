@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_regenerate_tokens_title": "Regenerar o token",
-  "pci_projects_project_streams_stream_regenerate_tokens_submit_label": "Confirmar",
-  "pci_projects_project_streams_stream_regenerate_tokens_cancel_label": "Anular",
-  "pci_projects_project_streams_stream_regenerate_tokens_content": "Tem a certeza de que pretende regenerar o token?",
-  "pci_projects_project_streams_stream_regenerate_tokens_success_message": "O token foi regenerado.",
-  "pci_projects_project_streams_stream_regenerate_tokens_error_regenerate_tokens": "Ocorreu um erro ao gerar o token: {{ message }}."
-}

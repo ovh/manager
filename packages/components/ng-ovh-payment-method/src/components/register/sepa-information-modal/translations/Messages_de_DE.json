@@ -1,0 +1,6 @@
+{
+  "ovh_payment_method_register_sepa_information_modal_title": "Bankkonten im SEPA-Gebiet",
+  "ovh_payment_method_register_sepa_information_modal_confirm": "Verstanden",
+  "ovh_payment_method_register_sepa_information_modal_part_1": "Für die Einrichtung eines Lastschriftverfahrens benötigen Sie ein Bankkonto in einem Land des einheitlichen Euro-Zahlungsverkehrsraums, <strong>dem SEPA-Gebiet</strong>.",
+  "ovh_payment_method_register_sepa_information_modal_part_2": "Wenn Sie kein solches Konto haben, empfehlen wir Ihnen, ein anderes Zahlungsmittel zu wählen."
+}

@@ -1,10 +1,22 @@
 {
-  "xdsl_access_profile_tooltip_interleaved": "<b>Interleaved</b>: profilo automatico predefinito",
-  "xdsl_access_profile_tooltip_fast": "<b>Fast</b>: profilo automatico in fastPath (ping migliorato senza correzione di errori)",
-  "xdsl_access_profile_tooltip_ginp": "<b>G.INP</b>: questa estensione migliora la correzione di errori senza impatto sulle performance della linea. Il DSLAM utilizzerà la modalità di protezione (INP, Impulse Noise Protection) contro il rumore.",
-  "xdsl_access_profile_tooltip_auto": "<b>AUTO-[valeur]M:</b> Il DSLAM si sincronizzerà con la velocità di trasmissione massima",
-  "xdsl_access_profile_tooltip_snr": "<b>SNR-[valeur]: </b> Il DSLAM analizza la qualità della linea ed elabora un rapporto segnale/rumore (SNR) al valore indicato. Più il valore è alto, maggiore è la stabilità della linea e minore la velocità di trasmissione dei dati. Sui profili in cui SNR non è forzato, il DSLAM prova a ottenere un SNR da 6.   ",
   "xdsl_access_profile_tooltip_time": "La modifica diventerà effettiva tra 1-5 minuti.",
   "xdsl_access_dslam_an_error_ocurred": "[DSLAM] Si è verificato un errore!",
-  "xdsl_access_profile_doing": "Modifica del profilo in corso..."
+  "xdsl_access_profile_doing": "Modifica del profilo in corso...",
+  "xdsl_access_profile_tooltip_description": "Più grande sarà la cifra del SNR (rapporto segnale/rumore), maggiore sarà la stabilità della linea, ma minore sarà la portata.",
+  "xdsl_access_profile_tooltip_adsl_24m": "<b>{{profile}}:</b> Flusso massimo a 24000 / 1024 margine al rumore a 6 dB",
+  "xdsl_access_profile_tooltip_adsl_2m": "<b>{{profile}}:</b> Flusso massimo a 2432/1024 margine al rumore superiore a 6 dB",
+  "xdsl_access_profile_tooltip_adsl_512k": "<b>{{profile}}:</b> Flusso massimo a 608/160 margine al rumore superiore a 6 dB",
+  "xdsl_access_profile_tooltip_adsl_safe1": "<b>{{profile}}:</b> Flusso massimo a 16128/1024 margine al rumore a 10 dB",
+  "xdsl_access_profile_tooltip_adsl_safe2": "<b>{{profile}}:</b> Flusso massimo a 16128/1024 margine al rumore a 16 dB",
+  "xdsl_access_profile_tooltip_adsl_perf1": "<b>{{profile}}:</b> Flusso massimo a 24000 / 1024 margine al rumore a 3 dB",
+  "xdsl_access_profile_tooltip_adsl_perf2": "<b>{{profile}}:</b> Flusso massimo a 24000 / 1024 margine al rumore a 1 dB",
+  "xdsl_access_profile_tooltip_vdsl_24m": "<b>{{profile}}:</b> SNR 6 senza limite di velocità",
+  "xdsl_access_profile_tooltip_vdsl_2m": "<b>{{profile}}:</b> SNR 6 con limite di flusso a 2M",
+  "xdsl_access_profile_tooltip_vdsl_512k": "<b>{{profile}}:</b> SNR 6 con limite di flusso a 512K",
+  "xdsl_access_profile_tooltip_vdsl_safe1": "<b>{{profile}}:</b> SNR 10",
+  "xdsl_access_profile_tooltip_vdsl_other": "<b>{{profile}}:</b> {{snr}}",
+  "xdsl_access_profile_tooltip_vdsl_17a": "<b>{{profile}}:</b> SNR 8",
+  "xdsl_access_profile_tooltip_vdsl_17a_safe1": "<b>{{profile}}:</b> SNR 12",
+  "xdsl_access_profile_tooltip_vdsl_8b": "<b>{{profile}}:</b> SNR 8",
+  "xdsl_access_profile_tooltip_vdsl_8b_safe1": "<b>{{profile}}:</b> SNR 12"
 }

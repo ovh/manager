@@ -1,0 +1,20 @@
+{
+  "dedicated_server_dashboard_advanced_features_sgx_manage_back_button_dashboard": "Voltar ao estado do servidor",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_back_button_presentation": "Voltar à apresentação da funcionalidade",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_header_disabled": "Gestão da sua funcionalidade SGX",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_header_enabled": "Alteração da sua funcionalidade SGX",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_header_software controlled": "Alteração da sua funcionalidade SGX",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_intro_disabled": "Pode ativar a sua funcionalidade Software Guard Extensions (SGX) e selecionar a memória de processador reservada para esse efeito. Também é possível ativá-la previamente, selecionando a opção “Software controlled” e, de seguida, ativá-la diretamente na sua aplicação. Em ambos os casos, após a confirmação, o servidor será automaticamente reiniciado.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_intro_enabled": "É possível alterar a funcionalidade Software Guard Extensions para que seja ativada através da sua aplicação (Software Controlled), ou simplesmente desativá-la. Esta operação implicará uma reinicialização automática do servidor.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_intro_software controlled": "É possível alterar a funcionalidade Software Guard Extensions para que seja ativada através da sua aplicação (Software Controlled), ou simplesmente desativá-la. Esta operação implicará uma reinicialização automática do servidor.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_option_disabled": "Desativar",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_option_enabled": "Ativar",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_option_software_controlled": "Software controlled",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_option_prmrr": "Memória do processador reservada",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_option_prmrr_value": "{{ value }} MB",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_confirm": "Confirmar",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_activation_success": "O reboot do seu servidor está em curso, a funcionalidade SGX ficará ativa dentro de alguns minutos.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_deactivation_success": "O reboot do seu servidor está em curso, a funcionalidade SGX será desativada dentro de alguns minutos.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_error": "Ocorreu um erro ao alterar a funcionalidade SGX.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage": "Gerir SGX"
+}

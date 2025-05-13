@@ -1,0 +1,23 @@
+<div
+    data-wizard
+    data-wizard-on-cancel="$ctrl.goBack"
+    data-wizard-on-finish="submit"
+    data-wizard-title="'exchange_tab_ALIAS_remove_alias_title' | translate"
+>
+    <div data-wizard-step>
+        <p data-translate="exchange_tab_ALIAS_remove_alias_intro"></p>
+        <dl class="dl-horizontal">
+            <dt data-translate="exchange_tab_ALIAS_remove_alias_label"></dt>
+            <dd
+                class="word-break"
+                data-ng-bind="$ctrl.$routerParams.alias | wucSliceContent: 150"
+            ></dd>
+
+            <dt data-translate="exchange_tab_ALIAS_remove_account_label"></dt>
+            <dd
+                class="word-break"
+                data-ng-bind="$ctrl.$routerParams[$ctrl.aliasType] | wucSliceContent: 150"
+            ></dd>
+        </dl>
+    </div>
+</div>

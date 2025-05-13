@@ -1,0 +1,81 @@
+<div class="cold-archive" data-ui-view="coldArchiveView">
+    <oui-header
+        class="mb-3"
+        data-ng-if="$ctrl.containers.length"
+        id="cold-archive-guide-header"
+    >
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: 'pci_projects_project_storages_cold_archive_label' | translate }}"
+                ></h1>
+                <div
+                    class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
+                >
+                    <changelog-button
+                        links="$ctrl.CHANGELOG.cold_archive.links"
+                        chapters="$ctrl.CHANGELOG.cold_archive.chapters"
+                    ></changelog-button>
+                    <oui-guide-menu
+                        data-text="{{:: 'pci_project_guides_header' | translate }}"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-repeat="guide in $ctrl.guideMenu track by $index"
+                            data-href="{{:: guide.link }}"
+                            data-on-click="$ctrl.onGuideClick(guide.id)"
+                            data-external
+                        >
+                            <span data-ng-bind=":: guide.title"></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
+            </div>
+        </oui-header-heading>
+    </oui-header>
+
+    <div>
+        <!--Description and link-->
+        <p
+            data-translate="pci_projects_project_storages_cold_archive_description"
+        ></p>
+        <a
+            data-ng-href="{{:: $ctrl.priceLink }}"
+            data-ng-click="$ctrl.onPriceLinkClick()"
+            target="_blank"
+            rel="noopener"
+        >
+            <span
+                data-translate="pci_projects_project_storages_cold_archive_price_link"
+            ></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </div>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.coldArchiveContainersLink }}"
+            data-active="$ctrl.isUserColdArchiveContainersTabActive()"
+            ><span
+                data-translate="pci_projects_project_storages_cold_archive_tabs_tab_archives"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.userListLink }}"
+            data-active="$ctrl.isUserTabActive()"
+            ><span
+                data-translate="pci_projects_project_storages_cold_archive_tabs_tab_users"
+            ></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+    <div
+        class="container-fluid w-100 h-100 pt-4 px-3 px-md-5"
+        data-ui-view
+    ></div>
+</div>

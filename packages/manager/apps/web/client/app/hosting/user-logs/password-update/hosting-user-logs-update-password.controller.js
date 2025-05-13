@@ -3,6 +3,7 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'HostingUserLogsUpdatePasswordCtrl',
   class HostingUserLogsUpdatePasswordCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, Hosting) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -13,7 +14,7 @@ angular.module('App').controller(
 
     $onInit() {
       this.condition = this.Hosting.constructor.getPasswordConditions();
-      this.login = this.$scope.currentActionData;
+      this.user = this.$scope.currentActionData;
       this.password = {
         value: null,
         confirmation: null,
@@ -53,7 +54,8 @@ angular.module('App').controller(
       this.$scope.resetAction();
       return this.Hosting.userLogsChangePassword(
         this.$stateParams.productId,
-        this.login,
+        this.user.ownLogsId,
+        this.user.login,
         this.password.value,
       )
         .then(() => {
@@ -68,7 +70,7 @@ angular.module('App').controller(
           this.Alerter.alertFromSWS(
             this.$translate.instant(
               'hosting_tab_USER_LOGS_configuration_change_password_fail',
-              { t0: this.login },
+              { t0: this.user.login },
             ),
             get(err, 'data', err),
             this.$scope.alerts.main,

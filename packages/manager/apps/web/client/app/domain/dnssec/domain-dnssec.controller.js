@@ -10,6 +10,7 @@ import some from 'lodash/some';
 angular.module('controllers').controller(
   'DomainDnssecTabCtrl',
   class DomainDnssecTabCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $q,
@@ -31,7 +32,7 @@ angular.module('controllers').controller(
     $onInit() {
       this.const = {
         ALGORITHM_OPTIONS: this.constants.algorithm_options,
-        ALTERABLE_DNSSEC_SERVER_TYPE: 'EXTERNAL',
+        ALTERABLE_DNSSEC_SERVER_TYPE: ['EXTERNAL', 'MIXED'],
         FLAGS_OPTIONS: this.constants.flags_options,
         MAX_AMOUNT_DNSSEC: 4,
         PUBLIC_KEY_REGEX: null,
@@ -54,8 +55,9 @@ angular.module('controllers').controller(
         return false;
       }
       return (
-        this.product.nameServerType ===
-          this.const.ALTERABLE_DNSSEC_SERVER_TYPE &&
+        this.const.ALTERABLE_DNSSEC_SERVER_TYPE.includes(
+          this.product.nameServerType,
+        ) &&
         !this.product.managedByOvh &&
         !this.hasActiveTask
       );
@@ -66,8 +68,9 @@ angular.module('controllers').controller(
         return false;
       }
       return (
-        this.product.nameServerType ===
-          this.const.ALTERABLE_DNSSEC_SERVER_TYPE &&
+        this.const.ALTERABLE_DNSSEC_SERVER_TYPE.includes(
+          this.product.nameServerType,
+        ) &&
         !this.product.managedByOvh &&
         this.hasActiveTask &&
         this.product.dnssecSupported
@@ -102,7 +105,7 @@ angular.module('controllers').controller(
           this.Alerter.alertFromSWS(
             this.$translate.instant('domain_tab_DNSSEC_loading_error'),
             get(err, 'data', err),
-            this.$scope.alerts.main,
+            this.$scope.alerts.tabs,
           ),
         )
         .finally(() => {
@@ -173,6 +176,17 @@ angular.module('controllers').controller(
       this.editMode = false;
     }
 
+    hasValidChanges() {
+      if (this.dnssecList.length < this.dnssecListSave.length) {
+        return !this.addDnssecForm.$invalid;
+      }
+      return (
+        this.addDnssecForm.$dirty &&
+        !this.addDnssecForm.$invalid &&
+        this.dnssecList.length > 0
+      );
+    }
+
     saveModifications() {
       this.loading = true;
       return this.Domain.saveDnssecList(this.product.name, {
@@ -181,14 +195,14 @@ angular.module('controllers').controller(
         .then(() =>
           this.Alerter.success(
             this.$translate.instant('domain_tab_DNSSEC_action_add_success'),
-            this.$scope.alerts.main,
+            this.$scope.alerts.tabs,
           ),
         )
         .catch((err) =>
           this.Alerter.alertFromSWS(
             this.$translate.instant('domain_tab_DNSSEC_action_add_error'),
             err,
-            this.$scope.alerts.main,
+            this.$scope.alerts.tabs,
           ),
         )
         .finally(() => this.loadDnssec());

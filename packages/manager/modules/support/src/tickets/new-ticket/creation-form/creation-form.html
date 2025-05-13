@@ -1,14 +1,14 @@
 <form novalidate name="supportNewCreationForm">
     <oui-message
         data-type="info"
-        data-ng-if="!$ctrl.isBusinessSupportLevel()"
+        data-ng-if="!$ctrl.isBusinessSupportLevel() && !$ctrl.hideInfoBanner"
         data-dismissable
     >
         <span data-translate="ovhManagerSupport_new_creation_tip"></span>
     </oui-message>
 
     <oui-field
-        data-label="{{:: 'ovhManagerSupport_new_urgency' | translate }}"
+        data-label="{{:: 'ovhManagerSupport_new_urgency' | translate }}"
         data-ng-if="$ctrl.isBusinessSupportLevel()"
         data-size="xl"
     >
@@ -22,7 +22,7 @@
     </oui-field>
 
     <oui-field
-        data-ng-if="!$ctrl.subject"
+        data-ng-if="!$ctrl.subject && !$ctrl.hideInfoBanner"
         data-label="{{:: 'ovhManagerSupport_new_creation_subject' | translate }}"
         data-size="xl"
     >
@@ -65,18 +65,16 @@
 
     <oui-button
         data-variant="secondary"
-        data-text="{{:: 'ovhManagerSupport_new_creation_cancel' | translate }}"
         data-on-click="$ctrl.goBack()"
         data-type="reset"
-    >
+        ><span data-translate="ovhManagerSupport_new_creation_cancel"></span>
     </oui-button>
     <oui-button
         data-variant="primary"
-        data-text="{{:: 'ovhManagerSupport_new_creation_submit' | translate }}"
         data-disabled="supportNewCreationForm.$invalid"
         data-on-click="$ctrl.submitForm(true)"
         data-type="submit"
-    >
+        ><span data-translate="ovhManagerSupport_new_creation_submit"></span>
     </oui-button>
 </form>
 

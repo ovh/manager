@@ -5,6 +5,7 @@ import some from 'lodash/some';
 angular.module('App').controller(
   'PrivateDatabaseUsersGrantsCtrl',
   class PrivateDatabaseUsersGrantsCtrl {
+    /* @ngInject */
     constructor(Alerter, PrivateDatabase, $scope, $stateParams, $translate) {
       this.alerter = Alerter;
       this.privateDatabaseService = PrivateDatabase;

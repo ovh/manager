@@ -1,0 +1,9 @@
+{
+  "manager_hub_dashboard_banner_siret_link": "Haga clic aquí para lanzar la actualización.",
+  "manager_hub_dashboard_banner_siret": "Con el objetivo de mejorar la calidad de sus datos, necesitamos actualizar el número SIRET de su empresa. Esta actualización se realizará en solo unos segundos. Tenga en cuenta que necesitará su extracto KBIS. ",
+  "manager_hub_dashboard_modal_title": "Actualización de sus datos",
+  "manager_hub_dashboard_modal_siret_part_1": "Con el objetivo de mejorar la calidad de sus datos, necesitamos actualizar el número SIRET de su empresa.",
+  "manager_hub_dashboard_modal_siret_part_2": "Esta actualización se realizará en tan solo unos segundos. Tenga en cuenta que necesitará su extracto KBIS.",
+  "manager_hub_dashboard_modal_siret_link": "Actualizar ahora",
+  "manager_hub_dashboard_modal_siret_cancel": "En otro momento"
+}

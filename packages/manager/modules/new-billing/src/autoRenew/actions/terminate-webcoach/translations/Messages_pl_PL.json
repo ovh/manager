@@ -1,0 +1,11 @@
+{
+  "autorenew_webcoach_service_guide": "Usuń natychmiast WebCoach",
+  "autorenew_webcoach_close_service_question": "Czy chcesz kontynuować?",
+  "autorenew_webcoach_close_service_success": "Zlecenie zamknięcia narzędzia WebCoach zostało zarejestrowane. Otrzymasz e-mail z opisem dalszej procedury.",
+  "autorenew_webcoach_close_service_error": "Wystąpił błąd podczas operacji zamykania narzędzia WebCoach:",
+  "autorenew_webcoach_close_service": "Usuń natychmiast moje narzędzie WebCoach",
+  "autorenew_webcoach_close_service_warning": "Usunięcie narzędzia WebCoach spowoduje trwałe usunięcie wszystkich powiązanych z nim danych. Usunięcie narzędzia WebCoach nie stanowi podstawy do zwrotu środków.",
+  "autorenew_webcoach_close_service_desc1": "Otrzymasz e-mail z opisem procedury zamknięcia narzędzia WebCoach.",
+  "autorenew_webcoach_close_confirm": "Zatwierdź",
+  "autorenew_webcoach_close_cancel": "Anuluj"
+}

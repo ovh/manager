@@ -1,0 +1,23 @@
+<div data-ng-controller="BmServerAddSolSsh">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="$ctrl.startSolSshSession.bind($ctrl)"
+        data-wizard-title="::'server_configuration_ssh_sol_add_key' | translate"
+        data-wizard-confirm-button-text=":: 'server_configuration_ssh_sol_start' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="$ctrl.ssh.publicKey">
+            <h2
+                class="wizard-title-sub"
+                data-translate="server_configuration_ssh_sol_add_key_description"
+            ></h2>
+
+            <form name="solSshSession">
+                <ovh-manager-ssh-key-selector
+                    data-public-key="$ctrl.ssh.publicKey"
+                    data-required="true"
+                ></ovh-manager-ssh-key-selector>
+            </form>
+        </div>
+    </div>
+</div>

@@ -8,5 +8,14 @@
   "cpbc_snapshot_detail_title": "Armazenamento de backups",
   "cpbc_volume_detail_title": "Discos adicionais",
   "cpbc_hourly_instance_trafic_title": "Tráfego público de saída das instâncias",
-  "cpbc_hourly_private_registry_title": "Managed Private Registry"
+  "cpbc_hourly_private_registry_title": "Managed Private Registry",
+  "cpbc_hourly_training_title": "AI Training",
+  "cpbc_hourly_notebooks_title": "AI Notebooks",
+  "cpbc_hourly_data_processing_title": "Processamento de dados",
+  "cpbc_hourly_databases_title": "Bases de dados",
+  "cpbc_hourly_floating_ip_title": "IP flutuante",
+  "cpbc_hourly_gateway_title": "Gateway",
+  "cpbc_hourly_ai_deploy_title": "AI Deploy",
+  "cpbc_cold_archive_detail_title": "Cold Archive",
+  "cpbc_hourly_public_ip_title": "IP público"
 }

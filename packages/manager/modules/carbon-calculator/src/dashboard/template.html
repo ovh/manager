@@ -1,0 +1,12 @@
+<div>
+    <oui-header
+        data-heading="{{:: 'carbon_calculator_my_carbon_footprint' | translate }}"
+    >
+    </oui-header>
+    <p
+        class="row-fluid"
+        data-translate="carbon_calculator_dashboard_carbon_footprint_explanation"
+    ></p>
+    <carbon-balance-composition></carbon-balance-composition>
+    <carbon-footprint data-has-invoice="$ctrl.hasInvoice"></carbon-footprint>
+</div>

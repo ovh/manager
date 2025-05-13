@@ -1,0 +1,16 @@
+{
+  "dedicatedCloud_list_serviceName": "Cognome",
+  "dedicatedCloud_list_description": "Descrizione",
+  "dedicatedCloud_list_softwareSolution": "Soluzione software",
+  "dedicatedCloud_list_commercialRange": "Gamma commerciale",
+  "dedicatedCloud_list_zone": "Zona Private Cloud",
+  "dedicatedCloud_list_regionLocation": "Localizzazione",
+  "dedicatedCloud_list_region": "Region",
+  "dedicatedCloud_list_loadLocation_error": "Si è verificato un errore durante il recupero dei dati necessari alla visualizzazione delle informazioni di localizzazione.",
+  "dedicatedCloud_list_softwareSolution_definition_displayName_VSPHERE": "vSphere",
+  "dedicatedCloud_list_softwareSolution_definition_displayName_VCLOUD": "vCloud",
+  "dedicatedCloud_list_softwareSolution_definition_displayName_SYSTEMCENTER": "VMM",
+  "dedicatedCloud_list_softwareSolution_definition_displayName_AZURE": "Azure",
+  "dedicatedCloud_list_softwareSolution_definition_displayName_VCSA": "vCSA",
+  "dedicatedCloud_list_popover_details": "Dettagli"
+}

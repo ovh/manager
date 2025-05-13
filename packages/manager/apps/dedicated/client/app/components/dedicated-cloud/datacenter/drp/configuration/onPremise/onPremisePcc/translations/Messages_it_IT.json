@@ -1,0 +1,5 @@
+{
+  "dedicatedCloud_datacenter_remote_vra_network": "Rete VRA Datacenter on-premise",
+  "dedicatedCloud_datacenter_remote_vra_network_placeholder": "Inserisci la sottorete del vRA remoto",
+  "dedicatedCloud_datacenter_local_vra_network_help": "È possibile scegliere la tua sottorete vRA locale o utilizzare quella proposta da OVHcloud."
+}

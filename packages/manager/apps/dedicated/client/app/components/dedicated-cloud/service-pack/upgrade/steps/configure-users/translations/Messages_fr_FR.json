@@ -1,0 +1,19 @@
+{
+  "dedicatedCloudDashboardTilesOptionsOrderConfigureUsers_stepper_header": "Configurer les utilisateurs",
+
+  "dedicatedCloud_servicePack_configureUsers_noUser": "Au moins l’un de vos utilisateurs administrateur doit posséder un numéro de mobile, une adresse e-mail et être enregistré comme \"token validator\". Cela permet d’activer l’authentification à deux facteurs pour les actions d’administration sur le vCenter. Vous pouvez configurer vos utilisateurs en cliquant sur l’onglet",
+
+  "dedicatedCloud_servicePack_configureUsers_noUser_linkToUserConfiguration": "Utilisateurs.",
+
+  "dedicatedCloud_servicePack_configureUsers_hasUser": "Afin de valider l’activation de l’authentification à deux facteurs, certains de vos utilisateurs recevront un token par SMS.",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_header": "Utilisateurs autorisés à valider des tokens par SMS :",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_userName": "Identifiant",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_firstName": "Prénom",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_lastName": "Nom",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_emailAddress": "Adresse e-mail",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_phoneNumber": "Numéro de téléphone",
+
+  "dedicatedCloud_servicePack_configureUsers_previousButton": "Précédent",
+  "dedicatedCloud_servicePack_configureUsers_checkoutButton": "Valider",
+  "dedicatedCloud_servicePack_configureUsers_nextButton": "Suivant"
+}

@@ -1,0 +1,7 @@
+{
+  "select_checkboxes_placeholder_default": "Wählen Sie eine Option aus",
+  "select_checkboxes_one_item": "1 Item",
+  "select_checkboxes_many_items": "{{ count }} Items",
+  "select_checkboxes_select_all": "Alles auswählen",
+  "select_checkboxes_unselect_all": "Auswahl aufheben"
+}

@@ -1,6 +1,7 @@
 {
   "globals": {
-    "__WEBPACK_REGION__": true,
-    "moment": true
+    "__VERSION__": true,
+    "moment": true,
+    "__NG_APP_INJECTIONS__": true
   }
 }

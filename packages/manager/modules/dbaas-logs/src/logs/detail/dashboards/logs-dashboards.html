@@ -1,0 +1,86 @@
+<section class="log-dashboards">
+    <h3 data-translate="logs_dashboards_title"></h3>
+    <p data-translate="logs_dashboards_description"></p>
+    <oui-datagrid
+        id="dashboards-datagrid"
+        data-rows-loader="ctrl.loadDashboards($config)"
+    >
+        <oui-datagrid-topbar>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary"
+                data-ng-click="ctrl.add()"
+            >
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span data-translate="logs_dashboards_add"></span>
+            </button>
+            <oui-spinner
+                size="s"
+                data-ng-if="ctrl.delete.loading"
+            ></oui-spinner>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            title="::'logs_dashboards_col_name' | translate"
+            data-property="title"
+            sortable="asc"
+            type="string"
+            searchable
+            filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'logs_dashboards_col_description' | translate"
+            property="description"
+            sortable
+            type="string"
+            searchable
+            filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'logs_col_last_modified' | translate"
+            property="updatedAt"
+            sortable
+            type="date"
+        >
+            {{ $row.updatedAt | cucMomentFormat:'L'}}
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'logs_dashboards_col_shared' | translate"
+            property="isEditable"
+            sortable
+            type="string"
+        >
+            <span data-ng-if="!$row.isEditable"
+                >{{ ::'logs_yes' | translate }}</span
+            >
+            <span data-ng-if="$row.isEditable"> - </span>
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
+            <oui-action-menu-item data-on-click="ctrl.openGrayLog($row)">
+                <span data-translate="logs_dashboards_graylog_access"></span>
+                <i
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></i>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                disabled="!$row.isEditable"
+                on-click="ctrl.duplicate($row)"
+                ><span data-translate="logs_dashboards_duplicate"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                disabled="!$row.isEditable"
+                on-click="ctrl.edit($row)"
+                ><span data-translate="logs_edit"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                disabled="!$row.isEditable"
+                on-click="ctrl.showDeleteConfirm($row)"
+                ><span data-translate="logs_delete"></span
+            ></oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+    <div data-ui-view="logsDashboardsCrud"></div>
+</section>

@@ -14,9 +14,9 @@ import template from './product-offers.html';
  *  if more details are required to setup plan code and/or configuration item
  *  list.
  *  The configuration step must be set as following:
- *  <ovh-product-offers
- *      workflowType="'order'"
- *      workflowOptions="$ctrl.workflowOptions"
+ *  <ovh-manager-product-offers
+ *      workflow-type="'order'"
+ *      workflow-options="$ctrl.workflowOptions"
  *      send-current-state="$ctrl.getOrderState(state)"
  *      pricing-type="'renew'"
  *      user="$ctrl.user"
@@ -30,7 +30,7 @@ import template from './product-offers.html';
  *      </oui-field>
  *    </oui-step-form>
  *    // End of configuration step
- *  </ovh-product-offers>
+ *  </ovh-manager-product-offers>
  */
 export default {
   bindings: {

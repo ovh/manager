@@ -4,13 +4,7 @@ import snakeCase from 'lodash/snakeCase';
 angular.module('services').service(
   'HostingUser',
   class HostingUser {
-    /**
-     * Constructor
-     * @param Hosting
-     * @param OvhHttp
-     * @param Poller
-     * @param $rootScope
-     */
+    /* @ngInject */
     constructor(Hosting, OvhHttp, Poller, $rootScope) {
       this.Hosting = Hosting;
       this.OvhHttp = OvhHttp;
@@ -55,14 +49,16 @@ angular.module('services').service(
      * @param {string} login
      * @param {string} password
      * @param {string} home
+     * @param {string} sshState
      */
-    addUser(serviceName, login, password, home) {
+    addUser(serviceName, login, password, home, sshState) {
       return this.OvhHttp.post(`/hosting/web/${serviceName}/user`, {
         rootPath: 'apiv6',
         data: {
           login,
           password,
           home,
+          sshState,
         },
       }).then((resp) => {
         this.Hosting.resetUsers();

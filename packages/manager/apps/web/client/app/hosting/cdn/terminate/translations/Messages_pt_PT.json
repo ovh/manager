@@ -1,0 +1,10 @@
+{
+  "hosting_cdn_terminate_title": "Rescisão do serviço CDN",
+  "hosting_cdn_terminate_question_part_1": "Pretende rescindir o serviço CDN no final da sua subscrição:",
+  "hosting_cdn_terminate_question_part_2": "{{ endEngagementDate }}",
+  "hosting_cdn_terminate_success": "O seu serviço CDN será rescindido a {{ endEngagementDate }}.",
+  "hosting_cdn_terminate_success_link": "Anular a operação.",
+  "hosting_cdn_terminate_error": "Erro ao processar a eliminação da CDN.",
+  "hosting_cdn_terminate_action_delete": "Rescindir",
+  "hosting_cdn_terminate_action_cancel": "Anular"
+}

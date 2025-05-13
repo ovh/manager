@@ -1,0 +1,10 @@
+{
+  "ua_contract_next": "Weiter",
+  "ua_contract_previous": "Zurück",
+  "ua_download_contract": "Den Vertrag \"{{name}}\" als PDF öffnen",
+  "ua_contract_help": "Sie können die Verträge erst akzeptieren, wenn Sie sie vollständig gelesen haben.",
+  "ua_contracts_list_title": "Es sind {{count}} Verträge zur Einsicht verfügbar.",
+  "ua_contract_list_title": "Es ist ein Vertrag einzusehen.",
+  "ua_contracts_agree": "Ich akzeptiere die Verträge",
+  "ua_contract_agree": "Ich akzeptiere den Vertrag"
+}

@@ -1,0 +1,14 @@
+{
+  "description-mongodb": "Dokumentorientiertes Datenbankmanagementsystem",
+  "description-mysql": "Managementsystem für relationale Datenbanken",
+  "description-postgresql": "Managementsystem für relationale Datenbanken und Objekte",
+  "description-redis": "In-Memory-Speichersystem für Key-Value-Daten",
+  "description-cassandra": "Verteiltes NoSQL-Datenspeichersystem",
+  "description-m3db": "Zeitreihen-Speichersystem",
+  "description-m3aggregator": "System zur Aggregation und Wiederholungsprobenahme für Zeitreihen",
+  "versionTag-new": "Neu",
+  "versionTag-soonDeprecated": "Bald veraltet",
+  "selectAVersion": "Version auswählen",
+  "noVersionFound": "Keine Versionen gefunden",
+  "description-valkey": "In-Memory-Speichersystem für Key-Value-Daten"
+}

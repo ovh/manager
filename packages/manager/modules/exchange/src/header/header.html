@@ -1,69 +1,36 @@
-<div class="page-header">
-    <div data-ng-if="$ctrl.isFetchingInitialData" class="text-center">
-        <oui-spinner></oui-spinner>
-    </div>
-    <div data-ng-if="!$ctrl.isFetchingInitialData" class="row">
-        <div class="col-sm-9">
-            <strong
-                data-ng-bind="('exchange_offer_type_' + $ctrl.exchangeService.offer) | translate"
-            ></strong>
-            <div
-                data-ng-if="$ctrl.isSubmittingNewDisplayName"
-                class="text-center"
-            >
+<div class="oui-header">
+    <div class="oui-header__container">
+        <div class="oui-header__content">
+            <div data-ng-if="$ctrl.isFetchingInitialData" class="text-center">
                 <oui-spinner></oui-spinner>
             </div>
-            <div data-ng-if="!$ctrl.isSubmittingNewDisplayName">
-                <div
-                    data-ng-if="!$ctrl.isEditingDisplayName"
-                    class="d-flex align-items-center"
-                >
-                    <h1
-                        class="my-0"
-                        data-ng-bind="$ctrl.remoteDisplayName"
-                    ></h1>
-                    <button
-                        class="oui-button oui-button_icon-alone ml-4"
-                        type="button"
-                        data-ng-click="$ctrl.isEditingDisplayName = true"
+            <div data-ng-if="!$ctrl.isFetchingInitialData" class="row">
+                <div class="col-sm-9">
+                    <strong
+                        data-ng-bind="('exchange_offer_type_' + $ctrl.exchangeService.offer) | translate"
+                    ></strong>
+                    <div
+                        data-ng-if="$ctrl.isSubmittingNewDisplayName"
+                        class="text-center"
                     >
-                        <span
-                            class="oui-icon oui-icon-pen_line oui-icon_small"
-                            aria-hidden="true"
-                        ></span>
-                        <span
-                            class="sr-only"
-                            data-translate="exchange_dashboard_display_name_edit"
-                        ></span>
-                    </button>
-                </div>
-                <form
-                    class="mt-4"
-                    data-ng-if="$ctrl.isEditingDisplayName"
-                    name="$ctrl.displayNameEditionForm"
-                    novalidate
-                    data-ng-submit="$ctrl.submittingDisplayName()"
-                >
-                    <oui-field
-                        data-help-text="{{:: 'exchange_dashboard_display_name_save' | translate }}"
-                    >
-                        <div class="oui-input-group mb-0">
-                            <input
-                                type="text"
-                                class="oui-input"
-                                id="displayName"
-                                name="displayName"
-                                minlength="4"
-                                maxlength="50"
-                                required
-                                data-ng-model="$ctrl.displayNameToUpdate"
-                            />
+                        <oui-spinner></oui-spinner>
+                    </div>
+                    <div data-ng-if="!$ctrl.isSubmittingNewDisplayName">
+                        <div
+                            data-ng-if="!$ctrl.isEditingDisplayName"
+                            class="d-flex align-items-center"
+                        >
+                            <h1
+                                class="my-0"
+                                data-ng-bind="$ctrl.remoteDisplayName"
+                            ></h1>
                             <button
-                                class="oui-button oui-button_small-width"
-                                type="submit"
+                                class="oui-button oui-button_s ml-4"
+                                type="button"
+                                data-ng-click="$ctrl.isEditingDisplayName = true"
                             >
                                 <span
-                                    class="oui-icon oui-icon-success oui-icon_small"
+                                    class="oui-icon oui-icon-pen_concept"
                                     aria-hidden="true"
                                 ></span>
                                 <span
@@ -71,94 +38,136 @@
                                     data-translate="exchange_dashboard_display_name_edit"
                                 ></span>
                             </button>
-                            <button
-                                class="oui-button oui-button_small-width"
-                                type="button"
-                                data-ng-click="$ctrl.cancelEdition()"
+                        </div>
+                        <form
+                            class="mt-4"
+                            data-ng-if="$ctrl.isEditingDisplayName"
+                            name="$ctrl.displayNameEditionForm"
+                            novalidate
+                            data-ng-submit="$ctrl.submittingDisplayName()"
+                        >
+                            <oui-field
+                                data-help-text="{{:: 'exchange_dashboard_display_name_save' | translate }}"
+                            >
+                                <div class="oui-input-group mb-0">
+                                    <input
+                                        type="text"
+                                        class="oui-input"
+                                        id="displayName"
+                                        name="displayName"
+                                        minlength="4"
+                                        maxlength="50"
+                                        required
+                                        data-ng-model="$ctrl.displayNameToUpdate"
+                                        data-ng-pattern="/^[^<>]+$/"
+                                    />
+                                    <button
+                                        class="oui-button oui-button_s"
+                                        type="submit"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-success"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="sr-only"
+                                            data-translate="exchange_dashboard_display_name_edit"
+                                        ></span>
+                                    </button>
+                                    <button
+                                        class="oui-button oui-button_s"
+                                        type="button"
+                                        data-ng-click="$ctrl.cancelEdition()"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-error"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="sr-only"
+                                            data-translate="common_cancel"
+                                        ></span>
+                                    </button>
+                                </div>
+                            </oui-field>
+                        </form>
+                        <span
+                            class="font-italic"
+                            data-ng-bind="$ctrl.exchangeService.domain"
+                            data-ng-if="$ctrl.exchangeService.domain !== $ctrl.exchangeService.displayName"
+                        ></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div
+                        class="d-flex align-items-center flex-wrap gap-1 justify-content-end"
+                    >
+                        <changelog-button
+                            links="$ctrl.constants.CHANGELOG.exchange.links"
+                            chapters="$ctrl.constants.CHANGELOG.exchange.chapters"
+                        ></changelog-button>
+                        <oui-action-menu
+                            class="mt-1"
+                            data-text="{{:: 'common_actions' | translate }}"
+                        >
+                            <oui-action-menu-item
+                                data-ng-if="$ctrl.canSubscribeToOfficeAttach"
+                                href="{{:: $ctrl.URLS.ORDER_OFFICE_LICENCE }}"
+                                top
                             >
                                 <span
-                                    class="oui-icon oui-icon-error oui-icon_small"
-                                    aria-hidden="true"
+                                    data-translate="exchange_tab_INFORMATIONS_order_office"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-ng-if="$ctrl.canSubscribeToOfficeAttach"
+                                data-on-click="$ctrl.navigation.setAction('exchange/office-attach/dialog/office-attach-dialog', $ctrl.exchangeService)"
+                            >
+                                <span
+                                    data-translate="exchange_ACTION_export_accounts_office_attached_button"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-divider
+                                data-ng-if="$ctrl.canSubscribeToSharepoint || $ctrl.canSubscribeToOfficeAttach"
+                            ></oui-action-menu-divider>
+
+                            <oui-action-menu-item
+                                data-on-click="$ctrl.navigation.setAction('exchange/header/license/service-license-history', $ctrl.exchangeService)"
+                            >
+                                <span
+                                    data-translate="exchange_action_license_history_button"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-ng-if="$ctrl.exchangeService.renewOptionAvailable"
+                                data-href="{{:: $ctrl.URLS.AUTORENEW }}"
+                                top
+                            >
+                                <span
+                                    data-translate="exchange_update_billing_button_title"
+                                ></span>
+                            </oui-action-menu-item>
+
+                            <oui-action-menu-divider
+                                data-ng-if="$ctrl.exchangeService.deleteOptionAvailable"
+                            ></oui-action-menu-divider>
+                            <oui-action-menu-item
+                                data-ng-if="$ctrl.exchangeService.deleteOptionAvailable"
+                                data-on-click="$ctrl.navigation.setAction('exchange/header/remove/exchange-remove', $ctrl.exchangeService)"
+                            >
+                                <span
+                                    data-ng-if="$ctrl.exchangeService.renewType.deleteAtExpiration"
+                                    data-translate="exchange_resilitation_action_button_cancel"
                                 ></span>
                                 <span
-                                    class="sr-only"
-                                    data-translate="common_cancel"
+                                    data-ng-if="!$ctrl.exchangeService.renewType.deleteAtExpiration"
+                                    data-translate="exchange_resilitation_action_menu_terminate_button"
                                 ></span>
-                            </button>
-                        </div>
-                    </oui-field>
-                </form>
-                <span
-                    class="font-italic"
-                    data-ng-bind="$ctrl.exchangeService.domain"
-                    data-ng-if="$ctrl.exchangeService.domain !== $ctrl.exchangeService.displayName"
-                ></span>
+                            </oui-action-menu-item>
+                        </oui-action-menu>
+                    </div>
+                </div>
             </div>
         </div>
-        <oui-action-menu
-            class="col-sm-offset-1 col-sm-1"
-            data-text="{{:: 'common_actions' | translate }}"
-        >
-            <oui-action-menu-item
-                data-ng-if="$ctrl.canSubscribeToSharepoint"
-                href="#/configuration/sharepoint/activate/{{:: $ctrl.exchangeService.organization }}/{{:: $ctrl.exchangeService.domain }}"
-            >
-                <span
-                    data-translate="exchange_tab_INFORMATIONS_order_sharepoint"
-                ></span>
-            </oui-action-menu-item>
-            <oui-action-menu-item
-                data-ng-if="$ctrl.canSubscribeToOfficeAttach"
-                href="#/configuration/microsoft/office/license/order"
-            >
-                <span
-                    data-translate="exchange_tab_INFORMATIONS_order_office"
-                ></span>
-            </oui-action-menu-item>
-            <oui-action-menu-item
-                data-ng-if="$ctrl.canSubscribeToOfficeAttach"
-                data-on-click="$ctrl.navigation.setAction('exchange/office-attach/dialog/office-attach-dialog', $ctrl.exchangeService)"
-            >
-                <span
-                    data-translate="exchange_ACTION_export_accounts_office_attached_button"
-                ></span>
-            </oui-action-menu-item>
-            <oui-action-menu-divider
-                data-ng-if="$ctrl.canSubscribeToSharepoint || $ctrl.canSubscribeToOfficeAttach"
-            ></oui-action-menu-divider>
-
-            <oui-action-menu-item
-                data-on-click="$ctrl.navigation.setAction('exchange/header/license/service-license-history', $ctrl.exchangeService)"
-            >
-                <span
-                    data-translate="exchange_action_license_history_button"
-                ></span>
-            </oui-action-menu-item>
-            <oui-action-menu-item
-                data-ng-if="$ctrl.exchangeService.renewOptionAvailable"
-                data-href="{{:: $ctrl.AUTORENEW_URL + $ctrl.exchangeService.domain }}"
-            >
-                <span
-                    data-translate="exchange_update_billing_button_title"
-                ></span>
-            </oui-action-menu-item>
-
-            <oui-action-menu-divider
-                data-ng-if="$ctrl.exchangeService.deleteOptionAvailable"
-            ></oui-action-menu-divider>
-            <oui-action-menu-item
-                data-ng-if="$ctrl.exchangeService.deleteOptionAvailable"
-                data-on-click="$ctrl.navigation.setAction('exchange/header/remove/exchange-remove', $ctrl.exchangeService)"
-            >
-                <span
-                    data-ng-if="$ctrl.exchangeService.renewType.deleteAtExpiration"
-                    data-translate="exchange_resilitation_action_button_cancel"
-                ></span>
-                <span
-                    data-ng-if="!$ctrl.exchangeService.renewType.deleteAtExpiration"
-                    data-translate="exchange_resilitation_action_button"
-                ></span>
-            </oui-action-menu-item>
-        </oui-action-menu>
     </div>
 </div>

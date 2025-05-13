@@ -1,0 +1,74 @@
+<div class="telecom-telephony-line-phone-accessories-shipping">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div class="widget-presentation">
+        <h2
+            class="widget-presentation-title"
+            data-translate="telephony_line_phone_accessories_shipping_title"
+        ></h2>
+        <div class="row" data-ng-if="!$ctrl.loading.init">
+            <!-- CONTACT CHOICE -->
+            <div class="contact-choice col-xs-12 col-md-6">
+                <h3
+                    data-translate="telephony_line_phone_accessories_shipping_contact"
+                    class="mb-3"
+                ></h3>
+
+                <ovh-contact
+                    data-ng-model="$ctrl.process.shipping.contact"
+                    data-ovh-contact-choice-options="$ctrl.contactChoiceOptions"
+                    data-ovh-contact-init-deferred="$ctrl.contactDeferred"
+                >
+                    <oui-spinner></oui-spinner>
+                </ovh-contact>
+            </div>
+            <!-- CONTACT CHOICE -->
+        </div>
+
+        <!-- SHIPPING MODE CHOICE -->
+        <div
+            class="shipping-choice mt-3"
+            data-ng-if="!$ctrl.process.shipping.contact.inEdition && !$ctrl.loading.init"
+        >
+            <h3
+                data-translate="telephony_line_phone_accessories_shipping_mode"
+                class="mb-3"
+            ></h3>
+
+            <tuc-shipping-mode-selection
+                data-ng-model="$ctrl.process.shipping.mode"
+                data-tuc-shipping-mode-selection-relay="$ctrl.process.shipping.relay"
+                data-tuc-shipping-mode-selection-options="$ctrl.shippingOptions"
+            >
+            </tuc-shipping-mode-selection>
+        </div>
+        <!-- SHIPPING MODE CHOICE -->
+
+        <br />
+        <hr class="oui-horizontal-line_dark" />
+
+        <form
+            data-ng-if="!$ctrl.process.shipping.contact.inEdition"
+            data-ng-submit="$ctrl.submit()"
+            novalidate
+        >
+            <div class="footer-button-container clearfix mt-3 mb-4">
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    data-translate="telephony_line_phone_accessories_shipping_validate"
+                    data-ng-disabled="($ctrl.process.shipping.mode === 'mondialRelay' && !$ctrl.process.shipping.relay) || !$ctrl.process.shipping.contact"
+                ></button>
+
+                <button
+                    type="reset"
+                    class="btn btn-default"
+                    data-translate="telephony_line_phone_accessories_previous"
+                    data-ng-click="$ctrl.goBack()"
+                ></button>
+            </div>
+        </form>
+    </div>
+</div>

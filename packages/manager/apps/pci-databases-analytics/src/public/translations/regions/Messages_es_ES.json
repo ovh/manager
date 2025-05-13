@@ -1,0 +1,8 @@
+{
+  "region_MUM": "Mumbai",
+  "region_MUM_micro": "Mumbai ({{ micro }})",
+  "region_location_SGP": "Asia-Pacífico (Singapur)",
+  "region_location_MUM": "Asia-Pacífico (Mumbai)",
+  "region_continent_SGP": "Asia-Pacífico",
+  "region_continent_MUM": "Asia-Pacífico"
+}

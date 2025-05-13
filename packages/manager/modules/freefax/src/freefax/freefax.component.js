@@ -5,9 +5,10 @@ import '@ovh-ux/manager-telecom-styles';
 import '@ovh-ux/ng-ui-router-title';
 import ngOvhUiConfirmModal from '@ovh-ux/ng-ovh-ui-confirm-modal';
 import 'ovh-api-services';
+import ovhManagerAdvices from '@ovh-ux/manager-advices';
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 import credit from './credit';
 import faxConfiguration from './faxConfiguration';
@@ -31,11 +32,15 @@ export default angular
     faxConfiguration,
     notifications,
     voicemailConfiguration,
+    ovhManagerAdvices,
   ])
   .component('ovhManagerFreefaxComponent', {
     template,
     controller,
     controllerAs: 'FreeFax',
+    bindings: {
+      serviceName: '<',
+    },
   })
   .run(
     /* @ngInject */ ($templateCache) => {
@@ -54,6 +59,8 @@ export default angular
         format: 'json',
       },
       resolve: {
+        serviceName: /* @ngInject */ ($transition$) =>
+          $transition$.params().serviceName,
         $title(translations, $translate, $stateParams) {
           return $translate.instant(
             'freefax_page_title',
@@ -63,6 +70,7 @@ export default angular
             'escape',
           );
         },
+        breadcrumb: /* @ngInject */ (serviceName) => serviceName,
       },
       component: 'ovhManagerFreefaxComponent',
     });

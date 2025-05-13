@@ -1,0 +1,14 @@
+{
+  "overTheBox_actions_list": "Liste des actions",
+  "overTheBox_actions_id": "ID",
+  "overTheBox_actions_name": "Nom",
+  "overTheBox_actions_status": "Statut",
+  "overTheBox_no_task": "Aucune action",
+  "overTheBox_actions_status_todo": "À faire",
+  "overTheBox_actions_status_doing": "En cours",
+  "overTheBox_actions_status_done": "Terminée",
+  "overTheBox_actions_status_error": "Erreur",
+  "overTheBox_actions_created_date": "Date de création",
+  "overTheBox_actions_updated_date": "Date de mise à jour",
+  "overTheBox_actions_refresh": "Actualiser"
+}

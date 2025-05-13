@@ -1,16 +1,28 @@
-<cui-page-header
-    data-title-text="VeeamCloudConnectDashboardHeaderCtrl.serviceName"
->
-    <cui-tabs>
-        <cui-tab
-            data-text="'veeam_tab_dashboard' | translate"
-            data-state="veeam-cloud-connect.detail.dashboard"
-            data-state-params="{ serviceName: VeeamCloudConnectDashboardHeaderCtrl.serviceName }"
-        ></cui-tab>
-        <cui-tab
-            data-text="'veeam_tab_storage' | translate"
-            data-state="veeam-cloud-connect.detail.storage"
-            data-state-params="{ serviceName: VeeamCloudConnectDashboardHeaderCtrl.serviceName }"
-        ></cui-tab>
-    </cui-tabs>
-</cui-page-header>
+<oui-header>
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{ VeeamCloudConnectDashboardHeaderCtrl.serviceName }}"
+            ></h1>
+            <changelog-button
+                links="VeeamCloudConnectDashboardHeaderCtrl.constants.CHANGELOG.veeam_cloud_connect.links"
+                chapters="VeeamCloudConnectDashboardHeaderCtrl.constants.CHANGELOG.veeam_cloud_connect.chapters"
+            ></changelog-button>
+        </div>
+    </oui-header-heading>
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            state="veeam-cloud-connect.detail.dashboard"
+            state-params="{ serviceName: VeeamCloudConnectDashboardHeaderCtrl.serviceName }"
+        >
+            <span data-translate="veeam_tab_dashboard"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            state="veeam-cloud-connect.detail.storage"
+            state-params="{ serviceName: VeeamCloudConnectDashboardHeaderCtrl.serviceName }"
+        >
+            <span data-translate="veeam_tab_storage"></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+</oui-header>

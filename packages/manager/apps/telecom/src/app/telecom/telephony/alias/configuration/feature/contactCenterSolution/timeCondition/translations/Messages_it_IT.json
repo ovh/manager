@@ -7,7 +7,7 @@
   "telephony_alias_config_contactCenterSolution_timeCondition_disabled": "Disattivate",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_opening": "Horaires d’ouverture",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_closing": "Horaires de fermeture",
-  "telephony_alias_config_contactCenterSolution_timeCondition_slot_internal": "Rediriger vers une ligne ou un numéro OVH",
+  "telephony_alias_config_contactCenterSolution_timeCondition_slot_internal": "Reindirizza verso una linea o un numero OVHcloud",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_opening_help": "Créneaux durant lesquels il est possible de vous joindre en appliquant la file d’appels configurée.",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_closing_help": "Créneaux supplémentaires durant lesquels l’appelant sera redirigé vers un autre numéro ou un répondeur.",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_custom_help": "Créneaux supplémentaires durant lesquels l’appelant sera redirigé vers un autre numéro ou un répondeur.",
@@ -22,5 +22,6 @@
   "telephony_line_calls_time_condition_bulk_all_success": "La configurazione delle fasce orarie è stata correttamente applicata ai servizi selezionati.",
   "telephony_line_calls_time_condition_bulk_some_success": "La configurazione delle fasce orarie è stata correttamente applicata a {{ count }} dei servizi selezionati.",
   "telephony_line_calls_time_condition_bulk_error": "Impossibile applicare la configurazione delle fasce orarie a questi servizi:",
-  "telephony_line_calls_time_condition_bulk_on_error": "Ops! Si è verificato un errore durante l'applicazione della configurazione delle fasce orarie."
+  "telephony_line_calls_time_condition_bulk_on_error": "Ops! Si è verificato un errore durante l'applicazione della configurazione delle fasce orarie.",
+  "telephony_alias_config_contactCenterSolution_timeCondition": "Fasce orarie e chiusure"
 }

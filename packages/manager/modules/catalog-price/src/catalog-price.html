@@ -1,74 +1,170 @@
-<span data-ng-if="::$ctrl.price">
-    <span data-ng-if="::$ctrl.isAsiaFormat()">
-        <strong data-ng-class="{ 'd-block': $ctrl.block }">
+<span data-ng-if="!$ctrl.fromToPrice">
+    <span data-ng-if="::$ctrl.price || $ctrl.showZeroPrice">
+        <span data-ng-if="::$ctrl.isAsiaFormat()">
+            <strong data-ng-class="{ 'd-block': $ctrl.block }">
+                <span
+                    data-translate="order_catalog_price_gst_excl_label"
+                    data-translate-values="{ price: $ctrl.getPriceText($ctrl.price) }"
+                ></span>
+                <span data-ng-if="$ctrl.interval">
+                    &#47;
+                    <span
+                        data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"
+                    ></span>
+                </span>
+                <span data-ng-if="$ctrl.intervalUnit">
+                    &#47;
+                    <span
+                        data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.intervalUnit }}"
+                    ></span>
+                </span>
+            </strong>
+            <small
+                data-ng-if="::!$ctrl.isUndefined($ctrl.tax)"
+                data-ng-class="{ 'd-block': $ctrl.block, 'text-decoration-line-through': $ctrl.beta }"
+            >
+                (<span
+                    data-translate="order_catalog_price_gst_incl_label"
+                    data-translate-values="{ price: $ctrl.getPriceText($ctrl.price + $ctrl.tax) }"
+                >
+                </span
+                >)
+            </small>
             <span
-                data-ng-bind="{{'order_catalog_price_gst_excl_label' | translate}}"
-                data-translate-values="{ price: $ctrl.getPriceText($ctrl.price) }"
+                data-ng-if="$ctrl.beta"
+                class="oui-badge oui-badge_s oui-badge_success"
+                data-translate="order_catalog_price_beta_free"
             ></span>
-            <span data-ng-if="$ctrl.interval">
+        </span>
+        <span data-ng-if="::$ctrl.isFrenchFormat()">
+            <strong
+                data-ng-class="{ 'd-block': $ctrl.block, 'text-decoration-line-through': $ctrl.beta  }"
+            >
+                <span
+                    data-translate="order_catalog_price_tax_excl_label"
+                    data-translate-values="{ price: $ctrl.getPriceText($ctrl.price) }"
+                ></span>
+                <span data-ng-if="$ctrl.interval">
+                    &#47;
+                    <span
+                        data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"
+                    ></span>
+                </span>
+                <span data-ng-if="$ctrl.intervalUnit">
+                    &#47;
+                    <span
+                        data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.intervalUnit }}"
+                    ></span>
+                </span>
+            </strong>
+            <small
+                data-ng-if="::!$ctrl.isUndefined($ctrl.tax)"
+                data-ng-class="{ 'd-block': $ctrl.block, 'text-decoration-line-through': $ctrl.beta  }"
+            >
+                (<span
+                    data-translate="order_catalog_price_tax_incl_label"
+                    data-translate-values="{ price: $ctrl.getPriceText($ctrl.price + $ctrl.tax) }"
+                >
+                </span
+                >)
+            </small>
+            <span
+                data-ng-if="$ctrl.beta"
+                class="oui-badge oui-badge_s oui-badge_success"
+                data-translate="order_catalog_price_beta_free"
+            ></span>
+        </span>
+        <strong
+            data-ng-if="::$ctrl.isGermanFormat()"
+            data-ng-class="{ 'd-block': $ctrl.block }"
+        >
+            <span
+                data-ng-bind="$ctrl.getPriceText($ctrl.price + $ctrl.tax)"
+                data-ng-class="{ 'text-decoration-line-through': $ctrl.beta }"
+            ></span>
+            <span
+                data-ng-if="$ctrl.interval"
+                data-ng-class="{ 'text-decoration-line-through': $ctrl.beta }"
+            >
                 &#47;
                 <span
                     data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"
                 ></span>
             </span>
-        </strong>
-        <small data-ng-class="{ 'd-block': $ctrl.block }">
-            (<span
-                data-translate="order_catalog_price_gst_incl_label"
-                data-translate-values="{ price: $ctrl.getPriceText($ctrl.price + $ctrl.tax) }"
-            >
-            </span
-            >)
-        </small>
-    </span>
-    <span data-ng-if="::$ctrl.isFrenchFormat()">
-        <strong data-ng-class="{ 'd-block': $ctrl.block }">
             <span
-                data-translate="order_catalog_price_tax_excl_label"
-                data-translate-values="{ price: $ctrl.getPriceText($ctrl.price) }"
+                data-ng-if="$ctrl.intervalUnit"
+                data-ng-class="{ 'text-decoration-line-through': $ctrl.beta }"
+            >
+                &#47;
+                <span
+                    data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.intervalUnit }}"
+                ></span>
+            </span>
+            <span
+                data-ng-if="$ctrl.beta"
+                class="oui-badge oui-badge_s oui-badge_success"
+                data-translate="order_catalog_price_beta_free"
             ></span>
-            <span data-ng-if="$ctrl.interval">
+        </strong>
+        <strong
+            data-ng-if="::$ctrl.isUSFormat()"
+            data-ng-class="{ 'd-block': $ctrl.block }"
+        >
+            <span
+                data-ng-bind="$ctrl.getPriceText($ctrl.price)"
+                data-ng-class="{ 'text-decoration-line-through': $ctrl.beta }"
+            ></span>
+            <span
+                data-ng-if="$ctrl.interval"
+                data-ng-class="{ 'text-decoration-line-through': $ctrl.beta }"
+            >
                 &#47;
                 <span
                     data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"
                 ></span>
             </span>
-        </strong>
-        <small data-ng-class="{ 'd-block': $ctrl.block }">
-            (<span
-                data-translate="order_catalog_price_tax_incl_label"
-                data-translate-values="{ price: $ctrl.getPriceText($ctrl.price + $ctrl.tax) }"
+            <span
+                data-ng-if="$ctrl.intervalUnit"
+                data-ng-class="{ 'text-decoration-line-through': $ctrl.beta }"
             >
-            </span
-            >)
-        </small>
+                &#47;
+                <span
+                    data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.intervalUnit }}"
+                ></span>
+            </span>
+            <span
+                data-ng-if="$ctrl.beta"
+                class="oui-badge oui-badge_s oui-badge_success"
+                data-translate="order_catalog_price_beta_free"
+            ></span>
+        </strong>
     </span>
     <strong
-        data-ng-if="::$ctrl.isGermanFormat()"
-        data-ng-class="{ 'd-block': $ctrl.block }"
+        data-ng-if="::!($ctrl.price || $ctrl.showZeroPrice)"
+        data-translate="order_catalog_price_free"
     >
-        <span
-            data-ng-bind="::$ctrl.getPriceText($ctrl.price + $ctrl.tax)"
-        ></span>
-        <span data-ng-if="$ctrl.interval">
-            &#47;
-            <span
-                data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"
-            ></span>
-        </span>
-    </strong>
-    <strong
-        data-ng-if="::$ctrl.isUSFormat()"
-        data-ng-class="{ 'd-block': $ctrl.block }"
-    >
-        <span data-ng-bind="::$ctrl.getPriceText($ctrl.price)"></span>
-        <span data-ng-if="$ctrl.interval">
-            &#47;
-            <span
-                data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"
-            ></span>
-        </span>
     </strong>
 </span>
-<strong data-ng-if="::!$ctrl.price" data-translate="order_catalog_price_free">
-</strong>
+
+<!--CASE CDN PAYABLE (CDN1 payed)-->
+<span data-ng-if="::$ctrl.price && $ctrl.fromToPrice">
+    <strong data-ng-class="{ 'd-block': $ctrl.block }">
+        <span data-translate="order_catalog_price_from"></span>
+        <span
+            data-translate="order_catalog_price_tax_incl_label"
+            data-translate-values="{ price: $ctrl.getPriceText($ctrl.fromToPrice.price + $ctrl.fromToPrice.tax) }"
+        >
+        </span>
+        <span data-ng-if="$ctrl.interval">
+            &#47;
+            <span
+                data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"
+            ></span>
+        </span>
+        <span data-translate="order_catalog_price_to"></span>
+        <span
+            data-translate="order_catalog_price_tax_incl_label"
+            data-translate-values="{ price: $ctrl.getPriceText($ctrl.price + $ctrl.tax) }"
+        ></span>
+    </strong>
+</span>

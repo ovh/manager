@@ -17,9 +17,9 @@ angular
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider
-        .state('network.iplb.detail.vrack', {
+        .state('iplb.detail.vrack', {
           url: '/vrack',
-          redirectTo: 'network.iplb.detail.vrack.home',
+          redirectTo: 'iplb.detail.vrack.home',
           views: {
             iplbHeader: {
               template: IplbHeaderTemplate,
@@ -34,9 +34,13 @@ angular
             value: ['../frontends'],
             format: 'json',
           },
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_vrack_title'),
+          },
         })
-        .state('network.iplb.detail.vrack.home', {
-          url: '/',
+        .state('iplb.detail.vrack.home', {
+          url: '',
           views: {
             iplbVrack: {
               template: IplbVrackTemplate,
@@ -48,8 +52,11 @@ angular
             value: ['../vrack'],
             format: 'json',
           },
+          resolve: {
+            breadcrumb: () => null,
+          },
         })
-        .state('network.iplb.detail.vrack.add', {
+        .state('iplb.detail.vrack.add', {
           url: '/add',
           views: {
             iplbVrack: {
@@ -62,19 +69,39 @@ angular
             value: ['../frontends'],
             format: 'json',
           },
+          resolve: {
+            goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_vrack_private_network_add'),
+          },
         })
-        .state('network.iplb.detail.vrack.edit', {
+        .state('iplb.detail.vrack.dashboard', {
           url: '/:networkId',
+          redirectTo: 'iplb.detail.vrack',
           views: {
             iplbVrack: {
-              template: IplbVrackEditTemplate,
-              controller: 'IpLoadBalancerVrackEditCtrl',
-              controllerAs: '$ctrl',
+              template: '<div ui-view></div>',
             },
           },
+          resolve: {
+            networkId: /* @ngInject */ ($transition$) =>
+              $transition$.params().networkId,
+            breadcrumb: /* @ngInject */ (networkId) => networkId,
+          },
+        })
+        .state('iplb.detail.vrack.dashboard.edit', {
+          url: '/update',
+          template: IplbVrackEditTemplate,
+          controller: 'IpLoadBalancerVrackEditCtrl',
+          controllerAs: '$ctrl',
           translations: {
             value: ['../frontends'],
             format: 'json',
+          },
+          resolve: {
+            goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_vrack_private_network_edit_title'),
           },
         });
     },

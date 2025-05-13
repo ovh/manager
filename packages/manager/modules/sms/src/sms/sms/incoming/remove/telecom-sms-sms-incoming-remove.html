@@ -33,7 +33,10 @@
             <dd data-ng-bind="IncomingRemoveCtrl.incomingSms.sender"></dd>
 
             <dt data-translate="sms_sms_incoming_label_message"></dt>
-            <dd data-ng-bind="IncomingRemoveCtrl.incomingSms.message"></dd>
+            <dd
+                class="text-truncate"
+                data-ng-bind="IncomingRemoveCtrl.incomingSms.message"
+            ></dd>
         </dl>
     </div>
 

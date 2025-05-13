@@ -1,0 +1,40 @@
+.telephony-service-choice {
+  .section-item {
+    border-top: none !important;
+  }
+
+  .btn {
+    padding: 5px 13px;
+  }
+
+  .search-results {
+    margin-top: 8px !important;
+
+    label {
+      position: relative;
+      padding-left: 50px !important;
+
+      input {
+        &[type='radio'] {
+          position: absolute;
+          top: 25px;
+          left: 15px;
+        }
+      }
+    }
+  }
+
+  .telephony-service-choice-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .telephony-service-choice-section {
+    flex-grow: 1;
+    overflow: auto;
+  }
+
+  .telephony-service-choice-footer {
+    align-self: end;
+  }
+}

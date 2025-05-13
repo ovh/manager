@@ -1,0 +1,9 @@
+{
+  "purchaseOrders_modal_title": "Wyłącz",
+  "purchaseOrders_modal_content": "Czy na pewno chcesz wyłączyć Twoje wewnętrzne oznaczenie referencyjne? Jeśli je wyłączysz, nie będzie ono widoczne na kolejnych fakturach.",
+  "purchaseOrders_modal_primary_action": "Zatwierdź",
+  "purchaseOrders_modal_secondary_action": "Anuluj",
+  "purchaseOrders_confirmation_desactivation_REFERENCE_ORDER_success": "Twoje wewnętrzne oznaczenie referencyjne zostało wyłączone.",
+  "purchaseOrders_confirmation_desactivation_PURCHASE_ORDER_success": "Twój „purchase order” został wyłączony.",
+  "purchaseOrders_confirmation_desactivation_error": "Twoja dyspozycja nie mogła zostać przyjęta. Spróbuj później."
+}

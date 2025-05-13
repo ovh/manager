@@ -1,0 +1,18 @@
+{
+  "cluster_error_bandwidth_order": "Bei der Bandbreitenbestellung ist ein Fehler aufgetreten: {{error}}",
+  "cluster_order_bandwidth_vrack_title": "Bandbreite bestellen",
+  "cluster_order_bandwidth_ready": "Ihre Bestellung ist fertig. Sofern der Zahlungsprozess abgeschlossen ist, sollte die Bandbreite in Kürze verfügbar sein.",
+  "cluster_order_bandwidth_see_order": "Bestellschein anzeigen",
+  "cluster_order_bandwidth_vrack_load": "Angebote werden geladen...",
+  "cluster_order_bandwidth_empty_plans": "Es konnte kein Angebot zum Upgraden gefunden werden",
+  "select_bandwidth_type_label": "Wählen Sie ein Angebot aus",
+  "select_bandwidth_vrack_type_label": "Wählen Sie ein Angebot aus",
+  "select_bandwidth_plan_summary": "Bestellübersicht",
+  "cluster_order_bandwidth_declaration": "Das Verlängerungsdatum Ihrer Option wird an das Ihres Servers angepasst. Der angezeigte Betrag entspricht dem ersten Abrechnungsmonat Ihrer Option, der anteilig für den laufenden Monat berechnet wird.",
+  "cluster_order_bandwidth_info": "Der angezeigte Betrag entspricht dem Betrag für die nächste Verlängerung Ihrer Option.",
+  "cluster_order_bandwidth_warning": "Die Änderung Ihrer Bandbreite wird einige Minuten nach Aktivierung der Option angewendet.",
+  "cluster_order_bandwidth_auto_pay": "Mit dem Standardzahlungsmittel bezahlen",
+  "plan_price_per_month": "/ Monat (zzgl. MwSt.)",
+  "wizard_pay": "Bezahlen",
+  "wizard_close": "Schließen"
+}

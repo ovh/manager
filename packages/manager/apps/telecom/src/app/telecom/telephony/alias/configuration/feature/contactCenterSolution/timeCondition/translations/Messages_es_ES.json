@@ -7,7 +7,7 @@
   "telephony_alias_config_contactCenterSolution_timeCondition_disabled": "Desactivadas",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_opening": "Horaires d’ouverture",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_closing": "Horaires de fermeture",
-  "telephony_alias_config_contactCenterSolution_timeCondition_slot_internal": "Rediriger vers une ligne ou un numéro OVH",
+  "telephony_alias_config_contactCenterSolution_timeCondition_slot_internal": "Redirigir hacia una línea o un número de OVHcloud",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_opening_help": "Créneaux durant lesquels il est possible de vous joindre en appliquant la file d’appels configurée.",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_closing_help": "Créneaux supplémentaires durant lesquels l’appelant sera redirigé vers un autre numéro ou un répondeur.",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_custom_help": "Créneaux supplémentaires durant lesquels l’appelant sera redirigé vers un autre numéro ou un répondeur.",
@@ -22,5 +22,6 @@
   "telephony_line_calls_time_condition_bulk_all_success": "La configuration des plages horaires a bien été appliquée aux services sélectionnés.",
   "telephony_line_calls_time_condition_bulk_some_success": "La configuration des plages horaires a bien été appliquée à {{ count }} des services sélectionnés.",
   "telephony_line_calls_time_condition_bulk_error": "La configuration des plages horaires n'a pas pu être appliquée au(x) service(s) suivant(s) :",
-  "telephony_line_calls_time_condition_bulk_on_error": "Oups ! Une erreur est survenue lors de l'application de la configuration des plages horaires."
+  "telephony_line_calls_time_condition_bulk_on_error": "Oups ! Une erreur est survenue lors de l'application de la configuration des plages horaires.",
+  "telephony_alias_config_contactCenterSolution_timeCondition": "Rangos horarios y horas de cierre"
 }

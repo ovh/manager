@@ -1,0 +1,14 @@
+{
+  "pci_database_password_label": "Palavra-passe",
+  "pci_database_password_description": "Uma palavra-passe é necessária para estabelecer ligação ao seu cluster",
+  "pci_database_password_placeholder": "Insira uma palavra-passe",
+  "pci_database_password_help": "A sua palavra-passe deve conter pelo menos 2 números, deve ser alfanumérica e conter entre 8 e 32 caracteres.",
+  "pci_database_password_help_strength": "A sua palavra-passe não é forte o suficiente",
+  "pci_database_password_help_alphanumeric": "Deve ser alfanumérica [A-Za-z0-9]",
+  "pci_database_password_help_upper_case": "Deve conter pelo menos uma maiúscula",
+  "pci_database_password_help_number": "Deve conter pelo menos dois números",
+  "pci_database_password_help_length": "Deve conter entre 8 e 32 caracteres",
+  "pci_database_password_confirm_label": "Confirmar a sua palavra-passe",
+  "pci_database_password_confirm_placeholder": "Repetir a palavra-passe",
+  "pci_database_password_confirm_error": "As palavras-passe não correspondem"
+}

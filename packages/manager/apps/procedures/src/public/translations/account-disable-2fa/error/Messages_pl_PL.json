@@ -1,0 +1,5 @@
+{
+  "account-disable-2fa-error-validation": "Mamy problem z potwierdzeniem, że nie jesteś robotem.",
+  "account-disable-2fa-error-verification": "Sprawdź, czy nie masz zablokowanych ramek iframe, czy coś nie uniemożliwia obsługi Javascript lub czy w przeglądarce zainstalowano obsługę skryptów Javascript w „trybie ścisłym” (<i>strict mode</i>).",
+  "account-disable-2fa-error-suggestion": "W przypadku wystąpienia problemów możesz ponownie przetestować żądanie w nowej przeglądarce bez ustawień niestandardowych czy rozszerzeń."
+}

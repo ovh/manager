@@ -1,38 +1,38 @@
-// set environment
-import { Environment } from '@ovh-ux/manager-config';
-
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
-import 'babel-polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import angular from 'angular';
 import ngAnimate from 'angular-animate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import 'jquery-ui/ui/widget';
 import 'jquery-ui/ui/widgets/mouse';
 import 'jquery-ui/ui/widgets/draggable';
-import 'script-loader!moment/min/moment-with-locales.min.js';
+import 'script-loader!moment/min/moment.min.js';
 import 'script-loader!angular-ui-validate/dist/validate.js';
-import 'ovh-ui-angular';
-import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min';
+import '@ovh-ux/ui-kit';
+import 'script-loader!clipboard/dist/clipboard.min.js';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
+import * as dateFnsLocales from 'date-fns/locale';
 import get from 'lodash/get';
 import has from 'lodash/has';
+import isString from 'lodash/isString';
 
-import navbar from '@ovh-ux/manager-navbar';
-import ovhManagerCore from '@ovh-ux/manager-core';
-import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
+import { registerCoreModule } from '@ovh-ux/manager-core';
 import ovhManagerPci from '@ovh-ux/manager-pci';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
-import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
+import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import '@ovh-ux/ng-at-internet';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
-import atInternet from './components/at-internet';
-import darkMode from './components/dark-mode';
+import { LINK_PREFIX } from './index.constants';
+import { initAtInternet } from './components/at-internet';
 
 import './assets/theme/default/index.less';
 import './index.scss';
@@ -41,70 +41,195 @@ import controller from './index.controller';
 import service from './index.service';
 import routing from './index.routes';
 
-Environment.setVersion(__VERSION__);
+const getEnvironment = (shellClient) => {
+  return shellClient.environment.getEnvironment();
+};
 
-const moduleName = 'ovhPublicCloudApp';
-angular
-  .module(
-    moduleName,
-    [
-      ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
-      atInternet,
-      darkMode,
-      ngAnimate,
-      ngUiRouterBreadcrumb,
-      ngUiRouterLineProgress,
-      ngOvhApiWrappers,
-      ngOvhUserPref,
-      navbar,
-      'oui',
-      ovhManagerCore,
-      ovhManagerMfaEnrollment,
-      ovhManagerPci,
-      uiRouter,
-    ].filter((value) => value !== null),
-  ) // Remove null because __NG_APP_INJECTIONS__ can be null
-  .controller('PublicCloudController', controller)
-  .service('publicCloud', service)
-  .config(
-    /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
-  )
-  .config(routing)
-  .config(
-    /* @ngInject */ (TranslateServiceProvider) => {
-      const defaultLanguage = TranslateServiceProvider.getUserLocale();
-      // set moment locale
-      moment.locale(defaultLanguage.split('_')[0]);
+const getLocale = (shellClient) => {
+  return shellClient.i18n.getLocale();
+};
+
+const shouldHidePreloader = (transition) =>
+  !transition.to().name.startsWith(LINK_PREFIX);
+
+export default async (containerEl, shellClient) => {
+  const moduleName = 'ovhPublicCloudApp';
+
+  const [environment, locale] = await Promise.all([
+    getEnvironment(shellClient),
+    getLocale(shellClient),
+  ]);
+
+  const coreCallbacks = {
+    onLocaleChange: (lang) => {
+      shellClient.i18n.setLocale(lang);
     },
-  )
-  .run(
-    /* @ngInject */ ($state) => {
-      $state.defaultErrorHandler((error) => {
-        if (error.type === RejectType.ERROR) {
-          $state.go(
-            'pci.error',
-            {
-              detail: {
-                message: get(error.detail, 'data.message'),
-                code: has(error.detail, 'headers')
-                  ? error.detail.headers('x-ovh-queryId')
-                  : null,
-              },
-            },
-            { location: false },
-          );
+  };
+
+  const getDateFnsLocale = (language) => {
+    if (language === 'en_GB') {
+      return 'enGB';
+    }
+    if (language === 'fr_CA') {
+      return 'frCA';
+    }
+    const [loc] = language.split('_');
+    return loc;
+  };
+
+  angular
+    .module(
+      moduleName,
+      [
+        ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
+        initAtInternet(environment.getRegion(), shellClient.tracking),
+        ngAnimate,
+        ngUiRouterBreadcrumb,
+        ngOvhApiWrappers,
+        ngOvhFeatureFlipping,
+        ngOvhPaymentMethod,
+        ngOvhUserPref,
+        'oui',
+        registerCoreModule(environment, coreCallbacks),
+        ovhManagerPci,
+        uiRouter,
+      ].filter(isString),
+    ) // Remove null because __NG_APP_INJECTIONS__ can be null
+    .controller('PublicCloudController', controller)
+    .service('publicCloud', service)
+    .config(
+      /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
+    )
+    .config(
+      /* @ngInject */ (ssoAuthenticationProvider) => {
+        ssoAuthenticationProvider.setOnLogin(() => {
+          shellClient.auth.login();
+        });
+        ssoAuthenticationProvider.setOnLogout(() => {
+          shellClient.auth.logout();
+        });
+      },
+    )
+    .constant('DATEFNS_LOCALE', dateFnsLocales[getDateFnsLocale(locale)])
+    .constant('ovhShell', shellClient)
+    .config(
+      /* @ngInject */ (ovhFeatureFlippingProvider) => {
+        ovhFeatureFlippingProvider.setApplicationName(
+          environment.getApplicationName(),
+        );
+      },
+    )
+    .config(routing)
+    .config(
+      /* @ngInject */ (ovhPaymentMethodProvider) => {
+        ovhPaymentMethodProvider.setUserLocale(locale);
+      },
+    )
+    .run(
+      /* @ngInject */ ($translate) => {
+        let lang = $translate.use();
+
+        if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
+          lang = lang.toLowerCase().replace('_', '-');
+        } else {
+          [lang] = lang.split('_');
         }
-      });
-    },
-  )
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(
-    /* @ngInject */ ($rootScope, $transitions) => {
-      const unregisterHook = $transitions.onSuccess({}, () => {
-        detachPreloader();
-        unregisterHook();
-      });
-    },
-  );
 
-export default moduleName;
+        return import(`script-loader!moment/locale/${lang}.js`).then(() =>
+          moment.locale(lang),
+        );
+      },
+    )
+    .config(
+      /* @ngInject */ (ouiCalendarConfigurationProvider) => {
+        const [lang] = locale.split('_');
+        return import(`flatpickr/dist/l10n/${lang}.js`)
+          .then((module) => {
+            ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
+          })
+          .catch(() => {});
+      },
+    )
+    .run(
+      /* @ngInject */ ($rootScope, $state, $transitions) => {
+        $transitions.onError({}, (transition) => {
+          const error = transition.error();
+          if (error.type === RejectType.ERROR) {
+            $rootScope.$emit('ovh::sidebar::hide');
+            $state.go(
+              'pci.error',
+              {
+                detail: {
+                  message: get(error.detail, 'data.message'),
+                  status: error.detail.status,
+                  code: has(error.detail, 'headers')
+                    ? error.detail.headers('x-ovh-queryId')
+                    : null,
+                },
+                to: {
+                  state: transition.to(),
+                  params: transition.params(),
+                },
+              },
+              { location: false },
+            );
+          }
+        });
+        $state.defaultErrorHandler((error) => {
+          return error;
+        });
+      },
+    )
+    .run(/* @ngTranslationsInject:json ./translations */)
+    .run(
+      /* @ngInject */ ($transitions) => {
+        // replace ngOvhUiRouterLineProgress if in container
+        if (!isTopLevelApplication()) {
+          $transitions.onBefore({}, (transition) => {
+            if (
+              !transition.ignored() &&
+              transition.from().name !== '' &&
+              transition.entering().length > 0
+            ) {
+              shellClient.ux.startProgress();
+            }
+          });
+
+          $transitions.onSuccess({}, (transition) => {
+            if (shouldHidePreloader(transition)) {
+              shellClient.ux.stopProgress();
+              shellClient.ux.hidePreloader();
+            }
+          });
+
+          $transitions.onError({}, (transition) => {
+            if (!transition.error().redirected) {
+              shellClient.ux.stopProgress();
+            }
+          });
+        }
+      },
+    )
+    .run(
+      /* @ngInject */ ($rootScope, $transitions) => {
+        const unregisterHook = $transitions.onSuccess({}, (transition) => {
+          if (!isTopLevelApplication() && shouldHidePreloader(transition)) {
+            shellClient.ux.hidePreloader();
+          }
+          $rootScope.$broadcast('app:started');
+          unregisterHook();
+        });
+      },
+    )
+    .config(
+      /* @ngInject */ (ovhFeatureFlippingProvider) => {
+        ovhFeatureFlippingProvider.setApplicationName('public-cloud');
+      },
+    );
+
+  angular.bootstrap(containerEl, [moduleName], {
+    strictDi: true,
+  });
+
+  return moduleName;
+};

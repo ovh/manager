@@ -1,0 +1,6 @@
+{
+  "autorenew_service_debt_warn_title": "Información importante",
+  "autorenew_service_debt_warn_settle": "Regularizar",
+  "autorenew_service_debt_warn_cancel": "Cancelar",
+  "autorenew_service_debt_warn_deletion": "Para poder dar de baja el servicio, es necesario abonar el importe pendiente. Acceda a la sección «Facturación» para regular la situación del servicio <strong>{{service}}</strong>."
+}

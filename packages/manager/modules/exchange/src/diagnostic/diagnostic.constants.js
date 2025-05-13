@@ -1,8 +1,4 @@
-export const NEW_TICKET_URL = {
-  EU:
-    'https://www.ovh.com/manager/dedicated/index.html#/support/tickets/new?serviceTypeName=email_exchange&serviceName=',
-  CA:
-    'https://ca.ovh.com/manager/dedicated/index.html#/support/tickets/new?serviceTypeName=email_exchange&serviceName=',
-};
+export const SUPPORT_URL =
+  'https://help.ovhcloud.com/csm?id=csm_get_help&ovhSubsidiary=';
 
-export default { NEW_TICKET_URL };
+export default { SUPPORT_URL };

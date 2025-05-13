@@ -1,0 +1,4 @@
+{
+  "dedicatedCloud_datacenter_backup_nospla_EPCC": "Aby aktywacja tworzenia kopii zapasowej była możliwa, Twoje rozwiązanie Private Cloud musi posiadać licencję SPLA. Aby włączyć licencję SPLA przejdź do sekcji <a href='{{licenceLink}}'>Licencja Windows</a> Twojego produktu.",
+  "dedicatedCloud_datacenter_backup_nospla_MBM": "Aby aktywacja tworzenia kopii zapasowej była możliwa, Twoje rozwiązanie Essentials musi posiadać licencję SPLA. Aby włączyć licencję SPLA przejdź do sekcji <a href='{{licenceLink}}'>Licencja Windows</a> Twojego produktu."
+}

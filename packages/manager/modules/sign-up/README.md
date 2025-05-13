@@ -1,6 +1,6 @@
 # sign-up
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/sign-up)](https://www.npmjs.com/package/@ovh-ux/sign-up) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/sign-up)](https://npmjs.com/package/@ovh-ux/sign-up) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/sign-up)](https://npmjs.com/package/@ovh-ux/sign-up?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/sign-up)](https://npmjs.com/package/@ovh-ux/sign-up?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/sign-up)](https://www.npmjs.com/package/@ovh-ux/sign-up) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/sign-up)](https://npmjs.com/package/@ovh-ux/sign-up) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/sign-up)](https://npmjs.com/package/@ovh-ux/sign-up?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/sign-up)](https://npmjs.com/package/@ovh-ux/sign-up?activeTab=dependencies)
 
 ## Install
 
@@ -14,10 +14,7 @@ yarn add @ovh-ux/sign-up
 import angular from 'angular';
 import ovhSignUp from '@ovh-ux/sign-up';
 
-angular
-  .module('myApp', [
-    ovhSignUp,
-  ]);
+angular.module('myApp', [ovhSignUp]);
 ```
 
 ## Build

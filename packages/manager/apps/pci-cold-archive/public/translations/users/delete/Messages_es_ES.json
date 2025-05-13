@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_containers_users_delete_title": "Eliminar las claves de un usuario",
+  "pci_projects_project_storages_containers_users_delete_label": "Confirmar",
+  "pci_projects_project_storages_containers_users_delete_question": "¿Seguro que quiere eliminar este usuario de las Object Storage Policies?",
+  "pci_projects_project_storages_containers_users_delete_success": "Las claves de este usuario se han eliminado correctamente.",
+  "pci_projects_project_storages_containers_users_delete_error": "Los claves de este usuario no se han eliminado correctamente.",
+  "pci_projects_project_storages_containers_users_delete_cancel": "Cancelar"
+}

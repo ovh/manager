@@ -1,6 +1,6 @@
 # manager-freefax
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-freefax)](https://www.npmjs.com/package/@ovh-ux/manager-freefax) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-freefax)](https://npmjs.com/package/@ovh-ux/manager-freefax) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/freefax)](https://npmjs.com/package/@ovh-ux/manager-freefax?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/freefax)](https://npmjs.com/package/@ovh-ux/manager-freefax?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-freefax)](https://www.npmjs.com/package/@ovh-ux/manager-freefax) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-freefax)](https://npmjs.com/package/@ovh-ux/manager-freefax) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/freefax)](https://npmjs.com/package/@ovh-ux/manager-freefax?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/freefax)](https://npmjs.com/package/@ovh-ux/manager-freefax?activeTab=dependencies)
 
 ## Install
 
@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-freefax
 import angular from 'angular';
 import ovhManagerFreefax from '@ovh-ux/manager-freefax';
 
-angular
-  .module('myApp', [
-    ovhManagerFreefax,
-  ]);
+angular.module('myApp', [ovhManagerFreefax]);
 ```
 
 ## Build

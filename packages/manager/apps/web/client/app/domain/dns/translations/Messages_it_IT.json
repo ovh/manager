@@ -1,0 +1,13 @@
+{
+  "domain_dns": "Server DNS",
+  "domain_dns_modify": "Modificare i miei server DNS",
+  "domain_dns_error_initializing": "Si è verificato un errore durante il recupero dei dati DNS: {{message}}",
+  "domain_dns_update_success_message": "La tua richiesta di aggiornamento è stata presa in carico e verrà gestita nel più breve tempo possibile.",
+  "domain_dns_update_same_message": "La lista dei DNS inseriti non è stata modificata e non verrà quindi eseguita alcuna azione.",
+  "domain_dns_type": "Tipo di server DNS",
+  "domain_dns_type_external": "Personalizzato",
+  "domain_dns_type_anycast": "Anycast",
+  "domain_dns_type_standard": "Standard",
+  "domain_dns_type_dedicated": "Secondario",
+  "domain_dns_type_standard_tooltip": "Aggiorna a una soluzione Anycast per ottenere performance migliori."
+}

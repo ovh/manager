@@ -1,10 +1,21 @@
+import { PCI_FEATURES } from '../../../projects.constant';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.instance-backups', {
-    url: '/instance-backups',
+    url: '/instance-backups?id',
     component: 'pciProjectStorageInstanceBackups',
     translations: {
       value: ['.'],
       format: 'json',
+    },
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.INSTANCE_BACKUP);
     },
     redirectTo: (transition) =>
       transition
@@ -19,10 +30,15 @@ export default /* @ngInject */ ($stateProvider) => {
             : false,
         ),
     resolve: {
+      backupId: /* @ngInject */ ($transition$) => $transition$.params().id,
+
       instanceBackups: /* @ngInject */ (
         PciProjectStorageInstanceBackupService,
         projectId,
       ) => PciProjectStorageInstanceBackupService.getAll(projectId),
+
+      instanceBackupsRegions: /* @ngInject */ (instanceBackups) =>
+        Array.from(new Set(instanceBackups.map(({ region }) => region))),
 
       goToInstanceBackups: /* @ngInject */ (
         $state,

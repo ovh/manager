@@ -1,27 +1,55 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="PrivateDatabaseMetricsCtrl as $ctrl"
->
+<div>
     <div class="text-center" data-ng-if="$ctrl.isFetchingMetrics">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
     <div data-ovh-alert="{{alerts.main}}"></div>
-
     <div data-ng-if="!$ctrl.isFetchingMetrics">
-        <div data-ng-repeat="chart in $ctrl.charts track by $index">
+        <oui-message data-ng-if="$ctrl.migration" type="info">
+            <span
+                data-translate="private_database_metrics_changing_datavis_tool"
+                data-translate-values="{ url: $ctrl.STATUS_OVHCLOUD_URL }"
+            >
+            </span>
+        </oui-message>
+
+        <div>
             <h2
-                data-ng-bind="'privateDatabase_metrics_' + chart.name  + '_title' | translate"
+                data-translate="privateDatabase_metrics_memoryUsages_title"
             ></h2>
 
             <div
-                data-ng-if="chart.hasData"
                 class="chart-container"
                 style="height: 320px;"
-                data-wuc-chartjs="chart.data"
+                data-chart
+                data-chartjs="$ctrl.chartMemoryUsage"
+                data-auto-reload="true"
             ></div>
 
-            <oui-message data-ng-if="!chart.hasData" data-type="warning">
+            <oui-message
+                data-ng-if="$ctrl.noMemoryUsageData"
+                data-type="warning"
+            >
+                <span data-translate="privateDatabase_metrics_no_data"></span>
+            </oui-message>
+        </div>
+        <div>
+            <h2
+                data-translate="privateDatabase_metrics_activeConnections_title"
+            ></h2>
+
+            <div
+                class="chart-container"
+                style="height: 320px;"
+                data-chart
+                data-chartjs="$ctrl.chartConnections"
+                data-auto-reload="true"
+            ></div>
+
+            <oui-message
+                data-ng-if="$ctrl.noActiveConnectionsData"
+                data-type="warning"
+            >
                 <span data-translate="privateDatabase_metrics_no_data"></span>
             </oui-message>
         </div>

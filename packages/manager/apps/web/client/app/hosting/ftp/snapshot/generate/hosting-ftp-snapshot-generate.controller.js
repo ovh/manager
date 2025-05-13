@@ -5,6 +5,7 @@ import pull from 'lodash/pull';
 angular.module('App').controller(
   'HostingFtpGenerateSnapshotCtrl',
   class HostingFtpGenerateSnapshotCtrl {
+    /* @ngInject */
     constructor(
       $rootScope,
       $scope,

@@ -32,7 +32,6 @@
   "hosted_email_detail_exchange_standard_1g": "Exchange 1Go",
   "hosted_email_detail_exchange_basic_1g": "Exchange 1Go",
   "hosted_email_detail_exchange_standard": "Exchange 25Go",
-  "hosted_email_detail_hostedemail_individual": "Hosted 25Go",
   "hosted_email_detail_server_smtp": "Serveur courrier sortant (SMTP)",
   "hosted_email_detail_server_smtps": "Serveur courrier sortant (SMTPS)",
   "hosted_email_detail_server_imap": "Serveur courrier entrant (IMAP)",
@@ -48,5 +47,10 @@
   "hosted_email_detail_client_delete_account_warning": "Attention ! En supprimant votre compte, l'ensemble des messages qu'il contient seront <strong>définitivement</strong> supprimés. Aucune procédure de récupération des données ne sera possible après cette suppression.",
   "hosted_email_detail_client_delete_account_confirm": "Die Löschung bestätigen",
   "hosted_email_detail_client_delete_account_success": "Votre compte {{email}} est en cours de suppression.",
-  "hosted_email_detail_client_delete_account_error": "Oups ! La suppression du compte a échoué."
+  "hosted_email_detail_client_delete_account_error": "Oups ! La suppression du compte a échoué.",
+  "hosted_email_detail_individual": "Hosted 25 GB",
+  "input_password_strength": "Robustes Passwort:",
+  "input_password_danger": "Gering",
+  "input_password_warning": "Gut",
+  "input_password_success": "hoch"
 }

@@ -1,0 +1,73 @@
+<oui-modal
+    data-on-dismiss="$ctrl.close()"
+    data-heading="{{ ::'metrics_token_preview_title' | translate }}"
+>
+    <dl class="preview-list preview-list_no-margin">
+        <dt
+            class="preview-list__term"
+            data-translate="metrics_table_create_date"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::$ctrl.constructor.displayDate($ctrl.token.createdAt)"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="metrics_table_token"
+        ></dt>
+        <dd class="preview-list__definition">
+            <textarea
+                class="oui-input oui-input_m"
+                data-ng-bind="::$ctrl.token.access"
+            ></textarea>
+        </dd>
+        <dt class="preview-list__term" data-translate="metrics_table_name"></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::$ctrl.token.description || '-'"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="metrics_token_permission"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::'metrics_token_permission_' + $ctrl.token.permission | translate"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="metrics_token_labels"
+        ></dt>
+        <dd class="preview-list__definition">
+            <div
+                class="preview-labels"
+                data-ng-repeat="label in $ctrl.token.labels | orderBy : 'key' track by $index"
+            >
+                <span data-ng-bind="::label.key"></span>:<span
+                    data-ng-bind="::label.value"
+                ></span>
+            </div>
+        </dd>
+        <dt
+            class="preview-list__term"
+            data-translate="metrics_table_state"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::$ctrl.getTokenState($ctrl.token)"
+        ></dd>
+        <dt class="preview-list__term" data-translate="metrics_token_id"></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::$ctrl.token.id"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="metrics_table_expiry_date"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::$ctrl.constructor.displayDate($ctrl.token.expiryAt)"
+        ></dd>
+    </dl>
+</oui-modal>

@@ -1,0 +1,5 @@
+{
+  "dedicated_server_interfaces_bandwidth_title": "Przepustowość",
+  "dedicated_server_interfaces_bandwidth_description": "Przepustowość do sieci publicznej (do i z Internetu) nie jest ograniczona na wejściu. Możesz zwiększyć przepustowość do sieci publicznej oraz prywatnej, wykupując odpowiednią opcję.",
+  "dedicated_server_interfaces_bandwidth_ola_warning": "W przypadku pełnej konfiguracji agregacji prywatnej opcja przepustowości do sieci publicznej nie będzie używana, ponieważ interfejs dedykowany dla sieci publicznej będzie używany do obsługi sieci prywatnej."
+}

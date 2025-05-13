@@ -1,66 +1,44 @@
 <section class="telecom-legacy" id="over-the-box">
-    <div class="telecom-section-header">
-        <header class="page-header" role="banner">
-            <tuc-editable-service-name
-                data-tuc-editable-service-name-title="OverTheBox.service.customerDescription || ('overTheBox_dashboard_title' | translate)"
-                data-disabled="false"
-                data-tuc-editable-service-name-title-on-save="OverTheBox.updateName"
-            >
-            </tuc-editable-service-name>
-            <div>
-                <span
-                    class="service-title"
-                    data-translate="overTheBox_dashboard_service_label"
+    <header class="oui-header">
+        <div class="oui-header__container">
+            <div class="oui-header__content">
+                <tuc-editable-service-name
+                    data-tuc-editable-service-name-title="$ctrl.service.customerDescription || ('overTheBox_dashboard_title' | translate)"
+                    data-disabled="false"
+                    data-tuc-editable-service-name-title-on-save="$ctrl.updateName"
+                    data-tuc-editable-service-name-service-name="$ctrl.service.serviceName"
                 >
-                </span>
-                <span
-                    class="service-item"
-                    data-ng-bind="OverTheBox.service.serviceName"
-                >
-                </span>
+                </tuc-editable-service-name>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <nav role="navigation">
-            <responsive-tabs>
-                <responsive-tab
-                    data-state="overTheBoxes.overTheBox.details"
-                    data-dropdown-title="{{ 'overTheBox_tabs_detail' | translate }}"
-                >
-                    <span data-translate="overTheBox_tabs_detail"></span>
-                </responsive-tab>
-                <responsive-tab
-                    data-state="overTheBoxes.overTheBox.remote"
-                    data-dropdown-title="{{ 'overTheBox_tabs_remote' | translate }}"
-                    disabled="OverTheBox.disabledRemote"
-                >
-                    <span data-translate="overTheBox_tabs_remote"></span>
-                </responsive-tab>
-                <responsive-tab
-                    data-state="overTheBoxes.overTheBox.tasks"
-                    data-dropdown-title="{{ 'overTheBox_tabs_tasks' | translate }}"
-                >
-                    <span data-translate="overTheBox_tabs_tasks"></span>
-                </responsive-tab>
-                <responsive-tab
-                    data-state="overTheBoxes.overTheBox.logs"
-                    data-dropdown-title="{{ 'overTheBox_tabs_logs' | translate }}"
-                >
-                    <span data-translate="overTheBox_tabs_logs"></span>
-                </responsive-tab>
-                <responsive-tab
-                    data-state="overTheBoxes.overTheBox.docs"
-                    data-dropdown-title="{{ 'overTheBox_tabs_docs' | translate }}"
-                >
-                    <span data-translate="overTheBox_tabs_docs"></span>
-                </responsive-tab>
-                <responsive-tab-more>
-                    <i class="fa fa-plus"></i>
-                </responsive-tab-more>
-            </responsive-tabs>
-        </nav>
-    </div>
-    <!-- /.telecom-section-header -->
+    <oui-header-tabs class="mb-4">
+        <oui-header-tabs-item data-state="overTheBoxes.overTheBox.details">
+            <span data-translate="overTheBox_tabs_detail"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-state="overTheBoxes.overTheBox.remote"
+            disabled="$ctrl.disabledRemote"
+        >
+            <span data-translate="overTheBox_tabs_remote"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-state="overTheBoxes.overTheBox.autoconfigure"
+            data-ng-if="$ctrl.service.configurationMode === $ctrl.OVER_THE_BOX.autoconfig"
+        >
+            <span data-translate="overTheBox_tabs_autoconfigure"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item data-state="overTheBoxes.overTheBox.tasks">
+            <span data-translate="overTheBox_tabs_tasks"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item data-state="overTheBoxes.overTheBox.actions">
+            <span data-translate="overTheBox_tabs_actions"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item data-state="overTheBoxes.overTheBox.logs">
+            <span data-translate="overTheBox_tabs_logs"></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
 
     <main class="ui-view-container" role="main" data-ui-view="otbView"></main>
 </section>

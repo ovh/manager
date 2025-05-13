@@ -1,0 +1,6 @@
+{
+  "cloud_connect_vrack_remove": "Eliminar um volume",
+  "cloud_connect_vrack_remove_description": "Eliminar o vRack do seu serviço?",
+  "cloud_connect_vrack_remove_success": "O vRack foi eliminado com êxito do seu serviço",
+  "cloud_connect_vrack_remove_error": "Não é possível eliminar o vRack do seu serviço: {{ message }}"
+}

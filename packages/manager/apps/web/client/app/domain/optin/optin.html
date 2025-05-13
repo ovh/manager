@@ -17,7 +17,10 @@
         ></p>
 
         <div class="d-flex flex-row">
-            <label for="{:: rule.type + '-email' }}" class="oui-select">
+            <label
+                for="{:: rule.type + '-email' }}"
+                class="oui-select oui-select_s"
+            >
                 <select
                     class="oui-select__input"
                     data-ng-model="$ctrl.configuration[rule.type].email"
@@ -44,7 +47,10 @@
         </div>
 
         <div class="d-flex flex-row">
-            <label for="{{:: rule.type + '-fields' }}" class="oui-select">
+            <label
+                for="{{:: rule.type + '-fields' }}"
+                class="oui-select oui-select_s"
+            >
                 <select
                     class="oui-select__input"
                     data-ng-model="$ctrl.options[rule.type].allFieldsOption"

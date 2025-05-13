@@ -1,5 +1,6 @@
 import map from 'lodash/map';
 import set from 'lodash/set';
+import 'moment';
 
 export default class IpLoadBalancerTaskService {
   /* @ngInject */

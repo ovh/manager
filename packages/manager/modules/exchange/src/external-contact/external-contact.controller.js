@@ -2,7 +2,7 @@ export default class ExchangeTabExternalContactsCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeExternalContacts,
     $timeout,
     navigation,
@@ -11,7 +11,7 @@ export default class ExchangeTabExternalContactsCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeExternalContacts,
       $timeout,
       navigation,
@@ -19,7 +19,7 @@ export default class ExchangeTabExternalContactsCtrl {
       exchangeStates,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.contactsLoading = false;
     this.contacts = null;
 

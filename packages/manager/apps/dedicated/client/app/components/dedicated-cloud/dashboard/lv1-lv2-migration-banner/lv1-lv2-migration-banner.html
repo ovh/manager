@@ -1,0 +1,17 @@
+<oui-message
+    class="mb-2"
+    data-type="warning"
+    data-ng-if="!$ctrl.loading && $ctrl.displayMigrationBanner"
+>
+    <p
+        class="mb-1"
+        data-translate="dedicated_cloud_dashboard_lv1_lv2_migration_banner_info_1"
+    ></p>
+    <p
+        class="mb-1"
+        data-translate="dedicated_cloud_dashboard_lv1_lv2_migration_banner_info_2"
+        data-translate-values="{
+            guideLink: $ctrl.GUIDE_LINK
+        }"
+    ></p>
+</oui-message>

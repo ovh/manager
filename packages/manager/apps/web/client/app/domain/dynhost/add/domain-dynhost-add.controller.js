@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'DomainDynHostAddCtrl',
   class DomainDynHostAddCtrl {
+    /* @ngInject */
     constructor($scope, $translate, Alerter, Domain, WucValidator) {
       this.$scope = $scope;
       this.$translate = $translate;
@@ -21,7 +22,8 @@ angular.module('App').controller(
     ipTargetCheck(input) {
       input.$setValidity(
         'iptarget',
-        this.WucValidator.isValidIpv4(this.dynHost.ipTarget),
+        this.WucValidator.isValidIpv4(this.dynHost.ipTarget) ||
+          this.WucValidator.isValidIpv6(this.dynHost.ipTarget),
       );
     }
 

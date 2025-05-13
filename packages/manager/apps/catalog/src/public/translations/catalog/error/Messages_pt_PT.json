@@ -1,0 +1,8 @@
+{
+  "manager_error_page_title": "Oops!",
+  "manager_error_page_button_cancel": "Anular",
+  "manager_error_page_detail_code": "Código de erro: ",
+  "manager_error_page_action_reload_label": "Tentar novamente",
+  "manager_error_page_action_home_label": "Voltar para a página inicial",
+  "manager_error_page_default": "Ocorreu um erro ao carregar a página."
+}

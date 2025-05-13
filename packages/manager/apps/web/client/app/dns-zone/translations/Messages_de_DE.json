@@ -1,3 +1,26 @@
 {
-  "domains_newdnszone_order_step2_description_INSTALLATION": "Installation einer DNS-Zone"
+  "zones_title": "DNS-Zone",
+  "zones_order": "Bestellen",
+  "base_dns_zone": "Basis-DNS-Zone",
+  "modified_dns_zone": "DNS-Zone geändert",
+  "dashboard_history_creation_date": "Erstellungsdatum",
+  "dashboard_history_view_zone": "Anzeigen",
+  "dashboard_history_current_zone_date": "{{creationDate}} (aktuell)",
+  "dashboard_history_download": "Herunterladen",
+  "dashboard_history_error": "Datenverarbeitungsfehler: {{message}}.",
+  "dashboard_history_restore": "Wiederherstellen",
+  "dashboard_history_popup_title": "Daten der DNS-Zone",
+  "dashboard_history_close_popup": "Schließen",
+  "dashboard_history_compare_button_label": "Versionen vergleichen",
+  "dashboard_history_restoration_successful": "Ihre DNS-Zone wird wiederhergestellt. Den Fortschritt können Sie im Tab „Aktuelle Tasks“ verfolgen. Die Propagation wird je nach TTL-Dauer wirksam (maximal 24 Stunden).",
+  "dashboard_history_restore_modal_title": "Meine DNS-Zone wiederherstellen",
+  "dashboard_history_restore_modal_content": "Möchten Sie das Backup vom {{date}} wiederherstellen?",
+  "dashboard_history_restore_modal_primary_label": "Wiederherstellen",
+  "dashboard_history_restore_modal_secondary_label": "Abbrechen",
+  "dashboard_history_restore_modal_warning_message": "Achtung! Die aktuelle Zone wird gelöscht. Die ausgewählte neue Zone wird wiederhergestellt.",
+  "dashboard_history_restore_modal_info_message": "Das Zurücksetzen in der DNS-Zone dauert einen Moment. Berücksichtigen Sie auch die Propagationszeit (maximal 24 Stunden).",
+  "modified": "Geändert",
+  "zones_domain_name": "Domainname",
+  "zones_enabled": "Aktiviert",
+  "zones_disabled": "Deaktiviert"
 }

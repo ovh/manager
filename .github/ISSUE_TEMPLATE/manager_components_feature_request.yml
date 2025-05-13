@@ -1,0 +1,59 @@
+name: New Feature Request for Manager Components (Internal)
+description: Request for new component/hook/util
+title: '[manager-components]: <TITLE>'
+labels: ['manager-components', 'feature']
+projects: ["ovh/22"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for filing a request! Please fill out this form as completely as possible.
+  - type: markdown
+    attributes:
+      value: Please make sure to check if similar component already exists.
+  - type: checkboxes
+    attributes:
+      label: Have you already checked if a similar item is present on manager-components?
+      description: Before to open a request on our GitHub repository, did you already check if the similar item is present on the manager-components storybook?
+      options:
+        - label: Yes, I have already checked the existing components/hooks/utils.
+          required: false
+  - type: dropdown
+    id: item
+    attributes:
+      label: What do you expect from this request?
+      options:
+        - Component
+        - Hook
+        - Util
+        - Others
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Description
+      placeholder: Please describe your requirement.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Where do you expect to use this?
+      placeholder: Specify the name of the product/project.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Do you have mock-up?
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: When do you expect this to be delivered?
+      placeholder: Specify the wish date in DD-MM-YY format.
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Additional Information
+    validations:
+      required: false

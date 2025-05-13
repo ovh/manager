@@ -1,4 +1,4 @@
-<div class="container-fluid pb-4">
+<div class="pb-4">
     <oui-back-button data-on-click="$ctrl.cancel()">
         <span data-translate="hosting_email_address_activate_title"></span>
     </oui-back-button>
@@ -23,7 +23,6 @@
                     data-placeholder="{{ ::'hosting_email_address_activate_choose_domain_placeholder' | translate}}"
                     data-items="$ctrl.domainNames"
                     required
-                    data-align="start"
                     data-searchable
                 >
                     <span data-ng-bind="$item"></span>
@@ -38,10 +37,11 @@
             data-on-cancel="$ctrl.cancel()"
             data-on-submit="$ctrl.activate()"
             data-editable="!$ctrl.checkoutCartInProgress"
-            data-prevent-next="!$ctrl.contractsAccepted || !$ctrl.order"
+            data-prevent-next="!$ctrl.order || (!$ctrl.contractsAccepted && $ctrl.order.contracts && $ctrl.order.contracts.length)"
             data-valid="$ctrl.contractsAccepted"
         >
             <p
+                data-ng-if="$ctrl.order.contracts && $ctrl.order.contracts.length"
                 data-translate="hosting_email_address_activate_contracts_accept"
             ></p>
             <ovh-contracts-summary

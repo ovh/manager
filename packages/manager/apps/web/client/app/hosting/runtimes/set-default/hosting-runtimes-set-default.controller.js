@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'controllers.Hosting.Runtimes.setDefault',
   class HostingRuntimesSetDefaultCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $stateParams,

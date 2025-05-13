@@ -1,5 +1,6 @@
-import get from 'lodash/get';
-import { REDIRECT_URLS } from '../constants';
+import 'moment';
+
+import { RENEW_URLS } from '../details/constants';
 
 export default class VeeamCloudConnectDashboardCtrl {
   /* @ngInject */
@@ -7,17 +8,19 @@ export default class VeeamCloudConnectDashboardCtrl {
     $stateParams,
     $translate,
     coreConfig,
+    coreURLBuilder,
     CucControllerHelper,
     CucFeatureAvailabilityService,
-    CucRegionService,
+    ovhManagerRegionService,
     VeeamCloudConnectService,
   ) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.CucControllerHelper = CucControllerHelper;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.VeeamCloudConnectService = VeeamCloudConnectService;
 
     this.serviceName = this.$stateParams.serviceName;
@@ -98,18 +101,23 @@ export default class VeeamCloudConnectDashboardCtrl {
       },
       manageAutorenew: {
         text: this.$translate.instant('veeam_common_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(
-          get(REDIRECT_URLS[this.coreConfig.getRegion()], 'renew'),
-          { serviceName: this.serviceName, serviceType: 'VEEAM_CLOUD_CONNECT' },
-        ),
+        href: this.coreConfig.isRegion('EU')
+          ? this.coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
+              searchText: this.serviceName,
+              selectedType: 'VEEAM_CLOUD_CONNECT',
+            })
+          : RENEW_URLS[this.coreConfig.getRegion()],
+
         isAvailable: () => true,
       },
       manageContact: {
         text: this.$translate.instant('veeam_common_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(
-          get(REDIRECT_URLS[this.coreConfig.getRegion()], 'contacts'),
-          { serviceName: this.serviceName },
-        ),
+        href: this.coreConfig.isRegion('EU')
+          ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
+              serviceName: this.serviceName,
+              tab: 'SERVICES',
+            })
+          : null,
         isAvailable: () =>
           this.CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage'),
       },
@@ -128,7 +136,7 @@ export default class VeeamCloudConnectDashboardCtrl {
   }
 
   getRegion(region) {
-    this.region = this.CucRegionService.getRegion(region);
+    this.region = this.ovhManagerRegionService.getRegion(region);
   }
 
   static formatDate(date) {

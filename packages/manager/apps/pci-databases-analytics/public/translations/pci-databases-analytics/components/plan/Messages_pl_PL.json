@@ -1,0 +1,16 @@
+{
+  "backupsSpec": "Ręczne i automatyczne kopie zapasowe",
+  "privateNetworkSpec": "Sieci prywatne",
+  "memorySpec": "{{memory}} RAM",
+  "memorySpecRange": "Od {{min}} do {{max}} RAM",
+  "cpuSpec_one": "{{count}} vCore",
+  "cpuSpec_other": "{{count}} vCores",
+  "cpuSpecRange": "Od {{min}} do {{max}} vCores",
+  "nodeSpec_one": "{{count}} węzeł",
+  "nodeSpec_other": "{{count}} węzłów",
+  "nodeSpecRange": "Od {{min}} do {{max}} węzłów",
+  "storageSpec": "{{storage}} przestrzeni dyskowej",
+  "storageSpecRange": "Od {{min}} do {{max}} przestrzeni dyskowej",
+  "priceStartingFrom": "Od",
+  "planTag-new": "Nowość"
+}

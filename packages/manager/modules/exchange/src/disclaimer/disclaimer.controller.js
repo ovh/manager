@@ -2,10 +2,10 @@ import some from 'lodash/some';
 
 export default class ExchangeDisclaimerCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, $translate, exchangeStates) {
+  constructor($scope, wucExchange, navigation, $translate, exchangeStates) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       $translate,
       exchangeStates,
@@ -13,12 +13,12 @@ export default class ExchangeDisclaimerCtrl {
   }
 
   $onInit() {
-    const params = this.services.Exchange.getParams();
+    const params = this.services.wucExchange.getParams();
     this.organization = params.organization;
     this.productId = params.productId;
 
     this.services.$scope.$on(
-      this.services.Exchange.events.disclaimersChanged,
+      this.services.wucExchange.events.disclaimersChanged,
       () => this.refreshList(),
     );
   }
@@ -29,7 +29,7 @@ export default class ExchangeDisclaimerCtrl {
   }
 
   getDisclaimers({ pageSize, offset }) {
-    return this.services.Exchange.getDisclaimers(
+    return this.services.wucExchange.getDisclaimers(
       this.organization,
       this.productId,
       pageSize,

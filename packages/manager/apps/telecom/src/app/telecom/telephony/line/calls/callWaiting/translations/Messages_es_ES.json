@@ -1,17 +1,21 @@
 {
-  "telephony_line_actions_line_calls_call_waiting_title": "Llamada en espera e interfono",
+  "telephony_line_actions_line_calls_call_waiting_title": "Doble llamada e intercom",
   "telephony_line_actions_line_calls_call_waiting_cw_checkbox_label": "Activar la llamada en espera",
-  "telephony_line_actions_line_calls_call_waiting_cw_title": "Llamada en espera",
+  "telephony_line_actions_line_calls_call_waiting_cw_title": "Doble llamada",
   "telephony_line_actions_line_calls_call_waiting_intercom_checkbox_label": "Activar el modo interfono con prefijo <strong>3691</strong>",
   "telephony_line_actions_line_calls_call_waiting_intercom_title": "Modo interfono",
   "telephony_line_actions_line_calls_call_waiting_load_error": "Se ha producido un error al leer la configuración.",
-  "telephony_line_actions_line_calls_call_waiting_save_error": "No se ha podido guardar la configuración. Por favor, vuelva a intentarlo más tarde.",
+  "telephony_line_actions_line_calls_call_waiting_save_error": "No se ha podido guardar la configuración. Por favor, vuelva a intentarlo más adelante.",
   "telephony_line_actions_line_calls_call_waiting_cw_save_success_true": "La llamada en espera está activada.",
   "telephony_line_actions_line_calls_call_waiting_cw_save_success_false": "La llamada en espera está desactivada.",
   "telephony_line_actions_line_calls_call_waiting_intercom_save_success_no": "El modo interfono está desactivado.",
-  "telephony_line_actions_line_calls_call_waiting_intercom_save_success_prefixed": "El modo interfono está activo con el prefijo 3691.",
+  "telephony_line_actions_line_calls_call_waiting_intercom_save_success_prefixed": "El modo interfono está activado con el prefijo 3691.",
   "telephony_line_actions_line_calls_call_waiting_cw_explain": "Esta opción permite activar o desactivar la función de llamada en espera de la que dispone su línea.",
-  "telephony_line_actions_line_calls_call_waiting_cw_explain1": "Si la opción está desactivada, no podrá transferir su llamada o descolgar una segunda llamada.",
-  "telephony_line_actions_line_calls_call_waiting_intercom_explain": "Modo interfono: descolgado automático con activación del altavoz.",
-  "telephony_line_actions_line_calls_call_waiting_intercom_detail": "Los teléfonos ofrecidos por OVH compatibles con el servicio interfono son: el Thomson ST2030, la serie Cisco SPA5 y la gama LG IP 88XX."
+  "telephony_line_actions_line_calls_call_waiting_cw_explain1": "Si la opción está desactivada, no podrá transferir su llamada o coger una segunda llamada.",
+  "telephony_line_actions_line_calls_call_waiting_intercom_explain": "Modo intercom: Descolgado automático con activación del altavoz.",
+  "telephony_line_actions_line_calls_call_waiting_intercom_detail": "Los teléfonos ofrecidos por OVHcloud compatibles con el servicio Intercom son: el Thomson ST2030, la serie Cisco SPA5 y la gama LG IP 88XX.",
+  "telephony_line_actions_line_calls_cw_intercom_bulk_all_success": "Se ha cambiado el modo interfono y/o la llamada en espera de los servicios seleccionados.",
+  "telephony_line_actions_line_calls_cw_intercom_bulk_some_success": "El cambio del modo interfono y/o de la llamada en espera se ha aplicado a {{ count }} de los servicios seleccionados.",
+  "telephony_line_actions_line_calls_cw_intercom_bulk_error": "No se ha podido modificar el modo intercom y/o la llamada en espera de los siguientes servicios:",
+  "telephony_line_actions_line_calls_cw_intercom_bulk_on_error": "¡Vaya! Se ha producido un error al modificar el modo intercom y/o la llamada en espera."
 }

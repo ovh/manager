@@ -1,0 +1,14 @@
+{
+  "telecom_search_how_can_we_help_you": "Come possiamo aiutarla?",
+  "telecom_search_search_button": "Ricerca",
+  "telecom_search_search_placeholder": "Inserisci la tua ricerca (parole chiave, nome del servizio...)",
+  "telecom_search_services": "Servizi",
+  "telecom_search_billingAccount": "Account di fatturazione",
+  "telecom_search_packs": "Accesso Internet",
+  "telecom_search_sms": "SMS",
+  "telecom_search_freefax": "Fax",
+  "telecom_search_overthebox": "OverTheBox",
+  "telecom_search_no_result": "Nessun risultato corrisponde alla tua ricerca",
+  "telecom_search_no_result_content": "Non sono stati trovati risultati per la ricerca \"{{ query }}\".",
+  "telecom_search_no_description": "Nessuna descrizione"
+}

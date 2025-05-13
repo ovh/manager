@@ -1,7 +1,4 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="EmailProMXPlanMailingListsTabModulesCtrl as ctrlEmailProMXPlanMailingLists"
->
+<div ui-view>
     <div
         class="text-center"
         data-ng-if="ctrlEmailProMXPlanMailingLists.loading.quotas"
@@ -22,7 +19,9 @@
             <a
                 class="oui-button oui-button_secondary"
                 data-ng-href="{{ ctrlEmailProMXPlanMailingLists.upgradeLink }}"
-                data-translate="emailpro_dashboard_accounts_upgrade_mxPlan">
+                data-translate="emailpro_dashboard_accounts_upgrade_mxPlan"
+                target="_top"
+            >
             </a>
         </div>
     </div>
@@ -213,10 +212,10 @@
                                     class="btn btn-icon"
                                     type="button"
                                     title="{{:: 'email_tab_moderators_management_heading' | translate }}"
-                                    data-ng-click="ctrlTabView.setCurrentView('moderatorsView', mailingList)"
+                                    data-ng-click="ctrlEmailProMXPlanMailingLists.goToModerators(mailingList)"
                                 >
                                     <span
-                                        class="oui-icon oui-icon-user_line oui-icon_small"
+                                        class="oui-icon oui-icon-user_concept"
                                         aria-hidden="true"
                                     ></span>
                                 </button>
@@ -226,16 +225,19 @@
                                     class="btn btn-icon"
                                     type="button"
                                     title="{{:: 'email_tab_subscribers_management_heading' | translate }}"
-                                    data-ng-click="ctrlTabView.setCurrentView('subscribersView', mailingList)"
+                                    data-ng-click="ctrlEmailProMXPlanMailingLists.goToSubscribers(mailingList)"
                                 >
                                     <span
-                                        class="oui-icon oui-icon-user_line oui-icon_small"
+                                        class="oui-icon oui-icon-user_concept"
                                         aria-hidden="true"
                                     ></span>
                                 </button>
                             </td>
                             <td class="text-center">
-                                <oui-action-menu data-compact data-align="end">
+                                <oui-action-menu
+                                    data-compact
+                                    data-placement="end"
+                                >
                                     <oui-action-menu-item
                                         data-on-click="setAction('emailpro/mailing-list/update/emailpro-mailing-list-update', mailingList)"
                                     >

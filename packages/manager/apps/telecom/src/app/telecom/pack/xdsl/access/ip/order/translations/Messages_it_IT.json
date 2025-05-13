@@ -5,7 +5,7 @@
   "pack_xdsl_access_ip_order_service_title": "su questo servizio:",
   "pack_xdsl_access_ip_order_disclaim": "L'attivazione di questi indirizzi IP viene effettuata entro {{hoursBeforeActivation}} ore e prevede un addebito di {{price}} +IVA entro {{hoursBeforeCollected}}h. Questo servizio comporta un impegno iniziale di {{engagementMinimumMonths}} mesi.",
   "pack_xdsl_access_ip_order_are_you_sure_title": "Vuoi davvero effettuare questa operazione:",
-  "pack_xdsl_access_ip_order_immediate_execution": "Riconosco che OVH procederà all'esecuzione immediata della prestazione a partire dalla conferma del mio ordine e a questo titolo rinuncio espressamente a esercitare il mio diritto di recesso, conformemente alla normativa vigente.  ",
+  "pack_xdsl_access_ip_order_immediate_execution": "Riconosco che OVHcloud procederà all'esecuzione immediata della prestazione a partire dalla conferma del mio ordine e a questo titolo rinuncio espressamente a esercitare il mio diritto di recesso, conformemente alle disposizioni dell'articolo L.121-21-8 del \"Code de la Consommation\" (codice del consumo francese).",
   "pack_xdsl_access_ip_order_accept_conditions": "Ho letto e accetto le condizioni relative al servizio di indirizzi IP aggiuntivi",
   "pack_xdsl_access_ip_order_accept_conditions_contract": "Visualizza il contratto",
   "pack_xdsl_access_ip_order_no": "Annulla",

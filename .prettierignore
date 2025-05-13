@@ -1,0 +1,9 @@
+packages/manager/apps/container
+custom-elements-bundle
+dist
+custom-elements
+loader
+react
+vue
+packages/manager/apps/pci-databases-analytics/src/components/ui
+packages/manager/apps/pci-databases-analytics/src/lib/utils.ts

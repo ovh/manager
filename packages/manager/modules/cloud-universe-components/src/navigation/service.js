@@ -4,10 +4,9 @@ import last from 'lodash/last';
 
 export default class CucCloudNavigation {
   /* @ngInject */
-  constructor($transitions, $state, $stateParams, CuiTabsService) {
+  constructor($transitions, $state, $stateParams) {
     this.$state = $state;
     this.$stateParams = $stateParams;
-    this.CuiTabsService = CuiTabsService;
 
     this.rootElement = undefined;
 
@@ -51,15 +50,10 @@ export default class CucCloudNavigation {
   }
 
   getPreviousState() {
-    const previousState =
-      last(this.history) || this.getActiveTabState() || this.rootElement;
+    const previousState = last(this.history) || this.rootElement;
     previousState.go = () =>
       this.$state.go(previousState.state, previousState.stateParams);
     return previousState;
-  }
-
-  getActiveTabState() {
-    return this.CuiTabsService.getActiveTab();
   }
 
   findInHistory(stateToFind) {

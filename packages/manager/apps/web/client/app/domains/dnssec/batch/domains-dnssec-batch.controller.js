@@ -1,19 +1,13 @@
 angular.module('App').controller(
   'DomainsDnssecBatchCtrl',
   class DomainsDnssecBatchCtrl {
-    /**
-     * Constructor
-     * @param $scope
-     * @param DomainsDnsSec
-     * @param Alerter
-     * @param User
-     */
-    constructor($scope, $translate, DomainsDnsSec, Alerter, User) {
+    /* @ngInject */
+    constructor($scope, $translate, DomainsDnsSec, Alerter, WucUser) {
       this.$scope = $scope;
       this.DomainsDnsSec = DomainsDnsSec;
       this.$translate = $translate;
       this.Alerter = Alerter;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -22,7 +16,7 @@ angular.module('App').controller(
         state: null,
       };
 
-      this.User.getUrlOf('dnssec_service')
+      this.WucUser.getUrlOf('dnssec_service')
         .then((link) => {
           this.dnssec_service_url = link;
         })

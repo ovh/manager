@@ -7,16 +7,21 @@
  */
 import angular from 'angular';
 
-export default function () {
+export default function() {
   let hideAfter = 7;
 
   function show(type, msg, opts) {
-    return new Messenger().post(angular.extend({
-      type,
-      message: msg,
-      hideAfter,
-      showCloseButton: true,
-    }, opts));
+    return new Messenger().post(
+      angular.extend(
+        {
+          type,
+          message: msg,
+          hideAfter,
+          showCloseButton: true,
+        },
+        opts,
+      ),
+    );
   }
 
   Messenger.options = {
@@ -25,7 +30,6 @@ export default function () {
   };
 
   return {
-
     /**
      * @ngdoc function
      * @name setExtraClasses
@@ -235,11 +239,12 @@ export default function () {
          * @returns {object} Notification instance
          */
         infoWithInProgress(progressMsg, msg, opts) {
-          return show('info',
-            `${$sanitize(msg)
-            }<br/>`
-                        + `<span class="text-muted">${$sanitize(progressMsg)}</span>`,
-            opts);
+          return show(
+            'info',
+            `${$sanitize(msg)}<br/>` +
+              `<span class="text-muted">${$sanitize(progressMsg)}</span>`,
+            opts,
+          );
         },
 
         /**

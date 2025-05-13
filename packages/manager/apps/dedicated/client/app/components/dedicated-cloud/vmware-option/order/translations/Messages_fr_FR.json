@@ -1,0 +1,16 @@
+{
+  "dedicatedCloud_vmware_orderopt_title_vrops": "Activer l'option VMware vROps",
+  "dedicatedCloud_vmware_orderopt_title_nsx": "Activer l'option VMware NSX",
+  "dedicatedCloud_vmware_orderopt_activate": "Activer l'option",
+  "dedicatedCloud_vmware_orderopt_info": "Le prix de vos hosts sera majoré lors du prochain renouvellement:",
+  "dedicatedCloud_vmware_orderopt_host_name": "Nom",
+  "dedicatedCloud_vmware_orderopt_price_hourly": "{{t0}} / h",
+  "dedicatedCloud_vmware_price_free_spare": "Spare gratuit",
+  "dedicatedCloud_vmware_orderopt_price_info": "*hors autre option activée avant cette date",
+  "dedicatedCloud_vmware_orderopt_load_prices_error": "Une erreur est survenue lors du chargement des prix de l'option:",
+  "dedicatedCloud_vmware_orderopt_activate_success": "Activation de l'option en cours",
+  "dedicatedCloud_vmware_orderopt_activate_error": "Une erreur est survenue lors de l'activation de l'option:",
+  "dedicatedCloud_vmware_orderopt_datacenter_name": "Datacentre",
+  "dedicatedCloud_vmware_orderopt_current_price": "Facturation de ce mois",
+  "dedicatedCloud_vmware_orderopt_next_price": "Facturation du mois prochain*"
+}

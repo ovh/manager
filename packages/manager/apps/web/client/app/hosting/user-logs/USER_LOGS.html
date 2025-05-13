@@ -1,136 +1,135 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="HostingTabUserLogsCtrl as ctrl"
->
-    <div class="row">
-        <div class="col-md-9">
-            <div data-ovh-alert="{{alerts.main}}"></div>
+<div>
+    <div data-ovh-alert="{{alerts.main}}"></div>
 
-            <h2 data-translate="hosting_tab_USER_LOGS"></h2>
-            <p data-ng-if="ctrl.guide">
-                <span class="fa fa-life-ring" aria-hidden="true"></span>
-                <span data-translate="hosting_tab_USER_LOGS_guide_help"></span>
-                <a
-                    data-ng-href="{{ctrl.guide}}"
-                    target="_blank"
-                    title="{{hosting_guide_help}} {{ 'common_newtab' | translate }}"
-                >
-                    <span data-translate="hosting_guide_help"></span>
-                    <span class="fa fa-external-link" aria-hidden="true"></span>
-                </a>
-            </p>
-            <p data-translate="hosting_tab_USER_LOGS_dashboard_information"></p>
-            <dl>
-                <dt data-translate="hosting_tab_USER_LOGS_dashboard_stats"></dt>
-                <dd>
-                    <a
-                        data-ng-href="{{ctrl.urlUrchin}}"
-                        target="_blank"
-                        title="{{hosting_tab_USER_LOGS_dashboard_stats_newtab}}"
-                        data-ng-if="!ctrl.userLogsToken"
-                    >
-                        <span data-ng-bind="ctrl.urlUrchin"></span>
-                        <span
-                            class="fa fa-external-link"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
-                    <a
-                        data-ng-href="{{ctrl.urlUrchin + '?token=' + ctrl.userLogsToken}}"
-                        target="_blank"
-                        title="{{hosting_tab_USER_LOGS_dashboard_stats_newtab}}"
-                        data-ng-if="ctrl.userLogsToken"
-                    >
-                        <span data-ng-bind="ctrl.urlUrchin"></span>
-                        <span
-                            class="fa fa-external-link"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
-                </dd>
-
-                <dt data-translate="hosting_tab_USER_LOGS_dashboard_logs"></dt>
-                <dd>
-                    <a
-                        data-ng-href="{{ctrl.urlLogs}}"
-                        target="_blank"
-                        title="{{hosting_tab_USER_LOGS_dashboard_logs_link}} {{ 'common_newtab' | translate }}"
-                        data-ng-if="!ctrl.userLogsToken"
-                    >
-                        <span data-ng-bind="ctrl.urlLogs"></span>
-                        <span
-                            class="fa fa-external-link"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
-                    <a
-                        data-ng-href="{{ ctrl.urlLogs + '?token=' +  ctrl.userLogsToken}}"
-                        target="_blank"
-                        title="{{hosting_tab_USER_LOGS_dashboard_logs_link}} {{ 'common_newtab' | translate }}"
-                        data-ng-if="ctrl.userLogsToken"
-                    >
-                        <span data-ng-bind="ctrl.urlLogs"></span>
-                        <span
-                            class="fa fa-external-link"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
-                </dd>
-            </dl>
-
-            <div class="mt-5">
-                <oui-datagrid
-                    data-rows="ctrl.userLogs"
-                    data-row-loader="ctrl.transformItem($row)"
-                >
-                    <oui-column
-                        data-title="'hosting_tab_USER_LOGS_table_header_login' | translate"
-                        data-property="login"
-                    >
-                        {{ $row.login | wucSliceContent: 50 }}
-                    </oui-column>
-                    <oui-column
-                        data-title="'hosting_tab_USER_LOGS_table_header_description' | translate"
-                        data-property="description"
-                    >
-                        {{ $row.description | wucSliceContent: 50 }}
-                    </oui-column>
-                    <oui-column
-                        data-title="'hosting_tab_USER_LOGS_table_header_creationDate' | translate"
-                        data-property="creationDate"
-                    >
-                        <span
-                            data-ng-bind="$row.creationDate | date: 'medium'"
-                        ></span>
-                    </oui-column>
-                    <oui-action-menu data-align="end" data-compact>
-                        <oui-action-menu-item
-                            data-text="{{:: 'hosting_tab_USER_LOGS_table_popover_modify' | translate }}"
-                            data-on-click="setAction('user-logs/update/hosting-user-logs-update', $row)"
-                        >
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-text="{{:: 'hosting_tab_USER_LOGS_table_popover_update_password' | translate }}"
-                            data-on-click="setAction('user-logs/password-update/hosting-user-logs-update-password', $row.login)"
-                        >
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-text="{{:: 'hosting_tab_USER_LOGS_table_popover_delete' | translate }}"
-                            data-on-click="setAction('user-logs/delete/hosting-user-logs-delete', $row.login)"
-                        >
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-datagrid>
-            </div>
+    <h2 data-translate="hosting_user_logs"></h2>
+    <p data-translate="hosting_user_logs_dashboard_information"></p>
+    <oui-message type="info" data-ng-if="ctrl.guide">
+        <span data-translate="hosting_user_logs_guide_help"></span>
+        <a
+            class="oui-link_icon"
+            data-ng-href="{{ctrl.guide}}"
+            target="_blank"
+            rel="noopener"
+            title="{{hosting_guide_help}} {{ 'common_newtab' | translate }}"
+        >
+            <span data-translate="hosting_user_logs_guide_consult"></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </oui-message>
+    <div data-ng-if="ctrl.logs">
+        <div data-ng-if="ctrl.logs.stats" class="mb-3">
+            <h3 data-translate="hosting_user_logs_dashboard_stats"></h3>
+            <p
+                data-translate="hosting_user_logs_dashboard_stats_description"
+            ></p>
+            <a
+                class="oui-button oui-button_primary oui-button_icon-right"
+                data-ng-href="{{ctrl.logs.statsUrl}}"
+                target="_blank"
+                rel="noopener"
+                data-track-on="click"
+                data-track-type="action"
+                data-track-name="web::hosting::logs::go-to-stats"
+            >
+                <span
+                    data-translate="hosting_user_logs_dashboard_go_to_stats"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
+                ></span>
+            </a>
         </div>
 
-        <div class="col-md-3 mt-5 mt-lg-0">
-            <button
-                class="btn btn-block btn-default"
-                type="button"
-                data-translate="hosting_tab_USER_LOGS_configuration_user_create_title_button"
-                data-ng-click="setAction('user-logs/add/hosting-user-logs-add')"
-            ></button>
+        <div data-ng-if="ctrl.logs.logs" class="mb-3">
+            <h3 data-translate="hosting_user_logs_dashboard_logs"></h3>
+            <p
+                data-translate="hosting_user_logs_dashboard_logs_description"
+            ></p>
+            <a
+                class="oui-button oui-button_primary oui-button_icon-right"
+                data-ng-href="{{ctrl.logs.logsUrl}}"
+                target="_blank"
+                rel="noopener"
+                data-track-on="click"
+                data-track-type="action"
+                data-track-name="web::hosting::logs::go-to-logs"
+            >
+                <span
+                    data-translate="hosting_user_logs_dashboard_go_to_logs"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
+                ></span>
+            </a>
         </div>
+    </div>
+
+    <div data-ng-if="!hosting.isCloudWeb">
+        <h3 data-translate="hosting_user_logs_dashboard_infra_stats"></h3>
+
+        <div data-ng-include="'hosting/statistics/STATISTICS.html'"></div>
+    </div>
+
+    <div>
+        <h3 data-translate="hosting_user_logs_dashboard_users"></h3>
+        <p data-translate="hosting_user_logs_dashboard_users_description"></p>
+        <oui-button
+            variant="secondary"
+            icon-left="oui-icon-add"
+            on-click="setAction('user-logs/add/hosting-user-logs-add')"
+            class="mb-3"
+        >
+            <span
+                data-translate="hosting_user_logs_configuration_user_create_title_button"
+            ></span>
+        </oui-button>
+        <oui-datagrid
+            data-rows="ctrl.userLogs"
+            data-row-loader="ctrl.transformItem($row)"
+        >
+            <oui-datagrid-column
+                data-title="'hosting_user_logs_table_header_login' | translate"
+                data-property="login"
+            >
+                {{ $row.login | wucSliceContent: 50 }}
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'hosting_user_logs_table_header_description' | translate"
+                data-property="description"
+            >
+                {{ $row.description | wucSliceContent: 50 }}
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'hosting_user_logs_table_header_creationDate' | translate"
+                data-property="creationDate"
+            >
+                <span data-ng-bind="$row.creationDate | date: 'medium'"></span>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
+                <oui-action-menu-item
+                    data-on-click="setAction('user-logs/update/hosting-user-logs-update', $row)"
+                    ><span
+                        data-translate="hosting_user_logs_table_popover_modify"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="setAction('user-logs/password-update/hosting-user-logs-update-password', $row)"
+                    ><span
+                        data-translate="hosting_user_logs_table_popover_update_password"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="setAction('user-logs/delete/hosting-user-logs-delete', $row)"
+                    ><span
+                        data-translate="hosting_user_logs_table_popover_delete"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid>
     </div>
 </div>

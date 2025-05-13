@@ -1,4 +1,5 @@
 {
+  "telephony_alias_config_contactCenterSolution_timeCondition": "Plages horaires et fermetures",
   "telephony_alias_config_contactCenterSolution_timeCondition_title": "File d’appels : plages horaires et fermetures",
   "telephony_alias_config_contactCenterSolution_timeCondition_subtitle": "Vous pouvez gérer vos {{timeCondition}} récurrentes et/ou vos fermetures exceptionnelles (ex. jours fériés, congés).",
   "telephony_alias_config_contactCenterSolution_timeCondition_label": "Plages horaires",
@@ -7,7 +8,7 @@
   "telephony_alias_config_contactCenterSolution_timeCondition_disabled": "Désactivées",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_opening": "Horaires d’ouverture",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_closing": "Horaires de fermeture",
-  "telephony_alias_config_contactCenterSolution_timeCondition_slot_internal": "Rediriger vers une ligne ou un numéro OVH",
+  "telephony_alias_config_contactCenterSolution_timeCondition_slot_internal": "Rediriger vers une ligne ou un numéro OVHcloud",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_opening_help": "Créneaux durant lesquels il est possible de vous joindre en appliquant la file d’appels configurée.",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_closing_help": "Créneaux supplémentaires durant lesquels l’appelant sera redirigé vers un autre numéro ou un répondeur.",
   "telephony_alias_config_contactCenterSolution_timeCondition_slot_custom_help": "Créneaux supplémentaires durant lesquels l’appelant sera redirigé vers un autre numéro ou un répondeur.",

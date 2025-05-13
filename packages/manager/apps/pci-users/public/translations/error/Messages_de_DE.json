@@ -1,0 +1,8 @@
+{
+  "error_page_title": "Hoppla!",
+  "error_page_button_cancel": "Abbrechen",
+  "error_page_detail_code": "Fehlercode: {{code}}",
+  "error_page_action_reload_label": "Erneut versuchen",
+  "error_page_action_home_label": "Zurück zur Startseite",
+  "error_page_default": "Beim Laden der Seite ist ein Fehler aufgetreten."
+}

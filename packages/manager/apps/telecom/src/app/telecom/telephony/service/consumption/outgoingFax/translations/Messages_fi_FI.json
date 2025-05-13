@@ -1,8 +1,0 @@
-{
-  "telephony_service_consumption_outgoing_fax_all": "Kaikki lähetetyt faksit",
-  "telephony_service_consumption_outgoing_fax_empty": "Ei lähetettyjä fakseja.",
-  "telephony_service_consumption_outgoing_fax_period": "Jakso <strong>{{ start }}</strong> - <strong>{{ end }}</strong>",
-  "telephony_service_consumption_outgoing_fax_not_found": "Mikään faksi ei vastannut hakua. ",
-  "telephony_service_consumption_outgoing_fax_summary": "Lähetetyt faksit: <strong>{{ fax }}</strong>, sivumäärä: <strong>{{ pages }}</strong>, hinta: {{ price }} HT",
-  "telephony_service_consumption_outgoing_fax_pages": "Sivut"
-}

@@ -1,0 +1,8 @@
+{
+  "cpbc_no_consumption_data": "Brak zużycia dla wybranego okresu.",
+  "cpbc_volume_col_name": "Nazwisko",
+  "cpbc_volume_col_consumption": "Zużycie",
+  "cpbc_volume_consumption_tooltip_part1": "Płatności zależą od realnej przestrzeni dyskowej, obliczanej co godzinę, za godzinę.",
+  "cpbc_volume_consumption_tooltip_part2": "Twoje zużycie odpowiada dokładnie {{amount}} GiBGodzinom (liczba GiB składowanych w rozliczanych godzinach).",
+  "cpb_error_message": "Wystąpił problem z pobraniem wszystkich informacji."
+}

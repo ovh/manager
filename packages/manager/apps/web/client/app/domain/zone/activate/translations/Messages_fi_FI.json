@@ -1,9 +1,0 @@
-{
-  "web_domain_zone_activation": "Enabling the DNS zone",
-  "web_domain_zone_activation_confirm": "Enable",
-  "web_domain_zone_activation_cancel": "Cancel",
-  "web_domain_zone_activation_question": "Do you want to enable the minimum record in your DNS zone?",
-  "web_domain_zone_activation_template_minimized": "Yes, I want to enable my DNS zone with minimum records.",
-  "web_domain_zone_activation_template_basic": "No, but I want to enable my DNS zone.",
-  "web_domain_zone_activation_success": "The purchase order has been generated."
-}

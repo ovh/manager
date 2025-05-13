@@ -13,8 +13,11 @@ export default class FlavorGroup {
     Object.assign(
       this,
       omit(
-        find(flavors, (flavor) => flavor.osType === image && !flavor.isFlex()),
-        ['regions', 'id', 'osType', 'planCodes'],
+        find(
+          flavors,
+          (flavor) => image.includes(flavor.osType) && !flavor.isFlex(),
+        ),
+        ['regions', 'id', 'osType'],
       ),
     );
 
@@ -62,11 +65,13 @@ export default class FlavorGroup {
   }
 
   getFlavorId(osType, region, isFlex = false) {
-    const flavor = this.getFlavorByOsType(osType, isFlex);
-    if (flavor) {
-      return flavor.getIdByRegion(region);
+    let flavor = this.getFlavorByOsType(osType, isFlex);
+    if (!flavor && isFlex) {
+      // If source instance is flex and no equivalent flavor is found
+      // then use default non-flex flavor equivalent
+      flavor = this.getFlavorByOsType(osType, false);
     }
-    return false;
+    return flavor ? flavor.getIdByRegion(region) : false;
   }
 
   getFlavor(flavorId) {
@@ -75,5 +80,33 @@ export default class FlavorGroup {
 
   hasFlexOption() {
     return some(this.flavors, (flavor) => flavor.isFlex());
+  }
+
+  /**
+   * @doc method
+   * @methodOf FlavorGroup
+   * @name FlavorGroup#getOsTypesByRegion
+   * @param {string} region The region for which we want the osTypes available.
+   * @returns {Array<string>} The list of available osTypes
+   *
+   * @description
+   * Return os types available for a region.
+   */
+  getOsTypesByRegion(region) {
+    return this.flavors.reduce((osTypes, flavor) => {
+      if (
+        flavor.regions.find((regionInfo) => regionInfo.region === region) &&
+        !osTypes.includes(flavor.osType)
+      ) {
+        osTypes.push(flavor.osType);
+      }
+      return osTypes;
+    }, []);
+  }
+
+  getPriceBasedOnFlavorId(flavorId) {
+    return find(this.flavors, (flavor) =>
+      flavor.containsFlavor(flavorId),
+    )?.priceInformation.find(({ id }) => id === flavorId)?.prices;
   }
 }

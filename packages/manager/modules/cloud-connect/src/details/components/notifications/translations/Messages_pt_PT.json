@@ -1,0 +1,4 @@
+{
+  "cloud_connect_notifications_incident": "Um incidente que poderá afetar o seu serviço foi declarado a {{startDate}}",
+  "cloud_connect_notifications_maintenance": "Está prevista uma operação de manutenção de {{startDate}} a {{endDate}}"
+}

@@ -1,0 +1,597 @@
+<div
+    data-ng-controller="telephonyNumberOvhPabxMenuEntryEditCtrl as $ctrl"
+    class="telephony-number-ovh-pabx-menu-entry-edit popover-pages"
+    data-ng-form="menuEntryForm"
+    data-tuc-hide-outside-click="$ctrl.onCancelBtnClick()"
+>
+    <div
+        class="popover-pages-wrapper"
+        data-ng-class="{ move: $ctrl.menuEntryCtrl.popoverStatus.move }"
+    >
+        <!-- LEFT PAGE -->
+        <section class="popover-page page-section">
+            <header>
+                <h2
+                    data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_title"
+                ></h2>
+            </header>
+
+            <section>
+                <div class="section-group">
+                    <!-- DTMF -->
+                    <button
+                        type="button"
+                        class="section-item large-popover-item text-left"
+                        data-ng-click="$ctrl.onLeftPageButtonClick('dtmf')"
+                    >
+                        <label
+                            class="radio-label-main required"
+                            data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_dtmf"
+                        >
+                        </label>
+                        <span
+                            class="block"
+                            data-ng-if="$ctrl.menuEntryCtrl.menuEntry.dtmf"
+                            data-ng-bind="$ctrl.menuEntryCtrl.menuEntry.dtmf"
+                        >
+                        </span>
+                        <span
+                            class="block"
+                            data-ng-if="!$ctrl.menuEntryCtrl.menuEntry.dtmf"
+                            data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_dtmf_no_selected"
+                        >
+                        </span>
+                        <div class="chevron-right">
+                            <div class="chevron-wrapper">
+                                <i class="ovh-font ovh-font-arrow-right"></i>
+                            </div>
+                        </div>
+                    </button>
+                    <!-- END OF DTMF -->
+
+                    <!-- ACTION -->
+                    <button
+                        type="button"
+                        class="section-item large-popover-item text-left"
+                        data-ng-click="$ctrl.onLeftPageButtonClick('actions')"
+                    >
+                        <label
+                            class="radio-label-main required"
+                            data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_action"
+                        >
+                        </label>
+                        <span
+                            class="block"
+                            data-translate="{{ 'telephony_number_feature_ovh_pabx_menu_entry_action_' + ($ctrl.menuEntryCtrl.menuEntry.action | tucSnakeCase) }}"
+                        >
+                        </span>
+                        <div class="chevron-right">
+                            <div class="chevron-wrapper">
+                                <i class="ovh-font ovh-font-arrow-right"></i>
+                            </div>
+                        </div>
+                    </button>
+                    <!-- END OF ACTION -->
+
+                    <!-- SWITCH ACTION FOR ACTION PARAM -->
+                    <div data-ng-switch="$ctrl.menuEntryCtrl.menuEntry.action">
+                        <!-- SET CALLER NAME -->
+                        <div
+                            class="section-item form-group"
+                            data-ng-class="{ 'has-error': menuEntryForm.setCallerNameActionParam.$invalid && menuEntryForm.setCallerNameActionParam.$dirty }"
+                            data-ng-switch-when="setCallerName"
+                        >
+                            <label
+                                for="setCallerNameActionParam"
+                                class="control-label required"
+                                data-translate="{{ 'telephony_number_feature_ovh_pabx_menu_entry_action_set_caller_name_action_param' }}"
+                            >
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="setCallerNameActionParam"
+                                id="setCallerNameActionParam"
+                                data-ng-model="$ctrl.menuEntryCtrl.menuEntry.actionParam"
+                                data-translate-attr="{ placeholder: 'telephony_number_feature_ovh_pabx_menu_entry_action_set_caller_name_action_param' }"
+                                data-required
+                                data-ng-pattern="/^[\w\s]+$/"
+                            />
+                            <span
+                                class="help-block"
+                                role="alert"
+                                data-ng-if="menuEntryForm.setCallerNameActionParam.$invalid && menuEntryForm.setCallerNameActionParam.$dirty"
+                                data-ng-messages="menuEntryForm.setCallerNameActionParam.$error"
+                            >
+                                <span
+                                    data-ng-message="required"
+                                    data-translate="telephony_number_feature_ovh_pabx_menu_entry_action_set_caller_name_action_param_required"
+                                >
+                                </span>
+                                <span
+                                    data-ng-message="pattern"
+                                    data-translate="telephony_number_feature_ovh_pabx_menu_entry_action_set_caller_name_action_param_bad_format"
+                                >
+                                </span>
+                            </span>
+                        </div>
+                        <!-- END OF SET CALLER NAME -->
+
+                        <!-- BRIDGE -->
+                        <div
+                            class="section-item form-group"
+                            data-ng-class="{ 'has-error': menuEntryForm.setBridgeActionParam.$invalid && menuEntryForm.setBridgeActionParam.$dirty }"
+                            data-ng-switch-when="bridge"
+                        >
+                            <label
+                                for="setBridgeActionParam"
+                                class="control-label required"
+                                data-translate="{{ 'telephony_number_feature_ovh_pabx_menu_entry_action_bridge_to_number' }}"
+                            >
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="setBridgeActionParam"
+                                id="setBridgeActionParam"
+                                data-ng-model="$ctrl.menuEntryCtrl.menuEntry.actionParam"
+                                data-translate-attr="{ placeholder: 'telephony_number_feature_ovh_pabx_menu_entry_action_bridge_to_number' }"
+                                data-required
+                                data-ng-pattern="/^(00|\+)([0-9]{2}\d+)$/"
+                            />
+                            <span
+                                class="help-block"
+                                role="alert"
+                                data-ng-if="menuEntryForm.setBridgeActionParam.$invalid && menuEntryForm.setBridgeActionParam.$dirty"
+                                data-ng-messages="menuEntryForm.setBridgeActionParam.$error"
+                            >
+                                <span
+                                    data-ng-message="required"
+                                    data-translate="telephony_number_feature_ovh_pabx_menu_entry_action_bridge_action_param_required"
+                                >
+                                </span>
+                                <span
+                                    data-ng-message="pattern"
+                                    data-translate="telephony_number_feature_ovh_pabx_menu_entry_action_bridge_action_param_bad_format"
+                                >
+                                </span>
+                            </span>
+                        </div>
+                        <!-- END OF BRIDGE -->
+
+                        <!-- PLAYBACK -->
+                        <button
+                            type="button"
+                            class="section-item large-popover-item text-left"
+                            data-ng-switch-when="playback"
+                            data-ng-click="$ctrl.onLeftPageButtonClick('playback')"
+                        >
+                            <label
+                                class="radio-label-main required"
+                                data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_playback"
+                            >
+                            </label>
+                            <span
+                                class="block"
+                                data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_playback_no_sound"
+                                data-ng-if="!$ctrl.menuEntryCtrl.menuEntry.actionParam"
+                            >
+                            </span>
+                            <span
+                                class="block"
+                                data-ng-if="$ctrl.menuEntryCtrl.menuEntry.actionParam"
+                                data-ng-bind="$ctrl.menuEntryCtrl.menuCtrl.ovhPabx.getSound($ctrl.menuEntryCtrl.menuEntry.actionParam).name"
+                            >
+                            </span>
+                            <div class="chevron-right">
+                                <div class="chevron-wrapper">
+                                    <i
+                                        class="ovh-font ovh-font-arrow-right"
+                                    ></i>
+                                </div>
+                            </div>
+                        </button>
+                        <!-- END OF PLAYBACK -->
+
+                        <!-- MENU SUB -->
+                        <button
+                            type="button"
+                            class="section-item large-popover-item text-left"
+                            data-ng-switch-when="menuSub"
+                            data-ng-click="$ctrl.onLeftPageButtonClick('menu')"
+                        >
+                            <label
+                                class="radio-label-main required"
+                                data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_menu_sub"
+                            >
+                            </label>
+                            <span
+                                class="block"
+                                data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_menu_sub_no_menu"
+                                data-ng-if="!$ctrl.menuEntryCtrl.menuEntry.actionParam"
+                            >
+                            </span>
+                            <span
+                                class="block"
+                                data-ng-if="$ctrl.menuEntryCtrl.menuEntry.actionParam && $ctrl.menuEntryCtrl.menuEntry.actionParam === 'new'"
+                                data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_menu_sub_add_menu_new"
+                            >
+                            </span>
+                            <span
+                                class="block"
+                                data-ng-if="$ctrl.menuEntryCtrl.menuEntry.actionParam && $ctrl.menuEntryCtrl.menuEntry.actionParam !== 'new'"
+                                data-ng-bind="$ctrl.menuEntryCtrl.menuCtrl.ovhPabx.getMenu($ctrl.menuEntryCtrl.menuEntry.actionParam).name"
+                            >
+                            </span>
+                            <div class="chevron-right">
+                                <div class="chevron-wrapper">
+                                    <i
+                                        class="ovh-font ovh-font-arrow-right"
+                                    ></i>
+                                </div>
+                            </div>
+                        </button>
+                        <!-- END OF MENU SUB -->
+
+                        <!-- READ DTMF -->
+                        <div
+                            class="section-item form-group"
+                            data-ng-class="{ 'has-error': menuEntryForm.setReadDtmfActionParam.$invalid && menuEntryForm.setReadDtmfActionParam.$dirty }"
+                            data-ng-switch-when="readDtmf"
+                        >
+                            <label
+                                for="setReadDtmfActionParam"
+                                class="control-label required"
+                                data-translate="{{ 'telephony_number_feature_ovh_pabx_menu_entry_action_read_dtmf_var' }}"
+                            >
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="setReadDtmfActionParam"
+                                id="setReadDtmfActionParam"
+                                data-ng-model="$ctrl.menuEntryCtrl.menuEntry.actionParam"
+                                data-translate-attr="{ placeholder: 'telephony_number_feature_ovh_pabx_menu_entry_action_read_dtmf_var' }"
+                                data-required
+                                data-ng-maxlength="24"
+                                data-ng-pattern="/^[a-zA-Z0-9]+$/"
+                            />
+                            <span
+                                class="help-block"
+                                role="alert"
+                                data-ng-if="menuEntryForm.setReadDtmfActionParam.$invalid && menuEntryForm.setReadDtmfActionParam.$dirty"
+                                data-ng-messages="menuEntryForm.setReadDtmfActionParam.$error"
+                            >
+                                <span
+                                    data-ng-message="required"
+                                    data-translate="telephony_number_feature_ovh_pabx_menu_entry_action_read_dtmf_action_param_required"
+                                >
+                                </span>
+                                <span
+                                    data-ng-message="pattern"
+                                    data-translate="telephony_number_feature_ovh_pabx_menu_entry_action_read_dtmf_action_param_bad_format"
+                                >
+                                </span>
+                                <span
+                                    data-ng-message="maxlength"
+                                    data-translate="telephony_number_feature_ovh_pabx_menu_entry_action_read_dtmf_action_param_too_long"
+                                >
+                                </span>
+                            </span>
+                        </div>
+                        <!-- END OF READ DTMF -->
+
+                        <!-- QUEUE MEMBER (callcenter) -->
+                        <button
+                            type="button"
+                            class="section-item large-popover-item text-left"
+                            data-ng-switch-when="callcenter"
+                            data-ng-click="$ctrl.onLeftPageButtonClick('callcenter')"
+                        >
+                            <label
+                                class="radio-label-main required"
+                                data-translate="telephony_number_feature_ovh_pabx_step_rule_hunting"
+                            >
+                            </label>
+                            <span
+                                class="block"
+                                data-translate="telephony_number_feature_ovh_pabx_step_rule_hunting_no_queue"
+                                data-ng-if="!$ctrl.menuEntryCtrl.menuEntry.actionParam"
+                            >
+                            </span>
+                            <span
+                                class="block"
+                                data-ng-if="$ctrl.menuEntryCtrl.menuEntry.actionParam"
+                                data-ng-bind="$ctrl.ovhPabx.getQueue($ctrl.menuEntryCtrl.menuEntry.actionParam).description || $ctrl.ovhPabx.getQueue($ctrl.menuEntryCtrl.menuEntry.actionParam).queueId"
+                            >
+                            </span>
+                            <div class="chevron-right">
+                                <div class="chevron-wrapper">
+                                    <i
+                                        class="ovh-font ovh-font-arrow-right"
+                                    ></i>
+                                </div>
+                            </div>
+                        </button>
+                        <!-- END OF QUEUE MEMBER (callcenter) -->
+                    </div>
+                    <!-- END OF SWITCH ACTION FOR ACTION PARAM -->
+                </div>
+            </section>
+
+            <!-- FOOTER ACTIONS -->
+            <footer class="clearfix">
+                <div class="btn-group float-right">
+                    <button
+                        type="button"
+                        class="oui-button oui-button_secondary m-3"
+                        data-translate="cancel"
+                        data-ng-click="$ctrl.onCancelBtnClick()"
+                    ></button>
+                    <button
+                        type="submit"
+                        class="oui-button oui-button_primary m-3"
+                        data-ng-disabled="!$ctrl.menuEntryCtrl.menuEntry.hasChange() || !$ctrl.isMenuEntryValid() || menuEntryForm.$invalid"
+                        data-translate="{{ $ctrl.menuEntryCtrl.menuEntry.status === 'DRAFT' ? 'common_create' : 'modify' }}"
+                        data-ng-click="$ctrl.onValidateBtnClick()"
+                    ></button>
+                </div>
+            </footer>
+            <!-- END OF FOOTER ACTIONS -->
+        </section>
+        <!-- EBD OF LEFT PAGE -->
+
+        <!-- RIGHT PAGE -->
+        <section
+            class="popover-page page-section"
+            data-ng-switch="$ctrl.menuEntryCtrl.popoverStatus.rightPage"
+        >
+            <header>
+                <button
+                    type="button"
+                    class="btn btn-link back-btn no-space fs20"
+                    data-ng-click="$ctrl.menuEntryCtrl.popoverStatus.move = false"
+                    data-translate-attr="{ title: 'back' }"
+                >
+                    <i class="ovh-font ovh-font-arrow-left"></i>
+                </button>
+
+                <h2
+                    data-ng-switch-when="dtmf"
+                    data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_dtmf_change"
+                ></h2>
+
+                <h2
+                    data-ng-switch-when="actions"
+                    data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_action_change"
+                ></h2>
+
+                <h2
+                    data-ng-switch-when="playback"
+                    data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_playback"
+                ></h2>
+
+                <h2
+                    data-ng-switch-when="menu"
+                    data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_menu_sub"
+                ></h2>
+
+                <h2
+                    data-ng-switch-when="callcenter"
+                    data-translate="telephony_number_feature_ovh_pabx_step_rule_hunting_choice"
+                ></h2>
+            </header>
+
+            <!-- DTMF KEY CHOICE -->
+            <section data-ng-switch-when="dtmf" class="dtmf-section">
+                <div class="section-group">
+                    <div class="oui-checkbox">
+                        <div class="section-item item-choice w-100 d-table">
+                            <input
+                                class="oui-checkbox__input"
+                                id="menuEntryActionChangeKey-checkbox1"
+                                name="menuEntryAction"
+                                type="checkbox"
+                                data-ng-model="$ctrl.model.singleDigitKey"
+                                data-ng-change="$ctrl.menuEntryCtrl.menuEntry.dtmf = ''"
+                            />
+                            <label
+                                class="oui-checkbox__label-container"
+                                for="menuEntryActionChangeKey-checkbox1"
+                            >
+                                <span class="oui-checkbox__label">
+                                    <span class="oui-checkbox__icon"></span>
+                                    <span
+                                        class="oui-checkbox__text"
+                                        data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_dtmf_single_digit"
+                                    ></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div
+                        class="section-item dtmf-value text-center"
+                        data-ng-if="!$ctrl.model.singleDigitKey"
+                    >
+                        <em
+                            data-ng-if="!$ctrl.menuEntryCtrl.menuEntry.dtmf"
+                            data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_dtmf_multi_digit_choose"
+                        >
+                        </em>
+                        <div data-ng-if="$ctrl.menuEntryCtrl.menuEntry.dtmf">
+                            <strong
+                                data-ng-bind="$ctrl.menuEntryCtrl.menuEntry.dtmf"
+                            ></strong>
+                            <button
+                                type="button"
+                                class="oui-button oui-button_s"
+                                data-translate-attr="{ title: 'telephony_number_feature_ovh_pabx_menu_entry_edit_dtmf_multi_digit_reset' }"
+                                data-ng-click="$ctrl.menuEntryCtrl.menuEntry.dtmf = ''"
+                            >
+                                <i
+                                    class="oui-icon oui-icon-error-circle"
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="section-item">
+                        <div class="container pt-4">
+                            <div
+                                class="row"
+                                data-ng-repeat="row in $ctrl.availableDtmfKeys track by $index"
+                            >
+                                <div
+                                    class="col-sm-4"
+                                    data-ng-repeat="key in row track by $index"
+                                >
+                                    <button
+                                        type="button"
+                                        class="oui-button oui-button_secondary w-100"
+                                        data-ng-class="{ active: $ctrl.model.singleDigitKey && key === $ctrl.menuEntryCtrl.menuEntry.dtmf }"
+                                        data-ng-bind="key"
+                                        data-ng-disabled="$ctrl.menuEntryCtrl.menuEntry.dtmf.length >= 10"
+                                        data-ng-click="$ctrl.onDtmfKeyButtonClick(key)"
+                                    ></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END OF DTMF KEY CHOICE -->
+
+            <!-- ENTRY ACTION LIST -->
+            <section data-ng-switch-when="actions">
+                <div class="section-group">
+                    <div
+                        class="section-item"
+                        data-ng-repeat="action in ::$ctrl.availableActions | orderBy:'label' track by $index"
+                    >
+                        <oui-radio
+                            data-model="$ctrl.menuEntryCtrl.menuEntry.action"
+                            data-value="action.value"
+                            data-on-change="$ctrl.onMenuEntryActionChange()"
+                        >
+                            <span
+                                class="d-block radio-label-main"
+                                data-ng-bind="::action.label"
+                            >
+                            </span>
+                            <span
+                                class="small font-weight-normal"
+                                data-ng-bind="::action.explain"
+                            >
+                            </span>
+                        </oui-radio>
+                    </div>
+                </div>
+            </section>
+            <!-- END OF ENTRY ACTION LIST -->
+
+            <!-- SOUND CHOICE FOR PLAYBACK -->
+            <telephony-number-ovh-pabx-sound-popover-section
+                data-ng-switch-when="playback"
+                data-ovh-pabx="$ctrl.menuEntryCtrl.menuCtrl.ovhPabx"
+                data-selected-sound-id="$ctrl.menuEntryCtrl.menuEntry.actionParam"
+                data-on-sound-change="$ctrl.onPlaybackSoundChange"
+            >
+            </telephony-number-ovh-pabx-sound-popover-section>
+            <!-- END OF SOUND CHOICE FOR PLAYBACK -->
+
+            <!-- MENU CHOICE -->
+            <section data-ng-switch-when="menu">
+                <div class="section-group">
+                    <!-- ADD NEW MENU -->
+                    <button
+                        type="button"
+                        class="section-item no-style w-100 text-left"
+                        data-ng-click="$ctrl.onAddSubMenuButtonClick()"
+                    >
+                        <div class="d-table">
+                            <div class="d-table-cell align-middle px-3">
+                                <i class="ovh-font ovh-font-ajouter fs18"></i>
+                            </div>
+                            <div class="d-table-cell align-middle">
+                                <label
+                                    class="d-block radio-label-main"
+                                    data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_menu_sub_add_menu"
+                                >
+                                </label>
+                                <span
+                                    class="small font-weight-normal"
+                                    data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_menu_sub_add_menu_explain"
+                                >
+                                </span>
+                            </div>
+                        </div>
+                    </button>
+                    <!-- END OF ADD NEW MENU -->
+                </div>
+
+                <div class="section-group">
+                    <div class="section-item menu-list-container">
+                        <!-- MENUS LIST -->
+                        <telephony-number-ovh-pabx-menu-list
+                            data-ovh-pabx="$ctrl.menuEntryCtrl.menuCtrl.ovhPabx"
+                            data-ng-model="$ctrl.menuEntryCtrl.menuEntry.actionParam"
+                            data-with-choice="true"
+                            data-radio-name="editEntryMenuChoice"
+                            data-disable-menu-id="$ctrl.menuEntryCtrl.menuCtrl.menu.menuId"
+                            data-on-menu-selected="$ctrl.onSubMenuSelectedChange"
+                        >
+                        </telephony-number-ovh-pabx-menu-list>
+                        <!-- END OF MENUS LIST -->
+                    </div>
+                </div>
+            </section>
+            <!-- END OF MENU CHOICE -->
+
+            <!-- HUNTING CHOICE -->
+            <section data-ng-switch-when="callcenter">
+                <!-- HUNTING INFOS -->
+                <div
+                    class="alert alert-info mb-0"
+                    role="alert"
+                    data-translate="telephony_number_feature_ovh_pabx_step_rule_hunting_info"
+                    data-translate-values="{
+                        state: 'telecom.telephony.billingAccount.alias.details.configuration.queues.ovhPabx'
+                    }"
+                    data-translate-compile
+                ></div>
+                <!-- END OF HUNTING INFOS -->
+
+                <!-- QUEUE SELECTION -->
+                <div class="section-group">
+                    <label
+                        class="section-item item-choice w-100 d-table"
+                        data-ng-repeat="queue in $ctrl.ovhPabx.queues | orderBy:['queueId', 'description'] track by $index"
+                    >
+                        <div class="d-table-cell align-middle radio-content">
+                            <div class="radio">
+                                <input
+                                    class="ml-0 position-relative"
+                                    type="radio"
+                                    name="ruleAction"
+                                    data-ng-model="$ctrl.menuEntryCtrl.menuEntry.actionParam"
+                                    data-ng-value="queue.queueId"
+                                    data-ng-change="$ctrl.menuEntryCtrl.popoverStatus.move = false"
+                                />
+                            </div>
+                        </div>
+                        <div class="d-table-cell align-middle">
+                            <span
+                                class="d-block radio-label-main"
+                                data-ng-bind="queue.description || queue.queueId"
+                            >
+                            </span>
+                        </div>
+                    </label>
+                </div>
+                <!-- END OF QUEUE SELECTION -->
+            </section>
+            <!-- END OF HUNTING CHOICE -->
+        </section>
+        <!-- END OF RIGHT PAGE -->
+    </div>
+</div>

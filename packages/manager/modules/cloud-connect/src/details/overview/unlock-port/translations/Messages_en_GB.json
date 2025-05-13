@@ -1,0 +1,7 @@
+{
+  "cloud_connect_pop_port_unblock": "Unblock the port",
+  "cloud_connect_pop_unblock_port_confirm": "Are you sure you want to unblock port {{portNumber}}?",
+  "cloud_connect_unblock": "Unblock",
+  "cloud_connect_pop_unblock_port_success": "Unblocking port {{port}}. <a href=\"{{ tasksUrl }}\">Click here to view its status.</a>",
+  "cloud_connect_pop_unblock_port_error": "Unable to unblock port: {{message}}"
+}

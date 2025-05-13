@@ -2,13 +2,22 @@ import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $scope, $translate, TucSmsMediator, TucToast) {
+  constructor(
+    $q,
+    $stateParams,
+    $scope,
+    $translate,
+    TucSmsMediator,
+    TucToast,
+    CHANGELOG,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.$scope = $scope;
     this.TucSmsMediator = TucSmsMediator;
     this.TucToast = TucToast;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {
@@ -23,6 +32,11 @@ export default class {
       .then(() => {
         this.service = this.TucSmsMediator.getCurrentSmsService();
         this.serviceNameSave = this.updateServiceNameSave.bind(this);
+        if (this.isSmppAccount) {
+          this.serviceNameAppendix = this.$translate.instant(
+            `sms_smpp_channel_qualification_${this.service.channel}`,
+          );
+        }
       })
       .catch((error) => {
         this.TucToast.error(

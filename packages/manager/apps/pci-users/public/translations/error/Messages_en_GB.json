@@ -1,0 +1,8 @@
+{
+  "error_page_title": "Oops!",
+  "error_page_button_cancel": "Cancel",
+  "error_page_detail_code": "Error code: {{code}}",
+  "error_page_action_reload_label": "Try again",
+  "error_page_action_home_label": "Back to homepage",
+  "error_page_default": "An error has occurred loading the page."
+}

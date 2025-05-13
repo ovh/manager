@@ -1,0 +1,23 @@
+{
+  "netapp_onboarding_breadcrumb": "Onboarding",
+  "netapp_onboarding_title": "Enterprise File Storage",
+  "netapp_onboarding_description": "Enterprise File Storage, powered by NetApp. Connetti tutte le soluzioni OVHcloud a un servizio di storage di file con prestazioni elevate per le applicazioni professionali più critiche.",
+  "netapp_onboarding_recommendation_1": "Ti consigliamo di attivare almeno il livello di supporto Premium.",
+  "netapp_onboarding_recommendation_2": "Per applicazioni strategiche che richiedono una gestione 24/7, è importante poter contare su un servizio di assistenza adeguato.",
+  "netapp_onboarding_order": "Ordina",
+  "netapp_onboarding_manager_start_title": "Avvio rapido dallo Spazio Cliente OVHcloud",
+  "netapp_onboarding_manager_start_description": "Avvia lo storage dei file con Enterprise File Storage dallo Spazio Cliente OVHcloud.",
+  "netapp_onboarding_api_start_title": "Avvio rapido tramite l'API OVHcloud",
+  "netapp_onboarding_api_start_description": "Avvia lo storage dei file con Enterprise File Storage tramite l'API OVHcloud.",
+  "netapp_onboarding_volumes_title": "Gestione dei Volumi",
+  "netapp_onboarding_volumes_description": "Questa guida ti mostra come gestire i volumi della soluzione Enterprise File Storage.",
+  "netapp_onboarding_volumes_guides": "Guide",
+  "netapp_onboarding_storage_title": "Storage e backup",
+  "netapp_onboarding_volume_acl_title": "Gestione delle ACL",
+  "netapp_onboarding_volume_snapshots_title": "Gestione degli Snapshot",
+  "netapp_onboarding_bullet_point_1": "Un servizio di file storage totalmente gestito da OVHcloud, con prestazioni elevate e alta disponibilità, basato sul file system NetApp ONTAP.",
+  "netapp_onboarding_bullet_point_2": "Capacità di storage da 1 a 58 TB per servizio e prestazioni garantite per terabyte.",
+  "netapp_onboarding_bullet_point_2_emphasis": "64 MB/s e 4.000 IOPS per TB di capacità fornita.",
+  "netapp_onboarding_bullet_point_3": "Disponibili per diversi carichi di lavoro Linux, ambienti virtualizzati tramite il protocollo NFS.",
+  "netapp_onboarding_bullet_point_4": "Fornisce un insieme di funzionalità: creazione e gestione degli Snapshot, gestione delle ACL, gestione dei volumi..."
+}

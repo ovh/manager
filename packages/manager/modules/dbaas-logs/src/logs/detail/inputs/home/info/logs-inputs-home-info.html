@@ -1,0 +1,52 @@
+<oui-modal
+    data-on-dismiss="ctrl.cancel()"
+    data-heading="{{ ::'inputs_info_title' | translate }}"
+>
+    <p data-translate="inputs_info_description"></p>
+
+    <oui-field data-label="{{ ::'inputs_info_hostname' | translate}}">
+        <oui-clipboard
+            id="input_hostname"
+            data-model="ctrl.currentInput.hostname"
+            name="input_hostname"
+        ></oui-clipboard>
+    </oui-field>
+
+    <oui-field
+        data-label="{{ ::'inputs_info_exposedport' | translate}}"
+        data-size="s"
+    >
+        <oui-clipboard
+            id="input_exposedport"
+            data-model="ctrl.currentInput.exposedPort"
+            name="input_exposedport"
+        ></oui-clipboard>
+    </oui-field>
+
+    <oui-field
+        data-label="{{ ::'inputs_info_ipaddress' | translate}}"
+        data-size="m"
+    >
+        <oui-clipboard
+            id="input_ipaddress"
+            data-model="ctrl.currentInput.publicAddress"
+            name="input_ipaddress"
+        ></oui-clipboard>
+    </oui-field>
+
+    <oui-field data-label="{{ ::'inputs_info_certificate' | translate}}">
+        <oui-clipboard
+            id="input_certificate"
+            data-model="ctrl.currentInput.sslCertificate"
+            name="input_certificate"
+        ></oui-clipboard>
+    </oui-field>
+
+    <oui-field data-label="{{ ::'inputs_info_ca_certificate' | translate}}">
+        <oui-clipboard
+            id="input_certificate"
+            data-model="ctrl.defaultCluster.dedicatedInputPEM"
+            name="input_certificate"
+        ></oui-clipboard>
+    </oui-field>
+</oui-modal>

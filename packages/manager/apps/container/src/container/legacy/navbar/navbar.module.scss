@@ -1,0 +1,18 @@
+.navbar {
+  padding-right: 2rem;
+}
+
+.hamburgerOpen {
+  visibility: visible !important;
+  transform: translateX(0) !important;
+}
+
+.aside {
+  height: 2.75rem;
+}
+
+.small-device-pnr-switch {
+  padding: 0.375rem 1.25rem 0 0;
+  display: flex;
+  justify-content: flex-end;
+}

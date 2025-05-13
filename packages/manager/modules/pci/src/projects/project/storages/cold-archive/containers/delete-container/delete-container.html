@@ -1,0 +1,39 @@
+<oui-modal
+    data-heading="{{ 'pci_projects_project_storages_containers_container_cold_archive_delete_title' | translate }}"
+    data-primary-action="$ctrl.deleteContainer()"
+    data-primary-label="{{:: 'pci_projects_project_storages_containers_container_cold_archive_delete_submit_label' | translate }}"
+    data-primary-disabled="$ctrl.isLoading || !$ctrl.terminateConfirmation || ($ctrl.container.status === $ctrl.COLD_ARCHIVE_CONTAINER_STATUS.NONE && $ctrl.container.objectsCount)"
+    data-secondary-action="$ctrl.cancel()"
+    data-on-dismiss="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_projects_project_storages_containers_container_cold_archive_delete_cancel_label' | translate }}"
+    data-loading="$ctrl.isLoading"
+>
+    <oui-message data-ng-if="$ctrl.container.objectsCount" data-type="warning"
+        ><span
+            data-translate="pci_projects_project_storages_containers_container_cold_archive_delete_archive_status_active_warning_1"
+            data-translate-values="{ containerName: $ctrl.container.name, objetsCount: $ctrl.container.objectsCount }"
+        ></span>
+        <p
+            data-translate="pci_projects_project_storages_containers_container_cold_archive_delete_archive_status_active_warning_2"
+            data-translate-values="{ docUrl: $ctrl.getDocumentationUrl() }"
+        ></p>
+    </oui-message>
+    <div data-ng-if="!$ctrl.container.objectsCount">
+        <p
+            data-translate="pci_projects_project_storages_containers_container_cold_archive_delete_description"
+            data-translate-values="{ containerName: $ctrl.container.name }"
+        ></p>
+        <oui-field
+            data-label="{{:: 'pci_projects_project_storages_containers_container_cold_archive_delete_terminate_input_label' | translate }}"
+        >
+            <input
+                type="text"
+                class="oui-input"
+                name="archiveDeleteCheck"
+                data-ng-model="$ctrl.terminateConfirmation"
+                data-ng-pattern="$ctrl.TERMINATE_INPUT_PATTERN"
+                required
+            />
+        </oui-field>
+    </div>
+</oui-modal>

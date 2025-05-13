@@ -1,0 +1,21 @@
+<div class="telephony-service-choice-popover">
+    <div class="popover-pages">
+        <voip-service-choice
+            data-ng-model="$ctrl.value"
+            data-available-types="$ctrl.availableTypes"
+            data-hidden-groups="$ctrl.hiddenGroups"
+            data-preload-group="{{ $ctrl.preloadGroup }}"
+            data-on-choice-validated="$ctrl.onValidate"
+            data-on-choice-cancel="$ctrl.onCancel"
+            data-on-choice-changed="$ctrl.onChange"
+            data-choice-args="$ctrl.choiceArgs"
+            data-exclude-services="$ctrl.excludeServices"
+            data-filter-services="$ctrl.filterServices"
+            data-wrapper-class="{ 'popover-pages-wrapper': true, 'move': $ctrl.popoverStatus.move }"
+            data-container-class="[ 'popover-page', 'page-section' ]"
+            data-hide-footer="$ctrl.hideFooter"
+            data-hide-header="$ctrl.hideHeader"
+            data-title="{{ $ctrl.title }}"
+        ></voip-service-choice>
+    </div>
+</div>

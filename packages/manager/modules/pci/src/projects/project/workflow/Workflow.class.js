@@ -1,6 +1,5 @@
-import moment from 'moment';
-
 import map from 'lodash/map';
+import 'moment';
 
 import { WORKFLOW_TYPE_ENUM } from './workflow.constants';
 

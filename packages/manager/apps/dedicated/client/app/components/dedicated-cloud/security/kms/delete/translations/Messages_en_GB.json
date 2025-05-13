@@ -1,0 +1,9 @@
+{
+  "dedicatedCloud_vm_encryption_delete_kms_title": "Delete KMS server",
+  "dedicatedCloud_vm_encryption_delete_kms_question": "Are you sure you want to delete the {{kmsToDelete}} KMS server?",
+  "dedicatedCloud_vm_encryption_kms_current_operation": "Operation {{currentOperation}}: {{state}}",
+  "dedicatedCloud_vm_encryption_kms_edit_error": "An error has occurred editing the KMS server: {{error}}",
+  "dedicatedCloud_vm_encryption_delete_kms_deleting": "Deleting the KMS server",
+  "dedicatedCloud_vm_encryption_kms_pending_task_state": "In progress",
+  "dedicatedCloud_vm_encryption_kms_deleted": "The KMS server has been deleted."
+}

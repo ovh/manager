@@ -1,0 +1,12 @@
+{
+  "vrack_order_title": "Zamów vRack",
+  "vrack_order_price": "Cena: {{price}} brutto",
+  "vrack_order_price_free": "Zamówienie usługi vRack jest bezpłatne",
+  "vrack_order_contracts_title": "Akceptacja warunków świadczenia usługi",
+  "vrack_order_contracts_description": "Aby kontynuować zamawianie usługi vRack, przeczytaj i zaakceptuj regulamin:",
+  "vrack_order_contracts_checkbox": "Zapoznałem się i akceptuję regulamin usług:",
+  "vrack_order_contracts_agreed": "Zaakceptowałeś już obowiązujące warunki.",
+  "vrack_order_confirm_label": "Zamów vRack",
+  "vrack_order_cancel_label": "Anuluj",
+  "vrack_order_error": "Wystąpił błąd podczas zamawiania vRack <br> {{message}} <br> request-id: {{queryId}}"
+}

@@ -1,8 +1,0 @@
-{
-  "telephony_service_consumption_outgoing_all": "Kaikki soitetut puhelut",
-  "telephony_service_consumption_outgoing_empty": "Ei soitettuja puheluja.",
-  "telephony_service_consumption_outgoing_not_found": "Aucun appel ne correspond à ce filtre.",
-  "telephony_service_consumption_outgoing_period": "Jakso <strong>{{ start }}</strong> - <strong>{{ end }}</strong>",
-  "telephony_service_consumption_outgoing_priceplan": "Liittymään kuuluvat: puheluja : <strong>{{ calls }}</strong>, kesto: <strong>{{ duration }}</strong>",
-  "telephony_service_consumption_outgoing_outplan": "Paketin ulkopuoliset: puheluja : <strong>{{ calls }}</strong>, kesto: <strong>{{ duration }}</strong>, hinta: <strong>{{ price }}</strong> HT"
-}

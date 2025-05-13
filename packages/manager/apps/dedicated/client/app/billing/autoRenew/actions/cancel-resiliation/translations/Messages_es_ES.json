@@ -1,8 +1,0 @@
-{
-  "autorenew_service_cancel_resiliation_title": "Cancelar la baja de un servicio",
-  "autorenew_service_cancel_resiliation_success": "Se ha cancelado la baja del servicio: {{ service }}.Se ha cancelado la baja del servicio: {{ service }}.",
-  "autorenew_service_cancel_resiliation_error": "Se ha producido un error en la anulación de la baja de su servicio {{ message }}",
-  "autorenew_service_cancel_resiliation_confirm": "¿Desea cancelar la baja del servicio {{ service }}?",
-  "autorenew_service_cancel_resiliation_validate": "Confirmar la cancelación",
-  "autorenew_service_cancel_resiliation_cancel": "Cancelar"
-}

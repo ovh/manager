@@ -3,7 +3,7 @@
   @import 'bootstrap4/scss/_variables.scss';
   @import 'bootstrap4/scss/_mixins.scss';
   @import 'bootstrap4/scss/_utilities.scss';
-  @import '~@ovh-ux/manager-hub/src/variables.scss';
+  @import '@ovh-ux/manager-hub/src/variables.scss';
 
   h3 {
     display: inline-block;
@@ -18,10 +18,15 @@
     margin-top: 0.25rem;
   }
 
-  &_illustration {
+  &__illustration {
     background-image: url('./assets/assistance.png');
     background-repeat: no-repeat;
-    height: 12rem;
+    height: 10rem;
     background-position: center;
+  }
+
+  &__link .oui-icon {
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
   }
 }

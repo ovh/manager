@@ -13,8 +13,10 @@ export default {
 
     getBillingAccountLink: '<',
     getBillingAccountServicesLink: '<',
+    goToTelephonyRepayments: '<',
 
     viewBillingAccount: '<',
     viewBillingAccountServices: '<',
+    gotoOrder: '<',
   },
 };

@@ -12,10 +12,12 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'DomainZoneRecordCtrl',
   class DomainZoneRecordAddCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $rootScope,
       $translate,
+      coreConfig,
       Alerter,
       Domain,
       DomainValidator,
@@ -24,6 +26,7 @@ angular.module('App').controller(
       this.$scope = $scope;
       this.$rootScope = $rootScope;
       this.$translate = $translate;
+      this.coreConfig = coreConfig;
       this.Alerter = Alerter;
       this.Domain = Domain;
       this.DomainValidator = DomainValidator;
@@ -49,7 +52,7 @@ angular.module('App').controller(
       this.recordPreview = '';
 
       // If the ttl is 0 or not set, the ttlSelect is ALWAYS "global"
-      if (this.edit && this.edit.ttl) {
+      if (this?.edit?.ttl) {
         this.model.ttlSelect = 'custom';
         this.model.ttl = parseInt(this.edit.ttl, 10);
       } else {
@@ -203,6 +206,9 @@ angular.module('App').controller(
           this.WucValidator.isValidSubDomain(value, {
             canBeginWithUnderscore: true,
             canBeginWithWildcard: true,
+            canContainsUnderscore:
+              this.model.fieldType === 'CNAME' ||
+              this.model.fieldType === 'TXT',
           }),
       );
 
@@ -287,17 +293,6 @@ angular.module('App').controller(
       return `${
         this.model.subDomainToDisplay ? `${this.model.subDomainToDisplay}.` : ''
       }${this.domain.displayName}.`;
-    }
-
-    getResumeTargetAlert() {
-      if (
-        this.model.target &&
-        /[^.]$/.test(this.model.target.value) &&
-        ['NS', 'CNAME', 'SRV', 'MX'].indexOf(this.model.fieldType) !== -1
-      ) {
-        return `${this.model.target.target}.${this.domain.displayName}.`;
-      }
-      return false;
     }
 
     loadEditModel(fieldType) {
@@ -590,10 +585,11 @@ angular.module('App').controller(
 
     selectFieldType(fieldType) {
       this.model.fieldType = fieldType;
-      this.model.subDomainToDisplay = null;
+      this.model.subDomainToDisplay = this.subdomainPreset;
       this.model.ttlSelect = 'global';
       this.model.ttl = 0;
       this.initializeTarget();
+      this.checkExistingSubDomain();
       this.$scope.$emit('wizard-goToStep', 3);
     }
 
@@ -609,8 +605,8 @@ angular.module('App').controller(
         }
         case 'cname':
         case 'ns':
-          this.model.target.value = punycode.toASCII(
-            this.model.target.target || '',
+          this.model.target.value = this.DomainValidator.constructor.appendDotToTarget(
+            this.model.target,
           );
           break;
         case 'dkim':
@@ -691,15 +687,9 @@ angular.module('App').controller(
       this.setTargetValue(this.model.fieldType);
     }
 
-    targetIsRelativeDomain() {
-      return (
-        this.model.target.target && /\..*[^.]$/.test(this.model.target.target)
-      );
-    }
-
     useSpfOvh() {
       this.model.target = {};
-      this.model.target.include = 'mx.ovh.com';
+      this.model.target.include = this.getSPFIncludeName();
       this.model.target.all = '~all';
       this.setTargetValue('spf');
       this.checkIfRecordCanBeAdd();
@@ -766,6 +756,10 @@ angular.module('App').controller(
         .finally(() => {
           this.$scope.resetAction();
         });
+    }
+
+    getSPFIncludeName() {
+      return `mx.ovh.${this.coreConfig.isRegion('CA') ? 'ca' : 'com'}`;
     }
   },
 );

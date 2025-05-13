@@ -1,0 +1,23 @@
+<form
+    id="deletePoolForm"
+    name="deletePoolForm"
+    data-ng-submit="deletePoolForm.$valid && CdaPoolDeleteCtrl.deletePool()"
+>
+    <oui-modal
+        heading="{{ :: 'cda_pool_delete_title' | translate }}"
+        primary-label="{{ ::'cda_common_delete' | translate }}"
+        secondary-action="CdaPoolDeleteCtrl.closeModal()"
+        secondary-label="{{ ::'common_cancel' | translate }}"
+        on-dismiss="CdaPoolDeleteCtrl.closeModal()"
+        loading="CdaPoolDeleteCtrl.saving"
+        type="info"
+    >
+        <p>
+            <strong data-translate="cda_pool_delete_poolname_label"></strong>
+            <span data-ng-bind="CdaPoolDeleteCtrl.pool.name"></span>
+        </p>
+        <p>
+            <strong data-translate="cda_pool_delete_confirm"></strong>
+        </p>
+    </oui-modal>
+</form>

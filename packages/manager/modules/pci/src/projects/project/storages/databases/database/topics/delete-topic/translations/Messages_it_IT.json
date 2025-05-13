@@ -1,0 +1,8 @@
+{
+  "pci_databases_topics_delete_topic_confirm": "Elimina il topic",
+  "pci_databases_topics_delete_topic_cancel": "Annulla",
+  "pci_databases_topics_delete_topic": "Elimina il topic",
+  "pci_databases_topics_delete_topic_description": "Vuoi davvero eliminare il topic {{topic.name}}?",
+  "pci_databases_topics_delete_topic_success_message": "Il topic è stato rimosso correttamente.",
+  "pci_databases_topics_delete_topic_error_message": "Si è verificato un errore durante l'eliminazione del topic: {{ message }}"
+}

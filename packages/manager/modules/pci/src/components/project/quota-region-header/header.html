@@ -1,21 +1,38 @@
-<oui-page-header class="mb-3">
+<oui-header class="mb-3">
+    <oui-header-heading>
+        <div
+            class="d-flex flex-grow-1 justify-content-end align-items-center gap-1 flex-wrap"
+        >
+            <changelog-button
+                links="$ctrl.CHANGELOG.quota_and_regions.links"
+                chapters="$ctrl.CHANGELOG.quota_and_regions.chapters"
+            ></changelog-button>
+            <oui-guide-menu
+                data-text="{{:: 'pci_project_guides_header' | translate }}"
+            >
+                <oui-guide-menu-item
+                    data-ng-repeat="guide in $ctrl.guideUrl.instances track by $index"
+                    data-href="{{:: guide.url }}"
+                    data-on-click="$ctrl.trackClick('_' + $ctrl.guideTrackingSectionTags.quota_and_regions + guide.tracking)"
+                    data-external
+                >
+                    <span
+                        data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+                    ></span>
+                </oui-guide-menu-item>
+            </oui-guide-menu>
+        </div>
+    </oui-header-heading>
     <oui-header-tabs>
         <oui-header-tabs-item
-            text="{{:: 'pci_project_quota_header' | translate}}"
             state="pci.projects.project.quota"
             state-params="{ projectId: $ctrl.projectId }"
-        >
+            ><span data-translate="pci_project_quota_header"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            text="{{:: 'pci_project_region_header' | translate}}"
             state="pci.projects.project.regions"
             state-params="{ projectId: $ctrl.projectId }"
-        >
+            ><span data-translate="pci_project_region_header"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
-    <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
-        <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
-            <span data-translate="pci_project_guides_header_all_guides"></span>
-        </oui-guide-menu-item>
-    </oui-guide-menu>
-</oui-page-header>
+</oui-header>

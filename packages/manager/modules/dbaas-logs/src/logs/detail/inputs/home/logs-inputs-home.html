@@ -1,0 +1,135 @@
+<div class="inputs-home">
+    <h3 data-translate="inputs_title"></h3>
+    <p class="oui-paragraph" data-translate="inputs_intro_text"></p>
+    <oui-datagrid
+        id="inputs-datagrid"
+        data-rows-loader="ctrl.loadInputs($config)"
+    >
+        <oui-datagrid-topbar>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary"
+                data-ng-click="ctrl.add()"
+            >
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span data-translate="inputs_add_input"></span>
+            </button>
+            <oui-spinner
+                size="s"
+                data-ng-if="ctrl.delete.loading"
+            ></oui-spinner>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            title="::'inputs_col_name' | translate"
+            property="title"
+            sortable
+            type="string"
+            searchable
+            filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'inputs_description' | translate"
+            property="description"
+            sortable
+            type="string"
+            searchable
+            filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'inputs_software' | translate"
+            property="engine.software"
+            type="string"
+            searchable
+            filterable
+        >
+            {{ $row.engine.software }}
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'inputs_state' | translate"
+            property="status"
+            type="string"
+            searchable
+            filterable
+        >
+            <span
+                class="oui-badge"
+                data-translate="{{ 'inputs_state_' + $row.state }}"
+                data-ng-class="{
+                    'oui-badge_info': $row.stateType === 'info',
+                    'oui-badge_success': $row.stateType === 'success',
+                    'oui-badge_warning': $row.stateType === 'warning'}"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'inputs_nb_instance' | translate"
+            property="nbInstance"
+            sortable
+            type="number"
+        >
+            {{ $row.nbInstance || "-" }}
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'inputs_autoscaled' | translate"
+            property="autoscale"
+            type="boolean"
+            searchable
+            filterable
+        >
+            <span
+                class="oui-badge"
+                data-translate="{{ ::'inputs_autoscaled_' + $row.autoscale }}"
+                data-ng-class="{
+                    'oui-badge_info': $row.autoscale === false,
+                    'oui-badge_success': $row.autoscale === true}"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'logs_col_last_modified' | translate"
+            property="updatedAt"
+            sortable
+            type="date"
+        >
+            {{ $row.updatedAt | cucMomentFormat:'L'}}
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
+            <oui-action-menu-item
+                on-click="ctrl.edit($row)"
+                disabled="$row.status === ctrl.LogsConstants.inputStatus.PROCESSING"
+                ><span data-translate="inputs_edit"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item on-click="ctrl.info($row)"
+                ><span data-translate="inputs_info_title"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                on-click="ctrl.startInput($row)"
+                disabled="!$row.actionsMap.START || $row.status === ctrl.LogsConstants.inputStatus.PROCESSING"
+                ><span data-translate="inputs_start"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                on-click="ctrl.restartInput($row)"
+                disabled="!$row.actionsMap.RESTART || $row.status === ctrl.LogsConstants.inputStatus.PROCESSING"
+                ><span data-translate="inputs_restart"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                on-click="ctrl.stopInput($row)"
+                disabled="!$row.actionsMap.END || $row.status === ctrl.LogsConstants.inputStatus.PROCESSING"
+                ><span data-translate="inputs_stop"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                on-click="ctrl.standardOutput($row)"
+                disabled="!$row.actionsMap.LOG"
+                ><span data-translate="inputs_standard_output"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                on-click="ctrl.showDeleteConfirm($row)"
+                disabled="!$row.actionsMap.DESTROY || $row.status === ctrl.LogsConstants.inputStatus.PROCESSING"
+                ><span data-translate="logs_delete"></span
+            ></oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>

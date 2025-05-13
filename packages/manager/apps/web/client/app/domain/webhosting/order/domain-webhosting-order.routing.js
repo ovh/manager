@@ -1,14 +1,17 @@
 import get from 'lodash/get';
 import component from './domain-webhosting-order.component';
+import { ORDER_WEBHOSTING_TRACKING } from './domain-webhosting-order.constants';
 
 const resolve = {
   assignCart: /* @ngInject */ (WucOrderCartService) => (cartId) =>
     WucOrderCartService.assignCart(cartId),
-  /* @ngInject */
-  availableModules: (cartId, WebHostingOrder) =>
-    WebHostingOrder.getAvailableModules(cartId),
+
+  getAvailableModules: /* @ngInject */ (cartId, WebHostingOrder) => (offer) =>
+    WebHostingOrder.getAvailableModules(cartId, offer),
+
   availableOffers: /* @ngInject */ (cartId, user, WebHostingOrder) =>
     WebHostingOrder.getAvailableOffers(cartId, user.ovhSubsidiary),
+
   cartId: /* @ngInject */ (assignCart, createCart) =>
     createCart().then(({ cartId }) => assignCart(cartId).then(() => cartId)),
   createCart: /* @ngInject */ (WucOrderCartService, user) => () =>
@@ -47,9 +50,12 @@ const resolve = {
     ),
   openBill: /* @ngInject */ ($window) => (billUrl) =>
     $window.open(billUrl, '_blank'),
-  /* @ngInject */
-  prepareCheckout: (WebHostingOrder) => (cartId, cartOption, domainName) =>
-    WebHostingOrder.prepareCheckout(cartId, cartOption, domainName),
+
+  prepareCheckout: /* @ngInject */ (WebHostingOrder) => (
+    cartId,
+    cartOption,
+    domainName,
+  ) => WebHostingOrder.prepareCheckout(cartId, cartOption, domainName),
   validateCheckout: /* @ngInject */ (
     $timeout,
     $translate,
@@ -92,6 +98,19 @@ const resolve = {
               ),
         );
       }),
+
+  catalog: /* @ngInject */ (user, WebHostingOrder) =>
+    WebHostingOrder.getCatalog(user.ovhSubsidiary),
+
+  trackClick: /* @ngInject */ (atInternet) => (hit) => {
+    atInternet.trackClick({
+      ...hit,
+      type: 'action',
+    });
+  },
+
+  breadcrumb: /* @ngInject */ ($translate) =>
+    $translate.instant('domain_webhosting_order_title'),
 };
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -107,19 +126,33 @@ export default /* @ngInject */ ($stateProvider) => {
         ...resolve,
         goBackToDashboard: /* @ngInject */ ($state) => () =>
           $state.go('app.domain.product.information'),
+
+        user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
+      },
+      atInternet: {
+        ignore: true,
+      },
+      onEnter: /* @ngInject */ (atInternet) => {
+        atInternet.trackPage(ORDER_WEBHOSTING_TRACKING.PAGE);
       },
     })
-    .state('app.domain.alldom.webhosting.order', {
+    .state('app.alldom.domain.webhosting.order', {
       url: '/order',
       views: {
-        'domainView@app.domain.alldom': {
+        'domainView@app.alldom.domain': {
           component: component.name,
         },
       },
       resolve: {
         ...resolve,
         goBackToDashboard: /* @ngInject */ ($state) => () =>
-          $state.go('app.domain.alldom.information'),
+          $state.go('app.alldom.domain.information'),
+      },
+      atInternet: {
+        ignore: true,
+      },
+      onEnter: /* @ngInject */ (atInternet) => {
+        atInternet.trackPage(ORDER_WEBHOSTING_TRACKING.PAGE);
       },
     });
 };

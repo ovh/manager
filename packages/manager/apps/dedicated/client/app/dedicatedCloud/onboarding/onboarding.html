@@ -1,0 +1,25 @@
+<manager-on-boarding-layout
+    data-guides=":: $ctrl.guides"
+    data-image-source=":: $ctrl.illustration"
+    data-on-guide-click="$ctrl.trackClick('docs::' + guide.id )"
+>
+    <onboarding-title>
+        <p data-translate="dedicated_clouds_onboarding_title"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <h3 data-translate="dedicated_clouds_onboarding_subtitle"></h3>
+        <p data-translate="dedicated_clouds_onboarding_description"></p>
+        <p data-translate="dedicated_clouds_onboarding_description2"></p>
+        <p data-translate="dedicated_clouds_onboarding_description3"></p>
+        <p data-translate="dedicated_clouds_onboarding_description4"></p>
+        <a
+            class="oui-button oui-button_primary oui-button_l text-light"
+            data-translate="dedicated_clouds_onboarding_order"
+            href="{{:: $ctrl.cta }}"
+            target="_blank"
+            rel="noopener"
+            data-ng-click="$ctrl.trackClick('order')"
+        >
+        </a>
+    </onboarding-description>
+</manager-on-boarding-layout>

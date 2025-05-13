@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_subscriptions_delete_title": "Elimina una sottoscrizione",
-  "pci_projects_project_streams_stream_subscriptions_delete_submit_label": "Conferma",
-  "pci_projects_project_streams_stream_subscriptions_delete_cancel_label": "Annulla",
-  "pci_projects_project_streams_stream_subscriptions_delete_content": "Vuoi eliminare la sottoscrizione {{subscription}}?",
-  "pci_projects_project_streams_stream_subscriptions_delete_success_message": "La sottoscrizione {{subscription}} è stata eliminata.",
-  "pci_projects_project_streams_stream_subscriptions_delete_error_delete": "Si è verificato un errore durante l’eliminazione dela sottoscrizione {{ subscription }}: {{ message }}."
-}

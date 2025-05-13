@@ -1,0 +1,5 @@
+{
+  "ua_pagination_page": "Seite {{current}} / {{last}}",
+  "ua_pagination_go": "OK",
+  "ua_pagination_display": "Anzeigen"
+}

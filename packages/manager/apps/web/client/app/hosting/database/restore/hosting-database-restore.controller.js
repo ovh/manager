@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'HostingDatabaseRestoreCtrl',
   class HostingDatabaseRestoreCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, HostingDatabase) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

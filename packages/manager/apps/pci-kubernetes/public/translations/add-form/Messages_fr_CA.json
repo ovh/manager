@@ -1,0 +1,6 @@
+{
+  "kubernetes_add_node_pool_description": "Vous pouvez configurer un ou plusieurs pools de nœuds dès la création du cluster. Un pool de nœuds désigne un ensemble de nœuds de travail partageant le même type.",
+  "kubernetes_add_node_pool_node_count": "Nombre de nœuds",
+  "kubernetes_add_node_pool_node_type": "Type de nœuds",
+  "kube_common_node_pool_model_type_selector": "Sélectionnez un modèle"
+}

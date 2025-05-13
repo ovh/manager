@@ -9,20 +9,23 @@
     data-ng-controller="HostingDomainAttachModeOvhCtrl"
 >
     <div
-        class="form-group"
-        data-ng-class="{'has-error': domainAttacheModeOvhForm.domainAttacheModeOvhFormSelectedDomain.$dirty &&
-            (domainAttacheModeOvhForm.domainAttacheModeOvhFormSelectedDomain.$invalid || domainsAlreadyExists() || domainIsNotValid())}"
+        class="oui-field"
+        data-ng-class="{
+            'oui-field_error': domainAttacheModeOvhForm.domainAttacheModeOvhFormSelectedDomain.$dirty &&
+            (domainAttacheModeOvhForm.domainAttacheModeOvhFormSelectedDomain.$invalid || domainsAlreadyExists() || domainIsNotValid())
+        }"
     >
         <label
-            class="control-label col-md-4"
             for="domainAttacheModeOvhFormSelectedDomain"
+            class="oui-field__label oui-label"
             data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name"
-        ></label>
-        <div class="col-md-8">
-            <div class="input-group">
+        >
+        </label>
+        <div class="oui-field__control w-100">
+            <div class="oui-input-group">
                 <input
                     type="text"
-                    class="form-control"
+                    class="oui-input oui-input_m"
                     id="domainAttacheModeOvhFormSelectedDomain"
                     name="domainAttacheModeOvhFormSelectedDomain"
                     placeholder="{{:: 'hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_placeholder' | translate }}"
@@ -30,464 +33,75 @@
                     data-ng-pattern="/^[a-z0-9\.\-\*]+$/"
                 />
                 <span
-                    class="input-group-addon"
+                    class="oui-button oui-button_secondary"
                     data-ng-bind="'.' + selected.baseDomain.displayName"
                 ></span>
             </div>
-            <small
-                class="help-block"
-                data-translate="hosting_tab_DOMAINS_configuration_add_step2_common_domain_exists"
-                data-ng-if="domainAttacheModeOvhForm.domainAttacheModeOvhFormSelectedDomain.$dirty && domainsAlreadyExists()"
-            ></small>
-            <small
-                class="help-block"
-                data-ng-bind-html="'hosting_tab_DOMAINS_configuration_add_step2_common_domain_ssl_invalid' | translate: { t0: MAX_DOMAIN_LENGTH }"
-                data-ng-if="domainAttacheModeOvhForm.domainAttacheModeOvhFormSelectedDomain.$dirty && domainIsNotValid()"
-            ></small>
-            <div
-                data-ng-messages="domainAttacheModeOvhForm.domainAttacheModeOvhFormSelectedDomain.$error"
-            >
-                <small
-                    class="help-block"
-                    data-ng-message="pattern"
-                    data-translate="hosting_tab_DOMAINS_configuration_add_step2_common_domain_invalid_character"
-                ></small>
-            </div>
         </div>
-
         <div
-            class="col-md-8 col-md-offset-4"
-            data-ng-if="selected.domain !== selected.domainWww && !domainContainsWildcard()"
+            class="oui-field__error"
+            data-ng-if="domainAttacheModeOvhForm.domainAttacheModeOvhFormSelectedDomain.$error && domainAttacheModeOvhForm.domainAttacheModeOvhFormSelectedDomain.$dirty"
         >
-            <div class="oui-checkbox mt-3 mb-0">
-                <input
-                    type="checkbox"
-                    class="oui-checkbox__input"
-                    id="domainWwwNeeded"
-                    data-ng-disabled="selected.domain == selected.domainWww || domainsAlreadyExists(true)"
-                    data-ng-model="selected.domainWwwNeeded"
-                />
-                <label
-                    class="oui-checkbox__label-container"
-                    for="domainWwwNeeded"
-                >
-                    <span class="oui-checkbox__label">
-                        <span
-                            data-ng-bind="'hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_www_question' | translate: { t0: getSelectedDomainToDisplay(true) }"
-                            data-ng-if="!domainsAlreadyExists(true)"
-                        ></span>
-                        <span
-                            data-ng-bind="'hosting_tab_DOMAINS_configuration_add_step2_common_domain_exists_with_name' | translate: { t0: getSelectedDomainToDisplay(true) }"
-                            data-ng-if="domainsAlreadyExists(true)"
-                        ></span>
-                        <span class="oui-checkbox__icon">
-                            <span
-                                class="oui-icon oui-icon-checkbox-unchecked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checkmark"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-indeterminate"
-                                aria-hidden="true"
-                            ></span>
-                        </span>
-                    </span>
-                </label>
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group" data-ng-class="{'has-error': !isPathValid()}">
-        <label
-            class="control-label col-md-4"
-            for="domainAttacheModeOvhFormSelectedPath"
-            data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_home"
-        ></label>
-        <div class="col-md-8">
-            <div class="input-group">
-                <span class="input-group-addon">./</span>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="domainAttacheModeOvhFormSelectedPath"
-                    name="selectedPath"
-                    placeholder="{{:: 'hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_myfolder' | translate }}"
-                    data-ng-model="selected.path"
-                />
-            </div>
-            <small
-                class="help-block"
-                data-translate="hosting_common_path_help_inline"
-                data-ng-if="!isPathValid()"
-            ></small>
-        </div>
-    </div>
-
-    <div class="form-group" data-ng-if="hosting.isCloudWeb">
-        <label
-            class="control-label col-md-4"
-            for="selectedRuntime"
-            data-translate="hosting_tab_DOMAINS_configuration_modify_step1_runtime"
-        ></label>
-        <div data-ng-if="loaders.runtimes">
-            <oui-spinner data-size="s"></oui-spinner>
-        </div>
-
-        <div data-ng-if="!loaders.runtimes">
-            <div class="col-md-8">
-                <div class="oui-select oui-select_inline mb-0">
-                    <select
-                        class="oui-select__input"
-                        id="selectedRuntime"
-                        required
-                        data-ng-model="selected.runtime"
-                        data-ng-options="runtime.name for runtime in model.runtimes track by runtime.name"
-                    >
-                        <option
-                            value=""
-                            data-translate="select_placeholder"
-                            disabled
-                        ></option>
-                    </select>
-                    <span
-                        class="oui-icon oui-icon-chevron-down"
-                        aria-hidden="true"
-                    ></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <fieldset class="form-group">
-        <span
-            class="control-label col-md-4 oui-label"
-            data-translate="hosting_tab_DOMAINS_configuration_modify_step1_options_choose"
-        ></span>
-        <div class="col-md-8">
-            <div class="oui-checkbox mt-3">
-                <input
-                    type="checkbox"
-                    class="oui-checkbox__input"
-                    id="selectedOptions-ipv6"
-                    name="selectedOptions"
-                    value="ipv6"
-                    data-ng-model="selected.ipv6Needed"
-                />
-                <label
-                    class="oui-checkbox__label-container"
-                    for="selectedOptions-ipv6"
-                >
-                    <span class="oui-checkbox__label">
-                        <span
-                            data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_ipv6"
-                        ></span>
-                        <span
-                            class="fa fa-info-circle ml-2"
-                            data-oui-tooltip="{{:: 'hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_ipv6_help' | translate }}"
-                        ></span>
-                        <span class="oui-checkbox__icon">
-                            <span
-                                class="oui-icon oui-icon-checkbox-unchecked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checkmark"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-indeterminate"
-                                aria-hidden="true"
-                            ></span>
-                        </span>
-                    </span>
-                </label>
-            </div>
-
-            <div class="oui-checkbox">
-                <input
-                    type="checkbox"
-                    class="oui-checkbox__input"
-                    id="selectedOptions-ssl"
-                    name="selectedOptions"
-                    value="ssl"
-                    data-ng-model="selected.ssl"
-                />
-                <label
-                    class="oui-checkbox__label-container"
-                    for="selectedOptions-ssl"
-                >
-                    <span class="oui-checkbox__label">
-                        <span
-                            data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_ssl"
-                        ></span>
-                        <span
-                            class="fa fa-info-circle ml-2"
-                            data-oui-tooltip="{{:: 'hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_ssl_help' | translate }}"
-                        ></span>
-                        <span class="oui-checkbox__icon">
-                            <span
-                                class="oui-icon oui-icon-checkbox-unchecked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checkmark"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-indeterminate"
-                                aria-hidden="true"
-                            ></span>
-                        </span>
-                    </span>
-                </label>
-            </div>
-
-            <div class="oui-checkbox" data-ng-if="hosting.hasCdn">
-                <input
-                    type="checkbox"
-                    class="oui-checkbox__input"
-                    id="selectedOptions-cdn"
-                    name="selectedOptions"
-                    value="cdn"
-                    data-ng-disabled="selectedOptions.ipLocation"
-                    data-ng-model="selected.activeCDN"
-                    data-ng-false-value="'NONE'"
-                    data-ng-true-value="'ACTIVE'"
-                />
-                <label
-                    class="oui-checkbox__label-container"
-                    for="selectedOptions-cdn"
-                >
-                    <span class="oui-checkbox__label">
-                        <span
-                            data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_cdn"
-                        ></span>
-                        <span
-                            class="fa fa-info-circle ml-2"
-                            data-oui-tooltip="{{:: 'hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_cdn_help' | translate }}"
-                        ></span>
-                        <span class="oui-checkbox__icon">
-                            <span
-                                class="oui-icon oui-icon-checkbox-unchecked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checkmark"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-indeterminate"
-                                aria-hidden="true"
-                            ></span>
-                        </span>
-                    </span>
-                </label>
-            </div>
-
-            <div class="oui-checkbox mb-0">
-                <input
-                    type="checkbox"
-                    class="oui-checkbox__input"
-                    id="selectedOptions-location"
-                    name="selectedOptions"
-                    value="location"
-                    data-ng-disabled="selected.cdn === 'ACTIVE'"
-                    data-ng-model="selectedOptions.ipLocation"
-                />
-                <label
-                    class="oui-checkbox__label-container"
-                    for="selectedOptions-location"
-                >
-                    <span class="oui-checkbox__label">
-                        <span
-                            id="domainAttacheModeOvhFormCountriesIp"
-                            data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_countriesIp"
-                        ></span>
-                        <span
-                            class="fa fa-info-circle ml-2"
-                            data-oui-tooltip="{{:: 'hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_country_ip_help' | translate }}"
-                        ></span>
-                        <span class="oui-checkbox__icon">
-                            <span
-                                class="oui-icon oui-icon-checkbox-unchecked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checkmark"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-indeterminate"
-                                aria-hidden="true"
-                            ></span>
-                        </span>
-                    </span>
-                </label>
-            </div>
-
-            <div
-                class="oui-select mb-0"
-                data-ng-if="selectedOptions.ipLocation"
-            >
-                <select
-                    class="oui-select__input"
-                    name="domainAttacheModeOvhFormCountriesIp"
-                    aria-labelledby="domainAttacheModeOvhFormCountriesIp"
-                    data-ng-model="selected.countryIp"
-                    data-ng-options="countryIp as countryIp.ip group by ((('country_' + countryIp.country | translate) == 'country_' + countryIp.country)? countryIp.country: ('country_' + countryIp.country | translate)) for countryIp in hostingProxy.countriesIp | orderBy:[('country_' + countryIp.country | translate)] track by countryIp.ip"
-                >
-                    <option
-                        value=""
-                        data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_countriesIp_none"
-                    ></option>
-                </select>
+            <span role="alert">
+                <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
                 <span
-                    class="oui-icon oui-icon-chevron-down"
-                    aria-hidden="true"
+                    data-translate="hosting_tab_DOMAINS_configuration_add_step2_common_domain_exists"
+                    data-ng-if="domainAttacheModeOvhForm.domainAttacheModeOvhFormSelectedDomain.$dirty && domainsAlreadyExists()"
                 ></span>
-            </div>
-        </div>
-    </fieldset>
-
-    <div class="form-group">
-        <label
-            class="control-label col-md-4"
-            for="domainAttacheModeOvhFormSelectedFirewall"
-        >
-            <span
-                data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_firewall"
-            ></span>
-            <span
-                class="fa fa-info-circle ml-2"
-                data-oui-tooltip="{{:: 'hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_firewall_help' | translate }}"
-            ></span>
-        </label>
-        <div class="col-md-8">
-            <div class="oui-checkbox mt-3">
-                <input
-                    type="checkbox"
-                    class="oui-checkbox__input"
-                    id="domainAttacheModeOvhFormSelectedFirewall"
-                    data-ng-model="selected.firewall"
-                    data-ng-false-value="'NONE'"
-                    data-ng-true-value="'ACTIVE'"
-                />
-                <label
-                    class="oui-checkbox__label-container"
-                    for="domainAttacheModeOvhFormSelectedFirewall"
-                >
-                    <span class="oui-checkbox__label">
-                        <span class="oui-checkbox__icon">
-                            <span
-                                class="oui-icon oui-icon-checkbox-unchecked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checkmark"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-indeterminate"
-                                aria-hidden="true"
-                            ></span>
-                        </span>
-                    </span>
-                </label>
-            </div>
+                <span
+                    data-ng-bind-html="'hosting_tab_DOMAINS_configuration_add_step2_common_domain_ssl_invalid' | translate: { t0: MAX_DOMAIN_LENGTH }"
+                    data-ng-if="domainAttacheModeOvhForm.domainAttacheModeOvhFormSelectedDomain.$dirty && domainIsNotValid()"
+                ></span>
+                <span
+                    data-ng-if="domainAttacheModeOvhForm.domainAttacheModeOvhFormSelectedDomain.$error.pattern"
+                    data-translate="hosting_tab_DOMAINS_configuration_add_step2_common_domain_invalid_character"
+                ></span>
+            </span>
         </div>
     </div>
-
-    <div class="form-group">
-        <label
-            class="control-label col-md-4"
-            for="domainAttacheModeOvhFormSelectedOwnlog"
-        >
+    <oui-message data-ng-if="isStartingOffer()" type="info">
+        <span
+            data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer"
+        ></span>
+        <a href="{{ :: changeOfferLink }}" rel="noopener" target="_blank">
             <span
-                data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_ownlog"
+                data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link"
             ></span>
             <span
-                class="fa fa-info-circle ml-2"
-                data-oui-tooltip="{{:: 'hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_ownlog_help' | translate }}"
+                class="oui-icon oui-icon-arrow-right"
+                aria-hidden="true"
             ></span>
-        </label>
-        <div class="col-md-8">
-            <div class="oui-checkbox mt-3">
-                <input
-                    type="checkbox"
-                    class="oui-checkbox__input"
-                    id="domainAttacheModeOvhFormSelectedOwnlog"
-                    data-ng-model="selected.ownLog"
-                    data-ng-false-value="'NONE'"
-                    data-ng-true-value="'ACTIVE'"
-                />
-                <label
-                    class="oui-checkbox__label-container"
-                    for="domainAttacheModeOvhFormSelectedOwnlog"
-                >
-                    <span class="oui-checkbox__label">
-                        <span class="oui-checkbox__icon">
-                            <span
-                                class="oui-icon oui-icon-checkbox-unchecked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checkmark"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-indeterminate"
-                                aria-hidden="true"
-                            ></span>
-                        </span>
-                    </span>
-                </label>
-            </div>
+        </a>
+    </oui-message>
+    <oui-checkbox
+        model="selected.domainWwwNeeded"
+        disabled="selected.domain == selected.domainWww || domainsAlreadyExists(true) || isStartingOffer()"
+    >
+        <span
+            data-ng-bind="'hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_www_question' | translate: { t0: getSelectedDomainToDisplay(true) }"
+            data-ng-if="!domainsAlreadyExists(true)"
+        ></span>
+        <span
+            data-ng-bind="'hosting_tab_DOMAINS_configuration_add_step2_common_domain_exists_with_name' | translate: { t0: getSelectedDomainToDisplay(true) }"
+            data-ng-if="domainsAlreadyExists(true)"
+        ></span>
+    </oui-checkbox>
 
-            <select
-                class="mt-3 w-100"
-                size="6"
-                data-ng-if="selected.ownLog === 'ACTIVE'"
-                data-ng-model="selected.ownLogDomain"
-                data-ng-options="domain.displayName for domain in (model.options.availableDomains | filter:selected.searchLogs | orderBy:'formattedName') track by domain.displayName"
-            >
-                <option
-                    value=""
-                    disabled
-                    data-translate="hosting_tab_DOMAINS_configuration_add_step1_ovh_search_no_result_found"
-                    data-ng-show="(model.options.availableDomains | filter:selected.search).length === 0"
-                ></option>
-            </select>
-        </div>
-    </div>
+    <hosting-multisite-configuration
+        cdn="selected.activeCDN"
+        countries-ip="hostingProxy.countriesIp"
+        country-ip="selected.countryIp"
+        domains="model.options.availableDomains"
+        firewall="selected.firewall"
+        hosting="hosting"
+        ip-location="selectedOptions.ipLocation"
+        own-log="selected.ownLog"
+        own-log-domain="selected.ownLogDomain"
+        path="selected.path"
+        runtime="selected.runtime"
+        runtimes="model.runtimes"
+        ssl="selected.ssl"
+        can-modify-path-folder="true"
+    >
+    </hosting-multisite-configuration>
 </form>

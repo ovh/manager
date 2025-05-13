@@ -1,0 +1,6 @@
+{
+  "cloud_connect_routing_remove": "Elimina la configurazione aggiuntiva",
+  "cloud_connect_routing_remove_description": "Questa operazione comporta l'eliminazione della configurazione aggiuntiva della zona di disponibilità selezionata.",
+  "cloud_connect_datacenter_remove_routing_error": "Eliminazione della configurazione di routing non andata buon fine: {{message}}",
+  "cloud_connect_datacenter_remove_routing_success": "Eliminazione di una configurazione di routing in corso... <a href=\"{{ tasksUrl }}\">Clicca qui per visualizzare lo stato.</a>"
+}

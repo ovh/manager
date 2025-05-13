@@ -1,0 +1,18 @@
+{
+  "nutanix_dashboard_nodes_list_display_name": "Node-Name",
+  "nutanix_dashboard_nodes_list_type_of_server": "Server",
+  "nutanix_dashboard_nodes_list_status": "Status",
+  "nutanix_dashboard_nodes_list_localisation": "Standort",
+  "nutanix_dashboard_nodes_list_os_installed": "Installiertes Betriebssystem",
+  "nutanix_dashboard_nodes_list_node_ip": "Node-IP",
+  "nutanix_dashboard_nodes_list_node_cvm": "CVM-IP",
+  "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Rack {{rackName}})",
+  "nutanix_dashboard_nodes_list_data_hidden": "VERBORGEN",
+  "nutanix_dashboard_nodes_list_add_nodes": "Nodes hinzufügen",
+  "nutanix_dashboard_nodes_add_node_max_node_tooltip": "Sie haben die maximal zulässige Anzahl an Nodes in einem Cluster erreicht.",
+  "nutanix_dashboard_nodes_suspended_tooltip": "Um den Node erneut zu aktivieren, wenden Sie sich an den Support.",
+  "nutanix_dashboard_nodes_poweron_success_banner": "Ihre Startanfrage wurde registriert. Dieser Vorgang kann bis zu 15 Minuten dauern.",
+  "nutanix_dashboard_nodes_poweron_error_banner": "Ihre Startanfrage wurde nicht registriert:",
+  "nutanix_dashboard_nodes_state_banner_error_install": "Bei der Installation auf einem oder mehreren Nodes ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie unseren Support, falls das Problem weiterhin besteht.",
+  "nutanix_dashboard_nodes_state_banner_error_uninstall": "Bei der Deinstallation ist auf mindestens einem Node ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie unseren Support, falls das Problem weiterhin besteht."
+}

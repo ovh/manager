@@ -1,0 +1,22 @@
+{
+  "nasha_components_partition_zfs_options_atime_deactivate": "Disable",
+  "nasha_components_partition_zfs_options_atime_description": "Disables the need for the kernel to update file access time every time it's requested.",
+  "nasha_components_partition_zfs_options_atime": "Access time update (atime)",
+  "nasha_components_partition_zfs_options_cancel": "Close",
+  "nasha_components_partition_zfs_options_default": "(Default)",
+  "nasha_components_partition_zfs_options_recordsize": "ZFS recordsize",
+  "nasha_components_partition_zfs_options_submit": "Edit settings",
+  "nasha_components_partition_zfs_options_sync_always_description": "Highly-secured profile: Your file transfers get increased stability, but lower performance.",
+  "nasha_components_partition_zfs_options_sync_disabled_description": "Non-secured profile: Very high performance, but also very high-risk because the ZFS ignores synchronous transfer requests. (DB, NFS, etc.)",
+  "nasha_components_partition_zfs_options_sync_disabled_warning": "Administrators should only use this option if they clearly understand the risks.",
+  "nasha_components_partition_zfs_options_sync_standard_description": "Secured profile: A combination of high stability and performance. Files are written first, then all elements are cleaned to ensure data stability.",
+  "nasha_components_partition_zfs_options_sync": "Sync",
+  "nasha_components_partition_zfs_options_title": "Edit settings",
+  "nasha_components_partition_zfs_options_custom_template_selection": "Customise settings.",
+  "nasha_components_partition_zfs_template_selection_title": "Select template",
+  "nasha_components_partition_zfs_template_selection_placeholder": "Choose a template",
+  "nasha_components_partition_zfs_options_template_1_description": "Large files sharing (images, videos, streaming)",
+  "nasha_components_partition_zfs_options_template_2_description": "Virtual machine images on ZFS.",
+  "nasha_components_partition_zfs_options_template_3_description": "Database storage.",
+  "nasha_components_partition_zfs_options_template_4_description": "Default file sharing template."
+}

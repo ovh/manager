@@ -1,0 +1,9 @@
+{
+  "ua_wizard_cancel": "Cancelar",
+  "ua_wizard_confirm": "Validar",
+  "ua_wizard_next": "Seguinte",
+  "ua_wizard_previous": "Anterior",
+  "ua_wizard_close": "Fechar",
+  "ua_wizard_breadcrumb": "Etapa {{ currentStep }} de {{ stepCount }}",
+  "ua_wizard_help": "Ajuda"
+}

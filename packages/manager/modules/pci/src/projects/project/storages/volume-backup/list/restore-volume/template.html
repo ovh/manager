@@ -1,0 +1,16 @@
+<oui-modal
+    data-heading="{{:: 'pci_projects_project_storages_volume_backup_list_restore_volume_header' | translate }}"
+    data-primary-label="{{:: 'pci_projects_project_storages_volume_backup_list_restore_volume_action_confirm' | translate }}"
+    data-secondary-label="{{:: 'pci_projects_project_storages_volume_backup_list_restore_volume_action_cancel' | translate }}"
+    data-primary-disabled="$ctrl.isRestoring"
+    data-primary-action="$ctrl.onRestoreVolumeClick()"
+    data-secondary-action="$ctrl.onRestoreVolumeCancelClick()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isRestoring"
+    data-type="warning"
+>
+    <p
+        data-translate="pci_projects_project_storages_volume_backup_list_restore_volume_description"
+        data-translate-values="{ volumeName: '<strong>' + $ctrl.volume.name + '</strong>', volumeBackupName: '<strong>' + $ctrl.volumeBackup.name + '</strong>' }"
+    ></p>
+</oui-modal>

@@ -8,13 +8,54 @@ import { PRIVATE_SQL_PLAN_CODE } from './hosting-database.constants';
 angular.module('services').service(
   'HostingDatabase',
   class HostingDatabase {
-    constructor($q, $rootScope, Hosting, WucJavaEnum, OvhHttp, Poller) {
+    /* @ngInject */
+    constructor(
+      $http,
+      $q,
+      $rootScope,
+      coreConfig,
+      Hosting,
+      OvhHttp,
+      Poller,
+      OvhApiOrderCatalogPublic,
+      iceberg,
+    ) {
+      this.$http = $http;
       this.$q = $q;
       this.$rootScope = $rootScope;
+      this.coreConfig = coreConfig;
       this.Hosting = Hosting;
-      this.WucJavaEnum = WucJavaEnum;
       this.OvhHttp = OvhHttp;
       this.Poller = Poller;
+      this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
+      this.iceberg = iceberg;
+    }
+
+    /**
+     * Get agora webhosting catalog
+     */
+    getWebhostingCatalog() {
+      return this.$http
+        .get('/order/catalog/public/webHosting', {
+          params: {
+            ovhSubsidiary: this.coreConfig.getUser().ovhSubsidiary,
+          },
+        })
+        .then(({ data }) => data);
+    }
+
+    /**
+     * Get Web services
+     */
+    getWebServices() {
+      return this.$http.get(`/hosting/web`);
+    }
+
+    /**
+     * Get Private database services
+     */
+    getPrivateServices() {
+      return this.$http.get(`/hosting/privateDatabase`);
     }
 
     /**
@@ -109,41 +150,12 @@ angular.module('services').service(
       );
     }
 
-    /**
-     * Get dump details
-     * @param {string} serviceName
-     * @param {string} name
-     * @param {string} dumpId
-     */
-    getDump(serviceName, name, dumpId) {
-      return this.OvhHttp.get(
-        `/hosting/web/${serviceName}/database/${name}/dump/${dumpId}`,
-        {
-          rootPath: 'apiv6',
-        },
-      ).then((originalDump) => {
-        const dump = clone(originalDump);
-        dump.snapshotDate = this.constructor.getSnapshotDateOfDump(dump);
-        return dump;
-      });
-    }
-
-    /**
-     * Get snapshot date of database dump
-     * @param {Object} dump
-     */
-    static getSnapshotDateOfDump(dump) {
-      if (!dump.creationDate) {
-        return undefined;
-      }
-
-      const snapshotDate = moment(dump.creationDate);
-      if (dump.type === 'daily.1') {
-        snapshotDate.subtract(1, 'd');
-      } else if (dump.type === 'weekly.1') {
-        snapshotDate.subtract(1, 'w');
-      }
-      return snapshotDate.format();
+    getDumps(serviceName, name) {
+      return this.iceberg(`/hosting/web/${serviceName}/database/${name}/dump`)
+        .query()
+        .expand('CachedObjectList-Pages')
+        .execute(null, true)
+        .$promise.then(({ data }) => data);
     }
 
     /**
@@ -167,27 +179,6 @@ angular.module('services').service(
           errorsSates: ['error'],
         });
       });
-    }
-
-    /**
-     * Restore database from a dynamic backup
-     * @param {string} serviceName
-     * @param {string} name
-     * @param {string} backupType
-     * @param {boolean} sendEmail
-     */
-    restoreBDDBackup(serviceName, name, backupType, sendEmail) {
-      return this.OvhHttp.post(
-        `/hosting/web/${serviceName}/database/${name}/restore`,
-        {
-          rootPath: 'apiv6',
-          data: {
-            date: backupType,
-            sendEmail,
-          },
-          broadcast: 'hosting.databases.backup.restore',
-        },
-      );
     }
 
     /**
@@ -302,7 +293,7 @@ angular.module('services').service(
       return this.Hosting.getModels().then((models) => ({
         dumpDates: models.models[
           'hosting.web.database.dump.DateEnum'
-        ].enum.map((model) => this.WucJavaEnum.tr(model)),
+        ].enum.map((model) => snakeCase(model).toUpperCase()),
       }));
     }
 
@@ -324,7 +315,7 @@ angular.module('services').service(
         })
         .then(({ hosting, capabilities, models }) => ({
           availableDatabases: capabilities.map((capa) => ({
-            type: this.WucJavaEnum.tr(capa.type),
+            type: snakeCase(capa.type).toUpperCase(),
             quota: capa.quota,
             extraSqlQuota:
               capa.type === 'extraSqlPerso' ? `_${capa.quota.value}` : null,
@@ -332,7 +323,7 @@ angular.module('services').service(
           })),
           databaseTypes: models.models[
             'hosting.web.database.DatabaseCreationTypeEnum'
-          ].enum.map((m) => this.WucJavaEnum.tr(m)),
+          ].enum.map((m) => snakeCase(m).toUpperCase()),
           primaryLogin: hosting.primaryLogin,
         }));
     }
@@ -403,6 +394,14 @@ angular.module('services').service(
       return this.OvhHttp.get(`/hosting/web/${serviceName}/privateDatabases`, {
         rootPath: 'apiv6',
       });
+    }
+
+    /**
+     * @param {string} serviceName
+     * @return {object[]} List of private databases linked to this service
+     */
+    getPrivateDatabases(serviceName) {
+      return this.$http.get(`/hosting/privateDatabase/${serviceName}/database`);
     }
 
     getHasPrivateSqlToActivate(serviceName) {
@@ -532,6 +531,41 @@ angular.module('services').service(
         },
         (task) => {
           this.$rootScope.$broadcast(`${opts.namespace}.doing`, task);
+        },
+      );
+    }
+
+    /**
+     * Copy database
+     * @param {string} serviceName
+     * @param {string} databaseName
+     * @param {boolean} isPrivateDatabase
+     * @returns
+     */
+    copyDatabase(serviceName, databaseName, isPrivateDatabase) {
+      return this.$http.post(
+        `/hosting/${
+          isPrivateDatabase ? 'privateDatabase' : 'web'
+        }/${serviceName}/database/${databaseName}/copy`,
+      );
+    }
+
+    /**
+     * CopyRestore database
+     * @param {string} serviceName
+     * @param {string} databaseName
+     * @param {boolean} isPrivateDatabase
+     * @param {number} copyId
+     * @returns
+     */
+    copyRestoreDatabase(serviceName, databaseName, isPrivateDatabase, copyId) {
+      return this.$http.post(
+        `/hosting/${
+          isPrivateDatabase ? 'privateDatabase' : 'web'
+        }/${serviceName}/database/${databaseName}/copyRestore`,
+        {
+          copyId,
+          flushDatabase: true,
         },
       );
     }

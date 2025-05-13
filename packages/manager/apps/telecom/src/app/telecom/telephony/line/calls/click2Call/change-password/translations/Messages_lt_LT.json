@@ -1,9 +1,0 @@
-{
-  "telephony_group_line_calls_click2call_changePassword_back": "Atšaukti vartotojo keitimus",
-  "telephony_group_line_calls_click2call_changePassword_title": "Keisti vartotojo {{name}} slaptažodį",
-  "telephony_group_line_calls_click2call_changePassword_password_placeholder": "Slaptažodis",
-  "telephony_group_line_calls_click2call_changePassword_success": "Vartotojas <strong>{{name}}</strong> pakeistas! ",
-  "telephony_group_line_calls_click2call_changePassword_fail": "Negalima keisti vartotojo <strong>{{name}}</strong> slaptažodžio.",
-  "telephony_group_line_calls_click2call_changePassword_rule_size": "Turi būti 8 - 20 simbolių",
-  "telephony_group_line_calls_click2call_changePassword_rule_special": "Turi būti sudarytas iš raidžių, skaičių ar {{list}}"
-}

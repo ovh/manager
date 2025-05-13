@@ -1,0 +1,10 @@
+{
+  "price_ht_label": "+ IVA",
+  "price_ttc_label": "IVA incl.",
+  "price_free": "Incluído",
+  "price_gst_excl_label": "ex. GST",
+  "price_gst_incl_label": "incl. GST",
+  "price_per_month": "/mês",
+  "price_per_year": "/ano",
+  "price_per_day": "/dia"
+}

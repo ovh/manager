@@ -1,0 +1,10 @@
+{
+  "vrackServicesDissociateSuccess": "Su vRack Services {{vs}} ya no está asociado al vRack {{vrack}}.",
+  "modalDissociateVrackWaitMessage": "Por favor, espere mientras vRack Services se desvincula.",
+  "removeVrackServicesFromVrack": "Desvinculando...",
+  "modalDissociateHeadline": "Desvincular vRack Services de su vRack",
+  "modalDissociateDescription": "¿Seguro que quiere desvincular vRack Services de su vRack?",
+  "modalDissociateCancelButton": "Cancelar",
+  "modalDissociateConfirmButton": "Confirmar",
+  "modalDissociateError": "Se ha producido el siguiente error: {{error}}."
+}

@@ -5,6 +5,7 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'PrivateDatabaseUserDatabaseCtrl',
   class PrivateDatabaseUserDatabaseController {
+    /* @ngInject */
     constructor(
       $q,
       $scope,

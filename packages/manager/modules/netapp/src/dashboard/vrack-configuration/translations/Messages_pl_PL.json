@@ -1,0 +1,13 @@
+{
+  "netapp_vrack_configuration_title": "Przypisanie vRack",
+  "netapp_vrack_configuration_previous_link": "Powrót do poprzedniej strony",
+  "netapp_vrack_configuration_description": "Enterprise File Storage to zarządzana usługa przechowywania danych udostępniana w sieci vRack za pośrednictwem adresu IP. Po wybraniu lub utworzeniu sieci vRack, aktywacji „vRack Services” i utworzeniu podsieci możesz przypisać IP Twojego systemu przechowywania danych.",
+  "netapp_vrack_configuration_vrack_field_placeholder": "Wybierz usługę vRack",
+  "netapp_vrack_configuration_no_vrack_field": "Nie posiadasz dostępnej vRack",
+  "netapp_vrack_configuration_create_vrack_text": "Chcesz utworzyć nową sieć vRack?",
+  "netapp_vrack_configuration_create_button": "Utwórz",
+  "netapp_vrack_configuration_associate_button": "Przypisz",
+  "netapp_vrack_configuration_cancel_button": "Anuluj",
+  "netapp_vrack_configuration_success_message": "Trwa tworzenie ustawień sieciowych",
+  "netapp_vrack_configuration_vrack_association_warning": "Wystąpił problem podczas przypisywania Twojej vRack do vRack Services:"
+}

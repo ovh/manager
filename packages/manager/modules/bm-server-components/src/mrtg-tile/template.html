@@ -1,0 +1,112 @@
+<oui-tile
+    class="h-100"
+    data-heading="{{ 'server_mrtg_legend_mrtg' | translate }}"
+    data-description="{{ 'server_mrtg_title_info' | translate }}"
+    data-loading="$ctrl.serverStatsLoad.loading"
+>
+    <oui-tile-definition>
+        <oui-tile-description>
+            <div class="oui-box mb-5">
+                <div
+                    class="d-md-flex align-items-md-center justify-content-md-between"
+                >
+                    <div class="oui-select">
+                        <label
+                            for="networkChoice"
+                            class="oui-label d-inline-block align-middle mr-2"
+                            data-translate="server_mrtg_network"
+                        >
+                        </label>
+                        <div
+                            class="oui-select mb-0 oui-select_inline align-middle"
+                        >
+                            <select
+                                class="oui-select__input"
+                                id="networkChoice"
+                                name="datatype"
+                                data-ng-model="$ctrl.serverStats.networkChoice"
+                                data-ng-change="$ctrl.getStatistics()"
+                            >
+                                <option
+                                    data-ng-repeat="network in $ctrl.networks | orderBy:'displayName' track by network.id"
+                                    data-ng-value="network.id"
+                                    data-ng-disabled="network.disabled"
+                                    data-ng-selected="{{ network.id === $ctrl.serverStats.networkChoice }}"
+                                    data-ng-bind="network.displayName"
+                                >
+                                </option>
+                            </select>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
+                        </div>
+                    </div>
+                    <div class="oui-select">
+                        <label
+                            for="typeChoice"
+                            class="oui-label d-inline-block align-middle mr-2"
+                            data-translate="server_mrtg_type"
+                        >
+                        </label>
+                        <div
+                            class="oui-select mb-0 oui-select_inline align-middle"
+                        >
+                            <select
+                                class="oui-select__input"
+                                id="typeChoice"
+                                name="datatype"
+                                data-ng-options="('server_mrtg_type_' + type | translate) for type in $ctrl.serverStats.modelconst.types"
+                                data-ng-model="$ctrl.serverStats.typeChoice"
+                                data-ng-change="$ctrl.getStatistics()"
+                            >
+                            </select>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
+                        </div>
+                    </div>
+                    <div class="oui-select">
+                        <label
+                            for="periodeChoice"
+                            class="oui-label d-inline-block align-middle mr-2"
+                            data-translate="server_mrtg_period"
+                        >
+                        </label>
+                        <div
+                            class="oui-select mb-0 oui-select_inline align-middle"
+                        >
+                            <select
+                                class="oui-select__input"
+                                id="periodeChoice"
+                                name="datatype"
+                                data-ng-options="('server_mrtg_period_' + periode | translate) for periode in $ctrl.serverStats.modelconst.periods"
+                                data-ng-model="$ctrl.serverStats.periodeChoice"
+                                data-ng-change="$ctrl.getStatistics()"
+                            >
+                            </select>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                data-ng-if="!$ctrl.serverStatsLoad.error"
+                data-chart
+                data-chartjs="$ctrl.mrtgChart"
+                data-auto-reload="true"
+            ></div>
+
+            <div
+                class="alert alert-danger"
+                role="alert"
+                data-ng-if="$ctrl.serverStatsLoad.error"
+                data-translate="server_mrtg_no_chart"
+            ></div>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>

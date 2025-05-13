@@ -1,0 +1,97 @@
+<oui-tile
+    class="h-100"
+    data-heading="{{:: 'server_consumption_label' | translate }}"
+>
+    <div class="oui-tile__item">
+        <span data-translate="server_consumption_explanation"></span>&nbsp;
+        <a
+            class="oui-link_icon"
+            data-ng-href="{{:: $ctrl.getTabItemUrl('interfaces') }}"
+            data-ng-hide="$ctrl.getTabItemUrl('interfaces') === $ctrl.currentActiveLink()"
+            data-track-on="click"
+            data-track-type="action"
+        >
+            <strong
+                data-translate="server_consumption_explanation_link"
+            ></strong>
+            <span
+                class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </div>
+    <div
+        class="oui-tile__item"
+        data-ng-if="$ctrl.trafficInformation.traffic.data.usage.resetQuotaTimeLeft && $ctrl.trafficInformation.traffic.data.usage.isThrottled"
+    >
+        <span
+            class="oui-badge"
+            data-ng-if="$ctrl.trafficInformation.traffic.data.usage.resetQuotaTimeLeft"
+            data-translate="{{ 'server_consumption_summary_' + $ctrl.trafficInformation.traffic.data.usage.resetQuotaTimeLeft.unit }}"
+            data-translate-values="{
+                        t0: $ctrl.trafficInformation.traffic.data.usage.remainingOutputQuotaSize.text,
+                        t1: $ctrl.trafficInformation.traffic.data.usage.resetQuotaTimeLeft.value
+                      }"
+            data-ng-class="{ 'oui-badge_error': $ctrl.trafficInformation.traffic.data.usage.remainingOutputQuotaSize.overQuota }"
+        >
+        </span>
+        <span
+            class="oui-badge"
+            data-ng-if="$ctrl.trafficInformation.traffic.data.usage.isThrottled"
+            data-ng-class="{ 'oui-badge_error': $ctrl.trafficInformation.traffic.data.usage.remainingOutputQuotaSize.overQuota }"
+        >
+            <span data-translate="server_consumption_throttled"></span>
+        </span>
+    </div>
+    <div class="oui-tile__item">
+        <dl class="oui-tile__definition">
+            <dt
+                class="oui-tile__term"
+                data-ng-bind="'server_consumption_current_period_label' | translate:{ t0: $ctrl.trafficInformation.traffic.data.usage.outputQuotaSize.text }"
+            ></dt>
+            <dd
+                class="oui-tile__description"
+                data-ng-if="$ctrl.trafficInformation.traffic.data.usage.outputQuotaUsed.value"
+            >
+                <div class="oui-progress">
+                    <div
+                        class="oui-progress__bar oui-progress__bar_info"
+                        role="progressbar"
+                        aria-valuemin="0"
+                        aria-valuemax="{{ $ctrl.trafficInformation.traffic.data.usage.outputQuotaSize.value }}"
+                        aria-valuenow="{{ $ctrl.trafficInformation.traffic.data.usage.outputQuotaUsed.value }}"
+                        data-ng-style="{ 'width': $ctrl.trafficInformation.traffic.data.usage.remainingOutputQuotaSize.percent + '%' }"
+                        data-ng-class="{
+                                    'oui-progress__bar_warning': $ctrl.trafficInformation.traffic.data.usage.remainingOutputQuotaSize.nearQuota,
+                                    'oui-progress__bar_error': $ctrl.trafficInformation.traffic.data.usage.remainingOutputQuotaSize.overQuota
+                                 }"
+                    >
+                        <span
+                            class="oui-progress__label"
+                            data-ng-bind-template="{{ $ctrl.trafficInformation.traffic.data.usage.outputQuotaUsed.text }}"
+                        ></span>
+                    </div>
+                </div>
+                <span
+                    data-ng-bind="'server_consumption_current_period_remaining' | translate:{ t0: $ctrl.trafficInformation.traffic.data.usage.remainingOutputQuotaSize.text }"
+                ></span>
+            </dd>
+        </dl>
+        <div class="oui-tile__actions" data-ng-if="$ctrl.canOrderMoreTraffic()">
+            <oui-action-menu
+                aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_consumption_current_period_label' | translate)} }}"
+                data-compact
+                data-placement="end"
+            >
+                <oui-action-menu-item
+                    data-aria-label="{{'server_consumption_order_button' | translate}}"
+                    data-on-click="$ctrl.trafficInformation.trafficOption.data !== 'subscribed' ? $ctrl.goToTrafficOrder() : $ctrl.goToTrafficCancel()"
+                    data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
+                    ><span
+                        data-translate="{{ :: $ctrl.trafficInformation.trafficOption.data !== 'subscribed' ? 'server_consumption_order_button' : 'server_consumption_change_button' }}"
+                    ></span
+                ></oui-action-menu-item>
+            </oui-action-menu>
+        </div>
+    </div>
+</oui-tile>

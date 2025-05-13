@@ -1,0 +1,19 @@
+{
+  "pci_databases_replications_tab_title": "Strumień replikacji",
+  "pci_databases_replications_tab_description": "Strumienie replikacji pozwalają na automatyczne kopiowanie topików danych i konfiguracji między dwoma klastrami Kafka. Usługa MirrorMaker może wykonać kilka strumieni replikacji.",
+  "pci_databases_replications_tab_source": "Status zgłoszenia",
+  "pci_databases_replications_tab_target": "Adres docelowy",
+  "pci_databases_replications_tab_topics": "Topiki",
+  "pci_databases_replications_tab_topics_blacklist": "Wyłączone listy topików",
+  "pci_databases_replications_tab_sync_group_offsets": "Sync group offsets",
+  "pci_databases_replications_tab_sync_interval": "Interwał synchronizacji (s)",
+  "pci_databases_replications_tab_status": "Status",
+  "pci_databases_replications_tab_edit": "Zmień strumień replikacji",
+  "pci_databases_replications_tab_delete": "Usuń strumień replikacji",
+  "pci_databases_replications_tab_add": "Utwórz strumień replikacji",
+  "pci_databases_replications_tab_no_integration": "Przed utworzeniem strumienia replikacji upewnij się, że skonfigurowałeś co najmniej 2 usługi Kafka.",
+  "pci_databases_replications_tab_sync_group_offsets_true": "Tak",
+  "pci_databases_replications_tab_sync_group_offsets_false": "Nie",
+  "pci_databases_replications_tab_status_true": "Aktywny",
+  "pci_databases_replications_tab_status_false": "Wyłączony"
+}

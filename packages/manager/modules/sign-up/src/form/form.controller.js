@@ -7,8 +7,13 @@ import map from 'lodash/map';
 import merge from 'lodash/merge';
 import set from 'lodash/set';
 
-import { ENUM_TRANSLATION_RULES, MODEL_DEBOUNCE_DELAY } from './form.constants';
+import {
+  ENUM_TRANSLATION_RULES,
+  MODEL_DEBOUNCE_DELAY,
+  READ_ONLY_PARAMS,
+} from './form.constants';
 import { WatchableModel } from '../watchableModel.class';
+import { PHONE_PREFIX } from './details/details.constants';
 
 export default class SignUpFormCtrl {
   /* @ngInject */
@@ -31,6 +36,7 @@ export default class SignUpFormCtrl {
       });
       if (rule && has(rule, 'in')) {
         let label;
+        let prefix;
         rule.in = map(rule.in, (value) => {
           if (translationRules.dependsOfCountry) {
             label = this.$translate.instant(
@@ -44,10 +50,14 @@ export default class SignUpFormCtrl {
                 translationRules.fallbackFieldName || translationRules.fieldName
               ).toLowerCase()}_${value}`,
             );
+            if (translationRules.fieldName === 'phoneCountry') {
+              prefix = PHONE_PREFIX[value];
+            }
           }
           return {
             label,
             value,
+            prefix,
           };
         });
 
@@ -76,9 +86,18 @@ export default class SignUpFormCtrl {
     const ruleParams = merge(
       {
         action: this.action,
+        ovhSubsidiary: this.ovhSubsidiary,
       },
       this.model,
     );
+
+    const legalformOrder = {
+      corporation: 0,
+      individual: 1,
+      administration: 2,
+      association: 3,
+      other: 4,
+    };
 
     return this.signUp
       .getCreationRules(ruleParams, this.getRulesCancel)
@@ -102,6 +121,10 @@ export default class SignUpFormCtrl {
           }
         });
 
+        this.rules.legalform.in.sort(
+          (a, b) => legalformOrder[a.value] - legalformOrder[b.value],
+        );
+
         if (isFunction(this.onRulesUpdated())) {
           this.onRulesUpdated()({
             rules: this.rules,
@@ -124,6 +147,23 @@ export default class SignUpFormCtrl {
   }
 
   /**
+   * Get ovhSubsidiary value from which account must be created, from signup url
+   * @return {String} ovhSubsidiary
+   */
+  static getOvhSubsidiaryFromUrl() {
+    const ovhSubsidiaryUrlParameter = window.location.hash
+      ?.substring(1)
+      .split('&')
+      .find((parameter) => {
+        const [key] = parameter.split('=');
+
+        return key === 'ovhSubsidiary';
+      });
+
+    return ovhSubsidiaryUrlParameter?.split('=')[1];
+  }
+
+  /**
    *  Define the model with the values from the response of GET /me.
    *  Be sure to take only the attributes from the available post params of POST /newAccount/rules
    *  to avoid errors on POST.
@@ -135,7 +175,9 @@ export default class SignUpFormCtrl {
       Object.defineProperty(this.model, `$${name}`, {
         enumerable: false,
         value: new WatchableModel(
-          get(this.me, name),
+          // User is created with 'landline' phone type but we want to encourage
+          // user to choose mobile by setting it by default
+          name === 'phoneType' ? 'mobile' : get(this.me, name),
           this.getRules.bind(this),
           MODEL_DEBOUNCE_DELAY,
         ),
@@ -154,10 +196,16 @@ export default class SignUpFormCtrl {
   ============================= */
 
   $onInit() {
-    return this.signUp.getCreationRulesParams().then((params) => {
-      this.initModel(params);
-      set(this.me, 'model', this.model);
-      return this.getRules();
+    return this.signUp.getNic().then(({ ovhSubsidiary }) => {
+      this.ovhSubsidiary = ovhSubsidiary;
+      return this.signUp.getCreationRulesParams().then((params) => {
+        const filterParams = params.filter((param) => {
+          return !READ_ONLY_PARAMS.includes(param.name);
+        });
+        this.initModel(filterParams);
+        set(this.me, 'model', this.model);
+        return this.getRules();
+      });
     });
   }
 

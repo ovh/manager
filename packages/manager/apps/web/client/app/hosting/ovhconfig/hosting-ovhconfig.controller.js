@@ -1,13 +1,17 @@
+import flatten from 'lodash/flatten';
 import get from 'lodash/get';
-import indexOf from 'lodash/indexOf';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
+import uniq from 'lodash/uniq';
+
+import { RECOMMENDED_VERSION } from './config.constants';
 
 angular.module('App').controller(
   'HostingEditOvhConfig',
   class HostingEditOvhConfig {
+    /* @ngInject */
     constructor(
       $scope,
       $q,
@@ -16,7 +20,7 @@ angular.module('App').controller(
       Alerter,
       Hosting,
       HostingOvhConfig,
-      User,
+      WucUser,
     ) {
       this.$scope = $scope;
       this.$q = $q;
@@ -25,10 +29,11 @@ angular.module('App').controller(
       this.alerter = Alerter;
       this.hostingService = Hosting;
       this.hostingOvhConfigService = HostingOvhConfig;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
+      this.capabilities = [];
       this.errorMsg = null;
       this.loading = false;
       this.model = {};
@@ -48,6 +53,8 @@ angular.module('App').controller(
       this.$scope.saveConfig = () => this.saveConfig();
 
       this.initWizard();
+
+      this.recommendedVersion = RECOMMENDED_VERSION;
     }
 
     static parseLabel(label) {
@@ -61,7 +68,7 @@ angular.module('App').controller(
       const queue = [];
       this.loading = true;
 
-      this.User.getUrlOf('guides').then((guides) => {
+      this.WucUser.getUrlOf('guides').then((guides) => {
         this.phpAppendicesGuide = guides.phpAppendices;
         this.hostingPhpGuide = guides.hostingPhpConfiguration;
       });
@@ -71,6 +78,9 @@ angular.module('App').controller(
           this.apiStruct = {
             models: apiStruct.models,
           };
+
+          this.engineNames =
+            apiStruct.models['hosting.web.ovhConfig.EngineNameEnum'].enum;
         }),
       );
 
@@ -87,6 +97,20 @@ angular.module('App').controller(
           .getCurrent(this.$stateParams.productId)
           .then((conf) => {
             this.currentConfig = conf;
+          }),
+      );
+
+      queue.push(
+        this.hostingOvhConfigService
+          .getCapabilities(this.$stateParams.productId)
+          .then((capabilities) => {
+            this.capabilities = capabilities;
+            this.phpVersion = this.capabilities.map(({ version }) => version);
+            this.envExecutions = uniq(
+              flatten(
+                this.capabilities.map(({ containerImage }) => containerImage),
+              ),
+            );
           }),
       );
 
@@ -107,6 +131,31 @@ angular.module('App').controller(
         });
     }
 
+    updateEnvExecutionsAvailable() {
+      this.envExecutions = this.capabilities.find(({ version }) =>
+        version.includes(this.model.engineVersion),
+      ).containerImage;
+      if (!this.envExecutions.includes(this.model.container)) {
+        this.model = { ...this.model, container: this.envExecutions[0] };
+      }
+    }
+
+    updateEngineNamesAvailable() {
+      const allEngineNames = this.apiStruct.models[
+        'hosting.web.ovhConfig.EngineNameEnum'
+      ].enum;
+
+      if (this.model.container !== 'stable64') {
+        this.engineNames = allEngineNames;
+      } else {
+        this.engineNames = allEngineNames.filter((e) => e !== 'phpcgi');
+      }
+
+      if (!this.engineNames.includes(this.model.engineName)) {
+        this.model = { ...this.model, engineName: this.engineNames[0] };
+      }
+    }
+
     setProcess() {
       if (this.toggle.process === 'rollback') {
         this.toggle.isRollbackProcess = true;
@@ -116,6 +165,8 @@ angular.module('App').controller(
       }
 
       this.changeToConfig(this.selectedConfig);
+      this.updateEnvExecutionsAvailable();
+      this.updateEngineNamesAvailable();
     }
 
     changeToConfig(ovhConfig) {
@@ -135,6 +186,8 @@ angular.module('App').controller(
 
     updateSelectedConfig() {
       this.clearDisplayedError();
+      this.updateEnvExecutionsAvailable();
+      this.updateEngineNamesAvailable();
       this.toggle.isConfigIsEdited = true;
       this.checkCohesion();
     }
@@ -143,12 +196,12 @@ angular.module('App').controller(
       if (this.toggle.isRollbackProcess) {
         this.toggle.isConfigCanBeSaved = true;
       } else if (
-        indexOf(
-          this.apiStruct.models[
-            'hosting.web.ovhConfig.AvailableEngineVersionEnum'
-          ].enum,
-          this.model.engineVersion,
-        ) !== -1
+        this.apiStruct.models[
+          'hosting.web.ovhConfig.AvailableEngineVersionEnum'
+        ].enum.includes(this.model.engineVersion) &&
+        this.capabilities
+          .find(({ version }) => version.includes(this.model.engineVersion))
+          .containerImage.includes(this.model.container)
       ) {
         this.toggle.isPhpVersionAvailable = true;
         this.toggle.isConfigCanBeSaved = this.toggle.isConfigIsEdited;

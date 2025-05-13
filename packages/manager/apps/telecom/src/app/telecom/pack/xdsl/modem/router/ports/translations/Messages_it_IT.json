@@ -7,7 +7,7 @@
   "xdsl_modem_ports_port_end": "Porta di fine",
   "xdsl_modem_ports_protocol": "Protocollo",
   "xdsl_modem_ports_internal_client": "IP di destinazione",
-  "xdsl_modem_ports_internal_port": "Porta interna",
+  "xdsl_modem_ports_internal_port": "Porta interna di inizio",
   "xdsl_modem_ports_internal_port_tooltip": "Se la porta di fine è diversa dalla porta di inizio, il reindirizzamento verrà effettuato su un intervallo di porte interno di dimensione equivalente che inizia con il valore indicato in \"Porta Interna\"",
   "xdsl_modem_ports_add": "Aggiugi un Inoltro delle Porte",
   "xdsl_modem_ports_delete_really": "Vuoi davvero eliminare questo inoltro delle porte?",
@@ -19,7 +19,8 @@
   "xdsl_modem_ports_firewall_info": "Per garantire il corretto funzionamento delle tue regole di reindirizzamento, il firewall del tuo modem deve essere disattivato.",
   "xdsl_modem_ports_firewall_explaination": "La sicurezza della tua rete non subirà alcun impatto. Il firewall accetterà solo le richieste in entrata destinate a un IP su cui è impostata una regola di reindirizzamento.",
   "xdsl_modem_ports_read_error": "Ops! Impossibile leggere i tuoi reindirizzamenti delle porte.",
-  "xdsl_modem_ports_add_error": "Impossibile aggiungere il reindirizzamento della porta <strong>{{ name }}</strong>",
+  "xdsl_modem_ports_add_error": "Impossibile aggiungere il reindirizzamento della porta <strong>{{ name }}</strong> : {{ reason }}",
   "xdsl_modem_ports_edit_error": "Impossibile aggiornare il reindirizzamento della porta <strong>{{ name }}</strong>",
-  "xdsl_modem_ports_del_error": "Impossibile aggiornare il reindirizzamento della porta <strong>{{ name }}</strong>"
+  "xdsl_modem_ports_del_error": "Impossibile aggiornare il reindirizzamento della porta <strong>{{ name }}</strong>",
+  "xdsl_modem_ports_internal_port_end": "Porta interna di fine"
 }

@@ -7,6 +7,7 @@ import remove from 'lodash/remove';
 angular.module('App').controller(
   'PrivateDatabaseBDDsListCtrl',
   class PrivateDatabaseBDDsListCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $scope,
@@ -102,20 +103,12 @@ angular.module('App').controller(
     }
 
     getPromise(promise) {
-      promise.then(
-        () => {
-          this.privateDatabaseService.restartPoll(this.productId, [
-            'database/delete',
-            'database/create',
-          ]);
-        },
-        () => {
-          this.privateDatabaseService.restartPoll(this.productId, [
-            'database/delete',
-            'database/create',
-          ]);
-        },
-      );
+      promise.then(() => {
+        this.privateDatabaseService.restartPoll(this.productId, [
+          'database/delete',
+          'database/create',
+        ]);
+      });
     }
 
     transformItem(item) {
@@ -306,6 +299,14 @@ angular.module('App').controller(
           this.$translate.instant('privateDatabase_tabs_dumps_restore_fail'),
           this.$scope.alerts.main,
         );
+      });
+    }
+
+    onCopyDatabaseClick(element) {
+      this.$scope.setAction('../hosting/database/copy/hosting-database-copy', {
+        currentDatabaseName: element.databaseName,
+        serviceName: this.productId,
+        isPrivateDatabase: true,
       });
     }
   },

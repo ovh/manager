@@ -1,0 +1,12 @@
+<div
+    data-ng-if="!$ctrl.defaultExplanationTextsOptions.creditCard"
+    data-ng-include="'ng-ovh-payment-method/creditCardExplanationText.html'"
+></div>
+<oui-message
+    data-ng-if="$ctrl.defaultExplanationTextsOptions.creditCard"
+    data-type="{{ $ctrl.defaultExplanationTextsOptions.creditCard }}"
+>
+    <div
+        data-ng-include="'ng-ovh-payment-method/creditCardExplanationText.html'"
+    ></div>
+</oui-message>

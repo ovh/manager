@@ -4,6 +4,7 @@ import forEach from 'lodash/forEach';
 angular.module('App').controller(
   'PrivateDatabaseBDDsDumpsCtrl',
   class PrivateDatabaseBDDsDumpsCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $scope,

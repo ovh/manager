@@ -2,7 +2,7 @@
 
 > Simple HTTP provider for OVHcloud API.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-http)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-http) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-http)](https://npmjs.com/package/@ovh-ux/ng-ovh-http) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-http)](https://npmjs.com/package/@ovh-ux/ng-ovh-http?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-http)](https://npmjs.com/package/@ovh-ux/ng-ovh-http?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-http)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-http) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-http)](https://npmjs.com/package/@ovh-ux/ng-ovh-http) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-http)](https://npmjs.com/package/@ovh-ux/ng-ovh-http?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-http)](https://npmjs.com/package/@ovh-ux/ng-ovh-http?activeTab=dependencies)
 
 ## Install
 
@@ -17,9 +17,8 @@ import angular from 'angular';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import set from 'lodash/set';
 
-angular
-  .module('myApp', [ngOvhHttp])
-  .config(/* @ngInject */ (OvhHttpProvider, constants) => {
+angular.module('myApp', [ngOvhHttp]).config(
+  /* @ngInject */ (OvhHttpProvider, constants) => {
     // URL prefix
     set(OvhHttpProvider, 'rootPath', constants.swsRootPath);
     // Auto delete get cache (for this url) if method is in table
@@ -28,12 +27,13 @@ angular
     set(OvhHttpProvider, 'returnSuccessKey', 'data');
     // By default, request return error.data
     set(OvhHttpProvider, 'returnErrorKey', 'data');
-  });
+  },
+);
 ```
 
 ```js
 // HTTP request
-OvhHttp['get', 'put', 'post', 'delete'](URL, options);
+OvhHttp[('get', 'put', 'post', 'delete')](URL, options);
 
 // Get API schema (option only rootPath)
 OvhHttp.schema(URL, options);
@@ -91,9 +91,9 @@ const options = {
 import angular from 'angular';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 
-angular
-  .module('myApp', [ngOvhHttp])
-  .controller('MyCtrl', class MyCtrl {
+angular.module('myApp', [ngOvhHttp]).controller(
+  'MyCtrl',
+  class MyCtrl {
     /* @ngInject */
     constructor(OvhHttp) {
       this.OvhHttp = OvhHttp;
@@ -120,7 +120,8 @@ angular
         clearAllCache: 'hostingCache', // or ['hostingCache']
       });
     }
-  });
+  },
+);
 ```
 
 ## Test

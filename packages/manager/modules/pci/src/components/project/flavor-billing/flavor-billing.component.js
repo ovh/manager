@@ -1,5 +1,6 @@
 import controller from './flavor-billing.controller';
 import template from './flavor-billing.html';
+import './flavor-billing.scss';
 
 export default {
   controller,
@@ -9,6 +10,10 @@ export default {
     number: '<?',
     monthlyBilling: '=?',
     disabled: '<?',
-    offer: '<?',
+    addons: '<?',
+    onChange: '&',
+  },
+  transclude: {
+    hourlyPrice: '?pciProjectFlavorBillingHourlyPrice',
   },
 };

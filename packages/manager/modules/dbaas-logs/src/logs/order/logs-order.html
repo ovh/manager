@@ -1,0 +1,132 @@
+<div class="row p-4">
+    <div class="col-lg-9 p-4">
+        <h1 data-translate="logs_order_title" class="m-0"></h1>
+        <p data-translate="logs_order_subtitle"></p>
+        <h4 data-translate="logs_order_selection_title" class="mt-4"></h4>
+        <p data-translate="logs_order_selection_subtitle"></p>
+        <div class="row my-4 align-items-baseline">
+            <oui-select-picker
+                class="mb-3 col-md-5"
+                name="logsStandardOffer"
+                model="$ctrl.selectedOffer"
+                label="{{'logs_order_selection_details_standard_title' | translate}}"
+                values="[$ctrl.LogsConstants.LDP_PLAN_CODE]"
+                on-change="$ctrl.selectOffer($ctrl.LogsConstants.LDP_PLAN_CODE)"
+            >
+                <oui-select-picker-section>
+                    <span
+                        data-translate="logs_order_selection_details_standard_description"
+                    />
+                    <ul>
+                        <li
+                            data-translate="logs_order_selection_details_standard_description_1"
+                        ></li>
+                        <li
+                            data-translate="logs_order_selection_details_standard_description_2"
+                        ></li>
+                        <li
+                            data-translate="logs_order_selection_details_standard_description_3"
+                        ></li>
+                        <li
+                            data-translate="logs_order_selection_details_standard_description_4"
+                        ></li>
+                        <li
+                            data-translate="logs_order_selection_details_standard_description_5"
+                        ></li>
+                        <li
+                            data-translate="logs_order_selection_details_standard_description_6"
+                        ></li>
+                        <li
+                            data-translate="logs_order_selection_details_standard_description_7"
+                        ></li>
+                    </ul>
+                </oui-select-picker-section>
+                <oui-select-picker-footer>
+                    <p
+                        class="font-weight-bold m-0"
+                        data-translate="logs_order_selection_details_standard_price"
+                        data-translate-values="{ price: $ctrl.formattedPrice.standardPlanPrice.FirstStep }"
+                    ></p>
+                </oui-select-picker-footer>
+            </oui-select-picker>
+
+            <oui-select-picker
+                class="mb-3 col-md-5"
+                name="logsEnterpriseOffer"
+                model="$ctrl.selectedOffer"
+                label="{{::'logs_order_selection_details_enterprise_title' | translate}}"
+                values="[$ctrl.LogsConstants.LDP_PLAN_CODE_ENTERPRISE]"
+                on-change="$ctrl.selectOffer($ctrl.LogsConstants.LDP_PLAN_CODE_ENTERPRISE)"
+            >
+                <oui-select-picker-section>
+                    <span
+                        data-translate="logs_order_selection_details_enterprise_description"
+                    />
+                    <ul>
+                        <li
+                            data-translate="logs_order_selection_details_enterprise_description_1"
+                        ></li>
+                        <li
+                            data-translate="logs_order_selection_details_enterprise_description_2"
+                        ></li>
+                        <li
+                            data-translate="logs_order_selection_details_enterprise_description_3"
+                        ></li>
+                        <li
+                            data-translate="logs_order_selection_details_enterprise_description_4"
+                        ></li>
+                    </ul>
+                </oui-select-picker-section>
+                <oui-select-picker-footer>
+                    <p
+                        class="font-weight-bold d-block m-0"
+                        data-translate="logs_order_selection_details_enterprise_price"
+                        data-translate-values="{ price: $ctrl.formattedPrice.enterprisePlanPrice.subscription }"
+                    ></p>
+                    <p
+                        class="m-0"
+                        data-translate="logs_order_selection_details_enterprise_subtitle"
+                        data-translate-values="{ price: $ctrl.formattedPrice.enterprisePlanPrice.installation }"
+                    ></p>
+                </oui-select-picker-footer>
+            </oui-select-picker>
+        </div>
+        <h4 data-translate="logs_order_location_title" class="mt4"></h4>
+        <strong
+            data-ng-if="$ctrl.region === 'US'"
+            data-translate="dbaas_logs_note_availability_us"
+        ></strong>
+        <div class="row align-items-baseline">
+            <oui-select-picker
+                data-ng-repeat="region in $ctrl.regions track by region"
+                data-picture="flag-icon flag-icon-{{region}}"
+                class="mb-3 col-md-5"
+                name="ouiSelectPicker1"
+                model="$ctrl.selectedDatacenter"
+                label="{{'label-' + region | translate}}"
+                values="[region]"
+            >
+                <oui-select-picker-section class="text-uppercase"
+                    ><span data-ng-bind="region"></span
+                ></oui-select-picker-section>
+            </oui-select-picker>
+        </div>
+        <div class="row px-3">
+            <oui-button
+                variant="secondary"
+                class="m-1"
+                ng-click="$ctrl.onCancel()"
+            >
+                <span data-translate="logs_cancel"></span>
+            </oui-button>
+            <oui-button
+                variant="primary"
+                class="m-1"
+                ng-click="$ctrl.onOrder()"
+                disabled="!$ctrl.selectedDatacenter || !$ctrl.selectedOffer"
+            >
+                <span data-translate="logs_accounts_order"></span>
+            </oui-button>
+        </div>
+    </div>
+</div>

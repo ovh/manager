@@ -24,5 +24,6 @@
   "email_pro_detail_client_delete_account_warning": "Attention ! En supprimant votre compte, l'ensemble des messages qu'il contient seront <strong>définitivement</strong> supprimés. Aucune procédure de récupération des données ne sera possible après cette suppression.",
   "email_pro_detail_client_delete_account_confirm": "Confirmar eliminação",
   "email_pro_detail_client_delete_account_success": "Votre compte {{email}} est en cours de suppression.",
-  "email_pro_detail_client_delete_account_error": "Oups ! La suppression du compte a échoué."
+  "email_pro_detail_client_delete_account_error": "Oups ! La suppression du compte a échoué.",
+  "email_pro_detail_breadcrumb": "xDSL E-mail"
 }

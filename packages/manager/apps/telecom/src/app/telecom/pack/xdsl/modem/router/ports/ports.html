@@ -1,0 +1,386 @@
+<div data-ng-controller="XdslModemPortsCtrl as PortCtrl">
+    <div class="table-responsive">
+        <h3>
+            <span
+                class="tooltip-label"
+                data-uib-tooltip="{{'xdsl_modem_ports_description' | translate}}"
+                data-tooltip-placement="right"
+                data-tooltip-append-to-body="true"
+                data-translate="xdsl_modem_ports_title"
+            >
+            </span>
+        </h3>
+
+        <div
+            class="text-info"
+            data-ng-if="PortCtrl.form.collection && PortCtrl.form.collection.length"
+        >
+            <p>
+                <span
+                    class="ovh-font ovh-font-filled-info float-left tooltip-label"
+                    data-uib-tooltip="{{'xdsl_modem_ports_firewall_explaination' | translate}}"
+                    data-tooltip-append-to-body="true"
+                    data-tooltip-placement="right"
+                ></span>
+                <span
+                    data-translate="xdsl_modem_ports_firewall_info"
+                    class="ml-2"
+                ></span>
+            </p>
+        </div>
+
+        <div class="text-center" data-ng-if="PortCtrl.loader">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <table
+            class="table table-hover table-condensed"
+            data-ng-if="!PortCtrl.loader"
+        >
+            <thead>
+                <tr>
+                    <th scope="col" data-translate="xdsl_modem_ports_name"></th>
+                    <th scope="col" data-translate="xdsl_modem_ip_source"></th>
+                    <th
+                        scope="col"
+                        data-translate="xdsl_modem_ports_port_begin"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="xdsl_modem_ports_port_end"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="xdsl_modem_ports_protocol"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="xdsl_modem_ports_internal_client"
+                    ></th>
+                    <th scope="col">
+                        <span
+                            class="tooltip-label"
+                            data-tooltip-append-to-body="true"
+                            data-uib-tooltip="{{'xdsl_modem_ports_internal_port_tooltip' | translate}}"
+                            data-translate="xdsl_modem_ports_internal_port"
+                        ></span>
+                    </th>
+                    <th
+                        scope="col"
+                        data-translate="xdsl_modem_ports_internal_port_end"
+                    ></th>
+                    <th data-translate="common_actions"></th>
+                </tr>
+            </thead>
+            <tbody data-ng-repeat="port in PortCtrl.ports track by port.name">
+                <!-- Not editing -->
+                <tr data-ng-if="!port.editMode">
+                    <th
+                        data-title="{{ 'xdsl_modem_ports_name' | translate }}"
+                        scope="row"
+                        data-ng-bind="port.name"
+                    ></th>
+                    <td
+                        data-title="{{ 'xdsl_modem_ip_source' | translate }}"
+                        data-ng-bind="port.allowedRemoteIp"
+                    ></td>
+                    <td
+                        data-title="{{ 'xdsl_modem_ports_port_begin' | translate }}"
+                        data-ng-bind="port.externalPortStart"
+                    ></td>
+                    <td
+                        data-title="{{ 'xdsl_modem_ports_port_end' | translate }}"
+                        data-ng-bind="port.externalPortEnd"
+                    ></td>
+                    <td
+                        data-title="{{ 'xdsl_modem_ports_protocol' | translate }}"
+                        data-ng-bind="port.protocol"
+                    ></td>
+                    <td
+                        data-title="{{ 'xdsl_modem_ports_internal_client' | translate }}"
+                        data-ng-bind="port.internalClient"
+                    ></td>
+                    <td
+                        data-title="{{ 'xdsl_modem_ports_internal_port' | translate }}"
+                        data-ng-bind="port.internalPort"
+                    ></td>
+                    <td
+                        data-title="{{:: 'xdsl_modem_ports_internal_port_end' | translate }}"
+                        data-ng-bind="port.internalPortEnd"
+                    ></td>
+                    <td class="dropdown">
+                        <div
+                            class="btn-group"
+                            data-uib-dropdown
+                            data-dropdown-append-to-body
+                        >
+                            <button
+                                id="btn-ports-action-{{$index}}"
+                                type="button"
+                                class="btn btn-link"
+                                data-uib-dropdown-toggle
+                            >
+                                <span
+                                    class="ovh-font ovh-font-dots"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    class="sr-only"
+                                    data-translate="common_actions"
+                                ></span>
+                            </button>
+                            <ul
+                                class="dropdown-menu dropdown-menu-right"
+                                role="menu"
+                                aria-labelledby="btn-ports-action-{{$index}}"
+                                data-uib-dropdown-menu
+                            >
+                                <li role="menuitem">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-click="port.edit()"
+                                        title="{{port.name}} {{ 'common_table_edit' | translate }}"
+                                        data-translate="edit"
+                                        data-ng-disabled="!PortCtrl.mediator.capabilities.canChangePortMapping || port.busy"
+                                    ></button>
+                                </li>
+                                <li role="menuitem">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-click="PortCtrl.delete(port)"
+                                        data-translate="delete"
+                                        title="{{port.name}} {{ 'common_table_delete' | translate }}"
+                                    ></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Editing -->
+                <tr
+                    data-ng-if="port.editMode"
+                    data-ng-form
+                    name="localForm"
+                    data-ng-keydown="PortCtrl.watchKey($event, port, localForm.$valid)"
+                >
+                    <th
+                        data-title="{{ 'xdsl_modem_ports_name' | translate }}"
+                        scope="row"
+                        class="form-group"
+                        data-ng-class="{ 'has-error': localForm.portName.$touched && localForm.portName.$invalid }"
+                    >
+                        <label
+                            for="portName"
+                            data-translate="xdsl_modem_ports_name"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            type="text"
+                            name="portName"
+                            id="portName"
+                            class="form-control"
+                            data-ng-model="port.tempValue.name"
+                            maxlength="30"
+                            data-ui-validate="'PortCtrl.uniqueName($value, port)'"
+                            required
+                            data-ng-readonly="!!port.id"
+                        />
+                    </th>
+
+                    <td
+                        data-title="{{ 'xdsl_modem_ip_source' | translate }}"
+                        class="form-group"
+                        data-ng-class="{ 'has-error': localForm.portAllowedRemoteIp.$touched && localForm.portAllowedRemoteIp.$invalid }"
+                    >
+                        <label
+                            for="portAllowedRemoteIp"
+                            data-translate="xdsl_modem_ip_source"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            type="text"
+                            name="portAllowedRemoteIp"
+                            id="portAllowedRemoteIp"
+                            class="form-control"
+                            data-ng-model="port.tempValue.allowedRemoteIp"
+                            placeholder="{{ 'xdsl_modem_ports_placeholder_ip_source' | translate}}"
+                            data-ui-validate="'PortCtrl.validator.isIP($value) || !$value'"
+                        />
+                    </td>
+
+                    <td
+                        data-title="{{ 'xdsl_modem_ports_port_begin' | translate }}"
+                        class="form-group"
+                        data-ng-class="{ 'has-error': localForm.portExternalPortStart.$touched && localForm.portExternalPortStart.$invalid }"
+                    >
+                        <label
+                            for="portExternalPortStart"
+                            data-translate="xdsl_modem_ports_port_begin"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            type="number"
+                            name="portExternalPortStart"
+                            id="portExternalPortStart"
+                            class="form-control"
+                            data-ng-model="port.tempValue.externalPortStart"
+                            maxlength="{{PortCtrl.PACK_XDSL.maxlength}}"
+                            min="{{PortCtrl.PACK_XDSL.min}}"
+                            max="{{PortCtrl.PACK_XDSL.max}}"
+                            required
+                            placeholder="{{PortCtrl.PACK_XDSL.portExternalPortStartPlaceHolder}}"
+                        />
+                    </td>
+
+                    <td
+                        data-title="{{ 'xdsl_modem_ports_port_end' | translate }}"
+                        class="form-group"
+                        data-ng-class="{ 'has-error': localForm.portExternalPortEnd.$touched && localForm.portExternalPortEnd.$invalid }"
+                    >
+                        <label
+                            for="portExternalPortEnd"
+                            data-translate="xdsl_modem_ports_port_end"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            type="number"
+                            name="portExternalPortEnd"
+                            id="portExternalPortEnd"
+                            class="form-control"
+                            data-ng-model="port.tempValue.externalPortEnd"
+                            maxlength="{{PortCtrl.PACK_XDSL.maxlength}}"
+                            min="{{PortCtrl.PACK_XDSL.min}}"
+                            max="{{PortCtrl.PACK_XDSL.max}}"
+                            required
+                            placeholder="{{PortCtrl.PACK_XDSL.portExternalPortEndPlaceHolder}}"
+                        />
+                    </td>
+
+                    <td
+                        data-title="{{ 'xdsl_modem_ports_protocol' | translate }}"
+                        class="form-group"
+                    >
+                        <label
+                            for="portProtocol"
+                            data-translate="xdsl_modem_ports_protocol"
+                            class="sr-only"
+                        ></label>
+                        <select
+                            name="portProtocol"
+                            id="portProtocol"
+                            class="form-control"
+                            data-ng-model="port.tempValue.protocol"
+                            data-ng-options="proto as proto for proto in PortCtrl.protocol"
+                        >
+                        </select>
+                    </td>
+
+                    <td
+                        data-title="{{ 'xdsl_modem_ports_internal_client' | translate }}"
+                        class="form-group"
+                        data-ng-class="{ 'has-error': localForm.portInternalClient.$touched && localForm.portInternalClient.$invalid }"
+                    >
+                        <label
+                            for="portInternalClient"
+                            data-translate="xdsl_modem_ports_internal_client"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            type="text"
+                            name="portInternalClient"
+                            id="portInternalClient"
+                            class="form-control"
+                            data-ng-model="port.tempValue.internalClient"
+                            placeholder="192.168.x.x"
+                            maxlength="15"
+                            data-ui-validate="'PortCtrl.validator.isIP($value)'"
+                        />
+                    </td>
+
+                    <td
+                        data-title="{{ 'xdsl_modem_ports_internal_port' | translate }}"
+                        class="form-group"
+                        data-ng-class="{ 'has-error': localForm.internalPort.$touched && localForm.internalPort.$invalid }"
+                    >
+                        <label
+                            for="internalPort"
+                            data-translate="xdsl_modem_ports_internal_port"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            type="number"
+                            name="internalPort"
+                            id="internalPort"
+                            class="form-control"
+                            data-ng-model="port.tempValue.internalPort"
+                            maxlength="{{PortCtrl.PACK_XDSL.maxlength}}"
+                            min="{{PortCtrl.PACK_XDSL.min}}"
+                            max="{{PortCtrl.PACK_XDSL.max}}"
+                            placeholder="{{PortCtrl.PACK_XDSL.internalPortPlaceHolder}}"
+                            required
+                        />
+                    </td>
+                    <td
+                        data-title="{{ 'xdsl_modem_ports_internal_port_end' | translate }}"
+                        class="form-group"
+                        data-ng-class="{ 'has-error': localForm.internalPortEnd.$touched && localForm.internalPortEnd.$invalid }"
+                    >
+                        <label
+                            for="internalPortEnd"
+                            data-translate="xdsl_modem_ports_port_end"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            type="number"
+                            name="internalPortEnd"
+                            id="internalPortEnd"
+                            class="form-control"
+                            data-ng-model="port.tempValue.internalPortEnd"
+                            maxlength="{{PortCtrl.PACK_XDSL.maxlength}}"
+                            min="{{PortCtrl.PACK_XDSL.min}}"
+                            max="{{PortCtrl.PACK_XDSL.max}}"
+                            placeholder="{{PortCtrl.PACK_XDSL.internalPortEndPlaceHolder}}"
+                        />
+                    </td>
+
+                    <td class="form-group col-mobile-button-big">
+                        <button
+                            type="submit"
+                            title="{{port.name}} {{ 'common_table_validate_modifications' | translate }}"
+                            class="btn btn-primary"
+                            data-ng-click="PortCtrl.update(port)"
+                            data-ng-disabled="localForm.$invalid"
+                        >
+                            <span
+                                class="ovh-font ovh-font-check"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                        <button
+                            type="reset"
+                            title="{{port.name}} {{ 'common_table_cancel_modifications' | translate }}"
+                            class="btn btn-default"
+                            data-ng-click="PortCtrl.cancel(port)"
+                        >
+                            <span
+                                class="ovh-font ovh-font-wrong"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button
+            type="submit"
+            class="btn btn-primary"
+            data-ng-if="!PortCtrl.hasEditing"
+            data-ng-click="PortCtrl.add()"
+            data-ng-disabled="!PortCtrl.mediator.capabilities.canChangePortMapping"
+            data-translate="xdsl_modem_ports_add"
+        ></button>
+    </div>
+</div>

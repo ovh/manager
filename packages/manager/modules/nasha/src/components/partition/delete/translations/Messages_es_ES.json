@@ -1,0 +1,6 @@
+{
+  "nasha_components_partition_delete_cancel": "Cerrar",
+  "nasha_components_partition_delete_submit": "Eliminar la partición",
+  "nasha_components_partition_delete_content": "¿Seguro que quiere eliminar la partición {{ partitionName }}?",
+  "nasha_components_partition_delete_title": "Eliminar una partición"
+}

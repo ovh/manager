@@ -1,0 +1,22 @@
+{
+  "user_account_identity_documents": "Documentos de identificação",
+  "user_account_identity_documents_title": "Verificação de documentos necessária",
+  "user_account_identity_documents_sub_title": "Apresente os seus documentos",
+  "user_account_identity_documents_intro": "A nossa equipa de assistência local responderá dentro de 24 horas*",
+  "user_account_identity_documents_upload": "Faça download dos seus documentos",
+  "user_account_identity_documents_intro_others": "Se for um particular, os comprovativos de identidade e de endereço abaixo são suficientes. Neste caso, não é necessário apresentar o atestado sob compromisso de honra nem o comprovativo de IVA.",
+  "user_account_identity_documents_selection_file_format": "Formato: jpg, jpeg, pdf, png. O tamanho máximo do ficheiro para cada documento é de 10 MB.",
+  "user_account_identity_documents_selection_file_format_invalid": "O formato {{values}} dos documentos descarregados não é aceite. Respeite por favor o formato exigido : jpg, jpeg, pdf e png",
+  "user_account_identity_documents_submit": "Enviar os meus documentos",
+  "user_account_identity_documents_submit_success_message_title": "Obrigado pelo envio dos seus documentos!",
+  "user_account_identity_documents_submit_success_message_description": "Serão enviados à nossa equipa para validação. A nossa equipa de suporte irá responder-lhe num prazo de <b>24 horas*</b> Receberá uma notificação da validação por e-mail, ou ser-lhe-á solicitado mais informações se necessário.",
+  "user_account_identity_documents_submit_error_message_description": "Os seus documentos não foram enviados com sucesso. Repita o upload e o envio dos seus documentos",
+  "user_account_identity_documents_go_back_to_dashboard": "Ver o painel de controlo",
+  "user_account_identity_documents_legal_info1": "A OVH S.A.S é a responsável pelo tratamento dos seus dados pessoais. Os dados recolhidos através deste formulário são tratados de forma a cumprir as <a href=\"{{ link1 }}\" target=\"_blank\">Diretrizes de Cibersegurança de 28/04/2022</a>, publicadas pelo CERT-IN, em conformidade com o disposto na subsecção (6) <a href=\"{{ link2 }}\" target=\"_blank\">do artigo 70B</a> do Information Technology (IT) Act de 2000.",
+  "user_account_identity_documents_legal_info2": "Para saber mais sobre o tratamento dos seus dados pessoais e conhecer os seus direitos, pode consultar a nossa <a href=\"{{ link }}\" target=\"_blank\">Política de Utilização de Dados Pessoais</a>.",
+  "user_account_identity_documents_legal_info3": "Os documentos serão conservados durante cinco anos após o termo do contrato.",
+  "user_account_identity_documents_verification_in_progress_info": "O tratamento dos seus documentos está a ser analisado pela nossa equipa.",
+  "user_account_identity_documents_verification_waiting_info": "O seu pedido foi analisado, mas necessita de documentos complementares. Consulte o seu ticket de assistência.",
+  "user_account_identity_documents_legal_info4": "Tempo de resposta em dias úteis: 9h às 18h IST (India Standard Time), de segunda a sexta-feira, excluindo feriados.",
+  "user_account_identity_documents_default_intro": "Se for um particular, os comprovativos de identidade e de morada são suficientes. Não precisa de fornecer o comprovativo de IVA nem a declaração sob compromisso de honra."
+}

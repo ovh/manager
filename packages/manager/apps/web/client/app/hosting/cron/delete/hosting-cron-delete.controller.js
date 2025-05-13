@@ -4,6 +4,7 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'HostingCronDeleteCtrl',
   class HostingCronDeleteCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, HostingCron, Alerter) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

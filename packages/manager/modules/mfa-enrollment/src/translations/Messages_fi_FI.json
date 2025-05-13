@@ -1,7 +1,0 @@
-{
-  "mfa_enrollment_title": "Secure your account with two-factor authentication!",
-  "mfa_enrollment_info1": "The security provided by a simple password is not always sufficient. We strongly recommend that you enable 2-step verification of your account.",
-  "mfa_enrollment_info2": "By activating it, you increase your security level and protect your data. In addition to an account password, a validation code sent via SMS to your phone or a security key is required to enable the connection.",
-  "mfa_enrollment_go": "Let’s go!",
-  "mfa_enrollment_cancel": "Not now"
-}

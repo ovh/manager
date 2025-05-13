@@ -1,5 +1,7 @@
 {
   "pci_project_new_payment_default_title": "Mi forma de pago",
-  "pci_project_new_payment_default_explain": "Para facturar el consumo de su proyecto de Public Cloud, se utilizará la forma de pago que aparece a continuación: Mientras no consuma recursos, no se le cargará nada. Para cambiar la forma de pago, vaya a <a href=\"{{ myAccountSection }}\">Mi cuenta</a> y seleccione <a href=\"{{ paymentMehodSection }}\">Mis formas de pago</a>.",
-  "pci_project_new_payment_default_method": "Forma de pago por defecto"
+  "pci_project_new_payment_default_explain_info": "La siguiente forma de pago por defecto se utilizará para el consumo de su proyecto Public Cloud. Mientras no consuma recursos, no se le cargará nada.",
+  "pci_project_new_payment_default_method_use_others_payment_methods": "Cambiar mi forma de pago por defecto",
+  "pci_project_new_payment_default_method_badge_default": "Por defecto",
+  "pci_project_new_payment_default_method_expiration_date": "Validez {{formatDate}}"
 }

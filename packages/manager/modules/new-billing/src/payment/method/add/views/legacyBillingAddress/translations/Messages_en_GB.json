@@ -1,0 +1,13 @@
+{
+  "billing_payment_method_add_bank_account_address_number": "Number",
+  "billing_payment_method_add_bank_account_address_street": "Street name",
+  "billing_payment_method_add_bank_account_address_zip": "Postcode",
+  "billing_payment_method_add_bank_account_address_city": "City",
+  "billing_payment_method_add_bank_account_owner_name": "Surname and first name of owner or organisation owner",
+  "billing_payment_method_add_bank_account_owner_address": "Address of account owner",
+  "billing_payment_method_add_bank_account_owner_notification_info": "Within 24 to 48 hours, you will receive an email via the email address linked to your OVHcloud account. This email will contain a link for the electronic signature of your direct debit mandate.",
+  "billing_payment_method_add_bank_account_owner_info": "Warning: the bank account owner must also be the OVHcloud account owner.",
+  "billing_payment_method_add_bank_account_owner_confirmation_info": "Once your direct debit mandate has been received by our services, if it gets approved, you can then use this new payment method.",
+  "billing_payment_method_add_bank_account_data_process_by_ovh_info": "The data collected via this form is processed by OVHcloud as a data controller in order to set up your SEPA direct debit. <a href=\" {{ dataProtectionOvhLink }} \" target=\" _blank \">Find out more</a> about how OVHcloud processes your data, and how you exercise your rights.",
+  "billing_payment_method_add_bank_account_data_process_by_yousign_info": "To set up a SEPA direct debit, you will need to sign a mandate electronically using a solution provided by Yousign, a service provider authorised to deliver the trusted services defined by the “eIDAS” Regulation No. 910/2014 of 23 July 2014. In this context, the data is sent to Yousign. <a href=\" {{ dataProtectionYouSignLink }} \" target=\" _blank \">Find out more</a> about how Yousign manages your data."
+}

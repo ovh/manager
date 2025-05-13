@@ -1,7 +1,7 @@
 {
   "pci_projects_project_quota": "Quotas",
   "pci_projects_project_quota_protect_explain": "Um den Verbrauch an Cloud-Ressourcen zu begrenzen, wurden diese für Ihr Projekt limitiert.",
-  "pci_projects_project_quota_protect_more": "Wenn Sie mehr Ressourcen benötigen, können Sie diese bei unserem Team anfordern, indem Sie unten auf den Button klicken.",
+  "pci_projects_project_quota_protect_more": "Benötigen Sie zusätzliche Ressourcen? Bestellen Sie Cloud-Guthaben oder kontaktieren Sie unser Team. Bitte klicken Sie dazu auf die unten stehenden Buttons.",
   "pci_projects_project_quota_protect_more_btn": "Quota erhöhen",
   "pci_projects_project_quota_current_limit": "Derzeitige Begrenzungen",
   "pci_projects_project_quota_instance_unlimited": "Unbegrenzt",
@@ -17,5 +17,13 @@
   "pci_projects_project_quota_instance": "Server",
   "pci_projects_project_quota_core": "vCPU",
   "pci_projects_project_quota_ram": "RAM",
-  "pci_projects_project_quota_open_new_tab": "Öffnet einen neuen Tab"
+  "pci_projects_project_quota_open_new_tab": "Öffnet einen neuen Tab",
+  "pci_projects_project_quota_threshold_reached": "begrenzte Quotas",
+  "pci_projects_project_quota_autoscaling": "Quota Autoscaling",
+  "pci_projects_project_quota_autoscaling_on": "Aktiviert",
+  "pci_projects_project_quota_autoscaling_off": "Deaktiviert",
+  "pci_projects_project_quota_autoscaling_error": "Bei der Aktualisierung des Quotas ist ein Fehler aufgetreten",
+  "pci_projects_project_quota_autoscaling_help": "Ihr Quota wird automatisch entsprechend Ihrer Nutzung und nach bestimmten Kriterien angepasst.",
+  "pci_projects_project_quota_protect_contact_support": "Kundendienst kontaktieren",
+  "pci_projects_project_quota_error_forbidden": "Sie haben nicht die nötigen Rechte, um Ihre Quotas zu verwalten. Bitte wenden Sie sich an den Inhaber des Dienstes"
 }

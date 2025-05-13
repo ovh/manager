@@ -1,0 +1,10 @@
+{
+  "telephony_line_phone_reboot_title": "Zrestartuj telefon",
+  "telephony_line_phone_reboot_section_title": "Plug &amp; Phone",
+  "telephony_line_phone_reboot_phone_brand": "Model",
+  "telephony_line_phone_reboot_phone_mac_address": "Adres MAC",
+  "telephony_line_phone_reboot_phone": "Restart",
+  "telephony_line_phone_reboot_error": "Wystąpił błąd podczas restartu telefonu.",
+  "telephony_line_phone_reboot_unsupported": "Nie można zdalnie uruchomić tego typu telefonu.",
+  "telephony_line_phone_reboot_success": "Trwa restart."
+}

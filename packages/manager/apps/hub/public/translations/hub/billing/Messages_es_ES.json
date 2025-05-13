@@ -1,0 +1,15 @@
+{
+  "hub_billing_summary_title": "Importe total de las facturas",
+  "hub_billing_summary_period_1": "El mes pasado",
+  "hub_billing_summary_period_3": "Los últimos 3 meses",
+  "hub_billing_summary_period_6": "Los últimos 6 meses",
+  "hub_billing_summary_debt": "Importe pendiente: {{ debt }}",
+  "hub_billing_summary_debt_pay": "Abonar mi deuda",
+  "hub_billing_summary_debt_null": "Pagado",
+  "hub_billing_summary_debt_no_bills": "No hay facturas para el período seleccionado.",
+  "hub_billing_summary_display_bills": "Ver las facturas",
+  "hub_billing_summary_display_bills_error": "No es posible cargar el importe total.",
+  "hub_enterprise_billing_summary_title": "Mis facturas",
+  "hub_enterprise_billing_summary_description": "Conéctese a la interfaz dedicada para consultar sus facturas.",
+  "hub_enterprise_billing_summary_goto": "Conectarme"
+}

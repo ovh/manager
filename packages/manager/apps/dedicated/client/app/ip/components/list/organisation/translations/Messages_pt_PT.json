@@ -1,0 +1,4 @@
+{
+  "ip_organisation": "Organizações",
+  "ip_organisation_description1": "Uma organização representa a entidade responsável por um bloco IP específico (por exemplo, a sua empresa). Uma organização é constituída por um conjunto de informações que é publicado na base de dados Whois pública do RIR que gere o bloco. Deve ser associada uma organização para cada bloco IP."
+}

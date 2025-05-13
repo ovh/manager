@@ -1,0 +1,13 @@
+{
+  "domain_dns": "DNS servers ",
+  "domain_dns_modify": "Modify my DNS servers",
+  "domain_dns_error_initializing": "An error has occurred retrieving DNS data: {{message}}",
+  "domain_dns_update_success_message": "Your update request has been submitted, and will be processed as soon as possible.",
+  "domain_dns_update_same_message": "The list of DNS entered has not been modified. No action will be taken.",
+  "domain_dns_type": "Type of DNS servers",
+  "domain_dns_type_external": "Custom",
+  "domain_dns_type_anycast": "Anycast",
+  "domain_dns_type_standard": "Standard",
+  "domain_dns_type_dedicated": "Secondary",
+  "domain_dns_type_standard_tooltip": "Upgrade to an Anycast solution for better performance."
+}

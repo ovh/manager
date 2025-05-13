@@ -4,10 +4,11 @@ export default /* @ngInject */ (
   $translate,
   EmailPro,
   EmailProDomains,
-  EMAILPRO_MX_CONFIG,
-  constants,
 ) => {
   $scope.domain = $scope.currentActionData;
+  $scope.domainDiag = {};
+  $scope.domainDiag.mx = {};
+  $scope.domainDiag.mx.spam = [];
 
   $scope.init = function init() {
     EmailProDomains.getDnsSettings(
@@ -15,17 +16,37 @@ export default /* @ngInject */ (
       $scope.domain.name,
     ).then(
       (data) => {
-        $scope.domainDiag = data;
+        $scope.domainDiag.isOvhDomain = data.isOvhDomain;
+        $scope.domainDiag.mx.noSpam = data.mx.noSpam;
+      },
+      (failure) => {
+        $scope.resetAction();
+        $scope.setMessage(
+          $translate.instant(
+            'emailpro_tab_domain_diagnostic_add_field_failure',
+          ),
+          failure,
+        );
+      },
+    );
 
-        if (constants.target === 'CA') {
-          $scope.domainDiag.mx.spam = EMAILPRO_MX_CONFIG.CA.spam;
-        } else if (constants.target === 'EU') {
-          $scope.domainDiag.mx.spam = EMAILPRO_MX_CONFIG.EU.spam;
-        }
-
-        $scope.model = {
-          antiSpam: true,
-        };
+    EmailProDomains.getExpectedDNSSettings(
+      $stateParams.productId,
+      $scope.domain.name,
+    ).then(
+      ({ data }) => {
+        const re = /^IN ([A-Z]*) (\d+) ([^ ]*)$/i;
+        data.expectedMX.forEach((mx) => {
+          const extract = mx.match(re);
+          $scope.domainDiag.mx.spam.push({
+            fieldType: extract[1],
+            target: extract[3],
+            priority: extract[2],
+            weight: null,
+            port: null,
+            subDomain: null,
+          });
+        });
       },
       (failure) => {
         $scope.resetAction();

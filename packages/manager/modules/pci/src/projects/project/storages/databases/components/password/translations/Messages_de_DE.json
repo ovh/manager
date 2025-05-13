@@ -1,0 +1,14 @@
+{
+  "pci_database_password_label": "Das Passwort",
+  "pci_database_password_description": "Sie benötigen ein Passwort, um sich mit Ihrem Cluster zu verbinden",
+  "pci_database_password_placeholder": "Geben Sie ein Passwort ein",
+  "pci_database_password_help": "Ihr Passwort muss alphanumerisch sein, mindestens 2 Zahlen und zwischen 8 und 32 Buchstaben enthalten.",
+  "pci_database_password_help_strength": "Ihr Passwort ist zu schwach.",
+  "pci_database_password_help_alphanumeric": "Muss alphanumerisch sein [A-Z, a-z, 0-9]",
+  "pci_database_password_help_upper_case": "Muss mindestens einen Großbuchstaben enthalten",
+  "pci_database_password_help_number": "Muss mindestens zwei Zahlen enthalten",
+  "pci_database_password_help_length": "Muss zwischen 8 und 32 Buchstaben enthalten",
+  "pci_database_password_confirm_label": "Passwort bestätigen",
+  "pci_database_password_confirm_placeholder": "Passwort wiederholen",
+  "pci_database_password_confirm_error": "Passwörter stimmen nicht überein"
+}

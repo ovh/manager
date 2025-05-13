@@ -6,13 +6,22 @@ import head from 'lodash/head';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 
+import punycode from 'punycode';
+import {
+  DOMAIN_ORDER_URL,
+  CONFIGURATION_MODE,
+  DEFAULT_OVH_TARGET_SERVER_URL,
+  DOMAIN_MODE,
+} from './domain.constants';
+
 export default class ExchangeAddDomainController {
   /* @ngInject */
   constructor(
     $rootScope,
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeDomains,
+    coreConfig,
     messaging,
     navigation,
     ovhUserPref,
@@ -20,13 +29,14 @@ export default class ExchangeAddDomainController {
     WucValidator,
     exchangeVersion,
     exchangeServiceInfrastructure,
-    User,
+    WucUser,
   ) {
     this.services = {
       $rootScope,
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeDomains,
+      coreConfig,
       messaging,
       navigation,
       ovhUserPref,
@@ -38,24 +48,34 @@ export default class ExchangeAddDomainController {
 
     this.OVH_DOMAIN = 'ovh-domain';
     this.NON_OVH_DOMAIN = 'non-ovh-domain';
-    this.exchange = Exchange.value;
+    this.exchange = wucExchange.value;
+    this.DOMAIN_ORDER_URL =
+      DOMAIN_ORDER_URL[coreConfig.getUser().ovhSubsidiary] ||
+      DOMAIN_ORDER_URL.FR;
+    this.CONFIGURATION_MODE = CONFIGURATION_MODE;
+    this.DEFAULT_OVH_TARGET_SERVER_URL = DEFAULT_OVH_TARGET_SERVER_URL;
 
     this.debouncedResetName = debounce(this.search, 300);
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.noDomainAttached = get(
       navigation.currentActionData,
       'noDomainAttached',
       true,
     );
     this.loading = false;
+    this.isOvhDomain = true;
     this.model = {
       name: '',
       displayName: '',
       isUTF8Domain: false,
       srvParam: true,
-      mxParam: false,
+      mxParam: true,
+      configureSPF: true,
+      configureDKIM: true,
       domainType: this.OVH_DOMAIN,
+      mxRelay: '',
+      configMode: this.CONFIGURATION_MODE.RECOMMENDED,
     };
 
     this.search = {
@@ -69,17 +89,10 @@ export default class ExchangeAddDomainController {
     $scope.addDomain = () => this.addDomain();
     $scope.isNonOvhDomainValid = () => this.isNonOvhDomainValid();
     $scope.checkDomain = () => this.checkDomain();
-    $scope.isStep2Valid = () => this.isStep2Valid();
-    $scope.checkDomainType = () => this.checkDomainType();
-    $scope.isStep3Valid = () => this.isStep3Valid();
 
-    User.getUser().then((currentUser) => {
+    WucUser.getUser().then((currentUser) => {
       this.canOpenWizard = currentUser.ovhSubsidiary !== 'CA';
     });
-  }
-
-  isStep3Valid() {
-    return this.model.type;
   }
 
   onSearchValueChange() {
@@ -92,12 +105,10 @@ export default class ExchangeAddDomainController {
     this.availableDomainsBuffer = data.availableDomains;
     this.availableTypes = data.types;
     this.availableMainDomains = data.mainDomains;
-    this.model.type = head(this.availableTypes);
 
     if (isEmpty(this.availableDomains)) {
       this.model.domainType = this.NON_OVH_DOMAIN;
-      this.model.srvParam = false;
-      this.model.mxParam = false;
+      this.isOvhDomain = false;
     }
   }
 
@@ -138,6 +149,13 @@ export default class ExchangeAddDomainController {
       });
   }
 
+  shouldConfigureRecord(value) {
+    return (
+      (!!value || this.model.configMode === CONFIGURATION_MODE.RECOMMENDED) &&
+      this.isOvhDomain
+    );
+  }
+
   prepareModel() {
     if (this.setOrganization2010) {
       if (this.model.main) {
@@ -148,26 +166,32 @@ export default class ExchangeAddDomainController {
 
       delete this.model.attachOrganization2010;
     }
+    this.model.srvParam = this.shouldConfigureRecord(this.model.srvParam);
+    this.model.mxParam = this.shouldConfigureRecord(this.model.mxParam);
+    this.model.configureDKIM = this.shouldConfigureRecord(
+      this.model.configureDKIM,
+    );
+    this.model.configureSPF = this.shouldConfigureRecord(
+      this.model.configureSPF,
+    );
+    this.model.autoEnableDKIM = this.model.configureDKIM;
+
+    this.model.type = this.model.mxRelay
+      ? DOMAIN_MODE.NON_AUTHORITATIVE
+      : DOMAIN_MODE.AUTHORITATIVE;
 
     delete this.model.domainType;
     delete this.model.isUTF8Domain;
     delete this.model.displayName;
+    delete this.model.configMode;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   getDefaultLanguage() {
-    let defaultLanguage = '';
-
-    if (localStorage['univers-selected-language']) {
-      defaultLanguage = localStorage['univers-selected-language'];
-    }
-
-    return defaultLanguage;
+    return this.services.coreConfig.getUserLocale();
   }
 
   isFrenchLanguage() {
-    const language = this.getDefaultLanguage();
-    return language && /fr_[A-Z]{2}/.test(language);
+    return this.services.coreConfig.getUserLanguage() === 'fr';
   }
 
   loadDomainData() {
@@ -188,6 +212,29 @@ export default class ExchangeAddDomainController {
           this.services.$translate.instant('exchange_tab_domain_add_failure'),
           failure,
         );
+      });
+  }
+
+  checkDomain() {
+    this.loading = true;
+    // check if domain has MxPlan already configured
+    this.services.ExchangeDomains.checkMxPlan(this.model.name)
+      .then(() => {
+        this.model.mxRelay = DEFAULT_OVH_TARGET_SERVER_URL;
+        this.loading = false;
+      })
+      .catch(() => {
+        // check zimbra only if MxPlan not configured
+        // because zimbra domain call is slow
+        this.services.ExchangeDomains.checkZimbra(this.model.name)
+          .then((found) => {
+            if (found) {
+              this.model.mxRelay = DEFAULT_OVH_TARGET_SERVER_URL;
+            }
+          })
+          .finally(() => {
+            this.loading = false;
+          });
       });
   }
 
@@ -221,6 +268,13 @@ export default class ExchangeAddDomainController {
     this.model.name = '';
   }
 
+  onChangeDomainType() {
+    this.resetName();
+    this.isOvhDomain = this.model.domainType === this.OVH_DOMAIN;
+    this.model.configMode = CONFIGURATION_MODE.RECOMMENDED;
+    this.model.mxRelay = '';
+  }
+
   search() {
     this.resetName();
 
@@ -234,35 +288,15 @@ export default class ExchangeAddDomainController {
     this.services.$scope.$apply();
   }
 
-  checkDomain() {
-    if (this.model.domainType === this.NON_OVH_DOMAIN) {
-      this.model.srvParam = false;
-      this.services.$rootScope.$broadcast('wizard-goToStep', 3);
-    }
-  }
-
-  checkDomainType() {
-    if (this.model.domainType === this.NON_OVH_DOMAIN) {
-      this.services.$rootScope.$broadcast('wizard-goToStep', 1);
-    }
-  }
-
   changeName() {
     this.model.name = punycode.toASCII(this.model.displayName);
     this.model.isUTF8Domain = this.model.displayName !== this.model.name;
   }
 
-  isStep2Valid() {
-    return (
-      this.model.type === 'AUTHORITATIVE' ||
-      (this.model.mxRelay != null && this.model.type === 'NON_AUTHORITATIVE')
-    );
-  }
-
   isNonOvhDomainValid() {
     return (
       this.model.name &&
-      (this.model.domainType !== this.NON_OVH_DOMAIN ||
+      (this.isOvhDomain ||
         this.services.WucValidator.isValidDomain(this.model.displayName))
     );
   }

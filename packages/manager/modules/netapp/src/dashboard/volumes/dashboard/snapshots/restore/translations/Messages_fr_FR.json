@@ -1,0 +1,14 @@
+{
+  "netapp_volumes_snapshots_restore_title": "Restaurer le dernier snapshot",
+  "netapp_volumes_snapshots_restore_description": "Êtes-vous sûr de vouloir restaurer le volume suivant ?",
+  "netapp_volumes_snapshots_restore_volume_label": "Volume",
+  "netapp_volumes_snapshots_restore_snapshot_label": "Nom du snapshot",
+  "netapp_volumes_snapshots_restore_confirm_description": "Attention, cette action va restaurer les données sur le volume {{volume}} à l'état où elles existaient au moment de la capture du snapshot. Les données qui ont été modifiées sur le volume après le {{date}} seront alors supprimées de manière irréversible. En cas de doute, n'hésitez pas à consulter nos KB ou de contacter directement le support. Merci de confirmer le nom du volume à restaurer pour valider l'action",
+  "netapp_volumes_snapshots_restore_confirm_volume_label": "Confirmer le nom du volume",
+  "netapp_volumes_snapshots_restore_confirm": "Restaurer un volume",
+  "netapp_volumes_snapshots_restore_cancel": "Annuler",
+  "netapp_volumes_snapshots_restore_success": "La restauration de votre volume a bien été prise en compte et sera effective dans quelques instants.",
+  "netapp_volumes_snapshots_restore_error": "Votre volume n'a pas pu être restauré : <br> {{message}}<br> request_id: {{requestId}}",
+  "netapp_volumes_snapshots_hold_error": "Un problème est survenu lors de la transformation de votre Snapshot en type manuel",
+  "netapp_volumes_snapshots_restore_system_message": "Aucun snapshot n'est éligible pour la restauration de votre volume. En cas de doute, n'hésitez pas à consulter notre documentation ou de contacter directement le support."
+}

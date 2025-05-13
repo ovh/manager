@@ -1,8 +1,10 @@
 {
-  "vrack_move_dialog_title": "Migração de um datacenter Private Cloud",
-  "vrack_move_dialog_intro": "Selecionou um serviço de tipo datacenter Private Cloud. Este serviço não pode ser órfão e deve ser transferido obrigatoriamente para outro vRack.",
+  "vrack_move_dialog_title_dedicatedCloudDatacenter": "Migração de um datacenter Private Cloud",
+  "vrack_move_dialog_intro_dedicatedCloudDatacenter": "Selecionou um serviço de tipo datacenter Private Cloud. Este serviço não pode ser órfão e deve ser transferido obrigatoriamente para outro vRack.",
   "vrack_move_dialog_warning_notice": "Esta operação levará a uma interrupção do serviço de cerca de 5 minutos.",
   "vrack_move_dialog_choose_vrack_label": "vRack de destino:",
   "vrack_move_dialog_choose_vrack_default_option": "Selecione um vRack",
-  "vrack_move_dialog_request_error": "Lamentamos, mas a operação de migração do datacenter falhou."
+  "vrack_move_dialog_request_error": "Lamentamos, mas a operação de migração do datacenter falhou.",
+  "vrack_move_dialog_title_managedBareMetalDatacenter": "Migração de um datacenter Managed Bare Metal",
+  "vrack_move_dialog_intro_managedBareMetalDatacenter": "Selecionou um serviço de tipo datacenter Managed Bare Metal. Este serviço não pode ser órfão e deve ser transferido obrigatoriamente para outro vRack."
 }

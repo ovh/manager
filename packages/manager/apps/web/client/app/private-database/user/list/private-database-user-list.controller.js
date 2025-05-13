@@ -8,6 +8,7 @@ import remove from 'lodash/remove';
 angular.module('App').controller(
   'PrivateDatabaseUsersListCtrl',
   class PrivateDatabaseUsersListCtrl {
+    /* @ngInject */
     constructor(Alerter, PrivateDatabase, $scope, $stateParams, $translate) {
       this.alerter = Alerter;
       this.privateDatabaseService = PrivateDatabase;
@@ -82,7 +83,9 @@ angular.module('App').controller(
       return this.privateDatabaseService
         .getUsers(this.productId)
         .then((users) => {
-          this.usersIds = users.sort((a, b) => a.localeCompare(b));
+          this.usersIds = users
+            .filter((user) => Boolean(user))
+            .sort((a, b) => a.localeCompare(b));
           this.users = this.usersIds.map((id) => ({ id }));
         })
         .catch((err) => {
@@ -125,7 +128,7 @@ angular.module('App').controller(
     }
 
     /*
-     * Create User jobs
+     * Create WucUser jobs
      */
     onUserCreatestart(evt, opts) {
       this.currentUsers.add.push(opts.userName);
@@ -153,7 +156,7 @@ angular.module('App').controller(
     /** EndCreateUserJobs */
 
     /*
-     * delete User jobs
+     * delete WucUser jobs
      */
     onUserDeletestart(evt, opts) {
       let unregister = null;

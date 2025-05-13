@@ -1,0 +1,4 @@
+{
+  "dedicatedCloud_datacenter_backup_nospla_EPCC": "Votre Private Cloud doit avoir une licence SPLA avant de pouvoir activer le backup. Afin d'activer la licence SPLA, veuillez vous rendre dans la section <a href='{{ licenceLink }}'>Licence Windows</a> de votre produit.",
+  "dedicatedCloud_datacenter_backup_nospla_MBM": "Votre Essentials doit avoir une licence SPLA avant de pouvoir activer le backup. Afin d'activer la licence SPLA, veuillez vous rendre dans la section <a href='{{ licenceLink }}'>Licence Windows</a> de votre produit."
+}

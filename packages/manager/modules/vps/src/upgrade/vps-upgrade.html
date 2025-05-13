@@ -1,11 +1,8 @@
-<section
-    class="cui-page__content cui-page__content-flex cui-page__content-narrow vps-upgrade"
->
+<section class="vps-upgrade">
     <oui-back-button
-        data-heading="{{ ::'vps_configuration_upgradevps_title' | translate }}"
         data-aria-label="{{ ::'vps_configuration_upgradevps_button_title' | translate }}"
         data-state="vps.detail.dashboard"
-    >
+        ><span data-translate="vps_configuration_upgradevps_title"></span>
     </oui-back-button>
 
     <div
@@ -58,7 +55,7 @@
                                     ></dd>
                                     <dt
                                         class="w-50 text-right"
-                                        data-ng-bind="offer.memory | cucBytes:2:true:'MiB'"
+                                        data-ng-bind="offer.memory | bytes:2:true:'MiB'"
                                     ></dt>
                                     <!-- End of Ram -->
 
@@ -69,7 +66,7 @@
                                     ></dd>
                                     <dt
                                         class="w-50 text-right"
-                                        data-ng-bind="offer.disk | cucBytes:2:true:'GiB'"
+                                        data-ng-bind="offer.disk | bytes:2:true:'GiB'"
                                     ></dt>
                                     <!-- End of Storage -->
                                 </dl>
@@ -100,7 +97,7 @@
                     >
                         <button
                             type="button"
-                            class="oui-button oui-button_full-width oui-collapsible__header"
+                            class="oui-button oui-collapsible__header oui-button_block"
                             aria-label="{{ $ctrl.expanded ? 'vps_configuration_upgradevps_contracts_hide' : 'vps_configuration_upgradevps_contracts_show' | translate:{ name: contract.name } }}"
                             aria-expanded="{{ contract.expanded }}"
                             aria-controls="{{ 'collapsible-' + $index }}"

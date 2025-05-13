@@ -1,15 +1,12 @@
 <div>
-    <div class="text-center" data-ng-if="$ctrl.isFetchingCreationOptions">
-        <oui-spinner data-size="l"></oui-spinner>
-    </div>
-
     <form
         data-ng-if="!$ctrl.isFetchingCreationOptions"
         name="$ctrl.newAccountForm"
+        class="container m-0"
     >
         <oui-back-button
-            data-heading="{{:: 'exchange_account_add_back_button' | translate }}"
             data-on-click="$ctrl.messaging.resetMessages(); $ctrl.hide()"
+            ><span data-translate="exchange_account_add_back_button"></span
         ></oui-back-button>
 
         <div
@@ -17,363 +14,854 @@
             data-ng-bind=":: 'exchange_account_add_header' | translate"
         ></div>
 
-        <div
-            class="oui-field"
-            data-ng-if="$ctrl.accountCreationOptions.availableTypes.length > 1"
-        >
-            <label
-                class="oui-field__label oui-label"
-                for="accountType"
-                data-ng-bind=":: 'exchange_account_add_accountType_label' | translate"
-            ></label>
-            <div class="oui-field__control oui-field__control_m">
-                <label class="oui-select d-inline-block w-75">
-                    <select
-                        id="accountType"
-                        name="accountType"
-                        class="oui-select__input"
-                        data-ng-model="$ctrl.newAccount.accountType"
-                        data-ng-options="type.displayName for type in $ctrl.accountCreationOptions.availableTypes | orderBy:'displayName' track by type.displayName"
-                        required
-                        aria-describedby="accountTypeDescription"
-                    ></select>
-                    <span
-                        class="oui-icon oui-icon-chevron-down"
-                        aria-hidden="true"
-                    ></span>
-                </label>
-                <span
-                    data-ng-if="$ctrl.exchangeServiceInfrastructure.isDedicatedCluster()"
-                >
-                    <span
-                        id="accountTypeDescription"
-                        class="sr-only"
-                        data-ng-bind=":: 'exchange_account_add_accountType_tooltip' | translate"
-                    ></span>
-                    <span
-                        class="oui-icon oui-icon-help_circle ml-4 mt-3"
-                        data-oui-tooltip="{{:: 'exchange_account_add_accountType_tooltip' | translate }}"
-                        aria-hidden="true"
-                    ></span>
-                </span>
-            </div>
-        </div>
+        <!--Account info-->
+        <div>
+            <!--Title-->
+            <p
+                class="oui-heading_4 p-0"
+                data-translate="exchange_account_add_personal_account_info_title"
+            ></p>
 
-        <div
-            class="form-group"
-            data-ng-class="{ 'oui-field_error has-error': $ctrl.newAccountForm.login.$invalid && $ctrl.newAccountForm.login.$touched }"
-        >
-            <label
-                class="control-label"
-                for="login"
-                data-ng-bind=":: 'exchange_account_add_emailAddress_label' | translate"
-            ></label>
-            <div class="input-group w-50">
-                <input
-                    type="text"
-                    class="form-control"
-                    id="login"
-                    maxlength="256"
-                    name="login"
-                    required
-                    data-ng-model="$ctrl.newAccount.login"
-                    data-ng-model-options="{ updateOn: 'blur' }"
-                    data-ng-pattern="/^(?:[a-z0-9]+(?:[-_][a-z0-9]+)*)(?:(?:\.|\+)(?:[a-z0-9]+(?:[-_][a-z0-9]+)*))*$/"
-                    data-ng-change="$ctrl.checkEmailAddressIsAlreadyTaken()"
-                />
-                <span class="input-group-addon">@</span>
-                <select
-                    class="form-control"
-                    data-ng-model="$ctrl.newAccount.domain"
-                    data-ng-options="domain.displayName for domain in $ctrl.accountCreationOptions.availableDomains | orderBy:'displayName' track by domain.displayName"
-                    required
-                    data-ng-change="$ctrl.checkEmailAddressIsAlreadyTaken()"
-                ></select>
-            </div>
-            <div
-                class="oui-field__error"
-                data-ng-if="$ctrl.newAccountForm.login.$error.required"
-                role="alert"
-            >
-                <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                <span
-                    data-ng-bind=":: 'exchange_account_add_field_error_required' | translate"
-                ></span>
-            </div>
-            <div
-                class="oui-field__error"
-                data-ng-if="$ctrl.newAccountForm.login.$error.pattern"
-                role="alert"
-            >
-                <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                <span
-                    data-ng-bind=":: 'exchange_account_add_field_error_pattern' | translate"
-                ></span>
-            </div>
-            <div
-                class="oui-field__error"
-                data-ng-if="$ctrl.newAccountForm.login.$error.emailAddressIsAlreadyTaken"
-                role="alert"
-            >
-                <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                <span
-                    data-ng-bind=":: 'exchange_account_add_emailAddress_error_alreadyExists' | translate"
-                ></span>
-            </div>
-            <div
-                class="oui-field__helper"
-                data-ng-bind-html="'exchange_account_add_emailAddress_hint' | translate"
-            ></div>
-        </div>
+            <!--Customer section-->
+            <div class="row">
+                <div class="col-sm-12 col-md-8">
+                    <!--Account type-->
+                    <div
+                        class="oui-field"
+                        data-ng-if="$ctrl.accountCreationOptions.availableTypes.length > 1"
+                    >
+                        <label
+                            class="oui-field__label oui-label"
+                            for="accountType"
+                            data-ng-bind=":: 'exchange_account_add_accountType_label' | translate"
+                        ></label>
+                        <div class="oui-field__control oui-field__control_m">
+                            <label class="w-100 oui-select d-inline-block">
+                                <select
+                                    id="accountType"
+                                    name="accountType"
+                                    class="oui-select__input"
+                                    data-ng-model="$ctrl.newAccount.accountType"
+                                    data-ng-options="type.displayName for type in $ctrl.accountCreationOptions.availableTypes | orderBy:'displayName' track by type.displayName"
+                                    required
+                                    aria-describedby="accountTypeDescription"
+                                ></select>
+                                <span
+                                    class="oui-icon oui-icon-chevron-down"
+                                    aria-hidden="true"
+                                ></span>
+                            </label>
+                            <span
+                                data-ng-if="$ctrl.exchangeServiceInfrastructure.isDedicatedCluster()"
+                            >
+                                <span
+                                    id="accountTypeDescription"
+                                    class="sr-only"
+                                    data-ng-bind=":: 'exchange_account_add_accountType_tooltip' | translate"
+                                ></span>
+                                <span
+                                    class="oui-icon ml-4 mt-3 oui-icon-help-circle"
+                                    data-oui-tooltip="{{:: 'exchange_account_add_accountType_tooltip' | translate }}"
+                                    aria-hidden="true"
+                                ></span>
+                            </span>
+                        </div>
+                    </div>
 
-        <oui-field
-            data-label="{{:: 'exchange_account_add_samAccountName_label' | translate }}"
-            data-size="m"
-            data-ng-if="$ctrl.exchangeVersion.isVersion(2010)"
-        >
-            <input
-                class="oui-input"
-                type="text"
-                id="samAccountName"
-                name="samAccountName"
-                maxlength="256"
-                data-ng-model="$ctrl.newAccount.samAccountName"
-                data-ng-change="$ctrl.checkPasswordValidity()"
-                data-ng-model-options="{ updateOn: 'blur' }"
-            />
-        </oui-field>
+                    <!--Email address-->
+                    <div
+                        class="form-group"
+                        data-ng-class="{ 'oui-field_error has-error': $ctrl.newAccountForm.login.$invalid && $ctrl.newAccountForm.login.$touched }"
+                    >
+                        <label
+                            class="control-label"
+                            for="login"
+                            data-ng-bind=":: 'exchange_account_add_emailAddress_label' | translate"
+                        ></label>
+                        <div class="w-100 input-group">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="login"
+                                maxlength="256"
+                                name="login"
+                                required
+                                data-ng-model="$ctrl.newAccount.login"
+                                data-ng-model-options="{ updateOn: 'blur' }"
+                                data-ng-pattern="$ctrl.ACCOUNT_EMAIL_ADDRESS_REGEX"
+                                data-ng-change="$ctrl.checkEmailAddressIsAlreadyTaken()"
+                            />
+                            <span class="input-group-addon">@</span>
+                            <select
+                                id="accountInfoDomain"
+                                name="accountInfoDomain"
+                                class="form-control"
+                                data-ng-model="$ctrl.newAccount.domain"
+                                data-ng-options="domain.displayName for domain in $ctrl.accountCreationOptions.availableDomains | orderBy:'displayName' track by domain.displayName"
+                                required
+                                data-ng-change="$ctrl.checkEmailAddressIsAlreadyTaken()"
+                            ></select>
+                        </div>
+                        <div
+                            class="oui-field__error"
+                            data-ng-if="$ctrl.newAccountForm.login.$error.required"
+                            role="alert"
+                        >
+                            <span
+                                class="oui-icon oui-icon-error"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-ng-bind=":: 'exchange_account_add_field_error_required' | translate"
+                            ></span>
+                        </div>
+                        <div
+                            class="oui-field__error"
+                            data-ng-if="$ctrl.newAccountForm.login.$error.pattern"
+                            role="alert"
+                        >
+                            <span
+                                class="oui-icon oui-icon-error"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-ng-bind=":: 'exchange_account_add_field_error_pattern' | translate"
+                            ></span>
+                        </div>
+                        <div
+                            class="oui-field__error"
+                            data-ng-if="$ctrl.newAccountForm.login.$error.emailAddressIsAlreadyTaken"
+                            role="alert"
+                        >
+                            <span
+                                class="oui-icon oui-icon-error"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-ng-bind=":: 'exchange_account_add_emailAddress_error_alreadyExists' | translate"
+                            ></span>
+                        </div>
+                        <div class="oui-field__helper">
+                            <span
+                                data-translate="exchange_account_add_emailAddress_hint"
+                            ></span>
+                            <ul>
+                                <li
+                                    data-translate="exchange_account_add_emailAddress_hint_part_1"
+                                ></li>
+                                <li
+                                    data-translate="exchange_account_add_emailAddress_hint_part_2"
+                                ></li>
+                                <li
+                                    data-translate="exchange_account_add_emailAddress_hint_part_3"
+                                ></li>
+                            </ul>
+                        </div>
+                    </div>
 
-        <oui-field
-            data-label="{{:: 'exchange_account_add_company_label' | translate }}"
-            data-size="m"
-            data-ng-if="!$ctrl.exchangeVersion.isVersion(2010)"
-        >
-            <input
-                class="oui-input"
-                type="text"
-                id="company"
-                name="company"
-                maxlength="256"
-                data-ng-model="$ctrl.newAccount.company"
-                data-ng-model-options="{ updateOn: 'blur' }"
-            />
-        </oui-field>
-
-        <oui-field
-            data-label="{{:: 'exchange_account_add_firstName_label' | translate }}"
-            data-size="m"
-        >
-            <input
-                class="oui-input"
-                type="text"
-                id="firstName"
-                name="firstName"
-                maxlength="256"
-                data-ng-model="$ctrl.newAccount.firstName"
-                data-ng-model-options="{ updateOn: 'blur' }"
-            />
-        </oui-field>
-
-        <oui-field
-            data-label="{{:: 'exchange_account_add_lastName_label' | translate }}"
-            data-size="m"
-        >
-            <input
-                class="oui-input"
-                type="text"
-                id="lastName"
-                name="lastName"
-                maxlength="256"
-                data-ng-model="$ctrl.newAccount.lastName"
-                data-ng-model-options="{ updateOn: 'blur' }"
-            />
-        </oui-field>
-
-        <oui-field
-            data-label="{{:: 'exchange_account_add_displayName_label' | translate }}"
-            data-size="m"
-        >
-            <input
-                class="oui-input"
-                type="text"
-                id="displayName"
-                name="displayName"
-                maxlength="256"
-                data-ng-model="$ctrl.newAccount.displayName"
-                data-ng-change="$ctrl.checkPasswordValidity()"
-                data-ng-model-options="{ updateOn: 'blur' }"
-            />
-        </oui-field>
-
-        <div
-            class="oui-field"
-            data-ng-class="{ 'oui-field_error': $ctrl.newAccountForm.password.$invalid && $ctrl.newAccountForm.password.$touched }"
-        >
-            <label
-                for="password"
-                class="oui-field__label oui-label"
-                data-ng-bind=":: 'exchange_account_add_password_label' | translate"
-            ></label>
-            <div class="oui-field__control oui-field__control_m">
-                <div class="mb-0 oui-input-group oui-input-group_button">
-                    <input
-                        class="oui-input"
-                        data-ng-attr-type="{{ $ctrl.shouldDisplayPasswordInput ? 'password' : 'text' }}"
-                        id="password"
-                        name="password"
-                        maxlength="256"
-                        required
-                        data-ng-model="$ctrl.newAccount.password"
-                        data-ng-model-options="{ updateOn: 'blur' }"
-                        data-ng-change="$ctrl.checkPasswordValidity(); $ctrl.onPasswordConfirmationChange()"
-                    />
-                    <button
-                        data-ng-if="$ctrl.shouldDisplayPasswordInput"
-                        class="oui-button"
-                        type="button"
-                        aria-label="{{:: 'exchange_account_add_password_button_show' | translate }}"
-                        data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                    <!--Hide email account from directory-->
+                    <oui-checkbox
+                        class="mb-4"
+                        data-model="$ctrl.newAccount.hiddenFromGAL"
+                        data-name="accountInfoHiddenFromGAL"
                     >
                         <span
-                            class="oui-icon oui-icon-eye"
-                            aria-hidden="true"
+                            data-translate="exchange_account_add_emailAddress_hide_from_directory"
                         ></span>
-                    </button>
-                    <button
-                        data-ng-if="!$ctrl.shouldDisplayPasswordInput"
-                        class="oui-button"
-                        type="button"
-                        aria-label="{{:: 'exchange_account_add_password_button_hide' | translate }}"
-                        data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                    </oui-checkbox>
+
+                    <!--Exchange 2010-->
+                    <oui-field
+                        data-label="{{:: 'exchange_account_add_samAccountName_label' | translate }}"
+                        data-ng-if="$ctrl.exchangeVersion.isVersion(2010)"
                     >
-                        <span
-                            class="oui-icon oui-icon-eye-blocked"
-                            aria-hidden="true"
-                        ></span>
-                    </button>
+                        <input
+                            class="oui-input"
+                            type="text"
+                            id="samAccountName"
+                            name="samAccountName"
+                            maxlength="256"
+                            data-ng-model="$ctrl.newAccount.samAccountName"
+                            data-ng-change="$ctrl.checkPasswordValidity()"
+                            data-ng-model-options="{ updateOn: 'blur' }"
+                        />
+                    </oui-field>
+
+                    <!--Name and first name-->
+                    <div class="row">
+                        <!--First name-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_add_firstName_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="accountInfoFirstName"
+                                name="accountInfoFirstName"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.newAccount.firstName"
+                                data-ng-required="$ctrl.newAccount.firstName"
+                            />
+                        </oui-field>
+
+                        <!--Last name-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_add_lastName_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="accountInfoLastName"
+                                name="accountInfoLastName"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.newAccount.lastName"
+                                data-ng-required="$ctrl.newAccount.lastName"
+                            />
+                        </oui-field>
+                    </div>
+
+                    <!--Display name and initials-->
+                    <div class="row">
+                        <!--Display name-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_add_displayName_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="accountInfoDisplayName"
+                                name="accountInfoDisplayName"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.newAccount.displayName"
+                                required
+                            />
+                        </oui-field>
+
+                        <!--Initials-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_add_initials_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="accountInfoInitials"
+                                name="accountInfoInitials"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.newAccount.initials"
+                                data-ng-required="$ctrl.newAccount.initials"
+                            />
+                        </oui-field>
+                    </div>
+
+                    <!--Description-->
+                    <oui-field
+                        label="{{:: 'exchange_account_add_description_label' | translate }}"
+                    >
+                        <textarea
+                            class="oui-input"
+                            id="accountInfoDescription"
+                            name="accountInfoDescription"
+                            type="text"
+                            maxlength="256"
+                            data-ng-model="$ctrl.newAccount.description"
+                            data-ng-required="$ctrl.newAccount.description"
+                        >
+                        </textarea>
+                    </oui-field>
+
+                    <!--Password and confirm password-->
+                    <div class="row">
+                        <!--Password-->
+                        <div
+                            class="col-md-6 oui-field"
+                            data-ng-class="{ 'oui-field_error': $ctrl.newAccountForm.password.$invalid && $ctrl.newAccountForm.password.$touched }"
+                        >
+                            <label
+                                for="password"
+                                class="oui-field__label oui-label"
+                                data-ng-bind=":: 'exchange_account_add_password_label' | translate"
+                            ></label>
+                            <div
+                                class="oui-field__control oui-field__control_m"
+                            >
+                                <div class="mb-0 oui-input-overlay">
+                                    <input
+                                        class="oui-input"
+                                        data-ng-attr-type="{{ $ctrl.shouldDisplayPasswordInput ? 'password' : 'text' }}"
+                                        id="password"
+                                        name="password"
+                                        maxlength="256"
+                                        required
+                                        data-ng-model="$ctrl.newAccount.password"
+                                        data-ng-model-options="{ updateOn: 'blur' }"
+                                        data-ng-change="$ctrl.checkPasswordValidity(); $ctrl.onPasswordConfirmationChange()"
+                                    />
+                                    <button
+                                        data-ng-if="$ctrl.shouldDisplayPasswordInput"
+                                        class="oui-button"
+                                        type="button"
+                                        aria-label="{{:: 'exchange_account_add_password_button_show' | translate }}"
+                                        data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-eye-open"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                    <button
+                                        data-ng-if="!$ctrl.shouldDisplayPasswordInput"
+                                        class="oui-button"
+                                        type="button"
+                                        aria-label="{{:: 'exchange_account_add_password_button_hide' | translate }}"
+                                        data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-eye-closed"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="oui-field__error"
+                                data-ng-if="$ctrl.newAccountForm.password.$error.required"
+                                role="alert"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-error"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-ng-bind=":: 'exchange_account_add_field_error_required' | translate"
+                                ></span>
+                            </div>
+                            <div
+                                class="oui-field__error"
+                                data-ng-if="$ctrl.newAccountForm.password.$error.doesntRespectComplexityRules || $ctrl.newAccountForm.password.$error.containsDisplayName || $ctrl.newAccountForm.password.$error.isSameAsSAMAccountName"
+                                role="alert"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-error"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-ng-bind=":: 'exchange_account_add_field_error_doesntRespectComplexityRules' | translate"
+                                ></span>
+                            </div>
+                            <div
+                                class="oui-field__helper"
+                                data-ng-if="!$ctrl.accountCreationOptions.passwordComplexityEnabled"
+                                data-translate="exchange_account_add_password_hint_simple"
+                                data-translate-values="{ t0: $ctrl.accountCreationOptions.minPasswordLength }"
+                            ></div>
+                            <div
+                                class="oui-field__helper"
+                                data-ng-if="$ctrl.accountCreationOptions.passwordComplexityEnabled"
+                            >
+                                <span
+                                    data-ng-bind=":: 'exchange_account_add_password_hint_complex_1' | translate"
+                                ></span>
+                                <ul>
+                                    <li
+                                        data-ng-bind=":: 'exchange_account_add_password_hint_complex_1_1' | translate"
+                                    ></li>
+                                    <li
+                                        data-translate="exchange_account_add_password_hint_complex_1_2"
+                                        data-translate-values="{ t0: $ctrl.accountCreationOptions.minPasswordLength }"
+                                    ></li>
+                                    <li>
+                                        <span
+                                            data-ng-bind=":: 'exchange_account_add_password_hint_complex_1_3' | translate"
+                                        ></span>
+                                        <ul>
+                                            <li
+                                                data-ng-bind=":: 'exchange_account_add_password_hint_complex_1_3_1' | translate"
+                                            ></li>
+                                            <li
+                                                data-ng-bind=":: 'exchange_account_add_password_hint_complex_1_3_2' | translate"
+                                            ></li>
+                                            <li
+                                                data-ng-bind=":: 'exchange_account_add_password_hint_complex_1_3_3' | translate"
+                                            ></li>
+                                            <li
+                                                data-ng-bind=":: 'exchange_account_add_password_hint_complex_1_3_4' | translate"
+                                            ></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!--Confirm password-->
+                        <div
+                            class="col-md-6 oui-field"
+                            data-ng-class="{ 'oui-field_error': $ctrl.newAccountForm.passwordConfirmation.$invalid && $ctrl.newAccountForm.passwordConfirmation.$touched }"
+                        >
+                            <label
+                                for="passwordConfirmation"
+                                class="oui-field__label oui-label"
+                                data-ng-bind=":: 'exchange_account_add_confirm_password_label' | translate"
+                            ></label>
+                            <div
+                                class="oui-field__control oui-field__control_m"
+                            >
+                                <div class="mb-0 oui-input-overlay">
+                                    <input
+                                        class="oui-input"
+                                        id="passwordConfirmation"
+                                        name="passwordConfirmation"
+                                        data-ng-attr-type="{{ $ctrl.shouldDisplayPasswordInput ? 'password' : 'text' }}"
+                                        data-ng-model="$ctrl.newAccount.passwordConfirmation"
+                                        data-ng-model-options="{ updateOn: 'blur' }"
+                                        data-ng-change="$ctrl.onPasswordConfirmationChange()"
+                                        required
+                                    />
+                                    <button
+                                        data-ng-if="$ctrl.shouldDisplayPasswordInput"
+                                        class="oui-button"
+                                        type="button"
+                                        aria-label="{{:: 'exchange_account_add_password_button_show' | translate }}"
+                                        data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-eye-open"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                    <button
+                                        data-ng-if="!$ctrl.shouldDisplayPasswordInput"
+                                        class="oui-button"
+                                        type="button"
+                                        aria-label="{{:: 'exchange_account_add_password_button_hide' | translate }}"
+                                        data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-eye-closed"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="oui-field__error"
+                                data-ng-if="$ctrl.newAccountForm.passwordConfirmation.$error.isDifferentToPassword"
+                                role="alert"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-error"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-ng-bind=":: 'exchange_account_add_field_error_passwordConfirmation' | translate"
+                                ></span>
+                            </div>
+                            <div
+                                class="oui-field__error"
+                                data-ng-if="$ctrl.newAccountForm.passwordConfirmation.$error.required"
+                                role="alert"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-error"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-ng-bind=":: 'exchange_account_add_field_error_required' | translate"
+                                ></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Email redirection and keep a copy-->
+                    <div class="row">
+                        <!--Email redirection-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_add_email_redirect_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="accountInfoEmail"
+                                name="accountInfoEmail"
+                                type="email"
+                                data-ng-model="$ctrl.newAccount.forwardingEmail"
+                            />
+                        </oui-field>
+
+                        <!--keep a copy-->
+                        <div class="col-md-6 my-4">
+                            <oui-checkbox
+                                data-disabled="!$ctrl.newAccount.forwardingEmail"
+                                data-model="$ctrl.newAccount.storeCopyOfEmail"
+                                data-name="accountInfoStoreCopyOfEmail"
+                            >
+                                <span
+                                    data-translate="exchange_account_add_email_keep_copy_label"
+                                ></span>
+                            </oui-checkbox>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div
-                class="oui-field__error"
-                data-ng-if="$ctrl.newAccountForm.password.$error.required"
-                role="alert"
-            >
-                <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                <span
-                    data-ng-bind=":: 'exchange_account_add_field_error_required' | translate"
-                ></span>
-            </div>
-            <div
-                class="oui-field__error"
-                data-ng-if="$ctrl.newAccountForm.password.$error.doesntRespectComplexityRules || $ctrl.newAccountForm.password.$error.containsDisplayName || $ctrl.newAccountForm.password.$error.isSameAsSAMAccountName"
-                role="alert"
-            >
-                <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                <span
-                    data-ng-bind=":: 'exchange_account_add_field_error_doesntRespectComplexityRules' | translate"
-                ></span>
-            </div>
-            <div
-                class="oui-field__helper"
-                data-ng-if="!$ctrl.accountCreationOptions.passwordComplexityEnabled"
-                data-translate="exchange_account_add_password_hint_simple"
-                data-translate-values="{ t0: $ctrl.accountCreationOptions.minPasswordLength }"
-            ></div>
-            <div
-                class="oui-field__helper"
-                data-ng-if="$ctrl.accountCreationOptions.passwordComplexityEnabled"
-            >
-                <span
-                    data-ng-bind=":: 'exchange_account_add_password_hint_complex_1' | translate"
-                ></span>
-                <ul>
-                    <li
-                        data-ng-bind=":: 'exchange_account_add_password_hint_complex_1_1' | translate"
-                    ></li>
-                    <li
-                        data-translate="exchange_account_add_password_hint_complex_1_2"
-                        data-translate-values="{ t0: $ctrl.accountCreationOptions.minPasswordLength }"
-                    ></li>
-                    <li>
-                        <span
-                            data-ng-bind=":: 'exchange_account_add_password_hint_complex_1_3' | translate"
-                        ></span>
-                        <ul>
-                            <li
-                                data-ng-bind=":: 'exchange_account_add_password_hint_complex_1_3_1' | translate"
-                            ></li>
-                            <li
-                                data-ng-bind=":: 'exchange_account_add_password_hint_complex_1_3_2' | translate"
-                            ></li>
-                            <li
-                                data-ng-bind=":: 'exchange_account_add_password_hint_complex_1_3_3' | translate"
-                            ></li>
-                            <li
-                                data-ng-bind=":: 'exchange_account_add_password_hint_complex_1_3_4' | translate"
-                            ></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
         </div>
 
-        <div
-            class="oui-field"
-            data-ng-class="{ 'oui-field_error': $ctrl.newAccountForm.passwordConfirmation.$invalid && $ctrl.newAccountForm.passwordConfirmation.$touched }"
+        <!--Button to display complementary sections-->
+        <oui-button
+            class="mb-4"
+            data-variant="link"
+            data-icon-right="{{'oui-icon-chevron-' + ($ctrl.displayAdvancedSections ? 'up' : 'down')}}"
+            data-ng-click="$ctrl.displayAdvancedSections = !$ctrl.displayAdvancedSections"
         >
-            <label
-                for="password"
-                class="oui-field__label oui-label"
-                data-ng-bind=":: 'exchange_account_add_passwordConfirmation_label' | translate"
-            ></label>
-            <div class="oui-field__control oui-field__control_m">
-                <input
-                    class="oui-input"
-                    type="password"
-                    id="passwordConfirmation"
-                    name="passwordConfirmation"
-                    required
-                    data-ng-model="$ctrl.newAccount.passwordConfirmation"
-                    data-ng-model-options="{ updateOn: 'blur' }"
-                    data-ng-change="$ctrl.onPasswordConfirmationChange()"
-                />
-            </div>
-            <div
-                class="oui-field__error"
-                data-ng-if="$ctrl.newAccountForm.passwordConfirmation.$error.isDifferentToPassword"
-                role="alert"
-            >
-                <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                <span
-                    data-ng-bind=":: 'exchange_account_add_field_error_passwordConfirmation' | translate"
-                ></span>
-            </div>
-            <div
-                class="oui-field__error"
-                data-ng-if="$ctrl.newAccountForm.passwordConfirmation.$error.required"
-                role="alert"
-            >
-                <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                <span
-                    data-ng-bind=":: 'exchange_account_add_field_error_required' | translate"
-                ></span>
+            <span data-translate="exchange_account_add_sections_title"></span>
+        </oui-button>
+
+        <!--Company info-->
+        <div data-ng-if="$ctrl.displayAdvancedSections">
+            <!--Title-->
+            <p
+                class="oui-heading_4"
+                data-translate="exchange_account_add_company_account_info_title"
+            ></p>
+
+            <!--Company fields sections-->
+            <div class="row">
+                <div class="col-sm-12 col-md-8">
+                    <!--Company name and job Department-->
+                    <div class="row">
+                        <!--Company name-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_add_company_name_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="companyInfoName"
+                                name="companyInfoName"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.newAccount.company"
+                                data-ng-required="$ctrl.newAccount.company"
+                            />
+                        </oui-field>
+
+                        <!--Job department-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_add_company_job_department_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="companyInfoJobDepartment"
+                                name="companyInfoJobDepartment"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.newAccount.jobDepartment"
+                                data-ng-required="$ctrl.newAccount.jobDepartment"
+                            />
+                        </oui-field>
+                    </div>
+
+                    <!--Job and office-->
+                    <div class="row">
+                        <!--Job title-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_add_company_job_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="companyInfoJob"
+                                name="companyInfoJob"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.newAccount.jobTitle"
+                                data-ng-required="$ctrl.newAccount.jobTitle"
+                            />
+                        </oui-field>
+
+                        <!--Office-->
+                        <oui-field
+                            class="col-md-6"
+                            label="{{:: 'exchange_account_add_company_desk_label' | translate }}"
+                        >
+                            <input
+                                class="oui-input"
+                                id="companyInfoDesk"
+                                name="companyInfoOffice"
+                                type="text"
+                                maxlength="256"
+                                data-ng-model="$ctrl.newAccount.office"
+                                data-ng-required="$ctrl.newAccount.office"
+                            />
+                        </oui-field>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <!--Contact info-->
+        <div data-ng-if="$ctrl.displayAdvancedSections">
+            <!--Contact title-->
+            <p
+                class="oui-heading_4"
+                data-translate="exchange_account_add_contact_account_info_title"
+            ></p>
+
+            <!--Contact fields sections-->
+            <div class="row">
+                <div class="col-sm-12 col-md-8">
+                    <div class="row">
+                        <!--Address column-->
+                        <div class="col-md-6">
+                            <!--Street field-->
+                            <div class="w-100">
+                                <oui-field
+                                    label="{{:: 'exchange_account_add_contact_street_label' | translate }}"
+                                >
+                                    <input
+                                        class="oui-input"
+                                        id="contactInfoStreet"
+                                        name="contactInfoStreet"
+                                        type="text"
+                                        maxlength="256"
+                                        data-ng-model="$ctrl.newAccount.streetAddress"
+                                        data-ng-required="$ctrl.newAccount.streetAddress"
+                                    />
+                                </oui-field>
+                            </div>
+
+                            <!--Zipcode and city field-->
+                            <div class="w-100 oui-input-group">
+                                <oui-field
+                                    size="s"
+                                    label="{{:: 'exchange_account_add_contact_postalCode_label' | translate }}"
+                                >
+                                    <input
+                                        class="oui-input"
+                                        id="contactInfoPostalCode"
+                                        name="contactInfoPostalCode"
+                                        type="number"
+                                        min="0"
+                                        data-ng-model="$ctrl.newAccount.postalCode"
+                                    />
+                                </oui-field>
+
+                                <oui-field
+                                    class="w-100 ml-2"
+                                    label="{{:: 'exchange_account_add_contact_city_label' | translate }}"
+                                >
+                                    <input
+                                        class="oui-input"
+                                        id="contactInfoCity"
+                                        name="contactInfoCity"
+                                        type="text"
+                                        maxlength="256"
+                                        data-ng-model="$ctrl.newAccount.city"
+                                        data-ng-required="$ctrl.newAccount.city"
+                                    />
+                                </oui-field>
+                            </div>
+
+                            <!--Country and region field-->
+                            <div class="w-100 oui-input-group">
+                                <oui-field
+                                    size="s"
+                                    label="{{:: 'exchange_account_add_contact_country_label' | translate }}"
+                                >
+                                    <label class="oui-select">
+                                        <select
+                                            class="oui-select__input"
+                                            name="contactInfoCountry"
+                                            id="contactInfoCountry"
+                                            data-ng-model="$ctrl.newAccount.countryCode"
+                                            data-ng-options="country.label for country in $ctrl.countries"
+                                            data-ng-required="$ctrl.newAccount.countryCode"
+                                        >
+                                        </select>
+                                        <span
+                                            class="oui-icon oui-icon-chevron-down"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </label>
+                                </oui-field>
+
+                                <oui-field
+                                    class="w-100 ml-2"
+                                    label="{{:: 'exchange_account_add_contact_region_label' | translate }}"
+                                >
+                                    <input
+                                        class="oui-input"
+                                        id="contactInfoRegion"
+                                        name="contactInfoRegion"
+                                        type="text"
+                                        maxlength="256"
+                                        data-ng-model="$ctrl.newAccount.region"
+                                    />
+                                </oui-field>
+                            </div>
+                        </div>
+
+                        <!--Phone column-->
+                        <div class="col-md-6">
+                            <!--Phone field-->
+                            <div>
+                                <label
+                                    class="control-label"
+                                    for="contactInfoPhone"
+                                    data-ng-bind=":: 'exchange_account_add_contact_phone_label' | translate"
+                                ></label>
+                                <div class="oui-field">
+                                    <div
+                                        class="w-100 oui-input-group_inline"
+                                        data-ng-class="{ 'oui-field_error has-error': $ctrl.newAccountForm.contactInfoPhone.$invalid && $ctrl.newAccountForm.contactInfoPhone.$touched }"
+                                    >
+                                        <input
+                                            class="w-100 oui-input"
+                                            id="contactInfoPhone"
+                                            name="contactInfoPhone"
+                                            type="text"
+                                            data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
+                                            data-ng-model="$ctrl.telephonyModel.phone.number"
+                                            data-ng-change="$ctrl.onCountryPhoneCodeChange('phone')"
+                                            data-ng-required="$ctrl.telephonyModel.phone.selected"
+                                            data-oui-tooltip="{{:: 'exchange_account_add_phone_help_text' | translate}}"
+                                        />
+                                    </div>
+                                    <div class="oui-field__footer">
+                                        <div
+                                            class="oui-field__error"
+                                            data-ng-if="$ctrl.newAccountForm.contactInfoPhone.$error.required"
+                                            role="alert"
+                                        >
+                                            <span
+                                                class="oui-icon oui-icon-error"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Mobile field-->
+                            <div>
+                                <label
+                                    class="control-label"
+                                    for="contactInfoMobile"
+                                    data-ng-bind=":: 'exchange_account_add_contact_mobile_label' | translate"
+                                ></label>
+                                <div class="oui-field">
+                                    <div
+                                        class="w-100 oui-input-group_inline"
+                                        data-ng-class="{ 'oui-field_error has-error': $ctrl.newAccountForm.contactInfoMobile.$invalid && $ctrl.newAccountForm.contactInfoMobile.$touched }"
+                                    >
+                                        <input
+                                            class="w-100 oui-input"
+                                            id="contactInfoMobile"
+                                            name="contactInfoMobile"
+                                            type="text"
+                                            data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
+                                            data-ng-model="$ctrl.telephonyModel.mobile.number"
+                                            data-ng-change="$ctrl.onCountryPhoneCodeChange('mobile')"
+                                            data-ng-required="$ctrl.telephonyModel.mobile.selected"
+                                            data-oui-tooltip="{{:: 'exchange_account_add_phone_help_text' | translate}}"
+                                        />
+                                    </div>
+                                    <div class="oui-field__footer">
+                                        <div
+                                            class="oui-field__error"
+                                            data-ng-if="$ctrl.newAccountForm.contactInfoMobile.$error.required"
+                                            role="alert"
+                                        >
+                                            <span
+                                                class="oui-icon oui-icon-error"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Fax field-->
+                            <div>
+                                <label
+                                    class="control-label"
+                                    for="contactInfoFax"
+                                    data-ng-bind=":: 'exchange_account_add_contact_fax_label' | translate"
+                                ></label>
+                                <div class="oui-field">
+                                    <div
+                                        class="w-100 oui-input-group_inline"
+                                        data-ng-class="{ 'oui-field_error has-error': $ctrl.newAccountForm.contactInfoFax.$invalid && $ctrl.newAccountForm.contactInfoFax.$touched }"
+                                    >
+                                        <input
+                                            class="w-100 oui-input"
+                                            id="contactInfoFax"
+                                            name="contactInfoFax"
+                                            type="text"
+                                            data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
+                                            data-ng-model="$ctrl.telephonyModel.fax.number"
+                                            data-ng-change="$ctrl.onCountryPhoneCodeChange('fax')"
+                                            data-ng-required="$ctrl.telephonyModel.fax.selected"
+                                            data-oui-tooltip="{{:: 'exchange_account_add_phone_help_text' | translate}}"
+                                        />
+                                    </div>
+                                    <div class="oui-field__footer">
+                                        <div
+                                            class="oui-field__error"
+                                            data-ng-if="$ctrl.newAccountForm.contactInfoFax.$error.required"
+                                            role="alert"
+                                        >
+                                            <span
+                                                class="oui-icon oui-icon-error"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Legal terms-->
         <oui-field data-size="xl">
-            <oui-checkbox
-                name="acceptsConditions"
-                data-text="{{:: 'exchange_ACTION_add_account_legal_warning' | translate }}"
-                required
-            ></oui-checkbox>
+            <oui-checkbox name="acceptsConditions" required>
+                <oui-checkbox-label>
+                    <span
+                        data-translate="exchange_ACTION_add_account_legal_title"
+                    ></span>
+                </oui-checkbox-label>
+                <oui-checkbox-description>
+                    <span
+                        data-translate="exchange_ACTION_add_account_legal_warning"
+                    ></span>
+                </oui-checkbox-description>
+            </oui-checkbox>
         </oui-field>
 
+        <!--Create email account-->
         <button
             type="submit"
             class="oui-button oui-button_primary"
             data-ng-disabled="$ctrl.newAccountForm.login.$pristine || $ctrl.newAccountForm.password.$pristine || $ctrl.newAccountForm.$invalid || $ctrl.isSendingNewAccount"
-            data-ng-bind=":: 'exchange_account_add_confirm_button' | translate"
+            data-translate="exchange_account_add_confirm_button"
             data-ng-click="$ctrl.sendingNewAccount()"
         ></button>
+
+        <!--Go back to previous page-->
+        <button
+            class="oui-button oui-button_secondary"
+            data-translate="exchange_account_add_cancel_button"
+            data-ng-click="$ctrl.hide()"
+        ></button>
     </form>
+
+    <div class="text-center" data-ng-if="$ctrl.isFetchingCreationOptions">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
 </div>

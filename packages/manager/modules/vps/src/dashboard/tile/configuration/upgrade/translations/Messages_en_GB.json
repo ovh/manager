@@ -1,0 +1,22 @@
+{
+  "vps_dashboard_tile_configuration_upgrade_memory_action_title": "Upgrade the memory on your VPS from {{ currentMemory }} to {{ nextMemory }} GB",
+  "vps_dashboard_tile_configuration_upgrade_memory_action_details": "You are about to add {{ memoryQuantity }} GB of memory to your VPS.",
+  "vps_dashboard_tile_configuration_upgrade_storage_action_title": "Upgrade the storage on your VPS from {{ currentStorage }} to {{ nextStorage }} GB",
+  "vps_dashboard_tile_configuration_upgrade_storage_action_details": "You are about to add {{ storageQuantity }} GB of storage to your VPS.",
+  "vps_dashboard_tile_configuration_upgrade_action_price": "This upgrade will be charged for an additional {{ price }} per month.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation": "By confirming your choice, you will be billed on a pro rata basis, at a rate of {{ prorataPrice }} for the current month. Please note that the bill total may include any additional options you are using (e.g. snapshot, automated backup, etc.)",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_monthly": "By clicking “Confirm and pay”, you will be redirected to a purchase order to pay the sum of {{ price }} due on a pro rata basis.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_upfront": "By clicking “Confirm and pay”, you will be redirected to a purchase order to pay the sum of {{ price }} for the remainder of your subscription period.",
+  "vps_dashboard_tile_configuration_upgrade_action_validate_and_pay": "Confirm and pay",
+  "vps_dashboard_tile_configuration_upgrade_action_cancel": "Cancel",
+  "vps_dashboard_tile_configuration_upgrade_success_title": "The change has been processed",
+  "vps_dashboard_tile_configuration_upgrade_success_explain": "The resources will be added to your VPS within 2 hours. You will receive a confirmation email once this is complete. You will need to reboot your VPS for the new configuration to work.",
+  "vps_dashboard_tile_configuration_upgrade_success_follow_order": "Track my order",
+  "vps_dashboard_tile_configuration_upgrade_no_payment_method_success": "Your request has been processed. The upgrade process will begin once payment has been received for the following purchase order: <a target=\"_blank\" rel=\"noopener\" href=\"{{ href }}\">{{ orderId }}</a>.",
+  "vps_dashboard_tile_configuration_upgrade_error": "An error has occurred upgrading your VPS.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_payment_method_upfront": "By clicking “Confirm and pay”, you will be billed a total of {{ price }} for the remaining period of your contract.",
+  "vps_dashboard_tile_configuration_upgrade_catched_error": "This VPS is not compatible with the plan selected, or you already have an ongoing upgrade request for this VPS.",
+  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_info": "You cannot upgrade your VPS to a higher solution, as it is currently in rescue mode.",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_action": "Please reboot your VPS beforehand by disabling rescue mode."
+}

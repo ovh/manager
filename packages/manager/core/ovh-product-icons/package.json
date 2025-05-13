@@ -1,0 +1,25 @@
+{
+  "name": "@ovh-ux/ovh-product-icons",
+  "version": "0.10.0",
+  "private": true,
+  "description": "Ovh product icons",
+  "license": "BSD-3-Clause",
+  "author": "OVH tansformation team",
+  "type": "module",
+  "main": "./index",
+  "module": "dist/index",
+  "types": "dist/index",
+  "scripts": {
+    "build": "tsc && yarn copy-files",
+    "copy-files": "cp ./assets-icon-svg/*.svg ./dist/assets-icon-svg/",
+    "start": "plop"
+  },
+  "dependencies": {
+    "@ovhcloud/ods-common-core": "17.2.2",
+    "@ovhcloud/ods-common-theming": "17.2.2",
+    "@ovhcloud/ods-components": "17.2.2",
+    "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
+    "react": "^18.2.0"
+  },
+  "preferGlobal": true
+}

@@ -1,125 +1,117 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="ExchangeTabPublicFolderPermissionsCtrl as ctrl"
->
-    <div class="row">
-        <div class="col-md-9">
-            <div class="d-flex align-items-center mb-5">
-                <button
-                    class="btn btn-default"
-                    type="button"
-                    data-ng-click="displayPublicFolders()"
-                >
-                    <span
-                        class="fa fa-chevron-left mr-2"
-                        aria-hidden="true"
-                    ></span>
-                    <span
-                        data-translate="exchange_GROUPS_manager_back_button"
-                    ></span>
-                </button>
+<div class="row">
+    <div class="col-md-9">
+        <div class="d-flex align-items-center mb-5">
+            <button
+                class="btn btn-default"
+                type="button"
+                data-ng-click="ctrl.goToShared()"
+            >
+                <span class="fa fa-chevron-left mr-2" aria-hidden="true"></span>
                 <span
-                    class="ml-4"
-                    data-ng-bind-html="'exchange_tab_SHARED_permissions_intro' | translate:{ t0: ctrl.selectedFolder.path }"
+                    data-translate="exchange_GROUPS_manager_back_button"
                 ></span>
-            </div>
+            </button>
+            <span
+                class="ml-4"
+                data-ng-bind-html="'exchange_tab_SHARED_permissions_intro' | translate:{ t0: ctrl.selectedFolder.path }"
+            ></span>
+        </div>
 
-            <div
-                class="alert alert-info"
-                role="alert"
-                data-translate="exchange_tab_SHARED_permissions_table_empty"
-                data-ng-if="!ctrl.search.value && ctrl.permissionsList.list.results.length === 0"
-            ></div>
+        <div
+            class="alert alert-info"
+            role="alert"
+            data-translate="exchange_tab_SHARED_permissions_table_empty"
+            data-ng-if="!ctrl.search.value && ctrl.permissionsList.list.results.length === 0"
+        ></div>
 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th
-                            scope="col"
-                            data-translate="exchange_tab_SHARED_permissions_header_email"
-                        ></th>
-                        <th
-                            scope="col"
-                            data-translate="exchange_tab_SHARED_permissions_header_type"
-                        ></th>
-                        <th scope="col" class="min-width"></th>
-                    </tr>
-                </thead>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th
+                        scope="col"
+                        data-translate="exchange_tab_SHARED_permissions_header_email"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="exchange_tab_SHARED_permissions_header_type"
+                    ></th>
+                    <th scope="col" class="min-width"></th>
+                </tr>
+            </thead>
 
-                <tbody data-ng-if="ctrl.permissionsLoading">
-                    <tr>
-                        <td class="text-center" colspan="3">
-                            <oui-spinner></oui-spinner>
-                        </td>
-                    </tr>
-                </tbody>
+            <tbody data-ng-if="ctrl.permissionsLoading">
+                <tr>
+                    <td class="text-center" colspan="3">
+                        <oui-spinner></oui-spinner>
+                    </td>
+                </tr>
+            </tbody>
 
-                <tbody
-                    data-ng-if="!ctrl.permissionsLoading && ctrl.permissionsList.list.results.length === 0"
+            <tbody
+                data-ng-if="!ctrl.permissionsLoading && ctrl.permissionsList.list.results.length === 0"
+            >
+                <tr>
+                    <td
+                        colspan="3"
+                        class="text-center"
+                        data-translate="exchange_tab_SHARED_permissions_table_empty_search"
+                    ></td>
+                </tr>
+            </tbody>
+
+            <tbody
+                data-ng-if="!ctrl.permissionsLoading && ctrl.permissionsList.list.results.length > 0"
+            >
+                <tr
+                    data-ng-repeat="permission in ctrl.permissionsList.list.results track by $index"
                 >
-                    <tr>
-                        <td
-                            colspan="3"
-                            class="text-center"
-                            data-translate="exchange_tab_SHARED_permissions_table_empty_search"
-                        ></td>
-                    </tr>
-                </tbody>
-
-                <tbody
-                    data-ng-if="!ctrl.permissionsLoading && ctrl.permissionsList.list.results.length > 0"
-                >
-                    <tr
-                        data-ng-repeat="permission in ctrl.permissionsList.list.results track by $index"
-                    >
-                        <th
-                            class="word-break"
-                            scope="row"
-                            data-ng-bind="permission.primaryAddressDisplayName"
-                        ></th>
-                        <td
-                            data-ng-bind="('exchange_tab_SHARED_permissions_type_' + permission.accessRights) | translate"
-                        ></td>
-                        <td class="text-center">
-                            <button
-                                class="btn btn-icon"
-                                type="button"
-                                title="{{'exchange_tab_SHARED_permissions_delete_tooltip' | translate}}"
-                                data-ng-click="ctrl.removePermission(permission)"
-                            >
-                                <span
-                                    class="oui-icon oui-icon-trash_line oui-icon_small"
-                                    aria-hidden="true"
-                                ></span>
-                            </button>
-                        </td>
-                    </tr>
-
-                    <tr
-                        data-ng-show="ctrl.permissionsList.list.messages"
-                        data-ng-repeat="permission in ctrl.permissionsList.list.messages | orderBy:'id':false track by $index"
-                    >
-                        <td colspan="3">
+                    <th
+                        class="word-break"
+                        scope="row"
+                        data-ng-bind="permission.primaryAddressDisplayName"
+                    ></th>
+                    <td
+                        data-ng-bind="('exchange_tab_SHARED_permissions_type_' + permission.accessRights) | translate"
+                    ></td>
+                    <td class="text-center">
+                        <button
+                            class="btn btn-icon"
+                            type="button"
+                            title="{{'exchange_tab_SHARED_permissions_delete_tooltip' | translate}}"
+                            data-ng-click="ctrl.removePermission(permission)"
+                        >
                             <span
-                                class="fa fa-exclamation-triangle mr-2"
+                                class="oui-icon oui-icon-trash_concept"
                                 aria-hidden="true"
                             ></span>
-                            <span
-                                data-ng-bind="permission.id"
-                                data-oui-tooltip="{{ 'exchange_GROUPS_partial_account' | translate: { t0: permission.message } }}"
-                            ></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                        </button>
+                    </td>
+                </tr>
 
-            <div
-                class="clearfix"
-                data-pagination-server-side="permissionsTable"
-                data-pagination-server-side-function="retrievingPermissions"
-                data-pagination-server-side-paginated-stuff="getPermissionsList()"
-                data-pagination-server-side-table-loading="getPermissionsLoading()"
-            ></div>
-        </div>
+                <tr
+                    data-ng-show="ctrl.permissionsList.list.messages"
+                    data-ng-repeat="permission in ctrl.permissionsList.list.messages | orderBy:'id':false track by $index"
+                >
+                    <td colspan="3">
+                        <span
+                            class="fa fa-exclamation-triangle mr-2"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            data-ng-bind="permission.id"
+                            data-oui-tooltip="{{ 'exchange_GROUPS_partial_account' | translate: { t0: permission.message } }}"
+                        ></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div
+            class="clearfix"
+            data-pagination-server-side="permissionsTable"
+            data-pagination-server-side-function="retrievingPermissions"
+            data-pagination-server-side-paginated-stuff="getPermissionsList()"
+            data-pagination-server-side-table-loading="getPermissionsLoading()"
+        ></div>
     </div>
 </div>

@@ -1,0 +1,8 @@
+{
+  "autorenew_alert": "Simplifíquese la vida y active la renovación automática de su {{ product }}. ¡Se acabaron los recordatorios de expiración y las eliminaciones inoportunas!",
+  "autorenew_alert_domain": "dominio",
+  "autorenew_alert_hosting": "alojamiento",
+  "autorenew_activate": "Activar la renovación automática",
+  "autorenew_guide": "Ver la guía",
+  "autorenew_new_tab": "Se abrirá en una nueva pestaña"
+}

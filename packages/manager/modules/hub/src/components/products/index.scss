@@ -1,5 +1,5 @@
 hub-products {
-  @import 'oui4/dist/scss/_tokens';
+  @import '@ovh-ux/ui-kit/dist/scss/_tokens';
 
   .oui-list__item:nth-child(2) {
     opacity: 0.75;
@@ -11,10 +11,5 @@ hub-products {
 
   .oui-list__item:nth-child(4) {
     opacity: 0.35;
-  }
-
-  .oui-button .oui-icon {
-    margin-left: 0.375rem;
-    font-size: $mercury-font-size;
   }
 }

@@ -1,0 +1,8 @@
+{
+  "hosting_cdn_cancel_terminate_title": "Cancelar la baja del servicio CDN",
+  "hosting_cdn_cancel_terminate_question": "¿Seguro que quiere cancelar la baja del servicio CDN?",
+  "hosting_cdn_cancel_terminate_success": "Se ha enviado la solicitud de cancelación de la baja.",
+  "hosting_cdn_cancel_terminate_error": "Se ha producido un error al cancelar la baja del servicio CDN: {{ message }}",
+  "hosting_cdn_cancel_terminate_action_validate": "Confirmar",
+  "hosting_cdn_cancel_terminate_action_cancel": "Cancelar"
+}

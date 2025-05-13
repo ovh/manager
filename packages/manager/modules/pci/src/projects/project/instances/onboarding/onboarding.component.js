@@ -5,6 +5,11 @@ export default {
   controller,
   template,
   bindings: {
+    isTrustedZone: '<',
     addInstance: '<',
+    getStateName: '<',
+    goToRegion: '<',
+    projectId: '<',
+    customerRegions: '<',
   },
 };

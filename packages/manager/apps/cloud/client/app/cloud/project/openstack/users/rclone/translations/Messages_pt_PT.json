@@ -1,8 +1,0 @@
-{
- "cpou_rclone_modal_title": "Transferir um ficheiro de configuração rClone",
- "cpou_rclone_modal_explanation": "Vai transferir um ficheiro de configuração que permite a ligação ao rClone.",
- "cpou_rclone_modal_explanation_more_info_link_text": "Mais informação",
- "cpou_rclone_modal_input_region_label": "Selecionar a região para aplicar o ficheiro:",
- "cpou_rclone_modal_security_note": "Por razões de segurança o ficheiro de configuração não contém a sua password.. Para adicionar a password, é necessário editar o ficheiro e adicioná-la manualmente",
- "cpou_rclone_modal_loading_error": "Ocorreu um erro no carregamento dos dados associados ao ficheiro rClone: {{ message }}"
-}

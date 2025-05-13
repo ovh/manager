@@ -5,10 +5,12 @@ export default class {
   /* @ngInject */
   /**
    * Constructor
+   * @param $http
    * @param $q
    * @param OvhHttp
    */
-  constructor($q, OvhHttp, Poller) {
+  constructor($http, $q, OvhHttp, Poller) {
+    this.$http = $http;
     this.$q = $q;
     this.OvhHttp = OvhHttp;
     this.Poller = Poller;
@@ -678,7 +680,7 @@ export default class {
    * Kill responder tasks polling
    */
   killPollResponderTasks() {
-    this.Poll.kill({ namespace: 'email.domain.email.responder' });
+    this.Poller.kill({ namespace: 'email.domain.email.responder' });
   }
 
   /**
@@ -1317,5 +1319,35 @@ export default class {
         data: { password },
       },
     );
+  }
+
+  /**
+   * Get dkim informations
+   * @param {string} domain
+   */
+  getDkim(domain) {
+    return this.$http
+      .get(`/email/domain/${domain}/dkim`)
+      .then(({ data }) => data);
+  }
+
+  /**
+   * Enable dkim
+   * @param {string} domain
+   */
+  enableDkim(domain) {
+    return this.$http
+      .put(`/email/domain/${domain}/dkim/enable`)
+      .then(({ data }) => data);
+  }
+
+  /**
+   * Disable dkim
+   * @param {string} domain
+   */
+  disableDkim(domain) {
+    return this.$http
+      .put(`/email/domain/${domain}/dkim/disable`)
+      .then(({ data }) => data);
   }
 }

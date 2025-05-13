@@ -1,0 +1,6 @@
+{
+  "cloud_connect_pop_configure_delete": "Delete configuration",
+  "cloud_connect_pop_configure_delete_confirm": "Are you sure you want to delete the PoP configuration for port {{portNumber}}?",
+  "cloud_connect_pop_remove_configuration_success": "Deleting PoP configuration. <a href=\"{{ tasksUrl }}\">Click here to view its status.</a>",
+  "cloud_connect_pop_remove_configuration_error": "Unable to delete PoP configuration: {{message}}"
+}

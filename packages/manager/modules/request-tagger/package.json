@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-request-tagger",
-  "version": "1.1.0",
+  "version": "2.0.2",
   "private": true,
   "description": "Request tagger",
   "keywords": [
@@ -19,26 +19,23 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/request-tagger.js",
+  "type": "module",
+  "main": "./dist/esm/index.js",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/ng-ovh-request-tagger' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-request-tagger' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-request-tagger' --include-dependencies -- yarn run dev:watch"
+    "dev:watch": "rollup -c --environment BUILD:development --watch",
+    "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
+    "@ovh-ux/request-tagger": "^0.4.1",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^7.0.0"
+    "@ovh-ux/component-rollup-config": "^13.0.2"
   },
   "peerDependencies": {
     "@uirouter/angularjs": "^1.0.22",

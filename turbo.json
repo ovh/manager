@@ -1,0 +1,29 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "daemon": false,
+  "cacheDir": "node_modules/.cache/turbo",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "types/**"],
+      "outputLogs": "new-only"
+    },
+    "test": {},
+    "dev": {
+      "dependsOn": ["^dev"],
+      "outputs": ["dist/**", "types/**"]
+    },
+    "start": {
+      "persistent": true,
+      "cache": false,
+      "env": [
+        "VITE_CONTAINER_APP",
+        "CONTAINER",
+        "REGION",
+        "LABEU",
+        "local2API"
+      ],
+      "dependsOn": ["^dev"]
+    }
+  }
+}

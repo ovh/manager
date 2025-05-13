@@ -1,0 +1,6 @@
+{
+  "cloud_connect_datacenter_remove": "Eliminar a configuração da zona de disponibilidade",
+  "cloud_connect_datacenter_remove_description": "Isto eliminará a configuração da zona de disponibilidade",
+  "cloud_connect_datacenter_remove_success": "Configuração da zona de disponibilidade eliminada. <a href=\"{{ tasksUrl }}\">Clique aqui para consultar o estado.</a>",
+  "cloud_connect_datacenter_remove_error": "Erro ao eliminar uma configuração da zona de disponibilidade: {{message}}"
+}

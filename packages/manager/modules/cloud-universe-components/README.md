@@ -2,7 +2,7 @@
 
 > OVH Manager Cloud Universe Components
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-cloud-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-cloud-universe-components) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/cloud-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-cloud-universe-components?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/cloud-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-cloud-universe-components?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-cloud-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-cloud-universe-components) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/cloud-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-cloud-universe-components?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/cloud-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-cloud-universe-components?activeTab=dependencies)
 
 ## Install
 
@@ -15,10 +15,7 @@ yarn add @ovh-ux/ng-ovh-cloud-universe-components
 import angular from 'angular';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 
-angular
-  .module('myApp', [
-    ngOvhCloudUniverseComponents,
-  ]);
+angular.module('myApp', [ngOvhCloudUniverseComponents]);
 ```
 
 ## Test
@@ -29,7 +26,7 @@ yarn test
 
 ## Related
 
-* [ovh-manager-cloud](https://github.com/ovh-ux/ovh-manager-cloud) - OVH Control Panel Cloud UI
+* [ovh-manager-cloud](https://github.com/ovh/manager/tree/master/packages/manager/apps/cloud) - OVH Control Panel Cloud UI
 
 ## Contributing
 

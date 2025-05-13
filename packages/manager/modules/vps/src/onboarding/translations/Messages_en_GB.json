@@ -1,0 +1,21 @@
+{
+  "vps_onboarding_title": "Virtual Private Servers (VPS)",
+  "vps_onboarding_description_1": "High performance at unbeatable prices",
+  "vps_onboarding_description_2": "Simplicity, scalability and customisation",
+  "vps_onboarding_description_3": "Unlimited traffic and up to 2Gbit/s bandwidth*",
+  "vps_onboarding_cta": "Order",
+  "vps_onboarding_guide1_title": "Getting started with a VPS",
+  "vps_onboarding_guide1_description": "Learn the basics of using a VPS",
+  "vps_onboarding_guide2_title": "Securing a VPS",
+  "vps_onboarding_guide2_description": "Learn the basics for securing your VPS",
+  "vps_onboarding_guide3_title": "Use snapshot",
+  "vps_onboarding_guide3_description": "Find out how to enable and use the snapshot option in the OVHcloud Control Panel",
+  "vps_onboarding_us_guide1_title": "Getting started with a VPS",
+  "vps_onboarding_us_guide1_description": "Learn the first steps of using a VPS",
+  "vps_onboarding_us_guide2_title": "How to secure a VPS",
+  "vps_onboarding_us_guide2_description": "Learn the basics of securing your VPS",
+  "vps_onboarding_us_guide3_title": "How to use snapshots on a VPS",
+  "vps_onboarding_us_guide3_description": "Learn about taking snapshots in the OVHcloud Control Panel",
+  "vps_onboarding_description_3_us": "Unlimited traffic and up to 2Gbit/s bandwidth",
+  "vps_onboarding_traffic_infos": "For VPSs hosted in Sydney and Singapore: 1TB traffic/month for the Starter and Value ranges, 2TB/month for the Essential range, 3TB/month for the Comfort range, and 4TB/month for the Elite range. Bandwidth is reduced to 10Mbit/s once the monthly quota has been exceeded."
+}

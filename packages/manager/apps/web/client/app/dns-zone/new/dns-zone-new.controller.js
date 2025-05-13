@@ -1,68 +1,101 @@
 import get from 'lodash/get';
-import set from 'lodash/set';
+import map from 'lodash/map';
+
+import {
+  pricingConstants,
+  workflowConstants,
+} from '@ovh-ux/manager-product-offers';
+
+import { WORKFLOW_OPTIONS } from './dns-zone-new.constants';
+import { TEMPLATES } from '../../domain/zone/activate/activate.constants';
 
 export default class newDnsZoneCtrl {
-  /**
-   * Constructor
-   * @param $scope
-   * @param Alerter
-   * @param newDnsZone
-   * @param User
-   */
   /* @ngInject */
-  constructor($scope, $translate, Alerter, newDnsZone, User) {
-    this.$scope = $scope;
+  constructor(
+    $anchorScroll,
+    $location,
+    $translate,
+    atInternet,
+    Alerter,
+    constants,
+  ) {
+    this.$anchorScroll = $anchorScroll;
+    this.$location = $location;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.Alerter = Alerter;
-    this.newDnsZone = newDnsZone;
-    this.User = User;
+    this.URLS = constants.urls;
+
+    this.TEMPLATES = TEMPLATES;
   }
 
   $onInit() {
+    this.zoneNameisValid = false;
+    this.GUIDE_URL = get(
+      this.URLS,
+      `${this.user.ovhSubsidiary}.guides.dnsForExternalDomain`,
+    );
+    this.configuration = {
+      zone: null,
+      template: this.TEMPLATES.BASIC,
+    };
     this.alerts = {
       main: 'newdnszone.alerts.main',
     };
-    this.loading = {
-      bc: false,
-    };
-    this.zoneName = null;
-    this.zoneNameOrder = {
-      zoneName: null,
-      minimized: false,
-      contractsValidated: false,
+
+    this.WORKFLOW_OPTIONS = {
+      ...WORKFLOW_OPTIONS,
+      getPlanCode: () => WORKFLOW_OPTIONS.planCode,
+      catalog: this.catalog,
+      onGetConfiguration: () => this.getConfiguration(),
     };
 
-    this.$scope.data = [];
-
-    this.User.getUrlOf('guides').then((guides) => {
-      this.guideForExternal = guides.dnsForExternalDomain;
-    });
+    this.WORKFLOW_TYPE = workflowConstants.WORKFLOW_TYPES.ORDER;
+    this.PRICING_TYPE = pricingConstants.PRICING_CAPACITIES.RENEW;
   }
 
-  generateBc() {
-    this.loading.bc = true;
-    this.newDnsZone
-      .orderZoneName(this.zoneNameOrder.zoneName, this.zoneNameOrder.minimized)
-      .then((details) => {
-        this.order = details;
-      })
-      .catch((err) => {
-        set(err, 'type', err.type || 'ERROR');
-        this.Alerter.alertFromSWS(
-          this.$translate.instant('domains_newdnszone_order_step3_fail'),
-          err,
-          this.alerts.main,
-        );
+  checkZoneName() {
+    this.isLoading = true;
+    this.zoneNameisValid = false;
+    return this.isZoneValid(this.configuration.zone)
+      .then((valid) => {
+        this.zoneNameisValid = valid;
       })
       .finally(() => {
-        this.loading.bc = false;
+        this.isLoading = false;
       });
   }
 
-  clean() {
-    this.zoneNameOrder.contractsValidated = false;
-    this.zoneNameOrder.minimized = false;
-    this.zoneName = get(this.zoneNameOrder, 'zoneName', '').toLowerCase();
-    this.order = null;
+  static getAlerterId(alerter) {
+    return alerter.replaceAll('.', '_');
+  }
+
+  getConfiguration() {
+    return map(this.configuration, (value, label) => ({
+      label,
+      value,
+    }));
+  }
+
+  onDnsOrderSuccess() {
+    this.atInternet.trackClick({
+      name: 'web::dns-zone-new::activate',
+      type: 'action',
+    });
+    return this.goBack(
+      this.$translate.instant('domains_newdnszone_order_success'),
+    );
+  }
+
+  onDnsOrderError(error) {
+    const message = error?.data?.message || error.message;
+    this.$location.hash(newDnsZoneCtrl.getAlerterId(this.alerts.main));
+    this.$anchorScroll();
+    return this.Alerter.error(
+      this.$translate.instant('domains_newdnszone_order_error', {
+        message,
+      }),
+      this.alerts.main,
+    );
   }
 }

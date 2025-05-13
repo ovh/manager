@@ -9,5 +9,8 @@ export default {
     issueTypes: '<',
     projectId: '<',
     region: '<',
+    trackPage: '<',
+    trackClick: '<',
+    guideUrl: '<',
   },
 };

@@ -35,7 +35,7 @@ export default class {
         sref: 'sms.service.sms.pending',
         text: this.$translate.instant('sms_sms_pending'),
       },
-      ...(this.smsFeatureAvailability.isAvailable('hlr')
+      ...(this.smsFeatureAvailability.isFeatureAvailable('sms:hlr')
         ? [
             {
               name: 'sms_manage_hlrs',

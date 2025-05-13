@@ -1,25 +1,40 @@
-angular
-  .module('managerApp')
-  .controller('PackXdslCtrl', function PackXdslCtrl(
+import { PACK_XDSL } from './pack-xdsl.constant';
+
+export default class PackXdslCtrl {
+  /* @ngInject */
+  constructor(
     $q,
     $state,
     $transitions,
     $translate,
-    $stateParams,
     OvhApiPackXdsl,
     OvhApiXdsl,
     OvhApiXdslModem,
-    SidebarMenu,
+    shellClient,
     smoothScroll,
     TucToast,
     TucToastError,
-    PACK_XDSL,
   ) {
-    const animTime = 1500;
-    const noModemStatus = 404;
-    const self = this;
+    this.$q = $q;
+    this.$state = $state;
+    this.$transitions = $transitions;
+    this.$translate = $translate;
+    this.OvhApiXdsl = OvhApiXdsl;
+    this.OvhApiPackXdsl = OvhApiPackXdsl;
+    this.OvhApiXdslModem = OvhApiXdslModem;
+    this.shellClient = shellClient;
+    this.smoothScroll = smoothScroll;
+    this.TucToast = TucToast;
+    this.TucToastError = TucToastError;
 
-    self.loading = {
+    this.accessDescriptionSave = this.accessDescriptionSave.bind(this);
+  }
+
+  $onInit() {
+    this.animTime = 1500;
+    this.noModemStatus = 404;
+
+    this.loading = {
       init: false,
     };
 
@@ -27,185 +42,150 @@ angular
       back: {},
     };
 
-    function getPackXdsl() {
-      return OvhApiPackXdsl.Aapi().get({
-        packId: $stateParams.packName,
-      }).$promise;
-    }
+    this.loading.init = true;
 
-    function getXdsl() {
-      return OvhApiXdsl.v6().get({
-        xdslId: $stateParams.serviceName,
-      }).$promise;
-    }
+    this.disabledModem = true;
+    this.enableModemIfHaveOne();
 
-    function setAnim(className) {
-      setTimeout(() => {
-        self.content.back.class = className;
-      }, animTime);
-    }
-
-    this.backState = function backState() {
-      return $state.href(this.content.back.state);
-    };
-
-    function enableModemIfHaveOne() {
-      return OvhApiXdslModem.v6()
-        .get({ xdslId: $stateParams.serviceName })
-        .$promise.then(
-          () => {
-            self.disabledModem = false;
-          },
-          (err) => {
-            if (err.status !== noModemStatus) {
-              TucToastError(err);
-              return $q.reject(err);
-            }
-            return err;
-          },
-        );
-    }
-
-    this.updateUIForState = function updateUIForState(state) {
-      self.currentState = state.name;
-      if ($stateParams.packName === PACK_XDSL.sdsl) {
-        if (
-          state.name === 'telecom.packs.pack.xdsl' ||
-          state.name === 'telecom.packs.pack.xdsl.modem' ||
-          state.name === 'telecom.packs.pack.xdsl.tasks'
-        ) {
-          setAnim('anim');
-          return;
-        }
-      }
-
-      smoothScroll(document.body);
-
-      switch (state.name) {
-        case 'telecom.packs.pack.xdsl.modem.wifi':
-        case 'telecom.packs.pack.xdsl.modem.dmz':
-        case 'telecom.packs.pack.xdsl.access-notifications':
-        case 'telecom.packs.pack.xdsl.access-diagnostic':
-        case 'telecom.packs.pack.xdsl.access-migration':
-        case 'telecom.packs.pack.xdsl.access-ip':
-        case 'telecom.packs.pack.xdsl.access-deconsolidation':
-        case 'telecom.packs.pack.xdsl.access-order':
-        case 'telecom.packs.pack.xdsl.access-resiliation':
-        case 'telecom.packs.pack.xdsl.missing-rio':
-        case 'telecom.packs.pack.xdsl.line-diagnostic':
-        case 'telecom.packs.pack.xdsl.modem.templates':
-        case 'telecom.packs.pack.xdsl.access-modem-exchange':
-          setAnim('invert-anim');
-          self.content.back.state = '^';
-          getXdsl().then((xdsl) => {
-            self.content.status = xdsl.status;
-            self.content.accessType = xdsl.accessType;
-          });
-          break;
-        case 'telecom.packs.pack.xdsl.modem':
-        case 'telecom.packs.pack.xdsl.tasks':
-        case 'telecom.packs.pack.xdsl':
-          setAnim('anim');
-          self.content.back.state = 'telecom.packs.pack';
-          getXdsl().then((xdsl) => {
-            self.content.status = xdsl.status;
-            self.content.accessType = xdsl.accessType;
-          });
-          break;
-        default:
-          setAnim('anim');
-          self.content.back = {};
-          break;
-      }
-    };
-
-    $transitions.onSuccess({}, (transition) => {
-      self.updateUIForState(transition.to());
+    this.$transitions.onSuccess({}, (transition) => {
+      this.updateUIForState(transition.to());
     });
-    self.updateUIForState($state.current);
+    this.updateUIForState(this.$state.current);
 
-    self.isModemTabAvailable = function isModemTabAvailable() {
-      // Modem tab not available for SDSL access
-      if (self.content.accessType !== PACK_XDSL.sdsl) {
-        return PACK_XDSL.availableModemTabStatus.includes(self.content.status);
+    return this.$q
+      .allSettled([
+        this.getPackXdsl().then((pack) => {
+          this.pack = pack;
+        }),
+        this.getXdsl().then((access) => {
+          this.access = access;
+        }),
+      ])
+      .finally(() => {
+        this.loading.init = false;
+      });
+  }
+
+  getPackXdsl() {
+    return this.OvhApiPackXdsl.Aapi().get({
+      packId: this.packName,
+    }).$promise;
+  }
+
+  getXdsl() {
+    return this.OvhApiXdsl.v6().get({
+      xdslId: this.serviceName,
+    }).$promise;
+  }
+
+  setAnim(className) {
+    setTimeout(() => {
+      this.content.back.class = className;
+    }, this.animTime);
+  }
+
+  enableModemIfHaveOne() {
+    return this.OvhApiXdslModem.v6()
+      .get({ xdslId: this.serviceName })
+      .$promise.then(() => {
+        this.disabledModem = false;
+      })
+      .catch((err) => {
+        if (err.status !== this.noModemStatus) {
+          this.TucToastError(err);
+          return this.$q.reject(err);
+        }
+        return err;
+      });
+  }
+
+  updateUIForState(state) {
+    if (this.packName === PACK_XDSL.sdsl) {
+      if (
+        state.name === 'telecom.packs.pack.xdsl.line' ||
+        state.name === 'telecom.packs.pack.xdsl.line.modem' ||
+        state.name === 'telecom.packs.pack.xdsl.line.tasks'
+      ) {
+        this.setAnim('anim');
+        return;
       }
-      return false;
-    };
-
-    /*= =============================
-    =            ACTION            =
-    ============================== */
-
-    self.accessDescriptionSave = function accessDescriptionSave(
-      newAccessDescr,
-    ) {
-      self.loading.save = true;
-
-      return OvhApiXdsl.v6()
-        .put(
-          {
-            xdslId: $stateParams.serviceName,
-          },
-          {
-            description: newAccessDescr,
-          },
-        )
-        .$promise.then(
-          () => {
-            self.access.description = newAccessDescr;
-
-            // rename in sidebar menu
-            SidebarMenu.updateItemDisplay(
-              {
-                title: newAccessDescr || self.access.serviceName,
-              },
-              $stateParams.serviceName,
-              'telecom-pack-section',
-              $stateParams.packName,
-            );
-          },
-          (error) => {
-            TucToast.error(
-              [
-                $translate.instant('xdsl_rename_error', $stateParams),
-                error.data.message,
-              ].join(' '),
-            );
-            return $q.reject(error);
-          },
-        )
-        .finally(() => {
-          self.loading.save = false;
-        });
-    };
-
-    /* -----  End of ACTION  ------*/
-
-    /*= =====================================
-    =            INITIALIZATION            =
-    ====================================== */
-
-    function init() {
-      self.loading.init = true;
-
-      self.disabledModem = true;
-      enableModemIfHaveOne();
-
-      return $q
-        .allSettled([
-          getPackXdsl().then((pack) => {
-            self.pack = pack;
-          }),
-          getXdsl().then((access) => {
-            self.access = access;
-          }),
-        ])
-        .finally(() => {
-          self.loading.init = false;
-        });
     }
 
-    /* -----  End of INITIALIZATION  ------*/
+    this.smoothScroll(document.body);
 
-    init();
-  });
+    switch (state.name) {
+      case 'telecom.packs.pack.xdsl.line.modem.wifi':
+      case 'telecom.packs.pack.xdsl.line.modem.dmz':
+      case 'telecom.packs.pack.xdsl.line.access-notifications':
+      case 'telecom.packs.pack.xdsl.line.access-diagnostic':
+      case 'telecom.packs.pack.xdsl.line.access-migration':
+      case 'telecom.packs.pack.xdsl.line.access-ip':
+      case 'telecom.packs.pack.xdsl.line.access-deconsolidation':
+      case 'telecom.packs.pack.xdsl.line.access-order':
+      case 'telecom.packs.pack.xdsl.line.access-resiliation':
+      case 'telecom.packs.pack.xdsl.line.missing-rio':
+      case 'telecom.packs.pack.xdsl.line.line-diagnostic':
+      case 'telecom.packs.pack.xdsl.line.modem.templates':
+      case 'telecom.packs.pack.xdsl.line.access-modem-exchange':
+        this.setAnim('invert-anim');
+        this.getXdsl().then((xdsl) => {
+          this.content.status = xdsl.status;
+          this.content.accessType = xdsl.accessType;
+        });
+        break;
+      case 'telecom.packs.pack.xdsl.line.modem':
+      case 'telecom.packs.pack.xdsl.line.tasks':
+      case 'telecom.packs.pack.xdsl.line':
+        this.setAnim('anim');
+        this.getXdsl().then((xdsl) => {
+          this.content.status = xdsl.status;
+          this.content.accessType = xdsl.accessType;
+        });
+        break;
+      default:
+        this.setAnim('anim');
+        break;
+    }
+  }
+
+  isModemTabAvailable() {
+    // Modem tab not available for SDSL access
+    if (this.access.accessType !== PACK_XDSL.sdsl) {
+      return PACK_XDSL.availableModemTabStatus.includes(this.access.status);
+    }
+    return false;
+  }
+
+  accessDescriptionSave(newAccessDescr) {
+    this.loading.save = true;
+
+    return this.OvhApiXdsl.v6()
+      .put(
+        {
+          xdslId: this.serviceName,
+        },
+        {
+          description: newAccessDescr,
+        },
+      )
+      .$promise.then(() => {
+        this.access.description = newAccessDescr;
+        this.shellClient.ux.updateMenuSidebarItemLabel(
+          this.serviceName,
+          newAccessDescr,
+        );
+      })
+      .catch((error) => {
+        this.TucToast.error(
+          [
+            this.instant('xdsl_rename_error', this.serviceName),
+            error.data.message,
+          ].join(' '),
+        );
+        return this.$q.reject(error);
+      })
+      .finally(() => {
+        this.loading.save = false;
+      });
+  }
+}

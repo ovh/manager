@@ -1,0 +1,12 @@
+{
+  "dedicatedCloud_vmware_cloud_director_order_title": "Confirmation de migration vers l'offre VCD",
+  "dedicatedCloud_vmware_cloud_director_order_info": "La validation de la migration peut prendre quelques minutes pour être effective.",
+  "dedicatedCloud_vmware_cloud_director_order_terms": "Voir les conditions particulières du service Managed VCD",
+  "dedicatedCloud_vmware_cloud_director_order_host": "Host {{host}} : ",
+  "dedicatedCloud_vmware_cloud_director_order_hosts_list": "Voici la liste des hosts du {{pcc}} :",
+  "dedicatedCloud_vmware_cloud_director_order_success": "Afin de confirmer la migration de votre service, veuillez cliquer sur <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">ce lien</a>.",
+  "dedicatedCloud_vmware_cloud_director_order_error": "Une erreur est survenue lors de la confirmation de migration vers l'offre VCD",
+  "dedicatedCloud_vmware_cloud_director_order_cancel": "Annuler",
+  "dedicatedCloud_vmware_cloud_director_order_confirm": "Suivant",
+  "dedicatedCloud_vmware_cloud_director_order_terminate": "Fermer"
+}

@@ -1,0 +1,14 @@
+{
+  "pci_projects_project_storages_blocks_onboarding_content1": "Non hai ancora creato servizi Block Storage.",
+  "pci_projects_project_storages_blocks_onboarding_content2": "Grazie alla tripla replica dei dati disponi di volumi di storage sicuri e utilizzabili come dischi supplementari.",
+  "pci_projects_project_storages_blocks_onboarding_content3": "Aggiungi facilmente spazio disco alle tue istanze con questi volumi. Questi volumo possono essere estesi in base alle tue esigenze ed è possibile associarne diversi a ogni istanza. Il collegamento avviene a caldo e consente di spostare dinamicamente un volume da un'istanza all'altra nella stessa localizzazione.",
+  "pci_projects_project_storages_blocks_onboarding_content4": "Scegli la dimensione più adatta alle tue esigenze, da 10 GB fino a 4 TB. I volumi sono disponibili in due versioni: “classic”, per privilegiare il costo a GB, e “high speed”, per ottenere le performance migliori.",
+  "pci_projects_project_storages_blocks_onboarding_action_label": "Crea un volume",
+  "pci_projects_project_storages_blocks_onboarding_guides_create-attach-volume_title": "Creare un volume aggiuntivo e associarlo a un’istanza",
+  "pci_projects_project_storages_blocks_onboarding_guides_create-attach-volume_description": "Come creare un disco supplementare e associarlo a un’istanza Public Cloud ",
+  "pci_projects_project_storages_blocks_onboarding_guides_configure-volume_title": "Configurare un volume aggiuntivo",
+  "pci_projects_project_storages_blocks_onboarding_guides_configure-volume_description": "Come configurare un disco supplementare su un’istanza Public Cloud ",
+  "pci_projects_project_storages_blocks_onboarding_guides_increase-volume-size_title": "Aumentare la dimensione di un disco aggiuntivo",
+  "pci_projects_project_storages_blocks_onboarding_guides_increase-volume-size_description": "Come aumentare la dimensione di un disco supplementare e della sua partizione principale",
+  "onboarding_guide_title": "Tutorial"
+}

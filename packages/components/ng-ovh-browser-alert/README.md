@@ -2,7 +2,7 @@
 
 > Display an alert when your browser isn't supported.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-browser-alert)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-browser-alert) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-browser-alert)](https://npmjs.com/package/@ovh-ux/ng-ovh-browser-alert) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-browser-alert)](https://npmjs.com/package/@ovh-ux/ng-ovh-browser-alert?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-browser-alert)](https://npmjs.com/package/@ovh-ux/ng-ovh-browser-alert?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-browser-alert)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-browser-alert) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-browser-alert)](https://npmjs.com/package/@ovh-ux/ng-ovh-browser-alert) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-browser-alert)](https://npmjs.com/package/@ovh-ux/ng-ovh-browser-alert?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-browser-alert)](https://npmjs.com/package/@ovh-ux/ng-ovh-browser-alert?activeTab=dependencies)
 
 ## Install
 
@@ -17,10 +17,7 @@ $ yarn add @ovh-ux/ng-ovh-browser-alert
 import ovhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
 import angular from 'angular';
 
-angular
-  .module('myApp', [
-    ovhBrowserAlert,
-  ]);
+angular.module('myApp', [ovhBrowserAlert]);
 ```
 
 ```html

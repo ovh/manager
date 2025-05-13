@@ -1,0 +1,114 @@
+<div>
+    <div class="row-fluid">
+        <div class="span9">
+            <div class="row-fluid">
+                <button
+                    style="float:left;"
+                    class="btn btn-block back"
+                    data-ng-click="hideAntispam()"
+                >
+                    <em class="icon-chevron-left"></em>
+                    <span data-translate="common_back"></span>
+                </button>
+
+                <h4
+                    data-translate="ip_antispam_unblock_title"
+                    data-translate-values="{ t0: ipSpamming }"
+                ></h4>
+            </div>
+
+            <div class="row-fluid pull-left" data-ng-show="loadingAntispam">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div class="row-fluid" data-ng-hide="loadingAntispam || !ipspam">
+                <dl class="span6">
+                    <dt data-translate="ip_antispam_current_ip"></dt>
+                    <dd data-ng-bind="ipspam.ip"></dd>
+
+                    <dt data-translate="ip_antispam_status"></dt>
+                    <dd>
+                        <span
+                            data-ng-if="ipspam.state && ipspam.state !== 'UNBLOCKING'"
+                            data-translate="{{ 'ip_antispam_status_' + ipspam.state }}"
+                        ></span>
+                        <span
+                            data-ng-if="ipspam.state && ipspam.state === 'UNBLOCKING'"
+                            class="badge"
+                            data-translate="ip_antispam_status_UNBLOCKING"
+                        ></span>
+                    </dd>
+                </dl>
+                <dl class="span6" data-ng-if="ipspam.unblockingAllow">
+                    <dt data-translate="ip_antispam_date_blocking"></dt>
+                    <dd data-ng-bind="ipspam.date|date:'short'"></dd>
+
+                    <dt data-translate="ip_antispam_date_blocking_end"></dt>
+                    <dd
+                        data-ng-bind="ipspam.estimationUnblockingDate|date:'short'"
+                    ></dd>
+                </dl>
+            </div>
+
+            <div class="row-fluid" data-ng-hide="loadingAntispam || !ipspam">
+                <table class="table pretty" aria-label="ips">
+                    <thead>
+                        <tr>
+                            <th
+                                data-translate="ip_antispam_periods_table_headers_date"
+                            ></th>
+                            <th
+                                data-translate="ip_antispam_periods_table_headers_score"
+                            ></th>
+                            <th
+                                data-translate="ip_antispam_periods_table_headers_total"
+                            ></th>
+                            <th
+                                data-translate="ip_antispam_periods_table_headers_spamscount"
+                            ></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr data-ng-repeat="element in ipspam.history">
+                            <td data-ng-bind="element.date|date:'short'"></td>
+                            <td data-ng-bind="element.averageSpamscore"></td>
+                            <td data-ng-bind="element.total"></td>
+                            <td data-ng-bind="element.numberOfSpams"></td>
+                            <td class="text-center">
+                                <a
+                                    title="{{ 'ip_antispam_periods_table_see_more' | translate }}"
+                                    style="cursor: pointer"
+                                    data-ng-click="setAction('ip/antispam/detail/ip-ip-antispam-detail', {block:block, ip:ipSpamming, timestamp: element.timestamp})"
+                                >
+                                    <em class="icon-list-alt"></em>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div
+                    data-pagination-server-side="antispamPeriods"
+                    data-pagination-server-side-function="loadAntispam"
+                    data-pagination-server-side-paginated-stuff="ipspam"
+                    data-pagination-server-side-table-loading="loadingPeriods"
+                ></div>
+            </div>
+            <br />
+            <br />
+        </div>
+
+        <div class="span3" data-ng-hide="loadingAntispam || !ipspam">
+            <button
+                class="btn btn-block btn-action pull-right"
+                data-ng-disabled="!ipspam.unblockingAllow"
+                data-ng-click="unblockIp()"
+            >
+                <em class="icon-antispam-disable"></em>
+                <span data-translate="ip_antispam_unblock_button"></span>
+            </button>
+        </div>
+    </div>
+</div>

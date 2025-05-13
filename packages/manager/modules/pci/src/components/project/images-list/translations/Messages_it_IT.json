@@ -1,7 +1,8 @@
 {
-  "pci_project_instances_available_only": "Nascondi le opzioni non disponibili",
+  "pci_project_instances_display_nonavailable": "Mostra le immagini non disponibili",
   "pci_project_instances_os_linux": "Distribuzioni Unix",
   "pci_project_instances_os_windows": "Distribuzioni Windows",
+  "pci_project_instances_os_baremetal-linux": "Distribuzioni Bare Metal",
   "pci_project_instances_apps": "Distribuzioni e Applicazioni",
   "pci_project_instances_shapshots": "Backup",
   "pci_project_instances_licence": "L'utilizzo di immagini è soggetto all'accettazione del Contratto di licenza per l'utente finale del provider.",
@@ -15,6 +16,18 @@
   "pci_project_instances_distribution_ubuntu": "Ubuntu",
   "pci_project_instances_distribution_windows_server_2012": "Windows Server 2012",
   "pci_project_instances_distribution_windows_server_2016": "Windows Server 2016",
+  "pci_project_instances_distribution_windows_other": "Altre distribuzioni Windows",
   "pci_project_instances_distribution_version": "Versione",
-  "pci_project_instances_distribution_windows_other": "Altre distribuzioni Windows"
+  "pci_project_instances_distribution_unknown": "Distribuzioni Bare Metal",
+  "pci_project_instances_distribution_baremetal_linux": "Linux",
+  "pci_project_instances_distribution_baremetal_linux_other": "Arch Linux",
+  "pci_project_instances_distribution_baremetal_centos": "CentOS",
+  "pci_project_instances_distribution_baremetal_coreos": "CoreOS",
+  "pci_project_instances_distribution_baremetal_debian": "Debian",
+  "pci_project_instances_distribution_baremetal_fedora": "Fedora",
+  "pci_project_instances_distribution_baremetal_freebsd": "FreeBSD",
+  "pci_project_instances_distribution_baremetal_ubuntu": "Ubuntu",
+  "pci_project_instances_distribution_baremetal_windows_server_2012": "Windows Server 2012",
+  "pci_project_instances_distribution_baremetal_windows_server_2016": "Windows Server 2016",
+  "pci_project_instances_distribution_baremetal_windows_other": "Altre distribuzioni Windows"
 }

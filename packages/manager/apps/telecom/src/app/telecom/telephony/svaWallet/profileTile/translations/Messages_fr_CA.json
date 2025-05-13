@@ -1,0 +1,14 @@
+{
+  "telephony_billingAccount_svaWallet_profile_title": "Profil SVA",
+  "telephony_billingAccount_svaWallet_profile_status_title": "Statut",
+
+  "telephony_billingAccount_svaWallet_profile_status_BLOCKED": "Bloqué",
+  "telephony_billingAccount_svaWallet_profile_status_EXPIRED": "Expiré",
+  "telephony_billingAccount_svaWallet_profile_status_IN_PROGRESS": "En attente de validation",
+  "telephony_billingAccount_svaWallet_profile_status_UNDER_REVIEW": "En attente de validation",
+  "telephony_billingAccount_svaWallet_profile_status_VALID": "Valide",
+  "telephony_billingAccount_svaWallet_profile_status_WAITING_FOR_DOCUMENT": "Incomplet",
+
+  "telephony_billingAccount_svaWallet_profile_see_profile": "Voir mon profil SVA",
+  "telephony_billingAccount_svaWallet_profile_see_repayment": "Voir mes reversements"
+}

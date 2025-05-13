@@ -1,0 +1,12 @@
+{
+  "server_consumption_label": "Bandwidth consumption",
+  "server_consumption_order_button": "Increase",
+  "server_consumption_change_button": "Edit",
+  "server_consumption_explanation": "The bandwidth usage for this server is limited. Once the limit has been exceeded, the server’s outgoing bandwidth will be slowed down. To resolve this issue, increase your outgoing bandwidth quota.",
+  "server_consumption_summary_days": "{{t0}} of {{t1}} days remaining",
+  "server_consumption_summary_hours": "{{t0}} of {{t1}} hours remaining",
+  "server_consumption_throttled": "Service slowdown",
+  "server_consumption_current_period_label": "Usage for current period (total available {{t0}})",
+  "server_consumption_current_period_remaining": "{{t0}} remaining",
+  "server_consumption_explanation_link": "More details"
+}

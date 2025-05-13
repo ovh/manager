@@ -4,7 +4,7 @@ import random from 'lodash/random';
 /**
  *  @todo : manage sip feature type => /screen API
  */
-export default /* @ngInject */ (OvhApiTelephony) => {
+export default /* @ngInject */ ($q, OvhApiTelephony) => {
   /*= ==================================
     =            CONSTRUCTOR            =
     =================================== */
@@ -98,7 +98,9 @@ export default /* @ngInject */ (OvhApiTelephony) => {
 
   /* ----------  API CALLS  ----------*/
 
-  TucVoipScreenScreenList.prototype.create = function create() {
+  TucVoipScreenScreenList.prototype.create = function create(
+    type = 'extension',
+  ) {
     const self = this;
 
     if (self.featureType !== 'ovhPabx') {
@@ -127,7 +129,7 @@ export default /* @ngInject */ (OvhApiTelephony) => {
         },
       )
       .$promise.then((screenListOptions) => {
-        self.id = screenListOptions.extensionId;
+        self.id = get(screenListOptions, `${type}Id`);
         self.state = 'OK';
         return self;
       });
@@ -140,6 +142,10 @@ export default /* @ngInject */ (OvhApiTelephony) => {
       throw new Error(
         `remove method is not yet manager for feature type ${self.featureType}`,
       );
+    }
+
+    if (/^tmp/.test(self.id)) {
+      return $q.when();
     }
 
     self.state = 'DELETING';

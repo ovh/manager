@@ -1,10 +1,14 @@
-angular.module('App').config(($stateProvider) => {
+import template from './cdn-dedicated-ssl-delete.html';
+import controller from './cdn-dedicated-ssl-delete.controller';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.networks.cdn.dedicated.manage.ssl.delete', {
     url: '/delete',
-    templateUrl:
-      'cdn/dedicated/manage/ssl/delete/cdn-dedicated-ssl-delete.html',
-    controller: 'CdnDeleteSslCtrl',
+    template,
+    controller,
     layout: 'modal',
-    translations: { value: ['.'], format: 'json' },
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
-});
+};

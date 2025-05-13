@@ -65,11 +65,11 @@
             data-header="{{:: 'email_domain_upgrade_step_header_validation' | translate }}"
             data-submit-text="{{ ::'email_domain_upgrade_upgrade_button_label' | translate }}"
             data-cancel-text="{{ ::'email_domain_upgrade_cancel_button_label' | translate }}"
-            data-valid="$ctrl.model.agree"
+            data-valid="($ctrl.model.offer.duration && !$ctrl.model.offer.duration.contracts.length) || $ctrl.model.agree"
             data-on-cancel="$ctrl.goBack()"
             data-on-submit="$ctrl.upgrade()"
             data-editable="!$ctrl.loading.upgrading"
-            data-prevent-next="!$ctrl.model.agree"
+            data-prevent-next="$ctrl.model.offer.duration.contracts.length && !$ctrl.model.agree"
         >
             <div class="row mb-2">
                 <dl

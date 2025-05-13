@@ -12,9 +12,9 @@ import ovhManagerHubEnterpriseBillingSummary from './components/enterprise-billi
 import ovhManagerHubOrderTracking from './components/order-tracking';
 import ovhManagerHubPaymentStatusTile from './components/payment-status-tile';
 import ovhManagerHubProducts from './components/products';
-import ovhManagerHubProductList from './components/product-list';
 import ovhManagerHubSupport from './components/support';
 import ovhManagerHubTile from './components/tile';
+import ovhManagerKycFraudBanner from './components/kyc-fraud-banner';
 
 const moduleName = 'ovhManagerHub';
 
@@ -29,9 +29,9 @@ angular.module(moduleName, [
   ovhManagerHubOrderTracking,
   ovhManagerHubPaymentStatusTile,
   ovhManagerHubProducts,
-  ovhManagerHubProductList,
   ovhManagerHubSupport,
   ovhManagerHubTile,
+  ovhManagerKycFraudBanner,
 ]);
 
 export default moduleName;

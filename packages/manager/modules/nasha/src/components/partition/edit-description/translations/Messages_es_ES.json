@@ -1,0 +1,9 @@
+{
+  "nasha_components_partition_edit_description_forbid": "La descripción no se ha modificado,",
+  "nasha_components_partition_edit_description_label": "Descripción de la partición {{ name }}",
+  "nasha_components_partition_edit_description_primary": "Modificar la descripción",
+  "nasha_components_partition_edit_description_rules": "{{ max }} caracteres máximo",
+  "nasha_components_partition_edit_description_secondary": "Cerrar",
+  "nasha_components_partition_edit_description_success": "La descripción de la partición se ha modificado correctamente.",
+  "nasha_components_partition_edit_description_title": "Modificar la descripción de la partición {{ name }}"
+}

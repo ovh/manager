@@ -1,0 +1,13 @@
+{
+  "deployment_mode_title": "Wybierz tryb wdrożenia",
+  "deployment_mode_description": "Wybierz optymalną konfigurację, aby zapewnić odpowiednią dostępność, odporność i opóźnienia w zależności od specyficznych potrzeb związanych z danymi i zastosowaniami.",
+  "deployment_mode_card_title_region": "Region 1-AZ",
+  "deployment_mode_card_description_region": "Wdrożenia zapewniające odporność infrastruktury i efektywność kosztową w 1 strefie dostępności.",
+  "deployment_mode_card_title_region-3-az": "Region 3-AZ",
+  "deployment_mode_card_description_region-3-az": "Wdrożenia zapewniające odporność infrastruktury i dostępność krytycznych aplikacji w 3 strefach dostępności.",
+  "deployment_mode_card_title_localzone": "Local Zone",
+  "deployment_mode_card_description_localzone": "Wdrażanie aplikacji jak najbliżej użytkowników w celu minimalizacji opóźnień i zapewnienia lokalizacji danych spełniającej wymogi regulacyjne obowiązujące na określonym terytorium.",
+  "deployment_mode_card_beta": "Wersja beta",
+  "deployment_mode_card_beta_price": "Gratis",
+  "deployment_mode_card_coming_soon": "Dostępne wkrótce"
+}

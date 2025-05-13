@@ -1,0 +1,22 @@
+{
+  "name": "@ovh-ux/manager-at-internet-configuration",
+  "version": "1.5.0",
+  "private": true,
+  "description": "OVHcloud manager atInternet common configuration",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/modules/at-internet-configuration"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "main": "./src/index.js",
+  "peerDependencies": {
+    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/ng-at-internet": "^5.9.1",
+    "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.1",
+    "@ovh-ux/ng-shell-tracking": "^0.1.0",
+    "angular": "^1.7.5"
+  }
+}

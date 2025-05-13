@@ -1,143 +1,10 @@
-export const LANGUAGES = {
-  available: [
-    {
-      name: 'Deutsch',
-      key: 'de_DE',
-    },
-    {
-      name: 'English',
-      key: 'en_GB',
-    },
-    {
-      name: 'Español',
-      key: 'es_ES',
-    },
-    {
-      name: 'Français',
-      key: 'fr_FR',
-    },
-    {
-      name: 'Français (Canadien)',
-      key: 'fr_CA',
-    },
-    {
-      name: 'Italiano',
-      key: 'it_IT',
-    },
-    {
-      name: 'Lietuviškai',
-      key: 'lt_LT',
-    },
-    {
-      name: 'Polski',
-      key: 'pl_PL',
-    },
-    {
-      name: 'Português',
-      key: 'pt_PT',
-    },
-    {
-      name: 'Suomi',
-      key: 'fi_FI',
-    },
-  ],
-  defaultLoc: 'fr_FR',
-  fallback: 'fr_FR',
-  preferred: {
-    en: {
-      US: 'GB',
-      CA: 'GB',
-      EU: 'GB',
-    },
-    fr: {
-      US: 'CA',
-      CA: 'CA',
-      EU: 'FR',
+export const URLS = {
+  agreements: {
+    US: {
+      termsOfService: 'https://us.ovhcloud.com/legal/terms-of-service',
+      privacyPolicy: 'https://us.ovhcloud.com/legal/privacy-policy',
     },
   },
-};
-
-export const REDIRECT_URLS = {
-  support: 'https://www.ovh.com/manager/dedicated/index.html#/ticket',
-  billing: 'https://www.ovh.com/manager/dedicated/index.html#/billing/history',
-  billingPayments:
-    'https://www.ovh.com/manager/dedicated/index.html#/billing/payments',
-  billingMean: 'https://www.ovh.com/manager/dedicated/index.html#/billing/mean',
-  billingVouchers:
-    'https://www.ovh.com/manager/dedicated/index.html#/billing/vouchers',
-  billingRefunds:
-    'https://www.ovh.com/manager/dedicated/index.html#/billing/refunds',
-  billingFidelity:
-    'https://www.ovh.com/manager/dedicated/index.html#/billing/fidelity',
-  billingCredits:
-    'https://www.ovh.com/manager/dedicated/index.html#/billing/credits',
-  ordersInProgress:
-    'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=in-progress',
-  orders:
-    'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=all',
-  services:
-    'https://www.ovh.com/manager/dedicated/index.html#/billing/autoRenew',
-  servicesAgreements:
-    'https://www.ovh.com/manager/dedicated/index.html#/useraccount/agreements',
-  paymentMeans:
-    'https://www.ovh.com/manager/dedicated/index.html#/billing/mean',
-  addCreditCard:
-    'https://www.ovh.com/manager/dedicated/index.html#/billing/mean/add?meanType=creditCard',
-  ovhAccount:
-    'https://www.ovh.com/manager/dedicated/index.html#/billing/ovhaccount',
-  debtAccount:
-    'https://www.ovh.com/manager/dedicated/index.html#/billing/statements',
-  userInfos:
-    'https://www.ovh.com/manager/dedicated/index.html#/useraccount/infos',
-  userSecurity:
-    'https://www.ovh.com/manager/dedicated/index.html#/useraccount/security',
-  userEmails:
-    'https://www.ovh.com/manager/dedicated/index.html#/useraccount/emails',
-  userSubscriptions:
-    'https://www.ovh.com/manager/dedicated/index.html#/useraccount/subscriptions',
-  userSSH: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/ssh',
-  userAdvanced:
-    'https://www.ovh.com/manager/dedicated/index.html#/useraccount/advanced',
-  contacts:
-    'https://www.ovh.com/manager/dedicated/index.html#/useraccount/contacts?tab=SERVICES&serviceName={serviceName}',
-  horizon:
-    'https://horizon.cloud.ovh.net/openstackdashboard?username={username}',
-  ipAction:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
-  vRack:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
-  nas:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/nas?landingTo=networks',
-  nasPage:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/nas/nas/nas_{nas}?landingTo=networks',
-  ip:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/ip?landingTo=ip',
-  license:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/license?landingTo=licences',
-  housing:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/housing/{housing}?landingTo=dedicatedServers',
-  dedicatedServers:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration?landingTo=dedicatedServers',
-  dedicatedServersPage:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/server/{server}?landingTo=dedicatedServers',
-  dedicatedCloud:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration?landingTo=dedicatedClouds',
-  dedicatedCloudPage:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/dedicated_cloud/{pcc}?landingTo=dedicatedClouds',
-  cloudDesktop: 'https://www.ovh.com/manager/sunrise/index.html#/deskaas',
-  vps:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration?landingTo=vps',
-  vpsPage:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/vps/{vps}?landingTo=vps',
-  cdnPage:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/cdn/{cdn}?landingTo=networks',
-  renew:
-    'https://www.ovh.com/manager/dedicated/index.html#/billing/autoRenew?selectedType={serviceType}&searchText={serviceName}',
-  licensePage:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/license/{license}/detail',
-};
-
-export const URLS = {
   changeOwner: {
     CZ: 'https://www.ovh.cz/cgi-bin/procedure/procedureChangeOwner.cgi',
     DE: 'https://www.ovh.de/cgi-bin/procedure/procedureChangeOwner.cgi',
@@ -154,6 +21,9 @@ export const URLS = {
     PT: 'https://www.ovh.pt/cgi-bin/procedure/procedureChangeOwner.cgi',
     SN: 'https://www.ovh.sn/cgi-bin/procedure/procedureChangeOwner.cgi',
     TN: 'https://www.ovh.com/tn/cgi-bin/procedure/procedureChangeOwner.cgi',
+  },
+  splitPaymentInformation: {
+    IT: 'https://www1.finanze.gov.it/finanze3/split_payment/public/#/#testata',
   },
   support: {
     CZ: 'http://www.ovh.cz/podpora/',
@@ -188,6 +58,30 @@ export const URLS = {
     PT: 'https://www.ovh.pt/suporte/',
     SN: 'https://www.ovh.sn/support/',
     TN: 'https://www.ovh.com/tn/support/',
+  },
+  support_level: {
+    default: 'https://www.ovhcloud.com/en-gb/support-levels',
+    ASIA: 'https://www.ovhcloud.com/asia/support-levels',
+    IN: 'https://www.ovhcloud.com/en-in/support-levels',
+    AU: 'https://www.ovhcloud.com/en-au/support-levels',
+    CA: 'https://www.ovhcloud.com/en-ca/support-levels',
+    DE: 'https://www.ovhcloud.com/de/support-levels',
+    ES: 'https://www.ovhcloud.com/es-es/support-levels',
+    FR: 'https://www.ovhcloud.com/fr/support-levels',
+    GB: 'https://www.ovhcloud.com/en-gb/support-levels',
+    IE: 'https://www.ovhcloud.com/en-ie/support-levels',
+    IT: 'https://www.ovhcloud.com/it/support-levels',
+    MA: 'https://www.ovhcloud.com/fr-ma/support-levels',
+    NL: 'https://www.ovhcloud.com/nl/support-levels',
+    PL: 'https://www.ovhcloud.com/pl/support-levels',
+    PT: 'https://www.ovhcloud.com/pt/support-levels',
+    QC: 'https://www.ovhcloud.com/fr-ca/support-levels',
+    SG: 'https://www.ovhcloud.com/en-sg/support-levels',
+    SN: 'https://www.ovhcloud.com/fr-sn/support-levels',
+    TN: 'https://www.ovhcloud.com/fr-tn/support-levels',
+    US: 'https://www.ovhcloud.com/en/support-levels',
+    WE: 'https://www.ovhcloud.com/en/support-levels',
+    WS: 'https://www.ovhcloud.com/es/support-levels',
   },
   website_order: {
     vps: {
@@ -398,6 +292,40 @@ export const URLS = {
       SN: 'https://docs.ovh.com/fr/',
       TN: 'https://docs.ovh.com/fr/',
     },
+    cdn: {
+      ASIA:
+        'https://docs.ovh.com/asia/en/hosting/guide_to_using_the_geocache_accelerator_on_a_web_hosting_package/',
+      AU:
+        'https://docs.ovh.com/au/en/hosting/guide_to_using_the_geocache_accelerator_on_a_web_hosting_package/',
+      CA:
+        'https://docs.ovh.com/ca/en/hosting/guide_to_using_the_geocache_accelerator_on_a_web_hosting_package/',
+      DE:
+        'https://docs.ovh.com/de/hosting/verwendung_des_geocache_boosters_auf_einem_webhosting/',
+      ES:
+        'https://docs.ovh.com/es/hosting/guia_de_uso_del_acelerador_geocache_en_un_alojamiento_web/',
+      FR:
+        'https://docs.ovh.com/fr/hosting/accelerer-mon-site-web-en-utilisant-le-cdn/',
+      GB:
+        'https://docs.ovh.com/gb/en/hosting/guide_to_using_the_geocache_accelerator_on_a_web_hosting_package/',
+      IE:
+        'https://docs.ovh.com/ie/en/hosting/guide_to_using_the_geocache_accelerator_on_a_web_hosting_package/',
+      IT:
+        'https://docs.ovh.com/it/hosting/guida_allutilizzo_dellacceleratore_geocache_su_un_hosting_web/',
+      PL:
+        'https://docs.ovh.com/pl/hosting/przewodnik_dotyczacy_uslugi_geocache_na_hostingu_www/',
+      PT:
+        'https://docs.ovh.com/pt/hosting/guia_de_utilizacao_do_acelerador_geocache_num_alojamento_web/',
+      QC:
+        'https://docs.ovh.com/ca/fr/hosting/accelerer-mon-site-web-en-utilisant-le-cdn/',
+      SG:
+        'https://docs.ovh.com/sg/en/hosting/guide_to_using_the_geocache_accelerator_on_a_web_hosting_package/',
+      WE:
+        'https://docs.ovh.com/us/en/hosting/guide_to_using_the_geocache_accelerator_on_a_web_hosting_package/',
+      WS:
+        'https://docs.ovh.com/us/es/hosting/guia_de_uso_del_acelerador_geocache_en_un_alojamiento_web/',
+      IN:
+        'https://docs.ovh.com/asia/en/hosting/guide_to_using_the_geocache_accelerator_on_a_web_hosting_package/',
+    },
     cda: 'storage/',
     ip_failover: {
       CZ: {
@@ -521,6 +449,29 @@ export const URLS = {
       FR:
         'https://www.ovh.com/fr/publiccloud/guides/g1852.charger_les_variables_denvironnement_openstack',
     },
+    storage: {
+      default: 'https://docs.ovh.com/gb/en/storage/',
+      ASIA: 'https://docs.ovh.com/asia/en/storage/',
+      AU: 'https://docs.ovh.com/au/en/storage/',
+      CA: 'https://docs.ovh.com/ca/en/storage/',
+      DE: 'https://docs.ovh.com/de/storage/',
+      ES: 'https://docs.ovh.com/es/storage/',
+      FR: 'https://docs.ovh.com/fr/storage/',
+      GB: 'https://docs.ovh.com/gb/en/storage/',
+      IE: 'https://docs.ovh.com/ie/en/storage/',
+      IT: 'https://docs.ovh.com/it/storage/',
+      MA: 'https://docs.ovh.com/ma/fr/storage/',
+      NL: 'https://docs.ovh.com/nl/storage/',
+      PL: 'https://docs.ovh.com/pl/storage/',
+      PT: 'https://docs.ovh.com/pt/storage/',
+      QC: 'https://docs.ovh.com/ca/fr/storage/',
+      SG: 'https://docs.ovh.com/sg/en/storage/',
+      SN: 'https://docs.ovh.com/fr/storage/',
+      TN: 'https://docs.ovh.com/tn/fr/storage/',
+      WE: 'https://docs.ovh.com/en/storage/',
+      WS: 'https://docs.ovh.com/es/storage/',
+      IN: 'https://docs.ovh.com/asia/en/storage/',
+    },
     xauthtoken: {
       FR: 'https://www.ovh.com/fr/publiccloud/guides/g1872.gestion_des_tokens',
     },
@@ -568,41 +519,6 @@ export const URLS = {
   keyGenHelp: 'https://www.ovh.com/fr/g1769.creation_des_cles_ssh',
 };
 
-export const MANAGER_URLS = {
-  CA: {
-    dedicated: 'https://ca.ovh.com/manager/dedicated',
-    publicCloud: 'https://ca.ovh.com/manager/public-cloud',
-    repsac: 'https://ca.ovh.com/manager/cloud/repsac',
-    cloud: 'https://ca.ovh.com/manager/cloud/repsac',
-    sunrise: 'https://ca.ovh.com/manager/sunrise',
-  },
-  EU: {
-    dedicated: 'https://www.ovh.com/manager/dedicated',
-    publicCloud: 'https://www.ovh.com/manager/public-cloud',
-    repsac: 'https://www.ovh.com/manager/cloud/repsac',
-    cloud: 'https://www.ovh.com/manager/cloud/repsac',
-    sunrise: 'https://www.ovh.com/manager/sunrise',
-    telecom: 'https://www.ovhtelecom.fr/manager',
-    web: 'https://www.ovh.com/manager/web',
-  },
-  US: {
-    dedicated: 'https://us.ovhcloud.com/manager/dedicated',
-    publicCloud: 'https://us.ovhcloud.com/manager/public-cloud',
-    repsac: 'https://us.ovhcloud.com/manager/cloud/repsac',
-    cloud: 'https://us.ovhcloud.com/manager/cloud/repsac',
-  },
-};
-
-export const HOSTNAME_REGIONS = {
-  'www.ovh.com': 'EU',
-  'ca.ovh.com': 'CA',
-  'us.ovhcloud.com': 'US',
-};
-
 export default {
-  HOSTNAME_REGIONS,
-  LANGUAGES,
-  MANAGER_URLS,
-  REDIRECT_URLS,
   URLS,
 };

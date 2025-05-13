@@ -1,0 +1,307 @@
+<div>
+    <oui-back-button data-ui-sref="dbaas-logs.detail.streams"
+        ><span
+            data-ng-bind="::(ctrl.isEdit ? 'logs_streams_update_title' : 'logs_streams_add_data_feed') | translate"
+        ></span
+    ></oui-back-button>
+
+    <div><oui-spinner data-ng-show="ctrl.stream.loading"></oui-spinner></div>
+    <form
+        novalidate
+        name="ctrl.form"
+        data-ng-hide="ctrl.stream.loading"
+        data-ng-submit="ctrl.submit()"
+    >
+        <div ng-if="ctrl.isEdit" class="mb-5">
+            <span
+                data-translate="logs_streams_update_description"
+                data-translate-values="{name:ctrl.stream.data.title}"
+            ></span>
+        </div>
+
+        <oui-field
+            label="{{:: 'logs_streams_col_title' | translate }}"
+            size="xl"
+        >
+            <input
+                type="text"
+                id="stream_name"
+                name="stream_name"
+                class="oui-input"
+                data-ng-model="ctrl.stream.data.title"
+                cuc-autofocus
+                required
+            />
+        </oui-field>
+
+        <oui-field
+            label="{{:: 'logs_streams_col_description' | translate }}"
+            size="xl"
+        >
+            <textarea
+                id="stream_description"
+                name="stream_description"
+                class="oui-textarea"
+                data-ng-model="ctrl.stream.data.description"
+                required
+            >
+            </textarea>
+        </oui-field>
+        <oui-field>
+            <oui-checkbox
+                id="stream_enable_websocket"
+                name="stream_enable_websocket"
+                data-description="{{:: 'logs_streams_enable_websocket_description' | translate}}"
+                data-model="ctrl.stream.data.webSocketEnabled"
+                ><span data-translate="logs_streams_enable_websocket"></span>
+            </oui-checkbox>
+        </oui-field>
+        <oui-field>
+            <oui-checkbox
+                id="stream_enable_indexing"
+                name="stream_enable_indexing"
+                data-description="{{ ctrl.getIndexingPrices() }}"
+                data-model="ctrl.stream.data.indexingEnabled"
+                ><span data-translate="logs_streams_enable_indexing"></span>
+            </oui-checkbox>
+        </oui-field>
+        <div data-ng-if="ctrl.stream.data.indexingEnabled">
+            <oui-field
+                label="{{:: 'logs_streams_select_indexing_retention' | translate }}"
+                size="xl"
+                data-ng-if="!ctrl.isEdit"
+            >
+                <div class="oui-select">
+                    <select
+                        class="oui-select__input"
+                        name="stream_indexing_retention"
+                        id="stream_indexing_retention"
+                        data-ng-model="ctrl.stream.data.retentionId"
+                        data-ng-options="retention.retentionId as retention.label for retention in ctrl.availableIndexingRetentions"
+                        required
+                    >
+                    </select>
+                    <i
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></i>
+                </div>
+            </oui-field>
+            <oui-field
+                data-label="{{ ::'logs_streams_indexing_max_size' | translate }}"
+                size="xl"
+                help-text="{{ ctrl.getIndexingMaxSizeText() }}"
+            >
+                <oui-numeric
+                    id="stream_indexing_max_size"
+                    name="stream_indexing_max_size"
+                    data-model="ctrl.stream.data.indexingMaxSize"
+                >
+                </oui-numeric>
+            </oui-field>
+            <div data-ng-if="ctrl.stream.data.indexingMaxSize>=1">
+                <oui-field
+                    label="{{:: 'logs_streams_notification_title' | translate }}"
+                >
+                    <oui-checkbox
+                        name="stream_alert_notification"
+                        id="stream_alert_notification"
+                        data-model="ctrl.stream.data.indexingNotifyEnabled"
+                        ><span
+                            data-ng-bind="ctrl.getIndexingNotificationText()"
+                        ></span>
+                    </oui-checkbox>
+                </oui-field>
+                <oui-field
+                    label="{{:: 'logs_streams_pause_indexing_title' | translate }}"
+                >
+                    <oui-checkbox
+                        name="stream_pause_indexing"
+                        id="stream_pause_indexing"
+                        data-model="ctrl.stream.data.pauseIndexingOnMaxSize"
+                        ><span
+                            data-ng-bind="ctrl.getIndexingPauseText()"
+                        ></span>
+                    </oui-checkbox>
+                </oui-field>
+            </div>
+        </div>
+
+        <oui-field>
+            <oui-checkbox
+                id="stream_enable_compression"
+                name="stream_enable_compression"
+                data-description="{{ ctrl.getColdStoragePrice() }}"
+                data-model="ctrl.stream.data.coldStorageEnabled"
+                ><span data-translate="logs_streams_enable_archieve"></span>
+            </oui-checkbox>
+        </oui-field>
+
+        <div data-ng-if="ctrl.stream.data.coldStorageEnabled">
+            <oui-field
+                label="{{:: 'logs_streams_select_archieve_algorithm' | translate }}"
+                size="xl"
+            >
+                <div class="oui-select">
+                    <select
+                        class="oui-select__input"
+                        name="stream_archive_algorithm"
+                        id="stream_archive_algorithm"
+                        data-ng-model="ctrl.stream.data.coldStorageCompression"
+                        data-ng-options="algo.value as algo.name for algo in ctrl.compressionAlgorithms"
+                    >
+                    </select>
+                    <i
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></i>
+                </div>
+            </oui-field>
+
+            <oui-field
+                label="{{:: 'logs_streams_select_archieve_duration' | translate }}"
+                size="xl"
+            >
+                <div class="oui-select">
+                    <select
+                        class="oui-select__input"
+                        name="stream_archive_duration"
+                        id="stream_archive_duration"
+                        data-ng-model="ctrl.stream.data.coldStorageRetention"
+                        data-ng-options="duration.value as duration.name for duration in ctrl.storageDurations"
+                    >
+                    </select>
+                    <i
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></i>
+                </div>
+            </oui-field>
+
+            <oui-field
+                label="{{:: 'logs_streams_select_archieve_content' | translate }}"
+                size="xl"
+            >
+                <div class="oui-select">
+                    <select
+                        class="oui-select__input"
+                        name="stream_archive_content"
+                        id="stream_archive_content"
+                        data-ng-model="ctrl.stream.data.coldStorageContent"
+                        data-ng-options="content.value as content.name for content in ctrl.storageContents"
+                    >
+                    </select>
+                    <i
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></i>
+                </div>
+            </oui-field>
+
+            <oui-field
+                label="{{:: 'logs_streams_notification_title' | translate }}"
+            >
+                <oui-checkbox
+                    name="stream_notification"
+                    id="stream_notification"
+                    data-model="ctrl.stream.data.coldStorageNotifyEnabled"
+                    ><span
+                        data-translate="logs_streams_notification_detail"
+                    ></span>
+                </oui-checkbox>
+            </oui-field>
+
+            <oui-field
+                label="{{:: 'logs_streams_encryption_title' | translate }}"
+            >
+                <oui-checkbox
+                    name="stream_encryption"
+                    id="stream_encryption"
+                    data-model="ctrl.encryptionEnabled"
+                    disabled="ctrl.encryptionKeys.data.length === 0"
+                    data-on-change="ctrl.updateEncryption(modelValue)"
+                    data-description="ctrl.getEncryptionKeyLink()"
+                >
+                    <oui-checkbox-label
+                        data-translate="logs_streams_encryption_detail"
+                    ></oui-checkbox-label>
+                    <oui-checkbox-description>
+                        <span
+                            data-translate="logs_encryption_keys_goto_1"
+                        ></span>
+                        <a
+                            target="_blank"
+                            ui-sref="dbaas-logs.detail.encryption-keys.home({serviceName: ctrl.serviceName})"
+                            class="oui-link oui-link_icon"
+                            data-translate="logs_encryption_keys_goto_2"
+                        >
+                        </a>
+                    </oui-checkbox-description>
+                </oui-checkbox>
+
+                <div
+                    id="encryption_keys"
+                    class="ml-5 mt-3"
+                    data-ng-show="ctrl.encryptionEnabled && !ctrl.encryptionKeys.loading"
+                >
+                    <div
+                        class="oui-message oui-message_no-icon w-50 mb-3"
+                        data-ng-if="ctrl.encryptionKeys.data.length > ctrl.LogsConstants.MAX_ENCRYPTION_KEY_PER_STREAM"
+                        data-ng-class="{
+                            'oui-message_info' : ctrl.stream.data.encryptionKeysIds.length <= ctrl.LogsConstants.MAX_ENCRYPTION_KEY_PER_STREAM,
+                            'oui-message_error' : ctrl.stream.data.encryptionKeysIds.length > ctrl.LogsConstants.MAX_ENCRYPTION_KEY_PER_STREAM
+                        }"
+                    >
+                        <p class="oui-message__body">
+                            {{ 'logs_streams_encryption_max_keys' |
+                            translate:{maxKeys:
+                            ctrl.LogsConstants.MAX_ENCRYPTION_KEY_PER_STREAM} }}
+                            (
+                            <strong
+                                >{{ ctrl.stream.data.encryptionKeysIds.length }}
+                                / {{
+                                ctrl.LogsConstants.MAX_ENCRYPTION_KEY_PER_STREAM
+                                }}</strong
+                            >
+                            )
+                        </p>
+                    </div>
+
+                    <div
+                        data-ng-repeat="encryptionKey in ctrl.encryptionKeys.data track by $index"
+                    >
+                        <oui-field>
+                            <oui-checkbox
+                                name="{{ encryptionKey.encryptionKeyId }}"
+                                id="{{ encryptionKey.encryptionKeyId }}"
+                                data-model="ctrl.stream.data.encryptionKeysIds.includes(encryptionKey.encryptionKeyId)"
+                                data-description="{{ encryptionKey.fingerprint }}"
+                                data-on-change="ctrl.updateSelectedEncryptionKeys(modelValue, encryptionKey.encryptionKeyId)"
+                            >
+                                <i
+                                    class="fa fa-info-circle"
+                                    data-ng-if="encryptionKey.isEditable === false"
+                                    data-oui-tooltip="{{:: 'logs_encryption_keys_recovery_key_tooltip' | translate }}"
+                                    data-oui-tooltip-placement="top"
+                                ></i>
+                                <span>
+                                    <strong>{{ encryptionKey.title }}</strong>
+                                    - {{ encryptionKey.uid }}
+                                </span>
+                            </oui-checkbox>
+                        </oui-field>
+                    </div>
+                </div>
+            </oui-field>
+        </div>
+
+        <oui-form-actions
+            data-submit-text="{{ 'logs_save' | translate }}"
+            cancel-text="{{ 'logs_cancel' | translate }}"
+            data-on-cancel="ctrl.$state.go('dbaas-logs.detail.streams')"
+            data-ng-hide="ctrl.saving.loading"
+        >
+        </oui-form-actions>
+        <oui-spinner data-ng-show="ctrl.saving.loading"></oui-spinner>
+    </form>
+</div>

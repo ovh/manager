@@ -1,24 +1,22 @@
 <section class="telecom-sms-dashboard">
-    <!-- LOADING -->
-    <div class="text-center" data-ng-if="SmsDashboardCtrl.loading.init">
-        <oui-spinner></oui-spinner>
-    </div>
-
-    <div class="row d-md-flex" data-ng-if="!SmsDashboardCtrl.loading.init">
+    <div class="row d-md-flex">
         <div class="col-md-4 mb-3">
-            <div class="oui-tile h-100">
+            <div class="oui-tile">
                 <h3
-                    class="oui-header_3 oui-tile__title"
+                    class="oui-tile__title oui-heading_3"
                     data-translate="sms_actions"
                 ></h3>
                 <div class="oui-tile__body">
                     <div
                         class="oui-tile__item oui-tile__item_button"
-                        data-ng-repeat="action in SmsDashboardCtrl.actions track by $index"
+                        data-ng-repeat="action in $ctrl.actions track by $index"
                     >
                         <a
-                            class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                            class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                             data-ui-sref="{{ action.sref }}"
+                            data-track-on="click"
+                            data-track-name="{{:: action.hit }}"
+                            data-track-type="action"
                         >
                             <span data-ng-bind="action.text"></span>
                             <i
@@ -30,184 +28,192 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mb-3">
-            <div class="oui-tile h-100">
-                <h3
-                    class="oui-header_3 oui-tile__title"
-                    data-translate="sms_consumed"
-                ></h3>
-                <div class="oui-tile__body">
-                    <ul class="list-unstyled">
-                        <li class="oui-tile__item">
-                            <div class="oui-tile__definition">
-                                <strong
-                                    class="oui-tile__term d-block"
-                                    data-translate="sms_consumed_credit_left"
-                                >
-                                </strong>
-                                <span
-                                    class="oui-tile__description"
-                                    data-ng-bind="SmsDashboardCtrl.service.creditsLeft"
-                                >
-                                </span>
-                            </div>
-                        </li>
-                        <li class="oui-tile__item">
-                            <div class="oui-tile__definition">
-                                <strong
-                                    class="oui-tile__term d-block"
-                                    data-translate="sms_consumed_automatic_recredit_amount"
-                                >
-                                </strong>
-                                <span
-                                    class="oui-tile__description text-success"
-                                    data-ng-if="SmsDashboardCtrl.service.automaticRecreditAmount"
-                                    data-translate="sms_consumed_automatic_recredit_amount_activate"
-                                >
-                                </span>
-                                <span
-                                    class="oui-tile__description text-danger"
-                                    data-ng-if="!SmsDashboardCtrl.service.automaticRecreditAmount"
-                                    data-translate="sms_consumed_automatic_recredit_amount_disactivate"
-                                >
-                                </span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <div class="oui-tile h-100">
-                <h3
-                    class="oui-header_3 oui-tile__title"
-                    data-translate="sms_statistics_title"
-                ></h3>
-                <div
-                    class="oui-tile__body text-center"
-                    data-ng-show="SmsDashboardCtrl.loading.stats"
-                >
-                    <oui-spinner></oui-spinner>
-                </div>
-                <div
-                    class="oui-tile__body"
-                    data-ng-hide="SmsDashboardCtrl.loading.stats"
-                >
-                    <div class="oui-tile__item">
-                        <div class="oui-tile__definition">
-                            <div class="form-group">
-                                <select
-                                    name="statsMonths"
-                                    class="form-control"
-                                    id="statsMonths"
-                                    data-ng-model="SmsDashboardCtrl.stats.filter.month"
-                                    data-ng-change="SmsDashboardCtrl.getStats()"
-                                    data-ng-disabled="SmsDashboardCtrl.loading.stats"
-                                >
-                                    <option
-                                        value=""
-                                        data-translate="sms_statistics_filter_month"
-                                    >
-                                    </option>
-                                    <option
-                                        data-ng-repeat="month in SmsDashboardCtrl.stats.label.months track by $index"
-                                        data-ng-value="month.index"
-                                        data-ng-bind="month.name + (month.fromYear < SmsDashboardCtrl.stats.moment.year ? ' ('  + month.fromYear + ')' : '')"
-                                    >
-                                    </option>
-                                </select>
-                            </div>
+        <div class="col-md-8 mb-3" data-ng-if="!$ctrl.isSmppAccount">
+            <oui-tile
+                data-heading="{{ 'sms_statistics' | translate }}"
+                data-loading="$ctrl.loadingStats"
+            >
+                <oui-tile-definition>
+                    <oui-tile-description
+                        class="d-md-flex align-items-md-center justify-content-md-between mb-4 mt-3"
+                    >
+                        <oui-radio
+                            data-ng-repeat="statisticFilter in $ctrl.statisticsFilters track by $index"
+                            name="{{ 'radio_' + statisticFilter.value }}"
+                            on-change="$ctrl.getStatistics()"
+                            value="statisticFilter"
+                            model="$ctrl.statisticFilter"
+                            inline
+                        >
+                            <span data-ng-bind="statisticFilter.label"></span>
+                        </oui-radio>
+                    </oui-tile-description>
+                </oui-tile-definition>
 
-                            <div class="form-group">
-                                <select
-                                    name="statsSender"
-                                    class="form-control"
-                                    id="statsSender"
-                                    data-ng-options="sender for sender in SmsDashboardCtrl.stats.label.senders | orderBy"
-                                    data-ng-model="SmsDashboardCtrl.stats.filter.sender"
-                                    data-ng-change="SmsDashboardCtrl.getStats(SmsDashboardCtrl.stats.filter.sender)"
-                                    data-ng-disabled="SmsDashboardCtrl.loading.stats"
-                                >
-                                    <option
-                                        value=""
-                                        data-translate="sms_statistics_filter_sender"
+                <oui-tile-description>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <dl
+                                class="oui-description oui-description_horizontal"
+                            >
+                                <dt
+                                    data-translate="sms_statistics_campaign_number"
+                                ></dt>
+                                <dd
+                                    class="mr-5 oui-heading_4 font-weight-bold"
+                                    data-ng-bind="$ctrl.statistics.batchesCount"
+                                ></dd>
+                            </dl>
+                        </div>
+                        <div class="col-sm-4">
+                            <dl
+                                class="oui-description oui-description_horizontal"
+                            >
+                                <dt
+                                    data-translate="sms_statistics_sent_number"
+                                ></dt>
+                                <dd
+                                    class="oui-heading_4 font-weight-bold"
+                                    data-ng-bind="$ctrl.statistics.sent"
+                                ></dd>
+                                <dt
+                                    data-translate="sms_statistics_delivered_number"
+                                ></dt>
+                                <dd
+                                    class="oui-heading_4 font-weight-bold"
+                                    data-ng-bind="$ctrl.statistics.delivered"
+                                ></dd>
+                                <dt
+                                    data-translate="sms_statistics_stop_subscribe_number"
+                                ></dt>
+                                <dd
+                                    class="oui-heading_4 font-weight-bold"
+                                    data-ng-bind="$ctrl.statistics.stoplisted"
+                                ></dd>
+                            </dl>
+                        </div>
+                        <div class="col-sm-4">
+                            <dl class="oui-description">
+                                <dt
+                                    class="ml-5"
+                                    data-translate="sms_consumed_credit_balance"
+                                ></dt>
+                                <dd
+                                    class="ml-5 oui-heading_4 font-weight-bold"
+                                    data-ng-bind="$ctrl.service.creditsLeft"
+                                ></dd>
+                                <dd class="ml-5">
+                                    <a
+                                        class="oui-link align-middle"
+                                        href="{{:: $ctrl.getReloadCreditLink() }}"
+                                        data-track-on="click"
+                                        data-track-name="{{:: $ctrl.getTrackName() }}"
+                                        data-track-type="action"
                                     >
-                                    </option>
-                                </select>
-                            </div>
+                                        <span
+                                            data-translate="sms_statictics_credit_reload"
+                                        ></span>
+                                        <span
+                                            class="align-middle oui-icon oui-icon-arrow-right"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </a>
+                                </dd>
+                            </dl>
                         </div>
                     </div>
-                </div>
-                <div
-                    class="oui-tile__body"
-                    data-ng-hide="SmsDashboardCtrl.loading.stats"
-                >
-                    <ul class="list-unstyled">
-                        <li class="oui-tile__item">
-                            <div class="oui-tile__definition">
-                                <strong
-                                    class="oui-tile__term d-block"
-                                    data-ng-pluralize
-                                    data-count="SmsDashboardCtrl.stats.data.outgoing"
-                                    data-when="{
-                                            '0': ('sms_statistics_outgoing' | translate),
-                                            'one': ('sms_statistics_outgoing' | translate),
-                                            'other': ('sms_statistics_outgoing_plural' | translate)
-                                        }"
+                </oui-tile-description>
+            </oui-tile>
+        </div>
+        <div class="col-md-4 mb-3" data-ng-if="$ctrl.isSmppAccount">
+            <ovh-manager-sms-service-status
+                data-loading="$ctrl.smppLoading"
+                data-service-name="$ctrl.serviceName"
+                data-status="$ctrl.smppSettings.status"
+                data-is-smpp-account="$ctrl.isSmppAccount"
+                data-tracking-prefix="$ctrl.DASHBOARD_TRACKING_PREFIX + '::'"
+            >
+            </ovh-manager-sms-service-status>
+
+            <oui-tile
+                class="mt-3"
+                data-heading="{{ 'sms_statistics' | translate }}"
+                data-loading="$ctrl.loadingStats"
+            >
+                <oui-tile-definition>
+                    <oui-tile-description class="mb-4 mt-3">
+                        <oui-radio
+                            data-ng-repeat="statisticFilter in $ctrl.statisticsFilters track by $index"
+                            name="{{ 'radio_' + statisticFilter.value }}"
+                            on-change="$ctrl.getStatistics()"
+                            value="statisticFilter"
+                            model="$ctrl.statisticFilter"
+                        >
+                            <span data-ng-bind="statisticFilter.label"></span>
+                        </oui-radio>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <oui-tile-description>
+                    <dl class="oui-description">
+                        <dt data-translate="sms_statistics_sent_number"></dt>
+                        <dd
+                            class="oui-heading_4 font-weight-bold"
+                            data-ng-bind="$ctrl.statistics.sent"
+                        ></dd>
+                        <dt
+                            data-translate="sms_statistics_delivered_number"
+                        ></dt>
+                        <dd
+                            class="oui-heading_4 font-weight-bold"
+                            data-ng-bind="$ctrl.statistics.delivered"
+                        ></dd>
+                        <dt
+                            data-translate="sms_statistics_stop_subscribe_number"
+                        ></dt>
+                        <dd
+                            class="oui-heading_4 font-weight-bold"
+                            data-ng-bind="$ctrl.statistics.stoplisted"
+                        ></dd>
+                        <dt data-translate="sms_consumed_credit_balance"></dt>
+                        <dd class="oui-heading_4">
+                            <span
+                                class="font-weight-bold"
+                                data-ng-bind="$ctrl.service.creditsLeft"
+                            ></span>
+                            <oui-action-menu
+                                compact
+                                class="float-right"
+                                placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="$ctrl.onGoToCreditOrder()"
                                 >
-                                </strong>
-                                <span
-                                    class="oui-tile__description"
-                                    data-ng-bind="SmsDashboardCtrl.stats.data.outgoing"
+                                    <span
+                                        data-translate="sms_statictics_credit_reload"
+                                    ></span>
+                                </oui-action-menu-item>
+                                <oui-action-menu-item
+                                    data-on-click="$ctrl.onGoToCreditTransfer()"
                                 >
-                                </span>
-                            </div>
-                        </li>
-                        <li class="oui-tile__item">
-                            <div class="oui-tile__definition">
-                                <strong
-                                    class="oui-tile__term d-block"
-                                    data-ng-pluralize
-                                    data-count="SmsDashboardCtrl.stats.data.incoming"
-                                    data-when="{
-                                            '0': ('sms_statistics_incoming' | translate),
-                                            'one': ('sms_statistics_incoming' | translate),
-                                            'other': ('sms_statistics_incoming_plural' | translate)
-                                        }"
-                                >
-                                </strong>
-                                <span
-                                    class="oui-tile__description"
-                                    data-ng-bind="SmsDashboardCtrl.stats.data.incoming"
-                                >
-                                </span>
-                            </div>
-                        </li>
-                        <li class="oui-tile__item">
-                            <div class="oui-tile__definition">
-                                <strong
-                                    class="oui-tile__term d-block"
-                                    data-ng-pluralize
-                                    data-count="SmsDashboardCtrl.stats.data.jobs"
-                                    data-when="{
-                                            '0': ('sms_statistics_planned' | translate),
-                                            'one': ('sms_statistics_planned' | translate),
-                                            'other': ('sms_statistics_planned_plural' | translate)
-                                        }"
-                                >
-                                </strong>
-                                <span
-                                    class="oui-tile__description"
-                                    data-ng-bind="SmsDashboardCtrl.stats.data.jobs"
-                                >
-                                </span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                                    <span
+                                        data-translate="sms_actions_credit_transfer"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </dd>
+                    </dl>
+                </oui-tile-description>
+            </oui-tile>
+        </div>
+        <div class="col-md-4 mb-3" data-ng-if="$ctrl.isSmppAccount">
+            <ovh-manager-sms-smpp-settings
+                data-loading="$ctrl.smppLoading"
+                data-service-name="$ctrl.serviceName"
+                data-smpp-settings="$ctrl.smppSettings"
+            >
+            </ovh-manager-sms-smpp-settings>
         </div>
     </div>
-    <!-- /.row -->
 </section>
 <!-- /.telecom-sms-dashboard -->

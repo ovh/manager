@@ -1,6 +1,6 @@
 # manager-core
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-core)](https://www.npmjs.com/package/@ovh-ux/manager-core) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-core)](https://npmjs.com/package/@ovh-ux/manager-core) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/core)](https://npmjs.com/package/@ovh-ux/manager-core?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/core)](https://npmjs.com/package/@ovh-ux/manager-core?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-core)](https://www.npmjs.com/package/@ovh-ux/manager-core) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-core)](https://npmjs.com/package/@ovh-ux/manager-core) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/core)](https://npmjs.com/package/@ovh-ux/manager-core?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/core)](https://npmjs.com/package/@ovh-ux/manager-core?activeTab=dependencies)
 
 ## Install
 
@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-core
 import angular from 'angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
 
-angular
-  .module('myApp', [
-    ovhManagerCore,
-  ]);
+angular.module('myApp', [ovhManagerCore]);
 ```
 
 ## Build

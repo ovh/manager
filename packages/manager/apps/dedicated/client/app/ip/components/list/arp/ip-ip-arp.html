@@ -1,0 +1,43 @@
+<div data-ng-controller="IpViewArpCtrl">
+    <div
+        data-wizard
+        data-wizard-hide-cancel-button="true"
+        data-wizard-confirm-button-text=":: 'wizard_close' | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="resetAction"
+        data-wizard-title=":: 'ip_table_manage_view_arp' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="!loading">
+            <div data-ng-show="!loading">
+                <dl class="dl-horizontal">
+                    <dt data-translate="ip_arp_status"></dt>
+                    <dd
+                        data-ng-bind="details.state ? ('ip_arp_status_' + details.state.toUpperCase() | translate) : '/'"
+                    ></dd>
+                    <dt data-translate="ip_arp_blockedsince"></dt>
+                    <dd
+                        data-ng-bind="details.blockedSince || '/' | date:'medium'"
+                    ></dd>
+                    <dt data-translate="ip_arp_remainingtime"></dt>
+                    <dd data-ng-bind="details.time || '0'"></dd>
+                </dl>
+                <pre
+                    class="pre-scrollable"
+                    data-ng-if="details.logs"
+                    data-ng-bind="details.logs"
+                ></pre>
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    data-ng-if="details.state === 'blocked'"
+                    data-ng-click="unblockArp()"
+                    data-translate="ip_arp_unblock"
+                ></button>
+            </div>
+
+            <div class="text-center" data-ng-show="loading">
+                <oui-spinner></oui-spinner>
+            </div>
+        </div>
+    </div>
+</div>

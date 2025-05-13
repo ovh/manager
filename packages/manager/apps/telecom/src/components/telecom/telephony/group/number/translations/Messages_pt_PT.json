@@ -26,5 +26,13 @@
   "telephony_number_feature_svi_bad_url_ftp_format": "Le format de l'url ftp doit être un répertoire (terminé par un /). Ex: ftp://www.mondomaine.com/mondossier/.",
   "telephony_number_feature_svi_bad_url_mailto_format": "Le format de l'adresse email n'est pas valide. Ex: exemple@mondomaine.com.",
   "telephony_number_feature_svi_save_error": "Oups ! Une erreur est survenue lors de la modification des paramètres de votre serveur vocal.",
-  "telephony_number_footer_question": "Sauvegarder ma configuration ?"
+  "telephony_number_footer_question": "Sauvegarder ma configuration ?",
+  "telephony_number_action_layout": "Alterar a disposição da afixação",
+  "telephony_number_action_layout_vertical": "Visualização vertical",
+  "telephony_number_action_layout_horizontal": "Visualização horizontal",
+  "telephony_number_display_options": "Opções de apresentação",
+  "telephony_number_action_reorder": "Reordenar as etapas e ações",
+  "telephony_number_action_show_all_actions": "Mostrar todas as ações",
+  "telephony_number_action_hide_all_actions": "Ocultar todas as ações",
+  "telephony_number_action_reorder_confirm": "Validar as modificações"
 }

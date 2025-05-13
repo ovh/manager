@@ -1,0 +1,9 @@
+{
+  "zimbra_domains_datagrid_cname_label": "CNAME",
+  "zimbra_domains_datagrid_cname_tooltip_title": "Vérification du domaine",
+  "zimbra_domains_datagrid_cname_tooltip": "Pour confirmer que vous êtes bien le titulaire de ce domaine, veuillez créer un enregistrement CNAME: <br/><br/><strong>{{cname}}</strong> vers <strong>ovh.com</strong><br/><br/>Vous avez 48 heures pour compléter cette étape.",
+  "zimbra_domains_tooltip_need_organization": "Veuillez d'abord configurer une organisation",
+  "zimbra_domains_delete_modal_content": "Êtes-vous sûr(e) de vouloir supprimer le domaine du serveur Zimbra ?",
+  "zimbra_domains_delete_modal_message_disabled_part1": "Au moins un compte email est encore associé à ce nom de domaine.",
+  "zimbra_domains_delete_modal_message_disabled_part2": "Veuillez supprimer les comptes emails associés avant de supprimer votre nom de domaine."
+}

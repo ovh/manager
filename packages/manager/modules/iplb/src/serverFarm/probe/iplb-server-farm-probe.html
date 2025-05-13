@@ -6,11 +6,11 @@
 >
     <oui-modal
         data-primary-label="{{ ::'iplb_modal_ok' | translate }}"
-        data-title="{{ ::'iplb_farm_edit_probe_title' | translate }}"
         data-secondary-action="IpLoadBalancerServerFarmProbeEditCtrl.dismiss()"
         data-secondary-label="{{ ::'iplb_cancel' | translate }}"
         data-on-dismiss="IpLoadBalancerServerFarmProbeEditCtrl.dismiss()"
         data-loading="IpLoadBalancerCipherChangeCtrl.isModalLoading()"
+        data-heading="{{ ::'iplb_farm_edit_probe_title' | translate }}"
     >
         <oui-field
             data-label="{{ ::'iplb_farm_edit_probe_url' | translate }}"
@@ -54,10 +54,11 @@
                 data-model="IpLoadBalancerServerFarmProbeEditCtrl.farmProbe.method"
             >
                 <oui-radio
-                    data-text="{{ ::('iplb_farm_edit_probe_method_' + method) | translate }}"
                     data-value="method"
                     data-ng-repeat="method in IpLoadBalancerServerFarmProbeEditCtrl.methods track by $index"
-                >
+                    ><span
+                        data-ng-bind="::('iplb_farm_edit_probe_method_' + method) | translate"
+                    ></span>
                 </oui-radio>
             </oui-radio-toggle-group>
         </oui-field>
@@ -70,11 +71,12 @@
                 data-model="IpLoadBalancerServerFarmProbeEditCtrl.farmProbe.match"
             >
                 <oui-radio
-                    data-text="{{ ::('iplb_farm_edit_probe_match_' + match) | translate }}"
                     data-value="match"
                     data-ng-repeat="match in IpLoadBalancerServerFarmProbeEditCtrl.getMatches() track by $index"
                     data-ng-if="!(IpLoadBalancerServerFarmProbeEditCtrl.farmProbe.type !== 'http' && match === 'status')"
-                >
+                    ><span
+                        data-ng-bind="::('iplb_farm_edit_probe_match_' + match) | translate"
+                    ></span>
                 </oui-radio>
             </oui-radio-toggle-group>
         </oui-field>
@@ -108,10 +110,9 @@
             data-ng-if="IpLoadBalancerServerFarmProbeEditCtrl.isFieldVisible('negate')"
         >
             <oui-checkbox
-                data-text="{{ ::'iplb_farm_edit_probe_negate' | translate }}"
                 name="negate"
                 data-model="IpLoadBalancerServerFarmProbeEditCtrl.farmProbe.negate"
-            >
+                ><span data-translate="iplb_farm_edit_probe_negate"></span>
             </oui-checkbox>
         </oui-field>
     </oui-modal>

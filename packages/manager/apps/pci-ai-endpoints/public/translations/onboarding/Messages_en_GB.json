@@ -1,0 +1,16 @@
+{
+  "ai_endpoints_title": "Improve your applications with AI Endpoints",
+  "ai_endpoints_description": "Designed for simplicity, our platform allows developers of any skill level to enhance their applications with cutting-edge AI APIs—no AI expertise required.",
+  "ai_endpoints_more": "Find out more",
+  "ai_endpoints_descriptionBis": "<strong>No AI expertise</strong> or dedicated infrastructure is needed to use these APIs. They run on a serverless platform that provides access <strong>to advanced AI models</strong>, including language models (LLM), natural language processing, translation, voice recognition, image recognition, and much more. Developers can choose from a range of models, particularly <strong>open-source options like Mistral AI, Llama and Stable Diffusion.</strong>",
+  "ai_endpoints_goToAiEndpoint": "AI Endpoints",
+  "ai_endpoints_guideCategory": "Guide",
+  "ai_endpoints_guide1Title": "Getting started with AI Endpoints",
+  "ai_endpoints_guide1Description": "Discover AI Endpoints, OVHcloud’s secure serverless platform designed for developers, offering access to top AI models via user-friendly APIs. No AI expertise required.",
+  "ai_endpoints_guide2Title": "Features, capabilities, and limitations",
+  "ai_endpoints_guide2Description": "Discover the current features, capabilities, and limitations of AI Endpoints",
+  "ai_endpoints_tutoCategory": "Tutorials",
+  "ai_endpoints_guide3Title": "Use cases with AI Endpoints",
+  "ai_endpoints_guide3Description": "Explore our tutorials on how to elevate your applications with AI Endpoints. Learn how to build chatbots and integrate LLMs or tools to create cutting-edge solutions.",
+  "ai_endpoints_create_API_key": "Generate your first access key"
+}

@@ -1,0 +1,26 @@
+.manager-account-sidebar-payment-method {
+  @import '@ovh-ux/ui-kit/dist/scss/_tokens.scss';
+  @import '@ovh-ux/manager-hub/src/variables.scss';
+
+  > a {
+    background: $p-100;
+    border-radius: 0.5rem;
+    color: inherit;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    width: 100%;
+    text-decoration: none;
+    transition: background-color 250ms;
+  }
+
+  > a:hover {
+    background-color: $p-200;
+    text-decoration: none;
+  }
+
+  img {
+    width: 2.5rem;
+  }
+}

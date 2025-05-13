@@ -1,0 +1,7 @@
+{
+  "dedicatedCloud_servicePack_basic_header": "Zmień opcje",
+  "dedicatedCloud_servicePack_certification_header": "Aktywacja certyfikatu dla Twojej usługi Private Cloud",
+  "dedicatedCloud_servicePack_confirmation_order_failure": "Aktywacja nie powiodła się",
+  "dedicatedCloud_servicePack_nsx_required": "Włącz opcję NSX przed utworzeniem Datacenter Premier",
+  "dedicatedCloud_servicePack_nsx_required_aria_close": "Zamknij"
+}

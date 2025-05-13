@@ -1,0 +1,10 @@
+{
+  "expiration_new_tab": "Se abrirá en una nueva pestaña",
+  "expiration_expired_date": "Expiró el <strong>{{t0}}</strong>",
+  "expiration_renew_date": "Renovación automática prevista en <strong>{{t0}}</strong>",
+  "expiration_resiliation_cancel_label": "Cancelar la baja",
+  "expiration_wizard_renew": "Renovar",
+  "expiration_resiliation_date": "Baja del servicio prevista el <strong>{{t0}}</strong>",
+  "expiration_expiration_date": "Expira el <strong>{{t0}}</strong>",
+  "expiration_wizard_restore": "Restaurar"
+}

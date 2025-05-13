@@ -1,0 +1,13 @@
+{
+  "cda_user_details_permission_title": "Uprawnienia puli",
+  "cda_user_details_permission_description": "Uprawnienia są zdefiniowane dla Cloud Disk Array OSD. Domyślnie użytkownik posiada uprawnienie „allow r” dla MONs. Uprawnienia MDS nie są obecnie wykorzystywane.",
+  "cda_user_details_permissions_edit_button_text": "Edytuj uprawnienia",
+  "cda_user_details_permissions_table_col_poolname": "Pula",
+  "cda_user_details_permissions_table_col_read": "Odczyt",
+  "cda_user_details_permissions_table_col_write": "Zapis",
+  "cda_user_details_permissions_table_col_execute": "Wykonanie",
+  "cda_user_details_permissions_table_col_classread": "Classread",
+  "cda_user_details_permissions_table_col_classwrite": "Classwrite",
+  "cda_user_details_permissions_table_empty": "Brak uprawnień dla użytkownika.",
+  "cda_user_details_permission_breadcrumb": "Uprawnienia"
+}

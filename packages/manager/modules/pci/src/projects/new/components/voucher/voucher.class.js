@@ -1,7 +1,3 @@
-import get from 'lodash/get';
-
-import { VOUCHER_CODE_ENUM } from './constants';
-
 export default class PciVoucher {
   constructor(options = {}) {
     // options available from APIs
@@ -24,7 +20,7 @@ export default class PciVoucher {
       // set error info
       this.error = {
         status: infos.error,
-        statusText: get(VOUCHER_CODE_ENUM, infos.error, 'DEFAULT'),
+        statusText: infos.message,
       };
     } else {
       // set validity
@@ -43,5 +39,9 @@ export default class PciVoucher {
     this.error = null;
 
     return this;
+  }
+
+  setValue(value) {
+    this.value = value;
   }
 }

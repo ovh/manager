@@ -1,6 +1,6 @@
 {
   "telephony_alias_sva_generator_config": "Konfiguration",
-  "telephony_alias_sva_generator_panpanpan": "Générateur de cartouche",
+  "telephony_alias_sva_generator": "Generator von Zierrahmen",
   "telephony_alias_sva_generator_fill": "Couleur de cartouche",
   "telephony_alias_sva_generator_fill_gradient": "Dégradé couleur",
   "telephony_alias_sva_generator_fill_simple": "Couleur sans dégradé",

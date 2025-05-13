@@ -1,6 +1,3 @@
-import isEmpty from 'lodash/isEmpty';
-import map from 'lodash/map';
-import pickBy from 'lodash/pickBy';
 import { CONTACTS_TYPES } from './constants';
 
 export default class DomainOptinCtrl {
@@ -58,14 +55,13 @@ export default class DomainOptinCtrl {
         const contactTypes =
           optinRules.length === CONTACTS_TYPES.length
             ? CONTACTS_TYPES
-            : map(optinRules, 'type');
+            : optinRules.map((optinRule) => optinRule.type);
         this.rules = contactTypes.map((contactType) => ({
           type: contactType,
           fields: DomainOptinCtrl.filterIndividualFields(
             optinRules.find(({ type }) => type === contactType).fields,
           ),
         }));
-
         this.rules.forEach(({ type, fields }) => {
           this.configuration[type] = {
             ...DomainOptinCtrl.mapFields(fields),
@@ -73,7 +69,7 @@ export default class DomainOptinCtrl {
           };
           this.options[type] = {
             allFieldsOption: false,
-            canEditIndividually: !isEmpty(fields),
+            canEditIndividually: Object.keys(fields).length > 0,
             areFieldsEditedIndividually: false,
           };
         });
@@ -112,10 +108,14 @@ export default class DomainOptinCtrl {
   }
 
   saveOptinConfiguration() {
-    const optin = map(this.configuration, (fields, type) => ({
-      type: DomainOptinCtrl.formatContactType(type),
-      fields: this.getContactTypeFields(type, fields),
-    })).filter((data) => data.fields.length > 0);
+    const optin = Object.entries(this.configuration)
+      .map(([type, fields]) => {
+        return {
+          type: DomainOptinCtrl.formatContactType(type),
+          fields: this.getContactTypeFields(type, fields),
+        };
+      })
+      .filter((data) => data.fields.length > 0);
     return this.OvhApiDomainConfigurationsOptin.v6()
       .put(
         {
@@ -142,12 +142,12 @@ export default class DomainOptinCtrl {
 
   getContactTypeFields(contactType, fields) {
     if (this.options[contactType].areFieldsEditedIndividually) {
-      return Object.keys(pickBy(fields, (value) => value === true));
+      return Object.keys(fields).filter((key) => fields[key] === true);
     }
 
     const optinFields = fields.email ? ['email'] : [];
     if (this.options[contactType].allFieldsOption) {
-      optinFields.push(...this.fields);
+      optinFields.push(...Object.keys(fields));
     }
     return optinFields;
   }

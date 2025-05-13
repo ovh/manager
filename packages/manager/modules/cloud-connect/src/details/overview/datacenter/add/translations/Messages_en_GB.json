@@ -1,0 +1,16 @@
+{
+  "cloud_connect_datacenter_add_title": "Add an AZ configuration",
+  "cloud_connect_datacenter_add_select_title": "Select an availability zone",
+  "cloud_connect_datacenter_add_select_placeholder": "Select",
+  "cloud_connect_datacenter_add_select_asn": "Enter the OVHcloud ASN",
+  "cloud_connect_datacenter_add_network_address": "Enter a /28 subnetwork",
+  "cloud_connect_datacenter_add_network_address_placeholder": "Subnetwork",
+  "cloud_connect_datacenter_add_success": "Add an availability zone configuration. <a href=\"{{ tasksUrl }}\">Click here to view status.</a>",
+  "cloud_connect_datacenter_add_error": "Unable to add availability zone configuration: {{message}}",
+  "cloud_connect_datacenter_add_select_asn_placeholder": "OVHcloud ASN",
+  "cloud_connect_datacenter_add_network_address_help_message": "IPv4 block with a range of 0 to 28",
+  "cloud_connect_datacenter_add_network_address_invalid_message": "Enter a valid IPv4 block between 0 and 28 (e.g. 128.8.2.0/28)",
+  "cloud_connect_datacenter_add_dc_info": "You can only have one configuration per AZ.",
+  "cloud_connect_datacenter_add_select_asn_popover": "The OVHcloud AS number that will be configured on the OVHcloud Connect routers in the availability zone. This number may be different to the ASN chosen for the PoP.",
+  "cloud_connect_datacenter_add_network_address_popover": "A private subnet configured in your vRack’s selected availability zone. This may be an IPv4 block of /28 or higher."
+}

@@ -1,7 +1,8 @@
 {
+  "privatesql_activation_breadcrumb": "Activer",
   "privatesql_activation_back": "Retour",
   "privatesql_activation_order": "Activer",
-  "privatesql_activation_step_1": "Activer une base de donnée SQL privée",
+  "privatesql_activation_step_1": "Activer une base de données Web Cloud Databases",
   "privatesql_activation_step_2": "Confirmation",
   "privatesql_activation_hosting_select": "Hébergement à utiliser",
   "privatesql_activation_hosting_error": "Une erreur est survenue lors du chargement des options",
@@ -27,7 +28,7 @@
   "privatesql_activation_version_v_redis_32": "Redis 3.2",
   "privatesql_activation_version_v_mongodb_40": "MongoDB 4.0",
   "privatesql_activation_version_v_redis_40": "Redis 4.0",
-  "privatesql_activation_option_private-sql-512": "SQL Privé 512 Mo",
+  "privatesql_activation_option_private-sql": "SQL Privé {{diskSpace}} Mo",
   "privatesql_activation_success": "L'activation de la base de donnée a bien été effectuée. Voir <a href=\"{{ billUrl }}\" target=\"_blank\" rel=\"noopener\">ma facture</a>.",
   "privatesql_activation_success_bc": "Votre <a href=\"{{ bcUrl }}\" target=\"_blank\" rel=\"noopener\">bon de commande</a> a été généré. Veuillez procéder au paiment de celui-ci afin d'activer votre base de donnée."
 }

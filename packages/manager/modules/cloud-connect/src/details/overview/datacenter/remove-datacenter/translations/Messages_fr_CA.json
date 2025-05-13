@@ -1,0 +1,6 @@
+{
+  "cloud_connect_datacenter_remove": "Supprimer la configuration de la zone de disponibilité",
+  "cloud_connect_datacenter_remove_description": "Cela supprimera la configuration de la zone de disponibilité",
+  "cloud_connect_datacenter_remove_success": "Configuration de zone de disponibilité supprimée. <a href=\"{{ tasksUrl }}\">Cliquez ici pour voir le statut.</a>",
+  "cloud_connect_datacenter_remove_error": "Échec de la suppression d'une configuration de zone de disponibilité: {{message}}"
+}

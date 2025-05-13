@@ -1,0 +1,12 @@
+{
+  "common_pagination_of": "sur",
+  "common_pagination_results": "résultats",
+  "common_pagination_no_results": "Aucun résultat",
+  "common_clipboard_success_label": "Copié !",
+  "common_clipboard_error_label": "Erreur de copie.",
+  "common_pagination_load_more": "Charger plus",
+  "common_pagination_load_all": "Charger tout",
+  "common_empty_text_cell": "Aucun",
+  "common_topbar_columns": "Colonnes",
+  "common_topbar_columns_select_all": "Sélectionner tout"
+}

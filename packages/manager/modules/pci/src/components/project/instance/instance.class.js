@@ -4,7 +4,9 @@ import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isObject from 'lodash/isObject';
 
-import { CAPABILITIES } from './instance.constants';
+import { CAPABILITIES, INSTANCE_STATUS } from './instance.constants';
+import Flavor from '../flavors-list/flavor.class';
+import { IMAGE_STATUS } from '../image/image.constants';
 
 export default class Instance {
   constructor(resource) {
@@ -20,7 +22,7 @@ export default class Instance {
   }
 
   canAttachVolume() {
-    return this.isCapabilityEnabled(CAPABILITIES.VOLUME);
+    return this.isStarted() && this.isCapabilityEnabled(CAPABILITIES.VOLUME);
   }
 
   canBeResized() {
@@ -162,12 +164,16 @@ export default class Instance {
     const user = get(this, 'image.user') || 'user';
     const ip = this.getDefaultIp();
     return get(this, 'image.type') === 'windows'
-      ? `rdekstop ${ip}`
+      ? `rdesktop ${ip}`
       : `ssh ${user}@${ip}`;
   }
 
   isApplicationImage() {
     return includes(get(this, 'image.tags', []), 'application');
+  }
+
+  isDeprecatedImage() {
+    return this.image?.status === IMAGE_STATUS.DEPRECATED;
   }
 
   getDefaultIp() {
@@ -182,5 +188,110 @@ export default class Instance {
 
   canBeHardRebooted() {
     return ['ACTIVE', 'SHUTOFF'].includes(this.status);
+  }
+
+  isFlavorType(type) {
+    return new Flavor(this.flavor || {}).isType(type);
+  }
+
+  /**
+   * Tell if instance is currently in deleting status.
+   * Based on: cloud.instance.InstanceStatusEnum
+   *
+   * @return {Boolean}
+   */
+  isDeleting() {
+    return this.status === 'DELETING';
+  }
+
+  /**
+   * Check if current instance is running
+   * @returns {boolean}: true if active, otherwise false
+   */
+  isStarted() {
+    return this.status === 'ACTIVE';
+  }
+
+  /**
+   * check if current instance can be started
+   * @returns {boolean}: true if can started, otherwise false
+   */
+  canBeStarted() {
+    return !this.isStarted() && this.canBeShelved();
+  }
+
+  /**
+   * check if current instance is shutoff
+   * @returns {boolean}: true if shutoff, otherwise false
+   */
+  isStopped() {
+    return this.status === 'SHUTOFF';
+  }
+
+  /**
+   * check if current instance can be stopped
+   * @returns {boolean}: true if can stopped, otherwise false
+   */
+  canBeStopped() {
+    return !this.isStopped() && this.canBeShelved();
+  }
+
+  /**
+   * check is current instance is shelved
+   * @returns {boolean}: true if status is shelved, otherwise false
+   */
+  isShelved() {
+    return [
+      INSTANCE_STATUS.SHELVED,
+      INSTANCE_STATUS.SHELVED_OFFLOADED,
+    ].includes(this.status);
+  }
+
+  /**
+   * check if current instance is in shelve process
+   * @returns {boolean}: true is status is shelving, otherwise false
+   */
+  isShelving() {
+    return this.status === INSTANCE_STATUS.SHELVING;
+  }
+
+  /**
+   * check if current instance is in unshelve process
+   * @returns {boolean}: true is status is unshelving, otherwise false
+   */
+  isUnshelving() {
+    return this.status === INSTANCE_STATUS.UNSHELVING;
+  }
+
+  /**
+   * check if current instance is in shelve/unshelve process
+   * @returns {boolean}: true if status is shelving/unshelving status, otherwise false
+   */
+  isShelvingOrUnshelving() {
+    return this.isShelving() || this.isUnshelving();
+  }
+
+  /**
+   * check if current instance can be shelved
+   * @returns {boolean}: true if not shelved and not inprogress shelve/unshelve process, otherwise false
+   */
+  canBeShelved() {
+    return !this.isShelved() && !this.isShelvingOrUnshelving();
+  }
+
+  /**
+   * check if current instance can be unshelved
+   * @returns {boolean}: true if shelved and not inprogress shelve/unshelve process, otherwise false
+   */
+  canBeUnshelved() {
+    return this.isShelved() && !this.isShelvingOrUnshelving();
+  }
+
+  /**
+   * check if we can create or schedule backup
+   * @returns {boolean}:  true if snapshot and not inprogress shelve/unshelve process, otherwise false
+   */
+  canCreateOrScheduleBackup() {
+    return this.canAddSnapshot() && !this.isShelvingOrUnshelving();
   }
 }

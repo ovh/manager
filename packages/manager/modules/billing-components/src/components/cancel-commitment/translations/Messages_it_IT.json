@@ -1,0 +1,8 @@
+{
+  "billing_cancel_commitment": "Annulla la richiesta di sottoscrizione di un impegno contrattuale",
+  "billing_cancel_commitment_description": "Vuoi davvero annullare la richiesta di sottoscrizione di un impegno contrattuale? Non sarà più possibile usufruire della tariffa preferenziale",
+  "billing_cancel_commitment_success": "La richiesta di annullamento dell'impegno contrattuale è stata presa in carico",
+  "billing_cancel_commitment_error": "Si è verificato un errore durante l'annullamento.",
+  "billing_cancel_commitment_confirm": "Conferma",
+  "billing_cancel_commitment_cancel": "Annulla"
+}

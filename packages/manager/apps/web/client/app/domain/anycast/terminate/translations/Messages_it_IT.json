@@ -1,0 +1,6 @@
+{
+  "domain_configuration_dnsanycast_terminate_title": "DNS Anycast",
+  "domain_configuration_dnsanycast_terminate_description1": "L'opzione DNS Anycast è una soluzione che permette di accelerare il funzionamento classico dei server DNS per fornire, ovunque nel mondo, tempi di risposta più rapidi alle prime richieste delle pagine Web dei tuoi siti.",
+  "domain_configuration_dnsanycast_terminate_description2": "L'opzione DNS Anycast è già attiva sul tuo dominio. Si rinnoverà automaticamente il {{date}}",
+  "domain_configuration_dnsanycast_terminate_button": "Disattiva DNS Anycast"
+}

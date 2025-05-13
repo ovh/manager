@@ -1,0 +1,18 @@
+{
+  "ip_components_alerts_load_text_with_service": "Compruebe si tiene alertas en sus IP para este tipo de servicio.",
+  "ip_components_alerts_load_text": "Compruebe si tiene alertas en sus IP.",
+  "ip_components_alerts_load_link": "Ver todas mis alertas",
+  "ip_components_alerts_one_alert_with_service": "Hay 1 alerta para este tipo de servicio",
+  "ip_components_alerts_many_alerts_with_service": "Hay {} alertas para este tipo de servicio",
+  "ip_components_alerts_one_alert": "1 alerta",
+  "ip_components_alerts_many_alerts": "{} alertas",
+  "ip_components_alerts_no_alerts_with_service": "No hay alertas para este tipo de servicio",
+  "ip_components_alerts_no_alerts": "No hay alertas",
+  "ip_components_alerts_one_spam_alert": "1 IP bloqueada (Antispam)",
+  "ip_components_alerts_many_spam_alerts": "{} IP bloqueadas (Antispam)",
+  "ip_components_alerts_one_antihack_alert": "1 IP bloqueada (Anti-hack)",
+  "ip_components_alerts_many_antihack_alerts": "{} IP bloqueadas (Anti-hack)",
+  "ip_components_alerts_one_mitigation_alert": "1 IP atacada (Mitigation)",
+  "ip_components_alerts_many_mitigation_alerts": "{} IP atacadas (Mitigation)",
+  "ip_components_alerts_no_services": "Sin servicio"
+}

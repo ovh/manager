@@ -3,13 +3,24 @@ import { summarizeJob } from './data-processing.utils';
 
 export default class DataProcessingService {
   /* @ngInject */
-  constructor($q, OvhApiCloudProjectDataProcessing) {
+  constructor($http, $q, CucPriceHelper, OvhApiCloudProjectDataProcessing) {
+    this.$http = $http;
     this.logs = [];
     this.$q = $q;
+    this.CucPriceHelper = CucPriceHelper;
     this.OvhApiCloudProjectDataProcessingJobs = OvhApiCloudProjectDataProcessing.Jobs().iceberg();
     this.OvhApiCloudProjectDataProcessingCapabilities = OvhApiCloudProjectDataProcessing.Capabilities().iceberg();
     this.OvhApiCloudProjectDataProcessingAuthorization = OvhApiCloudProjectDataProcessing.Authorization().iceberg();
-    this.OvhApiCloudProjectDataProcessingMetrics = OvhApiCloudProjectDataProcessing.Metrics().iceberg();
+  }
+
+  static getIcebergHeaders() {
+    return {
+      headers: {
+        'X-Pagination-Mode': 'CachedObjectList-Pages',
+        'X-Pagination-Size': 50000,
+        Pragma: 'no-cache',
+      },
+    };
   }
 
   /**
@@ -47,27 +58,121 @@ export default class DataProcessingService {
     projectId,
     offset = 0,
     pageSize = 25,
-    sort = 'creationDate',
+    sort = { name: 'creationDate', dir: 'desc' },
     filters = null,
   ) {
     let res = this.OvhApiCloudProjectDataProcessingJobs.query()
       .expand('CachedObjectList-Pages')
       .limit(pageSize)
       .offset(offset)
-      .sort(sort, 'desc');
+      .sort(sort.name, sort.dir);
     if (filters !== null) {
       filters.forEach((filter) => {
         res = res.addFilter(filter.name, filter.operator, filter.value);
       });
     }
-    return res.execute({ serviceName: projectId }).$promise.then((jobs) => {
-      return {
-        data: jobs.data.map((job) => summarizeJob(job)),
-        meta: {
-          totalCount: jobs.headers['x-pagination-elements'],
-        },
-      };
-    });
+    // The execute function will skip the cache as the job status are changing too quickly and can create an understanding problem for the service user
+    return res
+      .execute({ serviceName: projectId }, true)
+      .$promise.then((jobs) => {
+        return {
+          data: jobs.data.map((job) => summarizeJob(job)),
+          meta: {
+            totalCount: jobs.headers['x-pagination-elements'],
+          },
+        };
+      });
+  }
+
+  /**
+   * Retrieve list of notebooks
+   * @param projectId string List notebooks related to this project id
+   * @return {Promise<any>}
+   */
+  getNotebooks(projectId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/dataProcessing/notebooks`,
+        DataProcessingService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  /**
+   * get a notebook
+   * @param projectId string the project id
+   * @param notebookId string the notebook id
+   * @return {Promise<any>}
+   */
+  getNotebook(projectId, notebookId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/dataProcessing/notebooks/${notebookId}`)
+      .then(({ data }) => data);
+  }
+
+  /**
+   * Create a new notebook
+   * @param projectId string Id of the project to create the notebook to
+   * @param notebook the payload describing the notebook
+   * @return {Promise<any>}
+   */
+  createNotebook(projectId, notebook) {
+    return this.$http
+      .post(`/cloud/project/${projectId}/dataProcessing/notebooks`, notebook)
+      .then(({ data }) => data);
+  }
+
+  /**
+   * delete a notebook
+   * @param projectId string the project id
+   * @param notebookId string the notebook id
+   * @return {Promise<any>}
+   */
+  deleteNotebook(projectId, notebookId) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/dataProcessing/notebooks/${notebookId}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  /**
+   * start a notebook
+   * @param projectId string the project id
+   * @param notebookId string the notebook id
+   * @return {Promise<any>}
+   */
+  startNotebook(projectId, notebookId) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/dataProcessing/notebooks/${notebookId}/start`,
+      )
+      .then(({ data }) => data);
+  }
+
+  /**
+   * stop a notebook
+   * @param projectId string the project id
+   * @param notebookId string the notebook id
+   * @return {Promise<any>}
+   */
+  stopNotebook(projectId, notebookId) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/dataProcessing/notebooks/${notebookId}/stop`,
+      )
+      .then(({ data }) => data);
+  }
+
+  /**
+   * get notebooks capabilities
+   * @param projectId string the project id
+   * @return {Promise<any>}
+   */
+  getNotebookCapabilities(projectId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/dataProcessing/notebooks/capabilities`)
+      .then(({ data }) => data);
   }
 
   /**
@@ -77,11 +182,15 @@ export default class DataProcessingService {
    * @return {Promise<any>}
    */
   getJob(projectId, jobId) {
+    // The execute function will skip the cache as the job status are changing too quickly and can create an understanding problem for the service user
     return this.OvhApiCloudProjectDataProcessingJobs.get()
-      .execute({
-        serviceName: projectId,
-        jobId,
-      })
+      .execute(
+        {
+          serviceName: projectId,
+          jobId,
+        },
+        true,
+      )
       .$promise.then((job) => summarizeJob(job.data));
   }
 
@@ -132,23 +241,48 @@ export default class DataProcessingService {
    * @return {*}
    */
   getLogs(projectId, jobId, from) {
+    // The execute function will skip the cache as the logs are changing too quickly and can create an understanding problem for the service user
     return this.OvhApiCloudProjectDataProcessingJobs.logs()
-      .execute({
-        serviceName: projectId,
-        from,
-        jobId,
-      })
+      .execute(
+        {
+          serviceName: projectId,
+          from,
+          jobId,
+        },
+        true,
+      )
       .$promise.then((res) => res.data);
   }
 
   /**
-   * Retrieve metrics token for the given project
-   * @param projectId
-   * @return {*}
+   * Retrieve the data processing cores and memory prices from the catalog
+   * @param projectId string Id of the project
+   * @returns {Promise<{core: *, memory: *}>}
    */
-  getMetricsToken(projectId) {
-    return this.OvhApiCloudProjectDataProcessingMetrics.query().execute({
-      serviceName: projectId,
-    }).$promise;
+  getPricesFromCatalog(projectId) {
+    return this.CucPriceHelper.getPrices(projectId).then((prices) => {
+      return {
+        core: prices[`data-processing-job.core.minute.consumption`],
+        memory: prices[`data-processing-job.memory-gib.minute.consumption`],
+      };
+    });
+  }
+
+  /**
+   * Retrieve the data processing notebook prices from the catalog
+   * @param projectId string Id of the project
+   * @returns {Promise}
+   */
+  getNotebookPricesFromCatalog(projectId) {
+    return this.CucPriceHelper.getPrices(projectId).then((prices) => {
+      return {
+        notebook: {
+          'NB1-1':
+            prices[
+              `data-processing-spark-notebook.notebook-nb1-1.minute.consumption`
+            ],
+        },
+      };
+    });
   }
 }

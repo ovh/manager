@@ -1,0 +1,147 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+
+.subtree {
+  &_content {
+    display: flex;
+    flex-flow: column;
+    justify-content: start;
+    background: $p-800;
+    height: auto;
+    min-height: 100%;
+    width: 0rem;
+    overflow-y: auto;
+
+    transform: translateX(-100%);
+    transform-origin: 0% 50%;
+    opacity: 0.4;
+    z-index: 10;
+
+    &_animated {
+      transition: transform 0.3s ease-in, opacity 0.3s ease-in,
+      width 0s ease-out 0.3s;
+
+      &_open {
+        transition: transform 0.3s ease-in 0s, opacity 0.3s ease-in 0s,
+        width 0s ease-out 0s;
+      }
+
+      &_close {
+        transition: transform 0.3s ease-in 0s, opacity 0.3s ease-in 0s,
+        width 0s ease-out 0s;
+      }
+    }
+
+    &_open {
+      transform: translateX(0);
+      opacity: 1;
+      width: 20rem;
+    }
+
+    &_close {
+      transform: translateX(-100%);
+      opacity: 0.4;
+      width: 20rem;
+    }
+  }
+  &_list {
+    min-height: 28.125rem;
+    overflow-y: auto;
+  }
+  &_illustration {
+    width: 55%;
+    margin: 0 auto;
+    & > img {
+      width: 100%;
+    }
+  }
+  &_back_btn {
+    display: none;
+    height: 2.5rem;
+    background-color: $p-500;
+    color: white;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 0.625em;
+    width: 100%;
+  }
+  &_section_title {
+    color: $p-200 !important;
+    text-transform: uppercase;
+    font-size: 1rem !important;
+  }
+  &_section {
+    &:after {
+      content: '';
+      margin: 0 1rem;
+      width: auto;
+      border-bottom: solid 1px $p-200;
+      margin-top: 0.625em;
+      display: flex;
+    }
+  }
+
+  &_close {
+    display: flex;
+    width: fit-content;
+    justify-content: flex-end;
+    align-self: flex-end;
+    padding: 1rem;
+    margin: 0;
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+  }
+
+  &_submenu_items,
+  &_submenu_items_selected {
+    a,
+    button {
+      padding: 0 1rem;
+    }
+  }
+
+  &_submenu_items {
+    a:hover,
+    a:focus,
+    button:hover,
+    button:focus {
+      background-color: darken($p-800, 5);
+      text-decoration: none;
+    }
+  }
+
+  &_submenu_items_selected {
+    a,
+    button {
+      background-color: darken($p-800, 5);
+      text-decoration: none !important;
+    }
+  }
+}
+
+@media (max-width: $device-breakpoint-tablet-max-width) {
+  .subtree {
+    left: 0;
+    width: 100%;
+    z-index: 21;
+    &_content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding-top: 2.75rem;
+      transition: none;
+
+      &_open, &_close {
+        transition: none;
+      }
+    }
+    &_back_btn {
+      display: flex;
+    }
+  }
+}

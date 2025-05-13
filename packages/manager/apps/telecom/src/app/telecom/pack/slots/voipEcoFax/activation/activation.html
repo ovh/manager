@@ -1,0 +1,64 @@
+<div class="telecom-pack-voipEcoFax-activation" id="ecoFaxActivation">
+    <header>
+        <tuc-section-back-link
+            data-tuc-section-back-link-to-state="telecom.packs.pack"
+        ></tuc-section-back-link>
+        <h1>{{ 'fax_activation_widget-title' | translate }}</h1>
+    </header>
+
+    <div>
+        <p
+            data-ng-bind-html="'fax_activation_widget-intro' | translate:{ecoFaxUrl:PackFaxActivationCtrl.ecoFaxUrl}"
+        ></p>
+
+        <p
+            data-spinner
+            class="text-center"
+            data-ng-if="PackFaxActivationCtrl.loading"
+        ></p>
+
+        <div
+            class="faxAccountStates"
+            data-ng-if="!PackFaxActivationCtrl.loading"
+        >
+            <p
+                data-ng-if="PackFaxActivationCtrl.serviceData.available !== 0"
+                data-ng-bind-html="'fax_activation_widget_free_slot' | translate:PackFaxActivationCtrl.serviceData"
+            ></p>
+            <p
+                data-ng-if="PackFaxActivationCtrl.serviceData.available === 0"
+                data-ng-bind-html="'fax_activation_widget_free_slot_zero' | translate:PackFaxActivationCtrl.serviceData"
+            ></p>
+            <p
+                data-ng-if="PackFaxActivationCtrl.serviceData.inCreation"
+                data-translate="fax_activation_widget_on_doing"
+            ></p>
+        </div>
+
+        <div
+            class="alert alert-xs alert-success"
+            role="alert"
+            data-ng-if="PackFaxActivationCtrl.message"
+            data-ng-bind-html="PackFaxActivationCtrl.message | translate"
+        ></div>
+
+        <div
+            class="alert alert-xs alert-danger"
+            role="alert"
+            data-ng-if="PackFaxActivationCtrl.error"
+        >
+            <p
+                data-ng-bind-html="PackFaxActivationCtrl.error.key| translate"
+            ></p>
+            <span data-ng-bind="PackFaxActivationCtrl.error.data"></span>
+        </div>
+
+        <button
+            type="button"
+            class="btn btn-primary"
+            data-ng-click="PackFaxActivationCtrl.activateFax()"
+            data-ng-disabled="PackFaxActivationCtrl.loading || PackFaxActivationCtrl.serviceData.available === 0"
+            data-translate="fax_activation_widget_activate_button_lable"
+        ></button>
+    </div>
+</div>

@@ -1,3 +1,319 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [7.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@7.0.6...@ovh-ux/manager-webpack-config@7.0.7) (2025-03-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-webpack-config
+
+
+
+
+
+## [7.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@7.0.5...@ovh-ux/manager-webpack-config@7.0.6) (2025-03-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-webpack-config
+
+
+
+
+
+## [7.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@7.0.4...@ovh-ux/manager-webpack-config@7.0.5) (2025-02-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-webpack-config
+
+
+
+
+
+## [7.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@7.0.3...@ovh-ux/manager-webpack-config@7.0.4) (2024-11-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-webpack-config
+
+
+
+
+
+## [7.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@7.0.2...@ovh-ux/manager-webpack-config@7.0.3) (2024-11-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-webpack-config
+
+
+
+
+
+## [7.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@7.0.1...@ovh-ux/manager-webpack-config@7.0.2) (2024-02-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-webpack-config
+
+
+
+
+
+## [7.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@7.0.0...@ovh-ux/manager-webpack-config@7.0.1) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-webpack-config
+
+
+
+
+
+# [7.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@6.1.2...@ovh-ux/manager-webpack-config@7.0.0) (2023-09-07)
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
+## [6.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@6.1.1...@ovh-ux/manager-webpack-config@6.1.2) (2023-01-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-webpack-config
+
+
+
+
+
+## [6.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@6.1.0...@ovh-ux/manager-webpack-config@6.1.1) (2023-01-11)
+
+
+### Bug Fixes
+
+* **webpack-config:** disable html minification ([cacfba6](https://github.com/ovh/manager/commit/cacfba65c724aba4c6c3487ec425470626af649d))
+
+
+
+
+
+# [6.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@6.0.1...@ovh-ux/manager-webpack-config@6.1.0) (2023-01-10)
+
+
+### Features
+
+* **webpack:** add html minifier in webpack config ([45a14a9](https://github.com/ovh/manager/commit/45a14a96bb06fe3063bd4f1ca5135f3eb8e2572d))
+
+
+
+
+
+## [6.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@6.0.0...@ovh-ux/manager-webpack-config@6.0.1) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-webpack-config
+
+
+
+
+
+# [6.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@5.0.0...@ovh-ux/manager-webpack-config@6.0.0) (2022-09-12)
+
+
+### Build System
+
+* **webpack-config:** bump @ovh-ux/manager-webpack-dev-server ([e3cfb38](https://github.com/ovh/manager/commit/e3cfb38f98f812cf681c0e10cb7c9b4f88ee17e7))
+
+
+### BREAKING CHANGES
+
+* **webpack-config:** remove registry proxy configuration
+
+
+
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@4.0.5...@ovh-ux/manager-webpack-config@5.0.0) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+### Build System
+
+* **deps:** require Node.js 16 ([5687c17](https://github.com/ovh/manager/commit/5687c17f1ae65c07ffde12abeecd0f9a955af8b0)), closes [#6444](https://github.com/ovh/manager/issues/6444)
+
+
+### BREAKING CHANGES
+
+* **deps:** require Node.js 16
+
+
+
+## [4.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@4.0.4...@ovh-ux/manager-webpack-config@4.0.5) (2021-11-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade some dependencies ([8463f75](https://github.com/ovh/manager/commit/8463f7587c2246a18b963d46351131d030600ae0))
+
+
+
+## [4.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@4.0.3...@ovh-ux/manager-webpack-config@4.0.4) (2021-10-27)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `^11.0.0` ([7cbdd08](https://github.com/ovh/manager/commit/7cbdd08ffaf8d7d05f0165bdf0d30d19ed9e428f))
+
+
+
+## [4.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@4.0.2...@ovh-ux/manager-webpack-config@4.0.3) (2021-06-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+
+
+
+## [4.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@4.0.1...@ovh-ux/manager-webpack-config@4.0.2) (2021-06-16)
+
+
+### Performance Improvements
+
+* rename `*.ts` files into `*.js` ([036fdc9](https://github.com/ovh/manager/commit/036fdc985bf6f590e057ee2b32e6cf1a341f7bef))
+
+
+
+## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@4.0.0...@ovh-ux/manager-webpack-config@4.0.1) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+
+
+
+# [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@3.6.1...@ovh-ux/manager-webpack-config@4.0.0) (2020-11-25)
+
+
+### Bug Fixes
+
+* disable es modules for url-loader ([#4050](https://github.com/ovh/manager/issues/4050)) ([147439b](https://github.com/ovh/manager/commit/147439b954a96c423533eb2e5b18c94659e052ec))
+
+
+### Features
+
+* **loader:** drop xml translation ([8a6f5dc](https://github.com/ovh/manager/commit/8a6f5dcbf16d1b6ff1917e390104c8f7dd37d8f1))
+
+
+### Performance Improvements
+
+* exclude bundled js modules from babel ([#4066](https://github.com/ovh/manager/issues/4066)) ([1bc4398](https://github.com/ovh/manager/commit/1bc43985012046e143714ded703aa63e62c157ab))
+
+
+### BREAKING CHANGES
+
+* **loader:** xml translation files are not supported anymore
+
+
+
+## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@3.6.0...@ovh-ux/manager-webpack-config@3.6.1) (2020-11-16)
+
+
+### Bug Fixes
+
+* **loaders:** add es6 proposals for translations webpack plugins ([#3816](https://github.com/ovh/manager/issues/3816)) ([8637ef1](https://github.com/ovh/manager/commit/8637ef16f547420ba4f87d6081ae12038a0e17a4))
+
+
+
+# [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@3.5.0...@ovh-ux/manager-webpack-config@3.6.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade css-loader to v4.3.0 ([bc0023b](https://github.com/ovh/manager/commit/bc0023b49b676a53e66d171d174111ceb3a812d6))
+* **deps:** upgrade file-loader to v4.0.0 ([6ec8294](https://github.com/ovh/manager/commit/6ec829407baf585ab61a1311308daf90518b26aa))
+* **deps:** upgrade html-webpack-plugin to v4.5.0 ([b84f0aa](https://github.com/ovh/manager/commit/b84f0aab0b12e92c15090ffc322a164fdde776e5))
+* **deps:** upgrade less-loader to v7.0.2 ([c14a2ff](https://github.com/ovh/manager/commit/c14a2ffcd84da177b66bfea34a6c4ebd7389274e))
+* **deps:** upgrade loader-utils to v2.0.0 ([ebcfcf2](https://github.com/ovh/manager/commit/ebcfcf290378e2f8a3a8ec95ecc21e7ee4aba84a))
+* **deps:** upgrade mini-css-extract-plugin to v0.11.2 ([3fc3735](https://github.com/ovh/manager/commit/3fc37357341b0aa94c1302766655a9056c7a47a0))
+* **deps:** upgrade raw-loader to v4.0.2 ([838f39c](https://github.com/ovh/manager/commit/838f39c37db5b10270e44fba7738dafe8ac69fcb))
+* **deps:** upgrade style-loader to v1.2.1 ([027bf43](https://github.com/ovh/manager/commit/027bf43c7859c34b5146ffaa0e09d112c49dfe35))
+* **deps:** upgrade terser-webpack-plugin to v4.2.2 ([982f20a](https://github.com/ovh/manager/commit/982f20af7a6c8d3bbfb99440b748eaab101d8040))
+* **deps:** upgrade url-loader to v4.1.1 ([fd35096](https://github.com/ovh/manager/commit/fd35096b20f2ee3d50075ae0460e1ee6cd7161fe))
+* **deps:** upgrade webpack to v4.44.2 ([fc868d2](https://github.com/ovh/manager/commit/fc868d2670b0de220837c8917d90fa3020e6d4ca))
+* **deps:** upgrade webpack-bundle-analyzer to v3.9.0 ([ecba939](https://github.com/ovh/manager/commit/ecba9396990e364a6a139c07bfd5a0fabd7940cf))
+* **deps:** upgrade webpack-cli to v3.3.12 ([a10ffb4](https://github.com/ovh/manager/commit/a10ffb49c603ff21bbc8c0ec87a7b02293ccd812))
+* **deps:** upgrade webpackbar to v4.0.0 ([9deaebc](https://github.com/ovh/manager/commit/9deaebcd81ec467c0c2491646f1080b82998fbc9))
+
+
+### Features
+
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+### Reverts
+
+* Revert "feat: add babel transform runtime plugin" ([72ffe63](https://github.com/ovh/manager/commit/72ffe63d8f87898e2eb07b8b0df6014add3c1e02))
+
+
+
+# [3.5.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.4.0...@ovh-ux/manager-webpack-config@3.5.0) (2020-09-01)
+
+
+### Features
+
+* add plugin RetryChunkLoadPlugin ([#3479](https://github.com/ovh-ux/manager/issues/3479)) ([d64b74c](https://github.com/ovh-ux/manager/commit/d64b74cecd209a089d86260fd7278c7c612e60b9))
+
+
+
+# [3.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.3.4...@ovh-ux/manager-webpack-config@3.4.0) (2020-07-08)
+
+
+### Features
+
+* **webpack-config:** add es6 proposals ([7faf233](https://github.com/ovh-ux/manager/commit/7faf233314af544f89f0ece3e9730bb931b21c8c))
+
+
+
+## [3.3.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.3.3...@ovh-ux/manager-webpack-config@3.3.4) (2020-05-18)
+
+
+### Bug Fixes
+
+* respect order in js loaders ([5475fd7](https://github.com/ovh-ux/manager/commit/5475fd7fa6e9c4257cf17f935a943e173861c427))
+
+
+
+## [3.3.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.3.2...@ovh-ux/manager-webpack-config@3.3.3) (2020-05-15)
+
+
+### Bug Fixes
+
+* respect order in js loaders ([#2947](https://github.com/ovh-ux/manager/issues/2947)) ([c63f97c](https://github.com/ovh-ux/manager/commit/c63f97cd95bfd39e74dc037ea4ab574aee8df8e2))
+
+
+
+## [3.3.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.3.1...@ovh-ux/manager-webpack-config@3.3.2) (2020-05-15)
+
+
+### Bug Fixes
+
+* **loaders:** fix webpack config translations loaders ([a580dfa](https://github.com/ovh-ux/manager/commit/a580dfa68c27bc3088ebc15b85e04fa0d8aa8c4f))
+
+
+
+## [3.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.3.0...@ovh-ux/manager-webpack-config@3.3.1) (2020-04-15)
+
+
+### Performance Improvements
+
+* add plugin to optimize css asset minification ([55ba59e](https://github.com/ovh-ux/manager/commit/55ba59e53516cd633e3f3848e63800daeaa3e171))
+
+
+
 # [3.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.2.2...@ovh-ux/manager-webpack-config@3.3.0) (2019-10-28)
 
 

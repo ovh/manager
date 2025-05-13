@@ -1,0 +1,18 @@
+{
+  "dedicatedCloud_datacenter_backup_new_description1": "Não ativou qualquer serviço de backup.",
+  "dedicatedCloud_datacenter_backup_new_description2": "Pode escolher entre 3 novas ofertas para o backup das suas máquinas virtuais (VM): <strong>Standard</strong>, <strong>Advanced</strong> ou <strong>Premium</strong>.",
+  "dedicatedCloud_datacenter_backup_new_description3_EPCC": "A oferta escolhida para esse datacenter será a única disponível para todos os outros datacenters deste Private Cloud, e a única aplicável ao conjunto das suas máquinas virtuais.",
+  "dedicatedCloud_datacenter_backup_new_tariff_url": "Saber mais sobre os preços disponíveis para o Veeam Backup",
+  "dedicatedCloud_datacenter_backup_new_restricted_offer_choice_EPCC": "A oferta {{offer}} já foi escolhida no datacenter {{datacenterName}} do seu Private Cloud. Pode ativá-la neste datacenter.",
+  "dedicatedCloud_datacenter_backup_new_blocked_EPCC": "Uma oferta de backup está a ser processada noutro datacenter do Private Cloud. Não pode ativar nenhuma nova oferta enquanto esta operação não estiver finalizada.",
+  "dedicatedCloud_datacenter_backup_new_choose_offer": "Escolha da oferta de backup",
+  "dedicatedCloud_datacenter_backup_new_choose_offer_action": "Escolher a oferta",
+  "dedicatedCloud_datacenter_backup_new_validate_conditions": "Validação das condições de utilização",
+  "dedicatedCloud_datacenter_backup_new_activate_offer_action": "Ativar a oferta",
+  "dedicatedCloud_datacenter_backup_new_create_success": "O seu pedido de ativação da oferta Veeam Backup {{offerType}} está em curso. Pode acompanhar o progresso das tarefas <a href=\"{{operationsUrl}}\">aqui</a>.",
+  "dedicatedCloud_datacenter_backup_new_order_success": "A sua <a target='_blank' rel='noopener' href='{{orderUrl}}'>nota de encomenda</a> de ativação da oferta Veeam backup {{offerType}} foi gerada com êxito. Uma vez validada, pode acompanhar o progresso das tarefas <a href='{{operationsUrl}}'>aqui</a>.",
+  "dedicatedCloud_datacenter_backup_new_create_error": "Não foi possível criar uma oferta de backup: {{ message }}",
+  "dedicatedCloud_datacenter_backup_new_description3_MBM": "A oferta escolhida para esse datacenter será a única disponível para todos os outros datacenters desse serviço Essentials, e a única aplicável ao conjunto das suas máquinas virtuais.",
+  "dedicatedCloud_datacenter_backup_new_restricted_offer_choice_MBM": "A oferta {{offer}} já foi escolhida no datacenter {{datacenterName}} do seu serviço Essentials. Pode ativá-la neste datacenter.",
+  "dedicatedCloud_datacenter_backup_new_blocked_MBM": "Uma oferta de backup está a ser processada noutro datacenter do serviço Essentials. Não pode ativar nenhuma nova oferta enquanto esta operação não estiver finalizada."
+}

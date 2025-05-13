@@ -1,0 +1,20 @@
+{
+  "pci_projects_project_storages_blocks_block_volume-edit_region_label": "Localización",
+  "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Tipo de volumen",
+  "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Nombre del volumen",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Capacidad del volumen",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_help": "El tamaño máximo depende de la cuota de su proyecto.",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Vol. de arranque",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Definir un volumen como volumen de arranque permite utilizar dicho volumen al iniciar la instancia.",
+  "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Cancelar",
+  "pci_project_flavors_zone_localzone": "Local Zone",
+  "pci_project_flavors_zone_localzone_tooltip": "Una Local Zone corresponde a un modo de despliegue de los productos Public Cloud de OVHcloud en datacenters situados más cerca de los usuarios finales.",
+  "pci_project_flavors_zone_tooltip_link": "Más información",
+  "pci_project_flavors_zone_global_region": "1-AZ",
+  "pci_project_flavors_zone_globalregions_tooltip": "Una región de 1-AZ (zona de disponibilidad) reúne uno o varios datacenters localizados en una misma ubicación.",
+  "pci_project_flavors_zone_globalregions_tooltip_2": "¡Con la llegada de las regiones 3-AZ, el tipo de despliegue «Regiones» cambia de nombre! Una región de 1-AZ (zona de disponibilidad) reúne uno o varios datacenters localizados en una misma ubicación.",
+  "pci_project_flavors_zone_3az_region": "3-AZ",
+  "pci_project_flavors_zone_3az_tooltip": "Una región 3-AZ incluye tres zonas de disponibilidad situadas en una misma área metropolitana, separadas por algunos kilómetros. Cumple los más altos requisitos de resiliencia, al tiempo que garantiza una latencia extremadamente baja entre los AZ.",
+  "pci_projects_project_storages_blocks_add_submit_price_text": "Importe estimado: {{price}}/mes + IVA"
+}

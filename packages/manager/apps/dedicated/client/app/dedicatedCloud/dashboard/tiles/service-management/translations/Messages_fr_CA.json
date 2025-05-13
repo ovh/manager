@@ -1,9 +1,0 @@
-{
-   "ovhManagerPccDashboardServiceManagement_heading": "Gestion du service",
-
-   "ovhManagerPccDashboardServiceManagement_mailingList_term": "Mailing list",
-   "ovhManagerPccDashboardServiceManagement_mailingList_actionMenu_subscribe": "S'abonner à la mailing list",
-
-   "ovhManagerPccDashboardServiceManagement_renewal_actionMenu_order": "Commander une licence",
-   "ovhManagerPccDashboardServiceManagement_renewal_actionMenu_delete": "Supprimer le service"
-}

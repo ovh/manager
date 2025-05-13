@@ -1,0 +1,157 @@
+<div>
+    <div
+        data-wizard
+        data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+        data-wizard-on-finish="$ctrl.orderCapacity.bind($ctrl)"
+        data-wizard-title=":: 'server_configuration_ftpbackup_order_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="!$ctrl.loading && $ctrl.order.choiceIndex != null"
+            data-wizard-step-on-load="$ctrl.load.bind($ctrl)"
+        >
+            <div class="text-center" data-ng-if="$ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!$ctrl.loading">
+                <p
+                    data-translate="server_configuration_ftpbackup_order_info"
+                ></p>
+                <table
+                    class="table table-hover"
+                    data-ng-if="$ctrl.order.model.length"
+                >
+                    <thead>
+                        <tr>
+                            <th
+                                colspan="2"
+                                data-translate="server_configuration_ftpbackup_order_type_name"
+                            ></th>
+                            <th
+                                class="text-right"
+                                data-translate="server_configuration_ftpbackup_order_type_price"
+                            ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            data-ng-repeat="orderType in $ctrl.order.model track by $index"
+                        >
+                            <td class="text-center">
+                                <input
+                                    type="radio"
+                                    name="capacityChoice"
+                                    id="capacityChoice-{{ $index }}"
+                                    data-ng-click="$ctrl.order.choiceIndex = $index"
+                                    data-ng-model="$ctrl.order.choiceIndex"
+                                    data-ng-value="$index"
+                                />
+                            </td>
+                            <td>
+                                <label
+                                    for="capacityChoice-{{ $index }}"
+                                    data-ng-bind="orderType.capacity + ' ' + ('unit_size_GB' | translate)"
+                                >
+                                </label>
+                            </td>
+                            <td class="text-right">
+                                <label
+                                    for="capacityChoice-{{ $index }}"
+                                    data-ng-bind="orderType.price"
+                                >
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <strong
+                    class="text-danger"
+                    data-ng-if="!$ctrl.order.model.length"
+                    data-translate="server_configuration_ftpbackup_order_empty_choice"
+                >
+                </strong>
+            </div>
+        </div>
+
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="$ctrl.getDetail.bind($ctrl)"
+            data-wizard-step-valid="!$ctrl.loading && ($ctrl.order.bc.contracts.length == 0 || $ctrl.order.agreeContract)"
+        >
+            <div class="text-center" data-ng-if="$ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!$ctrl.loading">
+                <p
+                    data-translate="server_configuration_ftpbackup_order_resume"
+                ></p>
+                <div
+                    data-ng-repeat="detail in $ctrl.order.bc.details track by $index"
+                >
+                    <p>
+                        <span data-ng-bind="detail.description"></span> :
+                        <span
+                            class="text-danger"
+                            data-ng-bind="detail.totalPrice.text"
+                        >
+                        </span>
+                    </p>
+                    <p class="text-center" data-ng-if="detail.explanation">
+                        (<span
+                            data-ng-bind-html="'server_configuration_ftpbackup_order_price_explanation' | translate:{ t0: detail.explanation.price }"
+                        ></span
+                        >)
+                    </p>
+                </div>
+                <p class="mt-2 text-center">
+                    <span
+                        data-translate="server_configuration_ftpbackup_order_price_HT"
+                    ></span>
+                    <strong
+                        class="text-danger"
+                        data-ng-bind="$ctrl.order.bc.prices.withoutTax.text"
+                    >
+                    </strong>
+                    <br />
+                    <span
+                        data-translate="server_configuration_ftpbackup_order_price_TTC"
+                    ></span>
+                    <strong
+                        class="text-danger"
+                        data-ng-bind="$ctrl.order.bc.prices.withTax.text"
+                    >
+                    </strong>
+                </p>
+                <div
+                    class="checkbox"
+                    data-ng-if="$ctrl.order.bc.contracts.length > 0"
+                >
+                    <label>
+                        <input
+                            type="checkbox"
+                            data-ng-model="$ctrl.order.agreeContract"
+                        />
+                        <span
+                            data-translate="server_configuration_ftpbackup_order_contracts"
+                        ></span>
+                    </label>
+                    <ul>
+                        <li
+                            data-ng-repeat="contract in $ctrl.order.bc.contracts track by $index"
+                        >
+                            <a
+                                target="_blank"
+                                rel="noopener"
+                                data-ng-href="{{ contract.url }}"
+                                data-ng-bind="contract.name"
+                            >
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

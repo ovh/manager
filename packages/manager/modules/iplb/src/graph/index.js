@@ -10,7 +10,7 @@ angular
   .module(moduleName, ['ui.router'])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('network.iplb.detail.graph', {
+      $stateProvider.state('iplb.detail.graph', {
         url: '/graph',
         views: {
           iplbHeader: {
@@ -24,9 +24,9 @@ angular
             controllerAs: 'ctrl',
           },
         },
-        translations: {
-          value: ['.'],
-          format: 'json',
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('iplb_graph_title'),
         },
       });
     },

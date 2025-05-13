@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_kubernetes_details_service_upsert_oidc_provider_issue_url_error": "Provider URL must be a valid URL.",
+  "pci_projects_project_kubernetes_details_service_upsert_oidc_provider_issue_https_error": "The provider URL must be accessible via HTTPS.",
+  "pci_projects_project_kubernetes_details_service_upsert_oidc_provider_description": "You can use most OIDC providers like Dex, Keycloak or a SaaS provider, provided that they expose the “OpenID Connect discovery” feature. The OIDC provider must be accessible from a HTTPS URL, and a signed CA certificate is mandatory.",
+  "pci_projects_project_kubernetes_details_service_upsert_oidc_provider_field_url_extra": "Enter your provider's discovery URL here, without a path. The URL must point to the previous level of .well-known/openid-configuration. You must use a URL starting with https://",
+  "pci_projects_project_kubernetes_details_service_upsert_oidc_provider_field_client_id_extra": "Enter the Kubernetes cluster ID here from your OIDC provider, e.g. \"cluster-kubernetes-production\". This is the character string of your choice (note that some OIDC providers may be more restrictive)."
+}

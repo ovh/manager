@@ -1,0 +1,20 @@
+<div class="telephony-number-ovh-pabx">
+    <!-- FEATURE IS LOADING -->
+    <div class="voip-plan__step" data-ng-if="$ctrl.numberCtrl.loading.feature">
+        <div class="voip-plan__step-icon voip-plan__step-icon--basic">
+            <oui-spinner></oui-spinner>
+        </div>
+        <div class="voip-plan__step-description">
+            <span class="voip-plan__step-info" data-translate="loading"> </span>
+        </div>
+    </div>
+    <!-- FEATURE IS LOADING -->
+
+    <!-- DIALPLAN BOX -->
+    <telephony-number-ovh-pabx-dialplan
+        data-ng-if="!$ctrl.numberCtrl.loading.feature"
+        data-telephony-number-ovh-pabx-dialplan="$ctrl.dialplan"
+    >
+    </telephony-number-ovh-pabx-dialplan>
+    <!-- DIALPLAN BOX -->
+</div>

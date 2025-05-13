@@ -1,31 +1,30 @@
 import isEmpty from 'lodash/isEmpty';
 import isNumber from 'lodash/isNumber';
 import isString from 'lodash/isString';
+import sliceEmail from '../../filter/slice-email';
 
 export default class ExchangeUpdateResourceController {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeResources,
-    $filter,
     $translate,
     messaging,
     navigation,
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeResources,
-      $filter,
       $translate,
       messaging,
       navigation,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.model = navigation.currentActionData;
-    this.model.slicedEmail = $filter('wucSliceEmail')(
+    this.model.slicedEmail = sliceEmail(
       this.model.resourceEmailDisplayName,
       20,
     );

@@ -1,12 +1,20 @@
-angular.module('App').config(($stateProvider) => {
+import template from './cdn-dedicated.html';
+import controller from './cdn-dedicated.controller';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.networks.cdn.dedicated', {
-    url: '/cdn/:productId',
+    url: '/:productId',
     redirectTo: 'app.networks.cdn.dedicated.manage',
     views: {
       '': {
-        templateUrl: 'cdn/dedicated/cdn-dedicated.html',
-        controller: 'CdnCtrl',
+        template,
+        controller,
       },
     },
+    resolve: {
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+    },
   });
-});
+};

@@ -4,7 +4,10 @@ import map from 'lodash/map';
 
 import PciCartProject from './classes/cart.class';
 
-import { PCI_PROJECT_ORDER_CART } from './constants';
+import {
+  PCI_PROJECT_ORDER_CART,
+  PCI_PROJECT_DISCOVERY_ORDER_CART,
+} from './constants';
 
 export default class PciProjectNewService {
   /* @ngInject */
@@ -24,7 +27,7 @@ export default class PciProjectNewService {
    *  @param  {string} [cartId]      A previously created cart id
    *  @return {Promise}              That returns a cart.
    */
-  async getOrderCart(ovhSubsidiary, cartId = null) {
+  async getOrderCart(ovhSubsidiary, cartId = null, isDiscovery) {
     let orderCart;
 
     if (cartId) {
@@ -45,11 +48,11 @@ export default class PciProjectNewService {
     const orderCartInstance = new PciCartProject(orderCart);
 
     if (!orderCart.items.length) {
-      await this.createOrderCartProjectItem(orderCartInstance);
+      await this.createOrderCartProjectItem(orderCartInstance, isDiscovery);
     } else {
       await this.getOrderCartItems(orderCartInstance);
       if (!orderCartInstance.projectItem) {
-        await this.createOrderCartProjectItem(orderCartInstance);
+        await this.createOrderCartProjectItem(orderCartInstance, isDiscovery);
       } else {
         await this.getOrderCartProjectItemConfigurations(
           orderCartInstance.projectItem,
@@ -74,36 +77,41 @@ export default class PciProjectNewService {
     return newOrderCart;
   }
 
-  async createOrderCartProjectItem(orderCart) {
+  async createOrderCartProjectItem(orderCart, isDiscovery) {
     const { cartId } = orderCart;
+    const newPciProjectOrderCart = isDiscovery
+      ? PCI_PROJECT_DISCOVERY_ORDER_CART
+      : PCI_PROJECT_ORDER_CART;
     const cloudOffers = await this.orderCart.getProductOffers(
       cartId,
-      PCI_PROJECT_ORDER_CART.productName,
+      newPciProjectOrderCart.productName,
     );
     const cloudProjectOffer = find(cloudOffers, {
-      planCode: PCI_PROJECT_ORDER_CART.planCode,
+      planCode: newPciProjectOrderCart.planCode,
     });
 
-    // check if project.2018 offer is present
+    // check if project.2018 or project.2018 plan is present
     // if not reject
     if (!cloudProjectOffer) {
       const error = {
         status: 404,
         data: {
-          message: `planCode ${PCI_PROJECT_ORDER_CART.planCode} not found`,
+          message: `planCode ${newPciProjectOrderCart.planCode} not found`,
         },
       };
       return Promise.reject(error);
     }
-
     // otherwise add it to the cart
-    const { duration, pricingMode } = head(cloudProjectOffer.prices);
+    const renewPrice = cloudProjectOffer.prices?.find((price) =>
+      price.capacities.includes('renew'),
+    );
+    const { duration, pricingMode } = renewPrice;
     const projectItem = await this.orderCart.addProductToCart(
       cartId,
-      PCI_PROJECT_ORDER_CART.productName,
+      newPciProjectOrderCart.productName,
       {
         duration,
-        planCode: PCI_PROJECT_ORDER_CART.planCode,
+        planCode: newPciProjectOrderCart.planCode,
         pricingMode,
         quantity: 1,
       },
@@ -239,7 +247,7 @@ export default class PciProjectNewService {
         return this.orderCart
           .addProductOptionToCart(cartId, PCI_PROJECT_ORDER_CART.productName, {
             planCode: PCI_PROJECT_ORDER_CART.creditPlanCode,
-            quantity: amount / price.value,
+            quantity: Math.floor(amount / price.value),
             duration,
             pricingMode,
             itemId,

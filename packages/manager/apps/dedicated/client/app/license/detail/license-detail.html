@@ -1,223 +1,229 @@
-<div class="page-header">
-    <h1 data-translate="license_dashboard_title"></h1>
-</div>
-<div class="tab-content">
-    <div class="text-center" data-ng-if="loadLicense">
-        <oui-spinner></oui-spinner>
-    </div>
-    <div data-ng-if="!loadLicense">
-        <h2>
-            <span data-translate="license_dashboard_title"></span>
-            -
-            <span
-                data-ng-bind="('license_designation_' + license.type) | translate"
-            ></span>
-        </h2>
-        <div data-ovh-alert></div>
-        <a
-            data-ui-sref="app.license.dashboard"
-            title="{{ 'licence_details_title' | translate }}"
-        >
-            <span class="fa fa-chevron-left mr-2" aria-hidden="true"> </span>
-            <span data-translate="license_details_back"></span>
-        </a>
-        <div class="row mt-5">
-            <div class="col-md-2">
-                <img
-                    class="img-thumbnail"
-                    alt="{{ license.type }}"
-                    width="150"
-                    data-ng-src="images/license/{{ license.type }}_medium.png"
-                />
-            </div>
-            <div class="col-md-7">
-                <dl>
-                    <dt data-translate="license_details_title_ip"></dt>
-                    <dd data-ng-bind="license.ip || '/'"></dd>
-                    <dt data-translate="license_details_title_service"></dt>
-                    <dd data-ng-bind="license.serviceName || '/'"></dd>
-                    <dt data-ng-show="license.expiration">
-                        <service-expiration-label service-infos="license">
-                        </service-expiration-label>
-                    </dt>
-                    <dd data-ng-show="license.expiration">
-                        <service-expiration-date
-                            service-name="license.id"
-                            service-type=""
-                            service-infos="license"
-                        >
-                        </service-expiration-date>
-                    </dd>
-                    <dt data-translate="license_details_title_version"></dt>
-                    <dd>
-                        <span
-                            data-ng-show="license.type != licenseTypes.SPLA"
-                            data-ng-bind="('license_designation_' + license.type + '_version_' + license.version) | translate"
-                        >
-                        </span>
-                        <span
-                            data-ng-show="license.type == licenseTypes.SPLA"
-                            data-ng-bind="('license_designation_' + license.type + '_type_' + license.splaType) | translate"
-                        >
-                        </span>
-                    </dd>
-                    <dt
-                        data-ng-show="license.containerNumber"
-                        data-translate="license_details_title_containernumber"
-                    ></dt>
-                    <dd data-ng-show="license.containerNumber">
-                        {{ ('license_designation_' + license.type +
-                        '_container_number' + license.containerNumber) |
-                        translate }}
-                    </dd>
-                    <dt
-                        data-ng-show="license.domainNumber"
-                        data-translate="license_details_title_domainNumber"
-                    ></dt>
-                    <dd data-ng-show="license.domainNumber">
-                        {{ ('license_designation_' + license.type +
-                        '_domain_number_' + license.domainNumber) | translate }}
-                    </dd>
-                    <dt
-                        data-ng-show="license.licenseId && license.type != licenseTypes.SPLA"
-                        data-translate="license_details_title_id"
-                    ></dt>
-                    <dd
-                        data-ng-show="license.licenseId && license.type != licenseTypes.SPLA"
-                        data-ng-bind="license.licenseId"
-                    ></dd>
-                    <dt
-                        data-ng-show="license.splaStatus"
-                        data-translate="license_details_title_splaStatus"
-                    ></dt>
-                    <dd
-                        data-ng-show="license.splaStatus"
-                        data-ng-bind="('license_details_splaStatus_' + license.splaStatus) | translate"
-                    ></dd>
-                    <dt
-                        data-ng-show="license.key || license.serialNumber"
-                        data-translate="license_details_title_key"
-                    ></dt>
-                    <dd data-ng-show="license.key || license.serialNumber">
-                        <div class="form-group">
-                            <textarea
-                                class="form-control"
-                                id="licensekey"
-                                rows="10"
-                                readonly="readonly"
-                                style="cursor: text; resize: none; display: block;"
-                                data-ng-bind="license.key || license.serialNumber"
+<div ui-view>
+    <oui-header heading="{{:: 'license_dashboard_title' | translate }}">
+    </oui-header>
+    <div>
+        <div class="text-center" data-ng-if="loadLicense">
+            <oui-spinner></oui-spinner>
+        </div>
+        <div data-ng-if="!loadLicense">
+            <h2>
+                <span data-translate="license_dashboard_title"></span>
+                -
+                <span
+                    data-ng-bind="('license_designation_' + license.type) | translate"
+                ></span>
+            </h2>
+            <div data-ovh-alert></div>
+            <a
+                data-ui-sref="app.license.dashboard"
+                title="{{ 'licence_details_title' | translate }}"
+            >
+                <span class="fa fa-chevron-left mr-2" aria-hidden="true">
+                </span>
+                <span data-translate="license_details_back"></span>
+            </a>
+            <div class="row mt-5">
+                <div class="col-md-2">
+                    <img
+                        class="img-thumbnail"
+                        alt="{{ license.type }}"
+                        width="150"
+                        data-ng-src="images/license/{{ license.type }}_medium.png"
+                    />
+                </div>
+                <div class="col-md-7">
+                    <dl>
+                        <dt data-translate="license_details_title_ip"></dt>
+                        <dd data-ng-bind="license.ip || '/'"></dd>
+                        <dt data-translate="license_details_title_service"></dt>
+                        <dd data-ng-bind="license.serviceName || '/'"></dd>
+                        <dt data-ng-show="license.expiration">
+                            <service-expiration-label service-infos="license">
+                            </service-expiration-label>
+                        </dt>
+                        <dd data-ng-show="license.expiration">
+                            <service-expiration-date
+                                service-name="license.id"
+                                service-type=""
+                                service-infos="license"
                             >
-                            </textarea>
-                        </div>
-                        <button
-                            type="button"
-                            class="btn btn-default btn-block"
-                            data-ng-click="selectTextareaContent()"
-                            data-translate="license_details_key_select_all"
-                        ></button>
-                    </dd>
-                    <dt
-                        data-ng-show="license.productKey"
-                        data-translate="license_details_title_productkey"
-                    ></dt>
-                    <dd
-                        data-ng-show="license.productKey"
-                        data-ng-bind="license.productKey"
-                    ></dd>
-                    <dt
-                        data-ng-show="license.informationKey"
-                        data-translate="license_details_title_informationkey"
-                    ></dt>
-                    <dd
-                        data-ng-show="license.informationKey"
-                        data-ng-bind="license.productKey"
-                    ></dd>
-                    <dt
-                        data-ng-show="license.creation"
-                        data-translate="license_details_title_creation_date"
-                    ></dt>
-                    <dd
-                        data-ng-show="license.creation"
-                        data-ng-bind="license.creation | date:'mediumDate'"
-                    ></dd>
-                    <dt
-                        data-ng-if="license.type !== 'SPLA'"
-                        data-translate="license_details_title_delete_at_expiration"
-                    ></dt>
-                    <dd data-ng-if="license.type !== 'SPLA'">
-                        {{ (license.renew.deleteAtExpiration ?
-                        'license_details_title_delete_at_expiration_activated' :
-                        'license_details_title_delete_at_expiration_desactivated')
-                        | translate }}
-                        <br />
-                        <button
-                            type="button"
-                            class="btn btn-default mt-2"
-                            data-ng-click="setAction('delete/at-expiration/license-delete-at-expiration', { 'license': license })"
-                            data-translate="license_details_title_delete_at_expiration_toggle"
-                        ></button>
-                    </dd>
-                    <dt
-                        data-ng-if="license.type === licenseTypes.DIRECTADMIN"
-                        data-translate="license_directadmin_changeOs_dt"
-                    ></dt>
-                    <dd data-ng-if="license.type === licenseTypes.DIRECTADMIN">
-                        <span data-ng-bind="license.os"></span><br />
-                        <button
-                            type="button"
-                            class="btn btn-default"
-                            data-ng-click="setAction('direct-admin/change-os/license-direct-admin-change-os', { 'license': license })"
-                            data-ng-disabled="changeOsTaskRunning"
-                            data-translate="license_directadmin_changeOs_toggle"
-                        ></button>
-                        <span class="ml-2" data-ng-if="changeOsTaskRunning">
-                            <oui-spinner data-size="s" data-inline="true">
-                            </oui-spinner>
+                            </service-expiration-date>
+                        </dd>
+                        <dt data-translate="license_details_title_version"></dt>
+                        <dd>
                             <span
-                                class="font-italic"
-                                data-translate="license_directadmin_changeOs_taskExists"
+                                data-ng-show="license.type != licenseTypes.SPLA"
+                                data-ng-bind="('license_designation_' + license.type + '_version_' + license.version) | translate"
                             >
                             </span>
-                        </span>
-                    </dd>
-                </dl>
-            </div>
-            <div class="col-md-3">
-                <button
-                    type="button"
-                    class="btn btn-default btn-block"
-                    data-ng-if="license.canBeMoved == true && license.isExpired == false"
-                    data-ng-click="setAction('migrate/license-migrate', { 'license': license })"
-                    data-translate="license_migrate_title_button"
-                ></button>
-                <button
-                    type="button"
-                    class="btn btn-default btn-block"
-                    data-ng-if="license.type == licenseTypes.SPLA && canRevoke"
-                    data-ng-click="setAction('spla/revoke/license-spla-revoke', { 'license': license })"
-                    data-translate="license_spla_revoke_title_button"
-                ></button>
-                <a
-                    class="btn btn-default btn-block"
-                    data-ng-if="license.canBeUpgraded == true && license.isExpired == false"
-                    data-ui-sref="app.license.upgrade({
+                            <span
+                                data-ng-show="license.type == licenseTypes.SPLA"
+                                data-ng-bind="('license_designation_' + license.type + '_type_' + license.splaType) | translate"
+                            >
+                            </span>
+                        </dd>
+                        <dt
+                            data-ng-show="license.containerNumber"
+                            data-translate="license_details_title_containernumber"
+                        ></dt>
+                        <dd data-ng-show="license.containerNumber">
+                            {{ ('license_designation_' + license.type +
+                            '_container_number' + license.containerNumber) |
+                            translate }}
+                        </dd>
+                        <dt
+                            data-ng-show="license.domainNumber"
+                            data-translate="license_details_title_domainNumber"
+                        ></dt>
+                        <dd data-ng-show="license.domainNumber">
+                            {{ ('license_designation_' + license.type +
+                            '_domain_number_' + license.domainNumber) |
+                            translate }}
+                        </dd>
+                        <dt
+                            data-ng-show="license.licenseId && license.type != licenseTypes.SPLA"
+                            data-translate="license_details_title_id"
+                        ></dt>
+                        <dd
+                            data-ng-show="license.licenseId && license.type != licenseTypes.SPLA"
+                            data-ng-bind="license.licenseId"
+                        ></dd>
+                        <dt
+                            data-ng-show="license.splaStatus"
+                            data-translate="license_details_title_splaStatus"
+                        ></dt>
+                        <dd
+                            data-ng-show="license.splaStatus"
+                            data-ng-bind="('license_details_splaStatus_' + license.splaStatus) | translate"
+                        ></dd>
+                        <dt
+                            data-ng-show="license.key || license.serialNumber"
+                            data-translate="license_details_title_key"
+                        ></dt>
+                        <dd data-ng-show="license.key || license.serialNumber">
+                            <div class="form-group">
+                                <textarea
+                                    class="form-control"
+                                    id="licensekey"
+                                    rows="10"
+                                    readonly="readonly"
+                                    style="cursor: text; resize: none; display: block;"
+                                    data-ng-bind="license.key || license.serialNumber"
+                                >
+                                </textarea>
+                            </div>
+                            <button
+                                type="button"
+                                class="btn btn-default btn-block"
+                                data-ng-click="selectTextareaContent()"
+                                data-translate="license_details_key_select_all"
+                            ></button>
+                        </dd>
+                        <dt
+                            data-ng-show="license.productKey"
+                            data-translate="license_details_title_productkey"
+                        ></dt>
+                        <dd
+                            data-ng-show="license.productKey"
+                            data-ng-bind="license.productKey"
+                        ></dd>
+                        <dt
+                            data-ng-show="license.informationKey"
+                            data-translate="license_details_title_informationkey"
+                        ></dt>
+                        <dd
+                            data-ng-show="license.informationKey"
+                            data-ng-bind="license.productKey"
+                        ></dd>
+                        <dt
+                            data-ng-show="license.creation"
+                            data-translate="license_details_title_creation_date"
+                        ></dt>
+                        <dd
+                            data-ng-show="license.creation"
+                            data-ng-bind="license.creation | date:'mediumDate'"
+                        ></dd>
+                        <dt
+                            data-ng-if="license.type !== 'SPLA'"
+                            data-translate="license_details_title_delete_at_expiration"
+                        ></dt>
+                        <dd data-ng-if="license.type !== 'SPLA'">
+                            {{ (license.renew.deleteAtExpiration ?
+                            'license_details_title_delete_at_expiration_activated'
+                            :
+                            'license_details_title_delete_at_expiration_desactivated')
+                            | translate }}
+                            <br />
+                            <button
+                                type="button"
+                                class="btn btn-default mt-2"
+                                data-ng-click="setAction('delete/at-expiration/license-delete-at-expiration', { 'license': license })"
+                                data-translate="license_details_title_delete_at_expiration_toggle"
+                            ></button>
+                        </dd>
+                        <dt
+                            data-ng-if="license.type === licenseTypes.DIRECTADMIN"
+                            data-translate="license_directadmin_changeOs_dt"
+                        ></dt>
+                        <dd
+                            data-ng-if="license.type === licenseTypes.DIRECTADMIN"
+                        >
+                            <span data-ng-bind="license.os"></span><br />
+                            <button
+                                type="button"
+                                class="btn btn-default"
+                                data-ng-click="setAction('direct-admin/change-os/license-direct-admin-change-os', { 'license': license })"
+                                data-ng-disabled="changeOsTaskRunning"
+                                data-translate="license_directadmin_changeOs_toggle"
+                            ></button>
+                            <span class="ml-2" data-ng-if="changeOsTaskRunning">
+                                <oui-spinner data-size="s" data-inline="true">
+                                </oui-spinner>
+                                <span
+                                    class="font-italic"
+                                    data-translate="license_directadmin_changeOs_taskExists"
+                                >
+                                </span>
+                            </span>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <button
+                        type="button"
+                        class="btn btn-default btn-block"
+                        data-ng-if="license.canBeMoved == true && license.isExpired == false"
+                        data-ng-click="setAction('migrate/license-migrate', { 'license': license })"
+                        data-translate="license_migrate_title_button"
+                    ></button>
+                    <button
+                        type="button"
+                        class="btn btn-default btn-block"
+                        data-ng-if="license.type == licenseTypes.SPLA && canRevoke"
+                        data-ng-click="setAction('spla/revoke/license-spla-revoke', { 'license': license })"
+                        data-translate="license_spla_revoke_title_button"
+                    ></button>
+                    <a
+                        class="btn btn-default btn-block"
+                        data-ng-if="canUpgrade && license.canBeUpgraded == true && license.isExpired == false"
+                        data-ui-sref="app.license.detail.upgrade({
                        licenseId: license.id
                    })"
-                    data-translate="license_upgrade_title_button"
-                >
-                </a>
+                        data-translate="license_upgrade_title_button"
+                    >
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-    <div id="currentAction" class="modal fade currentAction" role="dialog">
-        <div class="modal-dialog">
-            <div
-                id="modal-container"
-                class="modal-content"
-                data-ng-include="stepPath"
-            ></div>
-            <div id="modal-help" class="help4wizards"></div>
+        <div id="currentAction" class="modal fade currentAction" role="dialog">
+            <div class="modal-dialog">
+                <div
+                    id="modal-container"
+                    class="modal-content"
+                    data-ng-include="stepPath"
+                ></div>
+                <div id="modal-help" class="help4wizards"></div>
+            </div>
         </div>
     </div>
 </div>

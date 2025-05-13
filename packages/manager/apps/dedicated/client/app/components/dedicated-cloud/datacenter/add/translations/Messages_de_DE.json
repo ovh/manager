@@ -1,0 +1,22 @@
+{
+  "dedicatedCloud_configuration_add_datacenter_title": "Hinzufügen eines Datacenters",
+  "dedicatedCloud_configuration_add_datacenter_description": "Die Verwaltungsgebühren entsprechen den Kosten für die Management-VMs (zum Beispiel vCenter, vROps), die außerhalb Ihrer dedizierten Hosts gehostet werden, sodass Sie über 100 % ihrer Kapazität (CPU, RAM) verfügen.",
+  "dedicatedCloud_configuration_add_datacenter_cta_submit": "Ein Datacenter hinzufügen",
+  "dedicatedCloud_configuration_add_datacenter_cta_cancel": "Abbrechen",
+  "dedicatedCloud_configuration_add_datacenter_card_vsphere_label": "vSphere",
+  "dedicatedCloud_configuration_add_datacenter_card_vsphere_description": "Fügen Sie Ihrer VMware Infrastruktur ein vSphere Virtual DataCenter (vDC) hinzu. Sie profitieren standardmäßig von den vROps-Beobachtungsmodulen und der vSphere Enterprise Plus-Lizenz. Sie können auch vSAN-Hosts hinzufügen, um die Hyperkonvergenz für Ihre zusätzlichen Leistungsanforderungen zu nutzen.",
+  "dedicatedCloud_configuration_add_datacenter_card_nsx-t_label": "NSX",
+  "dedicatedCloud_configuration_add_datacenter_card_nsx-t_description": "Fügen Sie Ihrer VMware Infrastruktur ein NSX Virtual DataCenter (vDC) hinzu. Zusätzlich zu vSphere und dem standardmäßig bereitgestellten vROps profitieren Sie mit NSX von den Vorteilen der Netzwerkvirtualisierung und können Ihre VMs durch Mikro-Segmentierung schützen. Sie können auch vSAN-Hosts hinzufügen, um die Hyperkonvergenz für Ihre zusätzlichen Leistungsanforderungen zu nutzen.",
+  "dedicatedCloud_configuration_add_datacenter_card_essentials_label": "Essentials",
+  "dedicatedCloud_configuration_add_datacenter_card_essentials_description": "vSphere as a Service ist ebenso einfach wie vertraut, leicht in der Handhabung und kostengünstig.",
+  "dedicatedCloud_configuration_add_datacenter_card_premier_label": "Premier",
+  "dedicatedCloud_configuration_add_datacenter_card_premier_description": "Hierbei handelt es sich um eine leistungsstarke und integrierte Lösung für Unternehmen. Sie basiert auf mit den marktüblichen Normen konformer Software und ist auf Leistung und Resilienz ausgelegt.",
+  "dedicatedCloud_configuration_add_datacenter_option": "Optionen bearbeiten",
+  "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part1": "Sie möchten ein Virtual Datacenter (vDC) der Reihe Premier hinzufügen. NSX ist für diese Reihe standardmäßig aktiviert. Wir können kein Premier vDC hinzufügen, solange NSX nicht auf Ihrer Infrastruktur aktiviert ist.",
+  "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part2": "Die Aktivierung von NSX erfolgt über die Startseite Ihrer VMware Infrastruktur und beeinträchtigt Ihre Infrastruktur nicht. Dieser Task kann bis zu zwei Stunden in Anspruch nehmen; der Fortschritt lässt sich über den Tab „Operations“ verfolgen.",
+  "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part3": "Nach der Aktivierung von NSX können Sie direkt mit dem Hinzufügen eines Premier Virtual Datacenter fortfahren.",
+  "dedicatedCloud_datacenters_adding_success": "Ein neues Datacenter wird in wenigen Augenblicken erstellt.",
+  "dedicatedCloud_datacenters_adding_error": "Beim Hinzufügen des Datacenters ist ein Fehler aufgetreten.",
+  "dedicatedCloud_datacenters_adding_load_error": "Beim Laden der Informationen zum Hinzufügen des Datacenters ist ein Fehler aufgetreten.",
+  "dedicatedCloud_datacenters_add_datacenter_new_price": "{{ price }} auf Ihre Abrechnung"
+}

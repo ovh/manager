@@ -1,0 +1,16 @@
+{
+  "cloud_connect_service_keys_status_doing": "Erledigen",
+  "cloud_connect_service_keys_status_active": "Aktiv",
+  "cloud_connect_service_keys_status_cancelled": "Abgebrochen",
+  "cloud_connect_service_keys_status_terminated": "Beendet",
+  "cloud_connect_service_keys_status_toCheck": "Nicht verfügbar",
+  "cloud_connect_service_keys_status": "Status",
+  "cloud_connect_service_keys_id": "ID",
+  "cloud_connect_service_keys_provider": "Anbieter",
+  "cloud_connect_service_keys_key": "Serviceschlüssel ",
+  "cloud_connect_service_keys_decription": "Liste aller Serviceschlüssel Es kann nur ein Serviceschlüssel gültig sein. Wird kein aktiver Serviceschlüssel gefunden, so wird eine Aktion sichtbar, um einen Serviceschlüssel als „aktiv“ zu bestimmen.",
+  "cloud_connect_service_keys_active": "Aktivieren",
+  "cloud_connect_close": "Schließen",
+  "cloud_connect_regenerate": "Neu erstellen",
+  "cloud_connect_service_keys": "Serviceschlüssel"
+}

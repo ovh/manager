@@ -1,5 +1,6 @@
 {
   "telephony_group_fax_consumption_back_link": "Volver a la gestión del consumo",
   "telephony_group_fax_consumption_action_incoming_fax": "Faxes recibidos",
-  "telephony_group_fax_consumption_action_outgoing_fax": "Faxes enviados"
+  "telephony_group_fax_consumption_action_outgoing_fax": "Faxes enviados",
+  "telephony_group_fax_consumption_breadcrumb": "Consumo"
 }

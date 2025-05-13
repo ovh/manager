@@ -1,0 +1,186 @@
+<div>
+    <oui-back-button data-ui-sref="dbaas-logs.detail.roles"
+        ><span data-translate="logs_roles_edit_permissions_title"></span
+    ></oui-back-button>
+    <p
+        class="mb-5"
+        data-translate="logs_roles_permissions_subtitle"
+        data-translate-values="{role:ctrl.roleDetails.data.name}"
+    ></p>
+    <oui-tabs>
+        <oui-tabs-item
+            data-heading="{{ ::'logs_roles_permissions_read_only' | translate }}"
+        >
+            <div class="dual-list-content">
+                <div class="mt-4">
+                    <span
+                        class="oui-heading_4"
+                        data-translate="logs_roles_permissions_streams"
+                    ></span>
+                    <cui-dual-list
+                        source-list-label="{{::'logs_role_available_stream' | translate}}"
+                        target-list-label="{{::'logs_role_selected_stream' | translate}}"
+                        source-list-empty-label="{{::'logs_role_empty_stream' | translate}}"
+                        target-list-empty-label="{{::'logs_role_empty_selected_stream' | translate}}"
+                        property="title"
+                        source-list="ctrl.availableStreams"
+                        target-list="ctrl.attachedReadOnlyStreams"
+                        on-add="ctrl.attachStream(items)"
+                        on-remove="ctrl.removePermission(items, 'streamId')"
+                        bulk-action-enabled="false"
+                        height="300px"
+                    >
+                    </cui-dual-list>
+                </div>
+
+                <div class="mt-4">
+                    <span
+                        class="oui-heading_4"
+                        data-translate="logs_roles_permissions_dashboards"
+                    ></span>
+                    <cui-dual-list
+                        source-list-label="{{::'logs_role_available_dashboard' | translate}}"
+                        target-list-label="{{::'logs_role_selected_dashboard' | translate}}"
+                        source-list-empty-label="{{::'logs_role_empty_dashboard' | translate}}"
+                        target-list-empty-label="{{::'logs_role_empty_selected_dashboard' | translate}}"
+                        property="title"
+                        source-list="ctrl.availableDashboards"
+                        target-list="ctrl.attachedReadOnlyDashboards"
+                        on-add="ctrl.attachDashboard(items)"
+                        on-remove="ctrl.removePermission(items, 'dashboardId')"
+                        bulk-action-enabled="false"
+                        height="300px"
+                    >
+                    </cui-dual-list>
+                </div>
+
+                <div class="mt-4">
+                    <span
+                        class="oui-heading_4"
+                        data-translate="logs_roles_permissions_indices"
+                    ></span>
+                    <cui-dual-list
+                        source-list-label="{{::'logs_role_available_index' | translate}}"
+                        target-list-label="{{::'logs_role_selected_index' | translate}}"
+                        source-list-empty-label="{{::'logs_role_empty_index' | translate}}"
+                        target-list-empty-label="{{::'logs_role_empty_selected_index' | translate}}"
+                        property="name"
+                        source-list="ctrl.availableIndices"
+                        target-list="ctrl.attachedReadOnlyIndices"
+                        on-add="ctrl.attachIndex(items)"
+                        on-remove="ctrl.removePermission(items, 'indexId')"
+                        bulk-action-enabled="false"
+                        height="300px"
+                    >
+                    </cui-dual-list>
+                </div>
+
+                <div class="mt-4">
+                    <span
+                        class="oui-heading_4"
+                        data-translate="logs_roles_permissions_alias"
+                    ></span>
+                    <cui-dual-list
+                        source-list-label="{{::'logs_role_available_alias' | translate}}"
+                        target-list-label="{{::'logs_role_selected_alias' | translate}}"
+                        source-list-empty-label="{{::'logs_role_empty_alias' | translate}}"
+                        target-list-empty-label="{{::'logs_role_empty_selected_alias' | translate}}"
+                        property="name"
+                        source-list="ctrl.availableAliases"
+                        target-list="ctrl.attachedReadOnlyAliases"
+                        on-add="ctrl.attachAlias(items)"
+                        on-remove="ctrl.removePermission(items, 'aliasId')"
+                        bulk-action-enabled="false"
+                        height="300px"
+                    >
+                    </cui-dual-list>
+                </div>
+
+                <div class="mt-4">
+                    <span
+                        class="oui-heading_4"
+                        data-translate="logs_roles_permissions_kibana"
+                    ></span>
+                    <cui-dual-list
+                        source-list-label="{{::'logs_role_available_kibana' | translate}}"
+                        target-list-label="{{::'logs_role_selected_kibana' | translate}}"
+                        source-list-empty-label="{{::'logs_role_empty_kibana' | translate}}"
+                        target-list-empty-label="{{::'logs_role_empty_selected_kibana' | translate}}"
+                        property="name"
+                        source-list="ctrl.availableOsds"
+                        target-list="ctrl.attachedReadOnlyOsds"
+                        on-add="ctrl.attachOsd(items, false)"
+                        on-remove="ctrl.removePermission(items, 'osdId')"
+                        bulk-action-enabled="false"
+                        height="300px"
+                    >
+                    </cui-dual-list>
+                </div>
+            </div>
+        </oui-tabs-item>
+        <oui-tabs-item
+            data-heading="{{ ::'logs_roles_permissions_read_write' | translate }}"
+        >
+            <div class="mt-4">
+                <span
+                    class="oui-heading_4"
+                    data-translate="logs_roles_permissions_dashboards"
+                ></span>
+                <cui-dual-list
+                    source-list-label="{{::'logs_role_available_dashboard' | translate}}"
+                    target-list-label="{{::'logs_role_selected_dashboard' | translate}}"
+                    source-list-empty-label="{{::'logs_role_empty_dashboard' | translate}}"
+                    target-list-empty-label="{{::'logs_role_empty_selected_dashboard' | translate}}"
+                    property="title"
+                    source-list="ctrl.availableDashboards"
+                    target-list="ctrl.attachedReadWriteDashboards"
+                    on-add="ctrl.attachDashboard(items, true)"
+                    on-remove="ctrl.removePermission(items, 'dashboardId')"
+                    bulk-action-enabled="false"
+                    height="300px"
+                >
+                </cui-dual-list>
+            </div>
+            <div class="mt-4">
+                <span
+                    class="oui-heading_4"
+                    data-translate="logs_roles_permissions_indices"
+                ></span>
+                <cui-dual-list
+                    source-list-label="{{::'logs_role_available_index' | translate}}"
+                    target-list-label="{{::'logs_role_selected_index' | translate}}"
+                    source-list-empty-label="{{::'logs_role_empty_index' | translate}}"
+                    target-list-empty-label="{{::'logs_role_empty_selected_index' | translate}}"
+                    property="name"
+                    source-list="ctrl.availableIndices"
+                    target-list="ctrl.attachedReadWriteIndices"
+                    on-add="ctrl.attachIndex(items, true)"
+                    on-remove="ctrl.removePermission(items, 'indexId')"
+                    bulk-action-enabled="false"
+                    height="300px"
+                >
+                </cui-dual-list>
+            </div>
+            <div class="mt-4">
+                <span
+                    class="oui-heading_4"
+                    data-translate="logs_roles_permissions_kibana"
+                ></span>
+                <cui-dual-list
+                    source-list-label="{{::'logs_role_available_kibana' | translate}}"
+                    target-list-label="{{::'logs_role_selected_kibana' | translate}}"
+                    source-list-empty-label="{{::'logs_role_empty_kibana' | translate}}"
+                    target-list-empty-label="{{::'logs_role_empty_selected_kibana' | translate}}"
+                    property="name"
+                    source-list="ctrl.availableOsds"
+                    target-list="ctrl.attachedReadWriteOsds"
+                    on-add="ctrl.attachOsd(items, true)"
+                    on-remove="ctrl.removePermission(items, 'osdId')"
+                    bulk-action-enabled="false"
+                    height="300px"
+                >
+                </cui-dual-list>
+            </div>
+        </oui-tabs-item>
+    </oui-tabs>
+</div>

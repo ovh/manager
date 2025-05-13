@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_volume_backup_list_attach_volume_title": "Vincular el volumen",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_description": "¿Seguro que quiere vincular el volumen {{ volumeName }} a esta instancia {{ instanceName }}?",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_cancel": "Cancelar",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_attach": "Confirmar",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_success": "El volumen {{ volumeName }} se ha vinculado a la instancia {{ instanceName }}.",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_fail": "Se ha producido un error al actualizar su volumen: {{ errorMessage }}"
+}

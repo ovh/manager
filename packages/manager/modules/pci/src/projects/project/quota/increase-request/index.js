@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerPciProjectQuotaIncreaseLazyLoading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('pci.projects.project.quota.increase.**', {
-      url: '/increase',
+      url: '/increase/contact-support',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 

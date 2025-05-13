@@ -1,0 +1,10 @@
+{
+  "sms_creditTransfer_title": "Übertragung von Mitteln",
+  "sms_creditTransfer_action_send": "Absenden",
+  "sms_creditTransfer_action_cancel": "Abbrechen",
+  "sms_creditTransfer_label_your_account": "Ihr Account",
+  "sms_creditTransfer_label_account_to_credit": "Aufzuladender Account",
+  "sms_creditTransfer_label_number_of_credits": "Anzahl der Gutschriften angeben",
+  "sms_creditTransfer_message_success": "Transfer durchgeführt.",
+  "sms_creditTransfer_message_error": "Es ist ein Fehler aufgetreten: {{error}}"
+}

@@ -1,0 +1,110 @@
+<oui-modal
+    data-on-dismiss="ctrl.cancel()"
+    data-heading="{{ ::'logs_role_overview_title' | translate }}"
+>
+    <dl class="preview-list preview-list_no-margin">
+        <dt
+            class="preview-list__term"
+            data-translate="logs_role_overview_role"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: ctrl.role.name"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="logs_role_overview_description"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: ctrl.role.description"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="logs_role_overview_permissions"
+        ></dt>
+        <dd class="preview-list__definition">
+            <div data-ng-if="ctrl.role.nbPermission > 0">
+                <div data-ng-if="ctrl.attachedStreams.length > 0">
+                    <span
+                        class="pl-0 preview-list__list-heading"
+                        data-translate="logs_streams_title"
+                    ></span>
+                    <ul>
+                        <li
+                            data-ng-repeat="stream in ctrl.attachedStreams track by $index"
+                        >
+                            {{stream.title}}
+                        </li>
+                    </ul>
+                </div>
+                <div data-ng-if="ctrl.attachedDashboards.length > 0">
+                    <span
+                        class="pl-0 preview-list__list-heading"
+                        data-translate="logs_dashboards_title"
+                    ></span>
+                    <ul>
+                        <li
+                            data-ng-repeat="dashboard in ctrl.attachedDashboards track by $index"
+                        >
+                            {{dashboard.title}}
+                        </li>
+                    </ul>
+                </div>
+                <div data-ng-if="ctrl.attachedIndices.length > 0">
+                    <span
+                        class="pl-0 preview-list__list-heading"
+                        data-translate="logs_index_title"
+                    ></span>
+                    <ul>
+                        <li
+                            data-ng-repeat="index in ctrl.attachedIndices track by $index"
+                        >
+                            {{index.name}}
+                        </li>
+                    </ul>
+                </div>
+                <div data-ng-if="ctrl.attachedAliases.length > 0">
+                    <span
+                        class="pl-0 preview-list__list-heading"
+                        data-translate="logs_aliases_title"
+                    ></span>
+                    <ul>
+                        <li
+                            data-ng-repeat="alias in ctrl.attachedAliases track by $index"
+                        >
+                            {{alias.name}}
+                        </li>
+                    </ul>
+                </div>
+                <div data-ng-if="ctrl.attachedOsds.length > 0">
+                    <span
+                        class="pl-0 preview-list__list-heading"
+                        data-translate="logs_kibana_title"
+                    ></span>
+                    <ul>
+                        <li
+                            data-ng-repeat="osd in ctrl.attachedOsds track by $index"
+                        >
+                            {{osd.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <span data-ng-if="ctrl.role.nbPermission === 0"> - </span>
+        </dd>
+        <dt
+            class="preview-list__term"
+            data-translate="logs_role_overview_members"
+        ></dt>
+        <dd class="preview-list__definition">
+            <span data-ng-if="ctrl.role.nbMember === 0"> - </span>
+            <ul>
+                <li data-ng-repeat="member in ctrl.members track by $index">
+                    {{member.username}}
+                    <small data-ng-if="member.note">- {{member.note}}</small>
+                </li>
+            </ul>
+        </dd>
+    </dl>
+</oui-modal>

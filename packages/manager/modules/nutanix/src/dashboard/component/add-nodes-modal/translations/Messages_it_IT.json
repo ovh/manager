@@ -1,0 +1,21 @@
+{
+  "nutanix_dashboard_add_nodes_title": "Ordine di nodi",
+  "nutanix_dashboard_add_nodes_actual_configuration": "Configurazione attuale dei nodi del tuo cluster",
+  "nutanix_dashboard_add_nodes_server_model": "Modello di server:",
+  "nutanix_dashboard_add_nodes_cpu": "CPU:",
+  "nutanix_dashboard_add_nodes_memory": "Memoria:",
+  "nutanix_dashboard_add_nodes_stokage": "Storage:",
+  "nutanix_dashboard_add_nodes_informations": "Informazioni",
+  "nutanix_dashboard_add_nodes_price_preffix": "Il prezzo di un nodo aggiuntivo è di",
+  "nutanix_dashboard_add_nodes_price_suffix": "+IVA/mese",
+  "nutanix_dashboard_add_nodes_number_of_nodes_available": "Il tuo cluster è attualmente composto da {{numberOfNodes}} nodi ed è possibile estenderlo fino a 15.",
+  "nutanix_dashboard_add_nodes_number_of_additional_nodes_to_command": "Numero di nodi aggiuntivi da ordinare.",
+  "nutanix_dashboard_add_nodes_confirm": "Ordinare",
+  "nutanix_dashboard_add_nodes_cancel": "Annullare",
+  "nutanix_dashboard_add_nodes_success_banner": "L’ordine dei nodi è stato avviato. Se non l’hai ancora finalizzato, puoi completarlo cliccando sul seguente link: ",
+  "nutanix_dashboard_add_nodes_success_banner_link_label": "Completare l'ordine",
+  "nutanix_dashboard_add_nodes_informations_max_nodes": "Il tuo cluster è attualmente composto da {{currentNumberOfNodes}} nodi ed è possibile estenderlo fino a {{maxNumberOfNodes}} nodi.",
+  "nutanix_dashboard_add_nodes_error_too_many_nodes": "Hai superato il numero massimo di nodi autorizzati in un cluster.",
+  "nutanix_dashboard_add_nodes_error_not_enough_nodes": "È necessario ordinare almeno 1 nodo.",
+  "nutanix_dashboard_add_nodes_single_node_limit_alert": "Al momento puoi ordinare solo un nodo supplementare, l'ordine simultaneo di più nodi sarà disponibile a breve."
+}

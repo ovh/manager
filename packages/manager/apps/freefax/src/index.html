@@ -1,9 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
-        <title>FreeFax App</title>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <link rel="shortcut icon" href="assets/images/favicon.png" />
+        <link rel="apple-touch-icon" href="assets/images/touchicon-180.png" />
+        <title>OVHcloud</title>
+        <style type="text/css">
+            .ng-cloak {
+                display: none !important;
+            }
+        </style>
     </head>
-    <body data-ng-app="freefaxApp">
-        <div data-ui-view></div>
+    <body>
+        <div class="ng-cloak">
+            <ui-router-breadcrumb></ui-router-breadcrumb>
+            <div data-ui-view></div>
+        </div>
     </body>
 </html>

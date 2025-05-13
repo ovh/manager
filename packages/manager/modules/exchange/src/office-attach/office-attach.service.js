@@ -3,8 +3,8 @@ import isString from 'lodash/isString';
 
 export default class OfficeAttach {
   /* @ngInject */
-  constructor(Exchange, OvhHttp, ovhUserPref, $q, constants) {
-    this.Exchange = Exchange;
+  constructor(wucExchange, OvhHttp, ovhUserPref, $q, constants) {
+    this.wucExchange = wucExchange;
     this.OvhHttp = OvhHttp;
     this.ovhUserPref = ovhUserPref;
     this.$q = $q;

@@ -1,23 +1,36 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
 import clone from 'lodash/clone';
-import indexOf from 'lodash/indexOf';
 import isArray from 'lodash/isArray';
 import join from 'lodash/join';
 import map from 'lodash/map';
+import { ALERTER_ID } from '../operation-table/operation-table.constants';
 
 angular.module('App').controller(
   'DomainOperationUpdateCtrl',
   class DomainOperationUpdateCtrl {
-    constructor($scope, $q, $translate, Alerter, User, domainOperationService) {
+    /* @ngInject */
+    constructor(
+      $scope,
+      $q,
+      $translate,
+      Alerter,
+      WucUser,
+      coreURLBuilder,
+      domainOperationService,
+    ) {
       this.$scope = $scope;
       this.$q = $q;
       this.$translate = $translate;
       this.Alerter = Alerter;
-      this.User = User;
+      this.WucUser = WucUser;
+      this.coreURLBuilder = coreURLBuilder;
       this.domainOperationService = domainOperationService;
     }
 
     $onInit() {
       this.operation = angular.copy(this.$scope.currentActionData);
+      this.type = !this.operation.domain ? 'dns' : 'domain';
 
       this.baseArgs = [];
       this.canContinue =
@@ -34,28 +47,34 @@ angular.module('App').controller(
       this.uploadMode = {};
       this.viewMode = {};
 
-      if (this.operation.canCancel) {
-        this.todoOperation = 'cancel';
+      if (this.operation.canAccelerate) {
+        this.todoOperation = 'accelerate';
       } else if (this.operation.canRelaunch) {
         this.todoOperation = 'relaunch';
-      } else if (this.operation.canAccelerate) {
-        this.todoOperation = 'accelerate';
+      } else if (this.operation.canCancel) {
+        this.todoOperation = 'cancel';
       }
+
+      this.contactUrl = this.coreURLBuilder.buildURL('web', '#/domain');
 
       this.$scope.updateOperation = () => this.updateOperation();
 
       this.loadOperationsArguments(this.operation.id);
     }
 
+    static capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     loadOperationsArguments(operationId) {
       this.loading = true;
 
       return this.domainOperationService
-        .getOperationArguments(operationId)
+        .getDomainOperationArguments(operationId)
         .then((argumentIds) => {
           const promises = map(argumentIds, (key) =>
             this.domainOperationService
-              .getOperationArgument(operationId, key)
+              .getDomainOperationArgument(operationId, key)
               .then((originalArgument) => {
                 const argument = clone(originalArgument);
 
@@ -64,10 +83,16 @@ angular.module('App').controller(
 
                 // add user friendly translations for some known tasks
                 if (
-                  indexOf(['action', 'memberContactXXX'], argument.key) !== -1
+                  [
+                    'action',
+                    'memberContactXXX',
+                    'firstname',
+                    'name',
+                    'identificationNumber',
+                  ].includes(argument.key)
                 ) {
                   argument.keyTranslation = this.$translate.instant(
-                    `domains_operations_update_key_${argument.key}`,
+                    `domain_operations_update_key_${argument.key}`,
                   );
                 }
 
@@ -103,7 +128,7 @@ angular.module('App').controller(
                   }
 
                   if (argument.value) {
-                    this.User.getDocument(argument.value).then(
+                    this.WucUser.getDocument(argument.value).then(
                       (documentInfo) => {
                         this.documents[argument.value] = documentInfo;
                         this.previousValue[argument.key] =
@@ -123,24 +148,26 @@ angular.module('App').controller(
             .then((args) => {
               this.args = args;
               this.baseArgs = angular.copy(args);
-              this.loading = false;
             })
             .catch((err) => {
               this.Alerter.alertFromSWS(
-                this.$translate.instant('domains_operations_error'),
+                this.$translate.instant('domain_operations_error'),
                 err,
-                this.$scope.alerts.main,
+                ALERTER_ID,
               );
               this.$scope.resetAction();
             });
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('domains_operations_error'),
+            this.$translate.instant('domain_operations_error'),
             err,
-            this.$scope.alerts.main,
+            ALERTER_ID,
           );
           this.$scope.resetAction();
+        })
+        .finally(() => {
+          this.loading = false;
         });
     }
 
@@ -169,111 +196,98 @@ angular.module('App').controller(
       }
     }
 
-    updateOperation() {
+    async updateOperation() {
       this.loading = true;
 
-      const promises = map(this.args, (arg) => {
-        let rtn;
-        if (arg.type === '/me/document') {
-          if (this.files[arg.key]) {
-            rtn = this.User.uploadFile(arg.key, this.files[arg.key]).then(
-              (documentId) =>
-                this.domainOperationService.updateOperation({
-                  id: this.operation.id,
-                  key: arg.key,
-                  data: { value: documentId },
-                }),
-            );
-          }
-        }
-        if (!arg.readOnly) {
-          rtn = this.domainOperationService.updateOperation({
-            id: this.operation.id,
-            key: arg.key,
-            data: { value: arg.value },
-          });
-        }
-        return rtn;
-      });
-
-      return this.$q
-        .all(promises)
-        .then(() => {
-          switch (this.todoOperation) {
-            case 'relaunch':
-              return this.domainOperationService
-                .relaunchOperation(this.operation.id)
-                .then(() =>
-                  this.Alerter.success(
-                    this.$translate.instant(
-                      'domain_tab_OPERATION_update_relaunch_success',
-                    ),
-                    this.$scope.alerts.main,
-                  ),
-                )
-                .catch((err) =>
-                  this.Alerter.alertFromSWS(
-                    this.$translate.instant(
-                      'domains_operations_relaunch_error',
-                    ),
-                    err,
-                    this.$scope.alerts.main,
-                  ),
-                );
-            case 'cancel':
-              return this.domainOperationService
-                .cancelOperation(this.operation.id)
-                .then(() =>
-                  this.Alerter.success(
-                    this.$translate.instant(
-                      'domains_operations_cancel_success',
-                    ),
-                    this.$scope.alerts.main,
-                  ),
-                )
-                .catch((err) =>
-                  this.Alerter.alertFromSWS(
-                    this.$translate.instant('domains_operations_cancel_error'),
-                    err,
-                    this.$scope.alerts.main,
-                  ),
-                );
-            case 'accelerate':
-              return this.domainOperationService
-                .accelerateOperation(this.operation.id)
-                .then(() =>
-                  this.Alerter.success(
-                    this.$translate.instant(
-                      'domains_operations_accelerate_success',
-                    ),
-                    this.$scope.alerts.main,
-                  ),
-                )
-                .catch((err) =>
-                  this.Alerter.alertFromSWS(
-                    this.$translate.instant(
-                      'domains_operations_accelerate_error',
-                    ),
-                    err,
-                    this.$scope.alerts.main,
-                  ),
-                );
-            default:
-              this.Alerter.success(
-                this.$translate.instant('domain_tab_OPERATION_update_success'),
-                this.$scope.alerts.main,
+      for (const arg of this.args) {
+        try {
+          if (arg.type === '/me/document') {
+            if (this.files[arg.key]) {
+              await this.WucUser.uploadFile(arg.key, this.files[arg.key]).then(
+                (documentId) => {
+                  this.domainOperationService.updateOperation({
+                    id: this.operation.id,
+                    key: arg.key,
+                    data: { value: documentId },
+                  });
+                },
               );
-              return null;
+            }
+          } else if (!arg.readOnly) {
+            await this.domainOperationService.updateOperation({
+              id: this.operation.id,
+              key: arg.key,
+              data: { value: arg.value },
+            });
           }
-        })
-        .catch((err) =>
-          this.Alerter.alertFromSWS(
+        } catch (error) {
+          this.displayAlert(
             this.$translate.instant('domain_tab_OPERATION_update_error'),
-            err,
-            this.$scope.alerts.main,
+            ALERTER_ID,
+            error,
+          );
+        }
+      }
+
+      const operations = {
+        relaunch: () =>
+          this.processOperation(
+            this.todoOperation,
+            'domain_tab_OPERATION_update_relaunch_success',
+            'domain_operations_relaunch_error',
+          ),
+        cancel: () =>
+          this.processOperation(
+            this.todoOperation,
+            'domain_operations_cancel_success',
+            'domain_operations_cancel_error',
+          ),
+        accelerate: () =>
+          this.processOperation(
+            this.todoOperation,
+            'domain_operations_accelerate_success',
+            'domain_operations_accelerate_error',
+          ),
+      };
+      const operation = operations[this.todoOperation];
+      if (operation) {
+        await operation();
+      } else {
+        this.displayAlert(
+          this.$translate.instant('domain_tab_OPERATION_update_success'),
+          ALERTER_ID,
+        );
+      }
+
+      this.$scope.resetAction();
+      return undefined;
+    }
+
+    processOperation(operationType, successMessage, errorMessage) {
+      const capitalizeType = this.constructor.capitalizeFirstLetter(this.type);
+      const method = `${operationType}${capitalizeType}Operation`;
+
+      return this.domainOperationService[method](this.operation.id)
+        .then(() =>
+          this.displayAlert(
+            this.$translate.instant(successMessage),
+            ALERTER_ID,
           ),
         )
-        .finally(() => this.$scope.resetAction());
+        .catch((err) =>
+          this.displayAlert(
+            this.$translate.instant(errorMessage),
+            ALERTER_ID,
+            err,
+          ),
+        );
+    }
+
+    displayAlert(message, alertId, err) {
+      if (err) {
+        return this.Alerter.alertFromSWS(message, err, alertId);
+      }
+      return this.Alerter.success(message, alertId);
     }
   },
 );

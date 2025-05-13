@@ -4,7 +4,7 @@
   "sms_senders_add_sender_choice_manual": "Añadir remitentes manualmente",
   "sms_senders_add_sender_choice_personal": "Añadir remitentes a partir de datos personales",
   "sms_senders_add_sender_choice_domain": "Añadir remitentes a partir de sus dominios en OVHcloud",
-  "sms_senders_add_sender_info_pricing": "Precios",
+  "sms_senders_add_sender_info_pricing": "Precio",
   "sms_senders_add_sender_info_pricing_text": "Validación de un nombre: <b>gratuita</b>",
   "sms_senders_add_sender_info_timetable_validation": "Horarios de validación",
   "sms_senders_add_sender_info_timetable_validation_text": "Nombre (validación manual en 1-2 días laborables): <b>de lunes a viernes, de 8:00 a 20:00</b>",
@@ -31,5 +31,7 @@
   "sms_senders_add_sender_sr_only": "Añadir {{ sender }}",
   "sms_senders_add_sender": "Añadir el remitente seleccionado",
   "sms_senders_add_senders": "Añadir los {{ count }} remitentes seleccionados",
-  "sms_senders_add_senders_success": "Añadiendo..."
+  "sms_senders_add_senders_success": "Añadiendo...",
+  "sms_senders_add_sender_supporting_document": "Documento acreditativo",
+  "sms_senders_add_sender_supporting_document_help": "En el marco de nuestra política de seguridad, es necesario que nos envíe un documento acreditativo. Se trata por defecto de un documento en papel con el membrete de la empresa o de la marca, incluyendo la autorización de un responsable con firma y sello de esta empresa, documento de identidad o extracto de registro de comercio (CIF), si no es una marca registrada."
 }

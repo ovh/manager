@@ -2,13 +2,8 @@ import { ISSUE_CATEGORY, ISSUE_SERVICE_TYPE } from './increase.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.quota.increase', {
-    url: '/increase',
-    views: {
-      modal: {
-        component: 'pciProjectQuotaIncrease',
-      },
-    },
-    layout: 'modal',
+    url: '/increase/contact-support',
+    component: 'pciProjectQuotaIncrease',
     resolve: {
       breadcrumb: () => null,
       issueTypes: /* @ngInject */ (OvhApiSupport, $translate) =>

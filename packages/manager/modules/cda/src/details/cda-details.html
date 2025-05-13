@@ -1,0 +1,68 @@
+<div>
+    <oui-header
+        data-ng-if="!CdaDetailsCtrl.loading"
+        description="{{ CdaDetailsCtrl.serviceName }}"
+    >
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{ CdaDetailsCtrl.CdaService.currentService.label || CdaDetailsCtrl.serviceName }}"
+                ></h1>
+                <div
+                    class="d-flex align-items-center justify-content-end gap-1 flex-wrap"
+                >
+                    <changelog-button
+                        links="CdaDetailsCtrl.constants.CHANGELOG.cloud_disk_array.links"
+                        chapters="CdaDetailsCtrl.constants.CHANGELOG.cloud_disk_array.chapters"
+                    ></changelog-button>
+                    <oui-guide-menu text="{{ 'cda_guide_title' | translate }}">
+                        <oui-guide-menu-item
+                            href="{{ CdaDetailsCtrl.guides.list[0].url }}"
+                            top
+                        >
+                            <span
+                                data-ng-bind="CdaDetailsCtrl.guides.list[0].name"
+                            ></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
+            </div>
+        </oui-header-heading>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                state="cda.dashboard.cda-details-home"
+                state-params="{ serviceName: CdaDetailsCtrl.serviceName }"
+            >
+                <span data-translate="cda_tab_home"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                state="cda.dashboard.cda-user"
+                state-params="{ serviceName: CdaDetailsCtrl.serviceName }"
+            >
+                <span data-translate="cda_tab_user"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                state="cda.dashboard.cda-ip"
+                state-params="{ serviceName: CdaDetailsCtrl.serviceName }"
+            >
+                <span data-translate="cda_tab_ip"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                state="cda.dashboard.cda-pool"
+                state-params="{ serviceName: CdaDetailsCtrl.serviceName }"
+            >
+                <span data-translate="cda_tab_pool"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+
+    <cui-message-container
+        class="mb-3"
+        data-messages="CdaDetailsCtrl.messages"
+    ></cui-message-container>
+
+    <div data-ng-if="!self.loading">
+        <div data-ui-view="cdaDetailsTab"></div>
+    </div>
+</div>

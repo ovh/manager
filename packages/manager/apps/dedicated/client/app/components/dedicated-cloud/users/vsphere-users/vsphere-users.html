@@ -1,0 +1,235 @@
+<oui-datagrid
+    id="pcc-user-datagrid"
+    data-rows-loader="$ctrl.loadUsers($config)"
+    data-columns-parameters="[{
+        name: 'nsxRight',
+        hidden: !$ctrl.hasNsxOption
+    }]"
+    customizable
+>
+    <oui-datagrid-topbar>
+        <oui-button
+            data-ng-click="$ctrl.onAddUserClick()"
+            data-ng-if="$ctrl.dedicatedCloud.solution !== 'VCLOUD'"
+            type="button"
+            variant="secondary"
+        >
+            <span data-translate="dedicatedCloud_USER_add_user"></span>
+        </oui-button>
+
+        <oui-button
+            data-ng-click="$ctrl.onGoToUserIamRoleClick()"
+            data-ng-if="$ctrl.iamEnabled"
+            type="button"
+            variant="secondary"
+        >
+            <span data-translate="dedicatedCloud_USER_create_iam"></span>
+        </oui-button>
+
+        <button
+            type="button"
+            class="oui-button oui-button_secondary float-right"
+            data-ng-click="$ctrl.refreshUsersGrid()"
+        >
+            <span class="oui-icon oui-icon-refresh"></span>
+        </button>
+    </oui-datagrid-topbar>
+
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_name' | translate"
+        data-property="login"
+        data-sortable="asc"
+        data-searchable
+        data-filterable
+        data-prevent-customization
+    >
+        <span data-ng-if="!$row.identityProviderId" data-ng-bind="$row.login">
+        </span>
+        <span
+            data-ng-if="$row.identityProviderId"
+            data-ng-switch="$row.userType"
+        >
+            <span data-ng-switch-when="group">
+                <span class="fa fa-users" aria-hidden="true"></span>
+                <span data-ng-bind="$row.loginUsername"> </span>
+                <span
+                    class="font-italic text-muted"
+                    data-ng-bind="'('+$row.loginDomain+')'"
+                >
+                </span>
+            </span>
+            <span data-ng-switch-when="role">
+                <span class="fa fa-id-card" aria-hidden="true"></span>
+                <span data-ng-bind="$row.loginUsername"> </span>
+                <span class="font-italic text-muted">
+                    (<span
+                        data-translate="dedicatedCloud_USER_type_ovhcloud_iam"
+                    ></span
+                    >)
+                </span>
+            </span>
+            <span data-ng-switch-default>
+                <span data-ng-bind="$row.loginUsername"> </span
+                ><span
+                    class="font-italic text-muted"
+                    data-ng-bind="'@'+$row.loginDomain"
+                ></span>
+            </span>
+        </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_type' | translate"
+        data-property="userType"
+        data-filterable
+        data-sortable
+        data-hidden
+    >
+        <span
+            data-translate="{{ 'dedicatedCloud_USER_type_' + $row.userType }}"
+        >
+        </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_firstname' | translate"
+        data-property="firstName"
+        data-filterable
+        data-sortable
+        data-hidden
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_lastname' | translate"
+        data-property="lastName"
+        data-filterable
+        data-sortable
+        data-hidden
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_mail' | translate"
+        data-property="email"
+        data-filterable
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_phone' | translate"
+        data-property="phoneNumber"
+        data-filterable
+        data-hidden
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_token_validator' | translate"
+        data-property="isTokenValidator"
+        data-type="boolean"
+        data-filterable
+    >
+        <span
+            data-translate="{{ $row.isTokenValidator ? 'dedicatedCloud_USER_yes' : 'dedicatedCloud_USER_no' }}"
+        >
+        </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_ip' | translate"
+        data-property="canManageNetwork"
+        data-type="boolean"
+        data-filterable
+    >
+        <span
+            data-translate="{{ $row.canManageNetwork ? 'dedicatedCloud_USER_yes' : 'dedicatedCloud_USER_no' }}"
+        >
+        </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_ipfo' | translate"
+        data-property="canManageIpFailOvers"
+        data-type="boolean"
+        data-filterable
+    >
+        <span
+            data-translate="{{ $row.canManageIpFailOvers ? 'dedicatedCloud_USER_yes' : 'dedicatedCloud_USER_no' }}"
+        >
+        </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_nsx' | translate"
+        data-property="nsxRight"
+        data-type="boolean"
+        data-filterable
+    >
+        <span
+            data-translate="{{ $row.nsxRight ? 'dedicatedCloud_USER_yes' : 'dedicatedCloud_USER_no' }}"
+        >
+        </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_encryption' | translate"
+        data-property="encryptionRight"
+        data-type="boolean"
+        data-filterable
+    >
+        <span
+            data-translate="{{ $row.encryptionRight ? 'dedicatedCloud_USER_yes' : 'dedicatedCloud_USER_no' }}"
+        >
+        </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_state' | translate"
+        data-property="state"
+        data-type="options"
+        data-type-options="$ctrl.getUsersStateEnumFilter()"
+        data-filterable
+    >
+        <span data-ng-switch="$row.state">
+            <span
+                data-ng-switch-when="creating"
+                data-translate="dedicatedCloud_USER_state_creating"
+            >
+            </span>
+            <span
+                data-ng-switch-when="deleting"
+                data-translate="dedicatedCloud_USER_state_deleting"
+            >
+            </span>
+            <span
+                data-ng-switch-when="delivered"
+                data-translate="dedicatedCloud_USER_state_delivered"
+            >
+            </span>
+            <span
+                data-ng-switch-when="error"
+                data-translate="dedicatedCloud_USER_state_error"
+            ></span>
+            <span
+                data-ng-switch-default
+                data-translate="{{ 'dedicatedCloud_USER_state_' + $row.state }}"
+            >
+            </span>
+        </span>
+    </oui-datagrid-column>
+    <oui-action-menu
+        data-compact
+        data-ng-if="$row.state === 'delivered'"
+        data-placement="end"
+    >
+        <oui-action-menu-item data-on-click="$ctrl.editUser($row)"
+            ><span data-translate="dedicatedCloud_USER_modify"></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item
+            data-on-click="$ctrl.modifyUserRights($row.userId)"
+            ><span
+                data-translate="dedicatedCloud_USER_view_modify_rights_by_DC"
+            ></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item
+            data-ng-if="!$row.identityProviderId"
+            data-on-click="$ctrl.passwordReset($row, $ctrl.passwordPolicy)"
+            ><span data-translate="dedicatedCloud_USER_change_password"></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item data-on-click="$ctrl.deleteUser($row)"
+            ><span
+                data-translate="{{ :: 'dedicatedCloud_USER_' + $row.userType + '_delete' }}"
+            ></span>
+        </oui-action-menu-item>
+    </oui-action-menu>
+</oui-datagrid>

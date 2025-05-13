@@ -34,6 +34,8 @@ export default /* @ngInject */ function($translate) {
 
   self.saveServiceName = function saveServiceName() {
     self.loading.save = true;
+    self.title = self.model.serviceName;
+    self.inEdition = false;
     return self
       .onSave()(self.model.serviceName)
       .finally(() => {

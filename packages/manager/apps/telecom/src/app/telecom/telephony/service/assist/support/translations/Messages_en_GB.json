@@ -1,9 +1,9 @@
 {
-  "telephony_line_assist_support_title": "Guides et support",
+  "telephony_line_assist_support_title": "Guides and support",
   "telephony_line_assist_support_guides_title": "Guides",
-  "telephony_line_assist_support_guides_explain": "Pour vous aider dans la configuration et l'utilisation de votre téléphonie, <a href=\"{{ url }}\" target=\"_blank\" title=\"Accéder à nos guides\">nos guides sont à votre disposition<i class=\"ovh-font ovh-font-newtab ml-4\" /></a>.",
+  "telephony_line_assist_support_guides_explain": "To help you configure and use your telephony system, <a href=\"{{ url }}\" target=\"_blank\" title=\"consult our guides\"><i class=\"ovh-font ovh-font-newtab ml-4\" /></a>.",
   "telephony_line_assist_support_support_title": "Support",
-  "telephony_line_assist_support_header": "Nous contacter pour toute question :",
-  "telephony_line_assist_support_contact_by_phone": "Par téléphone au <b>1007</b> (Gratuit depuis un poste fixe) ou au <b>+33 9 72 10 10 07</b> (Prix d'un appel local depuis un poste fixe en France). Du lundi au vendredi, de 8h à 20h et le samedi, de 9h à 17h.",
-  "telephony_line_assist_support_contact_ticket": "Ouvrir un ticket incident"
+  "telephony_line_assist_support_header": "If you have any questions, contact us:",
+  "telephony_line_assist_support_contact_by_phone": "By phone <b>+44 (0) 333 370 0425</b> (Local call rate from a UK landline). Monday - Friday 8:00am to 8:00pm, Saturday 9:00am to 5:00pm.",
+  "telephony_line_assist_support_contact_ticket": "Open an incident ticket"
 }

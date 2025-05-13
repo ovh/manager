@@ -2,7 +2,7 @@
 
 > Display a breadcrumb based on the [UI-Router](https://ui-router.github.io/ng1/) state declaration.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ui-router-breadcrumb)](https://www.npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ui-router-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ui-router-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ui-router-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ui-router-breadcrumb)](https://www.npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ui-router-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ui-router-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ui-router-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb?activeTab=dependencies)
 
 ## Install
 
@@ -18,54 +18,46 @@ import angular from 'angular';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import uiRouter from '@uirouter/angularjs';
 
-angular
-  .module('myApp', [
-    ngUiRouterBreadcrumb,
-    uiRouter,
-  ])
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider
-      .state('foo', {
-        url: '/foo',
-        template: '<h2>Foo</h2>',
-        resolve: {
-          breadcrumb: function () {
-            return 'foo';
-          }
-        }
-      });
-  });
+angular.module('myApp', [ngUiRouterBreadcrumb, uiRouter]).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('foo', {
+      url: '/foo',
+      template: '<h2>Foo</h2>',
+      resolve: {
+        breadcrumb() {
+          return 'foo';
+        },
+      },
+    });
+  },
+);
 ```
 
 ### `hideBreadcrumb` resolve
 
-This is meant to be used if you want to hide the breadcrumb for some state but display it for some children. 
+This is meant to be used if you want to hide the breadcrumb for some state but display it for some children.
 
 ```js
 import angular from 'angular';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import uiRouter from '@uirouter/angularjs';
 
-angular
-  .module('myApp', [
-    ngUiRouterBreadcrumb,
-    uiRouter,
-  ])
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider
-      .state('foo', {
-        url: '/foo',
-        template: '<h2>Foo</h2>',
-        resolve: {
-          breadcrumb: function () {
-            return 'foo';
-          },
-          hideBreadcrumb: function() {
-            return true
-          } 
-        }
-      });
-  });
+angular.module('myApp', [ngUiRouterBreadcrumb, uiRouter]).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('foo', {
+      url: '/foo',
+      template: '<h2>Foo</h2>',
+      resolve: {
+        breadcrumb() {
+          return 'foo';
+        },
+        hideBreadcrumb() {
+          return true;
+        },
+      },
+    });
+  },
+);
 ```
 
 ## Test

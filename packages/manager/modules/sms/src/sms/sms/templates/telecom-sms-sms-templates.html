@@ -1,11 +1,8 @@
 <section class="telecom-sms-sms-templates">
     <header>
-        <tuc-section-back-link
-            data-tuc-section-back-link-to-state="sms.service.sms"
-            data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}"
-        >
-        </tuc-section-back-link>
-        <h1 data-translate="sms_sms_templates_title"></h1>
+        <oui-back-button on-click="$ctrl.goBack()">
+            <span data-translate="sms_sms_templates_title"></span>
+        </oui-back-button>
     </header>
 
     <!-- LOADING -->
@@ -13,7 +10,7 @@
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="telecom-section-content" data-ng-if="!$ctrl.loading.init">
+    <div data-ng-if="!$ctrl.loading.init">
         <tuc-toast-message></tuc-toast-message>
 
         <div class="row">
@@ -72,21 +69,16 @@
         </div>
 
         <div class="mb-3 clearfix">
-            <div
-                class="btn-group float-left mr-3"
-                data-uib-dropdown
-                data-dropdown-append-to-body
-            >
+            <div class="btn-group float-left mr-3" data-uib-dropdown>
                 <button
                     id="btn-sms-templates-actions"
                     type="button"
-                    class="btn btn-default"
+                    class="oui-button oui-button_dropdown"
                     data-uib-dropdown-toggle
                 >
-                    <span class="fa fa-bars" aria-hidden="true"></span>
                     <span data-translate="sms_common_actions"></span>
                     <span
-                        class="ovh-font ovh-font-small-arrow-down"
+                        class="oui-icon oui-icon-chevron-down"
                         aria-hidden="true"
                     ></span>
                 </button>
@@ -125,48 +117,54 @@
             data-row-loader="$ctrl.getDetails($row)"
             data-ng-if="!$ctrl.templates.isLoading"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title="'sms_sms_templates_list_title_name' | translate"
                 data-property="name"
                 data-sortable="asc"
             >
-                {{$row.name || '-'}}
-            </oui-column>
+                <span data-ng-bind="($row.name | limitTo: 40) || '-'"></span>
+            </oui-datagrid-column>
 
-            <oui-column
+            <oui-datagrid-column
                 data-title="'sms_sms_templates_list_title_date' | translate"
                 data-property="datetime"
                 data-sortable
             >
-                {{$row.datetime | date:'shortDate' || '-'}}
-            </oui-column>
+                <span
+                    data-ng-bind="$row.datetime | date:'shortDate' || '-'"
+                ></span>
+            </oui-datagrid-column>
 
-            <oui-column
+            <oui-datagrid-column
                 data-title="'sms_sms_templates_list_title_type' | translate"
                 data-property="activity"
                 data-sortable
             >
-                {{(('sms_sms_templates_add_activity_type_' + $row.activity) |
-                translate) || '-'}}
-            </oui-column>
+                <span
+                    data-ng-bind="(('sms_sms_templates_add_activity_type_' + $row.activity) |
+              translate) || '-'"
+                ></span>
+            </oui-datagrid-column>
 
-            <oui-column
+            <oui-datagrid-column
                 data-title="'sms_sms_templates_list_title_description' | translate"
                 data-property="description"
                 data-sortable
             >
-                {{$row.description || '-'}}
-            </oui-column>
+                <span
+                    data-ng-bind="($row.description | limitTo: 40) || '-'"
+                ></span>
+            </oui-datagrid-column>
 
-            <oui-column
+            <oui-datagrid-column
                 data-title="'sms_sms_templates_list_title_message' | translate"
                 data-property="message"
                 data-sortable
             >
-                {{$row.message || '-'}}
-            </oui-column>
+                <span data-ng-bind="($row.message | limitTo: 40) || '-'"></span>
+            </oui-datagrid-column>
 
-            <oui-column
+            <oui-datagrid-column
                 data-title="'sms_sms_templates_list_title_status' | translate"
                 data-property="status"
                 data-sortable
@@ -181,9 +179,9 @@
                       }"
                 >
                 </span>
-            </oui-column>
+            </oui-datagrid-column>
 
-            <oui-action-menu data-align="end" data-compact>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item on-click="$ctrl.edit($row)">
                     <span data-translate="sms_edit"></span>
                 </oui-action-menu-item>

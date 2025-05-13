@@ -2,11 +2,19 @@
   "sign_up_details_field_legalform": "Type de compte",
   "sign_up_details_field_country": "Pays de résidence",
   "sign_up_details_field_phone": "Numéro de téléphone",
-  "sign_up_details_field_language": "Langue parlée",
+  "sign_up_details_field_language": "Langue préférée",
   "sign_up_details_field_zip": "Code postal",
   "sign_up_details_field_city": "Ville",
   "sign_up_details_field_address": "Adresse",
+  "sign_up_details_field_address_help_text": "Assurez-vous que l'adresse correspond bien à celle figurant dans votre justificatif.",
   "sign_up_details_field_area": "Région",
   "sign_up_details_field_state": "État",
-  "sign_up_details_field_province": "Province"
+  "sign_up_details_field_province": "Province",
+  "sign_up_details_field_mobile_phone": "Mobile",
+  "sign_up_details_field_landline_phone": "Fixe",
+  "sign_up_details_field_sms_consent": "J'accepte librement de recevoir des SMS relatifs aux nouveautés et offres commerciales d'OVHcloud.",
+  "sign_up_details_field_gender": "Genre",
+  "sign_up_details_field_birthday": "Date de naissance",
+  "sign_up_details_field_purpose_of_purchase": "Raison de l'achat",
+  "sign_up_details_field_purpose_of_purchase_placeholder": "Veuillez indiquer la raison de votre achat"
 }

@@ -5,14 +5,15 @@ import map from 'lodash/map';
 
 export default {
   template: `
-      <div data-ng-repeat="(country, zones) in $ctrl.groupedZones | orderHashByKey track by $index">
+      <div class="mb-3" data-ng-repeat="(country, zones) in $ctrl.groupedZones | orderHashByKey track by $index">
         <p data-ng-bind="country"></p>
         <oui-checkbox
           data-on-change="$ctrl.onSelectionChanged(zone, modelValue)"
           data-disabled="zone.selectable.value === false"
           data-description="{{ zone.selectable.reason }}"
-          data-ng-repeat="zone in zones | orderBy: 'microRegion.text' track by $index"
-          data-text="{{ zone.microRegion.text }}"></oui-checkbox>
+          data-ng-repeat="zone in zones | orderBy: 'microRegion.text' track by $index">
+          <span data-ng-bind="zone.microRegion.text"></span>
+        </oui-checkbox>
       </div>`,
   controller: class {
     /* @ngInject */

@@ -43,10 +43,13 @@
                                 class="oui-radio__label-container"
                                 for="duration-{{$index}}"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-ng-bind="('exchange_ACTION_add_outlook_duration_type_' + option.duration.duration) | translate"
-                                ></span>
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-ng-bind="('exchange_ACTION_add_outlook_duration_type_' + option.duration.duration) | translate"
+                                    ></span>
+                                </span>
                             </label>
                         </div>
                     </div>
@@ -94,8 +97,9 @@
                         <oui-checkbox
                             id="contractsValidated"
                             data-model="ctrl.selectedOption.contractsValidated"
-                            data-text="{{::'exchange_ACTION_add_outlook_contracts__checkbox' | translate}}"
-                        >
+                            ><span
+                                data-translate="exchange_ACTION_add_outlook_contracts__checkbox"
+                            ></span>
                         </oui-checkbox>
 
                         <ul class="list-unstyled mt-2">

@@ -6,302 +6,386 @@
         <h1 data-translate="pack_resiliation_title"></h1>
     </header>
 
-    <div class="telecom-section-content">
-        <div class="row">
-            <div class="col-xs-12 col-md-6">
-                <div
-                    class="alert alert-info"
-                    role="alert"
-                    data-ng-if="!PackResiliation.loading && !PackResiliation.resiliationTerms.onGoingResiliation"
-                    data-translate="pack_resiliation_infos"
-                ></div>
+    <div data-ng-if="$ctrl.isEligible">
+        <oui-modal
+            data-heading="{{:: 'pack_resiliation_eligibility_eligible_title' | translate}}"
+            data-type="help"
+            data-on-dismiss="$ctrl.onDismiss()"
+        >
+            <p data-translate="pack_resiliation_eligibility_fiber_eligible"></p>
+            <p
+                data-translate="pack_resiliation_eligibility_fiber_eligible_description"
+            ></p>
+            <oui-button
+                data-variant="link"
+                data-ng-click="$ctrl.onChangeOffer()"
+            >
+                <span
+                    data-translate="pack_resiliation_eligibility_change_offer"
+                ></span>
+            </oui-button>
+            <oui-button
+                data-variant="link"
+                data-ng-click="$ctrl.constructor.openFiberPage()"
+            >
+                <span
+                    data-translate="pack_resiliation_eligibility_fiber_information"
+                ></span>
+            </oui-button>
+            <oui-button data-variant="link" data-ng-click="$ctrl.onDismiss()">
+                <span
+                    data-translate="pack_resiliation_eligibility_not_interest"
+                ></span>
+            </oui-button>
+        </oui-modal>
+        <div class="oui-modal-backdrop"></div>
+    </div>
+    <div data-ng-if="$ctrl.isEligibleNotYet">
+        <oui-modal
+            data-heading="{{:: 'pack_resiliation_eligibility_not_yet_eligible_title' | translate}}"
+            type="help"
+            on-dismiss="$ctrl.onDismiss()"
+        >
+            <p
+                data-translate="pack_resiliation_eligibility_fiber_not_eligible"
+            ></p>
+            <p
+                data-translate="pack_resiliation_eligibility_fiber_not_eligible_description"
+            ></p>
+            <p
+                data-translate="pack_resiliation_eligibility_available_date"
+                data-translate-values="{'availabilityDate': $ctrl.constructor.formatDate($ctrl.eligibility.availabilityDate)}"
+                data-ng-if="$ctrl.eligibility.availabilityDate"
+            ></p>
+            <oui-button
+                variant="link"
+                data-ng-click="$ctrl.constructor.openFiberPage()"
+            >
+                <span
+                    data-translate="pack_resiliation_eligibility_fiber_information"
+                ></span>
+            </oui-button>
+            <oui-button variant="link" data-ng-click="$ctrl.onDismiss()">
+                <span
+                    data-translate="pack_resiliation_eligibility_not_interest"
+                ></span>
+            </oui-button>
+        </oui-modal>
+        <div class="oui-modal-backdrop"></div>
+    </div>
 
-                <tuc-toast-message></tuc-toast-message>
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-ng-if="!$ctrl.loading && !$ctrl.resiliationTerms.onGoingResiliation"
+                data-translate="pack_resiliation_infos"
+            ></div>
 
-                <div class="text-center" data-ng-if="PackResiliation.loading">
-                    <oui-spinner></oui-spinner>
-                </div>
+            <tuc-toast-message></tuc-toast-message>
 
-                <form
-                    name="resiliationForm"
-                    class="form-vertical mt-3"
-                    data-ng-if="!PackResiliation.loading && !PackResiliation.resiliationTerms.onGoingResiliation"
-                >
-                    <fieldset class="widget-presentation mt-3">
-                        <legend
-                            class="h2 widget-presentation-title"
-                            data-ng-bind="'1. ' + ('pack_resiliation_reason_title' | translate)"
-                        ></legend>
+            <div class="text-center" data-ng-if="$ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
 
-                        <div
-                            class="form-group mt-3"
-                            data-ng-if="PackResiliation.resiliationTerms.data.due.value"
-                        >
-                            <label
-                                class="control-label"
-                                data-translate="pack_resiliation_engaged"
-                            ></label>
-                            <p
-                                class="form-control-static service-item"
-                                data-ng-if="PackResiliation.resiliationTerms.data.engaged"
-                                data-ng-bind="PackResiliation.resiliationTerms.data.engageDate | date:'dd/MM/yyyy'"
-                            ></p>
-                            <p
-                                class="form-control-static service-item"
-                                data-ng-if="!PackResiliation.resiliationTerms.data.engaged"
-                                data-translate="pack_resiliation_not_engaged"
-                            ></p>
-                        </div>
+            <form
+                name="resiliationForm"
+                class="form-vertical mt-3"
+                data-ng-if="!$ctrl.loading && !$ctrl.resiliationTerms.onGoingResiliation"
+            >
+                <fieldset class="widget-presentation mt-3">
+                    <legend
+                        class="h2 widget-presentation-title"
+                        data-ng-bind="'1. ' + ('pack_resiliation_reason_title' | translate)"
+                    ></legend>
 
-                        <div class="form-group">
-                            <label
-                                class="control-label"
-                                data-translate="pack_resiliation_due"
-                            ></label>
-                            <p class="form-control-static">
-                                <strong
-                                    class="text-price"
-                                    data-ng-if="!PackResiliation.computingPrice"
-                                    data-translate="pack_resiliation_excluding_tax"
-                                    data-translate-values="{ amount: PackResiliation.resiliationTerms.data.due.text }"
-                                ></strong>
-                                <oui-spinner
-                                    class="ml-2"
-                                    data-ng-if="PackResiliation.computingPrice"
-                                    data-size="s"
-                                >
-                                </oui-spinner>
-                            </p>
-                        </div>
+                    <div
+                        class="form-group mt-3"
+                        data-ng-if="$ctrl.resiliationTerms.data.due.value"
+                    >
+                        <label
+                            class="control-label"
+                            data-translate="pack_resiliation_engaged"
+                        ></label>
+                        <p
+                            class="form-control-static service-item"
+                            data-ng-if="$ctrl.resiliationTerms.data.engaged"
+                            data-ng-bind="$ctrl.resiliationTerms.data.engageDate | date:'dd/MM/yyyy'"
+                        ></p>
+                        <p
+                            class="form-control-static service-item"
+                            data-ng-if="!$ctrl.resiliationTerms.data.engaged"
+                            data-translate="pack_resiliation_not_engaged"
+                        ></p>
+                    </div>
 
-                        <div class="form-group">
-                            <label
-                                for="resiliationNativeDateElem"
-                                class="control-label"
-                                data-translate="pack_resiliation_resiliation_date"
-                            ></label>
-                            <input
-                                name="expirationNativeDate"
-                                id="resiliationNativeDateElem"
-                                placeholder="{{ 'pack_resiliation_date_format' | translate }}"
-                                class="form-control w-50"
-                                data-datepicker-options="PackResiliation.dpOpts"
-                                data-uib-datepicker-popup="dd/MM/yyyy"
-                                data-min-date="PackResiliation.minResiliationDate"
-                                data-ui-validate="'PackResiliation.checkDate()'"
-                                data-is-open="PackResiliation.pickerOpened"
-                                data-ng-disabled="PackResiliation.loading"
-                                data-show-button-bar="false"
-                                current-text="{{:: 'today' | translate }}"
-                                clear-text="{{:: 'reset' | translate }}"
-                                close-text="{{:: 'close' | translate }}"
-                                min="{{PackResiliation.minResiliationDate.toISOString()}}"
-                                data-ng-focus="PackResiliation.openDatePicker($event)"
-                                data-ng-click="PackResiliation.switchDatePickerState($event)"
-                                data-ng-model="PackResiliation.model.when"
-                                data-ng-change="PackResiliation.computePrice()"
-                            />
-                            <span
-                                class="help-block"
-                                role="alert"
-                                data-ng-if="reasonForm.expirationNativeDate.$error.date || !PackResiliation.checkDate()"
+                    <div class="form-group">
+                        <label
+                            class="control-label"
+                            data-translate="pack_resiliation_due"
+                        ></label>
+                        <p class="form-control-static">
+                            <strong
+                                class="text-price"
+                                data-ng-if="!$ctrl.computingPrice"
+                                data-translate="pack_resiliation_excluding_tax"
+                                data-translate-values="{ amount: $ctrl.resiliationTerms.data.due.text }"
+                            ></strong>
+                            <oui-spinner
+                                class="ml-2"
+                                data-ng-if="$ctrl.computingPrice"
+                                data-size="s"
                             >
-                                <span
-                                    class="ovh-font ovh-font-failure text-danger"
-                                    aria-hidden="true"
-                                ></span>
-                                <span
-                                    data-translate="pack_resiliation_date_format_error"
-                                ></span>
-                                <span
-                                    data-translate="pack_resiliation_date_format"
-                                ></span>
-                            </span>
-                        </div>
+                            </oui-spinner>
+                        </p>
+                    </div>
 
-                        <div class="form-group mt-3">
-                            <label
-                                class="control-label"
-                                for="resiliationReasonElem"
-                                data-translate="resiliation_reason"
-                            ></label>
-                            <select
-                                name="reason"
-                                class="form-control"
-                                data-ng-model="PackResiliation.model.reason"
-                                data-ng-options="reason.label for reason in PackResiliation.resiliationTerms.data.resiliationReasons track by reason.value"
-                                id="resiliationReasonElem"
-                                required
-                            >
-                            </select>
-                        </div>
-
-                        <div class="form-group mt-3">
-                            <label
-                                data-ng-if="PackResiliation.model.reason.value !== 'other'"
-                                for="comment"
-                                data-translate="pack_resiliation_comment2"
-                            ></label>
-                            <label
-                                data-ng-if="PackResiliation.model.reason.value === 'other'"
-                                for="comment"
-                                data-translate="pack_resiliation_comment_required"
-                            ></label>
-                            <textarea
-                                class="form-control"
-                                name="comment"
-                                id="comment"
-                                rows="7"
-                                data-ng-model="PackResiliation.model.comment"
-                            ></textarea>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="widget-presentation mt-5">
-                        <legend
-                            class="h2 widget-presentation-title"
-                            data-ng-bind="'2. ' + ('pack_resiliation_services_to_keep' | translate)"
-                        ></legend>
-
-                        <div
-                            class="text-center"
-                            data-ng-if="PackResiliation.subServicesTermsLoading"
-                        >
-                            <oui-spinner></oui-spinner>
-                        </div>
-
-                        <div
-                            class="alert alert-warning"
+                    <div class="form-group">
+                        <label
+                            for="resiliationNativeDateElem"
+                            class="control-label"
+                            data-translate="pack_resiliation_resiliation_date"
+                        ></label>
+                        <input
+                            name="expirationNativeDate"
+                            id="resiliationNativeDateElem"
+                            placeholder="{{ 'pack_resiliation_date_format' | translate }}"
+                            class="form-control w-50"
+                            data-datepicker-options="$ctrl.dpOpts"
+                            data-uib-datepicker-popup="dd/MM/yyyy"
+                            data-min-date="$ctrl.minResiliationDate"
+                            data-ui-validate="'$ctrl.checkDate()'"
+                            data-is-open="$ctrl.pickerOpened"
+                            data-ng-disabled="$ctrl.loading"
+                            data-show-button-bar="false"
+                            current-text="{{:: 'today' | translate }}"
+                            clear-text="{{:: 'reset' | translate }}"
+                            close-text="{{:: 'close' | translate }}"
+                            min="{{$ctrl.minResiliationDate.toISOString()}}"
+                            data-ng-focus="$ctrl.openDatePicker($event)"
+                            data-ng-click="$ctrl.switchDatePickerState($event)"
+                            data-ng-model="$ctrl.model.when"
+                            data-ng-change="$ctrl.computePrice()"
+                        />
+                        <span
+                            class="help-block"
                             role="alert"
-                            data-ng-if="PackResiliation.subServicesTermsError && !PackResiliation.subServicesTermsLoading"
-                            data-translate="pack_resiliation_subservices_load_error"
-                        ></div>
+                            data-ng-if="resiliationForm.expirationNativeDate.$error.date || !$ctrl.checkDate()"
+                        >
+                            <span
+                                class="ovh-font ovh-font-failure text-danger"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-translate="pack_resiliation_date_format_error"
+                            ></span>
+                            <span
+                                data-translate="pack_resiliation_date_format"
+                            ></span>
+                        </span>
+                    </div>
 
+                    <div class="form-group mt-3">
+                        <label
+                            class="control-label"
+                            for="resiliationReasonElem"
+                            data-translate="resiliation_reason"
+                        ></label>
+                        <select
+                            name="reason"
+                            class="form-control"
+                            data-ng-model="$ctrl.model.reason"
+                            data-ng-options="reason.label for reason in $ctrl.resiliationTerms.data.resiliationReasons track by reason.value"
+                            id="resiliationReasonElem"
+                            data-ng-change="$ctrl.checkNeedSubsidiaryQuestion()"
+                            required
+                        >
+                        </select>
+                    </div>
+
+                    <div
+                        class="form-group mt-3"
+                        data-ng-if="$ctrl.isSubsidiaryQuestion"
+                    >
+                        <label
+                            class="control-label"
+                            data-translate="{{'pack_resiliation_susbsidiary_question_'  + $ctrl.model.reason.value}}"
+                            for="resiliationSubsidiary"
+                        ></label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="resiliationSubsidiary"
+                            data-ng-model="$ctrl.model.subsidiary"
+                        />
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label
+                            data-ng-if="$ctrl.model.reason.value !== 'other'"
+                            for="comment"
+                            data-translate="pack_resiliation_comment2"
+                        ></label>
+                        <label
+                            data-ng-if="$ctrl.model.reason.value === 'other'"
+                            for="comment"
+                            data-translate="pack_resiliation_comment_required"
+                        ></label>
+                        <textarea
+                            class="form-control"
+                            name="comment"
+                            id="comment"
+                            rows="7"
+                            data-ng-model="$ctrl.model.comment"
+                        ></textarea>
+                    </div>
+                </fieldset>
+
+                <fieldset class="widget-presentation mt-5">
+                    <legend
+                        class="h2 widget-presentation-title"
+                        data-ng-bind="'2. ' + ('pack_resiliation_services_to_keep' | translate)"
+                    ></legend>
+
+                    <div
+                        class="text-center"
+                        data-ng-if="$ctrl.subServicesTermsLoading"
+                    >
+                        <oui-spinner></oui-spinner>
+                    </div>
+
+                    <div
+                        class="alert alert-warning"
+                        role="alert"
+                        data-ng-if="$ctrl.subServicesTermsError && !$ctrl.subServicesTermsLoading"
+                        data-translate="pack_resiliation_subservices_load_error"
+                    ></div>
+
+                    <div
+                        data-ng-if="$ctrl.subServicesTerms && !$ctrl.subServicesTermsLoading"
+                    >
                         <div
-                            data-ng-if="PackResiliation.subServicesTerms && !PackResiliation.subServicesTermsLoading"
+                            class="service-type mb-3"
+                            data-ng-repeat="serviceType in $ctrl.config.orderedServicesToList track by serviceType"
+                            data-ng-if="serviceType !== 'xdslAccess'"
                         >
                             <div
-                                class="service-type mb-3"
-                                data-ng-repeat="serviceType in PackResiliation.config.orderedServicesToList track by serviceType"
-                                data-ng-if="serviceType !== 'xdslAccess'"
+                                data-ng-if="$ctrl.subServicesTerms[serviceType]"
                             >
-                                <div
-                                    data-ng-if="PackResiliation.subServicesTerms[serviceType]"
-                                >
-                                    <div class="form-group">
+                                <div class="form-group">
+                                    <div
+                                        class="h6 mb-3"
+                                        data-translate="{{serviceType}}"
+                                    ></div>
+                                    <div class="service-item">
                                         <div
-                                            class="h6 mb-3"
-                                            data-translate="{{serviceType}}"
-                                        ></div>
-                                        <div class="service-item">
+                                            class="service-select-all clearfix mb-2 px-3"
+                                            data-ng-if="!$ctrl.config[serviceType].cannotBeKept && $ctrl.hasKeepableSubServices(serviceType)"
+                                        >
+                                            <div class="checkbox">
+                                                <label
+                                                    for="{{::serviceType + 'Elem'}}"
+                                                >
+                                                    <input
+                                                        name="{{::serviceType}}"
+                                                        id="{{::serviceType + 'Elem'}}"
+                                                        data-ng-model="$ctrl.switch[serviceType]"
+                                                        data-ng-change="$ctrl.switchApply(serviceType)"
+                                                        type="checkbox"
+                                                    />
+                                                    <span
+                                                        data-translate="{{'pack_resiliation_check_all_' + serviceType}}"
+                                                    ></span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="service-select-all clearfix mb-3"
+                                            data-ng-if="!$ctrl.hasKeepableSubServices(serviceType)"
+                                        >
                                             <div
-                                                class="service-select-all clearfix mb-2 px-3"
-                                                data-ng-if="!PackResiliation.config[serviceType].cannotBeKept && PackResiliation.hasKeepableSubServices(serviceType)"
+                                                class="ml-3 my-2"
+                                                data-ng-if="!$ctrl.hasKeepableSubServices(serviceType)"
                                             >
-                                                <div class="checkbox">
+                                                <strong
+                                                    data-translate="{{'pack_resiliation_delete_all_' + serviceType}}"
+                                                ></strong>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="pl-4"
+                                            data-ng-repeat="service in $ctrl.subServicesTerms[serviceType] track by service.id"
+                                        >
+                                            <div
+                                                class="row service-select-single py-2"
+                                            >
+                                                <div
+                                                    class="col-xs-7 checkbox my-1"
+                                                    data-tooltip-append-to-body="true"
+                                                    data-uib-tooltip-html-unsafe="{{ service.keepServiceTerms.isAllowed ?
+                                                         null : '<strong class=\'text-warning\'>' +
+                                                         ('pack_resiliation_services_cannot_keep' | translate) + '</strong>'}}"
+                                                >
                                                     <label
-                                                        for="{{::serviceType + 'Elem'}}"
+                                                        for="{{::service.domain + 'Elem'}}"
+                                                        data-ng-class="{ 'text-muted': !service.keepServiceTerms.isAllowed }"
                                                     >
                                                         <input
-                                                            name="{{::serviceType}}"
-                                                            id="{{::serviceType + 'Elem'}}"
-                                                            data-ng-model="PackResiliation.switch[serviceType]"
-                                                            data-ng-change="PackResiliation.switchApply(serviceType)"
+                                                            name="{{::service.domain}}"
+                                                            id="{{::service.domain + 'Elem'}}"
+                                                            data-ng-disabled="!service.keepServiceTerms.isAllowed"
+                                                            data-ng-model="$ctrl.model.subServicesToKeep[service.id]"
+                                                            data-ng-change="$ctrl.updateAllInfluencedByCheckedSubServices(serviceType)"
+                                                            value="true"
                                                             type="checkbox"
                                                         />
                                                         <span
-                                                            data-translate="{{'pack_resiliation_check_all_' + serviceType}}"
+                                                            data-ng-bind="::service.domain"
                                                         ></span>
                                                     </label>
                                                 </div>
-                                            </div>
-
-                                            <div
-                                                class="service-select-all clearfix mb-3"
-                                                data-ng-if="!PackResiliation.hasKeepableSubServices(serviceType)"
-                                            >
                                                 <div
-                                                    class="ml-3 my-2"
-                                                    data-ng-if="!PackResiliation.hasKeepableSubServices(serviceType)"
-                                                >
-                                                    <strong
-                                                        data-translate="{{'pack_resiliation_delete_all_' + serviceType}}"
-                                                    ></strong>
-                                                </div>
-                                            </div>
-
-                                            <div
-                                                class="pl-4"
-                                                data-ng-repeat="service in PackResiliation.subServicesTerms[serviceType] track by service.id"
-                                            >
-                                                <div
-                                                    class="row service-select-single py-2"
+                                                    class="col-xs-5 text-right my-1"
                                                 >
                                                     <div
-                                                        class="col-xs-7 checkbox my-1"
-                                                        data-tooltip-append-to-body="true"
-                                                        data-uib-tooltip-html-unsafe="{{ service.keepServiceTerms.isAllowed ?
-                                                         null : '<strong class=\'text-warning\'>' +
-                                                         ('pack_resiliation_services_cannot_keep' | translate) + '</strong>'}}"
+                                                        data-ng-if="service.keepServiceTerms.price.value"
                                                     >
-                                                        <label
-                                                            for="{{::service.domain + 'Elem'}}"
-                                                            data-ng-class="{ 'text-muted': !service.keepServiceTerms.isAllowed }"
-                                                        >
-                                                            <input
-                                                                name="{{::service.domain}}"
-                                                                id="{{::service.domain + 'Elem'}}"
-                                                                data-ng-disabled="!service.keepServiceTerms.isAllowed"
-                                                                data-ng-model="PackResiliation.model.subServicesToKeep[service.id]"
-                                                                data-ng-change="PackResiliation.updateAllInfluencedByCheckedSubServices(serviceType)"
-                                                                value="true"
-                                                                type="checkbox"
-                                                            />
-                                                            <span
-                                                                data-ng-bind="::service.domain"
-                                                            ></span>
-                                                        </label>
+                                                        <span
+                                                            data-translate="pack_resiliation_keeping_fee"
+                                                        ></span>
+                                                        <strong
+                                                            class="text-nowrap"
+                                                            data-translate="pack_resiliation_price_tax_free"
+                                                            data-translate-values=":: { price: service.keepServiceTerms.price.text }"
+                                                        ></strong>
                                                     </div>
-                                                    <div
-                                                        class="col-xs-5 text-right my-1"
-                                                    >
-                                                        <div
-                                                            data-ng-if="service.keepServiceTerms.price.value"
-                                                        >
-                                                            <span
-                                                                data-translate="pack_resiliation_keeping_fee"
-                                                            ></span>
-                                                            <strong
-                                                                class="text-nowrap"
-                                                                data-translate="pack_resiliation_price_tax_free"
-                                                                data-translate-values=":: { price: service.keepServiceTerms.price.text }"
-                                                            ></strong>
-                                                        </div>
 
-                                                        <div
-                                                            data-ng-if="service.keepServiceTerms.renewPrice.value"
-                                                        >
-                                                            <span
-                                                                data-ng-if="service.keepServiceTerms.renewPeriod === 1"
-                                                                data-translate="pack_resiliation_monthly_pass"
-                                                            ></span>
-                                                            <span
-                                                                data-ng-if="service.keepServiceTerms.renewPeriod !== 1 &&
+                                                    <div
+                                                        data-ng-if="service.keepServiceTerms.renewPrice.value"
+                                                    >
+                                                        <span
+                                                            data-ng-if="service.keepServiceTerms.renewPeriod === 1"
+                                                            data-translate="pack_resiliation_monthly_pass"
+                                                        ></span>
+                                                        <span
+                                                            data-ng-if="service.keepServiceTerms.renewPeriod !== 1 &&
                                                                 service.keepServiceTerms.renewPeriod !== 12"
-                                                                data-translate="pack_resiliation_Nthly_pass"
-                                                                data-translate-values="{month: service.keepServiceTerms.renewPeriod}"
-                                                            >
-                                                            </span>
-                                                            <span
-                                                                data-ng-if="service.keepServiceTerms.renewPeriod === 12"
-                                                                data-translate="pack_resiliation_annually_pass"
-                                                            ></span>
-                                                            <strong
-                                                                class="text-nowrap"
-                                                                data-translate="pack_resiliation_price_tax_free"
-                                                                data-translate-values="{ price: service.keepServiceTerms.renewPrice.text }"
-                                                            ></strong>
-                                                        </div>
+                                                            data-translate="pack_resiliation_Nthly_pass"
+                                                            data-translate-values="{month: service.keepServiceTerms.renewPeriod}"
+                                                        >
+                                                        </span>
+                                                        <span
+                                                            data-ng-if="service.keepServiceTerms.renewPeriod === 12"
+                                                            data-translate="pack_resiliation_annually_pass"
+                                                        ></span>
+                                                        <strong
+                                                            class="text-nowrap"
+                                                            data-translate="pack_resiliation_price_tax_free"
+                                                            data-translate-values="{ price: service.keepServiceTerms.renewPrice.text }"
+                                                        ></strong>
                                                     </div>
                                                 </div>
                                             </div>
@@ -310,116 +394,106 @@
                                 </div>
                             </div>
                         </div>
-                    </fieldset>
+                    </div>
+                </fieldset>
 
-                    <div
-                        class="alert alert-info mt-5"
-                        role="alert"
-                        data-translate="pack_resiliation_hubic_disclamer"
-                    ></div>
-
-                    <div class="widget-presentation mt-5">
-                        <h2
-                            class="widget-presentation-title"
-                            data-ng-bind="'3. ' + ('pack_resiliation_fee_summary_total_title' | translate)"
-                        ></h2>
-                        <dl>
-                            <dt data-translate="pack_resiliation_fee"></dt>
-                            <dd
-                                data-translate="pack_resiliation_excluding_tax"
-                                data-translate-values="{ amount: PackResiliation.feeSummary.duePrice.text }"
-                            ></dd>
-                        </dl>
-                        <dl
-                            data-ng-if="PackResiliation.feeSummary.keepingPrice > 0"
-                        >
-                            <dt
-                                data-translate="pack_resiliation_keeping_fee"
-                            ></dt>
-                            <dd
-                                data-translate="pack_resiliation_excluding_tax"
-                                data-translate-values="{
-                                    amount: PackResiliation.feeSummary.keepingPrice,
-                                    currency: PackResiliation.feeSummary.currency
+                <div class="widget-presentation mt-5">
+                    <h2
+                        class="widget-presentation-title"
+                        data-ng-bind="'3. ' + ('pack_resiliation_fee_summary_total_title' | translate)"
+                    ></h2>
+                    <dl>
+                        <dt data-translate="pack_resiliation_fee"></dt>
+                        <dd
+                            data-translate="pack_resiliation_excluding_tax"
+                            data-translate-values="{ amount: $ctrl.feeSummary.duePrice.text }"
+                        ></dd>
+                    </dl>
+                    <dl data-ng-if="$ctrl.feeSummary.keepingPrice > 0">
+                        <dt data-translate="pack_resiliation_keeping_fee"></dt>
+                        <dd
+                            data-translate="pack_resiliation_excluding_tax"
+                            data-translate-values="{
+                                    amount: $ctrl.feeSummary.keepingPrice,
+                                    currency: $ctrl.feeSummary.currency
                                 }"
-                            ></dd>
-                        </dl>
-                        <dl
-                            data-ng-repeat="(period, amount) in PackResiliation.feeSummary.renewPrice track by $index"
-                        >
-                            <dt
-                                data-ng-if="period === '1'"
-                                data-translate="pack_resiliation_monthly_pass"
-                            ></dt>
-                            <dd
-                                data-ng-if="period !== '1' && period !== '12'"
-                                data-translate="pack_resiliation_Nthly_pass"
-                                data-translate-values="{month: period}"
-                            ></dd>
-                            <dt
-                                data-ng-if="period === '12'"
-                                data-translate="pack_resiliation_annually_pass"
-                            ></dt>
-                            <dd
-                                data-ng-if="period === '12'"
-                                data-translate="pack_resiliation_excluding_tax_annually"
-                                data-translate-values="{ amount: amount, currency: PackResiliation.feeSummary.currency }"
-                            ></dd>
-                            <dd
-                                data-ng-if="period !== '12'"
-                                data-translate="pack_resiliation_excluding_tax_monthly"
-                                data-translate-values="{ amount: amount, currency: PackResiliation.feeSummary.currency }"
-                            ></dd>
-                        </dl>
-
-                        <button
-                            class="btn btn-primary mt-5"
-                            data-ng-click="PackResiliation.openConfirmation()"
-                            data-ng-disabled="resiliationForm.expirationNativeDate.$error.date || !PackResiliation.model.reason || (PackResiliation.model.reason.value === 'other' && !PackResiliation.model.comment)"
-                            type="button"
-                            data-translate="pack_resiliation_button"
-                        ></button>
-                    </div>
-                </form>
-                <!-- END RESILIATION FORM -->
-
-                <!-- CANCEL RESILIATION FORM -->
-                <div class="row">
-                    <div
-                        class="widget-presentation col-xs-12 col-md-6"
-                        data-ng-if="!PackResiliation.loading && PackResiliation.resiliationTerms.onGoingResiliation"
+                        ></dd>
+                    </dl>
+                    <dl
+                        data-ng-repeat="(period, amount) in $ctrl.feeSummary.renewPrice track by $index"
                     >
-                        <h2
-                            class="widget-presentation-title"
-                            data-translate="pack_resiliation_cancel_title"
-                        ></h2>
+                        <dt
+                            data-ng-if="period === '1'"
+                            data-translate="pack_resiliation_monthly_pass"
+                        ></dt>
+                        <dd
+                            data-ng-if="period !== '1' && period !== '12'"
+                            data-translate="pack_resiliation_Nthly_pass"
+                            data-translate-values="{month: period}"
+                        ></dd>
+                        <dt
+                            data-ng-if="period === '12'"
+                            data-translate="pack_resiliation_annually_pass"
+                        ></dt>
+                        <dd
+                            data-ng-if="period === '12'"
+                            data-translate="pack_resiliation_excluding_tax_annually"
+                            data-translate-values="{ amount: amount, currency: $ctrl.feeSummary.currency }"
+                        ></dd>
+                        <dd
+                            data-ng-if="period !== '12'"
+                            data-translate="pack_resiliation_excluding_tax_monthly"
+                            data-translate-values="{ amount: amount, currency: $ctrl.feeSummary.currency }"
+                        ></dd>
+                    </dl>
 
-                        <div class="row">
-                            <span
-                                class="service-title col-md-4"
-                                data-translate="pack_resiliation_planed_on"
-                            ></span>
-                            <strong
-                                class="resiliation-date col-md-8"
-                                data-ng-bind="PackResiliation.resiliationTerms.onGoingResiliation.dateTodo | date"
-                            ></strong>
-                        </div>
-
-                        <button
-                            class="btn btn-primary mt-5"
-                            data-ng-really-click="PackResiliation.cancelPackResiliation(PackResiliation.resiliationTerms)"
-                            data-ng-really-message="{{ 'pack_resiliation_cancel_really' | translate:PackResiliation.resiliationTerms}}"
-                            data-ng-really-confirm="{{:: 'ok' | translate }}"
-                            data-ng-really-cancel="{{:: 'cancel' | translate }}"
-                            data-ng-really-window-class="revert-really-buttons"
-                            data-uib-tooltip-html-unsafe="<strong class='text-warning'>{{ 'pack_resiliation_cancel' | translate }}</strong>"
-                            data-translate="pack_resiliation_cancel"
-                            type="button"
-                        ></button>
-                    </div>
+                    <button
+                        class="btn btn-primary mt-5"
+                        data-ng-click="$ctrl.openConfirmation()"
+                        data-ng-disabled="resiliationForm.expirationNativeDate.$error.date || !$ctrl.model.reason || ($ctrl.model.reason.value === 'other' && !$ctrl.model.comment) || ($ctrl.isSubsidiaryQuestion && !$ctrl.model.subsidiary)"
+                        type="button"
+                        data-translate="pack_resiliation_button"
+                    ></button>
                 </div>
-                <!-- END CANCEL RESILIATION FORM -->
+            </form>
+            <!-- END RESILIATION FORM -->
+
+            <!-- CANCEL RESILIATION FORM -->
+            <div class="row">
+                <div
+                    class="widget-presentation col-xs-12 col-md-6"
+                    data-ng-if="!$ctrl.loading && $ctrl.resiliationTerms.onGoingResiliation"
+                >
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="pack_resiliation_cancel_title"
+                    ></h2>
+
+                    <div class="row">
+                        <span
+                            class="service-title col-md-4"
+                            data-translate="pack_resiliation_planed_on"
+                        ></span>
+                        <strong
+                            class="resiliation-date col-md-8"
+                            data-ng-bind="$ctrl.resiliationTerms.onGoingResiliation.dateTodo | date"
+                        ></strong>
+                    </div>
+
+                    <button
+                        class="btn btn-primary mt-5"
+                        data-ng-really-click="$ctrl.cancelPackResiliation($ctrl.resiliationTerms)"
+                        data-ng-really-message="{{ 'pack_resiliation_cancel_really' | translate:$ctrl.resiliationTerms}}"
+                        data-ng-really-confirm="{{:: 'ok' | translate }}"
+                        data-ng-really-cancel="{{:: 'cancel' | translate }}"
+                        data-ng-really-window-class="revert-really-buttons"
+                        data-uib-tooltip-html-unsafe="<strong class='text-warning'>{{ 'pack_resiliation_cancel' | translate }}</strong>"
+                        data-translate="pack_resiliation_cancel"
+                        type="button"
+                    ></button>
+                </div>
             </div>
+            <!-- END CANCEL RESILIATION FORM -->
         </div>
     </div>
 </div>

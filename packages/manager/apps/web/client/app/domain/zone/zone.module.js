@@ -1,9 +1,12 @@
 import routing from './zone.routing';
 
-import activate from './activate/activate.module';
+import zoneActivate from './activate';
 
 const moduleName = 'ovhManagerWebDomainZone';
 
-angular.module(moduleName, [activate]).config(routing);
+angular
+  .module(moduleName, [zoneActivate])
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

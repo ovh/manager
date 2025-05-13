@@ -1,6 +1,6 @@
 # manager-support
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-support)](https://www.npmjs.com/package/@ovh-ux/manager-support) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-support)](https://npmjs.com/package/@ovh-ux/manager-support) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/support)](https://npmjs.com/package/@ovh-ux/manager-support?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/support)](https://npmjs.com/package/@ovh-ux/manager-support?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-support)](https://www.npmjs.com/package/@ovh-ux/manager-support) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-support)](https://npmjs.com/package/@ovh-ux/manager-support) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/support)](https://npmjs.com/package/@ovh-ux/manager-support?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/support)](https://npmjs.com/package/@ovh-ux/manager-support?activeTab=dependencies)
 
 ## Install
 
@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-support
 import angular from 'angular';
 import ovhManagerSupport from '@ovh-ux/manager-support';
 
-angular
-  .module('myApp', [
-    ovhManagerSupport,
-  ]);
+angular.module('myApp', [ovhManagerSupport]);
 ```
 
 ## Build

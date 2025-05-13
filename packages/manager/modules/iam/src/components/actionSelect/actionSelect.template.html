@@ -1,0 +1,251 @@
+<div>
+    <!-- <Wildcard> -->
+    <div class="d-flex mt-4">
+        <p
+            class="mr-3 mb-1"
+            data-translate="iam_action_select_all_actions_label"
+        ></p>
+        <oui-switch
+            data-name="wildcard"
+            data-model="$ctrl.isWildcardActive"
+            data-on-change="$ctrl.onIsWildcardActiveChanged(modelValue)"
+            data-disabled="$ctrl.readOnly"
+        ></oui-switch>
+    </div>
+    <small
+        class="d-block mb-4"
+        data-translate="iam_action_select_all_actions_description"
+    ></small>
+    <!-- </Wildcard> -->
+
+    <oui-message
+        class="mb-3"
+        data-ng-if="$ctrl.customActionSuccessMessage"
+        data-type="success"
+        data-dismissable="true"
+        data-on-dismiss="$ctrl.customActionSuccessMessage = ''"
+    >
+        <span data-ng-bind-html="$ctrl.customActionSuccessMessage"></span>
+    </oui-message>
+
+    <!-- <MANAGED PERMISSIONS> -->
+    <oui-collapsible
+        data-heading="{{ :: 'iam_managed_permissions_heading' | translate }}"
+        data-expanded="true"
+    >
+        <div
+            class="oui-checkbox ml-4"
+            data-ng-repeat="group in $ctrl.permissionsGroupsList track by group.id"
+        >
+            <input
+                class="oui-checkbox__input"
+                id="{{ ::group.id }}"
+                type="checkbox"
+                name="{{ ::group.id }}"
+                data-ng-model="group.selected"
+                data-ng-change="$ctrl.onPermissionsGroupsChanged(group.urn)"
+            />
+            <label class="oui-checkbox__label-container" for="{{ ::group.id }}">
+                <span class="oui-checkbox__label">
+                    <span class="oui-checkbox__icon"></span>
+                    <span class="oui-checkbox__text">
+                        <span data-ng-bind="group.name"></span>
+                    </span>
+                </span>
+                <div class="ml-4" data-ng-bind-html="::group.description"></div>
+            </label>
+        </div>
+    </oui-collapsible>
+    <!-- </MANAGED PERMISSIONS> -->
+
+    <!-- <Actions> -->
+    <oui-collapsible
+        data-ng-repeat="actionTree in $ctrl.actionTrees track by actionTree.value"
+        data-heading="{{ actionTree.value  | iamResourceType }}"
+        data-expanded="actionTree.expanded"
+    >
+        <!-- <CustomAction> -->
+        <ng-form
+            name="$ctrl.form"
+            data-ng-if="actionTree.value === $ctrl.CUSTOM_RESOURCE_TYPE"
+        >
+            <input
+                type="hidden"
+                name="{{ $ctrl.name }}"
+                data-ng-model="$ctrl.ngModel.actions"
+                data-disabled="$ctrl.readOnly"
+            />
+
+            <oui-field
+                data-label="{{:: 'iam_action_select_custom_action_label' | translate }}"
+                data-error-messages="{
+                    requirements: ('iam_action_select_custom_action_error_requirements' | translate),
+                    selected: ('iam_action_select_custom_action_error_selected' | translate),
+                }"
+            >
+                <div class="d-flex align-items-start">
+                    <input
+                        class="oui-input mr-3"
+                        name="customAction"
+                        placeholder="{{ 'iam_action_select_custom_action_placeholder' | translate: { sample: $ctrl.CUSTOM_ACTION_SAMPLE } }}"
+                        type="text"
+                        data-ng-blur="$ctrl.triggerResize()"
+                        data-ng-change="$ctrl.triggerResize()"
+                        data-ng-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
+                        data-ng-model="$ctrl.customActionModel"
+                        data-ng-keypress="$ctrl.onCustomActionKeyPressed($event)"
+                    />
+                    <button
+                        type="button"
+                        class="iam-action-select__custom-action_button flex oui-button oui-button_ghost"
+                        data-ng-disabled="!$ctrl.canAddCustomAction"
+                        data-ng-click="$ctrl.addCustomAction()"
+                    >
+                        <span
+                            data-translate="iam_action_select_custom_action_button"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-plus mr-2"
+                            aria-hidden="true"
+                        ></span>
+                    </button>
+                </div>
+            </oui-field>
+        </ng-form>
+        <!-- </CustomAction> -->
+
+        <!-- <Search> -->
+        <oui-field
+            data-ng-if="actionTree.searchable"
+            data-label="{{:: 'iam_action_select_action_search_label' | translate }}"
+        >
+            <input
+                class="oui-input mr-3"
+                name="actionTree_{{ actionTree.value }}"
+                type="text"
+                data-ng-keyup="event = $event"
+                data-ng-model="actionTree.searchQuery"
+                data-ng-change="$ctrl.filterActions(actionTree)"
+                data-ng-disabled="$ctrl.isWildcardActive"
+            />
+            <div
+                data-ng-if="$ctrl.showSearchNotFoundError"
+                class="oui-field_error"
+            >
+                <div class="oui-field__error">
+                    <span
+                        data-translate="iam_action_select_action_search_error_notfound"
+                    ></span>
+                </div>
+            </div>
+        </oui-field>
+        <!-- </Search> -->
+
+        <!-- <NoCategoryActions> -->
+        <oui-checkbox
+            class="ml-4"
+            data-ng-repeat="action in actionTree.actions | filter:actionTree.searchQuery track by action.value"
+            data-model="action.selected"
+            data-on-change="$ctrl.onModelChanged(action)"
+            data-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
+        >
+            <oui-checkbox-label>
+                <span
+                    data-oui-tooltip="{{ ::action.description }}"
+                    data-ng-bind="action.value"
+                ></span>
+            </oui-checkbox-label>
+        </oui-checkbox>
+        <!-- </NoCategoryActions> -->
+
+        <!-- <Categories> -->
+        <div
+            data-ng-repeat="category in actionTree.categories track by category.value"
+            data-ng-class="{ 'pt-3': !$first || !actionTree.searchable }"
+        >
+            <div class="d-flex justify-content-start">
+                <!-- <CategoryCheckbox> -->
+                <oui-checkbox
+                    class="mb-3"
+                    data-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
+                    data-model="category.selected"
+                    data-on-change="$ctrl.toggleActions(category.actions)"
+                >
+                    <oui-checkbox-label>
+                        <strong data-ng-bind="category.value"></strong>
+                        <span
+                            data-translate="{{ $ctrl.getCategoryLabel(category, actionTree.searchQuery) }}"
+                            data-translate-values="{
+                                selected: $ctrl.constructor.countSelectedActions(category.actions),
+                                result: $ctrl.constructor.countActionsMatchingSearch(category.actions, actionTree.searchQuery),
+                                total: category.actions.length,
+                            }"
+                        ></span>
+                    </oui-checkbox-label>
+                </oui-checkbox>
+                <!-- </CategoryCheckbox> -->
+
+                <!-- <CategoryToggler> -->
+                <span
+                    aria-hidden="true"
+                    class="oui-icon oui-collapsible__toggle-icon ml-4"
+                    data-ng-click="$ctrl.toggleCategory(category)"
+                    data-ng-class="{
+                        'oui-icon-chevron-down': !category.expanded,
+                        'oui-icon-chevron-up': category.expanded,
+                    }"
+                ></span>
+                <!-- </CategoryToggler> -->
+            </div>
+            <div data-ng-if="category.expanded">
+                <!-- <CategoryActions> -->
+                <div
+                    class="oui-checkbox ml-4"
+                    data-ng-repeat="action in category.actions | filter:actionTree.searchQuery track by action.value"
+                >
+                    <input
+                        class="oui-checkbox__input"
+                        id="{{ action.id }}"
+                        type="checkbox"
+                        name="{{ action.id }}"
+                        data-ng-model="action.selected"
+                        data-ng-change="$ctrl.onModelChanged()"
+                        data-ng-disabled="$ctrl.readOnly || action.embedded"
+                        data-ng-required="$ctrl.required"
+                    />
+                    <label
+                        class="oui-checkbox__label-container"
+                        for="{{ action.id }}"
+                    >
+                        <span class="oui-checkbox__label">
+                            <span class="oui-checkbox__icon"></span>
+                            <span class="oui-checkbox__text">
+                                <span
+                                    data-iam-highlight-text="{{ actionTree.searchQuery }}"
+                                    data-iam-highlight-text-change="$ctrl.toggleCategory(category, true)"
+                                >
+                                    <span data-ng-bind="action.value"></span>
+                                </span>
+                            </span>
+                        </span>
+                        <div
+                            class="ml-4"
+                            data-ng-bind-html="::action.description"
+                        ></div>
+                    </label>
+                </div>
+                <!-- </CategoryActions> -->
+            </div>
+        </div>
+        <!-- </Categories> -->
+    </oui-collapsible>
+    <!-- </Actions> -->
+
+    <!-- <Error> -->
+    <p
+        class="d-block mb-4 text-danger"
+        data-ng-if="$ctrl.isRequired"
+        data-translate="iam_action_select_error_required"
+    ></p>
+    <!-- </Error> -->
+</div>

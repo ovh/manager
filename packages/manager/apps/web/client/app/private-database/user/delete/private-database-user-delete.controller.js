@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'PrivateDatabaseDeleteUserCtrl',
   class PrivateDatabaseDeleteUserCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, PrivateDatabase) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

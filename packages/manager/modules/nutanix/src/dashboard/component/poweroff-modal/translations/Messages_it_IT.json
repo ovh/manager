@@ -1,0 +1,11 @@
+{
+  "nutanix_dashboard_poweroff_node_title": "Spegnere il nodo",
+  "nutanix_dashboard_poweroff_node_description": "Lo spegnimento di un nodo Nutanix può avere impatto sul cluster. Per effettuare questa operazione, verifica i prerequisiti disponibili sul portale di Nutanix.",
+  "nutanix_dashboard_poweroff_node_poweroff_guidelink": "Accedere al portale",
+  "nutanix_dashboard_poweroff_node_confirmation": "Vuoi davvero spegnere il nodo {{serviceName}}?",
+  "nutanix_dashboard_poweroff_node_confirm": "Spegnere",
+  "nutanix_dashboard_poweroff_node_cancel": "Annullare",
+  "nutanix_dasboard_poweroff_node_input_label": "Inserisci \"{{magicword}}\" per confermare la tua scelta",
+  "nutanix_dashboard_poweroff_node_success_banner": "La tua richiesta di spegnimento è stata presa in carico. Questa operazione potrebbe richiedere fino a 15 minuti",
+  "nutanix_dashboard_poweroff_node_error_banner": "La tua richiesta di spegnimento non è stata presa in carico:"
+}

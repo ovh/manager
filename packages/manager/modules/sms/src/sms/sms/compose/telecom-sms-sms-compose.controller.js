@@ -14,8 +14,8 @@ import sortBy from 'lodash/sortBy';
 import sum from 'lodash/sum';
 import sumBy from 'lodash/sumBy';
 import union from 'lodash/union';
-import moment from 'moment';
 import isEmpty from 'lodash/isEmpty';
+import 'moment';
 
 import addPhonebookController from './addPhonebookContact/telecom-sms-sms-compose-addPhonebookContact.controller';
 import addPhonebookTemplate from './addPhonebookContact/telecom-sms-sms-compose-addPhonebookContact.html';
@@ -25,7 +25,7 @@ import tipsController from './tips/telecom-sms-sms-compose-tips.controller';
 import tipsComposeTemplate from './tips/telecom-sms-sms-compose-tips-compose.html';
 import tipsSizeTemplate from './tips/telecom-sms-sms-compose-tips-size.html';
 
-import { SMS_COMPOSE } from './telecom-sms-sms-compose.constant';
+import { COMPOSE_HIT, SMS_COMPOSE } from './telecom-sms-sms-compose.constant';
 
 export default class {
   /* @ngInject */
@@ -34,11 +34,12 @@ export default class {
     $translate,
     $stateParams,
     $filter,
+    $http,
     $uibModal,
+    $timeout,
     OvhApiSms,
     TucSmsMediator,
     OvhApiMe,
-    atInternet,
     TucToast,
     TucToastError,
     SMS_URL,
@@ -47,7 +48,9 @@ export default class {
     this.$translate = $translate;
     this.$stateParams = $stateParams;
     this.$filter = $filter;
+    this.$http = $http;
     this.$uibModal = $uibModal;
+    this.$timeout = $timeout;
     this.TucSmsMediator = TucSmsMediator;
     this.api = {
       sms: {
@@ -63,7 +66,6 @@ export default class {
       },
       user: OvhApiMe.v6(),
     };
-    this.atInternet = atInternet;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
     this.SMS_URL = SMS_URL;
@@ -270,10 +272,41 @@ export default class {
   computeRemainingChar(checkValue) {
     const isShort = this.isShortNumber() ? true : this.sms.noStopClause;
     const suffix = checkValue !== undefined ? checkValue : isShort;
-    return assign(
-      this.message,
-      this.TucSmsMediator.getSmsInfoText(this.sms.message, !suffix),
+    const smsInfoText = this.TucSmsMediator.getSmsInfoText(
+      this.sms.message,
+      !suffix,
     );
+
+    if (!this.sms.message) {
+      return assign(this.message, smsInfoText);
+    }
+
+    const currentSender = this.senders.raw.find(
+      ({ sender }) => sender === this.sms.sender,
+    );
+
+    return this.$timeout(() => {
+      return this.$http
+        .post(`/sms/estimate`, {
+          message: this.sms.message,
+          noStopClause: this.sms.noStopClause,
+          senderType: this.isShortNumber() ? 'shortcode' : currentSender.type,
+        })
+        .then(({ data }) => {
+          smsInfoText.remainingCharacters =
+            data.maxCharactersPerPart - data.characters;
+          smsInfoText.defaultSize = data.maxCharactersPerPart;
+          smsInfoText.equivalence = data.parts;
+          // TODO: Align both Enum `sms.EncodingEnum` and `sms.CodingEnum`.
+          // Since `charactersClass` could be `7bits` or `unicode`, we manually
+          // set the expected `coding`.
+          smsInfoText.coding =
+            data.charactersClass === '7bits' ? '7bit' : '8bit';
+
+          return assign(this.message, smsInfoText);
+        })
+        .catch(() => assign(this.message, smsInfoText));
+    }, 100);
   }
 
   /**
@@ -558,33 +591,15 @@ export default class {
       }
     }
 
+    this.trackClick(COMPOSE_HIT);
     return this.$q
       .all(promises)
       .then((results) => {
         const totalCreditsRemoved = sumBy(results, 'totalCreditsRemoved');
         const invalidReceivers = flatten(map(results, 'invalidReceivers'));
-        const validReceivers = flatten(map(results, 'validReceivers'));
 
         // update the creditLeft value (displayed on the dashboard)
         this.service.creditsLeft -= totalCreditsRemoved;
-        this.atInternet.trackClick({
-          name: 'sms-sended',
-          type: 'action',
-          chapter1: 'telecom-sms',
-          chapter2: 'telecom-sms-sms',
-          chapter3: 'telecom-sms-sms-compose',
-          customObject: {
-            nichandle: get(this.user, 'nichandle'),
-            country: get(this.user, 'country'),
-            receiversCount: this.receivers.count,
-            receiversLists:
-              this.receivers.records + (this.sms.receivers ? 1 : 0),
-            phonebookContactCount: this.phonebooks.lists.length,
-            totalCreditsRemoved,
-            invalidReceivers: size(invalidReceivers),
-            validReceivers: size(validReceivers),
-          },
-        });
 
         this.resetForm(form);
         if (!isEmpty(invalidReceivers)) {

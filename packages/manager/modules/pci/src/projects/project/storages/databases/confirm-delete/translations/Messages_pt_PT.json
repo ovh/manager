@@ -1,0 +1,10 @@
+{
+  "pci_database_confirm_delete_confirm": "Confirmar",
+  "pci_database_confirm_delete_cancel": "Cancelar",
+  "pci_database_confirm_delete": "Eliminar o seu serviço",
+  "pci_database_confirm_delete_description_1": "Os seguintes serviços estão associados ao serviço {{serviceName}} que pretende eliminar:",
+  "pci_database_confirm_delete_description_2": "Tem a certeza de que quer eliminar o serviço {{serviceName}}?",
+  "pci_database_confirm_delete_description_3": "Isto levará à eliminação da associação (replicação ou integração).",
+  "pci_database_confirm_delete_success_message": "O seu serviço foi eliminado com êxito.",
+  "pci_database_confirm_delete_error_message": "Ocorreu um erro aquando da eliminação do seu serviço: {{message}}"
+}

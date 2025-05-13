@@ -1,0 +1,10 @@
+{
+  "pci_databases_pools_terminate_title": "Eliminar Pool de ligação",
+  "pci_databases_pools_terminate_description": "Está prestes a eliminar definitivamente o Pool de ligação {{name}}",
+  "pci_databases_pools_terminate_warning": "Esta operação não pode ser anulada.",
+  "pci_databases_pools_terminate_label": "Introduza “TERMINATE” para confirmar a sua escolha.",
+  "pci_databases_pools_terminate_cancel": "Anular",
+  "pci_databases_pools_terminate_confirm": "Confirmar",
+  "pci_databases_pools_terminate_success": "O seu Pool {{name}} foi eliminado com êxito.",
+  "pci_databases_pools_terminate_error": "Ocorreu um erro aquando da eliminação do seu Pool: {{name}}: {{message}}"
+}

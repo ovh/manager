@@ -1,0 +1,14 @@
+{
+  "dedicatedCloud_vmware_cloud_director_title": "Migration zum Managed VCD Angebot",
+  "dedicatedCloud_vmware_cloud_director_offer_detail": "Beschreibung des VCD-Angebots",
+  "dedicatedCloud_vmware_cloud_director_offer_terms_and_conditions": "Besondere Vertragsbedingungen des Dienstes",
+  "dedicatedCloud_vmware_cloud_director_new": "Neu",
+  "dedicatedCloud_vmware_cloud_director_migration": "Migration",
+  "dedicatedCloud_vmware_cloud_director_migration_confirmed": "Besondere Bedingungen genehmigt",
+  "dedicatedCloud_vmware_cloud_director_validate_migration": "Die Migration bestätigen",
+  "dedicatedCloud_vmware_cloud_director_migration_documentation": "Dokumentation – Migrationsprozess",
+  "dedicatedCloud_vmware_cloud_director_useful_links": "Nützliche Links",
+  "dedicatedCloud_vmware_cloud_director_validate_migration_detail": "Bestätigen Sie die Migration Ihres Dienstes zu Managed VCD on OVHcloud und akzeptieren Sie die besonderen Vertragsbedingungen des Dienstes.",
+  "dedicatedCloud_vmware_cloud_director_migration_confirmed_detail": "Die Anfrage zur Migration Ihrer Dienstleistung auf das Angebot Managed VCD wurde erfolgreich durchgeführt. Unsere Teams werden Sie bezüglich der Planung und der Modalitäten des Vorgangs kontaktieren.",
+  "dedicatedCloud_vmware_cloud_director_validate": "Bestätigen"
+}

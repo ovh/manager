@@ -1,0 +1,34 @@
+<div class="row">
+    <div
+        class="col-md-4 mb-2"
+        data-ng-repeat="duration in $ctrl.availableDurations track by duration.duration"
+    >
+        <oui-select-picker
+            name="{{:: 'duration-' + duration.duration }}"
+            model="$ctrl.duration"
+            label="{{:: (duration.monthlyDuration === 1 ? 'billing_commitment_duration_none' : 'billing_commitment_duration_monthly') | translate:{ months: duration.monthlyDuration } }}"
+            values="[duration]"
+            on-change="$ctrl.onChange(modelValue)"
+        >
+            <oui-select-picker-description
+                data-ng-if="duration.savings.value > 0"
+            >
+                <span
+                    data-translate="billing_commitment_duration_save"
+                    data-translate-values="{
+                price: duration.savings.text
+            }"
+                ></span>
+            </oui-select-picker-description>
+            <oui-select-picker-footer>
+                <span
+                    class="oui-heading_6"
+                    data-translate="billing_commitment_price_month"
+                    data-translate-values="{
+                        price: duration.monthlyPrice
+                    }"
+                ></span>
+            </oui-select-picker-footer>
+        </oui-select-picker>
+    </div>
+</div>

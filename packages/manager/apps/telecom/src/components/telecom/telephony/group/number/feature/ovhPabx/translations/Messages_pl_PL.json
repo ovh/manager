@@ -51,7 +51,7 @@
   "telephony_number_feature_ovh_pabx_step_conditions_none": "Aucune condition définie",
   "telephony_number_feature_ovh_pabx_step_no_conditions": "Aucune condition",
   "telephony_number_feature_ovh_pabx_step_conditions_scheduler": "Jours exceptionnels",
-  "telephony_number_feature_ovh_pabx_step_conditions_scheduler_infos": "Vous pouvez paramétrer vos jours de fermetures exceptionnelles <a data-ui-sref=\"telecom.telephony.alias.configuration.scheduler.ovhPabx\">sur cette page</a>.",
+  "telephony_number_feature_ovh_pabx_step_conditions_scheduler_infos": "<a data-ui-sref=\"{{ sref }}\">Na tej stronie</a> możesz ustawić dni, w które Twoje usługi są wyjątkowo nieczynne. ",
   "telephony_number_feature_ovh_pabx_step_conditions_scheduler_scheduler1": "Créneau 1",
   "telephony_number_feature_ovh_pabx_step_conditions_scheduler_scheduler2": "Créneau 2",
   "telephony_number_feature_ovh_pabx_step_conditions_scheduler_scheduler3": "Créneau 3",
@@ -145,5 +145,11 @@
   "telephony_number_feature_ovh_pabx_step_rule_edit": "Modifier une action",
   "telephony_number_feature_ovh_pabx_step_rule_action": "Action à exécuter",
   "telephony_number_feature_ovh_pabx_step_rule_create_error": "Oups ! Une erreur est survenue lors de la création de l'action.",
-  "telephony_number_feature_ovh_pabx_step_rule_edit_error": "Oups ! Une erreur est survenue lors de la modification de l'action."
+  "telephony_number_feature_ovh_pabx_step_rule_edit_error": "Oups ! Une erreur est survenue lors de la modification de l'action.",
+  "telephony_number_feature_ovh_pabx_dialplan_terminal_action": "Działania końcowe",
+  "telephony_number_feature_ovh_pabx_step_actions_count_hidden": "{{ count }} ukrytych operacji",
+  "telephony_number_feature_ovh_pabx_step_actions_count_single_hidden": "{{ count }} ukryta operacja",
+  "telephony_number_feature_ovh_pabx_step_rule_action_edit_menu_interactif": "Zmień menu interaktywne",
+  "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_already_added": "Wpisy dodane",
+  "telephony_number_feature_ovh_pabx_step_rule_read_dtmf_infos": "Wpis DTMF odpowiada częstotliwości emitowanej przez klawisz telefonu podczas zapisywania go."
 }

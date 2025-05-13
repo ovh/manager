@@ -1,0 +1,10 @@
+{
+  "hosting_cdn_terminate_title": "CDN service cancellation",
+  "hosting_cdn_terminate_question_part_1": "Do you want to cancel the CDN service at the end of your subscription?",
+  "hosting_cdn_terminate_question_part_2": "{{endEngagementDate}}",
+  "hosting_cdn_terminate_success": "Your CDN service will be cancelled on {{endEngagementDate}}.",
+  "hosting_cdn_terminate_success_link": "Undo the operation.",
+  "hosting_cdn_terminate_error": "An error has occurred cancelling the CDN.",
+  "hosting_cdn_terminate_action_delete": "Cancel",
+  "hosting_cdn_terminate_action_cancel": "Undo"
+}

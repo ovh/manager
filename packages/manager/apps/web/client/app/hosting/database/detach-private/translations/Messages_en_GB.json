@@ -1,0 +1,8 @@
+{
+  "hosting_database_private_detach_option_title": "Detach my PrivateSQL database",
+  "hosting_database_private_detach_option_description": "Your {{ domain }} PrivateSQL database is currently linked to the {{hosting}} hosting plan. By detaching your database, you can renew it separately from your hosting plan. It will then be billed at the standard price for PrivateSQL databases.",
+  "hosting_database_private_detach_option_warning_irreversible": "Warning: this action cannot be undone",
+  "hosting_database_private_detach_option_error": "An error has occurred detaching your database. {{error}}",
+  "hosting_database_private_detach_option_success_with_payment": "Your database detachment request has been processed. Your {{accountId}} account has been debited by {{price}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">See my invoice</a>",
+  "hosting_database_private_detach_option_success_with_no_payment": "Your <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">purchase order</a> has been successfully generated. The database detachment will be effective after it has been paid for."
+}

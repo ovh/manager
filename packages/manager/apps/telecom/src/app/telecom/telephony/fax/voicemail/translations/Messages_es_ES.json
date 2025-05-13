@@ -4,5 +4,6 @@
   "telephony_group_fax_voicemail_action_default": "Elegir la solución de correo por defecto",
   "telephony_group_fax_voicemail_action_password": "Contraseña de acceso al contestador",
   "telephony_group_fax_voicemail_action_options": "Configuración del contestador",
-  "telephony_group_fax_voicemail_action_status": "Activer/désactiver le répondeur"
+  "telephony_group_fax_voicemail_action_status": "Activer/désactiver le répondeur",
+  "telephony_group_fax_voicemail_breadcrumb": "Gestión del contestador"
 }

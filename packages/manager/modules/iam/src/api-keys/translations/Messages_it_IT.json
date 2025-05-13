@@ -1,0 +1,13 @@
+{
+  "iam_api_keys_create_api_key": "Creare una chiave API",
+  "iam_api_keys_datagrid_column_application_id": "ID",
+  "iam_api_keys_datagrid_column_application_name": "Nome",
+  "iam_api_keys_datagrid_column_application_description": "Descrizione",
+  "iam_api_keys_datagrid_column_application_status": "Stato",
+  "iam_api_keys_datagrid_column_application_key": "Chiave",
+  "iam_api_keys_datagrid_column_application_status_active": "Attivo",
+  "iam_api_keys_datagrid_column_application_status_inactive": "Disattivata",
+  "iam_api_keys_datagrid_action_delete_application": "Eliminare",
+  "iam_api_keys": "Chiavi API",
+  "iam_api_keys_description": "Consulta e gestisci le tue chiavi API. Per maggiori informazioni sulle chiavi API, consulta la documentazione."
+}

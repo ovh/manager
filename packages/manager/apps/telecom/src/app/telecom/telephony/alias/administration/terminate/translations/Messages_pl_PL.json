@@ -22,5 +22,12 @@
   "telephony_alias_administration_terminate": "Rezygnacja",
   "telephony_alias_administration_terminate_success": "Résiliation planifiée avec succès.",
   "telephony_alias_administration_cancel_termination": "Anuluj rezygnację",
-  "telephony_alias_administration_cancel_termination_success": "Résiliation annulée."
+  "telephony_alias_administration_cancel_termination_success": "Résiliation annulée.",
+  "telephony_alias_administration_terminate_sva_warning": "Ponieważ rezygnacja jest w toku, płatności będą nadal możliwe w ciągu najbliższych 2 miesięcy (60 dni)",
+  "telephony_alias_administration_terminate_sva_warning_guarantee": "W celu zagwarantowania płatności ważne jest, aby KYC był ważny w tym okresie oraz aby istniejący rachunek płatności był prawidłowy.",
+  "telephony_alias_administration_terminate_sva_warning_link": "Sprawdź moje dane",
+  "telephony_alias_administration_terminate_confirm_message": "Czy chcesz usunąć swój numer?",
+  "telephony_alias_administration_terminate_confirm_sva_warning": "Tożsamość i IBAN muszą być ważne, aby otrzymywać zwroty.",
+  "telephony_alias_administration_terminate_confirm_primary": "Zatwierdź",
+  "telephony_alias_administration_terminate_confirm_cancel": "Anuluj"
 }

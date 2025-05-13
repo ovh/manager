@@ -1,7 +1,0 @@
-{
-  "telephony_service_consumption_incoming_all": "Kaikki vastaanotetut puhelut",
-  "telephony_service_consumption_incoming_empty": "Ei yhtään vastaanotettua puhelua",
-  "telephony_service_consumption_incoming_not_found": "Aucun appel ne correspond à ce filtre.",
-  "telephony_service_consumption_incoming_period": "Jakso <strong>{{ start }}</strong> - <strong>{{ end }}</strong>",
-  "telephony_service_consumption_incoming_summary": "Puheluja: <strong>{{ calls }}</strong>, kokonaiskesto: <strong>{{ duration }}</strong>"
-}

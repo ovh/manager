@@ -1,0 +1,80 @@
+<section>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label
+                for="graphType"
+                class="col-xs-3 col-md-2 control-label text-left"
+                data-translate="cloud_connect_stats_type"
+            ></label>
+            <div class="col-xs-9 col-md-4 clearfix">
+                <select
+                    id="graphType"
+                    name="graphType"
+                    class="form-control"
+                    data-ng-disabled="$ctrl.isGraphLoading"
+                    data-ng-change="$ctrl.loadGraphs()"
+                    data-ng-model="$ctrl.graphType"
+                    data-ng-options="'cloud_connect_stats_type_' + type | translate for type in $ctrl.typeOptions"
+                ></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label
+                for="graphPeriod"
+                class="col-xs-3 col-md-2 control-label text-left"
+                data-translate="cloud_connect_stats_period"
+            ></label>
+            <div class="col-xs-9 col-md-4 clearfix">
+                <select
+                    id="graphPeriod"
+                    name="graphPeriod"
+                    class="form-control"
+                    data-ng-disabled="$ctrl.isGraphLoading"
+                    data-ng-change="$ctrl.loadGraphs()"
+                    data-ng-model="$ctrl.graphPeriod"
+                    data-ng-options="'cloud_connect_stats_period_' + period | translate for period in $ctrl.periodOptions"
+                ></select>
+            </div>
+        </div>
+    </form>
+    <div>
+        <oui-header
+            data-heading="{{::'cloud_connect_stats_type_traffic' | translate}}"
+            data-ng-if="$ctrl.displayedGraph === $ctrl.TYPE.TRAFFIC"
+        ></oui-header>
+        <oui-header
+            data-heading="{{::'cloud_connect_stats_type_error' | translate}}"
+            data-ng-if="$ctrl.displayedGraph === $ctrl.TYPE.ERROR"
+        ></oui-header>
+        <oui-header
+            data-heading="{{::'cloud_connect_stats_type_light' | translate}}"
+            data-ng-if="$ctrl.displayedGraph === $ctrl.TYPE.LIGHT"
+        ></oui-header>
+
+        <oui-tile-definition data-ng-if="$ctrl.isLoading">
+            <oui-tile-description>
+                <oui-skeleton data-randomized></oui-skeleton>
+                <oui-skeleton data-randomized></oui-skeleton>
+                <oui-skeleton data-randomized></oui-skeleton>
+                <oui-skeleton data-randomized></oui-skeleton>
+                <oui-skeleton data-randomized></oui-skeleton>
+                <oui-skeleton data-randomized></oui-skeleton>
+                <oui-skeleton data-randomized></oui-skeleton>
+            </oui-tile-description>
+        </oui-tile-definition>
+
+        <div data-ng-if="!$ctrl.isLoading">
+            <div data-ng-if="$ctrl.data.length > 0" class="statistics-graph">
+                <div
+                    data-chart
+                    data-chartjs="$ctrl.chart"
+                    data-auto-reload="true"
+                ></div>
+            </div>
+            <div
+                data-ng-if="$ctrl.data.length == 0"
+                data-translate="cloud_connect_stats_no_data"
+            ></div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,14 @@
+<oui-modal
+    data-heading="{{:: 'dedicated_server_interfaces_detach_private_network_label' | translate }}"
+    data-primary-action=":: $ctrl.detach()"
+    data-primary-label="{{:: 'dedicated_server_interfaces_detach_private_network_button' | translate }}"
+    data-secondary-action=":: $ctrl.goBack()"
+    data-secondary-label="{{:: 'common_cancel' | translate }}"
+    data-on-dismiss=":: $ctrl.goBack()"
+    data-loading="$ctrl.loading"
+>
+    <p
+        data-translate="dedicated_server_interfaces_detach_private_network_text"
+        data-translate-values="{ interface: $ctrl.interface.name, vrack: $ctrl.interface.vrack }"
+    ></p>
+</oui-modal>

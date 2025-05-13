@@ -1,0 +1,6 @@
+{
+  "telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_title": "Moje dane bankowe",
+  "telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_cancel": "Anuluj",
+  "telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_confirm": "Zatwierdź",
+  "telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_error": "Wystąpił błąd podczas aktualizacji IBAN: {{ errorMessage }}"
+}

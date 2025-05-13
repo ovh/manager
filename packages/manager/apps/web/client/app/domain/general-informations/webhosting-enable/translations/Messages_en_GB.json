@@ -1,0 +1,22 @@
+{
+  "domain_configuration_enable_web_hosting": "Order your web hosting plan",
+  "domain_configuration_enable_web_hosting_offer": "Your plan -",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-start10m": "Start 10M",
+  "domain_configuration_web_hosting_offer_START_explain": "The Free Hosting 100 MB offer is included with your solution, but it only comes with basic features.",
+  "domain_configuration_web_hosting_choose_offer_explain": "To learn more about our solutions, their technical specifications and the available options, visit <a href=\"{{url}}\" target=\"_blank\">our website</a>.",
+  "domain_configuration_enable_web_hosting_dns_configuration": "Configuration of your DNS",
+  "domain_configuration_web_hosting_dns_info_NO_CHANGE": "If you do not select any configurations, your domain name will continue to point to the current records, regardless of where your new hosting plan is set up. You will need to make the changes in your DNS zone when your new website is ready.  This is an ideal choice if you do not want your current website to go down.",
+  "domain_configuration_enable_web_hosting_dns_configuration_A": "DNS A record",
+  "domain_configuration_enable_web_hosting_dns_configuration_MX": "DNS MX record",
+  "domain_configuration_web_hosting_dns_info_A": "If you have email addresses linked to your domain name but no website, you can choose to only edit the A record. This means that your domain name will point to your new web hosting plan, and your email addresses will continue to work on your current service.",
+  "domain_configuration_web_hosting_dns_info_MX": "This option enables you to only use your web hosting plan’s email addresses, without modifying how your domain name points to your website. Your domain name will continue pointing to your current website, but the email addresses will use OVHcloud servers.",
+  "domain_configuration_enable_web_hosting_offer_price": "Pricing",
+  "domain_configuration_enable_web_hosting_offer_START_P1Y": "12 months",
+  "domain_configuration_enable_web_hosting_offer_START_P0D": "12 months",
+  "domain_configuration_enable_web_hosting_activation": "Activation",
+  "domain_configuration_enable_web_hosting_activate": "Activate",
+  "domain_configuration_enable_web_hosting_success": "Your web hosting plan is being activated. This may take a few minutes.",
+  "domain_configuration_enable_web_hosting_checkout_error": "An error has occurred {{ message }}",
+  "domain_configuration_enable_web_hosting_error": "An error has occurred activating your web hosting plan. {{ message }}",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-free-100m": "100 MB free hosting"
+}

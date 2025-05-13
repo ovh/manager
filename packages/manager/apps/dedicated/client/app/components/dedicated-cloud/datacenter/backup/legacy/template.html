@@ -1,0 +1,34 @@
+<div class="datacenter-backup-legacy">
+    <oui-message type="warning">
+        <p>
+            <strong
+                data-translate="dedicatedCloud_datacenter_backup_legacy_message_1"
+                data-translate-values="{ date: ($ctrl.launch_date | date:'medium') }"
+            ></strong>
+        </p>
+        <p
+            data-ng-if="!$ctrl.enabledBackupOffer"
+            data-translate="dedicatedCloud_datacenter_backup_legacy_message_2"
+        ></p>
+        <p
+            data-translate="dedicatedCloud_datacenter_backup_legacy_message_3"
+        ></p>
+        <a
+            class="oui-link_icon"
+            target="_blank"
+            rel="noopener"
+            data-ng-href="{{ ::$ctrl.backupTariffUrl }}"
+            data-track-on="click"
+            data-track-name="{{:: $ctrl.trackingPrefix + '::datacenter::backup::check-prices' }}"
+            data-track-type="action"
+        >
+            <span
+                data-translate="dedicatedCloud_datacenter_backup_legacy_message_link"
+            ></span>
+            <span
+                class="oui-icon datacenter-backup-right-arrow oui-icon-arrow-right"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </oui-message>
+</div>

@@ -1,0 +1,5 @@
+{
+  "log_tail_search_placeholder": "Wyróżnij element",
+  "log_tail_polling": "Oczekiwanie na logi...",
+  "log_tail_error_get_logs": "Wystąpił błąd podczas pobierania logów"
+}

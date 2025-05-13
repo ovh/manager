@@ -12,20 +12,48 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       user: /* @ngInject */ (currentUser) => currentUser,
+      authMethodProvider: /* @ngInject */ () => 'provider',
       lastBill: /* @ngInject */ (OvhApiMeBillIceberg) =>
         OvhApiMeBillIceberg.query()
           .expand('CachedObjectList-Pages')
           .sort('date', 'DESC')
           .limit(1)
           .execute(null, true)
-          .$promise.then((lastBill) => head(lastBill.data)),
-      shortcuts: /* @ngInject */ ($state, coreConfig) =>
+          .$promise.then((lastBill) => head(lastBill.data))
+          .catch(() => ({})),
+      shortcuts: /* @ngInject */ (
+        $state,
+        coreConfig,
+        currentUser,
+        coreURLBuilder,
+      ) =>
         USER_DASHBOARD_SHORTCUTS.filter(
-          ({ regions }) => !regions || regions.includes(coreConfig.getRegion()),
-        ).map((shortcut) => ({
-          ...shortcut,
-          href: $state.href(shortcut.state),
-        })),
+          ({ regions, isAvailable }) =>
+            (!regions || coreConfig.isRegion(regions)) &&
+            (!isAvailable || isAvailable(currentUser)),
+        ).map((shortcut) => {
+          let href;
+
+          if (shortcut.state) {
+            href = $state.href(shortcut.state);
+          } else if (shortcut.url) {
+            href = coreURLBuilder.buildURL(
+              shortcut.url.baseURL,
+              shortcut.url.path,
+            );
+          } else {
+            href = shortcut.href;
+          }
+
+          return {
+            ...shortcut,
+            href,
+          };
+        }),
+      breadcrumb: () => null,
+      hideBreadcrumb: () => true,
+      iamUsersLink: /* @ngInject */ (coreURLBuilder) =>
+        coreURLBuilder.buildURL('iam', '/dashboard/users'),
     },
   });
 };

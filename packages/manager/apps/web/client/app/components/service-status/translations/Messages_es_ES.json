@@ -1,0 +1,10 @@
+{
+  "status_action_renew_date_label": "Renovación automática prevista en",
+  "status_action_resiliation_cancel_label": "Cancelar la baja",
+  "status_action_wizard_renew": "Renovar",
+  "status_action_resiliation_date_label": "Baja del servicio prevista el",
+  "status_action_expiration_date_label": "Caduca el",
+  "status_action_expiration_delete_cancel_label": "Dar de baja",
+  "status_action_renew_management": "Administrar mis servicios",
+  "status_action_wizard_restore": "Restaurar"
+}

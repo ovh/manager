@@ -1,0 +1,14 @@
+<div id="dedicated-server-netboot">
+    <div
+        class="alert-server mt-3 mb-3"
+        data-ovh-alert="server_dashboard_alert"
+    ></div>
+    <server-netboot
+        data-server="$ctrl.server"
+        data-service-name="{{ $ctrl.server.name }}"
+        data-scroll-top-id="dedicated-server-netboot"
+        data-on-go-back="$ctrl.goBack(message)"
+        data-on-error="$ctrl.handleError(error)"
+        data-on-success="$ctrl.handleSuccess(message)"
+    ></server-netboot>
+</div>

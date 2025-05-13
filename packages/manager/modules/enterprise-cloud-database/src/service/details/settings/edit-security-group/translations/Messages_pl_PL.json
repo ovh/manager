@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_settings_edit_security_group_title": "Edycja grupy zabezpieczeń",
-  "enterprise_cloud_database_service_details_settings_edit_security_group_choose_group_name": "Wybór nowej nazwy grupy",
-  "enterprise_cloud_database_service_details_settings_edit_security_group_success": "Grupa zabezpieczeń została zapisana.",
-  "enterprise_cloud_database_service_details_settings_edit_security_group_error": "Wystąpił błąd podczas aktualizacji grupy zabezpieczeń: {{message}}"
-}

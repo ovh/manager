@@ -1,5 +1,5 @@
 {
-  "telephony_trunk_external_number_info1": "Votre offre SIP trunk vous permet de présenter des numéros externes au réseau OVH sur votre ligne.",
+  "telephony_trunk_external_number_info1": "Su solución SIP Trunk le permite presentar números externos a la red de OVHcloud en su línea.",
   "telephony_trunk_external_number_info2": "Votre nombre de lignes simultanées vous permet de configurer jusqu'à {{ count }} numéros externes.",
   "telephony_trunk_external_number_info2_single": "Votre nombre de lignes simultanées vous permet de configurer jusqu'à 1 numéro externe.",
   "telephony_trunk_external_number_info3": "Une validation automatique par téléphone aura lieu à chaque ajout de numéro externe.",
@@ -15,7 +15,7 @@
   "telephony_trunk_external_number_add": "Ajouter un numéro externe",
   "telephony_trunk_external_number_add_number": "Número externo",
   "telephony_trunk_external_number_add_auto_validate": "Auto-validation",
-  "telephony_trunk_external_number_add_auto_validate_explain": "L'auto-validation vous est proposée car vous êtes partenaire OVH. En cochant cette option, vous vous engagez à être titulaire du numéro externe.",
+  "telephony_trunk_external_number_add_auto_validate_explain": "Se ofrece la autovalidación porque usted es partner de OVHcloud. Al marcar esta opción, se compromete a ser el titular del número externo.",
   "telephony_trunk_external_number_add_number_required": "Veuillez spécifier un numéro externe.",
   "telephony_trunk_external_number_add_number_pattern": "Veuillez spécifier un numéro externe au format international (ex : +33123456789).",
   "telephony_trunk_external_number_add_number_prefix": "Le pays du numéro externe doit être le même que le numéro de la ligne trunk ({{ prefix }}).",
@@ -25,5 +25,6 @@
   "telephony_trunk_external_number_load_error": "Oups ! Une erreur est survenue lors du chargement de vos numéros externes.",
   "telephony_trunk_external_number_delete_success": "Le numéro externe a été supprimé avec succès.",
   "telephony_trunk_external_number_add_error": "Oups ! Une erreur est survenue lors de l'ajout du numéro externe.",
-  "telephony_trunk_external_number_delete_error": "Oups ! Une erreur est survenue lors de la suppression du numéro externe."
+  "telephony_trunk_external_number_delete_error": "Oups ! Une erreur est survenue lors de la suppression du numéro externe.",
+  "telephony_trunk_external_number": "Números externos"
 }

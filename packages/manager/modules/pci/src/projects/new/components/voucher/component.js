@@ -7,10 +7,15 @@ export default {
   controller,
   bindings: {
     checkVoucherValidity: '<',
-    deals: '<',
     eligibility: '<',
     model: '<',
     cart: '<',
     globalLoading: '<',
+    trackProjectCreationError: '<',
+    steps: '<',
+    defaultPaymentMethod: '<',
+    trackClick: '<',
+    viewOptions: '<',
+    isDiscoveryProject: '<',
   },
 };

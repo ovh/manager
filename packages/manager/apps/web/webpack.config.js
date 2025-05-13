@@ -1,4 +1,4 @@
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
@@ -55,7 +55,15 @@ module.exports = (env = {}) => {
           { from: path.resolve(__dirname, './client/assets'), to: 'assets' },
           {
             from: path.resolve(__dirname, './client/**/*.html'),
-            context: 'client/app',
+            context: path.resolve(__dirname, 'client/app'),
+            filter: (resource) => {
+              if (
+                resource === path.resolve(__dirname, 'client/app/index.html')
+              ) {
+                return false;
+              }
+              return true;
+            },
           },
           {
             from: foundNodeModulesFolder('angular-i18n'),
@@ -92,8 +100,19 @@ module.exports = (env = {}) => {
       mainFields: ['module', 'browser', 'main'],
     },
     plugins: [
+      new webpack.ContextReplacementPlugin(
+        /moment[/\\]locale$/,
+        /de|en-gb|es|es-us|fr-ca|fr|it|pl|pt/,
+      ),
+      new webpack.ContextReplacementPlugin(
+        /flatpicker[/\\]dist[/\\]l10n$/,
+        /de|es|es|fr|it|pl|pt/,
+      ),
       new webpack.DefinePlugin({
-        __NG_APP_INJECTIONS__: getNgAppInjections(['EU']),
+        __NG_APP_INJECTIONS__: getNgAppInjections(['EU', 'CA']),
+        __NODE_ENV__: process.env.NODE_ENV
+          ? `'${process.env.NODE_ENV}'`
+          : '"development"',
       }),
     ],
   });

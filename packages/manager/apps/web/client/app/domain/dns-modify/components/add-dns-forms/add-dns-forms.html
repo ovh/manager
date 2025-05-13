@@ -1,0 +1,81 @@
+<div class="mt-2" ng-form>
+    <oui-message data-type="info" class="mt-2">
+        <span
+            data-translate="domain_dns_min_max_number_requirements"
+            data-translate-values="{ minNumber: $ctrl.minNumberOfDns, maxNumber: $ctrl.maxNumberOfDns }"
+        ></span>
+    </oui-message>
+    <form
+        data-ng-repeat="ns in $ctrl.modifiedDnsList"
+        novalidate
+        name="displayDnsForm"
+        class="oui-inline-adder__form oui-inline-adder__form_added"
+        data-ng-attr-name="currentDnsFormName_{{::$index}}"
+        data-ng-attr-id="currentDnsFormId_{{::$index}}"
+    >
+        <fieldset class="oui-inline-adder__fieldset">
+            <div class="oui-inline-adder__row">
+                <div class="oui-inline-adder__field">
+                    <oui-field
+                        data-label="{{ ::'domain_dns_name' | translate }}"
+                    >
+                        <!-- Here, the input is used for display only, and should always be disabled -->
+                        <input
+                            type="text"
+                            class="oui-input"
+                            name="name"
+                            data-ng-model="ns.nameServer"
+                            data-ng-disabled="true"
+                        />
+                    </oui-field>
+                </div>
+                <div class="oui-inline-adder__field">
+                    <oui-field label="{{ ::'domain_dns_ip' | translate }}">
+                        <!-- Here, the input is used for display only, and should always be disabled -->
+                        <input
+                            type="text"
+                            class="oui-input"
+                            name="ip"
+                            data-ng-model="ns.ip"
+                            data-ng-disabled="true"
+                        />
+                    </oui-field>
+                </div>
+            </div>
+        </fieldset>
+        <footer class="oui-inline-adder__footer">
+            <button
+                type="button"
+                class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
+                data-ng-attr-title="{{ ::'domain_dns_add_dns_forms_delete_tooltip' | translate }}"
+                data-ng-attr-aria-label="{{ ::$ctrl.translations.ariaRemoveItem }}"
+                data-ng-click="$ctrl.onFormRemove($index)"
+            >
+                <span class="oui-icon oui-icon-trash" aria-hidden="true"></span>
+            </button>
+        </footer>
+    </form>
+
+    <web-domain-dns-modify-add-dns-form
+        data-ng-if="$ctrl.showForm"
+        data-modified-dns-list="$ctrl.modifiedDnsList"
+        data-min-dns-size="$ctrl.minNumberOfDns"
+        data-configuration-type="$ctrl.configurationType"
+        data-on-submit="$ctrl.onSubmit({ dnsEntry })"
+        data-should-clear-form="$ctrl.shouldClearForm"
+    />
+
+    <oui-message data-ng-if="$ctrl.updateError" data-type="error">
+        <span
+            data-translate="{{ $ctrl.updateError.message }}"
+            data-translate-values="$ctrl.updateError.data"
+        ></span>
+    </oui-message>
+
+    <web-domain-dns-modify-validation-buttons
+        data-open-validation-modal="$ctrl.openValidationModal()"
+        data-cancel-modifications="$ctrl.cancelModifications()"
+        data-show-cancel-modifications-button="$ctrl.showCancelModificationsButton"
+        data-can-submit="$ctrl.canSubmit"
+    />
+</div>

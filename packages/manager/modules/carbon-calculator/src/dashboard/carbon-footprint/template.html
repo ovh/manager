@@ -1,0 +1,41 @@
+<div class="row-fluid">
+    <div class="carbon-balance mb-4">
+        <p
+            class="mb-2"
+            data-translate="carbon_calculator_dashboard_billing_explanation"
+        ></p>
+        <div class="carbon-balance-spacings">
+            <ul
+                data-ng-repeat="serviceName in $ctrl.availableServices track by $index"
+            >
+                <li
+                    data-translate="carbon_calculator_dashboard_billing_explanation_service"
+                    data-translate-values="{ serviceName: serviceName }"
+                ></li>
+            </ul>
+        </div>
+        <span
+            data-translate="carbon_calculator_dashboard_billing_explanation_contact"
+        ></span>
+    </div>
+    <oui-button
+        data-variant="primary"
+        data-on-click="$ctrl.computeBilling()"
+        data-disabled="$ctrl.$asyncFetching"
+        data-ng-if="$ctrl.hasInvoice"
+    >
+        <oui-spinner
+            data-size="s"
+            data-ng-if="$ctrl.$asyncFetching"
+        ></oui-spinner
+        ><i
+            class="fa fa-download"
+            aria-hidden="true"
+            data-ng-if="!$ctrl.$asyncFetching"
+        ></i
+        >&nbsp;<span
+            data-translate="carbon_calculator_dashboard_billing_download"
+            data-translate-values="{ month: $ctrl.previousMonth}"
+        ></span>
+    </oui-button>
+</div>

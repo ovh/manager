@@ -24,9 +24,13 @@ angular
       params: {
         bookKey: null,
       },
-      translations: { value: ['.'], format: 'json' },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('sms_phonebooks_phonebook_breadcrumb'),
+      },
     });
   })
+  .run(/* @ngTranslationsInject:json ./translations */)
   .factory('TelecomSmsPhoneBooksNumber', () => ({
     isValid: (number) =>
       !!(

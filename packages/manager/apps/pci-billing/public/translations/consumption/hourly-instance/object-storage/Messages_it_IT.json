@@ -1,0 +1,11 @@
+{
+  "cpbc_no_consumption_data": "Nessun consumo per il periodo selezionato.",
+  "cpbc_object_storage_col_location": "Localizzazione",
+  "cpbc_object_storage_col_consumption": "Consumo spazio",
+  "cpbc_object_storage_col_output_traffic": "Consumo traffico in uscita",
+  "cpbc_object_storage_consumption_info_part1": "La fatturazione considera lo spazio di storage reale, calcolato ogni ora.",
+  "cpbc_object_storage_consumption_info_part2": "Il tuo consumo corrisponde esattamente a {{amount}} GiB/ora.",
+  "cpbc_object_storage_output_traffic_info_part1": "Ogni gigabyte in uscita (con qualsiasi destinazione) viene fatturato",
+  "cpbc_object_storage_output_traffic_info_part2": ". Nel periodo selezionato hai consumato {{amount}} GiB. Il traffico in entrata non viene mai fatturato.",
+  "cpb_error_message": "Ops! Impossibile recuperare tutte le informazioni."
+}

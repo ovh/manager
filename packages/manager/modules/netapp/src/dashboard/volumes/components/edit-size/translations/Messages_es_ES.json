@@ -1,0 +1,9 @@
+{
+  "netapp_volumes_edit_size_title": "Cambiar el tamaño del volumen {{volume}}",
+  "netapp_volumes_edit_size_submit": "Cambiar el tamaño",
+  "netapp_volumes_edit_size_cancel": "Cancelar",
+  "netapp_volumes_edit_size_label": "Tamaño del volumen {{ name }}",
+  "netapp_volumes_edit_size_rules": "Tamaño permitido: mín. {{ min }} GB, máx. {{ max }} GB",
+  "netapp_volumes_edit_size_success": "El tamaño del volumen {{ volumeName }} va a modificarse.",
+  "netapp_volumes_edit_size_error": "Se ha producido un error. <br> {{message}} <br> request_id: {{requestId}}"
+}

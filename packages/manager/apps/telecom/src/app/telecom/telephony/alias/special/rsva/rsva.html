@@ -1,0 +1,237 @@
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div class="row" data-ng-if="!$ctrl.loading">
+    <div class="col-lg-8">
+        <tuc-toast-message></tuc-toast-message>
+
+        <h2 data-translate="telephony_alias_special_rsva_title"></h2>
+        <p data-translate="telephony_alias_special_rsva_subtitle"></p>
+
+        <oui-message
+            aria-close-button-label="{{:: 'close' | translate }}"
+            data-type="info"
+            data-dismissable="true"
+        >
+            <span
+                class="d-block"
+                data-translate="telephony_alias_special_rsva_number_fee_description_part_one"
+                data-translate-values="{ price: $ctrl.tariffBearingPrice }"
+            ></span>
+            <span
+                data-translate="telephony_alias_special_rsva_number_fee_description_part_two"
+            ></span>
+        </oui-message>
+
+        <form name="$ctrl.pricing" novalidate>
+            <oui-field
+                data-label="{{:: 'telephony_alias_special_rsva_pricing_type' | translate }}"
+                data-size="l"
+            >
+                <oui-radio
+                    name="pricingType"
+                    data-model="$ctrl.pricingType"
+                    data-value="'minute'"
+                    data-on-change="$ctrl.updateRateCodesByType()"
+                >
+                    <span
+                        data-translate="telephony_alias_special_rsva_pricing_type_minute"
+                    ></span>
+                </oui-radio>
+                <oui-radio
+                    name="pricingType"
+                    data-model="$ctrl.pricingType"
+                    data-value="'call'"
+                    data-on-change="$ctrl.updateRateCodesByType()"
+                >
+                    <span
+                        data-translate="telephony_alias_special_rsva_pricing_type_call"
+                    ></span>
+                </oui-radio>
+            </oui-field>
+
+            <oui-field
+                class="my-0"
+                data-size="m"
+                data-ng-if="$ctrl.pricingType === 'minute'"
+            >
+                <select
+                    name="rateCodePerMinute"
+                    class="oui-select oui-select__input"
+                    data-ng-model="$ctrl.rateCode"
+                    data-ng-options="rateCode as (rateCode.pricePerMinuteWithoutTax.text + ('telephony_alias_special_rsva_tariff_bearing_per_minute' | translate)) + ' ' + ($ctrl.currentRateCode.rateCode === rateCode.code ? ('telephony_alias_special_rsva_pricing_current_rate_code' | translate) : '') for rateCode in $ctrl.availableRateCodes"
+                >
+                    <span
+                        class="oui-icon oui-icon_chevron-down"
+                        aria-hidden="true"
+                    ></span>
+                </select>
+            </oui-field>
+
+            <oui-field
+                class="my-0"
+                data-size="m"
+                data-ng-if="$ctrl.pricingType === 'call'"
+            >
+                <select
+                    name="rateCodePerCall"
+                    class="oui-select oui-select__input"
+                    data-ng-model="$ctrl.rateCode"
+                    data-ng-options="rateCode as (rateCode.pricePerCallWithoutTax.text + ('telephony_alias_special_rsva_tariff_bearing_per_call' | translate)) + ' ' + ($ctrl.currentRateCode.rateCode === rateCode.code ? ('telephony_alias_special_rsva_pricing_current_rate_code' | translate) : '') for rateCode in $ctrl.availableRateCodes"
+                >
+                    <span
+                        class="oui-icon oui-icon_chevron-down"
+                        aria-hidden="true"
+                    ></span>
+                </select>
+            </oui-field>
+
+            <oui-field
+                data-ng-if="$ctrl.currentRateCode.rateCode !== $ctrl.rateCode.code"
+            >
+                <oui-checkbox
+                    name="tariffBearingChangeAgreed"
+                    data-model="$ctrl.tariffBearingChangeAgreed"
+                >
+                    <span
+                        data-translate="telephony_alias_special_rsva_tariff_bearing_changed_checkbox"
+                        data-translate-values="{ 'price': $ctrl.costs.rsva.tariffBearing.value }"
+                    ></span>
+                </oui-checkbox>
+            </oui-field>
+        </form>
+
+        <div data-ng-if="$ctrl.scheduledRateCode">
+            <h3
+                class="oui-heading_underline"
+                data-translate="telephony_alias_special_rsva_scheduled_title"
+                data-translate-values="{ 'date': ($ctrl.scheduledRateCode.effectiveDatetime | date: 'dd/MM/yyyy') }"
+            ></h3>
+
+            <dl>
+                <dt
+                    data-translate="telephony_alias_special_rsva_scheduled_calling_price_label"
+                ></dt>
+                <dd
+                    data-ng-if="$ctrl.scheduledRateCode.pricePerCallWithoutTax.value > 0"
+                    data-translate="telephony_alias_special_rsva_scheduled_price"
+                    data-translate-values="{ 'price' : $ctrl.scheduledRateCode.pricePerCallWithoutTax.value }"
+                ></dd>
+                <dd
+                    data-ng-if="$ctrl.scheduledRateCode.pricePerMinuteWithoutTax.value > 0"
+                    data-translate="telephony_alias_special_rsva_scheduled_price"
+                    data-translate-values="{ 'price' : $ctrl.scheduledRateCode.pricePerMinuteWithoutTax.value }"
+                ></dd>
+                <dt
+                    data-translate="telephony_alias_special_rsva_scheduled_transfer_price_label"
+                ></dt>
+                <dd
+                    data-ng-if="$ctrl.scheduledRateCode.repaymentPricePerCallWithoutTax.value > 0"
+                    data-translate="telephony_alias_special_rsva_scheduled_price"
+                    data-translate-values="{ 'price' : $ctrl.scheduledRateCode.repaymentPricePerCallWithoutTax.value }"
+                ></dd>
+                <dd
+                    data-ng-if="$ctrl.scheduledRateCode.repaymentPricePerMinuteWithoutTax.value > 0"
+                    data-translate="telephony_alias_special_rsva_scheduled_price"
+                    data-translate-values="{ 'price' : $ctrl.scheduledRateCode.repaymentPricePerMinuteWithoutTax.value }"
+                ></dd>
+                <dt
+                    data-translate="telephony_alias_special_rsva_scheduled_effective_date_label"
+                ></dt>
+                <dd
+                    data-ng-bind="::$ctrl.scheduledRateCode.effectiveDatetime | date:'dd/MM/yyyy'"
+                ></dd>
+                <dt
+                    data-translate="telephony_alias_special_rsva_scheduled_cancel_date_label"
+                ></dt>
+                <dd
+                    data-ng-bind="::$ctrl.scheduledRateCode.cancelLimitDatetime | date:'dd/MM/yyyy'"
+                ></dd>
+                <dt
+                    data-translate="telephony_alias_special_rsva_scheduled_update_price_label"
+                ></dt>
+                <dd
+                    data-translate="telephony_alias_special_rsva_scheduled_price"
+                    data-translate-values="{ 'price' : $ctrl.scheduledRateCode.repaymentPricePerMinuteWithoutTax.value }"
+                ></dd>
+            </dl>
+        </div>
+
+        <h3
+            class="oui-heading_underline"
+            data-translate="telephony_alias_special_rsva_infos_title"
+        ></h3>
+
+        <oui-message
+            aria-close-button-label="{{:: 'close' | translate }}"
+            data-ng-if="!$ctrl.directory.email"
+            data-type="error"
+            data-dismissable="true"
+        >
+            <span
+                data-translate="telephony_alias_special_rsva_infos_missing_email"
+                data-translate-values="{ 'sref': 'telecom.telephony.billingAccount.alias.details.contact' }"
+                data-translate-compile
+            ></span>
+        </oui-message>
+
+        <dl>
+            <dt
+                data-translate="telephony_alias_special_rsva_infos_siret_label"
+            ></dt>
+            <dd data-ng-bind="::$ctrl.directory.siret"></dd>
+            <dt
+                data-translate="telephony_alias_special_rsva_infos_email_label"
+            ></dt>
+            <dd data-ng-bind="::$ctrl.directory.email"></dd>
+        </dl>
+
+        <form name="$ctrl.typologyForm" novalidate>
+            <oui-field
+                data-label="{{:: 'telephony_alias_special_rsva_infos_typology_label' | translate }}"
+                data-help-text="{{:: 'telephony_alias_special_rsva_infos_typology_label_help' | translate }}"
+                data-size="xl"
+            >
+                <oui-select
+                    name="typology"
+                    data-model="$ctrl.typology"
+                    data-match="displayValue"
+                    data-items="$ctrl.typologies"
+                >
+                    <span data-ng-bind="::$item.displayValue"></span>
+                </oui-select>
+            </oui-field>
+        </form>
+
+        <tuc-telephony-bulk-action
+            data-service-type="alias"
+            data-billing-account="{{:: $ctrl.serviceInfos.billingAccount }}"
+            data-service-name="{{:: $ctrl.serviceInfos.serviceName }}"
+            data-custom-class="link d-block pl-0 mb-3"
+            data-ng-disabled="$ctrl.hasChangedRateCode() && !$ctrl.tariffBearingChangeAgreed"
+            data-bulk-infos="$ctrl.bulkData.infos"
+            data-filter-services="$ctrl.filterServices()"
+            data-get-bulk-params="$ctrl.getBulkParams()"
+            data-on-success="$ctrl.onBulkSuccess()"
+            data-on-error="$ctrl.onBulkError()"
+        >
+        </tuc-telephony-bulk-action>
+
+        <oui-button
+            class="mb-5"
+            data-variant="secondary"
+            data-on-click="$ctrl.$state.go('^')"
+        >
+            <span data-translate="cancel"></span>
+        </oui-button>
+        <oui-button
+            class="mb-5"
+            data-variant="primary"
+            data-disabled="!$ctrl.hasChanged() || !$ctrl.directory.email"
+            data-on-click="$ctrl.applyChanges()"
+        >
+            <span data-translate="common_confirm"></span>
+        </oui-button>
+    </div>
+</div>

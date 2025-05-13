@@ -2,7 +2,7 @@
 
 > OVH simple country list provide a "full" (ISO-3166-1) list of countries with translation possibility. (translations are not available yet)
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-simple-country-list)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-simple-country-list) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-simple-country-list)](https://npmjs.com/package/@ovh-ux/ng-ovh-simple-country-list) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-simple-country-list)](https://npmjs.com/package/@ovh-ux/ng-ovh-simple-country-list?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-simple-country-list)](https://npmjs.com/package/@ovh-ux/ng-ovh-simple-country-list?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-simple-country-list)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-simple-country-list) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-simple-country-list)](https://npmjs.com/package/@ovh-ux/ng-ovh-simple-country-list) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-simple-country-list)](https://npmjs.com/package/@ovh-ux/ng-ovh-simple-country-list?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-simple-country-list)](https://npmjs.com/package/@ovh-ux/ng-ovh-simple-country-list?activeTab=dependencies)
 
 ## Install
 
@@ -16,9 +16,9 @@ $ yarn add @ovh-ux/ng-ovh-simple-country-list
 import angular from 'angular';
 import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 
-angular
-  .module('myApp', [ngOvhSimpleCountryList])
-  .controller('myController', /* @ngInject */ (OvhSimpleCountryList) => {
+angular.module('myApp', [ngOvhSimpleCountryList]).controller(
+  'myController',
+  /* @ngInject */ (OvhSimpleCountryList) => {
     // Set the desired language (default is iso/en).
     OvhSimpleCountryList.setLanguage('en_GB');
 
@@ -36,7 +36,8 @@ angular
 
     console.log(OvhSimpleCountryList.asObject);
     //= > {'AD': 'ANDORRA', 'AE': 'UNITED ARAB EMIRATES', ... }
-  });
+  },
+);
 ```
 
 ## Test

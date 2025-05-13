@@ -1,0 +1,209 @@
+<div class="inputs-logs-add-edit pt-0">
+    <form name="ctrl.form" data-ng-submit="ctrl.addEditInput()">
+        <oui-field
+            label="{{ ::'inputs_logs_edit_title_field' | translate }}"
+            size="xl"
+        >
+            <input
+                type="text"
+                id="input_title"
+                name="input_title"
+                class="oui-input"
+                data-ng-model="ctrl.input.data.title"
+                data-ng-class="{'oui-field_error': ctrl.form.$submitted && ctrl.form.input_title.$invalid}"
+                data-ng-minlength="ctrl.LogsConstants.TITLE_MIN_LENGTH"
+                data-ng-maxlength="ctrl.LogsConstants.TITLE_MAX_LENGTH"
+                cuc-autofocus
+                required
+            />
+        </oui-field>
+
+        <oui-field
+            label="{{ ::'inputs_logs_edit_description_field' | translate }}"
+            size="xl"
+        >
+            <textarea
+                class="oui-textarea"
+                id="input_description"
+                name="input_description"
+                data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.input_description.$invalid}"
+                data-ng-model="ctrl.input.data.description"
+                data-ng-minlength="ctrl.LogsConstants.DESCRIPTION_MIN_LENGTH"
+                required
+            >
+            </textarea>
+        </oui-field>
+
+        <oui-field
+            label="{{ ::'inputs_logs_edit_software_field' | translate }}"
+            size="xl"
+        >
+            <oui-spinner
+                data-ng-if="ctrl.availableEngines.length === 0"
+            ></oui-spinner>
+            <div
+                class="oui-select"
+                data-ng-show="ctrl.availableEngines.length > 0"
+            >
+                <select
+                    class="oui-select__input"
+                    name="input_software"
+                    id="input_software"
+                    data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.input_software.$invalid}"
+                    data-ng-options="engine.engineId as (engine.name + ' ' + engine.version) for engine in ctrl.availableEngines"
+                    data-ng-model="ctrl.input.data.engineId"
+                    required
+                >
+                    <option
+                        value=""
+                        disabled
+                        selected
+                        data-translate="inputs_logs_edit_select_software"
+                    ></option>
+                </select>
+                <i
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></i>
+            </div>
+        </oui-field>
+
+        <oui-field
+            label="{{ ::'inputs_logs_edit_port_field' | translate }}"
+            size="xl"
+        >
+            <oui-numeric
+                id="input_port"
+                name="input_port"
+                data-model="ctrl.input.data.exposedPort"
+                min="ctrl.LogsConstants.EXPOSED_PORT_MIN"
+                max="ctrl.LogsConstants.EXPOSED_PORT_MAX"
+                required
+            >
+            </oui-numeric>
+        </oui-field>
+
+        <oui-field
+            label="{{ ::'inputs_logs_networks_title' | translate }}"
+            size="xl"
+            help-text="{{ ::'inputs_logs_networks_ip_address_example' | translate }}"
+        >
+            <textarea
+                class="oui-textarea"
+                id="input_allowed_networks"
+                name="input_allowed_networks"
+                data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.input_allowed_networks.$invalid}"
+                data-ng-model="ctrl.input.data.allowedNetworks"
+            >
+            </textarea>
+        </oui-field>
+
+        <oui-field
+            label="{{ ::'inputs_logs_edit_stream_field' | translate }}"
+            size="xl"
+        >
+            <oui-spinner data-ng-if="ctrl.streams.loading"></oui-spinner>
+            <div class="oui-select" data-ng-show="!ctrl.streams.loading">
+                <select
+                    class="oui-select__input"
+                    name="input_stream"
+                    id="input_stream"
+                    data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.input_stream.$invalid}"
+                    data-ng-options="stream.streamId as stream.title for stream in ctrl.streams.data"
+                    data-ng-model="ctrl.input.data.streamId"
+                    required
+                >
+                    <option
+                        value=""
+                        disabled
+                        selected
+                        data-translate="inputs_logs_edit_select_stream"
+                    ></option>
+                </select>
+                <i
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></i>
+            </div>
+        </oui-field>
+
+        <oui-field
+            label="{{ ::'inputs_autoscaled_detailled' | translate }}"
+            size="xl"
+            help-text="{{ ::'inputs_autoscaled_explanation' | translate }}"
+        >
+            <oui-switch
+                name="input_autoscale"
+                data-model="ctrl.input.data.autoscale"
+            >
+            </oui-switch>
+        </oui-field>
+
+        <div class="pl-4 mb-5">
+            <oui-field
+                label="{{ ::'inputs_logs_edit_nb_instance_field' | translate }}"
+                size="xl"
+                data-ng-if="!ctrl.input.data.autoscale"
+            >
+                <oui-numeric
+                    id="input_nbInstance"
+                    name="input_nbInstance"
+                    data-model="ctrl.input.data.nbInstance"
+                    min="ctrl.LogsConstants.NB_INSTANCE_MIN"
+                    max="ctrl.LogsConstants.NB_INSTANCE_MAX"
+                >
+                </oui-numeric>
+            </oui-field>
+
+            <oui-field
+                label="{{ ::'inputs_logs_edit_min_instance_field' | translate }}"
+                size="xl"
+                data-ng-if="ctrl.input.data.autoscale"
+            >
+                <oui-numeric
+                    id="input_minScaleInstance"
+                    name="input_minScaleInstance"
+                    data-model="ctrl.input.data.minScaleInstance"
+                    min="ctrl.LogsConstants.NB_INSTANCE_MIN"
+                    max="ctrl.input.data.maxScaleInstance - 1"
+                >
+                </oui-numeric>
+            </oui-field>
+            <oui-field
+                label="{{ ::'inputs_logs_edit_max_instance_field' | translate }}"
+                size="xl"
+                data-ng-if="ctrl.input.data.autoscale"
+            >
+                <oui-numeric
+                    id="input_maxScaleInstance"
+                    name="input_maxScaleInstance"
+                    data-model="ctrl.input.data.maxScaleInstance"
+                    min="ctrl.input.data.minScaleInstance + 1"
+                    max="ctrl.LogsConstants.NB_INSTANCE_MAX"
+                >
+                </oui-numeric>
+            </oui-field>
+            <oui-field
+                label="{{ ::'logs_notification_title' | translate }}"
+                size="auto"
+                data-ng-if="ctrl.input.data.autoscale"
+            >
+                <oui-checkbox
+                    name="input_scaleNotification"
+                    id="input_scaleNotification"
+                    data-model="ctrl.input.data.scalingNotifyEnabled"
+                    ><span
+                        data-translate="inputs_autoscaled_notification_detail"
+                    ></span>
+                </oui-checkbox>
+            </oui-field>
+            <small class="oui-color-p-700">{{ ctrl.showInputPrices() }}</small>
+        </div>
+
+        <oui-form-actions
+            data-ng-hide="ctrl.inputAddEdit.loading"
+            data-submit-text="{{::'logs_next' | translate}}"
+        ></oui-form-actions>
+        <oui-spinner data-ng-show="ctrl.inputAddEdit.loading"></oui-spinner>
+    </form>
+</div>

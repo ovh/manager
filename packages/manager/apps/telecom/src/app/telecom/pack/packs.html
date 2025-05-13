@@ -1,0 +1,71 @@
+<oui-header>
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{ :: 'pack_internet_access_title' | translate }}"
+            ></h1>
+            <div
+                class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
+            >
+                <changelog-button
+                    links="$ctrl.CHANGELOG.pack.links"
+                    chapters="$ctrl.CHANGELOG.pack.chapters"
+                ></changelog-button>
+            </div>
+        </div>
+    </oui-header-heading>
+</oui-header>
+<div class="container-fluid my-5">
+    <oui-datagrid
+        id="dg-telephony-packs"
+        data-page="{{ $ctrl.paginationNumber }}"
+        data-page-size="{{ $ctrl.paginationSize }}"
+        data-rows-loader="$ctrl.loadPage()"
+        data-row-loader="$ctrl.loadResource($row)"
+        data-criteria="$ctrl.criteria"
+        data-on-page-change="$ctrl.onPageChange($pagination)"
+        data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+        data-on-sort-change="$ctrl.onSortChange($sort)"
+        data-columns="$ctrl.columnsConfig"
+    >
+        <oui-datagrid-topbar>
+            <oui-button
+                variant="secondary"
+                type="button"
+                data-on-click="$ctrl.gotoOrder()"
+            >
+                <span data-translate="packs_order"></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title=":: 'packs_pack_name_label' | translate"
+            data-property="packName"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+            <a data-ng-href="{{ $ctrl.getPackLink($row) }}">{{ $value }}</a>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'packs_description_label' | translate"
+            data-property="description"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'packs_num_service_label' | translate"
+            data-property="numServices"
+        >
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="left-start">
+            <oui-action-menu-item data-on-click="$ctrl.viewPack($row)"
+                ><span data-translate="packs_view_label"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>

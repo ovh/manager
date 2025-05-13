@@ -1,8 +1,0 @@
-{
-  "price_ht_label": "{{price}} netto",
-  "price_ttc_label": "{{price}} brutto",
-  "price_free": "W ofercie",
-  "price_gst_excl_label": "{{price}} netto",
-  "price_gst_incl_label": "{{price}} brutto",
-  "price_per_month": "/m-c"
-}

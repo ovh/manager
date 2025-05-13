@@ -1,0 +1,8 @@
+{
+  "pci_databases_databases_delete_database_confirm": "Elimina il database",
+  "pci_databases_databases_delete_database_cancel": "Annulla",
+  "pci_databases_databases_delete_database": "Elimina il database",
+  "pci_databases_databases_delete_database_description": "Vuoi davvero eliminare il database {{databaseInstance.name}}?",
+  "pci_databases_databases_delete_database_success_message": "Il database è stato eliminato correttamente.",
+  "pci_databases_databases_delete_database_error_message": "Si è verificato un errore nell'eliminazione del database: {{message}}"
+}

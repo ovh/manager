@@ -1,10 +1,10 @@
 {
   "telephony_add_group_title": "Add a group",
-  "telephony_add_group_contracts": "Vous devez accepter les contrats afin de valider la commande.",
-  "telephony_add_group_infos": "Vous pouvez commander de nouveaux groupes afin d'organiser et gérer plus facilement vos lignes et numéros.",
-  "telephony_add_group_order": "Commander un nouveau groupe de téléphonie",
+  "telephony_add_group_contracts": "You must accept the terms and conditions in order to confirm the order.",
+  "telephony_add_group_infos": "You can order new groups in order to organise and more easily manage your lines and numbers.",
+  "telephony_add_group_order": "Order a new telephony group",
   "telephony_add_group_free": "Free",
-  "telephony_add_group_success": "La demande de création a été enregistrée avec succés.",
-  "telephony_add_group_success_bc": "Afin de finaliser votre demande, merci de valider ce",
-  "telephony_add_group_success_bc2": "purchase order "
+  "telephony_add_group_success": "The creation request was successfully submitted.",
+  "telephony_add_group_success_bc": "To complete your order, please validate this",
+  "telephony_add_group_success_bc2": "purchase order"
 }

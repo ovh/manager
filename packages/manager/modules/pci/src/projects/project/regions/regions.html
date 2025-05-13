@@ -2,13 +2,25 @@
     data-guide-url="$ctrl.guideUrl"
 ></pci-project-quota-header>
 
+<pci-announcement-banner
+    data-get-state-name="$ctrl.getStateName()"
+    data-on-go-to-region="$ctrl.goToRegion()"
+    data-disable-region-link="true"
+></pci-announcement-banner>
+
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
 <div>
     <h3 data-translate="pci_projects_project_regions_title"></h3>
     <p data-translate="pci_projects_project_regions_description"></p>
 
-    <oui-message data-type="info" data-dismissable="false">
+    <pci-activate-project-banner
+        data-ng-if="$ctrl.isDiscoveryProject"
+        data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+        data-tracking-page-name="PublicCloud::pci::projects::project::regions"
+    ></pci-activate-project-banner>
+
+    <oui-message data-type="info" data-ng-if="!$ctrl.isDiscoveryProject">
         <span data-translate="pci_projects_project_regions_info_message"></span>
     </oui-message>
 
@@ -20,12 +32,13 @@
         >
             <div class="row">
                 <oui-select-picker
-                    class="col-md-6 col-lg-4 mb-1"
+                    class="col-md-6 col-lg-4 mb-1 icon-success-no-opacity"
                     data-ng-repeat="(region, datacenters) in $ctrl.regionsByDatacenter"
                     name="region"
                     data-disabled="true"
                     data-label="{{ ::region }}"
                     data-variant="light"
+                    picture="oui-icon oui-icon-success-circle"
                 >
                     <oui-select-picker-section
                         data-ng-repeat="datacenter in datacenters track by datacenter.microRegion.code"
@@ -41,12 +54,13 @@
         >
             <div class="row">
                 <oui-select-picker
-                    class="col-md-6 col-lg-4 mb-1"
+                    class="col-md-6 col-lg-4 mb-1 icon-success-no-opacity"
                     data-ng-repeat="(region, datacenters) in regions"
                     name="region"
                     data-disabled="true"
                     data-label="{{ ::region }}"
                     data-variant="light"
+                    picture="oui-icon oui-icon-success-circle"
                 >
                     <oui-select-picker-section
                         data-ng-repeat="datacenter in datacenters track by datacenter.microRegion.code"
@@ -110,7 +124,7 @@
             data-variant="primary"
             data-type="button"
             data-on-click="$ctrl.addRegions()"
-            data-disabled="$ctrl.regionToAdd === null"
+            data-disabled="$ctrl.regionToAdd === null || $ctrl.isDiscoveryProject"
             data-ng-if="!$ctrl.isLoading"
         >
             <span

@@ -1,0 +1,91 @@
+<div class="mx-5 mt-3">
+    <oui-back-button data-on-click="$ctrl.goBack()">
+        <span data-ng-transclude="title"></span>
+    </oui-back-button>
+    <oui-message class="mb-4" data-type="info">
+        <div data-ng-transclude="infoMessage"></div>
+    </oui-message>
+
+    <div>
+        <strong
+            data-ng-pluralize
+            data-count="$ctrl.servicesCount"
+            data-when="{
+                'one': ('billing_autorenew_bulk_one' | translate),
+                'other': ('billing_autorenew_bulk' | translate:{ count: $ctrl.servicesCount })
+            }"
+        >
+        </strong>
+        <p
+            data-ng-if="$ctrl.unavailableServicesCount === 0"
+            data-ng-pluralize
+            data-count="$ctrl.availableServices.length"
+            data-when="{
+                'one': $ctrl.descriptions.getSingleUpdate($ctrl.availableServices[0]),
+                'other': $ctrl.descriptions.getCompleteUpdate()
+            }"
+        ></p>
+        <p
+            data-ng-if="$ctrl.unavailableServicesCount > 0"
+            data-ng-bind="$ctrl.descriptions.getUncompleteUpdate($ctrl.unavailableServicesCount)"
+        ></p>
+        <ul class="mb-4">
+            <li
+                data-ng-repeat="(reason, services) in ::$ctrl.unavailableServices track by reason"
+            >
+                <p>
+                    <span
+                        data-translate="{{ 'billing_autorenew_bulk_unavailable_' + reason }}"
+                    ></span>
+                    <strong
+                        data-ng-pluralize
+                        data-count="services.length"
+                        data-when="{
+                            '1': ('billing_autorenew_bulk_service' | translate),
+                            'other': ('billing_autorenew_bulk_services' | translate:{ count: services.length })
+                        }"
+                    >
+                    </strong>
+                    <button
+                        type="button"
+                        class="oui-link"
+                        data-ng-click="$ctrl.expand[reason] = !$ctrl.expand[reason]"
+                        data-ng-bind="($ctrl.expand[reason] ? 'billing_autorenew_bulk_less' : 'billing_autorenew_bulk_more') | translate"
+                    ></button>
+                </p>
+                <ul data-ng-if="$ctrl.expand[reason]" class="mb-3">
+                    <li
+                        data-ng-repeat="service in ::services track by service.id"
+                        data-ng-bind="service.domain"
+                    ></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="mb-4">
+            <button
+                type="button"
+                class="oui-link"
+                data-ng-click="$ctrl.expand.available = !$ctrl.expand.available"
+                data-ng-bind="($ctrl.expand.available ? 'billing_autorenew_bulk_available_less' : 'billing_autorenew_bulk_available_more') | translate"
+            ></button>
+            <ul data-ng-if="$ctrl.expand.available" class="mb-3">
+                <li
+                    data-ng-repeat="service in ::$ctrl.availableServices track by service.id"
+                    data-ng-bind="service.domain"
+                ></li>
+            </ul>
+        </div>
+        <div>
+            <oui-button data-variant="secondary" data-on-click="$ctrl.goBack()">
+                <span data-translate="billing_autorenew_bulk_cancel"></span>
+            </oui-button>
+            <oui-button
+                data-variant="primary"
+                data-on-click="$ctrl.updateRenew({ services: $ctrl.availableServices })"
+                data-disabled="!$ctrl.availableServices"
+            >
+                <span data-translate="billing_autorenew_bulk_confirm"></span>
+            </oui-button>
+        </div>
+    </div>
+</div>

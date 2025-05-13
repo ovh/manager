@@ -1,0 +1,9 @@
+{
+  "pci_projects_project_instances_instance_unshelve_title": "Riattiva la tua istanza",
+  "pci_projects_project_instances_instance_unshelve_submit_label": "Conferma",
+  "pci_projects_project_instances_instance_unshelve_cancel_label": "Annulla",
+  "pci_projects_project_instances_instance_unshelve_content": "La tua istanza {{ instance }} verrà riavviata. Le risorse dedicate all'istanza Public Cloud saranno ripristinate (indirizzo IP incluso). I dati del disco locale saranno ripristinati, la durata dell'operazione dipende dalla dimensione del disco locale.",
+  "pci_projects_project_instances_instance_unshelve_success_inprogress_message": "Riattivazione dell'istanza {{ instance }} in corso...",
+  "pci_projects_project_instances_instance_unshelve_success_message": "L’istanza {{ instance }} è stata riattivata.",
+  "pci_projects_project_instances_instance_unshelve_error_message": "Si è verificato un errore durante la riattivazione dell’istanza {{ instance }}: {{ message }}."
+}

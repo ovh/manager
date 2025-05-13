@@ -1,7 +1,0 @@
-{
-  "billing_payment_method_default_title": "Ustaw domyślną metodę płatności",
-  "billing_payment_method_default_explain": "Ustawiasz domyślną metodę płatności <strong>{{ label }}</strong>.",
-  "billing_payment_method_default_question": "Czy na pewno chcesz kontynuować?",
-  "billing_payment_method_default_error": "Wystąpił błąd podczas zmiany Twojej domyślnej metody płatności.",
-  "billing_payment_method_default_success": "Twoja domyślna metoda płatności została zmieniona."
-}

@@ -16,14 +16,25 @@ import {
   BANDWIDTH_CONSUMPTION,
   BANDWIDTH_LIMIT,
   BANDWIDTH_OUT_INVOICE,
+  DEFAULT_IP,
+  FLAVORS_WITHOUT_ADDITIONAL_IPS,
+  FLAVORS_WITHOUT_AUTOMATED_BACKUP,
+  FLAVORS_WITHOUT_SOFT_REBOOT,
+  FLAVORS_WITHOUT_SUSPEND,
+  FLAVORS_WITHOUT_VNC,
 } from './instances.constants';
 
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["getBaseApiRoute"] }] */
 export default class PciProjectInstanceService {
   /* @ngInject */
   constructor(
+    $http,
     $q,
+    Poller,
+    coreConfig,
     CucPriceHelper,
-    CucRegionService,
+    CucCurrencyService,
+    ovhManagerRegionService,
     OvhApiCloudProject,
     OvhApiCloudProjectFlavor,
     OvhApiCloudProjectImage,
@@ -31,13 +42,19 @@ export default class PciProjectInstanceService {
     OvhApiCloudProjectNetwork,
     OvhApiCloudProjectQuota,
     OvhApiCloudProjectVolume,
+    OvhApiCloudProjectRegion,
     OvhApiIp,
     OvhApiOrderCatalogPublic,
     PciProjectRegions,
+    PciProject,
   ) {
+    this.$http = $http;
     this.$q = $q;
+    this.Poller = Poller;
+    this.coreConfig = coreConfig;
     this.CucPriceHelper = CucPriceHelper;
-    this.CucRegionService = CucRegionService;
+    this.CucCurrencyService = CucCurrencyService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
     this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
@@ -48,20 +65,44 @@ export default class PciProjectInstanceService {
     this.OvhApiIp = OvhApiIp;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
     this.PciProjectRegions = PciProjectRegions;
+    this.PciProject = PciProject;
+    this.FLAVORS_WITHOUT_SOFT_REBOOT = FLAVORS_WITHOUT_SOFT_REBOOT;
+    this.FLAVORS_WITHOUT_SUSPEND = FLAVORS_WITHOUT_SUSPEND;
+    this.FLAVORS_WITHOUT_VNC = FLAVORS_WITHOUT_VNC;
+    this.FLAVORS_WITHOUT_ADDITIONAL_IPS = FLAVORS_WITHOUT_ADDITIONAL_IPS;
+    this.FLAVORS_WITHOUT_AUTOMATED_BACKUP = FLAVORS_WITHOUT_AUTOMATED_BACKUP;
+
+    this.licensePriceFormatter = new Intl.NumberFormat(
+      this.coreConfig.getUserLocale().replace('_', '-'),
+      {
+        style: 'currency',
+        currency: this.coreConfig.getUser().currency.code,
+        maximumFractionDigits: 5,
+      },
+    );
   }
 
-  getAll(projectId) {
-    return this.OvhApiCloudProjectInstance.v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise.then((instances) =>
-        map(instances, (instance) => new Instance(instance)),
-      );
+  getBaseApiRoute(projectId) {
+    return `/cloud/project/${projectId}`;
+  }
+
+  getAll(projectId, customerRegions) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/instance`)
+      .then(({ data }) => {
+        const localZones = this.PciProject.getLocalZones(customerRegions);
+        return data.map((instance) => {
+          const isLocalZone = this.PciProject.checkIsLocalZone(
+            localZones,
+            instance.region,
+          );
+          return new Instance({ ...instance, isLocalZone });
+        });
+      });
   }
 
   getAllInstanceDetails(projectId) {
-    return this.getAll(projectId).then((instances) =>
+    return this.getAll(projectId, []).then((instances) =>
       this.$q.all(
         map(instances, (instance) =>
           this.getInstanceDetails(projectId, instance),
@@ -117,49 +158,67 @@ export default class PciProjectInstanceService {
       );
   }
 
-  get(projectId, instanceId) {
+  get(projectId, instanceId, customerRegions) {
+    let isLocalZone;
+    const localZones = this.PciProject.getLocalZones(customerRegions);
     return this.OvhApiCloudProjectInstance.v6()
       .get({
         serviceName: projectId,
         instanceId,
       })
-      .$promise.then((instance) =>
-        this.$q.all({
+      .$promise.then((instance) => {
+        isLocalZone = this.PciProject.checkIsLocalZone(
+          localZones,
+          instance.region,
+        );
+        return this.$q.all({
           instance,
+          catalog: this.getCatalog(
+            '/order/catalog/public/cloud',
+            this.coreConfig.getUser(),
+          ),
           volumes: this.OvhApiCloudProjectVolume.v6()
             .query({
               serviceName: projectId,
             })
             .$promise.catch(() => []),
-          privateNetworks: this.getPrivateNetworks(projectId),
+          privateNetworks: isLocalZone
+            ? this.getAllAvailablePrivateNetworks(projectId)
+            : this.getPrivateNetworks(projectId),
           ipReverse: this.getReverseIp(instance),
-        }),
-      )
-      .then(
-        ({ instance, ipReverse, volumes, privateNetworks }) =>
-          new Instance({
-            ...instance,
-            flavor: {
-              ...instance.flavor,
-              capabilities: this.constructor.transformCapabilities(
-                get(instance.flavor, 'capabilities', []),
-              ),
-            },
-            volumes: filter(volumes, (volume) =>
-              includes(volume.attachedTo, instance.id),
+        });
+      })
+      .then(({ instance, catalog, ipReverse, volumes, privateNetworks }) => {
+        return new Instance({
+          ...instance,
+          flavor: {
+            ...instance.flavor,
+            capabilities: this.constructor.transformCapabilities(
+              get(instance.flavor, 'capabilities', []),
             ),
-            privateNetworks: filter(privateNetworks, (privateNetwork) =>
-              includes(
-                map(
-                  filter(instance.ipAddresses, { type: 'private' }),
-                  'networkId',
-                ),
-                privateNetwork.id,
+            technicalBlob: get(
+              catalog.addons.find(
+                ({ planCode }) => planCode === instance.flavor.planCodes.hourly,
               ),
+              'blobs.technical',
             ),
-            ipReverse,
-          }),
-      );
+          },
+          volumes: volumes.filter((volume) =>
+            volume.attachedTo?.includes(instance.id),
+          ),
+          privateNetworks: privateNetworks.filter((privateNetwork) =>
+            includes(
+              map(
+                filter(instance.ipAddresses, { type: 'private' }),
+                'networkId',
+              ),
+              privateNetwork.id,
+            ),
+          ),
+          ipReverse,
+          isLocalZone,
+        });
+      });
   }
 
   static transformCapabilities(capabilities) {
@@ -190,6 +249,38 @@ export default class PciProjectInstanceService {
         imageId: imageId || image.id,
       },
     ).$promise;
+  }
+
+  start(projectId, instance) {
+    return this.$http.post(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/start`,
+    );
+  }
+
+  stop(projectId, instance) {
+    return this.$http.post(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/stop`,
+    );
+  }
+
+  shelve(projectId, instance) {
+    return this.$http.post(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/shelve`,
+    );
+  }
+
+  unshelve(projectId, instance) {
+    return this.$http.post(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/unshelve`,
+    );
   }
 
   reboot(projectId, { id: instanceId }, type) {
@@ -243,18 +334,48 @@ export default class PciProjectInstanceService {
     }).$promise;
   }
 
-  getSnapshotMonthlyPrice(projectId, instance) {
-    return this.CucPriceHelper.getPrices(projectId).then((catalog) => {
-      return get(
-        catalog,
-        `snapshot.monthly.postpaid.${instance.region}`,
-        get(
-          catalog,
-          'snapshot.monthly.postpaid',
-          get(catalog, 'snapshot.monthly', false),
+  getSnapshotPricesByRegion(projectId, catalogEndpoint) {
+    return this.$q
+      .all([
+        this.CucPriceHelper.getPrices(projectId, catalogEndpoint, true),
+        this.getProductAvailability(projectId, undefined, 'snapshot'),
+      ])
+      .then(([catalog, { plans }]) => {
+        return plans
+          .filter(({ code }) => code.startsWith('snapshot.consumption'))
+          .reduce((acc, plan) => {
+            const catalogPlan = catalog[plan.code];
+            plan.regions.forEach((r) => {
+              if (!acc[r.name]) acc[r.name] = [catalogPlan];
+              else acc[r.name].push(catalogPlan);
+            });
+            return acc;
+          }, {});
+      });
+  }
+
+  getSnapshotAvailability(projectId, catalogEndpoint) {
+    return this.$q
+      .all([
+        this.getSnapshotPricesByRegion(projectId, catalogEndpoint),
+        this.PciProjectRegions.getAvailableRegions(projectId),
+      ])
+      .then(([snapshotPricesByRegion, availableRegions]) =>
+        Object.fromEntries(
+          Object.entries(snapshotPricesByRegion).map(([regionName, plans]) => {
+            return [
+              regionName,
+              {
+                plans,
+                workflow:
+                  availableRegions
+                    .find((r) => r.name === regionName)
+                    ?.services.some((s) => s.name === 'workflow') || false,
+              },
+            ];
+          }),
         ),
       );
-    });
   }
 
   createBackup(projectId, { id: instanceId }, { name: snapshotName }) {
@@ -277,25 +398,38 @@ export default class PciProjectInstanceService {
   }
 
   getPrivateNetworks(projectId) {
-    return this.OvhApiCloudProjectNetwork.Private()
-      .v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise.then((networks) =>
-        filter(networks, {
-          type: 'private',
-        }),
+    return this.$http
+      .get(`/cloud/project/${projectId}/network/private`)
+      .then(({ data }) => data);
+  }
+
+  getLocalPrivateNetworks(projectId, regionName) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/region/${regionName}/network`)
+      .then(({ data }) =>
+        data.filter((network) => network.visibility === 'private'),
       );
   }
 
+  getSubnets(projectId, networkId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/network/private/${networkId}/subnet`)
+      .then(({ data }) => data);
+  }
+
+  getLocalPrivateNetworkSubnets(projectId, region, networkId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/region/${region}/network/${networkId}/subnet`,
+      )
+      .then(({ data }) => data[0])
+      .catch(() => {});
+  }
+
   getPublicNetwork(projectId) {
-    return this.OvhApiCloudProjectNetwork.Public()
-      .v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise.then(([publicNetwork]) => publicNetwork);
+    return this.$http
+      .get(`/cloud/project/${projectId}/network/public`)
+      .then(({ data }) => data);
   }
 
   getCompatiblesPrivateNetworks(projectId, instance) {
@@ -318,7 +452,10 @@ export default class PciProjectInstanceService {
     );
   }
 
-  getCompatiblesVolumes(projectId, { region }) {
+  getCompatiblesVolumes(
+    projectId,
+    { region, availabilityZone: instanceAvailabilityZone },
+  ) {
     return this.OvhApiCloudProjectVolume.v6()
       .query({
         serviceName: projectId,
@@ -328,7 +465,14 @@ export default class PciProjectInstanceService {
         map(volumes, (volume) => new BlockStorage(volume)),
       )
       .then((storages) =>
-        filter(storages, (storage) => storage.isAttachable()),
+        filter(
+          storages,
+          (storage) =>
+            storage.isAttachable() &&
+            (!instanceAvailabilityZone ||
+              storage.availabilityZone === 'any' ||
+              storage.availabilityZone === instanceAvailabilityZone),
+        ),
       );
   }
 
@@ -351,19 +495,46 @@ export default class PciProjectInstanceService {
     }).$promise;
   }
 
-  getInstancePrice(projectId, instance) {
-    return this.CucPriceHelper.getPrices(projectId).then((prices) => {
-      const price = prices[instance.planCode];
-      // Set 3 digits for hourly price
-      if (!instance.isMonthlyBillingActivated()) {
-        price.price.text = price.price.text.replace(
-          /\d+(?:[.,]\d+)?/,
-          `${price.price.value.toFixed(3)}`,
+  getInstancePrice(projectId, instance, catalogEndpoint) {
+    return this.getCatalog(catalogEndpoint, this.coreConfig.getUser())
+      .then((catalog) => {
+        const instanceAddon = catalog.addons.find(
+          (a) => a.planCode === instance.planCode,
         );
-      }
+        if (instanceAddon) {
+          const price = this.CucPriceHelper.transformPrice(
+            instanceAddon.pricings.find(
+              (p) =>
+                p.capacities.includes('renew') ||
+                p.capacities.includes('consumption'),
+            ),
+            catalog.locale.currencyCode,
+          );
+          // Set 3 digits for hourly price
+          if (!instance.isMonthlyBillingActivated()) {
+            price.price.text = price.price.text.replace(
+              /\d+(?:[.,]\d+)?/,
+              `${price.price.value.toFixed(3)}`,
+            );
+          }
 
-      return price;
-    });
+          if (instance.licensePlanCode) {
+            const licensePricing = catalog.addons
+              .find((a) => a.planCode === instance.licensePlanCode)
+              ?.pricings.find((p) => p.capacities.includes('consumption'));
+            if (licensePricing)
+              price.licensePrice = this.formatLicensePrice(
+                this.CucCurrencyService.convertUcentsToCurrency(
+                  licensePricing.price,
+                ) * instanceAddon.blobs.technical.cpu.cores,
+              );
+          }
+
+          return price;
+        }
+        return null;
+      })
+      .catch(() => null);
   }
 
   getProjectQuota(projectId, region = null) {
@@ -379,13 +550,46 @@ export default class PciProjectInstanceService {
       });
   }
 
+  getCompatiblesLocalPrivateNetworks(projectId, instance, customerRegions) {
+    return this.getAllAvailablePrivateNetworks(projectId, instance.region).then(
+      (networks) => {
+        const localZones = this.PciProject.getLocalZones(customerRegions);
+        return networks.filter(
+          (network) =>
+            !instance.privateNetworks
+              .map(({ id }) => id)
+              .includes(network.id) &&
+            localZones.some(
+              (region) =>
+                region.name === network.region &&
+                region.name === instance.region,
+            ),
+        );
+      },
+    );
+  }
+
+  getAllAvailablePrivateNetworks(serviceName) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/aggregated/network`)
+      .then(({ data }) => {
+        const privateNetworks = [];
+        data.resources.forEach((network) => {
+          if (network.visibility === 'private') {
+            privateNetworks.push(network);
+          }
+        });
+        return privateNetworks;
+      });
+  }
+
   getInstanceQuota(projectId, region) {
     return this.getProjectQuota(projectId, region).then(
       (quota) => new InstanceQuota(quota.instance),
     );
   }
 
-  getAvailablesRegions(projectId) {
+  getAvailablesRegions(projectId, customerRegions) {
     return this.$q
       .all({
         availableRegions: this.OvhApiCloudProject.Region()
@@ -394,7 +598,7 @@ export default class PciProjectInstanceService {
           .query({
             serviceName: projectId,
           }).$promise,
-        regions: this.PciProjectRegions.getRegions(projectId),
+        regions: this.PciProjectRegions.getRegions(projectId, customerRegions),
       })
       .then(({ availableRegions, regions }) => {
         const supportedRegions = filter(regions, (region) =>
@@ -406,7 +610,7 @@ export default class PciProjectInstanceService {
             (region) =>
               new Datacenter({
                 ...region,
-                ...this.CucRegionService.getRegion(region.name),
+                ...this.ovhManagerRegionService.getRegion(region.name),
                 available: has(region, 'status'),
               }),
           ),
@@ -414,8 +618,38 @@ export default class PciProjectInstanceService {
       });
   }
 
-  save(
+  getProductAvailability(
     projectId,
+    ovhSubsidiary = this.coreConfig.getUser().ovhSubsidiary,
+    addonFamily,
+  ) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
+        params: {
+          ovhSubsidiary,
+          addonFamily,
+        },
+      })
+      .then(({ data }) => data);
+  }
+
+  getRegionsTypesAvailability(projectId) {
+    return this.getProductAvailability(
+      projectId,
+      this.coreConfig.getUser().ovhSubsidiary,
+      'instance',
+    ).then(({ plans }) => {
+      return plans
+        .flatMap((plan) => plan.regions)
+        .reduce((acc, region) => {
+          acc[region.type] = true;
+          return acc;
+        }, {});
+    });
+  }
+
+  save(
+    serviceName,
     {
       autobackup,
       flavorId,
@@ -426,15 +660,16 @@ export default class PciProjectInstanceService {
       region,
       sshKeyId,
       userData,
+      availabilityZone,
     },
     number = 1,
+    isPrivateMode,
   ) {
+    const saveInstanceNamespace = 'instance-creation';
+    const status = 'ACTIVE';
     if (number > 1) {
-      return this.OvhApiCloudProjectInstance.v6().bulk(
-        {
-          serviceName: projectId,
-        },
-        {
+      return this.$http
+        .post(`/cloud/project/${serviceName}/instance/bulk`, {
           autobackup,
           flavorId,
           imageId,
@@ -445,14 +680,14 @@ export default class PciProjectInstanceService {
           sshKeyId,
           userData,
           number,
-        },
-      ).$promise;
+          availabilityZone,
+        })
+        .then(({ data }) => {
+          return data;
+        });
     }
-    return this.OvhApiCloudProjectInstance.v6().save(
-      {
-        serviceName: projectId,
-      },
-      {
+    return this.$http
+      .post(`/cloud/project/${serviceName}/instance`, {
         autobackup,
         flavorId,
         imageId,
@@ -462,8 +697,22 @@ export default class PciProjectInstanceService {
         region,
         sshKeyId,
         userData,
-      },
-    ).$promise;
+        availabilityZone,
+      })
+      .then(({ data }) => {
+        if (isPrivateMode) {
+          const url = `/cloud/project/${serviceName}/instance/${data.id}`;
+          return this.checkOperationStatus(
+            url,
+            saveInstanceNamespace,
+            status,
+          ).then((res) => {
+            this.Poller.kill({ namespace: saveInstanceNamespace });
+            return res;
+          });
+        }
+        return data;
+      });
   }
 
   attachPrivateNetworks(projectId, { id: instanceId }, privateNetworks) {
@@ -533,39 +782,319 @@ export default class PciProjectInstanceService {
             : null,
         )
         .catch((error) =>
-          error.status === 404 ? null : Promise.reject(error),
+          // If IP isn't known or user has no permission to query it: skip error and do not display the reverse.
+          // we don't want to prevent pci instance edition because IP cannot be displayed
+          error.status === 404 || error.status === 403
+            ? null
+            : Promise.reject(error),
         );
     }
     return null;
   }
 
-  getExtraBandwidthCost(project, user) {
-    return this.OvhApiOrderCatalogPublic.v6()
-      .get({
-        productName: 'cloud',
-        ovhSubsidiary: user.ovhSubsidiary,
-      })
-      .$promise.then((catalog) => {
-        const projectPlan = find(catalog.plans, { planCode: project.planCode });
-        const bandwidthOut = filter(
-          map(
-            find(projectPlan.addonFamilies, { name: BANDWIDTH_CONSUMPTION })
-              .addons,
-            (planCode) => find(catalog.addons, { planCode }),
-          ),
-          { invoiceName: BANDWIDTH_OUT_INVOICE },
-        );
+  getCommercialCatalog({ productCode, nature, ovhSubsidiary }) {
+    return this.$http({
+      url: '/engine/api/v2/commercialCatalog/offers',
+      serviceType: 'apiv2',
+      params: {
+        merchants: ovhSubsidiary,
+        type: 'ATOMIC',
+        nature,
+        productCode,
+      },
+    }).then(({ data: catalog }) => catalog);
+  }
 
-        return bandwidthOut.reduce(
-          (prices, addon) => ({
-            ...prices,
-            [addon.planCode]: find(
-              addon.pricings,
-              (pricing) => get(pricing, 'quantity.min') === BANDWIDTH_LIMIT,
-            ),
-          }),
-          {},
+  getCatalog(endpoint, user) {
+    return this.CucPriceHelper.getCatalog(endpoint, user, true);
+  }
+
+  getExtraBandwidthCost(endpoint, project, user) {
+    return this.getCatalog(endpoint, user).then((catalog) => {
+      const projectPlan = find(catalog.plans, { planCode: project.planCode });
+      const bandwidthOut = filter(
+        map(
+          find(projectPlan.addonFamilies, { name: BANDWIDTH_CONSUMPTION })
+            .addons,
+          (planCode) => find(catalog.addons, { planCode }),
+        ),
+        { invoiceName: BANDWIDTH_OUT_INVOICE },
+      );
+
+      return bandwidthOut.reduce(
+        (prices, addon) => ({
+          ...prices,
+          [addon.planCode]: find(
+            addon.pricings,
+            (pricing) => get(pricing, 'quantity.min') === BANDWIDTH_LIMIT,
+          ),
+        }),
+        {},
+      );
+    });
+  }
+
+  getSubnetGateways(serviceName, region, subnetId) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/region/${region}/gateway`, {
+        params: {
+          subnetId,
+        },
+      })
+      .then(({ data }) => data);
+  }
+
+  getGateways(serviceName, region) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/region/${region}/gateway`)
+      .then(({ data }) => data);
+  }
+
+  getFloatingIps(serviceName, region) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/region/${region}/floatingip`)
+      .then(({ data }) => data);
+  }
+
+  createAndAttachFloatingIp(serviceName, region, instanceId, floatingIpModel) {
+    const createAndAssociateFloatingIp = 'create-associate-floatingIp';
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/region/${region}/instance/${instanceId}/floatingIp`,
+        {
+          ...floatingIpModel,
+        },
+      )
+      .then(({ data: { id } }) => {
+        const url = `/cloud/project/${serviceName}/operation/${id}`;
+        const status = 'completed';
+        return this.checkOperationStatus(
+          url,
+          createAndAssociateFloatingIp,
+          status,
+        );
+      })
+      .then((data) => {
+        this.Poller.kill({ namespace: createAndAssociateFloatingIp });
+        return data;
+      });
+  }
+
+  associateFloatingIp(serviceName, region, instanceId, floatingIpModel) {
+    const associateFloatingIP = 'associate-floatingIp';
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/region/${region}/instance/${instanceId}/associateFloatingIp`,
+        {
+          ...floatingIpModel,
+        },
+      )
+      .then(({ data: { id } }) => {
+        const url = `/cloud/project/${serviceName}/operation/${id}`;
+        const status = 'completed';
+        return this.checkOperationStatus(url, associateFloatingIP, status);
+      })
+      .then((data) => {
+        this.Poller.kill({ namespace: associateFloatingIP });
+        return data;
+      });
+  }
+
+  enableDhcp(serviceName, networkId, dhcpModel) {
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/network/private/${networkId}/subnet`,
+        dhcpModel,
+      )
+      .then(({ data }) => data);
+  }
+
+  createGateway(serviceName, region, networkId, subnetId, gatewayModel) {
+    const createGatewayNamespace = 'gateway-creation';
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/region/${region}/network/${networkId}/subnet/${subnetId}/gateway`,
+        gatewayModel,
+      )
+      .then(({ data: { id } }) => {
+        const url = `/cloud/project/${serviceName}/operation/${id}`;
+        const status = 'completed';
+        return this.checkOperationStatus(url, createGatewayNamespace, status);
+      })
+      .then((data) => {
+        this.Poller.kill({ namespace: createGatewayNamespace });
+        return data;
+      });
+  }
+
+  createNetworkWithGateway(serviceName, regionName, gateway) {
+    const addNetworkGatewayNamespace = 'network-gateway-creation';
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/region/${regionName}/network`,
+        gateway,
+      )
+      .then(({ data: { id } }) => {
+        const url = `/cloud/project/${serviceName}/operation/${id}`;
+        const status = 'completed';
+        return this.checkOperationStatus(
+          url,
+          addNetworkGatewayNamespace,
+          status,
+        );
+      })
+      .then((data) => {
+        this.Poller.kill({ namespace: addNetworkGatewayNamespace });
+        return data;
+      });
+  }
+
+  checkOperationStatus(url, namespace, status) {
+    return this.Poller.poll(url, null, {
+      method: 'get',
+      successRule: {
+        status,
+      },
+      namespace,
+    });
+  }
+
+  automatedBackupIsAvailable(flavorType) {
+    return !this.FLAVORS_WITHOUT_AUTOMATED_BACKUP.find((value) =>
+      value.test(flavorType),
+    );
+  }
+
+  softRebootIsAvailable(flavorType) {
+    return !this.FLAVORS_WITHOUT_SOFT_REBOOT.find((value) =>
+      value.test(flavorType),
+    );
+  }
+
+  suspendIsAvailable(flavorType) {
+    return !this.FLAVORS_WITHOUT_SUSPEND.find((value) =>
+      value.test(flavorType),
+    );
+  }
+
+  vncConsoleIsAvailable(flavorType) {
+    return !this.FLAVORS_WITHOUT_VNC.find((value) => value.test(flavorType));
+  }
+
+  additionalIpsIsAvailable(flavorType) {
+    return !this.FLAVORS_WITHOUT_ADDITIONAL_IPS.find((value) =>
+      value.test(flavorType),
+    );
+  }
+
+  createPrivateNetwork(
+    projectId,
+    region,
+    privateNetworkName,
+    subnet,
+    vlanId = null,
+    gateway,
+  ) {
+    return this.$http
+      .post(`/cloud/project/${projectId}/region/${region}/network`, {
+        name: privateNetworkName,
+        subnet,
+        ...(gateway && { gateway }),
+        ...(typeof vlanId === 'number' && { vlanId }),
+      })
+      .then(({ data: { id } }) =>
+        this.checkPrivateNetworkCreationStatus(projectId, id),
+      )
+      .then(({ resourceId }) => {
+        this.Poller.kill({ namespace: 'private-network-creation' });
+        return this.getCreatedSubnet(projectId, region, resourceId);
+      });
+  }
+
+  checkPrivateNetworkCreationStatus(projectId, operationId) {
+    return this.Poller.poll(
+      `/cloud/project/${projectId}/operation/${operationId}`,
+      {},
+      {
+        method: 'get',
+        successRule: {
+          status: 'completed',
+        },
+        namespace: 'private-network-creation',
+      },
+    );
+  }
+
+  getCreatedSubnet(projectId, region, networkId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/region/${region}/network/${networkId}/subnet`,
+      )
+      .then(({ data }) => data);
+  }
+
+  associateGatewayToNetwork(projectId, region, gatewayId, subnetId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/region/${region}/gateway/${gatewayId}/interface`,
+        {
+          subnetId,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  static generateNetworkAddress(vlanId) {
+    return DEFAULT_IP.replace('{vlanId}', vlanId % 255);
+  }
+
+  getPrivateNetworksByRegion(serviceName, customerRegions = []) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/aggregated/network`)
+      .then(({ data }) => {
+        const privateNetworks = {};
+        const localZones = this.PciProject.getLocalZones(customerRegions);
+        data.resources.forEach((network) => {
+          if (
+            network.visibility === 'private' &&
+            !this.PciProject.checkIsLocalZone(localZones, network.region)
+          ) {
+            if (!privateNetworks[network.vlanId]) {
+              const { id, region, ...rest } = network;
+              privateNetworks[network.vlanId] = {
+                ...rest,
+                region,
+                subnets: [{ region, networkId: id }],
+              };
+            } else {
+              const { id, region } = network;
+              privateNetworks[network.vlanId].subnets.push({
+                region,
+                networkId: id,
+              });
+            }
+          }
+        });
+        return Object.values(privateNetworks).sort(
+          (a, b) => a.vlanId - b.vlanId,
         );
       });
+  }
+
+  getLicensePrice(catalog, flavor) {
+    if (flavor.planCodes.license) {
+      const price = catalog.addons
+        .find(({ planCode }) => planCode === flavor.planCodes.license)
+        ?.pricings.find((p) => p.type === 'consumption').price;
+
+      if (price) {
+        return this.CucCurrencyService.convertUcentsToCurrency(price);
+      }
+    }
+    return null;
+  }
+
+  formatLicensePrice(price) {
+    return this.licensePriceFormatter.format(price);
   }
 }

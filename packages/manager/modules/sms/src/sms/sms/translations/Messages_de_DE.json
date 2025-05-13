@@ -4,5 +4,7 @@
   "sms_sms_received": "SMS reçus",
   "sms_sms_pending": "SMS planifiés",
   "sms_sms_manage_hlrs": "HLR",
-  "sms_sms_manage_templates": "Gérer les modèles"
+  "sms_sms_manage_templates": "Gérer les modèles",
+  "sms_sms_breadcrumb": "SMS",
+  "sms_actions_credit_account": "Meinen Account aufladen"
 }

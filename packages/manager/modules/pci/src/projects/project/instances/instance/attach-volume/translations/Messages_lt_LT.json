@@ -1,9 +1,0 @@
-{
-  "pci_projects_project_instances_instance_attach-volume_title": "Attach a volume to your instance",
-  "pci_projects_project_instances_instance_attach-volume_submit_label": "Attach",
-  "pci_projects_project_instances_instance_attach-volume_cancel_label": "Cancel",
-  "pci_projects_project_instances_instance_attach-volume_volume_placeholder": "Search",
-  "pci_projects_project_instances_instance_attach-volume_error_no_compatible_volume": "You do not currently have any compatible volumes to attach to this instance.",
-  "pci_projects_project_instances_instance_attach-volume_success_message": "The {{ type }} type {{ volume }} volume ({{ volumeId }}) has been attached to the {{ instance }} instance ({{ instanceId }}).",
-  "pci_projects_project_instances_instance_attach-volume_error_attach": "An error has occurred updating the {{ volume }} volume: {{ message }}."
-}

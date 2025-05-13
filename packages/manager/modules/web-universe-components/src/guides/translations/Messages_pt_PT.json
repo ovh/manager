@@ -50,5 +50,6 @@
   "guide_glue_subscope": "GLUE",
   "guide_mailing_list_title": "Mailing-List",
   "guide_redirection_subscope": "Reencaminhamento",
-  "guide_zone_subscope": "Zona DNS"
+  "guide_zone_subscope": "Zona DNS",
+  "guide_domain_history_zone": "Gerir o histórico de uma zona DNS"
 }

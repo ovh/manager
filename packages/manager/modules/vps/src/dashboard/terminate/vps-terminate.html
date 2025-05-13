@@ -1,15 +1,57 @@
 <oui-modal
     class="my-0"
-    data-title="{{:: 'vps_terminate_title' | translate }}"
     data-primary-label="{{:: 'vps_terminate_confirm' | translate }}"
     data-primary-action="$ctrl.terminate()"
+    data-primary-disabled="!$ctrl.isActionAvailable || !$ctrl.terminateOption"
     data-secondary-label="{{:: 'vps_terminate_cancel' | translate }}"
-    data-secondary-action="$ctrl.cancel()"
+    data-secondary-action="$ctrl.onCancel()"
     data-type="warning"
     data-loading="$ctrl.isTerminating"
+    data-heading="{{:: 'vps_terminate_title' | translate }}"
+    on-dismiss="$ctrl.cancel()"
 >
+    <div data-ng-if="$ctrl.isActionAvailable">
+        <p class="mb-0">
+            <span data-translate="vps_terminate_warning_data_deletion"></span>
+        </p>
+        <span
+            data-ng-if="!$ctrl.hasManualRefund"
+            data-translate="vps_terminate_warning_no_refund"
+        >
+        </span>
+        <span
+            data-ng-if="$ctrl.hasManualRefund"
+            data-translate="vps_terminate_warning_manual_refund"
+        >
+        </span>
+        <form class="mt-4" name="$ctrl.terminateForm" novalidate>
+            <oui-select
+                disabled="$ctrl.disabled"
+                match="label"
+                items="$ctrl.terminateOptions"
+                model="$ctrl.terminateOption"
+                name="terminateOption"
+            >
+            </oui-select>
+        </form>
+        <div
+            data-ng-if="$ctrl.terminateOption && $ctrl.constructor.isTerminateNow($ctrl.terminateOption)"
+        >
+            <p
+                data-ng-if="!$ctrl.vps.engagement"
+                class="text-danger"
+                data-translate="vps_terminate_option_terminate_now_description"
+            ></p>
+            <p data-translate="vps_terminate_option_terminate_now_question"></p>
+        </div>
+    </div>
+
     <span
-        data-translate="vps_terminate_question"
-        data-translate-values="{ 'vps' : $ctrl.serviceName }"
+        data-ng-if="!$ctrl.isActionAvailable"
+        data-translate="{{ $ctrl.hasManualRefund ? 'vps_terminate_unavailable' : 'common_resiliate_contact_support'}}"
+        data-translate-values="{
+          'monthCount': '<strong>' + $ctrl.constructor.getDegressivityMonthDetails($ctrl.degressivityInformation) + '</strong>',
+          'supportTicketLink': $ctrl.supportTicketLink,
+        }"
     ></span>
 </oui-modal>

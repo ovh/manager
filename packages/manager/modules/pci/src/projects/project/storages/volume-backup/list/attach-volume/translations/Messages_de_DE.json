@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_volume_backup_list_attach_volume_title": "Volume verbinden",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_description": "Möchten Sie Ihr Volume {{ volumeName }} mit der Instanz {{ instanceName }} verbinden?",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_cancel": "Abbrechen",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_attach": "Bestätigen",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_success": "Ihr Volume {{ volumeName }} wurde mit seiner Instanz {{ instanceName }} verbunden.",
+  "pci_projects_project_storages_volume_backup_list_attach_volume_action_fail": "Beim Update Ihres Volumes ist ein Fehler aufgetreten: {{ errorMessage }}"
+}

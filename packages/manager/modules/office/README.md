@@ -13,11 +13,7 @@ yarn add @ovh-ux/manager-office
 ```js
 import office from '@ovh-ux/manager-office';
 
-angular.module('App', [
-  '…',
-  office,
-  '…',
-])
+angular.module('App', ['…', office, '…']);
 ```
 
 ## Contributing

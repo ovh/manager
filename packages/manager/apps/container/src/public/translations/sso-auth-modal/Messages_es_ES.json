@@ -1,0 +1,10 @@
+{
+  "sso_modal_title": "OVHcloud - Autenticación",
+  "sso_modal_loading": "Cargando...",
+  "sso_modal_user_title": "Estaba conectado como:",
+  "sso_modal_currentuser_title": "Ahora está conectado como:",
+  "sso_modal_disconnected": "Ahora está desconectado.",
+  "sso_modal_what": "¿Qué desea hacer?",
+  "sso_modal_action_reload": "Continuar como <strong>{{name}}</strong>",
+  "sso_modal_action_logout": "Ir a la página de autenticación"
+}

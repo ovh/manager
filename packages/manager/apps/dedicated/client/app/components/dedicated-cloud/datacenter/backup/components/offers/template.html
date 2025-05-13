@@ -1,0 +1,41 @@
+<div class="row mb-3">
+    <oui-select-picker
+        class="col-md-4 mb-3"
+        data-ng-if="!$ctrl.previewMode || ($ctrl.previewMode && (offer.offerName === $ctrl.backup.backupOffer))"
+        data-ng-repeat="offer in $ctrl.backupOffers track by offer.offerName"
+        name="offer"
+        data-model="$ctrl.selectedOffer"
+        data-label="{{:: 'dedicatedCloud_datacenter_backup_offer_' + offer.offerName | translate }}"
+        data-variant="light"
+        data-on-change="$ctrl.onSelected(modelValue)"
+        data-values="[offer]"
+        data-disabled="$ctrl.disabled && (offer.offerName !== $ctrl.actualOffer)"
+    >
+        <oui-select-picker-description
+            data-ng-if="!$ctrl.previewMode && (offer.offerName === $ctrl.actualOffer) && $ctrl.currentOfferLabel"
+        >
+            <span
+                class="oui-badge oui-badge_success"
+                data-translate="dedicatedCloud_datacenter_backup_offer_current_offer"
+            ></span>
+        </oui-select-picker-description>
+        <oui-select-picker-section>
+            <dedicated-cloud-datacenter-backup-offer-details
+                data-offer="offer"
+            ></dedicated-cloud-datacenter-backup-offer-details>
+        </oui-select-picker-section>
+        <oui-select-picker-footer>
+            <span
+                data-translate="dedicatedCloud_datacenter_backup_offer_price_from"
+            ></span>
+            <ovh-manager-catalog-price
+                data-price="offer.price"
+                data-user="$ctrl.user"
+            >
+            </ovh-manager-catalog-price>
+            <span
+                data-translate="dedicatedCloud_datacenter_backup_offer_price_per_vm"
+            ></span>
+        </oui-select-picker-footer>
+    </oui-select-picker>
+</div>

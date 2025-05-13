@@ -1,6 +1,0 @@
-{
- "cpcivm_delete_title": "Deleting an instance",
- "cpcivm_delete_info": "You have already paid your monthly bill for this server. Any pre-paid days will be lost.",
- "cpcivm_failover_info": "The following Failover IPs will be permanently deleted:",
- "cpcivm_delete_confirm": "Are you sure you want to delete this instance?"
-}

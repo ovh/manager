@@ -1,0 +1,192 @@
+<div class="billing-payment-ovhaccount">
+    <div
+        class="alert"
+        role="alert"
+        data-ng-class="alertType"
+        data-ng-show="message"
+    >
+        <button
+            class="close"
+            type="button"
+            data-ng-click="message=null"
+        ></button>
+        <span data-ng-bind-html="message"></span>
+    </div>
+
+    <div data-ovh-alert></div>
+
+    <h2 data-translate="ovhAccount_title2"></h2>
+
+    <div class="text-center" data-ng-if="ovhAccountsLoading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <p data-ng-if="!ovhAccountLoading && ovhAccount.model.hasOvhAccount">
+        <span
+            data-ng-if="!ovhAccountsLoading && !ovhAccount.list.length"
+            data-translate="ovhAccount_no_account"
+        >
+        </span>
+        <span
+            data-ng-if="!ovhAccountsLoading && !ovhAccount.choice.canBeCredited"
+            data-translate="ovhAccount_table_head_crediter_none"
+        >
+        </span>
+        <span
+            class="text-danger"
+            role="alert"
+            data-ng-hide="ovhAccountLoading || ovhAccountsLoading || !ovhAccount.model.hasOvhAccount || ovhAccount.model.list.state !== 'PARTIAL'"
+            data-translate="ovhAccount_partial_error"
+        >
+        </span>
+    </p>
+
+    <p
+        data-ng-hide="ovhAccountLoading || !ovhAccount.model.hasOvhAccount || !ovhAccount.choice"
+    >
+        <span data-translate="ovhAccount_balance"></span>
+        <span
+            data-ng-bind=":: ovhAccount.model.lastUpdate | date:'mediumDate'"
+        ></span>
+        <span
+            class="ml-2"
+            data-ng-class="getPriceClasses(ovhAccount.model.balance.value)"
+            data-ng-show="ovhAccount.model.balance"
+            data-ng-bind="ovhAccount.model.balance.text"
+        ></span>
+        <span data-ng-hide="ovhAccount.model.balance">-</span>
+    </p>
+
+    <p data-ng-if="!ovhAccountLoading && ovhAccount.model.hasOvhAccount">
+        <span
+            data-ng-if="ovhAccount.model.alertThreshold > 0"
+            data-translate="ovhAccount_create_alert_amount_resume"
+            data-translate-values="{ t0: ovhAccount.model.alertThreshold /100 + ' ' + ovhAccount.model.balanceCurrencyCode }"
+        ></span>
+        <span
+            data-ng-if="ovhAccount.model.alertThreshold <= 0"
+            data-translate="ovhAccount_no_alert"
+        ></span>
+    </p>
+
+    <div class="oui-button-group my-4" data-ng-if="!ovhAccountsLoading">
+        <button
+            class="oui-button oui-button_primary"
+            type="button"
+            data-ng-disabled="!ovhAccount.choice.canBeCredited"
+            data-ng-click="setAction('renew', ovhAccount.model, 'ovhaccount')"
+            data-track-on="click"
+            data-track-type="action"
+            data-track-name="payment_types::payment_types::credit_prepaid_account"
+        >
+            <span data-translate="ovhAccount_table_head_crediter"></span>
+        </button>
+        <button
+            class="oui-button oui-button_secondary"
+            type="button"
+            data-ng-if="!ovhAccountLoading && ovhAccount.model.hasOvhAccount"
+            data-ng-click="setAction('createAlert', ovhAccount.model.alertThreshold, 'ovhaccount')"
+            data-track-on="click"
+            data-track-type="action"
+            data-track-name="payment_types::prepaid_account::set_alert"
+        >
+            <span class="fa fa-bell-o" aria-hidden="true"></span>
+            <span data-translate="ovhAccount_create_alert"></span>
+        </button>
+    </div>
+
+    <oui-datagrid
+        id="ovhAccountMovements"
+        data-ng-if="ovhAccount.choice"
+        data-rows-loader="loadOvhAccount($config)"
+        empty-placeholder="{{:: (ovhAccount.model.hasOvhAccount ? 'ovhAccount_table_empty' : 'ovhAccount_no_account' )| translate }}"
+    >
+        <oui-datagrid-topbar>
+            <button
+                class="oui-button oui-button_secondary"
+                type="button"
+                data-export-csv="getDatasToExport()"
+                data-export-csv-separator=";"
+                data-ng-disabled="historyLoading || csvLoading"
+                data-ng-click="trackCSVExport()"
+            >
+                <span data-translate="billing_export_csv"></span>
+            </button>
+            <div
+                class="float-right text-right"
+                data-billing-date-range
+                data-on-change="onDateRangeChanged"
+            ></div>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            title=":: 'ovhAccount_table_head_date' | translate"
+            property="date"
+        >
+            <span data-ng-bind="$row.date | date:'mediumDate'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'ovhAccount_table_head_id' | translate"
+            property="factureNumber"
+        >
+            <span data-ng-bind="$row.factureNumber || '-'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'ovhAccount_table_head_type' | translate"
+        >
+            <span
+                data-translate="{{:: 'ovhAccount_table_type_' + $row.operation + ($row.type && ('_' + $row.type) || '') }}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'ovhAccount_table_head_payment_type' | translate"
+        >
+            <span
+                data-ng-if="$row.type"
+                data-translate="{{ 'ovhAccount_table_type_payment_' + $row.paymentType }}"
+                data-translate-default="$row.paymentType"
+            >
+            </span>
+            <span data-ng-if="!$row.type" data-ng-bind="$row.description">
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'ovhAccount_table_head_debit' | translate"
+            property="debit"
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'ovhAccount_table_head_credit' | translate"
+            property="credit"
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'ovhAccount_table_head_remaining' | translate"
+            property="balance.text"
+        >
+        </oui-datagrid-column>
+        <oui-action-menu data-compact placement="end">
+            <oui-action-menu-item
+                data-ng-if="$row.url"
+                href="{{:: $row.url}}"
+                top
+            >
+                <span data-translate="table_download_html"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$row.retrievableAmount.value > 0"
+                on-click="askForRefund(ovhAccount.model.accountId, $row.movementId)"
+            >
+                <span data-translate="billing_payment_ovhaccount_refund"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+
+    <div id="currentAction" class="modal fade currentAction" role="dialog">
+        <div class="modal-dialog">
+            <div
+                id="modal-container"
+                class="modal-content"
+                data-ng-include="stepPath"
+            ></div>
+            <div id="modal-help" class="help4wizards"></div>
+        </div>
+    </div>
+</div>

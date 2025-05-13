@@ -8,7 +8,7 @@ export default class ExchangeTabSharedAccountsCtrl {
   constructor(
     $scope,
     $translate,
-    Exchange,
+    wucExchange,
     exchangeSelectedService,
     ExchangeSharedAccounts,
     exchangeStates,
@@ -19,7 +19,7 @@ export default class ExchangeTabSharedAccountsCtrl {
     this.services = {
       $scope,
       $translate,
-      Exchange,
+      wucExchange,
       exchangeSelectedService,
       ExchangeSharedAccounts,
       exchangeStates,
@@ -28,15 +28,15 @@ export default class ExchangeTabSharedAccountsCtrl {
       navigation,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.canDisplayQuota = false;
-    this.stateCreating = Exchange.stateCreating;
-    this.stateDeleting = Exchange.stateDeleting;
-    this.stateOk = Exchange.stateOk;
-    this.stateReopening = Exchange.stateReopening;
-    this.stateSuspended = Exchange.stateSuspended;
-    this.stateSuspending = Exchange.stateSuspending;
+    this.stateCreating = wucExchange.stateCreating;
+    this.stateDeleting = wucExchange.stateDeleting;
+    this.stateOk = wucExchange.stateOk;
+    this.stateReopening = wucExchange.stateReopening;
+    this.stateSuspended = wucExchange.stateSuspended;
+    this.stateSuspending = wucExchange.stateSuspending;
 
     this.stateTaskError = 'TASK_ON_ERROR';
     this.stateTaskDoing = 'TASK_ON_DOING';
@@ -52,14 +52,16 @@ export default class ExchangeTabSharedAccountsCtrl {
     this.showAlias = false;
     this.selectedAccount = null;
     this.noDomainFlag = true;
-    this.exchange = Exchange.value;
+    this.exchange = wucExchange.value;
 
-    Exchange.fetchingAccountCreationOptions(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-    ).then((data) => {
-      this.noDomainFlag = data.availableDomains.length === 0;
-    });
+    wucExchange
+      .fetchingAccountCreationOptions(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+      )
+      .then((data) => {
+        this.noDomainFlag = data.availableDomains.length === 0;
+      });
 
     ExchangeSharedAccounts.retrievingQuota(
       this.$routerParams.organization,
@@ -94,7 +96,7 @@ export default class ExchangeTabSharedAccountsCtrl {
         this.canDisplayQuota = false;
       });
 
-    $scope.$on(Exchange.events.sharedAccountsChanged, () => {
+    $scope.$on(wucExchange.events.sharedAccountsChanged, () => {
       $scope.$broadcast('paginationServerSide.reload', 'accountsTable');
     });
 
@@ -224,5 +226,9 @@ export default class ExchangeTabSharedAccountsCtrl {
         angular.copy(account),
       );
     }
+  }
+
+  displayAliasManagementView(account) {
+    this.goToAliasManagement(account);
   }
 }

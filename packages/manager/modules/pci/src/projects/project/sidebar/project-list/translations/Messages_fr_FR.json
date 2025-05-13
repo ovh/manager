@@ -1,7 +1,0 @@
-{
-  "cloud_sidebar_projectlist_create_project": "Créer un nouveau projet",
-  "cloud_sidebar_projectlist_loading_projects": "Chargement de la liste de vos projets",
-  "cloud_sidebar_projectlist_error": "Une erreur est survenue lors de la récupération de la liste de projets ({{ err }})",
-  "cloud_sidebar_projectlist_title": "Mes projets",
-  "cloud_sidebar_projectlist_title_search": "Rechercher un projet"
-}

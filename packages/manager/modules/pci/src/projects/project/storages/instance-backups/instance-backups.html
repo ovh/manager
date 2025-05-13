@@ -1,33 +1,75 @@
 <section data-ui-view>
-    <oui-page-header
-        data-heading="{{:: 'pci_projects_project_storages_instance-backups_title' | translate }}"
-        class="mb-3"
-    >
-        <oui-guide-menu
-            data-text="{{:: 'pci_project_guides_header' | translate }}"
-        >
-            <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
-                <span
-                    data-translate="pci_project_guides_header_all_guides"
-                ></span>
-            </oui-guide-menu-item>
-        </oui-guide-menu>
-    </oui-page-header>
+    <oui-header class="mb-3">
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: 'pci_projects_project_storages_instance-backups_title' | translate }}"
+                ></h1>
+                <div
+                    class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
+                >
+                    <changelog-button
+                        links="$ctrl.CHANGELOG.instance_backup.links"
+                        chapters="$ctrl.CHANGELOG.instance_backup.chapters"
+                    ></changelog-button>
+                    <oui-guide-menu
+                        data-text="{{:: 'pci_project_guides_header' | translate }}"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-repeat="guide in $ctrl.guideUrl.storage track by $index"
+                            data-href="{{:: guide.url }}"
+                            data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.instance_backup + guide.tracking)"
+                            data-external
+                        >
+                            <span
+                                data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+                            ></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
+            </div>
+        </oui-header-heading>
+    </oui-header>
+
+    <pci-maintenance-banner
+        data-steins="$ctrl.steins"
+        data-customer-regions="$ctrl.customerRegions"
+        data-product-regions="$ctrl.instanceBackupsRegions"
+        data-is-list-page="true"
+        data-product-name=":: 'pci_projects_project_storages_instance-backups_title' | translate"
+    ></pci-maintenance-banner>
+
+    <pci-announcement-banner
+        data-get-state-name="$ctrl.getStateName()"
+        data-on-go-to-region="$ctrl.goToRegion()"
+    ></pci-announcement-banner>
 
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
 
-    <oui-datagrid data-rows="$ctrl.instanceBackups">
-        <oui-column
+    <oui-datagrid
+        data-rows="$ctrl.instanceBackups"
+        criteria="$ctrl.criteria"
+        on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+    >
+        <oui-datagrid-column
             data-title="'pci_projects_project_storages_instance-backups_name_label' | translate"
             data-property="name"
             data-type="string"
             data-searchable
             data-sortable
             data-filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'pci_projects_project_storages_instance-backups_id_label' | translate"
+            data-property="id"
+            data-type="string"
+            data-sortable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'pci_projects_project_storages_instance-backups_region_label' | translate"
             data-property="region"
             data-type="string"
@@ -35,19 +77,19 @@
             data-filterable
         >
             <span
-                data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"
+                data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMicroRegion($row.region)"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'pci_projects_project_storages_instance-backups_size_label' | translate"
             data-property="size"
             data-type="number"
             data-sortable
             data-filterable
         >
-            <span>{{ $value | cucBytes:2:true:'GiB'}}</span>
-        </oui-column>
-        <oui-column
+            <span>{{ $value | bytes:2:true:'GiB'}}</span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_storages_containers_container_creationDate_label' | translate"
             data-property="creationDate"
             data-type="date"
@@ -55,20 +97,20 @@
             data-filterable
         >
             <span data-ng-bind="$value | date:'medium'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'pci_projects_project_storages_instance-backups_status_label' | translate"
             data-property="status"
             data-sortable
             data-filterable
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-class="{
-                    'oui-status_success': ($row.statusGroup === 'ACTIVE'),
-                    'oui-status_warning': ($row.statusGroup === 'PENDING'),
-                    'oui-status_error': ($row.statusGroup === 'ERROR'),
-                    'oui-status_info': ($row.statusGroup === $row.status),
+                    'oui-badge_success': ($row.statusGroup === 'ACTIVE'),
+                    'oui-badge_warning': ($row.statusGroup === 'PENDING'),
+                    'oui-badge_error': ($row.statusGroup === 'ERROR'),
+                    'oui-badge_info': ($row.statusGroup === $row.status),
                 }"
                 data-ng-switch="$row.statusGroup"
             >
@@ -76,9 +118,9 @@
                     data-ng-bind="'pci_projects_project_storages_instance-backups_status_' + $row.status | translate"
                 ></span>
             </span>
-        </oui-column>
+        </oui-datagrid-column>
 
-        <oui-action-menu data-align="end" data-compact>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item data-on-click="$ctrl.createInstance($row)">
                 <span
                     data-translate="pci_projects_project_storages_instance-backups_instance_create_label"
@@ -94,7 +136,7 @@
             </oui-action-menu-item>
         </oui-action-menu>
 
-        <extra-top>
+        <oui-datagrid-topbar>
             <button
                 class="oui-button oui-button_secondary"
                 data-ng-click="$ctrl.addInstanceBackup()"
@@ -107,6 +149,16 @@
                     data-translate="pci_projects_project_storages_instance-backups_add_label"
                 ></span>
             </button>
-        </extra-top>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary float-right"
+                data-ng-click="$ctrl.refreshList()"
+            >
+                <span
+                    class="oui-icon oui-icon-refresh"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 </section>

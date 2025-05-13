@@ -1,73 +1,31 @@
-<oui-back-button data-on-click="$ctrl.goToHosting()">
+<oui-back-button
+    data-on-click="$ctrl.trackClick($ctrl.ACTIVATION_DATABASE_TRACKING.GO_BACK); $ctrl.goToHosting()"
+>
     <span data-translate="privatesql_activation_back"></span>
 </oui-back-button>
-<oui-stepper>
+
+<ovh-manager-product-offers
+    data-pricing-type="$ctrl.productOffers.pricingType"
+    data-workflow-options=":: $ctrl.productOffers.workflowOptions"
+    data-workflow-type=":: $ctrl.productOffers.workflowType"
+    data-on-success=":: $ctrl.onSuccess(checkout)"
+    data-on-error=":: $ctrl.onError(error)"
+    data-send-current-state=":: $ctrl.getOrderState(state)"
+>
     <oui-step-form
         data-header="{{:: 'privatesql_activation_step_1' | translate }}"
-        data-valid="$ctrl.hosting && $ctrl.option && $ctrl.version && !$ctrl.error.hosting"
+        data-valid="$ctrl.isValidDbConfig()"
         data-prevent-next="true"
-        data-loading="$ctrl.loading.hosting"
-        data-editable="!$ctrl.loading.checkout"
-        data-on-submit="$ctrl.fetchCheckoutInformations()"
+        data-on-submit="$ctrl.onGoToNextStepClick()"
+        data-on-focus="$ctrl.onOptionEdit()"
     >
-        <oui-message data-type="error" data-ng-if="$ctrl.error.hosting">
-            <p data-translate="privatesql_activation_hosting_error"></p>
-            <p
-                data-ng-bind="$ctrl.error.hosting.data.message"
-                data-ng-if="$ctrl.error.hosting.data.message"
-            ></p>
-        </oui-message>
-        <oui-field
-            data-size="xl"
-            data-label="{{:: 'privatesql_activation_price_select' | translate }}"
-        >
-            <oui-select
-                name="optionSelect"
-                data-model="$ctrl.option"
-                data-items="$ctrl.options"
-                data-disabled="$ctrl.loading.hosting"
-                data-match="label"
-            >
-            </oui-select>
-        </oui-field>
-        <oui-field
-            data-size="xl"
-            data-label="{{:: 'privatesql_activation_version_select' | translate }}"
-        >
-            <oui-select
-                name="versionSelect"
-                data-model="$ctrl.version"
-                data-items="$ctrl.versions"
-                data-match="label"
-                data-searchable
-            >
-            </oui-select>
-        </oui-field>
+        <web-hosting-database-order-db-categories-offers
+            data-user="$ctrl.me"
+            data-db-categories="$ctrl.dbCategories"
+            data-preselect-db-category="$ctrl.preselectDbCategory"
+            data-on-db-category-click="$ctrl.onDbCategoryClick(dbCategory)"
+            data-on-db-category-engine-click="$ctrl.onDbCategoryEngineClick(dbEngine)"
+            data-model="$ctrl.model"
+        ></web-hosting-database-order-db-categories-offers>
     </oui-step-form>
-    <oui-step-form
-        data-header="{{:: 'privatesql_activation_step_2' | translate }}"
-        data-valid="($ctrl.acceptContracts || !$ctrl.checkout.contracts.length) && !$ctrl.error.checkout"
-        data-prevent-next="true"
-        data-loading="$ctrl.loading.checkout"
-        data-submit-text="{{:: 'privatesql_activation_order' | translate }}"
-        data-on-submit="$ctrl.performCheckout()"
-    >
-        <ovh-contracts-summary
-            data-ng-if="$ctrl.checkout.contracts.length && !$ctrl.success"
-            data-name="acceptContracts"
-            data-items="$ctrl.checkout.contracts"
-            data-model="$ctrl.acceptContracts"
-        >
-        </ovh-contracts-summary>
-        <oui-message data-type="error" data-ng-if="$ctrl.error.checkout">
-            <p data-translate="privatesql_activation_checkout_error"></p>
-            <p
-                data-ng-bind="$ctrl.error.checkout.data.message"
-                data-ng-if="$ctrl.error.checkout.data.message"
-            ></p>
-        </oui-message>
-        <oui-message data-type="success" data-ng-if="$ctrl.success">
-            <p data-ng-bind-html="$ctrl.success"></p>
-        </oui-message>
-    </oui-step-form>
-</oui-stepper>
+</ovh-manager-product-offers>

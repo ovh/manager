@@ -1,0 +1,23 @@
+{
+  "dedicatedCloudDashboardTilesOptionsServicePack_displayName_default": "Keine Zusatzoptionen",
+  "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_default": "Keine Zusatzoptionen",
+  "dedicatedCloudDashboardTilesOptionsServicePack_description_default": "",
+  "dedicatedCloudDashboardTilesOptionsServicePack_displayName_nsx": "NSX Data Center for vSphere (NSX-V)",
+  "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_nsx": "NSX Data Center for vSphere (NSX-V)",
+  "dedicatedCloudDashboardTilesOptionsServicePack_description_nsx": "Mit NSX-v können Sie ganz einfach Zugriffsregeln zu Ihren Netzwerken konfigurieren, Ihre Sicherheitsrichtlinie erstellen und innerhalb von nur wenigen Minuten verschiedene für den Aufbau Ihrer Infrastruktur nötige Netzwerkdienste deployen.",
+  "dedicatedCloudDashboardTilesOptionsServicePack_displayName_vrops": "vRealize Operations (vROps)",
+  "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_vrops": "vRealize Operations (vROps)",
+  "dedicatedCloudDashboardTilesOptionsServicePack_description_vrops": "Steuern Sie mithilfe von vROps Ihre Infrastruktur, aktivieren Sie das Monitoring für virtuelle Maschinen, ermitteln Sie Anomalien und planen Sie problemlos zukünftigen Ressourcenbedarf, um die Dienstqualität (QoS) Ihrer Plattform sicherzustellen.",
+  "dedicatedCloudDashboardTilesOptionsServicePack_displayName_nsx-and-vrops": "NSX Data Center for vSphere (NSX-V) und vRealize Operations (vROps)",
+  "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_nsx-and-vrops": "NSX Data Center for vSphere (NSX-V) und vRealize Operations (vROps)",
+  "dedicatedCloudDashboardTilesOptionsServicePack_description_nsx-and-vrops": "Mit NSX-v können Sie ganz einfach Zugriffsregeln zu Ihren Netzwerken konfigurieren, Ihre Sicherheitsrichtlinie erstellen und innerhalb von nur wenigen Minuten verschiedene für den Aufbau Ihrer Infrastruktur nötige Netzwerkdienste deployen.</p><p>Steuern Sie mithilfe von vROps Ihre Infrastruktur, aktivieren Sie das Monitoring für virtuelle Maschinen, ermitteln Sie Anomalien und planen Sie problemlos zukünftigen Ressourcenbedarf, um die Dienstqualität (QoS) Ihrer Plattform sicherzustellen.",
+  "dedicatedCloudDashboardTilesOptionsServicePack_displayName_pcidss": "Payment Card Industry Data Security Standard (PCI DSS)",
+  "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_pcidss": "Payment Card Industry Data Security Standard (PCI DSS) Zertifizierung",
+  "dedicatedCloudDashboardTilesOptionsServicePack_description_pcidss": "Kreditkartendaten sind Ziel zahlreicher Pirating- und Phishing-Versuche. Dank PCI DSS hat OVHcloud strengste Sicherheitsmaßnahmen umgesetzt, um ein maximales Sicherheitsniveau für Ihre Zahlungsinfrastrukturen zu gewährleisten.",
+  "dedicatedCloudDashboardTilesOptionsServicePack_displayName_hds": "Hosting von Gesundheitsdaten und HDS-Zertifizierung",
+  "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_hds": "Hosting von Gesundheitsdaten (HDS) Zertifizierung",
+  "dedicatedCloudDashboardTilesOptionsServicePack_description_hds": "Der Schutz der Gesundheitsdaten und -informationssysteme erfolgt in einem bestimmten Rechtsrahmen. OVHcloud bietet eine Lösung zum Hosting von Gesundheitsdaten mit strengen Maßnahmen zur Zugriffssicherung an. Diese Lösung entspricht den Regelungen zahlreicher Länder, darunter Frankreich (HDS-Zertifizierung), Deutschland, Italien, das Vereinigte Königreich und Polen.",
+  "dedicatedCloudDashboardTilesOptionsServicePack_displayName_hipaa": "Health Insurance Portability and Accountability Act (HIPAA)",
+  "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_hipaa": "Health Insurance Portability and Accountability Act (HIPAA) Zertifizierung",
+  "dedicatedCloudDashboardTilesOptionsServicePack_description_hipaa": "Payment Card Industry Data Security Standard (PCI DSS)"
+}

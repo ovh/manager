@@ -1,0 +1,8 @@
+{
+  "hosting_email_detach_option_title": "Detach email option from my hosting plan",
+  "hosting_email_detach_option_description": "The {{ emailOption }} solution has been chosen to replace the email solution attached to your {{hosting}} hosting plan. By detaching the option, you can renew it separately from your hosting plan. However, the option will be billed at the standard price for email options.",
+  "hosting_email_detach_option_warning_irreversible": "Warning: this action cannot be undone",
+  "hosting_email_detach_option_error": "An error has occurred detaching the option: {{error}}",
+  "hosting_email_detach_option_success_with_payment": "The email option detachment has been processed. Your account {{accountId}} has been debited from {{price}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">See my invoice</a>",
+  "hosting_email_detach_option_success_with_no_payment": "Your <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">purchase order</a> has been successfully generated. The email option detachment will be effective after it has been paid for."
+}

@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 
 import { GUIDE_URLS } from './creating.constants';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.creating', {
@@ -10,6 +11,16 @@ export default /* @ngInject */ ($stateProvider) => {
         componentProvider: /* @ngInject */ (projectOrder) =>
           projectOrder ? 'pciProjectCreatingNotPaid' : 'pciProjectCreating',
       },
+    },
+    atInternet: {
+      ignore: true, // this tell AtInternet to not track this state
+    },
+    onEnter: /* @ngInject */ (atInternet, numProjects, pciFeatureRedirect) => {
+      atInternet.trackPage({
+        name: 'PublicCloud::pci::projects::project::creating',
+        pciCreationNumProjects: numProjects,
+      });
+      return pciFeatureRedirect(PCI_FEATURES.OTHERS.CREATE_PROJECT);
     },
     resolve: {
       breadcrumb: () => null,

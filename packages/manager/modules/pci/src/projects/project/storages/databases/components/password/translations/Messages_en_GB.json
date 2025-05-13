@@ -1,0 +1,14 @@
+{
+  "pci_database_password_label": "Password",
+  "pci_database_password_description": "A password is required to connect to your cluster",
+  "pci_database_password_placeholder": "Enter a password",
+  "pci_database_password_help": "Your password must contain at least 2 numbers, contain between 8 and 32 characters, and all characters must be alpha-numeric.",
+  "pci_database_password_help_strength": "Your password is not strong enough",
+  "pci_database_password_help_alphanumeric": "Must be made up of letters and numbers (A-Z, a-z, 0-9)",
+  "pci_database_password_help_upper_case": "Must contain at least one upper-case letter",
+  "pci_database_password_help_number": "Must contain at least 2 numbers",
+  "pci_database_password_help_length": "Must contain between 8 and 32 characters",
+  "pci_database_password_confirm_label": "Confirm your password",
+  "pci_database_password_confirm_placeholder": "Re-enter password",
+  "pci_database_password_confirm_error": "Passwords do not match"
+}

@@ -3,6 +3,7 @@ import defaults from 'lodash/defaults';
 angular.module('services').service(
   'WhitelistService',
   class WhitelistService {
+    /* @ngInject */
     constructor($http, PrivateDatabase, $q, $rootScope, $stateParams) {
       this.$http = $http;
       this.privateDatabaseService = PrivateDatabase;
@@ -188,6 +189,19 @@ angular.module('services').service(
 
     killPollWhitelistDelete() {
       this.pollService.kill({ namespace: 'privateDatabase.whitelist.delete' });
+    }
+
+    /**
+     * Get status of webhosting access to database
+     * @param  {string} serviceName
+     * @return {string}
+     */
+    getWebhostingNetworkStatus(serviceName) {
+      return this.$http
+        .get(
+          `${this.rootPath}/${this.swsProxypassPath}/${serviceName}/webhostingNetwork`,
+        )
+        .then(({ data }) => data.status);
     }
   },
 );

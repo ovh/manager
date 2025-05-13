@@ -1,9 +1,0 @@
-{
- "cpc_tab_infra": "Instancje",
- "cpc_tab_snapshot": "Snapshoty",
- "cpc_tab_volume": "Dodatkowe dyski",
- "cpc_tab_ssh": "Klucze SSH",
- "cpc_tab_loadbalancer": "Load Balancer",
- "cpc_tab_project": "Zarządzanie i zasoby projektu",
- "cpb_tab_quota": "Limit"
-}

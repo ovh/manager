@@ -4,7 +4,7 @@ import get from 'lodash/get';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import uiRouter from '@uirouter/angularjs';
 import angularTranslate from 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import component from './new-ticket.component';
 import creationFormComponent from './creation-form/creation-form.component';
@@ -18,7 +18,7 @@ import {
   definition as serviceDefinition,
 } from './new-ticket.service';
 
-import 'ovh-ui-kit/dist/oui.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 const moduleName = 'ovhManagerSupportTicketsNew';
 
@@ -58,6 +58,11 @@ angular
             type: 'string',
             squash: true,
           },
+          preFetchData: {
+            value: null,
+            type: 'bool',
+            squash: true,
+          },
         },
         resolve: {
           goToTickets: /* @ngInject */ ($state) => () =>
@@ -68,6 +73,8 @@ angular
             $transition$.params().serviceName,
           serviceTypeName: /* @ngInject */ ($transition$) =>
             $transition$.params().serviceTypeName,
+          preFetchData: /* @ngInject */ ($transition$) =>
+            $transition$.params().preFetchData,
           urls: /* @ngInject */ (OvhApiMe, CORE_URLS) =>
             OvhApiMe.v6()
               .get()
@@ -75,8 +82,10 @@ angular
                 guide: get(CORE_URLS, `guides.home.${me.ovhSubsidiary}`),
                 forum: get(CORE_URLS, `forum.${me.ovhSubsidiary}`),
               })),
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('ovhManagerSupport_new'),
         },
-        url: '/new?categoryName&serviceName&serviceTypeName',
+        url: '/new?categoryName&serviceName&serviceTypeName&preFetchData',
         views: {
           'support@support': component.name,
         },

@@ -1,5 +1,5 @@
 {
-  "ovh_payment_type_bank_account": "Conta bancária",
+  "ovh_payment_type_bank_account": "Débito SEPA",
   "ovh_payment_type_paypal": "Paypal",
   "ovh_payment_type_credit_card": "Cartão de pagamento",
   "ovh_payment_type_deferred_payment_account": "Conta de pagamento diferido",
@@ -25,5 +25,10 @@
   "ovh_payment_status_maintenance": "Manutenção em curso",
   "ovh_payment_status_paused": "Em pausa",
   "ovh_payment_status_failed": "Inválida",
-  "ovh_payment_status_null": "Informação indisponível"
+  "ovh_payment_status_null": "Informação indisponível",
+  "ovh_payment_type_sepa_direct_debit": "Débito direto",
+  "ovh_payment_status_validating": "Validação em curso",
+  "ovh_payment_status_rejected": "Recusado",
+  "ovh_payment_type_rupay": "RuPay",
+  "ovh_payment_method_registration_failure": "O registo do seu método de pagamento falhou. Não foi debitado nenhum valor. Tente novamente ou contacte o seu banco se o problema persistir. Pode igualmente alterar o seu método de pagamento."
 }

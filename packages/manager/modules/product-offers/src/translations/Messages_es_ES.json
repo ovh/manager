@@ -15,5 +15,8 @@
   "ovh_product_offers_confirmation_activate": "Activar",
   "ovh_product_offers_total_price_without_tax": "Precio sin IVA:",
   "ovh_product_offers_total_price_with_tax": "Precio IVA incl.:",
-  "ovh_product_offers_duration": "Duración:"
+  "ovh_product_offers_duration": "Duración:",
+  "ovh_product_offers_detach_termination": "La opción {{option}} expirará el {{date}}",
+  "ovh_product_offers_duration_prorata_up_to": "Parte proporcional hasta:",
+  "ovh_product_offers_order_express_submit": "Siguiente"
 }

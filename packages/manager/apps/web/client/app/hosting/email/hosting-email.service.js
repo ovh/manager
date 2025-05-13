@@ -19,8 +19,24 @@ export default class HostingEmailService {
     this.OvhApiOrderCart = OvhApiOrder.Cart().v6();
   }
 
-  getEmailOfferDetails(serviceName) {
-    return this.OvhApiHostingWebEmailOption.query({ serviceName }).$promise;
+  getEmailOptionList(serviceName) {
+    return this.OvhApiHostingWebEmailOption.query({
+      serviceName,
+    }).$promise.catch((error) => {
+      // 460 occurs when hosting is expired
+      if (error.status === 460) {
+        return [];
+      }
+
+      return error;
+    });
+  }
+
+  getEmailOptionServiceInformation(serviceName, emailOptionId) {
+    return this.OvhApiHostingWebEmailOption.serviceInfo({
+      id: emailOptionId,
+      serviceName,
+    }).$promise;
   }
 
   createCart(ovhSubsidiary) {
@@ -60,7 +76,7 @@ export default class HostingEmailService {
       duration: price.duration,
       planCode: option.planCode,
       pricingMode: price.pricingMode,
-      quantity: price.maximumQuantity,
+      quantity: price.minimumQuantity,
     };
     return this.OrderService.addProductServiceOptionToCart(
       cart.cartId,
@@ -96,10 +112,12 @@ export default class HostingEmailService {
       );
   }
 
-  orderCart(cart) {
-    return this.OrderService.checkoutCart(cart.cartId).then((order) => {
-      this.OvhApiHostingWebEmailOption.resetQueryCache();
-      return order;
-    });
+  orderCart(cart, options = {}) {
+    return this.OrderService.checkoutCart(cart.cartId, options).then(
+      (order) => {
+        this.OvhApiHostingWebEmailOption.resetQueryCache();
+        return order;
+      },
+    );
   }
 }

@@ -1,0 +1,290 @@
+<div
+    class="text-center"
+    data-ng-if="loadingEmailProInformations && !loadingEmailProError"
+>
+    <oui-spinner data-size="l"></oui-spinner>
+</div>
+
+<div data-ng-if="!loadingEmailProInformations && !loadingEmailProError">
+    <div
+        class="oui-header"
+        data-ng-if="!loadingEmailProInformations && !loadingEmailProError"
+    >
+        <div class="oui-header__container">
+            <div class="oui-header__content">
+                <form name="formEditDisplayName" novalidate>
+                    <div class="d-flex" data-ng-if="!edit.active">
+                        <h1
+                            class="oui-header__title"
+                            data-ng-bind="exchange.displayName"
+                        ></h1>
+                        <button
+                            type="button"
+                            class="oui-button oui-button_s my-auto ml-2"
+                            data-ng-click="edit.active = !edit.active"
+                            aria-label="{{:: 'wizard_modify' | translate }}"
+                        >
+                            <span
+                                class="oui-icon oui-icon-pen_concept"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </div>
+                    <oui-field data-ng-if="edit.active">
+                        <div class="oui-input-group  oui-input-group_l">
+                            <input
+                                type="text"
+                                class="oui-input"
+                                name="txtDisplayName"
+                                required
+                                data-ng-minlength="5"
+                                data-ng-maxlength="250"
+                                data-ng-model="newDisplayName.value"
+                                data-ng-pattern="/^[^<>]+$/"
+                            />
+
+                            <button
+                                class="oui-button oui-button_s"
+                                type="submit"
+                                aria-label="{{ 'common_confirm' | translate }}"
+                                title="{{ 'common_confirm' | translate }}"
+                                data-ng-click="saveDisplayName()"
+                                data-ng-disabled="formEditDisplayName.$invalid"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-success"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                            <button
+                                class="oui-button oui-button_s"
+                                type="button"
+                                aria-label="{{ 'common_cancel' | translate }}"
+                                title="{{ 'common_cancel' | translate }}"
+                                data-ng-click="edit.active = false"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-close"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                        </div>
+                    </oui-field>
+                </form>
+
+                <h2
+                    class="oui-header__description"
+                    data-ng-bind="exchange.domain"
+                    data-ng-if="exchange.displayName != null && exchange.displayName !== exchange.domain"
+                ></h2>
+            </div>
+            <div
+                class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
+            >
+                <changelog-button
+                    links="constants.CHANGELOG.email_pro.links"
+                    chapters="constants.CHANGELOG.email_pro.chapters"
+                ></changelog-button>
+                <oui-action-menu
+                    class="mt-1"
+                    data-ng-if="!currentRegionCA"
+                    data-text="{{:: 'common_actions' | translate }}"
+                    data-placement="end"
+                >
+                    <div data-ng-if="!exchange.isMXPlan">
+                        <oui-action-menu-item
+                            data-ng-if="exchange.renewOptionAvailable || is25g()"
+                            data-on-click="setAction('emailpro/update/renew/emailpro-update-renew', exchange)"
+                        >
+                            <span
+                                data-translate="emailpro_update_billing_button_title"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-divider></oui-action-menu-divider>
+                        <oui-action-menu-item
+                            data-ng-if="exchange.deleteOptionAvailable"
+                            data-on-click="setAction('emailpro/remove/emailpro-remove', exchange)"
+                        >
+                            <span
+                                data-translate="emailpro_resilitation_action_button"
+                                data-ng-if="!exchange.renewType.deleteAtExpiration"
+                            ></span>
+                            <span
+                                data-translate="emailpro_resilitation_action_button_cancel"
+                                data-ng-if="exchange.renewType.deleteAtExpiration"
+                            ></span>
+                        </oui-action-menu-item>
+                    </div>
+                    <div data-ng-if="exchange.isMXPlan">
+                        <oui-action-menu-item
+                            data-href="{{:: MXPLAN_AUTORENEW_URL }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="emailpro_delete_action_button"
+                            ></span>
+                        </oui-action-menu-item>
+                    </div>
+                </oui-action-menu>
+            </div>
+        </div>
+        <div data-ng-if="!exchange.isExpired">
+            <oui-header-tabs>
+                <oui-header-tabs-item
+                    data-href="{{:: informationLink }}"
+                    data-active="informationLink === currentActiveLink()"
+                >
+                    <span data-translate="emailpro_tab_INFORMATION"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-href="{{:: domainLink }}"
+                    data-active="domainLink === currentActiveLink()"
+                >
+                    <span data-translate="emailpro_tab_DOMAIN"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-href="{{:: accountLink }}"
+                    data-active="accountLink === currentActiveLink()"
+                >
+                    <span data-translate="emailpro_tab_ACCOUNT"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="mailingListLink"
+                    data-href="{{:: mailingListLink }}"
+                    data-active="mailingListLink === currentActiveLink()"
+                >
+                    <span data-translate="emailpro_tab_MAILING_LIST"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="redirectionLink"
+                    data-href="{{:: redirectionLink }}"
+                    data-active="redirectionLink === currentActiveLink()"
+                >
+                    <span data-translate="emailpro_tab_REDIRECTION"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="!exchange.isMXPlan"
+                    data-href="{{:: externalContactLink }}"
+                    data-active="externalContactLink === currentActiveLink()"
+                >
+                    <span data-translate="emailpro_tab_EXTERNAL_CONTACT"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-dropdown
+                    data-text="{{:: 'emailpro_navigation_more' | translate }}"
+                >
+                    <oui-header-tabs-item
+                        data-ng-if="!exchange.isZimbra"
+                        data-href="{{:: disclaimerLink}}"
+                        data-active="disclaimerLink === currentActiveLink()"
+                    >
+                        <span data-translate="emailpro_tab_DISCLAIMER"></span>
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        data-ng-if="taskLink"
+                        data-href="{{:: taskLink}}"
+                        data-active="taskLink === currentActiveLink()"
+                    >
+                        <span data-translate="emailpro_tab_TASKS"></span>
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-divider
+                        data-ng-if="!exchange.isZimbra"
+                    ></oui-header-tabs-divider>
+                    <oui-header-tabs-item
+                        data-ng-if="!exchange.isZimbra"
+                        disabled="is25g()"
+                        on-click="configureEmailService()"
+                    >
+                        <span
+                            data-translate="emailpro_configuration_action_title"
+                        ></span>
+                    </oui-header-tabs-item>
+                </oui-header-tabs-dropdown>
+            </oui-header-tabs>
+        </div>
+    </div>
+    <div data-ng-if="!exchange.isExpired">
+        <div
+            class="alert alert-dismissible"
+            role="alert"
+            data-ng-class="alertType"
+            data-ng-if="!loadingEmailProError && message"
+        >
+            <button
+                class="close"
+                type="button"
+                data-ng-click="resetMessages()"
+            ></button>
+            <span data-ng-bind-html="message"></span>
+            <div
+                data-ng-show="messageDetails"
+                data-linkedpopover="emailpro/emailpro-error-messages.popover.html"
+                data-linkedpopover-placement="bottom"
+                data-linkedpopover-single="false"
+                data-linkedpopover-remote="true"
+            >
+                <strong
+                    class="pointer underline"
+                    data-translate="emailpro_dashboard_message_see_more"
+                    data-ng-if="messageDetails.length > 0"
+                ></strong>
+            </div>
+        </div>
+        <div data-ui-view></div>
+    </div>
+</div>
+
+<div
+    class="oui-message oui-message_error oui-message_l"
+    role="alert"
+    data-ng-if="loadingEmailProError && message"
+>
+    <span class="oui-message_l-icon" aria-hidden="true"></span>
+    <h1
+        class="oui-message__title"
+        data-translate="emailpro_dashboard_service_expired"
+    ></h1>
+    <div class="oui-message__body">
+        <span data-ng-bind-html="message"></span>
+        <div
+            data-ng-if="messageDetails"
+            data-linkedpopover="emailpro/emailpro-error-messages.popover.html"
+            data-linkedpopover-placement="bottom"
+            data-linkedpopover-single="false"
+            data-linkedpopover-remote="true"
+        >
+            <strong
+                class="pointer underline"
+                data-translate="emailpro_dashboard_message_see_more"
+                data-ng-if="messageDetails.length > 0"
+            ></strong>
+        </div>
+    </div>
+</div>
+
+<!-- Migration to Exchange 2016. Display a link to follow the status of the migration -->
+<div
+    class="alert alert-warning mt-5 mx-5"
+    role="alert"
+    data-ng-if="exchange.serverDiagnostic.individual2010"
+    data-ng-show="!loadingEmailProInformations && !loadingEmailProError"
+>
+    <a
+        href="http://migrationstatus.mail.ovh.net"
+        target="_blank"
+        title="{{ 'emailpro_dashboard_2016_migration' | translate }} ({{ 'emailpro_dashboard_new_window' | translate }})"
+    >
+        <span data-translate="emailpro_dashboard_2016_migration"></span>
+        <span class="fa fa-external-link ml-2" aria-hidden="true"></span>
+    </a>
+</div>
+
+<div id="currentAction" class="modal fade currentAction" role="dialog">
+    <div class="modal-dialog">
+        <div
+            id="modal-container"
+            class="modal-content"
+            data-ng-include="stepPath"
+        ></div>
+        <div id="modal-help" class="help4wizards"></div>
+    </div>
+</div>

@@ -3,7 +3,8 @@ import template from './domain-webhosting-order-steps-module.html';
 
 export default {
   bindings: {
-    availableModules: '<',
+    getAvailableModules: '&',
+    stepperPosition: '@',
   },
   controller,
   name: 'ovhManagerWebDomainWebhostingOrderStepsModule',

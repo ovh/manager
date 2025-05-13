@@ -1,0 +1,8 @@
+{
+  "pci_databases_indexes_delete_index_confirm": "Confirmar",
+  "pci_databases_indexes_delete_index_cancel": "Cancelar",
+  "pci_databases_indexes_delete_index": "Eliminar um índice",
+  "pci_databases_indexes_delete_index_description": "Tem a certeza de que deseja eliminar este índice?",
+  "pci_databases_indexes_delete_index_success_message": "O índice foi eliminado com sucesso.",
+  "pci_databases_indexes_delete_index_error_message": "Ocorreu um erro aquando da eliminação do seu índice: {{message}}"
+}

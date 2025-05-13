@@ -1,5 +1,6 @@
 {
   "telephony_group_line_calls_click2call_changePassword_back": "Annuler la modification de l'utilisateur",
+  "telephony_group_line_calls_click2call_changePassword": "Modifier le mot de passe",
   "telephony_group_line_calls_click2call_changePassword_title": "Modifier le mot de passe de l'utilisateur {{name}}",
   "telephony_group_line_calls_click2call_changePassword_password_placeholder": "Mot de passe",
   "telephony_group_line_calls_click2call_changePassword_success": "Utilisateur <strong>{{name}}</strong> modifié ! ",

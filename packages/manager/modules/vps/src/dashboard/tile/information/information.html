@@ -1,0 +1,113 @@
+<oui-tile
+    class=" h-100"
+    heading="{{ ::'vps_dashboard_tile_information_title' | translate }}"
+>
+    <oui-tile-definition term="{{ ::'vps_dashboard_state' | translate }}">
+        <oui-tile-description>
+            <vps-state-info vps-state="$ctrl.vpsState"></vps-state-info>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition
+        term="{{ ::'vps_dashboard_name' | translate }}"
+        description="{{:: $ctrl.vps.displayName || $ctrl.vps.name }}"
+    >
+        <oui-action-menu compact data-placement="end">
+            <oui-action-menu-item
+                data-disabled="$ctrl.isMigrating"
+                aria-label="{{::$ctrl.actions.changeName.text}}"
+                on-click="$ctrl.actions.changeName.callback()"
+            >
+                <span data-ng-bind="::$ctrl.actions.changeName.text"></span>
+            </oui-action-menu-item>
+
+            <oui-action-menu-item
+                on-click="$ctrl.goToKvm($ctrl.vps.noVNC)"
+                ng-if="$ctrl.actions.kvm.isAvailable()"
+            >
+                <span data-ng-bind="::$ctrl.actions.kvm.text"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-disabled="$ctrl.isMigrating"
+                on-click="$ctrl.actions.terminate.callback()"
+                ng-if="$ctrl.actions.terminate.isAvailable()"
+            >
+                <span data-translate="vps_configuration_terminate"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-tile-definition>
+    <oui-tile-definition
+        term="{{ ::'vps_dashboard_boot' | translate }}"
+        description="{{ ::$ctrl.vps.netbootMode }}"
+    >
+        <oui-action-menu
+            data-disabled="$ctrl.isMigrating"
+            compact
+            ng-if="$ctrl.action.rebootRescue.isAvailable() || $ctrl.actions.reboot.isAvailable()"
+            data-placement="end"
+        >
+            <oui-action-menu-item
+                on-click="$ctrl.goToReboot()"
+                ng-if="$ctrl.actions.reboot.isAvailable()"
+            >
+                <span data-ng-bind="::$ctrl.actions.reboot.text"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                on-click="$ctrl.goToRebootRescue()"
+                ng-if="$ctrl.actions.rebootRescue.isAvailable()"
+            >
+                <span data-ng-bind="::$ctrl.actions.rebootRescue.text"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-tile-definition>
+    <oui-tile-definition
+        term="{{ ::'vps_dashboard_distribution' | translate }}"
+        description="{{ ::$ctrl.vps.distribution.name }}"
+    >
+        <oui-action-menu
+            data-disabled="$ctrl.isMigrating"
+            compact
+            ng-if="$ctrl.actions.reinstall.isAvailable() || $ctrl.actions.rebuild.isAvailable()"
+            data-placement="end"
+        >
+            <oui-action-menu-item
+                data-on-click="$ctrl.goToReinstall()"
+                data-ng-if="$ctrl.actions.reinstall.isAvailable()"
+            >
+                <span data-ng-bind="::$ctrl.actions.reinstall.text"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.actions.rebuild.callback()"
+                data-ng-if="$ctrl.actions.rebuild.isAvailable()"
+            >
+                <span
+                    data-translate="vps_configuration_reinstall_title_button"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-tile-definition>
+    <oui-tile-definition
+        term="{{ ::('vps_zone' | translate) }}"
+        description="{{ ::$ctrl.vps.zone }}"
+    >
+    </oui-tile-definition>
+    <oui-tile-definition
+        term="{{ ::'vps_dashboard_localisation' | translate }}"
+    >
+        <oui-tile-description>
+            <div
+                data-ng-repeat="(key, regions) in $ctrl.regionsGroup track by key"
+            >
+                <span
+                    class="{{ ::regions[0].icon }} mr-1"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    data-ng-repeat="region in ::regions track by region.microRegion.code"
+                    data-ng-bind=":: region.microRegion.text + (!$last ? ', ' : '')"
+                ></span>
+                <span data-ng-if="::key"> - </span>
+                <span data-ng-bind="::key"></span>
+            </div>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>

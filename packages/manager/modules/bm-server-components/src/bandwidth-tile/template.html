@@ -1,0 +1,22 @@
+<oui-tile
+    class="h-100"
+    data-heading="{{:: 'dedicated_server_interfaces_bandwidth_title' | translate}}"
+    data-description="{{:: 'dedicated_server_interfaces_bandwidth_description' | translate }}"
+>
+    <oui-message data-type="warning">
+        <span
+            data-translate="dedicated_server_interfaces_bandwidth_ola_warning"
+        ></span>
+    </oui-message>
+    <server-bandwidth-dashboard
+        data-bandwidth-option="$ctrl.bandwidthOption"
+        data-display-public-bandwidth="true"
+        data-bandwidth-vrack-option="$ctrl.bandwidthVrackOptions"
+        data-bandwidth-vrack-order-option="$ctrl.bandwidthVrackOrderOptions"
+        data-order-private-link="$ctrl.orderPrivateLink"
+        data-order-public-link="$ctrl.orderPublicLink"
+        data-server="$ctrl.server"
+        data-specifications="$ctrl.specifications"
+    >
+    </server-bandwidth-dashboard>
+</oui-tile>

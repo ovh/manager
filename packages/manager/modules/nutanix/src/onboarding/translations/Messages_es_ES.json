@@ -1,0 +1,10 @@
+{
+  "nutanix_onboarding_title": "Nutanix on OVHcloud",
+  "nutanix_onboarding_description": "Descubra nuestra plataforma hiperconvergente (HCI) escalable y lista para usar en solo unas horas. Disponible como servicio en forma de pack o como servicio BYOL (Bring Your Own Licence), esta solución combina las licencias de software de Nutanix Cloud Platform con las infraestructuras Hosted Private Cloud de OVHcloud dedicadas y certificadas por Nutanix.",
+  "nutanix_onboarding_order": "Contratar",
+  "nutanix_onboarding_guide1_title": "Documentación general",
+  "nutanix_onboarding_guide1_description": "Detalles técnicos de la infraestructura de la solución Nutanix on OVHcloud",
+  "nutanix_onboarding_guide2_title": "Servicio en pack: lista de licencias incluidas",
+  "nutanix_onboarding_guide2_description": "Perímetro de licencias incluidas en el servicio Nutanix on OVHcloud en forma de pack",
+  "nutanix_onboarding_short_description": "La solución de virtualización y contenerización preinstalada por OVHcloud"
+}

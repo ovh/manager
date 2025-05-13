@@ -1,0 +1,6 @@
+{
+  "cloud_connect_service_key_regenerate_error": "Wystąpił błąd podczas ponownego generowania klucza usługi: {{message}} ",
+  "cloud_connect_service_key_regenerate_success": "Ponownie wygenerowany klucz usługi",
+  "cloud_connect_service_key_regenerate_confirm": "Czy na pewno chcesz ponownie wygenerować klucz usługi?",
+  "cloud_connect_provider_regenerate_service_key": "Wygeneruj ponownie klucz usługi"
+}

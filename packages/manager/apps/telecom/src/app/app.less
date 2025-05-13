@@ -1,36 +1,18 @@
-@bs-path: 'bootstrap';
-@oui-path: 'ovh-ui-kit';
-
-@import '~ovh-ui-kit/packages/oui/stylekit';
-@import (less) '~angular-flash-alert/dist/angular-flash.css'; /* needs to be before ovh-ui-kit-bs or it will override style */
-@import '~bootstrap/less/variables';
-@import '~ovh-ui-kit-bs/src/bootstrap/navs';
-@import '~ovh-manager-webfont/dist/less/ovh-font';
-@import '~font-awesome/less/font-awesome.less';
-@import (less) '~leaflet/dist/leaflet.css';
-@import (less) '~fullcalendar/dist/fullcalendar.css';
-@import (less) '~ui-select/dist/select.css';
-@import (less) '~messenger/build/css/messenger.css';
-@import (less) '~messenger/build/css/messenger-theme-future.css';
-@import (less) '~messenger/build/css/messenger-theme-flat.css';
-@import (less) '~messenger/build/css/messenger-theme-block.css';
-@import (less) '~intl-tel-input/build/css/intlTelInput.css';
-@import '~ovh-angular-timeline/src/ovh-angular-timeline.less';
-@import (less) '~ovh-ng-input-password/dist/ovh-ng-input-password.css';
-
-/* Paths for Icons & Fonts */
-
-@icon-font-path: '../fonts/';
-@oui-icon-dist-folder: '../../dist/icons';
-@oui-font-source-sans-pro-folder: '../../packages/oui-typography/fonts/source-sans-pro';
-@fa-font-path: '../fonts';
-@flag-icon-css-path: '../node_modules/flag-icon-css/flags';
-@ovh-font-path: '../fonts/';
-
-@import '~flag-icon-css/less/flag-icon.less';
-
-@ovh-universe-color: @oui-color-dodger;
-@text-disabled-color: #757575;
+@import '@ovh-ux/ui-kit/dist/less/_tokens';
+@import (less) '@ovh-ux/ui-kit/dist/css/oui.css';
+@import 'ovh-ui-kit-bs/dist/less/bootstrap/_variables';
+@import 'ovh-manager-webfont/dist/less/ovh-font';
+@import 'font-awesome/less/font-awesome.less';
+@import (less) 'leaflet/dist/leaflet.css';
+@import (less) 'fullcalendar/dist/fullcalendar.css';
+@import (less) 'ui-select/dist/select.css';
+@import (less) 'messenger/build/css/messenger.css';
+@import (less) 'messenger/build/css/messenger-theme-future.css';
+@import (less) 'messenger/build/css/messenger-theme-flat.css';
+@import (less) 'messenger/build/css/messenger-theme-block.css';
+@import (less) 'intl-tel-input/build/css/intlTelInput.css';
+@import (less) 'ovh-ng-input-password/dist/ovh-ng-input-password.css';
+@import 'flag-icon-css/less/flag-icon.less';
 
 // Mobile
 @media (max-width: @screen-sm-max) {
@@ -45,10 +27,6 @@
 
 #content {
   padding: 0;
-
-  .page-header {
-    margin-top: 0;
-  }
 
   .container-fluid {
     padding-bottom: 32px;
@@ -108,40 +86,9 @@
 }
 
 @import './common/less/navbar.less';
-@import './common/less/sidebar.less';
 @import './common/less/variables.less';
 @import './common/less/mixins.less';
-@import './telecom/pack/migration/telecom-pack-migration.less';
-@import './telecom/pack/move/pack-move.less';
-@import './telecom/pack/resiliation/pack-resiliation.less';
-@import './telecom/pack/slots/voipLine/activation/pack-voipLine-activation.less';
-@import './telecom/pack/xdsl/access/deconsolidation/pack-xdsl-access-deconsolidation.less';
-@import './telecom/pack/xdsl/access/linediagnostic/pack-xdsl-access-linediagnostic.less';
-@import './telecom/pack/xdsl/access/pack-xdsl-access.less';
-@import './telecom/pack/xdsl/modem/pack-xdsl-modem.less';
-@import './telecom/pack/xdsl/orderFollowUp/pack-xdsl-orderFollowUp.less';
-@import './telecom/telephony/alias/portability/portabilities/telecom-telephony-alias-portability-portabilities.less';
-@import './telecom/telephony/billingAccount/billing/groupRepayments/telecom-telephony-billing-account-billing-group-repayments.less';
-@import './telecom/telephony/billingAccount/dashboard/telecom-telephony-billing-account-dashboard.less';
-@import './telecom/telephony/billingAccount/manageContacts/telecom-telephony-billing-account-manageContacts.less';
-@import './telecom/telephony/billingAccount/orderAlias/telecom-telephony-billing-account-orderAlias.less';
-@import './telecom/telephony/line/assist/rma/telecom-telephony-line-assist-rma.less';
-@import './telecom/telephony/line/assist/troubleshooting/telecom-telephony-line-assist-troubleshooting.less';
-@import './telecom/telephony/line/calls/click2Call/telecom-telephony-line-calls-click2Call.less';
-@import './telecom/telephony/line/phone/accessories/telecom-telephony-line-phone-accessories.less';
-@import './telecom/telephony/line/phone/configuration/telecom-telephony-line-phone-configuration.less';
-@import './telecom/telephony/service/fax/campaigns/read/telecom-telephony-service-fax-campaigns-read.less';
-@import './telecom/telephony/service/fax/settings/telecom-telephony-service-fax-settings.less';
-@import './telecom/telephony/telecom-telephony.less';
-@import '../components/sidebar/sidebar.less';
-@import '../components/telecom/telephony/alias/svaGenerator/telephony-alias-svaGenerator.less';
-@import '../components/telecom/telephony/group/consumption/pie-chart/telephony-group-consumption-pie-chart.less';
-@import '../components/telecom/telephony/group/number/feature/conference/telephony-group-number-feature-conference.less';
-@import '../components/telecom/telephony/group/number/feature/ovhPabx/menu/telephony-group-number-feature-ovh-pabx-menu.less';
-@import '../components/telecom/telephony/group/number/telephony-group-number.less';
-@import '../components/telecom/telephony/scheduler/telephony-scheduler.less';
-@import '../components/telecom/telephony/service/choice-popover/telecom-telephony-service-popover.less';
-@import '../components/telecom/telephony/timeCondition/telephony-time-condition.less';
+@import './telecom/telephony/line/phone/order/choice/choice.less';
 
 .ovh-manager-telecom-app {
   #nprogress {

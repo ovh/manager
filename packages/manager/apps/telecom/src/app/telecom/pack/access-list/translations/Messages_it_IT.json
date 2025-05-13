@@ -1,0 +1,19 @@
+{
+  "xdsl_access_list_title": "I miei servizi",
+  "xlds_access_list_copper_closure_info": "Per saperne di più sulla chiusura del rame.",
+  "xdsl_access_list_service_name": "Nome del servizio",
+  "xdsl_access_list_service": "Servizio",
+  "xdsl_access_list_migration": "Migrazione in fibra",
+  "xdsl_access_list_copper_closure_date": "Data di chiusura del rame",
+  "xdsl_access_list_actions": "Azioni",
+  "xdsl_access_list_copper": "Linea xDSL",
+  "xdsl_access_list_fiber": "Linea FTTH",
+  "xdsl_access_list_not_eligible": "Non ammissibile",
+  "xdsl_access_list_no_building": "Nessun edificio",
+  "xdsl_access_list_eligible": "Ammissibile",
+  "xdsl_access_list_not_concerned": "Non applicabile",
+  "xdsl_access_list_not_available": "Non disponibile",
+  "xdsl_access_list_migrate": "Passa alla fibra",
+  "xdsl_access_list_support": "Contattare il supporto",
+  "xdsl_access_list_not_yet_eligible": "Al momento non disponibile"
+}

@@ -1,8 +1,0 @@
-{
- "cpciiac_deploy_title": "Implementar uma infraestrutura as code através do Terraform",
- "cpciiac_deploy_intro": "Implemente de forma rápida e simples uma infraestrutura as code não gerida no seu projeto Cloud. Pode fazê-lo em apenas alguns cliques graças aos nossos scripts de implementação de infraestrutura.",
- "cpciiac_deploy_guide": "Quickstart",
- "cpciiac_deploy_configure": "Configurar",
- "cpciiac_deploy_copy_paste": "Copiar/Colar",
- "cpciiac_view_deployment_ERROR": "Ocorreu um erro no pedido de implementação: {{message}}"
-}

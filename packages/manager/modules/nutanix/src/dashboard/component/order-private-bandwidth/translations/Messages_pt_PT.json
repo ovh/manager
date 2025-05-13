@@ -1,0 +1,18 @@
+{
+  "cluster_error_bandwidth_order": "Ocorreu um erro aquando da encomenda da largura de banda: {{error}}",
+  "cluster_order_bandwidth_vrack_title": "Encomendar largura de banda",
+  "cluster_order_bandwidth_ready": "A sua encomenda está pronta. Dependendo do processamento do pagamento, a largura de banda deverá ficar disponível em breve.",
+  "cluster_order_bandwidth_see_order": "Consultar a nota de encomenda",
+  "cluster_order_bandwidth_vrack_load": "Alteração das ofertas em curso ...",
+  "cluster_order_bandwidth_empty_plans": "Não foi possível encontrar planos para atualizar",
+  "select_bandwidth_type_label": "Selecionar uma oferta",
+  "select_bandwidth_vrack_type_label": "Selecionar uma oferta",
+  "select_bandwidth_plan_summary": "Resumo da encomenda",
+  "cluster_order_bandwidth_declaration": "A data de renovação da sua opção corresponderá com a do seu servidor. O montante indicado corresponde ao primeiro mês de faturação da sua opção, calculado proporcionalmente ao mês a decorrer.",
+  "cluster_order_bandwidth_info": "O montante indicado corresponde ao montante faturado na próxima renovação da sua opção.",
+  "cluster_order_bandwidth_warning": "A alteração da sua largura de banda será aplicada alguns minutos após a ativação da opção.",
+  "cluster_order_bandwidth_auto_pay": "Pagar com o método de pagamento predefinido",
+  "plan_price_per_month": "HT/mois",
+  "wizard_pay": "Pagar",
+  "wizard_close": "Fechar"
+}

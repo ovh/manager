@@ -1,0 +1,11 @@
+{
+  "cpbc_no_consumption_data": "Brak zużycia dla wybranego okresu.",
+  "cpbc_object_storage_col_location": "Lokalizacja",
+  "cpbc_object_storage_col_consumption": "Zużycie przestrzeni",
+  "cpbc_object_storage_col_output_traffic": "Ruch wychodzący",
+  "cpbc_object_storage_consumption_info_part1": "Płatności zależą od realnej przestrzeni dyskowej, obliczanej co godzinę, za godzinę.",
+  "cpbc_object_storage_consumption_info_part2": "Twoje zużycie odpowiada dokładnie {{amount}} GiBGodzinom (liczba GiB składowanych w rozliczanych godzinach).",
+  "cpbc_object_storage_output_traffic_info_part1": "Każdy gigabajt wychodzący (bez względu na adres docelowy) jest płatny",
+  "cpbc_object_storage_output_traffic_info_part2": ". Wykorzystałeś {{amount}} GiB w danym okresie. Ruch przychodzący nie jest fakturowany.",
+  "cpb_error_message": "Wystąpił problem z pobraniem wszystkich informacji."
+}

@@ -1,27 +1,23 @@
+const commonResolves = {
+  serviceName: /* @ngInject */ ($transition$) =>
+    $transition$.params().productId,
+
+  serviceOption: /* @ngInject */ (serviceName, DomainDnsZoneActivateService) =>
+    DomainDnsZoneActivateService.getServiceOption(serviceName),
+
+  goBack: /* @ngInject */ (goToZone) => goToZone,
+};
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.product.zone.activate', {
     url: '/activate',
-    views: {
-      modal: {
-        component: 'domainZoneActivate',
-      },
-    },
-    layout: 'modal',
-    resolve: {
-      goBack: /* @ngInject */ (goToZone) => goToZone,
-    },
+    component: 'domainZoneActivate',
+    resolve: commonResolves,
   });
 
-  $stateProvider.state('app.domain.alldom.zone.activate', {
+  $stateProvider.state('app.alldom.domain.zone.activate', {
     url: '/activate',
-    views: {
-      modal: {
-        component: 'domainZoneActivate',
-      },
-    },
-    layout: 'modal',
-    resolve: {
-      goBack: /* @ngInject */ (goToZone) => goToZone,
-    },
+    component: 'domainZoneActivate',
+    resolve: commonResolves,
   });
 };

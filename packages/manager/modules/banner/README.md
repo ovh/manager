@@ -1,6 +1,6 @@
 # manager-banner
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-banner)](https://www.npmjs.com/package/@ovh-ux/manager-banner) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-banner)](https://npmjs.com/package/@ovh-ux/manager-banner) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/banner)](https://npmjs.com/package/@ovh-ux/manager-banner?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/banner)](https://npmjs.com/package/@ovh-ux/manager-banner?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-banner)](https://www.npmjs.com/package/@ovh-ux/manager-banner) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-banner)](https://npmjs.com/package/@ovh-ux/manager-banner) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/banner)](https://npmjs.com/package/@ovh-ux/manager-banner?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/banner)](https://npmjs.com/package/@ovh-ux/manager-banner?activeTab=dependencies)
 
 ## Install
 
@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-banner
 import angular from 'angular';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 
-angular
-  .module('myApp', [
-    ovhManagerBanner,
-  ]);
+angular.module('myApp', [ovhManagerBanner]);
 ```
 
 ```html

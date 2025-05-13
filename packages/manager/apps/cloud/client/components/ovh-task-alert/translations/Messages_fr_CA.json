@@ -1,5 +1,0 @@
-{
- "ovh_task_follow_button": "Détail de l'incident",
- "ovh_task_follow_modal_title": "Suivi de l'incident",
- "ovh_task_follow_modal_comment": "Dernière mise à jour : {{ date }}"
-}

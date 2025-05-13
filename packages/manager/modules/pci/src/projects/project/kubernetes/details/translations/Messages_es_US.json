@@ -1,9 +1,0 @@
-{
-  "kube_guides": "Guías",
-  "kube_guides_kubernetes": "Kubernetes",
-  "kube_error": "Se ha producido un error al cargar los datos: {{message}}",
-  "kube_service": "Service",
-  "kube_nodes": "Núcleos",
-  "kube_flavor": "{{ name }} ({{ cpuNumber }} CPU {{ ramCapacity }}GB RAM {{ diskCapacity }}GB Disk)",
-  "kube_containers_and_services": "Contenedores y servicios"
-}

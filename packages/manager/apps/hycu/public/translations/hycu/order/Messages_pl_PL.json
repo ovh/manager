@@ -1,0 +1,9 @@
+{
+  "hycu_order_title": "Zamów licencję HYCU R-Cloud Hybrid Cloud Edition",
+  "hycu_order_description": "HYCU R-Cloud Hybrid Cloud Edition to oprogramowanie do tworzenia kopii zapasowych i odzyskiwania danych zaprojektowane specjalnie dla Nutanix. Wybierz odpowiedni pakiet licencji w zależności od liczby wirtualnych maszyn (VM) obsługujących obciążenia Nutanix.",
+  "hycu_order_subtitle": "Wybierz rodzaj pakietu",
+  "hycu_order_subtitle_description": "Wybierz liczbę maszyn wirtualnych (VM), które mają zostać objęte licencją HYCU R-Cloud Hybrid Cloud Edition. Pamiętaj, że nie będziesz mógł wykonać kopii zapasowej większej liczby wirtualnych maszyn niż przewidziano w pakiecie. Jeśli chcesz chronić więcej niż 500 wirtualnych maszyn, skontaktuj się z naszym <contact>działem hadlowym</contact>.",
+  "hycu_order_initiated_title": "Zamówienie pakietu",
+  "hycu_order_initiated_description": "Jeśli jeszcze nie sfinalizowałeś zamówienia, możesz to zrobić, klikając link:",
+  "hycu_order_initiated_info": "O dostępności licencji powiadomimy Cię e-mailem."
+}

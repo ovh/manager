@@ -1,0 +1,22 @@
+{
+  "vps_dashboard_tile_configuration_upgrade_memory_action_title": "Den RAM Ihres VPS von {{ currentMemory }} auf {{ nextMemory }} GB erhöhen",
+  "vps_dashboard_tile_configuration_upgrade_memory_action_details": "Sie sind im Begriff, Ihrem VPS {{ memoryQuantity }}GB Arbeitsspeicher hinzuzufügen.",
+  "vps_dashboard_tile_configuration_upgrade_storage_action_title": "Die Speicherkapazität Ihres VPS von {{ currentStorage }} auf {{ nextStorage }} GB erhöhen.",
+  "vps_dashboard_tile_configuration_upgrade_storage_action_details": "Sie sind im Begriff, Ihrem VPS {{ storageQuantity }}GB Speicherkapazität hinzuzufügen.",
+  "vps_dashboard_tile_configuration_upgrade_action_price": "Diese Erweiterung wird Ihnen mit {{ price }} pro Monat zusätzlich berechnet.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation": "Wenn Sie Ihre Auswahl bestätigen, wird Ihnen anteilig {{ prorataPrice }} für den laufenden Monat berechnet. Bitte beachten Sie, dass der Betrag der abschließenden Rechnung alle Zusatzoptionen beinhaltet, die Sie gewählt haben (z.B. Snapshot, automatisches Backup usw.)",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_monthly": "Wenn Sie auf „bestätigen und bezahlen“ klicken, werden Sie zu einem Bestellschein weitergeleitet. Dort können Sie den fälligen anteiligen Betrag {{ price }} bezahlen.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_upfront": "Wenn Sie auf „bestätigen und bezahlen“ klicken, werden Sie zu einem Bestellschein weitergeleitet. Dort können Sie den fälligen Betrag von {{ price }} für die verbleibende Zeit Ihres Abonnements bezahlen.",
+  "vps_dashboard_tile_configuration_upgrade_action_validate_and_pay": "Bestätigen und bezahlen",
+  "vps_dashboard_tile_configuration_upgrade_action_cancel": "Abbrechen",
+  "vps_dashboard_tile_configuration_upgrade_success_title": "Die von Ihnen gewünschte Veränderung wurde registriert.",
+  "vps_dashboard_tile_configuration_upgrade_success_explain": "Sie erhalten eine Bestätigung per E-Mail, wenn die Erweiterung Ihres VPS erfolgt ist. Dies dauert höchstens 2 Stunden. Um Ihre neue Konfiguration zu nutzen, müssen Sie Ihren VPS neu starten.",
+  "vps_dashboard_tile_configuration_upgrade_success_follow_order": "Meine Bestellung verfolgen",
+  "vps_dashboard_tile_configuration_upgrade_no_payment_method_success": "Ihre Anfrage wurde registriert. Das Upgrade wird aktiv, sobald die Bezahlung des folgenden Bestellscheins <a target=\"_blank\" rel=\"noopener\" href=\"{{ href }}\">{{ orderId }}</a> eingeht.",
+  "vps_dashboard_tile_configuration_upgrade_error": "Bei der Erweiterung Ihres VPS ist ein Fehler aufgetreten.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_payment_method_upfront": "Wenn Sie auf „bestätigen und bezahlen“ klicken, wird Ihnen insgesamt {{ price }} für die verbleibende Vertragslaufzeit berechnet.",
+  "vps_dashboard_tile_configuration_upgrade_catched_error": "Dieser VPS ist entweder nicht mit dem angefragten Angebot kompatibel, oder Sie haben bereits ein Upgrade für diesen VPS bestellt.",
+  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_info": "Ihr VPS befindet sich im Rescue-Modus. Ein Wechsel zu einem umfangreicheren Angebot ist daher nicht möglich.",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_action": "Bitte deaktivieren Sie den Rescue-Modus und starten Sie Ihren VPS neu."
+}

@@ -1,4 +1,4 @@
-<section class="cui-page__content">
+<section>
     <div data-ng-if="$ctrl.loaders.init" class="text-center">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
@@ -7,7 +7,7 @@
         <div class="oui-select">
             <select
                 class="oui-select__input"
-                data-ng-options="period as ('vps_configuration_period_' + period | translate) for period in $ctrl.data.periods"
+                data-ng-options="period as ('vps_configuration_period_' + period.label | translate) for period in $ctrl.VPS_MONITORING_PERIODS"
                 data-ng-model="$ctrl.period"
                 data-ng-change="$ctrl.loadMonitoring()"
             >
@@ -15,71 +15,16 @@
             <i class="oui-icon oui-icon-chevron-down" aria-hidden="true"></i>
         </div>
 
-        <div class="cui-panel">
+        <div class="cui-panel" data-ng-repeat="chart in $ctrl.charts">
             <div class="cui-panel__header">
-                <h2
-                    data-translate="vps_configuration_monitoring_usage_proc"
-                ></h2>
+                <h2 data-translate="{{:: chart.title}}"></h2>
             </div>
             <div class="cui-panel__body">
-                <canvas
-                    id="line"
-                    class="chart chart-line"
-                    data-ng-if="!$ctrl.noCpuData"
-                    data-chart-data="$ctrl.monitoring.cpu"
-                    data-chart-labels="$ctrl.monitoring.labels"
-                    data-chart-options="$ctrl.percentOption"
-                >
-                </canvas>
-                <oui-message type="error" data-ng-if="$ctrl.noCpuData"
-                    >{{$ctrl.noCpuData.message}}</oui-message
-                >
-            </div>
-        </div>
-
-        <div class="cui-panel">
-            <div class="cui-panel__header">
-                <h2
-                    data-translate="vps_configuration_monitoring_usage_ram"
-                ></h2>
-            </div>
-            <div class="cui-panel__body">
-                <canvas
-                    id="line"
-                    class="chart chart-line"
-                    data-ng-if="!$ctrl.noRamData"
-                    data-chart-data="$ctrl.monitoring.ram"
-                    data-chart-labels="$ctrl.monitoring.labels"
-                    data-chart-options="$ctrl.percentOption"
-                >
-                </canvas>
-                <oui-message type="error" data-ng-if="$ctrl.noRamData"
-                    >{{$ctrl.noRamData.message}}</oui-message
-                >
-            </div>
-        </div>
-
-        <div class="cui-panel">
-            <div class="cui-panel__header">
-                <h2
-                    data-translate="vps_configuration_monitoring_usage_trafic"
-                ></h2>
-            </div>
-            <div class="cui-panel__body">
-                <canvas
-                    id="line"
-                    class="chart chart-line"
-                    data-ng-if="!$ctrl.noNetData"
-                    data-chart-data="$ctrl.monitoring.net"
-                    data-chart-labels="$ctrl.monitoring.labels"
-                    data-chart-series="$ctrl.series"
-                    data-chart-options="$ctrl.bpsOption"
-                    data-chart-colors="$ctrl.colors"
-                >
-                </canvas>
-                <oui-message type="error" data-ng-if="$ctrl.noNetData"
-                    >{{$ctrl.noNetData.message}}</oui-message
-                >
+                <div
+                    data-chart
+                    data-chartjs="chart.config"
+                    data-auto-reload="true"
+                ></div>
             </div>
         </div>
     </div>

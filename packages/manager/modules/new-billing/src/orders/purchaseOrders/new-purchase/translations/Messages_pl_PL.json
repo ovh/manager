@@ -1,0 +1,20 @@
+{
+  "purchaseOrders_add_page_title": "Utwórz wewnętrzne oznaczenie wewnętrzne",
+  "purchaseOrders_form_add_internal_reference": "Utwórz Twoje wewnętrzne oznaczenie referencyjne",
+  "purchaseOrders_form_add_purchase_order": "Utwórz „purchase order”",
+  "purchaseOrders_form_add_internal_reference_label": "Brzmienie wewnętrznego oznaczenia referencyjnego",
+  "purchaseOrders_form_add_internal_reference_placeholder": "Wewnętrzne oznaczenie referencyjne",
+  "purchaseOrders_form_add_internal_reference_sub_info": "Oznaczenie referencyjne nie może przekroczyć 20 znaków",
+  "purchaseOrders_form_add_purchase_order_label": "Nazwa „purchase order”",
+  "purchaseOrders_form_add_purchase_order_placeholder": "„Purchase order”",
+  "purchaseOrders_form_add_purchase_order_sub_info": "Nazwa nie może przekroczyć 20 znaków",
+  "purchaseOrders_form_add_purchase_startDate": "Data rozpoczęcia",
+  "purchaseOrders_form_add_purchase_endDate": "Data zakończenia",
+  "purchaseOrders_form_add_purchase_endDate_helper": "Data zakończenia jest wyłączona",
+  "purchaseOrders_form_add_purchase_submit": "Zatwierdź",
+  "purchaseOrders_form_add_purchase_cancel": "Anuluj",
+  "purchaseOrders_form_add_purchase_submit_REFERENCE_ORDER_success": "Twoje wewnętrzne oznaczenie referencyjne zostało utworzone!",
+  "purchaseOrders_form_add_purchase_submit_PURCHASE_ORDER_success": "Twój „purchase order” został utworzony!",
+  "purchaseOrders_form_add_purchase_submit_error": "Twoja dyspozycja nie mogła zostać przyjęta. Spróbuj później.",
+  "purchaseOrders_add_page_warning_ongoing_purchase": "Twoje wewnętrzne oznaczenie referencyjne lub poprzedni „purchase order” nie posiada daty końcowej. Nie jest możliwe ustanowienie nowego oznaczenia referencyjnego bez wskazania daty końcowej dla istniejącego oznaczenia. "
+}

@@ -2,8 +2,12 @@ import isEqual from 'lodash/isEqual';
 import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 
+import { convertLanguageFromOVHToBCP47 } from '@ovh-ux/manager-config';
+
 import Pricing from '../pricing/pricing.class';
 import ProductOffersService from '../services/product-offers.service';
+
+import { CHECKOUT_DETAILS_TYPE } from './product-offers-workflow.constants';
 import { PRICING_CAPACITIES } from '../pricing/pricing.constants';
 
 /**
@@ -13,13 +17,16 @@ import { PRICING_CAPACITIES } from '../pricing/pricing.constants';
  */
 export default class Workflow {
   /**
+   * @param {Object} $q              AngularJS provider
+   * @param {Object} $timeout        AngularJS provider
    * @param {Object} $translate      AngularJS provider
    * @param {Object} workflowOptions Workflow specific options. Each type of
    * workflow has its own options to work with.
    * See other workflow class constructor documentation for more details.
    */
-  constructor($q, $translate, workflowOptions) {
+  constructor($q, $timeout, $translate, workflowOptions) {
     this.$q = $q;
+    this.$timeout = $timeout;
     this.$translate = $translate;
 
     if (new.target === Workflow) {
@@ -50,7 +57,21 @@ export default class Workflow {
    * @return {boolean}
    */
   isFreePricing() {
-    return this.pricing && this.pricing.isFree();
+    return (
+      this.pricing &&
+      this.pricing.isFree() &&
+      (this.pricing.hasExtraPricing()
+        ? this.pricing.extraPricing.isFree()
+        : true)
+    );
+  }
+
+  /**
+   * Determines if we have contracts agreement
+   * @return {boolean}
+   */
+  hasContractsAgreements() {
+    return (this.contracts && !this.contracts.length) || this.agreeContracts;
   }
 
   /**
@@ -104,6 +125,9 @@ export default class Workflow {
         break;
       case PRICING_CAPACITIES.RENEW:
         pricings = Workflow.getRenewPricings(pricingsToCompute);
+        break;
+      case PRICING_CAPACITIES.UPGRADE:
+        pricings = Workflow.getUpgradePricings(pricingsToCompute);
         break;
       default:
         pricings = ProductOffersService.filterPricingsByCapacity(
@@ -192,11 +216,71 @@ export default class Workflow {
   }
 
   /**
+   * Get the upgrade pricings, with its renew pricing
+   * @param  {Array} providedPricings Pricings to get upgrade ones
+   * @return {Array}                  Upgrade pricings
+   */
+  static getUpgradePricings(providedPricings) {
+    const upgradePricing = ProductOffersService.getUniquePricingOfCapacity(
+      providedPricings,
+      PRICING_CAPACITIES.UPGRADE,
+    );
+
+    const renewPricings = ProductOffersService.filterPricingsByCapacity(
+      providedPricings,
+      PRICING_CAPACITIES.RENEW,
+    );
+
+    return renewPricings
+      .map((renewPricing) => ({
+        ...upgradePricing,
+        description: `${upgradePricing.description}`,
+        duration: renewPricing.duration,
+        interval: renewPricing.interval,
+        priceInUcents: renewPricing.priceInUcents,
+      }))
+      .map((pricing) => Workflow.convertPricingObject(pricing));
+  }
+
+  /**
    * Convert pricing object to new Pricing class instance
    * @param  {Object} pricing Pricing to transform
    * @return {Pricing}        Instance of Pricing
    */
   static convertPricingObject(pricing) {
     return new Pricing(pricing);
+  }
+
+  static getDurationDetails(details) {
+    return details.find(
+      ({ detailType }) => detailType === CHECKOUT_DETAILS_TYPE.DURATION,
+    );
+  }
+
+  static formatDateToLocale(date, locale, formatOptions) {
+    const bcp47language = convertLanguageFromOVHToBCP47(locale);
+    return new Intl.DateTimeFormat(bcp47language, formatOptions).format(date);
+  }
+
+  static getProrataTemporisDateFromDescription(detail) {
+    const descriptionDateMatch = detail.description.match(
+      /\d{2,4}([/.-])\d{2}\1\d{2,4}/g,
+    );
+
+    return descriptionDateMatch ? descriptionDateMatch[0] : null;
+  }
+
+  static getDurationProrataDate(details) {
+    const durationDetails = Workflow.getDurationDetails(details);
+
+    if (durationDetails) {
+      const date = Workflow.getProrataTemporisDateFromDescription(
+        durationDetails,
+      );
+
+      return date;
+    }
+
+    return null;
   }
 }

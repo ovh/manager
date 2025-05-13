@@ -1,0 +1,10 @@
+{
+  "status_action_renew_date_label": "Automatische Verlängerung geplant am",
+  "status_action_resiliation_cancel_label": "Kündigung stornieren",
+  "status_action_wizard_renew": "Verlängern",
+  "status_action_resiliation_date_label": "Kündigung geplant am",
+  "status_action_expiration_date_label": "Läuft ab am",
+  "status_action_expiration_delete_cancel_label": "Kündigen",
+  "status_action_renew_management": "Meine Dienste verwalten",
+  "status_action_wizard_restore": "Wieder herstellen"
+}

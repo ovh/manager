@@ -1,7 +1,4 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="HostingTabModulesController as ctrlHostingTabModules"
->
+<div>
     <div class="row">
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>
@@ -23,23 +20,24 @@
             <div
                 class="alert alert-info"
                 role="alert"
-                data-ng-if="hosting.offer === 'START_10_M'"
+                data-ng-if="ctrlHostingTabModules.constructor.isOfferUneligible(hosting.offer)"
             >
                 <div>
                     <p
-                        data-translate="hosting_change_offer_for_service_start10m"
+                        data-translate="hosting_change_offer_for_service_offer"
+                        data-translate-values="{ offer: ('hosting_dashboard_service_offer_' + hosting.offer | translate) }"
                     ></p>
                     <button
                         class="btn btn-info"
                         type="button"
                         data-translate="hosting_dashboard_service_change_offer"
-                        data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })"
+                        data-ui-sref="app.hosting.dashboard.upgrade({ productId: hosting.serviceName })"
                     ></button>
                 </div>
             </div>
 
             <div
-                data-ng-if="ctrlHostingTabModules.serviceState === 'ACTIVE' && hosting.offer !== 'START_10_M'"
+                data-ng-if="ctrlHostingTabModules.serviceState === 'ACTIVE' && !ctrlHostingTabModules.constructor.isOfferUneligible(hosting.offer)"
             >
                 <div
                     class="alert alert-info"
@@ -54,7 +52,7 @@
                             class="btn btn-info"
                             type="button"
                             data-translate="hosting_dashboard_service_change_offer"
-                            data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })"
+                            data-ui-sref="app.hosting.dashboard.upgrade({ productId: hosting.serviceName })"
                         ></button>
                     </div>
                 </div>
@@ -92,11 +90,11 @@
                         data-rows="ctrlHostingTabModules.modules"
                         data-row-loader="ctrlHostingTabModules.transformItem($row)"
                     >
-                        <oui-column
+                        <oui-datagrid-column
                             data-title="'hosting_configuration_tab_modules_module_name' | translate"
                             data-property="template.name"
-                        ></oui-column>
-                        <oui-column
+                        ></oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="'hosting_configuration_tab_modules_module_path' | translate"
                             data-property="path"
                         >
@@ -105,36 +103,33 @@
                                 data-ng-href="{{$row.href}}"
                                 target="_blank"
                             ></a>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="'hosting_configuration_tab_modules_module_version' | translate"
                             data-property="template.version"
-                        ></oui-column>
-                        <oui-column
+                        ></oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="'hosting_configuration_tab_modules_module_login' | translate"
                             data-property="adminName"
-                        ></oui-column>
-                        <oui-action-menu data-align="end" data-compact>
+                        ></oui-datagrid-column>
+                        <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item
-                                data-text="{{:: 'hosting_configuration_tab_modules_module_access' | translate }}"
                                 data-ng-click="ctrlHostingTabModules.goToHref($row.href)"
-                            >
+                                ><span
+                                    data-translate="hosting_configuration_tab_modules_module_access"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-text="{{:: 'hosting_configuration_tab_modules_module_access_admin' | translate }}"
                                 data-ng-click="ctrlHostingTabModules.goToHref($row.adminHref)"
-                            >
+                                ><span
+                                    data-translate="hosting_configuration_tab_modules_module_access_admin"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-text="{{:: 'hosting_configuration_tab_modules_module_change_password' | translate }}"
-                                data-ng-click="setAction('module/update-password/hosting-module-update-password', $row)"
-                                data-ng-if="module.template.branch !== 'old'"
-                            >
-                            </oui-action-menu-item>
-                            <oui-action-menu-item
-                                data-text="{{:: 'hosting_configuration_tab_modules_module_delete' | translate }}"
                                 data-ng-click="setAction('module/delete/hosting-module-delete', $row)"
-                            >
+                                ><span
+                                    data-translate="hosting_configuration_tab_modules_module_delete"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-datagrid>
@@ -148,7 +143,7 @@
                 class="btn btn-block btn-default"
                 data-translate="hosting_configuration_tab_modules_module_add"
                 data-ng-click="setAction('module/add/hosting-module-add')"
-                data-ng-if="ctrlHostingTabModules.serviceState === 'ACTIVE' && hosting.offer !== 'START_10_M' && displayTabs.modules"
+                data-ng-if="ctrlHostingTabModules.serviceState === 'ACTIVE' && !ctrlHostingTabModules.constructor.isOfferUneligible(hosting.offer) && displayTabs.modules"
             ></button>
         </div>
     </div>

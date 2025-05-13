@@ -1,0 +1,8 @@
+{
+  "pci_databases_databases_delete_database_confirm": "Datenbank löschen",
+  "pci_databases_databases_delete_database_cancel": "Abbrechen",
+  "pci_databases_databases_delete_database": "Datenbank löschen",
+  "pci_databases_databases_delete_database_description": "Sind Sie sicher, dass Sie die Datenbank {{databaseInstance.name}} löschen möchten?",
+  "pci_databases_databases_delete_database_success_message": "Datenbank wurde gelöscht.",
+  "pci_databases_databases_delete_database_error_message": "Beim Löschen der Datenbank ist ein Fehler aufgetreten: {{message}}"
+}

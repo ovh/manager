@@ -1,0 +1,70 @@
+<div>
+    <div class="text-center" data-ng-if="CdaDetailsHomeCtrl.loading">
+        <oui-spinner size="l"></oui-spinner>
+    </div>
+    <div class="row" data-ng-if="!CdaDetailsHomeCtrl.loading">
+        <section class="col-sm-6 col-md-4">
+            <header>
+                <h3 class="oui-heading_3">
+                    <span data-translate="cda_home_details_title"></span>
+                    <button
+                        type="button"
+                        class="oui-button oui-button_ghost"
+                        data-ng-click="CdaDetailsHomeCtrl.openEditModal()"
+                    >
+                        <i
+                            class="oui-icon button-icon oui-icon-pen_concept"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+                </h3>
+            </header>
+            <div class="well">
+                <cda-detail
+                    data-detail="CdaDetailsHomeCtrl.CdaService.currentService"
+                    data-service-id="CdaDetailsHomeCtrl.serviceName"
+                    data-crush-tunables-options="CdaDetailsHomeCtrl.datas.crushTunablesOptions"
+                ></cda-detail>
+            </div>
+        </section>
+        <section class="col-sm-6 col-md-4">
+            <header>
+                <h3
+                    class="oui-heading_3"
+                    data-translate="cda_home_health_title"
+                ></h3>
+            </header>
+            <div class="well">
+                <cda-health
+                    data-detail="CdaDetailsHomeCtrl.datas.health"
+                ></cda-health>
+            </div>
+        </section>
+        <section class="col-sm-6 col-md-4">
+            <header>
+                <h3
+                    class="oui-heading_3"
+                    data-translate="cda_home_space_title"
+                ></h3>
+            </header>
+            <div class="well">
+                <cda-space-usage
+                    data-total="CdaDetailsHomeCtrl.datas.totalBytes"
+                    data-available="CdaDetailsHomeCtrl.datas.availableBytes"
+                    data-used="CdaDetailsHomeCtrl.datas.usedBytes"
+                ></cda-space-usage>
+            </div>
+        </section>
+    </div>
+    <div class="row" data-ng-if="!CdaDetailsHomeCtrl.loading">
+        <section class="col-sm-12">
+            <header>
+                <h3
+                    class="oui-heading_3"
+                    data-translate="cda_home_tasks_title"
+                ></h3>
+            </header>
+            <cda-tasks data-tasks="CdaDetailsHomeCtrl.datas.tasks"></cda-tasks>
+        </section>
+    </div>
+</div>

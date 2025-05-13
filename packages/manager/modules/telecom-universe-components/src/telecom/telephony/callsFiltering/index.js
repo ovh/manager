@@ -13,7 +13,7 @@ import tucToastError from '../../../toast-error';
 
 import 'angular-ui-bootstrap';
 import 'ng-csv';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import tucTelecomTelephonyCallsFilteringAddHelperCtrl from './addHelper/telecom-telephony-callsFilteringAddHelper.controller';
 import tucTelecomTelephonyCallsFilteringAdd from './telecom-telephony-callsFilteringAdd.component';

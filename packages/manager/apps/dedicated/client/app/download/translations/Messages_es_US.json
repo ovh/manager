@@ -1,6 +1,0 @@
-{
-  "download_bill_error": "Se ha producido un error al descargar la factura. Le rogamos nos disculpe por la molestia ocasionada. ",
-  "download_bill_title": "Se ha iniciado la descarga.",
-  "download_bill_retry_label": "Si la descarga no se inicia automáticamente,",
-  "download_bill_retry_link": "efectúe una nueva descarga"
-}

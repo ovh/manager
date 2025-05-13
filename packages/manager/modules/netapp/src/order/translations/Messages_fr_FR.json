@@ -1,0 +1,21 @@
+{
+  "netapp_order": "Commander Enterprise File Storage",
+  "netapp_order_region": "Région",
+  "netapp_order_performance_level": "Niveau de performance",
+  "netapp_order_performance_level_description": "Choisissez le niveau de performance du service selon vos besoins",
+  "netapp_order_performance_level_type_Premium_description": "Équilibre entre prix et performance.",
+  "netapp_order_performance_level_type_Premium_additionnal_description": "64Mo/s et 4000 IOPS par To provisionné.",
+  "netapp_order_performance_level_type_Standard_description": "Pour vos cas d'usage de stockage",
+  "netapp_order_performance_level_type_Extreme_description": "Quand votre activité nécessite une grande bande passante",
+  "netapp_order_size": "Capacité de stockage",
+  "netapp_order_size_description": "Précisez la capacité totale de stockage souhaitée de votre service Enterprise File Storage.",
+  "netapp_order_size_label": "{{ size }} To",
+  "netapp_order_size_custom": "Stockage personnalisé (To)",
+  "netapp_order_commitment_duration": "Durée d'engagement",
+  "netapp_order_commitment_duration_description": "Bénéficiez d'une remise en vous engageant.",
+  "netapp_order_commitment_payment": "Modalités de paiement",
+  "netapp_order_confirm": "Valider",
+  "netapp_order_performance_customization": "Lors du provisionnement de votre capacité vous allez définir par la même occasion le niveau de performance de votre service. Pour rappel, 64Mo/s et 4000 IOPS par To provisionné.",
+  "netapp_order_region_compatiable_with_info": "Compatible avec",
+  "netapp_order_region_badge_vrack": "vRack"
+}

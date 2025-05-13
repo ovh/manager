@@ -1,0 +1,91 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UserInformationTile tests > Should match snapshot 1`] = `
+<div>
+  <div
+    class="flex flex-col gap-4 w-full"
+  >
+    <p>
+      a custom title
+    </p>
+    <div
+      class="grid grid-cols-2 gap-4"
+    >
+      <ods-form-field>
+        <ods-text
+          class="font-bold-class"
+          preset="caption"
+        >
+          pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label
+        </ods-text>
+        <ods-clipboard
+          class="w-full"
+          data-testid="clipboard"
+          label-copy="clipboard_copy"
+          label-copy-success="clipboard_copy_success"
+          value="username"
+        />
+      </ods-form-field>
+      <ods-form-field>
+        <ods-text
+          class="font-bold-class"
+          preset="caption"
+        >
+          pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label
+        </ods-text>
+        <ods-clipboard
+          class="w-full"
+          data-testid="clipboard"
+          label-copy="clipboard_copy"
+          label-copy-success="clipboard_copy_success"
+          value="an accessKey"
+        />
+      </ods-form-field>
+      <ods-form-field>
+        <ods-text
+          class="font-bold-class"
+          preset="caption"
+        >
+          pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label
+        </ods-text>
+        <ods-clipboard
+          class="w-full"
+          data-testid="clipboard"
+          label-copy="clipboard_copy"
+          label-copy-success="clipboard_copy_success"
+          value="just a description"
+        />
+      </ods-form-field>
+      <ods-form-field>
+        <ods-text
+          class="font-bold-class"
+          preset="caption"
+        >
+          pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label
+        </ods-text>
+        <div
+          class="flex"
+        >
+          <div
+            class="flex-1"
+          >
+            <ods-password
+              class="w-[100%]"
+              is-readonly="true"
+              name="secret"
+              value="a secret secret"
+            />
+          </div>
+          <ods-clipboard
+            class="w-[2rem]"
+            data-testid="clipboard"
+            label-copy="clipboard_copy"
+            label-copy-success="clipboard_copy_success"
+            value="a secret secret"
+          />
+        </div>
+      </ods-form-field>
+    </div>
+  </div>
+</div>
+`;

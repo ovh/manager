@@ -1,0 +1,6 @@
+{
+  "pci_notebook_configuration_command_title": "Criação automática de um notebook equivalente",
+  "pci_notebook_configuration_command_description": "Pode criar o mesmo notebook através destas linhas de comando no seu ovhai CLI.",
+  "pci_notebook_configuration_command_help": "Saber mais",
+  "pci_notebook_configuration_command_error": "Ocorreu um erro aquando da tentativa de recuperação da encomenda equivalente: {{message}}"
+}

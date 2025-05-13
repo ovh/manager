@@ -1,0 +1,11 @@
+{
+  "pci_data_sync_title": "Sincronizzazione manuale dei dati",
+  "pci_data_sync_confirm": "Sincronizza",
+  "pci_data_sync_cancel": "Annullare",
+  "pci_data_sync_type": "Tipo di sincronizzazione",
+  "pci_data_sync_type_help": "È possibile scegliere tra una sincronizzazione di tipo push, verso il tuo container di dati, o di tipo pull, nell'altro senso.",
+  "pci_data_sync_directory": "La sincronizzazione verrà effettuata sulla cartella di mount seguente: {{ directory }}",
+  "pci_data_sync_all_directory": "La sincronizzazione viene effettuata su tutte le cartelle di mount",
+  "pci_data_sync_success_message": "I dati sono stati sincronizzati correttamente",
+  "pci_data_sync_error_message": "Si è verificato un errore durante la sincronizzazione dei dati: {{ message }}."
+}

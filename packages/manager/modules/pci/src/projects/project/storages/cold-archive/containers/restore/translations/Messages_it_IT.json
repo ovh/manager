@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_storages_cold_archive_containers_container_restore_title": "Ripristinare l'archivio",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_description_1": "Stai per ripristinare i dati dell'archivio {{ containerName }}.",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_description_2": "Cold Archive ha una durata di conservazione minima di 180 giorni.",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_description_3": "Il recupero dei dati prima di 180 giorni prevede un costo aggiuntivo pari alla somma delle spese di ripristino, dello storage attivo per gli oggetti ripristinati e degli attuali costi di archiviazione.",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_description_3_link": "Pagina delle tariffe Cold Archive",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_submit_label": "Confermare",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_cancel_label": "Annullare",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_success_message": "Ripristino dell'archivio {{ containerName }} in corso... Il tempo di recupero dei dati dipende dal volume. Per ripristinare alcune centinaia di TB, ad esempio, il tempo medio necessario è di 48 ore. Per volume di pochi TB questa tempistica può variare da pochi minuti a diverse ore.",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_error_message": "Si è verificato un errore durante il ripristino dell'archivio {{ containerName }}: {{ message }}"
+}

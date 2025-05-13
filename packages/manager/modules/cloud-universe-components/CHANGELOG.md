@@ -1,3 +1,597 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.17.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.17.0...@ovh-ux/ng-ovh-cloud-universe-components@2.17.1) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+# [2.17.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.16.2...@ovh-ux/ng-ovh-cloud-universe-components@2.17.0) (2025-02-24)
+
+
+### Features
+
+* **pci.instances:** add LZ automatic instance backup ([#14434](https://github.com/ovh/manager/issues/14434)) ([edfc171](https://github.com/ovh/manager/commit/edfc1711a4f6c929e463506e9ded95ae9feb10f7))
+
+
+
+
+
+## [2.16.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.16.1...@ovh-ux/ng-ovh-cloud-universe-components@2.16.2) (2025-01-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3575] ([#14690](https://github.com/ovh/manager/issues/14690)) ([0f9ffd1](https://github.com/ovh/manager/commit/0f9ffd136447c536839539858150dc9de4f2638b))
+
+
+
+
+
+## [2.16.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.16.0...@ovh-ux/ng-ovh-cloud-universe-components@2.16.1) (2024-11-28)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+# [2.16.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.15.0...@ovh-ux/ng-ovh-cloud-universe-components@2.16.0) (2024-11-07)
+
+
+### Features
+
+* **vrack:** add occ as new eligibility service in vrack ([#13956](https://github.com/ovh/manager/issues/13956)) ([84fcb41](https://github.com/ovh/manager/commit/84fcb416b9a5433b2f4c6b036315b0b04c4b5fc2))
+
+
+
+
+
+# [2.15.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.14.2...@ovh-ux/ng-ovh-cloud-universe-components@2.15.0) (2024-10-31)
+
+
+### Features
+
+* remove rbx1 eol banner ([#13411](https://github.com/ovh/manager/issues/13411)) ([80c859f](https://github.com/ovh/manager/commit/80c859febb49e8d9f48027cd05c95175c3f76f7f))
+
+
+
+
+
+## [2.14.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.14.1...@ovh-ux/ng-ovh-cloud-universe-components@2.14.2) (2024-09-26)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+## [2.14.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.14.0...@ovh-ux/ng-ovh-cloud-universe-components@2.14.1) (2024-08-29)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+# [2.14.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.13.2...@ovh-ux/ng-ovh-cloud-universe-components@2.14.0) (2024-06-25)
+
+
+### Features
+
+* **dedicated.dbaas:** fix ldp order redirection for us ([#11925](https://github.com/ovh/manager/issues/11925)) ([#12011](https://github.com/ovh/manager/issues/12011)) ([d70017e](https://github.com/ovh/manager/commit/d70017e13822fe079642beba67173db05b4739c5))
+
+
+
+
+
+## [2.13.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.13.1...@ovh-ux/ng-ovh-cloud-universe-components@2.13.2) (2024-05-06)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+## [2.13.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.13.0...@ovh-ux/ng-ovh-cloud-universe-components@2.13.1) (2024-04-29)
+
+
+### Bug Fixes
+
+* **pci:** ldp streams action menu better wording and copy stream id ([#11057](https://github.com/ovh/manager/issues/11057)) ([5ca042b](https://github.com/ovh/manager/commit/5ca042b88b27e106e06e596732f473ae8e07c4a5))
+
+
+
+
+
+# [2.13.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.12.1...@ovh-ux/ng-ovh-cloud-universe-components@2.13.0) (2024-04-04)
+
+
+### Features
+
+* **signup:** add searchable country list and update labels ([#10625](https://github.com/ovh/manager/issues/10625)) ([a263199](https://github.com/ovh/manager/commit/a263199b06a47298eb7bf0a99814b38da3b544c2))
+
+
+
+
+
+## [2.12.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.12.0...@ovh-ux/ng-ovh-cloud-universe-components@2.12.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2861] ([b43344b](https://github.com/ovh/manager/commit/b43344b80230baa17c4bd283500b8d1f69e0f423))
+
+
+
+
+
+# [2.12.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.11.0...@ovh-ux/ng-ovh-cloud-universe-components@2.12.0) (2024-02-26)
+
+
+### Features
+
+* eol rbx1 banner ([#10626](https://github.com/ovh/manager/issues/10626)) ([1003ee6](https://github.com/ovh/manager/commit/1003ee6571fa8be088cde1c665d01797a7348a83))
+
+
+
+
+
+# [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.10.0...@ovh-ux/ng-ovh-cloud-universe-components@2.11.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
+# [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.9.2...@ovh-ux/ng-ovh-cloud-universe-components@2.10.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+## [2.9.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.9.1...@ovh-ux/ng-ovh-cloud-universe-components@2.9.2) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+## [2.9.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.9.0...@ovh-ux/ng-ovh-cloud-universe-components@2.9.1) (2023-12-01)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+# [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.8.3...@ovh-ux/ng-ovh-cloud-universe-components@2.9.0) (2023-11-21)
+
+
+### Features
+
+* migrate from vuepress to vitepress ([6968c85](https://github.com/ovh/manager/commit/6968c85f00e19c41bc240abb37a50e9dacf9c5e5))
+
+
+
+
+
+## [2.8.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.8.2...@ovh-ux/ng-ovh-cloud-universe-components@2.8.3) (2023-11-13)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+## [2.8.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.8.1...@ovh-ux/ng-ovh-cloud-universe-components@2.8.2) (2023-10-02)
+
+
+### Bug Fixes
+
+* india release ([#10042](https://github.com/ovh/manager/issues/10042)) ([953d1fd](https://github.com/ovh/manager/commit/953d1fdd754c475a4c435d1061dfd16d137335d9))
+
+
+
+
+
+## [2.8.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.8.0...@ovh-ux/ng-ovh-cloud-universe-components@2.8.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* **dedicated:** update india order link for ldp ([#10009](https://github.com/ovh/manager/issues/10009)) ([2757431](https://github.com/ovh/manager/commit/275743124f50d075e2e2ada630530358b5f457a7))
+
+
+
+
+
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.7.5...@ovh-ux/ng-ovh-cloud-universe-components@2.8.0) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
+## [2.7.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.7.4...@ovh-ux/ng-ovh-cloud-universe-components@2.7.5) (2023-09-12)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+## [2.7.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.7.3...@ovh-ux/ng-ovh-cloud-universe-components@2.7.4) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+## [2.7.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.7.2...@ovh-ux/ng-ovh-cloud-universe-components@2.7.3) (2023-08-30)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+## [2.7.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.7.1...@ovh-ux/ng-ovh-cloud-universe-components@2.7.2) (2023-07-20)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.7.0...@ovh-ux/ng-ovh-cloud-universe-components@2.7.1) (2023-01-19)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.6.0...@ovh-ux/ng-ovh-cloud-universe-components@2.7.0) (2022-12-19)
+
+
+### Features
+
+* **dedicated.otrs:** paginate support tickets ([#8540](https://github.com/ovh/manager/issues/8540)) ([24e7308](https://github.com/ovh/manager/commit/24e73084d5db1b364989b7817b759719272b1fce))
+
+
+
+
+
+# [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.5.1...@ovh-ux/ng-ovh-cloud-universe-components@2.6.0) (2022-12-12)
+
+
+### Features
+
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+
+
+
+
+
+## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.5.0...@ovh-ux/ng-ovh-cloud-universe-components@2.5.1) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.4.8...@ovh-ux/ng-ovh-cloud-universe-components@2.5.0) (2022-06-14)
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+
+
+
+## [2.4.8](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.4.7...@ovh-ux/ng-ovh-cloud-universe-components@2.4.8) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+## [2.4.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.4.6...@ovh-ux/ng-ovh-cloud-universe-components@2.4.7) (2022-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+
+
+
+## [2.4.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.4.5...@ovh-ux/ng-ovh-cloud-universe-components@2.4.6) (2022-04-12)
+
+
+### Bug Fixes
+
+* add target _top to links ([2d375e6](https://github.com/ovh/manager/commit/2d375e6ac23773f6d4f9780aa3fa8df903692adc))
+
+
+
+## [2.4.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.4.4...@ovh-ux/ng-ovh-cloud-universe-components@2.4.5) (2022-04-06)
+
+
+### Bug Fixes
+
+* **cuc.modal.name-change:** add restriction to name edition ([327e3ad](https://github.com/ovh/manager/commit/327e3ad74369ef84b8c435d8bb818fa0ffbdc843))
+
+
+
+## [2.4.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.4.3...@ovh-ux/ng-ovh-cloud-universe-components@2.4.4) (2022-03-24)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.3` ([#6745](https://github.com/ovh/manager/issues/6745)) ([38d1144](https://github.com/ovh/manager/commit/38d11445b3671755758d153a4f4a166c7946705c)), closes [ovh/ovh-ui-kit#777](https://github.com/ovh/ovh-ui-kit/issues/777)
+
+
+
+## [2.4.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.4.2...@ovh-ux/ng-ovh-cloud-universe-components@2.4.3) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+
+## [2.4.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.4.1...@ovh-ux/ng-ovh-cloud-universe-components@2.4.2) (2022-01-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.2` ([#6335](https://github.com/ovh/manager/issues/6335)) ([b91ce69](https://github.com/ovh/manager/commit/b91ce698bf1d230de112e1896626574e1553769b))
+
+
+
+## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.4.0...@ovh-ux/ng-ovh-cloud-universe-components@2.4.1) (2022-01-03)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.1` ([defea82](https://github.com/ovh/manager/commit/defea8213431605013ebc69646267fe568adaccb))
+
+
+
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.3.2...@ovh-ux/ng-ovh-cloud-universe-components@2.4.0) (2021-10-28)
+
+
+### Features
+
+* **navbar.marketplace:** add marketplace to top navbar ([#5828](https://github.com/ovh/manager/issues/5828)) ([815c49f](https://github.com/ovh/manager/commit/815c49f4f3cf7a598aee79d99798033ac5952bba))
+
+
+
+## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.3.1...@ovh-ux/ng-ovh-cloud-universe-components@2.3.2) (2021-10-26)
+
+
+### Bug Fixes
+
+* **dev-deps:** upgrade @ovh-ux/component-rollup-config to `v11.0.0` ([3ae659b](https://github.com/ovh/manager/commit/3ae659bea59244fd5660375b9dac52055cc374b0))
+
+
+
+## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.3.0...@ovh-ux/ng-ovh-cloud-universe-components@2.3.1) (2021-09-30)
+
+
+### Bug Fixes
+
+* **helper.order:** update target URL for `AU` subsidiary ([#5650](https://github.com/ovh/manager/issues/5650)) ([cc4ca3c](https://github.com/ovh/manager/commit/cc4ca3c1425e4f653e415c190860cd153efa4c73))
+
+
+
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.2.7...@ovh-ux/ng-ovh-cloud-universe-components@2.3.0) (2021-08-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.1.0` ([#5429](https://github.com/ovh/manager/issues/5429)) ([7099de9](https://github.com/ovh/manager/commit/7099de97320cdbdac5652b2c7ed70327251ed749))
+
+
+### Features
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+
+
+
+## [2.2.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.2.6...@ovh-ux/ng-ovh-cloud-universe-components@2.2.7) (2021-07-28)
+
+
+### Bug Fixes
+
+* bump @ovh-ux/ui-kit to v4.7.0 ([#5315](https://github.com/ovh/manager/issues/5315)) ([bd9b540](https://github.com/ovh/manager/commit/bd9b54015511a001a93866e43c48244fb81af907))
+
+
+
+## [2.2.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.2.5...@ovh-ux/ng-ovh-cloud-universe-components@2.2.6) (2021-06-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+
+
+### Performance Improvements
+
+* **feature-availability:** use coreConfig user ([#5176](https://github.com/ovh/manager/issues/5176)) ([6b18714](https://github.com/ovh/manager/commit/6b1871494292cc06b8fbf000cc742a1051ceb363))
+
+
+
+## [2.2.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.2.4...@ovh-ux/ng-ovh-cloud-universe-components@2.2.5) (2021-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.6.0 ([#4958](https://github.com/ovh/manager/issues/4958)) ([e1ad601](https://github.com/ovh/manager/commit/e1ad60151c7b5112138b23224282a64fce226def))
+
+
+
+## [2.2.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.2.3...@ovh-ux/ng-ovh-cloud-universe-components@2.2.4) (2021-04-08)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.5.0 ([#4631](https://github.com/ovh/manager/issues/4631)) ([7909d4b](https://github.com/ovh/manager/commit/7909d4b5b8001de15204fd632fd08b6814c4a786))
+
+
+
+## [2.2.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.2.2...@ovh-ux/ng-ovh-cloud-universe-components@2.2.3) (2021-02-24)
+
+
+### Bug Fixes
+
+* **deps:** bump @ovh-ux/ui-kit to v4.4.4 ([#4430](https://github.com/ovh/manager/issues/4430)) ([2f12ce6](https://github.com/ovh/manager/commit/2f12ce6b724fe90a98ce8b7cd02ace6803527306))
+
+
+
+## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.2.1...@ovh-ux/ng-ovh-cloud-universe-components@2.2.2) (2021-02-10)
+
+
+### Bug Fixes
+
+* **deps:** remove @ovh-ux/ng-ovh-form-flat dependency ([ce8f916](https://github.com/ovh/manager/commit/ce8f916b0bda7dd93d1ce331f08afe953ac4b7f3))
+
+
+### Performance Improvements
+
+* move out non-reused components ([#4051](https://github.com/ovh/manager/issues/4051)) ([62c12a0](https://github.com/ovh/manager/commit/62c12a025ba5ff4d3ff2bf39f00c5d9a3168e001))
+
+
+
+## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.2.0...@ovh-ux/ng-ovh-cloud-universe-components@2.2.1) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+
+
+
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.1.0...@ovh-ux/ng-ovh-cloud-universe-components@2.2.0) (2020-12-08)
+
+
+### Features
+
+* **vrack.service:** update getGroupedServiceTypes method ([0d7981c](https://github.com/ovh/manager/commit/0d7981cb966998a1886aa54afd9b889512c2690c))
+
+
+
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.0.4...@ovh-ux/ng-ovh-cloud-universe-components@2.1.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+### Features
+
+* **cui.dual-list:** move to cuc ([676c298](https://github.com/ovh/manager/commit/676c29871a136b086600329b744a5f363bd5ce40))
+* **moment-format:** add filter to cuc ([8427623](https://github.com/ovh/manager/commit/842762371f47adb5a23130c2a04f3588e4ed0774))
+
+
+
+## [2.0.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.0.3...@ovh-ux/ng-ovh-cloud-universe-components@2.0.4) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.0.2...@ovh-ux/ng-ovh-cloud-universe-components@2.0.3) (2020-08-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 524] ([3ea02a6](https://github.com/ovh/manager/commit/3ea02a60504ac0efcbfab0da79db613be43ad98f))
+* **public-cloud:** revamp instance creation ui ([3caac03](https://github.com/ovh/manager/commit/3caac03dd48ed032fac0a04c59ead200784f0443))
+
+
+
+## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.0.1...@ovh-ux/ng-ovh-cloud-universe-components@2.0.2) (2020-08-05)
+
+
+### Bug Fixes
+
+* **page.header:** update to uniformize with ODS styles ([70a5206](https://github.com/ovh/manager/commit/70a52064ef7343aa0132a410eafc3e09a4742662))
+
+
+
+## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.0.0...@ovh-ux/ng-ovh-cloud-universe-components@2.0.1) (2020-08-05)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.2.3 ([#3376](https://github.com/ovh/manager/issues/3376)) ([fd461ba](https://github.com/ovh/manager/commit/fd461ba26ce7d77328c6951594e3c49ffee51b19))
+
+
+
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.7.4...@ovh-ux/ng-ovh-cloud-universe-components@2.0.0) (2020-07-29)
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
+## [1.7.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.7.3...@ovh-ux/ng-ovh-cloud-universe-components@1.7.4) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
+## [1.7.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.7.2...@ovh-ux/ng-ovh-cloud-universe-components@1.7.3) (2020-04-15)
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 ## [1.7.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.7.1...@ovh-ux/ng-ovh-cloud-universe-components@1.7.2) (2020-01-22)
 
 
@@ -352,6 +946,3 @@
 ### Features
 
 * **cui-tabs:** add cuiTabs component ([ab77e6d](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/ab77e6d))
-
-
-

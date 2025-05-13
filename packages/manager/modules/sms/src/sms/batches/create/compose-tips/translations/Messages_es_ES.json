@@ -1,0 +1,8 @@
+{
+  "sms_sms_compose_tip_compose_title": "Redacción de un SMS",
+  "sms_sms_compose_tip_size_paragraphe_1": "La longitud máxima de un SMS es de 160 caracteres (norma GSM 03.38).",
+  "sms_sms_compose_tip_size_paragraphe_2": "Las siguientes dos tablas muestran los caracteres autorizados.",
+  "sms_sms_compose_tip_size_paragraphe_3": "<b>Atención:</b> El uso de caracteres que no figuren en estas tablas cambia la codificación a Unicode, lo cual reduce a 70 caracteres la longitud máxima de un SMS.",
+  "sms_sms_compose_tip_size_characters_basics": "Caracteres básicos",
+  "sms_sms_compose_tip_size_characters_extensions": "Extensiones"
+}

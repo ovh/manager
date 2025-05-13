@@ -1,0 +1,39 @@
+<div class="row">
+    <div data-ng-class="$ctrl.legend ? 'col-sm-6' : 'col-sm-12'">
+        <cuc-space-meter-space-left
+            class="cloud-space-meter__space-left"
+            data-tooltip="true"
+            data-strong="$ctrl.large"
+            data-usage="$ctrl.usage"
+            data-help="$ctrl.help"
+        >
+        </cuc-space-meter-space-left>
+    </div>
+    <div class="col-sm-6" data-ng-if="$ctrl.legend">
+        <cuc-space-meter-legend
+            class="cloud-space-meter__legend"
+            data-usage="$ctrl.usage"
+        >
+        </cuc-space-meter-legend>
+    </div>
+</div>
+
+<div class="row">
+    <div
+        class="top-space-m4"
+        data-ng-class="{
+        'col-sm-12': $ctrl.large,
+        'col-sm-12 col-md-8': !$ctrl.large
+    }"
+    >
+        <oui-progress data-max-value="{{ $ctrl.getMaxSize() }}">
+            <oui-progress-bar
+                data-ng-repeat="(type, part) in $ctrl.usage track by type"
+                data-ng-if="type !== 'size'"
+                data-type="{{ type }}"
+                data-value="part.value"
+                ><span></span
+            ></oui-progress-bar>
+        </oui-progress>
+    </div>
+</div>

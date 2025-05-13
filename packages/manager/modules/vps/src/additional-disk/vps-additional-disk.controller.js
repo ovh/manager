@@ -1,53 +1,62 @@
 import isEmpty from 'lodash/isEmpty';
+import get from 'lodash/get';
 import map from 'lodash/map';
+
+import { VPS_DISK_STATES } from './vps-additional-disk.constants';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $translate, CucCloudMessage, VpsService) {
+  constructor($q, $translate, CucCloudMessage, VpsService, VpsHelperService) {
     this.$q = $q;
-    this.serviceName = $stateParams.serviceName;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.VpsService = VpsService;
+    this.VpsHelperService = VpsHelperService;
 
     this.loaders = {
       init: false,
       disk: false,
     };
-    this.additionnalDisks = [];
-    this.hasAdditionalDiskOption = null;
+    this.additionalDisks = [];
   }
 
   $onInit() {
+    this.hasAdditionalDiskOption = get(
+      this.tabSummary,
+      'additionalDisk.optionAvailable',
+      false,
+    );
     this.hasAdditionalDisk();
+  }
+
+  static getDiskStateInfo({ state }) {
+    return {
+      error: VPS_DISK_STATES.ERROR.includes(state),
+      warning: VPS_DISK_STATES.WARNING.includes(state),
+      success: VPS_DISK_STATES.SUCCESS.includes(state),
+    };
   }
 
   hasAdditionalDisk() {
     this.loaders.init = true;
-    this.VpsService.hasAdditionalDiskOption(this.serviceName)
-      .then(() => {
-        this.hasAdditionalDiskOption = true;
-        if (this.hasAdditionalDiskOption) {
-          this.loadAdditionalDisks();
-        }
-      })
-      .catch(() => {
-        this.hasAdditionalDiskOption = false;
-      })
-      .finally(() => {
-        this.loaders.init = false;
-      });
+    const additionalDiskPromise = this.hasAdditionalDiskOption
+      ? this.loadAdditionalDisks()
+      : this.$q.when();
+
+    return additionalDiskPromise.finally(() => {
+      this.loaders.init = false;
+    });
   }
 
   loadAdditionalDisks() {
     this.loaders.disk = true;
-    this.VpsService.getDisks(this.serviceName)
+    return this.VpsService.getDisks(this.serviceName)
       .then((data) => {
         const promises = map(data, (elem) =>
           this.VpsService.getDiskInfo(this.serviceName, elem),
         );
         return this.$q.all(promises).then((diskInfos) => {
-          this.additionnalDisks = this.VpsService.showOnlyAdditionalDisk(
+          this.additionalDisks = this.VpsService.showOnlyAdditionalDisk(
             diskInfos,
           );
         });
@@ -64,6 +73,10 @@ export default class {
   }
 
   canOrder() {
-    return isEmpty(this.additionnalDisks);
+    return this.hasAdditionalDiskOption && isEmpty(this.additionalDisks);
+  }
+
+  canTerminateAdditionalDisk() {
+    return this.VpsHelperService.canOptionBeterminated(this.serviceInfo);
   }
 }

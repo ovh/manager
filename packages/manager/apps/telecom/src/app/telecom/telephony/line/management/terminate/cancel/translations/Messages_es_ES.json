@@ -6,5 +6,6 @@
   "telephony_group_line_cancel_terminate_terminate": "Cancelar la baja del servicio ",
   "telephony_group_line_cancel_terminating_ok": "Se ha cancelado la baja.",
   "telephony_group_line_cancel_terminating_ko": "Se ha producido un error al solicitar la cancelación.<br/>{{error}}",
-  "telephony_group_line_cancel_terminate_action_label": "Hay una solicitud de baja de la línea en curso.<br/>Dicha baja está programada para el <b class=\"text-danger\">{{executionDate}}</b>.<br/>Haciendo clic en botón «Cancelar la baja», procederá a la cancelación inmediata de la baja."
+  "telephony_group_line_cancel_terminate_action_label": "Hay una solicitud de baja de la línea en curso.<br/>Dicha baja está programada para el <b class=\"text-danger\">{{executionDate}}</b>.<br/>Haciendo clic en botón «Cancelar la baja», procederá a la cancelación inmediata de la baja.",
+  "telephony_group_line_cancel_terminate": "Cancelar la baja"
 }

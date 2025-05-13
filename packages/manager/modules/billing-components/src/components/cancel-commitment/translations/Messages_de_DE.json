@@ -1,0 +1,8 @@
+{
+  "billing_cancel_commitment": "Abonnementbestellung mit fester Laufzeit stornieren",
+  "billing_cancel_commitment_description": "Sind Sie sicher, dass Sie die Abonnementbestellung stornieren möchten? In diesem Fall erhalten Sie keinen Vorzugspreis",
+  "billing_cancel_commitment_success": "Die Anfrage zur Stornierung der Abonnementbestellung wurde registriert",
+  "billing_cancel_commitment_error": "Bei der Stornierung ist ein Fehler aufgetreten.",
+  "billing_cancel_commitment_confirm": "Bestätigen",
+  "billing_cancel_commitment_cancel": "Abbrechen"
+}

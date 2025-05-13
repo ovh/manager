@@ -1,0 +1,8 @@
+<server-ipmi
+    server="$ctrl.server"
+    on-ipmi-restart="$ctrl.onIpmiRestart()"
+    on-kvm-order="$ctrl.goToKvmOrder()"
+    on-error="$ctrl.handleError(error)"
+    on-success="$ctrl.handleSuccess(message)"
+    tracking-prefix="$ctrl.trackingPrefix"
+></server-ipmi>

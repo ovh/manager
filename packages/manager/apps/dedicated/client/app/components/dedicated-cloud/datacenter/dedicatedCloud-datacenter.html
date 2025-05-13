@@ -1,0 +1,114 @@
+<header class="oui-header">
+    <div class="oui-header__container">
+        <div class="oui-header__content">
+            <div class="d-flex">
+                <h1
+                    class="oui-header__title"
+                    data-ng-bind="$ctrl.datacenter.model.name || 'dedicatedCloud_datacenter_no_name' | translate:{ t0: $ctrl.datacenter.id }"
+                ></h1>
+                <button
+                    type="button"
+                    class="btn btn-icon ml-2"
+                    data-ng-click=":: $ctrl.editDescription($ctrl.datacenter.model.name, 'dedicatedCloud_datacenter_name')"
+                >
+                    <span
+                        class="oui-icon oui-icon-pen_concept"
+                        aria-hidden="true"
+                    ></span>
+                    <span
+                        class="sr-only"
+                        data-translate="{{:: 'wizard_modify' | translate }}"
+                    ></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <ovh-manager-pcc-managed-vcd-migration-banner
+        data-tracking-prefix="$ctrl.vcdTrackingPrefix"
+        data-vcd-migration-state="$ctrl.dedicatedCloudVCDMigrationState"
+        data-pcc-migration-state="$ctrl.dedicatedCloudPCCMigrationState"
+    />
+
+    <div
+        class="alert-server my-3"
+        data-ovh-alert="dedicatedCloud_dashboard_alert"
+    ></div>
+
+    <oui-header-tabs>
+        <oui-header-tabs-item data-state="{{:: $ctrl.dashboardState }}"
+            ><span data-translate="dedicatedCloud_tab_dashboard"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item data-state="{{:: $ctrl.hostsState }}"
+            ><span data-translate="dedicatedCloud_tab_host"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item data-state="{{:: $ctrl.datastoresState }}"
+            ><span data-translate="dedicatedCloud_tab_datastore"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if=":: $ctrl.isNsxEdgeAvailable && $ctrl.isNsxtCompatible"
+            data-state="{{:: $ctrl.networkState }}"
+            ><span data-ng-bind=":: $ctrl.NETWORK_LABEL"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item data-state="{{:: $ctrl.backupState }}"
+            ><span data-translate="dedicatedCloud_tab_backup"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.drpAvailability"
+            data-state="{{:: $ctrl.drpState }}"
+        >
+            <span data-translate="dedicatedCloud_tab_drp"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item data-state="{{:: $ctrl.virtualMachinesState }}">
+            <span data-translate="dedicatedCloud_tab_virtualmachine"> </span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+</header>
+
+<div>
+    <div
+        data-ovh-alert="{{ :: $ctrl.DEDICATED_CLOUD_DATACENTER.alertId }}"
+    ></div>
+
+    <oui-message
+        type="warning"
+        class="mb-4"
+        data-ng-if="!$ctrl.datacenter.model.canOrder"
+    >
+        <span data-translate="dedicatedCloud_premier_sbg_order_warning"></span>
+    </oui-message>
+
+    <oui-message class="mb-1" type="info" data-ng-if="$ctrl.isEOLDatacenter">
+        <strong data-translate="dedicatedCloud_datacenter_EOL_title"></strong>
+        <p
+            class="mt-2"
+            data-translate="dedicatedCloud_datacenter_EOL_part_1"
+        ></p>
+        <p data-translate="dedicatedCloud_datacenter_EOL_part_2"></p>
+        <a
+            data-ng-href="{{ :: $ctrl.guideMigration }}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span data-ng-bind=":: $ctrl.guideMigration"></span>
+        </a>
+    </oui-message>
+
+    <oui-message class="mb-3" data-type="info" data-ng-if="$ctrl.newProductUrl">
+        <span data-translate="dedicatedCloud_banner_new_product"></span>
+        <a
+            data-ng-href="{{ :: $ctrl.newProductUrl }}"
+            target="_blank"
+            rel="noopener"
+            data-track-on="{{ :: $ctrl.TRACKING_NEW_PRODUCT_BANNER.on }}"
+            data-track-type="{{ :: $ctrl.TRACKING_NEW_PRODUCT_BANNER.type }}"
+            data-track-name="{{ :: $ctrl.TRACKING_NEW_PRODUCT_BANNER.name }}"
+        >
+            <span
+                data-translate="dedicatedCloud_banner_new_product_link"
+            ></span>
+        </a>
+    </oui-message>
+
+    <div data-ui-view="pccDatacenterView"></div>
+</div>

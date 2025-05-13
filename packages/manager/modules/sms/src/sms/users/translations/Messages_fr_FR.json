@@ -1,5 +1,6 @@
 {
   "sms_users_manage_title": "Gestion des comptes utilisateurs",
+  "sms_users_breadcrumb": "Utilisateurs",
   "sms_users_actions_templates": "Alertes",
   "sms_users_label_id": "Identifiant",
   "sms_users_label_quota_status": "Activer le quota ?",

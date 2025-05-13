@@ -1,0 +1,8 @@
+{
+  "payment_modal_action_cancel": "Nicht jetzt",
+  "payment_modal_action_validate": "Aktualisieren",
+  "payment_modal_description_no_default": "Ihre Kreditkarte läuft demnächst ab. Ihre Zahlungen können dann nicht mehr ausgeführt werden.",
+  "payment_modal_description_expired": "Ihre Kreditkarte läuft demnächst ab. Ihre Zahlungen können dann nicht mehr ausgeführt werden.",
+  "payment_modal_description_sub": "Damit Ihre Dienste reibungslos funktionieren und Unterbrechungen vermieden werden können, empfehlen wir Ihnen, Ihr Zahlungsmittel zu aktualisieren.",
+  "payment_modal_title": "Zahlungsmittel aktualisieren"
+}

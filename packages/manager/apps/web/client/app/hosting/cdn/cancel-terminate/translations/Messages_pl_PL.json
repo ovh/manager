@@ -1,0 +1,8 @@
+{
+  "hosting_cdn_cancel_terminate_title": "Anuluj rezygnację z usługi CDN",
+  "hosting_cdn_cancel_terminate_question": "Czy chcesz anulować rezygnację z usługi CDN?",
+  "hosting_cdn_cancel_terminate_success": "Dyspozycja anulowania rezygnacji została przyjęta.",
+  "hosting_cdn_cancel_terminate_error": "Wystąpił błąd podczas anulowania rezygnacji z usługi CDN: {{message}}",
+  "hosting_cdn_cancel_terminate_action_validate": "Zatwierdź",
+  "hosting_cdn_cancel_terminate_action_cancel": "Anuluj"
+}

@@ -5,6 +5,8 @@ import managerCore from '@ovh-ux/manager-core';
 import uiRouterAngularJs from '@uirouter/angularjs';
 import oclazyload from 'oclazyload';
 
+import supportComponents from './components';
+
 import { state } from './support.routing';
 
 const moduleName = 'ovhManagerSupportLazyLoading';
@@ -30,11 +32,8 @@ angular
       });
     },
   )
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(
-    /* @ngInject */ ($transitions, $translate) => {
-      $transitions.onBefore({ to: 'support.**' }, () => $translate.refresh());
-    },
-  );
+  .run(/* @ngTranslationsInject:json ./translations */);
+
+export { supportComponents };
 
 export default moduleName;

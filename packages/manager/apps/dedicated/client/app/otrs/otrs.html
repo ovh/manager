@@ -1,0 +1,23 @@
+<div ui-view>
+    <oui-header heading="{{:: 'otrs_title' | translate }}"> </oui-header>
+    <div data-ovh-alert></div>
+    <div data-ovh-alert="otrs_popup_service"></div>
+    <div data-ovh-alert="otrs_popup_status"></div>
+    <otrs-grid
+        data-archived="$ctrl.archived"
+        data-filters="$ctrl.filters"
+        data-trigger-ticket-creation="$ctrl.triggerTicketCreation"
+        data-go-to-ticket="$ctrl.goToTicket"
+        data-open-ticket-creation-modal="$ctrl.openDialog"
+        data-page-number="$ctrl.pageNumber"
+        data-page-size="$ctrl.pageSize"
+        data-reload="$ctrl.reload"
+        data-sort-by="$ctrl.sortBy"
+        data-sort-order="$ctrl.sortOrder"
+        data-on-grid-params-change="$ctrl.onGridParamsChange"
+        data-tickets="$ctrl.tickets"
+        data-total-count="$ctrl.totalTickets"
+        data-grid-column-state-type-options="$ctrl.gridColumnStateTypeOptions"
+        data-grid-column-last-message-from-type-options="$ctrl.gridColumnLastMessageFromTypeOptions"
+    ></otrs-grid>
+</div>

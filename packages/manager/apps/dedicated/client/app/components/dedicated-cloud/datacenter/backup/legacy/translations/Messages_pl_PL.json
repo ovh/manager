@@ -1,0 +1,7 @@
+{
+  "dedicatedCloud_datacenter_backup_legacy_message_1": "Od {{ date }}, w gamie Veeam Backup nastąpiły zmiany.",
+  "dedicatedCloud_datacenter_backup_legacy_message_2": "Aktualnie, aby sporządzić kopie zapasowe Twoich wirtualnych maszyn (VM), masz do wyboru 3 nowe oferty: <strong>Standard</strong>, <strong>Advanced</strong> oraz <strong>Premium</strong>.",
+  "dedicatedCloud_datacenter_backup_legacy_message_3": "Nie zapomnij o tym, aby zaktualizować Twoją ofertę tworzenia kopii zapasowych!",
+  "dedicatedCloud_datacenter_backup_legacy_message_link": "Sprawdź szczegóły taryf dostępnych dla oferty backup Veeam",
+  "dedicatedCloud_datacenter_backup_legacy_update_button": "Zaktualizuj moją ofertę tworzenia kopii zapasowych"
+}

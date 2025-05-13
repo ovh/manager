@@ -1,0 +1,21 @@
+{
+  "zimbra_redirections_cta": "Crea un reindirizzamento ",
+  "zimbra_redirections_from": "Da",
+  "zimbra_redirections_to": "Verso",
+  "zimbra_redirections_organization": "Organizzazione",
+  "zimbra_redirections_datagrid_tooltip_modification": "Modificare",
+  "zimbra_redirections_datagrid_tooltip_delete": "Eliminare",
+  "zimbra_redirections_account_title": "Gestisci i reindirizzamenti",
+  "zimbra_redirections_status": "Stato",
+  "zimbra_redirections_delete_modal_content": "Vuoi eliminare il reindirizzamento?",
+  "zimbra_redirections_add_header": "Inserisci le informazioni per il reindirizzamento.",
+  "zimbra_redirections_add_form_input_from": "Dall'indirizzo",
+  "zimbra_redirections_add_form_input_to": "Verso l'indirizzo",
+  "zimbra_redirections_add_form_input_checkbox": "Conservare una copia dell'email in OVHcloud",
+  "zimbra_redirections_add_success_message": "La richiesta di creazione del reindirizzamento è stata presa in carico. Sarà elaborata entro pochi minuti.",
+  "zimbra_redirections_add_error_message": "La richiesta di creazione del reindirizzamento non è andata a buon fine: {{ error }}",
+  "zimbra_redirections_edit_success_message": "La richiesta di modifica del reindirizzamento è stata presa in carico. Sarà elaborata entro pochi minuti.",
+  "zimbra_redirections_edit_error_message": "La richiesta di modifica del reindirizzamento non è andata a buon fine: {{ error }}",
+  "zimbra_redirections_delete_success_message": "La tua richiesta di eliminazione del reindirizzamento è stata presa in carico. Sarà elaborata entro pochi minuti.",
+  "zimbra_redirections_delete_error_message": "La tua richiesta di eliminazione del reindirizzamento non è andata a buon fine: {{ error }}"
+}

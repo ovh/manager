@@ -1,0 +1,18 @@
+{
+  "pci_projects_project_users_add_title": "Dodaj użytkownika Object Storage",
+  "pci_projects_project_users_add_short_description": "Aby uzyskać dostęp do Object Storage, dodaj użytkownika do Twojego kontenera. Możesz wybrać istniejącego użytkownika lub utworzyć nowego. Każdy użytkownik (OpenStack) będzie powiązany z jedną lub wieloma parami kluczy (identyfikatorami Object Storage), z których każda składa się z „klucza dostępu” i „klucza tajnego”.",
+  "pci_projects_project_users_add_submit_label": "Utwórz",
+  "pci_projects_project_users_add_cancel_label": "Anuluj",
+  "pci_projects_project_users_add_description_label": "Opis użytkownika",
+  "pci_projects_project_users_add_existing_user": "Wybierz istniejącego użytkownika",
+  "pci_projects_project_users_add_create_user": "Utwórz nowego użytkownika",
+  "pci_projects_project_users_add_success_message": "Dane identyfikacyjne Object Storage dla użytkownika {{user}} zostały wygenerowane.",
+  "pci_projects_project_users_add_error_message": "Dane identyfikacyjne Object Storage dla użytkownika {{user}} nie mogły zostać wygenerowane.",
+  "pci_projects_project_users_add_username": "Nazwa użytkownika OpenStack:",
+  "pci_projects_project_users_add_description": "Opis:",
+  "pci_projects_project_users_add_accesskey": "Klucz dostępu:",
+  "pci_projects_project_users_add_secretkey": "Tajny klucz:",
+  "pci_projects_project_users_add_as_no_credentials": "Brak poświadczeń",
+  "pci_projects_project_users_add_as_credentials": "Poświadczenia zostały wygenerowane",
+  "pci_projects_project_users_add_info_banner": "Nowi użytkownicy będą mieli automatycznie dostęp do wszystkich kontenerów w Local Zones."
+}

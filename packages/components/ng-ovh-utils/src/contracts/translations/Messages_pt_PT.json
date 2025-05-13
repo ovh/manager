@@ -1,0 +1,10 @@
+{
+  "ua_contract_next": "Seguinte",
+  "ua_contract_previous": "Anterior",
+  "ua_download_contract": "Abrir o contrato \"{{name}}\" em PDF",
+  "ua_contract_help": "Para poder validar, tem de ler os contratos até ao fim.",
+  "ua_contracts_list_title": "Existem {{count}} contratos por consultar.",
+  "ua_contract_list_title": "Existe 1 contrato por ler.",
+  "ua_contracts_agree": "Aceito as condições contratuais",
+  "ua_contract_agree": "Aceito as condições contratuais"
+}

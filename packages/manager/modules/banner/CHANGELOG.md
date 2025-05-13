@@ -1,3 +1,184 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.3.2...@ovh-ux/manager-banner@1.3.3) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-banner
+
+
+
+
+
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.3.1...@ovh-ux/manager-banner@1.3.2) (2024-11-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-banner
+
+
+
+
+
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.3.0...@ovh-ux/manager-banner@1.3.1) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-banner
+
+
+
+
+
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.16...@ovh-ux/manager-banner@1.3.0) (2023-11-21)
+
+
+### Features
+
+* migrate from vuepress to vitepress ([6968c85](https://github.com/ovh/manager/commit/6968c85f00e19c41bc240abb37a50e9dacf9c5e5))
+
+
+
+
+
+## [1.2.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.15...@ovh-ux/manager-banner@1.2.16) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-banner
+
+
+
+
+
+## [1.2.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.14...@ovh-ux/manager-banner@1.2.15) (2023-01-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-banner
+
+
+
+
+
+## [1.2.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.13...@ovh-ux/manager-banner@1.2.14) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-banner
+
+
+
+
+
+## [1.2.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.12...@ovh-ux/manager-banner@1.2.13) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+## [1.2.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.11...@ovh-ux/manager-banner@1.2.12) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+
+## [1.2.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.10...@ovh-ux/manager-banner@1.2.11) (2021-10-26)
+
+
+### Bug Fixes
+
+* **dev-deps:** upgrade @ovh-ux/component-rollup-config to `v11.0.0` ([3ae659b](https://github.com/ovh/manager/commit/3ae659bea59244fd5660375b9dac52055cc374b0))
+
+
+
+## [1.2.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.9...@ovh-ux/manager-banner@1.2.10) (2021-09-27)
+
+
+### Bug Fixes
+
+* **banner:** fix tracking on banner ([#5593](https://github.com/ovh/manager/issues/5593)) ([b949276](https://github.com/ovh/manager/commit/b949276121cee434c4edaa3880e20ef4b8ad456a))
+
+
+
+## [1.2.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.8...@ovh-ux/manager-banner@1.2.9) (2021-06-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+
+
+
+## [1.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.7...@ovh-ux/manager-banner@1.2.8) (2021-03-10)
+
+
+### Bug Fixes
+
+* **banner:** add banner text ([43ed181](https://github.com/ovh/manager/commit/43ed181013ecf4966b2a627c4d7217585cfabb89))
+
+
+
+## [1.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.6...@ovh-ux/manager-banner@1.2.7) (2021-03-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([5f3eda1](https://github.com/ovh/manager/commit/5f3eda16abd4df3b46cdde241c827a1d1d6dc80c))
+
+
+
+## [1.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.5...@ovh-ux/manager-banner@1.2.6) (2021-02-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
+
+
+
+## [1.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.4...@ovh-ux/manager-banner@1.2.5) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+
+
+
+## [1.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.3...@ovh-ux/manager-banner@1.2.4) (2021-01-04)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([23b469f](https://github.com/ovh/manager/commit/23b469f6264610c47076da908f688e8069f19c76))
+
+
+
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.2...@ovh-ux/manager-banner@1.2.3) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.1...@ovh-ux/manager-banner@1.2.2) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.0...@ovh-ux/manager-banner@1.2.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.1.4...@ovh-ux/manager-banner@1.2.0) (2020-04-01)
 
 
@@ -49,6 +230,3 @@
 ### Features
 
 * add banner module ([700ace4](https://github.com/ovh-ux/manager/commit/700ace4))
-
-
-

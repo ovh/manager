@@ -1,0 +1,16 @@
+{
+  "nutanix_dashboard_install_node_title": "Zainstaluj węzeł",
+  "nutanix_dashboard_install_node_description": "Chcesz zainstalować AOS i AHV na Twoim węźle. Wskaż nieużywane adresy IP w sieci klastra.",
+  "nutanix_dashboard_install_node_tips": "W przypadku jednoczesnej instalacji na kilku węzłach skorzystaj z API",
+  "nutanix_dashboard_install_node_label_ahv_ip": "IP węzła",
+  "nutanix_dashboard_install_node_label_cvm_ip": "IP CVM",
+  "nutanix_dashboard_install_node_label_version_aos": "Wersja AOS",
+  "nutanix_dashboard_install_node_confirm": "Instaluj",
+  "nutanix_dashboard_install_node_cancel": "Anuluj",
+  "nutanix_dashboard_install_node_success_banner": "Dyspozycja instalacji została zarejestrowana. Operacja może potrwać do 1 godziny.",
+  "nutanix_dashboard_install_node_error_banner": "Instalacja nie powiodła się. Jeśli błąd się powtórzy, prosimy o kontakt z pomocą techniczną",
+  "nutanix_dashboard_install_ip_unique_error": "Ten adres IP jest już używany w tym klastrze",
+  "nutanix_dashboard_install_ip_not_in_cidr_subnet_error": "Adresy nie są w tej samej sieci.",
+  "nutanix_dashboard_install_ip_format_error": "Format adresu IP jest nieprawidłowy",
+  "nutanix_dashboard_install_ip_tooltip": "Adres IP musi należeć do podsieci klastra."
+}

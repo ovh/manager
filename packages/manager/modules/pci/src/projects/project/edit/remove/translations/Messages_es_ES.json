@@ -1,17 +1,11 @@
 {
   "pci_projects_project_edit_remove_title": "Eliminar el proyecto",
-  "pci_projects_project_edit_remove_please_note": "Tenga en cuenta que se van a destruir los siguientes elementos:",
-  "pci_projects_project_edit_remove_instances": "Instancias",
-  "pci_projects_project_edit_remove_volumes": "Volúmenes",
-  "pci_projects_project_edit_remove_object_containers": "Contenedores de objetos",
-  "pci_projects_project_edit_remove_object_archives": "Archivos de objetos",
-  "pci_projects_project_edit_remove_object_snapshots": "Snapshots de volúmenes",
-  "pci_projects_project_edit_remove_object_backups": "Backups de instancias",
-  "pci_projects_project_edit_remove_object_private_network": "Redes privadas",
-  "pci_projects_project_edit_remove_object_kubernetes": "Clusters Kubernetes",
-  "pci_projects_project_edit_remove_object_ip": "Las IP Failover se aparcarán",
+  "pci_projects_project_edit_remove_please_note": "Tenga en cuenta que todos los servicios, recursos, parámetros y datos se eliminarán y no podrá recuperarlos posteriormente, a excepción de las IP Failover, que se aparcarán.",
   "pci_projects_project_edit_remove_submit": "Eliminar el proyecto",
   "pci_projects_project_edit_remove_cancel": "Cancelar",
   "pci_projects_project_edit_remove_error": "Se ha producido un error al eliminar el proyecto: {{ error }}.",
-  "pci_projects_project_edit_remove_success": "Acabamos de enviarle la confirmación de la eliminación por correo electrónico."
+  "pci_projects_project_edit_remove_success": "Acabamos de enviarle la confirmación de la eliminación por correo electrónico.",
+  "pci_projects_project_discovery_edit_remove_please_note": "Tenga en cuenta que la eliminación del proyecto es irreversible. Deberá crear un nuevo proyecto para seguir utilizando las soluciones del universo Public Cloud.",
+  "pci_projects_project_discovery_edit_savings_plan": "Tiene un Savings Plan en curso en este proyecto. No puede eliminarlo. Póngase en contacto con el servicio de atención al cliente para conocer el procedimiento de eliminación.",
+  "pci_projects_project_edit_remove_submit_client_service": "Contactar con el servicio de atención al cliente"
 }

@@ -1,0 +1,15 @@
+{
+  "domains_onboarding_title": "Znajdź idealną nazwę domeny",
+  "domains_onboarding_description": "Oferujemy szeroki wybór domen dostosowanych do Twoich projektów.",
+  "domains_onboarding_description_list1": "Darmowy hosting 100 MB",
+  "domains_onboarding_description_list2": "Darmowe konto e-mail 5 GB",
+  "domains_onboarding_description_list3": "DNSSEC: ochrona przed zatruciem pamięci podręcznej (cache poisoning)",
+  "domains_onboarding_description_list4": "Easy Redirect: dostęp do sieci społecznościowych z domeny",
+  "domains_onboarding_order": "Zamów",
+  "domains_onboarding_guide1_title": "Veeam Cloud Connect",
+  "domains_onboarding_guide1_description": "Prezentacja oferty Veeam Cloud Connect",
+  "domains_onboarding_guide2_title": "Zmiana właściciela domeny",
+  "domains_onboarding_guide2_description": "W tym przewodniku znajdziesz różne informacje dotyczące zmiany właściciela nazwy domeny.",
+  "domains_onboarding_guide3_title": "Transfer domeny do OVHcloud",
+  "domains_onboarding_guide3_description": "Dowiedz się, jak przeprowadzić transfer domeny do OVHcloud"
+}

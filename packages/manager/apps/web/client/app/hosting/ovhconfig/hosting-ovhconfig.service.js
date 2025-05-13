@@ -73,6 +73,7 @@ Object.defineProperties(OvhConfig.prototype, {
 angular.module('services').service(
   'HostingOvhConfig',
   class HostingOvhConfig {
+    /* @ngInject */
     constructor($q, OvhHttp) {
       this.$q = $q;
       this.OvhHttp = OvhHttp;
@@ -97,6 +98,15 @@ angular.module('services').service(
           },
           config || {},
         ),
+      );
+    }
+
+    getCapabilities(serviceName) {
+      return this.OvhHttp.get(
+        `/hosting/web/${serviceName}/ovhConfigCapabilities`,
+        {
+          rootPath: 'apiv6',
+        },
       );
     }
 

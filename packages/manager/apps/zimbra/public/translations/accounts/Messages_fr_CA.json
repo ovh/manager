@@ -1,0 +1,16 @@
+{
+  "zimbra_account_datagrid_offer_label": "Offre",
+  "zimbra_account_datagrid_quota": "Taille",
+  "zimbra_account_datagrid_quota_octets": "Octets",
+  "zimbra_account_datagrid_quota_ko": "Ko",
+  "zimbra_account_datagrid_quota_mo": "Mo",
+  "zimbra_account_datagrid_quota_go": "Go",
+  "zimbra_account_datagrid_quota_to": "To",
+  "zimbra_account_account_add": "Créer un compte",
+  "zimbra_account_account_order": "Commander un compte",
+  "zimbra_account_tooltip_need_domain": "Veuillez d'abord configurer un domaine.",
+  "zimbra_account_tooltip_need_slot": "Aucun compte disponible, veuillez en commander.",
+  "zimbra_account_delete_modal_content_step1": "Vous êtes sur le point de supprimer le compte email du serveur Zimbra.",
+  "zimbra_account_delete_modal_content_step2": "Êtes-vous sûr de vouloir supprimer la boite mail du serveur Zimbra ?",
+  "zimbra_account_delete_modal_warn_message": "Attention cette action est irréversible et entraîne la suppression des données."
+}

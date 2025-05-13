@@ -1,9 +1,4 @@
-import defaults from 'lodash/defaults';
-import filter from 'lodash/filter';
-import find from 'lodash/find';
-import head from 'lodash/head';
-import isFunction from 'lodash/isFunction';
-import sortBy from 'lodash/sortBy';
+import { defaults, find, head, isFunction, sortBy } from 'lodash-es';
 
 export default /* @ngInject */ function($q, ovhContact) {
   const self = this;
@@ -24,11 +19,10 @@ export default /* @ngInject */ function($q, ovhContact) {
 
   self.searchInList = function searchInList(search) {
     if (search) {
-      return filter(
-        self.list,
+      return self.list.filter(
         (contact) =>
-          contact.firstName.toLowerCase().indexOf(search.toLowerCase()) ||
-          contact.lastName.toLowerCase().indexOf(search.toLowerCase()),
+          contact.firstName.toLowerCase().includes(search.toLowerCase()) ||
+          contact.lastName.toLowerCase().includes(search.toLowerCase()),
       );
     }
 

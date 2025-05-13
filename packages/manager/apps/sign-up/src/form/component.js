@@ -8,8 +8,13 @@ export default {
   bindings: {
     me: '<',
     isActiveStep: '<',
-    onStepCancel: '<',
+    cancelStep: '<',
     onStepFocus: '<',
     finishSignUp: '<',
+    isSmsConsentAvailable: '<',
+    needkyc: '<',
+    goToKycDocumentUploadPage: '<',
+    user: '<',
+    subsidiary: '<',
   },
 };

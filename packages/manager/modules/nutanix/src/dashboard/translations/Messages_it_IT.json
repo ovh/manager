@@ -1,0 +1,9 @@
+{
+  "nutanix_dashboard_general_info": "Informazioni generali",
+  "nutanix_dashboard_nodes": "Nodi",
+  "nutanix_dashboard_guides_header": "Guide",
+  "nutanix_dashboard_guides_header_all_guides": "Tutte le guide",
+  "nutanix_dashboard_cluster_warning1": "Registra la tua licenza Nutanix sul tuo cluster in Prism Central prima del [{{endDate}}]",
+  "nutanix_dashboard_cluster_warning2": "Registra la tua licenza",
+  "nutanix_dashboard_service_suspended": "Il servizio è stato disattivato."
+}

@@ -1,0 +1,97 @@
+<h3
+    data-translate="telephony_billingAccount_svaWallet_kyc_summary_bankaccount_title"
+></h3>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header">
+        <label
+            class="oui-field__label"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_bankAccount_holder"
+        ></label>
+    </div>
+    <div class="oui-field__control">
+        <span data-ng-bind="$ctrl.bankAccount.holder"></span>
+    </div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header">
+        <label
+            class="oui-field__label"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_iban"
+        ></label>
+    </div>
+    <div class="oui-field__control">
+        <span data-ng-bind="$ctrl.bankAccount.iban"></span>
+    </div>
+
+    <oui-button
+        variant="link"
+        icon-right="oui-icon-arrow-right"
+        on-click="$ctrl.goToEditIban()"
+        disabled="!$ctrl.isEditable"
+    >
+        <span
+            data-translate="telephony_billingAccount_svaWallet_kyc_summary_bankaccount_edit"
+        ></span>
+    </oui-button>
+</div>
+<div data-ng-if="$ctrl.isOpenModal">
+    <div class="modal d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <form novalidate name="modalEditBankAccount">
+                    <oui-modal
+                        heading="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_title' | translate }}"
+                        primary-action="$ctrl.confirm()"
+                        primary-disabled="modalEditBankAccount.$invalid"
+                        primary-label="{{::'telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_confirm' | translate}}"
+                        secondary-action="$ctrl.cancel()"
+                        secondary-label="{{::'telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_cancel' | translate}}"
+                        on-dismiss="$ctrl.cancel()"
+                        loading="$ctrl.isLoading"
+                    >
+                        <oui-message
+                            type="error"
+                            data-ng-if="$ctrl.errorMessage"
+                        >
+                            <span
+                                data-translate="telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_error"
+                                data-translate-values="{ errorMessage: $ctrl.errorMessage }"
+                            ></span>
+                        </oui-message>
+
+                        <oui-field
+                            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_bankAccount_holder' | translate }}"
+                            size="xl"
+                        >
+                            <input
+                                class="oui-input"
+                                name="holder"
+                                placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_bankAccount_holder' | translate }}"
+                                type="text"
+                                data-ng-model="$ctrl.model.holder"
+                                required
+                            />
+                        </oui-field>
+
+                        <oui-field
+                            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_iban' | translate }}"
+                            size="xl"
+                        >
+                            <input
+                                class="oui-input"
+                                name="iban"
+                                placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_iban' | translate }}"
+                                type="text"
+                                data-ng-model="$ctrl.model.iban"
+                                required
+                            />
+                        </oui-field>
+                    </oui-modal>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>

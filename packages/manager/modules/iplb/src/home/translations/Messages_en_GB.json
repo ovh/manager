@@ -17,5 +17,10 @@
   "iplb_home_tile_configuration_quota_unlimited": "Unlimited",
   "iplb_home_tile_configuration_quota_cipher": "Ciphers",
   "iplb_home_tile_configuration_quota_datacenter": "Availability zones",
-  "iplb_home_tile_configuration_private_network": "Private networks"
+  "iplb_home_tile_configuration_private_network": "Private networks",
+  "iplb_home_tile_configuration_billing_evolution_message_info": "The pricing for your Load Balancer is changing, and its prices are going down.",
+  "iplb_home_tile_configuration_billing_issues_message_warn_1": "Our OVHcloud Load Balancer solution experienced technical issues during the last few months, which affected your billing. We apologise for the inconvenience.",
+  "iplb_home_tile_configuration_billing_issues_message_warn_2": "As a result, until 1 September 2024, we will not charge for any excess traffic that has not been billed. From 01 September 2024, billing will resume in accordance with the Special Terms and Conditions of Service and the new detailed pricing in effect",
+  "iplb_home_tile_configuration_billing_more_information_label": "More information",
+  "iplb_home_tile_configuration_billing_here_label": "here"
 }

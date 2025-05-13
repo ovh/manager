@@ -1,0 +1,34 @@
+<section class="telecom-telephony-line-phone-accessories">
+    <header>
+        <oui-back-button
+            data-on-click="::$ctrl.goBack()"
+            previous-page="{{::'telephony_group_line_phone_section_back_link_target' | translate}}"
+        >
+        </oui-back-button>
+        <h1 data-translate="telephony_line_phone_accessories_title"></h1>
+    </header>
+
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <div data-ng-if="!$ctrl.loading.init">
+        <div data-ng-if="$ctrl.process.currentView === 'choice'">
+            <accessories-choice phone="$ctrl.phone"></accessories-choice>
+        </div>
+
+        <div data-ng-if="$ctrl.process.currentView === 'shipping'">
+            <accessories-shipping></accessories-shipping>
+        </div>
+
+        <div data-ng-if="$ctrl.process.currentView === 'resume'">
+            <accessories-resume></accessories-resume>
+        </div>
+
+        <div data-ng-if="$ctrl.process.currentView === 'finalize'">
+            <accessories-finalize></accessories-finalize>
+        </div>
+    </div>
+</section>

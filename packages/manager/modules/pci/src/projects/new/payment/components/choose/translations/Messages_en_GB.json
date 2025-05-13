@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_choose_title": "Set a payment method",
+  "pci_project_new_payment_choose_added_payment_methods": "Your saved payment methods",
+  "pci_project_new_payment_choose_payment_method_expiration": "Exp. {{ date }}",
+  "pci_project_new_payment_choose_payment_method_selected": "This payment method will be used to pay automatically for your services. You can change this payment method at any time, and configure renewal for your solutions via the <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">My services</a> section of the OVHcloud Control Panel. You will also receive an email notification before each renewal date.",
+  "pci_project_new_payment_choose_use_new": "Use a new payment method"
+}

@@ -11,6 +11,7 @@
   "telephony_line_answer_voicemail_passwordConfirm_input_placeholder": "Saisissez à nouveau votre mot de passe",
   "telephony_line_answer_voicemail_password_matching_warning": "Le mot de passe saisi ne correspond pas.",
   "telephony_line_answer_voicemail_password_apply": "Appliquer les modifications",
+  "telephony_line_answer_voicemail_password_force": "Demander le mot de passe quand je consulte mes messages.",
   "telephony_line_answer_voicemail_password_change_success": "Mot de passe modifié avec succès.",
   "telephony_line_answer_voicemail_password_change_error": "Oups, nous n'arrivons pas à changer le mot de passe de votre répondeur.",
   "telephony_line_answer_voicemail_password_info": "Mot de passe demandé lors de la consultation des messages depuis l'extérieur uniquement.",

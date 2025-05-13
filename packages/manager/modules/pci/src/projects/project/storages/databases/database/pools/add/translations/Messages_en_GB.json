@@ -1,0 +1,15 @@
+{
+  "pci_databases_pools_add_pool_title": "Add a pool",
+  "pci_databases_pools_add_pool_name": "Name",
+  "pci_databases_pools_add_database": "Database ",
+  "pci_databases_pools_add_pool_mode": "Mode",
+  "pci_databases_pools_add_pool_size": "Size",
+  "pci_databases_pools_add_pool_user_title": "Username (Optional)",
+  "pci_databases_pools_add_pool_user": "Username",
+  "pci_databases_pools_add_pool_cancel": "Cancel",
+  "pci_databases_pools_add_pool_confirm": "Confirm",
+  "pci_databases_pools_add_pool_success": "Your {{name}} pool has been created.",
+  "pci_databases_pools_add_pool_error": "An error has occurred creating your pool: {{message}}",
+  "pci_databases_pools_add_pool_name_required_error": "Please fill in this field.",
+  "pci_databases_pools_add_pool_name_pattern_error": "Please enter a valid format. Must only contain numbers, letters, underscores and dashes, must not start with a dash, and must not be empty. Max 60 characters."
+}

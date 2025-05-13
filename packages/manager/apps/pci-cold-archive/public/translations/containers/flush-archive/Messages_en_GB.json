@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_storages_containers_container_cold_archive_flush_title": "Do you want to flush your archive?",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_description": "You are about to flush the {{containerName}} archive of its objects.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_terminate_input_label": "Enter “TERMINATE” in the field below to confirm",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_submit_label": "Confirm",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_cancel_label": "Cancel",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_erase_message": "All data on the {{containerName}} archive will be lost.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_status_archived_restored_warning_1": "Your {{containerName}} archive contains {{objetsCount}} objects.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_status_archived_restored_warning_2": "You are about to flush the archive of all its objects.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_success_message": "The objects in your {{containerName}} archive are being deleted.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_error_delete": "An error has occurred deleting the objects from the {{containerName}} archive: {{message}}."
+}

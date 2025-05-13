@@ -1,0 +1,10 @@
+{
+  "autorenew_service_delete_title": "Am Ablaufdatum kündigen",
+  "autorenew_service_delete_confirm": "Der Dienst {{ service }} wird am {{ date }} <strong>automatisch gekündigt</strong>.",
+  "autorenew_service_delete_validate": "Bestätigen",
+  "autorenew_service_delete_warn": "Alle mit diesem Dienst verbundenen Daten werden automatisch unwiderruflich gelöscht. Sie können diese Entscheidung bis zu 24 Stunden vor dem Ablaufdatum ändern.",
+  "autorenew_service_delete_support": "Um diesen Dienst zu kündigen, kontaktieren Sie bitte unseren Support unter <strong>{{ phoneNumber }}. Vielen Dank für Ihr Verständnis.",
+  "autorenew_service_delete_success": "Die Kündigungsanfrage wurde erfolgreich durchgeführt. Wenn die Änderung nicht in der Liste angezeigt wird, laden Sie bitte die Seite neu.",
+  "autorenew_service_delete_error": "Bei der Kündigung des Dienstes ist ein Fehler aufgetreten {{ message }}",
+  "autorenew_service_delete_cancel": "Kündigung stornieren"
+}

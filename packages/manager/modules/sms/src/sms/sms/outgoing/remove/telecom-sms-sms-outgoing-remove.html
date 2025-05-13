@@ -45,7 +45,10 @@
             <dd data-ng-bind="OutgoingRemoveCtrl.outgoingSms.tariffCode"></dd>
 
             <dt data-translate="sms_sms_outgoing_label_message"></dt>
-            <dd data-ng-bind="OutgoingRemoveCtrl.outgoingSms.message"></dd>
+            <dd
+                class="text-truncate"
+                data-ng-bind="OutgoingRemoveCtrl.outgoingSms.message"
+            ></dd>
         </dl>
     </div>
 

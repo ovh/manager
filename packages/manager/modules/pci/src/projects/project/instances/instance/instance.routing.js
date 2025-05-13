@@ -1,12 +1,6 @@
 import get from 'lodash/get';
 import head from 'lodash/head';
 
-import {
-  DEDICATED_IPS_URL,
-  FIREWALL_URL,
-  MITIGATION_URL,
-} from './instance.constants';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances.instance', {
     url: '/:instanceId',
@@ -14,33 +8,56 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       instanceId: /* @ngInject */ ($transition$) =>
         $transition$.params().instanceId,
+
       instance: /* @ngInject */ (
         PciProjectsProjectInstanceService,
         projectId,
         instanceId,
-      ) => PciProjectsProjectInstanceService.get(projectId, instanceId),
+        customerRegions,
+      ) =>
+        PciProjectsProjectInstanceService.get(
+          projectId,
+          instanceId,
+          customerRegions,
+        ),
 
       instancePrice: /* @ngInject */ (
         PciProjectsProjectInstanceService,
         projectId,
         instance,
+        catalogEndpoint,
       ) =>
-        PciProjectsProjectInstanceService.getInstancePrice(projectId, instance),
-
-      reverseDnsLink: /* @ngInject */ (coreConfig) =>
-        DEDICATED_IPS_URL[coreConfig.getRegion()],
-
-      ipMitigationLink: /* @ngInject */ (coreConfig, instance) =>
-        MITIGATION_URL(
-          get(head(instance.publicIpV4), 'ip'),
-          coreConfig.getRegion(),
+        PciProjectsProjectInstanceService.getInstancePrice(
+          projectId,
+          instance,
+          catalogEndpoint,
         ),
 
-      firewallLink: /* @ngInject */ (coreConfig, instance) =>
-        FIREWALL_URL(
-          get(head(instance.publicIpV4), 'ip'),
-          coreConfig.getRegion(),
-        ),
+      reverseDnsLink: /* @ngInject */ (coreURLBuilder) =>
+        coreURLBuilder.buildURL('dedicated', '#/configuration/ip'),
+
+      ipMitigationLink: /* @ngInject */ (
+        coreURLBuilder,
+        instance,
+        projectId,
+      ) => {
+        const ip = get(head(instance.publicIpV4), 'ip');
+        return coreURLBuilder.buildURL('dedicated', '#/configuration/ip', {
+          action: 'mitigation',
+          ip,
+          ipBlock: ip,
+          serviceName: projectId,
+        });
+      },
+
+      firewallLink: /* @ngInject */ (coreURLBuilder, instance) => {
+        const ip = get(head(instance.publicIpV4), 'ip');
+        return coreURLBuilder.buildURL('dedicated', '#/configuration/ip', {
+          action: 'toggleFirewall',
+          ip,
+          ipBlock: ip,
+        });
+      },
 
       breadcrumb: /* @ngInject */ (instance) => instance.name,
 
@@ -106,6 +123,26 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           instanceId: instance.id,
         }),
+      shelveInstance: /* @ngInject */ ($state, instance, projectId) => () =>
+        $state.go('pci.projects.project.instances.instance.shelve', {
+          projectId,
+          instanceId: instance.id,
+        }),
+      startInstance: /* @ngInject */ ($state, instance, projectId) => () =>
+        $state.go('pci.projects.project.instances.instance.start', {
+          projectId,
+          instanceId: instance.id,
+        }),
+      stopInstance: /* @ngInject */ ($state, instance, projectId) => () =>
+        $state.go('pci.projects.project.instances.instance.stop', {
+          projectId,
+          instanceId: instance.id,
+        }),
+      unshelveInstance: /* @ngInject */ ($state, instance, projectId) => () =>
+        $state.go('pci.projects.project.instances.instance.unshelve', {
+          projectId,
+          instanceId: instance.id,
+        }),
       reinstallInstance: /* @ngInject */ ($state, instance, projectId) => () =>
         $state.go('pci.projects.project.instances.instance.reinstall', {
           projectId,
@@ -138,9 +175,22 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           instanceId: instance.id,
         }),
-      gotToNetworks: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.privateNetwork', {
-          projectId,
+      gotToNetworks: /* @ngInject */ (getUAppUrl, projectId) => () =>
+        getUAppUrl(
+          'public-cloud',
+          `#/pci/projects/${projectId}/private-networks`,
+        ).then((url) => {
+          window.location.href = url;
+        }),
+      gotToLocalPrivateNetworks: /* @ngInject */ (
+        getUAppUrl,
+        projectId,
+      ) => () =>
+        getUAppUrl(
+          'public-cloud',
+          `#/pci/projects/${projectId}/private-networks/localZone`,
+        ).then((url) => {
+          window.location.href = url;
         }),
       attachPrivateNetwork: /* @ngInject */ (
         $state,

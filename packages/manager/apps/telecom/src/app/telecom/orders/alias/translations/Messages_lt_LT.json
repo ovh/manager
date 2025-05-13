@@ -1,7 +1,0 @@
-{
-  "telecom_orders_alias_title": "Užsakyti numerius",
-  "telecom_orders_alias_billing_account_title": "Telefonijos grupė",
-  "telecom_orders_alias_billing_account_label": "Pasirinkite telefonijos grupę:",
-  "telecom_orders_alias_billing_submit_label": "Užsakyti numerį",
-  "telecom_orders_alias_billing_loading_error": "Negalima įkelti telefonijos grupių"
-}

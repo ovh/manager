@@ -1,0 +1,11 @@
+{
+  "telephony_line_answer_default_voicemail_search": "Buscar un servicio",
+  "telephony_line_answer_default_voicemail_title": "Solución de correo por defecto",
+  "telephony_line_answer_default_voicemail_config": "Configuración actual",
+  "telephony_line_answer_default_voicemail_change": "Aplicar",
+  "telephony_line_answer_default_voicemail_label": "Utilizar el correo del:",
+  "telephony_line_answer_default_voicemail_bulk_all_success": "El mensaje por defecto se ha aplicado a los servicios seleccionados.",
+  "telephony_line_answer_default_voicemail_bulk_some_success": "La solución de correo por defecto se ha aplicado a {{ count }} de los servicios seleccionados.",
+  "telephony_line_answer_default_voicemail_bulk_error": "No se ha podido aplicar el mensaje por defecto a los siguientes servicios:",
+  "telephony_line_answer_default_voicemail_bulk_on_error": "¡Vaya! Se ha producido un error al aplicar la mensajería por defecto."
+}

@@ -1,0 +1,13 @@
+{
+  "hosting_multisite_git_association_removal_ask_confirmation": "Vuoi eliminare il contenuto della directory<b> {{ path }}</b>?",
+  "hosting_multisite_git_association_removal_warning_title": "Eliminazione di Git",
+  "hosting_multisite_git_association_removal_warning": "Elimineremo l'associazione con Git.",
+  "hosting_multisite_git_association_delete_success_message": "La tua richiesta di eliminazione è stata presa in carico correttamente.",
+  "hosting_multisite_git_association_delete_error_message": "Si è verificato un errore: {{ error }}.",
+  "hosting_multisite_git_association_removal_warning_delete_dir": "Elimineremo l'associazione con Git e il contenuto della directory.",
+  "hosting_multisite_git_association_removal_confirmation_title": "Eliminare l'associazione di Git",
+  "hosting_multisite_git_association_confirm": "Confermare",
+  "hosting_multisite_git_association_removal_next": "Continua",
+  "hosting_multisite_git_association_removal_description_part_1": "Stai per eliminare l'associazione di Git.",
+  "hosting_multisite_git_association_removal_description_part_2": "L'eliminazione si applicherà a tutti i domini che puntano alla tua directory."
+}

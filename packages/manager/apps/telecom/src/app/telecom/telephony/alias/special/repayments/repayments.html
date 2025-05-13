@@ -1,0 +1,115 @@
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div class="row" data-ng-if="!$ctrl.loading">
+    <div class="col-lg-12">
+        <h2 data-translate="telephony_alias_special_repayments_title"></h2>
+        <p data-translate="telephony_alias_special_repayments_subtitle"></p>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3
+                    class="oui-heading_underline"
+                    data-translate="telephony_alias_special_transfer_title"
+                ></h3>
+                <dl>
+                    <dt
+                        data-translate="telephony_alias_special_transfer_pending"
+                    ></dt>
+                    <dd
+                        data-translate="telephony_alias_special_repayment_price"
+                        data-translate-values="{ 'price': $ctrl.getRepayementsTotalPrice($ctrl.repaymentsInfos.pendingRepayments) }"
+                    ></dd>
+                    <dt
+                        data-translate="telephony_alias_special_transfer_available"
+                    ></dt>
+                    <dd
+                        data-translate="telephony_alias_special_repayment_price"
+                        data-translate-values="{ 'price': $ctrl.getRepayementsTotalPrice($ctrl.repaymentsInfos.availableRepayments) }"
+                    ></dd>
+                </dl>
+            </div>
+
+            <div class="col-md-6">
+                <h3
+                    class="oui-heading_underline"
+                    data-translate="telephony_alias_special_fees_title"
+                ></h3>
+                <dl>
+                    <dt
+                        data-translate="telephony_alias_special_fees_to_pay"
+                    ></dt>
+                    <dd
+                        data-translate="telephony_alias_special_repayment_price"
+                        data-translate-values="{ 'price': $ctrl.getRepayementsTotalPrice($ctrl.repaymentsInfos.feesToPay) }"
+                    ></dd>
+                </dl>
+            </div>
+        </div>
+
+        <oui-datagrid
+            class="my-5"
+            data-rows="$ctrl.repayments"
+            data-page-size="25"
+            data-on-page-change="$ctrl.onPageChanged($pagination)"
+            data-on-sort-change="$ctrl.onSortChanged($sort)"
+        >
+            <oui-datagrid-column
+                data-title="::'telephony_alias_special_transfer_date' | translate"
+                data-property="creationDatetime"
+                data-type="string"
+                data-searchable
+                data-sortable
+                data-filterable
+            >
+                <span
+                    data-ng-bind="::$row.creationDatetime | date:'dd-MM-yyyy HH:mm:ss'"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_alias_special_transfer_calling' | translate"
+                data-property="calling"
+                data-type="string"
+                data-searchable
+                data-filterable
+            >
+                <span data-ng-bind="::$row.calling | tucPhoneNumber"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_alias_special_transfer_duration' | translate"
+                data-property="duration"
+                data-type="number"
+                data-filterable
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_alias_special_transfer_operator' | translate"
+                data-property="operator"
+                data-type="string"
+                data-searchable
+                data-filterable
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_alias_special_transfer_transfer' | translate"
+                data-property="price"
+                data-type="number"
+                data-filterable
+            >
+                <span
+                    data-ng-bind="::$row.price | currency : $ctrl.currency : 3"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_alias_special_transfer_fees' | translate"
+                data-property="price"
+                data-type="number"
+                data-filterable
+            >
+                <span
+                    data-ng-bind="::$row.isFee ? ($row.price | currency) : '-'"
+                ></span>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </div>
+</div>

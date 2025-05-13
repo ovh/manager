@@ -1,0 +1,21 @@
+{
+  "hub_order_tracking_title": "Dernière commande",
+  "hub_order_tracking_see_all": "Voir mes commandes",
+  "hub_order_tracking_error": "Impossible de récupérer le suivi de commande",
+  "hub_order_tracking_order_id": "N° {{orderId}}",
+  "order_tracking_history_DELIVERY": "Préparation de votre commande",
+  "order_tracking_history_FRAUD_CHECK": "Commande en cours de validation",
+  "order_tracking_history_FRAUD_DOCS_REQUESTED": "En attente de documents justificatifs",
+  "order_tracking_history_FRAUD_MANUAL_REVIEW": "Vérification de votre commande",
+  "order_tracking_history_FRAUD_REFUSED": "Commande refusée",
+  "order_tracking_history_INVOICE_IN_PROGRESS": "Votre commande est disponible",
+  "order_tracking_history_INVOICE_SENT": "Votre facture est disponible",
+  "order_tracking_history_ORDER_ACCEPTED": "Commande acceptée",
+  "order_tracking_history_ORDER_STARTED": "Prise en compte de votre commande",
+  "order_tracking_history_PAYMENT_CONFIRMED": "Paiement validé",
+  "order_tracking_history_PAYMENT_INITIATED": "Paiement en cours de validation",
+  "order_tracking_history_PAYMENT_RECEIVED": "Paiement reçu",
+  "order_tracking_history_REGISTERED_PAYMENT_INITIATED": "Paiement en cours de validation",
+  "order_tracking_history_custom_payment_waiting": "Paiement non reçu",
+  "order_tracking_history_custom_creation": "Création de votre commande"
+}

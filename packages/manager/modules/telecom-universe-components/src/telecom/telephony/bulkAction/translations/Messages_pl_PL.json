@@ -1,1 +1,26 @@
-{"telephony_bulk_action_apply_to_all":"Appliquer à plusieurs services","telephony_bulk_action_apply_to_alias":"Appliquer à plusieurs numéros","telephony_bulk_action_apply_to_line":"Appliquer à plusieurs lignes","telephony_bulk_action_apply_to_number":"Appliquer à plusieurs numéros","telephony_bulk_action_apply_to_service_explain":"Choisissez les services auxquels appliquer les changements. Cette action remplacera toute configuration existante.","telephony_bulk_action_modal_all_billing_account":"Wszystkie grupy","telephony_bulk_action_modal_search":"Szukaj","telephony_bulk_action_modal_select_all":"Wybierz wszystko","telephony_bulk_action_modal_select_all_title":"Sélectionner tous les services de la liste","telephony_bulk_action_modal_unselect_all":"Usuń wszystkie zaznaczenia","telephony_bulk_action_modal_unselect_all_title":"Désélectionner tous les services de la liste","telephony_bulk_action_modal_selected_count":"{{ count }} services sélectionnés","telephony_bulk_action_modal_selected_count_single":"{{ count }} service sélectionné","telephony_bulk_action_modal_service_updated":"service modifié"}
+{
+  "telephony_bulk_action_apply_to_all": "Appliquer à plusieurs services",
+  "telephony_bulk_action_apply_to_alias": "Appliquer à plusieurs numéros",
+  "telephony_bulk_action_apply_to_line": "Appliquer à plusieurs lignes",
+  "telephony_bulk_action_apply_to_number": "Appliquer à plusieurs numéros",
+  "telephony_bulk_action_apply_to_service_explain": "Choisissez les services auxquels appliquer les changements. Cette action remplacera toute configuration existante.",
+  "telephony_bulk_action_modal_all_billing_account": "Wszystkie grupy",
+  "telephony_bulk_action_modal_search": "Szukaj",
+  "telephony_bulk_action_modal_select_all": "Wybierz wszystko",
+  "telephony_bulk_action_modal_select_all_title": "Sélectionner tous les services de la liste",
+  "telephony_bulk_action_modal_unselect_all": "Usuń wszystkie zaznaczenia",
+  "telephony_bulk_action_modal_unselect_all_title": "Désélectionner tous les services de la liste",
+  "telephony_bulk_action_modal_selected_count": "{{ count }} services sélectionnés",
+  "telephony_bulk_action_modal_selected_count_single": "{{ count }} service sélectionné",
+  "telephony_bulk_action_modal_service_updated": "service modifié",
+  "telephony_bulk_action_cancel": "Anuluj",
+  "telephony_bulk_action_submit": "Zatwierdź",
+  "telephony_bulk_action_service_type_alias": "Numer",
+  "telephony_bulk_action_service_feature_type_sip": "Linia SIP",
+  "telephony_bulk_action_service_feature_type_mgcp": "Linia SIP",
+  "telephony_bulk_action_service_feature_type_fax": "FAKS",
+  "telephony_bulk_action_service_feature_type_freefax": "FreeFax",
+  "telephony_bulk_action_service_feature_type_trunk": "Trunk",
+  "telephony_bulk_action_service_feature_type_plugAndFax": "Plug &amp; Fax",
+  "telephony_bulk_action_service_feature_type_voicefax": "Faks"
+}

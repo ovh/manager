@@ -1,0 +1,19 @@
+{
+  "xdsl_access_list_title": "Meine Dienste",
+  "xlds_access_list_copper_closure_info": "Mehr Informationen zum Schließen von Kupfer.",
+  "xdsl_access_list_service_name": "Name des Dienstes",
+  "xdsl_access_list_service": "Dienst",
+  "xdsl_access_list_migration": "Glasfasermigration",
+  "xdsl_access_list_copper_closure_date": "Datum der Kupferabschaltung",
+  "xdsl_access_list_actions": "Aktionen",
+  "xdsl_access_list_copper": "xDSL-Leitung",
+  "xdsl_access_list_fiber": "FTTH-Leitung",
+  "xdsl_access_list_not_eligible": "Nicht wählbar",
+  "xdsl_access_list_no_building": "Kein Gebäude",
+  "xdsl_access_list_eligible": "wählbar",
+  "xdsl_access_list_not_concerned": "Betrifft mich nicht",
+  "xdsl_access_list_not_available": "Nicht verfügbar",
+  "xdsl_access_list_migrate": "Zur Glasfaser migrieren",
+  "xdsl_access_list_support": "Support kontaktieren",
+  "xdsl_access_list_not_yet_eligible": "Derzeit nicht qualifiziert"
+}

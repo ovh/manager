@@ -1,0 +1,16 @@
+{
+  "log_streams_title": "Data stream",
+  "log_streams_back_button": "Back to logs",
+  "log_streams_select_account": "Select LDP account",
+  "log_streams_account_label": "LDP account",
+  "log_streams_add_stream": "Create a data stream",
+  "log_streams_filter": "Filter",
+  "log_streams_colomn_name": "Data stream",
+  "log_streams_colomn_description": "Description",
+  "log_streams_colomn_indexation": "Indexation",
+  "log_streams_colomn_retention": "Retention",
+  "log_streams_colomn_subscriptions": "Subscriptions",
+  "log_streams_no_results": "No data streams on this LDP account",
+  "log_streams_subscribe": "Subscribe",
+  "log_streams_unsubscribe": "Unsubscribe"
+}

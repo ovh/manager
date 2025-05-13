@@ -1,3 +1,911 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [8.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.18.0...@ovh-ux/manager-sms@8.18.1) (2025-03-31)
+
+
+### Bug Fixes
+
+* **telecom.sms:** remove autocredit for smpp account ([d9e93a6](https://github.com/ovh/manager/commit/d9e93a606bf48b26a70542694a1c059a42ce9d66)), closes [#MANAGER-17527](https://github.com/ovh/manager/issues/MANAGER-17527)
+
+
+
+
+
+# [8.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.17.6...@ovh-ux/manager-sms@8.18.0) (2025-02-20)
+
+
+### Features
+
+* implement changelog button on angular stack ([#15174](https://github.com/ovh/manager/issues/15174)) ([a965c89](https://github.com/ovh/manager/commit/a965c8980b18a4eb7b17ae996bef52cb43e07a4d))
+
+
+
+
+
+## [8.17.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.17.5...@ovh-ux/manager-sms@8.17.6) (2024-11-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
+## [8.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.17.4...@ovh-ux/manager-sms@8.17.5) (2024-09-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
+## [8.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.17.3...@ovh-ux/manager-sms@8.17.4) (2024-09-12)
+
+
+### Bug Fixes
+
+* **sms:** resolve file upload issue ([#13042](https://github.com/ovh/manager/issues/13042)) ([9b809bd](https://github.com/ovh/manager/commit/9b809bdc083e1a8a81348863d8e0deea1bd3cb70))
+
+
+
+
+
+## [8.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.17.2...@ovh-ux/manager-sms@8.17.3) (2024-08-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
+## [8.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.17.1...@ovh-ux/manager-sms@8.17.2) (2024-08-12)
+
+
+### Bug Fixes
+
+* **telecom.sms:** implement iceberg call for blacklisted receivers ([#12619](https://github.com/ovh/manager/issues/12619)) ([3e1808a](https://github.com/ovh/manager/commit/3e1808a2ddbe513df488a7011fc738c37cd16205))
+
+
+
+
+
+## [8.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.17.0...@ovh-ux/manager-sms@8.17.1) (2024-05-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
+# [8.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.16.1...@ovh-ux/manager-sms@8.17.0) (2024-04-04)
+
+
+### Features
+
+* **signup:** add searchable country list and update labels ([#10625](https://github.com/ovh/manager/issues/10625)) ([a263199](https://github.com/ovh/manager/commit/a263199b06a47298eb7bf0a99814b38da3b544c2))
+
+
+
+
+
+## [8.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.16.0...@ovh-ux/manager-sms@8.16.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2750] ([c401f56](https://github.com/ovh/manager/commit/c401f566773fd0b52f4428d4b7b9c3122d68acc3))
+
+
+
+
+
+# [8.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.15.0...@ovh-ux/manager-sms@8.16.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
+# [8.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.14.1...@ovh-ux/manager-sms@8.15.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+## [8.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.14.0...@ovh-ux/manager-sms@8.14.1) (2024-01-29)
+
+
+### Bug Fixes
+
+* **telecom.sms:** refactor and add filter for export ([#10639](https://github.com/ovh/manager/issues/10639)) ([97563a7](https://github.com/ovh/manager/commit/97563a7a0247c0a45fcf52f2b0dc3aa2e2a5cb0f))
+
+
+
+
+
+# [8.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.11...@ovh-ux/manager-sms@8.14.0) (2024-01-08)
+
+
+### Features
+
+* **telecom:** delete batch history ([#10314](https://github.com/ovh/manager/issues/10314)) ([1a71933](https://github.com/ovh/manager/commit/1a7193334d2344e4d74c11730c2de17323186b2b))
+
+
+
+
+
+## [8.13.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.10...@ovh-ux/manager-sms@8.13.11) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
+## [8.13.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.9...@ovh-ux/manager-sms@8.13.10) (2023-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
+## [8.13.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.8...@ovh-ux/manager-sms@8.13.9) (2023-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
+## [8.13.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.7...@ovh-ux/manager-sms@8.13.8) (2023-10-16)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+
+
+
+
+
+## [8.13.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.6...@ovh-ux/manager-sms@8.13.7) (2023-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
+## [8.13.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.5...@ovh-ux/manager-sms@8.13.6) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
+## [8.13.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.4...@ovh-ux/manager-sms@8.13.5) (2023-08-30)
+
+
+### Bug Fixes
+
+* **telecom.sms:** fix issue with index if data grid is sorted ([#9879](https://github.com/ovh/manager/issues/9879)) ([a135843](https://github.com/ovh/manager/commit/a135843b0081eb840eee11fac7e5139a5a209f25))
+
+
+
+
+
+## [8.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.3...@ovh-ux/manager-sms@8.13.4) (2023-08-17)
+
+
+### Bug Fixes
+
+* **telecom.sms:** use a new systemid format for smpp ([#9709](https://github.com/ovh/manager/issues/9709)) ([263624c](https://github.com/ovh/manager/commit/263624cce8eb15560a575b2c377363f3170de5fc))
+
+
+
+
+
+## [8.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.2...@ovh-ux/manager-sms@8.13.3) (2023-07-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
+## [8.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.1...@ovh-ux/manager-sms@8.13.2) (2023-04-20)
+
+
+### Bug Fixes
+
+* add some missing translations ([#9107](https://github.com/ovh/manager/issues/9107)) ([f838b0e](https://github.com/ovh/manager/commit/f838b0e36562026970ed3db178c8f179edef7d51))
+
+
+
+
+
+## [8.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.0...@ovh-ux/manager-sms@8.13.1) (2023-03-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2110] ([24d5525](https://github.com/ovh/manager/commit/24d5525e6cca4d632f23a24b7f4be065e5f08c8b))
+* remove unused translations [CDS] ([a926c1c](https://github.com/ovh/manager/commit/a926c1cdea478cce4a379ef35172d0f6e427085b))
+
+
+
+
+
+# [8.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.12.1...@ovh-ux/manager-sms@8.13.0) (2023-03-01)
+
+
+### Features
+
+* add tracking in product listing pages ([aded2e5](https://github.com/ovh/manager/commit/aded2e522bafaee9416589e96a375a0db5b72419))
+
+
+
+
+
+## [8.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.12.0...@ovh-ux/manager-sms@8.12.1) (2023-02-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2103] ([#8895](https://github.com/ovh/manager/issues/8895)) ([0286a68](https://github.com/ovh/manager/commit/0286a68b61f6e6b90d8c14200807e9e9246cb865))
+
+
+
+
+
+# [8.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.11.1...@ovh-ux/manager-sms@8.12.0) (2023-02-09)
+
+
+### Features
+
+* **telecom.sms:** sms smpp ga ([#8539](https://github.com/ovh/manager/issues/8539)) ([109ce03](https://github.com/ovh/manager/commit/109ce035e79b3014b1bbe3752a31b53582861817))
+
+
+
+
+
+## [8.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.11.0...@ovh-ux/manager-sms@8.11.1) (2023-01-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
+# [8.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.10.0...@ovh-ux/manager-sms@8.11.0) (2022-12-19)
+
+
+### Features
+
+* **dedicated.otrs:** paginate support tickets ([#8540](https://github.com/ovh/manager/issues/8540)) ([24e7308](https://github.com/ovh/manager/commit/24e73084d5db1b364989b7817b759719272b1fce))
+
+
+
+
+
+# [8.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.9.2...@ovh-ux/manager-sms@8.10.0) (2022-12-12)
+
+
+### Features
+
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+
+
+
+
+
+## [8.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.9.1...@ovh-ux/manager-sms@8.9.2) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
+## [8.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.9.0...@ovh-ux/manager-sms@8.9.1) (2022-10-10)
+
+
+### Bug Fixes
+
+* **batches:** add default value for parameter ([#8119](https://github.com/ovh/manager/issues/8119)) ([448ffe5](https://github.com/ovh/manager/commit/448ffe5b335e9ef4850cc97538193bf92e9755bb))
+
+
+
+# [8.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.8.1...@ovh-ux/manager-sms@8.9.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+
+
+### Features
+
+* **telecom:** add order cta to sms listing ([ca44c7a](https://github.com/ovh/manager/commit/ca44c7ad11ba225cdddec738de31de28a10628d9))
+
+
+
+## [8.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.8.0...@ovh-ux/manager-sms@8.8.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+
+
+
+# [8.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.7.6...@ovh-ux/manager-sms@8.8.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **links:** remove top target ([b762db3](https://github.com/ovh/manager/commit/b762db3180629c305b0228a62b1ab15f81c04ca4))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **pnr:** add empty page for telecom sms section ([c6b27ad](https://github.com/ovh/manager/commit/c6b27addeed5a581bbda21a14f7b0657e7e89f01))
+
+
+
+## [8.7.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.7.5...@ovh-ux/manager-sms@8.7.6) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+## [8.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.7.4...@ovh-ux/manager-sms@8.7.5) (2022-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+
+
+
+## [8.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.7.3...@ovh-ux/manager-sms@8.7.4) (2022-04-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1560] ([23ac021](https://github.com/ovh/manager/commit/23ac02141679d82b82cd759e510e71d1fb80c74f))
+
+
+
+## [8.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.7.2...@ovh-ux/manager-sms@8.7.3) (2022-04-12)
+
+
+### Bug Fixes
+
+* add target _top to links ([2d375e6](https://github.com/ovh/manager/commit/2d375e6ac23773f6d4f9780aa3fa8df903692adc))
+
+
+
+## [8.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.7.1...@ovh-ux/manager-sms@8.7.2) (2022-04-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1541] ([5037d3e](https://github.com/ovh/manager/commit/5037d3eec6a315a85ccd2d15a3b23ed79654d24f))
+* **i18n:** add missing translations [CDS 1550] ([52ead43](https://github.com/ovh/manager/commit/52ead434c4be6fec5e2b3ac5a5e7c8111abc49a3))
+* **i18n:** add missing translations [CDS 1552] ([0dfc45f](https://github.com/ovh/manager/commit/0dfc45fc80e05c92cbc8ea0b7dbe968064d65c66))
+* **telecom.sms.compose:** rework receivers list display ([b94ffc2](https://github.com/ovh/manager/commit/b94ffc227c52c59e0b0155ea49ddd5ed82937901))
+
+
+
+## [8.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.7.0...@ovh-ux/manager-sms@8.7.1) (2022-03-24)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.3` ([#6745](https://github.com/ovh/manager/issues/6745)) ([38d1144](https://github.com/ovh/manager/commit/38d11445b3671755758d153a4f4a166c7946705c)), closes [ovh/ovh-ui-kit#777](https://github.com/ovh/ovh-ui-kit/issues/777)
+
+
+
+# [8.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.6.5...@ovh-ux/manager-sms@8.7.0) (2022-03-23)
+
+
+### Features
+
+* cross-sell and up-sell updates ([#6494](https://github.com/ovh/manager/issues/6494)) ([5018416](https://github.com/ovh/manager/commit/501841638ba08c1854429bfd7dd4e65f3c6b4832))
+
+
+
+## [8.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.6.4...@ovh-ux/manager-sms@8.6.5) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+
+## [8.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.6.3...@ovh-ux/manager-sms@8.6.4) (2022-01-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.2` ([#6335](https://github.com/ovh/manager/issues/6335)) ([b91ce69](https://github.com/ovh/manager/commit/b91ce698bf1d230de112e1896626574e1553769b))
+
+
+
+## [8.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.6.2...@ovh-ux/manager-sms@8.6.3) (2022-01-06)
+
+
+### Bug Fixes
+
+* **sms.sms.compose:** fix remaining char counter ([#6246](https://github.com/ovh/manager/issues/6246)) ([0d9af16](https://github.com/ovh/manager/commit/0d9af16bf224be2ac85e310a7bcce865d04f6ee9))
+
+
+
+## [8.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.6.1...@ovh-ux/manager-sms@8.6.2) (2022-01-03)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.1` ([defea82](https://github.com/ovh/manager/commit/defea8213431605013ebc69646267fe568adaccb))
+
+
+
+## [8.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.6.0...@ovh-ux/manager-sms@8.6.1) (2021-12-14)
+
+
+### Bug Fixes
+
+* **options.recredit:** update recredit info message ([#5966](https://github.com/ovh/manager/issues/5966)) ([14e2575](https://github.com/ovh/manager/commit/14e2575c28f713c27477b268d914c32fdde36ff6))
+
+
+
+# [8.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.5.4...@ovh-ux/manager-sms@8.6.0) (2021-10-28)
+
+
+### Features
+
+* **navbar.marketplace:** add marketplace to top navbar ([#5828](https://github.com/ovh/manager/issues/5828)) ([815c49f](https://github.com/ovh/manager/commit/815c49f4f3cf7a598aee79d99798033ac5952bba))
+
+
+
+## [8.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.5.3...@ovh-ux/manager-sms@8.5.4) (2021-10-26)
+
+
+### Bug Fixes
+
+* **dev-deps:** upgrade @ovh-ux/component-rollup-config to `v11.0.0` ([3ae659b](https://github.com/ovh/manager/commit/3ae659bea59244fd5660375b9dac52055cc374b0))
+* **locales:** remove es_US translations files ([#5709](https://github.com/ovh/manager/issues/5709)) ([3894a13](https://github.com/ovh/manager/commit/3894a1388393ea08b51e08bbfda416e7746fc8ca)), closes [#5685](https://github.com/ovh/manager/issues/5685)
+
+
+
+## [8.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.5.2...@ovh-ux/manager-sms@8.5.3) (2021-09-30)
+
+
+### Bug Fixes
+
+* **sms.compose:** apply corresponding coding to the message ([#5656](https://github.com/ovh/manager/issues/5656)) ([57ea78a](https://github.com/ovh/manager/commit/57ea78ab53ccdef7f912ddad069d8ccabeaebe28))
+
+
+
+## [8.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.5.1...@ovh-ux/manager-sms@8.5.2) (2021-09-23)
+
+
+### Bug Fixes
+
+* **sms:** estimate characters counter ([#5599](https://github.com/ovh/manager/issues/5599)) ([3b21dc1](https://github.com/ovh/manager/commit/3b21dc19952f1efeeec6240f3d37218e34449440))
+
+
+
+## [8.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.5.0...@ovh-ux/manager-sms@8.5.1) (2021-09-07)
+
+
+### Bug Fixes
+
+* **translations:** refresh translation after transition ([#5405](https://github.com/ovh/manager/issues/5405)) ([9d940a2](https://github.com/ovh/manager/commit/9d940a218fbb327fc2f7c93c6b473ea44707c009))
+
+
+
+# [8.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.9...@ovh-ux/manager-sms@8.5.0) (2021-08-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.1.0` ([#5429](https://github.com/ovh/manager/issues/5429)) ([7099de9](https://github.com/ovh/manager/commit/7099de97320cdbdac5652b2c7ed70327251ed749))
+
+
+### Features
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+
+
+
+## [8.4.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.8...@ovh-ux/manager-sms@8.4.9) (2021-07-28)
+
+
+### Bug Fixes
+
+* bump @ovh-ux/ui-kit to v4.7.0 ([#5315](https://github.com/ovh/manager/issues/5315)) ([bd9b540](https://github.com/ovh/manager/commit/bd9b54015511a001a93866e43c48244fb81af907))
+
+
+
+## [8.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.7...@ovh-ux/manager-sms@8.4.8) (2021-07-26)
+
+
+### Bug Fixes
+
+* **sms:** update sms download from date ([#5260](https://github.com/ovh/manager/issues/5260)) ([2effeed](https://github.com/ovh/manager/commit/2effeed4c8db694ace6a4460b87da0f3372e8b19))
+
+
+
+## [8.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.6...@ovh-ux/manager-sms@8.4.7) (2021-07-19)
+
+
+### Bug Fixes
+
+* **sms:** update sms download from date ([#5260](https://github.com/ovh/manager/issues/5260)) ([2effeed](https://github.com/ovh/manager/commit/2effeed4c8db694ace6a4460b87da0f3372e8b19))
+
+
+
+## [8.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.5...@ovh-ux/manager-sms@8.4.6) (2021-06-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+
+
+
+## [8.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.4...@ovh-ux/manager-sms@8.4.5) (2021-06-16)
+
+
+### Bug Fixes
+
+* **scss:** remove deprecated tilde imports ([3f2acd0](https://github.com/ovh/manager/commit/3f2acd008ad5bff397ab6ecf35437a506b4b90a5))
+
+
+
+## [8.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.3...@ovh-ux/manager-sms@8.4.4) (2021-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.6.0 ([#4958](https://github.com/ovh/manager/issues/4958)) ([e1ad601](https://github.com/ovh/manager/commit/e1ad60151c7b5112138b23224282a64fce226def))
+
+
+
+## [8.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.2...@ovh-ux/manager-sms@8.4.3) (2021-05-06)
+
+
+### Bug Fixes
+
+* **sms:** remaining chars estimate ([#4896](https://github.com/ovh/manager/issues/4896)) ([341b898](https://github.com/ovh/manager/commit/341b898667510e47b9ed0c22a54b39e5161caba6))
+
+
+
+## [8.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.1...@ovh-ux/manager-sms@8.4.2) (2021-04-09)
+
+
+### Bug Fixes
+
+* **deps:** add missing deps related to @ovh-ux/manager-advices ([#4727](https://github.com/ovh/manager/issues/4727)) ([73bd7e5](https://github.com/ovh/manager/commit/73bd7e537ac87667de6305b13293c5c9213c47ad)), closes [#4597](https://github.com/ovh/manager/issues/4597)
+
+
+
+## [8.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.0...@ovh-ux/manager-sms@8.4.1) (2021-04-08)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.5.0 ([#4631](https://github.com/ovh/manager/issues/4631)) ([7909d4b](https://github.com/ovh/manager/commit/7909d4b5b8001de15204fd632fd08b6814c4a786))
+
+
+
+# [8.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.3.1...@ovh-ux/manager-sms@8.4.0) (2021-04-07)
+
+
+### Features
+
+* add batch 2 advices ([#4597](https://github.com/ovh/manager/issues/4597)) ([69e5fe5](https://github.com/ovh/manager/commit/69e5fe5bfe813f4ef0e63e1acd8f128dc4590b73))
+
+
+
+## [8.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.3.0...@ovh-ux/manager-sms@8.3.1) (2021-03-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([5f3eda1](https://github.com/ovh/manager/commit/5f3eda16abd4df3b46cdde241c827a1d1d6dc80c))
+
+
+
+# [8.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.2.1...@ovh-ux/manager-sms@8.3.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* **deps:** bump @ovh-ux/ui-kit to v4.4.4 ([#4430](https://github.com/ovh/manager/issues/4430)) ([2f12ce6](https://github.com/ovh/manager/commit/2f12ce6b724fe90a98ce8b7cd02ace6803527306))
+* **i18n:** add missing translations [CDS 805] ([27bbbf4](https://github.com/ovh/manager/commit/27bbbf49daf87035e8c542d420e16461f43d66b1))
+* add missing translations ([466875b](https://github.com/ovh/manager/commit/466875b37a3be1b5fea75e92785a99be3640ae89))
+* add missing translations for breadcrumb ([d39cd77](https://github.com/ovh/manager/commit/d39cd77d980a52a0d3b5ebbd42f982094ab7b286))
+* refresh translation before entering state ([8596ee1](https://github.com/ovh/manager/commit/8596ee1c09fa1d877ee5915aef81231fa00aeb95))
+* **guides:** inject translations ([0e56c60](https://github.com/ovh/manager/commit/0e56c60416956ea2694e71db45cf8fba2ad6f825))
+
+
+### Features
+
+* add breadcrumb ([a64a5f0](https://github.com/ovh/manager/commit/a64a5f0e081ab6acd2f6aad4d272d5c1cbebab3a))
+
+
+
+## [8.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.2.0...@ovh-ux/manager-sms@8.2.1) (2021-02-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
+
+
+
+# [8.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.1.0...@ovh-ux/manager-sms@8.2.0) (2021-01-27)
+
+
+### Features
+
+* add some missing tracking ([#4244](https://github.com/ovh/manager/issues/4244)) ([9c240c9](https://github.com/ovh/manager/commit/9c240c9166be35655e80e41b8bf1824e60d29734))
+
+
+
+# [8.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.13...@ovh-ux/manager-sms@8.1.0) (2021-01-20)
+
+
+### Features
+
+* add some missing tracking ([#4244](https://github.com/ovh/manager/issues/4244)) ([c263813](https://github.com/ovh/manager/commit/c263813cb2766efd5c3bfb8fd883d99debfe27da))
+
+
+
+## [8.0.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.12...@ovh-ux/manager-sms@8.0.13) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+* **i18n:** add missing translations [CDS 739] ([00dadde](https://github.com/ovh/manager/commit/00daddebbbd5ba4471902316aba5a20565af1cbf))
+* **sms.batches.create:** fix lazyloaded url ([b7302a2](https://github.com/ovh/manager/commit/b7302a2ba71b36149c1d1619b004a4cf8453d6e1))
+
+
+
+## [8.0.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.11...@ovh-ux/manager-sms@8.0.12) (2021-01-04)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([23b469f](https://github.com/ovh/manager/commit/23b469f6264610c47076da908f688e8069f19c76))
+
+
+
+## [8.0.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.10...@ovh-ux/manager-sms@8.0.11) (2020-12-22)
+
+
+### Bug Fixes
+
+* update to use latest list layout ([c0cad60](https://github.com/ovh/manager/commit/c0cad603c8cce8ca8833c58c95d444aebfff7622))
+* **sms:** display the full message in incoming sms popup ([#4158](https://github.com/ovh/manager/issues/4158)) ([6a9e047](https://github.com/ovh/manager/commit/6a9e047492a2eac5fbf941bfe4419f5b79125baa))
+
+
+
+## [8.0.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.9...@ovh-ux/manager-sms@8.0.10) (2020-11-19)
+
+
+### Bug Fixes
+
+* update annotation comment ([e1707d0](https://github.com/ovh/manager/commit/e1707d085fb0f6940c91aa00d795d745bd0b155a))
+
+
+
+## [8.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.8...@ovh-ux/manager-sms@8.0.9) (2020-11-16)
+
+
+### Bug Fixes
+
+* **sms.batches.create:** fix empty recipients array and slotID ([#3990](https://github.com/ovh/manager/issues/3990)) ([90e7ff8](https://github.com/ovh/manager/commit/90e7ff846ed1b6b17a35bd38715343c77c211336))
+* **translations:** clean translations files ([#4008](https://github.com/ovh/manager/issues/4008)) ([3dfc129](https://github.com/ovh/manager/commit/3dfc1296ce2e702b08b1f54c007123ad0c55a53a))
+
+
+
+## [8.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.7...@ovh-ux/manager-sms@8.0.8) (2020-10-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 627] ([8abdcc9](https://github.com/ovh/manager/commit/8abdcc9ebbb092968f07f78e5ff688796eb651f3))
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
+## [8.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.6...@ovh-ux/manager-sms@8.0.7) (2020-10-27)
+
+
+### Bug Fixes
+
+* **sms:** correct typo on sms module injected provider ([#3930](https://github.com/ovh/manager/issues/3930)) ([2ac12a5](https://github.com/ovh/manager/commit/2ac12a539071077ecc2de184463ce0c949ebb5ba))
+
+
+
+## [8.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.5...@ovh-ux/manager-sms@8.0.6) (2020-10-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 626] ([12af625](https://github.com/ovh/manager/commit/12af62579f42c29f86e629306a124445f236996e))
+
+
+
+## [8.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.4...@ovh-ux/manager-sms@8.0.5) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [8.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.3...@ovh-ux/manager-sms@8.0.4) (2020-09-18)
+
+
+### Bug Fixes
+
+* allow promise chaining ([1f04421](https://github.com/ovh/manager/commit/1f04421631bbedcc89aab01d1801e42125c742cf))
+* bump tuc ([2ffd4ab](https://github.com/ovh/manager/commit/2ffd4ab6d41ad57c2f4717b839766ffe511cb69d))
+
+
+
+## [8.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.2...@ovh-ux/manager-sms@8.0.3) (2020-08-18)
+
+
+### Bug Fixes
+
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+* **locale:** use locale/language from environment ([472f3c7](https://github.com/ovh/manager/commit/472f3c728a02d34dd4d956af6562bfc3f0b42d70))
+
+
+
+## [8.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.1...@ovh-ux/manager-sms@8.0.2) (2020-08-05)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.2.3 ([#3376](https://github.com/ovh/manager/issues/3376)) ([fd461ba](https://github.com/ovh/manager/commit/fd461ba26ce7d77328c6951594e3c49ffee51b19))
+
+
+
+## [8.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.0...@ovh-ux/manager-sms@8.0.1) (2020-07-29)
+
+
+### Bug Fixes
+
+* **deps:** use latest dependencies ([#3335](https://github.com/ovh/manager/issues/3335)) ([01d3a89](https://github.com/ovh/manager/commit/01d3a8901b7d2404f6299c4c04e1630146b6f2d8))
+
+
+
+# [8.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.8.0...@ovh-ux/manager-sms@8.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* **dropdown-menu:** remove unused icons ([0534c59](https://github.com/ovh/manager/commit/0534c59fd63d6e20f56f5c10a50d5c43e14ab590))
+* **icon:** fix oui-icon-trash_concept ([#3287](https://github.com/ovh/manager/issues/3287)) ([9347797](https://github.com/ovh/manager/commit/934779770b4db186cc4ed53caf3ca216853367c7))
+* **sms:** minor changes in order to mimic topbar ([918f4a1](https://github.com/ovh/manager/commit/918f4a11cb73450b1abee5ae0e048963f312238d))
+* **sms:** minor ui updates ([#3289](https://github.com/ovh/manager/issues/3289)) ([463b51d](https://github.com/ovh/manager/commit/463b51d8a8c738a33f00b88bde7f83757f3339b1)), closes [#3190](https://github.com/ovh/manager/issues/3190)
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+* upgrade ovh-ui-kit-bs to v4 ([d649cd7](https://github.com/ovh/manager/commit/d649cd7d566ac39d172b2e36625fde83bd99c9f5))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+* bump ovh-ui-kit-bs to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
+# [7.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.7.2...@ovh-ux/manager-sms@7.8.0) (2020-06-23)
+
+
+### Features
+
+* use feature flipping module ([3a202dd](https://github.com/ovh/manager/commit/3a202dd9f2e0ff2e4422e022aaab54d46b98cab4))
+
+
+
+## [7.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.7.1...@ovh-ux/manager-sms@7.7.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+### Reverts
+
+* Revert "fix: remove ui consistency" ([5435159](https://github.com/ovh/manager/commit/543515950323b10d054ba354ff0054c5a8a3d3d1))
+
+
+
+## [7.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.7.0...@ovh-ux/manager-sms@7.7.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies with latest version ([#3057](https://github.com/ovh/manager/issues/3057)) ([24d06ad](https://github.com/ovh/manager/commit/24d06addfaab0716e725242beae2d3d92feb8856))
+
+
+
+# [7.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.6.1...@ovh-ux/manager-sms@7.7.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+
+
+
+## [7.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.6.0...@ovh-ux/manager-sms@7.6.1) (2020-04-16)
+
+
+### Bug Fixes
+
+* use ovh-contracts-summary component ([#2650](https://github.com/ovh/manager/issues/2650)) ([1bd8d23](https://github.com/ovh/manager/commit/1bd8d2390f77c7fa3b970121070bfdd234e1809a))
+
+
+
+# [7.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.5.5...@ovh-ux/manager-sms@7.6.0) (2020-04-15)
+
+
+### Features
+
+* **sms:** lazy load sms root state ([2291467](https://github.com/ovh/manager/commit/22914675eb9e1bc87baf917210955fe13efb38e5))
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 ## [7.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.5.4...@ovh-ux/manager-sms@7.5.5) (2020-03-18)
 
 
@@ -137,7 +1045,7 @@
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 94] ([6e85f3f](https://github.com/ovh-ux/manager/commit/6e85f3f))
+* **i18n:** add missing translations [CDS 94] ([6e85f3f](https://github.com/ovh-ux/manager/commit/6e85f3f))
 
 
 
@@ -146,7 +1054,7 @@
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 93] ([92a02e2](https://github.com/ovh-ux/manager/commit/92a02e2))
+* **i18n:** add missing translations [CDS 93] ([92a02e2](https://github.com/ovh-ux/manager/commit/92a02e2))
 
 
 
@@ -155,8 +1063,8 @@
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 86] ([643b2ae](https://github.com/ovh-ux/manager/commit/643b2ae))
-* **i18n:** add missing translations [CDS 92] ([e83031b](https://github.com/ovh-ux/manager/commit/e83031b))
+* **i18n:** add missing translations [CDS 86] ([643b2ae](https://github.com/ovh-ux/manager/commit/643b2ae))
+* **i18n:** add missing translations [CDS 92] ([e83031b](https://github.com/ovh-ux/manager/commit/e83031b))
 
 
 
@@ -165,7 +1073,7 @@
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 85] ([6062b1f](https://github.com/ovh-ux/manager/commit/6062b1f))
+* **i18n:** add missing translations [CDS 85] ([6062b1f](https://github.com/ovh-ux/manager/commit/6062b1f))
 
 
 
@@ -492,6 +1400,3 @@ yarn add @ovh-ux/manager-core
 
 * **app:** add standalone app for SMS ([157a745](https://github.com/ovh-ux/manager/commit/157a745))
 * **manager-sms:** initial module import ([9aac091](https://github.com/ovh-ux/manager/commit/9aac091))
-
-
-

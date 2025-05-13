@@ -140,8 +140,11 @@ export default class CucOrderHelperService {
           case 'ASIA':
             targetURL = 'https://ca.ovh.com/asia';
             break;
+          case 'IN':
+            targetURL = 'https://ca.ovh.com/en-in';
+            break;
           case 'AU':
-            targetURL = 'https://www.ovh.com.au';
+            targetURL = 'https://ca.ovh.com/au';
             break;
           case 'CA':
             targetURL = 'https://ca.ovh.com/en';
@@ -157,6 +160,9 @@ export default class CucOrderHelperService {
             break;
           case 'QC':
             targetURL = 'https://ca.ovh.com/fr';
+            break;
+          case 'US':
+            targetURL = 'https://ovh.us';
             break;
           default:
             targetURL = 'https://www.ovh.com/fr';

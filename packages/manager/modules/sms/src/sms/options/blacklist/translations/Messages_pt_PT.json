@@ -1,6 +1,6 @@
 {
   "sms_section_back_link": "Retour aux expéditeurs",
-  "sms_senders_blacklisted_manage_title": "Gérer les expéditeurs blacklistés",
+  "sms_senders_blacklisted_manage_title": "Gerir os destinatários \"blacklistados\"",
   "sms_senders_blacklisted_information_title": "Informações",
   "sms_senders_blacklisted_information_text_1": "Liste de vos destinataires qui ont bloqué les réceptions de SMS en provenance de l’un de vos expéditeurs.",
   "sms_senders_blacklisted_information_text_2": "Si vous supprimez un numéro de la liste, la réception de SMS en provenance de vos expéditeurs sera rétablie vers ce destinataire.",
@@ -9,8 +9,8 @@
   "sms_senders_blacklisted_delete_list_success": "Suppression en cours…",
   "sms_senders_blacklisted_label_date": "Data",
   "sms_senders_blacklisted_label_number": "Número",
-  "sms_senders_blacklisted_empty": "Aucun expéditeur blacklisté.",
-  "sms_senders_blacklisted_title": "Supprimer l’expéditeur blacklisté",
-  "sms_senders_blacklisted_confirm": "Voulez-vous vraiment supprimer l’expéditeur blacklisté <b>«{{ sender }}»</b> ?",
-  "sms_senders_blacklisted_sender_ko": "Impossible de supprimer l’expéditeur blacklisté.<br/>{{error}}"
+  "sms_senders_blacklisted_empty": "Nenhum destinatário blacklistado.",
+  "sms_senders_blacklisted_title": "Eliminar o destinatário \"blacklistado\"",
+  "sms_senders_blacklisted_confirm": "Quer mesmo eliminar o destinatário \"blacklistado <b>\"{{ sender }}\"</b>?",
+  "sms_senders_blacklisted_sender_ko": "Não é possível eliminar o destinatário \"blacklistado\".<br/>{{error}}"
 }

@@ -1,0 +1,7 @@
+{
+  "cloud_connect_change_bandwidth_select": "Wybierz nową przepustowość",
+  "cloud_connect_change_bandwidth_cancel": "Anuluj",
+  "cloud_connect_change_bandwidth_confirm": "Zatwierdź",
+  "cloud_connect_change_bandwidth_error": "Wystąpił błąd podczas zmiany przepustowości: {{message}}",
+  "cloud_connect_change_bandwidth_warning": "Zamówienie <a href='{{url}}' target='_blank'>{{orderId}}</a> zostało utworzone. Upewnij się, że sprzęt po stronie klienta jest kompatybilny z zamawianą przepustowością."
+}

@@ -1,0 +1,56 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+
+.onboardingButton {
+  background: #0050d7;
+  border-radius: 26px !important;
+
+  position: absolute !important;
+  bottom: 20px !important;
+  right: 50px !important;
+  z-index: $base-z-index-popover !important;
+
+  &_padded {
+    right: 120px !important;
+  }
+}
+
+.welcomePopover {
+  width: 22.5rem !important;
+
+  min-width: unset !important;
+  max-width: unset !important;
+
+  top: 3rem !important;
+  right: 1.875rem !important;
+
+  .welcomePopoverBody {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .welcomePopoverFooter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+    min-width: 100%;
+  }
+}
+
+@media (max-width: $device-breakpoint-tablet-max-width) {
+  .welcomePopover {
+    right: 0 !important;
+
+    .welcomePopoverFooter {
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+}

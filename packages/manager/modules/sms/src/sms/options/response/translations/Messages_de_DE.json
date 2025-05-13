@@ -54,5 +54,7 @@
   "sms_options_response_tracking_remove_confirm": "Voulez-vous vraiment supprimer la notification suivante :",
   "sms_options_response_tracking_remove_option_removing": "Suppression de la notification en cours…",
   "sms_options_response_tracking_remove_option_removed": "Notification supprimée ! ",
-  "sms_options_response_tracking_remove_option_ko": "Impossible de supprimer la notification.<br/>{{error}}"
+  "sms_options_response_tracking_remove_option_ko": "Impossible de supprimer la notification.<br/>{{error}}",
+  "sms_options_response_breacrumb": "Optionen für Antworten",
+  "sms_options_response_tracking_edit_option": "Änderung der Benachrichtigung"
 }

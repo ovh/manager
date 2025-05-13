@@ -1,0 +1,8 @@
+{
+  "deleteModalError": "Se ha producido el siguiente error: {{error}}.",
+  "deleteModalCancelButton": "No, cancelar",
+  "deleteModalDeleteButton": "Sí, dar de baja",
+  "deleteModalDescription": "Al dar de baja el servicio, se borrarán definitivamente todos los datos correspondientes. ¿Quiere dar de baja el servicio?",
+  "deleteModalHeadline": "¿Dar de baja {{serviceType}}?",
+  "deleteModalHeadlineService": "el servicio"
+}

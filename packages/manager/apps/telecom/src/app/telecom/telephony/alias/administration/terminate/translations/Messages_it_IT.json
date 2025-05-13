@@ -22,5 +22,12 @@
   "telephony_alias_administration_terminate": "Disattiva",
   "telephony_alias_administration_terminate_success": "Disattivazione pianificata correttamente.",
   "telephony_alias_administration_cancel_termination": "Annulla chiusura ",
-  "telephony_alias_administration_cancel_termination_success": "Disattivazione annullata"
+  "telephony_alias_administration_cancel_termination_success": "Disattivazione annullata",
+  "telephony_alias_administration_terminate_sva_warning": "Poiché la rescissione è in corso, i versamenti saranno ancora possibili nei prossimi 2 mesi (60 giorni)",
+  "telephony_alias_administration_terminate_sva_warning_guarantee": "Per garantire i pagamenti, è importante mantenere in questo periodo il tuo KYC valido e l'account di pagamento esistente.",
+  "telephony_alias_administration_terminate_sva_warning_link": "Verifica le tue coordinate",
+  "telephony_alias_administration_terminate_confirm_message": "Vuoi davvero eliminare il tuo numero?",
+  "telephony_alias_administration_terminate_confirm_sva_warning": "La tua identità e il tuo IBAN devono essere validi per ricevere i tuoi pagamenti.",
+  "telephony_alias_administration_terminate_confirm_primary": "Confermare",
+  "telephony_alias_administration_terminate_confirm_cancel": "Annullare"
 }

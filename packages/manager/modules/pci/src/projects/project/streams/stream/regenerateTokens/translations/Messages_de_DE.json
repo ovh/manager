@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_regenerate_tokens_title": "Token neu generieren",
-  "pci_projects_project_streams_stream_regenerate_tokens_submit_label": "Bestätigen",
-  "pci_projects_project_streams_stream_regenerate_tokens_cancel_label": "Abbrechen",
-  "pci_projects_project_streams_stream_regenerate_tokens_content": "Sind Sie sicher, dass Sie den Token erneut generieren möchten?",
-  "pci_projects_project_streams_stream_regenerate_tokens_success_message": "Der Token wurde neu generiert.",
-  "pci_projects_project_streams_stream_regenerate_tokens_error_regenerate_tokens": "Beim Generieren des Tokens ist ein Fehler aufgetreten: {{ message }}."
-}

@@ -1,0 +1,13 @@
+{
+  "zimbra_account_alias_title": "Alias-Verwaltung",
+  "zimbra_account_alias_cta": "Alias hinzufügen",
+  "zimbra_account_alias_datagrid_alias_label": "Alias",
+  "zimbra_account_alias_datagrid_status_label": "Status",
+  "zimbra_account_alias_datagrid_tooltip_delete": "Löschen",
+  "zimbra_account_alias_delete_modal_description": "Sind Sie sicher, dass Sie den Alias löschen möchten?",
+  "zimbra_account_alias_add_description": "Alias für den Account <strong>{{ account }}</strong> erstellen",
+  "zimbra_account_alias_add_success_message": "Ihre Anfrage zur Erstellung eines Alias wurde registriert. Sie wird in Kürze bearbeitet.",
+  "zimbra_account_alias_add_error_message": "Ihre Anfrage zur Erstellung eines Alias ist fehlgeschlagen. {{ error }}",
+  "zimbra_account_alias_delete_success_message": "Ihre Anfrage zur Löschung eines Alias wurde registriert. Sie wird in Kürze bearbeitet.",
+  "zimbra_account_alias_delete_error_message": "Ihre Anfrage zum Löschen eines Alias ist fehlgeschlagen. {{ error }}"
+}

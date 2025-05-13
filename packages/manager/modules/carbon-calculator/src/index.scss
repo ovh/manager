@@ -1,0 +1,23 @@
+@import 'bootstrap4/scss/_functions.scss';
+@import 'bootstrap4/scss/_variables.scss';
+@import 'bootstrap4/scss/_mixins.scss';
+@import 'bootstrap4/scss/_utilities.scss';
+@import 'bootstrap4/scss/_grid.scss';
+
+.carbon-balance-spacings {
+  *:not(:last-child) {
+    @extend .mb-0;
+  }
+}
+.carbon-balance {
+  ul {
+    @extend .mb-1;
+    list-style-type: '- ';
+  }
+}
+
+.sign {
+  font-size: larger;
+  font-weight: bold;
+  color: #000;
+}

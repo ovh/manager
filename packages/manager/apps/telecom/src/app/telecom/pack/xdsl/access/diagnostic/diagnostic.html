@@ -1,0 +1,11 @@
+<header class="widget-presentation-header">
+    <oui-back-button data-state="telecom.packs.pack.xdsl.line">
+        <span data-translate="pack_xdsl_access_diagnostic_title"></span>
+    </oui-back-button>
+</header>
+<div class="container-fluid line-diagnostics mt-4">
+    <line-diagnostics
+        data-line-number="{{:: $ctrl.lineNumber }}"
+        data-service-name="{{:: $ctrl.serviceName }}"
+    ></line-diagnostics>
+</div>

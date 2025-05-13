@@ -1,6 +1,32 @@
-<oui-page-header
-    data-heading="{{ :: 'sms_title' | translate }}"
-></oui-page-header>
+<oui-header>
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{ :: 'sms_title' | translate }}"
+            ></h1>
+            <div
+                class="d-flex justify-content-end align-items-center gap-1 flex-wrap"
+            >
+                <changelog-button
+                    links="$ctrl.CHANGELOG.sms.links"
+                    chapters="$ctrl.CHANGELOG.sms.chapters"
+                ></changelog-button>
+                <oui-guide-menu
+                    data-text="{{ 'sms_header_guide' | translate }}"
+                >
+                    <oui-guide-menu-item
+                        data-ng-repeat="guideLink in $ctrl.headerGuideLink track by $index"
+                        data-href="{{:: guideLink.url }}"
+                        data-external
+                    >
+                        <span data-ng-bind=":: guideLink.label"></span>
+                    </oui-guide-menu-item>
+                </oui-guide-menu>
+            </div>
+        </div>
+    </oui-header-heading>
+</oui-header>
 
 <div class="container-fluid my-5">
     <oui-datagrid
@@ -13,7 +39,16 @@
         data-on-sort-change="$ctrl.onSortChange($sort)"
         data-columns="$ctrl.columnsConfig"
     >
-        <oui-column
+        <oui-datagrid-topbar>
+            <oui-button
+                variant="secondary"
+                type="button"
+                data-on-click="$ctrl.gotoOrder()"
+            >
+                <span data-translate="sms_order"></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
             data-title=":: 'sms_name_label' | translate"
             data-property="name"
             data-searchable
@@ -25,16 +60,26 @@
                 data-ng-href="{{ $ctrl.getSmsLink($row) }}"
                 data-ng-bind="$value"
             ></a>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'sms_description_label' | translate"
             data-property="description"
             data-type="string"
             data-filterable
             data-sortable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'sms_channel_label' | translate"
+            data-property="channel"
+            data-type="options"
+            data-type-options="$ctrl.filtersOptions.channel"
+            data-filterable
+            data-sortable
+        >
+            <span data-translate="sms_channel_{{ $value }}"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'sms_status_label' | translate"
             data-property="status"
             data-sortable
@@ -43,19 +88,17 @@
             data-type-options="$ctrl.filtersOptions.status"
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-class="{
-                    'oui-status_success': ($value === 'enable'),
-                    'oui-status_error': ($value !== 'enable'),
+                    'oui-badge_success': ($value === 'enable'),
+                    'oui-badge_error': ($value !== 'enable'),
                 }"
                 data-ng-bind="'sms_status_label_' + $value | translate"
             ></span>
-        </oui-column>
-        <oui-action-menu data-align="left-start" data-compact>
-            <oui-action-menu-item
-                data-text="{{:: 'sms_view_sms_label' | translate }}"
-                data-on-click="$ctrl.viewSms($row)"
-            >
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="left-start">
+            <oui-action-menu-item data-on-click="$ctrl.viewSms($row)"
+                ><span data-translate="sms_view_sms_label"></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

@@ -1,0 +1,5 @@
+{
+  "autorenew_service_autorenew_blocked_title": "Configurazione del rinnovo non disponibile",
+  "autorenew_service_autorenew_blocked_description": "Il rinnovo automatico non è più disponibile per le soluzioni attivate con i vecchi contratti. Per continuare a usufruire del rinnovo automatico dei servizi, è necessario leggere e accettare i nuovi contratti.",
+  "autorenew_service_autorenew_blocked_confirm": "Leggi e accetta le nuove CGV"
+}

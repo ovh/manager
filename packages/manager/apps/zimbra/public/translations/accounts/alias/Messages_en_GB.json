@@ -1,0 +1,13 @@
+{
+  "zimbra_account_alias_title": "Alias management",
+  "zimbra_account_alias_cta": "Add an alias",
+  "zimbra_account_alias_datagrid_alias_label": "Alias",
+  "zimbra_account_alias_datagrid_status_label": "Status",
+  "zimbra_account_alias_datagrid_tooltip_delete": "Delete",
+  "zimbra_account_alias_delete_modal_description": "Are you sure you want to delete it?",
+  "zimbra_account_alias_add_description": "Create an alias for the <strong>{{ account }}</strong> account",
+  "zimbra_account_alias_add_success_message": "Your request to create an alias has been submitted. It will be processed in a few moments.",
+  "zimbra_account_alias_add_error_message": "Your request to create an alias could not be completed. {{ error }}",
+  "zimbra_account_alias_delete_success_message": "Your request to delete an alias {{ip}} has been submitted. It will be processed in a few moments.",
+  "zimbra_account_alias_delete_error_message": "Your request to delete an alias could not be completed. {{ error }}"
+}

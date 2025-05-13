@@ -1,0 +1,14 @@
+{
+  "hycu_crumb": "HYCU",
+  "tabs_2": "Tabs 2",
+  "hycu_description": "Uprość tworzenie kopii zapasowych, odzyskiwanie danych po awarii i migrację infrastruktury Nutanix. Usługa zawiera różne pakiety licencji HYCU R-Cloud Hybrid Cloud Edition przeznaczone do ochrony obciążeń Nutanix.",
+  "hycu_cloud_vm_pack_unknown": "Nieznany pakiet",
+  "hycu_status_active": "Aktywny",
+  "hycu_status_toActivate": "Do aktywacji",
+  "hycu_status_processing": "Trwa aktywacja",
+  "hycu_status_error": "Błąd aktywacji",
+  "hycu_cta_cancel": "Anuluj",
+  "hycu_cta_order": "Zamów",
+  "hycu_cta_done": "Zakończ",
+  "common_iam_actions_message": "Nie masz wystarczających uprawnień, aby wykonać tę operację. Skontaktuj się z administratorem"
+}

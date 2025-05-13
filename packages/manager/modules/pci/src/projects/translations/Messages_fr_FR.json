@@ -1,11 +1,18 @@
 {
   "pci_projects": "Projets",
+  "pci_projects_redirect_to_dedicated_page": "Pour continuer, veuillez sélectionner un projet existant ou créer un nouveau projet.",
   "pci_projects_description": "Description",
+  "pci_projects_create_project": "Créer un nouveau projet",
   "pci_projects_status": "Statut",
   "pci_projects_status_ok": "Actif",
   "pci_projects_status_deleting": "Suppression en cours",
   "pci_projects_status_creating": "Création en cours",
+  "pci_projects_status_suspended": "Suspendu",
+  "pci_projects_status_pendingDebt": "Facture à payer",
+  "pci_projects_status_deleted": "Supprimé",
+  "pci_projects_project_pay_bill": "Régler ma facture",
   "pci_projects_project_show": "Visualiser",
+  "pci_projects_project_view": "Voir le projet",
   "pci_projects_project_delete": "Supprimer",
   "pci_projects_project_delete_success": "Une confirmation de suppression vient de vous être envoyée par e-mail."
 }

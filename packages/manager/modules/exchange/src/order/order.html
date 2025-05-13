@@ -1,83 +1,91 @@
-<div class="page-header mb-5">
-    <h1 data-translate="exchange_order_view_intro_title"></h1>
-</div>
-<div class="container-fluid px-5">
-    <div data-ovh-alert="{{alerts.main}}"></div>
+<oui-header heading="{{:: 'exchange_order_view_intro_title' | translate }}">
+</oui-header>
 
-    <p data-translate="exchange_order_view_intro_question"></p>
+<div data-ovh-alert="{{alerts.main}}"></div>
 
-    <form name="exchangeOrderForm">
-        <div class="mb-5">
-            <div class="oui-radio">
-                <input
-                    type="radio"
-                    class="oui-radio__input"
-                    id="standAlone"
-                    name="exchangeType"
-                    data-ng-model="ctrl.alreadyHasAnExchange"
-                    data-ng-value="false"
-                />
-                <label class="oui-radio__label-container" for="standAlone">
+<p data-translate="exchange_order_view_intro_question"></p>
+
+<form name="exchangeOrderForm">
+    <div class="mb-5">
+        <div class="oui-radio">
+            <input
+                type="radio"
+                class="oui-radio__input"
+                id="standAlone"
+                name="exchangeType"
+                data-ng-model="ctrl.alreadyHasAnExchange"
+                data-ng-value="false"
+            />
+            <label class="oui-radio__label-container" for="standAlone">
+                <span class="oui-radio__label">
+                    <span class="oui-radio__icon"></span>
                     <span
-                        class="oui-radio__label"
+                        class="oui-radio__text"
                         data-translate="exchange_order_view_stand_alone_option"
                     ></span>
-                </label>
-            </div>
+                </span>
+            </label>
+        </div>
 
-            <div class="oui-radio">
-                <input
-                    type="radio"
-                    class="oui-radio__input"
-                    id="associated"
-                    name="exchangeType"
-                    data-ng-model="ctrl.alreadyHasAnExchange"
-                    data-ng-value="true"
-                />
-                <label class="oui-radio__label-container" for="associated">
+        <div class="oui-radio">
+            <input
+                type="radio"
+                class="oui-radio__input"
+                id="associated"
+                name="exchangeType"
+                data-ng-model="ctrl.alreadyHasAnExchange"
+                data-ng-value="true"
+            />
+            <label class="oui-radio__label-container" for="associated">
+                <span class="oui-radio__label">
+                    <span class="oui-radio__icon"></span>
                     <span
-                        class="oui-radio__label"
+                        class="oui-radio__text"
                         data-translate="exchange_order_view_attached_option"
                     ></span>
-                </label>
+                </span>
+            </label>
+        </div>
+    </div>
+
+    <div class="oui-field mb-5">
+        <label
+            class="oui-field__label oui-label"
+            for="sharepointAssociatedExchange"
+            data-translate="sharepoint_activate_which_service_label"
+            data-ng-class="{'required': ctrl.alreadyHasAnExchange}"
+        ></label>
+        <div class="oui-field__content">
+            <div class="oui-select oui-select_inline mb-0">
+                <select
+                    class="oui-select__input"
+                    id="sharepointAssociatedExchange"
+                    name="sharepointAssociatedExchange"
+                    data-ng-change="ctrl.selectAssociatedExchange()"
+                    data-ng-disabled="!ctrl.alreadyHasAnExchange"
+                    data-ng-model="ctrl.firstExchangeAccount"
+                    data-ng-options="exchange.displayName for exchange in ctrl.exchanges | orderBy:'displayName' track by exchange.name + exchange.organization"
+                    data-ng-required="ctrl.alreadyHasAnExchange"
+                >
+                </select>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
             </div>
         </div>
+        <oui-spinner data-ng-if="ctrl.exchanges == null"></oui-spinner>
+    </div>
 
-        <div class="oui-field mb-5">
-            <label
-                class="oui-field__label oui-label"
-                for="sharepointAssociatedExchange"
-                data-translate="sharepoint_activate_which_service_label"
-                data-ng-class="{'required': ctrl.alreadyHasAnExchange}"
-            ></label>
-            <div class="oui-field__content">
-                <div class="oui-select oui-select_inline mb-0">
-                    <select
-                        class="oui-select__input"
-                        id="sharepointAssociatedExchange"
-                        name="sharepointAssociatedExchange"
-                        data-ng-change="ctrl.selectAssociatedExchange()"
-                        data-ng-disabled="!ctrl.alreadyHasAnExchange"
-                        data-ng-model="ctrl.firstExchangeAccount"
-                        data-ng-options="exchange.displayName for exchange in ctrl.exchanges | orderBy:'displayName' track by exchange.name + exchange.organization"
-                        data-ng-required="ctrl.alreadyHasAnExchange"
-                    >
-                    </select>
-                    <span
-                        class="oui-icon oui-icon-chevron-down"
-                        aria-hidden="true"
-                    ></span>
-                </div>
-            </div>
-            <oui-spinner data-ng-if="ctrl.exchanges == null"></oui-spinner>
-        </div>
-
-        <a
-            class="oui-button oui-button_primary oui-button_large-height"
-            target="{{ ctrl.alreadyHasAnExchange ? '_self' : '_blank'}}"
-            title="{{ ctrl.alreadyHasAnExchange ? ('exchange_order_view_button_attached_title' | translate: { t0: ctrl.firstExchangeAccount.displayName }) : 'exchange_order_view_button_stand_alone_title' | translate }}{{ ctrl.alreadyHasAnExchange ? '' : '('+ ('core_new_window' | translate) +')'}}"
-            data-translate="exchange_order_view_button_label"
-            data-ng-href="{{ctrl.getExchangeOrderUrl()}}"
-        ></a>
-    </form>
-</div>
+    <a
+        class="oui-button oui-button_primary oui-button_l"
+        target="{{ ctrl.alreadyHasAnExchange ? '_self' : '_blank'}}"
+        title="{{ ctrl.alreadyHasAnExchange ? ('exchange_order_view_button_attached_title' | translate: { t0: ctrl.firstExchangeAccount.displayName }) : 'exchange_order_view_button_stand_alone_title' | translate }}{{ ctrl.alreadyHasAnExchange ? '' : '('+ ('core_new_window' | translate) +')'}}"
+        data-ng-href="{{ctrl.getExchangeOrderUrl()}}"
+        data-track-name="exchange::order::confirm"
+        data-track-on="click"
+        data-track-type="action"
+    >
+        <span data-translate="exchange_order_view_button_label"></span>
+    </a>
+</form>

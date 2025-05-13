@@ -1,37 +1,47 @@
 import find from 'lodash/find';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
+import head from 'lodash/head';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import round from 'lodash/round';
 import some from 'lodash/some';
 import uniq from 'lodash/uniq';
+import 'moment';
 
 import BlockStorage from './block.class';
 import Region from './region.class';
 
 import {
-  VOLUME_MAX_SIZE,
+  VOLUME_ADDON_FAMILY,
   VOLUME_MIN_SIZE,
-  VOLUME_UNLIMITED_QUOTA,
-  VOLUME_TYPES,
   VOLUME_SNAPSHOT_CONSUMPTION,
+  VOLUME_UNLIMITED_QUOTA,
 } from './block.constants';
+
+import { LOCAL_ZONE_REGION } from '../../project.constants';
 
 export default class PciProjectStorageBlockService {
   /* @ngInject */
   constructor(
+    $http,
     $q,
+    PciProject,
     CucPriceHelper,
     OvhApiCloudProject,
     OvhApiCloudProjectQuota,
     OvhApiCloudProjectVolumeSnapshot,
   ) {
+    this.$http = $http;
     this.$q = $q;
+    this.PciProject = PciProject;
     this.CucPriceHelper = CucPriceHelper;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
     this.OvhApiCloudProjectVolumeSnapshot = OvhApiCloudProjectVolumeSnapshot;
+    this.LOCAL_ZONE_REGION = LOCAL_ZONE_REGION;
   }
 
   getAll(projectId) {
@@ -47,7 +57,15 @@ export default class PciProjectStorageBlockService {
         const instanceIds = uniq(
           reduce(
             volumes,
-            (instanceAcc, volume) => [...instanceAcc, ...volume.attachedTo],
+            (instanceAcc, volume) => {
+              if (
+                isArray(volume.attachedTo) &&
+                !isEmpty(head(volume.attachedTo))
+              ) {
+                return [...instanceAcc, ...volume.attachedTo];
+              }
+              return [...instanceAcc];
+            },
             [],
           ),
         );
@@ -79,7 +97,7 @@ export default class PciProjectStorageBlockService {
       );
   }
 
-  get(projectId, storageId) {
+  get(projectId, storageId, customerRegions) {
     return this.OvhApiCloudProject.Volume()
       .v6()
       .get({
@@ -112,14 +130,18 @@ export default class PciProjectStorageBlockService {
           snapshots: this.getVolumeSnapshots(projectId, volume),
         }),
       )
-      .then(
-        ({ attachedTo, volume, snapshots }) =>
-          new BlockStorage({
-            ...volume,
-            attachedTo,
-            snapshots,
-          }),
-      );
+      .then(({ attachedTo, volume, snapshots }) => {
+        const localZones = this.PciProject.getLocalZones(customerRegions);
+        return new BlockStorage({
+          ...volume,
+          attachedTo,
+          snapshots,
+          isLocalZone: this.PciProject.checkIsLocalZone(
+            localZones,
+            volume.region,
+          ),
+        });
+      });
   }
 
   attachTo(projectId, storage, instance) {
@@ -169,20 +191,25 @@ export default class PciProjectStorageBlockService {
       );
   }
 
-  getAvailableQuota(projectId, { region }) {
-    return this.getProjectQuota(projectId, region).then((quota) => {
-      if (quota && quota.volume) {
-        let availableGigabytes = VOLUME_MAX_SIZE;
+  getAvailableQuota(projectId, { region, type }) {
+    return this.$q
+      .all([
+        this.getProjectQuota(projectId, region),
+        this.getCatalog(projectId),
+      ])
+      .then(([quota, catalog]) => {
+        let availableGigabytes = catalog.models
+          .find((m) => m.name === type)
+          .pricings.find((p) => p.regions.includes(region)).specs.volume
+          .capacity.max;
         if (quota.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA) {
           availableGigabytes = Math.min(
-            VOLUME_MAX_SIZE,
+            availableGigabytes,
             quota.volume.maxGigabytes - quota.volume.usedGigabytes,
           );
         }
         return availableGigabytes;
-      }
-      return VOLUME_MAX_SIZE;
-    });
+      });
   }
 
   getProjectQuota(projectId, region = null) {
@@ -264,13 +291,31 @@ export default class PciProjectStorageBlockService {
       }).$promise;
   }
 
+  getCatalog(projectId, cache = true) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/catalog/volume`, {
+        cache,
+      })
+      .then(({ data }) => data);
+  }
+
+  get3azAvailability(projectId) {
+    return this.getCatalog(projectId).then((catalog) => {
+      return catalog.filters.deployment.some((d) => d.name === 'region-3-az');
+    });
+  }
+
+  getProjectRegions(projectId) {
+    return this.getCatalog(projectId).then((catalog) => catalog.regions);
+  }
+
   static getVolumePriceEstimationFromCatalog(catalog, storage) {
     const relatedCatalog = get(
       catalog,
       storage.planCode,
       get(
         catalog,
-        `volume.${storage.type}.consumption.${storage.region}`,
+        `volume.${storage.type}.consumption.${storage.region?.name}`,
         get(catalog, `volume.${storage.type}.consumption`),
       ),
     );
@@ -290,7 +335,7 @@ export default class PciProjectStorageBlockService {
             currencyCode: relatedCatalog.price.currencyCode,
             text: relatedCatalog.price.text.replace(
               /\d+(?:[.,]\d+)?/,
-              `${value.toFixed(2)}`,
+              `${value.toFixed(3)}`,
             ),
             value,
           },
@@ -306,34 +351,47 @@ export default class PciProjectStorageBlockService {
   }
 
   getVolumePriceEstimation(projectId, storage) {
-    return this.CucPriceHelper.getPrices(projectId).then((catalog) =>
-      PciProjectStorageBlockService.getVolumePriceEstimationFromCatalog(
-        catalog,
-        storage,
-      ),
+    return this.getCatalog(projectId).then((catalog) =>
+      catalog.models
+        .find((model) => model.name === storage.type)
+        .pricings.find((p) => p.regions.includes(storage.region)),
     );
   }
 
-  getPricesEstimations(projectId, regions, size = VOLUME_MIN_SIZE) {
-    return this.CucPriceHelper.getPrices(projectId).then((catalog) =>
-      reduce(
-        VOLUME_TYPES,
-        (typeResult, type) => ({
+  static getRegionPricesByVolumeType(regions, catalog, type, size) {
+    return reduce(
+      regions,
+      (regionResult, region) => ({
+        ...regionResult,
+        [region.name]: PciProjectStorageBlockService.getVolumePriceEstimationFromCatalog(
+          catalog,
+          { region, type, size },
+        ),
+      }),
+      {},
+    );
+  }
+
+  static getPricesEstimations(
+    catalog,
+    regions,
+    size = VOLUME_MIN_SIZE,
+    volumeTypes,
+  ) {
+    return reduce(
+      volumeTypes,
+      (typeResult, type) => {
+        return {
           ...typeResult,
-          [type]: reduce(
+          [type]: PciProjectStorageBlockService.getRegionPricesByVolumeType(
             regions,
-            (regionResult, region) => ({
-              ...regionResult,
-              [region.name]: PciProjectStorageBlockService.getVolumePriceEstimationFromCatalog(
-                catalog,
-                { region, type, size },
-              ),
-            }),
-            {},
+            catalog,
+            type,
+            size,
           ),
-        }),
-        {},
-      ),
+        };
+      },
+      {},
     );
   }
 
@@ -364,45 +422,67 @@ export default class PciProjectStorageBlockService {
         }),
       )
       .then(({ quotas, regions }) => {
-        const supportedRegions = filter(regions, (region) =>
+        const supportedRegions = regions.filter((region) =>
           some(get(region, 'services', []), { name: 'volume', status: 'UP' }),
         );
-        return map(
-          supportedRegions,
+        return supportedRegions.map(
           (region) =>
             new Region({
               ...region,
               quota: find(quotas, { region: region.name }),
+              isLocalZone: region.type === this.LOCAL_ZONE_REGION,
             }),
         );
       });
   }
 
-  getAvailablesTypes() {
-    return this.$q.when(VOLUME_TYPES);
+  getVolumesAvailability(serviceName, params) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/capabilities/productAvailability`, {
+        params,
+      })
+      .then(({ data }) => data);
   }
 
-  getSnapshotPriceEstimation(projectId, storage) {
-    return this.CucPriceHelper.getPrices(projectId).then((catalog) => {
-      const price = get(
-        catalog,
-        `${VOLUME_SNAPSHOT_CONSUMPTION}.${storage.region}`,
-        get(catalog, VOLUME_SNAPSHOT_CONSUMPTION, false),
-      );
-      if (price) {
-        const snapshotPrice =
-          (price.priceInUcents * moment.duration(1, 'months').asHours()) /
-          100000000;
-        return {
-          price: snapshotPrice,
-          priceText: price.price.text.replace(
-            /\d+(?:[.,]\d+)?/,
-            round(snapshotPrice.toString(), 2),
-          ),
-        };
-      }
-      return Promise.reject();
-    });
+  getConsumptionVolumesAddons(catalog) {
+    // Get volumes addons ids
+    const volumeAddonsIds = catalog.plans
+      .find((plan) => plan.planCode === 'project')
+      .addonFamilies.find(({ name }) => name === VOLUME_ADDON_FAMILY).addons;
+
+    // Get volumes addons details
+    const consumptionVolumeAddons = catalog.addons.filter(
+      (addon) =>
+        volumeAddonsIds.includes(addon.planCode) &&
+        addon.planCode.includes('consumption'),
+    );
+
+    return this.$q.when(consumptionVolumeAddons);
+  }
+
+  getSnapshotPriceEstimation(projectId, storage, catalogEndpoint) {
+    return this.CucPriceHelper.getPrices(projectId, catalogEndpoint).then(
+      (catalog) => {
+        const price = get(
+          catalog,
+          `${VOLUME_SNAPSHOT_CONSUMPTION}.${storage.region}`,
+          get(catalog, VOLUME_SNAPSHOT_CONSUMPTION, false),
+        );
+        if (price) {
+          const snapshotPrice =
+            (price.priceInUcents * moment.duration(1, 'months').asHours()) /
+            100000000;
+          return {
+            price: snapshotPrice,
+            priceText: price.price.text.replace(
+              /\d+(?:[.,]\d+)?/,
+              round(snapshotPrice.toString(), 2),
+            ),
+          };
+        }
+        return Promise.reject();
+      },
+    );
   }
 
   createSnapshot(projectId, { id }, { name }) {

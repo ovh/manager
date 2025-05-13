@@ -1,0 +1,7 @@
+{
+  "dedicatedCloud_datacenter_backup_legacy_message_1": "Die Veeam Backup Reihe hat sich seit dem {{ date }} weiterentwickelt.",
+  "dedicatedCloud_datacenter_backup_legacy_message_2": "Sie können jetzt für das Backup Ihrer virtuellen Maschinen (VMs) aus 3 neuen Angeboten wählen: <strong>Standard</strong>, <strong>Advanced</strong> oder <strong>Premium</strong>.",
+  "dedicatedCloud_datacenter_backup_legacy_message_3": "Denken Sie daran, Ihr Backup-Angebot zu aktualisieren!",
+  "dedicatedCloud_datacenter_backup_legacy_message_link": "Verfügbare Preise für Veeam Backup anzeigen",
+  "dedicatedCloud_datacenter_backup_legacy_update_button": "Mein Backup-Angebot aktualisieren"
+}

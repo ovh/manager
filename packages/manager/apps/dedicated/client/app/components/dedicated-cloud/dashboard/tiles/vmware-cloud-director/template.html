@@ -1,0 +1,101 @@
+<div class="row text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner data-size="s"></oui-spinner>
+</div>
+<div
+    class="oui-tile mt-3"
+    data-ng-if="!$ctrl.loading && $ctrl.pccMigrationState.isAllowed"
+>
+    <h4 class="oui-tile__title oui-heading_4">
+        <span
+            data-translate="dedicatedCloud_vmware_cloud_director_title"
+        ></span>
+        <span
+            class="oui-badge oui-badge_new"
+            data-translate="dedicatedCloud_vmware_cloud_director_new"
+        >
+        </span>
+    </h4>
+
+    <oui-tile-definition data-term="{{:: $ctrl.migrationTitle }}">
+        <oui-tile-description data-ng-if=":: $ctrl.pccMigrationState.isDone">
+            <span
+                class="oui-badge oui-badge_success"
+                data-translate="dedicatedCloud_vmware_cloud_director_migration_confirmed"
+            >
+            </span>
+            <p
+                class="pt-1"
+                data-translate="dedicatedCloud_vmware_cloud_director_migration_confirmed_detail"
+            ></p>
+        </oui-tile-description>
+        <oui-tile-description data-ng-if=":: !$ctrl.pccMigrationState.isDone">
+            <p
+                data-translate="dedicatedCloud_vmware_cloud_director_validate_migration_detail"
+            ></p>
+            <oui-button
+                data-variant="primary"
+                data-on-click="$ctrl.goToVcdOrder()"
+            >
+                <span
+                    data-translate="dedicatedCloud_vmware_cloud_director_validate"
+                ></span>
+            </oui-button>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <oui-tile-definition
+        data-term="{{:: 'dedicatedCloud_vmware_cloud_director_useful_links' | translate }}"
+    >
+        <oui-tile-description data-ng-if=":: $ctrl.pccMigrationState.isDone">
+            <a
+                data-ng-href="{{ :: $ctrl.guideLinks.MIGRATION}}"
+                data-ng-click="$ctrl.trackGuideClick('MIGRATION')"
+                target="_blank"
+                rel="nooponer"
+            >
+                <span
+                    data-translate="dedicatedCloud_vmware_cloud_director_migration_documentation"
+                >
+                </span>
+                <i
+                    class="pl-1 oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></i>
+            </a>
+        </oui-tile-description>
+        <oui-tile-description data-ng-if=":: !$ctrl.pccMigrationState.isDone">
+            <a
+                data-ng-href="{{ :: $ctrl.guideLinks.OFFER}}"
+                data-ng-click="$ctrl.trackGuideClick('OFFER')"
+                target="_blank"
+                rel="nooponer"
+            >
+                <span
+                    data-translate="dedicatedCloud_vmware_cloud_director_offer_detail"
+                >
+                </span>
+                <i
+                    class="pl-1 oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></i>
+            </a>
+            <br />
+            <a
+                data-ng-href="{{ :: $ctrl.guideLinks.TERMS}}"
+                data-ng-click="$ctrl.trackGuideClick('TERMS')"
+                target="_blank"
+                rel="nooponer"
+            >
+                <span
+                    data-translate="dedicatedCloud_vmware_cloud_director_offer_terms_and_conditions"
+                >
+                </span>
+                <i
+                    class="pl-1 oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></i>
+            </a>
+            <br />
+        </oui-tile-description>
+    </oui-tile-definition>
+</div>

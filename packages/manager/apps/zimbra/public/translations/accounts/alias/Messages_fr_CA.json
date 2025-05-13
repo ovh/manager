@@ -1,0 +1,9 @@
+{
+  "zimbra_account_alias_title": "Gestion des alias",
+  "zimbra_account_alias_delete_modal_description": "Êtes-vous sûr de vouloir le supprimer ?",
+  "zimbra_account_alias_add_description": "Créer un alias pour le compte <strong>{{ account }}</strong>",
+  "zimbra_account_alias_add_success_message": "Votre demande de création d'alias a bien été prise en compte. Elle sera traitée d'ici quelques instants.",
+  "zimbra_account_alias_add_error_message": "Votre demande de création d'alias n'a pas pu aboutir. {{ error }}",
+  "zimbra_account_alias_delete_success_message": "Votre demande de suppression d'alias a bien été prise en compte. Elle sera traitée d'ici quelques instants.",
+  "zimbra_account_alias_delete_error_message": "Votre demande de suppression d'alias n'a pas pu aboutir. {{ error }}"
+}

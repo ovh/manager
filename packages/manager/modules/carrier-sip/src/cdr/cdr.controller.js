@@ -2,6 +2,7 @@ import capitalize from 'lodash/capitalize';
 import get from 'lodash/get';
 import padStart from 'lodash/padStart';
 import range from 'lodash/range';
+import 'moment';
 
 import { GET_RECORD_NUMBER_OF_YEARS, POLLER_TIMEOUT } from './cdr.constants';
 

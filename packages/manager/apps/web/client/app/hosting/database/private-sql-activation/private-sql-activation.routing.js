@@ -1,58 +1,71 @@
-import head from 'lodash/head';
-import map from 'lodash/map';
-import orderBy from 'lodash/orderBy';
-import toLower from 'lodash/toLower';
+import { ACTIVATION_DATABASE_TRACKING } from './private-sql-activation.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.database.private-sql-activation', {
-    url: '/private-sql-activation',
-    component: 'hostingDatabasePrivateSqlActivation',
-    redirectTo: (transition) =>
-      Promise.all([
-        transition.injector().getAsync('HostingDatabase'),
-        transition.injector().getAsync('hosting'),
-      ]).then(([HostingDatabase, hosting]) =>
-        HostingDatabase.getHasPrivateSqlToActivate(
-          hosting,
-        ).then((hasPrivateSqlToActivate) =>
-          hasPrivateSqlToActivate ? false : { state: 'app.hosting' },
-        ),
-      ),
-    resolve: {
-      me: /* @ngInject */ (user) => user,
-      hosting: /* @ngInject */ ($transition$) =>
-        $transition$.params().productId,
-      services: /* @ngInject */ (OvhApiHostingWeb) =>
-        OvhApiHostingWeb.v6()
-          .query()
-          .$promise.then((services) =>
-            orderBy(services, (serviceName) => toLower(serviceName)),
+  $stateProvider.state(
+    'app.hosting.dashboard.database.private-sql-activation',
+    {
+      url: '/private-sql-activation',
+      component: 'hostingDatabasePrivateSqlActivation',
+      redirectTo: (transition) =>
+        Promise.all([
+          transition.injector().getAsync('HostingDatabasePrivateSql'),
+          transition.injector().getAsync('hosting'),
+        ]).then(([HostingDatabasePrivateSql, hosting]) =>
+          HostingDatabasePrivateSql.getHasPrivateSqlToActivate(
+            hosting,
+          ).then((hasPrivateSqlToActivate) =>
+            hasPrivateSqlToActivate
+              ? false
+              : { state: 'app.hosting.dashboard' },
           ),
-      versions: /* @ngInject */ ($translate, PrivateDatabase) =>
-        PrivateDatabase.getAvailableOrderCapacities('classic')
-          .then(({ version }) =>
-            map(version, (v) => ({
-              id: v,
-              label: $translate.instant(
-                `privatesql_activation_version_v_${v.replace('.', '')}`,
-              ),
-            })),
-          )
-          .then((versions) => {
-            return orderBy(
-              versions,
-              [
-                ({ id }) => {
-                  return head(id.split('_'));
-                },
-                ({ id }) => {
-                  const [, version] = id.split('_');
-                  return parseFloat(version);
-                },
-              ],
-              ['asc', 'desc'],
-            );
-          }),
+        ),
+      resolve: {
+        me: /* @ngInject */ (user) => user,
+        hosting: /* @ngInject */ ($transition$) =>
+          $transition$.params().productId,
+        privateSqlCatalog: /* @ngInject */ (HostingDatabasePrivateSql, me) =>
+          HostingDatabasePrivateSql.getPrivateSqlCatalogForHosting(
+            me.ovhSubsidiary,
+          ),
+        dbCategories: /* @ngInject */ (
+          privateSqlCatalog,
+          HostingDatabasePrivateSql,
+        ) =>
+          HostingDatabasePrivateSql.buildPrivateSqlDbCategories(
+            privateSqlCatalog,
+          ),
+        onError: /* @ngInject */ ($translate, goToHosting) => (error) =>
+          goToHosting(
+            $translate.instant('privatesql_activation_hosting_error', {
+              message: error.data.message,
+            }),
+            'danger',
+            'app.alerts.database',
+          ),
+        onSuccess: /* @ngInject */ ($translate, goToHosting) => (
+          checkoutResult,
+        ) =>
+          goToHosting(
+            $translate.instant(
+              checkoutResult.autoPayWithPreferredPaymentMethod
+                ? 'privatesql_activation_success'
+                : 'privatesql_activation_success_bc',
+              {
+                url: checkoutResult.url,
+              },
+            ),
+            'success',
+            'app.alerts.database',
+          ),
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('privatesql_activation_breadcrumb'),
+      },
+      atInternet: {
+        ignore: true,
+      },
+      onEnter: /* @ngInject */ (atInternet) => {
+        atInternet.trackPage(ACTIVATION_DATABASE_TRACKING.PAGE);
+      },
     },
-  });
+  );
 };

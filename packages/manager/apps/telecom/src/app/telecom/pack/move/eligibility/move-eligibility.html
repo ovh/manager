@@ -1,0 +1,157 @@
+<div class="p-2 bd-highlight">
+    <label
+        for="moveOutDate"
+        data-translate="pack_move_eligibility_move_out_date"
+    >
+    </label>
+    <oui-calendar
+        class="d-flex"
+        id="moveOutDate"
+        data-model="$ctrl.moveOutDate"
+        data-min-date="$ctrl.minDate"
+        data-max-date="$ctrl.maxDate"
+    >
+    </oui-calendar>
+    <span
+        class="font-italic text-small"
+        data-translate="pack_move_eligibility_move_out_date_description"
+    ></span>
+</div>
+
+<h2
+    class="widget-presentation-title"
+    data-translate="pack_move_line_title"
+></h2>
+<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <oui-field>
+            <input
+                type="radio"
+                id="radioNumber"
+                data-ng-model="$ctrl.method"
+                data-ng-value="'number'"
+            />
+            <span data-translate="pack_move_line_subtitle"></span>
+            <pack-move-eligibility-line-number
+                data-offers-change="$ctrl.computeOffer(OFFERS)"
+                data-method="$ctrl.method"
+                data-pack-name="$ctrl.packName"
+                data-is-reseller="$ctrl.isReseller"
+            >
+            </pack-move-eligibility-line-number>
+        </oui-field>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <oui-field>
+            <input
+                type="radio"
+                id="radioAddress"
+                data-ng-model="$ctrl.method"
+                data-ng-value="'address'"
+            />
+            <span data-translate="pack_move_address_subtitle"></span>
+            <pack-move-eligibility-address
+                data-offers-change="$ctrl.computeOffer(OFFERS)"
+                data-method="$ctrl.method"
+                data-pack-name="$ctrl.packName"
+                data-is-reseller="$ctrl.isReseller"
+            >
+            </pack-move-eligibility-address>
+        </oui-field>
+    </div>
+</div>
+<div
+    class="alert alert-warning"
+    role="alert"
+    data-ng-if="!$ctrl.testLine.canMove && $ctrl.testLine.performed"
+>
+    <strong data-translate="pack_move_cannot_move"></strong>
+</div>
+
+<div data-ng-if="$ctrl.displayEligibility" class="row">
+    <div
+        class="col-xs-12 col-md-4 mt-4"
+        data-ng-repeat="line in $ctrl.lines track by $index"
+    >
+        <oui-tile data-heading="{{ ::$ctrl.getTitle(line.status) }}">
+            <div data-ng-if="line.errorMessage">
+                <div data-translate="pack_move_eligibility_error_test"></div>
+                <div data-ng-bind="line.errorMessage"></div>
+            </div>
+            <!-- Show address for eligibility and button to select this address -->
+            <div data-ng-if="!line.errorMessage">
+                <oui-tile-definition
+                    data-term="{{ ::'pack_move_eligibility_address' | translate }}"
+                >
+                    <oui-tile-description>
+                        <div>
+                            <span
+                                data-ng-bind="line.endpoint.address.streetNumber"
+                            ></span>
+                            <span
+                                data-ng-bind="line.endpoint.address.streetName"
+                            ></span>
+                        </div>
+                        <div>
+                            <span
+                                data-ng-bind="line.endpoint.address.zipCode"
+                            ></span>
+                            <span
+                                data-ng-bind="line.endpoint.address.city"
+                            ></span>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'pack_move_eligibility_residence' | translate }}"
+                    data-ng-if="line.endpoint.address.housingComplex"
+                >
+                    <oui-tile-description>
+                        <div
+                            data-ng-bind="line.endpoint.address.housingComplex"
+                        ></div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'pack_move_eligibility_building' | translate }}"
+                    data-ng-if="line.endpoint.address.building"
+                >
+                    <oui-tile-description>
+                        <div
+                            data-ng-bind="line.endpoint.address.building"
+                        ></div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'pack_move_eligibility_floor' | translate }}"
+                    data-ng-if="line.endpoint.address.floor"
+                >
+                    <oui-tile-description>
+                        <div data-ng-bind="line.endpoint.address.floor"></div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'pack_move_eligibility_stair' | translate }}"
+                    data-ng-if="line.endpoint.address.stairs"
+                >
+                    <oui-tile-description>
+                        <div data-ng-bind="line.endpoint.address.stairs"></div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'pack_move_eligibility_door' | translate }}"
+                    data-ng-if="line.endpoint.address.door"
+                >
+                    <oui-tile-description>
+                        <div data-ng-bind="line.endpoint.address.door"></div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-button data-on-click="$ctrl.chooseLine(line)">
+                    <span
+                        data-translate="pack_move_eligibility_choose_line"
+                    ></span>
+                </oui-button>
+            </div>
+        </oui-tile>
+    </div>
+</div>

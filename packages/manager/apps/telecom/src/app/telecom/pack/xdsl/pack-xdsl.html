@@ -1,70 +1,61 @@
 <section class="telecom-pack-xdsl">
-    <div class="text-center" data-ng-if="PackXdslCtrl.loading.init">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="telecom-section-header">
-        <header
-            class="page-header"
-            role="banner"
-            data-ng-if="!PackXdslCtrl.loading.init"
-        >
-            <tuc-section-back-link
-                data-ng-if="PackXdslCtrl.content.back.state && PackXdslCtrl.content.status === 'active'"
-                data-ng-click="PackXdslCtrl.backState()"
-                data-tuc-section-back-link-title="{{ PackXdslCtrl.pack.general.description || PackXdslCtrl.pack.general.packName || PackXdslCtrl.access.description || PackXdslCtrl.access.accessName }}"
-            ></tuc-section-back-link>
-            <!-- ACCESS TITLE -->
-            <tuc-editable-service-name
-                data-tuc-editable-service-name-title="PackXdslCtrl.access.description || PackXdslCtrl.access.accessName"
-                data-tuc-editable-service-name-service-name="PackXdslCtrl.access.accessName"
-                data-tuc-editable-service-name-title-on-save="PackXdslCtrl.accessDescriptionSave"
-            >
-            </tuc-editable-service-name>
-        </header>
+    <div data-ng-if="!$ctrl.loading.init" class="mb-4">
+        <header class="oui-header">
+            <div class="oui-header__container">
+                <div class="oui-header__content">
+                    <oui-back-button
+                        data-on-click="::$ctrl.goBack()"
+                        data-ng-if="$ctrl.content.status === 'active'"
+                        previous-page="{{:: 'xdsl_back_to_pack' | translate }}"
+                    >
+                        <span
+                            data-ng-bind="$ctrl.pack.general.description || $ctrl.pack.general.packName || $ctrl.access.description || $ctrl.access.accessName"
+                        ></span>
+                    </oui-back-button>
 
-        <nav role="navigation">
-            <responsive-tabs>
-                <responsive-tab
-                    data-state="telecom.packs.pack.xdsl"
-                    data-dropdown-title="{{ 'xdsl_tabs_line' | translate }}"
-                >
-                    <span data-translate="xdsl_tabs_line"></span>
-                </responsive-tab>
-                <responsive-tab
-                    data-state="telecom.packs.pack.xdsl.modem"
-                    disabled="PackXdslCtrl.disabledModem"
-                    data-ng-if="PackXdslCtrl.isModemTabAvailable()"
-                    data-dropdown-title="{{ 'xdsl_tabs_modem' | translate }}"
-                >
-                    <span data-translate="xdsl_tabs_modem"></span>
-                </responsive-tab>
-                <responsive-tab-more>
-                    <span
-                        data-translate-attr="{title: 'common_tabs_more'}"
-                        class="fa fa-plus"
-                        aria-hidden="true"
-                    ></span>
-                </responsive-tab-more>
-                <responsive-tab
-                    data-state="telecom.packs.pack.xdsl.tasks"
-                    data-dropdown-title="{{ 'xdsl_tabs_tasks' | translate }}"
-                >
-                    <span data-translate="xdsl_tabs_tasks"></span>
-                </responsive-tab>
-            </responsive-tabs>
-        </nav>
+                    <tuc-editable-service-name
+                        data-tuc-editable-service-name-title="$ctrl.access.description || $ctrl.access.accessName"
+                        data-tuc-editable-service-name-service-name="$ctrl.access.accessName"
+                        data-tuc-editable-service-name-title-on-save="$ctrl.accessDescriptionSave"
+                    ></tuc-editable-service-name>
+                </div>
+            </div>
+        </header>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                href="{{ $ctrl.lineLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.lineLink"
+            >
+                <span data-translate="xdsl_tabs_line"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{ $ctrl.modemLink }}"
+                disabled="$ctrl.disabledModem"
+                data-ng-if="$ctrl.isModemTabAvailable()"
+                active="$ctrl.currentActiveLink() === $ctrl.modemLink"
+            >
+                <span data-translate="xdsl_tabs_modem"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{ $ctrl.taskLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.taskLink"
+            >
+                <span data-translate="xdsl_tabs_tasks"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
     </div>
-    <!-- .telecom-section-header -->
 
     <tuc-toast-message></tuc-toast-message>
 
     <div
-        class="telecom-section-content ui-view-container"
-        data-ng-class="PackXdslCtrl.content.back.class"
-        data-ng-if="!PackXdslCtrl.loading.init"
+        class="ui-view-container"
+        data-ng-class="$ctrl.content.back.class"
+        data-ng-if="!$ctrl.loading.init"
         data-ui-view="xdslView"
     ></div>
-    <!-- .telecom-section-content -->
 </section>
 <!-- .telecom-pack-xdsl -->

@@ -1,56 +1,19 @@
-import filter from 'lodash/filter';
-import includes from 'lodash/includes';
+import { ORDER_CDN_TRACKING } from './hosting-cdn-order.constant';
 
-export default class {
-  /* @ngInject */
-  constructor($filter, $timeout) {
-    this.$filter = $filter;
-    this.$timeout = $timeout;
-  }
-
+export default class HostingCdnOrderCtrl {
   $onInit() {
-    // Auto-select duration
-    this.prices = filter(this.catalogAddon.pricings, ({ capacities }) =>
-      includes(capacities, 'renew'),
-    );
-    [this.price] = this.prices;
-    this.interval = this.price.interval;
-    this.isEditable = true;
+    this.workflowOptions.getPlanCode = () => this.getPlanCode();
 
-    if (this.catalogAddon.pricings.length === 1) {
-      // Go directly to the next step
-      this.currentIndex = 1;
-      this.isEditable = false;
-    }
+    // Preselect CDN Advanced
+    this.cdnPlanCode = this.planToPreselect;
+    this.ORDER_CDN_TRACKING = ORDER_CDN_TRACKING;
   }
 
-  resetCart() {
-    if (this.cart) {
-      this.cart = undefined;
-      this.cartId = undefined;
-    }
+  getPlanCode() {
+    return this.cdnPlanCode;
   }
 
-  async prepareCheckout() {
-    if (!this.cart && !this.checkoutLoading) {
-      this.checkoutLoading = true;
-      const { cart, cartId } = await this.prepareOrderCart();
-
-      this.$timeout(() => {
-        this.cart = cart;
-        this.cartId = cartId;
-        this.checkoutLoading = false;
-      });
-    }
-  }
-
-  checkout() {
-    this.checkoutLoading = true;
-
-    this.checkoutOrderCart(!!this.defaultPaymentMethod, this.cartId);
-  }
-
-  getDuration(interval) {
-    return this.$filter('wucDuration')(interval.toString(), 'longDate');
+  getOrderState({ isLoading }) {
+    this.isStepperLoading = isLoading;
   }
 }

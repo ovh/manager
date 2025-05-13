@@ -1,0 +1,21 @@
+{
+  "nasha_dashboard_partition_snapshots_heading": "Manage snapshot policies",
+  "nasha_dashboard_partition_snapshots_description": "Easily create and manage your snapshot policies, in terms of frequency and retention periods. You can then apply them to specific volumes. Snapshots use your HA-NAS solution’s storage capacity.",
+  "nasha_dashboard_partition_snapshots_subtitle": "Details of snapshot policies",
+  "nasha_dashboard_partition_snapshots_create": "Create a manual snapshot",
+  "nasha_dashboard_partition_snapshots_list_type": "Type",
+  "nasha_dashboard_partition_snapshots_list_name": "Name",
+  "nasha_dashboard_partition_snapshots_list_options": "Options",
+  "nasha_dashboard_partition_snapshots_list_snapshot_types": "Frequencies",
+  "nasha_dashboard_partition_snapshots_list_custom_snapshot": "Manual snapshot",
+  "nasha_dashboard_partition_snapshots_frequencies_placeholder": "Select frequencies",
+  "nasha_dashboard_partition_snapshots_hide_form": "Hide form",
+  "nasha_dashboard_partition_snapshots_delete": "Delete manual snapshot",
+  "nasha_dashboard_partition_snapshots_submit_snapshot_types": "Confirm frequency changes",
+  "nasha_dashboard_partition_snapshots_reset_snapshot_types": "Delete frequency changes",
+  "nasha_dashboard_partition_snapshots_create_rule": "Authorised: Alpha-numeric characters, full stops, colons and hyphens",
+  "nasha_dashboard_partition_snapshots_warning_1": "You get an additional 20% more space for your snapshots.",
+  "nasha_dashboard_partition_snapshots_warning_2": "If you exceed this storage space, the snapshots will be stored on your primary storage space.",
+  "nasha_dashboard_partition_snapshots_count_title": "Number of snapshots",
+  "nasha_dashboard_partition_snapshots_count_max": "maximum"
+}

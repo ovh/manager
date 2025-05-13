@@ -1,0 +1,5 @@
+{
+  "pci_projects_project_storages_containers_container_empty_user_title": "Dodaj użytkownika do kontenera",
+  "pci_projects_project_storages_containers_container_empty_user_description": "Utwórz użytkownika i wygeneruj dane identyfikacyjne Object Storage w sekcji „Użytkownicy Object Storage”.",
+  "pci_projects_project_storages_containers_container_empty_user_label": "Dostęp do „Użytkownicy Object Storage”"
+}

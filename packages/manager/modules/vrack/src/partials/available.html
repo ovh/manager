@@ -1,6 +1,9 @@
 <h2 class="vrack__section-title" data-translate="vrack_your_services"></h2>
 <ul class="vrack__service-type-list">
-    <li class="vrack__section-type" data-ng-if="$ctrl.loaders.deleting">
+    <li
+        class="vrack__section-type"
+        data-ng-if="$ctrl.loaders.deleting || $ctrl.loaders.eligibleServices"
+    >
         <div class="text-center">
             <oui-spinner></oui-spinner>
         </div>
@@ -8,8 +11,8 @@
     <li
         class="vrack__service-type"
         data-ng-init="$ctrl.setAccordionState('available', 'types', $index, true)"
-        data-ng-repeat="(serviceType, services) in $ctrl.data.allowedServices track by serviceType"
-        data-ng-if="$ctrl.constructor.hasServices(services) && !$ctrl.loaders.deleting"
+        data-ng-repeat="(serviceType, services) in $ctrl.data.eligibleServices track by serviceType"
+        data-ng-if="$ctrl.constructor.hasServices(services) && !$ctrl.loaders.deleting && $ctrl.isServiceToDisplay(serviceType)"
         data-ng-class="{ 'vrack__service-type_expanded': $ctrl.getAccordionState('available', 'types', $index) }"
     >
         <span
@@ -17,15 +20,18 @@
             data-ng-click="$ctrl.toggleAccordion('available', 'types', $index)"
         >
             <i
-                class="vrack__service-type-icon ovh-font"
+                class="vrack__service-type-icon"
                 data-ng-class="{
-                'ovh-font-dedicatedCloud': serviceType === 'dedicatedCloud',
-                'ovh-font-public-cloud': serviceType === 'cloudProject',
-                'ovh-font-iplb' : serviceType === 'ipLoadbalancing',
-                'ovh-font-ip': serviceType === 'ip',
-                'ovh-font-server': serviceType === 'dedicatedServer' || serviceType === 'dedicatedServerInterface',
-                'ovh-font-network': serviceType === 'dedicatedConnect',
-                'ovh-font-vRack': serviceType === 'legacyVrack'}"
+                'ovh-font ovh-font-dedicatedCloud': serviceType === 'dedicatedCloud',
+                'oui-icon oui-icon-cloud-essential_concept': serviceType === 'managedBareMetal',
+                'ovh-font ovh-font-public-cloud': serviceType === 'cloudProject',
+                'ovh-font ovh-font-iplb' : serviceType === 'ipLoadbalancing',
+                'ovh-font ovh-font-ip': serviceType === 'ip',
+                'ovh-font ovh-font-server': serviceType === 'dedicatedServer' || serviceType === 'dedicatedServerInterface',
+                'ovh-font ovh-font-network': serviceType === 'dedicatedConnect',
+                'ovh-font ovh-font-vRack': serviceType === 'legacyVrack',
+                'oui-icon oui-icon-line-communicating_concept': serviceType === 'ovhCloudConnect',
+                'oui-icon oui-icon-vRack-services_concept': serviceType === 'vrackServices'}"
             >
             </i>
             <span data-ng-bind="::$ctrl.getDisplayName(serviceType)"></span>
@@ -33,15 +39,23 @@
 
         <ul
             class="vrack__service-list"
-            data-ng-if="!$ctrl.vrackService.isGroupedServiceType(serviceType)"
+            data-ng-if="!$ctrl.cucVrackService.isGroupedServiceType(serviceType)"
         >
             <li
                 class="vrack__service d-flex"
-                data-ng-repeat="service in services | orderBy: service.niceName track by service.id"
-                data-ng-click="$ctrl.toggleAddService(service.trueServiceType, service.id)"
+                data-ng-repeat="service in services | orderBy: service.niceName track by $index"
+                data-ng-click="$ctrl.toggleAddService(service.trueServiceType, service.id, service.niceName)"
                 data-ng-class="{ vrack__service_selected: $ctrl.isSelected(service.trueServiceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
             >
-                <span data-ng-bind="::service.niceName"></span>
+                <!-- For IP display, some IPs are replaced by IPv6 values -->
+                <span
+                    data-ng-bind="service.niceName"
+                    data-ng-if="serviceType === $ctrl.TYPE_SERVICE.ip"
+                ></span>
+                <span
+                    data-ng-bind="::service.niceName"
+                    data-ng-if="serviceType != $ctrl.TYPE_SERVICE.ip"
+                ></span>
                 <oui-spinner
                     data-size="s"
                     data-ng-if="$ctrl.isPending(service.id)"
@@ -49,10 +63,9 @@
                 </oui-spinner>
             </li>
         </ul>
-
         <ul
             class="vrack__service-group-list"
-            data-ng-if="serviceType === 'dedicatedCloud'"
+            data-ng-if="serviceType === 'dedicatedCloud' || serviceType === 'managedBareMetal'"
         >
             <li
                 class="vrack__service-group"
@@ -70,7 +83,7 @@
                 <ul class="vrack__service-list vrack__service-list_group">
                     <li
                         class="vrack__service vrack__service_selectable d-flex"
-                        data-ng-click="$ctrl.toggleAddService(serviceType, service.id)"
+                        data-ng-click="$ctrl.toggleAddService(serviceType, service.id, service.niceName)"
                         data-ng-class="{ vrack__service_selected: $ctrl.isSelected(serviceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
                     >
                         <span
@@ -85,5 +98,30 @@
                 </ul>
             </li>
         </ul>
+        <ul
+            class="vrack__service-list"
+            data-ng-if="serviceType === 'ovhCloudConnect'"
+        >
+            <li
+                class="vrack__service d-flex"
+                data-ng-repeat="service in services | orderBy: service.niceName track by $index"
+                data-ng-click="$ctrl.toggleAddService(service.trueServiceType, service.id, service.niceName)"
+                data-ng-class="{ vrack__service_selected: $ctrl.isSelected(service.trueServiceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
+            >
+                <span data-ng-bind="::service.niceName"></span>
+                <oui-spinner
+                    data-size="s"
+                    data-ng-if="$ctrl.isPending(service.id)"
+                >
+                </oui-spinner>
+            </li>
+        </ul>
     </li>
 </ul>
+<vrack-single-select-dialog-modal
+    data-is-open-modal="$ctrl.modals.select.open"
+    data-on-confirm="$ctrl.modals.select.confirm"
+    data-on-cancel="$ctrl.modals.select.cancel"
+    data-is-ipv6="$ctrl.modals.select.isIpv6"
+    data-is-vrack-service="$ctrl.modals.select.isVrackService"
+></vrack-single-select-dialog-modal>

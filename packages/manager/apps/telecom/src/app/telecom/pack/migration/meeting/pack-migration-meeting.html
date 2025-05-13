@@ -1,0 +1,139 @@
+<h2
+    class="widget-presentation-title"
+    data-translate="telecom_pack_migration_meeting_slots"
+></h2>
+<!-- LOADER -->
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div
+    class="widget-presentation py-3 move-number-config ft-meeting"
+    data-ng-if="$ctrl.showMeetingSlots && !$ctrl.loading"
+>
+    <div class="row">
+        <p
+            class="font-weight-bold"
+            data-translate="telecom_pack_migration_meeting_description"
+        ></p>
+
+        <div
+            data-ng-show="$ctrl.meetingSlots.canBookFakeMeeting && $ctrl.meetingSlots.slots.length"
+        >
+            <div class="input-group mt-3 col-md-12">
+                <input
+                    type="radio"
+                    id="radioFakeMeeting"
+                    data-ng-model="$ctrl.selectedMeeting.meetingSlots.fakeMeeting"
+                    data-ng-disabled="!$ctrl.meetingSlots.canBookFakeMeeting"
+                    data-ng-value="true"
+                />
+                <label
+                    for="radioFakeMeeting"
+                    class="pl-2"
+                    data-translate="telecom_pack_migration_fake_meeting"
+                >
+                </label>
+            </div>
+            <div class="input-group mt-3 col-md-12">
+                <input
+                    type="radio"
+                    id="radioNoFakeMeeting"
+                    data-ng-model="$ctrl.selectedMeeting.meetingSlots.fakeMeeting"
+                    data-ng-value="false"
+                />
+                <label
+                    for="radioNoFakeMeeting"
+                    class="pl-2"
+                    data-translate="telecom_pack_migration_no_fake_meeting"
+                >
+                </label>
+            </div>
+        </div>
+        <p
+            class="alert alert-info"
+            role="alert"
+            data-ng-if="$ctrl.meetingSlots.canBookFakeMeeting && !$ctrl.meetingSlots.meetingSlots.length"
+            data-translate="telecom_pack_migration_no_erdv_info"
+        ></p>
+
+        <p
+            class="mt-3"
+            data-translate="telecom_pack_migration_contact_name_info"
+        ></p>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label
+                    class="control-label required"
+                    for="contactNameId"
+                    data-translate="telecom_pack_migration_contact_name"
+                ></label>
+                <input
+                    id="contactNameId"
+                    class="form-control"
+                    required
+                    pattern=".+"
+                    data-ng-model="$ctrl.contactName"
+                    placeholder="{{:: 'telecom_pack_migration_contact_name'| translate}}"
+                />
+            </div>
+        </div>
+        <div class="row">
+            <div
+                class="col-md-6 mt-2 font-italic font-weight-lighter"
+                data-ng-if="$ctrl.meetingSlots"
+                data-translate="telecom_pack_migration_mandatory_field"
+            ></div>
+        </div>
+    </div>
+
+    <p
+        class="mt-3"
+        data-ng-if="!$ctrl.selectedMeeting.meetingSlots.slot"
+        data-translate="telecom_pack_migration_programmed_meeting_select"
+    ></p>
+    <p
+        class="mt-3"
+        data-ng-if="$ctrl.selectedMeeting.meetingSlots.slot && !$ctrl.selectedMeeting.meetingSlots.fakeMeeting"
+        data-ng-bind-html="$ctrl.meetingSelectMessage"
+    ></p>
+
+    <div class="row">
+        <div
+            class="oui-box oui-box_light m-2 col-md-2"
+            data-ng-repeat="meeting in $ctrl.meetings track by $index"
+        >
+            <h5 class="oui-box__heading" data-ng-bind="meeting.title"></h5>
+            <oui-radio
+                data-ng-repeat="slot in meeting.slots track by $index"
+                data-on-change="$ctrl.selectSlot(slot.id)"
+                value="slot.start"
+                data-model="$ctrl.model"
+            >
+                {{slot.startTime}} - {{slot.endTime}}
+            </oui-radio>
+        </div>
+    </div>
+</div>
+
+<p
+    data-ng-if="$ctrl.noAvailableMeeting && !$ctrl.loading"
+    data-translate="telecom_pack_migration_no_meeting_available"
+></p>
+
+<div class="mt-5" data-ng-if="!$ctrl.loading.init">
+    <a
+        class="btn btn-default"
+        data-translate="telecom_pack_migration_confirm_cancel_button"
+        data-ui-sref="telecom.packs.pack"
+    >
+    </a>
+    <button
+        type="button"
+        class="btn btn-primary"
+        data-ng-disabled="$ctrl.checkConfirm()"
+        data-translate="telecom_pack_migration_confirm"
+        data-ng-click="$ctrl.nextStep()"
+    ></button>
+</div>

@@ -1,0 +1,18 @@
+{
+  "pci_projects_project_storages_cold_archive_add_breadcrumb": "Create an archive",
+  "pci_projects_project_storages_cold_archive_add_title": "Create an archive",
+  "pci_projects_project_storages_cold_archive_add_description": "An archive is a container (bucket) for storing objects and files that must remain immutable, and be backed up on a long-term, resilient storage medium.",
+  "pci_projects_project_storages_cold_archive_add_description_link": "View the prices here.",
+  "pci_projects_project_storages_cold_archive_add_guides_title": "Guides",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_header": "Name your container",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_header_selected": "Container name: {{archiveName}}",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_localisation_banner_info": "Your container will be created in the following location: Roubaix (RBX).",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_header": "Attach a user to your container",
+  "pci_projects_project_storages_cold_archive_add_action_create": "Create a container",
+  "pci_projects_project_storages_cold_archive_add_action_cancel": "Exit",
+  "pci_projects_project_storages_cold_archive_add_action_create_pending": "Creating container...",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_linked_user": "The {{container}} container has been created. The Object Storage user {{ userName }} is the administrator for this container.",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_no_linked_user": "The {{container}} container has been created.",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success": "The {{containerName}} container has been created. The Object Storage user {{ userName }} is the administrator for this container.",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_failed": "An error has occurred creating the {{containerName}} container: {{message}}"
+}

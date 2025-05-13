@@ -1,11 +1,12 @@
 import get from 'lodash/get';
+import { ISSUE_TYPES } from './new-ticket.constant';
 
 export const name = 'SupportNewTicketService';
-
 export const definition = class SupportNewTicketService {
   /* @ngInject */
-  constructor($translate, OvhApiMe, OvhApiSupport) {
+  constructor($translate, $http, OvhApiMe, OvhApiSupport) {
     this.$translate = $translate;
+    this.$http = $http;
     this.OvhApiMe = OvhApiMe;
     this.OvhApiSupport = OvhApiSupport;
   }
@@ -20,6 +21,12 @@ export const definition = class SupportNewTicketService {
             label: this.$translate.instant(
               `ovhManagerSupport_new_category_${categoryId}`,
             ),
+            description:
+              categoryId === 'business'
+                ? ''
+                : this.$translate.instant(
+                    `ovhManagerSupport_new_category_description_${categoryId}`,
+                  ),
           }),
         ),
       );
@@ -46,6 +53,19 @@ export const definition = class SupportNewTicketService {
     return this.OvhApiSupport.v6().get({
       id: ticketId,
     }).$promise;
+  }
+
+  fetchIssueTypes(categoryName) {
+    return this.$http
+      .get('/support/issueTypes', {
+        serviceType: 'apiv6',
+        params: {
+          category: categoryName,
+          issueTypeId: ISSUE_TYPES.CHANGE_MY_DETAILS_ID,
+          language: this.$translate.use(),
+        },
+      })
+      .then(({ data }) => data);
   }
 
   static createLine(text = '') {

@@ -1,0 +1,8 @@
+{
+  "billing_main_history_debt_pay_title": "Saldo dell'importo dovuto",
+  "billing_main_history_debt_pay_confirm": "Salda l'importo dovuto",
+  "billing_main_history_debt_pay_explanation": "Con questa operazione viene generato un buono d'ordine valido per un'ora, con cui potrai effettuare direttamente il saldo del tuo conto.",
+  "billing_main_history_debt_pay_success": "Abbiamo generato il <a href=\"{{t1}}\" target=\"_blank\" rel=\"noopener\">buono d'ordine {{t0}}</a> per permetterti di effettuare il pagamento.",
+  "billing_main_history_debt_pay_error": "Si è verificato un errore durante il pagamento.",
+  "billing_main_history_debt_pay_error_nothing_to_pay": "Al momento non ci sono pagamenti in attesa."
+}

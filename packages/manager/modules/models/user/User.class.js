@@ -23,4 +23,20 @@ export default class User {
   get isEnterprise() {
     return some(this.certificates, (certificate) => certificate.isEnterprise());
   }
+
+  get isVATNeeded() {
+    return !['CA', 'QC', 'WE', 'WS'].includes(this.ovhSubsidiary);
+  }
+
+  canHaveInvoicesByPostalMail() {
+    return this.billingCountry === 'FR' && this.legalform === 'individual';
+  }
+
+  isCorporation() {
+    return this.legalform === 'corporation';
+  }
+
+  isPersonalCorporation() {
+    return this.legalform === 'personalcorporation';
+  }
 }

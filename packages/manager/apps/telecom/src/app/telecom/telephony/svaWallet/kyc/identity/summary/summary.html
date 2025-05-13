@@ -1,0 +1,66 @@
+<h2 data-translate="telephony_billingAccount_svaWallet_kyc_summary_title"></h2>
+<p data-translate="telephony_billingAccount_svaWallet_kyc_summary_message"></p>
+
+<oui-message
+    type="success"
+    data-ng-if="$ctrl.updateIbanSuccessMessage || $ctrl.showDocumentSuccessMessage"
+>
+    <span
+        data-ng-if="$ctrl.updateIbanSuccessMessage"
+        data-translate="telephony_billingAccount_svaWallet_kyc_summary_iban_confirmation"
+    ></span>
+    <span
+        data-ng-if="$ctrl.showDocumentSuccessMessage"
+        data-translate="telephony_billingAccount_svaWallet_kyc_summary_document_confirmation"
+    ></span>
+</oui-message>
+
+<telephony-sva-wallet-kyc-identity-overview-identity
+    sva-wallet="$ctrl.svaWallet"
+    country-enum="$ctrl.countryEnum"
+    company-kinds="$ctrl.companyKinds"
+    put-wallet="$ctrl.putWallet"
+>
+</telephony-sva-wallet-kyc-identity-overview-identity>
+
+<telephony-sva-wallet-kyc-identity-bank-account
+    bank-account="$ctrl.bankAccount"
+    save-wallet-iban="$ctrl.saveWalletIban"
+    sva-wallet="$ctrl.svaWallet"
+    update-iban-success-message="$ctrl.updateIbanSuccessMessage"
+>
+</telephony-sva-wallet-kyc-identity-bank-account>
+
+<h3
+    data-ng-if="$ctrl.svaWallet.company.beneficiaries.length < 4"
+    data-translate="telephony_billingAccount_svaWallet_kyc_summary_beneficiaries_title"
+></h3>
+
+<div
+    class="oui-field oui-field_auto"
+    data-ng-if="$ctrl.svaWallet.representative.isBeneficiary"
+>
+    <div
+        class="oui-field__control"
+        data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_representativeIsBeneficiary"
+    ></div>
+</div>
+
+<telephony-sva-wallet-kyc-beneficiaries
+    beneficiaries="$ctrl.svaWallet.company.beneficiaries"
+    representative-is-beneficiary="$ctrl.svaWallet.representative.isBeneficiary"
+></telephony-sva-wallet-kyc-beneficiaries>
+
+<h3
+    data-translate="telephony_billingAccount_svaWallet_kyc_summary_documents_title"
+></h3>
+
+<telephony-sva-wallet-kyc-identity-documents-list
+    data-ng-if="$ctrl.documents.length"
+    documents="$ctrl.documents"
+    document-type-enum="$ctrl.documentTypeEnum"
+    document-nature-enum="$ctrl.documentNatureEnum"
+    upload-document="$ctrl.uploadDocument"
+    on-document-change="$ctrl.onDocumentChange(document)"
+    update
+></telephony-sva-wallet-kyc-identity-documents-list>

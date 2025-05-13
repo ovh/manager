@@ -1,0 +1,24 @@
+<div>
+    <oui-back-button data-on-click="$ctrl.goBack()">
+        <span
+            data-translate="domain_configuration_dnsanycast_terminate_title"
+        ></span>
+    </oui-back-button>
+    <div data-ovh-alert="domain.terminateDnsAnycast"></div>
+    <p
+        data-translate="domain_configuration_dnsanycast_terminate_description1"
+    ></p>
+    <p
+        data-translate="domain_configuration_dnsanycast_terminate_description2"
+        data-translate-values="{ date: ($ctrl.dnsAnycastDetails.nextBillingDate | date:'mediumDate') }"
+    ></p>
+    <oui-button
+        class="mt-4"
+        data-on-click="$ctrl.goToTerminate()"
+        data-variant="primary"
+    >
+        <span
+            data-translate="domain_configuration_dnsanycast_terminate_button"
+        ></span>
+    </oui-button>
+</div>

@@ -1,11 +1,9 @@
 import find from 'lodash/find';
 import forOwn from 'lodash/forOwn';
-import get from 'lodash/get';
 import includes from 'lodash/includes';
 import kebabCase from 'lodash/kebabCase';
 import map from 'lodash/map';
-
-import { NEW_TICKET_URL } from './diagnostic.constants';
+import { SUPPORT_URL } from './diagnostic.constants';
 
 export default class ExchangeTabDiagnosticsCtrl {
   /* @ngInject */
@@ -13,33 +11,37 @@ export default class ExchangeTabDiagnosticsCtrl {
     $scope,
     $q,
     constants,
+    coreURLBuilder,
+    coreConfig,
     diagnostic,
-    User,
+    WucUser,
     EXCHANGE_CONFIG,
     $translate,
     navigation,
     messaging,
-    Exchange,
+    wucExchange,
     $timeout,
   ) {
     this.services = {
       $scope,
       $q,
       constants,
+      coreConfig,
       diagnostic,
-      User,
+      WucUser,
       EXCHANGE_CONFIG,
       $translate,
       navigation,
       messaging,
-      Exchange,
+      wucExchange,
       $timeout,
     };
 
     this.POLL_NAMESPACE = 'exchange.diagnostic.poll';
-    this.exchange = Exchange.value;
-    this.newTicketUrl =
-      get(NEW_TICKET_URL, constants.target, 'EU') + this.exchange.domain;
+
+    this.exchange = wucExchange.value;
+    this.user = coreConfig.getUser();
+    this.newTicketUrl = SUPPORT_URL + this.user.ovhSubsidiary;
 
     this.states = {
       REQUESTING_NEW_DIAGNOSTIC: 'REQUESTING_NEW_DIAGNOSTIC',
@@ -88,10 +90,11 @@ export default class ExchangeTabDiagnosticsCtrl {
   getDiagnosticAccounts() {
     this.loaders.accounts = true;
 
-    return this.services.Exchange.getAccountIds({
-      organizationName: this.exchange.organization,
-      exchangeService: this.exchange.domain,
-    })
+    return this.services.wucExchange
+      .getAccountIds({
+        organizationName: this.exchange.organization,
+        exchangeService: this.exchange.domain,
+      })
       .then((ids) => {
         this.accountIds = ids;
       })
@@ -269,7 +272,7 @@ export default class ExchangeTabDiagnosticsCtrl {
   fetchDiagnosticGuideUrl() {
     const defaultSubsidiary = 'FR';
 
-    this.services.User.getUser()
+    this.services.WucUser.getUser()
       .then((data) => {
         this.diagnosticGuideUrl =
           this.services.EXCHANGE_CONFIG.URLS.GUIDES.DIAGNOSTIC[

@@ -1,0 +1,6 @@
+{
+  "domain_configuration_dnsanycast_terminate_title": "Anycast DNS",
+  "domain_configuration_dnsanycast_terminate_description1": "The Anycast DNS option is a solution that accelerates the standard operation of DNS servers, to provide faster response times when visitors browse your website for the first time, anywhere in the world.",
+  "domain_configuration_dnsanycast_terminate_description2": "The Anycast DNS option is already enabled for this domain. It will be automatically renewed on {{date}}",
+  "domain_configuration_dnsanycast_terminate_button": "Cancel Anycast DNS"
+}

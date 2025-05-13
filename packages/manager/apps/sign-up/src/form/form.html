@@ -6,8 +6,11 @@
     </oui-message>
 
     <ovh-sign-up-form
-        data-action="update"
+        data-action="create"
         data-me="$ctrl.me"
+        data-model="$ctrl.model"
+        data-sms-consent="$ctrl.smsConsent"
+        data-is-valid="$ctrl.isValid"
         data-on-rules-updated="$ctrl.onRulesUpdated.bind($ctrl)"
     >
         <oui-stepper
@@ -24,27 +27,56 @@
             <oui-step-form
                 data-header="{{ 'sign_up_form_details_step_title' | translate }}"
                 data-on-focus="$ctrl.onStepFocus('details')"
-                data-on-cancel="$ctrl.onStepCancel('details')"
+                data-on-cancel="$ctrl.onStepFormCancel('details')"
                 data-ng-class="{ 'oui-stepper__step_form_active': $ctrl.isActiveStep('details') }"
                 data-prevent-next="true"
                 data-ng-if="!$ctrl.loading.init"
             >
-                <p
-                    data-translate="sign_up_form_global_information"
-                    data-ng-if="$ctrl.isActiveStep('details')"
-                ></p>
+                <div data-ng-if="$ctrl.isActiveStep('details')">
+                    <p
+                        data-translate="{{ 'sign_up_form_global_information'}}"
+                        data-ng-if="!$ctrl.isIndiaSubsidiary"
+                    ></p>
+                    <oui-message
+                        data-type="warning"
+                        data-ng-if="$ctrl.isIndiaSubsidiary"
+                    >
+                        <strong
+                            class="d-block"
+                            data-translate="sign_up_form_global_information_kyc_reminder"
+                        >
+                        </strong>
+                        <ul>
+                            <li>
+                                <span
+                                    data-translate="sign_up_form_global_information_kyc_reminder_fill_address"
+                                ></span>
+                            </li>
+                            <li>
+                                <span
+                                    data-translate="sign_up_form_global_information_kyc_reminder_match_address"
+                                ></span>
+                            </li>
+                        </ul>
+                    </oui-message>
+                </div>
                 <div data-ui-view="details"></div>
             </oui-step-form>
             <oui-step-form
                 data-header="{{ $ctrl.me.model.legalform !== 'individual' ? 'sign_up_form_activity_step_title' : 'sign_up_form_other_informations_step_title' | translate }}"
                 data-on-focus="$ctrl.onStepFocus('activity')"
-                data-on-cancel="$ctrl.onStepCancel('activity')"
+                data-on-cancel="$ctrl.onStepFormCancel('activity')"
                 data-ng-class="{ 'oui-stepper__step_form_active': $ctrl.isActiveStep('activity') }"
                 data-ng-if="!$ctrl.loading.init && $ctrl.isActivityStepVisible"
                 data-prevent-next="true"
+                data-valid="$ctrl.isValid"
             >
                 <div data-ui-view="activity"></div>
             </oui-step-form>
         </oui-stepper>
     </ovh-sign-up-form>
+    <div class="mt-2">
+        <span class="mandatory-fields-star">*</span>
+        <i data-translate="sign_up_form_mandatory_fields"></i>
+    </div>
 </div>

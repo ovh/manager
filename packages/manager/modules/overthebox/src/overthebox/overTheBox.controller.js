@@ -1,100 +1,85 @@
-export default /* @ngInject */ function(
-  $scope,
-  $stateParams,
-  $translate,
-  $q,
-  OvhApiOverTheBox,
-  TucToast,
-  CORE_URLS,
-) {
-  const self = this;
+export default class OverTheBoxCtrl {
+  /* @ngInject */
+  constructor(
+    $scope,
+    $translate,
+    $q,
+    OvhApiOverTheBox,
+    TucToast,
+    CORE_URLS,
+    OVER_THE_BOX,
+  ) {
+    this.$scope = $scope;
+    this.$translate = $translate;
+    this.$q = $q;
+    this.OvhApiOverTheBox = OvhApiOverTheBox;
+    this.TucToast = TucToast;
+    this.CORE_URLS = CORE_URLS;
+    this.OVER_THE_BOX = OVER_THE_BOX;
+  }
 
-  self.dice = Math.round(Math.random() * 100);
-  self.expressLiteOrder = CORE_URLS.orderExpressLite;
-  self.orderBoost = CORE_URLS.orderBoost;
+  $onInit() {
+    this.dice = Math.round(Math.random() * 100);
+    this.expressLiteOrder = this.CORE_URLS.orderExpressLite;
+    this.orderBoost = this.CORE_URLS.orderBoost;
 
-  this.disabledRemote = true;
+    this.disabledRemote = true;
 
-  this.checkDevices = function checkDevices() {
-    return OvhApiOverTheBox.v6()
+    this.checkDevices();
+    this.updateName = this.updateName.bind(this);
+  }
+
+  checkDevices() {
+    return this.OvhApiOverTheBox.v6()
       .getDevice({
-        serviceName: $stateParams.serviceName,
+        serviceName: this.serviceName,
       })
-      .$promise.then(
-        () => {
-          self.disabledRemote = false;
-        },
-        () => {
-          self.disabledRemote = true;
-        },
-      )
+      .$promise.then(() => {
+        this.disabledRemote = false;
+      })
+      .catch(() => {
+        this.disabledRemote = true;
+      })
       .finally(() => {
-        self.loader = false;
+        this.loader = false;
       });
-  };
+  }
 
   /**
    * Rename the title of the page
    * @param {String} str New Name
    * @returns {Promise}
    */
-  self.updateName = function updateName(str) {
-    self.nameUpdating = true;
+  updateName(str) {
+    this.nameUpdating = true;
 
-    return OvhApiOverTheBox.v6()
+    return this.OvhApiOverTheBox.v6()
       .putService(
         {
-          serviceName: $stateParams.serviceName,
+          serviceName: this.serviceName,
         },
         {
           customerDescription: str,
         },
       )
       .$promise.then(() => {
-        self.service.customerDescription = str;
+        this.service.customerDescription = str;
 
-        $scope.$emit(
+        this.$scope.$emit(
           'overTheBox_updateName',
-          self.service.serviceName,
-          self.service.customerDescription || self.service.serviceName,
+          this.service.serviceName,
+          this.service.customerDescription || this.service.serviceName,
         );
         return str;
       })
       .catch((err) => {
-        TucToast.error(
-          $translate.instant('overTheBox_error_rename', $stateParams),
+        this.TucToast.error(
+          this.$translate.instant('overTheBox_error_rename', this.serviceName),
         );
-        return $q.reject(err);
+        return this.$q.reject(err);
       })
       .finally(() => {
-        self.nameUpdating = false;
+        this.nameUpdating = false;
       });
-  };
-
-  /**
-   * Load services
-   */
-  this.getService = function getService() {
-    return OvhApiOverTheBox.v6()
-      .get({ serviceName: $stateParams.serviceName })
-      .$promise.then(
-        (service) => {
-          self.service = service;
-        },
-        (error) => {
-          self.error.service = error.data;
-          TucToast.error(
-            [$translate.instant('an_error_occured'), error.data.message].join(
-              ' ',
-            ),
-          );
-        },
-      );
-  };
-
-  function init() {
-    return $q.all([self.getService(), self.checkDevices()]);
   }
-
-  init();
 }

@@ -1,0 +1,15 @@
+{
+  "ai_endpoints_allModel": "All",
+  "ai_endpoints_metrics": "Metrics",
+  "ai_endpoints_total": "Total",
+  "ai_endpoints_totalAudio": "Total audio time (seconds)",
+  "ai_endpoints_noData": "No result",
+  "ai_endpoints_loading": "Please wait, we are collecting your data",
+  "ai_endpoints_error": "An error has occurred loading metrics. Please try again later",
+  "ai_endpoints_input": "Input token",
+  "ai_endpoints_output": "Output token",
+  "ai_endpoints_no_data_for_the_selected_period": "You do not have an active template for the selected period. Please adjust start and end date to view your consumption.",
+  "ai_endpoints_models": "Models",
+  "ai_endpoints_startDate": "Start date",
+  "ai_endpoints_endDate": "End date "
+}

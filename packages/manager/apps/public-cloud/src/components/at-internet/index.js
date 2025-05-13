@@ -1,48 +1,27 @@
 import angular from 'angular';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
-import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
-import ovhManagerCore from '@ovh-ux/manager-core';
-import 'ovh-api-services';
+import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
+import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 
 import TRACKING from './at-internet.constant';
 
 const moduleName = 'publicCloudAtInternet';
 
-angular
-  .module(moduleName, [
-    'ovh-api-services',
-    ovhManagerCore,
-    ngAtInternet,
-    ngAtInternetUiRouterPlugin,
-  ])
-  .config(
-    /* @ngInject */ (atInternetProvider, atInternetUiRouterPluginProvider) => {
-      const trackingEnabled = __NODE_ENV__ === 'production';
-
-      atInternetProvider.setEnabled(trackingEnabled);
-      atInternetProvider.setDebug(!trackingEnabled);
-
-      atInternetUiRouterPluginProvider.setTrackStateChange(true);
-      atInternetUiRouterPluginProvider.addStateNameFilter((routeName) => {
-        const prefix = 'public-cloud';
-        const route = routeName ? routeName.replace(/\./g, '::') : '';
-        return `${prefix}::${route}`;
-      });
-    },
-  )
-  .run(
-    /* @ngInject */ (atInternet, coreConfig, OvhApiMe) => {
-      const config = TRACKING[coreConfig.getRegion()] || {};
-
-      OvhApiMe.v6()
-        .get()
-        .$promise.then((me) => {
-          config.countryCode = me.country;
-          config.currencyCode = me.currency && me.currency.code;
-          config.visitorId = me.customerCode;
-          atInternet.setDefaults(config);
-        });
-    },
-  );
+export const initAtInternet = (region, trackingPlugin) => {
+  angular
+    .module(moduleName, [
+      registerAtInternet(trackingPlugin),
+      ovhManagerAtInternetConfiguration,
+    ])
+    .config(async () => {
+      await trackingPlugin.setConfig(region, TRACKING);
+    })
+    .config(
+      /* @ngInject */ (atInternetConfigurationProvider) => {
+        atInternetConfigurationProvider.setSkipInit(true);
+        atInternetConfigurationProvider.setPrefix('PublicCloud');
+      },
+    );
+  return moduleName;
+};
 
 export default moduleName;

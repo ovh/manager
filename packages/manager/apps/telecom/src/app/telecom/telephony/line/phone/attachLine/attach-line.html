@@ -1,0 +1,28 @@
+<div class="telecom-telephony-line-phone-attach">
+    <header>
+        <oui-back-button
+            data-on-click="::$ctrl.goBack()"
+            previous-page="{{::'telephony_group_line_phone_section_back_link_target' | translate}}"
+        >
+        </oui-back-button>
+    </header>
+    <tuc-toast-message></tuc-toast-message>
+
+    <!-- ATTACH -->
+    <section class="mt-5 widget-presentation">
+        <header class="widget-presentation-header">
+            <h2
+                class="widget-presentation-title"
+                data-translate="telephony_line_phone_attach_subtitle"
+            ></h2>
+        </header>
+
+        <telecom-telephony-associate-device
+            data-billing-account="$ctrl.billingAccount"
+            data-service-name="$ctrl.serviceName"
+            data-mac-address="$ctrl.macAddress"
+            data-go-back="$ctrl.goBack"
+        >
+        </telecom-telephony-associate-device>
+    </section>
+</div>

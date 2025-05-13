@@ -1,7 +1,7 @@
 {
   "pci_projects_project_quota": "Limites",
   "pci_projects_project_quota_protect_explain": "Para controlar os seus consumos cloud, o seu projeto tem um limite de recursos.",
-  "pci_projects_project_quota_protect_more": "Se precisar de mais recursos, pode solicitá-los à nossa equipa, clicando no botão em baixo.",
+  "pci_projects_project_quota_protect_more": "Se precisar de mais recursos, pode encomendar crédito cloud ou solicitá-los à nossa equipa, clicando nos botões em baixo.",
   "pci_projects_project_quota_protect_more_btn": "Aumentar os meus limites",
   "pci_projects_project_quota_current_limit": "Limites atuais",
   "pci_projects_project_quota_instance_unlimited": "Ilimitado",
@@ -17,5 +17,13 @@
   "pci_projects_project_quota_instance": "Servidores",
   "pci_projects_project_quota_core": "vCPU",
   "pci_projects_project_quota_ram": "RAM",
-  "pci_projects_project_quota_open_new_tab": "Abre um novo separador"
+  "pci_projects_project_quota_open_new_tab": "Abre um novo separador",
+  "pci_projects_project_quota_threshold_reached": "quota limitada",
+  "pci_projects_project_quota_autoscaling": "Quota autoscaling",
+  "pci_projects_project_quota_autoscaling_on": "Ativado",
+  "pci_projects_project_quota_autoscaling_off": "Desativado",
+  "pci_projects_project_quota_autoscaling_error": "Ocorreu um erro aquando da atualização da quota autoscaling.",
+  "pci_projects_project_quota_autoscaling_help": "A sua quota será atualizada de forma automática em função da sua utilização e segundo diferentes critérios.",
+  "pci_projects_project_quota_protect_contact_support": "Contactar o Apoio ao Cliente",
+  "pci_projects_project_quota_error_forbidden": "Não tem permissões suficientes para gerir os seus limites. Contacte o proprietário do serviço"
 }

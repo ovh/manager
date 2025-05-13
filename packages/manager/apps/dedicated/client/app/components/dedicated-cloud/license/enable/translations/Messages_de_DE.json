@@ -1,0 +1,7 @@
+{
+  "dedicatedCloud_tab_licences_active_spla_title": "Aktivierung der Windows-SPLA-Lizenz",
+  "dedicatedCloud_tab_license_type": "Typ",
+  "dedicatedCloud_tab_license_price": "Preis",
+  "dedicatedCloud_tab_licences_active_spla_load_fail": "Beim Abruf der Informationen zur Aktivierung der SPLA-Lizenz ist ein Fehler aufgetreten.",
+  "dedicatedCloud_tab_licences_contract_name_MBM": "Besondere Bedingungen für Windows"
+}

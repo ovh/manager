@@ -1,0 +1,26 @@
+<oui-message type="success" data-ng-if="$ctrl.isUnderReview">
+    <span
+        data-translate="telephony_billingAccount_svaWallet_status_banner_in_progress"
+    ></span>
+</oui-message>
+
+<div
+    class="oui-message oui-message_warning oui-message_no-icon"
+    role="alert"
+    data-ng-if="$ctrl.needCustomerAction"
+>
+    <p class="oui-message__body">
+        <span
+            data-translate="telephony_billingAccount_svaWallet_status_banner_incomplete"
+        ></span>
+    </p>
+    <a
+        class="oui-link_icon"
+        data-ui-sref="telecom.telephony.billingAccount.svaWallet"
+    >
+        <span
+            data-translate="telephony_billingAccount_svaWallet_status_banner_edit_kyc"
+        ></span>
+        <span class="oui-icon oui-icon-arrow-right" aria-hidden="true"></span>
+    </a>
+</div>

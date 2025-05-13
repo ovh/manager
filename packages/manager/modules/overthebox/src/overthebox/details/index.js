@@ -1,33 +1,30 @@
 import angular from 'angular';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import uiRouter from '@uirouter/angularjs';
+import angularTranslate from 'angular-translate';
+import bandwidth from '@ovh-ux/manager-filters';
 
 import ovhManagerOtbWarning from '../warning';
 
+import component from './overTheBox-details.component';
 import constant from './overTheBox-details.constant';
-import controller from './overTheBox-details.controller';
-import overTheBoxGraphService from './overTheBox-details.service';
-import template from './overTheBox-details.html';
+import overTheBoxDetailsService from './overTheBox-details.service';
+import routing from './overTheBox-details.routing';
 
 const moduleName = 'ovhManagerOtbDetails';
 
 angular
-  .module(moduleName, [ovhManagerOtbWarning])
+  .module(moduleName, [
+    ngTranslateAsyncLoader,
+    uiRouter,
+    angularTranslate,
+    ovhManagerOtbWarning,
+    bandwidth,
+  ])
+  .component('overTheBoxDetails', component)
   .constant('OVERTHEBOX_DETAILS', constant)
-  .config(($stateProvider) => {
-    $stateProvider.state('overTheBoxes.overTheBox.details', {
-      url: '/details',
-      views: {
-        otbView: {
-          template,
-          controller,
-          controllerAs: 'OverTheBoxDetails',
-        },
-      },
-      translations: {
-        value: ['.', '../remote'],
-        format: 'json',
-      },
-    });
-  })
-  .service('OverTheBoxGraphService', overTheBoxGraphService);
+  .config(routing)
+  .service('OverTheBoxDetailsService', overTheBoxDetailsService)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,0 +1,190 @@
+<div>
+    <oui-message type="warning" data-ng-if="$ctrl.displayWarning">
+        <p data-translate="network_security_dashboard_warning_period"></p>
+        <p data-translate="network_security_dashboard_warning_default"></p>
+    </oui-message>
+    <div class="oui-box mt-2 mb-2 d-flex justify-content-between">
+        <div class="d-flex">
+            <label
+                class="oui-label"
+                data-translate="network_security_dashboard_display_filter"
+            >
+            </label>
+            <span class="oui-select ml-2">
+                <select
+                    class="form-control oui-select__input"
+                    id="services"
+                    data-ng-model="$ctrl.service"
+                    data-ng-change="$ctrl.selectService()"
+                    data-ng-options="service as service.serviceName group by (('network_security_dashboard_service_' + service.category) | translate) for service in $ctrl.services track by service.serviceName"
+                >
+                    <option
+                        value=""
+                        data-ng-bind="'network_security_dashboard_service_all' | translate"
+                    ></option>
+                </select>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
+            </span>
+            <span class="ml-2">
+                <oui-select
+                    data-items="$ctrl.ipsList"
+                    data-model="$ctrl.subnetSelected"
+                    data-on-change="$ctrl.onSelectSubnet()"
+                    data-placeholder="{{:: 'network_security_dashboard_select_ip' | translate}}"
+                    data-ng-if="$ctrl.isServiceSelected"
+                ></oui-select>
+                <oui-search
+                    data-model="$ctrl.model"
+                    data-on-submit="$ctrl.checkSelectedSubnet(modelValue)"
+                    data-on-reset="$ctrl.onReset()"
+                    data-placeholder="{{:: 'network_security_dashboard_select_search_ip' | translate}}"
+                    data-ng-if="!$ctrl.isServiceSelected"
+                ></oui-search>
+                <p
+                    class="oui-color-ae-500"
+                    data-ng-if="!$ctrl.isSubnetValid"
+                    data-translate="network_security_dashboard_invalid_ip"
+                ></p>
+            </span>
+        </div>
+        <div class="d-flex">
+            <label
+                class="oui-label mr-2"
+                data-translate="network_security_dashboard_period_filter"
+            ></label>
+            <div>
+                <oui-select
+                    data-items="$ctrl.periods"
+                    data-model="$ctrl.period"
+                    id="periods"
+                    data-inline
+                    data-match="label"
+                    data-on-change="$ctrl.getTraffic()"
+                ></oui-select>
+                <label data-ng-bind="$ctrl.timeZoneLabel"></label>
+            </div>
+        </div>
+    </div>
+    <div
+        data-ng-if="!$ctrl.results && !$ctrl.isLoading"
+        class="text-center m-3"
+        data-translate="network_security_dashboard_empty_result"
+    ></div>
+    <div class="text-center" data-ng-if="$ctrl.isLoading">
+        <oui-spinner></oui-spinner>
+    </div>
+    <div data-ng-if="$ctrl.displayGraph">
+        <div class="d-flex justify-content-start">
+            <div class="oui-box oui-box_light mr-4">
+                <h4
+                    class="oui-box__heading"
+                    data-translate="network_security_dashboard_number_of_events"
+                ></h4>
+                <p
+                    class="oui-heading_5 text-center oui-color-p-500"
+                    data-ng-bind="$ctrl.numberOfEvents"
+                    data-ng-if="$ctrl.numberOfEvents > 0"
+                ></p>
+                <p
+                    class="oui-heading_5 text-center oui-color-p-500"
+                    data-translate="network_security_dashboard_none"
+                    data-ng-if="$ctrl.numberOfEvents === 0"
+                ></p>
+            </div>
+            <div class="oui-box oui-box_light mr-4">
+                <h4
+                    class="oui-box__heading"
+                    data-translate="network_security_dashboard_packets_dropped"
+                ></h4>
+                <p
+                    class="oui-heading_5 text-center oui-color-p-500"
+                    data-ng-bind="$ctrl.packetsDropped"
+                    data-ng-if="$ctrl.packetsDropped"
+                ></p>
+                <p
+                    class="oui-heading_5 text-center oui-color-p-500"
+                    data-translate="network_security_dashboard_none"
+                    data-ng-if="!$ctrl.packetsDropped"
+                ></p>
+            </div>
+            <div class="oui-box oui-box_light mr-4">
+                <h4
+                    class="oui-box__heading"
+                    data-translate="network_security_dashboard_bandwith_cleaned"
+                ></h4>
+                <p
+                    class="oui-heading_5 text-center oui-color-p-500"
+                    data-ng-bind="$ctrl.bandwithCleaned"
+                    data-ng-if="$ctrl.bandwithCleaned"
+                ></p>
+                <p
+                    class="oui-heading_5 text-center oui-color-p-500"
+                    data-translate="network_security_dashboard_none"
+                    data-ng-if="!$ctrl.bandwithCleaned"
+                ></p>
+            </div>
+            <div class="oui-box oui-box_light mr-4">
+                <h4
+                    class="oui-box__heading"
+                    data-translate="network_security_dashboard_attacks_detected"
+                ></h4>
+                <p
+                    class="oui-heading_5 text-center oui-color-p-500"
+                    data-ng-bind="$ctrl.attacksDetected"
+                    data-ng-if="$ctrl.attacksDetected > 0"
+                ></p>
+                <p
+                    class="oui-heading_5 text-center oui-color-p-500"
+                    data-translate="network_security_dashboard_none"
+                    data-ng-if="$ctrl.attacksDetected === 0"
+                ></p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end mt-2">
+            <oui-button
+                variant="secondary"
+                icon-left="oui-icon-refresh"
+                data-on-click="$ctrl.getTraffic()"
+                data-oui-tooltip="{{:: 'network_security_dashboard_refresh' | translate }}"
+                data-oui-tooltip-placement="top"
+                class="mr-4"
+            >
+            </oui-button>
+            <oui-checkbox
+                data-model="$ctrl.isStackable"
+                data-on-change="$ctrl.updateStackable(modelValue)"
+                class="mr-4"
+            >
+                <span
+                    data-translate="network_security_dashboard_stack_data_series"
+                ></span>
+            </oui-checkbox>
+            <label
+                data-translate="network_security_dashboard_data_mode"
+                class="mt-1 mr-2"
+            >
+            </label>
+            <label
+                data-translate="network_security_dashboard_bps"
+                class="mt-1 mr-2"
+            >
+            </label>
+            <oui-switch
+                data-model="$ctrl.isPPs"
+                data-on-change="$ctrl.loadGraph(modelValue)"
+            ></oui-switch>
+            <label
+                data-translate="network_security_dashboard_pps"
+                class="mt-1 ml-2"
+            ></label>
+        </div>
+        <div
+            data-chart
+            data-chartjs="$ctrl.chart"
+            data-auto-reload="true"
+        ></div>
+    </div>
+</div>

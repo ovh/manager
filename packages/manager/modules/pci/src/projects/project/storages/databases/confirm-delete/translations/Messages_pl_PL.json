@@ -1,0 +1,10 @@
+{
+  "pci_database_confirm_delete_confirm": "Zatwierdź",
+  "pci_database_confirm_delete_cancel": "Anuluj",
+  "pci_database_confirm_delete": "Usuń usługę",
+  "pci_database_confirm_delete_description_1": "Następujące usługi są powiązane z usługą {{serviceName}}, którą chcesz usunąć:",
+  "pci_database_confirm_delete_description_2": "Czy na pewno chcesz usunąć usługę {{databaseName}}?",
+  "pci_database_confirm_delete_description_3": "Spowoduje to usunięcie powiązania (replikacja lub integracja).",
+  "pci_database_confirm_delete_success_message": "Usługa została usunięta.",
+  "pci_database_confirm_delete_error_message": "Wystąpił błąd podczas usuwania usługi: {{message}}"
+}

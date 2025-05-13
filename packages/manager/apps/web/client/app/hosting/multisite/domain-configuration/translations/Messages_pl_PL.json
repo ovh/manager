@@ -1,0 +1,21 @@
+{
+  "hosting_multisite_domain_configuration_home": "Katalog główny",
+  "hosting_multisite_domain_configuration_myfolder": "mojkatalog",
+  "hosting_multisite_domain_configuration_firewall": "Włącz firewall",
+  "hosting_multisite_domain_configuration_cdn": "Włącz CDN",
+  "hosting_multisite_domain_configuration_information": "Aby konfiguracja działała, należy wykonać następujące operacje w ramach domeny:",
+  "hosting_multisite_domain_configuration_none_options": "Brak opcji",
+  "hosting_multisite_domain_configuration_ownlog": "Rozdzielone logi",
+  "hosting_multisite_domain_configuration_runtime": "Framework",
+  "hosting_multisite_domain_configuration_options_choose": "Wybierz opcję",
+  "hosting_multisite_domain_configuration_cdn_help": "Włącz opcję CDN, aby przyspieszyć wyświetlanie się Twojej strony na całym świecie.",
+  "hosting_multisite_domain_configuration_country_ip_help": "Włącz geolokalizację adresu IP, aby zoptymalizować pozycjonowanie i dostępność strony WWW.",
+  "hosting_multisite_domain_configuration_firewall_help": "Włącz firewall, aby zwiększyć ochrony Twojej strony WWW. ",
+  "hosting_multisite_domain_configuration_ownlog_help": "Włącz tę opcję, aby mieć dostęp do oddzielnych logów dla stron podłączonych w opcji MultiSite.",
+  "hosting_multisite_domain_configuration_path_help": "Dozwolonymi znakami w przypadku katalogów są litery, cyfry oraz znaki -_./ Nie ma dostępu do katalogów macierzystych przy użyciu ..",
+  "hosting_multisite_domain_configuration_countriesIp": "Geolokalizacja IP",
+  "hosting_multisite_domain_configuration_countriesIp_none": "Brak",
+  "hosting_multisite_domain_configuration_ssl": "SSL",
+  "hosting_multisite_domain_configuration_ssl_help": "Włącz opcję SSL, aby korzystać z protokołu HTTPS.",
+  "hosting_multisite_domain_configuration_git_warning": "Jeśli chcesz zmienić katalog główny, musisz najpierw z niego usunąć konfigurację Git, aby uniknąć problemów ze śledzeniem zmian i zarządzaniem wdrożeniami."
+}

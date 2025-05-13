@@ -1,0 +1,20 @@
+{
+  "pci_projects_project_storages_blocks_block_volume-edit_region_label": "Localização",
+  "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Tipo de volume",
+  "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Nome do volume",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Capacidade do volume",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_help": "O tamanho máximo depende do seu limite disponível.",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Volume de arranque",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Definir um volume como volume de arranque permite utilizar esse volume ao iniciar a instância.",
+  "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Anular",
+  "pci_project_flavors_zone_localzone": "Local Zone",
+  "pci_project_flavors_zone_localzone_tooltip": "Uma Local Zone corresponde a um modo de implementação dos produtos Public Cloud da OVHcloud em datacenters situados mais perto dos utilizadores finais.",
+  "pci_project_flavors_zone_tooltip_link": "Saber mais",
+  "pci_project_flavors_zone_global_region": "1-AZ",
+  "pci_project_flavors_zone_globalregions_tooltip": "Uma região 1-AZ (zona de disponibilidade) agrupa um ou vários datacenters localizados no mesmo local.",
+  "pci_project_flavors_zone_globalregions_tooltip_2": "Com a chegada das regiões 3-AZ, o tipo de implementação 'Regiões' muda de nome! Uma região 1-AZ (zona de disponibilidade) agrupa um ou vários datacenters localizados no mesmo local.",
+  "pci_project_flavors_zone_3az_region": "3-AZ",
+  "pci_project_flavors_zone_3az_tooltip": "Uma região 3-AZ inclui três zonas de disponibilidade situadas na mesma área metropolitana, separadas por alguns quilómetros. Satisfaz as exigências mais elevadas em matéria de resiliência, garantindo uma latência extremamente baixa entre os AZ.",
+  "pci_projects_project_storages_blocks_add_submit_price_text": "Montante estimado: {{price}}/mês + IVA"
+}

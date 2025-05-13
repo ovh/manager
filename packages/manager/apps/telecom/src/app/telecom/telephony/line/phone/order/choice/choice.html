@@ -1,0 +1,189 @@
+<div>
+    <header class="widget-presentation-header">
+        <h2
+            class="widget-presentation-title"
+            data-translate="telephony_line_phone_order_order_title"
+        ></h2>
+    </header>
+
+    <div class="text-center" data-ng-if="$ctrl.isStepLoading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.isStepLoading">
+        <div
+            data-ng-if="($ctrl.phoneOffers.length > 0 || $ctrl.merchandise.length)"
+        >
+            <!-- Define filters -->
+            <oui-dropdown
+                class="d-flex justify-content-end"
+                data-placement="end"
+            >
+                <oui-dropdown-trigger
+                    text="{{ ::'telephony_line_phone_filter_price' | translate }}"
+                >
+                </oui-dropdown-trigger>
+                <oui-dropdown-content>
+                    <oui-dropdown-item data-on-click="$ctrl.sortPrice('asc')">
+                        <span
+                            data-translate="telephony_line_phone_filter_price_asc"
+                        ></span>
+                    </oui-dropdown-item>
+                    <oui-dropdown-item data-on-click="$ctrl.sortPrice('desc')">
+                        <span
+                            data-translate="telephony_line_phone_filter_price_desc"
+                        ></span>
+                    </oui-dropdown-item>
+                </oui-dropdown-content>
+            </oui-dropdown>
+
+            <!-- Define tabs -->
+            <oui-tabs>
+                <oui-tabs-item
+                    data-ng-repeat="brand in $ctrl.brandList track by $index"
+                    data-heading="{{ ::brand }}"
+                    data-on-active="$ctrl.filterByBrand(brand)"
+                >
+                    <!-- Define the thumbnail for phones list -->
+                    <div class="row">
+                        <div
+                            class="col-xs-12 col-sm-6 col-md-3 phone-item"
+                            data-ng-if="$ctrl.phone"
+                        >
+                            <oui-radio-group
+                                data-model="$ctrl.phoneToOrder"
+                                data-on-change="$ctrl.returnPhone()"
+                            >
+                                <oui-radio thumbnail data-value>
+                                    <div
+                                        data-translate="telephony_line_phone_order_return_phone"
+                                        data-translate-values="{ phone: $ctrl.phone.description }"
+                                    ></div>
+                                    <div class="thumbnail">
+                                        <img
+                                            class="sized"
+                                            data-ng-if="phone.img"
+                                            alt
+                                            data-ng-alt="{{phone.description}}"
+                                            data-ng-src="{{phone.img}}"
+                                        />
+                                        <span
+                                            data-ng-if="!phone.img"
+                                            class="text-center ovh-font ovh-font-phone sized"
+                                        ></span>
+                                    </div>
+                                </oui-radio>
+                            </oui-radio-group>
+                        </div>
+                        <div
+                            class="col-xs-12 col-sm-6 col-md-3 phone-item"
+                            data-ng-repeat="phone in $ctrl.phonesDisplayed"
+                        >
+                            <oui-radio-group
+                                data-model="$ctrl.phoneToOrder"
+                                data-on-change="$ctrl.selectPhone()"
+                            >
+                                <oui-radio thumbnail data-value="phone.brand">
+                                    <div>
+                                        <span
+                                            data-ng-bind="phone.description"
+                                        ></span>
+                                    </div>
+                                    <div class="thumbnail">
+                                        <img
+                                            class="sized"
+                                            data-ng-if="phone.img"
+                                            alt="{{phone.description}}"
+                                            data-ng-src="{{phone.img}}"
+                                        />
+                                        <span
+                                            data-ng-if="!phone.img"
+                                            class="text-center ovh-font ovh-font-phone sized"
+                                        ></span>
+                                    </div>
+                                    <div class="caption">
+                                        <div class="text-center">
+                                            <span
+                                                data-translate="telephony_line_phone_deposit"
+                                                data-ng-if="phone.offerType === 'deposit'"
+                                            ></span>
+                                            <span
+                                                data-translate="telephony_line_phone_price"
+                                                data-ng-if="phone.offerType === 'purchase'"
+                                            ></span>
+                                            <span
+                                                data-ng-bind="phone.price.text"
+                                            ></span>
+                                        </div>
+                                        <div
+                                            class="text-center oui-label"
+                                            data-ng-if="phone.fees"
+                                        >
+                                            <span
+                                                data-ng-bind="phone.fees.text"
+                                            ></span>
+                                            :
+                                            <span
+                                                data-ng-bind="phone.fees.priceText"
+                                            ></span>
+                                        </div>
+                                        <div
+                                            class="text-center oui-label"
+                                            data-ng-if="phone.url"
+                                        >
+                                            <a
+                                                data-ng-href="{{phone.url}}"
+                                                target="_blank"
+                                                rel="noopener"
+                                            >
+                                                <span
+                                                    data-translate="telephony_line_phone_detail_link"
+                                                >
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </oui-radio>
+                            </oui-radio-group>
+                        </div>
+                    </div>
+                </oui-tabs-item>
+            </oui-tabs>
+            <div
+                class="alert alert-warning alert-xs mt-3"
+                role="alert"
+                data-ng-if="$ctrl.isSamePhone()"
+            >
+                <span
+                    class="ovh-font ovh-font-filled-warning"
+                    aria-hidden="true"
+                >
+                </span>
+                <p
+                    data-translate="telephony_line_phone_change_same_current_phone"
+                ></p>
+            </div>
+
+            <hr class="oui-horizontal-line_dark mt-3" />
+
+            <div class="mt-3 mb-4">
+                <button
+                    type="button"
+                    class="oui-button oui-button_primary mt-2"
+                    data-ng-click="$ctrl.nextStep()"
+                    data-ng-disabled="!($ctrl.selectedPhone || $ctrl.isReturnPhone)"
+                >
+                    <span
+                        data-translate="telephony_line_phone_order_order_next"
+                    ></span>
+                </button>
+            </div>
+        </div>
+        <div
+            class="alert alert-info"
+            role="alert"
+            data-ng-if="!($ctrl.phoneOffers.length > 0 || $ctrl.merchandise.length)"
+            data-translate="telephony_line_phone_order_order_empty"
+        ></div>
+    </div>
+</div>

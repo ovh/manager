@@ -1,6 +1,8 @@
 {
-  "sms_options_manage": "General options",
+  "sms_options_breadcrumb": "Options",
+  "sms_options_callback": "Callback options",
   "sms_options_response": "Reply options",
   "sms_options_recredit": "Automatic re-credit",
-  "sms_options_blacklist": "Manage blacklisted senders"
+  "sms_options_blacklist": "Manage blacklisted recipients",
+  "sms_options_smpp_parameter": "SMPP Settings"
 }

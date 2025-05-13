@@ -1,0 +1,18 @@
+{
+  "zimbra_account_order": "Ordina un account",
+  "zimbra_account_order_cta_back": "Tornare ai miei account email",
+  "zimbra_account_order_title": "Ordinare i tuoi account Zimbra",
+  "zimbra_account_order_subtitle": "Scegli i tuoi account Zimbra",
+  "zimbra_account_order_subtitle_commitment": "Durata dell’impegno",
+  "zimbra_account_order_legal_checkbox": "Accetto che OVH proceda all'immediata attivazione del servizio subito dopo la convalida del mio ordine e rinuncio espressamente a esercitare il mio diritto di recesso, conformemente alle disposizioni di cui all'articolo L.121-21-8 del Codice del Consumo francese.",
+  "zimbra_account_order_no_product_error_message": "Si è verificato un problema durante il caricamento del prodotto associato al tuo ordine, ci scusiamo e ti invitiamo a riprovare più tardi.",
+  "zimbra_account_order_commitment_month": "mese",
+  "zimbra_account_order_commitment_months": "mese",
+  "zimbra_account_order_commitment_available_soon": "Presto disponibile",
+  "zimbra_account_order_cta_confirm": "Pagare",
+  "zimbra_account_order_cta_done": "Indietro",
+  "zimbra_account_order_initiated_title": "Ordine dei tuoi account Zimbra avviato!",
+  "zimbra_account_order_initiated_subtitle": "Se non hai potuto finalizzare l’ordine, completalo cliccando sul seguente link:",
+  "zimbra_account_order_initiated_info": "Ti informeremo della disponibilità dei tuoi account via email.",
+  "zimbra_account_order_initiated_link_label": "Link al tuo ordine"
+}

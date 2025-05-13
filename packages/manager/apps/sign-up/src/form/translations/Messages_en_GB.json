@@ -6,5 +6,9 @@
   "sign_up_form_next_button": "Next step",
   "sign_up_form_submit_button": "Create an account",
   "sign_up_form_submit_error": "Oops! An error has occurred creating the account.",
-  "sign_up_form_global_information": "Please remember to enter all of the information, so that you can place an order."
+  "sign_up_form_global_information": "To continue with your order, the information below is required.",
+  "sign_up_form_global_information_kyc_reminder": "Please remember to fill in every field and confirm that your personal details match the name and address in your official documents before placing your order.",
+  "sign_up_form_global_information_kyc_reminder_fill_address": "Enter <strong>your full address</strong> ",
+  "sign_up_form_global_information_kyc_reminder_match_address": "The address must <strong>match the one on the proof of address</strong> for identity verification.",
+  "sign_up_form_mandatory_fields": "obligatory fields"
 }

@@ -1,8 +1,0 @@
-{
-  "telephony_service_consumption_incoming_fax_all": "Visi gauti faksai",
-  "telephony_service_consumption_incoming_fax_empty": "Nėra gautų faksų",
-  "telephony_service_consumption_incoming_fax_period": "Periodas nuo <strong>{{ start }}</strong> iki <strong>{{ end }}</strong>",
-  "telephony_service_consumption_incoming_fax_not_found": "Joks faksas neatitinka paieškos.",
-  "telephony_service_consumption_incoming_fax_summary": "Gauti faksai: <strong>{{ fax }}</strong>, puslapių skaičius: <strong>{{ pages }}</strong>",
-  "telephony_service_consumption_incoming_fax_pages": "Puslapiai"
-}

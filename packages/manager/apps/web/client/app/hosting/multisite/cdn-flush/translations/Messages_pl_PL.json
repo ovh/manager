@@ -1,0 +1,17 @@
+{
+  "hosting_multisite_cdn_flush_title": "Wyczyść cache",
+  "hosting_multisite_cdn_flush_question_true": "Czy na pewno chcesz wyczyścić pamięć cache CDN dla tej domeny ?",
+  "hosting_multisite_cdn_flush_question_false": "Czy na pewno chcesz wyczyścić pamięć cache CDN?",
+  "hosting_multisite_cdn_flush_success": "Pamięć cache CDN zostanie wyczyszczona w ciągu kilku minut.",
+  "hosting_multisite_cdn_flush_done_success": "Pamięć cache CDN została wyczyszczona.",
+  "hosting_multisite_cdn_flush_error": "Wystąpił błąd podczas czyszczenia pamięci cache CDN.",
+  "hosting_multisite_cdn_flush_domain": "Domena:",
+  "hosting_multisite_cdn_flush_purge_option_all": "Cała strona WWW",
+  "hosting_multisite_cdn_flush_purge_option_folder": "Katalog",
+  "hosting_multisite_cdn_flush_purge_option_uri": "URI",
+  "hosting_multisite_cdn_flush_purge_option_extension": "Rozszerzenie",
+  "hosting_multisite_cdn_flush_purge_option_regex": "Spersonalizowane wyrażenie regularne",
+  "hosting_multisite_cdn_flush_purge_field_value": "Wartość",
+  "hosting_multisite_cdn_flush_cancel": "Anuluj",
+  "hosting_multisite_cdn_flush_validate": "Zatwierdź"
+}

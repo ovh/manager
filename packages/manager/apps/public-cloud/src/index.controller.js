@@ -1,30 +1,21 @@
-import options from './navbar.config';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
+
+import { getShellClient } from './shell';
 
 export default class PublicCloudController {
   /* @ngInject */
-  constructor(
-    $scope,
-    $state,
-    $timeout,
-    $translate,
-    $window,
-    atInternet,
-    ovhUserPref,
-    publicCloud,
-    SessionService,
-  ) {
+  constructor($scope, $timeout, atInternet) {
     this.$scope = $scope;
-    this.$state = $state;
     this.$timeout = $timeout;
-    this.$translate = $translate;
-    this.$window = $window;
     this.atInternet = atInternet;
-    this.ovhUserPref = ovhUserPref;
-    this.publicCloud = publicCloud;
-    this.sessionService = SessionService;
-    this.navbarOptions = options;
+    this.isTopLevelApplication = isTopLevelApplication();
+
+    this.shell = getShellClient();
 
     $scope.$on('oui-step-form.submit', (event, { form }) => {
+      if (form.$name?.startsWith('instances_add')) {
+        return;
+      }
       this.atInternet.trackClick({
         name: form.$name,
         type: 'action',
@@ -33,13 +24,9 @@ export default class PublicCloudController {
   }
 
   $onInit() {
-    [this.currentLanguage] = this.$translate.use().split('_');
-
-    this.$translate.refresh().then(() => {
-      this.sessionService.getUser().then((user) => {
-        this.user = user;
-      });
-    });
+    this.shell.ux.onRequestClientSidebarOpen(() =>
+      this.$timeout(() => this.openSidebar()),
+    );
   }
 
   openSidebar() {

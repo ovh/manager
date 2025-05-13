@@ -1,73 +1,67 @@
 <div class="telecom-legacy telecom-orders">
-    <header>
-        <tuc-section-back-link
-            data-tuc-section-back-link-to-state="telecom.dashboard"
-        ></tuc-section-back-link>
-        <h1 data-translate="telecom_orders_follow_up_title"></h1>
-    </header>
+    <oui-header heading="{{:: 'telecom_orders_follow_up_title' | translate }}">
+    </oui-header>
 
-    <div class="telecom-section-content">
-        <div class="widget-presentation">
-            <h2
-                class="widget-presentation-title"
-                data-translate="telecom_orders_follow_up_intro"
-            ></h2>
+    <div class="widget-presentation">
+        <h2
+            class="widget-presentation-title"
+            data-translate="telecom_orders_follow_up_intro"
+        ></h2>
 
-            <oui-datagrid
-                data-rows="OrdersCtrl.ordersDetails"
-                data-page-size="{{OrdersCtrl.perPage}}"
+        <oui-datagrid
+            data-rows="OrdersCtrl.ordersDetails"
+            data-page-size="{{OrdersCtrl.perPage}}"
+        >
+            <oui-datagrid-column
+                data-title="'telecom_orders_follow_up_header_service' | translate"
+                data-property="name"
+                data-sortable="asc"
             >
-                <oui-column
-                    data-title="'telecom_orders_follow_up_header_service' | translate"
-                    data-property="name"
-                    data-sortable="asc"
+                <a
+                    data-ui-sref="telecom.orders.show({serviceName: $row.xdsl })"
+                    data-ng-bind="$row.name | limitTo: 25"
                 >
-                    <a
-                        data-ui-sref="telecom.orders.show({serviceName: $row.xdsl })"
-                        data-ng-bind="$row.name | limitTo: 25"
-                    >
-                    </a>
-                </oui-column>
-                <oui-column
-                    data-title="'telecom_orders_follow_up_header_type' | translate"
-                    data-property="accessType"
+                </a>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'telecom_orders_follow_up_header_type' | translate"
+                data-property="accessType"
+            >
+                <span
+                    data-ng-bind="'telecom_orders_follow_up_type_' + $row.accessType | translate"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'telecom_orders_follow_up_header_status' | translate"
+                data-property="lineStatus"
+            >
+                <span
+                    data-ng-bind="'status_' + $row.lineStatus | translate"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'telecom_orders_follow_up_header_step' | translate"
+                data-property="lastTask.name"
+            >
+                <span
+                    data-ng-if="$row.lastTask"
+                    data-ng-bind="'telecom_common_pack_xdsl_order_step_name_' + $row.lastTask.name | translate"
                 >
-                    <span
-                        data-ng-bind="'telecom_orders_follow_up_type_' + $row.accessType | translate"
-                    ></span>
-                </oui-column>
-                <oui-column
-                    data-title="'telecom_orders_follow_up_header_status' | translate"
-                    data-property="lineStatus"
+                </span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'telecom_orders_follow_up_header_state' | translate"
+                data-property="lastTask.status"
+                data-sortable
+            >
+                <i
+                    class="ovh-font ovh-font-1x4 my-0 text-{{ $row.badgeClass }} {{ $row.badgeIconClass }}"
+                    data-uib-tooltip="{{'telecom_common_pack_xdsl_order_status_' + $row.lastTask.status | translate}}"
+                    data-tooltip-append-to-body="true"
                 >
-                    <span
-                        data-ng-bind="'status_' + $row.lineStatus | translate"
-                    ></span>
-                </oui-column>
-                <oui-column
-                    data-title="'telecom_orders_follow_up_header_step' | translate"
-                    data-property="lastTask.name"
-                >
-                    <span
-                        data-ng-if="$row.lastTask"
-                        data-ng-bind="'telecom_common_pack_xdsl_order_step_name_' + $row.lastTask.name | translate"
-                    >
-                    </span>
-                </oui-column>
-                <oui-column
-                    data-title="'telecom_orders_follow_up_header_state' | translate"
-                    data-property="lastTask.status"
-                    data-sortable
-                >
-                    <i
-                        class="ovh-font ovh-font-1x4 my-0 text-{{ $row.badgeClass }} {{ $row.badgeIconClass }}"
-                        data-uib-tooltip="{{'telecom_common_pack_xdsl_order_status_' + $row.lastTask.status | translate}}"
-                        data-tooltip-append-to-body="true"
-                    >
-                    </i>
-                </oui-column>
-            </oui-datagrid>
-        </div>
+                </i>
+            </oui-datagrid-column>
+        </oui-datagrid>
     </div>
 </div>
 <!-- /.telecom-orders -->

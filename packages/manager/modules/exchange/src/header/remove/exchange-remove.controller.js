@@ -4,7 +4,7 @@ export default class ExchangeRemoveExchangeCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     $translate,
     navigation,
     messaging,
@@ -13,7 +13,7 @@ export default class ExchangeRemoveExchangeCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       $translate,
       navigation,
       messaging,
@@ -21,8 +21,8 @@ export default class ExchangeRemoveExchangeCtrl {
       exchangeVersion,
     };
 
-    this.$routerParams = Exchange.getParams();
-    this.exchange = angular.copy(Exchange.value);
+    this.$routerParams = wucExchange.getParams();
+    this.exchange = angular.copy(wucExchange.value);
     this.exchange.renewPeriod = 'YEARLY';
     this.dialogTypeSeparator = this.exchange.renewType.deleteAtExpiration
       ? 'cancel_'
@@ -52,11 +52,12 @@ export default class ExchangeRemoveExchangeCtrl {
       this.services.$translate.instant('exchange_dashboard_action_doing'),
     );
 
-    this.services.Exchange.updateDeleteAtExpiration(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.getModel(),
-    )
+    this.services.wucExchange
+      .updateDeleteAtExpiration(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.getModel(),
+      )
       .then((data) => {
         const updateRenewMessages = {
           OK: this.services.$translate.instant(

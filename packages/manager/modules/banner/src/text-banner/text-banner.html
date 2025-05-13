@@ -1,0 +1,7 @@
+<div data-ng-if="$ctrl.message" class="notification-banner oui-message_warning">
+    <strong
+        data-ng-if="$ctrl.message.title"
+        data-ng-bind-html="$ctrl.message.title"
+    ></strong>
+    <span data-ng-bind-html="$ctrl.message.description"></span>
+</div>

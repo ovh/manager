@@ -1,6 +1,7 @@
 angular.module('controllers').controller(
   'DomainZoneDefaultTTLCtrl',
   class DomainZoneDefaultTTLCtrl {
+    /* @ngInject */
     constructor($scope, $translate, Alerter, Domain) {
       this.$scope = $scope;
       this.$translate = $translate;

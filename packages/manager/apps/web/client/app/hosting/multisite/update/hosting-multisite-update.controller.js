@@ -6,7 +6,7 @@ import includes from 'lodash/includes';
 import isEqual from 'lodash/isEqual';
 import map from 'lodash/map';
 import set from 'lodash/set';
-import some from 'lodash/some';
+import { GIT_STATUS } from '../hosting-multisite.constants';
 
 angular
   .module('App')
@@ -16,14 +16,19 @@ angular
       $scope,
       $stateParams,
       $translate,
+      atInternet,
       HostingDomain,
       Hosting,
       HostingRuntimes,
       Alerter,
       Domain,
-      User,
+      WucUser,
       $q,
     ) => {
+      atInternet.trackPage({ name: 'web::hosting::multisites::modify-domain' });
+
+      $scope.isLoading = true;
+
       $scope.selectedOptions = {};
 
       const domainFromMultisite = clone($scope.currentActionData);
@@ -41,6 +46,8 @@ angular
       if ($scope.selected.domain.ownLog) {
         $scope.selected.ownLogDomain = {
           name: $scope.selected.domain.ownLog,
+          displayName: $scope.selected.domain.ownLog,
+          formattedName: $scope.selected.domain.ownLog,
         };
 
         $scope.selected.domain.ownLog = 'ACTIVE';
@@ -110,7 +117,33 @@ angular
             }
           }
         });
+
+        HostingDomain.getAttachedDomains($stateParams.productId, {
+          params: {
+            path: $scope.selected.domain.path,
+          },
+        })
+          .then((data) => {
+            $scope.domainsWithSamePath = data;
+            $scope.checkDomainWithSamePath();
+          })
+          .finally(() => {
+            $scope.isLoading = false;
+          });
       }
+
+      $scope.checkDomainWithSamePath = function checkDomainWithSamePath() {
+        $scope.hasDomainWithSamePath = $scope.domainsWithSamePath.some(
+          (domain) => domain !== $scope.selected.domain.name,
+        );
+      };
+
+      $scope.canModifyDomainWithGit = function canModifyDomainWithGit() {
+        return (
+          $scope.hasDomainWithSamePath ||
+          $scope.selected.domain.vcsStatus === GIT_STATUS.disabled
+        );
+      };
 
       $scope.loadStep1 = () => {
         const subDomainName = $scope
@@ -130,7 +163,7 @@ angular
           .then((data) => {
             $scope.model.domains = data.existingDomains;
           })
-          .then(() => User.getUser())
+          .then(() => WucUser.getUser())
           .then((user) => {
             $scope.userInfos = user;
           })
@@ -175,25 +208,9 @@ angular
 
             return null;
           })
-          .then(() =>
-            HostingDomain.getIPv6Configuration(
-              $scope.hosting.serviceName,
-              $scope.selected.domain.name.replace(
-                `.${$scope.hosting.serviceName}`,
-                '',
-              ),
-            ),
-          )
-          .then((records) => {
-            $scope.selected.domain.ipV6Enabled = some(
-              records,
-              (record) => $scope.hosting.clusterIpv6 === record.target,
-            );
-
-            if ($scope.selected.domain.ipV6Enabled) {
-              $scope.selected.domain.ipLocation = '';
-              $scope.selected.domain.ipV6Enabled = true;
-            }
+          .then(() => {
+            $scope.selected.domain.ipLocation = '';
+            $scope.selected.domain.ipV6Enabled = true;
           })
           .then(() => HostingDomain.getAddDomainOptions($stateParams.productId))
           .then((options) => {
@@ -243,6 +260,7 @@ angular
               $scope.selected.domain.cdn !== 'NONE'
             ) {
               $scope.selected.domain.cdn = 'ACTIVE';
+              $scope.selected.domain.ipV6Enabled = false;
             }
 
             if ($scope.selected.ssl) {
@@ -310,11 +328,15 @@ angular
       $scope.submit = () => {
         $scope.resetAction();
 
+        atInternet.trackClick({
+          name: 'web::hosting::multisites::modify-domain::confirm',
+          type: 'action',
+        });
+
         HostingDomain.modifyDomain(
           $scope.selected.domain.name,
           $scope.selected.pathFinal,
           $scope.selected.domainWwwNeeded,
-          $scope.selected.domain.ipV6Enabled,
           $scope.selected.domain.cdn,
           $scope.selected.domain.ipLocation,
           $scope.selected.domain.firewall,

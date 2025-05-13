@@ -1,4 +1,4 @@
-angular.module('App').controller('CdnCtrl', ($scope, $timeout) => {
+export default /* @ngInject */ ($scope, $timeout) => {
   $scope.resetAction = () => {
     $scope.setAction(false);
   };
@@ -102,4 +102,4 @@ angular.module('App').controller('CdnCtrl', ($scope, $timeout) => {
       }, 300);
     }
   };
-});
+};

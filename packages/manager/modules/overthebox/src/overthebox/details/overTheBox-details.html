@@ -1,176 +1,283 @@
 <div class="overthebox">
-    <header>
-        <oui-dropdown class="d-inline-block" align="start">
-            <button
-                id="btn-otb-details"
-                type="button"
-                class="btn btn-primary"
-                oui-dropdown-trigger
-            >
-                <span data-translate="overTheBox_action_update_label"></span>
-                <span
-                    class="ovh-font ovh-font-small-arrow-down"
-                    aria-hidden="true"
-                ></span>
-            </button>
-            <oui-dropdown-content>
-                <button
-                    type="button"
-                    class="btn btn-link text-left"
-                    data-ng-click="OverTheBoxDetails.LaunchAction('upgrade')"
-                    data-ng-disabled="!OverTheBoxDetails.availableAction.upgrade"
-                >
-                    <span
-                        class="d-block"
-                        data-translate="overTheBox_action_upgrade_title"
-                    ></span>
-                    <small
-                        class="d-block"
-                        data-translate="overTheBox_action_upgrade_label"
-                    ></small>
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-link text-left"
-                    data-ng-click="OverTheBoxDetails.LaunchAction('sysupgrade')"
-                    data-ng-disabled="!OverTheBoxDetails.availableAction.sysupgrade"
-                >
-                    <span
-                        class="d-block"
-                        data-translate="overTheBox_action_sysupgrade_title"
-                    ></span>
-                    <small
-                        class="d-block"
-                        data-translate="overTheBox_action_sysupgrade_label"
-                    ></small>
-                </button>
-            </oui-dropdown-content>
-        </oui-dropdown>
-        <button
-            class="btn btn-primary"
-            type="button"
-            data-ng-click="OverTheBoxDetails.LaunchAction('reboot')"
-            data-ng-disabled="!OverTheBoxDetails.availableAction.reboot"
-            data-translate="overTheBox_action_reboot_label"
-        ></button>
-    </header>
+    <oui-message
+        type="info"
+        data-ng-if="$ctrl.device.availableUpdate"
+        class="m-2"
+    >
+        <span data-translate="overTheBox_available_update"></span>
+    </oui-message>
 
-    <div class="telecom-section-content">
-        <tuc-toast-message></tuc-toast-message>
+    <tuc-toast-message></tuc-toast-message>
 
-        <div
-            class="alert alert-warning"
-            role="alert"
-            data-ng-if="OverTheBoxDetails.serviceInfos.renew.deleteAtExpiration"
+    <div
+        class="alert alert-warning"
+        role="alert"
+        data-ng-if="$ctrl.serviceInfos.renew.deleteAtExpiration"
+    >
+        <span
+            data-translate="overTheBox_expiration_warning"
+            data-translate-values="{ date: ($ctrl.serviceInfos.expiration | date:'dd/MM/yyyy')}"
         >
-            <span
-                data-translate="overTheBox_expiration_warning"
-                data-translate-values="{ date: (OverTheBoxDetails.serviceInfos.expiration | date:'dd/MM/yyyy')}"
-            >
-            </span>
-            <span data-translate="overTheBox_expiration_warning_help"></span>
-        </div>
+        </span>
+        <span data-translate="overTheBox_expiration_warning_help"></span>
+    </div>
 
-        <div class="text-center" data-ng-if="OverTheBoxDetails.loaders.init">
-            <oui-spinner></oui-spinner>
-        </div>
+    <div class="text-center" data-ng-if="$ctrl.loaders.init">
+        <oui-spinner></oui-spinner>
+    </div>
 
-        <!-- DEVICE LINKED NOT ACTIVATED -->
-        <div
-            data-ng-if="!OverTheBoxDetails.loaders.device && OverTheBoxDetails.device && !OverTheBoxDetails.device.activated"
-            data-ng-include="'overTheBox/warning/overTheBox-warning-notActivated.html'"
-        ></div>
+    <!-- DEVICE LINKED NOT ACTIVATED -->
+    <div
+        data-ng-if="!$ctrl.loaders.device && $ctrl.device && !$ctrl.device.activated"
+        data-ng-include="'overTheBox/warning/overTheBox-warning-notActivated.html'"
+    ></div>
 
-        <!-- SERVICE INFOS  -->
-        <div data-ng-if="OverTheBox.service">
+    <!-- SERVICE INFOS  -->
+    <div data-ng-if="$ctrl.service">
+        <div class="row d-md-flex mb-5">
             <!-- General Information -->
-            <div class="oui-tile">
-                <h3
-                    class="oui-header_3 oui-tile__title"
-                    data-translate="overthebox_general_information"
-                ></h3>
-                <div class="oui-tile__body">
-                    <ul class="list-unstyled">
-                        <li class="oui-tile__item">
+            <div class="col-xs-12 col-md-6">
+                <div class="oui-tile">
+                    <h3
+                        class="oui-tile__title oui-heading_3"
+                        data-translate="overthebox_general_information"
+                    ></h3>
+                    <div class="oui-tile__body">
+                        <div class="oui-tile__item">
                             <div
                                 class="oui-tile__definition"
-                                data-ng-if="OverTheBoxDetails.loaders.device || !OverTheBoxDetails.error.noDeviceLinked"
+                                data-ng-if="$ctrl.loaders.device || !$ctrl.error.noDeviceLinked"
                             >
-                                <dt
+                                <div
                                     class="oui-tile__term"
                                     data-translate="overTheBox_device_state"
-                                ></dt>
-                                <dd class="oui-tile__description">
+                                ></div>
+                                <div class="oui-tile__description">
                                     <strong
                                         class="ovh-font ovh-font-success text-success"
                                         aria-hidden="true"
-                                        data-ng-if="OverTheBoxDetails.device.activated"
+                                        data-ng-if="$ctrl.device.activated"
                                     >
                                     </strong>
                                     <strong
                                         class="ovh-font ovh-font-warning text-warning"
                                         aria-hidden="true"
-                                        data-ng-if="!OverTheBoxDetails.device.activated"
+                                        data-ng-if="!$ctrl.device.activated"
                                     >
                                     </strong>
                                     <span
-                                        data-ng-bind="'overTheBox_status_' + OverTheBoxDetails.device.activated | translate"
+                                        data-translate="{{'overTheBox_status_' + $ctrl.device.activated}}"
                                     ></span>
-                                </dd>
+                                </div>
                             </div>
-                        </li>
-                        <li class="oui-tile__item">
+                        </div>
+                        <div class="oui-tile__item">
                             <div class="oui-tile__definition">
-                                <dt
+                                <div
                                     class="oui-tile__term"
-                                    data-ng-if="OverTheBoxDetails.serviceInfos.renew.deleteAtExpiration"
+                                    data-ng-if="$ctrl.serviceInfos.renew.deleteAtExpiration"
                                     data-translate="overTheBox_expiration_date"
-                                ></dt>
-                                <dt
+                                ></div>
+                                <div
                                     class="oui-tile__term"
-                                    data-ng-if="!OverTheBoxDetails.serviceInfos.renew.deleteAtExpiration"
+                                    data-ng-if="!$ctrl.serviceInfos.renew.deleteAtExpiration"
                                     data-translate="overTheBox_billing_date"
-                                ></dt>
-                                <dd class="oui-tile__description">
+                                ></div>
+                                <div class="oui-tile__description">
                                     <span
                                         class="d-block mb-2"
-                                        data-ng-bind="OverTheBoxDetails.serviceInfos.expiration | date:'dd/MM/yyyy'"
+                                        data-ng-bind="$ctrl.serviceInfos.expiration | date:'dd/MM/yyyy'"
                                     >
                                     </span>
                                     <button
                                         class="btn btn-default"
                                         data-translate="overTheBox_resiliate"
-                                        title="{{OverTheBox.service.customerDescription}} : {{::'overTheBox_resiliate' | translate}}"
+                                        title="{{$ctrl.service.customerDescription}} : {{::'overTheBox_resiliate' | translate}}"
                                         type="button"
-                                        data-ng-if="OverTheBoxDetails.canResiliate()"
-                                        data-ng-really-click="OverTheBoxDetails.resiliate()"
-                                        data-ng-really-message="{{ 'overTheBox_resiliation_confirm' | translate: {service:OverTheBox.service.customerDescription || OverTheBox.service.serviceName, date: (OverTheBoxDetails.serviceInfos.expiration | date:'dd/MM/yyyy')} }}"
+                                        data-ng-if="$ctrl.canResiliate()"
+                                        data-ng-really-click="$ctrl.resiliate()"
+                                        data-ng-really-message="{{ 'overTheBox_resiliation_confirm' | translate: {service:$ctrl.service.customerDescription || $ctrl.service.serviceName, date: ($ctrl.serviceInfos.expiration | date:'dd/MM/yyyy')} }}"
                                         data-ng-really-confirm="{{ 'ok' | translate }}"
                                         data-ng-really-cancel="{{ 'cancel' | translate }}"
                                         data-ng-really-window-class="revert-really-buttons"
-                                        data-ng-disabled="OverTheBoxDetails.loaders.resiliating"
+                                        data-ng-disabled="$ctrl.loaders.resiliating"
                                     ></button>
                                     <button
                                         class="btn btn-default"
                                         data-translate="overTheBox_cancel_resiliation"
-                                        title="{{OverTheBox.service.customerDescription}} : {{::'overTheBox_cancel_resiliation' | translate}}"
+                                        title="{{$ctrl.service.customerDescription}} : {{::'overTheBox_cancel_resiliation' | translate}}"
                                         type="button"
-                                        data-ng-if="OverTheBoxDetails.canCancelResiliation()"
-                                        data-ng-click="OverTheBoxDetails.cancelResiliation()"
-                                        data-ng-disabled="OverTheBoxDetails.loaders.cancellingResiliation"
+                                        data-ng-if="$ctrl.canCancelResiliation()"
+                                        data-ng-click="$ctrl.cancelResiliation()"
+                                        data-ng-disabled="$ctrl.loaders.cancellingResiliation"
                                     ></button>
-                                </dd>
+                                </div>
                             </div>
-                        </li>
-                        <li class="oui-tile__item">
+                        </div>
+                        <div class="oui-tile__item">
+                            <div class="oui-tile__definition">
+                                <strong
+                                    class="oui-tile__term d-block"
+                                    data-translate="overTheBox_offer_name"
+                                ></strong>
+                                <div
+                                    class="oui-tile__description d-block mb-2"
+                                    data-ng-bind="$ctrl.offerName"
+                                ></div>
+                                <button
+                                    class="btn btn-default"
+                                    data-translate="overTheBox_change_offer"
+                                    title="{{$ctrl.service.customerDescription}} : {{::'overTheBox_change_offer' | translate}}"
+                                    type="button"
+                                    data-ng-click="$ctrl.changeOffer()"
+                                ></button>
+                            </div>
+                        </div>
+                        <div class="oui-tile__item">
+                            <div class="oui-tile__definition">
+                                <h4
+                                    class="oui-heading_5"
+                                    data-translate="overTheBox_detail_ips"
+                                ></h4>
+                                <div
+                                    data-ng-repeat="ip in $ctrl.ips | orderBy:'version' track by ip.ip"
+                                    data-ng-if="$ctrl.ips.length > 0"
+                                >
+                                    <div
+                                        class="oui-tile__term"
+                                        data-translate="overTheBox_detail_ip_v4"
+                                        data-ng-if="ip.version === $ctrl.OVERTHEBOX_DETAILS.ip.v4"
+                                    ></div>
+                                    <div
+                                        class="oui-tile__term"
+                                        data-translate="overTheBox_detail_ip_v6"
+                                        data-ng-if="ip.version === $ctrl.OVERTHEBOX_DETAILS.ip.v6"
+                                    ></div>
+                                    <div class="oui-tile__description">
+                                        <div
+                                            class="d-inline-block my-2"
+                                            data-ng-bind="ip.ip + '&nbsp;/&nbsp;' + ip.range"
+                                        ></div>
+                                    </div>
+                                </div>
+                                <div
+                                    data-ng-if="$ctrl.ips.length == 0"
+                                    data-ng-bind="$ctrl.noIps"
+                                ></div>
+                            </div>
+                        </div>
+                        <div class="oui-tile__item">
+                            <div class="oui-tile__definition">
+                                <strong
+                                    class="oui-tile__term d-block"
+                                    data-translate="overTheBox_detail_bandwidth"
+                                ></strong>
+                                <div
+                                    class="oui-tile__description d-block mb-2"
+                                    data-ng-bind="$ctrl.bandwidth"
+                                ></div>
+                            </div>
+                        </div>
+                        <div class="oui-tile__item">
+                            <div class="oui-tile__definition">
+                                <strong
+                                    class="oui-tile__term d-block"
+                                    data-translate="overTheBox_service_id"
+                                ></strong>
+                                <div
+                                    class="oui-tile__description d-block mb-2"
+                                    data-ng-bind="$ctrl.serviceName"
+                                ></div>
+                            </div>
+                        </div>
+                        <div
+                            class="oui-tile__item"
+                            data-ng-if="$ctrl.lastSeenAccess"
+                        >
+                            <div class="oui-tile__definition">
+                                <span
+                                    class="oui-tile__term d-block"
+                                    data-translate="overTheBox_last_seen"
+                                >
+                                </span>
+                                <span
+                                    class="oui-tile__description"
+                                    data-ng-if="$ctrl.lastSeenAccess.isRecent"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-success-circle text-success"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        data-translate="overTheBox_last_seen_few_seconds"
+                                    ></span>
+                                </span>
+                                <span
+                                    class="oui-tile__description"
+                                    data-ng-if="!$ctrl.lastSeenAccess.isRecent"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-warning text-danger"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        data-translate="overTheBox_last_seen_minutes_ago"
+                                        data-translate-values="{lastSeenDiff: $ctrl.lastSeenAccess.lastSeenHuman}"
+                                    >
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="oui-tile__item">
+                            <div class="oui-tile__definition">
+                                <strong
+                                    class="oui-tile__term d-block"
+                                    data-translate="overthebox_detail_links"
+                                >
+                                </strong>
+                                <span class="oui-tile__description">
+                                    <oui-tile-button
+                                        data-href="{{:: $ctrl.guidesLink }}"
+                                        external
+                                    >
+                                        <span
+                                            data-translate="overTheBox_detail_link_guide"
+                                        ></span>
+                                    </oui-tile-button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="oui-tile">
+                    <h3
+                        class="oui-tile__title oui-heading_3"
+                        data-translate="overthebox_caracteristics"
+                    ></h3>
+                    <div class="oui-tile__body">
+                        <div class="oui-tile__item">
+                            <div class="oui-tile__definition">
+                                <strong
+                                    class="oui-tile__term d-block"
+                                    data-translate="overTheBox_model_device"
+                                ></strong>
+                                <div
+                                    class="oui-tile__description d-block mb-2"
+                                    data-ng-bind="$ctrl.deviceModel"
+                                ></div>
+                            </div>
+                        </div>
+                        <div class="oui-tile__item">
                             <div class="oui-tile__definition">
                                 <strong
                                     class="oui-tile__term"
-                                    data-ng-class="{ 'text-warning': !OverTheBoxDetails.device.deviceId }"
+                                    data-ng-class="{ 'text-warning': !$ctrl.device.deviceId }"
                                 >
                                     <span
                                         class="ovh-font ovh-font-filled-warning"
-                                        data-ng-if="!OverTheBoxDetails.device.deviceId"
+                                        data-ng-if="!$ctrl.device.deviceId"
                                     >
                                     </span>
                                     <span
@@ -180,8 +287,8 @@
                                 <div class="oui-tile__description">
                                     <span
                                         class="d-block mb-2"
-                                        data-ng-if="!OverTheBoxDetails.device.editMode"
-                                        data-ng-bind="OverTheBoxDetails.device.deviceId"
+                                        data-ng-if="!$ctrl.device.editMode"
+                                        data-ng-bind="$ctrl.device.deviceId"
                                     >
                                     </span>
                                     <button
@@ -189,20 +296,20 @@
                                         data-translate="overTheBox_deviceId_modify"
                                         type="button"
                                         title="{{::'overTheBox_deviceId_button_title' | translate }} {{::'overTheBox_deviceId_modify' | translate }}"
-                                        data-ng-if="!OverTheBoxDetails.device.editMode && OverTheBoxDetails.device.deviceId"
-                                        data-ng-click="OverTheBoxDetails.device.editMode = true; OverTheBoxDetails.deviceIdToLink = OverTheBoxDetails.device.deviceId"
+                                        data-ng-if="!$ctrl.device.editMode && $ctrl.device.deviceId"
+                                        data-ng-click="$ctrl.device.editMode = true; $ctrl.deviceIdToLink = $ctrl.device.deviceId"
                                     ></button>
                                     <form
                                         class="form-inline"
                                         name="formEditDevice"
                                         novalidate
-                                        data-ng-if="OverTheBoxDetails.device.editMode || !OverTheBoxDetails.device.deviceId"
+                                        data-ng-if="$ctrl.device.editMode || !$ctrl.device.deviceId"
                                     >
                                         <div
                                             class="form-group"
                                             data-ng-class="{
-                                                 'has-error': formEditDevice.inputInlineDeviceId.$touched && formEditDevice.inputInlineDeviceId.$invalid
-                                             }"
+                                                        'has-error': formEditDevice.inputInlineDeviceId.$touched && formEditDevice.inputInlineDeviceId.$invalid
+                                                    }"
                                         >
                                             <label
                                                 for="inputInlineDeviceId"
@@ -211,26 +318,26 @@
                                             >
                                             </label>
 
-                                            <!-- list des items : OverTheBoxDetails.deviceIds -->
+                                            <!-- list des items : $ctrl.deviceIds -->
                                             <input
                                                 class="form-control mr-2"
                                                 id="inputInlineDeviceId"
                                                 name="inputInlineDeviceId"
-                                                data-typeahead="deviceId for deviceId in OverTheBoxDetails.deviceIds"
-                                                data-ng-pattern="/[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}/"
-                                                data-ng-model="OverTheBoxDetails.deviceIdToLink"
+                                                data-typeahead="deviceId for deviceId in $ctrl.deviceIds"
+                                                data-ng-pattern="$ctrl.deviceIdPattern"
+                                                data-ng-model="$ctrl.deviceIdToLink"
                                             />
 
                                             <button
                                                 class="btn btn-primary"
                                                 type="submit"
-                                                title="{{OverTheBoxDetails.deviceIdToLink}} {{::'overTheBox_common_table_validate_modifications' | translate}}"
-                                                data-ng-really-click="OverTheBoxDetails.linkDevice({deviceId: OverTheBoxDetails.deviceIdToLink}); OverTheBoxDetails.device.editMode = false"
+                                                title="{{$ctrl.deviceIdToLink}} {{::'overTheBox_common_table_validate_modifications' | translate}}"
+                                                data-ng-really-click="$ctrl.linkDevice({deviceId: $ctrl.deviceIdToLink}); $ctrl.device.editMode = false"
                                                 data-ng-really-message="{{ 'overTheBox_link_device_confirm' | translate }}"
                                                 data-ng-really-confirm="{{ 'ok' | translate }}"
                                                 data-ng-really-cancel="{{ 'cancel' | translate }}"
                                                 data-ng-really-window-class="revert-really-buttons"
-                                                data-ng-disabled="!OverTheBoxDetails.deviceIdToLink || formEditDevice.$invalid"
+                                                data-ng-disabled="!$ctrl.deviceIdToLink || formEditDevice.$invalid"
                                             >
                                                 <span
                                                     class="ovh-font ovh-font-check"
@@ -240,9 +347,9 @@
                                             <button
                                                 class="btn btn-default ml-2"
                                                 type="button"
-                                                title="{{OverTheBoxDetails.deviceIdToLink}} {{::'overTheBox_common_table_cancel_modifications' | translate}}"
-                                                data-ng-disabled="!OverTheBoxDetails.device.deviceId"
-                                                data-ng-click="OverTheBoxDetails.device.editMode = false"
+                                                title="{{$ctrl.deviceIdToLink}} {{::'overTheBox_common_table_cancel_modifications' | translate}}"
+                                                data-ng-disabled="!$ctrl.device.deviceId"
+                                                data-ng-click="$ctrl.device.editMode = false"
                                             >
                                                 <span
                                                     class="ovh-font ovh-font-wrong"
@@ -251,133 +358,264 @@
                                             </button>
                                         </div>
                                     </form>
+                                    <button
+                                        class="btn btn-default no-transition"
+                                        data-translate="overTheBox_deviceId_unlink"
+                                        type="button"
+                                        title="{{::'overTheBox_deviceId_button_title' | translate }} {{::'overTheBox_deviceId_unlink' | translate }}"
+                                        data-ng-if="!$ctrl.device.editMode && $ctrl.device.deviceId"
+                                        data-ng-click="$ctrl.unlink()"
+                                    ></button>
+                                    <oui-modal
+                                        data-ng-if="$ctrl.confirmUnlink"
+                                        data-primary-label="{{:: 'overTheBox_deviceId_unlink' | translate }}"
+                                        data-primary-action=":: $ctrl.unlinkDevice()"
+                                        data-secondary-label="{{:: 'overTheBox_cancel' | translate }}"
+                                        data-secondary-action=":: $ctrl.cancel()"
+                                        data-on-dismiss="$ctrl.cancel()"
+                                    >
+                                        <p
+                                            data-translate="overTheBox_confirm_unlink_device"
+                                        ></p>
+                                    </oui-modal>
                                 </div>
                             </div>
-                        </li>
-                        <li class="oui-tile__item">
+                        </div>
+                        <div class="oui-tile__item">
                             <div
                                 class="oui-tile__definition"
-                                data-ng-if="OverTheBoxDetails.loaders.device || !OverTheBoxDetails.error.noDeviceLinked"
+                                data-ng-if="$ctrl.loaders.device || !$ctrl.error.noDeviceLinked"
                             >
-                                <strong
-                                    class="oui-tile__term d-block"
-                                    data-translate="overTheBox_publicIp"
-                                >
-                                </strong>
+                                <span class="oui-tile__term d-block">
+                                    <span data-translate="overTheBox_publicIp">
+                                    </span>
+                                    <span
+                                        class="oui-icon oui-icon-lock"
+                                        data-ng-if="$ctrl.serviceIP.status === $ctrl.OVERTHEBOX_DETAILS.status.locked"
+                                        aria-hidden="true"
+                                    >
+                                    </span>
+                                    <span
+                                        class="oui-icon oui-icon-warning text-danger"
+                                        data-ng-if="$ctrl.serviceIP.status === $ctrl.OVERTHEBOX_DETAILS.status.warning"
+                                        aria-hidden="true"
+                                    >
+                                    </span>
+                                    <span
+                                        class="oui-icon oui-icon-padlock-opened_concept"
+                                        data-ng-if="$ctrl.serviceIP.status === $ctrl.OVERTHEBOX_DETAILS.status.unknown"
+                                        aria-hidden="true"
+                                    >
+                                    </span>
+                                </span>
                                 <span
                                     class="oui-tile__description"
-                                    data-ng-bind="OverTheBoxDetails.device.publicIp"
+                                    data-ng-bind="$ctrl.device.publicIp"
                                 >
                                 </span>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                        <div class="oui-tile__item">
+                            <div
+                                class="oui-tile__definition"
+                                data-ng-if="$ctrl.loaders.device || !$ctrl.error.noDeviceLinked"
+                            >
+                                <span
+                                    class="oui-tile__term d-block"
+                                    data-translate="overTheBox_reverse_dns"
+                                >
+                                </span>
+                                <span
+                                    class="oui-tile__description"
+                                    data-ng-bind="$ctrl.device.reverse"
+                                ></span>
+                            </div>
+                        </div>
+                        <div
+                            class="oui-tile__item"
+                            data-ng-if="$ctrl.loaders.device || !$ctrl.error.noDeviceLinked"
+                        >
+                            <div class="oui-tile__definition">
+                                <span
+                                    class="oui-tile__term d-block"
+                                    data-translate="overTheBox_release_channels"
+                                >
+                                </span>
+                                <oui-select
+                                    data-name="releaseChannels"
+                                    data-model="$ctrl.releaseChannel"
+                                    data-items="$ctrl.releaseChannels"
+                                    data-match="label"
+                                    data-on-change="$ctrl.changeReleaseChannel(modelValue)"
+                                    data-ng-disabled="$ctrl.loaders.changingReleaseChannel"
+                                >
+                                </oui-select>
+                            </div>
+                        </div>
+                        <div
+                            class="oui-tile__item"
+                            data-ng-if="$ctrl.loaders.device || !$ctrl.error.noDeviceLinked"
+                        >
+                            <div class="oui-tile__definition">
+                                <span
+                                    class="oui-tile__term d-block"
+                                    data-translate="overTheBox_version_system"
+                                >
+                                </span>
+                                <span
+                                    class="oui-tile__description"
+                                    data-ng-bind="$ctrl.device.systemVersion"
+                                ></span>
+                            </div>
+                        </div>
+                        <div class="oui-tile__item mb-2">
+                            <oui-dropdown data-placement="start" class="mr-2">
+                                <oui-dropdown-trigger
+                                    text="{{::'overTheBox_action_update_label' | translate}}"
+                                >
+                                </oui-dropdown-trigger>
+                                <oui-dropdown-content>
+                                    <oui-dropdown-item
+                                        data-disabled="!$ctrl.availableAction.sysupgrade"
+                                        data-on-click="$ctrl.launchAction('sysupgrade')"
+                                    >
+                                        <span
+                                            class="d-block mb-1"
+                                            data-translate="overTheBox_action_sysupgrade_title"
+                                        ></span>
+                                        <small
+                                            class="d-block"
+                                            data-translate="overTheBox_action_sysupgrade_label"
+                                        ></small>
+                                    </oui-dropdown-item>
+                                </oui-dropdown-content>
+                            </oui-dropdown>
+                            <oui-button
+                                data-disabled="!$ctrl.availableAction.reboot"
+                                data-on-click="$ctrl.launchAction('reboot')"
+                                class="mr-2"
+                            >
+                                <span
+                                    data-translate="overTheBox_action_reboot_label"
+                                ></span>
+                            </oui-button>
+                            <span>
+                                <oui-switch
+                                    data-model="$ctrl.autoUpgrade"
+                                    data-on-change="$ctrl.changeAutoUpgrade(modelValue)"
+                                ></oui-switch>
+                                <span
+                                    data-translate="overTheBox_authorize_autoupgrade"
+                                ></span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="mt-5" data-ng-if="OverTheBox.service">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="oui-tile mb-5">
-                        <h3
-                            class="oui-header_3 oui-tile__title"
-                            data-translate="overthebox_traffic_download"
-                        ></h3>
-                        <div
-                            class="oui-tile__body text-center"
-                            data-ng-if="OverTheBoxDetails.loaders.graph"
-                        >
-                            <oui-spinner></oui-spinner>
-                        </div>
-                        <div
-                            class="oui-tile__body"
-                            data-ng-if="!OverTheBoxDetails.loaders.graph"
-                        >
-                            <div class="oui-tile__item">
-                                <div class="oui-tile__definition">
+    <div class="mt-5" data-ng-if="$ctrl.service">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="oui-tile mb-5">
+                    <h3
+                        class="oui-tile__title oui-heading_3"
+                        data-translate="overthebox_traffic_download"
+                    ></h3>
+                    <div
+                        class="oui-tile__body text-center"
+                        data-ng-if="$ctrl.loaders.graph"
+                    >
+                        <oui-spinner></oui-spinner>
+                    </div>
+                    <div
+                        class="oui-tile__body"
+                        data-ng-if="!$ctrl.loaders.graph"
+                    >
+                        <div class="oui-tile__item">
+                            <div class="oui-tile__definition">
+                                <span
+                                    class="d-inline-block align-middle"
+                                    data-tuc-gauge="$ctrl.download.max"
+                                    data-tuc-gauge-width="50"
+                                    data-ng-model="$ctrl.download.current"
+                                >
+                                </span>
+                                <span class="ml-2 d-inline-block align-middle">
                                     <span
-                                        class="d-inline-block align-middle"
-                                        data-tuc-gauge="OverTheBoxDetails.download.max"
-                                        data-tuc-gauge-width="50"
-                                        data-ng-model="OverTheBoxDetails.download.current"
-                                    >
-                                    </span>
+                                        class="fa fa-arrow-down text-info"
+                                        aria-hidden="true"
+                                    ></span>
                                     <span
-                                        class="ml-2 d-inline-block align-middle"
-                                    >
-                                        <span
-                                            class="fa fa-arrow-down text-info"
-                                            aria-hidden="true"
-                                        ></span>
-                                        <span
-                                            data-ng-bind="OverTheBoxDetails.download.display.value"
-                                        ></span>
-                                        <span
-                                            data-ng-bind="OverTheBoxDetails.download.display.unit"
-                                        ></span>
-                                    </span>
-                                </div>
+                                        data-ng-bind="$ctrl.download.display.value"
+                                    ></span>
+                                    <span
+                                        data-ng-bind="$ctrl.download.display.unit"
+                                    ></span>
+                                </span>
                             </div>
-                            <div class="oui-tile__item">
-                                <div class="oui-tile__definition">
-                                    <div
-                                        class="chart-container"
-                                        data-tuc-chartjs="OverTheBoxDetails.chartDown"
-                                    ></div>
-                                </div>
+                        </div>
+                        <div class="oui-tile__item">
+                            <div class="oui-tile__definition">
+                                <div
+                                    class="chart-container"
+                                    data-chart
+                                    data-chartjs="$ctrl.chartDown"
+                                    data-auto-reload="true"
+                                ></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="oui-tile mb-5">
-                        <h3
-                            class="oui-header_3 oui-tile__title"
-                            data-translate="overthebox_traffic_upload"
-                        ></h3>
-                        <div
-                            class="oui-tile__body text-center"
-                            data-ng-if="OverTheBoxDetails.loaders.graph"
-                        >
-                            <oui-spinner></oui-spinner>
-                        </div>
-                        <div
-                            class="oui-tile__body"
-                            data-ng-if="!OverTheBoxDetails.loaders.graph"
-                        >
-                            <div class="oui-tile__item">
-                                <div class="oui-tile__definition">
+            </div>
+            <div class="col-md-6">
+                <div class="oui-tile mb-5">
+                    <h3
+                        class="oui-tile__title oui-heading_3"
+                        data-translate="overthebox_traffic_upload"
+                    ></h3>
+                    <div
+                        class="oui-tile__body text-center"
+                        data-ng-if="$ctrl.loaders.graph"
+                    >
+                        <oui-spinner></oui-spinner>
+                    </div>
+                    <div
+                        class="oui-tile__body"
+                        data-ng-if="!$ctrl.loaders.graph"
+                    >
+                        <div class="oui-tile__item">
+                            <div class="oui-tile__definition">
+                                <span
+                                    class="d-inline-block align-middle"
+                                    data-tuc-gauge="$ctrl.upload.max"
+                                    data-tuc-gauge-width="50"
+                                    data-ng-model="$ctrl.upload.current"
+                                >
+                                </span>
+                                <span class="ml-2 d-inline-block align-middle">
                                     <span
-                                        class="d-inline-block align-middle"
-                                        data-tuc-gauge="OverTheBoxDetails.upload.max"
-                                        data-tuc-gauge-width="50"
-                                        data-ng-model="OverTheBoxDetails.upload.current"
-                                    >
-                                    </span>
+                                        class="fa fa-arrow-up text-info"
+                                        aria-hidden="true"
+                                    ></span>
                                     <span
-                                        class="ml-2 d-inline-block align-middle"
-                                    >
-                                        <span
-                                            class="fa fa-arrow-up text-info"
-                                            aria-hidden="true"
-                                        ></span>
-                                        <span
-                                            data-ng-bind="OverTheBoxDetails.upload.display.value"
-                                        ></span>
-                                        <span
-                                            data-ng-bind="OverTheBoxDetails.upload.display.unit"
-                                        ></span>
-                                    </span>
-                                </div>
+                                        data-ng-bind="$ctrl.upload.display.value"
+                                    ></span>
+                                    <span
+                                        data-ng-bind="$ctrl.upload.display.unit"
+                                    ></span>
+                                </span>
                             </div>
-                            <div class="oui-tile__item">
-                                <div class="oui-tile__definition">
-                                    <div
-                                        class="chart-container"
-                                        data-tuc-chartjs="OverTheBoxDetails.chartUp"
-                                    ></div>
-                                </div>
+                        </div>
+                        <div class="oui-tile__item">
+                            <div class="oui-tile__definition">
+                                <div
+                                    class="chart-container"
+                                    data-chart
+                                    data-chartjs="$ctrl.chartUp"
+                                    data-auto-reload="true"
+                                ></div>
                             </div>
                         </div>
                     </div>
@@ -385,6 +623,5 @@
             </div>
         </div>
     </div>
-    <!-- /.telecom-section-content -->
 </div>
 <!-- /.overthebox -->

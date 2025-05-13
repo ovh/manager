@@ -1,0 +1,6 @@
+{
+  "vps_veeam": "Backup automatico",
+  "vps_tab_VEEAM_schedule_backup_edit": "Modifica",
+  "vps_tab_VEEAM_schedule_backup_description": "Il backup automatizzato viene eseguito ogni giorno alle (fuso orario UTC): ",
+  "vps_tab_VEEAM_schedule_backup_schedule_banner_info": "La modifica dell'orario del backup automatizzato è disponibile solo sulla nuova gamma VPS."
+}

@@ -1,8 +1,0 @@
-{
- "pci_projects_project_sshKeys_remove_title": "Delete an SSH key",
- "pci_projects_project_sshKeys_remove_description": "This action cannot be undone. Are you sure you want to delete the {{ name }} key?",
- "pci_projects_project_sshKeys_remove_submit_label": "Delete",
- "pci_projects_project_sshKeys_remove_cancel_label": "Cancel",
- "pci_projects_project_sshKeys_remove_success": "The SSH key has been successfully deleted.",
- "pci_projects_project_sshKeys_remove_error": "An error has occurred deleting the SSH key: {{ error }}."
-}

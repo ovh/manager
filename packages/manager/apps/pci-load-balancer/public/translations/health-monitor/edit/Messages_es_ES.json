@@ -1,0 +1,5 @@
+{
+  "octavia_load_balancer_health_monitor_edit_title": "Editar el health monitor",
+  "octavia_load_balancer_health_monitor_edit_submit_label": "Editar",
+  "octavia_load_balancer_health_monitor_edit_success": "¡El health monitor {{name}} se ha modificado correctamente!"
+}

@@ -1,0 +1,171 @@
+<div class="telecom-pack-xdsl-modem-dmz">
+    <div class="widget-presentation">
+        <header class="widget-presentation-header">
+            <h2
+                class="widget-presentation-title"
+                data-translate="xdsl_modem_dmz_status"
+            ></h2>
+        </header>
+
+        <div
+            class="alert alert-info"
+            role="alert"
+            data-translate="xdsl_modem_dmz_description"
+        ></div>
+
+        <form
+            name="remoteControlForm"
+            data-ng-submit="DmzCtrl.changeDmz()"
+            class="table-responsive"
+        >
+            <table class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_dmz_modem_address"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_dmz_mask_address"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_dmz_dmz_address"
+                        ></th>
+                        <th data-translate="common_actions"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th
+                            scope="row"
+                            data-title="{{ 'xdsl_modem_dmz_modem_address' | translate }}"
+                            data-ng-bind="DmzCtrl.modemLan.IPAddress || ('xdsl_modem_dmz_unknown' | translate)"
+                        ></th>
+
+                        <td
+                            data-title="{{ 'xdsl_modem_dmz_mask_address' | translate }}"
+                            data-ng-bind="DmzCtrl.modemLan.subnetMask || ('xdsl_modem_dmz_unknown' | translate)"
+                        ></td>
+
+                        <td
+                            data-ng-bind="DmzCtrl.mediator.info.dmzIP || ('xdsl_modem_dmz_none' | translate)"
+                            data-title="{{ 'xdsl_modem_dmz_dmz_address' | translate }}"
+                            data-ng-if="!DmzCtrl.editing && !DmzCtrl.mediator.tasks.changeModemConfigDMZ"
+                        ></td>
+                        <td
+                            data-ng-if="DmzCtrl.editing && !DmzCtrl.mediator.tasks.changeModemConfigDMZ"
+                            data-title="{{ 'xdsl_modem_dmz_dmz_address' | translate }}"
+                            class="form-group"
+                        >
+                            <label
+                                for="dmzIPAddress"
+                                data-translate="xdsl_modem_dmz_modem_address"
+                                class="sr-only"
+                            ></label>
+                            <input
+                                name="dmzIPAddress"
+                                id="dmzIPAddress"
+                                type="text"
+                                class="form-control"
+                                data-ng-model="DmzCtrl.dmz"
+                                placeholder="000.000.000.000"
+                                data-ui-validate="'DmzCtrl.validator.isIP($value)'"
+                            />
+                        </td>
+                        <td
+                            data-ng-if="DmzCtrl.mediator.tasks.changeModemConfigDMZ"
+                            class="text-center"
+                        >
+                            <oui-spinner data-size="s"></oui-spinner>
+                        </td>
+
+                        <td
+                            class="col-mobile-button-big"
+                            data-ng-if="!DmzCtrl.editing"
+                        >
+                            <div
+                                class="btn-group"
+                                data-uib-dropdown
+                                data-dropdown-append-to-body
+                            >
+                                <button
+                                    id="btn-dmz-action-{{$index}}"
+                                    type="button"
+                                    class="btn btn-link"
+                                    data-uib-dropdown-toggle
+                                >
+                                    <span
+                                        class="ovh-font ovh-font-dots"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="sr-only"
+                                        data-translate="common_actions"
+                                    ></span>
+                                </button>
+                                <ul
+                                    class="dropdown-menu dropdown-menu-right"
+                                    role="menu"
+                                    aria-labelledby="btn-dmz-action-{{$index}}"
+                                    data-uib-dropdown-menu
+                                >
+                                    <li role="menuitem">
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ng-click="DmzCtrl.setEditMode()"
+                                            title="{{DmzCtrl.modemLan.IPAddress}} {{ 'common_table_edit' | translate }}"
+                                            data-translate="edit"
+                                            data-ng-disabled="!DmzCtrl.mediator.capabilities.canChangeDMZ || !DmzCtrl.modemLan || DmzCtrl.mediator.tasks.changeModemConfigDMZ"
+                                        ></button>
+                                    </li>
+                                    <li
+                                        role="menuitem"
+                                        data-ng-show="DmzCtrl.mediator.info.dmzIP"
+                                    >
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ng-click="DmzCtrl.delete()"
+                                            title="{{DmzCtrl.modemLan.IPAddress}} {{ 'common_table_delete' | translate }}"
+                                            data-translate="delete"
+                                        ></button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td
+                            class="form-group col-mobile-button-big"
+                            data-ng-if="DmzCtrl.editing"
+                        >
+                            <button
+                                type="submit"
+                                title="{{DmzCtrl.modemLan.IPAddress}} {{ 'common_table_validate_modifications' | translate }}"
+                                class="btn btn-primary"
+                                data-ng-disabled="remoteControlForm.$invalid"
+                            >
+                                <span
+                                    class="ovh-font ovh-font-check"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                            <button
+                                type="reset"
+                                title="{{ 'common_table_cancel_modifications' | translate }}"
+                                class="btn btn-default"
+                                data-ng-click="DmzCtrl.cancel()"
+                            >
+                                <span
+                                    class="ovh-font ovh-font-wrong"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>

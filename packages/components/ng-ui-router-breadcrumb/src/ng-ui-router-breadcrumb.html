@@ -1,5 +1,5 @@
 <ul>
-    <li data-ng-repeat="element in $ctrl.breadcrumb track by element.url">
+    <li data-ng-repeat="element in $ctrl.breadcrumb track by $index">
         <a
             data-ng-if="element.url && !element.active && !$last"
             data-ng-href="{{ element.url }}"
@@ -7,7 +7,7 @@
         ></a>
         <span
             data-ng-if="!(element.url && !element.active && !$last)"
-            data-ng-bind="element.name"
+            data-ng-bind="$ctrl.constructor.convertToPunycode(element.name)"
         ></span>
     </li>
 </ul>

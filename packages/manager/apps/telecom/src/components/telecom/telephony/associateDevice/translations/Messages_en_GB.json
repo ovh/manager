@@ -2,6 +2,6 @@
   "telephony_device_associate_line_count": "Lines configured ({{ count }}/{{ total }}):",
   "telephony_device_associate_ip_address": "Public IP address",
   "telephony_device_associate_attach": "Attach",
-  "telephony_device_associate_attach_success": "Your hardware has been attached to this line.",
-  "telephony_device_associate_attach_empty": "No compatible hardware."
+  "telephony_device_associate_attach_success": "Your hardware has been successfully linked to this line.",
+  "telephony_device_associate_attach_empty": "No compatible device."
 }

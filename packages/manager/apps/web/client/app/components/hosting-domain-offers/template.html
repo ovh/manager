@@ -1,0 +1,72 @@
+<!--Hosting offers-->
+<div class="row">
+    <!--Hosting available offers-->
+    <oui-select-picker
+        class="d-inline-block col-sm-12 col-md-4 my-3"
+        data-ng-repeat="groupOffer in $ctrl.groupedOffers track by $index"
+        data-id="hosting-group-offer-model-{{groupOffer.category}}"
+        data-name="hosting-group-offer-model-{{groupOffer.category}}"
+        data-model="$ctrl.model.groupOffer"
+        data-values="[groupOffer]"
+        data-variant="light"
+        data-on-change="$ctrl.onGroupOfferClick({groupOffer, versionOffer: null})"
+    >
+        <!--Offer picker header-->
+        <oui-select-picker-label
+            class="w-100 d-flex flex-wrap justify-content-between"
+        >
+            <!--Offer name-->
+            <p
+                class="font-weight-bold"
+                data-ng-bind="groupOffer.selectedVersion.isCloudwebOffer ?
+                    groupOffer.selectedVersion.invoiceName :
+                    ('web_components_hosting_domain_offers_offer_' + groupOffer.category | translate) | uppercase"
+            ></p>
+
+            <!--Offer label-->
+            <div class="m-0" data-ng-if="groupOffer.selectedVersion.badge.type">
+                <span
+                    class="oui-badge oui-badge_{{groupOffer.selectedVersion.badge.className}}"
+                    data-ng-bind="('web_components_hosting_domain_offers_offer_badge_' + groupOffer.selectedVersion.badge.type) | translate"
+                ></span>
+            </div>
+        </oui-select-picker-label>
+
+        <!--Offer picker body-->
+        <oui-select-picker-section
+            data-ng-if="!groupOffer.selectedVersion.isCloudwebOffer"
+        >
+            <!--Technicals list info-->
+            <ul data-ng-if="$ctrl.showDetails">
+                <li
+                    data-ng-repeat="technicalInfo in ::$ctrl.getOfferTechnicalsInfo(groupOffer.category) track by $index"
+                    data-ng-bind=":: technicalInfo"
+                ></li>
+            </ul>
+
+            <!--Offer versions-->
+            <oui-select
+                class="w-100"
+                data-ng-if="groupOffer.versions.length > 1"
+                data-name="hosting-group-offer-version-{{modelValue.name}}"
+                data-items="groupOffer.versions"
+                data-match="selector"
+                data-model="groupOffer.selectedVersion"
+                data-placeholder="{{ 'web_components_hosting_domain_offers_offer_select_version_placeholder' | translate }}"
+                data-on-change="$ctrl.onGroupOfferClick({groupOffer, versionOffer: modelValue})"
+                data-inline
+            >
+                <span data-ng-bind=":: $item.selector"></span>
+            </oui-select>
+        </oui-select-picker-section>
+
+        <!--Picker footer-->
+        <oui-select-picker-footer>
+            <p
+                class="text-center my-1"
+                data-translate="web_components_hosting_domain_offers_offer_price"
+                data-translate-values="{ priceValue: '<strong>'+ $ctrl.constructor.getOfferPrice(groupOffer) +'</strong>'}"
+            ></p>
+        </oui-select-picker-footer>
+    </oui-select-picker>
+</div>

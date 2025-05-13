@@ -4,13 +4,13 @@ import isBoolean from 'lodash/isBoolean';
 export default class ExchangeAccountOutlook {
   /* @ngInject */
   constructor(
-    Exchange,
+    wucExchange,
     exchangeAccount,
     exchangeAccountTypes,
     exchangeSelectedService,
     OvhHttp,
   ) {
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.exchangeAccount = exchangeAccount;
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.exchangeSelectedService = exchangeSelectedService;
@@ -41,7 +41,7 @@ export default class ExchangeAccountOutlook {
         },
       },
     ).then((response) => {
-      this.Exchange.refreshViews('Accounts', 'Tasks');
+      this.wucExchange.refreshViews('Accounts', 'Tasks');
 
       return response;
     });
@@ -91,7 +91,7 @@ export default class ExchangeAccountOutlook {
         },
       },
     ).then((response) => {
-      this.Exchange.refreshViews('Accounts', 'Tasks');
+      this.wucExchange.refreshViews('Accounts', 'Tasks');
 
       return response;
     });
@@ -115,7 +115,7 @@ export default class ExchangeAccountOutlook {
         data,
       },
     ).then((response) => {
-      this.Exchange.refreshViews('Accounts', 'Tasks');
+      this.wucExchange.refreshViews('Accounts', 'Tasks');
 
       return response;
     });
@@ -136,7 +136,7 @@ export default class ExchangeAccountOutlook {
         },
       },
     ).then((response) => {
-      this.Exchange.refreshViews('Accounts', 'Tasks');
+      this.wucExchange.refreshViews('Accounts', 'Tasks');
 
       return response;
     });
@@ -157,7 +157,7 @@ export default class ExchangeAccountOutlook {
         },
       },
     ).then((response) => {
-      this.Exchange.refreshViews('Accounts', 'Tasks');
+      this.wucExchange.refreshViews('Accounts', 'Tasks');
 
       return response;
     });
@@ -204,7 +204,7 @@ export default class ExchangeAccountOutlook {
       return this.STATES.ALREADY_ACTIVATED;
     }
 
-    if (!this.Exchange.currentUserHasConfigurationRights()) {
+    if (!this.wucExchange.currentUserHasConfigurationRights()) {
       return this.STATES.CANT_ORDER_OR_ACTIVATE_LICENSE;
     }
 

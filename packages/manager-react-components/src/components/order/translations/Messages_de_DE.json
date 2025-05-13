@@ -1,0 +1,9 @@
+{
+  "order_configuration_cancel": "Abbrechen",
+  "order_configuration_order": "Bestellen",
+  "order_summary_finish": "Beenden",
+  "order_summary_product_default_label": "Dienst",
+  "order_summary_order_initiated_title": "Bestellung Ihres {{product}} initiiert",
+  "order_summary_order_initiated_subtitle": "Wenn Sie Ihre Bestellung nicht abschließen konnten, vervollständigen Sie diese bitte, indem Sie auf <ExternalLink>folgenden Link</ExternalLink> klicken",
+  "order_summary_order_initiated_info": "Wir werden Sie per E-Mail über die Verfügbarkeit Ihres {{product}} informieren."
+}

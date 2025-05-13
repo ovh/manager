@@ -1,0 +1,23 @@
+{
+  "netapp_onboarding_breadcrumb": "Onboarding",
+  "netapp_onboarding_title": "Enterprise File Storage",
+  "netapp_onboarding_description": "Enterprise File Storage, powered by NetApp. Połącz wszystkie Twoje rozwiązania OVHcloud z usługą przechowywania plików o wysokiej wydajności przeznaczoną dla najbardziej krytycznych aplikacji biznesowych.",
+  "netapp_onboarding_recommendation_1": "Zalecamy wykupienie co najmniej poziomu wsparcia Premium.",
+  "netapp_onboarding_recommendation_2": "W przypadku aplikacji strategicznych wymagających wsparcia 24/7 niezbędne jest posiadanie rozszerzonego poziomu pomocy.",
+  "netapp_onboarding_order": "Zamów",
+  "netapp_onboarding_manager_start_title": "Szybkie uruchomienie w Panelu klienta OVHcloud",
+  "netapp_onboarding_manager_start_description": "Uruchom usługę przechowywania plików Enterprise File Storage w Panelu klienta OVHcloud.",
+  "netapp_onboarding_api_start_title": "Szybkie uruchomienie przez API OVHcloud",
+  "netapp_onboarding_api_start_description": "Uruchom usługę przechowywania plików Enterprise File Storage w Panelu klienta OVHcloud.",
+  "netapp_onboarding_volumes_title": "Zarządzanie wolumenami",
+  "netapp_onboarding_volumes_description": "Z tego przewodnika dowiesz się, jak zarządzać wolumenami oferty Enterprise File Storage.",
+  "netapp_onboarding_volumes_guides": "Przewodniki",
+  "netapp_onboarding_storage_title": "Przechowywanie danych i kopie zapasowe",
+  "netapp_onboarding_volume_acl_title": "Zarządzanie ACL",
+  "netapp_onboarding_volume_snapshots_title": "Zarządzanie snapshotami",
+  "netapp_onboarding_bullet_point_1": "W pełni zarządzana przez OVHcloud usługa przechowywania plików o wysokiej wydajności i dostępności, oparta na systemie plików NetApp ONTAP.",
+  "netapp_onboarding_bullet_point_2": "Przestrzeń dyskowa od 1 do 58 TB per usługa i gwarantowana wydajność per terabajt.",
+  "netapp_onboarding_bullet_point_2_emphasis": "64 MB/s i 4000 IOPS na TB udostępnionej pojemności.",
+  "netapp_onboarding_bullet_point_3": "Dostępne dla różnych obciążeń systemu Linux i środowisk zwirtualizowanych przy użyciu protokołu NFS.",
+  "netapp_onboarding_bullet_point_4": "Zapewnia szereg funkcji: tworzenie i zarządzanie snapshotami, zarządzanie ACL, zarządzanie wolumenami..."
+}

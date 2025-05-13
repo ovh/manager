@@ -1,0 +1,10 @@
+{
+  "dedicatedCloud_configuration_security_update_session_timeout_title": "Sitzungstimeout ändern",
+  "dedicatedCloud_configuration_security_update_session_timeout_step1_never": "Die Sitzung läuft niemals ab",
+  "dedicatedCloud_configuration_security_update_session_timeout_step1_question": "Anzahl an Minuten bis Sitzungstimeout",
+  "dedicatedCloud_configuration_security_update_session_timeout_step2_question": "Sie Ändern die Anzahl an Minuten, bevor eine Session abläuft, von {{t0}} auf {{t1}}.",
+  "dedicatedCloud_SECURITY_expiration_session_never": "Nie",
+  "dedicatedCloud_SECURITY_expiration_session_value": "{{t0}} Minuten",
+  "dedicatedCloud_configuration_SECURITY_update_session_timeout_success": "Das Sitzungstimeout wird in einigen Augenblicken geändert.",
+  "dedicatedCloud_configuration_SECURITY_update_session_timeout_fail": "Bei der Änderung des Sitzungstimeouts ist ein Fehler aufgetreten."
+}

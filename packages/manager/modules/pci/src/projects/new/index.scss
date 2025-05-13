@@ -1,9 +1,9 @@
 pci-project-new {
-  @import '~bootstrap4/scss/_functions';
-  @import '~bootstrap4/scss/_variables';
-  @import '~bootstrap4/scss/mixins/_breakpoints';
+  @import 'bootstrap4/scss/_functions';
+  @import 'bootstrap4/scss/_variables';
+  @import 'bootstrap4/scss/mixins/_breakpoints';
 
-  .pci-project-new {
+  .pci-project-new.standalone {
     background-color: rgb(241, 249, 253);
     overflow-x: auto;
 
@@ -27,6 +27,10 @@ pci-project-new {
 
     .pci-project-new-view {
       padding: 0 200px;
+    }
+
+    .promotion-banner-container {
+      margin: auto;
     }
 
     .oui-field .oui-field__label {

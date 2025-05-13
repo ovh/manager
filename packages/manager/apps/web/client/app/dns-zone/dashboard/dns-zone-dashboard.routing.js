@@ -4,17 +4,21 @@ import template from '../../domain/zone/domain-zone-dns.html';
 import { SUCCESS_TYPE } from './dns-zone-dashboard.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.domain.dns-zone.dashboard', {
+  $stateProvider.state('app.zone.details.dashboard', {
     views: {
-      'dnsZoneView@app.domain.dns-zone': {
+      'dnsZoneView@app.zone.details': {
         controller,
         controllerAs: 'ctrlDomainTabZoneDns',
         template,
       },
     },
     resolve: {
+      goToZoneHistory: /* @ngInject */ ($state) => (params) =>
+        $state.go('app.zone.details.zone-history', params),
       activateZone: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.product.zone.activate'),
+      orderZone: /* @ngInject */ ($state) => () =>
+        $state.go('app.dns-zone-new'),
       goToZone: /* @ngInject */ ($state, Alerter) => (
         message = false,
         type = SUCCESS_TYPE,
@@ -31,6 +35,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      breadcrumb: () => null,
     },
   });
 };

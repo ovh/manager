@@ -1,0 +1,15 @@
+{
+  "carbon_calculator_dashboard_carbon_footprint_explanation": "Encontre e descarregue a análise das emissões de gases com efeito de estufa da sua infraestrutura. Siga o impacto ambiental associado à produção, ao consumo energético e às operações relacionadas com os seus serviços cloud.",
+  "carbon_calculator_dashboard_carbon_balance_title": "Qual é a composição do balanço de carbono da OVHcloud?",
+  "carbon_calculator_dashboard_carbon_balance_manufacturing": "Produção",
+  "carbon_calculator_dashboard_carbon_balance_electricity": "Eletricidade",
+  "carbon_calculator_dashboard_carbon_balance_operations": "Operações",
+  "carbon_calculator_dashboard_carbon_balance_greenhouse_gas": "Emissões de gases com efeito de estufa",
+  "carbon_calculator_dashboard_carbon_balance_explanation": "A OVHcloud inclui todas as fontes de emissão de CO2eq, dados fornecidos pela fórmula:",
+  "carbon_calculator_dashboard_billing_explanation": "Este documento compreende as emissões de gases com efeito de estufa do mês anterior:",
+  "carbon_calculator_dashboard_billing_download": "Fazer download da minha pegada de {{month}}",
+  "carbon_calculator_dashboard_billing_explanation_hpc": "Hosted Private Cloud",
+  "carbon_calculator_dashboard_billing_explanation_baremetal": "infraestrutura Bare Metal",
+  "carbon_calculator_dashboard_billing_explanation_service": "dos seus serviços <strong>{{serviceName}}</strong>",
+  "carbon_calculator_dashboard_billing_explanation_contact": "dos quais é o <strong>contacto de faturação</strong>."
+}

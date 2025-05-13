@@ -2,7 +2,7 @@
 
 > AngularJS module for updating browser title based on the current ui-router state.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-pagination-front)](https://www.npmjs.com/package/@ovh-ux/ng-pagination-front) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-pagination-front)](https://npmjs.com/package/@ovh-ux/ng-pagination-front) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-pagination-front)](https://npmjs.com/package/@ovh-ux/ng-pagination-front?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-pagination-front)](https://npmjs.com/package/@ovh-ux/ng-pagination-front?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-pagination-front)](https://www.npmjs.com/package/@ovh-ux/ng-pagination-front) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-pagination-front)](https://npmjs.com/package/@ovh-ux/ng-pagination-front) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-pagination-front)](https://npmjs.com/package/@ovh-ux/ng-pagination-front?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-pagination-front)](https://npmjs.com/package/@ovh-ux/ng-pagination-front?activeTab=dependencies)
 
 ## Install
 

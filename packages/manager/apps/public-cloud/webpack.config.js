@@ -1,6 +1,6 @@
 const fs = require('fs');
 const glob = require('glob');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 const webpack = require('webpack');
@@ -61,6 +61,14 @@ module.exports = (env = {}) => {
       filename: '[name].[chunkhash].bundle.js',
     },
     plugins: [
+      new webpack.ContextReplacementPlugin(
+        /moment[/\\]locale$/,
+        /de|en-gb|es|es-us|fr-ca|fr|it|pl|pt/,
+      ),
+      new webpack.ContextReplacementPlugin(
+        /flatpicker[/\\]dist[/\\]l10n$/,
+        /de|es|es|fr|it|pl|pt/,
+      ),
       new webpack.DefinePlugin({
         __NG_APP_INJECTIONS__: getNgAppInjections(['EU', 'CA', 'US']),
         __NODE_ENV__: process.env.NODE_ENV

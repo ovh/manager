@@ -1,11 +1,12 @@
 {
- "pci_project_instance_ssh_key": "Chave SSH",
- "pci_project_instance_ssh_pick": "Selecionar",
- "pci_project_instance_ssh_add": "Adicionar uma chave",
- "pci_project_instance_ssh_cancel": "Anular",
- "pci_project_instance_ssh_key_name": "Nome da chave SSH",
- "pci_project_instance_ssh_key_query_error": "Ocorreu um erro ao recuperar as suas chaves SSH: {{message}}.",
- "pci_project_instance_ssh_key_add_error": "Ocorreu um erro ao adicionar a chave SSH: {{message}}.",
- "pci_project_instance_ssh_key_help_required": "As chaves SSH são obrigatórias para aceder ao seu serviço.",
- "pci_project_instance_ssh_key_help_availability": "A sua chave SSH estará disponível em todas as regiões e em todos os datacenters da OVH."
+  "pci_project_instance_ssh_key": "Chave SSH",
+  "pci_project_instance_ssh_pick": "Selecionar",
+  "pci_project_instance_ssh_add": "Adicionar uma chave",
+  "pci_project_instance_ssh_cancel": "Anular",
+  "pci_project_instance_ssh_key_name": "Nome da chave SSH",
+  "pci_project_instance_ssh_key_query_error": "Ocorreu um erro ao recuperar as suas chaves SSH: {{message}}.",
+  "pci_project_instance_ssh_key_add_error": "Ocorreu um erro ao adicionar a chave SSH: {{message}}.",
+  "pci_project_instance_ssh_key_help_required": "As chaves SSH são obrigatórias para aceder ao seu serviço. Consulte o <a target='_blank' rel='noopener' href='{{guideUrl}}'>manual</a> para saber mais.",
+  "pci_project_instance_ssh_key_help_availability": "A sua chave SSH estará disponível em todas as regiões e em todos os datacenters da OVH.",
+  "pci_project_instance_ssh_key_infos": "Só são aceites as chaves SSH de tipo RSA ou ECDSA. Não é possível utilizar chaves SSH de tipo ED25519."
 }

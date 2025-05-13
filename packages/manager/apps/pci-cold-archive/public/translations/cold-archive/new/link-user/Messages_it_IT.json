@@ -1,0 +1,18 @@
+{
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_title": "Associare un utente",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_description": "Hai la possibilità di definire l'accesso ai container ai tuoi utenti predefiniti o creare nuovi utenti e ottenere le chiavi di accesso.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_label": "Selezionare un utente",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_credential": "Credenziali generate",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_no_credential": "Nessuna credenziale",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_cta_cancel": "Annullare",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_cta_linked": "Visualizzare le credenziali",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create": "Crea un nuovo utente",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_label": "Descrizione dell'utente",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_cta_create": "Crea",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_cta_cancel": "Annullare",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_description_label": "Descrizione dell'utente:",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label": "La tua chiave segreta Object Storage:",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_success": "Le credenziali Object Storage per l'utente {{userName}} sono state generate.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_fail": "Le credenziali Object Storage non sono state generate.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select": "Seleziona un utente esistente"
+}

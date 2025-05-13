@@ -8,6 +8,7 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'HostingDatabaseImportCtrl',
   class HostingDatabaseImportCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $rootScope,
@@ -15,7 +16,7 @@ angular.module('App').controller(
       $translate,
       Alerter,
       HostingDatabase,
-      User,
+      WucUser,
     ) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;
@@ -23,7 +24,7 @@ angular.module('App').controller(
       this.$translate = $translate;
       this.Alerter = Alerter;
       this.HostingDatabase = HostingDatabase;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -58,7 +59,7 @@ angular.module('App').controller(
 
     getDocuments() {
       if (this.selected.action === this.model.actions.IMPORT_FROM_EXISTING) {
-        this.User.getDocuments()
+        this.WucUser.getDocuments()
           .then((data) => {
             const onlyImportScripts = [];
 
@@ -119,7 +120,7 @@ angular.module('App').controller(
       const filename = this.model.uploadFileName;
       this.isSendingFile = true;
 
-      return this.User.uploadFile(filename, file, tags)
+      return this.WucUser.uploadFile(filename, file, tags)
         .then((id) => {
           set(this.model, 'document.id', id);
           this.atLeastOneFileHasBeenSend = true;

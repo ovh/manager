@@ -1,0 +1,81 @@
+<div class="text-center" data-ng-if="$ctrl.loading.init">
+    <oui-spinner></oui-spinner>
+</div>
+
+<tuc-toast-message></tuc-toast-message>
+
+<div class="row" data-ng-if="!$ctrl.loading.init">
+    <div class="col-md-7 col-sm-12">
+        <div class="widget-presentation mb-5">
+            <h2
+                class="widget-presentation-title"
+                data-translate="telephony_order_choice_title"
+            ></h2>
+
+            <div
+                class="telephony-order mb-3 row"
+                data-ng-repeat="offer in $ctrl.offers track by offer.id"
+            >
+                <div class="col-md-7 col-sm-12">
+                    <h5 class="oui-heading_5">
+                        <span data-ng-bind=":: offer.title | translate"></span>
+                        <em data-ng-bind-html="offer.clarification"></em>
+                    </h5>
+                    <div
+                        class="description"
+                        data-ng-bind=":: offer.description | translate"
+                    ></div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4 ordering">
+                    <div class="cost" data-ng-if="offer.withoutTax">
+                        <div class="pricing">
+                            <span
+                                data-translate="telephony_order_will_cost"
+                            ></span>
+                            <span
+                                class="cost text-danger"
+                                data-translate="telephony_order_without_tax"
+                                data-translate-values="{ht: offer.withoutTax.text}"
+                            ></span
+                            >&nbsp;<span
+                                class="lasting"
+                                data-translate="telephony_order_per_period"
+                            ></span>
+                        </div>
+                        <div class="with-tax">
+                            <span
+                                data-translate="telephony_order_with_tax"
+                                data-translate-values="{ttc: offer.withTax.text}"
+                            >
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1 action">
+                    <a
+                        class="btn btn-primary mb-2"
+                        data-ui-sref="{{offer.withoutTax ? offer.state : 'telecom.telephony.billingAccount.alias.details.order'}}"
+                        data-ng-disabled="!offer.withoutTax"
+                        data-uib-tooltip="{{ offer.tip | translate }}"
+                        data-tooltip-placement="left"
+                        data-ng-if="offer.id !== 'special' || $ctrl.canOrderSpecial"
+                    >
+                        <i class="ovh-font ovh-font-cart"></i>
+                    </a>
+
+                    <oui-button
+                        data-variant="primary"
+                        data-size="l"
+                        data-on-click="$ctrl.goToSvaWallet()"
+                        data-ng-if="offer.id === 'special' && !$ctrl.canOrderSpecial"
+                    >
+                        <span data-translate="telephony_order_goto_kyc"></span>
+                    </oui-button>
+                </div>
+            </div>
+            <!-- /.telephony-order -->
+        </div>
+        <!-- /.widget-presentation -->
+    </div>
+</div>
+<!-- /.row -->

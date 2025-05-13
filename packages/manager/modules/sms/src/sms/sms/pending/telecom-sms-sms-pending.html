@@ -8,422 +8,402 @@
         <h1 data-translate="sms_sms_pending_title"></h1>
     </header>
 
-    <div class="telecom-section-content">
-        <tuc-toast-message></tuc-toast-message>
+    <tuc-toast-message></tuc-toast-message>
 
-        <div class="mb-3 clearfix">
-            <div
-                class="btn-group float-left mr-3"
-                data-uib-dropdown
-                data-dropdown-append-to-body
-            >
-                <button
-                    id="btn-sms-pending-actions"
-                    type="button"
-                    class="btn btn-default"
-                    data-uib-dropdown-toggle
-                >
-                    <span class="fa fa-bars" aria-hidden="true"></span>
-                    <span data-translate="sms_common_actions"></span>
-                    <span
-                        class="ovh-font ovh-font-small-arrow-down"
-                        aria-hidden="true"
-                    ></span>
-                </button>
-                <ul
-                    class="dropdown-menu"
-                    role="menu"
-                    aria-labelledby="btn-sms-pending-actions"
-                    data-uib-dropdown-menu
-                >
-                    <li role="menuitem">
-                        <i class="ovh-font ovh-font-bin" aria-hidden="true"></i>
-                        <button
-                            type="button"
-                            class="btn btn-link"
-                            data-ng-click="SmsPendingCtrl.cancelAll()"
-                            data-ng-disabled="!SmsPendingCtrl.pending.sorted.length || SmsPendingCtrl.loading.cancelAll"
-                            data-translate="sms_cancel"
-                            data-oui-tooltip="{{:: 'sms_sms_pending_cancel_all' | translate }}"
-                            data-oui-tooltip-placement="right"
-                        ></button>
-                    </li>
-                    <li role="menuitem">
-                        <i
-                            class="ovh-font ovh-font-arrow-rotate"
-                            aria-hidden="true"
-                        ></i>
-                        <button
-                            type="button"
-                            class="btn btn-link"
-                            data-ng-click="SmsPendingCtrl.refresh()"
-                            data-ng-disabled="SmsPendingCtrl.pending.isDeleting"
-                            data-translate="sms_common_refresh"
-                            data-oui-tooltip="{{:: 'sms_common_refresh_data' | translate }}"
-                            data-oui-tooltip-placement="right"
-                        ></button>
-                    </li>
-                </ul>
-            </div>
+    <div class="mb-3 clearfix">
+        <div class="btn-group float-left mr-3" data-uib-dropdown>
             <button
+                id="btn-sms-pending-actions"
                 type="button"
-                class="btn btn-default"
-                data-ng-disabled="SmsPendingCtrl.getSelection().length === 0 || SmsPendingCtrl.pending.isDeleting"
-                data-ng-click="SmsPendingCtrl.cancelSelectedPending()"
+                class="oui-button oui-button_dropdown"
+                data-uib-dropdown-toggle
             >
+                <span data-translate="sms_common_actions"></span>
                 <span
-                    class="oui-icon oui-icon-trash_line mr-2"
+                    class="oui-icon oui-icon-chevron-down"
                     aria-hidden="true"
-                    data-ng-if="!SmsPendingCtrl.pending.isDeleting"
-                >
-                </span>
-                <oui-spinner
-                    class="mr-2"
-                    data-ng-if="SmsPendingCtrl.pending.isDeleting"
-                    data-size="s"
-                >
-                </oui-spinner>
-                <span
-                    data-ng-pluralize
-                    data-count="SmsPendingCtrl.getSelection().length"
-                    data-when="{
+                ></span>
+            </button>
+            <ul
+                class="dropdown-menu"
+                role="menu"
+                aria-labelledby="btn-sms-pending-actions"
+                data-uib-dropdown-menu
+            >
+                <li role="menuitem">
+                    <button
+                        type="button"
+                        class="btn btn-link"
+                        data-ng-click="SmsPendingCtrl.cancelAll()"
+                        data-ng-disabled="!SmsPendingCtrl.pending.sorted.length || SmsPendingCtrl.loading.cancelAll"
+                        data-translate="sms_cancel"
+                        data-oui-tooltip="{{:: 'sms_sms_pending_cancel_all' | translate }}"
+                        data-oui-tooltip-placement="right"
+                    ></button>
+                </li>
+                <li role="menuitem">
+                    <button
+                        type="button"
+                        class="btn btn-link"
+                        data-ng-click="SmsPendingCtrl.refresh()"
+                        data-ng-disabled="SmsPendingCtrl.pending.isDeleting"
+                        data-translate="sms_common_refresh"
+                        data-oui-tooltip="{{:: 'sms_common_refresh_data' | translate }}"
+                        data-oui-tooltip-placement="right"
+                    ></button>
+                </li>
+            </ul>
+        </div>
+        <button
+            type="button"
+            class="btn btn-default"
+            data-ng-disabled="SmsPendingCtrl.getSelection().length === 0 || SmsPendingCtrl.pending.isDeleting"
+            data-ng-click="SmsPendingCtrl.cancelSelectedPending()"
+        >
+            <span
+                class="oui-icon mr-2 oui-icon-trash_concept"
+                aria-hidden="true"
+                data-ng-if="!SmsPendingCtrl.pending.isDeleting"
+            >
+            </span>
+            <oui-spinner
+                class="mr-2"
+                data-ng-if="SmsPendingCtrl.pending.isDeleting"
+                data-size="s"
+            >
+            </oui-spinner>
+            <span
+                data-ng-pluralize
+                data-count="SmsPendingCtrl.getSelection().length"
+                data-when="{
                           '0': ('sms_sms_pending_cancel' | translate),
                           'one': ('sms_sms_pending_cancel' | translate),
                           'other': ('sms_sms_pending_cancel_plural' | translate:{ count: {} })
                       }"
-                >
-                </span>
-            </button>
-            <oui-spinner
-                class="ml-2"
-                data-ng-if="SmsPendingCtrl.loading.read || SmsPendingCtrl.loading.cancelAll"
-                data-size="s"
             >
-            </oui-spinner>
-        </div>
-        <div class="table-responsive">
-            <table
-                class="table"
-                data-ng-class="{
+            </span>
+        </button>
+        <oui-spinner
+            class="ml-2"
+            data-ng-if="SmsPendingCtrl.loading.read || SmsPendingCtrl.loading.cancelAll"
+            data-size="s"
+        >
+        </oui-spinner>
+    </div>
+    <div class="table-responsive">
+        <table
+            class="table"
+            data-ng-class="{
                        'table-hover table-striped': SmsPendingCtrl.pending.raw.length > 1
                    }"
-            >
-                <thead>
-                    <tr>
-                        <th scope="col" width="40px">
-                            <input
-                                type="checkbox"
-                                data-ng-if="SmsPendingCtrl.pending.paginated.length"
-                                data-ng-disabled="SmsPendingCtrl.pending.isDeleting"
-                                data-ovh-checkbox-table
-                                data-ovh-checkbox-table-ids-all="SmsPendingCtrl.pending.raw"
-                                data-ovh-checkbox-table-ids-page="SmsPendingCtrl.pending.paginated"
-                                data-ovh-checkbox-table-ids-selected="SmsPendingCtrl.pending.selected"
-                                data-ovh-checkbox-table-id="id"
-                            />
-                        </th>
-                        <th scope="col">
-                            <button
-                                type="button"
-                                class="btn btn-link p-0"
-                                data-ng-disabled="!SmsPendingCtrl.pending.sorted.length"
-                                data-ng-click="SmsPendingCtrl.orderBy('creationDatetime')"
-                            >
-                                <span
-                                    data-translate="sms_sms_pending_label_date"
-                                ></span>
-                                <span
-                                    class="oui-icon align-baseline"
-                                    aria-hidden="true"
-                                    data-ng-class="{
+        >
+            <thead>
+                <tr>
+                    <th scope="col" width="40px">
+                        <input
+                            type="checkbox"
+                            data-ng-if="SmsPendingCtrl.pending.paginated.length"
+                            data-ng-disabled="SmsPendingCtrl.pending.isDeleting"
+                            data-ovh-checkbox-table
+                            data-ovh-checkbox-table-ids-all="SmsPendingCtrl.pending.raw"
+                            data-ovh-checkbox-table-ids-page="SmsPendingCtrl.pending.paginated"
+                            data-ovh-checkbox-table-ids-selected="SmsPendingCtrl.pending.selected"
+                            data-ovh-checkbox-table-id="id"
+                        />
+                    </th>
+                    <th scope="col">
+                        <button
+                            type="button"
+                            class="btn btn-link p-0"
+                            data-ng-disabled="!SmsPendingCtrl.pending.sorted.length"
+                            data-ng-click="SmsPendingCtrl.orderBy('creationDatetime')"
+                        >
+                            <span
+                                data-translate="sms_sms_pending_label_date"
+                            ></span>
+                            <span
+                                class="oui-icon align-baseline"
+                                aria-hidden="true"
+                                data-ng-class="{
                                           'oui-icon-arrow-down': SmsPendingCtrl.pending.orderBy !== 'creationDatetime',
                                           'oui-icon-arrow-down': SmsPendingCtrl.pending.orderBy === 'creationDatetime' && SmsPendingCtrl.pending.orderDesc,
                                           'oui-icon-arrow-up': SmsPendingCtrl.pending.orderBy === 'creationDatetime' && !SmsPendingCtrl.pending.orderDesc
                                       }"
-                                >
-                                </span>
-                            </button>
-                        </th>
-                        <th scope="col">
-                            <button
-                                type="button"
-                                class="btn btn-link p-0"
-                                data-ng-disabled="!SmsPendingCtrl.pending.sorted.length"
-                                data-ng-click="SmsPendingCtrl.orderBy('scheduledDatetime')"
                             >
-                                <span
-                                    data-translate="sms_sms_pending_label_scheduled"
-                                ></span>
-                                <span
-                                    class="oui-icon align-baseline"
-                                    aria-hidden="true"
-                                    data-ng-class="{
+                            </span>
+                        </button>
+                    </th>
+                    <th scope="col">
+                        <button
+                            type="button"
+                            class="btn btn-link p-0"
+                            data-ng-disabled="!SmsPendingCtrl.pending.sorted.length"
+                            data-ng-click="SmsPendingCtrl.orderBy('scheduledDatetime')"
+                        >
+                            <span
+                                data-translate="sms_sms_pending_label_scheduled"
+                            ></span>
+                            <span
+                                class="oui-icon align-baseline"
+                                aria-hidden="true"
+                                data-ng-class="{
                                           'oui-icon-arrow-down': SmsPendingCtrl.pending.orderBy !== 'scheduledDatetime',
                                           'oui-icon-arrow-down': SmsPendingCtrl.pending.orderBy === 'scheduledDatetime' && SmsPendingCtrl.pending.orderDesc,
                                           'oui-icon-arrow-up': SmsPendingCtrl.pending.orderBy === 'scheduledDatetime' && !SmsPendingCtrl.pending.orderDesc
                                       }"
-                                >
-                                </span>
-                            </button>
-                        </th>
-                        <th scope="col">
-                            <button
-                                type="button"
-                                class="btn btn-link p-0"
-                                data-ng-disabled="!SmsPendingCtrl.pending.sorted.length"
-                                data-ng-click="SmsPendingCtrl.orderBy('sender')"
                             >
-                                <span
-                                    data-translate="sms_sms_pending_label_sender"
-                                ></span>
-                                <span
-                                    class="oui-icon align-baseline"
-                                    aria-hidden="true"
-                                    data-ng-class="{
+                            </span>
+                        </button>
+                    </th>
+                    <th scope="col">
+                        <button
+                            type="button"
+                            class="btn btn-link p-0"
+                            data-ng-disabled="!SmsPendingCtrl.pending.sorted.length"
+                            data-ng-click="SmsPendingCtrl.orderBy('sender')"
+                        >
+                            <span
+                                data-translate="sms_sms_pending_label_sender"
+                            ></span>
+                            <span
+                                class="oui-icon align-baseline"
+                                aria-hidden="true"
+                                data-ng-class="{
                                           'oui-icon-arrow-down': SmsPendingCtrl.pending.orderBy !== 'sender',
                                           'oui-icon-arrow-down': SmsPendingCtrl.pending.orderBy === 'sender' && SmsPendingCtrl.pending.orderDesc,
                                           'oui-icon-arrow-up': SmsPendingCtrl.pending.orderBy === 'sender' && !SmsPendingCtrl.pending.orderDesc
                                       }"
-                                >
-                                </span>
-                            </button>
-                        </th>
-                        <th scope="col">
-                            <button
-                                type="button"
-                                class="btn btn-link p-0"
-                                data-ng-disabled="!SmsPendingCtrl.pending.sorted.length"
-                                data-ng-click="SmsPendingCtrl.orderBy('receiver')"
                             >
-                                <span
-                                    data-translate="sms_sms_pending_label_receiver"
-                                ></span>
-                                <span
-                                    class="oui-icon align-baseline"
-                                    aria-hidden="true"
-                                    data-ng-class="{
+                            </span>
+                        </button>
+                    </th>
+                    <th scope="col">
+                        <button
+                            type="button"
+                            class="btn btn-link p-0"
+                            data-ng-disabled="!SmsPendingCtrl.pending.sorted.length"
+                            data-ng-click="SmsPendingCtrl.orderBy('receiver')"
+                        >
+                            <span
+                                data-translate="sms_sms_pending_label_receiver"
+                            ></span>
+                            <span
+                                class="oui-icon align-baseline"
+                                aria-hidden="true"
+                                data-ng-class="{
                                           'oui-icon-arrow-down': SmsPendingCtrl.pending.orderBy !== 'receiver',
                                           'oui-icon-arrow-down': SmsPendingCtrl.pending.orderBy === 'receiver' && SmsPendingCtrl.pending.orderDesc,
                                           'oui-icon-arrow-up': SmsPendingCtrl.pending.orderBy === 'receiver' && !SmsPendingCtrl.pending.orderDesc
                                       }"
-                                >
-                                </span>
-                            </button>
-                        </th>
-                        <th scope="col">
-                            <button
-                                type="button"
-                                class="btn btn-link p-0"
-                                data-ng-disabled="!SmsPendingCtrl.pending.sorted.length"
-                                data-ng-click="SmsPendingCtrl.orderBy('message')"
                             >
-                                <span
-                                    data-translate="sms_sms_pending_label_message"
-                                ></span>
-                                <span
-                                    class="oui-icon align-baseline"
-                                    aria-hidden="true"
-                                    data-ng-class="{
+                            </span>
+                        </button>
+                    </th>
+                    <th scope="col">
+                        <button
+                            type="button"
+                            class="btn btn-link p-0"
+                            data-ng-disabled="!SmsPendingCtrl.pending.sorted.length"
+                            data-ng-click="SmsPendingCtrl.orderBy('message')"
+                        >
+                            <span
+                                data-translate="sms_sms_pending_label_message"
+                            ></span>
+                            <span
+                                class="oui-icon align-baseline"
+                                aria-hidden="true"
+                                data-ng-class="{
                                           'oui-icon-arrow-down': SmsPendingCtrl.pending.orderBy !== 'message',
                                           'oui-icon-arrow-down': SmsPendingCtrl.pending.orderBy === 'message' && SmsPendingCtrl.pending.orderDesc,
                                           'oui-icon-arrow-up': SmsPendingCtrl.pending.orderBy === 'message' && !SmsPendingCtrl.pending.orderDesc
                                       }"
-                                >
-                                </span>
-                            </button>
-                        </th>
-                        <th scope="col">
-                            <button
-                                type="button"
-                                class="btn btn-link p-0"
-                                data-ng-disabled="!SmsPendingCtrl.pending.sorted.length"
-                                data-ng-click="SmsPendingCtrl.orderBy('status')"
                             >
-                                <span
-                                    data-translate="sms_sms_pending_label_status"
-                                ></span>
-                                <span
-                                    class="oui-icon align-baseline"
-                                    aria-hidden="true"
-                                    data-ng-class="{
+                            </span>
+                        </button>
+                    </th>
+                    <th scope="col">
+                        <button
+                            type="button"
+                            class="btn btn-link p-0"
+                            data-ng-disabled="!SmsPendingCtrl.pending.sorted.length"
+                            data-ng-click="SmsPendingCtrl.orderBy('status')"
+                        >
+                            <span
+                                data-translate="sms_sms_pending_label_status"
+                            ></span>
+                            <span
+                                class="oui-icon align-baseline"
+                                aria-hidden="true"
+                                data-ng-class="{
                                           'oui-icon-arrow-down': SmsPendingCtrl.pending.orderBy !== 'status',
                                           'oui-icon-arrow-down': SmsPendingCtrl.pending.orderBy === 'status' && SmsPendingCtrl.pending.orderDesc,
                                           'oui-icon-arrow-up': SmsPendingCtrl.pending.orderBy === 'status' && !SmsPendingCtrl.pending.orderDesc
                                       }"
+                            >
+                            </span>
+                        </button>
+                    </th>
+                    <th
+                        scope="col"
+                        class="text-right"
+                        data-translate="sms_common_actions"
+                    ></th>
+                </tr>
+            </thead>
+            <tbody
+                data-ng-if="!SmsPendingCtrl.pending.isLoading && SmsPendingCtrl.pending.raw.length"
+            >
+                <tr
+                    data-ng-repeat="sms in SmsPendingCtrl.pending.paginated | orderBy:SmsPendingCtrl.order.by:SmsPendingCtrl.order.reverse"
+                >
+                    <td>
+                        <input
+                            type="checkbox"
+                            data-ng-disabled="SmsPendingCtrl.pending.isDeleting"
+                            data-ng-model="SmsPendingCtrl.pending.selected[sms.id]"
+                        />
+                    </td>
+                    <td>
+                        <span
+                            data-ng-bind="sms.creationDatetime | date:'shortDate'"
+                        ></span
+                        ><br />
+                        <span
+                            data-ng-bind="sms.creationDatetime | date:'mediumTime'"
+                        ></span>
+                    </td>
+                    <td>
+                        <span
+                            data-ng-bind="sms.scheduledDatetime | date:'shortDate'"
+                        ></span
+                        ><br />
+                        <span
+                            data-ng-bind="sms.scheduledDatetime | date:'mediumTime'"
+                        ></span>
+                    </td>
+                    <td>
+                        <span
+                            data-ng-if="sms.sender.length"
+                            data-ng-bind="sms.sender"
+                        >
+                        </span>
+                        <span
+                            data-ng-if="!sms.sender.length"
+                            data-oui-tooltip="{{ ::'sms_sms_pending_number_allowed_response_fr_only' | translate }}"
+                            data-translate="sms_sms_pending_number_allowed_response"
+                        >
+                        </span>
+                    </td>
+                    <td data-ng-bind="sms.receiver"></td>
+                    <td>
+                        <span data-ng-if="sms.message.length >= 25">
+                            <span
+                                data-ng-bind="sms.message | limitTo: 25"
+                                data-oui-tooltip="{{ sms.message }}"
+                            >
+                            </span
+                            >…
+                        </span>
+                        <span
+                            data-ng-if="sms.message.length < 25"
+                            data-ng-bind="sms.message"
+                        >
+                        </span>
+                    </td>
+                    <td>
+                        <span data-ng-if="sms.status.length >= 25">
+                            <span
+                                data-ng-bind="sms.status | limitTo: 25"
+                                data-oui-tooltip="{{ sms.status }}"
+                            >
+                            </span
+                            >…
+                        </span>
+                        <span
+                            data-ng-if="sms.status.length < 25"
+                            data-ng-bind="sms.status"
+                        >
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div
+                            class="btn-group"
+                            data-uib-dropdown
+                            data-dropdown-append-to-body
+                        >
+                            <button
+                                id="btn-sms-pending-action-{{ index }}"
+                                type="button"
+                                class="btn btn-link"
+                                data-uib-dropdown-toggle
+                            >
+                                <span
+                                    class="ovh-font ovh-font-dots"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    class="sr-only"
+                                    data-translate="sms_common_actions"
                                 >
                                 </span>
                             </button>
-                        </th>
-                        <th
-                            scope="col"
-                            class="text-right"
-                            data-translate="sms_common_actions"
-                        ></th>
-                    </tr>
-                </thead>
-                <tbody
-                    data-ng-if="!SmsPendingCtrl.pending.isLoading && SmsPendingCtrl.pending.raw.length"
-                >
-                    <tr
-                        data-ng-repeat="sms in SmsPendingCtrl.pending.paginated | orderBy:SmsPendingCtrl.order.by:SmsPendingCtrl.order.reverse"
-                    >
-                        <td>
-                            <input
-                                type="checkbox"
-                                data-ng-disabled="SmsPendingCtrl.pending.isDeleting"
-                                data-ng-model="SmsPendingCtrl.pending.selected[sms.id]"
-                            />
-                        </td>
-                        <td>
-                            <span
-                                data-ng-bind="sms.creationDatetime | date:'shortDate'"
-                            ></span
-                            ><br />
-                            <span
-                                data-ng-bind="sms.creationDatetime | date:'mediumTime'"
-                            ></span>
-                        </td>
-                        <td>
-                            <span
-                                data-ng-bind="sms.scheduledDatetime | date:'shortDate'"
-                            ></span
-                            ><br />
-                            <span
-                                data-ng-bind="sms.scheduledDatetime | date:'mediumTime'"
-                            ></span>
-                        </td>
-                        <td>
-                            <span
-                                data-ng-if="sms.sender.length"
-                                data-ng-bind="sms.sender"
+                            <ul
+                                class="dropdown-menu dropdown-menu-right"
+                                role="menu"
+                                aria-labelledby="btn-sms-pending-action-{{ index }}"
+                                data-uib-dropdown-menu
                             >
-                            </span>
-                            <span
-                                data-ng-if="!sms.sender.length"
-                                data-oui-tooltip="{{ ::'sms_sms_pending_number_allowed_response_fr_only' | translate }}"
-                                data-translate="sms_sms_pending_number_allowed_response"
-                            >
-                            </span>
-                        </td>
-                        <td data-ng-bind="sms.receiver"></td>
-                        <td>
-                            <span data-ng-if="sms.message.length >= 25">
-                                <span
-                                    data-ng-bind="sms.message | limitTo: 25"
-                                    data-oui-tooltip="{{ sms.message }}"
-                                >
-                                </span
-                                >…
-                            </span>
-                            <span
-                                data-ng-if="sms.message.length < 25"
-                                data-ng-bind="sms.message"
-                            >
-                            </span>
-                        </td>
-                        <td>
-                            <span data-ng-if="sms.status.length >= 25">
-                                <span
-                                    data-ng-bind="sms.status | limitTo: 25"
-                                    data-oui-tooltip="{{ sms.status }}"
-                                >
-                                </span
-                                >…
-                            </span>
-                            <span
-                                data-ng-if="sms.status.length < 25"
-                                data-ng-bind="sms.status"
-                            >
-                            </span>
-                        </td>
-                        <td class="text-right">
-                            <div
-                                class="btn-group"
-                                data-uib-dropdown
-                                data-dropdown-append-to-body
-                            >
-                                <button
-                                    id="btn-sms-pending-action-{{ index }}"
-                                    type="button"
-                                    class="btn btn-link"
-                                    data-uib-dropdown-toggle
-                                >
-                                    <span
-                                        class="ovh-font ovh-font-dots"
-                                        aria-hidden="true"
-                                    ></span>
-                                    <span
-                                        class="sr-only"
-                                        data-translate="sms_common_actions"
-                                    >
-                                    </span>
-                                </button>
-                                <ul
-                                    class="dropdown-menu dropdown-menu-right"
-                                    role="menu"
-                                    aria-labelledby="btn-sms-pending-action-{{ index }}"
-                                    data-uib-dropdown-menu
-                                >
-                                    <li role="menuitem">
-                                        <i
-                                            class="ovh-font ovh-font-details"
-                                            aria-hidden="true"
-                                        ></i>
-                                        <button
-                                            type="button"
-                                            class="btn btn-link"
-                                            data-ng-click="SmsPendingCtrl.read(sms)"
-                                            data-translate="sms_sms_pending_read_title"
-                                        ></button>
-                                    </li>
-                                    <li role="menuitem">
-                                        <i
-                                            class="ovh-font ovh-font-bin"
-                                            aria-hidden="true"
-                                        ></i>
-                                        <button
-                                            type="button"
-                                            class="btn btn-link"
-                                            data-ng-click="SmsPendingCtrl.remove(sms)"
-                                            data-translate="sms_delete"
-                                        ></button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody data-ng-if="SmsPendingCtrl.pending.isLoading">
-                    <tr>
-                        <td colspan="8" class="text-center">
-                            <oui-spinner data-size="s"></oui-spinner>
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody
-                    data-ng-if="!SmsPendingCtrl.pending.isLoading && !SmsPendingCtrl.pending.raw.length"
-                >
-                    <tr>
-                        <td
-                            class="text-center"
-                            colspan="8"
-                            data-translate="sms_sms_pending_empty"
-                        ></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div
-            class="mt-2"
-            data-ng-show="!SmsPendingCtrl.pending.isLoading && SmsPendingCtrl.pending.raw.length"
-            data-pagination-front
-            data-items="SmsPendingCtrl.pending.sorted"
-            data-paginated-items="SmsPendingCtrl.pending.paginated"
-            data-current-page="currentPage"
-            data-nb-pages="nbPages"
-            data-items-per-page="itemsPerPage"
-            data-page-placeholder="{{ 'sms_common_pagination_page' | translate: { currentPage: currentPage, nbPages: nbPages } }}"
-            data-item-per-page-placeholder="{{ 'sms_common_pagination_display' | translate }}"
-        ></div>
+                                <li role="menuitem">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-click="SmsPendingCtrl.read(sms)"
+                                        data-translate="sms_sms_pending_read_title"
+                                    ></button>
+                                </li>
+                                <li role="menuitem">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-click="SmsPendingCtrl.remove(sms)"
+                                        data-translate="sms_delete"
+                                    ></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody data-ng-if="SmsPendingCtrl.pending.isLoading">
+                <tr>
+                    <td colspan="8" class="text-center">
+                        <oui-spinner data-size="s"></oui-spinner>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody
+                data-ng-if="!SmsPendingCtrl.pending.isLoading && !SmsPendingCtrl.pending.raw.length"
+            >
+                <tr>
+                    <td
+                        class="text-center"
+                        colspan="8"
+                        data-translate="sms_sms_pending_empty"
+                    ></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+    <div
+        class="mt-2"
+        data-ng-show="!SmsPendingCtrl.pending.isLoading && SmsPendingCtrl.pending.raw.length"
+        data-pagination-front
+        data-items="SmsPendingCtrl.pending.sorted"
+        data-paginated-items="SmsPendingCtrl.pending.paginated"
+        data-current-page="currentPage"
+        data-nb-pages="nbPages"
+        data-items-per-page="itemsPerPage"
+        data-page-placeholder="{{ 'sms_common_pagination_page' | translate: { currentPage: currentPage, nbPages: nbPages } }}"
+        data-item-per-page-placeholder="{{ 'sms_common_pagination_display' | translate }}"
+    ></div>
 </section>

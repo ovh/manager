@@ -12,22 +12,20 @@ After having installed the package and having injected the dependency in your An
 // routing.js
 import controller from './controller';
 import template from './template.html';
-...
 
-$stateProvider
-  .state('state.name', {
-    url: '/my-url',
-    controller,
-    template,
-    layout: 'ouiModal',
-    resolve: {
-        redirectTo: () => 'an.other.state',
-        heading: () => 'My state heading!',
-        primaryLabel: () => 'Add',
-        secondaryLabel: () => 'Cancel',
-        ...
-    },
-  });
+$stateProvider.state('state.name', {
+  url: '/my-url',
+  controller,
+  template,
+  layout: 'ouiModal',
+  resolve: {
+    redirectTo: () => 'an.other.state',
+    heading: () => 'My state heading!',
+    primaryLabel: () => 'Add',
+    secondaryLabel: () => 'Cancel',
+    // ...
+  },
+});
 ```
 
 **`Note`**: You will have to inject the resolves into your controller to be abble to use them. e.g.:
@@ -37,10 +35,10 @@ $stateProvider
 export default class Ctrl {
   /* @ngInject */
   constructor(heading, primaryLabel, secondaryLabel) {
-      this.primaryLabel = primaryLabel;
-      this.secondaryLabel = secondaryLabel;
+    this.primaryLabel = primaryLabel;
+    this.secondaryLabel = secondaryLabel;
   }
-};
+}
 ```
 
 With that example, the state `state.name` will open a `ouiModal` with `My state heading!` as heading, `Add` as primary label and `Cancel` as secondary label.
@@ -50,48 +48,47 @@ Without the injections of the resolve, no modal options will be taken into accou
 
 ```js
 // routing.js
-$stateProvider
-  .state('state.name', {
-    url: '/my-url',
-    layout: 'ouiModal',
-    component: 'myAwesomeComponent',
-    resolve: {
-        redirectTo: () => 'an.other.state',
-        heading: () => 'My state heading!',
-        primaryLabel: () => 'Add',
-        secondaryLabel: () => 'Cancel',
-        ...
-        resolveData: () => 'I can be used in controller too!',
-        model: () => ({
-          addName: null,
-        }),
-    },
-  });
+$stateProvider.state('state.name', {
+  url: '/my-url',
+  layout: 'ouiModal',
+  component: 'myAwesomeComponent',
+  resolve: {
+    redirectTo: () => 'an.other.state',
+    heading: () => 'My state heading!',
+    primaryLabel: () => 'Add',
+    secondaryLabel: () => 'Cancel',
+    // ...
+    resolveData: () => 'I can be used in controller too!',
+    model: () => ({
+      addName: null,
+    }),
+  },
+});
 ```
 
 ### With a componentProvider
 
 ```js
 // routing.js
-$stateProvider
-  .state('state.name', {
-    url: '/my-url',
-    layout: 'ouiModal',
-    componentProvider: predicate => predicate
+$stateProvider.state('state.name', {
+  url: '/my-url',
+  layout: 'ouiModal',
+  componentProvider: (predicate) =>
+    predicate
       ? 'awesomeModalForTruePredicate'
       : 'awesomeModalForFalsePredicate',
-    resolve: {
-        redirectTo: () => 'an.other.state',
-        heading: () => 'My state heading!',
-        primaryLabel: () => 'Add',
-        secondaryLabel: () => 'Cancel',
-        ...
-        resolveData: () => 'I can be used in controller too!',
-        model: () => ({
-          addName: 'A beautiful name',
-        }),
-    },
-  });
+  resolve: {
+    redirectTo: () => 'an.other.state',
+    heading: () => 'My state heading!',
+    primaryLabel: () => 'Add',
+    secondaryLabel: () => 'Cancel',
+    // ...
+    resolveData: () => 'I can be used in controller too!',
+    model: () => ({
+      addName: 'A beautiful name',
+    }),
+  },
+});
 ```
 
 **`Note` for component and componentProvider**: `ouiModal` layout make bindings and resolve compatible with version >= 2.1.0 of angular-ui-bootstrap (see [angular-ui-bootstrap documentation](https://angular-ui.github.io/bootstrap/versioned-docs/2.1.0/#/modal)). So if you want to use any resolve defined in your state declaration, you will be able to access them through `resolve` object of your controller. This will be accessible from `$onInit` hook (not in controller constructor).
@@ -120,7 +117,7 @@ export default class MyAwesomeComponentCtrl {
      *  will output: I can be used in controller too!
      */
   }
-};
+}
 ```
 
 ```html
@@ -142,18 +139,17 @@ This will display `I can be used in controller too!` in the console and set `A b
 You can provide options to the uibModal opened at uiRoute's onEnter. For this you can provide, an object as layout options like:
 
 ```js
-$stateProvider
-  .state('state.name', {
-    url: '/my-url',
-    layout: {
-      name: 'ouiModal',
-      options: {
-        backdrop: false,
-        keyboard: false,
-      },
+$stateProvider.state('state.name', {
+  url: '/my-url',
+  layout: {
+    name: 'ouiModal',
+    options: {
+      backdrop: false,
+      keyboard: false,
     },
-    component: 'myAwesomeComponent',
-  });
+  },
+  component: 'myAwesomeComponent',
+});
 ````
 
 This will open a ouiModal without backdrop and with `ESC` key disabled. For available options, see the [uibModal options](https://angular-ui.github.io/bootstrap/versioned-docs/1.3.3/#/modal). Note that uiState's options like controller, controllerAs, etc... won't be taken in consideration in that object.

@@ -1,7 +1,7 @@
 <form
     class="ovh-contact-edit"
     data-ng-submit="$ctrl.saveContact()"
-    name="ovhContactEdit"
+    name="$ctrl.ovhContactEdit"
 >
     <div data-ng-if="$ctrl.saveError" class="alert alert-danger" role="alert">
         <i class="fa fa-lg fa-warning" aria-hidden="true"></i>
@@ -95,7 +95,7 @@
                     class="form-group"
                     data-ng-switch-when="emailConfirmation"
                     data-ng-class="{
-                         'has-error': ovhContactEdit[field].$touched && ovhContactEdit[field].$invalid
+                         'has-error': $ctrl.ovhContactEdit[field].$touched && $ctrl.ovhContactEdit[field].$invalid
                      }"
                 >
                     <label for="email_confirmation" class="control-label">
@@ -118,8 +118,8 @@
                     <span
                         class="help-block"
                         role="alert"
-                        data-ng-show="ovhContactEdit[field].$dirty && ovhContactEdit[field].$touched"
-                        data-ng-messages="ovhContactEdit[field].$error"
+                        data-ng-show="$ctrl.ovhContactEdit[field].$dirty && $ctrl.ovhContactEdit[field].$touched"
+                        data-ng-messages="$ctrl.ovhContactEdit[field].$error"
                     >
                         <span
                             data-ng-message="required"
@@ -139,7 +139,7 @@
                     class="form-group"
                     data-ng-switch-when="phone"
                     data-ng-class="{
-                         'has-error': ovhContactEdit.phone.$touched && ovhContactEdit.phone.$invalid
+                         'has-error': !$ctrl.ovhContactEdit.phone.$pristine && $ctrl.ovhContactEdit.phone.$invalid
                      }"
                 >
                     <label for="phone" class="control-label">
@@ -147,14 +147,8 @@
                         ($ctrl.creationRules.phone.canBeNull ? '' : ' *') }}
                     </label>
                     <input
-                        international-phone-number
-                        data-number-type="FIXED_LINE"
-                        data-national-mode="false"
-                        data-default-country="{{ $ctrl.ovhContactCtrl.contact.address.country }}"
-                        data-preferred-countries=""
                         data-ng-model="$ctrl.formatedPhone"
                         data-ng-model-options="{ getterSetter: true }"
-                        data-ng-blur="$ctrl.forcePhoneFormat($event, field)"
                         type="text"
                         name="phone"
                         id="phone"
@@ -164,8 +158,8 @@
                     <span
                         class="help-block"
                         role="alert"
-                        data-ng-show="ovhContactEdit.phone.$dirty && ovhContactEdit.phone.$touched"
-                        data-ng-messages="ovhContactEdit.phone.$error"
+                        data-ng-show="$ctrl.ovhContactEdit.phone.$dirty && !$ctrl.ovhContactEdit.phone.$pristine"
+                        data-ng-messages="$ctrl.ovhContactEdit.phone.$error"
                     >
                         <span
                             data-ng-message="required"
@@ -185,7 +179,7 @@
                     class="form-group"
                     data-ng-switch-when="cellPhone"
                     data-ng-class="{
-                         'has-error': ovhContactEdit.cellphone.$touched && ovhContactEdit.cellphone.$invalid
+                         'has-error': !$ctrl.ovhContactEdit.cellPhone.$pristine && $ctrl.ovhContactEdit.cellPhone.$invalid
                      }"
                 >
                     <label for="cellphone" class="control-label">
@@ -193,25 +187,19 @@
                         ($ctrl.creationRules.cellPhone.canBeNull ? '' : ' *') }}
                     </label>
                     <input
-                        international-phone-number
-                        data-national-mode="false"
-                        data-allow-dropdown="false"
-                        data-default-country="{{ $ctrl.ovhContactCtrl.contact.address.country }}"
-                        data-preferred-countries=""
                         data-ng-model="$ctrl.formatedCellPhone"
                         data-ng-model-options="{ getterSetter: true }"
-                        data-ng-blur="$ctrl.forcePhoneFormat($event, field)"
                         type="text"
-                        name="cellphone"
-                        id="cellphone"
+                        name="cellPhone"
+                        id="cellPhone"
                         class="form-control"
                         data-ng-required="!$ctrl.creationRules.cellPhone.canBeNull"
                     />
                     <span
                         class="help-block"
                         role="alert"
-                        data-ng-show="ovhContactEdit.cellphone.$dirty && ovhContactEdit.cellphone.$touched"
-                        data-ng-messages="ovhContactEdit.cellphone.$error"
+                        data-ng-show="$ctrl.ovhContactEdit.cellPhone.$dirty && !$ctrl.ovhContactEdit.cellPhone.$pristine"
+                        data-ng-messages="$ctrl.ovhContactEdit.cellPhone.$error"
                     >
                         <span
                             data-ng-message="required"
@@ -233,14 +221,14 @@
                 >
                     <div
                         data-ng-switch-when="true"
-                        data-ng-switch="field.indexOf('address') > -1"
+                        data-ng-switch="field.indexOf('address') > -1 && !$ctrl.options.customFieldForm"
                     >
                         <!-- SPECIAL FOR ADDRESS FIELD BECAUSE NGMODEL CAN'T ACCESS TO contact['address.city'] -->
                         <div
                             class="form-group"
                             data-ng-switch-when="true"
                             data-ng-class="{
-                                 'has-error': ovhContactEdit[field].$touched && ovhContactEdit[field].$invalid
+                                 'has-error': $ctrl.ovhContactEdit[field].$touched && $ctrl.ovhContactEdit[field].$invalid
                              }"
                         >
                             <label for="{{field}}" class="control-label">
@@ -262,8 +250,8 @@
                             <span
                                 class="help-block"
                                 role="alert"
-                                data-ng-show="ovhContactEdit[field].$dirty && ovhContactEdit[field].$touched"
-                                data-ng-messages="ovhContactEdit[field].$error"
+                                data-ng-show="$ctrl.ovhContactEdit[field].$dirty && $ctrl.ovhContactEdit[field].$touched"
+                                data-ng-messages="$ctrl.ovhContactEdit[field].$error"
                             >
                                 <span
                                     data-ng-message="required"
@@ -283,7 +271,7 @@
                             class="form-group"
                             data-ng-switch-default
                             data-ng-class="{
-                                 'has-error': ovhContactEdit[field].$touched && ovhContactEdit[field].$invalid
+                                 'has-error': $ctrl.ovhContactEdit[field].$touched && $ctrl.ovhContactEdit[field].$invalid
                              }"
                         >
                             <label for="{{field}}" class="control-label">
@@ -305,8 +293,8 @@
                             <span
                                 class="help-block"
                                 role="alert"
-                                data-ng-show="ovhContactEdit[field].$dirty && ovhContactEdit[field].$touched"
-                                data-ng-messages="ovhContactEdit[field].$error"
+                                data-ng-show="$ctrl.ovhContactEdit[field].$dirty && $ctrl.ovhContactEdit[field].$touched"
+                                data-ng-messages="$ctrl.ovhContactEdit[field].$error"
                             >
                                 <span
                                     data-ng-message="required"
@@ -348,7 +336,7 @@
             type="submit"
             class="btn btn-primary"
             data-translate="{{ $ctrl.ovhContactCtrl.contact.id ? 'ovh_contact_edit_action_edit' : 'ovh_contact_edit_action_create' }}"
-            data-ng-disabled="ovhContactEdit.$invalid || !$ctrl.ovhContactCtrl.contact.hasChange()"
+            data-ng-disabled="$ctrl.ovhContactEdit.$invalid || !$ctrl.ovhContactCtrl.contact.hasChange()"
         ></button>
         <button
             type="button"

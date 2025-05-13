@@ -1,0 +1,20 @@
+{
+  "dedicated_server_dashboard_advanced_features_sgx_manage_back_button_dashboard": "Back to server status",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_back_button_presentation": "Back to features introduction",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_header_disabled": "Manage your SGX feature",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_header_enabled": "Modify your SGX feature",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_header_software controlled": "Modify your SGX feature",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_intro_disabled": "You can enable your Software Guard Extensions (SGX) feature, and select the processor memory reserved for this usage. You can also enable it in advance by selecting “Software controlled”, then enabling it directly in your application. In both cases, your server will be rebooted automatically after you confirm.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_intro_enabled": "You can switch your Software Guard Extensions feature to enable via your application (software controlled), or simply disable it. This change will result in your server being rebooted automatically.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_intro_software controlled": "You can switch your Software Guard Extensions feature to enable via your application (software controlled), or simply disable it. This change will result in your server being rebooted automatically.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_option_disabled": "Disable",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_option_enabled": "Enable",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_option_software_controlled": "Software controlled",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_option_prmrr": "Reserved processor memory",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_option_prmrr_value": "{{ value }} MB",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_confirm": "Confirm",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_activation_success": "Your server is rebooting — the SGX feature will be enabled in a few minutes.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_deactivation_success": "Your server is rebooting — the SGX feature will be disabled in a few minutes.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_error": "An error has occurred modifying the SGX feature.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage": "Manage SGX"
+}

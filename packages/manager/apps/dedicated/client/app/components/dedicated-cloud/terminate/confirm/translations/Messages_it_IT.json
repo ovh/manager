@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_confirm_close_confirm": "Confermo di voler disattivare il servizio",
+  "dedicatedCloud_confirm_close_cancel": "Ho cambiato idea",
+  "dedicatedCloud_confirm_close_service": "Conferma la disattivazione del servizio",
+  "dedicatedCloud_confirm_close_question": "Qual è il motivo principale per cui vuoi disattivare questo servizio?",
+  "dedicatedCloud_confirm_close_reason_not_needed_anymore": "Non utilizzo più il servizio",
+  "dedicatedCloud_confirm_close_reason_too_hard_to_use": "Gli strumenti sono troppo complessi",
+  "dedicatedCloud_confirm_close_reason_lack_of_performances": "Le prestazioni del sistema non sono sufficienti",
+  "dedicatedCloud_confirm_close_reason_not_reliable": "Il servizio non è abbastanza affidabile",
+  "dedicatedCloud_confirm_close_reason_too_expensive": "Il servizio costa troppo",
+  "dedicatedCloud_confirm_close_reason_migrated_to_another_ovh_product": "Utilizzo un altro servizio OVHcloud",
+  "dedicatedCloud_confirm_close_reason_migrated_to_competitor": "Utilizzo il servizio di un altro provider",
+  "dedicatedCloud_confirm_close_reason_other": "Altro",
+  "dedicatedCloud_confirm_close_feedback": "Vuoi fornirci maggiori dettagli o suggerimenti?",
+  "dedicatedCloud_confirm_close_success": "La richiesta di disattivazione di questa infrastruttura è stata confermata!",
+  "dedicatedCloud_confirm_close_error": "Si è verificato un errore durante la conferma della disattivazione:"
+}

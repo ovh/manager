@@ -1,0 +1,8 @@
+{
+  "cpbc_no_consumption_data": "Kein Verbrauch im gewählten Zeitraum.",
+  "cpbc_volume_col_name": "Name",
+  "cpbc_volume_col_consumption": "Verbrauch",
+  "cpbc_volume_consumption_tooltip_part1": "Die Abrechnung erfolgt abhängig vom tatsächlichen Speicherplatz, der stündlich und auf die Stunde genau bestimmt wird.",
+  "cpbc_volume_consumption_tooltip_part2": "Ihr Verbrauch entspricht genau {{amount}} GiB-Stunden.",
+  "cpb_error_message": "Leider konnten wir nicht alle Informationen abrufen."
+}

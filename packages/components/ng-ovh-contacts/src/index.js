@@ -1,7 +1,8 @@
 import angular from 'angular';
 import 'angular-translate';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
+import '@ovh-ux/ng-ovh-api-wrappers';
 
 import ovhContactsProvider from './ovh-contacts.provider';
 import ovhContactFormDirective from './form/ovh-contacts-form.directive';
@@ -17,7 +18,12 @@ import ouiUiSelectMatchTemplate from './form/oui-ui-select-flag/match.tpl.html';
 const moduleName = 'ngOvhContacts';
 
 angular
-  .module(moduleName, ['pascalprecht.translate', 'oui', 'ovh-api-services'])
+  .module(moduleName, [
+    'ngOvhApiWrappers',
+    'pascalprecht.translate',
+    'oui',
+    'ovh-api-services',
+  ])
   .run(/* @ngTranslationsInject:json ./translations */)
   .provider('ovhContacts', ovhContactsProvider)
   .directive('ovhContactForm', ovhContactFormDirective)

@@ -1,0 +1,14 @@
+<oui-modal
+    data-heading="{{:: 'dedicatedCloud_datacenter_delete' | translate }}"
+    data-primary-action="$ctrl.deleteDatacenter()"
+    data-primary-label="{{:: 'common_confirm' | translate }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'common_cancel' | translate }}"
+    data-loading="$ctrl.loading"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <p
+        data-translate="dedicatedCloud_datacenter_delete_confirmation"
+        data-translate-values="{ t0: $ctrl.datacenterId }"
+    ></p>
+</oui-modal>

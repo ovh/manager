@@ -1,0 +1,5 @@
+{
+  "log_tail_search_placeholder": "Mettre en valeur un élément",
+  "log_tail_polling": "En attente de logs...",
+  "log_tail_error_get_logs": "Une erreur est survenue lors de la récupération des logs"
+}

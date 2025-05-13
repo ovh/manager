@@ -1,3 +1,26 @@
 {
-  "domains_newdnszone_order_step2_description_INSTALLATION": "Instalacja strefy DNS"
+  "zones_order": "Zamów",
+  "zones_title": "Strefy DNS",
+  "base_dns_zone": "Podstawowa strefa DNS",
+  "modified_dns_zone": "Zmodyfikowana strefa DNS",
+  "dashboard_history_creation_date": "Data utworzenia",
+  "dashboard_history_view_zone": "Wyświetl",
+  "dashboard_history_current_zone_date": "{{creationDate}} (aktualna)",
+  "dashboard_history_download": "Pobierz",
+  "dashboard_history_error": "Błąd przetwarzania danych: {{message}}.",
+  "dashboard_history_restore": "Przywróć",
+  "dashboard_history_popup_title": "Dane strefy DNS",
+  "dashboard_history_close_popup": "Zamknij",
+  "dashboard_history_compare_button_label": "Porównanie wersji",
+  "dashboard_history_restoration_successful": "Trwa przywracanie strefy DNS. Możesz śledzić postęp w zakładce „Ostatnie zadania”. Propagacja zostanie zrealizowana zgodnie z wartością TTL (maksymalnie 24 godziny).",
+  "dashboard_history_restore_modal_title": "Przywróć strefę DNS",
+  "dashboard_history_restore_modal_content": "Czy chcesz przywrócić kopię zapasową z {{date}}?",
+  "dashboard_history_restore_modal_primary_label": "Przywróć",
+  "dashboard_history_restore_modal_secondary_label": "Anuluj",
+  "dashboard_history_restore_modal_warning_message": "Uwaga: Bieżąca strefa zostanie usunięta. Nowa wybrana strefa zostanie przywrócona.",
+  "dashboard_history_restore_modal_info_message": "Reset w strefie DNS zajmie kilka chwil, należy jednak wziąć pod uwagę czas propagacji (maksymalnie 24h).",
+  "modified": "Zmodyfikowany",
+  "zones_domain_name": "Nazwa domeny",
+  "zones_enabled": "Włączone",
+  "zones_disabled": "Wyłączone"
 }

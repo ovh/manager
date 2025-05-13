@@ -1,7 +1,0 @@
-{
-  "pci_project_new_config_title": "Journeying to the Public Cloud ",
-  "pci_project_new_config_description_label": "Project name",
-  "pci_project_new_config_description_contracts": "I have read and accept the following contracts: {{ contractsLinks }}.",
-  "pci_project_new_config_btn_continue": "Continue",
-  "pci_project_new_config_btn_cancel": "Cancel"
-}

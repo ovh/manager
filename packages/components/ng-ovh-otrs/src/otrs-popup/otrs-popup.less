@@ -1,0 +1,175 @@
+@import 'bootstrap/less/variables.less';
+
+@module-otrs-header-color: #3b4151;
+
+.otrs-container {
+  z-index: 10000;
+  position: fixed !important;
+
+  &.initial-setting,
+  &.minimize {
+    left: auto !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    height: auto !important;
+  }
+
+  &.minimize {
+    width: auto !important;
+  }
+
+  &.maximize {
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  &.close {
+    display: none !important;
+  }
+}
+
+.otrs-popup {
+  -webkit-transition: background-color 500ms linear, height 500ms linear,
+    width 500ms linear;
+  -moz-transition: background-color 500ms linear, height 500ms linear,
+    width 500ms linear;
+  -o-transition: background-color 500ms linear, height 500ms linear,
+    width 500ms linear;
+  transition: background-color 500ms linear, height 500ms linear,
+    width 500ms linear;
+  width: 30vh !important;
+  padding-bottom: 1%;
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid rgb(225, 225, 239);
+  box-shadow: rgba(0, 0, 0, 0.258824) 0 2px 5px 0;
+  display: block;
+
+  #contentPopup {
+    height: 100%;
+    overflow-y: auto;
+    padding: 0 20px;
+    max-height: 95vh;
+  }
+
+  .draggable-header {
+    width: 100%;
+    cursor: move;
+    margin-left: 0 !important;
+    height: 30px;
+    text-align: left;
+    line-height: 30px;
+    color: #efefef;
+    background: @module-otrs-header-color;
+  }
+
+  &.maximize #contentPopup {
+    max-height: none;
+  }
+
+  &.minimize {
+    height: 30px !important;
+  }
+
+  &.maximize {
+    height: 100% !important;
+    width: 100% !important;
+    overflow: auto;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  &.ui-draggable-dragging {
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .draggable-header span {
+    margin-left: 5px;
+  }
+
+  .draggable-header .draggable-title {
+    overflow: hidden;
+  }
+
+  .draggable-header a.pull-right {
+    margin: 0 5px;
+    color: white;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .otrs_popup_tools {
+    a,
+    button {
+      float: left;
+      padding: 0 5px;
+      border: 0 none;
+      background: none;
+      color: #fff;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .fa-close {
+      font-size: 16px;
+      position: relative;
+      top: 1px;
+    }
+  }
+}
+
+@media (max-width: @screen-md) {
+  .otrs-popup {
+    width: 98vw !important;
+
+    #contentPopup {
+      max-height: 86vh;
+    }
+  }
+}
+
+@media (min-width: @screen-md) {
+  .otrs-popup {
+    width: 30vw !important;
+  }
+}
+
+@media screen and (max-width: @screen-xs-max) {
+  .otrs-popup {
+    background-color: rgb(255, 255, 255);
+
+    select,
+    input,
+    textarea {
+      font-size: 16px;
+    }
+  }
+}
+
+@media screen and (max-width: @screen-xs-max) and (orientation: portrait) {
+  .otrs-popup {
+    width: 98vw !important;
+
+    #contentPopup {
+      max-height: 86vh;
+    }
+  }
+}
+
+@media screen and (max-width: @screen-xs-max) and (orientation: landscape) {
+  .otrs-popup {
+    width: 55vw !important;
+
+    #contentPopup {
+      max-height: 86vh;
+    }
+  }
+}

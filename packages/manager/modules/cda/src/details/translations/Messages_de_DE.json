@@ -1,0 +1,16 @@
+{
+  "ceph_common_error": "Es ist ein Fehler aufgetreten: ",
+  "cda_tab_home": "Übersicht ",
+  "cda_tab_user": "Benutzer",
+  "cda_tab_ip": "IP-Zugriffskontrolle ",
+  "cda_tab_pool": "Pools ",
+  "cda_guide_title": "Anleitungen",
+  "cda_guide_name": "Cloud Disk Array (CDA)",
+  "cda_guide_footer": "Alle Anleitungen von OVHcloud",
+  "cda_new_window": "Neues Fenster",
+  "cda_guide_retrieval_error": "Beim Laden der Anleitung für Cloud Disk Array (CDA) ist ein Fehler aufgetreten.",
+  "cda_common_cancel": "Abbrechen",
+  "cda_common_modify": "Bearbeiten",
+  "cda_common_add": "Hinzufügen",
+  "cda_common_delete": "Löschen"
+}

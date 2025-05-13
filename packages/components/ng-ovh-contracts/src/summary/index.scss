@@ -1,0 +1,15 @@
+ul {
+  li.d-inline {
+    .contract-wrap {
+      white-space: nowrap;
+    }
+
+    &::after {
+      content: ',';
+    }
+
+    &:last-child::after {
+      content: '';
+    }
+  }
+}

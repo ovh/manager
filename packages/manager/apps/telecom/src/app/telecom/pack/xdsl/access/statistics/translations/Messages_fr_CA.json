@@ -6,7 +6,7 @@
   "xdsl_statistics_ping_title": "Ping",
   "xdsl_statistics_snr_title": "Marge de bruit",
   "xdsl_statistics_attenuation_title": "Atténuation",
-  "xdsl_statistics_upload_label": "Téléversement",
+  "xdsl_statistics_upload_label": "Upload",
   "xdsl_statistics_download_label": "Download",
   "xdsl_statistics_daily_label": "Journalier",
   "xdsl_statistics_weekly_label": "Hebdomadaire",
@@ -20,5 +20,11 @@
   "xdsl_statistics_decibel_legend": "dB",
   "xdsl_statistics_ping_ms": "{{value}} ms",
   "xdsl_statistics_ping_s": "{{value}} s",
-  "xdsl_statistics_decibel": "{{value}} dB"
+  "xdsl_statistics_decibel": "{{value}} dB",
+  "xdsl_statistics_errors_title": "Erreurs",
+  "xdsl_statistics_hec_label": "HEC",
+  "xdsl_statistics_fec_label": "FEC",
+  "xdsl_statistics_crc_label": "CRC",
+  "xdsl_statistics_count": "{{value}} erreurs",
+  "xdsl_statistics_count_legend": "erreurs"
 }

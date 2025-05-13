@@ -1,0 +1,170 @@
+<!--Guides-->
+<oui-header class="mb-3" data-id="volume-backup-header">
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{:: 'pci_projects_project_storages_volume_backup_list_header' | translate }}"
+            ></h1>
+            <div
+                class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
+            >
+                <changelog-button
+                    links="$ctrl.CHANGELOG.volume_backup.links"
+                    chapters="$ctrl.CHANGELOG.volume_backup.chapters"
+                ></changelog-button>
+                <oui-guide-menu
+                    data-text="{{:: 'pci_project_guides_header' | translate }}"
+                >
+                    <oui-guide-menu-item
+                        data-ng-repeat="guide in $ctrl.guides track by $index"
+                        data-href="{{:: guide.link }}"
+                        data-on-click="$ctrl.onDocumentationClick(guide)"
+                        data-external
+                    >
+                        <span data-ng-bind=":: guide.title"></span>
+                    </oui-guide-menu-item>
+                </oui-guide-menu>
+            </div></div
+    ></oui-header-heading>
+</oui-header>
+
+<!--Volume backup listing page-->
+<div data-ui-view="volumeBackupList">
+    <!--Messages-->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <!--Datagrid-->
+    <oui-datagrid
+        id="publicCloudVolumeBackupDatagrid"
+        data-rows="$ctrl.volumeBackups"
+    >
+        <!--Datagrid actions menu-->
+        <oui-datagrid-topbar>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary oui-button_icon-left"
+                data-ng-click="$ctrl.onCreateVolumeBackupClick()"
+            >
+                <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
+                <span
+                    data-translate="pci_projects_project_storages_volume_backup_list_datagrid_menu_topbar_action_create"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+
+        <!--Datagrid columns-->
+        <oui-datagrid-column
+            title=":: 'pci_projects_project_storages_volume_backup_list_datagrid_column_name' | translate"
+            data-property="name"
+            data-type="string"
+            data-sortable
+            data-searchable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_storages_volume_backup_list_datagrid_column_id' | translate"
+            data-property="id"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_storages_volume_backup_list_datagrid_column_region' | translate"
+            data-property="region"
+            data-type="string"
+            data-searchable
+            data-sortable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_storages_volume_backup_list_datagrid_column_volume' | translate"
+            data-property="volumeId"
+            data-type="string"
+            data-sortable
+            data-filterable
+        >
+            <a
+                target="_blank"
+                rel="noopener"
+                data-ng-href="{{:: $ctrl.volumeLink($row) }}"
+                data-ng-bind=":: $value"
+            ></a>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_storages_volume_backup_list_datagrid_column_create_date' | translate"
+            data-property="creationDate"
+            data-type="date"
+            data-filterable
+            data-sortable="desc"
+        >
+            <span data-ng-bind="$value | date:'short'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_storages_volume_backup_list_datagrid_column_capacity' | translate"
+            data-property="size"
+            data-type="string"
+            data-sortable
+            data-filterable
+        >
+            <span data-ng-bind="$value | bytes:2:true:'GiB'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_storages_volume_backup_list_datagrid_column_status' | translate"
+            data-property="statusGroup"
+            data-type="number"
+            data-sortable
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                        'oui-badge_success': $row.statusGroup.success,
+                        'oui-badge_warning': $row.statusGroup.warning,
+                        'oui-badge_error': $row.statusGroup.error,
+                    }"
+            >
+                <span
+                    data-ng-bind="('pci_projects_project_storages_volume_backup_list_status_' + $row.status) | translate"
+                ></span>
+            </span>
+        </oui-datagrid-column>
+
+        <!--Row actions menu-->
+        <oui-action-menu
+            data-compact
+            data-placement="left-start"
+            data-ng-if="$ctrl.constructor.isGlobalActionsMenuAvailable($row)"
+        >
+            <oui-action-menu-item
+                data-ng-if="$ctrl.constructor.isRestoreVolumeActionAvailable($row)"
+                data-on-click="$ctrl.onRestoreVolumeClick($row)"
+            >
+                <span
+                    data-translate="pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.constructor.isCreateVolumeActionAvailable($row)"
+                data-on-click="$ctrl.onCreateVolumeClick($row)"
+            >
+                <span
+                    data-translate="pci_projects_project_storages_volume_backup_list_datagrid_menu_action_create_volume"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.constructor.isDeleteVolumeBackupActionAvailable($row)"
+                data-on-click="$ctrl.onDeleteVolumeBackupClick($row)"
+            >
+                <span
+                    data-translate="pci_projects_project_storages_volume_backup_list_datagrid_menu_action_delete"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>

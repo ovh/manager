@@ -1,21 +1,23 @@
-import defaults from 'lodash/defaults';
-import get from 'lodash/get';
-import isFunction from 'lodash/isFunction';
-import merge from 'lodash/merge';
-import noop from 'lodash/noop';
-import omit from 'lodash/omit';
-import values from 'lodash/values';
+import {
+  defaults,
+  get,
+  isFunction,
+  merge,
+  noop,
+  omit,
+  values,
+} from 'lodash-es';
 
+import { AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM } from '@ovh-ux/ovh-payment-method';
 import { DEFAULT_BINDINGS_VALUES } from './constants';
-
-import { TYPE_INTEGRATION_ENUM } from '../../payment-method.constants';
 
 export default class OvhPaymentMethodIntegrationCtrl {
   /* @ngInject */
-  constructor($location, $window, ovhPaymentMethod) {
+  constructor($location, $window, ovhPaymentMethod, $translate) {
     this.$location = $location;
     this.$window = $window;
     this.ovhPaymentMethod = ovhPaymentMethod;
+    this.$translate = $translate;
 
     // other attributes
     this.loading = {
@@ -38,6 +40,7 @@ export default class OvhPaymentMethodIntegrationCtrl {
     // build from scratch to be sure that old query parameters are reset
     // (in case of previous payment error when integration is REDIRECT)
     const { location } = this.$window;
+
     // take all hash param except callbackStatusParamUrlName if present in current location
     const hashParams = omit(this.$location.search(), [
       this.callbackStatusParamUrlName,
@@ -49,23 +52,25 @@ export default class OvhPaymentMethodIntegrationCtrl {
     const callbackUrlBase = `${location.protocol}//${location.host}${
       location.pathname
     }#${this.$location.path()}?${hashParamsArray.join('&')}`;
-    return {
+    const callbacks = {
       cancel: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
         this.callbackStatusParamUrlName
-      }=cancel`,
+      }=cancel&paymentType=${this.paymentMethodType.type.paymentType}`,
       error: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
         this.callbackStatusParamUrlName
-      }=error`,
+      }=error&paymentType=${this.paymentMethodType.type.paymentType}`,
       failure: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
         this.callbackStatusParamUrlName
-      }=failure`,
+      }=failure&paymentType=${this.paymentMethodType.type.paymentType}`,
       pending: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
         this.callbackStatusParamUrlName
-      }=pending`,
+      }=pending&paymentType=${this.paymentMethodType.type.paymentType}`,
       success: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
         this.callbackStatusParamUrlName
-      }=success`,
+      }=success&paymentType=${this.paymentMethodType.type.paymentType}`,
     };
+
+    return callbacks;
   }
 
   /**
@@ -114,10 +119,10 @@ export default class OvhPaymentMethodIntegrationCtrl {
     return renderOptions || {};
   }
 
-  onIntegrationSubmit() {
+  onIntegrationSubmit(additionalParams = {}) {
     return new Promise((resolve) => {
       // call onInitialized callback
-      const onSubmitReturn = this.manageCallback('onSubmit');
+      const onSubmitReturn = this.manageCallback('onSubmit', additionalParams);
 
       return resolve(onSubmitReturn);
     }).then((postParams = {}) => {
@@ -141,8 +146,10 @@ export default class OvhPaymentMethodIntegrationCtrl {
           // call onSubmitSuccess callback
           if (
             !this.paymentMethodType.isRequiringFinalization() &&
-            this.paymentMethodType.integration !==
-              TYPE_INTEGRATION_ENUM.REDIRECT
+            ![
+              AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.COMPONENT,
+              AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.REDIRECT,
+            ].includes(this.paymentMethodType.integration)
           ) {
             this.manageCallback('onSubmitSuccess', { paymentValidation });
           }
@@ -151,7 +158,20 @@ export default class OvhPaymentMethodIntegrationCtrl {
         })
         .catch((error) => {
           // in all case (even with finalize required) call onSubmitError callback
-          this.manageCallback('onSubmitError', { error });
+          if (get(error, 'status') === 500) {
+            this.manageCallback('onSubmitError', {
+              error: {
+                data: {
+                  message: this.$translate.instant(
+                    'ovh_payment_method_registration_failure',
+                  ),
+                },
+              },
+            });
+          } else {
+            this.manageCallback('onSubmitError', { error });
+          }
+          return Promise.reject(error);
         });
     });
   }

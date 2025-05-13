@@ -1,0 +1,18 @@
+{
+  "zimbra_account_order": "Contratar una cuenta",
+  "zimbra_account_order_cta_back": "Volver a mis cuentas de correo",
+  "zimbra_account_order_title": "Contratar sus cuentas Zimbra",
+  "zimbra_account_order_subtitle": "Elija sus cuentas Zimbra",
+  "zimbra_account_order_subtitle_commitment": "Duración del compromiso",
+  "zimbra_account_order_legal_checkbox": "Acepto que OVH instale el servicio inmediatamente después de la validación de mi pedido y, por lo tanto, renuncio expresamente a mi derecho de anulación en virtud de las disposiciones del artículo L.121-21-8 del Código de Consumo francés.",
+  "zimbra_account_order_no_product_error_message": "Hubo un problema al cargar el producto relacionado con su pedido, disculpe las molestias y vuelva a intentarlo más tarde.",
+  "zimbra_account_order_commitment_month": "mes",
+  "zimbra_account_order_commitment_months": "mes",
+  "zimbra_account_order_commitment_available_soon": "Disponible próximamente",
+  "zimbra_account_order_cta_confirm": "Pagar",
+  "zimbra_account_order_cta_done": "Volver",
+  "zimbra_account_order_initiated_title": "¡Se ha iniciado el pedido de sus cuentas Zimbra!",
+  "zimbra_account_order_initiated_subtitle": "Si no ha podido finalizar el pedido, puede completarlo haciendo clic en el siguiente enlace:",
+  "zimbra_account_order_initiated_info": "Le informaremos de la disponibilidad de sus cuentas por correo electrónico.",
+  "zimbra_account_order_initiated_link_label": "Enlace del pedido"
+}

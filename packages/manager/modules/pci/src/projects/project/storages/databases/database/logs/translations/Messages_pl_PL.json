@@ -1,0 +1,5 @@
+{
+  "pci_database_logs_title": "Logi",
+  "pci_databases_logs_description": "Aby pomóc Ci w monitorowaniu i zarządzaniu usługą baz danych, zapoznaj się z najnowszymi wydarzeniami (logami) przedstawionymi poniżej, niemal na żywo. Czas ich retencji zależy od Twojej oferty usługi.",
+  "pci_databases_logs_autorefresh": "Auto-Refresh"
+}

@@ -4,6 +4,7 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'DomainDynHostLoginCtrl',
   class DomainDynHostLoginCtrl {
+    /* @ngInject */
     constructor($scope, $translate, Alerter, Domain) {
       this.$scope = $scope;
       this.$translate = $translate;

@@ -1,8 +1,8 @@
 # ng-ovh-payment-method
 
-> Get payment methods from different OVHcloud APIs.
+> Set of angularJS service and components in order to deal with OVHcloud payment methods.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-payment-method)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-payment-method) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-payment-method)](https://npmjs.com/package/@ovh-ux/ng-ovh-payment-method) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-payment-method)](https://npmjs.com/package/@ovh-ux/ng-ovh-payment-method?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-payment-method)](https://npmjs.com/package/@ovh-ux/ng-ovh-payment-method?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-payment-method)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-payment-method) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-payment-method)](https://npmjs.com/package/@ovh-ux/ng-ovh-payment-method) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-payment-method)](https://npmjs.com/package/@ovh-ux/ng-ovh-payment-method?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-payment-method)](https://npmjs.com/package/@ovh-ux/ng-ovh-payment-method?activeTab=dependencies)
 
 ## Install
 
@@ -17,15 +17,16 @@ import angular from 'angular';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 
 // add the `ngOvhPaymentMethod` module as dependency of your AngularJS project.
-angular
-  .module('myApp', [
-    ngOvhPaymentMethod,
-  ])
-  .config(/* @ngInject */(ovhPaymentMethodProvider) => {
+angular.module('myApp', [ngOvhPaymentMethod]).config(
+  /* @ngInject */ (ovhPaymentMethodProvider) => {
     // Set the url of payment method list page, where the user
     // should be redirected when he has no default payment method.
     ovhPaymentMethodProvider.setPaymentMethodPageUrl(constants.target);
-  });
+
+    // set user locale
+    ovhPaymentMethodProvider.setUserLocale('fr_FR');
+  },
+);
 ```
 
 ## Test

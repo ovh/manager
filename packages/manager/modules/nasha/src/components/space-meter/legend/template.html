@@ -1,0 +1,33 @@
+<ul
+    class="cloud-space-meter-legend"
+    data-ng-class="['cloud-space-meter-legend_' + $ctrl.direction]"
+>
+    <li
+        class="cloud-space-meter-legend__item"
+        data-ng-if="type !== 'size'"
+        data-ng-repeat="(type, part) in $ctrl.usage track by type"
+        data-ng-class="[
+            'cloud-space-meter-legend__item_' + type,
+            'cloud-space-meter-legend__item_' + $ctrl.direction
+        ]"
+    >
+        <span
+            class="cloud-space-meter-legend__icon ovh-font"
+            data-ng-class="['ovh-font-' + $ctrl.getIconName(type)]"
+            data-ng-if="$ctrl.direction == 'column'"
+        >
+        </span>
+        <span
+            class="cloud-space-meter-legend__name"
+            data-ng-class="['cloud-space-meter-legend__name_' + $ctrl.direction]"
+        >
+            {{ part.name }}
+        </span>
+        <span
+            class="cloud-space-meter-legend__space"
+            data-ng-class="['cloud-space-meter-legend__space_' + $ctrl.direction]"
+        >
+            {{ part.value }} {{ part.unit }}
+        </span>
+    </li>
+</ul>

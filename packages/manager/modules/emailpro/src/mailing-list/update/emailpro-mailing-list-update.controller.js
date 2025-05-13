@@ -9,14 +9,14 @@ export default class EmailProMXPlanMailingListsUpdateCtrl {
     $translate,
     Alerter,
     EmailProMXPlanMailingLists,
-    User,
+    WucUser,
   ) {
     this.$scope = $scope;
     this.$q = $q;
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.EmailProMXPlanMailingLists = EmailProMXPlanMailingLists;
-    this.User = User;
+    this.WucUser = WucUser;
   }
 
   $onInit() {
@@ -33,7 +33,13 @@ export default class EmailProMXPlanMailingListsUpdateCtrl {
       REPLY_TO_EMAIL: 'replyToEmail',
     };
     this.loading = false;
-    this.replyToSelector = this.mailingList.replyTo;
+
+    this.replyToSelector = [
+      this.constants.MAILING_LIST,
+      this.constants.LAST_USER,
+    ].includes(this.mailingList.replyTo)
+      ? this.mailingList.replyTo
+      : this.constants.REPLY_TO_EMAIL;
 
     this.$scope.updateMailingList = () => this.updateMailingList();
 
@@ -109,6 +115,7 @@ export default class EmailProMXPlanMailingListsUpdateCtrl {
               : !this.mailingList.mlModerationMsg,
           subscribeByModerator: this.mailingList.options.subscribeByModerator,
         },
+        timer: 4000,
       },
     )
       .then(() =>

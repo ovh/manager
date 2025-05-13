@@ -1,17 +1,11 @@
 {
- "pci_projects_project_edit_remove_title": "Delete project",
- "pci_projects_project_edit_remove_please_note": "It is important to note that the following elements will be deleted:",
- "pci_projects_project_edit_remove_instances": "Your instances",
- "pci_projects_project_edit_remove_volumes": "Your volumes",
- "pci_projects_project_edit_remove_object_containers": "Your object containers",
- "pci_projects_project_edit_remove_object_archives": "Your object archives",
- "pci_projects_project_edit_remove_object_snapshots": "Your volume snapshots",
- "pci_projects_project_edit_remove_object_backups": "Your instance backups",
- "pci_projects_project_edit_remove_object_private_network": "Your private networks",
- "pci_projects_project_edit_remove_object_kubernetes": "Your Managed Kubernetes clusters",
- "pci_projects_project_edit_remove_object_ip": "Your failover IPs will be parked",
- "pci_projects_project_edit_remove_submit": "Delete project",
- "pci_projects_project_edit_remove_cancel": "Cancel",
- "pci_projects_project_edit_remove_error": "An error has occurred deleting the project: {{ error }}.",
- "pci_projects_project_edit_remove_success": "You will be sent an email confirming that your project has been deleted."
+  "pci_projects_project_edit_remove_title": "Delete project",
+  "pci_projects_project_edit_remove_please_note": "Important: Please note that all of your services, resources, settings and data will be destroyed, without any option to restore at a later date. The only exception to this is failover IPs, which will be parked.",
+  "pci_projects_project_edit_remove_submit": "Delete project",
+  "pci_projects_project_edit_remove_cancel": "Cancel",
+  "pci_projects_project_edit_remove_error": "An error has occurred deleting the project: {{ error }}.",
+  "pci_projects_project_edit_remove_success": "You have been sent an email confirming the deletion.",
+  "pci_projects_project_discovery_edit_remove_please_note": "Please note that deleting your project cannot be undone. To use the Public Cloud solutions again, you’ll need to recreate one from scratch.",
+  "pci_projects_project_discovery_edit_savings_plan": "You currently have a Savings Plan for this project. You cannot delete it. Please reach out to our Customer Service team for more information on how to delete.",
+  "pci_projects_project_edit_remove_submit_client_service": "Contact Customer Support"
 }

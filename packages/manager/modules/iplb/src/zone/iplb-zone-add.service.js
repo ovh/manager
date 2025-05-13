@@ -11,7 +11,7 @@ export default class IpLoadBalancerZoneAddService {
     CucCloudMessage,
     CucOrderHelperService,
     OvhApiIpLoadBalancing,
-    CucRegionService,
+    ovhManagerRegionService,
     CucServiceHelper,
   ) {
     this.$q = $q;
@@ -20,7 +20,7 @@ export default class IpLoadBalancerZoneAddService {
     this.CucCloudMessage = CucCloudMessage;
     this.CucOrderHelperService = CucOrderHelperService;
     this.OvhApiIpLoadBalancing = OvhApiIpLoadBalancing;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.CucServiceHelper = CucServiceHelper;
   }
 
@@ -37,7 +37,7 @@ export default class IpLoadBalancerZoneAddService {
           response.suspendedZones,
         );
         return map(availableZones, (zone) =>
-          assignIn(zone, this.CucRegionService.getRegion(zone.name)),
+          assignIn(zone, this.ovhManagerRegionService.getRegion(zone.name)),
         );
       })
       .then((availableZones) =>

@@ -2,28 +2,47 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import '@ovh-ux/manager-core';
+import overTheBox from './overthebox';
 
 import { OTB_AVAILABILITY } from './feature-availability/feature-availability.constants';
 
-import overTheBox from './overthebox';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 
-import component from './overtheboxes.component';
-import routing from './overtheboxes.routing';
+const moduleName = 'ovhManagerOverTheBoxLazyLoading';
 
-const moduleName = 'ovhManagerOverTheBoxes';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad', overTheBox]).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider
+      .state('overTheBoxes', {
+        url: '/overTheBox',
+        redirectTo: 'overTheBoxes.index',
+        resolve: {
+          breadcrumb: () => 'Over The Box',
+        },
+      })
+      .state('overTheBoxes.onboarding.**', {
+        url: '/onboarding',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-angular
-  .module(moduleName, [
-    'ui.router',
-    'ovhManagerCore',
-    'oc.lazyLoad',
-    overTheBox,
-  ])
-  .config(routing)
-  .component('ovhManagerOverTheBoxes', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+          return import('./onboarding/onboarding.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      })
+      .state('overTheBoxes.index.**', {
+        url: '',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-export { OTB_AVAILABILITY };
+          return import('./overtheboxes.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+  },
+);
 
 export default moduleName;
+
+export { OTB_AVAILABILITY };

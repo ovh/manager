@@ -1,11 +1,11 @@
 <oui-modal
-    data-title="{{:: 'vps_configuration_snapshot_restore_title' | translate}}"
     data-primary-label="{{ ::'vps_common_confirm' | translate }}"
     data-primary-action="$ctrl.confirm()"
     data-secondary-action="$ctrl.cancel()"
     data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
     data-on-dismiss="$ctrl.cancel()"
     data-loading="$ctrl.snapshotSummary.loading || $ctrl.restore.loading"
+    data-heading="{{:: 'vps_configuration_snapshot_restore_title' | translate}}"
 >
     <p
         class="oui-modal__text"

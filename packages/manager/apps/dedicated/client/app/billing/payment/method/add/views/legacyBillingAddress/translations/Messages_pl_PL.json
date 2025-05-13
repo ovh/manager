@@ -1,8 +1,0 @@
-{
-  "billing_payment_method_add_bank_account_address_number": "Numer",
-  "billing_payment_method_add_bank_account_address_street": "Ulica",
-  "billing_payment_method_add_bank_account_address_zip": "Kod pocztowy",
-  "billing_payment_method_add_bank_account_address_city": "Miasto",
-  "billing_payment_method_add_bank_account_owner_name": "Imię i nazwisko właściciela lub nazwa organizacji",
-  "billing_payment_method_add_bank_account_owner_address": "Adres siedziby/zamieszkania i pobytu właściciela konta"
-}

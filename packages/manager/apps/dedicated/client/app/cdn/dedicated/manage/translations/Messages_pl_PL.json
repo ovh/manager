@@ -1,5 +1,6 @@
 {
   "cdn_tab_statistics": "Statystyki",
   "cdn_tab_ssl": "SSL",
-  "cdn_tab_logs": "Logi"
+  "cdn_tab_logs": "Logi",
+  "cdn_tab_domains": "Domeny"
 }

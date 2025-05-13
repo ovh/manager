@@ -1,0 +1,6 @@
+{
+  "kubernetes_add_node_pool_description": "Po utworzeniu klastra możesz skonfigurować jedną lub więcej pul węzłów. Pula węzłów to zestaw węzłów roboczych tego samego typu.",
+  "kubernetes_add_node_pool_node_count": "Liczba węzłów",
+  "kubernetes_add_node_pool_node_type": "Rodzaj węzła",
+  "kube_common_node_pool_model_type_selector": "Wybierz model"
+}

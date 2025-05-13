@@ -37,7 +37,7 @@
                 data-ng-if="$ctrl.exchange"
                 data-rows-loader="$ctrl.retrieveAccounts($config)"
             >
-                <extra-top>
+                <oui-datagrid-topbar>
                     <oui-action-menu
                         text="{{::'exchange_update_billing_actions_label' | translate}}"
                     >
@@ -63,9 +63,9 @@
                             ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
-                </extra-top>
+                </oui-datagrid-topbar>
 
-                <oui-column
+                <oui-datagrid-column
                     data-title="::'exchange_update_billing_email_label' | translate"
                     data-property="primaryEmailDisplayName"
                     data-type="string"
@@ -76,15 +76,15 @@
                         data-ng-bind="$row.primaryEmailDisplayName | wucSliceContent: 150"
                     >
                     </span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="::'exchange_update_billing_expiration_date_label' | translate"
                 >
                     <span
                         data-ng-bind="$row.expirationDate | date:'mediumDate'"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="::'exchange_update_billing_periode_label' | translate"
                 >
                     <oui-radio
@@ -125,7 +125,7 @@
                             data-translate="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION"
                         ></span>
                     </oui-radio>
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
 
             <oui-message
@@ -148,18 +148,18 @@
                 data-ng-if="!$ctrl.submitLoader"
                 data-rows="$ctrl.bufferedAccounts.list.results"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title="::'exchange_update_billing_email_label' | translate"
                 >
                     <span data-ng-bind="$row.primaryEmailDisplayName"></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="::'exchange_update_billing_header_new_periode' | translate"
                 >
                     <span
                         data-ng-bind="('exchange_update_billing_periode_value_' + $row.renewPeriod) | translate"
                     ></span>
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
             <oui-message
                 data-ng-if="$ctrl.displayDeleteWarning"

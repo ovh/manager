@@ -1,0 +1,57 @@
+<div class="telecom-pack-migration-shipping">
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <div class="widget-presentation">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="telecom_pack_migration_ont_shipping_title"
+                ></h2>
+
+                <p
+                    data-translate="telecom_pack_migration_ont_shipping_explain"
+                ></p>
+
+                <!-- LOADER -->
+                <div class="text-center" data-ng-if="$ctrl.loading.init">
+                    <oui-spinner></oui-spinner>
+                </div>
+
+                <div data-ng-if="!$ctrl.loading.init">
+                    <!-- CONTACT CHOICE -->
+                    <div class="contact-choice">
+                        <h3
+                            data-translate="telecom_pack_migration_ont_shipping_contact"
+                            class="mb-3 mt-5"
+                        ></h3>
+
+                        <ovh-contact
+                            data-ng-model="$ctrl.process.ontShipping.address"
+                            data-ovh-contact-choice-options="$ctrl.ovhContactOptions"
+                        >
+                            <div class="text-center">
+                                <oui-spinner></oui-spinner>
+                            </div>
+                        </ovh-contact>
+                    </div>
+                    <!-- CONTACT CHOICE -->
+
+                    <div class="mt-5">
+                        <a
+                            class="btn btn-default"
+                            data-translate="telecom_pack_migration_confirm_cancel_button"
+                            data-ui-sref="telecom.packs.pack"
+                        >
+                        </a>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-ng-disabled="!$ctrl.process.ontShipping.address"
+                            data-translate="telecom_pack_migration_ont_shipping_confirm"
+                            data-ng-click="$ctrl.nextStep()"
+                        ></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

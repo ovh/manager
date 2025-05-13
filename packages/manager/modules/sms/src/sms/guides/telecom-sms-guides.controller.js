@@ -5,11 +5,21 @@ import snakeCase from 'lodash/snakeCase';
 
 export default class {
   /* @ngInject */
-  constructor($translate, TucSmsMediator, TucToastError, SMS_GUIDES) {
+  constructor(
+    $translate,
+    coreConfig,
+    isSmppAccount,
+    TucSmsMediator,
+    TucToastError,
+    SMS_GUIDES,
+    SMPP_GUIDES,
+  ) {
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
+    this.isSmppAccount = isSmppAccount;
     this.TucSmsMediator = TucSmsMediator;
     this.TucToastError = TucToastError;
-    this.constant = { SMS_GUIDES };
+    this.constant = { SMS_GUIDES, SMPP_GUIDES };
   }
 
   $onInit() {
@@ -23,17 +33,10 @@ export default class {
     this.loading.init = true;
     return this.TucSmsMediator.initDeferred.promise
       .then(() => {
-        this.guides = this.constant.SMS_GUIDES;
-        if (localStorage['univers-selected-language']) {
-          this.language = localStorage['univers-selected-language'].replace(
-            /-.*$|_.*$/,
-            '',
-          );
-        } else if (navigator.language || navigator.userLanguage) {
-          this.language = (
-            navigator.language || navigator.userLanguage
-          ).replace(/-.*$|_.*$/, '');
-        }
+        this.guides = this.constant[
+          this.isSmppAccount ? 'SMPP_GUIDES' : 'SMS_GUIDES'
+        ];
+        this.language = this.coreConfig.getUserLanguage();
         this.injectTitleInUrl();
       })
       .catch((err) => {
@@ -72,5 +75,9 @@ export default class {
    */
   hasGuides() {
     return this.count > 0;
+  }
+
+  static hasGuidesInSection(section, language) {
+    return section.guides.some((guide) => guide.url[language]);
   }
 }

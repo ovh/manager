@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_choose_title": "Definisci una modalità di pagamento",
+  "pci_project_new_payment_choose_added_payment_methods": "Metodi di pagamento registrati",
+  "pci_project_new_payment_choose_payment_method_expiration": "Scadenza: {{ date }}",
+  "pci_project_new_payment_choose_payment_method_selected": "Questo metodo di pagamento sarà utilizzato per il saldo automatico dei tuoi servizi. È possibile modificarlo e configurare il rinnovo delle soluzioni attive in qualsiasi momento, dalla sezione <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">I tuoi servizi</a> dello Spazio Cliente. Riceverai un'email di notifica prima di ogni scadenza.",
+  "pci_project_new_payment_choose_use_new": "Utilizza un nuovo metodo di pagamento"
+}

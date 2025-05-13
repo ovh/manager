@@ -1,0 +1,209 @@
+<div data-ng-controller="XdslModemDhcpBdhcpCtrl as BdhcpCtrl">
+    <div class="table-responsive">
+        <h3>
+            <span
+                class="tooltip-label"
+                data-uib-tooltip="{{'xdsl_modem_bdhcp_description' | translate}}"
+                data-tooltip-placement="right"
+                data-tooltip-append-to-body="true"
+                data-translate="xdsl_modem_bdhcp_title"
+            >
+            </span>
+        </h3>
+
+        <table
+            class="table table-condensed"
+            data-ng-class="{
+                   'table-hover table-striped': BdhcpCtrl.bdhcps.length > 1
+               }"
+        >
+            <thead>
+                <tr>
+                    <th scope="col" data-translate="xdsl_modem_bdhcp_name"></th>
+                    <th scope="col">
+                        <span
+                            class="tooltip-label"
+                            data-tooltip-append-to-body="true"
+                            data-uib-tooltip="{{'xdsl_modem_bdhcp_ip_tooltip' | translate}}"
+                            data-translate="xdsl_modem_bdhcp_ip"
+                        ></span>
+                    </th>
+                    <th scope="col" data-translate="xdsl_modem_bdhcp_mac"></th>
+                    <th data-translate="common_actions"></th>
+                </tr>
+            </thead>
+
+            <tbody data-ng-repeat="bail in BdhcpCtrl.bdhcps">
+                <tr data-ng-if="!bail.editMode">
+                    <th
+                        scope="row"
+                        data-title="{{ 'xdsl_modem_bdhcp_name' | translate }}"
+                        data-ng-bind="bail.name"
+                    ></th>
+                    <td
+                        data-title="{{ 'xdsl_modem_bdhcp_ip' | translate }}"
+                        data-ng-bind="bail.IPAddress"
+                    ></td>
+                    <td
+                        data-title="{{ 'xdsl_modem_bdhcp_mac' | translate }}"
+                        data-ng-bind="bail.MACAddress"
+                    ></td>
+                    <td class="col-mobile-button-big">
+                        <div
+                            class="btn-group"
+                            data-uib-dropdown
+                            data-dropdown-append-to-body
+                        >
+                            <button
+                                id="btn-dhcp-action-{{$index}}"
+                                type="button"
+                                class="btn btn-link"
+                                data-uib-dropdown-toggle
+                            >
+                                <span
+                                    class="ovh-font ovh-font-dots"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    class="sr-only"
+                                    data-translate="common_actions"
+                                ></span>
+                            </button>
+                            <ul
+                                class="dropdown-menu dropdown-menu-right"
+                                role="menu"
+                                aria-labelledby="btn-dhcp-action-{{$index}}"
+                                data-uib-dropdown-menu
+                            >
+                                <li role="menuitem">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-click="bail.edit()"
+                                        title="{{bail.name}} {{ 'common_table_edit' | translate }}"
+                                        data-translate="edit"
+                                        data-ng-disabled="!BdhcpCtrl.mediator.capabilities.canChangeDHCP"
+                                    ></button>
+                                </li>
+                                <li role="menuitem">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-click="BdhcpCtrl.delete(bail)"
+                                        data-translate="delete"
+                                        title="{{bail.name}} {{ 'common_table_delete' | translate }}"
+                                    ></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr
+                    data-ng-if="bail.editMode"
+                    data-ng-form
+                    name="localForm"
+                    data-ng-keydown="BdhcpCtrl.watchKey($event, bail, localForm.$valid)"
+                >
+                    <td
+                        class="form-group"
+                        data-title="{{ 'xdsl_modem_bdhcp_name' | translate }}"
+                    >
+                        <label
+                            for="bdhcpName"
+                            data-translate="xdsl_modem_bdhcp_name"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            type="text"
+                            name="bdhcpName"
+                            id="bdhcpName"
+                            class="form-control"
+                            data-ng-model="bail.tempValue.name"
+                            maxlength="30"
+                            placeholder="{{ 'xdsl_modem_bdhcp_placeholder_name' | translate }}"
+                        />
+                    </td>
+
+                    <td
+                        class="form-group"
+                        data-title="{{ 'xdsl_modem_bdhcp_ip' | translate }}"
+                    >
+                        <label
+                            for="bdhcpIPAddress"
+                            data-translate="xdsl_modem_bdhcp_ip"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            type="text"
+                            name="bdhcpIPAddress"
+                            id="bdhcpIPAddress"
+                            class="form-control"
+                            data-ng-model="bail.tempValue.IPAddress"
+                            data-ui-validate="'BdhcpCtrl.validator.isIP($value)'"
+                            maxlength="15"
+                            placeholder="192.168.x.x"
+                        />
+                    </td>
+
+                    <td
+                        class="form-group"
+                        data-title="{{ 'xdsl_modem_bdhcp_mac' | translate }}"
+                    >
+                        <label
+                            for="bdhcpMACAddress"
+                            data-translate="xdsl_modem_bdhcp_mac"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            type="text"
+                            name="bdhcpMACAddress"
+                            id="bdhcpMACAddress"
+                            class="form-control"
+                            data-ng-model="bail.tempValue.MACAddress"
+                            maxlength="17"
+                            data-ui-validate="'BdhcpCtrl.validator.tucIsMacAddress($value)'"
+                            data-ng-readonly="bail.created"
+                            placeholder="xx:xx:xx:xx:xx:xx"
+                        />
+                    </td>
+
+                    <td class="form-group col-mobile-button-big">
+                        <button
+                            title="{{bail.name}} {{ 'common_table_validate_modifications' | translate }}"
+                            type="submit"
+                            class="btn btn-primary"
+                            data-ng-click="BdhcpCtrl.update(bail)"
+                            data-ng-disabled="localForm.$invalid"
+                        >
+                            <span
+                                class="ovh-font ovh-font-check"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                        <button
+                            type="reset"
+                            title="{{bail.name}} {{ 'common_table_cancel_modifications' | translate }}"
+                            class="btn btn-default"
+                            data-ng-click="BdhcpCtrl.cancel(bail)"
+                        >
+                            <span
+                                class="ovh-font ovh-font-wrong"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button
+            type="submit"
+            class="btn btn-primary"
+            data-ng-hide="adding"
+            data-ng-click="BdhcpCtrl.add()"
+            data-ng-disabled="!BdhcpCtrl.mediator.capabilities.canChangeDHCP"
+            data-translate="xdsl_modem_bdhcp_add"
+        ></button>
+    </div>
+</div>

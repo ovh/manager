@@ -4,5 +4,6 @@
   "xdsl_tabs_modem": "Mój modem",
   "xdsl_tabs_line": "Mój dostęp",
   "xdsl_tabs_tasks": "Zadania",
-  "xdsl_rename_error": "Nie można zmienić nazwy dla dostępu {{serviceName}}."
+  "xdsl_rename_error": "Nie można zmienić nazwy dla dostępu {{serviceName}}.",
+  "xdsl_back_to_pack": "Szczegóły dotyczące pakietu"
 }

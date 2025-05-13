@@ -1,0 +1,19 @@
+{
+  "cloud_connect_tasks_decription": "Pending, ongoing and failed tasks.",
+  "cloud_connect_tasks_id": "Task ID",
+  "cloud_connect_tasks_action": "Action",
+  "cloud_connect_tasks_lockInterface": "Lockout interface",
+  "cloud_connect_tasks_unlockInterface": "Unlock interface",
+  "cloud_connect_tasks_addPopConfiguration": "Add a PoP configuration",
+  "cloud_connect_tasks_delPopConfiguration": "Delete the PoP configuration",
+  "cloud_connect_tasks_addDatacenterConfiguration": "Add availability zone configuration",
+  "cloud_connect_tasks_delDatacenterConfiguration": "Delete availability zone configuration",
+  "cloud_connect_tasks_addDatacenterExtraConfiguration": "Add an additional configuration to the availability zones",
+  "cloud_connect_tasks_delDatacenterExtraConfiguration": "Delete the additional configuration from the availability zone",
+  "cloud_connect_tasks_status_todo": "Scheduled",
+  "cloud_connect_tasks_status_doing": "In progress",
+  "cloud_connect_tasks_status_done": "Finished",
+  "cloud_connect_tasks_status_error": "Error",
+  "cloud_connect_tasks_status": "Status",
+  "cloud_connect_tasks": "Tasks"
+}

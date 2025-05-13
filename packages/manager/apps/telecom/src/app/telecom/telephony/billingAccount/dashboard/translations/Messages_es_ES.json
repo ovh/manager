@@ -36,5 +36,22 @@
   "telephony_group_billing_dashboard_RMA_status_received": "Recepción de paquetes",
   "telephony_group_billing_dashboard_no_phone": "Naked line",
   "telephony_group_billing_dashboard_RMA_title": "RMA",
-  "telephony_group_billing_dashboard_calls": "Llamadas"
+  "telephony_group_billing_dashboard_calls": "Llamadas",
+  "telephony_group_line_softphone_apply_theme_globally": "Aplicar tema Softphone",
+  "telephony_group_line_softphone_your_logo": "Su logotipo",
+  "telephony_group_line_softphone_apply_theme_error": "No se ha podido aplicar el tema: {{errorMessage}}",
+  "telephony_group_line_softphone_apply_logo_add_error": "No se ha podido aplicar el logotipo: {{errorMessage}}",
+  "telephony_group_line_softphone_apply_logo_remove_error": "No se ha podido eliminar el logotipo: {{errorMessage}}",
+  "telephony_group_line_softphone_apply_theme_success": "El tema se ha aplicado correctamente.",
+  "telephony_group_line_softphone_apply_logo_add_success": "El logotipo se ha aplicado correctamente.",
+  "telephony_group_line_softphone_apply_logo_remove_success": "El logotipo se ha eliminado correctamente.",
+  "telephony_group_line_softphone_btn_apply_theme": "Aplicar tema",
+  "telephony_group_line_softphone_save_theme_description": "Cualquier cambio realizado en el nivel de fila reemplazará al tema del grupo.",
+  "telephony_group_line_softphone_theme_by_default": "Por defecto",
+  "telephony_group_line_softphone_logo_title": "Añadir un logotipo",
+  "telephony_group_line_softphone_logo_delete": "Restaurar logotipo predeterminado",
+  "telephony_group_line_softphone_logo_format": "Formatos aceptados: {{format}} (Peso &lt; {{weight}}, tamaño nativo: {{size}})",
+  "telephony_group_line_softphone_save_logo": "Debe reiniciar la aplicación para que el logotipo esté activo.",
+  "telephony_group_line_softphone_save_theme": "Debe reiniciar la aplicación para que el tema esté activo.",
+  "telephony_group_billing_dashboard_suspended_info_link": "Haga clic aquí para aumentar el depósito de garantía."
 }

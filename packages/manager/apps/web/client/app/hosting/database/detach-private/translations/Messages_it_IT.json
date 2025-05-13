@@ -1,0 +1,8 @@
+{
+  "hosting_database_private_detach_option_title": "Scollega il database PrivateSQL",
+  "hosting_database_private_detach_option_description": "Il database PrivateSQL {{ domain }} risulta associato all’hosting Web {{hosting}}. Scollegare il database permette di rinnovarlo in modo indipendente rispetto all’hosting. Verrà fatturato al prezzo standard dei database PrivateSQL.",
+  "hosting_database_private_detach_option_warning_irreversible": "Attenzione: questa azione è irreversibile.",
+  "hosting_database_private_detach_option_error": "Si è verificato un errore durante lo scollegamento del database: {{error}}",
+  "hosting_database_private_detach_option_success_with_payment": "La richiesta di scollegamento del database è stata presa in carico correttamente. L’addebito di {{price}} è stato effettuato correttamente sull’account {{accountId}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Visualizza la tua fattura</a>",
+  "hosting_database_private_detach_option_success_with_no_payment": "Il tuo <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">ordine</a> è stato generato correttamente. Lo scollegamento del database diventerà effettivo subito dopo aver effettuato il pagamento."
+}

@@ -1,0 +1,212 @@
+<div class="iam-create_policy">
+    <iam-delete-entity
+        data-ng-if="$ctrl.deletion"
+        data-entity="{ data: $ctrl.deletion.data, type: $ctrl.ENTITY_RESOURCE_TYPE }"
+        data-go-back="$ctrl.onDeleteEntityGoBack"
+        data-statement="false"
+        data-tag-prefix=":: $ctrl.tag.prefix"
+        data-track-click=":: $ctrl.trackClick"
+    >
+        <strong
+            class="d-block"
+            data-ng-if="$ctrl.deletion.data.resources.length"
+            data-translate="iam_create_policy_deletion_resources_{{ $ctrl.deletion.data.resources.length > 1 ? 'many' : 'one' }}"
+            data-translate-values="{ count : $ctrl.deletion.data.resources.length }"
+        ></strong>
+        <strong
+            class="d-block"
+            data-ng-if="$ctrl.deletion.data.actions.length"
+            data-translate="iam_create_policy_deletion_actions_{{ $ctrl.deletion.data.actions.length > 1 ? 'many' : 'one' }}"
+            data-translate-values="{ count : $ctrl.deletion.data.actions.length }"
+        ></strong>
+    </iam-delete-entity>
+
+    <oui-header
+        data-heading="{{ $ctrl.translations.header | translate }}"
+        data-description="{{ 'iam_create_policy_header_description' | translate }}"
+    >
+        <!-- <Guide> -->
+        <oui-guide-menu
+            data-text="{{:: 'iam_create_policy_header_guide_text' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.policiesGuides track by $index"
+                data-href="{{:: guide.link }}"
+                data-on-click="$ctrl.onGuideClick(guide.key)"
+                data-external
+            >
+                <span data-ng-bind=":: guide.title"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+        <!-- </Guide> -->
+    </oui-header>
+
+    <!-- <Error> -->
+    <oui-message data-type="error" data-ng-if="$ctrl.hasAnyError">
+        <div data-ng-repeat="(property, error) in $ctrl.error">
+            <p data-translate="{{:: $ctrl.translations.errorHeading }}"></p>
+            <strong
+                data-translate="{{ $ctrl.translations.formHeading[property] }}"
+            ></strong>
+            :
+            <span data-ng-bind="error"></span>
+        </div>
+    </oui-message>
+    <!-- </Error> -->
+
+    <form
+        name="$ctrl.form"
+        data-ng-submit="$ctrl.onSubmit()"
+        autocomplete="off"
+        novalidate
+    >
+        <!-- <Name> -->
+        <h3 data-translate="iam_create_policy_form_name_heading"></h3>
+        <oui-field
+            data-label="{{:: 'iam_create_policy_form_name_heading' | translate }}"
+            data-error-messages="{
+                api: $ctrl.error.name,
+                pattern: ('iam_create_policy_form_name_error_pattern' | translate)
+            }"
+        >
+            <input
+                class="oui-input"
+                name="name"
+                type="text"
+                data-ng-model="$ctrl.model.name"
+                data-ng-pattern="$ctrl.ENTITY_NAME_PATTERN"
+                data-ng-disabled="$ctrl.policy.readOnly"
+                required
+            />
+        </oui-field>
+        <!-- </Name> -->
+
+        <!-- <Description> -->
+        <oui-field
+            data-label="{{ :: 'iam_create_policy_form_description_heading' | translate }}"
+            data-error-messages="{
+                api: $ctrl.error.description,
+                pattern: ('iam_create_policy_form_description_error_pattern' | translate)
+            }"
+        >
+            <textarea
+                class="oui-input"
+                name="description"
+                data-ng-pattern="$ctrl.ENTITY_DESCRIPTION_PATTERN"
+                data-ng-model="$ctrl.model.description"
+                rows="3"
+            ></textarea>
+        </oui-field>
+        <!-- </Description> -->
+
+        <!-- <Identities> -->
+        <iam-policy-identities
+            data-identities="$ctrl.model.identities"
+            data-on-remove="$ctrl.removeIdentity(urn)"
+            data-on-add="$ctrl.addIdentities(urns)"
+            data-read-only="$ctrl.policy.readOnly"
+        ></iam-policy-identities>
+        <!-- </Identities> -->
+
+        <!-- <Resource> -->
+        <iam-resource-select
+            data-ng-model="$ctrl.model.resources"
+            data-on-change="$ctrl.onResourceChanged(change)"
+            data-on-error="$ctrl.onError(error)"
+            data-on-resource-types-confirm-remove="$ctrl.onResourceTypesConfirmRemove(item, index)"
+            data-read-only="$ctrl.policy.readOnly"
+            data-resources-label="{{:: 'iam_create_policy_form_resources_heading' | translate }}"
+            data-resources-name="resources"
+            data-resources-required-message="{{:: 'iam_create_policy_form_resources_error_required' | translate }}"
+            data-resource-types-label="{{:: 'iam_create_policy_form_resource_types_heading' | translate }}"
+            data-resource-types-name="resourceTypes"
+            data-max-length="10"
+        >
+            <iam-resource-select-resource-types-header>
+                <h3
+                    data-translate="iam_create_policy_form_resource_types_heading"
+                ></h3>
+                <p
+                    data-translate="iam_create_policy_form_resource_types_description"
+                ></p>
+            </iam-resource-select-resource-types-header>
+            <iam-resource-select-resources-header>
+                <h3
+                    data-translate="iam_create_policy_form_resources_heading"
+                ></h3>
+                <p
+                    data-translate="iam_create_policy_form_resources_description"
+                ></p>
+                <p
+                    class="mb-0"
+                    data-translate="iam_create_policy_form_resources_action"
+                ></p>
+            </iam-resource-select-resources-header>
+        </iam-resource-select>
+        <!-- </Resource> -->
+        <!-- </ResourceGroups> -->
+        <p
+            class="mb-0"
+            data-translate="iam_create_policy_form_resource_groups_description"
+        ></p>
+        <oui-field
+            data-ng-class="{ 'no-margin': !$ctrl.hasResourceGroups }"
+            data-label="{{:: 'iam_create_policy_form_resource_groups_heading' | translate }}"
+            data-error-messages="{
+                        required: ('iam_create_policy_form_resources_error_required' | translate),
+                    }"
+        >
+            <oui-select
+                data-disabled="!$ctrl.hasResourceGroups || $ctrl.policy.readOnly"
+                data-load="{{:: $ctrl.URL_RESOURCE_GROUP }}"
+                data-load-options="{ global: { serviceType: 'apiv2' } }"
+                data-match="name"
+                data-model="$ctrl.model.resourceGroups"
+                data-multiple="true"
+                data-name="resourceGroups"
+                data-on-load="$ctrl.onResourceGroupsLoaded(response.data)"
+                data-on-error="$ctrl.onError(error)"
+            ></oui-select>
+        </oui-field>
+        <!-- </ResourceGroups> -->
+        <!-- <Actions> -->
+        <h3 data-translate="iam_create_policy_form_actions_heading"></h3>
+        <p data-translate="iam_create_policy_form_actions_description"></p>
+        <iam-action-select
+            data-error="$ctrl.onError(error)"
+            data-name="actions"
+            data-ng-model="$ctrl.model"
+            data-resource-types="$ctrl.model.resources.types"
+            data-read-only="$ctrl.policy.readOnly"
+            data-tag-prefix=":: $ctrl.tag.prefix"
+            data-track-click=":: $ctrl.trackClick"
+            data-track-page=":: $ctrl.trackPage"
+            data-permissions-groups="$ctrl.permissionsGroups"
+        ></iam-action-select>
+        <!-- </Actions> -->
+
+        <!-- <Footer> -->
+        <div class="iam-create_policy--footer">
+            <button
+                type="button"
+                class="oui-button oui-button_l oui-button_link"
+                data-ng-disabled="$ctrl.isSubmitting"
+                data-ng-click="$ctrl.cancelCreation()"
+            >
+                <span data-translate="iam_create_policy_cancel"></span>
+            </button>
+            <button
+                type="submit"
+                class="oui-button oui-button_l oui-button_primary"
+                data-ng-disabled="!$ctrl.canSubmit"
+            >
+                <span data-translate="{{ $ctrl.translations.submit }}"></span>
+            </button>
+            <oui-spinner
+                data-size="s"
+                data-ng-if="$ctrl.isSubmitting"
+            ></oui-spinner>
+        </div>
+        <!-- </Footer> -->
+    </form>
+</div>

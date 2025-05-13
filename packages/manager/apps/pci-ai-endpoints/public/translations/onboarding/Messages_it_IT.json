@@ -1,0 +1,16 @@
+{
+  "ai_endpoints_title": "Migliora le tue applicazioni con AI Endpoints",
+  "ai_endpoints_description": "Pensata per essere semplice, la nostra piattaforma consente agli sviluppatori con qualsiasi livello di competenza di migliorare le proprie applicazioni con API IA all'avanguardia: non sono necessarie competenze in IA.",
+  "ai_endpoints_more": "Scopri di più",
+  "ai_endpoints_descriptionBis": "Queste API non richiedono <strong>competenze in IA</strong> o un'infrastruttura dedicata, perché la piattaforma serverless permette di accedere a <strong>modelli di IA avanzati</strong> come modelli di linguaggio (LLM), elaborazione del linguaggio naturale, traduzione, riconoscimento vocale, riconoscimento di immagini e altro. Gli sviluppatori possono scegliere tra un’ampia varietà di modelli, in particolare opzioni <strong>open source come Mistral AI, Llama e Stable Diffusion</strong>.",
+  "ai_endpoints_goToAiEndpoint": "AI Endpoints",
+  "ai_endpoints_guideCategory": "Guida",
+  "ai_endpoints_guide1Title": "Primi passi con AI Endpoints",
+  "ai_endpoints_guide1Description": "Scopri AI Endpoints, la piattaforma serverless sicura di OVHcloud per gli sviluppatori che permette di accedere ai migliori modelli di Intelligenza Artificiale grazie ad API di semplice utilizzo. Non sono necessarie competenze in IA.",
+  "ai_endpoints_guide2Title": "Funzionalità, capacità e limitazioni",
+  "ai_endpoints_guide2Description": "Scopri funzionalità, capacità e limitazioni attuali di AI Endpoints",
+  "ai_endpoints_tutoCategory": "Tutorial",
+  "ai_endpoints_guide3Title": "Casi d’uso con AI Endpoints",
+  "ai_endpoints_guide3Description": "Guarda i tutorial per arricchire le tue applicazioni con AI Endpoints. Scopri come creare chatbot, integrare LLM o strumenti per soluzioni di IA potenti.",
+  "ai_endpoints_create_API_key": "Generare la prima chiave di accesso"
+}

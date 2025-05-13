@@ -2,29 +2,76 @@
     <h2
         class="oui-heading_underline"
         data-translate="pci_project_new_payment_default_title"
+        data-ng-class="'h' + $ctrl.viewOptions.subtitlesSize"
     ></h2>
 
     <p
-        data-translate="pci_project_new_payment_default_explain"
-        data-translate-values="{ paymentMehodSection: $ctrl.sectionUrls.payment, myAccountSection: $ctrl.sectionUrls.myAccount }"
+        class="text-justify"
+        data-translate="pci_project_new_payment_default_explain_info"
     ></p>
 
+    <!--Default credit card -->
     <div class="default-method">
-        <img
-            class="d-inline-block vertical-middle"
-            data-ng-if="$ctrl.defaultPaymentMethod.icon.data"
-            data-ng-src="{{ $ctrl.defaultPaymentMethod.icon.data }}"
-            alt=""
-        />
-        <span
-            class="d-inline-block vertical-middle"
-            data-ng-bind="$ctrl.defaultPaymentMethod.label"
+        <!--Go to payment section-->
+        <p class="text-right">
+            <a
+                data-ng-href="{{::$ctrl.sectionUrls.payment}}"
+                data-track-on="click"
+                data-track-name="PublicCloud::pci::projects::new_project_payment_other-payment"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="pci_project_new_payment_default_method_use_others_payment_methods"
+                >
+                </span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </p>
+
+        <!--Default payment method-->
+        <div
+            class="p-3 border border-info rounded d-flex align-items-center justify-content-between"
         >
-        </span>
-        <strong
-            class="text-success d-inline-block vertical-middle"
-            data-translate="pci_project_new_payment_default_method"
-        >
-        </strong>
+            <!--Logo-->
+            <img
+                data-ng-if="$ctrl.defaultPaymentMethod.icon.data"
+                data-ng-src="{{ $ctrl.defaultPaymentMethod.icon.data }}"
+                alt="{{ $ctrl.defaultPaymentMethod.type }}"
+            />
+
+            <!--Payment type-->
+            <span
+                class="font-weight-bold"
+                data-ng-bind=":: $ctrl.getFormatCreditCardNumber()"
+            >
+            </span>
+
+            <!--Holder name-->
+            <span
+                class="font-weight-bold"
+                data-ng-if="$ctrl.defaultPaymentMethod.ownerName"
+                data-ng-bind=":: $ctrl.defaultPaymentMethod.ownerName"
+            >
+            </span>
+
+            <!--Badge-->
+            <span
+                class="px-2 py-1 oui-badge oui-badge_info"
+                data-translate="pci_project_new_payment_default_method_badge_default"
+            ></span>
+
+            <!--Expiration date-->
+            <span
+                class="font-weight-bold"
+                data-ng-if="$ctrl.defaultPaymentMethod.expirationDate"
+                data-translate="pci_project_new_payment_default_method_expiration_date"
+                data-translate-values="{ formatDate:  $ctrl.getFormatExpirationDate() }"
+            >
+            </span>
+        </div>
     </div>
 </div>

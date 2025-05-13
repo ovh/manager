@@ -1,0 +1,17 @@
+{
+  "nasha_dashboard_actions": "Operacje",
+  "nasha_dashboard_configuration_link": "Utwórz partycję",
+  "nasha_dashboard_configuration_quota": "Limit",
+  "nasha_dashboard_configuration_title": "Konfiguracja",
+  "nasha_dashboard_edit": "Zmień",
+  "nasha_dashboard_information_datacenter": "Lokalizacja centrum danych",
+  "nasha_dashboard_information_disk_size": "Rozmiar przestrzeni dyskowej",
+  "nasha_dashboard_information_disk_type": "Rodzaj dysku",
+  "nasha_dashboard_information_id": "ID usługi",
+  "nasha_dashboard_information_name": "Nazwa",
+  "nasha_dashboard_information_title": "Informacje",
+  "nasha_dashboard_tab_general_information": "Informacje ogólne",
+  "nasha_dashboard_tab_partitions": "Partycje",
+  "nasha_dashboard_guides_header": "Przewodniki",
+  "nasha_dashboard_guides_title": "Dokumentacja ogólna"
+}

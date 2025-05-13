@@ -6,9 +6,11 @@ export default {
   template,
   bindings: {
     archive: '<',
-    projectId: '<',
-    containerId: '<',
     container: '<',
+    containerId: '<',
     goBack: '<',
+    isHighPerfStorage: '<',
+    projectId: '<',
+    trackingPrefix: '<',
   },
 };

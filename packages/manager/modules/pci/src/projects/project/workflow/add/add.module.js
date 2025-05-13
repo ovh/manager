@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-swimming-poll';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import component from './add.component';
 import generalInfo from './general';

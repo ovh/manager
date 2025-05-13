@@ -10,6 +10,7 @@ import startsWith from 'lodash/startsWith';
 angular.module('controllers').controller(
   'controllers.Domain.Redirection.add',
   class DomainRedirectionAddCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $rootScope,
@@ -119,7 +120,8 @@ angular.module('controllers').controller(
       ) {
         redirectionTarget += `.${this.newRedirection.domain.name}`;
       }
-      return redirectionTarget;
+
+      return redirectionTarget ? redirectionTarget.replace(/[<>]/g, '') : '';
     }
 
     static getDisplayOption(value) {

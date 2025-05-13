@@ -1,0 +1,8 @@
+{
+  "billing_autorenew_service_activation_title": "Attiva il rinnovo automatico",
+  "billing_autorenew_service_activation_success": "Il rinnovo automatico è stato attivato.",
+  "billing_autorenew_service_activation_error": "Si è verificato un errore durante l’attivazione del rinnovo automatico: {{ message }}",
+  "billing_autorenew_service_activation_confirm": "Conferma",
+  "billing_autorenew_service_activation_cancel": "Annulla",
+  "billing_autorenew_service_activation_confirmation": "Vuoi attivare il rinnovo automatico?"
+}

@@ -1,0 +1,37 @@
+<div
+    class="telephony-scheduler-filters telephony-scheduler-time-condition-slots"
+>
+    <div
+        class="filters-category row"
+        data-ng-repeat="chunkedCategories in $ctrl.chunkedCategories track by $index"
+    >
+        <div
+            class="col-md-6"
+            data-ng-repeat="category in chunkedCategories track by $index"
+        >
+            <div class="d-inline-block">
+                <voip-time-condition-slot
+                    data-time-condition-slot="$ctrl.convertCategoryToSlot(category.value)"
+                    data-has-popover="true"
+                    data-slot-enable-edition="$ctrl.timeCondition"
+                >
+                </voip-time-condition-slot>
+            </div>
+            <button
+                type="button"
+                aria-label="{{ (category.active ? 'hide' : 'show') | translate }}"
+                class="d-inline-block oui-button oui-button_s mt-3"
+                data-ng-click="$ctrl.toggleCategoryDisplay(category)"
+            >
+                <span
+                    class="oui-icon"
+                    data-ng-class="{
+                        'oui-icon-eye-blocked': !category.active,
+                        'oui-icon-eye': category.active
+                      }"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </div>
+    </div>
+</div>

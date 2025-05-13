@@ -1,316 +1,311 @@
 <div data-ovh-alert="{{alerts.page}}"></div>
 
 <div data-ng-if="!$ctrl.loading.domainsError">
-    <div class="page-header">
-        <h1 data-translate="domains_dashboard_title"></h1>
-    </div>
+    <oui-header heading="{{:: 'domains_dashboard_title' | translate }}">
+    </oui-header>
 
-    <div class="container-fluid px-5">
-        <div class="row mt-5">
-            <div class="col-md-9">
-                <div data-ovh-alert="{{alerts.main}}"></div>
+    <div class="row mt-5">
+        <div class="col-md-9">
+            <div data-ovh-alert="{{alerts.main}}"></div>
 
-                <div class="text-center" data-ng-if="$ctrl.loading.init">
-                    <oui-spinner data-size="l"></oui-spinner>
-                </div>
+            <div class="text-center" data-ng-if="$ctrl.loading.init">
+                <oui-spinner data-size="l"></oui-spinner>
+            </div>
 
-                <div
-                    class="alert alert-info"
-                    role="alert"
-                    data-translate="domains_dashboard_table_noresult"
-                    data-ng-if="!$ctrl.loading.init && !$ctrl.hasResult"
-                ></div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="domains_dashboard_table_noresult"
+                data-ng-if="!$ctrl.loading.init && !$ctrl.hasResult"
+            ></div>
 
-                <div data-ng-if="!$ctrl.loading.init && $ctrl.hasResult">
-                    <div class="mb-3 text-right">
-                        <form class="form-inline" name="searchDomainForm">
-                            <div class="form-group">
-                                <label
-                                    class="sr-only"
-                                    for="searchDomain"
-                                    data-translate="domains_dashboard_search_label"
-                                ></label>
-                                <div class="input-group">
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="searchDomain"
-                                        name="searchDomain"
-                                        placeholder="{{:: 'domains_dashboard_search_placeholder' | translate }}"
-                                        data-ng-change="$ctrl.goSearch()"
+            <div data-ng-if="!$ctrl.loading.init && $ctrl.hasResult">
+                <div class="mb-3 text-right">
+                    <form class="form-inline" name="searchDomainForm">
+                        <div class="form-group">
+                            <label
+                                class="sr-only"
+                                for="searchDomain"
+                                data-translate="domains_dashboard_search_label"
+                            ></label>
+                            <div class="input-group">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="searchDomain"
+                                    name="searchDomain"
+                                    placeholder="{{:: 'domains_dashboard_search_placeholder' | translate }}"
+                                    data-ng-change="$ctrl.goSearch()"
+                                    data-ng-disabled="$ctrl.loading.domainsInfos"
+                                    data-ng-model="$ctrl.search.value"
+                                    data-ng-model-options="{ debounce: 800 }"
+                                />
+                                <div
+                                    class="input-group-btn"
+                                    data-ng-if="$ctrl.search.value"
+                                >
+                                    <button
+                                        class="btn btn-default"
+                                        type="button"
+                                        data-ng-click="$ctrl.emptySearch()"
                                         data-ng-disabled="$ctrl.loading.domainsInfos"
-                                        data-ng-model="$ctrl.search.value"
-                                        data-ng-model-options="{ debounce: 800 }"
-                                    />
-                                    <div
-                                        class="input-group-btn"
-                                        data-ng-if="$ctrl.search.value"
-                                    >
-                                        <button
-                                            class="btn btn-default"
-                                            type="button"
-                                            data-ng-click="$ctrl.emptySearch()"
-                                            data-ng-disabled="$ctrl.loading.domainsInfos"
-                                        >
-                                            <span
-                                                class="fa fa-times"
-                                                aria-hidden="true"
-                                            ></span>
-                                        </button>
-                                    </div>
-                                    <span
-                                        class="input-group-addon"
-                                        data-ng-if="!$ctrl.search.value"
                                     >
                                         <span
-                                            class="fa fa-search"
+                                            class="fa fa-times"
                                             aria-hidden="true"
                                         ></span>
-                                    </span>
+                                    </button>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="min-width" scope="col">
-                                        <label
-                                            class="sr-only"
-                                            for="selectAll"
-                                            data-translate="domains_dashboard_selector_all_pages"
-                                        ></label>
-                                        <input
-                                            type="checkbox"
-                                            name="selectAll"
-                                            id="selectAll"
-                                            title="{{:: 'domains_dashboard_selector_all_pages' | translate }}"
-                                            data-tri-state-checkbox
-                                            data-tsc-ids-all="domains.fullDomainsList"
-                                            data-tsc-ids-selected="selectedDomains"
-                                            data-tsc-on-click="$ctrl.globalCheckboxStateChange(state)"
-                                        />
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        data-translate="domains_dashboard_table_titles_name"
-                                    ></th>
-                                    <th
-                                        scope="col"
-                                        data-translate="domains_dashboard_table_titles_expiration"
-                                    ></th>
-                                    <th
-                                        scope="col"
-                                        class="text-center"
-                                        data-translate="domains_dashboard_table_titles_whois"
-                                    ></th>
-                                    <th
-                                        scope="col"
-                                        class="text-center"
-                                        data-translate="domains_dashboard_table_titles_dnssec"
-                                    ></th>
-                                    <th
-                                        scope="col"
-                                        class="text-center"
-                                        data-translate="domains_dashboard_table_titles_dnsanycast"
-                                    ></th>
-                                    <th scope="col" class="min-width"></th>
-                                </tr>
-                            </thead>
-                            <tbody
-                                data-ng-if="$ctrl.loading.domainsInfos || $ctrl.loading.domainsSearch"
-                            >
-                                <tr>
-                                    <td class="text-center" colspan="6">
-                                        <oui-spinner></oui-spinner>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tbody
-                                data-ng-if="!$ctrl.loading.domainsInfos && !$ctrl.loading.domainsSearch && domains.count === 0"
-                            >
-                                <tr>
-                                    <td
-                                        class="text-center"
-                                        colspan="6"
-                                        data-translate="domains_dashboard_table_empty"
-                                    ></td>
-                                </tr>
-                            </tbody>
-                            <tbody
-                                data-ng-if="!$ctrl.loading.domainsInfos && !$ctrl.loading.domainsSearch && domains.count > 0"
-                            >
-                                <tr
-                                    data-ng-repeat="domain in domains.list.results track by $index"
-                                    data-ng-class="{'info': selectedDomains.indexOf(domain.name) !== -1}"
+                                <span
+                                    class="input-group-addon"
+                                    data-ng-if="!$ctrl.search.value"
                                 >
-                                    <td>
-                                        <input
-                                            type="checkbox"
-                                            name="domainsListResults[]"
-                                            id="selectDomain-{{$index}}"
-                                            data-ng-change="$ctrl.toggleDomain(domain.name)"
-                                            data-ng-model="domain.selected"
-                                        />
-                                    </td>
-                                    <td class="word-break">
-                                        <a
-                                            data-ng-bind="domain.displayName"
-                                            data-ng-href="{{'#/configuration/domain/' + domain.name}}"
-                                        ></a>
-                                    </td>
-                                    <td
-                                        data-ng-bind="domain.expiration | date: 'mediumDate'"
-                                    ></td>
-                                    <td class="text-center">
-                                        <span
-                                            class="oui-status oui-status_warning"
-                                            data-translate="common_not_supported"
-                                            data-ng-if="!domain.optinIsAvailable"
-                                        >
-                                        </span>
-                                        <span
-                                            class="oui-status oui-status_success"
-                                            data-translate="domains_dashboard_whois_configurable"
-                                            data-ng-if="domain.optinIsAvailable"
-                                        >
-                                        </span>
-                                    </td>
-                                    <td class="text-center">
-                                        <span
-                                            class="oui-status"
-                                            data-ng-bind=":: 'domains_dashboard_table_dnssec_status_' + domain.dnssecStatus | translate"
-                                            data-ng-class="{'oui-status_success': domain.dnssecStatus === 'ENABLED', 'oui-status_error': domain.dnssecStatus === 'DISABLED', 'oui-status_info': domain.dnssecStatus !== 'ENABLED' && domain.dnssecStatus !== 'DISABLED'}"
-                                            data-ng-if="domain.dnssecSupported && domain.dnssecStatus !== null"
-                                        ></span>
-                                        <span
-                                            class="oui-status oui-status_warning"
-                                            data-translate="common_not_supported"
-                                            data-ng-if="!domain.dnssecSupported"
-                                        ></span>
-                                    </td>
-                                    <td class="text-center">
-                                        <span
-                                            class="oui-status oui-status_success"
-                                            data-translate="common_activated"
-                                            data-ng-if="domain.hasDnsAnycast"
-                                        ></span>
-                                        <span
-                                            class="oui-status oui-status_error"
-                                            data-translate="common_desactivated"
-                                            data-ng-if="domain.hasDnsAnycast === false"
-                                        ></span>
-                                        <span
-                                            class="oui-status oui-status_warning"
-                                            data-translate="common_not_available"
-                                            data-ng-if="domain.hasDnsAnycast == null"
-                                        ></span>
-                                    </td>
-                                    <td class="text-right">
-                                        <oui-action-menu
-                                            data-compact
-                                            data-align="end"
-                                        >
-                                            <oui-action-menu-item
-                                                data-on-click="$ctrl.setAction('renew/domains-renew', 'domains/', domain)"
-                                                data-disabled="!domain.canOrder"
-                                            >
-                                                <span
-                                                    data-translate="domains_dashboard_tooltip_renew_single"
-                                                ></span>
-                                            </oui-action-menu-item>
-                                            <oui-action-menu-item
-                                                data-on-click="$ctrl.$state.go('app.domain.product.optin', { productId: domain.name })"
-                                                data-disabled="!domain.optinIsAvailable"
-                                            >
-                                                <span
-                                                    data-translate="domains_dashboard_tooltip_whois_single"
-                                                ></span>
-                                            </oui-action-menu-item>
-                                            <oui-action-menu-item
-                                                data-ng-if="domain.dnssecSupported && domain.dnssecStatus === 'DISABLED'"
-                                                data-on-click="$ctrl.setAction('dnssec/simple/activate/domains-dnssec-simple-activate', 'domains/', domain)"
-                                            >
-                                                <span
-                                                    data-translate="domains_dashboard_tooltip_dnssec_activate_single"
-                                                ></span>
-                                            </oui-action-menu-item>
-                                            <oui-action-menu-item
-                                                data-ng-if="domain.dnssecSupported && domain.dnssecStatus === 'ENABLED'"
-                                                data-on-click="$ctrl.setAction('dnssec/simple/deactivate/domains-dnssec-simple-deactivate', 'domains/', domain)"
-                                            >
-                                                <span
-                                                    data-translate="domains_dashboard_tooltip_dnssec_deactivate_single"
-                                                ></span>
-                                            </oui-action-menu-item>
-                                        </oui-action-menu>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                    <span
+                                        class="fa fa-search"
+                                        aria-hidden="true"
+                                    ></span>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
-                <div
-                    class="clearfix"
-                    data-ng-show="!$ctrl.loading.init && $ctrl.hasResult"
-                    data-pagination-server-side
-                    data-pagination-server-side-function="loadDomains"
-                    data-pagination-server-side-paginated-stuff="domains"
-                    data-pagination-server-side-table-loading="$ctrl.loading.domainsInfos"
-                ></div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="min-width" scope="col">
+                                    <label
+                                        class="sr-only"
+                                        for="selectAll"
+                                        data-translate="domains_dashboard_selector_all_pages"
+                                    ></label>
+                                    <input
+                                        type="checkbox"
+                                        name="selectAll"
+                                        id="selectAll"
+                                        title="{{:: 'domains_dashboard_selector_all_pages' | translate }}"
+                                        data-tri-state-checkbox
+                                        data-tsc-ids-all="domains.fullDomainsList"
+                                        data-tsc-ids-selected="selectedDomains"
+                                        data-tsc-on-click="$ctrl.globalCheckboxStateChange(state)"
+                                    />
+                                </th>
+                                <th
+                                    scope="col"
+                                    data-translate="domains_dashboard_table_titles_name"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    data-translate="domains_dashboard_table_titles_expiration"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    class="text-center"
+                                    data-translate="domains_dashboard_table_titles_whois"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    class="text-center"
+                                    data-translate="domains_dashboard_table_titles_dnssec"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    class="text-center"
+                                    data-translate="domains_dashboard_table_titles_dnsanycast"
+                                ></th>
+                                <th scope="col" class="min-width"></th>
+                            </tr>
+                        </thead>
+                        <tbody
+                            data-ng-if="$ctrl.loading.domainsInfos || $ctrl.loading.domainsSearch"
+                        >
+                            <tr>
+                                <td class="text-center" colspan="6">
+                                    <oui-spinner></oui-spinner>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody
+                            data-ng-if="!$ctrl.loading.domainsInfos && !$ctrl.loading.domainsSearch && domains.count === 0"
+                        >
+                            <tr>
+                                <td
+                                    class="text-center"
+                                    colspan="6"
+                                    data-translate="domains_dashboard_table_empty"
+                                ></td>
+                            </tr>
+                        </tbody>
+                        <tbody
+                            data-ng-if="!$ctrl.loading.domainsInfos && !$ctrl.loading.domainsSearch && domains.count > 0"
+                        >
+                            <tr
+                                data-ng-repeat="domain in domains.list.results track by $index"
+                                data-ng-class="{'info': selectedDomains.indexOf(domain.name) !== -1}"
+                            >
+                                <td>
+                                    <input
+                                        type="checkbox"
+                                        name="domainsListResults[]"
+                                        id="selectDomain-{{$index}}"
+                                        data-ng-change="$ctrl.toggleDomain(domain.name)"
+                                        data-ng-model="domain.selected"
+                                    />
+                                </td>
+                                <td class="word-break">
+                                    <a
+                                        data-ng-bind="$ctrl.constructor.convertToPunycode(domain.displayName)"
+                                        data-ng-href="{{'#/domain/' + domain.name}}"
+                                        target="_top"
+                                    ></a>
+                                </td>
+                                <td
+                                    data-ng-bind="domain.expiration | date: 'mediumDate'"
+                                ></td>
+                                <td class="text-center">
+                                    <span
+                                        class="oui-badge oui-badge_warning"
+                                        data-translate="common_not_supported"
+                                        data-ng-if="!domain.optinIsAvailable"
+                                    >
+                                    </span>
+                                    <span
+                                        class="oui-badge oui-badge_success"
+                                        data-translate="domains_dashboard_whois_configurable"
+                                        data-ng-if="domain.optinIsAvailable"
+                                    >
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <span
+                                        class="oui-badge"
+                                        data-ng-bind=":: 'domains_dashboard_table_dnssec_status_' + domain.dnssecStatus | translate"
+                                        data-ng-class="{'oui-badge_success': domain.dnssecStatus === 'ENABLED', 'oui-badge_error': domain.dnssecStatus === 'DISABLED', 'oui-badge_info': domain.dnssecStatus !== 'ENABLED' && domain.dnssecStatus !== 'DISABLED'}"
+                                        data-ng-if="domain.dnssecSupported && domain.dnssecStatus !== null"
+                                    ></span>
+                                    <span
+                                        class="oui-badge oui-badge_warning"
+                                        data-translate="common_not_supported"
+                                        data-ng-if="!domain.dnssecSupported"
+                                    ></span>
+                                </td>
+                                <td class="text-center">
+                                    <span
+                                        class="oui-badge oui-badge_success"
+                                        data-translate="common_activated"
+                                        data-ng-if="domain.hasDnsAnycast"
+                                    ></span>
+                                    <span
+                                        class="oui-badge oui-badge_error"
+                                        data-translate="common_desactivated"
+                                        data-ng-if="domain.hasDnsAnycast === false"
+                                    ></span>
+                                    <span
+                                        class="oui-badge oui-badge_warning"
+                                        data-translate="common_not_available"
+                                        data-ng-if="domain.hasDnsAnycast == null"
+                                    ></span>
+                                </td>
+                                <td class="text-right">
+                                    <oui-action-menu
+                                        data-compact
+                                        data-placement="end"
+                                    >
+                                        <oui-action-menu-item
+                                            data-on-click="$ctrl.setAction('renew/domains-renew', 'domains/', domain)"
+                                            data-disabled="!domain.canOrder"
+                                        >
+                                            <span
+                                                data-translate="domains_dashboard_tooltip_renew_single"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                        <oui-action-menu-item
+                                            data-on-click="$ctrl.$state.go('app.domain.product.optin', { productId: domain.name })"
+                                            data-disabled="!domain.optinIsAvailable"
+                                        >
+                                            <span
+                                                data-translate="domains_dashboard_tooltip_whois_single"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                        <oui-action-menu-item
+                                            data-ng-if="domain.dnssecSupported && domain.dnssecStatus === 'DISABLED'"
+                                            data-on-click="$ctrl.setAction('dnssec/simple/activate/domains-dnssec-simple-activate', 'domains/', domain)"
+                                        >
+                                            <span
+                                                data-translate="domains_dashboard_tooltip_dnssec_activate_single"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                        <oui-action-menu-item
+                                            data-ng-if="domain.dnssecSupported && domain.dnssecStatus === 'ENABLED'"
+                                            data-on-click="$ctrl.setAction('dnssec/simple/deactivate/domains-dnssec-simple-deactivate', 'domains/', domain)"
+                                        >
+                                            <span
+                                                data-translate="domains_dashboard_tooltip_dnssec_deactivate_single"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                    </oui-action-menu>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="col-md-3 mt-5 mt-lg-0">
-                <button
-                    class="oui-button oui-button_secondary oui-button_full-width mb-2"
-                    type="button"
-                    data-translate="domains_dashboard_button_renew"
-                    data-ng-click="setActionMultiple('renew/domains-renew')"
-                    data-ng-disabled="!$ctrl.atLeastOneSelected"
-                ></button>
-                <button
-                    class="oui-button oui-button_secondary oui-button_full-width mb-2"
-                    type="button"
-                    data-translate="domains_dashboard_button_dnssec"
-                    data-ng-click="setActionMultiple('dnssec/batch/domains-dnssec-batch')"
-                    data-ng-disabled="!$ctrl.atLeastOneSelected"
-                ></button>
-                <button
-                    class="oui-button oui-button_secondary oui-button_full-width mb-2"
-                    type="button"
-                    data-ng-click="setActionMultiple('export-csv/domains-export-to-csv')"
-                    data-ng-disabled="$ctrl.loading.domainsExportCsv"
-                    data-ng-if="domains && domains.count"
-                >
-                    <span
-                        data-translate="domains_dashboard_button_export"
-                        data-ng-if="!$ctrl.loading.domainsExportCsv"
-                    ></span>
-                    <span
-                        data-translate="domains_dashboard_tooltip_export_csv_creation_doing"
-                        data-ng-if="$ctrl.loading.domainsExportCsv"
-                    ></span>
-                </button>
-                <a
-                    class="oui-button oui-button_secondary oui-button_icon-right oui-button_full-width mb-2"
-                    target="_blank"
-                    rel="noopener"
-                    data-ng-href="{{ $ctrl.urlBulkChangeOwner }}"
-                    data-ng-if="domains && domains.count && $ctrl.urlBulkChangeOwner"
-                >
-                    <span data-translate="domains_change_owner"></span>
-                    <span
-                        class="oui-icon oui-icon-external_link"
-                        aria-hidden="true"
-                    ></span>
-                    <span
-                        class="sr-only"
-                        data-translate="common_new_tab"
-                    ></span>
-                </a>
-            </div>
+
+            <div
+                class="clearfix"
+                data-ng-show="!$ctrl.loading.init && $ctrl.hasResult"
+                data-pagination-server-side
+                data-pagination-server-side-function="loadDomains"
+                data-pagination-server-side-paginated-stuff="domains"
+                data-pagination-server-side-table-loading="$ctrl.loading.domainsInfos"
+            ></div>
+        </div>
+        <div class="col-md-3 mt-5 mt-lg-0">
+            <button
+                class="oui-button oui-button_secondary mb-2 oui-button_block"
+                type="button"
+                data-translate="domains_dashboard_button_renew"
+                data-ng-click="setActionMultiple('renew/domains-renew')"
+                data-ng-disabled="!$ctrl.atLeastOneSelected"
+            ></button>
+            <button
+                class="oui-button oui-button_secondary mb-2 oui-button_block"
+                type="button"
+                data-translate="domains_dashboard_button_dnssec"
+                data-ng-click="setActionMultiple('dnssec/batch/domains-dnssec-batch')"
+                data-ng-disabled="!$ctrl.atLeastOneSelected"
+            ></button>
+            <button
+                class="oui-button oui-button_secondary mb-2 oui-button_block"
+                type="button"
+                data-ng-click="setActionMultiple('export-csv/domains-export-to-csv')"
+                data-ng-disabled="$ctrl.loading.domainsExportCsv"
+                data-ng-if="domains && domains.count"
+            >
+                <span
+                    data-translate="domains_dashboard_button_export"
+                    data-ng-if="!$ctrl.loading.domainsExportCsv"
+                ></span>
+                <span
+                    data-translate="domains_dashboard_tooltip_export_csv_creation_doing"
+                    data-ng-if="$ctrl.loading.domainsExportCsv"
+                ></span>
+            </button>
+            <a
+                class="oui-button oui-button_secondary oui-button_icon-right mb-2 oui-button_block"
+                target="_blank"
+                rel="noopener"
+                data-ng-href="{{ $ctrl.urlBulkChangeOwner }}"
+                data-ng-if="domains && domains.count && $ctrl.urlBulkChangeOwner"
+            >
+                <span data-translate="domains_change_owner"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+                <span class="sr-only" data-translate="common_new_tab"></span>
+            </a>
         </div>
     </div>
 </div>

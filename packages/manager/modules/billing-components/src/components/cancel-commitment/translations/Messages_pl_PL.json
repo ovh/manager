@@ -1,0 +1,8 @@
+{
+  "billing_cancel_commitment": "Anuluj zamówienie usługi z opcją umowy terminowej",
+  "billing_cancel_commitment_description": "Czy na pewno chcesz anulować zamówienie usługi z opcją umowy terminowej? Nie skorzystasz z ceny preferencyjnej",
+  "billing_cancel_commitment_success": "Zlecenie anulowania zamówienia usługi z opcją umowy terminowej zostało przyjęte",
+  "billing_cancel_commitment_error": "Wystąpił błąd podczas operacji anulowania.",
+  "billing_cancel_commitment_confirm": "Zatwierdź",
+  "billing_cancel_commitment_cancel": "Anuluj"
+}

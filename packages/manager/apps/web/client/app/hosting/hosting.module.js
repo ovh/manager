@@ -1,22 +1,19 @@
-import routing from './hosting.routes';
+import angular from 'angular';
+import 'angular-translate';
+import '@ovh-ux/ui-kit';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
-import cdn from './cdn/hosting-cdn.modules';
-import database from './database/hosting-database.module';
-import generalInformations from './general-informations/general-informations.module';
-import websiteCoach from './website-coach/website-coach.module';
-import privateSqlActivation from './database/private-sql-activation';
+import routing from './hosting.routing';
 
-const moduleName = 'ovhManagerHosting';
+const moduleName = 'ovhManagerHostings';
 
 angular
   .module(moduleName, [
-    cdn,
-    database,
-    generalInformations,
+    ngTranslateAsyncLoader,
     'oui',
     'pascalprecht.translate',
-    privateSqlActivation,
-    websiteCoach,
+    ListLayoutHelper.moduleName,
   ])
   .config(routing);
 

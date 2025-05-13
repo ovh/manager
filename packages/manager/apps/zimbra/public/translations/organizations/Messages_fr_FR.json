@@ -1,0 +1,11 @@
+{
+  "add_organisation_cta": "Ajouter une organisation",
+  "zimbra_organization_cta": "Ajouter une organisation",
+  "zimbra_organization_account_number": "Nombre de comptes",
+  "zimbra_organization_label": "Label",
+  "zimbra_organization_name": "Organisation",
+  "zimbra_organization_status": "Statut",
+  "zimbra_organization_delete_modal_content": "Voulez-vous vraiment supprimer l'organisation ?",
+  "zimbra_organization_delete_modal_message_disabled_part1": "Au moins un domaine est encore associé à cette organisation.",
+  "zimbra_organization_delete_modal_message_disabled_part2": "Veuillez supprimer les domaines associés avant de supprimer votre organisation."
+}

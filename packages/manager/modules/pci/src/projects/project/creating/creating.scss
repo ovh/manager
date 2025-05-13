@@ -1,7 +1,7 @@
 pci-project-creating {
-  @import '~bootstrap4/scss/_functions';
-  @import '~bootstrap4/scss/_variables';
-  @import '~bootstrap4/scss/mixins/_breakpoints';
+  @import 'bootstrap4/scss/_functions';
+  @import 'bootstrap4/scss/_variables';
+  @import 'bootstrap4/scss/mixins/_breakpoints';
 
   $spinner-size: 350px;
   $colors: #3d86c3, #3be, #2558c3;
@@ -108,7 +108,7 @@ pci-project-creating {
 
     50% {
       stroke-dasharray: 120, 300;
-      stroke-dashoffset: -$d / 3;
+      stroke-dashoffset: calc(-#{$d} / 3);
     }
 
     100% {

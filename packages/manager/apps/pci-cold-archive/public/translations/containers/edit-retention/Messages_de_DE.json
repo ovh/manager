@@ -1,0 +1,15 @@
+{
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_title": "Aufbewahrungsdauer ändern",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_description": "Sie sind im Begriff, die Aufbewahrungsdauer Ihres Containers {{ containerName }} zu ändern.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_description_2": "Wenn Sie eine Aufbewahrungsdauer konfigurieren, wird Ihr Archiv gesperrt und Sie können Ihre Daten während des gesamten Aufbewahrungszeitraums nicht mehr löschen.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_submit_label": "Ändern",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_cancel_label": "Abbrechen",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_success_message": "Die Aufbewahrungsdauer des Containers {{ containerName }} wurde geändert.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_error_message": "Bei der Änderung der Aufbewahrungsdauer des Containers {{ containerName }} ist ein Fehler aufgetreten: {{ message }}.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_has_retention": "Aufbewahrungsdauer planen",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_days": "Anzahl der Aufbewahrungstage hinzufügen",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_help": "Ihre neue Aufbewahrungsdauer endet am <strong>{{ date }}</strong>.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_help_2": "Sie können Ihre Daten erst nach diesem Datum löschen.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_wartning_help": "Die neue Aufbewahrungsdauer ist ungültig, da das neue Enddatum der Aufbewahrung vor dem bereits geplanten Datum liegt oder mit diesem übereinstimmt.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_value_wartning": "Anzahl der Aufbewahrungstage hinzufügen (mindestens 1 Tag, maximal 4.500 Tage)"
+}

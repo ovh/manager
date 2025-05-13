@@ -10,199 +10,194 @@
         <h1 data-translate="sms_senders_blacklisted_manage_title"></h1>
     </header>
 
-    <div class="telecom-section-content">
-        <tuc-toast-message></tuc-toast-message>
+    <tuc-toast-message></tuc-toast-message>
 
-        <div class="widget-presentation">
-            <header class="widget-presentation-header">
-                <h2
-                    class="widget-presentation-title"
-                    data-translate="sms_senders_blacklisted_information_title"
-                ></h2>
-            </header>
+    <div class="widget-presentation">
+        <header class="widget-presentation-header">
+            <h2
+                class="widget-presentation-title"
+                data-translate="sms_senders_blacklisted_information_title"
+            ></h2>
+        </header>
 
-            <p data-translate="sms_senders_blacklisted_information_text_1"></p>
-            <p data-translate="sms_senders_blacklisted_information_text_2"></p>
-        </div>
+        <p data-translate="sms_senders_blacklisted_information_text_1"></p>
+        <p data-translate="sms_senders_blacklisted_information_text_2"></p>
+    </div>
 
-        <div class="mb-3">
-            <button
-                type="button"
-                class="btn btn-default"
-                data-ng-disabled="$ctrl.getSelection().length === 0 || $ctrl.blacklists.isDeleting"
-                data-ng-click="$ctrl.deleteSelectedBlacklist()"
+    <div class="mb-3">
+        <button
+            type="button"
+            class="btn btn-default"
+            data-ng-disabled="$ctrl.getSelection().length === 0 || $ctrl.blacklists.isDeleting"
+            data-ng-click="$ctrl.deleteSelectedBlacklist()"
+        >
+            <span
+                class="oui-icon mr-2 oui-icon-trash_concept"
+                aria-hidden="true"
+                data-ng-if="!$ctrl.blacklists.isDeleting"
             >
-                <span
-                    class="oui-icon oui-icon-trash_line mr-2"
-                    aria-hidden="true"
-                    data-ng-if="!$ctrl.blacklists.isDeleting"
-                >
-                </span>
-                <oui-spinner
-                    class="mr-2"
-                    data-ng-if="$ctrl.blacklists.isDeleting"
-                    data-size="s"
-                >
-                </oui-spinner>
-                <span
-                    data-ng-pluralize
-                    data-count="$ctrl.getSelection().length"
-                    data-when="{
+            </span>
+            <oui-spinner
+                class="mr-2"
+                data-ng-if="$ctrl.blacklists.isDeleting"
+                data-size="s"
+            >
+            </oui-spinner>
+            <span
+                data-ng-pluralize
+                data-count="$ctrl.getSelection().length"
+                data-when="{
                             '0': ('sms_senders_blacklisted_delete_list' | translate),
                             'one': ('sms_senders_blacklisted_delete_list' | translate),
                             'other': ('sms_senders_blacklisted_delete_lists' | translate:{ count: {} })
                         }"
-                >
-                </span>
-            </button>
-        </div>
+            >
+            </span>
+        </button>
+    </div>
 
-        <div class="table-responsive">
-            <table
-                class="table"
-                data-ng-class="{
+    <div class="table-responsive">
+        <table
+            class="table"
+            data-ng-class="{
                        'table-hover table-striped': $ctrl.blacklists.raw.length > 1
                    }"
-            >
-                <thead>
-                    <tr>
-                        <th scope="col" width="40px">
-                            <input
-                                type="checkbox"
-                                data-ng-if="$ctrl.blacklists.paginated.length"
-                                data-ng-disabled="$ctrl.blacklists.isDeleting"
-                                data-ovh-checkbox-table
-                                data-ovh-checkbox-table-ids-all="$ctrl.blacklists.raw"
-                                data-ovh-checkbox-table-ids-page="$ctrl.blacklists.paginated"
-                                data-ovh-checkbox-table-ids-selected="$ctrl.blacklists.selected"
-                                data-ovh-checkbox-table-id="number"
-                            />
-                        </th>
-                        <th scope="col">
-                            <button
-                                type="button"
-                                class="btn btn-link p-0"
-                                data-ng-disabled="!$ctrl.blacklists.sorted.length"
-                                data-ng-click="$ctrl.orderBy('dateCreation')"
-                            >
-                                <span
-                                    data-translate="sms_senders_blacklisted_label_date"
-                                ></span>
-                                <span
-                                    class="oui-icon align-baseline"
-                                    aria-hidden="true"
-                                    data-ng-class="{
+        >
+            <thead>
+                <tr>
+                    <th scope="col" width="40px">
+                        <input
+                            type="checkbox"
+                            data-ng-if="$ctrl.blacklists.paginated.length"
+                            data-ng-disabled="$ctrl.blacklists.isDeleting"
+                            data-ovh-checkbox-table
+                            data-ovh-checkbox-table-ids-all="$ctrl.blacklists.raw"
+                            data-ovh-checkbox-table-ids-page="$ctrl.blacklists.paginated"
+                            data-ovh-checkbox-table-ids-selected="$ctrl.blacklists.selected"
+                            data-ovh-checkbox-table-id="number"
+                        />
+                    </th>
+                    <th scope="col">
+                        <button
+                            type="button"
+                            class="btn btn-link p-0"
+                            data-ng-disabled="!$ctrl.blacklists.sorted.length"
+                            data-ng-click="$ctrl.orderBy('dateCreation')"
+                        >
+                            <span
+                                data-translate="sms_senders_blacklisted_label_date"
+                            ></span>
+                            <span
+                                class="oui-icon align-baseline"
+                                aria-hidden="true"
+                                data-ng-class="{
                                           'oui-icon-arrow-down': $ctrl.blacklists.orderBy !== 'dateCreation',
                                           'oui-icon-arrow-down': $ctrl.blacklists.orderBy === 'dateCreation' && $ctrl.blacklists.orderDesc,
                                           'oui-icon-arrow-up': $ctrl.blacklists.orderBy === 'dateCreation' && !$ctrl.blacklists.orderDesc
                                       }"
-                                >
-                                </span>
-                            </button>
-                        </th>
-                        <th scope="col">
-                            <button
-                                type="button"
-                                class="btn btn-link p-0"
-                                data-ng-disabled="!$ctrl.blacklists.sorted.length"
-                                data-ng-click="$ctrl.orderBy('number')"
                             >
-                                <span
-                                    data-translate="sms_senders_blacklisted_label_number"
-                                ></span>
-                                <span
-                                    class="oui-icon align-baseline"
-                                    aria-hidden="true"
-                                    data-ng-class="{
+                            </span>
+                        </button>
+                    </th>
+                    <th scope="col">
+                        <button
+                            type="button"
+                            class="btn btn-link p-0"
+                            data-ng-disabled="!$ctrl.blacklists.sorted.length"
+                            data-ng-click="$ctrl.orderBy('number')"
+                        >
+                            <span
+                                data-translate="sms_senders_blacklisted_label_number"
+                            ></span>
+                            <span
+                                class="oui-icon align-baseline"
+                                aria-hidden="true"
+                                data-ng-class="{
                                           'oui-icon-arrow-down': $ctrl.blacklists.orderBy !== 'number',
                                           'oui-icon-arrow-down': $ctrl.blacklists.orderBy === 'number' && $ctrl.blacklists.orderDesc,
                                           'oui-icon-arrow-up': $ctrl.blacklists.orderBy === 'number' && !$ctrl.blacklists.orderDesc
                                       }"
-                                >
-                                </span>
-                            </button>
-                        </th>
-                        <th
-                            scope="col"
-                            class="text-right"
-                            data-translate="sms_common_actions"
-                        ></th>
-                    </tr>
-                </thead>
-                <tbody data-ng-if="!$ctrl.blacklists.isLoading">
-                    <tr
-                        data-ng-repeat="blacklist in $ctrl.blacklists.paginated | orderBy:$ctrl.blacklists.orderBy:$ctrl.blacklists.orderDesc track by $index"
-                    >
-                        <td>
-                            <input
-                                type="checkbox"
-                                data-ng-disabled="$ctrl.blacklists.isDeleting"
-                                data-ng-model="$ctrl.blacklists.selected[blacklist.number]"
-                            />
-                        </td>
-                        <td
-                            data-ng-bind="blacklist.dateCreation | date:'dd/MM/yyyy'"
-                        ></td>
-                        <td
-                            data-ng-bind="blacklist.number | tucPhoneNumber"
-                        ></td>
-                        <td class="text-right">
-                            <button
-                                type="button"
-                                class="btn btn-default"
-                                data-ng-click="$ctrl.remove(blacklist);"
-                                data-translate-attr="{ 'title': 'sms_delete' }"
                             >
-                                <span
-                                    class="oui-icon oui-icon-trash_line"
-                                    aria-hidden="true"
-                                ></span>
-                                <span
-                                    class="sr-only"
-                                    data-ng-bind="blacklist.number + ' - ' + ('sms_delete' | translate)"
-                                ></span>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody data-ng-if="$ctrl.blacklists.isLoading">
-                    <tr>
-                        <td colspan="4" class="text-center">
-                            <oui-spinner data-size="s"></oui-spinner>
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody
-                    data-ng-if="!$ctrl.blacklists.isLoading && !$ctrl.blacklists.paginated.length"
+                            </span>
+                        </button>
+                    </th>
+                    <th
+                        scope="col"
+                        class="text-right"
+                        data-translate="sms_common_actions"
+                    ></th>
+                </tr>
+            </thead>
+            <tbody data-ng-if="!$ctrl.blacklists.isLoading">
+                <tr
+                    data-ng-repeat="blacklist in $ctrl.blacklists.paginated | orderBy:$ctrl.blacklists.orderBy:$ctrl.blacklists.orderDesc track by $index"
                 >
-                    <tr>
-                        <td
-                            class="text-center py-3"
-                            colspan="4"
-                            data-translate="sms_senders_blacklisted_empty"
-                        ></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div
-            class="mt-2"
-            data-ng-show="!$ctrl.blacklists.isLoading && $ctrl.blacklists.raw.length"
-            data-pagination-front
-            data-items="$ctrl.blacklists.sorted"
-            data-paginated-items="$ctrl.blacklists.paginated"
-            data-current-page="currentPage"
-            data-nb-pages="nbPages"
-            data-items-per-page="itemsPerPage"
-            data-page-placeholder="{{
+                    <td>
+                        <input
+                            type="checkbox"
+                            data-ng-disabled="$ctrl.blacklists.isDeleting"
+                            data-ng-model="$ctrl.blacklists.selected[blacklist.number]"
+                        />
+                    </td>
+                    <td
+                        data-ng-bind="blacklist.dateCreation | date:'dd/MM/yyyy'"
+                    ></td>
+                    <td data-ng-bind="blacklist.number | tucPhoneNumber"></td>
+                    <td class="text-right">
+                        <button
+                            type="button"
+                            class="btn btn-default"
+                            data-ng-click="$ctrl.remove(blacklist);"
+                            data-translate-attr="{ 'title': 'sms_delete' }"
+                        >
+                            <span
+                                class="oui-icon oui-icon-trash_concept"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="sr-only"
+                                data-ng-bind="blacklist.number + ' - ' + ('sms_delete' | translate)"
+                            ></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody data-ng-if="$ctrl.blacklists.isLoading">
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <oui-spinner data-size="s"></oui-spinner>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody
+                data-ng-if="!$ctrl.blacklists.isLoading && !$ctrl.blacklists.paginated.length"
+            >
+                <tr>
+                    <td
+                        class="text-center py-3"
+                        colspan="4"
+                        data-translate="sms_senders_blacklisted_empty"
+                    ></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div
+        class="mt-2"
+        data-ng-show="!$ctrl.blacklists.isLoading && $ctrl.blacklists.raw.length"
+        data-pagination-front
+        data-items="$ctrl.blacklists.sorted"
+        data-paginated-items="$ctrl.blacklists.paginated"
+        data-current-page="currentPage"
+        data-nb-pages="nbPages"
+        data-items-per-page="itemsPerPage"
+        data-page-placeholder="{{
                 'sms_common_pagination_page'
                     | translate: { currentPage: currentPage, nbPages: nbPages }
             }}"
-            data-item-per-page-placeholder="{{
+        data-item-per-page-placeholder="{{
                 'sms_common_pagination_display' | translate
             }}"
-        ></div>
-    </div>
-    <!-- /.telecom-section-content -->
+    ></div>
 </section>
 <!-- /.telecom-sms-senders-blacklisted -->

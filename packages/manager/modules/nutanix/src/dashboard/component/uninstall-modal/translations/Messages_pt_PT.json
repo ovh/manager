@@ -1,0 +1,10 @@
+{
+  "nutanix_dashboard_uninstall_node_title": "Desinstalar o nó",
+  "nutanix_dashboard_uninstall_node_description": "Vai desinstalar o seu nó {{serviceName}}. A desinstalação de um nó Nutanix pode ter um impacto sobre o seu cluster. Verificar os pré-requisitos no portal da Nutanix para realizar esta ação",
+  "nutanix_dashboard_uninstall_node_uninstall_guidelink": "Aceder ao portal",
+  "nutanix_dashboard_uninstall_node_confirm": "Desinstalar",
+  "nutanix_dashboard_uninstall_node_cancel": "Anular",
+  "nutanix_dashboard_uninstall_node_input_label": "Introduza \"{{magicword}}\" para confirmar a sua escolha",
+  "nutanix_dashboard_uninstall_node_success_banner": "O seu pedido de desinstalação foi registado. Esta operação pode demorar até 10 minutos",
+  "nutanix_dashboard_uninstall_node_error_banner": "O pedido de desinstalação não foi bem-sucedido. Se o erro persistir, contacte os nossos serviços"
+}

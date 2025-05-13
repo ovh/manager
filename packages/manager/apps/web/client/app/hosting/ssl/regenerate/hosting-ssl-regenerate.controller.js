@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'hostingRegenerateSSLCtrl',
   class HostingRegenerateSSLCtrl {
+    /* @ngInject */
     constructor(
       $rootScope,
       $scope,

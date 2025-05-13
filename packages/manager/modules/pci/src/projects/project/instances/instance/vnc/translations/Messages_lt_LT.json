@@ -1,6 +1,0 @@
-{
- "pci_projects_project_instances_instance_vnc_title": "VNC console",
- "pci_projects_project_instances_instance_vnc_focus_message": "Tip: If you're unable to type in the window, click on the blue bar below.",
- "pci_projects_project_instances_instance_vnc_linux_message": "To use the VNC console on the Linux machine, you must firstly log in via SSH and configure a user with a password.",
- "pci_projects_project_instances_instance_vnc_open_in_new_window": "Open in a new window"
-}

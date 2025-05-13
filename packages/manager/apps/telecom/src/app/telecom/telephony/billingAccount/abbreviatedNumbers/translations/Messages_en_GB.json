@@ -1,5 +1,5 @@
 {
-  "telephony_abbreviated_numbers_title": "Numéros abrégés",
-  "telephony_abbreviated_numbers_explaination": "Les numéros abrégés sont des numéros à 3 ou 4 chiffres commençant pas un 7.",
-  "telephony_abbreviated_numbers_pattern_error": "Le champ doit contenir un nombre à 3 ou 4 chiffres commençant par un 7."
+  "telephony_abbreviated_numbers_title": "Speed dial numbers",
+  "telephony_abbreviated_numbers_explaination": "The speed dial numbers are 3 to 4-digit numbers that start with a 7.",
+  "telephony_abbreviated_numbers_pattern_error": "The field must contain a 3 to 4-digit number that starts with a 7."
 }

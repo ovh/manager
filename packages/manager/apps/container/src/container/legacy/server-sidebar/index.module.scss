@@ -1,0 +1,173 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+@import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
+@import './constants.scss';
+
+:export {
+  menuRowHeight: $menu-row-height;
+}
+
+.serverSidebar {
+  position: relative;
+  width: $sidebar-width;
+  height: 100%;
+  z-index: $sidebar-z-index;
+  background-color: white;
+  transition: margin-left 250ms ease-in-out;
+  box-shadow: 0 6px 6px rgba(0, 14, 156, 0.2);
+
+  > div.container:first-child {
+    top: 0;
+  }
+}
+
+.orderButtonContent {
+  margin-left: 10px;
+}
+
+@media (max-width: $device-breakpoint-tablet-max-width) {
+  .serverSidebar {
+    margin-left: -$sidebar-width;
+  }
+  .serverSidebarOpen {
+    margin-left: 0;
+  }
+}
+
+.sidebarLoading {
+  margin: 1rem;
+}
+
+.container {
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.sticky {
+  overflow: auto;
+}
+
+.orderButton ~ .sticky {
+  top: 4rem;
+}
+
+
+
+
+.orderButton {
+  display: block;
+  width: 100%;
+  padding: 10px;
+}
+
+.subButton {
+  font-weight: 400 !important;
+}
+
+.subButton.selectedButton {
+  color: #2859c0 !important;
+  font-weight: 700 !important;
+}
+
+.menuItemBorder {
+  border-left: 3px solid #2859c0;
+  box-sizing: border-box;
+}
+
+
+.menuItemSelected {
+  background-color: #e6f5fc;
+  width: 450px;
+}
+
+.menuItem{
+  line-height: $menu-row-height;
+}
+
+.searchField {
+  position: relative;
+  height: $menu-row-height;
+  i {
+    font-size: 1.25rem;
+    position: absolute;
+    top: 0.375rem;
+    left: 0.625rem;
+  }
+  input {
+    border: none;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #89d7f8;
+    background: transparent;
+    border-radius: 0;
+    color: #1c3193;
+    padding: 0 0.5rem 0 2.25rem;
+    width: 95%;
+  }
+  input:hover {
+    background-color: #eff9fd;
+    border-bottom-color: #89d7f8;
+  }
+  input:focus {
+    background-color: #eff9fd;
+    border-bottom-color: #89d7f8;
+  }
+  .orderButtonContent {
+    padding-inline-start: 2px;
+    flex: 1;
+    text-align: left;
+  }
+}
+
+
+.telecomLabel {
+  font-size: 0.75rem;
+  font-weight: 400;
+  margin-right: 0.5rem;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333;
+  opacity: 0.5;
+  z-index: 700;
+  cursor: pointer;
+
+  @media (min-width: $device-breakpoint-tablet-max-width) {
+    opacity: 0;
+  }
+}
+
+
+.orderTrigger {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.itemLineAlign {
+  align-items: center;
+  justify-content: flex-start;
+  white-space: nowrap;
+}
+
+.spinnerLoading {
+  padding-left: 95px;
+}
+
+
+
+

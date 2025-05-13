@@ -45,13 +45,13 @@ yarn test
 
 ## Related
 
-* [ovh-manager-dedicated](https://github.com/ovh-ux/ovh-manager-dedicated) - OVH Control Panel Dedicated UI
-* [ovh-manager-cloud](https://github.com/ovh-ux/ovh-manager-cloud) - OVH Control Panel Cloud UI
-* [ovh-manager-telecom](https://github.com/ovh-ux/ovh-manager-telecom) - OVH Control Panel Telecom UI
-* [ovh-module-emailpro](https://github.com/ovh-ux/ovh-module-emailpro) - Web Module Emailpro
-* [ovh-module-exchange](https://github.com/ovh-ux/ovh-module-exchange) - Web Module Exchange
-* [ovh-module-office](https://github.com/ovh-ux/ovh-module-office) - Web Module Office
-* [ovh-module-sharepoint](https://github.com/ovh-ux/ovh-module-sharepoint) - Web Module Sharepoint
+* [ovh-manager-dedicated](https://github.com/ovh/manager/tree/master/packages/manager/apps/dedicated) - OVH Control Panel Dedicated UI
+* [ovh-manager-cloud](https://github.com/ovh/manager/tree/master/packages/manager/apps/cloud) - OVH Control Panel Cloud UI
+* [ovh-manager-telecom](https://github.com/ovh/manager/tree/master/packages/manager/apps/telecom) - OVH Control Panel Telecom UI
+* [ovh-module-emailpro](https://github.com/ovh/manager/tree/master/packages/manager/modules/emailpro) - Web Module Emailpro
+* [ovh-module-exchange](https://github.com/ovh/manager/tree/master/packages/manager/modules/exchange) - Web Module Exchange
+* [ovh-module-office](https://github.com/ovh/manager/tree/master/packages/manager/modules/office) - Web Module Office
+* [ovh-module-sharepoint](https://github.com/ovh/manager/tree/master/packages/manager/modules/sharepoint) - Web Module Sharepoint
 
 ## Contributing
 

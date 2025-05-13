@@ -1,0 +1,15 @@
+{
+  "nutanix_dashboard_reinstall_node_title": "Reinstalar el nodo",
+  "nutanix_dashboard_reinstall_node_description": "Va a reinstalar AOS y AHV en su nodo.",
+  "nutanix_dashboard_reinstall_node_tips": "Para una reinstalación simultánea en varios nodos, utilice la API",
+  "nutanix_dashboard_reinstall_node_label_ahv_ip": "IP del nodo",
+  "nutanix_dashboard_reinstall_node_label_cvm_ip": "IP CVM",
+  "nutanix_dashboard_reinstall_node_label_version_aos": "Versión de AOS",
+  "nutanix_dashboard_reinstall_node_confirm": "Reinstalar",
+  "nutanix_dashboard_reinstall_node_cancel": "Cancelar",
+  "nutanix_dashboard_reinstall_node_success_banner": "La solicitud de reinstalación se ha enviado correctamente. Esta operación puede tardar hasta una hora.",
+  "nutanix_dashboard_reinstall_node_error_banner": "No se ha podido completar la solicitud de reinstalación. Por favor, si el error persiste, contacte con soporte",
+  "nutanix_dashboard_reinstall_form_not_valid_ip_error": "Dirección IPv4 no válida",
+  "nutanix_dashboard_reinstall_form_not_private_ip_error": "Este campo solo acepta direcciones IPv4 privadas",
+  "nutanix_dashboard_reinstall_ip_tooltip": "La dirección IP debe estar incluida en la subred del clúster."
+}

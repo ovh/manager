@@ -11,11 +11,7 @@ yarn add @ovh-ux/manager-exchange
 ## Usage
 
 ```js
-angular.module('App', [
-  '…',
-  'Module.exchange',
-  '…',
-])
+angular.module('App', ['…', 'Module.exchange', '…']);
 ```
 
 ## Contributing

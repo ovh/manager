@@ -1,0 +1,10 @@
+.iam-resource_select--resources_container {
+  & > *:first-child {
+    padding-left: 0 !important;
+    padding-right: 0.5rem !important;
+  }
+  & > *:last-child {
+    padding-left: 0.5rem !important;
+    padding-right: 0 !important;
+  }
+}

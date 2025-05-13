@@ -1,0 +1,23 @@
+{
+  "domains_newdnszone_order_title": "DNS-Zone hinzufügen",
+  "domains_newdnszone_order_step1_title": "Geben Sie einen Domainnamen an",
+  "domains_newdnszone_order_step1_zonename": "Domainname",
+  "domains_newdnszone_order_step1_zonename_pending": "Überprüfung der Verfügbarkeit des Zonennamens...",
+  "domains_newdnszone_order_step2_title": "Details",
+  "domains_newdnszone_order_step2_minimized": "Die minimalen Einträge aktivieren?",
+  "domains_newdnszone_order_step2_minimized_yes": "Ja",
+  "domains_newdnszone_order_step2_minimized_no": "Nein",
+  "domains_newdnszone_order_example": "Beispiel für das Hinzufügen einer Zone:",
+  "domains_newdnszone_order_usage": "Sie haben eine Domain bei einem anderen Anbieter, und möchten zu uns umziehen? Wenn Sie vor dem Transfer eine DNS-Zone hinzufügen, können Sie verhindern, dass die Dienste unterbrochen werden.",
+  "domains_newdnszone_order_reminder": "Vergessen Sie nicht, die DNS Server zu ändern, damit die Zone berücksichtigt wird.",
+  "domains_newdnszone_order_subtitle": "um Ihre Domain so zu konfigurieren, dass diese auf Ihre verschiedenen Dienstleistungen verweist.",
+  "domains_newdnszone_zone_invalid_title": "Die Erstellung einer DNS Zone ist nur möglich, wenn sämtliche hier aufgeführten Bedingungen eingehalten werden:",
+  "domains_newdnszone_zone_invalid_domain_active": "Die Domain existiert und ist aktiv",
+  "domains_newdnszone_zone_invalid_domain_soa": "Der SOA-Record der Domain muss in der Zonendatei korrekt angelegt sein ",
+  "domains_newdnszone_zone_invalid_domain_a": "Für diese Domain darf bei OVH keine Operation oder Bestellschein laufen ",
+  "domains_newdnszone_zone_invalid_domain_zone": "Diese DNS Zone darf nicht bereits bei OVH gespeichert sein",
+  "domains_newdnszone_zone_invalid_domain_guide": "Zur Hilfe",
+  "domains_newdnszone_order_help_add": "DNS-Zone hinzufügen",
+  "domains_newdnszone_order_success": "Ihre DNS-Zone wurde aktiviert",
+  "domains_newdnszone_order_error": "Bei der Bestellung der DNS-Zone ist ein Fehler aufgetreten:  {{ message }}"
+}

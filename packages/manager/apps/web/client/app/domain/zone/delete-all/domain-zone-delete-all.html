@@ -5,30 +5,23 @@
         data-wizard-on-finish="deleteAllZone"
         data-wizard-title="'domain_tab_ZONE_default_delete_all' | translate"
     >
-        <div
-            data-wizard-step
-            data-wizard-step-valid="!ctrl.loading && ctrl.canDeleteAllZone"
-        >
+        <div data-wizard-step data-wizard-step-valid="!ctrl.loading">
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
 
             <div data-ng-if="!ctrl.loading">
+                <p
+                    data-translate="domain_configuration_zonedns_delete_all_question"
+                ></p>
                 <div
-                    class="alert alert-warning"
+                    class="alert alert-warning mt-5"
                     role="alert"
-                    data-translate="domain_configuration_zonedns_delete_all_blocked"
-                    data-ng-if="!ctrl.canDeleteAllZone"
+                    data-translate="domain_configuration_zonedns_delete_all_warning"
                 ></div>
-
-                <div data-ng-if="ctrl.canDeleteAllZone">
-                    <p
-                        data-translate="domain_configuration_zonedns_delete_all_question"
-                    ></p>
-                    <div
-                        class="alert alert-warning mt-5"
-                        role="alert"
-                        data-translate="domain_configuration_zonedns_delete_all_warning"
-                    ></div>
-                </div>
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-translate="domain_configuration_zonedns_delete_all_propagation_info"
+                ></div>
             </div>
         </div>
     </div>

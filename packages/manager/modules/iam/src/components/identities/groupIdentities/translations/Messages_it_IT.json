@@ -1,0 +1,12 @@
+{
+  "iam_identities_groups_title": "Gruppi di utenti",
+  "iam_identities_groups_empty": "Nessun gruppo utente",
+  "iam_identities_groups_group": "Nome",
+  "iam_identities_groups_role": "Ruolo",
+  "iam_identities_groups_description": "Descrizione",
+  "iam_identities_groups_add": "Aggiungi gruppi di utenti",
+  "iam_identities_groups_modal_title": "Aggiungi gruppi di utenti",
+  "iam_identities_groups_modal_empty_state": "Nessun gruppo di utenti da aggiungere",
+  "iam_identities_groups_modal_search_placeholder": "Cercare per nome",
+  "iam_identities_groups_load_error": "Si è verificato un errore durante il recupero dei gruppi di utenti: {{ message }}"
+}

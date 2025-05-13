@@ -46,7 +46,7 @@
                 data-rows="AbbreviatedNumberModal.sample"
                 data-ng-if="AbbreviatedNumberModal.sample.length"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title="'telephony_abbreviated_numbers_id' | translate"
                     data-property="abbreviatedNumber.value"
                 >
@@ -60,8 +60,8 @@
                         data-ng-class="{'text-danger': !$row.abbreviatedNumber.isValid}"
                         data-ng-bind="$row.abbreviatedNumber.value"
                     ></del>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_abbreviated_numbers_number' | translate"
                     data-property="destinationNumber.value"
                 >
@@ -75,8 +75,8 @@
                         data-ng-class="{'text-danger': !$row.destinationNumber.isValid}"
                         data-ng-bind="$row.id.value"
                     ></del>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_abbreviated_numbers_name' | translate"
                     data-property="name.value"
                 >
@@ -90,8 +90,8 @@
                         data-ng-class="{'text-danger': !$row.name.isValid}"
                         data-ng-bind="$row.name.value"
                     ></del>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_abbreviated_numbers_surname' | translate"
                     data-property="surname.value"
                 >
@@ -105,7 +105,7 @@
                         data-ng-class="{'text-danger': !$row.surname.isValid}"
                         data-ng-bind="$row.surname.value"
                     ></del>
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
         </div>
     </div>

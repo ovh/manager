@@ -1,0 +1,6 @@
+{
+  "inputNodeLabel": "Anzahl der Cluster-Nodes auswählen",
+  "inputStorageLabel": "Zusätzlichen Cluster-Speicher auswählen",
+  "inputStorageNoneValue": "Keine",
+  "storageFlavorDescription": "Ihr Node-Modell {{flavor}} umfasst {{includedStorage}} Storage, dem Sie bis zu {{maxAdditionalStorage}} zusätzlichen Storage in {{step}} Schritten hinzufügen können."
+}

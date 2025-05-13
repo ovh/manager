@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_title": "Abonnement-Regler zurücksetzen",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_submit_label": "Bestätigen",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_cancel_label": "Abbrechen",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_content": "Möchten Sie den Regler des Abonnements {{subscription}} zurücksetzen?",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_success_message": "Der Regler des Abonnements {{subscription}} wurde zurückgesetzt.",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_error_reset_cursor": "Beim Zurücksetzen des Reglers des Abonnements {{subscription}} ist ein Fehler aufgetreten: {{ message }}."
-}

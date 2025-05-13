@@ -1,0 +1,21 @@
+{
+  "dedicatedCloudDashboardTilesOptionsOrderConfigureAccess_stepper_header": "Configurar o acesso",
+  "dedicatedCloud_servicePack_requiredConfiguration_header": "A política de acesso ao vCenter deve ter um acesso restrito e possuir, pelo menos, um endereço IP autorizado",
+  "dedicatedCloud_servicePack_requiredConfiguration_criterias_accessPolicy_definition": "Política de acesso ao vCenter: {{accessPolicyValue}}.",
+  "dedicatedCloud_servicePack_requiredConfiguration_criterias_accessPolicy_value_OPEN": "aberto",
+  "dedicatedCloud_servicePack_requiredConfiguration_criterias_accessPolicy_value_FILTERED": "restrito",
+  "dedicatedCloud_servicePack_requiredConfiguration_criterias_numberOfAllowedIPAndBlocks_definition": "Número de endereços IP e blocos autorizados para se ligarem: {{numberOfAllowedIPsAndBlocks}}.",
+  "dedicatedCloud_servicePack_requiredConfiguration_ipTable_ipColumn": "Endereço IP",
+  "dedicatedCloud_servicePack_requiredConfiguration_descriptionTable_descriptionColumn": "Descrição",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_accessPolicy_error_EPCC": "A política de acesso do seu Private Cloud não é restrita",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_numberOfAllowedIPAndBlocks_error_EPCC": "A política de acesso do seu Private Cloud não tem nenhum endereço IP autorizado",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_both_error_EPCC": "A política de acesso do seu Private Cloud não é restrita e não possui nenhum endereço IP autorizado.",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_1": "Configure estes elementos no separador ",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_security": "Segurança",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_2": " antes de continuar",
+  "dedicatedCloud_servicePack_requiredConfiguration_previousButton": "Anterior",
+  "dedicatedCloud_servicePack_requiredConfiguration_nextButton": "Seguinte",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_accessPolicy_error_MBM": "A política de acesso do seu serviço Essentials não é restrita",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_numberOfAllowedIPAndBlocks_error_MBM": "A política de acesso do seu serviço Essentials não tem nenhum endereço IP autorizado",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_both_error_MBM": "A política de acesso do seu serviço Essentials não é restrita e não possui nenhum endereço IP autorizado."
+}

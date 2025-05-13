@@ -1,107 +1,123 @@
 import set from 'lodash/set';
 
-export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro) => {
-  $scope.aliasMaxLimit = EmailPro.aliasMaxLimit;
-  $scope.getAliasesParams = {
-    pageSize: null,
-    offset: null,
-  };
+export default class {
+  /* @ngInject */
+  constructor($scope, $stateParams, $translate, EmailPro, goToAccounts) {
+    this.$scope = $scope;
+    this.$stateParams = $stateParams;
+    this.$translate = $translate;
+    this.EmailPro = EmailPro;
+    this.goToAccounts = goToAccounts;
 
-  $scope.$on(EmailPro.events.accountsChanged, () => $scope.refreshList());
+    this.$scope.aliasMaxLimit = this.EmailPro.aliasMaxLimit;
+    this.$scope.getAliasesParams = {
+      pageSize: null,
+      offset: null,
+    };
+  }
 
-  $scope.getAliases = function getAliases({ pageSize, offset }) {
-    $scope.getAliasesParams.pageSize = pageSize;
-    $scope.getAliasesParams.offset = offset;
-    if ($scope.selectedAccount) {
-      return EmailPro.getAliases(
-        $stateParams.productId,
-        $scope.selectedAccount.primaryEmailAddress,
-        pageSize,
-        offset - 1,
+  $onInit() {
+    this.$scope.$on(this.EmailPro.events.accountsChanged, () =>
+      this.$scope.refreshList(),
+    );
+
+    this.$scope.getAliases = ({ pageSize, offset }) => {
+      this.$scope.getAliasesParams.pageSize = pageSize;
+      this.$scope.getAliasesParams.offset = offset;
+      if (this.$stateParams.emailAddress) {
+        return this.EmailPro.getAliases(
+          this.$stateParams.productId,
+          this.$stateParams.emailAddress,
+          pageSize,
+          offset - 1,
+        )
+          .then((data) => {
+            this.$scope.aliases = data.list.results;
+            return {
+              data: data.list.results,
+              meta: {
+                totalCount: data.count,
+              },
+            };
+          })
+          .catch((failure) => {
+            set(failure, 'data.type', failure.data.type || 'ERROR');
+            this.$scope.setMessage(
+              this.$translate.instant('emailpro_tab_ALIAS_error_message'),
+              failure.data,
+            );
+          });
+      }
+
+      return this.goToAccounts();
+    };
+
+    this.$scope.refreshList = () => {
+      this.EmailPro.getAliases(
+        this.$stateParams.productId,
+        this.$scope.selectedAccount.primaryEmailAddress,
+        this.$scope.getAliasesParams.pageSize,
+        this.$scope.getAliasesParams.offset - 1,
       )
         .then((data) => {
-          $scope.aliases = data.list.results;
-          return {
-            data: data.list.results,
-            meta: {
-              totalCount: data.count,
-            },
-          };
+          for (let i = 0; i < data.list.results.length; i += 1) {
+            this.aliases.splice(i, 1, data.list.results[i]);
+          }
+          for (
+            let i = data.list.results.length;
+            i < this.aliases.length;
+            i += 1
+          ) {
+            this.aliases.splice(i, 1);
+          }
         })
         .catch((failure) => {
           set(failure, 'data.type', failure.data.type || 'ERROR');
-          $scope.setMessage(
-            $translate.instant('emailpro_tab_ALIAS_error_message'),
+          this.$scope.setMessage(
+            this.$translate.instant('emailpro_tab_ALIAS_error_message'),
             failure.data,
           );
         });
-    }
-    return null;
-  };
+    };
 
-  $scope.refreshList = function refreshList() {
-    EmailPro.getAliases(
-      $stateParams.productId,
-      $scope.selectedAccount.primaryEmailAddress,
-      $scope.getAliasesParams.pageSize,
-      $scope.getAliasesParams.offset - 1,
-    )
-      .then((data) => {
-        for (let i = 0; i < data.list.results.length; i += 1) {
-          this.aliases.splice(i, 1, data.list.results[i]);
-        }
-        for (
-          let i = data.list.results.length;
-          i < this.aliases.length;
-          i += 1
-        ) {
-          this.aliases.splice(i, 1);
-        }
-      })
-      .catch((failure) => {
-        set(failure, 'data.type', failure.data.type || 'ERROR');
-        $scope.setMessage(
-          $translate.instant('emailpro_tab_ALIAS_error_message'),
-          failure.data,
+    this.$scope.hideAliases = () => {
+      this.goToAccounts();
+    };
+
+    this.$scope.deleteAlias = (alias) => {
+      if (!alias.taskPendingId) {
+        this.$scope.setAction(
+          'emailpro/account/alias/remove/emailpro-account-alias-remove',
+          {
+            account: this.$scope.selectedAccount,
+            alias,
+          },
         );
-      });
-  };
+      }
+    };
 
-  $scope.hideAliases = function hideAliases() {
-    $scope.$emit('showAccounts');
-  };
+    this.$scope.addAccountAlias = () => {
+      if (
+        this.$scope.selectedAccount &&
+        this.$scope.selectedAccount.aliases <= this.$scope.aliasMaxLimit
+      ) {
+        this.$scope.setAction(
+          'emailpro/account/alias/add/emailpro-account-alias-add',
+          this.$scope.selectedAccount,
+        );
+      }
+    };
 
-  $scope.deleteAlias = function deleteAlias(alias) {
-    if (!alias.taskPendingId) {
-      $scope.setAction(
-        'emailpro/account/alias/remove/emailpro-account-alias-remove',
-        {
-          account: $scope.selectedAccount,
-          alias,
-        },
-      );
-    }
-  };
-
-  $scope.addAccountAlias = function addAccountAlias() {
-    if (
-      $scope.selectedAccount &&
-      $scope.selectedAccount.aliases <= $scope.aliasMaxLimit
-    ) {
-      $scope.setAction(
-        'emailpro/account/alias/add/emailpro-account-alias-add',
-        $scope.selectedAccount,
-      );
-    }
-  };
-
-  $scope.getAddAliasTooltip = function getAddAliasTooltip() {
-    if (
-      $scope.selectedAccount &&
-      $scope.selectedAccount.aliases >= $scope.aliasMaxLimit
-    ) {
-      return $translate.instant('emailpro_tab_ALIAS_add_alias_limit_tooltip');
-    }
-    return null;
-  };
-};
+    this.$scope.getAddAliasTooltip = () => {
+      if (
+        this.$scope.selectedAccount &&
+        this.$scope.selectedAccount.aliases >= this.$scope.aliasMaxLimit
+      ) {
+        return this.$translate.instant(
+          'emailpro_tab_ALIAS_add_alias_limit_tooltip',
+        );
+      }
+      return null;
+    };
+  }
+}

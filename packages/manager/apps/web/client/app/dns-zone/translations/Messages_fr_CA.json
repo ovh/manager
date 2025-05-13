@@ -1,3 +1,26 @@
 {
-  "domains_newdnszone_order_step2_description_INSTALLATION": "Installation d’une zone DNS"
+  "zones_title": "Zones DNS",
+  "zones_order": "Commander",
+  "zones_domain_name": "Nom du domaine",
+  "zones_enabled": "Activé",
+  "zones_disabled": "Désactivé",
+  "base_dns_zone": "Zone DNS de base",
+  "modified_dns_zone": "Zone DNS modifiée",
+  "modified": "Modifié",
+  "dashboard_history_creation_date": "Date de création",
+  "dashboard_history_view_zone": "Voir",
+  "dashboard_history_current_zone_date": "{{creationDate}} (actuelle)",
+  "dashboard_history_download": "Télécharger",
+  "dashboard_history_error": "Erreur de traitement des données: {{message}}.",
+  "dashboard_history_restore": "Restaurer",
+  "dashboard_history_popup_title": "Données de la zone DNS",
+  "dashboard_history_close_popup": "Fermer",
+  "dashboard_history_compare_button_label": "Comparer les versions",
+  "dashboard_history_restoration_successful": "La restauration de votre zone DNS est en cours. Vous pourrez suivre sa progression dans l'onglet \"Tâches récentes\". La propagation sera effective selon la durée du TTL (maximum 24h).",
+  "dashboard_history_restore_modal_title": "Restaurer ma zone DNS",
+  "dashboard_history_restore_modal_content": "Souhaitez-vous restaurer la sauvegarde du {{date}} ?",
+  "dashboard_history_restore_modal_primary_label": "Restaurer",
+  "dashboard_history_restore_modal_secondary_label": "Annuler",
+  "dashboard_history_restore_modal_warning_message": "Attention! La zone actuelle sera supprimée. La nouvelle zone sélectionnée sera restaurée",
+  "dashboard_history_restore_modal_info_message": "La réinitialisation dans la zone DNS prendra quelques instants, mais veuillez prendre en compte le temps de propagation (maximum 24h)."
 }

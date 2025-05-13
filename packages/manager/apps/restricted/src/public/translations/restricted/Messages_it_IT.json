@@ -1,0 +1,18 @@
+{
+  "restricted_account_logout": "Esci",
+  "restricted_account_method_user": "Connesso come sub-utente",
+  "restricted_error_default": "L’accesso allo Spazio Cliente OVHcloud richiede un numero minimo di diritti. Contattare l'amministratore.",
+  "restricted_error_title": "Accesso limitato",
+  "restricted_guide_card_control-panel-access_description": "Come assegnare i diritti minimi necessari per accedere allo Spazio Cliente",
+  "restricted_guide_card_control-panel-access_title": "Accedi allo Spazio Cliente OVHcloud con l’IAM",
+  "restricted_guide_card_policies-ui_description": "Come assegnare diritti di accesso specifici agli utenti da un account OVHcloud",
+  "restricted_guide_card_policies-ui_title": "Crea policy IAM dallo Spazio Cliente",
+  "restricted_guide_card_policies-api_description": "Come assegnare diritti di accesso specifici agli utenti di un account OVHcloud",
+  "restricted_guide_card_policies-api_title": "Crea policy IAM tramite API",
+  "restricted_guide_card_more": "Scopri di più",
+  "restricted_guide_card_title": "Tutorial",
+  "restricted_language_change": "Modifica la lingua dell’interfaccia",
+  "restricted_navbar_account": "Il mio account",
+  "restricted_error_default_start": "Per accedere allo Spazio Cliente di OVHcloud è necessario disporre di {{count}} permessi sul tuo account, come descritto nella seguente guida:",
+  "restricted_error_default_end": "Contatta l'amministratore per aggiungere questi permessi."
+}

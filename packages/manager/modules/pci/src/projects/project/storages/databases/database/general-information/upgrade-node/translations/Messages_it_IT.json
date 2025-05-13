@@ -1,0 +1,13 @@
+{
+  "pci_databases_general_information_upgrade_node_confirm": "Migliora il tuo modello di nodo",
+  "pci_databases_general_information_upgrade_node": "Cambia modello di nodo",
+  "pci_databases_general_information_upgrade_node_back": "Informazione",
+  "pci_databases_general_information_upgrade_node_cancel": "Annulla",
+  "pci_databases_general_information_upgrade_node_description": "Stai utilizzando il modello di nodo {{currentNodeModel}}. Per migliorarlo, clicca sul pulsante \"Migliora il mio modello di nodo\" qui sotto.",
+  "pci_databases_general_information_upgrade_node_warning": "Una volta apportata la modifica, non sarà possibile ritornare a un modello inferiore.",
+  "pci_databases_general_information_upgrade_node_label": "Modello",
+  "pci_databases_general_information_upgrade_node_placeholder": "Scegli un modello di nodo",
+  "pci_databases_general_information_upgrade_node_success": "La modifica del modello di nodo è stata presa in carico. Sarà effettiva entro pochi minuti.",
+  "pci_databases_general_information_upgrade_node_error": "La modifica del modello di nodo non è stata effettuata correttamente: {{ message }}",
+  "pci_databases_general_information_upgrade_node_processing": "Miglioramento del modello di nodo..."
+}

@@ -1,0 +1,8 @@
+{
+  "iam_logs_label": "Identity Logs",
+  "iam_audit_logs_label": "Logs Audit",
+  "iam_activity_logs_label": "Logs Activity",
+  "iam_access_policy_logs_label": "Logs der Zugriffsrichtlinien",
+  "iam_audit_logs_description_default": "Im Folgenden finden Sie die Logs in Echtzeit zu den Sicherheitsaktionen Ihres Kunden-Accounts: Nutzeranmeldevorgänge, Kennwortänderungen, Erstellung und Änderung von Usern und User-Gruppen.",
+  "iam_access_policy_logs_description_default": "Im Folgenden finden Sie die Logs in Echtzeit zur Bewertung der Zugriffsrichtlinien während der Aktionen an den Ressourcen Ihres Accounts."
+}

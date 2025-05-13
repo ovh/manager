@@ -2,17 +2,21 @@ import angular from 'angular';
 
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
+import '@ovh-ux/ng-ovh-feature-flipping';
+import '@ovh-ux/ui-kit';
 import 'angular-translate';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import trustedNic from '@ovh-ux/manager-trusted-nic';
 
 import guidesHeader from '../components/project/guides-header';
 
 import creatingProject from './creating';
+import updatingProject from './updating';
 import newProject from './new';
 import onboarding from './onboarding';
 import project from './project';
 import remove from './remove';
+import quotaExceedError from './quota-exceed-error';
 
 import component from './projects.component';
 import routing from './projects.routing';
@@ -22,16 +26,20 @@ const moduleName = 'ovhManagerPciProjects';
 
 angular
   .module(moduleName, [
+    'ngOvhFeatureFlipping',
     'oui',
-    'ovhManagerCore',
     'ovh-api-services',
+    'ovhManagerCore',
     'pascalprecht.translate',
+    trustedNic,
     guidesHeader,
     creatingProject,
+    updatingProject,
     newProject,
     onboarding,
     project,
     remove,
+    quotaExceedError,
   ])
   .config(routing)
   .component('pciProjects', component)

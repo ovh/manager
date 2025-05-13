@@ -1,387 +1,380 @@
 <div class="overthebox-remote">
-    <div class="telecom-section-content">
-        <tuc-toast-message></tuc-toast-message>
+    <tuc-toast-message></tuc-toast-message>
 
-        <div class="widget-presentation">
-            <h2
-                class="widget-presentation-title"
-                data-translate="overTheBox_remote_configure"
-            ></h2>
+    <div class="widget-presentation">
+        <h2
+            class="widget-presentation-title"
+            data-translate="overTheBox_remote_configure"
+        ></h2>
 
-            <!-- REMOTES LIST -->
-            <div class="table-responsive">
-                <table
-                    class="table"
-                    data-ng-class="{
-                           'table-hover table-striped': OverTheBoxRemote.remotes.length > 1
+        <!-- REMOTES LIST -->
+        <div class="table-responsive">
+            <table
+                class="table"
+                data-ng-class="{
+                           'table-hover table-striped': $ctrl.remotes.length > 1
                        }"
+            >
+                <thead>
+                    <tr>
+                        <th
+                            scope="col"
+                            data-translate="overTheBox_remote_table_id"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="overTheBox_remote_table_status"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="overTheBox_remote_table_authorized_by"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="overTheBox_remote_table_expire"
+                        ></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody data-ng-if="$ctrl.remotes.length === 0">
+                    <tr data-ng-show="$ctrl.loading">
+                        <td colspan="5" class="text-center">
+                            <oui-spinner data-size="s"></oui-spinner>
+                        </td>
+                    </tr>
+                    <tr data-ng-hide="$ctrl.loading">
+                        <td
+                            class="text-center"
+                            colspan="5"
+                            data-translate="overTheBox_remote_table_empty"
+                        ></td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-repeat="remote in $ctrl.paginatedRemotes track by remote.remoteAccessId"
                 >
-                    <thead>
-                        <tr>
-                            <th
-                                scope="col"
-                                data-translate="overTheBox_remote_table_id"
-                            ></th>
-                            <th
-                                scope="col"
-                                data-translate="overTheBox_remote_table_status"
-                            ></th>
-                            <th
-                                scope="col"
-                                data-translate="overTheBox_remote_table_authorized_by"
-                            ></th>
-                            <th
-                                scope="col"
-                                data-translate="overTheBox_remote_table_expire"
-                            ></th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody data-ng-if="OverTheBoxRemote.remotes.length === 0">
-                        <tr data-ng-show="OverTheBoxRemote.loading">
-                            <td colspan="5" class="text-center">
-                                <oui-spinner data-size="s"></oui-spinner>
-                            </td>
-                        </tr>
-                        <tr data-ng-hide="OverTheBoxRemote.loading">
-                            <td
-                                class="text-center"
-                                colspan="5"
-                                data-translate="overTheBox_remote_table_empty"
-                            ></td>
-                        </tr>
-                    </tbody>
-                    <tbody
-                        data-ng-repeat="remote in OverTheBoxRemote.paginatedRemotes track by remote.remoteAccessId"
-                    >
-                        <tr>
-                            <td>
-                                <button
-                                    type="button"
-                                    class="btn btn-link"
-                                    data-ng-click="remote.show = !remote.show"
-                                >
-                                    <i
-                                        class="glyphicon"
-                                        data-ng-class="{
+                    <tr>
+                        <td>
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                data-ng-click="remote.show = !remote.show"
+                            >
+                                <i
+                                    class="glyphicon"
+                                    data-ng-class="{
                                         'glyphicon-chevron-down':remote.show, 'glyphicon-chevron-right': !remote.show
                                     }"
-                                    ></i>
-                                    <span
-                                        data-ng-bind="remote.remoteAccessId"
-                                    ></span>
-                                </button>
-                            </td>
-                            <td>
-                                <oui-spinner
-                                    class="mr-2"
-                                    data-ng-show="remote.status !== 'active'"
-                                    data-size="s"
-                                >
-                                </oui-spinner>
+                                ></i>
                                 <span
-                                    data-ng-bind="'overTheBox_status_' + remote.status | translate"
+                                    data-ng-bind="remote.remoteAccessId"
                                 ></span>
-                            </td>
-                            <td data-ng-bind="remote.authorizedBy"></td>
-                            <td
-                                data-ng-bind="remote.expirationDate | date:'dd/MM/yyyy'"
-                            ></td>
-                            <td>
-                                <button
-                                    type="button"
-                                    class="btn btn-link"
-                                    data-ng-if="!remote.accepted"
-                                    data-ng-disabled="remote.busy"
-                                    data-ng-really-click="OverTheBoxRemote.authorize(remote)"
-                                    data-ng-really-message="{{ 'overTheBox_remote_authorize_confirm' | translate: {port:remote.exposedPort} }}"
-                                    data-ng-really-confirm="{{ 'ok' | translate }}"
-                                    data-ng-really-cancel="{{ 'cancel' | translate }}"
-                                    data-ng-really-window-class="revert-really-buttons"
-                                    data-uib-tooltip="{{ 'overTheBox_remote_authorize_tooltip' | translate: {port:remote.exposedPort} }}"
-                                >
-                                    <i class="ovh-font ovh-font-key"></i>
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-link"
-                                    data-ng-hide="remote.status !== 'active'"
-                                    data-ng-disabled="remote.busy"
-                                    data-ng-really-click="OverTheBoxRemote.remove(remote)"
-                                    data-ng-really-message="{{ 'overTheBox_remote_authorize_delete_confirm' | translate: {port:remote.exposedPort, remoteAccessId:remote.remoteAccessId} }}"
-                                    data-ng-really-confirm="{{ 'ok' | translate }}"
-                                    data-ng-really-cancel="{{ 'cancel' | translate }}"
-                                    data-ng-really-window-class="revert-really-buttons"
-                                    data-uib-tooltip="{{ 'overTheBox_remote_authorize_delete_tooltip' | translate: {port:remote.exposedPort} }}"
-                                >
-                                    <i class="ovh-font ovh-font-bin"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr data-ng-show="remote.show">
-                            <td colspan="5" class="ml-3 detail">
-                                <div class="row ml-3">
-                                    <div
-                                        class="col-md-3 service-title"
-                                        data-translate="overTheBox_remote_detail_ip"
-                                    ></div>
-                                    <div
-                                        class="col-md-8 service-item"
-                                        data-ng-bind="remote.remoteUserInfos.ip"
-                                    ></div>
-                                </div>
-                                <div class="row ml-3">
-                                    <div
-                                        class="col-md-3 service-title"
-                                        data-translate="overTheBox_remote_detail_port"
-                                    ></div>
-                                    <div
-                                        class="col-md-8 service-item"
-                                        data-ng-bind="remote.exposedPort"
-                                    ></div>
-                                </div>
-                                <div class="row ml-3">
-                                    <div
-                                        class="col-md-3 service-title"
-                                        data-translate="overTheBox_remote_detail_public_key"
-                                    ></div>
-                                    <div
-                                        class="col-md-8 service-item"
-                                        data-ng-bind="remote.remoteUserInfos.publicKey | limitTo:20"
-                                    ></div>
-                                </div>
-                                <div class="row ml-3">
-                                    <div
-                                        class="col-md-3 service-title"
-                                        data-translate="overTheBox_remote_connection"
-                                    ></div>
-                                    <div
-                                        class="col-md-8 service-item"
-                                        data-ng-show="remote.connectionInfos.ip"
-                                    >
-                                        <pre
-                                            data-ng-if="remote.exposedPort===22"
-                                            data-ng-bind="OverTheBoxRemote.getSshConnectionHelp(remote)"
-                                        ></pre>
-                                        <a
-                                            data-ng-if="remote.exposedPort===443"
-                                            href="{{OverTheBoxRemote.getHttpConnectionHelp(remote)}}"
-                                            target="_blank"
-                                            data-ng-bind="OverTheBoxRemote.getHttpConnectionHelp(remote)"
-                                        ></a>
-                                        <span
-                                            data-ng-if="(remote.exposedPort!==443) && (remote.exposedPort!==22)"
-                                        >
-                                            {{remote.connectionInfos.ip}}
-                                            <strong>/</strong>
-                                            {{remote.connectionInfos.port}}
-                                        </span>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div
-                class="mt-2"
-                data-ng-show="OverTheBoxRemote.remotes > OverTheBoxRemote.paginatedRemotes"
-                data-pagination-front
-                data-go-to-page="false"
-                data-items="OverTheBoxRemote.remotes"
-                data-paginated-items="OverTheBoxRemote.paginatedRemotes"
-                data-items-per-page="OverTheBoxRemote.filter.perPage"
-                data-page-placeholder="{{ 'common_pagination_go_to_page' | translate }}"
-                data-item-per-page-placeholder="{{'common_pagination_show_by_page' |translate }}"
-            ></div>
-        </div>
-
-        <!-- ADD remote -->
-        <div class="widget-presentation">
-            <h2
-                class="widget-presentation-title"
-                data-translate="overTheBox_remote_add"
-            ></h2>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <form
-                        name="overTheBoxAdd"
-                        data-ng-submit="OverTheBoxRemote.addRemote()"
-                    >
-                        <div
-                            class="form-group"
-                            data-ng-class="{
-                                  'has-error': overTheBoxAdd.allowedIp.$touched && overTheBoxAdd.allowedIp.$invalid
-                              }"
-                        >
-                            <label
-                                for="allowedIp"
-                                class="control-label"
-                                data-translate="overTheBox_remote_add_allowedIp"
-                            >
-                            </label>
-                            <input
-                                name="allowedIp"
-                                class="form-control"
-                                id="allowedIp"
-                                type="text"
-                                data-ng-model="OverTheBoxRemote.newRemote.allowedIp"
-                                data-ui-validate="'OverTheBoxRemote.isIpValid($value) || !$value'"
-                                data-maxlength="50"
-                                data-ng-disabled="OverTheBoxRemote.adding"
-                                data-translate-attr="{ 'placeholder': 'overTheBox_remote_placeholder_ip' }"
-                            />
-                            <span
-                                class="help-block"
-                                role="alert"
-                                data-ng-if="overTheBoxAdd.allowedIp.$touched"
-                                data-ng-messages="overTheBoxAdd.allowedIp.$error"
-                            >
-                                <span
-                                    data-ng-message="validator"
-                                    data-translate="overTheBox_remote_add_allowedIp_error"
-                                >
-                                </span>
-                            </span>
-                        </div>
-
-                        <div
-                            class="form-group"
-                            data-ng-class="{
-                                 'has-error': overTheBoxAdd.exposedPort.$touched && overTheBoxAdd.exposedPort.$invalid
-                             }"
-                        >
-                            <label
-                                for="exposedPort"
-                                class="control-label"
-                                data-translate="overTheBox_remote_add_exposedPort"
-                            >
-                            </label>
-                            <input
-                                name="exposedPort"
-                                class="form-control"
-                                id="exposedPort"
-                                type="number"
-                                data-ng-model="OverTheBoxRemote.newRemote.exposedPort"
-                                data-required
-                                data-ui-validate="$value && OverTheBoxRemote.validator.isInt($value)"
-                                data-ng-disabled="OverTheBoxRemote.adding"
-                                data-maxlength="50"
-                            />
-                            <span
-                                class="help-block"
-                                role="alert"
-                                data-ng-if="overTheBoxAdd.exposedPort.$touched"
-                                data-ng-messages="overTheBoxAdd.exposedPort.$error"
-                            >
-                                <span
-                                    data-ng-message="validator"
-                                    data-translate="overTheBox_remote_add_exposedPort_error"
-                                >
-                                </span>
-                            </span>
-                        </div>
-
-                        <div
-                            class="form-group"
-                            data-ng-class="{
-                                 'has-error': overTheBoxAdd.expirationDate.$touched && overTheBoxAdd.expirationDate.$invalid
-                             }"
-                        >
-                            <label
-                                for="expirationDate"
-                                class="control-label"
-                                data-translate="overTheBox_remote_add_expirationDate"
-                            >
-                            </label>
-                            <div class="input-group date-picker-input">
-                                <input
-                                    name="expirationDate"
-                                    class="form-control"
-                                    data-uib-datepicker-popup="dd/MM/yyyy"
-                                    data-datepicker-options="OverTheBoxRemote.datepickerOptions"
-                                    data-ng-model="OverTheBoxRemote.newRemote.expirationDate"
-                                    data-ng-focus="OverTheBoxRemote.openDatePicker($event)"
-                                    data-ui-validate="{date: 'OverTheBoxRemote.validator.isDate($value) || !$value', future: 'OverTheBoxRemote.isInFuture($value)'}"
-                                    data-ng-disabled="OverTheBoxRemote.adding"
-                                    data-is-open="OverTheBoxRemote.pickerOpened"
-                                    data-show-button-bar="false"
-                                    data-current-text="{{:: 'today' | translate }}"
-                                    data-clear-text="{{:: 'reset' | translate }}"
-                                    data-close-text="{{:: 'close' | translate }}"
-                                    placeholder="{{ OverTheBoxRemote.datepickerOptions.minDate | date:'dd/MM/yyyy'}}"
-                                />
-                                <span class="input-group-btn">
-                                    <button
-                                        type="button"
-                                        class="btn btn-link btn-xs"
-                                        data-ng-click="OverTheBoxRemote.openDatePicker($event)"
-                                    >
-                                        <i
-                                            class="ovh-font ovh-font-scheduled"
-                                        ></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <span
-                                class="help-block"
-                                role="alert"
-                                data-ng-if="overTheBoxAdd.expirationDate.$touched"
-                                data-ng-messages="overTheBoxAdd.expirationDate.$error"
-                            >
-                                <span
-                                    data-ng-message="date"
-                                    data-translate="overTheBox_remote_add_expirationDate_error"
-                                >
-                                </span>
-                                <span
-                                    data-ng-message="future"
-                                    data-translate="overTheBox_remote_add_expirationDate_error_future"
-                                >
-                                </span>
-                            </span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="publicKey" class="control-label">
-                                <a
-                                    href="{{OverTheBoxRemote.publicKeyHelperUrl}}"
-                                    target="_blank"
-                                    rel="noopener"
-                                    data-uib-tooltip="{{ 'overTheBox_remote_public_key_tooltip' | translate }}"
-                                    data-translate="overTheBox_remote_add_publicKey"
-                                >
-                                </a>
-                            </label>
-                            <textarea
-                                class="form-control"
-                                id="publicKey"
-                                name="publicKey"
-                                placeholder="ssh-rsa…"
-                                data-ng-model="OverTheBoxRemote.newRemote.publicKey"
-                                data-ng-disabled="OverTheBoxRemote.adding"
-                            >
-                            </textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <button
-                                type="submit"
-                                class="btn btn-primary"
-                                data-ng-disabled="OverTheBoxRemote.adding || overTheBoxAdd.$invalid"
-                                data-translate="submit"
-                            ></button>
+                            </button>
+                        </td>
+                        <td>
                             <oui-spinner
-                                class="ml-2"
-                                data-ng-show="FaxConfCtrl.loading"
+                                class="mr-2"
+                                data-ng-show="remote.status !== 'active'"
                                 data-size="s"
                             >
                             </oui-spinner>
+                            <span
+                                data-ng-bind="'overTheBox_status_' + remote.status | translate"
+                            ></span>
+                        </td>
+                        <td data-ng-bind="remote.authorizedBy"></td>
+                        <td
+                            data-ng-bind="remote.expirationDate | date:'dd/MM/yyyy'"
+                        ></td>
+                        <td>
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                data-ng-if="!remote.accepted"
+                                data-ng-disabled="remote.busy"
+                                data-ng-really-click="$ctrl.authorize(remote)"
+                                data-ng-really-message="{{ 'overTheBox_remote_authorize_confirm' | translate: {port:remote.exposedPort} }}"
+                                data-ng-really-confirm="{{ 'ok' | translate }}"
+                                data-ng-really-cancel="{{ 'cancel' | translate }}"
+                                data-ng-really-window-class="revert-really-buttons"
+                                data-uib-tooltip="{{ 'overTheBox_remote_authorize_tooltip' | translate: {port:remote.exposedPort} }}"
+                            >
+                                <i class="ovh-font ovh-font-key"></i>
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                data-ng-hide="remote.status !== 'active'"
+                                data-ng-disabled="remote.busy"
+                                data-ng-really-click="$ctrl.remove(remote)"
+                                data-ng-really-message="{{ 'overTheBox_remote_authorize_delete_confirm' | translate: {port:remote.exposedPort, remoteAccessId:remote.remoteAccessId} }}"
+                                data-ng-really-confirm="{{ 'ok' | translate }}"
+                                data-ng-really-cancel="{{ 'cancel' | translate }}"
+                                data-ng-really-window-class="revert-really-buttons"
+                                data-uib-tooltip="{{ 'overTheBox_remote_authorize_delete_tooltip' | translate: {port:remote.exposedPort} }}"
+                            >
+                                <i class="ovh-font ovh-font-bin"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr data-ng-show="remote.show">
+                        <td colspan="5" class="ml-3 detail">
+                            <div class="row ml-3">
+                                <div
+                                    class="col-md-3 service-title"
+                                    data-translate="overTheBox_remote_detail_ip"
+                                ></div>
+                                <div
+                                    class="col-md-8 service-item"
+                                    data-ng-bind="remote.remoteUserInfos.ip"
+                                ></div>
+                            </div>
+                            <div class="row ml-3">
+                                <div
+                                    class="col-md-3 service-title"
+                                    data-translate="overTheBox_remote_detail_port"
+                                ></div>
+                                <div
+                                    class="col-md-8 service-item"
+                                    data-ng-bind="remote.exposedPort"
+                                ></div>
+                            </div>
+                            <div class="row ml-3">
+                                <div
+                                    class="col-md-3 service-title"
+                                    data-translate="overTheBox_remote_detail_public_key"
+                                ></div>
+                                <div
+                                    class="col-md-8 service-item"
+                                    data-ng-bind="remote.remoteUserInfos.publicKey | limitTo:20"
+                                ></div>
+                            </div>
+                            <div class="row ml-3">
+                                <div
+                                    class="col-md-3 service-title"
+                                    data-translate="overTheBox_remote_connection"
+                                ></div>
+                                <div
+                                    class="col-md-8 service-item"
+                                    data-ng-show="remote.connectionInfos.ip"
+                                >
+                                    <pre
+                                        data-ng-if="remote.exposedPort===22"
+                                        data-ng-bind="$ctrl.constructor.getSshConnectionHelp(remote)"
+                                    ></pre>
+                                    <a
+                                        data-ng-if="remote.exposedPort===443"
+                                        href="{{$ctrl.constructor.getHttpConnectionHelp(remote)}}"
+                                        target="_blank"
+                                        data-ng-bind="$ctrl.constructor.getHttpConnectionHelp(remote)"
+                                    ></a>
+                                    <span
+                                        data-ng-if="(remote.exposedPort!==443) && (remote.exposedPort!==22)"
+                                    >
+                                        {{remote.connectionInfos.ip}}
+                                        <strong>/</strong>
+                                        {{remote.connectionInfos.port}}
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div
+            class="mt-2"
+            data-ng-show="$ctrl.remotes > $ctrl.paginatedRemotes"
+            data-pagination-front
+            data-go-to-page="false"
+            data-items="$ctrl.remotes"
+            data-paginated-items="$ctrl.paginatedRemotes"
+            data-items-per-page="$ctrl.filter.perPage"
+            data-page-placeholder="{{ 'common_pagination_go_to_page' | translate }}"
+            data-item-per-page-placeholder="{{'common_pagination_show_by_page' |translate }}"
+        ></div>
+    </div>
+
+    <!-- ADD remote -->
+    <div class="widget-presentation">
+        <h2
+            class="widget-presentation-title"
+            data-translate="overTheBox_remote_add"
+        ></h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <form name="overTheBoxAdd" data-ng-submit="$ctrl.addRemote()">
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                                  'has-error': overTheBoxAdd.allowedIp.$touched && overTheBoxAdd.allowedIp.$invalid
+                              }"
+                    >
+                        <label
+                            for="allowedIp"
+                            class="control-label"
+                            data-translate="overTheBox_remote_add_allowedIp"
+                        >
+                        </label>
+                        <input
+                            name="allowedIp"
+                            class="form-control"
+                            id="allowedIp"
+                            type="text"
+                            data-ng-model="$ctrl.newRemote.allowedIp"
+                            data-ui-validate="'$ctrl.isIpValid($value) || !$value'"
+                            data-maxlength="50"
+                            data-ng-disabled="$ctrl.adding"
+                            data-translate-attr="{ 'placeholder': 'overTheBox_remote_placeholder_ip' }"
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="overTheBoxAdd.allowedIp.$touched"
+                            data-ng-messages="overTheBoxAdd.allowedIp.$error"
+                        >
+                            <span
+                                data-ng-message="validator"
+                                data-translate="overTheBox_remote_add_allowedIp_error"
+                            >
+                            </span>
+                        </span>
+                    </div>
+
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                                 'has-error': overTheBoxAdd.exposedPort.$touched && overTheBoxAdd.exposedPort.$invalid
+                             }"
+                    >
+                        <label
+                            for="exposedPort"
+                            class="control-label"
+                            data-translate="overTheBox_remote_add_exposedPort"
+                        >
+                        </label>
+                        <input
+                            name="exposedPort"
+                            class="form-control"
+                            id="exposedPort"
+                            type="number"
+                            data-ng-model="$ctrl.newRemote.exposedPort"
+                            data-required
+                            data-ui-validate="$value && $ctrl.validator.isInt($value)"
+                            data-ng-disabled="$ctrl.adding"
+                            data-maxlength="50"
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="overTheBoxAdd.exposedPort.$touched"
+                            data-ng-messages="overTheBoxAdd.exposedPort.$error"
+                        >
+                            <span
+                                data-ng-message="validator"
+                                data-translate="overTheBox_remote_add_exposedPort_error"
+                            >
+                            </span>
+                        </span>
+                    </div>
+
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                                 'has-error': overTheBoxAdd.expirationDate.$touched && overTheBoxAdd.expirationDate.$invalid
+                             }"
+                    >
+                        <label
+                            for="expirationDate"
+                            class="control-label"
+                            data-translate="overTheBox_remote_add_expirationDate"
+                        >
+                        </label>
+                        <div class="input-group date-picker-input">
+                            <input
+                                name="expirationDate"
+                                class="form-control"
+                                data-uib-datepicker-popup="dd/MM/yyyy"
+                                data-datepicker-options="$ctrl.datepickerOptions"
+                                data-ng-model="$ctrl.newRemote.expirationDate"
+                                data-ng-focus="$ctrl.openDatePicker($event)"
+                                data-ui-validate="{date: '$ctrl.validator.isDate($value) || !$value', future: '$ctrl.constructor.isInFuture($value)'}"
+                                data-ng-disabled="$ctrl.adding"
+                                data-is-open="$ctrl.pickerOpened"
+                                data-show-button-bar="false"
+                                data-current-text="{{:: 'today' | translate }}"
+                                data-clear-text="{{:: 'reset' | translate }}"
+                                data-close-text="{{:: 'close' | translate }}"
+                                placeholder="{{ $ctrl.datepickerOptions.minDate | date:'dd/MM/yyyy'}}"
+                            />
+                            <span class="input-group-btn">
+                                <button
+                                    type="button"
+                                    class="btn btn-link btn-xs"
+                                    data-ng-click="$ctrl.openDatePicker($event)"
+                                >
+                                    <i class="ovh-font ovh-font-scheduled"></i>
+                                </button>
+                            </span>
                         </div>
-                    </form>
-                </div>
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="overTheBoxAdd.expirationDate.$touched"
+                            data-ng-messages="overTheBoxAdd.expirationDate.$error"
+                        >
+                            <span
+                                data-ng-message="date"
+                                data-translate="overTheBox_remote_add_expirationDate_error"
+                            >
+                            </span>
+                            <span
+                                data-ng-message="future"
+                                data-translate="overTheBox_remote_add_expirationDate_error_future"
+                            >
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="publicKey" class="control-label">
+                            <a
+                                href="{{$ctrl.publicKeyHelperUrl}}"
+                                target="_blank"
+                                rel="noopener"
+                                data-uib-tooltip="{{ 'overTheBox_remote_public_key_tooltip' | translate }}"
+                                data-translate="overTheBox_remote_add_publicKey"
+                            >
+                            </a>
+                        </label>
+                        <textarea
+                            class="form-control"
+                            id="publicKey"
+                            name="publicKey"
+                            placeholder="ssh-rsa…"
+                            data-ng-model="$ctrl.newRemote.publicKey"
+                            data-ng-disabled="$ctrl.adding"
+                        >
+                        </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            data-ng-disabled="$ctrl.adding || overTheBoxAdd.$invalid"
+                            data-translate="submit"
+                        ></button>
+                        <oui-spinner
+                            class="ml-2"
+                            data-ng-show="FaxConfCtrl.loading"
+                            data-size="s"
+                        >
+                        </oui-spinner>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

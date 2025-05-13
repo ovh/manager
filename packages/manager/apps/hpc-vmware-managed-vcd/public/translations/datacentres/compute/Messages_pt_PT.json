@@ -1,0 +1,8 @@
+{
+  "managed_vcd_vdc_compute_vhost_profile": "Virtual Host",
+  "managed_vcd_vdc_compute_billing": "Faturação",
+  "managed_vcd_vdc_compute_billing_MONTHLY": "Mensal",
+  "managed_vcd_vdc_compute_id": "ID",
+  "managed_vcd_vdc_compute_order_cta": "Encomendar um Virtual Host",
+  "managed_vcd_vdc_compute_special_offer": "Subscrição mensal aplicável até 31 de dezembro de 2025 para qualquer subscrição de recursos adicionais do serviço Managed VCD efetuada até 30 de novembro de 2025. Esta oferta está reservada aos clientes que aceitaram a migração do seu serviço HPC VMware on OVHcloud para o serviço Managed VCD em 2024. Oferta não acumulável com outras ofertas ou descontos. A subscrição estará sujeita à aceitação prévia das condições contratuais da OVHcloud."
+}

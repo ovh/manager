@@ -1,0 +1,12 @@
+<div
+    data-ng-if="!$ctrl.defaultExplanationTextsOptions.paypal"
+    data-ng-include="'ng-ovh-payment-method/paypalExplanationText.html'"
+></div>
+<oui-message
+    data-ng-if="$ctrl.defaultExplanationTextsOptions.paypal"
+    data-type="{{ $ctrl.defaultExplanationTextsOptions.paypal }}"
+>
+    <div
+        data-ng-include="'ng-ovh-payment-method/paypalExplanationText.html'"
+    ></div>
+</oui-message>

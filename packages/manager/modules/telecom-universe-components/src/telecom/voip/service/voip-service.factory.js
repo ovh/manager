@@ -48,6 +48,7 @@ export default () => {
       this.getPublicOffer = options.getPublicOffer;
       this.offers = options.offers;
       this.simultaneousLines = options.simultaneousLines;
+      this.associatedDeviceMac = options.associatedDeviceMac;
     }
 
     /* ===================================
@@ -67,6 +68,26 @@ export default () => {
      */
     getDisplayedName() {
       return this.description || this.serviceName;
+    }
+
+    /**
+     *  @ngdoc method
+     *  @name managerApp.object:TucVoipService#getFullDisplayedName
+     *  @propertyOf managerApp.object:TucVoipService
+     *
+     *  @description
+     *  Get the full displayed name of the service.
+     *
+     *  @return {String} The full displayed name of the service (the service name plus
+     *                   the description if provided. e.g. "0033712345678 (some description)").
+     */
+    getFullDisplayedName() {
+      const { description = '', serviceName = '' } = this;
+      const formattedDescription =
+        description && !this.isDescriptionSameAsServiceName()
+          ? ` (${description})`
+          : '';
+      return serviceName + formattedDescription;
     }
 
     /**
@@ -94,6 +115,22 @@ export default () => {
         this.getPublicOffer.name !== '' &&
         this.getPublicOffer.description !== 'The Service has an error'
       );
+    }
+
+    /**
+     *  @ngdoc method
+     *  @name managerApp.object:TucVoipService#getRawAssociatedDeviceMac
+     *  @propertyOf managerApp.object:TucVoipService
+     *
+     *  @description
+     *  Get the <i>associatedDeviceMac</i> of the service as lower cased raw value, i.e. without ":".
+     *
+     *  @return {String}
+     */
+    getRawAssociatedDeviceMac() {
+      return this.associatedDeviceMac
+        ? this.associatedDeviceMac.replace(/:/g, '').toLowerCase()
+        : '';
     }
 
     /* -----  End of Some Helpers  ------ */

@@ -13,11 +13,7 @@ yarn add @ovh-ux/manager-emailpro
 ```js
 import emailpro from '@ovh-ux/manager-sharepoint';
 
-angular.module('App', [
-  '…',
-  emailpro,
-  '…',
-])
+angular.module('App', ['…', emailpro, '…']);
 ```
 
 ## Contributing

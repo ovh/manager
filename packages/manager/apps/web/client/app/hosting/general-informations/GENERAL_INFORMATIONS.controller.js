@@ -1,9 +1,13 @@
 import head from 'lodash/head';
-import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
 
-import { QUOTA_DECIMAL_PRECISION } from './general-informations.constants';
+import {
+  CDN_ADVANCED,
+  QUOTA_DECIMAL_PRECISION,
+} from './general-informations.constants';
+import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
+import { NEW_OFFERS_NAME } from '../hosting.constants';
 
 export default class HostingGeneralInformationsCtrl {
   /* @ngInject */
@@ -14,13 +18,22 @@ export default class HostingGeneralInformationsCtrl {
     $stateParams,
     $translate,
     atInternet,
+    coreConfig,
+    coreURLBuilder,
     Alerter,
+    boostLink,
+    flushCDNLink,
+    localSEOLink,
+    multisiteLink,
+    runtimesLink,
+    Domain,
     Hosting,
     hostingEmailService,
     HostingLocalSeo,
     HostingRuntimes,
     hostingSSLCertificate,
     OvhApiScreenshot,
+    user,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -29,19 +42,39 @@ export default class HostingGeneralInformationsCtrl {
     this.$translate = $translate;
 
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.Alerter = Alerter;
+    this.boostLink = boostLink;
+    this.flushCDNLink = flushCDNLink;
+    this.localSEOLink = localSEOLink;
+    this.multisiteLink = multisiteLink;
+    this.runtimesLink = runtimesLink;
     this.Hosting = Hosting;
     this.hostingEmailService = hostingEmailService;
     this.HostingLocalSeo = HostingLocalSeo;
     this.HostingRuntimes = HostingRuntimes;
     this.hostingSSLCertificate = hostingSSLCertificate;
     this.OvhApiScreenshot = OvhApiScreenshot;
+    this.user = user;
+    this.Domain = Domain;
+
+    this.CDN_ADVANCED = CDN_ADVANCED;
+    this.CDN_VERSION_V1 = HOSTING_CDN_ORDER_CDN_VERSION_V1;
   }
 
   $onInit() {
     this.serviceName = this.$stateParams.productId;
+    this.isCdnInDeleteAtExpiration =
+      this.$scope.cdnServiceInfo?.renew.mode === 'deleteAtExpiration';
     this.defaultRuntime = null;
-    this.availableOffers = [];
+    this.isAvailableOfferOrDetach = false;
+    this.contactManagementLink = this.coreConfig.isRegion('EU')
+      ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
+          serviceName: this.serviceName,
+          category: 'HOSTING',
+        })
+      : '';
 
     this.loading = {
       defaultRuntime: true,
@@ -54,14 +87,26 @@ export default class HostingGeneralInformationsCtrl {
       quantity: 0,
     };
 
+    this.goToDetachEmail = this.$scope.goToDetachEmail;
+    this.goToDetachPrivateDB = this.$scope.goToDetachPrivateDB;
+    this.isDetachEmailOptionAvailable =
+      this.$scope.emailOptionDetachInformation.length > 0 &&
+      this.$scope.emailOptionDetachInformation[0].plancodes.length > 0 &&
+      this.$scope.pendingTasks.length === 0;
+
+    this.isPrivateDatabaseDetachable =
+      this.$scope.privateDatabasesDetachable.length > 0 &&
+      this.$scope.privateDatabasesDetachable[0].plancodes.length > 0 &&
+      this.$scope.pendingTasks.length === 0;
+
     const quotaUsed = this.$scope.convertBytesSize(
-      this.$scope.hosting.quotaUsed.value,
-      this.$scope.hosting.quotaUsed.unit,
+      this.$scope.hosting?.quotaUsed.value,
+      this.$scope.hosting?.quotaUsed.unit,
       QUOTA_DECIMAL_PRECISION,
     );
     const quotaSize = this.$scope.convertBytesSize(
-      this.$scope.hosting.quotaSize.value,
-      this.$scope.hosting.quotaSize.unit,
+      this.$scope.hosting?.quotaSize.value,
+      this.$scope.hosting?.quotaSize.unit,
       QUOTA_DECIMAL_PRECISION,
     );
 
@@ -72,11 +117,11 @@ export default class HostingGeneralInformationsCtrl {
     );
     return this.$q
       .all([
-        this.getUserLogsToken(),
         this.getScreenshot(),
         this.retrievingSSLCertificate(),
-        this.retrievingAvailableOffers(this.serviceName),
-        this.getEmailOfferDetails(this.serviceName),
+        this.isAvailableOffer(this.serviceName),
+        this.isAvailableDetach(this.serviceName),
+        this.getZoneDns(),
       ])
       .then(() => this.HostingRuntimes.getDefault(this.serviceName))
       .then((runtime) => {
@@ -100,17 +145,6 @@ export default class HostingGeneralInformationsCtrl {
     }
 
     return this.$q.when();
-  }
-
-  getUserLogsToken() {
-    return this.Hosting.getUserLogsToken(this.serviceName, {
-      params: {
-        remoteCheck: true,
-        ttl: 3600,
-      },
-    }).then((userLogsToken) => {
-      this.userLogsToken = userLogsToken;
-    });
   }
 
   initializeLocalSeo(serviceName) {
@@ -208,74 +242,138 @@ export default class HostingGeneralInformationsCtrl {
     );
   }
 
-  retrievingAvailableOffers(productId) {
+  isAvailableOffer(productId) {
     return this.Hosting.getAvailableOffer(productId).then((offers) => {
-      this.availableOffers = offers;
+      if (offers.length > 0) {
+        this.isAvailableOfferOrDetach = true;
+      }
     });
+  }
+
+  isAvailableDetach(serviceName) {
+    return this.Hosting.isServiceDetachable(serviceName).then(
+      (isDetachable) => {
+        if (isDetachable) {
+          this.isAvailableOfferOrDetach = true;
+        }
+      },
+    );
   }
 
   changeOffer() {
-    this.atInternet.trackClick({
-      name: 'web::hostname::general-informations::change-offer',
-      type: 'action',
+    this.sendTrackClick('web::hostname::general-informations::change-offer');
+    this.$state.go('app.hosting.dashboard.upgrade', {
+      productId: this.serviceName,
     });
-    this.$state.go('app.hosting.upgrade', { productId: this.serviceName });
   }
 
-  changeMainDomain() {
-    this.atInternet.trackClick({
-      name: 'web::hostname::general-informations::change-main-domain',
-      type: 'action',
-    });
-    this.$scope.setAction(
-      'change-main-domain/hosting-change-main-domain',
-      this.$scope.hosting,
+  goToPrivateSqlActivation() {
+    return this.$state.go(
+      'app.hosting.dashboard.database.private-sql-activation',
     );
-  }
-
-  isHostingOffer() {
-    return !includes(
-      [
-        'KIMSUFI_2015',
-        '__60_FREE',
-        'DEMO_1_G',
-        'START_1_M',
-        'START_10_M',
-        '_ASPFREE',
-      ],
-      this.$scope.hosting.offer,
-    );
-  }
-
-  goToBoostTab() {
-    this.$scope.$parent.$ctrl.setSelectedTab('BOOST');
-  }
-
-  getEmailOfferDetails(serviceName) {
-    this.isRetrievingEmailOffer = true;
-    return this.hostingEmailService
-      .getEmailOfferDetails(serviceName)
-      .then((offer) => {
-        this.emailOffer = offer;
-      })
-      .catch((error) => {
-        this.Alerter.alertFromSWS(
-          this.$translate.instant('hosting_dashboard_email_offer_get_error'),
-          error,
-          this.$scope.alerts.main,
-        );
-      })
-      .finally(() => {
-        this.isRetrievingEmailOffer = false;
-      });
   }
 
   doesEmailOfferExists() {
     // empty array means user has no email offer
-    return !isEmpty(this.emailOffer);
+    return !isEmpty(this.$scope.emailOptionIds);
   }
 
   activateEmailOffer() {
-    this.$state.go('app.hosting.activate', { serviceName: this.serviceName });
+    this.$state.go('app.hosting.dashboard.activate', {
+      serviceName: this.serviceName,
+    });
+  }
+
+  getZoneDns() {
+    return this.Domain.getZones().then((zones) => {
+      this.hasZoneDns = zones.length > 0;
+    });
+  }
+
+  goToMultisite() {
+    this.sendTrackClick('web::hosting::configure-cdn');
+  }
+
+  orderCdn() {
+    this.sendTrackClick(
+      this.$scope.isCdnFree
+        ? 'web::hosting::activate-cdn'
+        : 'web::hosting::order-cdn',
+    );
+    this.$state.go('app.hosting.dashboard.cdn.order');
+  }
+
+  upgradeCdn() {
+    this.sendTrackClick('web::hosting::upgrade-cdn');
+    this.$state.go('app.hosting.dashboard.cdn.upgrade');
+  }
+
+  terminateCdn() {
+    this.sendTrackClick('web::hosting::cdn::terminate');
+
+    this.$state.go('app.hosting.dashboard.general-informations.cdn-terminate', {
+      alerts: this.$scope.alerts,
+      cdnServiceInfo: this.$scope.cdnServiceInfo,
+    });
+  }
+
+  onCancelTerminateCdn() {
+    this.sendTrackClick('web::hosting::cdn::cancel-terminate');
+
+    return this.$state.go(
+      'app.hosting.dashboard.general-informations.cdn-cancel-terminate',
+      {
+        alerts: this.$scope.alerts,
+        cdnServiceInfo: this.$scope.cdnServiceInfo,
+      },
+    );
+  }
+
+  flushCdn(action) {
+    this.sendTrackClick('web::hosting::empty-cdn-cache');
+    this.$scope.setAction(action);
+  }
+
+  canOrderOrEditCdn() {
+    if (!this.hasCdnRights()) {
+      return false;
+    }
+
+    const {
+      flushCdnState,
+      hosting: { hasCdn, offer },
+    } = this.$scope;
+
+    const isFlushCdnStateOk = flushCdnState === 'ok';
+    const isOfferStart10M = offer === 'START_10_M';
+
+    return hasCdn || (isFlushCdnStateOk && !isOfferStart10M);
+  }
+
+  hasCdnRights() {
+    const {
+      hosting: {
+        serviceInfos: { contactAdmin, contactBilling },
+      },
+    } = this.$scope;
+    const { nichandle } = this.user;
+
+    return [contactAdmin, contactBilling].includes(nichandle);
+  }
+
+  sendTrackClick(hit) {
+    this.atInternet.trackClick({
+      name: hit,
+      type: 'action',
+    });
+  }
+
+  getOfferName(offer) {
+    const offerPrefix = NEW_OFFERS_NAME[offer];
+    const translateKey = offerPrefix
+      ? `hostings_offer_${offerPrefix}`
+      : `hosting_dashboard_service_offer_${offer}`;
+
+    return this.$translate.instant(translateKey);
   }
 }

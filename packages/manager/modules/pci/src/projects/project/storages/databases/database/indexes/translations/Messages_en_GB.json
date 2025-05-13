@@ -1,0 +1,15 @@
+{
+  "pci_databases_pattern_tab_title": "Models",
+  "pci_databases_indexes_tab_title": "Indexes",
+  "pci_databases_indexes_pattern_model": "Template",
+  "pci_databases_indexes_pattern_max_index": "Maximum number of indexes",
+  "pci_databases_indexes_pattern_add": "Add a template",
+  "pci_databases_indexes_index_name": "Index",
+  "pci_databases_indexes_index_shard_number": "Shards",
+  "pci_databases_indexes_index_replicas_number": "Replicas",
+  "pci_databases_indexes_index_size": "Size",
+  "pci_databases_indexes_index_document": "Documents",
+  "pci_databases_indexes_index_date": "Creation date",
+  "pci_databases_indexes_delete_index_error_message": "An error has occurred deleting the index. Please try again.",
+  "pci_databases_indexes_delete_pattern_error_message": "An error has occurred deleting the model. Please try again."
+}

@@ -5,17 +5,11 @@ import { FEATURE_AVAILABILITY } from './constants';
 
 export default class CucFeatureAvailabilityService {
   /* @ngInject */
-  constructor(OvhApiMe, CucConfig) {
-    this.User = OvhApiMe;
+  constructor($q, coreConfig, CucConfig) {
     this.CucConfig = CucConfig;
 
-    this.locale = null;
-    this.localePromise = this.User.v6()
-      .get()
-      .$promise.then((user) => {
-        this.locale = user.ovhSubsidiary;
-        return user.ovhSubsidiary;
-      });
+    this.locale = coreConfig.getUser().ovhSubsidiary;
+    this.localePromise = $q.when(this.locale);
   }
 
   hasFeature(product, feature, locale = this.locale) {

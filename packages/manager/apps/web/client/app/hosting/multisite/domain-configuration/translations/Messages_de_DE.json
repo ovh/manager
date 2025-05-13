@@ -1,0 +1,21 @@
+{
+  "hosting_multisite_domain_configuration_home": "Wurzelverzeichnis",
+  "hosting_multisite_domain_configuration_myfolder": "meinordner",
+  "hosting_multisite_domain_configuration_firewall": "Firewall aktivieren",
+  "hosting_multisite_domain_configuration_cdn": "CDN aktivieren",
+  "hosting_multisite_domain_configuration_information": "Damit die Konfiguration funktionsfähig ist, müssen Sie bei Ihrer Domain folgende Operationen durchführen:",
+  "hosting_multisite_domain_configuration_none_options": "Keine Optionen",
+  "hosting_multisite_domain_configuration_ownlog": "Getrennte Logs",
+  "hosting_multisite_domain_configuration_runtime": "Runtime Engine",
+  "hosting_multisite_domain_configuration_options_choose": "Wählen Sie eine Option aus",
+  "hosting_multisite_domain_configuration_cdn_help": "Aktivieren Sie das CDN, um weltweit den Zugriff auf Ihre Website zu beschleunigen.",
+  "hosting_multisite_domain_configuration_country_ip_help": "Aktivieren Sie die IP des gewünschten Landes, um die internationalen Bereiche Ihrer Website zu geolokalisieren und deren Ranking zu verbessern.",
+  "hosting_multisite_domain_configuration_firewall_help": "Aktivieren Sie die Firewall, um von einem verstärkten Schutz für Ihre Website zu profitieren.",
+  "hosting_multisite_domain_configuration_ownlog_help": "Aktivieren Sie diese Option, wenn separate Logs für Ihre Multi-Site erstellt werden sollen.",
+  "hosting_multisite_domain_configuration_path_help": "Für Ordner erlaubte Zeichen sind Buchstaben, Ziffern sowie die Zeichen -_./ Der Zugriff auf übergeordnete Ordner ist nicht möglich (Verwendung von ..)",
+  "hosting_multisite_domain_configuration_countriesIp": "IP des Landes",
+  "hosting_multisite_domain_configuration_countriesIp_none": "Keine",
+  "hosting_multisite_domain_configuration_ssl": "SSL",
+  "hosting_multisite_domain_configuration_ssl_help": "SSL-Option aktivieren, um HTTPS-Zugriff auf Ihre Website zu erhalten",
+  "hosting_multisite_domain_configuration_git_warning": "Wenn Sie das Stammverzeichnis ändern möchten, müssen Sie zunächst die Git-Konfiguration aus dem Verzeichnis entfernen, um Probleme mit der Änderungsverfolgung und der Bereitstellungsverwaltung zu vermeiden."
+}

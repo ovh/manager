@@ -1,234 +1,233 @@
 import head from 'lodash/head';
 
-export default /* @ngInject */ function(
-  $translate,
-  $q,
-  $scope,
-  OvhApiOrderOverTheBoxNew,
-  OvhApiPriceOverTheBoxOffer,
-  OvhApiOverTheBox,
-  TucToast,
-  TucToastError,
-  OvhApiMePaymentMean,
-) {
-  const self = this;
-
-  self.loaders = {
-    durations: false,
-    order: false,
-    orders: false,
-    create: false,
-    checking: false,
-  };
-
-  self.durations = [];
-  self.offers = [];
-  self.devices = [];
-  self.hasDefaultPaymentMeans = false;
-
-  // when true, the customer is proposed to attach a device before ordering a new service
-  self.proposeLinkDevice = false;
-
-  self.orderModel = {
-    offer: null,
-    duration: null,
-    deviceId: null,
-    voucher: null,
-  };
-
-  self.states = {
-    order: false,
-    orderDone: false,
-  };
-
-  function init() {
-    self.checkPaymentMeans();
-    self.checkDevices();
+export default class OrderOverTheBoxCtrl {
+  /* @ngInject */
+  constructor(
+    $translate,
+    $q,
+    $scope,
+    OvhApiOrderOverTheBoxNew,
+    OvhApiPriceOverTheBoxOffer,
+    OvhApiOverTheBox,
+    TucToastError,
+    OvhApiMePaymentMean,
+  ) {
+    this.$translate = $translate;
+    this.$q = $q;
+    this.$scope = $scope;
+    this.OvhApiOrderOverTheBoxNew = OvhApiOrderOverTheBoxNew;
+    this.OvhApiPriceOverTheBoxOffer = OvhApiPriceOverTheBoxOffer;
+    this.OvhApiOverTheBox = OvhApiOverTheBox;
+    this.TucToastError = TucToastError;
+    this.OvhApiMePaymentMean = OvhApiMePaymentMean;
   }
 
-  self.checkPaymentMeans = function checkPaymentMeans() {
-    self.paymentMeansChecking = false;
-    return OvhApiMePaymentMean.v6()
+  $onInit() {
+    this.loaders = {
+      durations: false,
+      order: false,
+      orders: false,
+      create: false,
+      checking: false,
+    };
+
+    this.durations = [];
+    this.offers = [];
+    this.devices = [];
+    this.hasDefaultPaymentMeans = false;
+
+    // when true, the customer is proposed to attach a device before ordering a new service
+    this.proposeLinkDevice = false;
+
+    this.orderModel = {
+      offer: null,
+      duration: null,
+      deviceId: null,
+      voucher: null,
+    };
+
+    this.states = {
+      order: false,
+      orderDone: false,
+    };
+
+    this.checkPaymentMeans();
+    this.checkDevices();
+
+    this.$scope.$watchCollection(
+      () => this.orderModel,
+      () => {
+        if (
+          !this.loaders.order &&
+          this.orderModel.offer &&
+          this.orderModel.duration
+        ) {
+          this.getOrder();
+        }
+      },
+    );
+  }
+
+  checkPaymentMeans() {
+    this.paymentMeansChecking = false;
+    return this.OvhApiMePaymentMean.v6()
       .getDefaultPaymentMean()
       .then((defaultPaymentMean) => {
-        self.hasDefaultPaymentMeans = !!defaultPaymentMean;
+        this.hasDefaultPaymentMeans = !!defaultPaymentMean;
       })
       .finally(() => {
-        self.paymentMeansChecking = false;
+        this.paymentMeansChecking = false;
       });
-  };
+  }
 
-  self.checkDevices = function checkDevices() {
-    self.loaders.checking = true;
-    return $q
+  checkDevices() {
+    this.loaders.checking = true;
+    return this.$q
       .all([
-        OvhApiOverTheBox.v6()
+        this.OvhApiOverTheBox.v6()
           .checkDevices()
-          .$promise.then(
-            (devices) => {
-              self.devices = devices;
-              return devices;
-            },
-            (error) => {
-              self.error.checking = error.data;
-              return new TucToastError(error);
-            },
-          ),
-        OvhApiOverTheBox.Aapi()
+          .$promise.then((devices) => {
+            this.devices = devices;
+            return devices;
+          })
+          .catch((error) => {
+            this.error.checking = error.data;
+            return new this.TucToastError(error);
+          }),
+        this.OvhApiOverTheBox.Aapi()
           .getServices()
-          .$promise.then(
-            (services) => {
-              self.services = services;
-              self.unlinkedServices = services.filter(
-                (service) => !service.device,
-              );
-              return self.unlinkedServices;
-            },
-            (err) => new TucToastError(err),
-          ),
+          .$promise.then((services) => {
+            this.services = services;
+            this.unlinkedServices = services.filter(
+              (service) => !service.device,
+            );
+            return this.unlinkedServices;
+          })
+          .catch((err) => new this.TucToastError(err)),
       ])
       .then(() => {
-        self.orphanDevices = self.devices.filter((device) => {
+        this.orphanDevices = this.devices.filter((device) => {
           let found = false;
-          self.services.forEach((service) => {
+          this.services.forEach((service) => {
             found = service.device.deviceId === device.deviceId ? true : found;
           });
           return !found;
         });
-        self.proposeLinkDevice =
-          self.devices.length > 0 && self.unlinkedServices.length > 0
+        this.proposeLinkDevice =
+          this.devices.length > 0 && this.unlinkedServices.length > 0
             ? {
-                service: self.unlinkedServices[0],
+                service: this.unlinkedServices[0],
                 devices:
-                  self.orphanDevices.length === 1
-                    ? self.orphanDevices[0]
+                  this.orphanDevices.length === 1
+                    ? this.orphanDevices[0]
                     : null,
               }
             : null;
       })
       .finally(() => {
-        self.loaders.checking = false;
+        this.loaders.checking = false;
       });
-  };
+  }
 
-  self.startOrder = function startOrder() {
-    return self.getOrderOffers().then((offers) => {
+  startOrder() {
+    return this.getOrderOffers().then((offers) => {
       if (offers.length === 1) {
-        self.orderModel.offer = head(offers);
-        self.getOrderDurations().finally(() => {
-          self.states.order = true;
+        this.orderModel.offer = head(offers);
+        this.getOrderDurations().finally(() => {
+          this.states.order = true;
         });
 
         return offers;
       }
-      self.states.order = true;
+      this.states.order = true;
       return offers;
     });
-  };
+  }
 
-  self.getOrderOffers = function getOrderOffers() {
-    return OvhApiOverTheBox.v6()
+  getOrderOffers() {
+    return this.OvhApiOverTheBox.v6()
       .availableOffers()
-      .$promise.then(
-        (offers) => {
-          self.offers = offers;
+      .$promise.then((offers) => {
+        this.offers = offers;
 
-          return offers;
-        },
-        () => new TucToastError(null, 'order_overTheBox_offers_error'),
-      );
-  };
+        return offers;
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-new
+        new this.TucToastError(null, 'order_overTheBox_offers_error');
+        return this.$q.reject(error);
+      });
+  }
 
-  self.getOrderDurations = function getOrderDurations() {
-    self.loaders.durations = true;
+  getOrderDurations() {
+    this.loaders.durations = true;
 
-    return OvhApiOrderOverTheBoxNew.v6()
+    return this.OvhApiOrderOverTheBoxNew.v6()
       .query({
-        deviceId: self.orderModel.deviceId,
-        offer: self.orderModel.offer,
-        voucher: self.orderModel.voucher,
+        deviceId: this.orderModel.deviceId,
+        offer: this.orderModel.offer,
+        voucher: this.orderModel.voucher,
       })
-      .$promise.then(
-        (durations) => {
-          self.durations = durations;
-          if (durations.length === 1) {
-            self.orderModel.duration = head(self.durations);
-          }
-          if (self.devices.length === 1) {
-            self.orderModel.deviceId = head(self.devices).deviceId;
-          }
+      .$promise.then((durations) => {
+        this.durations = durations;
+        if (durations.length === 1) {
+          this.orderModel.duration = head(this.durations);
+        }
+        if (this.devices.length === 1) {
+          this.orderModel.deviceId = head(this.devices).deviceId;
+        }
 
-          return durations;
-        },
-        (error) => new TucToastError(error),
-      )
+        return durations;
+      })
+      .catch((error) => new this.TucToastError(error))
       .finally(() => {
-        self.loaders.durations = false;
+        this.loaders.durations = false;
       });
-  };
+  }
 
-  self.getOrder = function getOrder() {
-    self.loaders.order = true;
-    return OvhApiOrderOverTheBoxNew.v6()
+  getOrder() {
+    this.loaders.order = true;
+    return this.OvhApiOrderOverTheBoxNew.v6()
       .get({
-        duration: self.orderModel.duration,
-        deviceId: self.orderModel.deviceId,
-        offer: self.orderModel.offer || 'summit',
-        voucher: self.orderModel.voucher,
+        duration: this.orderModel.duration,
+        deviceId: this.orderModel.deviceId,
+        offer: this.orderModel.offer || 'summit',
+        voucher: this.orderModel.voucher,
       })
-      .$promise.then(
-        (informations) => {
-          self.orderInformations = informations;
+      .$promise.then((informations) => {
+        this.orderInformations = informations;
 
-          return informations;
-        },
-        (error) => new TucToastError(error),
-      )
+        return informations;
+      })
+      .catch((error) => new this.TucToastError(error))
       .finally(() => {
-        self.loaders.order = false;
+        this.loaders.order = false;
       });
-  };
+  }
 
-  self.order = function order() {
-    self.loaders.create = true;
-    return OvhApiOrderOverTheBoxNew.v6()
+  order() {
+    this.loaders.create = true;
+    return this.OvhApiOrderOverTheBoxNew.v6()
       .save(
         {
-          duration: self.orderModel.duration,
+          duration: this.orderModel.duration,
         },
         {
-          deviceId: self.orderModel.deviceId,
-          offer: self.orderModel.offer,
-          voucher: self.orderModel.voucher,
+          deviceId: this.orderModel.deviceId,
+          offer: this.orderModel.offer,
+          voucher: this.orderModel.voucher,
         },
       )
-      .$promise.then(
-        (success) => {
-          self.bcUrl = success.url;
-          self.states.order = false;
-          self.states.orderDone = true;
+      .$promise.then((success) => {
+        this.bcUrl = success.url;
+        this.states.order = false;
+        this.states.orderDone = true;
 
-          return success;
-        },
-        (error) => new TucToastError(error),
-      )
+        return success;
+      })
+      .catch((error) => new this.TucToastError(error))
       .finally(() => {
-        self.loaders.create = false;
+        this.loaders.create = false;
       });
-  };
-
-  $scope.$watchCollection(
-    () => self.orderModel,
-    () => {
-      if (
-        !self.loaders.order &&
-        self.orderModel.offer &&
-        self.orderModel.duration
-      ) {
-        self.getOrder();
-      }
-    },
-  );
-
-  init();
+  }
 }

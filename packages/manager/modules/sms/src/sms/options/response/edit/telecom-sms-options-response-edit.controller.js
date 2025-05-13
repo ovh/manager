@@ -1,4 +1,5 @@
 import angular from 'angular';
+import isEqual from 'lodash/isEqual';
 import get from 'lodash/get';
 import pull from 'lodash/pull';
 
@@ -41,7 +42,9 @@ export default class {
     this.model = {
       service: angular.copy(this.service),
       senders: angular.copy(this.senders),
-      index: this.index,
+      index: this.service.smsResponse.trackingOptions.findIndex((value) =>
+        isEqual(value, this.option),
+      ),
       option: angular.copy(this.option),
     };
     this.availableTrackingMedia = [];

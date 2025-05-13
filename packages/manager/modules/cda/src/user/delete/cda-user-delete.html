@@ -1,0 +1,21 @@
+<form
+    id="deleteUserForm"
+    name="deleteUserForm"
+    data-ng-submit="deleteUserForm.$valid && CdaUserDeleteCtrl.deleteUser()"
+>
+    <oui-modal
+        heading="{{ ::'cda_common_delete' | translate }}"
+        primary-label="{{ ::'cda_common_delete' | translate }}"
+        secondary-action="CdaUserDeleteCtrl.closeModal()"
+        secondary-label="{{ ::'common_cancel' | translate }}"
+        on-dismiss="CdaUserDeleteCtrl.closeModal()"
+        loading="CdaUserDeleteCtrl.saving"
+        type="info"
+    >
+        <p>
+            <strong data-translate="cda_user_delete_username_label"></strong>
+            <span data-ng-bind="CdaUserDeleteCtrl.user.name"></span>
+        </p>
+        <p data-translate="cda_user_delete_confirm"></p>
+    </oui-modal>
+</form>

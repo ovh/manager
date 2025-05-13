@@ -1,0 +1,10 @@
+{
+  "dedicatedCloud_datacenter_backup_delete_title": "Disable backup",
+  "dedicatedCloud_datacenter_backup_delete_description_1": "Do you want to disable backups for the {{datacenter}} datacenter? You will need to check that backups are disabled for each virtual machine in vSphere.",
+  "dedicatedCloud_datacenter_backup_delete_description_2": "Warning: this action will permanently delete all of your backups.",
+  "dedicatedCloud_datacenter_backup_delete_cancel": "Cancel",
+  "dedicatedCloud_datacenter_backup_delete_confirm": "Disable backup",
+  "dedicatedCloud_datacenter_backup_delete_success": "The request to disable your Veeam {{name}} Backup solution is in progress. The operation will take 24 hours.",
+  "dedicatedCloud_datacenter_backup_delete_error": "An error has occurred disabling your backup service: {{message}}",
+  "dedicatedCloud_datacenter_backup_delete_error_403": "An error has occurred disabling your backup service: {{message}}. Please contact our support team to resolve this issue."
+}

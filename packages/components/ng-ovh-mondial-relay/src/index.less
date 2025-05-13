@@ -1,0 +1,103 @@
+@import 'bootstrap/less/variables.less';
+
+/* stylelint-disable-next-line selector-type-no-unknown */
+ovh-mondial-relay,
+[ovh-mondial-relay] {
+  @mondialActiveBorderColor: #c90547;
+  @mondialHover: #eaeaea;
+  @mondialBgColor: #337ab7;
+
+  .marker-hover:not(.active) {
+    background: @mondialHover;
+  }
+
+  .angular-leaflet-map {
+    min-height: 600px;
+    height: 100%;
+  }
+
+  @media (max-width: 1500px) {
+    .angular-leaflet-map {
+      min-height: 300px;
+    }
+  }
+
+  @media (max-width: 490px) {
+    .angular-leaflet-map {
+      min-height: 200px;
+    }
+  }
+
+  .mondial-loc {
+    line-height: 1.8rem;
+    display: inline-block;
+    vertical-align: center;
+  }
+
+  .mondial-results {
+    padding: 0;
+
+    .list-group-item {
+      cursor: pointer;
+      padding-top: 0.1em;
+      padding-bottom: 0.1em;
+
+      .mondial-relay-name {
+        font-size: 1.8rem;
+      }
+
+      .mondial-relay-caret {
+        float: right;
+        margin: 0.2em 0;
+      }
+
+      &.active {
+        border-left: solid 2px @mondialActiveBorderColor;
+        color: white;
+        background-color: @mondialBgColor;
+        border-color: @mondialBgColor;
+
+        & .mondial-relay-name,
+        & .mondial-relay-caret,
+        & .radio-description {
+          color: white;
+        }
+      }
+
+      .relay-cell {
+        padding: 0.3em 0;
+      }
+
+      .radio-description-relay {
+        padding-left: 1.5em;
+        display: block;
+      }
+
+      .mondial-relay-city,
+      .mondial-relay-address {
+        font-size: 1.5rem;
+        line-height: 1.8rem;
+      }
+
+      span.mondial-marker {
+        background: @mondialActiveBorderColor;
+        color: white;
+        border-radius: 2px;
+        width: 1.1em;
+        height: 1.1em;
+        line-height: 1.1em;
+        display: inline-block;
+        text-align: center;
+        font-weight: bold;
+        margin-right: 0.2em;
+      }
+
+      ul.mondial-opening {
+        margin-top: 0.5em;
+        list-style-type: none;
+        font-size: 1.5rem;
+        line-height: 2rem;
+      }
+    }
+  }
+}

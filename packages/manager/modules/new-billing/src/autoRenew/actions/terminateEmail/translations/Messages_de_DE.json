@@ -1,0 +1,8 @@
+{
+  "autorenew_service_EMAIL_DOMAIN_terminate": "MX Plan sofort löschen",
+  "autorenew_service_EMAIL_DOMAIN_terminate_info": "Beim Löschen von MX Plan werden automatisch alle zugehörigen Daten unwiderruflich gelöscht. Das Löschen von MX Plan bedeutet keine Garantie zur Rückerstattung.",
+  "autorenew_service_EMAIL_DOMAIN_terminate_info_impossible": "Sie können Ihre E-Mail-Adresse nicht löschen, da sie mit einem Webhosting verbunden ist.",
+  "autorenew_service_EMAIL_DOMAIN_terminate_procedure": "Sie erhalten in Kürze eine E-Mail mit Informationen zur Schließung Ihres MX Plan, um die sofortige Löschung zu bestätigen.",
+  "autorenew_service_EMAIL_DOMAIN_terminate_success": "Ihre Anfrage zur Schließung von MX Plan wurde registriert. Eine E-Mail mit weiteren Informationen zur Vorgehensweise wurde soeben an Sie versandt.",
+  "autorenew_service_EMAIL_DOMAIN_terminate_error": "Bei der Anfrage zur Schließung Ihres MX Plan ist ein Fehler aufgetreten: {{ message }}"
+}

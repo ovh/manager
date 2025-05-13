@@ -1,0 +1,14 @@
+{
+  "billing_autorenew_disable_title": "Automatische Verlängerung für die ausgewählten Dienste deaktivieren",
+  "billing_autorenew_disable_description": "Sie haben angegeben, dass Sie die automatische Verlängerung für die ausgewählten Dienste deaktivieren möchten.",
+  "billing_autorenew_disable_warning": "In diesem Verlängerungsmodus wird Ihr Dienst am Ablaufdatum nicht mehr automatisch verlängert. In den Wochen/Tagen vor Ablauf des Dienstes erhalten Sie mehrere E-Mail-Benachrichtigungen, um Sie auf das Ablaufdatum hinzuweisen.",
+  "billing_autorenew_disable_renew": "Wenn Sie Ihren Dienst weiterhin nutzen möchten, können Sie ihn einfach verlängern.",
+  "billing_autorenew_disable_data": "Achtung: Sobald der Dienst abgelaufen ist, wird er umgehend geschlossen. Er ist dann nicht mehr erreichbar und die zugehörigen Daten werden ohne Aktion Ihrerseits innerhalb weniger Tage unwiderruflich gelöscht",
+  "billing_autorenew_disable_bulk_unavailable": "Die automatische Verlängerung wird für alle ausgewählten Dienste deaktiviert, mit Ausnahme von {{ count }} Diensten:",
+  "billing_autorenew_disable_success": "Die Verlängerung der Dienste wurde erfolgreich aktualisiert",
+  "billing_autorenew_disable_error": "Beim Deaktivieren der automatischen Verlängerung ist ein Fehler aufgetreten {{message}}",
+  "billing_autorenew_disable_bulk_unavailable_one": "Die automatische Verlängerung wird für alle ausgewählten Dienste deaktiviert, mit Ausnahme von 1 Dienst:",
+  "billing_autorenew_disable_bulk": "Die automatische Verlängerung wird für alle ausgewählten Dienste deaktiviert.",
+  "billing_autorenew_disable_bulk_single": "Die automatische Verlängerung für Ihren Dienst {{ serviceName }} wird deaktiviert.",
+  "billing_autorenew_disable_breadcrumb": "Automatische Verlängerung deaktivieren"
+}

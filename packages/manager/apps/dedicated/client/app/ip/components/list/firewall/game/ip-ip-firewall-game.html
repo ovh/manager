@@ -1,0 +1,266 @@
+<div>
+    <oui-back-button
+        data-on-click="IpGameFirewallCtrl.goToDashboard()"
+        data-previous-page="{{:: 'ip_game_mitigation_back_link_title' | translate }}"
+    >
+        <div class="d-flex justify-content-between">
+            <span data-translate="ip_game_mitigation_title"></span>
+            <oui-guide-menu
+                text="{{:: 'ip_game_mitigation_guide' | translate }}"
+            >
+                <oui-guide-menu-item
+                    data-ng-href="{{:: IpGameFirewallCtrl.gameGuideLink }}"
+                    data-external="true"
+                >
+                    <span data-translate="ip_game_mitigation_title"></span>
+                </oui-guide-menu-item>
+            </oui-guide-menu>
+        </div>
+    </oui-back-button>
+
+    <p data-translate="ip_game_mitigation_description"></p>
+    <p data-translate="ip_game_mitigation_description_tip"></p>
+
+    <div data-ng-hide="IpGameFirewallCtrl.loaders.firewall">
+        <p
+            data-ng-show="IpGameFirewallCtrl.datas.firewall.state && IpGameFirewallCtrl.datas.firewall.state !== IpGameFirewallCtrl.constantes.OK"
+            data-ng-bind-html="('ip_game_mitigation_firewall_'+ IpGameFirewallCtrl.datas.firewall.state | translate)"
+        ></p>
+        <p
+            class="text-danger"
+            data-ng-hide="IpGameFirewallCtrl.datas.firewall.state"
+            data-ng-bind-html="'ip_game_mitigation_error' | translate"
+        ></p>
+    </div>
+
+    <div data-ovh-alert="ip_game_firewall_alert"></div>
+
+    <div class="d-flex justify-content-between">
+        <button
+            type="button"
+            class="oui-button oui-button_secondary oui-button_icon-left"
+            data-ng-click="IpGameFirewallCtrl.addRuleClick()"
+            data-ng-disabled="IpGameFirewallCtrl.table.rules.length === IpGameFirewallCtrl.constantes.MAX_RULES || IpGameFirewallCtrl.loaders.rules"
+        >
+            <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
+            <span data-translate="ip_game_mitigation_rule_add"></span>
+        </button>
+
+        <div>
+            <span
+                data-translate="ip_game_mitigation_apply_policy"
+                class="d-inline-block"
+            ></span>
+            <button
+                type="button"
+                class="oui-popover-button"
+                data-oui-tooltip="{{ 'ip_game_mitigation_policy_default_help' | translate }}"
+                data-oui-tooltip-placement="left"
+            ></button>
+            <oui-switch
+                data-disabled="IpGameFirewallCtrl.datas.firewall.state !== IpGameFirewallCtrl.constantes.OK"
+                data-model="IpGameFirewallCtrl.firewallModeEnabled"
+                data-name="policy"
+                data-on-change="setAction('ip/firewall/game/toggle/ip-ip-firewall-game-toggle', {ipblock : IpGameFirewallCtrl.datas.selectedBlock, ip : IpGameFirewallCtrl.datas.selectedIp, firewall : IpGameFirewallCtrl.datas.firewall, tracking: IpGameFirewallCtrl.tracking['apply-default-policy']})"
+            >
+            </oui-switch>
+        </div>
+    </div>
+
+    <div class="table-responsive mt-2">
+        <table class="table table-hover" aria-label="ips">
+            <thead>
+                <tr>
+                    <th
+                        scope="col"
+                        data-translate="ip_game_mitigation_table_protocol"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="ip_game_mitigation_table_start_port"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="ip_game_mitigation_table_end_port"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="ip_game_mitigation_table_state"
+                    ></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody
+                data-ng-show="!IpGameFirewallCtrl.loaders.rules && IpGameFirewallCtrl.rules === null"
+            >
+                <tr>
+                    <td
+                        colspan="4"
+                        class="text-center"
+                        data-translate="ip_game_mitigation_table_error"
+                    ></td>
+                </tr>
+            </tbody>
+            <tbody data-ng-show="IpGameFirewallCtrl.rules.length >= 0">
+                <tr
+                    data-ng-if="IpGameFirewallCtrl.displayAddRuleLine && IpGameFirewallCtrl.loading"
+                >
+                    <div
+                        class="text-center"
+                        data-ng-show="IpGameFirewallCtrl.loading"
+                    >
+                        <oui-spinner></oui-spinner>
+                    </div>
+                </tr>
+                <tr
+                    data-ng-if="IpGameFirewallCtrl.displayAddRuleLine && !IpGameFirewallCtrl.loading"
+                >
+                    <td>
+                        <select
+                            required
+                            id="protocol"
+                            name="protocol"
+                            class="form-control"
+                            data-ng-model="IpGameFirewallCtrl.rule.protocol"
+                            data-ng-options="IpGameFirewallCtrl.getProtocolText(protocol) for protocol in IpGameFirewallCtrl.enums.protocols"
+                            data-ng-change="IpGameFirewallCtrl.selectProtocolDefaultPort()"
+                        >
+                        </select>
+                    </td>
+                    <td>
+                        <input
+                            type="number"
+                            data-ng-model="IpGameFirewallCtrl.rule.ports.from"
+                            class="form-control"
+                            required
+                            id="portFrom"
+                            name="portFrom"
+                            data-ng-min="IpGameFirewallCtrl.constantes.PORT_MIN"
+                            data-ng-max="IpGameFirewallCtrl.constantes.PORT_MAX"
+                            data-ng-pattern="IpGameFirewallCtrl.constantes.PORT_PATTERN"
+                            data-ng-keydown="IpGameFirewallCtrl.handleKey($event)"
+                        />
+                    </td>
+                    <td>
+                        <input
+                            type="number"
+                            class="form-control"
+                            data-ng-model="IpGameFirewallCtrl.rule.ports.to"
+                            id="portTo"
+                            name="portTo"
+                            data-ng-min="IpGameFirewallCtrl.constantes.PORT_MIN"
+                            data-ng-max="IpGameFirewallCtrl.constantes.PORT_MAX"
+                            data-ng-pattern="IpGameFirewallCtrl.constantes.PORT_PATTERN"
+                            data-ng-keydown="IpGameFirewallCtrl.handleKey($event)"
+                        />
+                    </td>
+                    <td></td>
+                    <td>
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            title="{{:: 'ip_game_mitigation_rule_cancel' | translate }}"
+                            data-ng-click="IpGameFirewallCtrl.cancel()"
+                        >
+                            <span
+                                class="oui-icon oui-icon-close"
+                                aria-hidden="true"
+                                title="{{:: 'ip_game_mitigation_rule_cancel' | translate }}"
+                            >
+                            </span>
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            title="{{:: 'ip_game_mitigation_rule_apply' | translate }}"
+                            data-ng-click="IpGameFirewallCtrl.addGameFirewallRule()"
+                            data-ng-disabled="!IpGameFirewallCtrl.rule.protocol && !IpGameFirewallCtrl.rule.ports.from"
+                        >
+                            <span
+                                class="oui-icon oui-icon-check"
+                                aria-hidden="true"
+                                title="{{:: 'ip_game_mitigation_rule_apply' | translate }}"
+                            >
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+                <tr
+                    data-ng-if="!IpGameFirewallCtrl.loaders.rules && IpGameFirewallCtrl.rules.length === 0"
+                >
+                    <td
+                        colspan="5"
+                        class="text-center"
+                        data-translate="ip_game_mitigation_table_empty"
+                    ></td>
+                </tr>
+                <tr
+                    data-ng-repeat="rule in IpGameFirewallCtrl.rules | orderBy : '-id'"
+                >
+                    <th
+                        scope="row"
+                        data-ng-if="!rule.errorMessage"
+                        data-ng-bind="IpGameFirewallCtrl.getProtocolText(rule.protocol)"
+                    ></th>
+                    <td
+                        data-ng-if="!rule.errorMessage"
+                        data-ng-bind="rule.ports.from"
+                    ></td>
+                    <td
+                        data-ng-if="!rule.errorMessage"
+                        data-ng-bind="rule.ports.to"
+                    ></td>
+                    <td data-ng-if="!rule.errorMessage">
+                        <span
+                            class="oui-badge"
+                            data-ng-if="!rule.errorMessage"
+                            data-ng-class="{
+                                'oui-badge_success': rule.state === IpGameFirewallCtrl.constantes.OK,
+                                'oui-badge_info': rule.state !== IpGameFirewallCtrl.constantes.OK
+                            }"
+                            data-ng-bind="'ip_game_mitigation_state_' + rule.state | translate"
+                        >
+                        </span>
+                    </td>
+                    <td data-ng-if="!rule.errorMessage">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            title="{{:: 'ip_game_mitigation_rule_delete' | translate }}"
+                            data-ng-disabled="rule.state !== IpGameFirewallCtrl.constantes.OK"
+                            data-ng-click="setAction('ip/firewall/game/rule/delete/ip-ip-firewall-game-rule-delete', {ipblock : IpGameFirewallCtrl.datas.selectedBlock, ip : IpGameFirewallCtrl.datas.selectedIp, rule : rule, tracking : IpGameFirewallCtrl.tracking['game-firewall-delete-rule']})"
+                        >
+                            <i
+                                class="fa fa-trash"
+                                aria-hidden="true"
+                                aria-label="{{:: 'ip_game_mitigation_rule_delete' | translate }}"
+                            >
+                            </i>
+                        </button>
+                    </td>
+                    <td
+                        colspan="4"
+                        class="text-center text-danger"
+                        data-ng-if="rule.errorMessage"
+                        data-ng-bind="rule.errorMessage"
+                    ></td>
+                </tr>
+            </tbody>
+            <tbody data-ng-show="IpGameFirewallCtrl.loaders.rules">
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <oui-spinner data-size="s"></oui-spinner>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <oui-pagination
+            data-ng-if="!IpGameFirewallCtrl.loaders.rules && IpGameFirewallCtrl.table.rules.length > 0"
+            data-current-offset="IpGameFirewallCtrl.offset"
+            data-page-size="IpGameFirewallCtrl.pageSize"
+            data-page-size-max="IpGameFirewallCtrl.pageSizeMax"
+            data-total-items="IpGameFirewallCtrl.table.rules.length"
+            data-on-change="IpGameFirewallCtrl.onPaginationChange($event)"
+        ></oui-pagination>
+    </div>
+</div>

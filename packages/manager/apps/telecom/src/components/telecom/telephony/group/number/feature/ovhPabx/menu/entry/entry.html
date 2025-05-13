@@ -1,0 +1,152 @@
+<div
+    class="ovh-pabx-dialplan-menu-entry voip-plan__step voip-plan__step--point"
+>
+    <!-- POSITION -->
+    <div
+        class="voip-plan__step-icon voip-plan__step-icon--basic"
+        data-tuc-jsplumb-endpoint="$ctrl.menuCtrl.jsPlumbEndpointsOptions.topLeft"
+    >
+        <span
+            class="position-text entry-dtmf elipse text-center"
+            data-tuc-jsplumb-connection="$ctrl.isDisabled() ? $ctrl.menuCtrl.jsPlumbConnectionsOptions.disabled : null"
+            data-tuc-jsplumb-connection-target="{{ $ctrl.getParentEndpointUuid() }}"
+            data-ng-bind="$ctrl.getEntryAttribute('dtmf')"
+        >
+        </span>
+    </div>
+    <!-- END OF POSITION -->
+
+    <!-- ENTRY BLOCK -->
+    <div
+        class="voip-plan__step-content"
+        data-ng-class="{ 'voip-plan__step-content--delete-anim': $ctrl.menuEntry.status === 'DELETE_PENDING' }"
+        data-tuc-hide-outside-click="$ctrl.onEntryOutsideClick()"
+    >
+        <!-- ENTRY ACTION -->
+        <div
+            class="voip-plan__step-description"
+            data-ng-switch="$ctrl.getEntryAttribute('action')"
+        >
+            <span
+                class="voip-plan__step-name"
+                data-translate="{{ 'telephony_number_feature_ovh_pabx_menu_entry_action_' + ($ctrl.getEntryAttribute('action') | tucSnakeCase) }}"
+            >
+            </span>
+
+            <!-- ACTION PARAM DISPLAY : BRIDGE -->
+            <span
+                class="voip-plan__step-info"
+                data-ng-switch-when="bridge"
+                data-ng-bind="$ctrl.getEntryAttribute('actionParam') | tucPhoneNumber"
+            >
+            </span>
+            <!-- END OF ACTION PARAM DISPLAY : BRIDGE -->
+
+            <!-- ACTION PARAM DISPLAY : PLAYBACK -->
+            <span
+                class="voip-plan__step-info"
+                data-ng-switch-when="playback"
+                data-ng-bind="$ctrl.menuCtrl.ovhPabx.getSound($ctrl.getEntryAttribute('actionParam')).name"
+            >
+            </span>
+            <!-- END OF ACTION PARAM DISPLAY : PLAYBACK -->
+
+            <!-- ACTION PARAM DISPLAY : MENUSUB -->
+            <span class="voip-plan__step-info" data-ng-switch-when="menuSub">
+                <span
+                    data-ng-if="$ctrl.getEntryAttribute('actionParam') === 'new'"
+                    data-ng-bind="$ctrl.menuEntry.menuSub.name"
+                >
+                </span>
+                <span
+                    data-ng-if="$ctrl.getEntryAttribute('actionParam') !== 'new'"
+                    data-ng-bind="$ctrl.menuCtrl.ovhPabx.getMenu($ctrl.getEntryAttribute('actionParam')).name"
+                >
+                </span>
+            </span>
+            <!-- END OF ACTION PARAM DISPLAY : MENUSUB -->
+
+            <!-- ACTION PARAM DISPLAY : DEFAULT -->
+            <span
+                class="voip-plan__step-info"
+                data-ng-switch-default
+                data-ng-bind="$ctrl.getEntryAttribute('actionParam')"
+            >
+            </span>
+            <!-- END OF ACTION PARAM DISPLAY : DEFAULT -->
+        </div>
+        <!-- END OF ENTRY ACTION -->
+        <!-- AVAILABLE ENTRY ACTIONS -->
+        <div
+            class="voip-plan__step-btn-container"
+            data-uib-dropdown
+            data-responsive-popover="$ctrl.popoverTemplateUrl"
+            data-popover-placement="auto right"
+            data-popover-trigger="none"
+            data-popover-is-open="$ctrl.popoverStatus.isOpen"
+            data-popover-class="pretty-popover telephony-number-feature-popover telephony-number-ovh-pabx-actions-popup"
+        >
+            <button
+                type="button"
+                class="voip-plan__step-btn voip-plan__step-btn--default"
+                data-attr-id="menu-entry-{{ $ctrl.menuEntry.entryId }}-actions"
+                data-uib-dropdown-toggle
+            >
+                <span class="ovh-font ovh-font-dots" aria-hidden="true"></span>
+            </button>
+            <ul
+                class="dropdown-menu ovh-dropdown-menu"
+                data-uib-dropdown-menu
+                role="menu"
+                aria-labelledby="menu-entry-{{ $ctrl.menuEntry.entryId }}-actions"
+            >
+                <!-- EDIT ACTION -->
+                <li role="menuitem">
+                    <button
+                        type="button"
+                        class="btn btn-link w-100"
+                        data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit"
+                        data-ng-click="$ctrl.onEditButtonClick()"
+                    ></button>
+                </li>
+                <!-- END OF EDIT ACTION -->
+                <li class="divider"></li>
+                <!-- DELETE ACTION -->
+                <li role="menuitem">
+                    <button
+                        type="button"
+                        class="btn btn-link w-100"
+                        data-translate="telephony_number_feature_ovh_pabx_menu_entry_delete"
+                        data-ng-click="$ctrl.menuEntry.status = 'DELETE_PENDING'"
+                    ></button>
+                </li>
+                <!-- END OF DELETE ACTION -->
+            </ul>
+        </div>
+        <!-- AVAILABLE ENTRY ACTIONS -->
+        <div
+            class="voip-plan__step-confirm voip-plan__step-confirm--has-border"
+            data-ng-if="$ctrl.menuEntry.status === 'DELETE_PENDING'"
+        >
+            <div class="voip-plan__step-confirm-overlay"></div>
+            <div
+                class="voip-plan__step-confirm-content text-center animated fadeInRight flex-row-center"
+            >
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    data-translate="cancel"
+                    data-ng-click="$ctrl.menuEntry.status = 'OK'"
+                ></button>
+
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-translate="common_confirm"
+                    data-ng-click="$ctrl.onConfirmDeleteButtonClick()"
+                ></button>
+            </div>
+        </div>
+    </div>
+    <!-- END OF ENTRY BLOCK -->
+</div>

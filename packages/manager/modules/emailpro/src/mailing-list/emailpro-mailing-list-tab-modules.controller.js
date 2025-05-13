@@ -12,6 +12,8 @@ export default class EmailProMXPlanMailingListsTabModulesCtrl {
     $translate,
     Alerter,
     WucEmails,
+    goToModerators,
+    goToSubscribers,
     EmailProMXPlanMailingLists,
   ) {
     this.$scope = $scope;
@@ -21,6 +23,8 @@ export default class EmailProMXPlanMailingListsTabModulesCtrl {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.Alerter = Alerter;
+    this.goToModerators = goToModerators;
+    this.goToSubscribers = goToSubscribers;
     this.WucEmails = WucEmails;
     this.EmailProMXPlanMailingLists = EmailProMXPlanMailingLists;
   }
@@ -57,7 +61,7 @@ export default class EmailProMXPlanMailingListsTabModulesCtrl {
 
     this.getQuotas().then(() => this.refreshTableEmailProMXPlanMailingLists());
 
-    this.upgradeLink = this.$state.href('app.email.mxplan.upgrade', {
+    this.upgradeLink = this.$state.href('mxplan.dashboard.upgrade', {
       productId: this.$stateParams.productId,
       domain: this.$scope.exchange.associatedDomainName,
     });

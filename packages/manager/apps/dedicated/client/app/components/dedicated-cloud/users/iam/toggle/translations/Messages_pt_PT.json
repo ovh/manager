@@ -1,0 +1,12 @@
+{
+  "dedicatedCloud_USER_iam_enable_title": "Ativar o IAM da OVHcloud",
+  "dedicatedCloud_USER_iam_disable_title": "Desativar o IAM da OVHcloud",
+  "dedicatedCloud_USER_iam_enable_available": "Tem a certeza de que pretende ativar o IAM da OVHcloud?",
+  "dedicatedCloud_USER_iam_disable_available": "Tem a certeza de que pretende desativar o IAM da OVHcloud?",
+  "dedicatedCloud_USER_iam_enable_usage_warning": "O IAM OVHcloud está integrado apenas no produto vSphere. As infraestruturas que beneficiam de opções de segurança reforçada ou de um serviço certificado (HDS, PCI-DSS ou SNC) não podem atualmente utilizar o IAM da OVHcloud. Se, posteriormente, pretender ativar uma destas opções ou serviços certificados, deverá desativar o IAM da OVHcloud.",
+  "dedicatedCloud_USER_iam_enable_unavailable": "Não é possível ativar o IAM da OVHcloud.",
+  "dedicatedCloud_USER_iam_disable_unavailable": "Não é possível desativar o IAM da OVHcloud.",
+  "dedicatedCloud_USER_iam_enable_error": "Não foi possível ativar o IAM da OVHcloud.",
+  "dedicatedCloud_USER_iam_disable_error": "Não foi possível desativar o IAM da OVHcloud.",
+  "dedicatedCloud_USER_iam_toggle_unavailable_reason": "Motivo apresentado: {{message}}"
+}

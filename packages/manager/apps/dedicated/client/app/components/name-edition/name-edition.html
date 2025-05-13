@@ -1,16 +1,14 @@
 <div class="oui-modal oui-modal_shadow">
-    <form
-        name="updateNameForm"
-        novalidate
-        data-ng-submit="$ctrl.updateDescription()"
-    >
+    <form name="updateNameForm" novalidate>
         <oui-modal
-            data-title="{{ $ctrl.modalContextTitle + '_modify_title' | translate }}"
             data-primary-label="{{ :: 'common_change' | translate }}"
+            data-primary-disabled="updateNameForm.$invalid || $ctrl.newValue === $ctrl.data.value"
+            data-primary-action="$ctrl.updateDescription()"
             data-secondary-label="{{ :: 'common_cancel' | translate }}"
             data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
             data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
             data-loading="$ctrl.updating"
+            data-heading="{{ $ctrl.modalContextTitle + '_modify_title' | translate }}"
         >
             <oui-field data-label="{{ $ctrl.modalContextTitle | translate }}">
                 <input
@@ -19,6 +17,7 @@
                     name="name"
                     id="change-name"
                     data-ng-model="$ctrl.newValue"
+                    data-ng-pattern="/^[^<|>]+$/"
                     data-required
                 />
             </oui-field>

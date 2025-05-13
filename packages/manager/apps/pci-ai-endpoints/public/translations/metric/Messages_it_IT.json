@@ -1,0 +1,15 @@
+{
+  "ai_endpoints_allModel": "Tutti",
+  "ai_endpoints_metrics": "Metriche",
+  "ai_endpoints_total": "Totale",
+  "ai_endpoints_totalAudio": "Durata audio totale (secondi)",
+  "ai_endpoints_noData": "Nessun risultato",
+  "ai_endpoints_loading": "Ti chiediamo di attendere, stiamo raccogliendo i tuoi dati...",
+  "ai_endpoints_error": "Errore durante il caricamento delle metriche. Ti chiediamo di riprovare più tardi.",
+  "ai_endpoints_input": "Input token",
+  "ai_endpoints_output": "Output token",
+  "ai_endpoints_no_data_for_the_selected_period": "Non sono presenti modelli attivi per il periodo scelto. Puoi consultare i tuoi consumi selezionando la data di inizio e fine.",
+  "ai_endpoints_models": "Modelli",
+  "ai_endpoints_startDate": "Data di inizio",
+  "ai_endpoints_endDate": "Data di fine"
+}

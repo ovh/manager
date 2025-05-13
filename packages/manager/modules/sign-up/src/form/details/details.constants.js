@@ -245,6 +245,9 @@ export const PHONE_PREFIX = {
   ZW: '263',
 };
 
+export const ALLOWED_COUNTRY_EXTRA_INFO = 'CZ';
+
 export default {
+  ALLOWED_COUNTRY_EXTRA_INFO,
   PHONE_PREFIX,
 };

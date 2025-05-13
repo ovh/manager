@@ -1,0 +1,137 @@
+<div data-ng-controller="HostingDatabaseCopyCtrl as $ctrl">
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="$ctrl.copyDatabase.bind($ctrl)"
+        data-wizard-title="'hosting_tab_DATABASES_configuration_copy_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="$ctrl.load.bind($ctrl)"
+            data-wizard-step-valid="$ctrl.isStep1Valid()"
+        >
+            <oui-spinner data-ng-if="!$ctrl.mainDatabases"></oui-spinner>
+
+            <form
+                name="hostingCopyDatabaseForm"
+                data-ng-if="$ctrl.mainDatabases"
+            >
+                <oui-message type="info">
+                    <span
+                        data-translate="hosting_tab_DATABASES_configuration_information_message"
+                    ></span>
+                    <a
+                        data-ng-href="{{ :: $ctrl.bannerGuideLink}}"
+                        target="_blank"
+                        rel="noopener"
+                        data-ng-bind-html="'hosting_guide_help' | translate"
+                    ></a>
+                </oui-message>
+                <p>
+                    <span
+                        >{{::
+                        'hosting_tab_DATABASES_configuration_copy_step1_question_part1'
+                        | translate}}</span
+                    >
+                    <a href="{{ :: $ctrl.createDatabaseUrl }}" rel="noopener">
+                        {{::
+                        'hosting_tab_DATABASES_configuration_copy_step1_question_link'
+                        | translate}}
+                    </a>
+                    <span
+                        >{{::
+                        'hosting_tab_DATABASES_configuration_copy_step1_question_part2'
+                        | translate}}</span
+                    >
+                </p>
+
+                <oui-radio
+                    data-model="$ctrl.selectedType"
+                    name="oui-radio-1"
+                    data-on-change="$ctrl.onChangeCopyType()"
+                    data-value="$ctrl.COPY_TYPE_MAIN_DATABASE"
+                >
+                    <span
+                        data-translate="hosting_tab_DATABASES_configuration_copy_step1_select_database"
+                    ></span>
+                </oui-radio>
+                <div class="mb-2">
+                    <div class="d-flex align-items-end">
+                        <oui-select
+                            class="oui-select__input w-100"
+                            data-disabled="$ctrl.selectedType !== $ctrl.COPY_TYPE_MAIN_DATABASE"
+                            data-placeholder="{{::'hosting_tab_DATABASES_configuration_copy_step1_select_hosting_placeholder' | translate}}"
+                            data-model="$ctrl.selectedMain"
+                            data-on-change="$ctrl.loadAvailableDatabase()"
+                            data-items="$ctrl.mainDatabases"
+                        >
+                        </oui-select>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <div class="d-flex align-items-end">
+                        <oui-select
+                            class="oui-select__input w-100"
+                            data-disabled="$ctrl.selectedType !== $ctrl.COPY_TYPE_MAIN_DATABASE || !$ctrl.selectedMain"
+                            data-placeholder="{{::'hosting_tab_DATABASES_configuration_copy_step1_select_database_placeholder' | translate}}"
+                            data-model="$ctrl.selectedDatabase"
+                            data-items="$ctrl.targetDatabases"
+                        >
+                        </oui-select>
+                    </div>
+                </div>
+
+                <oui-radio
+                    data-model="$ctrl.selectedType"
+                    name="oui-radio-2"
+                    data-on-change="$ctrl.onChangeCopyType()"
+                    data-value="$ctrl.COPY_TYPE_WEBCLOUD_DATABASE"
+                >
+                    <span
+                        data-translate="hosting_tab_DATABASES_configuration_copy_step1_select_webcloud_database"
+                    ></span>
+                </oui-radio>
+
+                <div class="mb-2">
+                    <div class="d-flex align-items-end">
+                        <oui-select
+                            class="oui-select__input w-100"
+                            data-disabled="$ctrl.selectedType !== $ctrl.COPY_TYPE_WEBCLOUD_DATABASE"
+                            data-placeholder="{{::'hosting_tab_DATABASES_configuration_copy_step1_select_webcloud_placeholder' | translate}}"
+                            data-model="$ctrl.selectedWebCloud"
+                            data-on-change="$ctrl.loadAvailableWebCloudDatabases()"
+                            data-items="$ctrl.webCloudDatabases"
+                        >
+                        </oui-select>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <div class="d-flex align-items-end">
+                        <oui-select
+                            class="oui-select__input w-100"
+                            data-disabled="$ctrl.selectedType !== $ctrl.COPY_TYPE_WEBCLOUD_DATABASE || !$ctrl.targetWebCouldDatabases"
+                            data-placeholder="{{::'hosting_tab_DATABASES_configuration_copy_step1_select_database_placeholder' | translate}}"
+                            data-model="$ctrl.selectedWebCloudDatabase"
+                            data-items="$ctrl.targetWebCouldDatabases"
+                        >
+                        </oui-select>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div data-wizard-step>
+            <div class="oui-message oui-message_warning" role="alert">
+                <span
+                    class="oui-message__icon oui-icon oui-icon-warning-circle"
+                    aria-hidden="true"
+                ></span>
+                <p
+                    data-translate="hosting_tab_DATABASES_configuration_copy_step2_confirmation_description"
+                    class="oui-message__body"
+                ></p>
+            </div>
+        </div>
+    </div>
+</div>

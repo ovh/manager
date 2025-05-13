@@ -1,0 +1,7 @@
+{
+  "dedicatedCloud_configuration_security_policy_logout_title": "Modificar a política de logout",
+  "dedicatedCloud_configuration_security_policy_logout_step1_question": "Política de logout em caso de dupla ligação",
+  "dedicatedCloud_SECURITY_logout_policy_FIRST": "Desconectar o primeiro utilizador conectado",
+  "dedicatedCloud_SECURITY_logout_policy_LAST": "Desconectar o último utilizador conectado",
+  "dedicatedCloud_configuration_security_policy_logout_step1_value": "Selecione"
+}

@@ -25,6 +25,97 @@ import ASSET_OS_WINDOWS_OTHER from './assets/os/windows_other.png';
 import ASSET_OS_WINDOWS_SERVER_2012 from './assets/os/windows_server_2012.png';
 import ASSET_OS_WINDOWS_SERVER_2016 from './assets/os/windows_server_2016.png';
 
+export const IMAGES_REGEX = {
+  'baremetal-linux': [
+    {
+      name: 'baremetal_ubuntu',
+      regex: /Ubuntu/i,
+    },
+    {
+      name: 'baremetal_freebsd',
+      regex: /FreeBSD/i,
+    },
+    {
+      name: 'baremetal_coreos',
+      regex: /CoreOS/i,
+    },
+    {
+      name: 'baremetal_debian',
+      regex: /Debian/i,
+    },
+    {
+      name: 'baremetal_centos',
+      regex: /Cent[\s-]?OS/i,
+    },
+    {
+      name: 'baremetal_fedora',
+      regex: /Fedora/i,
+    },
+    {
+      name: 'baremetal_dokku',
+      regex: /Dokku/i,
+    },
+    {
+      name: 'baremetal_linux',
+      regex: /(Alma|Rocky)/i,
+    },
+  ],
+  'baremetal-windows': [
+    {
+      name: 'baremetal_windows_server_2012',
+      regex: /Win[a-zA-Z\s-]+2012/i,
+    },
+    {
+      name: 'baremetal_windows_server_2016',
+      regex: /Win[a-zA-Z\s-]+2016/i,
+    },
+  ],
+  linux: [
+    {
+      name: 'ubuntu',
+      regex: /^Ubuntu/i,
+    },
+    {
+      name: 'freebsd',
+      regex: /^FreeBSD/i,
+    },
+    {
+      name: 'coreos',
+      regex: /^CoreOS/i,
+    },
+    {
+      name: 'debian',
+      regex: /^Debian/i,
+    },
+    {
+      name: 'centos',
+      regex: /^Cent[\s-]?OS/i,
+    },
+    {
+      name: 'fedora',
+      regex: /^Fedora/i,
+    },
+    {
+      name: 'dokku',
+      regex: /^Dokku/i,
+    },
+    {
+      name: 'linux',
+      regex: /^(Alma|Rocky)/i,
+    },
+  ],
+  windows: [
+    {
+      name: 'windows_server_2012',
+      regex: /^Win[a-zA-Z\s-]+2012/i,
+    },
+    {
+      name: 'windows_server_2016',
+      regex: /^Win[a-zA-Z\s-]+2016/i,
+    },
+  ],
+};
+
 export const ACTIVE_STATUS = ['active'];
 
 export const APPLICATION_TAG = 'application';
@@ -122,17 +213,34 @@ export const IMAGE_ASSETS = {
     dokku: ASSET_OS_DOKKU,
     fedora: ASSET_OS_FEDORA,
     freebsd: ASSET_OS_FREEBSD,
+    linux: ASSET_OS_LINUX_OTHER,
     linux_other: ASSET_OS_LINUX_OTHER,
     ubuntu: ASSET_OS_UBUNTU,
     windows_other: ASSET_OS_WINDOWS_OTHER,
     windows_server_2012: ASSET_OS_WINDOWS_SERVER_2012,
     windows_server_2016: ASSET_OS_WINDOWS_SERVER_2016,
+    baremetal_centos: ASSET_OS_CENTOS,
+    baremetal_coreos: ASSET_OS_COREOS,
+    baremetal_debian: ASSET_OS_DEBIAN,
+    baremetal_dokku: ASSET_OS_DOKKU,
+    baremetal_fedora: ASSET_OS_FEDORA,
+    baremetal_freebsd: ASSET_OS_FREEBSD,
+    baremetal_linux: ASSET_OS_LINUX_OTHER,
+    baremetal_linux_other: ASSET_OS_LINUX_OTHER,
+    baremetal_ubuntu: ASSET_OS_UBUNTU,
+    baremetal_windows_other: ASSET_OS_WINDOWS_OTHER,
+    baremetal_windows_server_2012: ASSET_OS_WINDOWS_SERVER_2012,
+    baremetal_windows_server_2016: ASSET_OS_WINDOWS_SERVER_2016,
   },
 };
+
+export const REGEX_PREFIX_BAREMETAL = /^baremetal-/;
 
 export default {
   ACTIVE_STATUS,
   APPLICATION_TAG,
   APPLICATION_LIST,
   IMAGE_ASSETS,
+  IMAGES_REGEX,
+  REGEX_PREFIX_BAREMETAL,
 };

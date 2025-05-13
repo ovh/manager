@@ -1,0 +1,47 @@
+<div id="sidebar-menu">
+    <!-- LOADER -->
+    <div class="text-center" data-ng-if="sideBarCtrl.loading.init">
+        <div class="oui-spinner oui-spinner_m">
+            <div class="oui-spinner__container">
+                <div class="oui-spinner__image"></div>
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-if="!sideBarCtrl.loading.init" class="mt-3">
+        <!-- ORDER ACTIONS MENU -->
+        <div
+            class="order-actions-menu"
+            data-ng-if="sideBarCtrl.actionsOptions.length"
+        >
+            <actions-menu
+                data-actions-menu-options="sideBarCtrl.actionsOptions"
+                data-actions-menu-popover-settings="sideBarCtrl.popoverSettings"
+            >
+                <span
+                    class="cart-icon ovh-font ovh-font-cart"
+                    aria-hidden="true"
+                ></span>
+
+                <span
+                    class="button-text"
+                    data-translate="sidebar_menu_order_actions"
+                >
+                </span>
+
+                <span
+                    class="arrow-icon ovh-font ovh-font-small-arrow-down"
+                    aria-hidden="true"
+                ></span>
+            </actions-menu>
+        </div>
+
+        <!-- MENU ITEMS -->
+        <sidebar-menu-list
+            data-sidebar-menu-list-items="sideBarCtrl.items"
+            data-sidebar-menu-list-namespace="sidebarNamespace"
+            data-sidebar-menu-list-level="1"
+        >
+        </sidebar-menu-list>
+    </div>
+</div>

@@ -1,11 +1,12 @@
 {
- "pci_project_instance_ssh_key": "SSH-Schlüssel",
- "pci_project_instance_ssh_pick": "Auswählen",
- "pci_project_instance_ssh_add": "Schlüssel hinzufügen",
- "pci_project_instance_ssh_cancel": "Abbrechen",
- "pci_project_instance_ssh_key_name": "Name des SSH-Schlüssels",
- "pci_project_instance_ssh_key_query_error": "Beim Abruf Ihrer SSH-Schlüssel ist ein Fehler aufgetreten: {{message}}.",
- "pci_project_instance_ssh_key_add_error": "Beim Hinzufügen des SSH-Schlüssels ist ein Fehler aufgetreten: {{message}}.",
- "pci_project_instance_ssh_key_help_required": "SSH-Schlüssel sind erforderlich, um sich mit Ihrem Dienst zu verbinden.",
- "pci_project_instance_ssh_key_help_availability": "Ihr SSH-Schlüssel wird in allen Regionen und OVH Rechenzentren verfügbar sein."
+  "pci_project_instance_ssh_key": "SSH-Schlüssel",
+  "pci_project_instance_ssh_pick": "Auswählen",
+  "pci_project_instance_ssh_add": "Schlüssel hinzufügen",
+  "pci_project_instance_ssh_cancel": "Abbrechen",
+  "pci_project_instance_ssh_key_name": "Name des SSH-Schlüssels",
+  "pci_project_instance_ssh_key_query_error": "Beim Abruf Ihrer SSH-Schlüssel ist ein Fehler aufgetreten: {{message}}.",
+  "pci_project_instance_ssh_key_add_error": "Beim Hinzufügen des SSH-Schlüssels ist ein Fehler aufgetreten: {{message}}.",
+  "pci_project_instance_ssh_key_help_required": "SSH-Schlüssel sind erforderlich, um sich mit Ihrem Dienst zu verbinden. Bitte lesen Sie die <a target='_blank' rel='noopener' href='{{guideUrl}}'>Anleitung</a> für weiterführende Informationen.",
+  "pci_project_instance_ssh_key_help_availability": "Ihr SSH-Schlüssel wird in allen Regionen und OVH Rechenzentren verfügbar sein.",
+  "pci_project_instance_ssh_key_infos": "Nur SSH-Schlüssel vom Typ RSA oder ECDSA werden angenommen. Sie können keine SSH-Schlüssel vom Typ ED25519 verwenden."
 }

@@ -1,0 +1,7 @@
+{
+  "dedicated_server_dashboard_advanced_features_sgx_status_isRunning": "Wird bearbeitet",
+  "dedicated_server_dashboard_advanced_features_sgx_status_disabled": "Deaktiviert",
+  "dedicated_server_dashboard_advanced_features_sgx_status_enabled": "Aktiviert",
+  "dedicated_server_dashboard_advanced_features_sgx_status_softwareControlled": "Software controlled aktiviert",
+  "dedicated_server_dashboard_advanced_features_sgx_prmrr": "Reservierter Prozessorspeicher: {{value}} MB"
+}

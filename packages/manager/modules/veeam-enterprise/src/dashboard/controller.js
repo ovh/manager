@@ -1,25 +1,21 @@
-import { RENEW_URL } from '../constants';
+import 'moment';
 
 export default class VeeamEnterpriseDashboardCtrl {
   /* @ngInject */
   constructor(
     $stateParams,
     $translate,
+    coreURLBuilder,
     CucControllerHelper,
     CucFeatureAvailabilityService,
     VeeamEnterpriseService,
-    goToLicenseActivate,
-    goToLicenseUpdate,
-    goToLicenseTerminate,
   ) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.coreURLBuilder = coreURLBuilder;
     this.CucControllerHelper = CucControllerHelper;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
     this.VeeamEnterpriseService = VeeamEnterpriseService;
-    this.goToLicenseActivate = goToLicenseActivate;
-    this.goToLicenseUpdate = goToLicenseUpdate;
-    this.goToLicenseTerminate = goToLicenseTerminate;
 
     this.serviceName = this.$stateParams.serviceName;
 
@@ -62,16 +58,17 @@ export default class VeeamEnterpriseDashboardCtrl {
     this.uiActions = {
       manageAutorenew: {
         text: this.$translate.instant('veeam_enterprise_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(
-          RENEW_URL,
-          {
-            serviceName: this.serviceName,
-            serviceType: 'VEEAM_ENTERPRISE',
-          },
-        ),
+        href: this.coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
+          searchText: this.serviceName,
+          selectedType: 'VEEAM_ENTERPRISE',
+        }),
         isAvailable: () => true,
       },
     };
+  }
+
+  onAutorenewManageClick() {
+    this.trackClick('manage');
   }
 
   $onInit() {

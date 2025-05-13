@@ -1,4 +1,4 @@
-<div class="container-fluid px-0" data-ng-controller="EmailProTabTasksCtrl">
+<div>
     <div
         class="alert alert-warning"
         role="alert"
@@ -7,23 +7,25 @@
     ></div>
 
     <oui-datagrid data-rows-loader="loadPaginated($config)">
-        <oui-column
+        <oui-datagrid-column
             data-title="'emailpro_tab_TASKS_table_function' | translate"
         >
             <span
                 data-ng-if="$row.status"
-                data-ng-bind-html="'emailpro_tab_TASKS_'+ $row.function | translate"
+                data-ng-bind="'emailpro_tab_TASKS_'+ $row.function | translate"
             ></span>
             <span
                 data-ng-if="$row.action.includes(mailinglist)"
-                data-ng-bind-html="'emailpro_tab_TASKS_mailinglist' | translate"
+                data-ng-bind="'emailpro_tab_TASKS_mailinglist' | translate"
             ></span>
             <span
                 data-ng-if="$row.action.includes(redirection)"
-                data-ng-bind-html="'emailpro_tab_TASKS_redirection' | translate"
+                data-ng-bind="'emailpro_tab_TASKS_redirection' | translate"
             ></span>
-        </oui-column>
-        <oui-column data-title="'emailpro_tab_TASKS_table_state' | translate">
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'emailpro_tab_TASKS_table_state' | translate"
+        >
             <div
                 data-ng-if="$row.status == stateDoing || $row.status == stateTodo"
             >
@@ -32,7 +34,7 @@
                     aria-hidden="true"
                 ></span>
                 <span
-                    data-ng-bind-html="'emailpro_tab_TASKS_'+ $row.status | translate"
+                    data-ng-bind="'emailpro_tab_TASKS_'+ $row.status | translate"
                 ></span>
             </div>
             <div data-ng-if="$row.status == stateError">
@@ -41,37 +43,37 @@
                     aria-hidden="true"
                 ></span>
                 <span
-                    data-ng-bind-html="'emailpro_tab_TASKS_'+ $row.status | translate"
+                    data-ng-bind="'emailpro_tab_TASKS_'+ $row.status | translate"
                 ></span>
             </div>
             <div data-ng-if="$row.status == stateCancelled">
                 <span class="fa fa-ban text-muted" aria-hidden="true"></span>
                 <span
-                    data-ng-bind-html="'emailpro_tab_TASKS_'+ $row.status | translate"
+                    data-ng-bind="'emailpro_tab_TASKS_'+ $row.status | translate"
                 ></span>
             </div>
             <span
                 data-ng-if="$row.status == stateDone"
-                data-ng-bind-html="'emailpro_tab_TASKS_'+ $row.status | translate"
+                data-ng-bind="'emailpro_tab_TASKS_'+ $row.status | translate"
             ></span>
             <span
                 data-ng-if="$row.action"
-                data-ng-bind-html="'emailpro_tab_TASKS_todo' | translate"
+                data-ng-bind="'emailpro_tab_TASKS_todo' | translate"
             ></span>
-        </oui-column>
+        </oui-datagrid-column>
 
-        <oui-column
+        <oui-datagrid-column
             data-title="'emailpro_tab_TASKS_table_start_date' | translate"
             data-property="todoDate"
             data-sortable="desc"
         >
             <span data-ng-bind="::$row.todoDate | date:'short'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'emailpro_tab_TASKS_table_finish_date' | translate"
             data-property="finishDate"
         >
             <span data-ng-bind="::$row.finishDate | date:'short'"></span>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </div>

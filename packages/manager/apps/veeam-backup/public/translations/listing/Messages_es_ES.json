@@ -1,0 +1,14 @@
+{
+  "description": "Gestionar las copias de seguridad de sus organizaciones VMware Cloud Director",
+  "order_button": "Contratar",
+  "name_cell": "Nombre",
+  "status_cell": "Estado",
+  "ovhref_cell": "Referencia",
+  "vcdorg_cell": "Organización VCD",
+  "region_cell": "Región",
+  "createdat_cell": "Fecha de creación",
+  "edit_name_action": "Editar el nombre",
+  "delete_action": "Dar de baja",
+  "load_more_button": "Cargar las siguientes copias de seguridad",
+  "location_cell": "Localización"
+}

@@ -1,0 +1,42 @@
+<div class="product-activate-banner sticky-top">
+    <!-- mobile display -->
+    <oui-message class="d-block d-sm-none" data-type="warning">
+        <div class="d-flex flex-row justify-content-between align-items-center">
+            <div class="mr-3 mb-3">
+                <span
+                    data-translate="pci_projects_project_activate_project_banner_message"
+                ></span>
+            </div>
+        </div>
+        <oui-button
+            class="d-block d-sm-none"
+            data-size="l"
+            block
+            data-variant="primary"
+            data-on-click="$ctrl.onActivateProjectClick()"
+        >
+            <span
+                data-translate="pci_projects_project_activate_project_banner_cta"
+            ></span>
+        </oui-button>
+    </oui-message>
+
+    <!-- Tablet & desktop display -->
+    <oui-message class="d-none d-sm-block" data-type="warning">
+        <div class="d-flex flex-row justify-content-between align-items-center">
+            <div class="mr-3 mb-3">
+                <span
+                    data-translate="pci_projects_project_activate_project_banner_message"
+                ></span>
+            </div>
+            <oui-button
+                variant="primary"
+                on-click="$ctrl.onActivateProjectClick()"
+            >
+                <span
+                    data-translate="pci_projects_project_activate_project_banner_cta"
+                ></span>
+            </oui-button>
+        </div>
+    </oui-message>
+</div>

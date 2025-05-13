@@ -1,0 +1,32 @@
+<oui-back-button data-on-click="$ctrl.goBack()"></oui-back-button>
+
+<div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+        <oui-select
+            name="base"
+            model="$ctrl.base_dns_chosen"
+            items="$ctrl.base_dns_zone_mocks"
+            on-change="$ctrl.getBaseDnsZoneForChosenDate()"
+            data-placeholder="{{:: 'base_dns_zone' | translate }}"
+        >
+        </oui-select>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6">
+        <oui-select
+            name="modified"
+            model="$ctrl.modified_dns_chosen"
+            items="$ctrl.modified_dns_zone_mocks"
+            on-change="$ctrl.getModifiedDnsZoneForChosenDate()"
+            data-placeholder="{{:: 'modified_dns_zone' | translate }}"
+        >
+        </oui-select>
+    </div>
+</div>
+
+<div data-ng-if="$ctrl.isLoading" class="row mt-4 text-center">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div data-ovh-alert="dnsHistoryDiffToolViewerAlert"></div>
+
+<div class="row mt-4" id="destination-elem-id"></div>

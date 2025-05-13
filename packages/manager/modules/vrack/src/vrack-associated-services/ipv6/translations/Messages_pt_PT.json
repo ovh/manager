@@ -1,0 +1,22 @@
+{
+  "vrack__assigned-ipv6_add_subnet": "Adicionar uma sub-rede",
+  "vrack__assigned-ipv6__subrange_slaac_help": "A ativação do SLAAC facilita o endereçamento IPv6, mas evite o seu uso com várias regiões utilizadas pelo vRack",
+  "vrack__assigned-ipv6__subrange_slaac_help_tooltip_link": "Mais informações",
+  "vrack__assigned-ipv6__subnet_add_title": "Adicionar uma sub-rede",
+  "vrack__assigned-ipv6__subnet_add_description": "Vai adicionar uma nova sub-rede roteada /64 ao seu vRack. Especifique o prefixo (que não deve sobrepor-se a outro prefixo existente), assim como o endereço Nexthop que deve fazer parte da primeira sub-rede /64 (bridged) do seu bloco IPv6 adicional.",
+  "vrack__assigned-ipv6__subnet_add_subnet": "Introduza o endereço da sub-rede /64",
+  "vrack__assigned-ipv6__subnet_add_address": "Endereço Nexthop",
+  "vrack__assigned-ipv6__subnet_delete_title": "Remover a sub-rede do seu vRack",
+  "vrack__assigned-ipv6__subnet_delete_description": "Quer mesmo remover a sub-rede do seu vRack?",
+  "vrack__assigned-ipv6_subnet_via": "via {{ ip }} ",
+  "vrack_add_ipv6_modal_title": "Adicionar um bloco IP ao vRack",
+  "vrack_add_ipv6_modal_description": "Vai adicionar um bloco IP: {{ ipblock }} (situado em {{ region }}) ao seu vRack: {{ vrack }}",
+  "vrack_add_ipv6_modal_description1": "Esta ação permitirá chegar às máquinas situadas neste vRack a partir da Internet pública.",
+  "vrack_add_ipv6_modal_description2": "O tráfego público será encaminhado através da região {{ region }}",
+  "vrack_add_ipv6_modal_description3": "Para mais informações, consulte",
+  "vrack_add_ipv6_modal_help_link": "a nossa documentação",
+  "vrack_add_ipv6_modal_alert_msg": "Detetámos que já existe um bloco IPv6 público no seu vRack, mas adicionou um novo. Certifique-se de que a opção SLAAC está desativada em TODOS os blocos IPv6; caso contrário, o resultado não será o esperado.",
+  "vrack_delete_ipv6_modal_title": "Mover o IP adicional",
+  "vrack_delete_ipv6_modal_description": "Vai eliminar {{ ip }} do seu vRack. Todas as sub-redes configuradas com este bloco serão eliminadas.",
+  "vrack_delete_ipv6_modal_question": "Deseja continuar?"
+}

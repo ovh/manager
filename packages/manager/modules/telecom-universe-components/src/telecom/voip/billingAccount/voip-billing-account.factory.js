@@ -34,6 +34,9 @@ export default /* @ngInject */ (TucVoipService, tucVoipService) => {
       // populate object attributes
       // mandatory attribute
       this.billingAccount = options.billingAccount;
+      this.uid = Math.random()
+        .toString(36)
+        .slice(2);
 
       // populate error (if some)
       this.error = options.error;
@@ -63,6 +66,16 @@ export default /* @ngInject */ (TucVoipService, tucVoipService) => {
        *  @return {Array.<TucVoipService>} An array of `TucVoipService` instances.
        */
       this.services = [];
+    }
+
+    /**
+     *  @ngdoc method
+     *  @name managerApp.object:TucVoipBillingAccount#toString
+     *  @methodOf managerApp.object:TucVoipBillingAccount
+     *  @return {String}
+     */
+    toString() {
+      return `${this.billingAccount}-${this.uid}`;
     }
 
     /**

@@ -1,168 +1,32 @@
-<oui-page-header
+<oui-header
     data-heading="{{:: 'private_database_order_clouddb_title' | translate }}"
     data-description="{{:: 'private_database_order_clouddb_subtitle' | translate }}"
 >
-</oui-page-header>
+</oui-header>
 
-<div class="container-fluid my-4 mx-5">
-    <div data-ovh-alert="cloudDB_order_alert"></div>
+<div data-ovh-alert="cloudDB_order_alert"></div>
 
-    <oui-stepper
-        data-current-index="$ctrl.currentIndex"
-        data-on-finish="$ctrl.validateCheckout()"
+<ovh-manager-product-offers
+    data-pricing-type="$ctrl.productOffers.pricingType"
+    data-workflow-options=":: $ctrl.productOffers.workflowOptions"
+    data-workflow-type=":: $ctrl.productOffers.workflowType"
+    data-on-success=":: $ctrl.onSuccess(checkout)"
+    data-on-error=":: $ctrl.onError(error)"
+>
+    <oui-step-form
+        data-header="{{:: 'private_database_order_clouddb_customization' | translate }}"
+        data-valid="$ctrl.isValidDbConfig()"
+        data-prevent-next="true"
+        data-on-submit="$ctrl.onGoToNextStepClick()"
+        data-on-focus="$ctrl.onOptionEdit()"
     >
-        <oui-step-form
-            data-header="{{:: 'private_database_order_clouddb_database_type' | translate }}"
-            data-on-focus="$ctrl.selectTypeOption()"
-            data-editable="false"
-            data-navigation="false"
-            data-disabled="$ctrl.hasValidatedCheckout"
-            data-valid="$ctrl.model.type"
-        >
-            <oui-field
-                data-label="{{:: 'private_database_order_clouddb_database_question' | translate }}"
-            >
-                <oui-radio
-                    data-name="modelType"
-                    data-model="$ctrl.model.type"
-                    data-value="$ctrl.defaultModelType"
-                >
-                    <span
-                        data-translate="{{:: 'private_database_order_clouddb_offer_title' | translate }}"
-                    ></span>
-                </oui-radio>
-                <span
-                    data-translate="{{:: 'private_database_order_clouddb_offer_subtitle' | translate }}"
-                ></span>
-            </oui-field>
-        </oui-step-form>
-
-        <oui-step-form
-            data-header="{{:: 'private_database_order_clouddb_customization' | translate }}"
-            data-on-focus="$ctrl.initializeCustomizationOptions()"
-            data-editable="!$ctrl.loadingDurations && !$ctrl.loadingCheckout && !$ctrl.hasValidatedCheckout"
-            data-navigation="false"
-            data-disabled="$ctrl.hasValidatedCheckout"
-        >
-            <oui-field
-                data-label="{{:: 'private_database_order_clouddb_server_version' | translate }}"
-                data-size="l"
-            >
-                <oui-select
-                    data-name="engine"
-                    data-match="label"
-                    data-model="$ctrl.model.engine"
-                    data-items="$ctrl.engineList"
-                    data-placeholder="{{:: 'private_database_order_clouddb_server_version_placeholder' | translate }}"
-                    data-on-change="$ctrl.canGoToDurationStep()"
-                >
-                </oui-select>
-            </oui-field>
-
-            <oui-field
-                data-label="{{:: 'private_database_order_clouddb_ram_option' | translate }}"
-                data-size="l"
-            >
-                <oui-select
-                    data-name="ram"
-                    data-match="label"
-                    data-model="$ctrl.model.ramSize"
-                    data-items="$ctrl.ramSizeList"
-                    data-placeholder="{{:: 'private_database_order_clouddb_ram_option_placeholder' | translate }}"
-                    data-on-change="$ctrl.canGoToDurationStep()"
-                >
-                </oui-select>
-            </oui-field>
-
-            <oui-field
-                data-label="{{:: 'private_database_order_clouddb_datacenter' | translate }}"
-                data-size="l"
-            >
-                <oui-select
-                    data-name="datacenter"
-                    data-match="label"
-                    data-model="$ctrl.model.datacenter"
-                    data-items="$ctrl.datacenterList"
-                    data-placeholder="{{:: 'private_database_order_clouddb_datacenter_placeholder' | translate }}"
-                    data-on-change="$ctrl.canGoToDurationStep()"
-                >
-                </oui-select>
-            </oui-field>
-        </oui-step-form>
-
-        <oui-step-form
-            data-header="{{:: 'private_database_order_clouddb_duration' | translate }}"
-            data-on-focus="$ctrl.getDurationsAndPricings($ctrl.model.ramSize)"
-            data-editable="!$ctrl.loadingCheckout && !$ctrl.hasValidatedCheckout"
-            data-loading="$ctrl.loadingDurations"
-            data-navigation="false"
-            data-disabled="$ctrl.hasValidatedCheckout"
-        >
-            <oui-radio
-                data-ng-repeat="duration in $ctrl.durations track by $index"
-                data-name="duration"
-                data-model="$ctrl.model.duration"
-                data-value="duration"
-                data-on-change="$ctrl.goToPaymentStep()"
-            >
-                <span
-                    data-translate="private_database_order_clouddb_duration_month"
-                    data-translate-values="{ 'number': duration.interval }"
-                ></span>
-                :
-                <ovh-manager-catalog-price
-                    data-price="duration.price"
-                    data-tax="duration.tax"
-                    data-user="$ctrl.user"
-                >
-                </ovh-manager-catalog-price>
-            </oui-radio>
-        </oui-step-form>
-
-        <oui-step-form
-            data-name="payment"
-            data-header="{{:: 'private_database_order_clouddb_payment' | translate }}"
-            data-on-focus="$ctrl.prepareCheckout()"
-            data-valid="$ctrl.agreeContracts"
-            data-prevent-next
-            data-submit-text="{{:: 'private_database_order_clouddb_payment_pay' | translate }}"
-            data-loading="$ctrl.loadingCheckout"
-            data-disabled="$ctrl.hasValidatedCheckout"
-        >
-            <div class="row">
-                <dl
-                    class="oui-description oui-description_horizontal oui-heading_underline col-md-2"
-                >
-                    <dt
-                        data-translate="private_database_order_clouddb_payment_total_price_without_tax"
-                    ></dt>
-                    <dd data-ng-bind="$ctrl.prices.withoutTax.text"></dd>
-                    <dt
-                        data-translate="private_database_order_clouddb_payment_total_price_with_tax"
-                    ></dt>
-                    <dd data-ng-bind="$ctrl.prices.withTax.text"></dd>
-                    <dt
-                        data-translate="private_database_order_clouddb_payment_duration"
-                    ></dt>
-                    <dd
-                        data-translate="private_database_order_clouddb_duration_month"
-                        data-translate-values="{ 'number': $ctrl.model.duration.interval }"
-                    ></dd>
-                </dl>
-            </div>
-
-            <ovh-payment-method-choice
-                data-model="$ctrl.defaultPaymentMethod"
-                data-error-callback="$ctrl.displayErrorGetPaymentMethod()"
-            >
-            </ovh-payment-method-choice>
-
-            <ovh-contracts-summary
-                data-name="agreeContracts"
-                data-items="$ctrl.contracts"
-                data-model="$ctrl.agreeContracts"
-            >
-            </ovh-contracts-summary>
-        </oui-step-form>
-    </oui-stepper>
-</div>
+        <web-hosting-database-order-db-categories-offers
+            data-user="$ctrl.user"
+            data-db-categories="$ctrl.dbCategories"
+            data-preselect-db-category="$ctrl.preselectDbCategory"
+            data-on-db-category-click="$ctrl.onDbCategoryClick(dbCategory)"
+            data-on-db-category-engine-click="$ctrl.onDbCategoryEngineClick(dbEngine)"
+            data-model="$ctrl.model"
+        ></web-hosting-database-order-db-categories-offers>
+    </oui-step-form>
+</ovh-manager-product-offers>

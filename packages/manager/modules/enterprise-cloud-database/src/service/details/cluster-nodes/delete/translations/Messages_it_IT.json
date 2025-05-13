@@ -1,9 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_title": "Elimina repliche",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_description": "Seleziona il numero di repliche da eliminare",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_warning": "Questa azione non può essere annullata.",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_enter": "Inserisci \"DELETE\" in questo campo per confermare l’operazione.",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_info": "L’eliminazione della replica durante il periodo di impegno contrattuale non dà diritto ad alcun rimborso.",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_success": "La richiesta di eliminazione di {{replicaCount}} repliche è stata creata correttamente ed è in fase di elaborazione",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_error": "Si è verificato un errore durante l’eliminazione delle repliche: {{message}}"
-}

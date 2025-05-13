@@ -1,0 +1,10 @@
+{
+  "status_action_renew_date_label": "Rinnovo automatico previsto tra",
+  "status_action_resiliation_cancel_label": "Annulla disattivazione",
+  "status_action_wizard_renew": "Rinnova",
+  "status_action_resiliation_date_label": "Disattivazione prevista il",
+  "status_action_expiration_date_label": "Scade il",
+  "status_action_expiration_delete_cancel_label": "Disattiva",
+  "status_action_renew_management": "Gestisci i tuoi servizi",
+  "status_action_wizard_restore": "Ripristinare"
+}

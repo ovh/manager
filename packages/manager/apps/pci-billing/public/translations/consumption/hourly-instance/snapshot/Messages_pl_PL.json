@@ -1,0 +1,10 @@
+{
+  "cpbc_no_consumption_data": "Brak zużycia dla wybranego okresu.",
+  "cpbc_snapshot_col_location": "Lokalizacja",
+  "cpbc_snapshot_col_type": "Typ",
+  "cpbc_snapshot_col_usage": "Zużycie",
+  "cpbc_snapshot_col_usage_info_part1": "Płatności zależą od realnej przestrzeni dyskowej, obliczanej co godzinę, za godzinę.",
+  "cpbc_snapshot_col_usage_info_part2": "Twoje zużycie odpowiada dokładnie {{amount}} GiBGodzinom (liczba GiB składowanych w rozliczanych godzinach).",
+  "cpbc_snapshot_type_instance": "Obrazy serwerów",
+  "cpb_error_message": "Wystąpił problem z pobraniem wszystkich informacji."
+}

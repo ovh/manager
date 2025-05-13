@@ -1,48 +1,63 @@
 import angular from 'angular';
-
-import '@ovh-ux/manager-core';
-import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@uirouter/angularjs';
-import '@ovh-ux/ng-ui-router-layout';
-import 'angular-translate';
-import 'angular-ui-bootstrap';
-import 'ovh-api-services';
-import 'ovh-ui-angular';
+import 'oclazyload';
 
-import VeeamEnterpriseCtrl from './controller';
-import VeeamEnterpriseService from './service';
-import VeeamEnterpriseDashboardCtrl from './dashboard/controller';
-import VeeamEnterpriseLicenseComponent from './dashboard/license/license.component';
-import VeeamEnterpriseLicenseTerminateComponent from './dashboard/terminate/terminate.component';
+import '@ovh-ux/ng-ui-router-breadcrumb';
 
-import routing from './routing';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './index.less';
-import './index.scss';
+import onboarding from './onboarding';
 
-const moduleName = 'ovhManagerVeeamEnterprise';
+const moduleName = 'ovhManagerVeeamEnterpriseLazyLoading';
 
 angular
   .module(moduleName, [
-    'ovhManagerCore',
-    'pascalprecht.translate',
+    'ngUiRouterBreadcrumb',
     'ui.router',
-    'ngOvhCloudUniverseComponents',
-    'ngUiRouterLayout',
-    'ui.bootstrap',
-    'ovh-api-services',
-    'oui',
+    'oc.lazyLoad',
+    onboarding,
   ])
-  .config(routing)
-  .controller('VeeamEnterpriseDashboardCtrl', VeeamEnterpriseDashboardCtrl)
-  .controller('VeeamEnterpriseCtrl', VeeamEnterpriseCtrl)
-  .component('veeamEnterpriseLicense', VeeamEnterpriseLicenseComponent)
-  .component(
-    'veeamEnterpriseLicenseTerminate',
-    VeeamEnterpriseLicenseTerminateComponent,
-  )
-  .service('VeeamEnterpriseService', VeeamEnterpriseService)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(
+    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+      $stateProvider.state('veeam-enterprise', {
+        url: '/veeam-enterprise',
+        redirectTo: 'veeam-enterprise.index',
+        template: '<div ui-view></div>',
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('veeam_enterprise_title'),
+        },
+      });
 
+      $stateProvider.state('veeam-enterprise.details.**', {
+        url: '/{serviceName}',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./details/veeam-enterprise.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+
+      $stateProvider.state('veeam-enterprise.index.**', {
+        url: '',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./veeam.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+
+      $urlRouterProvider.when(/^\/paas\/veeam-enterprise/, () => {
+        window.location.href = window.location.href.replace(
+          '/paas/veeam-enterprise',
+          '/veeam-enterprise',
+        );
+      });
+    },
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
 export default moduleName;

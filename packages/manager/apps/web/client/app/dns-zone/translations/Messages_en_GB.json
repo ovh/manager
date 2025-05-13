@@ -1,3 +1,26 @@
 {
-  "domains_newdnszone_order_step2_description_INSTALLATION": "Setting up a DNS zone"
+  "zones_title": "DNS zones",
+  "zones_order": "Order",
+  "base_dns_zone": "Basic DNS zone",
+  "modified_dns_zone": "Modified DNS zone",
+  "dashboard_history_creation_date": "Creation date",
+  "dashboard_history_view_zone": "View",
+  "dashboard_history_current_zone_date": "{{creationDate}} (current)",
+  "dashboard_history_download": "Download",
+  "dashboard_history_error": "Data processing error: {{message}}.",
+  "dashboard_history_restore": "Restore",
+  "dashboard_history_popup_title": "DNS zone data",
+  "dashboard_history_close_popup": "Close",
+  "dashboard_history_compare_button_label": "Compare versions",
+  "dashboard_history_restoration_successful": "Your DNS zone is currently being restored... You can track progress in the ‘Recent tasks’ tab. The propagation will be complete depending on the TTL (takes a maximum of 24 hours).",
+  "dashboard_history_restore_modal_title": "Restore your DNS zone",
+  "dashboard_history_restore_modal_content": "Do you want to restore the {{date}} backup?",
+  "dashboard_history_restore_modal_primary_label": "Restore",
+  "dashboard_history_restore_modal_secondary_label": "Cancel",
+  "dashboard_history_restore_modal_warning_message": "Important! The current zone will be deleted. The new zone selected will be restored",
+  "dashboard_history_restore_modal_info_message": "The reset on the DNS zone will take a few moments. Please note that the change may take up to 24 hours to propagate.",
+  "modified": "Modified",
+  "zones_domain_name": "Domain name",
+  "zones_enabled": "Enabled",
+  "zones_disabled": "Disabled"
 }

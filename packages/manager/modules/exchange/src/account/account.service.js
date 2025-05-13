@@ -1,10 +1,16 @@
 import get from 'lodash/get';
 import isString from 'lodash/isString';
 
+import {
+  ACCOUNT_PROPERTIES_WITH_UNIT,
+  ACCOUNT_PROPERTIES_WITH_STATUS,
+} from './account.constants';
+
 export default class ExchangeAccount {
   /* @ngInject */
   constructor(
-    Exchange,
+    $http,
+    wucExchange,
     exchangeAccountTypes,
     exchangeServiceInfrastructure,
     exchangeSelectedService,
@@ -13,7 +19,9 @@ export default class ExchangeAccount {
     OvhHttp,
     OvhApiMsServices,
   ) {
-    this.Exchange = Exchange;
+    this.$http = $http;
+
+    this.wucExchange = wucExchange;
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.exchangeSelectedService = exchangeSelectedService;
@@ -78,17 +86,12 @@ export default class ExchangeAccount {
    * @param {object} newAccount
    */
   sendingNewAccount(organizationName, serviceName, newAccount) {
-    return this.OvhHttp.post(
-      `/email/exchange/${organizationName}/service/${serviceName}/account`,
-      {
-        rootPath: 'apiv6',
-        data: newAccount,
-      },
-    ).then((data) => {
-      this.Exchange.refreshViews('Accounts', 'Tasks');
-
-      return data;
-    });
+    return this.$http
+      .post(
+        `/email/exchange/${organizationName}/service/${serviceName}/account`,
+        newAccount,
+      )
+      .then(({ data }) => data);
   }
 
   /**
@@ -107,7 +110,7 @@ export default class ExchangeAccount {
         {},
       )
       .$promise.then((data) => {
-        this.Exchange.refreshViews('Accounts', 'Tasks');
+        this.wucExchange.refreshViews('Accounts', 'Tasks');
         return data;
       });
   }
@@ -128,7 +131,7 @@ export default class ExchangeAccount {
         {},
       )
       .$promise.then((data) => {
-        this.Exchange.refreshViews('Accounts', 'Tasks');
+        this.wucExchange.refreshViews('Accounts', 'Tasks');
         return data;
       });
   }
@@ -149,7 +152,7 @@ export default class ExchangeAccount {
         {},
       )
       .$promise.then((data) => {
-        this.Exchange.refreshViews('Accounts', 'Tasks');
+        this.wucExchange.refreshViews('Accounts', 'Tasks');
         return data;
       });
   }
@@ -172,7 +175,7 @@ export default class ExchangeAccount {
         },
       )
       .$promise.then((data) => {
-        this.Exchange.refreshViews('Accounts', 'Tasks');
+        this.wucExchange.refreshViews('Accounts', 'Tasks');
         return data;
       });
   }
@@ -193,7 +196,7 @@ export default class ExchangeAccount {
         {},
       )
       .$promise.then((data) => {
-        this.Exchange.refreshViews('Accounts', 'Tasks');
+        this.wucExchange.refreshViews('Accounts', 'Tasks');
         return data;
       });
   }
@@ -207,7 +210,7 @@ export default class ExchangeAccount {
         {},
       )
       .$promise.then((data) => {
-        this.Exchange.refreshViews('Accounts', 'Tasks');
+        this.wucExchange.refreshViews('Accounts', 'Tasks');
         return data;
       });
   }
@@ -221,7 +224,7 @@ export default class ExchangeAccount {
         {},
       )
       .$promise.then((data) => {
-        this.Exchange.refreshViews('Accounts', 'Tasks');
+        this.wucExchange.refreshViews('Accounts', 'Tasks');
         return data;
       });
   }
@@ -255,4 +258,45 @@ export default class ExchangeAccount {
       this.PLACEHOLDER_DOMAIN_NAME.toUpperCase()
     );
   }
+
+  /**
+   * Get account rules field.
+   * Can be used to build a country codes list
+   * @returns {Promise} rules: fields rules info
+   */
+  getAccountRules() {
+    return this.$http
+      .post('/newAccount/rules')
+      .then(({ data: rules }) => rules);
+  }
+
+  accountValueToCSVString = (value) => {
+    const toStringMap = {
+      String: (v) => v,
+      Number: (v) => `${v}`,
+      Boolean: (v) => `${v}`,
+      Undefined: () => '',
+      Null: () => '',
+      Object: (v) => toStringMap.Array(Object.values(v)),
+      Array: (v) => v.map(this.accountValueToCSVString).join(','),
+      Date: (v) => v.toISOString(),
+    };
+    const type = Object.prototype.toString.call(value).match(/ (.+?)\]$/)[1];
+    const method = toStringMap[type] || toStringMap.String;
+    return method(value);
+  };
+
+  accountToCSVString = (account, properties, separator) =>
+    properties
+      .map((property) => {
+        let accountValue = account[property];
+        if (ACCOUNT_PROPERTIES_WITH_UNIT.includes(property)) {
+          accountValue = account[property].value + account[property].unit;
+        } else if (ACCOUNT_PROPERTIES_WITH_STATUS.includes(property)) {
+          accountValue = account[property].status;
+        }
+        return this.accountValueToCSVString(accountValue);
+      })
+      .map((value) => (value ? `"${value.replace(/[\r\n]/g, '')}"` : ''))
+      .join(separator);
 }

@@ -1,8 +1,0 @@
-{
-  "autorenew_service_EMAIL_DOMAIN_terminate": "Usuń natychmiast MX Plan",
-  "autorenew_service_EMAIL_DOMAIN_terminate_info": "Usunięcie usługi MX Plan spowoduje trwałe usunięcie wszystkich powiązanych z nią danych. Usunięcie MX Plan nie stanowi podstawy do zwrotu środków.",
-  "autorenew_service_EMAIL_DOMAIN_terminate_info_impossible": "Nie możesz usunąć konta e-mail, ponieważ stanowi ono cześć pakietu hostingowego.",
-  "autorenew_service_EMAIL_DOMAIN_terminate_procedure": "Otrzymasz e-mail z opisem procedury zamknięcia usługi MX Plan.",
-  "autorenew_service_EMAIL_DOMAIN_terminate_success": "Zlecenie zamknięcia usługi MX Plan zostało zarejestrowane. Otrzymasz e-mail z opisem dalszej procedury.",
-  "autorenew_service_EMAIL_DOMAIN_terminate_error": "Wystąpił błąd podczas zlecenia zamknięcia usługi MX Plan: { message}}."
-}

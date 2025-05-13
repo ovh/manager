@@ -1,0 +1,9 @@
+{
+  "billing_ovhaccount_refund": "Request a refund",
+  "billing_ovhaccount_refund_cancel": "Cancel",
+  "billing_ovhaccount_refund_confirm": "Confirm request",
+  "billing_ovhaccount_refund_description": "You are about to request a refund of {{ amount }}. You will be refunded via the original payment method.",
+  "billing_ovhaccount_refund_description_confirm": "Do you want to proceed with the refund?",
+  "billing_ovhaccount_refund_success": "Your {{amount}} refund request has been processed, and will be sent to you as soon as possible.",
+  "billing_ovhaccount_refund_error": "An error has occurred submitting the refund request."
+}

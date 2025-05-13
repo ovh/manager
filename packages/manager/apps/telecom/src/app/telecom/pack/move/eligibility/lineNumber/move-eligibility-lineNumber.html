@@ -1,0 +1,189 @@
+<form name="availabilityForm" data-ng-submit="$ctrl.testLineEligibility()">
+    <div
+        class="form-group"
+        data-ng-class="{
+             'has-error': availabilityForm.phoneNumber.$touched && availabilityForm.phoneNumber.$invalid
+         }"
+    >
+        <oui-field
+            data-label="{{ :: 'pack_move_eligibility_number' | translate }}"
+        >
+            <input
+                type="text"
+                class="form-control"
+                id="phoneNumber"
+                name="phoneNumber"
+                required
+                data-ng-pattern="$ctrl.phoneNumberRegex"
+                data-translate-attr="{ placeholder : 'pack_move_eligibility_number' }"
+                data-ng-model="$ctrl.checkLine.lineNumber"
+                data-ng-disabled="$ctrl.method !== 'number'"
+            />
+        </oui-field>
+        <span
+            class="help-block"
+            role="alert"
+            data-ng-if="availabilityForm.phoneNumber.$touched"
+            data-ng-messages="availabilityForm.phoneNumber.$error"
+        >
+            <span
+                data-ng-message="pattern"
+                data-translate="pack_move_eligibility_phone_form_error"
+            >
+            </span>
+        </span>
+    </div>
+    <div class="mt-3">
+        <button
+            type="submit"
+            class="btn btn-primary"
+            data-translate="submit"
+            data-ng-disabled="$ctrl.loading || availabilityForm.phoneNumber.$invalid || $ctrl.method !== 'number'"
+        ></button>
+        <oui-spinner class="ml-2" data-ng-if="$ctrl.loading" data-size="s">
+        </oui-spinner>
+    </div>
+
+    <div data-ng-if="$ctrl.displayFirstStep" class="mt-3">
+        <div class="row">
+            <div
+                class="col-md-6"
+                data-ng-repeat="copper in $ctrl.copperOffers track by $index"
+            >
+                <div class="oui-box oui-box_light">
+                    <h4
+                        class="oui-box__heading"
+                        data-ng-if="copper.status === $ctrl.STATUS.active"
+                        data-translate="pack_move_eligibility_line_status_active"
+                    ></h4>
+                    <h4
+                        class="oui-box__heading"
+                        data-ng-if="copper.status === $ctrl.STATUS.inactive"
+                        data-translate="pack_move_eligibility_line_status_inactive"
+                    ></h4>
+
+                    <div data-ng-if="copper.errorMessage">
+                        <div
+                            data-translate="pack_move_eligibility_error_test"
+                        ></div>
+                        <div data-ng-bind="copper.errorMessage"></div>
+                    </div>
+                    <!-- Show address for eligibility and button to select this address -->
+                    <div data-ng-if="!copper.errorMessage">
+                        <address>
+                            <strong
+                                data-translate="pack_move_eligibility_address"
+                            ></strong>
+                            <div>
+                                <span
+                                    data-ng-bind="copper.endpoint.address.streetNumber"
+                                ></span>
+                                <span
+                                    data-ng-bind="copper.endpoint.address.streetName"
+                                ></span>
+                            </div>
+                            <div>
+                                <span
+                                    data-ng-bind="copper.endpoint.address.zipCode"
+                                ></span>
+                                <span
+                                    data-ng-bind="copper.endpoint.address.city"
+                                ></span>
+                            </div>
+                        </address>
+                        <div
+                            data-ng-if="copper.endpoint.address.housingComplex"
+                        >
+                            <strong
+                                data-translate="pack_move_eligibility_residence"
+                            ></strong>
+                            <div
+                                data-ng-bind="copper.endpoint.address.housingComplex"
+                            ></div>
+                        </div>
+                        <div data-ng-if="copper.endpoint.address.building">
+                            <strong
+                                data-translate="pack_move_eligibility_building"
+                            ></strong>
+                            <div
+                                data-ng-bind="copper.endpoint.address.building"
+                            ></div>
+                        </div>
+                        <div data-ng-if="copper.endpoint.address.floor">
+                            <strong
+                                data-translate="pack_move_eligibility_floor"
+                            ></strong>
+                            <div
+                                data-ng-bind="copper.endpoint.address.floor"
+                            ></div>
+                        </div>
+                        <div data-ng-if="copper.endpoint.address.stairs">
+                            <strong
+                                data-translate="pack_move_eligibility_stair"
+                            ></strong>
+                            <div
+                                data-ng-bind="copper.endpoint.address.stairs"
+                            ></div>
+                        </div>
+                        <div data-ng-if="copper.endpoint.address.door">
+                            <strong
+                                data-translate="pack_move_eligibility_door"
+                            ></strong>
+                            <div
+                                data-ng-bind="copper.endpoint.address.door"
+                            ></div>
+                        </div>
+                        <oui-button
+                            data-on-click="$ctrl.getFiberEligibility(copper)"
+                        >
+                            <span
+                                data-translate="pack_move_eligibility_building_select_building"
+                            ></span>
+                        </oui-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-if="$ctrl.buildingsList.length > 1" class="mt-3">
+        <div data-translate="pack_move_eligibility_buildings_available"></div>
+        <oui-datagrid rows="$ctrl.buildingsList">
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_name' | translate"
+                data-property="name"
+                type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_reference' | translate"
+                data-property="reference"
+                type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_nro' | translate"
+                data-property="nro"
+                type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_type' | translate"
+                data-property="type"
+                type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_actions' | translate"
+            >
+                <oui-button
+                    data-variant="primary"
+                    data-on-click="$ctrl.testBuilding($row)"
+                    ><span
+                        data-translate="pack_move_eligibility_building_select_building"
+                    ></span>
+                </oui-button>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </div>
+</form>

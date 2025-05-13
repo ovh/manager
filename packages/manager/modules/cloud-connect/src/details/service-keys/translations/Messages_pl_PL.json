@@ -1,0 +1,16 @@
+{
+  "cloud_connect_service_keys_status_doing": "Do wykonania",
+  "cloud_connect_service_keys_status_active": "Aktywny",
+  "cloud_connect_service_keys_status_cancelled": "Anulowane",
+  "cloud_connect_service_keys_status_terminated": "Zakończone",
+  "cloud_connect_service_keys_status_toCheck": "Niedostępne",
+  "cloud_connect_service_keys_status": "Status",
+  "cloud_connect_service_keys_id": "ID",
+  "cloud_connect_service_keys_provider": "Provider",
+  "cloud_connect_service_keys_key": "Klucz usługi ",
+  "cloud_connect_service_keys_decription": "Lista wszystkich kluczy usługi W danym momencie może być ważny tylko jeden klucz usługi. Jeśli nie zostanie znaleziony żaden aktywny klucz usługi, wyświetli się operacja, w wyniku której zostanie ustawiony aktywny klucz usługi.",
+  "cloud_connect_service_keys_active": "Włącz",
+  "cloud_connect_close": "Zamknij",
+  "cloud_connect_regenerate": "",
+  "cloud_connect_service_keys": "Klucze usługi"
+}

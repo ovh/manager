@@ -7,7 +7,7 @@ import lastIndexOf from 'lodash/lastIndexOf';
 import noop from 'lodash/noop';
 import omit from 'lodash/omit';
 import set from 'lodash/set';
-import moment from 'moment';
+import 'moment';
 
 export default class CucCloudMessage {
   /* @ngInject */

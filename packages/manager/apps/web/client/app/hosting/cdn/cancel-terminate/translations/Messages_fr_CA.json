@@ -1,0 +1,8 @@
+{
+  "hosting_cdn_cancel_terminate_title": "Annuler la résiliation du service CDN",
+  "hosting_cdn_cancel_terminate_question": "Souhaitez-vous annuler la résiliation du service CDN ?",
+  "hosting_cdn_cancel_terminate_success": "La demande d'annulation de la résiliation a bien été prise en compte.",
+  "hosting_cdn_cancel_terminate_error": "Une erreur est survenue lors de l'annulation de la résiliation du CDN : {{ message }}",
+  "hosting_cdn_cancel_terminate_action_validate": "Confirmer",
+  "hosting_cdn_cancel_terminate_action_cancel": "Annuler"
+}

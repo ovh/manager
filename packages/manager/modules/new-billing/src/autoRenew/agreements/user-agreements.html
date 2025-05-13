@@ -1,0 +1,185 @@
+<div data-ui-view>
+    <div data-ovh-alert="agreements_alerter"></div>
+
+    <div class="alert" data-ng-class="alertType" data-ng-if="message">
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+            data-ng-click="$ctrl.resetMessages()"
+            title="{{ 'user_agreements_alert_close' | translate }}"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <span data-ng-bind="message"></span>
+    </div>
+
+    <div
+        data-ng-if="$ctrl.toActivate.count || ($ctrl.loading && $ctrl.loaders.toActivate)"
+    >
+        <div class="row">
+            <h2 class="col" data-translate="user_agreements_to_validate"></h2>
+            <div class="col">
+                <oui-button
+                    class="d-block text-right"
+                    data-ng-if="!$ctrl.loaders.toActivate"
+                    data-on-click="$ctrl.gotoAcceptAllAgreements(toActivate.list.results)"
+                >
+                    <span data-translate="user_agreements_accept_all"></span>
+                </oui-button>
+            </div>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col" data-translate="user_agreements_name"></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    data-ng-repeat="agreement in $ctrl.toActivate.list.results track by $index"
+                >
+                    <th scope="row">
+                        <a
+                            data-ui-sref="billing.autorenew.agreements.agreement({ id: agreement.id })"
+                            data-ng-bind-html="'user_agreements_agreed' | translate:{ t0: agreement.name }"
+                        >
+                        </a>
+                    </th>
+                    <td class="text-right">
+                        <oui-spinner
+                            data-size="s"
+                            data-ng-if="$ctrl.loaders['accept_' + agreement.id]"
+                        >
+                        </oui-spinner>
+
+                        <div
+                            data-uib-dropdown
+                            data-ng-if="!$ctrl.loaders['accept_' + agreement.id]"
+                        >
+                            <button
+                                type="button"
+                                class="btn btn-link py-0"
+                                data-ng-disabled="$ctrl.loaders['accept_' + agreement.id]"
+                                data-uib-dropdown-toggle
+                            >
+                                <span
+                                    class="ovh-font ovh-font-dots"
+                                    aria-hidden="true"
+                                >
+                                </span>
+                            </button>
+                            <ul
+                                data-uib-dropdown-menu
+                                class="dropdown-menu dropdown-menu-right"
+                            >
+                                <li>
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-click="$ctrl.accept(agreement)"
+                                        data-translate="user_agreements_accept"
+                                        title="{{ 'user_agreements_accept_title' | translate:{ t0: agreement.name } }}"
+                                    ></button>
+                                </li>
+                                <li>
+                                    <a
+                                        target="_blank"
+                                        class="btn btn-link"
+                                        rel="noopener"
+                                        data-at-internet-click="{ name: 'dedicated::account::billing::autorenew::agreements::go-to-download-agreement' }"
+                                        data-ng-href="{{agreement.pdfUrl}}"
+                                        title="{{ 'user_agreements_download_pdf_title' | translate:{ t0: agreement.name } }}"
+                                    >
+                                        <span
+                                            data-translate="user_agreements_download_pdf"
+                                        ></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody data-ng-if="$ctrl.loaders.toActivate">
+                <tr>
+                    <td class="text-center" colspan="4">
+                        <oui-spinner class="my-4" data-size="s"> </oui-spinner>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 data-translate="user_agreements_list_title"></h2>
+    <oui-datagrid
+        id="agreements"
+        data-page-size="{{:: $ctrl.itemsPerPage }}"
+        data-page="{{ $ctrl.page }}"
+        data-empty-placeholder="{{:: 'user_agreements_table_empty' | translate }}"
+        data-rows-loader="$ctrl.loadAgreementsList($config)"
+        data-criteria="$ctrl.criteria"
+        data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+        data-on-page-change="$ctrl.onPageChange($pagination)"
+        data-on-sort-change="$ctrl.onSortChange($sort)"
+        data-columns="$ctrl.columnsConfig"
+    >
+        <oui-datagrid-column
+            data-property="name"
+            data-title="::'user_agreements_name' | translate"
+        >
+            <a
+                data-ui-sref="billing.autorenew.agreements.agreement({ id: $row.id })"
+                data-ng-bind="$row.name"
+            >
+            </a>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-property="state"
+            data-title="::'user_agreements_status' | translate"
+            data-type="options"
+            data-type-options="$ctrl.filtersOptions.state"
+            data-filterable
+        >
+            <span
+                class="label"
+                data-ng-class="{
+                'label-danger': $row.state == 'KO',
+                'label-info': $row.state == 'OBSOLETE',
+                'label-success': $row.state == 'OK',
+                'label-danger': $row.state == 'TODO'
+            }"
+                data-translate="{{ 'user_agreements_status_' + $row.state }}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-property="date"
+            data-title="::'user_agreements_date' | translate"
+            data-sortable
+        >
+            <span data-ng-bind="$row.date | date:'short'"> </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column>
+            <a
+                class="oui-link"
+                target="_blank"
+                rel="noopener"
+                data-ng-href="{{$row.pdfUrl}}"
+                data-track-on="click"
+                data-track-type="action"
+                data-track-name="contracts::download::download_contracts"
+            >
+                <span
+                    class="sr-only"
+                    data-translate="user_agreements_download_pdf_title"
+                    data-translate-values="{ t0: $row.name }"
+                ></span>
+                <span class="fa fa-download" aria-hidden="true"></span>
+            </a>
+        </oui-datagrid-column>
+        <!-- /Columns -->
+    </oui-datagrid>
+</div>

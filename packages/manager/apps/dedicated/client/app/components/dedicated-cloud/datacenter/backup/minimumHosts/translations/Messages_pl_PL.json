@@ -1,0 +1,4 @@
+{
+  "dedicatedCloud_datacenter_backup_minimum_hosts_description": "Aby włączyć tworzenie kopii zapasowych Veeam, Twoje centrum danych musi posiadać przynajmniej {{minimumHosts}} host/y/ów.",
+  "dedicatedCloud_datacenter_backup_minimum_hosts_order": "Zamów hosty"
+}

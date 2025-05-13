@@ -4,5 +4,7 @@
   "telephony_group_admin_actions_group_new_billing_account": "Añadir un grupo",
   "telephony_group_admin_actions_group_delete_billing_account": "Eliminar el grupo",
   "telephony_group_admin_actions_portabilities": "Portabilidades en curso",
-  "telephony_group_admin_group_back_link": "Volver a la administración de grupos"
+  "telephony_group_admin_group_back_link": "Volver a la administración de grupos",
+  "telephony_group_admin_breadcrumb": "Administración",
+  "telephony_group_admin_actions_white_label_manager": "Manager marca blanca"
 }

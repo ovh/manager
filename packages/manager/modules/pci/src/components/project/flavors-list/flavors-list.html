@@ -1,6 +1,9 @@
-<oui-spinner data-size="s" data-ng-if="$ctrl.isLoading"></oui-spinner>
+<oui-spinner
+    data-size="s"
+    data-ng-if="$ctrl.hasOwnProperty('displayLoader') ? ($ctrl.isLoading && $ctrl.displayLoader) : $ctrl.isLoading"
+></oui-spinner>
 
-<div data-ng-if="!$ctrl.isLoading">
+<div class="flavors-list regions-badges" data-ng-if="!$ctrl.isLoading">
     <oui-tabs
         class="mb-4"
         data-ng-if="!$ctrl.displaySelectedFlavor"
@@ -11,6 +14,9 @@
             data-ng-if="$ctrl.isFlavorCategoryIncluded(flavorByCategory.category)"
             data-id="{{flavorByCategory.category}}"
             data-heading="{{:: flavorByCategory.title }}"
+            data-subheading="{{:: flavorByCategory.isNew ? ('pci_project_flavors_category_new' | translate) : '' }}"
+            data-variant="promotion"
+            data-on-active="$ctrl.onFlavorCategoryChange(flavorByCategory.category)"
         >
             <p
                 data-translate="{{:: 'pci_project_flavors_category_definition_' + flavorByCategory.category }}"
@@ -27,128 +33,241 @@
             >
                 <div class="row">
                     <oui-select-picker
-                        class="d-inline-block col-md-6 col-xl-4 my-3"
+                        class="d-inline-block col-md-6 col-xl-3 my-3"
                         data-ng-repeat="flavor in flavorByCategory.flavors track by flavor.name"
                         data-name="{{:: flavor.name }}"
                         data-model="$ctrl.flavor"
                         data-label="{{:: flavor.name | uppercase }}"
                         data-values="[flavor]"
                         data-variant="light"
-                        data-on-change="$ctrl.onFlavorChange(modelValue)"
-                        data-disabled="($ctrl.region && !$ctrl.region.hasEnoughQuotaForFlavor(flavor)) || !$ctrl.hasEnoughDisk(flavor)"
+                        data-on-change="$ctrl.onFlavorChange(modelValue, flavorByCategory.category)"
+                        data-disabled="($ctrl.region && !$ctrl.region.hasEnoughQuotaForFlavors(flavor, $ctrl.flavorCount)) || !$ctrl.hasEnoughDisk(flavor)"
                         data-required
+                        data-ng-init="flavorPrices = $ctrl.constructor.getLowestAndDistinctPriceFromFlavor(flavor)"
                     >
                         <oui-select-picker-section>
-                            <div class="d-flex justify-content-between">
+                            <span
+                                class="oui-badge oui-badge_new new-flavor-badge"
+                                data-ng-if="$ctrl.constructor.isNewFlavor(flavor)"
+                                data-translate="pci_project_flavors_category_new"
+                            >
+                            </span>
+
+                            <div class="d-flex">
                                 <span
                                     data-translate="pci_project_flavors_spec_ram"
-                                ></span>
-                                <span
-                                    class="ml-auto"
-                                    data-ng-bind="flavor.ram | cucBytes:0:false:'MB'"
-                                ></span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span
-                                    data-translate="pci_project_flavors_spec_core"
-                                ></span>
-                                <span
-                                    class="ml-auto"
-                                    data-translate="pci_project_flavors_spec_core_details"
-                                    data-translate-values="{ vcores: flavor.vcpus, frequency: flavor.frequency }"
-                                ></span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span
-                                    data-translate="pci_project_flavors_spec_disk"
-                                ></span>
-                                <span
-                                    class="ml-auto"
-                                    data-ng-bind="(flavor.disk | cucBytes:2:false:'GB') + ' ' + (flavor.diskType | uppercase)"
+                                    data-translate-values="{ ram: (flavor.technicalBlob.memory.size | bytes:0:false:'GB') }"
                                 ></span>
                             </div>
                             <div
-                                class="d-flex justify-content-between"
-                                data-ng-if="flavor.getNvme()"
+                                class="d-flex"
+                                data-ng-if="flavor.technicalBlob.cpu.model"
                             >
                                 <span
-                                    data-translate="pci_project_flavors_spec_nvme"
+                                    data-translate="pci_project_flavors_spec_{{ flavor.technicalBlob.cpu.type }}_details"
+                                    data-translate-values="{ vcores: flavor.technicalBlob.cpu.cores, frequency: flavor.technicalBlob.cpu.frequency }"
                                 ></span>
-                                <span>
-                                    <span
-                                        data-ng-if="flavor.getNvmeCount() > 1"
-                                    >
-                                        <span
-                                            data-ng-bind="flavor.getNvmeCount()"
-                                        ></span>
-                                        <span>x</span>
-                                    </span>
-                                    <span
-                                        data-ng-bind="flavor.getNvmeCapacity() | cucBytes:2:false:'GB'"
-                                    ></span>
+                            </div>
+                            <div class="d-flex">
+                                <span
+                                    data-ng-bind="::$ctrl.getStorageLabel(flavor)"
+                                >
                                 </span>
                             </div>
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex" data-ng-if="flavor.getNvme()">
                                 <span
-                                    data-translate="pci_project_flavors_spec_bandwidth"
+                                    data-ng-bind="::(flavor.getNvmeCount() > 1
+                                    ? 'pci_project_flavors_spec_nvme_multiple'
+                                    : 'pci_project_flavors_spec_nvme') | translate: {
+                                        count: flavor.getNvmeCount(),
+                                        capacity: (flavor.getNvmeCapacity() | bytes:2:false:'GB')
+                                    }"
                                 ></span>
+                            </div>
+                            <div
+                                class="d-flex"
+                                data-ng-if="flavor.technicalBlob.bandwidth.level"
+                            >
                                 <span
-                                    class="ml-auto"
                                     data-translate="pci_project_flavors_spec_bandwidth_detail"
-                                    data-translate-values="{ bandwidth : flavor.outboundBandwidth }"
-                                    data-ng-if="flavor.outboundBandwidth"
+                                    data-translate-values="{ bandwidth : (flavor.technicalBlob.bandwidth.level | number) }"
                                 ></span>
-                                <span
-                                    class="ml-auto"
-                                    data-ng-if="!flavor.outboundBandwidth"
-                                    >-</span
-                                >
                             </div>
-                            <div
-                                class="d-flex justify-content-between"
-                                data-ng-if="flavor.getGpu()"
-                            >
-                                <span
-                                    data-translate="pci_project_flavors_spec_model"
-                                ></span>
-                                <span>
-                                    <span data-ng-if="flavor.getGpuCount() > 1">
-                                        <span
-                                            data-ng-bind="flavor.getGpuCount()"
-                                        ></span>
-                                        <span>x</span>
-                                    </span>
+                            <div class="d-flex" data-ng-if="flavor.getGpu()">
+                                <span data-ng-if="flavor.getGpuCount() > 1">
                                     <span
-                                        data-ng-bind="flavor.getGpuModel()"
+                                        data-ng-bind="::flavor.getGpuCount()"
                                     ></span>
+                                    <span>x</span>
                                 </span>
-                            </div>
-                        </oui-select-picker-section>
-                        <oui-select-picker-section>
-                            <div class="text-right">
-                                <strong
-                                    class="d-block"
-                                    data-translate="pci_project_flavors_price_monthly"
-                                    data-translate-values="{ price: flavor.prices.monthly.text }"
-                                >
-                                </strong>
                                 <span
-                                    class="d-block"
-                                    data-translate="pci_project_flavors_price_hourly"
-                                    data-translate-values="{ price: flavor.prices.hourly.text }"
-                                >
-                                </span>
+                                    data-ng-bind="::flavor.getGpuModel()"
+                                ></span>
                             </div>
                         </oui-select-picker-section>
                         <oui-select-picker-section
-                            data-ng-if="$ctrl.region && !$ctrl.region.hasEnoughQuotaForFlavor(flavor)"
+                            data-ng-if="flavor.locationCompatibility.isLocalZone || flavor.locationCompatibility.isGlobalZone || flavor.locationCompatibility.isRegion3az"
                         >
-                            <a
-                                class="oui-button oui-button_link"
-                                data-ui-sref="pci.projects.project.quota"
-                                data-translate="pci_project_flavors_quota"
+                            <strong
+                                class="d-block"
+                                data-translate="pci_project_flavors_zone_compatible"
                             >
-                            </a>
+                            </strong>
+                            <div class="row px-3">
+                                <div class="d-flex">
+                                    <span
+                                        data-ng-if="flavor.locationCompatibility.isLocalZone"
+                                        class="oui-badge oui-badge_promotion my-1 oui-localzone"
+                                    >
+                                        <span
+                                            data-translate="pci_project_flavors_zone_localzone"
+                                        ></span>
+                                        <button
+                                            type="button"
+                                            class="oui-popover-button"
+                                            data-oui-popover
+                                            data-oui-popover-scope="$ctrl"
+                                            data-oui-popover-template="pci_project_flavors_zone_localzone.html"
+                                        ></button>
+                                        <script
+                                            type="text/ng-template"
+                                            id="pci_project_flavors_zone_localzone.html"
+                                        >
+                                            <span
+                                                class="text-center"
+                                                data-translate="pci_project_flavors_zone_localzone_tooltip"
+                                            ></span>
+                                            <a
+                                                class="oui-link_icon"
+                                                aria-hidden="true"
+                                                data-ng-href="{{$ctrl.localZoneUrl}}"
+                                                target="_blank"
+                                            >
+                                                <span
+                                                    data-translate="pci_project_flavors_zone_tooltip_link"
+                                                ></span>
+                                                <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                                            </a>
+                                        </script>
+                                    </span>
+                                </div>
+                                <div class="d-flex">
+                                    <span
+                                        data-ng-if="flavor.locationCompatibility.isGlobalZone"
+                                        class="oui-badge oui-badge_new my-1 oui-1az"
+                                    >
+                                        <span
+                                            data-translate="pci_project_flavors_zone_global_region"
+                                        ></span>
+                                        <button
+                                            type="button"
+                                            class="oui-popover-button"
+                                            data-oui-popover
+                                            data-oui-popover-scope="$ctrl"
+                                            data-oui-popover-template="pci_project_flavors_zone_globalregions_tooltip.html"
+                                        ></button>
+                                        <script
+                                            type="text/ng-template"
+                                            id="pci_project_flavors_zone_globalregions_tooltip.html"
+                                        >
+                                            <span
+                                                class="text-center"
+                                                data-translate="{{$ctrl.are3azRegionsAvailable ? 'pci_project_flavors_zone_globalregions_tooltip' : 'pci_project_flavors_zone_globalregions_tooltip_2'}}"
+                                            ></span>
+                                            <a
+                                                class="oui-link_icon"
+                                                aria-hidden="true"
+                                                data-ng-href="{{$ctrl.globalRegionsUrl}}"
+                                                target="_blank"
+                                            >
+                                                <span
+                                                    data-translate="pci_project_flavors_zone_tooltip_link"
+                                                ></span>
+                                                <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                                            </a>
+                                        </script>
+                                    </span>
+                                </div>
+
+                                <div class="d-flex">
+                                    <span
+                                        data-ng-if="flavor.locationCompatibility.isRegion3az"
+                                        class="oui-badge oui-badge_new my-1 oui-3az"
+                                    >
+                                        <span
+                                            data-translate="pci_project_flavors_zone_3az_region"
+                                        ></span>
+                                        <button
+                                            type="button"
+                                            class="oui-popover-button"
+                                            data-oui-popover
+                                            data-oui-popover-scope="$ctrl"
+                                            data-oui-popover-template="pci_project_flavors_zone_3az_regions_tooltip.html"
+                                        ></button>
+                                        <script
+                                            type="text/ng-template"
+                                            id="pci_project_flavors_zone_3az_regions_tooltip.html"
+                                        >
+                                            <span
+                                                class="text-center"
+                                                data-translate="pci_project_flavors_zone_3az_tooltip"
+                                            ></span>
+                                            <a
+                                                class="oui-link_icon"
+                                                aria-hidden="true"
+                                                data-ng-href="{{$ctrl.zone3azUrl}}"
+                                                target="_blank"
+                                            >
+                                                <span
+                                                    data-translate="pci_project_flavors_zone_tooltip_link"
+                                                ></span>
+                                                <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                                            </a>
+                                        </script>
+                                    </span>
+                                </div>
+                            </div>
+                        </oui-select-picker-section>
+                        <oui-select-picker-section>
+                            <strong
+                                class="d-block"
+                                data-translate="pci_project_flavors_price_monthly"
+                                data-ng-if="!$ctrl.constructor.isPricingComingSoon(flavor)"
+                                data-translate-values="{ price: $ctrl.PriceFormatter.format(flavorPrices.lowestMonthlyPrice.value) }"
+                            >
+                            </strong>
+                            <span
+                                class="d-block"
+                                data-ng-if="flavorPrices.allHourlyPrices.length !== 0"
+                                data-translate="{{ flavorPrices.allHourlyPrices.length === 1 ?
+                                    'pci_project_flavors_price_hourly' : 'pci_project_flavors_price_hourly_from'}}"
+                                data-translate-values="{ price: $ctrl.PriceFormatter.format(flavorPrices.lowestHourlyPrice.value) }"
+                            >
+                            </span>
+                        </oui-select-picker-section>
+                        <oui-select-picker-section
+                            data-ng-if="$ctrl.region && !$ctrl.region.hasEnoughQuotaForFlavors(flavor, $ctrl.flavorCount)"
+                        >
+                            <div class="text-small">
+                                <span
+                                    class="oui-icon oui-icon-error text-small oui-color-ae-500"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    class="oui-color-ae-500"
+                                    data-translate="pci_project_flavors_quota_info"
+                                >
+                                </span>
+                                <a
+                                    class="oui-link"
+                                    data-ng-href="{{ ::$ctrl.quotaUrl }}"
+                                    target="_top"
+                                >
+                                    <span
+                                        data-translate="pci_project_flavors_quota_manage"
+                                    ></span>
+                                </a>
+                            </div>
                         </oui-select-picker-section>
                         <oui-select-picker-section
                             data-ng-if="!$ctrl.hasEnoughDisk(flavor)"
@@ -169,80 +288,4 @@
             </div>
         </oui-tabs-item>
     </oui-tabs>
-
-    <div data-ng-if="$ctrl.displaySelectedFlavor" class="container-fluid px-0">
-        <div class="row">
-            <oui-select-picker
-                class="d-inline-block col-md-6 col-xl-4 my-3"
-                data-name="selected"
-                data-model="$ctrl.flavor"
-                data-label="{{:: $ctrl.flavor.name | uppercase }}"
-                data-values="[$ctrl.flavor]"
-                data-variant="light"
-                data-required
-            >
-                <oui-select-picker-section>
-                    <div class="d-flex justify-content-between">
-                        <span
-                            data-translate="pci_project_flavors_spec_ram"
-                        ></span>
-                        <span
-                            class="ml-auto"
-                            data-ng-bind="$ctrl.flavor.ram | cucBytes:0:false:'MB'"
-                        ></span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span
-                            data-translate="pci_project_flavors_spec_core"
-                        ></span>
-                        <span
-                            class="ml-auto"
-                            data-translate="pci_project_flavors_spec_core_details"
-                            data-translate-values="{ vcores: flavor.vcpus, frequency: flavor.frequency }"
-                        ></span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span
-                            data-translate="pci_project_flavors_spec_disk"
-                        ></span>
-                        <span
-                            class="ml-auto"
-                            data-ng-bind="($ctrl.flavor.disk | cucBytes:2:false:'GB') + ' ' + ($ctrl.flavor.diskType | uppercase)"
-                        ></span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span
-                            data-translate="pci_project_flavors_spec_bandwidth"
-                        ></span>
-                        <span
-                            class="ml-auto"
-                            data-ng-bind="$ctrl.flavor.outboundBandwidth + 'Mbps'"
-                            data-ng-if="$ctrl.flavor.outboundBandwidth"
-                        ></span>
-                        <span
-                            class="ml-auto"
-                            data-ng-if="!$ctrl.flavor.outboundBandwidth"
-                            >-</span
-                        >
-                    </div>
-                </oui-select-picker-section>
-                <oui-select-picker-section>
-                    <div class="text-right">
-                        <strong
-                            class="d-block"
-                            data-translate="pci_project_flavors_price_monthly"
-                            data-translate-values="{ price: $ctrl.flavor.prices.monthly.text }"
-                        >
-                        </strong>
-                        <span
-                            class="d-block"
-                            data-translate="pci_project_flavors_price_hourly"
-                            data-translate-values="{ price: $ctrl.flavor.prices.hourly.text }"
-                        >
-                        </span>
-                    </div>
-                </oui-select-picker-section>
-            </oui-select-picker>
-        </div>
-    </div>
 </div>

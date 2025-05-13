@@ -1,22 +1,4 @@
 {
-  "veeam_enterprise_tab_dashboard": "Home Page",
-  "veeam_enterprise_infos_general_load_error": "Errore durante il caricamento delle informazioni generali.",
-  "veeam_enterprise_infos_configuration_load_error": "Errore durante il caricamento delle informazioni di configurazione.",
-  "veeam_enterprise_infos_subscription_load_error": "Errore durante il caricamento delle informazioni relative all'abbonamento.",
-  "veeam_enterprise_infos_license_register_error": "Errore durante l'attivazione della licenza Veeam Enterprise.",
-  "veeam_enterprise_infos_license_register_success": "Attivazione della licenza Veeam Enterprise in corso.",
-  "veeam_enterprise_infos_license_update_error": "Errore durante l'aggiornamento della licenza Veeam Enterprise.",
-  "veeam_enterprise_infos_license_update_success": "Aggiornamento della licenza Veeam Enterprise in corso.",
-  "veeam_enterprise_infos_license_already_registered_error": "Hai già attivato la licenza Veeam Enterprise.",
-  "veeam_enterprise_manage": "Gestisci",
-  "veeam_enterprise_modal_ok": "OK",
-  "veeam_enterprise_modal_cancel": "Annulla",
-  "veeam_enterprise_tile_subscription": "Abbonamento",
-  "veeam_enterprise_tile_subscription_contact": "Contatti",
-  "veeam_enterprise_tile_subscription_contact_admin": "Amministratore",
-  "veeam_enterprise_tile_subscription_contact_billing": "Fatturazione",
-  "veeam_enterprise_tile_subscription_contact_technical": "Tecnico",
-  "veeam_enterprise_tile_subscription_creation_date": "Data di creazione",
-  "veeam_enterprise_tile_subscription_autorenew": "Rinnovo automatico",
-  "veeam_enterprise_tile_subscription_expiration_date": "Data di scadenza"
+  "veeam_enterprise_title": "Veeam Enterprise",
+  "veeam_enterprise_order": "Ordina"
 }

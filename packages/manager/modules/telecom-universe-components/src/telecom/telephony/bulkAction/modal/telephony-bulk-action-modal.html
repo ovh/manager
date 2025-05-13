@@ -42,11 +42,6 @@
                             data-ng-change="$ctrl.onBillingAccountSelectChange()"
                             data-ng-options="billingAccount.billingAccount as billingAccount.getDisplayedName() for billingAccount in $ctrl.billingAccounts"
                         >
-                            <option
-                                data-ng-value=""
-                                data-translate="telephony_bulk_action_modal_all_billing_account"
-                            >
-                            </option>
                         </select>
                         <i
                             class="oui-icon oui-icon-chevron-down"
@@ -84,6 +79,7 @@
                         data-translate="{{ $ctrl.state.selectAll ? 'telephony_bulk_action_modal_unselect_all' : 'telephony_bulk_action_modal_select_all' }}"
                         data-translate-attr="{ title: ($ctrl.state.selectAll ? 'telephony_bulk_action_modal_unselect_all_title' : 'telephony_bulk_action_modal_select_all_title') }"
                         data-ng-click="$ctrl.onToggleAllCheckStateBtnClick()"
+                        data-ng-disabled="!$ctrl.serviceList.length"
                     ></button>
                 </div>
                 <!-- End of Select All -->
@@ -100,7 +96,10 @@
             <div></div>
 
             <!-- Service list -->
-            <ul class="list-group">
+            <div class="text-center" data-ng-if="$ctrl.loading.services">
+                <oui-spinner></oui-spinner>
+            </div>
+            <ul class="list-group" data-ng-if="!$ctrl.loading.services">
                 <li
                     class="list-group-item"
                     data-ng-repeat="service in $ctrl.serviceList | orderBy:'getDisplayedName()' track by service.serviceName"
@@ -119,27 +118,11 @@
                             data-ng-attr-for="service-{{ service.serviceName }}"
                         >
                             <span class="oui-checkbox__label">
+                                <span class="oui-checkbox__icon"></span>
                                 <span
+                                    class="oui-checkbox__text"
                                     data-ng-bind="service.getDisplayedName()"
                                 ></span>
-                                <span class="oui-checkbox__icon">
-                                    <span
-                                        class="oui-icon oui-icon-checkbox-unchecked"
-                                        aria-hidden="true"
-                                    ></span>
-                                    <span
-                                        class="oui-icon oui-icon-checkbox-checked"
-                                        aria-hidden="true"
-                                    ></span>
-                                    <span
-                                        class="oui-icon oui-icon-checkbox-checkmark"
-                                        aria-hidden="true"
-                                    ></span>
-                                    <span
-                                        class="oui-icon oui-icon-checkbox-indeterminate"
-                                        aria-hidden="true"
-                                    ></span>
-                                </span>
                             </span>
                             <span class="oui-checkbox__description">
                                 <span

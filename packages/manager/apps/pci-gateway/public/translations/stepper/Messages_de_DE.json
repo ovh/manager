@@ -1,0 +1,8 @@
+{
+  "common_stepper_optional_label": "(optional)",
+  "common_stepper_modify_this_step": "Diesen Schritt bearbeiten",
+  "common_stepper_skip_this_step": "Diesen Schritt überspringen",
+  "common_stepper_next_button_label": "Weiter",
+  "common_stepper_submit_button_label": "Absenden",
+  "common_stepper_cancel_button_label": "Abbrechen"
+}

@@ -1,0 +1,8 @@
+{
+  "iam_identities_service_accounts_title": "Account di servizio",
+  "iam_identities_service_accounts_empty": "Nessun account di servizio",
+  "iam_identities_service_accounts_name": "Nome",
+  "iam_identities_service_accounts_id": "Identificativo",
+  "iam_identities_service_accounts_flow": "Flow",
+  "iam_identities_service_accounts_description": "Descrizione"
+}

@@ -1,0 +1,22 @@
+<form
+    id="removePopConfiguration"
+    name="removePopConfiguration"
+    data-ng-submit="removePopConfiguration.$valid && $ctrl.removePopConfigure()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'cloud_connect_pop_configure_delete' | translate }}"
+        data-primary-label="{{:: 'cloud_connect_delete' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'cloud_connect_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+        data-type="warning"
+    >
+        <p
+            data-translate="cloud_connect_pop_configure_delete_confirm"
+            data-translate-values="{ portNumber: $ctrl.interfaceId }"
+        ></p>
+    </oui-modal>
+</form>

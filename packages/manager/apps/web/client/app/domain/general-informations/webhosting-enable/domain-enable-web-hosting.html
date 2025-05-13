@@ -1,0 +1,97 @@
+<div ui-view>
+    <oui-back-button data-on-click="$ctrl.goBack()">
+        <span data-translate="domain_configuration_enable_web_hosting"></span>
+    </oui-back-button>
+
+    <div data-ovh-alert></div>
+
+    <oui-stepper data-on-finish="$ctrl.activateHosting()">
+        <oui-step-form
+            header="{{:: 'domain_configuration_enable_web_hosting_offer' | translate }}"
+        >
+            <div class="row">
+                <oui-select-picker
+                    class="col-md-3 mb-3"
+                    ng-repeat="offer in $ctrl.start10mOffers track by offer.planCode"
+                    name="offer"
+                    data-model="$ctrl.offer"
+                    data-label="{{:: ('domain_configuration_enable_web_hosting_offer_START_' + offer.planCode) | translate }}"
+                    data-values="[offer]"
+                >
+                </oui-select-picker>
+            </div>
+        </oui-step-form>
+        <oui-step-form
+            header="{{:: 'domain_configuration_enable_web_hosting_dns_configuration' | translate }}"
+            on-submit="$ctrl.updateConfiguration()"
+        >
+            <p
+                data-translate="domain_configuration_web_hosting_dns_info_NO_CHANGE"
+            ></p>
+
+            <oui-checkbox model="$ctrl.dnsConfiguration.A">
+                <span
+                    data-translate="domain_configuration_enable_web_hosting_dns_configuration_A"
+                ></span>
+                <button
+                    type="button"
+                    class="oui-popover-button"
+                    oui-popover="{{:: 'domain_configuration_web_hosting_dns_info_A' | translate}}"
+                ></button>
+            </oui-checkbox>
+            <oui-checkbox model="$ctrl.dnsConfiguration.MX">
+                <span
+                    data-translate="domain_configuration_enable_web_hosting_dns_configuration_MX"
+                ></span>
+                <button
+                    type="button"
+                    class="oui-popover-button"
+                    oui-popover="{{:: 'domain_configuration_web_hosting_dns_info_MX' | translate}}"
+                ></button>
+            </oui-checkbox>
+        </oui-step-form>
+        <oui-step-form
+            header="{{:: 'domain_configuration_enable_web_hosting_offer_price' | translate }}"
+            on-focus="$ctrl.getPricings()"
+        >
+            <div class="row">
+                <oui-select-picker
+                    class="col-md-3 mb-3"
+                    ng-repeat="price in $ctrl.pricings track by price.duration"
+                    name="price"
+                    data-model="$ctrl.price"
+                    data-label="{{:: ('domain_configuration_enable_web_hosting_offer_START_' + price.duration) | translate }}"
+                    data-values="[price]"
+                >
+                    <oui-select-picker-label>
+                        <span
+                            data-translate="{{:: 'domain_configuration_enable_web_hosting_offer_START_' + price.duration }}"
+                        ></span>
+                        <ovh-manager-catalog-price
+                            price="price.value"
+                            user="$ctrl.user"
+                        >
+                        </ovh-manager-catalog-price>
+                    </oui-select-picker-label>
+                </oui-select-picker>
+            </div>
+        </oui-step-form>
+        <oui-step-form
+            header="{{:: 'domain_configuration_enable_web_hosting_activation' | translate }}"
+            on-focus="$ctrl.loadCheckout()"
+            loading="$ctrl.isLoadingCheckout"
+            valid="($ctrl.checkout.contracts && $ctrl.contractsValidated) || $ctrl.checkout.contracts.length === 0"
+            submit-text="{{:: 'domain_configuration_enable_web_hosting_activate' | translate }}"
+            on-cancel="$ctrl.goBack()"
+            prevent-next
+        >
+            <ovh-contracts-summary
+                name="agreeContracts"
+                items="$ctrl.checkout.contracts"
+                model="$ctrl.contractsValidated"
+                required
+            >
+            </ovh-contracts-summary>
+        </oui-step-form>
+    </oui-stepper>
+</div>

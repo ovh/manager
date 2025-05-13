@@ -1,0 +1,13 @@
+{
+  "billing_autorenew_enable_title": "Enable automatic renewal for the services selected",
+  "billing_autorenew_enable_payment_mean": "Once you have set up automatic renewal for the services selected, the payment method used will be your default payment method, i.e.: {{ type }} {{ label }}",
+  "billing_autorenew_enable_payment_mean_default": "To change your default payment method, go to the “My payment methods” section",
+  "billing_autorenew_enable_payment_mean_frequency": "The payment frequency will be configured with the maximum frequency possible per service.",
+  "billing_autorenew_enable_bulk_unavailable": "Automatic renewal will be enabled for all of the services selected, excluding {{ count }} services:",
+  "billing_autorenew_enable_bulk_unavailable_one": "Automatic renewal will be enabled for all of the services selected, excluding 1 service:",
+  "billing_autorenew_enable_bulk": "Automatic renewal will be enabled for all of the services selected",
+  "billing_autorenew_enable_bulk_single": "Automatic renewal for the {{ serviceName }} service will be enabled",
+  "billing_autorenew_enable_success": "The service renewals have been updated",
+  "billing_autorenew_enable_error": "An error has occurred enabling automatic renewal {{ message }}",
+  "billing_autorenew_enable_breadcrumb": "Enable automatic renewal"
+}

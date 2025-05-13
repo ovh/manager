@@ -2,7 +2,7 @@
 
 > Plugin for AT Internet when using UI-Router.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-at-internet-ui-router-plugin)](https://www.npmjs.com/package/@ovh-ux/ng-at-internet-ui-router-plugin) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-at-internet-ui-router-plugin)](https://npmjs.com/package/@ovh-ux/ng-at-internet-ui-router-plugin) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-at-internet-ui-router-plugin)](https://npmjs.com/package/@ovh-ux/ng-at-internet-ui-router-plugin?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-at-internet-ui-router-plugin)](https://npmjs.com/package/@ovh-ux/ng-at-internet-ui-router-plugin?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-at-internet-ui-router-plugin)](https://www.npmjs.com/package/@ovh-ux/ng-at-internet-ui-router-plugin) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-at-internet-ui-router-plugin)](https://npmjs.com/package/@ovh-ux/ng-at-internet-ui-router-plugin) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-at-internet-ui-router-plugin)](https://npmjs.com/package/@ovh-ux/ng-at-internet-ui-router-plugin?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-at-internet-ui-router-plugin)](https://npmjs.com/package/@ovh-ux/ng-at-internet-ui-router-plugin?activeTab=dependencies)
 
 ## Install
 
@@ -19,7 +19,7 @@ import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin'
 angular.module('myApp', [ngAtInternetUiRouterPlugin]);
 ```
 
-Follow [at-internet installation](https://github.com/ovh-ux/ng-at-internet/blob/master/README.md)
+Follow [at-internet installation](https://github.com/ovh/manager/blob/master/packages/components/ng-at-internet/README.md)
 In your web page:
 
 ```html
@@ -32,14 +32,17 @@ In your web page:
 ## Examples
 
 Please see at-internet documentation:
-[link](https://github.com/ovh-ux/ng-at-internet/blob/master/README.md)
+[link](https://github.com/ovh/manager/blob/master/packages/components/ng-at-internet/README.md)
 
 Configuring the provider:
 
 ```js
-app.config(['atInternetUiRouterPluginProvider', function (provider) {
-  provider.setTrackStateChange(true);
-}]);
+app.config([
+  'atInternetUiRouterPluginProvider',
+  function(provider) {
+    provider.setTrackStateChange(true);
+  },
+]);
 ```
 
 That's it, now every state change will send a page tracking data to ATInternet.
@@ -69,11 +72,14 @@ $stateProvider.state('your-state', {
 If you want, you can apply some filters on the states name, for example :
 
 ```js
-app.config(/* @ngInject */ (atInternetUiRouterPluginProvider) => {
-  // replace all occurrences of "foo" by "bar" in states name
-  atInternetUiRouterPluginProvider
-    .addStateNameFilter((stateName) => stateName.replace(/foo/g, 'bar'));
-});
+app.config(
+  /* @ngInject */ (atInternetUiRouterPluginProvider) => {
+    // replace all occurrences of "foo" by "bar" in states name
+    atInternetUiRouterPluginProvider.addStateNameFilter((stateName) =>
+      stateName.replace(/foo/g, 'bar'),
+    );
+  },
+);
 ```
 
 ## Test
@@ -84,7 +90,7 @@ $ yarn test
 
 ## Related
 
-- [ng-at-internet](https://github.com/ovh-ux/ng-at-internet) - AT Internet tracking js library wrapper for AngularJS
+- [ng-at-internet](https://github.com/ovh/manager/tree/master/packages/components/ng-at-internet) - AT Internet tracking js library wrapper for AngularJS
 
 ## Contributing
 

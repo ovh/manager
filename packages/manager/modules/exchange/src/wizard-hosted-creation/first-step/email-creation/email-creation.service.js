@@ -1,3 +1,5 @@
+import punycode from 'punycode';
+
 export default class wizardHostedCreationEmailCreation {
   /* @ngInject */
   constructor(OvhHttp, Poller, $q, $rootScope) {

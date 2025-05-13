@@ -1,22 +1,47 @@
-<oui-page-header
-    data-heading="{{:: $ctrl.description || $ctrl.serviceName }}"
-    data-description="{{:: $ctrl.serviceName }}"
->
+<oui-header data-description="{{:: $ctrl.serviceName }}">
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{:: $ctrl.description || $ctrl.serviceName }}"
+            ></h1>
+            <div class="d-flex">
+                <changelog-button
+                    links="$ctrl.constants.CHANGELOG.vps.links"
+                    chapters="$ctrl.constants.CHANGELOG.vps.chapters"
+                ></changelog-button>
+                <oui-guide-menu
+                    data-ng-if="$ctrl.guides"
+                    text="{{ 'vps_guides_title' | translate }}"
+                >
+                    <oui-guide-menu-item
+                        data-ng-repeat="guide in $ctrl.guides track by $index"
+                        data-href="{{:: guide.href }}"
+                        data-external
+                    >
+                        <span data-ng-bind="guide.title"></span>
+                    </oui-guide-menu-item>
+                </oui-guide-menu>
+            </div>
+        </div>
+    </oui-header-heading>
     <oui-header-tabs data-ng-if="!$ctrl.vps.isExpired">
         <oui-header-tabs-item
-            data-text="{{:: 'vps_tab_dashboard' | translate }}"
             data-state="vps.detail.dashboard"
             data-state-params="{ serviceName: $ctrl.serviceName }"
+            ><span data-translate="vps_tab_dashboard"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{:: 'vps_tab_secondary_dns' | translate }}"
+            data-disabled="$ctrl.isMigrating"
             data-state="vps.detail.secondary-dns"
             data-state-params="{ serviceName: $ctrl.serviceName }"
+            ><span data-translate="vps_tab_secondary_dns"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
+            data-disabled="$ctrl.isMigrating"
             data-ng-repeat="feature in ::$ctrl.features track by $index"
-            data-text="{{:: feature.textId | translate }}"
             data-state="{{:: feature.state }}"
+            ><span data-ng-bind=":: feature.textId | translate"></span
         ></oui-header-tabs-item>
     </oui-header-tabs>
-</oui-page-header>
+</oui-header>

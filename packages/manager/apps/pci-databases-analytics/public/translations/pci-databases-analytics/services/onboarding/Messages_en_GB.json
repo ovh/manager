@@ -1,0 +1,17 @@
+{
+  "title": "With our managed databases, you can focus on your applications",
+  "description1": "Harness the power of your data by maintaining control of your resources.",
+  "description2": "Choose the right database engine for you from our wide range, and deploy it in minutes. We manage the infrastructure and administration of your managed services.",
+  "description3": "You save time, money, and are able to focus on your developments and the value your applications bring to your customers.",
+  "createServiceButton": "Create a managed database",
+  "cardGuidestitle": "Guides",
+  "cardGuidesDescription": "Database documentation",
+  "cardGuidesContent": "Find all the guides and tutorials for our managed databases",
+  "cardQuickStartTitle": "Quick Start",
+  "cardQuickStartDescription": "Deploy your first database",
+  "cardQuickStartContent": "Find out how to quickly install your first managed database",
+  "cardFreeTierTitle": "Free Tier",
+  "cardFreeTierTescription": "Try the MongoDB solution for free",
+  "cardFreeTierContent": "Get a managed MongoDB cluster for free, for life",
+  "cardLink": "Find out more"
+}

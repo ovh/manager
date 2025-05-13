@@ -1,12 +1,7 @@
 angular.module('App').controller(
   'DomainsDnssecSimpleActivateCtrl',
   class DomainsDnssecSimpleActivateCtrl {
-    /**
-     * Constructor
-     * @param $scope
-     * @param DomainsDnsSec
-     * @param Alerter
-     */
+    /* @ngInject */
     constructor($scope, $translate, DomainsDnsSec, Alerter) {
       this.$scope = $scope;
       this.$translate = $translate;

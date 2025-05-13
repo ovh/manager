@@ -22,7 +22,7 @@ export default function() {
     return (
       split.length === 2 &&
       this.isValidIpv4(split[0]) &&
-      parseInt(split[1], 10) > 0 &&
+      parseInt(split[1], 10) >= 0 &&
       parseInt(split[1], 10) < 33
     );
   };
@@ -37,12 +37,13 @@ export default function() {
     return (
       split.length === 2 &&
       this.isValidIpv6(split[0]) &&
-      parseInt(split[1], 10) > 0 &&
+      parseInt(split[1], 10) >= 0 &&
       parseInt(split[1], 10) < 129
     );
   };
 
   // opts.canBeginWithUnderscore = specifics NDD can be like: _foo._bar.example.com
+  // opts.canContainsUnderscore = for CNAME validation: foo_bar._baz
   // opts.canBeginWithWildcard = specifics NDD can be like: *.foo.bar.example.com
   this.isValidDomain = function isValidDomain(domain, opts = {}) {
     let inError = false;
@@ -73,6 +74,7 @@ export default function() {
           }
           if (
             sub.indexOf('_') !== -1 &&
+            !opts.canContainsUnderscore &&
             (opts.canBeginWithUnderscore ? !/^_[^_]+$/.test(sub) : true)
           ) {
             inError = true;

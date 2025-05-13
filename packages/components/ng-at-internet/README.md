@@ -2,7 +2,7 @@
 
 > AT Internet tracking js library wrapper for AngularJS.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-at-internet)](https://www.npmjs.com/package/@ovh-ux/ng-at-internet) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-at-internet)](https://npmjs.com/package/@ovh-ux/ng-at-internet) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-at-internet)](https://npmjs.com/package/@ovh-ux/ng-at-internet?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-at-internet)](https://npmjs.com/package/@ovh-ux/ng-at-internet?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-at-internet)](https://www.npmjs.com/package/@ovh-ux/ng-at-internet) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-at-internet)](https://npmjs.com/package/@ovh-ux/ng-at-internet) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-at-internet)](https://npmjs.com/package/@ovh-ux/ng-at-internet?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-at-internet)](https://npmjs.com/package/@ovh-ux/ng-at-internet?activeTab=dependencies)
 
 ## Install
 
@@ -26,13 +26,16 @@ angular.module('myApp', [ngAtInternet]);
 *Example simple provider configuration*
 
 ```js
-app.config(['atInternetProvider', function (provider) {
-  provider.setEnabled(true); // enable tracking
-  // provider.setDebug(true);
-  provider.setDefaults({ level2: '1' }); // it is recommended to specify the level2 attribute as a default value
-  // since it is global to your project and it must be send allong with
-  // every tracking data
-}]);
+app.config([
+  'atInternetProvider',
+  function(provider) {
+    provider.setEnabled(true); // enable tracking
+    // provider.setDebug(true);
+    provider.setDefaults({ level2: '1' }); // it is recommended to specify the level2 attribute as a default value
+    // since it is global to your project and it must be send allong with
+    // every tracking data
+  },
+]);
 ```
 
 Please note that the level2 attribute must be your project ID ; configured in ATInternet manager.
@@ -40,14 +43,17 @@ Please note that the level2 attribute must be your project ID ; configured in AT
 *Exemple provider configuration with identifiedVisitor set.*
 
 ```js
-app.config(['atInternetProvider', function (provider) {
-  provider.setEnabled(true); // enable tracking
-  // provider.setDebug(true);
-  provider.setDefaults({
-    level2: '1',
-    visitorId: '123',
-  });
-}]);
+app.config([
+  'atInternetProvider',
+  function(provider) {
+    provider.setEnabled(true); // enable tracking
+    // provider.setDebug(true);
+    provider.setDefaults({
+      level2: '1',
+      visitorId: '123',
+    });
+  },
+]);
 ```
 
 Notice that visitorId is optional and set identifiedVisitor.id ATInternet Tag.
@@ -92,29 +98,6 @@ Attributes
 
 ```
 
-### Order tracking
-
-*Example of tracking a successfull order.*
-
-```js
-/**
- * Please note that you must supply a product price with one of the following attributes:
- * - 'price'
- * - 'priceTaxFree'
- * You can also supply both price values, with and without taxes if you want.
- */
-atInternet.trackOrder({
-  page: 'pageName', // page of the order
-  name: 'my-product', // name of your product
-  price: 42, // taxes included product price (required only if priceTaxFree is not supplied)
-  // priceTaxFree: 42,   // price tax free (required only if price is not supplied)
-  quantity: 1, // amount of product (default is 1)
-  status: 3, // status of the order (default is 3 : validated)
-  level2: '1', // (optional) if not configured in defaults you must specify your project id
-  visitorId: '123', // (optional) set identifiedVisitor.id sent with each hit
-});
-```
-
 ### Event tracking
 
 *Example of tracking a custom event.*
@@ -136,7 +119,7 @@ $ yarn test
 
 ## Related
 
-- [ng-at-internet-ui-router-plugin](https://github.com/ovh-ux/ng-at-internet-ui-router-plugin) - Plugin for AT Internet when using UI-Router
+- [ng-at-internet-ui-router-plugin](https://github.com/ovh/manager/tree/master/packages/components/ng-at-internet-ui-router-plugin) - Plugin for AT Internet when using UI-Router
 
 ## Contributing
 

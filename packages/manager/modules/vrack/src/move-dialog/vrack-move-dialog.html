@@ -6,7 +6,7 @@
 >
     <div class="oui-modal__header">
         <button
-            class="oui-icon oui-icon-close_thin oui-modal__close-button"
+            class="oui-icon oui-modal__close-button oui-icon-close"
             type="button"
             aria-label="Exit"
             data-ng-click="$ctrl.goBack()"
@@ -29,14 +29,14 @@
         <div class="oui-modal__body-text">
             <h2
                 class="oui-modal__title"
-                data-translate="vrack_move_dialog_title"
+                data-translate="{{ ::('vrack_move_dialog_title_' + $ctrl.service.type) }}"
             ></h2>
             <oui-message data-ng-if="$ctrl.error" data-type="error">
                 <span data-ng-bind="$ctrl.error"></span>
             </oui-message>
             <p
                 class="oui-modal__text"
-                data-translate="vrack_move_dialog_intro"
+                data-translate="{{ ::('vrack_move_dialog_intro_' + $ctrl.service.type) }}"
             ></p>
             <p class="well">
                 <i class="fa fa-lg fa-warning"></i>

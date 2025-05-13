@@ -1,0 +1,10 @@
+{
+  "common_stepper_optional_label": "(facoltativo)",
+  "common_stepper_modify_this_step": "Modifica questo step",
+  "common_stepper_skip_this_step": "Ignora questo step",
+  "common_stepper_next_button_label": "Continua",
+  "common_stepper_submit_button_label": "Inviare",
+  "common_stepper_cancel_button_label": "Annullare",
+  "common_field_error_required": "Completa questo campo.",
+  "common_stepper_submit_button_cluster": "Convalida il tuo cluster"
+}

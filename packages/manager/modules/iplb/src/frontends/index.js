@@ -1,3 +1,5 @@
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
+
 import IpLoadBalancerDashboardHeaderCtrl from '../header/iplb-dashboard-header.controller';
 import IpLoadBalancerFrontendsCtrl from './iplb-frontends.controller';
 import IpLoadBalancerFrontendDeleteCtrl from './delete/iplb-frontends-delete.controller';
@@ -10,15 +12,16 @@ import IplbFrontendsTemplate from './iplb-frontends.html';
 import IplbHeaderTemplate from '../header/iplb-dashboard-header.html';
 
 const moduleName = 'ovhManagerIplbFrontends';
+const LB_FRONTEND_UDP_AVAILABILITY = 'ip-load-balancer:lb-frontend-udp';
 
 angular
-  .module(moduleName, ['ui.router'])
+  .module(moduleName, ['ui.router', ngOvhFeatureFlipping])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider
-        .state('network.iplb.detail.frontends', {
+        .state('iplb.detail.frontends', {
           url: '/frontends',
-          redirectTo: 'network.iplb.detail.frontends.home',
+          redirectTo: 'iplb.detail.frontends.home',
           views: {
             iplbHeader: {
               template: IplbHeaderTemplate,
@@ -29,13 +32,13 @@ angular
               template: '<div data-ui-view="iplbFrontend"><div>',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_frontends_title'),
           },
         })
-        .state('network.iplb.detail.frontends.home', {
-          url: '/',
+        .state('iplb.detail.frontends.home', {
+          url: '',
           views: {
             iplbFrontend: {
               template: IplbFrontendsTemplate,
@@ -43,12 +46,11 @@ angular
               controllerAs: 'ctrl',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            breadcrumb: () => null,
           },
         })
-        .state('network.iplb.detail.frontends.add', {
+        .state('iplb.detail.frontends.add', {
           url: '/add',
           views: {
             iplbFrontend: {
@@ -57,12 +59,18 @@ angular
               controllerAs: 'ctrl',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_frontends_add'),
+            udpAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+              ovhFeatureFlipping
+                .checkFeatureAvailability(LB_FRONTEND_UDP_AVAILABILITY)
+                .then((feature) =>
+                  feature.isFeatureAvailable(LB_FRONTEND_UDP_AVAILABILITY),
+                ),
           },
         })
-        .state('network.iplb.detail.frontends.update', {
+        .state('iplb.detail.frontends.update', {
           url: '/:frontendId',
           views: {
             iplbFrontend: {
@@ -71,9 +79,16 @@ angular
               controllerAs: 'ctrl',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            frontendId: /* @ngInject */ ($transition$) =>
+              $transition$.params().frontendId,
+            breadcrumb: /* @ngInject */ (frontendId) => frontendId,
+            udpAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+              ovhFeatureFlipping
+                .checkFeatureAvailability(LB_FRONTEND_UDP_AVAILABILITY)
+                .then((feature) =>
+                  feature.isFeatureAvailable(LB_FRONTEND_UDP_AVAILABILITY),
+                ),
           },
         });
     },

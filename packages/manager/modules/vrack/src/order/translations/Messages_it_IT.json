@@ -1,0 +1,12 @@
+{
+  "vrack_order_title": "Ordinare una vRack",
+  "vrack_order_price": "Prezzo: {{price}} IVA incl.",
+  "vrack_order_price_free": "L'ordine di una vRack è totalmente gratuito",
+  "vrack_order_contracts_title": "Accettazione delle condizioni di utilizzo",
+  "vrack_order_contracts_description": "Per proseguire con l’ordine della vRack è necessario leggere e accettare i seguenti contratti:",
+  "vrack_order_contracts_checkbox": "Ho preso visione e accetto i termini dei seguenti contratti: ",
+  "vrack_order_contracts_agreed": "I termini e le condizioni precedentemente definiti sono già stati accettati.",
+  "vrack_order_confirm_label": "Ordinare una vRack",
+  "vrack_order_cancel_label": "Annullare",
+  "vrack_order_error": "Si è verificato un errore durante l'ordine della vRack <br> {{message}} <br> request-id: {{queryId}}"
+}

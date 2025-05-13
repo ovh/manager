@@ -1,0 +1,11 @@
+{
+  "pci_notebook_add_review_notebook_review": "Konfiguration Ihres Notebooks",
+  "pci_notebook_add_review_notebook_review_editor": "Code Editor",
+  "pci_notebook_add_review_notebook_review_framework": "Framework",
+  "pci_notebook_add_review_notebook_review_region": "Region",
+  "pci_notebook_add_review_notebook_review_price": "Preis",
+  "pci_notebook_add_review_notebook_review_price_info": "{{ price }} zzgl. MwSt./Ressource/Stunde",
+  "pci_notebook_add_review_notebook_review_resources": "Gewähltes Modell",
+  "pci_notebook_add_review_notebook_automation_extra": "Weitere Informationen finden Sie in der Dokumentation zum OVHAI CLI.",
+  "pci_notebook_add_review_notebook_automation_extra_link": "Mehr erfahren."
+}

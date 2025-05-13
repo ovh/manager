@@ -1,0 +1,101 @@
+<oui-header data-heading="{{ :: 'office_title' | translate }}"></oui-header>
+<div class="container-fluid my-5">
+    <oui-datagrid data-rows="$ctrl.resources" data-customizable>
+        <oui-datagrid-topbar>
+            <oui-button
+                variant="secondary"
+                type="button"
+                data-on-click="$ctrl.gotoOrder()"
+            >
+                <span data-translate="office_order"></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title=":: $ctrl.OFFICE_LICENSE_USER.SERVICE_NAME"
+            data-property="serviceName"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+            <a
+                data-ng-href="{{:: $ctrl.getServiceNameLink($row) }}"
+                data-ng-bind="::$value"
+                class="text-truncate"
+            ></a>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: $ctrl.OFFICE_LICENSE_USER.DISPLAY_NAME"
+            data-property="displayName"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+            <span data-ng-bind="::$value" class="text-truncate"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: $ctrl.OFFICE_LICENSE_USER.ADDRESS"
+            data-property="address"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: $ctrl.OFFICE_LICENSE_USER.CITY"
+            data-property="city"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: $ctrl.OFFICE_LICENSE_USER.FIRST_NAME"
+            data-property="firstName"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: $ctrl.OFFICE_LICENSE_USER.LAST_NAME"
+            data-property="lastName"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: $ctrl.OFFICE_LICENSE_USER.SERVICE_TYPE"
+            data-property="serviceType"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: $ctrl.OFFICE_LICENSE_USER.STATUS"
+            data-property="status"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: $ctrl.OFFICE_LICENSE_USER.ZIP_CODE"
+            data-property="zipCode"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+    </oui-datagrid>
+</div>

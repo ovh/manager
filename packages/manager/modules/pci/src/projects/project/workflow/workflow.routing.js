@@ -3,11 +3,15 @@ import flatten from 'lodash/flatten';
 import map from 'lodash/map';
 
 import Workflow from './Workflow.class';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.workflow', {
-    url: '/workflow',
+    url: '/workflow?id',
     component: 'ovhManagerPciProjectsProjectWorkflow',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.WORKFLOW_MANAGEMENT);
+    },
     redirectTo: (transition) =>
       transition
         .injector()
@@ -17,6 +21,12 @@ export default /* @ngInject */ ($stateProvider) => {
             ? { state: 'pci.projects.project.workflow.onboarding' }
             : false,
         ),
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     resolve: {
       add: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.workflow.new', { projectId }),
@@ -42,18 +52,31 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
-
+      workflowId: /* @ngInject */ ($transition$) => $transition$.params().id,
       workflows: /* @ngInject */ (
         $q,
-        OvhApiCloudProjectRegion,
+        iceberg,
         OvhApiCloudProjectRegionWorkflowBackup,
         projectId,
       ) =>
-        OvhApiCloudProjectRegion.v6()
-          .query({
-            serviceName: projectId,
+        iceberg('/cloud/project/:serviceName/region')
+          .query()
+          .expand('CachedObjectList-Pages')
+          .execute({ serviceName: projectId })
+          .$promise.then(({ data }) => {
+            return data.reduce((regions, { name, services }) => {
+              if (
+                services.find(
+                  ({ name: serviceName, status: serviceStatus }) =>
+                    serviceName === 'workflow' && serviceStatus === 'UP',
+                )
+              ) {
+                return [...regions, name];
+              }
+              return [...regions];
+            }, []);
           })
-          .$promise.then((regions) => {
+          .then((regions) => {
             const workflows = map(regions, (region) =>
               OvhApiCloudProjectRegionWorkflowBackup.v6()
                 .query({

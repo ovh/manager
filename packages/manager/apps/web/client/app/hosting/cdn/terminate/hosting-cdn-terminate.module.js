@@ -1,9 +1,27 @@
-import controller from './hosting-cdn-terminate.controller';
+import angular from 'angular';
+import 'angular-translate';
+import '@ovh-ux/ui-kit';
+import '@uirouter/angularjs';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import atInternet from '@ovh-ux/ng-at-internet';
+import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
+
+import component from './hosting-cdn-terminate.component';
+import routing from './hosting-cdn-terminate.routing';
 
 const moduleName = 'ovhManagerHostingCdnTerminate';
 
 angular
-  .module(moduleName, [])
-  .controller('HostingTerminateCdnCtrl', controller);
+  .module(moduleName, [
+    ngTranslateAsyncLoader,
+    atInternet,
+    ngAtInternetUiRouterPlugin,
+    'oui',
+    'pascalprecht.translate',
+    'ui.router',
+  ])
+  .component('hostingCdnTerminate', component)
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

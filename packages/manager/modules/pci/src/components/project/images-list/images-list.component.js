@@ -5,14 +5,18 @@ export default {
   controller,
   template,
   bindings: {
+    instance: '<',
     displaySelectedImage: '<',
     flavorType: '<?',
+    isImageCompatible: '=?',
     osTypes: '<?',
     selectedImage: '=?',
     defaultImageId: '<?',
     onChange: '&?',
+    onTabChange: '&',
     serviceName: '@',
     region: '<?',
+    getPriceText: '&',
   },
   transclude: true,
 };

@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_storages_containers_container_cold_archive_flush_title": "Deseja limpar o seu arquivo?",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_description": "Está prestes a eliminar os seus objetos do arquivo: {{ containerName }}.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_terminate_input_label": "Introduza “TERMINATE” no seguinte campo para confirmar",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_submit_label": "Confirmar",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_cancel_label": "Anular",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_erase_message": "Todos os dados do arquivo {{containerName}} serão eliminados.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_status_archived_restored_warning_1": "O seu arquivo {{containerName}} contém {{objetsCount}} objeto(s).",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_status_archived_restored_warning_2": "Está prestes a eliminar todos os seus objetos do arquivo.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_success_message": "Os objetos do seu arquivo {{ containerName }} estão a ser eliminados.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_error_delete": "Ocorreu um erro aquando ao eliminar os objetos do arquivo {{ containerName }}: {{ message }}."
+}

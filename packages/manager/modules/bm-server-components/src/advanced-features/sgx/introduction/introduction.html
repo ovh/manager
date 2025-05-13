@@ -1,0 +1,51 @@
+<oui-back-button on-click=":: $ctrl.goBack()"
+    ><span
+        data-translate="dedicated_server_dashboard_advanced_features_sgx_introduction_go_back"
+    ></span
+></oui-back-button>
+
+<h2
+    data-translate="dedicated_server_dashboard_advanced_features_sgx_introduction_header"
+></h2>
+
+<h3
+    data-translate="dedicated_server_dashboard_advanced_features_sgx_introduction_subheader"
+></h3>
+
+<p
+    data-translate="dedicated_server_dashboard_advanced_features_sgx_introduction_presentation"
+></p>
+
+<oui-button variant="primary" class="mb-3" on-click="$ctrl.goToManage()"
+    ><span
+        data-translate="dedicated_server_dashboard_advanced_features_sgx_introduction_manage_button"
+    ></span
+></oui-button>
+
+<div class="row" data-ng-if="$ctrl.tileDocumentationUrl">
+    <oui-tile
+        heading="{{:: 'dedicated_server_dashboard_advanced_features_sgx_introduction_manage_tile_header' | translate }}"
+        class="col-md-4"
+    >
+        <oui-tile-definition>
+            <oui-tile-description>
+                <a
+                    data-ng-href="{{:: $ctrl.tileDocumentationUrl }}"
+                    target="_blank"
+                    rel="noopener"
+                    data-track-on="click"
+                    data-track-type="action"
+                    data-track-name="{{:: $ctrl.trackingDocumentation }}"
+                >
+                    <span
+                        data-translate="dedicated_server_dashboard_advanced_features_sgx_introduction_manage_tile_content"
+                    ></span>
+                    <span
+                        data-translate="dedicated_server_dashboard_advanced_features_sgx_introduction_manage_tile_content_new_tab"
+                        class="sr-only"
+                    ></span
+                ></a>
+            </oui-tile-description>
+        </oui-tile-definition>
+    </oui-tile>
+</div>

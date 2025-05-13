@@ -3,5 +3,6 @@
   "telephony_line_answer_actions_line_default_voicemail": "Elegir la solución de correo por defecto",
   "telephony_line_answer_actions_line_voicemail_password": "Contraseña de acceso al contestador",
   "telephony_line_answer_actions_line_voicemail_options": "Configuración del contestador",
-  "telephony_line_answer_actions_line_voicemail_management": "Escucha y gestión de los mensajes"
+  "telephony_line_answer_actions_line_voicemail_management": "Escucha y gestión de los mensajes",
+  "telephony_line_answer_breadcrumb": "Gestión del contestador"
 }

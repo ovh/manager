@@ -1,0 +1,47 @@
+<oui-modal
+    data-heading="{{:: ('cloud_connect_manage_notifications_title' | translate) + $ctrl.description}}"
+    data-primary-action="$ctrl.saveNotification()"
+    data-primary-label="{{:: 'common_confirm' | translate }}"
+    data-primary-disabled="$ctrl.disableConfirm"
+    data-secondary-action="$ctrl.onCancel()"
+    data-secondary-label="{{:: 'common_cancel' | translate }}"
+    data-loading="$ctrl.loading"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <p data-ng-bind="$ctrl.UUID + ' : '+$ctrl.uuid"></p>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <div
+                    class="oui-checkbox"
+                    data-ng-repeat="notification in $ctrl.notifications track by $index"
+                >
+                    <input
+                        type="checkbox"
+                        class="oui-checkbox__input"
+                        id="notification-{{$index}}"
+                        name="notification-{{$index}}"
+                        data-ng-change="$ctrl.disableConfirm = false"
+                        data-ng-model="notification.activated"
+                    />
+                    <label
+                        class="oui-checkbox__label-container"
+                        for="notification-{{$index}}"
+                    >
+                        <span class="oui-checkbox__label">
+                            <span class="oui-checkbox__icon"></span>
+                            <span
+                                class="oui-checkbox__text"
+                                data-ng-bind="notification.name"
+                            ></span>
+                        </span>
+                    </label>
+                    <div
+                        class="oui-checkbox__description"
+                        data-ng-bind="notification.description"
+                    ></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</oui-modal>

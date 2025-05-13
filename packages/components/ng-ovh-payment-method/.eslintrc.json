@@ -1,6 +1,7 @@
 {
   "globals": {
     "EprotectIframeClient": true,
-    "paypal": true
+    "paypal": true,
+    "threatmetrix": true
   }
 }

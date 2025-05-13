@@ -1,0 +1,58 @@
+name: Run Jest tests
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+      - name: Restore/create node_modules cache
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - name: Install repository
+        run: yarn install --frozen-lockfile
+      - name: Build BDD covered packages and dependencies
+        run: |
+          yarn exec turbo -- run build --filter="./packages/manager/core/*" --concurrency=5
+          yarn exec turbo -- run build --filter="./packages/manager-react-components"
+          yarn exec turbo -- run build --filter="./packages/manager/modules/order"
+          yarn exec turbo -- run build --filter="./packages/manager/modules/common-api"
+          yarn exec turbo -- run build --filter="./packages/manager/modules/vcd-api"
+          yarn exec turbo -- run build --filter="./packages/manager/modules/manager-pci-common"
+          yarn exec turbo -- run build --filter="./packages/manager/modules/network-common"
+          yarn exec turbo -- run build --filter="./packages/components/ovh-payment-method"
+      # This task is for running the jest tests outside microApps
+      - name: Run tests Jest
+        run: yarn test:jest
+      - name: Run tests on changed packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          BRANCH=$(git branch --show-current)
+          echo "My branch is $BRANCH"
+
+          BASE_BRANCH=$(curl -s -H "Authorization: $GITHUB_TOKEN" "https://api.github.com/repos/$REPO/pulls?state=open" | jq ".[] | select(.head.ref == \"$BRANCH\") | .base.ref")
+          
+          if [[ -z "$BASE_BRANCH" ]]; then
+            export BASE_BRANCH="master"
+            export CURRENT_BRANCH=${BRANCH}
+            echo "NO PR FOUND for branch $BRANCH from ${BASE_BRANCH}"
+          else
+            echo "Base Branch is $BASE_BRANCH"
+            echo "current Branch is ${BRANCH}"
+            export BASE_BRANCH="${BASE_BRANCH//\"/}"
+            export CURRENT_BRANCH="${BRANCH//\"/}"
+            echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
+            echo "CURRENT_BRANCH=$CURRENT_BRANCH" >> $GITHUB_ENV
+          fi
+          yarn exec turbo -- run test --concurrency=1 --filter=[origin/${BASE_BRANCH}...origin/${BRANCH}]

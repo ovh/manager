@@ -4,6 +4,7 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'HostingDatabaseDeleteCtrl',
   class HostingDatabaseDeleteCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, HostingDatabase, Alerter) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

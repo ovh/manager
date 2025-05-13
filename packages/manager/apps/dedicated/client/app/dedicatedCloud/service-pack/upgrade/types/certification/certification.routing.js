@@ -1,9 +1,9 @@
-import stepModuleNames from './certification.steps';
+import stepModuleNames from '../../../../../components/dedicated-cloud/service-pack/upgrade/types/certification/certification.steps';
 
-import component from '../../upgrade.component';
+import component from '../../../../../components/dedicated-cloud/service-pack/upgrade/upgrade.component';
 
 export const state = {
-  name: 'app.dedicatedClouds.servicePackUpgrade.certification',
+  name: 'app.dedicatedCloud.details.servicePackUpgrade.certification',
   params: {
     activationType: 'basic',
   },
@@ -18,18 +18,15 @@ export const state = {
       UpgradeCertificationService.getOrderableServicePacks(
         currentService.name,
         currentUser.ovhSubsidiary,
-        currentService.servicePackName,
       ),
     steps: /* @ngInject */ (pccServicePackUpgradeService) =>
       pccServicePackUpgradeService.buildSteps(stepModuleNames),
-  },
-  translations: {
-    format: 'json',
-    value: ['.'],
+    breadcrumb: /*  @ngInject */ ($translate) =>
+      $translate.instant('dedicated_cloud_servicepack_upgrade_certification'),
   },
   url: '/certification',
   views: {
-    'pccView@app.dedicatedClouds': component.name,
+    'pccView@app.dedicatedCloud.details': component.name,
   },
 };
 

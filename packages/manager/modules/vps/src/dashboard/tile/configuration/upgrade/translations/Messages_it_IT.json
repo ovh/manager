@@ -1,0 +1,22 @@
+{
+  "vps_dashboard_tile_configuration_upgrade_memory_action_title": "Aumentare la memoria del VPS da {{ currentMemory }} a {{ nextMemory }} GB",
+  "vps_dashboard_tile_configuration_upgrade_memory_action_details": "Stai per aggiungere {{ memoryQuantity }} GB di memoria al tuo VPS.",
+  "vps_dashboard_tile_configuration_upgrade_storage_action_title": "Aumentare lo storage del VPS da {{ currentStorage }} a {{ nextStorage }} GB",
+  "vps_dashboard_tile_configuration_upgrade_storage_action_details": "Stai per aggiungere {{ storageQuantity }} GB di storage al tuo VPS.",
+  "vps_dashboard_tile_configuration_upgrade_action_price": "Questo upgrade comporta una fatturazione aggiuntiva di {{ price }}/mese",
+  "vps_dashboard_tile_configuration_upgrade_action_validation": "Confermando questa scelta sarà necessario pagare un importo di {{ prorataPrice }}, corrispondente al prorata temporis per il mese in corso. Ti ricordiamo che l'importo finale della fattura può includere eventuali opzioni aggiuntive a tua disposizione (ad esempio Snapshot, backup automatizzato, ecc...)",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_monthly": "Cliccando su “Conferma e paga” verrai reindirizzato al buono d’ordine da cui sarà possibile pagare l’importo di {{ price }}, corrispondente al prorata temporis.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_upfront": "Cliccando su “Conferma e paga” verrai reindirizzato al buono d’ordine da cui sarà possibile pagare l’importo supplementare di {{ price }} per il tempo restante incluso nell’impegno contrattuale.",
+  "vps_dashboard_tile_configuration_upgrade_action_validate_and_pay": "Conferma e paga",
+  "vps_dashboard_tile_configuration_upgrade_action_cancel": "Annulla",
+  "vps_dashboard_tile_configuration_upgrade_success_title": "La modifica è stata presa in carico.",
+  "vps_dashboard_tile_configuration_upgrade_success_explain": "Una volta effettuato l’upgrade del VPS, riceverai un’email di conferma entro 2 ore. Per utilizzare la nuova configurazione sarà necessario riavviare la macchina.",
+  "vps_dashboard_tile_configuration_upgrade_success_follow_order": "Segui il tuo ordine",
+  "vps_dashboard_tile_configuration_upgrade_no_payment_method_success": "La tua richiesta è stata presa in carico. L’upgrade inizierà subito dopo il ricevimento del pagamento del buono d’ordine <a target=\"_blank\" rel=\"noopener\" href=\"{{ href }}\">{{ orderId }}</a>.",
+  "vps_dashboard_tile_configuration_upgrade_error": "Si è verificato un errore durante l'ottimizzazione del VPS.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_payment_method_upfront": "Cliccando su “Conferma e paga” verrà fatturato un importo di {{ price }} per il tempo di impegno contrattuale restante.",
+  "vps_dashboard_tile_configuration_upgrade_catched_error": "Questo VPS non è compatibile con la soluzione selezionata oppure una richiesta di upgrade del VPS risulta già in corso.",
+  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_info": "Non è possibile effettuare l'upgrade del VPS a una soluzione superiore perché risulta attualmente in modalità Rescue.",
+  "vps_dashboard_tile_configuration_upgrade_fail_vps_in_rescue_action": "Riavvia il VPS disattivando la modalità Rescue."
+}

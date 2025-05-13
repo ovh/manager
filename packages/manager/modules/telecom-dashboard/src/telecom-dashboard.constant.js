@@ -1,6 +1,5 @@
 export default {
   orderExpressLite: 'https://www.ovhtelecom.fr/adsl/express-lite/',
-  billing: 'https://www.ovh.com/manager/dedicated/index.html#/billing/history',
   guides: {
     packActivate:
       'https://docs.ovh.com/fr/xdsl/comment-activer-mes-lignes-telephoniques-offre-adsl-vdsl/',
@@ -9,5 +8,7 @@ export default {
     modemReinit:
       'https://docs.ovh.com/fr/xdsl/redemarrer-reinitialiser-modem-adsl-ovh/',
     interruptedService: 'https://docs.ovh.com/fr/xdsl/interruption-de-service/',
+    endOfCopper:
+      'https://help.ovhcloud.com/csm/fr-internet-access-end-of-copper-migration-ftth?id=kb_article_view&sysparm_article=KB0067004',
   },
 };

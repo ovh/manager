@@ -1,0 +1,11 @@
+{
+  "see_more_label": "En savoir plus",
+  "logs_info_link": "En savoir plus",
+  "logs_list_title": "Flux de données",
+  "logs_list_add_data_stream_button": "Ajouter un  flux de données",
+  "logs_list_subscription_success": "Votre abonnement a été crée avec succès",
+  "logs_list_unsubscription_success": "Votre désabonnement a été supprimé avec succès",
+  "kube_logs_tab_title": "Logs",
+  "kube_logs_main_description": "Vous trouverez ci-dessous les journaux d'audit de votre cluster Kubernetes fournissant un ensemble chronologique d'enregistrements pertinents pour la sécurité et documentant la séquence d'actions dans votre cluster : activités générées par les utilisateurs, par les applications qui utilisent l'API Kubernetes et par le plan de contrôle lui-même.",
+  "logs_list_description_audit": "En vous abonnant aux audit logs de votre cluster Kubernetes, ils seront transférés dans Logs Data Platform et vous pourrez les centraliser avec vos autres logs, effectuer des recherches avancées, gérer leurs rétentions, définir des alertes ainsi que des tableaux de bord pour observer facilement vos clusters."
+}

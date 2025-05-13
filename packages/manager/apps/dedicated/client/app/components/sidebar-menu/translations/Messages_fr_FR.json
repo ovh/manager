@@ -13,9 +13,9 @@
   "navigation_left_product_vrack": "vRack (réseau privé)",
   "navigation_left_product_nas": "NAS",
   "navigation_left_dedicatedServers": "Serveurs Dédiés",
-  "navigation_left_dedicatedClouds": "Private Cloud",
+  "navigation_left_dedicatedClouds": "Hosted Private Cloud",
   "dedicatedCloud_tab_dashboard": "Informations générales",
-  "navigation_left_vps": "VPS",
+  "navigation_left_vps": "Serveurs privés virtuels",
   "navigation_left_exchanges": "Exchange",
   "navigation_left_publicCloud": "Public Cloud",
   "navigation_left_order_exchange": "Commander une plateforme",
@@ -34,15 +34,5 @@
   "otrs_service_category_CDN": "Content Delivery Network",
   "otrs_menu_userAccount_1": "Bonjour {{username}}",
   "otrs_menu_userAccount_2": "votre compte",
-  "global_logout": "Déconnexion",
-  "universe_univers-cloud_name": "Cloud",
-  "universe_univers-dedicated_name": "Dédié",
-  "universe_univers-telecom_name": "Télécom",
-  "universe_univers-web_name": "Web",
-  "universe_univers-sunrise_name": "Sunrise",
-  "universe_univers-portal_name": "MyOVH",
-  "universe_labs_chatbot": "Assistant virtuel OVH",
-  "universe_univers-partners_name": "Partenaires",
-  "universe_univers-labs_name": "UX Labs",
-  "sidebar_actions_menu_cloud_project": "Projet Cloud"
+  "global_logout": "Déconnexion"
 }

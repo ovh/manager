@@ -1,45 +1,42 @@
 <section class="telecom-overTheBox-tasks">
-    <div class="telecom-section-content">
-        <tuc-toast-message></tuc-toast-message>
+    <tuc-toast-message></tuc-toast-message>
 
-        <div class="widget-presentation">
-            <h2
-                class="widget-presentation-title"
-                data-translate="overTheBox_logs_title"
-            ></h2>
+    <div class="widget-presentation">
+        <h2
+            class="widget-presentation-title"
+            data-translate="overTheBox_logs_title"
+        ></h2>
 
-            <tail-logs>
-                <div
-                    class="row"
-                    data-ng-repeat="log in OTBLogs.logger.logs track by $index"
-                    data-ng-class="{
+        <tail-logs>
+            <div
+                class="row"
+                data-ng-repeat="log in $ctrl.logger.logs track by $index"
+                data-ng-class="{
                     'text-muted'   : log.message.lvl === 'debug',
                     'text-primary' : log.message.lvl === 'info' || log.message.lvl === 'notice',
                     'text-warning' : log.message.lvl === 'warning' || log.message.lvl === 'err',
                     'text-danger'  : log.message.lvl === 'crit' || log.message.lvl === 'alert' || log.message.lvl === 'emerg'
                 }"
-                >
-                    <span class="col-xs-2" data-ng-bind="log.message.ip"></span>
-                    <span
-                        class="col-xs-3"
-                        data-ng-bind="log.message.timestamp | date:'short'"
-                    ></span>
-                    <span
-                        class="col-xs-2"
-                        data-ng-bind="log.message.syslog_program"
-                    ></span>
-                    <span
-                        class="col-xs-5"
-                        data-ng-bind="log.message.message"
-                    ></span>
-                </div>
-                <div
-                    data-ng-if="OTBLogs.logger.logs.length === 0"
-                    data-translate="overTheBox_logs_no_logs"
-                ></div>
-            </tail-logs>
-        </div>
+            >
+                <span class="col-xs-2" data-ng-bind="log.message.ip"></span>
+                <span
+                    class="col-xs-3"
+                    data-ng-bind="log.message.timestamp | date:'short'"
+                ></span>
+                <span
+                    class="col-xs-2"
+                    data-ng-bind="log.message.syslog_program"
+                ></span>
+                <span
+                    class="col-xs-5"
+                    data-ng-bind="log.message.message"
+                ></span>
+            </div>
+            <div
+                data-ng-if="$ctrl.logger.logs.length === 0"
+                data-translate="overTheBox_logs_no_logs"
+            ></div>
+        </tail-logs>
     </div>
-    <!-- /.telecom-section-content -->
 </section>
 <!-- /.telecom-overTheBox-tasks -->

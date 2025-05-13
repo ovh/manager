@@ -3,6 +3,8 @@ import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 
+import { OFFERS_UNELIGIBLE_FOR_MODULE } from '../hosting.constants';
+
 export default class HostingCronsCtrl {
   /* @ngInject */
   constructor(
@@ -10,22 +12,26 @@ export default class HostingCronsCtrl {
     $stateParams,
     $timeout,
     $translate,
+    atInternet,
     Alerter,
     Hosting,
     HostingCron,
-    User,
+    WucUser,
   ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.Alerter = Alerter;
     this.Hosting = Hosting;
     this.HostingCron = HostingCron;
-    this.User = User;
+    this.WucUser = WucUser;
   }
 
   $onInit() {
+    this.atInternet.trackPage({ name: 'web::hosting::cron' });
+
     this.crons = {
       details: [],
     };
@@ -43,7 +49,7 @@ export default class HostingCronsCtrl {
   }
 
   getGuides() {
-    return this.User.getUrlOf('guides').then((guides) => {
+    return this.WucUser.getUrlOf('guides').then((guides) => {
       if (guides && guides.hostingCron) {
         this.guide = guides.hostingCron;
       }
@@ -89,6 +95,10 @@ export default class HostingCronsCtrl {
 
   deleteCron(cron) {
     return this.$scope.setAction('cron/delete/hosting-cron-delete', cron);
+  }
+
+  static isOfferUneligible(offer) {
+    return OFFERS_UNELIGIBLE_FOR_MODULE.includes(offer);
   }
 }
 

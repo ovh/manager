@@ -1,0 +1,94 @@
+<section class="log-osd">
+    <h3 data-translate="logs_kibana_title"></h3>
+    <p data-translate="logs_kibana_description"></p>
+    <oui-datagrid id="osds-datagrid" data-rows-loader="ctrl.loadOsds($config)">
+        <oui-datagrid-topbar>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary"
+                data-ng-click="ctrl.add()"
+            >
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span data-translate="logs_kibana_add_data_feed"></span>
+            </button>
+            <oui-spinner
+                size="s"
+                data-ng-if="ctrl.delete.loading"
+            ></oui-spinner>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title=":: 'logs_kibana_name_text' | translate"
+            data-property="name"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'logs_kibana_col_description' | translate"
+            data-property="description"
+            data-type="string"
+            data-sortable
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'logs_kibana_col_status' | translate"
+            property="deliveryStatus"
+            data-type="string"
+            searchable
+            filterable
+            ><span
+                class="oui-badge"
+                data-translate="{{ ::'logs_kibabana_deliveryStatus_' + $row.deliveryStatus }}"
+                data-ng-class="{
+                    'oui-badge_info': $row.deliveryStatus == 'DELIVERING',
+                    'oui-badge_success': $row.deliveryStatus == 'READY',
+                    'oui-badge_warning': $row.deliveryStatus == 'DELETING'}"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'logs_col_last_modified' | translate"
+            data-property="updatedAt"
+            data-sortable
+            data-type="date"
+        >
+            {{ $row.updatedAt | cucMomentFormat:'L'}}
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'logs_kibana_col_shared' | translate"
+            data-sortable
+            data-type="string"
+            data-property="isEditable"
+        >
+            <span
+                data-ng-if="!$row.isEditable"
+                data-ng-bind="::'logs_yes' | translate"
+            ></span>
+            <span data-ng-if="$row.isEditable"> - </span>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item
+                data-disabled="(!$row.isEditable || $row.deliveryStatus !== 'READY')"
+                data-on-click="ctrl.add($row)"
+                ><span data-translate="logs_edit"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item data-on-click="ctrl.openOsd($row)">
+                <span data-translate="logs_index_access_osd_webui"></span>
+                <i
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></i>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-disabled="(!$row.isEditable || $row.deliveryStatus !== 'READY')"
+                data-on-click="ctrl.showDeleteConfirm($row)"
+                ><span data-translate="logs_delete"></span
+            ></oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</section>

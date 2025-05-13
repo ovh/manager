@@ -1,6 +1,0 @@
-{
-  "enterprise_cloud_database_service_rule": "Aggiungi una regola",
-  "enterprise_cloud_database_service_rule_description": "Al momento la restrizione degli accessi su porte specifiche e IPv6 non è supportata.",
-  "enterprise_cloud_database_service_rule_help": "Deve essere un IPv4 (ad esempio, 192.168.0.1) o un blocco di indirizzi di rete (ad esempio, 192.168.0.0/24)",
-  "enterprise_cloud_database_service_rule_placeholder": "Inserisci un indirizzo o un blocco di indirizzi IPv4"
-}

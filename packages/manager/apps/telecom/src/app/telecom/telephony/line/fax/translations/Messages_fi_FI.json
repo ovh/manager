@@ -1,9 +1,0 @@
-{
-  "telephony_line_fax_section_back_link": "Paluu faksinhallintaan",
-  "telephony_line_fax_action_line_password": "Faksin salasana",
-  "telephony_line_fax_action_line_settings": "Faksin konfigurointi",
-  "telephony_line_fax_action_line_white_label_domains": "Tuotemerkittömät Ecofax-verkkotunnukset",
-  "telephony_line_fax_action_line_filtering": "Faksien suodatus",
-  "telephony_line_fax_action_line_campaigns": "Faksikampanjat",
-  "telephony_line_fax_action_line_convert_to_voicefax": "Käännä Ecofax perso"
-}

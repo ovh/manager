@@ -1,0 +1,138 @@
+<oui-field
+    label="{{:: 'hosting_multisite_domain_configuration_home' | translate }}"
+    size="l"
+    error-messages="{
+        pattern: ('hosting_multisite_domain_configuration_path_help' | translate)
+    }"
+>
+    <div class="oui-input-group">
+        <span class="oui-button oui-button_secondary">./</span>
+        <input
+            type="text"
+            class="oui-input"
+            id="domainAttacheModeOvhFormSelectedPath"
+            name="selectedPath"
+            placeholder="{{:: 'hosting_multisite_domain_configuration_myfolder' | translate }}"
+            data-ng-model="$ctrl.path"
+            data-ng-pattern="$ctrl.VALID_PATH"
+            data-ng-disabled="!$ctrl.canModifyPathFolder"
+        />
+    </div>
+</oui-field>
+<oui-message
+    class="mb-3"
+    data-type="warning"
+    data-ng-if="!$ctrl.canModifyPathFolder"
+>
+    <span
+        data-translate="hosting_multisite_domain_configuration_git_warning"
+    ></span>
+</oui-message>
+<oui-field
+    ng-if="$ctrl.hosting.isCloudWeb"
+    label="{{:: 'hosting_multisite_domain_configuration_runtime' | translate }}"
+    data-size="l"
+>
+    <oui-select
+        data-items="$ctrl.runtimes"
+        data-model="$ctrl.runtime"
+        name="runtime"
+        match="name"
+    >
+        <span data-ng-bind="$item.name"></span>
+    </oui-select>
+</oui-field>
+<oui-field
+    label="{{:: 'hosting_multisite_domain_configuration_options_choose' | translate }}"
+    size="l"
+>
+    <oui-checkbox name="ssl" model="$ctrl.ssl">
+        <span
+            data-translate="hosting_multisite_domain_configuration_ssl"
+        ></span>
+        <button
+            type="button"
+            class="oui-popover-button"
+            oui-popover="{{:: 'hosting_multisite_domain_configuration_ssl_help' | translate }}"
+        ></button>
+    </oui-checkbox>
+    <oui-checkbox
+        ng-if="$ctrl.hosting.hasCdn"
+        name="cdn"
+        model="$ctrl.isCDNActive"
+        on-change="$ctrl.onCDNChange(modelValue)"
+        disabled="$ctrl.ipLocation"
+    >
+        <span
+            data-translate="hosting_multisite_domain_configuration_cdn"
+        ></span>
+        <button
+            type="button"
+            class="oui-popover-button"
+            oui-popover="{{:: 'hosting_multisite_domain_configuration_cdn_help' | translate }}"
+        ></button>
+    </oui-checkbox>
+    <oui-checkbox
+        name="ipLocation"
+        ng-if="$ctrl.availableIps.length > 1"
+        data-model="$ctrl.ipLocation"
+        disabled="$ctrl.isCDNActive"
+    >
+        <span
+            data-translate="hosting_multisite_domain_configuration_countriesIp"
+        ></span>
+        <button
+            type="button"
+            class="oui-popover-button"
+            oui-popover="{{:: 'hosting_multisite_domain_configuration_country_ip_help' | translate }}"
+        ></button>
+    </oui-checkbox>
+    <oui-select
+        aria-labelledby="ipLocation"
+        ng-if="$ctrl.ipLocation"
+        data-items="$ctrl.availableIps"
+        data-model="$ctrl.countryIp"
+        name="countryIp"
+        match="ip"
+        group-by="$ctrl.constructor.groupCountries"
+        placeholder="{{:: 'hosting_multisite_domain_configuration_countriesIp_none' | translate}}"
+    >
+    </oui-select>
+</oui-field>
+
+<oui-checkbox
+    model="$ctrl.isFirewallActive"
+    on-change="$ctrl.onFirewallChange(modelValue)"
+>
+    <span
+        data-translate="hosting_multisite_domain_configuration_firewall"
+    ></span>
+    <button
+        type="button"
+        class="oui-popover-button"
+        oui-popover="{{:: 'hosting_multisite_domain_configuration_firewall_help' | translate }}"
+    ></button>
+</oui-checkbox>
+
+<oui-checkbox
+    model="$ctrl.isOwnLogActive"
+    on-change="$ctrl.onOwnLogChange(modelValue)"
+>
+    <span data-translate="hosting_multisite_domain_configuration_ownlog"></span>
+    <button
+        type="button"
+        class="oui-popover-button"
+        oui-popover="{{:: 'hosting_multisite_domain_configuration_ownlog_help' | translate }}"
+    ></button>
+</oui-checkbox>
+
+<oui-select
+    class="oui-select_l"
+    ng-if="$ctrl.isOwnLogActive"
+    items="$ctrl.domains"
+    model="$ctrl.ownLogDomain"
+    name="ownLogDomain"
+    match="displayName"
+    searchable
+>
+</oui-select>

@@ -5,6 +5,7 @@ export default {
     billingLink: '<',
     carrierSip: '<',
     cdrsLink: '<',
+    clusterDetails: '<',
     currentActiveLink: '<',
     dashboardLink: '<',
     endpointsLink: '<',

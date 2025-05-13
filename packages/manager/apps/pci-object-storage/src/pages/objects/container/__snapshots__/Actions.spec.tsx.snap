@@ -1,0 +1,54 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Actions > Action sould displayed 1`] = `
+<div>
+  <div
+    class="w-min"
+    id="navigation-action-trigger-name-deploymentMode-region-s3"
+  >
+    <ods-button
+      data-testid="navigation-action-trigger-action"
+      icon="ellipsis-vertical"
+      id="name-deploymentMode-region-s3"
+      is-disabled="false"
+      is-loading="false"
+      size="sm"
+      slot="menu-title"
+      variant="outline"
+    />
+  </div>
+  <ods-popover
+    class="py-[8px] px-0 w-max"
+    data-testid="navigation-action-trigger-action-popover"
+    trigger-id="navigation-action-trigger-name-deploymentMode-region-s3"
+    with-arrow="true"
+  >
+    <div
+      class="flex flex-col"
+    >
+      <ods-button
+        class="menu-item-button w-full"
+        condition="true"
+        display-tooltip="false"
+        label="pci_projects_project_storages_containers_view_add_user_label"
+        size="sm"
+        variant="ghost"
+      />
+      <ods-button
+        class="menu-item-button w-full"
+        display-tooltip="false"
+        label="pci_projects_project_storages_containers_view_object_label"
+        size="sm"
+        variant="ghost"
+      />
+      <ods-button
+        class="menu-item-button w-full"
+        display-tooltip="false"
+        label="pci_projects_project_storages_containers_delete_label"
+        size="sm"
+        variant="ghost"
+      />
+    </div>
+  </ods-popover>
+</div>
+`;

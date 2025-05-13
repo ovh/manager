@@ -3,15 +3,15 @@ import routing from './vps-cloud-database.routing';
 
 import durationFilter from './duration.filter';
 import priceFilter from './price.filter';
-import ovhManagerVpsCloudDatabaseOrder from './order';
 
 const moduleName = 'ovhManagerVpsCloudDatabase';
 
 angular
-  .module(moduleName, [ovhManagerVpsCloudDatabaseOrder])
+  .module(moduleName, [])
   .component(component.name, component)
   .filter('vpsDuration', durationFilter)
   .filter('vpsPrice', priceFilter)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,0 +1,173 @@
+<div class="telecom-telephony-line-phone-accessories-choice">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div class="widget-presentation" data-ng-if="!$ctrl.loading.init">
+        <h2
+            class="widget-presentation-title"
+            data-translate="telephony_line_phone_accessories_choice_title"
+        ></h2>
+
+        <!-- LOADING ERROR -->
+        <oui-message type="error" data-ng-if="$ctrl.error.loading">
+            <p>
+                <span
+                    data-translate="telephony_line_phone_accessories_choice_load_error"
+                ></span>
+                <span data-ng-bind="$ctrl.error.loading.data.message"></span>
+            </p>
+        </oui-message>
+
+        <div data-ng-if="!$ctrl.error.loading">
+            <!-- 5 same accessories max -->
+            <oui-message type="info" data-ng-if="$ctrl.maxQuantity">
+                <span
+                    data-translate="telephony_line_phone_accessories_max_order"
+                ></span>
+            </oui-message>
+
+            <!-- Define filters -->
+            <div class="d-flex justify-content-end">
+                <oui-dropdown data-placement="end">
+                    <oui-dropdown-trigger
+                        text="{{ ::'telephony_line_phone_accessories_filter_price' | translate }}"
+                    >
+                    </oui-dropdown-trigger>
+                    <oui-dropdown-content>
+                        <oui-dropdown-item
+                            data-on-click="$ctrl.sortPrice('asc')"
+                        >
+                            <span
+                                data-translate="telephony_line_phone_accessories_filter_price_asc"
+                            ></span>
+                        </oui-dropdown-item>
+                        <oui-dropdown-item
+                            data-on-click="$ctrl.sortPrice('desc')"
+                        >
+                            <span
+                                data-translate="telephony_line_phone_accessories_filter_price_desc"
+                            ></span>
+                        </oui-dropdown-item>
+                    </oui-dropdown-content>
+                </oui-dropdown>
+                <oui-dropdown data-ng-if="$ctrl.phone" data-placement="end">
+                    <oui-dropdown-trigger
+                        text="{{ ::'telephony_line_phone_accessories_filter_compatibility' | translate }}"
+                    >
+                    </oui-dropdown-trigger>
+                    <oui-dropdown-content>
+                        <oui-dropdown-item
+                            data-on-click="$ctrl.filterWithPhone()"
+                        >
+                            <span
+                                data-translate="telephony_line_phone_accessories_filter_compatibility_compatible"
+                            ></span>
+                        </oui-dropdown-item>
+                        <oui-dropdown-item data-on-click="$ctrl.filterAll()">
+                            <span
+                                data-translate="telephony_line_phone_accessories_filter_compatibility_all"
+                            ></span>
+                        </oui-dropdown-item>
+                    </oui-dropdown-content>
+                </oui-dropdown>
+            </div>
+
+            <!-- Define tabs -->
+            <oui-tabs>
+                <oui-tabs-item
+                    data-ng-repeat="brand in $ctrl.brandList track by $index"
+                    data-heading="{{ ::brand }}"
+                    data-on-active="$ctrl.filterByBrand(brand)"
+                >
+                    <!-- Define the thumbnail for accessories list -->
+                    <div class="row">
+                        <div
+                            class="col-xs-12 col-sm-6 col-md-3 accessory-item"
+                            data-ng-repeat="accessory in $ctrl.accessoriesDisplayed track by accessory.name"
+                        >
+                            <div
+                                class="thumbnail-light"
+                                id="{{accessory.name}}"
+                            >
+                                <div class="thumbnail">
+                                    <img
+                                        class="sized"
+                                        data-ng-if="accessory.img"
+                                        ng-attr-alt="{{accessory.description}}"
+                                        alt
+                                        data-ng-src="{{accessory.img}}"
+                                    />
+                                    <span
+                                        data-ng-if="!accessory.img"
+                                        class="text-center ovh-font ovh-font-phone sized"
+                                    ></span>
+                                </div>
+                                <div class="text-center">
+                                    <span
+                                        data-ng-bind="accessory.description"
+                                    ></span>
+                                </div>
+                                <div class="caption">
+                                    <div class="text-center">
+                                        <span
+                                            data-ng-bind-html="accessory.price.text | tucFormatPrice:{ withoutTax : false }"
+                                        ></span>
+                                        <span
+                                            data-translate="common_without_tax"
+                                        ></span>
+                                    </div>
+                                    <div
+                                        class="text-center oui-label"
+                                        data-ng-if="accessory.url"
+                                    >
+                                        <a
+                                            data-ng-href="{{accessory.url}}"
+                                            target="_blank"
+                                            rel="noopener"
+                                        >
+                                            <span
+                                                data-translate="telephony_line_phone_accessories_detail_link"
+                                            >
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <form
+                                        name="{{accessory.name}}Form"
+                                        novalidate
+                                    >
+                                        <oui-field
+                                            data-error-messages="{ 'max': ('telephony_line_phone_accessories_max_order' | translate) }"
+                                        >
+                                            <oui-numeric
+                                                class="mx-auto"
+                                                name="{{$index}}-numeric"
+                                                data-model="accessory.quantity"
+                                                data-min="::$ctrl.spinnerExtremities.min"
+                                                data-max="::$ctrl.spinnerExtremities.max"
+                                                data-on-change="$ctrl.updateOrderTotal(modelValue, accessory.name)"
+                                            >
+                                            </oui-numeric>
+                                        </oui-field>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </oui-tabs-item>
+            </oui-tabs>
+
+            <hr class="oui-horizontal-line_dark mt-3" />
+
+            <div class="mt-3 mb-4">
+                <button
+                    type="submit"
+                    class="oui-button oui-button_primary"
+                    data-translate="telephony_line_phone_accessories_choice_validate"
+                    data-ng-click="$ctrl.validateStep()"
+                    data-ng-disabled="!$ctrl.hasAtLeastOneAccessory()"
+                ></button>
+            </div>
+        </div>
+    </div>
+</div>

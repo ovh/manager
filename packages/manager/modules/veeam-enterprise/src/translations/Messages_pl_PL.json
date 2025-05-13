@@ -1,22 +1,4 @@
 {
-  "veeam_enterprise_tab_dashboard": "Strona główna",
-  "veeam_enterprise_infos_general_load_error": "Błąd podczas pobierania informacji ogólnych.",
-  "veeam_enterprise_infos_configuration_load_error": "Błąd podczas pobierania informacji o konfiguracji.",
-  "veeam_enterprise_infos_subscription_load_error": "Błąd podczas pobierania informacji o abonamencie.",
-  "veeam_enterprise_infos_license_register_error": "Błąd podczas aktywacji Twojej licencji Veeam Enterprise.",
-  "veeam_enterprise_infos_license_register_success": "Trwa aktywacja Twojej licencji Veeam Enterprise.",
-  "veeam_enterprise_infos_license_update_error": "Błąd podczas aktualizacji Twojej licencji Veeam Enterprise.",
-  "veeam_enterprise_infos_license_update_success": "Trwa aktualizacja Twojej licencji Veeam Enterprise.",
-  "veeam_enterprise_infos_license_already_registered_error": "Już aktywowałeś Twoją licencję Veeam Enterprise.",
-  "veeam_enterprise_manage": "Zarządzaj",
-  "veeam_enterprise_modal_ok": "OK",
-  "veeam_enterprise_modal_cancel": "Anuluj",
-  "veeam_enterprise_tile_subscription": "Abonament",
-  "veeam_enterprise_tile_subscription_contact": "Kontakty",
-  "veeam_enterprise_tile_subscription_contact_admin": "Administrator",
-  "veeam_enterprise_tile_subscription_contact_billing": "Płatności",
-  "veeam_enterprise_tile_subscription_contact_technical": "Kontakt techniczny",
-  "veeam_enterprise_tile_subscription_creation_date": "Data utworzenia",
-  "veeam_enterprise_tile_subscription_autorenew": "Automatyczne odnowienie ",
-  "veeam_enterprise_tile_subscription_expiration_date": "Data wygasania"
+  "veeam_enterprise_title": "Veeam Enterprise",
+  "veeam_enterprise_order": "Zamów"
 }

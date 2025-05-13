@@ -10,7 +10,6 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       url: '/storages',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
         return import('./storages.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );

@@ -1,0 +1,260 @@
+<form name="addressCollectForm" data-ng-submit="$ctrl.submitAddress()">
+    <div class="form-group">
+        <oui-field
+            data-label="{{ :: 'pack_move_eligibility_zipcode' | translate }}"
+        >
+            <input
+                type="text"
+                class="form-control"
+                id="zipCodeElem"
+                name="zipCode"
+                data-translate-attr="{ placeholder: 'pack_move_eligibility_zipcode' }"
+                data-ng-model="$ctrl.address.zipCode"
+                data-ui-validate="'$ctrl.validator.tucIsZipcode($value, [\'metropolitanFrance\'])'"
+                data-ng-change="$ctrl.getCities($ctrl.address.zipCode)"
+                data-ng-disabled="$ctrl.loaders.cities || $ctrl.method !== 'address'"
+                required
+            />
+        </oui-field>
+    </div>
+    <button
+        type="button"
+        data-ng-if="$ctrl.displaySearchResult"
+        data-ng-click="$ctrl.displaySearch = !$ctrl.displaySearch"
+        class="btn btn-link p-0 mb-3"
+    >
+        <i
+            class="ovh-font"
+            aria-hidden="true"
+            data-ng-class="{
+            'ovh-font-disclosure-right': !$ctrl.displaySearch,
+            'ovh-font-disclosure-down': $ctrl.displaySearch
+        }"
+        >
+        </i>
+        <span
+            data-translate="pack_move_eligibility_address_display_search"
+        ></span>
+    </button>
+
+    <div data-ng-if="$ctrl.displaySearch">
+        <div class="form-group" data-ng-if="$ctrl.cities.length">
+            <label for="cityElem" data-translate="pack_move_eligibility_city">
+            </label>
+            <select
+                class="form-control"
+                name="city"
+                id="cityElem"
+                data-translate-attr="{ placeholder: 'pack_move_eligibility_city' }"
+                data-ng-model="$ctrl.address.city"
+                data-ng-disabled="$ctrl.loaders.streets || $ctrl.method !== 'address'"
+                data-ng-change="$ctrl.searchStreets()"
+                required
+                data-ng-options="city as city.city for city in $ctrl.cities"
+            >
+            </select>
+        </div>
+        <div
+            class="form-group"
+            data-ng-if="$ctrl.address.city.inseeCode && addressCollectForm.zipCode.$valid"
+        >
+            <label
+                for="streetElem"
+                data-translate="pack_move_eligibility_street"
+            >
+            </label>
+            <input
+                type="text"
+                class="form-control"
+                id="streetElem"
+                name="street"
+                data-ng-disabled="!$ctrl.address.city || $ctrl.method !== 'address'"
+                required
+                data-translate-attr="{ placeholder: 'pack_move_eligibility_street' }"
+                data-ui-validate="'$ctrl.checkSelectedStreets($value)'"
+                data-uib-typeahead="street as street.streetName for street in $ctrl.getStreets($viewValue)"
+                data-uib-typeahead-loading="$ctrl.loaders.streets"
+                data-ng-model="$ctrl.address.street"
+            />
+        </div>
+        <div
+            class="form-group"
+            data-ng-if="$ctrl.address.street.streetCode && addressCollectForm.street.$valid"
+        >
+            <label
+                for="streetNumberElem"
+                data-translate="pack_move_eligibility_street_number"
+            >
+            </label>
+            <select
+                class="form-control"
+                name="streetNumber"
+                id="streetNumberElem"
+                data-translate-attr="{ placeholder: 'pack_move_eligibility_street_number' }"
+                data-ng-model="$ctrl.address.streetNumber"
+                data-ng-disabled="$ctrl.loaders.streetNumbers || $ctrl.method !== 'address'"
+                data-ng-options="streetNumber as streetNumber.number for streetNumber in $ctrl.streetNumbers"
+                data-ng-change="$ctrl.checkSelectedNumber()"
+                required
+            >
+            </select>
+        </div>
+
+        <button
+            type="button"
+            data-ng-if="$ctrl.address.street.streetCode"
+            data-ng-disabled="$ctrl.method !== 'address'"
+            data-ng-click="$ctrl.moreInfo = !$ctrl.moreInfo"
+            class="btn btn-link p-0 mb-3"
+        >
+            <i
+                class="ovh-font"
+                aria-hidden="true"
+                data-ng-class="{
+                'ovh-font-disclosure-right': !$ctrl.moreInfo,
+                'ovh-font-disclosure-down': $ctrl.moreInfo
+            }"
+            >
+            </i>
+            <span data-translate="pack_move_eligibility_address_more"></span>
+        </button>
+
+        <div data-ng-if="$ctrl.moreInfo">
+            <div class="form-group">
+                <label
+                    for="residence"
+                    data-translate="pack_move_eligibility_residence"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="residence"
+                    name="residence"
+                    data-ng-disabled="!$ctrl.address.street.streetCode || $ctrl.method !== 'address'"
+                    data-translate-attr="{ placeholder: 'pack_move_eligibility_residence' }"
+                    data-ng-model="$ctrl.address.residence"
+                />
+            </div>
+            <div class="form-group">
+                <label
+                    for="buildingElem"
+                    data-translate="pack_move_eligibility_building"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="buildingElem"
+                    name="building"
+                    data-ng-disabled="!$ctrl.address.street.streetCode || $ctrl.method !== 'address'"
+                    data-translate-attr="{ placeholder: 'pack_move_eligibility_building' }"
+                    data-ng-model="$ctrl.address.building"
+                />
+            </div>
+            <div class="form-group">
+                <label
+                    for="floorElem"
+                    data-translate="pack_move_eligibility_floor"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="floorElem"
+                    name="floor"
+                    data-ng-disabled="!$ctrl.address.street.streetCode || $ctrl.method !== 'address'"
+                    data-translate-attr="{ placeholder: 'pack_move_eligibility_floor' }"
+                    data-ng-model="$ctrl.address.floor"
+                />
+            </div>
+            <div class="form-group">
+                <label
+                    for="stairElem"
+                    data-translate="pack_move_eligibility_stair"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="stairElem"
+                    name="stair"
+                    data-ng-disabled="!$ctrl.address.street.streetCode || $ctrl.method !== 'address'"
+                    data-translate-attr="{ placeholder: 'pack_move_eligibility_stair' }"
+                    data-ng-model="$ctrl.address.stair"
+                />
+            </div>
+            <div class="form-group">
+                <label
+                    for="doorElem"
+                    data-translate="pack_move_eligibility_door"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="doorElem"
+                    name="door"
+                    data-ng-disabled="!$ctrl.address.street.streetCode || $ctrl.method !== 'address'"
+                    data-translate-attr="{ placeholder: 'pack_move_eligibility_door' }"
+                    data-ng-model="$ctrl.address.door"
+                />
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <button
+            type="submit"
+            data-ng-disabled="$ctrl.loading || addressCollectForm.$invalid || $ctrl.method !== 'address'"
+            data-translate="submit"
+            class="btn btn-primary"
+        ></button>
+        <oui-spinner class="ml-2" data-ng-if="$ctrl.loading" data-size="s">
+        </oui-spinner>
+    </div>
+
+    <div
+        class="mt-3"
+        data-ng-if="$ctrl.displayListOfBuildings && $ctrl.displayResult"
+    >
+        <div data-translate="pack_move_eligibility_buildings_available"></div>
+        <oui-datagrid rows="$ctrl.buildings">
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_name' | translate"
+                data-property="name"
+                type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_reference' | translate"
+                data-property="reference"
+                type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_nro' | translate"
+                data-property="nro"
+                type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_type' | translate"
+                data-property="type"
+                type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_actions' | translate"
+            >
+                <oui-button
+                    data-variant="primary"
+                    data-on-click="$ctrl.testBuilding($row)"
+                    ><span
+                        data-translate="pack_move_eligibility_building_select_building"
+                    ></span>
+                </oui-button>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </div>
+</form>

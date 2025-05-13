@@ -1,0 +1,51 @@
+<form
+    id="editSnapshot"
+    name="editSnapshot"
+    data-ng-submit="editSnapshot.$valid && $ctrl.editSnapshot()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{ ::'netapp_volumes_snapshots_edit_title' | translate }}"
+        data-primary-label="{{ ::'netapp_volumes_snapshots_edit_confirm' | translate }}"
+        data-secondary-label="{{ ::'netapp_volumes_snapshots_edit_cancel' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <oui-field
+            label="{{:: 'netapp_volumes_snapshots_edit_id_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="snapshotId"
+                type="text"
+                data-ng-model="$ctrl.id"
+                readonly
+            />
+        </oui-field>
+        <oui-field
+            label="{{:: 'netapp_volumes_snapshots_edit_name_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="snapshotName"
+                type="text"
+                data-ng-model="$ctrl.name"
+                data-ng-pattern="$ctrl.PATTERN"
+                maxlength="255"
+            />
+        </oui-field>
+        <oui-field
+            label="{{:: 'netapp_volumes_snapshots_edit_description_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="snapshotDescription"
+                type="text"
+                data-ng-model="$ctrl.description"
+                data-ng-pattern="$ctrl.PATTERN"
+                maxlength="255"
+            />
+        </oui-field>
+    </oui-modal>
+</form>

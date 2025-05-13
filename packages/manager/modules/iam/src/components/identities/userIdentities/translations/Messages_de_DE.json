@@ -1,0 +1,17 @@
+{
+  "iam_identities_users_title": "Lokale User",
+  "iam_identities_users_empty": "Kein lokaler User",
+  "iam_identities_users_user": "Name",
+  "iam_identities_users_group": "Gruppe",
+  "iam_identities_users_email": "E-Mail",
+  "iam_identities_users_status": "Status",
+  "iam_identities_users_description": "Beschreibung",
+  "iam_identities_users_status_OK": "Aktiviert",
+  "iam_identities_users_status_DISABLED": "Deaktiviert",
+  "iam_identities_users_status_PASSWORD_CHANGE_REQUIRED": "Änderung des Passworts erforderlich",
+  "iam_identities_users_add": "Nutzer hinzufügen",
+  "iam_identities_users_modal_title": "Lokale User hinzufügen",
+  "iam_identities_users_modal_empty_state": "Kein lokaler User zum Hinzufügen vorhanden",
+  "iam_identities_users_modal_search_placeholder": "Nach Name oder E-Mail-Adresse suchen",
+  "iam_identities_users_load_error": "Beim Abrufen Ihrer lokalen User ist ein Fehler aufgetreten: {{ message }}"
+}

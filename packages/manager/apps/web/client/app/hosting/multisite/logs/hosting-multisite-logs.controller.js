@@ -1,63 +1,72 @@
-import isString from 'lodash/isString';
-import startsWith from 'lodash/startsWith';
-
 angular.module('App').controller(
   'HostingTabDomainsMultisiteLogs',
   class HostingTabDomainsMultisiteLogs {
-    constructor($scope, $stateParams, $translate, Alerter, Hosting, constants) {
+    /* @ngInject */
+    constructor(
+      $http,
+      $q,
+      $scope,
+      $stateParams,
+      $window,
+      Hosting,
+      HostingStatistics,
+    ) {
+      this.$http = $http;
+      this.$q = $q;
       this.$scope = $scope;
       this.$stateParams = $stateParams;
-      this.$translate = $translate;
-      this.Alerter = Alerter;
+      this.$window = $window;
       this.Hosting = Hosting;
-      this.constants = constants;
+      this.HostingStatistics = HostingStatistics;
     }
 
-    $onInit() {
-      this.$scope.$on('popover.show', (evt, elm) => {
-        const domain = this.$scope.domains.list.results[
-          elm['0'].dataset.domainIndex
-        ];
-        if (!domain.logUrlGenerated) {
-          this.generateLogHref(domain);
-        }
-      });
-    }
-
-    /* eslint-disable no-param-reassign */
-    generateLogHref(domain) {
-      domain.logUrlGenerated = true;
-      if (isString(domain.ownLog) && !domain.ownLogToken) {
+    generateLogHref(row) {
+      const domain = this.$scope.domains.list.results.find(
+        (item) => item.domain === row.domain,
+      );
+      if (!domain.logUrlGenerated && !domain.logsLoading) {
         domain.logsLoading = true;
-        this.Hosting.getUserLogsToken(this.$stateParams.productId, {
-          params: { attachedDomain: domain.name, remoteCheck: true },
-        })
-          .then((result) => {
-            if (startsWith(this.$scope.hostingProxy.datacenter, 'gra')) {
-              domain.logUrl = `${URI.expand(this.constants.stats_logs_gra, {
-                cluster: this.$scope.hostingProxy.cluster,
-                serviceName: domain.ownLog,
-              }).toString()}?token=${result}`;
-            } else {
-              domain.logUrl = `${URI.expand(this.constants.stats_logs, {
-                serviceName: domain.ownLog,
-              }).toString()}?token=${result}`;
+
+        return this.$http
+          .get(
+            `/hosting/web/${this.$stateParams.productId}/attachedDomain/${domain.name}`,
+          )
+          .then(({ data }) => data.ownLog)
+          .then((fqdn) =>
+            this.$q.all({
+              ownLogs: this.HostingStatistics.getLogs(
+                this.$stateParams.productId,
+                fqdn,
+              ),
+              userLogsToken: this.Hosting.getUserLogsToken(
+                this.$stateParams.productId,
+                {
+                  params: {
+                    attachedDomain: domain.name,
+                    remoteCheck: true,
+                  },
+                },
+              ),
+            }),
+          )
+          .then(({ ownLogs, userLogsToken }) => {
+            if (ownLogs.logs) {
+              domain.logUrl = `${ownLogs.logs}?token=${userLogsToken}`;
+              domain.logUrlGenerated = true;
             }
           })
           .catch(() => {
-            this.Alerter.error(
-              this.$translate.instant(
-                'hosting_tab_DOMAINS_multisite_logs_generation_error',
-              ),
-              this.$scope.alerts.main,
-            );
+            domain.logUrl = null;
           })
           .finally(() => {
             domain.logsLoading = false;
           });
       }
-      return false;
+      return null;
     }
-    /* eslint-enable no-param-reassign */
+
+    goToGeneratedLogHref(url) {
+      this.$window.open(url, '_blank', 'noopener');
+    }
   },
 );

@@ -1,0 +1,18 @@
+{
+  "cluster_error_bandwidth_order": "An error has occurred ordering bandwidth: {{error}}",
+  "cluster_order_bandwidth_vrack_title": "Order bandwidth",
+  "cluster_order_bandwidth_ready": "Your order is ready. Depending on when payment is processed, the bandwidth should be available shortly.",
+  "cluster_order_bandwidth_see_order": "View purchase order",
+  "cluster_order_bandwidth_vrack_load": "Loading solutions...",
+  "cluster_order_bandwidth_empty_plans": "Unable to find plans to upgrade",
+  "select_bandwidth_type_label": "Select a solution",
+  "select_bandwidth_vrack_type_label": "Select a solution",
+  "select_bandwidth_plan_summary": "Order summary",
+  "cluster_order_bandwidth_declaration": "Your option’s renewal date will be aligned with your server’s renewal date. The amount displayed corresponds to your option’s first billing month, calculated on a pro rata basis for the current month.",
+  "cluster_order_bandwidth_info": "The amount displayed is the total that will be billed on your option’s next renewal date.",
+  "cluster_order_bandwidth_warning": "Your bandwidth will be modified a few minutes after you have enabled the option.",
+  "cluster_order_bandwidth_auto_pay": "Update the default payment method",
+  "plan_price_per_month": "ex. VAT/month",
+  "wizard_pay": "Pay ",
+  "wizard_close": "Close"
+}

@@ -1,38 +1,42 @@
-import moment from 'moment';
+import 'moment';
 
-export default /* @ngInject */ function($http) {
-  this.getGraphData = function getGraphData(opts) {
-    const req = {
-      method: 'POST',
-      serviceType: 'opentsdb',
-      preventLogout: true,
-      url: `https://${opts.service.graphEndpoint.host}/api/query`,
-      headers: {
-        Authorization: `Basic ${btoa(
-          `${opts.service.graphEndpoint.readTokenID}:${opts.service.graphEndpoint.readToken}`,
-        )}`,
-      },
-      data: JSON.stringify({
-        start:
-          moment()
-            .subtract(1, 'days')
-            .unix() * 1000,
-        queries: [
-          {
-            metric: 'linux.net.bytes',
-            aggregator: 'avg',
-            rate: true,
-            downSample: opts.downSample,
-            rateOptions: { counter: false },
-            tags: {
-              direction: opts.direction,
-              iface: '*',
-              serviceName: opts.service.serviceName,
-            },
-          },
-        ],
-      }),
+export default class OverTheBoxDetailsService {
+  /* @ngInject */
+  constructor($http, iceberg) {
+    this.$http = $http;
+    this.iceberg = iceberg;
+  }
+
+  loadStatistics(serviceName, metricsType, period) {
+    const options = {
+      period,
+      metricsType,
     };
-    return $http(req);
-  };
+
+    return this.$http
+      .get(`/overTheBox/${serviceName}/statistics`, { params: options })
+      .then((statistics) => {
+        const stats = statistics.data || [];
+        return stats;
+      })
+      .catch(() => []);
+  }
+
+  getDeviceHardware(serviceName) {
+    return this.$http
+      .get(`/overTheBox/${serviceName}/device/hardware`)
+      .then(({ data }) => data);
+  }
+
+  unlinkDevice(serviceName) {
+    return this.$http.delete(`/overTheBox/${serviceName}/device`);
+  }
+
+  getIps(serviceName) {
+    return this.iceberg(`/overTheBox/${serviceName}/ips`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data: result }) => result);
+  }
 }

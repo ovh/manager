@@ -1,0 +1,44 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+@import './server-sidebar/constants.scss';
+
+.managerShell {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  overflow: hidden;
+
+  // container under the navbar
+  &_main {
+    flex-grow: 1;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  // application container
+  &_content {
+    // absolute position allows the sidebar to overlap the content
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: $sidebar-z-index - 1;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  }
+
+  // adjust left position if depending on sidebar
+  div + &_content {
+    left: $sidebar-width;
+    @media (max-width: $device-breakpoint-tablet-max-width) {
+      left: 0;
+    }
+  }
+}

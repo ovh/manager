@@ -1,0 +1,11 @@
+{
+  "virtualmachine_grid_name": "Name",
+  "virtualmachine_grid_license": "Lizenz",
+  "virtualmachine_error_loading": "Beim Laden der Informationen der virtuellen Maschinen ist ein Fehler aufgetreten.",
+  "virtualmachine_license": "Lizenz",
+  "virtualmachine_unavailable": "Nicht verfügbar",
+  "virtualmachine_deactivated": "Deaktiviert",
+  "virtualmachine_action_activate_license": "Lizenz aktivieren",
+  "virtualmachine_action_deactivate_license": "Lizenz löschen",
+  "vitualmachine_unavailable_tooltip": "Die Lizenz kann auf einem nicht Windows-basierten Gastsystem nicht aktiviert werden."
+}

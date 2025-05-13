@@ -5,13 +5,13 @@ import transform from 'lodash/transform';
 
 export default class ExchangeDomains {
   /* @ngInject */
-  constructor($rootScope, $http, $q, constants, Exchange, OvhHttp) {
+  constructor($rootScope, $http, $q, constants, wucExchange, OvhHttp) {
     this.services = {
       $rootScope,
       $http,
       $q,
       constants,
-      Exchange,
+      wucExchange,
       OvhHttp,
     };
   }
@@ -76,15 +76,15 @@ export default class ExchangeDomains {
       {
         rootPath: 'apiv6',
         urlParams: {
-          organizationName: this.services.Exchange.value.organization,
-          exchangeService: this.services.Exchange.value.domain,
+          organizationName: this.services.wucExchange.value.organization,
+          exchangeService: this.services.wucExchange.value.domain,
         },
         data: transformDomain,
       },
     ).then((response) => {
-      this.services.Exchange.resetDomains();
-      this.services.Exchange.resetAccounts();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetDomains();
+      this.services.wucExchange.resetAccounts();
+      this.services.wucExchange.resetTasks();
 
       return response;
     });
@@ -116,8 +116,8 @@ export default class ExchangeDomains {
         data,
       },
     ).then((response) => {
-      this.services.Exchange.resetDomains();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetDomains();
+      this.services.wucExchange.resetTasks();
 
       return response;
     });
@@ -135,9 +135,9 @@ export default class ExchangeDomains {
         },
       },
     ).then((response) => {
-      this.services.Exchange.resetDomains();
-      this.services.Exchange.resetAccounts();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetDomains();
+      this.services.wucExchange.resetAccounts();
+      this.services.wucExchange.resetTasks();
 
       return response;
     });
@@ -173,5 +173,103 @@ export default class ExchangeDomains {
         },
       },
     );
+  }
+
+  gettingExpectedDNSSettings(organization, serviceName, domain) {
+    return this.services.OvhHttp.get(
+      '/email/exchange/{organization}/service/{exchange}/domain/{domain}',
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          organization,
+          exchange: serviceName,
+          domain,
+        },
+      },
+    );
+  }
+
+  getDkimSelector(organization, serviceName, domain) {
+    return this.services.$http
+      .get(
+        `/email/exchange/${organization}/service/${serviceName}/domain/${domain}/dkimSelector`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getDkimSelectorName(organization, serviceName, domain, selector) {
+    return this.services.$http
+      .get(
+        `/email/exchange/${organization}/service/${serviceName}/domain/${domain}/dkim/${selector}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getDomain(organization, serviceName, domain) {
+    return this.services.$http
+      .get(
+        `/email/exchange/${organization}/service/${serviceName}/domain/${domain}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  postDkim(organization, serviceName, domain, params) {
+    return this.services.$http
+      .post(
+        `/email/exchange/${organization}/service/${serviceName}/domain/${domain}/dkim`,
+        params,
+      )
+      .then(({ data }) => data);
+  }
+
+  disableDkim(organization, serviceName, domain, selector) {
+    return this.services.$http
+      .post(
+        `/email/exchange/${organization}/service/${serviceName}/domain/${domain}/dkim/${selector}/disable`,
+      )
+      .then(({ data }) => data);
+  }
+
+  enableDkim(organization, serviceName, domain, selector) {
+    return this.services.$http
+      .post(
+        `/email/exchange/${organization}/service/${serviceName}/domain/${domain}/dkim/${selector}/enable`,
+      )
+      .then(({ data }) => data);
+  }
+
+  checkMxPlan(domain) {
+    return this.services.$http.get(`/email/domain/${domain}`);
+  }
+
+  checkZimbra(domain) {
+    return this.services
+      .$http({
+        url: '/engine/api/v2/zimbra/platform',
+        serviceType: 'apiv2',
+        headers: { 'X-Pagination-Size': 9999 },
+      })
+      .then(({ data }) => {
+        return Promise.allSettled(
+          data?.map((platform) => this.checkZimbraDomain(platform.id, domain)),
+        ).then((res) => {
+          return res.some((result) => result.status === 'fulfilled');
+        });
+      });
+  }
+
+  checkZimbraDomain(platformId, domain) {
+    return this.services
+      .$http({
+        url: `/engine/api/v2/zimbra/platform/${platformId}/domain`,
+        serviceType: 'apiv2',
+        headers: { 'X-Pagination-Size': 9999 },
+      })
+      .then(({ data }) => {
+        return (
+          data?.some((d) => d?.currentState?.name === domain) ||
+          Promise.reject()
+        );
+      });
   }
 }

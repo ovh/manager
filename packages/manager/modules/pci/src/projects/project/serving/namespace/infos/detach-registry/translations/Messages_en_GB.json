@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_serving_namespace_infos_detach_registry": "Detach your Docker Registry",
-  "pci_projects_project_serving_namespace_infos_detach_registry_common_detach": "Detach",
-  "pci_projects_project_serving_namespace_infos_detach_registry_common_cancel": "Cancel",
-  "pci_projects_project_serving_namespace_infos_detach_registry_warning": "You are about to detach your Docker Registry from your namespace. The shared Docker Registry will be attached to your namespace.",
-  "pci_projects_project_serving_namespace_infos_detach_registry_success": "Your Docker Registry has been detached from your namespace.",
-  "pci_projects_project_serving_namespace_infos_detach_registry_error": "An error has occurred detaching your Docker Registry: {{ message }}"
-}

@@ -8,15 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ (goToInstances, goToInstance) => (
-        message = false,
-        type = 'success',
-      ) => {
-        if (type === 'success') {
-          return goToInstances(message, type);
-        }
-        return goToInstance(message, type);
-      },
+      goBack: /* @ngInject */ (goToInstance) => goToInstance,
       breadcrumb: () => null,
     },
   });

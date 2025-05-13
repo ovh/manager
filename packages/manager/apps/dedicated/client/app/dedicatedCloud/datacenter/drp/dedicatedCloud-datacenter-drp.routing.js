@@ -1,12 +1,13 @@
 import get from 'lodash/get';
 
-import component from './dedicatedCloud-datacenter-drp.component';
+import { DEDICATED_CLOUD_CONSTANTS } from '../../../components/dedicated-cloud/dedicatedCloud.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.datacenter.drp', {
+  $stateProvider.state('app.dedicatedCloud.details.datacenter.details.drp', {
     url: '/drp',
     views: {
-      'pccDatacenterView@app.dedicatedClouds.datacenter': component.name,
+      'pccDatacenterView@app.dedicatedCloud.details.datacenter.details':
+        'dedicatedCloudDatacenterDrp',
     },
     params: {
       selectedDrpType: null,
@@ -21,16 +22,6 @@ export default /* @ngInject */ ($stateProvider) => {
         DedicatedCloud.getDatacenters($stateParams.productId).then(
           ({ results }) => results,
         ),
-      getIpOrderLink: /* @ngInject */ ($state) => (
-        drpType,
-        isLegacyOrder,
-        pccStep,
-      ) =>
-        $state.href(
-          `app.dedicatedClouds.datacenter.drp.${drpType}.${pccStep}.${
-            isLegacyOrder ? 'legacyOrderIp' : 'orderIp'
-          }`,
-        ),
       setDisableSuccessAlertPreference: /* @ngInject */ (dedicatedCloudDrp) => (
         pccId,
         value,
@@ -41,16 +32,15 @@ export default /* @ngInject */ ($stateProvider) => {
       setupConfiguration: /* @ngInject */ (
         $q,
         $translate,
-        $timeout,
         $window,
         dedicatedCloudDrp,
         displayErrorMessage,
         displayInfoMessage,
         displaySuccessMessage,
         goToPccDashboard,
+        pccType,
         setDisableSuccessAlertPreference,
         storeZertoOptionOrderInUserPref,
-        DEDICATED_CLOUD_CONSTANTS,
       ) => (drpInformations) =>
         dedicatedCloudDrp
           .enableDrp(
@@ -86,7 +76,7 @@ export default /* @ngInject */ ($stateProvider) => {
                     ${$translate.instant(
                       'dedicatedCloud_datacenter_drp_confirm_creation_pending',
                     )} ${$translate.instant(
-                    'dedicatedCloud_datacenter_drp_confirm_creation_pending_task',
+                    `dedicatedCloud_datacenter_drp_confirm_creation_pending_task_${pccType}`,
                   )}
                 `);
                 }
@@ -116,22 +106,27 @@ export default /* @ngInject */ ($stateProvider) => {
 
       displayErrorMessage: /* @ngInject */ (Alerter) => (errorMessage) =>
         Alerter.error(errorMessage, 'dedicatedCloudDatacenterDrpAlert'),
-      displayInfoMessage: /* @ngInject */ (Alerter) => (message) =>
-        Alerter.set('alert-info', message, null, 'dedicatedCloud_alert'),
+      displayInfoMessage: /* @ngInject */ (Alerter) => (infoMessage) =>
+        Alerter.info(infoMessage, 'dedicatedCloudDatacenterDrpDashboard'),
       displaySuccessMessage: /* @ngInject */ (Alerter) => (successMessage) =>
-        Alerter.success(successMessage, 'dedicatedCloud_alert'),
+        Alerter.success(successMessage, 'dedicatedCloudDatacenterDrpDashboard'),
 
       goToConfiguration: /* @ngInject */ ($state) => (
         drpInformations,
         stateToGo,
       ) =>
-        $state.go(`app.dedicatedClouds.datacenter.drp.${stateToGo}`, {
-          drpInformations,
-        }),
+        $state.go(
+          `app.dedicatedCloud.details.datacenter.details.drp.${stateToGo}`,
+          {
+            drpInformations,
+          },
+        ),
       goToSummary: /* @ngInject */ ($state) => (drpInformations) =>
-        $state.go('app.dedicatedClouds.datacenter.drp.summary', {
+        $state.go('app.dedicatedCloud.details.datacenter.details.drp.summary', {
           drpInformations,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_cloud_datacenters_datacenter_drp'),
     },
   });
 };

@@ -3,8 +3,9 @@ import template from './activate.html';
 
 export default {
   bindings: {
-    domainName: '<',
     goBack: '<',
+    serviceName: '<',
+    serviceOption: '<',
     user: '<',
   },
   controller,

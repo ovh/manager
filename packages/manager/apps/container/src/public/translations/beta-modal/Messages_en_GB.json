@@ -1,0 +1,15 @@
+{
+  "beta_modal_title": "Discover the latest edition of the OVHcloud Control Panel.",
+  "beta_modal_infos": "Switch to the new version and share your thoughts by filling in the provided form.",
+  "beta_modal_accept": "Try the new version",
+  "beta_modal_decline": "Maybe later",
+  "beta_modal_screenshot": "Screenshot",
+  "beta_modal_new": "Beta version",
+  "beta_modal_beta": "Beta",
+  "beta_modal_old": "Standard version",
+  "beta_modal_switch_title": "Switch to the previous version of the OVHcloud Control Panel",
+  "beta_modal_switch_infos": "Your opinion is important to us, as it helps us meet your needs as closely as possible. Help us improve.",
+  "beta_modal_switch_accept": "Share feedback",
+  "beta_switch": "Switch version",
+  "beta_modal_switch_later": "Later"
+}

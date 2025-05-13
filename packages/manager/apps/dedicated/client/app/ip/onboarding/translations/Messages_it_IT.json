@@ -1,0 +1,16 @@
+{
+  "ip_onboarding_title": "Additional IP",
+  "ip_onboarding_subtitle": "Aumenta la flessibilità delle tue applicazioni con Additional IP.",
+  "ip_onboarding_content_header": "La maggior parte delle soluzioni OVHcloud includono un indirizzo IPv4 statico preconfigurato. Per una flessibilità ancora maggiore questi servizi possono essere utilizzati anche con gli Additional IP (prima conosciuti come IP Failover), indirizzi IP che possono essere facilmente assegnati e trasferiti da un servizio all'altro. Sono disponibili in due formati",
+  "ip_onboarding_content_footer": "Un Additional IP (indirizzo individuale o blocco) può essere attribuito a qualsiasi servizio compatibile all'interno dello stesso campus. Un campus è un gruppo di datacenter che condividono la stessa localizzazione geografica. Per maggiori informazioni, consulta la nostra pagina dedicata.",
+  "ip_onboarding_content_list_item_1": "Indirizzo individuale (/32)",
+  "ip_onboarding_content_list_item_2": "Blocco di indirizzi IP (fino a /24)",
+  "ip_onboarding_order_title": "Ordinare un Additional IP",
+  "ip_onboarding_order_content": "Come trasferire un Additional IP dallo Spazio Cliente o tramite le API di OVHcloud",
+  "ip_onboarding_vrack_title": "Configurare un blocco IP nella vRack",
+  "ip_onboarding_vrack_content": "Come configurare un blocco di indirizzi IP pubblici nella vRack",
+  "ip_onboarding_add_title": "Aggiungere un blocco IP",
+  "ip_onboarding_add_content": "Ordinare un blocco IP su Hosted Private Cloud",
+  "ip_onboarding_order": "Ordinare un IP",
+  "ip_onboarding_byoip": "Bring Your Own IP"
+}

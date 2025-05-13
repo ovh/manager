@@ -1,0 +1,21 @@
+{
+  "zimbra_domains_add_domain_title": "Add a domain",
+  "zimbra_domains_datagrid_account_label": "Number of accounts",
+  "zimbra_domains_datagrid_diagnostic_label": "Diagnostic",
+  "zimbra_domains_datagrid_domain_label": "Domain",
+  "zimbra_domains_datagrid_organization_label": "Organisation",
+  "zimbra_domains_datagrid_account_number": "Number of accounts",
+  "zimbra_domains_tooltip_delete": "Delete",
+  "zimbra_domains_tooltip_need_organization": "Please set up an organisation first",
+  "zimbra_domains_datagrid_diagnostic_configuration_ok": "Configuration OK",
+  "zimbra_domains_datagrid_diagnostic_tooltip_title": "Diagnostic {{ diagType }}",
+  "zimbra_domains_tooltip_configure": "Configure",
+  "zimbra_domains_datagrid_status_label": "Status",
+  "zimbra_domains_datagrid_cname_label": "CNAME",
+  "zimbra_domains_datagrid_cname_tooltip_title": "Domain verification",
+  "zimbra_domains_datagrid_cname_tooltip": "To confirm that you are the holder of this domain, please create a CNAME record: <br/><br/><strong>{{cname}}</strong> to <strong>ovh.com</strong><br/><br/>You have 48 hours to complete this step.",
+  "zimbra_domains_tooltip_diagnostics": "Diagnostics",
+  "zimbra_domains_delete_modal_content": "Are you sure you want to delete the domain from the Zimbra server?",
+  "zimbra_domains_delete_modal_message_disabled_part1": "There is at least one email account still linked to this domain name.",
+  "zimbra_domains_delete_modal_message_disabled_part2": "Please delete the linked email accounts before deleting your domain name."
+}

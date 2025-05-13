@@ -1,5 +1,7 @@
 import Workflow from './Workflow.class';
 
+import { getCriteria } from '../project.utils';
+
 export default class {
   /* @ngInject */
   constructor(CucCloudMessage, OvhApiCloudProjectInstance) {
@@ -9,6 +11,7 @@ export default class {
 
   $onInit() {
     this.loadMessages();
+    this.criteria = getCriteria('id', this.workflowId);
   }
 
   loadMessages() {

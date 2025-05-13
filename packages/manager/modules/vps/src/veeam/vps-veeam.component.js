@@ -4,8 +4,16 @@ import template from './vps-veeam.html';
 export default {
   controller,
   bindings: {
-    goToVeeamRestore: '<',
+    automatedBackupOption: '<',
     goToVeeamMount: '<',
+    goToVeeamOrderPage: '<',
+    goToVeeamRestore: '<',
+    goToVeeamScheduleBackup: '<',
+    goToVpsUpgrade: '<',
+    hasAutomatedBackupOption: '<',
+    isAutomatedBackupAvailable: '<',
+    tabSummary: '<',
+    vpsDetails: '<vps',
   },
   name: 'vpsVeeam',
   template,

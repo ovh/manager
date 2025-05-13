@@ -1,0 +1,21 @@
+{
+  "telephony_repayments_available_title": "Dostępne zwroty",
+  "telephony_repayments_costs_title": "Koszty",
+  "telephony_repayments_costs": "Kontrola",
+  "telephony_repayments_grid_buyAmount.value": "Zwrot",
+  "telephony_repayments_grid_calledNumber": "Numer specjalny",
+  "telephony_repayments_grid_callingNumber": "Numer przychodzący",
+  "telephony_repayments_grid_duration": "Czas trwania (suchy)",
+  "telephony_repayments_grid_startDate": "Data",
+  "telephony_repayments_grid_status_CREATED": "W trakcie przelewu",
+  "telephony_repayments_grid_status_ERROR": "Błąd podczas przelewu",
+  "telephony_repayments_grid_status_NONE": "Brak przelewów",
+  "telephony_repayments_grid_status_PAID": "Płatność",
+  "telephony_repayments_grid_status": "Status",
+  "telephony_repayments_iban_link": "Zmień moje dane bankowe",
+  "telephony_repayments_message_above_threshold": "Następna płatność to {{ amount }}",
+  "telephony_repayments_message_bank_account": "Moje dane bankowe",
+  "telephony_repayments_message_under_threshold": "Minimalna kwota {{ amount }} nie została jeszcze osiągnięta. Do tej pory nie zaplanowano zwrotu",
+  "telephony_repayments_pending_title": "Przesunięcia oczekujące",
+  "telephony_repayments_repayments": "Zwroty"
+}

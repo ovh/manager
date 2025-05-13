@@ -11,7 +11,7 @@ export default class ExchangeAddPublicFolderCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangePublicFolders,
     $window,
     messaging,
@@ -20,7 +20,7 @@ export default class ExchangeAddPublicFolderCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangePublicFolders,
       $window,
       messaging,
@@ -28,7 +28,7 @@ export default class ExchangeAddPublicFolderCtrl {
       navigation,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.folderToAdd = {};
     this.errors = {

@@ -1,0 +1,20 @@
+.ip-components-list {
+  position: relative;
+  .ip-components-list__alerts {
+    .oui-popover__close-button {
+      display: none;
+    }
+  }
+  .table-list {
+    overflow-x: auto;
+    .dropdown {
+      position: static;
+      .btn.dropdown-toggle {
+        position: static;
+      }
+    }
+    .dropdown-menu {
+      transform: translate(-50%, 30px);
+    }
+  }
+}

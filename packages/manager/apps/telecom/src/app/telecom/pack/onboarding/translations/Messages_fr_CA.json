@@ -1,0 +1,10 @@
+{
+  "pack_onboarding_title": "Besoin d'une connexion internet puissante ?",
+  "pack_onboarding_description": "Connexion fluide, besoins en téléphonie professionnelle, redondance d'accès, autoroute vers le Cloud…",
+  "pack_onboarding_order": "Commander",
+  "pack_onboarding_guide1_title": "FAQ",
+  "pack_onboarding_guide1_description": "Les questions les plus fréquemment posées sur les solutions OVHcloud d'accès à Internet",
+  "pack_onboarding_guide2_title": "Configurer sa box à partir de l'espace client OVHcloud",
+  "pack_onboarding_guide2_description": "Découvrez comment paramétrer à distance votre box OVHcloud depuis l'espace client",
+  "pack_onboarding_guide3_title": "Comment configurer le reverse DNS de ma connexion"
+}

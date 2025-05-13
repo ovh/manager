@@ -1,0 +1,6 @@
+{
+  "pci_projects_project_storages_snapshots_snapshot_create-volume_title": "Criar um volume a partir da snapshot",
+  "pci_projects_project_storages_snapshots_snapshot_create-volume_submit_label": "Criar o volume",
+  "pci_projects_project_storages_snapshots_snapshot_create-volume_success_message": "O volume {{ volume }} foi criado.",
+  "pci_projects_project_storages_snapshots_snapshot_create-volume_error_post": "Ocorreu um erro durante a criação do volume {{ volume }}: {{ message }}"
+}

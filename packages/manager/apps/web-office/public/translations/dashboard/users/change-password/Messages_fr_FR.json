@@ -1,0 +1,16 @@
+{
+  "dashboard_users_change_password_title": "Modifier le mot de passe",
+  "dashboard_users_change_password_radio_1": "Je génère un mot de passe aléatoire",
+  "dashboard_users_change_password_radio_2": "Je personnalise mon mot de passe",
+  "dashboard_users_change_password_label_password": "Nouveau mot de passe",
+  "dashboard_users_change_password_label_confirm_password": "Confirmation du nouveau mot de passe",
+  "dashboard_users_change_password_label_email": "Compte e-mail pour réception du mot de passe",
+  "dashboard_users_change_password_helper1": "Attention, le mot de passe doit respecter les conditions suivantes :",
+  "dashboard_users_change_password_helper2": "Minimum 8 caractères",
+  "dashboard_users_change_password_helper3": "Maximum 16 caractères",
+  "dashboard_users_change_password_helper4": "Au moins 1 lettre minuscule, 1 lettre majuscule, 1 chiffre ou 1 caractère spécial",
+  "dashboard_users_change_password_email-edit-title": "Si vous ne renseignez pas de mot de passe, celui-ci sera généré aléatoirement et envoyé par email à l'adresse précisée",
+  "dashboard_users_change_password_email-edit": "Envoyer par email",
+  "dashboard_users_change_password_message_error": "Une erreur s'est produite lors de la récupération des informations.",
+  "dashboard_users_change_password_message_success": "Votre changement de mot de passe a bien été pris en compte."
+}

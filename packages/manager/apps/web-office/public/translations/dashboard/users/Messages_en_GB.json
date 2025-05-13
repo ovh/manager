@@ -1,0 +1,18 @@
+{
+  "dashboard_users_table_firstName": "First name",
+  "dashboard_users_table_lastName": " Name",
+  "dashboard_users_table_activationEmail": "Activation email",
+  "dashboard_users_table_licences": "Licences",
+  "dashboard_users_table_status": "Status",
+  "dashboard_users_download_text": "PC and MAC installers are available on the <officeLink/> website.",
+  "dashboard_users_download_info": "For smartphones and tablets, go directly to your App Store.",
+  "dashboard_users_download_id": "The login and installation credentials are sent to you by email when you add a new licence.",
+  "dashboard_users_status_creating": "Creating...",
+  "dashboard_users_status_updating": "Updating",
+  "dashboard_users_status_deleting": "Deleting...",
+  "dashboard_users_status_ok": "Created",
+  "dashboard_users_status_unconfigured": "Not configured",
+  "dashboard_users_action_user_change_password": "Modify password",
+  "dashboard_users_action_user_edit": "Edit account",
+  "dashboard_users_action_user_delete": "Delete account"
+}

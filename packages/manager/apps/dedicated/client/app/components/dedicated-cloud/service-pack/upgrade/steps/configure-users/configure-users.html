@@ -1,0 +1,73 @@
+<oui-message
+    data-type="warning"
+    data-ng-if="$ctrl.usersWhoCanReceiveSMS.length === 0"
+    class="mb-3"
+>
+    <span
+        data-translate="dedicatedCloud_servicePack_configureUsers_noUser"
+    ></span>
+    <a
+        data-translate="dedicatedCloud_servicePack_configureUsers_noUser_linkToUserConfiguration"
+        data-ui-sref="app.dedicatedCloud.details.users"
+    ></a>
+</oui-message>
+
+<div data-ng-if="$ctrl.usersWhoCanReceiveSMS.length > 0">
+    <p data-translate="dedicatedCloud_servicePack_configureUsers_hasUser"></p>
+
+    <p
+        data-translate="dedicatedCloud_servicePack_configureUsers_hasUser_table_header"
+    ></p>
+
+    <oui-datagrid data-rows-loader="$ctrl.mapUsersWhoCanReceiveSMS()">
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_servicePack_configureUsers_hasUser_table_column_userName' | translate"
+            data-property="userName"
+            data-type="string"
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_servicePack_configureUsers_hasUser_table_column_firstName' | translate"
+            data-property="firstName"
+            data-type="string"
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_servicePack_configureUsers_hasUser_table_column_lastName' | translate"
+            data-property="lastName"
+            data-type="string"
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_servicePack_configureUsers_hasUser_table_column_emailAddress' | translate"
+            data-property="emailAddress"
+            data-type="string"
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_servicePack_configureUsers_hasUser_table_column_phoneNumber' | translate"
+            data-property="phoneNumber"
+            data-type="string"
+        ></oui-datagrid-column>
+    </oui-datagrid>
+
+    <ovh-manager-service-pack-no-default-means-of-payment
+        class="mb-3 d-block"
+        data-ng-if="!$ctrl.hasDefaultMeansOfPayment"
+    >
+    </ovh-manager-service-pack-no-default-means-of-payment>
+</div>
+
+<oui-stepper-v-navigation-button data-navigation-type="previous">
+</oui-stepper-v-navigation-button>
+
+<oui-stepper-v-navigation-button
+    class="ml-3"
+    data-disabled="$ctrl.usersWhoCanReceiveSMS.length === 0"
+    data-navigation-type="next"
+>
+    <span
+        data-ng-if="$ctrl.stepper.getStep({ relativeIndex: 1 }).name === 'placeOrder'"
+        data-translate="dedicatedCloud_servicePack_configureUsers_checkoutButton"
+    ></span>
+    <span
+        data-ng-if="$ctrl.stepper.getStep({ relativeIndex: 1 }).name !== 'placeOrder'"
+        data-translate="dedicatedCloud_servicePack_configureUsers_nextButton"
+    ></span>
+</oui-stepper-v-navigation-button>

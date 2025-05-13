@@ -1,20 +1,22 @@
+/**
+ * This section has been migrated to a React µapp.
+ * Please see : packages/manager/apps/pci-users
+ */
 import angular from 'angular';
 import '@uirouter/angularjs';
-import 'oclazyload';
 
-const moduleName = 'ovhManagerPciUsersLazyLoading';
+const moduleName = 'ovhManagerPciUsers';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+/**
+ * The base routing is kept so that existing angularjs code using
+ * state.go('pci.projects.project.users') will still work as expected.
+ * The redirection to the µapp from this state is handled automatically
+ * by the container & the shell.
+ */
+angular.module(moduleName, ['ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('pci.projects.project.users.**', {
+    $stateProvider.state('pci.projects.project.users', {
       url: '/users',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
-        return import('./users.module').then((mod) =>
-          $ocLazyLoad.inject(mod.default || mod),
-        );
-      },
     });
   },
 );

@@ -1,10 +1,10 @@
 import clone from 'lodash/clone';
-import find from 'lodash/find';
 import includes from 'lodash/includes';
 
 angular.module('App').controller(
   'PrivateDatabaseConfigurationsCtrl',
   class PrivateDatabaseConfigurationsCtrl {
+    /* @ngInject */
     constructor(
       Alerter,
       PrivateDatabase,
@@ -12,6 +12,7 @@ angular.module('App').controller(
       $scope,
       $stateParams,
       $translate,
+      WucUser,
     ) {
       this.alerter = Alerter;
       this.privateDatabaseService = PrivateDatabase;
@@ -19,6 +20,7 @@ angular.module('App').controller(
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
+      this.userService = WucUser;
     }
 
     $onInit() {
@@ -31,6 +33,12 @@ angular.module('App').controller(
       };
 
       this.getConfigurationDetails();
+
+      this.userService.getUrlOf('guides').then((guide) => {
+        if (guide.hostingPrivateDatabaseConfiguration) {
+          this.configuration_guide = guide.hostingPrivateDatabaseConfiguration;
+        }
+      });
     }
 
     getConfigurationDetails() {
@@ -62,29 +70,49 @@ angular.module('App').controller(
         id: value,
         text: value,
       }));
-      if (field.key === 'autocommit') {
-        PrivateDatabaseConfigurationsCtrl.convertFieldAsToggle(field);
-        field.availableValues = [
-          { id: '0', text: ' OFF' },
-          { id: '1', text: 'ON' },
-        ];
-      } else if (field.key === 'event_scheduler') {
-        PrivateDatabaseConfigurationsCtrl.convertFieldAsToggle(field);
+
+      if (field.key === 'sql_mode') {
+        field.type = 'select';
+
+        field.availableValues = field.availableValues.map((value) => {
+          return {
+            id: value.id,
+            text: `${
+              value.id === field.defaultValue ? `Default` : `Legacy`
+            } SQL Mode: ${value.id}`,
+          };
+        });
+
+        field.selectedValue = field.availableValues.find(
+          (value) => value.id === field.value,
+        );
+      } else if (field.key === 'innodb_buffer_pool_size') {
+        field.type = 'select';
+
+        Object.keys(field.availableValues).forEach((key) => {
+          if (
+            Number(field.availableValues[key].text.slice(0, -1)) >=
+            Number(this.database.ram.value)
+          ) {
+            delete field.availableValues[key];
+          }
+        });
+
+        field.selectedValue = field.availableValues.find(
+          (value) => value.id === field.value,
+        );
+      } else if (field.availableValues.length === 2) {
+        field.type = 'toggle';
+        field.selectedValue = { id: field.value };
       } else {
         field.type = 'select';
-        field.selectedValue = find(field.availableValues, {
-          id: field.value,
-        });
+        field.selectedValue = field.availableValues.find(
+          (value) => value.id === field.value,
+        );
       }
+
       return field;
     }
-
-    /* eslint-disable no-param-reassign */
-    static convertFieldAsToggle(field) {
-      field.type = 'toggle';
-      field.selectedValue = { id: field.value };
-    }
-    /* eslint-enable no-param-reassign */
 
     getFieldDescriptionTranslated(field) {
       const translationId = `privateDatabase_configuration_field_${field.key}`;

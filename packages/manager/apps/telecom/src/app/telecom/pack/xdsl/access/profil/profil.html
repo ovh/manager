@@ -1,0 +1,39 @@
+<div data-ng-controller="XdslAccessProfileCtrl as ProfileCtrl">
+    <div class="text-center" data-ng-if="ProfileCtrl.loader">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <form
+        name="DslamProfilForm"
+        class="clearfix"
+        data-ng-submit="ProfileCtrl.changeProfile()"
+        data-ng-if="ProfileCtrl.profiles"
+    >
+        <div class="form-group">
+            <select
+                class="form-control"
+                id="newProfil"
+                name="newProfil"
+                data-ng-model="ProfileCtrl.currentProfileTmp"
+                data-ng-options="profil.name for profil in ProfileCtrl.profiles"
+                data-ng-disabled="access.tasks.current.dslamProfileChange"
+            >
+            </select>
+        </div>
+
+        <button
+            class="oui-button oui-button_primary oui-button_block"
+            type="submit"
+            data-ng-if="!access.tasks.current.dslamProfileChange"
+            data-ng-disabled="!ProfileCtrl.profiles || access.tasks.current.dslamProfileChange || ProfileCtrl.currentProfile === ProfileCtrl.currentProfileTmp"
+            data-translate="submit"
+        ></button>
+    </form>
+    <div
+        class="mt-2 text-center"
+        data-ng-if="access.tasks.current.dslamProfileChange"
+    >
+        <oui-spinner></oui-spinner>
+        <span data-translate="xdsl_access_profile_doing"></span>
+    </div>
+</div>

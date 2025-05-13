@@ -1,0 +1,8 @@
+{
+  "nutanix_redeploy_confirm_title": "Ponowne wdrożenie klastra ",
+  "nutanix_redeploy_confirm_description": "Wdrożysz ponownie cały klaster.",
+  "nutanix_redeploy_confirm_warning": "Ponowne wdrożenie klastra spowoduje usunięcie wszystkich danych z klastra.",
+  "nutanix_redeploy_confirm_redeploy_label": "Wpisz ‚REDEPLOY”, aby potwierdzić wybór",
+  "nutanix_redeploy_confirm_primary_button_label": "Zatwierdź",
+  "nutanix_redeploy_confirm_secondary_button_label": "Anuluj"
+}

@@ -1,0 +1,11 @@
+{
+  "pci_data_sync_title": "Manuelle Datensynchronisierung",
+  "pci_data_sync_confirm": "Synchronisieren",
+  "pci_data_sync_cancel": "Abbrechen",
+  "pci_data_sync_type": "Synchronisierungstyp",
+  "pci_data_sync_type_help": "Sie können zwischen einer Push-Synchronisierung in Richtung Ihres Datencontainers oder einer Pull-Synchronisierung in umgekehrter Richtung wählen.",
+  "pci_data_sync_directory": "Die Synchronisierung wird im folgenden Mount-Verzeichnis ausgeführt: {{ directory }}",
+  "pci_data_sync_all_directory": "Die Synchronisierung wird für alle Ihre Mount-Verzeichnisse ausgeführt.",
+  "pci_data_sync_success_message": "Die Daten wurden erfolgreich synchronisiert.",
+  "pci_data_sync_error_message": "Bei der Datensynchronisierung ist ein Fehler aufgetreten: {{ message }}."
+}

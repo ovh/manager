@@ -1,0 +1,13 @@
+{
+  "cpbc_no_consumption_data": "Sem consumo no período selecionado.",
+  "cpbc_hourly_instance_monthly_billing_since": "Integrado no tarifário mensal a {{since}}",
+  "cpbc_hourly_instance_monthly_billing_activationPending": "Integração no tarifário mensal em curso",
+  "cpbc_hourly_instance_pass_to_monthly_error": "Lamentamos, mas não foi possível integrar esta instância no tarifário mensal.",
+  "cpbc_hourly_instance_pass_to_monthly_price_error": "Lamentamos, mas não foi possível carregar o preço do tarifário mensal.",
+  "cpbc_hourly_instance_pass_to_monthly_info": "Um ajuste prorata temporis será imediatamente calculado para o mês a decorrer.",
+  "cpbc_hourly_instance_pass_to_monthly_button": "Passar para tarifário mensal ({{price}} /mês + IVA)",
+  "cpbc_hourly_instance_deleted": "Instância eliminada",
+  "cpbc_hourly_instance_pass_to_monthly": "Integrar no tarifário mensal",
+  "cpb_error_message": "Lamentamos, mas não foi possível recuperar todas as informações.",
+  "common_cancel": "Anular"
+}

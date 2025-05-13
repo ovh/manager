@@ -1,0 +1,234 @@
+<div>
+    <oui-header
+        data-heading="{{:: $ctrl.volume.name || $ctrl.volume.id }}"
+        data-description="{{:: $ctrl.volume.description }}"
+    >
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.volumeDashboardLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.volumeDashboardLink"
+            >
+                <span
+                    data-translate="netapp_volumes_dashboard_general_information"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.volumeDashboardSnapshotsLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.volumeDashboardSnapshotsLink"
+            >
+                <span
+                    data-translate="netapp_volumes_dashboard_snapshots"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.volumeDashboardAclLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.volumeDashboardAclLink"
+            >
+                <span data-translate="netapp_volumes_dashboard_acl"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+    <div data-ovh-alert></div>
+    <div ui-view>
+        <div class="row">
+            <oui-tile
+                class="col-md-3 mr-2"
+                data-heading="{{:: 'netapp_volumes_dashboard_information' | translate}}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'netapp_volumes_dashboard_information_name' | translate }}"
+                    data-term-popover="{{:: 'netapp_volumes_dashboard_volume_pattern' | translate}}"
+                >
+                    <oui-tile-description>
+                        <ovh-manager-inline-property-editor
+                            data-property="name"
+                            data-model="$ctrl.volume.name"
+                            data-on-submit="$ctrl.update('name')"
+                            data-pattern="$ctrl.PATTERN"
+                        ></ovh-manager-inline-property-editor>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'netapp_volumes_dashboard_information_description' | translate }}"
+                >
+                    <oui-tile-description>
+                        <ovh-manager-inline-property-editor
+                            data-property="description"
+                            data-model="$ctrl.volume.description"
+                            data-on-submit="$ctrl.update('description')"
+                        ></ovh-manager-inline-property-editor>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'netapp_volumes_dashboard_information_protocol' | translate }}"
+                    data-description="{{ $ctrl.volume.protocol }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'netapp_volumes_dashboard_information_size' | translate }}"
+                    data-description="{{:: 'netapp_volumes_dashboard_information_size_unit' | translate:{ size: $ctrl.volume.size } }}"
+                >
+                    <oui-action-menu compact>
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToEditVolumeSize()"
+                        >
+                            <span
+                                data-translate="netapp_volumes_edit_volume_size"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'netapp_volumes_dashboard_information_reserve_space' | translate }}"
+                    data-description="{{ $ctrl.volumeReserveSpacePercentage + '%'}}"
+                >
+                    <oui-action-menu compact>
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToEditVolumeReserveSpace()"
+                        >
+                            <span
+                                data-translate="netapp_volumes_edit_reserve_space"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+            </oui-tile>
+            <oui-tile
+                class="col-md-8"
+                data-heading="{{:: 'netapp_volumes_dashboard_connection' | translate}}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'netapp_volumes_dashboard_connection_mount_path' | translate }}"
+                >
+                    <oui-tile-description>
+                        <oui-clipboard
+                            data-ng-if="$ctrl.accessPath"
+                            data-model="$ctrl.accessPath.path"
+                        ></oui-clipboard>
+                        <em
+                            data-ng-if="!$ctrl.accessPath"
+                            data-translate="netapp_volumes_dashboard_mount_path_not_configurated"
+                        >
+                        </em>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'netapp_volumes_dashboard_connection_how_to' | translate }}"
+                >
+                    <oui-tile-description>
+                        <oui-collapsible
+                            data-heading="{{:: 'netapp_volumes_dashboard_connection_setting_up' | translate }}"
+                        >
+                            <ol>
+                                <li
+                                    data-translate="netapp_volumes_dashboard_connection_setting_up_acl"
+                                ></li>
+                                <li
+                                    data-translate="netapp_volumes_dashboard_connection_setting_up_new_access"
+                                ></li>
+                                <li
+                                    data-translate="netapp_volumes_dashboard_connection_setting_up_add_ips"
+                                ></li>
+                                <li
+                                    data-translate="netapp_volumes_dashboard_connection_setting_up_choose_type"
+                                ></li>
+                                <li
+                                    data-translate="netapp_volumes_dashboard_connection_setting_up_confirm"
+                                ></li>
+                                <li
+                                    data-translate="netapp_volumes_dashboard_connection_setting_up_repeat"
+                                ></li>
+                            </ol>
+                        </oui-collapsible>
+                        <oui-collapsible
+                            data-heading="{{:: 'netapp_volumes_dashboard_connection_install_nfs' | translate }}"
+                        >
+                            <ol>
+                                <li
+                                    data-translate="netapp_volumes_dashboard_connection_install_nfs_open"
+                                ></li>
+                                <li>
+                                    <span
+                                        data-translate="netapp_volumes_dashboard_connection_install_nfs_install"
+                                    ></span>
+                                    <dl>
+                                        <dt
+                                            class="font-weight-bold"
+                                            data-translate="netapp_volumes_dashboard_connection_install_nfs_redhat"
+                                        ></dt>
+                                        <dd>
+                                            <oui-clipboard
+                                                data-model="$ctrl.REDHAT"
+                                            ></oui-clipboard>
+                                        </dd>
+                                        <dt
+                                            class="font-weight-bold"
+                                            data-translate="netapp_volumes_dashboard_connection_install_nfs_ubuntu"
+                                        ></dt>
+                                        <dd>
+                                            <oui-clipboard
+                                                data-model="$ctrl.UBUNTU"
+                                            ></oui-clipboard>
+                                        </dd>
+                                    </dl>
+                                </li>
+                            </ol>
+                        </oui-collapsible>
+                        <oui-collapsible
+                            data-heading="{{:: 'netapp_volumes_dashboard_mount_file_system' | translate }}"
+                        >
+                            <ol>
+                                <li>
+                                    <span
+                                        data-translate="netapp_volumes_dashboard_connection_install_nfs_open"
+                                    ></span>
+                                    <p
+                                        data-ng-if="!$ctrl.accessPath"
+                                        data-translate="netapp_volumes_dashboard_mount_path_not_configurated"
+                                        class="font-italic"
+                                    ></p>
+                                </li>
+                                <li>
+                                    <span
+                                        data-translate="netapp_volumes_dashboard_mount_file_system_new_folder"
+                                    ></span>
+                                    <oui-clipboard
+                                        data-model="$ctrl.FOLDER_CREATION"
+                                    ></oui-clipboard>
+                                </li>
+                                <li>
+                                    <span
+                                        data-translate="netapp_volumes_dashboard_mount_file_system_mount"
+                                    ></span>
+                                    <oui-clipboard
+                                        data-ng-if="$ctrl.accessPath"
+                                        data-model="$ctrl.mountPath"
+                                    ></oui-clipboard>
+                                    <p
+                                        data-ng-if="!$ctrl.accessPath"
+                                        data-translate="netapp_volumes_dashboard_mount_path_not_configurated"
+                                        class="font-italic"
+                                    ></p>
+                                </li>
+                                <li>
+                                    <span
+                                        data-translate="netapp_volumes_dashboard_mount_file_system_save"
+                                    ></span>
+                                    <oui-clipboard
+                                        data-ng-if="$ctrl.accessPath"
+                                        data-model="$ctrl.saveMountPath"
+                                    ></oui-clipboard>
+                                    <p
+                                        data-ng-if="!$ctrl.accessPath"
+                                        data-translate="netapp_volumes_dashboard_mount_path_not_configurated"
+                                        class="font-italic"
+                                    ></p>
+                                </li>
+                            </ol>
+                        </oui-collapsible>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
+</div>

@@ -1,8 +1,0 @@
-{
-  "telephony_service_consumption_outgoing_fax_all": "Visi išsiųsti faksai",
-  "telephony_service_consumption_outgoing_fax_empty": "Nėra išsiųstų faksų.",
-  "telephony_service_consumption_outgoing_fax_period": "Periodas nuo <strong>{{ start }}</strong> iki <strong>{{ end }}</strong>",
-  "telephony_service_consumption_outgoing_fax_not_found": "Joks faksas neatitinka paieškos.",
-  "telephony_service_consumption_outgoing_fax_summary": "Išsiųsti failai: <strong>{{ fax }}</strong>, puslapių skaičius: <strong>{{ pages }}</strong>, kaina: {{ price }} be PVM",
-  "telephony_service_consumption_outgoing_fax_pages": "Puslapiai"
-}

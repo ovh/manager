@@ -1,0 +1,211 @@
+<!--Guides-->
+<oui-header
+    class="mb-3"
+    data-id="create-volume-backup-header"
+    data-heading="{{:: 'pci_projects_project_storages_volume_backup_create_header' | translate }}"
+>
+    <oui-guide-menu
+        data-text="{{:: 'pci_projects_project_storages_volume_backup_create_guides_header' | translate }}"
+    >
+        <oui-guide-menu-item
+            data-ng-repeat="guide in $ctrl.guides track by $index"
+            data-href="{{:: guide.link }}"
+            data-on-click="$ctrl.onDocumentationClick(guide)"
+            data-external
+        >
+            <span data-ng-bind=":: guide.title"></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+</oui-header>
+<p
+    class="py-2"
+    data-translate="pci_projects_project_storages_volume_backup_create_description"
+></p>
+
+<!--Messages-->
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    data-tracking-page-name="PublicCloud::pci::projects::project::storages::volume-backup::create-backup"
+></pci-activate-project-banner>
+
+<!--Banner in case no volume-->
+<oui-message data-type="info" data-ng-if="$ctrl.volumes.length === 0">
+    <p
+        data-translate="pci_projects_project_storages_volume_backup_create_banner_no_volumes_description"
+    ></p>
+    <a
+        class="oui-link_icon"
+        data-ng-href="{{:: $ctrl.createBlockStorageVolumeLink }}"
+        rel="noopener"
+        target="_blank"
+    >
+        <span
+            data-translate="pci_projects_project_storages_volume_backup_create_banner_no_volumes_link"
+        ></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
+</oui-message>
+
+<!--Step 1 :: Select a volume to backup-->
+<div class="py-2">
+    <!--Title-->
+    <p
+        class="oui-heading_3 mb-2"
+        data-translate="pci_projects_project_storages_volume_backup_create_step_1_title"
+    ></p>
+
+    <!--Select a volume-->
+    <oui-field
+        data-label="{{::'pci_projects_project_storages_volume_backup_create_step_1_select_label' | translate}}"
+        data-size="l"
+    >
+        <oui-select
+            data-disabled="$ctrl.isCreating || $ctrl.volumes.length === 0"
+            data-items="$ctrl.volumes"
+            data-match="name"
+            data-model="$ctrl.volumeBackupModel.selected.volume"
+            data-name="block-storage-volume"
+            data-placeholder="{{ 'pci_projects_project_storages_volume_backup_create_step_1_select_placeholder' | translate }}"
+            data-on-change="$ctrl.onVolumeChange(modelValue)"
+            data-searchable
+        >
+        </oui-select>
+    </oui-field>
+</div>
+
+<!--Step 2 :: Select type of backup-->
+<div class="py-2">
+    <!--Title-->
+    <p
+        class="oui-heading_3 mb-2"
+        data-translate="pci_projects_project_storages_volume_backup_create_step_2_title"
+    ></p>
+
+    <!--Link to know more about backup-->
+    <a
+        data-ng-href="{{:: $ctrl.knowMoreAboutBackupLink}}"
+        data-ng-click="$ctrl.onPriceLinkClick()"
+        target="_blank"
+        rel="noopener"
+    >
+        <span
+            data-translate="pci_projects_project_storages_volume_backup_create_step_2_description_link"
+        ></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
+
+    <!--Types-->
+    <div class="row">
+        <oui-select-picker
+            class="d-inline-block col-sm-12 col-md-4 my-3"
+            data-ng-repeat="volumeOption in $ctrl.VOLUMES_OPTIONS track by volumeOption.id"
+            data-id="volume-backup-type-{{volumeOption.id}}"
+            data-name="volume-backup-type-{{volumeOption.id}}"
+            data-model="$ctrl.volumeBackupModel.selected.volumeOption"
+            data-disabled="$ctrl.isCreating || !$ctrl.volumeBackupModel.selected.volume || $ctrl.volumePrices[volumeOption.id] === null"
+            data-values="[volumeOption]"
+            data-variant="light"
+            data-on-change="$ctrl.onVolumeTypeChange(modelValue)"
+        >
+            <oui-select-picker-label class="w-100">
+                <p
+                    class="font-weight-bold text-center my-1"
+                    data-translate="pci_projects_project_storages_volume_backup_create_step_2_option_{{:: volumeOption.id}}_label"
+                ></p>
+            </oui-select-picker-label>
+
+            <oui-select-picker-section>
+                <p class="w-100 text-center my-0">
+                    <span
+                        data-translate="pci_projects_project_storages_volume_backup_create_step_2_option_{{:: volumeOption.id}}_description_part_1"
+                    ></span>
+                    <br />
+                    <span
+                        data-translate="pci_projects_project_storages_volume_backup_create_step_2_option_{{:: volumeOption.id}}_description_part_2"
+                    ></span>
+                </p>
+            </oui-select-picker-section>
+
+            <oui-select-picker-footer
+                data-ng-if="$ctrl.volumePrices[volumeOption.id] !== null"
+            >
+                <p
+                    class="text-center my-1"
+                    data-translate="pci_projects_project_storages_volume_backup_create_step_2_option_price"
+                    data-translate-values="{ priceValue: '<strong>'+ $ctrl.volumePrices[volumeOption.id] +'</strong>'}"
+                ></p>
+            </oui-select-picker-footer>
+        </oui-select-picker>
+    </div>
+</div>
+
+<!--Step 3 :: Detach volume from instance-->
+<div class="py-2" data-ng-if="$ctrl.isSelectedVolumeNeedToDetach()">
+    <!--Title-->
+    <p
+        class="oui-heading_3 mb-2"
+        data-translate="pci_projects_project_storages_volume_backup_create_step_3_detach_volume_from_instance_title"
+    ></p>
+
+    <!--Description-->
+    <p
+        data-translate="pci_projects_project_storages_volume_backup_create_step_3_detach_volume_from_instance_description"
+    ></p>
+
+    <!--Detach volume-->
+    <oui-button
+        data-variant="link"
+        data-icon-right="oui-icon-arrow-right"
+        data-on-click="$ctrl.onGoToDetachVolumeFromInstanceButtonClick()"
+    >
+        <span
+            data-translate="pci_projects_project_storages_volume_backup_create_step_3_detach_volume_from_instance_action_detach"
+        ></span>
+    </oui-button>
+</div>
+
+<!--Step 4 :: Name the backup-->
+<div class="py-2">
+    <!--Title-->
+    <p
+        class="oui-heading_3 mb-2"
+        data-translate="pci_projects_project_storages_volume_backup_create_step_4_title"
+    ></p>
+
+    <!--Name-->
+    <oui-field
+        data-label="{{::'pci_projects_project_storages_volume_backup_create_step_4_input_label' | translate}}"
+        data-size="l"
+    >
+        <input
+            class="oui-input"
+            id="backup-name"
+            name="backup-name"
+            type="text"
+            data-ng-disabled="$ctrl.isCreating"
+            data-ng-model="$ctrl.volumeBackupModel.name"
+        />
+    </oui-field>
+</div>
+
+<!--Step 5 :: Create a volume backup-->
+<div class="py-2">
+    <oui-button
+        data-size="l"
+        data-variant="primary"
+        data-disabled="$ctrl.isCreating || !$ctrl.isValidConfiguration()"
+        data-on-click="$ctrl.onCreateBackupClick()"
+    >
+        <span
+            data-translate="pci_projects_project_storages_volume_backup_create_action_create"
+        ></span>
+        <oui-spinner
+            class="pl-2"
+            data-ng-if="$ctrl.isCreating"
+            size="s"
+        ></oui-spinner>
+    </oui-button>
+</div>

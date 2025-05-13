@@ -1,0 +1,266 @@
+<oui-tile heading="{{:: 'manager_billing_subscription' | translate }}">
+    <oui-tile-definition
+        term="{{:: 'manager_billing_subscription_creation' | translate }}"
+    >
+        <oui-tile-description>
+            <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
+            <span
+                data-ng-if="!$ctrl.isLoading"
+                data-ng-bind="$ctrl.serviceInfos.formattedCreationDate"
+            ></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <oui-tile-definition
+        term="{{:: 'manager_billing_subscription_statut' | translate }}"
+    >
+        <oui-tile-description>
+            <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
+            <p data-ng-if="!$ctrl.isLoading">
+                <billing-status service="$ctrl.serviceInfos"></billing-status>
+            </p>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <oui-tile-definition
+        term="{{:: 'manager_billing_subscription_engagement' | translate }}"
+        data-ng-if="$ctrl.withEngagement"
+    >
+        <oui-tile-description>
+            <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
+            <p data-ng-if="!$ctrl.isLoading">
+                <span
+                    class="text-wrap d-block"
+                    data-ng-if="!$ctrl.serviceInfos.hasEngagement() && !$ctrl.serviceInfos.hasPendingEngagement"
+                    data-translate="manager_billing_subscription_engagement_status_none"
+                >
+                </span>
+                <span
+                    data-ng-if="$ctrl.service.isEngaged() && !$ctrl.service.isEngagementExpired() && !$ctrl.serviceInfos.hasPendingEngagement"
+                    data-translate="{{ :: $ctrl.isAutoCommitmentStrategy ?
+                    'manager_billing_subscription_engagement_status_engaged_renew' :
+                    'manager_billing_subscription_engagement_status_engaged' }}"
+                    data-translate-values="{ endDate: $ctrl.service.engagementEndDate || $ctrl.service.expirationDate }"
+                ></span>
+                <span
+                    class="oui-badge oui-badge_error text-wrap"
+                    data-ng-if="$ctrl.service.isEngagementExpired() && !$ctrl.serviceInfos.hasPendingEngagement"
+                    data-translate="manager_billing_subscription_engagement_status_engaged_expired"
+                    data-translate-values="{ endDate: $ctrl.service.engagementEndDate || $ctrl.service.expirationDate }"
+                >
+                </span>
+                <span
+                    data-ng-if="$ctrl.serviceInfos.hasPendingEngagement"
+                    data-translate="manager_billing_subscription_engagement_status_commitement_pending"
+                    data-translate-values="{ nextBillingDate: $ctrl.service.nextBillingDate }"
+                ></span>
+
+                <a
+                    data-ng-if="$ctrl.constructor.showCommit($ctrl.serviceInfos, $ctrl.service.isEngaged(), $ctrl.highlightEngagement)"
+                    class="oui-link_icon"
+                    data-ng-href="{{ $ctrl.commitmentLink }}"
+                    data-ng-click="$ctrl.trackAction('renew-discount', true)"
+                    target="_top"
+                >
+                    <p>
+                        <span
+                            data-ng-if="!$ctrl.service.isEngaged()"
+                            data-translate="{{ :: $ctrl.hasDiscountAvailable ? 'manager_billing_subscription_engagement_commit_with_discount' : 'manager_billing_subscription_engagement_commit' }}"
+                        ></span>
+                        <span
+                            data-ng-if="$ctrl.highlightEngagement"
+                            data-translate="{{ :: $ctrl.hasDiscountAvailable ? 'manager_billing_subscription_engagement_commit_again_with_discount' : 'manager_billing_subscription_engagement_commit_again' }}"
+                        ></span>
+                        <span
+                            aria-hidden="true"
+                            class="oui-icon oui-icon-arrow-right"
+                        ></span>
+                    </p>
+                </a>
+
+                <a
+                    class="oui-link_icon"
+                    data-ng-href="{{ $ctrl.commitmentLink }}"
+                    data-ng-if="$ctrl.serviceInfos.canBeEngaged && !$ctrl.serviceInfos.hasPendingEngagement && !$ctrl.serviceInfos.isSuspended() && $ctrl.service.isEngaged() && !$ctrl.constructor.showCommit($ctrl.serviceInfos, $ctrl.service.isEngaged(), $ctrl.highlightEngagement)"
+                    data-ng-click="$ctrl.trackAction('go-to-manage-commitment', false)"
+                    target="_top"
+                >
+                    <p>
+                        <span
+                            data-translate="{{ 'manager_billing_subscription_engagement_manage' }}"
+                        ></span>
+                        <span
+                            aria-hidden="true"
+                            class="oui-icon oui-icon-arrow-right"
+                        ></span>
+                    </p>
+                </a>
+
+                <a
+                    class="oui-link_icon"
+                    data-ng-href="{{ $ctrl.cancelCommitmentLink }}"
+                    data-ng-if="$ctrl.serviceInfos.hasPendingEngagement"
+                    target="_top"
+                >
+                    <p>
+                        <span
+                            data-translate="{{ 'manager_billing_subscription_engagement_commit_cancel' }}"
+                        ></span>
+                        <span
+                            aria-hidden="true"
+                            class="oui-icon oui-icon-arrow-right"
+                        ></span>
+                    </p>
+                </a>
+
+                <a
+                    class="oui-link_icon"
+                    data-ng-href="{{ $ctrl.cancelResiliationLink }}"
+                    data-ng-if="$ctrl.serviceInfos.serviceType !== $ctrl.SERVICE_TYPE.VRACK && $ctrl.cancelResiliationLink && ($ctrl.serviceInfos.canBeUnresiliated($ctrl.user.nichandle) || $ctrl.serviceInfos.canCancelResiliationByEndRule())"
+                    data-ng-click="$ctrl.trackClick('go-to-cancel-resiliation')"
+                    target="_top"
+                >
+                    <p>
+                        <span
+                            data-translate="{{ 'manager_billing_subscription_resiliate_cancel' }}"
+                        ></span>
+                        <span
+                            aria-hidden="true"
+                            class="oui-icon oui-icon-arrow-right"
+                        ></span>
+                    </p>
+                </a>
+            </p>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <oui-tile-definition
+        term="{{:: 'manager_billing_subscription_autorenew_title' | translate }}"
+        data-ng-if="$ctrl.autorenewLink && !$ctrl.serviceInfos.hasParticularRenew() && !$ctrl.serviceInfos.hasPendingResiliation() && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.isOneShot() && !$ctrl.serviceInfos.hasForcedRenew() && !$ctrl.serviceInfos.isResiliated() && $ctrl.serviceInfos.canHandleRenew() && !$ctrl.serviceInfos.hasEngagement()"
+    >
+        <oui-tile-description>
+            <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
+
+            <p data-ng-if="!$ctrl.isLoading">
+                <span
+                    data-ng-if="false"
+                    data-translate="{{ :: $ctrl.serviceInfos.hasAutomaticRenew() ?
+                        'manager_billing_subscription_autorenew_every_'+ $ctrl.serviceInfos.renew.period +'_month' :
+                        'manager_billing_subscription_autorenew_none' }}"
+                ></span>
+
+                <a
+                    class="oui-link_icon"
+                    data-ng-href="{{ $ctrl.updateLink }}"
+                    data-ng-if="$ctrl.autorenewLink && !$ctrl.serviceInfos.hasParticularRenew() && !$ctrl.serviceInfos.hasPendingResiliation() && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.isOneShot() && !$ctrl.serviceInfos.hasForcedRenew() && !$ctrl.serviceInfos.isResiliated() && $ctrl.serviceInfos.canHandleRenew() && !$ctrl.serviceInfos.hasEngagement()"
+                    data-ng-click="$ctrl.trackAction($ctrl.serviceInfos.hasAutomaticRenew() ?'edit-frequency': 'renew', !$ctrl.serviceInfos.hasAutomaticRenew())"
+                    target="_top"
+                >
+                    <p>
+                        <span
+                            data-translate="{{ ::$ctrl.serviceInfos.hasAutomaticRenew() ? 'manager_billing_subscription_configure_renew_frequency': 'manager_billing_subscription_configure_renew' }}"
+                        >
+                        </span>
+                        <span
+                            aria-hidden="true"
+                            class="oui-icon oui-icon-arrow-right"
+                        ></span>
+                    </p>
+                </a>
+            </p>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <oui-tile-definition
+        term="{{:: 'manager_billing_subscription_next_due_date' | translate }}"
+    >
+        <oui-tile-description>
+            <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
+            <div data-ng-if="!$ctrl.isLoading">
+                <p data-ng-bind="$ctrl.service.nextBillingDate"></p>
+                <a
+                    class="oui-link_icon"
+                    data-ng-href="{{ $ctrl.autorenewLink && !$ctrl.service.hasBillingRights($ctrl.user.nichandle) ? $ctrl.warningLink : $ctrl.billingLink }}"
+                    data-ng-if="$ctrl.serviceInfos.hasDebt()"
+                    data-ng-click="$ctrl.trackAction('go-to-pay-bill')"
+                    target="_top"
+                >
+                    <p>
+                        <span
+                            data-translate="{{ $ctrl.autorenewLink && !$ctrl.service.hasBillingRights($ctrl.user.nichandle) ? 'manager_billing_subscription_pay_bill_renew': 'manager_billing_subscription_pay_bill' }}"
+                        >
+                        </span>
+                        <span
+                            aria-hidden="true"
+                            class="oui-icon oui-icon-arrow-right"
+                        ></span>
+                    </p>
+                </a>
+            </div>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <oui-tile-definition
+        data-ng-if="$ctrl.canResiliate() && (!$ctrl.serviceInfos.shouldDeleteAtExpiration() || !$ctrl.serviceInfos.isResiliated()) && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.hasPendingResiliation()"
+    >
+        <oui-tile-description>
+            <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
+            <div
+                data-ng-if="!$ctrl.isLoading && $ctrl.canResiliate() && (!$ctrl.serviceInfos.shouldDeleteAtExpiration() || !$ctrl.serviceInfos.isResiliated()) && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.hasPendingResiliation()"
+            >
+                <a
+                    class="oui-link_icon"
+                    data-ng-if="($ctrl.resiliateLink || $ctrl.isCustomResiliationHandled) && ($ctrl.serviceInfos.hasAdminRights($ctrl.user.auth.account) || $ctrl.serviceInfos.hasAdminRights($ctrl.user.nichandle))"
+                    data-ng-href="{{:: !$ctrl.isCustomResiliationHandled && $ctrl.resiliateLink }}"
+                    data-ng-click="$ctrl.handleClickResiliate($event)"
+                    target="_top"
+                >
+                    <p>
+                        <span
+                            data-ng-if="!$ctrl.serviceInfos.hasEngagement()"
+                            data-translate="manager_billing_subscription_resiliate"
+                        ></span>
+                        <span
+                            data-ng-if="$ctrl.serviceInfos.hasEngagement()"
+                            data-translate="manager_billing_subscription_resiliate_my_engagement"
+                        ></span>
+                        <span
+                            aria-hidden="true"
+                            class="oui-icon oui-icon-arrow-right"
+                        ></span>
+                    </p>
+                </a>
+            </div>
+
+            <!-- Pack XDSL -->
+            <div
+                data-ng-if="$ctrl.serviceInfos.serviceType === $ctrl.SERVICE_TYPE.PACK_XDSL && ((!$ctrl.serviceInfos.shouldDeleteAtExpiration() || !$ctrl.serviceInfos.isResiliated()) && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.hasPendingResiliation())"
+            >
+                <a
+                    class="oui-link_icon"
+                    data-ng-if="$ctrl.resiliateLink && ($ctrl.serviceInfos.hasAdminRights($ctrl.user.auth.account) || $ctrl.serviceInfos.hasAdminRights($ctrl.user.nichandle))"
+                    data-ng-href="{{ $ctrl.resiliateLink }}"
+                    data-ng-click="$ctrl.trackAction('stop', true)"
+                    target="_top"
+                >
+                    <p>
+                        <span
+                            data-ng-if="!$ctrl.serviceInfos.hasEngagement()"
+                            data-translate="manager_billing_subscription_resiliate"
+                        ></span>
+                        <span
+                            data-ng-if="$ctrl.serviceInfos.hasEngagement()"
+                            data-translate="manager_billing_subscription_resiliate_my_engagement"
+                        ></span>
+                        <span
+                            aria-hidden="true"
+                            class="oui-icon oui-icon-arrow-right"
+                        ></span>
+                    </p>
+                </a>
+            </div>
+            <!-- /Pack XDSL -->
+        </oui-tile-description>
+    </oui-tile-definition>
+    <div ng-transclude="extraInformation"></div>
+</oui-tile>

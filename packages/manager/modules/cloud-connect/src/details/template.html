@@ -1,0 +1,56 @@
+<oui-header data-description="{{ ::$ctrl.cloudConnect.uuid }}">
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{ ::$ctrl.cloudConnect.description }}"
+            ></h1>
+            <div
+                class="d-flex justify-content-end align-items-center flex-wrap gap-1"
+            >
+                <changelog-button
+                    links="$ctrl.constants.CHANGELOG.cloud_connect.links"
+                    chapters="$ctrl.constants.CHANGELOG.cloud_connect.chapters"
+                ></changelog-button>
+                <oui-guide-menu
+                    data-text="{{ ::'cloud_connect_guides' | translate }}"
+                >
+                    <oui-guide-menu-item
+                        data-href="{{:: $ctrl.guideUrl }}"
+                        data-external
+                        ><span
+                            data-translate="cloud_connect_guides_main"
+                        ></span>
+                    </oui-guide-menu-item>
+                </oui-guide-menu>
+            </div>
+        </div>
+    </oui-header-heading>
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            data-state="cloud-connect.details.overview"
+            data-ng-click="$ctrl.clearCache()"
+            ><span data-translate="cloud_connect_overview"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="!$ctrl.cloudConnect.isDirectService()"
+            data-state="cloud-connect.details.service-keys"
+            ><span data-translate="cloud_connect_service_keys"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item data-state="cloud-connect.details.tasks"
+            ><span data-translate="cloud_connect_tasks"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item data-state="cloud-connect.details.diagnostics"
+            ><span data-translate="cloud_connect_diagnostics"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.cloudConnect.isDirectService()"
+            data-state="cloud-connect.details.statistics"
+            ><span data-translate="cloud_connect_statistics"></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+</oui-header>
+<ovh-cloud-connect-notifications
+    data-notifications="$ctrl.notifications"
+></ovh-cloud-connect-notifications>
+<div data-ui-view></div>

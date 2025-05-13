@@ -1,0 +1,18 @@
+{
+  "octavia_load_balancer_add_listener": "Añadir un listener",
+  "octavia_load_balancer_instances_table_listener": "Listener",
+  "octavia_load_balancer_instances_table_pools": "Pools/Instancias",
+  "octavia_load_balancer_instances_table_protocol_label": "Seleccione un protocolo",
+  "octavia_load_balancer_instances_table_protocol_tooltip": "Protocolo admitido por el front-end que escucha.",
+  "octavia_load_balancer_instances_table_listener_delete": "Eliminar el listener",
+  "octavia_load_balancer_instances_table_port_label": "Puerto",
+  "octavia_load_balancer_instances_table_port_tooltip": "El puerto en el que escucha el front-end debe estar comprendido entre 1 y 65535.",
+  "octavia_load_balancer_instances_table_health_monitor_label": "Seleccione un health monitor",
+  "octavia_load_balancer_instances_table_health_monitor_tooltip": "Modo en el que el Load Balancer comprobará el estado de su servicio de back-end.",
+  "octavia_load_balancer_instances_table_health_monitor_delete": "Eliminar el health monitor",
+  "octavia_load_balancer_instances_table_health_monitor_empty": "Ningún health monitor",
+  "octavia_load_balancer_instances_table_pools_tooltip": "Los pools y sus instancias asociadas hacia los que se redirige el tráfico.",
+  "octavia_load_balancer_instances_table_pools_search_instance": "Buscar una instancia",
+  "octavia_load_balancer_instances_table_instance_add": "Añadir una instancia",
+  "octavia_load_balancer_instances_table_instance_delete": "Eliminar la instancia"
+}

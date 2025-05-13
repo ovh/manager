@@ -1,20 +1,7 @@
 export const THREAT_METRIX = {
   PAGE_ID: 1,
-  SCRIPT: {
-    id: 'threat_metric_script',
-    src: 'https://h.online-metrix.net/fp/tags.js',
-  },
-  IFRAME: {
-    id: 'threat_metric_iframe',
-    src: ' https://us.ovhcloud.com/order/threatmetrix',
-  },
-  CSS: {
-    with: '100px',
-    height: '100px',
-    border: '0',
-    position: 'absolute',
-    top: '-5000px',
-  },
+  // replacing h.online-metrix.net
+  PROFILING_DOMAIN: 'metrix.us.ovhcloud.com',
 };
 
 export const VANTIV_IFRAME_CONFIGURATION = {

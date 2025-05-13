@@ -1,6 +1,0 @@
-{
-  "exchange_account_mfa_delete_title": "Remove two-factor authentication from all accounts",
-  "exchange_account_mfa_delete_description": "Do you want to remove two-factor authentication from all accounts?",
-  "exchange_account_mfa_delete_success": "Two-factor authentication has been removed from all of your accounts.",
-  "exchange_account_mfa_delete_error": "An error has occurred enabling two-factor authentication on all accounts: {{errorMessage}}"
-}

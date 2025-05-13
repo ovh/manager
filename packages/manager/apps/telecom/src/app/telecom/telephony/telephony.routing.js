@@ -1,18 +1,7 @@
 import get from 'lodash/get';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import template from './telecom-telephony.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('telecom.telephony', {
-    url: '/telephony',
-    abstract: true,
-    views: {
-      'telecomView@telecom': {
-        template,
-      },
-    },
-  });
-
   $stateProvider.state('telecom.telephony.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     views: {
@@ -24,6 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/telephony',
+      defaultFilterColumn: () => 'billingAccount',
+      dataModel: () => 'telephony.BillingAccount',
       loadResource: /* @ngInject */ (OvhApiTelephonyService) => (resource) =>
         OvhApiTelephonyService.v6()
           .query({
@@ -33,9 +24,6 @@ export default /* @ngInject */ ($stateProvider) => {
             ...resource,
             numServices: services.length,
           })),
-
-      schema: /* @ngInject */ (OvhApiTelephony) =>
-        OvhApiTelephony.v6().schema().$promise,
       telephonyStatusTypes: /* @ngInject */ (schema) =>
         get(schema.models, 'telephony.BillingAccountStatusEnum').enum,
 
@@ -50,6 +38,9 @@ export default /* @ngInject */ ($stateProvider) => {
           billingAccount,
         }),
 
+      goToTelephonyRepayments: /* @ngInject */ ($state) => () =>
+        $state.go('telecom.telephony.repayments.index'),
+
       viewBillingAccount: /* @ngInject */ ($state) => ({ billingAccount }) =>
         $state.go('telecom.telephony.billingAccount', {
           billingAccount,
@@ -60,6 +51,21 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('telecom.telephony.billingAccount.services', {
           billingAccount,
         }),
+      gotoOrder: /* @ngInject */ ($window, atInternet) => () => {
+        atInternet.trackClick({
+          name: 'telecom::telephony::index::order',
+          type: 'action',
+        });
+        $window.open('https://www.ovhtelecom.fr/telephonie/voip/', '_blank');
+      },
+      hideBreadcrumb: () => true,
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('resources')
+        .then((resources) =>
+          resources.data.length === 0 ? 'telecom.telephony.onboarding' : false,
+        ),
   });
 };

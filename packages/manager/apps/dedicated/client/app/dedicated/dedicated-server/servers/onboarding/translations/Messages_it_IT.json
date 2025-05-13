@@ -1,0 +1,17 @@
+{
+  "dedicated_servers_onboarding_order": "Ordina",
+  "dedicated_servers_onboarding_title": "Scegli il server dedicato più adatto alle tue applicazioni aziendali",
+  "dedicated_servers_onboarding_description": "Con OVHcloud scegli la garanzia di una solida esperienza nell’ambito del Bare Metal.  In pochi semplici click è possibile ospitare un sito Web, creare un’infrastruttura ad alta resilienza e personalizzare le macchine per adattarle ai propri progetti.",
+  "dedicated_servers_onboarding_guide_getting_started_title": "Iniziare a utilizzare un server dedicato",
+  "dedicated_servers_onboarding_guide_getting_started_description": "Come eseguire le prime operazioni su un nuovo server dedicato",
+  "dedicated_servers_onboarding_guide_backup_storage_title": "Utilizzare Backup Storage su un server dedicato",
+  "dedicated_servers_onboarding_guide_backup_storage_description": "Come attivare e accedere allo spazio di storage aggiuntivo",
+  "dedicated_servers_onboarding_guide_firewall_network_title": "Configurare il Firewall Network",
+  "dedicated_servers_onboarding_guide_firewall_network_description": "Configurare il Firewall Network",
+  "dedicated_servers_onboarding_us_guide1_title": "Overview of Dedicated Servers",
+  "dedicated_servers_onboarding_us_guide1_description": "Learn the features in the OVHcloud Control Panel for Dedicated Servers",
+  "dedicated_servers_onboarding_us_guide2_title": "How to Install an OS on a Dedicated Server",
+  "dedicated_servers_onboarding_us_guide2_description": "Learn how to install an OS from the OVHcloud Control Panel",
+  "dedicated_servers_onboarding_us_guide3_title": "How to Configure Firewall and Anti-DDoS Settings",
+  "dedicated_servers_onboarding_us_guide3_description": "Learn about the Network Firewall"
+}

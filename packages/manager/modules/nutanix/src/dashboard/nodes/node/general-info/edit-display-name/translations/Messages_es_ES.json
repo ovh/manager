@@ -1,0 +1,10 @@
+{
+  "nutanix_node_server_displaname_edit_title": "Cambiar el nombre",
+  "nutanix_node_server_displaname_edit_help": "Modificar el nombre mostrado en el encabezado.",
+  "nutanix_node_server_displaname_edit_displayname_label": "Nombre",
+  "nutanix_node_server_displaname_edit_displayname_success": "El nombre mostrado se ha actualizado.",
+  "nutanix_node_server_displaname_edit_displayname_error": "Se ha producido un error al actualizar el nombre mostrado: {{message}}",
+  "nutanix_node_server_displaname_change": "Editar",
+  "nutanix_node_server_displaname_cancel": "Cancelar",
+  "nutanix_node_server_displaname_Ok": "OK"
+}

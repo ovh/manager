@@ -1,13 +1,13 @@
 {
   "telephony_service_fax_convert_to_voicefax_informations": "Information",
-  "telephony_service_fax_convert_to_voicefax_informations_info1": "Les Ecofax perso sont convertibles en Ecofax pro.",
-  "telephony_service_fax_convert_to_voicefax_informations_info2": "Veuillez noter qu’après la conversion, le service vous sera facturé 0,99 € HT par mois.",
-  "telephony_service_fax_convert_to_voicefax_informations_warning": "Aucun Ecofax perso n'est disponible pour la conversion.",
-  "telephony_service_fax_convert_to_voicefax_list": "Liste des Ecofax convertibles du groupe",
-  "telephony_service_fax_convert_to_voicefax_list_service_label": "Sélectionnez votre numéro :",
+  "telephony_service_fax_convert_to_voicefax_informations_info1": "Ecofax Personal can be converted to Ecofax Pro.",
+  "telephony_service_fax_convert_to_voicefax_informations_info2": "Please note that after the conversion, the service will be charged at €0.99 per month + VAT.",
+  "telephony_service_fax_convert_to_voicefax_informations_warning": "No personal Ecofax available for conversion.",
+  "telephony_service_fax_convert_to_voicefax_list": "List of convertible Ecofaxes in the group",
+  "telephony_service_fax_convert_to_voicefax_list_service_label": "Select your number:",
   "telephony_service_fax_convert_to_voicefax_list_service_order": "Generate purchase order",
-  "telephony_service_fax_convert_to_voicefax_list_service_order_valid": "Afin de finaliser votre demande, merci de valider ce",
-  "telephony_service_fax_convert_to_voicefax_list_service_order_url": "purchase order ",
-  "telephony_service_fax_convert_to_voicefax_list_error_loading": "Oups ! Une erreur est survenue lors du chargement de la liste des Ecofax convertisibles du groupe.",
-  "telephony_service_fax_convert_to_voicefax_list_error_ordering": "Oups ! Une erreur est survenue lors de la génération du bon de commande."
+  "telephony_service_fax_convert_to_voicefax_list_service_order_valid": "To complete your order, please validate this",
+  "telephony_service_fax_convert_to_voicefax_list_service_order_url": "purchase order",
+  "telephony_service_fax_convert_to_voicefax_list_error_loading": "Oops! An error occurred while loading the group's list of convertible Ecofaxes.",
+  "telephony_service_fax_convert_to_voicefax_list_error_ordering": "Oops! An error occurred while generating the purchase order."
 }

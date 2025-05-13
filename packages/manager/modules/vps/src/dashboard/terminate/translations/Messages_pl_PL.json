@@ -4,5 +4,19 @@
   "vps_terminate_cancel": "Anuluj",
   "vps_terminate_confirm": "Zatwierdź",
   "vps_terminate_success": "Twoje zlecenie usunięcia usługi zostało zarejestrowane. Potwierdź zlecenie, klikając link w e-mailu, który do Ciebie wysłaliśmy.",
-  "vps_terminate_error": "Wystąpił błąd podczas usuwania usługi."
+  "vps_terminate_success_engagement": "Twój wniosek został zarejestrowany i zostanie przetworzony tak szybko, jak to możliwe.",
+  "vps_terminate_error": "Wystąpił błąd podczas usuwania usługi.",
+  "vps_terminate_unavailable": "Wykupiłeś abonament na okres {{monthCount}} miesięcy. W przypadku pytań skontaktuj się z naszym działem obsługi klienta za pomocą czatu lub wysyłając  <a class=\"oui-link\" href=\"{{supportTicketLink}}\" target=\"_blank\" rel=\"noopener\">zgłoszenie </a>. Dziękujemy za zaufanie.",
+  "vps_terminate_option_terminate_at_expiration": "Usuń usługę zgodnie z datą wygaśnięcia.",
+  "vps_terminate_option_cancel_terminate_at_expiration": "Anuluj rezygnację z usługi.",
+  "vps_terminate_option_terminate_now": "Usuń usługę natychmiast.",
+  "vps_terminate_option_terminate_now_description": "Otrzymasz wiadomość e-mail z procedurą dotyczącą usunięcia usługi.",
+  "vps_terminate_option_terminate_now_question": "Czy chcesz kontynuować?",
+  "vps_terminate_warning_data_deletion": "Usunięcie usługi spowoduje trwałe usunięcie wszystkich powiązanych z nią danych.",
+  "vps_terminate_warning_no_refund": "Usunięcie usługi nie stanowi podstawy do zwrotu środków.",
+  "vps_terminate_warning_manual_refund": "Usunięcie usługi nie stanowi podstawy do zwrotu środków. Skontaktuj się z obsługą klienta, jeśli masz pytania dotyczące ewentualnego zwrotu środków.",
+  "vps_terminate_activate_delete_at_expiration_success": "Zlecenie usunięcia usługi zgodnie z datą wygaśnięcia zostało przyjęte.",
+  "vps_terminate_activate_delete_at_expiration_error": "Wystąpił błąd podczas zlecania usunięcia usługi zgodnie z datą wygaśnięcia:",
+  "vps_terminate_deactivate_delete_at_expiration_success": "Zlecenie usunięcia usługi zgodnie z datą wygaśnięcia zostało anulowane.",
+  "vps_terminate_deactivate_delete_at_expiration_error": "Wystąpił błąd podczas anulowania zlecenia usunięcia usługi zgodnie z datą wygaśnięcia:"
 }

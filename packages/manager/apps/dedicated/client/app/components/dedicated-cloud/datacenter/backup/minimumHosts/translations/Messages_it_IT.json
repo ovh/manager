@@ -1,0 +1,4 @@
+{
+  "dedicatedCloud_datacenter_backup_minimum_hosts_description": "Per attivare il backup Veeam è necessario che il datacenter disponga di almeno {{minimumHosts}} host.",
+  "dedicatedCloud_datacenter_backup_minimum_hosts_order": "Ordina host"
+}

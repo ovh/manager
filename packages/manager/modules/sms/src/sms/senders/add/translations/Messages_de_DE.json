@@ -31,5 +31,7 @@
   "sms_senders_add_sender_sr_only": "{{ sender }} hinzufügen",
   "sms_senders_add_sender": "Ausgewählten Absender hinzufügen",
   "sms_senders_add_senders": "Die {{ count }} ausgewählten Absender hinzufügen",
-  "sms_senders_add_senders_success": "Wird hinzugefügt..."
+  "sms_senders_add_senders_success": "Wird hinzugefügt...",
+  "sms_senders_add_sender_supporting_document": "Nachweis",
+  "sms_senders_add_sender_supporting_document_help": "Im Rahmen unserer Sicherheitspolitik bitten wir Sie hiermit um einen Nachweis. Dabei handelt es sich standardmäßig um Briefpapier der Firma oder der Marke, einschließlich der Genehmigung eines Verantwortlichen mit Unterschrift und Stempel derselben Firma, ein Identitätsdokument oder, wenn es sich nicht um eine eingetragene Marke handelt, einen Kbis- bzw. Handelsregisterauszug."
 }

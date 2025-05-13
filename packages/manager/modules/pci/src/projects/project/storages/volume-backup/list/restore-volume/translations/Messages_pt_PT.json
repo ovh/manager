@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_volume_backup_list_restore_volume_header": "Restaurar o seu volume",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_description": "Tem a certeza de que pretende restaurar o volume {{ volumeName }} a partir do backup {{ volumeBackupName }}? Isto levará à perda dos dados do seu volume atual.",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_action_confirm": "Confirmar",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_action_cancel": "Anular",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_action_request_success": "O volume {{ volumeName }} está a ser restaurado.",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_action_request_error": "Ocorreu um erro ao restaurar o seu volume {{ volumeName }}: {{ message }}"
+}

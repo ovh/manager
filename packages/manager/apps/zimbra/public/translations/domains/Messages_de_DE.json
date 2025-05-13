@@ -1,0 +1,21 @@
+{
+  "zimbra_domains_add_domain_title": "Domain hinzufügen",
+  "zimbra_domains_datagrid_account_label": "Anzahl der Accounts",
+  "zimbra_domains_datagrid_diagnostic_label": "Diagnose",
+  "zimbra_domains_datagrid_domain_label": "Domain",
+  "zimbra_domains_datagrid_organization_label": "Organisation",
+  "zimbra_domains_datagrid_account_number": "Anzahl der Accounts",
+  "zimbra_domains_tooltip_delete": "Löschen",
+  "zimbra_domains_tooltip_need_organization": "Konfigurieren Sie zuerst eine Organisation.",
+  "zimbra_domains_datagrid_diagnostic_configuration_ok": "Konfiguration OK",
+  "zimbra_domains_datagrid_diagnostic_tooltip_title": "Diagnose {{ diagType }}",
+  "zimbra_domains_tooltip_configure": "Konfigurieren",
+  "zimbra_domains_datagrid_status_label": "Status",
+  "zimbra_domains_datagrid_cname_label": "CNAME",
+  "zimbra_domains_datagrid_cname_tooltip_title": "Überprüfung der Domain",
+  "zimbra_domains_datagrid_cname_tooltip": "Um zu bestätigen, dass Sie Inhaber:in dieser Domain sind, erstellen Sie bitte einen CNAME-Eintrag: <br/><br/><strong>{{cname}}</strong> zu <strong>ovh.com</strong><br/><br/>Sie haben 48 Stunden Zeit, um diesen Schritt abzuschließen.",
+  "zimbra_domains_tooltip_diagnostics": "Diagnose",
+  "zimbra_domains_delete_modal_content": "Sind Sie sicher, dass Sie die Domain vom Zimbra-Server löschen möchten?",
+  "zimbra_domains_delete_modal_message_disabled_part1": "Diesem Domainnamen ist noch mindestens ein E-Mail-Account zugewiesen.",
+  "zimbra_domains_delete_modal_message_disabled_part2": "Bitte löschen Sie die zugehörigen E-Mail-Accounts, bevor Sie Ihren Domainnamen löschen."
+}

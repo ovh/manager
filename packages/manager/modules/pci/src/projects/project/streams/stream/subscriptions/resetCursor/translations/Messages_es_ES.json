@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_title": "Restaurar el cursor de la suscripción",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_submit_label": "Confirmar",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_cancel_label": "Cancelar",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_content": "¿Quiere restaurar el cursor de la suscripción {{subscription}}?",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_success_message": "El cursor de la suscripción {{subscription}} se ha restaurado.",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_error_reset_cursor": "Se ha producido un error al restaurar el cursor de la suscripción {{ subscription }}: {{ message }}."
-}

@@ -1,0 +1,73 @@
+<div class="oui-tile__definition">
+    <div
+        data-ng-controller="PackTaskCtrl as PackTask"
+        data-ng-show="PackTask.allTasks.length"
+    >
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th scope="col" data-translate="telecom_task_function"></th>
+                    <th class="overflow-visible text-center" scope="col">
+                        <div class="mt-4">
+                            <oui-select
+                                name="status"
+                                data-model="PackTask.filterSelect.status"
+                                data-items="PackTask.filterChoices"
+                                data-match="tip"
+                                data-on-change="PackTask.filterTasksByStatus(PackTask.filterSelect.status)"
+                            >
+                                <span
+                                    class="ovh-font"
+                                    data-ng-class="$item.icon"
+                                ></span>
+                                <span data-ng-bind="$item.tip"></span>
+                            </oui-select>
+                        </div>
+                    </th>
+                    <th scope="col" data-translate="telecom_task_date"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    data-ng-repeat="task in PackTask.paginatedTasks track by task.id"
+                >
+                    <td
+                        scope="row"
+                        data-translate-attr="{title:'telecom_task_function'}"
+                        data-translate="{{ 'telecom_task_function_' + task.function }}"
+                    ></td>
+                    <td
+                        data-title="{{'telecom_task_status' | translate}}"
+                        class="text-center"
+                    >
+                        <oui-spinner
+                            data-ng-show="task.status.spinner"
+                            data-size="s"
+                        >
+                        </oui-spinner>
+                        <span
+                            data-ng-if="task.status.icon && !task.status.spinner"
+                            class="ovh-font"
+                            data-ng-class="task.status.icon"
+                            data-uib-tooltip="{{ task.status.tip }}"
+                            aria-hidden="true"
+                        ></span>
+                    </td>
+                    <td
+                        data-translate-attr="{title:'telecom_task_date'}"
+                        data-ng-bind="(task.updateDate | date:'dd/MM/yyyy')"
+                    ></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div
+            class="mt-2"
+            data-pagination-front
+            data-items="PackTask.statusFilteredTasks"
+            data-paginated-items="PackTask.paginatedTasks"
+            data-items-per-page="PackTask.filter.perPage"
+            data-go-to-page="false"
+        ></div>
+    </div>
+</div>

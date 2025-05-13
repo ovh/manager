@@ -1,6 +1,5 @@
 <oui-modal
     class="my-0"
-    data-title="{{:: 'vps_configuration_reinstall_title' | translate}}"
     data-primary-label="{{:: 'vps_configuration_rebuild_confirm' | translate }}"
     data-primary-action="$ctrl.rebuildVps($ctrl.vpsOptions)"
     data-primary-disabled="$ctrl.rebuild.$invalid"
@@ -8,6 +7,7 @@
     data-secondary-label="{{:: 'vps_configuration_rebuild_cancel' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.isLoading"
+    data-heading="{{:: 'vps_configuration_reinstall_title' | translate}}"
 >
     <form novalidate name="$ctrl.rebuild">
         <oui-field
@@ -16,6 +16,7 @@
             <oui-select
                 id="imageId"
                 name="imageId"
+                class="mt-3"
                 data-items="$ctrl.availableImages"
                 data-match="name"
                 data-model="$ctrl.image"
@@ -25,21 +26,13 @@
             </oui-select>
         </oui-field>
 
-        <oui-field
-            data-label="{{:: 'vps_configuration_reinstall_step1_select_ssh_key' | translate }}"
-            data-label-popover="{{:: 'vps_configuration_reinstall_step1_select_ssh_key_help' | translate }}"
+        <ovh-manager-ssh-key-selector
+            data-public-key="$ctrl.vpsOptions.publicSshKey"
+            data-required="false"
         >
-            <oui-select
-                id="sshKey"
-                name="sshKey"
-                data-items="$ctrl.sshKeys"
-                data-match="keyName"
-                data-model="$ctrl.vpsOptions.sshKey"
-                data-on-change="$ctrl.sshKey = modelValue.key"
-            ></oui-select>
-        </oui-field>
+        </ovh-manager-ssh-key-selector>
 
-        <oui-field data-ng-if="$ctrl.vpsOptions.sshKey">
+        <oui-field data-ng-if="$ctrl.vpsOptions.publicSshKey">
             <oui-checkbox
                 id="sendPassword"
                 name="sendPassword"
@@ -52,4 +45,14 @@
             </oui-checkbox>
         </oui-field>
     </form>
+
+    <oui-message type="warning">
+        <strong
+            data-translate="vps_configuration_rebuild_warning_part_1"
+        ></strong>
+        <p
+            data-translate="vps_configuration_rebuild_warning_part_2"
+            data-translate-values="{href: $ctrl.VPS_SNAPSHOT_GUIDE_URL}"
+        ></p>
+    </oui-message>
 </oui-modal>

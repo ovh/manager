@@ -1,0 +1,11 @@
+{
+  "title": "Logs",
+  "breadcrumb": "Logs",
+  "description": "Con el fin de ayudarle a realizar el seguimiento y a administrar su servicio de base de datos, a continuación ofrecemos los últimos eventos (logs) casi en directo. Su período de retención depende del plan contratado.",
+  "autoRefreshInputLabel": "Auto-Refresh",
+  "streamsTitle": "Flujos de datos",
+  "streamsBreadcrumb": "Flujos",
+  "streamsBackLink": "Volver a la página anterior",
+  "streamsDescription": "Al suscribirse a los logs de auditoría de su servicio, estos registros se transferirán a Logs Data Platform, desde donde podrá gestionarlos de forma centralizada junto con el resto de sus logs. Además, podrá realizar búsquedas más avanzadas, gestionar sus retenciones, definir alertas y «dashboards» para monitorizar fácilmente sus clústeres.",
+  "streamsAdd": "Añadir un flujo de datos"
+}

@@ -1,0 +1,15 @@
+{
+  "dedicatedCloudDashboardTilesOptionsOrderConfigureUsers_stepper_header": "Benutzer konfigurieren",
+  "dedicatedCloud_servicePack_configureUsers_noUser": "Mindestens einer Ihrer Admin-Benutzer muss eine Handynummer sowie eine E-Mail-Adresse besitzen und als „token validator“ eingetragen sein. Dann kann die 2-Faktor-Authentifizierung für Verwaltungsaktionen im vCenter aktiviert werden. Um Ihre Benutzer zu konfigurieren, klicken Sie auf den Tab",
+  "dedicatedCloud_servicePack_configureUsers_noUser_linkToUserConfiguration": "„Benutzer“.",
+  "dedicatedCloud_servicePack_configureUsers_hasUser": "Um die Aktivierung der 2-Faktor-Authentifizierung zu bestätigen, werden einige Ihrer Benutzer einen Token per SMS erhalten.",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_header": "Benutzer, die Token per SMS bestätigen können:",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_userName": "Kennung",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_firstName": "Vorname",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_lastName": "Name",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_emailAddress": "E-Mail-Adresse",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_phoneNumber": "Telefonnummer",
+  "dedicatedCloud_servicePack_configureUsers_previousButton": "Zurück",
+  "dedicatedCloud_servicePack_configureUsers_checkoutButton": "Bestätigen",
+  "dedicatedCloud_servicePack_configureUsers_nextButton": "Weiter"
+}

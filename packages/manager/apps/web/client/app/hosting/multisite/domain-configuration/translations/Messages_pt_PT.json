@@ -1,0 +1,21 @@
+{
+  "hosting_multisite_domain_configuration_home": "Pasta raiz",
+  "hosting_multisite_domain_configuration_myfolder": "minhapasta",
+  "hosting_multisite_domain_configuration_firewall": "Ativar a firewall",
+  "hosting_multisite_domain_configuration_cdn": "Ativar o CDN",
+  "hosting_multisite_domain_configuration_information": "Para que a configuração seja funcional, deverá efetuar as seguintes operações sobre o seu nome de domínio:",
+  "hosting_multisite_domain_configuration_none_options": "Nenhuma opção",
+  "hosting_multisite_domain_configuration_ownlog": "Logs separados",
+  "hosting_multisite_domain_configuration_runtime": "Aplicativo de software em tempo de execução",
+  "hosting_multisite_domain_configuration_options_choose": "Escolha uma opção",
+  "hosting_multisite_domain_configuration_cdn_help": "Ative o serviço CDN para acelerar o acesso aos seus conteúdos em todo o mundo.",
+  "hosting_multisite_domain_configuration_country_ip_help": "Ative o endereço IP relacionado com distintas geolocalizações para poder ter partes \"internacionais\" do seu site com otimização em termos de SEO.",
+  "hosting_multisite_domain_configuration_firewall_help": "Ative a firewall para beneficiar de uma proteção melhorada para o seu site.",
+  "hosting_multisite_domain_configuration_ownlog_help": "Ative esta opção para dispor de logs separados para o seu multi-site.",
+  "hosting_multisite_domain_configuration_path_help": "Os caracteres aceites para pastas: letras, números e os caracteres -_./ Além disso, não é possível aceder à pasta principal utilizando ..",
+  "hosting_multisite_domain_configuration_countriesIp": "IP do país",
+  "hosting_multisite_domain_configuration_countriesIp_none": "Nenhuma",
+  "hosting_multisite_domain_configuration_ssl": "SSL",
+  "hosting_multisite_domain_configuration_ssl_help": "Ativar a opção SSL para proteger acesso ao seu website com protocolo https",
+  "hosting_multisite_domain_configuration_git_warning": "Se pretende alterar a pasta raiz, primeiro deve eliminar a configuração Git do diretório para evitar eventuais problemas de acompanhamento das alterações e de gestão das implementações."
+}

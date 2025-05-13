@@ -1,9 +1,9 @@
-import { Environment } from '@ovh-ux/manager-config';
 import OvhFeatureFlipping from './feature-flipping.class';
 
 export default class OvhFeatureFlippingProvider extends OvhFeatureFlipping {
-  constructor() {
-    super(Environment.getRegion());
+  /* @ngInject */
+  constructor(coreConfigProvider) {
+    super(coreConfigProvider.getRegion());
   }
 
   $get() {

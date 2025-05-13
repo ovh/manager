@@ -1,0 +1,75 @@
+<ng-form name="$ctrl.form">
+    <!-- <ResourceTypes> -->
+    <div data-ng-transclude="resourceTypesHeaderSlot"></div>
+    <oui-field
+        data-label="{{:: $ctrl.resourceTypesLabel }}"
+        data-help-text="{{
+            !$ctrl.required && $ctrl.hasNoAssociatedResources
+                ? ('iam_resource_select_resource_types_error_resources' | translate)
+                : ''
+        }}"
+        data-error-messages="{
+            resources: ('iam_resource_select_resource_types_error_resources' | translate),
+            required: ('iam_resource_select_resource_types_error_required' | translate)
+        }"
+    >
+        <oui-select
+            data-load="{{:: $ctrl.URL.RESOURCE_TYPE }}"
+            data-load-options="{ global: { serviceType: 'apiv2' }, size: 0 }"
+            data-match="label"
+            data-model="$ctrl.model.types"
+            data-multiple="true"
+            data-name="{{:: $ctrl.resourceTypesName }}"
+            data-on-change="$ctrl.onResourceTypesChanged(modelValue)"
+            data-on-confirm-remove="$ctrl.onResourceTypesConfirmRemove({ item: item.value, index })"
+            data-on-error="$ctrl.onError(error)"
+            data-on-load="$ctrl.transformResourceTypes(response.data)"
+            data-required="$ctrl.isResourceTypesRequired"
+            data-disabled="$ctrl.readOnly"
+            data-searchable
+        ></oui-select>
+    </oui-field>
+    <!-- </ResourceTypes> -->
+
+    <!-- <Resources> -->
+    <div data-ng-transclude="resourcesHeaderSlot"></div>
+    <div
+        class="d-flex flex-column flex-sm-row"
+        data-ng-class="{'iam-resource_select--resources_container': $ctrl.hasResourcesSiblingSlot}"
+    >
+        <oui-field
+            class="w-100"
+            data-label="{{:: $ctrl.resourcesLabel }}"
+            data-error-messages="{
+                required: $ctrl.resourcesRequiredMessage || ('iam_resource_select_resources_error_required' | translate),
+                limit: ('iam_resource_select_resources_error_limit' | translate:{'max':$ctrl.maxLength}),
+            }"
+        >
+            <oui-select
+                data-disabled="$ctrl.isResourcesDisabled"
+                data-load="{{ $ctrl.hasSelectedResourceTypes ? $ctrl.resourceUrl : '' }}"
+                data-load-options="{ global: { serviceType: 'apiv2' } }"
+                data-match="displayName"
+                data-model="$ctrl.model.selection"
+                data-multiple="true"
+                data-name="{{:: $ctrl.resourcesName }}"
+                data-on-change="$ctrl.onResourcesChanged(modelValue)"
+                data-on-load="$ctrl.onResourcesLoaded(response)"
+                data-on-error="$ctrl.onError(error)"
+                data-required="$ctrl.isResourcesRequired"
+            >
+                <span
+                    class="d-block font-weight-bold small text-primary"
+                    data-ng-bind="$item.type | iamResourceType"
+                ></span>
+                <span data-ng-bind="$item.displayName"></span>
+            </oui-select>
+        </oui-field>
+        <div
+            class="w-100"
+            data-ng-if="$ctrl.hasResourcesSiblingSlot"
+            data-ng-transclude="resourcesSiblingSlot"
+        ></div>
+    </div>
+    <!-- </Resources> -->
+</ng-form>

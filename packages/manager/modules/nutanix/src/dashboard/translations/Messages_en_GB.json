@@ -1,0 +1,9 @@
+{
+  "nutanix_dashboard_general_info": "General information",
+  "nutanix_dashboard_nodes": "Nodes",
+  "nutanix_dashboard_guides_header": "Guides",
+  "nutanix_dashboard_guides_header_all_guides": "All guides",
+  "nutanix_dashboard_cluster_warning1": "You must register your Nutanix licence on your cluster in Prism Central before [{{endDate}}]",
+  "nutanix_dashboard_cluster_warning2": "Register your licence",
+  "nutanix_dashboard_service_suspended": "The service has been cancelled."
+}

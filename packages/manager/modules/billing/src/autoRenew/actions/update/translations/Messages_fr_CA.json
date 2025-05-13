@@ -1,0 +1,15 @@
+{
+  "billing_autorenew_service_update_title": "Configuration du renouvellement",
+  "billing_autorenew_service_update_description": "Choisissez le type de renouvellement souhaité (automatique ou manuel). Pour le renouvellement automatique, vous pourrez également choisir la fréquence des prélèvements.",
+  "billing_autorenew_service_update_service_renewal": "Type de renouvellement",
+  "billing_autorenew_service_update_service_automatic": "Automatique",
+  "billing_autorenew_service_update_service_manualPayment": "Manuel",
+  "billing_autorenew_service_update_service_period": "Fréquence",
+  "billing_autorenew_service_update_service_period_value": "{{ month }} mois",
+  "billing_autorenew_service_update_confirm": "Confirmer",
+  "billing_autorenew_service_update_success": "Le renouvellement du service {{ service }} a bien été mis à jour. Si la modification n'apparaît pas dans la liste, veuillez rafraîchir la page.",
+  "billing_autorenew_service_update_error": "Une erreur est survenue lors de la configuration du renouvellement {{ message }}",
+  "billing_autorenew_service_update_add_mean": "Ajouter un moyen de paiement",
+  "billing_autorenew_service_update_validate": "Validation",
+  "billing_autorenew_service_update_next": "Suivant"
+}

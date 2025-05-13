@@ -1,0 +1,22 @@
+{
+  "cda_user_permission_definition": "Twoi użytkownicy mogą korzystać z klastra ze specyficznymi uprawnieniami dla każdego zakresu.",
+  "cda_user_add_button_text": "Dodaj użytkownika",
+  "cda_user_delete_button_text": "Usuń",
+  "cda_user_edit_button_text": "Sprawdź uprawnienia",
+  "cda_user_table_col_username": "Nazwisko",
+  "cda_user_table_col_key": "Klucz",
+  "cda_user_table_col_pool": "Zakresy",
+  "cda_user_table_col_actions": "Operacje",
+  "cda_user_add_title": "Dodaj użytkownika",
+  "cda_user_add_username_label": "Nazwisko",
+  "cda_user_add_username_required": "Nazwa jest wymagana.",
+  "cda_user_add_username_pattern": "Nazwa nie może zawierać spacji.",
+  "cda_user_add_username_maxlength": "Maksymalna liczba znaków w nazwie: {{ maxlength }} ",
+  "cda_user_add_success": "Użytkownik został dodany.",
+  "cda_user_delete_title": "Usuń użytkownika",
+  "cda_user_delete_username_label": "Nazwa:",
+  "cda_user_delete_confirm": "Czy chcesz usunąć tego użytkownika?",
+  "cda_user_delete_success": "Użytkownik został usunięty.",
+  "cda_user_table_empty": "Brak użytkownika",
+  "cda_user_breadcrumb": "Użytkownicy"
+}

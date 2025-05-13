@@ -1,14 +1,28 @@
-angular.module('App').config(($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.operation', {
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app.dedicatedCloud.details.operation', {
     url: '/operation',
     reloadOnSearch: false,
     views: {
-      pccView: {
-        templateUrl: 'dedicatedCloud/operation/dedicatedCloud-operation.html',
-        controller: 'DedicatedCloudOperationsCtrl',
-        controllerAs: '$ctrl',
-      },
+      pccView: 'ovhManagerPccOperation',
     },
-    translations: { value: ['./executionDateEdit'], format: 'json' },
+    redirectTo: (transition) => {
+      return transition
+        .injector()
+        .getAsync('hasVCDMigration')
+        .then((hasVCDMigration) =>
+          hasVCDMigration
+            ? 'app.dedicatedCloud.details.dashboard-light'
+            : false,
+        );
+    },
+    resolve: {
+      goToExecutionDateEdit: /* @ngInject */ ($state, productId) => (task) =>
+        $state.go('app.dedicatedCloud.details.operation.execution-date-edit', {
+          productId,
+          operationToEdit: task,
+        }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_cloud_operation'),
+    },
   });
-});
+};

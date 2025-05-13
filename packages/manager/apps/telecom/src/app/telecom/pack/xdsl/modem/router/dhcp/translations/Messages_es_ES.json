@@ -20,6 +20,6 @@
   "xdsl_modem_dhcp_submit_error": "¡Vaya! No hemos podido actualizar el DHCP.",
   "xdsl_modem_dhcp_error": "¡Vaya! No hemos podido cargar la información relativa al DHCP.",
   "xdsl_modem_dhcp_modal_title": "Adresse IP refusée",
-  "xdsl_modem_dhcp_modal_desc": "L'adresse IP {{ ipUsed }} est un ancien serveur DNS OVH.",
-  "xdsl_modem_dhcp_modal_desc_next": "Les DNS OVH valides sont {{ ipsToUse }}."
+  "xdsl_modem_dhcp_modal_desc": "La dirección IP {{ ipUsed }} es un antiguo servidor DNS de OVHcloud.",
+  "xdsl_modem_dhcp_modal_desc_next": "Los DNS de OVHcloud válidos son {{ ipsToUse }}."
 }

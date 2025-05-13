@@ -1,0 +1,10 @@
+{
+  "over_the_box_onboarding_title": "OverTheBox",
+  "over_the_box_onboarding_description": "Secure your internet access and increase your bandwidth.",
+  "over_the_box_onboarding_order": "Get started",
+  "over_the_box_onboarding_guide1_title": "OverTheBox Plus or IT v2 installation",
+  "over_the_box_onboarding_guide1_description": "Find out how to install and configure your OverTheBox Plus or IT v2 device to use your OverTheBox solution",
+  "over_the_box_onboarding_guide2_title": "Configuring your own DNS server",
+  "over_the_box_onboarding_guide2_description": "Looking to use a particular DNS server? This guide will help you specify your DNS server transmitted by DHCP.",
+  "over_the_box_onboarding_guide3_title": "OverTheBox FAQ"
+}

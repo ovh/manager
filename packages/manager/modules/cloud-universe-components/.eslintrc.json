@@ -1,5 +1,6 @@
 {
   "globals": {
-    "d3": true
+    "d3": true,
+    "moment": true
   }
 }

@@ -1,5 +1,0 @@
-{
-  "telephony_number_feature_ovh_pabx_tts_create_text_required": "Un texte est obligatoire.",
-  "telephony_number_feature_ovh_pabx_tts_create_text_too_long": "Votre texte est trop long. Le nombre maximum de caractères autorisé est 1024.",
-  "telephony_number_feature_ovh_pabx_tts_create_error": "Oups ! Une erreur est survenue lors de la création du TTS."
-}

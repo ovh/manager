@@ -1,8 +1,0 @@
-{
-  "billing_main_history_postal_mail_options_title": "Sąskaitų siuntimo parinkčių nustatymas",
-  "billing_main_history_postal_mail_options_activation": "Ar tikrai norite įjungti popierinių sąskaitų siuntimą?",
-  "billing_main_history_postal_mail_options_desactivation": "Ar tikrai norite išjungti popierinių sąskaitų siuntimą?",
-  "billing_main_history_postal_mail_options_activate_success": "Nustatymai sėkmingai atnaujinti. Nuo dabar gausite popierines sąskaitas.",
-  "billing_main_history_postal_mail_options_desactivate_success": "Nustatymai sėkmingai atnaujinti. Daugiau nebegausite popierinių sąskaitų.",
-  "billing_main_history_postal_mail_options_update_error": "Klaida atnaujinant nustatymą"
-}

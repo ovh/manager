@@ -1,9 +1,11 @@
 {
- "pci_projects_project_instances_instance_reinstall_title": "Re-install an instance",
- "pci_projects_project_instances_instance_reinstall_submit_label": "Confirm",
- "pci_projects_project_instances_instance_reinstall_cancel_label": "Cancel",
- "pci_projects_project_instances_instance_reinstall_content": "Are you sure that you want to re-install the {{ instance }} instance?",
- "pci_projects_project_instances_instance_reinstall_erase_message": "All of the data stored on it will be deleted.",
- "pci_projects_project_instances_instance_reinstall_success_message": "Your {{ instance }} instance is being re-installed.",
- "pci_projects_project_instances_instance_reinstall_error_reinstall": "An error has occurred re-installing the {{ instance }} instance: {{ message }}."
+  "pci_projects_project_instances_instance_reinstall_title": "Re-install an instance",
+  "pci_projects_project_instances_instance_reinstall_submit_label": "Confirm",
+  "pci_projects_project_instances_instance_reinstall_cancel_label": "Cancel",
+  "pci_projects_project_instances_instance_reinstall_content": "Are you sure that you want to re-install the {{ instance }} instance?",
+  "pci_projects_project_instances_instance_reinstall_erase_message": "All of the data stored on it will be deleted.",
+  "pci_projects_project_instances_instance_reinstall_success_message": "Your {{ instance }} instance is being re-installed.",
+  "pci_projects_project_instances_instance_reinstall_error_reinstall": "An error has occurred re-installing the {{ instance }} instance: {{ message }}.",
+  "pci_projects_project_instances_instance_reinstall_deprecated_image": "The image you selected when you created the instance ( {{ image }} ) is no longer supported, and therefore cannot be reinstalled. However, you can install a new image from our range.",
+  "pci_projects_project_instances_instance_reinstall_deprecated_image_format_message": "Warning: all data is formatted when a new image is installed."
 }

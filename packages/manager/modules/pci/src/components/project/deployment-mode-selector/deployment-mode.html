@@ -1,0 +1,74 @@
+<div>
+    <h4 data-translate="deployment_mode_title"></h4>
+
+    <p>
+        <span data-translate="deployment_mode_description"></span>
+        <a
+            class="oui-link_icon"
+            aria-hidden="true"
+            data-ng-href="{{$ctrl.deploymentModeUrl}}"
+            target="_blank"
+        >
+            <span data-translate="pci_project_flavors_zone_tooltip_link"></span>
+            <span
+                class="oui-icon oui-icon-external-link ml-0"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </p>
+
+    <oui-spinner data-size="s" data-ng-if="$ctrl.isLoading"></oui-spinner>
+
+    <div data-ng-if="!$ctrl.loading" class="row">
+        <oui-select-picker
+            class="col-md-6 col-xl-4 my-3"
+            data-ng-repeat="deploymentMode in $ctrl.deploymentModes track by deploymentMode.name"
+            data-name="deploymentMode.name"
+            data-model="$ctrl.deploymentMode"
+            data-on-change="$ctrl.onChange({deploymentMode: deploymentMode})"
+            data-values="[deploymentMode]"
+            data-variant="light"
+            data-disabled="deploymentMode.comingSoon"
+        >
+            <oui-select-picker-label>
+                <span
+                    data-ng-bind=":: ('deployment_mode_card_title_' + deploymentMode.name) | translate"
+                >
+                </span>
+
+                <span class="regions-badges">
+                    <span
+                        class="oui-badge"
+                        data-ng-class="deploymentMode.className"
+                        data-translate="{{deploymentMode.chipLabel}}"
+                    ></span>
+                </span>
+
+                <span
+                    class="oui-badge oui-badge_beta"
+                    data-ng-if="deploymentMode.beta"
+                    data-translate="deployment_mode_card_beta"
+                ></span>
+
+                <span
+                    class="oui-badge oui-badge_soon"
+                    data-ng-if="deploymentMode.comingSoon"
+                    data-translate="deployment_mode_card_coming_soon"
+                ></span>
+            </oui-select-picker-label>
+            <oui-select-picker-section>
+                <p
+                    data-ng-bind=":: ('deployment_mode_card_description_' + deploymentMode.name) | translate"
+                ></p>
+            </oui-select-picker-section>
+            <oui-select-picker-section
+                data-ng-if="$ctrl.prices && $ctrl.prices[deploymentMode.name]"
+            >
+                <p
+                    data-translate="{{:: $ctrl.prices[deploymentMode.name].key }}"
+                    data-translate-values="$ctrl.prices[deploymentMode.name].values"
+                ></p>
+            </oui-select-picker-section>
+        </oui-select-picker>
+    </div>
+</div>

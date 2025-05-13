@@ -1,0 +1,21 @@
+{
+  "hosting_multisite_domain_configuration_home": "Root folder",
+  "hosting_multisite_domain_configuration_myfolder": "myfolder",
+  "hosting_multisite_domain_configuration_firewall": "Enable the firewall",
+  "hosting_multisite_domain_configuration_cdn": "Activate the CDN",
+  "hosting_multisite_domain_configuration_information": "For the configuration to function, you will need to make the following adjustments on your domain:",
+  "hosting_multisite_domain_configuration_none_options": "No option",
+  "hosting_multisite_domain_configuration_ownlog": "Separate logs",
+  "hosting_multisite_domain_configuration_runtime": "Runtime software application",
+  "hosting_multisite_domain_configuration_options_choose": "Select an option",
+  "hosting_multisite_domain_configuration_cdn_help": "Enable CDN to speed up access to your site.",
+  "hosting_multisite_domain_configuration_country_ip_help": "Enable the country IP to geolocate the international parts of your site, in order to optimise their SEO.",
+  "hosting_multisite_domain_configuration_firewall_help": "Enable the firewall to benefit from enhanced site protection. ",
+  "hosting_multisite_domain_configuration_ownlog_help": "Enable this option to get separate logs for your multi-domain. ",
+  "hosting_multisite_domain_configuration_path_help": "The characters accepted for files are letters, numbers and the following characters -_./ However, you cannot access parent files using ..",
+  "hosting_multisite_domain_configuration_countriesIp": "Country IP",
+  "hosting_multisite_domain_configuration_countriesIp_none": "None",
+  "hosting_multisite_domain_configuration_ssl": "SSL",
+  "hosting_multisite_domain_configuration_ssl_help": "Enable SSL, so that your website can be accessed in HTTPS",
+  "hosting_multisite_domain_configuration_git_warning": "If you want to change your root folder, you have to first delete your Git configuration from the directory, to avoid any potential problems with tracking changes and managing deployments."
+}

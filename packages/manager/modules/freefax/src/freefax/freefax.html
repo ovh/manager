@@ -1,16 +1,12 @@
 <section class="telecom-legacy telecom-freefax-section" data-ui-view>
     <div class="telecom-freeFax">
-        <div class="telecom-section-header">
-            <header class="page-header" role="banner">
-                <h1
-                    data-translate="freefax_title"
-                    data-translate-values="{ serviceName: FreeFax.serviceName }"
-                ></h1>
-            </header>
-        </div>
-        <!-- /.telecom-section-header -->
+        <oui-header
+            class="mb-4"
+            heading="{{:: 'freefax_title' | translate:{serviceName: FreeFax.serviceName } }}"
+        >
+        </oui-header>
 
-        <main class="telecom-section-content" role="main">
+        <main role="main">
             <tuc-toast-message></tuc-toast-message>
 
             <div class="row" data-ng-if="!FreeFax.error">
@@ -41,7 +37,6 @@
                 ></h1>
             </div>
         </main>
-        <!-- /.telecom-section-content -->
     </div>
     <!-- /.telecom-freeFax -->
 </section>

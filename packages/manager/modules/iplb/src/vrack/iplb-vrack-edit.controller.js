@@ -13,19 +13,19 @@ export default class IpLoadBalancerVrackEditCtrl {
     $stateParams,
     $translate,
     CucCloudMessage,
-    CucCloudNavigation,
     CucControllerHelper,
     IpLoadBalancerServerFarmService,
     IpLoadBalancerVrackService,
+    goBack,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucCloudNavigation = CucCloudNavigation;
     this.CucControllerHelper = CucControllerHelper;
     this.IpLoadBalancerServerFarmService = IpLoadBalancerServerFarmService;
     this.IpLoadBalancerVrackService = IpLoadBalancerVrackService;
+    this.goBack = goBack;
 
     this.serviceName = $stateParams.serviceName;
     this.networkId = $stateParams.networkId;
@@ -35,7 +35,6 @@ export default class IpLoadBalancerVrackEditCtrl {
   }
 
   $onInit() {
-    this.previousState = this.CucCloudNavigation.getPreviousState();
     this.creationRules.load();
     this.privateNetwork
       .load()
@@ -75,7 +74,7 @@ export default class IpLoadBalancerVrackEditCtrl {
     this.saving = true;
     this.CucCloudMessage.flushChildMessage();
     return (!this.editing() ? this.addNetwork() : this.editNetwork())
-      .then(() => this.previousState.go())
+      .then(() => this.goBack())
       .finally(() => {
         this.saving = false;
       });

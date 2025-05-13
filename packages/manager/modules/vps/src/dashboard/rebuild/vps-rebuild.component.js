@@ -8,7 +8,6 @@ export default {
     displaySuccess: '<',
     goBack: '<',
     serviceName: '<',
-    sshKeys: '<',
   },
   controller,
   name: 'ovhManagerVpsRebuild',

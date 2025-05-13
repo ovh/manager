@@ -1,0 +1,14 @@
+{
+  "pci_project_flavors_billing_hourly": "Orario",
+  "pci_project_flavors_billing_monthly": "Mensile",
+  "pci_project_flavors_billing_price_hourly": "{{price}} + IVA/ora",
+  "pci_project_flavors_billing_price_monthly": "{{price}} + IVA/mese",
+  "pci_project_flavors_billing_price_hourly_price_label": "Prezzo:",
+  "pci_project_flavors_billing_addons_price_monthly": "{{price}} + IVA/mese",
+  "pci_project_flavors_billing_price_monthly_instance_price_label": "Prezzo:",
+  "pci_project_flavors_billing_price_monthly_gateway_price_label": "Gateway:",
+  "pci_project_flavors_billing_price_monthly_floatingip_price_label": "Floating IP:",
+  "pci_projects_project_instances_add_total_price_label": "Totale:",
+  "pci_project_flavors_billing_addons_price_hourly": "{{price}} + IVA/ora",
+  "pci_projects_project_instances_configure_billing_type": "Configura il tipo di fatturazione"
+}

@@ -1,4 +1,5 @@
 {
+  "telephony_alias_ovh_pabx_menus_breadcrumb": "Gérer les menus interactifs",
   "telephony_alias_ovh_pabx_menus_list_info1": "Ici, vous pouvez gérer les menus interactifs disponibles.",
   "telephony_alias_ovh_pabx_menus_list_info2": "Une fois vos menus paramétrés, il vous faut les ajouter dans la configuration de votre serveur vocal pour les utiliser.",
   "telephony_alias_ovh_pabx_menus_list_title": "Liste des menus interactifs",

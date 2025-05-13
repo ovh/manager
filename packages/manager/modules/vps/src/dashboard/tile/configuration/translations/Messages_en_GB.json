@@ -1,0 +1,23 @@
+{
+  "vps_dashboard_tile_configuration_title": "Your configuration",
+  "vps_dashboard_tile_configuration_vcore_upscale": "Add vCores by upgrading to the higher range",
+  "vps_dashboard_tile_configuration_memory": "Memory",
+  "vps_dashboard_tile_configuration_memory_add": "Add memory",
+  "vps_dashboard_tile_configuration_memory_add_upscale": "Add more memory by upgrading to the higher range",
+  "vps_dashboard_tile_configuration_memory_double": "Double the memory for an additional price of {{ additionalPrice }}/month, i.e. a total of {{ price }}/month",
+  "vps_dashboard_tile_configuration_storage": "Storage",
+  "vps_dashboard_tile_configuration_storage_add": "Increase the volume of storage",
+  "vps_dashboard_tile_configuration_storage_add_upscale": "Add more storage by upgrading to the higher range",
+  "vps_dashboard_tile_configuration_storage_double": "Double the storage space for an additional price of {{ additionalPrice }}/month, i.e. a total of {{ price }}/month",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_title": "The change has been processed.",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_details": "You will receive a confirmation email within two hours, when the changes are applied to your VPS. You will need to reboot your VPS for the new configuration to work.",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_track_order": "Track my order",
+  "vps_dashboard_tile_configuration_upgrade_complete_reboot_required": "The resources have been added to your VPS. Please reboot it to apply the new configuration.",
+  "vps_dashboard_tile_configuration_vcore": "vCores",
+  "vps_dashboard_tile_configuration_memory_add_upscale_elite": "Add power to your VPS by increasing your memory",
+  "vps_dashboard_tile_configuration_storage_add_upscale_elite": "Add power to your VPS by increasing your storage",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_cpu": "To get more vCores, please contact the admin NIC: {{nichandle}}",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_memory": "To get more information, please contact the admin NIC: {{nichandle}}",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_storage": "To get more storage, please contact the admin NIC: {{nichandle}}",
+  "vps_dashboard_tile_configuration_starter_range_info_message": "The feature that allows you to increase your RAM or storage is only available starting with the VPS Value offer."
+}

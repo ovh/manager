@@ -1,0 +1,22 @@
+{
+  "netapp_volume_create_title": "Criar um volume",
+  "netapp_volume_create_cancel": "Cancelar",
+  "netapp_volume_create_name": "Nome do volume (opcional)",
+  "netapp_volume_create_description": "Descrição (opcional)",
+  "netapp_volume_create_protocol": "Protocolo",
+  "netapp_volume_create_protocol_NFS": "NFSv3",
+  "netapp_volume_create_size": "Tamanho do volume",
+  "netapp_volume_create_size_help": "O tamanho do volume está entre {{ minSize }} GB e {{ maxSize }} GB",
+  "netapp_volume_create_size_required": "Introduza o tamanho do volume.",
+  "netapp_volume_create_size_invalid_number_error": "Introduza um número válido.",
+  "netapp_volume_create_size_minimum_error": "Tamanho mínimo necessário: {{ minSize }} GB.",
+  "netapp_volume_create_size_maximum_error": "Tamanho máximo autorizado: {{ maxSize }} GB.",
+  "netapp_volume_create_success": "O seu volume foi criado com sucesso! Depois de configurar as regras de controlo de acesso, poderá aceder-lhe.",
+  "netapp_volume_create_error": "Ocorreu um erro aquando da criação do volume. {{ message }}",
+  "netapp_volume_mount_path": "Mount Path (opcional)",
+  "netapp_volume_mount_path_format_error": "Os caracteres especiais não são autorizados",
+  "netapp_volume_mount_path_character_limit_error": "Excedeu o número máximo de 255 caracteres",
+  "netapp_volume_mount_path_already_used_error": "O mount path já está a ser utilizado noutro volume. Introduza um novo.",
+  "netapp_volume_create_snapshot_selection": "Selecionar a snapshot a partir da qual deseja criar um volume",
+  "netapp_volume_create_snapshot_selection_placeholder": "Selecione..."
+}

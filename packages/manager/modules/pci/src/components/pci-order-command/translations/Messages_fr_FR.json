@@ -1,0 +1,14 @@
+{
+  "pci_order_command_title": "Commande équivalente",
+  "pci_order_command_here": "ici",
+  "pci_order_command_parameters": "Paramètres :",
+  "pci_order_command_parameters_info": "Plus d’informations sur les paramètres disponibles :",
+  "pci_order_command_parameters_info_description": "Nom de votre service",
+  "pci_order_command_parameters_info_networkId": "Réseau privé openstack id",
+  "pci_order_command_parameters_info_subnetId": "Sous-réseau id",
+  "pci_order_command_parameters_info_nodesPattern_flavor": "Caractéristiques sélectionnées",
+  "pci_order_command_parameters_info_nodesPattern_number": "Nombre de nœuds",
+  "pci_order_command_parameters_info_nodesPattern_region": "Localisation sélectionnée",
+  "pci_order_command_parameters_info_plan": "Offre sélectionnée",
+  "pci_order_command_parameters_info_version": "Version de la base de données"
+}

@@ -1,0 +1,19 @@
+{
+  "pci_databases_replications_tab_title": "Flujo de replicación",
+  "pci_databases_replications_tab_description": "Los flujos de replicación permiten la copia automática de los topics de datos y de la configuración entre dos clusters Kafka. Un servicio MirrorMaker puede ejecutar varios flujos de replicación.",
+  "pci_databases_replications_tab_source": "Origen",
+  "pci_databases_replications_tab_target": "Destino",
+  "pci_databases_replications_tab_topics": "Topics",
+  "pci_databases_replications_tab_topics_blacklist": "Listas de topics excluidos",
+  "pci_databases_replications_tab_sync_group_offsets": "Sincronizar los offsets de los grupos",
+  "pci_databases_replications_tab_sync_interval": "Intervalo de sincronización (s)",
+  "pci_databases_replications_tab_status": "Estado",
+  "pci_databases_replications_tab_edit": "Modificar el flujo de replicación",
+  "pci_databases_replications_tab_delete": "Eliminar el flujo de replicación",
+  "pci_databases_replications_tab_add": "Crear un flujo de replicación",
+  "pci_databases_replications_tab_no_integration": "Antes de crear un flujo de replicación, asegúrese de que ha configurado al menos dos clusters Kafka.",
+  "pci_databases_replications_tab_sync_group_offsets_true": "Sí",
+  "pci_databases_replications_tab_sync_group_offsets_false": "No",
+  "pci_databases_replications_tab_status_true": "Activado",
+  "pci_databases_replications_tab_status_false": "Desactivado"
+}

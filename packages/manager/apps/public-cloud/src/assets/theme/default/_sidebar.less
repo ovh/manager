@@ -1,6 +1,4 @@
-@import '~ovh-ui-kit/packages/oui-navbar/_variables';
-@import '~ovh-ui-kit/packages/oui-sidebar/_variables.less';
-@import '~ovh-ui-kit/packages/oui-responsive/_variables.less';
+@import '@ovh-ux/ui-kit/dist/less/_tokens';
 @import './_variables.less';
 
 cloud-sidebar {
@@ -11,9 +9,9 @@ cloud-sidebar {
   z-index: 1;
   box-shadow: 0 6px 6px rgba(0, 14, 156, 0.2);
 
-  @media screen and (max-width: @oui-responsive-breakpoint-tablet) {
+  @media screen and (max-width: @device-breakpoint-tablet) {
     position: absolute;
-    width: @oui-navbar-menu-width;
+    width: rem-calc(300);
     z-index: 2;
 
     &.cloud-sidebar_open {
@@ -21,35 +19,13 @@ cloud-sidebar {
     }
 
     &.cloud-sidebar_hidden {
-      left: -@oui-navbar-menu-width;
+      left: -(rem-calc(300));
     }
   }
 
-  .oui-navbar-menu__header {
-    align-items: center;
-    background-color: #fff;
-    border-bottom: none;
+  .cloud-sidebar-menu {
+    position: relative;
     z-index: 2;
-
-    .oui-navbar-menu__title {
-      color: @primary-color;
-      font-weight: @oui-font-semibold;
-      font-size: 18px;
-    }
-
-    .oui-navbar-menu__back {
-      background-color: @info-bg-color;
-      border: 1px solid @info-bg-color;
-      border-radius: 3px;
-
-      .oui-button {
-        padding: 16px;
-      }
-
-      + div {
-        margin-left: 10px;
-      }
-    }
   }
 
   .oui-navbar-backdrop_active {
@@ -64,47 +40,34 @@ cloud-sidebar {
     width: 50px;
   }
 
-  oui-clipboard {
-    margin-bottom: 0;
-
-    .oui-clipboard__control {
-      border-bottom: 0;
-      padding: 0;
-      padding-left: 1.5rem;
-      font-weight: 400;
-      color: @primary-color;
-      background-color: transparent;
-
+  .oui-clipboard {
+    .oui-clipboard__control,
+    .oui-clipboard__button {
+      &,
       &:hover,
       &:focus {
-        text-decoration: underline;
         background-color: transparent;
+        border-color: transparent;
+        color: inherit;
       }
-    }
-
-    .oui-clipboard__button {
-      left: 0;
-      right: inherit;
-      padding: 0;
-      min-width: auto;
-      color: @primary-color;
-
-      &:hover {
-        min-width: auto;
-      }
-    }
-
-    .oui-tooltip {
-      bottom: 0;
-      margin: 0;
     }
   }
 
   .project-list-toggle {
-    padding: 6px 13px;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
 
-    > .oui-icon {
-      vertical-align: initial;
+    &.oui-button_secondary {
+      border-color: @p-000;
+
+      &:hover {
+        border-color: @p-100;
+      }
+
+      &:active {
+        border-color: @p-200;
+      }
     }
   }
 
@@ -121,27 +84,20 @@ cloud-sidebar {
     will-change: transform;
     transition: transform ease-in-out 500ms;
 
-    @media screen and (max-width: @oui-responsive-breakpoint-tablet) {
+    @media screen and (max-width: @device-breakpoint-tablet) {
       left: 0;
     }
 
-    .oui-input-group {
-      .oui-icon {
-        right: 0;
-        z-index: 1;
-        color: @primary-color;
-      }
+    .oui-button_primary {
+      background-color: @p-000;
+      border-color: @p-000;
+      color: @p-500;
     }
 
-    oui-clipboard {
-      .oui-clipboard__control,
-      .oui-clipboard__button {
-        color: #fff;
-
-        .oui-icon {
-          color: @light-color;
-        }
-      }
+    .oui-button_secondary {
+      background-color: transparent;
+      border-color: @p-000;
+      color: @p-000;
     }
 
     &.ng-enter,
@@ -154,182 +110,10 @@ cloud-sidebar {
       transform: translateX(0);
     }
 
-    .btn {
-      border: 2px solid @light-color;
-      border-radius: 4px;
-
-      &.btn-primary.rounded-circle {
-        background-color: @light-color;
-        color: @primary-color;
-      }
-    }
-
     ul {
       li {
         padding: 4px;
         border-bottom: 1px solid @light-color;
-      }
-    }
-  }
-
-  .oui-sidebar-menu {
-    background-color: @background-color;
-    color: @text-color;
-    padding: 0 8pt;
-    width: 100%;
-    box-sizing: inherit;
-
-    .oui-sidebar-list {
-      overflow: initial;
-    }
-
-    .oui-sidebar-link_active,
-    .oui-sidebar-link[aria-expanded='true'] {
-      background-color: #fff;
-    }
-
-    .oui-status_alpha {
-      background-color: #fbff47;
-      padding: 0 8px;
-      line-height: 15px;
-      font-size: 12px;
-      font-weight: 600;
-      border-radius: 8px;
-      color: #00185e;
-    }
-
-    .oui-status_beta {
-      padding: 0 8px;
-      line-height: 15px;
-      font-size: 12px;
-      font-weight: 600;
-      background-color: #47ff78;
-      border-radius: 8px;
-      color: #000e9c;
-    }
-  }
-
-  .oui-sidebar-list__item {
-    border: 0;
-    margin-bottom: 0;
-
-    .oui-sidebar-link {
-      font-weight: bold;
-      display: flex;
-
-      &::after {
-        color: @light-color;
-        top: 55%;
-        right: 0;
-      }
-
-      &,
-      &:hover,
-      &:focus,
-      &:active {
-        border-bottom: 2px solid rgb(230, 245, 252);
-        color: @text-color;
-        padding: 8pt 0 4pt;
-        min-height: inherit;
-      }
-
-      &[aria-expanded='true'] {
-        + .oui-sidebar-menu .oui-sidebar-list {
-          padding: 4pt 0;
-        }
-      }
-
-      .item-icon i {
-        margin-right: 0.2rem;
-        font-size: 1rem !important;
-        color: @text-color;
-        line-height: inherit !important;
-        opacity: 1 !important;
-      }
-    }
-
-    .oui-sidebar-menu {
-      background-color: @background-color;
-      padding: 0;
-
-      /* stylelint-disable-next-line no-descending-specificity */
-      .oui-sidebar-list {
-        max-height: none;
-
-        .oui-sidebar-list__item {
-          margin-bottom: 0;
-
-          .oui-sidebar-link {
-            &,
-            &:hover,
-            &:focus,
-            &:active {
-              border-bottom: 0;
-              border-left: 3px solid transparent;
-              color: rgb(17, 63, 109);
-              padding: 6pt;
-              text-indent: 0;
-              font-weight: 600;
-              font-weight: normal;
-            }
-
-            &:hover,
-            &:focus {
-              text-decoration: underline;
-            }
-
-            &.oui-sidebar-link_active {
-              border-left-color: @primary-color;
-              font-weight: bold;
-              color: @primary-color;
-              background-color: rgb(230, 245, 252);
-            }
-          }
-
-          + .oui-sidebar-list__item {
-            border-top: 0;
-          }
-        }
-      }
-
-      &_fixed {
-        opacity: 1;
-        position: relative;
-        transform: none;
-        box-shadow: none;
-      }
-
-      .oui-sidebar-menu__header {
-        display: none;
-      }
-    }
-  }
-}
-
-#sidebar-menu .oui-sidebar-menu {
-  width: 100%;
-  overflow: auto;
-
-  .sidebar-menu-orphan-item {
-    border-top: #89d7f8 2px solid;
-
-    .oui-sidebar-link {
-      &,
-      &:hover,
-      &:focus,
-      &:active {
-        border-bottom: 0;
-        border-left: 3px solid transparent;
-        color: rgb(17, 63, 109);
-        padding: 6px;
-        text-indent: 0;
-        font-weight: 600;
-        font-weight: normal;
-      }
-
-      &:hover,
-      &:focus {
-        text-decoration: underline;
       }
     }
   }

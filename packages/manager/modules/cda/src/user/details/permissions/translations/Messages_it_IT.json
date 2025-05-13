@@ -1,0 +1,13 @@
+{
+  "cda_user_details_permission_title": "Permessi del pool",
+  "cda_user_details_permission_description": "I permessi sono definiti per Cloud Disk Array OSD. Di default, un utente possiede il permesso \"allow r\" per il MONs. I permessi MDS non sono attualmente utilizzati.",
+  "cda_user_details_permissions_edit_button_text": "Modifica i permessi",
+  "cda_user_details_permissions_table_col_poolname": "Pool",
+  "cda_user_details_permissions_table_col_read": "Lettura",
+  "cda_user_details_permissions_table_col_write": "Scrittura",
+  "cda_user_details_permissions_table_col_execute": "Esegui",
+  "cda_user_details_permissions_table_col_classread": "class-read",
+  "cda_user_details_permissions_table_col_classwrite": "class-write",
+  "cda_user_details_permissions_table_empty": "Nessun permisso per l'utente.",
+  "cda_user_details_permission_breadcrumb": "Permessi"
+}

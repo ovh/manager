@@ -1,0 +1,4 @@
+{
+  "pci_projects_project_users_add_success_message": "User {{ username }} has been added with the password {{ password }}",
+  "pci_projects_project_users_add_error_save": "An error occurred while creating the user {{user}}: {{message}}."
+}

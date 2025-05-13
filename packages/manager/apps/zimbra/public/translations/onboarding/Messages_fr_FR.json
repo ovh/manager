@@ -1,0 +1,18 @@
+{
+  "title": "Suite collaborative Zimbra",
+  "description": "Communiquer et collaborer en entreprise grâce à la suite Zimbra",
+  "orderButtonLabel": "Commander",
+  "moreInfoButtonLabel": "Découvrir la solution Zimbra",
+  "welcome_title": "Bienvenue sur Zimbra",
+  "welcome_description": "Souhaitez-vous configurer votre compte maintenant ?",
+  "configure_title": "Configurons ensemble votre service",
+  "configure_exit": "Quitter la configuration",
+  "configure_success_message": "Félicitations, votre service est maintenant configuré !",
+  "card_guide_category": "Tutoriel",
+  "card_guide_title_1": "Premiers pas avec l'offre Zimbra",
+  "card_guide_title_2": "Configurer son compte Zimbra",
+  "card_guide_title_3": "Maitriser le webmail Zimbra",
+  "card_guide_description_1": "Découvrez comment créer vos premières boites mail et administrer votre service",
+  "card_guide_description_2": "Apprenez à configurer et utiliser votre compre Zimbra sur un terminal externe (PC ou smartphone)",
+  "card_guide_description_3": "Découvrez les fonctionnalités de l'interface web Zimbra"
+}

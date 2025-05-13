@@ -1,0 +1,88 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AddUserPage > should display form 1`] = `
+<DocumentFragment>
+  <ods-modal
+    is-open="true"
+  >
+    <ods-text
+      preset="heading-3"
+    >
+      pci_projects_project_storages_containers_container_addUser_object_title
+    </ods-text>
+    <div
+      class="my-6"
+    >
+      <ods-text>
+        pci_projects_project_storages_containers_container_addUser_description_object_step_0
+      </ods-text>
+      <ods-form-field
+        class="my-4 w-full"
+      >
+        <div
+          class="flex gap-2 items-center"
+          slot="label"
+        >
+          <ods-text
+            class="font-bold-class"
+            preset="caption"
+          >
+            pci_projects_project_storages_containers_container_addUser_select_user_label
+          </ods-text>
+        </div>
+        <ods-select
+          name="userSelect"
+          value="id"
+        >
+          <option
+            data-hint="pci_projects_project_storages_containers_container_addUser_select_user_has_not_credential"
+            value="id"
+          >
+            username -  description
+          </option>
+        </ods-select>
+      </ods-form-field>
+    </div>
+    <ods-button
+      is-disabled="false"
+      label="pci_projects_project_storages_containers_container_addUser_cancel_label"
+      slot="actions"
+      variant="outline"
+    />
+    <ods-button
+      is-disabled="true"
+      label="pci_projects_project_storages_containers_container_addUser_next_label"
+      slot="actions"
+    />
+  </ods-modal>
+</DocumentFragment>
+`;
+
+exports[`AddUserPage > should display spinner 1`] = `
+<DocumentFragment>
+  <ods-modal
+    is-open="true"
+  >
+    <ods-text
+      preset="heading-3"
+    >
+      pci_projects_project_storages_containers_container_addUser_object_title
+    </ods-text>
+    <ods-spinner
+      class="block text-center my-6"
+      size="md"
+    />
+    <ods-button
+      is-disabled="false"
+      label="pci_projects_project_storages_containers_container_addUser_cancel_label"
+      slot="actions"
+      variant="outline"
+    />
+    <ods-button
+      is-disabled="true"
+      label="pci_projects_project_storages_containers_container_addUser_next_label"
+      slot="actions"
+    />
+  </ods-modal>
+</DocumentFragment>
+`;

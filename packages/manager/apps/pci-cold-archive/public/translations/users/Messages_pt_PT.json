@@ -1,0 +1,20 @@
+{
+  "pci_projects_project_storages_containers_users_title": "Gestão das credenciais Object Storage",
+  "pci_projects_project_storages_containers_users_username": "Nome de utilizador",
+  "pci_projects_project_storages_containers_users_description": "Descrição",
+  "pci_projects_project_storages_containers_users_accesskey": "Chave de acesso",
+  "pci_projects_project_storages_containers_users_creation_date": "Data de criação",
+  "pci_projects_project_storages_containers_users_import_json": "Importar uma política de acesso do utilizador (JSON)",
+  "pci_projects_project_storages_containers_users_download_json": "Descarregar a política de acesso do utilizador (JSON)",
+  "pci_projects_project_storages_containers_users_download_rclone_file": "Descarregar o ficheiro rclone",
+  "pci_projects_project_storages_containers_users_see_secret_key": "Ver a chave secreta",
+  "pci_projects_project_storages_containers_users_user_management": "Gestão de utilizadores",
+  "pci_projects_project_storages_containers_users_user_description": "Nesta secção, pode adicionar um novo utilizador Object Storage, obter a sua chave de acesso e a sua chave secreta e gerir as políticas de acesso dos utilizadores.",
+  "pci_projects_project_storages_containers_users_user_description_warning": "Depois de criar o utilizador, será necessário gerar as credenciais Object Storage na secção «Utilizadores e funções».",
+  "pci_projects_project_storages_containers_users_add_user": "Adicionar um utilizador",
+  "pci_projects_project_storages_containers_users_import_success_message": "O download do ficheiro JSON associado ao utilizador {{user}} foi efetuado com êxito.",
+  "pci_projects_project_storages_containers_users_import_error_message": "Ocorreu um erro aquando do download do ficheiro JSON associado ao utilizador: {{ message }}.",
+  "pci_projects_project_storages_containers_users_show_secret_key_success": "A chave secreta do seu utilizador {{user}} é {{secret}}.",
+  "pci_projects_project_storages_containers_users_add_success_field_secret_key": "A sua chave secreta:",
+  "pci_projects_project_storages_containers_users_show_secret_key_error": "Ocorreu um erro aquando da recuperação da chave secreta do utilizador {{ user }}: {{ message }}"
+}

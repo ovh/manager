@@ -1,0 +1,12 @@
+{
+  "iam_identities_groups_title": "Grupy użytkowników",
+  "iam_identities_groups_empty": "Brak grup użytkowników",
+  "iam_identities_groups_group": "Nazwa",
+  "iam_identities_groups_role": "Rola",
+  "iam_identities_groups_description": "Opis",
+  "iam_identities_groups_add": "Dodaj grupy użytkowników",
+  "iam_identities_groups_modal_title": "Dodaj grupy użytkowników",
+  "iam_identities_groups_modal_empty_state": "Brak grup użytkowników do dodania",
+  "iam_identities_groups_modal_search_placeholder": "Wyszukaj po nazwie",
+  "iam_identities_groups_load_error": "Wystąpił błąd podczas pobierania informacji o grupach użytkowników: {{message}}"
+}

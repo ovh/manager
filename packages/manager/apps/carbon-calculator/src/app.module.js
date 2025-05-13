@@ -1,0 +1,151 @@
+import angular from 'angular';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import isString from 'lodash/isString';
+import uiRouter, { RejectType } from '@uirouter/angularjs';
+import '@ovh-ux/ui-kit';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
+import { registerCoreModule } from '@ovh-ux/manager-core';
+import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
+import CarbonCalculator from '../../../modules/carbon-calculator/src';
+import errorPage from './error';
+
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+import TRACKING from './tracking/at-internet.constants';
+
+export default async (containerEl, shellClient) => {
+  const moduleName = 'CarbonCalculatorApp';
+
+  const routingConfig = /* @ngInject */ ($urlRouterProvider) => {
+    $urlRouterProvider.otherwise('/');
+  };
+
+  const ssoAuthConfig = /* @ngInject */ (ssoAuthenticationProvider) => {
+    ssoAuthenticationProvider.setOnLogin(() => {
+      shellClient.auth.login();
+    });
+    ssoAuthenticationProvider.setOnLogout(() => {
+      shellClient.auth.logout();
+    });
+  };
+
+  const trackingConfig = /* @ngInject */ (atInternetConfigurationProvider) => {
+    atInternetConfigurationProvider.setSkipInit(true);
+    atInternetConfigurationProvider.setPrefix('dedicated');
+  };
+
+  const broadcastAppStarted = /* @ngInject */ ($rootScope, $transitions) => {
+    const unregisterHook = $transitions.onSuccess({}, async () => {
+      if (!isTopLevelApplication()) {
+        await shellClient.ux.hidePreloader();
+      }
+      $rootScope.$broadcast('app:started');
+      unregisterHook();
+    });
+  };
+
+  const [environment, locale] = await Promise.all([
+    shellClient.environment.getEnvironment(),
+    shellClient.i18n.getLocale(),
+  ]);
+
+  const coreCallbacks = {
+    onLocaleChange: (lang) => {
+      shellClient.i18n.setLocale(lang);
+    },
+  };
+
+  const defaultErrorHandler = /* @ngInject */ ($state) => {
+    $state.defaultErrorHandler((error) => {
+      if (error.type === RejectType.ERROR) {
+        $state.go(
+          'error',
+          {
+            detail: {
+              message: get(error.detail, 'data.message'),
+              code: has(error.detail, 'headers')
+                ? error.detail.headers('x-ovh-queryId')
+                : null,
+            },
+          },
+          { location: false },
+        );
+      }
+    });
+  };
+
+  const calendarConfigProvider = /* @ngInject */ (
+    ouiCalendarConfigurationProvider,
+  ) => {
+    const [lang] = locale.split('_');
+    return import(`flatpickr/dist/l10n/${lang}.js`)
+      .then((module) => {
+        ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
+      })
+      .catch(() => {});
+  };
+
+  const transitionsConfig = /* @ngInject */ ($transitions) => {
+    if (!isTopLevelApplication()) {
+      $transitions.onBefore({}, (transition) => {
+        if (
+          !transition.ignored() &&
+          transition.from().name !== '' &&
+          transition.entering().length > 0
+        ) {
+          shellClient.ux.startProgress();
+        }
+      });
+
+      $transitions.onSuccess({}, () => {
+        shellClient.ux.stopProgress();
+      });
+
+      $transitions.onError({}, (transition) => {
+        if (!transition.error().redirected) {
+          shellClient.ux.stopProgress();
+        }
+      });
+    }
+  };
+
+  angular
+    .module(
+      moduleName,
+      [
+        registerCoreModule(environment, coreCallbacks),
+        registerAtInternet(shellClient.tracking),
+        ovhManagerAtInternetConfiguration,
+        ngOvhSsoAuth,
+        ngUiRouterBreadcrumb,
+        'oui',
+        uiRouter,
+        errorPage,
+        CarbonCalculator,
+        ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
+      ].filter(isString),
+    )
+    .constant('shellClient', shellClient)
+    .config(
+      /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
+    )
+    .config(routingConfig)
+    .config(ssoAuthConfig)
+    .config(async () => {
+      await shellClient.tracking.setConfig(environment.getRegion(), TRACKING);
+    })
+    .config(trackingConfig)
+    .config(calendarConfigProvider)
+    .run(broadcastAppStarted)
+    .run(transitionsConfig)
+    .run(defaultErrorHandler);
+
+  angular.bootstrap(containerEl, [moduleName], {
+    strictDi: true,
+  });
+
+  return moduleName;
+};

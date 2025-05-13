@@ -1,0 +1,14 @@
+{
+  "billing_resiliation_title": "Rezygnuję z usługi",
+  "billing_resiliation_service_name": "Nazwa usługi",
+  "billing_resiliation_choice": "Chciałbyś:",
+  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Zakończyć umowę terminową i zachować usługę bez zobowiązań.",
+  "billing_resiliation_choice_CANCEL_SERVICE": "Zakończyć umowę terminową i usunąć usługę w dniu wygaśnięcia.",
+  "billing_resiliation_commitment_end_date": "Zakończenie umowy terminowej przewidziane na dzień:",
+  "billing_resiliation_details_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Po tym terminie zachowasz aktywną usługę {{serviceName}}. Nie będziesz już korzystał z rabatu związanego z umową terminową. Nie będziesz już związany umową terminową i będziesz mógł w każdej chwili usunąć usługę.",
+  "billing_resiliation_details_CANCEL_SERVICE": "W dniu wygaśnięcia utracisz dostęp do usługi, a tym samym do wszystkich danych, które może zawierać. Możesz zmienić tę decyzję do 24 godzin przed datą wygaśnięcia.",
+  "billing_resiliation_success": "Zlecenie rozwiązania umowy terminowej zostało złożone.",
+  "billing_resiliation_error": "Wystąpił błąd podczas rozwiązywania umowy terminowej.",
+  "billing_resiliation_cancel": "Anuluj",
+  "billing_resiliation_validate": "Zatwierdź"
+}

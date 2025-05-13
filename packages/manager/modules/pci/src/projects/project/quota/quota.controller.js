@@ -2,6 +2,7 @@ import {
   RESTRICTED_CORES,
   RESTRICTED_RAM,
   RESTRICTED_INSTANCES,
+  PRODUCTS,
 } from './quota.constants';
 
 export default class {
@@ -9,17 +10,20 @@ export default class {
   constructor(
     $state,
     $translate,
+    coreURLBuilder,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     OvhApiCloudProject,
-    PCI_REDIRECT_URLS,
+    PciProjectQuota,
   ) {
     this.$state = $state;
     this.$translate = $translate;
+    this.coreURLBuilder = coreURLBuilder;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
-    this.PCI_REDIRECT_URLS = PCI_REDIRECT_URLS;
+    this.PciProjectQuota = PciProjectQuota;
+    this.PRODUCTS = PRODUCTS;
   }
 
   $onInit() {
@@ -27,8 +31,28 @@ export default class {
 
     this.loadMessages();
 
-    this.paymentmeanUrl = this.PCI_REDIRECT_URLS[this.region].paymentMeans;
-    this.supportUrl = this.PCI_REDIRECT_URLS[this.region].support;
+    [this.paymentmeanUrl, this.supportUrl] = this.coreURLBuilder.buildURLs([
+      { application: 'dedicated', path: '#/billing/mean' },
+      { application: 'dedicated', path: '#/ticket' },
+    ]);
+
+    this.model = {
+      autoScaling: !this.project.manualQuota,
+    };
+
+    this.loaders = {
+      autoScaling: false,
+    };
+    this.PciProjectQuota.setServiceOptions(this.serviceOptions);
+    this.increaseQuotaUrls = {
+      // TODO : CHANGE href to the real page
+      contactSupport: `${this.$state.href(
+        this.$state.$current,
+      )}/increase/contact-support`,
+      buyCredits: `${this.$state.href(
+        this.$state.$current,
+      )}/increase/buy-credits`,
+    };
   }
 
   loadMessages() {
@@ -76,6 +100,32 @@ export default class {
             this.$translate.instant('pci_projects_project_quota_unleash_error'),
           );
         }
+      });
+  }
+
+  onAutoScalingQuotaSwitchChange(modelValue) {
+    this.loaders.autoScaling = true;
+
+    return this.OvhApiCloudProject.v6()
+      .put(
+        {
+          serviceName: this.projectId,
+        },
+        {
+          manualQuota: !modelValue,
+        },
+      )
+      .$promise.catch(() => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_quota_autoscaling_error',
+          ),
+        );
+
+        this.model.autoScaling = !this.model.autoScaling;
+      })
+      .finally(() => {
+        this.loaders.autoScaling = false;
       });
   }
 }

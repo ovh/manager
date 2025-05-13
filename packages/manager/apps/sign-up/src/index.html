@@ -1,32 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>OVH</title>
+        <title>OVHcloud</title>
         <meta charset="utf-8" />
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
     </head>
-    <body
-        class="sign-up-app"
-        data-ng-app="ovhSignUpApp"
-        data-ng-strict-di
-        data-ng-controller="SignUpCtrl as $ctrl"
-    >
+    <body class="sign-up-app" data-ng-controller="SignUpCtrl as $ctrl">
         <div class="container">
             <div class="py-3 py-md-5 px-3">
                 <a
                     class="d-inline-block pb-3 pb-md-5"
                     data-ng-href="{{ $ctrl.logoUrl }}"
+                    target="_top"
                 >
                     <img
-                        src="assets/img/logo-ovh-baseline.png"
-                        srcset="
-                            assets/img/logo-ovh-baseline@2x.png 2x,
-                            assets/img/logo-ovh-baseline@3x.png 3x
-                        "
-                        alt="OVHcloud - Innovation for freedom"
+                        data-ng-src="{{$ctrl.logoSrc.default}}"
+                        data-ng-srcset="{{$ctrl.logoSrc.set}}"
+                        alt="OVHcloud"
                         class="app-logo"
                     />
                 </a>

@@ -1,6 +1,0 @@
-{
- "analytics_data_platform_deploy_general_cluster_name_help": "O nome do cluster deve conter entre 3 e 20 caracteres. Só pode incluir letras minúsculas, “-” e números.",
- "analytics_data_platform_deploy_general_cluster_name_placeholder": "Introduza um nome de cluster",
- "analytics_data_platform_deploy_general_platform_version_placeholder": "Selecione um tipo de cluster",
- "analytics_data_platform_deploy_general_version_HDP2.6.2_description": "OVH Data Analytics Platform é um cluster de big data Apache Haddoop baseado em Hortonworks 2.6, protegido por Kerberos e implementado num projeto Public Cloud da OVH."
-}

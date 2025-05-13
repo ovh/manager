@@ -1,0 +1,9 @@
+{
+  "manager_hub_dashboard_kyc_banner_description": "Before you order an OVHcloud product, current regulations require verification of your identity. Please add your identity documents.",
+  "manager_hub_dashboard_kyc_banner_description_waiting": "To place an order, please read the email you’ve received from our team and follow the instructions to verify your identity.",
+  "manager_hub_dashboard_kyc_banner_link": "My documents",
+  "kyc_fraud_required_banner_text": "You need to verify your identity. To complete your current order, please add your supporting documents.",
+  "kyc_fraud_required_banner_link": "My documents",
+  "kyc_fraud_open_banner_text": "Your documents are currently being processed by our team. For more information, please refer to",
+  "kyc_fraud_open_banner_link": "My support tickets"
+}

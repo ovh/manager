@@ -1,0 +1,455 @@
+<div class="telecom-telephony-alias-records" data-ng-if="$ctrl.isInitialized">
+    <div class="alert alert-info" role="alert">
+        <p data-translate="telephony_alias_configuration_records_info1"></p>
+        <p data-translate="telephony_alias_configuration_records_info2"></p>
+    </div>
+
+    <div class="text-center" data-ng-if="$ctrl.queues.isLoading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div class="row" data-ng-if="!$ctrl.queues.isLoading">
+        <div
+            class="col-xs-12 col-md-6 widget-presentation"
+            data-ng-if="$ctrl.queues.raw.length > 1"
+        >
+            <header class="widget-presentation-header">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="telephony_alias_configuration_records_queues_title"
+                ></h2>
+            </header>
+
+            <div class="form-group">
+                <label
+                    for="queue"
+                    data-translate="telephony_alias_configuration_records_queues_label"
+                >
+                </label>
+                <select
+                    name="queue"
+                    id="queue"
+                    class="form-control"
+                    data-ng-model="$ctrl.queues.selected"
+                    data-ng-options="queue as ('telephony_alias_configuration_records_queue' | translate:{ id: $ctrl.getQueueLabel(queue) }) for queue in $ctrl.queues.raw"
+                    data-ng-change="$ctrl.changeQueue()"
+                >
+                </select>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-6 widget-presentation">
+            <header class="widget-presentation-header">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="telephony_alias_configuration_records_form_title"
+                ></h2>
+            </header>
+
+            <form
+                id="ovhPabxRecordsOptionsForm"
+                name="ovhPabxRecordsOptionsForm"
+                data-ng-submit="$ctrl.submitQueueChanges()"
+            >
+                <div class="oui-checkbox">
+                    <input
+                        type="checkbox"
+                        class="oui-checkbox__input"
+                        id="record"
+                        name="record"
+                        data-ng-model="$ctrl.queueForm.record"
+                    />
+                    <label class="oui-checkbox__label-container" for="record">
+                        <span class="oui-checkbox__label">
+                            <span class="oui-checkbox__icon"></span>
+                            <span
+                                class="oui-checkbox__text"
+                                data-translate="telephony_alias_configuration_records_form_record"
+                            ></span>
+                        </span>
+                    </label>
+                </div>
+
+                <div class="oui-checkbox">
+                    <input
+                        type="checkbox"
+                        class="oui-checkbox__input"
+                        id="askForRecordDisabling"
+                        name="askForRecordDisabling"
+                        data-ng-model="$ctrl.queueForm.askForRecordDisabling"
+                        data-ng-disabled="!$ctrl.queueForm.record"
+                    />
+                    <label
+                        class="oui-checkbox__label-container"
+                        for="askForRecordDisabling"
+                    >
+                        <span class="oui-checkbox__label">
+                            <span class="oui-checkbox__icon"></span>
+                            <span
+                                class="oui-checkbox__text"
+                                data-translate="telephony_alias_configuration_records_form_ask_for_record_disabling"
+                            ></span>
+                        </span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label
+                        for="recordDisablingLanguage"
+                        class="control-label"
+                        data-translate="telephony_alias_configuration_records_form_record_disabling_language"
+                    >
+                    </label>
+                    <select
+                        name="recordDisablingLanguage"
+                        id="recordDisablingLanguage"
+                        class="form-control"
+                        data-ng-required="$ctrl.queueForm.askForRecordDisabling"
+                        data-ng-model="$ctrl.queueForm.recordDisablingLanguage"
+                        data-ng-options="language as ('telephony_alias_configuration_records_form_record_disabling_language_' + language | translate) for language in $ctrl.enums"
+                        data-ng-disabled="!($ctrl.queueForm.record && $ctrl.queueForm.askForRecordDisabling)"
+                    >
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label
+                        for="recordDisablingDigit"
+                        class="control-label"
+                        data-translate="telephony_alias_configuration_records_form_record_disabling_digit"
+                    >
+                    </label>
+                    <select
+                        name="recordDisablingDigit"
+                        id="recordDisablingDigit"
+                        class="form-control"
+                        data-ng-required="$ctrl.queueForm.askForRecordDisabling"
+                        data-ng-model="$ctrl.queueForm.recordDisablingDigit"
+                        data-ng-options="digit for digit in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]"
+                        data-ng-disabled="!($ctrl.queueForm.record && $ctrl.queueForm.askForRecordDisabling)"
+                    >
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button
+                        type="submit"
+                        class="btn btn-primary no-transition"
+                        data-ng-if="$ctrl.hasChanges()"
+                        data-ng-disabled="ovhPabxRecordsOptionsForm.$invalid || $ctrl.queues.isUpdating"
+                    >
+                        <oui-spinner
+                            class="mr-2"
+                            data-ng-if="$ctrl.isUpdating"
+                            data-size="s"
+                        >
+                        </oui-spinner>
+                        <span
+                            data-translate="telephony_alias_configuration_records_form_submit"
+                        ></span>
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-link no-transition"
+                        data-ng-if="$ctrl.hasChanges()"
+                        data-ng-click="$ctrl.undoChanges()"
+                        data-ng-disabled="$ctrl.queues.isUpdating"
+                        data-translate="cancel"
+                    ></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 widget-presentation">
+            <header class="widget-presentation-header">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="telephony_alias_configuration_records_list_title"
+                ></h2>
+            </header>
+
+            <button
+                type="button"
+                class="btn btn-default mb-3"
+                data-ng-disabled="$ctrl.getSelection().length === 0 || $ctrl.records.isDeleting"
+                data-ng-click="$ctrl.deleteSelectedRecords()"
+            >
+                <oui-spinner
+                    class="mr-2"
+                    data-ng-if="$ctrl.records.isDeleting"
+                    data-size="s"
+                >
+                </oui-spinner>
+                <i
+                    class="ovh-font ovh-font-bin line-height-normal mr-2"
+                    aria-hidden="true"
+                    data-ng-if="!$ctrl.records.isDeleting"
+                ></i>
+                <span
+                    data-ng-if="$ctrl.getSelection().length <= 1"
+                    data-translate="telephony_alias_configuration_records_list_delete"
+                >
+                </span>
+                <span
+                    data-ng-if="$ctrl.getSelection().length > 1"
+                    data-translate="telephony_alias_configuration_records_list_delete_plural"
+                    data-translate-values="{ nb: $ctrl.getSelection().length }"
+                >
+                </span>
+            </button>
+
+            <div class="table-responsive">
+                <table
+                    class="table"
+                    data-ng-class="{
+                           'table-hover table-striped': $ctrl.records.paginated.length > 1
+                       }"
+                >
+                    <thead>
+                        <tr>
+                            <th>
+                                <input
+                                    type="checkbox"
+                                    data-ng-if="$ctrl.records.paginated.length"
+                                    data-ng-disabled="$ctrl.records.isDeleting"
+                                    data-ovh-checkbox-table
+                                    data-ovh-checkbox-table-ids-all="$ctrl.records.raw"
+                                    data-ovh-checkbox-table-ids-page="$ctrl.records.paginated"
+                                    data-ovh-checkbox-table-ids-selected="$ctrl.records.selected"
+                                    data-ovh-checkbox-table-id="id"
+                                />
+                            </th>
+                            <th scope="col">
+                                <button
+                                    class="btn btn-link p-0"
+                                    type="button"
+                                    data-ng-disabled="!$ctrl.records.paginated.length"
+                                    data-ng-click="$ctrl.orderRecordsBy('callStart')"
+                                >
+                                    <span
+                                        data-translate="telephony_alias_configuration_records_list_call_start"
+                                    ></span>
+                                    <span
+                                        class="oui-icon align-baseline"
+                                        aria-hidden="true"
+                                        data-ng-class="{
+                                              'oui-icon-arrow-down': $ctrl.records.orderBy !== 'callStart',
+                                              'oui-icon-arrow-down': $ctrl.records.orderBy === 'callStart' && $ctrl.records.orderDesc,
+                                              'oui-icon-arrow-up': $ctrl.records.orderBy === 'callStart' && !$ctrl.records.orderDesc
+                                          }"
+                                    >
+                                    </span>
+                                </button>
+                            </th>
+                            <th scope="col">
+                                <button
+                                    class="btn btn-link p-0"
+                                    type="button"
+                                    data-ng-disabled="!$ctrl.records.paginated.length"
+                                    data-ng-click="$ctrl.orderRecordsBy('callEnd')"
+                                >
+                                    <span
+                                        data-translate="telephony_alias_configuration_records_list_call_end"
+                                    ></span>
+                                    <span
+                                        class="oui-icon align-baseline"
+                                        aria-hidden="true"
+                                        data-ng-class="{
+                                              'oui-icon-arrow-down': $ctrl.records.orderBy !== 'callEnd',
+                                              'oui-icon-arrow-down': $ctrl.records.orderBy === 'callEnd' && $ctrl.records.orderDesc,
+                                              'oui-icon-arrow-up': $ctrl.records.orderBy === 'callEnd' && !$ctrl.records.orderDesc
+                                          }"
+                                    >
+                                    </span>
+                                </button>
+                            </th>
+                            <th scope="col">
+                                <button
+                                    class="btn btn-link p-0"
+                                    type="button"
+                                    data-ng-disabled="!$ctrl.records.paginated.length"
+                                    data-ng-click="$ctrl.orderRecordsBy('callerIdNumber')"
+                                >
+                                    <span
+                                        data-translate="telephony_alias_configuration_records_list_call_id_number"
+                                    ></span>
+                                    <span
+                                        class="oui-icon align-baseline"
+                                        aria-hidden="true"
+                                        data-ng-class="{
+                                              'oui-icon-arrow-down': $ctrl.records.orderBy !== 'callerIdNumber',
+                                              'oui-icon-arrow-down': $ctrl.records.orderBy === 'callerIdNumber' && $ctrl.records.orderDesc,
+                                              'oui-icon-arrow-up': $ctrl.records.orderBy === 'callerIdNumber' && !$ctrl.records.orderDesc
+                                          }"
+                                    >
+                                    </span>
+                                </button>
+                            </th>
+                            <th scope="col">
+                                <button
+                                    class="btn btn-link p-0"
+                                    type="button"
+                                    data-ng-disabled="!$ctrl.records.paginated.length"
+                                    data-ng-click="$ctrl.orderRecordsBy('agent')"
+                                >
+                                    <span
+                                        data-translate="telephony_alias_configuration_records_list_agent"
+                                    ></span>
+                                    <span
+                                        class="oui-icon align-baseline"
+                                        aria-hidden="true"
+                                        data-ng-class="{
+                                              'oui-icon-arrow-down': $ctrl.records.orderBy !== 'agent',
+                                              'oui-icon-arrow-down': $ctrl.records.orderBy === 'agent' && $ctrl.records.orderDesc,
+                                              'oui-icon-arrow-up': $ctrl.records.orderBy === 'agent' && !$ctrl.records.orderDesc
+                                          }"
+                                    >
+                                    </span>
+                                </button>
+                            </th>
+                            <th scope="col">
+                                <button
+                                    class="btn btn-link p-0"
+                                    type="button"
+                                    data-ng-disabled="!$ctrl.records.paginated.length"
+                                    data-ng-click="$ctrl.orderRecordsBy('duration')"
+                                >
+                                    <span
+                                        data-translate="telephony_alias_configuration_records_list_duration"
+                                    ></span>
+                                    <span
+                                        class="oui-icon align-baseline"
+                                        aria-hidden="true"
+                                        data-ng-class="{
+                                              'oui-icon-arrow-down': $ctrl.records.orderBy !== 'duration',
+                                              'oui-icon-arrow-down': $ctrl.records.orderBy === 'duration' && $ctrl.records.orderDesc,
+                                              'oui-icon-arrow-up': $ctrl.records.orderBy === 'duration' && !$ctrl.records.orderDesc
+                                          }"
+                                    >
+                                    </span>
+                                </button>
+                            </th>
+                            <th
+                                scope="col"
+                                data-translate="telephony_alias_configuration_records_list_file_url"
+                            ></th>
+                        </tr>
+                    </thead>
+                    <tbody
+                        data-ng-if="!$ctrl.records.isLoading && $ctrl.records.paginated.length"
+                    >
+                        <tr
+                            data-ng-repeat="record in $ctrl.records.paginated track by record.id"
+                        >
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    data-ng-if="record.status !== 'delete'"
+                                    data-ng-disabled="$ctrl.records.isDeleting"
+                                    data-ng-model="$ctrl.records.selected[record.id]"
+                                />
+                            </td>
+                            <td
+                                data-title="{{ ::'telephony_alias_configuration_records_list_call_start' | translate }}"
+                            >
+                                <span
+                                    class="text-nowrap"
+                                    data-ng-bind="record.callStart | date:'short'"
+                                ></span>
+                            </td>
+                            <td
+                                data-title="{{ ::'telephony_alias_configuration_records_list_call_end' | translate }}"
+                            >
+                                <span
+                                    class="text-nowrap"
+                                    data-ng-bind="record.callEnd | date:'short'"
+                                ></span>
+                            </td>
+                            <td
+                                data-title="{{ ::'telephony_alias_configuration_records_list_call_id_number' | translate }}"
+                            >
+                                <span
+                                    class="text-nowrap"
+                                    data-ng-bind="record.callerIdNumber"
+                                ></span>
+                            </td>
+                            <td
+                                data-title="{{ ::'telephony_alias_configuration_records_list_agent' | translate }}"
+                            >
+                                <span
+                                    class="text-nowrap"
+                                    data-ng-bind="record.agent"
+                                ></span>
+                            </td>
+                            <td
+                                data-title="{{ ::'telephony_alias_configuration_records_list_duration' | translate }}"
+                            >
+                                <span
+                                    class="text-nowrap"
+                                    data-ng-bind="record.duration"
+                                ></span
+                                >&nbsp;s
+                            </td>
+                            <td
+                                data-title="{{ ::'telephony_alias_configuration_records_list_file_url' | translate }}"
+                            >
+                                <a
+                                    class="btn btn-default"
+                                    target="_blank"
+                                    rel="noopener"
+                                    data-ng-href="{{ record.fileUrl }}"
+                                    data-translate-attr="{ title: 'telephony_alias_configuration_records_list_file_url_sr_only' }"
+                                >
+                                    <span
+                                        class="sr-only"
+                                        data-translate="telephony_alias_configuration_records_list_file_url_sr_only"
+                                    >
+                                    </span>
+                                    <i
+                                        class="fa fa-download"
+                                        aria-hidden="true"
+                                    ></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody
+                        data-ng-if="!$ctrl.records.isLoading && !$ctrl.records.paginated.length"
+                    >
+                        <tr>
+                            <td class="text-center py-3" colspan="7">
+                                <span
+                                    data-translate="telephony_alias_configuration_records_list_empty"
+                                ></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody data-ng-if="$ctrl.records.isLoading">
+                        <tr>
+                            <td colspan="7">
+                                <div class="text-center">
+                                    <oui-spinner data-size="s"></oui-spinner>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div
+                    class="mt-2"
+                    data-ng-if="!$ctrl.records.isLoading && $ctrl.records.raw.length"
+                    data-pagination-front
+                    data-items="$ctrl.records.sorted"
+                    data-paginated-items="$ctrl.records.paginated"
+                    data-current-page="currentPage"
+                    data-nb-pages="nbPages"
+                    data-items-per-page="itemsPerPage"
+                    data-page-placeholder="{{'common_pagination_page' | translate: {currentPage:currentPage, nbPages:nbPages} }}"
+                    data-item-per-page-placeholder="{{'common_pagination_display' | translate}}"
+                ></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.telecom-telephony-alias-records -->

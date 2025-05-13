@@ -1,0 +1,16 @@
+{
+  "dedicatedCloud_task_progress_operation": "Aktion:",
+  "dedicatedCloud_task_progress_task_reference": "Task: {{ task }}",
+  "dedicatedCloud_task_progress_state_done": "Abgeschlossen",
+  "dedicatedCloud_task_progress_state_canceled": "Abgebrochen",
+  "dedicatedCloud_task_progress_state_doing": "Wird ausgeführt",
+  "dedicatedCloud_task_progress_state_error": "Fehler",
+  "dedicatedCloud_task_progress_state_problem": "Problem",
+  "dedicatedCloud_task_progress_state_todo": "Zu erledigen",
+  "dedicatedCloud_task_progress_state_fixing": "Laufender Eingriff",
+  "dedicatedCloud_task_progress_state_toCancel": "Abzubrechen",
+  "dedicatedCloud_task_progress_state_toCreate": "Zu erstellen",
+  "dedicatedCloud_task_progress_state_unknown": "Unbekannt",
+  "dedicatedCloud_task_progress_state_waitingForChilds": "Warten auf Subtasks",
+  "dedicatedCloud_task_progress_state_waitingTodo": "Zu planen"
+}

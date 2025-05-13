@@ -1,0 +1,159 @@
+<div class="mondial-relay" data-ng-if="!$ctrl.loading.init">
+    <p data-translate="components_mondial_relay_head"></p>
+    <div class="row mb-3" data-ng-class="{ 'has-error': $ctrl.message }">
+        <div class="col-md-6">
+            <form
+                class="form-group"
+                role="search"
+                data-ng-submit="$ctrl.search()"
+            >
+                <div class="input-group">
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="search-relay"
+                        data-ng-model="$ctrl.filter.searchQuery"
+                        data-translate-attr="{ 'placeholder': 'components_mondial_relay_city_or_zipcode_label', 'aria-label': 'components_mondial_relay_city_or_zipcode_label' }"
+                    />
+                    <div class="input-group-btn">
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            data-ng-disabled="!$ctrl.filter.searchQuery"
+                            data-translate-attr="{ 'aria-label': 'search' }"
+                        >
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <span
+                class="mondial-loc"
+                data-ng-if="$ctrl.referenceAddress && !$ctrl.message"
+                data-translate="components_mondial_relay_search_results"
+                data-translate-values="{ 'loc': $ctrl.referenceAddress }"
+            >
+            </span>
+            <span
+                class="mondial-loc help-block"
+                data-ng-if="$ctrl.message"
+                data-ng-bind="$ctrl.message"
+            >
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <leaflet
+                id="{{::$ctrl.mapId}}"
+                data-markers="$ctrl.map.markers"
+                data-center="$ctrl.map.center"
+                data-event-broadcast="$ctrl.map.events"
+                data-bounds="$ctrl.map.bounds"
+            >
+            </leaflet>
+        </div>
+        <div class="col-sm-6">
+            <fieldset class="mondial-results">
+                <legend
+                    class="ng-hide"
+                    aria-hidden="true"
+                    data-translate="components_mondial_relay_choose"
+                ></legend>
+                <ul class="list-group">
+                    <li
+                        class="list-group-item"
+                        data-ng-repeat="relay in $ctrl.foundRelays track by relay.id"
+                        data-ng-mouseover="$ctrl.markerHover($index)"
+                        data-ng-click="$ctrl.select(relay)"
+                        data-ng-class="{ 'active': relay.selected, 'marker-hover': relay.markerHover }"
+                    >
+                        <div class="relay-cell">
+                            <div class="oui-radio">
+                                <input
+                                    class="oui-radio__input"
+                                    name="oui-radio"
+                                    value="oui-radio-{{$index}}"
+                                    id="oui-radio-{{$index}}"
+                                    data-ng-checked="relay.selected"
+                                    type="radio"
+                                />
+                                <label
+                                    class="oui-radio__label-container"
+                                    for="oui-radio-{{$index}}"
+                                >
+                                    <span class="oui-radio__label">
+                                        <span class="oui-radio__icon"></span>
+                                        <span class="oui-radio__text">
+                                            <span
+                                                class="mondial-marker"
+                                                data-ng-bind="relay.marker"
+                                            >
+                                            </span>
+                                            <strong
+                                                class="mondial-relay-name"
+                                                data-ng-bind="relay.name"
+                                            >
+                                            </strong>
+                                            <span
+                                                class="mondial-relay-caret glyphicon"
+                                                data-ng-class="'glyphicon-menu-' + (relay.selected? 'up': 'down')"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </span>
+                                    </span>
+                                    <span class="radio-description">
+                                        <span class="radio-description-relay">
+                                            <span
+                                                class="mondial-relay-address"
+                                                data-ng-bind="relay.address"
+                                            >
+                                            </span>
+                                            –
+                                            <span class="mondial-relay-city">
+                                                <span
+                                                    data-ng-bind="relay.zipcode"
+                                                ></span>
+                                                <span
+                                                    data-ng-bind="relay.city"
+                                                ></span>
+                                            </span>
+                                        </span>
+                                        <span
+                                            class="mondial-opening"
+                                            data-ng-if="relay.selected"
+                                        >
+                                            <div
+                                                class="row"
+                                                data-ng-repeat="item in relay.opening track by $index"
+                                                data-ng-if="item.days"
+                                            >
+                                                <span
+                                                    class="col-xs-4 text-right"
+                                                    data-ng-bind="item.days"
+                                                ></span>
+                                                <span class="col-xs-8">
+                                                    <em
+                                                        data-ng-if="!item.hours.length"
+                                                        data-translate="components_mondial_relay_off"
+                                                    ></em>
+                                                    <span
+                                                        data-ng-repeat="hour in item.hours track by $index"
+                                                        data-ng-bind="($first? '': ' / ') + hour"
+                                                    ></span>
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </fieldset>
+        </div>
+    </div>
+</div>

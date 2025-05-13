@@ -1,0 +1,106 @@
+<div data-ui-view>
+    <oui-header class="mb-3">
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: 'pci_projects_project_load_balancer_list_title' | translate }}"
+                ></h1>
+                <div
+                    class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
+                >
+                    <changelog-button
+                        links="$ctrl.CHANGELOG.load_balancer.links"
+                        chapters="$ctrl.CHANGELOG.load_balancer.chapters"
+                    ></changelog-button>
+                    <oui-guide-menu
+                        data-text="{{:: 'pci_project_guides_header' | translate }}"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-repeat="guide in $ctrl.GUIDES track by guide.id"
+                            data-href="{{ $ctrl.getGuideUrl(guide) }}"
+                            data-external
+                            data-on-click="$ctrl.trackGuideClick(guide)"
+                        >
+                            <span
+                                data-translate="{{ 'pci_projects_project_load_balancer_guide_' + guide.id.toLowerCase() }}"
+                            ></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
+            </div>
+        </oui-header-heading>
+    </oui-header>
+    <div class="container-fluid px-0">
+        <pci-maintenance-banner
+            data-steins="$ctrl.steins"
+            data-customer-regions="$ctrl.customerRegions"
+            data-product-regions="$ctrl.loadBalancersRegions"
+            data-is-list-page="true"
+            data-product-name=":: 'pci_projects_project_load_balancer_list_title' | translate"
+        ></pci-maintenance-banner>
+
+        <pci-announcement-banner
+            data-get-state-name="$ctrl.getStateName()"
+            data-on-go-to-region="$ctrl.goToRegion()"
+        ></pci-announcement-banner>
+
+        <cui-message-container
+            data-messages="$ctrl.messages"
+        ></cui-message-container>
+    </div>
+
+    <oui-datagrid
+        data-rows="$ctrl.loadBalancers"
+        data-row-loader="$ctrl.getLoadbalancerDetails($row)"
+        criteria="$ctrl.criteria"
+        on-criteria-change="$ctrl.onListParamChange($criteria)"
+    >
+        <oui-datagrid-topbar>
+            <oui-button
+                variant="secondary"
+                type="button"
+                data-on-click="$ctrl.gotoOrder()"
+            >
+                <span
+                    data-translate="pci_projects_project_load_balancer_list_order"
+                ></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_load_balancer_list_name' | translate"
+            data-property="name"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_load_balancer_list_id' | translate"
+            data-property="id"
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_load_balancer_list_region' | translate"
+            data-property="region"
+            data-searchable
+            data-filterable
+            data-sortable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_load_balancer_list_status' | translate"
+            data-property="status"
+            data-searchable
+            data-filterable
+            data-sortable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_load_balancer_list_ipAddres' | translate"
+            data-property="address.ipv4"
+        ></oui-datagrid-column>
+    </oui-datagrid>
+</div>

@@ -9,14 +9,14 @@ export default class TelecomBillingAccountService {
     { featureType, serviceName, serviceType },
   ) {
     const statePrefix = 'telecom.telephony.billingAccount.';
-    let state = `${statePrefix}line`;
+    let state = `${statePrefix}line.dashboard`;
 
     if (['alias'].includes(serviceType)) {
-      state = `${statePrefix}alias`;
+      state = `${statePrefix}alias.details`;
     } else if (['fax', 'voicefax'].includes(featureType)) {
-      state = `${statePrefix}fax`;
+      state = `${statePrefix}fax.dashboard`;
     } else if (['carrierSip'].includes(featureType)) {
-      state = `${statePrefix}carrierSip`;
+      state = `${statePrefix}carrierSip.dashboard`;
     }
 
     return {

@@ -1,0 +1,50 @@
+<div
+    data-wizard
+    data-wizard-on-finish=":: $ctrl.boundOnCloseClick"
+    data-wizard-on-cancel=":: $ctrl.boundOnCloseClick"
+    data-wizard-hide-cancel-button="currentStep !== 1"
+    data-wizard-hide-close-button="currentStep !== 1"
+    data-wizard-next-button-text=":: 'ua_wizard_confirm' | translate"
+    data-wizard-confirm-button-text=":: 'ua_wizard_close' | translate"
+    data-wizard-title=":: 'dedicatedCloud_USER_delete_' + $ctrl.user.userType + '_title' | translate"
+    data-wizard-hide-previous-button="true"
+    data-wizard-keydown-disabled
+    data-wizard-bread-crumb
+>
+    <div data-wizard-step>
+        <span
+            data-ng-if="!$ctrl.user.loginDomain"
+            data-translate="{{ :: 'dedicatedCloud_USER_delete_' + $ctrl.user.userType + '_message' }}"
+            data-translate-values="{ t0: '<b>' + $ctrl.user.login + '</b>' }"
+        ></span>
+        <span
+            data-ng-if="$ctrl.user.loginDomain && $ctrl.user.userType === 'user'"
+            data-translate="{{ :: 'dedicatedCloud_USER_delete_' + $ctrl.user.userType + '_message' }}"
+            data-translate-values="{ t0: '<b>' + $ctrl.user.loginUsername + '</b><span class=\'text-muted\'>@' + $ctrl.user.loginDomain + '</span>' }"
+        ></span>
+        <span
+            data-ng-if="$ctrl.user.loginDomain && $ctrl.user.userType !== 'user'"
+            data-translate="{{ :: 'dedicatedCloud_USER_delete_' + $ctrl.user.userType + '_message' }}"
+            data-translate-values="{ t0: '<b>' + $ctrl.user.loginUsername + '</b> <span class=\'text-muted\'>(' + $ctrl.user.loginDomain + ')</span>' }"
+        ></span>
+    </div>
+
+    <div
+        data-wizard-step
+        data-wizard-step-on-load="$ctrl.deleteUser.bind($ctrl)"
+    >
+        <div class="text-center" data-ng-if="!$ctrl.task">
+            <oui-spinner></oui-spinner>
+        </div>
+        <dedicated-cloud-task-poll-progress
+            data-ng-if="$ctrl.task"
+            data-dedicated-cloud="$ctrl.dedicatedCloud"
+            data-loaders="$ctrl.loaders"
+            data-product-id="$ctrl.productId"
+            data-task="$ctrl.task"
+            data-tracking-task-tag="$ctrl.TRACKING_TASK_TAG"
+            data-track-page="$ctrl.trackPage"
+        >
+        </dedicated-cloud-task-poll-progress>
+    </div>
+</div>

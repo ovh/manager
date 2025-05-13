@@ -1,0 +1,13 @@
+{
+  "pci_databases_general_information_upgrade_node_confirm": "Ulepsz model węzła",
+  "pci_databases_general_information_upgrade_node": "Zmień model węzła",
+  "pci_databases_general_information_upgrade_node_back": "Informacja",
+  "pci_databases_general_information_upgrade_node_cancel": "Anuluj",
+  "pci_databases_general_information_upgrade_node_description": "Aktualnie korzystasz z modelu węzła {{currentNodeModel}}. Możesz go ulepszyć klikając przycisk 'Popraw mój model węzła' poniżej.",
+  "pci_databases_general_information_upgrade_node_warning": "Po przeprowadzeniu modyfikacji nie będzie możliwości powrotu do niższego modelu.",
+  "pci_databases_general_information_upgrade_node_label": "Model",
+  "pci_databases_general_information_upgrade_node_placeholder": "Wybierz model węzła",
+  "pci_databases_general_information_upgrade_node_success": "Zmiana modelu węzła została zarejestrowana. Stanie się widoczna w ciągu kilku minut.",
+  "pci_databases_general_information_upgrade_node_error": "Zmiana modelu węzła nie została wykonana prawidłowo: {{message}}",
+  "pci_databases_general_information_upgrade_node_processing": "Ulepszanie modelu węzła..."
+}

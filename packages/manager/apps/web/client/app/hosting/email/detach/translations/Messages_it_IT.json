@@ -1,0 +1,8 @@
+{
+  "hosting_email_detach_option_title": "Scollega l’opzione email dall’hosting",
+  "hosting_email_detach_option_description": "L’opzione {{ emailOption }} è stata scelta in sostituzione del servizio di posta associato all’hosting Web {{hosting}}. Scollegare l’opzione permette di rinnovarla in modo indipendente rispetto all’hosting. L’opzione verrà fatturata alla tariffa standard applicata alle opzioni email.",
+  "hosting_email_detach_option_warning_irreversible": "Attenzione: questa azione è irreversibile.",
+  "hosting_email_detach_option_error": "Si è verificato un errore durante l’operazione di scollegamento dell’opzione: {{error}}",
+  "hosting_email_detach_option_success_with_payment": "La richiesta di scollegamento dell’opzione email è stata presa in carico correttamente. L’addebito di {{price}} è stato effettuato correttamente sull’account {{accountId}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Visualizza la tua fattura</a>",
+  "hosting_email_detach_option_success_with_no_payment": "Il tuo <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">ordine</a> è stato generato correttamente. Lo scollegamento dell’opzione email diventerà effettivo subito dopo aver effettuato il pagamento."
+}

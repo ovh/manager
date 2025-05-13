@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-product-offers",
-  "version": "1.0.3",
+  "version": "5.6.1",
   "private": true,
   "description": "Set of components and services to handle option order with different workflows",
   "repository": {
@@ -12,21 +12,23 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "lodash": "^4.17.15",
-    "moment": "^2.24.0"
+    "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-catalog-price": "^0.0.0 || ^1.0.0",
-    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
-    "@ovh-ux/ng-ovh-contracts": "^3.1.1",
-    "@ovh-ux/ng-ovh-payment-method": "^6.1.0",
+    "@ovh-ux/manager-catalog-price": "^1.0.0",
+    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/manager-filters": "^0.1.0 || ^1.0.0",
+    "@ovh-ux/ng-ovh-contracts": "^4.2.0",
+    "@ovh-ux/ng-ovh-payment-method": "^9.2.0",
     "@ovh-ux/ng-ovh-web-universe-components": "^6.0.1",
-    "@ovh-ux/ng-translate-async-loader": "^2.1.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.4",
+    "@ovh-ux/ui-kit": "^6.10.0",
     "angular": "^1.7.9",
     "angular-translate": "^2.18.2",
     "bootstrap": "^4.3.1",
-    "ovh-api-services": "^9.39.1",
-    "ovh-ui-angular": "^3.15.0",
-    "ovh-ui-kit": "^2.39.0"
+    "jsurl": "^0.1.5",
+    "moment": "^2.24.0",
+    "ovh-api-services": "^14.0.6"
   }
 }

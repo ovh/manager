@@ -1,9 +1,0 @@
-{
-  "telephony_group_consumption_pie_chart_incoming_labels": "Saapuvat",
-  "telephony_group_consumption_pie_chart_incoming_label": "Saapuva",
-  "telephony_group_consumption_pie_chart_outgoing_labels": "Lähtevät",
-  "telephony_group_consumption_pie_chart_outgoing_label": "Lähtevä",
-  "telephony_group_consumption_pie_chart_transfer_labels": "Siirretty",
-  "telephony_group_consumption_pie_chart_transfer_label": "Siirretty",
-  "telephony_group_consumption_pie_chart_total_label": "Yhteensä"
-}

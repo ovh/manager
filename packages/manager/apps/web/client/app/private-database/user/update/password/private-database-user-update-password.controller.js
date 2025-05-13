@@ -3,6 +3,7 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'PrivateDatabaseUpdatePasswordCtrl',
   class PrivateDatabaseUpdatePasswordCtrl {
+    /* @ngInject */
     constructor(
       Alerter,
       PrivateDatabase,

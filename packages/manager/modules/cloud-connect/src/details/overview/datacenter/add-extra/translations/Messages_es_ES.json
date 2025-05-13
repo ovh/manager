@@ -1,0 +1,23 @@
+{
+  "cloud_connect_datacenter_add_routing_title": "Añadir una configuración de enrutamiento",
+  "cloud_connect_datacenter_add_routing_select_title": "Tipo",
+  "cloud_connect_datacenter_add_routing_select_placeholder": "Seleccione",
+  "cloud_connect_datacenter_add_routing_select_asn": "Introduzca el ASN del cliente",
+  "cloud_connect_datacenter_add_routing_network_neighbor": "Introduzca la dirección IP Neighbor",
+  "cloud_connect_datacenter_add_routing_network_neighbor_placeholder": "IP Neighbor",
+  "cloud_connect_datacenter_add_routing_nexthop": "Introduzca el next hop",
+  "cloud_connect_datacenter_add_routing_nexthop_placeholder": "Next hop",
+  "cloud_connect_datacenter_add_routing_subnet": "Introduzca la subred de destino",
+  "cloud_connect_datacenter_add_routing_subnet_placeholder": "Subred",
+  "cloud_connect_datacenter_add_routing_bgp_area": "Introduzca el ASN del cliente",
+  "cloud_connect_datacenter_add_routing_bgp_ip": "Introduzca el IP Neighbor",
+  "cloud_connect_datacenter_add_routing_error": "Se ha producido un error al añadir la configuración de enrutamiento: {{message}}",
+  "cloud_connect_datacenter_add_routing_success": "La configuración de enrutamiento se ha añadido. <a href=\"{{ tasksUrl }}\">Haga clic aquí para ver el estado.</a>",
+  "cloud_connect_datacenter_add_routing_bgp_area_placeholder": "ASN del cliente",
+  "cloud_connect_datacenter_add_routing_bgp_ip_popover": "Dirección IP del neighbor BGP de su router en la zona de disponibilidad. Esta dirección debe formar parte de la subred configurada en la sección «Configuración AZ».",
+  "cloud_connect_datacenter_add_routing_ip_help_message": "Dirección IPv4 vinculada a la zona de disponibilidad.",
+  "cloud_connect_datacenter_add_routing_ip_invalid_message": "Introduzca un bloque de IPv4 válido.",
+  "cloud_connect_datacenter_add_routing_asn_helper": "Número positivo no nulo excepto 65501",
+  "cloud_connect_datacenter_add_routing_asn_popover": "Su número de AS BGP, configurado en su router situado en la zona de disponibilidad.",
+  "cloud_connect_datacenter_add_routing_type_helper": "La configuración de enrutamiento solo puede ser de un tipo."
+}

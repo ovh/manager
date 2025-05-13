@@ -3,5 +3,5 @@
   "doubleauth_modal_alert_message": "Attention: you do not have a single-use emergency code.",
   "doubleauth_modal_alert_message_1": "Attention: you have only one single-use emergency code.",
   "doubleauth_modal_alert_message_other": "Attention: you have only <strong>{{t0}}</strong> single-use emergency codes.",
-  "doubleauth_modal_alert_message_regenerate": "Voulez-vous regénérer un nouveau jeu de codes de secours ?"
+  "doubleauth_modal_alert_message_regenerate": "Do you want to regenerate a new set of backup codes?"
 }

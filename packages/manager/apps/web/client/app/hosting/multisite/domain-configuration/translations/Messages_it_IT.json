@@ -1,0 +1,21 @@
+{
+  "hosting_multisite_domain_configuration_home": "Cartella di root",
+  "hosting_multisite_domain_configuration_myfolder": "miacartella",
+  "hosting_multisite_domain_configuration_firewall": "Attiva il firewall",
+  "hosting_multisite_domain_configuration_cdn": "Attiva la CDN",
+  "hosting_multisite_domain_configuration_information": "Per far funzionare la configurazione, è necessario effettuare queste modifiche sul tuo dominio:",
+  "hosting_multisite_domain_configuration_none_options": "Nessuna opzione",
+  "hosting_multisite_domain_configuration_ownlog": "Log separati",
+  "hosting_multisite_domain_configuration_runtime": "Programma d'esecuzione",
+  "hosting_multisite_domain_configuration_options_choose": "Seleziona un'opzione",
+  "hosting_multisite_domain_configuration_cdn_help": "Attiva la CDN e accelera la velocità di caricamento delle pagine del tuo sito in tutto il mondo.",
+  "hosting_multisite_domain_configuration_country_ip_help": "Attiva l'IP specifico del paese per geolocalizzare il tuo sito e ottimizzarne il referianziamento.",
+  "hosting_multisite_domain_configuration_firewall_help": "Attiva il firewall per garantire una maggiore protezione al tuo sito.",
+  "hosting_multisite_domain_configuration_ownlog_help": "Attiva questa opzione per visualizzare log separati per il tuo multisito.",
+  "hosting_multisite_domain_configuration_path_help": "I caratteri accettati per le cartelle sono lettere, cifre e i caratteri -_./ Non è possibile accedere alle cartelle superiori utilizzando ..",
+  "hosting_multisite_domain_configuration_countriesIp": "IP del Paese",
+  "hosting_multisite_domain_configuration_countriesIp_none": "Nessuno",
+  "hosting_multisite_domain_configuration_ssl": "SSL",
+  "hosting_multisite_domain_configuration_ssl_help": "Attiva l'opzione SSL per poter accedere al tuo sito in https",
+  "hosting_multisite_domain_configuration_git_warning": "Se vuoi modificare la cartella root, è necessario rimuovere prima la tua configurazione Git dalla directory per evitare eventuali problemi di controllo delle modifiche e gestione dei deploy."
+}

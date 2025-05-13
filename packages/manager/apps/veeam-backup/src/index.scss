@@ -1,0 +1,11 @@
+@tailwind utilities;
+
+@import '@ovhcloud/ods-themes/default';
+
+html {
+  font-family: var(--ods-font-family-default);
+}
+
+.progress__full-width::part(progress) {
+  width: 100%;
+}

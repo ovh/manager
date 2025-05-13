@@ -1,6 +1,8 @@
 import angular from 'angular';
 import 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
+
+import './index.scss';
 
 import component from './component';
 

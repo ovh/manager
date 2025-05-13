@@ -1,0 +1,8 @@
+{
+  "hosting_email_detach_option_title": "Die E-Mail-Option von meinem Hosting trennen",
+  "hosting_email_detach_option_description": "Das Angebot {{ emailOption }} wurde als Ersatz für das mit dem Webhosting {{hosting}} verbundene Angebot für E-Mail gewählt. Wenn Sie die Option trennen, können Sie sie unabhängig von Ihrem Hosting erneuern.  Die Option wird Ihnen dann zum Standardpreis für E-Mail-Optionen berechnet.",
+  "hosting_email_detach_option_warning_irreversible": "Achtung, diese Aktion kann nicht rückgängig gemacht werden!",
+  "hosting_email_detach_option_error": "Beim Trennen der Option ist ein Fehler aufgetreten: {{error}}",
+  "hosting_email_detach_option_success_with_payment": "Die Abtrennung der E-Mail-Option wurde registriert. Dein Konto {{accountId}} wurde von {{price}} abgebucht. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Siehe meine Rechnung</a>",
+  "hosting_email_detach_option_success_with_no_payment": "Ihr <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Kaufauftrag</a> wurde generiert. Die Abtrennung der E-Mail-Option wird mit ihrer Bezahlung wirksam."
+}

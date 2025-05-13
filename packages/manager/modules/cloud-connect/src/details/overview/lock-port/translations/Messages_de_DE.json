@@ -1,0 +1,7 @@
+{
+  "cloud_connect_block": "Sperren",
+  "cloud_connect_pop_port_block": "Den Port sperren",
+  "cloud_connect_pop_block_port_confirm": "Möchten Sie wirklich den Port {{portNumber}} sperren?",
+  "cloud_connect_pop_block_port_success": "Der Port {{port}} wird gesperrt. <a href=\"{{ tasksUrl }}\">Klicken Sie hier, um den Status anzuzeigen.</a>",
+  "cloud_connect_pop_block_port_error": "Das Sperren des Ports ist fehlgeschlagen: {{message}}"
+}

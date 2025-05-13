@@ -1,0 +1,15 @@
+{
+  "pci_database_allowed_ip_add": "Dodaj adres IP lub blok adresów IP (CIDR)",
+  "pci_database_allowed_ip_update": "Edytuj adres IP lub blok adresów IP (CIDR)",
+  "pci_database_allowed_ip_submit_label": "Zatwierdź",
+  "pci_database_allowed_ip_cancel_label": "Anuluj",
+  "pci_database_allowed_ip_label": "Adres IP lub IP/maska",
+  "pci_database_allowed_ip_description_label": "Opis",
+  "pci_database_allowed_ip_help": "Użyj adresu IPv4 (np.: 192.168.0.1) lub bloku adresów IP (np.: 192.168.0.1/24)",
+  "pci_database_allowed_ip_placeholder": "Wprowadź adres lub zakres adresów sieciowych IPv4",
+  "pci_database_allowed_ip_exits": "Ten adres IP został już dodany",
+  "pci_database_allowed_ip_add_success": "Adres IP został dodany do białej listy.",
+  "pci_database_allowed_ip_add_error": "Wystąpił błąd podczas tworzenia białej listy: {{message}}",
+  "pci_database_allowed_ip_update_success": "Zmiana adresu IP została zarejestrowana.",
+  "pci_database_allowed_ip_update_error": "Wystąpił błąd podczas edytowania białej listy: {{message}}"
+}

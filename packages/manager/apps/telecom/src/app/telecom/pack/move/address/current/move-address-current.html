@@ -1,0 +1,112 @@
+<div class="col-md-5 col-xs-12 m-0 p-0">
+    <div class="block-emphasis location location--current">
+        <div class="block-emphasis__row">
+            <div class="block-emphasis__column block-emphasis__column--first">
+                <span
+                    class="location__icon ovh-font ovh-font-home"
+                    aria-hidden="true"
+                ></span>
+            </div>
+            <div class="block-emphasis__column">
+                <h3 data-translate="pack_move_line_current_address"></h3>
+                <div class="text-center" data-ng-if="$ctrl.loading">
+                    <oui-spinner></oui-spinner>
+                </div>
+                <div
+                    data-ng-if="$ctrl.address.address.floor && $ctrl.address.address.door && $ctrl.address.address.stairs"
+                >
+                    <span data-ng-if="$ctrl.address.address.door">
+                        <span
+                            data-translate="pack_move_line_address_door"
+                        ></span>
+                        <span data-ng-bind="$ctrl.address.address.door"></span>
+                    </span>
+                    <span data-ng-if="$ctrl.address.address.floor">
+                        <span
+                            data-translate="pack_move_line_address_floor"
+                        ></span>
+                        <span data-ng-bind="$ctrl.address.address.floor"></span>
+                    </span>
+                    <span data-ng-if="$ctrl.address.address.stairs">
+                        <span
+                            data-translate="pack_move_line_address_stairs"
+                        ></span>
+                        <span
+                            data-ng-bind="$ctrl.address.address.stairs"
+                        ></span>
+                    </span>
+                </div>
+                <div
+                    data-ng-if="$ctrl.address.address.residence && $ctrl.address.address.building"
+                >
+                    <span data-ng-if="$ctrl.address.address.building">
+                        <span
+                            data-translate="pack_move_line_address_building"
+                        ></span>
+                        <span
+                            data-ng-bind="$ctrl.address.address.building"
+                        ></span>
+                    </span>
+                    <span data-ng-if="$ctrl.address.address.residence">
+                        <span
+                            data-translate="pack_move_line_address_residence"
+                        ></span>
+                        <span
+                            data-ng-bind="$ctrl.address.address.residence"
+                        ></span>
+                    </span>
+                </div>
+                <div>
+                    <span
+                        data-ng-bind="$ctrl.address.address.numberStreet"
+                    ></span>
+                    <span data-ng-if="$ctrl.address.address.numberStreet"
+                        >,</span
+                    >
+                    <span
+                        data-ng-bind="$ctrl.address.address.street.toUpperCase()"
+                    ></span>
+                </div>
+                <div>
+                    <span data-ng-bind="$ctrl.address.address.zipCode"></span>
+                    <span
+                        data-ng-bind="$ctrl.address.address.city.toUpperCase()"
+                    ></span>
+                </div>
+            </div>
+        </div>
+        <!-- BEGIN: port number -->
+        <div class="checkbox mt-3 ml-4 mr-2">
+            <label for="portLine" class="pl-2">
+                <input
+                    id="portLine"
+                    type="checkbox"
+                    data-ng-disabled="!$ctrl.portability"
+                    data-ng-model="$ctrl.portLineNumber"
+                />
+                <span
+                    class="service-item"
+                    data-translate="pack_move_portLine"
+                ></span>
+                <strong
+                    class="location__lineNumber"
+                    data-ng-bind="$ctrl.lineNumber"
+                ></strong>
+            </label>
+        </div>
+
+        <p
+            data-translate="pack_move_keepLine_disabled"
+            class="mt-2"
+            data-ng-if="!$ctrl.portability"
+        ></p>
+
+        <div
+            class="alert alert-warning"
+            role="alert"
+            data-ng-if="$ctrl.portLineNumber"
+            data-translate="pack_move_portLine_warning"
+        ></div>
+        <!-- END: port number -->
+    </div>
+</div>

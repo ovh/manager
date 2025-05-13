@@ -1,0 +1,15 @@
+{
+  "pci_databases_pattern_tab_title": "Modelli",
+  "pci_databases_indexes_tab_title": "Indici",
+  "pci_databases_indexes_pattern_model": "Modello",
+  "pci_databases_indexes_pattern_max_index": "Numero massimo di indici",
+  "pci_databases_indexes_pattern_add": "Aggiungi un modello",
+  "pci_databases_indexes_index_name": "Indice",
+  "pci_databases_indexes_index_shard_number": "Shard",
+  "pci_databases_indexes_index_replicas_number": "Repliche",
+  "pci_databases_indexes_index_size": "Dimensione",
+  "pci_databases_indexes_index_document": "Documenti",
+  "pci_databases_indexes_index_date": "Data di creazione",
+  "pci_databases_indexes_delete_index_error_message": "Si è verificato un errore durante l'eliminazione dell'indice. Ti preghiamo di riprovare.",
+  "pci_databases_indexes_delete_pattern_error_message": "Si è verificato un errore durante l'eliminazione del modello. Ti preghiamo di riprovare."
+}

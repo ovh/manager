@@ -2,17 +2,13 @@
     data-heading="{{ 'pci_projects_project_storages_containers_container_delete_'+ ($ctrl.archive ? 'archive' : 'object') + '_title' | translate }}"
     data-primary-action="$ctrl.deleteStorage()"
     data-primary-label="{{:: 'pci_projects_project_storages_containers_container_delete_submit_label' | translate }}"
-    data-primary-disabled="$ctrl.isLoading"
-    data-secondary-action="$ctrl.goBack()"
+    data-primary-disabled="$ctrl.isPrimaryDisabled()"
+    data-secondary-action="$ctrl.cancel()"
     data-secondary-label="{{:: 'pci_projects_project_storages_containers_container_delete_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.isLoading"
 >
-    <div data-ng-if="$ctrl.container">
-        <p
-            data-translate="pci_projects_project_storages_containers_container_delete_content"
-            data-translate-values="{ container: $ctrl.container.name }"
-        ></p>
+    <div data-ng-if="$ctrl.container && $ctrl.container.storedObjects > 0">
         <oui-message data-type="warning">
             <span
                 data-translate="pci_projects_project_storages_containers_container_delete_archive_erase_message"
@@ -20,8 +16,20 @@
             ></span>
             <span
                 data-translate="pci_projects_project_storages_containers_container_delete_object_erase_message"
-                data-ng-if="!$ctrl.archive"
+                data-ng-if="!$ctrl.archive && !$ctrl.container.s3StorageType"
+            ></span>
+            <span
+                data-translate="pci_projects_project_storages_containers_container_delete_warning"
+                data-translate-values="{ container: $ctrl.container.name }"
+                data-ng-if="$ctrl.container.s3StorageType"
             ></span>
         </oui-message>
+    </div>
+
+    <div data-ng-if="$ctrl.container && $ctrl.container.storedObjects === 0">
+        <span
+            data-translate="pci_projects_project_storages_containers_container_delete_empty_warning"
+            data-translate-values="{ container: $ctrl.container.name }"
+        ></span>
     </div>
 </oui-modal>

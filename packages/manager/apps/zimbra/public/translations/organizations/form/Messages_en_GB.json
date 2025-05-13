@@ -1,0 +1,21 @@
+{
+  "zimbra_organization_add": "Confirm",
+  "zimbra_organization_add_modal_title": "Add an organisation",
+  "zimbra_organization_add_modal_content_part1": "The organisation comprises logically grouped domains and mailboxes.",
+  "zimbra_organization_add_modal_content_part2": "You can define grouped management policies and set mailbox isolation, which includes limiting access to the company directory.",
+  "zimbra_organization_edit_modal_title": "Edit organisation",
+  "zimbra_organization_add_form_input_mandatory": "Fields marked with an asterisk (*) are mandatory",
+  "zimbra_organization_add_form_input_name_title": "Name",
+  "zimbra_organization_add_form_input_name_placeholder": "Name",
+  "zimbra_organization_add_form_input_name_error": "Mandatory field.",
+  "zimbra_organization_add_form_input_label_title": "Organisation Label",
+  "zimbra_organization_add_form_input_label_placeholder": "Label",
+  "zimbra_organization_add_form_input_label_error": "Required field. Maximum of {{ value }} characters.",
+  "zimbra_organization_add_form_input_label_tooltip": "The label is a brief text that is used to filter and navigate in the Control Panel.",
+  "zimbra_organization_add_form_input_label_helper": "{{ value }} characters maximum.",
+  "zimbra_organization_add_success_message": "Your request to add an organisation has been submitted. It will take effect in a few moments.",
+  "zimbra_organization_add_error_message": "Unable to submit your request to add an organisation. {{ error }}",
+  "zimbra_organization_edit_success_message": "Your request to edit has been submitted. It will be executed in a few moments.",
+  "zimbra_organization_edit_error_message": "Unable to submit your request to edit. {{ error }}",
+  "zimbra_organization_add_cancel": "Cancel"
+}

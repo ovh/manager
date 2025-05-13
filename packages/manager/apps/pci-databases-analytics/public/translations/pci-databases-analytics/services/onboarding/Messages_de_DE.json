@@ -1,0 +1,17 @@
+{
+  "title": "Mit unseren gemanagten Datenbanken können Sie sich ganz auf Ihre Anwendungen konzentrieren.",
+  "description1": "Nutzen Sie das gesamte Potenzial Ihrer Daten und behalten Sie dabei die Kontrolle über Ihre Ressourcen.",
+  "description2": "Wählen Sie aus einer breiten Palette von Datenbank-Engines die für Sie passende Option aus und stellen Sie diese in wenigen Minuten bereit. Wir kümmern uns um die Infrastruktur und die Administration Ihrer gemanagten Dienste.",
+  "description3": "Sie sparen Zeit und Geld und können sich ganz auf Ihre Entwicklungen und den Mehrwert Ihrer Anwendungen für Ihre Kund:innen konzentrieren.",
+  "createServiceButton": "Managed Database erstellen",
+  "cardGuidestitle": "Guides",
+  "cardGuidesDescription": "Datenbankdokumentation",
+  "cardGuidesContent": "Hier finden Sie alle Guides und Tutorials zu unseren gemanagten Datenbanken.",
+  "cardQuickStartTitle": "Quick Start",
+  "cardQuickStartDescription": "Erste Datenbank deployen",
+  "cardQuickStartContent": "Erfahren Sie, wie Sie Ihre erste gemanagte Datenbank schnell installieren können.",
+  "cardFreeTierTitle": "Free Tier",
+  "cardFreeTierTescription": "Testen Sie das kostenlose MongoDB-Angebot.",
+  "cardFreeTierContent": "Profitieren Sie von einem komplett kostenlosen gemanagten MongoDB-Cluster.",
+  "cardLink": "Mehr erfahren"
+}

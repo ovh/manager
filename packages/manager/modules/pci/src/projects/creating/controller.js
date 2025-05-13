@@ -1,22 +1,25 @@
 import find from 'lodash/find';
-import get from 'lodash/get';
 import some from 'lodash/some';
 
+import { SLIDE_ANIMATION_INTERVAL, SLIDE_IMAGES } from './constants';
 import {
   ORDER_FOLLOW_UP_POLLING_INTERVAL,
   ORDER_FOLLOW_UP_STATUS_ENUM,
   ORDER_FOLLOW_UP_STEP_ENUM,
-  SLIDE_ANIMATION_INTERVAL,
-  SLIDE_IMAGES,
-} from './constants';
+} from '../projects.constant';
+import {
+  PCI_HDS_ADDON,
+  PCI_HDS_DISCOVERY_ADDON,
+} from '../project/project.constants';
 
 export default class PciProjectCreatingCtrl {
   /* @ngInject */
-  constructor($q, $timeout, pciProjectCreating) {
+  constructor($q, $timeout, pciProjectCreating, PciProjectsService) {
     // dependencies injections
     this.$q = $q;
     this.$timeout = $timeout;
     this.pciProjectCreating = pciProjectCreating;
+    this.PciProjectsService = PciProjectsService;
 
     // other attributes
     this.pollingNamespace = 'pci.projects.order';
@@ -31,7 +34,33 @@ export default class PciProjectCreatingCtrl {
   getDeliveredProjectId() {
     return this.pciProjectCreating
       .getOrderDetails(this.orderId)
-      .then((details) => get(details, '[0].domain'));
+      .then((details) => {
+        const orderItemsDetailPromises = details.map(({ orderDetailId }) =>
+          this.pciProjectCreating
+            .getOrderItemDetails(this.orderId, orderDetailId)
+            .then((data) => {
+              return { orderDetailId, item: data };
+            }),
+        );
+
+        return this.$q
+          .all(orderItemsDetailPromises)
+          .then((orderItemsDetails) => {
+            return { details, orderItemsDetails };
+          });
+      })
+      .then(({ details, orderItemsDetails }) => {
+        const itemDetails = orderItemsDetails.find(
+          ({ item }) =>
+            item.order.plan.code === PCI_HDS_ADDON.parentPlanCode ||
+            item.order.plan.code === PCI_HDS_DISCOVERY_ADDON.parentPlanCode,
+        );
+        const detail = details.find(
+          ({ orderDetailId }) => itemDetails.orderDetailId === orderDetailId,
+        );
+
+        return detail.domain;
+      });
   }
 
   /* ==============================
@@ -40,8 +69,7 @@ export default class PciProjectCreatingCtrl {
 
   startOrderFollowUpPolling(interval = ORDER_FOLLOW_UP_POLLING_INTERVAL) {
     this.orderFollowUpPolling = this.$timeout(() => {
-      this.pciProjectCreating
-        .getOrderFollowUp(this.orderId)
+      this.PciProjectsService.getOrderFollowUp(this.orderId)
         .then((followUp) => {
           const { status } = find(followUp, {
             step: ORDER_FOLLOW_UP_STEP_ENUM.DELIVERING,

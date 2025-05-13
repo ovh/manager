@@ -1,0 +1,6 @@
+{
+  "autorenew_service_debt_warn_title": "Ważna informacja",
+  "autorenew_service_debt_warn_settle": "Zapłać",
+  "autorenew_service_debt_warn_cancel": "Anuluj",
+  "autorenew_service_debt_warn_deletion": "Nie możesz zakończyć tej usługi, zanim nie opłacisz zaległej należności.  Aby opłacić fakturę za usługę <strong>{{service}}</strong>, przejdź do sekcji \"Płatności\"."
+}

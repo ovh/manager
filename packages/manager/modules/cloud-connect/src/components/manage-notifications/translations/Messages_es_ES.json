@@ -1,0 +1,5 @@
+{
+  "cloud_connect_manage_notifications_title": "Gestión de notificaciones del servicio ",
+  "cloud_connect_manage_notifications_save_success": "Su configuración se ha guardado correctamente.",
+  "cloud_connect_manage_notifications_save_error": "Se ha producido un error <br> {{message}} <br> request-id: {{queryId}}"
+}

@@ -14,7 +14,23 @@ export const PRICING_CAPACITIES = {
   UPGRADE: 'upgrade',
 };
 
+export const PRICING_MODE = {
+  DEFAULTS: {
+    CREATE: 'create-default',
+    DEFAULT: 'default',
+    TRANSFER: 'transfer-default',
+    PREMIUM: 'premium-default',
+    CREATE_PREMIUM: 'create-premium',
+    TRANSFER_PREMIUM: 'transfer-premium',
+    TRANSFER_AFTERMARKET1: 'transfer-aftermarket1',
+    TRANSFER_AFTERMARKET2: 'transfer-aftermarket2',
+    RESTORE_PREMIUM: 'restore-premium',
+    RESTORE_DEFAULT: 'restore-default',
+  },
+};
+
 export default {
   ISO_DURATION_FORMAT,
   PRICING_CAPACITIES,
+  PRICING_MODE,
 };

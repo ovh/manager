@@ -1,0 +1,8 @@
+{
+  "task_tracker_close": "Schließen",
+  "task_tracker_empty_error": "Zu diesem Fehler liegen keine Details vor, bitte kontaktieren Sie den Support.",
+  "task_tracker_step_doing": "Der Vorgang läuft bereits.",
+  "task_tracker_step_done": "Der Vorgang wurde erfolgreich abgeschlossen.",
+  "task_tracker_step_error": "Es ist ein Fehler aufgetreten: {{message}}",
+  "task_tracker_step_todo": "Der Vorgang wird in wenigen Augenblicken gestartet."
+}

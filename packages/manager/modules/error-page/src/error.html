@@ -8,7 +8,7 @@
                     <img
                         data-ng-src="{{ :: $ctrl.image || $ctrl.DEFAULT_ASSET }}"
                         class="mw-100"
-                        alt=""
+                        alt
                     />
                 </div>
 
@@ -50,7 +50,7 @@
                     >
                     </a>
                     <a
-                        class="oui-button oui-button_link"
+                        class="oui-button oui-button_ghost"
                         data-ng-bind=":: $ctrl.cancelLabel || ('manager_error_page_action_home_label' | translate )"
                         data-ng-href="{{:: $ctrl.cancelLink }}"
                     ></a>

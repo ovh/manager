@@ -1,8 +1,0 @@
-{
-  "cpb_vouchers_add_credit_title": "Buy Public Cloud credit",
-  "cpb_vouchers_add_credit_info": "Select the total (ex. VAT) you would like to credit for this project. Once the purchase order has been settled, this credit will be used for bills and project usage invoiced over the following 12 months.",
-  "cpb_vouchers_add_credit_amount": "Amount to credit (ex. VAT {{ currency }})",
-  "cpb_vouchers_add_credit_valid": "Generate a purchase order",
-  "cpb_vouchers_add_credit_success": "The purchase order for your {{ amount }} credit is available <a href=\"{{ url }}\" target=\"_blank\">here</a>.",
-  "cpb_vouchers_add_credit_load_err": "Oops! An error has occurred loading the cloud credit purchase."
-}

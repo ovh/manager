@@ -1,0 +1,23 @@
+<oui-modal
+    primary-label="{{ ::'vps_configuration_veeam_schedule_backup_action_confirm' | translate }}"
+    primary-action="$ctrl.onRescheduledAutomatedBackupConfirmed()"
+    primary-disabled="!$ctrl.model.rescheduleTimepicker"
+    secondary-action="$ctrl.onRescheduleAutomatedBackupCancel()"
+    secondary-label="{{ ::'vps_configuration_veeam_schedule_backup_action_cancel' | translate }}"
+    on-dismiss="$ctrl.goBack()"
+    heading="{{ ::'vps_configuration_veeam_schedule_backup_title' | translate }}"
+    loading="$ctrl.isLoading"
+>
+    <p data-translate="vps_configuration_veeam_schedule_backup_description"></p>
+
+    <p class="my-3">
+        <oui-timepicker
+            model="$ctrl.model.rescheduleTimepicker"
+            placeholder="HH:MM:SS"
+            format="H:i:S"
+            enable-seconds
+            inline
+        >
+        </oui-timepicker>
+    </p>
+</oui-modal>

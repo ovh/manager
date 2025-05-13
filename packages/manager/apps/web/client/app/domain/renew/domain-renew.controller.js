@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'DomainRenewCtrl',
   class DomainRenewCtrl {
+    /* @ngInject */
     constructor($scope, constants) {
       this.$scope = $scope;
       this.constants = constants;

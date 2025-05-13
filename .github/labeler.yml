@@ -1,0 +1,109 @@
+build:
+  - scripts/**
+container:
+  - packages/components/ovh-shell/**
+  - packages/manager/apps/container/**
+continuous-integration:
+  - .github/**
+dependencies:
+  - ./**/package.json
+  - yarn.lock
+documentation:
+  - docs/**
+  - AUTHORS
+  - ./**/*.md
+  - CONTRIBUTORS
+  - MAINTAINERS
+translation required:
+  - packages/**/Messages_fr_FR.json
+universe-public-cloud:
+  - packages/manager/*/pci/**
+  - packages/manager/apps/public-cloud/**
+  - packages/manager/apps/octavia-load-balancer/**
+  - packages/manager/apps/pci-rancher/**
+  - packages/manager/apps/pci-ssh-keys/**
+  - packages/manager/apps/pci-users/**
+  - packages/manager/apps/pci-vouchers/**
+  - packages/manager/apps/pci-gateway/**
+  - packages/manager/apps/pci-private-network/**
+universe-bare-metal-cloud:
+  - packages/manager/apps/dedicated/**/!(dedicatedCloud)/**
+  - packages/manager/*/billing/**
+  - packages/manager/*/cda/**
+  - packages/manager/*/cloud-connect/**
+  - packages/manager/*/dbaas-logs/**
+  - packages/manager/*/enterprise-cloud-database/**
+  - packages/manager/*/iplb/**
+  - packages/manager/*/metrics/**
+  - packages/manager/*/nasha/**
+  - packages/manager/*/netapp/**
+  - packages/manager/*/order-tracking/**
+  - packages/manager/*/support/**
+  - packages/manager/*/veeam-*/**
+  - packages/manager/*/vps/**
+  - packages/manager/*/vrack/**
+  - packages/manager/apps/vrack-services/**
+  - packages/manager/modules/bm-server-components
+universe-hosted-private-cloud:
+  - packages/manager/apps/dedicated/client/app/dedicatedCloud/**
+  - packages/manager/*/nutanix/**
+universe-hub:
+  - packages/manager/*/hub/**
+universe-telecom:
+  - packages/manager/*/carrier-sip/**
+  - packages/manager/*/telecom?(-*)/**
+  - packages/manager/*/freefax/**
+  - packages/manager/*/overthebox/**
+  - packages/manager/*/sms/**
+universe-web-cloud:
+  - packages/manager/*/web?(-*)/**
+  - packages/manager/*/email-domain/**
+  - packages/manager/apps/email-pro/**
+  - packages/manager/modules/emailpro/**
+  - packages/manager/*/exchange/**
+  - packages/manager/*/office/**
+  - packages/manager/*/sharepoint/**
+  - packages/manager/apps/zimbra/**
+sign-up:
+  - packages/manager/*/sign-up/**
+enabler:
+  - packages/manager/apps/carbon-calculator/**
+  - packages/manager/apps/iam/**
+  - packages/manager/apps/key-management-service/**
+manager-components:
+  - packages/manager-components/src/**
+common:
+  - packages/components/**
+  - packages/manager/core/**
+  - packages/manager/modules/account-migration/**
+  - packages/manager/modules/advices/**
+  - packages/manager/modules/at-internet-configuration/**
+  - packages/manager/modules/banner/**
+  - packages/manager/modules/beta-preference/**
+  - packages/manager/modules/billing-components/**
+  - packages/manager/modules/catalog-price/**
+  - packages/manager/modules/cloud-styles/**
+  - packages/manager/modules/cloud-universe-components/**
+  - packages/manager/modules/core/**
+  - packages/manager/modules/error-page/**
+  - packages/manager/modules/exchange/**
+  - packages/manager/modules/filters/**
+  - packages/manager/modules/log-to-customer/**
+  - packages/manager/modules/manager-components/**
+  - packages/manager/modules/models/**
+  - packages/manager/modules/ng-apiv2-helper/**
+  - packages/manager/modules/ng-layout-helpers/**
+  - packages/manager/modules/ng-ovh-order-tracking/**
+  - packages/manager/modules/order/**
+  - packages/manager/modules/pci-universe-components/**
+  - packages/manager/modules/product-offers/**
+  - packages/manager/modules/request-tagger/**
+  - packages/manager/modules/sign-up/**
+  - packages/manager/modules/telecom-styles/**
+  - packages/manager/modules/telecom-universe-components/**
+  - packages/manager/modules/trusted-nic/**
+  - packages/manager/modules/web-universe-components/**
+  - packages/manager/tools/**
+  - packages/manager-components/**
+  - playwright-helpers/**
+  - scripts/**

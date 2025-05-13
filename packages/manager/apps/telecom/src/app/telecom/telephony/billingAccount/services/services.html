@@ -9,7 +9,7 @@
         data-on-sort-change="$ctrl.onSortChange($sort)"
         data-columns="$ctrl.columnsConfig"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'telephony_billing_account_line_number' | translate"
             data-property="serviceName"
             data-searchable
@@ -19,8 +19,8 @@
             data-type-options="$ctrl.stringColumnOptions"
         >
             <a data-ng-href="{{ $ctrl.getServiceLink($row) }}">{{$value}}</a>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'telephony_billing_account_services_description_title' | translate"
             data-property="description"
             data-searchable
@@ -32,8 +32,8 @@
             <span
                 data-ng-bind="$row.serviceName === $row.description ? '' : $row.description"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'telephony_billing_account_line_service' | translate"
             data-property="serviceType"
             data-searchable
@@ -45,8 +45,8 @@
             <span
                 data-translate="{{ 'telephony_billing_account_line_service_' + $value }}"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'telephony_billing_account_line_feature' | translate"
             data-property="featureType"
             data-searchable
@@ -56,12 +56,12 @@
             data-type-options="$ctrl.filtersOptions.featureType"
         >
             <span data-ng-bind="$ctrl.formatFeatureType($value)"></span>
-        </oui-column>
-        <oui-action-menu data-align="left-start" data-compact>
-            <oui-action-menu-item
-                data-text="{{:: 'telephony_billing_account_services_view_label' | translate }}"
-                data-on-click="$ctrl.viewService($row)"
-            >
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="left-start">
+            <oui-action-menu-item data-on-click="$ctrl.viewService($row)"
+                ><span
+                    data-translate="telephony_billing_account_services_view_label"
+                ></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

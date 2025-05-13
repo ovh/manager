@@ -1,0 +1,112 @@
+<div data-ovh-alert="{{alerts.page}}"></div>
+
+<div class="text-center" data-ng-if="MicrosoftOfficeLicenseCtrl.loaders.tenant">
+    <oui-spinner data-size="l"></oui-spinner>
+</div>
+
+<div data-ng-if="!MicrosoftOfficeLicenseCtrl.loaders.tenant">
+    <div class="oui-header">
+        <div class="oui-header__container">
+            <div class="oui-header__content">
+                <strong
+                    data-translate="microsoft_office_license_group_name"
+                ></strong>
+                <div
+                    class="mb-3"
+                    data-ng-show="!MicrosoftOfficeLicenseCtrl.editMode"
+                >
+                    <div class="d-flex">
+                        <h1
+                            class="d-inline-block mb-0 word-break"
+                            data-ng-bind="MicrosoftOfficeLicenseCtrl.license.tenant.displayName"
+                        ></h1>
+                        <button
+                            class="btn btn-icon my-auto ml-2"
+                            type="button"
+                            aria-label="{{ 'microsoft_office_license_edit' | translate }}"
+                            data-ng-click="MicrosoftOfficeLicenseCtrl.editDisplayName(MicrosoftOfficeLicenseCtrl.license.tenant)"
+                            data-ng-if="MicrosoftOfficeLicenseCtrl.license.tenant"
+                        >
+                            <span
+                                class="oui-icon oui-icon-pen_concept"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </div>
+                    <span
+                        class="font-italic"
+                        data-ng-bind="MicrosoftOfficeLicenseCtrl.license.tenant.serviceName"
+                        data-ng-if="MicrosoftOfficeLicenseCtrl.displayServiceName()"
+                    ></span>
+                </div>
+
+                <form
+                    class="my-4"
+                    name="formLicenseGroupName"
+                    novalidate
+                    data-ng-show="MicrosoftOfficeLicenseCtrl.editMode"
+                    data-ng-submit="!formLicenseGroupName.$invalid && MicrosoftOfficeLicenseCtrl.saveDisplayName(currentLicense, MicrosoftOfficeLicenseCtrl.license.tenant)"
+                >
+                    <div class="oui-input-group">
+                        <input
+                            type="text"
+                            class="oui-input"
+                            id="license-group-name"
+                            data-ng-model="MicrosoftOfficeLicenseCtrl.newDisplayName.value"
+                            data-ng-pattern="/^[^<>]+$/"
+                        />
+                        <button
+                            class="oui-button oui-button_s"
+                            type="submit"
+                            aria-label="{{ 'microsoft_office_license_edit_save' | translate }}"
+                            data-ng-disabled="formLicenseGroupName.$invalid"
+                        >
+                            <span class="fa fa-check" aria-hidden="true"></span>
+                        </button>
+                        <button
+                            class="oui-button oui-button_s"
+                            type="button"
+                            aria-label="{{ 'common_cancel' | translate }}"
+                            data-ng-click="MicrosoftOfficeLicenseCtrl.resetDisplayName($event)"
+                        >
+                            <span
+                                class="fa fa-remove"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                href="{{:: MicrosoftOfficeLicenseCtrl.userLink }}"
+                active="MicrosoftOfficeLicenseCtrl.userLink === MicrosoftOfficeLicenseCtrl.currentActiveLink()"
+            >
+                <span data-translate="microsoftOfficeLicense_tab_USER"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{:: MicrosoftOfficeLicenseCtrl.consumptionLink }}"
+                active="MicrosoftOfficeLicenseCtrl.consumptionLink === MicrosoftOfficeLicenseCtrl.currentActiveLink()"
+            >
+                <span
+                    data-translate="microsoftOfficeLicense_tab_CONSUMPTION"
+                ></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </div>
+
+    <div data-ovh-alert="{{alerts.tabs}}"></div>
+    <div class="tab-pane active" ui-view></div>
+
+    <div id="currentAction" class="modal fade currentAction" role="dialog">
+        <div class="modal-dialog">
+            <div
+                id="modal-container"
+                class="modal-content"
+                data-ng-include="MicrosoftOfficeLicenseCtrl.stepPath"
+            ></div>
+            <div id="modal-help" class="help4wizards"></div>
+        </div>
+    </div>
+</div>

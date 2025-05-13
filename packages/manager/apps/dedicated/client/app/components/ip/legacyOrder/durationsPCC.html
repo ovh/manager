@@ -1,0 +1,61 @@
+<div class="form-group">
+    <div data-ng-if="!loading.durations && durations.available.length">
+        <strong data-translate="ip_order_select_activation"></strong>
+        <div data-ng-repeat="duration in durations.available track by $id">
+            <div class="radio">
+                <label>
+                    <input
+                        type="radio"
+                        data-ng-model="model.duration"
+                        data-ng-disabled="loading.prices"
+                        data-ng-value="duration"
+                    />
+                    <span
+                        data-ng-bind="('ip_order_bloc' | translate) + ' /' +  model.params.size"
+                    ></span>
+                    :
+                    <span
+                        data-ng-if="!durations.details[duration].prices"
+                        data-translate="price_ht_label"
+                        data-translate-values="{ 'price': durations.details[duration].price }"
+                    ></span>
+                    <span
+                        data-ng-if="durations.details[duration].prices"
+                        data-ng-bind-html="durations.details[duration].prices | ducPrice:user.ovhSubsidiary"
+                    ></span>
+                    <oui-spinner
+                        data-ng-if="!durations.details[duration]"
+                        data-size="s"
+                    ></oui-spinner>
+                </label>
+            </div>
+            <strong data-translate="ip_order_abonnement"></strong>
+            <strong
+                data-ng-if="durations.details[duration].details[1].totalPrice.value === 0"
+                data-translate="ip_order_free"
+            >
+            </strong>
+            <span
+                data-ng-if="durations.details[duration].details[1].totalPrice.value !== 0"
+                data-ng-bind-html="durations.details[duration].details[1].totalPrice.text"
+            >
+            </span>
+        </div>
+
+        <div data-ng-show="orderableIp.professionalUsePrice">
+            <p
+                data-ng-bind-html="'ip_order_no_professionaluse_1' | translate:{ t0: orderableIp.professionalUsePrice }"
+            ></p>
+            <p data-translate="ip_order_no_professionaluse_2"></p>
+        </div>
+
+        <p
+            class="font-italic text-muted"
+            data-ng-bind="('ip_order_renew_' + model.service.productReference) | translate"
+        ></p>
+    </div>
+
+    <div class="text-center" data-ng-if="loading.durations">
+        <oui-spinner></oui-spinner>
+    </div>
+</div>

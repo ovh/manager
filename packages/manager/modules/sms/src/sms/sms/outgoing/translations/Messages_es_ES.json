@@ -10,7 +10,7 @@
   "sms_sms_outgoing_label_status": "Estado",
   "sms_sms_outgoing_empty": "No hay historial.",
   "sms_sms_outgoing_status_delivered": "Entregado",
-  "sms_sms_outgoing_number_allowed_response": "Número que permite la respuesta",
+  "sms_sms_outgoing_number_allowed_response": "Número que permite responder",
   "sms_sms_outgoing_number_allowed_response_fr_only": "Solo Francia",
   "sms_sms_outgoing_delete": "Eliminar el SMS seleccionado",
   "sms_sms_outgoing_delete_plural": "Eliminar los {{ count }} SMS seleccionados",
@@ -20,11 +20,11 @@
   "sms_sms_outgoing_read_label_sms_size": "Tamaño del SMS",
   "sms_sms_outgoing_read_label_sms_size_text": "{{ numberOfSms }} SMS ({{ credits | number: 2 }} créditos)",
   "sms_sms_outgoing_read_label_message": "Mensaje completo",
-  "sms_sms_outgoing_remove_title": "Confirmar",
+  "sms_sms_outgoing_remove_title": "Confirmación",
   "sms_sms_outgoing_remove_confirm": "¿Seguro que quiere eliminar el SMS mostrado a continuación?",
   "sms_sms_outgoing_removing": "Eliminando el SMS...",
-  "sms_sms_outgoing_removed": "SMS eliminado",
+  "sms_sms_outgoing_removed": "El SMS se ha eliminado correctamente.",
   "sms_sms_outgoing_remove_ko": "No se ha podido eliminar el SMS.<br/>{{error}}",
   "sms_sms_outgoing_download_history": "Descargar el historial",
-  "sms_sms_outgoing_download_history_ko": "¡Vaya! No se ha podido descargar el historial."
+  "sms_sms_outgoing_download_history_ko": "¡Vaya! ¡No se ha podido descargar el historial."
 }

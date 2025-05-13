@@ -1,0 +1,8 @@
+{
+  "pci_databases_databases_delete_database_confirm": "Usuń bazę danych",
+  "pci_databases_databases_delete_database_cancel": "Anuluj",
+  "pci_databases_databases_delete_database": "Usuń bazę danych",
+  "pci_databases_databases_delete_database_description": "Czy na pewno chcesz usunąć bazę danych {{databaseInstance.name}}?",
+  "pci_databases_databases_delete_database_success_message": "Baza danych została usunięta.",
+  "pci_databases_databases_delete_database_error_message": "Wystąpił błąd podczas usuwania bazy danych: {{message}}"
+}

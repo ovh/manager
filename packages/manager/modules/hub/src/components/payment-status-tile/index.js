@@ -1,6 +1,8 @@
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
+import '@ovh-ux/ng-ovh-feature-flipping';
+import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 
 import paymentStatusTile from './payment-status-tile.component';
 import hubTile from '../tile';
@@ -15,8 +17,10 @@ angular
   .module(moduleName, [
     hubTile,
     ngAtInternet,
+    'ngOvhFeatureFlipping',
     'ngTranslateAsyncLoader',
     'oui',
+    ovhManagerBillingComponents,
     ovhManagerHubTileError,
     ovhManagerProducts,
   ])

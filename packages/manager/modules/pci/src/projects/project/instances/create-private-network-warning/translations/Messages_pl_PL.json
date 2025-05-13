@@ -1,0 +1,5 @@
+{
+  "pci_instances_create_private_network_warning_info": "Aby przypisać Floating IP do tej instancji, najpierw skonfiguruj prywatną sieć na tej instancji w wybranym regionie.",
+  "pci_instances_create_private_network_warning_submit_label": "Utwórz prywatną sieć",
+  "pci_instances_create_private_network_warning_cancel_label": "Anuluj"
+}

@@ -3,11 +3,20 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'HostingUserLogsCreateCtrl',
   class HostingUserLogsCreateCtrl {
-    constructor($scope, $stateParams, $translate, Alerter, Hosting) {
+    /* @ngInject */
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      atInternet,
+      Alerter,
+      Hosting,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.atInternet = atInternet;
       this.Hosting = Hosting;
     }
 
@@ -27,6 +36,9 @@ angular.module('App').controller(
       };
 
       this.$scope.createUser = () => this.createUser();
+      this.atInternet.trackPage({
+        name: 'web::hosting::logs::create-user',
+      });
     }
 
     isPasswordInvalid() {
@@ -73,20 +85,35 @@ angular.module('App').controller(
     }
 
     createUser() {
+      this.atInternet.trackClick({
+        name: 'web::hosting::logs::create-user::confirm',
+        type: 'action',
+      });
       this.$scope.resetAction();
-      return this.Hosting.userLogsCreate(
+
+      this.Hosting.getOwnLogs(
         this.$stateParams.productId,
-        this.model.selected.description,
-        this.model.selected.login,
-        this.model.selected.password.value,
+        this.$stateParams.productId,
       )
-        .then(() => {
-          this.Alerter.success(
-            this.$translate.instant(
-              'hosting_tab_USER_LOGS_configuration_user_create_success',
-            ),
-            this.$scope.alerts.main,
-          );
+        .then((data) => {
+          if (!Array.isArray(data) || data.length !== 1) {
+            throw new Error('unable to get default own log');
+          }
+
+          this.Hosting.userLogsCreate(
+            this.$stateParams.productId,
+            data[0],
+            this.model.selected.description,
+            this.model.selected.login,
+            this.model.selected.password.value,
+          ).then(() => {
+            this.Alerter.success(
+              this.$translate.instant(
+                'hosting_tab_USER_LOGS_configuration_user_create_success',
+              ),
+              this.$scope.alerts.main,
+            );
+          });
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(

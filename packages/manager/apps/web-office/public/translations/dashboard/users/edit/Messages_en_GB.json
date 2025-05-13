@@ -1,0 +1,7 @@
+{
+  "dashboard_users_edit_title": "Edit account",
+  "dashboard_users_edit_form_helper_login_conditions": "Your login must contain between 3 and 20 characters. It can include numbers, letters and the following characters: - _! # $ % &amp; ' ^ ` { }",
+  "dashboard_users_edit_form_helper_login_condition_exception": "It can also contain full stops, provided that they are preceded by a permitted character and are not followed by another full stop.",
+  "dashboard_users_edit_message_success": "Changes to the user are in progress. Please refresh the page in a few moments.",
+  "dashboard_users_edit_message_error": "An error has occurred while editing the user. {{ error }}"
+}

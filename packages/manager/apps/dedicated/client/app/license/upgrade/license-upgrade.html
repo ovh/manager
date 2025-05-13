@@ -1,12 +1,10 @@
-<div class="page-header">
-    <h1 data-translate="license_upgrade_title"></h1>
-</div>
+<oui-header heading="{{:: 'license_upgrade_title' | translate}}"> </oui-header>
 
-<div class="tab-content">
+<div>
     <div data-ovh-alert="{{ alerts.upgrade }}"></div>
 
     <a
-        title="{{ 'license_upgrade_title' | translate }}"
+        title="{{ 'license_upgrade_title' | translate }}"
         data-ui-sref="app.license.dashboard"
     >
         <span class="fa fa-chevron-left mr-2" aria-hidden="true"> </span>
@@ -147,24 +145,24 @@
 
             <div class="control-group">
                 <div data-ng-hide="loaders.durations">
-                    <div
-                        class="radio"
-                        data-ng-repeat="duration in durations.available"
-                    >
+                    <div class="radio">
                         <label>
                             <input
                                 type="radio"
-                                value="{{duration}}"
+                                value="{{durations.available}}"
                                 data-ng-model="selected.duration"
                                 data-ng-change="selectDuration()"
                                 data-ng-disabled="loaders.prices || durations.available.length == 1"
                             />
-                            {{ duration | wucDuration:'longDate'
-                            }}&nbsp;:&nbsp;<span
-                                data-ng-bind-html="durations.details[duration].prices | ducPrice:user.ovhSubsidiary"
+                            {{ durations.available | wucDuration:'longDate' }}
+                            <span
+                                data-ng-bind-html="duration | wucDuration:'longDate'"
+                            ></span
+                            >&nbsp;:&nbsp;<span
+                                data-ng-bind-html="durations.details[durations.available].price.text"
                             ></span>
                             <oui-spinner
-                                data-ng-hide="durations.details[duration]"
+                                data-ng-hide="durations.details[durations.available]"
                                 data-inline="true"
                                 data-size="s"
                             >
@@ -181,90 +179,101 @@
         </div>
 
         <!-- Step 4: Contracts and validation -->
-        <div class="mb-5" data-ng-show="selected.duration">
+        <div class="mb-5" data-ng-if="selected.duration">
             <h2 data-translate="license_upgrade_step3_title"></h2>
-
-            <div data-ng-hide="order.url">
-                <div
-                    data-ng-show="durations.details[selected.duration].contracts.length > 0"
-                >
+            <div data-ng-if="loaders.loadedContract">
+                <div data-ng-hide="order.url && loaders.loadedContract">
                     <p
                         class="text-primary font-weight-bold"
-                        data-translate="license_order_step4_contracts_ask"
+                        data-translate="license_order_step4_pay_upgrade_amount"
+                        data-translate-value-price="{{ getPriceInformation(orderDetails.details) }}"
                     ></p>
-                    <table class="table table-hover">
-                        <tbody>
-                            <tr
-                                data-ng-repeat="contract in durations.details[selected.duration].contracts track by $index"
-                            >
-                                <td>
-                                    <a
-                                        target="_blank"
-                                        rel="noopener"
-                                        data-ng-href="{{ contract.url }}"
-                                        data-ng-bind="contract.url"
-                                    >
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div data-ng-show="orderDetails.contracts.length > 0">
+                        <p
+                            class="text-primary font-weight-bold"
+                            data-translate="license_order_step4_contracts_ask"
+                        ></p>
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr
+                                    data-ng-repeat="contract in orderDetails.contracts track by $index"
+                                >
+                                    <td>
+                                        <a
+                                            target="_blank"
+                                            rel="noopener"
+                                            data-ng-href="{{ contract.url }}"
+                                            data-ng-bind="contract.name"
+                                        >
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                    <div class="checkbox">
-                        <label>
-                            <input
-                                type="checkbox"
-                                data-ng-model="contractsValidated.value"
-                            />
-                            {{ 'license_order_step4_contracts_check' | translate
-                            }}
-                        </label>
+                        <div class="checkbox">
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    data-ng-model="contractsValidated.value"
+                                />
+                                {{ 'license_order_step4_contracts_check' |
+                                translate }}
+                            </label>
+                        </div>
                     </div>
+
+                    <p
+                        class="text-primary font-weight-bold"
+                        data-ng-show="orderDetails.contracts.length == 0"
+                        data-translate="license_upgrade_step3_question"
+                    ></p>
+
+                    <button
+                        type="button"
+                        class="btn btn-default"
+                        data-ng-disabled="!contractsValidated.value && !orderDetails.contracts.length == 0"
+                        data-ng-click="generateBc()"
+                        data-translate="license_order_step4_generate"
+                    ></button>
+                    <span
+                        data-ng-show="loaders.bc"
+                        data-translate="license_order_step4_generating"
+                    >
+                    </span>
+                    <oui-spinner
+                        data-ng-show="loaders.bc"
+                        data-size="s"
+                        data-inline="true"
+                    >
+                    </oui-spinner>
                 </div>
 
-                <p
-                    class="text-primary font-weight-bold"
-                    data-ng-show="durations.details[selected.duration].contracts.length == 0"
-                    data-translate="license_upgrade_step3_question"
-                ></p>
-
-                <button
-                    type="button"
-                    class="btn btn-default"
-                    data-ng-click="generateBc()"
-                    data-translate="license_order_step4_generate"
-                ></button>
-                <span
-                    data-ng-show="loaders.bc"
-                    data-translate="license_order_step4_generating"
-                >
-                </span>
-                <oui-spinner
-                    data-ng-show="loaders.bc"
-                    data-size="s"
-                    data-inline="true"
-                >
-                </oui-spinner>
+                <div data-ng-show="order.url && loaders.loadedContract">
+                    <p
+                        class="text-primary font-weight-bold"
+                        data-translate="license_order_step4_generated"
+                    ></p>
+                    <p>
+                        <span
+                            data-translate="license_order_step4_clic_here"
+                        ></span
+                        ><br />
+                        <span
+                            data-translate="license_order_step4_bc_information"
+                        ></span>
+                    </p>
+                    <button
+                        type="button"
+                        class="btn btn-default"
+                        data-ng-click="openBc()"
+                        data-translate="license_order_step4_pay_button"
+                    ></button>
+                </div>
             </div>
-
-            <div data-ng-show="order.url">
-                <p
-                    class="text-primary font-weight-bold"
-                    data-translate="license_order_step4_generated"
-                ></p>
-                <p>
-                    <span data-translate="license_order_step4_clic_here"></span
-                    ><br />
-                    <span
-                        data-translate="license_order_step4_bc_information"
-                    ></span>
-                </p>
-                <button
-                    type="button"
-                    class="btn btn-default"
-                    data-ng-click="openBc()"
-                    data-translate="license_order_step4_pay_button"
-                ></button>
+            <div class="text-center" data-ng-if="!loaders.loadedContract">
+                <oui-spinner></oui-spinner>
+                <span data-translate="common_loading"></span>
             </div>
         </div>
     </form>

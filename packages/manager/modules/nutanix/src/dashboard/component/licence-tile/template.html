@@ -1,0 +1,15 @@
+<oui-tile class="h-100" data-heading="{{:: $ctrl.title | translate }}">
+    <oui-tile-definition
+        data-ng-if="$ctrl.showPackType"
+        data-term="{{$ctrl.packType}}"
+    ></oui-tile-definition>
+    <nutanix-licence-tile-legacy-features
+        data-ng-if="$ctrl.isLegacyPack"
+        data-licenses="$ctrl.licenses"
+        data-pack-type="$ctrl.packType"
+    ></nutanix-licence-tile-legacy-features>
+    <nutanix-licence-tile-features
+        data-ng-if="!$ctrl.isLegacyPack"
+        data-licenses="$ctrl.licenses"
+    ></nutanix-licence-tile-features>
+</oui-tile>

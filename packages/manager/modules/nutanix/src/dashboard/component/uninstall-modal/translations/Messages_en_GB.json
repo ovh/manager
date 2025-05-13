@@ -1,0 +1,10 @@
+{
+  "nutanix_dashboard_uninstall_node_title": "Uninstall node",
+  "nutanix_dashboard_uninstall_node_description": "You are about to uninstall your {{serviceName}} node. Uninstalling a Nutanix node may impact your cluster. Check the requirements on the Nutanix portal to complete this action",
+  "nutanix_dashboard_uninstall_node_uninstall_guidelink": "Access portal",
+  "nutanix_dashboard_uninstall_node_confirm": "Uninstall",
+  "nutanix_dashboard_uninstall_node_cancel": "Cancel",
+  "nutanix_dashboard_uninstall_node_input_label": "Enter \"{{magicword}}\" to confirm your choice",
+  "nutanix_dashboard_uninstall_node_success_banner": "Your uninstallation request has been processed. This may take up to 10 minutes",
+  "nutanix_dashboard_uninstall_node_error_banner": "Unable to complete your uninstallation request. If the error persists, please contact Support"
+}

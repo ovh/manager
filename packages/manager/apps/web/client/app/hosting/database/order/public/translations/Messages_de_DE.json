@@ -1,0 +1,12 @@
+{
+  "ovhManagerHostingDatabaseOrderPublic_title": "Eine Datenbanklösung bestellen",
+  "ovhManagerHostingDatabaseOrderPublic_customization_title": "Lösung wählen",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_title": "Wählen Sie die gewünschten Eigenschaften",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_placeholder": "Auswahl",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_display_1": "{{quantity}} Datenbank {{diskSpace}}MB",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_display_+": "{{quantity}} Datenbanken {{diskSpace}}MB",
+  "ovhManagerHostingDatabaseOrderPublic_success_noCheckout": "Ihre Bestellung wurde registriert. Ihr Produkt wird in wenigen Minuten aktiviert.",
+  "ovhManagerHostingDatabaseOrderPublic_success_checkout": "Ihr <a href=\"{{url}}\" target=\"_blank\">Bestellformular</a> wurde erstellt. Ihr Produkt wird aktiviert, sobald Sie es validiert haben.",
+  "ovhManagerHostingDatabaseOrderPublic_error": "Bei der Bestellung einer SQL-Datenbank ist ein Fehler aufgetreten: {{message}}",
+  "ovhManagerHostingDatabaseOrderPublic_description": "Wir bieten Ihnen die Möglichkeit, eine Start SQL-Datenbank in 3 verschiedenen Größen oder bei erweiterten Anforderungen eines unserer Web Cloud Databases SQL-/NoSQL-Angebote mit garantierten Ressourcen zu bestellen."
+}

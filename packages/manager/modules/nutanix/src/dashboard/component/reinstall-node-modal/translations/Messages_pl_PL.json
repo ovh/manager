@@ -1,0 +1,15 @@
+{
+  "nutanix_dashboard_reinstall_node_title": "Ponowna instalacja węzła",
+  "nutanix_dashboard_reinstall_node_description": "Chcesz ponownie zainstalować AOS i AHV na Twoim węźle. Wskaż nieużywane adresy IP w sieci klastra.",
+  "nutanix_dashboard_reinstall_node_tips": "W przypadku ponownej jednoczesnej instalacji na kilku węzłach skorzystaj z API",
+  "nutanix_dashboard_reinstall_node_label_ahv_ip": "IP węzła",
+  "nutanix_dashboard_reinstall_node_label_cvm_ip": "IP CVM",
+  "nutanix_dashboard_reinstall_node_label_version_aos": "Wersja AOS",
+  "nutanix_dashboard_reinstall_node_confirm": "Ponownie zainstaluj",
+  "nutanix_dashboard_reinstall_node_cancel": "Anuluj",
+  "nutanix_dashboard_reinstall_node_success_banner": "Dyspozycja ponownej instalacji została zarejestrowana. Operacja może potrwać do 1 godziny.",
+  "nutanix_dashboard_reinstall_node_error_banner": "Ponowna instalacja nie powiodła się. Jeśli błąd się powtórzy, prosimy o kontakt z pomocą techniczną",
+  "nutanix_dashboard_reinstall_form_not_valid_ip_error": "Nieprawidłowy adres IPv4",
+  "nutanix_dashboard_reinstall_form_not_private_ip_error": "W tym polu można wprowadzać tylko prywatne adresy IPv4",
+  "nutanix_dashboard_reinstall_ip_tooltip": "Adres IP musi należeć do podsieci klastra."
+}

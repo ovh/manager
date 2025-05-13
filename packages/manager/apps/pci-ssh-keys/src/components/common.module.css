@@ -1,0 +1,28 @@
+.linkContainer a {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  color: rgb(0, 80, 215);
+  transition: background-size 0.2s ease-in 0s, color 0.1s ease-in-out 0s;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 2px;
+  background-image: linear-gradient(currentcolor, currentcolor);
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: auto;
+}
+
+.linkContainer a:hover {
+  transition: background-size 0.2s ease-out 0s;
+  background-size: 100% 2px;
+}
+
+.linkContainer a:focus {
+  transition: background-size 0.2s ease-out 0s;
+  background-size: 100% 2px;
+}
+
+.linkContainer a:active {
+  transition: color ease-in-out 0s;
+}

@@ -1,9 +1,14 @@
 import get from 'lodash/get';
+import { VPS_SNAPSHOT_GUIDE_URL } from './vps-rebuild.constants';
 
 export default class VpsRebuildController {
   /* @ngInject */
-  constructor(vpsRebuild) {
+  constructor(vpsRebuild, coreConfig) {
     this.vpsRebuild = vpsRebuild;
+    this.coreConfig = coreConfig;
+    this.VPS_SNAPSHOT_GUIDE_URL =
+      VPS_SNAPSHOT_GUIDE_URL[coreConfig.getUser().ovhSubsidiary] ||
+      VPS_SNAPSHOT_GUIDE_URL.DEFAULT;
   }
 
   $onInit() {
@@ -16,7 +21,7 @@ export default class VpsRebuildController {
     this.isLoading = true;
     return this.vpsRebuild
       .rebuildVps(this.serviceName, options)
-      .then(() => this.goBack())
+      .then(() => this.goBack(false, 'success', {}, { reload: true }))
       .then(() => {
         this.displaySuccess();
       })

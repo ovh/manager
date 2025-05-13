@@ -1,0 +1,17 @@
+{
+  "title": "Services",
+  "createNewService": "Create a service",
+  "tableHeaderName": "Name/ID",
+  "tableHeaderEngine": "Engine",
+  "tableHeaderPlan": "Plan",
+  "tableHeaderFlavor": "Flavor",
+  "tableHeaderStorage": "Usable storage",
+  "tableHeaderLocation": "Location",
+  "tableHeaderNodes": "Nodes",
+  "tableHeaderCreationDate": "Created on",
+  "tableHeaderStatus": "Status",
+  "tableActionManage": "Details",
+  "tableActionCopy": "Copy ID",
+  "tableActionEditName": "Rename",
+  "tableActionDelete": "Delete"
+}

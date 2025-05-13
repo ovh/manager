@@ -1,0 +1,21 @@
+{
+  "purchaseOrders_page_title": "As minhas referências internas",
+  "purchaseOrders_page_description": "A sua referência interna corresponde a um purchase order (PO), um nome de projeto ou uma menção interna. Todas as faturas emitidas indicarão essa referência.",
+  "purchaseOrders_reference": "Referência",
+  "purchaseOrders_creationDate": "Data de criação",
+  "purchaseOrders_startDate": "Data de início",
+  "purchaseOrders_endDate": "Data de fim",
+  "purchaseOrders_endDate_helper": "A data de fim está excluída",
+  "purchaseOrders_status": "Estado",
+  "purchaseOrders_status_actif": "Ativo",
+  "purchaseOrders_status_inactif": "Inativo",
+  "purchaseOrders_status_desactivate": "Desativado",
+  "purchaseOrders_create_reference": "Criar uma referência interna",
+  "purchaseOrders_add_reference": "Adicionar uma referência interna",
+  "purchaseOrders_edit_reference": "Alterar",
+  "purchaseOrders_status_change_reactivation": "Reativar",
+  "purchaseOrders_status_change_desactivation": "Desativar",
+  "purchaseOrders_confirmation_reactivation_REFERENCE_ORDER_success": "A sua referência interna foi corretamente reativada.",
+  "purchaseOrders_confirmation_reactivation_PURCHASE_ORDER_success": "O seu purchase order foi corretamente reativado.",
+  "purchaseOrders_confirmation_reactivation_error": "Não foi possível tratar o seu pedido. Tente novamente mais tarde."
+}

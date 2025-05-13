@@ -1,0 +1,5 @@
+{
+  "octavia_load_balancer_health_monitor_create_title": "Add a health monitor",
+  "octavia_load_balancer_health_monitor_create_submit_label": "Add",
+  "octavia_load_balancer_health_monitor_create_success": "Your {{name}} health monitor has been created!"
+}

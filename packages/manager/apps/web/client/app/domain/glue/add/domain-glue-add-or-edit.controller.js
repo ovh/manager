@@ -9,6 +9,7 @@ import uniq from 'lodash/uniq';
 angular.module('controllers').controller(
   'controllers.Domain.Glue.AddOrEdit',
   class DomainGlueAddOrEditCtrl {
+    /* @ngInject */
     constructor($scope, $translate, Alerter, Domain, WucValidator) {
       this.$scope = $scope;
       this.$translate = $translate;

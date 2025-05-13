@@ -1,0 +1,20 @@
+@tailwind utilities;
+
+@import '@ovhcloud/ods-themes/default';
+
+html {
+  font-family: var(--ods-font-family-default);
+}
+
+.color-disabled {
+  color: var(--ods-color-text-disabled-default);
+}
+
+.semibold::part(text) {
+  font-weight: 600;
+}
+
+.ods-field-helper::part(text) {
+  width: 100%;
+  text-align: start;
+}

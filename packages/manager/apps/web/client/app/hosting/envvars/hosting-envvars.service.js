@@ -1,98 +1,48 @@
-import flatten from 'lodash/flatten';
-import isArray from 'lodash/isArray';
-import map from 'lodash/map';
-import uniq from 'lodash/uniq';
-
 angular.module('services').service(
   'HostingEnvvars',
   class HostingEnvvars {
-    constructor($q, Hosting, OvhHttp) {
+    /* @ngInject */
+    constructor($http, $q, Hosting, iceberg) {
+      this.$http = $http;
       this.$q = $q;
-
       this.Hosting = Hosting;
-      this.OvhHttp = OvhHttp;
+      this.iceberg = iceberg;
     }
 
     /**
      * Get list of envvars on hosting
      * @param serviceName
-     * @param filters
      */
-    list(serviceName, filters) {
-      let filtersAsArray = filters;
-
-      if (!isArray(filters)) {
-        filtersAsArray = [filters];
-      }
-
-      const promises = filtersAsArray.map((filter) =>
-        this.OvhHttp.get(`/hosting/web/${serviceName}/envVar`, {
-          rootPath: 'apiv6',
-          params: filter,
-        }),
-      );
-
-      return this.$q.allSettled(promises).then((data) => {
-        let dataAsArray = data;
-
-        if (!isArray(data)) {
-          dataAsArray = [data];
-        }
-
-        return uniq(
-          flatten(
-            map(dataAsArray, (datum) =>
-              isArray(datum) ? flatten(datum) : datum,
-            ),
-          ),
-        );
-      });
-    }
-
-    get(serviceName, key) {
-      return this.OvhHttp.get(`/hosting/web/${serviceName}/envVar/${key}`, {
-        rootPath: 'apiv6',
-      });
+    list(serviceName) {
+      return this.iceberg(`/hosting/web/${serviceName}/envVar`)
+        .query()
+        .expand('CachedObjectList-Pages')
+        .execute()
+        .$promise.then(({ data }) => data);
     }
 
     create(serviceName, { key, type, value }) {
-      return this.OvhHttp.post(`/hosting/web/${serviceName}/envVar`, {
-        rootPath: 'apiv6',
-        data: {
+      return this.$http
+        .post(`/hosting/web/${serviceName}/envVar`, {
           key,
           type,
-          value,
-        },
-      }).then((data) => {
-        this.Hosting.resetEnvvars();
-
-        return data;
-      });
+          value: value.toString(),
+        })
+        .then(() => this.Hosting.resetEnvvars());
     }
 
-    edit(serviceName, oldKey, { key, type, value }) {
-      return this.OvhHttp.put(`/hosting/web/${serviceName}/envVar/${oldKey}`, {
-        rootPath: 'apiv6',
-        data: {
-          key,
-          type,
-          value,
-        },
-      }).then((data) => {
-        this.Hosting.resetEnvvars();
-
-        return data;
-      });
+    edit(serviceName, key, value) {
+      return this.$http
+        .put(`/hosting/web/${serviceName}/envVar/${key}`, {
+          value: value.toString(),
+        })
+        .then(() => this.Hosting.resetEnvvars());
     }
 
     delete(serviceName, key) {
-      return this.OvhHttp.delete(`/hosting/web/${serviceName}/envVar/${key}`, {
-        rootPath: 'apiv6',
-      }).then((data) => {
-        this.Hosting.resetEnvvars();
-
-        return data;
-      });
+      return this.$http
+        .delete(`/hosting/web/${serviceName}/envVar/${key}`)
+        .then(() => this.Hosting.resetEnvvars());
     }
   },
 );

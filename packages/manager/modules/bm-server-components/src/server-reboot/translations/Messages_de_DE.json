@@ -1,0 +1,6 @@
+{
+  "server_reboot_title": "Server neu starten",
+  "server_reboot_question": "Möchten Sie Ihren Server {{t0}} wirklich neu starten?",
+  "server_reboot_success": "Ihr Server {{t0}} wird neu gestartet.",
+  "server_reboot_fail": "Beim Anfordern des Neustarts ist ein Fehler aufgetreten."
+}

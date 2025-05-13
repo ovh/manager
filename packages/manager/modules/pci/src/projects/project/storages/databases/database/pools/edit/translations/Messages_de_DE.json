@@ -1,0 +1,15 @@
+{
+  "pci_databases_pools_modify_pool_title": "Pool bearbeiten",
+  "pci_databases_pools_modify_pool_name": "Name",
+  "pci_databases_pools_modify_database": "Datenbank",
+  "pci_databases_pools_modify_pool_mode": "Modus",
+  "pci_databases_pools_modify_pool_size": "Größe",
+  "pci_databases_pools_modify_pool_user": "Benutzername",
+  "pci_databases_pools_modify_pool_user_title": "Nutzername (optional)",
+  "pci_databases_pools_modify_pool_cancel": "Abbrechen",
+  "pci_databases_pools_modify_pool_confirm": "Bestätigen",
+  "pci_databases_pools_modify_pool_success": "Ihr Pool {{name}} wurde bearbeitet.",
+  "pci_databases_pools_modify_pool_error": "Bei der Bearbeitung Ihres Pools {{name}} ist ein Fehler aufgetreten: {{message}}",
+  "pci_databases_pools_modify_pool_name_required_error": "Bitte füllen Sie dieses Feld aus.",
+  "pci_databases_pools_modify_pool_name_pattern_error": "Bitte geben Sie ein gültiges Format ein. Nur Zahlen, Buchstaben, Unterstriche und Bindestriche sind zulässig, darf nicht mit einem Bindestrich beginnen und nicht leer sein. Maximal 60 Zeichen."
+}

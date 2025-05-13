@@ -1,15 +1,15 @@
 {
-  "domain_email_obfuscation_back_button": "Regenerar os endereços de e-mail de substituição",
-  "domain_email_obfuscation_label": "Selecionar os contactos para os que quer regenerar os endereços de e-mail de substituição:",
+  "domain_email_obfuscation_back_button": "Gerar novamente endereços de e-mail anti-spam",
+  "domain_email_obfuscation_label": "Escolher os contactos para os quais deseja regenerar os endereços de e-mail anti-spam:",
   "domain_email_obfuscation_regenerate": "Registar as modificações",
-  "domain_email_obfuscation_contact_admin": "Contacto Administrador",
-  "domain_email_obfuscation_contact_owner": "Contacto proprietário",
+  "domain_email_obfuscation_contact_admin": "Contacto administrador",
+  "domain_email_obfuscation_contact_owner": "Contacto do titular",
   "domain_email_obfuscation_contact_tech": "Contacto técnico",
-  "domain_email_obfuscation_active": "Ofuscar",
-  "domain_email_obfuscation_inactive": "Mostrar em texto plano",
+  "domain_email_obfuscation_active": "Ocultar",
+  "domain_email_obfuscation_inactive": "Apresentar em texto simples",
   "domain_email_obfuscation_mail": "o endereço de e-mail pessoal do contacto",
-  "domain_email_obfuscation_refresh": "Regenerar o endereço de e-mail ofuscado",
+  "domain_email_obfuscation_refresh": "Regenerar o e-mail de ocultação",
   "domain_email_obfuscation_refresh_success": "Os endereços de e-mail foram regenerados.",
-  "domain_email_obfuscation_refresh_error": "Ocorreu um erro ao regenerar os seus endereços de e-mail. {{ message }}",
+  "domain_email_obfuscation_refresh_error": "Ocorreu um erro durante a regeneração dos seus endereços de e-mail. {{ message }}",
   "domain_email_obfuscation_error": "Erro ao carregar a informação."
 }

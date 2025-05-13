@@ -1,0 +1,9 @@
+{
+  "pci_projects_project_instances_instance_unshelve_title": "Reactivación de su instancia",
+  "pci_projects_project_instances_instance_unshelve_submit_label": "Confirmar",
+  "pci_projects_project_instances_instance_unshelve_cancel_label": "Cancelar",
+  "pci_projects_project_instances_instance_unshelve_content": "Va a reactivar su instancia {{ instance }}. Los recursos dedicados a la instancia Public Cloud se restablecerán (dirección IP incluida). Los datos de su disco local se restaurarán. La duración de la operación dependerá del tamaño del disco local.",
+  "pci_projects_project_instances_instance_unshelve_success_inprogress_message": "La instancia {{ instance }} se está reactivando.",
+  "pci_projects_project_instances_instance_unshelve_success_message": "La instancia {{ instance }} se ha reactivado.",
+  "pci_projects_project_instances_instance_unshelve_error_message": "Se ha producido un error al reactivar la instancia {{ instance }}: {{ message }}."
+}

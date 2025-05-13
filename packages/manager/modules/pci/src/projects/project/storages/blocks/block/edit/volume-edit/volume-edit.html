@@ -17,10 +17,116 @@
                 class="oui-field__label oui-label"
                 data-translate="pci_projects_project_storages_blocks_block_volume-edit_region_label"
             ></label>
-            <div
-                class="oui-field__control"
-                data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.storage.region)"
-            ></div>
+            <div class="oui-field__control">
+                <span
+                    data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.storage.region)"
+                ></span>
+                <span
+                    data-ng-if="$ctrl.regionType === $ctrl.LOCAL_ZONE_REGION"
+                    class="oui-badge oui-badge_promotion oui-background-p-100 oui-color-p-700"
+                >
+                    <span
+                        data-translate="pci_project_flavors_zone_localzone"
+                    ></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover
+                        data-oui-popover-scope="$ctrl"
+                        data-oui-popover-template="pci_project_project_localzone.html"
+                    ></button>
+                    <script
+                        type="text/ng-template"
+                        id="pci_project_project_localzone.html"
+                    >
+                        <span
+                            class="text-center"
+                            data-translate="pci_project_flavors_zone_localzone_tooltip"
+                        ></span>
+                        <a
+                            class="oui-link_icon"
+                            aria-hidden="true"
+                            data-ng-href="{{$ctrl.localZoneUrl}}"
+                            target="_blank"
+                        >
+                            <span
+                                data-translate="pci_project_project_tooltip_link"
+                            ></span>
+                            <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                        </a>
+                    </script>
+                </span>
+                <span
+                    data-ng-if="$ctrl.regionType === $ctrl.ONE_AZ_REGION"
+                    class="oui-badge oui-badge_new oui-background-p-400 oui-color-p-000"
+                >
+                    <span
+                        data-translate="pci_project_flavors_zone_global_region"
+                    ></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover
+                        data-oui-popover-scope="$ctrl"
+                        data-oui-popover-template="pci_project_project_globalregions_tooltip.html"
+                    ></button>
+                    <script
+                        type="text/ng-template"
+                        id="pci_project_project_globalregions_tooltip.html"
+                    >
+                        <span
+                            class="text-center"
+                            data-translate="{{$ctrl.are3azRegionsAvailable ? 'pci_project_flavors_zone_globalregions_tooltip' : 'pci_project_flavors_zone_globalregions_tooltip_2'}}"
+                        ></span>
+                        <a
+                            class="oui-link_icon"
+                            aria-hidden="true"
+                            data-ng-href="{{$ctrl.globalRegionsUrl}}"
+                            target="_blank"
+                        >
+                            <span
+                                data-translate="pci_project_project_tooltip_link"
+                            ></span>
+                            <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                        </a>
+                    </script>
+                </span>
+                <span
+                    data-ng-if="$ctrl.regionType === $ctrl.THREE_AZ_REGION"
+                    class="oui-badge oui-badge_new oui-background-p-500 oui-color-p-000"
+                >
+                    <span
+                        data-translate="pci_project_flavors_zone_3az_region"
+                    ></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover
+                        data-oui-popover-scope="$ctrl"
+                        data-oui-popover-template="pci_project_flavors_zone_3az_regions_tooltip.html"
+                    ></button>
+                    <script
+                        type="text/ng-template"
+                        id="pci_project_flavors_zone_3az_regions_tooltip.html"
+                    >
+                        <span
+                            class="text-center"
+                            data-translate="pci_project_flavors_zone_3az_tooltip"
+                        ></span>
+                        <a
+                            class="oui-link_icon"
+                            aria-hidden="true"
+                            data-ng-href="{{$ctrl.globalRegionsUrl}}"
+                            target="_blank"
+                        >
+                            <span
+                                data-translate="pci_project_project_tooltip_link"
+                            ></span>
+                            <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                        </a>
+                    </script>
+                </span>
+            </div>
         </div>
 
         <div class="oui-field oui-field_error">
@@ -31,7 +137,7 @@
             ></label>
             <div
                 class="oui-field__control"
-                data-ng-bind="'pci_projects_project_storages_blocks_block_volume-edit_type_' + $ctrl.storage.type | translate"
+                data-ng-bind="$ctrl.storage.type"
             ></div>
         </div>
 
@@ -71,7 +177,7 @@
 
             <p
                 data-translate="pci_projects_project_storages_blocks_block_volume-edit_price_text"
-                data-translate-values="{ price: $ctrl.estimatedPrice.monthly.text }"
+                data-translate-values="{ price: $ctrl.estimatedPrice }"
             ></p>
         </oui-field>
 
@@ -93,7 +199,7 @@
         <p
             data-ng-if="$ctrl.displayBootable"
             data-translate="pci_projects_project_storages_blocks_block_volume-edit_price_text"
-            data-translate-values="{ price: $ctrl.estimatedPrice.monthly.text }"
+            data-translate-values="{ price: $ctrl.estimatedPrice }"
         ></p>
 
         <oui-form-actions

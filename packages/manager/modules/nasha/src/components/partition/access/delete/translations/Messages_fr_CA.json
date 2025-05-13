@@ -1,0 +1,6 @@
+{
+  "nasha_components_partition_access_delete_cancel": "Fermer",
+  "nasha_components_partition_access_delete_submit": "Supprimer l'accès",
+  "nasha_components_partition_access_delete_content": "Êtes-vous certain(e) de vouloir supprimer l'accès {{ ip }} de la partition {{ partitionName }} ?",
+  "nasha_components_partition_access_delete_title": "Supprimer un contrôle d'accès (ACL)"
+}

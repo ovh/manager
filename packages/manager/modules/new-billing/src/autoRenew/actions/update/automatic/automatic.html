@@ -1,0 +1,20 @@
+<p
+    data-translate="billing_autorenew_service_update_automatic_sumup"
+    data-translate-values="{
+        serviceName: $ctrl.service.domain
+    }"
+></p>
+<p
+    data-translate="billing_autorenew_service_update_automatic_frequency"
+    data-translate-values="{
+        period: $ctrl.service.cleanRenewPeriod,
+        date: $ctrl.service.getExpirationDate()
+    }"
+></p>
+<p
+    data-translate="billing_autorenew_service_update_automatic_paymentmean"
+    data-translate-values="{
+        type: $ctrl.paymentMean.paymentType.text,
+        name: $ctrl.paymentMean.label
+    }"
+></p>

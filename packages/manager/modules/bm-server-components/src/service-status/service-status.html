@@ -1,0 +1,145 @@
+<oui-tile
+    data-heading="{{ :: 'dedicated_server_dashboard_services_state' | translate }}"
+    class="h-100 service-status"
+>
+    <!-- Status -->
+    <oui-tile-definition
+        data-term="{{ :: 'dedicated_server_dashboard_state_title' | translate }}"
+    >
+        <oui-tile-description>
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-badge_success': $ctrl.server.state === 'OK',
+                    'oui-badge_warning': $ctrl.server.state === 'ERROR',
+                    'oui-badge_error': $ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'
+                    }"
+                data-translate="{{ :: 'dedicated_server_dashboard_state_' + $ctrl.server.state }}"
+            >
+            </span>
+        </oui-tile-description>
+        <oui-action-menu
+            data-compact
+            aria-label="{{ :: 'menu_action_label' | translate:{ t0: ('dedicated_server_dashboard_state_title' | translate)} }}"
+            data-placement="end"
+        >
+            <oui-action-menu-item
+                data-on-click="$ctrl.rebootServer()"
+                data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask || $ctrl.dedicatedServer.$scope.disable.install"
+                data-ng-if="!$ctrl.server.isExpired"
+            >
+                <span
+                    data-translate="dedicated_server_dashboard_reboot_title_button"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.removeHack()"
+                data-disabled="$ctrl.server.state === 'HACKED_BLOCKED'"
+                data-ng-if="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
+            >
+                <span
+                    data-translate="dedicated_server_dashboard_remove_hack_button"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-href="{{:: $ctrl.terminateLink }}"
+                data-ng-if=":: $ctrl.canBeTerminate()"
+            >
+                <span
+                    data-translate="dedicated_server_dashboard_close_service"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-tile-definition>
+
+    <!--Monitoring options-->
+    <oui-tile-definition
+        class="overide-flex"
+        data-ng-if="$ctrl.isMonitoringOptionsAvailable"
+        data-term="{{ :: 'dedicated_server_dashboard_monitoring' | translate }}"
+    >
+        <oui-tile-description>
+            <span
+                class="oui-badge text-wrap"
+                data-ng-class="{
+                    'oui-badge_success': $ctrl.server.monitored && !$ctrl.server.noIntervention,
+                    'oui-badge_warning': !$ctrl.server.monitored || $ctrl.server.noIntervention
+                }"
+                data-translate="dedicated_server_dashboard_monitoring_status_{{$ctrl.getMonitoringStatus()}}"
+                data-oui-tooltip="{{ ('dedicated_server_dashboard_monitoring_status_tooltip_' + $ctrl.getMonitoringStatus()) | translate }}"
+                data-oui-tooltip-placement="top-start"
+            ></span>
+        </oui-tile-description>
+        <oui-tile-description>
+            <oui-button
+                class="my-2"
+                data-variant="link"
+                data-icon-right="oui-icon-chevron-right"
+                data-on-click="$ctrl.onMonitoringUpdateClick()"
+            >
+                <span
+                    data-translate="dedicated_server_dashboard_monitoring_enable_interventions"
+                    data-ng-if="!$ctrl.server.monitored || $ctrl.server.noIntervention"
+                ></span>
+                <span
+                    data-translate="dedicated_server_dashboard_monitoring_disable_interventions"
+                    data-ng-if="$ctrl.server.monitored && !$ctrl.server.noIntervention"
+                ></span>
+            </oui-button>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <!-- Links -->
+    <oui-tile-definition
+        data-term="{{ ::'dedicated_server_dashboard_services_state_links' | translate }}"
+    >
+        <oui-tile-description>
+            <a
+                class="oui-button oui-button_ghost oui-button_icon-right d-table"
+                href="{{:: $ctrl.servicesStateLinks.weathermap}}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="dedicated_server_dashboard_services_state_links_weathermap"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+                <span class="sr-only" data-translate="core_new_window"></span>
+            </a>
+            <a
+                class="oui-button oui-button_ghost oui-button_icon-right d-table"
+                data-ng-if="$ctrl.servicesStateLinks.vms"
+                href="{{:: $ctrl.servicesStateLinks.vms}}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="dedicated_server_dashboard_services_state_links_vms"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+                <span class="sr-only" data-translate="core_new_window"></span>
+            </a>
+            <a
+                class="oui-button oui-button_ghost oui-button_icon-right d-table"
+                href="{{:: $ctrl.servicesStateLinks.status }}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="dedicated_server_dashboard_services_state_links_travaux"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+                <span class="sr-only" data-translate="core_new_window"></span>
+            </a>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>

@@ -1,0 +1,10 @@
+{
+  "ip_byoip_disclaimer_title": "Wymagane potwierdzenie",
+  "ip_byoip_disclaimer_description": "Oświadczam, że: ",
+  "ip_byoip_disclaimer_description_point_1": " - jestem właścicielem wskazanego zakresu adresów IP",
+  "ip_byoip_disclaimer_description_point_2": " - Zobowiązuję się dopilnować, aby określony zakres adresów IP nie był ogłaszany w Internecie przez kilka sieci jednocześnie (multi-homing)",
+  "ip_byoip_disclaimer_description_point_3": " - wskazany zakres adresów IP posiada pozytywną reputację",
+  "ip_byoip_disclaimer_confirm_text": "Zatwierdź",
+  "ip_byoip_disclaimer_cancel_text": "Anuluj",
+  "ip_byoip_disclaimer_ordering_delay_message": "Proces ten może potrwać około 3 tygodni. Przepraszamy za niedogodności."
+}

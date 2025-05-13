@@ -91,5 +91,6 @@
   "iplb_farm_delete_title": "Eliminar la granja",
   "iplb_farm_delete_question": "¿Seguro que quiere eliminar la granja {{farm}}?",
   "iplb_farm_delete_error": "Se ha producido un error al eliminar la granja: {{message}}.",
-  "iplb_farm_delete_success": "La granja se ha eliminado correctamente."
+  "iplb_farm_delete_success": "La granja se ha eliminado correctamente.",
+  "iplb_farm_edit_server_breadcrumb": "Gestionar el servidor"
 }

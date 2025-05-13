@@ -5,19 +5,26 @@ import set from 'lodash/set';
 
 export default class ExchangeOrderCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, OvhApiEmailExchange, User) {
+  constructor(
+    $scope,
+    coreURLBuilder,
+    wucExchange,
+    OvhApiEmailExchange,
+    WucUser,
+  ) {
+    this.coreURLBuilder = coreURLBuilder;
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       OvhApiEmailExchange,
-      User,
+      WucUser,
     };
 
     this.loaders = {
       init: false,
     };
 
-    User.getUrlOf('exchangeOrder').then((exchangeOrder) => {
+    WucUser.getUrlOf('exchangeOrder').then((exchangeOrder) => {
       this.exchangeOrderUrl = exchangeOrder;
     });
 
@@ -27,7 +34,8 @@ export default class ExchangeOrderCtrl {
   getExchanges() {
     this.loaders.init = true;
 
-    return this.services.Exchange.getExchangeServices()
+    return this.services.wucExchange
+      .getAllExchangeServices()
       .then((exchanges) => {
         this.exchanges = map(exchanges, (exchange) => {
           set(exchange, 'domain', exchange.name);
@@ -49,9 +57,16 @@ export default class ExchangeOrderCtrl {
 
   getExchangeOrderUrl() {
     if (this.alreadyHasAnExchange && this.firstExchangeAccount != null) {
-      return `#/configuration/${this.firstExchangeAccount.type.toLowerCase()}/${
-        this.firstExchangeAccount.organization
-      }/${this.firstExchangeAccount.name}?tab=ACCOUNT`;
+      return this.coreURLBuilder.buildURL(
+        'web',
+        '#/configuration/:type/:organization/:productId',
+        {
+          type: this.firstExchangeAccount.type.toLowerCase(),
+          organization: this.firstExchangeAccount.organization,
+          productId: this.firstExchangeAccount.name,
+          tab: 'ACCOUNT',
+        },
+      );
     }
     return this.exchangeOrderUrl;
   }

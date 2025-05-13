@@ -1,0 +1,20 @@
+{
+  "billing_autorenew_bulk": "Selecionou {{ count }} serviços",
+  "billing_autorenew_bulk_cancel": "Anular",
+  "billing_autorenew_bulk_confirm": "Validar",
+  "billing_autorenew_bulk_unavailable_pending_debt": "Os serviços com fatura com pagamento pendente",
+  "billing_autorenew_bulk_unavailable_already_automatic": "Os serviços com pagamento automático",
+  "billing_autorenew_bulk_unavailable_already_manual": "Os serviços com renovação manual",
+  "billing_autorenew_bulk_unavailable_one_shot_automatic": "Os serviços que não podem usufruir do pagamento automático",
+  "billing_autorenew_bulk_unavailable_one_shot_manual": "Os serviços que não podem usufruir da renovação manual ",
+  "billing_autorenew_bulk_unavailable_nic_rights": "Os serviços para o quais não é o contacto de faturação",
+  "billing_autorenew_bulk_unavailable_resiliation_pending": "Os serviços com um pedido de rescisão em curso",
+  "billing_autorenew_bulk_unavailable_expired": "Os serviços rescindidos",
+  "billing_autorenew_bulk_service": "(1 serviço)",
+  "billing_autorenew_bulk_services": "({{ count }} serviços)",
+  "billing_autorenew_bulk_more": "Mostrar mais",
+  "billing_autorenew_bulk_less": "Mostrar menos",
+  "billing_autorenew_bulk_available_more": "Ver os detalhes dos serviços compatíveis",
+  "billing_autorenew_bulk_available_less": "Ocultar os detalhes dos serviços compatíveis",
+  "billing_autorenew_bulk_one": "Selecionou 1 serviço"
+}

@@ -1,7 +1,0 @@
-{
-  "billing_autorenew_service_update_manual_sumup": "Ha seleccionado la renovación manual para el servicio {{ serviceName }}.",
-  "billing_autorenew_service_update_manual_non_automatic": "Con esta modalidad, el servicio no se renovará automáticamente en la fecha de expiración.",
-  "billing_autorenew_service_update_manual_expiration": "Recibirá varios mensajes de correo electrónico en las semanas y días previos a la fecha de expiración ({{ expiration }}).",
-  "billing_autorenew_service_update_manual_renew": "Para conservar el servicio, solo tendrá que renovarlo.",
-  "billing_autorenew_service_update_manual_warning": "Atención: Una vez que el servicio haya expirado, se suspenderá de forma inmediata y no podrá acceder a él. Los datos asociados al servicio se eliminarán de forma definitiva, si no abona el importe pendiente."
-}

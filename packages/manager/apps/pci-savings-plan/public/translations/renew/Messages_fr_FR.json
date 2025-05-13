@@ -1,0 +1,8 @@
+{
+  "title": "Modifier le renouvellement automatique",
+  "message_activate": "Votre Savings Plan sera renouvelé pour une période identique.",
+  "message_deactivate": "Votre Savings Plan ne sera pas renouvelé automatiquement.",
+  "buttons_cancel": "Annuler",
+  "buttons_activate": "Activer",
+  "buttons_deactivate": "Désactiver"
+}

@@ -1,0 +1,9 @@
+{
+  "telephony_alias_portabilities_cancel_title": "Portierung abbrechen",
+  "telephony_alias_portabilities_cancel_confirm": "Sind Sie sicher, dass Sie Ihre Portierungsanfrage stornieren möchten?",
+  "telephony_alias_portabilities_cancel_yes": "Ja",
+  "telephony_alias_portabilities_cancel_no": "Nein",
+  "telephony_alias_portabilities_cancel_doing": "Abbruch wird durchgeführt...",
+  "telephony_alias_portabilities_cancel_success": "Die Anfrage zur Portierung wurde abgebrochen.",
+  "telephony_alias_portabilities_cancel_error": "Hoppla! Beim Stornieren Ihrer Portierungsanfrage ist ein Fehler aufgetreten."
+}

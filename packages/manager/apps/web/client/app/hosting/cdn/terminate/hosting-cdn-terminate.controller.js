@@ -1,40 +1,48 @@
-import get from 'lodash/get';
-
 export default class HostingTerminateCdnCtrl {
   /* @ngInject */
-  constructor($scope, $stateParams, $translate, Hosting, Alerter) {
-    this.$scope = $scope;
-    this.$stateParams = $stateParams;
+  constructor($filter, $translate, Hosting, Alerter) {
+    this.$filter = $filter;
     this.$translate = $translate;
     this.Hosting = Hosting;
     this.Alerter = Alerter;
   }
 
-  $onInit() {
-    this.$scope.terminateCdn = () => this.terminateCdn();
-  }
+  onTerminateCdn() {
+    this.trackClick('confirm');
 
-  terminateCdn() {
-    this.Hosting.terminateCdn(this.$stateParams.productId)
-      .then(() => {
-        this.Alerter.success(
-          this.$translate.instant(
-            'hosting_dashboard_service_terminate_cdn_success',
+    this.isBeingTerminated = true;
+    return this.Hosting.updateServiceInfo(this.serviceName, {
+      deleteAtExpiration: true,
+      automatic: true,
+      forced: false,
+    })
+      .then(() =>
+        this.goBack(
+          this.$translate.instant('hosting_cdn_terminate_success', {
+            endEngagementDate: this.$filter('date')(
+              this.cdnServiceInfo.expirationDate,
+            ),
+          }),
+        ),
+      )
+      .catch((error) => {
+        return this.goBack().then(() =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('hosting_cdn_terminate_error', {
+              message: error.data?.message || error,
+            }),
+            this.alerts.main,
           ),
-          this.$scope.alerts.main,
-        );
-      })
-      .catch((err) => {
-        this.Alerter.alertFromSWS(
-          this.$translate.instant(
-            'hosting_dashboard_service_terminate_cdn_error',
-          ),
-          get(err, 'data', err),
-          this.$scope.alerts.main,
         );
       })
       .finally(() => {
-        this.$scope.resetAction();
+        this.isBeingTerminated = false;
       });
+  }
+
+  onTerminationCancel() {
+    this.trackClick('cancel');
+
+    return this.goBack();
   }
 }

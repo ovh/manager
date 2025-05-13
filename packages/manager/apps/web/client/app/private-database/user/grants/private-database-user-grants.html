@@ -1,9 +1,7 @@
 <div data-ovh-alert="{{alerts.main}}"></div>
 
-<div data-ng-controller="PrivateDatabaseUsersGrantsCtrl as usersGrantsCtrls">
-    <oui-back-button data-on-click="goToList()">
-        <span data-translate="common_back"></span>
-    </oui-back-button>
+<div>
+    <oui-back-button data-on-click="goToList()" />
 
     <h2
         data-ng-bind-html="('privateDatabase_tabs_user_grant_change' | translate) + ' ' + user.userName"
@@ -20,7 +18,7 @@
                     <th
                         class="text-center"
                         scope="col"
-                        data-ng-repeat="grant in usersGrantsCtrls.grants track by $index"
+                        data-ng-repeat="grant in usersGrantsCtrl.grants track by $index"
                     >
                         <span
                             data-ng-bind-html="'privateDatabase_tabs_user_grant_' + grant | translate"
@@ -34,7 +32,7 @@
                 </tr>
             </thead>
 
-            <tbody data-ng-if="usersGrantsCtrls.loaders.userGrants">
+            <tbody data-ng-if="usersGrantsCtrl.loaders.userGrants">
                 <tr>
                     <td class="text-center" colspan="5">
                         <oui-spinner></oui-spinner>
@@ -43,7 +41,7 @@
             </tbody>
 
             <tbody
-                data-ng-if="!usersGrantsCtrls.loaders.userGrants && !usersGrantsCtrls.nbGrants"
+                data-ng-if="!usersGrantsCtrl.loaders.userGrants && !usersGrantsCtrl.nbGrants"
             >
                 <tr>
                     <td
@@ -55,16 +53,16 @@
             </tbody>
 
             <tbody
-                data-ng-if="!usersGrantsCtrls.loaders.userGrants && usersGrantsCtrls.nbGrants"
+                data-ng-if="!usersGrantsCtrl.loaders.userGrants && usersGrantsCtrl.nbGrants"
             >
                 <tr
-                    data-ng-repeat="user in usersGrantsCtrls.userGrantsDetails track by $index"
+                    data-ng-repeat="user in usersGrantsCtrl.userGrantsDetails track by $index"
                 >
                     <th scope="row" data-ng-bind="user.dataBase"></th>
                     <td
                         class="text-center"
                         colspan="4"
-                        data-ng-if="usersGrantsCtrls.isDoingGrant[user.dataBase]"
+                        data-ng-if="usersGrantsCtrl.isDoingGrant[user.dataBase]"
                     >
                         <span
                             class="label label-info"
@@ -73,14 +71,14 @@
                     </td>
                     <td
                         class="text-center"
-                        data-ng-if="!usersGrantsCtrls.isDoingGrant[user.dataBase]"
-                        data-ng-repeat="grant in usersGrantsCtrls.grants track by $index"
+                        data-ng-if="!usersGrantsCtrl.isDoingGrant[user.dataBase]"
+                        data-ng-repeat="grant in usersGrantsCtrl.grants track by $index"
                     >
                         <label class="mb-0">
                             <input
                                 type="radio"
-                                data-ng-change="usersGrantsCtrls.setGrant(user.dataBase, grant)"
-                                data-ng-disabled="database.state != 'started' || taskState.changeVersion || usersGrantsCtrls.loaders.setGrant"
+                                data-ng-change="usersGrantsCtrl.setGrant(user.dataBase, grant)"
+                                data-ng-disabled="database.state != 'started' || taskState.changeVersion || usersGrantsCtrl.loaders.setGrant"
                                 data-ng-model="user.value"
                                 data-ng-value="grant"
                             />
@@ -91,11 +89,11 @@
         </table>
     </div>
 
-    <div class="clearfix" data-ng-if="usersGrantsCtrls.userGrants">
+    <div class="clearfix" data-ng-if="usersGrantsCtrl.userGrants">
         <div
             data-pagination-front
-            data-items="usersGrantsCtrls.userGrants"
-            data-paginated-items="usersGrantsCtrls.userGrantsDetails"
+            data-items="usersGrantsCtrl.userGrants"
+            data-paginated-items="usersGrantsCtrl.userGrantsDetails"
             data-current-page="currentPage"
             data-nb-pages="nbPages"
             data-items-per-page="itemsPerPage"

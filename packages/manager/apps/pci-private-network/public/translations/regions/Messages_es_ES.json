@@ -1,0 +1,13 @@
+{
+  "pci_project_regions_list_continent_all": "Todas las localizaciones",
+  "pci_project_regions_list_empty": "No hay localizaciones disponibles.",
+  "pci_project_regions_list_add": "Por favor, active las últimas localizaciones de cada zona en la sección <a href=\"{{url}}\" class=\"oui-link\">Localizaciones</a>.",
+  "pci_project_regions_list_region": "Localización",
+  "pci_project_regions_list_quota": "Aumentar los límites de mi cuota",
+  "pci_project_regions_list_current_offer": "Producto actual",
+  "pci_project_flavors_zone_localzone": "Local Zones",
+  "pci_project_flavors_zone_global_region": "Regiones",
+  "pci_project_flavors_zone_localzone_tooltip": "Las Local Zones (zonas locales) son un nuevo tipo de localización en la que OVHcloud ofrece determinados servicios de su catálogo de productos Public Cloud. OVHcloud tiene previsto ampliar progresivamente el número de Local Zones disponibles en todo el mundo en los próximos años.",
+  "pci_project_flavors_zone_globalregions_tooltip": "Las regiones incluyen uno o varios datacenters gestionados por OVHcloud. Cada región ofrece una o varias Availability Zones (zonas de disponibilidad) con todo el catálogo de servicios de OVHcloud.",
+  "pci_project_flavors_zone_tooltip_link": "Más información"
+}

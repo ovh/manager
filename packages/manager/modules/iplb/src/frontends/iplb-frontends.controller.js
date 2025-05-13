@@ -31,10 +31,20 @@ export default class IpLoadBalancerFrontendsCtrl {
     this.loading = true;
     this.IpLoadBalancerFrontendService.getFrontends(
       this.$stateParams.serviceName,
-    ).then((results) => {
-      this.loading = false;
-      this.frontends = results;
-    });
+    )
+      .then((frontends) => {
+        this.frontends = frontends.map((frontend) => {
+          const { protocol, ssl } = frontend;
+          const displayProtocol =
+            ssl && protocol === 'http' ? 'https' : protocol;
+          set(frontend, 'displayProtocol', displayProtocol);
+
+          return frontend;
+        });
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   loadFarm(frontend) {
@@ -49,7 +59,7 @@ export default class IpLoadBalancerFrontendsCtrl {
   }
 
   update(frontend) {
-    this.$state.go('network.iplb.detail.frontends.update', {
+    this.$state.go('iplb.detail.frontends.update', {
       serviceName: this.$stateParams.serviceName,
       frontendId: frontend.frontendId,
     });

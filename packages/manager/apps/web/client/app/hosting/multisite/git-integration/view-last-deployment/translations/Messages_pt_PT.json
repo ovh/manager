@@ -1,0 +1,4 @@
+{
+  "hosting_multisite_git_association_git_last_deployment_title": "Informações da última implementação",
+  "hosting_multisite_git_association_git_last_deployment_logs_error": "Erro durante a recuperação dos logs: {{ errorMessage }}"
+}

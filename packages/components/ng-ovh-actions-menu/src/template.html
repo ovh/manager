@@ -1,0 +1,11 @@
+<button
+    type="button"
+    class="actions-menu-button"
+    data-ng-class="{ 'menu-open' : $ctrl.popoverSettings.isOpen }"
+    data-responsive-popover="'ng-ovh-actions-menu/template-inner.html'"
+    data-popover-class="{{ $ctrl.popoverSettings.class ? $ctrl.popoverSettings.class + ' ovh-angular-actions-menu' : 'ovh-angular-actions-menu' }}"
+    data-popover-placement="{{ $ctrl.popoverSettings.placement }}"
+    data-popover-trigger="{{ $ctrl.popoverSettings.trigger }}"
+    data-popover-is-open="$ctrl.popoverSettings.isOpen"
+    data-ng-transclude
+></button>

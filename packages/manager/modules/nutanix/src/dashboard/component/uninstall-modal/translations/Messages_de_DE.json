@@ -1,0 +1,10 @@
+{
+  "nutanix_dashboard_uninstall_node_title": "Node deinstallieren",
+  "nutanix_dashboard_uninstall_node_description": "Sie werden Ihren Node {{serviceName}} deinstallieren. Die Deinstallation eines Nutanix-Nodes kann sich auf Ihren Cluster auswirken. Überprüfen Sie die Voraussetzungen für diese Aktion im Nutanix-Portal.",
+  "nutanix_dashboard_uninstall_node_uninstall_guidelink": "Zugang zum Portal",
+  "nutanix_dashboard_uninstall_node_confirm": "Deinstallieren",
+  "nutanix_dashboard_uninstall_node_cancel": "Abbrechen",
+  "nutanix_dashboard_uninstall_node_input_label": "Geben Sie „{{magicword}}“ ein, um Ihre Auswahl zu bestätigen.",
+  "nutanix_dashboard_uninstall_node_success_banner": "Ihre Anfrage zur Deinstallation wurde registriert. Dieser Vorgang kann bis zu 10 Minuten dauern.",
+  "nutanix_dashboard_uninstall_node_error_banner": "Die Deinstallationsanfrage war nicht erfolgreich. Wenn der Fehler weiterhin besteht, kontaktieren Sie bitte den Support."
+}

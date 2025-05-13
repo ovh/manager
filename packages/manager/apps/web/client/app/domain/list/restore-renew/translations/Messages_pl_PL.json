@@ -1,0 +1,10 @@
+{
+  "domains_restore_renew_modal_title": "Przywróć / Odnów domeny ({{number}})",
+  "domains_restore_renew_modal_confirm": "Przywróć / Odnów",
+  "domains_restore_renew_modal_cancel": "Anuluj",
+  "domains_restore_renew_modal_question": "Aby odnowić domeny, skorzystaj z interfejsu OVHcloud do odnawiania usług (poza Panelem klienta).",
+  "domains_restore_renew_modal_confirmation": "Kliknij przycisk „Zamów”. W oknie, które się otworzy odnów domeny.",
+  "domains_restore_renew_modal_information": "Otworzy się nowa zakładka i zostaniesz przekierowany do interfejsu odnawiania usług OVHcloud.",
+  "domains_restore_renew_modal_alert": "Odnowienie usług trwa około 2 godziny od momentu przekazania zamówienia do realizacji. ",
+  "domains_restore_renew_modal_no_selected_domains": "Nie wybrałeś domen do odnowienia lub nie posiadasz uprawnień do odnowienia domen."
+}

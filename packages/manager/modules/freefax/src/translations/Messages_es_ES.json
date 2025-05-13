@@ -1,0 +1,8 @@
+{
+  "freefaxes_title": "Fax",
+  "freefaxes_order": "Contratar",
+  "freefaxes_number_label": "Número",
+  "freefaxes_from_name_label": "Remitente",
+  "freefaxes_from_email_label": "Correo electrónico del remitente",
+  "freefaxes_view_freefax_label": "Detalle del fax"
+}

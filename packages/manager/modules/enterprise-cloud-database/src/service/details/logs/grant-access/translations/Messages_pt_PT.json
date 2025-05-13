@@ -1,9 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_logs_grant_access_title": "Conceder o acesso",
-  "enterprise_cloud_database_service_details_logs_grant_access_description": "Conceda gratuitamente o acesso à OVH Logs Data Platform para aceder aos logs do seu cluster.",
-  "enterprise_cloud_database_service_details_logs_grant_access_label": "Insira o nome de utilizador OVH Logs Data Platform",
-  "enterprise_cloud_database_service_details_logs_grant_access_note": "Nota",
-  "enterprise_cloud_database_service_details_logs_grant_access_action": "Conceder o acesso",
-  "enterprise_cloud_database_service_details_logs_grant_access_success": "Acesso concedido para OVH Logs Data Platform “{{ldpName}}”",
-  "enterprise_cloud_database_service_details_logs_grant_access_error": "Ocorreu um erro ao emparelhar com OVH Logs Data Platform: {{message}}"
-}

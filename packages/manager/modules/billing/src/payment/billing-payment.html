@@ -1,0 +1,48 @@
+<div class="billing-payment">
+    <oui-header data-heading="{{ :: 'billing_payment_title' | translate }}">
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{ $ctrl.$state.href('app.account.billing.payment.method') }}"
+                data-active="$ctrl.$state.includes('app.account.billing.payment.method')"
+                ><span data-translate="billing_payment_method_title"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="$ctrl.coreConfig.getRegion() !== 'US'"
+                data-href="{{ $ctrl.$state.href('app.account.billing.payment.ovhaccount') }}"
+                data-active="$ctrl.$state.includes('app.account.billing.payment.ovhaccount')"
+                ><span data-translate="billing_payment_ovhaccount_title"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{ $ctrl.$state.href('app.account.billing.payment.credits') }}"
+                data-active="$ctrl.$state.includes('app.account.billing.payment.credits')"
+                ><span data-translate="billing_payment_credits_title"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="$ctrl.coreConfig.getRegion() === 'EU'"
+                data-href="{{ $ctrl.$state.href('app.account.billing.payment.fidelity') }}"
+                data-active="$ctrl.$state.includes('app.account.billing.payment.fidelity')"
+                ><span data-translate="billing_payment_fidelity_title"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="$ctrl.coreConfig.getRegion() !== 'US' && !!$ctrl.voucherAccounts.length"
+                data-href="{{ $ctrl.$state.href('app.account.billing.payment.vouchers') }}"
+                data-active="$ctrl.$state.includes('app.account.billing.payment.vouchers')"
+                ><span data-translate="billing_payment_vouchers_title"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+        <oui-guide-menu data-text="{{:: 'billing_guides_header' | translate }}">
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.guides.url.payment_method track by $index"
+                data-href="{{:: guide.url }}"
+                data-on-click="$ctrl.trackClick($ctrl.guides.tracking.payment_method + guide.tracking)"
+                data-external
+            >
+                <span
+                    data-translate="{{:: 'billing_guides_header_' + guide.key }}"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+
+    <div data-ui-view></div>
+</div>

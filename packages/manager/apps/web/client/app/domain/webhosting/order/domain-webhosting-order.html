@@ -1,12 +1,19 @@
 <div data-ovh-alert="webhosting-order-alert"></div>
 
-<oui-back-button data-on-click="$ctrl.goBackToDashboard()">
-    <span data-translate="domain_webhosting_order_title"></span>
-</oui-back-button>
+<oui-header
+    data-heading="{{ 'domain_webhosting_order_title' | translate }}"
+    data-description="{{ 'domain_webhosting_order_description' | translate }}"
+>
+    <oui-back-button
+        data-on-click="$ctrl.trackClick($ctrl.ORDER_WEBHOSTING_TRACKING.GO_BACK); $ctrl.goBackToDashboard()"
+    >
+    </oui-back-button>
+</oui-header>
 
 <ovh-manager-web-domain-webhosting-order-steps
+    data-catalog="$ctrl.catalog"
     data-available-offers="$ctrl.availableOffers"
-    data-available-modules="$ctrl.availableModules"
+    data-get-available-modules="$ctrl.getAvailableModules(offer)"
     data-cart-id="$ctrl.cartId"
     data-delete-cart-items="$ctrl.deleteCartItems"
     data-display-error-message="$ctrl.displayErrorMessage"

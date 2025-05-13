@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import flattenDeep from 'lodash/flattenDeep';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import has from 'lodash/has';
@@ -10,18 +11,24 @@ import last from 'lodash/last';
 import map from 'lodash/map';
 import maxBy from 'lodash/maxBy';
 import reduce from 'lodash/reduce';
-import set from 'lodash/set';
 import some from 'lodash/some';
 
+import { DOMAIN_TRACKING } from '../../hosting/hosting.constants';
+import { DOMAINS_BADGES_STATUS } from '../list/list-domain-layout.constants';
 import {
   DNSSEC_STATUS,
-  OWNER_CHANGE_URL,
+  DOMAIN_SERVICE_STATES,
+  DOMAIN_STATE_TYPE,
+  KYC_OPERATIONS,
   PROTECTION_TYPES,
+  SUSPENSION_STATES,
+  TRACKING_DOMAIN,
 } from './general-information.constants';
 
 export default class DomainTabGeneralInformationsCtrl {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $rootScope,
     $scope,
@@ -30,17 +37,28 @@ export default class DomainTabGeneralInformationsCtrl {
     $translate,
     Alerter,
     constants,
+    coreConfig,
+    coreURLBuilder,
+    dnsAvailableOptions,
     Domain,
+    emailObfuscationLink,
+    enableWebhostingLink,
     Hosting,
     HostingDomain,
+    isStart10mAvailable,
+    optinLink,
     OvhApiDomainRules,
     OvhApiScreenshot,
-    User,
+    WucUser,
     WucAllDom,
     DOMAIN,
     goToDnsAnycast,
-    CORE_MANAGER_URLS,
+    goToTerminateAnycast,
+    goToContactManagement,
+    shellClient,
+    atInternet,
   ) {
+    this.$http = $http;
     this.$scope = $scope;
     this.$rootScope = $rootScope;
     this.$q = $q;
@@ -49,29 +67,47 @@ export default class DomainTabGeneralInformationsCtrl {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.WucAllDom = WucAllDom;
+    this.dnsAvailableOptions = dnsAvailableOptions;
     this.Domain = Domain;
+    this.emailObfuscationLink = emailObfuscationLink;
+    this.enableWebhostingLink = enableWebhostingLink;
     this.Hosting = Hosting;
     this.HostingDomain = HostingDomain;
+    this.isStart10mAvailable = isStart10mAvailable;
+    this.optinLink = optinLink;
     this.OvhApiDomainRules = OvhApiDomainRules;
     this.OvhApiScreenshot = OvhApiScreenshot.Aapi();
-    this.User = User;
+    this.WucUser = WucUser;
     this.constants = constants;
+    this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.DOMAIN = DOMAIN;
     this.goToDnsAnycast = goToDnsAnycast;
-    this.CORE_MANAGER_URLS = CORE_MANAGER_URLS;
+    this.goToTerminateAnycast = goToTerminateAnycast;
+    this.goToContactManagement = goToContactManagement;
+    this.DOMAIN_STATE_TYPE = DOMAIN_STATE_TYPE;
+    this.shellClient = shellClient;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
+    this.DOMAINS_BADGES_STATUS = DOMAINS_BADGES_STATUS;
     this.domain = this.$scope.ctrlDomain.domain;
     this.domainInfos = this.$scope.ctrlDomain.domainInfos;
+    this.domainServiceInfos = this.$scope.ctrlDomain.domainServiceInfos;
     this.allDom = this.$scope.ctrlDomain.allDom;
     this.allDomInfos = this.$scope.ctrlDomain.allDomInfos;
+    this.domainState = this.$scope.ctrlDomain.domainState;
+    this.allDomPaymentState =
+      this.allDom &&
+      DomainTabGeneralInformationsCtrl.getDomainState(this.allDomInfos);
     this.associatedHostings = this.$scope.ctrlDomain.associatedHostings;
     this.orderedHosting = this.$scope.ctrlDomain.orderedHosting;
     this.displayFreeHosting = false;
     this.domainUnlockRegistry = this.constants.DOMAIN.domainUnlockRegistry[
       last(this.domain.displayName.split('.')).toUpperCase()
     ];
+    this.extension = last(this.domain.displayName.split('.')).toUpperCase();
     this.goToWebhostingOrder = this.$scope.ctrlDomain.goToWebhostingOrder;
     this.hasAssociatedHostings = false;
     this.hasStart10mOffer = false;
@@ -80,6 +116,8 @@ export default class DomainTabGeneralInformationsCtrl {
     this.options = {};
     this.zoneActivationLink = this.$state.href('.zoneActivate');
     this.displayAllSubdomains = false;
+    this.hasProcedureInProgress = false;
+    this.isSuspended = false;
 
     this.loading = {
       allDom: false,
@@ -119,6 +157,14 @@ export default class DomainTabGeneralInformationsCtrl {
       },
     };
 
+    this.ongoingOperationsLink = this.coreURLBuilder.buildURL(
+      'web-ongoing-operations',
+      '#/domain',
+      {
+        filter: `[{"field":"domain","comparator":"contains","reference":["${this.$stateParams.productId}"]}]`,
+      },
+    );
+
     forEach(
       [
         'transfertLock.get.done',
@@ -155,11 +201,12 @@ export default class DomainTabGeneralInformationsCtrl {
     if (!this.domain.isExpired) {
       this.getScreenshoot(this.domain.name);
     }
-    this.User.getUrlOf('start10mMarket').then((start10mMarket) => {
+    this.WucUser.getUrlOf('start10mMarket').then((start10mMarket) => {
       this.start10MarketUrl = start10mMarket;
     });
 
     this.updateVmStatus();
+    this.getResource(this.domain.name);
     this.getAllNameServer(this.domain.name);
     this.getHostingInfos(this.domain.name);
     this.getAssociatedHostingsSubdomains();
@@ -167,28 +214,59 @@ export default class DomainTabGeneralInformationsCtrl {
     this.updateOwnerUrl = this.getUpdateOwnerUrl(this.domain);
 
     this.getRules();
+    this.loggedInUser = this.coreConfig.getUser()?.auth.account;
 
     if (this.isAllDom) {
       this.getAllDomInfos(this.$stateParams.allDom);
     }
+
+    if (this.orderedHosting) {
+      this.shellClient.navigation
+        .getURL('web', `#/hosting/${this.orderedHosting}`, {
+          tab: 'GENERAL_INFORMATIONS',
+        })
+        .then((orderedHostingLink) => {
+          this.orderedHostingLink = orderedHostingLink;
+        });
+    }
+
+    const multisiteDetails = [];
+    this.$q
+      .all(
+        this.$scope.ctrlDomain.associatedHostings.map((hosting) => {
+          return this.shellClient.navigation
+            .getURL('web', `#/hosting/${hosting}`, { tab: 'MULTISITE' })
+            .then((multiSiteUrl) => {
+              multisiteDetails.push({
+                hosting,
+                url: multiSiteUrl,
+              });
+            });
+        }),
+      )
+      .then(() => {
+        this.associatedHostingsDetails = multisiteDetails;
+      });
   }
 
   initActions() {
+    const contactManagementUrl = this.$state.href(
+      'app.domain.product.contact',
+      this.$stateParams,
+    );
+
     this.actions = {
       manageContact: {
         text: this.$translate.instant('common_manage_contacts'),
-        href: `#/useraccount/contacts?tab=SERVICES&serviceName=${this.domain.name}&category=DOMAIN`,
-        isAvailable: () => true,
+        href: contactManagementUrl,
       },
       changeOwner: {
         text: this.$translate.instant('core_change_owner'),
         href: '',
-        isAvailable: () => true,
       },
       manageAutorenew: {
         text: this.$translate.instant('common_manage'),
         href: `#/billing/autoRenew?searchText=${this.domain.name}&selectedType=DOMAIN`,
-        isAvailable: () => true,
       },
       manageAlldom: {
         href: `#/billing/autoRenew?searchText=${this.allDom}&selectedType=ALL_DOM`,
@@ -198,7 +276,7 @@ export default class DomainTabGeneralInformationsCtrl {
     if (isObject(this.domain.whoisOwner)) {
       return this.$q
         .all({
-          domainOrderTradeUrl: this.User.getUrlOf('domainOrderTrade'),
+          domainOrderTradeUrl: this.WucUser.getUrlOf('domainOrderTrade'),
           orderServiceOption: this.Domain.getOrderServiceOption(
             this.domain.name,
           ),
@@ -227,7 +305,7 @@ export default class DomainTabGeneralInformationsCtrl {
       last(this.domain.name.split('.')),
     );
 
-    return this.User.getUrlOf(
+    return this.WucUser.getUrlOf(
       changeOwnerClassic ? 'changeOwner' : 'domainOrderChange',
     )
       .then((changeOwnerUrl) => {
@@ -255,13 +333,18 @@ export default class DomainTabGeneralInformationsCtrl {
         this.allDom = allDom;
         this.$q
           .all({
-            allDomDomains: this.WucAllDom.getDomains(serviceName),
+            allDomDomains: this.WucAllDom.getDomainsWithServiceInfo(
+              serviceName,
+            ),
             domains: this.Domain.getDomains(),
           })
           .then(({ allDomDomains, domains }) => {
             this.allDomDomains = map(allDomDomains, (domain) => ({
-              name: domain,
+              name: domain.name,
               isIncluded: domains.indexOf(domain) !== -1,
+              state: DomainTabGeneralInformationsCtrl.getDomainState(
+                domain?.serviceInfo,
+              ),
             }));
           })
           .catch((err) =>
@@ -303,6 +386,23 @@ export default class DomainTabGeneralInformationsCtrl {
       .finally(() => {
         this.loading.hosting = false;
       });
+  }
+
+  getResource(serviceName) {
+    return this.Domain.getResource(serviceName).then((resource) => {
+      const kycOperations = [
+        KYC_OPERATIONS.CONTACT_CONTROL,
+        KYC_OPERATIONS.CONTACT_CONTROL_CORRECT,
+        KYC_OPERATIONS.DOMAIN_CONTACT_CONTROL,
+      ];
+
+      this.hasProcedureInProgress = resource.currentTasks.some((task) =>
+        kycOperations.includes(task.type),
+      );
+
+      this.isSuspended =
+        resource.currentState.suspensionState === SUSPENSION_STATES.SUSPENDED;
+    });
   }
 
   getAllNameServer(serviceName) {
@@ -350,7 +450,7 @@ export default class DomainTabGeneralInformationsCtrl {
           }),
         ),
       )
-      .then((allAssociatedHosting) => allAssociatedHosting.flatten())
+      .then((allAssociatedHosting) => flattenDeep(allAssociatedHosting))
       .then((allAssociatedHosting) => {
         if (isArray(allAssociatedHosting) && !isEmpty(allAssociatedHosting)) {
           this.hasSubdomainsOrMultisites = true;
@@ -367,7 +467,7 @@ export default class DomainTabGeneralInformationsCtrl {
             ),
             (item) => ({
               name: item,
-              url: `#/configuration/hosting/${item}`,
+              url: `#/hosting/${item}`,
             }),
           );
 
@@ -414,6 +514,31 @@ export default class DomainTabGeneralInformationsCtrl {
           }),
           {},
         );
+      })
+      .then(() => {
+        return this.$http
+          .get(`/domain/zone/${this.domain.name}/option/anycast/serviceInfos`, {
+            serviceType: 'apiv6',
+          })
+          .then(({ data }) => {
+            this.options.dnsAnycast = {
+              option: 'dnsAnycast',
+              optionActivated: true,
+              isTerminated: ['deleteAtExpiration', 'manual'].includes(
+                data?.renew.mode,
+              ),
+              ...data,
+            };
+          })
+          .catch((error) => {
+            if (error.status === 404) {
+              this.options.dnsAnycast = {
+                option: 'dnsAnycast',
+                optionActivated: false,
+              };
+            }
+            return error.status !== 404 ? this.$q.reject(error) : null;
+          });
       })
       .catch((err) =>
         this.Alerter.alertFromSWS(
@@ -473,12 +598,21 @@ export default class DomainTabGeneralInformationsCtrl {
   getUpdateOwnerUrl(domain) {
     const ownerUrlInfo = { target: '', error: '' };
     if (has(domain, 'name') && has(domain, 'whoisOwner.id')) {
-      ownerUrlInfo.target = `${this.CORE_MANAGER_URLS.dedicated}/${OWNER_CHANGE_URL}${domain.name}/${domain.whoisOwner.id}`;
+      ownerUrlInfo.target = this.coreURLBuilder.buildURL(
+        'web',
+        '#/domain/:currentDomain/contact-management',
+        {
+          currentDomain: domain.name,
+        },
+      );
     } else if (!has(domain, 'name')) {
       ownerUrlInfo.error = this.$translate.instant(
         'domain_tab_REDIRECTION_add_step4_server_cname_error',
       );
-    } else {
+    } else if (
+      this.coreConfig.getUser().nichandle ===
+      this.domainServiceInfos.contactAdmin
+    ) {
       ownerUrlInfo.error =
         domain.whoisOwner !== this.DOMAIN.WHOIS_STATUS.PENDING &&
         domain.whoisOwner !== this.DOMAIN.WHOIS_STATUS.INVALID_CONTACT &&
@@ -496,20 +630,14 @@ export default class DomainTabGeneralInformationsCtrl {
     this.loading.whoIs = true;
     return this.$q
       .all({
-        obfuscationRules: this.OvhApiDomainRules.EmailsObfuscation()
-          .v6()
-          .query({
-            serviceName: this.domain.name,
-          }).$promise,
         optinRules: this.OvhApiDomainRules.Optin()
           .v6()
           .query({
             serviceName: this.domain.name,
           }).$promise,
       })
-      .then(({ obfuscationRules, optinRules }) => {
+      .then(({ optinRules }) => {
         this.isWhoisOptinAllowed = !isEmpty(optinRules);
-        this.canObfuscateEmails = !isEmpty(obfuscationRules);
       })
       .catch(() =>
         this.Alerter.error(
@@ -530,19 +658,6 @@ export default class DomainTabGeneralInformationsCtrl {
     });
   }
 
-  showWebHostingOrderWithStartOffer() {
-    const domain = angular.copy(this.domain);
-    set(
-      domain,
-      'selected.offer',
-      this.constants.HOSTING.OFFERS.START_10_M.LIST_VALUE,
-    );
-    this.$scope.setAction(
-      'webhosting-enable/domain-enable-web-hosting',
-      domain,
-    );
-  }
-
   switchTheStateOfProtection() {
     this.isSwitchingProtectionStatus = true;
     if (this.vm.protection.enabled) {
@@ -561,6 +676,63 @@ export default class DomainTabGeneralInformationsCtrl {
 
   static parseType(type) {
     return type.replace(/\+/g, '-');
+  }
+
+  static getDomainState(domainServiceInfo) {
+    const hasForcedRenew =
+      domainServiceInfo.renew.forced &&
+      !domainServiceInfo.renew.deleteAtExpiration &&
+      domainServiceInfo.this.status.toLowerCase() !== 'expired';
+    if (
+      domainServiceInfo.renew.manualPayment ||
+      domainServiceInfo.renewalType === 'manual'
+    ) {
+      return DOMAIN_SERVICE_STATES.manualPayment;
+    }
+    if (
+      domainServiceInfo.status.toLowerCase() === 'expired' ||
+      (moment().isAfter(domainServiceInfo.expirationDate) && !hasForcedRenew)
+    ) {
+      return DOMAIN_SERVICE_STATES.expired;
+    }
+    if (domainServiceInfo.renew.deleteAtExpiration) {
+      return DOMAIN_SERVICE_STATES.delete_at_expiration;
+    }
+    if (domainServiceInfo.renew.automatic || hasForcedRenew) {
+      return DOMAIN_SERVICE_STATES.automatic;
+    }
+    return DOMAIN_SERVICE_STATES.manualPayment;
+  }
+
+  canDisplayDomainOwner() {
+    return this.loggedInUser === this.domainInfos.contactAdmin.id;
+  }
+
+  getDomainOwnerInformation() {
+    const ownerName = `${this.domain.whoisOwner.firstName} ${this.domain.whoisOwner.lastName}`;
+    if (['individual', 'other'].includes(this.domain.whoisOwner.legalForm)) {
+      return ownerName;
+    }
+
+    return this.domain.whoisOwner.organisationName || ownerName;
+  }
+
+  trackClick(hit) {
+    return this.atInternet.trackClick({
+      name: hit,
+      type: 'action',
+    });
+  }
+
+  onWebhostingOrderClick() {
+    this.trackClick(DOMAIN_TRACKING.WEBHOSTING_ORDER);
+
+    return this.goToWebhostingOrder();
+  }
+
+  onGoToContactManagement() {
+    this.trackClick(TRACKING_DOMAIN.CONTACT_MANAGEMENT);
+    return this.goToContactManagement();
   }
 }
 

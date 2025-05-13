@@ -1,0 +1,10 @@
+{
+  "zimbra_auto_replies_name": "Adresse",
+  "zimbra_auto_replies_from": "Du",
+  "zimbra_auto_replies_until": "Jusqu'au",
+  "zimbra_auto_replies_status": "Statut",
+  "zimbra_auto_replies_copyTo": "Copier vers",
+  "zimbra_auto_replies_add_cta": "Créer un répondeur",
+  "zimbra_auto_replies_account_title": "Gestion des répondeurs",
+  "zimbra_auto_replies_delete_modal_content": "Êtes-vous sûr de vouloir supprimer le répondeur ?"
+}

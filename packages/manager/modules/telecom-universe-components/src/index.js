@@ -1,6 +1,5 @@
 import angular from 'angular';
 
-import tucChartjs from './chartjs';
 import tucCsvParser from './csv-parser';
 import tucCustomAsterisk from './custom-asterisk';
 import tucDebounce from './debounce';
@@ -22,8 +21,6 @@ import tucShippingModeSelection from './shippingModeSelection';
 import tucSlider from './slider';
 import tucSuccessDrawingCheck from './successDrawingCheck';
 import tucTableSort from './table-sort';
-import tucTelecomFax from './telecom/fax';
-import tucTelecomOtb from './telecom/otb';
 import tucTelecomPack from './telecom/pack';
 import tucTelecomRetractation from './telecom/retractation';
 import tucTelecomSms from './telecom/sms';
@@ -37,11 +34,11 @@ import tucUnitHumanize from './unit/humanize';
 import tucValidator from './validator';
 import tucBankHolidays from './bank-holidays';
 import FeatureAvailability from './feature-availability';
+import tucTelephonyProcedure from './telephony-procedure';
 
 const moduleName = 'ngOvhTelecomUniverseComponents';
 
 angular.module(moduleName, [
-  tucChartjs,
   tucCsvParser,
   tucCustomAsterisk,
   tucDebounce,
@@ -63,8 +60,6 @@ angular.module(moduleName, [
   tucSlider,
   tucSuccessDrawingCheck,
   tucTableSort,
-  tucTelecomFax,
-  tucTelecomOtb,
   tucTelecomPack,
   tucTelecomRetractation,
   tucTelecomSms,
@@ -77,6 +72,7 @@ angular.module(moduleName, [
   tucUnitHumanize,
   tucValidator,
   tucBankHolidays,
+  tucTelephonyProcedure,
 ]);
 
 export { FeatureAvailability };

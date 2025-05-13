@@ -1,0 +1,22 @@
+{
+  "updateSoftwareRancherTitle": "Atualizações disponíveis",
+  "updateSoftwareRancherDescription": "Selecione uma versão mais recente do seu serviço e consulte o changelog para saber mais sobre as alterações incluídas.",
+  "updateSoftwareRancherTableVersion": "Versão",
+  "updateSoftwareRancherTableUnavailable": "Indisponível",
+  "updateSoftwareRancherPreviousButton": "Voltar à página anterior",
+  "updateSoftwareRancherBreadcrumb": "Atualização do Rancher",
+  "updateSoftwareRancherCurrentVersion": "Versão atual",
+  "updateSoftwareRancherDurationInfo": "Estima-se que o tempo médio de atualização da versão é de 1 hora. Diferentes componentes do seu plano de controlo são atualizados através de um procedimento de rolling update (atualização progressiva) e permanecem disponíveis durante a atualização (salvo indicação em contrário no changelog associado).",
+  "updateSoftwareRancherImpact": "Os clusters geridos por Rancher (downstream clusters) não são afetados por esta atualização.",
+  "updateSoftwareRancherUpgradeInfo": "Após a atualização do seu plano de controlo, poderão ser aplicadas novas atualizações através da secção “Upgrades” do dashboard da sua interface Rancher. Poderá aplicá-las a cada “downstream cluster” ao ritmo que escolher.",
+  "updateSoftwareRancherChangelog": "Consultar o changelog",
+  "updateSoftwareRancherCta": "Atualizar",
+  "updateSoftwareAvailableUpdate": "Atualizar",
+  "updateSoftwareBannerAvailableUpdate": "Está disponível uma nova atualização para o Managed Rancher Service.",
+  "updateSoftwareBannerUpdateLoading": " A versão do Managed Rancher Service está a ser atualizada. Por favor, aguarde. Esta operação pode demorar alguns minutos.",
+  "updateSoftwareBannerDeprecated": "A versão do seu Rancher já não é suportada. Passe para uma versão mais recente.",
+  "updateSoftwareBannerError": "Ocorreu um erro aquando da atualização do seu Managed Rancher Service",
+  "updateSoftwareModalTitle": "Atualizar o Managed Rancher Service",
+  "updateSoftwareModalDescription": " Ao confirmar a atualização, confirma ter tomado conhecimento do changelog da versão selecionada e dos potenciais impactos nos seus clusters, aplicações e utilizações específicas.",
+  "updateSoftwareModalCTAConfirm": "Confirmar"
+}

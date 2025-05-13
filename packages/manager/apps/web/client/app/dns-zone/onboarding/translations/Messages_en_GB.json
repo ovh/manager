@@ -1,0 +1,10 @@
+{
+  "zones_onboarding_title": "DNS zones",
+  "zones_onboarding_description": "The <b>Domain Name System Zone</b> (DNS) is the DNS configuration file that handles all of the addressing associated with a domain. You can use it to configure subdomains or the location of an email server. DNS zones contain technical information called records, which route data to the expected destination.",
+  "zones_onboarding_description2": "When you configure a subdomain on a DNS, web users can then access the subdomain. You can do this in one click from the OVHcloud Control Panel, by attaching your subdomain to the directory containing the relevant files.",
+  "zones_onboarding_order": "Order",
+  "zones_onboarding_guide1_title": "Creating an OVHcloud DNS zone for a domain name",
+  "zones_onboarding_guide1_description": "Find out how to create an OVHcloud DNS zone for your domain name via the OVHcloud Control Panel",
+  "zones_onboarding_guide2_title": "Editing an OVHcloud DNS zone",
+  "zones_onboarding_guide2_description": "Find out how to edit an OVHcloud DNS zone via the OVHcloud Control Panel"
+}

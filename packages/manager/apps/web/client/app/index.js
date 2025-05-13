@@ -1,17 +1,26 @@
 import 'script-loader!jquery'; // eslint-disable-line
 import 'whatwg-fetch';
-import { attach as attachPreloader } from '@ovh-ux/manager-preloader';
-import { bootstrapApplication } from '@ovh-ux/manager-core';
+import { initShellClient } from '@ovh-ux/shell';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import { defineApplicationVersion } from '@ovh-ux/request-tagger';
+import { getShellClient, setShellClient } from './shell';
 
-attachPreloader();
+defineApplicationVersion(__VERSION__);
 
-bootstrapApplication().then(({ region }) => {
-  import(`./config-${region}`)
-    .catch(() => {})
-    .then(() => import('./app.module'))
-    .then(({ default: application }) => {
-      angular.bootstrap(document.body, [application], {
-        strictDi: false,
+initShellClient('web')
+  .then((client) => {
+    if (!isTopLevelApplication()) {
+      client.ux.startProgress();
+    }
+
+    setShellClient(client);
+    return client.environment.getEnvironment();
+  })
+  .then((environment) => {
+    import(`./config-${environment.getRegion()}`)
+      .catch(() => {})
+      .then(() => import('./app.module'))
+      .then(({ default: startApplication }) => {
+        startApplication(document.body, getShellClient());
       });
-    });
-});
+  });

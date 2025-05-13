@@ -1,0 +1,7 @@
+{
+  "dashboard_users_order_licences_title": "Contratar nuevas licencias",
+  "dashboard_users_order_licences_quantity": "Número",
+  "dashboard_users_order_licences_type": "Tipo de licencia",
+  "dashboard_users_order_licences_message_1": "Al validar, será redirigido a la orden de pedido.",
+  "dashboard_users_order_licences_message_2": "Una vez realizado el pago, vuelva a esta página para configurar los nuevos usuarios."
+}

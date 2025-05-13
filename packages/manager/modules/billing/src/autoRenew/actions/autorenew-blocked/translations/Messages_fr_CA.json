@@ -1,0 +1,5 @@
+{
+  "autorenew_service_autorenew_blocked_title": "Configuration du renouvellement indisponible",
+  "autorenew_service_autorenew_blocked_description": "Le renouvellement automatique n'est plus possible sur nos anciens contrats. Veuillez lire et accepter les nouveaux contrats pour pouvoir renouveler vos produits automatiquement.",
+  "autorenew_service_autorenew_blocked_confirm": "Lire et accepter les nouvelles CGV"
+}

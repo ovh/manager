@@ -1,11 +1,12 @@
 {
- "overTheBox_page_title": "Mon OverTheBox \"{{name}}\"",
- "overTheBox_title": "OverTheBox",
- "overTheBox_back": "Back",
- "overTheBox_tabs_detail": "Your OverTheBox",
- "overTheBox_tabs_remote": "Remote access",
- "overTheBox_tabs_tasks": "Tasks",
- "overTheBox_tabs_docs": "Guides",
- "overTheBox_tabs_logs": "Logs",
- "overTheBox_no_device_found": "There are no OverTheBox connected. You cannot create remote access, nor use the accesses created. If you need help configuring OverTheBox, please see <a href=\"{{url}}\" target=\"_blank\" title=\"Nouvelle fenêtre\">this guide</a>."
+  "overTheBox_page_title": "Mon OverTheBox \"{{name}}\"",
+  "overTheBox_title": "Over The Box",
+  "overTheBox_back": "Back",
+  "overTheBox_tabs_detail": "Your OverTheBox",
+  "overTheBox_tabs_remote": "Remote access",
+  "overTheBox_tabs_tasks": "Tasks",
+  "overTheBox_tabs_logs": "Logs",
+  "overTheBox_no_device_found": "There are no OverTheBox connected. You cannot create remote access, nor use the accesses created. If you need help configuring OverTheBox, please see <a href=\"{{url}}\" target=\"_blank\" title=\"Nouvelle fenêtre\">this guide</a>.",
+  "overTheBox_tabs_actions": "Actions",
+  "overTheBox_tabs_autoconfigure": "Configuration"
 }

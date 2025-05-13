@@ -1,6 +1,6 @@
 # manager-config
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-config)](https://www.npmjs.com/package/@ovh-ux/manager-config) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-config)](https://npmjs.com/package/@ovh-ux/manager-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/config)](https://npmjs.com/package/@ovh-ux/manager-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/config)](https://npmjs.com/package/@ovh-ux/manager-config?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-config)](https://www.npmjs.com/package/@ovh-ux/manager-config) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-config)](https://npmjs.com/package/@ovh-ux/manager-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/config)](https://npmjs.com/package/@ovh-ux/manager-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/config)](https://npmjs.com/package/@ovh-ux/manager-config?activeTab=dependencies)
 
 ## Install
 

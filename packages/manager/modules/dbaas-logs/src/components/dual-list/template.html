@@ -1,0 +1,172 @@
+<div class="oui-dual-list">
+    <div class="oui-dual-list__source">
+        <div class="oui-dual-list__header">
+            <span>{{$ctrl.sourceListLabel}}</span>
+            <span data-ng-if="!$ctrl.sourceListLoading"
+                >({{$ctrl.sourceList.length}})</span
+            >
+            <span class="oui-dual-list__header_toggle">
+                <i
+                    class="oui-icon oui-icon-chevron-up oui-dual-list__header_toggle_up"
+                    data-ng-style="$ctrl.sourceOpenIconStyle"
+                    data-ng-click="$ctrl.onSourceContentOpen()"
+                    aria-hidden="true"
+                ></i>
+                <i
+                    class="oui-icon oui-icon-chevron-down oui-dual-list__header_toggle_down"
+                    data-ng-style="$ctrl.sourceCloseIconStyle"
+                    data-ng-click="$ctrl.onSourceContentClose()"
+                    aria-hidden="true"
+                ></i>
+            </span>
+        </div>
+        <div
+            class="oui-dual-list__content"
+            data-ng-if="!$ctrl.sourceListLoading && $ctrl.sourceList.length"
+            data-ng-style="$ctrl.sourceContentStyle"
+        >
+            <div class="oui-dual-list__content_filter">
+                <input
+                    type="text"
+                    id="dual-list-filter"
+                    name="dual-list-filter"
+                    data-ng-model="$ctrl.sourceFilterKey"
+                    ng-model-options="{debounce: 500}"
+                />
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+            <div
+                class="oui-dual-list__content_add_all"
+                data-ng-if="$ctrl.bulkActionEnabled && $ctrl.sourceList.length > 1"
+            >
+                <a
+                    id="dual-list-add-all"
+                    name="dual-list-add-all"
+                    data-ng-click="$ctrl.addAll()"
+                    >{{$ctrl.moveAllLabel}}</a
+                >
+            </div>
+            <ul
+                class="oui-dual-list__content_list"
+                data-ng-style="$ctrl.listHeight"
+            >
+                <li
+                    data-ng-repeat="source in $ctrl.sourceList | dualListFilter:$ctrl.sourceFilterKey:$ctrl.property"
+                    data-ng-click="$ctrl.add($index, source)"
+                    class="oui-dual-list__content_list_item"
+                >
+                    <span
+                        data-ng-if="!$ctrl.isLoading(source)"
+                        class="oui-dual-list__content_list_item_icon"
+                    >
+                        <i class="oui-icon oui-icon-add" aria-hidden="true"></i>
+                    </span>
+                    <span
+                        data-ng-if="!$ctrl.isLoading(source)"
+                        class="oui-dual-list__content_list_item_icon oui-dual-list__content_list_item_add"
+                        >{{$ctrl.addLabel}}</span
+                    >
+                    <oui-spinner
+                        size="s"
+                        class="oui-dual-list__content_list_item_icon"
+                        data-ng-if="$ctrl.isLoading(source)"
+                    ></oui-spinner>
+                    <span class="oui-dual-list__content_list_item_title"
+                        >{{$ctrl.getProperty(source)}}</span
+                    >
+                </li>
+            </ul>
+        </div>
+        <div
+            class="oui-dual-list__empty_label"
+            data-ng-if="!$ctrl.sourceListLoading && !$ctrl.sourceList.length"
+        >
+            <p>{{$ctrl.sourceListEmptyLabel}}</p>
+        </div>
+        <div
+            class="oui-dual-list__empty_label"
+            data-ng-if="$ctrl.sourceListLoading"
+        >
+            <oui-spinner size="m"></oui-spinner>
+        </div>
+    </div>
+    <div class="oui-dual-list__target">
+        <div class="oui-dual-list__header">
+            <span>{{$ctrl.targetListLabel}}</span>
+            <span data-ng-if="!$ctrl.targetListLoading"
+                >({{$ctrl.targetList.length}})</span
+            >
+            <span class="oui-dual-list__header_toggle">
+                <i
+                    class="oui-icon oui-icon-chevron-up oui-dual-list__header_toggle_up"
+                    aria-hidden="true"
+                    data-ng-style="$ctrl.targetOpenIconStyle"
+                    data-ng-click="$ctrl.onTargetContentOpen()"
+                ></i>
+                <i
+                    class="oui-icon oui-icon-chevron-down oui-dual-list__header_toggle_down"
+                    aria-hidden="true"
+                    data-ng-style="$ctrl.targetCloseIconStyle"
+                    data-ng-click="$ctrl.onTargetContentClose()"
+                ></i>
+            </span>
+        </div>
+        <div
+            data-ng-if="!$ctrl.targetListLoading && $ctrl.targetList.length"
+            class="oui-dual-list__content"
+            data-ng-style="$ctrl.targetContentStyle"
+        >
+            <div
+                class="oui-dual-list__content_remove_all"
+                data-ng-if="$ctrl.bulkActionEnabled && $ctrl.targetList.length > 1"
+            >
+                <a
+                    id="dual-list-remove-all"
+                    name="dual-list-remove-all"
+                    data-ng-click="$ctrl.removeAll()"
+                    >{{$ctrl.removeAllLabel}}</a
+                >
+            </div>
+            <ul
+                class="oui-dual-list__content_list"
+                data-ng-style="$ctrl.listHeight"
+            >
+                <li
+                    data-ng-repeat="target in $ctrl.targetList"
+                    data-ng-click="$ctrl.remove($index, target)"
+                    class="oui-dual-list__content_list_item oui-dual-list__content_list_item_target"
+                >
+                    <span
+                        data-ng-if="!$ctrl.isLoading(target)"
+                        class="oui-dual-list__content_list_item_icon"
+                    >
+                        <i
+                            class="oui-icon oui-icon-close"
+                            aria-hidden="true"
+                        ></i>
+                    </span>
+                    <oui-spinner
+                        size="s"
+                        class="oui-dual-list__content_list_item_icon"
+                        data-ng-if="$ctrl.isLoading(target)"
+                    ></oui-spinner>
+                    <span class="oui-dual-list__content_list_item_title"
+                        >{{$ctrl.getProperty(target)}}</span
+                    >
+                </li>
+            </ul>
+        </div>
+        <div
+            class="oui-dual-list__empty_label"
+            data-ng-if="!$ctrl.targetListLoading && !$ctrl.targetList.length"
+        >
+            <p>{{$ctrl.targetListEmptyLabel}}</p>
+        </div>
+        <div
+            class="oui-dual-list__empty_label"
+            data-ng-if="$ctrl.targetListLoading"
+        >
+            <oui-spinner size="m"></oui-spinner>
+        </div>
+    </div>
+</div>

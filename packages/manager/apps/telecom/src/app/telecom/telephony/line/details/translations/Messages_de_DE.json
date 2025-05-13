@@ -31,5 +31,6 @@
   "telephony_line_details_sip_last_rec": "Date du dernier enregistrement",
   "telephony_line_details_sip_last_rec_info": "Un enregistrement sur le réseau est valable durant une heure.",
   "telephony_line_details_sip_ip_local": "Ip / port local",
-  "telephony_line_details_sip_ip_public": "Ip / port publique"
+  "telephony_line_details_sip_ip_public": "Ip / port publique",
+  "telephony_line_details_sip_outbound_proxy": "Ausgehender Proxy"
 }

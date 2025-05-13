@@ -1,18 +1,34 @@
+import template from './domain-dns.html';
 import controller from './domain-dns.controller';
-import template from './DNS.html';
+import { NS_UPDATE_RESULT } from '../dns-modify/domain-dns-modify.constants';
 
-const state = {
-  url: '/dns',
-  views: {
-    domainView: {
-      controller,
-      controllerAs: '$ctrl',
-      template,
+export default /* @ngInject */ ($stateProvider) => {
+  const state = {
+    url: '/dns',
+    views: {
+      domainView: {
+        controller,
+        controllerAs: '$ctrl',
+        template,
+      },
     },
-  },
-  atInternet: {
-    rename: 'DNS',
-  },
-};
+    params: {
+      /**
+       * Used to display a success message comming from dns-modify page
+       */
+      nsUpdateStatus: NS_UPDATE_RESULT.EMPTY,
+    },
+    atInternet: {
+      rename: 'DNS',
+    },
+    resolve: {
+      nsUpdateStatus: /* @ngInject */ ($transition$) =>
+        $transition$.params().nsUpdateStatus,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('domain_dns'),
+    },
+  };
 
-export default state;
+  $stateProvider.state('app.domain.product.dns', { ...state });
+  $stateProvider.state('app.alldom.domain.dns', { ...state });
+};

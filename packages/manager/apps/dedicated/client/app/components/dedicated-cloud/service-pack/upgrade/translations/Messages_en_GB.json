@@ -1,0 +1,7 @@
+{
+  "dedicatedCloud_servicePack_basic_header": "Modify options",
+  "dedicatedCloud_servicePack_certification_header": "Activate a certification for your Private Cloud",
+  "dedicatedCloud_servicePack_confirmation_order_failure": "Activation failed",
+  "dedicatedCloud_servicePack_nsx_required": "You will need to enable the NSX option before creating your Premier Data Center",
+  "dedicatedCloud_servicePack_nsx_required_aria_close": "Close"
+}

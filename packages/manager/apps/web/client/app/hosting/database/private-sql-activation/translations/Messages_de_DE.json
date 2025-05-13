@@ -1,7 +1,7 @@
 {
   "privatesql_activation_back": "Zurück",
   "privatesql_activation_order": "Aktivieren",
-  "privatesql_activation_step_1": "Aktivieren einer privaten SQL-Datenbank",
+  "privatesql_activation_step_1": "Eine Datenbank mit Web Cloud Databases aktivieren",
   "privatesql_activation_step_2": "Bestätigung",
   "privatesql_activation_hosting_select": "Zu verwendendes Hosting",
   "privatesql_activation_hosting_error": "Beim Laden der Optionen ist ein Fehler aufgetreten.",
@@ -27,7 +27,8 @@
   "privatesql_activation_version_v_redis_32": "Redis 3.2",
   "privatesql_activation_version_v_mongodb_40": "MongoDB 4.0",
   "privatesql_activation_version_v_redis_40": "Redis 4.0",
-  "privatesql_activation_option_private-sql-512": "SQL Private",
+  "privatesql_activation_option_private-sql": "Private SQL {{diskSpace}} MB",
   "privatesql_activation_success": "Die Aktivierung der Datenbank wurde erfolgreich abgeschlossen. Siehe meine <a href=\"{{ billUrl }}\" target=\"_blank\" rel=\"noopener\">Rechnung.</a>.",
-  "privatesql_activation_success_bc": "Ihr <a href=\"{{ bcUrl }}\" target=\"_blank\" rel=\"noopener\">Bestellformular</a> wurde generiert. Bitte gehen Sie zur Zahlung dieses Betrags über, um Ihre Datenbank zu aktivieren."
+  "privatesql_activation_success_bc": "Ihr <a href=\"{{ bcUrl }}\" target=\"_blank\" rel=\"noopener\">Bestellformular</a> wurde generiert. Bitte gehen Sie zur Zahlung dieses Betrags über, um Ihre Datenbank zu aktivieren.",
+  "privatesql_activation_breadcrumb": "Aktivieren"
 }

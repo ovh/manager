@@ -1,0 +1,134 @@
+<div class="telecom-telephony-alias-configuration-ovhPabx-sounds">
+    <tuc-section-back-link
+        data-tuc-section-back-link-to-state="telecom.telephony.billingAccount.alias.details.configuration"
+        data-tuc-section-back-link-title="{{ 'telephony_alias_configuration_back_link' | translate }}"
+    >
+    </tuc-section-back-link>
+    <oui-header
+        class="mt-2"
+        data-heading="{{:: 'telephony_alias_configuration_actions_sounds_management' | translate }}"
+    >
+        <oui-guide-menu
+            data-text="{{:: 'telephony_alias_configuration_guide' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-href="{{:: $ctrl.guides.getURL('ccs.soundsManagement') }}"
+                data-external
+            >
+                <span
+                    data-translate="telephony_alias_configuration_actions_sounds_management"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+    <!-- SHOW LOADING -->
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+    <!-- END OF SHOW LOADING -->
+
+    <!-- NOT AN OVHPABX -->
+    <div
+        class="row"
+        data-ng-if="!$ctrl.loading.init && $ctrl.number.getFeatureFamily() !== 'ovhPabx'"
+    >
+        <div class="col-xs-12 col-md-6">
+            <div class="alert alert-warning" role="alert">
+                <p data-translate="telephony_alias_ovh_pabx_condition"></p>
+                <a
+                    data-ui-sref="telecom.telephony.billingAccount.alias.details.configuration.changeType"
+                    data-translate="telephony_alias_configuration_change_type"
+                    data-translate-attr="{ title: 'telephony_alias_configuration_change_type' }"
+                >
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- END OF NOT AN OVHPABX -->
+
+    <!-- INFO -->
+    <div class="row" data-ng-if="!$ctrl.loading.init">
+        <div class="col-md-6">
+            <div class="alert alert-info" role="alert">
+                <p
+                    data-translate="telephony_alias_ovh_pabx_sounds_list_info1"
+                ></p>
+                <p
+                    data-translate="telephony_alias_ovh_pabx_sounds_list_info2"
+                    data-translate-values="{ featureType: $ctrl.getFeatureType() }"
+                ></p>
+            </div>
+        </div>
+    </div>
+    <!-- END OF INFO -->
+
+    <!-- SOUND LIST -->
+    <div
+        class="row"
+        data-ng-if="!$ctrl.loading.init && $ctrl.number.getFeatureFamily() === 'ovhPabx'"
+    >
+        <div class="col-xs-12 col-md-6 widget-presentation">
+            <form novalidate name="ovhPabxSound" class="mb-3">
+                <!-- ADD SOUND -->
+                <label
+                    class="btn btn-primary input-file"
+                    data-telephony-number-ovh-pabx-sound-uploader
+                    data-ovh-pabx="$ctrl.number.feature"
+                    data-ng-model="$ctrl.model.file"
+                    data-upload-errors="$ctrl.uploadErrors"
+                >
+                    <i
+                        class="oui-icon oui-icon-add d-inline-block align-middle"
+                        aria-hidden="true"
+                    ></i>
+                    <span
+                        class="d-inline-block align-middle ml-2"
+                        data-translate="telephony_alias_ovh_pabx_sounds_add"
+                    >
+                    </span>
+                </label>
+                <em
+                    class="d-block my-2"
+                    data-translate="telephony_alias_ovh_pabx_sounds_add_limitations"
+                >
+                </em>
+                <div data-ng-if="$ctrl.hasError()" class="text-danger">
+                    <p
+                        data-translate="telephony_alias_ovh_pabx_sounds_add_selected_file"
+                        data-translate-values="{ file: $ctrl.model.file.name }"
+                    ></p>
+                    <span
+                        data-ng-if="$ctrl.uploadErrors.extension"
+                        data-translate="telephony_alias_ovh_pabx_sounds_add_bad_extension"
+                    >
+                    </span>
+                    <span
+                        data-ng-if="$ctrl.uploadErrors.size"
+                        data-translate="telephony_alias_ovh_pabx_sounds_add_bad_size"
+                    >
+                    </span>
+                    <span
+                        data-ng-if="$ctrl.uploadErrors.name"
+                        data-translate="telephony_alias_ovh_pabx_sounds_add_bad_name"
+                    >
+                    </span>
+                    <span
+                        data-ng-if="$ctrl.uploadErrors.exists"
+                        data-translate="telephony_alias_ovh_pabx_sounds_add_file_exists"
+                    >
+                    </span>
+                </div>
+                <!-- END OF ADD SOUND -->
+            </form>
+            <h2
+                data-translate="telephony_alias_ovh_pabx_sounds_list_title"
+            ></h2>
+
+            <telephony-number-ovh-pabx-sound-list
+                data-ovh-pabx="$ctrl.number.feature"
+            ></telephony-number-ovh-pabx-sound-list>
+        </div>
+    </div>
+    <!-- END OF SOUND LIST -->
+</div>
+<!-- /.telecom-telephony-alias-configuration-ovhPabx-sounds -->

@@ -1,0 +1,23 @@
+{
+  "vps_dashboard_tile_configuration_title": "La tua configurazione",
+  "vps_dashboard_tile_configuration_vcore_upscale": "Aggiungi vCore passando alla gamma superiore",
+  "vps_dashboard_tile_configuration_memory": "Memoria",
+  "vps_dashboard_tile_configuration_memory_add": "Aggiungi memoria",
+  "vps_dashboard_tile_configuration_memory_add_upscale": "Aggiungi memoria passando alla gamma superiore",
+  "vps_dashboard_tile_configuration_memory_double": "Raddoppiare la memoria a un prezzo aggiuntivo di {{ additionalPrice }}/mese, per un totale di {{ price }}/mese",
+  "vps_dashboard_tile_configuration_storage": "Storage",
+  "vps_dashboard_tile_configuration_storage_add": "Aumenta il volume di storage",
+  "vps_dashboard_tile_configuration_storage_add_upscale": "Aumenta lo storage passando alla gamma superiore",
+  "vps_dashboard_tile_configuration_storage_double": "Raddoppiare lo spazio di storage a un prezzo aggiuntivo di {{ additionalPrice }}/mese, per un totale di {{ price }}/mese",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_title": "La modifica è stata presa in carico.",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_details": "Una volta che le modifiche diventeranno effettive sul VPS, riceverai un’email di conferma entro 2 ore. Per utilizzare la nuova configurazione sarà necessario riavviare la macchina.",
+  "vps_dashboard_tile_configuration_upgrade_confirmation_track_order": "Segui il tuo ordine",
+  "vps_dashboard_tile_configuration_upgrade_complete_reboot_required": "Le risorse sono state aggiunte correttamente sul VPS. Riavvia la macchina per attivare la nuova configurazione.",
+  "vps_dashboard_tile_configuration_vcore": "vCore",
+  "vps_dashboard_tile_configuration_memory_add_upscale_elite": "Fai evolvere il tuo VPS aumentando la memoria disponibile",
+  "vps_dashboard_tile_configuration_storage_add_upscale_elite": "Fai evolvere il tuo VPS aumentando lo storage disponibile",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_cpu": "Per usufruire di più vCore, contatta l’amministratore dell’account: {{ nichandle }}",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_memory": "Per usufruire di più memoria, contatta l’amministratore dell’account: {{ nichandle }}",
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_storage": "Per usufruire di più storage, contatta l’amministratore dell’account: {{ nichandle }}",
+  "vps_dashboard_tile_configuration_starter_range_info_message": "La funzionalità che permette di aumentare la RAM o lo storage è disponibile a partire dalla soluzione VPS Value."
+}

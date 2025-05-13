@@ -1,0 +1,11 @@
+{
+  "cdn_onboarding_title": "CDN Infrastructure",
+  "cdn_onboarding_description": "La solution indispensable pour optimiser la consultation de vos applications web, partout en France et dans le monde.",
+  "cdn_onboarding_order": "Commander",
+  "cdn_onboarding_guide1_title": "Fonctionnement du quota sur le CDN",
+  "cdn_onboarding_guide1_description": "Découvrez comment fonctionne le quota sur votre CDN",
+  "cdn_onboarding_guide2_title": "Première configuration d'un nom de domaine",
+  "cdn_onboarding_guide2_description": "Découvrez les bonnes pratiques de paramétrage d'un domaine sur votre CDN OVH",
+  "cdn_onboarding_guide3_title": "Fonctionnement du certificat SSL sur le CDN",
+  "cdn_onboarding_guide3_description": "Découvrez comment ajouter un certificat SSL sur le CDN"
+}

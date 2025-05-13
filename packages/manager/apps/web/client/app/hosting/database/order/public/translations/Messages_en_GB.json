@@ -1,0 +1,12 @@
+{
+  "ovhManagerHostingDatabaseOrderPublic_title": "Order a database solution",
+  "ovhManagerHostingDatabaseOrderPublic_customization_title": "Choose your solution",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_title": "Select the features you want",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_placeholder": "Select",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_display_1": "{{quantity}} database with {{diskSpace}}MB",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_display_+": "{{quantity}} databases with {{diskSpace}}MB",
+  "ovhManagerHostingDatabaseOrderPublic_success_noCheckout": "Your order has been processed. Your product will be enabled shortly.",
+  "ovhManagerHostingDatabaseOrderPublic_success_checkout": "Your <a href=\"{{url}}\" target=\"_blank\">purchase order</a> has been generated. Your web hosting plan will be enabled once you have validated it.",
+  "ovhManagerHostingDatabaseOrderPublic_error": "An error has occurred ordering an SQL database: {{message}}",
+  "ovhManagerHostingDatabaseOrderPublic_description": "We recommend ordering a START SQL unit database, with 3 sizes to choose from – or for more advanced needs, one of our SQL/NoSQL Web Cloud Databases offers with guaranteed resources."
+}

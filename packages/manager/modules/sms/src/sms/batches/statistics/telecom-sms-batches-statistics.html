@@ -1,0 +1,139 @@
+<header>
+    <oui-back-button on-click="$ctrl.goBack()">
+        <span data-translate="sms_batches_statistics_title"></span>
+    </oui-back-button>
+</header>
+
+<section class="container-fluid ml-3">
+    <oui-message
+        type="error"
+        data-ng-if="$ctrl.error"
+        dismissable
+        on-dismiss="$ctrl.error = null"
+    >
+        <span
+            data-translate="sms_batches_statistics_load_error"
+            data-translate-values="{ 'error': $ctrl.error }"
+        ></span>
+    </oui-message>
+
+    <div class="row">
+        <oui-tile class="col-md-8">
+            <div class="row mb-5">
+                <div class="col-md-3">
+                    <dl class="oui-description">
+                        <dt data-translate="sms_batches_name"></dt>
+                        <dd>
+                            <oui-select
+                                match="name"
+                                model="$ctrl.selectedBatch"
+                                items="$ctrl.batches"
+                                on-change="$ctrl.onBatchSelect(modelValue)"
+                                disabled="$ctrl.isLoadingStats"
+                            >
+                            </oui-select>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl class="oui-description">
+                        <dt data-translate="sms_batches_status"></dt>
+                        <dd
+                            data-ng-class="{
+                              'oui-color-ae-500': $ctrl.constructor.isInError($ctrl.batch.status, $ctrl.batchStatuses),
+                              'oui-color-as-500': $ctrl.constructor.isInSuccess($ctrl.batch.status, $ctrl.batchStatuses),
+                              'oui-color-aw-500': $ctrl.constructor.isInWarning($ctrl.batch.status, $ctrl.batchStatuses),
+                             }"
+                        >
+                            <span
+                                class="oui-icon"
+                                data-ng-class="{
+                                  'oui-icon-error-circle': $ctrl.constructor.isInError($ctrl.batch.status, $ctrl.batchStatuses),
+                                  'oui-icon-success-circle': $ctrl.constructor.isInSuccess($ctrl.batch.status, $ctrl.batchStatuses),
+                                  'oui-icon-warning-circle': $ctrl.constructor.isInWarning($ctrl.batch.status, $ctrl.batchStatuses),
+                                  'oui-icon-clock-wait': $ctrl.constructor.isInInfo($ctrl.batch.status, $ctrl.batchStatuses)
+                                }"
+                            ></span>
+                            <span
+                                class="align-super"
+                                data-translate="{{ 'sms_batches_status_' + $ctrl.formatStatus($ctrl.batch.status) }}"
+                            ></span>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl class="oui-description">
+                        <dt data-translate="sms_batches_statistics_date"></dt>
+                        <dd
+                            data-ng-bind="$ctrl.batch.createdAt | date:'dd/MM/yyyy'"
+                        ></dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl class="oui-description">
+                        <dt></dt>
+                        <dd>
+                            <oui-button
+                                variant="link"
+                                on-click="$ctrl.goToDetails($ctrl.batch)"
+                                disabled="$ctrl.isLoadingStats"
+                                ><span
+                                    data-translate="sms_batches_statistics_details_link"
+                                ></span
+                            ></oui-button>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 offset-md-1 oui-box oui-box_light">
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="sms_batches_statistics_sent_number"
+                        ></dt>
+                        <dd>
+                            <strong
+                                class="oui-heading_4"
+                                data-ng-bind="$ctrl.batch.sent"
+                            ></strong>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-3 oui-box oui-box_light">
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="sms_batches_statistics_delivered_number"
+                        ></dt>
+                        <dd>
+                            <strong
+                                class="oui-heading_4"
+                                data-ng-bind="$ctrl.batch.delivered"
+                            ></strong>
+                            <span
+                                class="text-small"
+                                data-ng-bind="$ctrl.batch.deliveredPercentage"
+                            ></span>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-3 oui-box oui-box_light">
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="sms_batches_statistics_stoplisted_number"
+                        ></dt>
+                        <dd>
+                            <strong
+                                class="oui-heading_4"
+                                data-ng-bind="$ctrl.batch.stoplisted"
+                            ></strong>
+                            <span
+                                class="text-small"
+                                data-ng-bind="$ctrl.batch.stoplistedPercentage"
+                            ></span>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </oui-tile>
+    </div>
+</section>

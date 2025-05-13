@@ -1,0 +1,16 @@
+<form
+    id="eligibilityWarning"
+    name="eligibilityWarning"
+    data-ng-submit="$ctrl.submitLink ? $ctrl.submitAction() : $ctrl.goBack()"
+    novalidate
+>
+    <oui-modal
+        data-primary-label="{{:: $ctrl.submitLabel }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: $ctrl.cancelLabel }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-type="error"
+    >
+        <p data-ng-bind="$ctrl.message"></p>
+    </oui-modal>
+</form>

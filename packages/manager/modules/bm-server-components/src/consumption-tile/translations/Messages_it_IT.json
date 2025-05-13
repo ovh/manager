@@ -1,0 +1,12 @@
+{
+  "server_consumption_label": "Consumo di banda passante",
+  "server_consumption_order_button": "Aumentare",
+  "server_consumption_change_button": "Modificare",
+  "server_consumption_explanation": "L’utilizzo della banda passante del server è limitato. Una volta superata questa soglia la banda passante in uscita del server risulterà rallentata. Per risolvere questo problema, aumenta la quota disponibile.",
+  "server_consumption_summary_days": "Restano {{t0}} di {{t1}} giorni",
+  "server_consumption_summary_hours": "Restano {{t0}} di {{t1}} ore",
+  "server_consumption_throttled": "Servizio rallentato",
+  "server_consumption_current_period_label": "Utilizzo periodo corrente (totale disponibile {{t0}})",
+  "server_consumption_current_period_remaining": "{{t0}} residui",
+  "server_consumption_explanation_link": "Più dettagli "
+}

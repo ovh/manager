@@ -1,0 +1,8 @@
+{
+  "billing_autorenew_service_update_form_description": "Escolha o tipo de renovação desejada (automática ou manual). Para a renovação automática, deverá igualmente escolher a frequência dos débitos.",
+  "billing_autorenew_service_update_form_service_renewal": "Tipo de renovação",
+  "billing_autorenew_service_update_form_service_automatic": "Automático",
+  "billing_autorenew_service_update_form_service_manualPayment": "Manual",
+  "billing_autorenew_service_update_form_service_period": "Frequência",
+  "billing_autorenew_service_update_form_service_period_value": "{{ month }} mês/meses"
+}

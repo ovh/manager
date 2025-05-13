@@ -1,7 +1,6 @@
 import angular from 'angular';
-import find from 'lodash/find';
-import get from 'lodash/get';
-import set from 'lodash/set';
+import { find, get, set } from 'lodash-es';
+
 import moment from 'moment';
 
 export default /* @ngInject */ function(OvhApiMe, CONTACT_PROTOTYPE_PATH) {

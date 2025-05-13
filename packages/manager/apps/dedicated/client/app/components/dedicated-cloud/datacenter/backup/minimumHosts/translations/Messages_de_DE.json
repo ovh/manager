@@ -1,0 +1,4 @@
+{
+  "dedicatedCloud_datacenter_backup_minimum_hosts_description": "Um Veeam Backup zu aktivieren, benötigt Ihr Datacenter mindestens {{minimumHosts}} Hosts.",
+  "dedicatedCloud_datacenter_backup_minimum_hosts_order": "Hosts bestellen"
+}

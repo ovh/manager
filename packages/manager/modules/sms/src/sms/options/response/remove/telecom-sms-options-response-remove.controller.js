@@ -1,5 +1,6 @@
 import angular from 'angular';
 import remove from 'lodash/remove';
+import isEqual from 'lodash/isEqual';
 
 export default class {
   /* @ngInject */
@@ -45,9 +46,8 @@ export default class {
    */
   remove() {
     this.loading.removeTrackingOption = true;
-    remove(
-      this.model.service.smsResponse.trackingOptions,
-      this.model.service.smsResponse.trackingOptions[this.model.index],
+    remove(this.model.service.smsResponse.trackingOptions, (value) =>
+      isEqual(value, this.model.option),
     );
     return this.$q
       .all([

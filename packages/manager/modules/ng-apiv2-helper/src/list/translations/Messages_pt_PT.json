@@ -1,0 +1,3 @@
+{
+  "cursor_datagrid_error_data": "Ocorreu um erro ao obter os seus dados: {{ message }}"
+}

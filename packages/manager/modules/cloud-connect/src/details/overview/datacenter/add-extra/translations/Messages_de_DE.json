@@ -1,0 +1,23 @@
+{
+  "cloud_connect_datacenter_add_routing_title": "Eine Routing-Konfiguration hinzufügen",
+  "cloud_connect_datacenter_add_routing_select_title": "Typ",
+  "cloud_connect_datacenter_add_routing_select_placeholder": "Auswahl",
+  "cloud_connect_datacenter_add_routing_select_asn": " Geben Sie den ASN-Client ein",
+  "cloud_connect_datacenter_add_routing_network_neighbor": "Geben Sie die IP-Neighbor-Adresse ein",
+  "cloud_connect_datacenter_add_routing_network_neighbor_placeholder": "IP Neighbor",
+  "cloud_connect_datacenter_add_routing_nexthop": "Geben Sie den nächsten „Sprung“ (hop) ein",
+  "cloud_connect_datacenter_add_routing_nexthop_placeholder": "Nächster Sprung (Hop)",
+  "cloud_connect_datacenter_add_routing_subnet": "Geben Sie das Ziel-Subnetzwerk ein",
+  "cloud_connect_datacenter_add_routing_subnet_placeholder": "Subnetzwerk",
+  "cloud_connect_datacenter_add_routing_bgp_area": " Geben Sie den ASN-Client ein",
+  "cloud_connect_datacenter_add_routing_bgp_ip": "Geben Sie die IP-Neighbor-Adresse ein",
+  "cloud_connect_datacenter_add_routing_error": "Beim Hinzufügen der Routing-Konfiguration ist ein Fehler aufgetreten: {{message}}",
+  "cloud_connect_datacenter_add_routing_success": "Hinzufügen eine Routing-Konfiguration. <a href=\"{{ tasksUrl }}\">Klicken Sie hier, um den Status anzuzeigen.</a>",
+  "cloud_connect_datacenter_add_routing_bgp_area_placeholder": "ASN Client",
+  "cloud_connect_datacenter_add_routing_bgp_ip_popover": "IP-Adresse des BGP-Neighbor Ihres Routers in der Availability Zone. Diese Adresse muss Teil des Subnetzes sein, das im Abschnitt „AZ-Konfiguration“ konfiguriert ist.",
+  "cloud_connect_datacenter_add_routing_ip_help_message": "IPv4-Adresse, die zu den Availability Zones gehört.",
+  "cloud_connect_datacenter_add_routing_ip_invalid_message": "Geben Sie einen gültigen IPv4-Block ein.",
+  "cloud_connect_datacenter_add_routing_asn_helper": "Eine positive Zahl, die nicht Null und nicht 65501 ist.",
+  "cloud_connect_datacenter_add_routing_asn_popover": "Ihre BGP-AS-Nummer, die auf Ihrem Router in der Availability Zone konfiguriert ist.",
+  "cloud_connect_datacenter_add_routing_type_helper": "Die Routing-Konfiguration kann nur von einem Typ sein."
+}

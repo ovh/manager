@@ -1,0 +1,37 @@
+<div class="dedicatedCloud-users" data-ui-view="pccUserView">
+    <h2
+        data-translate="dedicatedCloud_user_management_authorization_vsphere"
+    ></h2>
+
+    <dedicated-cloud-vsphere-users
+        data-add-user="$ctrl.addUser"
+        data-dedicated-cloud="$ctrl.dedicatedCloud"
+        data-delete-user="$ctrl.deleteUser"
+        data-disable-user="$ctrl.disableUser"
+        data-edit-user="$ctrl.editUser"
+        data-enable-user="$ctrl.enableUser"
+        data-modify-user-rights="$ctrl.modifyUserRights"
+        data-options-available="$ctrl.optionsAvailable"
+        data-has-nsx-option="$ctrl.hasNsxOption"
+        data-password-reset="$ctrl.passwordReset"
+        data-product-id="$ctrl.productId"
+        data-set-message="$ctrl.setMessage"
+        data-go-to-user-iam-role="$ctrl.goToUserIamRole"
+        data-track-click="$ctrl.trackClick"
+        data-track-page="$ctrl.trackPage"
+    >
+    </dedicated-cloud-vsphere-users>
+
+    <h2>
+        <span data-translate="dedicatedCloud_user_management_iam"></span>
+    </h2>
+
+    <dedicated-cloud-iam
+        data-dedicated-cloud="$ctrl.dedicatedCloud"
+        data-product-id="$ctrl.productId"
+        data-go-to-toggle-iam="$ctrl.goToToggleIam"
+        data-track-click="$ctrl.trackClick"
+        data-track-page="$ctrl.trackPage"
+    >
+    </dedicated-cloud-iam>
+</div>

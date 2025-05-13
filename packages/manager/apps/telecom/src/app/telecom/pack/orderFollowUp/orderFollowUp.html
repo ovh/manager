@@ -1,0 +1,81 @@
+<div class="telecom-pack-xdsl-orderFollowUp-view">
+    <div class="widget-presentation">
+        <h2
+            class="widget-presentation-title"
+            data-translate="telecom_pack_xdsl_order_follow_up_intro"
+        ></h2>
+
+        <div class="text-center" data-ng-if="OrderFollowUpCtrl.loading">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <div data-ng-if="!OrderFollowUpCtrl.loading">
+            <h3 class="my-5">
+                <span
+                    data-translate="telecom_pack_xdsl_order_follow_up_header_status"
+                ></span>
+                {{'telecom_pack_xdsl_order_follow_up_status_'+
+                OrderFollowUpCtrl.orderStatus | translate }}
+            </h3>
+            <timeline
+                data-ng-class="{ 'timeline-success': OrderFollowUpCtrl.allSuccess === true }"
+            >
+                <timeline-event
+                    data-ng-repeat="event in OrderFollowUpCtrl.events track by $index"
+                    data-side="event.side"
+                >
+                    <timeline-badge
+                        data-ng-class="event.badgeClass"
+                    ></timeline-badge>
+
+                    <timeline-panel data-ng-class="event.badgeClass">
+                        <div class="timeline-panel-status">
+                            <h5
+                                class="ovh-font"
+                                data-ng-class="['text-' + event.badgeClass, event.badgeIconClass]"
+                                aria-hidden="true"
+                            ></h5>
+                        </div>
+                        <div class="timeline-panel-content">
+                            <timeline-heading>
+                                <div
+                                    class="service-title"
+                                    data-ng-class="{ 'pt-0' : event.when || event.titleContentHtml || event.footerContentHtml || event.contentHtml }"
+                                >
+                                    {{
+                                    'telecom_pack_xdsl_order_follow_up_step_name_'
+                                    + event.name | translate}}
+                                </div>
+                                <div class="service-item">
+                                    <span>
+                                        {{
+                                        'telecom_pack_xdsl_order_follow_up_status_'
+                                        + event.status | translate}}
+                                    </span>
+                                    <span data-ng-if="event.when">
+                                        : {{event.when | date:'dd/MM/yyyy'}}
+                                    </span>
+                                </div>
+                                <div
+                                    data-ng-if="event.titleContentHtml"
+                                    data-ng-bind-html="event.titleContentHtml"
+                                ></div>
+                            </timeline-heading>
+                            <div
+                                class="service-item"
+                                data-ng-bind-html="event.contentHtml"
+                            ></div>
+                            <timeline-footer
+                                data-ng-if="event.footerContentHtml"
+                            >
+                                <span
+                                    data-ng-bind-html="event.footerContentHtml"
+                                ></span>
+                            </timeline-footer>
+                        </div>
+                    </timeline-panel>
+                </timeline-event>
+            </timeline>
+        </div>
+    </div>
+</div>

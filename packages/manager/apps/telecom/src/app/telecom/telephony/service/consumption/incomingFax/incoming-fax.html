@@ -1,0 +1,76 @@
+<section class="telephony-group-service-consumption-incoming-fax">
+    <div class="widget-presentation">
+        <header class="widget-presentation-header">
+            <h2
+                class="widget-presentation-title"
+                data-translate="telephony_service_consumption_incoming_fax_all"
+            ></h2>
+        </header>
+
+        <tuc-toast-message></tuc-toast-message>
+
+        <p
+            data-translate="telephony_service_consumption_incoming_fax_period"
+            data-translate-values="{
+               start: $ctrl.period.start.format('DD/MM/YYYY'),
+               end: $ctrl.period.end.format('DD/MM/YYYY')
+           }"
+        ></p>
+        <p
+            data-ng-if="$ctrl.consumption.raw.length"
+            data-translate="telephony_service_consumption_incoming_fax_summary"
+            data-translate-values="{
+               fax: $ctrl.consumption.raw.length,
+               pages: $ctrl.consumption.pagesSum
+           }"
+        ></p>
+
+        <oui-datagrid data-rows="$ctrl.consumption.sorted">
+            <oui-datagrid-column
+                data-title="'telephony_service_consumption_date' | translate"
+                data-property="creationDatetime"
+                data-sortable="desc"
+            >
+                <span
+                    data-ng-bind="::$row.creationDatetime | date: 'dd/MM/yyyy'"
+                ></span>
+                <span
+                    data-ng-bind="::$row.creationDatetime | date: 'HH:mm:ss'"
+                ></span>
+            </oui-datagrid-column>
+
+            <oui-datagrid-column
+                data-title="'telephony_service_consumption_calling' | translate"
+                data-searchable
+                data-type="string"
+                data-property="calling"
+            >
+                <span data-ng-bind="::$row.calling"></span>
+                <span
+                    data-ng-if="!$row.calling"
+                    data-translate="telephony_service_consumption_calling_unknown"
+                >
+                </span>
+            </oui-datagrid-column>
+
+            <oui-datagrid-column
+                data-title="'telephony_service_consumption_incoming_fax_pages' | translate"
+                data-property="pages"
+            >
+                <span data-ng-bind="::$row.pages"></span>
+            </oui-datagrid-column>
+
+            <oui-datagrid-column
+                data-title="'telephony_service_consumption_type' | translate"
+                data-property="wayType"
+                data-sortable
+            >
+                <span
+                    data-ng-bind="::'telephony_service_consumption_type_' + $row.wayType | translate"
+                ></span>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </div>
+    <!-- /.widget-presentation -->
+</section>
+<!-- /.telephony-group-service-consumption-incoming-fax -->

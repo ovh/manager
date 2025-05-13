@@ -6,7 +6,7 @@ export default class ExchangeAddResourceController {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeResources,
     navigation,
     $translate,
@@ -14,19 +14,20 @@ export default class ExchangeAddResourceController {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeResources,
       navigation,
       $translate,
       messaging,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.takenEmails = [];
     this.model = {
       displayName: '',
       capacity: 0,
       resourceEmailAddress: '',
+      company: '',
     };
 
     $scope.addResource = () => this.addResource();

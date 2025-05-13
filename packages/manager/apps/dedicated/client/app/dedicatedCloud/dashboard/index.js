@@ -1,26 +1,21 @@
-import drpAlerts from '../datacenter/drp/alerts';
+import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import generalInformation from './tiles/general-information';
-import legacy from './legacy';
-import options from './tiles/options';
-import serviceManagement from './tiles/service-management';
+const moduleName = 'dedicatedCloudDashboardLazyloading';
 
-import routing from './dedicatedCloud-dashboard.routing';
-
-const moduleName = 'ovhManagerPccDashboard';
-
-angular
-  .module(moduleName, [
-    drpAlerts,
-    'oui',
-    generalInformation,
-    legacy,
-    options,
-    'pascalprecht.translate',
-    serviceManagement,
-    'ui.router',
-  ])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('app.dedicatedCloud.details.dashboard.**', {
+      url: '',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+        return import('./dedicatedCloud-dashboard.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+  },
+);
 
 export default moduleName;

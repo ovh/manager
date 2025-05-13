@@ -1,0 +1,5 @@
+{
+  "dedicated_server_interfaces_bandwidth_title": "Bandbreite",
+  "dedicated_server_interfaces_bandwidth_description": "Was die öffentliche Bandbreite (von und zum Internet) betrifft, ist die eingehende Bandbreite unbegrenzt. Sie können die öffentliche und private Bandbreite erhöhen, indem Sie eine Option bestellen",
+  "dedicated_server_interfaces_bandwidth_ola_warning": "Im Rahmen einer kompletten Private-Aggregation-Konfiguration wird Ihre Option für ausgehende öffentliche Bandbreite nicht genutzt, da das Interface für das öffentliche Netzwerk für das private Netzwerk verwendet wird."
+}

@@ -1,7 +1,0 @@
-{
-  "telephony_service_consumption_incoming_all": "Visi įeinantys skambučiai",
-  "telephony_service_consumption_incoming_empty": "Jokių skambučių",
-  "telephony_service_consumption_incoming_not_found": "Joks skambutis neatitinka filtro.",
-  "telephony_service_consumption_incoming_period": "Periodas nuo <strong>{{ start }}</strong> iki <strong>{{ end }}</strong>",
-  "telephony_service_consumption_incoming_summary": "Skambučiai: <strong>{{ calls }}</strong>, bendra trukmė : <strong>{{ duration }}</strong>"
-}

@@ -1,0 +1,11 @@
+{
+  "title": "Log",
+  "breadcrumb": "Log",
+  "description": "Per monitorare e gestire il tuo servizio di database, puoi consultare gli ultimi eventi (log) qui sotto, quasi in tempo reale. Il loro periodo di conservazione dipende dal tuo piano di servizio.",
+  "autoRefreshInputLabel": "Auto-Refresh",
+  "streamsTitle": "Flussi di dati",
+  "streamsBreadcrumb": "Flusso",
+  "streamsBackLink": "Torna alla pagina precedente",
+  "streamsDescription": "Abbonandoti ai log di audit del servizio, questi log verranno trasferiti in Logs Data Platform e potrai centralizzarli con altri log, effettuare ricerche avanzate, gestire la loro retention, definire alert e dashboard per osservare facilmente i cluster.",
+  "streamsAdd": "Aggiungere un flusso di dati"
+}

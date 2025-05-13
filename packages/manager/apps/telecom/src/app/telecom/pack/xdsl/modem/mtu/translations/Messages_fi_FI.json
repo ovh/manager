@@ -1,8 +1,0 @@
-{
-  "xdsl_modem_mtu_status": "MTU",
-  "xdsl_modem_mtu_description": "MTU-arvon (Maximum Transmission Unit) muokkaus on varattu edistyneeseen käyttöön ja on muokattavissa ainoastaan keräysyhteyksille (PPPoE). Arvon pienentäminen voi joissain tapauksissa johtaa selausongelmiin tai ongelmiin FTP-yhteydessä.",
-  "xdsl_modem_mtu_an_error_ocurred": "[MTU] Tapahtui virhe!",
-  "xdsl_modem_mtu_doing": "MTU-arvoa muokataan",
-  "xdsl_modem_mtu_submit": "Vahvista",
-  "xdsl_modem_mtu_change": "Arvo"
-}

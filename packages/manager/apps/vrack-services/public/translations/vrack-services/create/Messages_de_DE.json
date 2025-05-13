@@ -1,0 +1,23 @@
+{
+  "crumb": "vRack Services",
+  "title": "vRack Services aktivieren",
+  "displayNameLabel": "Name (optional)",
+  "displayNamePlaceholder": "Meine vRack Services",
+  "regionLabel": "Region",
+  "regionDescription": "vRack Services ist ein regionaler Dienst. Sie müssen also auswählen, in welcher Region Sie ihn verwenden möchten. Um den Service Endpoint nutzen zu können, müssen Sie die entsprechende Region für Ihren OVHcloud Managed Service auswählen.",
+  "createButtonLabel": "vRack Services aktivieren",
+  "modalHeadline": "vRack Services aktivieren",
+  "modalDescriptionLine1": "Um vRack Services zu aktivieren, müssen Sie ein vRack erstellen.",
+  "modalDescriptionLine2": "Möchten Sie parallel zur Aktivierung von vRack Services ein vRack bestellen?",
+  "modalDescriptionLine3": "Preis des vRack: 0 €",
+  "modalCancelButtonLabel": "Abbrechen",
+  "modalConfirmVrackButtonLabel": "Ja",
+  "modalNoVrackButtonLabel": "Nein danke, ich habe bereits ein vRack",
+  "createPageTitle": "vRack Services aktivieren",
+  "modalCreateOrderWaitMessage": "Bitte gedulden Sie sich einen Augenblick ...",
+  "modalSubmitOrderButtonLabel": "Bestätigen",
+  "vrackServicesCreationSuccess": "Die Konfiguration wurde registriert.",
+  "vrackServicesOrderLinkLabel": "Meine Bestellung",
+  "modalDescriptionLine4": "Sie haben bei der Aktivierung von vRack Services die Erstellung eines vRack angefordert.",
+  "modalDescriptionLine5": "Um die Aktivierung von vRack Services abzuschließen, akzeptieren Sie bitte die folgenden Bedingungen."
+}

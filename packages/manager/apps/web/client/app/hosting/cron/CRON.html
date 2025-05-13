@@ -1,7 +1,4 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="HostingCronsCtrl as $ctrl"
->
+<div>
     <div class="row">
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>
@@ -20,7 +17,7 @@
                         class="btn btn-info"
                         type="button"
                         data-translate="hosting_dashboard_service_change_offer"
-                        data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })"
+                        data-ui-sref="app.hosting.dashboard.upgrade({ productId: hosting.serviceName })"
                     ></button>
                 </div>
             </div>
@@ -28,24 +25,25 @@
             <div
                 class="alert alert-info"
                 role="alert"
-                data-ng-if="displayTabs.cron && hosting.offer === 'START_10_M'"
+                data-ng-if="displayTabs.cron && $ctrl.constructor.isOfferUneligible(hosting.offer)"
             >
                 <div>
                     <p
                         class="mb-3"
-                        data-translate="hosting_change_offer_for_service_start10m"
+                        data-translate="hosting_change_offer_for_service_offer"
+                        data-translate-values="{ offer: ('hosting_dashboard_service_offer_' + hosting.offer | translate) }"
                     ></p>
                     <button
                         class="btn btn-info"
                         type="button"
                         data-translate="hosting_dashboard_service_change_offer"
-                        data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })"
+                        data-ui-sref="app.hosting.dashboard.upgrade({ productId: hosting.serviceName })"
                     ></button>
                 </div>
             </div>
 
             <div
-                data-ng-if="displayTabs.cron && hosting.offer !== 'START_10_M'"
+                data-ng-if="displayTabs.cron && !$ctrl.constructor.isOfferUneligible(hosting.offer)"
             >
                 <h2 data-translate="hosting_tab_menu_crons"></h2>
 
@@ -73,53 +71,56 @@
                     data-row-loader="$ctrl.getCron($row)"
                     data-empty-placeholder="{{:: 'hosting_tab_CRON_table_empty' | translate }}"
                 >
-                    <oui-column
+                    <oui-datagrid-column
                         data-title=":: 'hosting_tab_CRON_table_header_command' | translate"
                         data-property="command"
                         data-type="string"
                         data-searchable
                     >
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title=":: 'hosting_tab_CRON_table_header_description' | translate"
                         data-property="description"
                         data-type="string"
                         data-searchable
                     >
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title=":: 'hosting_tab_CRON_table_header_frequency' | translate"
                         data-property="frequency"
                     >
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title=":: 'hosting_tab_CRON_table_header_language' | translate"
                         data-property="displayedLanguage"
                     >
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title=":: 'hosting_tab_CRON_table_header_status' | translate"
                         data-property="status"
                     >
                         <span
-                            class="oui-status"
+                            class="oui-badge"
                             data-ng-class="{
-                                'oui-status_success': $row.status === 'enabled',
-                                'oui-status_error': $row.status === 'disabled',
-                                'oui-status_warning': $row.status === 'suspended'
+                                'oui-badge_success': $row.status === 'enabled',
+                                'oui-badge_error': $row.status === 'disabled',
+                                'oui-badge_warning': $row.status === 'suspended'
                             }"
                             data-ng-bind=":: 'hosting_tab_CRON_table_status_' + $row.status | translate"
                         >
                         </span>
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title=":: 'hosting_tab_CRON_table_header_email' | translate"
                         data-property="email"
                         data-type="string"
                         data-searchable
                     >
-                    </oui-column>
-                    <oui-action-menu data-compact data-align="end">
+                        <span
+                            data-translate="{{:: 'hosting_tab_CRON_email_' +  $row.email }}"
+                        ></span>
+                    </oui-datagrid-column>
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             data-on-click="$ctrl.modifyCron($row)"
                         >
@@ -141,7 +142,7 @@
 
         <div
             class="col-md-3 mt-5 mt-lg-0"
-            data-ng-if="displayTabs.cron && hosting.offer !== 'START_10_M'"
+            data-ng-if="displayTabs.cron && !$ctrl.constructor.isOfferUneligible(hosting.offer)"
         >
             <button
                 class="btn btn-block btn-default"

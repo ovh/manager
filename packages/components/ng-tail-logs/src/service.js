@@ -12,6 +12,8 @@ export default /* @ngInject */ ($q, $timeout, $http) =>
       this.delay = opts.delay || 5000;
 
       this.source = this.getFuncSource();
+      this.shouldStop = false;
+      this.timer = null;
     }
 
     getFuncSource() {
@@ -35,6 +37,9 @@ export default /* @ngInject */ ($q, $timeout, $http) =>
           return undefined;
         })
         .finally(() => {
+          if (this.shouldStop) {
+            return this.logs;
+          }
           this.timer = $timeout(() => {
             this.log();
           }, this.delay);
@@ -45,6 +50,8 @@ export default /* @ngInject */ ($q, $timeout, $http) =>
     stop() {
       if (this.timer) {
         $timeout.cancel(this.timer);
+        this.timer = null;
+        this.shouldStop = true;
       }
       return $q.when(this);
     }

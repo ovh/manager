@@ -1,0 +1,35 @@
+<oui-modal
+    data-heading="{{ :: $ctrl.DKIM_MODAL_TITLE[$ctrl.dkim.status] | translate }}"
+    data-primary-label="{{ :: $ctrl.DKIM_PRIMARY_BUTTON_LABEL[$ctrl.dkim.status] | translate }}"
+    data-primary-action="$ctrl.getPrimaryAction()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{ :: $ctrl.DKIM_SECONDARY_BUTTON_LABEL[$ctrl.dkim.status] | translate }}"
+    data-primary-disabled="$ctrl.isSubmitting"
+>
+    <p
+        data-ng-if="$ctrl.dkim.autoconfig"
+        data-translate="{{ $ctrl.DKIM_STATUS_TEXT[$ctrl.dkim.status] }}"
+    ></p>
+
+    <div data-ng-if="!$ctrl.dkim.autoconfig">
+        <p data-translate="email_domain_dkim_configurate_dns_records_info"></p>
+
+        <dl class="dl-horizontal dl-md">
+            <dt data-translate="email_domain_dkim_text_field"></dt>
+            <dd>
+                <span data-ng-bind-html="$ctrl.selector1RecordInfos"></span>
+            </dd>
+            <dd>
+                <span data-ng-bind-html="$ctrl.selector2RecordInfos"></span>
+            </dd>
+        </dl>
+
+        <p
+            data-translate="email_domain_dkim_configurate_activation_guide"
+            data-translate-values="{ url: $ctrl.dkimGuideLinkNoOvh }"
+            class="mb-0"
+        ></p>
+        <p data-translate="email_domain_dkim_no_ovhcloud_extra_step"></p>
+    </div>
+</oui-modal>

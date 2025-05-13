@@ -1,0 +1,66 @@
+<oui-dropdown class="oui-dropdown_action-menu" arrow>
+    <button
+        class="oui-action-button"
+        type="button"
+        data-ng-click="$ctrl.loadPossibleActions()"
+        aria-label="{{:: 'nutanix_node_action_menu_action_aria_label' | translate}}"
+        oui-dropdown-trigger
+    >
+        <span class="oui-icon oui-icon-ellipsis"></span>
+    </button>
+    <oui-dropdown-content>
+        <oui-action-menu-item data-ng-if="$ctrl.isLoading">
+            <div class="d-flex align-items-center justify-content-center">
+                <oui-spinner></oui-spinner>
+            </div>
+        </oui-action-menu-item>
+        <oui-action-menu-item
+            data-ng-if="!$ctrl.isLoading"
+            data-on-click="$ctrl.onPowerOn()"
+            data-disabled="!$ctrl.possibleActionsMapped[$ctrl.POSSIBLE_ACTIONS.POWER_ON].isPossible"
+            data-oui-tooltip="{{:: $ctrl.getReasonTranslation($ctrl.possibleActionsMapped[$ctrl.POSSIBLE_ACTIONS.POWER_ON].reason) }}"
+        >
+            <span data-translate="nutanix_node_action_menu_power_on"></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item
+            data-ng-if="!$ctrl.isLoading"
+            data-on-click="$ctrl.onPowerOff()"
+            data-disabled="!$ctrl.possibleActionsMapped[$ctrl.POSSIBLE_ACTIONS.POWER_OFF].isPossible"
+            data-oui-tooltip="{{:: $ctrl.getReasonTranslation($ctrl.possibleActionsMapped[$ctrl.POSSIBLE_ACTIONS.POWER_OFF].reason) }}"
+        >
+            <span data-translate="nutanix_node_action_menu_power_off"></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item
+            data-ng-if="!$ctrl.isLoading"
+            data-on-click="$ctrl.onInstall()"
+            data-disabled="!$ctrl.possibleActionsMapped[$ctrl.POSSIBLE_ACTIONS.INSTALL].isPossible"
+            data-oui-tooltip="{{:: $ctrl.getReasonTranslation($ctrl.possibleActionsMapped[$ctrl.POSSIBLE_ACTIONS.INSTALL].reason) }}"
+        >
+            <span data-translate="nutanix_node_action_menu_install"></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item
+            data-ng-if="!$ctrl.isLoading"
+            data-on-click="$ctrl.onReinstall()"
+            data-disabled="!$ctrl.possibleActionsMapped[$ctrl.POSSIBLE_ACTIONS.REINSTALL].isPossible"
+            data-oui-tooltip="{{:: $ctrl.getReasonTranslation($ctrl.possibleActionsMapped[$ctrl.POSSIBLE_ACTIONS.REINSTALL].reason) }}"
+        >
+            <span data-translate="nutanix_node_action_menu_reinstall"></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item
+            data-ng-if="!$ctrl.isLoading"
+            data-on-click="$ctrl.onUninstall()"
+            data-disabled="!$ctrl.possibleActionsMapped[$ctrl.POSSIBLE_ACTIONS.UNINSTALL].isPossible"
+            data-oui-tooltip="{{:: $ctrl.getReasonTranslation($ctrl.possibleActionsMapped[$ctrl.POSSIBLE_ACTIONS.UNINSTALL].reason) }}"
+        >
+            <span data-translate="nutanix_node_action_menu_uninstall"></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item
+            data-ng-if="!$ctrl.isLoading"
+            data-on-click="$ctrl.onTerminate()"
+            data-disabled="!$ctrl.possibleActionsMapped[$ctrl.POSSIBLE_ACTIONS.TERMINATE].isPossible"
+            data-oui-tooltip="{{:: $ctrl.getReasonTranslation($ctrl.possibleActionsMapped[$ctrl.POSSIBLE_ACTIONS.TERMINATE].reason) }}"
+        >
+            <span data-translate="nutanix_node_action_menu_terminate"></span>
+        </oui-action-menu-item>
+    </oui-dropdown-content>
+</oui-dropdown>

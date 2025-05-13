@@ -1,18 +1,6 @@
-import get from 'lodash/get';
-
 angular
   .module('managerApp')
-  .service('TelecomMediator', function TelecomMediator(
-    $q,
-    $translate,
-    OvhApiMeVipStatus,
-    TucPackMediator,
-    TelephonyMediator,
-    TucSmsMediator,
-    TucFaxMediator,
-    TucOverTheBoxMediator,
-    TucToast,
-  ) {
+  .service('TelecomMediator', function TelecomMediator($q, OvhApiMeVipStatus) {
     const self = this;
 
     self.isVip = false;
@@ -45,47 +33,6 @@ angular
         });
 
       return self.deferred.vip.promise;
-    };
-
-    /* ----------  SERVICE COUNT  ----------*/
-
-    self.initServiceCount = function initServiceCount(force) {
-      if (self.deferred.count && !force) {
-        return self.deferred.count.promise;
-      }
-
-      self.deferred.count = $q.defer();
-
-      const countErrors = [];
-      const handleCountError = function handleCountError(err) {
-        countErrors.push(get(err, 'data.message') || err.statusText);
-        return $q.when(0);
-      };
-
-      // get service count for telecom
-      $q.all({
-        pack: TucPackMediator.getCount().catch(handleCountError),
-        telephony: TelephonyMediator.getCount().catch(handleCountError),
-        sms: TucSmsMediator.getCount().catch(handleCountError),
-        freefax: TucFaxMediator.getCount().catch(handleCountError),
-        overTheBox: TucOverTheBoxMediator.getCount().catch(handleCountError),
-      }).then((counts) => {
-        if (countErrors.length) {
-          $translate.refresh().then(() => {
-            TucToast.error(
-              `${$translate.instant(
-                'sidebar_init_error',
-              )}<br/><br/>${countErrors.join('<br />')}`,
-              {
-                hideAfter: false,
-              },
-            );
-          });
-        }
-        self.deferred.count.resolve(counts);
-      });
-
-      return self.deferred.count.promise;
     };
 
     /* -----  End of INITIALIZATION  ------*/

@@ -1,6 +1,6 @@
 <oui-modal
     data-heading="{{ 'pci_projects_project_instances_instance_reinstall_title' | translate }}"
-    data-primary-action="$ctrl.reinstallInstance()"
+    data-primary-action="$ctrl.instance.isDeprecatedImage() ? $ctrl.goToEditAnInstance() : $ctrl.reinstallInstance()"
     data-primary-label="{{:: 'pci_projects_project_instances_instance_reinstall_submit_label' | translate }}"
     data-primary-disabled="$ctrl.isLoading"
     data-secondary-action="$ctrl.goBack()"
@@ -8,14 +8,31 @@
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.isLoading"
 >
-    <p
-        data-translate="pci_projects_project_instances_instance_reinstall_content"
-        data-translate-values="{ instance: $ctrl.instance.name }"
-    ></p>
+    <!--Reinstall image-->
+    <div data-ng-if="!$ctrl.instance.isDeprecatedImage()">
+        <p
+            data-translate="pci_projects_project_instances_instance_reinstall_content"
+            data-translate-values="{ instance: $ctrl.instance.name }"
+        ></p>
 
-    <oui-message data-type="warning">
-        <span
-            data-translate="pci_projects_project_instances_instance_reinstall_erase_message"
-        ></span>
-    </oui-message>
+        <oui-message data-type="warning">
+            <span
+                data-translate="pci_projects_project_instances_instance_reinstall_erase_message"
+            ></span>
+        </oui-message>
+    </div>
+
+    <!--Deprecated image => go to edition-->
+    <div data-ng-if="$ctrl.instance.isDeprecatedImage()">
+        <p
+            data-translate="pci_projects_project_instances_instance_reinstall_deprecated_image"
+            data-translate-values="{ image: $ctrl.instance.image.name }"
+        ></p>
+
+        <oui-message data-type="warning">
+            <span
+                data-translate="pci_projects_project_instances_instance_reinstall_deprecated_image_format_message"
+            ></span>
+        </oui-message>
+    </div>
 </oui-modal>

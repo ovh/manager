@@ -1,6 +1,0 @@
-{
-  "hub_order_tracking_title": "Most recent order",
-  "hub_order_tracking_see_all": "View my orders",
-  "hub_order_tracking_error": "Unable to retrieve order tracking",
-  "hub_order_tracking_order_id": "No. {{orderId}}"
-}

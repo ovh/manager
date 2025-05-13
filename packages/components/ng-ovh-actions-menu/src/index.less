@@ -1,0 +1,298 @@
+/* stylelint-disable no-descending-specificity */
+
+// DIMENSIONS
+@actions-menu-desktop-page-width: 350px;
+@actions-menu-mobile-page-width: 100%;
+
+// ANIMATIONS
+@actions-menu-page-switch-animation-duration: 0.5s;
+
+// COLORS
+@actions-menu-item-border-color: #d7d7d7;
+@actions-menu-item-link-color: #2859c0;
+@actions-menu-item-link-icon-color: @actions-menu-item-link-color;
+@actions-menu-item-link-icon-hover-bg-color: #2859c0;
+@actions-menu-item-link-icon-hover-color: #fff;
+@actions-menu-item-link-text-color: @actions-menu-item-link-color;
+@actions-menu-item-link-hover-text-color: #2859c0;
+@actions-menu-item-link-hover-bg-color: #e6f5fc;
+
+.ovh-angular-actions-menu {
+  font-family: inherit !important;
+
+  .popover-inner {
+    height: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .popover-content {
+    padding: 0;
+    height: 100%;
+
+    .actions-menu-inner {
+      position: relative;
+      overflow: hidden;
+
+      button.close-button {
+        padding: 10px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: @actions-menu-item-link-icon-color;
+        z-index: 10;
+        background-color: transparent;
+        border: none;
+
+        &:hover,
+        &:active,
+        &:focus {
+          text-decoration: none;
+        }
+
+        i {
+          font-weight: 600;
+        }
+      }
+
+      .actions-menu-pages {
+        height: 100%;
+        margin-left: 0;
+
+        .actions-menu-page {
+          height: 100%;
+          width: 100%;
+          float: left;
+
+          /* ==================================================================
+          =            SHARED STYLES FOR MAIN AND SECONDARY PAGES            =
+          ================================================================== */
+
+          ul.actions-list,
+          ul.sub-actions-list {
+            margin-bottom: 0;
+
+            > li.actions-list-item {
+              .actions-menu-item-link {
+                text-decoration: none;
+
+                .item-title {
+                  color: @actions-menu-item-link-text-color;
+
+                  .external-link {
+                    display: none;
+                  }
+                }
+
+                &:active,
+                &:hover,
+                &:focus {
+                  background-color: @actions-menu-item-link-hover-bg-color;
+                  color: @actions-menu-item-link-hover-text-color;
+
+                  .item-title .external-link {
+                    display: inline-block;
+                  }
+                }
+              }
+            }
+          }
+
+          /* -----  End of SHARED STYLES FOR MAIN AND SECONDARY PAGES  ------ */
+
+          /* ==========================================
+          =            ONLY FOR MAIN PAGE            =
+          ========================================== */
+
+          &.main-page {
+            ul.actions-list {
+              display: flex;
+              flex-flow: row wrap;
+
+              > li.actions-list-item {
+                width: 100% / 3;
+                box-shadow: 0 1px @actions-menu-item-border-color;
+
+                .actions-menu-item-link {
+                  display: block;
+                  width: 100%;
+                  padding: 15px 0 10px;
+                  position: relative;
+                  background-color: transparent;
+                  border: none;
+                  text-align: center;
+
+                  .item-icon {
+                    line-height: 1;
+                    font-size: 36px;
+                    display: inline-block;
+                    color: @actions-menu-item-link-icon-color;
+                    padding: 10px;
+                    border-radius: 30px;
+
+                    i,
+                    svg {
+                      width: 36px;
+                      height: 36px;
+                      display: block;
+                      font-size: inherit;
+                      transition: transform 0.3s ease-in-out;
+                    }
+
+                    .oui-icon {
+                      width: 36px;
+                      height: 36px;
+                      margin: 0;
+                      display: block;
+                      color: inherit;
+                    }
+                  }
+
+                  .item-title {
+                    color: @actions-menu-item-link-text-color;
+                    font-weight: 600;
+                    display: block;
+                    line-height: 1.25;
+                  }
+
+                  .item-title .external-link {
+                    display: none;
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                  }
+
+                  &:active,
+                  &:hover,
+                  &:focus {
+                    .item-icon {
+                      background-color: @actions-menu-item-link-icon-hover-bg-color;
+                      color: @actions-menu-item-link-icon-hover-color;
+
+                      i,
+                      svg {
+                        transform: scale(0.8);
+                      }
+
+                      svg g {
+                        fill: @actions-menu-item-link-icon-hover-color;
+                      }
+                    }
+
+                    .item-title .external-link {
+                      display: inline;
+                    }
+                  }
+                }
+
+                &:nth-child(3n + 2) {
+                  .actions-menu-item-link {
+                    &::before,
+                    &::after {
+                      content: ' ';
+                      background-color: @actions-menu-item-border-color;
+                      width: 1px;
+                      height: 48px;
+                      display: inherit;
+                      position: absolute;
+                      top: 25px;
+                    }
+
+                    &::before {
+                      left: 0;
+                    }
+
+                    &::after {
+                      right: 0;
+                    }
+
+                    &:focus {
+                      &::before,
+                      &::after {
+                        display: none;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          /* -----  End of ONLY FOR MAIN PAGE  ------ */
+
+          /* ===============================================
+          =            ONLY FOR SECONDARY PAGE            =
+          =============================================== */
+
+          &.secondary-page ul.sub-actions-list > li.actions-list-item {
+            button.back-btn {
+              color: @actions-menu-item-link-text-color;
+              font-size: 1rem;
+              padding: 0.5rem 1rem;
+              width: 100%;
+              text-align: left;
+              font-weight: 700;
+              line-height: 1.25;
+              background-color: transparent;
+              border: none;
+              text-decoration: none;
+
+              > i {
+                color: inherit;
+                font-size: 0.75rem;
+                margin-right: 8px;
+              }
+
+              &:active,
+              &:hover,
+              &:focus {
+                background-color: @actions-menu-item-link-hover-bg-color;
+                color: @actions-menu-item-link-hover-text-color;
+              }
+            }
+
+            .actions-menu-item-link {
+              display: block;
+              padding: 0.5rem 1rem;
+              font-weight: 600;
+              line-height: 1;
+            }
+          }
+
+          /* -----  End of ONLY FOR SECONDARY PAGE  ------ */
+        }
+      }
+    }
+  }
+
+  &:not(.popover-full-screen) {
+    .actions-menu-inner {
+      width: @actions-menu-desktop-page-width;
+
+      .actions-menu-pages {
+        width: @actions-menu-desktop-page-width * 2;
+
+        .actions-menu-page {
+          width: @actions-menu-desktop-page-width;
+        }
+      }
+    }
+  }
+
+  &.popover-full-screen {
+    .actions-menu-inner {
+      width: @actions-menu-mobile-page-width;
+      height: 100%;
+
+      .actions-menu-pages {
+        width: @actions-menu-mobile-page-width * 2;
+
+        .actions-menu-page {
+          width: @actions-menu-mobile-page-width / 2;
+        }
+      }
+    }
+  }
+}
+
+/* stylelint-enable no-descending-specificity */

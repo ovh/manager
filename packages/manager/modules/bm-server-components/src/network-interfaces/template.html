@@ -1,0 +1,186 @@
+<oui-tile
+    class="h-100"
+    data-heading="{{:: 'dedicated_server_interfaces' | translate }}"
+>
+    <div class="oui-tile__item">
+        <span
+            data-translate="dedicated_server_interfaces_vrack_information"
+        ></span
+        >&nbsp;
+        <a
+            class="oui-link_icon"
+            data-ng-if="$ctrl.urls.guides.vrack"
+            data-ng-href="{{::$ctrl.urls.guides.vrack}}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span
+                data-translate="dedicated_server_interfaces_vrack_information_link_label"
+            ></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+            <span
+                class="sr-only"
+                data-translate="dedicated_server_interfaces_new_tab"
+            ></span>
+        </a>
+    </div>
+    <oui-datagrid
+        data-rows="$ctrl.interfaces"
+        class="oui-tile__body table-striped "
+    >
+        <oui-datagrid-column
+            data-title="::'dedicated_server_interfaces_name_label' | translate"
+            data-property="name"
+        >
+            <span data-ng-bind="$row.name"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'dedicated_server_interfaces_type_label' | translate"
+            data-property="type"
+        >
+            <span
+                data-translate="{{ 'dedicated_server_interfaces_type_' + $row.type + '_label' }}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'dedicated_server_interfaces_mac_label' | translate"
+            data-property="mac"
+        >
+            <span data-ng-bind="$row.mac"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'dedicated_server_interfaces_bandwidth_outgoing_label' | translate"
+        >
+            <div data-ng-if="$row.isPublic()">
+                <span class="oui-icon oui-icon-arrow-up font-inherit"></span>
+                <span
+                    data-ng-bind="$ctrl.specifications.bandwidth.OvhToInternet | serverBandwidth"
+                ></span>
+            </div>
+            <div data-ng-if="!$row.isPublic()">
+                <span class="oui-icon oui-icon-arrow-up font-inherit"></span>
+                <span
+                    data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
+                ></span>
+                <span
+                    class="font-weight-bold"
+                    ng-if="$row.type === $ctrl.VIRTUAL_TYPE.vrackAggregation"
+                    data-translate="dedicated_server_interfaces_vrack_aggregation_guarantee"
+                ></span>
+            </div>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'dedicated_server_interfaces_bandwidth_incoming_label' | translate"
+        >
+            <div data-ng-if="$row.isPublic()">
+                <span class="oui-icon oui-icon-arrow-down font-inherit"></span>
+                <span
+                    data-ng-bind="$ctrl.specifications.bandwidth.InternetToOvh | serverBandwidth"
+                ></span>
+            </div>
+            <div data-ng-if="!$row.isPublic()">
+                <span class="oui-icon oui-icon-arrow-down font-inherit"></span>
+                <span
+                    data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
+                ></span>
+                <span
+                    class="font-weight-bold"
+                    ng-if="$row.type === $ctrl.VIRTUAL_TYPE.vrackAggregation"
+                    data-translate="dedicated_server_interfaces_vrack_aggregation_guarantee"
+                ></span>
+            </div>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'dedicated_server_interfaces_ip_label' | translate"
+        >
+            <oui-clipboard
+                class="ip-clipboard"
+                data-ng-if="$row.isPublic()"
+                data-model="$ctrl.specifications.routing.ipv4.ip"
+            >
+            </oui-clipboard>
+            <span data-ng-if="!$row.isPublic()">-</span>
+        </oui-datagrid-column>
+        <oui-datagrid-column data-title="::$ctrl.LABELS.ADDITIONAL_IP">
+            <span
+                data-ng-if="$row.isPublic()"
+                data-ng-bind="$ctrl.failoverIps.length"
+            ></span>
+            <span data-ng-if="!$row.isPublic()">-</span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'dedicated_server_interfaces_vrack_label' | translate"
+            data-property="vrack"
+        >
+            <div data-ng-if="$row.hasTaskInProgress()">
+                <span
+                    class="d-inline-block mr-1"
+                    data-ng-bind="'dedicated_server_interfaces_vrack_operation_' + $row.operation | translate"
+                ></span>
+                <oui-spinner data-size="s"></oui-spinner>
+            </div>
+            <div data-ng-if="!$row.hasTaskInProgress()">
+                <span
+                    data-ng-if="$row.hasVrack()"
+                    data-ng-bind="$row.vrack"
+                ></span>
+                <span data-ng-if="!$row.hasVrack()">-</span>
+            </div>
+        </oui-datagrid-column>
+
+        <oui-action-menu data-compact data-placement="top-end">
+            <oui-action-menu-item
+                data-ui-sref=".rename({ interface: $row })"
+                data-ng-if="$row.isVirtual()"
+            >
+                <span
+                    data-translate="dedicated_server_interfaces_rename_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ui-sref=".bandwidth-public-order"
+                data-ng-if="$row.isPublic() && $ctrl.server.canOrderBandwith"
+            >
+                <span
+                    data-translate="dedicated_server_interfaces_order_public_bandwidth_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ui-sref=".bandwidth-private-order"
+                data-ng-if="$row.isPrivate() && $ctrl.server.canOrderVrackBandwith"
+            >
+                <span
+                    data-translate="dedicated_server_interfaces_order_private_bandwidth_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ui-sref="app.ip({ serviceName: $ctrl.serverName })"
+                data-ng-if="$row.isPublic()"
+                data-external
+            >
+                <span
+                    data-translate="dedicated_server_interfaces_manage_ips_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ui-sref=".attach({interface: $row})"
+                data-ng-if="!$row.hasTaskInProgress() && $row.isPrivate() && !$row.hasVrack()"
+            >
+                <span
+                    data-translate="dedicated_server_interfaces_attach_private_network_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ui-sref=".detach({interface: $row})"
+                data-ng-if="!$row.hasTaskInProgress() && $row.hasVrack()"
+            >
+                <span
+                    data-translate="dedicated_server_interfaces_detach_private_network_label"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</oui-tile>

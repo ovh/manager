@@ -2,7 +2,7 @@
 
 > An AngularJS service to create/get/delete user preferences.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-user-pref)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-user-pref) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-user-pref)](https://npmjs.com/package/@ovh-ux/ng-ovh-user-pref) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-user-pref)](https://npmjs.com/package/@ovh-ux/ng-ovh-user-pref?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-user-pref)](https://npmjs.com/package/@ovh-ux/ng-ovh-user-pref?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-user-pref)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-user-pref) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-user-pref)](https://npmjs.com/package/@ovh-ux/ng-ovh-user-pref) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-user-pref)](https://npmjs.com/package/@ovh-ux/ng-ovh-user-pref?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-user-pref)](https://npmjs.com/package/@ovh-ux/ng-ovh-user-pref?activeTab=dependencies)
 
 ## Install
 

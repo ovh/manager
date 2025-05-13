@@ -6,11 +6,25 @@ const state = {
     domainView: {
       template,
       controller: 'controllers.Domain.Redirection',
+      controllerAs: 'ctrlDomainRedirect',
+    },
+    dnsZoneView: {
+      template,
+      controller: 'controllers.Domain.Redirection',
+      controllerAs: 'ctrlDomainRedirect',
     },
   },
   atInternet: {
     rename: 'REDIRECTION',
   },
+  resolve: {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('domain_redirection'),
+  },
 };
 
-export default state;
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app.domain.product.redirection', { ...state });
+  $stateProvider.state('app.alldom.domain.redirection', { ...state });
+  $stateProvider.state('app.zone.details.redirection', { ...state });
+};

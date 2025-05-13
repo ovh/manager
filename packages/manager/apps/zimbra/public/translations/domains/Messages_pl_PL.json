@@ -1,0 +1,21 @@
+{
+  "zimbra_domains_add_domain_title": "Dodaj domenę",
+  "zimbra_domains_datagrid_account_label": "Liczba kont",
+  "zimbra_domains_datagrid_diagnostic_label": "Diagnostyka",
+  "zimbra_domains_datagrid_domain_label": "Domena",
+  "zimbra_domains_datagrid_organization_label": "Organizacja",
+  "zimbra_domains_datagrid_account_number": "Liczba kont",
+  "zimbra_domains_tooltip_delete": "Usuń",
+  "zimbra_domains_tooltip_need_organization": "Najpierw skonfiguruj organizację",
+  "zimbra_domains_datagrid_diagnostic_configuration_ok": "Konfiguracja OK",
+  "zimbra_domains_datagrid_diagnostic_tooltip_title": "Diagnostyka {{diagType}}",
+  "zimbra_domains_tooltip_configure": "Skonfiguruj",
+  "zimbra_domains_datagrid_status_label": "Status",
+  "zimbra_domains_datagrid_cname_label": "CNAME",
+  "zimbra_domains_datagrid_cname_tooltip_title": "Weryfikacja domeny",
+  "zimbra_domains_datagrid_cname_tooltip": "Aby potwierdzić, że jesteś właścicielem tej domeny, utwórz rekord CNAME: <br/><br/><strong>{{cname}}</strong> wskazujący na <strong>ovh.com</strong> <br/><br/>Etap ten należy ukończyć w ciągu 48 godzin.",
+  "zimbra_domains_tooltip_diagnostics": "Raporty diagnostyczne",
+  "zimbra_domains_delete_modal_content": "Czy na pewno chcesz usunąć domenę z serwera Zimbra?",
+  "zimbra_domains_delete_modal_message_disabled_part1": "Z tą domeną powiązane jest co najmniej jedno konto e-mail.",
+  "zimbra_domains_delete_modal_message_disabled_part2": "Przed usunięciem domeny usuń powiązane z nią konta e-mail."
+}

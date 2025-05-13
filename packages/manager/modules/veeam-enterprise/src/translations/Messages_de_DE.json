@@ -1,22 +1,4 @@
 {
-  "veeam_enterprise_tab_dashboard": "Start",
-  "veeam_enterprise_infos_general_load_error": "Beim Laden der allgemeinen Informationen ist ein Fehler aufgetreten.",
-  "veeam_enterprise_infos_configuration_load_error": "Beim Laden der Informationen zur Konfiguration ist ein Fehler aufgetreten.",
-  "veeam_enterprise_infos_subscription_load_error": "Beim Laden der Informationen zum Abbonnement ist ein Fehler aufgetreten.",
-  "veeam_enterprise_infos_license_register_error": "Bei der Aktivierung Ihrer Veeam Enterprise Lizenz ist ein Fehler aufgetreten.",
-  "veeam_enterprise_infos_license_register_success": "Aktivierung Ihrer Veeam Enterprise Lizenz läuft.",
-  "veeam_enterprise_infos_license_update_error": "Bei der Aktualisierung Ihrer Veeam Enterprise Lizenz ist ein Fehler aufgetreten.",
-  "veeam_enterprise_infos_license_update_success": "Aktualisierung Ihrer Veeam Enterprise Lizenz läuft.",
-  "veeam_enterprise_infos_license_already_registered_error": "Sie haben Ihre Veeam Enterprise Lizenz bereits aktiviert.",
-  "veeam_enterprise_manage": "Verwalten",
-  "veeam_enterprise_modal_ok": "OK",
-  "veeam_enterprise_modal_cancel": "Abbrechen",
-  "veeam_enterprise_tile_subscription": "Abo",
-  "veeam_enterprise_tile_subscription_contact": "Kontakte",
-  "veeam_enterprise_tile_subscription_contact_admin": "Administrator",
-  "veeam_enterprise_tile_subscription_contact_billing": "Abrechnung",
-  "veeam_enterprise_tile_subscription_contact_technical": "Technisch",
-  "veeam_enterprise_tile_subscription_creation_date": "Erstellungsdatum",
-  "veeam_enterprise_tile_subscription_autorenew": "Automatische Verlängerung",
-  "veeam_enterprise_tile_subscription_expiration_date": "Ablaufdatum"
+  "veeam_enterprise_title": "Veeam Enterprise",
+  "veeam_enterprise_order": "Bestellen"
 }

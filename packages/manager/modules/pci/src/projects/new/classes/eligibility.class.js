@@ -6,6 +6,8 @@ export default class PciEligibility {
     this.paymentMethodsAuthorized = options.paymentMethodsAuthorized;
     this.minimumCredit = options.minimumCredit;
     this.actionsRequired = options.actionsRequired || [];
+
+    this.validPaymentMethods = [];
   }
 
   setOptions(options = {}) {
@@ -32,5 +34,13 @@ export default class PciEligibility {
 
   isVerifyPaypalRequired() {
     return this.actionsRequired.includes(ELIGIBILITY_ACTION_ENUM.VERIFY_PAYPAL);
+  }
+
+  setValidPaymentMethods(validPaymentMethods) {
+    this.validPaymentMethods = validPaymentMethods;
+  }
+
+  isDefaultPaymentMethodChoiceRequired() {
+    return this.validPaymentMethods.length;
   }
 }

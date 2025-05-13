@@ -2,7 +2,7 @@
 
 > A poller to swim easily to success status!
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-swimming-poll)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-swimming-poll) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-swimming-poll)](https://npmjs.com/package/@ovh-ux/ng-ovh-swimming-poll) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-swimming-poll)](https://npmjs.com/package/@ovh-ux/ng-ovh-swimming-poll?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-swimming-poll)](https://npmjs.com/package/@ovh-ux/ng-ovh-swimming-poll?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-swimming-poll)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-swimming-poll) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-swimming-poll)](https://npmjs.com/package/@ovh-ux/ng-ovh-swimming-poll) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-swimming-poll)](https://npmjs.com/package/@ovh-ux/ng-ovh-swimming-poll?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-swimming-poll)](https://npmjs.com/package/@ovh-ux/ng-ovh-swimming-poll?activeTab=dependencies)
 
 ## Install
 
@@ -33,23 +33,29 @@ The poller can manage return from OVH Task standard. This library understand OVH
 ```js
 function createPoller(Poller) {
   const url = '/task/42';
-  Poller
-    .poll(
-      url,
-      null, // params
-      {
-        namespace: 'a_namespace',
-        method: 'get',
-        scope: $scope.$id,
-      },
-    )
-    .then((result) => {
+  Poller.poll(
+    url,
+    null, // params
+    {
+      namespace: 'a_namespace',
+      method: 'get',
+      scope: $scope.$id,
+    },
+  ).then(
+    (result) => {
       console.log('result contains http response if task status is successful');
-    }, (result) => {
-      console.log('result contains http response if task status is in error state');
-    }, (result) => {
-      console.log('result contains http response if task status is in pending state');
-    });
+    },
+    (result) => {
+      console.log(
+        'result contains http response if task status is in error state',
+      );
+    },
+    (result) => {
+      console.log(
+        'result contains http response if task status is in pending state',
+      );
+    },
+  );
 }
 ```
 
@@ -60,37 +66,41 @@ When you want to poll another thing that an OVH task, you had to define your cus
 ```js
 function createPoller(Poller) {
   const url = '/ip/192.168.1.1/status';
-  Poller
-    .poll(
-      url,
-      {
-        headers: 'demo',
-      },
-      {
-        namespace: 'a_namespace',
-        method: 'get',
-        scope: $scope.$id,
-        successRule: {
-          status: 'yeah_it_works',
-          billingStatus(elem) {
-            return elem.billing.status === 'nietMeerGeld';
-          },
-        },
-        errorRule: {
-          status: 'oh_damned',
-          billingStatus(elem) {
-            return elem.billing.status === 'verdom';
-          },
+  Poller.poll(
+    url,
+    {
+      headers: 'demo',
+    },
+    {
+      namespace: 'a_namespace',
+      method: 'get',
+      scope: $scope.$id,
+      successRule: {
+        status: 'yeah_it_works',
+        billingStatus(elem) {
+          return elem.billing.status === 'nietMeerGeld';
         },
       },
-    )
-    .then((result) => {
+      errorRule: {
+        status: 'oh_damned',
+        billingStatus(elem) {
+          return elem.billing.status === 'verdom';
+        },
+      },
+    },
+  ).then(
+    (result) => {
       console.log('result contains http response if status is yeah_it_works');
-    }, (result) => {
+    },
+    (result) => {
       console.log('result contains http response if status is oh_damned');
-    }, (result) => {
-      console.log('result contains http response if status is not oh_damned and not yeah_it_works');
-    });
+    },
+    (result) => {
+      console.log(
+        'result contains http response if status is not oh_damned and not yeah_it_works',
+      );
+    },
+  );
 }
 ```
 
@@ -126,13 +136,23 @@ function createPoller(Poller) {
         },
       },
     },
-  ).then((result) => {
-    console.log('result contains http response if all statuses are yeah_it_works');
-  }, (result) => {
-    console.log('result contains http response if one or more status is oh_damned and other yeah_it_works');
-  }, (result) => {
-    console.log('result contains http response if one or more status is not a finalized status');
-  });
+  ).then(
+    (result) => {
+      console.log(
+        'result contains http response if all statuses are yeah_it_works',
+      );
+    },
+    (result) => {
+      console.log(
+        'result contains http response if one or more status is oh_damned and other yeah_it_works',
+      );
+    },
+    (result) => {
+      console.log(
+        'result contains http response if one or more status is not a finalized status',
+      );
+    },
+  );
 }
 ```
 
@@ -154,13 +174,21 @@ function createPoller(Poller) {
         return 10 * Math.exp(iteration);
       },
     },
-  ).then((result) => {
-    console.log('result contains http response if task status is successful');
-  }, (result) => {
-    console.log('result contains http response if task status is in error state');
-  }, (result) => {
-    console.log('result contains http response if task status is in pending state');
-  });
+  ).then(
+    (result) => {
+      console.log('result contains http response if task status is successful');
+    },
+    (result) => {
+      console.log(
+        'result contains http response if task status is in error state',
+      );
+    },
+    (result) => {
+      console.log(
+        'result contains http response if task status is in pending state',
+      );
+    },
+  );
 }
 ```
 

@@ -46,5 +46,6 @@
   "xdsl_modem_template_config_modal_title_delete": "Suppression du template de modem sélectionné",
   "xdsl_modem_template_config_modal_title_update": "Modification du template de modem sélectionné",
   "xdsl_modem_template_config_modal_question_delete": "Êtes-vous sûr de vouloir supprimer le template {{ templateName }} ?",
-  "xdsl_modem_template_config_modal_question_update": "Êtes-vous sûr de vouloir modifier le template {{ templateName }} ?"
+  "xdsl_modem_template_config_modal_question_update": "Êtes-vous sûr de vouloir modifier le template {{ templateName }} ?",
+  "xdsl_modem_template_config_breadcrumb": "Dostępne szablony"
 }

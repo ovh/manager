@@ -1,0 +1,14 @@
+{
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_stepper_header": "Choice of business sector",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnMonthlyBill": "{{ priceDifference }} on your monthly billing",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnHourlyBill": "{{ priceDifference }} on your hourly billing",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_howToConfigureMeansOfPayment_comeBackHereLater": "You will then need to return to this page to finish activating the certificate.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_cancelButton": "Cancel",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutButton": "Edit",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_nextButton": "Next",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutDescription": "Your order has been placed.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutLink": "Click here to pay. ",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_order_failure": "Order failed",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_basic_option": "Select the option you would like to enable on your infrastructure.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_option": "Select the business sector option you would like to enable on your service."
+}

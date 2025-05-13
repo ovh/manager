@@ -1,0 +1,14 @@
+{
+  "netapp_volumes_snapshots_restore_title": "Revert to the last saved snapshot",
+  "netapp_volumes_snapshots_restore_description": "Are you sure you want to restore the following volume?",
+  "netapp_volumes_snapshots_restore_volume_label": "Volume",
+  "netapp_volumes_snapshots_restore_snapshot_label": "Snapshot name",
+  "netapp_volumes_snapshots_restore_confirm_description": "Warning: Executing this action will restore the data on the {{volume}} volume to the state it was in when the snapshot was captured. Any data that is modified on the volume after {{date}} will then be permanently deleted. If in doubt, please refer to our KBs or contact support directly. Please double-check the name of the volume to restore before confirming the action",
+  "netapp_volumes_snapshots_restore_confirm_volume_label": "Confirm volume name",
+  "netapp_volumes_snapshots_restore_confirm": "Restore a volume",
+  "netapp_volumes_snapshots_restore_cancel": "Cancel",
+  "netapp_volumes_snapshots_restore_success": "Your volume has been restored and will become active in a few moments.",
+  "netapp_volumes_snapshots_restore_error": "Your volume could not be restored: <br> {{message}}<br> request_id: {{requestId}}",
+  "netapp_volumes_snapshots_hold_error": "A problem occurred while changing your snapshot to manual",
+  "netapp_volumes_snapshots_restore_system_message": "None of the snapshots meet the requirements for restoring your volume. If in doubt, please refer to our documentation or contact support directly."
+}

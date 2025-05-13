@@ -1,0 +1,10 @@
+{
+  "dedicatedCloud_USER_delete_user_title": "Delete user",
+  "dedicatedCloud_USER_delete_group_title": "Delete a group",
+  "dedicatedCloud_USER_delete_user_message": "Are you sure you want to delete user {{t0}}?",
+  "dedicatedCloud_USER_delete_group_message": "Are you sure you want to delete group {{t0}}?",
+  "dedicatedCloud_USER_delete_success": "The deletion request for user {{t0}} has been processed",
+  "dedicatedCloud_USER_delete_fail": "An error has occurred deleting user {{t0}}",
+  "dedicatedCloud_USER_delete_role_message": "Are you sure you want to delete the {{t0}} role?",
+  "dedicatedCloud_USER_delete_role_title": "Delete role"
+}

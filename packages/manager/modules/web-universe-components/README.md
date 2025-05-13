@@ -2,9 +2,9 @@
 
 > OVH Manager Web Universe Components
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-web-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-web-universe-components) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-web-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-web-universe-components?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-web-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-web-universe-components?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-web-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-web-universe-components) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-web-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-web-universe-components?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-web-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-web-universe-components?activeTab=dependencies)
 
-We extracted all the components of the [web control panel](https://github.com/ovh-ux/ovh-manager-web) in order to interconnect them
+We extracted all the components of the [web control panel](https://github.com/ovh/manager/tree/master/packages/manager/apps/web) in order to interconnect them
 both in our upcoming [monorepo](https://github.com/ovh/manager) but also in the current stack.
 
 At the end we are planning remove this repository and privilege the management of sources directly
@@ -21,10 +21,7 @@ yarn add @ovh-ux/ng-ovh-web-universe-components
 import angular from 'angular';
 import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
 
-angular
-  .module('myApp', [
-    ngOvhWebUniverseComponents,
-  ]);
+angular.module('myApp', [ngOvhWebUniverseComponents]);
 ```
 
 ## Test
@@ -35,7 +32,7 @@ yarn test
 
 ## Related
 
-* [ovh-manager-web](https://github.com/ovh-ux/ovh-manager-web) - OVH Control Panel Web UI
+* [ovh-manager-web](https://github.com/ovh/manager/tree/master/packages/manager/apps/web) - OVH Control Panel Web UI
 
 ## Contributing
 

@@ -1,14 +1,16 @@
 {
-  "extends": "stylelint-config-standard",
-  "plugins": [
-    "stylelint-prettier",
-    "stylelint-scss"
-  ],
+  "extends": ["stylelint-prettier/recommended"],
+  "plugins": ["stylelint-scss"],
   "rules": {
     "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["tailwind"]
+      }
+    ],
     "function-calc-no-invalid": null,
     "prettier/prettier": true,
-    "scss/at-rule-no-unknown": true,
     "selector-type-no-unknown": [
       true,
       {

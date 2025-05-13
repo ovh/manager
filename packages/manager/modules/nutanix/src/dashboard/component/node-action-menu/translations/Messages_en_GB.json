@@ -1,0 +1,18 @@
+{
+  "nutanix_node_action_menu_action_aria_label": "Node actions",
+  "nutanix_node_action_menu_install": "Install",
+  "nutanix_node_action_menu_reinstall": "Reinstall",
+  "nutanix_node_action_menu_uninstall": "Uninstall",
+  "nutanix_node_action_menu_terminate": "Terminate",
+  "nutanix_node_action_menu_power_on": "Power on",
+  "nutanix_node_action_menu_power_off": "Power down",
+  "nutanix_node_disable_reason_node_already_installed": "The node has already been deployed",
+  "nutanix_node_disable_reason_node_is_powered_on": "You need to power down the node before completing this action",
+  "nutanix_node_disable_reason_node_not_uninstalled": "For security reasons, you need to uninstall the node to cancel it",
+  "nutanix_node_disable_reason_node_not_installed": "An installation needs to be done first",
+  "nutanix_node_disable_reason_node_already_uninstalled": "This node has already been uninstalled",
+  "nutanix_node_disable_reason_node_is_powered_off": "The server is powered down",
+  "nutanix_node_disable_reason_cluster_has_active_todo": "An installation is already in progress on the cluster",
+  "nutanix_node_disable_reason_server_is_rebooting": "A task is already in progress on the node",
+  "nutanix_node_disable_reason_lower_than_initial_commitment_size": "A Nutanix cluster cannot work with less than {{nb_nodes_minimal}} nodes"
+}

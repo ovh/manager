@@ -1,8 +1,5 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="ExchangeTabGroupsCtrl as ctrl"
->
-    <div class="row" data-ng-if="ctrl.showGroups">
+<div ui-view>
+    <div class="row">
         <div class="col-md-9">
             <div
                 class="alert alert-warning mb-4"
@@ -147,7 +144,7 @@
                             <td class="text-center">
                                 <span data-ng-if="!ctrl.account.partial">
                                     <button
-                                        class="oui-status oui-status_success"
+                                        class="oui-badge oui-badge_success"
                                         type="button"
                                         data-ng-bind="ml.aliases"
                                         data-ng-click="ctrl.displayAliasesByGroup(ml)"
@@ -157,7 +154,7 @@
                             </td>
                             <td class="text-center">
                                 <button
-                                    class="oui-status oui-status_success"
+                                    class="oui-badge oui-badge_success"
                                     type="button"
                                     data-ng-bind="ml.managers"
                                     data-ng-click="ctrl.displayManagersByGroup(ml)"
@@ -166,7 +163,7 @@
                             </td>
                             <td class="text-center">
                                 <button
-                                    class="oui-status oui-status_success"
+                                    class="oui-badge oui-badge_success"
                                     type="button"
                                     data-ng-bind="ml.members"
                                     data-ng-click="ctrl.displayMembersByGroup(ml)"
@@ -175,43 +172,46 @@
                             </td>
                             <td class="text-center">
                                 <span
-                                    class="oui-status oui-status_info"
+                                    class="oui-badge oui-badge_info"
                                     data-translate="exchange_tab_ACCOUNTS_state_TASK_ON_DOING"
                                     data-ng-if="ctrl.services.exchangeStates.constructor.isOk(ml) && ml.taskPendingId !== 0"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_info"
+                                    class="oui-badge oui-badge_info"
                                     data-translate="exchange_tab_ACCOUNTS_state_CREATING"
                                     data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(ml)"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_info"
+                                    class="oui-badge oui-badge_info"
                                     data-translate="exchange_tab_ACCOUNTS_state_DELETING"
                                     data-ng-if="ctrl.services.exchangeStates.constructor.isDeleting(ml)"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_warning"
+                                    class="oui-badge oui-badge_warning"
                                     data-translate="exchange_tab_ACCOUNTS_state_SUSPENDED"
                                     data-ng-if="ctrl.services.exchangeStates.constructor.isSuspended(ml)"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_warning"
+                                    class="oui-badge oui-badge_warning"
                                     data-translate="exchange_tab_ACCOUNTS_state_SUSPENDING"
                                     data-ng-if="ctrl.services.exchangeStates.constructor.isSuspending(ml)"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_info"
+                                    class="oui-badge oui-badge_info"
                                     data-translate="exchange_tab_ACCOUNTS_state_REOPENING"
                                     data-ng-if="ctrl.services.exchangeStates.constructor.isReopening(ml)"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_success"
+                                    class="oui-badge oui-badge_success"
                                     data-translate="exchange_tab_ACCOUNTS_state_OK"
                                     data-ng-if="ctrl.services.exchangeStates.constructor.isOk(ml) && ml.taskPendingId === 0"
                                 ></span>
                             </td>
                             <td class="text-center">
-                                <oui-action-menu data-compact data-align="end">
+                                <oui-action-menu
+                                    data-compact
+                                    data-placement="end"
+                                >
                                     <oui-action-menu-item
                                         data-on-click="ctrl.updateGroup(ml)"
                                         data-disabled="!ctrl.services.exchangeStates.constructor.isOk(ml)"
@@ -234,6 +234,14 @@
                                     >
                                         <span
                                             data-translate="exchange_tab_GROUPS_menu_delegation"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-on-click="ctrl.displayAliasesByGroup(ml)"
+                                        data-disabled="!ctrl.services.exchangeStates.constructor.isOk(ml)"
+                                    >
+                                        <span
+                                            data-translate="exchange_tab_ACCOUNTS_menu_alias"
                                         ></span>
                                     </oui-action-menu-item>
                                     <oui-action-menu-item
@@ -292,19 +300,4 @@
             ></button>
         </div>
     </div>
-
-    <div
-        data-ng-if="ctrl.showManagers"
-        data-ng-include="'exchange/group/manager/group-manager.html'"
-    ></div>
-
-    <div
-        data-ng-if="ctrl.showMembers"
-        data-ng-include="'exchange/group/member/group-member.html'"
-    ></div>
-
-    <div
-        data-ng-if="ctrl.showAliases"
-        data-ng-include="'exchange/group/alias/group-alias.html'"
-    ></div>
 </div>

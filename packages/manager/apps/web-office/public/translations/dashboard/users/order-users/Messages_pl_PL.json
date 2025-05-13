@@ -1,0 +1,8 @@
+{
+  "dashboard_users_order_users_type": "Rodzaj licencji",
+  "dashboard_users_order_users_type_placeholder": "Wybierz",
+  "dashboard_users_order_users_price": "Cena",
+  "dashboard_users_order_users_message": "Opłata zostanie pobrana za liczbę licencji aktywowanych w bieżącym miesiącu.",
+  "dashboard_users_order_users_message_error": "Wystąpił błąd podczas dodawania użytkownika. {{error}}",
+  "dashboard_users_order_users_message_success": "Dyspozycja dodania użytkownika została przyjęta."
+}

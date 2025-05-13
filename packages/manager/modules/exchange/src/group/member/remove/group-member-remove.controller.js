@@ -1,17 +1,16 @@
 export default class ExchangeRemoveMemberCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, messaging, $translate) {
+  constructor($scope, wucExchange, navigation, messaging, $translate) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       messaging,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
-    this.group = navigation.currentActionData.group;
     this.member = navigation.currentActionData.member;
 
     $scope.submit = () => this.submit();
@@ -22,20 +21,21 @@ export default class ExchangeRemoveMemberCtrl {
       this.services.$translate.instant('exchange_dashboard_action_doing'),
     );
 
-    this.services.Exchange.removeMember(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.group.mailingListName,
-      this.member.id,
-      this.member.type,
-    )
+    this.services.wucExchange
+      .removeMember(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.$routerParams.group,
+        this.member.id,
+        this.member.type,
+      )
       .then((success) => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(
             'exchange_GROUPS_remove_member_success_message',
             {
               t0: this.member.primaryEmailAddress,
-              t1: this.group.mailingListDisplayName,
+              t1: this.$routerParams.group,
             },
           ),
           success,
@@ -47,7 +47,7 @@ export default class ExchangeRemoveMemberCtrl {
             'exchange_GROUPS_remove_member_error_message',
             {
               t0: this.member.primaryEmailAddress,
-              t1: this.group.mailingListDisplayName,
+              t1: this.$routerParams.group,
             },
           ),
           failure,

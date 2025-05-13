@@ -5,7 +5,9 @@ export const component = {
   controller,
   template,
   bindings: {
+    goToOrder: '<',
     sendersLink: '<',
+    trackClick: '<',
   },
 };
 

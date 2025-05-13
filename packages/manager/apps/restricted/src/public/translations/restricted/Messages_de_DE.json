@@ -1,0 +1,18 @@
+{
+  "restricted_account_logout": "Abmelden",
+  "restricted_account_method_user": "Als Subuser angemeldet",
+  "restricted_error_default": "Für den Zugriff auf das OVHcloud Kundencenter ist ein Minimum an notwendigen Rechten erforderlich. Bitte wenden Sie sich an Ihren Administrator.",
+  "restricted_error_title": "Eingeschränkter Zugang",
+  "restricted_guide_card_control-panel-access_description": "Hier erfahren Sie, wie Sie die für den Login in Ihrem Kundencenter erforderlichen Mindestrechte zuweisen",
+  "restricted_guide_card_control-panel-access_title": "Mit IAM in das OVHcloud Kundencenter einloggen",
+  "restricted_guide_card_policies-ui_description": "Hier erfahren Sie, wie Sie Benutzern über einen OVHcloud Account spezifische Zugriffsrechte zuweisen",
+  "restricted_guide_card_policies-ui_title": "IAM-Richtlinien über Ihr Kundencenter erstellen",
+  "restricted_guide_card_policies-api_description": "Hier erfahren Sie, wie Sie Benutzern spezifische Zugriffsrechte für einen OVHcloud Account zuweisen",
+  "restricted_guide_card_policies-api_title": "IAM-Richtlinien über die API erstellen",
+  "restricted_guide_card_more": "Mehr erfahren",
+  "restricted_guide_card_title": "Anleitung",
+  "restricted_language_change": "Sprache des Interface ändern",
+  "restricted_navbar_account": "Mein Account",
+  "restricted_error_default_start": "Für den Zugriff auf das OVHcloud Kundencenter sind {{count}} Rechte für Ihren Account erforderlich, wie in der folgenden Anleitung beschrieben:",
+  "restricted_error_default_end": "Bitte wenden Sie sich an Ihren Administrator, um diese Berechtigungen hinzuzufügen."
+}

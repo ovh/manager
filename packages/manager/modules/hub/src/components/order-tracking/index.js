@@ -1,7 +1,7 @@
 import angular from 'angular';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import '@ovh-ux/ng-ovh-order-tracking';
 
 import ovhManagerHubTileError from '../tile-error';

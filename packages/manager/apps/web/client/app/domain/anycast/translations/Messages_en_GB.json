@@ -1,0 +1,19 @@
+{
+  "domain_anycast": "Enable Anycast DNS ",
+  "domain_dashboard_dns_anycast_order": "Order Anycast DNS",
+  "domain_configuration_anycast_order_description": "Enable the Anycast DNS option on the {{t0}} domain",
+  "domain_dashboard_dns_anycast_payment": "Payment",
+  "domain_dashboard_dns_anycast_duration_choose": "Choose your duration",
+  "domain_dashboard_dns_anycast_price_without_tax": "{{ price }} ex. VAT",
+  "domain_dashboard_dns_anycast_prorata_price_without_tax": "Price ex. VAT",
+  "domain_dashboard_dns_anycast_prorata_price_with_tax": "Price incl. VAT",
+  "domain_dashboard_dns_anycast_prorata_untill": "Pro rata until",
+  "domain_dashboard_dns_anycast_next": "Next",
+  "domain_dashboard_dns_anycast_duration": "12 months",
+  "domain_dashboard_dns_anycast_pay": "Pay",
+  "domain_configuration_anycast_order_success": "Your request to enable the Anycast DNS option has been processed.",
+  "domain_configuration_anycast_order_success_bc": "To complete it, please pay for your purchase order.",
+  "domain_configuration_anycast_order_success_bc_link": "Purchase order",
+  "domain_configuration_anycast_payment_acceptance_delay_info": "Please note that once your payment has been accepted, it will take around 15 minutes for the option to be enabled in the Web Control Panel.",
+  "domain_configuration_anycast_propagation_delay_info": "Please also take into account the time it takes for the DNS service to propagate, which can be up to 48 hours."
+}

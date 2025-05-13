@@ -73,7 +73,24 @@
                         data-ng-model="ctrl.model.displayName"
                     />
                 </div>
-
+                <div
+                    class="form-group"
+                    data
+                    -ng-class="{'has-error': ctrl.addResourceForm.company.$dirty && (ctrl.takenEmailError || ctrl.addResourceForm.company.$invalid)}"
+                >
+                    <label
+                        for="company"
+                        data-translate="exchange_tab_RESOURCES_add_resource_company"
+                    ></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="company"
+                        maxlength="256"
+                        name="company"
+                        data-ng-model="ctrl.model.company"
+                    />
+                </div>
                 <div
                     class="form-group"
                     data-ng-class="{'has-error': ctrl.addResourceForm.resourceCapacity.$dirty && ctrl.addResourceForm.resourceCapacity.$invalid}"
@@ -106,8 +123,9 @@
                 <oui-checkbox
                     id="allowConflict"
                     data-model="ctrl.model.allowConflict"
-                    data-text="{{::'exchange_tab_RESOURCES_add_resource_allow_conflict' | translate}}"
-                >
+                    ><span
+                        data-translate="exchange_tab_RESOURCES_add_resource_allow_conflict"
+                    ></span>
                 </oui-checkbox>
 
                 <div class="form-group">
@@ -131,10 +149,13 @@
                             class="oui-radio__label-container"
                             for="resourceType-{{$index}}"
                         >
-                            <span
-                                class="oui-radio__label"
-                                data-ng-bind="('exchange_tab_RESOURCES_add_resource_type_' + type) | translate"
-                            ></span>
+                            <span class="oui-radio__label">
+                                <span class="oui-radio__icon"></span>
+                                <span
+                                    class="oui-radio__text"
+                                    data-ng-bind="('exchange_tab_RESOURCES_add_resource_type_' + type) | translate"
+                                ></span>
+                            </span>
                         </label>
                     </div>
                 </div>
@@ -167,12 +188,22 @@
 
                 <dt
                     data-translate="exchange_tab_RESOURCES_add_resource_name"
-                    data-ng-if="ctrl.model.displayName"
+                    data-ng-if="ctrl.model.company"
                 ></dt>
                 <dd
                     class="word-break"
-                    data-ng-bind-html="ctrl.model.displayName | wucSliceContent: 150"
-                    data-ng-if="ctrl.model.displayName"
+                    data-ng-bind="ctrl.model.company | wucSliceContent: 150"
+                    data-ng-if="ctrl.model.company"
+                ></dd>
+
+                <dt
+                    data-translate="exchange_tab_RESOURCES_add_resource_company"
+                    data-ng-if="ctrl.model.company"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.model.company | wucSliceContent: 150"
+                    data-ng-if="ctrl.model.company"
                 ></dd>
 
                 <dt

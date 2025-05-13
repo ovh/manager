@@ -1,0 +1,20 @@
+{
+  "pci_projects_project_storages_containers_users_title": "Object Storage credentials management",
+  "pci_projects_project_storages_containers_users_username": "Username",
+  "pci_projects_project_storages_containers_users_description": "Description",
+  "pci_projects_project_storages_containers_users_import_json": "Import a user access policy (JSON)",
+  "pci_projects_project_storages_containers_users_download_json": "Download the user access policy (JSON)",
+  "pci_projects_project_storages_containers_users_user_management": "User management",
+  "pci_projects_project_storages_containers_users_user_description": "In this section, you can add a new Object Storage user, get your access key and secret key, and manage user access policies.",
+  "pci_projects_project_storages_containers_users_user_description_warning": "Once your user has been created, you will need to generate the Object Storage credentials for them in the \"Users &amp; Roles\" section.",
+  "pci_projects_project_storages_containers_users_add_user": "Add user",
+  "pci_projects_project_storages_containers_users_import_success_message": "The JSON file linked to the {{user}} user has been downloaded.",
+  "pci_projects_project_storages_containers_users_import_error_message": "An error has occurred downloading the JSON file linked to the user: {{message}}",
+  "pci_projects_project_storages_containers_users_accesskey": "Access key",
+  "pci_projects_project_storages_containers_users_download_rclone_file": "Download rclone file",
+  "pci_projects_project_storages_containers_users_see_secret_key": "View the secret key",
+  "pci_projects_project_storages_containers_users_show_secret_key_success": "Your {{user}} user's secret key is {{secret}}.",
+  "pci_projects_project_storages_containers_users_add_success_field_secret_key": "Your secret key:",
+  "pci_projects_project_storages_containers_users_show_secret_key_error": "An error has occurred retrieving the secret key for the user {{ user }} : {{ message }}",
+  "pci_projects_project_storages_containers_users_user_info_banner": "New users will automatically have access to all containers in Local Zones."
+}

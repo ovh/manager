@@ -1,0 +1,10 @@
+{
+  "pci_databases_pools_terminate_title": "Elimina il pool di connessione",
+  "pci_databases_pools_terminate_description": "Stai per eliminare definitivamente il pool di connessione {{name}}",
+  "pci_databases_pools_terminate_warning": "Questa operazione è irreversibile.",
+  "pci_databases_pools_terminate_label": "Inserisci \"TERMINATE\" per confermare la scelta.",
+  "pci_databases_pools_terminate_cancel": "Annulla",
+  "pci_databases_pools_terminate_confirm": "Conferma",
+  "pci_databases_pools_terminate_success": "Il pool {{name}} è stato eliminato correttamente.",
+  "pci_databases_pools_terminate_error": "Si è verificato un errore durante l'eliminazione del pool {{name}}: {{message}}"
+}

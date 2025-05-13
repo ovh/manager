@@ -1,0 +1,6 @@
+{
+  "kubernetes_add_node_pool_description": "Una volta creato il cluster, puoi configurare uno o più pool di nodi. Un pool di nodi indica un insieme di nodi di lavoro dello stesso tipo.",
+  "kubernetes_add_node_pool_node_count": "Numero di nodi",
+  "kubernetes_add_node_pool_node_type": "Tipo di nodi",
+  "kube_common_node_pool_model_type_selector": "Seleziona un modello"
+}

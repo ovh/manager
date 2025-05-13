@@ -1,0 +1,36 @@
+<oui-radio
+    data-name="dns_configuration_types"
+    data-value="::$ctrl.constants.CONFIGURATION_TYPES.EXTERNAL"
+    data-model="$ctrl.selectedConfigurationType"
+    data-on-change="$ctrl.onConfigurationTypeChange()"
+>
+    <oui-radio-label>
+        <span data-translate="domain_dns_use_my_own_name_servers_title"></span>
+        <span
+            data-ng-if="$ctrl.currentConfigurationType === $ctrl.constants.CONFIGURATION_TYPES.EXTERNAL"
+            class="oui-badge oui-badge_success oui-badge_s"
+            data-translate="domain_dns_active_label"
+        ></span>
+    </oui-radio-label>
+    <oui-radio-description>
+        <span
+            data-translate="domain_dns_use_my_own_name_servers_description"
+        ></span>
+        <web-domain-dns-modify-add-dns-forms
+            data-ng-if="$ctrl.selectedConfigurationType === $ctrl.constants.CONFIGURATION_TYPES.EXTERNAL"
+            data-configuration-type="::$ctrl.constants.CONFIGURATION_TYPES.EXTERNAL"
+            data-min-number-of-dns="::$ctrl.dns.registryConfiguration.minNumberOfDns"
+            data-max-number-of-dns="::$ctrl.dns.registryConfiguration.maxNumberOfDns"
+            data-modified-dns-list="$ctrl.modifiedDnsList"
+            data-update-error="alerts.update"
+            data-show-form="$ctrl.showAddForm"
+            data-can-submit="$ctrl.canSubmit"
+            data-show-cancel-modifications-button="$ctrl.showCancelModificationsButton"
+            data-open-validation-modal="$ctrl.openValidationModal()"
+            data-cancel-modifications="$ctrl.cancelModifications()"
+            data-on-submit="$ctrl.onSubmit(dnsEntry)"
+            data-on-remove="$ctrl.onRemove(index)"
+            data-should-clear-form="$ctrl.shouldClearForm"
+        />
+    </oui-radio-description>
+</oui-radio>

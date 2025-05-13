@@ -5,8 +5,15 @@ import isString from 'lodash/isString';
 angular.module('services').service(
   'hostingSSLCertificate',
   class HostingSSLCertificate {
-    constructor($rootScope, hostingSSLCertificateType, OvhApiHostingWebSsl) {
+    /* @ngInject */
+    constructor(
+      $rootScope,
+      $http,
+      hostingSSLCertificateType,
+      OvhApiHostingWebSsl,
+    ) {
       this.$rootScope = $rootScope;
+      this.$http = $http;
 
       this.hostingSSLCertificateType = hostingSSLCertificateType;
       this.OvhApiHostingWebSsl = OvhApiHostingWebSsl;
@@ -34,8 +41,7 @@ angular.module('services').service(
     }
 
     regeneratingCertificate(serviceName) {
-      return this.OvhApiHostingWebSsl.v6().regenerate({ serviceName }, {})
-        .$promise;
+      return this.$http.post(`/hosting/web/${serviceName}/ssl/regenerate`);
     }
 
     deletingCertificate(serviceName) {

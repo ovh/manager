@@ -1,35 +1,34 @@
+import mainTemplate from '../telecom-telephony-main.view.html';
+
+import template from './billing-account.html';
+import controller from './billing-account.controller';
+
+import dashboardTemplate from './dashboard/dashboard.html';
+import dashboardController from './dashboard/dashboard.controller';
+import { BILLING_ACCOUNT_TRACKING } from './billingAccount.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.telephony.billingAccount', {
     url: '/:billingAccount',
     views: {
       'telephonyView@telecom.telephony': {
-        templateUrl: 'app/telecom/telephony/telecom-telephony-main.view.html',
+        template: mainTemplate,
       },
       'groupView@telecom.telephony.billingAccount': {
-        templateUrl:
-          'app/telecom/telephony/billingAccount/telecom-telephony-billing-account.html',
-        controller: 'TelecomTelephonyBillingAccountCtrl',
+        template,
+        controller,
         controllerAs: 'BillingAccountCtrl',
       },
       'groupInnerView@telecom.telephony.billingAccount': {
-        templateUrl:
-          'app/telecom/telephony/billingAccount/dashboard/telecom-telephony-billing-account-dashboard.html',
-        controller: 'TelecomTelephonyBillingAccountDashboardCtrl',
+        template: dashboardTemplate,
+        controller: dashboardController,
         controllerAs: 'DashboardCtrl',
       },
     },
     resolve: {
-      billingAccountId: /* @ngInject */ ($transition$) =>
+      billingAccount: /* @ngInject */ ($transition$) =>
         $transition$.params().billingAccount,
-      initTelephony($q, $stateParams, TelephonyMediator) {
-        // init all groups, lines and numbers
-        TelephonyMediator.init().then(() =>
-          TelephonyMediator.getGroup(
-            $stateParams.billingAccount,
-          ).then((group) => TelephonyMediator.setCurrentGroup(group)),
-        );
-        return $q.when({ init: true });
-      },
+      billingAccountId: /* @ngInject */ (billingAccount) => billingAccount,
       $title(translations, $translate, $stateParams, OvhApiTelephony) {
         return OvhApiTelephony.v6()
           .get({
@@ -50,8 +49,6 @@ export default /* @ngInject */ ($stateProvider) => {
             }),
           );
       },
-      isBetaActive: /* @ngInject */ (betaPreferenceService) =>
-        betaPreferenceService.isBetaActive(),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
 
@@ -91,7 +88,29 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('telecom.telephony.billingAccount.guides', {
           billingAccount: billingAccountId,
         }),
+      billingDepositLink: /* @ngInject */ ($state, billingAccountId) =>
+        $state.href('telecom.telephony.billingAccount.billing.deposit', {
+          billingAccount: billingAccountId,
+        }),
+      serviceInformation: /* @ngInject */ (
+        billingAccountId,
+        tucVoipBillingAccount,
+      ) => tucVoipBillingAccount.fetchServiceInfo(billingAccountId),
+      breadcrumb: /* @ngInject */ (billingAccount) => billingAccount,
+
+      svaWalletLink: /* @ngInject */ ($state, billingAccount) =>
+        $state.href('telecom.telephony.billingAccount.svaWallet', {
+          billingAccount,
+        }),
+      themes: /* @ngInject */ (softphoneService) =>
+        softphoneService.getThemes(),
     },
     translations: { value: ['..', '.', './dashboard'], format: 'json' },
+    atInternet: {
+      ignore: true,
+    },
+    onEnter: /* @ngInject */ (atInternet) => {
+      atInternet.trackPage(BILLING_ACCOUNT_TRACKING.PAGE);
+    },
   });
 };

@@ -1,0 +1,9 @@
+{
+  "ip_table_manage_reverse": "Reverse ändern",
+  "ip_table_manage_reverse_question": "Tragen Sie einen gültigen Reverse für diese IP ein und klicken Sie auf „Bestätigen\".",
+  "ip_table_manage_reverse_success": "Reverse wurde aktualisiert.",
+  "ip_table_manage_reverse_failure": "Bei der Aktualisierung des Reverse ist ein Fehler aufgetreten. {{ message }}",
+  "ip_table_manage_reverse_confirm": "Bestätigen",
+  "ip_table_manage_reverse_cancel": "Abbrechen",
+  "ip_table_manage_reverse_invalid": "Bitte geben Sie ein gültiges Format ein"
+}

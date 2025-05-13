@@ -1,42 +1,24 @@
-angular.module('App').controller(
-  'PrivateDatabaseLogsCtrl',
-  class PrivateDatabaseLogsCtrl {
-    constructor($scope, $stateParams, TailLogs, PrivateDatabaseLogsService) {
-      this.$scope = $scope;
-      this.$stateParams = $stateParams;
-      this.TailLogs = TailLogs;
-      this.privateDatabaseLogsService = PrivateDatabaseLogsService;
-    }
+import {
+  PRIVATE_DATABASE_LOGS_SERVICE_GUIDE_LINK,
+  PRIVATE_DATABASE_LOGS_TRACKING_HITS,
+  PRIVATE_DATABASE_LOGS_KINDS_KEYS,
+} from './private-database-logs.constants';
 
-    $onInit() {
-      this.productId = this.$stateParams.productId;
+export default class PrivateDatabaseLogsController {
+  /* @ngInject */
+  constructor(coreConfig, $stateParams) {
+    this.user = coreConfig.getUser();
+    this.$stateParams = $stateParams;
+  }
 
-      this.logger = new this.TailLogs({
-        source: () =>
-          this.privateDatabaseLogsService
-            .getLogs(this.productId)
-            .then((logs) => logs.url),
-        delay: 2000,
-      });
-
-      this.startLog();
-    }
-
-    $onDestroy() {
-      this.logger.stop();
-    }
-
-    stopLog() {
-      this.logger.stop();
-    }
-
-    startLog() {
-      this.logger.log();
-    }
-
-    getLogs() {
-      this.logger = this.logger.logs;
-      return this.logger;
-    }
-  },
-);
+  $onInit() {
+    this.productId = this.$stateParams.productId;
+    this.PRIVATE_DATABASE_LOGS_TRACKING_HITS = PRIVATE_DATABASE_LOGS_TRACKING_HITS;
+    this.logApiUrl = `/hosting/privateDatabase/${this.productId}/log/url`;
+    this.logSubscriptionUrl = `/hosting/privateDatabase/${this.productId}/log/subscription`;
+    this.logServiceGuideLink =
+      PRIVATE_DATABASE_LOGS_SERVICE_GUIDE_LINK[this.user.ovhSubsidiary] ||
+      PRIVATE_DATABASE_LOGS_SERVICE_GUIDE_LINK.DEFAULT;
+    this.logKindsKeys = PRIVATE_DATABASE_LOGS_KINDS_KEYS;
+  }
+}

@@ -12,10 +12,30 @@ angular
   .service('signUp', service)
   .filter(
     'translateDefault',
-    /* @ngInject */ ($translate) => (translationKey, fallbackKey) => {
-      const translation = $translate.instant(translationKey);
+    /* @ngInject */ ($translate) => (
+      translationKey,
+      fallbackKey,
+      interpolateParams = {},
+      interpolationId = undefined,
+      forceLanguage = false,
+      sanitizeStrategy = undefined,
+    ) => {
+      const translation = $translate.instant(
+        translationKey,
+        interpolateParams,
+        interpolationId,
+        forceLanguage,
+        sanitizeStrategy,
+      );
+
       return translationKey === translation
-        ? $translate.instant(fallbackKey)
+        ? $translate.instant(
+            fallbackKey,
+            interpolateParams,
+            interpolationId,
+            forceLanguage,
+            sanitizeStrategy,
+          )
         : translation;
     },
   );

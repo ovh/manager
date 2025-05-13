@@ -3,40 +3,37 @@
         <h1 data-translate="telecom_orders_alias_title"></h1>
     </header>
 
-    <div class="telecom-section-content">
-        <div class="row">
-            <div class="col-xs-12 col-md-6 widget-presentation">
-                <h2
-                    class="widget-presentation-title"
-                    data-translate="telecom_orders_alias_billing_account_title"
-                ></h2>
-                <form
-                    name="billingAccountSelectForm"
-                    data-ng-submit="OrdersAliasCtrl.submit()"
-                >
-                    <div class="form-group">
-                        <label
-                            class="control-label"
-                            for="billingAccount"
-                            data-translate="telecom_orders_alias_billing_account_label"
-                        >
-                        </label>
-                        <select
-                            class="form-control"
-                            id="billingAccount"
-                            name="billingAccount"
-                            required
-                            data-ng-model="OrdersAliasCtrl.billingAccount"
-                            data-ng-options="item as item.label for item in OrdersAliasCtrl.orderAccounts track by item.billingAccount"
-                            data-ng-change="OrdersAliasCtrl.submit()"
-                            data-ng-disabled="OrdersAliasCtrl.loading.init"
-                        >
-                        </select>
-                    </div>
-                </form>
-            </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-6 widget-presentation">
+            <h2
+                class="widget-presentation-title"
+                data-translate="telecom_orders_alias_billing_account_title"
+            ></h2>
+            <form
+                name="billingAccountSelectForm"
+                data-ng-submit="OrdersAliasCtrl.submit()"
+            >
+                <div class="form-group">
+                    <label
+                        class="control-label"
+                        for="billingAccount"
+                        data-translate="telecom_orders_alias_billing_account_label"
+                    >
+                    </label>
+                    <select
+                        class="form-control"
+                        id="billingAccount"
+                        name="billingAccount"
+                        required
+                        data-ng-model="OrdersAliasCtrl.billingAccount"
+                        data-ng-options="item as item.label for item in OrdersAliasCtrl.orderAccounts track by item.billingAccount"
+                        data-ng-change="OrdersAliasCtrl.submit()"
+                        data-ng-disabled="OrdersAliasCtrl.loading.init"
+                    >
+                    </select>
+                </div>
+            </form>
         </div>
     </div>
-    <!-- /.telecom-section-content -->
 </section>
 <!-- /.telecom-orders -->

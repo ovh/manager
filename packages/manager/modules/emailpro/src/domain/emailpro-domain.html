@@ -1,4 +1,4 @@
-<div class="container-fluid px-0" data-ng-controller="EmailProTabDomainsCtrl">
+<div>
     <div class="row">
         <div
             data-ng-class="{
@@ -106,22 +106,26 @@
                         <tr>
                             <td class="text-center" colspan="6">
                                 <div data-ng-if="!search.value">
-                                    <span
-                                        data-translate="{{:: exchange.isMXPlan
-                                        ? 'emailpro-mxplan_tab_domain_no_domains_1'
-                                        : 'emailpro_tab_domain_no_domains_1'
-                                    }}"
-                                    ></span>
-                                    <button
-                                        class="btn btn-link p-0"
-                                        type="button"
-                                        style="font-size:inherit"
-                                        data-translate="emailpro_tab_domain_no_domains_2"
-                                        data-ng-click="setAction('emailpro/domain/add/emailpro-domain-add')"
-                                    ></button>
-                                    <span
-                                        data-translate="emailpro_tab_domain_no_domains_3"
-                                    ></span>
+                                    <div data-ng-if="canAddDomain">
+                                        <span
+                                            data-translate="emailpro_tab_domain_no_domains_1"
+                                        ></span>
+                                        <button
+                                            class="btn btn-link p-0"
+                                            type="button"
+                                            style="font-size:inherit"
+                                            data-translate="emailpro_tab_domain_no_domains_2"
+                                            data-ng-click="setAction('emailpro/domain/add/emailpro-domain-add')"
+                                        ></button>
+                                        <span
+                                            data-translate="emailpro_tab_domain_no_domains_3"
+                                        ></span>
+                                    </div>
+                                    <div data-ng-if="!canAddDomain">
+                                        <span
+                                            data-translate="emailpro-mxplan_tab_domain_no_domains"
+                                        ></span>
+                                    </div>
                                 </div>
                                 <span
                                     data-translate="emailpro_tab_domain_table_empty_search"
@@ -195,16 +199,18 @@
                                 class="text-center"
                                 data-ng-if="!domain.partial"
                             >
-                                <div data-ng-if="domain.domainValidated">
+                                <div
+                                    data-ng-if="domain.domainValidated && domain.state === stateOk"
+                                >
                                     <button
-                                        class="oui-status oui-status_error"
+                                        class="oui-badge oui-badge_error"
                                         type="button"
                                         data-translate="emailpro_tab_domain_diagnostic_mx"
                                         data-ng-click="setAction('emailpro/domain/mx-autoconfig/emailpro-domain-mx-autoconfig', domain)"
                                         data-ng-if="!domain.mxValid"
                                     ></button>
                                     <button
-                                        class="oui-status oui-status_success"
+                                        class="oui-badge oui-badge_success"
                                         type="button"
                                         data-translate="emailpro_tab_domain_diagnostic_mx"
                                         data-ng-if="domain.mxValid"
@@ -214,14 +220,14 @@
                                         data-simplepopover-single="true"
                                     ></button>
                                     <button
-                                        class="oui-status oui-status_error"
+                                        class="oui-badge oui-badge_error"
                                         type="button"
                                         data-translate="emailpro_tab_domain_diagnostic_srv"
                                         data-ng-click="setAction('emailpro/domain/srv-autoconfig/emailpro-domain-srv-autoconfig', domain)"
                                         data-ng-if="!domain.srvValid && !exchange.isMXPlan"
                                     ></button>
                                     <button
-                                        class="oui-status oui-status_success"
+                                        class="oui-badge oui-badge_success"
                                         type="button"
                                         data-translate="emailpro_tab_domain_diagnostic_srv"
                                         data-ng-if="domain.srvValid && !exchange.isMXPlan"
@@ -230,9 +236,39 @@
                                         data-simplepopover-placement="top"
                                         data-simplepopover-single="true"
                                     ></button>
+                                    <button
+                                        class="oui-badge oui-badge_error"
+                                        type="button"
+                                        data-translate="emailpro_tab_domain_diagnostic_spf"
+                                        data-ng-click="setAction('emailpro/domain/spf-autoconfig/emailpro-domain-spf-autoconfig', domain)"
+                                        data-ng-if="!domain.spfValid && !exchange.isMXPlan"
+                                    ></button>
+                                    <button
+                                        class="oui-badge oui-badge_success"
+                                        type="button"
+                                        data-translate="emailpro_tab_domain_diagnostic_spf"
+                                        data-ng-if="domain.spfValid && !exchange.isMXPlan"
+                                        data-simplepopover="{{domain.spfTooltip}}"
+                                        data-simplepopover-title="{{ 'emailpro_tab_domain_diagnostic_spf_title' | translate }}"
+                                        data-simplepopover-placement="top"
+                                        data-simplepopover-single="true"
+                                    ></button>
+
+                                    <!-- dkim -->
+                                    <button
+                                        data-ng-if="getDkimColouredChipClass(exchange, domain)"
+                                        class="oui-badge"
+                                        data-ng-class="getDkimColouredChipClass(exchange, domain)"
+                                        data-ng-click="setAction('emailpro/domain/dkim-autoconfig/emailpro-domain-dkim-autoconfig', {
+                                            domain,
+                                            isMXPlan: exchange.isMXPlan,
+                                        })"
+                                        data-translate="emailpro_tab_domain_diagnostic_dkim"
+                                    ></button>
+                                    <!-- end dkim -->
                                 </div>
                                 <button
-                                    class="oui-status oui-status_error"
+                                    class="oui-badge oui-badge_error"
                                     type="button"
                                     data-translate="emailpro_tab_domain_diagnostic_cname"
                                     data-ng-if="!domain.domainValidated && domain.cname"
@@ -248,12 +284,12 @@
                             >
                                 <div data-ng-if="domain.state === stateOk">
                                     <span
-                                        class="oui-status oui-status_success"
+                                        class="oui-badge oui-badge_success"
                                         data-translate="global_OK"
                                         data-ng-if="!domain.taskInProgress"
                                     ></span>
                                     <span
-                                        class="oui-status oui-status_info"
+                                        class="oui-badge oui-badge_info"
                                         data-translate="emailpro_tab_domain_task_in_progress"
                                         data-ng-if="domain.taskInProgress"
                                     ></span>
@@ -262,17 +298,17 @@
                                     data-ng-if="domain.state === stateCreating || domain.state === stateDeleting"
                                 >
                                     <span
-                                        class="oui-status oui-status_info"
+                                        class="oui-badge oui-badge_info"
                                         data-ng-if="!domain.domainValidated && domain.cname"
                                         data-translate="emailpro_tab_domain_validation"
                                     ></span>
                                     <span
-                                        class="oui-status oui-status_info"
-                                        data-ng-if="domain.state === stateCreating && domain.cname == null"
+                                        class="oui-badge oui-badge_info"
+                                        data-ng-if="domain.state === stateCreating && (domain.cname == null || domain.domainValidated)"
                                         data-translate="emailpro_tab_ACCOUNTS_state_CREATING"
                                     ></span>
                                     <span
-                                        class="oui-status oui-status_error"
+                                        class="oui-badge oui-badge_error"
                                         data-ng-if="domain.state === stateDeleting"
                                         data-translate="emailpro_tab_ACCOUNTS_state_DELETING"
                                     ></span>
@@ -282,7 +318,10 @@
                                 class="text-center text-nowrap"
                                 data-ng-if="!domain.partial"
                             >
-                                <oui-action-menu data-compact data-align="end">
+                                <oui-action-menu
+                                    data-compact
+                                    data-placement="end"
+                                >
                                     <oui-action-menu-item
                                         data-on-click="updateDomain(domain)"
                                         data-disabled="isEditDisabled(domain)"
@@ -318,7 +357,7 @@
             <div
                 class="clearfix"
                 data-ng-show="!exchange.isMXPlan && !loading && paginated.domains.length > 0"
-                data-pagination-server-side="domainsTable"
+                data-pagination-server-side
                 data-pagination-server-side-function="getDomains"
                 data-pagination-server-side-paginated-stuff="paginated"
                 data-pagination-server-side-table-loading="loading"
@@ -327,11 +366,12 @@
 
         <div class="col-md-3 mt-5 mt-lg-0" data-ng-if="canAddDomain">
             <button
-                class="btn btn-block btn-default"
                 type="button"
+                class="btn btn-block btn-default"
                 data-translate="emailpro_tab_domain_add_domain"
-                data-ng-click="setAction('emailpro/domain/add/emailpro-domain-add', {})"
+                data-ng-click="setAction('emailpro/domain/add/emailpro-domain-add')"
             ></button>
         </div>
     </div>
+    <div data-ui-view></div>
 </div>

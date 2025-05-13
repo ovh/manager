@@ -1,0 +1,11 @@
+{
+  "telephony_billing_account_line_breadcrumb": "Linie telefoniczne",
+  "telephony_billing_account_line_number": "Usługa",
+  "telephony_billing_account_services_description_title": "Opis",
+  "telephony_billing_account_line_service": "Typ",
+  "telephony_billing_account_line_service_line": "Wiersz",
+  "telephony_billing_account_line_service_alias": "Alias",
+  "telephony_billing_account_line_feature": "Typ usługi",
+  "telephony_billing_account_line_feature_no_configuration": "Brak typu",
+  "telephony_billing_account_services_view_label": "Szczegóły usługi"
+}

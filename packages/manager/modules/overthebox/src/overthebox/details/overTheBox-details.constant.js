@@ -1,55 +1,83 @@
-import head from 'lodash/head';
-import get from 'lodash/get';
-import moment from 'moment';
-
 export default {
   chart: {
+    data: { datasets: [] },
     options: {
       responsive: true,
-      legend: {
-        position: 'bottom',
-        display: true,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          display: true,
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+        },
       },
       elements: {
+        line: {
+          tension: 0.5,
+        },
         point: {
           radius: 0,
         },
       },
       scales: {
-        xAxes: [
-          {
-            type: 'time',
-            position: 'bottom',
-            gridLines: {
-              drawBorder: true,
-              display: false,
-            },
+        x: {
+          type: 'time',
+          position: 'bottom',
+          grid: {
+            drawBorder: true,
+            display: false,
           },
-        ],
-        yAxes: [
-          {
+        },
+        y: {
+          display: true,
+          position: 'left',
+          title: {
             display: true,
-            position: 'left',
-            scaleLabel: {
-              display: true,
-            },
-            gridLines: {
-              drawBorder: true,
-              display: false,
-            },
           },
-        ],
-      },
-      tooltips: {
-        mode: 'label',
-        intersect: false,
-        callbacks: {
-          title(data) {
-            const timestamp = moment(get(head(data), 'xLabel'));
-            return timestamp.fromNow();
+          grid: {
+            drawBorder: true,
+            display: false,
           },
         },
       },
     },
+  },
+  lastSeen: {
+    limit: 5,
+  },
+  serviceIpStatus: {
+    unknown: 'unknown',
+    locked: 'locked',
+    warning: 'warning',
+  },
+  period: {
+    daily: 'daily',
+    hourly: 'hourly',
+    monthly: 'monthly',
+    weekly: 'weekly',
+  },
+  type: {
+    traffic: 'traffic',
+    memory_free: 'memory_free',
+    load: 'load',
+  },
+  guidesUrl: {
+    fr: 'https://docs.ovh.com/fr/overthebox/',
+  },
+  convertToMbps: 104857.6,
+  convertToKbps: 102.4,
+  status: {
+    locked: 'locked',
+    warning: 'warning',
+    unknown: 'unknown',
+  },
+  pattern: /[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}/,
+  deprecated: '_deprecated',
+  version: 'v',
+  ip: {
+    v4: 'v4',
+    v6: 'v6',
   },
 };

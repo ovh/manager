@@ -1,0 +1,411 @@
+<section class="telecom-telephony-service-fax-filtering">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <div class="row" data-ng-if="!$ctrl.loading.init">
+        <div class="col-xs-12 col-md-6">
+            <div class="widget-presentation">
+                <header class="widget-presentation-header">
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="telephony_service_fax_filtering_list_title"
+                    ></h2>
+                </header>
+
+                <div class="form-group">
+                    <label for="filteringList">
+                        <span
+                            data-translate="telephony_service_fax_filtering_list_label"
+                        ></span>
+                        <oui-spinner
+                            class="float-right"
+                            data-ng-if="$ctrl.screenListsForm.isUpdating"
+                            data-size="s"
+                        >
+                        </oui-spinner>
+                    </label>
+                    <select
+                        class="form-control"
+                        id="filteringList"
+                        required
+                        data-ng-model="$ctrl.screenListsForm.filteringList"
+                        data-ng-change="$ctrl.updateFilteringList()"
+                    >
+                        <option
+                            value="no"
+                            data-translate="telephony_service_fax_filtering_list_type_no"
+                        ></option>
+                        <option
+                            value="whitelist"
+                            data-translate="telephony_service_fax_filtering_list_type_whitelist"
+                        ></option>
+                        <option
+                            value="blacklist"
+                            data-translate="telephony_service_fax_filtering_list_type_blacklist"
+                        ></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <div class="oui-checkbox">
+                        <input
+                            type="checkbox"
+                            class="oui-checkbox__input"
+                            id="faxRejectAnonymous"
+                            name="faxRejectAnonymous"
+                            data-ng-model="$ctrl.rejectAnonymous"
+                            data-ng-change="$ctrl.updateAnonymousRejection()"
+                        />
+                        <label
+                            class="oui-checkbox__label-container"
+                            for="faxRejectAnonymous"
+                        >
+                            <span class="oui-checkbox__label">
+                                <span class="oui-checkbox__icon"></span>
+                                <span
+                                    class="oui-checkbox__text"
+                                    data-translate="telephony_service_fax_filtering_anonymous_rejection"
+                                ></span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <tuc-telephony-bulk-action
+                        data-billing-account="{{ $ctrl.bulkDatas.billingAccount }}"
+                        data-service-name="{{ $ctrl.bulkDatas.serviceName }}"
+                        data-custom-class="link d-block pl-0 mb-3"
+                        data-ng-disabled="$ctrl.screenListsForm.isUpdating"
+                        data-bulk-infos="$ctrl.bulkDatas.infos"
+                        data-filter-services="$ctrl.filterServices"
+                        data-get-bulk-params="$ctrl.getBulkParams"
+                        data-on-success="$ctrl.onBulkSuccess"
+                        data-on-error="$ctrl.onBulkError"
+                    >
+                    </tuc-telephony-bulk-action>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="widget-presentation">
+                <header class="widget-presentation-header">
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="telephony_service_fax_filtering_new"
+                    ></h2>
+                </header>
+                <form
+                    name="filteringAddForm"
+                    data-ng-submit="$ctrl.addScreen(filteringAddForm)"
+                >
+                    <div class="form-group">
+                        <label
+                            for="list"
+                            data-translate="telephony_service_fax_filtering_new_list_label"
+                        ></label>
+                        <select
+                            id="list"
+                            name="list"
+                            class="form-control"
+                            data-ng-model="$ctrl.screenListToAdd.nature"
+                        >
+                            <option
+                                value="whitelisted"
+                                data-translate="telephony_service_fax_filtering_new_list_select_whitelisted"
+                            ></option>
+                            <option
+                                value="blacklisted"
+                                data-translate="telephony_service_fax_filtering_new_list_select_blacklisted"
+                            ></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label
+                            for="type"
+                            data-translate="telephony_service_fax_filtering_new_type_label"
+                        ></label>
+                        <select
+                            id="type"
+                            name="type"
+                            class="form-control"
+                            data-ng-model="$ctrl.screenListToAdd.type"
+                        >
+                            <option
+                                value="Numbers"
+                                data-translate="telephony_service_fax_filtering_new_type_select_numbers"
+                            ></option>
+                            <option
+                                value="TSI"
+                                data-translate="telephony_service_fax_filtering_new_type_select_tsi"
+                            ></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label
+                            for="number"
+                            data-translate="telephony_service_fax_filtering_new_number_label"
+                        ></label>
+                        <input
+                            id="number"
+                            name="number"
+                            type="text"
+                            class="form-control"
+                            required
+                            data-ng-model="$ctrl.screenListToAdd.number"
+                            data-ng-pattern="/^(00)[0-9]+$/"
+                            data-translate-attr="{ 'placeholder': 'telephony_service_fax_filtering_new_number_placeholder' }"
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        data-ng-disabled="$ctrl.screenListsForm.isAdding || filteringAddForm.$invalid"
+                    >
+                        <oui-spinner
+                            class="mr-2"
+                            data-ng-if="$ctrl.screenListsForm.isAdding"
+                            data-size="s"
+                        >
+                        </oui-spinner>
+                        <span data-translate="common_add"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row" data-ng-if="!$ctrl.loading.init">
+        <div class="col-xs-12">
+            <div class="widget-presentation">
+                <header class="widget-presentation-header">
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="telephony_service_fax_filtering_config"
+                    ></h2>
+                </header>
+                <div class="clearfix mb-2">
+                    <div class="float-left">
+                        <button
+                            type="button"
+                            class="btn btn-default"
+                            data-ng-disabled="$ctrl.getSelection().length === 0 || $ctrl.screenLists.isDeleting"
+                            data-ng-click="$ctrl.removeSelectedScreenLists()"
+                        >
+                            <span
+                                class="ovh-font ovh-font-bin line-height-normal mr-2"
+                                data-ng-if="!$ctrl.screenLists.isDeleting"
+                                aria-hidden="true"
+                            >
+                            </span>
+                            <oui-spinner
+                                class="mr-2"
+                                data-ng-if="$ctrl.screenLists.isDeleting"
+                                data-size="s"
+                            >
+                            </oui-spinner>
+                            <span
+                                data-ng-if="$ctrl.getSelection().length <= 1"
+                                data-translate="telephony_service_fax_filtering_table_delete"
+                            >
+                            </span>
+                            <span
+                                data-ng-if="$ctrl.getSelection().length > 1"
+                                data-translate="telephony_service_fax_filtering_table_delete_plural"
+                                data-translate-values="{ nb: $ctrl.getSelection().length }"
+                            >
+                            </span>
+                        </button>
+                        <button
+                            class="btn btn-default"
+                            type="button"
+                            data-ng-disabled="$ctrl.getSelection().length === 0"
+                            data-ng-csv="$ctrl.exportSelection()"
+                            data-csv-header="[
+                                    'callNumber',
+                                    'number',
+                                    'type'
+                                ]"
+                            data-filename="{{ $ctrl.fax.billingAccount + ' ' + ($ctrl.fax.description || $ctrl.fax.serviceName) | tucSlugify }}.csv"
+                        >
+                            <span
+                                data-translate="telephony_service_fax_filtering_table_export"
+                            ></span>
+                        </button>
+                    </div>
+                    <div class="float-right">
+                        <select
+                            class="form-control"
+                            data-ng-model="$ctrl.screenLists.filterBy.type"
+                            data-ng-change="$ctrl.sortScreenLists()"
+                        >
+                            <option
+                                value=""
+                                data-translate="telephony_service_fax_filtering_filter_type_select"
+                            ></option>
+                            <option
+                                value="whitelistedNumbers"
+                                data-translate="telephony_service_fax_filtering_filter_type_whitelistedNumbers"
+                            ></option>
+                            <option
+                                value="whitelistedTSI"
+                                data-translate="telephony_service_fax_filtering_filter_type_whitelistedTSI"
+                            ></option>
+                            <option
+                                value="blacklistedNumbers"
+                                data-translate="telephony_service_fax_filtering_filter_type_blacklistedNumbers"
+                            ></option>
+                            <option
+                                value="blacklistedTSI"
+                                data-translate="telephony_service_fax_filtering_filter_type_blacklistedTSI"
+                            ></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table
+                        class="table"
+                        data-ng-class="{
+                               'table-hover table-striped': $ctrl.screenLists.length > 1
+                           }"
+                    >
+                        <thead>
+                            <tr>
+                                <th scope="col" width="45">
+                                    <input
+                                        type="checkbox"
+                                        data-ng-if="$ctrl.screenLists.paginated.length"
+                                        data-ng-disabled="$ctrl.screenLists.isDeleting"
+                                        data-ovh-checkbox-table
+                                        data-ovh-checkbox-table-ids-all="$ctrl.screenLists.raw"
+                                        data-ovh-checkbox-table-ids-page="$ctrl.screenLists.paginated"
+                                        data-ovh-checkbox-table-ids-selected="$ctrl.screenLists.selected"
+                                        data-ovh-checkbox-table-id="id"
+                                    />
+                                </th>
+                                <th scope="col">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link p-0"
+                                        data-ng-disabled="!$ctrl.screenLists.paginated.length"
+                                        data-ng-click="$ctrl.orderScreenListsBy('number')"
+                                    >
+                                        <span
+                                            data-translate="telephony_service_fax_filtering_column_number"
+                                        ></span>
+                                        <span
+                                            class="oui-icon align-baseline"
+                                            aria-hidden="true"
+                                            data-ng-class="{
+                                                  'oui-icon-arrow-down': $ctrl.screenLists.orderBy !== 'number',
+                                                  'oui-icon-arrow-down': $ctrl.screenLists.orderBy === 'number' && $ctrl.screenLists.orderDesc,
+                                                  'oui-icon-arrow-up': $ctrl.screenLists.orderBy === 'number' && !$ctrl.screenLists.orderDesc
+                                              }"
+                                        >
+                                        </span>
+                                    </button>
+                                </th>
+                                <th scope="col">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link p-0"
+                                        data-ng-disabled="!$ctrl.screenLists.paginated.length"
+                                        data-ng-click="$ctrl.orderScreenListsBy('type')"
+                                    >
+                                        <span
+                                            data-translate="telephony_service_fax_filtering_column_type"
+                                        ></span>
+                                        <span
+                                            class="oui-icon align-baseline"
+                                            aria-hidden="true"
+                                            data-ng-class="{
+                                                  'oui-icon-arrow-down': $ctrl.screenLists.orderBy !== 'type',
+                                                  'oui-icon-arrow-down': $ctrl.screenLists.orderBy === 'type' && $ctrl.screenLists.orderDesc,
+                                                  'oui-icon-arrow-up': $ctrl.screenLists.orderBy === 'type' && !$ctrl.screenLists.orderDesc
+                                              }"
+                                        >
+                                        </span>
+                                    </button>
+                                </th>
+                                <th scope="col" class="text-right">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link p-0"
+                                        data-ng-disabled="$ctrl.screenLists.isDeleting"
+                                        data-ng-click="$ctrl.refresh()"
+                                        data-translate-attr="{ title: 'telephony_answer_voicemail_directories_refresh_message' }"
+                                    >
+                                        <i
+                                            class="fa fa-refresh"
+                                            aria-hidden="true"
+                                        ></i>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody data-ng-if="!$ctrl.screenLists.isLoading">
+                            <tr
+                                data-ng-repeat="screen in $ctrl.screenLists.paginated"
+                            >
+                                <td>
+                                    <input
+                                        type="checkbox"
+                                        data-ng-if="screen.status !== 'delete'"
+                                        data-ng-disabled="$ctrl.screenLists.isDeleting"
+                                        data-ng-model="$ctrl.screenLists.selected[screen.id]"
+                                    />
+                                </td>
+                                <th
+                                    scope="row"
+                                    data-title="{{:: 'telephony_service_fax_filtering_column_number' | translate }}"
+                                >
+                                    <span data-ng-bind="screen.number"></span>
+                                </th>
+                                <td
+                                    data-title="{{:: 'telephony_service_fax_filtering_column_type' | translate }}"
+                                >
+                                    <span
+                                        data-ng-bind=" 'telephony_service_fax_filtering_filter_type_' + screen.type | translate"
+                                    ></span>
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                        <tbody data-ng-if="$ctrl.screenLists.isLoading">
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    <oui-spinner data-size="s"></oui-spinner>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody
+                            data-ng-if="!$ctrl.screenLists.isLoading && !$ctrl.screenLists.paginated.length"
+                        >
+                            <tr>
+                                <td
+                                    colspan="4"
+                                    class="text-center"
+                                    data-translate="telephony_service_fax_filtering_table_empty"
+                                ></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div
+                        class="mt-2"
+                        data-ng-if="!$ctrl.screenLists.isLoading && $ctrl.screenLists.raw.length"
+                        data-pagination-front
+                        data-items="$ctrl.screenLists.sorted"
+                        data-paginated-items="$ctrl.screenLists.paginated"
+                        data-current-page="currentPage"
+                        data-nb-pages="nbPages"
+                        data-items-per-page="itemsPerPage"
+                        data-page-placeholder="{{ 'common_pagination_page' | translate: { currentPage: currentPage, nbPages: nbPages } }}"
+                        data-item-per-page-placeholder="{{:: 'common_pagination_display' | translate }}"
+                    ></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.telecom-telephony-service-fax-filtering -->

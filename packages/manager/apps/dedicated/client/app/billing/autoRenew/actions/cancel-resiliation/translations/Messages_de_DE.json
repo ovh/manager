@@ -1,8 +1,0 @@
-{
-  "autorenew_service_cancel_resiliation_title": "Kündigung einer Dienstleistung stornieren",
-  "autorenew_service_cancel_resiliation_success": "Die Kündigung des Dienstes {{ service }} wurde erfolgreich storniert.",
-  "autorenew_service_cancel_resiliation_error": "Bei der Stornierung der Kündigung ist ein Fehler aufgetreten {{ message }}",
-  "autorenew_service_cancel_resiliation_confirm": "Möchten Sie die Kündigung des Dienstes {{ service }} stornieren?",
-  "autorenew_service_cancel_resiliation_validate": "Stornierung bestätigen",
-  "autorenew_service_cancel_resiliation_cancel": "Stornieren"
-}

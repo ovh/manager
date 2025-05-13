@@ -1,0 +1,22 @@
+{
+  "netapp_volume_create_title": "Volume erstellen",
+  "netapp_volume_create_cancel": "Abbrechen",
+  "netapp_volume_create_name": "Name des Volumes (optional)",
+  "netapp_volume_create_description": "Beschreibung (optional)",
+  "netapp_volume_create_protocol": "Protokoll",
+  "netapp_volume_create_protocol_NFS": "NFSv3",
+  "netapp_volume_create_size": "Größe des Volumes",
+  "netapp_volume_create_size_help": "Die Größe des Volumes beträgt {{ minSize }} GB bis {{ maxSize }} GB",
+  "netapp_volume_create_size_required": "Bitte geben Sie die Größe des Volumes an.",
+  "netapp_volume_create_size_invalid_number_error": "Bitte geben Sie eine gültige Zahl an.",
+  "netapp_volume_create_size_minimum_error": "Erforderliche Mindestgröße: {{ minSize }} GB.",
+  "netapp_volume_create_size_maximum_error": "Maximal zulässige Größe: {{ maxSize }} GB.",
+  "netapp_volume_create_success": "Ihr Volume wurde erstellt. Sobald die Zugangskontrollregeln konfiguriert sind, können sich damit verbinden.",
+  "netapp_volume_create_error": "Bei der Erstellung des Volumes ist ein Fehler aufgetreten: {{message}}",
+  "netapp_volume_mount_path": "Mount Path (optional)",
+  "netapp_volume_mount_path_format_error": "Sonderzeichen sind nicht zulässig.",
+  "netapp_volume_mount_path_character_limit_error": "Die maximale Anzahl von 255 Zeichen wurde überschritten.",
+  "netapp_volume_mount_path_already_used_error": "Der Mount Path wird bereits auf einem anderen Volume verwendet. Bitte geben Sie einen neuen ein.",
+  "netapp_volume_create_snapshot_selection": "Wählen Sie den Snapshot aus, mit dem Sie ein Volume erstellen möchten.",
+  "netapp_volume_create_snapshot_selection_placeholder": "Auswahl..."
+}

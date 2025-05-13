@@ -18,5 +18,7 @@
   "carrier_sip_dashboard_renewal_contacts_manage": "Editar los contactos",
   "carrier_sip_dashboard_shortcuts": "Atajos",
   "carrier_sip_dashboard_shortcuts_bills": "Detalle de consumo",
-  "carrier_sip_dashboard_shortcuts_cdrs": "Puesta a disposición de los CDR"
+  "carrier_sip_dashboard_shortcuts_cdrs": "Puesta a disposición de los CDR",
+  "carrier_sip_dashboard_network": "Red",
+  "carrier_sip_dashboard_network_ip_media": "IP Media"
 }

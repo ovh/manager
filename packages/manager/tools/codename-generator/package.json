@@ -19,7 +19,7 @@
     "codename-generator": "bin/cli.js"
   },
   "dependencies": {
-    "commander": "^4.0.0",
+    "commander": "^6.0.0",
     "moment": "^2.24.0",
     "shuffle-seed": "^1.1.6",
     "titleize": "^2.1.0"

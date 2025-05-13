@@ -1,0 +1,52 @@
+<oui-back-button on-click=":: $ctrl.goBack()">
+    <span data-translate="{{:: $ctrl.backButtonText }}"></span>
+</oui-back-button>
+
+<h2
+    data-translate="{{:: 'dedicated_server_dashboard_advanced_features_sgx_manage_header_' + $ctrl.initialActivationMode }}"
+></h2>
+
+<p
+    data-translate="{{:: 'dedicated_server_dashboard_advanced_features_sgx_manage_intro_' + $ctrl.initialActivationMode }}"
+></p>
+
+<form novalidate>
+    <div class="row mb-3">
+        <oui-select-picker
+            ng-repeat="activationModeValue in ::$ctrl.activationModeValues track by $index"
+            name="activationMode"
+            class="col-md-4"
+            model="$ctrl.activationMode"
+            label="{{:: 'dedicated_server_dashboard_advanced_features_sgx_manage_option_' + activationModeValue.textId | translate }}"
+            values="activationModeValue.values"
+            on-change=":: $ctrl.onChange()"
+        >
+        </oui-select-picker>
+    </div>
+
+    <div class="row" data-ng-if="$ctrl.activationMode !== 'disabled'">
+        <oui-field
+            class="col-md-4"
+            label="{{:: 'dedicated_server_dashboard_advanced_features_sgx_manage_option_prmrr' | translate }}"
+        >
+            <oui-select
+                name="prmrr"
+                model="$ctrl.prmrr"
+                items=":: $ctrl.prmrrValues"
+                on-change=":: $ctrl.onChange()"
+                required
+            >
+            </oui-select>
+        </oui-field>
+    </div>
+
+    <oui-button
+        variant="primary"
+        type="submit"
+        disabled="!$ctrl.formIsValid"
+        on-click=":: $ctrl.goToConfirm($ctrl.activationMode, $ctrl.prmrr)"
+        ><span
+            data-translate="dedicated_server_dashboard_advanced_features_sgx_manage_confirm"
+        ></span
+    ></oui-button>
+</form>

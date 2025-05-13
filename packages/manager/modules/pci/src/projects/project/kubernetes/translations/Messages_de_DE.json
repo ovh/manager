@@ -1,9 +1,0 @@
-{
- "kube_list_title": "Kubernetes",
- "kube_list_name": "Name des Clusters",
- "kube_list_region": "Region",
- "kube_list_version": "Version",
- "kube_list_cluster_manage": "Cluster verwalten",
- "kube_list_cluster_create": "Kubernetes-Cluster erstellen",
- "kube_list_error": "Beim Laden Ihrer Cluster ist ein Fehler aufgetreten."
-}

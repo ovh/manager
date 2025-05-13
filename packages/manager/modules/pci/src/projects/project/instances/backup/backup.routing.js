@@ -14,15 +14,12 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectsProjectInstanceService,
         projectId,
         instanceId,
-      ) => PciProjectsProjectInstanceService.get(projectId, instanceId),
-      monthlyPrice: /* @ngInject */ (
-        PciProjectsProjectInstanceService,
-        projectId,
-        instance,
+        customerRegions,
       ) =>
-        PciProjectsProjectInstanceService.getSnapshotMonthlyPrice(
+        PciProjectsProjectInstanceService.get(
           projectId,
-          instance,
+          instanceId,
+          customerRegions,
         ),
       goBack: /* @ngInject */ (goToInstances) => goToInstances,
       breadcrumb: () => null,

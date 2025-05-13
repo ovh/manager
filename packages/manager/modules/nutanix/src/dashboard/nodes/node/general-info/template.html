@@ -1,0 +1,164 @@
+<div data-ui-view>
+    <oui-message data-ng-if="$ctrl.isTerminated" class="mb-3" type="warning">
+        <span data-translate="nutanix_node_general_suspended"></span>
+    </oui-message>
+    <div class="row d-md-flex mb-5">
+        <div class="col-md-4 mb-3">
+            <!-- GENERAL INFORMATIONS -->
+            <oui-tile
+                class="h-100"
+                heading="{{:: 'server_informations_general' | translate }}"
+            >
+                <!-- name -->
+                <oui-tile-definition
+                    term="{{:: 'server_configuration_displayname' | translate }}"
+                    description="{{ $ctrl.server.displayName }}"
+                >
+                    <oui-action-menu
+                        data-ng-if="::$ctrl.showNameActions()"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            on-click="$ctrl.goToNodeNameEdit($ctrl.server.displayName)"
+                        >
+                            <span
+                                data-translate="server_configuration_displayname_edit_button"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <!-- commercial range -->
+                <oui-tile-definition
+                    term="{{:: 'server_configuration_description' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span data-ng-bind="$ctrl.getFormatedCommercialRange()">
+                        </span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!-- system OS -->
+                <oui-tile-definition
+                    term="{{:: 'server_configuration_distribution' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-if="$ctrl.server.os"
+                            data-ng-bind="$ctrl.server.os"
+                        ></span>
+                        <span
+                            class="oui-badge oui-badge_warning"
+                            data-ng-if="!$ctrl.server.os"
+                            data-translate="server_configuration_distribution_none"
+                        >
+                        </span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!-- netboot -->
+                <oui-tile-definition
+                    data-ng-if="!$ctrl.isHousingRange()"
+                    term="{{:: 'server_configuration_boot' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-if="$ctrl.server.netbootLabel"
+                            data-ng-bind="$ctrl.server.netbootLabel"
+                        >
+                        </span>
+                        <span
+                            class="text-muted"
+                            data-ng-if="!$ctrl.server.netbootLabel"
+                            data-translate="server_configuration_netboot_unavailable"
+                        >
+                        </span>
+                    </oui-tile-description>
+                    <oui-action-menu
+                        data-ng-if="!$ctrl.server.isExpired"
+                        data-compact
+                        data-placement="end"
+                        data-disabled="$ctrl.isTerminated"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToNetboot()"
+                            data-disabled="$ctrl.server.state === 'HACKED' ||
+                                $ctrl.server.state === 'HACKED_BLOCKED'"
+                        >
+                            <span
+                                data-translate="server_configuration_netboot_title_button"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToReboot()"
+                            data-disabled="$ctrl.isRebooting"
+                        >
+                            <span
+                                data-translate="server_configuration_reboot_button"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <!-- datacenter -->
+                <oui-tile-definition
+                    term="{{:: 'server_configuration_datacenter' | translate }}"
+                >
+                    <oui-tile-description>
+                        <datacenter-name datacenter="$ctrl.server.datacenter">
+                        </datacenter-name>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!-- rack -->
+                <oui-tile-definition
+                    term="{{:: 'server_configuration_rack' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span data-ng-bind="$ctrl.server.rack || '-'"></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!-- server ID -->
+                <oui-tile-definition
+                    term="{{:: 'server_configuration_server_id' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind="$ctrl.server.serverId || '-'"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+
+        <!-- TECHNICAL DETAILS -->
+        <div
+            class="col-md-4 mb-3"
+            data-ng-if="$ctrl.technicalDetails && !$ctrl.isOldCluster"
+        >
+            <server-technical-details
+                technical-details="$ctrl.technicalDetails"
+            ></server-technical-details>
+        </div>
+
+        <!-- SUPPORT TICKET -->
+        <div class="col-md-4 mb-3">
+            <server-support
+                service-name="{{$ctrl.serviceName}}"
+                travaux-url="{{$ctrl.TRAVAUX_LINK}}"
+                tracking-prefix="$ctrl.trackingPrefix"
+            ></server-support>
+        </div>
+
+        <!-- NETWORK -->
+        <div class="col-md-4" data-ng-if="!$ctrl.server.isExpired">
+            <server-network
+                data-server="$ctrl.server"
+                data-bandwidth-informations="$ctrl.bandwidthInformations"
+                data-tracking-prefix="$ctrl.trackingPrefix"
+                data-specifications="$ctrl.specifications"
+                data-order-private-bandwidth-link="$ctrl.orderPrivateBandwidthLink"
+                data-is-old-cluster="$ctrl.isOldCluster"
+                data-service-infos="$ctrl.serviceInfos"
+                data-hide-public-bandwidth="$ctrl.hidePublicBandwidth"
+            >
+            </server-network>
+        </div>
+    </div>
+</div>

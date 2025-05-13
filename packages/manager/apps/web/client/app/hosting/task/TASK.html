@@ -1,7 +1,4 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="HostingTabTasksCtrl as ctrl"
->
+<div>
     <div
         class="alert alert-warning"
         role="alert"
@@ -13,9 +10,22 @@
         </div>
     </div>
 
-    <oui-datagrid data-rows-loader="ctrl.loadPaginated($config)">
-        <oui-column
-            data-title="'hosting_tab_TASKS_table_state' | translate"
+    <oui-datagrid
+        id="{{:: ctrl.datagridId }}"
+        data-rows-loader="ctrl.loadPaginated($config)"
+    >
+        <oui-datagrid-topbar>
+            <oui-button
+                type="button"
+                data-disabled="ctrl.isLoading"
+                class="float-right"
+                data-on-click="ctrl.refreshTable()"
+            >
+                <span class="oui-icon oui-icon-refresh"></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title="'hosting_tab_TASKS_table_function' | translate"
             data-property="function"
         >
             <span
@@ -33,31 +43,31 @@
                 class="oui-tile__term"
                 data-translate="hosting_tab_TASKS_status_backup_FTP"
             ></div>
-        </oui-column>
-        <oui-column
-            data-title="'hosting_tab_TASKS_table_start_date' | translate"
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'hosting_tab_TASKS_table_state' | translate"
             data-property="status"
         >
             <span
-                class="oui-status"
-                data-ng-class="{ 'oui-status_info': $row.status !== 'ERROR' && $row.status !== 'DONE',
-                                   'oui-status_error': $row.status === 'ERROR',
-                                   'oui-status_success': $row.status === 'DONE'}"
-                data-ng-bind="'hosting_tab_TASKS_status_' +  $row.status | translate"
+                class="oui-badge"
+                data-ng-class="{ 'oui-badge_info': $row.status !== $ctrl.HOSTING_TASK_STATUS.error && $row.status !== $ctrl.HOSTING_TASK_STATUS.done,
+                                   'oui-badge_error': $row.status === $ctrl.HOSTING_TASK_STATUS.error,
+                                   'oui-badge_success': $row.status === $ctrl.HOSTING_TASK_STATUS.done}"
+                data-ng-bind="'hosting_tab_TASKS_status_' +  $row.status.toUpperCase() | translate"
             >
             </span>
-        </oui-column>
-        <oui-column
-            data-title="'hosting_tab_TASKS_table_function' | translate"
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'hosting_tab_TASKS_table_start_date' | translate"
             data-property="startDate"
         >
             <span data-ng-bind="$row.startDate | date:'short'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'hosting_tab_TASKS_table_finish_date' | translate"
             data-property="doneDate"
         >
             <span data-ng-bind="$row.doneDate | date: 'short'"></span>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </div>

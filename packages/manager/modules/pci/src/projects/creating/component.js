@@ -12,5 +12,12 @@ export default {
     onProjectDeliveryFail: '<',
     orderId: '<',
     orderStatus: '<',
+    voucherCode: '<?',
+    isRedirectRequired: '<',
+    getTargetedState: '<',
+    goToState: '<',
+    onProjectCreated: '<',
+    isDiscoveryProject: '<',
+    isCreatingDiscoveryProject: '<',
   },
 };

@@ -6,5 +6,9 @@
   "sign_up_form_next_button": "Etapa seguinte",
   "sign_up_form_submit_button": "Criar uma conta",
   "sign_up_form_submit_error": "Ups! Ocorreu um erro ao criar a conta.",
-  "sign_up_form_global_information": "Para poder encomendar, não se esqueça de introduzir todas as suas informações."
+  "sign_up_form_global_information": "Para prosseguir com a sua encomenda, são necessárias as informações abaixo.",
+  "sign_up_form_global_information_kyc_reminder": "Não se esqueça de introduzir todas as informações e certifique-se de que os seus dados pessoais correspondem ao nome e endereço que constam nos seus documentos oficiais, para que possa efetuar uma encomenda.",
+  "sign_up_form_global_information_kyc_reminder_fill_address": "Introduza a <strong>sua morada completa</strong> ",
+  "sign_up_form_global_information_kyc_reminder_match_address": "A morada deve <strong>corresponder ao que figura no comprovativo</strong> de morada que lhe será pedido para verificar a sua identidade.",
+  "sign_up_form_mandatory_fields": "campos obrigatórios"
 }

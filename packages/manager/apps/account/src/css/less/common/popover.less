@@ -1,0 +1,58 @@
+/******************
+      POPOVER
+******************/
+
+// .mainContainer {
+#main-container {
+  .popover {
+    position: fixed;
+    padding: 0;
+
+    .popover-title {
+      color: @defaultlineheadfont;
+      background-color: @defaultlineheadbackground;
+      font-weight: bold;
+      font-size: @fontsizedefault;
+    }
+
+    .popover-content {
+      &,
+      p,
+      span {
+        font-weight: normal;
+        background-color: @defaultbackground;
+        color: @defaultpopoverfont;
+
+        .bold,
+        .bold:hover {
+          font-weight: bold !important;
+        }
+      }
+
+      .popover-menu {
+        a {
+          text-decoration: none;
+          color: inherit;
+          display: block;
+          cursor: pointer;
+          padding: 2px 10px;
+          text-align: left;
+
+          &:hover {
+            color: @defaultlineselectedfont;
+            background-color: @defaultlineselectedbackground;
+          }
+
+          &.disabled:hover {
+            background-color: @defaultbackground;
+            color: @defaultpopoverfont;
+          }
+        }
+      }
+    }
+
+    &.bottom .arrow::after {
+      border-bottom-color: @defaultlineheadbackground;
+    }
+  }
+}

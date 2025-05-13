@@ -1,0 +1,9 @@
+{
+  "sms_sms_compose_tip_size_title": "Taille d’un SMS",
+  "sms_sms_compose_tip_compose_paragraphe_1": "Un SMS a une taille maximum de 160 caractères.",
+  "sms_sms_compose_tip_compose_paragraphe_2": "Si le message dépasse les 160 caractères, il sera découpé en plusieurs SMS comme suit :",
+  "sms_sms_compose_tip_compose_list_item_1": "1 SMS -> 160 caractères au total (160 / sms)",
+  "sms_sms_compose_tip_compose_list_item_2": "2 SMS -> 306 caractères au total (153 / sms)",
+  "sms_sms_compose_tip_compose_list_item_3": "3 SMS -> 459 caractères au total (153 / sms)",
+  "sms_sms_compose_tip_compose_list_item_4": "… (153 / sms)"
+}

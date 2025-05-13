@@ -1,0 +1,10 @@
+{
+  "domains_restore_renew_modal_title": "Restore/Renew my domains ({{number}})",
+  "domains_restore_renew_modal_confirm": "Restore/Renew",
+  "domains_restore_renew_modal_cancel": "Cancel",
+  "domains_restore_renew_modal_question": "To renew your domains, you will need to use the OVHcloud renewal interface (outside of the OVHcloud Web Control Panel).",
+  "domains_restore_renew_modal_confirmation": "Click “Order” to open a new window, and renew your domain names.",
+  "domains_restore_renew_modal_information": "A new tab will open, and you will be automatically redirected to the OVHcloud renewal interface.",
+  "domains_restore_renew_modal_alert": "Please note that once your payment has been accepted, it will take approximately 2 hours for your renewal to appear on the Web Control Panel.",
+  "domains_restore_renew_modal_no_selected_domains": "You have not selected any domains to renew, or you are not authorised to renew any."
+}

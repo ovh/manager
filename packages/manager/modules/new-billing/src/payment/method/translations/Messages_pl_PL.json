@@ -1,0 +1,22 @@
+{
+  "billing_payment_method_title": "Moje sposoby płatności",
+  "billing_payment_method_load_error": "Wystąpił błąd podczas ładowania Twoich metod płatności.",
+  "billing_payment_method_table_type": "Typ płatności",
+  "billing_payment_method_table_label": "Konto",
+  "billing_payment_method_table_expiration_date": "Data wygasania",
+  "billing_payment_method_table_description": "Opis",
+  "billing_payment_method_table_default": "Domyślny sposób płatności",
+  "billing_payment_method_table_state": "Status",
+  "billing_payment_method_table_3d_secure": "3D Secure",
+  "billing_payment_method_table_top_add_method": "Dodaj sposób płatności",
+  "billing_payment_method_autorenew_guide_help": "Potrzebujesz pomocy w zakresie odnawiania usług?",
+  "billing_payment_method_autorenew_guide_help_link": "Dowiedz się więcej",
+  "billing_payment_method_bank_account_pending_validation": "Prosimy o wprowadzenie danych bankowych. Otrzymasz e-mail od naszego partnera Yousign, który umożliwi Ci złożenie elektronicznego podpisu na poleceniu zapłaty. Twoje konto bankowe zostanie dzięki temu zatwierdzone i stanie się aktywne.",
+  "billing_payment_method_bank_account_processing_delay": "Twoje konto bankowe zostanie zatwierdzone w ciągu 24-48 godzin od uzyskania upoważnienia do obciążania rachunku.",
+  "billing_payment_method_table_action_download_procedure": "Pobierz dokument i prześlij go do nas pocztą.",
+  "billing_payment_method_table_action_description_edit": "Zmień opis",
+  "billing_payment_method_table_action_set_default": "Ustaw tę metodę płatności jako domyślną",
+  "billing_payment_method_table_action_delete": "Usuń tę metodę płatności",
+  "billing_payment_method_information_add_ovh_sas": "Po zarejestrowaniu sposobu płatności OVH S.A.S może go zachować, aby ułatwić płatności za przyszłe zamówienia.",
+  "billing_payment_method_information_add_default": "Sposób płatności zarejestrowany jako domyślny zostanie automatycznie użyty w każdym kolejnym terminie płatności do opłacenia usług z opcją automatycznego odnowienia oraz płatności za wykorzystane zasoby („pay as you go”). Otrzymasz powiadomienie przed każdym nowym terminem płatności. W każdej chwili możesz zmienić, usunąć lub dodać sposoby płatności, używając poniższego interfejsu. Aby móc korzystać z usług z opcją automatycznego odnawiania lub z płatnością za wykorzystane zasoby, musisz mieć zarejestrowany co najmniej jeden ważny sposób płatności."
+}

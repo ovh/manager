@@ -1,9 +1,0 @@
-{
-  "pci_projects_project_streams_stream_replay_retention_title": "Modificar el replay retention",
-  "pci_projects_project_streams_stream_replay_retention_submit_label": "Confirmar",
-  "pci_projects_project_streams_stream_replay_retention_cancel_label": "Cancelar",
-  "pci_projects_project_streams_stream_replay_retention_content": "Aumente o reduzca el tiempo de retención de los mensajes leídos por la suscripción.",
-  "pci_projects_project_streams_stream_replay_retention_unit": "Horas",
-  "pci_projects_project_streams_stream_replay_retention_success_message": "El replay retention se ha modificado.",
-  "pci_projects_project_streams_stream_replay_retention_error_replay_retention": "Se ha producido un error al modificar el replay retention: {{ message }}."
-}

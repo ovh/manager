@@ -1,12 +1,12 @@
 {
- "pci_projects_project_creating_not_paid_title": "Rozpocznij przygodę z Public Cloud",
- "pci_projects_project_creating_not_paid_welcome": "Witaj w Public Cloud",
- "pci_projects_project_creating_not_paid_almost_done": "Już prawie gotowe...",
- "pci_projects_project_creating_not_paid": "Twoje zamówienie na kwotę {{amount}} oczekuje na finalizację. Aby uregulować należność, kliknij \"Zapłać za zamówienie\".",
- "pci_projects_project_creating_not_paid_explain1": "Po kliknięciu „Zapłać za zamówienie” zostaniesz przekierowany do formularza zamówienia. Ureguluj należność, używając wybranego przez Ciebie sposobu płatności.",
- "pci_projects_project_creating_not_paid_explain2": "Aby wyświetlić Twoją fakturę, przejdź do „Moje konto”, a następnie <a href=\"{{ href }}\">”Moje zamówienia”</a>.",
- "pci_projects_project_creating_not_paid_finalize": "Zapłać za zamówienie",
- "pci_projects_project_creating_not_paid_finalize_title": "{{ orderId }}: zapłać za zamówienie",
- "pci_projects_project_creating_not_paid_cancel": "Anuluj zamówienie",
- "pci_projects_project_creating_not_paid_cancel_title": "{{orderId}}: anuluj zamówienie"
+  "pci_projects_project_creating_not_paid_title": "Utwórz projekt Public Cloud",
+  "pci_projects_project_creating_not_paid_welcome": "Witaj w Public Cloud",
+  "pci_projects_project_creating_not_paid_almost_done": "Już prawie gotowe...",
+  "pci_projects_project_creating_not_paid": "Twoje zamówienie na kwotę {{amount}} oczekuje na finalizację. Aby uregulować należność, kliknij \"Zapłać za zamówienie\".",
+  "pci_projects_project_creating_not_paid_explain1": "Po kliknięciu „Zapłać za zamówienie” zostaniesz przekierowany do formularza zamówienia. Ureguluj należność, używając wybranego przez Ciebie sposobu płatności.",
+  "pci_projects_project_creating_not_paid_explain2": "Aby wyświetlić Twoją fakturę, przejdź do „Moje konto”, a następnie <a href=\"{{ href }}\">”Moje zamówienia”</a>.",
+  "pci_projects_project_creating_not_paid_finalize": "Zapłać za zamówienie",
+  "pci_projects_project_creating_not_paid_finalize_title": "{{ orderId }}: zapłać za zamówienie",
+  "pci_projects_project_creating_not_paid_cancel": "Anuluj zamówienie",
+  "pci_projects_project_creating_not_paid_cancel_title": "{{orderId}}: anuluj zamówienie"
 }

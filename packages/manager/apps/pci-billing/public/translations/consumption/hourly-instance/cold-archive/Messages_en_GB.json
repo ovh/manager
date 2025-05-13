@@ -1,0 +1,14 @@
+{
+  "pci_billing_cold_archive_no_entry": "No usage for the period selected.",
+  "pci_billing_cold_archive_region": "Region",
+  "pci_billing_cold_archive_type": "Type",
+  "pci_billing_cold_archive_type_archive_label": "Tape archiving",
+  "pci_billing_cold_archive_type_archive-fees_label": "Deletion fee",
+  "pci_billing_cold_archive_type_restore_label": "Data restoration",
+  "pci_billing_cold_archive_type_archive-fees_tooltip_1": "The minimum archive duration is 180 days. ",
+  "pci_billing_cold_archive_type_archive-fees_tooltip_2": "If an archive is deleted before this commitment period (with ‘date’ being between 0 and 180 days), you will be charged an additional fee, calculated as follows: (180 days - date) x storage class price.",
+  "pci_billing_cold_archive_price": "Price",
+  "pci_billing_cold_archive_consumption": "Usage",
+  "pci_billing_cold_archive_consumption_value_gbih": "{{value}}GiBh",
+  "pci_billing_cold_archive_consumption_value_gbi": "{{value}}GiB"
+}

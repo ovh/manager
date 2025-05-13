@@ -1,0 +1,8 @@
+{
+  "web_hosting_database_order_components_db_categories_offers_category_starter": "Start SQL",
+  "web_hosting_database_order_components_db_categories_offers_category_starter_description": "Encomende uma base de dados MySQL suplementar de 250 MB, 500 MB ou 1 GB.",
+  "web_hosting_database_order_components_db_categories_offers_category_private": "Web Cloud Databases",
+  "web_hosting_database_order_components_db_categories_offers_category_private_description": "A instância Web Cloud Databases permite-lhe criar todas as bases de dados que desejar e traz-lhe não só mais escolhas de motor SQL ou NoSQL, como também mais liberdade de configuração.",
+  "web_hosting_database_order_components_db_categories_price_select_version_placeholder": "Escolher uma versão",
+  "web_hosting_database_order_components_db_categories_price": "{{priceValue}} /mês + IVA"
+}

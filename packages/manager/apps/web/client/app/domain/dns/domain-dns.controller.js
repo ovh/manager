@@ -1,246 +1,174 @@
-import filter from 'lodash/filter';
-import isEmpty from 'lodash/isEmpty';
-import map from 'lodash/map';
-import remove from 'lodash/remove';
-import set from 'lodash/set';
-import some from 'lodash/some';
+import {
+  isAnycastDns,
+  isDedicatedDns,
+  isInternalDns,
+} from '../dns-modify/components/add-dns-forms/add-dns-form/add-dns-form.constants';
+import {
+  NS_UPDATE_RESULT,
+  STATUS,
+} from '../dns-modify/domain-dns-modify.constants';
+import { DNS_STATUS, DNS_TYPE } from './domain-dns.constants';
 
 export default class DomainDnsCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    $filter,
     $q,
     $stateParams,
-    $translate,
-    Alerter,
     Domain,
-    User,
+    WucUser,
     WucValidator,
     constants,
     goToDnsAnycast,
+    goToTerminateAnycast,
+    goToDnsModify,
   ) {
     this.$scope = $scope;
-    this.$filter = $filter;
     this.$q = $q;
     this.$stateParams = $stateParams;
-    this.$translate = $translate;
-    this.Alerter = Alerter;
     this.Domain = Domain;
-    this.User = User;
+    this.WucUser = WucUser;
     this.WucValidator = WucValidator;
     this.constants = constants;
     this.goToDnsAnycast = goToDnsAnycast;
+    this.goToTerminateAnycast = goToTerminateAnycast;
+    this.goToDnsModify = goToDnsModify;
   }
 
   $onInit() {
     this.allowModification = false;
-    this.atLeastOneDns = true;
-    this.atLeastOneToRemove = true;
     this.dns = {
       original: null,
-      table: null,
-      activeDns: null,
+      nameServers: [],
+      isAnycastSubscribed: false,
+      isUpdatingNameServers: false,
     };
-    this.dnsStatus = {
-      isHosted: null,
-      isOk: null,
-    };
-    this.isDnssecEnable = false;
-    this.editMode = false;
-    this.loading = {
-      add: false,
-      all: false,
-      table: false,
-    };
+    this.isLoading = true;
     this.urls = {
       zoneCheck: this.constants.urls.TOOLS.ZONE_CHECK,
     };
+    this.nsUpdateStatus = this.$stateParams.nsUpdateStatus;
+
+    this.constants.DNS_STATUS = DNS_STATUS;
+    this.constants.DNS_TYPE = DNS_TYPE;
+    this.constants.NS_UPDATE_RESULT = NS_UPDATE_RESULT;
 
     this.$scope.$on('Domain.Dns.Reload', () => this.init());
-    this.$scope.loadTable = () => this.loadTable();
-
-    this.$q
-      .all({
-        serviceInfo: this.Domain.getServiceInfo(this.$stateParams.productId),
-        user: this.User.getUser(),
-      })
-      .then(({ serviceInfo, user }) => {
-        this.allowModification =
-          serviceInfo &&
-          user &&
-          (serviceInfo.contactTech === user.nichandle ||
-            serviceInfo.contactAdmin === user.nichandle);
-      });
+    this.$scope.getDns = () => this.getDns();
 
     this.init();
   }
 
   init() {
-    this.loading.all = true;
-    return this.Domain.getSelected(this.$stateParams.productId)
-      .then((domain) => {
+    return this.$q
+      .all([this.getDomain(), this.hasAnycast(), this.getDns()])
+      .then(([domain, hasAnycast]) => {
         this.domain = domain;
-        this.isDnssecEnable = domain.dnssecStatus === 'ENABLED';
-        this.loadTable();
-      })
-      .catch(() => {
-        this.loading.all = false;
-      });
-  }
-
-  loadTable() {
-    this.loading.table = true;
-    this.dns.table = [];
-    return this.Domain.getTabDns(this.$stateParams.productId)
-      .then((tabDns) => {
-        this.dns.table = tabDns;
-        this.dns.original = angular.copy(tabDns);
-        this.dns.activeDns = this.$filter('filter')(tabDns.dns, {
-          isUsed: true,
-          toDelete: false,
-        }).length;
-        return this.$q.all(
-          map(tabDns.dns, (nameServer) =>
-            this.Domain.getNameServerStatus(
-              this.$stateParams.productId,
-              nameServer.id,
-            ),
-          ),
-        );
-      })
-      .then((nameServersStatus) => {
-        if (!isEmpty(nameServersStatus)) {
-          this.dnsStatus.isOk = !some(nameServersStatus, { state: 'ko' });
-          this.dnsStatus.isHosted = !some(nameServersStatus, {
-            type: 'external',
-          });
-        }
+        this.dns.isAnycastSubscribed = hasAnycast;
       })
       .finally(() => {
-        this.loading.all = false;
-        this.loading.table = false;
+        this.isLoading = false;
       });
   }
 
-  activeEditMode() {
-    this.editMode = true;
+  getDomain() {
+    return this.Domain.getSelected(this.$stateParams.productId);
   }
 
-  addNewLine() {
-    return (
-      this.dns.table.dns.length >= 10 ||
-      this.dns.table.dns.push({ editedHost: '', editedIp: '' })
-    );
-  }
+  getDns() {
+    return this.Domain.getResource(this.$stateParams.productId).then(
+      (resource) => {
+        const current = resource.currentState.dnsConfiguration.nameServers;
+        const target = resource.targetSpec.dnsConfiguration.nameServers;
 
-  removeLine(item) {
-    remove(this.dns.table.dns, item);
-    const filtered = filter(
-      this.dns.table.dns,
-      (currentDNS) => !currentDNS.toDelete,
-    );
-    this.atLeastOneToRemove = this.dns.table.dns && filtered.length > 1;
-  }
-
-  cancelDns() {
-    this.dns.table.dns = angular.copy(this.dns.original.dns);
-    this.atLeastOneDns = true;
-    this.atLeastOneToRemove = true;
-    this.editMode = false;
-  }
-
-  checkAtLeastOneDns() {
-    const filtered = filter(
-      this.dns.table.dns,
-      (currentDNS) =>
-        !currentDNS.toDelete &&
-        ((currentDNS.host && currentDNS.editedHost == null) ||
-          (currentDNS.editedHost && currentDNS.editedHost !== '')),
-    );
-    this.atLeastOneDns = this.dns.table.dns && filtered.length > 0;
-  }
-
-  hostCheck(input) {
-    const value = input.$viewValue;
-    input.$setValidity(
-      'domain',
-      value === '' || this.WucValidator.isValidDomain(value),
-    );
-  }
-
-  ipCheck(input) {
-    const value = input.$viewValue;
-    input.$setValidity(
-      'ip',
-      value === '' ||
-        this.WucValidator.isValidIpv4(value) ||
-        this.WucValidator.isValidIpv6(value),
-    );
-  }
-
-  dnsLock() {
-    this.$scope.currentAction = 'dns/lock/domain-dns-lock';
-    this.$scope.currentActionData = false;
-    $('#currentAction').modal({
-      keyboard: true,
-      backdrop: 'static',
-    });
-  }
-
-  saveDns() {
-    let dns = filter(
-      this.dns.table.dns,
-      (currentDNS) => currentDNS.editedHost !== '' || currentDNS.editedIp,
-    );
-
-    if (!isEmpty(dns)) {
-      this.loading.table = true;
-      dns = map(dns, (d) => ({
-        host: d.editedHost || d.host,
-        ip: d.editedIp || d.ip || undefined,
-      }));
-
-      this.$q
-        .when(
-          this.domain.managedByOvh
-            ? this.Domain.updateNameServerType(
-                this.$stateParams.productId,
-                'external',
-              )
-            : null,
-        )
-        .then(() => {
-          this.domain.managedByOvh = false;
-          return this.Domain.updateDnsNameServerList(
-            this.$stateParams.productId,
-            dns,
+        function isIncluded(dns, search) {
+          return dns.some(
+            (x) =>
+              x.nameServer === search.nameServer &&
+              x.ipv4 === search.ipv4 &&
+              x.ipv6 === search.ipv6,
           );
-        })
-        .then(() =>
-          this.Alerter.success(
-            this.$translate.instant('domain_tab_DNS_update_success'),
-            this.$scope.alerts.main,
-          ),
-        )
-        .catch((err) => {
-          set(err, 'type', err.type || 'ERROR');
-          this.Alerter.alertFromSWS(
-            this.$translate.instant('domain_tab_DNS_update_error'),
-            err,
-            this.$scope.alerts.main,
-          );
-        })
-        .finally(() => {
-          this.editMode = false;
-          this.loadTable();
-        });
-    }
+        }
 
-    this.dns.table.dns = filter(
-      this.dns.table.dns,
-      (currentDNS) => currentDNS.host || currentDNS.ip,
+        function guessNameserverType(ns) {
+          if (isAnycastDns(ns)) {
+            return DNS_TYPE.ANYCAST;
+          }
+          if (isDedicatedDns(ns)) {
+            return DNS_TYPE.DEDICATED;
+          }
+          if (isInternalDns(ns)) {
+            return DNS_TYPE.STANDARD;
+          }
+          return DNS_TYPE.EXTERNAL;
+        }
+
+        function transform(dns, status) {
+          const type = dns.nameServerType
+            ? DNS_TYPE[dns.nameServerType] ?? DNS_TYPE.STANDARD
+            : guessNameserverType(dns.nameServer);
+
+          return {
+            name: dns.nameServer,
+            ip: dns.ipv4 || dns.ipv6 || '',
+            status,
+            type,
+          };
+        }
+
+        //
+        // The name servers statuses should be computed from the resource targetSpec
+        // and currentState, just as in the following example:
+        // ------------------------------------------------------------------
+        // CurrentState     TargetSpec          Status
+        // ------------------------------------------------------------------
+        // ns1.toto.fr      ns1.toto.fr         - ns1.toto.fr      Enabled
+        // ns2.toto.fr      ns2.toto.fr         - ns2.toto.fr      Enabled
+        // ------------------------------------------------------------------
+        // ns1.toto.fr      dns111.ovh.net      - ns1.toto.fr      Deleting
+        // ns2.toto.fr      dns111.ovh.net      - ns2.toto.fr      Deleting
+        //                                      - dns111.ovh.net   Activating
+        //                                      - ns111.ovh.net    Activating
+        // ------------------------------------------------------------------
+        // ns1.toto.fr      ns1.toto.fr         - ns1.toto.fr      Enabled
+        // ns2.toto.fr      ns3.toto.fr         - ns2.toto.fr      Deleting
+        //                                      - ns3.toto.fr      Activating
+        // ------------------------------------------------------------------
+        // ns1.toto.fr      []                  - ns1.toto.fr      Deleting
+        // ns2.toto.fr                          - ns2.toto.fr      Deleting
+        // ------------------------------------------------------------------
+        const activated = current
+          .filter((x) => isIncluded(target, x))
+          .map((x) => transform(x, DNS_STATUS.ACTIVATED));
+        const adding = target
+          .filter((x) => !isIncluded(current, x))
+          .map((x) => transform(x, DNS_STATUS.ADDING));
+        const deleting = current
+          .filter((x) => !isIncluded(target, x))
+          .map((x) => transform(x, DNS_STATUS.DELETING));
+
+        this.dns.nameServers.push(...activated, ...adding, ...deleting);
+
+        // Check if there is a pending update of the name servers
+        this.dns.isUpdatingNameServers =
+          adding.length >= 1 || deleting.length >= 1;
+      },
     );
-    this.editMode = false;
+  }
+
+  async hasAnycast() {
+    return this.Domain.getDnsAnycast(this.$stateParams.productId)
+      .then((data) => data?.status === STATUS.ENABLED.toLowerCase())
+      .catch(() => false);
+  }
+
+  get isDnssecEnable() {
+    return this.domain.dnssecStatus === STATUS.ENABLED;
+  }
+
+  checkPendingPropagation(dnsServers) {
+    this.displayPropagationInfo = dnsServers.some(
+      (server) => server.toDelete || !server.isUsed,
+    );
   }
 }

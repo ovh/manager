@@ -1,5 +1,5 @@
 {
-  "xdsl_modem_cant_be_managed": "Questo modem non può essere configurato da OVH",
+  "xdsl_modem_cant_be_managed": "Questo modem non può essere configurato da OVHcloud.",
   "xdsl_modem_general_config": "Configurazione generale",
   "xdsl_modem_network_config": "Configurazione di rete",
   "xdsl_modem_advanced_config": "Configurazione avanzata",
@@ -16,5 +16,7 @@
   "xdsl_model_access_error": "Ops! Impossibile recuperare le informazioni relative al tuo pack.",
   "xdsl_model_task_error": "Ops! Impossibile recuperare le operazioni in corso.",
   "xdsl_modem_modem_error": "Ops! Impossibile recuperare le informazioni relative al tuo modem.",
-  "xdsl_modem_firmware": "Firmware"
+  "xdsl_modem_firmware": "Firmware",
+  "xdsl_modem_breadcrumb": "Modem",
+  "xdsl_modem_acs_backend": "Backend ACS"
 }

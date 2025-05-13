@@ -1,5 +1,4 @@
-@import 'ovh-ui-kit/packages/oui-color/_variables.less';
-@import 'ovh-ui-kit/packages/oui/_settings.less';
+@import '@ovh-ux/ui-kit/dist/less/_tokens';
 
 .cui-accordion {
   @self: cui-accordion;
@@ -9,10 +8,10 @@
 
   &__header {
     display: flex;
-    background-color: @oui-color-concrete;
-    border: 1px solid @oui-color-silver;
-    border-bottom: 1px solid @oui-color-silver;
-    border-radius: @oui-global-base-radius;
+    background-color: #f2f2f2;
+    border: 1px solid #bbbdbf;
+    border-bottom: 1px solid #bbbdbf;
+    border-radius: @base-border-radius-small;
     padding: rem-calc(24);
 
     &-text {
@@ -21,7 +20,7 @@
     }
 
     &-title {
-      color: @oui-color-pacific;
+      color: #00a2bf;
       text-decoration: underline;
       outline: none;
       cursor: pointer;
@@ -31,7 +30,7 @@
 
   &__button {
     border: none;
-    background-color: @oui-color-concrete;
+    background-color: #f2f2f2;
     outline: none;
 
     &:active,
@@ -42,7 +41,7 @@
     &-icon {
       font-size: rem-calc(20);
       vertical-align: middle;
-      color: @oui-color-pacific;
+      color: #00a2bf;
       transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -55,22 +54,19 @@
 
   &__body {
     display: none;
-    // max-height: 0;
-    // overflow: auto;
-    // transition: max-height .15s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &__content {
     padding: rem-calc(24);
-    border-color: @oui-color-silver;
+    border-color: #bbbdbf;
     border-style: solid;
     border-width: 0 1px 1px 1px;
-    border-radius: 0 0 @oui-global-base-radius @oui-global-base-radius;
+    border-radius: 0 0 @base-border-radius-small @base-border-radius-small;
 
     > :last-child {
       margin-bottom: 0;
 
-      .oui-table {
+      .oui-datagrid {
         margin-bottom: 0;
       }
     }
@@ -78,13 +74,11 @@
 
   &_open {
     .@{self}__header {
-      border-radius: @oui-global-base-radius @oui-global-base-radius 0 0;
+      border-radius: @base-border-radius-small @base-border-radius-small 0 0;
     }
 
     .@{self}__body {
       display: block;
-      // max-height: 100vh;
-      // transition: max-height .65s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .@{self}__button {

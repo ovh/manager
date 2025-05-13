@@ -1,0 +1,18 @@
+{
+  "restricted_account_logout": "Log out",
+  "restricted_account_method_user": "Connected as a sub-user",
+  "restricted_error_default": "Access to the OVHcloud Control Panel requires the basic necessary permissions. Please contact your administrator.",
+  "restricted_error_title": "Restricted access",
+  "restricted_guide_card_control-panel-access_description": "Find out how to grant the minimum permissions required to log in to your Control Panel",
+  "restricted_guide_card_control-panel-access_title": "Log in to the OVHcloud Control Panel with IAM",
+  "restricted_guide_card_policies-ui_description": "Find out how to give users specific access permissions from an OVHcloud account",
+  "restricted_guide_card_policies-ui_title": "Create IAM policies via the OVH Control Panel",
+  "restricted_guide_card_policies-api_description": "Find out how to give users specific permissions to access an OVHcloud account",
+  "restricted_guide_card_policies-api_title": "Create IAM policies via API",
+  "restricted_guide_card_more": "Find out more",
+  "restricted_guide_card_title": "Tutorial",
+  "restricted_language_change": "Select interface language",
+  "restricted_navbar_account": "My account",
+  "restricted_error_default_start": "To access the OVHcloud Control Panel, your account must have the required {{count}} permissions, as described in the guide below:",
+  "restricted_error_default_end": "Please contact your administrator to add these permissions."
+}

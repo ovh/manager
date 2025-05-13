@@ -1,0 +1,17 @@
+{
+  "navbar_universe_sunrise": "Sunrise",
+  "navbar_universe_hub": "Dashboard",
+  "navbar_universe_partners": "Partner",
+  "navbar_universe_public-cloud": "Public Cloud",
+  "navbar_universe_server": "Bare Metal Cloud",
+  "navbar_universe_telecom": "Telekommunikation",
+  "navbar_universe_web": "Web Cloud",
+  "navbar_universe_hpc": "Hosted Private Cloud",
+  "navbar_universe_marketplace": "Marketplace",
+  "navbar_loading_universes": "Die Produktuniversen werden geladen...",
+  "navbar_notifications": "Benachrichtigungen",
+  "navbar_language_change": "Sprache des Interface ändern",
+  "navbar_account": "Mein Account",
+  "navbar_search": "Suchen",
+  "navbar_menu_name": "Hauptmenü"
+}

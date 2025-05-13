@@ -1,7 +1,0 @@
-{
-  "telephony_order_international_title": "Tilaa kansainvälinen numero",
-  "telephony_order_international_order_success": "Olet tilannut kansainvälisen numeron. Ole hyvä ja hyväksy yleiset käyttöehdot ja maksa tilaus.",
-  "telephony_order_international_order_error": "Maantieteellisen numeron tilaus epäonnistui. Ole hyvä ja yritä myöhemmin uudestaan. ",
-  "telephony_order_international_countries_error": "Maalistan hakeminen ei onnistu. ",
-  "telephony_order_international_address_message": "Afin de pouvoir disposer de votre numéro, merci de renseigner des coordonnées valides dans le pays concerné."
-}

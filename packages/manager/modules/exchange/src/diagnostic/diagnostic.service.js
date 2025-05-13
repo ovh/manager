@@ -4,10 +4,10 @@ import set from 'lodash/set';
 
 export default class diagnostic {
   /* @ngInject */
-  constructor($rootScope, Exchange, OvhHttp, Poller) {
+  constructor($rootScope, wucExchange, OvhHttp, Poller) {
     this.services = {
       $rootScope,
-      Exchange,
+      wucExchange,
       OvhHttp,
       Poller,
     };
@@ -17,8 +17,8 @@ export default class diagnostic {
 
   cacheDiagnostic(email) {
     this.diagnosticCache = {
-      organizationName: this.services.Exchange.value.organization,
-      exchangeService: this.services.Exchange.value.domain,
+      organizationName: this.services.wucExchange.value.organization,
+      exchangeService: this.services.wucExchange.value.domain,
       primaryEmailAddress: email,
     };
   }
@@ -26,9 +26,9 @@ export default class diagnostic {
   gettingLastDiagnostic() {
     if (
       this.diagnosticCache.organizationName ===
-        this.services.Exchange.value.organization &&
+        this.services.wucExchange.value.organization &&
       this.diagnosticCache.exchangeService ===
-        this.services.Exchange.value.domain
+        this.services.wucExchange.value.domain
     ) {
       return this.diagnosticCache.primaryEmailAddress;
     }
@@ -44,8 +44,8 @@ export default class diagnostic {
       {
         rootPath: 'apiv6',
         urlParams: {
-          organizationName: this.services.Exchange.value.organization,
-          exchangeService: this.services.Exchange.value.domain,
+          organizationName: this.services.wucExchange.value.organization,
+          exchangeService: this.services.wucExchange.value.domain,
           primaryEmailAddress: email,
         },
         data: {
@@ -61,8 +61,8 @@ export default class diagnostic {
       {
         rootPath: 'apiv6',
         urlParams: {
-          organizationName: this.services.Exchange.value.organization,
-          exchangeService: this.services.Exchange.value.domain,
+          organizationName: this.services.wucExchange.value.organization,
+          exchangeService: this.services.wucExchange.value.domain,
           primaryEmailAddress: email,
         },
       },
@@ -91,8 +91,8 @@ export default class diagnostic {
       {
         rootPath: 'apiv6',
         urlParams: {
-          organizationName: this.services.Exchange.value.organization,
-          exchangeService: this.services.Exchange.value.domain,
+          organizationName: this.services.wucExchange.value.organization,
+          exchangeService: this.services.wucExchange.value.domain,
           primaryEmailAddress: email,
         },
       },
@@ -105,8 +105,8 @@ export default class diagnostic {
       {
         rootPath: 'apiv6',
         urlParams: {
-          organizationName: this.services.Exchange.value.organization,
-          exchangeService: this.services.Exchange.value.domain,
+          organizationName: this.services.wucExchange.value.organization,
+          exchangeService: this.services.wucExchange.value.domain,
           primaryEmailAddress: email,
           id,
         },
@@ -123,7 +123,7 @@ export default class diagnostic {
       set(opts, 'successSates', [opts.successSates]);
     }
 
-    const url = `apiv6/email/exchange/${this.services.Exchange.value.organization}/service/${this.services.Exchange.value.domain}/account/${email}/tasks/${opts.id}`;
+    const url = `apiv6/email/exchange/${this.services.wucExchange.value.organization}/service/${this.services.wucExchange.value.domain}/account/${email}/tasks/${opts.id}`;
     const pollParameters = {
       interval: 2000,
       successRule: {

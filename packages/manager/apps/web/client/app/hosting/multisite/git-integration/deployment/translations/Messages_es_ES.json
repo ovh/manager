@@ -1,0 +1,7 @@
+{
+  "hosting_multisite_git_deployment_title": "Desplegar GIT",
+  "hosting_multisite_git_deployment_description": "Va a desplegar o actualizar manualmente el contenido de su repositorio remoto en su alojamiento.",
+  "hosting_multisite_git_deployment_checkbox_label": "En caso de conflicto de modificación, forzar los cambios remotos en el repositorio local.",
+  "hosting_multisite_git_deployment_message_success": "Desplegando el repositorio...",
+  "hosting_multisite_git_deployment_message_error": "Conflicto al desplegar Git. Para resolver el conflicto, fuerce los cambios remotos en su repositorio local."
+}

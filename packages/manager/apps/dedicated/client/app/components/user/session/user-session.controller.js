@@ -1,24 +1,40 @@
 import isString from 'lodash/isString';
 import set from 'lodash/set';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import { getShellClient } from '../../../shell';
 
 angular.module('App').controller(
   'SessionCtrl',
-  class {
+  class SessionCtrl {
     /* @ngInject */
-    constructor($document, $scope, $state, $transitions, $translate, User) {
+    constructor(
+      $document,
+      $scope,
+      $state,
+      $timeout,
+      $transitions,
+      $translate,
+      coreConfig,
+    ) {
       this.$document = $document;
       this.$scope = $scope;
       this.$state = $state;
+      this.$timeout = $timeout;
       this.$transitions = $transitions;
       this.$translate = $translate;
-      this.User = User;
+      this.coreConfig = coreConfig;
+      this.isTopLevelApplication = isTopLevelApplication();
+      this.shell = getShellClient();
+      this.shell.ux.isMenuSidebarVisible().then((isMenuSidebarVisible) => {
+        this.isMenuSidebarVisible = isMenuSidebarVisible;
+      });
     }
 
     $onInit() {
-      [this.currentLanguage] = this.$translate.use().split('_');
-
-      this.User.getUser().then((user) => {
-        this.user = user;
+      this.$scope.$on('switchUniverse', (event, universe) => {
+        this.sidebarNamespace = universe === 'server' ? undefined : 'hpc';
+        this.shell.environment.setUniverse(universe);
+        this.coreConfig.setUniverse(universe);
       });
 
       set(this.$document, 'title', this.$translate.instant('global_app_title'));
@@ -28,9 +44,11 @@ angular.module('App').controller(
           this.closeSidebar();
         }),
         this.$transitions.onSuccess({}, () => {
-          this.displayAccountSidebar = ['support', 'app.account'].some((name) =>
-            this.$state.includes(name),
-          );
+          this.displayAccountSidebar = [
+            'support',
+            'app.account',
+            'app.otrs',
+          ].some((name) => this.$state.includes(name));
         }),
       ];
 
@@ -41,6 +59,10 @@ angular.module('App').controller(
           this.$document.find(`#${id}`)[0].focus();
         }
       };
+
+      this.shell.ux.onRequestClientSidebarOpen(() =>
+        this.$timeout(() => this.openSidebar()),
+      );
     }
 
     openSidebar() {

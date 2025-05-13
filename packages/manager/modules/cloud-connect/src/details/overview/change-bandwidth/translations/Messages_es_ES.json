@@ -1,0 +1,7 @@
+{
+  "cloud_connect_change_bandwidth_select": "Seleccione el nuevo ancho de banda",
+  "cloud_connect_change_bandwidth_cancel": "Cancelar",
+  "cloud_connect_change_bandwidth_confirm": "Confirmar",
+  "cloud_connect_change_bandwidth_error": "Se ha producido un error al modificar el ancho de banda: {{message}}.",
+  "cloud_connect_change_bandwidth_warning": "La orden de pedido <a href='{{url}}' target='_blank'>{{orderId}}</a> se ha emitido correctamente. Por favor, asegúrese de que el equipo del cliente es compatible con el ancho de banda solicitado."
+}

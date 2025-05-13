@@ -1,0 +1,14 @@
+{
+  "pci_billing_cold_archive_no_entry": "No hay consumo en el período seleccionado.",
+  "pci_billing_cold_archive_region": "Región",
+  "pci_billing_cold_archive_type": "Tipo",
+  "pci_billing_cold_archive_type_archive_label": "Archivado en cintas",
+  "pci_billing_cold_archive_type_archive-fees_label": "Gastos de eliminación",
+  "pci_billing_cold_archive_type_restore_label": "Restauración de datos",
+  "pci_billing_cold_archive_type_archive-fees_tooltip_1": "La duración mínima de archivado es de 180 días. ",
+  "pci_billing_cold_archive_type_archive-fees_tooltip_2": "La supresión de un archivo antes de que finalice el período de compromiso tendrá un coste adicional para el cliente. El importe a abonar se calculará de la siguiente manera: [180 días - número de días efectivos de archivado] multiplicado por el precio del tipo de almacenamiento seleccionado.",
+  "pci_billing_cold_archive_price": "Precio",
+  "pci_billing_cold_archive_consumption": "Consumo",
+  "pci_billing_cold_archive_consumption_value_gbih": "{{ value }} GiBh",
+  "pci_billing_cold_archive_consumption_value_gbi": "{{ value }} GiB"
+}

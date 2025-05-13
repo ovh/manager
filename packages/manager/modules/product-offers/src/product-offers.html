@@ -3,20 +3,22 @@
     data-on-finish="$ctrl.workflow.validateOffer()"
 >
     <!-- Optional Configuration Step -->
-    <div data-ng-transclude></div>
+    <div class="step-container" data-ng-transclude></div>
 
     <!-- Pricing -->
     <oui-step-form
+        data-submit-text="{{ :: 'ovh_product_offers_order_express_submit' | translate }}"
         data-header="{{:: 'ovh_product_offers_pricing_header' | translate }}"
         data-editable="$ctrl.workflow.pricings.length > 1 && !$ctrl.workflow.isLoading()"
         data-valid="$ctrl.workflow.pricing"
         data-prevent-next="true"
+        data-on-submit="$ctrl.workflow.onPricingSubmit($ctrl.workflow.pricing)"
         data-on-focus="$ctrl.workflow.getPricings()"
         data-loading="$ctrl.workflow.loading.getPricingInformation"
     >
-        <div class="row">
+        <div class="d-flex flex-row">
             <oui-select-picker
-                class="col-md-3 mb-3"
+                class="col-md-3 mb-3 align-self-baseline"
                 name="duration"
                 data-ng-repeat="pricing in $ctrl.workflow.pricings track by pricing.description"
                 model="$ctrl.workflow.pricing"
@@ -35,6 +37,7 @@
                         data-price="pricing.price"
                         data-tax="pricing.tax"
                         data-user="$ctrl.workflow.user"
+                        data-from-to-price="pricing.isFree() ? null : $ctrl.workflow.currentOptionPrice"
                     >
                     </ovh-manager-catalog-price>
                 </oui-select-picker-label>
@@ -51,25 +54,40 @@
                 </oui-select-picker-description>
             </oui-select-picker>
         </div>
+        <p
+            class="mb-3"
+            data-ng-if="$ctrl.workflow.pricing && $ctrl.workflow.constructor.hasTerminationDetails($ctrl.workflow.pricing)"
+            data-translate="ovh_product_offers_detach_termination"
+            data-translate-values="{
+              'date': '<strong>' + $ctrl.workflow.constructor.getTerminationDate($ctrl.workflow.pricing, $ctrl.workflow.user.language),
+              'option': '<strong>' + $ctrl.workflow.optionId + '</strong>',
+            }"
+        ></p>
     </oui-step-form>
 
     <!-- Payment -->
     <oui-step-form
+        data-ng-if="!$ctrl.workflowOptions.expressOrder || ($ctrl.workflowOptions.expressOrder && $ctrl.workflow.isFreePricing())"
         data-header="{{:: 'ovh_product_offers_confirmation_header' | translate }}"
         data-editable="!$ctrl.workflow.loading.getOfferValidationInformation || !$ctrl.workflow.loading.validateOffer"
         data-valid="(
           (!$ctrl.workflow.isFreePricing() && $ctrl.workflow.defaultPaymentMethod != null)
           || $ctrl.workflow.isFreePricing()
-          ) && $ctrl.workflow.agreeContracts"
+          ) && $ctrl.workflow.hasContractsAgreements()"
         data-on-focus="$ctrl.workflow.getValidationInformation()"
+        data-on-submit="$ctrl.workflow.onValidateSubmit(validate)"
         data-prevent-next
-        data-submit-text="{{:: ($ctrl.workflow.isFreePricing() ? 'ovh_product_offers_confirmation_activate' : 'ovh_product_offers_confirmation_pay') | translate }}"
+        data-submit-text="{{ ($ctrl.workflow.isFreePricing() ? 'ovh_product_offers_confirmation_activate' : 'ovh_product_offers_confirmation_pay') | translate }}"
         data-loading="$ctrl.workflow.loading.getOfferValidationInformation || $ctrl.workflow.loading.validateOffer"
     >
         <div data-ng-if="!$ctrl.workflow.isFreePricing()">
             <div class="row">
                 <dl
-                    class="oui-description oui-description_horizontal oui-heading_underline col-md-2"
+                    class="oui-description oui-description_horizontal oui-heading_underline"
+                    data-ng-class="{
+                      'col-md-2': $ctrl.workflow.prorataDurationDate === null,
+                      'col-md-3': $ctrl.workflow.prorataDurationDate !== null
+                    }"
                 >
                     <dt
                         data-translate="ovh_product_offers_total_price_without_tax"
@@ -82,10 +100,22 @@
                     ></dt>
                     <dd data-ng-bind="$ctrl.workflow.prices.withTax.text"></dd>
                     <div data-ng-if="$ctrl.workflow.pricing.interval !== 0">
-                        <dt data-translate="ovh_product_offers_duration"></dt>
-                        <dd
-                            data-ng-bind="('ovh_product_offers_pricing_' + $ctrl.workflow.pricing.intervalUnit + ($ctrl.workflow.pricing.interval === 1 ? '' : 's') | translate:{ number: $ctrl.workflow.pricing.interval })"
-                        ></dd>
+                        <div data-ng-if="!$ctrl.workflow.prorataDurationDate">
+                            <dt
+                                data-translate="ovh_product_offers_duration"
+                            ></dt>
+                            <dd
+                                data-ng-bind="('ovh_product_offers_pricing_' + $ctrl.workflow.pricing.intervalUnit + ($ctrl.workflow.pricing.interval === 1 ? '' : 's') | translate:{ number: $ctrl.workflow.pricing.interval })"
+                            ></dd>
+                        </div>
+                        <div data-ng-if="$ctrl.workflow.prorataDurationDate">
+                            <dt
+                                data-translate="ovh_product_offers_duration_prorata_up_to"
+                            ></dt>
+                            <dd
+                                data-ng-bind="$ctrl.workflow.prorataDurationDate"
+                            ></dd>
+                        </div>
                     </div>
                 </dl>
             </div>
@@ -97,6 +127,7 @@
         </div>
 
         <ovh-contracts-summary
+            data-ng-if="$ctrl.workflow.contracts.length"
             data-items="$ctrl.workflow.contracts"
             data-model="$ctrl.workflow.agreeContracts"
         >

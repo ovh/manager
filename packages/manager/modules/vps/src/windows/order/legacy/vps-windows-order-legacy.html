@@ -2,7 +2,7 @@
     <div class="row d-lg-flex">
         <div class="col-xm-12">
             <h1
-                class="oui-header_1"
+                class="oui-heading_1"
                 data-translate="vps_order_windows_title"
             ></h1>
             <oui-stepper data-on-init="$ctrl.getDurations()">
@@ -34,10 +34,13 @@
                             class="oui-radio__label-container"
                             for="{{duration}}"
                         >
-                            <span
-                                class="oui-radio__label"
-                                data-ng-bind="$ctrl.durations.details[duration].label"
-                            ></span>
+                            <span class="oui-radio__label">
+                                <span class="oui-radio__icon"></span>
+                                <span
+                                    class="oui-radio__text"
+                                    data-ng-bind="$ctrl.durations.details[duration].label"
+                                ></span>
+                            </span>
                             <span class="oui-radio__description">
                                 <span
                                     data-translate="vps_order_windows_order_price_HT"
@@ -55,12 +58,12 @@
                     data-on-submit="$ctrl.orderOption()"
                     data-on-cancel="$ctrl.cancel()"
                 >
-                    <div
-                        class="mb-4"
-                        data-cuc-contracts="$ctrl.durations.details[$ctrl.model.duration].contracts"
-                        data-cuc-contracts-validated="$ctrl.model.contractsValidated"
-                        data-full-text="false"
-                    ></div>
+                    <ovh-contracts-summary
+                        name="agreeContracts"
+                        data-items="$ctrl.durations.details[$ctrl.model.duration].contracts"
+                        data-model="$ctrl.model.contractsValidated"
+                    >
+                    </ovh-contracts-summary>
                 </oui-step-form>
                 <oui-step-form
                     data-header="{{ ::'vps_order_windows_step3_title' | translate }}"

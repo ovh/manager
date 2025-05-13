@@ -1,0 +1,44 @@
+<div>
+    <div data-ovh-alert="{{alerts.main}}"></div>
+
+    <oui-datagrid
+        data-rows="ctrlEmailsTabTasksCtrl.taskIds"
+        data-row-loader="ctrlEmailsTabTasksCtrl.transformItem($row)"
+    >
+        <oui-datagrid-column
+            data-title="'email_tab_TASK_table_function' | translate"
+            data-property="action"
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'email_tab_TASK_table_account' | translate"
+        >
+            <span data-ng-bind="($row.account || $row.name)"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column data-property="domain"></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'email_tab_TASK_table_start_date' | translate"
+        >
+            <span
+                data-ng-bind="($row.date || $row.timestamp) | date:'medium'"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'email_tab_TASK_table_state' | translate"
+        >
+            <span
+                class="oui-badge"
+                data-ng-if="$row.status"
+                data-ng-class="{
+                    'oui-badge_info': $row.status !== 'ERROR' && $row.status !== 'DONE',
+                    'oui-badge_error': $row.status === 'ERROR',
+                    'oui-badge_success': $row.status === 'DONE' }"
+                data-ng-bind="'email_tab_TASK_status_' + $row.status | translate"
+            ></span>
+            <span
+                class="oui-badge oui-badge_info"
+                data-ng-if="!$row.status"
+                data-translate="email_tab_TASK_status_DOING"
+            ></span>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</div>

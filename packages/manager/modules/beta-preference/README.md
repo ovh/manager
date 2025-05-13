@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-beta-preference
 import angular from 'angular';
 import ovhManagerBetaPreference from '@ovh-ux/manager-beta-preference';
 
-angular
-  .module('myApp', [
-    ovhManagerBetaPreference,
-  ]);
+angular.module('myApp', [ovhManagerBetaPreference]);
 ```
 
 ## Build

@@ -1,0 +1,921 @@
+<div class="pack-move-offers">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.loading.init">
+        <!-- NO OFFERS AVAILABLE -->
+        <div
+            class="alert alert-info"
+            role="alert"
+            data-ng-if="$ctrl.offers.length === 0"
+            data-translate="pack_move_choose_offers_no_offers"
+        ></div>
+
+        <!-- OFFERS LIST -->
+        <div data-ng-if="$ctrl.offers.length > 0">
+            <div class="table-responsive">
+                <table class="table table-comparison">
+                    <thead class="table-comparison__head">
+                        <tr>
+                            <th
+                                class="table-comparison__cell table-comparison__cell--head table-comparison__cell--empty"
+                            ></th>
+                            <th
+                                class="table-comparison__cell table-comparison__cell--head table-comparison--item-base"
+                                data-translate="pack_move_current_offer"
+                                scope="col"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            ></th>
+                            <th
+                                class="table-comparison__cell table-comparison__cell--head"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                                scope="col"
+                            >
+                                <span data-ng-bind="offer.description"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-comparison__body">
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                scope="row"
+                                data-translate="pack_move_monthly_subscription"
+                            ></th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                                data-ng-bind-html="$ctrl.currentOffer.offerPrice.text | tucFormatPrice"
+                            ></td>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <div
+                                    data-ng-if="!offer.prices.firstYearPromo.price"
+                                    data-ng-bind-html="offer.displayedPrice.text | tucFormatPrice"
+                                ></div>
+
+                                <!-- First year Promo -->
+                                <div
+                                    data-ng-if="offer.prices.firstYearPromo.price"
+                                >
+                                    <div
+                                        data-ng-bind-html="offer.prices.firstYearPromo.price.text | tucFormatPrice"
+                                    ></div>
+                                    <div
+                                        data-translate="pack_move_first_year_promo"
+                                    ></div>
+                                    <span
+                                        class="text-small"
+                                        data-ng-bind-html="offer.prices.price.price.text | tucFormatPrice"
+                                    ></span>
+                                </div>
+
+                                <!-- Other promotion -->
+                                <div
+                                    data-ng-if="offer.prices.promotion && offer.prices.promotion.id === $ctrl.PROMO_DISPLAY.PROMO_FTTH_2020 && offer.prices.promotion.subscription"
+                                    class="oui-message oui-message_info mt-2"
+                                >
+                                    <span
+                                        class="oui-message__icon oui-icon oui-icon-info-circle"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <div
+                                        data-translate="pack_move_promotion_description"
+                                        data-translate-values="{ 'endDate' : (offer.prices.promotion.endDate | date : short) }"
+                                    ></div>
+                                    <strong
+                                        data-ng-if="offer.prices.promotion.subscription.duration === $ctrl.PROMO_DISPLAY.P3M.key"
+                                        data-translate="pack_move_promotion_subscription_months_offered"
+                                        data-translate-values="{ 'duration' :  $ctrl.PROMO_DISPLAY.P3M.value }"
+                                    >
+                                    </strong>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                scope="row"
+                                data-translate="pack_move_modem_rental"
+                            ></th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                /
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <label class="oui-select">
+                                    <select
+                                        class="oui-select__input"
+                                        data-ng-model="offer.modem"
+                                        name="modem"
+                                        data-ng-change="$ctrl.onChangeSelectModem(offer)"
+                                    >
+                                        <option
+                                            data-ng-repeat="modemOption in offer.modemOptions"
+                                            data-ng-value="modemOption.name"
+                                            data-ng-bind-html="modemOption.label"
+                                        >
+                                        </option>
+                                    </select>
+                                    <span
+                                        class="oui-icon oui-icon-chevron-down"
+                                        aria-hidden="true"
+                                    ></span>
+                                </label>
+                                <div
+                                    role="alert"
+                                    data-ng-if="offer.modemRequired"
+                                >
+                                    <div
+                                        class="text-danger"
+                                        data-translate="pack_move_modem_required"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                scope="row"
+                                data-translate="pack_move_installation_costs"
+                            ></th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                /
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <span
+                                    ng-if="offer.prices.installFees.price && offer.prices.promotion.id!='FTTH_MIGRATION_AND_ADRESSMOVE_2020' && offer.prices.promotion.installFees"
+                                    data-ng-bind-html="offer.prices.installFees.price.text | tucFormatPrice: { withoutTax: false }"
+                                ></span>
+                                <span
+                                    ng-if="offer.prices.installFees.price && offer.prices.promotion.id!='FTTH_MIGRATION_AND_ADRESSMOVE_2020'"
+                                    data-translate="common_without_tax"
+                                ></span>
+
+                                <!-- Other Promotion -->
+                                <div
+                                    data-ng-if="offer.prices.promotion.id=='FTTH_MIGRATION_AND_ADRESSMOVE_2020'"
+                                    class="oui-message oui-message_info mt-2"
+                                >
+                                    <span
+                                        class="oui-message__icon oui-icon oui-icon-info-circle"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <div
+                                        data-translate="telecom_pack_migration_promotion_description"
+                                        data-translate-values="{ 'endDate' : (offer.prices.promotion.endDate | date : short) }"
+                                    ></div>
+                                    <strong
+                                        data-translate="telecom_pack_migration_promotion_installation_fees_offered"
+                                    >
+                                    </strong>
+                                    <br />
+                                    <del>
+                                        <span
+                                            class="text-small"
+                                            data-ng-bind-html="offer.prices.installFees.price.text | tucFormatPrice: { withoutTax: false }"
+                                        >
+                                        </span>
+                                        <span
+                                            data-translate="common_without_tax"
+                                        ></span>
+                                    </del>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Creation Line fees -->
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                scope="row"
+                                data-translate="pack_move_creation_line_fees"
+                            ></th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                /
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <span
+                                    data-ng-if="offer.prices.creationLineFees.price"
+                                    data-ng-bind-html="offer.prices.creationLineFees.price.text | tucFormatPrice: {withoutTax: false }"
+                                ></span>
+                            </td>
+                        </tr>
+                        <!-- PROVIDER INFRA -->
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                scope="row"
+                                data-translate="pack_move_provider_infra_costs"
+                            ></th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                /
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <span
+                                    data-ng-if="offer.prices.providerOrange.price"
+                                    data-ng-bind-html="offer.prices.providerOrange.price.text | tucFormatPrice"
+                                ></span>
+                                <span
+                                    data-ng-if="offer.prices.providerAI.price"
+                                    data-ng-bind-html="offer.prices.providerAI.price.text | tucFormatPrice"
+                                ></span>
+                            </td>
+                        </tr>
+                        <!-- GTR Comfort fees -->
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                scope="row"
+                                data-translate="pack_move_comfort_activation"
+                            ></th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                /
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <span
+                                    data-ng-if="offer.gtrComfortActivated"
+                                    data-ng-bind-html="offer.prices.gtrComfortFees.price.text | tucFormatPrice: {withoutTax: false }"
+                                ></span>
+                            </td>
+                        </tr>
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                scope="row"
+                                data-translate="pack_move_commitment"
+                            ></th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer', 'number' : '12' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription, number : 12 }"
+                                data-translate="pack_move_commitment_month"
+                            ></td>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                                data-translate="{{ offer.engageMonths ? 'pack_move_commitment_month' : 'pack_move_commitment_none' }}"
+                                data-translate-values="{ number : offer.engageMonths }"
+                            ></td>
+                        </tr>
+                        <tr
+                            class="table-comparison__property"
+                            data-ng-if="$ctrl.hasOfferWithSubServicesToDelete()"
+                        >
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                scope="row"
+                            >
+                                <span
+                                    data-translate="pack_move_services_to_delete"
+                                ></span>
+                                <span
+                                    class="ovh-font ovh-font-info"
+                                    aria-hidden="true"
+                                    data-uib-tooltip="{{ 'pack_move_services_to_delete_explain' | translate }}"
+                                >
+                                </span>
+                            </th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                /
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__value table-comparison__cell--border"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <span
+                                    data-ng-bind="offer.totalSubServiceToDelete"
+                                    class="d-inline-block align-middle"
+                                ></span>
+                                <span
+                                    class="ovh-font ovh-font-info"
+                                    aria-hidden="true"
+                                    data-uib-tooltip="{{ 'pack_move_offer_services_to_delete_explain' | translate }}"
+                                >
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-category table-comparison__property-name"
+                                scope="row"
+                                data-translate="pack_move_options"
+                            ></th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__cell--empty"
+                            ></td>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__cell--empty"
+                                colspan="{{ $ctrl.offers.length }}"
+                            ></td>
+                        </tr>
+                        <!-- VOIP LINE OPTION -->
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__property-name--sublevel"
+                                scope="row"
+                            >
+                                <span
+                                    class="ovh-font ovh-font-phone table-comparison__property-icon"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-translate="pack_move_offers_line_title"
+                                ></span>
+                            </th>
+                            <td
+                                class="table-comparison__cell table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                <div
+                                    data-ng-repeat="option in $ctrl.currentOffer.options track by $index"
+                                >
+                                    <div
+                                        data-ng-if="option.name === 'voipLine'"
+                                    >
+                                        <strong
+                                            class="d-block"
+                                            data-translate="{{ option.total > 1 ? 'pack_move_lines_included' : 'pack_move_line_included' }}"
+                                            data-translate-values="{ number : option.total }"
+                                        >
+                                        </strong>
+                                        <span
+                                            class="d-block"
+                                            data-translate="{{ option.used > 1 ? 'pack_move_lines_activated' : 'pack_move_line_activated' }}"
+                                            data-translate-values="{ number : option.used }"
+                                        >
+                                        </span>
+                                    </div>
+                                </div>
+                                <strong
+                                    class="d-block text-muted"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable($ctrl.currentOffer, 'voipLine')"
+                                    data-translate="pack_move_option_unavailable"
+                                >
+                                </strong>
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <div
+                                    data-ng-repeat="option in offer.options track by $index"
+                                >
+                                    <div
+                                        data-ng-if="option.name === 'voip_line'"
+                                    >
+                                        <strong
+                                            class="d-block"
+                                            data-translate="{{ option.included > 1 ? 'pack_move_lines_included' : 'pack_move_line_included' }}"
+                                            data-translate-values="{ number : option.included }"
+                                        >
+                                        </strong>
+                                        <div data-ng-if="option.optional > 0">
+                                            <span
+                                                class="d-block my-2"
+                                                data-translate="pack_move_add_lines_upto"
+                                                data-translate-values="{ max : option.optional }"
+                                            >
+                                            </span>
+                                            <oui-numeric
+                                                class="clearfix mx-auto d-flex justify-content-center"
+                                                data-model="option.choosedValue"
+                                                min="0"
+                                                max="option.optional"
+                                                data-on-change="$ctrl.updateOfferPriceAndVoipLine(modelValue, offer, option)"
+                                                disabled="!$ctrl.constructor.showVoipLineOption(option, offer)"
+                                            >
+                                            </oui-numeric>
+                                            <span
+                                                class="d-block mt-2 text-small"
+                                                data-ng-init="option.formatPriceOptions = { withoutTax : true, addBrackets : true, additionalText : ('pack_move_line_additional_text' | translate ) }"
+                                                data-ng-bind-html="option.optionalPrice.text | tucFormatPrice:option.formatPriceOptions"
+                                            >
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <strong
+                                    class="d-block text-muted"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable(offer, 'voip_line')"
+                                    data-translate="pack_move_option_unavailable"
+                                >
+                                </strong>
+                            </td>
+                        </tr>
+                        <!-- EXCHANGE OPTION -->
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__property-name--sublevel"
+                                scope="row"
+                            >
+                                <span
+                                    class="ovh-font ovh-font-mail table-comparison__property-icon"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-translate="pack_move_exchange_title"
+                                ></span>
+                            </th>
+                            <td
+                                class="table-comparison__cell table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                <div
+                                    data-ng-repeat="option in $ctrl.currentOffer.options track by $index"
+                                >
+                                    <div
+                                        data-ng-if="option.name === 'exchangeAccount'"
+                                    >
+                                        <strong
+                                            class="d-block"
+                                            data-translate="{{ option.total > 1 ? 'pack_move_exchange_accounts_included' : 'pack_move_exchange_account_included' }}"
+                                            data-translate-values="{ number : option.total }"
+                                        >
+                                        </strong>
+                                        <span
+                                            class="d-block"
+                                            data-translate="{{ option.used > 1 ? 'pack_move_accounts_activated' : 'pack_move_account_activated' }}"
+                                            data-translate-values="{ number : option.used }"
+                                        >
+                                        </span>
+                                    </div>
+                                </div>
+                                <strong
+                                    class="d-block text-muted"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable($ctrl.currentOffer, 'exchangeAccount')"
+                                    data-translate="pack_move_option_unavailable"
+                                >
+                                </strong>
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <div
+                                    data-ng-repeat="option in offer.options track by $index"
+                                    data-ng-if="option.name === 'exchange_account'"
+                                >
+                                    <strong
+                                        class="d-block"
+                                        data-translate="{{ option.included > 1 ? 'pack_move_exchange_accounts_included' : 'pack_move_exchange_account_included' }}"
+                                        data-translate-values="{ number : option.included }"
+                                    >
+                                    </strong>
+                                    <div data-ng-if="option.optional > 0">
+                                        <span
+                                            class="d-block my-2"
+                                            data-translate="pack_move_add_exchange_account_upto"
+                                            data-translate-values="{ max : option.optional }"
+                                        >
+                                        </span>
+                                        <oui-numeric
+                                            class="clearfix mx-auto d-flex justify-content-center"
+                                            min="0"
+                                            max="option.optional"
+                                            data-model="option.choosedValue"
+                                            data-on-change="$ctrl.constructor.updateOfferDisplayedPrice(modelValue, offer, option.name)"
+                                        >
+                                        </oui-numeric>
+                                        <span
+                                            class="d-block mt-2 text-small"
+                                            data-ng-init="option.formatPriceOptions = { withoutTax : true, addBrackets : true, additionalText : ('pack_move_account_additional_text' | translate ) }"
+                                            data-ng-bind-html="option.optionalPrice.text | tucFormatPrice:option.formatPriceOptions"
+                                        >
+                                        </span>
+                                    </div>
+                                </div>
+                                <strong
+                                    class="d-block text-muted"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable(offer, 'exchange_account')"
+                                    data-translate="pack_move_option_unavailable"
+                                >
+                                </strong>
+                            </td>
+                        </tr>
+                        <!-- EMAILPRO OPTION -->
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__property-name--sublevel"
+                                scope="row"
+                            >
+                                <span
+                                    class="ovh-font ovh-font-mail table-comparison__property-icon"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-translate="pack_move_emailpro_title"
+                                ></span>
+                            </th>
+                            <td
+                                class="table-comparison__cell table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                <div
+                                    data-ng-repeat="option in $ctrl.currentOffer.options track by $index"
+                                >
+                                    <div
+                                        data-ng-if="option.name === 'emailpro'"
+                                    >
+                                        <strong
+                                            class="d-block"
+                                            data-translate="{{ option.total > 1 ? 'pack_move_emailpro_accounts_included' : 'pack_move_emailpro_account_included' }}"
+                                            data-translate-values="{ number : option.total }"
+                                        >
+                                        </strong>
+                                        <span
+                                            class="d-block"
+                                            data-translate="{{ option.used > 1 ? 'pack_move_accounts_activated' : 'pack_move_account_activated' }}"
+                                            data-translate-values="{ number : option.used }"
+                                        >
+                                        </span>
+                                    </div>
+                                </div>
+                                <strong
+                                    class="d-block text-muted"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable($ctrl.currentOffer, 'emailpro')"
+                                    data-translate="pack_move_option_unavailable"
+                                >
+                                </strong>
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <div
+                                    data-ng-repeat="option in offer.options track by $index"
+                                    data-ng-if="option.name === 'emailpro'"
+                                >
+                                    <strong
+                                        class="d-block"
+                                        data-translate="{{ option.included > 1 ? 'pack_move_emailpro_accounts_included' : 'pack_move_emailpro_account_included' }}"
+                                        data-translate-values="{ number : option.included }"
+                                    >
+                                    </strong>
+                                    <div data-ng-if="option.optional > 0">
+                                        <span
+                                            class="d-block my-2"
+                                            data-translate="pack_move_add_emailpro_account_upto"
+                                            data-translate-values="{ max : option.optional }"
+                                        >
+                                        </span>
+                                        <oui-numeric
+                                            class="clearfix mx-auto d-flex justify-content-center"
+                                            min="0"
+                                            max="option.optional"
+                                            data-model="option.choosedValue"
+                                            data-on-change="$ctrl.constructor.updateOfferDisplayedPrice(modelValue, offer, option.name)"
+                                        >
+                                        </oui-numeric>
+                                        <span
+                                            class="d-block mt-2 text-small"
+                                            data-ng-init="option.formatPriceOptions = { withoutTax : true, addBrackets : true, additionalText : ('pack_move_account_additional_text' | translate ) }"
+                                            data-ng-bind-html="option.optionalPrice.text | tucFormatPrice:option.formatPriceOptions"
+                                        >
+                                        </span>
+                                    </div>
+                                </div>
+                                <strong
+                                    class="d-block text-muted"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable(offer, 'emailpro')"
+                                    data-translate="pack_move_option_unavailable"
+                                >
+                                </strong>
+                            </td>
+                        </tr>
+                        <!-- ECOFAX -->
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__property-name--sublevel"
+                                scope="row"
+                            >
+                                <span
+                                    class="ovh-font ovh-font-print table-comparison__property-icon"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-translate="pack_move_ecofax_title"
+                                ></span>
+                            </th>
+                            <td
+                                class="table-comparison__cell table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                <div
+                                    data-ng-repeat="option in $ctrl.currentOffer.options track by $index"
+                                >
+                                    <div
+                                        data-ng-if="option.name === 'voipEcoFax'"
+                                    >
+                                        <strong
+                                            class="d-block"
+                                            data-translate="{{ option.total > 1 ? 'pack_move_ecofax_lines_included' : 'pack_move_ecofax_line_included' }}"
+                                            data-translate-values="{ number : option.total }"
+                                        >
+                                        </strong>
+                                        <span
+                                            class="d-block"
+                                            data-translate="{{ option.used > 1 ? 'pack_move_lines_activated' : 'pack_move_line_activated' }}"
+                                            data-translate-values="{ number : option.used }"
+                                        >
+                                        </span>
+                                    </div>
+                                </div>
+                                <strong
+                                    class="d-block text-muted"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable($ctrl.currentOffer, 'voipEcoFax')"
+                                    data-translate="pack_move_option_unavailable"
+                                >
+                                </strong>
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <div
+                                    data-ng-repeat="option in offer.options track by $index"
+                                >
+                                    <div
+                                        data-ng-if="option.name === 'voip_ecofax'"
+                                    >
+                                        <strong
+                                            class="d-block my-2"
+                                            data-translate="{{ option.included > 1 ? 'pack_move_ecofax_lines_included' : 'pack_move_ecofax_line_included' }}"
+                                            data-translate-values="{ number : option.included }"
+                                        >
+                                        </strong>
+                                        <div data-ng-if="option.optional > 0">
+                                            <span
+                                                class="d-block my-2"
+                                                data-translate="pack_move_add_lines_upto"
+                                                data-translate-values="{ max : option.optional }"
+                                            >
+                                            </span>
+                                            <oui-numeric
+                                                class="clearfix mx-auto d-flex justify-content-center"
+                                                data-model="option.choosedValue"
+                                                min="0"
+                                                max="option.optional"
+                                                data-on-change="$ctrl.constructor.updateOfferDisplayedPrice(modelValue, offer, option.name)"
+                                            >
+                                            </oui-numeric>
+                                            <span
+                                                class="d-block mt-2 text-small"
+                                                data-ng-init="option.formatPriceOptions = { withoutTax : true, addBrackets : true, additionalText : ('pack_move_line_additional_text' | translate ) }"
+                                                data-ng-bind-html="option.optionalPrice.text | tucFormatPrice:option.formatPriceOptions"
+                                            >
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <strong
+                                    class="d-block text-muted"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable(offer, 'voip_ecofax')"
+                                    data-translate="pack_move_option_unavailable"
+                                >
+                                </strong>
+                            </td>
+                        </tr>
+                        <!-- DOMAIN -->
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__property-name--sublevel"
+                                scope="row"
+                            >
+                                <span
+                                    class="ovh-font ovh-font-domain table-comparison__property-icon"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-translate="pack_move_domain_title"
+                                ></span>
+                            </th>
+                            <td
+                                class="table-comparison__cell table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                <div
+                                    data-ng-repeat="option in $ctrl.currentOffer.options track by $index"
+                                >
+                                    <div data-ng-if="option.name === 'domain'">
+                                        <strong
+                                            class="d-block"
+                                            data-translate="{{ option.total > 1 ? 'pack_move_domains_included' : 'pack_move_domain_included' }}"
+                                            data-translate-values="{ number : option.total }"
+                                        >
+                                        </strong>
+                                        <span
+                                            class="d-block"
+                                            data-translate="{{ option.used > 1 ? 'pack_move_accounts_activated' : 'pack_move_account_activated' }}"
+                                            data-translate-values="{ number : option.used }"
+                                        >
+                                        </span>
+                                    </div>
+                                </div>
+                                <strong
+                                    class="d-block text-muted"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable($ctrl.currentOffer, 'domain')"
+                                    data-translate="pack_move_option_unavailable"
+                                >
+                                </strong>
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <div
+                                    data-ng-repeat="option in offer.options track by $index"
+                                >
+                                    <div data-ng-if="option.name === 'dom1'">
+                                        <strong
+                                            class="d-block"
+                                            data-translate="{{ option.included > 1 ? 'pack_move_domains_included' : 'pack_move_domain_included' }}"
+                                            data-translate-values="{ number : option.included }"
+                                        >
+                                        </strong>
+                                        <div data-ng-if="option.optional > 0">
+                                            <span
+                                                class="d-block my-2"
+                                                data-translate="pack_move_add_domains_upto"
+                                                data-translate-values="{ max : option.optional }"
+                                            >
+                                            </span>
+                                            <oui-numeric
+                                                class="clearfix mx-auto d-flex justify-content-center"
+                                                data-model="option.choosedValue"
+                                                min="0"
+                                                max="option.optional"
+                                                data-on-change="$ctrl.constructor.updateOfferDisplayedPrice(modelValue, offer, option.name)"
+                                            >
+                                            </oui-numeric>
+                                            <span
+                                                class="d-block mt-2 text-small"
+                                                data-ng-init="option.formatPriceOptions = { withoutTax : true, addBrackets : true, additionalText : ('pack_move_domain_additional_text' | translate ) }"
+                                                data-ng-bind-html="option.optionalPrice.text | tucFormatPrice:option.formatPriceOptions"
+                                            >
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <strong
+                                    class="d-block text-muted"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable(offer, 'dom1')"
+                                    data-translate="pack_move_option_unavailable"
+                                >
+                                </strong>
+                            </td>
+                        </tr>
+                        <!-- GTR -->
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-name--sublevel"
+                                scope="row"
+                            >
+                                <span
+                                    class="ovh-font ovh-font-gtr table-comparison__property-icon"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-translate="pack_move_gtr_title"
+                                ></span>
+                            </th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'pack_move_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.offerDescription }"
+                            >
+                                <strong
+                                    class="d-block text-muted"
+                                    data-translate="pack_move_option_unavailable"
+                                >
+                                </strong>
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <label
+                                    class="oui-select"
+                                    data-ng-if="$ctrl.constructor.isGtrOptionExist(offer)"
+                                >
+                                    <select
+                                        class="oui-select__input"
+                                        data-ng-model="offer.gtrSelected"
+                                        name="gtr"
+                                        data-ng-change="$ctrl.updateOfferPriceAndGtr(offer)"
+                                    >
+                                        <option
+                                            data-ng-repeat="gtrOption in offer.gtrOptions"
+                                            data-ng-value="gtrOption.name"
+                                            data-ng-bind-html="gtrOption.label"
+                                        >
+                                        </option>
+                                    </select>
+                                    <span
+                                        class="oui-icon oui-icon-chevron-down"
+                                        aria-hidden="true"
+                                    ></span>
+                                </label>
+
+                                <strong
+                                    class="d-block text-muted"
+                                    data-ng-if="!$ctrl.constructor.isGtrOptionExist(offer)"
+                                    data-translate="pack_move_option_unavailable"
+                                >
+                                </strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="table-comparison__foot">
+                        <tr class="table-comparison__property">
+                            <td
+                                class="table-comparison__cell--empty"
+                                colspan="2"
+                            ></td>
+                            <td
+                                class="table-comparison__cell table-comparison__value table-comparison__value--button text-center"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    data-ng-click="$ctrl.selectOffer(offer)"
+                                    data-translate="pack_move_choose_offer_action"
+                                ></button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <p
+                    class="mb-0"
+                    data-translate="telecom_pack_migration_offers_debit_mention_1"
+                ></p>
+                <p
+                    class="mb=0"
+                    data-translate="telecom_pack_migration_offers_debit_mention_2"
+                ></p>
+            </div>
+        </div>
+    </div>
+</div>

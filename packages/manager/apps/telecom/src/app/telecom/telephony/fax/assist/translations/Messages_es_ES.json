@@ -2,5 +2,6 @@
   "telephony_group_fax_assist_back_link": "Volver a la asistencia",
   "telephony_group_fax_assist_action_logs": "Consulta de las notificaciones",
   "telephony_group_fax_assist_action_support": "Guías y soporte",
-  "telephony_group_fax_assist_action_orders": "Seguimiento de las órdenes de pedido"
+  "telephony_group_fax_assist_action_orders": "Seguimiento de las órdenes de pedido",
+  "telephony_group_fax_assist_breadcrumb": "Soporte"
 }

@@ -1,0 +1,10 @@
+{
+  "sms_creditTransfer_title": "Przeniesienie zasileń",
+  "sms_creditTransfer_action_send": "Wyślij",
+  "sms_creditTransfer_action_cancel": "Anuluj",
+  "sms_creditTransfer_label_your_account": "Twoje konto",
+  "sms_creditTransfer_label_account_to_credit": "Konto do zasilenia",
+  "sms_creditTransfer_label_number_of_credits": "Wpisz liczbę zasileń",
+  "sms_creditTransfer_message_success": "Przelew został wykonany.",
+  "sms_creditTransfer_message_error": "Wystąpił błąd: {{error}}"
+}

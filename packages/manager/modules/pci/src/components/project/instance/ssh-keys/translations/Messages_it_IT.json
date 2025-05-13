@@ -1,11 +1,12 @@
 {
- "pci_project_instance_ssh_key": "Chiave SSH",
- "pci_project_instance_ssh_pick": "Seleziona",
- "pci_project_instance_ssh_add": "Aggiungi una chiave",
- "pci_project_instance_ssh_cancel": "Annulla",
- "pci_project_instance_ssh_key_name": "Nome della chiave SSH",
- "pci_project_instance_ssh_key_query_error": "Si è verificato un errore durante il recupero delle tue chiavi SSH: {{message}}.",
- "pci_project_instance_ssh_key_add_error": "Si è verificato un errore durante l’aggiunta della chiave SSH: {{message}}",
- "pci_project_instance_ssh_key_help_required": "Le chiavi SSH sono necessarie per accedere al tuo servizio.",
- "pci_project_instance_ssh_key_help_availability": "La tua chiave SSH sarà disponibile in tutte le Region e datacenter OVH."
+  "pci_project_instance_ssh_key": "Chiave SSH",
+  "pci_project_instance_ssh_pick": "Seleziona",
+  "pci_project_instance_ssh_add": "Aggiungi una chiave",
+  "pci_project_instance_ssh_cancel": "Annulla",
+  "pci_project_instance_ssh_key_name": "Nome della chiave SSH",
+  "pci_project_instance_ssh_key_query_error": "Si è verificato un errore durante il recupero delle tue chiavi SSH: {{message}}.",
+  "pci_project_instance_ssh_key_add_error": "Si è verificato un errore durante l’aggiunta della chiave SSH: {{message}}",
+  "pci_project_instance_ssh_key_help_required": "Le chiavi SSH sono necessarie per accedere al servizio. Per maggiori informazioni, consulta <a target='_blank' rel='noopener' href='{{guideUrl}}'>questa guida</a>.",
+  "pci_project_instance_ssh_key_help_availability": "La tua chiave SSH sarà disponibile in tutte le Region e datacenter OVH.",
+  "pci_project_instance_ssh_key_infos": "Sono accettate solo le chiavi SSH di tipo RSA e ECDSA Non è possibile utilizzare chiavi SSH di tipo ED25519."
 }

@@ -1,9 +1,0 @@
-{
-  "pci_projects_project_streams_stream_backlog_retention_title": "Modifica la backlog retention",
-  "pci_projects_project_streams_stream_backlog_retention_submit_label": "Conferma",
-  "pci_projects_project_streams_stream_backlog_retention_cancel_label": "Annulla",
-  "pci_projects_project_streams_stream_backlog_retention_content": "Aumenta o riduci la durata di retention dei messaggi in attesa di essere letti per la sottoscrizione.",
-  "pci_projects_project_streams_stream_backlog_retention_unit": "Ore",
-  "pci_projects_project_streams_stream_backlog_retention_success_message": "La backlog retention è stata modificata.",
-  "pci_projects_project_streams_stream_backlog_retention_error_backlog_retention": "Si è verificato un errore durante la modifica della backlog retention: {{ message }}."
-}

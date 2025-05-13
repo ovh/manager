@@ -1,0 +1,385 @@
+<div ui-view>
+    <div class="text-center" data-ng-if="ctrlEmailDomainEmail.loading.emails">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <div data-ovh-alert="{{alerts.main}}"></div>
+    <div
+        class="alert alert-warning"
+        role="alert"
+        data-translate="email_tab_unavailable"
+        data-ng-if="!ctrlEmailDomainEmail.loading.emails && ctrlEmailDomainEmail.emailIsUnavailable"
+    ></div>
+    <div class="row">
+        <div class="col-md-9">
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-translate="email_tab_table_emails_quota_excedeed"
+                data-ng-if="!ctrlEmailDomainEmail.loading.emails && ctrlEmailDomainEmail.quotas.account <= 0"
+            ></div>
+
+            <div data-ng-if="ctrlEmailDomainEmail.quotas.account > 0">
+                <form
+                    class="form-inline d-md-flex justify-content-md-end mb-3"
+                    name="searchEmailAccountForm"
+                >
+                    <div class="form-group">
+                        <label class="sr-only" for="searchEmailAccount"></label>
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="searchEmailAccount"
+                                name="searchEmailAccount"
+                                placeholder="{{:: 'emails_navigation_left_search' | translate }}"
+                                data-ng-change="ctrlEmailDomainEmail.goSearch()"
+                                data-ng-disabled="ctrlEmailDomainEmail.loading.accounts"
+                                data-ng-model="ctrlEmailDomainEmail.search.accounts"
+                                data-ng-model-options="{ debounce: 800 }"
+                            />
+                            <div
+                                class="input-group-btn"
+                                data-ng-if="ctrlEmailDomainEmail.search.accounts != null"
+                            >
+                                <button
+                                    class="btn btn-default"
+                                    type="button"
+                                    aria-label="{{ 'common_cancel' | translate }}"
+                                    data-ng-click="ctrlEmailDomainEmail.emptySearch()"
+                                    data-ng-disabled="ctrlEmailDomainEmail.loading.accounts"
+                                >
+                                    <span
+                                        class="fa fa-times"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </div>
+                            <span
+                                class="input-group-addon"
+                                data-ng-if="ctrlEmailDomainEmail.search.accounts == null"
+                            >
+                                <span
+                                    class="fa fa-search"
+                                    aria-hidden="true"
+                                ></span>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th
+                                    class="text-wrap"
+                                    scope="col"
+                                    data-translate="email_tab_table_header_account_name"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    data-translate="email_tab_table_header_account_description"
+                                ></th>
+                                <th
+                                    class="text-center"
+                                    scope="col"
+                                    style="min-width:200px"
+                                    data-translate="email_tab_table_header_account_size"
+                                ></th>
+                                <th
+                                    class="text-center text-wrap"
+                                    scope="col"
+                                    data-translate="email_tab_table_header_account_date"
+                                ></th>
+                                <th
+                                    class="text-center text-wrap"
+                                    scope="col"
+                                    data-translate="email_tab_table_header_account_bloqued"
+                                ></th>
+                                <th
+                                    class="min-width text-center"
+                                    scope="col"
+                                    data-translate="email_tab_table_header_filters"
+                                ></th>
+                                <th class="min-width text-right" scope="col">
+                                    <button
+                                        class="btn btn-icon"
+                                        type="button"
+                                        title="{{:: 'email_tab_table_header_refresh' | translate }}"
+                                        data-ng-click="ctrlEmailDomainEmail.refreshTableAccounts(true)"
+                                    >
+                                        <span
+                                            class="fa fa-refresh"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <!--loader-->
+                        <tbody
+                            data-ng-if="ctrlEmailDomainEmail.loading.accounts || (ctrlEmailDomainEmail.loading.pager && ctrlEmailDomainEmail.emails.length > 0)"
+                        >
+                            <tr>
+                                <td class="text-center" colspan="7">
+                                    <oui-spinner></oui-spinner>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                        <!-- no accounts -->
+                        <tbody
+                            data-ng-if="!ctrlEmailDomainEmail.loading.accounts && !ctrlEmailDomainEmail.loading.pager && ctrlEmailDomainEmail.quotas.account > 0 && ctrlEmailDomainEmail.emails.length === 0"
+                        >
+                            <tr>
+                                <td
+                                    class="text-center"
+                                    colspan="7"
+                                    data-translate="email_tab_table_emails_empty"
+                                ></td>
+                            </tr>
+                        </tbody>
+
+                        <!-- accounts -->
+                        <tbody
+                            data-ng-if="!ctrlEmailDomainEmail.loading.accounts && !ctrlEmailDomainEmail.loading.pager && ctrlEmailDomainEmail.emails.length > 0"
+                        >
+                            <tr
+                                data-ng-repeat="email in ctrlEmailDomainEmail.emailsDetails track by $index"
+                            >
+                                <td
+                                    class="word-break"
+                                    data-ng-bind="email.accountName"
+                                ></td>
+                                <td data-ng-bind="email.description"></td>
+                                <td>
+                                    <div class="col-xs-10 p-0">
+                                        <div
+                                            class="oui-progress m-0"
+                                            data-ng-class="{
+                                                'oui-progress_success': email.percentUse < 51,
+                                                'oui-progress_warning': email.percentUse > 50 && email.percentUse < 81,
+                                                'oui-progress_error': email.percentUse > 80
+                                            }"
+                                        >
+                                            <div
+                                                class="oui-progress__bar oui-progress__bar_text-left"
+                                                role="progressbar"
+                                                aria-valuemin="0"
+                                                aria-valuemax="100"
+                                                aria-valuenow="{{email.percentUse}}"
+                                                data-ng-class="{
+                                                    'oui-progress__bar_success': email.percentUse < 51,
+                                                    'oui-progress__bar_warning': email.percentUse > 50 && email.percentUse < 81,
+                                                    'oui-progress__bar_error': email.percentUse > 80
+                                                }"
+                                                data-ng-style="{'width': email.percentUse + '%'}"
+                                            >
+                                                <span
+                                                    class="oui-progress__label"
+                                                    data-ng-bind="(email.quota | humanReadableSize: {base: 10}) + ' / ' + (email.size | humanReadableSize: {base: 10})"
+                                                ></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-2 p-0 text-center">
+                                        <button
+                                            class="btn btn-icon"
+                                            type="button"
+                                            data-ng-click="setAction('email-domain/email/account/usage/email-domain-email-account-usage', email)"
+                                        >
+                                            <span
+                                                class="fa fa-refresh"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td
+                                    class="text-center"
+                                    data-ng-bind="email.date | date:'mediumDate'"
+                                ></td>
+                                <td class="text-center">
+                                    <span
+                                        class="oui-badge oui-badge_error"
+                                        data-translate="email_tab_table_emails_block_true"
+                                        data-ng-if="email.isBlocked"
+                                    ></span>
+                                    <span
+                                        class="oui-badge oui-badge_success"
+                                        data-translate="email_tab_table_emails_block_false"
+                                        data-ng-if="!email.isBlocked"
+                                    ></span>
+                                </td>
+                                <td class="text-center">
+                                    <button
+                                        class="btn btn-icon"
+                                        type="button"
+                                        title="{{:: 'email_tab_filters_management_heading' | translate }}"
+                                        data-ng-click="ctrlEmailDomainEmail.goToFilter(email, ctrlEmailDomainEmail.emails)"
+                                    >
+                                        <span
+                                            class="fa fa-filter"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                </td>
+                                <td class="text-center">
+                                    <oui-action-menu
+                                        data-compact
+                                        data-ng-disabled="email.taskDoing"
+                                        data-placement="end"
+                                    >
+                                        <oui-action-menu-item
+                                            data-on-click="setAction('email-domain/email/account/update/email-domain-email-account-update', email)"
+                                        >
+                                            <span
+                                                data-translate="email_tab_popover_update_account"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                        <oui-action-menu-item
+                                            data-on-click="setAction('email-domain/email/account/change-password/email-domain-email-account-change-password', email)"
+                                        >
+                                            <span
+                                                data-translate="email_tab_popover_change_password_account"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                        <oui-action-menu-item
+                                            data-on-click="setAction('email-domain/email/account/delete/email-domain-email-account-delete', email)"
+                                        >
+                                            <span
+                                                data-translate="email_tab_popover_delete_account"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                        <oui-action-menu-item
+                                            data-on-click="setAction('email-domain/email/delegate/email-domain-email-delegate', email)"
+                                        >
+                                            <span
+                                                data-translate="email_tab_popover_delegate"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                        <oui-action-menu-item
+                                            data-on-click="ctrlEmailDomainEmail.goToAccountMigration(email)"
+                                        >
+                                            <span
+                                                data-translate="email_tab_popover_migrate"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                        <oui-action-menu-item
+                                            data-on-click="setAction('email-domain/email/account/unlock/email-domain-email-account-unlock', email)"
+                                            data-ng-if="email.isBlocked"
+                                        >
+                                            <span
+                                                data-translate="email_tab_table_emails_unlock_action"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                    </oui-action-menu>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="clearfix" data-ng-if="ctrlEmailDomainEmail.emails">
+                    <div
+                        data-pagination-front
+                        data-items="ctrlEmailDomainEmail.emails"
+                        data-paginated-items="ctrlEmailDomainEmail.emailsDetails"
+                        data-current-page="currentPageEmails"
+                        data-nb-pages="nbPages"
+                        data-items-per-page="itemsPerPage"
+                        data-transform-item="ctrlEmailDomainEmail.transformItem(item)"
+                        data-on-transform-item-done="ctrlEmailDomainEmail.onTransformItemDone()"
+                        data-on-page-change="ctrlEmailDomainEmail.loading.pager = true"
+                        data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPageEmails, last: nbPages } }}"
+                        data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+                        data-ng-show="!ctrlEmailDomainEmail.loading.accounts && ctrlEmailDomainEmail.emailsDetails.length > 0"
+                    ></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mt-5 mt-lg-0">
+            <div class="mb-5">
+                <button
+                    class="btn btn-block btn-default text-wrap"
+                    type="button"
+                    title="{{ 'email_tab_acl' | translate }}"
+                    data-translate="email_tab_acl_manage"
+                    data-ng-click="ctrlEmailDomainEmail.goToAcl()"
+                    data-ng-if="ctrlEmailDomainEmail.delegationsIsAvailable"
+                ></button>
+                <button
+                    class="btn btn-block btn-default text-wrap"
+                    type="button"
+                    data-ng-click="setAction('email-domain/email/account/create/email-domain-email-account-create')"
+                    data-ng-disabled="!ctrlEmailDomainEmail.canAddAccount()"
+                    data-ng-if="ctrlEmailDomainEmail.quotas.account > 0"
+                >
+                    <span
+                        data-oui-tooltip="{{:: 'email_tab_table_emails_quota_excedeed' | translate }}"
+                        data-ng-if="!ctrlEmailDomainEmail.canAddAccount()"
+                    >
+                        <span
+                            data-translate="email_tab_button_emails_create_account"
+                        ></span>
+                    </span>
+                    <span
+                        data-translate="email_tab_button_emails_create_account"
+                        data-ng-if="ctrlEmailDomainEmail.canAddAccount()"
+                    >
+                    </span>
+                </button>
+                <button
+                    class="btn btn-block btn-default text-wrap"
+                    type="button"
+                    data-translate="email_tab_redirections_management_title"
+                    data-ng-click="ctrlEmailDomainEmail.goToRedirection(ctrlEmailDomainEmail.quotas)"
+                ></button>
+                <button
+                    class="btn btn-block btn-default text-wrap"
+                    type="button"
+                    data-translate="email_tab_responders_management_heading"
+                    data-ng-click="ctrlEmailDomainEmail.goToResponders(ctrlEmailDomainEmail.emails, ctrlEmailDomainEmail.quotas)"
+                    data-ng-if="ctrlEmailDomainEmail.quotas.account > 0"
+                ></button>
+                <button
+                    class="btn btn-block btn-default text-wrap"
+                    type="button"
+                    data-translate="email_tab_access_webmail"
+                    data-ng-click="ctrlEmailDomainEmail.openWebMailTab()"
+                    data-ng-if="ctrlEmailDomainEmail.quotas.account > 0"
+                ></button>
+                <button
+                    class="btn btn-block btn-default text-wrap"
+                    type="button"
+                    data-translate="email_tab_export_accounts_csv_title"
+                    data-ng-click="setAction('email-domain/email/account/export-csv/email-domain-email-account-export-csv')"
+                    data-ng-disabled="ctrlEmailDomainEmail.emails.length === 0"
+                ></button>
+                <a
+                    data-ng-href="{{:: ctrlEmailDomainEmail.webOMMUrl }}"
+                    class="btn btn-block btn-default text-wrap"
+                    target="_blank"
+                    role="button"
+                >
+                    <span
+                        data-translate="email_tab_popover_import_from_imap"
+                    ></span>
+                    <span class="sr-only" data-translate="common_newtab"></span>
+                    <span aria-hidden="true" class="fa fa-external-link"></span>
+                </a>
+            </div>
+
+            <div
+                class="mb-5"
+                data-wuc-guides
+                data-wuc-guides-title="'emails_guide_subtitle' | translate"
+                data-wuc-guides-list="'emailsAccounts'"
+                data-tr="tr"
+            ></div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 class zendeskService {
+  /* @ngInject */
   constructor($translate, User) {
     this.$translate = $translate;
     this.User = User;

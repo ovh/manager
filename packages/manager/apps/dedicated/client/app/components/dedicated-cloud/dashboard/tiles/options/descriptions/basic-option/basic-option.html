@@ -1,0 +1,17 @@
+<dl class="oui-tile__definition">
+    <dt class="oui-tile__term">
+        <p
+            data-translate="{{:: 'ovhManagerPccDashboardOptionsDescriptionsBasicOption_name_' + $ctrl.optionName }}"
+        ></p>
+    </dt>
+    <dd>
+        <p
+            data-ng-if="$ctrl.eol"
+            data-translate="{{:: 'ovhManagerPccDashboardOptionsDescriptionsBasicOption_name_' + $ctrl.optionName + '_eol' }}"
+        ></p>
+        <ovh-manager-pcc-dashboard-component-activation-status
+            class="d-block mt-1"
+            data-status-name=":: $ctrl.status.name"
+        ></ovh-manager-pcc-dashboard-component-activation-status>
+    </dd>
+</dl>

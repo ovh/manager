@@ -1,0 +1,10 @@
+{
+  "netapp_volumes_delete": "Elimina il volume",
+  "netapp_volumes_delete_description": "Vuoi davvero eliminare il volume {{ volumeId }}?",
+  "netapp_volumes_delete_warning": "L'eliminazione di questo elemento comporta la cancellazione definitiva di tutti i dati ad esso associati. L’operazione non dà diritto ad alcun rimborso.",
+  "netapp_volumes_delete_enter_confirmation": "Inserisci \"DELETE\" in questo campo per confermare l’operazione",
+  "netapp_volumes_delete_cancel": "Annulla",
+  "netapp_volumes_delete_confirm": "Conferma",
+  "netapp_volumes_delete_success": "Il volume {{ volumeId }} è stato eliminato correttamente.",
+  "netapp_volumes_delete_error": "Si è verificato un errore durante l'eliminazione del volume: {{ message }}"
+}

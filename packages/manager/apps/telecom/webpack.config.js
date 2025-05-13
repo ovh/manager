@@ -1,4 +1,4 @@
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
@@ -56,13 +56,15 @@ module.exports = (env = {}) => {
             to: 'assets',
           },
           { from: foundNodeModulesFolder('angular-i18n'), to: 'angular-i18n' },
-          { from: path.resolve(__dirname, './src/**/*.html'), context: 'src' },
           {
-            from: path.resolve(
-              __dirname,
-              '../../../../node_modules/@ovh-ux/ng-ovh-line-diagnostics/dist/assets',
-            ),
-            to: 'assets',
+            from: path.resolve(__dirname, './src/**/*.html'),
+            context: 'src/',
+            filter: (resource) => {
+              if (resource === path.resolve(__dirname, 'src/index.html')) {
+                return false;
+              }
+              return true;
+            },
           },
         ],
       },
@@ -84,9 +86,24 @@ module.exports = (env = {}) => {
     },
     resolve: {
       mainFields: ['module', 'browser', 'main'],
+      fallback: {
+        stream: require.resolve('stream-browserify'),
+        os: require.resolve('os-browserify/browser'),
+      },
     },
     plugins: [
+      new webpack.ContextReplacementPlugin(
+        /moment[/\\]locale$/,
+        /de|en-gb|es|es-us|fr-ca|fr|it|pl|pt/,
+      ),
+      new webpack.ContextReplacementPlugin(
+        /flatpicker[/\\]dist[/\\]l10n$/,
+        /de|es|es|fr|it|pl|pt/,
+      ),
       new webpack.DefinePlugin({
+        __NODE_ENV__: process.env.NODE_ENV
+          ? `'${process.env.NODE_ENV}'`
+          : '"development"',
         __NG_APP_INJECTIONS__: getNgAppInjections(['EU']),
         WEBPACK_ENV: {
           production: !!env.production,

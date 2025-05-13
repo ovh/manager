@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_datastore_order_title": "Ordina un datastore",
+  "dedicatedCloud_datastore_order_info_EPCC": "Per personalizzare il Private Cloud è possibile aggiungere datastore. Verrai reindirizzato a una nuova finestra da cui sarà possibile completare l’ordine.",
+  "dedicatedCloud_datastore_order_select": "Seleziona un tipo di datastore:",
+  "dedicatedCloud_datastore_order_type": "Tipo",
+  "dedicatedCloud_datastore_order_price": "Prezzo",
+  "dedicatedCloud_datastore_order_quantity": "Quantità:",
+  "dedicatedCloud_datastore_order_confirm": "Conferma l'ordine",
+  "dedicatedCloud_datastore_order_loading_error": "Si è verificato un errore durante il caricamento delle informazioni dei datastore.",
+  "dedicatedCloud_datastore_order_info_MBM": "È possibile personalizzare la propria soluzione Essentials con datastore aggiuntivi. Verrai reindirizzato a una nuova finestra da cui sarà possibile completare l’ordine."
+}

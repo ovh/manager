@@ -1,0 +1,23 @@
+{
+  "netapp_onboarding_breadcrumb": "Onboarding",
+  "netapp_onboarding_title": "Enterprise File Storage",
+  "netapp_onboarding_description": "Enterprise File Storage, powered by NetApp. Connectez toutes vos solutions OVHcloud à un service de stockage de fichiers hautement performant, pour vos applications professionnelles les plus critiques.",
+  "netapp_onboarding_recommendation_1": "Nous vous recommandons de souscrire au moins au niveau de support Premium.",
+  "netapp_onboarding_recommendation_2": "En effet, pour les applications stratégiques nécessitant une prise en charge 24h/24 et 7j/7, vous devez pouvoir compter sur une assistance adaptée.",
+  "netapp_onboarding_order": "Commander",
+  "netapp_onboarding_manager_start_title": "Démarrage rapide via l'espace client OVHcloud",
+  "netapp_onboarding_manager_start_description": "Lancez le stockage de vos fichiers avec Enterprise File Storage via l’espace client OVHcloud.",
+  "netapp_onboarding_api_start_title": "Démarrage rapide via l’API OVHcloud",
+  "netapp_onboarding_api_start_description": "Lancez le stockage de vos fichiers avec Enterprise File Storage via l’API OVHcloud.",
+  "netapp_onboarding_volumes_title": "Gestion des Volumes",
+  "netapp_onboarding_volumes_description": "Dans ce guide, vous découvrirez la gestion des volumes de votre offre Enterprise File Storage.",
+  "netapp_onboarding_volumes_guides": "Guides",
+  "netapp_onboarding_storage_title": "Stockage et sauvegarde",
+  "netapp_onboarding_volume_acl_title": "Gestion des ACL",
+  "netapp_onboarding_volume_snapshots_title": "Gestion des Snapshots",
+  "netapp_onboarding_bullet_point_1": "Un service de stockage fichiers entièrement managé par OVHcloud, hautes performances et hautement disponible, basé sur le système de fichiers NetApp ONTAP.",
+  "netapp_onboarding_bullet_point_2": "Capacité de stockage de 1 à 58 To par service et provisionnement des performances garanties au téraoctet.",
+  "netapp_onboarding_bullet_point_2_emphasis": "64 Mo/s et 4000 IOPS par To de capacité provisionnée.",
+  "netapp_onboarding_bullet_point_3": "Disponibles pour différentes charges de travail Linux, environnements virtualisés via le protocole NFS.",
+  "netapp_onboarding_bullet_point_4": "Fournit un ensemble de fonctionnalités : création et gestion de vos snapshots, gestion des ACL, gestion des volumes…"
+}

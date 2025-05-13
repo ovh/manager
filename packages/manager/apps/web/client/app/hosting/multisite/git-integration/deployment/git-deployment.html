@@ -1,0 +1,18 @@
+<oui-modal
+    data-heading="{{:: 'hosting_multisite_git_deployment_title' | translate }}"
+    data-primary-label="{{ 'common_confirm' | translate }}"
+    data-primary-action="$ctrl.deployment()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+    data-primary-disabled="$ctrl.isLoading || $ctrl.isDeploying"
+>
+    <p data-translate="hosting_multisite_git_deployment_description"></p>
+
+    <oui-checkbox data-model="$ctrl.gitForcePush">
+        <oui-checkbox-label
+            ><span
+                data-translate="hosting_multisite_git_deployment_checkbox_label"
+            ></span
+        ></oui-checkbox-label>
+    </oui-checkbox>
+</oui-modal>

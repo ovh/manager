@@ -1,0 +1,16 @@
+{
+  "zimbra_redirections_from": "De",
+  "zimbra_redirections_to": "Vers",
+  "zimbra_redirections_account_title": "Gestion des redirections",
+  "zimbra_redirections_delete_modal_content": "Souhaitez-vous supprimer la redirection ?",
+  "zimbra_redirections_add_header": "Merci de compléter les informations pour la redirection.",
+  "zimbra_redirections_add_form_input_from": "De l'adresse",
+  "zimbra_redirections_add_form_input_to": "Vers l'adresse",
+  "zimbra_redirections_add_form_input_checkbox": "Conserver une copie de l'email chez OVHcloud",
+  "zimbra_redirections_add_success_message": "Votre demande de création de redirection a bien été prise en compte. Elle sera traitée d'ici quelques instants.",
+  "zimbra_redirections_add_error_message": "Votre demande de création de redirection n'a pas pu aboutir. {{ error }}",
+  "zimbra_redirections_edit_success_message": "Votre demande de modification de redirection a bien été prise en compte. Elle sera traitée d'ici quelques instants.",
+  "zimbra_redirections_edit_error_message": "Votre demande de modification de redirection n'a pas pu aboutir. {{ error }}",
+  "zimbra_redirections_delete_success_message": "Votre demande de suppression de redirection a bien été prise en compte. Elle sera traitée d'ici quelques instants.",
+  "zimbra_redirections_delete_error_message": "Votre demande de suppression de redirection n'a pas pu aboutir. {{ error }}"
+}

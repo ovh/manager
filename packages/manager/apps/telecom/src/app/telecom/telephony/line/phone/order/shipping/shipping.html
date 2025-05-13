@@ -1,0 +1,47 @@
+<header class="widget-presentation-header">
+    <h2
+        class="widget-presentation-title"
+        data-translate="telephony_line_phone_order_shipping_title"
+    ></h2>
+</header>
+
+<div class="row" data-ng-show="!$ctrl.loading.init">
+    <div class="col-xs-12 col-md-6">
+        <h3 data-translate="telephony_line_phone_order_shipping_contact"></h3>
+        <ovh-contact
+            data-ng-model="$ctrl.order.contact"
+            data-ovh-contact-choice-options="$ctrl.contactChoiceOptions"
+            data-ovh-contact-init-deferred="$ctrl.contactDeferred"
+        >
+            <oui-spinner></oui-spinner>
+        </ovh-contact>
+    </div>
+</div>
+
+<h3 class="mt-4" data-translate="telephony_line_phone_order_shipping_mode"></h3>
+<tuc-shipping-mode-selection
+    data-ng-model="$ctrl.order.shipping.mode"
+    data-tuc-shipping-mode-selection-relay="$ctrl.order.shipping.relay"
+    data-tuc-shipping-mode-selection-options="$ctrl.order.shipping.options"
+>
+</tuc-shipping-mode-selection>
+
+<hr class="oui-horizontal-line_dark mt-3" />
+
+<div class="d-flex justify-content-between">
+    <button
+        type="button"
+        class="oui-button oui-button_secondary oui-button_icon-left mt-2"
+        data-ng-click="$ctrl.back()"
+    >
+        <span data-translate="telephony_line_phone_order_order_prev"></span>
+    </button>
+    <button
+        type="button"
+        class="oui-button oui-button_primary oui-button_icon-right mt-2"
+        data-ng-disabled="!$ctrl.order.contact || ($ctrl.order.shipping.mode === 'mondialRelay' && !$ctrl.order.shipping.relay)"
+        data-ng-click="$ctrl.next()"
+    >
+        <span data-translate="telephony_line_phone_order_order_next"></span>
+    </button>
+</div>

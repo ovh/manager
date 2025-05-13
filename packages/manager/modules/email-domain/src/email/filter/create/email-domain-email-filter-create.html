@@ -1,0 +1,349 @@
+<div data-ng-controller="EmailsCreateFilterCtrl as ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="createFilter"
+        data-wizard-title="'email_tab_popover_filter_create' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="!ctrl.loading && ctrl.createFilterForm.$valid && ctrl.filterRuleCheck()"
+        >
+            <p data-translate="email_tab_modal_filter_create_info"></p>
+
+            <div class="text-center" data-ng-if="ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!ctrl.loading">
+                <p>
+                    <small class="text-danger">*</small>
+                    <small data-translate="emails_required_fields"></small>
+                </p>
+
+                <form name="ctrl.createFilterForm">
+                    <fieldset class="form-horizontal mt-4">
+                        <legend
+                            data-translate="email_tab_modal_filter_create_info_heading"
+                        ></legend>
+                        <div
+                            class="form-group"
+                            data-ng-class="{
+                            'has-error': ctrl.createFilterForm.filterName.$dirty && ctrl.createFilterForm.filterName.$invalid,
+                            'has-success': ctrl.createFilterForm.filterName.$dirty && ctrl.createFilterForm.filterName.$valid
+                        }"
+                        >
+                            <label
+                                class="control-label col-md-4 required"
+                                for="txt-filter-name"
+                                data-translate="email_tab_modal_filter_create_name"
+                            ></label>
+                            <div class="col-md-6">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="txt-filter-name"
+                                    maxlength="50"
+                                    name="filterName"
+                                    required
+                                    data-ng-change="ctrl.filterNameCheck(ctrl.createFilterForm.filterName)"
+                                    data-ng-model="ctrl.model.filterName"
+                                />
+                                <small
+                                    class="help-block"
+                                    data-translate="email_tab_modal_filter_create_name_conditions"
+                                    data-ng-if="ctrl.createFilterForm.filterName.$dirty && ctrl.createFilterForm.filterName.$invalid"
+                                ></small>
+                            </div>
+                        </div>
+
+                        <div
+                            class="form-group"
+                            data-ng-class="{
+                            'has-error': ctrl.createFilterForm.filterPriority.$dirty && ctrl.createFilterForm.filterPriority.$invalid,
+                            'has-success': ctrl.createFilterForm.filterPriority.$dirty && ctrl.createFilterForm.filterPriority.$valid
+                        }"
+                        >
+                            <label
+                                class="control-label col-md-4 required"
+                                for="txt-filter-priority"
+                                data-translate="email_tab_modal_filter_create_priority"
+                            ></label>
+                            <div class="col-md-6">
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="txt-filter-priority"
+                                    name="filterPriority"
+                                    required
+                                    data-ng-change="ctrl.constructor.filterPriorityCheck(ctrl.createFilterForm.filterPriority)"
+                                    data-ng-min="0"
+                                    min="0"
+                                    data-ng-model="ctrl.model.filterPriority"
+                                />
+                                <small
+                                    class="help-block"
+                                    data-translate="email_tab_modal_create_filter_number_error"
+                                    data-ng-if="ctrl.createFilterForm.filterPriority.$dirty && ctrl.createFilterForm.filterPriority.$invalid"
+                                ></small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-offset-4 pl-lg-3">
+                            <oui-checkbox
+                                id="chk-filter-active"
+                                name="filterActive"
+                                data-model="ctrl.model.filterActive"
+                                ><span
+                                    data-translate="email_tab_modal_filter_create_active"
+                                ></span>
+                            </oui-checkbox>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-inline mt-5">
+                        <legend
+                            class="required"
+                            data-translate="email_tab_modal_filter_create_rules_heading"
+                        ></legend>
+                        <div
+                            class="row mb-1"
+                            data-ng-repeat="rule in ctrl.model.rules track by $index"
+                        >
+                            <div class="form-group col-md-4">
+                                <label
+                                    class="sr-only"
+                                    for="filter-create-header-{{$index}}"
+                                    data-translate="email_tab_modal_filter_create_header"
+                                ></label>
+                                <div
+                                    class="oui-select mb-0"
+                                    data-ng-if="rule.headerSelect !== 'other'"
+                                >
+                                    <select
+                                        class="oui-select__input"
+                                        data-ng-attr-id="{{ 'filter-create-header-' + $index }}"
+                                        data-ng-model="rule.headerSelect"
+                                        data-ng-options="header as ('email_tab_modal_filter_create_header_' + header | translate) for header in ctrl.headers track by header"
+                                    >
+                                        <option
+                                            value
+                                            disabled
+                                            data-translate="email_tab_modal_filter_create_header"
+                                        ></option>
+                                    </select>
+                                    <span
+                                        class="oui-icon oui-icon-chevron-down"
+                                        aria-hidden="true"
+                                    ></span>
+                                </div>
+                                <div
+                                    class="input-group w-100"
+                                    data-ng-if="rule.headerSelect === 'other'"
+                                >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        data-ng-attr-id="{{ 'filter-create-header-' + $index }}"
+                                        maxlength="50"
+                                        placeholder="{{:: 'email_tab_modal_filter_create_header' | translate }}"
+                                        required
+                                        data-ng-model="rule.header"
+                                    />
+                                    <div class="input-group-btn">
+                                        <button
+                                            class="btn btn-default"
+                                            type="button"
+                                            data-ng-click="rule.headerSelect = null"
+                                        >
+                                            <span
+                                                class="fa fa-times"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label
+                                    class="sr-only"
+                                    for="filter-create-rule-{{$index}}"
+                                    data-translate="email_tab_modal_filter_create_rule"
+                                ></label>
+                                <div class="oui-select mb-0">
+                                    <select
+                                        class="oui-select__input"
+                                        id="filter-create-rule-{{$index}}"
+                                        data-ng-model="rule.operand"
+                                        data-ng-options="operand as ('email_tab_modal_filter_create_rule_' + operand | translate) for operand in ctrl.operands track by operand"
+                                    >
+                                        <option
+                                            value
+                                            disabled
+                                            data-translate="email_tab_modal_filter_create_rule"
+                                        ></option>
+                                    </select>
+                                    <span
+                                        class="oui-icon oui-icon-chevron-down"
+                                        aria-hidden="true"
+                                    ></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label
+                                    class="sr-only"
+                                    for="filter-create-value-{{$index}}"
+                                    data-translate="email_tab_modal_filter_create_value"
+                                ></label>
+                                <input
+                                    type="text"
+                                    class="form-control w-100"
+                                    id="filter-create-value-{{$index}}"
+                                    maxlength="50"
+                                    placeholder="{{:: 'email_tab_modal_filter_create_value' | translate }}"
+                                    data-ng-model="rule.value"
+                                />
+                            </div>
+
+                            <div
+                                class="form-group col-md-1 mt-2 px-0 text-nowrap"
+                            >
+                                <button
+                                    class="btn btn-icon"
+                                    type="button"
+                                    data-ng-click="ctrl.addRule(rule)"
+                                >
+                                    <span
+                                        class="fa fa-plus"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                                <button
+                                    class="btn btn-icon"
+                                    type="button"
+                                    data-ng-click="ctrl.removeRule(rule)"
+                                    data-ng-if="ctrl.model.rules.length > 1"
+                                >
+                                    <span
+                                        class="fa fa-minus"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-horizontal mt-5">
+                        <legend
+                            data-translate="email_tab_modal_filter_create_action_heading"
+                        ></legend>
+                        <div class="form-group">
+                            <label
+                                class="control-label col-md-4 required"
+                                for="select-filter-action"
+                                data-translate="email_tab_modal_filter_create_action"
+                            ></label>
+                            <div class="col-md-6">
+                                <div class="oui-select mb-0">
+                                    <select
+                                        class="oui-select__input"
+                                        id="select-filter-action"
+                                        name="filterAction"
+                                        required
+                                        data-ng-change="ctrl.model.filterActionParam = ''"
+                                        data-ng-model="ctrl.model.filterAction"
+                                        data-ng-options="action as ('email_tab_modal_filter_create_action_' + action | translate) for action in ctrl.actions track by action"
+                                    >
+                                        <option
+                                            value
+                                            disabled
+                                            data-translate="emails_select_placeholder"
+                                        ></option>
+                                    </select>
+                                    <span
+                                        class="oui-icon oui-icon-chevron-down"
+                                        aria-hidden="true"
+                                    ></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- redirect to address -->
+                        <div
+                            class="form-group"
+                            data-ng-class="{
+                                'has-error': ctrl.createFilterForm.filterActionParam.$dirty && ctrl.createFilterForm.filterActionParam.$invalid,
+                                'has-success': ctrl.createFilterForm.filterActionParam.$dirty && ctrl.createFilterForm.filterActionParam.$valid }"
+                            data-ng-if="ctrl.model.filterAction === 'redirect'"
+                        >
+                            <label
+                                class="control-label col-md-4 required"
+                                for="txt-filter-actionParam-redirect"
+                                data-translate="email_tab_modal_filter_create_actionParam_redirect"
+                            ></label>
+                            <div class="col-md-8">
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="txt-filter-actionParam-redirect"
+                                    name="filterActionParam"
+                                    required
+                                    data-ng-change="ctrl.constructor.filterActionRedirectCheck(ctrl.createFilterForm.filterActionParam)"
+                                    data-ng-model="ctrl.model.filterActionParam"
+                                />
+                                <small
+                                    class="help-block"
+                                    data-translate="email_tab_modal_redirection_create_email_error"
+                                    data-ng-if="ctrl.createFilterForm.filterActionParam.$dirty && ctrl.createFilterForm.filterActionParam.$invalid"
+                                ></small>
+                            </div>
+                        </div>
+
+                        <!-- redirect to account -->
+                        <div
+                            class="form-group"
+                            data-ng-if="ctrl.model.filterAction === 'account'"
+                        >
+                            <label
+                                class="control-label col-md-4 required"
+                                for="select-actionParam-account"
+                                data-translate="email_tab_modal_filter_create_actionParam_account"
+                            ></label>
+                            <div class="col-md-8">
+                                <div class="oui-select mb-0">
+                                    <select
+                                        class="oui-select__input"
+                                        id="select-actionParam-account"
+                                        name="filterActionParam"
+                                        required
+                                        data-ng-model="ctrl.model.filterActionParam"
+                                        data-ng-options="account for account in ctrl.accounts track by account"
+                                    >
+                                    </select>
+                                    <span
+                                        class="oui-icon oui-icon-chevron-down"
+                                        aria-hidden="true"
+                                    ></span>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div data-wizard-step-help>
+                <h3
+                    data-translate="email_tab_modal_create_filter_help_title"
+                ></h3>
+                <h4
+                    data-translate="email_tab_modal_create_filter_help_priority_title"
+                ></h4>
+                <p
+                    data-translate="email_tab_modal_create_filter_help_priority_desc"
+                ></p>
+            </div>
+        </div>
+    </div>
+</div>

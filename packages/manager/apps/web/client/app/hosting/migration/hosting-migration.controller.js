@@ -4,6 +4,7 @@ import indexOf from 'lodash/indexOf';
 angular.module('App').controller(
   'HostingMigrateMyOvhOrgCtrl',
   class HostingMigrateMyOvhOrgCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, Hosting) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

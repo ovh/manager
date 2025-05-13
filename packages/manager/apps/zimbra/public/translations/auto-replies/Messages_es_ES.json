@@ -1,0 +1,10 @@
+{
+  "zimbra_auto_replies_name": "Dirección",
+  "zimbra_auto_replies_from": "Desde",
+  "zimbra_auto_replies_until": "Hasta el",
+  "zimbra_auto_replies_copyTo": "Copiar en",
+  "zimbra_auto_replies_add_cta": "Crear un contestador",
+  "zimbra_auto_replies_account_title": "Gestión de los contestadores",
+  "zimbra_auto_replies_status": "Estado",
+  "zimbra_auto_replies_delete_modal_content": "¿Seguro/a que quiere eliminar el contestador?"
+}

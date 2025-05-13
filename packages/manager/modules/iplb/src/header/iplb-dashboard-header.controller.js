@@ -1,61 +1,64 @@
-import { GUIDE_HOME_URL } from '../iplb-url.constants';
+import { IPLB_GUIDES } from '../iplb.constant';
 
 export default class IpLoadBalancerDashboardHeaderCtrl {
   /* @ngInject */
   constructor(
+    $injector,
     $stateParams,
     $translate,
     CucControllerHelper,
     IpLoadBalancerHomeService,
-    ovhDocUrl,
-    SidebarMenu,
-    TranslateService,
+    constants,
+    coreConfig,
   ) {
+    this.$injector = $injector;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.CucControllerHelper = CucControllerHelper;
     this.IpLoadBalancerHomeService = IpLoadBalancerHomeService;
-    this.ovhDocUrl = ovhDocUrl;
-    this.SidebarMenu = SidebarMenu;
     this.serviceName = $stateParams.serviceName;
-    this.TranslateService = TranslateService;
+    this.constants = constants;
+    this.coreConfig = coreConfig;
 
     //  No error handling since we don't want to break anything for a title.
     this.configuration = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
         this.IpLoadBalancerHomeService.getConfiguration(this.serviceName),
       successHandler: () => {
-        this.menuItem.title = this.configuration.data.displayName;
+        if (this.$injector.has('shellClient')) {
+          const shellClient = this.$injector.get('shellClient');
+          shellClient.ux.updateMenuSidebarItemLabel(
+            this.serviceName,
+            this.configuration.data.displayName,
+          );
+        }
       },
     });
   }
 
   $onInit() {
-    this.menuItem = this.SidebarMenu.getItemById(this.serviceName);
-
-    //  If the menu is not yet loaded, we fetch IPLB's displayName.  Dirty patch.
-    if (!this.menuItem) {
-      this.menuItem = { title: this.serviceName };
-      this.configuration.load();
-    }
-
+    this.user = this.coreConfig.getUser();
     this.initGuides();
   }
 
   initGuides() {
-    this.guides = {};
-    this.guides.title = this.$translate.instant('iplb_guides');
-    this.guides.list = [
+    const url = IPLB_GUIDES[this.user.ovhSubsidiary] || IPLB_GUIDES.DEFAULT;
+    this.guides = [
       {
-        name: this.$translate.instant('iplb_guides_title'),
-        url: this.ovhDocUrl.getDocUrl('load-balancer'),
+        name: this.$translate.instant('iplb_guides_link1'),
+        url: url.link1,
+        external: true,
+      },
+      {
+        name: this.$translate.instant('iplb_guides_link2'),
+        url: url.link2,
+        external: true,
+      },
+      {
+        name: this.$translate.instant('iplb_guides_link3'),
+        url: url.link3,
         external: true,
       },
     ];
-    this.guides.footer = {
-      name: this.$translate.instant('iplb_guide_footer'),
-      url: GUIDE_HOME_URL,
-      external: true,
-    };
   }
 }

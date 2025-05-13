@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_instances_instance_start_title": "Uruchomienie instancji",
+  "pci_projects_project_instances_instance_start_submit_label": "Zatwierdź",
+  "pci_projects_project_instances_instance_start_cancel_label": "Anuluj",
+  "pci_projects_project_instances_instance_start_content": "Nastąpi uruchomienie Twojej instancji {{instance}}.",
+  "pci_projects_project_instances_instance_start_success_message": "Instancja {{instance}} została uruchomiona.",
+  "pci_projects_project_instances_instance_start_error_message": "Wystąpił błąd podczas uruchamiania instancji {{instance}}: {{message}}."
+}

@@ -1,8 +1,17 @@
-angular.module('Module.license').config(($stateProvider) => {
+import template from './license-order.html';
+import controller from './license-order.controller';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.license.order', {
     url: '/order',
-    templateUrl: 'license/order/license-order.html',
-    controller: 'LicenseOrderCtrl',
-    translations: { value: ['..'], format: 'json' },
+    template,
+    controller,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('license_order'),
+    },
+    atInternet: {
+      rename: 'dedicated::license::dashboard::order',
+    },
   });
-});
+};

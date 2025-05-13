@@ -16,5 +16,7 @@
   "telephony_group_billing_deposit_movement_error_amount_number": "Veuillez saisir un montant valide.",
   "telephony_group_billing_deposit_movement_error_amount_min": "La valeur minimum de ce champ est {{ min }}.",
   "telephony_group_billing_deposit_movement_error_amount_max": "La valeur maximum de ce champ est {{ max }}.",
-  "telephony_group_billing_deposit_movement_capability_error": "Oups ! Nous n'avons pas pu vérifier les groupes de facturation transférables."
+  "telephony_group_billing_deposit_movement_capability_error": "Oups ! Nous n'avons pas pu vérifier les groupes de facturation transférables.",
+  "telephony_group_billing_deposit_movement_breadcrumb": "Transfer Ihrer Sicherheitsleistungen",
+  "telephony_group_billing_deposit_movement_error_destination": "Ihr Garantie-Depot kann nicht auf diese Gruppe übertragen werden"
 }

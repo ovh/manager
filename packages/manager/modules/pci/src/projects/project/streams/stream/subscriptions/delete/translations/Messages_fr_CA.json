@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_subscriptions_delete_title": "Supprimer un abonnement",
-  "pci_projects_project_streams_stream_subscriptions_delete_submit_label": "Confirmer",
-  "pci_projects_project_streams_stream_subscriptions_delete_cancel_label": "Annuler",
-  "pci_projects_project_streams_stream_subscriptions_delete_content": "Souhaitez-vous supprimer l'abonnement {{subscription}} ?",
-  "pci_projects_project_streams_stream_subscriptions_delete_success_message": "L'abonnement {{subscription}} a été supprimé.",
-  "pci_projects_project_streams_stream_subscriptions_delete_error_delete": "Une erreur est survenue lors de la suppression de l'abonnement {{ subscription }} : {{ message }}."
-}

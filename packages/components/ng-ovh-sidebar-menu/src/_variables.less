@@ -1,0 +1,102 @@
+@import '@ovh-ux/ui-kit/dist/less/_tokens';
+
+@sidebar-background-color: #fff;
+@sidebar-background-color_level-1: #fff;
+@sidebar-background-color_level-2: #fff;
+@sidebar-background-color_level-3: #fff;
+@sidebar-background-color_level-4: #fff;
+@sidebar-box-shadow: 0 6px 6px rgba(0, 14, 156, 0.2);
+@sidebar-font-color: #113f6d;
+@sidebar-height: 100%;
+@sidebar-max-width: rem-calc(300);
+@sidebar-offset-top: 0;
+@sidebar-padding: 0 rem-calc(10);
+@sidebar-z-index: @base-z-index-sidebar;
+@sidebar-z-index_fixed: @base-z-index-panel;
+
+// Actions
+@sidebar-actions-margin: rem-calc(12) rem-calc(6);
+
+// Actions - Button
+@sidebar-actions-button-background-color: #2859c0;
+@sidebar-actions-button-background-color_hover: #1c3193;
+@sidebar-actions-button-background-color_active: #fff;
+@sidebar-actions-button-border-color: #2859c0;
+@sidebar-actions-button-border-color_hover: #1c3193;
+@sidebar-actions-button-border-color_active: #2859c0;
+@sidebar-actions-button-border-radius: rem-calc(6);
+@sidebar-actions-button-border-width: 2px;
+@sidebar-actions-button-font-color: #fff;
+@sidebar-actions-button-font-color_hover: #fff;
+@sidebar-actions-button-font-color_active: #2859c0;
+@sidebar-actions-button-font-size: rem-calc(16);
+@sidebar-actions-button-font-weight: 600;
+@sidebar-actions-button-height: rem-calc(40);
+@sidebar-actions-button-icon-size: rem-calc(12);
+@sidebar-actions-button-padding: 0 rem-calc(12);
+@sidebar-actions-button-text-padding: 0 rem-calc(8);
+@sidebar-actions-button-width: 100%;
+
+// Actions - Menu
+@sidebar-actions-menu-margin: 0;
+@sidebar-actions-menu-padding: 0;
+@sidebar-actions-menu-border-color: #bbbdbf;
+@sidebar-actions-menu-border-width: 1px;
+
+// Menu - Header
+@sidebar-header-border-bottom: 2px solid #e6f5fc;
+@sidebar-header-font-color: #113f6d;
+@sidebar-header-font-weight: 700;
+@sidebar-header-padding: rem-calc(6) 0;
+
+// Menu - Group
+@sidebar-group-form-padding: rem-calc(10) 0 rem-calc(10) rem-calc(10);
+
+@sidebar-group-search-background-color: transparent;
+@sidebar-group-search-background-color_hover: #eff9fd;
+@sidebar-group-search-border-color: #89d7f8;
+@sidebar-group-search-border-color_hover: #89d7f8;
+@sidebar-group-search-border-radius: 0;
+@sidebar-group-search-border-width: 2px;
+@sidebar-group-search-font-color: #1c3193;
+@sidebar-group-search-height: rem-calc(32);
+@sidebar-group-search-padding: 0 rem-calc(8) 0 rem-calc(36);
+@sidebar-group-search-icon-color: #1c3193;
+@sidebar-group-search-icon-position-left: rem-calc(10);
+@sidebar-group-search-icon-position-top: rem-calc(6);
+@sidebar-group-search-icon-size: rem-calc(20);
+@sidebar-group-search-width: 100%;
+
+@sidebar-group-placeholder-padding: rem-calc(16) 0;
+
+@sidebar-group-scroll-max-height: 35vh;
+@sidebar-group-scroll-max-height_fallback: rem-calc(400);
+
+// Menu - Item
+@sidebar-item-background-color: transparent;
+@sidebar-item-background-color_active: #e6f5fc;
+@sidebar-item-border-color: #2859c0;
+@sidebar-item-border-width: 3px;
+@sidebar-item-font-color: #113f6d;
+@sidebar-item-font-color_active: #2859c0;
+@sidebar-item-font-weight: 400;
+@sidebar-item-font-weight_active: 600;
+@sidebar-item-line-height: rem-calc(20);
+@sidebar-item-padding: rem-calc(6);
+
+@sidebar-item-arrow-width: rem-calc(20);
+@sidebar-item-arrow-size: rem-calc(12);
+@sidebar-item-arrow-spacing: rem-calc(5);
+
+@sidebar-item-icon-width: rem-calc(20);
+@sidebar-item-icon-size: rem-calc(20);
+@sidebar-item-icon-spacing: rem-calc(5);
+
+@sidebar-item-prefix-size: rem-calc(10);
+@sidebar-item-prefix-spacing: rem-calc(5);
+
+// Menu - Sub Menu
+@sidebar-sub-menu-padding-left: calc(
+  @sidebar-item-arrow-width + @sidebar-item-arrow-spacing +
+    @sidebar-item-padding
+);

@@ -1,0 +1,400 @@
+<form
+    class="telephony-scheduler-events"
+    data-ng-submit="$ctrl.manageSave()"
+    novalidate
+>
+    <div class="event-wrapper">
+        <div
+            class="event-pages-wrapper"
+            data-ng-class="{ move: $ctrl.model.specialEdit.move }"
+        >
+            <!-- EVENT DEFINITION -->
+            <section class="page-section page-left event-page">
+                <header>
+                    <h2
+                        data-translate="{{ $ctrl.event.status === 'CREATING' ? 'telephony_scheduler_events_new_title' : 'telephony_scheduler_events_edit_title' }}"
+                    ></h2>
+                </header>
+
+                <section>
+                    <div class="section-group">
+                        <!-- DURATION -->
+                        <div class="section-item event-duration">
+                            <div class="row">
+                                <!-- TIME SLOT BTN -->
+                                <button
+                                    type="button"
+                                    class="col-xs-5 text-center btn btn-link"
+                                    data-ng-class="{ 'font-weight-bold': !$ctrl.event.allDay }"
+                                    data-ng-click="$ctrl.setAllDay(false)"
+                                    data-translate="telephony_scheduler_events_time_slot"
+                                ></button>
+                                <!-- TIME SLOT BTN -->
+
+                                <div class="col-xs-2 mt-3 px-2">
+                                    <div class="oui-switch">
+                                        <label
+                                            class="oui-switch__label-container"
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                class="oui-switch__checkbox"
+                                                data-ng-model="$ctrl.event.allDay"
+                                                data-ng-change="$ctrl.manageOnAllDayChange()"
+                                            />
+                                            <span
+                                                class="oui-switch__slider"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- ALL DAY BTN -->
+                                <button
+                                    type="button"
+                                    class="col-xs-5 text-center btn btn-link"
+                                    data-ng-class="{ 'font-weight-bold': $ctrl.event.allDay }"
+                                    data-ng-click="$ctrl.setAllDay(true)"
+                                    data-translate="telephony_scheduler_events_all_day"
+                                ></button>
+                                <!-- ALL DAY BTN -->
+                            </div>
+                        </div>
+                        <!-- DURATION -->
+                    </div>
+
+                    <div class="section-group">
+                        <!-- TITLE -->
+                        <div class="section-item event-title form-group">
+                            <label
+                                for="title"
+                                class="control-label"
+                                data-translate="telephony_scheduler_events_title"
+                            >
+                            </label>
+                            <input
+                                type="text"
+                                id="title"
+                                class="form-control"
+                                data-ng-model="$ctrl.event.title"
+                                data-translate-attr="{ placeholder: 'telephony_scheduler_events_title' }"
+                            />
+                        </div>
+                        <!-- TITLE -->
+
+                        <!-- CATEGORY -->
+                        <button
+                            type="button"
+                            class="section-item w-100 text-left"
+                            data-ng-click="$ctrl.model.specialEdit = { attr: 'categories', move: true }"
+                            data-ng-disabled="!$ctrl.event.categories"
+                        >
+                            <label
+                                data-translate="telephony_scheduler_events_category"
+                            ></label>
+                            <div
+                                class="event-category telephony-scheduler-time-condition-slots"
+                                data-ng-if="$ctrl.event.categories"
+                            >
+                                <voip-time-condition-slot
+                                    data-time-condition-slot="$ctrl.convertCategoryToSlot()"
+                                >
+                                </voip-time-condition-slot>
+                            </div>
+                            <div data-ng-if="!$ctrl.event.categories">
+                                <em
+                                    data-translate="telephony_scheduler_events_no_categories_available"
+                                ></em>
+                            </div>
+                            <div class="chevron-right">
+                                <div class="chevron-wrapper">
+                                    <i
+                                        class="ovh-font ovh-font-arrow-right"
+                                    ></i>
+                                </div>
+                            </div>
+                        </button>
+                        <!-- CATEGORY -->
+
+                        <!-- FROM -->
+                        <div
+                            class="section-item event-date"
+                            data-ng-class="{ 'all-day': $ctrl.event.allDay }"
+                        >
+                            <label
+                                data-translate="telephony_scheduler_events_from"
+                            ></label>
+                            <div class="row">
+                                <!-- FROM DATE -->
+                                <div class="col-xs-7 event-date-date">
+                                    <div class="input-group">
+                                        <input
+                                            type="text"
+                                            name="eventDateFrom"
+                                            id="dateStart"
+                                            class="form-control"
+                                            data-ng-model="$ctrl.parseFromDate"
+                                            data-ng-model-options="{ getterSetter: true }"
+                                            data-ng-focus="$ctrl.model.specialEdit = { attr: 'dateStart', move: true }"
+                                            readonly
+                                        />
+                                        <label
+                                            class="input-group-addon"
+                                            for="dateStart"
+                                        >
+                                            <i class="fa fa-calendar"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- FROM DATE -->
+
+                                <!-- FROM HOUR -->
+                                <div class="col-xs-5 event-date-hour">
+                                    <select
+                                        name="event-hour-from"
+                                        class="form-control"
+                                        data-ng-model="$ctrl.parseFromHour"
+                                        data-ng-model-options="{ getterSetter: true }"
+                                        data-ng-change="$ctrl.manageOnFromHourStart()"
+                                        data-ng-options="slot as slot for slot in $ctrl.timeSlots"
+                                    >
+                                    </select>
+                                </div>
+                                <!-- FROM HOUR -->
+                            </div>
+                        </div>
+                        <!-- FROM -->
+
+                        <!-- TO -->
+                        <div
+                            class="section-item event-date"
+                            data-ng-class="{ 'all-day': $ctrl.event.allDay }"
+                        >
+                            <label
+                                data-translate="telephony_scheduler_events_to"
+                            ></label>
+                            <div class="row">
+                                <!-- TO DATE -->
+                                <div class="col-xs-7 event-date-date">
+                                    <div class="input-group">
+                                        <input
+                                            type="text"
+                                            name="eventDateTo"
+                                            id="dateEnd"
+                                            class="form-control"
+                                            data-ng-model="$ctrl.parseToDate"
+                                            data-ng-model-options="{ getterSetter: true }"
+                                            data-ng-focus="$ctrl.model.specialEdit = { attr: 'dateEnd', move: true }"
+                                            readonly
+                                        />
+                                        <label
+                                            class="input-group-addon"
+                                            for="dateEnd"
+                                        >
+                                            <i class="fa fa-calendar"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- TO DATE -->
+
+                                <!-- TO HOUR -->
+                                <div class="col-xs-5 event-date-hour">
+                                    <select
+                                        name="event-hour-to"
+                                        class="form-control"
+                                        data-ng-model="$ctrl.parseToHour"
+                                        data-ng-model-options="{ getterSetter: true }"
+                                        data-ng-options="slot as slot for slot in $ctrl.getAvailableEndSlots()"
+                                    >
+                                    </select>
+                                </div>
+                                <!-- TO HOUR -->
+                            </div>
+                        </div>
+                        <!-- TO -->
+
+                        <!-- DESCRIPTION -->
+                        <div class="section-item event-description form-group">
+                            <label
+                                for="description"
+                                class="control-label"
+                                data-translate="telephony_scheduler_events_description"
+                            >
+                            </label>
+                            <textarea
+                                id="description"
+                                name="eventDescription"
+                                class="form-control"
+                                data-ng-model="$ctrl.event.description"
+                                data-translate-attr="{ placeholder: 'telephony_scheduler_events_description' }"
+                            >
+                            </textarea>
+                        </div>
+                        <!-- DESCRIPTION -->
+                    </div>
+                </section>
+
+                <footer class="float-sm-right">
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        data-translate="{{ $ctrl.event.status === 'CREATING' ? 'telephony_scheduler_events_create' : 'telephony_scheduler_events_save' }}"
+                        data-ng-disabled="!$ctrl.event.hasChange() || !$ctrl.event.categories"
+                    ></button>
+
+                    <button
+                        type="button"
+                        class="btn btn-danger mr-sm-4 float-left"
+                        data-ng-click="$ctrl.manageDeleteConfirmation()"
+                        data-ng-if="$ctrl.event.status !== 'CREATING'"
+                        data-translate="delete"
+                    ></button>
+
+                    <button
+                        type="reset"
+                        class="btn btn-default mr-sm-2 float-left"
+                        data-ng-click="$ctrl.manageCancel()"
+                        data-translate="cancel"
+                    ></button>
+                </footer>
+            </section>
+            <!-- EVENT DEFINITION -->
+
+            <!-- EVENT DATE TIME -->
+            <section
+                class="page-section page-right event-page"
+                data-ng-switch="$ctrl.model.specialEdit.attr"
+            >
+                <div
+                    class="scheduler-overlay w-100 h-100"
+                    data-ng-if="$ctrl.loading.init"
+                >
+                    <div class="scheduler-overlay-backdrop w-100 h-100"></div>
+                    <div
+                        class="scheduler-overlay-loader d-flex flex-column align-items-center justify-content-center"
+                    >
+                        <oui-spinner></oui-spinner>
+                    </div>
+                </div>
+
+                <header>
+                    <button
+                        type="button"
+                        class="btn btn-link"
+                        data-ng-click="$ctrl.model.specialEdit.move = false"
+                        data-translate-attr="{ title: 'telephony_scheduler_events_back' }"
+                    >
+                        <i
+                            class="ovh-font ovh-font-arrow-left"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+
+                    <h2
+                        data-ng-switch-when="categories"
+                        data-translate="telephony_scheduler_events_categories_choice"
+                    ></h2>
+
+                    <h2
+                        data-ng-switch-when="delete"
+                        data-translate="telephony_scheduler_events_delete_confirm"
+                    ></h2>
+
+                    <h2
+                        data-ng-switch-default
+                        data-translate="{{ $ctrl.model.specialEdit.attr === 'dateStart' ? 'telephony_scheduler_events_date_start_edit' : 'telephony_scheduler_events_date_end_edit' }}"
+                    ></h2>
+                </header>
+
+                <!-- CATEGORIES -->
+                <section
+                    data-ng-switch-when="categories"
+                    class="telephony-scheduler-time-condition-slots"
+                >
+                    <div class="section-group form-group">
+                        <div
+                            class="section-item"
+                            data-ng-repeat="category in $ctrl.categories track by $index"
+                            data-ng-class="{ 'text-muted': $ctrl.isCategoryAvailable(category) && category !== $ctrl.event.categories }"
+                        >
+                            <div class="oui-radio">
+                                <input
+                                    type="radio"
+                                    class="oui-radio__input"
+                                    name="eventCategories-{{ $index }}"
+                                    id="eventCategories-{{ $index }}"
+                                    data-ng-model="$ctrl.event.categories"
+                                    data-ng-value="category"
+                                    data-ng-change="$ctrl.model.specialEdit.move = false"
+                                    data-ng-disabled="$ctrl.isCategoryAvailable(category) && category !== $ctrl.event.categories"
+                                />
+                                <label
+                                    class="oui-radio__label-container"
+                                    for="eventCategories-{{ $index }}"
+                                >
+                                    <span class="oui-radio__label">
+                                        <span class="oui-radio__icon"></span>
+                                        <span class="oui-radio__text">
+                                            <voip-time-condition-slot
+                                                data-time-condition-slot="$ctrl.convertCategoryToSlot(category)"
+                                            >
+                                            </voip-time-condition-slot>
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- CATEGORIES -->
+
+                <!-- DELETE CONFIRM -->
+                <section data-ng-switch-when="delete">
+                    <div class="section-group">
+                        <div class="section-item">
+                            <p
+                                data-translate="telephony_scheduler_events_delete_explain"
+                            ></p>
+
+                            <footer class="text-right">
+                                <button
+                                    type="button"
+                                    class="btn btn-primary float-right ml-md-2"
+                                    data-ng-click="$ctrl.manageDelete()"
+                                    data-translate="common_confirm"
+                                ></button>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    data-ng-click="$ctrl.model.specialEdit.move = false"
+                                    data-translate="cancel"
+                                ></button>
+                            </footer>
+                        </div>
+                    </div>
+                </section>
+                <!-- DELETE CONFIRM -->
+
+                <!-- DATE START / END -->
+                <section data-ng-switch-default>
+                    <div class="section-group">
+                        <div class="section-item">
+                            <div
+                                data-uib-datepicker
+                                class="pretty-date-picker"
+                                data-datepicker-options="$ctrl.datepickerOptions"
+                                data-ng-change="$ctrl.manageOnDateChange()"
+                                data-ng-model="$ctrl.rightPageDateModel"
+                                data-ng-model-options="{ getterSetter: true }"
+                            ></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- DATE START / END -->
+            </section>
+            <!-- EVENT DATE TIME -->
+        </div>
+    </div>
+</form>

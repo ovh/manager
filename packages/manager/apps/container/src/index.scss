@@ -1,0 +1,35 @@
+@import 'ovh-manager-webfont/dist/css/ovh-font.css';
+@import 'bootstrap4/scss/_functions.scss';
+@import 'bootstrap4/scss/_variables.scss';
+@import 'bootstrap4/scss/_mixins.scss';
+@import 'bootstrap4/scss/_utilities.scss';
+@import 'bootstrap4/scss/_grid.scss';
+@import 'bootstrap4/scss/_modal.scss';
+@import 'bootstrap4/scss/_spinners.scss';
+@import 'bootstrap4/scss/_popover.scss';
+
+@import 'office-ui-fabric-core/dist/sass/_References';
+@import 'office-ui-fabric-core/dist/sass/_Font';
+@import 'office-ui-fabric-core/dist/sass/_Font.Definitions';
+@import 'office-ui-fabric-core/dist/sass/_Icon';
+@import 'office-ui-fabric-core/dist/sass/_Icon.Definitions';
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.modal-backdrop.fade {
+  opacity: 0.5;
+}
+
+.manager-cookie-policy-banner .modal-dialog {
+  max-height: 0;
+}
+
+.oui-navbar {
+  z-index: 900;
+}

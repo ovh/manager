@@ -7,7 +7,7 @@ import tucToaster from '../../../toaster';
 
 import 'angular-ui-bootstrap';
 import 'ng-csv';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import { PAGINATION_PER_PAGE } from './telecom-telephony-abbreviated-numbers.constant';
 import tucTelecomTelephonyAbbreviatedNumbersEmptyModal from './empty/telecom-telephony-abbreviated-numbers-empty.modal';

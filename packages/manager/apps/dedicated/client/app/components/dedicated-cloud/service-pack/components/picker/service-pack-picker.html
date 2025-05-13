@@ -1,0 +1,45 @@
+<div class="row mb-3">
+    <oui-select-picker
+        class="col-md-4 mb-3"
+        data-ng-repeat="servicePack in ::$ctrl.servicePacks track by servicePack.name"
+        name="servicePack"
+        data-model="$ctrl.selectedItem"
+        data-label="{{:: servicePack.type === $ctrl.OPTION_TYPES.certification ? servicePack.fullDisplayName : servicePack.displayName }}"
+        data-variant="light"
+        data-on-change="$ctrl.handleOnChange(modelValue)"
+        data-values="[servicePack]"
+    >
+        <oui-select-picker-description data-ng-if="servicePack.isActive">
+            <span
+                class="oui-badge oui-badge_success"
+                data-translate="hpc_service_pack_current_option"
+            ></span>
+        </oui-select-picker-description>
+        <oui-select-picker-section>
+            <span
+                class="dedicatedCloud-servicePack-option-description"
+                data-translate="{{:: servicePack.description }}"
+            ></span>
+        </oui-select-picker-section>
+        <oui-select-picker-footer>
+            <span
+                class="d-block"
+                data-ng-if="servicePack.prices.monthly.exists"
+                data-translate="dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnMonthlyBill"
+                data-translate-values=":: {
+                    priceDifference: servicePack.prices.monthly.display
+                }"
+            >
+            </span>
+            <span
+                class="d-block"
+                data-ng-if="servicePack.prices.hourly.exists"
+                data-translate="dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnHourlyBill"
+                data-translate-values=":: {
+                    priceDifference: servicePack.prices.hourly.display
+                }"
+            >
+            </span>
+        </oui-select-picker-footer>
+    </oui-select-picker>
+</div>

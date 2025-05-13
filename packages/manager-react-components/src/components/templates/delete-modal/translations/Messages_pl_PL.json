@@ -1,0 +1,8 @@
+{
+  "deleteModalError": "Wystąpił następujący błąd: {{error}}.",
+  "deleteModalCancelButton": "Nie, nie chcę",
+  "deleteModalDeleteButton": "Tak, chcę",
+  "deleteModalDescription": "Rezygnacja z usługi spowoduje trwałe usunięcie wszystkich powiązanych z nią danych. Czy chcesz  zrezygnować z usługi?",
+  "deleteModalHeadline": "Zakończyć {{serviceType}}?",
+  "deleteModalHeadlineService": "usługa"
+}

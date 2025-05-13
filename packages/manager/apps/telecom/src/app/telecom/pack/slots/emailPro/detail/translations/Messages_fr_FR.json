@@ -3,6 +3,7 @@
   "email_pro_detail_change_password_error": "Oups ! Le changement de mot de passe a échoué.",
   "email_pro_detail_change_password_success": "Votre nouveau mot de passe a été modifié sur le compte {{email}}.",
   "email_pro_detail_title": "xDSL E-mail {{name}}",
+  "email_pro_detail_breadcrumb": "xDSL E-mail",
   "email_pro_detail_general_information": "Informations générales",
   "email_pro_detail_client_change_password": "Modifier le mot de passe",
   "email_pro_detail_active": "Actif",

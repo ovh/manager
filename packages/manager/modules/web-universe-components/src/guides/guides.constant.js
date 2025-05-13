@@ -1,3 +1,360 @@
+export const ASIA = {
+  hostingGuidesTips: [
+    {
+      title: 'guide_add_subscope',
+      description: 'guide_add_subcontext',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/asia/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subclient',
+        },
+        {
+          url:
+            'https://docs.ovh.com/asia/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subnon_client',
+        },
+        {
+          url:
+            'https://docs.ovh.com/asia/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subnon_registered',
+        },
+        {
+          url:
+            'https://docs.ovh.com/asia/en/hosting/multisites-configuring-multiple-websites/#verify_the_implementation_of_the_multidomain',
+          title: 'guide_add_subcreate',
+        },
+        {
+          url:
+            'https://docs.ovh.com/asia/en/hosting/web_hosting_error_-_website_not_installed/#site_not_installed_error_linking_your_domain_or_sub-domain_to_the_host_server',
+          title: 'guide_add_subnot_installed',
+        },
+      ],
+    },
+  ],
+  generalInformations: [
+    {
+      title: 'guide_general_info_subscope',
+      list: [
+        {
+          url: 'https://docs.ovh.com/asia/en/domains/owo_service.xml',
+          title: 'guide_domain_owo_activation',
+        },
+        {
+          url: 'https://docs.ovh.com/asia/en/domains/',
+          title: 'guide_domain_transfert',
+        },
+        {
+          url: 'https://docs.ovh.com/asia/en/domains/',
+          title: 'guide_domain_owner_transfert',
+        },
+      ],
+    },
+  ],
+  zone: [
+    {
+      title: 'guide_zone_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/asia/en/domains/web_hosting_how_to_edit_my_dns_zone/',
+          title: 'guide_domain_edit_zone',
+        },
+      ],
+    },
+  ],
+  dns: [
+    {
+      title: 'guide_dns_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/asia/en/domains/web_hosting_general_information_about_dns_servers/',
+          title: 'guide_domain_dns_getting_started',
+        },
+      ],
+    },
+  ],
+  dsRecord: [
+    {
+      title: 'guide_ds_records_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/asia/en/domains/secure_your_domain_with_dnssec/',
+          title: 'guide_domain_ds_record',
+        },
+      ],
+    },
+  ],
+  emails: [
+    {
+      title: 'guide_emails_general_title',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/asia/en/emails/hosted_email_how_to_set_up_an_email_address/',
+          title: 'guide_emails_emails_creation',
+        },
+        {
+          url:
+            'https://docs.ovh.com/asia/en/emails/web_hosting_an_overview_of_ovh_email/',
+          title: 'guide_emails_emails_configuration',
+        },
+      ],
+    },
+    {
+      title: 'guide_emails_how_to_title',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/asia/en/domains/web_hosting_the_spf_record/',
+          title: 'guide_emails_emails_spf',
+        },
+      ],
+    },
+  ],
+};
+
+export const AU = {
+  hostingGuidesTips: [
+    {
+      title: 'guide_add_subscope',
+      description: 'guide_add_subcontext',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/au/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subclient',
+        },
+        {
+          url:
+            'https://docs.ovh.com/au/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subnon_client',
+        },
+        {
+          url:
+            'https://docs.ovh.com/au/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subnon_registered',
+        },
+        {
+          url:
+            'https://docs.ovh.com/au/en/hosting/multisites-configuring-multiple-websites/#verify_the_implementation_of_the_multidomain',
+          title: 'guide_add_subcreate',
+        },
+        {
+          url:
+            'https://docs.ovh.com/au/en/hosting/web_hosting_error_-_website_not_installed/#site_not_installed_error_linking_your_domain_or_sub-domain_to_the_host_server',
+          title: 'guide_add_subnot_installed',
+        },
+      ],
+    },
+  ],
+  generalInformations: [
+    {
+      title: 'guide_general_info_subscope',
+      list: [
+        {
+          url: 'https://docs.ovh.com/au/en/domains/owo_service.xml',
+          title: 'guide_domain_owo_activation',
+        },
+        {
+          url: 'https://docs.ovh.com/au/en/domains/',
+          title: 'guide_domain_transfert',
+        },
+        {
+          url: 'https://docs.ovh.com/au/en/domains/',
+          title: 'guide_domain_owner_transfert',
+        },
+      ],
+    },
+  ],
+  zone: [
+    {
+      title: 'guide_zone_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/au/en/domains/web_hosting_how_to_edit_my_dns_zone/',
+          title: 'guide_domain_edit_zone',
+        },
+      ],
+    },
+  ],
+  dns: [
+    {
+      title: 'guide_dns_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/au/en/domains/web_hosting_general_information_about_dns_servers/',
+          title: 'guide_domain_dns_getting_started',
+        },
+      ],
+    },
+  ],
+  dsRecord: [
+    {
+      title: 'guide_ds_records_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/au/en/domains/secure_your_domain_with_dnssec/',
+          title: 'guide_domain_ds_record',
+        },
+      ],
+    },
+  ],
+  emails: [
+    {
+      title: 'guide_emails_general_title',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/au/en/emails/hosted_email_how_to_set_up_an_email_address/',
+          title: 'guide_emails_emails_creation',
+        },
+        {
+          url:
+            'https://docs.ovh.com/au/en/emails/web_hosting_an_overview_of_ovh_email/',
+          title: 'guide_emails_emails_configuration',
+        },
+      ],
+    },
+    {
+      title: 'guide_emails_how_to_title',
+      list: [
+        {
+          url: 'https://docs.ovh.com/au/en/domains/web_hosting_the_spf_record/',
+          title: 'guide_emails_emails_spf',
+        },
+      ],
+    },
+  ],
+};
+
+export const CA = {
+  hostingGuidesTips: [
+    {
+      title: 'guide_add_subscope',
+      description: 'guide_add_subcontext',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subclient',
+        },
+        {
+          url:
+            'https://docs.ovh.com/ca/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subnon_client',
+        },
+        {
+          url:
+            'https://docs.ovh.com/ca/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subnon_registered',
+        },
+        {
+          url:
+            'https://docs.ovh.com/ca/en/hosting/multisites-configuring-multiple-websites/#verify_the_implementation_of_the_multidomain',
+          title: 'guide_add_subcreate',
+        },
+        {
+          url:
+            'https://docs.ovh.com/ca/en/hosting/web_hosting_error_-_website_not_installed/#site_not_installed_error_linking_your_domain_or_sub-domain_to_the_host_server',
+          title: 'guide_add_subnot_installed',
+        },
+      ],
+    },
+  ],
+  generalInformations: [
+    {
+      title: 'guide_general_info_subscope',
+      list: [
+        {
+          url: 'https://docs.ovh.com/ca/en/domains/owo_service.xml',
+          title: 'guide_domain_owo_activation',
+        },
+        {
+          url: 'https://docs.ovh.com/ca/en/domains/',
+          title: 'guide_domain_transfert',
+        },
+        {
+          url: 'https://docs.ovh.com/ca/en/domains/',
+          title: 'guide_domain_owner_transfert',
+        },
+      ],
+    },
+  ],
+  zone: [
+    {
+      title: 'guide_zone_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/en/domains/web_hosting_how_to_edit_my_dns_zone/',
+          title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ca-dns-zone-history?id=kb_article_view&sysparm_article=KB0061050',
+          title: 'guide_domain_history_zone',
+        },
+      ],
+    },
+  ],
+  dns: [
+    {
+      title: 'guide_dns_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/en/domains/web_hosting_general_information_about_dns_servers/',
+          title: 'guide_domain_dns_getting_started',
+        },
+      ],
+    },
+  ],
+  dsRecord: [
+    {
+      title: 'guide_ds_records_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/en/domains/secure_your_domain_with_dnssec/',
+          title: 'guide_domain_ds_record',
+        },
+      ],
+    },
+  ],
+  emails: [
+    {
+      title: 'guide_emails_general_title',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/en/emails/hosted_email_how_to_set_up_an_email_address/',
+          title: 'guide_emails_emails_creation',
+        },
+        {
+          url:
+            'https://docs.ovh.com/ca/en/emails/web_hosting_an_overview_of_ovh_email/',
+          title: 'guide_emails_emails_configuration',
+        },
+      ],
+    },
+    {
+      title: 'guide_emails_how_to_title',
+      list: [
+        {
+          url: 'https://docs.ovh.com/ca/en/domains/web_hosting_the_spf_record/',
+          title: 'guide_emails_emails_spf',
+        },
+      ],
+    },
+  ],
+};
+
 export const CZ = {
   hostingGuidesTips: [
     {
@@ -98,6 +455,11 @@ export const DE = {
         {
           url: 'https://www.ovh.de/g1604.webhosting_bearbeiten_der_dns_zone',
           title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/de-dns-zone-history?id=kb_article_view&sysparm_article=KB0061048',
+          title: 'guide_domain_history_zone',
         },
       ],
     },
@@ -204,6 +566,18 @@ export const DE = {
       ],
     },
   ],
+  emailsMailingList: [
+    {
+      title: 'guide_mailing_list_title',
+      list: [
+        {
+          url:
+            'https://help.ovhcloud.com/csm/de-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052009',
+          title: 'guide_emails_mailing_list',
+        },
+      ],
+    },
+  ],
 };
 
 export const ES = {
@@ -258,6 +632,11 @@ export const ES = {
         {
           url: 'https://www.ovh.es/g1604.web_hosting_como_editar_mi_zona_dns',
           title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/es-es-dns-zone-history?id=kb_article_view&sysparm_article=KB0061051',
+          title: 'guide_domain_history_zone',
         },
       ],
     },
@@ -367,6 +746,18 @@ export const ES = {
         {
           url: 'https://www.ovh.es/g2052.guia_de_creacion_de_un_contestador',
           title: 'guide_emails_responder',
+        },
+      ],
+    },
+  ],
+  emailsMailingList: [
+    {
+      title: 'guide_mailing_list_title',
+      list: [
+        {
+          url:
+            'https://help.ovhcloud.com/csm/es-es-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052024',
+          title: 'guide_emails_mailing_list',
         },
       ],
     },
@@ -579,7 +970,7 @@ export const FI = {
       list: [
         {
           url:
-            'https://www.ovh-hosting.fi/g1596.webhotellin_sahkoposti_sahkopostilistan_kayttopas',
+            'https://help.ovhcloud.com/csm/en-ie-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052017',
           title: 'guide_emails_mailing_list',
         },
       ],
@@ -619,6 +1010,11 @@ export const FR = {
         {
           url: 'https://docs.ovh.com/fr/domains/editer-ma-zone-dns/',
           title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/fr-dns-zone-history?id=kb_article_view&sysparm_article=KB0061056',
+          title: 'guide_domain_history_zone',
         },
       ],
     },
@@ -826,7 +1222,7 @@ export const FR = {
       list: [
         {
           url:
-            'https://docs.ovh.com/fr/emails/guide-dutilisation-mailing-list/',
+            'https://help.ovhcloud.com/csm/fr-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052018',
           title: 'guide_emails_mailing_list',
         },
       ],
@@ -896,6 +1292,11 @@ export const GB = {
           url: 'https://www.ovh.co.uk/g1604.hosting_how_to_edit_my_dns_zone',
           title: 'guide_domain_edit_zone',
         },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-zone-history?id=kb_article_view&sysparm_article=KB0061045',
+          title: 'guide_domain_history_zone',
+        },
       ],
     },
   ],
@@ -943,6 +1344,18 @@ export const GB = {
         {
           url: 'https://www.ovh.co.uk/g2028.web_hosting_the_spf_record',
           title: 'guide_emails_emails_spf',
+        },
+      ],
+    },
+  ],
+  emailsMailingList: [
+    {
+      title: 'guide_mailing_list_title',
+      list: [
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052014',
+          title: 'guide_emails_mailing_list',
         },
       ],
     },
@@ -1005,6 +1418,11 @@ export const IT = {
         {
           url: 'https://www.ovh.it/g1604.web_hosting_modifica_la_tua_zona_dns',
           title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/it-dns-zone-history?id=kb_article_view&sysparm_article=KB0061049',
+          title: 'guide_domain_history_zone',
         },
       ],
     },
@@ -1150,7 +1568,7 @@ export const IT = {
       list: [
         {
           url:
-            'https://www.ovh.it/g1596.mail_mutualise_guide_dutilisation_mailing-list',
+            'https://help.ovhcloud.com/csm/it-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052028',
           title: 'guide_emails_mailing_list',
         },
       ],
@@ -1383,7 +1801,7 @@ export const LT = {
       list: [
         {
           url:
-            'https://www.ovh.lt/g1596.svetainiu_talpinimo_el_pastas_el_pasto_konferencijos_naudojimo_gidas',
+            'https://help.ovhcloud.com/csm/en-ie-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052017',
           title: 'guide_emails_mailing_list',
         },
       ],
@@ -1506,6 +1924,18 @@ export const NL = {
       ],
     },
   ],
+  emailsMailingList: [
+    {
+      title: 'guide_mailing_list_title',
+      list: [
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ie-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052017',
+          title: 'guide_emails_mailing_list',
+        },
+      ],
+    },
+  ],
 };
 
 export const PL = {
@@ -1569,6 +1999,11 @@ export const PL = {
         {
           url: 'https://www.ovh.pl/g1604.hosting_www_jak_edytowac_strefe_dns',
           title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/pl-dns-zone-history?id=kb_article_view&sysparm_article=KB0061052',
+          title: 'guide_domain_history_zone',
         },
       ],
     },
@@ -1731,7 +2166,8 @@ export const PL = {
       title: 'guide_mailing_list_title',
       list: [
         {
-          url: 'https://www.ovh.pl/g1596.hosting_www_listy_mailingowe',
+          url:
+            'https://help.ovhcloud.com/csm/pl-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052031',
           title: 'guide_emails_mailing_list',
         },
       ],
@@ -1802,6 +2238,11 @@ export const PT = {
           url:
             'https://www.ovh.pt/g1604.alojamento_partilhado_como_editar_a_minha_zona_dns',
           title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/pt-dns-zone-history?id=kb_article_view&sysparm_article=KB0061047',
+          title: 'guide_domain_history_zone',
         },
       ],
     },
@@ -1965,7 +2406,7 @@ export const PT = {
       list: [
         {
           url:
-            'https://www.ovh.pt/g1596.email_partilhado_guia_de_utilizacao_de_mailing-lists',
+            'https://help.ovhcloud.com/csm/pt-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052029',
           title: 'guide_emails_mailing_list',
         },
       ],
@@ -1973,7 +2414,598 @@ export const PT = {
   ],
 };
 
+export const QC = {
+  hostingGuidesTips: [
+    {
+      title: 'guide_add_subscope',
+      description: 'guide_add_subcontext',
+      list: [
+        {
+          url: 'https://docs.ovh.com/ca/fr/hosting/erreur-site-non-installe/',
+          title: 'guide_add_subnot_installed',
+        },
+      ],
+    },
+  ],
+  generalInformations: [
+    {
+      title: 'guide_general_info_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/fr/domains/changement-proprietaire-domaine/',
+          title: 'guide_domain_owner_transfert',
+        },
+      ],
+    },
+  ],
+  zone: [
+    {
+      title: 'guide_zone_subscope',
+      list: [
+        {
+          url: 'https://docs.ovh.com/ca/fr/domains/editer-ma-zone-dns/',
+          title: 'guide_domain_edit_zone',
+        },
+      ],
+    },
+  ],
+  dns: [
+    {
+      title: 'guide_dns_subscope',
+      list: [
+        {
+          url: 'https://docs.ovh.com/ca/fr/domains/generalites-serveurs-dns/',
+          title: 'guide_domain_dns_getting_started',
+        },
+        {
+          url: 'https://docs.ovh.com/ca/fr/domains/zonecheck-de-votre-domaine/',
+          title: 'guide_domain_dns_zone_check',
+        },
+      ],
+    },
+  ],
+  redirection: [
+    {
+      title: 'guide_redirection_subscope',
+      list: [
+        {
+          url: 'https://docs.ovh.com/ca/fr/domains/redirection-nom-de-domaine/',
+          title: 'guide_domain_redirection',
+        },
+      ],
+    },
+  ],
+  dynhost: [
+    {
+      title: 'guide_dyn_host_subscope',
+      list: [
+        {
+          url: 'https://docs.ovh.com/ca/fr/domains/utilisation-dynhost/',
+          title: 'guide_domain_dyn_host',
+        },
+      ],
+    },
+  ],
+  glue: [
+    {
+      title: 'guide_glue_subscope',
+      list: [
+        {
+          url: 'https://docs.ovh.com/ca/fr/domains/glue-registry/',
+          title: 'guide_domain_glue_registry',
+        },
+      ],
+    },
+  ],
+  dsRecord: [
+    {
+      title: 'guide_ds_records_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/fr/domains/securiser-votre-domaine-avec-dnssec/',
+          title: 'guide_domain_ds_record',
+        },
+      ],
+    },
+  ],
+  addZone: [
+    {
+      title: 'guide_add_zone_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/fr/domains/creer-une-zone-dns-pour-un-domaine-externe/',
+          title: 'guide_domain_add_dns_zone',
+        },
+      ],
+    },
+  ],
+  emailsInfos: [
+    {
+      title: 'guide_emails_general_title',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/fr/emails/generalites-sur-les-emails-mutualises/',
+          title: 'guide_emails_emails_configuration',
+        },
+        {
+          url:
+            'https://docs.ovh.com/ca/fr/emails/generalites-sur-les-serveurs-mx-mutualises/',
+          title: 'guide_emails_emails_mx_servers',
+        },
+      ],
+    },
+  ],
+  emailsAccounts: [
+    {
+      title: 'guide_emails_configuration_title',
+      description: '',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/fr/emails/mail-mutualise-guide-configuration-outlook-2013/',
+          title: 'guide_emails_emails_configuration_outlook',
+        },
+        {
+          url:
+            'https://docs.ovh.com/fr/emails/mail-mutualise-guide-configuration-iphone-ios-91/',
+          title: 'guide_emails_emails_configuration_ios',
+        },
+        {
+          url: 'https://docs.ovh.com/fr/emails/utilisation-roundcube/',
+          title: 'guide_emails_emails_roundcube',
+        },
+        {
+          url:
+            'https://docs.ovh.com/fr/emails/mail-mutualise-guide-de-configuration-mx-avec-zone-dns-ovh/',
+          title: 'guide_emails_emails_configuration_mx_zone_dns',
+        },
+        {
+          url:
+            'https://docs.ovh.com/fr/emails/mail-mutualise-guide-de-configuration-mx-avec-zone-dns-non-ovh/',
+          title: 'guide_emails_emails_configuration_mx_zone_dns_non_ovh',
+        },
+      ],
+    },
+    {
+      title: 'guide_emails_how_to_title',
+      list: [
+        {
+          url: 'https://docs.ovh.com/fr/emails/creation-dune-adresse-e-mail/',
+          title: 'guide_emails_emails_creation',
+        },
+        {
+          url:
+            'https://docs.ovh.com/fr/emails/recuperation-des-entetes-e-mails/',
+          title: 'guide_emails_emails_headers',
+        },
+        {
+          url:
+            'https://docs.ovh.com/fr/emails/deleguer-gestion-emails-autre-identifiant/',
+          title: 'guide_emails_emails_delegation',
+        },
+        {
+          url: 'https://docs.ovh.com/fr/emails/le-champ-spf/',
+          title: 'guide_emails_emails_spf',
+        },
+        {
+          url:
+            'https://docs.ovh.com/fr/emails/diagnostiquer-mon-adresse-e-mail/',
+          title: 'guide_emails_emails_diagnosis',
+        },
+        {
+          url:
+            'https://docs.ovh.com/fr/microsoft-collaborative-solutions/migration-adresse-e-mail-mutualisee-vers-exchange/',
+          title: 'guide_emails_emails_migrate_to_exchange',
+        },
+        {
+          url:
+            'https://docs.ovh.com/fr/emails/utilisation-avancee-des-e-mails/',
+          title: 'guide_emails_emails_advanced',
+        },
+        {
+          url: 'https://docs.ovh.com/fr/emails/codes-de-reponse-serveur-smtp/',
+          title: 'guide_emails_emails_smtp_response_code',
+        },
+      ],
+    },
+  ],
+  emailsFilter: [
+    {
+      title: 'guide_emails_filter_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/fr/emails/mail-mutualise-guide-configuration-des-filtres-e-mail-sur-lespace-client/',
+          title: 'guide_emails_emails_filters',
+        },
+      ],
+    },
+  ],
+  emailsRedirection: [
+    {
+      title: 'guide_redirection_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/fr/emails/guide-des-redirections-emails/',
+          title: 'guide_emails_redirection_create',
+        },
+      ],
+    },
+  ],
+  emailsResponder: [
+    {
+      title: 'guide_emails_responder_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/fr/emails/mise-en-place-repondeur-mail/',
+          title: 'guide_emails_responder',
+        },
+      ],
+    },
+  ],
+};
+
+export const SG = {
+  hostingGuidesTips: [
+    {
+      title: 'guide_add_subscope',
+      description: 'guide_add_subcontext',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/sg/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subclient',
+        },
+        {
+          url:
+            'https://docs.ovh.com/sg/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subnon_client',
+        },
+        {
+          url:
+            'https://docs.ovh.com/sg/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subnon_registered',
+        },
+        {
+          url:
+            'https://docs.ovh.com/sg/en/hosting/multisites-configuring-multiple-websites/#verify_the_implementation_of_the_multidomain',
+          title: 'guide_add_subcreate',
+        },
+        {
+          url:
+            'https://docs.ovh.com/sg/en/hosting/web_hosting_error_-_website_not_installed/#site_not_installed_error_linking_your_domain_or_sub-domain_to_the_host_server',
+          title: 'guide_add_subnot_installed',
+        },
+      ],
+    },
+  ],
+  generalInformations: [
+    {
+      title: 'guide_general_info_subscope',
+      list: [
+        {
+          url: 'https://docs.ovh.com/sg/en/domains/owo_service.xml',
+          title: 'guide_domain_owo_activation',
+        },
+        {
+          url: 'https://docs.ovh.com/sg/en/domains/',
+          title: 'guide_domain_transfert',
+        },
+        {
+          url: 'https://docs.ovh.com/sg/en/domains/',
+          title: 'guide_domain_owner_transfert',
+        },
+      ],
+    },
+  ],
+  zone: [
+    {
+      title: 'guide_zone_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/sg/en/domains/web_hosting_how_to_edit_my_dns_zone/',
+          title: 'guide_domain_edit_zone',
+        },
+      ],
+    },
+  ],
+  dns: [
+    {
+      title: 'guide_dns_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/sg/en/domains/web_hosting_general_information_about_dns_servers/',
+          title: 'guide_domain_dns_getting_started',
+        },
+      ],
+    },
+  ],
+  dsRecord: [
+    {
+      title: 'guide_ds_records_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/sg/en/domains/secure_your_domain_with_dnssec/',
+          title: 'guide_domain_ds_record',
+        },
+      ],
+    },
+  ],
+  emails: [
+    {
+      title: 'guide_emails_general_title',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/sg/en/emails/hosted_email_how_to_set_up_an_email_address/',
+          title: 'guide_emails_emails_creation',
+        },
+        {
+          url:
+            'https://docs.ovh.com/sg/en/emails/web_hosting_an_overview_of_ovh_email/',
+          title: 'guide_emails_emails_configuration',
+        },
+      ],
+    },
+    {
+      title: 'guide_emails_how_to_title',
+      list: [
+        {
+          url: 'https://docs.ovh.com/sg/en/domains/web_hosting_the_spf_record/',
+          title: 'guide_emails_emails_spf',
+        },
+      ],
+    },
+  ],
+};
+
+export const WE = {
+  hostingGuidesTips: [
+    {
+      title: 'guide_add_subscope',
+      description: 'guide_add_subcontext',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subclient',
+        },
+        {
+          url:
+            'https://docs.ovh.com/ca/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subnon_client',
+        },
+        {
+          url:
+            'https://docs.ovh.com/ca/en/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subnon_registered',
+        },
+        {
+          url:
+            'https://docs.ovh.com/ca/en/hosting/multisites-configuring-multiple-websites/#verify_the_implementation_of_the_multidomain',
+          title: 'guide_add_subcreate',
+        },
+        {
+          url:
+            'https://docs.ovh.com/ca/en/hosting/web_hosting_error_-_website_not_installed/#site_not_installed_error_linking_your_domain_or_sub-domain_to_the_host_server',
+          title: 'guide_add_subnot_installed',
+        },
+      ],
+    },
+  ],
+  generalInformations: [
+    {
+      title: 'guide_general_info_subscope',
+      list: [
+        {
+          url: 'https://docs.ovh.com/ca/en/domains/owo_service.xml',
+          title: 'guide_domain_owo_activation',
+        },
+        {
+          url: 'https://docs.ovh.com/ca/en/domains/',
+          title: 'guide_domain_transfert',
+        },
+        {
+          url: 'https://docs.ovh.com/ca/en/domains/',
+          title: 'guide_domain_owner_transfert',
+        },
+      ],
+    },
+  ],
+  zone: [
+    {
+      title: 'guide_zone_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/en/domains/web_hosting_how_to_edit_my_dns_zone/',
+          title: 'guide_domain_edit_zone',
+        },
+      ],
+    },
+  ],
+  dns: [
+    {
+      title: 'guide_dns_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/en/domains/web_hosting_general_information_about_dns_servers/',
+          title: 'guide_domain_dns_getting_started',
+        },
+      ],
+    },
+  ],
+  dsRecord: [
+    {
+      title: 'guide_ds_records_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/en/domains/secure_your_domain_with_dnssec/',
+          title: 'guide_domain_ds_record',
+        },
+      ],
+    },
+  ],
+  emails: [
+    {
+      title: 'guide_emails_general_title',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/ca/en/emails/hosted_email_how_to_set_up_an_email_address/',
+          title: 'guide_emails_emails_creation',
+        },
+        {
+          url:
+            'https://docs.ovh.com/ca/en/emails/web_hosting_an_overview_of_ovh_email/',
+          title: 'guide_emails_emails_configuration',
+        },
+      ],
+    },
+    {
+      title: 'guide_emails_how_to_title',
+      list: [
+        {
+          url: 'https://docs.ovh.com/ca/en/domains/web_hosting_the_spf_record/',
+          title: 'guide_emails_emails_spf',
+        },
+      ],
+    },
+  ],
+};
+
+export const WS = {
+  hostingGuidesTips: [
+    {
+      title: 'guide_add_subscope',
+      description: 'guide_add_subcontext',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/us/es/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subclient',
+        },
+        {
+          url:
+            'https://docs.ovh.com/us/es/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subnon_client',
+        },
+        {
+          url:
+            'https://docs.ovh.com/us/es/hosting/multisites-configuring-multiple-websites/#multidomain_for_an_external_domain',
+          title: 'guide_add_subnon_registered',
+        },
+        {
+          url:
+            'https://docs.ovh.com/us/es/hosting/multisites-configuring-multiple-websites/#verify_the_implementation_of_the_multidomain',
+          title: 'guide_add_subcreate',
+        },
+        {
+          url:
+            'https://docs.ovh.com/us/es/hosting/web_hosting_error_-_website_not_installed/#site_not_installed_error_linking_your_domain_or_sub-domain_to_the_host_server',
+          title: 'guide_add_subnot_installed',
+        },
+      ],
+    },
+  ],
+  generalInformations: [
+    {
+      title: 'guide_general_info_subscope',
+      list: [
+        {
+          url: 'https://docs.ovh.com/us/es/domains/owo_service.xml',
+          title: 'guide_domain_owo_activation',
+        },
+        {
+          url: 'https://docs.ovh.com/us/es/domains/',
+          title: 'guide_domain_transfert',
+        },
+        {
+          url: 'https://docs.ovh.com/us/es/domains/',
+          title: 'guide_domain_owner_transfert',
+        },
+      ],
+    },
+  ],
+  zone: [
+    {
+      title: 'guide_zone_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/us/es/domains/web_hosting_how_to_edit_my_dns_zone/',
+          title: 'guide_domain_edit_zone',
+        },
+      ],
+    },
+  ],
+  dns: [
+    {
+      title: 'guide_dns_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/us/es/domains/web_hosting_general_information_about_dns_servers/',
+          title: 'guide_domain_dns_getting_started',
+        },
+      ],
+    },
+  ],
+  dsRecord: [
+    {
+      title: 'guide_ds_records_subscope',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/us/es/domains/secure_your_domain_with_dnssec/',
+          title: 'guide_domain_ds_record',
+        },
+      ],
+    },
+  ],
+  emails: [
+    {
+      title: 'guide_emails_general_title',
+      list: [
+        {
+          url:
+            'https://docs.ovh.com/us/es/emails/hosted_email_how_to_set_up_an_email_address/',
+          title: 'guide_emails_emails_creation',
+        },
+        {
+          url:
+            'https://docs.ovh.com/us/es/emails/web_hosting_an_overview_of_ovh_email/',
+          title: 'guide_emails_emails_configuration',
+        },
+      ],
+    },
+    {
+      title: 'guide_emails_how_to_title',
+      list: [
+        {
+          url: 'https://docs.ovh.com/us/es/domains/web_hosting_the_spf_record/',
+          title: 'guide_emails_emails_spf',
+        },
+      ],
+    },
+  ],
+};
+
 export default {
+  ASIA,
+  AU,
+  CA,
   CZ,
   DE,
   ES,
@@ -1985,4 +3017,8 @@ export default {
   NL,
   PL,
   PT,
+  QC,
+  SG,
+  WE,
+  WS,
 };

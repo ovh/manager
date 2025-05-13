@@ -1,0 +1,13 @@
+{
+  "pci_databases_general_information_upgrade_node_confirm": "Node-Modell upgraden",
+  "pci_databases_general_information_upgrade_node": "Node-Modell wechseln",
+  "pci_databases_general_information_upgrade_node_back": "Information",
+  "pci_databases_general_information_upgrade_node_cancel": "Abbrechen",
+  "pci_databases_general_information_upgrade_node_description": "Sie verwenden derzeit das Node-Modell {{currentNodeModel}}. Wechseln Sie auf ein höheres Modell, indem Sie unten auf den Button „Node-Modell upgraden“ klicken.",
+  "pci_databases_general_information_upgrade_node_warning": "Nach abgeschlossenem Upgrade können Sie nicht mehr zu einem niedrigeren Modell zurückkehren.",
+  "pci_databases_general_information_upgrade_node_label": "Modell",
+  "pci_databases_general_information_upgrade_node_placeholder": "Wählen Sie ein Node-Modell aus",
+  "pci_databases_general_information_upgrade_node_success": "Der Wechsel des Node-Modells wurde registriert und ist in wenigen Minuten wirksam.",
+  "pci_databases_general_information_upgrade_node_error": "Der Angebotswechsel wurde nicht korrekt ausgeführt: {{ message }}",
+  "pci_databases_general_information_upgrade_node_processing": "Upgrade des Node-Modells..."
+}

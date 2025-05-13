@@ -6,11 +6,19 @@ const state = {
     domainView: {
       template,
       controller: 'DomainDnssecTabCtrl',
+      controllerAs: 'ctrlDomainDnssec',
     },
   },
   atInternet: {
     rename: 'DNSSEC',
   },
+  resolve: {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('domain_dnssec'),
+  },
 };
 
-export default state;
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app.domain.product.dnssec', { ...state });
+  $stateProvider.state('app.alldom.domain.dnssec', { ...state });
+};

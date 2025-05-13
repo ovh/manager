@@ -1,0 +1,6 @@
+{
+  "dedicatedCloud_datacenter_convert_to_global": "Convertir el datastore en global",
+  "dedicatedCloud_datacenter_convert_to_global_confirmation": "¿Seguro que quiere convertir el datastore {{t0}} en global?",
+  "dedicatedCloud_datacenter_convert_to_global_success": "El datastore {{t0}} se convertirá en global a continuación.",
+  "dedicatedCloud_datacenter_convert_to_global_error": "Se ha producido un error al convertir el datastore {{t0}} en global."
+}

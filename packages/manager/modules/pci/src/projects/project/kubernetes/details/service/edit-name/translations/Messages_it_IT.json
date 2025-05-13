@@ -1,9 +1,0 @@
-{
-  "pci_projects_project_kubernetes_details_service_name": "Modifica il nome",
-  "pci_projects_project_kubernetes_details_service_name_edit": "Modifica",
-  "pci_projects_project_kubernetes_details_service_name_cancel": "Annulla",
-  "pci_projects_project_kubernetes_details_service_name_default": "Nome predefinito {{ name }}",
-  "pci_projects_project_kubernetes_details_service_name_custom": "Nome personalizzato",
-  "pci_projects_project_kubernetes_details_service_name_success": "Il nome del cluster è stato aggiornato.",
-  "pci_projects_project_kubernetes_details_service_name_error": "Si è verificato un errore durante la modifica del nome de cluster: {{message}}"
-}

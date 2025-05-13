@@ -1,3 +1,143 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [3.5.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.5.1...@ovh-ux/ng-at-internet-ui-router-plugin@3.5.2) (2025-04-30)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet-ui-router-plugin
+
+
+
+
+
+## [3.5.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.5.0...@ovh-ux/ng-at-internet-ui-router-plugin@3.5.1) (2024-11-28)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet-ui-router-plugin
+
+
+
+
+
+# [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.4.1...@ovh-ux/ng-at-internet-ui-router-plugin@3.5.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
+## [3.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.4.0...@ovh-ux/ng-at-internet-ui-router-plugin@3.4.1) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet-ui-router-plugin
+
+
+
+
+
+# [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.3.0...@ovh-ux/ng-at-internet-ui-router-plugin@3.4.0) (2023-11-21)
+
+
+### Features
+
+* migrate from vuepress to vitepress ([6968c85](https://github.com/ovh/manager/commit/6968c85f00e19c41bc240abb37a50e9dacf9c5e5))
+
+
+
+
+
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.2.4...@ovh-ux/ng-at-internet-ui-router-plugin@3.3.0) (2023-10-23)
+
+
+### Features
+
+* **tracking:** remove "Full URL" property encoding ([#10131](https://github.com/ovh/manager/issues/10131)) ([645cd8e](https://github.com/ovh/manager/commit/645cd8ef02aa06901e60321772500ae979646804))
+
+
+
+
+
+## [3.2.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.2.3...@ovh-ux/ng-at-internet-ui-router-plugin@3.2.4) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet-ui-router-plugin
+
+
+
+
+
+## [3.2.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.2.2...@ovh-ux/ng-at-internet-ui-router-plugin@3.2.3) (2023-01-19)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet-ui-router-plugin
+
+
+
+
+
+## [3.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.2.1...@ovh-ux/ng-at-internet-ui-router-plugin@3.2.2) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet-ui-router-plugin
+
+
+
+
+
+## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.2.0...@ovh-ux/ng-at-internet-ui-router-plugin@3.2.1) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.1.3...@ovh-ux/ng-at-internet-ui-router-plugin@3.2.0) (2021-11-04)
+
+
+### Features
+
+* add `pageUrl` ([#5811](https://github.com/ovh/manager/issues/5811)) ([fc0aa8e](https://github.com/ovh/manager/commit/fc0aa8e3eee7baf8d7bece9d015018f193312a03))
+
+
+
+## [3.1.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.1.2...@ovh-ux/ng-at-internet-ui-router-plugin@3.1.3) (2021-10-26)
+
+
+### Bug Fixes
+
+* **dev-deps:** upgrade @ovh-ux/component-rollup-config to `v11.0.0` ([3ae659b](https://github.com/ovh/manager/commit/3ae659bea59244fd5660375b9dac52055cc374b0))
+
+
+
+## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.1.1...@ovh-ux/ng-at-internet-ui-router-plugin@3.1.2) (2021-06-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+
+
+
+## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.1.0...@ovh-ux/ng-at-internet-ui-router-plugin@3.1.1) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+
+
+
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.0.0...@ovh-ux/ng-at-internet-ui-router-plugin@3.1.0) (2020-04-28)
+
+
+### Features
+
+* update rename hook if injections are strict ([27a053d](https://github.com/ovh/manager/commit/27a053d762ce54571fd8a1bd739f2f7f41514b37))
+
+
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@2.0.4...@ovh-ux/ng-at-internet-ui-router-plugin@3.0.0) (2020-03-18)
 
 
@@ -60,6 +200,3 @@
 ### BREAKING CHANGES
 
 * module is now named `ngAtInternetUiRouterPlugin`
-
-
-

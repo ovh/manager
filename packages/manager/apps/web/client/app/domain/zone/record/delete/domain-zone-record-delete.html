@@ -33,10 +33,12 @@
                         data-translate="domain_configuration_dns_entry_delete_step1_subdomain"
                     ></dt>
                     <dd
+                        class="word-break"
                         data-ng-show="ctrl.entryToDelete.subDomain"
                         data-ng-bind="ctrl.entryToDelete.subDomain + '.' + ctrl.entryToDelete.zoneToDisplay"
                     ></dd>
                     <dd
+                        class="word-break"
                         data-ng-show="!ctrl.entryToDelete.subDomain"
                         data-ng-bind="ctrl.entryToDelete.zoneToDisplay"
                     ></dd>
@@ -44,8 +46,16 @@
                     <dt
                         data-translate="domain_configuration_dns_entry_delete_step1_target"
                     ></dt>
-                    <dd data-ng-bind="ctrl.entryToDelete.targetToDisplay"></dd>
+                    <dd
+                        class="word-break"
+                        data-ng-bind="ctrl.entryToDelete.targetToDisplay"
+                    ></dd>
                 </dl>
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-translate="domain_configuration_dns_entry_delete_step1_propagation_info"
+                ></div>
             </div>
         </div>
     </div>

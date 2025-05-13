@@ -1,0 +1,12 @@
+<div
+    class="pci-new-project-promotion-banner"
+    data-ng-if="$ctrl.isVoucherValid()"
+>
+    <oui-tile class="promotion-banner">
+        <h5
+            data-translate="pci_project_promotion_banner_title"
+            data-translate-values="{ credit: $ctrl.voucher.credit.text }"
+        ></h5>
+        <p data-translate="pci_project_promotion_banner_description"></p>
+    </oui-tile>
+</div>

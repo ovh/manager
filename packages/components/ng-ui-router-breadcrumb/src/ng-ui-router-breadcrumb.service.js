@@ -26,6 +26,9 @@ export default class BreadcrumbService {
         this.breadcrumb = [];
 
         while (state.parent && !hideBreadcrumb) {
+          const breadcrumbPrefixResolvable = state.resolvables.find(
+            (resolvable) => resolvable.token === 'breadcrumbPrefix',
+          );
           const breadcrumbResolvable = state.resolvables.find(
             (resolvable) => resolvable.token === 'breadcrumb',
           );
@@ -55,6 +58,21 @@ export default class BreadcrumbService {
                 );
               }
             });
+          }
+
+          if (breadcrumbPrefixResolvable) {
+            transition
+              .injector(state.name)
+              .getAsync('breadcrumbPrefix')
+              .then((prefixes) => {
+                prefixes.forEach(({ name, url }, index) =>
+                  this.breadcrumb.splice(index, 0, {
+                    name,
+                    url,
+                    active: false,
+                  }),
+                );
+              });
           }
 
           state = state.parent.self.$$state();

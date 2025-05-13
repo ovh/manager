@@ -1,6 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import component from './vps-backup-storage.component';
 import routing from './vps-backup-storage.routing';

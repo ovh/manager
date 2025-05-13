@@ -1,0 +1,19 @@
+{
+  "cda_ip_ip_definition": "Pode criar os seus controlos de acesso IP aqui.",
+  "cda_ip_permission_definition": "O seu cluster aceitará apenas o tráfego de rede em concordância com os acessos criados.",
+  "cda_ip_add_button_text": "Adicionar um controlo de acesso",
+  "cda_ip_delete_button_text": "Eliminar",
+  "cda_ip_table_col_network": "IP",
+  "cda_ip_table_col_actions": "Ações",
+  "cda_ip_add_title": "Adicionar um controlo de acesso",
+  "cda_ip_add_ip_label": "IP com máscara de sub-rede",
+  "cda_ip_add_format": "Formato: 192.168.1.0/24",
+  "cda_ip_add_success": "Controlo de acesso adicionado com sucesso.",
+  "cda_ip_add_ip_required": "O IP com uma máscara de sub-rede é obrigatório.",
+  "cda_ip_delete_title": "Eliminar um controlo de acesso",
+  "cda_ip_delete_ip_label": "IP com máscara de sub-rede",
+  "cda_ip_delete_confirm": "Têm a certeza de que deseja eliminar este controlo de acesso?",
+  "cda_ip_delete_success": "Controlo de acesso eliminado com sucesso.",
+  "cda_ip_table_empty": "Nenhum controlo de acesso.",
+  "cda_ip_breadcrumb": "Controlo de acesso"
+}

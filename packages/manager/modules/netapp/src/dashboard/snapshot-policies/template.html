@@ -1,0 +1,20 @@
+<section>
+    <h1
+        class="oui-header__title mb-3"
+        data-translate="netapp_snapshot_policies_title"
+    ></h1>
+    <p data-translate="netapp_snapshot_policies_information"></p>
+
+    <oui-button
+        class="float-left oui-button_icon-left"
+        icon-left="oui-icon-plus"
+        variant="secondary"
+        on-click="$ctrl.goToCreateSnapshotPolicies()"
+    >
+        <span data-translate="netapp_snapshot_policies_create"></span>
+    </oui-button>
+    <snapshot-policies
+        policies="$ctrl.snapshotPolicies"
+        on-delete="$ctrl.onDelete(snapshotPolicy)"
+    ></snapshot-policies>
+</section>

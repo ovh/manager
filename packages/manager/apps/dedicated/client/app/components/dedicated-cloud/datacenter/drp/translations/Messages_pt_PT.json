@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_tab_drp": "Plano de recuperação de desastres (DRP)",
+  "dedicatedCloud_datacenter_drp_subtitle": "Crie o seu plano de recuperação de desastres com Zerto",
+  "dedicatedCloud_datacenter_drp_details_EPCC": "Garanta a proteção do seu sistema de informação configurando o seu plano de recuperação de desastres. Migre a sua infraestrutura em apenas 1 clique e alguns minutos em caso de problemas de funcionamento ou de interrupção de serviço. Atenção: deve possuir um Hosted Private Cloud secundário antes de ativar esta opção.",
+  "dedicatedCloud_datacenter_drp_warning": "O seu datacenter atual não dispõe de nenhum host. Encomende um para utilizar este datacenter para o seu DRP, ou selecione um datacenter que disponha de, pelo menos, um host.",
+  "dedicatedCloud_tab_drp_choice_plan_type": "Selecione o tipo de DRP pretendido:",
+  "dedicatedCloud_datacenter_ovh_choice_EPCC": "Entre duas soluções Hosted Private Cloud da OVHcloud",
+  "dedicatedCloud_datacenter_onPremise_choice_EPCC": "Entre a sua infraestrutura e um Hosted Private Cloud da OVHcloud",
+  "dedicatedCloud_datacenter_activate_zerto_drp": "Ativar Zerto DRP",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "O DRP está a ser eliminado. A operação demorará alguns minutos",
+  "dedicatedCloud_datacenter_drp_get_state_error": "Ocorreu um erro ao obter as informações do seu DRP.",
+  "dedicatedCloud_datacenter_install_plan": "Instalar",
+  "dedicatedCloud_datacenter_install_in_error": "Ocorre um erro ao instalar o plano. Contacte o suporte",
+  "dedicatedCloud_datacenter_drp_details_MBM": "Garanta a proteção do seu sistema de informação configurando o seu plano de recuperação de desastres. Migre a sua infraestrutura em apenas 1 clique e alguns minutos em caso de problemas de funcionamento ou de interrupção de serviço. Atenção, deve possuir um Managed Bare Metal secundário antes de ativar esta opção.",
+  "dedicatedCloud_datacenter_ovh_choice_MBM": "Entre dois Managed Bare Metal",
+  "dedicatedCloud_datacenter_onPremise_choice_MBM": "Entre a sua infraestrutura e um Managed Bare Metal"
+}

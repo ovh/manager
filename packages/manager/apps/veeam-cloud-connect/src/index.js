@@ -1,14 +1,17 @@
 import 'script-loader!jquery'; // eslint-disable-line
-import '@ovh-ux/manager-veeam-cloud-connect';
-import { Environment } from '@ovh-ux/manager-config';
-import angular from 'angular';
-import 'script-loader!moment/min/moment-with-locales.min'; // eslint-disable-line
+import 'whatwg-fetch';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+import { bootstrapApplication } from '@ovh-ux/manager-core';
+import { defineApplicationVersion } from '@ovh-ux/request-tagger';
 
-Environment.setRegion(__WEBPACK_REGION__);
+defineApplicationVersion(__VERSION__);
 
-angular.module('veeamCloudConnectApp', ['ovhManagerVeeamCloudConnect']).config(
-  /* @ngInject */ (TranslateServiceProvider) => {
-    const defaultLanguage = TranslateServiceProvider.getUserLocale(true);
-    moment.locale(defaultLanguage);
-  },
-);
+bootstrapApplication('veeam-cloud-connect').then((environment) => {
+  import(`./config-${environment.getRegion()}`)
+    .catch(() => {})
+    .then(() => import('./app.module'))
+    .then(({ default: startApplication }) => {
+      startApplication(document.body, environment);
+    });
+});

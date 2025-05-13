@@ -5,6 +5,7 @@ import 'angular-translate';
 import 'ovh-api-services';
 
 import add from './add';
+import component from './contacts.component';
 import routing from './contacts.routing';
 
 const moduleName = 'ovhManagerPciProjectBillingContacts';
@@ -18,6 +19,7 @@ angular
     'ui.router',
   ])
   .config(routing)
+  .component('pciProjectContacts', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

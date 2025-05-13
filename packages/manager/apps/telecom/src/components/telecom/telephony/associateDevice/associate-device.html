@@ -1,0 +1,103 @@
+<div class="telephonyAssociateDevice">
+    <div class="text-center" data-ng-if="!$ctrl.isInitialized">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <div
+        class="alert alert-success"
+        role="alert"
+        data-ng-if="$ctrl.attachSuccess && $ctrl.isInitialized"
+        data-translate="telephony_device_associate_attach_success"
+    ></div>
+
+    <div
+        class="alert alert-info"
+        role="alert"
+        data-ng-if="!$ctrl.phones.length && $ctrl.isInitialized"
+        data-translate="telephony_device_associate_attach_empty"
+    ></div>
+
+    <form
+        data-ng-if="$ctrl.isInitialized && !$ctrl.attachSuccess && $ctrl.phones.length"
+        data-ng-submit="$ctrl.attachDevice()"
+    >
+        <div class="form-group">
+            <div data-ng-repeat="phone in $ctrl.phones">
+                <div class="radio">
+                    <label>
+                        <input
+                            type="radio"
+                            data-ng-attr-id="{{ 'phone' + phone.macAddress }}"
+                            data-ng-attr-name="{{ 'phone' + phone.macAddress }}"
+                            data-ng-attr-value="{{ phone.macAddress }}"
+                            data-ng-model="$ctrl.macAddress"
+                        />
+                        <span class="ml-2" data-ng-bind="phone.description">
+                        </span>
+                        <span
+                            class="ml-2"
+                            data-ng-bind="phone.macAddress"
+                        ></span>
+                        <div
+                            class="ml-4"
+                            data-ng-if="phone.associatedLines.length"
+                        >
+                            <span
+                                data-translate="telephony_device_associate_line_count"
+                                data-translate-values="{
+                                      count: phone.associatedLines.length,
+                                      total: phone.maxline
+                                  }"
+                            >
+                            </span>
+                            <ul class="ml-2">
+                                <li
+                                    data-ng-repeat="line in phone.associatedLines"
+                                >
+                                    <span
+                                        data-ng-bind="(line.serviceName | tucPhoneNumber) + (line.description ? ' (' + line.description + ')' : '')"
+                                    ></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label
+                for="ipAddress"
+                class="control-label"
+                data-translate="telephony_device_associate_ip_address"
+            ></label>
+            <input
+                type="text"
+                id="ipAddress"
+                name="ipAddress"
+                class="form-control"
+                data-ng-model="$ctrl.ipAddress"
+            />
+        </div>
+        <button
+            type="submit"
+            class="btn btn-primary mb-5 float-right"
+            data-ng-disabled="$ctrl.isAttaching || !$ctrl.macAddress || !$ctrl.ipAddress"
+        >
+            <oui-spinner
+                class="mr-2"
+                data-ng-if="$ctrl.isAttaching"
+                data-size="s"
+            >
+            </oui-spinner>
+            <span data-translate="telephony_device_associate_attach"></span>
+        </button>
+        <button
+            type="reset"
+            class="btn btn-default mr-2 mb-5 float-right no-transition"
+            data-ng-if="$ctrl.macAddress"
+            data-ng-click="$ctrl.macAddress = null; $ctrl.ipAddress = null"
+            data-translate="cancel"
+        ></button>
+    </form>
+</div>

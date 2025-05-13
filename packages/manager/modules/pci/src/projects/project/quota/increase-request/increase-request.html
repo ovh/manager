@@ -1,28 +1,96 @@
-<form novalidate name="increase-quota-form">
-    <oui-modal
-        data-heading="{{ 'pci_projects_project_quota_increase_title' | translate }}"
-        data-primary-action="$ctrl.increaseQuota()"
-        data-primary-label="{{:: 'pci_projects_project_quota_increase_submit_label' | translate }}"
-        data-primary-disabled="$ctrl.isLoading"
-        data-secondary-action="$ctrl.goBack()"
-        data-secondary-label="{{:: 'pci_projects_project_quota_increase_cancel_label' | translate }}"
-        data-on-dismiss="$ctrl.goBack()"
-        data-loading="$ctrl.isLoading"
-    >
-        <p
-            data-translate="pci_projects_project_quota_increase_content"
-            data-translate-values="{ 'projectId': $ctrl.projectId }"
-        ></p>
-
-        <oui-field label="{{ $ctrl.issueTypeFieldsStr }}" size="xl">
-            <textarea
-                class="oui-textarea"
-                id="description"
-                name="description"
-                ng-model="$ctrl.issueTypeDescription"
-                required
+<div>
+    <oui-header class="mb-3">
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.guideUrl.instances track by $index"
+                data-href="{{:: guide.url }}"
+                data-on-click="$ctrl.trackClick('_' + $ctrl.guideTrackingSectionTags.quota_and_regions + guide.tracking)"
+                data-external
             >
-            </textarea>
-        </oui-field>
-    </oui-modal>
-</form>
+                <span
+                    data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+
+    <h1
+        class="oui-heading_2 d-inline-block"
+        data-translate="pci_projects_project_quota_increase_title"
+    />
+
+    <p data-translate="pci_projects_project_quota_assistance_description" />
+
+    <oui-back-button data-on-click="$ctrl.goBack()" />
+
+    <div data-ng-if="$ctrl.isTicketCreated">
+        <oui-message data-type="success">
+            <p
+                data-translate="pci_projects_project_quota_increase_success_message"
+                data-translate-values="{ ticketUrl: $ctrl.ticketUrl }"
+            />
+        </oui-message>
+        <p data-translate="pci_projects_project_quota_assistance_success_1"></p>
+        <div>
+            <p data-translate="pci_projects_project_quota_assistance_success_3">
+                <a
+                    class="oui-link_icon"
+                    target="_blank"
+                    data-href="$ctrl.ticketUrl"
+                >
+                    <span
+                        class="oui-icon oui-icon-external-link"
+                        aria-hidden="true"
+                    ></span
+                ></a>
+            </p>
+        </div>
+    </div>
+
+    <div data-ng-if="!$ctrl.isTicketCreated">
+        <oui-message data-type="info">
+            <p
+                data-translate="pci_projects_project_quota_information_banner"
+            ></p>
+        </oui-message>
+        <form novalidate name="increase-quota-form">
+            <div data-ng-repeat="field in $ctrl.issueFields track by $index">
+                <oui-field label="{{ field.label }}" size="xl">
+                    <textarea
+                        label="{{ field.label }}"
+                        class="oui-textarea"
+                        id="{{field.label}}"
+                        name="{{field.label}}"
+                        ng-model="$ctrl.fieldsValue[$index]"
+                        data-ng-required="{{field.mandatory}}"
+                        data-ng-minlength="{{field.mandatory ? 20 : undefined}}"
+                        data-ng-maxlength="100"
+                    >
+                    </textarea>
+                </oui-field>
+            </div>
+
+            <div data-ng-if="!$ctrl.loaders.isAdding">
+                <oui-button
+                    data-variant="secondary"
+                    data-type="button"
+                    data-on-click="$ctrl.goBack()"
+                    ><span
+                        data-translate="pci_projects_project_quota_increase_cancel_label"
+                    ></span>
+                </oui-button>
+                <oui-button
+                    data-type="button"
+                    data-loading="$ctrl.isLoading || $ctrl.isQuotaIncreaseConfirmButtonDisabled()"
+                    data-disabled="$ctrl.isQuotaIncreaseConfirmButtonDisabled()"
+                    data-on-click="$ctrl.increaseQuotaBySupport()"
+                    ><span
+                        data-translate="pci_projects_project_quota_increase_submit_label"
+                    ></span>
+                </oui-button>
+            </div>
+        </form>
+    </div>
+</div>

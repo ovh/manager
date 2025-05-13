@@ -1,0 +1,42 @@
+<form
+    class="dedicatedCloud-terminate-confirm"
+    name="$ctrl.terminateConfirmForm"
+    novalidate
+>
+    <oui-modal
+        data-on-dismiss="$ctrl.goBack()"
+        data-primary-label="{{ :: 'dedicatedCloud_confirm_close_confirm' | translate }}"
+        data-primary-action="$ctrl.onTerminateConfirmFormSubmit()"
+        data-secondary-label="{{ :: 'dedicatedCloud_confirm_close_cancel' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-loading="$ctrl.loading.confirm"
+        data-heading="{{ :: 'dedicatedCloud_confirm_close_service' | translate }}"
+    >
+        <oui-field
+            label="{{ :: 'dedicatedCloud_confirm_close_question' | translate }}"
+        >
+            <oui-radio
+                data-ng-repeat="reason in $ctrl.reasons track by $index"
+                name="reasons"
+                data-model="$ctrl.model.reason"
+                data-value="reason"
+                ><span
+                    data-ng-bind=":: ('dedicatedCloud_confirm_close_reason_' + reason.toLowerCase()) | translate"
+                ></span>
+            </oui-radio>
+        </oui-field>
+
+        <oui-field
+            data-label="{{ :: 'dedicatedCloud_confirm_close_feedback' | translate }}"
+            data-size="xl"
+        >
+            <oui-textarea
+                data-model="$ctrl.model.commentary"
+                data-maxlength="450"
+                data-name="commentary"
+                data-rows="6"
+            >
+            </oui-textarea>
+        </oui-field>
+    </oui-modal>
+</form>

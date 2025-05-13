@@ -1,0 +1,9 @@
+{
+  "hycu_terminate_headline": "Cancel the HYCU for OVHcloud service",
+  "hycu_terminate_description": "Please enter the word “TERMINATE” to confirm the cancellation of your HYCU for OVHcloud service. By performing this action, you also agree to no longer use the previously provided licence file.",
+  "hycu_terminate_input_label": "Confirmation word: ",
+  "hycu_terminate_cancel_label": "Cancel",
+  "hycu_terminate_confirm_label": "Terminate",
+  "hycu_terminate_success_message": "Your termination request for {{serviceName}} has been processed. You will receive an email to confirm your request.",
+  "hycu_terminate_error_message": "An error has occurred: {{error}}."
+}

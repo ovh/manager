@@ -1,443 +1,514 @@
 <div class="telecom-pack-voipLine-activation">
-    <header>
-        <tuc-section-back-link
-            data-tuc-section-back-link-to-state="telecom.packs.pack"
-        ></tuc-section-back-link>
-        <h1 data-translate="telefony_activation_add_line_title"></h1>
-    </header>
+    <oui-back-button data-on-click="::$ctrl.goBack()"></oui-back-button>
+    <oui-header
+        heading="{{:: 'telefony_activation_add_line_title' | translate }}"
+    >
+    </oui-header>
+    <div data-ng-hide="$ctrl.orderDone">
+        <div class="widget-presentation">
+            <h2
+                class="widget-presentation-title"
+                data-translate="telefony_activation_widget_free_slot"
+            ></h2>
+            <div class="text-center" data-ng-if="$ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+            <div
+                data-ng-if="!$ctrl.loading && $ctrl.orderCountSelect.length === 0"
+                data-translate="telefony_activation_widget_free_slot_zero"
+            ></div>
+            <!-- number of lines -->
+            <div class="row" data-ng-if="!$ctrl.loading">
+                <label
+                    class="col-xs-12 col-md-2"
+                    data-translate="telefony_activation_widget_slot_count"
+                ></label>
+                <div class="col-xs-8 col-md-4">
+                    <select
+                        name="slot_count"
+                        class="form-control"
+                        data-ng-model="$ctrl.orderCount"
+                        data-ng-options="orderItem.label for orderItem in
+                                $ctrl.orderCountSelect track by
+                                orderItem.value"
+                        data-ng-change="$ctrl.setOrderCount()"
+                        required
+                    >
+                    </select>
+                </div>
+            </div>
+        </div>
 
-    <div class="telecom-section-content">
-        <div data-ng-hide="PackVoipLineActivationCtrl.orderDone">
-            <div class="widget-presentation">
-                <h2
-                    class="widget-presentation-title"
-                    data-translate="telefony_activation_widget_free_slot"
-                ></h2>
-                <div
-                    class="text-center"
-                    data-ng-if="PackVoipLineActivationCtrl.loading"
+        <div class="widget-presentation" data-ng-if="$ctrl.orderCount.value">
+            <!-- Text -->
+            <div
+                class="my-3"
+                data-ng-if="!$ctrl.loading || $ctrl.modem.linesOnModem === 0"
+            >
+                <p>
+                    <span
+                        data-ng-if="$ctrl.orderCountSelect.length > 1"
+                        data-translate="telephony_activation_intro_multiline"
+                    ></span>
+                </p>
+                <p
+                    data-ng-if="$ctrl.orderCountSelect.length > $ctrl.modem.linesOnModem"
                 >
+                    <span
+                        data-ng-if="$ctrl.modem.linesOnModem === 1"
+                        data-translate="telefony_activation_widget_line_on_modem"
+                    ></span>
+                </p>
+            </div>
+
+            <oui-message type="info" data-ng-if="$ctrl.orderCount.value > 1">
+                <span
+                    data-translate="telephony_activation_order_nb_select_phones"
+                    data-translate-values="{nbLines: $ctrl.orderCount.value}"
+                ></span>
+            </oui-message>
+
+            <!-- hardware selection -->
+            <div>
+                <header class="widget-presentation-header">
+                    <h3
+                        class="widget-presentation-title"
+                        data-translate="telephony_activation_choice_title"
+                    ></h3>
+                </header>
+
+                <div data-translate="telephony_activation_choice_intro"></div>
+                <div data-translate="telephony_activation_choice_intro_2"></div>
+
+                <div class="text-center" data-ng-if="$ctrl.loading">
                     <oui-spinner></oui-spinner>
                 </div>
-                <div
-                    data-ng-if="!PackVoipLineActivationCtrl.loading &&
-                        PackVoipLineActivationCtrl.orderCountSelect.length === 0"
-                    data-translate="telefony_activation_widget_free_slot_zero"
-                ></div>
-                <!-- number of lines -->
-                <div
-                    class="row"
-                    data-ng-if="!PackVoipLineActivationCtrl.loading"
-                >
-                    <label
-                        class="col-xs-12 col-md-2"
-                        data-translate="telefony_activation_widget_slot_count"
-                    ></label>
-                    <div class="col-xs-8 col-md-4">
-                        <select
-                            name="slot_count"
-                            class="form-control"
-                            data-ng-model="PackVoipLineActivationCtrl.orderCount"
-                            data-ng-options="orderItem.label for orderItem in
-                                PackVoipLineActivationCtrl.orderCountSelect track by
-                                orderItem.value"
-                            data-ng-change="PackVoipLineActivationCtrl.setOrderCount()"
-                            required
+
+                <div data-ng-if="!$ctrl.loading">
+                    <div data-ng-if="$ctrl.hardwares.length > 1">
+                        <oui-message
+                            type="error"
+                            data-ng-if="$ctrl.errorQuantity"
                         >
-                        </select>
+                            <span
+                                data-translate="telephony_activation_choice_quantity_max"
+                            ></span>
+                        </oui-message>
+
+                        <!-- Define filters -->
+                        <oui-dropdown
+                            class="d-flex justify-content-end"
+                            data-placement="end"
+                        >
+                            <oui-dropdown-trigger
+                                text="{{ ::'telephony_activation_choice_filter_price' | translate }}"
+                            >
+                            </oui-dropdown-trigger>
+                            <oui-dropdown-content>
+                                <oui-dropdown-item
+                                    data-on-click="$ctrl.sortPrice('asc')"
+                                >
+                                    <span
+                                        data-translate="telephony_activation_choice_filter_price_asc"
+                                    ></span>
+                                </oui-dropdown-item>
+                                <oui-dropdown-item
+                                    data-on-click="$ctrl.sortPrice('desc')"
+                                >
+                                    <span
+                                        data-translate="telephony_activation_choice_filter_price_desc"
+                                    ></span>
+                                </oui-dropdown-item>
+                            </oui-dropdown-content>
+                        </oui-dropdown>
+
+                        <!-- Define tabs -->
+                        <oui-tabs>
+                            <oui-tabs-item
+                                data-ng-repeat="brand in $ctrl.brandList track by $index"
+                                data-heading="{{ ::brand }}"
+                                data-on-active="$ctrl.filterByBrand(brand)"
+                            >
+                                <!-- Define the thumbnail for phones list -->
+                                <div class="row">
+                                    <div
+                                        class="col-xs-12 col-sm-6 col-md-3 phone-item"
+                                        data-ng-if="$ctrl.isSipLineAvailable && !$ctrl.isFilteredByBrand"
+                                    >
+                                        <oui-radio-group
+                                            data-model="$ctrl.phoneToOrder"
+                                            data-on-change="$ctrl.selectSipLineWithoutPhone()"
+                                            data-ng-if="$ctrl.orderCount.value === 1"
+                                        >
+                                            <oui-radio
+                                                thumbnail
+                                                data-value="sipLine"
+                                            >
+                                                <div
+                                                    data-translate="telephony_activation_choice_sip_line_without_phone"
+                                                ></div>
+                                                <div class="thumbnail">
+                                                    <span
+                                                        class="text-center ovh-font ovh-font-phone sized"
+                                                    ></span>
+                                                </div>
+                                            </oui-radio>
+                                        </oui-radio-group>
+                                        <div
+                                            class="thumbnail-light"
+                                            id="sipLine"
+                                            data-ng-if="$ctrl.orderCount.value > 1"
+                                        >
+                                            <div
+                                                class="thumbnail-label"
+                                                data-translate="telephony_activation_choice_sip_line_without_phone"
+                                            ></div>
+                                            <div class="thumbnail">
+                                                <span
+                                                    class="text-center ovh-font ovh-font-phone sized"
+                                                ></span>
+                                            </div>
+                                            <oui-numeric
+                                                class="mx-auto"
+                                                data-model="phone.quantity"
+                                                data-min="::$ctrl.spinnerExtremities.min"
+                                                data-max="::$ctrl.modem.linesOnModem"
+                                                data-on-change="$ctrl.updateOrderTotal(modelValue, 'sipLine')"
+                                                data-ng-if="$ctrl.orderCount.value > 1"
+                                            >
+                                            </oui-numeric>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="col-xs-12 col-sm-6 col-md-3 phone-item"
+                                        data-ng-repeat="phone in $ctrl.phonesDisplayed track by phone.name"
+                                    >
+                                        <oui-radio-group
+                                            data-model="$ctrl.phoneToOrder"
+                                            data-on-change="$ctrl.selectPhone(phone)"
+                                            data-ng-if="$ctrl.orderCount.value === 1"
+                                        >
+                                            <oui-radio
+                                                thumbnail
+                                                data-value="phone.name"
+                                            >
+                                                <div>{{phone.label}}</div>
+                                                <div class="thumbnail">
+                                                    <img
+                                                        class="sized"
+                                                        data-ng-if="phone.image"
+                                                        alt="{{phone.label}}"
+                                                        data-ng-src="{{phone.image}}"
+                                                    />
+                                                    <span
+                                                        data-ng-if="!phone.image"
+                                                        class="text-center ovh-font ovh-font-phone sized"
+                                                    ></span>
+                                                </div>
+                                                <div class="caption">
+                                                    <div class="text-center">
+                                                        <span
+                                                            data-translate="telephony_activation_choice_deposit"
+                                                        ></span>
+                                                        <span
+                                                            data-ng-bind="phone.deposit.text"
+                                                        ></span>
+                                                    </div>
+                                                    <div
+                                                        class="text-center oui-label"
+                                                        data-ng-if="phone.fees"
+                                                    >
+                                                        <span
+                                                            data-translate="telephony_activation_choice_setup_fees"
+                                                        ></span>
+                                                        <span
+                                                            data-ng-bind="phone.fees.text"
+                                                        ></span>
+                                                    </div>
+                                                    <div
+                                                        class="text-center oui-label"
+                                                        data-ng-if="phone.url"
+                                                    >
+                                                        <a
+                                                            data-ng-href="{{phone.url}}"
+                                                            target="_blank"
+                                                        >
+                                                            <span
+                                                                data-translate="telephony_activation_choice_detail_link"
+                                                            >
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </oui-radio>
+                                        </oui-radio-group>
+
+                                        <div
+                                            class="thumbnail-light"
+                                            id="{{phone.name}}"
+                                            data-ng-if="$ctrl.orderCount.value > 1"
+                                        >
+                                            <div class="thumbnail-label">
+                                                {{phone.label}}
+                                            </div>
+                                            <div class="thumbnail">
+                                                <img
+                                                    class="sized"
+                                                    data-ng-if="phone.image"
+                                                    alt="{{phone.label}}"
+                                                    data-ng-src="{{phone.image}}"
+                                                />
+                                                <span
+                                                    data-ng-if="!phone.image"
+                                                    class="text-center ovh-font ovh-font-phone sized"
+                                                ></span>
+                                            </div>
+                                            <div class="caption">
+                                                <div class="text-center">
+                                                    <span
+                                                        data-translate="telephony_activation_choice_deposit"
+                                                    ></span>
+                                                    <span
+                                                        data-ng-bind="phone.deposit.text"
+                                                    ></span>
+                                                </div>
+                                                <div
+                                                    class="text-center oui-label"
+                                                    data-ng-if="phone.fees"
+                                                >
+                                                    <span
+                                                        data-translate="telephony_activation_choice_setup_fees"
+                                                    ></span>
+                                                    <span
+                                                        data-ng-bind="phone.fees.text"
+                                                    ></span>
+                                                </div>
+                                                <div
+                                                    class="text-center oui-label"
+                                                    data-ng-if="phone.url"
+                                                >
+                                                    <a
+                                                        data-ng-href="{{phone.url}}"
+                                                        target="_blank"
+                                                    >
+                                                        <span
+                                                            data-translate="telephony_activation_choice_detail_link"
+                                                        >
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <oui-numeric
+                                                    class="mx-auto"
+                                                    data-model="phone.quantity"
+                                                    data-min="::$ctrl.spinnerExtremities.min"
+                                                    data-max="::$ctrl.spinnerExtremities.max"
+                                                    data-on-change="$ctrl.updateOrderTotal(modelValue, phone)"
+                                                    data-ng-if="$ctrl.orderCount.value > 1"
+                                                >
+                                                </oui-numeric>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </oui-tabs-item>
+                        </oui-tabs>
+
+                        <br />
+                        <hr class="oui-horizontal-line_dark" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transport -->
+        <div
+            class="widget-presentation mt-4"
+            data-ng-if="$ctrl.isShipping() &&
+                    $ctrl.orderCount.value"
+        >
+            <h2
+                class="widget-presentation-title"
+                data-translate="telephony_activation_shipping_address_label"
+            ></h2>
+            <!-- Shipping mode -->
+            <div class="row">
+                <div
+                    class="col-xs-12 col-md-2 font-weight-bold"
+                    data-translate="telephony_activation_shipping_mode"
+                ></div>
+                <div class="col-md-5 col-xs-12">
+                    <div class="row">
+                        <div class="col">
+                            <oui-radio-group
+                                data-model="$ctrl.shippingMode"
+                                data-on-change="$ctrl.updatePhoneBill()"
+                            >
+                                <oui-radio data-value="'mondialRelay'">
+                                    <span
+                                        data-translate="telephony_activation_shipping_relay_label"
+                                    ></span>
+                                </oui-radio>
+                                <oui-radio data-value="'transporter'">
+                                    <span
+                                        data-translate="telephony_activation_shipping_transporter_label"
+                                        data-translate-values="{cost:$ctrl.transporterCost, currency: $ctrl.transporterCurrency}"
+                                    ></span>
+                                </oui-radio>
+                            </oui-radio-group>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Mondial relay -->
             <div
-                class="widget-presentation"
-                data-ng-if="PackVoipLineActivationCtrl.orderCount.value"
+                class="row animate-mondial-relay"
+                data-ng-show="$ctrl.shippingMode === 'mondialRelay'"
             >
-                <!-- Text -->
-                <div
-                    class="my-3"
-                    data-ng-if="!PackVoipLineActivationCtrl.loading || PackVoipLineActivationCtrl.modem.linesOnModem === 0"
-                >
-                    <p
-                        data-ng-if="PackVoipLineActivationCtrl.orderCountSelect.length > PackVoipLineActivationCtrl.modem.linesOnModem"
-                    >
-                        <span
-                            class="ovh-font ovh-font-warning text-warning"
-                            aria-hidden="true"
-                            data-ng-if="PackVoipLineActivationCtrl.orderCountSelect.length > 1"
-                        ></span>
-                        <span
-                            data-ng-if="PackVoipLineActivationCtrl.orderCountSelect.length > 1"
-                            data-translate="telefony_activation_add_line_intro_multiline"
-                        ></span>
-                        <span
-                            data-ng-if="PackVoipLineActivationCtrl.modem.linesOnModem === 1"
-                            data-translate="telefony_activation_widget_line_on_modem"
-                        ></span>
-                        <span
-                            data-ng-if="PackVoipLineActivationCtrl.modem.linesOnModem > 1"
-                            data-translate="telefony_activation_widget_lines_on_modem"
-                            data-translate-values="{linesOnModem:PackVoipLineActivationCtrl.modem.linesOnModem}"
-                        ></span>
-                    </p>
-                </div>
-                <!-- hardware selection -->
-                <div
-                    class="row mb-4"
-                    data-ng-repeat="hardwarePair in PackVoipLineActivationCtrl.framedLines"
-                    data-ng-hide="PackVoipLineActivationCtrl.loading"
-                >
-                    <div
-                        class="col-md-6"
-                        data-ng-repeat="hardware in hardwarePair track by hardware.index"
-                    >
-                        <h3
-                            data-translate="telefony_activation_hardware_line"
-                            data-translate-values="{ index: hardware.index }"
-                        ></h3>
-                        <div
-                            class="checkbox"
-                            data-uib-tooltip="{{ !PackVoipLineActivationCtrl.canUncheckOrderablePhones && hardware.line.needHardware ? 'telefony_activation_no_more_port_modem' : null | translate }}"
-                        >
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    id="{{'lineOrder-' + hardware.index}}"
-                                    name="{{'lineOrder-' + hardware.index}}"
-                                    data-ng-model="hardware.line.needHardware"
-                                    data-ng-disabled="!PackVoipLineActivationCtrl.canUncheckOrderablePhones && hardware.line.needHardware"
-                                    data-ng-change="PackVoipLineActivationCtrl.checkIfStillCanUncheckOrderablePhones()"
-                                />
-                                <span>
-                                    <span
-                                        data-translate="telefony_activation_with_phone_header"
-                                    ></span>
-                                    <span
-                                        class="text-info ovh-font ovh-font-info hidden-xs"
-                                        aria-hidden="true"
-                                    ></span>
-                                </span>
-                            </label>
-                            <div
-                                class="text-info visible-xs"
-                                data-ng-if="!PackVoipLineActivationCtrl.canUncheckOrderablePhones && hardware.line.needHardware"
-                            >
-                                <span
-                                    class="ovh-font ovh-font-info"
-                                    aria-hidden="true"
-                                ></span>
-                                <span
-                                    data-translate="telefony_activation_no_more_port_modem"
-                                ></span>
-                            </div>
-                        </div>
-                        <div
-                            data-ng-if="hardware.line.needHardware"
-                            class="mt-2"
-                        >
-                            <!-- choices -->
-                            <oui-slideshow
-                                data-ng-if="!hardware.line.hardware"
-                                id="{{'carousel' + hardware.index}}"
-                                class="block-emphasis"
-                            >
-                                <oui-slideshow-panel
-                                    data-ng-repeat="slide in hardware.availableHardwares track by slide.name"
-                                    data-heading="{{ :: slide.label }}"
-                                    data-picture="{{ :: slide.image }}"
-                                    data-label="{{ ::'telefony_activation_hardware_select_label' | translate }}"
-                                    data-on-click="hardware.line.hardware = slide"
-                                >
-                                    (
-                                    <span
-                                        data-translate="telefony_activation_hardware_caution_label"
-                                    ></span>
-                                    :
-                                    <span
-                                        class="text-price"
-                                        data-ng-bind="slide.deposit.text"
-                                    ></span>
-                                    )
-                                    <a
-                                        data-ng-href="{{slide.url}}"
-                                        class="text-white pt-2 d-block"
-                                        target="_blank"
-                                        title="{{:: 'telefony_activation_hardware_doc_label' | translate }} {{:: 'common_newtab' | translate }}"
-                                        rel="noopener"
-                                    >
-                                        <span
-                                            data-translate="telefony_activation_hardware_doc_label"
-                                        ></span>
-                                        <span
-                                            class="ovh-font ovh-font-newtab ml-2"
-                                            aria-hidden="true"
-                                        ></span>
-                                    </a>
-                                </oui-slideshow-panel>
-                            </oui-slideshow>
+                <ovh-mondial-relay
+                    data-ng-model="$ctrl.mondialRelay"
+                ></ovh-mondial-relay>
+            </div>
 
-                            <!-- user selection -->
+            <!-- Transporter -->
+            <div
+                class="animate-addresses row mt-3"
+                data-ng-show="$ctrl.shippingMode === 'transporter'"
+            >
+                <div
+                    class="col-xs-12 col-sm-6 col-md-3"
+                    data-ng-repeat="address in $ctrl.shippingAddresses track by address.shippingId"
+                >
+                    <div class="block-emphasis">
+                        <div class="block-emphasis__row">
                             <div
-                                data-ng-if="hardware.line.hardware"
-                                class="block-emphasis selected-hardware"
+                                class="block-emphasis__column block-emphasis__column--first"
+                            >
+                                <input
+                                    type="radio"
+                                    data-ng-model="$ctrl.transporterAddress"
+                                    value="{{address.shippingId}}"
+                                    name="{{ 'address-' + address.shippingId}}"
+                                    id="{{ 'addr_' + address.shippingId + 'Elem'}}"
+                                    required
+                                />
+                            </div>
+                            <label
+                                class="block-emphasis__column"
+                                for="{{ 'addr_' + address.shippingId + 'Elem'}}"
                             >
                                 <div>
-                                    <div class="voipLine-hardware-image">
-                                        <img
-                                            data-ng-src="{{hardware.line.hardware.image}}"
-                                            alt=""
-                                        />
-                                    </div>
-
-                                    <div class="carousel-caption">
-                                        <h4
-                                            data-ng-bind="hardware.line.hardware.label"
-                                        ></h4>
-                                        <div>
-                                            (
-                                            <span
-                                                data-translate="telefony_activation_hardware_caution_label"
-                                            ></span>
-                                            :
-                                            <span
-                                                class="text-price"
-                                                data-ng-bind="hardware.line.hardware.deposit.text"
-                                            ></span>
-                                            )
-                                        </div>
-
-                                        <div>
-                                            <a
-                                                data-ng-href="{{hardware.line.hardware.url}}"
-                                                target="_blank"
-                                                title="{{:: 'telefony_activation_hardware_doc_label' | translate }} {{:: 'common_newtab' | translate }}"
-                                            >
-                                                <span
-                                                    data-translate="telefony_activation_hardware_doc_label"
-                                                ></span>
-                                                <span
-                                                    class="ovh-font ovh-font-newtab ml-2"
-                                                    aria-hidden="true"
-                                                ></span>
-                                            </a>
-                                        </div>
-                                    </div>
+                                    <span
+                                        data-ng-bind="address.firstName"
+                                    ></span>
+                                    <span
+                                        data-ng-bind="address.lastName"
+                                    ></span>
                                 </div>
-                                <div class="text-center">
-                                    <button
-                                        type="button"
-                                        class="btn btn-primary"
-                                        data-ng-click="hardware.line.hardware = null"
-                                        data-translate="telefony_activation_hardware_unselect_label"
-                                    ></button>
+                                <div data-ng-bind="address.address"></div>
+                                <div>
+                                    <span data-ng-bind="address.zipCode"></span>
+                                    <span
+                                        data-ng-bind="address.cityName"
+                                    ></span>
+                                    -
+                                    <span
+                                        data-ng-bind="address.countryCode"
+                                    ></span>
                                 </div>
-                            </div>
+                            </label>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Transport -->
-            <div
-                class="widget-presentation mt-4"
-                data-ng-if="PackVoipLineActivationCtrl.isShipping() &&
-                    PackVoipLineActivationCtrl.orderCount.value"
-            >
-                <h2
-                    class="widget-presentation-title"
-                    data-translate="telefony_activation_shipping_address_label"
-                ></h2>
-                <!-- Shipping mode -->
-                <div class="row">
-                    <div
-                        class="col-xs-12 col-md-2 font-weight-bold"
-                        data-translate="telefony_activation_shipping_mode"
-                    ></div>
-                    <div class="col-md-5 col-xs-12">
-                        <div class="input-group mt-2">
-                            <input
-                                type="radio"
-                                data-ng-model="PackVoipLineActivationCtrl.shippingMode"
-                                value="mondialRelay"
-                                name="shipping-method"
-                                required
-                            />
-                            <label
-                                class="pl-2"
-                                data-translate="telefony_activation_shipping_relay_label"
-                            ></label>
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-xs-12">
-                        <div class="input-group mt-2">
-                            <input
-                                type="radio"
-                                data-ng-model="PackVoipLineActivationCtrl.shippingMode"
-                                value="transporter"
-                                name="shipping-method"
-                                required
-                            />
-                            <label
-                                class="pl-2"
-                                data-translate="telefony_activation_shipping_transporter_label"
-                                data-translate-values="{cost:PackVoipLineActivationCtrl.transporterCost}"
-                            ></label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mondial relay -->
+        <!-- billing -->
+        <div
+            class="widget-presentation mt-4"
+            data-ng-if="$ctrl.orderCount.value"
+        >
+            <h2
+                class="widget-presentation-title"
+                data-translate="telephony_activation_widget_activate_price_title"
+            ></h2>
+            <div class="row">
                 <div
-                    class="row animate-mondial-relay"
-                    data-ng-show="PackVoipLineActivationCtrl.shippingMode === 'mondialRelay'"
-                >
-                    <ovh-mondial-relay
-                        data-ng-model="PackVoipLineActivationCtrl.mondialRelay"
-                    ></ovh-mondial-relay>
-                </div>
-
-                <!-- Transporter -->
-                <div
-                    class="animate-addresses"
-                    data-ng-show="PackVoipLineActivationCtrl.shippingMode === 'transporter'"
-                >
-                    <div
-                        class="row mt-3"
-                        data-ng-repeat="addressGroup in PackVoipLineActivationCtrl.framedShippingAddresses"
-                    >
-                        <div
-                            class="col-md-4"
-                            data-ng-repeat="address in addressGroup track by address.shippingId"
-                        >
-                            <div class="block-emphasis">
-                                <div class="block-emphasis__row">
-                                    <div
-                                        class="block-emphasis__column block-emphasis__column--first"
-                                    >
-                                        <input
-                                            type="radio"
-                                            data-ng-model="PackVoipLineActivationCtrl.transporterAddress"
-                                            value="{{address.shippingId}}"
-                                            name="{{ 'address-' + address.shippingId}}"
-                                            id="{{ 'addr_' + address.shippingId + 'Elem'}}"
-                                            required
-                                        />
-                                    </div>
-                                    <label
-                                        class="block-emphasis__column"
-                                        for="{{ 'addr_' + address.shippingId + 'Elem'}}"
-                                    >
-                                        <div>
-                                            <span
-                                                data-ng-bind="address.firstName"
-                                            ></span>
-                                            <span
-                                                data-ng-bind="address.lastName"
-                                            ></span>
-                                        </div>
-                                        <div
-                                            data-ng-bind="address.address"
-                                        ></div>
-                                        <div>
-                                            <span
-                                                data-ng-bind="address.zipCode"
-                                            ></span>
-                                            <span
-                                                data-ng-bind="address.cityName"
-                                            ></span>
-                                            -
-                                            <span
-                                                data-ng-bind="address.countryCode"
-                                            ></span>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- billing -->
-            <div
-                class="widget-presentation mt-4"
-                data-ng-if="PackVoipLineActivationCtrl.orderCount.value"
-            >
-                <h2
-                    class="widget-presentation-title"
-                    data-translate="telefony_activation_widget_activate_price_title"
-                ></h2>
-                <div class="row">
-                    <div
-                        class="col-xs-6 col-md-2 font-weight-bold"
-                        data-translate="telefony_activation_hardware_caution_label"
-                    ></div>
-                    <div class="col-xs-6 col-md-10 text-price font-weight-bold">
-                        <span
-                            data-ng-bind="PackVoipLineActivationCtrl.bill.deposit()"
-                        ></span>
-                        €
-                    </div>
-                </div>
-                <div class="row">
-                    <div
-                        class="col-xs-6 col-md-2 font-weight-bold"
-                        data-translate="telefony_activation_shipping_price_label"
-                    ></div>
-                    <div class="col-xs-6 col-md-10 text-price font-weight-bold">
-                        <span
-                            data-ng-bind="PackVoipLineActivationCtrl.bill.transportCost()"
-                        ></span>
-                        €
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div
-                        class="col-xs-6 col-md-2 font-weight-bold"
-                        data-translate="telefony_activation_total_price_label"
-                    ></div>
-                    <div class="col-xs-6 col-md-10 text-price font-weight-bold">
-                        <span
-                            data-ng-bind="PackVoipLineActivationCtrl.bill.total()"
-                        ></span>
-                        €
-                    </div>
-                </div>
-            </div>
-
-            <!-- Order ! -->
-            <div
-                class="mb-5 text-center"
-                data-ng-if="PackVoipLineActivationCtrl.orderCount.value"
-            >
-                <button
-                    type="button"
-                    class="btn btn-primary btn-lg"
-                    data-ng-click="PackVoipLineActivationCtrl.launchOrder()"
-                    data-ng-disabled="!PackVoipLineActivationCtrl.isOrderReady() || PackVoipLineActivationCtrl.orderPending"
-                >
-                    <oui-spinner
-                        class="mr-2"
-                        data-ng-if="PackVoipLineActivationCtrl.orderPending"
-                        data-size="s"
-                    >
-                    </oui-spinner>
+                    class="col-xs-6 col-md-2 font-weight-bold"
+                    data-translate="telephony_activation_hardware_caution_label"
+                ></div>
+                <div class="col-xs-6 col-md-10 text-price font-weight-bold">
                     <span
-                        data-translate="telefony_activation_widget_activate_button_label"
+                        data-ng-bind="$ctrl.phoneBill.deposit.toFixed(2)"
                     ></span>
-                </button>
+                    €
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col-xs-6 col-md-2 font-weight-bold"
+                    data-translate="telephony_activation_hardware_setup_fees_label"
+                ></div>
+                <div class="col-xs-6 col-md-10 text-price font-weight-bold">
+                    <span data-ng-bind="$ctrl.phoneBill.fees.toFixed(2)"></span>
+                    €
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col-xs-6 col-md-2 font-weight-bold"
+                    data-translate="telephony_activation_shipping_price_label"
+                ></div>
+                <div class="col-xs-6 col-md-10 text-price font-weight-bold">
+                    <span
+                        data-ng-bind="$ctrl.phoneBill.transportCost.toFixed(2)"
+                    ></span>
+                    €
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div
+                    class="col-xs-6 col-md-2 font-weight-bold"
+                    data-translate="telephony_activation_total_price_label"
+                ></div>
+                <div class="col-xs-6 col-md-10 text-price font-weight-bold">
+                    <span
+                        data-ng-bind="$ctrl.phoneBill.total.toFixed(2)"
+                    ></span>
+                    €
+                </div>
             </div>
         </div>
 
-        <div data-ng-if="PackVoipLineActivationCtrl.orderDone">
-            <span data-translate="telefony_activation_done"></span>
-            <p data-translate="telephony_activation_order_resume"></p>
-            <a
-                target="_blank"
-                data-ng-href="{{PackVoipLineActivationCtrl.orderDetails.orderUrl}}"
-                data-translate="telephony_activation_order_link"
+        <!-- Order ! -->
+        <div class="mb-5 text-center" data-ng-if="$ctrl.orderCount.value">
+            <button
+                type="button"
+                class="btn btn-primary btn-lg"
+                data-ng-click="$ctrl.launchOrder()"
+                data-ng-disabled="!$ctrl.isOrderReady() || $ctrl.orderPending"
             >
-            </a>
+                <oui-spinner
+                    class="mr-2"
+                    data-ng-if="$ctrl.orderPending"
+                    data-size="s"
+                >
+                </oui-spinner>
+                <span
+                    data-translate="telefony_activation_widget_activate_button_label"
+                ></span>
+            </button>
         </div>
+    </div>
+
+    <div data-ng-if="$ctrl.orderDone">
+        <span data-translate="telefony_activation_done"></span>
+        <p data-translate="telephony_activation_order_resume"></p>
+        <a
+            target="_blank"
+            data-ng-href="{{$ctrl.orderDetails.orderUrl}}"
+            data-translate="telephony_activation_order_link"
+        >
+        </a>
     </div>
 </div>

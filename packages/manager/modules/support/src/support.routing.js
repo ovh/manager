@@ -7,6 +7,10 @@ export const state = {
   views: {
     '@': component.name,
   },
+  resolve: {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('ovhManagerSupport_header'),
+  },
 };
 
 export default {

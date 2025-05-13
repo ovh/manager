@@ -1,0 +1,5 @@
+{
+  "telephony_billingAccount_svaWallet_status_banner_in_progress": "Your identity validation request has been processed. You will need to wait 24/48 hours for your order to be validated!",
+  "telephony_billingAccount_svaWallet_status_banner_incomplete": "Your validation form is pending. To confirm your order for an SVA number, you must complete your form.",
+  "telephony_billingAccount_svaWallet_status_banner_edit_kyc": "Finalise my proof of identity form"
+}

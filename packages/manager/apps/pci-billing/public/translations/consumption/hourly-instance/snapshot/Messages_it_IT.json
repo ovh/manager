@@ -1,0 +1,10 @@
+{
+  "cpbc_no_consumption_data": "Nessun consumo per il periodo selezionato.",
+  "cpbc_snapshot_col_location": "Localizzazione",
+  "cpbc_snapshot_col_type": "Tipo",
+  "cpbc_snapshot_col_usage": "Consumo",
+  "cpbc_snapshot_col_usage_info_part1": "La fatturazione considera lo spazio di storage reale, calcolato ogni ora.",
+  "cpbc_snapshot_col_usage_info_part2": "Il tuo consumo corrisponde esattamente a {{amount}} GiB/ora.",
+  "cpbc_snapshot_type_instance": "Immagine dei server",
+  "cpb_error_message": "Ops! Impossibile recuperare tutte le informazioni."
+}

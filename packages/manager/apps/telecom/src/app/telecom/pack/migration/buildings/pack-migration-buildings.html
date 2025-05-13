@@ -1,0 +1,41 @@
+<div class="telecom-pack-migration-shipping">
+    <h3 data-translate="telecom_pack_migration_buildings_title"></h3>
+    <div data-translate="telecom_pack_migration_buildings_available"></div>
+    <oui-datagrid rows="$ctrl.buildingsList">
+        <oui-datagrid-column
+            data-title="::'telecom_pack_migration_buildings_name' | translate"
+            data-property="name"
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'telecom_pack_migration_buildings_reference' | translate"
+            data-property="reference"
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'telecom_pack_migration_buildings_nro' | translate"
+            data-property="nro"
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'telecom_pack_migration_buildings_type' | translate"
+            data-property="type"
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'telecom_pack_migration_buildings_actions' | translate"
+        >
+            <oui-button
+                data-variant="primary"
+                data-on-click="$ctrl.selectBuilding($row)"
+                ><span
+                    data-translate="telecom_pack_migration_buildings_select_building"
+                ></span>
+            </oui-button>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</div>

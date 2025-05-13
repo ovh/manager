@@ -1,10 +1,13 @@
 {
-  "ovh_payment_type_bank_account": "Compte bancaire",
+  "ovh_payment_type_bank_account": "Prélèvement SEPA",
   "ovh_payment_type_paypal": "Paypal",
+  "ovh_payment_type_rupay": "RuPay",
   "ovh_payment_type_credit_card": "Carte bancaire",
+  "ovh_payment_type_sepa_direct_debit": "Prélèvement bancaire",
   "ovh_payment_type_deferred_payment_account": "Compte de paiement différé",
   "ovh_payment_type_internal_trusted_account": "Compte de paiement différé",
   "ovh_payment_type_enterprise": "Compte entreprise",
+  "ovh_payment_method_registration_failure": "L'enregistrement de votre bancaire a échoué. Vous n'avez pas été débité. Veuillez réessayer ou contacter votre banque si le problème persiste. Vous pouvez également changer de mode de paiement.",
   "ovh_payment_status_valid": "Validé",
   "ovh_payment_status_expired": "Expiré",
   "ovh_payment_status_proposed_by_customer": "En attente de validation",
@@ -25,5 +28,7 @@
   "ovh_payment_status_maintenance": "Maintenance en cours",
   "ovh_payment_status_paused": "Mis en pause",
   "ovh_payment_status_failed": "Invalide",
+  "ovh_payment_status_validating": "En cours de validation",
+  "ovh_payment_status_rejected": "Refusé",
   "ovh_payment_status_null": "Information non-disponible"
 }

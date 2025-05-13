@@ -1,7 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_settings_create_rule_title": "Dodawanie reguły",
-  "enterprise_cloud_database_service_details_settings_create_rule_description": "Dodaj regułę do grupy zabezpieczeń {{groupName}}",
-  "enterprise_cloud_database_service_details_settings_create_rule_label": "Reguła",
-  "enterprise_cloud_database_service_details_settings_create_rule_success": "Reguła została dodana. Reguła zacznie działać po około 1 minucie.",
-  "enterprise_cloud_database_service_details_settings_create_rule_error": "Wystąpił błąd podczas dodawania reguły: {{message}}"
-}

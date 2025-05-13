@@ -1,9 +1,0 @@
-{
- "cpc_tab_infra": "Instances",
- "cpc_tab_snapshot": "Backups",
- "cpc_tab_volume": "Additional disks ",
- "cpc_tab_ssh": "SSH keys",
- "cpc_tab_loadbalancer": "Load Balancer",
- "cpc_tab_project": "Project management and resource usage",
- "cpb_tab_quota": "Quota"
-}

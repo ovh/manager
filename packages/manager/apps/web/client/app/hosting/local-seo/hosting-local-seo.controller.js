@@ -7,29 +7,34 @@ import map from 'lodash/map';
 angular.module('App').controller(
   'HostingTabLocalSeoCtrl',
   class HostingTabLocalSeoCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $scope,
       $stateParams,
       $translate,
       $window,
+      atInternet,
       Alerter,
       Hosting,
       HostingLocalSeo,
-      User,
+      WucUser,
     ) {
       this.$q = $q;
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.$window = $window;
+      this.atInternet = atInternet;
       this.Alerter = Alerter;
       this.Hosting = Hosting;
       this.HostingLocalSeo = HostingLocalSeo;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
+      this.atInternet.trackPage({ name: 'web::hosting::visibility-pro' });
+
       this.datagridId = 'localSeoDatagrid';
       this.loading = {
         locations: false,
@@ -52,7 +57,7 @@ angular.module('App').controller(
       return this.$q
         .all({
           serviceInfo: this.Hosting.getServiceInfos(this.productId),
-          user: this.User.getUser(),
+          user: this.WucUser.getUser(),
         })
         .then(
           ({ serviceInfo, user }) =>

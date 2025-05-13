@@ -1,9 +1,0 @@
-{
- "kube_list_title": "Kubernetes",
- "kube_list_name": "Nombre del cluster",
- "kube_list_region": "Región",
- "kube_list_version": "Versión",
- "kube_list_cluster_manage": "Gestionar el cluster",
- "kube_list_cluster_create": "Crear un cluster Kubernetes",
- "kube_list_error": "Se ha producido un error al cargar los clusters."
-}

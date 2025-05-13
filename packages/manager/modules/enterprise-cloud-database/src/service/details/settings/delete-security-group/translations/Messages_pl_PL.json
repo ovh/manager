@@ -1,7 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_settings_delete_security_group_title": "Usunięcie grupy zabezpieczeń",
-  "enterprise_cloud_database_service_details_settings_delete_security_group_description": "Czy na pewno chcesz usunąć grupę zabezpieczeń {{groupName}} i powiązane z nią reguły?",
-  "enterprise_cloud_database_service_details_settings_delete_security_group_warning": "Czynność ta spowoduje usunięcie wszystkich reguł dotyczących tej grupy i jest nieodwracalna.",
-  "enterprise_cloud_database_service_details_settings_delete_security_group_success": "Polecenie usunięcia grupy zabezpieczeń {{groupName}} zostało utworzone i jest aktualnie przetwarzane.",
-  "enterprise_cloud_database_service_details_settings_delete_security_group_error": "Wystąpił błąd podczas usuwania grupy zabezpieczeń: "
-}

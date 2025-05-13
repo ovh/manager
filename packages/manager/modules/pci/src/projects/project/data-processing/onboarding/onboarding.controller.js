@@ -1,28 +1,21 @@
 import reduce from 'lodash/reduce';
 import illustration from './assets/data-processing.png';
 import { GUIDES, SPARK_URL } from './onboarding.constants';
+import { DATA_PROCESSING_TRACKING_PREFIX_FULL } from '../data-processing.constants';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $translate,
-    $state,
-    $q,
-    dataProcessingService,
-    PciProjectLabsService,
-  ) {
+  constructor($translate, $state, $q, dataProcessingService, atInternet) {
     this.$translate = $translate;
     this.$state = $state;
     this.$q = $q;
     this.dataProcessingService = dataProcessingService;
-    this.pciProjectLabsService = PciProjectLabsService;
-    this.isActivated = false;
-    this.agreedLab = false;
+    this.atInternet = atInternet;
+    this.isActivating = false;
   }
 
   $onInit() {
     this.illustration = illustration;
-    this.isActivated = this.lab.isActivated();
     this.sparkUrl = SPARK_URL;
     this.guides = reduce(
       GUIDES,
@@ -40,24 +33,26 @@ export default class {
     );
   }
 
-  acceptLab(accepted) {
-    this.agreedLab = accepted;
+  authorizeService() {
+    this.isActivating = true;
+    this.atInternet.trackClick({
+      name: `${DATA_PROCESSING_TRACKING_PREFIX_FULL}::onboarding::first-job`,
+      type: 'action',
+    });
+    this.dataProcessingService
+      .authorize(this.projectId)
+      .then(() => {
+        this.goBack();
+      })
+      .finally(() => {
+        this.isActivating = false;
+      });
   }
 
-  authorizeService() {
-    let labPromise;
-    if (this.agreedLab) {
-      labPromise = this.pciProjectLabsService.activateLab(
-        this.projectId,
-        this.lab,
-      );
-    } else {
-      labPromise = this.$q.resolve();
-    }
-    return labPromise.then(() => {
-      this.dataProcessingService.authorize(this.projectId).then(() => {
-        this.goBack();
-      });
+  onGuideClick(guide) {
+    this.atInternet.trackClick({
+      name: guide.tracker,
+      type: 'action',
     });
   }
 }

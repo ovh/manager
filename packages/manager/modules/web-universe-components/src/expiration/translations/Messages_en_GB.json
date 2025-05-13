@@ -1,9 +1,0 @@
-{
-  "expiration_new_tab": "Open in a new tab",
-  "expiration_expired_date": "Expires on <strong>{{t0}}</strong>",
-  "expiration_renew_date": "Automatic renewal scheduled for <strong>{{t0}}</strong>",
-  "expiration_resiliation_cancel_label": "Cancel termination ",
-  "expiration_wizard_renew": "Renew",
-  "expiration_resiliation_date": "Cancellation planned for <strong>{{t0}}</strong>",
-  "expiration_expiration_date": "Expires <strong>{{t0}}</strong>"
-}

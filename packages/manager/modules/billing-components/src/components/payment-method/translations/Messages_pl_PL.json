@@ -1,0 +1,9 @@
+{
+  "payment_method_title": "Mój sposób płatności",
+  "payment_method_default_label": "Domyślny",
+  "payment_method_expired_label": "Wygasły",
+  "payment_method_update_link_label": "Zmodyfikuj",
+  "payment_method_add_link_label": "Dodaj",
+  "payment_method_expiration_date_label": "Data ważności {{date}}",
+  "payment_expiration_no_default_method_message": "Nie wprowadziłeś domyślnego sposobu płatności."
+}

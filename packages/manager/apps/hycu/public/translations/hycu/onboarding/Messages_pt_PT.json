@@ -1,0 +1,11 @@
+{
+  "orderButtonLabel": "Começar",
+  "moreInfoButtonLabel": "Saber mais",
+  "hycu_onboarding_category_tutorial": "Tutorial",
+  "hycu_onboarding_guide1_title": "Manuais e documentação",
+  "hycu_onboarding_guide1_description": "Descubra os nossos manuais e a nossa documentação detalhada para o acompanhar no seu projeto.",
+  "hycu_onboarding_guide2_title": "Nutanix on OVHcloud",
+  "hycu_onboarding_guide2_description": "A solução Nutanix on OVHcloud associa as licenças do Nutanix Cloud Platform (NCP) e as infraestruturas Hosted Private Cloud da OVHcloud dedicadas e com certificação Nutanix, para pré-implementar um ambiente hiperconvergente (HCI) Nutanix pronto a utilizar.",
+  "hycu_onboarding_guide3_title": "Plano de recuperação de desastres (DRP)",
+  "hycu_onboarding_guide3_description": "Conte com o serviço HYCU for OVHcloud para uma recuperação de desastres eficaz, a um custo controlado e sem surpresas."
+}

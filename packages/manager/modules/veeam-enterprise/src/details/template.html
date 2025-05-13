@@ -1,0 +1,29 @@
+<div>
+    <oui-header>
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: $ctrl.serviceName }}"
+                ></h1>
+                <changelog-button
+                    links="$ctrl.constants.CHANGELOG.veeam_enterprise.links"
+                    chapters="$ctrl.constants.CHANGELOG.veeam_enterprise.chapters"
+                ></changelog-button>
+            </div>
+        </oui-header-heading>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-state="veeam-enterprise.dashboard"
+                data-state-params="{ serviceName: $ctrl.serviceName }"
+                ><span data-translate="veeam_enterprise_tab_dashboard"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+    <cui-message-container
+        data-messages="$ctrl.VeeamEnterpriseService.unitOfWork.messages"
+        data-dismissable-types="['error', 'warning', 'info', 'success']"
+    >
+    </cui-message-container>
+    <div data-ui-view="veeamEnterpriseContent"></div>
+</div>

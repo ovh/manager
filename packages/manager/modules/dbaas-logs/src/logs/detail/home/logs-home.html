@@ -1,0 +1,424 @@
+<div data-ovh-alert="logs-home-alert"></div>
+<section data-ng-if="ctrl.service.loading" class="logs-home">
+    <div class="text-center">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+</section>
+<section data-ng-if="!ctrl.service.loading" class="logs-home">
+    <div
+        class="oui-message oui-message_warning m-3 d-flex"
+        role="alert"
+        data-ng-if="ctrl.isAccountDisabled"
+    >
+        <i class="oui-icon oui-icon-warning-circle mr-1" aria-hidden="true"></i>
+        <span
+            class="oui-message__body"
+            data-translate="logs_home_account_disabled_message"
+            data-translate-values="{ disabledDate: ctrl.lastUpdatedDate }"
+        ></span>
+    </div>
+    <div class="row d-lg-flex mb-3">
+        <div class="col-xm-12 col-md-4" data-ng-if="!ctrl.isAccountDisabled">
+            <oui-tile
+                class="oui-tile-h-100"
+                data-heading="{{::'logs_home_shortcuts'|translate}}"
+            >
+                <oui-tile-definition
+                    data-term="{{::'logs_home_shortcuts_last_stream'|translate}}"
+                >
+                    <oui-tile-description>
+                        <a
+                            data-ng-if="ctrl.accountDetails.last_stream"
+                            data-ng-href="{{ ctrl.accountDetails.last_stream.graylogWebuiUrl }}"
+                            class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
+                            rel="noopener"
+                            target="_blank"
+                        >
+                            <span
+                                data-ng-bind="ctrl.accountDetails.last_stream.title"
+                            ></span>
+                            <i
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+                        <span
+                            data-ng-if="!ctrl.accountDetails.last_stream"
+                            data-translate="logs_none"
+                        >
+                        </span>
+                        <button
+                            type="button"
+                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                            data-ng-click="ctrl.goToAllStreams()"
+                        >
+                            <span
+                                data-translate="logs_home_shortcuts_all_stream"
+                            ></span>
+                        </button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{::'logs_home_shortcuts_last_dashboard'|translate}}"
+                >
+                    <oui-tile-description>
+                        <a
+                            data-ng-if="ctrl.accountDetails.last_dashboard"
+                            data-ng-href="{{ ctrl.accountDetails.last_dashboard.graylogWebuiUrl }}"
+                            class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
+                            rel="noopener"
+                            target="_blank"
+                        >
+                            <span
+                                data-ng-bind="ctrl.accountDetails.last_dashboard.title"
+                            ></span>
+                            <i
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+                        <span
+                            data-ng-if="!ctrl.accountDetails.last_dashboard"
+                            data-translate="logs_none"
+                        ></span>
+                        <button
+                            type="button"
+                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                            data-ng-click="ctrl.goToAllDashboards()"
+                        >
+                            <span
+                                data-translate="logs_home_shortcuts_all_dashboard"
+                            ></span>
+                        </button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition>
+                    <oui-tile-description>
+                        <a
+                            data-ng-href="{{ ctrl.accountDetails.graylogWebuiUrl }}"
+                            class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
+                            rel="noopener"
+                            target="_blank"
+                        >
+                            <span
+                                data-translate="logs_home_shortcuts_graylog"
+                            ></span>
+                            <i
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+                        <a
+                            data-ng-href="{{ ctrl.accountDetails.graylogApiUrl }}"
+                            class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
+                            rel="noopener"
+                            target="_blank"
+                        >
+                            <span
+                                data-translate="logs_home_shortcuts_graylog_api"
+                            ></span>
+                            <i
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+                        <div data-ng-if="ctrl.accountDetails">
+                            <a
+                                data-ng-href="{{ ctrl.accountDetails.elasticSearchApiUrl }}"
+                                class="oui-tile__button oui-button oui-link_icon oui-button_ghost"
+                                data-ng-class="{
+                                    'oui-link_disabled': !ctrl.canAccessToElasticsearch,
+                                    'oui-button_block': ctrl.canAccessToElasticsearch
+                                }"
+                                rel="noopener"
+                                target="_blank"
+                            >
+                                <span
+                                    data-translate="logs_home_shortcuts_elasticsearch"
+                                ></span>
+                                <i
+                                    class="oui-icon oui-icon-external-link"
+                                    aria-hidden="true"
+                                ></i>
+                            </a>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                data-ng-if="!ctrl.canAccessToElasticsearch"
+                                data-oui-popover="{{::'logs_home_shortcuts_elasticsearch_help'|translate}}"
+                            ></button>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+        <div class="col-xm-12 col-md-8" data-ng-if="!ctrl.isAccountDisabled">
+            <oui-tile
+                class="h-100 oui-tile-h-100"
+                data-heading="{{::'logs_home_usage'|translate}}"
+                data-loading="ctrl.storageData.loading"
+            >
+                <oui-tile-definition data-ng-if="ctrl.storageData.loading">
+                    <oui-tile-description>
+                        <oui-skeleton data-randomized></oui-skeleton>
+                        <oui-skeleton data-randomized></oui-skeleton>
+                        <oui-skeleton data-randomized></oui-skeleton>
+                        <oui-skeleton data-randomized></oui-skeleton>
+                        <oui-skeleton data-randomized></oui-skeleton>
+                        <oui-skeleton data-randomized></oui-skeleton>
+                        <oui-skeleton data-randomized></oui-skeleton>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <div
+                    class="pl-4 pr-4 pb-2"
+                    data-ng-if="!ctrl.storageData.loading"
+                >
+                    <oui-tabs>
+                        <oui-tabs-item
+                            data-heading="{{ ::'logs_home_tab_stream' | translate }}"
+                        >
+                            <div
+                                class="chart chart-line"
+                                data-chart
+                                data-chartjs="ctrl.streamUsageGraphData"
+                                data-auto-reload="true"
+                            ></div>
+
+                            <span
+                                data-ng-if="ctrl.streamUsageGraphData.data.length===0"
+                                data-translate="logs_home_no_usage_known"
+                            ></span>
+                        </oui-tabs-item>
+                        <oui-tabs-item
+                            data-heading="{{ ::'streams_archives_title' | translate }}"
+                        >
+                            <div
+                                class="chart chart-line"
+                                data-chart
+                                data-chartjs="ctrl.archiveUsageGraphData"
+                                data-auto-reload="true"
+                            ></div>
+
+                            <span
+                                data-ng-if="ctrl.archiveUsageGraphData.data.length===0"
+                                data-translate="logs_home_no_usage_known"
+                            ></span>
+                        </oui-tabs-item>
+                        <oui-tabs-item
+                            data-heading="{{ ::'logs_tab_indices' | translate }}"
+                        >
+                            <div
+                                class="chart chart-line"
+                                data-chart
+                                data-chartjs="ctrl.indiceUsageGraphData"
+                                data-auto-reload="true"
+                            ></div>
+
+                            <span
+                                data-ng-if="ctrl.indiceUsageGraphData.data.length===0"
+                                data-translate="logs_home_no_usage_known"
+                            ></span>
+                        </oui-tabs-item>
+                    </oui-tabs>
+                </div>
+            </oui-tile>
+        </div>
+    </div>
+    <div class="row d-lg-flex mb-3">
+        <div class="col-xm-12 col-md-4" data-ng-if="!ctrl.isAccountDisabled">
+            <oui-tile
+                class="oui-tile-h-100"
+                data-heading="{{::'logs_home_configuration'|translate}}"
+            >
+                <oui-tile-definition
+                    data-term="{{::'logs_home_cluster'|translate}}"
+                    data-description="{{ctrl.accountDetails.graylogEntryPoint}}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    class="text-capitalize"
+                    data-term="{{::'logs_home_service_type'|translate}}"
+                    data-description="{{ctrl.getPlanName()}}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{::'logs_home_region' | translate}}"
+                    data-description="{{:: 'label-' + ctrl.defaultCluster.region.toLowerCase() | translate}}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{::'logs_home_service'|translate}}"
+                    data-description="{{ctrl.accountDetails.username}}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{::'logs_home_password'|translate}}"
+                    data-description="******"
+                >
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            aria-label="{{::'logs_edit'|translate}}"
+                            data-on-click="ctrl.editPassword()"
+                            ><span data-translate="logs_edit"></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+
+                <oui-tile-definition
+                    data-term="{{::'logs_home_tokens'|translate}}"
+                    data-term-popover="{{::'logs_home_tokens_tooltip'|translate}}"
+                >
+                    <oui-tile-description
+                        data-ng-bind="ctrl.tokenIds.length"
+                    ></oui-tile-description>
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            aria-label="{{::'logs_edit'|translate}}"
+                            data-on-click="ctrl.editTokens()"
+                            ><span data-translate="logs_edit"></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{::'logs_encryption_keys_title'|translate}}"
+                    data-term-popover="{{::'logs_home_encryption_keys_tooltip'|translate}}"
+                >
+                    <oui-tile-description
+                        data-ng-bind="ctrl.encryptionKeysIds.length"
+                    ></oui-tile-description>
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            aria-label="{{::'logs_edit'|translate}}"
+                            data-on-click="ctrl.editEncryptionKeys()"
+                            ><span data-translate="logs_edit"></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+        <div class="col-xm-12 col-md-4" data-ng-if="!ctrl.isAccountDisabled">
+            <oui-tile
+                class="oui-tile-h-100"
+                data-heading="{{::'logs_home_ssi_configuration'|translate}}"
+            >
+                <oui-tile-definition
+                    data-term="{{ctrl.accountDetails.graylogEntryPoint}}"
+                >
+                    <oui-tile-description>
+                        <oui-clipboard
+                            id="directInputPEM"
+                            data-model="ctrl.defaultCluster.directInputPEM"
+                        >
+                        </oui-clipboard>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{::'logs_home_collector'|translate}}"
+                >
+                    <oui-tile-description>
+                        <oui-clipboard
+                            id="dedicatedInputPEM"
+                            data-model="ctrl.defaultCluster.dedicatedInputPEM"
+                        ></oui-clipboard>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition>
+                    <oui-tile-description>
+                        <button
+                            type="button"
+                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                            data-ng-click="ctrl.openMessagesAndPorts()"
+                        >
+                            <span
+                                data-translate="logs_home_formats_and_ports"
+                            ></span>
+                        </button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+        <div class="col-xm-12 col-md-4">
+            <oui-tile
+                class="oui-tile-h-100"
+                data-heading="{{::'logs_home_subscription' |translate}}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'logs_home_account_status' |translate}}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="ctrl.STATUS_CLASS[ctrl.accountDetails.state]"
+                            data-translate="{{'logs_home_status_' + ctrl.accountDetails.state}}"
+                        ></span>
+                    </oui-tile-description>
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            disabled="ctrl.accountDetails.state === ctrl.LogsConstants.SERVICE_STATE_DISABLED"
+                            aria-label="{{:: 'logs_home_resiliate' |translate}}"
+                            data-on-click="ctrl.goToResiliate()"
+                            ><span data-translate="logs_home_resiliate"></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+
+                <oui-tile-definition
+                    data-term="{{::'logs_home_account_name'|translate}}"
+                >
+                    <oui-tile-description
+                        data-ng-bind="ctrl.accountDetails.displayName"
+                    >
+                    </oui-tile-description>
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            aria-label="{{::'logs_edit'|translate}}"
+                            data-on-click="ctrl.changeName()"
+                            ><span data-translate="logs_edit"></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{::'logs_tile_subscription_contact'|translate}}"
+                >
+                    <oui-tile-description>
+                        <div>
+                            <span
+                                data-ng-bind="ctrl.serviceInfos.contactAdmin"
+                            ></span>
+                            <small
+                                data-translate="logs_tile_subscription_contact_admin"
+                            ></small>
+                        </div>
+                        <div>
+                            <span
+                                data-ng-bind="ctrl.serviceInfos.contactBilling"
+                            ></span>
+                            <small
+                                data-translate="logs_tile_subscription_contact_billing"
+                            ></small>
+                        </div>
+                        <div>
+                            <span
+                                data-ng-bind="ctrl.serviceInfos.contactTech"
+                            ></span>
+                            <small
+                                data-translate="logs_tile_subscription_contact_technical"
+                            ></small>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{::'logs_home_start_date'|translate}}"
+                >
+                    <oui-tile-description
+                        data-ng-bind="ctrl.accountDetails.createdAt|cucMomentFormat:'LL'"
+                    >
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
+    <div data-ui-view="passwordModal"></div>
+    <div data-ui-view="logsAccountContent"></div>
+    <div data-ui-view="logsCappedContent"></div>
+</section>

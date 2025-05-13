@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_storages_containers_offsite_replication_description": "Automatycznie replikuj dane do zdalnej lokalizacji. Minimalizuj koszty i zwiększaj bezpieczeństwo danych.",
+  "pci_projects_project_storages_containers_offsite_replication_disabled": "Wyłącz",
+  "pci_projects_project_storages_containers_offsite_replication_enabled": "Włącz",
+  "pci_projects_project_storages_containers_offsite_replication_recommanded": "Rekomendowana",
+  "pci_projects_project_storages_containers_offsite_replication_price_estimation": "~ {{price}} netto/m-c/TB",
+  "pci_projects_project_storages_containers_offsite_replication_final_price_estimation": "Całkowite oszacowanie: ",
+  "pci_projects_project_storages_containers_offsite_replication_final_price_estimation_value": "~ {{price}} netto/m-c/TB",
+  "pci_projects_project_storages_containers_offsite_replication_versionning_warning": "Aktywacja funkcji Offsite Replication powoduje automatyczne włączenie wersjonowania. "
+}

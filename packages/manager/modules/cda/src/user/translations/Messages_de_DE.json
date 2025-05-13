@@ -1,0 +1,22 @@
+{
+  "cda_user_permission_definition": "Ihre Benutzer können das Cluster mit spezifischen Rechten je Pool verwenden. ",
+  "cda_user_add_button_text": "Benutzer hinzufügen",
+  "cda_user_delete_button_text": "Löschen",
+  "cda_user_edit_button_text": "Rechte ansehen ",
+  "cda_user_table_col_username": "Name",
+  "cda_user_table_col_key": "Schlüssel",
+  "cda_user_table_col_pool": "Pools ",
+  "cda_user_table_col_actions": "Aktionen",
+  "cda_user_add_title": "Benutzer hinzufügen",
+  "cda_user_add_username_label": "Name",
+  "cda_user_add_username_required": "Bitte geben Sie einen Namen an. ",
+  "cda_user_add_username_pattern": "Der Name darf keine Leerzeichen enthalten. ",
+  "cda_user_add_username_maxlength": "Der Name darf maximal {{ maxlength }} Zeichen umfassen. ",
+  "cda_user_add_success": "Benutzer erfolgreich hinzugefügt. ",
+  "cda_user_delete_title": "Benutzer löschen",
+  "cda_user_delete_username_label": "Name:",
+  "cda_user_delete_confirm": "Wollen Sie diesen Benutzer wirklich löschen? ",
+  "cda_user_delete_success": "Benutzer erfolgreich gelöscht. ",
+  "cda_user_table_empty": "Keine Benutzer",
+  "cda_user_breadcrumb": "Benutzer"
+}

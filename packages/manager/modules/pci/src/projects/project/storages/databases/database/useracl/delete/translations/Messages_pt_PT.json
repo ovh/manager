@@ -1,0 +1,10 @@
+{
+  "pci_databases_useracl_delete": "Eliminar as ACL",
+  "pci_databases_useracl_delete_selected_rows": "Selecionou {{n}} ACL para ser eliminada(s)",
+  "pci_databases_useracl_delete_confirm": "Eliminar as ACL selecionadas",
+  "pci_databases_useracl_delete_cancel": "Cancelar",
+  "pci_databases_useracl_delete_permission": "Permissão",
+  "pci_databases_useracl_delete_pattern": "Modelo de índice",
+  "pci_databases_useracl_delete_success_message": "A ACL do utilizador {{username}} foi eliminada",
+  "pci_databases_useracl_delete_error_message": "Ocorreu um erro aquando da eliminação das ACL do utilizador {{username}}: {{message}}"
+}

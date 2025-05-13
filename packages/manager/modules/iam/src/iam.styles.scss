@@ -1,0 +1,20 @@
+.iam {
+  .oui-autocomplete mark,
+  .oui-autocomplete .mark {
+    padding: 0 !important;
+  }
+  .oui-header-tabs-item {
+    .oui-header-tabs__action {
+      padding: 0.5rem 1.5rem;
+    }
+  }
+
+  .oui-checkbox__label {
+    word-break: break-word;
+  }
+
+  .oui-modal__body {
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+}

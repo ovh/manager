@@ -1,7 +1,7 @@
 {
   "privatesql_activation_back": "Back",
   "privatesql_activation_order": "Enable",
-  "privatesql_activation_step_1": "Enable a Private SQL database",
+  "privatesql_activation_step_1": "Activate a Web Cloud Database",
   "privatesql_activation_step_2": "Confirm",
   "privatesql_activation_hosting_select": "Hosting plan to use ",
   "privatesql_activation_hosting_error": "An error has occurred changing the options",
@@ -27,7 +27,8 @@
   "privatesql_activation_version_v_redis_32": "Redis 3.2",
   "privatesql_activation_version_v_mongodb_40": "MongoDB 4.0",
   "privatesql_activation_version_v_redis_40": "Redis 4.0",
-  "privatesql_activation_option_private-sql-512": "Private SQL 512MB",
+  "privatesql_activation_option_private-sql": "Private SQL {{diskSpace}}MB",
   "privatesql_activation_success": "Database enabled successfully. View <a href=\"{{ billUrl }}\" target=\"_blank\" rel=\"noopener\">your bill</a>.",
-  "privatesql_activation_success_bc": "Your <a href=\"{{ bcUrl }}\" target=\"_blank\" rel=\"noopener\">purchase order</a> has been generated. Please pay for this order to enable your database."
+  "privatesql_activation_success_bc": "Your <a href=\"{{ bcUrl }}\" target=\"_blank\" rel=\"noopener\">purchase order</a> has been generated. Please pay for this order to enable your database.",
+  "privatesql_activation_breadcrumb": "Activate"
 }

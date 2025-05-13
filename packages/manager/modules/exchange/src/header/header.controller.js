@@ -1,7 +1,3 @@
-import get from 'lodash/get';
-
-import { AUTORENEW_URL } from './header.constants';
-
 export default class HeaderController {
   /* @ngInject */
   constructor(
@@ -9,7 +5,8 @@ export default class HeaderController {
     $rootScope,
     $translate,
     constants,
-    Exchange,
+    coreURLBuilder,
+    wucExchange,
     exchangeHeader,
     exchangeServiceInfrastructure,
     messaging,
@@ -21,40 +18,36 @@ export default class HeaderController {
     this.$translate = $translate;
 
     this.constants = constants;
-    this.Exchange = Exchange;
+    this.coreURLBuilder = coreURLBuilder;
+    this.wucExchange = wucExchange;
     this.exchangeHeader = exchangeHeader;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.messaging = messaging;
     this.navigation = navigation;
     this.officeAttach = officeAttach;
-    this.AUTORENEW_URL = get(AUTORENEW_URL, constants.target, 'EU');
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
-    this.isFetchingInitialData = true;
+    this.$routerParams = this.wucExchange.getParams();
 
-    return this.fetchingExchangeService()
-      .then(() => this.fetchingCanActivateSharepoint())
-      .then(() => this.fetchingCanActivateOfficeAttach())
-      .catch((error) => {
-        this.messaging.writeError(
-          this.$translate.instant('exchange_ACTION_configure_error', {
-            error: error.message,
-          }),
-          error,
-        );
-      })
-      .finally(() => {
-        this.isFetchingInitialData = false;
-      });
-  }
+    this.exchangeService = this.wucExchange.value;
+    this.remoteDisplayName = this.exchangeService.displayName;
+    this.displayNameToUpdate = this.remoteDisplayName;
+    this.fetchingCanActivateSharepoint();
+    this.fetchingCanActivateOfficeAttach();
 
-  fetchingExchangeService() {
-    return this.Exchange.getSelected().then((exchangeService) => {
-      this.exchangeService = exchangeService;
-      this.remoteDisplayName = this.exchangeService.displayName;
-      this.displayNameToUpdate = this.remoteDisplayName;
+    this.URLS = this.coreURLBuilder.buildURLs({
+      AUTORENEW: {
+        application: 'dedicated',
+        path: '#/billing/autoRenew',
+        params: {
+          searchText: this.exchangeService.domain,
+        },
+      },
+      ORDER_OFFICE_LICENCE: {
+        application: 'web',
+        path: '#/configuration/microsoft/office/license/order',
+      },
     });
   }
 
@@ -62,7 +55,8 @@ export default class HeaderController {
     const infrastructureAllowsSharepoint = this.exchangeServiceInfrastructure.isHosted();
     const subsidiaryAllowsSharepoint = this.constants.target === 'EU';
 
-    return this.Exchange.getSharepointService()
+    return this.wucExchange
+      .getSharepointService(this.exchangeService)
       .then((sharepoint) => {
         const isAlreadyActivated = sharepoint != null;
 

@@ -1,0 +1,5 @@
+{
+  "cloud_connect_manage_notifications_title": "Zarządzanie powiadomieniami o usłudze ",
+  "cloud_connect_manage_notifications_save_success": "Twoje ustawienia zostały zapisane.",
+  "cloud_connect_manage_notifications_save_error": "Wystąpił błąd <br> {{message}} <br> request-id: {{queryId}}"
+}

@@ -1,0 +1,77 @@
+@import 'ovh-ui-kit-bs/dist/less/bootstrap/_variables';
+
+.telecom-telephony-line-phone-accessories {
+  .text-price {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  .telecom-telephony-line-phone-accessories-choice {
+    .accessory-item {
+      margin: 8px 0;
+
+      .thumbnail-light {
+        height: 370px;
+        padding: 1.25rem;
+        border: 1px solid #59d2ef;
+        border-radius: 6px;
+        background: #fff;
+        cursor: pointer;
+      }
+
+      .thumbnail-light-selected {
+        height: 370px;
+        padding: 1.25rem;
+        border: 2px solid #00a2bf;
+        background: #e0f6fd;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .thumbnail {
+        border: 0;
+
+        .sized {
+          width: 100px;
+          height: 100px;
+        }
+
+        span.ovh-font {
+          display: block;
+          text-align: center;
+          font-size: 90px;
+          margin-left: auto;
+          margin-right: auto;
+          color: @text-color;
+        }
+      }
+    }
+  }
+
+  .telecom-telephony-line-phone-accessories-resume {
+    div.resume-prices {
+      dl {
+        dt {
+          margin-top: 4px;
+          float: left;
+          clear: both;
+          font-weight: bold;
+        }
+
+        dd {
+          margin-left: 40px;
+          float: right;
+          font-weight: bold;
+        }
+      }
+    }
+
+    @media (max-width: (@screen-sm-min - 1)) {
+      div.resume-prices {
+        dl dt {
+          text-align: right;
+        }
+      }
+    }
+  }
+}

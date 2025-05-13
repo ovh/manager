@@ -1,0 +1,69 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-action="$ctrl.onSubmit()"
+    data-primary-label="{{:: 'nutanix_dashboard_install_node_confirm' | translate }}"
+    data-primary-disabled="$ctrl.installNodeForm.$invalid"
+    data-loading="$ctrl.isLoading"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'nutanix_dashboard_install_node_cancel' | translate }}"
+    data-heading="{{:: 'nutanix_dashboard_install_node_title' | translate }}"
+>
+    <div>
+        <p data-translate="nutanix_dashboard_install_node_description"></p>
+
+        <oui-message type="info"
+            ><span data-translate="nutanix_dashboard_install_node_tips"></span
+        ></oui-message>
+
+        <form class="mt-4" name="$ctrl.installNodeForm" novalidate>
+            <oui-field
+                label="{{ 'nutanix_dashboard_install_node_label_ahv_ip' | translate }}"
+                data-error-messages="$ctrl.errorMessages"
+                help-text="{{:: 'nutanix_dashboard_install_ip_tooltip' | translate }}"
+            >
+                <div class="oui-input-overlay">
+                    <input
+                        class="oui-input"
+                        type="text"
+                        name="ahvIp"
+                        data-ng-model-options="{ debounce: 500 }"
+                        data-nutanix-ip-validator
+                        data-nutanix-unique-ip-validator="$ctrl.ipUnavailableWith($ctrl.cvmIp)"
+                        data-nutanix-ip-subnet-validator="$ctrl.gatewayCidr"
+                        data-ng-model="$ctrl.ahvIp"
+                        data-required
+                    />
+                </div>
+            </oui-field>
+            <oui-field
+                label="{{ 'nutanix_dashboard_install_node_label_cvm_ip' | translate }}"
+                data-error-messages="$ctrl.errorMessages"
+                help-text="{{ :: 'nutanix_dashboard_install_ip_tooltip' | translate }}"
+            >
+                <div class="oui-input-overlay">
+                    <input
+                        class="oui-input"
+                        type="text"
+                        name="cvmIp"
+                        data-ng-model-options="{ debounce: 500 }"
+                        data-nutanix-ip-validator
+                        data-nutanix-unique-ip-validator="$ctrl.ipUnavailableWith($ctrl.ahvIp)"
+                        data-nutanix-ip-subnet-validator="$ctrl.gatewayCidr"
+                        data-ng-model="$ctrl.cvmIp"
+                        data-required
+                    />
+                </div>
+            </oui-field>
+            <oui-field
+                label="{{:: 'nutanix_dashboard_install_node_label_version_aos' | translate }}"
+            >
+                <oui-select
+                    name="version"
+                    data-model="$ctrl.version"
+                    data-items=":: $ctrl.availableVersions"
+                    data-required
+                />
+            </oui-field>
+        </form>
+    </div>
+</oui-modal>

@@ -1,145 +1,114 @@
 <div>
     <oui-back-button data-on-click="$ctrl.goBack()">
-        <span data-translate="domain_configuration_dnsanycast_title"></span>
+        <span data-translate="domain_dashboard_dns_anycast_order"></span>
     </oui-back-button>
 
-    <div class="text-center" data-ng-if="$ctrl.loading">
-        <oui-spinner></oui-spinner>
+    <div data-ng-if="!$ctrl.isCheckoutPending">
+        <p
+            data-ng-bind-html="'domain_configuration_anycast_order_description' | translate: { t0: $ctrl.domainName }"
+        ></p>
+        <p class="mb-4">
+            <span
+                data-translate="domain_configuration_anycast_payment_acceptance_delay_info"
+            ></span>
+            <span
+                data-translate="domain_configuration_anycast_propagation_delay_info"
+            ></span>
+        </p>
     </div>
+
+    <oui-message data-type="success" data-ng-if="$ctrl.checkoutSuccess">
+        <p data-translate="domain_configuration_anycast_order_success"></p>
+        <p
+            data-ng-if="$ctrl.checkoutSuccess.url"
+            data-translate="domain_configuration_anycast_order_success_bc"
+        ></p>
+        <a
+            class="oui-button oui-button_secondary"
+            target="_blank"
+            rel="noopener"
+            data-ng-attr-href="{{:: $ctrl.checkoutSuccess.url }}"
+            data-ng-if="$ctrl.checkoutSuccess.url"
+        >
+            <span
+                data-translate="domain_configuration_anycast_order_success_bc_link"
+            ></span>
+            <span
+                class="oui-icon oui-icon-external_link"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </oui-message>
 
     <oui-message data-type="error" data-ng-if="$ctrl.error">
         <p data-ng-bind="$ctrl.error"></p>
     </oui-message>
 
-    <div data-ng-if="!$ctrl.loading">
-        <div data-ng-if="!$ctrl.order">
-            <p
-                data-ng-bind-html="'domain_configuration_dnsanycast_step1_explanation' | translate"
-            ></p>
-            <p>
-                <span
-                    data-ng-bind-html="'domain_configuration_dnsanycast_step1_explanation2' | translate: { t0: '<strong>' + $ctrl.optionDetails.withoutTax + '</strong>' }"
-                ></span>
-            </p>
-            <p
-                data-ng-bind-html="'domain_configuration_dnsanycast_step2_question' | translate: { t0: $ctrl.domainName }"
-            ></p>
-            <dl class="dl-horizontal dl-lg">
-                <dt
-                    data-translate="domain_configuration_dnsanycast_step2_totalHT"
-                ></dt>
-                <dd data-ng-bind="$ctrl.optionDetails.withoutTax"></dd>
-                <dt
-                    data-translate="domain_configuration_dnsanycast_step2_totalTTC"
-                ></dt>
-                <dd data-ng-bind="$ctrl.optionDetails.withTax"></dd>
-            </dl>
-            <div class="oui-checkbox">
-                <input
-                    type="checkbox"
-                    class="oui-checkbox__input"
-                    name="contractsValidated"
-                    id="contractsValidated"
-                    data-ng-model="$ctrl.contractsValidated"
-                />
-                <label
-                    class="oui-checkbox__label-container"
-                    for="contractsValidated"
+    <oui-stepper
+        data-ng-if="!$ctrl.error && !$ctrl.checkoutSuccess"
+        data-on-finish="$ctrl.performCheckout()"
+    >
+        <oui-step-form
+            data-header="{{:: 'domain_dashboard_dns_anycast_duration_choose' | translate }}"
+            data-editable="!$ctrl.isCheckoutPending"
+            data-submit-text="{{:: 'domain_dashboard_dns_anycast_next' | translate }}"
+            data-loading="$ctrl.loading"
+            data-on-submit="$ctrl.fetchDomainExpiration()"
+        >
+            <div class="row">
+                <oui-select-picker
+                    class="mb-4 col-md-4"
+                    data-name="duration"
+                    data-model="$ctrl.duration"
+                    data-variant="light"
                 >
-                    <span class="oui-checkbox__label">
+                    <oui-select-picker-label>
                         <span
-                            data-translate="domain_configuration_dnsanycast_step2_contracts"
+                            data-translate="domain_dashboard_dns_anycast_duration"
                         ></span>
-                        <span
-                            data-ng-repeat="contract in $ctrl.optionDetails.contracts track by $index"
-                        >
-                            <span
-                                data-translate="domain_configuration_dnsanycast_step2_contracts_and"
-                                data-ng-if="!$last"
-                            ></span>
-                            <span
-                                data-translate="domain_configuration_dnsanycast_step2_contracts_of"
-                            ></span>
-                            <a
-                                data-ng-href="{{contract.url}}"
-                                target="_blank"
-                                title="{{contract.name}} ({{ 'common_newtab' | translate }})"
-                                data-ng-bind="contract.name"
-                            ></a
-                            ><span data-ng-if="!$last">, </span
-                            ><span data-ng-if="$last">.</span>
-                        </span>
-                        <span class="oui-checkbox__icon">
-                            <span
-                                class="oui-icon oui-icon-checkbox-unchecked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checkmark"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-indeterminate"
-                                aria-hidden="true"
-                            ></span>
-                        </span>
-                    </span>
-                </label>
+                        :
+                        <strong
+                            data-translate="domain_dashboard_dns_anycast_price_without_tax"
+                            data-translate-values="{ price: $ctrl.offerPrice.price.text }"
+                        ></strong>
+                    </oui-select-picker-label>
+                </oui-select-picker>
             </div>
-            <oui-button
-                class="mt-4"
-                data-on-click="$ctrl.orderDnsanycast()"
-                data-disabled="!$ctrl.contractsValidated"
-                data-variant="primary"
-            >
-                <span
-                    data-translate="domain_configuration_action_enable"
-                ></span>
-            </oui-button>
-        </div>
+        </oui-step-form>
 
-        <div data-ng-if="$ctrl.order">
-            <div class="text-center" data-ng-if="$ctrl.loading">
-                <oui-spinner></oui-spinner>
-                <p
-                    data-translate="domain_configuration_dnsanycast_step3_generation_bc"
-                ></p>
-            </div>
-            <div data-ng-if="!$ctrl.loading && $ctrl.url">
-                <p
-                    data-translate="domain_configuration_dnsanycast_step3_bc"
-                ></p>
-                <p>
-                    <strong
-                        data-translate="domain_configuration_dnsanycast_step3_continue"
-                    ></strong>
-                    <span
-                        data-translate="domain_configuration_dnsanycast_step3_explication1"
-                    ></span>
-                </p>
-                <div class="alert alert-info" role="alert">
-                    <div>
-                        <span
-                            data-translate="domain_configuration_dnsanycast_step3_explication2"
-                        ></span>
-                        <span
-                            data-translate="domain_configuration_dnsanycast_step3_explication3"
-                        ></span>
-                    </div>
-                </div>
-                <oui-button
-                    class="mt-4"
-                    data-on-click="$ctrl.displayBC()"
-                    data-disabled="!$ctrl.contractsValidated"
-                    data-variant="primary"
-                >
-                    <span data-translate="wizard_pay"></span>
-                </oui-button>
-            </div>
-        </div>
+        <oui-step-form
+            data-header="{{:: 'domain_dashboard_dns_anycast_payment' | translate }}"
+            data-editable="!$ctrl.isCheckoutPending"
+            data-loading="$ctrl.loadingSecondStep"
+            data-submit-text="{{:: ($ctrl.checkoutInfos.prices.withTax.value <= 0 ? 'domain_configuration_action_enable' : 'domain_dashboard_dns_anycast_pay') | translate }}"
+            data-prevent-next="true"
+        >
+            <dl class="w-25 oui-description oui-description_horizontal">
+                <dt
+                    data-translate="domain_dashboard_dns_anycast_prorata_price_without_tax"
+                ></dt>
+                <dd
+                    data-ng-bind="$ctrl.checkoutInfos.prices.withoutTax.text"
+                ></dd>
+                <dt
+                    data-translate="domain_dashboard_dns_anycast_prorata_price_with_tax"
+                ></dt>
+                <dd data-ng-bind="$ctrl.checkoutInfos.prices.withTax.text"></dd>
+                <dt
+                    data-translate="domain_dashboard_dns_anycast_prorata_untill"
+                ></dt>
+                <dd
+                    data-ng-bind="$ctrl.domainExpiryDate | date:'shortDate'"
+                ></dd>
+            </dl>
+            <ovh-payment-method-choice data-model="$ctrl.defaultPaymentMethod">
+            </ovh-payment-method-choice>
+            <ovh-contracts-summary data-ng-if="$ctrl.checkoutInfos">
+            </ovh-contracts-summary>
+        </oui-step-form>
+    </oui-stepper>
+
+    <div class="text-center" data-ng-if="$ctrl.isCheckoutPending">
+        <oui-spinner></oui-spinner>
     </div>
 </div>

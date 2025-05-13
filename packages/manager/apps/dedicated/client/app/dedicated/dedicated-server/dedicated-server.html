@@ -1,0 +1,34 @@
+<div data-ui-view>
+    <oui-header class="mb-3">
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: 'dedicated_servers_title' | translate }}"
+                ></h1>
+                <changelog-button
+                    links="$ctrl.constants.CHANGELOG.dedicated_server.links"
+                    chapters="$ctrl.constants.CHANGELOG.dedicated_server.chapters"
+                ></changelog-button>
+            </div>
+        </oui-header-heading>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.allServersLink }}"
+                data-active="$ctrl.allServersLink === $ctrl.currentActiveLink()"
+                ><span data-translate="dedicated_servers_all_servers"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="$ctrl.isMultiAZAvailable"
+                data-href="{{:: $ctrl.clustersLink }}"
+                data-active="$ctrl.clustersLink === $ctrl.currentActiveLink()"
+                ><span data-translate="dedicated_servers_clusters"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+
+    <div
+        class="container-fluid w-100 h-100 pt-4 px-md-5"
+        data-ui-view="containersView"
+    ></div>
+</div>

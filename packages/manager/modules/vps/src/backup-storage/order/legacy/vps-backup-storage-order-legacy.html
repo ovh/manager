@@ -2,11 +2,11 @@
     <div class="row d-lg-flex">
         <div class="col-xm-12">
             <h2
-                class="oui-header_2"
+                class="oui-heading_2"
                 data-translate="vps_configuration_activate_ftpbackup_title"
             ></h2>
             <h3
-                class="oui-header_3"
+                class="oui-heading_3"
                 data-translate="vps_configuration_activate_ftpbackup_step1_question"
                 data-translate-values="{ serviceName: '<strong>' + $ctrl.serviceName + '</strong>' }"
             ></h3>
@@ -62,17 +62,15 @@
                 <div>
                     <oui-button
                         variant="primary"
-                        data-text="{{ ::'vps_common_confirm' | translate }}"
                         data-on-click="$ctrl.orderOption()"
                         aria-label="{{ ::'vps_common_confirm' | translate }}"
-                    >
+                        ><span data-translate="vps_common_confirm"></span>
                     </oui-button>
                     <oui-button
                         variant="link"
-                        data-text="{{ ::'vps_common_cancel' | translate }}"
                         data-on-click="$ctrl.cancel()"
                         aria-label="{{ ::'vps_common_cancel' | translate }}"
-                    >
+                        ><span data-translate="vps_common_cancel"></span>
                     </oui-button>
                 </div>
             </div>

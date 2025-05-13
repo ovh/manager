@@ -1,0 +1,8 @@
+{
+  "nutanix_redeploy_confirm_title": "Redespliegue del cluster",
+  "nutanix_redeploy_confirm_description": "Va a redesplegar todo su cluster.",
+  "nutanix_redeploy_confirm_warning": "El redespliegue del cluster eliminará todos los datos del cluster.",
+  "nutanix_redeploy_confirm_redeploy_label": "Introduzca «Redeploy» para confirmar su elección.",
+  "nutanix_redeploy_confirm_primary_button_label": "Confirmar",
+  "nutanix_redeploy_confirm_secondary_button_label": "Cancelar"
+}

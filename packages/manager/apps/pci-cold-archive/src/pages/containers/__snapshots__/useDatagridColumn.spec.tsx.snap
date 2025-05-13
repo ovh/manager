@@ -1,0 +1,42 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`useDatagridColumn tests > Should match snapshot 1`] = `
+[
+  {
+    "cell": [Function],
+    "id": "name",
+    "label": "containers:pci_projects_project_storages_containers_name_label",
+  },
+  {
+    "cell": [Function],
+    "id": "createdAt",
+    "label": "pci_projects_project_storages_cold_archive_containers_creation_date_label",
+  },
+  {
+    "cell": [Function],
+    "id": "objectsCount",
+    "label": "containers:pci_projects_project_storages_containers_storedObjects_label",
+  },
+  {
+    "cell": [Function],
+    "id": "objectsSize",
+    "label": "containers:pci_projects_project_storages_containers_storedBytes_label",
+  },
+  {
+    "cell": [Function],
+    "id": "lockedUntil",
+    "label": "containers:pci_projects_project_storages_cold_archive_containers_locked_until_label",
+  },
+  {
+    "cell": [Function],
+    "id": "status",
+    "label": "pci_projects_project_storages_cold_archive_containers_status_label",
+  },
+  {
+    "cell": [Function],
+    "id": "actions",
+    "isSortable": false,
+    "label": "",
+  },
+]
+`;

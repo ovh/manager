@@ -22,7 +22,7 @@
   "pci_projects_project_instances_instance_storage_label": "Storage",
   "pci_projects_project_instances_instance_bandwidth_label": "Banda passante pubblica",
   "pci_projects_project_instances_instance_bandwidth_value": "{{ bandwidth }} Mbps",
-  "pci_projects_project_instances_instance_price_label": "Prezzo",
+  "pci_projects_project_instances_instance_price_label": "Prezzo dell'istanza",
   "pci_projects_project_instances_instance_price_month_value": "{{ price }} +IVA/mese",
   "pci_projects_project_instances_instance_price_hourly_value": "{{price}} + IVA/ora",
   "pci_projects_project_instances_instance_price_action_activeMonthlyBilling_label": "Passa al forfait mensile",
@@ -44,5 +44,10 @@
   "pci_projects_project_instances_instance_private_networks_action_attach_label": "Associa una rete",
   "pci_projects_project_instances_instance_connection_info_label": "Informazioni di connessione",
   "pci_projects_project_instances_instance_ssh_key_label": "Chiave SSH",
-  "pci_projects_project_instances_instance_gateway": "Gateway"
+  "pci_projects_project_instances_instance_gateway": "Gateway",
+  "pci_projects_project_instances_instance_action_start_label": "Comincia ora",
+  "pci_projects_project_instances_instance_action_stop_label": "Arresta",
+  "pci_projects_project_instances_instance_action_shelve_label": "Sospendi",
+  "pci_projects_project_instances_instance_action_unshelve_label": "Riattiva",
+  "pci_projects_project_instances_instance_license_price_label": "Prezzo della licenza"
 }

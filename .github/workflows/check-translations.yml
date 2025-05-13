@@ -1,0 +1,23 @@
+name: Check Translations
+on:
+  pull_request:
+    types: [labeled, opened, reopened, edited, unlabeled, synchronize]
+    branches:
+      - 'master'
+      - 'develop'
+      - 'release/**'
+
+jobs:
+  check-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for "translation-required" label
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const labelToCheck = 'translation required';
+            const labels = context.payload.pull_request.labels.map(label => label.name);
+
+            if (labels.includes(labelToCheck)) {
+              throw new Error(`The PR needs translations. Otherwise remove the "${labelToCheck}" label.`);
+            }

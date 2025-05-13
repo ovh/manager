@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NameStep > should render 1`] = `
+<div>
+  <div
+    data-testid="StepComponent"
+  >
+    StepComponent
+  </div>
+</div>
+`;

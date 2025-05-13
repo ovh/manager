@@ -1,0 +1,8 @@
+{
+  "cloud_connect_vrack_associate": "vRack zuweisen",
+  "cloud_connect_vrack_associate_description": "Um Ihren Dienst zu konfigurieren, müssen Sie ihm ein vRack zuweisen. Wählen Sie das entsprechende vRack aus dem folgenden Aufklappmenü aus oder erstellen Sie ein neues. Dazu klicken Sie <a href=\"{{ vrackOrderUrl }}\" target=\"blank\" rel=\"noopener\">hier.</a>",
+  "cloud_connect_vrack_select": "vorhandenes vRack auswählen",
+  "cloud_connect_vrack_associate_success": "Das vRack wurde Ihrem Dienst zugewiesen.",
+  "cloud_connect_vrack_associate_error": "vRack kann nicht mit Ihrem Dienst verbunden werden: {{ message }}",
+  "cloud_connect_associate": "Verbinden"
+}

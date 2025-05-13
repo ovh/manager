@@ -1,0 +1,12 @@
+{
+  "cda_user_details_permissions_list_edit_btn_back": "Volver",
+  "cda_user_details_permissions_list_edit_title": "Modificar los permisos",
+  "cda_user_details_permissions_list_username": "Nombre de usuario",
+  "cda_user_details_permissions_list_label_permission": "Permisos",
+  "cda_user_details_permissions_list_edit_success": "La información se ha modificado correctamente.",
+  "cda_user_details_permissions_list_type_read": "Lectura",
+  "cda_user_details_permissions_list_type_write": "Escritura",
+  "cda_user_details_permissions_list_type_execute": "Ejecución",
+  "cda_user_details_permissions_list_type_classRead": "Class-read",
+  "cda_user_details_permissions_list_type_classWrite": "Class-write"
+}

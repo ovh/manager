@@ -1,15 +1,15 @@
 {
- "cuc_helper_modal_ok": "OK",
- "cuc_helper_cancel": "Annuler",
- "cuc_helper_edit": "Modifier",
- "cuc_helper_modal_cancel": "Annuler",
- "cuc_helper_delete": "Supprimer",
- "cuc_helper_global_error": "Une erreur est survenue lors de l'opération : {{message}}",
- "cuc_helper_global_success": "L'opération s'est déroulée avec succès.",
- "cuc_helper_name_change_modal_title": "Modifier le nom",
- "cuc_helper_name_change_modal_service_name_label": "Nom par défaut",
- "cuc_helper_name_change_modal_display_name_label": "Nom personnalisé",
- "cuc_helper_order_success": "Le bon de commande <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> a été créé avec succès.",
- "cuc_helper_order_error": "Erreur lors de la création du bon de commande: {{ message }}",
- "cuc_helper_order_doing": "Création du bon de commande en cours ..."
+  "cuc_helper_modal_ok": "OK",
+  "cuc_helper_cancel": "Abbrechen",
+  "cuc_helper_edit": "Ändern",
+  "cuc_helper_modal_cancel": "Abbrechen",
+  "cuc_helper_delete": "Löschen",
+  "cuc_helper_global_error": "Beim Ausführen des Vorgangs ist ein Fehler aufgetreten: {{message}}.",
+  "cuc_helper_global_success": "Der Vorgang wurde erfolgreich abgeschlossen.",
+  "cuc_helper_name_change_modal_title": "Namen ändern",
+  "cuc_helper_name_change_modal_service_name_label": "Standardname",
+  "cuc_helper_name_change_modal_display_name_label": "Angepasster Name",
+  "cuc_helper_order_success": "Der Bestellschein <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> wurde erstellt.",
+  "cuc_helper_order_error": "Fehler bei der Erstellung des Bestellscheins: {{ message }}",
+  "cuc_helper_order_doing": "Bestellschein wird erstellt …"
 }

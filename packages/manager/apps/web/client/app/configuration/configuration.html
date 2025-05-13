@@ -1,96 +1,95 @@
-<div class="container-fluid" id="main-container" data-ng-controller="UserCtrl">
+<div id="main-container">
     <div class="text-center py-5">
-        <ovh-manager-banner class="d-block mb-4"></ovh-manager-banner>
+        <a
+            data-ng-if="$ctrl.isOffersBannerActive"
+            target="_blank"
+            rel="noopener"
+            data-ng-click="$ctrl.trackClickWebOfferBanner()"
+            href="{{ :: $ctrl.banner2024.url }}"
+        >
+            <img
+                data-ng-src="{{ :: $ctrl.banner2024.banner }}"
+                alt="{{'common_offers_banner_alt' | translate}}"
+                class="img-responsive"
+            />
+        </a>
         <h1 class="d-inline">
             <span data-translate="welcome_to_your_manager_1"></span>
             <span data-translate="welcome_to_your_manager_2"></span>
         </h1>
-        <p
-            class="lead"
-            data-ng-if="$ctrl.subsidiary !== 'FR'"
-            data-translate="core_top_guides_header"
-            data-translate-values="{ t0: $ctrl.allGuides }"
-        ></p>
-
-        <div class="row" data-ng-if="$ctrl.subsidiary === 'FR'">
-            <p class="lead col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
-                <span data-translate="core_top_guides_header_fr"></span>
-                <a
-                    class="oui-link_icon"
-                    data-ng-href="{{:: $ctrl.helpCenterURLs.FR }}"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    <span
-                        data-translate="common_menu_support_help_center"
-                    ></span>
-                    <span
-                        class="oui-icon oui-icon-external_link"
-                        aria-hidden="true"
-                    ></span>
-                    <span
-                        class="sr-only"
-                        data-translate="core_new_window"
-                    ></span> </a
-                >.
-            </p>
-        </div>
+        <p class="lead w-75 d-inline-block" data-ng-if="$ctrl.helpCenterURL">
+            <span data-translate="core_top_guides_header_fr"></span>
+            <a
+                class="oui-link_icon"
+                data-ng-href="{{:: $ctrl.helpCenterURL }}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span data-translate="common_menu_support_help_center"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    class="sr-only"
+                    data-translate="core_new_window"
+                ></span> </a
+            >.
+        </p>
     </div>
-    <div class="container-fluid">
-        <div
-            class="row d-md-flex"
-            data-ng-if="!loaders.loading && user.ovhSubsidiary === 'FR'"
-        >
-            <div class="col-md-10 col-lg-8 mx-md-auto">
-                <div
-                    class="oui-tile pb-5"
-                    data-ng-repeat="(key, value) in $ctrl.guides track by $index"
-                >
-                    <h2
-                        class="oui-tile__title"
-                        data-ng-bind="'core_type_of_guide_' + key | translate"
-                    ></h2>
-                    <div class="oui-tile__body">
-                        <ul class="list-unstyled">
-                            <li
-                                class="oui-tile__item"
-                                data-ng-repeat="guide in value track by $index"
-                            >
-                                <div class="oui-tile__definition">
-                                    <a
-                                        target="_blank"
-                                        data-track-on="click"
-                                        data-track-name="web::{{::guide.label}}"
-                                        data-track-click="action"
-                                        data-ng-bind="guide.title | translate"
-                                        data-ng-href="{{guide.url}}"
-                                        rel="noopener"
-                                    >
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="oui-tile__item">
-                                <div class="oui-tile__definition">
-                                    <a
-                                        data-ng-href="{{ $ctrl.allGuides }}"
-                                        target="_blank"
-                                        data-track-on="click"
-                                        data-track-name="web::TopGuide-Web-10"
-                                        data-track-click="action"
-                                        rel="noopener"
-                                    >
-                                        <span
-                                            data-translate="core_all_guides"
-                                        ></span>
-                                        <span
-                                            class="fa fa-external-link"
-                                            aria-label="{{:: 'core_new_window' | translate }}"
-                                        ></span>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+    <div
+        class="row d-md-flex"
+        data-ng-if="!loaders.loading && user.ovhSubsidiary === 'FR'"
+    >
+        <div class="col-md-10 col-lg-8 mx-md-auto">
+            <div
+                class="oui-tile pb-5"
+                data-ng-repeat="(key, value) in $ctrl.guides track by $index"
+            >
+                <h2
+                    class="oui-tile__title"
+                    data-ng-bind="'core_type_of_guide_' + key | translate"
+                ></h2>
+                <div class="oui-tile__body">
+                    <ul class="list-unstyled">
+                        <li
+                            class="oui-tile__item"
+                            data-ng-repeat="guide in value track by $index"
+                        >
+                            <div class="oui-tile__definition">
+                                <a
+                                    target="_blank"
+                                    data-track-on="click"
+                                    data-track-name="web::{{::guide.label}}"
+                                    data-track-click="action"
+                                    data-ng-bind="guide.title | translate"
+                                    data-ng-href="{{guide.url}}"
+                                    rel="noopener"
+                                >
+                                </a>
+                            </div>
+                        </li>
+                        <li class="oui-tile__item">
+                            <div class="oui-tile__definition">
+                                <a
+                                    data-ng-href="{{ $ctrl.allGuides }}"
+                                    target="_blank"
+                                    data-track-on="click"
+                                    data-track-name="web::TopGuide-Web-10"
+                                    data-track-click="action"
+                                    rel="noopener"
+                                >
+                                    <span
+                                        data-translate="core_all_guides"
+                                    ></span>
+                                    <span
+                                        class="fa fa-external-link"
+                                        aria-label="{{:: 'core_new_window' | translate }}"
+                                    ></span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

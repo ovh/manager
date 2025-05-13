@@ -17,5 +17,10 @@
   "iplb_home_tile_configuration_quota_unlimited": "Nieograniczone",
   "iplb_home_tile_configuration_quota_cipher": "Szyfrowanie",
   "iplb_home_tile_configuration_quota_datacenter": "Strefy dostępności",
-  "iplb_home_tile_configuration_private_network": "Sieci prywatne"
+  "iplb_home_tile_configuration_private_network": "Sieci prywatne",
+  "iplb_home_tile_configuration_billing_evolution_message_info": "Zmiana cennika Load Balancera - nowe niższe ceny!",
+  "iplb_home_tile_configuration_billing_issues_message_warn_1": "W ciągu ostatnich miesięcy w usłudze Load Balancer wystąpiły problemy techniczne, które zakłóciły proces fakturowania. Przepraszamy za te niedogodności.",
+  "iplb_home_tile_configuration_billing_issues_message_warn_2": "Informujemy, że w związku z powyższym nie naliczymy opłaty za nadwyżkę transferu, która nie została zafakturowana do 1 września 2024 r. Od dnia 1 września 2024 r. wznowimy fakturowanie zgodnie ze Szczegółowymi warunkami świadczenia usługi oraz nowym cennikiem.",
+  "iplb_home_tile_configuration_billing_more_information_label": "Więcej informacji",
+  "iplb_home_tile_configuration_billing_here_label": "tutaj"
 }

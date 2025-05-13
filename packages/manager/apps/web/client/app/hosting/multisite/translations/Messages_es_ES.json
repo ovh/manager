@@ -1,0 +1,9 @@
+{
+  "hosting_multisite": "Multisitio",
+  "hosting_multisite_actions": "Acciones",
+  "hosting_multisite_dialog_title": "Verificación de los servidores DNS",
+  "hosting_multisite_dialog_edit_record_description": "Modifique el registro de tipo {{ recordType }} con la dirección IP {{ ip }} en la zona DNS del dominio {{ domain }}.",
+  "hosting_multisite_dialog_edit_record_link": "Modificar el registro de tipo {{ recordType }}.",
+  "hosting_multisite_dialog_edit_record_other_nic": "El cambio debe realizarse por el administrador de la zona DNS: {{ nic }}.",
+  "hosting_multisite_dialog_add_record_description": "Agregue un registro de tipo {{ recordType }} con la dirección IP {{ ip }} en la zona DNS del dominio {{ domain }}."
+}

@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_IT": "Una copia por ambas caras de un documento de identidad válido (DNI, pasaporte).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_IT": "Un justificante de domicilio con una antigüedad inferior a 3 meses, con su nombre y la dirección indicada (por ejemplo, factura de electricidad, gas, etc.).",
+  "documents_dashboard_document_CORPORATE_ID_IT": "Certificado de registro de la empresa en la Cámara de Comercio con una antigüedad inferior a tres meses o cualquier documento correspondiente.",
+  "documents_dashboard_document_ADMINISTRATION_ID_IT": "Certificado de registro de la empresa en la Cámara de Comercio con una antigüedad inferior a tres meses o cualquier documento correspondiente.",
+  "documents_dashboard_document_ASSOCIATION_ID_IT": "Una copia de los estatutos de la asociación o documento similar.",
+  "documents_dashboard_document_individual_OTHER_IT": "Cualquier documento útil para comprender su situación actual (domicilio, traslado, etc.).",
+  "documents_dashboard_document_corporation_OTHER_IT": "Si su nombre no aparece en el certificado de alta de la empresa en la Cámara de Comercio ni en los estatutos de la asociación, puede adjuntar una copia del documento de identidad de la persona que figura en la documentación oficial.",
+  "documents_dashboard_document_association_OTHER_IT": "Si su nombre no aparece en el certificado de alta de la empresa en la Cámara de Comercio ni en los estatutos de la asociación, puede adjuntar una copia del documento de identidad de la persona que figura en la documentación oficial.",
+  "documents_dashboard_document_administration_OTHER_IT": "Si su nombre no aparece en el certificado de alta de la empresa en la Cámara de Comercio ni en los estatutos de la asociación, puede adjuntar una copia del documento de identidad de la persona que figura en la documentación oficial.",
+  "documents_dashboard_document_other_OTHER_IT": "Cualquier documento útil para comprender su situación (domicilio, traslado, etc.)."
+}

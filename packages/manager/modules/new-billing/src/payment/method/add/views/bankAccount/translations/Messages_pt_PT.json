@@ -1,0 +1,6 @@
+{
+  "billing_payment_method_add_bank_account_informations_iban": "IBAN",
+  "billing_payment_method_add_bank_account_informations_bic": "BIC",
+  "billing_payment_method_add_bank_account_informations_iban_format": "O formato do IBAN não está correto.",
+  "billing_payment_method_add_bank_account_informations_bic_format": "O formato do BIC não está correto."
+}

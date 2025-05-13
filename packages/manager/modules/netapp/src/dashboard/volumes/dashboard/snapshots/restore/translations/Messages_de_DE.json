@@ -1,0 +1,14 @@
+{
+  "netapp_volumes_snapshots_restore_title": "Letzten Snapshot wiederherstellen",
+  "netapp_volumes_snapshots_restore_description": "Möchten Sie das folgende Volume wirklich wiederherstellen?",
+  "netapp_volumes_snapshots_restore_volume_label": "Volume",
+  "netapp_volumes_snapshots_restore_snapshot_label": "Name des Snapshots",
+  "netapp_volumes_snapshots_restore_confirm_description": "Achtung, durch diese Aktion werden die Daten auf dem Volume {{volume}} in den Zustand zurückgesetzt, in dem sie zum Zeitpunkt der Snapshot-Erfassung vorhanden waren. Daten, die nach dem {{date}} auf dem Volume geändert wurden, werden unwiderruflich gelöscht. Im Zweifelsfall können Sie unsere KB zurate ziehen oder sich direkt an den Support wenden. Bitte bestätigen Sie den Namen des Volumes, das Sie wiederherstellen möchten, um die Aktion zu validieren.",
+  "netapp_volumes_snapshots_restore_confirm_volume_label": "Volume-Name bestätigen",
+  "netapp_volumes_snapshots_restore_confirm": "Volume wiederherstellen",
+  "netapp_volumes_snapshots_restore_cancel": "Abbrechen",
+  "netapp_volumes_snapshots_restore_success": "Die Wiederherstellung Ihres Volumes wurde registriert und wird in wenigen Augenblicken wirksam.",
+  "netapp_volumes_snapshots_restore_error": "Ihr Volume konnte nicht wiederhergestellt werden: <br> {{message}}<br> request_id: {{requestId}}",
+  "netapp_volumes_snapshots_hold_error": "Bei der Umwandlung Ihres Snapshots in einen manuellen Typ ist ein Problem aufgetreten.",
+  "netapp_volumes_snapshots_restore_system_message": "Es ist kein Snapshot zur Wiederherstellung Ihres Volumes verfügbar. Im Zweifelsfall können Sie unsere Dokumentation zurate ziehen oder sich direkt an den Support wenden."
+}

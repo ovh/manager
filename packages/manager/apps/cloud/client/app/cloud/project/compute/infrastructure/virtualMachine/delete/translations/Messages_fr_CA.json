@@ -1,6 +1,0 @@
-{
- "cpcivm_delete_title": "Suppression d'une instance",
- "cpcivm_delete_info": "Le forfait du mois en cours pour ce serveur a déjà été facturé, il sera perdu.",
- "cpcivm_failover_info": "Les IPs Failover suivantes seront supprimées définitivement :",
- "cpcivm_delete_confirm": "Êtes vous sûr de vouloir supprimer l'instance <strong>{{ name }}</strong> ?"
-}

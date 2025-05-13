@@ -1,0 +1,4 @@
+{
+  "common_iam_get_message": "Sie verfügen nicht über die erforderlichen Berechtigungen zum Anzeigen der Daten für diese Ressource. Bitte wenden Sie sich an Ihren Administrator.",
+  "common_iam_actions_message": "Sie sind nicht berechtigt, diese Aktion auszuführen. Wenden Sie sich an Ihren Administrator."
+}

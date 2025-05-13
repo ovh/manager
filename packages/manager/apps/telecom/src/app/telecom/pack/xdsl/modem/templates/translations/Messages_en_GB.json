@@ -1,14 +1,14 @@
 {
- "xdsl_modem_template_title": "Saving or importing a modem configuration",
- "xdsl_modem_template_create_title": "Create a template from this modem’s configuration",
- "xdsl_modem_template_name": "New template name",
- "xdsl_modem_template_create": "Create a template",
- "xdsl_modem_template_select_config": "Apply a configuration to this modem",
- "xdsl_modem_template_apply": "Apply",
- "xdsl_modem_template_manage_config": "Manage templates",
- "xdsl_modem_template_apply_doing": "Loading modem configuration",
- "xdsl_modem_template_creation_doing": "Saving modem configuration",
- "xdsl_modem_template_an_error_ocurred": "TEMPLATE: An error has occurred.",
- "xdsl_modem_template_name_already_exist": "{{templateName}} already exists in your template list. Please enter another name.",
- "xdsl_modem_template_invalid_name": "{{templateName}} is invalid as a template name. Please enter another name."
+  "xdsl_modem_template_title": "Saving or importing a modem configuration",
+  "xdsl_modem_template_create_title": "Create a template from this modem’s configuration",
+  "xdsl_modem_template_name": "New template name",
+  "xdsl_modem_template_create": "Create a template",
+  "xdsl_modem_template_select_config": "Apply a configuration to this modem",
+  "xdsl_modem_template_apply": "Apply",
+  "xdsl_modem_template_manage_config": "Manage templates",
+  "xdsl_modem_template_apply_doing": "Loading modem configuration",
+  "xdsl_modem_template_creation_doing": "Saving modem configuration",
+  "xdsl_modem_template_an_error_ocurred": "TEMPLATE: An error occurred.",
+  "xdsl_modem_template_name_already_exist": "{{templateName}} already exists in your template list. Please use another name.",
+  "xdsl_modem_template_invalid_name": "The template name ({{templateName}}) is invalid. Please use another name."
 }

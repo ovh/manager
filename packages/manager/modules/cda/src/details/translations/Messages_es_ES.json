@@ -1,0 +1,16 @@
+{
+  "ceph_common_error": "¡Vaya! Se ha producido un error:",
+  "cda_tab_home": "Índice",
+  "cda_tab_user": "Usuarios",
+  "cda_tab_ip": "Control de accesos IP",
+  "cda_tab_pool": "Pools",
+  "cda_guide_title": "Guías",
+  "cda_guide_name": "Cloud Disk Array (CDA)",
+  "cda_guide_footer": "Todas las guías de OVHcloud",
+  "cda_new_window": "Nueva ventana",
+  "cda_guide_retrieval_error": "Se ha producido un error al cargar la guía sobre Cloud Disk Array (CDA).",
+  "cda_common_cancel": "Cancelar",
+  "cda_common_modify": "Editar",
+  "cda_common_add": "Añadir",
+  "cda_common_delete": "Eliminar"
+}

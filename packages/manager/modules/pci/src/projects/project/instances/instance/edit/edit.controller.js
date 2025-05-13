@@ -3,24 +3,40 @@ import reduce from 'lodash/reduce';
 import { PATTERN } from '../../../../../components/project/instance/name/constants';
 import Flavor from '../../../../../components/project/flavors-list/flavor.class';
 import Instance from '../../../../../components/project/instance/instance.class';
+import { EDIT_PAGE_SECTIONS } from '../instance.constants';
+import { INSTANCE_PRICING_LINKS } from '../../instances.constants';
+import { PCI_FEATURES, THREE_AZ_REGION } from '../../../project.constants';
 
 export default class PciInstanceEditController {
   /* @ngInject */
   constructor(
     $translate,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     PciProjectsProjectInstanceService,
+    PciProject,
+    coreConfig,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
+    this.coreConfig = coreConfig;
+    this.PciProject = PciProject;
+    this.EDIT_PAGE_SECTIONS = EDIT_PAGE_SECTIONS;
+    this.instancePricesLink =
+      INSTANCE_PRICING_LINKS[coreConfig.getUser().ovhSubsidiary] ||
+      INSTANCE_PRICING_LINKS.DEFAULT;
+    this.THREE_AZ_REGION = THREE_AZ_REGION;
   }
 
   $onInit() {
     this.isLoading = false;
     this.instanceNamePattern = PATTERN;
+    this.globalRegionsUrl = this.PciProject.getDocumentUrl('GLOBAL_REGIONS');
+    this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
+    this.zone3azUrl = this.PciProject.getDocumentUrl('REGIONS_3AZ');
+    this.is3az = this.instance.planCode.includes('3AZ');
 
     this.editInstance = new Instance({
       ...this.instance,
@@ -33,8 +49,10 @@ export default class PciInstanceEditController {
     this.messageContainers = ['name', 'image', 'flavor', 'billing'];
     this.messages = {};
     this.model = {
-      isInstanceFlex: false,
+      isInstanceFlex: new Flavor(this.editInstance.flavor).isFlex(),
     };
+    this.regionsTypesAvailability = {};
+    this.fetchRegionsTypesAvailability();
     this.imageEditMessage =
       this.imageEditMessage ||
       'pci_projects_project_instances_instance_edit_reboot_message';
@@ -43,6 +61,34 @@ export default class PciInstanceEditController {
       'pci_projects_project_instances_instance_edit_image_success_message';
 
     this.loadMessages();
+    this.updateInstanceFlavor();
+    this.getUAppUrl(
+      'public-cloud',
+      `#/pci/projects/${this.projectId}/savings-plan`,
+    ).then((url) => {
+      this.savingsPlanUrl = url;
+    });
+  }
+
+  fetchRegionsTypesAvailability() {
+    this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
+      this.projectId,
+    ).then((regionsTypesAvailability) => {
+      this.regionsTypesAvailability = regionsTypesAvailability;
+    });
+  }
+
+  updateInstanceFlavor() {
+    this.instance.flavor.tags = this.catalog.addons.find(
+      (addon) => addon.planCode === this.instance.flavor.planCodes.hourly,
+    )?.blobs?.tags;
+  }
+
+  get isSavingsPlanAvailable() {
+    return (
+      this.pciFeatures.isFeatureAvailable(PCI_FEATURES.PRODUCTS.SAVINGS_PLAN) &&
+      !this.instance.isLocalZone
+    );
   }
 
   loadMessages() {
@@ -88,25 +134,27 @@ export default class PciInstanceEditController {
   }
 
   onFlavorChange(flavorGroup) {
-    if (flavorGroup && this.instance.image) {
+    if (flavorGroup) {
+      const flavorType =
+        this.instance?.image?.type || this.instance.flavor.osType;
       if (!this.defaultFlavor) {
         const flavor = new Flavor(this.instance.flavor);
         this.defaultFlavor = flavorGroup.getFlavorByOsType(
-          this.instance.image.type,
+          flavorType,
           flavor.isFlex(),
         );
       }
 
       this.editInstance.flavorId = flavorGroup.getFlavorId(
-        this.instance.image.type,
+        flavorType,
         this.instance.region,
-        this.defaultFlavor.isFlex(),
+        this.model.isInstanceFlex,
       );
     }
   }
 
   canSwitchToFlex() {
-    if (this.model.flavorGroup) {
+    if (this.model.flavorGroup && this.defaultFlavor && this.instance.image) {
       return (
         this.model.flavorGroup.hasFlexOption() &&
         this.defaultFlavor.disk <=
@@ -247,5 +295,14 @@ export default class PciInstanceEditController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  isLoosingMonthlyPlan() {
+    return (
+      Boolean(this.instance.monthlyBilling) &&
+      this.model.flavorGroup?.flavors.find(
+        ({ id }) => id === this.editInstance.flavorId,
+      )?.planCodes.monthly === null
+    );
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-beta-preference",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
   "description": "User account beta preference management.",
   "repository": {
@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
+    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1"

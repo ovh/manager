@@ -1,0 +1,16 @@
+{
+  "otrs_search_ticket_subject": "Szukaj według tematu:",
+  "otrs_search_ticket_subject_error": "Wyszukiwanie według tematu jest możliwe od 3 znaków.",
+  "otrs_search_ticket_get_status_error": "Wystąpił błąd podczas pobierania informacji o typach statusów zgłoszeń.",
+  "otrs_title": "Moje zgłoszenia",
+  "otrs_back": "Powrót do listy zgłoszeń",
+  "otrs_table_ticket_product": "Kategoria produktu",
+  "otrs_table_ticket_category": "Kategoria",
+  "otrs_table_ticket_type": "Typ",
+  "otrs_table_ticket_lastMessageFrom_customer": "Ty",
+  "otrs_table_ticket_lastMessageFrom_support": "Support OVHcloud",
+  "otrs_table_ticket_state_open": "Otwarte",
+  "otrs_table_ticket_state_closed": "Zamknięte",
+  "otrs_table_ticket_state_archived": "Zarchiwizowane",
+  "otrs_table_ticket_state_unknown": "Inne"
+}

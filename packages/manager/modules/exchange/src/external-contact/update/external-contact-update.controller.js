@@ -7,7 +7,7 @@ export default class ExchangeExternalContactsModifyCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeExternalContacts,
     navigation,
     messaging,
@@ -15,14 +15,14 @@ export default class ExchangeExternalContactsModifyCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeExternalContacts,
       navigation,
       messaging,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.model = {
       currentAccount: navigation.currentActionData,
@@ -37,7 +37,7 @@ export default class ExchangeExternalContactsModifyCtrl {
   isEmailValid() {
     return (
       has(this.model, 'newAccount.externalEmailAddress') &&
-      this.services.Exchange.constructor.isEmailValid(
+      this.services.wucExchange.constructor.isEmailValid(
         this.model.newAccount.externalEmailAddress,
       )
     );

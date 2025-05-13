@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_storages_cold_archive_containers_container_restore_title": "Restore your archive",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_description_1": "You are about to restore your data from the {{containerName}} archive.",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_description_2": "Cold Archive has a minimum storage duration of 180 days.",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_description_3": "Restoring data within this 180-day period incurs additional costs equal to the restore costs, plus active storage costs for restored objects, plus current archived storage costs.",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_description_3_link": "Cold Archive pricing page",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_submit_label": "Confirm",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_cancel_label": "Cancel",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_success_message": "Restoring the {{containerName}} archive... The time it takes for restored data to become available depends on the volume of data being restored. For a recovery of several hundred TB, for example, the average time is 48 hours. For a volume of a few TB, it can take between a few minutes and a few hours.",
+  "pci_projects_project_storages_cold_archive_containers_container_restore_error_message": "An error has occurred restoring the {{containerName}} archive: {{message}}"
+}

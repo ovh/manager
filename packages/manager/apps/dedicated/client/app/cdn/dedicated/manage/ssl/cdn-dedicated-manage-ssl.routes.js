@@ -1,12 +1,18 @@
-angular.module('App').config(($stateProvider) => {
+import template from './cdn-dedicated-manage-ssl.html';
+import controller from './cdn-dedicated-manage-ssl.controller';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.networks.cdn.dedicated.manage.ssl', {
     url: '/ssl',
     views: {
       cdnView: {
-        templateUrl: 'cdn/dedicated/manage/ssl/cdn-dedicated-manage-ssl.html',
-        controller: 'CdnTabSslCtrl',
+        template,
+        controller,
       },
     },
-    translations: { value: ['.'], format: 'json' },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('cdn_dedicated_ssl'),
+    },
   });
-});
+};

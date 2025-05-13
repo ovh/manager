@@ -1,4 +1,4 @@
-export default /* @ngInject */ ($translate, $q, TucToast) =>
+export default /* @ngInject */ ($translate, TucToast) =>
   function ToastErrorService(err, translationId) {
     const output = [
       $translate.instant(translationId || 'toast_error_an_error_occured'),
@@ -16,6 +16,5 @@ export default /* @ngInject */ ($translate, $q, TucToast) =>
       output.push($translate.instant(err));
     }
 
-    TucToast.error(output.join(' '));
-    return $q.reject(err);
+    return TucToast.error(output.join(' '));
   };

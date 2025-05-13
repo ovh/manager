@@ -1,0 +1,14 @@
+{
+  "pci_billing_cold_archive_no_entry": "Brak zużycia dla wybranego okresu.",
+  "pci_billing_cold_archive_region": "Region",
+  "pci_billing_cold_archive_type": "Typ",
+  "pci_billing_cold_archive_type_archive_label": "Archiwizacja na taśmach",
+  "pci_billing_cold_archive_type_archive-fees_label": "Koszty usunięcia",
+  "pci_billing_cold_archive_type_restore_label": "Przywracanie danych",
+  "pci_billing_cold_archive_type_archive-fees_tooltip_1": "Minimalny czas archiwizacji danych to 180 dni. ",
+  "pci_billing_cold_archive_type_archive-fees_tooltip_2": "Jeśli archiwum zostanie usunięte przed upływem tego okresu abonamentowego, data = data od 0 dnia do 180 dni, naliczane są dodatkowe opłaty: [180 dni - data] x cena klasy przechowywania.",
+  "pci_billing_cold_archive_price": "Cena",
+  "pci_billing_cold_archive_consumption": "Zużycie",
+  "pci_billing_cold_archive_consumption_value_gbih": "{{ value }} GiB/h",
+  "pci_billing_cold_archive_consumption_value_gbi": "{{ value }} GiB"
+}

@@ -1,8 +1,6 @@
 {
   "pci_projects_project_storages_blocks_block_volume-edit_region_label": "Localisation",
   "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Type de volume",
-  "pci_projects_project_storages_blocks_block_volume-edit_type_high-speed": "Haute performance",
-  "pci_projects_project_storages_blocks_block_volume-edit_type_classic": "Classique",
 
   "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Nom du volume",
   "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Capacité du volume",

@@ -1,0 +1,12 @@
+{
+  "private_databases_onboarding_title": "Databases",
+  "private_databases_onboarding_description": "You can add additional MySQL Start SQL databases to your hosting plan. Increase the power of your hosting and storage solutions. MySQL databases also provide optimised data management. This solution is ideal for boosting your Personal or Professional hosting plans.",
+  "private_databases_onboarding_description2": "You can also select a private SQL database. You can choose between our various MySQL, MariaDB or PostgreSQL solutions, giving you more freedom to configure your hosting plan.",
+  "private_databases_onboarding_order": "Order a Web Cloud Database",
+  "private_databases_onboarding_guide1_title": "Getting started with the Web Cloud Databases service",
+  "private_databases_onboarding_guide1_description": "Find out how to get started with the Web Cloud Databases solution",
+  "private_databases_onboarding_guide2_title": "Creating databases and users on your database server",
+  "private_databases_onboarding_guide2_description": "Find out how to create a database on your database server",
+  "private_databases_onboarding_guide3_title": "Connecting to your database server’s database",
+  "private_databases_onboarding_guide3_description": "Find out how to connect to your database"
+}

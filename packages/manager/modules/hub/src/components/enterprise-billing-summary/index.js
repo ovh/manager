@@ -3,7 +3,7 @@ import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import ovhManagerBillingSummary from '../billing-summary';
 

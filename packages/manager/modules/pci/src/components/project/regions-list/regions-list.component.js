@@ -5,10 +5,18 @@ export default {
   controller,
   template,
   bindings: {
+    disabled: '<',
     regions: '<',
     selectedRegion: '=?',
     onChange: '&?',
     displaySelectedRegion: '<',
     quotaUrl: '<?',
+    currentRegion: '<?',
+    deploymentMode: '<?',
+    projectId: '<?',
+    reload: '<?',
+    loadEnd: '&?',
+    isDiscoveryProject: '<',
+    projectActivationPageHref: '<',
   },
 };

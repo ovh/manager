@@ -1,0 +1,12 @@
+{
+  "kubernetes_node_pool_autoscaling_description": "Puoi configurare lo scaling automatico di ogni pool di nodi. Questa funzionalità, chiamata anche \"cluster autoscaler\", completa l’\"horizontal pod autoscaler\" di Kubernetes. La funzionalità di autoscaling non è compatibile con l'attivazione dell'anti-affinità.",
+  "kubernetes_node_pool_autoscaling_description_link": "Ulteriori informazioni.",
+  "kubernetes_node_pool_autoscaling_autoscale": "Autoscaling",
+  "kubernetes_node_pool_autoscaling_autoscale_toggle_true": "Autoscaling attivo",
+  "kubernetes_node_pool_autoscaling_autoscale_toggle_false": "Autoscaling non attivo",
+  "kubernetes_node_pool_autoscaling_lowest_nodes_size": "Minimo",
+  "kubernetes_node_pool_autoscaling_desired_nodes_size": "Numero di nodi",
+  "kubernetes_node_pool_autoscaling_highest_nodes_size": "Massimo",
+  "kubernetes_node_pool_autoscaling_desired_nodes_warning": "Consigliamo di configurare un pool con un minimo di 3 nodi, per ottimizzare il rolling upgrade durante gli aggiornamenti di sicurezza (patch updates) o delle versioni minori.",
+  "kubernetes_node_pool_billing_auto_scaling_monthly_warning": "Attenzione: stai attivando simultaneamente l'autoscaling e il forfait mensile per questo nodepool. La creazione di nodi tramite autoscaling comporta la fatturazione immediata di un nodo, calcolata in base al tempo restante per il mese in corso. Consigliamo di evitare questa combinazione se si prevede che la dimensione del nodepool verrà ridotta frequentemente."
+}

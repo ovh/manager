@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.terminate-email-option', {
+  $stateProvider.state('app.hosting.dashboard.terminate-email-option', {
     url: '/terminateEmail',
     views: {
       modal: {
@@ -9,6 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       goBack: /* @ngInject */ (goToHosting) => goToHosting,
+      breadcrumb: () => null,
     },
   });
 };

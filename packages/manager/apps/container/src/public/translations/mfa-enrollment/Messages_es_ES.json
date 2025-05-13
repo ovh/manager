@@ -1,0 +1,7 @@
+{
+  "mfa_enrollment_title": "¡Proteja su cuenta gracias a la doble autenticación!",
+  "mfa_enrollment_info1": "A veces, una simple contraseña no es suficiente para proteger su cuenta de cliente. Le recomendamos activar el sistema de validación en dos pasos.",
+  "mfa_enrollment_info2": "De este modo, aumentará su nivel de seguridad y protegerá sus datos. Para completar la conexión, además de la contraseña de la cuenta, deberá introducir un código de verificación (que recibirá por SMS en su teléfono) o una clave de seguridad.",
+  "mfa_enrollment_go": "¡Empezar!",
+  "mfa_enrollment_cancel": "En otro momento"
+}

@@ -1,0 +1,7 @@
+{
+  "billing_payment_method_default_title": "Standardzahlungsmittel festlegen",
+  "billing_payment_method_default_explain": "Sie sind dabei, das Zahlungsmittel <strong>{{ label }}</strong> als Standardzahlungsmittel festzulegen.",
+  "billing_payment_method_default_question": "Sind Sie sicher, dass Sie fortfahren möchten?",
+  "billing_payment_method_default_error": "Bei der Änderung Ihres Standardzahlungsmittels ist ein Fehler aufgetreten: {{ errorMessage }}",
+  "billing_payment_method_default_success": "Ihr Standardzahlungsmittel wurde erfolgreich geändert."
+}

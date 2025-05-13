@@ -18,6 +18,7 @@ export default class IpLoadBalancerFrontendsEditCtrl {
     IpLoadBalancerFailoverIpService,
     IpLoadBalancerFrontendsService,
     IpLoadBalancerZoneService,
+    udpAvailability,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -29,6 +30,7 @@ export default class IpLoadBalancerFrontendsEditCtrl {
     this.IpLoadBalancerFailoverIpService = IpLoadBalancerFailoverIpService;
     this.IpLoadBalancerFrontendsService = IpLoadBalancerFrontendsService;
     this.IpLoadBalancerZoneService = IpLoadBalancerZoneService;
+    this.udpAvailability = udpAvailability;
 
     this.initLoaders();
   }
@@ -134,6 +136,7 @@ export default class IpLoadBalancerFrontendsEditCtrl {
       case 'udp':
         this.type = 'udp';
         delete this.frontend.port;
+        delete this.frontend.allowedSource;
         this.frontend.ssl = false;
         break;
       case 'tls':
@@ -186,6 +189,10 @@ export default class IpLoadBalancerFrontendsEditCtrl {
     } else {
       this.farms.load();
     }
+
+    if (!this.udpAvailability) {
+      this.protocols = this.protocols.filter((protocol) => protocol !== 'udp');
+    }
   }
 
   static validateSelection(value) {
@@ -228,7 +235,7 @@ export default class IpLoadBalancerFrontendsEditCtrl {
         break;
     }
 
-    if (has(frontend, 'allowedSource.length')) {
+    if (this.type !== 'udp' && has(frontend, 'allowedSource.length')) {
       set(frontend, 'allowedSource', frontend.allowedSource.join(', '));
     }
 
@@ -244,6 +251,12 @@ export default class IpLoadBalancerFrontendsEditCtrl {
     const request = angular.copy(this.frontend);
     if (this.type === 'udp') {
       delete request.ssl;
+    }
+
+    if (request.httpHeader) {
+      request.httpHeader = Array.isArray(request.httpHeader)
+        ? request.httpHeader
+        : request.httpHeader.split(',');
     }
 
     if (includes(['udp', 'tcp'], this.type)) {
@@ -265,6 +278,9 @@ export default class IpLoadBalancerFrontendsEditCtrl {
       );
     } else {
       request.allowedSource = [];
+    }
+    if (this.type === 'udp') {
+      delete request.allowedSource;
     }
 
     delete request.protocol;
@@ -290,7 +306,7 @@ export default class IpLoadBalancerFrontendsEditCtrl {
       this.$stateParams.serviceName,
       this.getCleanFrontend(),
     )
-      .then(() => this.$state.go('network.iplb.detail.frontends'))
+      .then(() => this.$state.go('iplb.detail.frontends'))
       .finally(() => {
         this.saving = false;
       });
@@ -308,7 +324,7 @@ export default class IpLoadBalancerFrontendsEditCtrl {
       this.frontend.frontendId,
       this.getCleanFrontend(),
     )
-      .then(() => this.$state.go('network.iplb.detail.frontends'))
+      .then(() => this.$state.go('iplb.detail.frontends'))
       .finally(() => {
         this.saving = false;
       });

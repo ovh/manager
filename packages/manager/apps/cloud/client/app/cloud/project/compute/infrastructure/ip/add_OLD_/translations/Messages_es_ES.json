@@ -1,7 +1,0 @@
-{
-  "cpciip_add_title": "Añadir IP",
-  "cpciip_add_run_now": "Añadir ahora",
-  "cpciip_add_geoloc": "Selección de la localización",
-  "cpciip_add_geoloc_loading": "Cargando localizaciones disponibles...",
-  "cpciip_add_post_ip_error": "¡Vaya! No hemos podido crear la nueva IP."
-}

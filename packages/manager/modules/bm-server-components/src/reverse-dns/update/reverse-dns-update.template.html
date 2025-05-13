@@ -1,0 +1,32 @@
+<form name="updateReverseDnsForm">
+    <oui-modal
+        data-primary-label="{{($ctrl.actionEnabled ? 'common_change' : 'global_OK') | translate }}"
+        data-primary-action="$ctrl.onUpdateReverseDNSFormSubmit()"
+        data-primary-disabled="updateReverseDnsForm.$invalid"
+        data-secondary-label="{{$ctrl.actionEnabled ? ('common_cancel' | translate) : '' }}"
+        data-secondary-action="$ctrl.$state.go('^')"
+        data-on-dismiss="$ctrl.$state.go('^')"
+        data-loading="$ctrl.loading.init || $ctrl.loading.update"
+        data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}"
+        data-heading="{{:: 'server_reversedns_update_title' | translate }}"
+    >
+        <p
+            data-translate="server_reversedns_update_loading_error"
+            data-ng-if="!$ctrl.actionEnabled"
+        ></p>
+
+        <oui-field
+            data-label="{{:: 'server_reversedns_update_reversedns_label' | translate }}"
+            data-ng-if="$ctrl.actionEnabled"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                name="reverse-dns"
+                id="update-reverse-dns"
+                data-ng-model="$ctrl.reverse"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>

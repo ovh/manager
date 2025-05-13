@@ -1,0 +1,79 @@
+@import (less) '@adyen/adyen-web/dist/adyen.css';
+@import '@ovh-ux/ui-kit/dist/less/tokens/_colors.less';
+
+.adyen-component-container {
+  max-width: 30rem;
+
+  .adyen-checkout__input {
+    color: @p-800-text;
+    line-height: 1.25rem;
+    font-family: 'Source Sans Pro';
+    font-size: 1rem;
+    font-weight: 400;
+  }
+}
+
+.adyen-checkout__label {
+  &__text {
+    color: @p-800-text;
+    font-weight: 700;
+    font-size: 0.75rem;
+
+    &--error {
+      color: @ae-500;
+    }
+  }
+
+  &&--focused &__text {
+    color: @p-800-text;
+  }
+
+  &&--focused &__text--error {
+    color: @ae-500;
+  }
+}
+
+.adyen-checkout__input {
+  color: @p-800-text;
+  border-color: @p-100;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+
+  &--focus {
+    background-color: @p-050;
+    border-color: @p-100 @p-100 @p-500;
+  }
+
+  &:hover,
+  &:focus:hover {
+    background-color: @p-100;
+  }
+  &:focus {
+    background-color: @p-050;
+  }
+
+  &:hover,
+  &:focus,
+  &:focus:hover {
+    border-color: @p-100 @p-100 @p-500;
+    box-shadow: none;
+  }
+
+  &.adyen-checkout__input--error {
+    border-color: @ae-400 @ae-400 @ae-500;
+    background-color: @ae-100;
+  }
+
+  &__inline-validation {
+    top: 35%;
+  }
+}
+
+.adyen-checkout__error-text {
+  font-size: 0.75rem;
+}
+
+.adyen-checkout__image {
+  margin-bottom: 10px;
+}

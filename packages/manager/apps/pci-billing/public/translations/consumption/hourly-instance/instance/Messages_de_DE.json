@@ -1,0 +1,13 @@
+{
+  "cpbc_no_consumption_data": "Kein Verbrauch im gewählten Zeitraum.",
+  "cpbc_hourly_instance_monthly_billing_since": "Auf monatliche Abrechnung umgestellt am {{since}}",
+  "cpbc_hourly_instance_monthly_billing_activationPending": "Wird auf monatliche Abrechnung umgestellt",
+  "cpbc_hourly_instance_pass_to_monthly_error": "Die Instanz konnte nicht auf monatliche Abrechnung umgestellt werden.",
+  "cpbc_hourly_instance_pass_to_monthly_price_error": "Höhe der Monatspauschale konnte nicht abgerufen werden.",
+  "cpbc_hourly_instance_pass_to_monthly_info": "Der anteilige Betrag für den laufenden Monat wird sofort berechnet",
+  "cpbc_hourly_instance_pass_to_monthly_button": "Auf monatliche Abrechnung umstellen ({{price}} zzgl. MwSt. / Monat)",
+  "cpbc_hourly_instance_deleted": "Instanz gelöscht",
+  "cpbc_hourly_instance_pass_to_monthly": "Auf monatliche Abrechnung umstellen",
+  "cpb_error_message": "Leider konnten wir nicht alle Informationen abrufen.",
+  "common_cancel": "Abbrechen"
+}

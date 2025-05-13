@@ -1,0 +1,14 @@
+{
+  "hycu_crumb": "HYCU",
+  "tabs_2": "Tabs 2",
+  "hycu_description": "Simplifique sus copias de seguridad, planes de recuperación ante desastres y migraciones de su infraestructura Nutanix. Este servicio ofrece diferentes packs de licencias HYCU R-Cloud Hybrid Cloud Edition para proteger sus cargas de trabajo Nutanix.",
+  "hycu_cloud_vm_pack_unknown": "Pack desconocido",
+  "hycu_status_active": "Activo",
+  "hycu_status_toActivate": "Pendiente de activar",
+  "hycu_status_processing": "En proceso de activación",
+  "hycu_status_error": "Error de activación",
+  "hycu_cta_cancel": "Cancelar",
+  "hycu_cta_order": "Contratar",
+  "hycu_cta_done": "Finalizar",
+  "common_iam_actions_message": "Si no dispone de los permisos necesarios para realizar esta acción, póngase en contacto con su administrador."
+}

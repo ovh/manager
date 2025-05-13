@@ -1,4 +1,14 @@
-<div class="pci-project-new-voucher">
+<div
+    class="pci-project-new-voucher"
+    data-ng-class="{ 'dense': $ctrl.viewOptions.denseVoucher }"
+>
+    <!--Voucher title-->
+    <h2
+        class="oui-heading_underline"
+        data-translate="pci_projects_new_voucher_title"
+        data-ng-class="'h' + $ctrl.viewOptions.subtitlesSize"
+    ></h2>
+
     <button
         type="button"
         class="btn-voucher oui-button oui-button_secondary oui-button_icon-right w-100 mw-100 d-flex justify-content-between align-items-center no-transition"
@@ -10,92 +20,84 @@
     </button>
 
     <oui-message data-type="error" data-ng-if="$ctrl.errors.reset">
-        <span
-            data-ng-if="$ctrl.errors.reset"
-            data-translate="pci_projects_new_voucher_form_reset_error"
-        >
+        <span data-translate="pci_projects_new_voucher_form_reset_error">
         </span>
     </oui-message>
 
-    <form
+    <ng-form
         class="voucher-form oui-box h-100 d-lg-flex justify-content-between align-items-center no-transition"
         data-ng-if="$ctrl.formVisible"
         name="$ctrl.voucherForm"
-        data-ng-submit="$ctrl.onVoucherFormSubmit()"
     >
         <div
-            class="oui-field w-100 mb-0"
-            data-ng-class="{ 'oui-field_error': !$ctrl.voucherForm.voucher.$pristine && $ctrl.voucherForm.voucher.$invalid }"
+            class="oui-field w-100 mt-3 mb-0"
+            data-ng-class="{ 'oui-field_error': $ctrl.voucherForm.voucher.$invalid }"
         >
             <label
                 class="oui-field__label oui-label"
                 for="voucher"
+                hidden
                 data-translate="pci_projects_new_voucher_form_field"
             >
             </label>
-            <div
-                class="oui-field__control w-100 d-md-flex justify-content-between align-items-center"
-            >
+            <div class="oui-field__control d-flex flex-row">
                 <input
                     class="oui-input mr-3"
                     type="text"
                     id="voucher"
                     name="voucher"
+                    placeholder="{{:: ('pci_projects_new_voucher_form_field_placeholder' | translate)}}"
                     data-ng-model="$ctrl.model.voucher.value"
                     data-ng-change="$ctrl.onVoucherInputChange()"
+                    data-ng-blur="$ctrl.onVoucherInputLeave()"
                     data-ng-disabled="$ctrl.loading.check || $ctrl.loading.reset || $ctrl.globalLoading.finalize"
                     data-ng-readonly="$ctrl.model.voucher.value && $ctrl.model.voucher.valid"
                 />
 
                 <oui-button
-                    data-type="submit"
+                    data-type="button"
                     data-aria-label="{{ :: 'pci_projects_new_voucher_form_add_title' | translate }}"
-                    data-disabled="$ctrl.loading.check || !$ctrl.model.voucher.value || $ctrl.globalLoading.finalize"
-                    data-ng-if="!$ctrl.model.voucher.valid"
+                    data-disabled="!$ctrl.canAddVoucher()"
+                    data-on-click="$ctrl.onVoucherFormSubmit()"
                 >
                     <span
                         data-translate="pci_projects_new_voucher_form_add"
                     ></span>
                 </oui-button>
-
-                <oui-button
-                    data-type="reset"
-                    data-aria-label="{{ :: 'pci_projects_new_voucher_form_remove_title' | translate }}"
-                    data-ng-if="$ctrl.model.voucher.value && $ctrl.model.voucher.valid"
-                    data-ng-click="$ctrl.onVoucherFormReset()"
-                    data-ng-disabled="$ctrl.loading.reset || $ctrl.globalLoading.finalize"
+            </div>
+            <div
+                class="d-flex flex-row align-items-center justify-content-between mt-1"
+                data-ng-if="$ctrl.voucherEligibility.voucher"
+            >
+                <!--Voucher details-->
+                <span
+                    data-translate="pci_projects_new_voucher_form_field_add_success"
+                    data-translate-values="{ credit: $ctrl.getFormatCreditText() }"
                 >
-                    <span
-                        data-translate="pci_projects_new_voucher_form_remove"
-                    ></span>
+                </span>
+
+                <!--Reset voucher-->
+                <oui-button
+                    data-ng-if="$ctrl.viewOptions.clearableVoucher"
+                    data-type="button"
+                    data-size="l"
+                    data-variant="link"
+                    data-disabled="$ctrl.loading.reset"
+                    data-on-click="$ctrl.onVoucherFormReset()"
+                >
+                    <span class="oui-icon oui-icon-trash"></span>
                 </oui-button>
             </div>
             <span
                 class="oui-field__helper"
                 data-translate="pci_projects_new_voucher_form_field_amount"
                 data-translate-values="{ amount: $ctrl.model.voucher.credit.text }"
-                data-ng-if="$ctrl.model.voucher.value
-                    && $ctrl.model.voucher.valid
-                    && $ctrl.deals
-                    && $ctrl.deals.voucher
-                    && !$ctrl.deals.voucher.total_credit"
+                data-ng-if="$ctrl.model.voucher.value && $ctrl.model.voucher.valid"
             >
             </span>
-            <pci-project-offer
-                data-ng-if="$ctrl.isOnOffer()"
-                data-offer="$ctrl.deals"
-            >
-            </pci-project-offer>
-            <span
-                class="oui-field__error"
-                data-ng-if="$ctrl.model.voucher.value && !$ctrl.model.voucher.valid && $ctrl.model.voucher.error"
-            >
-                <span class="oui-icon oui-icon-error" aria-hidden="true">
-                </span>
-                <span
-                    data-translate="{{ 'pci_projects_new_voucher_form_field_error_' + $ctrl.model.voucher.error.statusText.toLowerCase() }}"
-                ></span>
+            <span class="oui-field__error" data-ng-if="$ctrl.hasVoucherError()">
+                <span data-translate="{{ $ctrl.getVoucherError() }}"></span>
             </span>
         </div>
-    </form>
+    </ng-form>
 </div>

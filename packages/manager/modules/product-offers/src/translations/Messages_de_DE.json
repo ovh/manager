@@ -15,5 +15,8 @@
   "ovh_product_offers_confirmation_activate": "Aktivieren",
   "ovh_product_offers_total_price_without_tax": "Preis zzgl. MwSt.:",
   "ovh_product_offers_total_price_with_tax": "Preis inkl. MwSt.:",
-  "ovh_product_offers_duration": "Dauer:"
+  "ovh_product_offers_duration": "Dauer:",
+  "ovh_product_offers_detach_termination": "Die Option {{option}} läuft am {{date}} aus.",
+  "ovh_product_offers_duration_prorata_up_to": "Anteilig bis zum:",
+  "ovh_product_offers_order_express_submit": "Weiter"
 }

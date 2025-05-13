@@ -1,7 +1,6 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
-import map from 'lodash/map';
 import some from 'lodash/some';
 
 import controller from './search.controller';
@@ -9,7 +8,15 @@ import template from './search.html';
 
 const filterResults = (results, query, properties) =>
   filter(results, (result) =>
-    some(properties, (property) => includes(get(result, property), query)),
+    some(properties, (property) => {
+      if (typeof property === 'string')
+        return includes(get(result, property), query);
+
+      const { path, verify } = property;
+      const value = get(result, path);
+
+      return value && verify(value);
+    }),
   );
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -30,21 +37,9 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       query: ($transition$) => $transition$.params().q,
-      services: (apiv7, query) =>
-        query
-          ? apiv7('/telephony/*/service?$aggreg=1')
-              .query()
-              .execute()
-              .$promise.then((results) => {
-                const filteredResults = filterResults(results, query, [
-                  'value.serviceName',
-                  'value.description',
-                ]);
-                return map(filteredResults, (result) => ({
-                  ...result,
-                  billingAccount: result.path.split('/')[2],
-                }));
-              })
+      services: (query, telecomSearchResultsService) =>
+        query?.length >= 5 && query?.indexOf(' ') === -1 // requirements for the api /telephony/searchServices
+          ? telecomSearchResultsService.findTelephonyService(query)
           : null,
       billingAccount: (query, iceberg) =>
         query

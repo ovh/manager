@@ -1,0 +1,21 @@
+{
+  "cpbc_hourly_instance_col_name": "Cognome",
+  "cpbc_hourly_instance_col_consumption": "Consumo",
+  "cpbc_hourly_instance_col_consumption_tooltip": "Fatturato all'inizio del mese successivo",
+  "cpbc_hourly_instance_detail_title": "Server",
+  "cpbc_object_storage_detail_title": "Storage di oggetti",
+  "cpbc_archive_storage_detail_title": "Storage di archivi",
+  "cpbc_snapshot_detail_title": "Storage di backup",
+  "cpbc_volume_detail_title": "Dischi aggiuntivi",
+  "cpbc_hourly_instance_trafic_title": "Traffico pubblico in uscita dalle istanze",
+  "cpbc_hourly_private_registry_title": "Managed Private Registry",
+  "cpbc_hourly_training_title": "AI Training",
+  "cpbc_hourly_notebooks_title": "AI Notebooks",
+  "cpbc_hourly_data_processing_title": "Data Processing",
+  "cpbc_hourly_databases_title": "Database",
+  "cpbc_hourly_floating_ip_title": "Floating IP",
+  "cpbc_hourly_gateway_title": "Gateway",
+  "cpbc_hourly_ai_deploy_title": "AI Deploy",
+  "cpbc_cold_archive_detail_title": "Cold Archive",
+  "cpbc_hourly_public_ip_title": "IP pubblico"
+}

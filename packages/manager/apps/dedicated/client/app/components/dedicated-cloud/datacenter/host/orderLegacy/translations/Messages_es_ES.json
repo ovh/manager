@@ -1,0 +1,20 @@
+{
+  "dedicatedCloud_configuration_order_hosts_step1_question": "Seleccionar un perfil de host:",
+  "dedicatedCloud_configuration_order_hosts_step1_rate": "Precio (sin IVA)",
+  "dedicatedCloud_configuration_order_hosts_step1_monthly_rate": "(mensual)",
+  "dedicatedCloud_configuration_order_hosts_step2_details": "Resumen del pedido de hosts:",
+  "dedicatedCloud_configuration_order_hosts_step2_monthly_price_HT": "Precio total (sin IVA):",
+  "dedicatedCloud_configuration_order_hosts_step2_monthly_price_TTC": "Precio total (IVA incl.):",
+  "dedicatedCloud_configuration_order_hosts_step2_confirm": "Para confirmar su solicitud, proceda a abonarlo haciendo clic en el botón «Contratar».",
+  "dedicatedCloud_configuration_order_hosts_step2_explication": "Se abrirá una nueva pestaña y el sistema le redirigirá automáticamente a la interfaz de pago de OVHcloud.",
+  "dedicatedCloud_configuration_order_hosts_step2_contracts": "He leído y acepto las siguientes condiciones:",
+  "dedicatedCloud_configuration_order_hosts": "Host",
+  "dedicatedCloud_configuration_order_hosts_processor_speed": "Velocidad de CPU",
+  "dedicatedCloud_configuration_order_hosts_memory": "RAM",
+  "dedicatedCloud_configuration_order_hosts_memory_ecc": "(ECC)",
+  "dedicatedCloud_configuration_order_hosts_nb_cores": "Número de núcleos",
+  "dedicatedCloud_configuration_order_hosts_quantity_info": "Se necesitan al menos tres hosts vSAN en la infraestructura para que el vSAN funcione.",
+  "dedicatedCloud_configuration_order_hosts_billing_quantity": "Cantidad de hosts:",
+  "dedicatedCloud_configuration_order_hosts_finish_success": "El pedido de hosts número <a href='{{t0}}' target='_blank'>{{t1}}</a> se ha enviado.",
+  "dedicatedCloud_configuration_order_hosts_finish_fail": "Se ha producido un error al enviar el pedido de hosts en el datacenter {{t0}}."
+}

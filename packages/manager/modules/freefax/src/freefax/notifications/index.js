@@ -3,7 +3,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import { MAX_NOTIFICATIONS } from './freefax-notifications.constants';
 import controller from './freefax-notifications.controller';
@@ -28,12 +28,16 @@ angular
         controller,
         controllerAs: 'FreefaxNotifications',
         template,
-        // noTranslations: true,
-        translations: ['..'],
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('freefax_notifications_breadcrumb'),
+        },
       });
     },
   )
   .constant('FREEFAX_MAX_NOTIFICATIONS', MAX_NOTIFICATIONS)
-  .factory('FreefaxNotificationObject', factory);
+  .factory('FreefaxNotificationObject', factory)
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(/* @ngTranslationsInject:json ../translations */);
 
 export default moduleName;

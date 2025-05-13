@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       restorePoint: /* @ngInject */ ($transition$) =>
         $transition$.params().restorePoint,
+      breadcrumb: () => null,
     },
   });
 };

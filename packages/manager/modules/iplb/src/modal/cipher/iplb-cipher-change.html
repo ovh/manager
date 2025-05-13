@@ -6,23 +6,22 @@
 >
     <oui-modal
         data-primary-label="{{ ::'iplb_edit' | translate }}"
-        data-title="{{ ::'iplb_modal_cipher_change_title' | translate }}"
         data-secondary-action="IpLoadBalancerCipherChangeCtrl.cancel()"
         data-secondary-label="{{ ::'iplb_cancel' | translate }}"
         data-on-dismiss="IpLoadBalancerCipherChangeCtrl.cancel()"
         data-loading="IpLoadBalancerCipherChangeCtrl.isModalLoading()"
+        data-heading="{{ ::'iplb_modal_cipher_change_title' | translate }}"
     >
         <div data-ng-if="!IpLoadBalancerCipherChangeCtrl.isModalLoading()">
             <oui-radio
                 data-ng-repeat="cipherType in IpLoadBalancerCipherChangeCtrl.cipherTypes.data track by $index"
-                data-text="{{ cipherType.displayName }}"
                 data-description="{{ cipherType.description }}"
                 name="cipher"
                 model="IpLoadBalancerCipherChangeCtrl.model.cipherType.value"
                 value="cipherType.type"
                 data-on-change="IpLoadBalancerCipherChangeCtrl.model.cipherType.value = modelValue"
                 required
-            >
+                ><span data-ng-bind="cipherType.displayName"></span>
             </oui-radio>
         </div>
     </oui-modal>

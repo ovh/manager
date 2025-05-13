@@ -1,8 +1,8 @@
 import difference from 'lodash/difference';
-import forEach from 'lodash/forEach';
-import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
+
+import 'moment';
 
 export default class ExchangeExportToCsvAccountsCtrl {
   /* @ngInject */
@@ -10,17 +10,20 @@ export default class ExchangeExportToCsvAccountsCtrl {
     $scope,
     $q,
     $translate,
-    Exchange,
+    wucExchange,
+    ExchangeAccountService,
     ExchangeExternalContacts,
     ExchangeSharedAccounts,
     messaging,
     navigation,
+    exportCsv,
   ) {
     this.services = {
       $scope,
       $q,
       $translate,
-      Exchange,
+      wucExchange,
+      ExchangeAccountService,
       ExchangeExternalContacts,
       ExchangeSharedAccounts,
       messaging,
@@ -55,7 +58,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
       ],
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.timeoutObject = null;
     this.loading = {
       exportCsv: false,
@@ -64,7 +67,8 @@ export default class ExchangeExportToCsvAccountsCtrl {
     this.search = navigation.currentActionData.search;
     this.totalAccounts = navigation.currentActionData.total;
     this.csvExportType = navigation.currentActionData.csvExportType;
-    this.exchange = Exchange.value;
+    this.exchange = wucExchange.value;
+    this.exportCsv = exportCsv;
 
     $scope.exportAccounts = () => this.exportAccounts();
     $scope.cancelExport = () => this.cancelExport();
@@ -72,7 +76,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
 
   exportAccounts() {
     const exportOpts = {
-      count: 1000,
+      count: 10000,
       total: this.totalAccounts,
       search: this.search,
       filter: this.filterType === 'ALL' ? null : this.filterType,
@@ -86,6 +90,9 @@ export default class ExchangeExportToCsvAccountsCtrl {
         'samaccountName',
         'taskPendingId',
         'id',
+        // Removing the description field as it breaks the CSV file in MS Excel
+        // https://answers.microsoft.com/en-us/msoffice/forum/all/excel-read-csv-set-utf-8-as-default-for-all-csv/62eb4068-fc70-4f9b-9bd7-c904713beaf0
+        'description',
       ],
       toConcatAttrs: ['totalQuota', 'usedQuota', 'quota'],
       toJointAttrs: ['aliases', 'managers', 'members'],
@@ -114,53 +121,26 @@ export default class ExchangeExportToCsvAccountsCtrl {
       .then((datas) => {
         if (datas != null && !isEmpty(datas) && this.timeoutObject != null) {
           // get column name
+          const separator = ',';
           const { headers } = datas;
-          let csvContent = `${headers.join(';')}\n`;
+          const csvContent = [
+            headers.join(separator),
+            ...datas.accounts.map((account) =>
+              this.services.ExchangeAccountService.accountToCSVString(
+                account,
+                headers,
+                separator,
+              ),
+            ),
+          ].join('\n');
 
-          forEach(datas.accounts, (data, index) => {
-            let dataString = '';
-
-            forEach(headers, (header) => {
-              if (includes(exportOpts.toJointAttrs, header)) {
-                dataString += `${data[header].join(',')};`;
-              } else if (includes(exportOpts.toConcatAttrs, header)) {
-                dataString += `${data[header].value + data[header].unit};`;
-              } else {
-                dataString += `${data[header]};`;
-              }
-            });
-
-            csvContent +=
-              index < datas.accounts.length ? `${dataString}\n` : dataString;
+          this.exportCsv.exportData({
+            datas: csvContent,
+            fileName: `export_${this.csvExportType}_${
+              this.exchange.displayName
+            }_${moment().format('YYYY-MM-DD_HH:mm:ss')}.csv`,
+            separator,
           });
-
-          const blob = new Blob([csvContent], {
-            type: 'text/csv;charset=utf-8;',
-          });
-
-          const fileName = `export_${this.csvExportType}_${
-            this.exchange.displayName
-          }_${moment().format('YYYY-MM-DD_HH:mm:ss')}.csv`;
-
-          if (navigator.msSaveBlob) {
-            navigator.msSaveBlob(blob, fileName);
-          } else {
-            const link = document.createElement('a');
-
-            if (link.download != null) {
-              const url = window.URL.createObjectURL(blob);
-              link.setAttribute('href', url);
-              link.setAttribute('download', fileName);
-              link.style = 'visibility:hidden';
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
-            } else {
-              window.open(
-                `data:text/csv;charset=utf-8,${encodeURIComponent(csvContent)}`,
-              );
-            }
-          }
 
           this.services.messaging.writeSuccess(
             this.services.$translate.instant('exchange_ACTION_export_success'),
@@ -188,7 +168,8 @@ export default class ExchangeExportToCsvAccountsCtrl {
     let promise = null;
     switch (this.csvExportType) {
       case 'accounts':
-        promise = this.services.Exchange.prepareForCsv(
+        promise = this.services.wucExchange.prepareForCsv(
+          this.exchange,
           this.$routerParams.organization,
           this.$routerParams.productId,
           exportOpts,
@@ -197,7 +178,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
         );
         break;
       case 'group':
-        promise = this.services.Exchange.prepareGroupsForCsv(
+        promise = this.services.wucExchange.prepareGroupsForCsv(
           this.$routerParams.organization,
           this.$routerParams.productId,
           exportOpts,

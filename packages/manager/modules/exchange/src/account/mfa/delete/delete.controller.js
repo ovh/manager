@@ -3,7 +3,7 @@ export default class ExchangeAccountsMfaDeleteController {
   constructor(
     $translate,
     $q,
-    Exchange,
+    wucExchange,
     exchangeAccount,
     messaging,
     navigation,
@@ -11,7 +11,7 @@ export default class ExchangeAccountsMfaDeleteController {
     this.$translate = $translate;
     this.$q = $q;
     this.exchangeAccount = exchangeAccount;
-    this.exchangeService = Exchange.value;
+    this.exchangeService = wucExchange.value;
     this.messaging = messaging;
     this.navigation = navigation;
   }

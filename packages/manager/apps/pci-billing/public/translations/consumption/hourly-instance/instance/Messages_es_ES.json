@@ -1,0 +1,13 @@
+{
+  "cpbc_no_consumption_data": "No hay consumo en el período seleccionado.",
+  "cpbc_hourly_instance_monthly_billing_since": "Cambiado a tarifa mensual el {{since}}",
+  "cpbc_hourly_instance_monthly_billing_activationPending": "Cambiando a tarifa mensual...",
+  "cpbc_hourly_instance_pass_to_monthly_error": "¡Vaya! No se ha podido cambiar esta instancia a tarifa mensual.",
+  "cpbc_hourly_instance_pass_to_monthly_price_error": "¡Vaya! No se ha podido cargar el precio de la cuota mensual.",
+  "cpbc_hourly_instance_pass_to_monthly_info": "Se calculará la parte proporcional al período restante del mes en curso.",
+  "cpbc_hourly_instance_pass_to_monthly_button": "Cambiar a tarifa mensual ({{price}}/mes + IVA)",
+  "cpbc_hourly_instance_deleted": "Instancia eliminada",
+  "cpbc_hourly_instance_pass_to_monthly": "Cambiar a tarifa mensual",
+  "cpb_error_message": "¡Vaya! No se ha podido cargar toda la información.",
+  "common_cancel": "Cancelar"
+}

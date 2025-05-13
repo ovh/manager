@@ -9,15 +9,31 @@ import xor from 'lodash/xor';
 
 export default class DomainTabZoneDnsCtrl {
   /* @ngInject */
-  constructor($scope, $q, $translate, activateZone, Alerter, Domain, User) {
+  constructor(
+    $scope,
+    $stateParams,
+    $q,
+    $translate,
+    activateZone,
+    goToZoneHistory,
+    coreConfig,
+    orderZone,
+    Alerter,
+    Domain,
+    WucUser,
+  ) {
     this.$scope = $scope;
+    this.productId = $stateParams.productId;
     this.$q = $q;
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.Domain = Domain;
-    this.User = User;
+    this.WucUser = WucUser;
 
     this.activateZone = activateZone;
+    this.goToZoneHistory = goToZoneHistory;
+    this.orderZone = orderZone;
+    this.region = coreConfig.getRegion();
   }
 
   $onInit() {
@@ -38,6 +54,8 @@ export default class DomainTabZoneDnsCtrl {
     this.useDefaultsDns = true;
     this.typesToCheck = ['MX', 'NS', 'SRV', 'CNAME']; // Check if target is relative for this type
 
+    this.checkAlertZoneDeleteMessage();
+
     this.$scope.$on('domain.tabs.zonedns.refresh', () => {
       this.hasResult = false;
       this.search.filter = null;
@@ -50,6 +68,13 @@ export default class DomainTabZoneDnsCtrl {
 
     this.checkAllowModification(this.domain.name);
     this.getZoneDns(this.domain.name);
+    if (!this.domain.isExpired) {
+      this.displayPropagationInfo(this.domain.name);
+    }
+  }
+
+  navigateToZoneHistory() {
+    this.goToZoneHistory({ productId: this.productId });
   }
 
   // Searching --------------------------------------------------------------
@@ -70,6 +95,51 @@ export default class DomainTabZoneDnsCtrl {
     this.$scope.$broadcast('paginationServerSide.loadPage', 1);
   }
 
+  /**
+   * Checks if there's a localStorage item indicating a recent DNS zone deletion and triggers an alert.
+   *
+   * This function looks for a specific item in the localStorage, identified by a key that combines
+   * a base string ('dns-delete-') with the domain name. The value of this item should be a date
+   * representing when a DNS zone deletion was performed. If this date is within the last 72 hours,
+   * an alert message is displayed. If the date is older than 72 hours, the item is removed from
+   * localStorage, assuming the alert is no longer relevant.
+   */
+  checkAlertZoneDeleteMessage() {
+    // Construct the localStorage key using the domain name
+    const localStorageKey = `dns-delete-${this.domain.name}`;
+
+    // Retrieve the stored value (date) from localStorage
+    const storedValue = window.localStorage.getItem(localStorageKey);
+
+    // Proceed only if a value was found
+    if (storedValue) {
+      // Parse the stored date using moment.js
+      const storedDate = new Date(storedValue);
+      const currentDate = new Date();
+
+      // Calculate the difference in hours between the current date and the stored date
+      const hoursDifference = Math.abs(
+        (currentDate - storedDate) / (1000 * 60 * 60),
+      );
+
+      // Check if the difference is 72 hours or less
+      if (hoursDifference <= 72) {
+        // If within the last 72 hours, display a success alert
+        this.$scope.$evalAsync(() => {
+          this.Alerter.success(
+            this.$translate.instant(
+              'domain_configuration_zonedns_delete_all_success',
+            ),
+            this.$scope.alerts.main,
+          );
+        });
+      } else {
+        // If the stored date is older than 72 hours, remove the item from localStorage
+        window.localStorage.removeItem(localStorageKey);
+      }
+    }
+  }
+
   // DNS Data ---------------------------------------------------------------
   checkAllowModification(domainName) {
     return this.$q
@@ -78,7 +148,7 @@ export default class DomainTabZoneDnsCtrl {
           () => null,
         ),
         zoneServiceInfo: this.Domain.getZoneServiceInfo(domainName),
-        user: this.User.getUser(),
+        user: this.WucUser.getUser(),
       })
       .then(({ domainServiceInfo, zoneServiceInfo, user }) => {
         this.allowModification =
@@ -106,11 +176,11 @@ export default class DomainTabZoneDnsCtrl {
     return this.$q
       .allSettled([
         this.Domain.getTabZoneDns(domainName, 0, 0, null, 'NS'),
-        this.Domain.getTabDns(domainName),
+        this.Domain.getDnsList(domainName),
       ])
       .then(
         (results) => {
-          [defaults, activated] = results;
+          [defaults, { data: activated }] = results;
         },
         (err) => {
           if (err[0].code !== 404 || err[1].code) {
@@ -128,7 +198,7 @@ export default class DomainTabZoneDnsCtrl {
           )
           .map((value) => value.targetToDisplay.slice(0, -1))
           .sort();
-        this.activatedDns = get(activated, 'dns', [])
+        this.activatedDns = activated
           .filter((dns) => dns.isUsed)
           .map((value) => value.host)
           .sort();
@@ -210,14 +280,6 @@ export default class DomainTabZoneDnsCtrl {
     }
   }
 
-  targetIsRelativeDomain(domain) {
-    return (
-      domain.target &&
-      indexOf(this.typesToCheck, domain.fieldType) !== -1 &&
-      /\..*[^.]$/.test(domain.target)
-    );
-  }
-
   // checboxes --------------------------------------------------------------
   applySelection() {
     forEach(get(this.zone, 'paginatedZone.records.results'), (item) => {
@@ -255,5 +317,32 @@ export default class DomainTabZoneDnsCtrl {
     this.selectedRecords = xor(this.selectedRecords, [record]);
     this.atLeastOneSelected = this.selectedRecords.length > 0;
     this.applySelection();
+  }
+
+  displayPropagationInfo(domainName) {
+    this.Domain.getZoneHistory(domainName)
+      .then((updateHistory) => {
+        if (
+          updateHistory.length > 0 &&
+          moment(updateHistory[0]).isBetween(
+            moment().subtract(24, 'hours'),
+            moment(),
+          )
+        ) {
+          this.Alerter.set(
+            'alert-info',
+            this.$translate.instant('domain_tab_ZONE_propagation_info'),
+            null,
+            this.$scope.alerts.main,
+          );
+        }
+      })
+      .catch(({ data }) => {
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('domain_tab_ZONE_default_ttl_error'),
+          data,
+          this.$scope.alerts.main,
+        );
+      });
   }
 }

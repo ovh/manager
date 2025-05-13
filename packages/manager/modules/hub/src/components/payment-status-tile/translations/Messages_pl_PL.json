@@ -1,17 +1,9 @@
 {
   "ovh_manager_hub_payment_status_tile_title": "Ostatnie statusy płatności za usługi",
   "ovh_manager_hub_payment_status_tile_see_all": "Zobacz wszystko",
-  "ovh_manager_hub_payment_status_tile_status_auto": "Automatyczne odnowienie",
-  "ovh_manager_hub_payment_status_tile_status_automatic": "Automatyczne odnowienie ",
-  "ovh_manager_hub_payment_status_tile_status_manual": "Odnowienie ręczne",
-  "ovh_manager_hub_payment_status_tile_status_manualPayment": "Odnowienie ręczne",
-  "ovh_manager_hub_payment_status_tile_status_pending_debt": "Płatność do uregulowania",
-  "ovh_manager_hub_payment_status_tile_status_delete_at_expiration": "Złożona rezygnacja",
-  "ovh_manager_hub_payment_status_tile_status_expired": "Anulowany",
   "ovh_manager_hub_payment_status_tile_now": "Natychmiast",
   "ovh_manager_hub_payment_status_tile_before": "przed {{date}}",
   "ovh_manager_hub_payment_status_tile_renew": "począwszy od {{ date }}",
-  "ovh_manager_hub_payment_status_tile_manage_service": "Zarządzaj",
   "ovh_manager_hub_payment_status_tile_error": "Nie można pobrać informacji o usługach",
   "ovh_manager_hub_payment_status_tile_no_services": "Brak usług"
 }

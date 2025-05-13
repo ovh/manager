@@ -1,8 +1,0 @@
-{
-  "billing_main_history_postal_mail_options_title": "Modifica le opzioni di invio delle fatture",
-  "billing_main_history_postal_mail_options_activation": "Vuoi davvero attivare l'invio delle fatture in formato cartaceo?",
-  "billing_main_history_postal_mail_options_desactivation": "Vuoi davvero disattivare l'invio delle fatture in formato cartaceo?",
-  "billing_main_history_postal_mail_options_activate_success": "L'impostazione è stata aggiornata correttamente. Da questo momento riceverai le fatture in formato cartaceo.",
-  "billing_main_history_postal_mail_options_desactivate_success": "L'impostazione è stata aggiornata correttamente. Da questo momento non riceverai più le fatture in formato cartaceo.",
-  "billing_main_history_postal_mail_options_update_error": "Si è verificato un errore durante l'aggiornamento dell'impostazione."
-}

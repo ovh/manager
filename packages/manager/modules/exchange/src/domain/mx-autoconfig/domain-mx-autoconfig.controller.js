@@ -2,10 +2,10 @@ export default class ExchangeDomainMxAutoconfigCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeDomains,
     EXCHANGE_MX_CONFIG,
-    constants,
+    coreConfig,
     messaging,
     navigation,
     $translate,
@@ -13,18 +13,21 @@ export default class ExchangeDomainMxAutoconfigCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeDomains,
       EXCHANGE_MX_CONFIG,
-      constants,
+      coreConfig,
       messaging,
       navigation,
       $translate,
       exchangeStates,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.domain = navigation.currentActionData;
+    this.domainDiag = {};
+    this.domainDiag.mx = [];
+    this.domainDiag.mx.spam = [];
 
     this.services.ExchangeDomains.gettingDNSSettings(
       this.$routerParams.organization,
@@ -32,19 +35,37 @@ export default class ExchangeDomainMxAutoconfigCtrl {
       this.domain.name,
     )
       .then((data) => {
-        this.domainDiag = data;
+        this.domainDiag.isOvhDomain = data.isOvhDomain;
+        this.domainDiag.mx.noSpam = data.mx.noSpam;
+      })
+      .catch((failure) => {
+        navigation.resetAction();
+        messaging.writeError(
+          $translate.instant(
+            'exchange_tab_domain_diagnostic_add_field_failure',
+          ),
+          failure,
+        );
+      });
 
-        if (constants.target === 'CA') {
-          this.domainDiag.mx.spam = EXCHANGE_MX_CONFIG.CA.spam;
-        } else if (constants.target === 'EU') {
-          this.domainDiag.mx.spam = EXCHANGE_MX_CONFIG.EU.spam;
-        }
-
-        if (this.domainDiag.isOvhDomain) {
-          this.model = {
-            antiSpam: false,
-          };
-        }
+    this.services.ExchangeDomains.gettingExpectedDNSSettings(
+      this.$routerParams.organization,
+      this.$routerParams.productId,
+      this.domain.name,
+    )
+      .then((data) => {
+        const re = /^IN ([A-Z]*) (\d+) ([^ ]*)$/i;
+        data.expectedMX.forEach((mx) => {
+          const extract = mx.match(re);
+          this.domainDiag.mx.spam.push({
+            fieldType: extract[1],
+            target: extract[3],
+            priority: extract[2],
+            weight: null,
+            port: null,
+            subDomain: null,
+          });
+        });
       })
       .catch((failure) => {
         navigation.resetAction();

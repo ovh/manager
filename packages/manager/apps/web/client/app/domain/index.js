@@ -1,24 +1,89 @@
-import generalInformationsState from './general-informations/domain-general-informations.state';
+import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import anycast from './anycast';
-import emailObfuscation from './email-obfuscation/index';
-import optin from './optin/index';
-import webhosting from './webhosting';
-import zoneActivation from './general-informations/activateZone/activate.module';
+import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
+import onboarding from './onboarding';
 
-import routing from './domain.routing';
-
-const moduleName = 'ovhManagerWebDomainModule';
+const moduleName = 'ovhManagerDomainsLazyLoading';
 
 angular
   .module(moduleName, [
-    anycast,
-    emailObfuscation,
-    optin,
-    webhosting,
-    zoneActivation,
+    'ui.router',
+    'oc.lazyLoad',
+    onboarding,
+    ApiV2ListHelper.moduleName,
   ])
-  .config(routing)
-  .config(generalInformationsState);
+  .config(
+    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+      $stateProvider
+        .state('app.domain', {
+          url: '/domain',
+          redirectTo: 'app.domain.index',
+          template: '<div ui-view></div>',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('domains_title'),
+          },
+        })
+        .state('app.domain.index.**', {
+          url: '',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./domains.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        });
+
+      $stateProvider.state('app.domain.product.**', {
+        url: '/:productId',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./dashboard/domain.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+
+      $stateProvider.state('app.alldom', {
+        url: '/all_dom',
+        redirectTo: 'app.domain',
+        template: '<div ui-view></div>',
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('domains_title'),
+        },
+      });
+
+      $stateProvider.state('app.alldom.domain.**', {
+        url: '/:allDom/:productId',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./dashboard/domain.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+
+      $urlRouterProvider.when(
+        /^\/configuration\/domain(\/.*)+/,
+        /* @ngInject */ ($location) => {
+          $location.url($location.url().replace('/configuration', ''));
+        },
+      );
+
+      $urlRouterProvider.when(
+        /^\/configuration\/all_dom.*/,
+        /* @ngInject */ ($location) => {
+          $location.url($location.url().replace('/configuration', ''));
+        },
+      );
+    },
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

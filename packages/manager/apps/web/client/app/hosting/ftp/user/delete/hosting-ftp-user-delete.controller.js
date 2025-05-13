@@ -3,6 +3,7 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'HostingFtpUserDeleteCtrl',
   class HostingFtpUserDeleteCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, HostingUser) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

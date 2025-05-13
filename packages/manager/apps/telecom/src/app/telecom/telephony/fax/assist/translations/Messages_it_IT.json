@@ -2,5 +2,6 @@
   "telephony_group_fax_assist_back_link": "Ritorna all'assistenza",
   "telephony_group_fax_assist_action_logs": "Visualizza le notifiche",
   "telephony_group_fax_assist_action_support": "Guide e supporto",
-  "telephony_group_fax_assist_action_orders": "Stato dei buoni d'ordine"
+  "telephony_group_fax_assist_action_orders": "Stato dei buoni d'ordine",
+  "telephony_group_fax_assist_breadcrumb": "Supporto"
 }

@@ -1,121 +1,113 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="ExchangeTabExternalContactsCtrl as ctrl"
->
-    <div>
-        <oui-datagrid rows-loader="ctrl.loadContacts($config)" page-size="10">
-            <oui-column
-                data-title="'exchange_tab_EXTERNAL_CONTACTS_table_headers_externalEmailAddress' | translate"
-                property="externalEmailAddress"
-                searchable
-                type="string"
+<div>
+    <oui-datagrid rows-loader="ctrl.loadContacts($config)" page-size="10">
+        <oui-datagrid-column
+            data-title="'exchange_tab_EXTERNAL_CONTACTS_table_headers_externalEmailAddress' | translate"
+            property="externalEmailAddress"
+            searchable
+            type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'exchange_tab_EXTERNAL_CONTACTS_table_headers_displayName' | translate"
+            property="displayName"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'exchange_tab_EXTERNAL_CONTACTS_table_headers_creationDate' | translate"
+            property="creationDate"
+            type="date"
+        >
+            <span data-ng-bind="$value | date:'mediumDate'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'exchange_tab_EXTERNAL_CONTACTS_table_headers_hiddenFromGAL' | translate"
+            property="hiddenFromGAL"
+        >
+            <span
+                class="oui-icon"
+                aria-hidden="true"
+                data-ng-class="{'oui-icon-success text-success': !$value.hiddenFromGAL, 'oui-icon-error text-danger': $value.hiddenFromGAL}"
+                data-oui-tooltip="{{('exchange_tab_EXTERNAL_CONTACTS_table_tooltip_GAL_' + $value.hiddenFromGAL) | translate}}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'exchange_tab_EXTERNAL_CONTACTS_table_headers_state' | translate"
+            property="state"
+        >
+            <span
+                class="oui-badge oui-badge_info"
+                data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_MODIFYING"
+                data-ng-if="ctrl.services.exchangeStates.constructor.isOk($row) && $row.taskPendingId !== 0"
             >
-            </oui-column>
-            <oui-column
-                data-title="'exchange_tab_EXTERNAL_CONTACTS_table_headers_displayName' | translate"
-                property="displayName"
+            </span>
+            <span
+                class="oui-badge oui-badge_info"
+                data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_CREATING"
+                data-ng-if="ctrl.services.exchangeStates.constructor.isCreating($row)"
+            ></span>
+            <span
+                class="oui-badge oui-badge_info"
+                data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_DELETING"
+                data-ng-if="ctrl.services.exchangeStates.constructor.isDeleting($row)"
+            ></span>
+            <span
+                class="oui-badge oui-badge_warning"
+                data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_SUSPENDED"
+                data-ng-if="ctrl.services.exchangeStates.constructor.isSuspended($row)"
+            ></span>
+            <span
+                class="oui-badge oui-badge_warning"
+                data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_SUSPENDING"
+                data-ng-if="ctrl.services.exchangeStates.constructor.isSuspending($row)"
+            ></span>
+            <span
+                class="oui-badge oui-badge_info"
+                data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_REOPENING"
+                data-ng-if="ctrl.services.exchangeStates.constructor.isReopening($row)"
+            ></span>
+            <span
+                class="oui-badge oui-badge_success"
+                data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_OK"
+                data-ng-if="ctrl.services.exchangeStates.constructor.isOk($row) && $row.taskPendingId === 0"
+            ></span>
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
+            <oui-action-menu-item
+                on-click="setAction('exchange/external-contact/update/external-contact-update', $row)"
+                data-disabled="!ctrl.services.exchangeStates.constructor.isOk($row)"
             >
-            </oui-column>
-            <oui-column
-                data-title="'exchange_tab_EXTERNAL_CONTACTS_table_headers_creationDate' | translate"
-                property="creationDate"
-                type="date"
-            >
-                <span data-ng-bind="$value | date:'mediumDate'"></span>
-            </oui-column>
-            <oui-column
-                data-title="'exchange_tab_EXTERNAL_CONTACTS_table_headers_hiddenFromGAL' | translate"
-                property="hiddenFromGAL"
+                <span
+                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_actions_menu_modify"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                on-click="setAction('exchange/external-contact/remove/external-contact-remove', $row.externalEmailAddress)"
+                data-disabled="!ctrl.services.exchangeStates.constructor.isOk($row)"
             >
                 <span
-                    class="oui-icon"
-                    aria-hidden="true"
-                    data-ng-class="{'oui-icon-success text-success': !$value.hiddenFromGAL, 'oui-icon-error text-danger': $value.hiddenFromGAL}"
-                    data-oui-tooltip="{{('exchange_tab_EXTERNAL_CONTACTS_table_tooltip_GAL_' + $value.hiddenFromGAL) | translate}}"
+                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_actions_menu_delete"
                 ></span>
-            </oui-column>
-            <oui-column
-                data-title="'exchange_tab_EXTERNAL_CONTACTS_table_headers_state' | translate"
-                property="state"
-            >
-                <span
-                    class="oui-status oui-status_info"
-                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_MODIFYING"
-                    data-ng-if="ctrl.services.exchangeStates.constructor.isOk($row) && $row.taskPendingId !== 0"
-                >
-                </span>
-                <span
-                    class="oui-status oui-status_info"
-                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_CREATING"
-                    data-ng-if="ctrl.services.exchangeStates.constructor.isCreating($row)"
-                ></span>
-                <span
-                    class="oui-status oui-status_info"
-                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_DELETING"
-                    data-ng-if="ctrl.services.exchangeStates.constructor.isDeleting($row)"
-                ></span>
-                <span
-                    class="oui-status oui-status_warning"
-                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_SUSPENDED"
-                    data-ng-if="ctrl.services.exchangeStates.constructor.isSuspended($row)"
-                ></span>
-                <span
-                    class="oui-status oui-status_warning"
-                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_SUSPENDING"
-                    data-ng-if="ctrl.services.exchangeStates.constructor.isSuspending($row)"
-                ></span>
-                <span
-                    class="oui-status oui-status_info"
-                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_REOPENING"
-                    data-ng-if="ctrl.services.exchangeStates.constructor.isReopening($row)"
-                ></span>
-                <span
-                    class="oui-status oui-status_success"
-                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_OK"
-                    data-ng-if="ctrl.services.exchangeStates.constructor.isOk($row) && $row.taskPendingId === 0"
-                ></span>
-            </oui-column>
-            <oui-action-menu align="end" compact>
+            </oui-action-menu-item>
+        </oui-action-menu>
+
+        <oui-datagrid-topbar>
+            <oui-action-menu text="{{'common_actions' | translate}}">
                 <oui-action-menu-item
-                    on-click="setAction('exchange/external-contact/update/external-contact-update', $row)"
-                    data-disabled="!ctrl.services.exchangeStates.constructor.isOk($row)"
+                    on-click="setAction('exchange/external-contact/add/external-contact-add')"
                 >
                     <span
-                        data-translate="exchange_tab_EXTERNAL_CONTACTS_table_actions_menu_modify"
+                        data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_title_button"
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    on-click="setAction('exchange/external-contact/remove/external-contact-remove', $row.externalEmailAddress)"
-                    data-disabled="!ctrl.services.exchangeStates.constructor.isOk($row)"
+                    on-click="ctrl.services.navigation.setAction('exchange/account/export-as-csv/account-export-as-csv', { search : ctrl.filter, total : ctrl.contacts.length, exchange : ctrl.exchange, csvExportType: 'external' })"
+                    data-ng-disabled="ctrl.mailingLists.list.results.count === 0"
                 >
                     <span
-                        data-translate="exchange_tab_EXTERNAL_CONTACTS_table_actions_menu_delete"
+                        data-translate="exchange_tab_EXTERNAL_CONTACTS_export_csv"
                     ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
-
-            <extra-top>
-                <oui-action-menu
-                    text="{{'common_actions' | translate}}"
-                    align="start"
-                >
-                    <oui-action-menu-item
-                        on-click="setAction('exchange/external-contact/add/external-contact-add')"
-                    >
-                        <span
-                            data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_title_button"
-                        ></span>
-                    </oui-action-menu-item>
-                    <oui-action-menu-item
-                        on-click="ctrl.services.navigation.setAction('exchange/account/export-as-csv/account-export-as-csv', { search : ctrl.filter, total : ctrl.contacts.length, exchange : ctrl.exchange, csvExportType: 'external' })"
-                        data-ng-disabled="ctrl.mailingLists.list.results.count === 0"
-                    >
-                        <span
-                            data-translate="exchange_tab_EXTERNAL_CONTACTS_export_csv"
-                        ></span>
-                    </oui-action-menu-item>
-                </oui-action-menu>
-            </extra-top>
-        </oui-datagrid>
-    </div>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
 </div>

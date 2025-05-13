@@ -1,0 +1,3 @@
+{
+  "iam_logs_data_streams_description_default": "Po zasubskrybowaniu logów bezpieczeństwa konta klienta, zostaną one przeniesione do Logs Data Platform. Platforma ta zapewnia dostęp do zaawansowanych funkcji, takich jak zarządzanie alertami, wyszukiwanie lub zarządzanie czasem przechowywania."
+}

@@ -28,6 +28,7 @@ export default class SupportNewIssuesFormController {
       serviceType: {
         exists: false,
         isLoading: true,
+        showAll: false,
       },
       service: {
         exists: false,
@@ -49,11 +50,12 @@ export default class SupportNewIssuesFormController {
   getInitialData() {
     return this.$q
       .all({
-        categories: this.getCategories(),
+        categories: this.getCategories().then((categories) =>
+          this.setCategory(categories),
+        ),
         serviceTypes: this.getServiceTypes(),
       })
-      .then(({ categories, serviceTypes }) => {
-        this.setCategory(categories);
+      .then(({ serviceTypes }) => {
         this.setServiceTypes(serviceTypes);
 
         if (this.bindings.serviceType.exists) {
@@ -77,11 +79,18 @@ export default class SupportNewIssuesFormController {
   getServiceTypes() {
     this.bindings.serviceType.isLoading = true;
 
-    return this.IssueForm.getServiceTypes().then((serviceTypes) => {
-      this.bindings.serviceType.isLoading = false;
-
-      return serviceTypes;
-    });
+    return this.IssueForm.getServiceTypes()
+      .then((serviceTypes) =>
+        this.IssueForm.filterOwnServiceTypes(serviceTypes).then(
+          (filteredServiceTypes) => ({
+            serviceTypes,
+            filteredServiceTypes,
+          }),
+        ),
+      )
+      .finally(() => {
+        this.bindings.serviceType.isLoading = false;
+      });
   }
 
   getServices() {
@@ -90,9 +99,9 @@ export default class SupportNewIssuesFormController {
 
     return this.IssueForm.getServices(
       this.bindings.serviceType.value.route,
+      this.bindings.serviceType.value.subType,
     ).then((services) => {
       this.bindings.service.isLoading = false;
-
       return services;
     });
   }
@@ -143,8 +152,18 @@ export default class SupportNewIssuesFormController {
     }
   }
 
-  setServiceTypes(serviceTypes) {
+  getServiceTypesList() {
+    return this.bindings.serviceType.showAll
+      ? this.bindings.serviceType.values
+      : this.bindings.serviceType.valuesFiltered;
+  }
+
+  setServiceTypes({ serviceTypes, filteredServiceTypes }) {
+    if (this.props.serviceTypeName) {
+      this.bindings.serviceType.showAll = true;
+    }
     this.bindings.serviceType.values = serviceTypes;
+    this.bindings.serviceType.valuesFiltered = filteredServiceTypes;
     this.bindings.serviceType.value =
       this.bindings.serviceType.value ||
       (this.props.serviceTypeName
@@ -181,7 +200,7 @@ export default class SupportNewIssuesFormController {
     if (this.bindings.service.exists) {
       this.bindings.service.isUnknown = isEmpty(this.bindings.service.values);
 
-      if (this.bindings.service.values.length === 1) {
+      if (this.bindings.service.values?.length === 1) {
         this.bindings.service.value = head(this.bindings.service.values);
       }
     }
@@ -192,9 +211,28 @@ export default class SupportNewIssuesFormController {
   onServiceTypeChange() {
     this.resetIssuesSelector();
 
-    return this.getServices().then((services) => {
-      this.setService(services);
-      this.updateIssuesSelector();
+    if (this.bindings.serviceType.value) {
+      return this.getServices().then((services) => {
+        this.setService(services);
+        this.updateIssuesSelector();
+      });
+    }
+
+    return null;
+  }
+
+  onServiceTypeFilterChange({ modelValue }) {
+    if (
+      modelValue === false &&
+      !this.bindings.serviceType.valuesFiltered.includes(
+        this.bindings.serviceType.value,
+      )
+    ) {
+      this.resetIssuesSelector();
+      this.resetServiceType();
+    }
+    this.$timeout(() => {
+      document.querySelector('#serviceTypeSelector button').click();
     });
   }
 
@@ -232,6 +270,7 @@ export default class SupportNewIssuesFormController {
     const withoutAccountCategory =
       this.bindings.category.value &&
       this.bindings.category.value.id !== 'account' &&
+      this.bindings.serviceType.value &&
       (this.bindings.service.value || this.bindings.service.isUnknown);
 
     this.bindings.issuesSelector.exists =
@@ -279,7 +318,9 @@ export default class SupportNewIssuesFormController {
       !this.bindings.issue.value.hasChildren &&
       this.bindings.issue.value.selfCareResources.length > 0;
     this.bindings.buttons.exists =
-      this.bindings.issue.value && !this.bindings.issue.value.hasChildren;
+      this.bindings.issue.value &&
+      !this.bindings.issue.value.readOnly &&
+      !this.bindings.issue.value.hasChildren;
     this.bindings.buttons.choice.exists =
       this.bindings.buttons.exists &&
       this.bindings.issue.value.selfCareResources.length > 0;

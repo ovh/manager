@@ -1,0 +1,105 @@
+<oui-modal
+    heading="{{:: 'netapp_volume_create_title' | translate }}"
+    loading="$ctrl.isLoading"
+    primary-action="$ctrl.onCreateVolume()"
+    primary-label="{{:: 'netapp_volume_create_title' | translate }}"
+    primary-disabled="$ctrl.createVolumeForm.$invalid"
+    secondary-action="$ctrl.goBack()"
+    secondary-label="{{:: 'netapp_volume_create_cancel' | translate }}"
+    on-dismiss="$ctrl.goBack()"
+>
+    <form novalidate name="$ctrl.createVolumeForm">
+        <oui-field
+            label="{{:: 'netapp_volume_create_name' | translate }}"
+            size="l"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="volumeName"
+                name="volumeName"
+                data-ng-model="$ctrl.newVolume.name"
+            />
+        </oui-field>
+        <oui-field
+            label="{{:: 'netapp_volume_create_description' | translate }}"
+            size="l"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="volumeDescription"
+                name="volumeDescription"
+                data-ng-model="$ctrl.newVolume.description"
+            />
+        </oui-field>
+        <oui-field
+            label="{{:: 'netapp_volume_create_protocol' | translate }}"
+            size="l"
+        >
+            <oui-select
+                disabled="$ctrl.protocolList.length === 1"
+                items="$ctrl.protocolList"
+                match="key"
+                model="$ctrl.newVolumeProtocol"
+                name="volumeProtocol"
+            >
+            </oui-select>
+        </oui-field>
+        <oui-field
+            label="{{:: 'netapp_volume_create_snapshot_selection' | translate }}"
+            size="l"
+        >
+            <oui-select
+                data-disabled="$ctrl.manualSnaphost.length === 1"
+                data-placeholder="{{:: 'netapp_volume_create_snapshot_selection_placeholder' | translate }}"
+                data-items="$ctrl.manualSnaphost"
+                data-match="key"
+                data-model="$ctrl.snapshot"
+                data-name="manualSnaphost"
+                data-on-change="$ctrl.newVolume.size = $ctrl.snapshot.size;  $ctrl.newVolume.snapshotID = $ctrl.snapshot.snapshotID"
+            >
+            </oui-select>
+        </oui-field>
+        <oui-field
+            label="{{:: 'netapp_volume_create_size' | translate }}"
+            help-text="{{:: 'netapp_volume_create_size_help' | translate:{ 'minSize': $ctrl.minimumVolumeSize, 'maxSize': $ctrl.availableVolumeSize } }}"
+            error-messages="{
+              'min': ('netapp_volume_create_size_minimum_error' | translate:{ 'minSize': $ctrl.minimumVolumeSize }),
+              'max': ('netapp_volume_create_size_maximum_error' | translate:{ 'maxSize': $ctrl.availableVolumeSize }),
+              'number': ('netapp_volume_create_size_invalid_number_error' | translate),
+              'required': ('netapp_volume_create_size_required' | translate),
+            }"
+            size="l"
+        >
+            <input
+                class="oui-input"
+                type="number"
+                name="volumeSize"
+                min="{{:: $ctrl.minimumVolumeSize }}"
+                max="{{:: $ctrl.availableVolumeSize }}"
+                data-ng-model="$ctrl.newVolume.size"
+                data-ng-required="true"
+                data-ng-disabled="$ctrl.snapshot && $ctrl.snapshot.key !== $ctrl.CUSTOM_SELECTION"
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{:: 'netapp_volume_mount_path' | translate }}"
+            data-error-messages="{  'pattern': ('netapp_volume_mount_path_format_error' | translate),
+            'limitExceeds': ('netapp_volume_mount_path_character_limit_error' | translate),
+            'alreadyUsed': ('netapp_volume_mount_path_already_used_error' | translate)
+            }"
+            size="l"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="mountPointName"
+                name="mountPointName"
+                data-ng-model="$ctrl.newVolume.mountPointName"
+                data-ng-pattern="$ctrl.MOUNT_PATH_PATTERN"
+                data-ui-validate="{ limitExceeds: '$ctrl.isLimitExceeds($value)', alreadyUsed: '$ctrl.isMountPointNameAlreadyUsed($value)' }"
+            />
+        </oui-field>
+    </form>
+</oui-modal>

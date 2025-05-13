@@ -1,0 +1,4 @@
+{
+  "ip_organisation": "Organisationen",
+  "ip_organisation_description1": "Eine Organisation ist die für einen bestimmten IP-Block verantwortliche Stelle, z. B. Ihr Unternehmen. Unter dem Eintrag der Organisation werden Angaben hinterlegt und in der öffentlichen WHOIS-Datenbank der RIR veröffentlicht, die diesen Block verwaltet. Jedem IP-Block muss eine Organisation zugewiesen werden."
+}

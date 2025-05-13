@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-models",
-  "version": "1.0.0",
+  "version": "2.4.4",
   "private": true,
   "description": "Set of classes representing API data ",
   "repository": {
@@ -11,10 +11,11 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "index.js",
-  "dependencies": {
-    "moment": "^2.24.0"
-  },
   "devDependencies": {
+    "@ovh-ux/manager-config": "^8.3.1",
     "lodash": "^4.17.15"
+  },
+  "peerDependencies": {
+    "moment": "^2.24.0"
   }
 }

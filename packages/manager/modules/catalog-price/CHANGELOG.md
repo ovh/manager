@@ -1,3 +1,168 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.7.0...@ovh-ux/manager-catalog-price@1.8.0) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.6.2...@ovh-ux/manager-catalog-price@1.7.0) (2023-02-13)
+
+
+### Features
+
+* **pci.ai:** add label free during beta ([#8802](https://github.com/ovh/manager/issues/8802)) ([195fd94](https://github.com/ovh/manager/commit/195fd94e97ad6a030c54e3a13943e6f2b8ffd4d8))
+
+
+
+
+
+## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.6.1...@ovh-ux/manager-catalog-price@1.6.2) (2022-08-25)
+
+
+### Bug Fixes
+
+* **catalog-price:** asia prices not displayed ([c4e0ef0](https://github.com/ovh/manager/commit/c4e0ef03d9921ea67b322ac7a70dedc303c8fa26))
+
+
+
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.6.0...@ovh-ux/manager-catalog-price@1.6.1) (2022-07-07)
+
+
+### Bug Fixes
+
+* **template:** remove one-time binding for displaying price ([#7510](https://github.com/ovh/manager/issues/7510)) ([a74d69d](https://github.com/ovh/manager/commit/a74d69d0d85b5095f818c5be69f23498ffe8866f))
+
+
+
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.5.0...@ovh-ux/manager-catalog-price@1.6.0) (2021-10-27)
+
+
+### Features
+
+* allow to display unit ([800ecb5](https://github.com/ovh/manager/commit/800ecb5d68d6dc2f6af66d727dadc78b4873894e))
+
+
+
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.4.1...@ovh-ux/manager-catalog-price@1.5.0) (2021-09-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1171] ([f28d620](https://github.com/ovh/manager/commit/f28d620e8b25af15c95884fbbc840b245319e4ca))
+
+
+### Features
+
+* display price with hourly interval ([be132a3](https://github.com/ovh/manager/commit/be132a319ce37589ca9dc5b42b6369d9f8914a9c))
+
+
+
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.4.0...@ovh-ux/manager-catalog-price@1.4.1) (2021-07-01)
+
+
+### Bug Fixes
+
+* **catalog-price:** fix binding for dynamic price ([bb0f70c](https://github.com/ovh/manager/commit/bb0f70c6d1b1e43ccbf315f5bb837a8c006302c7))
+
+
+
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.3.3...@ovh-ux/manager-catalog-price@1.4.0) (2021-06-15)
+
+
+### Features
+
+* **pci:** add databases storage ([4067ca7](https://github.com/ovh/manager/commit/4067ca79496e1161932671eb02080ac62b02409e)), closes [#MANAGER-6653](https://github.com/ovh/manager/issues/MANAGER-6653)
+
+
+
+## [1.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.3.2...@ovh-ux/manager-catalog-price@1.3.3) (2021-03-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([5f3eda1](https://github.com/ovh/manager/commit/5f3eda16abd4df3b46cdde241c827a1d1d6dc80c))
+
+
+
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.3.1...@ovh-ux/manager-catalog-price@1.3.2) (2021-02-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
+
+
+
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.3.0...@ovh-ux/manager-catalog-price@1.3.1) (2021-01-04)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([23b469f](https://github.com/ovh/manager/commit/23b469f6264610c47076da908f688e8069f19c76))
+
+
+
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.2.2...@ovh-ux/manager-catalog-price@1.3.0) (2020-11-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 672] ([980aa6b](https://github.com/ovh/manager/commit/980aa6bf26b4281eb007effba060432cb3686bb8))
+
+
+### Features
+
+* add fromToPrice property ([9b351cf](https://github.com/ovh/manager/commit/9b351cfaf69c152f5398063ebe8cc79d54b58f32))
+* **hosting:** add Shared CDN ([7494079](https://github.com/ovh/manager/commit/7494079ea3307b20c9c2eccb2c3f70e3b1c1c6a9))
+
+
+
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.2.1...@ovh-ux/manager-catalog-price@1.2.2) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.2.0...@ovh-ux/manager-catalog-price@1.2.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+* **locale:** use user locale from manager-config ([81e8d10](https://github.com/ovh/manager/commit/81e8d1009455d7524ee86a5183a8db517640ef41))
+
+
+
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.1.0...@ovh-ux/manager-catalog-price@1.2.0) (2020-07-16)
+
+
+### Features
+
+* **catalog-price:** precision parameters added ([4491e89](https://github.com/ovh/manager/commit/4491e894686ec59ee42a686e0094e1ee3b73554b))
+
+
+
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.0.2...@ovh-ux/manager-catalog-price@1.1.0) (2020-05-13)
+
+
+### Features
+
+* **dedicated.cloud:** add veeam backup storage ([#2320](https://github.com/ovh/manager/issues/2320)) ([61f53d4](https://github.com/ovh/manager/commit/61f53d4b6507158941a76defbc72b7302a4206f3))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.0.1...@ovh-ux/manager-catalog-price@1.0.2) (2020-03-18)
 
 
@@ -30,8 +195,3 @@
 
 * **modules:** This component is just the export of the one located in web/app/components/manager-order-catalog-price.
 The web located component should be replaced by the new one (refactor will be done once this module is released)
-
-Signed-off-by: Jérémy De-Cesare <jeremy.de-cesare@corp.ovh.com>
-
-
-

@@ -1,0 +1,177 @@
+<div class="telecom-telephony-line-phone-accessories-resume">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <form data-ng-submit="$ctrl.submit()" data-ng-if="!$ctrl.loading.init">
+        <div class="alert alert-danger" role="alert" data-ng-if="$ctrl.error">
+            <p>
+                <span
+                    data-translate="telephony_line_phone_accessories_resume_load_error"
+                ></span>
+                <span data-ng-bind="$ctrl.error.data.message"></span>
+            </p>
+        </div>
+
+        <div data-ng-if="!$ctrl.error">
+            <div class="widget-presentation">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="telephony_line_phone_accessories_resume_title"
+                ></h2>
+
+                <h3
+                    data-translate="telephony_line_phone_accessories_resume_subtitle"
+                    class="mb-3"
+                ></h3>
+
+                <oui-datagrid data-rows="$ctrl.order.details">
+                    <oui-datagrid-column
+                        data-title="'telephony_line_phone_accessories_resume_table_description' | translate"
+                        data-property="description"
+                        data-sortable="asc"
+                    >
+                        <span
+                            data-ng-bind="$row.description"
+                            data-ng-attr-title="{{::'telephony_line_phone_accessories_resume_table_description' | translate }}"
+                        >
+                        </span>
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title="'telephony_line_phone_accessories_resume_table_unit_price' | translate"
+                        data-property="unitPrice.value"
+                    >
+                        <span
+                            data-ng-bind="$row.unitPrice.text"
+                            data-ng-attr-title="{{::'telephony_line_phone_accessories_resume_table_unit_price' | translate }}"
+                        >
+                        </span>
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title="'telephony_line_phone_accessories_resume_table_quantity' | translate"
+                        data-property="quantity"
+                    >
+                        <span
+                            data-ng-bind="$row.quantity"
+                            data-title="{{::'telephony_line_phone_accessories_resume_table_quantity' | translate }}"
+                        >
+                        </span>
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title="'telephony_line_phone_accessories_resume_table_total' | translate"
+                        data-property="totalPrice.value"
+                        data-sortable
+                    >
+                        <span
+                            class="text-right-sm text-price"
+                            data-ng-bind="$row.totalPrice.text"
+                            data-title="{{::'telephony_line_phone_accessories_resume_table_total' | translate }}"
+                        >
+                        </span>
+                    </oui-datagrid-column>
+                </oui-datagrid>
+
+                <div class="row">
+                    <div class="resume-prices col-md-3 col-md-offset-9">
+                        <dl>
+                            <dt
+                                data-translate="telephony_line_phone_accessories_resume_prices_tax_free_total"
+                            ></dt>
+                            <dd
+                                class="animate-opacity1-enter text-price"
+                                data-ng-bind="$ctrl.order.prices.withoutTax.text"
+                            ></dd>
+
+                            <dt
+                                data-translate="telephony_line_phone_accessories_resume_prices_tax_total"
+                            ></dt>
+                            <dd
+                                class="animate-opacity1-enter text-price"
+                                data-ng-bind="$ctrl.order.prices.tax.text"
+                            ></dd>
+
+                            <dt
+                                data-translate="telephony_line_phone_accessories_resume_prices_with_tax_total"
+                            ></dt>
+                            <dd
+                                class="animate-opacity1-enter text-price"
+                                data-ng-bind="$ctrl.order.prices.withTax.text"
+                            ></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget-presentation">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="telephony_line_phone_accessories_resume_contact_title"
+                ></h2>
+
+                <div>
+                    <div class="badge d-inline-block align-top mr-3">
+                        <i class="fa fa-user fa-5x"></i>
+                    </div>
+                    <div class="d-inline-block">
+                        <p
+                            data-ng-bind="$ctrl.process.shipping.contact.lastName + ' ' + $ctrl.process.shipping.contact.firstName"
+                        ></p>
+                        <p
+                            data-ng-bind="$ctrl.process.shipping.contact.address.line1"
+                        ></p>
+                        <p
+                            data-ng-bind="$ctrl.process.shipping.contact.address.zip + ' ' + $ctrl.process.shipping.contact.address.city"
+                        ></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget-presentation">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="telephony_line_phone_accessories_resume_contracts_title"
+                ></h2>
+
+                <ovh-contracts-summary
+                    data-items="$ctrl.order.contracts"
+                    data-model="$ctrl.model.contracts"
+                    data-name="telephonyLinePhoneAccessoriesResumeContracts"
+                >
+                </ovh-contracts-summary>
+            </div>
+
+            <div
+                class="widget-presentation"
+                data-ng-if="$ctrl.process.isRetractationAllowed"
+            >
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="telephony_line_phone_accessories_resume_retract_title"
+                ></h2>
+
+                <tuc-telecom-retractation
+                    data-ng-model="$ctrl.process.retract"
+                ></tuc-telecom-retractation>
+            </div>
+        </div>
+
+        <br />
+        <hr class="oui-horizontal-line_dark" />
+
+        <div class="footer-button-container clearfix mt-3 mb-4">
+            <button
+                type="submit"
+                class="btn btn-primary"
+                data-translate="telephony_line_phone_accessories_resume_validate"
+                data-ng-disabled="!$ctrl.model.contracts || $ctrl.process.retract === null"
+            ></button>
+
+            <button
+                type="reset"
+                class="btn btn-default"
+                data-translate="telephony_line_phone_accessories_previous"
+                data-ng-click="$ctrl.goBack()"
+            ></button>
+        </div>
+    </form>
+</div>

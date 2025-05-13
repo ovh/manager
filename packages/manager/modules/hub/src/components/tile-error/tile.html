@@ -2,14 +2,11 @@
     <h3 data-translate="manager_hub_error_tile_oops"></h3>
     <p data-ng-bind="$ctrl.message"></p>
     <button
-        class="oui-button oui-button_link oui-button_icon-right"
+        class="oui-button oui-button_icon-right oui-button_ghost"
         type="button"
         data-ng-click="$ctrl.refresh()"
     >
         <span data-translate="manager_hub_error_tile_retry"></span>
-        <span
-            class="oui-icon oui-icon-refresh_extra-thin"
-            aria-hidden="true"
-        ></span>
+        <span class="oui-icon oui-icon-refresh" aria-hidden="true"></span>
     </button>
 </div>

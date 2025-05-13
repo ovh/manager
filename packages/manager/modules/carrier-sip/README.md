@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-carrier-sip
 import angular from 'angular';
 import ovhManagerCarrierSip from '@ovh-ux/manager-carrier-sip';
 
-angular
-  .module('myApp', [
-    ovhManagerCarrierSip,
-  ]);
+angular.module('myApp', [ovhManagerCarrierSip]);
 ```
 
 ## Documentation
@@ -26,7 +23,7 @@ angular
 
 ## Related
 
-* [manager-telecom](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/telecom/README.md) - OVH Control Panel Telecom UI.
+* [manager-telecom](https://github.com/ovh/manager/blob/master/packages/manager/apps/telecom/README.md) - OVH Control Panel Telecom UI.
 
 ## Contributing
 

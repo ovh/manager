@@ -1,0 +1,10 @@
+{
+  "dedicatedCloud_USER_iam_load_error": "Beim Laden der OVHcloud IAM-Informationen ist ein Fehler aufgetreten.",
+  "dedicatedCloud_USER_iam_status": "Status",
+  "dedicatedCloud_USER_iam_enable": "OVHcloud IAM aktivieren",
+  "dedicatedCloud_USER_iam_disable": "OVHcloud IAM deaktivieren",
+  "dedicatedCloud_USER_iam_manage_iam": "Richtlinien und Zugriff verwalten",
+  "dedicatedCloud_USER_iam_description": "Bei Aktivierung des OVHcloud IAM wird die Zugriffsverwaltung an den IAM-Dienst von OVHcloud delegiert. Die Verwaltung der zugehörigen Rollen und ihrer Berechtigungen in vSphere erfolgt über diese Seite. Die Verwaltung der Richtlinien und des Zugriffs erfolgt über das IAM von OVHcloud. Das IAM von OVHcloud ist nur für das vSphere-Produkt integriert.",
+  "dedicatedCloud_USER_iam_usage_warning": "Infrastrukturen mit erweiterten Sicherheitsoptionen oder einem zertifizierten Dienst (HDS, PCI-DSS oder SNC) können das IAM von OVHcloud derzeit nicht nutzen.",
+  "dedicatedCloud_USER_iam_api_error_returned": "Die Aktion kann nicht ausgeführt werden. Angegebener Grund: {{message}}"
+}

@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
@@ -55,6 +55,14 @@ module.exports = (env = {}) => {
           {
             from: path.resolve(__dirname, './client/**/*.html'),
             context: 'client/app',
+            filter: (resource) => {
+              if (
+                resource === path.resolve(__dirname, 'client/app/index.html')
+              ) {
+                return false;
+              }
+              return true;
+            },
           },
           {
             from: path.resolve(__dirname, './client/app/images/**/*.*'),
@@ -103,10 +111,27 @@ module.exports = (env = {}) => {
         path.resolve(process.cwd(), '../../../../node_modules'),
       ],
       mainFields: ['module', 'browser', 'main'],
+      fallback: {
+        buffer: require.resolve('buffer/'),
+      },
     },
     plugins: [
+      new webpack.ContextReplacementPlugin(
+        /moment[/\\]locale$/,
+        /de|en-gb|es|es-us|fr-ca|fr|it|pl|pt/,
+      ),
+      new webpack.ContextReplacementPlugin(
+        /flatpicker[/\\]dist[/\\]l10n$/,
+        /de|es|es|fr|it|pl|pt/,
+      ),
       new webpack.DefinePlugin({
         __NG_APP_INJECTIONS__: getNgAppInjections(['EU', 'CA', 'US']),
+        __NODE_ENV__: process.env.NODE_ENV
+          ? `'${process.env.NODE_ENV}'`
+          : '"development"',
+      }),
+      new webpack.ProvidePlugin({
+        Buffer: ['buffer', 'Buffer'],
       }),
     ],
     optimization: {

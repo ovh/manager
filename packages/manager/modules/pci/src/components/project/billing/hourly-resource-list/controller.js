@@ -1,7 +1,10 @@
+import { PRODUCTS } from './constants';
+
 export default class {
   /* @ngInject */
   constructor(DetailsPopoverService) {
     this.DetailsPopoverService = DetailsPopoverService;
+    this.PRODUCTS = PRODUCTS;
   }
 
   $onInit() {
@@ -10,6 +13,7 @@ export default class {
         instance: false,
         objectStorage: false,
         archiveStorage: false,
+        coldArchive: false,
         snapshot: false,
         volume: false,
       },

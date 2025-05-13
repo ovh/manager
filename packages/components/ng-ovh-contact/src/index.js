@@ -4,6 +4,7 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ui-select';
 import 'angular-ui-bootstrap';
+import '@ovh-ux/ng-ovh-api-wrappers';
 
 import editComponent from './edit/component';
 import component from './component';
@@ -22,12 +23,12 @@ const moduleName = 'ngOvhContact';
 
 angular
   .module(moduleName, [
-    'internationalPhoneNumber',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ovh-api-services',
     'ui.select',
     'ui.bootstrap',
+    'ngOvhApiWrappers',
   ])
   .constant('CONTACT_EDITION', EDITION)
   .constant('CONTACT_PROTOTYPE_PATH', PROTOTYPE_PATH)

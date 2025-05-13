@@ -1,0 +1,8 @@
+{
+  "billing_autorenew_service_activation_title": "Włącz automatyczne odnowienie",
+  "billing_autorenew_service_activation_success": "Automatyczne odnowienie domeny zostało włączone.",
+  "billing_autorenew_service_activation_error": "Wystąpił błąd podczas włączania automatycznego odnowienia {{message}}.",
+  "billing_autorenew_service_activation_confirm": "Zatwierdź",
+  "billing_autorenew_service_activation_cancel": "Anuluj",
+  "billing_autorenew_service_activation_confirmation": "Czy chcesz włączyć automatyczne odnowienie?"
+}

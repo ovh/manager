@@ -1,0 +1,6 @@
+{
+  "pci_notebook_configuration_command_title": "Create an equivalent notebook automatically",
+  "pci_notebook_configuration_command_description": "You can create the same notebook using these command lines in your ovhai CLI.",
+  "pci_notebook_configuration_command_help": "Find out more.",
+  "pci_notebook_configuration_command_error": "An error has occurred attempting to retrieve the equivalent command: {{message}}"
+}

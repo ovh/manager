@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_USER_iam_role_title": "Criar uma nova função IAM da OVHcloud",
+  "dedicatedCloud_USER_iam_role_content": "Preencha os seguintes campos para adicionar uma função IAM da OVHcloud à sua infraestrutura.",
+  "dedicatedCloud_USER_iam_role_content_bottom": "A gestão das permissões desta função no vSphere será idêntica aos utilizadores da sua infraestrutura. No entanto, a gestão das políticas e dos acessos a esta função será efetuada a partir do IAM da OVHcloud.",
+  "dedicatedCloud_USER_iam_role_name_example": "utilizador",
+  "dedicatedCloud_USER_iam_role_name_wrong_pattern": "O nome da função não deve conter caracteres especiais.",
+  "dedicatedCloud_USER_iam_role_name_already_exist": "Essa função já existe.",
+  "dedicatedCloud_USER_iam_role_role_example": "função",
+  "dedicatedCloud_USER_iam_role_field_label_name": "Nome da função",
+  "dedicatedCloud_USER_iam_role_error": "Não foi possível adicionar a nova função IAM da OVHcloud."
+}

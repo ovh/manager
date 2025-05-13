@@ -1,0 +1,8 @@
+{
+  "hosting_email_detach_option_title": "Desvincular la opción de correo de mi alojamiento",
+  "hosting_email_detach_option_description": "Se ha elegido la opción {{ emailOption }} para sustituir a la solución de correo asociada al alojamiento web {{hosting}}. Desvincular la opción le permitirá renovarla de forma independiente de su alojamiento. A partir de ahora la opción se facturará al precio estándar de las opciones de correo.",
+  "hosting_email_detach_option_warning_irreversible": "Atención: Esta acción es irreversible.",
+  "hosting_email_detach_option_error": "Se ha producido un error al desvincular la opción. {{error}}",
+  "hosting_email_detach_option_success_with_payment": "La solicitud para desvincular la opción se ha enviado correctamente. Se ha cargado un importe de {{price}} en su cuenta {{accountId}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Ver mi factura</a>",
+  "hosting_email_detach_option_success_with_no_payment": "La <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">orden de pedido</a> se ha generado. La opción de correo se desvinculará una vez realizado el pago."
+}

@@ -1,0 +1,21 @@
+{
+  "zimbra_domains_add_domain_title": "Adicionar domínio",
+  "zimbra_domains_datagrid_account_label": "Número de contas",
+  "zimbra_domains_datagrid_diagnostic_label": "Diagnóstico",
+  "zimbra_domains_datagrid_domain_label": "Domínio",
+  "zimbra_domains_datagrid_organization_label": "Organização",
+  "zimbra_domains_datagrid_account_number": "Número de contas",
+  "zimbra_domains_tooltip_delete": "Eliminar",
+  "zimbra_domains_tooltip_need_organization": "Comece por configurar uma organização",
+  "zimbra_domains_datagrid_diagnostic_configuration_ok": "Configuração OK",
+  "zimbra_domains_datagrid_diagnostic_tooltip_title": "Diagnóstico {{ diagType }}",
+  "zimbra_domains_tooltip_configure": "Configurar",
+  "zimbra_domains_datagrid_status_label": "Estado",
+  "zimbra_domains_datagrid_cname_label": "CNAME",
+  "zimbra_domains_datagrid_cname_tooltip_title": "Verificação do domínio",
+  "zimbra_domains_datagrid_cname_tooltip": "Para confirmar que é o titular deste domínio, crie um registo CNAME: <br/><br/><strong>{{cname}}</strong> para <strong>ovh.com</strong> <br/><br/>Tem 48 horas para concluir este passo.",
+  "zimbra_domains_tooltip_diagnostics": "Diagnósticos",
+  "zimbra_domains_delete_modal_content": "Quer mesmo eliminar o domínio do servidor Zimbra?",
+  "zimbra_domains_delete_modal_message_disabled_part1": "Pelo menos uma conta de e-mail ainda está associada a este nome de domínio.",
+  "zimbra_domains_delete_modal_message_disabled_part2": "Elimine as contas de e-mail associadas antes de suprimir o seu nome de domínio."
+}

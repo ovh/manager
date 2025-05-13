@@ -1,0 +1,19 @@
+{
+  "vrack_onboarding_title": "Rete privata vRack",
+  "vrack_onboarding_description": "La tecnologia vRack (rack virtuale) permette di connettere, isolare o ripartire i prodotti OVHcloud compatibili all'interno di una o più reti private. Grazie alle tecnologie di rete uniche, è possibile costruire infrastrutture private ibride in un perimetro multidatacenter mondiale.",
+  "vrack_onboarding_description_part2": "La vRack offre la possibilità di far comunicare in modo sicuro le diverse soluzioni OVHcloud compatibili all'interno della propria rete privata, scegliendo se rendere i servizi accessibili solo dalla rete privata o anche da quella pubblica.",
+  "vrack_onboarding_description_part3": "L’intera rete sarà gestita fisicamente da OVHcloud, senza necessità di applicazioni software o configurazioni di rete sui servizi.",
+  "vrack_onboarding_order": "Ordina",
+  "vrack_onboarding_guide1_title": "Configurare la vRack sui server dedicati",
+  "vrack_onboarding_guide1_description": "Come configurare la vRack su diversi server dedicati",
+  "vrack_onboarding_guide2_title": "Configurazione di frame Jumbo nella vRack",
+  "vrack_onboarding_guide2_description": "Come configurare i Jumbo frame nella vRack",
+  "vrack_onboarding_guide3_title": "Configurare un blocco di IP nella vRack",
+  "vrack_onboarding_guide3_description": "Come configurare un blocco di indirizzi IP pubblici nella vRack",
+  "vrack_onboarding_us_guide1_title": "How to Connect a Dedicated Server to vRack",
+  "vrack_onboarding_us_guide1_description": "Find out how to configure the vRack on two or more dedicated servers",
+  "vrack_onboarding_us_guide2_title": "How to Configure vRack for Public Cloud Services",
+  "vrack_onboarding_us_guide2_description": "Find out how to configure the vRack on Public Cloud",
+  "vrack_onboarding_us_guide3_title": "How to Configure a Failover IP Block on a vRack",
+  "vrack_onboarding_us_guide3_description": "This guide will show you how to configure a block of public IP addresses for use with the vRack."
+}

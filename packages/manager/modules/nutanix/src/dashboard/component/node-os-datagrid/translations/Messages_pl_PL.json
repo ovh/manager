@@ -1,0 +1,4 @@
+{
+  "nutanix_node_status_error_installation": "Błąd instalacji",
+  "nutanix_node_status_not_installed": "System operacyjny nie został zainstalowany"
+}

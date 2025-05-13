@@ -4,5 +4,19 @@
   "vps_terminate_cancel": "Abbrechen",
   "vps_terminate_confirm": "Bestätigen",
   "vps_terminate_success": "Die Anfrage zur Löschung wurde registriert. Ihnen wird eine Bestätigungs-E-Mail zugesandt, um den Löschvorgang zu bestätigen.",
-  "vps_terminate_error": "Beim Löschen des Dienstes ist ein Fehler aufgetreten."
+  "vps_terminate_success_engagement": "Ihre Anfrage wurde registriert und wird so schnell wie möglich bearbeitet.",
+  "vps_terminate_error": "Beim Löschen des Dienstes ist ein Fehler aufgetreten.",
+  "vps_terminate_unavailable": "Sie haben dieses Abonnement mit einer Laufzeit von {{ monthCount }} Monaten abgeschlossen. Falls Sie eine Frage haben, können Sie sich gerne an unseren Support wenden - per Chat oder erstellen Sie ein <a class=\"oui-link\" href=\"{{supportTicketLink}}\" target=\"_blank\" rel=\"noopener\">Support-Ticket. Vielen Dank für Ihr Verständnis.",
+  "vps_terminate_option_terminate_at_expiration": "Dienstleistung am Ablaufdatum löschen",
+  "vps_terminate_option_cancel_terminate_at_expiration": "Löschen der Dienstleistung zurücknehmen",
+  "vps_terminate_option_terminate_now": "Dienstleistung sofort löschen",
+  "vps_terminate_option_terminate_now_description": "Sie erhalten eine E-Mail mit der Vorgehensweise zum Löschen dieses Servers.",
+  "vps_terminate_option_terminate_now_question": "Möchten Sie fortfahren?",
+  "vps_terminate_warning_data_deletion": "Beim Löschen dieses Elements werden automatisch alle zugehörigen Daten unwiderruflich gelöscht.",
+  "vps_terminate_warning_no_refund": "Das Löschen des Dienstes verleiht kein Recht auf Rückerstattung.",
+  "vps_terminate_warning_manual_refund": "Das Löschen des Dienstes bedeutet keine Garantie auf eine Rückerstattung. Wenn Sie Fragen zu einer möglichen Rückerstattung haben, wenden Sie sich bitte an den Support.",
+  "vps_terminate_activate_delete_at_expiration_success": "Die Anfrage zum Löschen des Dienstes am Ablaufdatum wurde registriert.",
+  "vps_terminate_activate_delete_at_expiration_error": "Bei der Anfrage zum Löschen dieses Dienstes am Ablaufdatum ist ein Fehler aufgetreten:",
+  "vps_terminate_deactivate_delete_at_expiration_success": "Die Anfrage zum Löschen des Dienstes am Ablaufdatum wurde ausgesetzt.",
+  "vps_terminate_deactivate_delete_at_expiration_error": "Beim Aussetzen der Anfrage zum Löschen dieses Dienstes am Ablaufdatum ist ein Fehler aufgetreten:"
 }

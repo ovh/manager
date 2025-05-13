@@ -3,9 +3,6 @@ export const TELEPHONY_ALIAS_FEATURE_TYPES = {
     'contactCenterSolution',
     'easyHunting',
     'cloudHunting',
-    'easyPabx',
-    'miniPabx',
-    'oldPabx',
     'ovhPabx',
   ],
 };

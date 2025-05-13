@@ -2,7 +2,10 @@
     class="oui-tile oui-tile_collapsible mb-5"
     data-ng-if="!!guideConfiguration && guideConfiguration.length > 0"
 >
-    <h3 class="oui-header_4 oui-tile__title" data-ng-bind="wucGuidesTitle"></h3>
+    <h3
+        class="oui-tile__title oui-heading_4"
+        data-ng-bind="wucGuidesTitle"
+    ></h3>
     <div class="oui-tile__body">
         <div
             class="oui-tile__item oui-tile__item_button"
@@ -10,7 +13,7 @@
         >
             <button
                 type="button"
-                class="oui-tile__button oui-button oui-button_link oui-button_full-width d-flex text-wrap"
+                class="oui-tile__button oui-button d-flex text-wrap oui-button_ghost oui-button_block"
                 data-ng-click="toggleGuides($index)"
             >
                 <span data-ng-bind="guideSection.title | translate"></span>

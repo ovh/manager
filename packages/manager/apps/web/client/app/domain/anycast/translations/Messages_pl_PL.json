@@ -1,0 +1,19 @@
+{
+  "domain_anycast": "Włącz DNS Anycast",
+  "domain_dashboard_dns_anycast_order": "Zamów DNS Anycast",
+  "domain_configuration_anycast_order_description": "Włączenie opcji DNS Anycast dla domeny {{t0}}",
+  "domain_dashboard_dns_anycast_payment": "Płatność",
+  "domain_dashboard_dns_anycast_duration_choose": "Wybierz okres",
+  "domain_dashboard_dns_anycast_price_without_tax": "{{price}} netto",
+  "domain_dashboard_dns_anycast_prorata_price_without_tax": "Cena netto",
+  "domain_dashboard_dns_anycast_prorata_price_with_tax": "Cena brutto",
+  "domain_dashboard_dns_anycast_prorata_untill": "Prorata do",
+  "domain_dashboard_dns_anycast_next": "Dalej",
+  "domain_dashboard_dns_anycast_duration": "12 miesięcy",
+  "domain_dashboard_dns_anycast_pay": "Zapłać",
+  "domain_configuration_anycast_order_success": "Zlecenie włączenia opcji DNS Anycast zostało przyjęte.",
+  "domain_configuration_anycast_order_success_bc": "Aby sfinalizować zlecenie, ureguluj należność wynikającą z zamówienia.",
+  "domain_configuration_anycast_order_success_bc_link": "Zamówienie",
+  "domain_configuration_anycast_payment_acceptance_delay_info": "Włączenie opcji trwa około 15 minut od momentu zaksięgowania płatności. Po tym czasie opcja będzie dostępna w Panelu klienta.",
+  "domain_configuration_anycast_propagation_delay_info": "Pamiętaj również o naturalnym czasie propagacji usługi DNS, który może trwać do 48 godzin."
+}

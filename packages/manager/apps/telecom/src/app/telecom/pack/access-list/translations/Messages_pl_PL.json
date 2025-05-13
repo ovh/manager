@@ -1,0 +1,19 @@
+{
+  "xdsl_access_list_title": "Moje usługi",
+  "xlds_access_list_copper_closure_info": "Dowiedz się więcej o zamykaniu miedzi.",
+  "xdsl_access_list_service_name": "Nazwa usługi",
+  "xdsl_access_list_service": "Usługa",
+  "xdsl_access_list_migration": "Migracja światłowodów",
+  "xdsl_access_list_copper_closure_date": "Data zamknięcia miedzi",
+  "xdsl_access_list_actions": "Operacje",
+  "xdsl_access_list_copper": "Linia xDSL",
+  "xdsl_access_list_fiber": "Linia FTTH",
+  "xdsl_access_list_not_eligible": "Niekwalifikujący się",
+  "xdsl_access_list_no_building": "Brak budynku",
+  "xdsl_access_list_eligible": "Kwalifikujące się",
+  "xdsl_access_list_not_concerned": "Nie dotyczy",
+  "xdsl_access_list_not_available": "Niedostępne",
+  "xdsl_access_list_migrate": "Przejdź na światłowód",
+  "xdsl_access_list_support": "Skontaktuj się z pomocą techniczną",
+  "xdsl_access_list_not_yet_eligible": "Aktualnie niedostępny"
+}

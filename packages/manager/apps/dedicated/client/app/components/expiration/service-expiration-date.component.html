@@ -8,18 +8,19 @@
     data-ng-href="{{:: $ctrl.getRenewUrl() }}"
     data-ng-bind=":: $ctrl.getDate() | date:'mediumDate'"
     data-ng-if="$ctrl.coreConfig.getRegion() !== 'US' && !$ctrl.hideRenewDate"
+    target="_top"
 >
 </a>
 <oui-action-menu
     data-ng-if="!$ctrl.forceHideRenewAction && ((!$ctrl.isAutoRenew() && $ctrl.getRenewUrl() && !$ctrl.hideRenewAction) || ($ctrl.serviceInfos.status === 'expired'))"
     aria-label="'menu_action_label' | translate:{ t0: 'core_service_expiration_label' | translate }"
-    data-align="end"
     data-compact
+    data-placement="end"
 >
     <oui-action-menu-item
-        data-text="{{ 'core_service_renew_button' | translate }}"
         data-aria-label="{{ 'core_service_renew_button' | translate }}"
         data-href="{{:: $ctrl.getRenewUrl() }}"
-    >
+        top
+        ><span data-translate="core_service_renew_button"></span>
     </oui-action-menu-item>
 </oui-action-menu>

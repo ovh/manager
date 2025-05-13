@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title data-ng-bind-html="fullTitle">OVHcloud</title>
-        <meta name="description" content="" />
+        <meta name="description" content />
         <meta name="viewport" content="width=device-width" />
         <link rel="shortcut icon" href="assets/images/favicon.png" />
         <link rel="apple-touch-icon" href="assets/images/touchicon-180.png" />
@@ -14,42 +14,26 @@
             }
         </style>
     </head>
-    <body class="h-100 ovh-manager-telecom-app" style="overflow: hidden;">
+    <body
+        class="h-100 ovh-manager-telecom-app"
+        style="overflow: hidden;"
+        data-ng-class="{'in-container': !$ctrl.isTopLevelApplication}"
+    >
         <div
             class="h-100 d-flex flex-column overflow-hidden"
             data-ng-controller="TelecomAppCtrl as $ctrl"
             data-ng-cloak
         >
-            <div
-                class="oui-navbar-backdrop oui-navbar-backdrop_active"
-                data-ng-style="{ zIndex: 1010 }"
-                data-ng-if="$ctrl.displayFallbackMenu"
-                data-ng-click="$ctrl.closeSidebar()"
-            ></div>
             <div>
                 <!-- Skip to main content -->
                 <div class="skipnav">
                     <a
-                        class="oui-button oui-button_link"
-                        href=""
+                        class="oui-button oui-button_ghost"
+                        href
                         data-ng-click="scrollTo('maincontent')"
                         data-translate="common_skip_to_main_content"
                     >
                     </a>
-                </div>
-                <!-- /Skip to main content -->
-                <div data-ui-view="navbar">
-                    <ovh-manager-navbar
-                        data-navbar-options="{
-                            toggle: {
-                                event: 'sidebar:loaded'
-                            },
-                            universe: 'telecom'
-                        }"
-                        data-universe-click="$ctrl.openSidebar()"
-                        data-global-search-link="{{ $ctrl.globalSearchLink }}"
-                    >
-                    </ovh-manager-navbar>
                 </div>
             </div>
             <div class="d-flex w-100 h-100 position-relative">
@@ -59,36 +43,51 @@
                 >
                     <div class="container-fluid h-100" data-ui-view="root">
                         <div class="row h-100">
-                            <!-- SIDE MENU -->
-                            <div
-                                data-sidebar-menu
-                                class="col-md-3 col-lg-2"
-                            ></div>
                             <!-- CONTENT -->
                             <div
                                 id="content"
-                                class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 h-100"
+                                class="h-100 col-lg-12"
                                 style="overflow: auto;"
                             >
                                 <div class="position-absolute w-100">
                                     <!-- Skip content target -->
                                     <div class="skiptarget">
-                                        <a id="maincontent" href="">-</a>
+                                        <a id="maincontent" href>-</a>
                                     </div>
                                     <!-- /Skip content target -->
                                     <flash-message
                                         duration="600000"
                                         class="flash"
                                     ></flash-message>
+                                    <ovh-manager-banner-text></ovh-manager-banner-text>
+                                    <account-migration-notification></account-migration-notification>
                                     <ovh-browser-alert></ovh-browser-alert>
 
-                                    <ovh-chatbot
-                                        data-ng-if="$ctrl.user.ovhSubsidiary"
-                                        data-language="{{$ctrl.currentLanguage}}"
-                                        data-country="{{$ctrl.user.ovhSubsidiary}}"
-                                    ></ovh-chatbot>
-
-                                    <div data-ui-view></div>
+                                    <div
+                                        class="container-fluid px-md-5 px-3 mt-3"
+                                    >
+                                        <oui-message
+                                            data-ng-if="$ctrl.displaySystranMessage"
+                                            type="info"
+                                            dismissable
+                                        >
+                                            <span
+                                                data-translate="systran_feedback_info"
+                                            ></span>
+                                            <a
+                                                href="{{:: $ctrl.URL_SURVEY_SYSTRAN + $ctrl.currentLanguage }}"
+                                                class="oui-link"
+                                                target="_blank"
+                                                rel="noopener"
+                                            >
+                                                <span
+                                                    data-translate="systran_feedback_info_link"
+                                                ></span>
+                                            </a>
+                                        </oui-message>
+                                        <ui-router-breadcrumb></ui-router-breadcrumb>
+                                        <div data-ui-view class="mt-3"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

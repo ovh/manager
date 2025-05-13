@@ -9,10 +9,17 @@ import set from 'lodash/set';
 
 export default class ExchangeAccountDelegationCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, $timeout, navigation, messaging, $translate) {
+  constructor(
+    $scope,
+    wucExchange,
+    $timeout,
+    navigation,
+    messaging,
+    $translate,
+  ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       $timeout,
       navigation,
       messaging,
@@ -21,7 +28,7 @@ export default class ExchangeAccountDelegationCtrl {
   }
 
   $onInit() {
-    this.$routerParams = this.services.Exchange.getParams();
+    this.$routerParams = this.services.wucExchange.getParams();
     this.currentAccount = this.services.navigation.currentActionData.primaryEmailAddress;
     this.searchValue = null;
     this.selectedDomain = this.services.navigation.currentActionData.completeDomain;
@@ -39,7 +46,7 @@ export default class ExchangeAccountDelegationCtrl {
       this.getAccounts(count, offset);
 
     this.services.$scope.$on(
-      this.services.Exchange.events.accountsChanged,
+      this.services.wucExchange.events.accountsChanged,
       () => this.services.$scope.getAccounts(),
     );
 
@@ -225,14 +232,15 @@ export default class ExchangeAccountDelegationCtrl {
     this.loading = true;
     // filter by domain name or free text search
     const filter = this.searchValue || get(this.selectedDomain, 'name');
-    return this.services.Exchange.retrieveAccountDelegationRight(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.currentAccount,
-      count,
-      offset,
-      filter,
-    )
+    return this.services.wucExchange
+      .retrieveAccountDelegationRight(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.currentAccount,
+        count,
+        offset,
+        filter,
+      )
       .then((accounts) => {
         this.accounts = accounts;
 
@@ -267,11 +275,12 @@ export default class ExchangeAccountDelegationCtrl {
   updateDelegationRight() {
     const changes = this.getChanges();
 
-    return this.services.Exchange.updatingAccountDelegationRights(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      changes,
-    )
+    return this.services.wucExchange
+      .updatingAccountDelegationRights(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        changes,
+      )
       .then((data) => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(

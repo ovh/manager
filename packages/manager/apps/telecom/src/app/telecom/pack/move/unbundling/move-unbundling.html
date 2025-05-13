@@ -1,0 +1,121 @@
+<h2
+    class="widget-presentation-title"
+    data-translate="pack_move_unbundling_title"
+></h2>
+<div class="row">
+    <div
+        class="m-3 font-weight-bold"
+        data-translate="pack_move_eligibility_subtitle"
+    ></div>
+    <div
+        class="col-xs-2 col-md-6"
+        data-ng-repeat="offer in $ctrl.offersEligible track by $index"
+    >
+        <div class="block-emphasis">
+            <div class="radio">
+                <label for="offerChange-{{$index}}">
+                    <input
+                        type="radio"
+                        id="offerChange-{{$index}}"
+                        name="offerChange-{{$index}}"
+                        data-ng-model="$ctrl.offerModel"
+                        data-ng-change="$ctrl.selectOffer(offer.product.code)"
+                        data-ng-value="offer"
+                    />
+                    <span>
+                        {{offer.product.type}} {{$ctrl.offerName}}
+                    </span>
+                    <span class="radio-description">
+                        <div data-ng-bind="$ctrl.address.streetName"></div>
+                        <div>
+                            <span data-ng-bind="$ctrl.address.zipCode"></span>
+                            <span data-ng-bind="$ctrl.address.city"></span>
+                        </div>
+                        <div
+                            class="pt-2"
+                            data-translate="pack_move_eligibility_synchronisation_nra"
+                            data-translate-values="{distance: $ctrl.copperInfo.sectionsLengths[0].length,name: $ctrl.copperInfo.nra}"
+                        ></div>
+                        <div class="pt-2 synchro">
+                            <span
+                                data-translate="pack_move_eligibility_synchronisation_estimated_rate_title"
+                            ></span>
+                            <dl class="row list-unstyled mb-0">
+                                <div class="col-xs-6">
+                                    <dt
+                                        data-translate="pack_move_eligibility_synchronisation_download"
+                                    ></dt>
+                                    <dd>
+                                        {{offer.eligibility.estimatedDownloadRate
+                                        | number:2}}
+                                        {{"pack_move_eligibility_synchronisation_mbps"|
+                                        translate }}
+                                    </dd>
+                                </div>
+                                <div class="col-xs-6">
+                                    <dt
+                                        data-translate="pack_move_eligibility_synchronisation_upload"
+                                    ></dt>
+                                    <dd>
+                                        {{offer.eligibility.estimatedUploadRate
+                                        | number:2}}
+                                        {{"pack_move_eligibility_synchronisation_mbps"
+                                        | translate }}
+                                    </dd>
+                                </div>
+                            </dl>
+                        </div>
+                        <div class="pt-2">
+                            <span
+                                data-translate="pack_move_eligibility_unbundling_{{::offer.product.unbundlingType}}"
+                            ></span>
+                            -
+                            <span
+                                data-translate="pack_move_eligibility_line_status_{{::$ctrl.copperInfo.status}}"
+                            ></span>
+                        </div>
+                        <div class="pt-2">
+                            <strong
+                                class="text-price"
+                                data-ng-bind="$ctrl.prices.price.price.text"
+                            ></strong>
+                            <span
+                                class="service-item"
+                                data-translate="pack_move_eligibility_synchronisation_byMonth"
+                            ></span>
+                            <span data-ng-show="$ctrl.prices.installFees.price">
+                                <span>+</span>
+                                <strong class="text-price">
+                                    <span
+                                        data-ng-bind="$ctrl.prices.installFees.price.text"
+                                    ></span>
+                                </strong>
+                                <span class="service-item">(</span>
+                                <span
+                                    class="service-item"
+                                    data-translate="pack_move_eligibility_creation_price_label"
+                                ></span>
+                                <span class="service-item">)</span>
+                            </span>
+                        </div>
+                    </span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mt-5" data-ng-if="!$ctrl.loading.init">
+    <a
+        class="btn btn-default"
+        data-translate="pack_move_confirm_cancel_button"
+        data-ui-sref="telecom.packs.pack"
+    >
+    </a>
+    <button
+        type="button"
+        class="btn btn-primary"
+        data-ng-disabled="!$ctrl.offer.selected.productCode"
+        data-translate="pack_move_confirm"
+        data-ng-click="$ctrl.next()"
+    ></button>
+</div>

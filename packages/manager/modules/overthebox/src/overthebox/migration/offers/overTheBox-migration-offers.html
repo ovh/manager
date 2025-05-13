@@ -1,0 +1,148 @@
+<div class="widget-presentation">
+    <h2
+        class="widget-presentation-title"
+        data-translate="overthebox_migration_offers_title"
+    ></h2>
+
+    <!-- Loader -->
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.loading">
+        <!-- No offers available -->
+        <div
+            class="alert alert-info"
+            role="alert"
+            data-ng-if="$ctrl.offers.length === 0"
+            data-translate="overthebox_migration_offers_no_offers"
+        ></div>
+
+        <!-- Offers list -->
+        <div data-ng-if="$ctrl.offers.length > 0">
+            <div class="table-responsive">
+                <table class="table table-comparison">
+                    <thead class="table-comparison__head">
+                        <tr>
+                            <th
+                                scope="col"
+                                class="table-comparison__cell table-comparison__cell--head table-comparison__cell--empty"
+                            ></th>
+                            <th
+                                class="table-comparison__cell table-comparison__cell--head table-comparison--item-base"
+                                data-translate="overthebox_migration_current_offer"
+                                scope="col"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.prettyOfferName }"
+                            ></th>
+                            <th
+                                class="table-comparison__cell table-comparison__cell--head"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                                scope="col"
+                            >
+                                <span data-ng-bind="offer.description"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-comparison__body">
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                scope="row"
+                                data-translate="overthebox_migration_monthly_subscription"
+                            ></th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'overthebox_migration_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.prettyOfferName }"
+                                data-ng-bind-html="$ctrl.currentOffer.currentOfferPrice.text | tucFormatPrice"
+                            ></td>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <div
+                                    data-ng-bind-html="offer.price.text | tucFormatPrice"
+                                ></div>
+                            </td>
+                        </tr>
+                        <tr class="table-comparison__property">
+                            <th
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                scope="row"
+                                data-translate="overthebox_migration_hardware"
+                            ></th>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                data-translate-attr="{ 'data-title' : 'overthebox_migration_current_offer' }"
+                                data-translate-values="{ offerName : $ctrl.currentOffer.prettyOfferName }"
+                            >
+                                /
+                            </td>
+                            <td
+                                class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <label
+                                    class="oui-select"
+                                    for="selectedHardware"
+                                >
+                                    <select
+                                        class="oui-select__input"
+                                        data-ng-model="offer.selectedHardwareName"
+                                        name="selectedHardware"
+                                    >
+                                        <option
+                                            data-ng-repeat="hardwareOption in offer.hardwareOptions"
+                                            data-ng-value="hardwareOption.name"
+                                            data-ng-bind-html="hardwareOption.label"
+                                        >
+                                        </option>
+                                    </select>
+                                    <span
+                                        class="oui-icon oui-icon-chevron-down"
+                                        aria-hidden="true"
+                                    ></span>
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="table-comparison__foot">
+                        <tr class="table-comparison__property">
+                            <td
+                                class="table-comparison__cell--empty"
+                                colspan="2"
+                            ></td>
+                            <td
+                                class="table-comparison__cell table-comparison__value table-comparison__value--button text-center"
+                                data-title="{{ offer.description }}"
+                                data-ng-repeat="offer in $ctrl.offers track by $index"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn btn-primary mt-2"
+                                    data-ng-click="$ctrl.selectOffer(offer)"
+                                    data-translate="overthebox_migration_choose_offer_action"
+                                ></button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div>
+            <a
+                data-ng-href="{{$ctrl.ABOUT_OTB_SERVICE}}"
+                data-target="_blank"
+                data-title="{{::'overthebox_migration_about' | translate}}"
+            >
+                <span data-translate="overthebox_migration_about"></span>
+                <span
+                    class="oui-icon oui-icon-external-link ml-2"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </div>
+    </div>
+</div>

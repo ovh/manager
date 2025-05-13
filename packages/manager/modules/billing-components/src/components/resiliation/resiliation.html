@@ -1,0 +1,60 @@
+<header class="ml-4 mt-4">
+    <oui-back-button on-click="$ctrl.goBack()">
+        <span data-translate="billing_resiliation_title"></span>
+    </oui-back-button>
+</header>
+
+<section class="container-fluid mt-4 ml-4">
+    <div class="row">
+        <div class="col-md-9">
+            <div ovh-alert></div>
+            <dl>
+                <dt data-translate="billing_resiliation_service_name"></dt>
+                <dd data-ng-bind="$ctrl.serviceName"></dd>
+            </dl>
+            <oui-field label="{{:: 'billing_resiliation_choice' | translate }}">
+                <oui-radio-group model="$ctrl.endStrategy">
+                    <div
+                        data-ng-repeat="strategy in $ctrl.availableStrategies track by strategy.strategy"
+                    >
+                        <oui-radio
+                            name="{{:: 'choice_' + strategy.strategy }}"
+                            value="strategy.strategy"
+                        >
+                            <span
+                                data-translate="{{'billing_resiliation_choice_' + strategy.strategy }}"
+                            ></span>
+                        </oui-radio>
+                    </div>
+                </oui-radio-group>
+            </oui-field>
+
+            <dl>
+                <dt
+                    data-translate="billing_resiliation_commitment_end_date"
+                ></dt>
+                <dd
+                    data-ng-bind="$ctrl.service.billing.engagement.endDate | date: 'dd MMM yyyy'"
+                ></dd>
+            </dl>
+
+            <p
+                class="w-50"
+                data-ng-if="$ctrl.endStrategy"
+                data-translate="{{ 'billing_resiliation_details_' + $ctrl.endStrategy}}"
+                data-translate-values="{ 'serviceName': '<strong>' + $ctrl.serviceName + '</strong>' }"
+            ></p>
+
+            <oui-button variant="secondary" on-click="$ctrl.onCancel()">
+                <span data-translate="billing_resiliation_cancel"></span>
+            </oui-button>
+            <oui-button
+                variant="primary"
+                on-click="$ctrl.resiliate($ctrl.endStrategy)"
+                disabled="!$ctrl.endStrategy || $ctrl.isResiliating"
+            >
+                <span data-translate="billing_resiliation_validate"></span>
+            </oui-button>
+        </div>
+    </div>
+</section>

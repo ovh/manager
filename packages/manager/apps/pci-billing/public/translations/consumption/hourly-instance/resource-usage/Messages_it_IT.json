@@ -1,0 +1,8 @@
+{
+  "pci_billing_private_registry_no_entry": "Nessun consumo per il periodo selezionato.",
+  "pci_billing_private_registry_region": "Region",
+  "pci_billing_private_registry_type": "Tipo",
+  "pci_billing_private_registry_price": "Prezzo",
+  "pci_billing_private_registry_consumption": "Consumo",
+  "pci_billing_private_registry_consumption_value": "{{ value }} ore"
+}

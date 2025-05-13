@@ -1,7 +1,0 @@
-{
-  "billing_autorenew_service_update_manual_sumup": "Vous avez sélectionné le renouvellement manuel pour votre service {{ serviceName }}",
-  "billing_autorenew_service_update_manual_non_automatic": "Dans ce mode de renouvellement, votre service n'est pas automatiquement reconduit lorsqu'il arrive à échéance.",
-  "billing_autorenew_service_update_manual_expiration": "Plusieurs notifications vous seront envoyées par mails durant les semaines/jours précédant son terme, afin de vous prévenir de son expiration le {{ expiration }}.",
-  "billing_autorenew_service_update_manual_renew": "Il vous suffira de renouveler votre service si vous souhaitez le conserver.",
-  "billing_autorenew_service_update_manual_warning": "Attention, une fois le service expiré, il sera immédiatement suspendu, il ne sera plus accessible, et les données liées à ce service seront définitivement supprimées au bout de quelques jours sans règlement de votre part."
-}

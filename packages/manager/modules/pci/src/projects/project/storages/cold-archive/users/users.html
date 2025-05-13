@@ -1,0 +1,108 @@
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
+<div data-ng-if="$ctrl.userList.length === 0">
+    <h5
+        data-translate="pci_projects_project_storages_containers_users_user_management"
+    ></h5>
+</div>
+
+<h5
+    data-ng-if="$ctrl.userList.length > 0"
+    data-translate="pci_projects_project_storages_containers_users_title"
+></h5>
+
+<p
+    data-translate="pci_projects_project_storages_containers_users_user_description"
+></p>
+<!--User credential overview inform -->
+<pci-projects-project-storages-components-user-credential-banner
+    data-ng-if="$ctrl.userDetails"
+    data-user="$ctrl.userDetails"
+    data-credential="$ctrl.userCredential"
+    data-fields="$ctrl.USER_SUCCESS_BANNER"
+    data-field-secret-key-label="{{:: 'pci_projects_project_storages_containers_users_add_success_field_secret_key' | translate}}"
+    data-is-new-user="false"
+    data-on-copy-field-click="$ctrl.onClipboardFieldClick(data)"
+></pci-projects-project-storages-components-user-credential-banner>
+
+<oui-datagrid data-rows="$ctrl.userList">
+    <oui-datagrid-column
+        data-title="'pci_projects_project_storages_containers_users_username' | translate"
+        data-property="username"
+        data-type="string"
+        data-searchable
+        data-sortable="asc"
+        data-filterable
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'pci_projects_project_storages_containers_users_creation_date' | translate"
+        data-property="gridPropertyCreationDate"
+        data-type="date"
+        data-searchable
+        data-sortable
+        data-filterable
+    >
+        <span data-ng-bind="::$row.creationDate | date: 'short'"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'pci_projects_project_storages_containers_users_description' | translate"
+        data-property="description"
+        data-type="string"
+        data-sortable
+        data-filterable
+    ></oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'pci_projects_project_storages_containers_users_accesskey' | translate"
+        data-property="s3Credentials.access"
+        data-type="string"
+        data-sortable
+        data-filterable
+    ></oui-datagrid-column>
+    <oui-action-menu data-compact data-placement="end">
+        <oui-action-menu-item data-on-click="$ctrl.onImportPolicyClick($row)">
+            <span
+                data-translate="pci_projects_project_storages_containers_users_import_json"
+            ></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item data-on-click="$ctrl.onDownloadUserPolicy($row)">
+            <span
+                data-translate="pci_projects_project_storages_containers_users_download_json"
+            ></span>
+        </oui-action-menu-item>
+
+        <oui-action-menu-item data-on-click="$ctrl.onDownloadRCloneClick($row)">
+            <span
+                data-translate="pci_projects_project_storages_containers_users_download_rclone_file"
+            ></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item data-on-click="$ctrl.onShowSecretKeyClick($row)">
+            <span
+                data-translate="pci_projects_project_storages_containers_users_see_secret_key"
+            ></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item data-on-click="$ctrl.onDeleteUserClick($row)">
+            <span
+                data-translate="pci_projects_project_storages_containers_delete_label"
+            ></span>
+        </oui-action-menu-item>
+    </oui-action-menu>
+    <oui-datagrid-topbar>
+        <button
+            class="oui-button oui-button_secondary"
+            data-ng-click="$ctrl.onAddUserClick()"
+        >
+            <span class="oui-icon oui-icon-add pr-1" aria-hidden="true"></span>
+            <span
+                data-translate="pci_projects_project_storages_containers_users_add_user"
+            ></span>
+        </button>
+        <button
+            class="oui-button oui-button_s oui-button_secondary float-right"
+            data-ng-if="$ctrl.refreshS3Credentials"
+            data-ng-click="$ctrl.refreshS3Credentials()"
+        >
+            <span class="oui-icon oui-icon-refresh" aria-hidden="true"></span>
+        </button>
+    </oui-datagrid-topbar>
+</oui-datagrid>

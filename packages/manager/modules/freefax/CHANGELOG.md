@@ -1,3 +1,438 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [7.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.9.1...@ovh-ux/manager-freefax@7.9.2) (2024-11-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-freefax
+
+
+
+
+
+## [7.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.9.0...@ovh-ux/manager-freefax@7.9.1) (2024-05-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-freefax
+
+
+
+
+
+# [7.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.8.3...@ovh-ux/manager-freefax@7.9.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
+## [7.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.8.2...@ovh-ux/manager-freefax@7.8.3) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-freefax
+
+
+
+
+
+## [7.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.8.1...@ovh-ux/manager-freefax@7.8.2) (2023-10-16)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+
+
+
+
+
+## [7.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.8.0...@ovh-ux/manager-freefax@7.8.1) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-freefax
+
+
+
+
+
+# [7.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.7.2...@ovh-ux/manager-freefax@7.8.0) (2023-08-30)
+
+
+### Features
+
+* renaming fidelity points labels ([#9846](https://github.com/ovh/manager/issues/9846)) ([81ca283](https://github.com/ovh/manager/commit/81ca283c6c76aedf70223a7cdccfad4e92e17ffb))
+
+
+
+
+
+## [7.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.7.1...@ovh-ux/manager-freefax@7.7.2) (2023-07-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-freefax
+
+
+
+
+
+## [7.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.7.0...@ovh-ux/manager-freefax@7.7.1) (2023-04-20)
+
+
+### Bug Fixes
+
+* add some missing translations ([#9107](https://github.com/ovh/manager/issues/9107)) ([f838b0e](https://github.com/ovh/manager/commit/f838b0e36562026970ed3db178c8f179edef7d51))
+
+
+
+
+
+# [7.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.6.2...@ovh-ux/manager-freefax@7.7.0) (2023-03-01)
+
+
+### Features
+
+* add tracking in product listing pages ([aded2e5](https://github.com/ovh/manager/commit/aded2e522bafaee9416589e96a375a0db5b72419))
+
+
+
+
+
+## [7.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.6.1...@ovh-ux/manager-freefax@7.6.2) (2023-01-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-freefax
+
+
+
+
+
+## [7.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.6.0...@ovh-ux/manager-freefax@7.6.1) (2022-11-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-freefax
+
+
+
+
+
+# [7.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.5.1...@ovh-ux/manager-freefax@7.6.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1850] ([6c6cc0b](https://github.com/ovh/manager/commit/6c6cc0b369ca05bc74e0e97719d9b0c6ea2c4271))
+* **translations:** update section naming ([#7449](https://github.com/ovh/manager/issues/7449)) ([19c1bbc](https://github.com/ovh/manager/commit/19c1bbce79f351303c2b013839bf7768331a2e8a))
+
+
+### Features
+
+* **freefax:** add order cta to listing ([e1b5829](https://github.com/ovh/manager/commit/e1b5829bea005983fd86578d585dfe9bf15d91ec))
+
+
+
+## [7.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.5.0...@ovh-ux/manager-freefax@7.5.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+* **freefax:** import missing ovh-api-services ([304a28d](https://github.com/ovh/manager/commit/304a28d7d95e1e8ab80e7a3cde3a0faedb31dcc2))
+
+
+
+# [7.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.4.3...@ovh-ux/manager-freefax@7.5.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1674] ([213d863](https://github.com/ovh/manager/commit/213d8630bd850c78839a83019c058bb874f28457))
+* **i18n:** add missing translations [CDS 1677] ([4469040](https://github.com/ovh/manager/commit/44690409acdcf20fbdd2d27cd1ebb6fd766bd960))
+* **links:** remove top target ([b762db3](https://github.com/ovh/manager/commit/b762db3180629c305b0228a62b1ab15f81c04ca4))
+
+
+### Features
+
+* **telecom:** move telephony procedure to telephony and fax section ([af42e9e](https://github.com/ovh/manager/commit/af42e9e1f6f243445efcb2d6ba9c5ac41d00000d))
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **pnr:** add empty page for telecom fax section ([4d40566](https://github.com/ovh/manager/commit/4d405664729854e4c7132a95330a66f6d2209353))
+
+
+
+## [7.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.4.2...@ovh-ux/manager-freefax@7.4.3) (2022-06-07)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+
+
+
+## [7.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.4.1...@ovh-ux/manager-freefax@7.4.2) (2022-04-12)
+
+
+### Bug Fixes
+
+* add target _top to links ([2d375e6](https://github.com/ovh/manager/commit/2d375e6ac23773f6d4f9780aa3fa8df903692adc))
+
+
+
+## [7.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.4.0...@ovh-ux/manager-freefax@7.4.1) (2022-03-24)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.3` ([#6745](https://github.com/ovh/manager/issues/6745)) ([38d1144](https://github.com/ovh/manager/commit/38d11445b3671755758d153a4f4a166c7946705c)), closes [ovh/ovh-ui-kit#777](https://github.com/ovh/ovh-ui-kit/issues/777)
+
+
+
+# [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.3.4...@ovh-ux/manager-freefax@7.4.0) (2022-03-23)
+
+
+### Features
+
+* cross-sell and up-sell updates ([#6494](https://github.com/ovh/manager/issues/6494)) ([5018416](https://github.com/ovh/manager/commit/501841638ba08c1854429bfd7dd4e65f3c6b4832))
+
+
+
+## [7.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.3.3...@ovh-ux/manager-freefax@7.3.4) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+
+## [7.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.3.2...@ovh-ux/manager-freefax@7.3.3) (2021-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1258] ([c44bea0](https://github.com/ovh/manager/commit/c44bea0874e0c711f9a8dafe31cffc258f21c51c))
+
+
+
+## [7.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.3.1...@ovh-ux/manager-freefax@7.3.2) (2021-10-26)
+
+
+### Bug Fixes
+
+* **dev-deps:** upgrade @ovh-ux/component-rollup-config to `v11.0.0` ([3ae659b](https://github.com/ovh/manager/commit/3ae659bea59244fd5660375b9dac52055cc374b0))
+* **locales:** remove es_US translations files ([#5709](https://github.com/ovh/manager/issues/5709)) ([3894a13](https://github.com/ovh/manager/commit/3894a1388393ea08b51e08bbfda416e7746fc8ca)), closes [#5685](https://github.com/ovh/manager/issues/5685)
+
+
+
+## [7.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.3.0...@ovh-ux/manager-freefax@7.3.1) (2021-09-07)
+
+
+### Bug Fixes
+
+* **translations:** refresh translation after transition ([#5405](https://github.com/ovh/manager/issues/5405)) ([9d940a2](https://github.com/ovh/manager/commit/9d940a218fbb327fc2f7c93c6b473ea44707c009))
+
+
+
+# [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.2.3...@ovh-ux/manager-freefax@7.3.0) (2021-08-25)
+
+
+### Features
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+
+
+
+## [7.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.2.2...@ovh-ux/manager-freefax@7.2.3) (2021-06-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+
+
+
+## [7.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.2.1...@ovh-ux/manager-freefax@7.2.2) (2021-06-16)
+
+
+### Bug Fixes
+
+* **scss:** remove deprecated tilde imports ([3f2acd0](https://github.com/ovh/manager/commit/3f2acd008ad5bff397ab6ecf35437a506b4b90a5))
+
+
+
+## [7.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.2.0...@ovh-ux/manager-freefax@7.2.1) (2021-04-09)
+
+
+### Bug Fixes
+
+* **deps:** add missing deps related to @ovh-ux/manager-advices ([#4727](https://github.com/ovh/manager/issues/4727)) ([73bd7e5](https://github.com/ovh/manager/commit/73bd7e537ac87667de6305b13293c5c9213c47ad)), closes [#4597](https://github.com/ovh/manager/issues/4597)
+
+
+
+# [7.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.1.0...@ovh-ux/manager-freefax@7.2.0) (2021-04-07)
+
+
+### Features
+
+* add batch 2 advices ([#4597](https://github.com/ovh/manager/issues/4597)) ([69e5fe5](https://github.com/ovh/manager/commit/69e5fe5bfe813f4ef0e63e1acd8f128dc4590b73))
+
+
+
+# [7.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.0.7...@ovh-ux/manager-freefax@7.1.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 805] ([27bbbf4](https://github.com/ovh/manager/commit/27bbbf49daf87035e8c542d420e16461f43d66b1))
+
+
+### Features
+
+* add breadcrumb ([efd9b1c](https://github.com/ovh/manager/commit/efd9b1c46b88b835d410eb47583e7d13cb23e92e))
+
+
+
+## [7.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.0.6...@ovh-ux/manager-freefax@7.0.7) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+
+
+
+## [7.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.0.5...@ovh-ux/manager-freefax@7.0.6) (2020-12-22)
+
+
+### Bug Fixes
+
+* update to use latest list layout ([c0cad60](https://github.com/ovh/manager/commit/c0cad603c8cce8ca8833c58c95d444aebfff7622))
+
+
+
+## [7.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.0.4...@ovh-ux/manager-freefax@7.0.5) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
+## [7.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.0.3...@ovh-ux/manager-freefax@7.0.4) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [7.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.0.2...@ovh-ux/manager-freefax@7.0.3) (2020-09-18)
+
+
+### Bug Fixes
+
+* bump tuc ([2ffd4ab](https://github.com/ovh/manager/commit/2ffd4ab6d41ad57c2f4717b839766ffe511cb69d))
+
+
+
+## [7.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.0.1...@ovh-ux/manager-freefax@7.0.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* add missing webfont import ([#3397](https://github.com/ovh/manager/issues/3397)) ([e39fa31](https://github.com/ovh/manager/commit/e39fa3120fa81e12a0aa9438aae38c7103e565ef))
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+
+## [7.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.0.0...@ovh-ux/manager-freefax@7.0.1) (2020-07-29)
+
+
+### Bug Fixes
+
+* **deps:** use latest dependencies ([#3335](https://github.com/ovh/manager/issues/3335)) ([01d3a89](https://github.com/ovh/manager/commit/01d3a8901b7d2404f6299c4c04e1630146b6f2d8))
+
+
+
+# [7.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.4.2...@ovh-ux/manager-freefax@7.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* **icon:** fix oui-icon-trash_concept ([#3287](https://github.com/ovh/manager/issues/3287)) ([9347797](https://github.com/ovh/manager/commit/934779770b4db186cc4ed53caf3ca216853367c7))
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+* upgrade ovh-ui-kit-bs to v4 ([d649cd7](https://github.com/ovh/manager/commit/d649cd7d566ac39d172b2e36625fde83bd99c9f5))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+* bump ovh-ui-kit-bs to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
+## [6.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.4.1...@ovh-ux/manager-freefax@6.4.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+### Reverts
+
+* Revert "fix: remove ui consistency" ([5435159](https://github.com/ovh/manager/commit/543515950323b10d054ba354ff0054c5a8a3d3d1))
+
+
+
+## [6.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.4.0...@ovh-ux/manager-freefax@6.4.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies with latest version ([#3057](https://github.com/ovh/manager/issues/3057)) ([24d06ad](https://github.com/ovh/manager/commit/24d06addfaab0716e725242beae2d3d92feb8856))
+
+
+
+# [6.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.3.1...@ovh-ux/manager-freefax@6.4.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+
+
+
+## [6.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.3.0...@ovh-ux/manager-freefax@6.3.1) (2020-04-16)
+
+
+### Bug Fixes
+
+* use ovh-contracts-summary component ([#2650](https://github.com/ovh/manager/issues/2650)) ([1bd8d23](https://github.com/ovh/manager/commit/1bd8d2390f77c7fa3b970121070bfdd234e1809a))
+
+
+
+# [6.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.2.2...@ovh-ux/manager-freefax@6.3.0) (2020-04-15)
+
+
+### Features
+
+* **freefax:** lazy load freefax root state ([a5ccedf](https://github.com/ovh/manager/commit/a5ccedf1a8f735966ed9f0d56f8e07a3acf4c5f0))
+
+
+
 ## [6.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.2.1...@ovh-ux/manager-freefax@6.2.2) (2020-03-18)
 
 
@@ -63,8 +498,6 @@
 ### BREAKING CHANGES
 
 * module is now named as `ngUiRouterTitle
-
-Signed-off-by: Antoine Leblanc <antoine.leblanc@corp.ovh.com>
 
 
 
@@ -297,6 +730,3 @@ yarn add @ovh-ux/manager-core
 
 
 # [1.0.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@0.0.0...@ovh-ux/manager-freefax@1.0.0-alpha.0) (2018-11-26)
-
-
-

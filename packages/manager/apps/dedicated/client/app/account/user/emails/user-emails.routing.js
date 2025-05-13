@@ -1,23 +1,33 @@
-import includes from 'lodash/includes';
+import controller from './user-emails.controller';
+import template from './user-emails.html';
+import detailsController from './details/user-emails-details.controller';
+import detailsTemplate from './details/user-emails-details.html';
 
-angular.module('UserAccount').config(
-  /* @ngInject */ ($stateProvider, coreConfigProvider) => {
-    const name = 'app.account.user.emails';
-    const nameDetails = 'app.account.user.emailsDetails';
+export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
+  const name = 'app.account.user.emails';
+  const nameDetails = 'app.account.user.emails.emailsDetails';
 
-    if (includes(['EU', 'CA'], coreConfigProvider.getRegion())) {
-      $stateProvider.state(name, {
-        url: '/emails',
-        templateUrl: 'account/user/emails/user-emails.html',
-        controller: 'UserAccount.controllers.emails',
-        translations: ['../'],
-      });
+  if (coreConfigProvider.isRegion(['EU', 'CA'])) {
+    $stateProvider.state(name, {
+      url: '/emails',
+      controller,
+      template,
+      translations: ['../'],
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('user_emails'),
+      },
+    });
 
-      $stateProvider.state(nameDetails, {
-        url: '/emails/:emailId',
-        templateUrl: 'account/user/emails/details/user-emails-details.html',
-        controller: 'UserAccount.controllers.emails.details',
-      });
-    }
-  },
-);
+    $stateProvider.state(nameDetails, {
+      url: '/:emailId',
+      template: detailsTemplate,
+      controller: detailsController,
+      resolve: {
+        emailId: /* @ngInject */ ($transition$) =>
+          $transition$.params().emailId,
+        breadcrumb: /* @ngInject */ (emailId) => emailId,
+      },
+    });
+  }
+};

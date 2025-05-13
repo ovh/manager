@@ -1,0 +1,35 @@
+<h5 data-translate="pci_order_command_title"></h5>
+<div>
+    <ng-transclude></ng-transclude>
+</div>
+<div
+    class="command oui-color-p-000 p-2"
+    data-ng-class="{'overloader_height_tail_logs': $ctrl.autoHeight }"
+>
+    <p data-ng-bind="$ctrl.orderApiUrl" class="api-url monospace"></p>
+    <p data-translate="pci_order_command_parameters"></p>
+    <pre data-ng-bind="$ctrl.getRequestData()" class="monospace"></pre>
+    <p data-ng-if="$ctrl.helpLink">
+        <span data-translate="pci_order_command_parameters_info"></span>
+        <a
+            data-ng-if="$ctrl.helpLink"
+            data-ng-href="{{:: $ctrl.helpLink}}"
+            data-translate="pci_order_command_here"
+        ></a>
+    </p>
+    <dl>
+        <div
+            data-ng-repeat="orderDataKey in $ctrl.orderDataKeys track by $index"
+            class="row mb-2"
+        >
+            <dt
+                class="col-6 col-md-4 ont-weight-normal"
+                data-ng-bind="orderDataKey"
+            ></dt>
+            <dd
+                class="col-6 col-md-8 my-auto"
+                data-translate="{{:: 'pci_order_command_parameters_info_' + $ctrl.constructor.formatKey(orderDataKey)}}"
+            ></dd>
+        </div>
+    </dl>
+</div>

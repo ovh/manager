@@ -1,6 +1,7 @@
 angular.module('App').service(
   'HostingAutomatedEmails',
   class HostingAutomatedEmails {
+    /* @ngInject */
     constructor(constants, $q, OvhHttp, $http) {
       this.constants = constants;
       this.$q = $q;
@@ -55,10 +56,6 @@ angular.module('App').service(
           limit,
         },
       });
-    }
-
-    retrievingVolumes(serviceName) {
-      return this.$http.get(`/hosting/web/${serviceName}/email/volumes`);
     }
   },
 );

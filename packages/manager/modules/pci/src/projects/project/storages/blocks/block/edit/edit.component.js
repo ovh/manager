@@ -6,8 +6,12 @@ export default {
   template,
   bindings: {
     projectId: '<',
+    catalogEndpoint: '<',
     storageId: '<',
     storage: '<',
+    steins: '<',
+    customerRegions: '<',
+    storagesRegions: '<',
     goBack: '<',
   },
 };

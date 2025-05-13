@@ -91,7 +91,7 @@ export default class IpLoadBalancerSslCertificateOrderCtrl {
       this.$stateParams.serviceName,
       fqdn,
     )
-      .then(() => this.$state.go('network.iplb.detail.ssl-certificate.home'))
+      .then(() => this.$state.go('iplb.detail.ssl-certificate.home'))
       .finally(() => {
         this.saving = false;
       });

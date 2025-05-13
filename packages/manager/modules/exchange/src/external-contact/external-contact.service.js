@@ -3,17 +3,19 @@ import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import set from 'lodash/set';
 
+import punycode from 'punycode';
+
 export default class ExchangeExternalContacts {
   /* @ngInject */
-  constructor(Exchange, OvhHttp) {
-    this.services = { Exchange, OvhHttp };
+  constructor(wucExchange, OvhHttp) {
+    this.services = { wucExchange, OvhHttp };
   }
 
   isAccountValid(account) {
     const accountIsEmpty = account == null;
     const emailIsValid =
       !isEmpty(account.externalEmailAddress) &&
-      this.services.Exchange.constructor.isEmailValid(
+      this.services.wucExchange.constructor.isEmailValid(
         account.externalEmailAddress,
       );
     const displayNameIsValid =
@@ -34,7 +36,7 @@ export default class ExchangeExternalContacts {
         },
       },
     ).then((data) => {
-      this.services.Exchange.resetTabExternalContacts();
+      this.services.wucExchange.resetTabExternalContacts();
       return data;
     });
   }
@@ -54,7 +56,7 @@ export default class ExchangeExternalContacts {
         data: modifiedContact,
       },
     ).then((data) => {
-      this.services.Exchange.resetTabExternalContacts();
+      this.services.wucExchange.resetTabExternalContacts();
       return data;
     });
   }
@@ -71,7 +73,7 @@ export default class ExchangeExternalContacts {
         data: newContact,
       },
     ).then((data) => {
-      this.services.Exchange.resetTabExternalContacts();
+      this.services.wucExchange.resetTabExternalContacts();
       return data;
     });
   }
@@ -126,9 +128,11 @@ export default class ExchangeExternalContacts {
       opts.count,
       offset,
       opts.filter,
-    ).then((accounts) => ({
-      accounts: accounts.list.results,
-      headers: keys(accounts.list.results[0]),
-    }));
+    ).then((accounts) => {
+      return {
+        accounts: accounts.data,
+        headers: keys(accounts.data[0]),
+      };
+    });
   }
 }

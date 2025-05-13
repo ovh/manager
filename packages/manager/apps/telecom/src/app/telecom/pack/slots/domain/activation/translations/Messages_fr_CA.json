@@ -33,7 +33,7 @@
   "domain_activation_corporation_name": "Dénomination sociale",
   "domain_activation_corporation_other": "Autre numéro d’identification spécifique à votre pays",
   "domain_activation_corporation_none": "Aucune identification",
-  "domain_activation_authinfo_info": "Veuillez noter que le transfert ne pourra aboutir sans l’AuthInfo. Il s’agit d’un numéro d’identifiant que possède votre ancien registrar (le prestataire que gère actuellement le domaine).Pour l’obtenir vous devez contacter votre ancien prestataire et le lui demander. Vous pourrez ensuite poursuivre votre commande.",
+  "domain_activation_authinfo_info": "Veuillez noter que le transfert ne pourra aboutir sans l’AuthInfo.\nIl s’agit d’un numéro d’identifiant que possède votre ancien registrar (le prestataire que gère actuellement le domaine).Pour l’obtenir vous devez contacter votre ancien prestataire et le lui demander. Vous pourrez ensuite poursuivre votre commande.",
   "domain_activation_corporation_inpi": "N°INPI",
   "domain_activation_corporation_brand_owner": "Titulaire de la marque",
   "domain_activation_corporation_vat_info": "La dénomination sociale doit correspondre à celle de votre numéro de TVA, veillez à ne pas mettre l’enseigne mais bien la dénomination sociale.",

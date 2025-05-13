@@ -2,31 +2,34 @@ import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
+import 'moment';
 
 export default class ExchangeTabInformationCtrl {
   /* @ngInject */
   constructor(
     $rootScope,
     $scope,
+    coreURLBuilder,
     exchangeServiceInfrastructure,
-    Exchange,
+    wucExchange,
     EXCHANGE_CONFIG,
     exchangeVersion,
     messaging,
     navigation,
     $translate,
-    User,
+    WucUser,
   ) {
     this.$rootScope = $rootScope;
     this.$scope = $scope;
+    this.coreURLBuilder = coreURLBuilder;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
-    this.exchangeService = Exchange;
+    this.exchangeService = wucExchange;
     this.EXCHANGE_CONFIG = EXCHANGE_CONFIG;
     this.exchangeVersion = exchangeVersion;
     this.messaging = messaging;
     this.navigation = navigation;
     this.$translate = $translate;
-    this.User = User;
+    this.WucUser = WucUser;
   }
 
   $onInit() {
@@ -54,12 +57,15 @@ export default class ExchangeTabInformationCtrl {
   }
 
   getGuides() {
-    return this.User.getUser()
+    return this.WucUser.getUser()
       .then((data) => {
         try {
           this.displayGuides = this.EXCHANGE_CONFIG.URLS.GUIDES.DOCS_HOME[
             data.ovhSubsidiary
           ];
+          this.backupGuideUrl =
+            this.EXCHANGE_CONFIG.URLS.GUIDES.BACKUP[data.ovhSubsidiary] ||
+            this.EXCHANGE_CONFIG.URLS.GUIDES.BACKUP.DEFAULT;
         } catch (exception) {
           this.displayGuides = null;
         }
@@ -72,9 +78,18 @@ export default class ExchangeTabInformationCtrl {
   getSharePoint() {
     this.loading.sharePoint = true;
     return this.exchangeService
-      .getSharepointService()
+      .getSharepointService(this.exchange)
       .then((sharePoint) => {
         this.sharepoint = sharePoint;
+
+        this.SHAREPOINT_URL = this.coreURLBuilder.buildURL(
+          'web',
+          '#/sharepoint/:exchangeId/:productId',
+          {
+            exchangeId: this.exchange.domain,
+            productId: this.sharepoint.domain,
+          },
+        );
       })
       .finally(() => {
         this.loading.sharePoint = false;
@@ -262,5 +277,12 @@ export default class ExchangeTabInformationCtrl {
     )} / ${this.exchange.totalDiskSize.value} ${this.$translate.instant(
       `unit_size_${this.exchange.totalDiskSize.unit}`,
     )}`;
+  }
+
+  canVeeamBackup() {
+    return (
+      this.exchangeServiceInfrastructure.isDedicated() ||
+      this.exchangeServiceInfrastructure.isDedicatedCluster()
+    );
   }
 }

@@ -2,16 +2,27 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import has from 'lodash/has';
 
+import { GUIDE_URLS } from './ssh-keys.constants';
+
 export default class SshKeysController {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, OvhApiCloudProjectSshKey) {
+  constructor(
+    $q,
+    $translate,
+    coreConfig,
+    CucCloudMessage,
+    OvhApiCloudProjectSshKey,
+  ) {
+    this.$q = $q;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloudProjectSshKey = OvhApiCloudProjectSshKey;
   }
 
   $onInit() {
     this.loaders = {
+      guide: false,
       keys: false,
       isAdding: false,
     };
@@ -25,13 +36,29 @@ export default class SshKeysController {
     };
 
     this.loadMessages();
-    return this.getSshKeys();
+    this.OvhApiCloudProjectSshKey.v6().resetQueryCache();
+    return this.$q.all([this.getGuideUrl(), this.getSshKeys()]);
   }
 
   $onChanges(changes) {
     if (this.sshKeys && has(changes, 'region')) {
       this.getAvailableKeys(this.region);
     }
+  }
+
+  getGuideUrl() {
+    this.loaders.guide = true;
+    return this.$q
+      .when(this.coreConfig.getUser())
+      .then((me) => {
+        this.guideUrl = get(GUIDE_URLS, me.ovhSubsidiary, GUIDE_URLS.WORLD);
+      })
+      .catch(() => {
+        this.guideUrl = GUIDE_URLS.WORLD;
+      })
+      .finally(() => {
+        this.loaders.guide = false;
+      });
   }
 
   loadMessages() {
@@ -55,6 +82,9 @@ export default class SshKeysController {
       .$promise.then((sshKeys) => {
         this.sshKeys = sshKeys;
         this.getAvailableKeys(this.region);
+
+        this.sshKeyForm.$setPristine();
+        this.sshKeyForm.$setUntouched();
       })
       .catch((err) => {
         this.CucCloudMessage.error(
@@ -80,6 +110,7 @@ export default class SshKeysController {
 
   addKey() {
     this.messages = [];
+    this.loaders.isAdding = true;
     return this.OvhApiCloudProjectSshKey.v6()
       .save({ serviceName: this.serviceName }, this.model)
       .$promise.then((sshKey) => {

@@ -1,0 +1,4 @@
+{
+  "dedicated_cloud_dashboard_lv1_lv2_migration_banner_info_1": "As part of our VMware® Hosted Private Cloud solution lifecycle, last year we launched new datastores, and will shut down the old ones on 30th June 2023. As detailed in the communication, please prepare for the migration of your service to the new models.",
+  "dedicated_cloud_dashboard_lv1_lv2_migration_banner_info_2": "Need help? Discover this <a href=\"{{ guideLink }}\" target=\"_blank\">guide</a> for moving your data."
+}

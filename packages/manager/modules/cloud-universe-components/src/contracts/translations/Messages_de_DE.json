@@ -1,9 +1,0 @@
-{
-  "contract_next": "Weiter",
-  "contract_previous": "Zurück",
-  "contract_download": "Vertrag \"{{id}}\" im PDF-Format öffnen",
-  "contract_agree": "Ich habe den Vertrag gelesen und akzeptiere diesen",
-  "contracts_agree": "Ich habe die Verträge gelesen und akzeptiere diese",
-  "contract_list_title": "Es ist ein Vertrag zur Einsicht vorhanden.",
-  "contracts_list_title": "Es sind {{nbr}} Verträge einzusehen."
-}

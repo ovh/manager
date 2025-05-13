@@ -1,9 +1,0 @@
-{
-  "telephony_line_assist_support_title": "Gidai ir pagalba",
-  "telephony_line_assist_support_guides_title": "Gidai",
-  "telephony_line_assist_support_guides_explain": "Pour vous aider dans la configuration et l'utilisation de votre téléphonie, <a href=\"{{ url }}\" target=\"_blank\" title=\"Accéder à nos guides\">nos guides sont à votre disposition<i class=\"ovh-font ovh-font-newtab ml-4\" /></a>.",
-  "telephony_line_assist_support_support_title": "Pagalba",
-  "telephony_line_assist_support_header": "Susisiekite, jeigu turite klausimų:",
-  "telephony_line_assist_support_contact_by_phone": "Telefonu <b>1007</b> (nemokamai iš fiksuoto ryšio) arba <b>+33 9 72 10 10 07</b> (standartinis tarifas skambinant iš fiksuoto ryšio telefono Prancūzijoje). Nuo pirmadienio iki penktadienio 8:00 - 20:00, šeštadieniais nuo 9:00 iki 17:00.",
-  "telephony_line_assist_support_contact_ticket": "Sukurti gedimo kvitą"
-}

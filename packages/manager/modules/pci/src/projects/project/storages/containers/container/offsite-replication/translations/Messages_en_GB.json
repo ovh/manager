@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_storages_containers_offsite_replication_description": "Automatically replicate your data to a remote site at the best price, for increased resilience.",
+  "pci_projects_project_storages_containers_offsite_replication_disabled": "Disable",
+  "pci_projects_project_storages_containers_offsite_replication_enabled": "Enable",
+  "pci_projects_project_storages_containers_offsite_replication_recommanded": "Recommended",
+  "pci_projects_project_storages_containers_offsite_replication_price_estimation": "~{{price}} ex. VAT/month/TB",
+  "pci_projects_project_storages_containers_offsite_replication_final_price_estimation": "Total estimate: ",
+  "pci_projects_project_storages_containers_offsite_replication_final_price_estimation_value": "~{{price}} ex. VAT/month/TB",
+  "pci_projects_project_storages_containers_offsite_replication_versionning_warning": "By enabling Offsite Replication, versioning is also enabled. "
+}

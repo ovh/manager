@@ -1,0 +1,22 @@
+{
+  "billing_payment_method_title": "My payment methods",
+  "billing_payment_method_load_error": "An error has occurred loading your payment methods.",
+  "billing_payment_method_table_type": "Payment type:",
+  "billing_payment_method_table_label": "Account",
+  "billing_payment_method_table_expiration_date": "Expiry date",
+  "billing_payment_method_table_description": "Description",
+  "billing_payment_method_table_default": "Default payment method",
+  "billing_payment_method_table_state": "Status",
+  "billing_payment_method_table_3d_secure": "3D Secure",
+  "billing_payment_method_table_top_add_method": "Add a payment method ",
+  "billing_payment_method_autorenew_guide_help": "Do you need help renewing your services? ",
+  "billing_payment_method_autorenew_guide_help_link": "Find out more",
+  "billing_payment_method_bank_account_pending_validation": "Thank you for providing your banking details. You will soon receive an email from our partner Yousign, where you can electronically sign your debit mandate. Once you have done this, your bank account will be validated and active.",
+  "billing_payment_method_bank_account_processing_delay": "Your bank account will be validated within 24 to 48 hours from the moment we receive your authorisation for direct debit.",
+  "billing_payment_method_table_action_download_procedure": "Download the procedure to return by post",
+  "billing_payment_method_table_action_description_edit": "Edit description",
+  "billing_payment_method_table_action_set_default": "Make this the default payment method",
+  "billing_payment_method_table_action_delete": "Delete this payment method",
+  "billing_payment_method_information_add_ovh_sas": "When you register a payment method, you authorise OVH S.A.S to keep it in order to facilitate payment for your future orders.",
+  "billing_payment_method_information_add_default": "The means of payment registered as the “default” payment method is used automatically at each expiry date to pay for your services with automatic renewal and pay-as-you-go. You will be notified before each new payment date. You can change, delete or add payment methods at any time using the interface below. To use services with automatic renewal or pay-as-you-go, you need to have at least one valid payment method registered."
+}

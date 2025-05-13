@@ -1,23 +1,14 @@
 import angular from 'angular';
-import controller from './overTheBox-configure.controller';
-import template from './overTheBox-configure.html';
+
+import component from './overTheBox-configure.component';
+import routing from './overTheBox-configure.routing';
 
 const moduleName = 'ovhManagerOtbConfigure';
 
-angular.module(moduleName, []).config(($stateProvider, $urlRouterProvider) => {
-  $stateProvider.state('overTheBox-configure', {
-    url: '/overTheBox/configure',
-    template,
-    controller,
-    controllerAs: 'OverTheBoxConfigure',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
-  });
-
-  // special redirection for /configure/overTheBox which is inside internal OTB UX
-  $urlRouterProvider.when('/configure/overTheBox', '/overTheBox/configure');
-});
+angular
+  .module(moduleName, [])
+  .config(routing)
+  .component('overTheBoxConfigure', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

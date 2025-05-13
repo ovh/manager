@@ -1,4 +1,5 @@
 class DownloadCtrl {
+  /* @ngInject */
   constructor($scope, $window, $q, $stateParams, Alerter, DownloadService) {
     this.$scope = $scope;
     this.$window = $window;

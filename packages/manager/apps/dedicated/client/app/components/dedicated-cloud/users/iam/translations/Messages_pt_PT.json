@@ -1,0 +1,10 @@
+{
+  "dedicatedCloud_USER_iam_load_error": "Ocorreu um erro aquando do carregamento das informações do IAM da OVHcloud.",
+  "dedicatedCloud_USER_iam_status": "Estado",
+  "dedicatedCloud_USER_iam_enable": "Ativar o IAM da OVHcloud",
+  "dedicatedCloud_USER_iam_disable": "Desativar o IAM da OVHcloud",
+  "dedicatedCloud_USER_iam_manage_iam": "Gerir as políticas e os acessos",
+  "dedicatedCloud_USER_iam_description": "A ativação do IAM da OVHcloud delega a gestão dos acessos ao serviço IAM da OVHcloud. A gestão das funções associadas e das respetivas autorizações no vSphere efetua-se a partir desta página. A gestão das políticas e dos acessos efetua-se a partir do IAM da OVHcloud. O IAM OVHcloud está integrado apenas no produto vSphere.",
+  "dedicatedCloud_USER_iam_usage_warning": "As infraestruturas que beneficiam de opções de segurança reforçada ou de um serviço certificado (HDS, PCI-DSS ou SNC) não podem atualmente utilizar o IAM da OVHcloud.",
+  "dedicatedCloud_USER_iam_api_error_returned": "Ação impossível. Motivo apresentado: {{message}}"
+}

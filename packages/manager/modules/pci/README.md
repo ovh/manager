@@ -1,6 +1,6 @@
 # manager-pci
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-pci)](https://www.npmjs.com/package/@ovh-ux/manager-pci) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-pci)](https://npmjs.com/package/@ovh-ux/manager-pci) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/pci)](https://npmjs.com/package/@ovh-ux/manager-pci?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/pci)](https://npmjs.com/package/@ovh-ux/manager-pci?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-pci)](https://www.npmjs.com/package/@ovh-ux/manager-pci) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-pci)](https://npmjs.com/package/@ovh-ux/manager-pci) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/pci)](https://npmjs.com/package/@ovh-ux/manager-pci?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/pci)](https://npmjs.com/package/@ovh-ux/manager-pci?activeTab=dependencies)
 
 ## Install
 
@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-pci
 import 'angular';
 import managerPci from '@ovh-ux/manager-pci';
 
-angular
-  .module('myApp', [
-    managerPci,
-  ]);
+angular.module('myApp', [managerPci]);
 ```
 
 ## Contributing

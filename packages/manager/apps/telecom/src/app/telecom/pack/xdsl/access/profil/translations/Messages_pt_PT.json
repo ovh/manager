@@ -1,10 +1,22 @@
 {
-  "xdsl_access_profile_tooltip_interleaved": "<b>Interleaved :</b> Profil auto par défaut",
-  "xdsl_access_profile_tooltip_fast": "<b>Fast : </b> Profil auto en fastPath (ping amélioré sans correction d'erreur)",
-  "xdsl_access_profile_tooltip_ginp": "<b>G.INP : </b> Cette extension améliore la correction d’erreur sans affecter la performance de la ligne. Le DSLAM va utiliser le mode de protection (INP, Impulse Noise Protection) contre le bruit.",
-  "xdsl_access_profile_tooltip_auto": "<b>AUTO-[valeur]M :</b> Le DSLAM va synchroniser au maximum sur le débit",
-  "xdsl_access_profile_tooltip_snr": "<b>SNR-[valeur] : </b> Le DSLAM va analyser la qualité de la ligne et va negocier un rapport signal/bruit (SNR) au chiffre indique. Plus le chiffre est grand plus la stablilité de la ligne sera bonne mais plus le débit sera petit. Sur les profils sans SNR forces, le DSLAM essaie ;d'avoir un SNR de 6.",
   "xdsl_access_profile_tooltip_time": "La modification sera effective sous 1 à 5 minutes.",
   "xdsl_access_dslam_an_error_ocurred": "[DSLAM] Une erreur est survenue !",
-  "xdsl_access_profile_doing": "Changement de profil en cours"
+  "xdsl_access_profile_doing": "Changement de profil en cours",
+  "xdsl_access_profile_tooltip_description": "Quanto maior for o número do SNR (relação sinal/ruído), maior será a estabilidade da linha, mas menor será a velocidade.",
+  "xdsl_access_profile_tooltip_adsl_24m": "<b>{{profile}}:</b> Caudal máximo a 24000 / 1024 margem de ruído a 6 dB",
+  "xdsl_access_profile_tooltip_adsl_2m": "<b>{{profile}}:</b> Caudal máximo a 2432/1024 — margem de ruído superior a 6 dB",
+  "xdsl_access_profile_tooltip_adsl_512k": "<b>{{profile}}:</b> Caudal máximo a 608 / 160 margem de ruído superior a 6 dB",
+  "xdsl_access_profile_tooltip_adsl_safe1": "<b>{{profile}}:</b> Caudal máximo a 16128 / 1024 margem de ruído a 10 dB",
+  "xdsl_access_profile_tooltip_adsl_safe2": "<b>{{profile}}:</b> Caudal máximo a 16128 / 1024 margem de ruído a 16 dB",
+  "xdsl_access_profile_tooltip_adsl_perf1": "<b>{{profile}}:</b> Caudal máximo a 24000 / 1024 margem de ruído a 3 dB",
+  "xdsl_access_profile_tooltip_adsl_perf2": "<b>{{profile}}:</b> Caudal máximo a 24000 / 1024 margem de ruído a 1 dB",
+  "xdsl_access_profile_tooltip_vdsl_24m": "<b>{{profile}}:</b> SNR 6 sem limite de débito",
+  "xdsl_access_profile_tooltip_vdsl_2m": "<b>{{profile}}:</b> SNR 6 com um limite de débito a 2M",
+  "xdsl_access_profile_tooltip_vdsl_512k": "<b>{{profile}}:</b> SNR 6 com um limite de débito a 512K",
+  "xdsl_access_profile_tooltip_vdsl_safe1": "<b>{{profile}}:</b> SNR 10",
+  "xdsl_access_profile_tooltip_vdsl_other": "<b>{{profile}}:</b> {{snr}}",
+  "xdsl_access_profile_tooltip_vdsl_17a": "<b>{{profile}}:</b> SNR 8",
+  "xdsl_access_profile_tooltip_vdsl_17a_safe1": "<b>{{profile}}:</b> SNR 12",
+  "xdsl_access_profile_tooltip_vdsl_8b": "<b>{{profile}}:</b> SNR 8",
+  "xdsl_access_profile_tooltip_vdsl_8b_safe1": "<b>{{profile}}:</b> SNR 12"
 }

@@ -1,0 +1,10 @@
+{
+  "dedicatedCloud_configuration_security_policy_delete_title": "IP-Adressen löschen",
+  "dedicatedCloud_configuration_security_policy_delete_step1_question": "Sind Sie sicher, dass Sie den Zugang für die IP {{t0}} löschen möchten?",
+  "dedicatedCloud_configuration_security_policy_delete_step1_question_plural": "Sind Sie sicher, dass Sie den Zugang für die IPs {{t0}} löschen möchten?",
+  "dedicatedCloud_configuration_security_policy_delete_step1_no_selected_entries": "Sie haben keine IP-Adressen ausgewählt.",
+  "dedicatedCloud_configuration_SECURITY_policy_delete_success_other": "Die Sicherheitsregeln werden in einigen Augenblicken gelöscht.",
+  "dedicatedCloud_configuration_SECURITY_policy_delete_success_one": "Die Sicherheitsregel wird in einigen Augenblicken gelöscht.",
+  "dedicatedCloud_configuration_SECURITY_policy_delete_fail_other": "Beim Löschen der Sicherheitsregeln ist ein Fehler aufgetreten.",
+  "dedicatedCloud_configuration_SECURITY_policy_delete_fail_one": "Beim Löschen der Sicherheitsregel ist ein Fehler aufgetreten."
+}

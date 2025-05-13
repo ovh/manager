@@ -1,0 +1,15 @@
+{
+  "domains_onboarding_title": "Find a domain name to fit your brand",
+  "domains_onboarding_description": "We offer a wide range of domain names to suit all of your projects.",
+  "domains_onboarding_description_list1": "Free 100 MB web hosting",
+  "domains_onboarding_description_list2": "Free 5GB email account",
+  "domains_onboarding_description_list3": "DNSSEC: Protection against cache poisoning",
+  "domains_onboarding_description_list4": "Easy Redirect: Accessing social networks from your domain name",
+  "domains_onboarding_order": "Order",
+  "domains_onboarding_guide1_title": "Veeam Cloud Connect",
+  "domains_onboarding_guide1_description": "Introduction to the Veeam Cloud Connect solution",
+  "domains_onboarding_guide2_title": "Changing a domain name owner",
+  "domains_onboarding_guide2_description": "This guide will provide you with information on how to change the owner of a domain name.",
+  "domains_onboarding_guide3_title": "Transferring a domain name to OVHcloud",
+  "domains_onboarding_guide3_description": "Find out how to transfer a domain name to OVHcloud"
+}

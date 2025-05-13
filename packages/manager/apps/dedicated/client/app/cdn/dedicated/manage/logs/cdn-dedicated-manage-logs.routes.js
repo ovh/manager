@@ -1,13 +1,19 @@
-angular.module('App').config(($stateProvider) => {
+import template from './cdn-dedicated-manage-logs.html';
+import controller from './cdn-dedicated-manage-logs.controller';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.networks.cdn.dedicated.manage.logs', {
     url: '/logs',
     views: {
       cdnView: {
-        templateUrl: 'cdn/dedicated/manage/logs/cdn-dedicated-manage-logs.html',
-        controller: 'CdnLogsCtrl',
+        template,
+        controller,
         controllerAs: '$ctrl',
       },
     },
-    translations: { value: ['.'], format: 'json' },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('cdn_tabs_logs'),
+    },
   });
-});
+};

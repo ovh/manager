@@ -1,0 +1,15 @@
+{
+  "description": "Jeśli chcesz zapewnić ciągłość działania Twoich aplikacji, regularnie wykonuj kopie danych, aby je w razie potrzeby przywrócić. Managed Veeam for VMware Cloud Director umożliwia ochronę wirtualnych maszyn zgodnie z wybraną polityką tworzenia kopii zapasowych. Nie musisz martwić się o infrastrukturę.",
+  "order_button_label": "Zacznij",
+  "more_info_button_label": "Więcej informacji",
+  "new_badge_label": "Nowość",
+  "guide_category": "Tutoriale",
+  "guide1_title": "Kopie zapasowe Veeam Data Platform",
+  "guide1_description": "Dowiedz się, jak wykonywać kopie zapasowe i przywracać dane dzięki integracji Veeam Data Platform",
+  "guide2_title": "Pierwsze kroki z Managed VCD",
+  "guide2_description": "Podstawowe założenia Veeam. Poznaj podstawowe pojęcia związane z Veeam.",
+  "guide2_link_label": "Wyświetl dokumentację",
+  "guide3_title": "Najczęściej zadawane pytania",
+  "guide3_description": "Sprawdź FAQ, aby znaleźć odpowiedzi na najczęściej zadawane pytania.",
+  "guide3_link_label": "Sprawdź FAQ"
+}

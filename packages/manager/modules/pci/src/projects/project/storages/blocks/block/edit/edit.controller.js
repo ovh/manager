@@ -30,6 +30,7 @@ export default class PciBlockStorageDetailsEditController {
         'size',
         'bootable',
         'planCode',
+        'isLocalZone',
       ]),
     );
     this.loadMessages();

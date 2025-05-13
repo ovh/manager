@@ -1,0 +1,21 @@
+<oui-modal
+    data-heading="{{ 'pci_projects_project_storages_cold_archive_containers_container_restore_title' | translate }}"
+    data-primary-action="$ctrl.restoreContainer()"
+    data-primary-label="{{:: 'pci_projects_project_storages_cold_archive_containers_container_restore_submit_label' | translate }}"
+    data-primary-disabled="$ctrl.isLoading"
+    data-secondary-action="$ctrl.cancel()"
+    data-on-dismiss="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_projects_project_storages_cold_archive_containers_container_restore_cancel_label' | translate }}"
+    data-loading="$ctrl.isLoading"
+>
+    <p
+        data-translate="pci_projects_project_storages_cold_archive_containers_container_restore_description_1"
+        data-translate-values="{ 'containerName': '<strong>' + $ctrl.container.name + '</strong>'}"
+    ></p>
+    <p
+        data-translate="pci_projects_project_storages_cold_archive_containers_container_restore_description_2"
+    ></p>
+    <p
+        data-translate="pci_projects_project_storages_cold_archive_containers_container_restore_description_3"
+    ></p>
+</oui-modal>

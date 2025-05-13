@@ -1,0 +1,10 @@
+{
+  "zimbra_auto_replies_name": "Adres",
+  "zimbra_auto_replies_from": "Od",
+  "zimbra_auto_replies_until": "Do",
+  "zimbra_auto_replies_copyTo": "Kopiuj do",
+  "zimbra_auto_replies_add_cta": "Utwórz autoresponder",
+  "zimbra_auto_replies_account_title": "Zarządzaj autoresponderami",
+  "zimbra_auto_replies_status": "Status",
+  "zimbra_auto_replies_delete_modal_content": "Czy na pewno chcesz usunąć autoresponder?"
+}

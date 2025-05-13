@@ -1,7 +1,0 @@
-{
-  "pci_projects_project_streams_title": "ioStream",
-  "pci_projects_project_streams_onboarding_content1": "Vous n'avez pas encore créé d'ioStream.",
-  "pci_projects_project_streams_onboarding_content2": "ioStream vous permet de rendre vos architectures orientées services ou microservices plus fiables et évolutives.",
-  "pci_projects_project_streams_onboarding_content3": "Créez des streams (flux d'évènements), accessibles avec les protocoles Apache Pulsar et Kafka (très prochainement). Vous pouvez ensuite échanger des messages de manière asynchrone, hautement disponible et scalable. Ajoutez à tout moment des producteurs ou consommateurs sans impact sur vos opérations.",
-  "pci_projects_project_streams_onboarding_action_label": "Créer un stream"
-}

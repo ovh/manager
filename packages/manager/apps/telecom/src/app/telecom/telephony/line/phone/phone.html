@@ -1,0 +1,13 @@
+<div class="telephony-group-line-phone">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <tuc-telecom-v4-links
+        data-ng-if="!$ctrl.loading.init"
+        data-telecom-v4-links="$ctrl.actions"
+    >
+    </tuc-telecom-v4-links>
+</div>

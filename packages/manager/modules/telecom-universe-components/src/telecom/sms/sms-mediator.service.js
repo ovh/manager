@@ -70,19 +70,6 @@ export default /* @ngInject */ function(
 
   /* -----  End of SMS SERVICE  ------*/
 
-  /*= ============================
-        =            COUNT            =
-        ============================= */
-
-  self.getCount = function getCount() {
-    // return OvhApiSms.v7().query().execute().$promise.then(function (smsIds) {
-    return OvhApiSms.v6()
-      .query()
-      .$promise.then((smsIds) => smsIds.length);
-  };
-
-  /* -----  End of COUNT  ------*/
-
   /*= ========================================
         =            GET SMS INFO TEXT            =
         ========================================= */

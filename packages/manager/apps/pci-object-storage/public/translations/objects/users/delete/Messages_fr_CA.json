@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_containers_users_delete_title": "Supprimer les credentials d'un utilisateur",
+  "pci_projects_project_storages_containers_users_delete_label": "Confirmer",
+  "pci_projects_project_storages_containers_users_delete_question": "Êtes-vous sûr·e de vouloir supprimer cet utilisateur des Object Storage Policies?",
+  "pci_projects_project_storages_containers_users_delete_success": "Les credentials de cet utilisateur ont bien été supprimées.",
+  "pci_projects_project_storages_containers_users_delete_error": "Les credentials de cet utilisateur n'ont pas été correctement supprimées.",
+  "pci_projects_project_storages_containers_users_delete_cancel": "Annuler"
+}

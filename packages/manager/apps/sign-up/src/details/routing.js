@@ -1,3 +1,5 @@
+import { INDIAN_SUBSIDIARY } from '../constants';
+
 export const state = {
   name: 'sign-up.details',
   url: 'details',
@@ -5,6 +7,21 @@ export const state = {
     details: {
       component: 'ovhSignUpDetails',
     },
+  },
+  resolve: {
+    onFieldError: /* @ngInject */ (trackError) => (field) =>
+      trackError('step2', field),
+    trackField: /* @ngInject */ (atInternet) => (field, value) => {
+      atInternet.trackClick({
+        type: 'action',
+        name: `accountcreation::${field}::${value}`,
+      });
+    },
+    isIndianSubsidiary: /* @ngInject */ (subsidiary) =>
+      subsidiary === INDIAN_SUBSIDIARY,
+  },
+  atInternet: {
+    ignore: true,
   },
 };
 

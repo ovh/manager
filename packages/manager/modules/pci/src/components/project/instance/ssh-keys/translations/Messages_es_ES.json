@@ -1,11 +1,12 @@
 {
- "pci_project_instance_ssh_key": "Llave SSH",
- "pci_project_instance_ssh_pick": "Seleccionar",
- "pci_project_instance_ssh_add": "Añadir una llave",
- "pci_project_instance_ssh_cancel": "Cancelar",
- "pci_project_instance_ssh_key_name": "Nombre de la llave SSH",
- "pci_project_instance_ssh_key_query_error": "Se ha producido un error al cargar las llaves SSH: {{message}}.",
- "pci_project_instance_ssh_key_add_error": "Se ha producido un error al añadir la llave SSH: {{message}}.",
- "pci_project_instance_ssh_key_help_required": "Es obligatorio utilizar una llave SSH para conectarse al servicio.",
- "pci_project_instance_ssh_key_help_availability": "Su llave SSH estará disponible en todas las regiones y en todos los datacenters de OVH."
+  "pci_project_instance_ssh_key": "Llave SSH",
+  "pci_project_instance_ssh_pick": "Seleccionar",
+  "pci_project_instance_ssh_add": "Añadir una llave",
+  "pci_project_instance_ssh_cancel": "Cancelar",
+  "pci_project_instance_ssh_key_name": "Nombre de la llave SSH",
+  "pci_project_instance_ssh_key_query_error": "Se ha producido un error al cargar las llaves SSH: {{message}}.",
+  "pci_project_instance_ssh_key_add_error": "Se ha producido un error al añadir la llave SSH: {{message}}.",
+  "pci_project_instance_ssh_key_help_required": "Es obligatorio utilizar una llave SSH para conectarse al servicio. Para más información, consulte nuestra <a target='_blank' rel='noopener' href='{{guideUrl}}'>guía</a>.",
+  "pci_project_instance_ssh_key_help_availability": "Su llave SSH estará disponible en todas las regiones y en todos los datacenters de OVH.",
+  "pci_project_instance_ssh_key_infos": "Solo se aceptan llaves SSH de tipo RSA o ECDSA. No es posible utilizar llaves SSH de tipo ED25519."
 }

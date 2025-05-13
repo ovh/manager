@@ -1,8 +1,0 @@
-{
- "cpciiac_deploy_title": "Deploy infrastructure as code via Terraform",
- "cpciiac_deploy_intro": "In just a few clicks, you can deploy unmanaged infrastructure as code in your cloud project with our infrastructure deployment scripts.",
- "cpciiac_deploy_guide": "QuickStart",
- "cpciiac_deploy_configure": "Configure",
- "cpciiac_deploy_copy_paste": "Copy/Paste",
- "cpciiac_view_deployment_ERROR": "An error has occurred requesting the deployment: {{message}}"
-}

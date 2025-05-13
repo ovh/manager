@@ -1,0 +1,184 @@
+<label
+    for="special-number-form"
+    data-translate="telephony_billingAccount_svaWallet_kyc_identity_title"
+></label>
+<div name="special-number-form" class="special-number-form">
+    <div class="form-group">
+        <label
+            for="firstName"
+            data-translate="telephony_order_identity_first_name"
+        ></label>
+        <input
+            type="text"
+            class="oui-input"
+            name="firstName"
+            id="firstName"
+            data-ng-model="$ctrl.ngModel.firstname"
+            data-required
+        />
+    </div>
+    <div class="form-group">
+        <label
+            for="lastName"
+            data-translate="telephony_order_identity_name"
+        ></label>
+        <input
+            type="text"
+            class="oui-input"
+            name="lastName"
+            id="lastName"
+            data-ng-model="$ctrl.ngModel.name"
+            data-required
+        />
+    </div>
+    <div class="form-group">
+        <label
+            for="email"
+            data-translate="telephony_order_identity_email"
+        ></label>
+        <input
+            type="text"
+            class="oui-input"
+            name="email"
+            id="email"
+            data-ng-model="$ctrl.ngModel.email"
+            data-required
+        />
+    </div>
+    <div class="form-group">
+        <label
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_kind"
+            for="companyKind"
+        ></label>
+        <oui-select
+            items="$ctrl.companyKindsValues"
+            match="name"
+            name="companyKind"
+            id="companyKind"
+            model="$ctrl.companyKind"
+            on-change="$ctrl.onCompanyKindChange(modelValue)"
+            searchable
+            required
+        >
+        </oui-select>
+    </div>
+
+    <div class="form-group">
+        <label
+            data-translate="telephony_order_identity_siret"
+            for="siret"
+        ></label>
+        <input
+            type="text"
+            class="oui-input"
+            name="siret"
+            id="siret"
+            data-ng-model="$ctrl.ngModel.siret"
+            data-required
+        />
+    </div>
+    <div class="form-group">
+        <label for="street-type">
+            {{ ('telephony_order_address_street_type' | translate) +
+            ('telephony_billingAccount_svaWallet_kyc_identity_optionnal' |
+            translate) }}
+        </label>
+        <input
+            name="street-type"
+            class="oui-input"
+            id="street-type"
+            data-ng-model="$ctrl.ngModel.streetType"
+        />
+    </div>
+    <div class="form-group">
+        <label for="street-name">
+            {{ ('telephony_order_address_street_name' | translate) +
+            ('telephony_billingAccount_svaWallet_kyc_identity_optionnal' |
+            translate) }}
+        </label>
+        <input
+            name="street-name"
+            id="street-name"
+            class="oui-input"
+            data-ng-model="$ctrl.ngModel.streetName"
+        />
+    </div>
+    <div class="form-group">
+        <label for="adressextra">
+            {{ ('telephony_order_address_addressextra' | translate) +
+            ('telephony_billingAccount_svaWallet_kyc_identity_optionnal' |
+            translate) }}
+        </label>
+        <input
+            name="addressextra"
+            id="addressextra"
+            class="oui-input"
+            data-ng-model="$ctrl.ngModel.addressExtra"
+        />
+    </div>
+    <div class="form-group">
+        <label for="zipcode">
+            {{ ('telephony_order_address_zipcode' | translate) +
+            ('telephony_billingAccount_svaWallet_kyc_identity_optionnal' |
+            translate) }}
+        </label>
+        <input
+            name="zipcode"
+            id="zipcode"
+            class="oui-input"
+            data-ng-model="$ctrl.ngModel.zip"
+        />
+    </div>
+    <div class="form-group">
+        <label for="cedex">
+            {{ ('telephony_order_identity_cedex' | translate) +
+            ('telephony_billingAccount_svaWallet_kyc_identity_optionnal' |
+            translate) }}
+        </label>
+        <input
+            class="oui-input"
+            id="cedex"
+            name="cedex"
+            data-ng-model="$ctrl.ngModel.cedex"
+        />
+    </div>
+    <div class="form-group">
+        <label for="city">
+            {{ ('telephony_order_address_city' | translate) +
+            ('telephony_billingAccount_svaWallet_kyc_identity_optionnal' |
+            translate) }}
+        </label>
+        <input
+            class="oui-input"
+            name="city"
+            id="city"
+            data-ng-model="$ctrl.ngModel.city"
+        />
+    </div>
+    <div class="form-group">
+        <label
+            for="display-directory"
+            data-translate="telephony_order_contact_universal_directory_publish"
+        ></label>
+        <oui-switch
+            class="d-block"
+            name="display-directory"
+            id="display-directory"
+            model="$ctrl.ngModel.displayUniversalDirectory"
+        ></oui-switch>
+    </div>
+    <div class="form-group">
+        <label for="description">
+            {{ ('telephony_billingAccount_svaWallet_kyc_identity_description' |
+            translate) +
+            ('telephony_billingAccount_svaWallet_kyc_identity_optionnal' |
+            translate) }}
+        </label>
+        <oui-textarea
+            name="description"
+            id="description"
+            model="$ctrl.ngModel.description"
+            data-maxlength="200"
+        ></oui-textarea>
+    </div>
+</div>

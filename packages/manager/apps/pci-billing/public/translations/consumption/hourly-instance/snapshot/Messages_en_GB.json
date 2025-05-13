@@ -1,0 +1,10 @@
+{
+  "cpbc_no_consumption_data": "No usage for the period selected.",
+  "cpbc_snapshot_col_location": "Location",
+  "cpbc_snapshot_col_type": "Type",
+  "cpbc_snapshot_col_usage": "Usage",
+  "cpbc_snapshot_col_usage_info_part1": "You get billed based on the actual storage space, calculated every hour, rounded to the nearest hour.",
+  "cpbc_snapshot_col_usage_info_part2": "Your usage is exactly {{amount}} GiBHours.",
+  "cpbc_snapshot_type_instance": "Server image",
+  "cpb_error_message": "Oops, we can not retrieve all the information."
+}

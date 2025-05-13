@@ -1,0 +1,68 @@
+<div class="oui-tile mb-5 h-100">
+    <h2 class="oui-tile__title oui-heading_4">
+        <span data-translate="dedicatedCloud_options_security_title"></span>
+        <span
+            class="fa fa-question-circle small"
+            data-oui-tooltip="{{::'dedicatedCloud_options_security_title_tooltip' | translate}}"
+            data-oui-tooltip-placement="bottom"
+        >
+        </span>
+    </h2>
+    <div class="oui-tile__body">
+        <div class="oui-tile__item" data-ng-if="$ctrl.loading">
+            <dl class="oui-tile__definition">
+                <div class="text-center">
+                    <oui-spinner></oui-spinner>
+                </div>
+            </dl>
+        </div>
+        <div
+            class="oui-tile__item"
+            data-ng-repeat="optionName in $ctrl.optionNames track by $index"
+            data-ng-if="!$ctrl.loading"
+        >
+            <dl class="oui-tile__definition">
+                <dt
+                    class="oui-tile__term"
+                    data-translate="{{ 'dedicatedCloud_options_' + optionName }}"
+                ></dt>
+                <dd class="oui-tile__description">
+                    <span
+                        data-ng-bind="'dedicatedCloud_options_state_' + $ctrl.options[optionName].state | translate"
+                    ></span>
+                </dd>
+                <a
+                    class="oui-link d-block"
+                    target="_blank"
+                    rel="noopener"
+                    title="{{ 'dedicatedCloud_options_discover' | translate }} ({{ 'core_new_window' | translate }})"
+                    data-ng-href="{{ $ctrl.guides[optionName] }}"
+                >
+                    <span
+                        data-translate="dedicatedCloud_options_discover"
+                    ></span>
+                    <span class="fa fa-external-link" aria-hidden="true">
+                    </span>
+                </a>
+            </dl>
+            <div
+                class="oui-tile__actions"
+                data-ng-if="!$ctrl.loading && $ctrl.options[optionName].state === 'disabled' && $ctrl.allDisabled() && !$ctrl.anyEnabling() && $ctrl.nsxAndVropsCompliantPcc()"
+            >
+                <oui-action-menu
+                    aria-label="{{:: 'menu_action_label' | translate:{ t0: ('dedicatedCloud_options_vrops' | translate) } }}"
+                    data-compact
+                    data-placement="end"
+                >
+                    <oui-action-menu-item
+                        aria-label="{{:: 'dedicatedCloud_options_activate' | translate }}"
+                        data-on-click="$ctrl.orderSecurityOption(optionName)"
+                        ><span
+                            data-translate="dedicatedCloud_options_activate"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </div>
+        </div>
+    </div>
+</div>

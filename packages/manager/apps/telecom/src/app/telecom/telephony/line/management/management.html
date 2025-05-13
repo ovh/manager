@@ -1,0 +1,41 @@
+<div class="telephony-group-line-management">
+    <div class="text-center" data-ng-if="LineManagementCtrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <oui-message
+        type="error"
+        data-ng-if="LineManagementCtrl.displayAntihackAlert"
+    >
+        <p data-translate="telephony_line_antihack_title"></p>
+        <span data-translate="telephony_line_antihack_text"></span>
+        <a
+            data-ng-href="{{ :: LineManagementCtrl.filteringLink }}"
+            data-translate="telephony_line_antihack_link"
+            target="_top"
+        ></a>
+    </oui-message>
+
+    <tuc-telecom-v4-links
+        data-ng-if="!LineManagementCtrl.loading.init"
+        data-telecom-v4-links="LineManagementCtrl.actions"
+    >
+    </tuc-telecom-v4-links>
+    <div class="row d-md-flex">
+        <div class="col-sm-12 col-md-4 mb-3">
+            <ovh-advices
+                service-type="telephony"
+                recommander-range="telephony"
+                url="/voip/:billingAccount/line/:serviceName"
+                url-params="{
+                    billingAccount: LineManagementCtrl.billingAccount,
+                    serviceName: LineManagementCtrl.serviceName,
+                }"
+            >
+            </ovh-advices>
+        </div>
+    </div>
+</div>
+<!-- /.telephony-group-line-management -->

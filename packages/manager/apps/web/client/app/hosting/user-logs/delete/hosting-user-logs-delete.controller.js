@@ -3,6 +3,7 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'HostingUserLogsDeleteCtrl',
   class HostingUserLogsDeleteCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, Hosting) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -20,7 +21,8 @@ angular.module('App').controller(
       this.$scope.resetAction();
       return this.Hosting.deleteUserLogs(
         this.$stateParams.productId,
-        this.entryToDelete,
+        this.entryToDelete.ownLogsId,
+        this.entryToDelete.login,
       )
         .then(() => {
           this.Alerter.success(

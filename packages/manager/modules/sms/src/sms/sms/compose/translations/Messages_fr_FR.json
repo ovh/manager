@@ -3,7 +3,7 @@
   "sms_sms_compose_title": "Envoyer un SMS",
   "sms_sms_compose_section_configure": "Configurer l’expéditeur et le destinataire",
   "sms_sms_compose_section_compose": "Composer un message",
-  "sms_sms_compose_alert_not_enough_credits": "Votre crédit est insuffisant pour permettre l’envoi de SMS.",
+  "sms_sms_compose_alert_not_enough_credits": "Votre solde de crédits est insuffisant pour envoyer des SMS. Veuillez créditer votre compte.",
   "sms_sms_compose_alert_not_enough_credits_receivers": "Votre crédit risque d’être insuffisant pour permettre l’envoi à l’ensemble de vos contacts séléctionnés.",
   "sms_sms_compose_sender_label": "Expéditeur",
   "sms_sms_compose_sender_optgroup_label_response": "Expéditeurs permettant les réponses",
@@ -88,8 +88,8 @@
   "sms_sms_compose_add_receivers_selected_multiple": "<strong>{{ count }}</strong> listes sélectionnées",
   "sms_sms_compose_add_receivers_lists_title": "Ajouter une liste de destinataires",
   "sms_sms_compose_add_receivers_select_lists": "Sélectionnez les fichiers contenant les destinataires :",
-  "sms_sms_compose_add_receivers_label": "{{ description }} (<small><b>{{ records }}</b> contact</small>)",
-  "sms_sms_compose_add_receivers_label_plural": "{{ description }} (<small><b>{{ records }}</b> contacts</small>)",
+  "sms_sms_compose_add_receivers_label": "contact",
+  "sms_sms_compose_add_receivers_label_plural": "contacts",
   "sms_sms_compose_add_receivers_adding": "Ajout des destinataires…",
   "sms_sms_compose_add_receivers_added": "Destinataires ajoutés",
   "sms_sms_compose_add_receivers_parse_ko": "Impossible de générer la liste des destinataires.",
@@ -117,5 +117,8 @@
   "sms_sms_compose_add_phonebook_contact_added": "Liste des contacts mise à jour !",
   "sms_sms_compose_add_phonebook_contact_ko": "Oups ! Impossible de récupérer la liste des contacts.",
   "sms_sms_compose_message_commercial_description": "Pour des raisons légales, un SMS à caractère commercial ne sera envoyé qu’<strong>entre 8 h et 20 h, du lundi au samedi</strong>.",
-  "sms_sms_compose_no_commercial_clause_label": "Je certifie sur l’honneur que le SMS n’est pas à caractère commercial."
+  "sms_sms_compose_no_commercial_clause_label": "Je certifie sur l’honneur que le SMS n’est pas à caractère commercial.",
+  "sms_credit_balance": "Solde",
+  "sms_credit_remaining_sms": "SMS restants",
+  "sms_credit_manage_credits": "Gérer vos crédits SMS"
 }

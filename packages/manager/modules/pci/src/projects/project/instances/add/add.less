@@ -1,0 +1,119 @@
+ovh-manager-pci-instances-add {
+  @import 'flag-icon-css/less/flag-icon.less';
+  @import '@ovh-ux/ui-kit/dist/less/tokens/_colors.less';
+
+  /* ==================================================
+  =            Add some flags definitions            =
+  ================================================== */
+  .flag-icon {
+    border-radius: 3px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+    width: 4em;
+    line-height: 3em;
+  }
+
+  .flag-icon-uk {
+    .flag-icon-gb();
+  }
+
+  .flag-icon-eri {
+    .flag-icon-gb();
+  }
+
+  .flag-icon-sbg {
+    .flag-icon-fr();
+  }
+
+  .flag-icon-sbg1 {
+    .flag-icon-fr();
+  }
+
+  .flag-icon-gra {
+    .flag-icon-fr();
+  }
+
+  .flag-icon-rbx {
+    .flag-icon-fr();
+  }
+
+  .flag-icon-gra1 {
+    .flag-icon-fr();
+  }
+
+  .flag-icon-bhs {
+    .flag-icon-ca();
+  }
+
+  .flag-icon-bhs1 {
+    .flag-icon-ca();
+  }
+
+  .flag-icon-waw {
+    .flag-icon-pl();
+  }
+
+  .flag-icon-lim {
+    .flag-icon-de();
+  }
+
+  .flag-icon-de {
+    .flag-icon-de();
+  }
+
+  .flag-icon-sgp {
+    .flag-icon-sg();
+  }
+
+  .flag-icon-syd {
+    .flag-icon-au();
+  }
+
+  .warning-text {
+    color: @ae-500;
+    font-weight: bold;
+  }
+
+  .recommended-tag {
+    font-weight: bold;
+    background-color: @p-200;
+    color: @p-500;
+    border-radius: 6pt;
+  }
+
+  .oui-button,
+  .oui-button_link {
+    .button-icon {
+      font-size: 1.5rem;
+      vertical-align: middle;
+    }
+  }
+
+  .oui-field-font-size {
+    font-size: 0.875rem !important;
+  }
+
+  .existing-network {
+    oui-field > div {
+      margin-bottom: 1rem !important;
+    }
+  }
+
+  .oui-message-localzone {
+    .oui-message {
+      padding: 1rem 1.5rem 0.5rem 3rem !important;
+    }
+  }
+
+  .three-az-region-auto {
+    .oui-radio__label {
+      align-items: baseline !important;
+    }
+    .oui-radio__icon {
+      position: relative;
+      top: 0.2rem;
+    }
+    .oui-radio__text .three-az-region-auto__info {
+      font-weight: normal !important;
+    }
+  }
+}

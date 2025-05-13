@@ -1,0 +1,13 @@
+{
+  "hosting_multisite_git_association_removal_ask_confirmation": "Do you want to empty the contents of the <b> {{ path }}</b> directory?",
+  "hosting_multisite_git_association_removal_warning_title": "Deleting Git...",
+  "hosting_multisite_git_association_removal_warning": "We’ll disconnect it from Git.",
+  "hosting_multisite_git_association_delete_success_message": "Your deletion request has been processed.",
+  "hosting_multisite_git_association_delete_error_message": "An error has occurred: {{error}}.",
+  "hosting_multisite_git_association_removal_warning_delete_dir": "We’ll disconnect it from Git and delete directory contents.",
+  "hosting_multisite_git_association_removal_confirmation_title": "Disconnect from Git",
+  "hosting_multisite_git_association_confirm": "Confirm",
+  "hosting_multisite_git_association_removal_next": "Next",
+  "hosting_multisite_git_association_removal_description_part_1": "You are about to disconnect it from the Git.",
+  "hosting_multisite_git_association_removal_description_part_2": "This will disconnect all domains pointing to your directory."
+}

@@ -1,0 +1,6 @@
+{
+  "cloud_connect_routing_remove": "Usuń dodatkową konfigurację",
+  "cloud_connect_routing_remove_description": "Spowoduje to usunięcie dodatkowej konfiguracji wybranej strefy dostępności.",
+  "cloud_connect_datacenter_remove_routing_error": "Wystąpił błąd podczas usuwania konfiguracji routingu: {{message}}",
+  "cloud_connect_datacenter_remove_routing_success": "Usunięcie konfiguracji routingu. <a href=\"{{tasksUrl}}\">Kliknij tutaj, aby sprawdzić status.</a>"
+}

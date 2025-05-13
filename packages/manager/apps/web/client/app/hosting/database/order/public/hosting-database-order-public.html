@@ -1,0 +1,38 @@
+<oui-back-button
+    data-on-click="$ctrl.trackClick($ctrl.ORDER_DATABASE_TRACKING.GO_BACK); $ctrl.goBack()"
+></oui-back-button>
+
+<!--Title + description-->
+<div class="ml-2">
+    <span
+        class="oui-heading_4"
+        data-translate="ovhManagerHostingDatabaseOrderPublic_title"
+    ></span>
+    <p data-translate="ovhManagerHostingDatabaseOrderPublic_description"></p>
+</div>
+
+<ovh-manager-product-offers
+    pricing-type="$ctrl.productOffers.pricingType"
+    workflow-options=":: $ctrl.productOffers.workflowOptions"
+    workflow-type=":: $ctrl.productOffers.workflowType"
+    on-success=":: $ctrl.onSuccess(checkout)"
+    on-error=":: $ctrl.onError(error)"
+    send-current-state=":: $ctrl.getOrderState(state)"
+>
+    <oui-step-form
+        header="{{:: 'ovhManagerHostingDatabaseOrderPublic_customization_title' | translate }}"
+        data-valid="$ctrl.isValidDbConfig()"
+        data-prevent-next="true"
+        data-on-submit="$ctrl.onGoToNextStepClick()"
+        data-on-focus="$ctrl.onOptionEdit()"
+    >
+        <web-hosting-database-order-db-categories-offers
+            data-user="$ctrl.user"
+            data-db-categories="$ctrl.dbCategories"
+            data-preselect-db-category="$ctrl.preselectDbCategory"
+            data-on-db-category-click="$ctrl.onDbCategoryClick(dbCategory)"
+            data-on-db-category-engine-click="$ctrl.onDbCategoryEngineClick(dbEngine)"
+            data-model="$ctrl.model"
+        ></web-hosting-database-order-db-categories-offers>
+    </oui-step-form>
+</ovh-manager-product-offers>

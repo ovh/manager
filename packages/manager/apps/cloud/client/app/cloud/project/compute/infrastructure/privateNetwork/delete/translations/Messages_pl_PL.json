@@ -1,6 +1,0 @@
-{
- "cpci_private_network_delete_title": "Usuwanie prywatnej sieci",
- "cpci_private_network_delete_confirm": "Czy chcesz usunąć tę prywatną sieć?",
- "cpci_private_network_delete_success": "Prywatna sieć została usunięta.",
- "cpci_private_network_delete_error": "Wystąpił błąd podczas usuwania prywatnej sieci."
-}

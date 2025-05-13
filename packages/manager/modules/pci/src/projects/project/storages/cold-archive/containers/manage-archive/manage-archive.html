@@ -1,0 +1,47 @@
+<oui-modal
+    data-heading="{{:: 'pci_projects_project_storages_cold_archive_container_manage' | translate }}"
+    data-primary-action="$ctrl.onManageContainerClick()"
+    data-primary-disabled="$ctrl.isLoading"
+    data-secondary-action="$ctrl.cancel()"
+    data-on-dismiss="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_projects_project_storages_cold_archive_containers_container_manage_close_label' | translate }}"
+    data-loading="$ctrl.isLoading"
+>
+    <p>
+        <a
+            data-ng-href="{{:: $ctrl.getDocumentationUrl()}}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span
+                data-translate="pci_projects_project_storages_cold_archive_container_manage_documentation_link"
+            ></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </p>
+
+    <p
+        data-translate="pci_projects_project_storages_cold_archive_container_manage_description_1"
+    ></p>
+    <p
+        data-translate="pci_projects_project_storages_cold_archive_container_manage_description_2"
+    ></p>
+    <div class="ovh-contacts-form ovh-contacts-form-fieldset">
+        <oui-field
+            data-label="{{:: 'pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label' | translate }}"
+        >
+            <oui-clipboard data-model="$ctrl.endpoint"></oui-clipboard>
+        </oui-field>
+
+        <oui-field
+            data-label="{{:: 'pci_projects_project_storages_cold_archive_containers_container_manage_region_label' | translate }}"
+        >
+            <oui-clipboard
+                data-model="$ctrl.regions[0].toLowerCase()"
+            ></oui-clipboard>
+        </oui-field>
+    </div>
+</oui-modal>

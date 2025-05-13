@@ -1,0 +1,55 @@
+<div data-ui-view="networkSecurityView">
+    <div data-ovh-alert="network_security_error"></div>
+    <oui-header>
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: 'network_security_dashboard_title' | translate }}"
+                ></h1>
+                <div
+                    class="d-flex align-items-center justify-content-end gap-1 flex-wrap"
+                >
+                    <changelog-button
+                        links="$ctrl.constants.CHANGELOG.network_security.links"
+                        chapters="$ctrl.constants.CHANGELOG.network_security.chapters"
+                    ></changelog-button>
+                    <oui-guide-menu
+                        text="{{:: 'network_security_dashboard_guides' | translate }}"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guideLink }}"
+                            data-external="true"
+                        >
+                            <span
+                                data-translate="network_security_dashboard_title"
+                            ></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
+            </div>
+        </oui-header-heading>
+    </oui-header>
+
+    <p data-translate="network_security_dashboard_header_content_survey"></p>
+    <p data-translate="network_security_dashboard_header_content_note"></p>
+
+    <div data-ovh-alert="network_security_dashboard_alert"></div>
+
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            active="$ctrl.isScrubbingCenterActive()"
+            data-ng-click="$ctrl.goToScrubbingCenter()"
+        >
+            <span data-translate="network_security_dashboard_scrubbing"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            active="$ctrl.isTrafficActive()"
+            data-ng-click="$ctrl.goToTraffic()"
+        >
+            <span translate="network_security_dashboard_traffic"></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+
+    <div ui-view></div>
+</div>

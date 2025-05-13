@@ -4,18 +4,20 @@ import includes from 'lodash/includes';
 export default class OutgoingTraficComponentCtrl {
   /* @ngInject */
   constructor(
+    $q,
     $translate,
+    coreConfig,
     CucControllerHelper,
-    CucRegionService,
+    ovhManagerRegionService,
     CucServiceHelper,
-    OvhApiMe,
     CLOUD_GEOLOCALISATION,
     CLOUD_UNIT_CONVERSION,
   ) {
+    this.$q = $q;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.CucControllerHelper = CucControllerHelper;
-    this.OvhApiMe = OvhApiMe;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.CucServiceHelper = CucServiceHelper;
     this.apacRegions = CLOUD_GEOLOCALISATION.instance.APAC;
     this.CLOUD_UNIT_CONVERSION = CLOUD_UNIT_CONVERSION;
@@ -34,9 +36,9 @@ export default class OutgoingTraficComponentCtrl {
   initCurrency() {
     this.currency = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
-        this.OvhApiMe.v6()
-          .get()
-          .$promise.then((me) => me.currency)
+        this.$q
+          .when(this.coreConfig.getUser())
+          .then((me) => me.currency)
           .catch((error) =>
             this.CucServiceHelper.errorHandler('cpb_error_message')(error),
           ),

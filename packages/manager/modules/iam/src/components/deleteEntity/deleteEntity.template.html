@@ -1,0 +1,35 @@
+<oui-modal
+    data-primary-label="{{:: 'iam_delete_entity_primary_label' | translate }}"
+    data-primary-disabled="!$ctrl.canDelete"
+    data-primary-action="$ctrl.delete()"
+    data-secondary-label="{{:: 'iam_delete_entity_secondary_label' | translate }}"
+    data-secondary-action=":: $ctrl.close()"
+    data-on-dismiss=":: $ctrl.close()"
+    data-heading="{{:: $ctrl.translate.heading | translate }}"
+    data-type="warning"
+    data-loading="$ctrl.isDeleting"
+    data-ng-mouseup="$event.stopPropagation()"
+>
+    <p data-translate="{{:: $ctrl.translate.warn | translate }}"></p>
+    <span
+        class="d-block"
+        data-translate="{{:: $ctrl.translate.name | translate }}"
+    ></span>
+    <strong class="d-block" data-ng-bind=":: $ctrl.entity.data.name"></strong>
+    <div data-ng-transclude></div>
+    <form class="mt-3" name="$ctrl.form" data-ng-submit="$ctrl.delete()">
+        <oui-field
+            data-label="{{:: $ctrl.translate.field | translate: { statement: $ctrl.DELETE_STATEMENT } }}"
+            data-ng-if="$ctrl.statement"
+        >
+            <input
+                class="oui-input"
+                name="statement"
+                type="text"
+                required
+                data-ng-model="$ctrl.model"
+                data-ng-pattern="$ctrl.pattern"
+            />
+        </oui-field>
+    </form>
+</oui-modal>

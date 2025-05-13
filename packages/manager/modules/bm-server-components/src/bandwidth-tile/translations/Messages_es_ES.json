@@ -1,0 +1,5 @@
+{
+  "dedicated_server_interfaces_bandwidth_title": "Tráfico",
+  "dedicated_server_interfaces_bandwidth_description": "El tráfico entrante (desde y hacia internet) no tiene limitación. Puede aumentar el ancho de banda público y privado contratando la opción correspondiente.",
+  "dedicated_server_interfaces_bandwidth_ola_warning": "Con una configuración de agregación privada completa, no se utilizará la opción de ancho de banda saliente público, ya que la interfaz dedicada a la red pública se utilizará para la red privada."
+}

@@ -1,0 +1,15 @@
+{
+  "dedicatedCloudDashboardTilesOptionsOrderConfigureUsers_stepper_header": "Configure users",
+  "dedicatedCloud_servicePack_configureUsers_noUser": "At least one of your admin users must have a mobile number, an email address, and be registered as a “token validator”. This means that they can enable two-factor authentication for administrative actions on vCenter. You can configure your users by clicking on the",
+  "dedicatedCloud_servicePack_configureUsers_noUser_linkToUserConfiguration": "‘Users’ tab.",
+  "dedicatedCloud_servicePack_configureUsers_hasUser": "To validate two-factor authentication, some of your users will receive a token via SMS. ",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_header": "Users who are authorised to validate tokens by SMS:",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_userName": "ID",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_firstName": "First name",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_lastName": "Surname",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_emailAddress": "Email address",
+  "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_phoneNumber": "Telephone number",
+  "dedicatedCloud_servicePack_configureUsers_previousButton": "Previous",
+  "dedicatedCloud_servicePack_configureUsers_checkoutButton": "Confirm",
+  "dedicatedCloud_servicePack_configureUsers_nextButton": "Next"
+}

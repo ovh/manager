@@ -1,0 +1,21 @@
+{
+  "zimbra_redirections_cta": "Weiterleitung erstellen",
+  "zimbra_redirections_from": "Von",
+  "zimbra_redirections_to": "Auf",
+  "zimbra_redirections_organization": "Organisation",
+  "zimbra_redirections_datagrid_tooltip_modification": "Ändern",
+  "zimbra_redirections_datagrid_tooltip_delete": "Löschen",
+  "zimbra_redirections_account_title": "Verwaltung der Weiterleitungen",
+  "zimbra_redirections_status": "Status",
+  "zimbra_redirections_delete_modal_content": "Möchten Sie die Weiterleitung löschen?",
+  "zimbra_redirections_add_header": "Bitte geben Sie die Informationen für die Weiterleitung an.",
+  "zimbra_redirections_add_form_input_from": "Von der Adresse",
+  "zimbra_redirections_add_form_input_to": "Zur Adresse",
+  "zimbra_redirections_add_form_input_checkbox": "Eine Kopie der E-Mail bei OVHcloud aufbewahren",
+  "zimbra_redirections_add_success_message": "Ihre Anfrage zur Erstellung einer Weiterleitung wurde registriert. Sie wird in Kürze bearbeitet.",
+  "zimbra_redirections_add_error_message": "Ihre Anfrage zur Erstellung einer Weiterleitung ist fehlgeschlagen. {{ error }}",
+  "zimbra_redirections_edit_success_message": "Ihre Anfrage zur Änderung einer Weiterleitung wurde registriert. Sie wird in Kürze bearbeitet.",
+  "zimbra_redirections_edit_error_message": "Ihre Anfrage zur Änderung einer Weiterleitung ist fehlgeschlagen. {{ error }}",
+  "zimbra_redirections_delete_success_message": "Ihre Anfrage zur Löschung einer Weiterleitung wurde registriert. Sie wird in Kürze bearbeitet.",
+  "zimbra_redirections_delete_error_message": "Ihre Anfrage zum Löschen einer Weiterleitung ist fehlgeschlagen. {{ error }}"
+}

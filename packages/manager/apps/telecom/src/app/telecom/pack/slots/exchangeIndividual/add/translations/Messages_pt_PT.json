@@ -1,5 +1,4 @@
 {
-  "add_an_account": "Ajouter un compte Exchange (Individual)",
   "account_informations": "Informations sur le compte",
   "account_last_name": "Apelido",
   "account_first_name": "Nome",
@@ -7,5 +6,6 @@
   "antispam_option": "Je souhaite bénéficier des protections antivirus et antispam",
   "all_fields_are_required": "Todos os campos são obrigatórios",
   "success_validation": "Votre demande a bien été prise en compte",
-  "an_error_ocurred": "Une erreur est survenue lors de la création de votre compte"
+  "an_error_ocurred": "Une erreur est survenue lors de la création de votre compte",
+  "exchange_individual_add_an_account": "Adicionar uma conta Exchange (Individual)"
 }

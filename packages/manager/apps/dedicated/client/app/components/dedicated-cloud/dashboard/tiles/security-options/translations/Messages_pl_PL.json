@@ -1,0 +1,15 @@
+{
+  "dedicatedCloud_options_security_title": "Opcje zabezpieczeń",
+  "dedicatedCloud_options_security_title_tooltip": "Niniejsze zasady dotyczą opcji bezpieczeństwa (PCI DSS, HDS i HIPAA): <ul><li>Można aktywować tylko jedną opcję</li><li>Opcje NSX i vROps muszą być aktywowane.</li><li>PCC musi mieć co najmniej jeden zatwierdzony adres IP i musi mieć ograniczone prawa dostępu.</li><li>Administrator musi mieć numer telefonu komórkowego, konto e-mail i posiadać status \"token validator\".</li></ul>",
+  "dedicatedCloud_options_pcidss": "Payment Card Industry Data Security Standard (PCI DSS)",
+  "dedicatedCloud_options_hds": "Hosting danych medycznych i certyfikat HDS",
+  "dedicatedCloud_options_hipaa": "Health Insurance Portability and Accountability Act (HIPAA)",
+  "dedicatedCloud_options_state_enabled": "Aktywny",
+  "dedicatedCloud_options_state_enabling": "Trwa aktywacja",
+  "dedicatedCloud_options_state_disabled": "Wyłączony",
+  "dedicatedCloud_options_state_disabling": "Trwa wyłączanie",
+  "dedicatedCloud_options_discover": "Poznaj szczegóły",
+  "dedicatedCloud_options_vrops": "VMware vRealize Operations (vROps)",
+  "dedicatedCloud_options_activate": "Włącz",
+  "dedicatedCloud_dashboard_loading_error": "Wystąpił błąd podczas pobierania informacji o usłudze."
+}

@@ -1,0 +1,22 @@
+.nasha-dashboard-partition-snapshots {
+  @import 'bootstrap4/scss/_functions.scss';
+  @import 'bootstrap4/scss/_variables.scss';
+  @import 'bootstrap4/scss/_mixins.scss';
+  @import 'bootstrap4/scss/_utilities.scss';
+
+  .oui-field__control {
+    display: flex;
+    align-items: baseline;
+    input {
+      width: 20em;
+    }
+  }
+
+  .form .oui-datagrid__cell {
+    vertical-align: baseline;
+  }
+
+  .oui-field {
+    @extend .my-3;
+  }
+}

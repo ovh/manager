@@ -1,0 +1,6 @@
+{
+  "pci_projects_project_storages_volume_backup_onboarding_title": "Volume Backup",
+  "pci_projects_project_storages_volume_backup_onboarding_description_part_1": "Para garantir uma melhor continuidade de atividade das suas aplicações, é necessário efetuar cópias regulares dos seus dados para que os possa restaurar, caso seja necessário.",
+  "pci_projects_project_storages_volume_backup_onboarding_description_part_2": "O Volume Backup permite-lhe limitar o impacto de uma perda não desejada dos seus dados.",
+  "pci_projects_project_storages_volume_backup_onboarding_action_title": "Criar um backup de volume"
+}

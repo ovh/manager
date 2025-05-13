@@ -1,0 +1,13 @@
+{
+  "nutanix_cluster_ipfo": "Reverse",
+  "nutanix_cluster_vrack": "Rete privata (vRack)",
+  "nutanix_cluster_vrack_none": "Nessuna vRack associata",
+  "nutanix_cluster_network_title": "Rete del cluster ",
+  "nutanix_cluster_network_manage": "Gestisci",
+  "nutanix_cluster_iplb_none": "Nessun Load Balancer associato",
+  "nutanix_cluster_bandwidth_private": "Banda passante privata",
+  "nutanix_cluster_bandwidth_incoming": "In entrata",
+  "nutanix_cluster_bandwidth_outgoing": "In uscita",
+  "nutanix_cluster_bandwidth_vrack_option_released": "(non rinnovato)",
+  "nutanix_cluster_modify_private_bandwidth": "Modifica la banda passante privata"
+}

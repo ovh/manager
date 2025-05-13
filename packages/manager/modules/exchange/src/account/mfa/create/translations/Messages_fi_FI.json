@@ -1,6 +1,0 @@
-{
-  "exchange_account_mfa_create_title": "Enable two-factor authentication on all accounts",
-  "exchange_account_mfa_create_description": "Do you want to enable two-factor authentication on all accounts?",
-  "exchange_account_mfa_create_success": "Two-factor authentication has been enabled on all of your accounts.",
-  "exchange_account_mfa_create_error": "An error has occurred enabling two-factor authentication on all accounts: {{errorMessage}}"
-}

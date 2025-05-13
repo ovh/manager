@@ -1,33 +1,35 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 
-import { ORDER_EXPRESS_BASE_URL } from '../../constants';
-
 export default class VpsSnapshotOrderCtrl {
   /* @ngInject */
   constructor(
     $q,
     $translate,
     $window,
+    atInternet,
     coreConfig,
     CucCloudMessage,
     connectedUser,
     OvhApiOrder,
     stateVps,
+    RedirectionService,
   ) {
     // dependencies injections
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
     this.connectedUser = connectedUser;
     this.OvhApiOrder = OvhApiOrder;
     this.stateVps = stateVps;
+    this.expressOrderUrl = RedirectionService.getURL('expressOrder');
 
     // other attributes used in view
     this.snapshotOption = null;
-    this.getSnapshotMonthlyPrice = VpsSnapshotOrderCtrl.getSnapshotMonthlyPrice;
+    this.snapshotMonthlyPrice = null;
     this.hasInitError = false;
 
     this.loading = {
@@ -35,11 +37,8 @@ export default class VpsSnapshotOrderCtrl {
     };
   }
 
-  static getSnapshotMonthlyPrice(snapshot) {
-    const price = find(snapshot.prices, {
-      duration: 'P1M',
-    });
-    return get(price, 'price');
+  getSnapshotMonthlyPrice() {
+    return get(this.snapshotMonthlyPrice, 'price');
   }
 
   /* =============================
@@ -47,29 +46,31 @@ export default class VpsSnapshotOrderCtrl {
   ============================== */
 
   onSnapshotOrderStepperFinish() {
-    let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
-      this.coreConfig.getRegion(),
-      this.connectedUser.ovhSubsidiary,
-    ]);
+    this.atInternet.trackClick({
+      name: 'vps::detail::snapshot::order::confirm',
+      type: 'action',
+    });
+
     const expressParams = {
       productId: 'vps',
       serviceName: this.stateVps.name,
       planCode: this.snapshotOption.planCode,
-      duration: 'P1M',
-      pricingMode: 'default',
+      duration: this.snapshotMonthlyPrice.duration,
+      pricingMode: this.snapshotMonthlyPrice.pricingMode,
       quantity: 1,
     };
-    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
+
+    this.expressOrderUrl = `${this.expressOrderUrl}?products=${JSURL.stringify([
       expressParams,
     ])}`;
 
-    this.$window.open(expressOrderUrl, '_blank');
+    this.$window.open(this.expressOrderUrl, '_blank', 'noopener');
 
     this.CucCloudMessage.success({
       textHtml: this.$translate.instant(
         'vps_configuration_activate_snapshot_success',
         {
-          url: expressOrderUrl,
+          url: this.expressOrderUrl,
         },
       ),
     });
@@ -109,7 +110,10 @@ export default class VpsSnapshotOrderCtrl {
             },
           });
         }
-
+        this.snapshotMonthlyPrice = find(
+          this.snapshotOption.prices,
+          ({ capacities }) => capacities.includes('renew'),
+        );
         return this.snapshotOption;
       })
       .catch((error) => {

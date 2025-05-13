@@ -1,0 +1,14 @@
+{
+  "billing_resiliation_title": "Meinen Dienst kündigen",
+  "billing_resiliation_service_name": "Name des Dienstes",
+  "billing_resiliation_choice": "Möchten Sie:",
+  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Ihr Abonnement beenden und Ihren Dienst ohne Vertragsbindung beibehalten.",
+  "billing_resiliation_choice_CANCEL_SERVICE": "Ihr Abonnement beenden und Ihren Dienst am Ablaufdatum entfernen.",
+  "billing_resiliation_commitment_end_date": "Ende des Abonnements vorgesehen am:",
+  "billing_resiliation_details_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Nach diesem Datum bleibt Ihr Dienst {{serviceName}} aktiv. Sie profitieren dann von keinem Rabatt mehr, der an das Abonnement geknüpft ist. Sie sind dann nicht mehr vertraglich gebunden und können Ihren Dienst jederzeit entfernen.",
+  "billing_resiliation_details_CANCEL_SERVICE": "Am Ablaufdatum endet Ihr Zugang zu Ihrem Dienst und damit zu allen Daten, die dieser gegebenenfalls enthält. Sie können diese Entscheidung bis zu 24 Stunden vor dem Ablaufdatum ändern.",
+  "billing_resiliation_success": "Ihre Kündigungsanfrage wurde durchgeführt.",
+  "billing_resiliation_error": "Bei der Kündigungsanfrage ist ein Fehler aufgetreten.",
+  "billing_resiliation_cancel": "Abbrechen",
+  "billing_resiliation_validate": "Bestätigen"
+}

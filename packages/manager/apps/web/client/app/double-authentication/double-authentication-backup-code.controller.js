@@ -7,6 +7,7 @@ angular.module('App').controller(
      * @param $q
      * @param OvhHttp
      */
+    /* @ngInject */
     constructor($scope, $q, OvhHttp) {
       this.$scope = $scope;
       this.$q = $q;

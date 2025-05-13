@@ -1,0 +1,136 @@
+<div class="iam-create_resource_group">
+    <iam-delete-entity
+        data-ng-if="$ctrl.deletion"
+        data-entity="{ data: $ctrl.deletion.data, type: $ctrl.ENTITY_RESOURCE_TYPE }"
+        data-go-back="$ctrl.onDeleteEntityGoBack"
+        data-statement="false"
+        data-tag-prefix=":: $ctrl.tag.prefix"
+        data-track-click=":: $ctrl.trackClick"
+    >
+        <strong
+            class="d-block"
+            data-ng-if="$ctrl.deletion.data.resources.length"
+            data-translate="iam_create_resource_group_deletion_resources_{{ $ctrl.deletion.data.resources.length > 1 ? 'many' : 'one' }}"
+            data-translate-values="{ count : $ctrl.deletion.data.resources.length }"
+        ></strong>
+    </iam-delete-entity>
+
+    <oui-header
+        data-heading="{{ $ctrl.translations.header | translate }}"
+        data-description="{{ 'iam_create_resource_group_header_description' | translate }}"
+    >
+        <!-- <Guide> -->
+        <oui-guide-menu
+            data-text="{{:: 'iam_create_resource_group_header_guide_text' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.policiesGuides track by $index"
+                data-href="{{:: guide.link }}"
+                data-on-click="$ctrl.onGuideClick(guide.key)"
+                data-external
+            >
+                <span data-ng-bind=":: guide.title"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+        <!-- </Guide> -->
+    </oui-header>
+
+    <!-- <Error> -->
+    <oui-message data-type="error" data-ng-if="$ctrl.hasAnyError">
+        <div data-ng-repeat="(property, error) in $ctrl.error">
+            <p data-translate="{{:: $ctrl.translations.errorHeading }}"></p>
+            <strong
+                data-translate="{{ $ctrl.translations.formHeading[property] }}"
+            ></strong>
+            :
+            <span data-ng-bind="error"></span>
+        </div>
+    </oui-message>
+    <!-- </Error> -->
+
+    <form
+        name="$ctrl.form"
+        data-ng-submit="$ctrl.onSubmit()"
+        autocomplete="off"
+        novalidate
+    >
+        <!-- <Name> -->
+        <h4 data-translate="iam_create_resource_group_form_name_heading"></h4>
+        <oui-field
+            data-label="{{:: 'iam_create_resource_group_form_name_heading' | translate }}"
+            data-error-messages="{
+                api: $ctrl.error.name,
+                pattern: ('iam_create_resource_group_form_name_error_pattern' | translate)
+            }"
+        >
+            <input
+                class="oui-input"
+                name="name"
+                type="text"
+                data-ng-model="$ctrl.model.name"
+                data-ng-pattern="$ctrl.ENTITY_NAME_PATTERN"
+                data-ng-disabled="$ctrl.resourceGroup.readOnly"
+                required
+            />
+        </oui-field>
+        <!-- </Name> -->
+
+        <!-- <Resource> -->
+        <iam-resource-select
+            data-ng-model="$ctrl.model.resources"
+            data-on-change="$ctrl.onResourceChanged(change)"
+            data-on-error="$ctrl.onError(error)"
+            data-on-resource-types-confirm-remove="$ctrl.onResourceTypesConfirmRemove(item, index)"
+            data-read-only="$ctrl.resourceGroup.readOnly"
+            data-required="true"
+            data-resources-label="{{:: 'iam_create_resource_group_form_resources_heading' | translate }}"
+            data-resources-name="resources"
+            data-resources-required-message="{{:: 'iam_create_resource_group_form_resources_error_required' | translate }}"
+            data-resource-types-label="{{:: 'iam_create_resource_group_form_resource_types_heading' | translate }}"
+            data-resource-types-name="resourceTypes"
+            data-max-length="{{:: $ctrl.CREATE_RESOURCE_GROUP_MAX_SIZE}}"
+        >
+            <iam-resource-select-resource-types-header>
+                <h4
+                    data-translate="iam_create_resource_group_form_resource_types_heading"
+                ></h4>
+                <p
+                    data-translate="iam_create_resource_group_form_resource_types_description"
+                ></p>
+            </iam-resource-select-resource-types-header>
+            <iam-resource-select-resources-header>
+                <h4
+                    data-translate="iam_create_resource_group_form_resources_heading"
+                ></h4>
+                <p
+                    data-translate="iam_create_resource_group_form_resources_description"
+                ></p>
+            </iam-resource-select-resources-header>
+        </iam-resource-select>
+        <!-- </Resource> -->
+
+        <!-- <Footer> -->
+        <div class="d-flex align-items-center mb-5">
+            <button
+                type="button"
+                class="oui-button oui-button_l oui-button_link mr-3"
+                data-ng-disabled="$ctrl.isSubmitting"
+                data-ng-click="$ctrl.cancelCreation()"
+            >
+                <span data-translate="iam_create_resource_group_cancel"></span>
+            </button>
+            <button
+                type="submit"
+                class="oui-button oui-button_l oui-button_primary mr-3"
+                data-ng-disabled="!$ctrl.canSubmit"
+            >
+                <span data-translate="{{ $ctrl.translations.submit }}"></span>
+            </button>
+            <oui-spinner
+                data-size="s"
+                data-ng-if="$ctrl.isSubmitting"
+            ></oui-spinner>
+        </div>
+        <!-- </Footer> -->
+    </form>
+</div>

@@ -12,6 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
         capabilities.includes(CLOUD_DATABASE_FEATURE)
           ? null
           : $q.reject(CLOUD_DATABASE_ERRORS.notAuthorized),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('vps_cloud_database'),
     },
     url: '/cloud-database',
     views: {

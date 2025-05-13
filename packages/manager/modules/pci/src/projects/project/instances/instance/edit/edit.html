@@ -2,7 +2,6 @@
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
-
     <h1>
         {{:: 'pci_projects_project_instances_instance_edit_title' | translate }}
     </h1>
@@ -13,19 +12,125 @@
         data-ng-submit="$ctrl.editNameForm.$valid && $ctrl.renameInstance()"
     >
         <fieldset data-ng-disabled="$ctrl.isLoading">
-            <div class="oui-field oui-field_error">
+            <div class="oui-field">
                 <label
                     for="storage-region"
                     class="oui-field__label oui-label"
                     data-translate="pci_projects_project_instances_instance_edit_region_label"
                 ></label>
-                <div
-                    class="oui-field__control"
-                    data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.instance.region)"
-                ></div>
+                <div class="oui-field__control regions-badges">
+                    <span
+                        data-ng-bind="$ctrl.instance.availabilityZone ? $ctrl.instance.availabilityZone : $ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.instance.region)"
+                    ></span>
+                    <span
+                        data-ng-if="$ctrl.instance.isLocalZone"
+                        class="oui-badge oui-badge_promotion oui-localzone"
+                    >
+                        <span
+                            data-translate="pci_project_flavors_zone_localzone"
+                        ></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover
+                            data-oui-popover-scope="$ctrl"
+                            data-oui-popover-template="pci_project_flavors_zone_localzone.html"
+                        ></button>
+                        <script
+                            type="text/ng-template"
+                            id="pci_project_flavors_zone_localzone.html"
+                        >
+                            <span
+                                class="text-center"
+                                data-translate="pci_project_flavors_zone_localzone_tooltip"
+                            ></span>
+                            <a
+                                class="oui-link_icon"
+                                aria-hidden="true"
+                                data-ng-href="{{$ctrl.localZoneUrl}}"
+                                target="_blank"
+                            >
+                                <span
+                                    data-translate="pci_project_flavors_zone_tooltip_link"
+                                ></span>
+                                <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                            </a>
+                        </script>
+                    </span>
+                    <span
+                        data-ng-if="$ctrl.is3az"
+                        class="oui-badge oui-badge_new my-1 oui-3az"
+                    >
+                        <span
+                            data-translate="pci_project_flavors_zone_3az_region"
+                        ></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover
+                            data-oui-popover-scope="$ctrl"
+                            data-oui-popover-template="pci_project_flavors_zone_3az_regions_tooltip.html"
+                        ></button>
+                        <script
+                            type="text/ng-template"
+                            id="pci_project_flavors_zone_3az_regions_tooltip.html"
+                        >
+                            <span
+                                class="text-center"
+                                data-translate="pci_project_flavors_zone_3az_tooltip"
+                            ></span>
+                            <a
+                                class="oui-link_icon"
+                                aria-hidden="true"
+                                data-ng-href="{{$ctrl.zone3azUrl}}"
+                                target="_blank"
+                            >
+                                <span
+                                    data-translate="pci_project_flavors_zone_tooltip_link"
+                                ></span>
+                                <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                            </a>
+                        </script>
+                    </span>
+                    <span
+                        data-ng-if="!$ctrl.instance.isLocalZone && !$ctrl.is3az"
+                        class="oui-badge oui-badge_new oui-1az"
+                    >
+                        <span
+                            data-translate="pci_project_flavors_zone_global_region"
+                        ></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover
+                            data-oui-popover-scope="$ctrl"
+                            data-oui-popover-template="pci_project_flavors_zone_globalregions_tooltip.html"
+                        ></button>
+                        <script
+                            type="text/ng-template"
+                            id="pci_project_flavors_zone_globalregions_tooltip.html"
+                        >
+                            <span
+                                class="text-center"
+                                data-translate="{{$ctrl.regionsTypesAvailability[$ctrl.THREE_AZ_REGION] ? 'pci_project_flavors_zone_globalregions_tooltip' : 'pci_project_flavors_zone_globalregions_tooltip_2'}}"
+                            ></span>
+                            <a
+                                class="oui-link_icon"
+                                aria-hidden="true"
+                                data-ng-href="{{$ctrl.globalRegionsUrl}}"
+                                target="_blank"
+                            >
+                                <span
+                                    data-translate="pci_project_flavors_zone_tooltip_link"
+                                ></span>
+                                <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                            </a>
+                        </script>
+                    </span>
+                </div>
             </div>
 
-            <div class="oui-field oui-field_error">
+            <div class="oui-field">
                 <label
                     for="storage-region"
                     class="oui-field__label oui-label"
@@ -38,7 +143,7 @@
                 </div>
             </div>
 
-            <div class="oui-field oui-field_error">
+            <div class="oui-field">
                 <label
                     for="storage-region"
                     class="oui-field__label oui-label"
@@ -89,13 +194,18 @@
             <oui-button
                 data-variant="primary"
                 data-type="submit"
-                data-text="{{:: 'pci_projects_project_instances_instance_edit_name_submit_label' | translate }}"
                 data-disabled="$ctrl.editInstance.name === $ctrl.instance.name"
+                ><span
+                    data-translate="pci_projects_project_instances_instance_edit_name_submit_label"
+                ></span
             ></oui-button>
         </fieldset>
     </form>
 
-    <div class="mt-4 pt-4 border-top">
+    <div
+        id="{{::$ctrl.EDIT_PAGE_SECTIONS.IMAGES}}"
+        class="mt-4 pt-4 border-top"
+    >
         <form
             novalidate
             name="$ctrl.editImageForm"
@@ -107,6 +217,7 @@
                     data-size="auto"
                 >
                     <pci-project-images-list
+                        data-instance="$ctrl.editInstance"
                         data-flavor-type="$ctrl.instance.flavor.type"
                         data-os-types="[$ctrl.instance.flavor.osType]"
                         data-region="$ctrl.instance.region"
@@ -114,6 +225,7 @@
                         data-default-image-id="$ctrl.instance.image.id"
                         data-on-change="$ctrl.onImageChange(image)"
                         data-selected-image="$ctrl.model.image"
+                        data-is-image-compatible="$ctrl.model.isImageCompatible"
                     >
                         <span
                             data-translate="pci_projects_project_instances_instance_edit_image_not_available"
@@ -123,7 +235,7 @@
 
                 <oui-message
                     data-type="warning"
-                    data-ng-if="$ctrl.editInstance.imageId && $ctrl.instance.image.id !== $ctrl.editInstance.imageId"
+                    data-ng-if="$ctrl.editInstance.imageId && $ctrl.instance.image.id !== $ctrl.editInstance.imageId && $ctrl.model.isImageCompatible"
                 >
                     <ul class="list-unstyled">
                         <li
@@ -142,14 +254,19 @@
                 <oui-button
                     data-variant="primary"
                     data-type="submit"
-                    data-text="{{:: 'pci_projects_project_instances_instance_edit_image_submit_label' | translate }}"
-                    data-disabled="!$ctrl.editInstance.imageId || $ctrl.instance.image.id === $ctrl.editInstance.imageId"
-                ></oui-button>
+                    data-disabled="!$ctrl.editInstance.imageId || $ctrl.instance.image.id === $ctrl.editInstance.imageId || !$ctrl.model.isImageCompatible"
+                    ><span
+                        data-translate="pci_projects_project_instances_instance_edit_image_submit_label"
+                    ></span>
+                </oui-button>
             </fieldset>
         </form>
     </div>
 
-    <div class="mt-4 pt-4 border-top">
+    <div
+        id="{{::$ctrl.EDIT_PAGE_SECTIONS.FLAVORS}}"
+        class="mt-4 pt-4 border-top"
+    >
         <form
             novalidate
             name="$ctrl.resizeInstanceForm"
@@ -161,12 +278,16 @@
                     data-size="auto"
                 >
                     <pci-project-flavors-list
+                        region="$ctrl.region"
                         data-service-name="{{:: $ctrl.projectId }}"
                         data-selected-flavor="$ctrl.model.flavorGroup"
                         data-default-flavor="$ctrl.instance.flavor"
+                        data-exclude-categories="$ctrl.excludeCategories"
                         data-on-change="$ctrl.onFlavorChange(flavor)"
                         data-display-selected-flavor="false"
                         data-single-flavor-warning="{{ ::'pci_projects_project_instances_instance_edit_flavor_single_available' | translate }}"
+                        data-catalog-endpoint="$ctrl.catalogEndpoint"
+                        data-are-3az-regions-available="$ctrl.regionsTypesAvailability[$ctrl.THREE_AZ_REGION]"
                     >
                         <span
                             data-translate="pci_projects_project_instances_instance_edit_flavor_not_available"
@@ -191,7 +312,7 @@
                         <button
                             type="button"
                             class="oui-popover-button mb-1"
-                            oui-popover="{{:: 'pci_projects_project_instances_instance_edit_flex_help' | translate }}"
+                            oui-popover="{{ ::'pci_projects_project_instances_instance_flex_edit_help' | translate }}"
                         ></button>
                     </div>
                 </oui-field>
@@ -201,7 +322,26 @@
                     data-ng-if="$ctrl.instance.flavor.id !== $ctrl.editInstance.flavorId"
                 >
                     <span
-                        data-ng-bind=":: $ctrl.imageEditMessage | translate"
+                        class="d-inline-block"
+                        data-translate="pci_projects_project_instances_instance_edit_change_instance_modele_message_part_1"
+                    ></span>
+                    <span
+                        class="d-inline-block"
+                        data-translate="pci_projects_project_instances_instance_edit_change_instance_modele_message_part_2"
+                    ></span>
+                </oui-message>
+                <oui-message
+                    data-type="warning"
+                    data-ng-if="$ctrl.isLoosingMonthlyPlan()"
+                >
+                    <strong
+                        data-translate="pci_projects_project_instances_instance_edit_loosing_monthly_plan_p1"
+                    ></strong>
+                    <span
+                        data-translate="pci_projects_project_instances_instance_edit_loosing_monthly_plan_p2"
+                    ></span>
+                    <span
+                        data-translate="pci_projects_project_instances_instance_edit_loosing_monthly_plan_p3"
                     ></span>
                 </oui-message>
 
@@ -212,14 +352,20 @@
                 <oui-button
                     data-variant="primary"
                     data-type="submit"
-                    data-text="{{:: 'pci_projects_project_instances_instance_edit_flavor_submit_label' | translate }}"
                     data-disabled="$ctrl.instance.flavor.id === $ctrl.editInstance.flavorId || !$ctrl.instance.canBeResized()"
+                    ><span
+                        data-translate="pci_projects_project_instances_instance_edit_flavor_submit_label"
+                    ></span
                 ></oui-button>
             </fieldset>
         </form>
     </div>
 
-    <div class="mt-4 pt-4 border-top">
+    <div
+        id="{{::$ctrl.EDIT_PAGE_SECTIONS.BILLING_PERIOD}}"
+        class="mt-4 pt-4 border-top"
+        data-ng-if="! $ctrl.is3az"
+    >
         <form
             novalidate
             name="$ctrl.activateMonthlyBillingForm"
@@ -230,15 +376,52 @@
                     data-label="{{ :: 'pci_projects_project_instances_instance_edit_billing_label' | translate }}"
                     data-size="auto"
                 >
-                    <p>
-                        <span
-                            data-translate="pci_projects_project_instances_instance_edit_billing_montly_discount_message"
-                        ></span>
-                        <span
-                            class="d-inline-block"
+                    <div
+                        data-ng-if="!$ctrl.hasComingSoonFlavorTag($ctrl.instance.flavor)"
+                    >
+                        <p>
+                            <span
+                                data-translate="pci_projects_project_instances_instance_edit_billing_montly_discount_message"
+                            ></span>
+                            <a
+                                data-ng-href="{{$ctrl.instancePricesLink}}"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <span
+                                    data-translate="pci_projects_project_instances_instance_edit_billing_montly_discount_message_link"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-external-link"
+                                    aria-hidden="true"
+                                ></span>
+                            </a>
+                        </p>
+                        <p
                             data-translate="pci_projects_project_instances_instance_edit_billing_short_period_message"
-                        ></span>
-                    </p>
+                        ></p>
+                    </div>
+                    <oui-message
+                        data-type="info"
+                        data-ng-if="$ctrl.hasComingSoonFlavorTag($ctrl.instance.flavor) && $ctrl.isSavingsPlanAvailable"
+                    >
+                        <p
+                            data-translate="pci_projects_project_instances_add_billing_savings_plan_banner"
+                        ></p>
+                        <a
+                            class="oui-link oui-link_icon"
+                            data-ng-href="{{:: $ctrl.savingsPlanUrl }}"
+                            target="_blank"
+                        >
+                            <span
+                                data-translate="pci_projects_project_instances_add_billing_savings_plan_cta"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </oui-message>
                     <pci-project-flavor-billing
                         data-flavor="$ctrl.defaultFlavor"
                         data-monthly-billing="$ctrl.editInstance.monthlyBilling"
@@ -252,10 +435,13 @@
                 ></cui-message-container>
 
                 <oui-button
+                    data-ng-if="!$ctrl.instance.isLocalZone"
                     data-variant="primary"
                     data-type="submit"
-                    data-text="{{:: 'pci_projects_project_instances_instance_edit_billing_submit_label' | translate }}"
                     data-disabled="$ctrl.editInstance.monthlyBilling === $ctrl.instance.isMonthlyBillingActivated()"
+                    ><span
+                        data-translate="pci_projects_project_instances_instance_edit_billing_submit_label"
+                    ></span
                 ></oui-button>
             </fieldset>
         </form>

@@ -1,6 +1,454 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="HostingTabDatabasesCtrl as ctrlTabDatabases"
->
-    <div data-ng-include="ctrlTabDatabases.bddTemplate"></div>
+<div ui-view>
+    <div data-ovh-alert="{{alerts.main}}"></div>
+
+    <div data-ng-if="$ctrl.isFreeHosting()">
+        <p
+            data-translate="hosting_dashboard_service_change_offer_explanation"
+        ></p>
+        <oui-button data-disabled>
+            <span
+                data-translate="hosting_tab_DATABASES_configuration_create_title_button"
+            ></span>
+        </oui-button>
+        <a
+            class="btn btn-link"
+            data-translate="hosting_dashboard_service_change_offer"
+            data-ui-sref="app.hosting.dashboard.upgrade({ productId: $ctrl.hosting.serviceName })"
+            data-ng-click="$ctrl.onDatabaseChangeOfferClick()"
+        ></a>
+    </div>
+
+    <div data-ng-if="!$ctrl.isFreeHosting()" class="mt-3">
+        <div
+            class="text-center"
+            data-ng-if="$ctrl.loading.init || $ctrl.loading.orderCapabilities"
+        >
+            <oui-spinner data-size="l"></oui-spinner>
+        </div>
+
+        <div
+            data-ng-if="!$ctrl.loading.init && !$ctrl.loading.orderCapabilities"
+        >
+            <oui-message data-type="info" data-dismissable>
+                <p class="mb-0">
+                    <span
+                        class="d-inline-block align-middle"
+                        data-translate="hosting_database_banner_quota_part_1"
+                    ></span>
+                    <a
+                        class="d-inline-block align-middle oui-button oui-button_ghost oui-button_icon-right"
+                        href="{{ :: $ctrl.bannerGuideLink }}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <span
+                            data-translate="hosting_database_banner_quota_link"
+                        ></span>
+                        <span class="oui-icon oui-icon-arrow-right"></span>
+                    </a>
+                </p>
+                <p data-translate="hosting_database_banner_quota_part_2"></p>
+            </oui-message>
+
+            <p
+                data-translate="hosting_dashboard_service_change_offer_explanation_only_one"
+                data-ng-if=":: !$ctrl.canCreateDatabase && $ctrl.isStarterOffer()"
+            ></p>
+
+            <div class="row mb-3">
+                <div class="col-xs-6">
+                    <div data-ng-if=":: $ctrl.isStarterOffer()">
+                        <oui-button
+                            data-disabled="!$ctrl.canCreateDatabase"
+                            data-ng-click="$ctrl.onCreateDatabaseBtnClick()"
+                        >
+                            <span
+                                data-translate="hosting_tab_DATABASES_configuration_create_title_button"
+                            ></span>
+                        </oui-button>
+                        <a
+                            class="btn btn-link"
+                            data-translate="hosting_dashboard_service_change_offer"
+                            data-ui-sref="app.hosting.dashboard.upgrade({ productId: $ctrl.hosting.serviceName })"
+                            data-ng-click="$ctrl.onDatabaseChangeOfferClick()"
+                            data-ng-if="!$ctrl.canCreateDatabase"
+                        ></a>
+                    </div>
+
+                    <oui-action-menu
+                        data-text="{{ 'common_actions' | translate }}"
+                        data-ng-mousedown="$ctrl.onActionsMenuClick()"
+                        data-ng-if=":: !$ctrl.isStarterOffer()"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.onCreateDatabaseClick()"
+                            data-disabled="!$ctrl.canCreateDatabase"
+                        >
+                            <span
+                                data-translate="hosting_tab_DATABASES_configuration_create_title_button"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-ng-if="$ctrl.canOrderPublic"
+                            data-ui-sref="app.hosting.dashboard.database.order-public({preselectDbCategory: 'starter'})"
+                            data-on-click="$ctrl.onOrderDatabaseClick()"
+                        >
+                            <span
+                                data-translate="hosting_tab_DATABASES_configuration_order_title_button_public"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-ng-if="hosting.sqlPriveInfo.hasPrivateDatabaseToActivate"
+                            data-ui-sref="app.hosting.dashboard.database.private-sql-activation"
+                            data-on-click="$ctrl.onActivateWebCloudDatabaseClick()"
+                        >
+                            <span
+                                data-translate="hosting_dashboard_service_privatesql_active_long"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-ui-sref="app.hosting.dashboard.database.order-public({preselectDbCategory: 'private'})"
+                            data-on-click="$ctrl.onOrderWebCloudDatabaseClick()"
+                        >
+                            <span
+                                data-translate="hosting_tab_DATABASES_configuration_order_title_button_private"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </div>
+                <div class="col-xs-6" data-ng-if="$ctrl.hasResult">
+                    <form
+                        class="form-inline d-md-flex justify-content-md-end"
+                        name="searchDatabaseForm"
+                    >
+                        <div class="form-group">
+                            <label
+                                class="sr-only"
+                                for="searchDatabase"
+                                data-translate="common_search"
+                            ></label>
+                            <div class="input-group">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="searchDatabase"
+                                    name="searchDatabase"
+                                    placeholder="{{:: 'hosting_tab_DOMAINS_search_placeholder' | translate }}"
+                                    data-ng-change="$ctrl.loadDatabases()"
+                                    data-ng-model="$ctrl.search.value"
+                                    data-ng-model-options="{ debounce: 800 }"
+                                />
+                                <div
+                                    class="input-group-btn"
+                                    data-ng-if="$ctrl.search.value"
+                                >
+                                    <button
+                                        class="btn btn-default"
+                                        type="button"
+                                        aria-label="{{ 'common_cancel' | translate }}"
+                                        data-ng-disabled="$ctrl.loading.databases"
+                                        data-ng-click="$ctrl.emptySearch()"
+                                    >
+                                        <span
+                                            class="fa fa-times"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                </div>
+                                <span
+                                    class="input-group-addon"
+                                    data-ng-if="!$ctrl.search.value"
+                                >
+                                    <span
+                                        class="fa fa-search"
+                                        aria-hidden="true"
+                                    ></span>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="table-responsive" data-ng-if="$ctrl.hasResult">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                data-translate="hosting_tab_DATABASES_table_header_name"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="hosting_tab_DATABASES_table_header_database_name"
+                            ></th>
+                            <th scope="col">
+                                <span
+                                    data-translate="hosting_tab_DATABASES_table_header_server_address"
+                                ></span>
+                                <button
+                                    type="button"
+                                    class="oui-popover-button"
+                                    data-uib-tooltip="{{:: 'hosting_tab_DATABASES_table_header_server_address_tooltip' | translate }}"
+                                    data-tooltip-append-to-body="true"
+                                    data-tooltip-placement="right"
+                                ></button>
+                            </th>
+                            <th
+                                scope="col"
+                                data-translate="hosting_tab_DATABASES_table_header_size"
+                                data-ng-if="!hosting.isCloudWeb"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="hosting_tab_DATABASES_table_header_server"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="hosting_tab_DATABASES_table_header_status"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="hosting_tab_DATABASES_table_header_state"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="hosting_tab_DATABASES_table_header_backup"
+                            ></th>
+                            <th class="min-width text-right" scope="col">
+                                <button
+                                    class="btn btn-icon"
+                                    type="button"
+                                    title="{{ 'refresh' | translate }}"
+                                    data-ng-click="$ctrl.loadDatabases()"
+                                    data-ng-disabled="$ctrl.loading.databases"
+                                >
+                                    <span
+                                        class="fa fa-refresh"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody data-ng-if="$ctrl.loading.databases">
+                        <tr>
+                            <td class="text-center" colspan="8">
+                                <oui-spinner></oui-spinner>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    <tbody
+                        data-ng-if="!$ctrl.loading.databases && !$ctrl.databases.details.length"
+                    >
+                        <tr>
+                            <td
+                                class="text-center"
+                                colspan="8"
+                                data-translate="table_search_noresult"
+                            ></td>
+                        </tr>
+                    </tbody>
+
+                    <tbody data-ng-if="!$ctrl.loading.databases">
+                        <tr
+                            data-ng-repeat="element in $ctrl.databases.details track by $index"
+                        >
+                            <th scope="row" data-ng-bind="element.user"></th>
+                            <td data-ng-bind="element.user"></td>
+                            <td
+                                class="word-break"
+                                data-ng-bind="element.name"
+                            ></td>
+                            <td data-ng-if="!hosting.isCloudWeb">
+                                <div
+                                    data-ng-if="element.server !== 'local' && !element.quotaCalculating"
+                                >
+                                    <div
+                                        class="oui-progress m-0"
+                                        style="min-width:200px"
+                                        data-ng-class="{
+                                        'oui-progress_success': element.quotaPercent < 70,
+                                        'oui-progress_warning': element.quotaPercent >= 70 && element.quotaPercent < 90,
+                                        'oui-progress_error': element.quotaPercent >= 90
+                                    }"
+                                    >
+                                        <div
+                                            class="oui-progress__bar oui-progress__bar_text-left"
+                                            role="progressbar"
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                            aria-valuenow="{{element.quotaPercent}}"
+                                            data-ng-class="{
+                                            'oui-progress__bar_success': element.quotaPercent < 70,
+                                            'oui-progress__bar_warning': element.quotaPercent >= 70 && element.quotaPercent < 90,
+                                            'oui-progress__bar_error': element.quotaPercent >= 90
+                                        }"
+                                            data-ng-style="{'width': element.quotaPercent + '%'}"
+                                        >
+                                            <span
+                                                class="oui-progress__label"
+                                                data-ng-bind="element.quotaUsed.asText"
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span
+                                    data-ng-bind="element.quotaUsed.cappedAsText"
+                                    data-ng-if="element.server === 'local'"
+                                ></span>
+                                <div data-ng-if="element.quotaCalculating">
+                                    <oui-spinner data-size="s"></oui-spinner>
+                                    <span
+                                        data-ng-bind="element.quotaUsed.cappedAsText"
+                                        data-ng-if="element.server === 'local'"
+                                    ></span>
+                                </div>
+                            </td>
+                            <td>
+                                <span data-ng-bind="element.type"></span>
+                                <span
+                                    data-ng-bind="'v' + $ctrl.constructor.formatVersion(element.version)"
+                                    data-ng-if="element.version"
+                                ></span>
+                            </td>
+                            <td>
+                                <span
+                                    data-ng-bind="$ctrl.constructor.formatStatus(element.databaseType, element.databaseServiceDeprecated) | translate"
+                                ></span>
+                            </td>
+                            <td
+                                class="text-center"
+                                data-ng-bind="element.state"
+                            ></td>
+                            <td class="text-center">
+                                <span
+                                    class="oui-badge"
+                                    data-ng-class="{'oui-badge_success': element.dumpsCount > 0, 'oui-badge_info': element.dumpsCount <= 0}"
+                                    data-ng-bind="element.dumpsCount"
+                                >
+                                </span>
+                                <button
+                                    class="btn btn-icon"
+                                    type="button"
+                                    title="{{element.user}} {{:: 'hosting_tab_DATABASES_table_popover_dump_edit' | translate }}"
+                                    data-ng-click="$ctrl.restoreDump(element)"
+                                    data-ng-if="element.dumpsCount > 0"
+                                >
+                                    <span
+                                        class="fa fa-edit"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <oui-action-menu
+                                    data-compact
+                                    data-placement="end"
+                                >
+                                    <oui-action-menu-item
+                                        data-on-click="setAction('database/update-password/hosting-database-update-password', element.name)"
+                                    >
+                                        <span
+                                            data-translate="hosting_tab_DATABASES_table_popover_update_password"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-ng-if="element.type !== 'MONGODB'"
+                                        data-on-click="setAction('database/dump/add/hosting-database-dump-add', element.name)"
+                                    >
+                                        <span
+                                            data-translate="hosting_tab_DATABASES_table_popover_dump"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-ng-if="element.type !== 'MONGODB'"
+                                        data-on-click="$ctrl.restoreDump(element)"
+                                    >
+                                        <span
+                                            data-translate="hosting_tab_DATABASES_table_popover_dump_restore"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-ng-if="element.type === 'MYSQL'"
+                                        data-on-click="setAction('database/import/hosting-database-import', element.name)"
+                                    >
+                                        <span
+                                            data-translate="hosting_tab_DATABASES_table_popover_import"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-ng-if="!hosting.isCloudWeb && element.type === 'MYSQL'"
+                                        data-on-click="$ctrl.checkQuota(element)"
+                                    >
+                                        <span
+                                            data-translate="hosting_tab_DATABASES_table_popover_check_quota"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-ng-if="element.type === 'MYSQL' || element.type === 'MONGODB'"
+                                        data-on-click="setAction('database/delete/hosting-database-delete', element.name)"
+                                    >
+                                        <span
+                                            data-translate="hosting_tab_DATABASES_table_popover_delete"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-ng-if="element.type === 'POSTGRESQL'"
+                                        title="{{ 'hosting_tab_DATABASES_table_popover_new_window' | translate }}"
+                                        data-ng-href="http://phppgadmin.ovh.net/"
+                                        data-external
+                                    >
+                                        <span
+                                            data-translate="hosting_tab_DATABASES_table_popover_phppgadmin"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-ng-if="element.type === 'MYSQL'"
+                                        title="{{ 'hosting_tab_DATABASES_table_popover_new_window' | translate }}"
+                                        data-ng-href="{{ $ctrl.getPhpMyAdminUrl(element) }}"
+                                        data-external
+                                    >
+                                        <span
+                                            data-translate="hosting_tab_DATABASES_table_popover_phpmyadmin"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-on-click="$ctrl.onCopyDatabaseClick(element)"
+                                    >
+                                        <span
+                                            data-translate="hosting_tab_DATABASES_configuration_copy_action_button"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                </oui-action-menu>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="clearfix" data-ng-if="$ctrl.databases.details">
+            <div
+                data-pagination-front
+                data-items="$ctrl.databases.ids"
+                data-paginated-items="$ctrl.databases.details"
+                data-current-page="currentPage"
+                data-nb-pages="nbPages"
+                data-items-per-page="itemsPerPage"
+                data-transform-item="$ctrl.transformItem(item)"
+                data-on-transform-item-done="$ctrl.onTransformItemDone(items)"
+                data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPage, last: nbPages } }}"
+                data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+                data-on-page-change="$ctrl.loading.databases = true"
+                data-ng-show="!$ctrl.loading.init && $ctrl.hasResult"
+            ></div>
+        </div>
+    </div>
 </div>
+
+<!-- <div data-ng-include="$ctrl.bddTemplate"></div> -->

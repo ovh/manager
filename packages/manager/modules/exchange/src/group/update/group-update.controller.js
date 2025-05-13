@@ -6,19 +6,18 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class ExchangeUpdateGroupCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, group, navigation, messaging, $translate) {
+  constructor($scope, wucExchange, group, navigation, messaging, $translate) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       group,
       navigation,
       messaging,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.selectedGroup = navigation.currentActionData;
-
     if (
       has(this.selectedGroup, 'mailingListAddress') &&
       this.selectedGroup.mailingListAddress != null
@@ -85,7 +84,10 @@ export default class ExchangeUpdateGroupCtrl {
 
   prepareModel() {
     this.model = {
-      displayName: this.selectedGroup.displayName,
+      displayName:
+        this.selectedGroup.displayName === ''
+          ? null
+          : this.selectedGroup.displayName,
       mailingListAddress: `${this.selectedGroup.address}@${this.selectedGroup.completeDomain.name}`,
       senderAuthentification: this.selectedGroup.senderAuthentification,
       hiddenFromGAL: this.selectedGroup.hiddenFromGAL,
@@ -97,6 +99,8 @@ export default class ExchangeUpdateGroupCtrl {
         : this.selectedGroup.maxReceiveSize,
       joinRestriction: camelCase(this.selectedGroup.joinRestriction),
       departRestriction: camelCase(this.selectedGroup.departRestriction),
+      company:
+        this.selectedGroup.company === '' ? null : this.selectedGroup.company,
     };
   }
 
@@ -140,13 +144,13 @@ export default class ExchangeUpdateGroupCtrl {
       this.services.$translate.instant('exchange_dashboard_action_doing'),
     );
     this.prepareModel();
-
-    this.services.Exchange.updateGroup(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.selectedGroup.mailingListAddress,
-      this.model,
-    )
+    this.services.wucExchange
+      .updateGroup(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.selectedGroup.mailingListAddress,
+        this.model,
+      )
       .then((data) => {
         const addGroupMessages = {
           OK: this.services.$translate.instant(

@@ -1,0 +1,16 @@
+{
+  "server_ola_step_checker_title": "OLA: OVHcloud Link Aggregation",
+  "server_ola_alert_configuration_needed_small": "Va a ser necesario realizar una configuración manual a través del KVM/IPMI.",
+  "server_ola_alert_configuration_needed_link": "Más información",
+  "server_ola_new_tab": "(se abrirá en una nueva pestaña)",
+  "server_ola": "OVHcloud Link Aggregation",
+  "server_ola_mode": "Modo",
+  "server_ola_active": "Disponible",
+  "server_ola_inactive": "No disponible",
+  "server_ola_activate": "Activar OLA",
+  "server_ola_configure": "Configurar la agregación privada",
+  "server_ola_reset": "Desconfigurar la agregación privada",
+  "server_ola_terminate": "Dar de baja OLA",
+  "server_ola_mode_vrack_aggregation": "Agregación privada",
+  "server_ola_mode_default": "Por defecto"
+}

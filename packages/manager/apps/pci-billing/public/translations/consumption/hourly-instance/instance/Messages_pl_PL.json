@@ -1,0 +1,13 @@
+{
+  "cpbc_no_consumption_data": "Brak zużycia dla wybranego okresu.",
+  "cpbc_hourly_instance_monthly_billing_since": "Włączone do abonamentu miesięcznym od {{since}}",
+  "cpbc_hourly_instance_monthly_billing_activationPending": "Zmiana opłaty na abonament miesięczny",
+  "cpbc_hourly_instance_pass_to_monthly_error": "Wystąpił problem ze zmianą opłaty na miesięczną dla tej instancji.",
+  "cpbc_hourly_instance_pass_to_monthly_price_error": "Wystąpił problem z pobraniem kwoty abonamentu miesięcznego.",
+  "cpbc_hourly_instance_pass_to_monthly_info": "Za bieżący miesiąc zostanie obliczona proporcjonalna płatność.",
+  "cpbc_hourly_instance_pass_to_monthly_button": "Zmień płatność na miesięczną ({{price}} netto/m-c)",
+  "cpbc_hourly_instance_deleted": "Instancja usunięta",
+  "cpbc_hourly_instance_pass_to_monthly": "Przejdź na abonament miesięczny",
+  "cpb_error_message": "Wystąpił problem z pobraniem wszystkich informacji.",
+  "common_cancel": "Anuluj"
+}

@@ -1,0 +1,102 @@
+<oui-tabs class="mb-4" data-ng-if="!$ctrl.displaySelectedRegion">
+    <oui-tabs-item
+        data-heading="{{ continent }}"
+        data-ng-repeat="continent in $ctrl.continents track by continent"
+    >
+        <div class="container-fluid px-0">
+            <div class="row">
+                <p data-ng-if="$ctrl.regionsByContinent[continent] === {}">
+                    <span
+                        data-translate="pci_project_regions_list_empty"
+                    ></span>
+                    <span
+                        data-translate="pci_project_regions_list_add"
+                        data-translate-values="{
+                            url: $ctrl.$state.href('pci.projects.project.regions')
+                        }"
+                    >
+                    </span>
+                </p>
+
+                <div
+                    class="col-md-6 col-xl-4 my-3"
+                    data-ng-repeat="(macro, regions) in $ctrl.regionsByContinents[continent] track by macro"
+                >
+                    <oui-select-picker
+                        data-name="{{:: continent }}_regions"
+                        data-model="$ctrl.macroRegion"
+                        data-label="{{ regions.length === 1 ? regions[0].microRegion.text : macro }}"
+                        data-values="[macro]"
+                        data-variant="light"
+                        data-on-change="$ctrl.onMacroChange(modelValue, regions)"
+                        data-disabled="$ctrl.disabled || $ctrl.constructor.isRegionDisabled(regions)"
+                        data-required
+                    >
+                        <oui-select-picker-section
+                            data-ng-if="$ctrl.constructor.isRegionDisabled(regions) && $ctrl.quotaUrl"
+                        >
+                            <a
+                                class="oui-button oui-button_ghost"
+                                data-ng-href="{{:: $ctrl.quotaUrl }}"
+                                data-translate="pci_project_regions_list_quota"
+                                target="_top"
+                            >
+                            </a>
+                        </oui-select-picker-section>
+                    </oui-select-picker>
+                </div>
+            </div>
+
+            <div
+                data-ng-if="$ctrl.regionsByContinents[continent][$ctrl.macroRegion].length > 1"
+            >
+                <p data-translate="pci_project_regions_list_region"></p>
+
+                <div class="row">
+                    <oui-select-picker
+                        data-ng-repeat="region in $ctrl.regionsByContinents[continent][$ctrl.macroRegion] track by region.name"
+                        class="d-inline-block col-md-6 col-xl-4 my-3"
+                        data-name="{{ continent + '-' + region.name }}"
+                        data-label="{{:: region.name }}"
+                        data-model="$ctrl.region"
+                        data-values="[region]"
+                        data-variant="light"
+                        data-on-change="$ctrl.onRegionChange(modelValue)"
+                        data-disabled="!region.hasEnoughQuota"
+                    >
+                        <oui-select-picker-section
+                            data-ng-if="!region.hasEnoughQuota && $ctrl.quotaUrl"
+                        >
+                            <a
+                                class="oui-button oui-button_ghost"
+                                data-ng-href="{{ $ctrl.quotaUrl }}"
+                                target="_top"
+                            >
+                                <span
+                                    data-translate="pci_project_regions_list_quota"
+                                ></span>
+                            </a>
+                        </oui-select-picker-section>
+                    </oui-select-picker>
+                </div>
+            </div>
+        </div>
+    </oui-tabs-item>
+</oui-tabs>
+
+<div data-ng-if="$ctrl.displaySelectedRegion" class="container-fluid px-0">
+    <div class="row">
+        <oui-select-picker
+            class="d-inline-block col-md-6 col-xl-4 my-3"
+            data-name="selected"
+            data-match="microRegion.text"
+            data-model="$ctrl.region"
+            data-label="{{$ctrl.region.macroRegion.text}}"
+            data-values="[$ctrl.region]"
+            data-variant="light"
+            data-required
+        >
+            {{$ctrl.region.macroRegion.text}}
+        </oui-select-picker>
+    </div>
+</div>

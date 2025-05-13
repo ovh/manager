@@ -1,0 +1,31 @@
+<oui-modal
+    heading="{{:: 'sms_cancel_title' | translate }}"
+    primary-action="$ctrl.executeCancelBatch($ctrl.batch.id)"
+    primary-label="{{:: 'sms_submit' | translate }}"
+    primary-disabled="$ctrl.isCancellingBatch"
+    secondary-action="$ctrl.goBack()"
+    secondary-label="{{:: 'sms_cancel' | translate }}"
+    on-dismiss="$ctrl.goBack()"
+>
+    <span data-translate="sms_cancel_question"></span>
+    <dl class="mt-3 mx-auto w-50 oui-description oui-description_horizontal">
+        <dt data-translate="sms_cancel_details_name"></dt>
+        <dd data-ng-bind="$ctrl.batch.name"></dd>
+        <dt data-translate="sms_cancel_details_date"></dt>
+        <dd
+            data-ng-bind="$ctrl.batch.createdAt | date: 'dd/MM/yyyy HH:mm'"
+        ></dd>
+        <dt data-translate="sms_cancel_details_sender"></dt>
+        <dd data-ng-bind="$ctrl.batch.from || '-'"></dd>
+        <dt data-translate="sms_cancel_details_receivers"></dt>
+        <dd>
+            <div
+                data-ng-repeat="receiver in $ctrl.batch.receivers track by $index"
+                data-ng-bind="receiver"
+            ></div>
+            <span data-ng-if="$ctrl.batch.receivers.length === 0">-</span>
+        </dd>
+        <dt data-translate="sms_cancel_details_message"></dt>
+        <dd class="message-overflow" data-ng-bind="$ctrl.batch.message"></dd>
+    </dl>
+</oui-modal>

@@ -1,0 +1,16 @@
+{
+  "otrs_search_ticket_subject": "Suche nach Betreff:",
+  "otrs_search_ticket_subject_error": "Die Suche nach Betreff ist nur mit mehr als 3 Zeichen langen Suchbegriffen möglich.",
+  "otrs_search_ticket_get_status_error": "Beim Abruf des Status der Tickets ist ein Fehler aufgetreten.",
+  "otrs_title": "Meine Support-Anfragen",
+  "otrs_back": "Zurück zur Ticket-Liste",
+  "otrs_table_ticket_product": "Produktkategorie",
+  "otrs_table_ticket_category": "Kategorie",
+  "otrs_table_ticket_type": "Typ",
+  "otrs_table_ticket_lastMessageFrom_customer": "Ihnen",
+  "otrs_table_ticket_lastMessageFrom_support": "OVH Support",
+  "otrs_table_ticket_state_open": "Offen",
+  "otrs_table_ticket_state_closed": "Geschlossen",
+  "otrs_table_ticket_state_archived": "Archiviert",
+  "otrs_table_ticket_state_unknown": "Andere"
+}

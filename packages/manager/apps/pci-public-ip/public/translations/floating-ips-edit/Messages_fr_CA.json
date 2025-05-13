@@ -1,0 +1,12 @@
+{
+  "pci_additional_ips_floatingips_edit": "Modifier l'instance associée",
+  "pci_additional_ips_floatingips_edit_submit_label": "Associer",
+  "pci_additional_ips_floatingips_edit_cancel_label": "Annuler",
+  "pci_additional_ips_floatingips_edit_description": "Sélectionnez l'instance sur laquelle vous souhaitez attacher l'adresse IP {{ serviceName }}.",
+  "pci_additional_ips_floatingips_edit_select_instance": "Sélectionnez une instance",
+  "pci_additional_ips_floatingips_edit_select_ip": "Sélectionnez un réseau/IP",
+  "pci_additional_ips_floatingips_edit_success": "L'instance associée à l'IP {{ ip }} a été modifiée.",
+  "pci_additional_ips_floatingips_edit_error": "Une erreur est survenue lors de la modification de l'instance associée : {{ error }}",
+  "pci_additional_ips_floatingips_edit_gateway_error": "Nous n'avons pas trouvé de passerelle dans le réseau privé sélectionné qui est nécessaire pour attacher cette Floating IP. Veuillez en créer une d'abord ou sélectionner une autre instance/ou un autre réseau privé.",
+  "pci_additional_ips_floatingips_edit_gateway_no_instance_error": "Vous n'avez pas d'instance associée disponible"
+}

@@ -5,10 +5,10 @@ export default /* @ngInject */ function(
   $q,
   $translate,
   $stateParams,
+  coreConfig,
   CucCloudMessage,
   DetailsPopoverService,
   OvhApiCloudProjectVolume,
-  OvhApiMe,
 ) {
   const self = this;
   self.DetailsPopoverService = DetailsPopoverService;
@@ -65,11 +65,9 @@ export default /* @ngInject */ function(
   }
 
   function initUserCurrency() {
-    return OvhApiMe.v6()
-      .get()
-      .$promise.then((me) => {
-        self.currencySymbol = me.currency.symbol;
-      });
+    return $q.when(coreConfig.getUser()).then((me) => {
+      self.currencySymbol = me.currency.symbol;
+    });
   }
 
   self.$onInit = () => {

@@ -1,7 +1,0 @@
-{
-  "pci_projects_project_streams_title": "ioStream",
-  "pci_projects_project_streams_onboarding_content1": "Non hai ancora creato ioStream.",
-  "pci_projects_project_streams_onboarding_content2": "ioStream permette di rendere più affidabili e scalabili le architetture orientate a servizi e microservizi.",
-  "pci_projects_project_streams_onboarding_content3": "Gli stream (flussi di eventi) creati sono accessibili con i protocolli Apache Pulsar e Kafka (in arrivo). In seguito è possibile scambiare messaggi in modo asincrono usufruendo della massima disponibilità e scalabilità e aggiungere produttori o consumatori in qualsiasi momento, senza impatto sulle tue operazioni.",
-  "pci_projects_project_streams_onboarding_action_label": "Crea uno stream"
-}

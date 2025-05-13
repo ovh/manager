@@ -1,44 +1,45 @@
 <section class="telecom-legacy">
+    <tuc-toast-message></tuc-toast-message>
     <div class="telecom-dashboard">
         <div class="flash" data-flash-message="60000"></div>
-
-        <div class="telecom-section-header">
-            <header class="page-header" role="banner">
-                <h1>
-                    <span data-translate="telecom_dashboard_title"></span>
-                    <oui-spinner
-                        class="float-right"
-                        data-ng-if="TelecomDashboardCtrl.loading.vip"
-                    >
-                    </oui-spinner>
-                    <span
-                        class="dashboard-vip-icon float-right m-3"
-                        data-ng-if="!TelecomDashboardCtrl.loading.vip && TelecomDashboardCtrl.isVip.telecom"
-                    >
-                        <span
-                            class="sr-only"
-                            data-translate="telecom_dashboard_common_vip"
+        <header class="oui-header mb-4">
+            <div class="oui-header__container">
+                <div class="oui-header__content">
+                    <h1 class="oui-header__title">
+                        <span data-translate="telecom_dashboard_title"></span>
+                        <oui-spinner
+                            class="float-right"
+                            data-ng-if="TelecomDashboardCtrl.loading.vip"
                         >
-                        </span>
+                        </oui-spinner>
                         <span
-                            class="ovh-font ovh-font-statutVIP"
-                            aria-hidden="true"
-                        ></span>
-                    </span>
-                </h1>
-            </header>
-        </div>
-        <!-- /.telecom-section-header -->
-
-        <div class="telecom-section-content">
-            <ovh-manager-banner class="d-block mb-4"></ovh-manager-banner>
-            <div class="row d-md-flex">
-                <div class="col-md-8" data-ui-view="billsView"></div>
-
-                <div class="col-md-4" data-ui-view="guidesView"></div>
+                            class="dashboard-vip-icon float-right m-3"
+                            data-ng-if="!TelecomDashboardCtrl.loading.vip && TelecomDashboardCtrl.isVip.telecom"
+                        >
+                            <span
+                                class="sr-only"
+                                data-translate="telecom_dashboard_common_vip"
+                            >
+                            </span>
+                            <span
+                                class="ovh-font ovh-font-statutVIP"
+                                aria-hidden="true"
+                            ></span>
+                        </span>
+                    </h1>
+                </div>
             </div>
+        </header>
+
+        <div data-ui-view="identityCheckView"></div>
+
+        <div data-ui-view="ftthEligibilityView"></div>
+
+        <div class="row d-md-flex">
+            <div class="col-md-8" data-ui-view="billsView"></div>
+
+            <div class="col-md-4" data-ui-view="guidesView"></div>
         </div>
-        <!-- /.telecom-section-content -->
     </div>
     <!-- /.telecom-dashboard -->
 </section>

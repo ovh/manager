@@ -2,7 +2,7 @@ import angular from 'angular';
 import translate from 'angular-translate';
 
 import '@ovh-ux/ng-translate-async-loader';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import tucShippingModeSelectionCtrl from './shipping-mode-selection.controller';
 import tucShippingModeSelection from './shipping-mode-selection.component';

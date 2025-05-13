@@ -1,0 +1,107 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AlertsPart > Alert is available > should render 1`] = `
+<div>
+  <div
+    class="shadow-md rounded-sm p-6"
+  >
+    <div>
+      <osds-text
+        color="text"
+        data-testid="osds-text"
+        level="heading"
+        size="400"
+      >
+        cpbe_estimate_alert_header_title
+      </osds-text>
+    </div>
+    <p>
+      <osds-text
+        color="text"
+        data-testid="osds-text"
+        level="body"
+        size="400"
+      >
+        cpbe_estimate_alert_header_description
+      </osds-text>
+    </p>
+    <div
+      class="h-[300px]"
+    />
+    <div>
+      <osds-button
+        color="primary"
+        data-testid="osds-button"
+        inline="true"
+        size="sm"
+        variant="stroked"
+      >
+        cpbe_estimate_alert_edit
+         
+      </osds-button>
+      <osds-button
+        class="ml-2"
+        color="primary"
+        data-testid="osds-button"
+        inline="true"
+        size="sm"
+        variant="flat"
+      >
+        cpbe_estimate_alert_delete
+         
+      </osds-button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AlertsPart > Alert is not available > should render 1`] = `
+<div>
+  <div
+    class="shadow-md rounded-sm p-6"
+  >
+    <div>
+      <osds-text
+        color="text"
+        data-testid="osds-text"
+        level="heading"
+        size="400"
+      >
+        cpbe_estimate_alert_header_title
+      </osds-text>
+    </div>
+    <p>
+      <osds-text
+        color="text"
+        data-testid="osds-text"
+        level="body"
+        size="400"
+      >
+        cpbe_estimate_alert_header_description
+      </osds-text>
+    </p>
+    <div
+      class="mt-8"
+    >
+      <osds-button
+        color="primary"
+        data-testid="osds-button"
+        inline="true"
+        size="sm"
+        variant="flat"
+      >
+        <osds-icon
+          aria-hidden="true"
+          class="mr-2"
+          color="primary"
+          contrasted="true"
+          name="bell"
+          size="xs"
+        />
+        cpbe_estimate_alert_create
+         
+      </osds-button>
+    </div>
+  </div>
+</div>
+`;

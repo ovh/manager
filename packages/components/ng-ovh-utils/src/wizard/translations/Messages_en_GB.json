@@ -1,0 +1,9 @@
+{
+  "ua_wizard_cancel": "Cancel",
+  "ua_wizard_confirm": "Confirm",
+  "ua_wizard_next": "Next",
+  "ua_wizard_previous": "Back",
+  "ua_wizard_close": "Close",
+  "ua_wizard_breadcrumb": "Step {{ currentStep }} of {{ stepCount }}",
+  "ua_wizard_help": "Help"
+}

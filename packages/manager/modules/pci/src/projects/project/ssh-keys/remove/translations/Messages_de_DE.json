@@ -1,8 +1,0 @@
-{
- "pci_projects_project_sshKeys_remove_title": "SSH-Schlüssel löschen",
- "pci_projects_project_sshKeys_remove_description": "Dieser Vorgang kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie den Schlüssel {{ name }} löschen möchten?",
- "pci_projects_project_sshKeys_remove_submit_label": "Löschen",
- "pci_projects_project_sshKeys_remove_cancel_label": "Abbrechen",
- "pci_projects_project_sshKeys_remove_success": "Der SSH-Schlüssel wurde erfolgreich gelöscht.",
- "pci_projects_project_sshKeys_remove_error": "Beim Löschen des SSH-Schlüssels ist ein Fehler aufgetreten: {{ error }}."
-}

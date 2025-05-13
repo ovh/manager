@@ -4,11 +4,22 @@ export const CLOUD_INSTANCE_DEFAULTS = {
   flavor: 'b2-30',
 };
 
+export const BETA = 'beta';
+
 export const CLOUD_INSTANCE_DEFAULT_FALLBACK = {
   region: 'WAW1',
   image: 'Ubuntu 16.04',
   flavor: 's1-2',
 };
+
+export const TAGS_BLOB = {
+  ACTIVE: 'active',
+  IS_NEW: 'is_new',
+  COMING_SOON: 'coming_soon',
+};
+
+export const FLOATINGIP_ADDON_FAMILY = 'floatingip';
+export const FLOATINGIP_PLANCODE = 'floatingip.floatingip.hour.consumption';
 
 export const CLOUD_FLAVOR_SPECIFIC_IMAGE = ['g1', 'g2', 'g3', 't1'];
 
@@ -124,10 +135,21 @@ export const CLOUD_PROJECT_OVERVIEW_THRESHOLD = {
 };
 
 export const CLOUD_PROJECT_STATE = {
+  creating: 'creating',
   deleting: 'deleting',
   deleted: 'deleted',
   ok: 'ok',
   suspended: 'suspended',
+};
+
+export const CLOUD_PROJECT_BILLING_STATE = {
+  ACTIVE: 'active',
+  TO_RENEW: 'toRenew',
+  ERROR: 'error',
+  UNPAID: 'unpaid',
+  UNRENEWED: 'unrenewed',
+  RUPTURE: 'rupture',
+  TERMINATED: 'terminated',
 };
 
 export const CLOUD_PCA_FILE_STATE = {
@@ -135,75 +157,6 @@ export const CLOUD_PCA_FILE_STATE = {
   UNSEALING: 'unsealing',
   UNSEALED: 'unsealed',
   USERNAME: 'pca',
-};
-
-export const PCI_REDIRECT_URLS = {
-  EU: {
-    addCreditCard:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/mean/add?meanType=creditCard',
-    billing:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/history',
-    contacts:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/contacts?tab=SERVICES&serviceName={serviceName}',
-    horizon:
-      'https://horizon.cloud.ovh.net/openstackdashboard?username={username}',
-    ipAction:
-      'https://www.ovh.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
-    paymentMeans:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/mean', // should not be used anymore
-    paymentMethods:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/payment/method',
-    paymentMethodAdd:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/payment/method/add',
-    support: 'https://www.ovh.com/manager/dedicated/index.html#/support',
-    vRack:
-      'https://www.ovh.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
-    myAccount:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/dashboard',
-  },
-  CA: {
-    addCreditCard:
-      'https://ca.ovh.com/manager/dedicated/index.html#/billing/mean/add?meanType=creditCard',
-    billing: 'https://ca.ovh.com/manager/dedicated/index.html#/billing/history',
-    contacts: null, // not yet available to CA users
-    horizon:
-      'https://horizon.cloud.ovh.net/openstackdashboard?username={username}',
-    ipAction:
-      'https://ca.ovh.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
-    paymentMeans:
-      'https://ca.ovh.com/manager/dedicated/index.html#/billing/mean', // should not be used anymore
-    paymentMethods:
-      'https://ca.ovh.com/manager/dedicated/index.html#/billing/payment/method',
-    paymentMethodAdd:
-      'https://ca.ovh.com/manager/dedicated/index.html#/billing/payment/method/add',
-    support: 'https://ca.ovh.com/manager/dedicated/index.html#/support',
-    vRack:
-      'https://ca.ovh.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
-    myAccount:
-      'https://ca.ovh.com/manager/dedicated/index.html#/useraccount/dashboard',
-  },
-  US: {
-    addCreditCard:
-      'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/mean/add?meanType=creditCard',
-    billing:
-      'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/history',
-    contacts: null, // not yet available to US users
-    horizon:
-      'https://horizon.cloud.ovh.us/openstackdashboard?username={username}',
-    ipAction:
-      'https://us.ovhcloud.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
-    paymentMeans:
-      'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/mean', // should not be used anymore
-    paymentMethods:
-      'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/payment/method',
-    paymentMethodAdd:
-      'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/payment/method/add',
-    support: 'https://us.ovhcloud.com/manager/dedicated/index.html#/support',
-    vRack:
-      'https://us.ovhcloud.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
-    myAccount:
-      'https://us.ovhcloud.com/manager/dedicated/index.html#/useraccount/dashboard',
-  },
 };
 
 export const PCI_URLS = {
@@ -455,6 +408,13 @@ export const PCI_URLS = {
           fedora: 'https://www.ovh.com/ca/en/g2045.ip_fail_over_fedora',
           windows: 'https://www.ovh.com/ca/en/g2046.ip_fail_over_windows',
         },
+        IN: {
+          debian: 'https://help.ovhcloud.com/csm/en-in-home?id=csm_index',
+          ubuntu: 'https://help.ovhcloud.com/csm/en-in-home?id=csm_index',
+          centos: 'https://help.ovhcloud.com/csm/en-in-home?id=csm_index',
+          fedora: 'https://help.ovhcloud.com/csm/en-in-home?id=csm_index',
+          windows: 'https://help.ovhcloud.com/csm/en-in-home?id=csm_index',
+        },
         AU: {
           debian: 'https://www.ovh.com/ca/en/g2042.ip_fail_over_debian',
           ubuntu: 'https://www.ovh.com/ca/en/g2043.ip_fail_over_ubuntu',
@@ -522,6 +482,8 @@ export const PCI_URLS = {
     vrack: {
       ASIA:
         "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      IN:
+        "https://ca.ovh.com/in/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
       AU:
         "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
       CA:
@@ -539,6 +501,8 @@ export const PCI_URLS = {
       vrack: {
         ASIA:
           "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        IN:
+          "https://ca.ovh.com/in/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
         AU:
           "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
         CA:
@@ -614,6 +578,27 @@ export const PCI_URLS = {
   },
 };
 
+export const PCI_SPECIAL_CONDITIONS = {
+  CA: {
+    fr_FR:
+      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/0a19c8e-Conditions_particulieres_OVH_Stack-FR-11.0.pdf',
+    fr_CA:
+      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/0a19c8e-Conditions_particulieres_OVH_Stack-FR-11.0.pdf',
+    default:
+      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/d2a208c-Conditions_particulieres_OVH_Stack-WE-9.0.pdf',
+  },
+  EU: {
+    fr_FR:
+      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/0a19c8e-Conditions_particulieres_OVH_Stack-FR-11.0.pdf',
+    default:
+      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/d2a208c-Conditions_particulieres_OVH_Stack-WE-9.0.pdf',
+  },
+  US: {
+    default:
+      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/d2a208c-Conditions_particulieres_OVH_Stack-WE-9.0.pdf',
+  },
+};
+
 export const TRACKING_CLOUD = {
   pci_menu_header_instances: 'cloud::pci::menu::instances',
   pci_menu_header_ssh_keys: 'cloud::pci::menu::ssh_keys',
@@ -629,7 +614,208 @@ export const TRACKING_CLOUD = {
   pci_menu_header_contracts: 'cloud::pci::menu::contracts',
 };
 
+const changelogLinks = {
+  compute: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Compute',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Compute',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  storage: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Storage',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Storage',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  default: {
+    changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
+    roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  network: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Networking',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Networking',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  rancher: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Rancher+Service',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Rancher+Service',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  kubernetes: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Kubernetes+Service',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Kubernetes+Service',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  private_registry: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Private+Registry',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Private+Registry',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  databases: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Databases',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Databases',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  data_processing: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Data+Processing',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Data+Processing',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  data_platform: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Data+Platform',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Data+Platform',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  log_data_platform: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Logs+Data+Platform',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Logs+Data+Platform',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  ai_tools: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=AI+Tools',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=AI+Tools',
+    'feature-request':
+      'https://github.com/ovh/management-security-operations-roadmap/issues/new',
+  },
+  ai_notebooks: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=AI+Notebooks',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=AI+Notebooks',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  ai_training: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=AI+Training',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=AI+Training',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  ai_deploy: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=AI+Deploy',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=AI+Deploy',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+};
+
+export const CHANGELOG = {
+  instances: {
+    links: changelogLinks.compute,
+    chapters: ['PublicCloud', 'compute', 'instances'],
+  },
+  object_storage: {
+    links: changelogLinks.storage,
+    chapters: ['PublicCloud', 'storages', 'objects_storage_container'],
+  },
+  cloud_archive: {
+    links: changelogLinks.storage,
+    chapters: ['PublicCloud', 'storages', 'cloud_archives_container'],
+  },
+  cold_archive: {
+    links: changelogLinks.storage,
+    chapters: ['PublicCloud', 'storages', 'cold_archive'],
+  },
+  volume_snapshot: {
+    links: changelogLinks.default,
+    chapters: ['PublicCloud', 'storages', 'volume_snapshot'],
+  },
+  volume_backup: {
+    links: changelogLinks.default,
+    chapters: ['PublicCloud', 'storages', 'volume-backup'],
+  },
+  instance_backup: {
+    links: changelogLinks.default,
+    chapters: ['PublicCloud', 'storages', 'instance-backups'],
+  },
+  load_balancer: {
+    links: changelogLinks.network,
+    chapters: ['PublicCloud', 'network', 'octavia-loadbalancer'],
+  },
+  data_streaming: {
+    links: changelogLinks.databases,
+    chapters: ['PublicCloud', 'databases_analytics', 'data_streaming'],
+  },
+  data_processing: {
+    links: changelogLinks.data_processing,
+    chapters: ['PublicCloud', 'databases_analytics', 'data_processing'],
+  },
+  data_analysis: {
+    links: changelogLinks.databases,
+    chapters: ['PublicCloud', 'databases_analytics', 'data_analysis'],
+  },
+  logs_data_platform: {
+    links: changelogLinks.logs_data_platform,
+    chapters: ['PublicCloud', 'databases_analytics', 'logs_data_platorm'],
+  },
+  ai_dashboard: {
+    links: changelogLinks.ai_tools,
+    chapters: ['PublicCloud', 'ai_machine_learning', 'ai_dashboard'],
+  },
+  ai_notebooks: {
+    links: changelogLinks.ai_notebooks,
+    chapters: ['PublicCloud', 'ai_machine_learning', 'ai_notebooks'],
+  },
+  ai_training: {
+    links: changelogLinks.ai_training,
+    chapters: ['PublicCloud', 'ai_machine_learning', 'ai_training'],
+  },
+  ai_deploy: {
+    links: changelogLinks.ai_deploy,
+    chapters: ['PublicCloud', 'ai_machine_learning', 'ai_deploy'],
+  },
+  quota_and_regions: {
+    links: changelogLinks.default,
+    chapters: ['PublicCloud', 'project_management', 'quota'],
+  },
+  contacts: {
+    links: changelogLinks.default,
+    chapters: ['PublicCloud', 'project_management', 'contacts_rights'],
+  },
+  edit: {
+    links: changelogLinks.default,
+    chapters: ['PublicCloud', 'project_management', 'project'],
+  },
+};
+
 export default {
+  CHANGELOG,
   CLOUD_INSTANCE_DEFAULTS,
   CLOUD_INSTANCE_DEFAULT_FALLBACK,
   CLOUD_FLAVOR_SPECIFIC_IMAGE,
@@ -642,8 +828,13 @@ export default {
   CLOUD_MONITORING,
   CLOUD_PROJECT_OVERVIEW_THRESHOLD,
   CLOUD_PROJECT_STATE,
+  CLOUD_PROJECT_BILLING_STATE,
   CLOUD_PCA_FILE_STATE,
-  PCI_REDIRECT_URLS,
   PCI_URLS,
+  PCI_SPECIAL_CONDITIONS,
   TRACKING_CLOUD,
+  TAGS_BLOB,
+  FLOATINGIP_ADDON_FAMILY,
+  FLOATINGIP_PLANCODE,
+  BETA,
 };

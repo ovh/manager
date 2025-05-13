@@ -1,9 +1,7 @@
 import angular from 'angular';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
-import 'ovh-ui-angular';
-
-import projectOffer from '../../../../components/project/offer';
+import '@ovh-ux/ui-kit';
 
 import component from './component';
 
@@ -16,7 +14,6 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'oui',
-    projectOffer,
   ])
   .run(/* @ngTranslationsInject:json ./translations */)
   .component(component.name, component);

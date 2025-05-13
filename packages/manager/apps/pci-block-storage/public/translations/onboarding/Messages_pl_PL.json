@@ -1,0 +1,14 @@
+{
+  "pci_projects_project_storages_blocks_onboarding_content1": "Nie uruchomiłeś jeszcze usługi Block Storage.",
+  "pci_projects_project_storages_blocks_onboarding_content2": "Używaj wolumenów przestrzeni dyskowych jako dodatkowych dysków. Bezpieczeństwo zapewnione jest dzięki potrójnej replikacji danych.",
+  "pci_projects_project_storages_blocks_onboarding_content3": "Rozbudowuj w prosty sposób przestrzeń dyskową przypisaną do Twoich instancji, dodając wolumeny. Możesz zwiększać wolumeny w zależności od potrzeb, a także powiązać kilka wolumenów z jedną instancją. Operacja ta realizowana jest bez przerywania działania systemu. Możesz następnie dynamicznie przenosić wolumen z jednej instancji do innej w tej samej lokalizacji.",
+  "pci_projects_project_storages_blocks_onboarding_content4": "Wybierz rozmiar przestrzeni od 10 GB do 4 TB. Wolumeny są również dostępne w dwóch wersjach: klasycznej - rozliczanej według zużycia GB i „high-speed” - zapewniającej najwyższą wydajność.",
+  "pci_projects_project_storages_blocks_onboarding_action_label": "Utwórz wolumen",
+  "pci_projects_project_storages_blocks_onboarding_guides_create-attach-volume_title": "Tworzenie i montowanie dodatkowego wolumenu do instancji",
+  "pci_projects_project_storages_blocks_onboarding_guides_create-attach-volume_description": "Dokumentacja dotycząca tworzenia i podpinania dodatkowego dysku do serwera cloud.",
+  "pci_projects_project_storages_blocks_onboarding_guides_configure-volume_title": "Konfiguracja dodatkowego wolumenu",
+  "pci_projects_project_storages_blocks_onboarding_guides_configure-volume_description": "Tutorial konfiguracji dodatkowego dysku na serwerze cloud w ofercie Public Cloud",
+  "pci_projects_project_storages_blocks_onboarding_guides_increase-volume-size_title": "Zwiększanie rozmiaru dysku dodatkowego",
+  "pci_projects_project_storages_blocks_onboarding_guides_increase-volume-size_description": "Przewodnik wyjaśnia, jak zwiększyć rozmiar dodatkowego dysku i rozszerzyć jego główną partycję.",
+  "onboarding_guide_title": "Tutoriale"
+}

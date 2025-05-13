@@ -37,10 +37,13 @@
                                 class="oui-radio__label-container"
                                 for="sslTypeLetsEncrypt"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-translate="hosting_dashboard_ssl_order_free"
-                                ></span>
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-translate="hosting_dashboard_ssl_order_free"
+                                    ></span>
+                                </span>
                             </label>
                         </div>
                         <div
@@ -52,7 +55,7 @@
                                 class="oui-radio__input"
                                 id="sslTypePaid"
                                 name="sslType"
-                                data-ng-value="$ctrl.certificateTypes.PAID.name"
+                                data-ng-value="$ctrl.certificateTypes.SECTIGO.name"
                                 data-ng-model="$ctrl.selectedCertificateType"
                                 required
                             />
@@ -60,12 +63,27 @@
                                 class="oui-radio__label-container"
                                 for="sslTypePaid"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-translate="hosting_dashboard_ssl_order_payable"
-                                ></span>
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-translate="hosting_dashboard_ssl_order_payable"
+                                    ></span>
+                                </span>
                             </label>
                         </div>
+                        <oui-field
+                            ng-if="$ctrl.hostingSSLCertificateType.constructor.isPaid($ctrl.selectedCertificateType)"
+                            label="{{:: 'hosting_dashboard_add_or_order_step1_attach' | translate }}"
+                        >
+                            <oui-select
+                                items="$ctrl.availableDomains"
+                                model="$ctrl.selectedDomain"
+                                match="domain"
+                                name="associatedDomain"
+                            >
+                            </oui-select>
+                        </oui-field>
                         <div class="oui-radio">
                             <input
                                 type="radio"
@@ -80,10 +98,13 @@
                                 class="oui-radio__label-container"
                                 for="sslTypeImported"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-translate="hosting_dashboard_ssl_order_import"
-                                ></span>
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-translate="hosting_dashboard_ssl_order_import"
+                                    ></span>
+                                </span>
                             </label>
                         </div>
                     </fieldset>

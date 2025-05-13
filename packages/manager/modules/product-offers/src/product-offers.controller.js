@@ -7,13 +7,21 @@ export default class ProductOffersController {
   /* @ngInject */
   constructor(
     $q,
+    $timeout,
     $translate,
-    ovhManagerProductOffersDetachService,
+    coreConfig,
+    ovhManagerProductOffersActionService,
     WucOrderCartService,
+    RedirectionService,
+    $window,
   ) {
     this.$q = $q;
+    this.$timeout = $timeout;
+    this.$window = $window;
+    this.RedirectionService = RedirectionService;
     this.$translate = $translate;
-    this.detachService = ovhManagerProductOffersDetachService;
+    this.coreConfig = coreConfig;
+    this.actionService = ovhManagerProductOffersActionService;
     this.WucOrderCartService = WucOrderCartService;
   }
 
@@ -32,17 +40,23 @@ export default class ProductOffersController {
       case WORKFLOW_TYPES.ORDER:
         this.workflow = new OrderWorkflow(
           this.$q,
+          this.$timeout,
           this.$translate,
           this.workflowOptions,
           this.WucOrderCartService,
+          this.$window,
+          this.RedirectionService,
         );
         break;
       case WORKFLOW_TYPES.SERVICES:
         this.workflow = new ServicesWorkflow(
           this.$q,
+          this.$timeout,
           this.$translate,
           this.workflowOptions,
-          this.detachService,
+          this.actionService,
+          this.$window,
+          this.RedirectionService,
         );
         break;
       default:
@@ -52,7 +66,7 @@ export default class ProductOffersController {
     Object.assign(this.workflow, {
       pricingType: this.pricingType,
       sendCurrentState: this.sendCurrentState,
-      user: this.user,
+      user: this.coreConfig.getUser(),
       onError: this.onError,
       onSuccess: this.onSuccess,
     });

@@ -1,0 +1,133 @@
+@import 'bootstrap/less/variables.less';
+
+/* Cloud Space Meter - Legend - Item */
+@cloud-space-meter-legend-item-background-color_used: #64afa0;
+@cloud-space-meter-legend-item-background-color_usedbysnapshot: #ffcd00;
+@cloud-space-meter-legend-item-font-size: 0.75rem;
+@cloud-space-meter-legend-item-font-weight: 400;
+@cloud-space-meter-legend-item-size: 1.125rem;
+
+.cloud-space-meter-legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  &__icon {
+    font-size: 1rem;
+    padding-right: 0.1875rem;
+  }
+
+  &__item {
+    position: relative;
+    font-size: @cloud-space-meter-legend-item-font-size;
+    font-weight: @cloud-space-meter-legend-item-font-weight;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: @cloud-space-meter-legend-item-size;
+      width: @cloud-space-meter-legend-item-size;
+    }
+
+    &_used::before {
+      background-color: @cloud-space-meter-legend-item-background-color_used;
+    }
+
+    &_used::after {
+      @color: rgba(255, 255, 255, 0.2);
+
+      background-image: repeating-linear-gradient(
+        -45deg,
+        @color,
+        @color 40%,
+        transparent 25%,
+        transparent 50%,
+        @color 50%
+      );
+      background-size: 8px 8px;
+      background-position: -1.25rem 0;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    &_usedbysnapshots::before {
+      background-color: @cloud-space-meter-legend-item-background-color_usedbysnapshot;
+    }
+
+    &_row,
+    &_column {
+      width: 100%;
+    }
+
+    &_row {
+      display: block;
+      padding: 0 0.625rem 0.0625rem 1.5625rem;
+      margin-bottom: 0.1875rem;
+    }
+
+    &_column {
+      display: block;
+      margin-bottom: 0.625rem;
+      padding: 0 0 0.0625rem 0.9375rem;
+      text-align: left;
+
+      &::before {
+        width: 0.4375rem;
+      }
+    }
+
+    &_column:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__space {
+    &_column {
+      float: right;
+    }
+
+    &_row::before {
+      content: '(';
+      margin-right: -0.15625rem;
+    }
+
+    &_row::after {
+      content: ')';
+      margin-left: -0.15625rem;
+    }
+  }
+
+  &_row {
+    float: right;
+  }
+}
+
+@media (max-width: @screen-sm-max) {
+  .cloud-space-meter-legend {
+    margin: 0.625rem 0 0.3125rem 0;
+
+    &_row {
+      float: left;
+    }
+
+    &__item_row {
+      display: inline;
+    }
+  }
+}
+
+@media (min-width: 1800px) {
+  .cloud-space-meter-legend {
+    &__item_row {
+      display: inline;
+    }
+  }
+}

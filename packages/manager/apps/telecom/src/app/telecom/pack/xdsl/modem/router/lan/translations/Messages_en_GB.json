@@ -1,15 +1,15 @@
 {
-  "xdsl_modem_lan_title": "IP LAN",
-  "xdsl_modem_lan_description": "Une adresse IP est attribuée à chaque élément connecté au réseau LAN (Local Area Network). Les IP cohabitant dans ce réseau local, non accessibles depuis l'extérieur car non routées sur Internet par nature, forment des IP dites locales aussi appelées IP LAN. Si vous modifiez l’adresse IP LAN statique du routeur, la configuration du DHCP, des redirections de port et des baux vous sera proposée. Si vous configurez l'adressage IP du modem en DHCP, la configuration des redirection de ports vous sera proposée.",
-  "xdsl_modem_lan_addressingType": "Méthode de récupération d'adresse IP",
-  "xdsl_modem_lan_ip": "Adresse IP LAN",
+  "xdsl_modem_lan_title": "LAN IPs",
+  "xdsl_modem_lan_description": "Each element connected to the Local Area Network (LAN) is assigned an IP address. The IP addresses contained in this local network, which cannot be accessed from outside because they are not routed over the Internet by nature, form local IPs, also called LAN IPs. If you change the router’s static LAN IP address, you will be able to configure the DHCP, port forwarding and leases. If you configure the IP addressing of the modem in DHCP, you will be able to configure port forwarding.",
+  "xdsl_modem_lan_addressingType": "IP address recovery method",
+  "xdsl_modem_lan_ip": "LAN IP address",
   "xdsl_modem_lan_subnetMask": "Subnet Mask",
-  "xdsl_modem_lan_addressingType_tooltip": "Le routeur peut récupérer une adresse automatiquement ou avoir une adresse fixe",
-  "xdsl_modem_lan_ip_tooltip": "Adresse utilisée pour joindre le routeur",
-  "xdsl_modem_lan_subnetMask_tooltip": "Masque de sous réseau de l'adresse statique",
-  "xdsl_modem_lan_addressingType_Static": "Statique",
+  "xdsl_modem_lan_addressingType_tooltip": "The router can retrieve an address automatically or have a fixed address",
+  "xdsl_modem_lan_ip_tooltip": "Address used to connect to the router",
+  "xdsl_modem_lan_subnetMask_tooltip": "Static address subnet mask",
+  "xdsl_modem_lan_addressingType_Static": "Static",
   "xdsl_modem_lan_addressingType_DHCP": "DHCP",
-  "xdsl_modem_lan_success": "Le LAN <strong>{{ name }}</strong> a été mis à jour.",
-  "xdsl_modem_lan_error": "Oups ! Nous n'avons pas pu récupérer les informations relatives à votre LAN.",
-  "xdsl_modem_lan_submit_error": "Oups ! Nous n'avons pas pu mettre à jour les informations relatives à votre LAN."
+  "xdsl_modem_lan_success": "The LAN <strong>{{ name }}</strong> has been updated.",
+  "xdsl_modem_lan_error": "Oops! We were unable to retrieve your LAN information.",
+  "xdsl_modem_lan_submit_error": "Oops! We were unable to update your LAN information."
 }

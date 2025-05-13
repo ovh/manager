@@ -1,0 +1,21 @@
+{
+  "vps_onboarding_title": "Prywatne serwery wirtualne (VPS)",
+  "vps_onboarding_description_1": "Wysoka wydajność w najlepszej cenie",
+  "vps_onboarding_description_2": "Łatwość obsługi, skalowalność, możliwość dopasowania do indywidualnych potrzeb",
+  "vps_onboarding_description_3": "Nielimitowany transfer i przepustowość do 2 Gbps*",
+  "vps_onboarding_cta": "Zamów",
+  "vps_onboarding_guide1_title": "Pierwsze kroki z serwerem VPS",
+  "vps_onboarding_guide1_description": "Dowiedz się, jak korzystać z serwera VPS",
+  "vps_onboarding_guide2_title": "Zabezpieczenie serwera VPS",
+  "vps_onboarding_guide2_description": "Poznaj podstawowe elementy pozwalające zabezpieczyć Twój VPS",
+  "vps_onboarding_guide3_title": "Korzystaj ze Snapshotu",
+  "vps_onboarding_guide3_description": "Dowiedz się, jak aktywować i korzystać z opcji snapshot z poziomu Panelu klienta OVHcloud",
+  "vps_onboarding_us_guide1_title": "Getting Started with a VPS",
+  "vps_onboarding_us_guide1_description": "Learn the first steps of using a VPS",
+  "vps_onboarding_us_guide2_title": "How to Secure a VPS",
+  "vps_onboarding_us_guide2_description": "Learn the basics of securing your VPS",
+  "vps_onboarding_us_guide3_title": "How to Use Snapshots on a VPS",
+  "vps_onboarding_us_guide3_description": "Learn about taking snapshots in the OVHcloud Control Panel",
+  "vps_onboarding_description_3_us": "Nielimitowany transfer i przepustowość do 2 Gbps",
+  "vps_onboarding_traffic_infos": "Dla VPS hostowanych w Sydney i Singapurze: Transfer 1 TB/m-c w pakiecie Starter i Value, 2 TB/m-c w pakiecie Essential, 3 TB/m-c w pakiecie Comfort i 4 TB/m-c w pakiecie Elite. Przepustowość zostaje zmniejszona do 10 Mbps po przekroczeniu limitu miesięcznego."
+}

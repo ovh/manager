@@ -11,7 +11,7 @@ export default class ExchangeUpdatePublicFolderPermissionCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangePublicFolders,
     $timeout,
     navigation,
@@ -21,7 +21,7 @@ export default class ExchangeUpdatePublicFolderPermissionCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangePublicFolders,
       $timeout,
       navigation,
@@ -30,7 +30,7 @@ export default class ExchangeUpdatePublicFolderPermissionCtrl {
       exchangeStates,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.folder = navigation.currentActionData;
 
     this.permissions = {

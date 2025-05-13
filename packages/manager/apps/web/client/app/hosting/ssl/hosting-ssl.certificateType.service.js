@@ -39,10 +39,15 @@ angular.module('services').service(
           isFree: true,
           providerName: 'LETSENCRYPT',
         },
-        PAID: {
-          name: 'paid',
+        SECTIGO: {
+          name: 'sectigo',
           isFree: false,
           providerName: 'COMODO',
+        },
+        COMODO: {
+          name: 'comodo',
+          isFree: false,
+          providerName: 'SECTIGO',
         },
         IMPORTED: {
           name: 'imported',
@@ -97,9 +102,15 @@ angular.module('services').service(
      * @returns {boolean}   True if the certificate is a paid certificate
      */
     static isPaid(mysteryCertificateType) {
-      return HostingSSLCertificateType.isCertificateType(
-        mysteryCertificateType,
-        HostingSSLCertificateType.getCertificateTypes().PAID.name,
+      return (
+        HostingSSLCertificateType.isCertificateType(
+          mysteryCertificateType,
+          HostingSSLCertificateType.getCertificateTypes().COMODO.name,
+        ) ||
+        HostingSSLCertificateType.isCertificateType(
+          mysteryCertificateType,
+          HostingSSLCertificateType.getCertificateTypes().SECTIGO.name,
+        )
       );
     }
 

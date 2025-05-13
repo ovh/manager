@@ -1,0 +1,25 @@
+<form
+    id="deleteIpForm"
+    name="deleteIpForm"
+    data-ng-submit="deleteIpForm.$valid && CdaIpDeleteCtrl.deleteIp()"
+>
+    <oui-modal
+        heading="{{ ::'cda_ip_delete_title' | translate }}"
+        primary-label="{{ ::'cda_common_delete' | translate }}"
+        secondary-action="CdaIpDeleteCtrl.closeModal()"
+        secondary-label="{{ ::'common_cancel' | translate }}"
+        on-dismiss="CdaIpDeleteCtrl.closeModal()"
+        loading="CdaIpDeleteCtrl.saving"
+        type="info"
+    >
+        <dl>
+            <dt data-translate="cda_ip_delete_ip_label"></dt>
+            <dd
+                data-ng-bind="(CdaIpDeleteCtrl.ip.network) + '/' + (CdaIpDeleteCtrl.ip.netmask)"
+            ></dd>
+        </dl>
+        <p>
+            <strong data-translate="cda_ip_delete_confirm"></strong>
+        </p>
+    </oui-modal>
+</form>

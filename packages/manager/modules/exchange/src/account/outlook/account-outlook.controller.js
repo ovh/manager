@@ -8,7 +8,7 @@ export default class ExchangeDisplayOutlookCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     exchangeAccountOutlook,
     $timeout,
     $translate,
@@ -18,7 +18,7 @@ export default class ExchangeDisplayOutlookCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       exchangeAccountOutlook,
       $timeout,
       $translate,
@@ -33,8 +33,8 @@ export default class ExchangeDisplayOutlookCtrl {
       language: $translate.use().split('_')[1],
     };
 
-    this.exchange = Exchange.value;
-    this.$routerParams = Exchange.getParams();
+    this.exchange = wucExchange.value;
+    this.$routerParams = wucExchange.getParams();
 
     this.timeout = null;
     this.NO_SERIAL = 'Not required';

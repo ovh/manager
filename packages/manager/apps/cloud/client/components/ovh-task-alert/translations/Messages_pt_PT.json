@@ -1,5 +1,0 @@
-{
- "ovh_task_follow_button": "Informação sobre o incidente (falha técnica)",
- "ovh_task_follow_modal_title": "Acompanhe a resolução do incidente",
- "ovh_task_follow_modal_comment": "Dernière mise à jour : {{ date }}"
-}

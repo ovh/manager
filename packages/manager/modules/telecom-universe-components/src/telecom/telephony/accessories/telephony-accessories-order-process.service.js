@@ -3,6 +3,7 @@ import each from 'lodash/each';
 import fill from 'lodash/fill';
 import filter from 'lodash/filter';
 import map from 'lodash/map';
+import set from 'lodash/set';
 
 export default /* @ngInject */ function(
   $q,
@@ -45,6 +46,50 @@ export default /* @ngInject */ function(
     return list;
   }
 
+  self.hasSuffixVersion = function hasSuffixVersion(accessory) {
+    return accessory.name.match(/.v[0-9]+$/);
+  };
+
+  self.removeSuffixName = function removeSuffixName(accessory, hasSuffix) {
+    return accessory.name.slice(0, hasSuffix.index);
+  };
+
+  self.extendWithoutSuffix = function extendWithoutSuffix(accessory) {
+    return angular.extend(accessory, {
+      url: TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name]
+        ? TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name].url
+        : null,
+      img: TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name]
+        ? TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name].img
+        : null,
+      quantity: 0,
+    });
+  };
+
+  self.extendWithSuffix = function extendWithSuffix(accessory) {
+    return angular.extend(accessory, {
+      url: TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.nameWithoutSuffix]
+        ? TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.nameWithoutSuffix].url
+        : null,
+      img: TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.nameWithoutSuffix]
+        ? TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.nameWithoutSuffix].img
+        : null,
+      quantity: 0,
+    });
+  };
+
+  self.accessoriesListMap = function accessoriesListMap(accessoriesList) {
+    return map(accessoriesList, (accessory) => {
+      const hasSuffix = self.hasSuffixVersion(accessory);
+      if (hasSuffix) {
+        const removeSuffixName = self.removeSuffixName(accessory, hasSuffix);
+        set(accessory, 'nameWithoutSuffix', removeSuffixName);
+        return self.extendWithSuffix(accessory);
+      }
+      return self.extendWithoutSuffix(accessory);
+    });
+  };
+
   /* -----  End of HELPERS  ------*/
 
   /*= ==================================
@@ -58,18 +103,29 @@ export default /* @ngInject */ function(
           country: country || 'fr',
         })
         .$promise.then((accessoriesList) => {
-          orderProcess.accessoriesList = map(accessoriesList, (accessory) =>
-            angular.extend(accessory, {
-              url: TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name]
-                ? TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name].url
-                : null,
-              img: TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name]
-                ? TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name].img
-                : null,
-              quantity: 0,
-            }),
+          orderProcess.accessoriesList = self.accessoriesListMap(
+            accessoriesList,
           );
+          return orderProcess;
+        });
+    }
+    return $q.when(orderProcess);
+  };
 
+  self.getAvailableAccessoriesCompatible = function getAvailableAccessoriesCompatible(
+    brand,
+    country,
+  ) {
+    if (!orderProcess.accessoriesList) {
+      return OvhApiTelephony.v6()
+        .accessories({
+          country: country || 'fr',
+          brand,
+        })
+        .$promise.then((accessoriesList) => {
+          orderProcess.accessoriesList = self.accessoriesListMap(
+            accessoriesList,
+          );
           return orderProcess;
         });
     }
@@ -82,13 +138,13 @@ export default /* @ngInject */ function(
     =            CHECKOUT            =
     ================================ */
 
-  self.getOrderCheckout = function getOrderCheckout() {
+  self.getOrderCheckout = function getOrderCheckout(isRetractationAllowed) {
     return OvhApiOrder.Telephony()
       .v6()
       .getAccessories({
         billingAccount: orderProcess.billingAccount,
         accessories: getAccessoryList(),
-        retractation: true,
+        retractation: isRetractationAllowed,
         shippingContactId: orderProcess.shipping.contact
           ? orderProcess.shipping.contact.id
           : undefined,

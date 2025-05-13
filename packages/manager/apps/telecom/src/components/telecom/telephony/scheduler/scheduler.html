@@ -1,0 +1,381 @@
+<form
+    class="telephony-scheduler"
+    name="telephonyScheduler"
+    data-ng-submit="$ctrl.saveScheduler()"
+    novalidate
+>
+    <div data-ng-if="!$ctrl.loading.init">
+        <!-- SCHEDULER FILTERS -->
+        <h3
+            class="oui-heading_underline"
+            data-translate="telephony_scheduler_category_title"
+        ></h3>
+
+        <div data-ng-transclude data-ng-if="$ctrl.loading.filters"></div>
+
+        <telephony-scheduler-filters
+            data-ng-if="!$ctrl.loading.filters"
+            data-ng-model="$ctrl.model.filters"
+            data-time-condition="$ctrl.timeCondition"
+            data-telephony-scheduler-filters-on-change="$ctrl.onFiltersChange()"
+        >
+        </telephony-scheduler-filters>
+
+        <h3
+            class="oui-heading_underline"
+            data-translate="telephony_scheduler_closing_days_title"
+        ></h3>
+        <p data-translate="telephony_scheduler_closing_days_subtitle"></p>
+
+        <div class="scheduler-calendar">
+            <!-- HEADER -->
+            <div class="calendar-header mb-5 w-100">
+                <!-- DESKTOP VIEW -->
+                <div class="row" data-ng-if="$ctrl.status.isDesktop">
+                    <div class="col-md-5">
+                        <div class="header-left d-inline-block align-middle">
+                            <!-- TODAY BUTTON -->
+                            <button
+                                type="button"
+                                class="btn btn-default mr-3"
+                                data-translate="telephony_scheduler_calendar_today"
+                                data-ng-click="$ctrl.onCalendarNavigate('today')"
+                            ></button>
+                            <!-- TODAY BUTTON -->
+
+                            <!-- PREV - NEXT BUTTONS -->
+                            <div class="btn-group mr-3" role="group">
+                                <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    data-translate-attr="{ title: 'telephony_scheduler_header_previous_title' }"
+                                    data-ng-click="$ctrl.onCalendarNavigate('prev')"
+                                >
+                                    <i class="ovh-font ovh-font-arrow-left"></i>
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    data-translate-attr="{ title: 'telephony_scheduler_header_next_title' }"
+                                    data-ng-click="$ctrl.onCalendarNavigate('next')"
+                                >
+                                    <i
+                                        class="ovh-font ovh-font-arrow-right"
+                                    ></i>
+                                </button>
+                            </div>
+                            <!-- PREV - NEXT BUTTONS -->
+                        </div>
+
+                        <!-- CURRENT PERIOD -->
+                        <strong
+                            class="header-period d-inline-block align-middle"
+                            data-ng-bind="$ctrl.getCalendarTitle()"
+                        ></strong>
+                        <!-- CURRENT PERIOD -->
+                    </div>
+
+                    <div class="col-md-7">
+                        <div
+                            class="header-right d-inline-block align-middle float-right"
+                        >
+                            <!-- VIEWS BUTTONS -->
+                            <div class="btn-group" role="group">
+                                <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    data-ng-class="{ active: $ctrl.model.currentView === 'agendaDay' }"
+                                    data-translate="telephony_scheduler_calendar_day"
+                                    data-translate-attr="{ title: 'telephony_scheduler_calendar_day' }"
+                                    data-ng-click="$ctrl.onChangeCalendarView('agendaDay')"
+                                ></button>
+                                <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    data-ng-class="{ active: $ctrl.model.currentView === 'agendaWeek' }"
+                                    data-translate="telephony_scheduler_calendar_week"
+                                    data-translate-attr="{ title: 'telephony_scheduler_calendar_week' }"
+                                    data-ng-click="$ctrl.onChangeCalendarView('agendaWeek')"
+                                ></button>
+                                <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    data-ng-class="{ active: $ctrl.model.currentView === 'month' }"
+                                    data-translate="telephony_scheduler_calendar_month"
+                                    data-translate-attr="{ title: 'telephony_scheduler_calendar_month' }"
+                                    data-ng-click="$ctrl.onChangeCalendarView('month')"
+                                ></button>
+                            </div>
+                            <!-- VIEWS BUTTONS -->
+
+                            <!-- OTHER ACTIONS -->
+                            <oui-dropdown>
+                                <oui-dropdown-trigger
+                                    aria-label="{{:: 'common_actions' | translate }}"
+                                    data-text="{{:: 'common_actions' | translate }}"
+                                ></oui-dropdown-trigger>
+                                <oui-dropdown-content>
+                                    <oui-dropdown-item
+                                        data-on-click="$ctrl.manageAdd()"
+                                    >
+                                        <span
+                                            data-translate="telephony_scheduler_actions_add"
+                                        ></span>
+                                    </oui-dropdown-item>
+                                    <oui-dropdown-item
+                                        data-on-click="$ctrl.manageImport()"
+                                    >
+                                        <span
+                                            data-translate="telephony_scheduler_actions_import"
+                                        ></span>
+                                    </oui-dropdown-item>
+                                    <oui-dropdown-item
+                                        data-on-click="$ctrl.manageExport()"
+                                    >
+                                        <span
+                                            data-translate="telephony_scheduler_actions_export"
+                                        ></span>
+                                    </oui-dropdown-item>
+                                    <oui-dropdown-divider></oui-dropdown-divider>
+                                    <oui-dropdown-item
+                                        data-on-click="$ctrl.manageBankHolidays()"
+                                    >
+                                        <span
+                                            data-translate="telephony_scheduler_actions_bank_holidays"
+                                        ></span>
+                                    </oui-dropdown-item>
+                                    <oui-dropdown-item
+                                        data-on-click="$ctrl.manageDeleteAll()"
+                                    >
+                                        <span
+                                            data-translate="telephony_scheduler_actions_bank_delete_all"
+                                        ></span>
+                                    </oui-dropdown-item>
+                                </oui-dropdown-content>
+                            </oui-dropdown>
+                            <!-- OTHER ACTIONS -->
+                        </div>
+                    </div>
+                </div>
+                <!-- DESKTOP VIEW -->
+
+                <!-- MOBILE VIEW -->
+                <div data-ng-if="!$ctrl.status.isDesktop">
+                    <!-- VIEWS SWITCH -->
+                    <div class="d-inline-block align-middle">
+                        <div class="btn-group" data-uib-dropdown>
+                            <button
+                                type="button"
+                                id="mobile-view-switch"
+                                class="btn btn-default"
+                                data-uib-dropdown-toggle
+                            >
+                                <span
+                                    data-ng-bind="$ctrl.getCalendarTitle()"
+                                ></span>
+                                <i class="caret"></i>
+                            </button>
+                            <ul
+                                class="dropdown-menu"
+                                data-uib-dropdown-menu
+                                role="menu"
+                                aria-labelledby="mobile-view-switch"
+                            >
+                                <li role="menuitem">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link w-100"
+                                        data-ng-class="{ active: $ctrl.model.currentView === 'month' }"
+                                        data-translate="telephony_scheduler_calendar_month"
+                                        data-translate-attr="{ title: 'telephony_scheduler_calendar_month' }"
+                                        data-ng-click="$ctrl.onChangeCalendarView('month')"
+                                    ></button>
+                                </li>
+                                <li role="menuitem">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link w-100"
+                                        data-ng-class="{ active: $ctrl.model.currentView === 'agendaWeek' }"
+                                        data-translate="telephony_scheduler_calendar_week"
+                                        data-translate-attr="{ title: 'telephony_scheduler_calendar_week' }"
+                                        data-ng-click="$ctrl.onChangeCalendarView('agendaWeek')"
+                                    ></button>
+                                </li>
+                                <li role="menuitem">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link w-100"
+                                        data-ng-class="{ active: $ctrl.model.currentView === 'agendaDay' }"
+                                        data-translate="telephony_scheduler_calendar_day"
+                                        data-translate-attr="{ title: 'telephony_scheduler_calendar_day' }"
+                                        data-ng-click="$ctrl.onChangeCalendarView('agendaDay')"
+                                    ></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- VIEWS SWITCH -->
+
+                    <!-- NAVIGATE BUTTONS -->
+                    <div class="d-inline-block align-middle">
+                        <div class="btn-group mx-5" data-uib-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-default"
+                                id="mobile-navigate-buttons"
+                                data-translate-attr="{ title: 'telephony_scheduler_calendar_today' }"
+                                data-ng-click="$ctrl.onCalendarNavigate('today')"
+                            >
+                                <span class="fa-stack">
+                                    <i class="fa fa-calendar-o fa-stack-2x"></i>
+                                    <i
+                                        class="d-inline-block mt-2"
+                                        data-ng-bind="$ctrl.getCurrentDay()"
+                                    >
+                                    </i>
+                                </span>
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-default px-2"
+                                data-uib-dropdown-toggle
+                            >
+                                <i class="caret"></i>
+                            </button>
+                            <ul
+                                class="dropdown-menu"
+                                data-uib-dropdown-menu
+                                role="menu"
+                                aria-labelledby="mobile-navigate-buttons"
+                            >
+                                <li role="menuitem">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link w-100"
+                                        data-translate="telephony_scheduler_header_previous_title"
+                                        data-ng-click="$ctrl.onCalendarNavigate('prev')"
+                                    ></button>
+                                </li>
+                                <li role="menuitem">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link w-100"
+                                        data-translate="telephony_scheduler_header_next_title"
+                                        data-ng-click="$ctrl.onCalendarNavigate('next')"
+                                    ></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- NAVIGATE BUTTONS -->
+
+                    <!-- OTHER ACTIONS -->
+                    <div class="d-inline-block align-middle float-right">
+                        <oui-dropdown>
+                            <oui-dropdown-trigger
+                                aria-label="{{:: 'common_actions' | translate }}"
+                                data-text="{{:: 'common_actions' | translate }}"
+                            ></oui-dropdown-trigger>
+                            <oui-dropdown-content>
+                                <oui-dropdown-item
+                                    data-on-click="$ctrl.manageAdd()"
+                                >
+                                    <span
+                                        data-translate="telephony_scheduler_actions_add"
+                                    ></span>
+                                </oui-dropdown-item>
+                                <oui-dropdown-item
+                                    data-on-click="$ctrl.manageImport()"
+                                >
+                                    <span
+                                        data-translate="telephony_scheduler_actions_import"
+                                    ></span>
+                                </oui-dropdown-item>
+                                <oui-dropdown-item
+                                    data-on-click="$ctrl.manageExport()"
+                                >
+                                    <span
+                                        data-translate="telephony_scheduler_actions_export"
+                                    ></span>
+                                </oui-dropdown-item>
+                                <oui-dropdown-divider></oui-dropdown-divider>
+                                <oui-dropdown-item
+                                    data-on-click="$ctrl.manageBankHolidays()"
+                                >
+                                    <span
+                                        data-translate="telephony_scheduler_actions_bank_holidays"
+                                    ></span>
+                                </oui-dropdown-item>
+                                <oui-dropdown-item
+                                    data-on-click="$ctrl.manageDeleteAll()"
+                                >
+                                    <span
+                                        data-translate="telephony_scheduler_actions_bank_delete_all"
+                                    ></span>
+                                </oui-dropdown-item>
+                            </oui-dropdown-content>
+                        </oui-dropdown>
+                    </div>
+                    <!-- OTHER ACTIONS -->
+                </div>
+                <!-- MOBILE VIEW -->
+            </div>
+            <!-- HEADER -->
+
+            <!-- UI-CALENDAR -->
+            <div class="scheduler-ui-calendar my-3">
+                <div
+                    class="scheduler-overlay w-100 h-100"
+                    data-ng-if="$ctrl.loading.events"
+                >
+                    <div class="scheduler-overlay-backdrop w-100 h-100"></div>
+                    <div
+                        class="scheduler-overlay-loader d-flex flex-column align-items-center justify-content-center"
+                        data-ng-transclude
+                    ></div>
+                </div>
+
+                <div
+                    id="scheduler-calendar"
+                    data-ui-calendar="$ctrl.calendarOptions"
+                    data-calendar="eventsCalendar"
+                    data-ng-model="$ctrl.model.events"
+                ></div>
+            </div>
+            <!-- UI-CALENDAR -->
+        </div>
+    </div>
+
+    <footer
+        class="voip-action-bar"
+        data-ng-if="$ctrl.hasChange() && !$ctrl.loading.edit"
+    >
+        <p
+            class="mb-3 font-weight-bold text-white"
+            data-translate="telephony_scheduler_save"
+        ></p>
+
+        <div class="d-inline-block">
+            <button
+                type="submit"
+                class="btn btn-primary"
+                data-ng-disabled="$ctrl.loading.save"
+            >
+                <oui-spinner
+                    class="mr-2"
+                    data-ng-if="$ctrl.loading.save"
+                    data-size="s"
+                >
+                </oui-spinner>
+                <span data-translate="submit"></span>
+            </button>
+            <button
+                type="button"
+                class="btn btn-default"
+                data-ng-click="$ctrl.cancelEdition()"
+                data-ng-disabled="$ctrl.loading.save"
+                data-translate="cancel"
+            ></button>
+        </div>
+    </footer>
+</form>

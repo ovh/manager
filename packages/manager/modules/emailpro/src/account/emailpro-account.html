@@ -1,5 +1,5 @@
-<div class="container-fluid px-0" data-ng-controller="EmailProTabAccountsCtrl">
-    <div class="row" data-ng-if="!showAlias">
+<div ui-view>
+    <div class="row">
         <div class="col-md-9">
             <div
                 class="alert alert-warning mt-3"
@@ -26,7 +26,7 @@
                                     data-ng-bind="'https://' + exchange.webUrl"
                                 ></span>
                                 <span
-                                    class="oui-icon oui-icon-external_link"
+                                    class="oui-icon oui-icon-external-link"
                                     aria-hidden="true"
                                 ></span>
                                 <span
@@ -230,7 +230,7 @@
                                     >-</span
                                 >
                                 <span
-                                    class="oui-status oui-status_success"
+                                    class="oui-badge oui-badge_success"
                                     data-ng-if="isConfigurable(account)"
                                     data-ng-bind="account.aliases"
                                 >
@@ -249,33 +249,33 @@
                                 ></span>
 
                                 <span
-                                    class="oui-status oui-status_info"
+                                    class="oui-badge oui-badge_info"
                                     data-ng-if="account.state === stateCreating"
                                     data-translate="emailpro_tab_account_state_CREATING"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_error"
+                                    class="oui-badge oui-badge_error"
                                     data-ng-if="account.state === stateDeleting"
                                     data-translate="emailpro_tab_account_state_DELETING"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_warning"
+                                    class="oui-badge oui-badge_warning"
                                     data-ng-if="account.state === stateSuspended"
                                     data-translate="emailpro_tab_account_state_SUSPENDED"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_info"
+                                    class="oui-badge oui-badge_info"
                                     data-ng-if="account.state === stateSuspending"
                                     data-translate="emailpro_tab_account_state_SUSPENDING"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_info"
+                                    class="oui-badge oui-badge_info"
                                     data-ng-if="account.state === stateReopening"
                                     data-translate="emailpro_tab_account_state_REOPENING"
                                 ></span>
 
                                 <button
-                                    class="oui-status oui-status_error"
+                                    class="oui-badge oui-badge_error"
                                     type="button"
                                     data-translate="emailpro_tab_account_state_SPAM"
                                     data-ng-if="account.spamDetected && account.state === stateOk"
@@ -288,8 +288,8 @@
                             <td class="text-nowrap">
                                 <oui-action-menu
                                     data-compact
-                                    data-align="end"
                                     data-disabled="noDomainFlag"
+                                    data-placement="end"
                                 >
                                     <oui-action-menu-item
                                         data-on-click="editAccount(account)"
@@ -365,11 +365,11 @@
             >
                 <span
                     data-translate="emailpro_ACTION_order_accounts_button"
-                    data-ng-if="(exchange.serverDiagnostic.version == 14 && is25g()) || (exchange.serverDiagnostic.version == 14 && exchange.offer == exchangeTypeHosted ) || (exchange.serverDiagnostic.version == 15 && exchange.offer != exchangeTypeDedicated) "
+                    data-ng-if="isNewAccountOrder()"
                 ></span>
                 <span
                     data-translate="emailpro_ACTION_add_account_button"
-                    data-ng-if="!is25g() && ((exchange.serverDiagnostic.version == 14 && exchange.offer != exchangeTypeHosted) || (exchange.serverDiagnostic.version == 15 && exchange.offer == exchangeTypeDedicated))"
+                    data-ng-if="!isNewAccountOrder()"
                 ></span>
             </button>
         </div>
@@ -391,8 +391,4 @@
             </button>
         </div>
     </div>
-    <div
-        data-ng-if="showAlias"
-        data-ng-include="'emailpro/account/alias/emailpro-account-alias.html'"
-    ></div>
 </div>

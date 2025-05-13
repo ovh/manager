@@ -1,7 +1,10 @@
+import 'moment';
+
 export default class VpsMountCtrl {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, VpsService) {
+  constructor($translate, atInternet, CucCloudMessage, VpsService) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.VpsService = VpsService;
 
@@ -25,11 +28,20 @@ export default class VpsMountCtrl {
       });
   }
 
+  trackClick(hit) {
+    this.atInternet.trackClick({
+      name: `vps::detail::veeam::mount::${hit}`,
+      type: 'action',
+    });
+  }
+
   cancel() {
+    this.trackClick('cancel');
     return this.goBack();
   }
 
   confirm() {
+    this.trackClick('confirm');
     this.loader.save = true;
     if (this.mount) {
       this.VpsService.veeamRestorePointMount(

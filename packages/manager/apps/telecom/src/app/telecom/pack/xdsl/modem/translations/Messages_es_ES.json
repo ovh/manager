@@ -1,5 +1,5 @@
 {
-  "xdsl_modem_cant_be_managed": "Este módem no puede ser configurado por OVH.",
+  "xdsl_modem_cant_be_managed": "Este módem no puede ser configurado por OVHcloud.",
   "xdsl_modem_general_config": "Configuración general",
   "xdsl_modem_network_config": "Configuración de red",
   "xdsl_modem_advanced_config": "Configuraciones avanzadas",
@@ -16,5 +16,7 @@
   "xdsl_model_access_error": "¡Vaya! No hemos podido cargar los datos de su pack.",
   "xdsl_model_task_error": "¡Vaya! No hemos podido cargar la pila de tareas en curso.",
   "xdsl_modem_modem_error": "¡Vaya! No hemos podido cargar los datos de su módem.",
-  "xdsl_modem_firmware": "Firmware"
+  "xdsl_modem_firmware": "Firmware",
+  "xdsl_modem_acs_backend": "Backend ACS",
+  "xdsl_modem_breadcrumb": "Módem"
 }

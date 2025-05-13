@@ -1,8 +1,0 @@
-{
-  "enterprise_cloud_database_password_change_title": "Aggiorna la password",
-  "enterprise_cloud_database_password_change_confirm": "Conferma la password",
-  "enterprise_cloud_database_password_change_success": "Password aggiornata correttamente.",
-  "enterprise_cloud_database_password_change_error": "Impossibile aggiornare la password: {{ message }}",
-  "enterprise_cloud_database_password_change_confirm_placeholder": "Inserisci di nuovo la password",
-  "enterprise_cloud_database_password_change_confirm_error": "Le password inserite non coincidono"
-}

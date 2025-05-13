@@ -7,7 +7,8 @@ export default {
   bindings: {
     projectId: '<',
     instance: '<',
-    monthlyPrice: '<',
+    isTrustedZone: '<',
     goBack: '<',
+    snapshotAvailability: '<',
   },
 };

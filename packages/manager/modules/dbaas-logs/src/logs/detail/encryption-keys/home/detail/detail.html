@@ -1,0 +1,64 @@
+<oui-modal
+    data-on-dismiss="$ctrl.dismiss()"
+    data-heading="{{ ::'logs_encryption_keys_details' | translate }}"
+>
+    <dl class="preview-list">
+        <dt
+            class="preview-list__term"
+            data-translate="logs_encryption_keys_col_title"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="$ctrl.encryptionKey.title"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="logs_encryption_keys_col_uid"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="$ctrl.encryptionKey.uid"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="logs_encryption_keys_col_fingerprint"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="$ctrl.encryptionKey.fingerprint"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="logs_encryption_keys_col_algorithm"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="$ctrl.encryptionKey.algorithm"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="logs_encryption_keys_col_content"
+        ></dt>
+        <dd class="preview-list__definition">
+            <oui-clipboard
+                data-model="$ctrl.encryptionKey.content.replaceAll('\\n', '\n')"
+            ></oui-clipboard>
+        </dd>
+        <dt
+            class="preview-list__term"
+            data-translate="logs_encryption_keys_col_createdAt"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="$ctrl.formatCreationDate()"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="logs_encryption_keys_col_nb_archives_full"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="$ctrl.encryptionKey.nbArchive"
+        ></dd>
+    </dl>
+</oui-modal>

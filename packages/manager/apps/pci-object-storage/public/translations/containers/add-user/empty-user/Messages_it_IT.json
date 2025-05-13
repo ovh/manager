@@ -1,0 +1,5 @@
+{
+  "pci_projects_project_storages_containers_container_empty_user_title": "Aggiungere un utente al tuo container",
+  "pci_projects_project_storages_containers_container_empty_user_description": "È necessario creare un utente e generare le credenziali Object Storage nella sezione \"Utenti Object Storage\".",
+  "pci_projects_project_storages_containers_container_empty_user_label": "Accedere a \"Utenti Object Storage\""
+}

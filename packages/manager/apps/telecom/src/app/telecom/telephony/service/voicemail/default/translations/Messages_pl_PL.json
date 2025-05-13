@@ -1,0 +1,11 @@
+{
+  "telephony_line_answer_default_voicemail_title": "Domyślna poczta głosowa",
+  "telephony_line_answer_default_voicemail_config": "Aktualna konfiguracja",
+  "telephony_line_answer_default_voicemail_change": "Zastosować",
+  "telephony_line_answer_default_voicemail_label": "Skorzystaj z poczty elektronicznej z:",
+  "telephony_line_answer_default_voicemail_bulk_all_success": "Domyślna poczta elektroniczna została zastosowana do wybranych usług.",
+  "telephony_line_answer_default_voicemail_bulk_some_success": "Domyślna poczta elektroniczna została zastosowana dla {{ count }} wybranych usług.",
+  "telephony_line_answer_default_voicemail_bulk_error": "Domyślna poczta elektroniczna nie mogła zostać zastosowana do następujących usług:",
+  "telephony_line_answer_default_voicemail_bulk_on_error": "Ojej! Wystąpił błąd podczas stosowania domyślnej poczty elektronicznej.",
+  "telephony_line_answer_default_voicemail_search": "Wyszukaj usługę"
+}

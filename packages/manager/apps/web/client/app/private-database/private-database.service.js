@@ -1,12 +1,15 @@
 import clone from 'lodash/clone';
 import filter from 'lodash/filter';
-import findIndex from 'lodash/findIndex';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import mapKeys from 'lodash/mapKeys';
+import orderBy from 'lodash/orderBy';
 import size from 'lodash/size';
 import some from 'lodash/some';
+import split from 'lodash/split';
+
+import { DATABASE_NAMES } from './private-database.constants';
 
 export default class PrivateDatabase {
   /* @ngInject */
@@ -16,14 +19,16 @@ export default class PrivateDatabase {
    * @param $cacheFactory
    * @param $http
    * @param $q
+   * @param $translate
    * @param OvhHttp
    * @param Poll
    */
-  constructor($rootScope, $cacheFactory, $http, $q, OvhHttp, Poll) {
+  constructor($rootScope, $cacheFactory, $http, $q, $translate, OvhHttp, Poll) {
     this.$rootScope = $rootScope;
     this.cach = $cacheFactory;
     this.$http = $http;
     this.$q = $q;
+    this.$translate = $translate;
     this.OvhHttp = OvhHttp;
     this.Poll = Poll;
 
@@ -33,7 +38,7 @@ export default class PrivateDatabase {
     };
 
     this.swsProxypassPath = 'apiv6/hosting/privateDatabase';
-    this.swsProxypassOrderPath = 'apiv6/order/hosting/privateDatabase';
+    this.swsProxypassUpgradePath = 'apiv6/order/upgrade/cloudDB';
 
     this.rootPath = 'apiv6';
 
@@ -82,6 +87,32 @@ export default class PrivateDatabase {
       .then((res) => res.data);
   }
 
+  getOrderableDatabaseVersions(offer) {
+    return this.getAvailableOrderCapacities(offer)
+      .then((capabilities) => {
+        const versions = capabilities.version;
+        return map(versions, (v) => {
+          const [name, version] = split(v, '_');
+          if (name && DATABASE_NAMES[name]) {
+            return {
+              id: v,
+              label: `${DATABASE_NAMES[name]} ${version}`,
+              name: DATABASE_NAMES[name],
+              version,
+            };
+          }
+          return {
+            id: v,
+            label: v,
+            name: v,
+          };
+        });
+      })
+      .then((versions) =>
+        orderBy(versions, ['name', 'version'], ['asc', 'desc']),
+      );
+  }
+
   /**
    * Get hosting models
    */
@@ -104,6 +135,14 @@ export default class PrivateDatabase {
         serviceName,
       },
       rootPath: 'apiv6',
+    });
+  }
+
+  getParentServiceId(serviceName) {
+    return this.getServiceInfos(serviceName).then(({ serviceId }) => {
+      return this.OvhHttp.get(`/services/${serviceId}`, {
+        rootPath: 'apiv6',
+      });
     });
   }
 
@@ -428,151 +467,41 @@ export default class PrivateDatabase {
   /*
         ORDER
     */
-  orderDuration(version, ram) {
+  getUpgradePlans(serviceName) {
     return this.$http
-      .get(`${this.swsProxypassOrderPath}/new`, { params: { version, ram } })
-      .then((response) => response.data)
-      .catch((err) => this.$q.reject(err.data));
-  }
-
-  orderPrice(version, ram, duration) {
-    return this.$http
-      .get(`${this.swsProxypassOrderPath}/new/${duration}`, {
-        params: { version, ram },
-      })
-      .then((response) => response.data)
-      .catch((err) => this.$q.reject(err.data));
-  }
-
-  orderPrivateDatabase(version, ram, duration, datacenter) {
-    return this.$http
-      .post(`${this.swsProxypassOrderPath}/new/${duration}`, {
-        version,
-        ram,
-        offer: 'classic',
-        datacenter,
-      })
-      .then((response) => response.data)
-      .catch((err) => this.$q.reject(err.data));
-  }
-
-  orderDBaaS(version, ram, duration, datacenter) {
-    return this.$http
-      .post(`${this.swsProxypassOrderPath}/new/${duration}`, {
-        version,
-        ram,
-        offer: 'public',
-        datacenter,
-      })
-      .then((response) => response.data)
-      .catch((err) => this.$q.reject(err.data));
-  }
-
-  canOrder(serviceName) {
-    return this.$http
-      .get(this.swsProxypassOrderPath)
-      .then(
-        (response) =>
-          findIndex(response.data, (service) => service === serviceName) !== -1,
-      )
-      .catch(() => false);
+      .get(`${this.swsProxypassUpgradePath}/${serviceName}`)
+      .then((response) => {
+        return response.data;
+      });
   }
 
   canOrderRam(serviceName) {
-    return this.canOrder(serviceName).then((canOrder) => {
-      if (canOrder) {
-        return this.$http
-          .get(`${this.swsProxypassOrderPath}/${serviceName}`)
-          .then(
-            (response) =>
-              findIndex(
-                response.data,
-                (service) => service === 'ram' || service === 'upgrade',
-              ) !== -1,
-          );
+    return this.getUpgradePlans(serviceName).then((response) => {
+      if (response.length > 0) {
+        return true;
       }
       return false;
     });
   }
 
-  listAvailableRam() {
+  getRamPlan(serviceName, planCode) {
     return this.$http
-      .get(`apiv6/order.json?d=${Date.now()}`)
-      .then((response) => {
-        if (get(response, 'data.models', false)) {
-          return response.data.models[
-            'hosting.PrivateDatabase.AvailableRamSizeEnum'
-          ].enum;
-        }
-        return [];
+      .get(`${this.swsProxypassUpgradePath}/${serviceName}/${planCode}`, {
+        params: {
+          quantity: 1,
+        },
       })
-      .catch(() => []);
+      .then((response) => response.data.order);
   }
 
-  listAvailableRamDurations(serviceName, opts) {
-    return this.canOrderRam(serviceName).then((canOrderRam) => {
-      let rtn;
-
-      if (canOrderRam) {
-        rtn = this.$http
-          .get(`${this.swsProxypassOrderPath}/${serviceName}/ram`, {
-            params: { ram: opts.ram },
-          })
-          .then((response) => response.data || [])
-          .catch(() => []);
-      }
-
-      return rtn;
-    });
-  }
-
-  getRamPrices(serviceName, opts) {
-    const durationsTab = [];
-    const defer = this.$q.defer();
-
-    this.listAvailableRamDurations(serviceName, opts)
-      .then((durations) => {
-        defer.notify(durations);
-
-        return this.$q.all(
-          map(durations, (duration) =>
-            this.$http
-              .get(
-                `${this.swsProxypassOrderPath}/${serviceName}/ram/${duration}`,
-                {
-                  params: {
-                    ram: opts.ram,
-                  },
-                },
-              )
-              .then((durationDetails) => {
-                const details = angular.copy(durationDetails.data);
-                details.duration = duration;
-                durationsTab.push(details);
-                defer.notify(durationsTab);
-              }),
-          ),
-        );
-      })
-      .then(() => defer.resolve(durationsTab))
-      .catch(() => defer.resolve(durationsTab));
-    return defer.promise;
-  }
-
-  orderRamorderRam(serviceName, ram, duration) {
+  orderRam(serviceName, planCode) {
     return this.$http
-      .post(`${this.swsProxypassOrderPath}/${serviceName}/ram/${duration}`, {
-        ram,
+      .post(`${this.swsProxypassUpgradePath}/${serviceName}/${planCode}`, {
+        params: {
+          quantity: 1,
+        },
       })
-      .then((res) => res.data);
-  }
-
-  orderRam(serviceName, ram, duration) {
-    return this.$http
-      .post(`${this.swsProxypassOrderPath}/${serviceName}/ram/${duration}`, {
-        ram,
-      })
-      .then((response) => response.data);
+      .then((response) => response.data.order);
   }
 
   /*
@@ -1175,6 +1104,9 @@ export default class PrivateDatabase {
       urlParams: {
         serviceName,
       },
+    }).catch(({ message = '' }) => {
+      const error = { data: { message } };
+      throw error;
     });
   }
 
@@ -1255,17 +1187,12 @@ export default class PrivateDatabase {
         start: this.constructor.getStartTime(opts.range),
         queries: [
           {
-            metric: 'dbaas.metrics.docker_container_mem_usage_percent',
+            metric: 'dbaas.metrics.exec_memsw',
             aggregator: 'sum',
             downsample: downSample,
           },
           {
-            metric: 'dbaas.metrics.mysql_connexion_count',
-            aggregator: 'sum',
-            downsample: downSample,
-          },
-          {
-            metric: 'dbaas.metrics.mysql_query_time_average',
+            metric: 'dbaas.metrics.mysql_threads_connected',
             aggregator: 'sum',
             downsample: downSample,
           },
@@ -1316,5 +1243,28 @@ export default class PrivateDatabase {
         min: 0,
       },
     });
+  }
+
+  getDatabaseDisplayName(keyToTranslate, dbParam) {
+    if (dbParam && typeof dbParam === 'string') {
+      const [type, versionNumber] = dbParam.split('_');
+      return this.$translate.instant(keyToTranslate.concat(type), {
+        version: versionNumber,
+      });
+    }
+    if (dbParam && typeof dbParam === 'object') {
+      return this.$translate.instant(keyToTranslate.concat(dbParam.type), {
+        version: dbParam.versionNumber,
+      });
+    }
+
+    return null;
+  }
+
+  refreshQuota(serviceName) {
+    this.resetCache();
+    return this.$http
+      .post(`${this.swsProxypassPath}/${serviceName}/quotaRefresh`)
+      .then((response) => response.data);
   }
 }

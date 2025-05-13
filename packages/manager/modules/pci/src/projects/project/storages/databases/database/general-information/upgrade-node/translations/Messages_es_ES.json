@@ -1,0 +1,13 @@
+{
+  "pci_databases_general_information_upgrade_node_confirm": "Mejorar mi plantilla de nodo",
+  "pci_databases_general_information_upgrade_node": "Cambiar de plantilla de nodo",
+  "pci_databases_general_information_upgrade_node_back": "Información",
+  "pci_databases_general_information_upgrade_node_cancel": "Cancelar",
+  "pci_databases_general_information_upgrade_node_description": "Está utilizando la plantilla de nodo {{currentNodeModel}}. Puede mejorarla haciendo clic en «Mejorar mi plantilla de nodo».",
+  "pci_databases_general_information_upgrade_node_warning": "Una vez que haya realizado los cambios, no podrá volver a una plantilla inferior.",
+  "pci_databases_general_information_upgrade_node_label": "Modelo",
+  "pci_databases_general_information_upgrade_node_placeholder": "Seleccione una plantilla de nodo",
+  "pci_databases_general_information_upgrade_node_success": "El cambio de plantilla de nodo se ha realizado correctamente. Será efectivo en unos minutos.",
+  "pci_databases_general_information_upgrade_node_error": "El cambio de plantilla de nodo no se ha realizado correctamente: {{ message }}",
+  "pci_databases_general_information_upgrade_node_processing": "Mejorando la plantilla de nodo..."
+}

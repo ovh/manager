@@ -1,7 +1,0 @@
-{
-  "pack_xdsl_access_ip_title": "Reverse DNS",
-  "pack_xdsl_access_ip_ip": "IP",
-  "pack_xdsl_access_ip_dns": "DNS",
-  "pack_xdsl_access_ip_add_entry": "Pridėti IP adresą",
-  "pack_xdsl_access_ip_delete_really": "Ar tikrai norite ištrinti DNS reverse iš {{ipReverse}} ?"
-}

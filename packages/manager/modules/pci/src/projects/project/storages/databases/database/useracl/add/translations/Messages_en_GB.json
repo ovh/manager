@@ -1,0 +1,13 @@
+{
+  "pci_databases_useracl_create_confirm": "Add an ACL",
+  "pci_databases_useracl_create_cancel": "Cancel",
+  "pci_databases_useracl_create": "Add an ACL",
+  "pci_databases_useracl_create_description": "The index models use the standard matching system, also called the standard glob pattern ('*' works for any number of characters and '?' for any character). For example the 'logs_200?' template will work for the 'logs_200904' index match, but not 'logs_201904'.",
+  "pci_databases_useracl_create_username": "Username",
+  "pci_databases_useracl_create_username_placeholder": "Select a user",
+  "pci_databases_useracl_create_permission": "Permission",
+  "pci_databases_useracl_create_pattern": "Index model",
+  "pci_databases_useracl_create_pattern_placeholder": "logs_*",
+  "pci_databases_useracl_create_success_message": "The ACL for the {{username}} user has been added.",
+  "pci_databases_useracl_create_error_message": "An error has occurred adding the ACLs to the user: {{message}}"
+}

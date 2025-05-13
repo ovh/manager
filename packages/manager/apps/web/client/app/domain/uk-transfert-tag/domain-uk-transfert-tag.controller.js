@@ -1,6 +1,7 @@
 angular.module('App').controller(
   'DomainUkTransfertTagCtrl',
   class DomainUkTransfertTagCtrl {
+    /* @ngInject */
     constructor($scope, $stateParams, $translate, Alerter, Domain) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;

@@ -1,0 +1,15 @@
+{
+  "pci_projects_project_storages_cold_archive_containers_container_archive_title": "Arquivar o seu container",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_description": "Está prestes a arquivar o seu container {{ containerName }}.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_submit_label": "Arquivar",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_cancel_label": "Anular",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_success_message": "O container {{ containerName }} está a ser arquivado.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_error_message": "Ocorreu um erro ao arquivar o container {{ containerName }}: {{ message }}.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_description_2": "Ao configurar um período de retenção, o seu arquivo será bloqueado e não poderá eliminar os seus dados durante todo o período de retenção,",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_has_retention": "Programar um período de retenção",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_has_no_retention": "Não programar um período de retenção",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_retention_days": "Adicionar o número de dias de retenção",
+  "pci_projects_project_storages_cold_archive_containers_container_retention_warning": "que terminará a <strong>{{ date }}</strong>.",
+  "pci_projects_project_storages_cold_archive_containers_container_retention_warning_2": "Só poderá proceder à supressão dos seus dados após essa data.",
+  "pci_projects_project_storages_cold_archive_containers_container_retention_retention_value_wartning": "Adicionar o número de dias de retenção (mínimo 1 dia, máximo 4500 dias)"
+}

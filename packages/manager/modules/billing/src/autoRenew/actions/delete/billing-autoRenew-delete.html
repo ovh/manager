@@ -1,0 +1,13 @@
+<oui-modal
+    data-heading="{{:: 'autorenew_service_delete_title' | translate }}"
+    data-primary-action="$ctrl.goToAutorenew()"
+    data-primary-label="{{:: 'autorenew_service_delete_validate' | translate }}"
+    data-on-dismiss="$ctrl.goToAutorenew()"
+>
+    <p
+        data-translate="autorenew_service_delete_support"
+        data-translate-values="{
+            phoneNumber: $ctrl.supportPhoneNumber
+        }"
+    ></p>
+</oui-modal>

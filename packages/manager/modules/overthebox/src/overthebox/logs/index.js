@@ -1,24 +1,14 @@
 import angular from 'angular';
-import controller from './overTheBox-logs.controller';
-import template from './overTheBox-logs.html';
+
+import component from './overTheBox-logs.component';
+import routing from './overTheBox-logs.routing';
 
 const moduleName = 'ovhManagerOtbLogs';
 
-angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('overTheBoxes.overTheBox.logs', {
-    url: '/logs',
-    views: {
-      otbView: {
-        template,
-        controller,
-        controllerAs: 'OTBLogs',
-      },
-    },
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
-  });
-});
+angular
+  .module(moduleName, [])
+  .component('overTheBoxLogs', component)
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

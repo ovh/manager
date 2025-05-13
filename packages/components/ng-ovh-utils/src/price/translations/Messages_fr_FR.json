@@ -1,0 +1,6 @@
+{
+  "ua_price_ht_label": "{{price}} HT",
+  "ua_price_ttc_label": "{{price}} TTC",
+  "ua_price_free": "Inclus",
+  "ua_price_label_yearly": "/an"
+}

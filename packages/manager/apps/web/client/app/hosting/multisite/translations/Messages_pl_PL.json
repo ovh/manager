@@ -1,0 +1,9 @@
+{
+  "hosting_multisite": "MultiSite",
+  "hosting_multisite_actions": "Operacje",
+  "hosting_multisite_dialog_title": "Weryfikacja serwerów DNS",
+  "hosting_multisite_dialog_edit_record_description": "Zmień rekord typu {{recordType}} z adresem IP {{ip}} w strefie DNS domeny {{domain}}.",
+  "hosting_multisite_dialog_edit_record_link": "Zmień rekord typu {{recordType}}.",
+  "hosting_multisite_dialog_edit_record_other_nic": "Modyfikacja powinna zostać wykonana przez administratora strefy DNS: {{nic}}.",
+  "hosting_multisite_dialog_add_record_description": "Dodaj rekord typu {{recordType}} z adresem IP {{ip}} w strefie DNS domeny {{domain}}."
+}

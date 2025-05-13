@@ -9,8 +9,10 @@ export default {
   bindings: {
     ...ListLayoutHelper.componentBindings,
     smsStatusTypes: '<',
-
+    smsChannelEnum: '<',
     getSmsLink: '<',
     viewSms: '<',
+    gotoOrder: '<',
+    headerGuideLink: '<',
   },
 };

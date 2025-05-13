@@ -1,0 +1,17 @@
+<billing-autorenew-terminate
+    data-title=":: 'autorenew_privateDatabase_dashboard_close_service' | translate"
+    data-on-success="$ctrl.onSuccess()"
+    data-on-error="$ctrl.onError(error)"
+    data-service-type="HOSTING_PRIVATE_DATABASE"
+    data-terminate-service="$ctrl.terminateHostingPrivateDatabase()"
+    data-go-back="$ctrl.goBack()"
+>
+    <oui-message data-type="error">
+        <span
+            data-translate="autorenew_privateDatabase_dashboard_close_service_warning"
+        ></span>
+    </oui-message>
+    <p
+        data-translate="autorenew_privateDatabase_dashboard_close_service_desc1"
+    ></p>
+</billing-autorenew-terminate>

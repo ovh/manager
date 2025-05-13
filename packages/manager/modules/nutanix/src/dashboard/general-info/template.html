@@ -1,0 +1,369 @@
+<div data-ovh-alert="nutanix-dashboard-alert"></div>
+<oui-message data-ng-if="$ctrl.clusterRedeploying" class="mb-3" type="warning">
+    <span data-translate="nutanix_dashboard_cluster_deploying_info"></span>
+</oui-message>
+<div class="row d-md-flex mb-5">
+    <!-- General info -->
+    <div class="col-md-6 col-lg-4 mb-3">
+        <oui-tile
+            class="h-100"
+            heading="{{:: 'nutanix_dashboard_general_info' | translate }}"
+        >
+            <!-- name -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_name' | translate }}"
+            >
+                <oui-tile-description>
+                    <span data-ng-bind="$ctrl.nutanixClusterIamName"></span>
+                </oui-tile-description>
+                <oui-action-menu data-compact data-placement="end">
+                    <oui-action-menu-item
+                        on-click="$ctrl.goToEditName($ctrl.nutanixClusterIamName)"
+                    >
+                        <span
+                            data-translate="nutanix_dashboard_cluster_edit_button"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-tile-definition>
+
+            <!-- commercial name -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_commercial_name' | translate }}"
+            >
+                <oui-tile-description>
+                    <iam-protected-data
+                        is-hidden="!$ctrl.haveServicesAuthorizations()"
+                    >
+                        <oui-spinner
+                            data-ng-if="$ctrl.loadingServicesDetails"
+                            data-size="s"
+                        ></oui-spinner>
+                        <span
+                            data-ng-if="!$ctrl.loadingServicesDetails"
+                            data-ng-bind="$ctrl.servicesDetails.billing.plan.invoiceName"
+                        >
+                        </span>
+                    </iam-protected-data>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- redeploy -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_redeploy' | translate }}"
+            >
+                <oui-tile-description>
+                    <button
+                        type="button"
+                        class="oui-link"
+                        data-ng-class="{'disabled': $ctrl.clusterRedeploying}"
+                        data-ng-click="$ctrl.redeployCluster()"
+                        data-ng-disabled="$ctrl.clusterRedeploying"
+                        data-track-on="click"
+                        data-track-type="action"
+                        data-track-name="{{:: $ctrl.TRACKING.REDEPLOY_CLUSTER}}"
+                    >
+                        <span
+                            class="align-middle"
+                            data-translate="nutanix_dashboard_cluster_redeploy_link"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
+                            aria-hidden="true"
+                        ></span>
+                    </button>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- administration interface -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_admin_interface' | translate }}"
+                term-popover="{{:: 'nutanix_dashboard_cluster_admin_interface_info' | translate }}"
+            >
+                <oui-tile-description>
+                    <a
+                        class="oui-button oui-button_secondary"
+                        data-ng-href="{{:: $ctrl.cluster.targetSpec.controlPanelURL }}"
+                        target="_blank"
+                        rel="noopener"
+                        data-track-on="click"
+                        data-track-name="{{:: $ctrl.TRACKING.ACCESS_PRISM}}"
+                        data-track-type="action"
+                    >
+                        <span
+                            data-translate="nutanix_dashboard_cluster_access_admin_interface"
+                        ></span>
+                    </a>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- type of pack -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_type_of_pack' | translate }}"
+                data-ng-if="$ctrl.isPackTypeAvailable"
+            >
+                <oui-tile-description>
+                    <iam-protected-data
+                        is-hidden="!$ctrl.haveServicesAuthorizations()"
+                    >
+                        <a
+                            data-ng-if="!$ctrl.isLegacyPacka"
+                            class="oui-link oui-link_icon"
+                            data-ng-href="{{:: $ctrl.NUTANIX_LINK }}"
+                            target="_blank"
+                            rel="noopener"
+                            data-track-on="click"
+                            data-track-name="{{:: $ctrl.TRACKING.ACCESS_NUTANIX}}"
+                            data-track-type="action"
+                        >
+                            <span
+                                data-ng-if="$ctrl.packType !== $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+                                data-ng-bind="$ctrl.packType"
+                            >
+                            </span>
+                            <span
+                                data-ng-if="$ctrl.packType === $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+                                data-ng-bind="$ctrl.NUTANIX_BYOL"
+                            >
+                            </span>
+                            <i
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+                        <span
+                            data-ng-if="$ctrl.isLegacyPack"
+                            data-ng-bind="$ctrl.packType"
+                        ></span>
+                    </iam-protected-data>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- number of nodes -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_number_of_nodes' | translate }}"
+            >
+                <oui-tile-description class="align-items-start">
+                    <div class="text-break">
+                        <span
+                            class="font-weight-bold text-break"
+                            data-ng-bind="$ctrl.cluster.targetSpec.metadata.initialCommitmentSize"
+                        ></span>
+                        <span
+                            data-translate="nutanix_dashboard_cluster_total_suscribed"
+                        ></span>
+                    </div>
+                    <div>
+                        <span
+                            data-ng-if="$ctrl.numberNodesToDeploy > 0"
+                            class="oui-badge oui-badge_warning text-break ml-n1"
+                            data-ng-pluralize
+                            data-count="$ctrl.numberNodesToDeploy"
+                            data-when="{
+                                'one': ('nutanix_dashboard_cluster_one_node_to_deploy'  | translate ),
+                                'other': ('nutanix_dashboard_cluster_several_nodes_to_deploy'  | translate:{numberOfNodes: $ctrl.numberNodesToDeploy}),
+                            }"
+                        ></span>
+                    </div>
+                    <div>
+                        <span
+                            data-ng-if="$ctrl.numberNodesDeployed > 0"
+                            class="oui-badge oui-badge_success text-break ml-n1"
+                            data-ng-pluralize
+                            data-count="$ctrl.numberNodesDeployed"
+                            data-when="{
+                                'one': ('nutanix_dashboard_cluster_one_node_deployed'  | translate ),
+                                'other': ('nutanix_dashboard_cluster_several_nodes_deployed'  | translate:{numberOfNodes: $ctrl.numberNodesDeployed}),
+                            }"
+                        ></span>
+                    </div>
+                    <div>
+                        <a
+                            class="oui-link_icon"
+                            data-ng-href="{{$ctrl.listingNodesPagesLink}}"
+                        >
+                            <span
+                                data-translate="nutanix_dashboard_cluster_manage_nodes"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </div>
+                </oui-tile-description>
+                <oui-action-menu data-compact data-placement="end">
+                    <oui-action-menu-item
+                        data-on-click="$ctrl.goToAddNode()"
+                        data-disabled="$ctrl.isMaxNodesReached"
+                        data-oui-tooltip="{{ $ctrl.addNodeTooltipContent }}"
+                    >
+                        <span
+                            data-translate="nutanix_dashboard_cluster_buy_node"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-tile-definition>
+
+            <!-- Fault Tolerance Domain -->
+            <oui-tile-definition
+                term="{{:: $ctrl.GENERAL_INFO_TILE_TITLE.FAULT_TOLENRANCE_DOMAIN }}"
+            >
+                <oui-tile-description>
+                    <div class="oui-tile__description">
+                        <div data-ng-if="$ctrl.cluster.isRackAwareness()">
+                            <span>Rack awareness</span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                oui-popover="{{:: 'nutanix_dashboard_cluster_rack_awareness_info' | translate }}"
+                                oui-popover-placement="right"
+                            ></button>
+                        </div>
+                        <div data-ng-if="!$ctrl.cluster.isRackAwareness()">
+                            <span>Node awareness</span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                oui-popover="{{:: 'nutanix_dashboard_cluster_node_awareness_info' | translate }}"
+                                oui-popover-placement="right"
+                            ></button>
+                        </div>
+                    </div>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- replication factor -->
+            <oui-tile-definition
+                term="{{:: $ctrl.GENERAL_INFO_TILE_TITLE.REPLICATION_FACTOR }}"
+                description="{{$ctrl.REPLICATION_FACTOR_PREFIX}}{{:: $ctrl.cluster.targetSpec.redundancyFactor }}"
+            >
+            </oui-tile-definition>
+
+            <!-- datacenter -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_datacenter' | translate }}"
+            >
+                <oui-tile-description>
+                    <iam-protected-data
+                        is-hidden="!$ctrl.haveServicesAuthorizations()"
+                    >
+                        <datacenter-name datacenter="$ctrl.server.datacenter">
+                        </datacenter-name>
+                    </iam-protected-data>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- rack -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_rack' | translate }}"
+            >
+                <oui-tile-description>
+                    <iam-protected-data
+                        is-hidden="!$ctrl.haveServicesAuthorizations()"
+                    >
+                        <span
+                            data-ng-bind=":: $ctrl.getNodeRacks() || '-'"
+                        ></span>
+                    </iam-protected-data>
+                </oui-tile-description>
+            </oui-tile-definition>
+        </oui-tile>
+    </div>
+
+    <!-- Licence details -->
+    <oui-spinner
+        class="col-md-6 col-lg-4 mb-3"
+        data-ng-if="$ctrl.loadingTechnicalDetails"
+        data-size="s"
+    >
+    </oui-spinner>
+    <div
+        class="col-md-6 col-lg-4 mb-3"
+        data-ng-if="!$ctrl.loadingTechnicalDetails && $ctrl.haveSupportAuthorizations() && $ctrl.packType !== $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+    >
+        <nutanix-licence-tile
+            data-is-legacy-pack="$ctrl.isLegacyPack"
+            data-pack-type="$ctrl.packType"
+            data-license="$ctrl.clusterTechnicalDetails.license"
+            data-show-pack-type="$ctrl.isPackTypeAvailable"
+        >
+        </nutanix-licence-tile>
+    </div>
+
+    <!-- Network -->
+    <div
+        class="col-md-6 col-lg-4 mb-3"
+        data-ng-if="!$ctrl.server.isExpired && $ctrl.haveServicesAuthorizations()"
+    >
+        <nutanix-network-tile
+            cluster="$ctrl.cluster"
+            on-error="$ctrl.handleError(error)"
+            go-to-upgrade-private-bandwidth="$ctrl.goToUpgradePrivateBandwidth"
+            private-bandwidth-service-id="$ctrl.privateBandwidthServiceId"
+            is-old-cluster="$ctrl.isOldCluster"
+        >
+        </nutanix-network-tile>
+    </div>
+
+    <!-- SUPPORT TICKET -->
+    <div class="col-md-6 col-lg-4 mb-3">
+        <server-support
+            service-name="{{$ctrl.serviceName}}"
+            travaux-url="{{$ctrl.TRAVAUX_LINK}}"
+            tracking-prefix="$ctrl.trackingPrefix"
+            is-hidden="!$ctrl.haveSupportAuthorizations()"
+        ></server-support>
+    </div>
+
+    <!-- Subscription details -->
+    <div class="col-md-6 col-lg-4 mb-3">
+        <billing-subscription-tile
+            on-error="$ctrl.onBillingInformationError(error)"
+            go-to-commit="$ctrl.goToCommit()"
+            go-to-cancel-commit="$ctrl.goToCancelCommit()"
+            go-to-cancel-resiliation="$ctrl.goToCancelResiliation()"
+            service-infos="$ctrl.serviceInfo"
+            user="$ctrl.user"
+            tracking-prefix="Enterprise_solutions::nutanix::nutanix"
+            tracking-page="Enterprise_solutions::nutanix::nutanix::nutanix::dashboard::general-information"
+            tracking-name-suffix="nutanix"
+            is-custom-resiliation-handled="true"
+            handle-go-to-resiliation="$ctrl.goToResiliate($ctrl.serviceName)"
+        >
+        </billing-subscription-tile>
+    </div>
+
+    <!-- TECHNICAL DETAILS -->
+    <div class="col-md-6 col-lg-4 mb-3" data-ng-if="$ctrl.isOldCluster">
+        <server-technical-details
+            technical-details="$ctrl.technicalDetails"
+        ></server-technical-details>
+    </div>
+</div>
+
+<!-- redeploy cluster warning modal -->
+<div
+    data-ng-if="$ctrl.showRedeployWarningModal && $ctrl.packType === $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+>
+    <div class="modal d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <oui-modal
+                    data-heading="{{ :: 'nutanix_dashboard_cluster_redeploy_modal_header' | translate }}"
+                    data-type="warning"
+                    data-primary-label="{{:: 'nutanix_dashboard_cluster_redeploy_modal_continue' | translate }}"
+                    data-primary-action="$ctrl.goToRedeploy()"
+                    data-secondary-action=":: $ctrl.onCancel()"
+                    data-secondary-label="{{:: 'nutanix_dashboard_cluster_redeploy_modal_cancel' | translate }}"
+                    on-dismiss="$ctrl.onCancel()"
+                >
+                    <p
+                        data-translate="nutanix_dashboard_cluster_redeploy_modal_description"
+                    ></p>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>

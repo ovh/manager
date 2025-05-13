@@ -1,0 +1,372 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+
+$sidebar-font-size: 0.875rem;
+
+.sidebar {
+  @import '@ovh-ux/manager-hub/src/variables.scss';
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  width: fit-content;
+  height: 100vh;
+  position: relative;
+  color: white;
+  &_animated {
+    transition: width 0.3s ease-in, min-width 0.3s ease-in;
+  }
+  
+  &_wrapper {
+    height: 100%;
+    width: 20rem;
+    min-width: 20rem;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow-y: auto;
+    scrollbar-width: none;
+    background-color: $p-700;
+    transform-origin: left;
+    z-index: 20;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &_lvl1 {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    height: fit-content;
+  }
+
+  &_logo {
+    display: flex;
+
+    img {
+      height: 1.85rem;
+    }
+  }
+
+  &_short {
+    width: 4.25rem;
+    min-width: 0rem;
+    & .sidebar_menu_items > button {
+      justify-content: start;
+    }
+    & .sidebar_menu ul {
+      text-align: center;
+    }
+    & .subtree {
+      left: 4.25rem;
+    }
+    & .sidebar_toggle_btn {
+      justify-content: center;
+    }
+
+    & .sidebar_logo {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &_pci_refresh {
+    line-height: 1rem;
+    display: flex;
+    margin-top: 0.4rem;
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    color: inherit;
+    border-radius: 0.625em;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+      background: $p-800;
+    }
+  }
+
+  &_pciEntry:last-of-type {
+    padding-bottom: 1.5rem;
+  }
+
+  &_menu {
+    flex: 1;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &_menu_items button,
+  &_menu_items a {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  &_menu_items {
+    a:hover,
+    a:focus,
+    button:hover,
+    button:focus {
+      background-color: $p-800;
+    }
+  }
+  &_menu_items_selected {
+    a,
+    button {
+      background-color: $p-800;
+    }
+  }
+
+  &_submenu_items {
+    a:hover,
+    a:focus,
+    button:hover,
+    button:focus {
+      background-color: darken($p-800, 5);
+      text-decoration: none;
+    }
+  }
+
+  &_submenu_items_selected {
+    a,
+    button {
+      background-color: darken($p-800, 5);
+      text-decoration: none !important;
+    }
+  }
+
+  li {
+    line-height: 2rem;
+    vertical-align: middle;
+    button {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    a {
+      color: white;
+      font-weight: 600;
+      font-size: $sidebar-font-size;
+      display: inline-block;
+      width: 100%;
+      outline: none;
+    }
+  }
+
+  h2 {
+    color: white;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  &_action {
+    a {
+      background-color: white;
+      display: flex;
+      width: 100%;
+      color: $p-500;
+      font-weight: 600;
+      text-align: center;
+      line-height: 2.5rem;
+      border-radius: 0.5rem;
+      outline: none;
+      justify-content: center;
+      white-space: nowrap;
+    }
+
+    &_icon {
+      font-size: 1.5rem;
+      vertical-align: bottom !important;
+      padding-left: 1rem;
+    }
+
+    &_text {
+      display: flex;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      transition: width 0.1s ease-in 0s, height 0.1s ease-in 0s, opacity 0s ease-in 0s;
+    }
+
+    &_open &_text {
+      width: fit-content;
+      opacity: 1;
+      height: auto;
+      transition: width 0.1s ease-in 0.2s, height 0.1s ease-in 0.2s, opacity 0.1s ease-in 0.2s;
+    }
+
+    &_open &_icon {
+      padding-left: 0;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: none;
+      background-color: $p-100;
+    }
+  }
+
+  &_chip {
+    float: right;
+    margin-top: 0.75rem !important;
+    background-color: $p-100 !important;
+    color: $p-500 !important;
+  }
+
+  &_tag {
+    font-weight: normal !important;
+    color: white !important;
+    background-color: $p-800-text !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  &_arrow {
+    font-size: 1.5rem;
+    float: right;
+    vertical-align: bottom !important;
+    margin-right: -0.5rem;
+  }
+
+  &_hidden {
+    display: none !important;
+  }
+
+  &_external {
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+  }
+
+  &_filler {
+    flex-grow: 1;
+  }
+
+  select {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    background-color: $p-700;
+    color: white;
+    border: 1px solid rgba($p-500, 0.75);
+  }
+
+  &_clipboard {
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+
+    &_copy {
+      font-size: 1.5rem;
+    }
+    &_text {
+      font-size: 0.8rem;
+    }
+  }
+
+  li[class^='assistance_header'] {
+    cursor: pointer;
+  }
+
+  &_toggle_btn {
+    width: 100%;
+    height: 2.5rem;
+    background-color: $p-500;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 0.625em;
+    font-weight: 600;
+
+    &_first_icon {
+      letter-spacing: -0.6rem;
+    }
+  }
+}
+
+@media (max-width: $device-breakpoint-tablet-max-width) {
+  .sidebar {
+    padding-top: 4em;
+    width: 100%;
+    min-width: unset;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    .sidebar::-webkit-scrollbar {
+      display: none;
+    }
+
+    &_logo {
+      display: none;
+    }
+    &_toggle_btn {
+      display: none;
+    }
+
+    &_wrapper {
+      width: 100%;
+    }
+
+    &_selected {
+      .sidebar_wrapper {
+        transform: translatex(-100%);
+        transition-duration: 0.2s;
+      }
+    }
+
+    &_action {
+      &_text {
+        transition: none;
+      }
+      
+      &_open &_text {
+        transition: none;
+      }
+    }
+  }
+}
+
+.button_as_div {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  font-weight: 600;
+  font-size: $sidebar-font-size;
+
+  &_text {
+    white-space: nowrap;
+  }
+}
+
+.sidebarLinkTag {
+  width: 0.8rem;
+  margin-right: 0.25rem;
+  background-color: var(--ods-color-primary-300);
+}
+
+.sidebarLinkTitle {
+  display: block;
+  max-width: 13.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hidden {
+  visibility: hidden;
+}

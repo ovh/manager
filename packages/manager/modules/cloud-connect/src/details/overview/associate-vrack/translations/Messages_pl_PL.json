@@ -1,0 +1,8 @@
+{
+  "cloud_connect_vrack_associate": "Przypisanie vRack",
+  "cloud_connect_vrack_associate_description": "Aby skonfigurować usługę, przypisz do niej sieć vRack. Wybierz odpowiedni vRack z rozwijanej listy lub utwórz nowy w <a href=\"{{ vrackOrderUrl }}\" target=\"blank\" rel=\"noopener\">klikając tutaj.</a>",
+  "cloud_connect_vrack_select": "Wybierz istniejący vRack",
+  "cloud_connect_vrack_associate_success": "Sieć vRack została przypisana do Twojej usługi",
+  "cloud_connect_vrack_associate_error": "Nie można przypisać sieci vRack do Twojej usługi: {{message}}",
+  "cloud_connect_associate": "Przypisz"
+}

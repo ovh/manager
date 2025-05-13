@@ -1,0 +1,1005 @@
+<!-- New Security Section -->
+<div class="new-security-section" data-ng-init="init()">
+    <!-- Alert -->
+    <div class="alert alert-info" role="alert">
+        <strong
+            class="d-inline-block mb-3"
+            data-translate="user_account_security_alert_warning"
+        ></strong>
+        <p>
+            <span
+                data-translate="user_account_security_alert_warning_info1"
+            ></span
+            ><br />
+            <span
+                data-translate="user_account_security_alert_warning_info2"
+            ></span>
+        </p>
+    </div>
+
+    <div class="clearfix" data-ovh-alert="doubleAuthAlert"></div>
+
+    <!-- Password and Double Authentication -->
+    <div class="oui-box oui-box_light">
+        <div class="text-center" data-ng-if="doubleAuth.isLoading">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <div data-ng-if="!doubleAuth.isLoading">
+            <!-- Password -->
+            <div class="media media-first-level">
+                <span class="media-left">
+                    <img
+                        class="media-object"
+                        alt="{{ 'user_account_security_password_title' | translate }}"
+                        width="16"
+                        height="16"
+                        src="images/user-account/security/icon-password.png"
+                    />
+                </span>
+                <div class="media-body">
+                    <h4
+                        class="media-heading float-left"
+                        data-translate="user_account_security_password_title"
+                    ></h4>
+                    <button
+                        type="button"
+                        class="oui-button oui-button_primary float-right no-margin"
+                        data-ng-click="setAction('password/user-password')"
+                        data-track-name="account::security::edit::password_edit"
+                        data-track-on="click"
+                        data-track-type="action"
+                    >
+                        <span data-translate="user_account_edit"></span>
+                    </button>
+                </div>
+            </div>
+
+            <hr />
+
+            <!-- Double Authentication -->
+            <div class="media media-first-level">
+                <span class="media-left">
+                    <img
+                        class="media-object"
+                        alt="{{ 'user_account_security_double_auth_title' | translate }}"
+                        width="16"
+                        height="16"
+                        src="images/user-account/security/icon-2fa.png"
+                    />
+                </span>
+                <div class="media-body">
+                    <strong
+                        class="text-success text-uppercase float-right"
+                        data-ng-if="has2faActivated()"
+                        data-translate="user_account_security_double_auth_status_activate"
+                    >
+                    </strong>
+
+                    <h4
+                        class="media-heading"
+                        data-translate="user_account_security_double_auth_title"
+                    ></h4>
+
+                    <div class="clearfix" data-ng-if="!has2faEnabled()">
+                        <div data-ng-if="!doubleAuth.isConnectionSSO">
+                            <p
+                                data-translate="user_account_security_double_auth_info"
+                            ></p>
+
+                            <a
+                                data-ui-sref="account.user.security.mfa"
+                                class="oui-button oui-button_primary float-right"
+                                data-track-on="click"
+                                data-track-name="account::security::authentication::double_authentication"
+                                data-track-type="action"
+                            >
+                                <span
+                                    data-translate="user_account_security_double_auth_action_activate"
+                                ></span>
+                            </a>
+                        </div>
+                        <div data-ng-if="doubleAuth.isConnectionSSO">
+                            <p
+                                data-translate="user_account_security_double_auth_sso_info"
+                            ></p>
+                            <oui-button
+                                class="float-right"
+                                data-disabled="true"
+                            >
+                                <span
+                                    data-translate="user_account_security_double_auth_action_activate"
+                                ></span>
+                            </oui-button>
+                        </div>
+                    </div>
+
+                    <div
+                        class="new-security-section__2fa-lists"
+                        data-ng-if="has2faEnabled()"
+                    >
+                        <!-- SMS -->
+                        <div
+                            class="media"
+                            data-ng-controller="UserAccount.controllers.doubleAuth.sms"
+                            data-ng-init="init()"
+                            data-ng-if="does2faSmsIsAvailable()"
+                        >
+                            <span class="media-left">
+                                <img
+                                    class="media-object"
+                                    alt="{{ 'user_account_security_double_auth_type_sms_alt' | translate }}"
+                                    width="42"
+                                    height="42"
+                                    src="images/user-account/security/sms.svg"
+                                />
+                            </span>
+                            <div class="media-body">
+                                <h5 class="media-heading">
+                                    <oui-spinner
+                                        data-size="s"
+                                        data-ng-if="sms.isLoading"
+                                    >
+                                    </oui-spinner>
+
+                                    <span
+                                        data-ng-if="!sms.isLoading && sms.smsAccounts.length"
+                                        data-ng-class="{
+                                                    'text-success': doubleAuth.sms === 'active',
+                                                    'text-danger': doubleAuth.sms !== 'active'
+                                                }"
+                                    >
+                                        <i
+                                            class="fa"
+                                            aria-hidden="true"
+                                            data-ng-class="{
+                                                    'fa-check': doubleAuth.sms === 'active',
+                                                    'fa-close': doubleAuth.sms !== 'active'
+                                                }"
+                                        >
+                                        </i>
+                                    </span>
+                                    <span
+                                        data-translate="user_account_security_double_auth_type_sms"
+                                    ></span>
+                                </h5>
+                                <div data-ovh-alert="doubleAuthAlertSms"></div>
+                                <p
+                                    data-translate="user_account_security_double_auth_type_sms_info"
+                                ></p>
+                                <table
+                                    class="table table-condensed"
+                                    data-ng-if="sms.smsAccounts.length"
+                                    data-ng-class="{
+                                                'table-hover': sms.smsAccounts.length > 1
+                                            }"
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                scope="col"
+                                                width="25%"
+                                                data-translate="user_account_security_double_auth_type_sms_table_column_phonenumber"
+                                            ></th>
+                                            <th
+                                                scope="col"
+                                                width="65%"
+                                                data-translate="user_account_security_double_auth_type_sms_table_column_description"
+                                            ></th>
+                                            <th scope="col" width="40px">
+                                                &nbsp;
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            data-ng-repeat="smsAccount in sms.smsAccounts track by smsAccount.id"
+                                        >
+                                            <th
+                                                scope="row"
+                                                data-ng-bind="smsAccount.phoneNumber"
+                                            ></th>
+                                            <td>
+                                                <span
+                                                    class="block"
+                                                    data-ng-bind="smsAccount.description || '-'"
+                                                >
+                                                </span>
+                                                <span
+                                                    class="small"
+                                                    data-ng-if="smsAccount.lastUsedDate"
+                                                >
+                                                    (<span
+                                                        data-translate="user_account_security_double_auth_type_sms_table_last_used_date"
+                                                    ></span>
+                                                    <span
+                                                        data-ng-bind="smsAccount.lastUsedDate | date:'longDate'"
+                                                    ></span
+                                                    >)
+                                                </span>
+                                            </td>
+                                            <td class="text-right">
+                                                <div data-uib-dropdown>
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-link py-0"
+                                                        data-uib-dropdown-toggle
+                                                    >
+                                                        <span
+                                                            class="ovh-font ovh-font-dots align-top"
+                                                            aria-hidden="true"
+                                                        >
+                                                        </span>
+                                                    </button>
+                                                    <ul
+                                                        class="dropdown-menu dropdown-menu-right text-left"
+                                                        role="menu"
+                                                        data-uib-dropdown-menu
+                                                    >
+                                                        <li>
+                                                            <button
+                                                                type="button"
+                                                                class="btn btn-link"
+                                                                data-ng-click="setAction('security/sms/edit/user-security-sms-edit', smsAccount)"
+                                                                data-translate="user_account_security_double_auth_type_sms_table_action_update"
+                                                            ></button>
+                                                        </li>
+                                                        <li>
+                                                            <button
+                                                                type="button"
+                                                                class="btn btn-link"
+                                                                data-ng-click="setAction('security/sms/delete/user-security-sms-delete', smsAccount)"
+                                                                data-translate="user_account_security_double_auth_type_sms_table_action_delete"
+                                                            ></button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button
+                                    class="oui-button oui-button_secondary"
+                                    type="button"
+                                    data-ng-click="setAction('security/sms/add/user-security-sms-add', sms.smsAccounts)"
+                                    data-translate="user_account_security_double_auth_type_sms_action_add"
+                                ></button>
+                            </div>
+                        </div>
+
+                        <!-- TOTP -->
+                        <div
+                            class="media"
+                            data-ng-controller="UserAccount.controllers.doubleAuth.totp"
+                            data-ng-init="init()"
+                        >
+                            <span class="media-left">
+                                <img
+                                    class="media-object"
+                                    alt="{{ 'user_account_security_double_auth_type_totp_alt' | translate }}"
+                                    width="42"
+                                    height="42"
+                                    src="images/user-account/security/app.svg"
+                                />
+                            </span>
+                            <div class="media-body">
+                                <h5 class="media-heading">
+                                    <oui-spinner
+                                        data-size="s"
+                                        data-ng-if="totp.isLoading"
+                                    >
+                                    </oui-spinner>
+
+                                    <span
+                                        data-ng-if="!totp.isLoading && totp.totpAccounts.length"
+                                        data-ng-class="{
+                                                    'text-success': doubleAuth.totp === 'active',
+                                                    'text-danger': doubleAuth.totp !== 'active'
+                                                }"
+                                    >
+                                        <i
+                                            class="fa"
+                                            aria-hidden="true"
+                                            data-ng-class="{
+                                                    'fa-check': doubleAuth.totp === 'active',
+                                                    'fa-close': doubleAuth.totp !== 'active'
+                                                }"
+                                        >
+                                        </i>
+                                    </span>
+                                    <span
+                                        data-translate="user_account_security_double_auth_type_totp"
+                                    ></span>
+                                </h5>
+                                <div data-ovh-alert="doubleAuthAlertTotp"></div>
+                                <p
+                                    data-translate="user_account_security_double_auth_type_totp_info"
+                                ></p>
+                                <table
+                                    class="table table-condensed"
+                                    data-ng-if="totp.totpAccounts.length"
+                                    data-ng-class="{
+                                                'table-hover': totp.totpAccounts.length > 1
+                                            }"
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                scope="col"
+                                                width="90%"
+                                                data-translate="user_account_security_double_auth_type_totp_table_column_description"
+                                            ></th>
+                                            <th scope="col" width="40px;">
+                                                &nbsp;
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            data-ng-repeat="totpAccount in totp.totpAccounts track by totpAccount.id"
+                                        >
+                                            <th scope="row">
+                                                <span
+                                                    class="block normal"
+                                                    data-ng-if="totpAccount.description"
+                                                    data-ng-bind="totpAccount.description"
+                                                >
+                                                </span>
+                                                <span
+                                                    class="block normal"
+                                                    data-ng-if="!totpAccount.description"
+                                                    data-translate="user_account_security_double_auth_type_totp_table_description_empty"
+                                                >
+                                                </span>
+                                                <span
+                                                    class="small"
+                                                    data-ng-if="totpAccount.lastUsedDate"
+                                                >
+                                                    (<span
+                                                        data-translate="user_account_security_double_auth_type_totp_table_last_used_date"
+                                                    ></span>
+                                                    <span
+                                                        data-ng-bind="totpAccount.lastUsedDate | date:'longDate'"
+                                                    ></span
+                                                    >)
+                                                </span>
+                                            </th>
+                                            <td class="text-right">
+                                                <div data-uib-dropdown>
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-link py-0"
+                                                        data-uib-dropdown-toggle
+                                                    >
+                                                        <span
+                                                            class="ovh-font ovh-font-dots"
+                                                            aria-hidden="true"
+                                                        >
+                                                        </span>
+                                                    </button>
+                                                    <ul
+                                                        class="dropdown-menu dropdown-menu-right text-left"
+                                                        role="menu"
+                                                        data-uib-dropdown-menu
+                                                    >
+                                                        <li>
+                                                            <button
+                                                                type="button"
+                                                                class="btn btn-link"
+                                                                data-ng-click="setAction('security/totp/edit/user-security-totp-edit', totpAccount)"
+                                                                data-translate="user_account_security_double_auth_type_totp_table_action_update"
+                                                            ></button>
+                                                        </li>
+                                                        <li>
+                                                            <button
+                                                                type="button"
+                                                                class="btn btn-link"
+                                                                data-ng-click="setAction('security/totp/delete/user-security-totp-delete', totpAccount)"
+                                                                data-translate="user_account_security_double_auth_type_totp_table_action_delete"
+                                                            ></button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button
+                                    class="oui-button oui-button_secondary"
+                                    type="button"
+                                    data-ng-click="setAction('security/totp/add/user-security-totp-add', doubleAuth)"
+                                    data-translate="user_account_security_double_auth_type_totp_action_add"
+                                ></button>
+                            </div>
+                        </div>
+
+                        <!-- U2F -->
+                        <div
+                            class="media"
+                            data-ng-controller="UserAccount.controllers.doubleAuth.u2f"
+                            data-ng-init="init()"
+                        >
+                            <span class="float-left">
+                                <img
+                                    class="media-object"
+                                    alt="{{ 'user_account_security_double_auth_type_u2f_alt' | translate }}"
+                                    width="42"
+                                    height="42"
+                                    src="images/user-account/security/key.svg"
+                                />
+                            </span>
+                            <div class="media-body">
+                                <h5 class="media-heading">
+                                    <oui-spinner
+                                        data-size="s"
+                                        data-ng-if="u2f.isLoading"
+                                    >
+                                    </oui-spinner>
+
+                                    <span
+                                        data-ng-if="!u2f.isLoading && u2f.u2fAccounts.length"
+                                        data-ng-class="{
+                                                    'text-success': doubleAuth.u2f === 'active',
+                                                    'text-danger': doubleAuth.u2f !== 'active'
+                                                }"
+                                    >
+                                        <i
+                                            class="fa"
+                                            aria-hidden="true"
+                                            data-ng-class="{
+                                                    'fa-check': doubleAuth.u2f === 'active',
+                                                    'fa-close': doubleAuth.u2f !== 'active'
+                                                }"
+                                        >
+                                        </i>
+                                    </span>
+                                    <span
+                                        data-translate="user_account_security_double_auth_type_u2f"
+                                    ></span>
+                                </h5>
+                                <div data-ovh-alert="doubleAuthAlertU2f"></div>
+                                <p
+                                    data-translate="user_account_security_double_auth_type_u2f_info"
+                                ></p>
+                                <table
+                                    class="table table-condensed"
+                                    data-ng-if="u2f.u2fAccounts.length"
+                                    data-ng-class="{
+                                                'table-hover': u2f.u2fAccounts.length > 1
+                                            }"
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                scope="col"
+                                                width="90%"
+                                                data-translate="user_account_security_double_auth_type_u2f_table_column_description"
+                                            ></th>
+                                            <th scope="col" width="40px">
+                                                &nbsp;
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            data-ng-repeat="u2fAccount in u2f.u2fAccounts track by u2fAccount.id"
+                                        >
+                                            <th scope="row">
+                                                <span
+                                                    class="block normal"
+                                                    data-ng-if="u2fAccount.description"
+                                                    data-ng-bind="u2fAccount.description"
+                                                >
+                                                </span>
+                                                <span
+                                                    class="block normal"
+                                                    data-ng-if="!u2fAccount.description"
+                                                    data-translate="user_account_security_double_auth_type_u2f_table_description_empty"
+                                                >
+                                                </span>
+                                                <span
+                                                    class="small"
+                                                    data-ng-if="u2fAccount.lastUsedDate"
+                                                >
+                                                    (<span
+                                                        data-translate="user_account_security_double_auth_type_u2f_table_last_used_date"
+                                                    ></span>
+                                                    <span
+                                                        data-ng-bind="u2fAccount.lastUsedDate | date:'longDate'"
+                                                    ></span
+                                                    >)
+                                                </span>
+                                            </th>
+                                            <td class="text-right">
+                                                <div data-uib-dropdown>
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-link"
+                                                        data-uib-dropdown-toggle
+                                                    >
+                                                        <span
+                                                            class="ovh-font ovh-font-dots"
+                                                            aria-hidden="true"
+                                                        >
+                                                        </span>
+                                                    </button>
+                                                    <ul
+                                                        class="dropdown-menu dropdown-menu-right text-left"
+                                                        role="menu"
+                                                        data-uib-dropdown-menu
+                                                    >
+                                                        <li>
+                                                            <button
+                                                                type="button"
+                                                                class="btn btn-link"
+                                                                data-ng-click="setAction('security/u2f/edit/user-security-u2f-edit', u2fAccount)"
+                                                                data-translate="user_account_security_double_auth_type_u2f_table_action_update"
+                                                            ></button>
+                                                        </li>
+                                                        <li>
+                                                            <button
+                                                                type="button"
+                                                                class="btn btn-link"
+                                                                data-ng-click="setAction('security/u2f/delete/user-security-u2f-delete', u2fAccount)"
+                                                                data-translate="user_account_security_double_auth_type_u2f_table_action_delete"
+                                                            ></button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button
+                                    class="oui-button oui-button_secondary"
+                                    type="button"
+                                    data-ng-click="setAction('security/u2f/add/user-security-u2f-add', doubleAuth)"
+                                    data-translate="user_account_security_double_auth_type_u2f_action_add"
+                                ></button>
+                            </div>
+                        </div>
+
+                        <!-- BACKUP CODE -->
+                        <div
+                            class="media"
+                            data-ng-controller="UserAccount.controllers.doubleAuth.backupCode"
+                            data-ng-init="init()"
+                        >
+                            <span class="float-left">
+                                <img
+                                    class="media-object"
+                                    alt="{{ 'user_account_security_double_auth_type_backup_code_alt' | translate }}"
+                                    width="42"
+                                    height="42"
+                                    src="images/user-account/security/code.svg"
+                                />
+                            </span>
+                            <div class="media-body">
+                                <h5 class="media-heading">
+                                    <oui-spinner
+                                        data-size="s"
+                                        data-ng-if="backupCode.isLoading"
+                                    >
+                                    </oui-spinner>
+
+                                    <span
+                                        data-ng-if="!backupCode.isLoading && backupCode.sotpAccount"
+                                        data-ng-class="{
+                                                    'text-success': backupCode.sotpAccount.status === 'enabled',
+                                                    'text-danger': backupCode.sotpAccount.status === 'disabled' || backupCode.sotpAccount.status === 'needCodeValidation'
+                                                }"
+                                    >
+                                        <i
+                                            class="fa"
+                                            aria-hidden="true"
+                                            data-ng-class="{
+                                                    'fa-check': backupCode.sotpAccount.status === 'enabled',
+                                                    'fa-close': backupCode.sotpAccount.status === 'disabled' || backupCode.sotpAccount.status === 'needCodeValidation'
+                                                }"
+                                        >
+                                        </i>
+                                    </span>
+                                    <span
+                                        data-translate="user_account_security_double_auth_type_backup_code"
+                                    ></span>
+                                </h5>
+                                <div
+                                    data-ovh-alert="doubleAuthAlertBackupCode"
+                                ></div>
+                                <p
+                                    data-translate="user_account_security_double_auth_type_backup_code_info"
+                                ></p>
+                                <p
+                                    data-ng-if="backupCode.sotpAccount.status && backupCode.sotpAccount.status !== 'needCodeValidation'"
+                                    data-ng-pluralize
+                                    data-count="backupCode.sotpAccount.remaining"
+                                    data-when="{
+                                            '0': ('user_security_double_auth_backup_regenerate_codes_remaining' | translate),
+                                            'one': ('user_security_double_auth_backup_regenerate_codes_remaining_1' | translate),
+                                            'other': ('user_security_double_auth_backup_regenerate_codes_remaining_other' | translate:{ count: {} })
+                                        }"
+                                    data-ng-class="{
+                                            'text-success': backupCode.sotpAccount.remaining > 5,
+                                            'text-warning': backupCode.sotpAccount.remaining < 6 && backupCode.sotpAccount.remaining > 3,
+                                            'text-error': backupCode.sotpAccount.remaining < 4
+                                        }"
+                                ></p>
+                                <button
+                                    class="oui-button oui-button_secondary"
+                                    type="button"
+                                    data-ng-click="setAction('security/backupCode/manage/user-security-backupCode-manage', backupCode.sotpAccount)"
+                                >
+                                    <span
+                                        data-ng-if="backupCode.sotpAccount.status && backupCode.sotpAccount.status !== 'needCodeValidation'"
+                                        data-translate="user_account_security_double_auth_type_backup_code_action_manage"
+                                    >
+                                    </span>
+                                    <span
+                                        data-ng-if="!(backupCode.sotpAccount.status && backupCode.sotpAccount.status !== 'needCodeValidation')"
+                                        data-translate="user_account_security_double_auth_type_backup_code_action_generate"
+                                    >
+                                    </span>
+                                </button>
+                                <button
+                                    data-ng-if="backupCode.sotpAccount.status && backupCode.sotpAccount.status !== 'needCodeValidation'"
+                                    class="oui-button oui-button_secondary"
+                                    type="button"
+                                    data-ng-click="setAction('security/backupCode/delete/user-security-backupCode', backupCode.sotpAccount)"
+                                    data-translate="user_account_security_double_auth_type_backup_code_action_delete"
+                                ></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <!-- IP Restrictions -->
+            <div
+                class="media media-first-level"
+                data-ng-controller="UserAccount.controllers.ipRestrictions"
+                data-ng-init="initIpRestrictions()"
+            >
+                <span class="media-left">
+                    <img
+                        class="media-object"
+                        alt="{{ 'user_account_security_ip_restrictions_alt' | translate }}"
+                        src="images/user-account/security/icon-ip-restriction.png"
+                    />
+                </span>
+                <div class="media-body">
+                    <h4
+                        class="media-heading float-left"
+                        data-translate="user_ipRestrictions_title"
+                    ></h4>
+
+                    <button
+                        type="button"
+                        class="oui-button oui-button_primary float-right"
+                        data-ng-click="ipRestrictionsShow()"
+                        data-translate="user_ipRestrictions_activate"
+                        data-ng-if="!ipRestrictionsVisible"
+                    ></button>
+
+                    <div class="clearfix"></div>
+
+                    <div data-ng-if="ipRestrictionsVisible">
+                        <div data-ovh-alert="ipRestrictionAlert"></div>
+
+                        <!-- Default Rule -->
+                        <h5
+                            data-translate="user_ipRestrictions_default_rule"
+                        ></h5>
+
+                        <div
+                            class="text-center"
+                            data-ng-if="loaders.defaultRule"
+                        >
+                            <oui-spinner></oui-spinner>
+                        </div>
+
+                        <oui-message
+                            class="mb-3"
+                            type="warning"
+                            ng-if="preventSubmitIfDefaultRuleIsDeny()"
+                        >
+                            <span
+                                data-translate="user_ipRestrictions_error_disable"
+                            ></span>
+                        </oui-message>
+
+                        <form
+                            class="form-horizontal"
+                            data-ng-submit="updateDefaultRule()"
+                            data-ng-if="!loaders.defaultRule"
+                        >
+                            <div class="form-group">
+                                <label
+                                    class="col-md-2 control-label"
+                                    for="inputRule"
+                                    data-translate="user_ipRestrictions_rule"
+                                >
+                                </label>
+                                <div class="col-md-4">
+                                    <select
+                                        id="inputRule"
+                                        class="form-control"
+                                        data-ng-model="defaultRule.rule"
+                                        data-ng-change="updateRestrictionButtonDisabled()"
+                                    >
+                                        <option
+                                            value="accept"
+                                            data-translate="user_ipRestrictions_rule_ACCEPT"
+                                        >
+                                        </option>
+                                        <option
+                                            value="deny"
+                                            data-translate="user_ipRestrictions_rule_DENY"
+                                        >
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label
+                                    class="col-md-2 control-label"
+                                    for="inputWarning"
+                                >
+                                    <span
+                                        data-translate="user_ipRestrictions_alert"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-help-circle"
+                                        data-oui-tooltip="{{:: 'user_ipRestrictions_alert_information' | translate }}"
+                                        data-oui-tooltip-placement="bottom"
+                                        aria-hidden="true"
+                                    >
+                                    </span>
+                                </label>
+                                <div class="col-md-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                id="inputWarning"
+                                                data-ng-model="defaultRule.warning"
+                                            />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-4">
+                                    <button
+                                        type="submit"
+                                        class="oui-button oui-button_secondary"
+                                        data-ng-disabled="preventSubmitIfDefaultRuleIsDeny()"
+                                        data-track-name="account::security::edit::validation_IP_restriction_edit"
+                                        data-track-on="click"
+                                        data-track-type="action"
+                                    >
+                                        <span
+                                            data-translate="user_account_OK"
+                                        ></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <hr />
+
+                        <oui-message
+                            class="mb-3"
+                            type="warning"
+                            ng-if="shouldDisplayWarningMessage()"
+                        >
+                            <span
+                                data-translate="user_ipRestrictions_warning_last_ip_with_deny"
+                            ></span>
+                        </oui-message>
+
+                        <!-- IP Restrictions -->
+                        <h5 data-translate="user_ipRestrictions_list"></h5>
+                        <table
+                            class="table table-ip-restrict"
+                            data-ng-class="{
+                                        'table-hover table-striped': list.length > 1
+                                    }"
+                        >
+                            <thead>
+                                <tr>
+                                    <th
+                                        scope="col"
+                                        class="text-uppercase"
+                                        data-translate="user_ipRestrictions_ip"
+                                    ></th>
+                                    <th scope="col" class="center">
+                                        <span
+                                            data-translate="user_ipRestrictions_alert"
+                                        ></span>
+                                        <div class="tooltip-container">
+                                            <span
+                                                class="oui-icon oui-icon-help-circle"
+                                                data-oui-tooltip="{{:: 'user_ipRestrictions_alert_information' | translate }}"
+                                                data-oui-tooltip-placement="right"
+                                                aria-hidden="true"
+                                            >
+                                            </span>
+                                        </div>
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        data-translate="user_ipRestrictions_rule"
+                                    ></th>
+                                    <th class="center"></th>
+                                </tr>
+                            </thead>
+                            <tbody data-ng-show="loaders.list">
+                                <tr>
+                                    <td colspan="4" class="text-center">
+                                        <oui-spinner
+                                            data-size="s"
+                                        ></oui-spinner>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody
+                                data-ng-show="list.length == 0 && !loaders.list"
+                            >
+                                <tr>
+                                    <td
+                                        class="center"
+                                        colspan="4"
+                                        data-translate="user_ipRestrictions_table_empty"
+                                    ></td>
+                                </tr>
+                            </tbody>
+                            <tbody
+                                data-ng-show="list.length > 0 && !loaders.list"
+                            >
+                                <tr
+                                    data-ng-repeat="restriction in list track by $index"
+                                >
+                                    <th
+                                        scope="row"
+                                        data-ng-bind="restriction.ip"
+                                    ></th>
+                                    <td class="center">
+                                        <span
+                                            class="glyphicon"
+                                            data-ng-hide="restriction == ipRestrictionCurrentEditBack"
+                                            data-ng-class="{
+                                                        'glyphicon-ok': restriction.warning === true,
+                                                        'glyphicon-ban-circle': restriction.warning === false
+                                                    }"
+                                        >
+                                        </span>
+                                        <div
+                                            class="form-group mb-0"
+                                            data-ng-show="restriction == ipRestrictionCurrentEditBack"
+                                        >
+                                            <div class="checkbox mb-0 mt-0">
+                                                <label>
+                                                    <input
+                                                        type="checkbox"
+                                                        data-ng-model="ipRestrictionCurrentEdit.warning"
+                                                    />
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span
+                                            data-ng-hide="restriction == ipRestrictionCurrentEditBack"
+                                            data-translate="{{ 'user_ipRestrictions_rule_' + restriction.rule }}"
+                                        >
+                                        </span>
+                                        <div
+                                            class="form-group mb-0"
+                                            data-ng-show="restriction == ipRestrictionCurrentEditBack"
+                                        >
+                                            <select
+                                                class="form-control"
+                                                data-ng-model="ipRestrictionCurrentEdit.rule"
+                                            >
+                                                <option
+                                                    value="ACCEPT"
+                                                    data-translate="user_ipRestrictions_rule_ACCEPT"
+                                                >
+                                                </option>
+                                                <option
+                                                    value="DENY"
+                                                    data-translate="user_ipRestrictions_rule_DENY"
+                                                >
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td class="text-right">
+                                        <div
+                                            data-uib-dropdown
+                                            data-on-toggle="toggled(open)"
+                                            data-ng-show="restriction != ipRestrictionCurrentEditBack"
+                                        >
+                                            <button
+                                                type="button"
+                                                class="btn btn-link"
+                                                data-uib-dropdown-toggle
+                                            >
+                                                <span
+                                                    class="ovh-font ovh-font-dots align-top"
+                                                    aria-hidden="true"
+                                                >
+                                                </span>
+                                            </button>
+                                            <ul
+                                                class="dropdown-menu dropdown-menu-right text-left"
+                                                role="menu"
+                                                data-uib-dropdown-menu
+                                                aria-labelledby="dLabel"
+                                            >
+                                                <li>
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-link"
+                                                        data-ng-click="setIpRestrictionCurrentEdit(restriction)"
+                                                        data-translate="user_ipRestrictions_update"
+                                                    ></button>
+                                                </li>
+                                                <li>
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-link"
+                                                        data-ng-disabled="shouldDisplayWarningMessage()"
+                                                        data-ng-click="setAction('ip/restriction/delete/user-ip-restriction-delete', restriction)"
+                                                        data-translate="user_ipRestrictions_delete"
+                                                    ></button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div
+                                            data-ng-show="restriction == ipRestrictionCurrentEditBack"
+                                        >
+                                            <button
+                                                type="button"
+                                                class="btn btn-link"
+                                                data-ng-click="saveIpRestrictionCurrentEdit()"
+                                            >
+                                                <i
+                                                    class="glyphicon glyphicon-ok"
+                                                ></i>
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-link"
+                                                data-ng-click="cancelIpRestrictionCurrentEdit()"
+                                            >
+                                                <i
+                                                    class="glyphicon glyphicon-remove"
+                                                ></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button
+                            type="button"
+                            class="oui-button oui-button_secondary"
+                            data-ng-click="setAction('ip/restriction/add/user-ip-restriction-add')"
+                            data-track-name="account::security::IP::add_IP_restriction"
+                            data-track-on="click"
+                            data-track-type="action"
+                        >
+                            <span
+                                data-translate="user_ipRestrictions_add"
+                            ></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END OF: New Security Section -->

@@ -6,6 +6,7 @@ export default {
     issue: '<',
     onSubmit: '&',
     goBack: '&',
+    hideInfoBanner: '<?',
   },
   controller,
   name: 'supportNewCreationForm',

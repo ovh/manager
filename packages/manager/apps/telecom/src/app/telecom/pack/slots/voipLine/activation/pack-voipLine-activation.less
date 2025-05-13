@@ -1,66 +1,52 @@
+@import '../../../index.less';
+
 .telecom-pack-voipLine-activation {
-  .voipLine-hardware-image,
-  .carousel-caption {
-    display: inline-block;
-    width: 35%;
-    min-height: 120px;
-    vertical-align: top;
-    margin-bottom: 32px;
-  }
+  .phone-item {
+    margin: 8px 0;
 
-  .voipLine-hardware-image img {
-    max-width: 90%;
-    max-height: 120px;
-    margin-left: 0;
-  }
-
-  .carousel-caption {
-    padding: 0;
-    position: static;
-    text-shadow: none;
-    color: @gray-dark;
-    text-align: left;
-
-    h4 {
-      margin-top: 0;
-    }
-  }
-
-  .carousel-control {
-    text-shadow: none;
-    cursor: pointer;
-
-    &.left,
-    &.right {
-      background-image: none;
-      background-repeat: no-repeat;
+    .oui-radio_thumbnail-light {
+      height: 350px;
     }
 
-    .glyphicon-chevron-left,
-    .glyphicon-chevron-right {
-      &::before {
-        color: @oui-color-dodger;
+    .thumbnail-light {
+      height: 350px;
+      padding: 1.25rem;
+      border: 1px solid #59d2ef;
+      border-radius: 6px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .thumbnail-label {
+      font-weight: 600;
+      color: #113f6d;
+    }
+
+    .thumbnail-light-selected {
+      height: 350px;
+      padding: 1.25rem;
+      border: 2px solid #00a2bf;
+      background: #e0f6fd;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .thumbnail {
+      border: 0;
+
+      .sized {
+        width: 100px;
+        height: 100px;
       }
-    }
-  }
 
-  .carousel-indicators {
-    bottom: 0;
-
-    li {
-      border: none;
-      background-color: fadeout(@oui-color-dodger, 85%);
-
-      &.active {
-        background-color: @oui-color-dodger;
+      span.ovh-font {
+        display: block;
+        text-align: center;
+        font-size: 90px;
+        margin-left: auto;
+        margin-right: auto;
+        color: @text-color;
       }
-    }
-  }
-
-  .selected-hardware {
-    .voipLine-hardware-image,
-    .carousel-caption {
-      margin-bottom: 0;
     }
   }
 }

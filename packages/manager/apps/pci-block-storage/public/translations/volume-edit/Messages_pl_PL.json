@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_storages_blocks_block_volume-edit_region_label": "Lokalizacja",
+  "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Typ wolumenu",
+  "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Nazwa wolumenu",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Rozmiar wolumenu",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_help": "Maksymalny rozmiar zależy od dostępnego limitu.",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Bootowalny",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Zdefiniowanie wolumenu jako bootowalnego pozwala używać go przy uruchamianiu Twojej instancji.",
+  "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Anuluj"
+}

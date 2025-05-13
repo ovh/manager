@@ -1,0 +1,13 @@
+{
+  "metrics_endpoint_howto": "Bien débuter",
+  "metrics_platform_title": "Plateformes",
+  "metrics_platform_back": "Retour à l'accueil",
+  "metrics_platform_proto": "Protocole",
+  "metrics_platform_address": "Adresse",
+  "metrics_platform_doc": "Documentation",
+  "metrics_guide": "Guide",
+  "metrics_endpoint_tools": "Outils",
+  "metrics_endpoint_intro_1": "Ci-dessous se trouve la liste des protocoles supportés par la plateforme OVH Metrics.",
+  "metrics_endpoint_intro_2": "Chaque protocole est associé à une adresse dépendante de la région dans laquelle se trouve votre projet.",
+  "metrics_endpoint_intro_3": "Ces adresses vous permettent d'utiliser pleinement et de façon native chaque protocole."
+}

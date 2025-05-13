@@ -1,6 +1,0 @@
-{
- "analytics_data_platform_deploy_general_cluster_name_help": "Nazwa klastra musi zawierać od 3 do 20 znaków. Dozwolone są tylko małe litery, cyfry oraz znak „-”.",
- "analytics_data_platform_deploy_general_cluster_name_placeholder": "Wpisz nazwę klastra",
- "analytics_data_platform_deploy_general_platform_version_placeholder": "Wybierz typ klastra",
- "analytics_data_platform_deploy_general_version_HDP2.6.2_description": "OVH Data Analytics Platform to klaster Big data Apache Hadoop oparty o Hortonworks 2.6, zabezpieczony za pomocą Kerberos i wdrożony w projekcie Public Cloud."
-}

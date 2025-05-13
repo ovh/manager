@@ -9,7 +9,7 @@
   max-width: inherit;
 }
 
-.oui-table {
+.oui-datagrid {
   font-size: 1rem;
 
   &-empty {
@@ -17,15 +17,17 @@
     padding: 1.25rem;
     font-style: italic;
     text-align: center;
-    border-radius: @oui-global-base-radius;
-    background-color: @oui-color-concrete;
+    border-radius: @base-border-radius-small;
+    background-color: #f2f2f2;
     color: #000;
   }
 
   &__cell_action-menu {
     width: 80px;
 
-    .tablet({width: 100%;});
+    @media screen and (max-width: @device-breakpoint-tablet-max-width) {
+      width: 100%;
+    }
   }
 
   &__cell_component {
@@ -42,8 +44,8 @@
   z-index: 10;
 }
 
-.oui-status_help {
-  background-color: @oui-color-info-fade;
+.oui-badge_help {
+  background-color: @p-075;
 }
 
 .oui-radio-toggle-group {

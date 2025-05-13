@@ -8,14 +8,14 @@
         title="{{ $ctrl.action.text }}"
     >
         <span class="service-button-description">
-            <i
+            <span
                 class="action-icon ovh-font mr-3"
                 aria-hidden="true"
                 data-ng-if="$ctrl.action.picto"
                 data-ng-class="[$ctrl.action.picto]"
             >
-            </i>
-            {{ $ctrl.action.text }}
+            </span>
+            <span data-ng-bind="$ctrl.action.text"></span>
         </span>
     </button>
 
@@ -28,19 +28,19 @@
         title="{{ $ctrl.action.tip || $ctrl.action.text }}"
     >
         <span class="service-button-description">
-            <i
+            <span
                 class="action-icon ovh-font mr-3"
                 aria-hidden="true"
                 data-ng-if="$ctrl.action.picto"
                 data-ng-class="[$ctrl.action.picto]"
-            ></i>
-            {{ $ctrl.action.text }}
-            <i
+            ></span>
+            <span data-ng-bind="$ctrl.action.text"></span>
+            <span
                 class="ovh-font ml-2"
                 aria-hidden="true"
                 data-ng-class="$ctrl.action.isExternal ? 'ovh-font-newtab' : 'ovh-font-backToV4'"
             >
-            </i>
+            </span>
         </span>
         <span
             class="service-button-icon service-button-right-icon ovh-font ovh-font-arrow-right"
@@ -54,15 +54,18 @@
         data-ng-if="!$ctrl.action.disabled && $ctrl.action.sref"
         data-ui-sref="{{ $ctrl.action.sref }}"
         title="{{ $ctrl.action.tip || $ctrl.action.text }}"
+        data-track-on="{{ $ctrl.action.tracking ? 'click' : '' }}"
+        data-track-name="{{ $ctrl.action.tracking || '' }}"
+        data-track-type="{{ $ctrl.action.tracking ? 'navigation' : ''}}"
     >
         <span class="service-button-description">
-            <i
+            <span
                 class="action-icon ovh-font mr-3"
                 aria-hidden="true"
                 data-ng-if="$ctrl.action.picto"
                 data-ng-class="[$ctrl.action.picto]"
-            ></i>
-            {{ $ctrl.action.text }}
+            ></span>
+            <span data-ng-bind="$ctrl.action.text"></span>
         </span>
         <span
             class="service-button-icon service-button-right-icon ovh-font ovh-font-arrow-right"

@@ -1,0 +1,347 @@
+<div data-ng-controller="IpOrganisationAddCtrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="cancelAddOrganisation"
+        data-wizard-on-finish="addOrganisation"
+        data-wizard-title="formOrganisation.edit && ('ip_organisation_edit_title' | translate) || ('ip_organisation_add_title' | translate)"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="formOrganisation.formValid && !load.loading && !load.request"
+            data-wizard-step-on-load="load"
+        >
+            <div class="text-center" data-ng-if="load.loading">
+                <oui-spinner></oui-spinner>
+                <p data-translate="ip_organisation_add_loading_step1"></p>
+            </div>
+
+            <div data-ng-hide="load.loading">
+                <p
+                    class="alert alert-info"
+                    data-ng-hide="formOrganisation.edit"
+                    role="alert"
+                >
+                    <span data-translate="ip_organisation_add_info"></span>
+                </p>
+                <form
+                    id="organisationForm"
+                    name="organisationForm"
+                    data-ng-controller="IpOrganisationAddFormCtrl"
+                >
+                    <div class="form-group">
+                        <label
+                            for="registry"
+                            class="control-label"
+                            data-translate="ip_organisation_table_type"
+                        >
+                        </label>
+                        <select
+                            id="registry"
+                            name="registry"
+                            class="form-control"
+                            data-ng-disabled="formOrganisation.edit"
+                            data-ng-model="newOrganisation.registry"
+                            data-ng-required="true"
+                            data-ng-options="registry for registry in list.registry"
+                        >
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label
+                            for="firstname"
+                            class="control-label"
+                            data-translate="ip_organisation_table_firstname"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            data-ng-required="true"
+                            data-ng-maxlength="255"
+                            id="firstname"
+                            name="firstname"
+                            data-ng-model="newOrganisation.firstname"
+                        />
+                        <div
+                            class="text-danger"
+                            role="alert"
+                            data-ng-show="hasError(organisationForm.firstname) && value == true"
+                            data-ng-repeat="(error, value) in organisationForm.firstname.$error"
+                        >
+                            <span
+                                data-ng-bind="('ip_organisation_add_' + error) | ducTranslateAlt: error"
+                            ></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label
+                            for="lastname"
+                            class="control-label"
+                            data-translate="ip_organisation_table_lastname"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            data-ng-required="true"
+                            data-ng-maxlength="255"
+                            id="lastname"
+                            name="lastname"
+                            data-ng-model="newOrganisation.lastname"
+                        />
+                        <div
+                            class="text-danger"
+                            role="alert"
+                            data-ng-show="hasError(organisationForm.lastname) && value == true"
+                            data-ng-repeat="(error, value) in organisationForm.lastname.$error"
+                        >
+                            <span
+                                data-ng-bind="('ip_organisation_add_' + error) | ducTranslateAlt: error"
+                            ></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label
+                            for="country"
+                            class="control-label"
+                            data-translate="ip_organisation_table_country"
+                        >
+                        </label>
+                        <select
+                            data-ng-model="newOrganisation.country"
+                            data-ng-change="countryChange()"
+                            id="country"
+                            name="country"
+                            class="form-control"
+                            data-ng-required="true"
+                            data-ng-options="country as ('country_' + country | ducTranslateAlt: country) for country in list.country | orderBy:orderByCountryAlias"
+                        >
+                        </select>
+                        <div data-ng-show="load.request" class="text-center">
+                            <oui-spinner size="s"></oui-spinner>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label
+                            for="email"
+                            class="control-label"
+                            data-translate="ip_organisation_table_email"
+                        >
+                        </label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            data-ng-required="true"
+                            data-ng-maxlength="255"
+                            id="email"
+                            name="email"
+                            data-ng-model="newOrganisation.abuse_mailbox"
+                        />
+                        <div
+                            class="text-danger"
+                            role="alert"
+                            data-ng-show="hasError(organisationForm.email) && value == true"
+                            data-ng-repeat="(error, value) in organisationForm.email.$error"
+                        >
+                            <span
+                                data-ng-bind="('ip_organisation_add_' + error) | ducTranslateAlt: error"
+                            ></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label
+                            for="address"
+                            class="control-label"
+                            data-translate="ip_organisation_table_address"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            data-ng-required="true"
+                            data-ng-maxlength="255"
+                            id="address"
+                            name="address"
+                            data-ng-model="newOrganisation.address"
+                        />
+                        <div
+                            class="text-danger"
+                            role="alert"
+                            data-ng-show="hasError(organisationForm.address) && value == true"
+                            data-ng-repeat="(error, value) in organisationForm.address.$error"
+                        >
+                            <span
+                                data-ng-bind="('ip_organisation_add_' + error) | ducTranslateAlt: error"
+                            ></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label
+                            for="city"
+                            class="control-label"
+                            data-translate="ip_organisation_table_city"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            data-ng-required="true"
+                            data-ng-maxlength="255"
+                            id="city"
+                            name="city"
+                            data-ng-model="newOrganisation.city"
+                        />
+                        <div
+                            class="text-danger"
+                            role="alert"
+                            data-ng-show="hasError(organisationForm.city) && value == true"
+                            data-ng-repeat="(error, value) in organisationForm.city.$error"
+                        >
+                            <span
+                                data-ng-bind="('ip_organisation_add_' + error) | ducTranslateAlt: error"
+                            ></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" data-ng-if="showState()">
+                        <label
+                            for="state"
+                            class="control-label"
+                            data-translate="ip_organisation_table_state"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            data-ng-maxlength="255"
+                            id="state"
+                            name="state"
+                            data-ng-model="newOrganisation.state"
+                        />
+                        <div
+                            class="text-danger"
+                            role="alert"
+                            data-ng-show="hasError(organisationForm.state) && value == true"
+                            data-ng-repeat="(error, value) in organisationForm.state.$error"
+                        >
+                            <span
+                                data-ng-bind="('ip_organisation_add_' + error) | ducTranslateAlt: error"
+                            ></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label
+                            for="zip"
+                            class="control-label"
+                            data-translate="ip_organisation_table_zip"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            data-ng-required="true"
+                            data-ng-maxlength="255"
+                            id="zip"
+                            name="zip"
+                            data-ng-model="newOrganisation.zip"
+                        />
+                        <div
+                            class="text-danger"
+                            role="alert"
+                            data-ng-show="hasError(organisationForm.zip) && value == true"
+                            data-ng-repeat="(error, value) in organisationForm.zip.$error"
+                        >
+                            <span
+                                data-ng-bind="('ip_organisation_add_' + error) | ducTranslateAlt: error"
+                            ></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label
+                            for="phone"
+                            class="control-label"
+                            data-translate="ip_organisation_table_phone"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            data-ng-required="true"
+                            data-ng-maxlength="255"
+                            id="phone"
+                            name="phone"
+                            data-ng-model="newOrganisation.phone"
+                        />
+                        <div
+                            class="text-danger"
+                            role="alert"
+                            data-ng-show="hasError(organisationForm.phone) && value == true"
+                            data-ng-repeat="(error, value) in organisationForm.phone.$error"
+                        >
+                            <span
+                                data-ng-bind="('ip_organisation_add_' + error) | ducTranslateAlt: error"
+                            ></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="resetAlertOrganisation"
+            data-wizard-step-on-previous="goToPrevious"
+        >
+            <div data-ovh-alert="ip_organisation_addedit_alerter"></div>
+            <div class="text-center" data-ng-show="load.loading">
+                <oui-spinner></oui-spinner>
+                <p data-translate="ip_organisation_add_loading_step2"></p>
+            </div>
+            <div data-ng-hide="load.loading">
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-translate="ip_organisation_add_step2"
+                ></div>
+                <dl class="dl-horizontal">
+                    <dt data-translate="ip_organisation_table_type"></dt>
+                    <dd data-ng-bind="newOrganisation.registry"></dd>
+                    <dt data-translate="ip_organisation_table_lastname"></dt>
+                    <dd data-ng-bind="newOrganisation.lastname"></dd>
+                    <dt data-translate="ip_organisation_table_firstname"></dt>
+                    <dd data-ng-bind="newOrganisation.firstname"></dd>
+                    <dt data-translate="ip_organisation_table_country"></dt>
+                    <dd
+                        data-ng-bind="('country_' + newOrganisation.country) | ducTranslateAlt: newOrganisation.country"
+                    ></dd>
+                    <dt data-translate="ip_organisation_table_email"></dt>
+                    <dd data-ng-bind="newOrganisation.abuse_mailbox"></dd>
+                    <dt data-translate="ip_organisation_table_address"></dt>
+                    <dd data-ng-bind="newOrganisation.address"></dd>
+                    <dt
+                        data-ng-if="showState()"
+                        data-translate="ip_organisation_table_state"
+                    ></dt>
+                    <dd
+                        data-ng-if="showState()"
+                        data-ng-bind="newOrganisation.state"
+                    ></dd>
+                    <dt data-translate="ip_organisation_table_zip"></dt>
+                    <dd data-ng-bind="newOrganisation.zip || '-'"></dd>
+                    <dt data-translate="ip_organisation_table_city"></dt>
+                    <dd data-ng-bind="newOrganisation.city"></dd>
+                    <dt data-translate="ip_organisation_table_phone"></dt>
+                    <dd data-ng-bind="newOrganisation.phone"></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "discoveryMode": "Actualmente está en modo Discovery. Deberá activar su proyecto para terminar de crear el servicio.",
+  "discoveryModeActivate": "Active su proyecto",
+  "title": "AI Dashboard",
+  "paragraphe1": "La inteligencia artificial (IA) puede parecer una tecnología reservada a los usuarios experimentados. Sin embargo, en OVHcloud estamos convencidos del increíble potencial de esta práctica en todos los sectores de actividad. Así pues, trabajamos día a día para ofrecer herramientas que permitan a las empresas afrontar con éxito los nuevos retos que plantean el tratamiento de datos, la exploración, el entrenamiento y el despliegue de modelos, etc. Nuestro objetivo: acercar el Machine Learning a los diferentes perfiles de usuarios.",
+  "paragraphe2": "¡Descubra todas las soluciones de nuestra gama AI Tools!",
+  "linkPrice": "Ver los precios del servicio",
+  "homeTab": "Panel de control",
+  "usersTab": "Usuarios",
+  "tokensTab": "Tokens",
+  "dockerRegistriesTab": "Registros Docker",
+  "githubRegistriesTab": "Repositorios Git privados",
+  "datastoreTab": "Datastores S3"
+}

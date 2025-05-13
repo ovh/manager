@@ -13,8 +13,7 @@
                 name="v"
                 data-model="ctrl.model.target.v.DKIM1"
                 data-on-change="ctrl.bindModelValue('DKIM', 'v.DKIM1', modelValue)"
-                data-text="DKIM1"
-            >
+                ><span data-ng-bind="DKIM1"></span>
             </oui-checkbox>
         </div>
     </div>
@@ -54,16 +53,14 @@
                 id="h-sha1"
                 data-model="ctrl.model.target.h.sha1"
                 data-on-change="ctrl.bindModelValue('DKIM', 'h.sha1', modelValue)"
-                data-text="SHA-1"
-            >
+                ><span data-ng-bind="SHA-1"></span>
             </oui-checkbox>
             <oui-checkbox
                 name="h"
                 id="h-sha256"
                 data-model="ctrl.model.target.h.sha256"
                 data-on-change="ctrl.bindModelValue('DKIM', 'h.sha256', modelValue)"
-                data-text="SHA-256"
-            >
+                ><span data-ng-bind="SHA-256"></span>
             </oui-checkbox>
         </div>
     </div>
@@ -80,8 +77,7 @@
                 name="k"
                 data-model="ctrl.model.target.k.rsa"
                 data-on-change="ctrl.bindModelValue('DKIM', 'k.rsa', modelValue)"
-                data-text="RSA"
-            >
+                ><span data-ng-bind="RSA"></span>
             </oui-checkbox>
         </div>
     </div>
@@ -142,8 +138,9 @@
                 data-ng-click="ctrl.model.target.p = ''"
                 data-model="ctrl.model.target.pRevoke"
                 data-on-change="ctrl.bindModelValue('DKIM', 'pRevoke', modelValue)"
-                data-text="{{:: 'domain_configuration_dns_entry_add_publickey_revoke' | translate }}"
-            >
+                ><span
+                    data-translate="domain_configuration_dns_entry_add_publickey_revoke"
+                ></span>
             </oui-checkbox>
         </div>
     </div>
@@ -165,10 +162,13 @@
                     data-ng-model="ctrl.model.target.s"
                 />
                 <label class="oui-radio__label-container" for="s-all">
-                    <span
-                        class="oui-radio__label"
-                        data-translate="domain_configuration_dns_entry_add_servicetypes_all"
-                    ></span>
+                    <span class="oui-radio__label">
+                        <span class="oui-radio__icon"></span>
+                        <span
+                            class="oui-radio__text"
+                            data-translate="domain_configuration_dns_entry_add_servicetypes_all"
+                        ></span>
+                    </span>
                 </label>
             </div>
             <div class="oui-radio">
@@ -182,10 +182,13 @@
                     data-ng-model="ctrl.model.target.s"
                 />
                 <label class="oui-radio__label-container" for="s-email">
-                    <span
-                        class="oui-radio__label"
-                        data-translate="domain_configuration_dns_entry_add_servicetypes_email"
-                    ></span>
+                    <span class="oui-radio__label">
+                        <span class="oui-radio__icon"></span>
+                        <span
+                            class="oui-radio__text"
+                            data-translate="domain_configuration_dns_entry_add_servicetypes_email"
+                        ></span>
+                    </span>
                 </label>
             </div>
             <div class="oui-radio">
@@ -194,15 +197,18 @@
                     class="oui-radio__input"
                     id="s-none"
                     name="s"
-                    value=""
+                    value
                     data-ng-change="ctrl.setTargetValue('DKIM')"
                     data-ng-model="ctrl.model.target.s"
                 />
                 <label class="oui-radio__label-container" for="s-none">
-                    <span
-                        class="oui-radio__label"
-                        data-translate="domain_configuration_dns_entry_add_servicetypes_none"
-                    ></span>
+                    <span class="oui-radio__label">
+                        <span class="oui-radio__icon"></span>
+                        <span
+                            class="oui-radio__text"
+                            data-translate="domain_configuration_dns_entry_add_servicetypes_none"
+                        ></span>
+                    </span>
                 </label>
             </div>
         </div>
@@ -225,10 +231,13 @@
                     data-ng-value="false"
                 />
                 <label class="oui-radio__label-container" for="t-y-no">
-                    <span
-                        class="oui-radio__label"
-                        data-translate="domain_configuration_dns_entry_add_t_y_no"
-                    ></span>
+                    <span class="oui-radio__label">
+                        <span class="oui-radio__icon"></span>
+                        <span
+                            class="oui-radio__text"
+                            data-translate="domain_configuration_dns_entry_add_t_y_no"
+                        ></span>
+                    </span>
                 </label>
             </div>
             <div class="oui-radio">
@@ -242,10 +251,13 @@
                     data-ng-value="true"
                 />
                 <label class="oui-radio__label-container" for="t-y-yes">
-                    <span
-                        class="oui-radio__label"
-                        data-translate="domain_configuration_dns_entry_add_t_y_yes"
-                    ></span>
+                    <span class="oui-radio__label">
+                        <span class="oui-radio__icon"></span>
+                        <span
+                            class="oui-radio__text"
+                            data-translate="domain_configuration_dns_entry_add_t_y_yes"
+                        ></span>
+                    </span>
                 </label>
             </div>
         </div>
@@ -268,10 +280,13 @@
                     data-ng-value="true"
                 />
                 <label class="oui-radio__label-container" for="t-s-yes">
-                    <span
-                        class="oui-radio__label"
-                        data-translate="domain_configuration_dns_entry_add_t_s_yes"
-                    ></span>
+                    <span class="oui-radio__label">
+                        <span class="oui-radio__icon"></span>
+                        <span
+                            class="oui-radio__text"
+                            data-translate="domain_configuration_dns_entry_add_t_s_yes"
+                        ></span>
+                    </span>
                 </label>
             </div>
             <div class="oui-radio">
@@ -285,10 +300,13 @@
                     data-ng-value="false"
                 />
                 <label class="oui-radio__label-container" for="t-s-no">
-                    <span
-                        class="oui-radio__label"
-                        data-translate="domain_configuration_dns_entry_add_t_s_no"
-                    ></span>
+                    <span class="oui-radio__label">
+                        <span class="oui-radio__icon"></span>
+                        <span
+                            class="oui-radio__text"
+                            data-translate="domain_configuration_dns_entry_add_t_s_no"
+                        ></span>
+                    </span>
                 </label>
             </div>
         </div>

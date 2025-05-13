@@ -1,0 +1,18 @@
+{
+  "pci_projects_project_users_add_title": "Añadir un usuario Object Storage",
+  "pci_projects_project_users_add_short_description": "Añada un usuario a su contenedor para acceder al almacenamiento de objetos. Puede seleccionar un usuario existente o crear uno nuevo. Cada usuario (OpenStack) se asociará a uno o más pares de claves Object Storage compuestas cada una por una «clave de acceso» y una «clave secreta».",
+  "pci_projects_project_users_add_submit_label": "Crear",
+  "pci_projects_project_users_add_cancel_label": "Cancelar",
+  "pci_projects_project_users_add_description_label": "Descripción del usuario",
+  "pci_projects_project_users_add_existing_user": "Seleccionar un usuario existente",
+  "pci_projects_project_users_add_create_user": "Crear un nuevo usuario",
+  "pci_projects_project_users_add_success_message": "Se han generado las claves de conexión Object Storage del usuario {{user}}",
+  "pci_projects_project_users_add_error_message": "No se han podido generar las claves de conexión Object Storage para el usuario {{user}}.",
+  "pci_projects_project_users_add_username": "Su nombre de usuario OpenStack:",
+  "pci_projects_project_users_add_description": "Su descripción:",
+  "pci_projects_project_users_add_accesskey": "Su clave de acceso:",
+  "pci_projects_project_users_add_secretkey": "Su clave secreta:",
+  "pci_projects_project_users_add_as_no_credentials": "Sin claves",
+  "pci_projects_project_users_add_as_credentials": "Claves generadas",
+  "pci_projects_project_users_add_info_banner": "Los nuevos usuarios tendrán acceso automáticamente a todos los contenedores en las Local Zones."
+}

@@ -1,0 +1,6 @@
+{
+  "vps_veeam": "Automated backup",
+  "vps_tab_VEEAM_schedule_backup_edit": "Edit",
+  "vps_tab_VEEAM_schedule_backup_description": "Automatic backup takes place every day in (UTC time zone): ",
+  "vps_tab_VEEAM_schedule_backup_schedule_banner_info": "The automatic backup time can only be modified on the new VPS range."
+}

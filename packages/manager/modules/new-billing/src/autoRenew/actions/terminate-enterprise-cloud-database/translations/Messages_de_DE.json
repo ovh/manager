@@ -1,0 +1,11 @@
+{
+  "autorenew_enterprise_cloud_database_service_guide": "Enterprise Cloud Databases sofort löschen",
+  "autorenew_enterprise_cloud_database_close_service_question": "Möchten Sie fortfahren?",
+  "autorenew_enterprise_cloud_database_close_service_success": "Ihre Anfrage zur Schließung der Enterprise Cloud Databases wurde erfasst. Eine E-Mail mit weiteren Informationen zur Vorgehensweise wurde soeben an Sie versandt.",
+  "autorenew_enterprise_cloud_database_close_service_error": "Bei der Anfrage zur Schließung Ihrer Enterprise Cloud Databases ist ein Fehler aufgetreten:",
+  "autorenew_enterprise_cloud_database_close_service": "Enterprise Cloud Databases sofort löschen",
+  "autorenew_enterprise_cloud_database_close_service_warning": "Beim Löschen von Enterprise Cloud Databases werden automatisch alle zugehörigen Daten unwiderruflich gelöscht. Das Löschen von Enterprise Cloud Databases bedeutet keine Garantie zur Rückerstattung.",
+  "autorenew_enterprise_cloud_database_close_service_desc1": "Sie erhalten in Kürze eine E-Mail mit Informationen zur Schließung Ihrer Enterprise Cloud Databases und können die sofortige Löschung dann bestätigen.",
+  "autorenew_enterprise_cloud_database_close_confirm": "Bestätigen",
+  "autorenew_enterprise_cloud_database_close_cancel": "Abbrechen"
+}

@@ -1,0 +1,12 @@
+{
+  "status-CREATING": "Creating...",
+  "status-DELETING": "Deleting",
+  "status-LOCKED": "Locked",
+  "status-LOCKED_PENDING": "Locked - Pending",
+  "status-LOCKED_UPDATING": "Locked - Updating",
+  "status-PENDING": "Queued",
+  "status-UPDATING": "Updating",
+  "status-ERROR": "Error",
+  "status-ERROR_INCONSISTENT_SPEC": "spec error",
+  "status-READY": "Available"
+}

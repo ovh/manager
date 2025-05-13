@@ -2,7 +2,7 @@ export default class ExchangeRemoveDomainCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeDomains,
     messaging,
     navigation,
@@ -10,14 +10,14 @@ export default class ExchangeRemoveDomainCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeDomains,
       messaging,
       navigation,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.domain = navigation.currentActionData;
 
     $scope.submit = () => this.submit();

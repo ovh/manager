@@ -1,0 +1,112 @@
+<div data-ng-controller="ServerOrderLegacyBandwidthVrackCtrl as ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="openBC"
+        data-wizard-title=":: 'server_order_bandwidth_vrack_title' | translate"
+        data-wizard-bread-crumb
+        data-wizard-confirm-button-text=":: 'wizard_pay' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.steps[0].isValid()"
+            data-wizard-step-on-load="initBandwidthOrderables"
+        >
+            <div class="text-center" data-ng-if="ctrl.steps[0].isLoading()">
+                <oui-spinner></oui-spinner>
+                <span
+                    data-translate="server_order_bandwidth_vrack_load"
+                    class="d-block"
+                ></span>
+            </div>
+
+            <form data-ng-if="!ctrl.steps[0].isLoading()">
+                <label
+                    class="control-label"
+                    data-translate="select_bandwidth_vrack_type_label"
+                >
+                </label>
+                <div
+                    class="radio"
+                    data-ng-repeat="bandwidth in ctrl.orderableBandwidths.data track by bandwidth.value"
+                >
+                    <label>
+                        <input
+                            type="radio"
+                            data-ng-model="ctrl.model.bandwidth"
+                            data-ng-value="bandwidth"
+                        />
+                        <span data-ng-bind="bandwidth.text"></span>
+                    </label>
+                </div>
+            </form>
+        </div>
+
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.steps[1].isValid()"
+            data-wizard-step-on-load="initBandwidthDurations"
+        >
+            <div class="text-center" data-ng-if="ctrl.steps[1].isLoading()">
+                <oui-spinner></oui-spinner>
+                <span
+                    class="d-block"
+                    data-translate="server_order_bandwidth_vrack_load"
+                >
+                </span>
+            </div>
+
+            <form data-ng-if="!ctrl.steps[1].isLoading()">
+                <label
+                    class="control-label"
+                    data-translate="server_order_bandwidth_choose_duration"
+                >
+                </label>
+                <div
+                    class="radio"
+                    data-ng-repeat="duration in ctrl.orderableDurations.data track by duration.durations"
+                >
+                    <label>
+                        <input
+                            type="radio"
+                            data-ng-model="ctrl.model.duration"
+                            data-ng-value="duration"
+                        />
+                        <span
+                            data-ng-bind="duration.durations | wucDuration:'longDate'"
+                        ></span>
+                        <span
+                            data-ng-bind-html="duration.details.prices | ducPrice:ctrl.user.value.ovhSubsidiary"
+                        ></span>
+                    </label>
+                </div>
+            </form>
+        </div>
+
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.steps[2].isValid()"
+            data-wizard-step-on-load="initBandwidthBC"
+        >
+            <div class="text-center" data-ng-if="ctrl.steps[2].isLoading()">
+                <oui-spinner></oui-spinner>
+                <span
+                    class="d-block"
+                    data-translate="server_order_bandwidth_vrack_load_bc"
+                >
+                </span>
+            </div>
+
+            <p data-ng-if="!ctrl.steps[2].isLoading()">
+                <span
+                    class="d-block"
+                    data-ng-bind=":: 'server_order_bandwidth_resume' | translate"
+                >
+                </span>
+                <em
+                    data-ng-bind=":: 'server_order_bandwidth_resume_info' | translate"
+                ></em>
+            </p>
+        </div>
+    </div>
+</div>

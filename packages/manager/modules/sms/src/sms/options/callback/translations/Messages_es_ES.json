@@ -1,0 +1,20 @@
+{
+  "sms_section_back_link": "Volver a las opciones",
+  "sms_options_callback_title": "Opciones de Callback",
+  "sms_options_callback_information_title": "Información",
+  "sms_options_callback_information_text": "OVHcloud le ofrece la posibilidad de configurar URL de callback para recibir notificaciones cuando se produzca un evento en un SMS.",
+  "sms_options_callback_information_types_available": "Existen dos tipos de callback:",
+  "sms_options_callback_information_type_callback": "<b>Callback de cambio de estado</b>: Cuando un SMS enviado cambia de estado (p. ej., de «enviado» a «entregado»).",
+  "sms_options_callback_information_type_stop_callback": "<b>El callback STOP</b> : Cuando un destinatario responde «STOP» a uno de sus SMS para ponerle en la lista negra.",
+  "sms_options_callback_configure_title": "Configurar",
+  "sms_options_callback_configure_callback_label": "URL de callback de cambio de estado:",
+  "sms_options_callback_configure_stop_callback_label": "URL de callback STOP:",
+  "sms_options_callback_configure_callback_empty": "No hay ninguna URL configurada.",
+  "sms_options_callback_update_title": "Configuración de las URL",
+  "sms_options_callback_update_callback_label": "URL de callback de cambio de estado",
+  "sms_options_callback_update_stopcallback_label": "URL de callback STOP",
+  "sms_options_callback_update_callbacks_error_pattern": "El enlace debe empezar por http:// o https://.",
+  "sms_options_callback_update_callbacks_error_url": "La URL introducida no es válida.",
+  "sms_options_callback_updating": "Configurando las URL…",
+  "sms_options_callback_updated": "Se han configurado las URL."
+}

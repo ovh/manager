@@ -1,0 +1,178 @@
+<section class="telecom-legacy">
+    <tuc-toast-message></tuc-toast-message>
+    <div class="text-center" data-ng-if="$ctrl.isLoading">
+        <oui-spinner></oui-spinner>
+    </div>
+    <div data-ng-if="!$ctrl.isLoading">
+        <div class="telecom-dashboard">
+            <header class="oui-header mb-4">
+                <div class="oui-header__container">
+                    <div class="oui-header__content">
+                        <h1
+                            class="oui-header__title"
+                            data-translate="telecom_dashboard_identity_check_form_title"
+                        ></h1>
+                        <h2
+                            class="oui-header__description"
+                            data-translate="telecom_dashboard_identity_check_form_description"
+                            data-ng-if="!$ctrl.procedure"
+                        ></h2>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <oui-message data-type="info" data-ng-if="$ctrl.procedure">
+            <p
+                data-translate="telecom_dashboard_identity_check_form_procedure_info"
+            ></p>
+            <div>
+                <oui-button
+                    data-variant="link"
+                    data-ng-click="$ctrl.openProcedure()"
+                >
+                    <span
+                        data-translate="telecom_dashboard_identity_check_form_download_pdf"
+                    ></span>
+                    <span class="oui-icon oui-icon-arrow-right"></span>
+                </oui-button>
+            </div>
+            <div>
+                <oui-button
+                    data-variant="link"
+                    data-disabled="!$ctrl.canCancelProcedure()"
+                    data-ng-click="$ctrl.modalCancelProcedure()"
+                >
+                    <span
+                        data-translate="telecom_dashboard_identity_check_form_cancel_procedure"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-arrow-right"
+                        data-ng-if="!$ctrl.isCancelling"
+                    ></span>
+                    <oui-spinner
+                        data-size="s"
+                        data-ng-if="$ctrl.isCancelling"
+                    ></oui-spinner>
+                </oui-button>
+            </div>
+        </oui-message>
+        <form data-ng-if="!$ctrl.procedure" name="$ctrl.form" novalidate>
+            <p
+                class="oui-heading_4"
+                data-translate="telecom_dashboard_identity_check_form_identity"
+            ></p>
+            <p
+                class="oui-heading_5"
+                data-translate="telecom_dashboard_identity_check_form_you"
+            ></p>
+            <div class="row">
+                <oui-field
+                    class="col-md-6 col-sm-12"
+                    label="{{:: 'telecom_dashboard_identity_check_form_ownerLastName' | translate }}"
+                >
+                    <input
+                        class="oui-input"
+                        name="ownerLastName"
+                        placeholder="{{:: 'telecom_dashboard_identity_check_form_ownerLastName' | translate }}"
+                        type="text"
+                        data-ng-model="$ctrl.model.ownerLastName"
+                        required
+                    />
+                </oui-field>
+                <oui-field
+                    class="col-md-6 col-sm-12"
+                    label="{{:: 'telecom_dashboard_identity_check_form_ownerFirstName' | translate }}"
+                >
+                    <input
+                        class="oui-input"
+                        name="ownerFirstName"
+                        placeholder="{{ 'telecom_dashboard_identity_check_form_ownerFirstName' | translate }}"
+                        type="text"
+                        data-ng-model="$ctrl.model.ownerFirstName"
+                        required
+                    />
+                </oui-field>
+            </div>
+            <oui-field
+                label="{{ 'telecom_dashboard_identity_check_form_ownerAddress' | translate }}"
+            >
+                <input
+                    class="oui-input"
+                    name="ownerAddress"
+                    placeholder="{{:: 'telecom_dashboard_identity_check_form_ownerAddress' | translate }}"
+                    type="text"
+                    data-ng-model="$ctrl.model.ownerAddress"
+                    required
+                />
+            </oui-field>
+            <div class="row">
+                <oui-field
+                    label="{{ 'telecom_dashboard_identity_check_form_ownerZip' | translate }}"
+                    class="col-md-6 col-sm-12"
+                >
+                    <input
+                        class="oui-input"
+                        name="ownerZip"
+                        placeholder="{{ 'telecom_dashboard_identity_check_form_ownerZip' | translate }}"
+                        type="text"
+                        data-ng-model="$ctrl.model.ownerZip"
+                        data-ng-pattern="/^\d{4,5}$/"
+                        required
+                    />
+                </oui-field>
+                <oui-field
+                    label="{{:: 'telecom_dashboard_identity_check_form_ownerCity' | translate }}"
+                    class="col-md-6 col-sm-12"
+                >
+                    <input
+                        class="oui-input"
+                        name="ownerCity"
+                        placeholder="{{:: 'telecom_dashboard_identity_check_form_ownerCity' | translate }}"
+                        type="text"
+                        data-ng-model="$ctrl.model.ownerCity"
+                        required
+                    />
+                </oui-field>
+            </div>
+            <p
+                class="oui-heading_5"
+                data-translate="telecom_dashboard_identity_check_form_bank_account"
+            ></p>
+            <oui-field
+                label="IBAN"
+                data-help-text="{{:: 'telecom_dashboard_identity_check_form_iban_info' | translate }}"
+                data-error-messages="{ iban: ('telecom_dashboard_identity_check_form_iban_error' | translate) }"
+            >
+                <input
+                    class="oui-input"
+                    name="iban"
+                    type="text"
+                    data-ng-model="$ctrl.model.iban"
+                    data-ui-validate="{ iban: '$ctrl.isValidIban($value)' }"
+                    required
+                />
+            </oui-field>
+            <oui-field
+                label="BIC"
+                data-help-text="{{ 'telecom_dashboard_identity_check_form_bic_info' | translate }}"
+                data-error-messages="{ bic: ('telecom_dashboard_identity_check_form_bic_error' | translate) }"
+            >
+                <input
+                    class="oui-input"
+                    name="bic"
+                    type="text"
+                    data-ng-model="$ctrl.model.bic"
+                    data-ui-validate="{ bic: '$ctrl.isValidBic($value)' }"
+                    required
+                />
+            </oui-field>
+            <oui-form-actions
+                data-disabled="!$ctrl.canCreateProcedure()"
+                data-submit-text="{{:: 'telecom_dashboard_identity_check_form_validate' | translate }}"
+                data-cancel-text="{{:: 'telecom_dashboard_identity_check_form_cancel' | translate }}"
+                data-on-submit="$ctrl.createProcedure()"
+                data-on-cancel="$ctrl.onCancelCreateProcedureForm()"
+            ></oui-form-actions>
+        </form>
+    </div>
+</section>

@@ -1,12 +1,5 @@
 import angular from 'angular';
-import forEach from 'lodash/forEach';
-import has from 'lodash/has';
-import keys from 'lodash/keys';
-import map from 'lodash/map';
-import reject from 'lodash/reject';
-import set from 'lodash/set';
-import snakeCase from 'lodash/snakeCase';
-import some from 'lodash/some';
+import { forEach, has, keys, set, snakeCase } from 'lodash-es';
 
 export default function() {
   const self = this;
@@ -17,6 +10,7 @@ export default function() {
     OvhContact,
     OvhApiMe,
     CONTACT_EMAIL_REGEX,
+    iceberg,
   ) {
     /**
      *  @ngdoc service
@@ -152,7 +146,7 @@ export default function() {
      *  @methodOf ovhContact.service:ovhContact
      *
      *  @description
-     *  Get the entire list of contacts. This use api v7 to get all contacts details.
+     *  Get the entire list of contacts. This use api iceberg to get all contacts details.
      *
      *  @param {Boolean} refresh Flag telling to fully recreate the contact list.
      *
@@ -165,20 +159,17 @@ export default function() {
         contacts = [];
       }
 
-      return OvhApiMe.Contact()
-        .v7()
+      return iceberg('/me/contact')
         .query()
-        .expand()
+        .expand('CachedObjectList-Pages')
         .execute()
-        .$promise.then((contactsList) => {
+        .$promise.then(({ data: contactsList }) => {
           // filter contact that are not already added
           // this avoid loosing contact object reference
           // then add contact to contact list (at given index)
 
-          const contactsToAdd = reject(map(contactsList, 'value'), (contact) =>
-            some(contacts, {
-              id: contact.id,
-            }),
+          const contactsToAdd = contactsList.filter(
+            (contact) => !contacts.some(({ id }) => contact.id === id),
           );
 
           forEach(contactsToAdd, (contact) => {

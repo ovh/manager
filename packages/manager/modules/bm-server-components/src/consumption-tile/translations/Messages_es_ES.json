@@ -1,0 +1,12 @@
+{
+  "server_consumption_label": "Consumo de ancho de banda",
+  "server_consumption_order_button": "Aumentar",
+  "server_consumption_change_button": "Editar",
+  "server_consumption_explanation": "El consumo del ancho de banda del servidor es limitado. Una vez superado el límite, el ancho de banda saliente del servidor se ralentizará. Para evitarlo, puede aumentar su límite del ancho de banda saliente.",
+  "server_consumption_summary_days": "Quedan {{t0}} de {{t1}} días.",
+  "server_consumption_summary_hours": "Quedan {{t0}} de {{t1}} horas.",
+  "server_consumption_throttled": "Servicio ralentizado",
+  "server_consumption_current_period_label": "Consumo en el período corriente (total disponible: {{t0}})",
+  "server_consumption_current_period_remaining": "Quedan {{t0}}",
+  "server_consumption_explanation_link": "Más información"
+}

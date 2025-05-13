@@ -1,4 +1,5 @@
 {
+  "telephony_alias_config_contactCenterSolution_sounds": "Gestion des sons et de l’attente",
   "telephony_alias_config_contactCenterSolution_sounds_title": "File d’appels : gestion des sons et de l’attente",
   "telephony_alias_config_contactCenterSolution_sounds_subtitle": "Pour compléter votre stratégie, vous pouvez personnaliser avec des sons ce que vos clients entendront selon leur place dans la {{feature}}",
   "telephony_alias_config_contactCenterSolution_sounds_waiting_configuration": "Configuration de l’attente",

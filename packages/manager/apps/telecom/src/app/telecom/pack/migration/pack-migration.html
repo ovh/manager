@@ -1,0 +1,77 @@
+<div class="telecom-pack-migration">
+    <oui-back-button
+        data-on-click="$ctrl.goBack()"
+        previous-page="{{:: 'telecom_pack_migration_back_link_title' | translate }}"
+    >
+        <span data-translate="telecom_pack_migration_title"></span>
+    </oui-back-button>
+    <!-- LOADER -->
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <div data-ng-if="!$ctrl.loading.init">
+        <!-- BUILDINGS STEP -->
+        <div
+            data-ng-if="$ctrl.process.currentStep === $ctrl.PROCESS_STEP.buildings"
+        >
+            <pack-migration-buildings></pack-migration-buildings>
+        </div>
+
+        <!-- OFFER CHOICE STEP -->
+        <div
+            data-ng-if="$ctrl.process.currentStep === $ctrl.PROCESS_STEP.offers"
+        >
+            <pack-migration-offers></pack-migration-offers>
+        </div>
+
+        <!-- BUILDING DETAILS STEP -->
+        <div
+            data-ng-if="$ctrl.process.currentStep === $ctrl.PROCESS_STEP.buildingDetails"
+        >
+            <pack-migration-building-details></pack-migration-building-details>
+        </div>
+
+        <!-- ONT SHIPPING STEP -->
+        <div
+            data-ng-if="$ctrl.process.currentStep === $ctrl.PROCESS_STEP.ontShipping"
+        >
+            <pack-migration-ont-shipping></pack-migration-ont-shipping>
+        </div>
+
+        <!-- SHIPPING STEP -->
+        <div
+            data-ng-if="$ctrl.process.currentStep === $ctrl.PROCESS_STEP.shipping"
+        >
+            <pack-migration-shipping></pack-migration-shipping>
+        </div>
+
+        <!-- MEETING STEP -->
+        <div
+            data-ng-if="$ctrl.process.currentStep === $ctrl.PROCESS_STEP.meeting"
+        >
+            <pack-migration-meeting></pack-migration-meeting>
+        </div>
+
+        <!-- CONFIRM STEP -->
+        <div
+            data-ng-if="$ctrl.process.currentStep === $ctrl.PROCESS_STEP.confirm"
+        >
+            <pack-migration-confirm></pack-migration-confirm>
+        </div>
+
+        <!-- MIGRATION TASK IN PROGRESS -->
+        <pack-migration-migration
+            data-ng-if="$ctrl.process.currentStep === $ctrl.PROCESS_STEP.migration"
+        ></pack-migration-migration>
+
+        <!-- SERVICE TO DELETE -->
+        <div
+            data-ng-if="$ctrl.process.currentStep === $ctrl.PROCESS_STEP.serviceDelete"
+        >
+            <pack-migration-service-delete></pack-migration-service-delete>
+        </div>
+    </div>
+</div>
