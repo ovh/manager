@@ -25,6 +25,7 @@ export default function NotFound(): null {
     if (matchedRoute) {
       navigate(redirectMap[matchedRoute], { replace: true });
     } else {
+      debugger;
       window.location.assign('https://www.ovhcloud.com');
     }
   }, []);

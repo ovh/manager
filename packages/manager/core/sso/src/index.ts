@@ -7,6 +7,7 @@ const buildRedirectUrl = (url: string, params: string[]) => {
 };
 
 const redirectTo = (url: string) => {
+  debugger;
   return window.location.assign(url);
 };
 

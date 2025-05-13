@@ -7,6 +7,9 @@ export const initSso = (): void => {
         data?.id === 'ovh-auth-redirect' &&
         event.origin === window.location.origin
       ) {
+        console.log(data.url);
+        console.log('test ---------------------------------------------------------------------');
+        debugger;
         window.location.assign(data.url);
       }
     },

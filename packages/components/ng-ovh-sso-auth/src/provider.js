@@ -498,7 +498,6 @@ export default function() {
               `onsuccess=${encodeURIComponent(url || $location.absUrl())}`,
             );
           }
-
           $window.location.assign(
             loginUrl +
               (loginUrl.indexOf('?') > -1 ? '&' : '?') +
@@ -546,7 +545,6 @@ export default function() {
               params.push(`lang=${navigatorLg.split('-')[0]}`);
             }
           }
-
           $window.top.location.assign(
             destUrl +
               (urlPart.indexOf('?') > -1 ? '&' : '?') +
