@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.9.6...@ovh-ux/manager-bm-server-components@2.9.7) (2025-05-13)
+
+
+### Bug Fixes
+
+* **dedicated-servers:** removing the feature flipping related to vmac availability ([95eec1f](https://github.com/ovh/manager/commit/95eec1f1afd08655276bd37702d38383e86153cd)), closes [#MANAGER-18062](https://github.com/ovh/manager/issues/MANAGER-18062)
+
+
+
+
+
 ## [2.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.9.5...@ovh-ux/manager-bm-server-components@2.9.6) (2025-04-30)
 
 
