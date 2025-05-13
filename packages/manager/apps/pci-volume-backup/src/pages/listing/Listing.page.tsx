@@ -141,9 +141,9 @@ export default function Listing() {
           <Notifications />
         </div>
 
-        {columns && (
+        {columnsWithSearchable && (
           <Datagrid
-            columns={columns}
+            columns={columnsWithSearchable}
             items={flattenData || []}
             totalItems={totalCount || 0}
             hasNextPage={hasNextPage && !isLoading}
