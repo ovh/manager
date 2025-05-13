@@ -41,6 +41,6 @@
   "pci_projects_project_storages_blocks_add_deployment_mode_description_region-3-az": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité.",
   "pci_projects_project_storages_blocks_add_deployment_mode_title_localzone": "Local Zone",
   "pci_projects_project_storages_blocks_add_deployment_mode_description_localzone": "Déploiement de vos applications au plus près de vos utilisatrices et utilisateurs pour une faible latence et la résidence des données.",
-  "pci_projects_project_storages_blocks_add_deployment_mode_price_from": "A partir de {{price}} HT/Go/heure",
+  "pci_projects_project_storages_blocks_add_deployment_mode_price_from": "A partir de {{price}} HT/Go/mois",
   "pci_projects_project_storages_blocks_add_beta_free": "Gratuit"
 }
