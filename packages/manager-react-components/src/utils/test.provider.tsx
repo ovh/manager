@@ -1,5 +1,6 @@
 import React, { ComponentType } from 'react';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
+// import i18n from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import i18n from '../../.storybook/i18n';
