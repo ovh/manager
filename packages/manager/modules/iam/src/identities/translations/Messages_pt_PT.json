@@ -1,13 +1,4 @@
 {
-  "iam_identities_title": "Faça a gestão das identidades da política {{ policy }}",
-  "iam_identities_description": "Pode associar ou eliminar identidades à sua política (utilizadores, ID de cliente, e-mail, grupos de utilizadores...)",
-  "iam_identities_guide_text": "Manuais",
-  "iam_identities_field_users_selection_label": "Utilizadores e subutilizadores",
-  "iam_identities_field_users_selection_placeholder": "ID de cliente, utilizadores, grupos de utilizadores...",
-  "iam_identities_field_users_button_add": "Adicionar",
-  "iam_identities_error_load_users": "Ocorreu um erro ao recuperar os seus utilizadores: {{ message }}",
-  "iam_identities_add_identity_error": "O formato da identidade adicionada não é válido: {{ message }}",
-  "iam_identities_add_identity_success": "A identidade está ligada à sua política",
   "iam_identities": "Identidades",
   "iam_identities_header_guide_text": "Manuais",
   "iam_identities_users": "Utilizadores locais",

@@ -1,13 +1,4 @@
 {
-  "iam_identities_title": "Identitäten der Richtlinie {{ policy }} verwalten",
-  "iam_identities_description": "Sie können Identitäten zu Ihrer Richtlinie hinzufügen oder wieder entfernen (Benutzer, NICs, E-Mails, Benutzergruppen, ...)",
-  "iam_identities_guide_text": "Anleitungen",
-  "iam_identities_field_users_selection_label": "Benutzer und Subuser",
-  "iam_identities_field_users_selection_placeholder": "NIC, Benutzer, Benutzergruppen, ...",
-  "iam_identities_field_users_button_add": "Hinzufügen",
-  "iam_identities_error_load_users": "Beim Abrufen Ihrer Benutzer ist ein Fehler aufgetreten: {{ message }}",
-  "iam_identities_add_identity_error": "Das Format der hinzugefügten Identität ist ungültig: {{ message }}",
-  "iam_identities_add_identity_success": "Die Identität wurde zu Ihrer Richtlinie hinzugefügt",
   "iam_identities": "Identitäten",
   "iam_identities_header_guide_text": "Guides",
   "iam_identities_users": "Lokale User",
