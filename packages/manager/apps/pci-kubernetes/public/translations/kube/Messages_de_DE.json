@@ -74,9 +74,5 @@
   "kube_service_installation_information": "<a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">Diese Anleitung<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> hilft Ihnen bei der Installation des Kubernetes Dashboards. Das Kubernetes Dashboard ist eine Webanwendung zur Verwaltung Ihrer Cluster. Die Kubernetes Community wartet diese Anwendung.",
   "kube_service_cluster_network_ovh_gateway": "OVHcloud Internet Gateway",
   "kube_service_cluster_network_vrack_default_gateway": "Standardgateway des vRack (DHCP)",
-  "kube_service_cluster_network_vrack_customer_gateway": "Gateway: {{ vRackGatewayIp }}",
-  "pci_project_flavors_zone_global_region": "1-AZ",
-  "pci_project_flavors_zone_3az": "3-AZ",
-  "pci_project_flavors_zone_3az_tooltip": "A 3-AZ region included three availability zones located in the same metropolitan area, separated by a few miles. Die Anforderungen an die hohe Resilienz, die eine extreme Latenz zwischen AZs gewährleisten, werden erfüllt.",
-  "pci_project_flavors_zone_globalregions_tooltip": "A 1-AZ (Availability Zone) region groups together one or more datacenters located on the same site."
+  "kube_service_cluster_network_vrack_customer_gateway": "Gateway: {{ vRackGatewayIp }}"
 }
