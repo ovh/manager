@@ -119,7 +119,7 @@
         <oui-action-menu-item
             data-ng-if="$row.billingType === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.state === $ctrl.RESOURCE_STATES.delivered"
             data-on-click="$ctrl.resourceUpgrade(
-                $row.id,
+                $row.filerId,
                 $ctrl.usesLegacyOrder ? 'filer' : $ctrl.RESOURCE_UPGRADE_TYPES.datastore,
                 $ctrl.usesLegacyOrder ? $row.model.isUpgradable && 'demoToMonthly' || 'hourlyToMonthly' : undefined
             )"

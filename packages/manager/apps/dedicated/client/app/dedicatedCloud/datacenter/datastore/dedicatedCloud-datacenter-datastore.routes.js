@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceId: /* @ngInject */ (currentService) =>
           currentService.serviceInfos.serviceId,
         resourceUpgrade: /* @ngInject */ ($state, usesLegacyOrder) => (
-          datastoreId,
+          id,
           type,
           upgradeType,
         ) =>
@@ -20,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
               ? 'app.dedicatedCloud.details.datacenter.details.datastores.resourceUpgradeLegacy'
               : 'app.dedicatedCloud.details.datacenter.details.datastores.resourceUpgrade',
             {
-              datastoreId,
+              id,
               type,
               upgradeType,
             },
