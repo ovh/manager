@@ -45,6 +45,7 @@ export default function VolumeSelectStep({
           placeholder={t(
             'pci_projects_project_storages_volume_backup_create_step_1_select_placeholder',
           )}
+          isDisabled={volumes?.length === 0}
         >
           {volumes?.map((volume) => (
             <option value={volume.id} key={volume.id}>
