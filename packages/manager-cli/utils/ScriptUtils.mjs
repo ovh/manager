@@ -13,6 +13,8 @@ export const runMigration = ({
   scriptOrSteps,
   formatGlob = '*.{js,ts,tsx}',
   framework = null,
+  testType = null,
+  testCommand = null,
   dryRun = false,
   docLink = null,
 }) => {
@@ -28,23 +30,25 @@ export const runMigration = ({
         `  - App name is missing or invalid: "${appName}"`,
         `  - App folder not found at: ${appPath}`,
         '',
-        `Usage: yarn manager-cli ${commandLabel} --app <app-name> ${framework ? '[--framework <name>] ' : ''}[--dry-run]`,
+        `Usage: yarn manager-cli ${commandLabel} --app <app-name> ${framework ? '[--framework <name>] ' : ''}${commandLabel.includes('tests-migrate') ? '--testType <unit|integration|e2e> ' : ''}[--dry-run]`,
       ].join('\n'),
     );
     process.exit(1);
   }
 
   try {
-    console.log(`🔄 Starting ${commandLabel} for app: ${appName}${framework ? ` using ${framework}` : ''}`);
+    console.log(`🔄 Starting ${commandLabel}${testType ? ` (${testType} tests)` : ''} for app: ${appName}${framework ? ` using ${framework}` : ''}`);
 
     if (Array.isArray(scriptOrSteps)) {
       for (const cmd of scriptOrSteps) {
-        const finalCmd = `${cmd} ${appName}${dryRun ? ' --dry-run' : ''}`;
+        const finalCmd = `${cmd} ${appName}${dryRun ? ' --dry-run' : ''}${testType ? ` --testType ${testType}` : ''}`;
         console.log(`📦 Running: ${finalCmd}`);
         execSync(finalCmd, { stdio: 'inherit' });
       }
     } else {
-      const migrateScript = `./${commandLabel}/migrate-${framework || 'default'}.mjs`;
+      const migrateScript = testType
+        ? `./${commandLabel}/${testType}/migrate-${framework || 'default'}.mjs`
+        : `./${commandLabel}/migrate-${framework || 'default'}.mjs`;
       const migrateCommand = `node ${migrateScript} ${dryRun ? '--dry-run' : ''} --only ${appName}`;
       execSync(migrateCommand, { stdio: 'inherit' });
     }
@@ -101,18 +105,17 @@ export const runMigration = ({
     console.error(error);
   }
 
-  // 🧪 If migration is related to tests, run the app's test suite
-  if (commandLabel === 'unit-tests') {
+  if (testCommand) {
     try {
       console.log(`🧪 Running tests for app "${appName}" to verify migration...`);
-      execSync(`yarn workspace @ovh-ux/manager-${appName}-app test`, {
+      execSync(`yarn workspace @ovh-ux/manager-${appName}-app ${testCommand}`, {
         stdio: 'inherit',
         cwd: resolve(__dirname, '../..'),
       });
     } catch (error) {
-      console.error('❌ Test suite failed after migration.');
+      console.error(`❌ ${testCommand} failed after migration.`);
       console.error(error);
       process.exit(1);
     }
   }
-}
+};

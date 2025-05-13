@@ -3,7 +3,7 @@ import {
   sharedConfig,
   mergeConfig,
   createConfig,
-} from '@ovh-ux/manager-unit-tests-config';
+} from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
   sharedConfig,

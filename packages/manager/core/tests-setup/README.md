@@ -1,6 +1,6 @@
 # `@ovh-ux/manager-tests-setup`
 
-> Shared unit test configuration for OVHcloud Manager apps  
+> Shared unit test configuration for OVHCloud Manager apps  
 > Modular, hexagonally-structured test infrastructure layer  
 > Promotes consistency, reuse, and decoupling across 30+ React applications
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-`@ovh-ux/manager-tests-setup` centralizes **test configuration** (unit, integration, and future test layers) for all OVHcloud Manager apps. It provides:
+`@ovh-ux/manager-tests-setup` centralizes **test configuration** (unit, integration, and future test layers) for all OVHCloud Manager apps. It provides:
 
 - A reusable, opinionated `sharedConfig` for unit and integration testing
 - Exports (`createConfig`, `mergeConfig`, `defaultCoverageConfig`) to **decouple applications from test runner internals**
@@ -20,7 +20,7 @@ The setup follows **Hexagonal Architecture principles**, ensuring test logic rem
 
 ## Installation
 
-In the OVHcloud Manager monorepo:
+In the OVHCloud Manager monorepo:
 
 ```bash
 yarn add -D @ovh-ux/manager-tests-setup
@@ -99,7 +99,7 @@ This package follows **Hexagonal Architecture**:
 
 - **Ports**: `createConfig`, `mergeConfig`, `defaultCoverageConfig`
 - **Adapters**: Vitest, Vite, React plugin
-- **Applications remain independent** of the underlying testing technology except for strongly coupled APIs like `vi.mock`, `after*`, or `before*`. 
+- **Applications remain independent** of the underlying testing technology
 
 ### Benefits
 
@@ -112,4 +112,4 @@ This package follows **Hexagonal Architecture**:
 ## License
 
 [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)  
-© OVH SAS — for use with any OVHcloud Manager testing needs (unit, integration, etc.)
+© OVH SAS — for use with any OVHCloud Manager testing needs (unit, integration, etc.)

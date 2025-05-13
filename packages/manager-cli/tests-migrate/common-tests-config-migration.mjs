@@ -3,12 +3,13 @@
 import { runMigration } from '../utils/ScriptUtils.mjs';
 
 // Supported test types for validation
-const validTestTypes = ['unit', 'integration'];
+const validTestTypes = ['unit', 'integration', 'e2e'];
 
 // test commands for types
 const testCommands = {
   unit: 'test',
   integration: 'test:integration',
+  e2e: 'test:e2e',
 };
 
 const args = process.argv.slice(2);
@@ -38,7 +39,7 @@ const testType =
     : null;
 
 if (!testType) {
-  console.error(`❌ Missing required flag: --testType <unit|integration>`);
+  console.error(`❌ Missing required flag: --testType <unit|integration|e2e>`);
   process.exit(1);
 }
 
