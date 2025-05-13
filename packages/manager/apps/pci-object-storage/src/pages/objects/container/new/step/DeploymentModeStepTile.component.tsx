@@ -66,9 +66,8 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
         {OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[mode]?.isMultiZone && (
           <OdsBadge
             size="sm"
-            className={`${
-              isItemSelected ? 'font-bold' : ''
-            } bg-[--ods-color-blue-200]`}
+            className={`${isItemSelected ? 'font-bold' : ''
+              } bg-[--ods-color-blue-200]`}
             label={t(
               `pci_projects_project_storages_containers_add_deployment_mode_${mode}_label`,
             )}
@@ -79,9 +78,8 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
           is3azAvailable && (
             <OdsBadge
               size="sm"
-              className={`${
-                isItemSelected ? 'font-bold' : ''
-              } bg-[--ods-color-blue-200]`}
+              className={`${isItemSelected ? 'font-bold' : ''
+                } bg-[--ods-color-blue-200]`}
               label={t(
                 `pci_projects_project_storages_containers_add_deployment_mode_${mode}_label`,
               )}
@@ -90,9 +88,8 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
         {OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[mode]?.isLocalZone && (
           <OdsBadge
             size="sm"
-            className={`${
-              isItemSelected ? 'font-bold' : ''
-            } bg-[--ods-color-promotion-400] text-[--ods-color-orange-100]`}
+            className={`${isItemSelected ? 'font-bold' : ''
+              } bg-[--ods-color-promotion-400] text-[--ods-color-orange-100]`}
             label={t(
               `pci_projects_project_storages_containers_add_deployment_mode_${mode}_label`,
             )}
