@@ -7,5 +7,6 @@
   "common_pagination_load_more": "Załaduj więcej",
   "common_empty_text_cell": "Brak",
   "common_topbar_columns": "Kolumny",
-  "common_pagination_load_all": "Załaduj wszystko"
+  "common_pagination_load_all": "Załaduj wszystko",
+  "common_topbar_columns_select_all": "Wybierz wszystko"
 }
