@@ -16,6 +16,6 @@
   "netapp_order_commitment_payment": "Zahlungsmodalitäten",
   "netapp_order_confirm": "Bestätigen",
   "netapp_order_performance_customization": "Bei der Bereitstellung Ihrer Kapazität legen Sie gleichzeitig das Leistungsniveau Ihres Dienstes fest. Zur Erinnerung: 64 MB/s und 4.000 IOPS pro bereitgestelltem TB.",
-  "netapp_order_region_compatiable_with_info": "Kompatibel mit",
+  "netapp_order_region_compatiable_with_info": "Funktioniert mit",
   "netapp_order_region_badge_vrack": "vRack"
 }
