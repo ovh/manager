@@ -112,6 +112,8 @@ export const baseEmailAccountSchema = z.object({
   firstName: z.string().optional(),
   displayName: z.string().optional(),
   offer: z.enum([ZimbraOffer.STARTER, ZimbraOffer.PRO]).optional(),
+  hideInGal: z.boolean(),
+  forceChangePasswordAfterLogin: z.boolean(),
 });
 
 export const addEmailAccountSchema = baseEmailAccountSchema.merge(withPassword);

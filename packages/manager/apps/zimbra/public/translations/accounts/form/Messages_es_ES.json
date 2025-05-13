@@ -37,5 +37,9 @@
   "zimbra_account_edit_tabs_settings": "Configuración de la cuenta",
   "zimbra_account_edit_tabs_redirections": "Redirecciones",
   "zimbra_account_edit_tabs_alias": "Alias",
-  "zimbra_account_edit_tabs_auto_replies": "Respuesta automática"
+  "zimbra_account_edit_tabs_auto_replies": "Respuesta automática",
+  "zimbra_account_add_checkbox_hide_in_gal": "Ocultar la dirección en el directorio",
+  "zimbra_account_add_checkbox_hide_in_gal_tooltip": "El directorio de la empresa se comparte con todos los buzones que utilizan el mismo dominio",
+  "zimbra_account_add_checkbox_force_change_password": "Forzar el cambio en la siguiente conexión",
+  "zimbra_account_add_checkbox_force_change_password_tooltip": "La contraseña establecida es temporal, el usuario deberá utilizar el webmail para establecerla la primera vez que inicie sesión."
 }
