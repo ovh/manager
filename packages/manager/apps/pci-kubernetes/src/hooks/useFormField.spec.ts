@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import { describe, it, vi, beforeEach, afterEach, expect } from 'vitest';
+import { describe, it, vi, beforeEach, afterEach, expect, Mock } from 'vitest';
 import { useTranslation } from 'react-i18next';
 import { oidcSchema, PlaceHolder } from '@/types';
 import { CheckBoxFormField } from '@/components/oidc/CheckBoxFormField.component';
@@ -22,9 +22,9 @@ describe('useFormFields', () => {
   const schemaKeysMock = ['signingAlgorithms', 'caContent', 'usernameClaim'];
 
   beforeEach(() => {
-    (useTranslation as jest.Mock).mockReturnValue({ t: tMock });
-    (filterSchemaKeys as jest.Mock).mockReturnValue(schemaKeysMock);
-    (camelToSnake as jest.Mock).mockImplementation((key) =>
+    (useTranslation as Mock).mockReturnValue({ t: tMock });
+    (filterSchemaKeys as Mock).mockReturnValue(schemaKeysMock);
+    (camelToSnake as Mock).mockImplementation((key) =>
       key.replace(/[A-Z]/g, (char) => `_${char.toLowerCase()}`),
     );
   });
@@ -82,7 +82,7 @@ describe('useFormFields', () => {
 
   it('includes captions for specific fields', () => {
     const updatedSchemaKeysMock = ['requiredClaim', 'groupsClaim'];
-    (filterSchemaKeys as jest.Mock).mockReturnValue(updatedSchemaKeysMock);
+    (filterSchemaKeys as Mock).mockReturnValue(updatedSchemaKeysMock);
 
     const { result } = renderHook(() => useFormFields());
 
