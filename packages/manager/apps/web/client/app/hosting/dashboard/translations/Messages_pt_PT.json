@@ -1142,7 +1142,7 @@
   "hosting_tab_BOOST_request_title": "Vai ativar opção boost",
   "hosting_tab_BOOST_request_heading": "Selecione a oferta",
   "hosting_tab_BOOST_request_description": "A opção Boost permite ao seu alojamento beneficiar temporariamente de performances superiores, com um preço calculado ao dia, consoante as suas necessidades.",
-  "hosting_tab_BOOST_request_description_billing_new": "Esta opção ser-lhe-á faturada ao preço de {{price}} + IVA por dia de utilização e por patamar. Em qualquer altura, poderá desativá-la, subir ou descer de patamar.",
+  "hosting_tab_BOOST_request_description_billing_new": "Esta opção ser-lhe-á faturada ao preço de <strong>{{price}} + IVA por dia de utilização e por patamar</strong>. Em qualquer altura, poderá desativá-la, subir ou descer de patamar.",
   "hosting_tab_BOOST_request_description_payment_renew": "Será renovada por tácita recondução até à sua desativação. Ao desativá-la, será emitida uma fatura para todo o período de utilização. O montante será debitado através do seu método de pagamento registado na secção «Faturação/Meus métodos de pagamento», na Área de Cliente.",
   "hosting_tab_BOOST_request_activation": "Opção boost em processo de ativação ...",
   "hosting_tab_BOOST_request_success": "A opção boost foi ativada",
