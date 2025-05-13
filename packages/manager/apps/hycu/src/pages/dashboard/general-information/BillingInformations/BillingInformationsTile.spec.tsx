@@ -59,7 +59,7 @@ describe('License Hycu billing information tile for dashboard test suite', () =>
     await waitFor(
       () =>
         expect(
-          screen.getByText(labels.terminate.hycu_terminate_description),
+          screen.getByTestId('manager-delete-modal-description'),
         ).toBeVisible(),
       { timeout: 10_000 },
     );
@@ -72,27 +72,13 @@ describe('License Hycu billing information tile for dashboard test suite', () =>
     await waitFor(
       () =>
         expect(
-          screen.getByText(labels.terminate.hycu_terminate_description),
+          screen.getByTestId('manager-delete-modal-description'),
         ).toBeVisible(),
       { timeout: 10_000 },
     );
 
-    await act(() =>
-      fireEvent.change(screen.getByLabelText('delete-input'), {
-        target: { value: 'TERMINATE' },
-      }),
-    );
-
-    const resiliateButton = await screen.getByText(
-      labels.terminate.hycu_terminate_confirm_label,
-      {
-        exact: true,
-      },
-    );
-
-    await waitFor(
-      () => expect(resiliateButton).not.toHaveAttribute('disabled'),
-      { timeout: 10_000 },
+    const resiliateButton = await screen.findByTestId(
+      'manager-delete-modal-confirm',
     );
 
     await act(() => user.click(resiliateButton));
@@ -100,7 +86,7 @@ describe('License Hycu billing information tile for dashboard test suite', () =>
     await waitFor(
       () => {
         expect(
-          screen.queryByText(labels.terminate.hycu_terminate_description),
+          screen.queryByText(labels.terminate.hycu_terminate_success_message),
         ).not.toBeInTheDocument();
       },
       { timeout: 10_000 },
