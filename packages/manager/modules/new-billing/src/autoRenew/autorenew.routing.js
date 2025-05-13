@@ -70,6 +70,30 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
           false,
         hideBreadcrumb: /* @ngInject */ () => true,
         trackingPrefix: () => 'dedicated::account::billing::autorenew',
+        goToAutorenew: /* @ngInject */ (
+          $state,
+          $timeout,
+          Alerter,
+          queryParameters,
+        ) => (message = false, type = 'success') => {
+          const reload = message && type === 'success';
+
+          const promise = $state.go(
+            'billing.autorenew',
+            queryParameters || {},
+            {
+              reload,
+            },
+          );
+
+          if (message) {
+            promise.then(() =>
+              $timeout(() => Alerter.set(`alert-${type}`, message)),
+            );
+          }
+
+          return promise;
+        },
       },
       !coreConfigProvider.isRegion('US')
         ? {
@@ -85,6 +109,15 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
 
             breadcrumb: /* @ngInject */ ($translate) =>
               $translate.instant('billing_title'),
+
+            endStrategyEnum: /* @ngInject */ ($http) =>
+              $http
+                .get('/services.json')
+                .then(
+                  ({ data }) =>
+                    data.models['services.billing.engagement.EndStrategyEnum']
+                      ?.enum,
+                ),
           }
         : {},
     ),
@@ -101,15 +134,26 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       transition
         .injector()
         .getAsync('isAutorenewManagementAvailable')
-        .then((isAutorenewManagementAvailable) =>
-          !isAutorenewManagementAvailable
-            ? 'billing.autorenew.ssh'
-            : 'billing.autorenew.services',
-        ),
+        .then((isAutorenewManagementAvailable) => {
+          if (!isAutorenewManagementAvailable) {
+            return 'billing.autorenew.ssh';
+          }
+          return transition.to()?.name === 'billing.autorenew'
+            ? 'billing.autorenew.services'
+            : null;
+        }),
   });
 
   $stateProvider.state('billing.autorenew.service', {
     url: '/:serviceId',
+    template: '<div ui-view></div>',
     redirectTo: 'billing.autorenew',
+    resolve: {
+      serviceId: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceId,
+      service: /* @ngInject */ (BillingAutoRenew, serviceId) =>
+        BillingAutoRenew.findService({ serviceId }),
+      breadcrumb: /* @ngInject */ (serviceId) => serviceId,
+    },
   });
 };

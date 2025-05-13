@@ -63,6 +63,14 @@ export default /* @ngInject */ ($stateProvider) => {
               .catch({ engagement: null })
           : Promise.resolve({ engagement: null })
         ).then(({ engagement }) => engagement),
+      endStrategies: /* @ngInject */ (endStrategyEnum) =>
+        endStrategyEnum.reduce(
+          (object, strategy) => ({
+            ...object,
+            [strategy]: strategy,
+          }),
+          {},
+        ),
       hasEndRuleStrategies: /* @ngInject */ (engagement, endStrategies) =>
         engagement &&
         engagement.endRule &&

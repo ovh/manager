@@ -28,7 +28,6 @@ export default class ServicesCtrl {
     coreConfig,
     ouiDatagridService,
   ) {
-    console.log('ServicesCtrl');
     this.$filter = $filter;
     this.$q = $q;
     this.$translate = $translate;
@@ -196,7 +195,6 @@ export default class ServicesCtrl {
   }
 
   onPageChange({ pageSize, offset }) {
-    console.log('onPageChange');
     return this.onListParamChanges({
       pageNumber: parseInt(offset / pageSize, 10) + 1,
       pageSize,
@@ -244,8 +242,6 @@ export default class ServicesCtrl {
       });
     }
 
-    console.log('onCriteriaChange');
-    console.log(JSON.stringify(filters));
     this.onListParamChanges({
       filters: JSON.stringify(filters),
       selectedType: get(selectedType, 'value'),
@@ -255,14 +251,12 @@ export default class ServicesCtrl {
   }
 
   onSortChange({ name, order }) {
-    console.log('onSortChange');
     this.onListParamChanges({
       sort: JSON.stringify({ predicate: name, reverse: order === 'DESC' }),
     });
   }
 
   onNicBillingChange(nicBilling) {
-    console.log('onNicBillingChange');
     this.onListParamChanges({
       nicBilling:
         nicBilling === this.$translate.instant(NIC_ALL) ? null : nicBilling,

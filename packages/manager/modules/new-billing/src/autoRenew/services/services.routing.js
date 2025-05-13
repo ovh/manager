@@ -11,26 +11,6 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/services',
     component: 'services',
     resolve: {
-      goToAutorenew: /* @ngInject */ (
-        $state,
-        $timeout,
-        Alerter,
-        queryParameters,
-      ) => (message = false, type = 'success') => {
-        const reload = message && type === 'success';
-
-        const promise = $state.go('billing.autorenew', queryParameters || {}, {
-          reload,
-        });
-
-        if (message) {
-          promise.then(() =>
-            $timeout(() => Alerter.set(`alert-${type}`, message)),
-          );
-        }
-
-        return promise;
-      },
       isAutorenew2016DeploymentBannerAvailable: /* @ngInject */ (
         featureAvailability,
       ) =>
@@ -60,31 +40,18 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('billing.autorenew.enable', {
           services: map(services, 'id').join(','),
         }),
-      endStrategies: /* @ngInject */ (endStrategyEnum) =>
-        endStrategyEnum.reduce(
-          (object, strategy) => ({
-            ...object,
-            [strategy]: strategy,
-          }),
-          {},
+      filters: /* @ngInject */ ($transition$, queryParameters) =>
+        JSON.parse(
+          $transition$.params().filters || queryParameters.filters || '{}',
         ),
-      endStrategyEnum: /* @ngInject */ ($http) =>
-        $http
-          .get('/services.json')
-          .then(
-            ({ data }) =>
-              data.models['services.billing.engagement.EndStrategyEnum']?.enum,
-          ),
-      filters: /* @ngInject */ (queryParameters) =>
-        JSON.parse(queryParameters.filters),
       isEnterpriseCustomer: /* @ngInject */ (currentUser) =>
         currentUser.isEnterprise,
 
       hasAutoRenew: /* @ngInject */ (billingRenewHelper) => (service) =>
         billingRenewHelper.serviceHasAutomaticRenew(service),
 
-      nicBilling: /* @ngInject */ (queryParameters) =>
-        queryParameters.nicBilling,
+      nicBilling: /* @ngInject */ ($transition$) =>
+        $transition$.params().nicBilling,
       nicRenew: /* @ngInject */ (BillingAutoRenew, services) =>
         BillingAutoRenew.getAutorenew().then((nicRenew) => ({
           ...nicRenew,
@@ -103,16 +70,16 @@ export default /* @ngInject */ ($stateProvider) => {
       onListParamChanges: /* @ngInject */ ($state) => (params) =>
         $state.go('.', params, { notify: false }),
 
-      pageNumber: /* @ngInject */ (queryParameters) =>
-        parseInt(queryParameters.pageNumber, 10),
-      pageSize: /* @ngInject */ (queryParameters) =>
-        parseInt(queryParameters.pageSize, 10),
+      pageNumber: /* @ngInject */ ($transition$) =>
+        parseInt($transition$.params().pageNumber, 10),
+      pageSize: /* @ngInject */ ($transition$) =>
+        parseInt($transition$.params().pageSize, 10),
 
-      searchText: /* @ngInject */ (queryParameters) =>
-        queryParameters.searchText,
+      searchText: /* @ngInject */ ($transition$) =>
+        $transition$.params().searchText,
 
-      selectedType: /* @ngInject */ (queryParameters) =>
-        queryParameters.selectedType,
+      selectedType: /* @ngInject */ ($transition$, queryParameters) =>
+        $transition$.params().selectedType || queryParameters.selectedType,
 
       services: /* @ngInject */ (
         BillingAutoRenew,
@@ -148,8 +115,8 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceTypes: /* @ngInject */ (BillingAutoRenew, services) =>
         BillingAutoRenew.getServicesTypes(services),
 
-      sort: /* @ngInject */ (queryParameters) =>
-        JSON.parse(queryParameters.sort),
+      sort: /* @ngInject */ ($transition$) =>
+        JSON.parse($transition$.params().sort || '{}'),
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('billing_title'),
