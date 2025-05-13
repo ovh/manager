@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.34.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.34.1...@ovh-ux/manager-dedicated@20.34.2) (2025-05-13)
+
+
+### Bug Fixes
+
+* **dedicated-servers:** removing the feature flipping related to vmac availability ([95eec1f](https://github.com/ovh/manager/commit/95eec1f1afd08655276bd37702d38383e86153cd)), closes [#MANAGER-18062](https://github.com/ovh/manager/issues/MANAGER-18062)
+
+
+
+
+
 ## [20.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.34.0...@ovh-ux/manager-dedicated@20.34.1) (2025-05-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
