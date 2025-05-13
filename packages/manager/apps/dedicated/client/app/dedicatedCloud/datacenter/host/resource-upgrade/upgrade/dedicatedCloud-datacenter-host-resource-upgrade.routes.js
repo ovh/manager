@@ -2,7 +2,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.dedicatedCloud.details.datacenter.details.hosts.resourceUpgrade',
     {
-      url: '/upgradeResource',
+      url: '/upgradeResource?id&type',
       params: {
         id: null,
         type: null,
