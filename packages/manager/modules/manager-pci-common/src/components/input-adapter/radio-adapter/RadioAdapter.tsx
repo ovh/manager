@@ -48,20 +48,6 @@ export const RadioAdapter = ({
     inputProps.value,
   ]);
 
-  const element = useMemo(
-    () => (
-      <Renderer
-        name={name}
-        checked={checked}
-        labelId={labelId}
-        ariaDetailsId={ariaDetailsId}
-        onChange={onChange}
-        {...inputProps}
-      />
-    ),
-    [Renderer, name, checked, labelId, ariaDetailsId, inputProps],
-  );
-
   return (
     <label className="tile-input">
       <input
@@ -75,7 +61,14 @@ export const RadioAdapter = ({
         aria-labelledby={labelId}
         aria-details={ariaDetailsId}
       />
-      {element}
+      <Renderer
+        name={name}
+        checked={checked}
+        labelId={labelId}
+        ariaDetailsId={ariaDetailsId}
+        onChange={onChange}
+        {...inputProps}
+      />
     </label>
   );
 };
