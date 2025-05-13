@@ -17,7 +17,7 @@ export const defaultProps: CardProps = {
 };
 
 const meta: Meta<typeof Card> = {
-  title: 'Navigation/Card',
+  title: 'Core/Manager React Components/Navigation/Card',
   decorators: [
     // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
     (Story) => (

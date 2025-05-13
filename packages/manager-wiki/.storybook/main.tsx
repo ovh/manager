@@ -4,10 +4,6 @@ const config: StorybookConfig = {
   stories: [
     '../../manager-react-components/**/*.stories.tsx',
     '../../manager-react-components/**/*.mdx',
-    '../../manager/modules/**/*.stories.tsx',
-    '../../manager/modules/**/*.mdx',
-    '../../components/**/*.stories.tsx',
-    '../../components/**/*.mdx',
     '../introduction.mdx',
   ],
   addons: [

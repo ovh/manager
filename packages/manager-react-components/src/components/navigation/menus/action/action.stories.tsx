@@ -54,7 +54,7 @@ export const actionMenuStandard = {
 
 const meta: Meta<ActionMenuProps> = {
   decorators: [(story) => <div className="h-52">{story()}</div>],
-  title: 'Navigation/Menus',
+  title: 'Core/Manager React Components/Navigation/Menus',
   component: ActionMenu,
 };
 
