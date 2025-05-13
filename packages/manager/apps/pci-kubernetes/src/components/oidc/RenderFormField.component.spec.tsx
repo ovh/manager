@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { useFormContext } from 'react-hook-form';
+import { Control, useFormContext, UseFormReturn } from 'react-hook-form';
 import RenderFormField from './RenderFormField.component';
 
 vi.mock('react-hook-form', () => ({
@@ -50,10 +50,10 @@ describe('RenderFormField', () => {
     formState: {
       errors: {},
     },
-  };
+  } as UseFormReturn<Record<string, unknown>>;
 
   beforeEach(() => {
-    (useFormContext as jest.Mock).mockReturnValue(mockFormContext);
+    vi.mocked(useFormContext).mockReturnValue(mockFormContext);
   });
 
   const testCases = [
@@ -110,8 +110,10 @@ describe('RenderFormField', () => {
       });
 
       it('passes the correct props to the Controller', () => {
-        const mockControl = { [name]: vi.fn() };
-        (useFormContext as jest.Mock).mockReturnValue({
+        const mockControl = ({ [name]: vi.fn() } as unknown) as Control<
+          Record<string, unknown>
+        >;
+        vi.mocked(useFormContext).mockReturnValue({
           ...mockFormContext,
           control: mockControl,
         });
