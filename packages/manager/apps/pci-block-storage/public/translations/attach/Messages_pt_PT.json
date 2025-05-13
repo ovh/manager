@@ -5,5 +5,6 @@
   "pci_projects_project_storages_blocks_block_attach_error_no_compatible_instance": "Nenhuma instância disponível na região do seu volume.",
   "pci_projects_project_storages_blocks_block_attach_instance_placeholder": "Procurar",
   "pci_projects_project_storages_blocks_block_attach_success_message": "O volume {{ volume }} ({{ volumeId }}) de tipo {{ type }} foi associado à instância {{ instance }} ({{ instanceId }}).",
-  "pci_projects_project_storages_blocks_block_attach_error_attach": "Ocorreu um erro ao atualizar o volume {{ volume }}: {{ message }}"
+  "pci_projects_project_storages_blocks_block_attach_error_attach": "Ocorreu um erro ao atualizar o volume {{ volume }}: {{ message }}",
+  "pci_projects_project_storages_blocks_block_attach_multi_banner": "Pode associar um volume a um máximo de {{count}} instâncias, apenas uma instância de cada vez."
 }
