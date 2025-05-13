@@ -5,8 +5,10 @@
   "dedicatedCloud_datacenters_cpu": "Total CPU",
   "dedicatedCloud_datacenters_ram": "Total RAM",
   "dedicatedCloud_datacenters_disk": "Total espaço em disco",
-  "dedicatedCloud_datacenters_cluster": "Tamanho do cluster",
-  "dedicatedCloud_datacenters_edges": "Número de NSX Edges",
+  "dedicatedCloud_datacenters_number_vm": "VM",
+  "dedicatedCloud_datacenters_number_vm_windows": "VM Windows",
+  "dedicatedCloud_datacenters_number_vm_licensed": "VM Windows licenciada",
+  "dedicatedCloud_datacenters_error": "Erro",
   "dedicatedCloud_datacenters_order_host": "Encomendar Host",
   "dedicatedCloud_datacenters_order_datastore": "Encomendar Datastore",
   "dedicatedCloud_datacenters_loading_error": "Erro ao carregar informação sobre os datacenters.",
@@ -83,9 +85,5 @@
   "dedicatedCloud_datacenters_commercial_name_NSX-T-UNKNOWN": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-DEFAULT": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-WITHOUT-NSX": "NSX",
-  "dedicatedCloud_datacenters_commercial_name_NSX-T-VROPS-WITHOUT-NSX": "NSX com vROps",
-  "dedicatedCloud_datacenters_number_vm": "VM",
-  "dedicatedCloud_datacenters_number_vm_windows": "VM Windows",
-  "dedicatedCloud_datacenters_number_vm_licensed": "VM Windows licenciada",
-  "dedicatedCloud_datacenters_error": "Erro"
+  "dedicatedCloud_datacenters_commercial_name_NSX-T-VROPS-WITHOUT-NSX": "NSX com vROps"
 }

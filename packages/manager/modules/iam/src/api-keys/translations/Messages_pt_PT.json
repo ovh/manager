@@ -1,13 +1,4 @@
 {
-  "iam_applications_datagrid_column_application_id": "ID",
-  "iam_applications_datagrid_column_application_name": "Nome",
-  "iam_applications_datagrid_column_application_description": "Descrição",
-  "iam_applications_datagrid_column_application_status": "Estado",
-  "iam_applications_datagrid_column_application_key": "Chave",
-  "iam_applications_datagrid_column_application_status_active": "Ativo",
-  "iam_applications_datagrid_column_application_status_inactive": "Désactivée",
-  "iam_applications_datagrid_action_delete_application": "Eliminar",
-  "iam_applications_description": "Consulte e faça a gestão das suas aplicações. Para obter mais informações sobre as aplicações, consulte a documentação.",
   "iam_api_keys_create_api_key": "Criar uma chave API",
   "iam_api_keys_datagrid_column_application_id": "ID",
   "iam_api_keys_datagrid_column_application_name": "Nome",

@@ -5,8 +5,10 @@
   "dedicatedCloud_datacenters_cpu": "CPU totale",
   "dedicatedCloud_datacenters_ram": "RAM totale",
   "dedicatedCloud_datacenters_disk": "Spazio disco totale",
-  "dedicatedCloud_datacenters_cluster": "Dimensione del cluster",
-  "dedicatedCloud_datacenters_edges": "Numero di NSX Edges",
+  "dedicatedCloud_datacenters_number_vm": "VM",
+  "dedicatedCloud_datacenters_number_vm_windows": "VM Windows",
+  "dedicatedCloud_datacenters_number_vm_licensed": "VM Windows con licenza",
+  "dedicatedCloud_datacenters_error": "Errore",
   "dedicatedCloud_datacenters_order_host": "Ordina un host",
   "dedicatedCloud_datacenters_order_datastore": "Ordina un datastore",
   "dedicatedCloud_datacenters_loading_error": "Si è verificato un errore durante il caricamento delle informazioni dei datacenter.",
@@ -84,9 +86,5 @@
   "dedicatedCloud_datacenters_commercial_name_NSX-T-DEFAULT": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-WITHOUT-NSX": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-VROPS-WITHOUT-NSX": "NSX con vROps",
-  "dedicatedCloud_datacenters_migration_banner": "Fine del ciclo di vita del componente VMware NSX-V: <a href=\"{{href}}\" target=\"_blank\">consulta le nostre guide</a> sulla migrazione per maggiori informazioni.",
-  "dedicatedCloud_datacenters_number_vm": "VM",
-  "dedicatedCloud_datacenters_number_vm_windows": "VM Windows",
-  "dedicatedCloud_datacenters_number_vm_licensed": "VM Windows con licenza",
-  "dedicatedCloud_datacenters_error": "Errore"
+  "dedicatedCloud_datacenters_migration_banner": "Fine del ciclo di vita del componente VMware NSX-V: <a href=\"{{href}}\" target=\"_blank\">consulta le nostre guide</a> sulla migrazione per maggiori informazioni."
 }
