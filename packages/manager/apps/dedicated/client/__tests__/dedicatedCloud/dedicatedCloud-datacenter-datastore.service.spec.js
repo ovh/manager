@@ -1,5 +1,6 @@
 import '@ovh-ux/ng-ovh-api-wrappers';
 import '../../app/components/dedicated-cloud/datacenter/datastore';
+import { vi } from 'vitest';
 
 describe('ovhManagerPccDatacenterDatastoreService test suites', () => {
   let service;
@@ -7,20 +8,20 @@ describe('ovhManagerPccDatacenterDatastoreService test suites', () => {
   let $rootScope;
   let $httpBackend;
   const icebergRequestMock = {
-    execute: jest.fn(),
+    execute: vi.fn(),
   };
   const icebergFnMock = {
-    query: jest.fn().mockReturnThis(),
-    expand: jest.fn().mockReturnThis(),
-    sort: jest.fn().mockReturnValue(icebergRequestMock),
+    query: vi.fn().mockReturnThis(),
+    expand: vi.fn().mockReturnThis(),
+    sort: vi.fn().mockReturnValue(icebergRequestMock),
   };
 
   beforeEach(() => {
     angular.mock.module(
       'ovhManagerDedicatedCloudDatacenterDatastoreComponent',
       ($provide) => {
-        $provide.value('OvhHttp', jest.fn());
-        $provide.value('iceberg', jest.fn().mockReturnValue(icebergFnMock));
+        $provide.value('OvhHttp', vi.fn());
+        $provide.value('iceberg', vi.fn().mockReturnValue(icebergFnMock));
       },
     );
     angular.mock.inject([

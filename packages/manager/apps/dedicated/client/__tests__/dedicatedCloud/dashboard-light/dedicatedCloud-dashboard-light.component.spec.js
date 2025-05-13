@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { VCD_MIGRATION_STATUS } from '../../../app/components/dedicated-cloud/dedicatedCloud.constant';
 import VCDMigrationState from '../../../app/components/dedicated-cloud/vcdMigrationState.class';
 import '../../../app/components/dedicated-cloud/dashboard-light/index';
@@ -8,11 +9,11 @@ describe('pccDashboardLight component tests suite', () => {
   let $rootScope;
 
   const mockCoreURLBuilder = {
-    buildURL: jest.fn().mockReturnValue('https://vcdurl'),
+    buildURL: vi.fn().mockReturnValue('https://vcdurl'),
   };
 
   const mockDedicatedCloud = {
-    getLocation: jest.fn().mockResolvedValue({}),
+    getLocation: vi.fn().mockResolvedValue({}),
   };
 
   beforeEach(() => {
@@ -49,11 +50,11 @@ describe('pccDashboardLight component tests suite', () => {
         ips: [],
         solution: 'solution',
         version: 1,
-        isMinorSolutionUpdateAvailable: jest.fn().mockReturnValue(false),
-        isMajorSolutionUpdateAvailable: jest.fn().mockReturnValue(false),
+        isMinorSolutionUpdateAvailable: vi.fn().mockReturnValue(false),
+        isMajorSolutionUpdateAvailable: vi.fn().mockReturnValue(false),
       },
-      editDetails: jest.fn(),
-      associateIpBlockLink: jest.fn(),
+      editDetails: vi.fn(),
+      associateIpBlockLink: vi.fn(),
       trackingPrefix: 'tracking::hit::',
       dedicatedCloudVCDMigrationState: new VCDMigrationState({
         state: VCD_MIGRATION_STATUS.ENABLED,
