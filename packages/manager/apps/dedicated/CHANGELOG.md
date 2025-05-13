@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.34.2...@ovh-ux/manager-dedicated@20.35.0) (2025-05-13)
+
+
+### Bug Fixes
+
+* **dedicated.dedicated-server:** change translation in details page ([#16860](https://github.com/ovh/manager/issues/16860)) ([b40c73e](https://github.com/ovh/manager/commit/b40c73e5f4112eaeb5bc474ff0f8c822ee7ca301)), closes [#MANAGER-17902](https://github.com/ovh/manager/issues/MANAGER-17902)
+
+
+### Features
+
+* **dedicated:** ftc change wordings ([#16484](https://github.com/ovh/manager/issues/16484)) ([4e81ff2](https://github.com/ovh/manager/commit/4e81ff2e81fc02b044dc8c2415f70adf594451fb)), closes [#MANAGER-17653](https://github.com/ovh/manager/issues/MANAGER-17653)
+* **dedicated:** ftc update delete service wording ([#16936](https://github.com/ovh/manager/issues/16936)) ([04f53e9](https://github.com/ovh/manager/commit/04f53e9308b0b81531de86b0c438cb09eeab892b)), closes [#MANAGER-18157](https://github.com/ovh/manager/issues/MANAGER-18157)
+* **dedicated:** update terms of service modal wording ([#16870](https://github.com/ovh/manager/issues/16870)) ([97c7d90](https://github.com/ovh/manager/commit/97c7d9050f6f592b8270debf91978bdc70e962b3)), closes [#MANAGER-18130](https://github.com/ovh/manager/issues/MANAGER-18130)
+
+
+
+
+
 ## [20.34.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.34.1...@ovh-ux/manager-dedicated@20.34.2) (2025-05-13)
 
 

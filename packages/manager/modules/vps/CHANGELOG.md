@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.46.6...@ovh-ux/manager-vps@2.47.0) (2025-05-13)
+
+
+### Features
+
+* **dedicated:** ftc update delete vps label ([#16776](https://github.com/ovh/manager/issues/16776)) ([f7c68e0](https://github.com/ovh/manager/commit/f7c68e009164d329c9f49280ff9d9f9a5d299638)), closes [#MANAGER-17990](https://github.com/ovh/manager/issues/MANAGER-17990)
+
+
+
+
+
 ## [2.46.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.46.5...@ovh-ux/manager-vps@2.46.6) (2025-05-08)
 
 
