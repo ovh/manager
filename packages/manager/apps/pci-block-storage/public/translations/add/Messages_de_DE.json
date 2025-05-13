@@ -34,7 +34,7 @@
   "pci_projects_project_storages_blocks_add_deployment_mode_description_region-3-az": "Bereitstellung mit hoher Resilienz/hoher Verfügbarkeit für Ihre kritischen Anwendungen in 3 Availability Zones.",
   "pci_projects_project_storages_blocks_add_deployment_mode_title_localzone": "Local Zone",
   "pci_projects_project_storages_blocks_add_deployment_mode_description_localzone": "Bereitstellung Ihrer Anwendungen möglichst nahe an Ihren Usern für niedrige Latenz und die Datenresidenz.",
-  "pci_projects_project_storages_blocks_add_deployment_mode_price_from": "Ab {{price}} inkl. MwSt./GB/Stunde",
+  "pci_projects_project_storages_blocks_add_deployment_mode_price_from": "Ab {{price}} zzgl. MwSt./GB/Monat",
   "pci_projects_project_storages_blocks_add_beta_free": "Kostenlos",
   "pci_projects_project_storages_blocks_add_type_subtitle": "Entscheiden Sie sich für eine Blockspeicherlösung, die für Ihren Use Case geeignet ist und das gewünschte Maß an Leistung und Datenresilienz bietet.",
   "pci_projects_project_storages_blocks_add_type_availability_zone_one": "Daten in {{count}} Availability Zone",

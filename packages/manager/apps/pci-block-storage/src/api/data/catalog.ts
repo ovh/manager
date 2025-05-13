@@ -63,3 +63,35 @@ export const getVolumeCatalog = async (
 ): Promise<TVolumeCatalog> =>
   (await v6.get<TVolumeCatalog>(`/cloud/project/${projectId}/catalog/volume`))
     .data;
+
+export function getLeastPrice(pricings: TVolumePricing[]) {
+  return pricings.reduce<number | null>(
+    (leastPrice, p) =>
+      leastPrice === null ? p.price : Math.min(p.price, leastPrice),
+    null,
+  );
+}
+
+export function getGroupLeastPrice(
+  group: TCatalogGroup,
+  regions: TRegion[],
+  models: TVolumeAddon[],
+): number | null {
+  const groupRegions = regions
+    .filter((r) => r.type === group.name)
+    .map((r) => r.name);
+
+  const hasGroupRegions = (p: TVolumePricing) =>
+    p.regions.some((r) => groupRegions.includes(r));
+
+  return models
+    .map((m) => getLeastPrice(m.pricings.filter(hasGroupRegions)))
+    .filter((p) => p !== null)
+    .reduce<number | null>(
+      (leastPrice, modelLeastPrice) =>
+        leastPrice === null
+          ? modelLeastPrice
+          : Math.min(modelLeastPrice, leastPrice),
+      null,
+    );
+}
