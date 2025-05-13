@@ -43,5 +43,5 @@
   "pci_floating_ip_price_per_hour": "od ",
   "pci_floating_ip_resume_hour": "Płatność za godzinę",
   "pci_floating_ip_resume_price": "Cena: ",
-  "pci_floating_ip_3az_guide_description": "Aby uzyskać więcej informacji na temat specyfikacji usług 3-AZ i jak z nich korzystać do projektowania odpornej infrastruktury, <Link>Kliknij tutaj</Link>"
+  "pci_floating_ip_3az_guide_description": "Aby dowiedzieć się więcej o specyfikacjach usług 3-AZ i sposobach ich wykorzystania do projektowania odpornej infrastruktury, <Link>kliknij tutaj</Link>"
 }

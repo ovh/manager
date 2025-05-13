@@ -4,6 +4,6 @@
   "cloud_connect_diagnostics_result_id": "Diagnose-ID",
   "cloud_connect_diagnostics_result_date": "Datum",
   "cloud_connect_diagnostics_result_name": "Name",
-  "cloud_connect_diagnostics_result_source_setting": "Scope",
+  "cloud_connect_diagnostics_result_source_setting": "Quellkonfiguration",
   "cloud_connect_diagnostics_result_no_log": "Die Diagnose wurde erfolgreich ausgeführt. Kein Wert zum Anzeigen vorhanden"
 }

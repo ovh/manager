@@ -97,7 +97,7 @@
   "domain_operations_upload_file_label": "Buscar archivos",
   "domain_operations_upload_dropzone_label": "Arrastrar y soltar un archivo",
   "domain_operations_upload_accepted_file_types": "Se aceptan archivos con los siguientes formatos: {{t0}}",
-  "domain_operations_upload_success": "Se ha subido correctamente",
+  "domain_operations_upload_success": "La subida se ha realizado correctamente. Vamos a redirigirle al dashboard.",
   "domain_operations_upload_error": "No se ha podido subir el documento",
   "domain_operations_upload_error_with_value": "No se ha podido subir el documento: {{t0}}",
   "domain_operations_upload_doing": "Cargando...",
@@ -132,5 +132,7 @@
   "domain_operations_update_key_legitimacyAfnic": "Justificar el uso del nombre de dominio",
   "domain_operations_update_contact_administrator": "Póngase en contacto con el administrador para resolver el problema.",
   "domain_operations_nicOperation_ZoneRestore": "Restauración de la zona DNS",
-  "wizard_close": "Cerrar"
+  "wizard_close": "Cerrar",
+  "domain_operations_upload_error_wrong-format": "Formato de archivo no permitido",
+  "domain_operations_update_title": "Actualización de la operación para el dominio {{t0}}"
 }
