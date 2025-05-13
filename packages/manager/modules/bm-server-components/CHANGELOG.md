@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.9.7...@ovh-ux/manager-bm-server-components@2.10.0) (2025-05-13)
+
+
+### Features
+
+* **dedicated:** ftc update delete service wording ([#16936](https://github.com/ovh/manager/issues/16936)) ([04f53e9](https://github.com/ovh/manager/commit/04f53e9308b0b81531de86b0c438cb09eeab892b)), closes [#MANAGER-18157](https://github.com/ovh/manager/issues/MANAGER-18157)
+
+
+
+
+
 ## [2.9.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.9.6...@ovh-ux/manager-bm-server-components@2.9.7) (2025-05-13)
 
 

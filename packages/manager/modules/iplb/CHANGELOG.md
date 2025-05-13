@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.22.1...@ovh-ux/manager-iplb@1.23.0) (2025-05-13)
+
+
+### Features
+
+* **dedicated:** ftc update iplb subcription tile wording ([#16982](https://github.com/ovh/manager/issues/16982)) ([c94fbd3](https://github.com/ovh/manager/commit/c94fbd30ee124cc4245e589420c046a5e9de42b4)), closes [#MANAGER-17994](https://github.com/ovh/manager/issues/MANAGER-17994)
+
+
+
+
+
 ## [1.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.22.0...@ovh-ux/manager-iplb@1.22.1) (2025-04-30)
 
 

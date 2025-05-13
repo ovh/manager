@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.28.1...@ovh-ux/manager-dbaas-logs@1.29.0) (2025-05-13)
+
+
+### Features
+
+* **ldp:** change terminate by cancel ftc ([#16670](https://github.com/ovh/manager/issues/16670)) ([bd95958](https://github.com/ovh/manager/commit/bd9595840f0f8252bdefde02537c57b9a3e73d59)), closes [#MANAGER-17660](https://github.com/ovh/manager/issues/MANAGER-17660)
+
+
+
+
+
 ## [1.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.28.0...@ovh-ux/manager-dbaas-logs@1.28.1) (2025-05-07)
 
 
