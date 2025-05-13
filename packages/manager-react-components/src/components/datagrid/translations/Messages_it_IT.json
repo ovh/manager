@@ -7,5 +7,6 @@
   "common_pagination_load_more": "Caricare altro",
   "common_empty_text_cell": "Nessuna",
   "common_topbar_columns": "Colonne",
-  "common_pagination_load_all": "Caricare tutto"
+  "common_pagination_load_all": "Caricare tutto",
+  "common_topbar_columns_select_all": "Seleziona tutto"
 }
