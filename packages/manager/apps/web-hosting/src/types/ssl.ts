@@ -62,3 +62,12 @@ export type SslCertificate = {
   id: string;
   resourceStatus: ResourceStatus;
 };
+
+export type TCertificate = {
+  isReportable: boolean;
+  provider: string;
+  regenerable: boolean;
+  status: string;
+  taskId?: number;
+  type: string;
+};
