@@ -1,5 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.autorenew.terminateHostingWeb', {
+  $stateProvider.state('billing.autorenew.terminateHostingWebRedirection', {
+    url: '/delete-hosting-web?serviceId',
+    redirectTo: 'billing.autorenew.services.terminateHostingWeb',
+  });
+
+  $stateProvider.state('billing.autorenew.services.terminateHostingWeb', {
     url: '/delete-hosting-web?serviceId',
     views: {
       modal: {

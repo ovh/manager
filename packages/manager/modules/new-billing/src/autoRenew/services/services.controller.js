@@ -132,7 +132,7 @@ export default class ServicesCtrl {
   getDatasToExport() {
     const servicesToExport =
       this.selectedServices.length === 0
-        ? this.services
+        ? this.services.list.results
         : this.selectedServices;
     const datasToReturn = [
       [

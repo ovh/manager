@@ -16,6 +16,16 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         );
       },
     });
+
+    $stateProvider.state('billing.autorenew.services.cancel-resiliation.**', {
+      url: '/cancel-resiliation?serviceId&serviceType',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+        return import('./cancel-resiliation.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
   },
 );
 

@@ -4,7 +4,12 @@ import { EngagementConfiguration } from '@ovh-ux/manager-models';
 import { SERVICE_TYPES_USING_V6_SERVICES } from '../autorenew.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.autorenew.cancel-resiliation', {
+  $stateProvider.state('billing.autorenew.cancel-resiliationRedirection', {
+    url: '/cancel-resiliation?serviceId&serviceType',
+    redirectTo: 'billing.autorenew.services.cancel-resiliation',
+  });
+
+  $stateProvider.state('billing.autorenew.services.cancel-resiliation', {
     url: '/cancel-resiliation?serviceId&serviceType',
     views: {
       modal: {

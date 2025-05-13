@@ -22,7 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
       hideBreadcrumb: /* @ngInject */ () => true,
       trackingPrefix: () => 'dedicated::account::billing::autorenew',
       activationLink: /* @ngInject */ ($state) =>
-        $state.href('billing.autorenew.activation'),
+        $state.href('billing.autorenew.services.activation'),
       billingServices: /* @ngInject */ (services) =>
         map(services.list.results, (service) => new BillingService(service)),
       canDisableAllDomains: /* @ngInject */ (services) => services.bulkDomains,
@@ -30,14 +30,14 @@ export default /* @ngInject */ ($stateProvider) => {
       defaultPaymentMean: (ovhPaymentMethod) =>
         ovhPaymentMethod.getDefaultPaymentMethod(),
       disableAutorenewForDomains: /* @ngInject */ ($state) => () =>
-        $state.go('billing.autorenew.disableDomainsBulk'),
+        $state.go('billing.autorenew.services.disableDomainsBulk'),
       disableBulkAutorenew: /* @ngInject */ ($state) => (services) =>
-        $state.go('billing.autorenew.disable', {
+        $state.go('billing.autorenew.services.disable', {
           services: map(services, 'id').join(','),
         }),
 
       enableBulkAutorenew: /* @ngInject */ ($state) => (services) =>
-        $state.go('billing.autorenew.enable', {
+        $state.go('billing.autorenew.services.enable', {
           services: map(services, 'id').join(','),
         }),
       filters: /* @ngInject */ ($transition$, queryParameters) =>
