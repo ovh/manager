@@ -22,7 +22,7 @@
   "kube_common_node_pool_configure_false": " Utwórz klaster bez puli węzłów",
   "kube_common_node_pool_estimated_cost": "Oszacowanie miesięcznego kosztu klastra:",
   "kube_common_node_pool_estimation_text": "Szacunek ten nie obejmuje ewentualnej redukcji związanej z planami Savings.",
-  "kube_common_node_pool_estimation_price": "Pule węzłów:",
+  "kube_common_node_pool_estimation_price": "Pule węzłów: {{estimation}}",
   "kube_common_node_pool_estimation_text_end": "Dokładny koszt zależy od rzeczywistego wykorzystania zasobów, którego nie można dokładnie oszacować przed utworzeniem klastra.",
   "kube_common_node_pool_size_title": "Rozmiar puli węzłów",
   "kube_common_node_pool_desired_node": "Liczba węzłów",

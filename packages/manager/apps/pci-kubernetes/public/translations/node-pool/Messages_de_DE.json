@@ -22,7 +22,7 @@
   "kube_common_node_pool_configure_false": " Cluster ohne Node-Pool erstellen",
   "kube_common_node_pool_estimated_cost": "Geschätzte monatliche Kosten des Clusters:",
   "kube_common_node_pool_estimation_text": "In dieser Schätzung sind etwaige Rabatte im Zusammenhang mit den Savings Plans nicht berücksichtigt.",
-  "kube_common_node_pool_estimation_price": "Node-Pools:",
+  "kube_common_node_pool_estimation_price": "Node-Pools: {{estimation}}",
   "kube_common_node_pool_estimation_text_end": "Die genauen Kosten hängen von der tatsächlichen Ressourcennutzung ab, die vor der Erstellung eines Clusters nicht genau geschätzt werden kann.",
   "kube_common_node_pool_size_title": "Größe des Node-Pools",
   "kube_common_node_pool_desired_node": "Anzahl an Nodes",

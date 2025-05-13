@@ -575,7 +575,7 @@
   "ip_order_finish_error": "Wystąpił błąd podczas zamawiania dodatkowych adresów IP.",
   "ip_order_free_activation_fee": "W przypadku serwerów, dla których abonament za dodatkowe adresy IP jest darmowy, koszty aktywacji nie będą doliczane w trakcie odnawiania serwera. ",
   "ip_organisation_title": "Zarządzanie organizacjami",
-  "ip_organisation_button": "Zarządzanie organizacjami",
+  "ip_organisation_button": "Zarządzaj moimi organizacjami",
   "ip_organisation_table_organisation": "Firma",
   "ip_organisation_table_type": "Typ",
   "ip_organisation_table_lastname": "Nazwisko",

@@ -4,6 +4,6 @@
   "cloud_connect_diagnostics_result_id": "ID diagnostyki",
   "cloud_connect_diagnostics_result_date": "Data",
   "cloud_connect_diagnostics_result_name": "Nazwa",
-  "cloud_connect_diagnostics_result_source_setting": "Zakres",
+  "cloud_connect_diagnostics_result_source_setting": "Konfiguracja źródłowa",
   "cloud_connect_diagnostics_result_no_log": "Diagnostyka została wykonana Brak wartości do wyświetlenia"
 }

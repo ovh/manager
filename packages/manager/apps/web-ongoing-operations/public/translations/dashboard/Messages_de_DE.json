@@ -97,7 +97,7 @@
   "domain_operations_upload_file_label": "Dateien suchen",
   "domain_operations_upload_dropzone_label": "Eine Datei ziehen und ablegen",
   "domain_operations_upload_accepted_file_types": "Dateien in folgenden Formaten werden akzeptiert: {{t0}}",
-  "domain_operations_upload_success": "Der Upload war erfolgreich.",
+  "domain_operations_upload_success": "Der Upload war erfolgreich, Sie werden zum Dashboard weitergeleitet.",
   "domain_operations_upload_error": "Dokument-Upload fehlgeschlagen",
   "domain_operations_upload_error_with_value": "Upload des Dokuments fehlgeschlagen: {{t0}}",
   "domain_operations_upload_doing": "Upload läuft…",
@@ -132,5 +132,7 @@
   "domain_operations_update_key_legitimacyAfnic": "Verwendung des Domainnamens rechtfertigen",
   "domain_operations_update_contact_administrator": "Wenden Sie sich an Ihren Administrator, um dieses Problem zu beheben.",
   "domain_operations_nicOperation_ZoneRestore": "Wiederherstellung der DNS-Zone",
-  "wizard_close": "Schließen"
+  "wizard_close": "Schließen",
+  "domain_operations_upload_error_wrong-format": "Ungültiges Dateiformat",
+  "domain_operations_update_title": "Aktualisierung des Vorgangs für die Domain {{t0}}"
 }

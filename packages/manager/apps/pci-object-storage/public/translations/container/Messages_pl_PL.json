@@ -55,6 +55,6 @@
   "pci_projects_project_storages_containers_container_delete_marker": "Znacznik usunięcia",
   "pci_projects_project_storages_containers_container_show_versions": "Wyświetl wersje",
   "pci_projects_project_storages_containers_container_back_to_versions": "Powrót do moich przedmiotów",
-  "pci_projects_project_storages_containers_container_objects": "Moje przedmioty",
-  "pci_projects_project_storages_containers_container_objects_sort_warining": "Operacje sortowania na liście obiektów są wykonywane tylko na aktualnie wyświetlanych wynikach. Użyj polecenia \"Załaduj więcej\", aby rozszerzyć sortowanie na więcej wyników."
+  "pci_projects_project_storages_containers_container_objects": "Moje obiekty",
+  "pci_projects_project_storages_containers_container_objects_sort_warining": "Sortowanie listy obiektów dotyczy tylko aktualnie wyświetlanych wyników. Aby poszerzyć zakres sortowania, kliknij „Załaduj więcej”."
 }

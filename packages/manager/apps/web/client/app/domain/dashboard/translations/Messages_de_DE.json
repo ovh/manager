@@ -644,7 +644,7 @@
   "domain_tab_TASKS_status_CANCELLED": "Abgebrochen",
   "domain_tab_TASKS_status_DOING": "Wird ausgeführt",
   "domain_tab_TASKS_status_DONE": "Abgeschlossen",
-  "domain_tab_TASKS_status_ERROR": "Zu verarbeiten",
+  "domain_tab_TASKS_status_ERROR": "Fehler",
   "domain_tab_TASKS_status_TODO": "Geplant",
   "domain_order_start10M_choose_duration": "Wählen Sie die Laufzeit Ihres Start 10M aus.",
   "domain_order_start10M_duration_choosed": "Klicken Sie auf \"Weiter\" um fortzufahren.",
