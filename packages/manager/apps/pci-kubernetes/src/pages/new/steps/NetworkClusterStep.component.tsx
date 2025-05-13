@@ -105,6 +105,7 @@ export default function NetworkClusterStep({
             region={region}
             type={type}
             network={form.privateNetwork}
+            subnet={form.subnet}
             networks={availablePrivateNetworks}
             onSelect={(privateNetwork) => {
               setForm((network) => ({

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { useFormContext } from 'react-hook-form';
+import { Control, useFormContext, UseFormReturn } from 'react-hook-form';
 import { OptionalFormField } from './OptionalFormField.component';
 
 vi.mock('react-hook-form', () => ({
@@ -52,10 +52,10 @@ describe('OptionalFormField', () => {
     formState: {
       errors: {},
     },
-  };
+  } as UseFormReturn<Record<string, unknown>>;
 
   beforeEach(() => {
-    (useFormContext as jest.Mock).mockReturnValue(mockFormContext);
+    vi.mocked(useFormContext).mockReturnValue(mockFormContext);
   });
 
   it('renders the form field with label and description', () => {
@@ -77,11 +77,15 @@ describe('OptionalFormField', () => {
   });
 
   it('passes the correct props to the Controller', () => {
-    const mockControl = { testField: vi.fn() };
-    (useFormContext as jest.Mock).mockReturnValue({
+    const mockControl = ({ testField: vi.fn() } as unknown) as Control<
+      Record<string, unknown>
+    >;
+
+    const mockContextControl = {
       ...mockFormContext,
       control: mockControl,
-    });
+    };
+    vi.mocked(useFormContext).mockReturnValue(mockContextControl);
 
     render(<OptionalFormField {...defaultProps} />);
 

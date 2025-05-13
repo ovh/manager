@@ -165,10 +165,12 @@ export default function ResetClusterPage() {
     params: {
       loadBalancersSubnetId: formState.loadBalancersSubnet?.id,
       nodesSubnetId: formState.subnet?.id,
-      privateNetworkConfiguration: {
-        privateNetworkRoutingAsDefault: formState.gateway?.isEnabled,
-        defaultVrackGateway: formState.gateway?.ip || '',
-      },
+      ...(formState.privateNetworkId && {
+        privateNetworkConfiguration: {
+          privateNetworkRoutingAsDefault: formState.gateway?.isEnabled,
+          defaultVrackGateway: formState.gateway?.ip || '',
+        },
+      }),
       privateNetworkId: formState.privateNetworkId,
       version: formState.selectedVersion,
       workerNodesPolicy: formState.workerNodesPolicy,

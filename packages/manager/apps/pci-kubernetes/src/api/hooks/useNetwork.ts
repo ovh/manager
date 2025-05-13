@@ -4,12 +4,16 @@ import {
   getAllPrivateNetworksByRegion,
   TNetworkRegion,
 } from '../data/network';
-import { getListGateways, TGateway } from '../data/subnets';
+import {
+  getListGateways,
+  TGateway,
+  TPrivateNetworkSubnet,
+} from '../data/subnets';
 
-const getListGatewaysQueryKey = (
+export const getListGatewaysQueryKey = (
   projectId: string,
   regionName: string,
-  subnetId,
+  subnetId: TPrivateNetworkSubnet['id'],
 ) => [
   'project',
   projectId,
