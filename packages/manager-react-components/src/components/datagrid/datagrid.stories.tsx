@@ -141,7 +141,7 @@ WithSubComponent.args = {
 };
 
 export default {
-  title: 'Core/Manager React Components/Components/Datagrid Paginated',
+  title: 'Core/manager-react-components/Components/Datagrid Paginated',
   component: Datagrid,
   decorators: [withRouter],
   parameters: {

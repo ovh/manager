@@ -1,0 +1,109 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../manager-wiki/components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+import Links from '../../../../manager-wiki/components/external-links';
+
+<Meta title="Core/common-translations/Overview" />
+
+# Common Translations
+
+<StorybookHeading label="Overview" level={2} />
+
+The Common Translations module provides a centralized collection of translations for OVHcloud Manager applications. It ensures consistency in user interface text across different languages and regions, making it easier to maintain and update translations across the platform.
+
+<StorybookHeading label="Key Features" level={2} />
+
+- **Multi-language Support**: Includes translations for multiple languages including English (GB), French (FR/CA), German (DE), Spanish (ES), Italian (IT), Polish (PL), and Portuguese (PT)
+- **Categorized Translations**: Organized into logical categories:
+  - Actions (common UI actions like save, cancel, delete)
+  - Form (form-related messages and validation)
+  - Clipboard (copy/paste operations)
+  - Bytes (file size units)
+- **Consistent Formatting**: Standardized message format with support for variables
+- **TypeScript Support**: Full TypeScript type definitions for translation keys
+- **Easy Integration**: Simple import and usage in any Manager application
+
+<StorybookHeading label="Usage" level={2} />
+
+To use the common translations in your application:
+
+1. Install the package:
+```bash
+npm install @ovh-ux/manager-common-translations
+```
+
+2. Import and use translations in your application:
+```typescript
+import { useTranslation } from 'react-i18next';
+import '@ovh-ux/manager-common-translations';
+
+function MyComponent() {
+  const { t } = useTranslation('common');
+  
+  return (
+    <div>
+      <button>{t('actions.save')}</button>
+      <p>{t('form.mandatory_fields')}</p>
+    </div>
+  );
+}
+```
+
+<StorybookHeading label="Translation Categories" level={2} />
+
+### Actions
+Common UI action translations including:
+- Basic actions (save, cancel, delete)
+- Navigation (back, next, previous)
+- Data operations (load, search, filter)
+- System operations (install, update, configure)
+
+### Form
+Form-related translations including:
+- Field validation messages
+- Required field indicators
+- Character count limits
+- Error messages for various validation types
+
+### Clipboard
+Clipboard operation translations:
+- Copy success/error messages
+- Copy to clipboard action text
+
+### Bytes
+File size unit translations:
+- Standard units (B, KB, MB, GB, etc.)
+- Binary units (KiB, MiB, GiB, etc.)
+
+<StorybookHeading label="Best Practices" level={2} />
+
+1. **Use Translation Keys**: Always use translation keys instead of hardcoded strings
+2. **Maintain Consistency**: Use existing translations when available instead of creating new ones
+3. **Variable Usage**: Use the `{{ variable }}` syntax for dynamic content
+4. **Type Safety**: Leverage TypeScript types for translation keys to catch errors early
+5. **Testing**: Test your application with different languages to ensure proper translation display
+6. **Fallback Handling**: Implement proper fallback behavior when translations are missing
+7. **Context Awareness**: Use appropriate translations based on the user's locale and region
+
+<StorybookHeading label="Contributing" level={2} />
+
+When adding new translations:
+1. Add translations for all supported languages
+2. Follow the existing naming conventions
+3. Place translations in the appropriate category
+4. Update TypeScript types if adding new keys
+5. Test the changes with the translation system
+
+<StorybookHeading label="Support" level={2} />
+
+For issues, feature requests, or contributions:
+- Create an issue in the [GitHub repository](https://github.com/ovh/manager)
+- Follow the contribution guidelines in the repository
+- Ensure all translations are provided for supported languages
+

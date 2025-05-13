@@ -27,7 +27,7 @@ export const Default = {
 };
 
 const useFormatDateStories = {
-  title: 'Core/Manager React Components/Hooks/useFormatDate',
+  title: 'Core/manager-react-components/Hooks/useFormatDate',
   component: FormatDateComponent,
   argTypes: {
     defaultUnknownLabel: {
