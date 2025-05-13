@@ -7,5 +7,6 @@
   "common_pagination_load_more": "Charger plus",
   "common_pagination_load_all": "Charger tout",
   "common_empty_text_cell": "Aucun",
-  "common_topbar_columns": "Colonnes"
+  "common_topbar_columns": "Colonnes",
+  "common_topbar_columns_select_all": "Sélectionner tout"
 }
