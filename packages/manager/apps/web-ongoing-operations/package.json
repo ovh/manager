@@ -14,7 +14,7 @@
     "build": "tsc && vite build",
     "coverage": "TZ=UTC vitest run --coverage",
     "start": "vite",
-    "test": "TZ=UTC vitest run"
+    "testo": "TZ=UTC vitest run"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.3.1",
