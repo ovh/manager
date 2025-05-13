@@ -3,7 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { useVolumeBackups } from '@/data/hooks/useVolumeBackups';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
-import Listing from './index';
+import Listing from './Listing.page';
 
 vi.mock('@/pages/listing/useDatagridColumn', () => ({
   useDatagridColumn: vi.fn(() => [
