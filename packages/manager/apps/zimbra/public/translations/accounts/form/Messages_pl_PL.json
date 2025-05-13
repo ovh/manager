@@ -37,5 +37,9 @@
   "zimbra_account_edit_tabs_settings": "Ustawienia konta",
   "zimbra_account_edit_tabs_redirections": "Przekierowania",
   "zimbra_account_edit_tabs_alias": "Alias",
-  "zimbra_account_edit_tabs_auto_replies": "Autorespondery"
+  "zimbra_account_edit_tabs_auto_replies": "Autorespondery",
+  "zimbra_account_add_checkbox_hide_in_gal": "Ukryj adres na liście kontaktów",
+  "zimbra_account_add_checkbox_hide_in_gal_tooltip": "Wszystkie firmowe skrzynki mailowe, które mają ten sam adres domeny mają dostęp do wspólnej listy kontaktów.\n",
+  "zimbra_account_add_checkbox_force_change_password": "Wymuś zmianę przy następnym logowaniu",
+  "zimbra_account_add_checkbox_force_change_password_tooltip": "Hasło jest tymczasowe, użytkownik musi je zmienić przy pierwszym logowaniu, korzystając z webmaila."
 }
