@@ -1,6 +1,3 @@
-// Hexagonal Architecture-style boundary
-// Enforcing clean separation between framework and test domain
-
 import {
   defineConfig as createConfig,
   mergeConfig,

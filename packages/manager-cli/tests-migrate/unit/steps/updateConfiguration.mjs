@@ -4,7 +4,7 @@ import prettier from 'prettier';
 import { parse } from '@babel/parser';
 import traverseModule from '@babel/traverse';
 import * as t from '@babel/types';
-import { defaultExcludedFiles } from '@ovh-ux/manager-unit-tests-config';
+import { defaultExcludedFiles } from '@ovh-ux/manager-tests-setup';
 
 const traverse = traverseModule.default;
 
@@ -104,7 +104,7 @@ export const updateConfiguration = async (appPath, dryRun = false) => {
 
   const lines = [
     `import path from 'path';`,
-    `import { sharedConfig, mergeConfig, createConfig, defaultExcludedFiles } from '@ovh-ux/manager-unit-tests-config';`,
+    `import { sharedConfig, mergeConfig, createConfig, defaultExcludedFiles } from '@ovh-ux/manager-tests-setup';`,
     ``,
     `export default mergeConfig(`,
     `  sharedConfig,`,

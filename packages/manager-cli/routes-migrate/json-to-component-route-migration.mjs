@@ -9,8 +9,8 @@ runMigration({
   appName,
   commandLabel: 'routes',
   scriptOrSteps: [
-    'node ./routes/steps/transform-routes-cli.mjs',
-    'node ./routes/steps/update-routers-init-cli.mjs',
+    'node ./routes-migrate/steps/transform-routes-cli.mjs',
+    'node ./routes-migrate/steps/update-routers-init-cli.mjs',
   ],
   formatGlob: '*.tsx',
   dryRun: isDryRun,

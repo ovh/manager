@@ -20,7 +20,7 @@
       "packages/manager/core/utils",
       "packages/manager/core/vite-config",
       "packages/manager/core/test-utils",
-      "packages/manager/core/unit-tests-config",
+      "packages/manager/core/tests-setup",
       "packages/manager/modules/*",
       "packages/manager/tools/*",
       "packages/manager-cli",

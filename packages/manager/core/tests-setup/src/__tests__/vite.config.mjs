@@ -4,7 +4,7 @@ export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
-      setupFiles: './src/test-shared-config/setupTests.js',
+      setupFiles: './src/__tests__/setupTests.js',
     },
   }),
 );

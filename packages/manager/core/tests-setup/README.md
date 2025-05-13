@@ -1,38 +1,38 @@
-# `@ovh-ux/manager-unit-tests-config`
+# `@ovh-ux/manager-tests-setup`
 
-> 🧪 Shared unit test configuration for OVHcloud Manager apps  
-> 📦 Modular, hexagonally-structured test infrastructure layer  
-> 🎯 Promotes consistency, reuse, and decoupling across 30+ React applications
+> Shared unit test configuration for OVHCloud Manager apps  
+> Modular, hexagonally-structured test infrastructure layer  
+> Promotes consistency, reuse, and decoupling across 30+ React applications
 
 ---
 
-## 🔍 Overview
+## Overview
 
-`@ovh-ux/manager-unit-tests-config` centralizes unit test configuration for all OVHcloud Manager apps. It provides:
+`@ovh-ux/manager-tests-setup` centralizes **test configuration** (unit, integration, and future test layers) for all OVHCloud Manager apps. It provides:
 
-- A reusable, opinionated `sharedConfig`
+- A reusable, opinionated `sharedConfig` for unit and integration testing
 - Exports (`createConfig`, `mergeConfig`, `defaultCoverageConfig`) to **decouple applications from test runner internals**
-- A CLI tool (`manager-test`) for seamless test execution across apps—no need to locally install or configure the test runner
+- A CLI tool (`manager-test`) for seamless test execution—no need to locally install or configure the test runner
 
-The configuration is designed around **Hexagonal Architecture principles**, ensuring test runner logic remains isolated and does not leak into application code.
+The setup follows **Hexagonal Architecture principles**, ensuring test logic remains isolated from application code and tooling can evolve independently.
 
 ---
 
-## 🚀 Installation
+## Installation
 
-In the OVHcloud Manager monorepo (Yarn Workspaces):
+In the OVHCloud Manager monorepo:
 
 ```bash
-yarn add -D @ovh-ux/manager-unit-tests-config
+yarn add -D @ovh-ux/manager-tests-setup
 ```
 
 ---
 
-## 🛠 Usage
+## Usage
 
 Each app consumes the shared configuration by combining `sharedConfig` with local overrides via `mergeConfig`.
 
-### ✅ Example: `vitest.config.js`
+### Example: `vitest.config.js`
 
 ```js
 import path from 'path';
@@ -41,7 +41,7 @@ import {
   createConfig,
   mergeConfig,
   defaultCoverageConfig,
-} from '@ovh-ux/manager-unit-tests-config';
+} from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
   sharedConfig,
@@ -63,7 +63,7 @@ export default mergeConfig(
 
 ---
 
-## 🧪 CLI: `manager-test`
+## CLI: `manager-test`
 
 A unified CLI wrapper for executing tests without requiring per-app test runner dependencies:
 
@@ -78,11 +78,11 @@ yarn manager-test run --coverage
 yarn manager-test --ui
 ```
 
-> ✅ Applications do **not** need to install `vitest`, `@vitejs/plugin-react`, or `@vitest/coverage-v8` individually.
+> Applications do **not** need to install `vitest`, `@vitejs/plugin-react`, or `@vitest/coverage-v8` individually.
 
 ---
 
-## 🔐 Exports API
+## Exports API
 
 | Export                   | Description                                                                 |
 |--------------------------|-----------------------------------------------------------------------------|
@@ -93,23 +93,7 @@ yarn manager-test --ui
 
 ---
 
-## 📦 Package Structure
-
-```
-manager-unit-tests-config/
-├── bin/
-│   └── manager-unit-tests-cli.js     # CLI wrapper (Vitest / future adapters)
-├── src/
-│   ├── index.js                      # Main entry: shared config and exports
-│   └── test-shared-config/
-│       ├── vite.config.mjs           # Test runner config for self-tests
-│       ├── shared.config.test.js     # Self-validation tests
-│       └── setupTests.js             # Optional internal setup
-```
-
----
-
-## 🧱 Architectural Principles
+## Architectural Principles
 
 This package follows **Hexagonal Architecture**:
 
@@ -125,7 +109,7 @@ This package follows **Hexagonal Architecture**:
 
 ---
 
-## 🧩 License
+## License
 
 [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)  
-© OVH SAS
+© OVH SAS — for use with any OVHCloud Manager testing needs (unit, integration, etc.)

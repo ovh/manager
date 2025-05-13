@@ -18,7 +18,7 @@ if (!appName) {
   process.exit(1);
 }
 
-const appPath = path.resolve(__dirname, '../../manager/apps', appName);
+const appPath = path.resolve(__dirname, '../../../manager/apps', appName);
 
 if (!existsSync(appPath)) {
   console.error(`❌ App not found at: ${appPath}`);

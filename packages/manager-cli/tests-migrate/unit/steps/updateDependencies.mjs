@@ -12,7 +12,7 @@ const VITEST_DEPS = [
   '@testing-library/user-event'
 ];
 
-const UNIT_TEST_CONFIG_PKG = '@ovh-ux/manager-unit-tests-config';
+const UNIT_TEST_CONFIG_PKG = '@ovh-ux/manager-tests-setup';
 const UNIT_TEST_CONFIG_VERSION = '^0.0.1';
 
 /**
