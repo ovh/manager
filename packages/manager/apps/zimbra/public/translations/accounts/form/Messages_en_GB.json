@@ -37,5 +37,9 @@
   "zimbra_account_edit_tabs_settings": "Account settings",
   "zimbra_account_edit_tabs_redirections": "Redirections",
   "zimbra_account_edit_tabs_alias": "Alias",
-  "zimbra_account_edit_tabs_auto_replies": "Auto-replies"
+  "zimbra_account_edit_tabs_auto_replies": "Auto-replies",
+  "zimbra_account_add_checkbox_hide_in_gal": "Hide the address in the directory",
+  "zimbra_account_add_checkbox_hide_in_gal_tooltip": "All mailboxes within the same domain have access to the shared company directory.",
+  "zimbra_account_add_checkbox_force_change_password": "Force change on next connection",
+  "zimbra_account_add_checkbox_force_change_password_tooltip": "The current password is temporary, the user will need to first log in via webmail to create it."
 }

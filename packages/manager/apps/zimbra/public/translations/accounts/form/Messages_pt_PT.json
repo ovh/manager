@@ -37,5 +37,9 @@
   "zimbra_account_edit_tabs_settings": "Parâmetros da conta",
   "zimbra_account_edit_tabs_redirections": "Reencaminhamentos",
   "zimbra_account_edit_tabs_alias": "Alias",
-  "zimbra_account_edit_tabs_auto_replies": "Resposta automática"
+  "zimbra_account_edit_tabs_auto_replies": "Resposta automática",
+  "zimbra_account_add_checkbox_hide_in_gal": "Ocultar o endereço na lista de endereços",
+  "zimbra_account_add_checkbox_hide_in_gal_tooltip": "A lista de endereços da empresa é partilhada em todas as caixas de correio que utilizam o mesmo domínio",
+  "zimbra_account_add_checkbox_force_change_password": "Forçar a alteração na próxima ligação",
+  "zimbra_account_add_checkbox_force_change_password_tooltip": "A palavra-passe definida é temporária. Na primeira ligação, o utilizador terá de utilizar o webmail para a definir."
 }
