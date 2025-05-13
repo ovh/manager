@@ -3,7 +3,7 @@ import { StoryObj } from '@storybook/react';
 import { Region } from './region.component';
 
 const managerRegion = {
-  title: 'Core/Manager React Components/Components/Region',
+  title: 'Core/manager-react-components/Components/Region',
   component: Region,
 };
 

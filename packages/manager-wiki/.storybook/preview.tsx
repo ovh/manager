@@ -43,7 +43,7 @@ const preview: Preview = {
           'Introduction',
           'Core',
           [
-            'Manager React Components',
+            'manager-react-components',
             ['Introduction', "What's new", 'Changelog'],
             '*',
             ['Overview', 'Changelog'],

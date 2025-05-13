@@ -1,0 +1,102 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../manager-wiki/components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+import Links from '../../../../manager-wiki/components/external-links';
+
+<Meta title="Core/manager-react-shell-client/Overview" />
+
+# Manager Shell Client
+
+The Manager Shell Client is a React-based integration layer that provides access to the OVHcloud Manager Shell functionality within React applications. It offers a set of hooks and context providers to interact with the shell's features.
+
+<StorybookHeading label="Overview" level={2} />
+
+The shell client provides a React context-based approach to access shell functionality. It includes:
+
+- Shell context for accessing shell features
+- Environment configuration
+- Navigation capabilities
+- Routing utilities
+- UX features
+- Tracking functionality
+
+<StorybookHeading label="Key Features" level={2} />
+
+- **Shell Context**: Provides access to shell functionality through React context
+- **Environment Management**: Access to environment configuration
+- **Navigation**: Shell navigation capabilities
+- **Routing**: Shell routing utilities
+- **UX Features**: Access to shell UX functionality
+- **Tracking**: Shell tracking capabilities
+
+<StorybookHeading label="Usage" level={2} />
+
+### Basic Setup
+
+```tsx
+import { ShellContext, initShellContext } from '@ovh-ux/manager-react-shell-client';
+
+// Initialize shell context
+const { shell, environment, tracking } = await initShellContext('your-app-name', {
+  chapter1: 'your-chapter',
+  chapter2: 'your-subchapter',
+  appName: 'your-app-name'
+});
+
+// Use in your app
+function App() {
+  return (
+    <ShellContext.Provider value={{ shell, environment, tracking }}>
+      {/* Your app components */}
+    </ShellContext.Provider>
+  );
+}
+```
+
+### Accessing Shell Features
+
+```tsx
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+function YourComponent() {
+  const { shell, environment } = useContext(ShellContext);
+  
+  // Access shell features
+  const navigation = shell.navigation;
+  const routing = shell.routing;
+  const ux = shell.ux;
+  const tracking = shell.tracking;
+  
+  return (
+    // Your component JSX
+  );
+}
+```
+
+<StorybookHeading label="Best Practices" level={2} />
+
+1. **Use ShellContext Directly**: The hooks (`useShell`, `useNavigation`, `useRouting`, etc.) are deprecated. Use the `ShellContext` directly instead.
+
+2. **Initialize Early**: Initialize the shell context as early as possible in your application lifecycle.
+
+3. **Type Safety**: Take advantage of TypeScript types provided by the library for better type safety.
+
+4. **Error Handling**: Always handle potential errors when initializing the shell context.
+
+5. **Performance**: Access shell features only when needed to avoid unnecessary re-renders.
+
+<StorybookBestPractices>
+  - Always provide proper tracking parameters when initializing the shell context
+  - Use environment variables for configuration
+  - Handle shell initialization errors gracefully
+  - Keep shell context at the root level of your application
+</StorybookBestPractices>
+
+
