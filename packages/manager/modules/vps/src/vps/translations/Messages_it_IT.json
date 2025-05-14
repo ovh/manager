@@ -135,7 +135,7 @@
   "vps_configuration_reboot_alert": "Tempo di indisponibilità dovuto al riavvio: circa 2 minuti",
   "vps_configuration_reboot_success": "Il VPS {{serviceName}} verrà riavviato (tempo stimato: 2 minuti)",
   "vps_configuration_reboot_todo": "La richiesta di riavvio è stata presa in carico.",
-  "vps_configuration_reboot_fail": "Si è verificato un errore durante la richiesta di riavvio",
+  "vps_configuration_reboot_fail": "Si è verificato un errore durante la richiesta di riavvio. {{ error }}",
   "vps_configuration_reboot_rescue_title_button": "Modalità Rescue",
   "vps_configuration_reboot_rescue_warning_text": "Alcune operazioni non sono disponibili in <b>modalità Rescue</b>. Per ripristinare le funzionalità, ristabilisci il boot locale cliccando su “Riavvia il VPS”.",
   "vps_configuration_reboot_rescue_warning_btn_title": "Questa operazione non è disponibile in modalità Rescue.",
