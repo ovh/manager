@@ -86,8 +86,8 @@ const UserAccountMenu = ({
         setIsDocumentsVisible(['required', 'open'].includes(status));
       }
 
-      const myInvoicesIndex = links.indexOf(
-        links.find((link: UserLink) => link.key === 'myInvoices'),
+      const myServicesIndex = links.indexOf(
+        links.find((link: UserLink) => link.key === 'myServices'),
       );
       const myAssistanceTickets = {
         app: 'new-account',
@@ -118,9 +118,9 @@ const UserAccountMenu = ({
       const computedLinks =
         region === 'US'
           ? [
-              ...links.slice(0, myInvoicesIndex),
+              ...links.slice(0, myServicesIndex),
               myAssistanceTickets,
-              ...links.slice(myInvoicesIndex, links.length),
+              ...links.slice(myServicesIndex, links.length),
               ...myIdentityDocuments,
             ]
           : [...links, ...myIdentityDocuments, myContracts];
