@@ -14,7 +14,7 @@ export default function SubHeader({ title }: SubHeaderProps) {
   const { data: url } = useNavigationGetUrl([config.rootLabel, '', {}]);
 
   return (
-    <section className="mb-4 flex flex-col gap-y-2">
+    <section className="mb-8 flex flex-col gap-y-2">
       <OdsLink
         href={`${url}/domain`}
         icon="arrow-left"
