@@ -119,8 +119,8 @@ export function IFrameAppRouter({
         .map((config) => makeRoute({ ...config, iframeRef })),
     [mockedConfiguration],
   );
-  const redirections = useMemo(() => Redirections(configuration), [
-    configuration,
+  const redirections = useMemo(() => Redirections(mockedConfiguration), [
+    mockedConfiguration,
   ]);
 
   return (
