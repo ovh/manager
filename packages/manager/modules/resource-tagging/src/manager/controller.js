@@ -11,4 +11,8 @@ export default class ovhManagerResourceTaggingTagManagerController {
       this.tags,
     );
   }
+
+  onRowSelect(rows) {
+    this.selectedRows = rows;
+  }
 }

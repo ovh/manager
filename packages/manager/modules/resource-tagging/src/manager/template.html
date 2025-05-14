@@ -6,6 +6,7 @@
         page-size="10"
         data-rows="$ctrl.formattedTags"
         data-selectable-rows
+        data-on-row-select="$ctrl.onRowSelect($rows)"
         data-empty-placeholder="{{:: 'manager_components_resource_tagging_manager_empty' | translate}}"
     >
         <oui-datagrid-topbar>
@@ -43,7 +44,7 @@
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="top-end">
             <oui-action-menu-item
-                disabled="$isSelected"
+                disabled="$ctrl.selectedRows.length > 1 || ($ctrl.selectedRows.length === 1 && !$isSelected)"
                 data-on-click="$ctrl.goToTagUnassign($row)"
             >
                 <span
