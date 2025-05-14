@@ -1,15 +1,15 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { AxiosResponse } from 'axios';
-import { OperationName } from '@/enum/operationName.enum';
+import { ActionNameEnum } from '@/enum/actionName.enum';
 //  Actions
 export const updateOperationStatus = async (
-  universe: string,
+  product: string,
   id: number,
   operationName:
-    | OperationName.CanAccelerate
-    | OperationName.CanCancel
-    | OperationName.CanRelaunch,
+    | ActionNameEnum.CanAccelerate
+    | ActionNameEnum.CanCancel
+    | ActionNameEnum.CanRelaunch,
 ): Promise<AxiosResponse> => {
-  const { data } = await v6.post(`/me/task/${universe}/${id}/${operationName}`);
+  const { data } = await v6.post(`/me/task/${product}/${id}/${operationName}`);
   return data;
 };

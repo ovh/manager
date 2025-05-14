@@ -1,24 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Datagrid,
   ErrorBanner,
+  useNotifications,
   useResourcesIcebergV6,
 } from '@ovh-ux/manager-react-components';
 import { TOngoingOperations } from 'src/types';
 import { useTranslation } from 'react-i18next';
 import Loading from '@/components/Loading/Loading';
 import { useOngoingOperationDatagridColumns } from '@/hooks/useOngoingOperationDatagridColumns';
-import Modal from '@/components/Modal/Modal';
-import Notification from '@/components/Notification/Notification.component';
 import { taskMeDns } from '@/constants';
 import { ParentEnum } from '@/enum/parent.enum';
 
 export default function Domain() {
   const { t: tError } = useTranslation('web-ongoing-operations/error');
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const defaultStatus = { label: '', message: '' };
-  const [status, setStatus] = useState(defaultStatus);
-  const [filterDns, setFilterDns] = useState<TOngoingOperations | null>(null);
+  const { notifications } = useNotifications();
 
   const {
     flattenData: dnsList,
@@ -30,35 +26,14 @@ export default function Domain() {
     sorting,
     setSorting,
     filters,
-    refetch,
   } = useResourcesIcebergV6<TOngoingOperations>({
-    route: taskMeDns,
-    queryKey: [taskMeDns],
+    route: taskMeDns.join('/'),
+    queryKey: taskMeDns,
     pageSize: 30,
+    disableCache: !!notifications.length,
   });
 
-  const openModal = (id: number) => {
-    setModalOpen(true);
-    setFilterDns(
-      dnsList.find((element: TOngoingOperations) => element.id === id),
-    );
-  };
-
-  const closeModal = () => {
-    setModalOpen(!modalOpen);
-    setFilterDns(null);
-    refetch();
-  };
-
-  const changeStatus = (label: string, message: string) => {
-    setStatus({ label, message });
-  };
-
-  const columns = useOngoingOperationDatagridColumns(
-    ParentEnum.ZONE,
-    dnsList,
-    openModal,
-  );
+  const columns = useOngoingOperationDatagridColumns(ParentEnum.ZONE, dnsList);
 
   if (isLoading) {
     return (
@@ -81,23 +56,6 @@ export default function Domain() {
 
   return (
     <React.Suspense>
-      {modalOpen && (
-        <Modal
-          universe="dns"
-          onCloseModal={closeModal}
-          operation={filterDns}
-          changeStatus={changeStatus}
-        />
-      )}
-
-      {status.label && (
-        <Notification
-          label={status.label}
-          message={status.message}
-          removeMessage={() => setStatus(defaultStatus)}
-        />
-      )}
-
       {dnsList && (
         <div data-testid="dns">
           <Datagrid
