@@ -43,7 +43,7 @@ const SkipToMainContent = (props: Props) => {
   const handleKeyDown = (e: any) => {
     if (e.key === "Enter" && iframeRef?.current) {
       iframeRef.current.focus();
-      shell.emitEvent('skipToTheMainContent');
+      shell.getPlugin('ux').skipToTheMainContent();
     }
     if (e.key === "Tab" && firstFocusableElement?.current) {
       firstFocusableElement.current.focus();

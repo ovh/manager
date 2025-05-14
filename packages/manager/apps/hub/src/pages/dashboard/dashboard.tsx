@@ -76,12 +76,22 @@ export default function Dashboard() {
     trackCurrentPage();
   }, [location]);
 
+  const onMainContentSelected = () => {
+    window.document.getElementById('skipTarget').focus();
+  };
+
   useEffect(() => {
     const getIsAccountSidebarVisible = async () => {
       const newValueIsAccountSidebarVisible = (await shell.ux.isAccountSidebarVisible()) as boolean;
       setIsAccountSidebarVisible(() => newValueIsAccountSidebarVisible);
     };
+
+    const getOnSkipToTheMainContent = async () => {
+      await shell.ux.onSkipToTheMainContent(onMainContentSelected);
+    };
+
     getIsAccountSidebarVisible();
+    getOnSkipToTheMainContent();
   }, []);
 
   const { data: availability } = useFeatureAvailability(features);
