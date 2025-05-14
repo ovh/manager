@@ -178,8 +178,21 @@ export default function CreateVolumeBackup() {
     },
   });
 
+  const generateBackupName = (
+    volumeName: string | undefined,
+    backupOptionType: TBackupOption['type'] | undefined,
+  ) => {
+    if (volumeName && backupOptionType) {
+      const volumeTypePrefix = BACKUP_NAME_PREFIX[backupOptionType];
+      const timestamp = formatISO(new Date());
+      setBackupName(`${volumeTypePrefix}-${volumeName}-${timestamp}`);
+    }
+  };
+
   const selectedVolume = useMemo(() => {
-    return volumes?.find(({ id }) => id === selectedVolumeId);
+    const searchedVolume = volumes?.find(({ id }) => id === selectedVolumeId);
+    generateBackupName(searchedVolume?.name, selectedBackup?.type);
+    return searchedVolume;
   }, [volumes, selectedVolumeId]);
 
   const isSelectedVolumeNeedToDetach = useMemo(
@@ -209,13 +222,7 @@ export default function CreateVolumeBackup() {
 
   const handleBackupOptionChange = (option: TBackupOption) => {
     setSelectedBackup(option);
-
-    // Generate default backup name
-    if (selectedVolume?.name) {
-      const volumeTypePrefix = BACKUP_NAME_PREFIX[option.type];
-      const timestamp = formatISO(new Date());
-      setBackupName(`${volumeTypePrefix}-${selectedVolume.name}-${timestamp}`);
-    }
+    generateBackupName(selectedVolume?.name, option?.type);
   };
 
   const isFormValid = useCallback(
