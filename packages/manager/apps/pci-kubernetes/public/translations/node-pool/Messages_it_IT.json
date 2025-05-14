@@ -22,7 +22,7 @@
   "kube_common_node_pool_configure_false": " Crea un cluster senza pool di nodi",
   "kube_common_node_pool_estimated_cost": "Costo mensile stimato del cluster:",
   "kube_common_node_pool_estimation_text": "Tale stima non include un'eventuale riduzione legata ai Savings Plans.",
-  "kube_common_node_pool_estimation_price": "Pool di nodi: {{estimation}}",
+  "kube_common_node_pool_estimation_price": "Pool di nodi:",
   "kube_common_node_pool_estimation_text_end": "Il costo esatto dipende dall'utilizzo reale delle risorse, che non può essere stimato con precisione prima della creazione di un cluster.",
   "kube_common_node_pool_size_title": "Dimensione del pool di nodi",
   "kube_common_node_pool_desired_node": "Numero di nodi",
@@ -32,10 +32,10 @@
   "kube_common_node_pool_liste": "Lista dei pool di nodi",
   "kube_common_add_node_pool": "Aggiungere il pool di nodi",
   "kube_common_min_max_nodes": "Min. {{minNodes}}, max. {{maxNodes}}",
-  "kube_common_estimation_price": "Gratuito durante la fase di beta.",
-  "kube_common_cluster_estimation_price": "Piano di controllo gestito:",
+  "kube_common_estimation_price": "Gratis durante la fase Beta.",
+  "kube_common_cluster_estimation_price": "Control plane gestito:",
   "kube_common_node_pool_deploy_title": "Scelta della zona di disponibilità",
-  "kube_common_node_pool_deploy_description": "In un cluster Kubernetes distribuito su tre zone di disponibilità (AZ), l'utilizzo di pool di nodi per zona è consigliato per assicurare resilienza e high availability. Questa configurazione vi permette di distribuire in modo equilibrato i vostri workload tra gli AZ. Migliora la tolleranza ai guasti e garantisce una continuità di servizio ottimale.",
-  "kube_node_pool": "Configura il pool di nodi",
-  "kube_common_estimation_price_free": "Gratuito"
+  "kube_common_node_pool_deploy_description": "In un cluster Kubernetes ripartito su tre Availability Zone (AZ), l'utilizzo di pool di nodi per zona è consigliato per assicurare resilienza e alta disponibilità. Questa configurazione permette di distribuire in modo equilibrato i tuoi workload tra le AZ. Migliora la tolleranza ai guasti e garantisce una continuità di servizio ottimale.",
+  "kube_node_pool": "Configurare il pool di nodi",
+  "kube_common_estimation_price_free": "Gratis"
 }
