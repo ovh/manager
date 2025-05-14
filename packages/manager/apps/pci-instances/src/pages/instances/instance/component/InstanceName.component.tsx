@@ -1,11 +1,12 @@
-import { FC } from 'react';
 import { Subtitle, useNotifications } from '@ovh-ux/manager-react-components';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import EditableText from '@/components/editableText/EditableText.component';
 import { useEditInstanceName } from '@/data/hooks/instance/useInstance';
-import { TInstanceDto } from '@/types/instance/api.type';
+import EditableText from '@/components/editableText/EditableText.component';
 
-const InstanceName: FC<{ instance: TInstanceDto }> = ({ instance }) => {
+import { TInstance } from '@/types/instance/entity.type';
+
+const InstanceName: FC<{ instance: TInstance }> = ({ instance }) => {
   const { t } = useTranslation('dashboard');
   const { addError } = useNotifications();
   const { isPending, variables, mutate } = useEditInstanceName(instance.id, {
@@ -18,7 +19,7 @@ const InstanceName: FC<{ instance: TInstanceDto }> = ({ instance }) => {
       {isPending && variables.instanceName}
       {!isPending && (
         <>
-          {instance.status !== 'ERROR' ? (
+          {instance.status.label !== 'ERROR' ? (
             <EditableText
               defaultValue={instance.name}
               handleValidate={(instanceName) => mutate({ instanceName })}
