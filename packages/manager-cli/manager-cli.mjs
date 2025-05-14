@@ -19,7 +19,7 @@ const knownCommands = {
   },
 };
 
-const validTestTypes = ['unit', 'integration', 'e2e'];
+const validTestTypes = ['unit', 'integration'];
 
 const basePath = path.resolve('../manager/apps');
 
@@ -51,7 +51,7 @@ const printHelp = () => {
 🛠️  manager-cli
 
 Usage:
-  yarn manager-cli <command> --app <app-name> [--testType <unit|integration|e2e>] [--framework <name>] [--dry-run]
+  yarn manager-cli <command> --app <app-name> [--testType <unit|integration>] [--framework <name>] [--dry-run]
 
 Options:
   --list                  List available app names
@@ -150,7 +150,7 @@ if (typeArgIndex !== -1 && restArgs[typeArgIndex + 1]) {
 
 if (command === 'tests-migrate') {
   if (!testType) {
-    console.error(`❌ Missing required flag: --testType <unit|integration|e2e>`);
+    console.error(`❌ Missing required flag: --testType <unit|integration>`);
     process.exit(1);
   }
   if (!validTestTypes.includes(testType)) {
