@@ -4,13 +4,21 @@ export default class MoveMeetingService {
     this.$http = $http;
   }
 
-  searchMeetings(eligibilityReference, productCode, installationType) {
+  searchMeetings(
+    eligibilityReference,
+    productCode,
+    installationType,
+    ptoReference,
+  ) {
     const params = {
       eligibilityReference,
       productCode,
     };
     if (installationType) {
       params.installationType = installationType;
+    }
+    if (ptoReference) {
+      params.otp = ptoReference;
     }
     return this.$http
       .post(`/connectivity/eligibility/search/meetings`, params)
