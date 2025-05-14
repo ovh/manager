@@ -194,6 +194,55 @@ export const STORAGE_PRICES_LINK = {
   WS: 'https://www.ovhcloud.com/es/public-cloud/prices/#439',
 };
 
+export const STORAGE_CLASSES_LINK = {
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047293',
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0034615',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047281',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB00472839',
+  DE:
+    'https://help.ovhcloud.com/csm/de-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047284',
+  ES:
+    'https://help.ovhcloud.com/csm/es-es-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047288',
+  EU:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047293',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047302',
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047294',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047293',
+  IN:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0034615',
+  IT:
+    'https://help.ovhcloud.com/csm/it-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047303',
+  MA:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047302',
+  NL:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047293',
+  PL:
+    'https://help.ovhcloud.com/csm/pl-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047292',
+  PT:
+    'https://help.ovhcloud.com/csm/pt-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047296',
+  QC:
+    'https://help.ovhcloud.com/csm/fr-ca-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047300',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047287',
+  SN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047302',
+  TN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047302',
+  US:
+    'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047289',
+  WE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047293',
+  WS:
+    'https://help.ovhcloud.com/csm/es-public-cloud-storage-s3-choosing-right-storage-class?id=kb_article_view&sysparm_article=KB0047290',
+};
+
 export const DEPLOYMENT_MODE_LINK = {
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065336',
@@ -422,6 +471,7 @@ export const CONTAINER_USER_ASSOCIATION_MODES = {
 export const OBJECT_CONTAINER_STORAGE_CLASS = {
   STANDARD: 'STANDARD',
   HIGH_PERFORMANCE: 'HIGH_PERF',
+  STANDARD_INFREQUENT_ACCESS: 'STANDARD_IA',
 };
 
 export const X_CONTAINER_HEADERS_REGEX = /^(X-Container|X-Storage)/i;

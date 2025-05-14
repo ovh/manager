@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/shell",
-  "version": "4.4.2",
+  "version": "4.4.3",
   "description": "Communication and interaction between applications",
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.3.1",
-    "@ovh-ux/ovh-at-internet": "^0.21.8",
+    "@ovh-ux/ovh-at-internet": "^0.22.0",
     "@ovh-ux/ovh-reket": "^2.1.8",
     "@ovh-ux/request-tagger": "^0.4.1",
     "@ovh-ux/url-builder": "^2.0.1",

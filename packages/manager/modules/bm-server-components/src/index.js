@@ -26,5 +26,4 @@ export { default as serverNetworkInterfaces } from './network-interfaces';
 export { default as serverSecondaryDns } from './secondary-dns';
 export { default as serverMainPage } from './server';
 export { default as serverDashboard } from './server-dashboard';
-export { default as vmacUnavailableBanner } from './vmac-unavailable-banner';
 export { default as rbx1EolBanner } from './rbx1-eol-banner';

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.8](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.2.7...@ovh-ux/ng-ovh-contact@5.2.8) (2025-05-12)
+
+
+### Bug Fixes
+
+* **telecom.xdsl:** fix issue on add contact module ([#16937](https://github.com/ovh/manager/issues/16937)) ([c95d1e5](https://github.com/ovh/manager/commit/c95d1e5a6ef292f3f1cb8d2ba5083e0ebe137059)), closes [#MANAGER-18232](https://github.com/ovh/manager/issues/MANAGER-18232)
+
+
+
+
+
 ## [5.2.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.2.6...@ovh-ux/ng-ovh-contact@5.2.7) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-contact
