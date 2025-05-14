@@ -1,4 +1,7 @@
 {
-  "autorenew_service_terminate": "Valider",
-  "autorenew_service_terminate_cancel": "Annuler"
+  "billing_terminate_cancel_button": "Non, refuser",
+  "billing_terminate_delete_button": "Oui, résilier",
+  "billing_terminate_description": "La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?",
+  "billing_terminate_headline": "Résilier {{serviceType}} ?",
+  "billing_terminate_headline_service": "Service"
 }

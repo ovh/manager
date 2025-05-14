@@ -27,5 +27,15 @@
   "autorenew_agora_terminate_service_NUTANIX_NODE": "Disattivare questo nodo",
   "autorenew_agora_terminate_service_warning_NUTANIX_NODE": "Stai per disattivare la sottoscrizione del nodo \"{{serviceName}}\".",
   "autorenew_agora_terminate_service_success_NUTANIX_NODE": "La disattivazione del nodo \"{{serviceName}}\" è stata presa in carico. Riceverai un'email con i dettagli della procedura da seguire.",
-  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "La tua richiesta di disattivazione non è stata presa in carico: {{error}}"
+  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "La tua richiesta di disattivazione non è stata presa in carico: {{error}}",
+  "autorenew_agora_terminate_service_success_ftc_LICENSE_HYCU": "La richiesta di disattivazione della licenza HYCU è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
+  "autorenew_agora_terminate_service_success_ftc_OKMS_RESOURCE": "La richiesta di disattivazione del KMS è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
+  "autorenew_agora_terminate_service_success_ftc_VRACK_SERVICES_RESOURCE": "La richiesta di disattivazione di vRack Services è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
+  "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_BACKUP": "La richiesta di disattivazione di Managed Veeam for VCD è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
+  "autorenew_agora_terminate_service_success_ftc_DBAAS_LOGS": "La richiesta di disattivazione del LDP è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
+  "autorenew_agora_terminate_service_success_ftc_NUTANIX": "La richiesta di disattivazione del servizio Nutanix è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
+  "autorenew_agora_terminate_service_success_ftc_NUTANIX_NODE": "La disattivazione del nodo \"{{serviceName}}\" è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
+  "autorenew_agora_terminate_service_success_ftc_VEEAM_ENTERPRISE": "La disattivazione della licenza \"{{serviceName}}\" è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
+  "autorenew_agora_terminate_service_success_VEEAM_ENTERPRISE": "La disattivazione della licenza \"{{serviceName}}\" è stata presa in carico. Riceverai un'email con i dettagli della procedura da seguire.",
+  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "La richiesta di disattivazione non è stata presa in carico: {{error}}"
 }
