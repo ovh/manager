@@ -209,7 +209,7 @@ export default function Update() {
         })}
       />
       <section>
-        <div className="flex flex-col gap-y-1 mb-6">
+        <div className="flex flex-col gap-y-1 mb-8">
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             <Trans
               t={t}
@@ -232,21 +232,23 @@ export default function Update() {
           </OdsText>
         </div>
 
-        <div className="my-6 flex flex-col gap-y-4">
-          {operationArguments?.data?.map((argument, index) => (
-            <div key={`${domain.id}-${index}`}>
-              <UpdateContentComponent
-                argument={argument}
-                operationId={domain.id}
-                domainName={domain.domain}
-                operationName={domain.function}
-                onChange={onChange}
-                addFileUpload={addFileUpload}
-                removeFileUpload={removeFileUpload}
-              />
-            </div>
-          ))}
-        </div>
+        {operationArguments?.data?.length > 0 && (
+          <div className="flex flex-col gap-y-4">
+            {operationArguments?.data?.map((argument, index) => (
+              <div key={`${domain.id}-${index}`}>
+                <UpdateContentComponent
+                  argument={argument}
+                  operationId={domain.id}
+                  domainName={domain.domain}
+                  operationName={domain.function}
+                  onChange={onChange}
+                  addFileUpload={addFileUpload}
+                  removeFileUpload={removeFileUpload}
+                />
+              </div>
+            ))}
+          </div>
+        )}
 
         <UpdateActions
           data={domain}

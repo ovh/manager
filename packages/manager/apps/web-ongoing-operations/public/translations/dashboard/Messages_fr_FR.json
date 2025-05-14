@@ -121,6 +121,6 @@
   "domain_operations_accelerate_success": "L'opération a été accélérée avec succès.",
   "domain_operations_cancel_success": "L'opération a été annulée avec succès.",
   "domain_operations_relaunch_success": "L'opération a été relancée avec succès.",
-  "wizard_close": "Fermer",
-  "wizard_confirm": "Confirmer"
+  "wizard_confirm": "Confirmer",
+  "wizard_cancel": "Annuler"
 }
