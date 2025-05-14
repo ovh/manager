@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.15.0...@ovh-ux/manager-billing-components@4.16.0) (2025-05-14)
+
+
+### Features
+
+* update agora termination to manage FTC process ([5ebe59a](https://github.com/ovh/manager/commit/5ebe59ac630c769244b74c17705ef2884fca0442)), closes [#MANAGER-17779](https://github.com/ovh/manager/issues/MANAGER-17779) [#MANAGER-17781](https://github.com/ovh/manager/issues/MANAGER-17781) [#MANAGER-17909](https://github.com/ovh/manager/issues/MANAGER-17909) [#MANAGER-17910](https://github.com/ovh/manager/issues/MANAGER-17910) [#MANAGER-17913](https://github.com/ovh/manager/issues/MANAGER-17913)
+
+
+
+
+
 # [4.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.14.0...@ovh-ux/manager-billing-components@4.15.0) (2025-05-13)
 
 
