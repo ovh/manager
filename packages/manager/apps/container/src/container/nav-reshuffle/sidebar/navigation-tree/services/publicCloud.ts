@@ -202,7 +202,7 @@ pciNode.children = [
     translation: 'sidebar_pci_network',
     features: [
       'private-network',
-      'octavia-load-balancer',
+      'pci-load-balancer',
       'additional-ips',
       'public-gateways',
     ],
@@ -231,7 +231,7 @@ pciNode.children = [
           application: 'public-cloud',
           hash: '#/pci/projects/{projectId}/octavia-load-balancer',
         },
-        features: ['octavia-load-balancer'],
+        features: ['pci-load-balancer'],
         forceVisibility: true,
         tag: NodeTag.NEW,
       },
