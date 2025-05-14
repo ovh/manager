@@ -81,6 +81,7 @@ export default function VrackNetworkDatagridSubDatagrid({
                     )}
                     icon="trash"
                     variant="ghost"
+                    color="critical"
                     isDisabled={isDeleting}
                     onClick={() => {
                       navigate(

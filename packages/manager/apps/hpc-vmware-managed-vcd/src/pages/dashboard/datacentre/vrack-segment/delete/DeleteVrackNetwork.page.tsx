@@ -11,6 +11,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiResponse } from '@ovh-ux/manager-core-api';
 import { ErrorBoundary, Modal } from '@ovh-ux/manager-react-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { subRoutes } from '@/routes/routes.constant';
 import { useMessageContext } from '@/context/Message.context';
 import { decodeVrackNetwork } from '@/utils/encodeVrackNetwork';
@@ -108,12 +109,13 @@ export default function DeleteVrackNetwork() {
       secondaryLabel={tActions('cancel')}
       onSecondaryButtonClick={closeModal}
       onDismiss={closeModal}
+      type={ODS_MODAL_COLOR.critical}
     >
       <div className="flex flex-col gap-2">
         <OdsText>
           {t('managed_vcd_dashboard_vrack_network_delete_subnet_content1')}
         </OdsText>
-        <OdsMessage color="warning" isDismissible={false}>
+        <OdsMessage color="critical" isDismissible={false}>
           {t('managed_vcd_dashboard_vrack_network_delete_subnet_content2')}
         </OdsMessage>
       </div>
