@@ -162,15 +162,10 @@ export default function BackupOptionStep({
 
       <TileInputChoice
         items={volumeOptionsWihPrice}
-        selectedItem={selectedBackup}
-        onSelectItem={(item) => {
-          const selectedBackupOption = volumeOptionsWihPrice.find(
-            ({ id }) => id === item.id,
-          );
-          if (selectedBackupOption) {
-            onBackupChange(selectedBackupOption);
-          }
-        }}
+        selectedItem={volumeOptionsWihPrice.find(
+          ({ id }) => id === selectedBackup?.id,
+        )}
+        onSelectItem={(item) => onBackupChange(item as TBackupOption)}
         columnsCount={isMobileView ? 1 : 2}
       >
         {(item) => (
