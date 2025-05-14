@@ -9,9 +9,4 @@ export default {
       level2: '126',
     },
   },
-  US: {
-    config: {
-      level2: '126',
-    },
-  },
 };
