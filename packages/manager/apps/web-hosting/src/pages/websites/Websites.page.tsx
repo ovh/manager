@@ -18,13 +18,20 @@ import {
   ODS_LINK_ICON_ALIGNMENT,
   ODS_POPOVER_POSITION,
 } from '@ovhcloud/ods-components';
-import { OdsButton, OdsLink, OdsPopover } from '@ovhcloud/ods-components/react';
+import {
+  OdsButton,
+  OdsIcon,
+  OdsLink,
+  OdsPopover,
+  OdsTooltip,
+} from '@ovhcloud/ods-components/react';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import punycode from 'punycode/punycode';
 import { useWebHostingAttachedDomain } from '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain';
 import { WebsiteType, ServiceStatus } from '@/data/type';
 import ActionButtonStatistics from './ActionButtonStatistics.component';
@@ -40,21 +47,23 @@ export default function Websites() {
   const [isExportPopoverOpen, setIsExportPopoverOpen] = useState(false);
   const [isCSVLoading, setIsCSVLoading] = useState(false);
   const csvPopoverRef = useRef<HTMLOdsPopoverElement>(null);
-
+  const { notifications, addSuccess } = useNotifications();
   const [
     searchInput,
     setSearchInput,
     debouncedSearchInput,
     setDebouncedSearchInput,
   ] = useDebouncedValue('');
-  const { notifications, addSuccess } = useNotifications();
+
   const {
     data,
     fetchNextPage,
     hasNextPage,
     isLoading,
     isFetchingNextPage,
-  } = useWebHostingAttachedDomain({ domain: debouncedSearchInput });
+  } = useWebHostingAttachedDomain({
+    domain: punycode.toASCII(debouncedSearchInput),
+  });
   const { trackClick } = useOvhTracking();
 
   const items = data ? data.map((website: WebsiteType) => website) : [];
@@ -63,14 +72,35 @@ export default function Websites() {
     {
       id: 'fqdn',
       label: t('web_hosting_status_header_fqdn'),
-      cell: (webSiteItem: WebsiteType) => (
-        <LinkCell
-          webSiteItem={webSiteItem}
-          label={webSiteItem?.currentState.fqdn}
-          tracking="fqdn"
-          withMultisite
-        />
-      ),
+      cell: (webSiteItem: WebsiteType) => {
+        const fqdn = webSiteItem?.currentState.fqdn || '';
+        const containsPunycode = fqdn
+          .split('.')
+          .some((part) => part.startsWith('xn--'));
+
+        return (
+          <div className="flex items-center">
+            <LinkCell
+              webSiteItem={webSiteItem}
+              label={punycode.toUnicode(fqdn)}
+              tracking="fqdn"
+              withMultisite
+            />
+            {containsPunycode && (
+              <>
+                <OdsIcon
+                  id={`tooltip-trigger-${fqdn}`}
+                  className="color-disabled cursor-pointer ml-4"
+                  name="circle-question"
+                />
+                <OdsTooltip triggerId={`tooltip-trigger-${fqdn}`}>
+                  {fqdn}
+                </OdsTooltip>
+              </>
+            )}
+          </div>
+        );
+      },
       enableHiding: false,
       isSearchable: true,
     },
