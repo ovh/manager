@@ -284,9 +284,12 @@ export default function CreateVolumeBackup() {
           />
         </OdsBreadcrumb>
       }
-      message={
-        volumes?.length === 0 ? (
-          <OdsMessage isDismissible={false}>
+    >
+      <div className="flex flex-col gap-4 mb-8">
+        {project && <PciDiscoveryBanner project={project} />}
+
+        {volumes?.length === 0 && (
+          <OdsMessage isDismissible={false} className="w-full">
             <div className="flex flex-col gap-4">
               <OdsText>
                 {t(
@@ -303,16 +306,10 @@ export default function CreateVolumeBackup() {
               />
             </div>
           </OdsMessage>
-        ) : (
-          undefined
-        )
-      }
-    >
-      <div className="my-4">
+        )}
+
         <Notifications />
       </div>
-
-      {project && <PciDiscoveryBanner project={project} />}
 
       <div className="flex flex-col gap-10 md:max-w-[70%]">
         <VolumeSelectStep
@@ -355,7 +352,6 @@ export default function CreateVolumeBackup() {
           onClick={handleCreateBackupClick}
         />
       </div>
-
       <Suspense>
         <Outlet />
       </Suspense>
