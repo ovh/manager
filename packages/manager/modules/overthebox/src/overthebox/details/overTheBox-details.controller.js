@@ -15,9 +15,13 @@ export default class OverTheBoxDetailsCtrl {
     $filter,
     $translate,
     $q,
+    $location,
+    $anchorScroll,
+    $interval,
+    $scope,
+    $timeout,
     ChartFactory,
     DATEFNS_LOCALE,
-    OVER_THE_BOX,
     OVERTHEBOX_DETAILS,
     OvhApiOverTheBox,
     OvhApiIp,
@@ -28,7 +32,11 @@ export default class OverTheBoxDetailsCtrl {
     this.$filter = $filter;
     this.$translate = $translate;
     this.$q = $q;
-    this.OVER_THE_BOX = OVER_THE_BOX;
+    this.$location = $location;
+    this.$anchorScroll = $anchorScroll;
+    this.$interval = $interval;
+    this.$scope = $scope;
+    this.$timeout = $timeout;
     this.OVERTHEBOX_DETAILS = OVERTHEBOX_DETAILS;
     this.OvhApiOverTheBox = OvhApiOverTheBox;
     this.OvhApiIp = OvhApiIp;
@@ -45,11 +53,13 @@ export default class OverTheBoxDetailsCtrl {
       checking: false,
       device: false,
       graph: false,
+      ipv6Update: false,
     };
 
     this.error = {
       checking: null,
       noDeviceLinked: false,
+      ipv6Update: false,
     };
 
     this.nameEditable = false;
@@ -103,6 +113,12 @@ export default class OverTheBoxDetailsCtrl {
       });
     this.getAvailableReleaseChannels();
     this.getAvailableAction();
+
+    this.ipv6UpdateTaskCheckInterval = null;
+  }
+
+  $onDestroy() {
+    this.clearIpv6UpdateTaskCheckInterval();
   }
 
   /**
@@ -900,5 +916,48 @@ export default class OverTheBoxDetailsCtrl {
         }
         return this.$q.reject(error);
       });
+  }
+
+  async onIpActivationUpdate(updatedValue) {
+    const previousValue = this.service.ipv6Enabled;
+    this.loaders.ipv6Update = true;
+    try {
+      const updateTaskId = await this.OverTheBoxDetailsService.updateIpActivation(
+        this.serviceName,
+        updatedValue,
+      );
+      this.ipv6UpdateTaskCheckInterval = this.$interval(async () => {
+        const isDone = await this.OverTheBoxDetailsService.checkIpv6UpdateTask(
+          this.serviceName,
+          updateTaskId,
+        );
+        if (isDone) {
+          this.$scope.$apply(() => {
+            this.loaders.ipv6Update = false;
+          });
+          this.clearIpv6UpdateTaskCheckInterval();
+        }
+      }, 500);
+      this.service.ipv6Enabled = updatedValue;
+    } catch (e) {
+      this.$scope.$apply(() => {
+        this.loaders.ipv6Update = false;
+        this.error.ipv6Update = true;
+        this.service.ipv6Enabled = previousValue;
+      });
+      this.$timeout(() => {
+        this.$location.hash('overTheBox_enabled_ipv6_error_msg');
+        this.$anchorScroll();
+      }, 100);
+    }
+  }
+
+  clearIpv6UpdateTaskCheckInterval() {
+    this.$interval.cancel(this.ipv6UpdateTaskCheckInterval);
+    this.ipv6UpdateTaskCheckInterval = null;
+  }
+
+  onIpv6UpdateErrorMessageDismiss() {
+    this.error.ipv6Update = false;
   }
 }

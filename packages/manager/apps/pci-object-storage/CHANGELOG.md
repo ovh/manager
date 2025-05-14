@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.7.2...@ovh-ux/manager-pci-object-storage-app@0.8.0) (2025-05-12)
+
+
+### Features
+
+* **pci-object-storage:** add new standard infrequent access ([a0f7673](https://github.com/ovh/manager/commit/a0f76734de8020b4debee1ee6548609c26ce6f9f)), closes [#TAPC-2954](https://github.com/ovh/manager/issues/TAPC-2954) [#TAPC-3642](https://github.com/ovh/manager/issues/TAPC-3642) [#TAPC-3932](https://github.com/ovh/manager/issues/TAPC-3932) [#TAPC-4030](https://github.com/ovh/manager/issues/TAPC-4030)
+* **pci-object-storage:** tracking versioning ([bd98091](https://github.com/ovh/manager/commit/bd980917e01a250a097f68038c1cfea766d2bb59)), closes [#TAPC-3243](https://github.com/ovh/manager/issues/TAPC-3243)
+
+
+
+
+
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.7.1...@ovh-ux/manager-pci-object-storage-app@0.7.2) (2025-05-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
 ## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.7.0...@ovh-ux/manager-pci-object-storage-app@0.7.1) (2025-05-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

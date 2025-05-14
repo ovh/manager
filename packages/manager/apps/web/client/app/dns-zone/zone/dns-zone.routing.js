@@ -42,6 +42,14 @@ export default /* @ngInject */ ($stateProvider) => {
           'web',
           `#/email_domain/${serviceName}/mailing-list`,
         ),
+      goToDnsModify: /* @ngInject */ ($state) => () =>
+        $state.go('app.zone.details.dns_modify'),
+      goToDnsAnycast: /* @ngInject */ ($state) => () =>
+        $state.go('app.zone.details.anycast'),
+      goToTerminateAnycast: /* @ngInject */ ($state) => () =>
+        $state.go('app.zone.details.terminate_anycast'),
+      goToTerminate: /* @ngInject */ ($state) => () =>
+        $state.go('app.zone.details.terminate_anycast.confirm'),
     },
     redirectTo: 'app.zone.details.dashboard',
     translations: { value: ['../../domain/dashboard'], format: 'json' },

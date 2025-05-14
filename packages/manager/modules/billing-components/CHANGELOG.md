@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.14.0...@ovh-ux/manager-billing-components@4.15.0) (2025-05-13)
+
+
+### Bug Fixes
+
+* **billing-components:** change wording for subscription tile ([#16942](https://github.com/ovh/manager/issues/16942)) ([ddc1cb5](https://github.com/ovh/manager/commit/ddc1cb5422fe7e975ab949c5d1a66a2e2813c039)), closes [#MANAGER-18160](https://github.com/ovh/manager/issues/MANAGER-18160)
+* **billing.components:** change wording for resiliation form ([#16881](https://github.com/ovh/manager/issues/16881)) ([b7379fa](https://github.com/ovh/manager/commit/b7379fa01e9fd5cbf55e0df2678fea990cf98367)), closes [#MANAGER-18162](https://github.com/ovh/manager/issues/MANAGER-18162)
+* **billing:** use alternate nichandle to check action visibility ([#16940](https://github.com/ovh/manager/issues/16940)) ([de8aded](https://github.com/ovh/manager/commit/de8aded6528cfede8de8f68832da126b45407839)), closes [#MANAGER-18233](https://github.com/ovh/manager/issues/MANAGER-18233) [#INC0125894](https://github.com/ovh/manager/issues/INC0125894)
+
+
+### Features
+
+* **billing:** add some us wording in my offre tile ([#16340](https://github.com/ovh/manager/issues/16340)) ([413b656](https://github.com/ovh/manager/commit/413b656fdafe5779efb4de3f8e4c92ed2f8c539f)), closes [#MANAGER-17648](https://github.com/ovh/manager/issues/MANAGER-17648)
+
+
+
+
+
 # [4.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.13.4...@ovh-ux/manager-billing-components@4.14.0) (2025-05-06)
 
 

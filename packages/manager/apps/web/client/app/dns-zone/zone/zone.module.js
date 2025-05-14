@@ -2,6 +2,8 @@ import dashboard from '../dashboard';
 import dynhost from '../dynhost';
 import newDnsZone from '../new';
 import redirection from '../../domain/redirection/redirection.module';
+import dnsServer from '../../domain/dns/domain-dns.module';
+import anycast from '../../domain/anycast';
 import tasks from '../tasks';
 import history from '../history';
 
@@ -17,6 +19,8 @@ angular
     redirection,
     tasks,
     history,
+    dnsServer,
+    anycast,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

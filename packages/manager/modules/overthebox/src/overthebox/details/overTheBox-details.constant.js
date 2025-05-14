@@ -76,8 +76,4 @@ export default {
   pattern: /[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}/,
   deprecated: '_deprecated',
   version: 'v',
-  ip: {
-    v4: 'v4',
-    v6: 'v6',
-  },
 };

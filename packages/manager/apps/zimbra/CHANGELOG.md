@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.23.7...@ovh-ux/manager-zimbra-app@0.24.0) (2025-05-12)
+
+
+### Bug Fixes
+
+* **zimbra:** remove tabindex of <a> in tabs ([#16864](https://github.com/ovh/manager/issues/16864)) ([a4b802a](https://github.com/ovh/manager/commit/a4b802a9987af1aac574d1a20faf467a24d0cc96)), closes [#MANAGER-18186](https://github.com/ovh/manager/issues/MANAGER-18186)
+
+
+### Features
+
+* **zimbra:** add button to generate a password ([#16688](https://github.com/ovh/manager/issues/16688)) ([da8bf0d](https://github.com/ovh/manager/commit/da8bf0d439a5bc6e59c06d585594a75882f0e926)), closes [#MANAGER-17745](https://github.com/ovh/manager/issues/MANAGER-17745)
+
+
+
+
+
+## [0.23.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.23.6...@ovh-ux/manager-zimbra-app@0.23.7) (2025-05-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
 ## [0.23.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.23.5...@ovh-ux/manager-zimbra-app@0.23.6) (2025-05-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

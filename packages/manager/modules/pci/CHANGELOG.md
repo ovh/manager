@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.89.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.89.2...@ovh-ux/manager-pci@6.89.3) (2025-05-12)
+
+
+### Bug Fixes
+
+* **instance:** don't call svp in US ([#16925](https://github.com/ovh/manager/issues/16925)) ([4941e22](https://github.com/ovh/manager/commit/4941e22ffdf3bd4199146487fb91bd9f86f48d23)), closes [#TAPC-4042](https://github.com/ovh/manager/issues/TAPC-4042)
+
+
+
+
+
 ## [6.89.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.89.1...@ovh-ux/manager-pci@6.89.2) (2025-05-08)
 
 

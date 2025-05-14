@@ -9,7 +9,7 @@
   "dedicated_server_dashboard_remove_hack_button": "Entsperren",
   "dedicated_server_dashboard_remove_hack_success": "Die Anfrage zur Aufhebung des Hacks wurde erfasst.",
   "dedicated_server_dashboard_remove_hack_fail": "Bei der Anfrage zur Aufhebung der Sperrung Ihres Servers ist ein Fehler aufgetreten.",
-  "dedicated_server_dashboard_close_service": "Meinen Dienst löschen",
+  "dedicated_server_dashboard_close_service": "Meinen Dienst kündigen",
   "dedicated_server_dashboard_monitoring": "Monitoring",
   "dedicated_server_dashboard_monitoring_activated": "Aktiviert",
   "dedicated_server_dashboard_monitoring_disabled": "Deaktiviert",

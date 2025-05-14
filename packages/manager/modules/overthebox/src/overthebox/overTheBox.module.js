@@ -12,7 +12,6 @@ import ngOvhUiConfirmModal from '@ovh-ux/ng-ovh-ui-confirm-modal';
 import constant from './overTheBox.constant';
 
 import actions from './actions';
-import autoconfigure from './autoconfigure';
 import configure from './configure';
 import details from './details';
 import logs from './logs';
@@ -34,7 +33,6 @@ angular
     'ngUiRouterTitle',
     ngOvhUiConfirmModal,
     actions,
-    autoconfigure,
     configure,
     details,
     logs,

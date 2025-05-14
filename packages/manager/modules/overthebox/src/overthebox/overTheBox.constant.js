@@ -4,5 +4,4 @@ export default {
   },
   maxRemotes: 10,
   local: 'local',
-  autoconfig: 'autoconfigure',
 };
