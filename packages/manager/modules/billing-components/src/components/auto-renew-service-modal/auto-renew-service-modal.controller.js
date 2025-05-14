@@ -46,7 +46,7 @@ export default class AutoRenewServiceModalController {
         this.periods = periods;
         this.model = {
           period: this.service.renew.automatic
-            ? periods.find((p) => this.service.renew.period === p.period)
+            ? periods.find((p) => this.service.cleanRenewPeriod === p.period)
             : periods.find((p) => SERVICE_RENEW_MODES.MANUAL === p.period),
         };
       })
@@ -82,6 +82,32 @@ export default class AutoRenewServiceModalController {
 
   showManualRenewalNotice(form) {
     return !this.serviceToUpdate.renew.automatic && !form?.period?.$pristine;
+  }
+
+  getAutoRenewalTranslation() {
+    const months = this.serviceToUpdate.cleanRenewPeriod;
+
+    if (months === 1) {
+      return this.$translate.instant(
+        'autorenew_service_update_modal_automatic_every_month_renewal_notice',
+      );
+    }
+    if (months === 12) {
+      return this.$translate.instant(
+        'autorenew_service_update_modal_automatic_every_year_renewal_notice',
+      );
+    }
+    if (months % 12 === 0) {
+      const years = months / 12;
+      return this.$translate.instant(
+        'autorenew_service_update_modal_automatic_every_x_year_renewal_notice',
+        { years },
+      );
+    }
+    return this.$translate.instant(
+      'autorenew_service_update_modal_automatic_every_x_month_renewal_notice',
+      { months },
+    );
   }
 
   showAddPaymentMethodLink(form) {

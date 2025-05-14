@@ -25,19 +25,40 @@
                             <span data-ng-bind="$item.label"></span>
                         </oui-select>
 
-                        <p
+                        <div
                             class="mt-2"
                             data-ng-if="$ctrl.showAutoRenewalNotice(autorenewUpdateForm)"
-                            data-translate="autorenew_service_update_modal_automatic_renewal_notice"
-                            data-translate-values="{ 'expirationDate': $ctrl.getAutomaticExpirationDate() }"
-                        ></p>
+                        >
+                            <p>
+                                {{ $ctrl.getAutoRenewalTranslation()}}
+                            </p>
+                            <p
+                                data-translate="autorenew_service_update_modal_automatic_renewal_notice"
+                            ></p>
+                        </div>
 
-                        <p
+                        <div
                             class="mt-2"
                             data-ng-if="$ctrl.showManualRenewalNotice(autorenewUpdateForm)"
-                            data-translate="autorenew_service_update_modal_manual_renewal_notice"
-                            data-translate-values="{ 'expirationDate': $ctrl.getAutomaticExpirationDate(), 'serviceName': $ctrl.service.alternativeId }"
-                        ></p>
+                        >
+                            <p
+                                data-translate="autorenew_service_update_modal_manual_notice_intro"
+                                data-translate-values="{ 'serviceName': $ctrl.service.alternativeId }"
+                            ></p>
+
+                            <p
+                                data-translate="autorenew_service_update_modal_manual_notice_emails"
+                                data-translate-values="{ 'expirationDate': $ctrl.getAutomaticExpirationDate() }"
+                            ></p>
+
+                            <p
+                                data-translate="autorenew_service_update_modal_manual_notice_instruction"
+                            ></p>
+
+                            <p
+                                data-translate="autorenew_service_update_modal_manual_notice_warning"
+                            ></p>
+                        </div>
 
                         <p
                             class="mt-2"

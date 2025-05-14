@@ -121,9 +121,11 @@ export default class AutoRenewServiceModalService {
         'autorenew_service_update_modal_period_every_year',
       );
     }
-    if (months === 24) {
+    if (months % 12 === 0) {
+      const years = months / 12;
       return this.$translate.instant(
-        'autorenew_service_update_modal_period_every_two_years',
+        'autorenew_service_update_modal_period_every_x_years',
+        { years },
       );
     }
     return this.$translate.instant(
