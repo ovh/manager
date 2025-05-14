@@ -644,7 +644,7 @@
   "domain_tab_TASKS_status_CANCELLED": "Cancelled",
   "domain_tab_TASKS_status_DOING": "Running",
   "domain_tab_TASKS_status_DONE": "Closed",
-  "domain_tab_TASKS_status_ERROR": "To be processed",
+  "domain_tab_TASKS_status_ERROR": "Error",
   "domain_tab_TASKS_status_TODO": "Planned",
   "domain_order_start10M_choose_duration": "Select the duration of your Start 10M plan.",
   "domain_order_start10M_duration_choosed": "Click \"Next\" to continue.",
