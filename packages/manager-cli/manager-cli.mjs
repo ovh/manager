@@ -12,10 +12,25 @@ const knownCommands = {
   'routes-migrate': {
     script: 'json-to-component-route-migration',
     description: 'Migrate React Router config from JSON to JSX components',
+    help: `
+# Migrate routes and affecting files
+yarn manager-cli routes-migrate --app zimbra
+
+# Preview changes without affecting files
+yarn manager-cli routes-migrate --app zimbra --dry-run`
   },
   'tests-migrate': {
     script: 'common-tests-config-migration',
     description: 'Migrate test setup (unit, integration...) to centralized shared configuration (Vitest, Jest...)',
+    help: `
+# Migrate a unit test setup with Vitest (affect files)
+yarn manager-cli tests-migrate --app zimbra --testType unit
+
+# Migrate an integration test setup with Jest (affect files)
+yarn manager-cli tests-migrate --app zimbra --testType integration --framework jest
+
+# Preview changes without applying them (without affecting files)
+yarn manager-cli tests-migrate --app zimbra --testType unit --dry-run`
   },
 };
 
@@ -46,6 +61,9 @@ const printHelp = () => {
   const commandsList = Object.entries(knownCommands)
     .map(([cmd, meta]) => `  ${cmd.padEnd(20)} ${meta.description}`)
     .join('\n');
+  const commandsHelp = Object.entries(knownCommands)
+    .map(([_, meta]) => meta.help)
+    .join('\n');
 
   console.log(`
 🛠️  manager-cli
@@ -61,12 +79,12 @@ Commands:
 ${commandsList}
 
 Examples:
-  yarn manager-cli routes-migrate --app pci-ai-tools
-  yarn manager-cli tests-migrate --app pci-ai-tools --testType unit
-  yarn manager-cli tests-migrate --app zimbra --testType integration --framework jest --dry-run
+  ${commandsHelp}
 
+------------------------------------------------------------------------------------------
   yarn manager-cli --list
   yarn manager-cli --help
+------------------------------------------------------------------------------------------
 `);
 };
 
