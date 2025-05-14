@@ -51,8 +51,10 @@ export default class BillingTerminate {
       : this.$http.post(`${service.path}/confirmTermination`, { token });
   }
 
-  serviceTermination(serviceId) {
-    return this.$http.post(`/services/${serviceId}/terminate`);
+  serviceTermination(serviceId, hasMailConfirmation = true) {
+    return hasMailConfirmation
+      ? this.$http.post(`/services/${serviceId}/terminate`)
+      : this.$http.delete(`/services/${serviceId}`);
   }
 
   serviceTerminationForVrack(serviceId) {
