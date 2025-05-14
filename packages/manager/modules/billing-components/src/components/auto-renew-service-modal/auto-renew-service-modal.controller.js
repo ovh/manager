@@ -46,7 +46,7 @@ export default class AutoRenewServiceModalController {
         this.periods = periods;
         this.model = {
           period: this.service.renew.automatic
-            ? periods.find((p) => this.service.renew.period === p.period)
+            ? periods.find((p) => this.service.cleanRenewPeriod === p.period)
             : periods.find((p) => SERVICE_RENEW_MODES.MANUAL === p.period),
         };
       })
