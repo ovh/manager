@@ -86,37 +86,46 @@ const UserAccountMenu = ({
         setIsDocumentsVisible(['required', 'open'].includes(status));
       }
 
-      setAllLinks([
-        ...links,
-        ...(isIdentityDocumentsAvailable
+      const myInvoicesIndex = links.indexOf(
+        links.find((link: UserLink) => link.key === 'myInvoices'),
+      );
+      const myAssistanceTickets = {
+        app: 'new-account',
+        key: 'myAssistanceTickets',
+        hash: '#/ticket',
+        i18nKey: 'user_account_menu_my_assistance_tickets',
+      };
+
+      const myIdentityDocuments = isIdentityDocumentsAvailable
+        ? [
+            {
+              app: 'new-account',
+              key: 'myIdentityDocuments',
+              hash: '#/identity-documents',
+              i18nKey: 'user_account_menu_my_identity_documents',
+            },
+          ]
+        : [];
+
+      const myContracts = {
+        app: 'new-billing',
+        key: 'myContracts',
+        hash: '#/autorenew/agreements',
+        i18nKey: 'user_account_menu_my_contracts',
+        trackingHit: tracking.contracts,
+      };
+
+      const computedLinks =
+        region === 'US'
           ? [
-              {
-                app: 'new-account',
-                key: 'myIdentityDocuments',
-                hash: '#/identity-documents',
-                i18nKey: 'user_account_menu_my_identity_documents',
-              },
+              ...links.slice(0, myInvoicesIndex),
+              myAssistanceTickets,
+              ...links.slice(myInvoicesIndex, links.length),
+              ...myIdentityDocuments,
             ]
-          : []),
-        ...(region === 'US'
-          ? [
-              {
-                app: 'new-account',
-                key: 'myAssistanceTickets',
-                hash: '#/ticket',
-                i18nKey: 'user_account_menu_my_assistance_tickets',
-              },
-            ]
-          : [
-              {
-                app: 'new-billing',
-                key: 'myContracts',
-                hash: '#/autorenew/agreements',
-                i18nKey: 'user_account_menu_my_contracts',
-                trackingHit: tracking.contracts,
-              },
-            ]),
-      ]);
+          : [...links, ...myIdentityDocuments, myContracts];
+
+      setAllLinks(computedLinks);
     };
 
     fetchData();
