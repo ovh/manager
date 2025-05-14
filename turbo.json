@@ -21,6 +21,7 @@
         "CONTAINER",
         "REGION",
         "LABEU",
+        "LABEU_HOST",
         "local2API"
       ],
       "dependsOn": ["^dev"]
