@@ -1,29 +1,13 @@
 import { OdsText } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
-import { ComponentType } from 'react';
 import { TLocalisation } from './useRegions';
-import { RegionLocalzoneChip } from './RegionLocalzoneChip.component';
-import { RegionGlobalzoneChip } from './RegionGlobalzoneChip.component';
-import { Region3AZChip } from './Region3AZChip.component';
+import { RegionChipByType } from './RegionChipByType';
 
 export interface RegionTileProps {
   region: TLocalisation;
   isSelected: boolean;
   isCompact?: boolean;
 }
-
-const CHIP_BY_TYPE: Record<TLocalisation['type'], ComponentType> = {
-  localzone: RegionLocalzoneChip,
-  region: RegionGlobalzoneChip,
-  'region-3-az': Region3AZChip,
-};
-
-export const RegionChipByType = ({
-  region,
-}: Readonly<{ region: TLocalisation }>) => {
-  const Chip = CHIP_BY_TYPE[region.type];
-  return Chip ? <Chip /> : null;
-};
 
 export const RegionTile = ({
   region,
@@ -40,7 +24,7 @@ export const RegionTile = ({
       <>
         <hr className="w-full border-solid border-0 border-b border-ods-primary-200" />
         <div>
-          <RegionChipByType region={region} />
+          <RegionChipByType type={region.type} />
         </div>
       </>
     )}
