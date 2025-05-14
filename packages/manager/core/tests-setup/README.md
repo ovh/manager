@@ -99,7 +99,7 @@ This package follows **Hexagonal Architecture**:
 
 - **Ports**: `createConfig`, `mergeConfig`, `defaultCoverageConfig`
 - **Adapters**: Vitest, Vite, React plugin
-- **Applications remain independent** of the underlying testing technology
+- **Applications remain independent** of the underlying testing technology except for strongly coupled APIs like `vi.mock`, `after*`, or `before*`. 
 
 ### Benefits
 
