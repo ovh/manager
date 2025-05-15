@@ -78,7 +78,8 @@ const CreateGeneralInformationsValidity = ({
           </OdsText>
         </div>
         <OdsSelect
-          name="validityPeriod"
+          name="validity-period"
+          data-testid="input-validity-period"
           onOdsChange={(v) => setValidityPresetPeriod(Number(v.detail.value))}
           defaultValue={validityPresetPeriod.toString()}
         >

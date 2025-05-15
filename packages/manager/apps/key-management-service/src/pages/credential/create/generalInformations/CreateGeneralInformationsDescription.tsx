@@ -51,7 +51,9 @@ const CreateGeneralInformationsDescription = ({
         )}
       </OdsText>
       <OdsTextarea
-        name="credentialDescription"
+        name="description"
+        aria-label="description"
+        data-testid="input-description"
         value={description}
         hasError={!!credentialDescriptionError}
         onOdsChange={(e) => setDescription(e.detail.value)}

@@ -61,8 +61,9 @@ const CreateGeneralInformationsCreationMethod = ({
         </div>
         <div className="flex items-center">
           <OdsRadio
-            name="creationMethod"
-            inputId="creationMethodNoKey"
+            name="method"
+            inputId="radio-method-no-key"
+            data-testid="radio-method-no-key"
             isChecked={!isCustomCsr}
             onClick={() => {
               trackClick({
@@ -74,7 +75,7 @@ const CreateGeneralInformationsCreationMethod = ({
               setIsCustomCsr(false);
             }}
           />
-          <label className="ml-2" htmlFor="creationMethodNoKey">
+          <label className="ml-2" htmlFor="radio-method-no-key">
             <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
               {t(
                 'key_management_service_credential_create_general_information_creation_method_no_key',
@@ -89,8 +90,9 @@ const CreateGeneralInformationsCreationMethod = ({
         </div>
         <div className="flex items-center">
           <OdsRadio
-            name="creationMethod"
-            inputId="creationMethodKey"
+            name="method"
+            inputId="radio-method-key"
+            data-testid="radio-method-key"
             isChecked={isCustomCsr}
             onClick={() => {
               trackClick({
@@ -102,7 +104,7 @@ const CreateGeneralInformationsCreationMethod = ({
               setIsCustomCsr(true);
             }}
           />
-          <label className="ml-2" htmlFor="creationMethodKey">
+          <label className="ml-2" htmlFor="radio-method-key">
             <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
               {t(
                 'key_management_service_credential_create_general_information_creation_method_key',
