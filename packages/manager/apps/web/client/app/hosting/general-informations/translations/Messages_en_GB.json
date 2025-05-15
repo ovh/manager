@@ -3,5 +3,7 @@
   "hosting_dashboard_useful_links_user_logs": "Website Statistics",
   "hosting_dashboard_config_tile_options_cdn_cancel_terminate": "Cancellation scheduled for {{endEngagementDate}}",
   "hosting_dashboard_config_tile_options_cdn_cancel_terminate_link": "Undo cancellation",
-  "hosting_dashboard_general_information_cdn_ip": "IP"
+  "hosting_dashboard_general_information_cdn_ip": "IP",
+  "hosting_dashboard_general_information_php_more_informations": "Find out more about PHP versions",
+  "hosting_dashboard_general_information_languages_versions_availables": "Available language versions"
 }
