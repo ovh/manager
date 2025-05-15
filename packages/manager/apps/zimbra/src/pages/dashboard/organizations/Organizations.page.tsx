@@ -19,7 +19,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { ResourceStatus } from '@/data/api';
-import { useGenerateUrl, useDebouncedValue } from '@/hooks';
+import { useGenerateUrl, useDebouncedValue, useOverridePage } from '@/hooks';
 import { useOrganizations, usePlatform } from '@/data/hooks';
 import ActionButton from './ActionButton.component';
 import { BadgeStatus, LabelChip, IdLink } from '@/components';
@@ -72,6 +72,7 @@ export default function Organizations() {
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { platformUrn } = usePlatform();
+  const isOverridedPage = useOverridePage();
 
   const [
     searchInput,
@@ -120,7 +121,7 @@ export default function Organizations() {
   return (
     <div>
       <Outlet />
-      {platformUrn && (
+      {!isOverridedPage && (
         <Datagrid
           topbar={
             <ManagerButton

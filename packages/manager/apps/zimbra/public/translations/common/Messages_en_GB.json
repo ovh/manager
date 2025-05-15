@@ -84,5 +84,11 @@
   "skip_step": "Skip this step",
   "configure_another_account": "Configure another account",
   "generate_password_tooltip": "Generate a password",
-  "generated_password_tooltip": "Password copied to clipboard"
+  "generated_password_tooltip": "Password copied to clipboard",
+  "configure_account": "Configure account",
+  "service_billing_state_canceled": "Terminated",
+  "service_billing_state_cancelation_planned": "Cancellation scheduled",
+  "service_billing_state_manual_renewal": "Manual renewal",
+  "service_billing_state_automatic_renewal": "Automatic renewal",
+  "service_billing_state_unhandled": "N/A"
 }

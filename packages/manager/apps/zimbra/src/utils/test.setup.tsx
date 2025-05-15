@@ -10,8 +10,12 @@ import {
   domainZone,
   orderCatalogMock,
   domainsDiagnosticMock,
+  slotMock,
+  slotsMock,
   AccountType,
   DomainType,
+  servicesMock,
+  slotServicesMock,
 } from '@/data/api';
 
 const mocksAxios = vi.hoisted(() => ({
@@ -147,6 +151,20 @@ vi.mock('@/data/api', async (importActual) => {
     // TASK
     getZimbraPlatformTask: vi.fn(() => {
       return Promise.resolve(taskMocks);
+    }),
+    // SLOT
+    getZimbraPlatformSlots: vi.fn(() => {
+      return Promise.resolve({ data: slotsMock });
+    }),
+    getZimbraPlatformSlot: vi.fn(() => {
+      return Promise.resolve(slotMock);
+    }),
+    // SERVICES
+    getServices: vi.fn(() => {
+      return Promise.resolve({ data: servicesMock });
+    }),
+    getSlotServices: vi.fn(() => {
+      return Promise.resolve(slotServicesMock);
     }),
     // ORDER
     getOrderCatalog: vi.fn(() => {

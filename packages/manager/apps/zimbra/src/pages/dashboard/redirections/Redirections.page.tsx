@@ -13,7 +13,7 @@ import {
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
 import ActionButton from './ActionButton.component';
-import { useGenerateUrl } from '@/hooks';
+import { useGenerateUrl, useOverridePage } from '@/hooks';
 import { usePlatform } from '@/data/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/data/api';
@@ -78,6 +78,7 @@ export const Redirections = () => {
   const { t } = useTranslation(['redirections', 'common']);
   const navigate = useNavigate();
   const { platformUrn } = usePlatform();
+  const isOverridedPage = useOverridePage();
   const { accountId } = useParams();
   const hrefAddRedirection = useGenerateUrl('./add', 'path');
 
@@ -90,7 +91,7 @@ export const Redirections = () => {
   return (
     <div>
       <Outlet />
-      {platformUrn && (
+      {!isOverridedPage && (
         <>
           {accountId && (
             <div className="mb-6">

@@ -84,5 +84,11 @@
   "skip_step": "Pomiń ten etap",
   "configure_another_account": "Skonfiguruj inne konto",
   "generate_password_tooltip": "Wygeneruj hasło",
-  "generated_password_tooltip": "Hasło zostało skopiowane do schowka"
+  "generated_password_tooltip": "Hasło zostało skopiowane do schowka",
+  "configure_account": "Skonfiguruj konto",
+  "service_billing_state_canceled": "Anulowany",
+  "service_billing_state_cancelation_planned": "Planowane zakończenie usługi",
+  "service_billing_state_manual_renewal": "Odnowienie ręczne",
+  "service_billing_state_automatic_renewal": "Automatyczne odnowienie",
+  "service_billing_state_unhandled": "Nie dotyczy"
 }

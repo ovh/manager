@@ -5,6 +5,8 @@ export * from './mailinglist';
 export * from './order';
 export * from './organization';
 export * from './platform';
+export * from './slot';
+export * from './service';
 export * from './task';
 export * from './type';
 export * from './utils';

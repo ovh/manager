@@ -12,4 +12,6 @@ export * from './order/useOrderCatalog';
 export * from './organization/useOrganization';
 export * from './organization/useOrganizations';
 export * from './platform/usePlatform';
+export * from './slot/useSlots';
+export * from './services/useSlotServices';
 export * from './task/useTasks';

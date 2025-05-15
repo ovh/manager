@@ -84,5 +84,11 @@
   "skip_step": "Schritt überspringen",
   "configure_another_account": "Anderen Account einrichten",
   "generate_password_tooltip": "Passwort generieren",
-  "generated_password_tooltip": "Passwort in die Zwischenablage kopiert!"
+  "generated_password_tooltip": "Passwort in die Zwischenablage kopiert!",
+  "configure_account": "Account konfigurieren",
+  "service_billing_state_canceled": "Gekündigt",
+  "service_billing_state_cancelation_planned": "Kündigung geplant",
+  "service_billing_state_manual_renewal": "Manuelle Verlängerung",
+  "service_billing_state_automatic_renewal": "Automatische Verlängerung",
+  "service_billing_state_unhandled": "–"
 }
