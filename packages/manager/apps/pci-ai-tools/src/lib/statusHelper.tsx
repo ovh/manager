@@ -51,6 +51,8 @@ export function isStoppedJob(currentState: ai.job.JobStateEnum) {
     currentState === ai.job.JobStateEnum.FAILED ||
     currentState === ai.job.JobStateEnum.INTERRUPTED ||
     currentState === ai.job.JobStateEnum.SYNC_FAILED ||
-    currentState === ai.job.JobStateEnum.TIMEOUT
+    currentState === ai.job.JobStateEnum.TIMEOUT ||
+    currentState === ai.job.JobStateEnum.FINALIZING ||
+    currentState === ai.job.JobStateEnum.INTERRUPTING
   );
 }
