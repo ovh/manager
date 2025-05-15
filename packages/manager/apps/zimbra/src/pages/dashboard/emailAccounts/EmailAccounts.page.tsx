@@ -212,7 +212,7 @@ export const EmailAccounts = () => {
   return (
     <div>
       <Outlet />
-      {platformUrn && !isOverridedPage && (
+      {!isOverridedPage && (
         <>
           <div className="flex gap-8 mb-6">
             <div>
