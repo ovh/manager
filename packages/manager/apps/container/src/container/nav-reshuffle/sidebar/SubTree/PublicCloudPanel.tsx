@@ -1,7 +1,7 @@
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { useQuery } from '@tanstack/react-query';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Location, useLocation } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -41,6 +41,9 @@ export const PublicCloudPanel: React.FC<ComponentProps<
   const shell = useShell();
   const navigationPlugin = shell.getPlugin('navigation');
   const trackingPlugin = shell.getPlugin('tracking');
+  const environment = shell.getPlugin('environment').getEnvironment();
+  const user = environment.getUser();
+
   const location = useLocation();
 
   const parseContainerURL = (
@@ -51,6 +54,8 @@ export const PublicCloudPanel: React.FC<ComponentProps<
   };
 
   const [containerURL, setContainerURL] = useState(parseContainerURL(location));
+
+  const canCreateProject = useMemo(() => user.kycValidated, [user.kycValidated]);
 
   const {
     data: pciProjects,
@@ -196,6 +201,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
         <OsdsButton
           color={ODS_THEME_COLOR_INTENT.primary}
           type={ODS_BUTTON_TYPE.button}
+          disabled={canCreateProject ? undefined : true}
           size={ODS_BUTTON_SIZE.sm}
           data-testid="pci-create-project"
           variant={ODS_BUTTON_VARIANT.flat}
