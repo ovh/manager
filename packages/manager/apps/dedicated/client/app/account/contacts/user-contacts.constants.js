@@ -24,6 +24,7 @@ export const AVAILABLE_SERVICES = [
   'LOGS',
   'NUTANIX',
   'DEDICATED_CLUSTER',
+  'ALL_DOM',
 ];
 
 export default {
