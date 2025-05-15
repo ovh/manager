@@ -107,6 +107,17 @@ telecomUniverse.children = [
     },
     hasService: false,
   },
+  {
+    id: 'telecom',
+    idAttr: 'telecom-link',
+    universe: telecomUniverse.id,
+    translation: 'sidebar_telecom',
+    hidden: true,
+    routing: {
+      application: 'telecom',
+      hash: '#/',
+    },
+  },
 ];
 
 export default telecomUniverse;
