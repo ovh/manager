@@ -14,6 +14,7 @@ vi.mock('react-i18next', () => ({
   getI18n: () => ({
     language: (language: string) => language,
   }),
+  Trans: ({ i18nKey }: { i18nKey: string }) => <span>{i18nKey}</span>,
 }));
 
 vi.mock('@ovh-ux/manager-core-api', async () => {
