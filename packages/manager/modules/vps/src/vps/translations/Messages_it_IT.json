@@ -258,7 +258,7 @@
   "vps_configuration_kvm_new_window": "Apri in una nuova finestra",
   "vps_configuration_kvm_cloud_mapping_keyboard_warning": "Attenzione: l'inserimento di caratteri numerici è possibile solo utilizzando il tastierino numerico della tastiera. Se accedi a questa interfaccia da un computer portatile e non hai il tastierino numerico, dovresti poterne ottenere uno digitando, ad esempio, FN + [...].",
   "vps_configuration_kvm_fail": "Si è verificato un errore durante l'apertura del KVM.",
-  "vps_configuration_terminate": "Disattiva il tuo VPS",
+  "vps_configuration_terminate": "Disattivare il mio VPS",
   "vps_configuration_veeam_order_title_button": "Attiva il Backup automatico",
   "vps_configuration_veeam_umount_title_button": "Rimuovi il mount del backup",
   "vps_configuration_veeam_umount_title": "Rimuovi il mount del backup",
