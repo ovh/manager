@@ -15,6 +15,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import './translations';
+import { TagsFilterForm } from './tags-filter-form.component';
 
 export type Option = {
   label: string;
@@ -31,10 +32,15 @@ export type ColumnFilter = {
 
 export type FilterAddProps = {
   columns: ColumnFilter[];
+  resourceType?: string;
   onAddFilter: (filter: Filter, column: ColumnFilter) => void;
 };
 
-export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
+export function FilterAdd({
+  columns,
+  onAddFilter,
+  resourceType,
+}: Readonly<FilterAddProps>) {
   const { t } = useTranslation('filters');
 
   const [selectedId, setSelectedId] = useState(columns?.[0]?.id || '');
@@ -43,6 +49,7 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
   );
   const [value, setValue] = useState('');
   const [dateValue, setDateValue] = useState<Date | null>(null);
+  const [tagKey, setTagKey] = useState('');
 
   const selectedColumn = useMemo(
     () => columns.find(({ id }) => selectedId === id),
@@ -58,8 +65,21 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
       // Empty string is not a valid number (though Number('') === 0)
       return !Number.isNaN(Number(value)) && value !== '';
     }
+
+    // If filter is a tag filter, we need to check if the tag key and value are valid
+    // If comparator is TagExists or TagNotExists, we need to only check for tagKey
+    if (selectedColumn?.type === FilterTypeCategories.Tags) {
+      return (
+        (!!tagKey && !!value) ||
+        (!!tagKey &&
+          [FilterComparator.TagExists, FilterComparator.TagNotExists].includes(
+            selectedComparator,
+          ))
+      );
+    }
+
     return value !== '';
-  }, [selectedColumn, dateValue, value]);
+  }, [selectedColumn, dateValue, value, tagKey, selectedComparator]);
 
   const submitAddFilter = () => {
     if (!isInputValid) {
@@ -74,16 +94,19 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
             ? dateValue.toISOString()
             : value,
         type: selectedColumn.type,
+        tagKey,
       },
       selectedColumn,
     );
     setValue('');
+    setTagKey('');
     setDateValue(null);
   };
 
   useEffect(() => {
     setSelectedComparator(selectedColumn?.comparators[0]);
     setValue('');
+    setTagKey('');
     setDateValue(null);
   }, [selectedColumn]);
 
@@ -186,6 +209,7 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
                 onOdsChange={(event) => {
                   setSelectedComparator(event.detail.value as FilterComparator);
                 }}
+                data-testid={`add-operator-${selectedColumn.id}`}
               >
                 {selectedColumn.comparators?.map((comp) => (
                   <option key={comp} value={comp}>
@@ -197,16 +221,28 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
           )}
         </OdsFormField>
       </div>
-      <div>
-        <OdsFormField className="mt-2 w-full">
-          <div slot="label">
-            <span className="text-[--ods-color-heading] leading-[22px]">
-              {t('common_criteria_adder_value_label')}
-            </span>
-          </div>
-          {inputComponent}
-        </OdsFormField>
-      </div>
+      {selectedColumn?.type !== FilterTypeCategories.Tags && (
+        <div>
+          <OdsFormField className="mt-2 w-full">
+            <div slot="label">
+              <span className="text-[--ods-color-heading] leading-[22px]">
+                {t('common_criteria_adder_value_label')}
+              </span>
+            </div>
+            {inputComponent}
+          </OdsFormField>
+        </div>
+      )}
+      {selectedColumn?.type === FilterTypeCategories.Tags && (
+        <TagsFilterForm
+          resourceType={resourceType}
+          tagKey={tagKey}
+          setTagKey={setTagKey}
+          value={value}
+          setValue={setValue}
+          data-testid="filter-tag-inputs"
+        />
+      )}
       <div>
         <OdsButton
           className="mt-4 w-full filter-add-button-submit"
