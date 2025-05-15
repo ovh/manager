@@ -21,5 +21,6 @@
   "billing_services_actions_menu_commit": "Meine Abonnementlaufzeit verwalten",
   "billing_services_actions_menu_commit_cancel": "Abonnementbestellung mit fester Laufzeit stornieren",
   "billing_services_actions_menu_resiliate_my_engagement": "Meine Vertragsbindung kündigen",
-  "billing_services_actions_menu_resiliate_LICENSE_HYCU": "Meine HYCU-Lizenz löschen"
+  "billing_services_actions_menu_resiliate_LICENSE_HYCU": "Meine HYCU-Lizenz löschen",
+  "billing_services_actions_menu_resiliate_HOSTING_WEB_SUSPENDED": "Das Hosting und die zugehörigen Daten endgültig löschen"
 }
