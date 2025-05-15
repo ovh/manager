@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_storages_volume_backup_list_delete_title": "Eliminar o backup",
+  "pci_projects_project_storages_volume_backup_list_delete_description": "Eliminar definitivamente o backup {{ volumeBackupName }} ?",
+  "pci_projects_project_storages_volume_backup_list_delete_warn": "Todos os dados sobre o backup serão eliminados.",
+  "pci_projects_project_storages_volume_backup_list_delete_enter": "Introduza \"DELETE\" no seguinte campo para confirmar.",
+  "pci_projects_project_storages_volume_backup_list_delete_action_confirm": "Confirmar",
+  "pci_projects_project_storages_volume_backup_list_delete_action_cancel": "Anular",
+  "pci_projects_project_storages_volume_backup_list_delete_success": "O backup {{ volumeBackupName }} está a ser eliminado.",
+  "pci_projects_project_storages_volume_backup_list_delete_error": "Ocorreu um erro ao eliminar o backup {{ volumeBackupName }}: {{ message }}"
+}

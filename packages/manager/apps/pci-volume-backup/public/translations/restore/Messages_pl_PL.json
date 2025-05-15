@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_volume_backup_list_restore_volume_header": "Przywróć wolumen",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_description": "Czy na pewno chcesz przywrócić wolumen {{volumeName}} z kopii zapasowej {{volumeBackupName}}? Spowoduje to utratę danych z bieżącego wolumenu.",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_action_confirm": "Zatwierdź",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_action_cancel": "Anuluj",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_action_request_success": "Trwa przywracanie wolumenu {{volumeName}}.",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_action_request_error": "Wystąpił błąd podczas przywracania wolumenu {{volumeName}}: {{message}}"
+}

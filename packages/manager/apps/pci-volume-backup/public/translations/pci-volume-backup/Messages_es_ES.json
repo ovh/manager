@@ -1,0 +1,9 @@
+{
+  "pci_projects_project_storages_volume_backup_breadcrumb": "Volume Backup",
+  "pci_projects_project_storages_volume_backup_guides_storages_overview_title": "Todas las guías de almacenamiento y backup",
+  "pci_projects_project_storages_volume_backup_guides_storages_overview_description": "Primeros pasos con los productos de almacenamiento y backup de OVHcloud",
+  "pci_projects_project_storages_volume_backup_guides_instances_overview_title": "Primeros pasos con instancias",
+  "pci_projects_project_storages_volume_backup_guides_instances_overview_description": "Buenas prácticas para empezar a utilizar una instancia Public Cloud",
+  "pci_projects_project_storages_volume_backup_guides_storages_volume_backup_overview_title": "Crear una copia de seguridad de un volumen",
+  "pci_projects_project_storages_volume_backup_guides_storages_volume_backup_overview_description": "Cómo crear una copia de seguridad de un disco adicional Public Cloud"
+}

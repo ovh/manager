@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_volume_backup_create_detach_volume_title": "Scollegare il volume",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_description": "Vuoi scollegare il volume {{ volumeName }} dall'istanza {{ instanceName }}?",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_action_cancel": "Annullare",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_action_detach": "Confermare",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_action_success": "Il volume {{ volumeName }} è stato scollegato dall'istanza {{ instanceName }}.",
+  "pci_projects_project_storages_volume_backup_create_detach_volume_action_fail": "Si è verificato un errore durante l'aggiornamento del volume: {{ errorMessage }}"
+}
