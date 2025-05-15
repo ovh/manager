@@ -7,6 +7,9 @@ export const IAM_ACTIONS = {
     edit: `${IAM_ACTIONS_PREFIX}account/edit`,
     get: `${IAM_ACTIONS_PREFIX}account/get`,
   },
+  slot: {
+    get: `${IAM_ACTIONS_PREFIX}slot/get`,
+  },
   alias: {
     create: `${IAM_ACTIONS_PREFIX}alias/create`,
     delete: `${IAM_ACTIONS_PREFIX}alias/delete`,

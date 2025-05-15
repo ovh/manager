@@ -84,5 +84,11 @@
   "skip_step": "Ignorar esta etapa",
   "configure_another_account": "Configurar outra conta",
   "generate_password_tooltip": "Gerar uma palavra-passe",
-  "generated_password_tooltip": "Palavra-passe copiada para a área de transferência!"
+  "generated_password_tooltip": "Palavra-passe copiada para a área de transferência!",
+  "configure_account": "Configurar a conta",
+  "service_billing_state_canceled": "Rescindido",
+  "service_billing_state_cancelation_planned": "Rescisão agendada",
+  "service_billing_state_manual_renewal": "Renovação manual",
+  "service_billing_state_automatic_renewal": "Renovação automática",
+  "service_billing_state_unhandled": "N/A"
 }

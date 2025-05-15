@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   OdsButton,
@@ -33,7 +33,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { useAccount, useDomains } from '@/data/hooks';
+import { useAccount, useDomains, useSlotsWithService } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import {
   AccountBodyParamsType,
@@ -62,6 +62,7 @@ export const EmailAccountForm = () => {
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const { platformId, accountId } = useParams();
+  const [searchParams] = useSearchParams();
   const trackingName = accountId ? EDIT_EMAIL_ACCOUNT : ADD_EMAIL_ACCOUNT;
 
   const { data: emailAccount } = useAccount({
@@ -176,6 +177,7 @@ export const EmailAccountForm = () => {
       password: '',
       hideInGal: emailAccount?.currentState?.hideInGal || false,
       forceChangePasswordAfterLogin: !accountId,
+      slotId: searchParams.get('slotId') || '',
     },
     mode: 'onTouched',
     resolver: zodResolver(
@@ -194,6 +196,7 @@ export const EmailAccountForm = () => {
         password: '',
         hideInGal: emailAccount?.currentState?.hideInGal,
         forceChangePasswordAfterLogin: !accountId,
+        slotId: searchParams.get('slotId') || '',
       });
     }
   }, [emailAccount]);
