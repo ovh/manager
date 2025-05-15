@@ -69,7 +69,6 @@ describe('Configuration component', () => {
       expect(labelsApi.editLabel).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'labelToastSuccessTitle',
-        description: 'labelToastSuccessDescription',
       });
     });
   });
@@ -86,7 +85,6 @@ describe('Configuration component', () => {
       expect(labelsApi.editLabel).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'labelToastSuccessTitle',
-        description: 'labelToastSuccessDescription',
       });
     });
   });
