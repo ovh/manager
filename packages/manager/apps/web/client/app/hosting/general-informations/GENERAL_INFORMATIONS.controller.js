@@ -5,6 +5,7 @@ import isObject from 'lodash/isObject';
 import {
   CDN_ADVANCED,
   QUOTA_DECIMAL_PRECISION,
+  LANGUAGES_VERSIONS_GUIDE_URL,
 } from './general-informations.constants';
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
 import { NEW_OFFERS_NAME } from '../hosting.constants';
@@ -61,6 +62,9 @@ export default class HostingGeneralInformationsCtrl {
 
     this.CDN_ADVANCED = CDN_ADVANCED;
     this.CDN_VERSION_V1 = HOSTING_CDN_ORDER_CDN_VERSION_V1;
+    this.languagesVersionGuideUrl =
+      LANGUAGES_VERSIONS_GUIDE_URL[coreConfig.getUser().ovhSubsidiary] ||
+      LANGUAGES_VERSIONS_GUIDE_URL.DEFAULT;
   }
 
   $onInit() {
