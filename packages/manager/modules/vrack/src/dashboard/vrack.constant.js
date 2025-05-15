@@ -70,6 +70,7 @@ export const TYPE_SERVICE = {
   ipv6: 'ipv6',
   ovhCloudConnect: 'ovhCloudConnect',
   vrackServices: 'vrackServices',
+  vmwareCloudDirectorVirtualDataCenter: 'vmwareCloudDirectorVirtualDataCenter',
 };
 
 // ALL ELIGIBLE SERVICES FOR VRACK
@@ -84,6 +85,7 @@ export const SERVICES = [
   'ipv6',
   'ovhCloudConnect',
   'vrackServices',
+  'vmwareCloudDirectorVirtualDataCenter',
 ];
 
 export const API_STATUS = {
