@@ -1,18 +1,26 @@
 import '@/setupTests';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { OdsFileUpload } from '@ovhcloud/ods-components/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   OdsFileChangeEventDetail,
   OdsFileUploadCustomEvent,
 } from '@ovhcloud/ods-components';
-import { uploadDomain, uploadArgument } from '@/__mocks__/upload';
-import Upload from '@/pages/upload/Upload';
+import { wrapper } from '@/utils/test.provider';
+import {
+  uploadDomain,
+  updateContactArgument,
+  updateDocumentArgument,
+  updateStringArgument,
+} from '@/__mocks__/update';
+import Update from '@/pages/update/Update';
+import { useOperationArguments } from '@/hooks/update/useOperationArguments';
+import { useGetDomainInformation } from '@/hooks/data/query';
+import { serviceInfo } from '@/__mocks__/serviceInfo';
 
 vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(),
+  useNavigate: () => vi.fn(() => null),
   useParams: () => {
     return {
       id: '1',
@@ -27,40 +35,78 @@ vi.mock('@/hooks/data/query', () => ({
       isLoading: false,
     };
   }),
+  useGetDomainInformation: vi.fn(),
 }));
 
-vi.mock('@/hooks/modal/useOperationArguments', () => ({
-  useOperationArguments: vi.fn(() => {
-    return {
-      data: uploadArgument,
-      isLoading: false,
-    };
-  }),
+vi.mock('@/hooks/update/useOperationArguments', () => ({
+  useOperationArguments: vi.fn(),
 }));
 
-describe('Upload page', () => {
-  const queryClient = new QueryClient();
-  const wrapper = ({ children }: PropsWithChildren) => (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
-
+describe('Update page', () => {
   it('display the correct data related to the domain', async () => {
-    render(<Upload />, { wrapper });
+    (useOperationArguments as jest.Mock).mockReturnValue({
+      data: updateContactArgument,
+      isLoading: false,
+    });
+
+    render(<Update />, { wrapper });
 
     await waitFor(() => {
       expect(
-        screen.getByText('domain_operations_upload_title'),
+        screen.getByText('domain_operations_update_title'),
       ).toBeInTheDocument();
-      expect(
-        screen.getByText(
-          '"Domain is scheduled for deletion on 2026-08-24 12:58:23"',
-        ),
-      );
-      expect(
-        screen.getByText(
-          'Registrant Company Business License/Certificate issued by respective countrys authority, the license should be within the period of validity',
-        ),
-      );
+
+      expect(screen.getByText('domain_operation_comment'));
+    });
+  });
+
+  it('display the contact content', async () => {
+    (useOperationArguments as jest.Mock).mockReturnValue({
+      data: {
+        data: updateContactArgument,
+        isLoading: false,
+      },
+    });
+
+    (useGetDomainInformation as jest.Mock).mockReturnValue({
+      data: serviceInfo,
+      isLoading: false,
+    });
+
+    render(<Update />, { wrapper });
+
+    await waitFor(() => {
+      expect(screen.getByTestId('contactupdate')).toBeInTheDocument();
+    });
+  });
+
+  it('display the document content', async () => {
+    (useOperationArguments as jest.Mock).mockReturnValue({
+      data: {
+        data: updateDocumentArgument,
+        isLoading: false,
+      },
+    });
+
+    render(<Update />, { wrapper });
+
+    await waitFor(() => {
+      expect(screen.getByTestId('upload')).toBeInTheDocument();
+    });
+  });
+
+  it('display the string content', async () => {
+    (useOperationArguments as jest.Mock).mockReturnValue({
+      data: {
+        data: updateStringArgument,
+        isLoading: false,
+      },
+    });
+
+    render(<Update />, { wrapper });
+
+    await waitFor(() => {
+      expect(screen.getByTestId('input-name')).toBeInTheDocument();
     });
   });
 });

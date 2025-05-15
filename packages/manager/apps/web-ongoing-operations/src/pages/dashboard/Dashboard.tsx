@@ -8,7 +8,11 @@ import {
   useResolvedPath,
 } from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
-import { BaseLayout } from '@ovh-ux/manager-react-components';
+import {
+  BaseLayout,
+  Notifications,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 
 export const DNS_OPERATIONS_TABLE_HEADER_DOMAIN = 'DNS';
 
@@ -27,6 +31,7 @@ export default function DashboardPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
+  const { notifications } = useNotifications();
 
   const tabsList: DashboardTabItemProps[] = [
     {
@@ -76,6 +81,7 @@ export default function DashboardPage() {
           ))}
         </OdsTabs>
       }
+      message={notifications.length ? <Notifications /> : null}
     >
       <Outlet />
     </BaseLayout>
