@@ -24,6 +24,7 @@ import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin'
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import '@ovh-ux/sign-up';
 import signUpFormView from './form';
+import identityState from './identity';
 import detailsState from './details';
 import activityState from './activity';
 import { registerState } from './routing';
@@ -52,6 +53,7 @@ export default (containerEl, environment) => {
       ngOvhFeatureFlipping,
       ngOvhSsoAuth,
       signUpFormView,
+      identityState,
       detailsState,
       activityState,
       'ovhSignUp',
