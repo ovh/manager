@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   useNotifications,
   DeleteModal,
@@ -11,7 +12,11 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { US_SUBSIDIARY } from '@/constants';
 
 export const TerminateLicensePage = () => {
-  const { t } = useTranslation('hycu/terminate');
+  const { t } = useTranslation([
+    'hycu/terminate',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.ERROR,
+  ]);
   const { serviceName } = useParams();
   const navigate = useNavigate();
   const { addSuccess, addError } = useNotifications();
@@ -34,9 +39,7 @@ export const TerminateLicensePage = () => {
     onError: () => {
       closeModal();
       addError(
-        t('hycu_terminate_error_message', {
-          error: error?.message || 'Unknown error',
-        }),
+        t(`${NAMESPACES.ERROR}:error_message`, { message: error?.message || 'Unknown error' }),
       );
     },
   });
