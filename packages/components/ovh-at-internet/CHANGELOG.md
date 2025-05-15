@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.22.0...@ovh-ux/ovh-at-internet@0.23.0) (2025-05-15)
+
+
+### Features
+
+* **ovh-tracking:** add level for manager-account ([21d2e14](https://github.com/ovh/manager/commit/21d2e14bd434ec8e8e93b191cc74535c2017a9f5)), closes [#MANAGER-18234](https://github.com/ovh/manager/issues/MANAGER-18234)
+
+
+
+
+
 # [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.21.8...@ovh-ux/ovh-at-internet@0.22.0) (2025-05-12)
 
 

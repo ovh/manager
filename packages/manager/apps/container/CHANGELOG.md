@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.126.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.126.0...@ovh-ux/manager-container-app@0.126.1) (2025-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4000] ([f065814](https://github.com/ovh/manager/commit/f0658149ca7294361082ef49ed4d795b42ed0dc8))
+* **i18n:** add missing translations [CDS 4012] ([dd2d7d8](https://github.com/ovh/manager/commit/dd2d7d837dd48025b32a5500331dc1c213e7ea3a))
+* **pnr:** add a missing aria label ([de2cee8](https://github.com/ovh/manager/commit/de2cee85ed2f6d2bb543f407c071690acc3a50b8)), closes [#MANAGER-18297](https://github.com/ovh/manager/issues/MANAGER-18297)
+
+
+
+
+
 # [0.126.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.125.4...@ovh-ux/manager-container-app@0.126.0) (2025-05-12)
 
 

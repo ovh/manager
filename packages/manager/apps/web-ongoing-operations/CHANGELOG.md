@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.3.1...@ovh-ux/manager-web-ongoing-operations-app@1.3.2) (2025-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3970] ([c66b0ed](https://github.com/ovh/manager/commit/c66b0edc69907ee7682de6fc469f2693dbc97bb5))
+* **i18n:** add missing translations [CDS 4000] ([f065814](https://github.com/ovh/manager/commit/f0658149ca7294361082ef49ed4d795b42ed0dc8))
+
+
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.3.0...@ovh-ux/manager-web-ongoing-operations-app@1.3.1) (2025-05-15)
 
 
