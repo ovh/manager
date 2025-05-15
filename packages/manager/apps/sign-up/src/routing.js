@@ -197,7 +197,7 @@ export const state = {
         state: 'sign-up.activity',
       },
     ],
-    trackError: /* @ngInject */ (atInternet) => (step, field) => {
+    trackError: /* @ngInject */ (atInternet) => (field) => {
       const errorTrackingHits = [ERROR_TRACKING_PREFIX, `error_${field}`];
       atInternet.trackPage({
         name: errorTrackingHits.join('::'),
@@ -206,7 +206,7 @@ export const state = {
     },
     onFieldBlur: /* @ngInject */ (trackError) => (field) => {
       if (field.$invalid) {
-        trackError('step1', startCase(field.$name).replaceAll(' ', ''));
+        trackError(startCase(field.$name).replaceAll(' ', ''));
       }
     },
 
