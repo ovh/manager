@@ -1,0 +1,17 @@
+{
+  "title": "Revolutionize Your Data Workflows with Data Platform",
+  "description_top": "Take your data operations to the next level with a powerful platform built for performance, flexibility, and ease of use. Whether you're processing <strong>large datasets</strong>, <strong>integrating analytics</strong>, or <strong>automating workflows</strong>, Data Platform provides a fully managed environment that allows you to focus on deriving insights rather than managing infrastructure. With real-time processing, support for diverse workloads, and effortless scalability, it empowers organizations to make data-driven decisions faster and more efficiently.",
+  "description_bottom": "No specialized infrastructure or deep technical expertise is required. Leverage <strong>scalable data tools</strong>, seamless <strong>BI integrations</strong>, and a robust <strong>serverless environment</strong> to drive insights faster than ever.",
+  "button_text": "Visit Data Platform",
+  "card_section_title": "Start Exploring Data Platform",
+  "card_top_guide": "Guides",
+  "card_left_title": "Getting started with Data Platform",
+  "card_left_description": "Discover the capabilities of our secure, serverless data processing platform designed for developers and analysts. Learn how to connect, transform, and analyze data effortlessly.<br>Quickly learn the basics, from connecting your first data source to running your initial analysis. Perfect for new users!",
+  "card_middle_title": "Level Up Your Data Platform Skills",
+  "card_middle_description": "Dive into advanced techniques, real-world examples, and best practices to unlock the full potential of Data Platform and become a true expert.",
+  "card_right_title": "Detailed Product Specs",
+  "card_right_description": "Find in-depth information on all of Data Platform's capabilities, data types, system requirements, and configurable parameters.",
+  "card_find_out_more": "Find out more",
+  "discoveryMode": "You are currently in Discovery mode. To access Data Platform and create services, you will need to activate your project.",
+  "discoveryModeActivate": "Activate your project"
+}
