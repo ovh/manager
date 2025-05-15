@@ -5,7 +5,7 @@ describe('useTagsFilter', () => {
   const tags = {
     environment: 'dev',
     environment1: 'prod',
-    ovh: 'internal',
+    'ovh:internal': 'prod',
   };
 
   it('should return all tags when displayInternalTags is true', () => {
@@ -13,7 +13,7 @@ describe('useTagsFilter', () => {
     expect(result).toEqual([
       'environment:dev',
       'environment1:prod',
-      'ovh:internal',
+      'ovh:internal:prod',
     ]);
   });
 

@@ -6,6 +6,6 @@ export const useTagsFilter = ({
   displayInternalTags: boolean;
 }) => {
   return Object.keys(tags)
-    .filter((key) => displayInternalTags || key !== 'ovh')
+    .filter((key) => displayInternalTags || key.indexOf('ovh:') !== 0)
     .map((key) => `${key}:${tags[key]}`);
 };
