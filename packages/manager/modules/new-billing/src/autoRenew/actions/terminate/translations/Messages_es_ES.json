@@ -1,8 +1,8 @@
 {
   "autorenew_service_terminate": "Aceptar",
   "autorenew_service_terminate_cancel": "Cancelar",
-  "billing_terminate_cancel_button": "No, cancelar",
-  "billing_terminate_delete_button": "Sí, dar de baja",
+  "billing_terminate_cancel_button": "No, denegar",
+  "billing_terminate_delete_button": "Sí, cancelar",
   "billing_terminate_description": "Al dar de baja el servicio, se borrarán definitivamente todos los datos correspondientes. ¿Quiere dar de baja el servicio?",
   "billing_terminate_headline": "¿Dar de baja {{serviceType}}?",
   "billing_terminate_headline_service": "Servicio"

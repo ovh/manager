@@ -1,7 +1,7 @@
 {
   "virtualmachine_grid_name": "Nome",
   "virtualmachine_grid_license": "Licença",
-  "virtualmachine_error_loading": "Erro ao carregar informação relativa às máquinas virtuais.",
+  "virtualmachine_error_loading": "Ocorreu um erro aquando do carregamento das máquinas virtuais.",
   "virtualmachine_license": "Licença",
   "virtualmachine_unavailable": "Indisponível",
   "virtualmachine_deactivated": "Désactivée",

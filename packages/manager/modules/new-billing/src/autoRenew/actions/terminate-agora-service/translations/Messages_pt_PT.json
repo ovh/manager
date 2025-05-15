@@ -24,14 +24,16 @@
   "autorenew_agora_terminate_service_warning_NUTANIX": "Confirme a rescisão do seu Nutanix on OVHcloud \"{{serviceName}}\"",
   "autorenew_agora_terminate_service_success_NUTANIX": "O seu pedido de rescisão do Nutanix foi registado com êxito. Um e-mail com o procedimento foi-lhe enviado.",
   "autorenew_agora_terminate_service_error_NUTANIX": "Ocorreu um erro aquando do pedido de rescisão do seu Nutanix. {{error}}",
-  "autorenew_agora_terminate_service_success_ftc_LICENSE_HYCU": "O seu pedido de rescisão da sua licença HYCU foi registado com êxito. Foi-lhe enviado um e-mail de confirmação.",
+  "autorenew_agora_terminate_service_success_ftc_LICENSE_HYCU": "O seu pedido de cancelamento da sua licença HYCU foi registado com êxito. Foi-lhe enviado um e-mail de confirmação.",
   "autorenew_agora_terminate_service_success_ftc_OKMS_RESOURCE": "O seu pedido de rescisão do KMS foi registado com êxito. Foi-lhe enviado um e-mail de confirmação.",
   "autorenew_agora_terminate_service_success_ftc_VRACK_SERVICES_RESOURCE": "O seu pedido de rescisão de vRack Services foi registado com êxito. Foi-lhe enviado um e-mail de confirmação.",
   "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_BACKUP": "O seu pedido de rescisão do Managed Veeam for VCD foi registado com êxito. Foi-lhe enviado um e-mail de confirmação.",
   "autorenew_agora_terminate_service_success_ftc_DBAAS_LOGS": "O seu pedido de rescisão do LDP foi registado com êxito. Foi-lhe enviado um e-mail de confirmação.",
-  "autorenew_agora_terminate_service_success_ftc_NUTANIX": "O seu pedido de rescisão da Nutanix foi registado com êxito. Foi-lhe enviado um e-mail de confirmação.",
+  "autorenew_agora_terminate_service_success_ftc_NUTANIX": "O seu pedido de rescisão do Nutanix foi registado com êxito. Foi-lhe enviado um e-mail de confirmação.",
   "autorenew_agora_terminate_service_success_ftc_NUTANIX_NODE": "O cancelamento do nó \"{{serviceName}}\" foi registado. Foi-lhe enviado um e-mail de confirmação.",
   "autorenew_agora_terminate_service_success_ftc_VEEAM_ENTERPRISE": "O cancelamento da sua licença \"{{serviceName}}\" foi registado. Foi-lhe enviado um e-mail de confirmação.",
   "autorenew_agora_terminate_service_success_VEEAM_ENTERPRISE": "O cancelamento da sua licença \"{{serviceName}}\" foi registado. Receberá um e-mail com os detalhes do procedimento a seguir.",
-  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "O seu pedido de rescisão não foi tomado em conta: {{error}}"
+  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "O seu pedido de cancelamento não foi registado: {{error}}",
+  "autorenew_agora_terminate_service_success_NUTANIX_NODE": "O cancelamento do nó \"{{serviceName}}\" foi registado. Receberá um e-mail com os detalhes do procedimento a seguir.",
+  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "O seu pedido de cancelamento não foi registado: {{error}}"
 }

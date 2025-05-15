@@ -22,7 +22,7 @@
   "kube_common_node_pool_configure_false": " Cluster ohne Node-Pool erstellen",
   "kube_common_node_pool_estimated_cost": "Geschätzte monatliche Kosten des Clusters:",
   "kube_common_node_pool_estimation_text": "In dieser Schätzung sind etwaige Rabatte im Zusammenhang mit den Savings Plans nicht berücksichtigt.",
-  "kube_common_node_pool_estimation_price": "Node-Pools: {{estimation}}",
+  "kube_common_node_pool_estimation_price": "Node-Pools:",
   "kube_common_node_pool_estimation_text_end": "Die genauen Kosten hängen von der tatsächlichen Ressourcennutzung ab, die vor der Erstellung eines Clusters nicht genau geschätzt werden kann.",
   "kube_common_node_pool_size_title": "Größe des Node-Pools",
   "kube_common_node_pool_desired_node": "Anzahl an Nodes",
@@ -33,9 +33,9 @@
   "kube_common_add_node_pool": "Node-Pool hinzufügen",
   "kube_common_min_max_nodes": "Min {{minNodes}}, Max {{maxNodes}}",
   "kube_common_estimation_price": "Während der Betaphase kostenlos.",
-  "kube_common_cluster_estimation_price": "Verwalteter Steuerungsplan:",
-  "kube_common_node_pool_deploy_title": "Wahl der Verfügbarkeitszone",
-  "kube_common_node_pool_deploy_description": "In einem Kubernetes-Cluster, das sich über drei Verfügbarkeitszonen (AZ) erstreckt, wird die Verwendung von Node-Pools pro Zone empfohlen, um Resilienz und hohe Verfügbarkeit zu gewährleisten. Mit dieser Konfiguration können Sie Ihre Workloads gleichmäßig auf die AZ verteilen. Dadurch wird die Fehlertoleranz erhöht und eine optimale Betriebskontinuität sichergestellt.",
+  "kube_common_cluster_estimation_price": "Verwaltete Control Plane:",
+  "kube_common_node_pool_deploy_title": "Wahl der Availability Zone",
+  "kube_common_node_pool_deploy_description": "Bei einem über drei Availability Zones (AZ) verteilten Kubernetes-Cluster wird empfohlen, Node-Pools je Zone einzusetzen, um Resilienz und Hochverfügbarkeit zu gewährleisten. Diese Konfiguration ermöglicht eine gleichmäßige Verteilung Ihrer Workloads auf die AZs. Das erhöht die Fehlertoleranz und sorgt für eine optimale Betriebskontinuität.",
   "kube_node_pool": "Node-Pool konfigurieren",
   "kube_common_estimation_price_free": "Kostenlos"
 }
