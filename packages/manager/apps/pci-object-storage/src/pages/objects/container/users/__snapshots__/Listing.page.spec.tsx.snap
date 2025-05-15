@@ -115,6 +115,7 @@ exports[`ListingPage > sould display datagrid 1`] = `
             </div>
             <div>
               <ods-select
+                data-testid="add-operator-username"
                 name="add-operator-username"
                 value="includes"
               >
@@ -527,6 +528,7 @@ exports[`ListingPage > sould display spinner 1`] = `
             </div>
             <div>
               <ods-select
+                data-testid="add-operator-username"
                 name="add-operator-username"
                 value="includes"
               >
