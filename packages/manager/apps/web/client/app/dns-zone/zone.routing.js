@@ -27,7 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
       columns: /* @ngInject */ ($translate) => [
         {
           property: 'name',
-          title: $translate.instant('zones_domain_name'),
+          title: $translate.instant('zones_name'),
           template: `<a data-ng-href="{{ :: $ctrl.getServiceNameLink($row) }}" data-ng-bind="$row.name"></a>`,
           searchable: true,
           sortable: 'asc',

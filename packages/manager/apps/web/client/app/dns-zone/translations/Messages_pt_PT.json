@@ -22,5 +22,6 @@
   "modified": "Alterado",
   "zones_domain_name": "Domínio",
   "zones_enabled": "Ativado",
-  "zones_disabled": "Desativado"
+  "zones_disabled": "Desativado",
+  "zones_name": "Zona DNS"
 }
