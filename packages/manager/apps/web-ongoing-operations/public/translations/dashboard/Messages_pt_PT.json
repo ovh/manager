@@ -2,8 +2,8 @@
   "title": "Dashboard page",
   "back_link": "Voltar à lista",
   "domain_operations": "Operação",
-  "domain_operation_comment": "Comentário à operação: ",
-  "domain_operation_data": "Pode modificar os dados relativos à operação",
+  "domain_operation_comment": "Comentário da operação: <strong> {{t0}}</strong> ",
+  "domain_operation_data": "Pode modificar os dados relativos à operação: <strong> {{t0}}</strong> ",
   "domain_operations_accelerate_title": "Acelerar a operação",
   "domain_operations_relaunch_title": "Relançar a operação",
   "domain_operations_cancel_title": "Anular a operação",
@@ -103,9 +103,9 @@
   "domain_operations_upload_doing": "Upload em curso...",
   "domain_operations_upload_error_max-file-reached": "Número máximo de ficheiros atingido",
   "domain_operations_upload_error_size-too-large": "Ficheiro demasiado grande",
-  "domain_operations_update_cancel": "Operação anulada!",
-  "domain_operations_update_relaunch": "Operação reiniciada!",
-  "domain_operations_update_accelerate": "Pedido de aceleração da operação bem-sucedido!",
+  "domain_operations_update_cancel": "A operação foi anulada!",
+  "domain_operations_update_relaunch": "A operação é retomada!",
+  "domain_operations_update_accelerate": "Pedido de aceleração da operação bem-sucedida!",
   "domain_operations_update_key_action": "Operação",
   "domain_operations_update_key_memberContactXXX": "Identificador do membro",
   "domain_operations_update_key_firstname": "Atualizar o nome com um conteúdo válido",
@@ -134,5 +134,8 @@
   "domain_operations_nicOperation_ZoneRestore": "Restauro da zona DNS",
   "wizard_close": "Fechar",
   "domain_operations_upload_error_wrong-format": "Formato do ficheiro não autorizado",
-  "domain_operations_update_title": "Atualização da operação para o domínio {{t0}}"
+  "domain_operations_update_title": "Atualização da operação para o domínio {{t0}}",
+  "domain_operations_update_error": "Ocorreu uma falha ao atualizar a operação",
+  "domain_operations_update_key_validationToken": "Token de validação",
+  "domain_operations_update_key_document": "Documento"
 }
