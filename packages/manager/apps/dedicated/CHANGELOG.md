@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.35.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.35.1...@ovh-ux/manager-dedicated@20.35.2) (2025-05-15)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** fix upgrade resource for datastore ([724f131](https://github.com/ovh/manager/commit/724f13154df7f389dde2c406a9c3aadc712dd4fb)), closes [#MANAGER-18332](https://github.com/ovh/manager/issues/MANAGER-18332) [#INC0129332](https://github.com/ovh/manager/issues/INC0129332)
+
+
+
+
+
 ## [20.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.35.0...@ovh-ux/manager-dedicated@20.35.1) (2025-05-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
