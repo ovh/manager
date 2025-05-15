@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.3.0...@ovh-ux/manager-web-ongoing-operations-app@1.3.1) (2025-05-15)
+
+
+### Bug Fixes
+
+* **web-ongoing-operations:** modify page - add more controls ([#17103](https://github.com/ovh/manager/issues/17103)) ([#17104](https://github.com/ovh/manager/issues/17104)) ([cbbeaac](https://github.com/ovh/manager/commit/cbbeaacc4100f7f3089a6677b94004a85db4c5ab)), closes [#MANAGER-17981](https://github.com/ovh/manager/issues/MANAGER-17981)
+
+
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.2.8...@ovh-ux/manager-web-ongoing-operations-app@1.3.0) (2025-05-12)
 
 
