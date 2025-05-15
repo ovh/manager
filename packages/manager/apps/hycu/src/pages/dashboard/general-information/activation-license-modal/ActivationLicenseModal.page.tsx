@@ -23,6 +23,7 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { FileInputField } from '@/components/FileUpload/FileUpload.component';
 import { useActivateLicenseHYCUMutation } from '@/hooks/api/license';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
@@ -39,7 +40,7 @@ interface FormValues {
 
 export const ActivationHycuLicenseModal: React.FC<ActivationHycuLicenseModalProps> = () => {
   const { serviceName } = useParams();
-  const { t } = useTranslation('hycu/dashboard');
+  const { t } = useTranslation(['hycu/dashboard', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
   const { addInfo, addError } = useNotifications();
@@ -113,7 +114,7 @@ export const ActivationHycuLicenseModal: React.FC<ActivationHycuLicenseModalProp
             }}
             inline
           >
-            {t('hycu_dashboard_upload_cancel')}
+            {t(`${NAMESPACES.ACTIONS}:cancel`)}
           </OsdsButton>
           <OsdsButton
             data-testid="hycu-dashboard-upload-confirm"
@@ -134,7 +135,7 @@ export const ActivationHycuLicenseModal: React.FC<ActivationHycuLicenseModalProp
                 ></OsdsSpinner>
               )}
             </span>
-            {t('hycu_dashboard_upload_confirm')}
+            {t(`${NAMESPACES.ACTIONS}:confirm`)}
           </OsdsButton>
         </div>
       </form>

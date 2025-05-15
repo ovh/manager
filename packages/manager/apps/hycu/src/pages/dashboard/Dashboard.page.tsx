@@ -26,6 +26,7 @@ import {
   Notifications,
   ChangelogButton,
 } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { CHANGELOG_LINKS } from '@/constants';
 
@@ -46,7 +47,7 @@ export type DashboardLayoutProps = {
 };
 
 const ServiceSuspendedBanner = () => {
-  const { t } = useTranslation('hycu/dashboard');
+  const { t } = useTranslation(['hycu/dashboard', NAMESPACES.BILLING]);
 
   return (
     <OsdsMessage className="mb-2" type={ODS_MESSAGE_TYPE.warning}>
@@ -54,7 +55,7 @@ const ServiceSuspendedBanner = () => {
         color={ODS_TEXT_COLOR_INTENT.warning}
         size={ODS_THEME_TYPOGRAPHY_SIZE._400}
       >
-        {t('hycu_dashboard_warning_license_suspended_message')}
+        {t(`${NAMESPACES.BILLING}:cancel_service_success`)}
       </OsdsText>
     </OsdsMessage>
   );
@@ -84,7 +85,7 @@ const LicenseErrorActivationBanner = ({
 export default function DashboardPage() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
-  const { t } = useTranslation('hycu/dashboard');
+  const { t } = useTranslation([NAMESPACES.DASHBOARD, NAMESPACES.ACTIONS]);
 
   const { data: licenseHycu } = useDetailsLicenseHYCU(serviceName);
   const { data: serviceDetails, error } = useServiceDetails({
@@ -105,7 +106,7 @@ export default function DashboardPage() {
   const tabsList = [
     {
       name: 'general_informations',
-      title: t('hycu_dashboard_generals_informations_title'),
+      title: t(`${NAMESPACES.DASHBOARD}:general_information`),
       to: useResolvedPath('').pathname,
     },
   ] as const;
@@ -130,7 +131,7 @@ export default function DashboardPage() {
     <BaseLayout
       breadcrumb={<Breadcrumb />}
       header={header}
-      backLinkLabel={t('hycu_dashboard_back_link')}
+      backLinkLabel={t(`${NAMESPACES.ACTIONS}:back_to_list`)}
       onClickReturn={() => {
         navigate(urls.listing);
       }}

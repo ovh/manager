@@ -9,13 +9,14 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { IHycuDetails } from '@/types/hycu.details.interface';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constant';
 
 const HycuActionMenu = ({ serviceName }: Pick<IHycuDetails, 'serviceName'>) => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('hycu/listing');
+  const { t } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
   const openTerminateModal = () =>
     navigate(
@@ -28,7 +29,7 @@ const HycuActionMenu = ({ serviceName }: Pick<IHycuDetails, 'serviceName'>) => {
   const items: ActionMenuItem[] = [
     {
       id: 1,
-      label: t('hycu_service_listing_terminate'),
+      label: t('terminate'),
       color: ODS_THEME_COLOR_INTENT.error,
       onClick: () => {
         trackClick(

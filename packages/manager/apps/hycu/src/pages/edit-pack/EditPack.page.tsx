@@ -30,6 +30,7 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import Errors from '@/components/Error/Error';
@@ -49,9 +50,11 @@ import { getRenewPrice } from '@/utils/getRenewPrice';
 
 export default function EditPack() {
   const { serviceName } = useParams();
-  const { t } = useTranslation('hycu/edit-pack');
-  const { t: tCommon } = useTranslation('hycu');
-  const { t: tError } = useTranslation('hycu/error');
+  const { t } = useTranslation([
+    'hycu/edit-pack',
+    NAMESPACES.ERROR,
+    NAMESPACES.ACTIONS,
+  ]);
   const navigate = useNavigate();
 
   const { environment } = useContext(ShellContext);
@@ -100,7 +103,7 @@ export default function EditPack() {
   ];
 
   if (isError || error)
-    return <Errors>{tError('manager_error_page_default')}</Errors>;
+    return <Errors>{t(`${NAMESPACES.ERROR}:error_loading_page`)}</Errors>;
 
   if (isLoading) return <Loading />;
 
@@ -159,7 +162,7 @@ export default function EditPack() {
               slot="actions"
               variant={ODS_BUTTON_VARIANT.ghost}
             >
-              {tCommon('hycu_cta_cancel')}
+              {t(`${NAMESPACES.ACTIONS}:cancel`)}
             </OsdsButton>
             <OsdsButton
               color={ODS_THEME_COLOR_INTENT.primary}
@@ -170,7 +173,7 @@ export default function EditPack() {
               }}
               slot="actions"
             >
-              {tCommon('hycu_cta_order')}
+              {t(`${NAMESPACES.ACTIONS}:order`)}
             </OsdsButton>
           </div>
         </>
@@ -232,7 +235,7 @@ export default function EditPack() {
               );
             }}
           >
-            {tCommon('hycu_cta_done')}
+            {t(`${NAMESPACES.ACTIONS}:end`)}
           </OsdsButton>
         </>
       )}
