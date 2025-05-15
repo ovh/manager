@@ -7,6 +7,8 @@ export default {
     isOpenModal: '<',
     onClose: '&',
     onConfirm: '&',
+    primaryDisabled: '<',
+    loading: '<',
   },
   transclude: true,
   template,

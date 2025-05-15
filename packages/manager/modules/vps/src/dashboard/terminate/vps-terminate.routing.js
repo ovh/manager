@@ -17,27 +17,26 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       cancel: /* @ngInject */ ($state) => () => $state.go('^'),
       confirm: /* @ngInject */ (
-        $http,
         $translate,
         displayErrorMessage,
         displaySuccessMessage,
-        serviceInfo,
         serviceName,
-        vps,
+        serviceInfo,
         vpsTerminate,
-      ) => () =>
+        coreConfig,
+      ) => () => {
         vpsTerminate
-          .confirm(serviceName)
+          .confirm({ ...serviceInfo, serviceName },
+            !coreConfig.isRegion('US')
+          )
           .then(() =>
             displaySuccessMessage($translate.instant('vps_terminate_success')),
           )
           .catch(() =>
             displayErrorMessage($translate.instant('vps_terminate_error')),
-          ),
-      degressivityInformation: /* @ngInject */ (
-        serviceName,
-        availableUpgrades,
-      ) =>
+          )
+      },
+      degressivityInformation: /* @ngInject */ (availableUpgrades) =>
         availableUpgrades.find(({ prices }) =>
           prices[0].pricingMode.includes(PRICING_MODES.DEGRESSIVITY),
         ),
@@ -58,26 +57,26 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceInfo,
         VpsService,
       ) => (deleteAtExpiration) =>
-        VpsService.updateServiceInfo({
-          ...serviceInfo,
-          renew: {
-            ...serviceInfo.renew,
-            automatic: !deleteAtExpiration ? true : serviceInfo.renew.automatic,
-            deleteAtExpiration,
-          },
-        })
-          .then(() =>
-            displaySuccessMessage(
-              $translate.instant(
-                deleteAtExpiration
-                  ? 'vps_terminate_activate_delete_at_expiration_success'
-                  : 'vps_terminate_deactivate_delete_at_expiration_success',
+          VpsService.updateServiceInfo({
+            ...serviceInfo,
+            renew: {
+              ...serviceInfo.renew,
+              automatic: !deleteAtExpiration ? true : serviceInfo.renew.automatic,
+              deleteAtExpiration,
+            },
+          })
+            .then(() =>
+              displaySuccessMessage(
+                $translate.instant(
+                  deleteAtExpiration
+                    ? 'vps_terminate_activate_delete_at_expiration_success'
+                    : 'vps_terminate_deactivate_delete_at_expiration_success',
+                ),
               ),
-            ),
-          )
-          .catch((error) =>
-            displayErrorMessage(
-              `
+            )
+            .catch((error) =>
+              displayErrorMessage(
+                `
                 ${$translate.instant(
                   deleteAtExpiration
                     ? 'vps_terminate_activate_delete_at_expiration_error'
@@ -85,34 +84,31 @@ export default /* @ngInject */ ($stateProvider) => {
                 )}
                 ${get(error, 'data.message')}
                 `,
+              ),
             ),
-          ),
       supportTicketLink: /* @ngInject */ (coreURLBuilder) =>
         coreURLBuilder.buildURL('dedicated', '#ticket'),
       terminateOptions: ($translate, serviceInfo) =>
-        Object.values(TERMINATE_OPTIONS)
-          .filter((option) => {
-            if (serviceInfo.renew.deleteAtExpiration) {
-              return option !== TERMINATE_OPTIONS.TERMINATE_AT_EXPIRATION;
-            }
-
-            return option !== TERMINATE_OPTIONS.CANCEL_TERMINATE_AT_EXPIRATION;
-          })
-          .map((option) => ({
-            label: $translate.instant(
-              `vps_terminate_option_${option.toLowerCase()}`,
-            ),
-            value: option,
-          })),
-
+        (serviceInfo.renew.deleteAtExpiration
+          ? [TERMINATE_OPTIONS.TERMINATE_NOW]
+          : [
+            TERMINATE_OPTIONS.TERMINATE_AT_EXPIRATION,
+            TERMINATE_OPTIONS.TERMINATE_NOW,
+          ]
+        ).map((option) => ({
+          label: $translate.instant(
+            `vps_terminate_option_${option.toLowerCase()}`,
+          ),
+          value: option,
+        })),
       validateTermination: (confirm, setExpirationDateTermination) => (
         terminateChoice,
       ) =>
         terminateChoice === TERMINATE_OPTIONS.TERMINATE_NOW
           ? confirm()
           : setExpirationDateTermination(
-              terminateChoice === TERMINATE_OPTIONS.TERMINATE_AT_EXPIRATION,
-            ),
+            terminateChoice === TERMINATE_OPTIONS.TERMINATE_AT_EXPIRATION,
+          ),
       breadcrumb: () => null,
     },
   });
