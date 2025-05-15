@@ -72,6 +72,7 @@ export default function Organizations() {
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { platformUrn } = usePlatform();
+  const isOverridedPage = useOverridePage();
 
   const [
     searchInput,
@@ -120,7 +121,7 @@ export default function Organizations() {
   return (
     <div>
       <Outlet />
-      {platformUrn && (
+      {!isOverridedPage && (
         <Datagrid
           topbar={
             <ManagerButton
