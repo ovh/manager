@@ -135,7 +135,7 @@
   "vps_configuration_reboot_alert": "Debido al reinicio, el VPS no va a estar disponible durante 2 minutos aproximadamente.",
   "vps_configuration_reboot_success": "El VPS {{serviceName}} va a reiniciarse (tiempo estimado: 2 minutos).",
   "vps_configuration_reboot_todo": "La solicitud de reinicio se ha enviado.",
-  "vps_configuration_reboot_fail": "Se ha producido un error al solicitar el reinicio.",
+  "vps_configuration_reboot_fail": "Se ha producido un error al solicitar el reinicio. {{ error }}",
   "vps_configuration_reboot_rescue_title_button": "Modo de rescate",
   "vps_configuration_reboot_rescue_warning_text": "Algunas acciones no están disponibles en <b>modo de rescate</b>. Para restablecer las funcionalidades, deberá restaurar el boot local haciendo clic en «Reiniciar mi VPS».",
   "vps_configuration_reboot_rescue_warning_btn_title": "Esta acción no está disponible en modo de rescate.",

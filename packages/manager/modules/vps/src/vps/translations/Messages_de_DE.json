@@ -135,7 +135,7 @@
   "vps_configuration_reboot_alert": "Downtime aufgrund des Neustarts: etwa 2 Minuten.",
   "vps_configuration_reboot_success": "Der VPS {{serviceName}} wird neu gestartet (geschätzte Zeit: 2 Minuten)",
   "vps_configuration_reboot_todo": "Die Anfrage für den Neustart wurde erfolgreich durchgeführt.",
-  "vps_configuration_reboot_fail": "Bei der Anfrage für den Neustart ist ein Fehler aufgetreten",
+  "vps_configuration_reboot_fail": "Beim Anfordern des Neustarts ist ein Fehler aufgetreten. {{ error }}",
   "vps_configuration_reboot_rescue_title_button": "Rescue-Modus",
   "vps_configuration_reboot_rescue_warning_text": "Einige Aktionen sind im <b>Rescue-Modus</b> nicht möglich. Um die Funktionen wiederherzustellen, klicken Sie auf Meinen VPS neu starten und so den Local Boot wiederherstellen.",
   "vps_configuration_reboot_rescue_warning_btn_title": "Diese Aktion ist im Rescue-Modus nicht verfügbar.",
