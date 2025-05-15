@@ -110,6 +110,10 @@ export const EMAIL_ACCOUNT_ALIAS = `${EMAIL_ACCOUNT}_${ALIAS}`;
 export const EMAIL_ACCOUNT_ADD_ALIAS = `${EMAIL_ACCOUNT}_${ADD_ALIAS}`;
 export const EMAIL_ACCOUNT_DELETE_ALIAS = `${EMAIL_ACCOUNT}_${DELETE_ALIAS}`;
 
+// SLOTS
+export const SLOT = 'slot';
+export const CONFIGURE_SLOT = `configure_${SLOT}`;
+
 // GUIDES
 export const GUIDE_WEBMAIL = 'webmail';
 export const GUIDE_ADMINISTRATOR = 'administrator-guide';
