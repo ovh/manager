@@ -1317,7 +1317,7 @@
   "license_upgrade_redirection_popup_upgrade": "Mettre à jour ma licence",
   "license_upgrade_title": "Upgrader ma licence",
   "license_upgrade_title_button": "Upgrader ma licence",
-  "license_upgrade_common_no_upgrade": "Aucun upgrade n'est disponible pour votre version de plesk. Merci de contacter le service client pour plus d'informations.",
+  "license_upgrade_common_no_upgrade": "Aucun upgrade n'est disponible pour votre version de {{ type }}. Merci de contacter le service client pour plus d'informations.",
   "license_upgrade_common_no_change": "Aucun changement",
   "license_upgrade_summary_title": "Récapitulatif de votre licence actuelle",
   "license_upgrade_summary_version": "Version",
