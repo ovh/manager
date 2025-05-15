@@ -10,35 +10,43 @@ type ActionsProps = {
 
 export default function Actions({ backup }: Readonly<ActionsProps>) {
   const { t } = useTranslation('listing');
+  const { id, volumeId, status } = backup;
 
-  const restoreBackupItem = {
-    id: 1,
-    href: useHref(`./restore-volume?volumeId=${backup.volumeId}`),
-    label: t(
-      'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore',
-    ),
-  };
-  const createVolumeItem = {
-    id: 2,
-    href: useHref(`./${backup.id}/create-volume`),
-    label: t(
-      'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_create_volume',
-    ),
-  };
-  const deleteVolumeItem = {
-    id: 3,
-    href: useHref(`./delete?backupId=${backup.id}`),
-    label: t(
-      'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_delete',
-    ),
-  };
+  const restoreVolumeHref = useHref(`./restore-volume?volumeId=${volumeId}`);
+  const createVolumeHref = useHref(`./${id}/create-volume`);
+  const deleteVolumeBackupHref = useHref(`./delete?backupId=${id}`);
 
-  let items: { id: number; href: string; label: string }[] = [];
-  if (backup?.status === VOLUME_BACKUP_STATUS.OK) {
-    items = [restoreBackupItem, createVolumeItem, deleteVolumeItem];
-  } else if (backup?.status === VOLUME_BACKUP_STATUS.ERROR) {
-    items = [deleteVolumeItem];
+  if (![VOLUME_BACKUP_STATUS.OK, VOLUME_BACKUP_STATUS.ERROR].includes(status)) {
+    return null;
   }
 
-  return <ActionMenu id={backup.id} items={items} isCompact />;
+  const menuItems = [
+    ...(status === VOLUME_BACKUP_STATUS.OK
+      ? [
+          {
+            id: 1,
+            href: restoreVolumeHref,
+            label: t(
+              'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore',
+            ),
+          },
+          {
+            id: 2,
+            href: createVolumeHref,
+            label: t(
+              'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_create_volume',
+            ),
+          },
+        ]
+      : []),
+    {
+      id: 3,
+      href: deleteVolumeBackupHref,
+      label: t(
+        'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_delete',
+      ),
+    },
+  ];
+
+  return <ActionMenu id={id} items={menuItems} isCompact />;
 }
