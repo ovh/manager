@@ -4,8 +4,14 @@ import {
   OsdsSelect,
   OsdsSelectOption,
   OsdsSpinner,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_COLOR_HUE,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useEffect, useRef, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
@@ -103,13 +109,6 @@ export default function AttachStorage() {
   const isPending = isInstancesPending || isVolumePending || isAttachPending;
   const canAttach = !isPending && selectedInstance?.id;
 
-  // redirect to listing if volume is already attached
-  useEffect(() => {
-    if (!isPending && volume?.attachedTo?.length > 0) {
-      navigate(`/pci/projects/${projectId}/storages/blocks`);
-    }
-  }, [navigate, projectId, volume, isPending]);
-
   return (
     <OsdsModal
       headline={t('pci_projects_project_storages_blocks_block_attach_title')}
@@ -123,6 +122,18 @@ export default function AttachStorage() {
             className="block text-center"
             data-testid="attach-storage-spinner"
           />
+        )}
+        {volume?.maxAttachedInstances > 1 && (
+          <OsdsText
+            className="mt-5 whitespace-pre-wrap"
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t(
+              'pci_projects_project_storages_blocks_block_attach_multi_banner',
+              { count: volume.maxAttachedInstances },
+            )}
+          </OsdsText>
         )}
         {!isPending && instances?.length > 0 && (
           <div>

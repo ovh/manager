@@ -6,7 +6,7 @@ import * as pciCommonModule from '@ovh-ux/manager-pci-common';
 import { TInstance } from '@ovh-ux/manager-pci-common';
 import DetachStorage from '@/pages/detach/DetachStorage.page';
 import * as useVolumeModule from '@/api/hooks/useVolume';
-import { TVolume } from '@/api/data/volume';
+import { UseVolumeResult } from '@/api/hooks/useVolume';
 
 vi.mock('@/api/hooks/useVolume', () => ({
   useVolume: vi
@@ -30,7 +30,7 @@ describe('DetachStorage', () => {
     } as UseQueryResult<TInstance>);
     vi.spyOn(useVolumeModule, 'useVolume').mockReturnValue({
       isPending: true,
-    } as UseQueryResult<TVolume>);
+    } as UseQueryResult<UseVolumeResult>);
 
     const { getByTestId } = render(<DetachStorage />);
     expect(getByTestId('detachStorage-spinner')).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe('DetachStorage', () => {
     vi.spyOn(useVolumeModule, 'useVolume').mockReturnValue({
       data: { name: 'Volume 1', attachedTo: ['Instance 1'] },
       isPending: false,
-    } as UseQueryResult<TVolume>);
+    } as UseQueryResult<UseVolumeResult>);
 
     const { getByText } = render(<DetachStorage />);
     await waitFor(() => {

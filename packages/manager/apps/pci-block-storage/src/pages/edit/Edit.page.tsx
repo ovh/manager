@@ -4,7 +4,6 @@ import { Translation, useTranslation } from 'react-i18next';
 import {
   Headers,
   useNotifications,
-  useProjectLocalRegions,
   useProjectUrl,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
@@ -41,7 +40,7 @@ import {
 } from '@ovh-ux/manager-pci-common';
 import { VOLUME_MIN_SIZE, VOLUME_UNLIMITED_QUOTA } from '@/constants';
 import ChipRegion from '@/components/edit/ChipRegion.component';
-import { TVolume } from '@/api/data/volume';
+import { TAPIVolume } from '@/api/data/volume';
 import { useUpdateVolume, useVolume } from '@/api/hooks/useVolume';
 import HidePreloader from '@/core/HidePreloader';
 import { useVolumeMaxSize } from '@/api/data/quota';
@@ -134,7 +133,7 @@ export default function EditPage() {
       name: formState.name,
       size: formState.size.value,
       bootable: formState.bootable,
-    } as TVolume,
+    },
     originalVolume: volume,
     onError(err: Error) {
       onClose();
@@ -173,7 +172,7 @@ export default function EditPage() {
     volume?.region,
   );
 
-  const getMaxSize = (_volume: TVolume) => {
+  const getMaxSize = (_volume: TAPIVolume) => {
     if (regionQuota) {
       if (
         regionQuota.volume &&
