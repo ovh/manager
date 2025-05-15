@@ -55,8 +55,8 @@
   "pci_projects_project_storages_containers_container_delete_marker": "Löschkennzeichnung",
   "pci_projects_project_storages_containers_container_show_versions": "Versionen anzeigen",
   "pci_projects_project_storages_containers_container_back_to_versions": "Zurück zu meinen Objekten",
-  "pci_projects_project_storages_containers_container_objects": "Meine Artikel",
-  "pci_projects_project_storages_containers_container_objects_sort_warining": "Sortiervorgänge in der Objektauflistung werden nur für die aktuell angezeigten Ergebnisse ausgeführt. Verwenden Sie „Mehr laden“, um die Sortierung auf mehr Ergebnisse zu erweitern.",
+  "pci_projects_project_storages_containers_container_objects": "Meine Objekte",
+  "pci_projects_project_storages_containers_container_objects_sort_warining": "Sortiervorgänge in der Objektauflistung werden nur für die aktuell angezeigten Ergebnisse ausgeführt. Verwenden Sie „Mehr laden“, um die Sortierung auf mehr Ergebnisse anzuwenden.",
   "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_STANDARD": "Standard",
   "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_HIGH_PERF": "High Performance",
   "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_STANDARD_IA": "Standard Infrequent Access"

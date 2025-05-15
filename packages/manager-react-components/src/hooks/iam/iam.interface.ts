@@ -2,6 +2,7 @@ export interface IamObject {
   id: string;
   urn: string;
   displayName?: string;
+  tags?: Record<string, string>;
 }
 
 export interface IamInterface {

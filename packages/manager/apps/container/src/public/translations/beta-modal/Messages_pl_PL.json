@@ -1,7 +1,7 @@
 {
   "beta_modal_title": "Poznaj nową wersję Panelu klienta",
   "beta_modal_infos": "Przełącz się na nową wersję i prześlij swoją opinię, korzystając z przeznaczonego do tego celu formularza.",
-  "beta_modal_accept": "Chcę przetestować nową wersję",
+  "beta_modal_accept": "Sprawdź teraz",
   "beta_modal_decline": "Może później",
   "beta_modal_screenshot": "Zrzut ekranu",
   "beta_modal_new": "Wersja beta",
@@ -11,5 +11,10 @@
   "beta_modal_switch_infos": "Twoje zdanie jest dla nas bardzo ważne. Dzięki niemu możemy dopasowywać jak najlepiej naszą ofertę do Twoich oczekiwań. Pomóż nam ulepszyć nasze usługi!",
   "beta_modal_switch_accept": "Chcę wyrazić opinię",
   "beta_switch": "Przełącz wersję",
-  "beta_modal_switch_later": "Później"
+  "beta_modal_switch_later": "Później",
+  "beta_modal_accept_old": "Chcę przetestować nową wersję",
+  "beta_modal_greeting": "Dzień dobry,",
+  "beta_modal_welcome": "Witamy w Panelu klienta!",
+  "beta_modal_info": "Zmodyfikowaliśmy jego wygląd i ulepszyliśmy funkcje, dzięki czemu korzystanie z panelu jest bardziej intuicyjne i szybsze.",
+  "beta_modal_explore": "Poznaj wszystkie nowe opcje!"
 }

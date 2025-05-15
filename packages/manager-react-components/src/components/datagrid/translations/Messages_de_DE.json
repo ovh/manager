@@ -7,5 +7,6 @@
   "common_pagination_load_more": "Mehr laden",
   "common_empty_text_cell": "Keine",
   "common_topbar_columns": "Spalten",
-  "common_pagination_load_all": "Alle laden"
+  "common_pagination_load_all": "Alle laden",
+  "common_topbar_columns_select_all": "Alles auswählen"
 }

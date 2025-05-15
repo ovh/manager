@@ -44,5 +44,5 @@
   "octavia_load_balancer_create_size_flavour_description_3xl": "Concebido para ambientes críticos com grande tráfego, assegurando o máximo desempenho graças a uma elevada largura de banda.",
   "octavia_load_balancer_create_private_network": "Não existe nenhuma rede privada na região selecionada. Certifique-se de que <link /> antes de o Load Balancer ser criado.",
   "octavia_load_balancer_create_private_network_label": "cria uma rede privada",
-  "octavia_load_balancer_create_3az_guide_description": "Para saber mais sobre as especificações dos serviços 3-AZ e como utilizá-los para conceber uma infraestrutura resiliente, <Link>clique aqui</Link>"
+  "octavia_load_balancer_create_3az_guide_description": "Para saber mais sobre as especificações dos serviços 3-AZ e como utilizá-los para criar uma infraestrutura resiliente, <Link>clique aqui</Link>"
 }

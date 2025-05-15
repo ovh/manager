@@ -9,10 +9,15 @@
   "common_criteria_adder_operator_is_different": "is different from",
   "common_criteria_adder_operator_is_lower": "is lower than",
   "common_criteria_adder_operator_is_higher": "is higher than",
-  "common_criteria_adder_operator_is_before": "is",
-  "common_criteria_adder_operator_is_after": "is before",
+  "common_criteria_adder_operator_is_before": "is before",
+  "common_criteria_adder_operator_is_after": "is after",
   "common_criteria_adder_true_label": "Yes",
   "common_criteria_adder_false_label": "No",
   "common_criteria_adder_value_label": "Value",
-  "common_criteria_adder_submit_label": "Add"
+  "common_criteria_adder_submit_label": "Add",
+  "common_criteria_adder_operator_EQ": "equals",
+  "common_criteria_adder_operator_NEQ": "is not equal to",
+  "common_criteria_adder_operator_EXISTS": "exists",
+  "common_criteria_adder_operator_NEXISTS": "does not exist",
+  "common_criteria_adder_key_label": "Key"
 }

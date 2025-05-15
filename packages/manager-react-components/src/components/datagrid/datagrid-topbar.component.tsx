@@ -43,20 +43,28 @@ export interface FilterProps {
 
 export interface DatagridTopbarProps {
   columnsVisibility?: ColumnsVisibility[];
+  toggleAllColumnsVisible?: (a: boolean) => void;
+  getIsAllColumnsVisible?: () => boolean;
+  getIsSomeColumnsVisible?: () => boolean;
   filtersColumns?: ColumnFilter[];
   isSearchable?: boolean;
   filters?: FilterProps;
   search?: SearchProps;
   topbar?: React.ReactNode;
+  resourceType?: string;
 }
 
 export const DatagridTopbar = <T,>({
   columnsVisibility,
+  toggleAllColumnsVisible,
+  getIsAllColumnsVisible,
+  getIsSomeColumnsVisible,
   filters,
   filtersColumns,
   isSearchable,
   search,
   topbar,
+  resourceType,
 }: DatagridTopbarProps) => {
   const { t } = useTranslation('filters');
   const filterPopoverRef = useRef(null);
@@ -129,6 +137,7 @@ export const DatagridTopbar = <T,>({
                   >
                     <FilterAdd
                       columns={filtersColumns}
+                      resourceType={resourceType}
                       onAddFilter={(addedFilter, column) => {
                         filters.add({
                           ...addedFilter,
@@ -142,7 +151,12 @@ export const DatagridTopbar = <T,>({
               )}
               {hasVisibilityFeature && (
                 <div className={filtersColumns?.length > 0 ? 'ml-[10px]' : ''}>
-                  <VisibilityManagement columnsVisibility={columnsVisibility} />
+                  <VisibilityManagement
+                    columnsVisibility={columnsVisibility}
+                    toggleAllColumnsVisible={toggleAllColumnsVisible}
+                    getIsAllColumnsVisible={getIsAllColumnsVisible}
+                    getIsSomeColumnsVisible={getIsSomeColumnsVisible}
+                  />
                 </div>
               )}
             </div>

@@ -149,6 +149,8 @@ export interface DatagridProps<T> {
   resetExpandedRowsOnItemsChange?: boolean;
   /** When true, will fix the columns size by column definition size */
   tableLayoutFixed?: boolean;
+  /** To use if tag column is present and filter is enabled. This allows to fetch all tags from iam only for this resource type */
+  resourceType?: string;
 }
 
 export const Datagrid = <T,>({
@@ -179,6 +181,7 @@ export const Datagrid = <T,>({
   resetExpandedRowsOnItemsChange,
   hideHeader,
   tableLayoutFixed,
+  resourceType,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
   const pageCount = pagination
@@ -318,11 +321,15 @@ export const Datagrid = <T,>({
     <div>
       <DatagridTopbar
         columnsVisibility={columnsVisibility}
+        toggleAllColumnsVisible={table.toggleAllColumnsVisible}
+        getIsAllColumnsVisible={table.getIsAllColumnsVisible}
+        getIsSomeColumnsVisible={table.getIsSomeColumnsVisible}
         filtersColumns={filtersColumns}
         isSearchable={!!searchColumns}
         filters={filters}
         search={search}
         topbar={topbar}
+        resourceType={resourceType}
       />
       <div className={`contents px-[1px] ${className || ''}`}>
         <OdsTable className="overflow-x-visible">
@@ -433,7 +440,10 @@ export const Datagrid = <T,>({
                     'border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]'
                   }
                 >
-                  <td className="text-center" colSpan={columns.length}>
+                  <td
+                    className="text-center"
+                    colSpan={columns.length + (!renderSubComponent ? 0 : 1)}
+                  >
                     <DataGridTextCell>
                       {noResultLabel ?? t('common_pagination_no_results')}
                     </DataGridTextCell>

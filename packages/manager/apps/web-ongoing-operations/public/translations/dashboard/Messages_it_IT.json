@@ -97,7 +97,7 @@
   "domain_operations_upload_file_label": "Cercare i file",
   "domain_operations_upload_dropzone_label": "Trascina un file",
   "domain_operations_upload_accepted_file_types": "Sono accettati i file nei seguenti formati: {{t0}}",
-  "domain_operations_upload_success": "Il caricamento è stato completato correttamente",
+  "domain_operations_upload_success": "L'upload è andato a buon fine, verrai reindirizzato alla dashboard",
   "domain_operations_upload_error": "Caricamento del documento non riuscito",
   "domain_operations_upload_error_with_value": "Caricamento del documento non riuscito: {{t0}}",
   "domain_operations_upload_doing": "Caricamento in corso...",

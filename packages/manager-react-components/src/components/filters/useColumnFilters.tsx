@@ -1,4 +1,8 @@
-import { Filter } from '@ovh-ux/manager-core-api';
+import {
+  Filter,
+  FilterComparator,
+  FilterTypeCategories,
+} from '@ovh-ux/manager-core-api';
 import { useState } from 'react';
 import { FilterWithLabel } from './interface';
 import './translations';
@@ -12,7 +16,13 @@ export function useColumnFilters() {
   return {
     filters,
     addFilter: (filter: FilterWithLabel) => {
-      if (filter.value) {
+      if (
+        filter.value ||
+        (filter.type === FilterTypeCategories.Tags &&
+          [FilterComparator.TagExists, FilterComparator.TagNotExists].includes(
+            filter.comparator,
+          ))
+      ) {
         setFilters((previousFilters) => {
           /**
            * ? To remove the duplication from the filters

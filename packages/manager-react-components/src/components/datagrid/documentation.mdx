@@ -105,6 +105,52 @@ language="javascript"
 
 ---
 
+### Filters with Tags
+
+#### How to use It
+
+1 - In your columns definition, use `type: Tags` attribute to use iam Tag filters for this column
+
+- `type` is a `FilterTypeCategories`
+
+<Source
+  code={`
+    export const columns = [
+        {
+            id: 'tags',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{JSON.stringify(item.iam?.tags)}</DataGridTextCell>;
+            },
+            label: 'Tags',
+            type: FilterTypeCategories.Tags
+        }
+    ];
+  `}
+  language="javascript"
+/>
+
+2 - Get only tags for corresponding resource
+
+By default, the tag filter will fetch all the user existing tags but most of the time you would like to have only the tags for the resource displayed in the datagrid.
+To be able to get only the tags associate to the resource, you can use `resourceType` property on Datagrid definition.
+
+- `resourceType` can be found on APIv2 /iam/reference/resource/type.
+
+<Source
+  code={`
+<Datagrid
+    {...}
+    resourceType="dedicatedServer"
+/>
+    `}
+
+language="javascript"
+/>
+
+**Note:** Filters on Tags type of column is currently supported only on the primary resources.
+
+---
+
 ### Search
 
 #### How to use It

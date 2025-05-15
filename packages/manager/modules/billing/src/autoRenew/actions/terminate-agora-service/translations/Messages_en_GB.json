@@ -28,14 +28,14 @@
   "autorenew_agora_terminate_service_warning_NUTANIX_NODE": "You are about to cancel your subscription to the \"{{serviceName}}\" node.",
   "autorenew_agora_terminate_service_success_NUTANIX_NODE": "Your \"{{serviceName}}\" node cancellation has been processed. An email will be sent to you explaining the next steps.",
   "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Unable to process your cancellation request: {{error}}",
-  "autorenew_agora_terminate_service_success_ftc_LICENSE_HYCU": "Your request to terminate your HYCU license has been processed. A confirmation email has been sent to you.",
-  "autorenew_agora_terminate_service_success_ftc_OKMS_RESOURCE": "Your KMS cancelation request has been processed. A confirmation email has been sent to you.",
+  "autorenew_agora_terminate_service_success_ftc_LICENSE_HYCU": "Your request to cancel your HYCU licence has been processed. A confirmation email has been sent to you.",
+  "autorenew_agora_terminate_service_success_ftc_OKMS_RESOURCE": "Your KMS cancellation request has been processed. A confirmation email has been sent to you.",
   "autorenew_agora_terminate_service_success_ftc_VRACK_SERVICES_RESOURCE": "Your request to cancel vRack Services has been processed. A confirmation email has been sent to you.",
   "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_BACKUP": "Your request to cancel Managed Veeam for VCD has been processed. A confirmation email has been sent to you.",
-  "autorenew_agora_terminate_service_success_ftc_DBAAS_LOGS": "Your request to terminate your LDP has been processed. A confirmation email has been sent to you.",
-  "autorenew_agora_terminate_service_success_ftc_NUTANIX": "Your Nutanix cancelation request has been processed. A confirmation email has been sent to you.",
-  "autorenew_agora_terminate_service_success_ftc_NUTANIX_NODE": "The termination of your \"{{serviceName}}\" node has been processed. A confirmation email has been sent to you.",
-  "autorenew_agora_terminate_service_success_ftc_VEEAM_ENTERPRISE": "Your \"{{serviceName}}\" license cancelation has been processed. A confirmation email has been sent to you.",
-  "autorenew_agora_terminate_service_success_VEEAM_ENTERPRISE": "Your \"{{serviceName}}\" license cancelation has been processed. You will receive an email with the details of the procedure to follow.",
-  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "Your cancelation request has not been processed: {{error}}"
+  "autorenew_agora_terminate_service_success_ftc_DBAAS_LOGS": "Your LDP cancellation request has been processed. A confirmation email has been sent to you.",
+  "autorenew_agora_terminate_service_success_ftc_NUTANIX": "Your Nutanix cancellation request has been processed. A confirmation email has been sent to you.",
+  "autorenew_agora_terminate_service_success_ftc_NUTANIX_NODE": "Your cancellation request for the \"{{serviceName}}\" node has been processed. A confirmation email has been sent to you.",
+  "autorenew_agora_terminate_service_success_ftc_VEEAM_ENTERPRISE": "Your cancellation request for the \"{{serviceName}}\" licence has been processed. A confirmation email has been sent to you.",
+  "autorenew_agora_terminate_service_success_VEEAM_ENTERPRISE": "Your cancellation request for the \"{{serviceName}}\" licence has been processed. An email will be sent to you explaining the steps to follow.",
+  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "Unable to process your cancellation request: {{error}}"
 }

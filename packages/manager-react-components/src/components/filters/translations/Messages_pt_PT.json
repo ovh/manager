@@ -9,10 +9,15 @@
   "common_criteria_adder_operator_is_different": "é diferente de",
   "common_criteria_adder_operator_is_lower": "é inferior a",
   "common_criteria_adder_operator_is_higher": "é superior a",
-  "common_criteria_adder_operator_is_before": "é",
-  "common_criteria_adder_operator_is_after": "está antes",
+  "common_criteria_adder_operator_is_before": "está antes",
+  "common_criteria_adder_operator_is_after": "está depois",
   "common_criteria_adder_true_label": "Sim",
   "common_criteria_adder_false_label": "Não",
   "common_criteria_adder_value_label": "Valor",
-  "common_criteria_adder_submit_label": "Adicionar"
+  "common_criteria_adder_submit_label": "Adicionar",
+  "common_criteria_adder_operator_EQ": "é igual a",
+  "common_criteria_adder_operator_NEQ": "é diferente de",
+  "common_criteria_adder_operator_EXISTS": "existe",
+  "common_criteria_adder_operator_NEXISTS": "não existe",
+  "common_criteria_adder_key_label": "Chave"
 }
