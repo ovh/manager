@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.23.0...@ovh-ux/manager-iplb@1.24.0) (2025-05-15)
+
+
+### Features
+
+* **dedicated.iplb:** add generic modal to terminate iplb in dashboard ([e18469b](https://github.com/ovh/manager/commit/e18469bb07cbcc510cd6bcac32653f23285e9caa)), closes [#MANAGER-17865](https://github.com/ovh/manager/issues/MANAGER-17865)
+* **dedicated.iplb:** add generic modal to terminate iplb in listing ([8ff8adc](https://github.com/ovh/manager/commit/8ff8adca5ba78a9fa046076af7942426f0b5da29)), closes [#MANAGER-17805](https://github.com/ovh/manager/issues/MANAGER-17805)
+
+
+
+
+
 # [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.22.1...@ovh-ux/manager-iplb@1.23.0) (2025-05-13)
 
 
