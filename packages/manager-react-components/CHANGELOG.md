@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.23.0...@ovh-ux/manager-react-components@2.24.0) (2025-05-15)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 3983] ([3de9042](https://github.com/ovh/manager/commit/3de90422652ddaf4f7ef30e43d59050518d22811))
+- **i18n:** add missing translations [CDS 4000] ([f065814](https://github.com/ovh/manager/commit/f0658149ca7294361082ef49ed4d795b42ed0dc8))
+- **i18n:** add missing translations [CDS 4012] ([dd2d7d8](https://github.com/ovh/manager/commit/dd2d7d837dd48025b32a5500331dc1c213e7ea3a))
+- **i18n:** add missing translations [CDS 4017] ([e02aa4a](https://github.com/ovh/manager/commit/e02aa4af4043c7909fd978f324891e5751cc7a64))
+- **manager-react-component:** fix datagrid no result display ([46ea8dd](https://github.com/ovh/manager/commit/46ea8ddca1d4b9c760e8453bdd354f0b981773aa)), closes [#16826](https://github.com/ovh/manager/issues/16826)
+- **mrc:** add select all on visibility columns component ([#16633](https://github.com/ovh/manager/issues/16633)) ([ad13193](https://github.com/ovh/manager/commit/ad13193c237192c405c60f63b3bda692158299b8)), closes [#MANAGER-17733](https://github.com/ovh/manager/issues/MANAGER-17733)
+- **mrc:** filter translations ([#17071](https://github.com/ovh/manager/issues/17071)) ([d465e2d](https://github.com/ovh/manager/commit/d465e2d7dcbed7dfbd1bc9af094ae613fb5cba49)), closes [#17070](https://github.com/ovh/manager/issues/17070)
+- **mrc:** fix wrong link in GuideHeader ([f8435b7](https://github.com/ovh/manager/commit/f8435b73c79ba202056b8140abb33e7175019b26)), closes [#DTCORE-3318](https://github.com/ovh/manager/issues/DTCORE-3318) [#TAPC-1988](https://github.com/ovh/manager/issues/TAPC-1988)
+
+### Features
+
+- **mrc:** add iam tags filter on apiv6 iceberg call ([#16911](https://github.com/ovh/manager/issues/16911)) ([f52c2b1](https://github.com/ovh/manager/commit/f52c2b15714b624468132ac587602fe753d40174)), closes [#MANAGER-17692](https://github.com/ovh/manager/issues/MANAGER-17692)
+- **mrc:** bump ods 18.6.2 ([da8d233](https://github.com/ovh/manager/commit/da8d23327c353dda493f395d303ed128a2976c14)), closes [#MANAGER-17692](https://github.com/ovh/manager/issues/MANAGER-17692)
+- **mrc:** update delete modal ([11ac518](https://github.com/ovh/manager/commit/11ac5189c8804c0fd6467a30ee1943f50f60d7c6)), closes [#MANAGER-18211](https://github.com/ovh/manager/issues/MANAGER-18211)
+
 # [2.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.22.0...@ovh-ux/manager-react-components@2.23.0) (2025-05-08)
 
 ### Bug Fixes

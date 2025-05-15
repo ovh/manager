@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.13.0...@ovh-ux/manager-pci-savings-plan-app@1.14.0) (2025-05-15)
+
+
+### Features
+
+* **mrc:** bump ods 18.6.2 ([da8d233](https://github.com/ovh/manager/commit/da8d23327c353dda493f395d303ed128a2976c14)), closes [#MANAGER-17692](https://github.com/ovh/manager/issues/MANAGER-17692)
+
+
+
+
+
 # [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.12.13...@ovh-ux/manager-pci-savings-plan-app@1.13.0) (2025-05-12)
 
 

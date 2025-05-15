@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.38.0...@ovh-ux/manager-new-billing@0.38.1) (2025-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4017] ([e02aa4a](https://github.com/ovh/manager/commit/e02aa4af4043c7909fd978f324891e5751cc7a64))
+
+
+
+
+
 # [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.37.0...@ovh-ux/manager-new-billing@0.38.0) (2025-05-14)
 
 
