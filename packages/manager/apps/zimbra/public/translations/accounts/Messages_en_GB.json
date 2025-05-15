@@ -3,7 +3,7 @@
   "zimbra_account_datagrid_organization_label": "Organisation",
   "zimbra_account_datagrid_offer_label": "Service plan",
   "zimbra_account_datagrid_webmail_label": "Webmail:",
-  "zimbra_account_datagrid_quota": "Size",
+  "zimbra_account_datagrid_quota": "Quota",
   "zimbra_account_datagrid_quota_octets": "Bytes",
   "zimbra_account_datagrid_quota_ko": "KB",
   "zimbra_account_datagrid_quota_mo": "MB",
@@ -20,5 +20,10 @@
   "zimbra_account_tooltip_need_slot": "No account available, please order one.",
   "zimbra_account_delete_modal_content_step1": "You are about to delete the Zimbra server email.",
   "zimbra_account_delete_modal_content_step2": "Are you sure you want to delete the mailbox from the Zimbra server?",
-  "zimbra_account_delete_modal_warn_message": "Warning: this action is irreversible and will erase the data."
+  "zimbra_account_delete_modal_warn_message": "Warning: this action is irreversible and will erase the data.",
+  "zimbra_account_datagrid_size": "Size",
+  "zimbra_account_datagrid_renewal_date": "Until",
+  "zimbra_account_datagrid_renewal_type": "Renewal",
+  "zimbra_account_configured": "Configured accounts ({{ value }})",
+  "zimbra_account_unconfigured": "Unconfigured accounts ({{ value }})"
 }
