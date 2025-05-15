@@ -6,7 +6,7 @@ export default {
   controller,
   template,
   bindings: {
-    onFieldError: '<',
+    onFieldBlur: '<',
   },
   require: {
     formCtrl: '^form',
