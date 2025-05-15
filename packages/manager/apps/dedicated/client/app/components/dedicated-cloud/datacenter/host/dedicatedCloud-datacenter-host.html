@@ -24,7 +24,6 @@
             data-title=":: 'dedicatedCloud_tab_host_profile' | translate"
             data-property="profile"
         >
-            <span data-ng-bind=":: $row.profile"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_tab_host_billing' | translate"
@@ -37,18 +36,32 @@
             data-title=":: 'dedicatedCloud_tab_host_status' | translate"
         >
             <span
-                data-translate="{{ 'dedicatedCloud_tab_host_status_' + $row.status }}"
+                data-translate="{{ 'dedicatedCloud_tab_host_status_' + $row.state }}"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_tab_host_location_datacenter' | translate"
         >
-            <span data-ng-bind="$row.location.datacenter"></span>
+            <oui-skeleton
+                size="xs"
+                data-ng-if="$row.asyncLoading"
+            ></oui-skeleton>
+            <span
+                data-ng-if="!$row.asyncLoading"
+                data-ng-bind="$row.location.datacenter"
+            ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_tab_host_location_room' | translate"
         >
-            <span data-ng-bind="$row.location.room"></span>
+            <oui-skeleton
+                size="xs"
+                data-ng-if="$row.asyncLoading"
+            ></oui-skeleton>
+            <span
+                data-ng-if="!$row.asyncLoading"
+                data-ng-bind="$row.location.room"
+            ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_tab_host_location_rack' | translate"
@@ -58,8 +71,12 @@
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_tab_host_consumption' | translate"
         >
+            <oui-skeleton
+                size="xs"
+                data-ng-if="$row.asyncLoading"
+            ></oui-skeleton>
             <span
-                data-ng-if="$row.billingType === $ctrl.RESOURCE_BILLING_TYPES.hourly"
+                data-ng-if="!$row.asyncLoading && $row.billingType === $ctrl.RESOURCE_BILLING_TYPES.hourly"
             >
                 <span
                     data-ng-if="!$row.consumption"
@@ -82,7 +99,8 @@
         </oui-datagrid-column>
         <oui-action-menu
             data-compact
-            data-ng-if="$row.billingType === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.status === 'DELIVERED'"
+            data-ng-if="$row.billingType === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.state === $ctrl.RESOURCE_STATES.delivered"
+            data-disabled="$row.asyncLoading"
             data-placement="end"
         >
             <oui-action-menu-item
