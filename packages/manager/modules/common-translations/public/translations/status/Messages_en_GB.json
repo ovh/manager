@@ -1,0 +1,7 @@
+{
+  "status": "Status",
+  "unsubscribed": "Not subscribed",
+  "subscribed": "Subscribed",
+  "to_activate": "Enabling required",
+  "activation_in_progress": "Enabling..."
+}

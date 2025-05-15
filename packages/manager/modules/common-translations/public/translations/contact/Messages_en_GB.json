@@ -1,0 +1,11 @@
+{
+  "administrator": "Administrator",
+  "administrator_code": "Administrator code",
+  "technical": "Technical",
+  "technical_code": "Technical code",
+  "billing": "Billing",
+  "billing_code": "Billing code",
+  "contacts": "Contacts",
+  "contact": "Contact",
+  "manage_contacts": "Manage contacts"
+}
