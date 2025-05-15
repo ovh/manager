@@ -1,17 +1,16 @@
 export default class {
   /* @ngInject */
-  constructor(OvhHttp, $http) {
-    this.OvhHttp = OvhHttp;
+  constructor($http, icebergUtils) {
     this.$http = $http;
+    this.icebergUtils = icebergUtils;
   }
 
   getHostHourlyConsumption(serviceName, datacenterId, hostId) {
-    return this.OvhHttp.get(
-      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/host/${hostId}/hourlyConsumption`,
-      {
-        rootPath: 'apiv6',
-      },
-    );
+    return this.$http
+      .get(
+        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/host/${hostId}/hourlyConsumption`,
+      )
+      .then(({ data }) => data);
   }
 
   getHostLocation(serviceName, datacenterId, hostId) {
@@ -20,5 +19,12 @@ export default class {
         `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/host/${hostId}/location`,
       )
       .then(({ data }) => data);
+  }
+
+  getPaginatedHosts(serviceName, datacenterId, paginationParams) {
+    return this.icebergUtils.icebergQuery(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/host`,
+      paginationParams,
+    );
   }
 }

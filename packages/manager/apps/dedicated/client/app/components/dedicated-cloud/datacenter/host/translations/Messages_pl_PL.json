@@ -21,5 +21,14 @@
   "dedicatedCloud_tab_host_hourly_usage_update": "Na dzień {{t0}}",
   "dedicatedCloud_tab_host_location_datacenter": "Centrum danych",
   "dedicatedCloud_tab_host_location_room": "Pomieszczenie",
-  "dedicatedCloud_tab_host_location_rack": "Szafa"
+  "dedicatedCloud_tab_host_location_rack": "Szafa",
+  "dedicatedCloud_tab_host_billing_hourly": "Za godzinę",
+  "dedicatedCloud_tab_host_billing_monthly": "Za miesiąc",
+  "dedicatedCloud_tab_host_billing_freeSpare": "Darmowa usługa zapasowa",
+  "dedicatedCloud_tab_host_billing_undefined": "Nieokreślony",
+  "dedicatedCloud_tab_host_status_adding": "Trwa dodawanie",
+  "dedicatedCloud_tab_host_status_delivered": "Aktywny",
+  "dedicatedCloud_tab_host_status_error": "Błąd",
+  "dedicatedCloud_tab_host_status_removing": "Trwa usuwanie",
+  "dedicatedCloud_tab_host_status_unknown": "Nieznany"
 }
