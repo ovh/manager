@@ -47,6 +47,12 @@ export default function DatagridColumnActionMenu({
           href: `${billingUrl}/autorenew/${renewAction}?selectedType=ALL_DOMsearchText=${serviceInfoDetail.allDomProperty.name}&services=${serviceId}`,
           target: '_blank',
         },
+        {
+          id: 4,
+          label: t(`allDom_table_action_handle_contacts`),
+          href: ``,
+          target: '_blank',
+        },
       ]}
     />
   );
