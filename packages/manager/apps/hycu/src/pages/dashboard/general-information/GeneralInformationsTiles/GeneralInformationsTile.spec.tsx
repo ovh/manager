@@ -16,19 +16,13 @@ describe('License Hycu general informations tile for dashboard test suite', () =
     await waitFor(
       () =>
         expect(
-          screen.getAllByText(
-            labels.dashboard.hycu_dashboard_generals_informations_title,
-          )[1],
+          screen.getAllByText(labels.commonDashboard.general_information)[1],
         ).toBeVisible(),
       { timeout: 30_000 },
     );
 
-    expect(
-      screen.getByText(labels.dashboard.hycu_dashboard_label_name),
-    ).toBeVisible();
-    expect(
-      screen.getByText(labels.dashboard.hycu_dashboard_label_status),
-    ).toBeVisible();
+    expect(screen.getByText(labels.commonDashboard.name)).toBeVisible();
+    expect(screen.getByText(labels.status.status)).toBeVisible();
     expect(
       screen.getByText(labels.dashboard.hycu_dashboard_label_pack_type),
     ).toBeVisible();
@@ -52,9 +46,7 @@ describe('License Hycu general informations tile for dashboard test suite', () =
     await waitFor(
       () =>
         expect(
-          screen.getAllByText(
-            labels.dashboard.hycu_dashboard_generals_informations_title,
-          )[1],
+          screen.getAllByText(labels.commonDashboard.general_information)[1],
         ).toBeVisible(),
       { timeout: 30_000 },
     );
@@ -82,9 +74,7 @@ describe('License Hycu general informations tile for dashboard test suite', () =
     await waitFor(
       () =>
         expect(
-          screen.getAllByText(
-            labels.dashboard.hycu_dashboard_generals_informations_title,
-          )[1],
+          screen.getAllByText(labels.commonDashboard.general_information)[1],
         ).toBeVisible(),
       { timeout: 10_000 },
     );
