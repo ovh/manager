@@ -100,6 +100,7 @@ const CreateGeneralInformations = ({
           />
           <div className="flex gap-4">
             <OdsButton
+              data-testid="button-cancel"
               size={ODS_BUTTON_SIZE.md}
               variant={ODS_BUTTON_VARIANT.outline}
               color={ODS_BUTTON_COLOR.primary}
@@ -115,6 +116,7 @@ const CreateGeneralInformations = ({
               label={t('key_management_service_credential_create_cta_cancel')}
             />
             <OdsButton
+              data-testid="button-next-step"
               size={ODS_BUTTON_SIZE.md}
               color={ODS_BUTTON_COLOR.primary}
               onClick={() => {

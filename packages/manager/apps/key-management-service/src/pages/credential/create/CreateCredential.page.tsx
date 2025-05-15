@@ -37,7 +37,14 @@ const CreateCredential = () => {
   const { createKmsCredential } = useCreateOkmsCredential({
     okmsId,
     onSuccess: (credential) => {
-      setOkmsCredential(credential);
+      if (credential.fromCSR) {
+        // Navigate to the list if the credential is created from CSR
+        navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
+      } else {
+        // Else, go to the step 3
+        setOkmsCredential(credential);
+        setStep(3);
+      }
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: 'create_access_certificate',
@@ -68,16 +75,6 @@ const CreateCredential = () => {
       navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}/${ROUTES_URLS.createCredential}`,
     },
   ];
-
-  useEffect(() => {
-    if (okmsCredential) {
-      if (!okmsCredential.fromCSR) {
-        setStep(3);
-      } else {
-        navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
-      }
-    }
-  }, [okmsCredential]);
 
   if (isLoading) return <Loading />;
 
