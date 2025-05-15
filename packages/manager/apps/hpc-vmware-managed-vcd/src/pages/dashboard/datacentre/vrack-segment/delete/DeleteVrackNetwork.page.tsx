@@ -102,7 +102,7 @@ export default function DeleteVrackNetwork() {
       isOpen
       heading={t('managed_vcd_dashboard_vrack_network_delete_subnet')}
       isLoading={isLoading}
-      primaryLabel={tActions('confirm')}
+      primaryLabel={tActions('delete')}
       isPrimaryButtonLoading={isUpdatePending}
       isPrimaryButtonDisabled={isUpdatePending}
       onPrimaryButtonClick={handleSubmit}
@@ -115,7 +115,7 @@ export default function DeleteVrackNetwork() {
         <OdsText>
           {t('managed_vcd_dashboard_vrack_network_delete_subnet_content1')}
         </OdsText>
-        <OdsMessage color="critical" isDismissible={false}>
+        <OdsMessage color="warning" isDismissible={false}>
           {t('managed_vcd_dashboard_vrack_network_delete_subnet_content2')}
         </OdsMessage>
       </div>
