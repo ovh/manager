@@ -13,7 +13,7 @@ import { TaskType, TaskStatus } from '@/data/api';
 
 const defaultNumberToShow = 5;
 const isOngoing = (task: TaskType) =>
-  ![TaskStatus.DONE, TaskStatus.ERROR].includes(task.status);
+  task.status !== TaskStatus.DONE && task.status !== TaskStatus.ERROR;
 
 export const OngoingTasks: React.FC = () => {
   const { t } = useTranslation('dashboard');

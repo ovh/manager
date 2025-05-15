@@ -17,6 +17,7 @@ describe('EmailAccounts datagrid action menu', () => {
           used: 1,
           available: 2,
           status: 'READY',
+          slotId: '123-123',
         }}
       />,
     );

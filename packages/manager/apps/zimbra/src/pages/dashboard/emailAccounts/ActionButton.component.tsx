@@ -8,7 +8,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { EmailAccountItem } from './EmailAccounts.page';
+import { EmailAccountItem } from './EmailAccountsDatagrid.component';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';

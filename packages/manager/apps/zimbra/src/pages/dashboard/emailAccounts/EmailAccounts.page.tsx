@@ -1,131 +1,41 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
-  ODS_LINK_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+  OdsSwitch,
+  OdsSwitchItem,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
+import { ODS_LINK_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  Datagrid,
-  DatagridColumn,
   IconLinkAlignmentType,
   Links,
   LinkType,
-  ManagerButton,
   ManagerText,
-  useBytes,
 } from '@ovh-ux/manager-react-components';
-import { Outlet, useNavigate } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import {
-  useAccounts,
-  usePlatform,
-  useOrganization,
-  useDomains,
-} from '@/data/hooks';
-import { useOverridePage, useGenerateUrl, useDebouncedValue } from '@/hooks';
-import { LabelChip, BadgeStatus } from '@/components';
+import { Outlet } from 'react-router-dom';
+import { usePlatform, useOrganization } from '@/data/hooks';
+import { useOverridePage } from '@/hooks';
 import { GUIDES_LIST } from '@/guides.constants';
-import ActionButtonEmail from './ActionButton.component';
-import {
-  capitalize,
-  DATAGRID_REFRESH_INTERVAL,
-  DATAGRID_REFRESH_ON_MOUNT,
-} from '@/utils';
+import { capitalize } from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import {
-  getZimbraPlatformListQueryKey,
-  ResourceStatus,
-  AccountType,
-  AccountStatistics,
-} from '@/data/api';
-import {
-  ADD_EMAIL_ACCOUNT,
-  ORDER_ZIMBRA_EMAIL_ACCOUNT,
-} from '@/tracking.constants';
-import queryClient from '@/queryClient';
+import { AccountStatistics } from '@/data/api';
+import EmailAccountsDatagrid from './EmailAccountsDatagrid.component';
+import SlotsDatagrid from './slots/SlotsDatagrid.component';
 
-export type EmailAccountItem = {
-  id: string;
-  email: string;
-  offer: string;
-  organizationId: string;
-  organizationLabel: string;
-  used: number;
-  available: number;
-  status: keyof typeof ResourceStatus;
-};
+const switchStateEnum = {
+  ACCOUNTS: 'ACCOUNTS',
+  SLOTS: 'SLOTS',
+} as const;
 
 export const EmailAccounts = () => {
   const { t } = useTranslation(['accounts', 'common']);
-  const { trackClick } = useOvhTracking();
-  const navigate = useNavigate();
-  const [hasADeletingAccount, setHasADeletingAccount] = useState(false);
   const { data: platform, platformUrn } = usePlatform();
   const { data: organisation } = useOrganization();
+
   const isOverridedPage = useOverridePage();
-
-  const [
-    searchInput,
-    setSearchInput,
-    debouncedSearchInput,
-    setDebouncedSearchInput,
-  ] = useDebouncedValue('');
-
-  const {
-    data: accounts,
-    fetchAllPages,
-    fetchNextPage,
-    hasNextPage,
-    isLoading,
-    isFetchingNextPage,
-  } = useAccounts({
-    email: debouncedSearchInput,
-    refetchInterval: DATAGRID_REFRESH_INTERVAL,
-    refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
-    enabled: !isOverridedPage,
-  });
-
-  /* This is necessary to enable back the "Create account" button when your
-   * slots are full and you delete an account and the account goes
-   * from "DELETING" state to actually being deleted, because we invalidate
-   * the cache when sending the delete request of the account but when it is
-   * in "DELETING" state the slot is not yet freed, to me it should be
-   * but it requires changes on backend side */
-  useEffect(() => {
-    const current = accounts?.some(
-      (account) => account.resourceStatus === ResourceStatus.DELETING,
-    );
-    if (hasADeletingAccount !== current) {
-      if (!current) {
-        queryClient.invalidateQueries({
-          queryKey: getZimbraPlatformListQueryKey(),
-        });
-      }
-      setHasADeletingAccount(current);
-    }
-  }, [accounts]);
-
-  const { data: domains, isLoading: isLoadingDomains } = useDomains();
-
-  const items: EmailAccountItem[] =
-    accounts?.map((item: AccountType) => ({
-      id: item.id,
-      email: item.currentState.email,
-      offer: item.currentState.offer,
-      organizationId: item.currentState.organizationId,
-      organizationLabel: item.currentState.organizationLabel,
-      used: item.currentState.quota.used,
-      available: item.currentState.quota.available,
-      status: item.resourceStatus,
-    })) ?? [];
+  const [switchState, setSwitchState] = useState<keyof typeof switchStateEnum>(
+    switchStateEnum.ACCOUNTS,
+  );
 
   const accountsStatistics: AccountStatistics[] = useMemo(() => {
     return organisation
@@ -133,90 +43,33 @@ export const EmailAccounts = () => {
       : platform?.currentState?.accountsStatistics;
   }, [organisation, platform]);
 
-  const hasAvailableAccounts = useMemo(() => {
-    return accountsStatistics
-      ?.map((stats) => {
-        return stats.availableAccountsCount > 0;
-      })
-      .some(Boolean);
-  }, [accountsStatistics, platform, organisation]);
+  const { configured, unconfigured } = useMemo(() => {
+    return (accountsStatistics || []).reduce(
+      (acc, curr) => {
+        acc.configured += curr.configuredAccountsCount;
+        acc.unconfigured += curr.availableAccountsCount;
+        return acc;
+      },
+      { configured: 0, unconfigured: 0 },
+    );
+  }, [accountsStatistics]);
 
-  const isAddAccountDisabled =
-    isLoadingDomains || domains?.length === 0 || !hasAvailableAccounts;
+  useEffect(() => {
+    // switch automatically to unconfigured accounts
+    // if no configured accounts and slots available
+    if (configured === 0 && unconfigured > 0) {
+      setSwitchState(switchStateEnum.SLOTS);
+    } else if (switchState === switchStateEnum.SLOTS && unconfigured === 0) {
+      setSwitchState(switchStateEnum.ACCOUNTS);
+    }
+  }, [configured, unconfigured]);
 
   const webmailUrl = GUIDES_LIST.webmail.url.DEFAULT;
 
-  const hrefAddEmailAccount = useGenerateUrl('./add', 'path');
-  const hrefOrderEmailAccount = useGenerateUrl('./order', 'path');
-
-  const handleAddEmailAccountClick = () => {
-    trackClick({
-      location: PageLocation.page,
-      buttonType: ButtonType.button,
-      actionType: 'navigation',
-      actions: [ADD_EMAIL_ACCOUNT],
-    });
-    navigate(hrefAddEmailAccount);
-  };
-  const handleOrderEmailAccountClick = () => {
-    trackClick({
-      location: PageLocation.page,
-      buttonType: ButtonType.button,
-      actionType: 'navigation',
-      actions: [ORDER_ZIMBRA_EMAIL_ACCOUNT],
-    });
-    navigate(hrefOrderEmailAccount);
-  };
-  const { formatBytes } = useBytes();
-
-  const columns: DatagridColumn<EmailAccountItem>[] = [
-    {
-      id: 'email account',
-      cell: (item) => (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.email}</OdsText>
-      ),
-      label: 'common:email_account',
-      isSearchable: true,
-    },
-    {
-      id: 'organization',
-      cell: (item) => (
-        <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
-      ),
-      label: 'common:organization',
-    },
-    {
-      id: 'offer',
-      cell: (item) => (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.offer}</OdsText>
-      ),
-      label: 'zimbra_account_datagrid_offer_label',
-    },
-    {
-      id: 'quota',
-      cell: (item) => (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {formatBytes(item.used, 2, 1024)} /{' '}
-          {formatBytes(item.available, 0, 1024)}
-        </OdsText>
-      ),
-      label: 'zimbra_account_datagrid_quota',
-    },
-    {
-      id: 'status',
-      cell: (item) => <BadgeStatus status={item.status}></BadgeStatus>,
-      label: 'common:status',
-    },
-    {
-      id: 'tooltip',
-      cell: (item: EmailAccountItem) => <ActionButtonEmail item={item} />,
-      label: '',
-    },
-  ];
   return (
     <div>
       <Outlet />
-      {platformUrn && !isOverridedPage && (
+      {!isOverridedPage && (
         <>
           <div className="flex gap-8 mb-6">
             <div>
@@ -258,62 +111,36 @@ export const EmailAccounts = () => {
               </div>
             </ManagerText>
           </div>
-          <Datagrid
-            topbar={
-              <div className="flex gap-6">
-                <div id="add-account-tooltip-trigger">
-                  <ManagerButton
-                    id="add-account-btn"
-                    color={ODS_BUTTON_COLOR.primary}
-                    size={ODS_BUTTON_SIZE.sm}
-                    urn={platformUrn}
-                    iamActions={[IAM_ACTIONS.account.create]}
-                    onClick={handleAddEmailAccountClick}
-                    data-testid="add-account-btn"
-                    icon={ODS_ICON_NAME.plus}
-                    label={t('zimbra_account_account_add')}
-                    isDisabled={isAddAccountDisabled}
-                  />
-                </div>
-                {isAddAccountDisabled && (
-                  <OdsTooltip triggerId="add-account-tooltip-trigger">
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                      {t(
-                        domains?.length === 0
-                          ? 'zimbra_account_tooltip_need_domain'
-                          : 'zimbra_account_tooltip_need_slot',
-                      )}
-                    </OdsText>
-                  </OdsTooltip>
-                )}
-                <ManagerButton
-                  id="order-account-btn"
-                  urn={platformUrn}
-                  iamActions={[IAM_ACTIONS.account.create]}
-                  data-testid="order-account-btn"
-                  color={ODS_BUTTON_COLOR.primary}
-                  size={ODS_BUTTON_SIZE.sm}
-                  onClick={handleOrderEmailAccountClick}
-                  label={t('zimbra_account_account_order')}
-                />
-              </div>
+          <OdsSwitch
+            key={
+              Date.now() /* This component has an issue where rerender can cause it to loose the checked input inside... */
             }
-            search={{
-              searchInput,
-              setSearchInput,
-              onSearch: (search) => setDebouncedSearchInput(search),
-            }}
-            columns={columns.map((column) => ({
-              ...column,
-              label: t(column.label),
-            }))}
-            items={items}
-            totalItems={items.length}
-            hasNextPage={hasNextPage}
-            onFetchNextPage={fetchNextPage}
-            onFetchAllPages={fetchAllPages}
-            isLoading={isLoading || isFetchingNextPage}
-          />
+            className="mb-6"
+            name="switchState"
+            data-testid="switch"
+          >
+            <OdsSwitchItem
+              data-testid="switch-accounts"
+              isChecked={switchState === switchStateEnum.ACCOUNTS}
+              value={switchStateEnum.ACCOUNTS}
+              onClick={() => setSwitchState(switchStateEnum.ACCOUNTS)}
+            >
+              {t('zimbra_account_configured', { value: configured })}
+            </OdsSwitchItem>
+            <OdsSwitchItem
+              data-testid="switch-slots"
+              isChecked={switchState === switchStateEnum.SLOTS}
+              value={switchStateEnum.SLOTS}
+              onClick={() => setSwitchState(switchStateEnum.SLOTS)}
+            >
+              {t('zimbra_account_unconfigured', { value: unconfigured })}
+            </OdsSwitchItem>
+          </OdsSwitch>
+          {switchState === switchStateEnum.ACCOUNTS ? (
+            <EmailAccountsDatagrid />
+          ) : (
+            <SlotsDatagrid />
+          )}
         </>
       )}
     </div>
