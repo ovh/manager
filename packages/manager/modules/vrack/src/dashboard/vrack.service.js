@@ -55,6 +55,17 @@ export default class Vrack {
       .then(({ data }) => data);
   }
 
+  associadteVmwareCloudDirectorVirtualDataCenterToVrack(
+    serviceName,
+    vmwareCloudDirectorVirtualDataCenter,
+  ) {
+    return this.$http
+      .post(`/vrack/${serviceName}/vmwareCloudDirectorVirtualDataCenter`, {
+        vmwareCloudDirectorVirtualDataCenter,
+      })
+      .then(({ data }) => data);
+  }
+
   dissociateOvhCloudConnectFromVrack(serviceName, ovhCloudConnectId) {
     return this.$http
       .delete(`/vrack/${serviceName}/ovhCloudConnect/${ovhCloudConnectId}`)
