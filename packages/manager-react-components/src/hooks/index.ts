@@ -15,6 +15,7 @@ export * from './tasks';
 export * from './date';
 export * from './iam';
 export * from './bytes/useBytes';
+export * from './tags-list';
 export { useProductMaintenance } from './pci/useMaintenance';
 export {
   getMacroRegion,
