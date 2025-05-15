@@ -1,4 +1,5 @@
 import i18next, { i18n, InitOptions } from 'i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import common from '../../../public/translations/hycu/Messages_fr_FR.json';
 import dashboard from '../../../public/translations/hycu/dashboard/Messages_fr_FR.json';
 import listing from '../../../public/translations/hycu/listing/Messages_fr_FR.json';
@@ -6,6 +7,11 @@ import onboarding from '../../../public/translations/hycu/onboarding/Messages_fr
 import order from '../../../public/translations/hycu/order/Messages_fr_FR.json';
 import terminate from '../../../public/translations/hycu/terminate/Messages_fr_FR.json';
 import editPack from '../../../public/translations/hycu/edit-pack/Messages_fr_FR.json';
+import actions from '../../../../../modules/common-translations/public/translations/actions/Messages_fr_FR.json';
+import billing from '../../../../../modules/common-translations/public/translations/billing/Messages_fr_FR.json';
+import contact from '../../../../../modules/common-translations/public/translations/contact/Messages_fr_FR.json';
+import status from '../../../../../modules/common-translations/public/translations/status/Messages_fr_FR.json';
+import commonDashboard from '../../../../../modules/common-translations/public/translations/dashboard/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
@@ -19,6 +25,11 @@ function addTranslations() {
     .addResources(defaultLocale, 'hycu/order', order)
     .addResources(defaultLocale, 'hycu/terminate', terminate)
     .addResources(defaultLocale, 'hycu/edit-pack', editPack)
+    .addResources(defaultLocale, NAMESPACES.ACTIONS, actions)
+    .addResources(defaultLocale, NAMESPACES.BILLING, billing)
+    .addResources(defaultLocale, NAMESPACES.CONTACT, contact)
+    .addResources(defaultLocale, NAMESPACES.STATUS, status)
+    .addResources(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard)
     .use({
       type: 'postProcessor',
       name: 'normalize',
@@ -60,4 +71,9 @@ export const labels = {
   order,
   terminate,
   editPack,
+  actions,
+  billing,
+  contact,
+  status,
+  commonDashboard,
 };
