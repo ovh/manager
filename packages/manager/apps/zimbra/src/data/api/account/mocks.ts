@@ -40,6 +40,7 @@ export const accountMock: AccountType = {
       used: 0,
     },
     updatedAt: '2024-07-09T13:27:12.775Z',
+    slotId: '19097ad4-2870-4000-8bed-qcab3a061781'
   },
   currentTasks: [
     {

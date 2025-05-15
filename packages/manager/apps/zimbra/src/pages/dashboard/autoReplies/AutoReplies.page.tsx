@@ -122,7 +122,7 @@ export const AutoReplies = () => {
   return (
     <div data-testid="autoreplies">
       <Outlet />
-      {platformUrn && !shouldHide && (
+      {!shouldHide && (
         <>
           {accountId && (
             <div className="mb-6">

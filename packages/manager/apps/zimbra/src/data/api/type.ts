@@ -1,10 +1,12 @@
 export const ZimbraOffer = {
   STARTER: 'STARTER',
   PRO: 'PRO',
+  BUSINESS: 'BUSINESS',
 } as const;
 
 export const ZimbraPlanCodes = {
   ZIMBRA_ACCOUNT_PP_STARTER: 'zimbra-account-pp-starter',
+  ZIMBRA_ACCOUNT_PP_PRO: 'zimbra-account-pp-pro',
 } as const;
 
 export type AccountStatistics = {
