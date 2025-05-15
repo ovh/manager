@@ -74,10 +74,10 @@ const InstanceAction: FC = () => {
       );
     }
 
-    if (section === 'shelve') {
+    if (section === 'shelve' || section === 'stop') {
       addInfo(
         <Trans
-          i18nKey={`pci_instances_actions_shelve_instance_success_message`}
+          i18nKey={`pci_instances_actions_${snakeCaseSection}_instance_success_message`}
           values={{
             name: instance?.name,
           }}
