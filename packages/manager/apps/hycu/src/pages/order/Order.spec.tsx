@@ -30,13 +30,13 @@ describe('License Hycu order test suite', () => {
       timeout: 10_000,
     });
 
-    expect(screen.getByText(labels.common.hycu_cta_order)).toBeDisabled();
+    expect(screen.getByText(labels.actions.order)).toBeDisabled();
 
     await act(() =>
       userEvent.click(screen.getByText(catalog.plans[0].invoiceName)),
     );
 
-    expect(screen.getByText(labels.common.hycu_cta_order)).toBeEnabled();
+    expect(screen.getByText(labels.actions.order)).toBeEnabled();
   });
 
   it('should redirect to express order and change page informations', async () => {
@@ -55,9 +55,7 @@ describe('License Hycu order test suite', () => {
     );
 
     // Click on order button
-    await act(() =>
-      userEvent.click(screen.getByText(labels.common.hycu_cta_order)),
-    );
+    await act(() => userEvent.click(screen.getByText(labels.actions.order)));
 
     expect(window.open).toHaveBeenCalled();
 
