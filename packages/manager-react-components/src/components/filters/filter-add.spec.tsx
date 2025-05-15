@@ -1,8 +1,17 @@
-import React from 'react';
-import { vitest } from 'vitest';
+import React, { useState } from 'react';
+import { vi, vitest } from 'vitest';
 import { act, fireEvent, waitFor } from '@testing-library/react';
 import { FilterAdd, FilterAddProps } from './filter-add.component';
 import { render } from '../../utils/test.provider';
+
+vi.mock('./tags-filter-form.component', () => {
+  return {
+    TagsFilterForm: ({ setTagKey }) => {
+      setTagKey('tagKey');
+      return <div data-testid="filter-tag-inputs" />;
+    },
+  };
+});
 
 const renderComponent = (props: FilterAddProps) => {
   return render(<FilterAdd {...props} />);
@@ -199,4 +208,91 @@ it('should set the select option', () => {
 
   const idSelect = getByTestId('filter-add_value-select');
   expect(idSelect).toBeDefined();
+});
+
+it('should display tag filter form if the filter is a tag', () => {
+  const mockOnAddFilter = vitest.fn();
+  const props = {
+    columns: [
+      {
+        id: 'tags',
+        label: 'Tags',
+        type: 'Tags',
+        comparators: ['EQ', 'NEQ', 'EXISTS', 'NOT_EXISTS'],
+      },
+    ],
+    onAddFilter: mockOnAddFilter,
+  } as FilterAddProps;
+
+  const { getByTestId } = renderComponent(props);
+
+  const tagInputs = getByTestId('filter-tag-inputs');
+  expect(tagInputs).toBeDefined();
+});
+
+it('should display tags inputs if the filter is a tag', () => {
+  const mockOnAddFilter = vitest.fn();
+  const props = {
+    columns: [
+      {
+        id: 'tags',
+        label: 'Tags',
+        type: 'Tags',
+        comparators: ['EQ', 'NEQ', 'EXISTS', 'NOT_EXISTS'],
+      },
+    ],
+    onAddFilter: mockOnAddFilter,
+  } as FilterAddProps;
+
+  const { getByTestId } = renderComponent(props);
+
+  const tagInputs = getByTestId('filter-tag-inputs');
+  expect(tagInputs).toBeDefined();
+});
+
+it('should disable submit if tag value is not set and comparator is not EXISTS/NOT_EXISTS', async () => {
+  const mockOnAddFilter = vitest.fn();
+  const props = {
+    columns: [
+      {
+        id: 'tags',
+        label: 'Tags',
+        type: 'Tags',
+        comparators: ['EQ', 'NEQ', 'EXISTS', 'NOT_EXISTS'],
+      },
+    ],
+    onAddFilter: mockOnAddFilter,
+  } as FilterAddProps;
+
+  const { getByTestId } = renderComponent(props);
+
+  // Select tags column
+  const columnSelect = getByTestId('add-filter_select_idColumn');
+  fireEvent.change(columnSelect, { target: { value: 'tags' } });
+
+  // Select EQ comparator
+  const operatorSelect = getByTestId('add-operator-tags');
+  fireEvent.change(operatorSelect, { target: { value: 'EQ' } });
+
+  // Submit should be disabled when no tag value set
+  const submitButton = getByTestId('filter-add_submit');
+  expect(submitButton).toHaveAttribute('is-disabled', 'true');
+
+  // Change to EXISTS comparator
+  act(() => {
+    fireEvent.change(operatorSelect, { target: { value: 'EXISTS' } });
+  });
+
+  await waitFor(() => {
+    expect(submitButton).toHaveAttribute('is-disabled', 'false');
+  });
+
+  // Change to NOT_EXISTS comparator
+  act(() => {
+    fireEvent.change(operatorSelect, { target: { value: 'NOT_EXISTS' } });
+  });
+
+  await waitFor(() => {
+    expect(submitButton).toHaveAttribute('is-disabled', 'false');
+  });
 });

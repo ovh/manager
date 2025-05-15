@@ -9,6 +9,10 @@ export enum FilterComparator {
   IsBefore = 'is_before',
   IsAfter = 'is_after',
   IsIn = 'is_in',
+  TagEquals = 'EQ',
+  TagNotEqual = 'NEQ',
+  TagExists = 'EXISTS',
+  TagNotExists = 'NEXISTS',
 }
 
 export type Filter = {
@@ -16,6 +20,7 @@ export type Filter = {
   value: string | string[];
   comparator: FilterComparator;
   type?: FilterTypeCategories;
+  tagKey?: string;
 };
 
 export enum FilterTypeCategories {
@@ -24,6 +29,7 @@ export enum FilterTypeCategories {
   Date = 'Date',
   Boolean = 'Boolean',
   Options = 'Options',
+  Tags = 'Tags',
 }
 
 export const FilterCategories = {
@@ -48,6 +54,12 @@ export const FilterCategories = {
   ],
   Boolean: [FilterComparator.IsEqual, FilterComparator.IsDifferent],
   Options: [FilterComparator.IsEqual, FilterComparator.IsDifferent],
+  Tags: [
+    FilterComparator.TagEquals,
+    FilterComparator.TagNotEqual,
+    FilterComparator.TagExists,
+    FilterComparator.TagNotExists,
+  ],
 };
 
 export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
@@ -109,4 +121,35 @@ export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
     });
     return keep;
   });
+}
+
+export function transformTagsFiltersToQuery(filters: Filter[] = []): string {
+  const queryObject: Record<
+    string,
+    Array<{ operator: string; value?: string }>
+  > = {};
+
+  const tagFilters = filters.filter(
+    ({ type }) => type === FilterTypeCategories.Tags,
+  );
+
+  if (!tagFilters.length) return '';
+
+  tagFilters.forEach(({ comparator: operator, tagKey, value }) => {
+    if (!queryObject[tagKey]) {
+      queryObject[tagKey] = [];
+    }
+
+    const query: { operator: string; value?: string } = {
+      operator,
+    };
+
+    if (value) {
+      query.value = value as string;
+    }
+
+    queryObject[tagKey].push(query);
+  });
+
+  return JSON.stringify(queryObject);
 }
