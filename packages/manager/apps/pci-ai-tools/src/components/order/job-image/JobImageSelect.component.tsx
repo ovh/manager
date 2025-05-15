@@ -34,7 +34,12 @@ const JobImagesSelect = React.forwardRef<HTMLInputElement, ImageSelectProps>(
           />
         </TabsContent>
         <TabsContent value="customerImage" className="mt-0">
-          <DockerCustomImageInput value={value} onChange={onChange} ref={ref} />
+          <DockerCustomImageInput
+            value={value}
+            onChange={onChange}
+            ref={ref}
+            images={images}
+          />
         </TabsContent>
       </Tabs>
     );

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ArrowUpRightFromSquare, Plus } from 'lucide-react';
+import { ArrowUpRightFromSquare, Check, Plus } from 'lucide-react';
 import {
   Button,
   Card,
@@ -18,16 +18,18 @@ import {
   Input,
 } from '@datatr-ux/uxlib';
 import A from '@/components/links/A.component';
+import ai from '@/types/AI';
 
 interface DockerCustomImageProps {
   value: string;
   onChange: (newImage: string) => void;
+  images: ai.job.PresetImage[];
 }
 
 const DockerCustomImageInput = React.forwardRef<
   HTMLInputElement,
   DockerCustomImageProps
->(({ value, onChange }, ref) => {
+>(({ value, onChange, images }, ref) => {
   const { t } = useTranslation('ai-tools/components/docker-custom-image');
   const personalImageRules = z
     .string()
@@ -84,6 +86,9 @@ const DockerCustomImageInput = React.forwardRef<
       <CardContent className="space-y-2">
         <Form {...imageForm}>
           <div className="flex w-full items-start gap-2">
+            {!images.find((im) => im.id === value) && (
+              <Check className="size-6 shrink-0 text-green-200 mt-10" />
+            )}
             <div className="w-full">
               <FormField
                 control={imageForm.control}

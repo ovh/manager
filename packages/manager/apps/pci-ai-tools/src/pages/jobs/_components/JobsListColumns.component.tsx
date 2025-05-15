@@ -103,13 +103,14 @@ export const getColumns = ({
     },
     {
       id: 'Operating time',
-      accessorFn: (row) =>
-        convertSecondsToTimeString(row.status.duration, true),
+      accessorFn: (row) => row.status.duration.toFixed(2),
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
           {t('tableHeaderDuration')}
         </DataTable.SortableHeader>
       ),
+      cell: ({ row }) =>
+        convertSecondsToTimeString(row.original.status.duration, true),
     },
     {
       id: 'Creation date',

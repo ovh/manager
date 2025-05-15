@@ -38,7 +38,6 @@ const Labels = () => {
     onSuccess: () => {
       toast.toast({
         title: t('labelToastSuccessTitle'),
-        description: t('labelToastSuccessDescription'),
       });
       jobQuery.refetch();
     },

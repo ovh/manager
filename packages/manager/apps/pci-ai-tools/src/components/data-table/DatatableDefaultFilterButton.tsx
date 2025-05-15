@@ -179,7 +179,7 @@ const DataTableDefaultFilterButton = ({
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent side="left">
                 {selectedColumn?.options?.map((option) => (
                   <SelectItem key={option.value} value={option.value}>
                     {option.label}
