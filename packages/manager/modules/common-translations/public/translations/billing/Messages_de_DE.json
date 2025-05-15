@@ -1,0 +1,8 @@
+{
+  "billing": "Abrechnung",
+  "automatic_renew": "Automatische Verlängerung",
+  "subscription": "Abonnement",
+  "cancel_service": "Dienstleistung kündigen",
+  "cancel_service_success": "Der Dienst wurde gekündigt.",
+  "next_due_date": "Nächstes Zahlungsdatum"
+}
