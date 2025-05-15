@@ -116,14 +116,14 @@ const UserAccountMenu = ({
       };
 
       const computedLinks =
-        region === 'US'
+        region !== 'US'
           ? [
               ...links.slice(0, myServicesIndex),
-              myAssistanceTickets,
+              myContracts,
               ...links.slice(myServicesIndex, links.length),
               ...myIdentityDocuments,
             ]
-          : [...links, ...myIdentityDocuments, myContracts];
+          : [...links, ...myIdentityDocuments, myAssistanceTickets];
 
       setAllLinks(computedLinks);
     };
