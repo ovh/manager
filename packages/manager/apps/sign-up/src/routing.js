@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import startCase from 'lodash/startCase';
 
 import { SANITIZATION, FEATURES } from './constants';
 
@@ -202,6 +203,11 @@ export const state = {
         name: errorTrackingHits.join('::'),
         page_category: 'banner',
       });
+    },
+    onFieldBlur: /* @ngInject */ (trackError) => (field) => {
+      if (field.$invalid) {
+        trackError('step1', startCase(field.$name).replaceAll(' ', ''));
+      }
     },
 
     subsidiary: /* @ngInject */ ($location, coreConfig) =>
