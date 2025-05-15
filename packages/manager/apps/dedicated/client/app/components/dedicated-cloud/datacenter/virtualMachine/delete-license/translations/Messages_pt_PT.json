@@ -3,6 +3,6 @@
   "delete_license_modal_content": "Tem a certeza de que pretende eliminar a licença desta máquina virtual?",
   "delete_license_modal_confirm": "Confirmar",
   "delete_license_modal_cancel": "Anular",
-  "delete_license_error_api": "Ocorreu um erro aquando da eliminação da licença",
-  "delete_license_success_api": "O pedido de eliminação da licença foi registado"
+  "delete_license_error_api": "Ocorreu um erro aquando da eliminação da licença.",
+  "delete_license_success_api": "O pedido de eliminação da licença foi registado."
 }

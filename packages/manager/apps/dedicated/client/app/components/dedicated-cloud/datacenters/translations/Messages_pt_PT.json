@@ -7,7 +7,7 @@
   "dedicatedCloud_datacenters_disk": "Total espaço em disco",
   "dedicatedCloud_datacenters_number_vm": "VM",
   "dedicatedCloud_datacenters_number_vm_windows": "VM Windows",
-  "dedicatedCloud_datacenters_number_vm_licensed": "VM Windows licenciada",
+  "dedicatedCloud_datacenters_number_vm_licensed": "VM Windows com licença",
   "dedicatedCloud_datacenters_error": "Erro",
   "dedicatedCloud_datacenters_order_host": "Encomendar Host",
   "dedicatedCloud_datacenters_order_datastore": "Encomendar Datastore",
