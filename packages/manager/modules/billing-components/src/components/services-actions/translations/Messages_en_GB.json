@@ -21,5 +21,6 @@
   "billing_services_actions_menu_commit": "Manage my commitment",
   "billing_services_actions_menu_commit_cancel": "Cancel subscription request",
   "billing_services_actions_menu_resiliate_my_engagement": "Cancel subscription",
-  "billing_services_actions_menu_resiliate_LICENSE_HYCU": "Delete my Hycu licence"
+  "billing_services_actions_menu_resiliate_LICENSE_HYCU": "Delete my Hycu licence",
+  "billing_services_actions_menu_resiliate_HOSTING_WEB_SUSPENDED": "Permanently delete hosting plan and corresponding data"
 }
