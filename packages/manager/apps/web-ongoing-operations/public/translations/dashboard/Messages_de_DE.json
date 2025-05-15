@@ -2,8 +2,8 @@
   "title": "Dashboard-Seite",
   "back_link": "Zurück zur Liste",
   "domain_operations": "Vorgang",
-  "domain_operation_comment": "Kommentar zum Vorgang: ",
-  "domain_operation_data": "Sie können die Daten in Zusammenhang mit dem Vorgang ändern.",
+  "domain_operation_comment": "Kommentar zur Operation: <strong> {{t0}}</strong> ",
+  "domain_operation_data": "Sie können die Daten für den Vorgang ändern: <strong> {{t0}}</strong> ",
   "domain_operations_accelerate_title": "Vorgang beschleunigen",
   "domain_operations_relaunch_title": "Vorgang neu starten",
   "domain_operations_cancel_title": "Vorgang abbrechen",
@@ -103,9 +103,9 @@
   "domain_operations_upload_doing": "Upload läuft…",
   "domain_operations_upload_error_max-file-reached": "Maximale Dateianzahl erreicht",
   "domain_operations_upload_error_size-too-large": "Datei zu groß",
-  "domain_operations_update_cancel": "Vorgang abgebrochen!",
-  "domain_operations_update_relaunch": "Vorgang neu gestartet!",
-  "domain_operations_update_accelerate": "Anfrage zur Beschleunigung des Vorgangs erfolgreich!",
+  "domain_operations_update_cancel": "Die Operation wurde abgebrochen!",
+  "domain_operations_update_relaunch": "Operation wird neu gestartet!",
+  "domain_operations_update_accelerate": "Die Beschleunigungsanfrage wurde erfolgreich ausgeführt!",
   "domain_operations_update_key_action": "Vorgang",
   "domain_operations_update_key_memberContactXXX": "Mitglieds-ID",
   "domain_operations_update_key_firstname": "Den Vornamen mit einer gültigen Angabe aktualisieren",
@@ -133,6 +133,14 @@
   "domain_operations_update_contact_administrator": "Wenden Sie sich an Ihren Administrator, um dieses Problem zu beheben.",
   "domain_operations_nicOperation_ZoneRestore": "Wiederherstellung der DNS-Zone",
   "wizard_close": "Schließen",
+<<<<<<< HEAD
   "domain_operations_upload_error_wrong-format": "Ungültiges Dateiformat",
   "domain_operations_update_title": "Aktualisierung des Vorgangs für die Domain {{t0}}"
+=======
+  "domain_operations_update_error": "Vorgang konnte nicht aktualisiert werden",
+  "domain_operations_upload_error_wrong-format": "Ungültiges Dateiformat",
+  "domain_operations_update_key_validationToken": "Überprüfungstoken",
+  "domain_operations_update_key_document": "Dokument",
+  "domain_operations_update_title": "Update des Vorgangs für die Domain {{t0}}"
+>>>>>>> cbbeaacc41 (fix(web-ongoing-operations): modify page - add more controls (#17103) (#17104))
 }

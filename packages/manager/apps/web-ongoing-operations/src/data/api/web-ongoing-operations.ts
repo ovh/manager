@@ -8,7 +8,7 @@ import { TArgument, TOngoingOperations, TServiceInfo } from '@/types';
 export const getmeTaskDomainId = async (
   id: number,
 ): Promise<TOngoingOperations> =>
-  v6.get(`${taskMeDomain}/${id}`).then((res) => res.data);
+  v6.get(`${taskMeDomain.join('/')}/${id}`).then((res) => res.data);
 
 /**
  * Get information about domain related tasks : Get the domain argument names
