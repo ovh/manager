@@ -13,7 +13,6 @@ import ai from '@/types/AI';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useKillJob } from '@/data/hooks/ai/job/useKillJob.hook';
-import { useGetJob } from '@/data/hooks/ai/job/useGetJob.hook';
 
 interface KillJobProps {
   job: ai.job.Job;
@@ -26,7 +25,6 @@ const KillJob = ({ job, onError, onSuccess, onClose }: KillJobProps) => {
   const { projectId } = useParams();
   const { t } = useTranslation('ai-tools/jobs/job');
   const toast = useToast();
-  const jobQuery = useGetJob(projectId, job.id);
 
   const { killJob, isPending } = useKillJob({
     onError: (err) => {
@@ -35,7 +33,6 @@ const KillJob = ({ job, onError, onSuccess, onClose }: KillJobProps) => {
         variant: 'destructive',
         description: getAIApiErrorMessage(err),
       });
-      jobQuery.refetch();
       if (onError) {
         onError(err);
       }
