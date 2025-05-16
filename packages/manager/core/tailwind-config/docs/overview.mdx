@@ -1,0 +1,148 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../manager-wiki/components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+import Links from '../../../../manager-wiki/components/external-links';
+
+<Meta title="Core/tailwind-config/Overview" />
+
+# Tailwind Configuration
+
+The Tailwind Configuration module provides a standardized set of design tokens and utilities for the OVHcloud Manager ecosystem. It extends Tailwind CSS with custom spacing, breakpoints, and border radius values that align with OVHcloud's design system.
+
+<StorybookHeading label="Overview" level={2} />
+
+The configuration extends Tailwind CSS with OVHcloud-specific design tokens:
+
+- **Spacing Scale**: Custom spacing values from 0 to 3rem
+- **Responsive Breakpoints**: Standardized breakpoints for responsive design
+- **Border Radius**: ODS (OVHcloud Design System) compatible border radius values
+- **CSS Variables**: Integration with ODS CSS variables for consistent theming
+
+<StorybookHeading label="Key Features" level={2} />
+
+- **Custom Spacing Scale**: Precise spacing values for consistent layouts
+- **Responsive Design**: Standardized breakpoints for all screen sizes
+- **ODS Integration**: Seamless integration with OVHcloud Design System
+- **Border Radius System**: Consistent border radius values
+- **TypeScript Support**: Full typing for better development experience
+
+<StorybookHeading label="Usage" level={2} />
+
+### Installation
+
+```bash
+yarn add @ovh-ux/manager-core-tailwind-config
+```
+
+### Basic Setup
+
+```javascript
+// tailwind.config.js
+import tailwindConfig from '@ovh-ux/manager-core-tailwind-config';
+
+export default {
+  ...tailwindConfig,
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    // Add your content paths
+  ],
+};
+```
+
+### Available Design Tokens
+
+#### Spacing Scale
+```javascript
+spacing: {
+  0: '0',
+  1: '0.0625rem',  // 1px
+  2: '0.125rem',   // 2px
+  3: '0.25rem',    // 4px
+  4: '0.5rem',     // 8px
+  5: '0.75rem',    // 12px
+  6: '1rem',       // 16px
+  7: '1.25rem',    // 20px
+  8: '1.5rem',     // 24px
+  9: '2rem',       // 32px
+  10: '2.5rem',    // 40px
+  11: '3rem',      // 48px
+}
+```
+
+#### Breakpoints
+```javascript
+screens: {
+  xs: '0',         // 0px
+  sm: '36em',      // 576px
+  md: '48em',      // 768px
+  lg: '62em',      // 992px
+  xl: '75em',      // 1200px
+  xxl: '87.5em',   // 1400px
+}
+```
+
+#### Border Radius
+```javascript
+borderRadius: {
+  none: '0',
+  sm: 'var(--ods-border-radius-sm, var(--ods-size-border-radius-01, 4px))',
+  DEFAULT: 'var(--ods-border-radius-sm, var(--ods-size-border-radius-01, 4px))',
+  md: 'var(--ods-border-radius-md, var(--ods-size-border-radius-02, 8px))',
+  lg: 'var(--ods-border-radius-lg, var(--ods-size-border-radius-02, 16px))',
+  full: '50%',
+}
+```
+
+<StorybookHeading label="Best Practices" level={2} />
+
+1. **Spacing Usage**:
+   - Use the predefined spacing scale for consistent layouts
+   - Avoid custom spacing values unless absolutely necessary
+   ```html
+   <div class="p-4"> <!-- 8px padding -->
+     <div class="m-6"> <!-- 16px margin -->
+   </div>
+   ```
+
+2. **Responsive Design**:
+   - Use the predefined breakpoints for responsive layouts
+   - Follow mobile-first approach
+   ```html
+   <div class="w-full md:w-1/2 lg:w-1/3">
+     <!-- Responsive width -->
+   </div>
+   ```
+
+3. **Border Radius**:
+   - Use the predefined border radius values
+   - Leverage ODS variables for theming
+   ```html
+   <button class="rounded-md"> <!-- 8px border radius -->
+     <!-- Button content -->
+   </button>
+   ```
+
+4. **CSS Variables**:
+   - Use ODS CSS variables for theming
+   - Maintain consistency with design system
+   ```css
+   .custom-element {
+     border-radius: var(--ods-border-radius-md);
+   }
+   ```
+
+5. **Performance**:
+   - Only include necessary design tokens
+   - Use PurgeCSS to remove unused styles
+   - Optimize for production builds
+
+6. **Maintenance**:
+   - Keep the configuration in sync with ODS updates
+   - Document any custom extensions
+   - Review and update breakpoints as needed

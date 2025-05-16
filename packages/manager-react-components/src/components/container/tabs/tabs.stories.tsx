@@ -11,7 +11,7 @@ type TContinent = {
 };
 
 export default {
-  title: 'Components/Tabs',
+  title: 'Core/manager-react-components/Components/Tabs',
   component: TabsComponent,
   args: {
     onChange: fn(),
