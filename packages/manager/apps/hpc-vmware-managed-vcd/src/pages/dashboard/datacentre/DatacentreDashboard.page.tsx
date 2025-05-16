@@ -21,7 +21,6 @@ import { VIRTUAL_DATACENTERS_LABEL } from '../organization/organizationDashboard
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
   const { t } = useTranslation('dashboard');
-  const { t: tVrackSegment } = useTranslation('datacentres/vrack-segment');
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const { data: vcdOrganization } = useVcdOrganization({ id });
   const navigate = useNavigate();
@@ -87,7 +86,7 @@ function DatacentreDashboardPage() {
     },
     {
       id: subRoutes.vrackSegments,
-      label: tVrackSegment('managed_vcd_dashboard_vrack_network_segments'),
+      label: t('managed_vcd_dashboard_vrack_network_title'),
     },
   ];
 
