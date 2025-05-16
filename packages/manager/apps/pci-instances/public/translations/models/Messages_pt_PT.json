@@ -1,0 +1,21 @@
+{
+  "pci_instances_models_select_template": "Selecione um modelo",
+  "pci_instances_models_category_balanced_title": "General Purpose",
+  "pci_instances_models_category_compute_title": "Compute Optimized",
+  "pci_instances_models_category_ram_title": "Memory Optimized",
+  "pci_instances_models_category_accelerated_title": "GPU",
+  "pci_instances_models_category_discovery_title": "Discovery",
+  "pci_instances_models_category_iops_title": "Storage Optimized",
+  "pci_instances_models_category_baremetal_title": "Metal",
+  "pci_instances_models_category_balanced_description": "As instâncias de uso geral oferecem um equilíbrio entre RAM e desempenho.",
+  "pci_instances_models_category_compute_description": "As instâncias de cálculo otimizado são ideais para as aplicações que requerem uma elevada frequência de cálculo ou a paralelização de tarefas.",
+  "pci_instances_models_category_ram_description": "As instâncias de memória otimizada são recomendadas para as suas bases de dados, análises e cálculos de memória, bem como para outras aplicações que consomem muita RAM.",
+  "pci_instances_models_category_accelerated_description": "As instâncias de cálculo acelerado (GPU, FPGA) são até mil vezes mais rápidas que um CPU em certas aplicações (rendering, transcodificação de vídeo, bioinformática, Big Data, deep learning, etc.)",
+  "pci_instances_models_category_discovery_description": "As instâncias de recursos partilhados (Discovery) são adaptadas aos testes, receitas e ambientes de desenvolvimento. O seu desempenho pode variar ligeiramente ao longo do tempo.",
+  "pci_instances_models_category_iops_description": "As instâncias IOPS entregam as transações de disco mais rápidas da gama Public Cloud.",
+  "pci_instances_models_category_baremetal_description": "As instâncias Bare Metal oferecem servidores físicos on demand, entregues em apenas alguns minutos e faturados à hora ou mensalmente.",
+  "pci_instances_models_chosen_model_message": "Modelo escolhido: {{ model }}",
+  "pci_instances_models_monthly_price_excl_vat": "a partir de {{ price }} /mês + IVA",
+  "pci_instances_models_error_message1": "Lamentamos, mas ocorreu um erro e o pedido não pôde ser tratado. Pode tentar novamente <Link>Recarregar</Link> o pedido.",
+  "pci_instances_models_error_message2": "Se o problema persistir, contacte o suporte técnico."
+}
