@@ -1,6 +1,6 @@
 // tags-utils.test.ts
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { calculateAuthorizedTags, truncateTag } from './tags-utils';
+import { calculateAuthorizedTags, truncateTag, filterTags } from './tags-utils';
 
 describe('calculateAuthorizedTags', () => {
   let container: HTMLDivElement;
@@ -65,5 +65,32 @@ describe('truncateTag', () => {
 
     const result = truncateTag(container, tag, shortText);
     expect(result).toBe(shortText);
+  });
+});
+
+describe('filterTags', () => {
+  const tags = {
+    environment: 'dev',
+    environment1: 'prod',
+    'ovh:internal': 'prod',
+  };
+
+  it('should return all tags when displayInternalTags is true', () => {
+    const result = filterTags({ tags, displayInternalTags: true });
+    expect(result).toEqual([
+      'environment:dev',
+      'environment1:prod',
+      'ovh:internal:prod',
+    ]);
+  });
+
+  it('should filter out internal tags when displayInternalTags is false', () => {
+    const result = filterTags({ tags, displayInternalTags: false });
+    expect(result).toEqual(['environment:dev', 'environment1:prod']);
+  });
+
+  it('should return an empty array if tags is empty', () => {
+    const result = filterTags({ tags: {}, displayInternalTags: true });
+    expect(result).toEqual([]);
   });
 });

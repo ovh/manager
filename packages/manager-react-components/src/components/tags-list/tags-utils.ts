@@ -34,3 +34,15 @@ export const truncateTag = (
   const length = Math.floor(tagText.length * (availableSpace / 100));
   return tagText.slice(0, length) + (length < tagText.length ? '...' : '');
 };
+
+export const filterTags = ({
+  tags,
+  displayInternalTags,
+}: {
+  tags: { [key: string]: string };
+  displayInternalTags: boolean;
+}) => {
+  return Object.keys(tags)
+    .filter((key) => displayInternalTags || key.indexOf('ovh:') !== 0)
+    .map((key) => `${key}:${tags[key]}`);
+};

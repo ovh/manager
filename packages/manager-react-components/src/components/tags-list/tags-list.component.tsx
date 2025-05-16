@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
 import { OdsBadgeColor, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { calculateAuthorizedTags, truncateTag } from './tags-utils';
-import { useTagsFilter } from '../../hooks/tags-list/useTagsFilter';
+import { calculateAuthorizedTags, truncateTag, filterTags } from './tags-utils';
 
 export interface TagsListProps {
   tags: { [key: string]: string };
@@ -18,7 +17,7 @@ export const TagsList: React.FC<TagsListProps> = ({
   onClick,
 }) => {
   const color: OdsBadgeColor = 'information';
-  const filteredTags = useTagsFilter({ tags, displayInternalTags });
+  const filteredTags = filterTags({ tags, displayInternalTags });
   const containerRef = useRef<HTMLDivElement>(null);
   const [truncate, setTruncate] = useState(null);
   const [visibleCount, setVisibleCount] = useState(filteredTags.length);
@@ -55,27 +54,22 @@ export const TagsList: React.FC<TagsListProps> = ({
   }, [filteredTags]);
 
   return (
-    <div
-      ref={containerRef}
-      data-testid="container"
-      style={{ width: '100%', height: '100%', minWidth: '85px' }}
-    >
-      {truncate && (
+    <div ref={containerRef} className="w-full h-full min-w-[85px]">
+      {truncate ? (
         <OdsBadge className="mr-1 mb-1" color={color} label={truncate} />
-      )}
-
-      {!truncate &&
+      ) : (
         filteredTags.slice(0, visibleCount).map((tag, index) => {
           return (
             <OdsBadge
               className="mr-1 mb-1"
-              key={index}
+              key={tag}
               ref={(el) => (tagRefs.current[index] = el!)}
               color={color}
               label={tag}
             />
           );
-        })}
+        })
+      )}
 
       {visibleCount < filteredTags.length && (
         <OdsLink
