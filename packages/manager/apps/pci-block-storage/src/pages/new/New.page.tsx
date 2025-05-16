@@ -224,6 +224,7 @@ export default function NewPage(): JSX.Element {
             projectId={projectId}
             step={stepper.volumeName.step}
             onSubmit={stepper.volumeName.submit}
+            defaultVolumeName={`${stepper.form.volumeType?.name}-${stepper.form.region?.name}-${stepper.form.volumeCapacity}GB`}
           />
         </StepComponent>
         <StepComponent
