@@ -13,6 +13,7 @@
   "billing_services_actions_menu_resiliate_EMAIL_DOMAIN": "Supprimer immédiatement le MX Plan",
   "billing_services_actions_menu_resiliate_ENTERPRISE_CLOUD_DATABASE": "Supprimer immédiatement l'enterprise cloud databases",
   "billing_services_actions_menu_resiliate_HOSTING_WEB": "Supprimer immédiatement l'hébergement",
+  "billing_services_actions_menu_resiliate_HOSTING_WEB_SUSPENDED": "Supprimer définitivement l'hébergement et les données associées",
   "billing_services_actions_menu_resiliate_HOSTING_PRIVATE_DATABASE": "Supprimer mon hébergement SQL privé",
   "billing_services_actions_menu_resiliate_WEBCOACH": "Supprimer mon WebCoach",
   "billing_services_actions_menu_resiliate_LICENSE_HYCU": "Supprimer ma licence Hycu",

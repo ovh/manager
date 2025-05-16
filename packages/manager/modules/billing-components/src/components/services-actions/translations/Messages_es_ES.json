@@ -21,5 +21,6 @@
   "billing_services_actions_menu_commit": "Gestionar mi compromiso de permanencia",
   "billing_services_actions_menu_commit_cancel": "Cancelar la solicitud de contratación con compromiso de permanencia",
   "billing_services_actions_menu_resiliate_my_engagement": "Cancelar mi compromiso",
-  "billing_services_actions_menu_resiliate_LICENSE_HYCU": "Eliminar mi licencia HYCU"
+  "billing_services_actions_menu_resiliate_LICENSE_HYCU": "Eliminar mi licencia HYCU",
+  "billing_services_actions_menu_resiliate_HOSTING_WEB_SUSPENDED": "Eliminar definitivamente el alojamiento y los datos asociados"
 }

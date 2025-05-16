@@ -117,7 +117,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
       <Select
         styles={selectStyles}
         isLoading={isLoading}
-        isSearchable={false}
+        isSearchable={true}
         formatOptionLabel={getProjectOption}
         options={options}
         menuPosition={'absolute'}

@@ -1,10 +1,15 @@
 import { vi } from 'vitest';
 
+let mockUser = {
+  ovhSubsidiary: 'FR',
+  kycValidated: true,
+};
+
 const mockPlugins = vi.hoisted(() => ({
   environment: {
     getEnvironment: () => ({
       getRegion: vi.fn(() => 'EU'),
-      getUser: vi.fn(() => ({ ovhSubsidiary: 'FR' })),
+      getUser: vi.fn(() => mockUser),
     }),
   },
   navigation: {
@@ -29,4 +34,4 @@ const mockShell = vi.hoisted(() => ({
   },
 }));
 
-export { mockPlugins, mockShell };
+export { mockPlugins, mockShell, mockUser };
