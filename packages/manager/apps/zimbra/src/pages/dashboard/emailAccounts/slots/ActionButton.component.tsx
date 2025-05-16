@@ -8,63 +8,62 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { EmailAccountItem } from './EmailAccountsDatagrid.component';
+import { SlotItem } from './SlotsDatagrid.component';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { ResourceStatus } from '@/data/api';
-import { DELETE_EMAIL_ACCOUNT, EDIT_EMAIL_ACCOUNT } from '@/tracking.constants';
+import { CANCEL_SLOT, CONFIGURE_SLOT } from '@/tracking.constants';
 
-interface ActionButtonEmailAccountProps {
-  item: EmailAccountItem;
+interface ActionButtonSlotProps {
+  item: SlotItem;
 }
 
-export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> = ({
-  item,
-}) => {
+export const ActionButtonSlot: React.FC<ActionButtonSlotProps> = ({ item }) => {
   const { trackClick } = useOvhTracking();
   const { t } = useTranslation('common');
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
 
-  const hrefEditEmailAccount = useGenerateUrl(`./${item.id}/settings`, 'path');
+  const hrefConfigureSlot = useGenerateUrl('./add', 'path', {
+    slotId: item.id,
+  });
 
-  const handleEditEmailClick = () => {
+  const handleConfigureSlotClick = () => {
     trackClick({
       location: PageLocation.datagrid,
       buttonType: ButtonType.button,
       actionType: 'navigation',
-      actions: [EDIT_EMAIL_ACCOUNT],
+      actions: [CONFIGURE_SLOT],
     });
-    navigate(hrefEditEmailAccount);
+    navigate(hrefConfigureSlot);
   };
 
-  const hrefDeleteEmailAccount = useGenerateUrl(`./${item.id}/delete`, 'path');
+  const hrefCancelSlot = useGenerateUrl(`./slots/${item.id}/cancel`, 'path');
 
-  const handleDeleteEmailClick = () => {
+  const handleCancelSlotClick = () => {
     trackClick({
       location: PageLocation.datagrid,
       buttonType: ButtonType.button,
       actionType: 'navigation',
-      actions: [DELETE_EMAIL_ACCOUNT],
+      actions: [CANCEL_SLOT],
     });
-    navigate(hrefDeleteEmailAccount);
+    navigate(hrefCancelSlot);
   };
 
   const actionItems = [
     {
       id: 1,
-      onClick: handleEditEmailClick,
+      onClick: handleConfigureSlotClick,
       urn: platformUrn,
-      iamActions: [IAM_ACTIONS.account.edit],
-      label: t('modify'),
+      iamActions: [IAM_ACTIONS.slot.get],
+      label: t('configure_account'),
     },
     {
       id: 2,
-      onClick: handleDeleteEmailClick,
+      onClick: handleCancelSlotClick,
       urn: platformUrn,
-      iamActions: [IAM_ACTIONS.account.delete],
-      label: t('delete'),
+      iamActions: [IAM_ACTIONS.slot.get],
+      label: t('terminate'),
       color: ODS_BUTTON_COLOR.critical,
     },
   ];
@@ -72,7 +71,6 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
   return (
     <ActionMenu
       id={item.id}
-      isDisabled={item.status !== ResourceStatus.READY}
       items={actionItems}
       variant={ODS_BUTTON_VARIANT.ghost}
       isCompact
@@ -80,4 +78,4 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
   );
 };
 
-export default ActionButtonEmailAccount;
+export default ActionButtonSlot;
