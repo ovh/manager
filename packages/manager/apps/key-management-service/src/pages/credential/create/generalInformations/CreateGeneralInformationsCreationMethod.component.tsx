@@ -47,7 +47,7 @@ const CreateGeneralInformationsCreationMethod = ({
   return (
     <>
       <OdsFormField>
-        <div slot="label">
+        <div slot="label" className="space-y-2 mb-2">
           <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
             {t(
               'key_management_service_credential_create_general_creation_method_title',
@@ -59,7 +59,7 @@ const CreateGeneralInformationsCreationMethod = ({
             )}
           </OdsText>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center gap-3">
           <OdsRadio
             name="creationMethod"
             inputId="creationMethodNoKey"
@@ -74,7 +74,7 @@ const CreateGeneralInformationsCreationMethod = ({
               setIsCustomCsr(false);
             }}
           />
-          <label className="ml-2" htmlFor="creationMethodNoKey">
+          <label htmlFor="creationMethodNoKey">
             <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
               {t(
                 'key_management_service_credential_create_general_information_creation_method_no_key',
@@ -87,7 +87,7 @@ const CreateGeneralInformationsCreationMethod = ({
             </OdsText>
           </label>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center gap-3">
           <OdsRadio
             name="creationMethod"
             inputId="creationMethodKey"
@@ -102,7 +102,7 @@ const CreateGeneralInformationsCreationMethod = ({
               setIsCustomCsr(true);
             }}
           />
-          <label className="ml-2" htmlFor="creationMethodKey">
+          <label htmlFor="creationMethodKey">
             <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
               {t(
                 'key_management_service_credential_create_general_information_creation_method_key',
@@ -120,7 +120,7 @@ const CreateGeneralInformationsCreationMethod = ({
         <OdsFormField
           error={getCreationMethodErrorMessage(credentialCreationMethodError)}
         >
-          <div slot="label">
+          <div slot="label" className="space-y-2 mb-2">
             <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
               {t(
                 'key_management_service_credential_create_general_information_csr_title',

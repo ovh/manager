@@ -33,7 +33,7 @@ const CredentialList = () => {
   );
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-6">
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         {t('key_management_service_credential_headline')}
       </OdsText>
