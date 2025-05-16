@@ -1,9 +1,11 @@
 import {
   Headers,
+  Links,
+  LinkType,
+  Notifications,
   StepComponent,
   useNotifications,
   useProjectUrl,
-  Notifications,
 } from '@ovh-ux/manager-react-components';
 import { Translation, useTranslation } from 'react-i18next';
 import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
@@ -19,6 +21,9 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import HidePreloader from '@/core/HidePreloader';
 import { VolumeTypeStep } from './components/VolumeTypeStep.component';
 import { CapacityStep } from './components/CapacityStep.component';
@@ -29,6 +34,7 @@ import { useVolumeStepper } from './hooks/useVolumeStepper';
 import { useAddVolume } from '@/api/hooks/useVolume';
 import { ExtenBannerBeta } from '@/components/exten-banner-beta/ExtenBannerBeta';
 import { AvailabilityZoneStep } from '@/pages/new/components/AvailabilityZoneStep';
+import { DEPLOYMENT_MODES_HELP_URL } from '@/constants';
 
 export default function NewPage(): JSX.Element {
   const { t } = useTranslation('common');
@@ -42,6 +48,7 @@ export default function NewPage(): JSX.Element {
   const isDiscovery = isDiscoveryProject(project);
   const { addError, addSuccess, clearNotifications } = useNotifications();
   const stepper = useVolumeStepper(projectId);
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   const { addVolume } = useAddVolume({
     projectId,
@@ -80,6 +87,10 @@ export default function NewPage(): JSX.Element {
       window.scrollTo(0, 0);
     },
   });
+
+  const deploymentModesUrl =
+    DEPLOYMENT_MODES_HELP_URL[ovhSubsidiary] ||
+    DEPLOYMENT_MODES_HELP_URL.DEFAULT;
 
   return (
     <>
@@ -142,13 +153,26 @@ export default function NewPage(): JSX.Element {
             isDisabled: stepper.validation.step.isLocked,
           }}
           subtitle={
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {tAdd('pci_projects_project_storages_blocks_add_type_subtitle')}
-            </OsdsText>
+            <span>
+              <OsdsText
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                color={ODS_THEME_COLOR_INTENT.text}
+              >
+                {tAdd('pci_projects_project_storages_blocks_add_type_subtitle')}
+              </OsdsText>
+              {stepper.form.region?.type === 'region-3-az' && (
+                <Links
+                  label={tAdd(
+                    'pci_projects_project_storages_blocks_add_type_subtitle_3AZ_link',
+                  )}
+                  href={deploymentModesUrl}
+                  target={OdsHTMLAnchorElementTarget._blank}
+                  className="ml-2"
+                  type={LinkType.external}
+                />
+              )}
+            </span>
           }
         >
           <VolumeTypeStep
