@@ -1,0 +1,24 @@
+@tailwind utilities;
+
+@import '@ovhcloud/ods-themes/default';
+@import '@ovh-ux/manager-react-components/dist/style.css';
+
+html {
+  font-family: var(--ods-font-family-default);
+}
+
+// ods table has 1rem hardcoded line height
+// which cuts letter from links and badge inside
+// cells
+ods-table td {
+  line-height: unset !important;
+}
+
+.menu-item-button {
+  &::part(button) {
+    width: 100%;
+    justify-content: left;
+    height: 32px;
+    border-radius: 0;
+  }
+}

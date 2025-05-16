@@ -5928,6 +5928,11 @@
   resolved "https://registry.yarnpkg.com/@microsoft/tsdoc/-/tsdoc-0.14.2.tgz#c3ec604a0b54b9a9b87e9735dfc59e1a5da6a5fb"
   integrity sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==
 
+"@microsoft/tsdoc@0.15.1", "@microsoft/tsdoc@~0.15.1":
+  version "0.15.1"
+  resolved "https://registry.yarnpkg.com/@microsoft/tsdoc/-/tsdoc-0.15.1.tgz#d4f6937353bc4568292654efb0a0e0532adbcba2"
+  integrity sha512-4aErSrCR/On/e5G2hDP0wjooqDdauzEbIq8hIkIe5pXV0rtWJZvdCEKL0ykZxex+IxIwBp0eGeV48hQN07dXtw==
+
 "@module-federation/error-codes@0.8.12":
   version "0.8.12"
   resolved "https://registry.yarnpkg.com/@module-federation/error-codes/-/error-codes-0.8.12.tgz#b9f3b6de8760c3db1b8b33bf0c47bc7d775fa344"
@@ -5956,11 +5961,6 @@
   integrity sha512-zFgXYBHbzwIqlrLfn6ewIRXDZCctDDQT2nFhbsZr29yWQgpmW1fm2kJCxQsG0DENGGN1KpzfDoxjjvSKJS/ZHA==
   dependencies:
     isomorphic-rslog "0.0.7"
-
-"@microsoft/tsdoc@0.15.1", "@microsoft/tsdoc@~0.15.1":
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/@microsoft/tsdoc/-/tsdoc-0.15.1.tgz#d4f6937353bc4568292654efb0a0e0532adbcba2"
-  integrity sha512-4aErSrCR/On/e5G2hDP0wjooqDdauzEbIq8hIkIe5pXV0rtWJZvdCEKL0ykZxex+IxIwBp0eGeV48hQN07dXtw==
 
 "@motionone/animation@^10.17.0":
   version "10.17.0"
@@ -6456,6 +6456,15 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
+"@ovh-ux/manager-core-api@^0.11.1":
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.11.1.tgz#182cc03bd8532dcc08c09f1df7d34bb7ed349efe"
+  integrity sha512-RUXMD5Yp80ek7IjuKBTc3Qn/eJMVdbhsLJ/C4xOltHm2YcU5dy7FBDSUP6JCMrPV9J03w6aWIHPKsKs8fVRSuQ==
+  dependencies:
+    "@ovh-ux/manager-core-sso" "^0.3.1"
+    "@ovh-ux/request-tagger" "^0.4.1"
+    axios "^1.1.2"
+
 "@ovh-ux/manager-pci-common@^0.16.4":
   version "0.16.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.16.4.tgz#0d9f4efd0140cd4f2eb0f9b508f3e53a8120e5c2"
@@ -6552,6 +6561,11 @@
   integrity sha512-LvxWv+ER5p8hKHntejrcbxPNA6s9MqcAxnnDfvxPTeo292ZVERy6rDZ1ukuV8w6BhRKGGU/IXL8jILgLS6drKg==
   dependencies:
     lodash "^4.17.15"
+
+"@ovh-ux/ovh-at-internet@^0.21.6":
+  version "0.21.8"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.21.8.tgz#91f6b35e77eb60839a715d787e6ab9a22e7ec183"
+  integrity sha512-RBrew2Xnkhw/gqvDhLDBiv3mQMlTn6yLNDrF0kc8JtuYG1FiNdM7ucIOq581jZJ598GNhCMIbjvpQ2XjysnKuQ==
 
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.6"
@@ -16842,6 +16856,11 @@ exponential-backoff@^3.1.1:
   resolved "https://registry.yarnpkg.com/exponential-backoff/-/exponential-backoff-3.1.1.tgz#64ac7526fe341ab18a39016cd22c787d01e00bf6"
   integrity sha512-dX7e/LHVJ6W3DE1MHWi9S1EYzDESENfLrYohG2G++ovZrYOkm4Knwa0mc1cn84xJOR4KEU0WSchhLbd0UklbHw==
 
+export-to-csv@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/export-to-csv/-/export-to-csv-1.4.0.tgz#03fb42a4a4262cd03bde57a7b9bcad115149cf4b"
+  integrity sha512-6CX17Cu+rC2Fi2CyZ4CkgVG3hLl6BFsdAxfXiZkmDFIDY4mRx2y2spdeH6dqPHI9rP+AsHEfGeKz84Uuw7+Pmg==
+
 express@^4.17.1, express@^4.17.3:
   version "4.20.0"
   resolved "https://registry.yarnpkg.com/express/-/express-4.20.0.tgz#f1d08e591fcec770c07be4767af8eb9bcfd67c48"
@@ -18762,6 +18781,13 @@ i18next-http-backend@^2.4.2, i18next-http-backend@^2.4.3:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-2.4.3.tgz#be9a0aaff5f34542f1f9c1f7bd03eb96d8476dbd"
   integrity sha512-jo2M03O6n1/DNb51WSQ8PsQ0xEELzLZRdYUTbf17mLw3rVwnJF9hwNgMXvEFSxxb+N8dT+o0vtigA6s5mGWyPA==
+  dependencies:
+    cross-fetch "4.0.0"
+
+i18next-http-backend@^2.5.0:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-2.7.3.tgz#335e5884b4c5446cdb4817cb35e81ee4ac7be9f4"
+  integrity sha512-FgZxrXdRA5u44xfYsJlEBL4/KH3f2IluBpgV/7riW0YW2VEyM8FzVt2XHAOi6id0Ppj7vZvCZVpp5LrGXnc8Ig==
   dependencies:
     cross-fetch "4.0.0"
 
@@ -23618,6 +23644,13 @@ p-limit@^5.0.0:
   dependencies:
     yocto-queue "^1.0.0"
 
+p-limit@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-6.2.0.tgz#c254d22ba6aeef441a3564c5e6c2f2da59268a0f"
+  integrity sha512-kuUqqHNUqoIWp/c467RI4X6mmyuojY5jGutNU0wVTmEOOfcuwLqyMVoAi9MKi2Ak+5i9+nhmrK4ufZE8069kHA==
+  dependencies:
+    yocto-queue "^1.1.1"
+
 p-locate@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/p-locate/-/p-locate-2.0.0.tgz#20a0103b222a70c8fd39cc2e580680f3dde5ec43"
@@ -27576,16 +27609,7 @@ string-length@^4.0.1:
     char-regex "^1.0.2"
     strip-ansi "^6.0.0"
 
-"string-width-cjs@npm:string-width@^4.2.0":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
-  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
-  dependencies:
-    emoji-regex "^8.0.0"
-    is-fullwidth-code-point "^3.0.0"
-    strip-ansi "^6.0.1"
-
-"string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.0.0, string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.2, string-width@^4.2.3:
+"string-width-cjs@npm:string-width@^4.2.0", "string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.0.0, string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.2, string-width@^4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -27757,14 +27781,7 @@ stringify-entities@^4.0.0:
     character-entities-html4 "^2.0.0"
     character-entities-legacy "^3.0.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
-  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
-  dependencies:
-    ansi-regex "^5.0.1"
-
-strip-ansi@6.0.1, strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@6.0.1, strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -30638,7 +30655,7 @@ wordwrap@^1.0.0:
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
   integrity sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==
 
-"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
+"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
@@ -30651,15 +30668,6 @@ wrap-ansi@^6.0.1, wrap-ansi@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-6.2.0.tgz#e9393ba07102e6c91a3b221478f0257cd2856e53"
   integrity sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==
-  dependencies:
-    ansi-styles "^4.0.0"
-    string-width "^4.1.0"
-    strip-ansi "^6.0.0"
-
-wrap-ansi@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
-  integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
   dependencies:
     ansi-styles "^4.0.0"
     string-width "^4.1.0"
@@ -30947,6 +30955,11 @@ yocto-queue@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-1.0.0.tgz#7f816433fb2cbc511ec8bf7d263c3b58a1a3c251"
   integrity sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==
+
+yocto-queue@^1.1.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-1.2.1.tgz#36d7c4739f775b3cbc28e6136e21aa057adec418"
+  integrity sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg==
 
 yoctocolors-cjs@^2.1.2:
   version "2.1.2"
