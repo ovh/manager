@@ -214,5 +214,6 @@
   "sidebar_security_identity_operations_iam_identities": "Identitäten",
   "sidebar_security_identity_operations_iam_policies": "Richtlinien",
   "sidebar_security_identity_operations_iam_api-keys": "API-Schlüssel",
-  "sidebar_security_identity_operations_iam_logs": "Logs des Accounts"
+  "sidebar_security_identity_operations_iam_logs": "Logs des Accounts",
+  "sidebar_web_hosting_websites": "Webseiten"
 }
