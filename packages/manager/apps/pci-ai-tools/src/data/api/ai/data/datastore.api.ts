@@ -1,6 +1,7 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import ai from '@/types/AI';
 import { PCIAi } from '../..';
+import { Containers } from '@/types/orderFunnel';
 
 interface DatastoresProps extends PCIAi {
   region: string;
@@ -82,13 +83,13 @@ export const getDatastoreAuth = async ({
     )
     .then((res) => res.data as ai.DataStoreAuth);
 
-// export const getDatastoreContainer = async ({
-//   projectId,
-//   region,
-//   alias,
-// }: DatastoreProps) =>
-//   apiClient.v6
-//     .get(
-//       `/cloud/project/${projectId}/ai/data/region/${region}/alias/${alias}/containers`,
-//     )
-//     .then((res) => res.data as Containers);
+export const getDatastoreContainer = async ({
+  projectId,
+  region,
+  alias,
+}: DatastoreProps) =>
+  apiClient.v6
+    .get(
+      `/cloud/project/${projectId}/ai/data/region/${region}/alias/${alias}/containers`,
+    )
+    .then((res) => res.data as Containers);

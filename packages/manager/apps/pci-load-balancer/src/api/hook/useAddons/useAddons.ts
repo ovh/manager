@@ -1,24 +1,16 @@
-import { useMemo } from 'react';
 import {
   getCatalogQuery,
   getProductAvailabilityQuery,
 } from '@ovh-ux/manager-pci-common';
 import { useQueries } from '@tanstack/react-query';
-import { TAddonRegions } from '@/types/region.type';
-import { sortProductBySize } from './addons.select';
+import { TProductAddonDetail } from '@/types/product.type';
+import { getAddonsRegions, getHourlyAddons } from './useAddons.select';
 
-type UseAddonsParams = {
+type TUseAddonsParams = {
   ovhSubsidiary: string;
   projectId: string;
   addonFamily: string;
-  select?: (addons: TAddonRegions) => TAddonRegions;
-};
-
-type UseRegionAddonsParams = {
-  ovhSubsidiary: string;
-  projectId: string;
-  region: string;
-  addonFamily: string;
+  select?: (addons: TProductAddonDetail[]) => TProductAddonDetail[];
 };
 
 export const useAddons = ({
@@ -26,7 +18,7 @@ export const useAddons = ({
   projectId,
   addonFamily,
   select,
-}: UseAddonsParams) =>
+}: TUseAddonsParams) =>
   useQueries({
     queries: [
       getCatalogQuery(ovhSubsidiary),
@@ -38,42 +30,20 @@ export const useAddons = ({
       { data: catalog, isFetching: isCatalogFetching },
       { data: plans, isFetching: isPlansFetching },
     ]) => {
-      const addons = (plans?.plans ?? []).flatMap(({ code, regions }) => {
-        const addon = catalog?.addons.find(({ planCode }) => code === planCode);
-        return addon ? [{ ...addon, regions }] : [];
-      });
+      const addons = getAddonsRegions(plans?.plans ?? [], catalog);
+      const hourlyAddons = getHourlyAddons(addons).map(
+        ({ product, pricings, blobs, regions }) => ({
+          size: product.split('-').pop(),
+          price: pricings[0].price,
+          technicalName: blobs?.technical?.name,
+          bandwidth: blobs?.technical?.bandwidth?.level,
+          regions,
+        }),
+      );
 
       return {
-        addons: select ? select(addons) : addons,
+        addons: select ? select(hourlyAddons) : hourlyAddons,
         isFetching: isCatalogFetching || isPlansFetching,
       };
     },
   });
-
-export const useRegionAddons = ({
-  ovhSubsidiary,
-  projectId,
-  region,
-  addonFamily,
-}: UseRegionAddonsParams) => {
-  const { addons: data, isFetching } = useAddons({
-    ovhSubsidiary,
-    projectId,
-    addonFamily,
-  });
-
-  const addons = useMemo(() => {
-    const products =
-      data.filter(
-        ({ regions, pricings }) =>
-          regions.some(({ name }) => name === region) &&
-          pricings?.find((pricing) =>
-            ['none', 'hour'].includes(pricing.intervalUnit),
-          ),
-      ) || [];
-
-    return sortProductBySize(products);
-  }, [data, region]);
-
-  return { addons, isFetching };
-};

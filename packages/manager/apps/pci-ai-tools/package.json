@@ -32,6 +32,7 @@
     "@tanstack/react-table": "^8.20.1",
     "clsx": "^2.1.0",
     "date-fns": "^3.6.0",
+    "duration-fns": "^3.0.2",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.2",
     "lucide-react": "^0.334.0",
@@ -66,7 +67,8 @@
   },
   "regions": [
     "CA",
-    "EU"
+    "EU",
+    "US"
   ],
   "universes": [
     "@ovh-ux/manager-public-cloud"
