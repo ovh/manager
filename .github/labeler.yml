@@ -107,3 +107,4 @@ common:
   - packages/manager-components/**
   - playwright-helpers/**
   - scripts/**
+  - foo/bar
