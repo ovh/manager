@@ -25,6 +25,7 @@ export default class ovhManagerResourceTaggingAssignModalController {
   $onInit() {
     this.TAG_ASSIGN_FORM = TAG_ASSIGN_FORM;
     this.TAG_REGEX = TAG_REGEX;
+    this.selectedTags = [];
     this.ovhManagerResourceTaggingService.getAllUserTags().then((tags) => {
       this.tags = tags;
       this.keys = tags.map(({ key }) => key);
@@ -33,7 +34,7 @@ export default class ovhManagerResourceTaggingAssignModalController {
     });
   }
 
-  updateModel(event) {
+  updateModel(event, apply = true) {
     if (event.detail.name === TAG_ASSIGN_FORM.KEY) {
       this.model.key = event.detail.value;
       this.model.value = '';
@@ -48,7 +49,9 @@ export default class ovhManagerResourceTaggingAssignModalController {
       TAG_REGEX.test(event.detail.value),
     );
 
-    this.$scope.$apply();
+    if (apply) {
+      this.$scope.$apply();
+    }
   }
 
   $postLink() {
@@ -61,18 +64,52 @@ export default class ovhManagerResourceTaggingAssignModalController {
     });
   }
 
+  addTagToList() {
+    const index = this.selectedTags.findIndex(
+      (tag) => tag.key === this.model.key,
+    );
+    if (index !== -1) {
+      this.selectedTags[index].value = this.model.value;
+    } else {
+      this.selectedTags.push({
+        key: this.model.key,
+        value: this.model.value,
+      });
+    }
+    this.updateModel(
+      {
+        detail: {
+          name: TAG_ASSIGN_FORM.KEY,
+          value: '',
+        },
+      },
+      false,
+    );
+    this.addTagForm.$setPristine();
+    this.addTagForm.$setUntouched();
+  }
+
+  removeSelectedTag(tag) {
+    this.selectedTags = this.selectedTags.filter((t) => t.key !== tag.key);
+  }
+
   assignTag() {
+    this.loading = true;
     this.ovhManagerResourceTaggingService
-      .assignTag(this.resourceUrn, this.model.key, this.model.value)
+      .assignMultipleTags(this.resourceUrn, this.selectedTags)
       .then(() => {
-        this.Alerter.success(
-          this.$translate.instant(
-            'manager_components_resource_tagging_assign_modal_success',
-          ),
-          'resourcetagging.assign',
-        );
+        this.goBack(true).then(() => {
+          this.loading = false;
+          this.Alerter.success(
+            this.$translate.instant(
+              'manager_components_resource_tagging_assign_modal_success',
+            ),
+            'resourcetagging.manager',
+          );
+        });
       })
       .catch((error) => {
+        this.loading = false;
         this.Alerter.error(
           this.$translate.instant(
             'manager_components_resource_tagging_assign_modal_error',
@@ -88,7 +125,7 @@ export default class ovhManagerResourceTaggingAssignModalController {
 
   cancel() {
     this.loading = true;
-    this.goBack(true).then(() => {
+    this.goBack().then(() => {
       this.loading = false;
     });
   }
