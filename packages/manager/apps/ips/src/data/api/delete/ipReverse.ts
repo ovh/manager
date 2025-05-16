@@ -17,10 +17,9 @@ export const deleteIpReverseQueryKey = (params: DeleteIpReverseParams) => [
  */
 export const deleteIpReverse = async (
   params: DeleteIpReverseParams,
-): Promise<ApiResponse<Record<string, never>>> => {
-  return apiClient.v6.delete<Record<string, never>>(
+): Promise<ApiResponse<null>> =>
+  apiClient.v6.delete<null>(
     `/ip/${encodeURIComponent(params.ipGroup)}/reverse/${encodeURIComponent(
       params.ip,
     )}`,
   );
-};
