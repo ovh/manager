@@ -6,7 +6,7 @@
   "managed_vcd_dashboard_name": "Name",
   "managed_vcd_dashboard_localisation": "Region",
   "managed_vcd_dashboard_datacentres_count": "Anzahl der Virtual Datacenter",
-  "managed_vcd_dashboard_management_interface": "Verwaltungsinterface",
+  "managed_vcd_dashboard_management_interface": "VCD-Interface",
   "managed_vcd_dashboard_management_interface_access": "Zu VCD wechseln",
   "managed_vcd_dashboard_api_url": "API-URL",
   "managed_vcd_dashboard_options": "Optionen",
