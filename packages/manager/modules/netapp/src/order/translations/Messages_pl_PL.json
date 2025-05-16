@@ -16,6 +16,6 @@
   "netapp_order_commitment_payment": "Sposoby płatności",
   "netapp_order_confirm": "Zatwierdź",
   "netapp_order_performance_customization": "Podczas przydzielania pojemności określisz jednocześnie poziom wydajności Twojej usługi. Dla przypomnienia: 64 MB/s i 4000 IOPS na TB udostępnionej pojemności.",
-  "netapp_order_region_compatiable_with_info": "Kompatybilny z",
+  "netapp_order_region_compatiable_with_info": "Działa z",
   "netapp_order_region_badge_vrack": "vRack"
 }

@@ -135,7 +135,7 @@
   "vps_configuration_reboot_alert": "Czas niedostępności związany z restartem: około 2 minuty.",
   "vps_configuration_reboot_success": "Nastąpi restart VPS {{serviceName}} (przewidywany czas: 2 minuty)",
   "vps_configuration_reboot_todo": "Zlecenie restartu zostało przyjęte.",
-  "vps_configuration_reboot_fail": "Wystąpił błąd podczas restartu.",
+  "vps_configuration_reboot_fail": "Wystąpił błąd podczas restartu serwera. {{ error }}",
   "vps_configuration_reboot_rescue_title_button": "Tryb Rescue",
   "vps_configuration_reboot_rescue_warning_text": "Niektóre operacje są niedostępne w <b>trybie Rescue</b>. Aby przywrócić funkcje, przywróć najpierw local boot, klikając „Zrestartuj VPS”.",
   "vps_configuration_reboot_rescue_warning_btn_title": "Ta operacja nie jest dostępna w trybie Rescue.",

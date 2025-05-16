@@ -21,5 +21,14 @@
   "dedicatedCloud_tab_host_hourly_usage_update": "As of {{t0}}",
   "dedicatedCloud_tab_host_location_datacenter": "Datacentre",
   "dedicatedCloud_tab_host_location_room": "Room",
-  "dedicatedCloud_tab_host_location_rack": "Rack"
+  "dedicatedCloud_tab_host_location_rack": "Rack",
+  "dedicatedCloud_tab_host_billing_hourly": "Hourly",
+  "dedicatedCloud_tab_host_billing_monthly": "Monthly",
+  "dedicatedCloud_tab_host_billing_freeSpare": "Free spare",
+  "dedicatedCloud_tab_host_billing_undefined": "Undefined",
+  "dedicatedCloud_tab_host_status_adding": "Adding...",
+  "dedicatedCloud_tab_host_status_delivered": "Active",
+  "dedicatedCloud_tab_host_status_error": "Error",
+  "dedicatedCloud_tab_host_status_removing": "Deleting...",
+  "dedicatedCloud_tab_host_status_unknown": "Unknown"
 }
