@@ -1,9 +1,17 @@
 export default class {
   /* @ngInject */
-  constructor($scope, $translate, constants) {
+  constructor(
+    $scope,
+    $translate,
+    constants,
+    coreURLBuilder,
+    ovhFeatureFlipping,
+  ) {
     this.$scope = $scope;
     this.$translate = $translate;
     this.constants = constants;
+    this.coreURLBuilder = coreURLBuilder;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
   $onInit() {
@@ -11,6 +19,20 @@ export default class {
     if (this.dedicatedCloud.isExpired) {
       this.setMessage(this.$translate.instant('common_expired'), 'danger');
     }
+
+    const logsFeature = 'hpc-vmware-vsphere:logs';
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability(logsFeature)
+      .then((featureAvailability) => {
+        this.isLogsAvailable = featureAvailability.isFeatureAvailable(
+          logsFeature,
+        );
+      });
+
+    this.logsUrl = this.coreURLBuilder.buildURL(
+      'hpc-vmware-vsphere',
+      `#/${this.productId}/logs`,
+    );
   }
 
   editDescription(value) {
