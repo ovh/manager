@@ -15,6 +15,7 @@ export default /* @ngInject */ function XdslModemWifiCtrl(
 
   self.wifis = null;
   self.defaultWifi = null;
+  self.canConfigureWifi = null;
 
   this.undo = function undo() {
     self.defaultWifi.enabled = self.undoData.enabled;
@@ -82,6 +83,28 @@ export default /* @ngInject */ function XdslModemWifiCtrl(
         self.undoData = {
           enabled: self.defaultWifi ? self.defaultWifi.enabled : false,
         };
+
+        // TODO switch this value
+        self.isConfigureWifiDisabled =
+          !self.mediator.info.managedByOvh ||
+          !self.wifis.length ||
+          (self.wifis.length === 1 &&
+            (!self.mediator.capabilities.canChangeWLAN ||
+              self.mediator.tasks.changeModemConfigWLAN === true));
+
+        /*
+        self.isConfigureWifiDisabled = !self.mediator.info.managedByOvh 
+          || !self.wifis.length 
+          || (self.wifis.length === 1 
+            && (!self.mediator.capabilities.canChangeWLAN 
+              || self.mediator.tasks.changeModemConfigWLAN === true
+            )
+          )
+          || (!self.mediator.capabilities.canChangeWLAN
+            && !self.mediator.capabilities.canChangeWifi
+          );
+        */
+
         return data;
       })
       .catch((err) => {
