@@ -12,7 +12,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 type VolumeSelectStepProps = {
-  volumes: TVolume[] | undefined;
+  volumes?: TVolume[];
   selectedVolumeId: string;
   onVolumeChange: (
     event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
@@ -20,7 +20,7 @@ type VolumeSelectStepProps = {
 };
 
 export default function VolumeSelectStep({
-  volumes,
+  volumes = [],
   selectedVolumeId,
   onVolumeChange,
 }: VolumeSelectStepProps) {
@@ -45,7 +45,7 @@ export default function VolumeSelectStep({
           placeholder={t(
             'pci_projects_project_storages_volume_backup_create_step_1_select_placeholder',
           )}
-          isDisabled={volumes?.length === 0}
+          isDisabled={volumes.length === 0}
         >
           {volumes?.map((volume) => (
             <option value={volume.id} key={volume.id}>
