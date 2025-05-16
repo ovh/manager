@@ -4,9 +4,9 @@
   "managed_vcd_listing_name": "Nombre",
   "managed_vcd_listing_location": "Localización",
   "managed_vcd_listing_description": "Descripción",
-  "managed_vcd_listing_web_interface_url": "URL interfaz web",
-  "managed_vcd_listing_region": "Región",
   "managed_vcd_listing_vcd_tutorial_guides": "Todas las guías VCD",
   "managed_vcd_listing_vcd_fondamentals_guides": "Conceptos básicos de VCD",
-  "managed_vcd_listing_vcd_faq_guides": "FAQ VCD"
+  "managed_vcd_listing_vcd_faq_guides": "FAQ VCD",
+  "managed_vcd_listing_web_interface_url": "Interfaz VCD",
+  "managed_vcd_listing_region": "Región"
 }
