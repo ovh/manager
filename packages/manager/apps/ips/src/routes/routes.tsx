@@ -38,6 +38,23 @@ export const Routes: any = [
                 pageType: PageType.listing,
               },
             },
+            children: [
+              {
+                id: 'configure-reverse-dns',
+                path: urls.configureReverseDns,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/configureReverseDns/configureReverseDns.page'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'configure-reverse-dns',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
+            ],
           },
           {
             id: 'manage-organisations',

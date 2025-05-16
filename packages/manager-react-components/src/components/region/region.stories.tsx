@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import { Region } from './region.component';
 
 const managerRegion = {
@@ -7,7 +7,7 @@ const managerRegion = {
   component: Region,
 };
 
-const Template: Story<any> = (args) => <Region {...args} />;
+const Template: StoryFn<any> = (args) => <Region {...args} />;
 
 export const DemoRegion = Template.bind({});
 

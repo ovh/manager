@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Translation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -51,7 +51,7 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
                   apiError?.response?.data?.message ||
                   apiError?.message ||
                   null,
-                requestId: apiError?.response?.headers?.['x-ovh-queryid'],
+                ovhQueryId: apiError?.response?.headers?.['x-ovh-queryid'],
               }),
             }}
           />
