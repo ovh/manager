@@ -5,6 +5,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import utils from '../utils';
 
 import component from './services-actions.component';
+import autoRenewServiceModalModule from '../auto-renew-service-modal/auto-renew-service-modal.module';
 
 const moduleName = 'ovhManagerHubServicesActions';
 
@@ -15,6 +16,7 @@ angular
     'oui',
     ovhManagerCore,
     utils,
+    autoRenewServiceModalModule,
   ])
   .component('billingServicesActions', component)
   .run(/* @ngTranslationsInject:json ./translations */);
