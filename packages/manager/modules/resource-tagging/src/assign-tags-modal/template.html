@@ -7,7 +7,7 @@
         data-secondary-label="{{:: 'manager_components_resource_tagging_assign_modal_cancel' | translate }}"
         data-heading="{{ 'manager_components_resource_tagging_assign_modal_title' | translate }}"
         data-loading="$ctrl.loading"
-        data-primary-disabled="$ctrl.addTagForm.$invalid"
+        data-primary-disabled="$ctrl.selectedTags.length === 0"
     >
         <div data-ovh-alert="resourcetagging.assign"></div>
         <div class="mb-4">
@@ -23,6 +23,7 @@
                 no-result-label="{{:: 'manager_components_resource_tagging_assign_modal_no_result' | translate}}"
                 placeholder="{{:: 'manager_components_resource_tagging_assign_modal_placeholder' | translate}}"
                 data-ng-model="$ctrl.model.key"
+                value="{{$ctrl.model.key}}"
                 has-error="{{$ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.KEY].$touched && $ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.KEY].$invalid}}"
             >
                 <ods-combobox-item
@@ -69,6 +70,39 @@
                 data-translate="manager_components_resource_tagging_assign_modal_field_error"
             >
             </span>
+        </div>
+        <div class="mb-4">
+            <oui-button
+                data-variant="secondary"
+                data-type="button"
+                data-disabled="$ctrl.addTagForm.$invalid"
+                data-ng-click="$ctrl.addTagToList()"
+            >
+                <span
+                    data-translate="manager_components_resource_tagging_assign_modal_add"
+                ></span>
+            </oui-button>
+
+            <div class="mt-4" data-ng-if="$ctrl.selectedTags.length > 0">
+                <div
+                    data-translate="manager_components_resource_tagging_assign_modal_selected_tags"
+                ></div>
+                <div class="d-flex flex-row flex-wrap">
+                    <div data-ng-repeat="tag in $ctrl.selectedTags" class="m-1">
+                        <span
+                            class="oui-badge oui-badge_sold-out p-1"
+                            data-ng-click="$ctrl.removeSelectedTag(tag)"
+                        >
+                            <span
+                                data-ng-bind="tag.key + ':' + tag.value"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-close my-1 align-middle"
+                            ></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
     </oui-modal>
 </form>

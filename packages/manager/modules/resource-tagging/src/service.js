@@ -16,7 +16,7 @@ export default class ovhManagerResourceTaggingService {
   static getFormattedTags(tags) {
     if (!tags) return [];
     return Object.keys(tags)
-      .filter((key) => key !== 'ovh')
+      .filter((key) => key.indexOf('ovh:') !== 0)
       .map((key) => ({
         key,
         value: tags[key],
@@ -37,6 +37,29 @@ export default class ovhManagerResourceTaggingService {
     const defaultKey = OVHCLOUD_TAGS.find((tag) => tag.key === key);
     if (!defaultKey) return false;
     return !!defaultKey.values.find((val) => val === value);
+  }
+
+  assignMultipleTags(resourceUrn, tags) {
+    return this.Apiv2Service.httpApiv2({
+      method: 'get',
+      url: `/engine/api/v2/iam/resource/${resourceUrn}`,
+    }).then(({ data: resource }) => {
+      const tagsObject = tags.reduce(
+        (acc, { key, value }) => ({
+          ...acc,
+          [key]: value,
+        }),
+        {},
+      );
+
+      const newResourceTags = { ...resource.tags, ...tagsObject };
+
+      return this.Apiv2Service.httpApiv2({
+        method: 'put',
+        url: `/engine/api/v2/iam/resource/${resourceUrn}`,
+        data: { tags: newResourceTags },
+      });
+    });
   }
 
   assignTag(resourceUrn, key, value) {
