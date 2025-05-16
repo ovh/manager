@@ -22,15 +22,10 @@ export default class LockPortCtrl {
       .then((task) => {
         this.interface.setDisabling(true);
         return this.goBack(
-          {
-            textHtml: this.$translate.instant(
-              'cloud_connect_pop_block_port_success',
-              {
-                port: this.interfaceId,
-                tasksUrl: this.tasksHref,
-              },
-            ),
-          },
+          this.$translate.instant('cloud_connect_pop_block_port_success', {
+            port: this.interfaceId,
+            tasksUrl: this.tasksHref,
+          }),
           'success',
           false,
         ).then(() => {
