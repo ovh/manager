@@ -14,15 +14,22 @@ export const TYPE = {
   ERROR: 'error',
   ERROR_DOWN: 'error:download',
   ERROR_UP: 'error:upload',
+  BGP_ROAD: 'bgp',
+  BGP_ROAD_ACCEPTED: 'prefix:accepted',
+  BGP_ROAD_LIMIT: 'prefix:limit',
 };
 
 export const PERIOD_ENUM = ['hourly', 'daily', 'weekly'];
 
-export const TYPE_ENUM = ['error', 'light', 'traffic'];
+export const OCC_DIRECT_TYPE_ENUM = ['traffic', 'error', 'light', 'bgp'];
+
+export const OCC_OTHER_TYPE_ENUM = ['traffic', 'bgp'];
 
 export const TYPE_LABELS = {
   down: 'down',
   up: 'up',
+  accepted: 'accepted',
+  limit: 'limit',
 };
 
 export const LABELS = {
@@ -34,6 +41,8 @@ export const LABELS = {
   upload: 'upload',
   in: 'in',
   out: 'out',
+  accepted: 'accepted',
+  limit: 'limit',
 };
 
 export const STATISTICS = {
@@ -130,6 +139,7 @@ export default {
   PERIOD_ENUM,
   STATISTICS,
   TYPE,
-  TYPE_ENUM,
   TYPE_LABELS,
+  OCC_OTHER_TYPE_ENUM,
+  OCC_DIRECT_TYPE_ENUM,
 };
