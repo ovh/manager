@@ -30,9 +30,10 @@ import groupBy from 'lodash/groupBy';
  */
 export default class {
   /* @ngInject */
-  constructor(tucVoipBillingAccount, tucVoipService) {
+  constructor(tucVoipBillingAccount, tucVoipService, $http) {
     this.tucVoipBillingAccount = tucVoipBillingAccount;
     this.tucVoipService = tucVoipService;
+    this.$http = $http;
   }
 
   /**
@@ -65,5 +66,11 @@ export default class {
           return billingAccounts;
         }),
       );
+  }
+
+  fetchSound(soundId) {
+    return this.$http
+      .get(`/telephony/sounds/${soundId}`)
+      .then(({ data }) => data);
   }
 }
