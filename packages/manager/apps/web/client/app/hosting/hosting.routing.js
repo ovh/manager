@@ -68,8 +68,6 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         ],
       }),
-      description: ($translate) =>
-        $translate.instant('hosting_datagrid_description'),
       header: /* @ngInject */ ($translate) =>
         $translate.instant('hostings_title'),
       changelog: () => 'hosting_plan',
