@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useLocation } from 'react-router-dom';
 import { useShell } from '@/context/useApplicationContext';
@@ -15,6 +15,7 @@ export const ProductNavReshuffleProvider = ({
   children = null,
 }: Props): JSX.Element => {
 
+  const [isFirstTabDone, setIsFirstTabDone] = useState<boolean>(false);
   const location = useLocation();
   const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(null);
   const [navigationTree, setNavigationTree] = useState({});
@@ -22,6 +23,7 @@ export const ProductNavReshuffleProvider = ({
   const [isMobile, setIsMobile] = useState(useMediaQuery({
     query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
   }));
+  const firstFocusableElement = useRef(null)
   const [isAnimated, setIsAnimated] = useState(false);
   const [isLocationChangesOnce, setIsLocationChangesOnce] = useState(false);
   const [popoverPosition, setPopoverPosition] = useState<number>(0);
@@ -120,6 +122,9 @@ export const ProductNavReshuffleProvider = ({
     navigationTree,
     setNavigationTree,
     isMobile,
+    isFirstTabDone,
+    setIsFirstTabDone,
+    firstFocusableElement,
     isAnimated,
     setIsAnimated,
     popoverPosition,

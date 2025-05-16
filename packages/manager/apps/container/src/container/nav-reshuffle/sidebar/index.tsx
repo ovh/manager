@@ -65,6 +65,7 @@ const Sidebar = (): JSX.Element => {
     setCurrentNavigationNode,
     closeNavigationSidebar,
     isMobile,
+    firstFocusableElement,
     isAnimated,
     setIsAnimated,
     isNavigationSidebarOpened,
@@ -308,22 +309,23 @@ const Sidebar = (): JSX.Element => {
           style.sidebar_short} ${isAnimated && style.sidebar_animated}`}
       >
         <div className={style.sidebar_lvl1}>
-          {!isMobile && (
-            <a
-              role="img"
-              className={`block ${style.sidebar_logo}`}
-              aria-label="OVHcloud"
-              target="_top"
-              href={logoLink}
+            {!isMobile && (
+              <a
+                role="img"
+                className={`block ${style.sidebar_logo}`}
+                aria-label="OVHcloud"
+                target="_top"
+                href={logoLink}
+                ref={firstFocusableElement}
             >
-              <img
-                className={`${open ? 'mx-4' : 'mx-2'} my-3`}
-                src={open ? logo : shortLogo}
-                alt="OVHcloud"
-                aria-hidden="true"
-              />
-            </a>
-          )}
+                <img
+                  className={`${open ? 'mx-4' : 'mx-2'} my-3`}
+                  src={open ? logo : shortLogo}
+                  alt="OVHcloud"
+                  aria-hidden="true"
+                />
+              </a>
+            )}
 
           <div className={style.sidebar_menu} role="menubar" aria-label="sidebar_description">
             <ul id="menu" role="menu">

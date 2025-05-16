@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, MutableRefObject } from 'react';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 
 export type ProductNavReshuffleContextType = {
@@ -10,6 +10,9 @@ export type ProductNavReshuffleContextType = {
   isMobile: boolean;
   isAnimated: boolean;
   popoverPosition: number;
+  isFirstTabDone: boolean,
+  firstFocusableElement: MutableRefObject<any>,
+  setIsFirstTabDone: (isFirstTabDone: boolean) => void,
   startOnboarding: () => void;
   openOnboarding: () => void;
   closeOnboarding: (isDone?: boolean) => void;

@@ -4,6 +4,7 @@ import Navbar, { INavbar } from './components/navbar';
 import Chatbot from './components/chatbot';
 import Progress from './components/progress';
 import Preloader from './components/preloader';
+import UxSkipToTheMainContent from './components/skipToTheMainContent';
 
 export interface ISidebars {
   [name: string]: Sidebar;
@@ -21,6 +22,8 @@ interface IShellUx {
     sidebarName: string,
     callback: CallableFunction,
   ): void;
+  skipToTheMainContent: () => void;
+  onSkipToTheMainContent: (callback: CallableFunction) => void;
 }
 
 export class ShellUX implements IShellUx {
@@ -35,6 +38,8 @@ export class ShellUX implements IShellUx {
   private progress: Progress;
 
   private preloader: Preloader;
+
+  private uxSkipToTheMainContent: UxSkipToTheMainContent;
 
   constructor(shell: Shell) {
     this.shell = shell;
@@ -193,5 +198,13 @@ export class ShellUX implements IShellUx {
 
   onChatbotVisibilityChange(callback: CallableFunction) {
     this.chatbot.onVisibilityChange(callback);
+  }
+
+  skipToTheMainContent() {
+    this.uxSkipToTheMainContent.skip();
+  }
+
+  onSkipToTheMainContent(callback: CallableFunction) {
+    this.uxSkipToTheMainContent.onSkip(callback);
   }
 }
