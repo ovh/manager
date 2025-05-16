@@ -8,3 +8,4 @@ export * from './vcd-orderable-resource.type';
 export * from './vcd-organization.type';
 export * from './vcd-storage.type';
 export * from './vcd-utility.type';
+export * from './vcd-vrack-segment.type';
