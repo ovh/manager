@@ -17,12 +17,13 @@
       "persistent": true,
       "cache": false,
       "env": [
-        "VITE_CONTAINER_APP",
         "CONTAINER",
-        "REGION",
         "LABEU",
         "LABEU_HOST",
-        "local2API"
+        "local2API",
+        "REGION",
+        "VERSION",
+        "VITE_CONTAINER_APP"
       ],
       "dependsOn": ["^dev"]
     }
