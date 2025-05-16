@@ -18,9 +18,6 @@
     "common-tests-config-migration": "node ./tests-migrate/common-tests-config-migration.mjs",
     "json-to-component-route-migration": "node ./routes-migrate/json-to-component-route-migration.mjs",
     "manager-cli": "node ./manager-cli.mjs",
-    "test": "vitest run",
-    "test:cov": "vitest run --coverage",
-    "test:watch": "vitest",
     "transform-routes": "node routes/steps/transform-routes-cli.mjs",
     "update-routers-init": "node routes/steps/update-routers-init-cli.mjs"
   },
