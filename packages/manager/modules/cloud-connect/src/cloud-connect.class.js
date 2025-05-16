@@ -226,6 +226,10 @@ export default class CloudConnect {
     return this.popType === POP_TYPE_CONSTANT.L3;
   }
 
+  isL2PopType() {
+    return this.popType === POP_TYPE_CONSTANT.L2;
+  }
+
   canCreateDc() {
     return !find(
       this.datacenterConfigurations,
