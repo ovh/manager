@@ -427,7 +427,7 @@ export default function Websites() {
             />
             <OdsButton
               id="export-popover-trigger"
-              label={t('web_hosting_export_action_label')}
+              label={t('web_hosting_export_label')}
               variant={ODS_BUTTON_VARIANT.outline}
               data-testid="websites-page-export-button"
               isLoading={isCSVLoading}

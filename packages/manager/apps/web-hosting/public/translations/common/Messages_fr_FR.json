@@ -3,7 +3,7 @@
   "websites": "Sites internet",
   "web_hosting_header_order": "Commander",
   "web_hosting_header_guide_general_informations": "Informations générales",
-  "web_hosting_export_action_label": "Exporter en CSV",
+  "web_hosting_export_label": "Exporter en CSV",
   "web_hosting_export_label_displayed": "Les noms de domaines affichés",
   "web_hosting_export_label_all": "Tous les noms de domaines",
   "web_hosting_export_success": "Le fichier a été correctement créé. Si le téléchargement ne démarre pas, vous pouvez le télécharger manuellement.",
