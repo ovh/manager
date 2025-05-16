@@ -675,4 +675,20 @@ export default class CloudConnectService {
       .get(`/ovhCloudConnect/${cloudConnectId}/interface/${interfaceId}/status`)
       .then(({ data }) => data);
   }
+
+  loadPopStatistics(cloudConnectId, pop, options) {
+    if (!pop) {
+      return [];
+    }
+    return this.$http
+      .get(
+        `/ovhCloudConnect/${cloudConnectId}/config/pop/${pop.id}/statistics`,
+        { params: options },
+      )
+      .then((statistics) => {
+        const stats = statistics.data || [];
+        return stats.map(({ timestamp, value }) => [timestamp * 1000, value]);
+      })
+      .catch(() => []);
+  }
 }
