@@ -12,23 +12,15 @@ describe('License Hycu billing information tile for dashboard test suite', () =>
     await waitFor(
       () =>
         expect(
-          screen.getAllByText(
-            labels.dashboard.hycu_dashboard_subscription_title,
-          )[0],
+          screen.getAllByText(labels.billing.subscription)[0],
         ).toBeVisible(),
       { timeout: 30_000 },
     );
 
+    expect(screen.getByText(labels.billing.automatic_renew)).toBeVisible();
+    expect(screen.getByText(labels.contact.contacts)).toBeVisible();
     expect(
-      screen.getByText(labels.dashboard.hycu_dashboard_label_renew),
-    ).toBeVisible();
-    expect(
-      screen.getByText(labels.dashboard.hycu_dashboard_field_label_contacts),
-    ).toBeVisible();
-    expect(
-      screen.getByText(
-        labels.dashboard.hycu_dashboard_field_label_date_creation,
-      ),
+      screen.getByText(labels.commonDashboard.creation_date),
     ).toBeVisible();
   });
 
@@ -39,9 +31,7 @@ describe('License Hycu billing information tile for dashboard test suite', () =>
     await waitFor(
       () => {
         expect(
-          screen.getAllByText(
-            labels.dashboard.hycu_dashboard_subscription_title,
-          )[0],
+          screen.getAllByText(labels.billing.subscription)[0],
         ).toBeVisible();
         expect(
           screen.getByText(labels.dashboard.hycu_dashboard_link_terminate),
@@ -83,12 +73,9 @@ describe('License Hycu billing information tile for dashboard test suite', () =>
       }),
     );
 
-    const resiliateButton = await screen.getByText(
-      labels.terminate.hycu_terminate_confirm_label,
-      {
-        exact: true,
-      },
-    );
+    const resiliateButton = screen.getByText(labels.actions.terminate, {
+      exact: true,
+    });
 
     await waitFor(
       () => expect(resiliateButton).not.toHaveAttribute('disabled'),

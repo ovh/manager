@@ -32,6 +32,7 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import Errors from '@/components/Error/Error';
@@ -51,9 +52,11 @@ import { TRACKING } from '@/tracking.constant';
 
 export default function Order() {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('hycu/order');
-  const { t: tCommon } = useTranslation('hycu');
-  const { t: tError } = useTranslation('hycu/error');
+  const { t } = useTranslation([
+    'hycu/order',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.ERROR,
+  ]);
   const navigate = useNavigate();
 
   const { environment } = useContext(ShellContext);
@@ -87,7 +90,8 @@ export default function Order() {
     },
   ];
 
-  if (isError) return <Errors>{tError('manager_error_page_default')}</Errors>;
+  if (isError)
+    return <Errors>{t(`${NAMESPACES.ERROR}:error_loading_page`)}</Errors>;
 
   if (isLoading) return <Loading />;
 
@@ -144,7 +148,7 @@ export default function Order() {
               slot="actions"
               variant={ODS_BUTTON_VARIANT.ghost}
             >
-              {tCommon('hycu_cta_cancel')}
+              {t(`${NAMESPACES.ACTIONS}:cancel`)}
             </OsdsButton>
             <OsdsButton
               color={ODS_THEME_COLOR_INTENT.primary}
@@ -156,7 +160,7 @@ export default function Order() {
               }}
               slot="actions"
             >
-              {tCommon('hycu_cta_order')}
+              {t(`${NAMESPACES.ACTIONS}:order`)}
             </OsdsButton>
           </div>
         </>
@@ -216,7 +220,7 @@ export default function Order() {
               navigate(urls.listing);
             }}
           >
-            {tCommon('hycu_cta_done')}
+            {t(`${NAMESPACES.ACTIONS}:end`)}
           </OsdsButton>
         </>
       )}

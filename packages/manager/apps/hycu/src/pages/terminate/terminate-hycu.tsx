@@ -1,3 +1,4 @@
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   DeleteServiceModal,
   useNotifications,
@@ -8,7 +9,11 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const TerminateLicensePage = () => {
-  const { t } = useTranslation('hycu/terminate');
+  const { t } = useTranslation([
+    'hycu/terminate',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.ERROR,
+  ]);
   const { serviceName } = useParams();
   const navigate = useNavigate();
   const { addSuccess, addError } = useNotifications();
@@ -24,7 +29,9 @@ export const TerminateLicensePage = () => {
 
   const handleErrorDelete = async (error: AxiosError) => {
     closeModal();
-    addError(t('hycu_terminate_error_message', { error: error.message }));
+    addError(
+      t(`${NAMESPACES.ERROR}:error_message`, { message: error.message }),
+    );
   };
 
   return (
@@ -32,8 +39,8 @@ export const TerminateLicensePage = () => {
       headline={t('hycu_terminate_headline')}
       description={t('hycu_terminate_description')}
       deleteInputLabel=""
-      cancelButtonLabel={t('hycu_terminate_cancel_label')}
-      confirmButtonLabel={t('hycu_terminate_confirm_label')}
+      cancelButtonLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
+      confirmButtonLabel={t(`${NAMESPACES.ACTIONS}:terminate`)}
       onSuccess={handleSuccessDelete}
       onError={handleErrorDelete}
       closeModal={closeModal}
