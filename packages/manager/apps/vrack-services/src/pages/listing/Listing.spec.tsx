@@ -44,7 +44,7 @@ describe('Vrack Services listing test suite', () => {
 
     let deleteButton = await getButtonByLabel({
       container,
-      value: labels.common['action-deleteVrackServices'],
+      value: labels.actions.delete,
       nth: 6,
     });
     await assertDisabled(deleteButton);
@@ -65,7 +65,7 @@ describe('Vrack Services listing test suite', () => {
 
     deleteButton = await getButtonByLabel({
       container,
-      value: labels.common['action-deleteVrackServices'],
+      value: labels.actions.delete,
       nth: 1,
     });
     await assertEnabled(deleteButton);
