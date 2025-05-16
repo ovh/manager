@@ -38,6 +38,8 @@ export const FEATURE_NAMES = {
   managedBareMetal: 'managed-bare-metal',
   managedBareMetalDatacenter: 'managed-bare-metal',
   ovhCloudConnect: 'cloud-connect',
+  vmwareCloudDirectorVirtualDataCenter:
+    'vmware-cloud-director-virtual-dataCenter',
   vrackServices: 'vrack-services',
   legacyVrackDelete: 'vrack:delete',
 };
