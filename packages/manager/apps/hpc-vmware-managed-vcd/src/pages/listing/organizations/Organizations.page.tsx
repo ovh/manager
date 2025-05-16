@@ -55,16 +55,19 @@ const DatagridDescriptionCell = (vdcOrg: VCDOrganization) => (
   <DataGridTextCell>{vdcOrg.currentState?.description}</DataGridTextCell>
 );
 
-const DatagridWebInterfaceCell = (vdcOrg: VCDOrganization) => (
-  <DataGridTextCell>
-    <Links
-      href={vdcOrg.currentState?.webInterfaceUrl}
-      type={LinkType.external}
-      label={vdcOrg.currentState?.webInterfaceUrl}
-      target="_blank"
-    />
-  </DataGridTextCell>
-);
+const DatagridWebInterfaceCell = (vdcOrg: VCDOrganization) => {
+  const { t } = useTranslation('dashboard');
+  return (
+    <DataGridTextCell>
+      <Links
+        href={vdcOrg.currentState?.webInterfaceUrl}
+        type={LinkType.external}
+        label={t('managed_vcd_dashboard_management_interface_access')}
+        target="_blank"
+      />
+    </DataGridTextCell>
+  );
+};
 
 /* ======= listing page ======= */
 export default function Listing() {
