@@ -5,7 +5,7 @@ import {
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import { useOKMSById } from '@/data/hooks/useOKMS';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
 import InformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/InformationsTile';
 import BillingInformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/BillingInformationsTile';
 import Loading from '@/components/Loading/Loading';
@@ -23,7 +23,7 @@ function GeneralInformationsTab() {
   const navigate = useNavigate();
 
   if (error) {
-    navigate(ROUTES_URLS.root);
+    navigate(KMS_ROUTES_URIS.root);
   }
 
   if (isOkmsLoading || isOkmsServiceLoading || !okms || !okmsService) {
