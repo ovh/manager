@@ -1,0 +1,20 @@
+{
+  "dashboardTitle": "Dashboard",
+  "accessLinkTitle": "Accedi",
+  "httpAccess": "Accesso al container",
+  "labelsTitle": "Etichette",
+  "resourcesTitle": "Risorse",
+  "lifeCycleTitle": "Ciclo di vita",
+  "configurationTitle": "Configurazione",
+  "cliTitle": "CLI",
+  "cliCodeTitle": "È possibile riavviare lo stesso job utilizzando queste linee di comando nella CLI ovhai.",
+  "cliEquivalentToastMessage": "Ordine copiato",
+  "durationTitle": "Durata di funzionamento",
+  "jobIdLabel": "Id del job",
+  "jobIdCopyToast": "L’identificativo del job è stato copiato",
+  "deleteJobButton": "Elimina il job",
+  "accessTitle": "Accesso Http",
+  "accessTooltip": "L’accesso HTTP permette di essere reindirizzato dal tuo browser verso la porta 80 del container, se questo è ancora in esecuzione. Per accedere all'interfaccia Web è necessario identificarsi.",
+  "grafanaTitle": "Controllo dei consumi",
+  "grafanaButton": "Dashboard grafana"
+}
