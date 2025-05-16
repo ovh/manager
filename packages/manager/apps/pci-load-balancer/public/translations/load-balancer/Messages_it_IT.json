@@ -18,7 +18,7 @@
   "octavia_load_balancer_creation_date": "Data di creazione",
   "octavia_load_balancer_operating_status": "Stato operazione",
   "octavia_load_balancer_actions_detail": "Dettagli del Load Balancer",
-  "octavia_load_balancer_actions_delete": "Eliminare",
+  "octavia_load_balancer_actions_delete": "Disattivare",
   "octavia_load_balancer_operating_status_online": "online",
   "octavia_load_balancer_operating_status_offline": "offline",
   "octavia_load_balancer_operating_status_degraded": "degradato",
@@ -28,9 +28,9 @@
   "octavia_load_balancer_provisioning_status": "Stato del provisioning",
   "octavia_load_balancer_provisioning_status_active": "attivo",
   "octavia_load_balancer_provisioning_status_creating": "in corso di creazione",
-  "octavia_load_balancer_provisioning_status_deleted": "eliminato",
-  "octavia_load_balancer_provisioning_status_deleting": "Eliminazione in corso...",
+  "octavia_load_balancer_provisioning_status_deleted": "Disattivato",
+  "octavia_load_balancer_provisioning_status_deleting": "In corso di disattivazione",
   "octavia_load_balancer_provisioning_status_updating": "aggiornamento in corso...",
   "octavia_load_balancer_provisioning_status_error": "errore",
-  "octavia_load_balancer_delete_success": "Il Load Balancer è stato eliminato correttamente"
+  "octavia_load_balancer_delete_success": "Il tuo Load Balancer è stato disattivato correttamente"
 }
