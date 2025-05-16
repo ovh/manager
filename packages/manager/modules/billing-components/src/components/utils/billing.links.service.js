@@ -58,12 +58,12 @@ export default class BillingLinksService {
         `${autorenewLink}/${service.id}/cancel-commitment`;
       links.cancelResiliationLink =
         (getCancelResiliationLink && getCancelResiliationLink()) ||
-        `${autorenewLink}/cancel-resiliation?serviceId=${service.serviceId}${serviceTypeParam}`;
-      links.warningLink = `${autorenewLink}/warn-nic?nic=${service.contactBilling}`;
+        `${autorenewLink}/services/cancel-resiliation?serviceId=${service.serviceId}${serviceTypeParam}`;
+      links.warningLink = `${autorenewLink}/services/warn-nic?nic=${service.contactBilling}`;
       links.updateLink = `${autorenewLink}/update?serviceId=${service.serviceId}${serviceTypeParam}`;
       links.deleteLink =
         service.serviceType &&
-        `${autorenewLink}/delete-${service.serviceType
+        `${autorenewLink}/services/delete-${service.serviceType
           .replace(/_/g, '-')
           .toLowerCase()}?serviceId=${service.serviceId}`;
 
@@ -73,7 +73,7 @@ export default class BillingLinksService {
 
       switch (service.serviceType) {
         case SERVICE_TYPE.EMAIL_DOMAIN:
-          links.resiliateLink = `${autorenewLink}/delete-email?serviceId=${service.serviceId}&name=${service.domain}`;
+          links.resiliateLink = `${autorenewLink}/services/delete-email?serviceId=${service.serviceId}&name=${service.domain}`;
           links.cancelResiliationLink = null;
           break;
         case SERVICE_TYPE.SMS:
@@ -105,18 +105,18 @@ export default class BillingLinksService {
         case SERVICE_TYPE.ALL_DOM:
           links.resiliateLink = service.canResiliateByEndRule()
             ? resiliationByEndRuleLink
-            : `${autorenewLink}/delete-all-dom?serviceId=${service.serviceId}&serviceType=${service.serviceType}`;
+            : `${autorenewLink}/services/delete-all-dom?serviceId=${service.serviceId}&serviceType=${service.serviceType}`;
           break;
         case SERVICE_TYPE.VRACK:
           if (service.status !== SUSPENDED_SERVICE) {
-            links.resiliateLink = `${autorenewLink}/terminate-vrack?service=${service.serviceId}${serviceTypeParam}`;
+            links.resiliateLink = `${autorenewLink}/services/terminate-vrack?service=${service.serviceId}${serviceTypeParam}`;
           }
           break;
         case SERVICE_TYPE.OKMS:
         case SERVICE_TYPE.VRACK_SERVICES:
         case SERVICE_TYPE.LICENSE_HYCU:
         case SERVICE_TYPE.VEEAM_BACKUP:
-          links.resiliateLink = `${autorenewLink}/terminate-service?id=${service.id}${serviceTypeParam}`;
+          links.resiliateLink = `${autorenewLink}/services/terminate-service?id=${service.id}${serviceTypeParam}`;
           break;
         default:
           links.resiliateLink = service.canResiliateByEndRule()
