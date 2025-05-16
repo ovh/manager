@@ -67,10 +67,12 @@ async function commit() {
         message: 'Ticket number (ex: TAPC-1234):',
         default: ticket || '',
         validate: (input) => input.length === 0 || /^[A-Z]+-\d+$/.test(input),
+        optional: true,
       },
     ]);
 
-    const commitMessage = `${answers.type}(${answers.scope}): ${answers.message}\n\nref: #${answers.ticket}\n\n\n`;
+    const refMessage = answers.ticket ? `ref: #${answers.ticket}\n\n` : '';
+    const commitMessage = `${answers.type}(${answers.scope}): ${answers.message}\n\n${refMessage}`;
 
     await git.commit(commitMessage, ['-s']);
     console.log('Commit created ✅');
