@@ -47,7 +47,6 @@ export default class ExchangeTabInformationCtrl {
     });
 
     this.getGuides();
-    this.getSharePoint();
     this.retrievingDVCEmails();
     this.loadATooltip();
     this.loadAaaaTooltip();
@@ -72,27 +71,6 @@ export default class ExchangeTabInformationCtrl {
       })
       .catch(() => {
         this.displayGuides = null;
-      });
-  }
-
-  getSharePoint() {
-    this.loading.sharePoint = true;
-    return this.exchangeService
-      .getSharepointService(this.exchange)
-      .then((sharePoint) => {
-        this.sharepoint = sharePoint;
-
-        this.SHAREPOINT_URL = this.coreURLBuilder.buildURL(
-          'web',
-          '#/sharepoint/:exchangeId/:productId',
-          {
-            exchangeId: this.exchange.domain,
-            productId: this.sharepoint.domain,
-          },
-        );
-      })
-      .finally(() => {
-        this.loading.sharePoint = false;
       });
   }
 

@@ -21,7 +21,6 @@ import ExchangeOrderDiskSpaceCtrl from '../information/disk/service-disk-order-s
 import ExchangeTabInformationCtrl from '../information/information.controller';
 import ExchangeMigration2016Ctrl from '../information/migration-2016/service-migration-2016.controller';
 import ExchangeSslRenewCtrl from '../information/ssl/service-ssl.controller';
-import officeAttachDialogCtrl from '../office-attach/dialog/office-attach-dialog.controller';
 import ExchangeOrderCtrl from '../order/order.controller';
 import ExchangeAddResourceController from '../resource/add/resource-add.controller';
 import ExchangeResourceDelegationCtrl from '../resource/delegation/resource-delegation.controller';
@@ -115,7 +114,6 @@ angular
   .controller('ExchangeTabInformationCtrl', ExchangeTabInformationCtrl)
   .controller('ExchangeMigration2016Ctrl', ExchangeMigration2016Ctrl)
   .controller('ExchangeSslRenewCtrl', ExchangeSslRenewCtrl)
-  .controller('officeAttachDialogCtrl', officeAttachDialogCtrl)
   .controller('ExchangeOrderCtrl', ExchangeOrderCtrl)
   .controller('ExchangeAddResourceController', ExchangeAddResourceController)
   .controller('ExchangeResourceDelegationCtrl', ExchangeResourceDelegationCtrl)
