@@ -134,7 +134,7 @@ export default function WebSidebar() {
         routeMatcher: new RegExp('^/web-hosting/(websites|onboarding)'),
         href: navigation.getURL(
           'web-hosting',
-          '#/websites',
+          '#/',
         ),
       });
     }

@@ -6,7 +6,6 @@ import {
   useRouteSynchro,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import Onboarding from './onboarding/Onboarding.page';
 import { useWebHostingAttachedDomain } from '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain';
 
 export default function Layout() {
@@ -30,7 +29,9 @@ export default function Layout() {
   return (
     <>
       <Outlet />
-      {data?.length === 0 && <Onboarding />}
+      {data?.length === 0 && (
+        <Navigate key={location.pathname} to="/onboarding" replace />
+      )}
       {data?.length > 0 &&
         location.pathname === '/' &&
         location.search === '' && <Navigate to="/websites" />}
