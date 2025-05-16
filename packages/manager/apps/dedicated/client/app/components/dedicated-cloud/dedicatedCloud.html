@@ -82,6 +82,11 @@
                 data-state="{{:: $ctrl.licenseState }}"
                 ><span data-translate="dedicatedCloud_tab_license"></span
             ></oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{ $ctrl.logsUrl }}"
+                data-ng-if=":: $ctrl.isLogsAvailable"
+                ><span data-translate="dedicatedCloud_tab_logs"></span
+            ></oui-header-tabs-item>
         </oui-header-tabs>
     </header>
 
