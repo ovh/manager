@@ -320,7 +320,7 @@ export default function CreateVolumeBackup() {
 
       <div className="flex flex-col gap-10 md:max-w-[70%]">
         <VolumeSelectStep
-          volumes={volumes}
+          volumes={volumes || []}
           selectedVolumeId={selectedVolumeId}
           onVolumeChange={handleVolumeChange}
         />
