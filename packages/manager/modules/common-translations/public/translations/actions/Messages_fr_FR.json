@@ -38,6 +38,13 @@
   "export_as": "Exporter en {{ format }}",
   "back": "Retour",
   "back_to": "Retour à {{ value }}",
+  "back_to_list": "Retour à la liste",
+  "back_to_homepage": "Retour à la page d'accueil",
   "previous": "Précédent",
-  "next": "Suivant"
+  "next": "Suivant",
+  "activate": "Activer",
+  "modify_name": "Modifier le nom",
+  "modify_name_success": "Le nom a été modifié avec succès",
+  "retry": "Réessayer",
+  "start": "Commencer"
 }
