@@ -125,21 +125,21 @@
                 class="vrack__service-group"
                 data-ng-class="{ 'vrack__service-group_expanded': $ctrl.getAccordionState('available', 'vmwareCloudDirectorVirtualDataCenter', $index) }"
                 data-ng-init="$ctrl.setAccordionState('available', 'vmwareCloudDirectorVirtualDataCenter', $index, true)"
-                data-ng-repeat="service in services | orderBy: service.key track by $index"
+                data-ng-repeat="service in services | orderBy: service.organisation track by $index"
             >
                 <span
                     class="vrack__service-group-name"
                     data-ng-click="$ctrl.toggleAccordion('available', 'vmwareCloudDirectorVirtualDataCenter', $index)"
                 >
-                    <span data-ng-bind="::service.key"></span>
+                    <span data-ng-bind="::service.organisation"></span>
                 </span>
 
                 <ul class="vrack__service-list vrack__service-list_group">
                     <li
                         class="vrack__service vrack__service_selectable d-flex"
                         data-ng-class="{ vrack__service_selected: $ctrl.isSelected(serviceType, vcd), vrack__service_pending: $ctrl.isPending(vcd) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
-                        data-ng-click="$ctrl.toggleAddService(serviceType, vcd, service.key)"
-                        data-ng-repeat="vcd in service.value"
+                        data-ng-click="$ctrl.toggleAddService(serviceType, vcd, service.organisation)"
+                        data-ng-repeat="vcd in service.vcds| orderBy: vcd track by $index"
                     >
                         <span data-ng-bind="::vcd"></span>
                     </li>

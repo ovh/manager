@@ -78,7 +78,9 @@ export default class Vrack {
   ) {
     return this.$http
       .delete(
-        `/vrack/${serviceName}/vmwareCloudDirectorVirtualDataCenter/${vmwareCloudDirectorVirtualDataCenter}`,
+        `/vrack/${serviceName}/vmwareCloudDirectorVirtualDataCenter/${encodeURIComponent(
+          vmwareCloudDirectorVirtualDataCenter,
+        )}`,
       )
       .then(({ data }) => data);
   }

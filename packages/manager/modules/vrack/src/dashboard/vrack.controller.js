@@ -115,6 +115,7 @@ export default class VrackMoveDialogCtrl {
     this.terminateVrackOptionAvailable = this.features.isFeatureAvailable(
       FEATURE_NAMES.legacyVrackDelete,
     );
+    this.vmwareCloudDirectorVirtualDataCenterGroup = {};
 
     this.atInternet.trackPage({
       name: `${VRACK_TRACKING_PREFIX}vrack-private-network::detail`,
@@ -709,13 +710,12 @@ export default class VrackMoveDialogCtrl {
   }
 
   updateVmwareCloudDirectorVirtualDataCenter() {
-    const vmwareCloudDirectorVirtualDataCenter = this.data.eligibleServices.vmwareCloudDirectorVirtualDataCenter.map(
-      (serviceId) => {
-        const [key, ...value] = serviceId?.split('/');
-        return { key, value };
-      },
+    this.groupVcdByOrganisation(
+      this.data.eligibleServices.vmwareCloudDirectorVirtualDataCenter,
     );
-    this.data.eligibleServices.vmwareCloudDirectorVirtualDataCenter = vmwareCloudDirectorVirtualDataCenter;
+    this.data.eligibleServices.vmwareCloudDirectorVirtualDataCenter = Object.values(
+      this.vmwareCloudDirectorVirtualDataCenterGroup,
+    );
   }
 
   getEligibleServices() {
@@ -849,13 +849,12 @@ export default class VrackMoveDialogCtrl {
           );
         }
         if (allServices?.vmwareCloudDirectorVirtualDataCenter?.length > 0) {
-          const vmwareCloudDirectorVirtualDataCenter = allServices.vmwareCloudDirectorVirtualDataCenter.map(
-            (serviceId) => {
-              const [key, ...value] = serviceId?.split('/');
-              return { key, value };
-            },
+          this.groupVcdByOrganisation(
+            allServices.vmwareCloudDirectorVirtualDataCenter,
           );
-          allServices.vmwareCloudDirectorVirtualDataCenter = vmwareCloudDirectorVirtualDataCenter;
+          allServices.vmwareCloudDirectorVirtualDataCenter = Object.values(
+            this.vmwareCloudDirectorVirtualDataCenterGroup,
+          );
         }
         if (has(allServices, 'dedicatedCloudDatacenter')) {
           let groupedDatacenters = groupBy(
@@ -1801,5 +1800,21 @@ export default class VrackMoveDialogCtrl {
       this.TYPE_SERVICE.dedicatedServerInterface,
       this.TYPE_SERVICE.ipv6,
     ].includes(serviceType);
+  }
+
+  groupVcdByOrganisation(vmwareCloudDirectorVirtualDataCenterList) {
+    this.vmwareCloudDirectorVirtualDataCenterGroup = vmwareCloudDirectorVirtualDataCenterList.reduce(
+      (acc, serviceId) => {
+        const [organisation, ...value] = serviceId?.split('/') || [];
+
+        if (!acc[organisation]) {
+          acc[organisation] = { organisation, vcds: [] };
+        }
+
+        acc[organisation].vcds.push(value.join('/'));
+        return acc;
+      },
+      {},
+    );
   }
 }
