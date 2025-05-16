@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
+  ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  DeleteServiceModal,
-  defaultDeleteModalTerminateValue,
+  DeleteModal,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { getOkmsServicesResourceListQueryKey } from '@/data/api/okms';
+import { useDeleteOkmsService } from '@/data/hooks/useDeleteOkmsService';
 
 export default function TerminateKms() {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ export default function TerminateKms() {
   const { okmsId } = useParams();
   const { trackPage, trackClick } = useOvhTracking();
   const { addError, addSuccess, clearNotifications } = useNotifications();
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   const closeModal = () => {
     navigate('..');
@@ -33,12 +35,21 @@ export default function TerminateKms() {
     });
     closeModal();
     clearNotifications();
-    addSuccess(
-      t('key_management_service_terminate_success_banner', {
-        ServiceName: okmsId,
-      }),
-      true,
-    );
+    if (ovhSubsidiary === 'US') {
+      addSuccess(
+        t('key_management_service_terminate_success_banner_us', {
+          ServiceName: okmsId,
+        }),
+        true,
+      );
+    } else {
+      addSuccess(
+        t('key_management_service_terminate_success_banner', {
+          ServiceName: okmsId,
+        }),
+        true,
+      );
+    }
     trackPage({
       pageType: PageType.bannerSuccess,
       pageName: 'delete_kms_success',
@@ -60,15 +71,21 @@ export default function TerminateKms() {
     });
   };
 
+  const {
+    mutate: terminateService,
+    isPending,
+    error,
+    isError,
+  } = useDeleteOkmsService({
+    onSuccess,
+    onError,
+  });
+
   return (
-    <DeleteServiceModal
+    <DeleteModal
       isOpen
-      headline={t('key_management_service_terminate_heading')}
-      deleteInputLabel={t('key_management_service_terminate_description', {
-        terminateKeyword: defaultDeleteModalTerminateValue,
-      })}
-      onSuccess={onSuccess}
-      onError={onError}
+      isLoading={isPending}
+      error={isError ? error?.message : null}
       closeModal={() => {
         trackClick({
           location: PageLocation.popup,
@@ -78,7 +95,6 @@ export default function TerminateKms() {
         });
         closeModal();
       }}
-      resourceName={okmsId}
       onConfirmDelete={() => {
         trackClick({
           location: PageLocation.popup,
@@ -86,6 +102,7 @@ export default function TerminateKms() {
           actionType: 'navigation',
           actions: ['delete_kms', 'confirm'],
         });
+        terminateService({ resourceName: okmsId });
       }}
     />
   );
