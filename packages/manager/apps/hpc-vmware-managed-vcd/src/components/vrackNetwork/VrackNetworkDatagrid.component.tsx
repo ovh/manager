@@ -20,7 +20,7 @@ import {
   useVcdVrackNetworkOptions,
   VrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useHref } from 'react-router-dom';
 import VrackNetworkDatagridSubDatagrid from './VrackNetworkDatagridSubDatagrid.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
@@ -104,6 +104,7 @@ export default function VrackNetworkDatagrid({
             popover-position="bottom-end"
             id={item.targetSpec.vlanId}
             isCompact
+            variant={ODS_BUTTON_VARIANT.ghost}
             items={[
               {
                 id: 1,
