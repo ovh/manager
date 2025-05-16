@@ -28,6 +28,7 @@
                 'ovh-font ovh-font-network': serviceType === 'dedicatedConnect',
                 'ovh-font ovh-font-vRack': serviceType === 'legacyVrack',
                 'oui-icon oui-icon-line-communicating_concept': serviceType === 'ovhCloudConnect',
+                'oui-icon oui-icon-cloud-essential_concept': serviceType === 'vmwareCloudDirectorVirtualDataCenter',
                 'oui-icon oui-icon-vRack-services_concept': serviceType === 'vrackServices'}"
             >
             </i>
@@ -168,6 +169,40 @@
                     data-ng-if="$ctrl.isPending(service.id)"
                 >
                 </oui-spinner>
+            </li>
+        </ul>
+        <ul
+            class="vrack__service-group-list"
+            data-ng-if="serviceType === 'vmwareCloudDirectorVirtualDataCenter'"
+        >
+            <li
+                class="vrack__service-group"
+                data-ng-init="$ctrl.setAccordionState('mapped', 'vmwareCloudDirectorVirtualDataCenter', $index, true)"
+                data-ng-class="{ 'vrack__service-group_expanded': $ctrl.getAccordionState('mapped', 'vmwareCloudDirectorVirtualDataCenter', $index) }"
+                data-ng-repeat="service in services| orderBy: service.key track by $index"
+            >
+                <span
+                    class="vrack__service-group-name"
+                    data-ng-click="$ctrl.toggleAccordion('mapped', 'vmwareCloudDirectorVirtualDataCenter', $index)"
+                >
+                    <span data-ng-bind="::service.key"></span>
+                </span>
+
+                <ul class="vrack__service-list vrack__service-list_group">
+                    <li
+                        class="vrack__service vrack__service_selectable d-flex"
+                        data-ng-click="$ctrl.toggleDeleteService(serviceType, vcd, service.key)"
+                        data-ng-class="{ vrack__service_selected: $ctrl.isSelected(serviceType, vcd), vrack__service_pending: $ctrl.isPending(vcd) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
+                        data-ng-repeat="vcd in service.value"
+                    >
+                        <span data-ng-bind="::vcd"></span>
+                        <oui-spinner
+                            data-size="s"
+                            data-ng-if="$ctrl.isPending(vcd)"
+                        >
+                        </oui-spinner>
+                    </li>
+                </ul>
             </li>
         </ul>
     </li>
