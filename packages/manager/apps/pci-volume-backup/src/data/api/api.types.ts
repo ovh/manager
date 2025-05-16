@@ -109,3 +109,7 @@ export type TRegionQuota = {
     maxVolumeCount: number;
   };
 };
+
+export type TProjectParams = {
+  projectId: string;
+};

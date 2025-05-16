@@ -16,10 +16,11 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 import { useBackups } from '@/data/hooks/useVolumeBackup';
 import { GUIDES } from '@/constants';
+import { TProjectParams } from '@/data/api/api.types';
 
 type TGuide = typeof GUIDES[number];
 
@@ -30,7 +31,11 @@ export default function Onboarding() {
   const navigate = useNavigate();
 
   const hrefProject = useProjectUrl('public-cloud');
-  const { data: project } = useProject();
+  const { projectId } = useParams() as TProjectParams;
+  const { data: project } = useProject(projectId, ({
+    throwOnError: true,
+    retry: false,
+  } as unknown) as Parameters<typeof useProject>[1]);
 
   const { tracking } = useContext(ShellContext).shell;
 
