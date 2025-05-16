@@ -125,6 +125,7 @@ describe('OffsiteReplication', () => {
           enabled: true,
           name: 'test',
           type: 'region',
+          availabilityZones: [],
         },
         ownerId: 123,
         offsiteReplication: false,
