@@ -20,22 +20,21 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
-import { TVolumeBackup } from '@/data/api/api.types';
+import { TProjectParams, TVolumeBackup } from '@/data/api/api.types';
 import { useVolumeBackups } from '@/data/hooks/useVolumeBackups';
 import { getVolumeBackups, refetchInterval } from '@/data/api/volumeBackup';
 import config from '@/pci-volume-backup.config';
 import { backupsQueryKey } from '@/data/hooks/useVolumeBackup';
 
-type ProjectParams = {
-  projectId: string;
-};
-
 export default function Listing() {
   const columns = useDatagridColumn();
   const { t } = useTranslation('listing');
-  const { projectId } = useParams() as ProjectParams;
+  const { projectId } = useParams() as TProjectParams;
   const hrefProject = useProjectUrl('public-cloud');
-  const { data: project } = useProject();
+  const { data: project } = useProject(projectId, ({
+    throwOnError: true,
+    retry: false,
+  } as unknown) as Parameters<typeof useProject>[1]);
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
 
