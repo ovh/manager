@@ -4,7 +4,7 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import StepComponent from './Step.component';
 
 export default {
-  title: 'Components/Step',
+  title: 'Core/Manager React Components/Components/Step',
   component: StepComponent,
   parameters: {
     docs: {

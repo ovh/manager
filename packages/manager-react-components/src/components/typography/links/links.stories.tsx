@@ -25,7 +25,7 @@ const externalLink: LinksProps = {
 };
 
 const meta: Meta<LinksProps> = {
-  title: 'Typography/Links',
+  title: 'Core/Manager React Components/Typography/Links',
   decorators: [(story) => <div>{story()}</div>],
   argTypes: {},
   args: backLink,
