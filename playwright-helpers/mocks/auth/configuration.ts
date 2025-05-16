@@ -26,8 +26,6 @@ export const getConfigurationResponse = ({ region = defaultRegion }): any => ({
     catalog: 'https://www.ovh.com/manager/catalog',
     iam: 'https://www.ovh.com/manager/security',
     'carbon-calculator': 'https://www.ovh.com/manager/carbon-calculator/',
-    'octavia-load-balancer':
-      'https://www.ovh.com/manager/octavia-load-balancer/',
     'pci-vouchers': 'https://www.ovh.com/manager/pci-vouchers/',
     restricted: 'https://www.ovh.com/manager/restricted/',
     'vrack-services': 'https://www.ovh.com/manager/vrack-services/',
@@ -161,17 +159,6 @@ export const getConfigurationResponse = ({ region = defaultRegion }): any => ({
         path: 'carbon-calculator',
       },
       publicURL: 'https://www.ovh.com/manager/#/carbon-calculator',
-    },
-    'octavia-load-balancer': {
-      universe: 'public-cloud',
-      url: 'https://www.ovh.com/manager/octavia-load-balancer/',
-      container: {
-        isDefault: false,
-        enabled: true,
-        path: 'public-cloud',
-        hash: '/pci/projects/:projectId/octavia-load-balancer',
-      },
-      publicURL: 'https://www.ovh.com/manager/#/public-cloud',
     },
     'pci-vouchers': {
       universe: 'public-cloud',

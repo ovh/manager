@@ -501,6 +501,6 @@ export const HORIZON_LINK =
   'https://horizon.cloud.ovh.net/project/load_balancer';
 
 export const LOGS_FEATURE_AVAILABILITY_KEY =
-  'octavia-load-balancer:logs-to-customer';
+  'pci-load-balancer:logs-to-customer';
 
 export const GATEWAY_SIZE_LABEL_ORDER = ['s', 'm', 'l', 'xl', '2xl'];
