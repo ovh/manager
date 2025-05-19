@@ -97,7 +97,7 @@ export default function WebSidebar() {
               href: undefined,
               routeMatcher: new RegExp(`/all_dom/${item.serviceName}`),
               async loader() {
-                return await loadServices(`/allDom/${item.serviceName}/domain`);
+                return loadServices(`/allDom/${item.serviceName}/domain`);
               },
             })),
             ...domains

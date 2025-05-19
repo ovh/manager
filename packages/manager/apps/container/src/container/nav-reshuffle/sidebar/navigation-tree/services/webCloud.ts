@@ -107,7 +107,7 @@ webCloudUniverse.children = [
           application: 'web-hosting',
           hash: '#/',
         },
-        features: ['web-hosting'],
+        features: ['web-hosting:websites'],
       },
       {
         id: 'web-databases',
