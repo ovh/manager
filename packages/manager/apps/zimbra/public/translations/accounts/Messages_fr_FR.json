@@ -10,7 +10,7 @@
   "zimbra_account_account_order": "Commander un compte",
   "zimbra_account_tooltip_need_domain": "Veuillez d'abord configurer un domaine.",
   "zimbra_account_tooltip_need_slot": "Aucun compte disponible, veuillez en commander.",
-  "zimbra_account_delete_modal_content_step1": "Vous êtes sur le point de supprimer le compte email du serveur Zimbra.",
-  "zimbra_account_delete_modal_content_step2": "Êtes-vous sûr de vouloir supprimer la boite mail du serveur Zimbra ?",
+  "zimbra_account_delete_modal_content_step1": "Êtes-vous sûr(e) de vouloir supprimer le compte email <strong>{{ email }}</strong> ?",
+  "zimbra_account_delete_modal_content_step2": "Êtes-vous vraiment sûr(e) de vouloir supprimer ce compte email <strong>{{ email }}</strong> ?",
   "zimbra_account_delete_modal_warn_message": "Attention cette action est irréversible et entraîne la suppression des données."
 }

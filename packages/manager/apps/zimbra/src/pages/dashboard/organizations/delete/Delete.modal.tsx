@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import {
   ODS_MESSAGE_COLOR,
   ODS_MODAL_COLOR,
@@ -16,7 +16,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useDomains } from '@/data/hooks';
+import { useDomains, useOrganization } from '@/data/hooks';
 import {
   deleteZimbraPlatformOrganization,
   getZimbraPlatformOrganizationQueryKey,
@@ -29,7 +29,13 @@ export const DeleteOrganizationModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation(['organizations', 'common']);
   const { platformId, organizationId } = useParams();
-  const { data: domains, isLoading } = useDomains({
+  const {
+    data: organization,
+    isLoading: isOrganizationLoading,
+  } = useOrganization({
+    organizationId,
+  });
+  const { data: domains, isLoading: isDomainsLoading } = useDomains({
     organizationId,
     gcTime: 0,
   });
@@ -104,7 +110,7 @@ export const DeleteOrganizationModal = () => {
       color={ODS_MODAL_COLOR.critical}
       onClose={onClose}
       isDismissible
-      isLoading={isLoading}
+      isLoading={isOrganizationLoading || isDomainsLoading}
       secondaryButton={{
         label: t('common:cancel'),
         onClick: handleCancelClick,
@@ -113,13 +119,19 @@ export const DeleteOrganizationModal = () => {
         testid: 'delete-btn',
         label: t('common:delete'),
         onClick: handleDeleteClick,
-        isLoading: isSending || isLoading,
+        isLoading: isSending || isOrganizationLoading || isDomainsLoading,
         isDisabled: domains?.length > 0 || !organizationId,
       }}
     >
       <>
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_organization_delete_modal_content')}
+          <Trans
+            t={t}
+            i18nKey={'zimbra_organization_delete_modal_content'}
+            values={{
+              organization: organization?.currentState.label,
+            }}
+          />
         </OdsText>
         {domains?.length > 0 && (
           <OdsMessage
