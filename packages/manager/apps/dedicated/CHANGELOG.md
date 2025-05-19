@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.35.5...@ovh-ux/manager-dedicated@20.36.0) (2025-05-19)
+
+
+### Bug Fixes
+
+* **dedicated.node:** resolve backup storage tab availability issue ([#17122](https://github.com/ovh/manager/issues/17122)) ([c5532e6](https://github.com/ovh/manager/commit/c5532e6ad5f400a7e55376b6edf7443d0991b417)), closes [#INC0130774](https://github.com/ovh/manager/issues/INC0130774)
+
+
+### Features
+
+* **dedicated.pcc:** remove 2API to fetch hosts ([#16845](https://github.com/ovh/manager/issues/16845)) ([b85d615](https://github.com/ovh/manager/commit/b85d61522091c4d92d590605340cd54a296af14e)), closes [#MANAGER-17155](https://github.com/ovh/manager/issues/MANAGER-17155)
+
+
+
+
+
 ## [20.35.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.35.4...@ovh-ux/manager-dedicated@20.35.5) (2025-05-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

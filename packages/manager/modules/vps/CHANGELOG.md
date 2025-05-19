@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.47.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.47.1...@ovh-ux/manager-vps@2.47.2) (2025-05-19)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** changes vps FTC ([#16961](https://github.com/ovh/manager/issues/16961)) ([3fbc1a7](https://github.com/ovh/manager/commit/3fbc1a768754ff3dcd484aab9ccacd7ced99df94)), closes [#MANAGER-17939](https://github.com/ovh/manager/issues/MANAGER-17939)
+* **dedicated.vps:** improvement on error message for reboot vps ([#16959](https://github.com/ovh/manager/issues/16959)) ([3b64f06](https://github.com/ovh/manager/commit/3b64f06039f59a07818014e8868a2aa6e681a930)), closes [#MANAGER-18237](https://github.com/ovh/manager/issues/MANAGER-18237)
+
+
+
+
+
 ## [2.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.47.0...@ovh-ux/manager-vps@2.47.1) (2025-05-15)
 
 

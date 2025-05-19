@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.13.0...@ovh-ux/manager-netapp@2.13.1) (2025-05-19)
+
+
+### Bug Fixes
+
+* **order-translations:** updating the translation of order funnel screen ([#16805](https://github.com/ovh/manager/issues/16805)) ([956656e](https://github.com/ovh/manager/commit/956656ee6ee8ca21c9846b55c2d70bed74993427)), closes [#MANAGER-17768](https://github.com/ovh/manager/issues/MANAGER-17768)
+
+
+
+
+
 # [2.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.12.1...@ovh-ux/manager-netapp@2.13.0) (2025-05-13)
 
 
