@@ -9,7 +9,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "sideEffects": "false",
+  "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
@@ -20,7 +20,9 @@
     "build": "tsc",
     "dev": "tsc",
     "dev:watch": "tsc -w",
-    "prepare": "tsc"
+    "prepare": "tsc",
+    "test": "manager-test run",
+    "test:ci": "manager-test run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.5.0",
@@ -33,8 +35,8 @@
     "nanoid": "^3.1.25"
   },
   "devDependencies": {
+    "@ovh-ux/manager-tests-setup": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^4.7.4",
-    "@typescript-eslint/parser": "^4.7.4",
-    "jest-cucumber": "^3.0.1"
+    "@typescript-eslint/parser": "^4.7.4"
   }
 }
