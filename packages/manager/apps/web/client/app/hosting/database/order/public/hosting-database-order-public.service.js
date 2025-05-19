@@ -17,7 +17,7 @@ export default class {
     $translate,
     $http,
     coreConfig,
-    OvhApiHostingWeb,
+    iceberg,
     OvhApiOrder,
     OvhApiOrderCatalogPublic,
   ) {
@@ -25,7 +25,7 @@ export default class {
     this.$translate = $translate;
     this.$http = $http;
     this.coreConfig = coreConfig;
-    this.OvhApiHostingWeb = OvhApiHostingWeb;
+    this.iceberg = iceberg;
     this.OvhApiOrder = OvhApiOrder;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
   }
@@ -78,13 +78,12 @@ export default class {
   }
 
   getUnavailableDiskSpaces(serviceName) {
-    return this.OvhApiHostingWeb.ExtraSqlPerso()
-      .v6()
-      .query({
-        serviceName,
-      })
-      .$promise.then((extraSqls) =>
-        extraSqls.map((extra) => toNumber(extra.match(/\d+/)[0])),
+    return this.iceberg(`/hosting/web/${serviceName}/extraSqlPerso`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) =>
+        data.map(({ name }) => toNumber(name.match(/\d+/)?.[0] || null)),
       );
   }
 
