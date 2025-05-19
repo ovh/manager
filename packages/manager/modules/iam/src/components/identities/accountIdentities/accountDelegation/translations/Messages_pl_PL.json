@@ -1,0 +1,8 @@
+{
+  "iam_identities_account_delegation_add_account": "Dodaj konto",
+  "iam_identities_account_delegation_account": "Konto",
+  "iam_identities_account_delegation_disclaimer": "Dostęp do zgłoszeń będzie mogło uzyskać tylko Twoje konto klienta (NIC)",
+  "iam_identities_account_delegation_cancel": "Anuluj",
+  "iam_identities_account_delegation_confirm": "Dodaj",
+  "iam_identities_account_delegation_format_error": "Format konta jest nieprawidłowy, przykład {{format}}"
+}

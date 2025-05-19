@@ -1,0 +1,37 @@
+<div class="modal d-block" tabindex="-1">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <oui-modal
+                data-heading="{{:: 'iam_identities_account_delegation_add_account' | translate }}"
+                data-primary-action="$ctrl.onConfirm()"
+                data-primary-label="{{:: 'iam_identities_account_delegation_confirm' | translate }}"
+                data-primary-disabled="$ctrl.nicForm.$invalid"
+                data-secondary-action="$ctrl.onClose()"
+                data-secondary-label="{{:: 'iam_identities_account_delegation_cancel' | translate }}"
+                data-on-dismiss="$ctrl.onClose()"
+            >
+                <form name="$ctrl.nicForm">
+                    <oui-field
+                        data-label="{{:: 'iam_identities_account_delegation_account' | translate}}"
+                        data-error-messages=":: {
+                            pattern: ('iam_identities_account_delegation_format_error' | translate : { format: $ctrl.ACCOUNT_FORMAT })
+                        }"
+                        data-force-error-display="true"
+                    >
+                        <input
+                            class="oui-input"
+                            name="delegatedAccount"
+                            type="text"
+                            placeholder="{{:: $ctrl.ACCOUNT_FORMAT}}"
+                            data-ng-model="$ctrl.delegatedAccount"
+                            data-ng-pattern=":: $ctrl.ACCOUNT_PATTERN"
+                            data-ng-disabled="$ctrl.policy.readOnly"
+                            required
+                        />
+                    </oui-field>
+                </form>
+            </oui-modal>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>
