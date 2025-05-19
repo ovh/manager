@@ -210,7 +210,8 @@ export const ConfigureEmailAccounts: React.FC = () => {
             icon={ODS_ICON_NAME.plus}
             isDisabled={
               (!methods.formState.isValid && starterAccounts.length !== 0) ||
-              starterAccounts.length >= availableStarterAccounts
+              starterAccounts.length >= availableStarterAccounts ||
+              isSending
             }
             label={t('common:configure_another_account')}
           />
@@ -230,6 +231,7 @@ export const ConfigureEmailAccounts: React.FC = () => {
             id="skip"
             data-testid="skip"
             onClick={handleSkipClick}
+            isDisabled={isSending}
             variant={ODS_BUTTON_VARIANT.ghost}
             label={t('common:skip_step')}
           />
