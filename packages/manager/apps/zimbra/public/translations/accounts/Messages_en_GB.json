@@ -18,9 +18,6 @@
   "zimbra_domains_tooltip_need_slot": "No account available, please order one.",
   "zimbra_account_tooltip_need_domain": "Please configure a domain first",
   "zimbra_account_tooltip_need_slot": "No account available, please order one.",
-  "zimbra_account_delete_modal_content_step1": "You are about to delete the Zimbra server email.",
-  "zimbra_account_delete_modal_content_step2": "Are you sure you want to delete the mailbox from the Zimbra server?",
-  "zimbra_account_delete_modal_warn_message": "Warning: this action is irreversible and will erase the data.",
   "zimbra_account_datagrid_size": "Size",
   "zimbra_account_datagrid_renewal_date": "Until",
   "zimbra_account_datagrid_renewal_type": "Renewal",
@@ -31,5 +28,8 @@
   "zimbra_slot_cancel_modal_confirm": "Do you wish to cancel your service?",
   "zimbra_slot_undo_cancel_modal_content": "With auto-renewal enabled, your service will continue uninterrupted beyond your subscription’s end date.",
   "zimbra_slot_undo_cancel_modal_confirm": "Do you want to re-enable auto-renewal for your service?",
-  "zimbra_slot_modal_renew_date": "End of subscription: {{ renewDate }}"
+  "zimbra_slot_modal_renew_date": "End of subscription: {{ renewDate }}",
+  "zimbra_account_delete_modal_content_step1": "Are you sure you want to delete the email account <strong>{{ email }}</strong>?",
+  "zimbra_account_delete_modal_content_step2": "Are you sure you want to delete the email account <strong>{{ email }}</strong>?",
+  "zimbra_account_delete_modal_warn_message": "Warning: this action is irreversible and will erase the data."
 }

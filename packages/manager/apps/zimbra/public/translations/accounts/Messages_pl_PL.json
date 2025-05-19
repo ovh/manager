@@ -18,9 +18,6 @@
   "zimbra_domains_tooltip_need_slot": "Brak dostępnych kont. Zamów konto.",
   "zimbra_account_tooltip_need_domain": "Najpierw skonfiguruj domenę",
   "zimbra_account_tooltip_need_slot": "Brak dostępnych kont. Zamów konto.",
-  "zimbra_account_delete_modal_content_step1": "Chcesz usunąć konto e-mail z serwera Zimbra.",
-  "zimbra_account_delete_modal_content_step2": "Czy na pewno chcesz usunąć konto e-mail z serwera Zimbra?",
-  "zimbra_account_delete_modal_warn_message": "Uwaga: operacja ta jest nieodwracalna i skutkuje usunięciem danych.",
   "zimbra_account_datagrid_size": "Rozmiar",
   "zimbra_account_datagrid_renewal_date": "Data wygaśnięcia",
   "zimbra_account_datagrid_renewal_type": "Odnowienie",
@@ -31,5 +28,8 @@
   "zimbra_slot_cancel_modal_confirm": "Czy chcesz  zrezygnować z usługi?",
   "zimbra_slot_undo_cancel_modal_content": "Jeśli włączysz automatyczne odnawianie, usługa będzie działać po dacie zakończenia umowy.",
   "zimbra_slot_undo_cancel_modal_confirm": "Czy chcesz ponownie włączyć automatyczne odnawianie usługi?",
-  "zimbra_slot_modal_renew_date": "Zakończenie umowy: {{renewDate}}"
+  "zimbra_slot_modal_renew_date": "Zakończenie umowy: {{renewDate}}",
+  "zimbra_account_delete_modal_content_step1": "Czy na pewno chcesz usunąć konto e-mail <strong>{{email}}</strong>?",
+  "zimbra_account_delete_modal_content_step2": "Czy na pewno chcesz usunąć to konto e-mail <strong>{{email}}</strong>?",
+  "zimbra_account_delete_modal_warn_message": "Uwaga: operacja ta jest nieodwracalna i skutkuje usunięciem danych."
 }

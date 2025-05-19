@@ -15,7 +15,7 @@
   "zimbra_domains_datagrid_cname_tooltip_title": "Verificación del dominio",
   "zimbra_domains_datagrid_cname_tooltip": "Para confirmar que es el titular del dominio, cree un registro CNAME: <br/><br/><strong>{{cname}}</strong> hacia <strong>ovh.com</strong><br/><br/>Dispone de 48 horas para completar este paso.",
   "zimbra_domains_tooltip_diagnostics": "Diagnóstico",
-  "zimbra_domains_delete_modal_content": "¿Seguro/a que quiere eliminar el dominio del servidor Zimbra?",
+  "zimbra_domains_delete_modal_content": "¿Seguro/a que quiere eliminar el dominio <strong>{{ domain }}</strong>?",
   "zimbra_domains_delete_modal_message_disabled_part1": "Este dominio todavía tiene al menos una cuenta de correo asociada.",
   "zimbra_domains_delete_modal_message_disabled_part2": "Por favor, elimine las cuentas de correo asociadas antes de eliminar el dominio."
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
@@ -24,6 +24,7 @@ import {
   CONFIRM,
   EMAIL_ACCOUNT_DELETE_ALIAS,
 } from '@/tracking.constants';
+import { useAlias } from '@/data/hooks';
 
 export const DeleteAlias = () => {
   const { trackClick, trackPage } = useOvhTracking();
@@ -31,6 +32,7 @@ export const DeleteAlias = () => {
   const navigate = useNavigate();
   const { platformId, aliasId } = useParams();
   const { addError, addSuccess } = useNotifications();
+  const { data: alias, isLoading } = useAlias();
 
   const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
@@ -98,6 +100,7 @@ export const DeleteAlias = () => {
       onClose={onClose}
       isOpen
       isDismissible
+      isLoading={isLoading}
       secondaryButton={{
         label: t('common:cancel'),
         onClick: handleCancelClick,
@@ -110,7 +113,13 @@ export const DeleteAlias = () => {
       }}
     >
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-        {t('zimbra_account_alias_delete_modal_description')}
+        <Trans
+          t={t}
+          i18nKey={'zimbra_account_alias_delete_modal_description'}
+          values={{
+            alias: alias?.currentState.alias.name,
+          }}
+        />
       </OdsText>
     </Modal>
   );

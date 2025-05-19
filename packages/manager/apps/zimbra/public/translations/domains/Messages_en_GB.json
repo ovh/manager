@@ -15,7 +15,7 @@
   "zimbra_domains_datagrid_cname_tooltip_title": "Domain verification",
   "zimbra_domains_datagrid_cname_tooltip": "To confirm that you are the holder of this domain, please create a CNAME record: <br/><br/><strong>{{cname}}</strong> to <strong>ovh.com</strong><br/><br/>You have 48 hours to complete this step.",
   "zimbra_domains_tooltip_diagnostics": "Diagnostics",
-  "zimbra_domains_delete_modal_content": "Are you sure you want to delete the domain from the Zimbra server?",
+  "zimbra_domains_delete_modal_content": "Are you sure you want to delete the <strong>{{ domain }}</strong> domain?",
   "zimbra_domains_delete_modal_message_disabled_part1": "There is at least one email account still linked to this domain name.",
   "zimbra_domains_delete_modal_message_disabled_part2": "Please delete the linked email accounts before deleting your domain name."
 }
