@@ -1,4 +1,4 @@
-const APP = 'okms';
+const APP = 'key-management-service';
 
 const KMS_FEATURE = 'key-management-service';
 

@@ -13,7 +13,7 @@ const sioUniverse: Node = {
     application: 'iam',
   },
   hasService: false,
-  features: ['okms', 'logs-data-platform', 'identity-access-management'],
+  features: ['key-management-service', 'logs-data-platform', 'identity-access-management'],
 };
 
 sioUniverse.children = [
@@ -76,16 +76,16 @@ sioUniverse.children = [
     idAttr: 'security-identity-link',
     translation: 'sidebar_security_identity',
     universe: sioUniverse.id,
-    features: ['okms'],
+    features: ['key-management-service'],
     children: [
       {
         id: 'security-identity-operations-kms',
         idAttr: 'security-identity-operations-kms-link',
         translation: 'sidebar_security_identity_operations_kms',
         universe: sioUniverse.id,
-        features: ['okms:key-management-service'],
+        features: ['key-management-service:key-management-service'],
         routing: {
-          application: 'okms',
+          application: 'key-management-service',
           hash: '#/key-management-service',
         },
       },
@@ -94,9 +94,9 @@ sioUniverse.children = [
         idAttr: 'security-identity-operations-sms-link',
         translation: 'sidebar_security_identity_operations_sms',
         universe: sioUniverse.id,
-        features: ['okms:secret-management-service'],
+        features: ['key-management-service:secret-management-service'],
         routing: {
-          application: 'okms',
+          application: 'key-management-service',
           hash: '#/secret-management-service',
         },
       },
