@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.1...@ovh-ux/manager-web@19.11.2) (2025-05-19)
+
+
+### Bug Fixes
+
+* **web.zone:** update columns name ([#17084](https://github.com/ovh/manager/issues/17084)) ([6f2b914](https://github.com/ovh/manager/commit/6f2b914a2eb2fd0c3c6acb5f2a4788932af962ec)), closes [#MANAGER-17063](https://github.com/ovh/manager/issues/MANAGER-17063)
+
+
+
+
+
 ## [19.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.0...@ovh-ux/manager-web@19.11.1) (2025-05-15)
 
 
