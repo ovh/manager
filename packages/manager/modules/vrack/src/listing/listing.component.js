@@ -10,7 +10,6 @@ export default {
     staticResources: '<?',
     description: '<?', //
     loadResource: '<',
-    resources: '<?',
     columnConfig: '<',
     customizableColumns: '<?',
     defaultFilterColumn: '<',

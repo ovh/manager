@@ -11,7 +11,6 @@ export default class vrackListingCtrl extends ListLayoutHelper.ListLayoutCtrl {
     atInternet,
     $q,
     ouiDatagridService,
-    CucControllerHelper,
     constants,
     coreConfig,
   ) {
@@ -21,6 +20,15 @@ export default class vrackListingCtrl extends ListLayoutHelper.ListLayoutCtrl {
     this.constants = constants;
     this.id = 'vrack-listing';
     this.user = coreConfig.getUser();
+  }
+
+  loadPage() {
+    return this.$q.resolve({
+      data: this.resources?.data,
+      meta: {
+        totalCount: this.paginationTotalCount,
+      },
+    });
   }
 
   gotoVrackOrder() {
