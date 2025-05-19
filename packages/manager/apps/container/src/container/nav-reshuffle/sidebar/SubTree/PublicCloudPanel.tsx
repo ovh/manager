@@ -70,7 +70,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
     },
   });
 
-  const { data: defaultPciProject } = useDefaultPublicCloudProject({
+  const { data: defaultPciProject, isFetched: isDefaultProjectFetched } = useDefaultPublicCloudProject({
     select: (defaultProjectId: string | null): PciProject | null => {
       return defaultProjectId !== null
         ? pciProjects?.find(
@@ -111,13 +111,13 @@ export const PublicCloudPanel: React.FC<ComponentProps<
       }
       if (project) {
         setSelectedPciProject(project);
-      } else if (defaultPciProject !== null) {
+      } else if (defaultPciProject) {
         setSelectedPciProject(defaultPciProject);
-      } else {
+      } else if (isDefaultProjectFetched) {
         setSelectedPciProject(pciProjects[0]);
       }
     }
-  }, [rootNode, containerURL, pciProjects]);
+  }, [rootNode, containerURL, pciProjects, defaultPciProject]);
 
   useEffect(() => {
     if (
