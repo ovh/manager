@@ -176,7 +176,7 @@ export function useResourcesV6<T extends Record<string, unknown>>({
     flattenData: flattenData?.slice(0, (pageIndex + 1) * pageSize),
     isError,
     isLoading,
-    hasNextPage: pageIndex * pageSize + pageSize <= flattenData?.length,
+    hasNextPage: pageIndex * pageSize + pageSize < flattenData?.length,
     fetchNextPage,
     error,
     status,
