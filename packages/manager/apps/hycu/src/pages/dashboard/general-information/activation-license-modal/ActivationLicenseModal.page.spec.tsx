@@ -88,17 +88,11 @@ describe('License Hycu activate license route test suite', () => {
 
     await waitFor(
       () =>
-        expect(
-          screen.getAllByText(
-            labels.dashboard.hycu_dashboard_upload_confirm,
-          )[0],
-        ).toBeVisible(),
+        expect(screen.getAllByText(labels.actions.confirm)[0]).toBeVisible(),
       { timeout: 10_000 },
     );
 
-    const submitButton = screen.getByText(
-      labels.dashboard.hycu_dashboard_upload_confirm,
-    );
+    const submitButton = screen.getByText(labels.actions.confirm);
 
     await act(() =>
       user.upload(screen.getByTestId('license-file-input'), createFakeFile()),
@@ -141,17 +135,11 @@ describe('License Hycu activate license route test suite', () => {
 
     await waitFor(
       () =>
-        expect(
-          screen.getAllByText(
-            labels.dashboard.hycu_dashboard_upload_confirm,
-          )[0],
-        ).toBeVisible(),
+        expect(screen.getAllByText(labels.actions.confirm)[0]).toBeVisible(),
       { timeout: 10_000 },
     );
 
-    const submitButton = screen.getByText(
-      labels.dashboard.hycu_dashboard_upload_confirm,
-    );
+    const submitButton = screen.getByText(labels.actions.confirm);
 
     await act(() =>
       user.upload(screen.getByTestId('license-file-input'), createFakeFile()),
