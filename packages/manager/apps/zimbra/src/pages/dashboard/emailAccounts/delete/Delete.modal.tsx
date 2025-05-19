@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import {
   ODS_MESSAGE_COLOR,
   ODS_MODAL_COLOR,
@@ -123,25 +123,16 @@ export const DeleteEmailAccountModal = () => {
             <OdsText
               preset={ODS_TEXT_PRESET.paragraph}
               data-testid="text-step-1"
+              className="mb-4"
             >
-              {t('zimbra_account_delete_modal_content_step1')}
+              <Trans
+                t={t}
+                i18nKey={'zimbra_account_delete_modal_content_step1'}
+                values={{
+                  email: data?.currentState.email,
+                }}
+              />
             </OdsText>
-            <span className="mt-5">
-              <span slot="start">
-                <OdsText
-                  preset={ODS_TEXT_PRESET.paragraph}
-                  className="font-bold"
-                >
-                  {t('common:email_account')}
-                  {' :'}
-                </OdsText>
-              </span>
-              <span slot="main" className="ml-5">
-                <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                  {data?.currentState.email}
-                </OdsText>
-              </span>
-            </span>
           </>
         )}
 
@@ -150,8 +141,15 @@ export const DeleteEmailAccountModal = () => {
             <OdsText
               preset={ODS_TEXT_PRESET.paragraph}
               data-testid="text-step-2"
+              className="mb-4"
             >
-              {t('zimbra_account_delete_modal_content_step2')}
+              <Trans
+                t={t}
+                i18nKey={'zimbra_account_delete_modal_content_step2'}
+                values={{
+                  email: data?.currentState.email,
+                }}
+              />
             </OdsText>
             <OdsMessage
               className="mt-4"
