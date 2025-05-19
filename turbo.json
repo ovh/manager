@@ -23,7 +23,7 @@
         "LABEU_HOST",
         "local2API",
         "REGION",
-        "VERSION",
+        "CDS_VERSION",
         "VITE_CONTAINER_APP"
       ],
       "dependsOn": ["^dev"]
