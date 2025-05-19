@@ -4,7 +4,7 @@ import LiveChat from './LiveChat.component';
 import { getCustomerLevel } from './liveChat.helpers';
 import { CHAT_TYPE_STORAGE_KEY } from './liveChat.constants';
 import useContainer from '@/core/container';
-import { ContainerContextType } from '@/core/container/context';
+import { ContainerContextType } from '@/core/container/container.context';
 
 vi.mock('@/context', () => ({
   useShell: () => ({
@@ -111,7 +111,7 @@ describe('LiveChat.component', {}, () => {
     // TODO: Change url after the livechat is ready
     expect(liveChatIFrame).toHaveAttribute(
       'src',
-      'https://chat.ovh.com/system/templates/pre-prod/prepa_prod/STD/FR_fr/docs/index2.html',
+      'https://chat.ovh.com/system/templates/liveChat-manager/STD/FR_fr/docs/index2.html',
     );
   });
 
