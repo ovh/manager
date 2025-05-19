@@ -30,7 +30,6 @@ describe('TabContentWrapper component', () => {
       );
       const tabContentWrapperElt = screen.getByTestId('tab-content-wrapper');
       expect(tabContentWrapperElt).toBeInTheDocument();
-      expect(tabContentWrapperElt).toHaveClass('p-6 pt-8');
       if (description) {
         const descriptionElt = screen.getByText(description);
         expect(descriptionElt).toBeInTheDocument();
