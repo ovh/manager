@@ -135,7 +135,7 @@
   "vps_configuration_reboot_alert": "Downtime due to reboot: approximately 2 minutes.",
   "vps_configuration_reboot_success": "The {{serviceName}} VPS will reboot (estimated time: 2 minutes)",
   "vps_configuration_reboot_todo": "The request to reboot has been registered.",
-  "vps_configuration_reboot_fail": "An error has occurred requesting to reboot.",
+  "vps_configuration_reboot_fail": "An error has occurred requesting to reboot. {{ error }}",
   "vps_configuration_reboot_rescue_title_button": "Rescue mode",
   "vps_configuration_reboot_rescue_warning_text": "Some actions are not available in <b>rescue mode</b>. To restore the features, you must restore local boot by clicking Reboot my VPS.",
   "vps_configuration_reboot_rescue_warning_btn_title": "This action is not available in rescue mode.",

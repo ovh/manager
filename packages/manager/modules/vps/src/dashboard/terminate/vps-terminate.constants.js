@@ -4,6 +4,10 @@ export const TERMINATE_OPTIONS = {
   TERMINATE_NOW: 'TERMINATE_NOW',
 };
 
+export const SERVICE_TYPE = {
+  VPS: 'VPS',
+};
+
 export default {
   TERMINATE_OPTIONS,
 };

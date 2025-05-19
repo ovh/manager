@@ -33,14 +33,9 @@ class IcebergUtilsServices {
       request = IcebergUtilsServices.filterIceberg(request, filters);
     }
 
-    return this.$q
-      .resolve(
-        request.execute(
-          urlParams,
-          isCacheDisabled ? { headers: { Pragma: 'no-cache' } } : true,
-        ).$promise,
-      )
-      .then(({ data, headers }) => ({
+    return request
+      .execute(urlParams, isCacheDisabled)
+      .$promise.then(({ data, headers }) => ({
         data,
         meta: {
           totalCount: headers['x-pagination-elements'],

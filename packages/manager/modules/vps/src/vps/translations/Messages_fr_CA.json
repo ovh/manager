@@ -135,7 +135,7 @@
   "vps_configuration_reboot_alert": "Temps d'indisponibilité dû au redémarrage : environ 2 minutes.",
   "vps_configuration_reboot_success": "Le VPS {{serviceName}} va redémarrer (temps estimé 2 minutes)",
   "vps_configuration_reboot_todo": "La demande de redémarrage a bien été prise en compte.",
-  "vps_configuration_reboot_fail": "Une erreur est survenue lors de la demande de redémarrage",
+  "vps_configuration_reboot_fail": "Une erreur est survenue lors de la demande de redémarrage. {{ error }}",
   "vps_configuration_reboot_rescue_title_button": "Mode rescue",
   "vps_configuration_reboot_rescue_warning_text": "Certaines actions sont inaccessibles en <b>mode rescue</b>. Pour rétablir les fonctionnalités, vous devez rétablir local boot en cliquant sur Redémarrer mon VPS.",
   "vps_configuration_reboot_rescue_warning_btn_title": "Cette action n'est pas disponible en mode rescue.",

@@ -16,6 +16,6 @@
   "netapp_order_commitment_payment": "Payment methods",
   "netapp_order_confirm": "Confirm",
   "netapp_order_performance_customization": "When you provision your capacity, you can also define the performance level of your service. As a reminder, 64 MB/s and 4000 IOPS per TB provisioned.",
-  "netapp_order_region_compatiable_with_info": "Compatible with",
+  "netapp_order_region_compatiable_with_info": "Works with",
   "netapp_order_region_badge_vrack": "vRack"
 }
