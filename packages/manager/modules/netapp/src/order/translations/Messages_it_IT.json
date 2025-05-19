@@ -16,6 +16,6 @@
   "netapp_order_commitment_payment": "Modalità di pagamento",
   "netapp_order_confirm": "Conferma",
   "netapp_order_performance_customization": "Durante la configurazione della capacità è possibile definire il livello di performance del servizio. Ricordiamo che sono disponibili 64 MB/s e 4.000 IOPS per TB.",
-  "netapp_order_region_compatiable_with_info": "Compatibile con",
+  "netapp_order_region_compatiable_with_info": "Funziona con",
   "netapp_order_region_badge_vrack": "vRack"
 }

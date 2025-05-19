@@ -16,6 +16,6 @@
   "netapp_order_commitment_payment": "Modalités de paiement",
   "netapp_order_confirm": "Valider",
   "netapp_order_performance_customization": "Lors du provisionnement de votre capacité vous allez définir par la même occasion le niveau de performance de votre service. Pour rappel, 64Mo/s et 4000 IOPS par To provisionné.",
-  "netapp_order_region_compatiable_with_info": "Compatible avec",
+  "netapp_order_region_compatiable_with_info": "Fonctionne avec",
   "netapp_order_region_badge_vrack": "vRack"
 }
