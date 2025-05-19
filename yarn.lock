@@ -6553,11 +6553,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ovh-at-internet@^0.21.6":
-  version "0.21.8"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.21.8.tgz#91f6b35e77eb60839a715d787e6ab9a22e7ec183"
-  integrity sha512-RBrew2Xnkhw/gqvDhLDBiv3mQMlTn6yLNDrF0kc8JtuYG1FiNdM7ucIOq581jZJ598GNhCMIbjvpQ2XjysnKuQ==
-
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.6.tgz#8db90747f02d2bb95e3a5563d1c5a77a25edd0ad"
