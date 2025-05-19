@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { FC, useMemo } from 'react';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 
-const colorBySeverityStatus = {
+const COLOR_BY_SEVERITY_STATUS = {
   success: ODS_THEME_COLOR_INTENT.success,
   error: ODS_THEME_COLOR_INTENT.error,
   warning: ODS_THEME_COLOR_INTENT.warning,
@@ -16,7 +16,7 @@ const colorBySeverityStatus = {
   default: ODS_THEME_COLOR_INTENT.default,
 } as const;
 
-export type TStatusChipSeverity = keyof typeof colorBySeverityStatus;
+export type TStatusChipSeverity = keyof typeof COLOR_BY_SEVERITY_STATUS;
 export type TStatusChipStatus = {
   label: string;
   severity: TStatusChipSeverity;
@@ -37,7 +37,7 @@ const StatusChip: FC<TStatusChipProps> = ({ status, icon, tooltipLabel }) => {
       <OsdsChip
         size={ODS_CHIP_SIZE.sm}
         inline
-        color={colorBySeverityStatus[severity]}
+        color={COLOR_BY_SEVERITY_STATUS[severity]}
         data-testid="status-chip"
         className="cursor-default rounded-[--ods-border-radius-sm] h-[26px] min-w-max"
       >

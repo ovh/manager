@@ -8,7 +8,7 @@ import { useMemo } from 'react';
 
 export const useInstanceBackupPrice = (projectId: string, region: string) => {
   const { i18n } = useTranslation('actions');
-  const locale = i18n?.language?.replace('_', '-');
+  const locale = i18n.language.replace('_', '-');
   const {
     data: productAvailability,
     isLoading: isProductAvailabilityLoading,

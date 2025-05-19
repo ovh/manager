@@ -1,4 +1,8 @@
-export const INSTANCE_PRICING_LINKS = {
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
+export const INSTANCE_PRICING_LINKS: { [Key in OvhSubsidiary]?: string } & {
+  DEFAULT: string;
+} = {
   DEFAULT: 'https://www.ovhcloud.com/en/public-cloud/prices',
   FR: 'https://www.ovhcloud.com/fr/public-cloud/prices',
   MA: 'https://www.ovhcloud.com/fr-ma/public-cloud/prices',
