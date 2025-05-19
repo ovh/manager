@@ -154,14 +154,15 @@ const getActionHrefByName = (
 };
 
 const mapInstanceAddresses = (instance: TInstanceDto) =>
-  instance.addresses.reduce((acc, { type, ...rest }) => {
+  instance.addresses.reduce((acc, { type, network, ...rest }) => {
     const foundAddresses = acc.get(type);
+    const address = { ...rest, gatewayIp: network?.gatewayIp };
     if (foundAddresses) {
       const ipAlreadyExists = !!foundAddresses.find(({ ip }) => ip === rest.ip);
-      if (!ipAlreadyExists) foundAddresses.push(rest);
+      if (!ipAlreadyExists) foundAddresses.push(address);
       return acc;
     }
-    return acc.set(type, [rest]);
+    return acc.set(type, [address]);
   }, new Map<TInstanceAddressType, TAddress[]>());
 
 const mapInstanceActions = (
