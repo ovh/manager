@@ -9,7 +9,6 @@ import ExchangeExternalContacts from '../external-contact/external-contact.servi
 import group from '../group/group.service';
 import exchangeHeader from '../header/header.service';
 import exchangeHeaderLicence from '../header/license/service-license-history.service';
-import officeAttach from '../office-attach/office-attach.service';
 import ExchangeResources from '../resource/resource.service';
 import formValidation from '../services/exchange.formValidation.service';
 import messaging from '../services/exchange.messaging.service';
@@ -35,7 +34,6 @@ angular
   .service('group', group)
   .service('exchangeHeader', exchangeHeader)
   .service('exchangeHeaderLicence', exchangeHeaderLicence)
-  .service('officeAttach', officeAttach)
   .service('ExchangeResources', ExchangeResources)
   .service('formValidation', formValidation)
   .service('messaging', messaging)

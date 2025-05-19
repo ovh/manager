@@ -7,11 +7,11 @@ export default class HeaderController {
     constants,
     coreURLBuilder,
     wucExchange,
+    EXCHANGE_CONFIG,
     exchangeHeader,
     exchangeServiceInfrastructure,
     messaging,
     navigation,
-    officeAttach,
   ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
@@ -20,11 +20,11 @@ export default class HeaderController {
     this.constants = constants;
     this.coreURLBuilder = coreURLBuilder;
     this.wucExchange = wucExchange;
+    this.EXCHANGE_CONFIG = EXCHANGE_CONFIG;
     this.exchangeHeader = exchangeHeader;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.messaging = messaging;
     this.navigation = navigation;
-    this.officeAttach = officeAttach;
   }
 
   $onInit() {
@@ -33,8 +33,6 @@ export default class HeaderController {
     this.exchangeService = this.wucExchange.value;
     this.remoteDisplayName = this.exchangeService.displayName;
     this.displayNameToUpdate = this.remoteDisplayName;
-    this.fetchingCanActivateSharepoint();
-    this.fetchingCanActivateOfficeAttach();
 
     this.URLS = this.coreURLBuilder.buildURLs({
       AUTORENEW: {
@@ -44,40 +42,27 @@ export default class HeaderController {
           searchText: this.exchangeService.domain,
         },
       },
-      ORDER_OFFICE_LICENCE: {
-        application: 'web',
-        path: '#/configuration/microsoft/office/license/order',
-      },
+    });
+
+    this.getCanOrderOffice365();
+    this.OFFICE_365_ORDER_URL = this.EXCHANGE_CONFIG.URLS.OFFICE_365_ORDER.DEFAULT;
+
+    this.exchangeHeader.getUserSubsidiary().then((subsidiary) => {
+      this.OFFICE_365_ORDER_URL =
+        this.EXCHANGE_CONFIG.URLS.OFFICE_365_ORDER[subsidiary] ||
+        this.OFFICE_365_ORDER_URL;
     });
   }
 
-  fetchingCanActivateSharepoint() {
-    const infrastructureAllowsSharepoint = this.exchangeServiceInfrastructure.isHosted();
-    const subsidiaryAllowsSharepoint = this.constants.target === 'EU';
-
-    return this.wucExchange
-      .getSharepointService(this.exchangeService)
-      .then((sharepoint) => {
-        const isAlreadyActivated = sharepoint != null;
-
-        this.canSubscribeToSharepoint =
-          !isAlreadyActivated &&
-          infrastructureAllowsSharepoint &&
-          subsidiaryAllowsSharepoint;
-      })
-      .catch(() => {
-        this.canSubscribeToSharepoint =
-          infrastructureAllowsSharepoint && subsidiaryAllowsSharepoint;
-      });
-  }
-
-  fetchingCanActivateOfficeAttach() {
-    return this.officeAttach
-      .retrievingIfUserAlreadyHasSubscribed(this.exchangeService.domain)
-      .then((userHasAlreadySubscribedToOfficeAttach) => {
-        this.canUserSubscribeToOfficeAttach =
-          !userHasAlreadySubscribedToOfficeAttach &&
-          this.constants.target === 'EU';
+  getCanOrderOffice365() {
+    return this.exchangeHeader
+      .getOfficeTenantServiceName(
+        this.exchangeService.domain,
+        this.constants.target,
+      )
+      .then((officeTenantServiceName) => {
+        this.canOrderOffice365 =
+          !officeTenantServiceName && this.constants.target === 'EU';
       });
   }
 
