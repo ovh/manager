@@ -63,7 +63,8 @@
     "angular-sanitize": "1.7.x",
     "eslint-plugin-angular": "^4.0.1",
     "glob": "^7.1.6",
-    "jest": "^29.5.12",
+    "jest": "29.7.0",
+    "jest-environment-jsdom": "29.7.0",
     "webpack-merge": "^4.2.2"
   },
   "regions": [
