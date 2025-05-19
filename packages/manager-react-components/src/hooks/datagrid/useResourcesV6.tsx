@@ -157,7 +157,7 @@ export function useResourcesV6<T = unknown>({
     flattenData: flattenData?.slice(0, (pageIndex + 1) * pageSize),
     isError,
     isLoading,
-    hasNextPage: pageIndex * pageSize + pageSize <= flattenData?.length,
+    hasNextPage: pageIndex * pageSize + pageSize < flattenData?.length,
     fetchNextPage,
     error,
     status,
