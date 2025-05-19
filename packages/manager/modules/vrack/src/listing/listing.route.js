@@ -15,21 +15,15 @@ export default /* @ngInject */ ($stateProvider) => {
       ...ListLayoutHelper.stateResolves,
       apiPath: /* @ngInject */ () => '/vrack',
       dataModel: () => 'vrack.vrack',
-      resources: /* @ngInject */ ($http) =>
-        $http
-          .get('/vracks', {
-            serviceType: 'aapi',
-          })
-          .then(({ data }) => data),
-
       loadResource: /* @ngInject */ (vrackService) => (service) => {
-        return vrackService.getVrackStatus(service.id).then((state) => {
-          return {
-            ...service,
-            serviceName: service.id,
-            state,
-          };
-        });
+        return vrackService
+          .getVrackStatus(service.serviceName)
+          .then((state) => {
+            return {
+              ...service,
+              state,
+            };
+          });
       },
       defaultFilterColumn: () => 'serviceName',
       columnConfig: /* @ngInject */ () => ({
