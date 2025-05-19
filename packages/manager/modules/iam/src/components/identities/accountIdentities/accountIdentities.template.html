@@ -1,10 +1,30 @@
 <section>
+    <iam-delegation-account
+        data-ng-if="$ctrl.delegationAccountModalOpened"
+        data-on-add-account="$ctrl.onAddAccountIdentity(urn)"
+        data-on-close="$ctrl.closeDelegationAccountModal()"
+    ></iam-delegation-account>
     <h5 data-translate="iam_identities_accounts_title"></h5>
     <oui-datagrid
         data-rows="$ctrl.identities"
         data-pagination-mode="arrows"
         data-empty-placeholder="{{:: 'iam_identities_accounts_empty' | translate}}"
     >
+        <oui-datagrid-topbar>
+            <oui-button
+                data-variant="secondary"
+                data-on-click="$ctrl.openDelegationAccountModal()"
+                data-disabled="$ctrl.readOnly"
+            >
+                <span
+                    data-translate="iam_identities_account_delegation_add_account"
+                ></span>
+            </oui-button>
+            <p
+                class="pt-1 oui-color-ae-500"
+                data-translate="iam_identities_account_delegation_disclaimer"
+            ></p>
+        </oui-datagrid-topbar>
         <oui-datagrid-column
             data-title="'iam_identities_accounts_name' | translate"
         >
