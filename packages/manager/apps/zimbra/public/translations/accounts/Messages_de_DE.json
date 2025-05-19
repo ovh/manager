@@ -18,9 +18,6 @@
   "zimbra_domains_tooltip_need_slot": "Es sind keine Accounts verfügbar. Bitte bestellen Sie einen.",
   "zimbra_account_tooltip_need_domain": "Konfigurieren Sie zuerst eine Domain.",
   "zimbra_account_tooltip_need_slot": "Es sind keine Accounts verfügbar. Bitte bestellen Sie einen.",
-  "zimbra_account_delete_modal_content_step1": "Sie sind im Begriff, den E-Mail-Account vom Zimbra-Server zu löschen.",
-  "zimbra_account_delete_modal_content_step2": "Sind Sie sicher, dass Sie das Postfach des Zimbra-Servers löschen möchten?",
-  "zimbra_account_delete_modal_warn_message": "Achtung: Diese Aktion kann nicht rückgängig gemacht werden und führt zur Löschung der Daten.",
   "zimbra_account_datagrid_size": "Größe",
   "zimbra_account_datagrid_renewal_date": "Verlängerungsdatum",
   "zimbra_account_datagrid_renewal_type": "Verlängerung",
@@ -31,5 +28,8 @@
   "zimbra_slot_cancel_modal_confirm": "Möchten Sie Ihren Dienst kündigen?",
   "zimbra_slot_undo_cancel_modal_content": "Wenn Sie die automatische Verlängerung aktivieren, wird Ihr Dienst nach dem Ablaufdatum Ihrer Vertragslaufzeit weitergeführt.",
   "zimbra_slot_undo_cancel_modal_confirm": "Möchten Sie die automatische Verlängerung Ihres Dienstes erneut aktivieren?",
-  "zimbra_slot_modal_renew_date": "Ende der Vertragslaufzeit: {{ renewDate }}"
+  "zimbra_slot_modal_renew_date": "Ende der Vertragslaufzeit: {{ renewDate }}",
+  "zimbra_account_delete_modal_content_step1": "Sind Sie sicher, dass Sie den E-Mail-Account <strong>{{ email }}</strong> löschen möchten?",
+  "zimbra_account_delete_modal_content_step2": "Sind Sie sicher, dass Sie diesen E-Mail-Account <strong>{{ email }}</strong> löschen möchten?",
+  "zimbra_account_delete_modal_warn_message": "Achtung: Diese Aktion kann nicht rückgängig gemacht werden und führt zur Löschung der Daten."
 }
