@@ -17,32 +17,36 @@ export const useInstanceBackupPrice = (projectId: string, region: string) => {
   });
   const { data: catalog, isLoading: isCatalogLoading } = useCatalog();
 
-  const validPlans = productAvailability?.plans.filter((p) =>
-    p.code.startsWith('snapshot.consumption'),
+  const currentPlan = useMemo(
+    () =>
+      productAvailability?.plans.find(
+        (p) =>
+          p.code.startsWith('snapshot.consumption') &&
+          p.regions.some((r) => r.name === region),
+      ) || null,
+    [productAvailability, region],
   );
 
-  const regionPlans = validPlans?.filter((p) =>
-    p.regions.some((r) => r.name === region),
-  );
+  const pricing = useMemo(() => {
+    if (!catalog || !currentPlan) return null;
+    return (
+      catalog.addons.find((addon) => addon.planCode === currentPlan.code)
+        ?.pricings[0] || null
+    );
+  }, [catalog, currentPlan]);
 
-  const currentPlan = regionPlans?.[0];
+  const price = useMemo(() => {
+    if (!pricing) return null;
 
-  const plan = catalog?.addons.find(
-    (addon) => addon.planCode === currentPlan?.code,
-  );
-
-  const price = plan?.pricings[0];
+    return convertHourlyPriceToMonthly(
+      priceFromUcent(pricing.price),
+    ).toLocaleString(locale, {
+      maximumFractionDigits: 3,
+    });
+  }, [pricing, locale]);
 
   return {
-    price: useMemo(
-      () =>
-        convertHourlyPriceToMonthly(
-          priceFromUcent(Number(price?.price)),
-        ).toLocaleString(locale, {
-          maximumFractionDigits: 3,
-        }) ?? null,
-      [price, locale],
-    ),
+    price,
     isLoading: isProductAvailabilityLoading || isCatalogLoading,
   };
 };
