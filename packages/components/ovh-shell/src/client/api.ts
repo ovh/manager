@@ -183,6 +183,13 @@ export default function exposeApi(shellClient: ShellClient) {
           method: 'notifyModalActionDone',
           args: [id],
         }),
+      skipToTheMainContent: () =>
+        shellClient.invokePluginMethod<void>({
+          plugin: 'ux',
+          method: 'skipToTheMainContent',
+        }),
+      onSkipToTheMainContent: (callback: CallableFunction) =>
+        shellClient.addEventListener('ux:skip-to-the-main-content', callback),
     },
     navigation: clientNavigation(shellClient),
     tracking: exposeTrackingAPI(shellClient),

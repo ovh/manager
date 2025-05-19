@@ -20,6 +20,7 @@ export interface IUXPlugin {
   getUserIdCookie(): string;
   registerModalActionDoneListener(callback: (id: string) => void): void;
   notifyModalActionDone(id: string): void;
+  skipToTheMainContent(): void;
 }
 
 // TODO: remove this once we have a more generic Plugin class
@@ -241,5 +242,9 @@ export class UXPlugin implements IUXPlugin {
     if (this.onModalActionDone) {
       this.onModalActionDone(id);
     }
+  }
+
+  skipToTheMainContent(): void {
+    this.shell.emitEvent('ux:skip-to-the-main-content');
   }
 }
