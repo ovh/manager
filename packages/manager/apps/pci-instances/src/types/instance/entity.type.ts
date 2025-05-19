@@ -21,7 +21,7 @@ export type TInstanceStatus = {
 export type TAddress = {
   ip: string;
   version: number;
-  gatewayIp: string;
+  gatewayIp?: string;
 };
 
 export type TVolume = {

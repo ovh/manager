@@ -79,7 +79,18 @@ const fakeInstance1: TInstance = instanceBuilder(fakeInstanceDto1, new Map(), {
 });
 
 const fakeInstanceDto2: TInstanceDto = instanceDtoBuilder(
-  [{ type: 'private', ip: '192.00.123.34', gatewayIp: '', version: 1 }],
+  [
+    {
+      type: 'private',
+      ip: '192.00.123.34',
+      network: {
+        id: '',
+        name: '',
+        gatewayIp: '',
+      },
+      version: 1,
+    },
+  ],
   'ERROR',
 );
 const fakeInstance2: TInstance = instanceBuilder(
@@ -96,9 +107,36 @@ const fakeInstance2: TInstance = instanceBuilder(
 
 const fakeInstanceDto3: TInstanceDto = instanceDtoBuilder(
   [
-    { type: 'private', ip: '192.00.123.34', gatewayIp: '', version: 1 },
-    { type: 'public', ip: '193.02.689.00', gatewayIp: '', version: 2 },
-    { type: 'public', ip: '191.01.045.10', gatewayIp: '', version: 7 },
+    {
+      type: 'private',
+      ip: '192.00.123.34',
+      network: {
+        id: '',
+        name: '',
+        gatewayIp: '',
+      },
+      version: 1,
+    },
+    {
+      type: 'public',
+      ip: '193.02.689.00',
+      network: {
+        id: '',
+        name: '',
+        gatewayIp: '',
+      },
+      version: 2,
+    },
+    {
+      type: 'public',
+      ip: '191.01.045.10',
+      network: {
+        id: '',
+        name: '',
+        gatewayIp: '',
+      },
+      version: 7,
+    },
   ],
   'DELETING',
 );
@@ -121,8 +159,26 @@ const fakeInstance3: TInstance = instanceBuilder(
 
 const fakeInstanceDto4: TInstanceDto = instanceDtoBuilder(
   [
-    { type: 'public', ip: '193.02.689.00', gatewayIp: '', version: 2 },
-    { type: 'public', ip: '193.02.689.00', gatewayIp: '', version: 7 },
+    {
+      type: 'public',
+      ip: '193.02.689.00',
+      network: {
+        id: '',
+        name: '',
+        gatewayIp: '',
+      },
+      version: 2,
+    },
+    {
+      type: 'public',
+      ip: '193.02.689.00',
+      network: {
+        id: '',
+        name: '',
+        gatewayIp: '',
+      },
+      version: 7,
+    },
   ],
   'BUILD',
 );

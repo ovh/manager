@@ -151,6 +151,48 @@ export const getInstance = ({
     .get(`/cloud/project/${projectId}/aggregated/instance/${instanceId}`)
     .then((response) => response.data);
 
+// TODO: remove mock when api is ready
+export const getInstanceMock = ({
+  projectId,
+  instanceId,
+}: {
+  projectId: string;
+  instanceId: string;
+}): Promise<TInstanceDto> =>
+  v6
+    .get(`/cloud/project/${projectId}/aggregated/instance/${instanceId}`)
+    .then(({ data }) => ({
+      ...data,
+      regionType: 'region',
+      image: {
+        id: data.imageId,
+        name: data.imageName,
+        deprecated: data.isImageDeprecated,
+      },
+      flavor: {
+        id: data.flavorId,
+        name: data.flavorName,
+        specs: {
+          cpu: 32,
+          ram: 128000,
+          storage: 400,
+          bandwidth: {
+            public: 20000,
+            private: 20000,
+          },
+        },
+      },
+      prices: [
+        {
+          type: 'hour',
+          value: 297561000,
+          status: 'enabled',
+        },
+      ],
+      sshKey: 'ylokey',
+      login: 'ssh almalinux@51.161.81.152',
+    }));
+
 export const editInstanceName = ({
   projectId,
   instanceId,

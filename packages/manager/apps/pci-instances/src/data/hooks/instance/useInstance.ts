@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useMutation, useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
-import { editInstanceName, getInstance } from '@/data/api/instance';
+import { editInstanceName, getInstanceMock } from '@/data/api/instance';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { TInstanceDto } from '@/types/instance/api.type';
 import { instancesQueryKey } from '@/utils';
@@ -34,7 +34,7 @@ export const useInstance = (
 
   return useQuery({
     queryKey: instancesQueryKey(projectId, ['instance', instanceId]),
-    queryFn: () => getInstance({ projectId, instanceId }),
+    queryFn: () => getInstanceMock({ projectId, instanceId }),
     select: useCallback(
       (instanceDto: TInstanceDto) => instanceSelector(instanceDto, projectUrl),
       [projectUrl],
