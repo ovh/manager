@@ -69,13 +69,11 @@
                                 data-ng-if="$ctrl.pciFeatures.isFeatureAvailable($ctrl.PCI_FEATURES.BANNERS.FREE_LOCAL_ZONES_BANNER)"
                             />
 
-                            <oui-message
-                                data-type="warning"
-                                data-ng-if="$ctrl.projectQuotaAboveThreshold && !$ctrl.isDiscoveryProject"
-                            >
+                            <oui-message data-type="warning">
                                 <p
+                                    class="oui-link_icon"
                                     data-translate="pci_projects_project_quota_threshold_warning_message"
-                                    data-translate-values="{ quotaUrl: $ctrl.getQuotaUrl() }"
+                                    data-translate-values="{ quotaUrl: $ctrl.getQuotaUrl(), quotaGuidesLink: $ctrl.quotaGuidesLink }"
                                 ></p>
                             </oui-message>
 
