@@ -32,6 +32,12 @@ export const KMS_ROUTES_URLS = {
     `/${KMS_ROUTES_URIS.root}/${domainId}/${KMS_ROUTES_URIS.keys}`,
   serviceKeyDashboard: (domainId: string, serviceKeyId: string) =>
     `/${KMS_ROUTES_URIS.root}/${domainId}/${KMS_ROUTES_URIS.keys}/${serviceKeyId}`,
+  credentialListing: (domainId: string) =>
+    `/${KMS_ROUTES_URIS.root}/${domainId}/${KMS_ROUTES_URIS.credentials}`,
+  credentialDashboard: (domainId: string, credentialId: string) =>
+    `/${KMS_ROUTES_URIS.root}/${domainId}/${KMS_ROUTES_URIS.credentials}/${credentialId}`,
+  credentialDashboardDelete: (domainId: string, credentialId: string) =>
+    `/${KMS_ROUTES_URIS.root}/${domainId}/${KMS_ROUTES_URIS.credentials}/${credentialId}/${KMS_ROUTES_URIS.credentialDelete}`,
 };
 
 /**
