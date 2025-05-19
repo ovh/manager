@@ -18,9 +18,6 @@
   "zimbra_domains_tooltip_need_slot": "Nessun account disponibile, ordinalo.",
   "zimbra_account_tooltip_need_domain": "Configura prima un dominio.",
   "zimbra_account_tooltip_need_slot": "Nessun account disponibile, registrane uno.",
-  "zimbra_account_delete_modal_content_step1": "Stai per eliminare l'account email del server Zimbra.",
-  "zimbra_account_delete_modal_content_step2": "Vuoi davvero eliminare la casella email del server Zimbra?",
-  "zimbra_account_delete_modal_warn_message": "Attenzione: questa azione è irreversibile e comporta la cancellazione dei dati.",
   "zimbra_account_datagrid_size": "Dimensione",
   "zimbra_account_datagrid_renewal_date": "Scadenza",
   "zimbra_account_datagrid_renewal_type": "Rinnovo",
@@ -31,5 +28,8 @@
   "zimbra_slot_cancel_modal_confirm": "Vuoi procedere alla disattivazione del servizio?",
   "zimbra_slot_undo_cancel_modal_content": "Attivando il rinnovo automatico, il tuo servizio resterà attivo anche dopo la data di scadenza dell’impegno contrattuale.",
   "zimbra_slot_undo_cancel_modal_confirm": "Vuoi riattivare il rinnovo automatico del servizio?",
-  "zimbra_slot_modal_renew_date": "Fine dell’impegno contrattuale: {{ renewDate }}"
+  "zimbra_slot_modal_renew_date": "Fine dell’impegno contrattuale: {{ renewDate }}",
+  "zimbra_account_delete_modal_content_step1": "Vuoi davvero eliminare l'account email <strong>{{ email }}</strong>?",
+  "zimbra_account_delete_modal_content_step2": "Vuoi davvero eliminare questo account email <strong>{{ email }}</strong>?",
+  "zimbra_account_delete_modal_warn_message": "Attenzione: questa azione è irreversibile e comporta la cancellazione dei dati."
 }
