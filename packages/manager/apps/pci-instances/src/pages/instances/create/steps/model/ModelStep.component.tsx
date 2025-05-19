@@ -51,7 +51,7 @@ export const ModelStep: FC = () => {
 
   const modelStep = stepById(modelStepId);
 
-  const getSelectedModelMonthlyPrice = useCallback((): string | undefined => {
+  const modelMonthlyPrice = useMemo((): string | undefined => {
     const selectedModelMonthlyPrice = getModelPriceByInterval(
       data?.models.data.find((model) => model.name === modelName)?.pricings ??
         [],
@@ -121,7 +121,7 @@ export const ModelStep: FC = () => {
         title={
           <StepTitle
             modelStep={modelStep}
-            modelMonthlyPrice={getSelectedModelMonthlyPrice()}
+            modelMonthlyPrice={modelMonthlyPrice}
           />
         }
         {...(!isLoading &&

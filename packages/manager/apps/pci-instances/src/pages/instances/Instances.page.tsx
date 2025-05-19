@@ -75,7 +75,7 @@ const SearchBar = ({
   };
 
   return (
-    <div className="flex justify-end w-full relative">
+    <form className="flex justify-end w-full relative">
       <Input
         value={searchField}
         disabled={isDisabled}
@@ -85,11 +85,11 @@ const SearchBar = ({
             onSearchHandler();
           }
         }}
-        className="focus:bg-[#bef1ff] max-w-full sm:max-w-72 rounded-r-none focus-visible:ring-transparent focus-visible:bg-primary-300 text-primary-100 pr-8"
+        className="focus:bg-[#bef1ff] max-w-full sm:max-w-72 rounded-r-none focus-visible:ring-transparent focus-visible:bg-primary-300 text-primary-100 pr-8 mr-4"
       />
       <X
         onClick={() => setSearchField('')}
-        className="absolute right-[55px] top-[8px] text-blue-500 cursor-pointer"
+        className="absolute right-[68px] top-[8px] text-blue-500 cursor-pointer"
       />
       <Button
         className="rounded-l-none"
@@ -98,7 +98,7 @@ const SearchBar = ({
       >
         <Search />
       </Button>
-    </div>
+    </form>
   );
 };
 const Instances: FC = () => {
