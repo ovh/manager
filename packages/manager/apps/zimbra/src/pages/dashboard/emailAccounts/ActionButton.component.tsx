@@ -13,7 +13,11 @@ import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/data/api';
-import { DELETE_EMAIL_ACCOUNT, EDIT_EMAIL_ACCOUNT } from '@/tracking.constants';
+import {
+  DELETE_EMAIL_ACCOUNT,
+  EDIT_EMAIL_ACCOUNT,
+  GO_EMAIL_ACCOUNT_ALIASES,
+} from '@/tracking.constants';
 
 interface ActionButtonEmailAccountProps {
   item: EmailAccountItem;
@@ -39,6 +43,21 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
     navigate(hrefEditEmailAccount);
   };
 
+  const hrefEmailAccountAliases = useGenerateUrl(
+    `./${item.id}/aliases`,
+    'path',
+  );
+
+  const handleEmailAliasesClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [GO_EMAIL_ACCOUNT_ALIASES],
+    });
+    navigate(hrefEmailAccountAliases);
+  };
+
   const hrefDeleteEmailAccount = useGenerateUrl(`./${item.id}/delete`, 'path');
 
   const handleDeleteEmailClick = () => {
@@ -61,6 +80,13 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
     },
     {
       id: 2,
+      onClick: handleEmailAliasesClick,
+      urn: platformUrn,
+      iamActions: [IAM_ACTIONS.alias.get],
+      label: t('alias'),
+    },
+    {
+      id: 3,
       onClick: handleDeleteEmailClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.delete],
