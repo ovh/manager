@@ -15,19 +15,21 @@
   "author": "OVH SAS",
   "main": "index.js",
   "scripts": {
-    "json-to-component-route-migration": "node ./routes/json-to-component-route-migration.mjs",
+    "common-tests-config-migration": "node ./tests-migrate/common-tests-config-migration.mjs",
+    "json-to-component-route-migration": "node ./routes-migrate/json-to-component-route-migration.mjs",
     "manager-cli": "node ./manager-cli.mjs",
-    "transform-routes": "node ./routes/transform-routes-cli.mjs",
-    "update-routers-init": "node ./routes/update-routers-init-cli.mjs"
+    "transform-routes": "node routes/steps/transform-routes-cli.mjs",
+    "update-routers-init": "node routes/steps/update-routers-init-cli.mjs"
   },
   "dependencies": {
     "@babel/parser": "^7.27.0",
     "@babel/traverse": "^7.27.0",
-    "@babel/types": "^7.27.0"
+    "@babel/types": "^7.27.0",
+    "@ovh-ux/manager-tests-setup": "^0.0.1",
+    "fast-glob": "^3.3.3"
   },
   "devDependencies": {
-    "prettier": "^3.5.3",
-    "sort-package-json": "^3.1.0"
+    "prettier": "^3.5.3"
   },
   "engines": {
     "node": "^22",
