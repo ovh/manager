@@ -24,6 +24,8 @@ vi.mock('@/api/hooks/useVolume', () => ({
     .mockReturnValue({ isPending: false, detachVolume: vi.fn() }),
 }));
 
+vi.mock('@/hooks/useSearchFormParams');
+
 vi.mock('@/api/hooks/useInstance');
 
 vi.mock('react-router-dom', () => ({
@@ -104,21 +106,25 @@ describe('DetachStorage', () => {
       } as OdsSelectValueChangeEventDetail);
     });
 
-    expect(
-      getByText(
-        'pci_projects_project_storages_blocks_block_detach_detachvolume',
-      ),
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        getByText(
+          'pci_projects_project_storages_blocks_block_detach_detachvolume',
+        ),
+      ).toBeInTheDocument();
 
-    expect(button).toBeInTheDocument();
-    expect(button).not.toBeDisabled();
+      expect(button).toBeInTheDocument();
+      expect(button).not.toBeDisabled();
+    });
 
     act(() => {
       button.click();
     });
 
-    expect(vi.mocked(useDetachVolume)).toHaveBeenLastCalledWith(
-      expect.objectContaining({ instanceId: 'i2' }),
-    );
+    await waitFor(() => {
+      expect(
+        vi.mocked(useDetachVolume().detachVolume),
+      ).toHaveBeenLastCalledWith(expect.objectContaining({ instanceId: 'i2' }));
+    });
   });
 });

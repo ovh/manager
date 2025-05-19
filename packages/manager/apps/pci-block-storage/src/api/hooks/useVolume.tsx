@@ -241,24 +241,30 @@ export const useAttachVolume = ({
   };
 };
 
-export const useDetachVolume = ({
-  projectId,
-  volumeId,
-  instanceId,
-  onError,
-  onSuccess,
-}: AttachVolumeProps) => {
+interface DetachParams {
+  projectId: string;
+  volumeId: string;
+  instanceId: string;
+}
+
+export const useDetachVolume = (options?: {
+  onSuccess: () => void;
+  onError: (error: Error) => void;
+}) => {
+  const { onSuccess, onError } = options || {};
+
   const mutation = useMutation({
-    mutationFn: async () => detachVolume(projectId, volumeId, instanceId),
+    mutationFn: async ({ projectId, volumeId, instanceId }: DetachParams) =>
+      detachVolume(projectId, volumeId, instanceId),
     onError,
-    onSuccess: (volume: TVolume) => {
+    onSuccess: (volume: TVolume, { projectId, instanceId, volumeId }) => {
       const newVolume = {
         ...volume,
         attachedTo: volume.attachedTo.filter((id) => id !== instanceId),
       };
       queryClient.setQueryData(
         getVolumesQueryKey(projectId),
-        (data: { id: string; attachedTo: string }[]) =>
+        (data: { id: string; attachedTo: string }[] | undefined) =>
           data?.map((v) => {
             if (v.id === volumeId) {
               return newVolume;
@@ -270,11 +276,11 @@ export const useDetachVolume = ({
         getVolumeQueryKey(projectId, volumeId),
         () => newVolume,
       );
-      onSuccess(volume);
+      onSuccess();
     },
   });
   return {
-    detachVolume: () => mutation.mutate(),
+    detachVolume: mutation.mutate,
     ...mutation,
   };
 };

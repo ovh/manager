@@ -297,9 +297,6 @@ describe('useDetachVolume', () => {
     const { result } = renderHook(
       () =>
         useDetachVolume({
-          projectId: '123',
-          volumeId: '1',
-          instanceId: '1',
           onSuccess,
           onError,
         }),
@@ -308,7 +305,13 @@ describe('useDetachVolume', () => {
       },
     );
 
-    act(() => result.current.mutate());
+    act(() =>
+      result.current.mutate({
+        projectId: '123',
+        volumeId: '1',
+        instanceId: '1',
+      }),
+    );
 
     await waitFor(() => {
       expect(detachVolume).toHaveBeenCalledWith('123', '1', '1');
