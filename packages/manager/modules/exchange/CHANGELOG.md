@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.14.0...@ovh-ux/manager-exchange@4.14.1) (2025-05-19)
+
+
+### Bug Fixes
+
+* **web.exchange:** order office 365 cta ([67ca5b7](https://github.com/ovh/manager/commit/67ca5b7ce77a61aefec4edd9fac29ec401076331)), closes [#MANAGER-13461](https://github.com/ovh/manager/issues/MANAGER-13461)
+* **web.exchange:** remove O365 promotion ([8f615c1](https://github.com/ovh/manager/commit/8f615c18b6d5034577a8b2e820ab6e4904e542ae)), closes [#MANAGER-13461](https://github.com/ovh/manager/issues/MANAGER-13461)
+
+
+
+
+
 # [4.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.13.2...@ovh-ux/manager-exchange@4.14.0) (2025-03-31)
 
 

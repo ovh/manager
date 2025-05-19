@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.25.0...@ovh-ux/manager-zimbra-app@0.26.0) (2025-05-19)
+
+
+### Bug Fixes
+
+* **zimbra:** fix typo in guide description ([#17077](https://github.com/ovh/manager/issues/17077)) ([329b573](https://github.com/ovh/manager/commit/329b573c51a23787bc468206d16f45b3024e2a65))
+
+
+### Features
+
+* **zimbra:** add alias to email accounts actions ([10fffa3](https://github.com/ovh/manager/commit/10fffa35af6f81fe0aa6d1b86dc76d296269cade)), closes [#MANAGER-18298](https://github.com/ovh/manager/issues/MANAGER-18298)
+
+
+
+
+
 # [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.24.0...@ovh-ux/manager-zimbra-app@0.25.0) (2025-05-15)
 
 
