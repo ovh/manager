@@ -8,9 +8,7 @@
     "coverage": "vitest run --coverage",
     "dev": "vite",
     "lint": "eslint ./src",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-instances-app' --include-dependencies -- npm run build --if-present",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-instances-app' --include-dependencies -- npm run dev --if-present",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-instances-app' --include-dependencies -- npm run dev:watch --if-present",
+    "start": "vite",
     "test": "vitest run --pool=threads",
     "test:watch": "vitest --watch --pool=threads",
     "type:check": "tsc --noEmit"
@@ -37,14 +35,12 @@
     "clsx": "^2.1.1",
     "element-internals-polyfill": "^1.3.11",
     "i18next": "^23.8.2",
-    "immer": "^10.1.1",
     "lodash.isequal": "^4.5.0",
     "lucide-react": "^0.334.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^14.1.2",
-    "react-router-dom": "^6.3.0",
-    "zustand": "^4.5.5"
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-vite-config": "^0.9.3",
