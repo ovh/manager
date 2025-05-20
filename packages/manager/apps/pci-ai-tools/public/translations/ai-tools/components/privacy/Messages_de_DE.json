@@ -1,0 +1,7 @@
+{
+  "privateAccess": "Eingeschränkter Zugriff",
+  "privateAccessDescription": "Der Zugriff ist auf die Public Cloud Nutzer von OVHcloud beschränkt, die in Ihrem Projekt erstellt wurden.",
+  "publicAccess": "Öffentlicher Zugang",
+  "publicAccessDescription1": "Jedermann über Ihre URL erreichbar. Jeder kann auf Ihren Code und die damit verbundenen Daten zugreifen.",
+  "publicAccessDescription2": "Seien Sie vorsichtig mit sensiblen Daten."
+}

@@ -1,0 +1,10 @@
+{
+  "keyFieldLabel": "Chiave",
+  "valueFieldLabel": "Valore",
+  "existingKeyError": "Questa chiave esiste già",
+  "numberOfConfiguredLabels_zero": "{{count}} label configurati",
+  "numberOfConfiguredLabels_one": "{{count}} label configurato su {{max}}",
+  "numberOfConfiguredLabels_other": "{{count}} label configurati su {{max}}",
+  "labelToastErrorTitle": "Errore",
+  "labelToastSuccessTitle": "Riuscito"
+}

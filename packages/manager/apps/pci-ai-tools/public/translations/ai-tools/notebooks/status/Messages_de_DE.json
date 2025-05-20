@@ -1,0 +1,11 @@
+{
+  "status-DELETING": "Wird gelöscht",
+  "status-RESTARTING": "Neustart wird ausgeführt",
+  "status-STARTING": "Starten",
+  "status-STOPPING": "Wird gelöscht",
+  "status-FAILED": "Fehlgeschlagen",
+  "status-ERROR": "Fehler",
+  "status-STOPPED": "Angehalten",
+  "status-SYNC_FAILED": "Synchronisierungsfehler",
+  "status-RUNNING": "In Betrieb"
+}
