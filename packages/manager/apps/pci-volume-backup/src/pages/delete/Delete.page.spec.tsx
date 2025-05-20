@@ -3,10 +3,12 @@ import { act, fireEvent, render } from '@testing-library/react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { PciModal, DeletionModalProps } from '@ovh-ux/manager-pci-common';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@/hooks/notifications/useNotifications';
 import { useBackups, useDeleteBackup } from '@/data/hooks/useVolumeBackup';
 import { TBackup } from '@/data/api/api.types';
 import DeletePage from './Delete.page';
+import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 
 const MOCK_BACKUP: TBackup = {
   id: 'backup-id',
@@ -141,6 +143,10 @@ describe('DeleteBackup Modal', () => {
       values: {
         volumeBackupName: MOCK_BACKUP.name,
       },
+      trackingParams: {
+        pageType: PageType.bannerSuccess,
+        pageName: VOLUME_BACKUP_TRACKING.DELETE_BACKUP.REQUEST_SUCCESS,
+      },
     });
     expect(mockNavigate).toHaveBeenCalledWith('..');
   });
@@ -177,6 +183,10 @@ describe('DeleteBackup Modal', () => {
       error: mockError,
       values: {
         volumeBackupName: MOCK_BACKUP.name,
+      },
+      trackingParams: {
+        pageType: PageType.bannerError,
+        pageName: VOLUME_BACKUP_TRACKING.DELETE_BACKUP.REQUEST_FAIL,
       },
     });
     expect(mockNavigate).toHaveBeenCalledWith('..');

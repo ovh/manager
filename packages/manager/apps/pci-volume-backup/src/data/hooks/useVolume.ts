@@ -17,7 +17,7 @@ export type TNewVolumeFromBackupData = {
 export type TCreateVolumeFromBackupArguments = {
   projectId: string;
   onSuccess: (newVolume: TVolume) => void;
-  onError: (err: Error, newVolumeData: TNewVolumeFromBackupData) => void;
+  onError: (cause: ApiError, newVolumeData: TNewVolumeFromBackupData) => void;
 };
 
 export const useVolume = (

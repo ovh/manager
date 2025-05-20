@@ -72,7 +72,7 @@ export default function CreateVolumeBackup() {
 
   const { projectId } = useParams();
   const navigate = useNavigate();
-  const { trackClick, trackPage } = useOvhTracking();
+  const { trackClick } = useOvhTracking();
   const { shell } = useContext(ShellContext);
 
   const hrefProject = useProjectUrl('public-cloud');
@@ -102,31 +102,29 @@ export default function CreateVolumeBackup() {
   } = useCreateVolumeBackup({
     projectId: projectId || '',
     onSuccess: () => {
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: VOLUME_BACKUP_TRACKING.CREATE.REQUEST_SUCCESS,
-      });
-
       addSuccessMessage({
         i18nKey:
           'pci_projects_project_storages_volume_backup_create_action_create_option_volume_backup_success',
         values: {
           backupName: `<strong>${backupName}</strong>`,
         },
+        trackingParams: {
+          pageType: PageType.bannerSuccess,
+          pageName: VOLUME_BACKUP_TRACKING.CREATE.REQUEST_SUCCESS,
+        },
       });
 
       goBack();
     },
     onError: (error: ApiError) => {
-      trackPage({
-        pageType: PageType.bannerError,
-        pageName: VOLUME_BACKUP_TRACKING.CREATE.REQUEST_FAIL,
-      });
-
       addErrorMessage({
         i18nKey:
           'pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail',
         error,
+        trackingParams: {
+          pageType: PageType.bannerError,
+          pageName: VOLUME_BACKUP_TRACKING.CREATE.REQUEST_FAIL,
+        },
       });
 
       goBack();
@@ -139,16 +137,15 @@ export default function CreateVolumeBackup() {
   } = useCreateVolumeSnapshot({
     projectId: projectId || '',
     onSuccess: () => {
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: VOLUME_BACKUP_TRACKING.CREATE.REQUEST_SUCCESS,
-      });
-
       addSuccessMessage({
         i18nKey:
           'pci_projects_project_storages_volume_backup_create_action_create_option_volume_snapshot_success',
         values: {
           backupName: `<strong>${backupName}</strong>`,
+        },
+        trackingParams: {
+          pageType: PageType.bannerSuccess,
+          pageName: VOLUME_BACKUP_TRACKING.CREATE.REQUEST_SUCCESS,
         },
       });
 
@@ -159,15 +156,14 @@ export default function CreateVolumeBackup() {
       );
     },
     onError: (error: ApiError) => {
-      trackPage({
-        pageType: PageType.bannerError,
-        pageName: VOLUME_BACKUP_TRACKING.CREATE.REQUEST_FAIL,
-      });
-
       addErrorMessage({
         i18nKey:
           'pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail',
         error,
+        trackingParams: {
+          pageType: PageType.bannerError,
+          pageName: VOLUME_BACKUP_TRACKING.CREATE.REQUEST_FAIL,
+        },
       });
 
       shell.navigation.navigateTo(
@@ -273,11 +269,23 @@ export default function CreateVolumeBackup() {
     }
   };
 
+  const handleGuideTracking = (key: string) => {
+    trackClick({
+      actionType: 'action',
+      actions: [...VOLUME_BACKUP_TRACKING.GUIDE, `go-to-${key}`],
+    });
+  };
+
   return (
     <BaseLayout
       header={{
         title: t('pci_projects_project_storages_volume_backup_create_header'),
-        headerButton: <PciGuidesHeader category="volumeBackup" />,
+        headerButton: (
+          <PciGuidesHeader
+            category="volumeBackup"
+            // onClick={handleGuideTracking}
+          />
+        ),
       }}
       description={t(
         'pci_projects_project_storages_volume_backup_create_description',

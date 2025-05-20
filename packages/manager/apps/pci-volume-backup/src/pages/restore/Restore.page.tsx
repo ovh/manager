@@ -17,7 +17,7 @@ export default function Restore() {
   const { projectId } = useParams();
   const [searchParams] = useSearchParams();
   const volumeId = searchParams.get('volumeId') || '';
-  const { trackClick, trackPage } = useOvhTracking();
+  const { trackClick } = useOvhTracking();
 
   const { addSuccessMessage, addErrorMessage } = useNotifications({
     ns: 'restore',
@@ -46,33 +46,31 @@ export default function Restore() {
     projectId: projectId || '',
     regionName: volume?.region || '',
     onSuccess: () => {
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: VOLUME_BACKUP_TRACKING.RESTORE_VOLUME.REQUEST_SUCCESS,
-      });
-
       addSuccessMessage({
         i18nKey:
           'pci_projects_project_storages_volume_backup_list_restore_volume_action_request_success',
         values: {
           volumeName: `<strong>${volume?.name}</strong>`,
         },
+        trackingParams: {
+          pageType: PageType.bannerSuccess,
+          pageName: VOLUME_BACKUP_TRACKING.RESTORE_VOLUME.REQUEST_SUCCESS,
+        },
       });
 
       goBack();
     },
     onError: (error: ApiError) => {
-      trackPage({
-        pageType: PageType.bannerError,
-        pageName: VOLUME_BACKUP_TRACKING.RESTORE_VOLUME.REQUEST_FAIL,
-      });
-
       addErrorMessage({
         i18nKey:
           'pci_projects_project_storages_volume_backup_list_restore_volume_action_request_error',
         error,
         values: {
           volumeName: `<strong>${volume?.name}</strong>`,
+        },
+        trackingParams: {
+          pageType: PageType.bannerError,
+          pageName: VOLUME_BACKUP_TRACKING.RESTORE_VOLUME.REQUEST_FAIL,
         },
       });
 

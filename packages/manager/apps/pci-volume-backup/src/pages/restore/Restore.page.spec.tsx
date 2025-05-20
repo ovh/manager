@@ -1,6 +1,7 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { fireEvent, render } from '@testing-library/react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { TBackup } from '@/data/api/api.types';
 import { useVolume } from '@/data/hooks/useVolume';
@@ -8,6 +9,7 @@ import { useBackup, useRestoreVolume } from '@/data/hooks/useVolumeBackup';
 import { useNotifications } from '@/hooks/notifications/useNotifications';
 import { MOCKED_VOLUME } from '@/__tests__/mocks';
 import Restore from './Restore.page';
+import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 
 vi.mock('@/data/hooks/useVolumeBackup', () => ({
   useBackup: vi.fn(),
@@ -160,6 +162,10 @@ describe('RestoreVolume Page', () => {
       values: {
         volumeName: `<strong>${MOCKED_VOLUME.name}</strong>`,
       },
+      trackingParams: {
+        pageType: PageType.bannerSuccess,
+        pageName: VOLUME_BACKUP_TRACKING.RESTORE_VOLUME.REQUEST_SUCCESS,
+      },
     });
     expect(mockNavigate).toHaveBeenCalledWith('..');
   });
@@ -200,6 +206,10 @@ describe('RestoreVolume Page', () => {
       error: mockError,
       values: {
         volumeName: `<strong>${MOCKED_VOLUME.name}</strong>`,
+      },
+      trackingParams: {
+        pageType: PageType.bannerError,
+        pageName: VOLUME_BACKUP_TRACKING.RESTORE_VOLUME.REQUEST_FAIL,
       },
     });
     expect(mockNavigate).toHaveBeenCalledWith('..');
