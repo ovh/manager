@@ -36,6 +36,7 @@ import {
   useAllSnapshots,
   usePaginatedVolumeSnapshot,
 } from '@/api/hooks/useSnapshots';
+import { useQueryParamNotifications } from '@/hooks/useQueryParamNotifications';
 
 export default function ListingPage() {
   const { t } = useTranslation(['volumes']);
@@ -56,6 +57,8 @@ export default function ListingPage() {
     id: 'creationDate',
     desc: true,
   });
+
+  useQueryParamNotifications();
 
   const {
     data: allSnapshots,
