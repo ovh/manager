@@ -36,7 +36,7 @@ export default function Restore() {
   const goBack = () => {
     trackClick({
       actionType: 'action',
-      actions: [VOLUME_BACKUP_TRACKING.RESTORE_VOLUME.CTA_CANCEL],
+      actions: VOLUME_BACKUP_TRACKING.RESTORE_VOLUME.CTA_CANCEL,
     });
 
     navigate('..');
@@ -86,7 +86,7 @@ export default function Restore() {
     if (volume?.id && backup?.id) {
       trackClick({
         actionType: 'action',
-        actions: [VOLUME_BACKUP_TRACKING.RESTORE_VOLUME.CTA_CONFIRM],
+        actions: VOLUME_BACKUP_TRACKING.RESTORE_VOLUME.CTA_CONFIRM,
       });
 
       restoreVolume({ volumeId: volume.id, backupId: backup?.id });

@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { TVolumeBackup } from '@/data/api/api.types';
 import { VOLUME_BACKUP_STATUS } from '@/constants';
+import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 
 type ActionsProps = {
   backup: TVolumeBackup;
@@ -10,6 +12,7 @@ type ActionsProps = {
 
 export default function Actions({ backup }: Readonly<ActionsProps>) {
   const { t } = useTranslation('listing');
+  const { trackClick } = useOvhTracking();
   const { id, volumeId, status } = backup;
 
   const restoreVolumeHref = useHref(`./restore-volume?volumeId=${volumeId}`);
@@ -29,6 +32,12 @@ export default function Actions({ backup }: Readonly<ActionsProps>) {
             label: t(
               'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore',
             ),
+            onClick: () => {
+              trackClick({
+                actionType: 'action',
+                actions: VOLUME_BACKUP_TRACKING.LISTING.ROW_CTA_RESTORE_VOLUME,
+              });
+            },
           },
           {
             id: 2,
@@ -36,6 +45,12 @@ export default function Actions({ backup }: Readonly<ActionsProps>) {
             label: t(
               'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_create_volume',
             ),
+            onClick: () => {
+              trackClick({
+                actionType: 'action',
+                actions: VOLUME_BACKUP_TRACKING.LISTING.ROW_CTA_CREATE_VOLUME,
+              });
+            },
           },
         ]
       : []),
@@ -45,6 +60,12 @@ export default function Actions({ backup }: Readonly<ActionsProps>) {
       label: t(
         'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_delete',
       ),
+      onClick: () => {
+        trackClick({
+          actionType: 'action',
+          actions: VOLUME_BACKUP_TRACKING.LISTING.ROW_CTA_DELETE_VOLUME,
+        });
+      },
     },
   ];
 
