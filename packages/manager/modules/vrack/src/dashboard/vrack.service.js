@@ -55,9 +55,33 @@ export default class Vrack {
       .then(({ data }) => data);
   }
 
+  associateVmwareCloudDirectorVirtualDataCenterToVrack(
+    serviceName,
+    vmwareCloudDirectorVirtualDataCenter,
+  ) {
+    return this.$http
+      .post(`/vrack/${serviceName}/vmwareCloudDirectorVirtualDataCenter`, {
+        vmwareCloudDirectorVirtualDataCenter,
+      })
+      .then(({ data }) => data);
+  }
+
   dissociateOvhCloudConnectFromVrack(serviceName, ovhCloudConnectId) {
     return this.$http
       .delete(`/vrack/${serviceName}/ovhCloudConnect/${ovhCloudConnectId}`)
+      .then(({ data }) => data);
+  }
+
+  dissociateVmwareCloudDirectorVirtualDataCenterFromVrack(
+    serviceName,
+    vmwareCloudDirectorVirtualDataCenter,
+  ) {
+    return this.$http
+      .delete(
+        `/vrack/${serviceName}/vmwareCloudDirectorVirtualDataCenter/${encodeURIComponent(
+          vmwareCloudDirectorVirtualDataCenter,
+        )}`,
+      )
       .then(({ data }) => data);
   }
 

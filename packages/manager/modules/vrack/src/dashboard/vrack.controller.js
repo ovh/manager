@@ -115,6 +115,7 @@ export default class VrackMoveDialogCtrl {
     this.terminateVrackOptionAvailable = this.features.isFeatureAvailable(
       FEATURE_NAMES.legacyVrackDelete,
     );
+    this.vmwareCloudDirectorVirtualDataCenterGroup = {};
 
     this.atInternet.trackPage({
       name: `${VRACK_TRACKING_PREFIX}vrack-private-network::detail`,
@@ -205,12 +206,14 @@ export default class VrackMoveDialogCtrl {
           types: [],
           groups: [],
           dedicatedCloudNetworks: [],
+          vmwareCloudDirectorVirtualDataCenter: [],
         },
         mapped: {
           types: [],
           groups: [],
           dedicatedCloudNetworks: [],
           dedicatedCloudDatacenters: [],
+          vmwareCloudDirectorVirtualDataCenter: [],
         },
       },
     };
@@ -646,6 +649,10 @@ export default class VrackMoveDialogCtrl {
               this.updateOvhCloudConnect();
             }
             break;
+          case TYPE_SERVICE.vmwareCloudDirectorVirtualDataCenter:
+            // Update vmwareCloudDirectorVirtualDataCenter
+            this.updateVmwareCloudDirectorVirtualDataCenter();
+            break;
           case TYPE_SERVICE.vrackServices:
             // Update vRack Services
             if (
@@ -700,6 +707,15 @@ export default class VrackMoveDialogCtrl {
       .then((ovhCloudConnect) => {
         this.data.eligibleServices.ovhCloudConnect = ovhCloudConnect;
       });
+  }
+
+  updateVmwareCloudDirectorVirtualDataCenter() {
+    this.groupVcdByOrganisation(
+      this.data.eligibleServices.vmwareCloudDirectorVirtualDataCenter,
+    );
+    this.data.eligibleServices.vmwareCloudDirectorVirtualDataCenter = Object.values(
+      this.vmwareCloudDirectorVirtualDataCenterGroup,
+    );
   }
 
   getEligibleServices() {
@@ -765,6 +781,14 @@ export default class VrackMoveDialogCtrl {
                     this.updateVrackServicesProductInfo();
                   }
                   break;
+                case TYPE_SERVICE.vmwareCloudDirectorVirtualDataCenter:
+                  if (
+                    this.data.eligibleServices
+                      ?.vmwareCloudDirectorVirtualDataCenter?.length > 0
+                  ) {
+                    this.updateVmwareCloudDirectorVirtualDataCenter();
+                  }
+                  break;
                 default:
                   this.updateExcludedServices();
                   break;
@@ -822,6 +846,14 @@ export default class VrackMoveDialogCtrl {
             allServices,
             { dedicatedCloud: [] },
             groupedDedicatedCloud,
+          );
+        }
+        if (allServices?.vmwareCloudDirectorVirtualDataCenter?.length > 0) {
+          this.groupVcdByOrganisation(
+            allServices.vmwareCloudDirectorVirtualDataCenter,
+          );
+          allServices.vmwareCloudDirectorVirtualDataCenter = Object.values(
+            this.vmwareCloudDirectorVirtualDataCenterGroup,
           );
         }
         if (has(allServices, 'dedicatedCloudDatacenter')) {
@@ -1349,6 +1381,12 @@ export default class VrackMoveDialogCtrl {
                 service.id,
               );
               break;
+            case 'vmwareCloudDirectorVirtualDataCenter':
+              task = this.vrackService.associateVmwareCloudDirectorVirtualDataCenterToVrack(
+                this.serviceName,
+                `${service.name}/${service.id}`,
+              );
+              break;
             case 'vrackServices':
               task = this.vrackService.addVrackServicesToVrack(
                 this.serviceName,
@@ -1501,6 +1539,12 @@ export default class VrackMoveDialogCtrl {
               task = this.vrackService.dissociateOvhCloudConnectFromVrack(
                 this.serviceName,
                 service.id,
+              );
+              break;
+            case 'vmwareCloudDirectorVirtualDataCenter':
+              task = this.vrackService.dissociateVmwareCloudDirectorVirtualDataCenterFromVrack(
+                this.serviceName,
+                `${service.name}/${service.id}`,
               );
               break;
             case 'vrackServices':
@@ -1756,5 +1800,21 @@ export default class VrackMoveDialogCtrl {
       this.TYPE_SERVICE.dedicatedServerInterface,
       this.TYPE_SERVICE.ipv6,
     ].includes(serviceType);
+  }
+
+  groupVcdByOrganisation(vmwareCloudDirectorVirtualDataCenterList) {
+    this.vmwareCloudDirectorVirtualDataCenterGroup = vmwareCloudDirectorVirtualDataCenterList.reduce(
+      (acc, serviceId) => {
+        const [organisation, ...value] = serviceId?.split('/') || [];
+
+        if (!acc[organisation]) {
+          acc[organisation] = { organisation, vcds: [] };
+        }
+
+        acc[organisation].vcds.push(value.join('/'));
+        return acc;
+      },
+      {},
+    );
   }
 }
