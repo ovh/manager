@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  useFormatDate,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -33,7 +36,12 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { useAccount, useDomains, useSlotsWithService } from '@/data/hooks';
+import {
+  SlotWithService,
+  useAccount,
+  useDomains,
+  useSlotsWithService,
+} from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import {
   AccountBodyParamsType,
@@ -42,11 +50,14 @@ import {
   putZimbraPlatformAccount,
   getZimbraPlatformListQueryKey,
   ResourceStatus,
+  ZimbraOffer,
 } from '@/data/api';
 import {
   AddEmailAccountSchema,
   addEmailAccountSchema,
+  capitalize,
   editEmailAccountSchema,
+  groupBy,
 } from '@/utils';
 import queryClient from '@/queryClient';
 import {
@@ -71,6 +82,40 @@ export const EmailAccountForm = () => {
     gcTime: 0,
   });
 
+  const format = useFormatDate();
+
+  const { slots, isLoadingSlots } = useSlotsWithService({
+    gcTime: 0,
+    enabled: !accountId,
+    used: 'false',
+    shouldFetchAll: true,
+  });
+
+  // @TODO: remove this when OdsSelect is fixed ODS-1565
+  const [hackGroupedSlots, setHackGroupedSlots] = useState<
+    Record<string, SlotWithService[]>
+  >({});
+  const [hackKeyGroupedSlots, setHackKeyGroupedSlots] = useState(Date.now());
+
+  useEffect(() => {
+    // group slots by offer
+    const groupedSlots = groupBy<keyof typeof ZimbraOffer, SlotWithService>(
+      slots,
+      (slot) => slot.offer,
+    );
+    // we need to sort the dates manually because slots API
+    // doesn't take into account the renewal date
+    Object.keys(groupedSlots).forEach((offer: keyof typeof ZimbraOffer) => {
+      groupedSlots[offer] = groupedSlots[offer].sort(
+        (a, b) =>
+          new Date(a.service?.nextBillingDate || 0).getTime() -
+          new Date(b.service?.nextBillingDate || 0).getTime(),
+      );
+    });
+    setHackGroupedSlots(groupedSlots);
+    setHackKeyGroupedSlots(Date.now());
+  }, [slots]);
+
   const [selectedDomainOrganization, setSelectedDomainOrganization] = useState(
     '',
   );
@@ -82,6 +127,7 @@ export const EmailAccountForm = () => {
   };
 
   const { data: domains, isLoading: isLoadingDomains } = useDomains({
+    gcTime: 0,
     organizationId: emailAccount?.currentState?.organizationId,
     shouldFetchAll: true,
   });
@@ -156,9 +202,7 @@ export const EmailAccountForm = () => {
       actions: [trackingName, CONFIRM],
     });
 
-    addOrEditEmailAccount(
-      formatAccountPayload(data, accountId && data.password === ''),
-    );
+    addOrEditEmailAccount(formatAccountPayload(data, !!accountId));
   };
 
   const {
@@ -167,6 +211,8 @@ export const EmailAccountForm = () => {
     reset,
     formState: { isDirty, isValid, errors },
     setValue,
+    watch,
+    trigger,
   } = useForm({
     defaultValues: {
       account: emailAccount?.currentState?.email?.split('@')[0] || '',
@@ -178,6 +224,7 @@ export const EmailAccountForm = () => {
       hideInGal: emailAccount?.currentState?.hideInGal || false,
       forceChangePasswordAfterLogin: !accountId,
       slotId: searchParams.get('slotId') || '',
+      offer: emailAccount?.currentState?.offer,
     },
     mode: 'onTouched',
     resolver: zodResolver(
@@ -197,9 +244,23 @@ export const EmailAccountForm = () => {
         hideInGal: emailAccount?.currentState?.hideInGal,
         forceChangePasswordAfterLogin: !accountId,
         slotId: searchParams.get('slotId') || '',
+        offer: emailAccount?.currentState?.offer,
       });
     }
   }, [emailAccount]);
+
+  // @TODO: remove that when offer is not mandatory
+  // this is required for now because offer is mandatory
+  // but it will be removed in the future
+  const slotId = watch('slotId');
+  useEffect(() => {
+    const selectedSlot = slots?.find((slot) => slot.id === slotId);
+
+    if (selectedSlot) {
+      setValue('offer', selectedSlot.offer);
+      trigger('offer');
+    }
+  }, [slotId, slots]);
 
   const setSelectedOrganization = (e: OdsSelectChangeEvent) => {
     const organizationLabel = domains?.find(
@@ -519,6 +580,68 @@ export const EmailAccountForm = () => {
           </span>
         ))}
       </OdsText>
+      {!accountId && (
+        <div className="flex w-full md:w-1/2">
+          <Controller
+            control={control}
+            name="slotId"
+            render={({ field: { name, value, onChange, onBlur } }) => (
+              <OdsFormField
+                className="w-full md:pr-6"
+                error={errors?.[name]?.message}
+              >
+                <label htmlFor={name} slot="label">
+                  {t('common:offer')}
+                  {' *'}
+                </label>
+                <div className="flex flex-1">
+                  <OdsSelect
+                    key={hackKeyGroupedSlots}
+                    id={name}
+                    name={name}
+                    hasError={!!errors[name]}
+                    value={value}
+                    placeholder={t('common:select_slot')}
+                    onOdsChange={onChange}
+                    onOdsBlur={onBlur}
+                    isDisabled={isLoadingSlots}
+                    className="w-full"
+                    data-testid="select-slot"
+                  >
+                    {Object.keys(hackGroupedSlots).map((offer) => (
+                      <optgroup
+                        key={offer}
+                        label={`${capitalize(offer.toLowerCase())} - ${t(
+                          'common:monthly',
+                        )}`}
+                      >
+                        {hackGroupedSlots[offer].map(
+                          (slot: SlotWithService) => (
+                            <option key={slot.id} value={slot.id}>
+                              {t('common:renewal_at', {
+                                date: format({
+                                  date: slot.service?.nextBillingDate,
+                                  format: 'P',
+                                }),
+                              })}
+                            </option>
+                          ),
+                        )}
+                      </optgroup>
+                    ))}
+                  </OdsSelect>
+                  {isLoadingSlots && (
+                    <Loading
+                      className="flex justify-center"
+                      size={ODS_SPINNER_SIZE.sm}
+                    />
+                  )}
+                </div>
+              </OdsFormField>
+            )}
+          />
+        </div>
+      )}
       <OdsButton
         slot="actions"
         type="submit"

@@ -90,5 +90,9 @@
   "service_billing_state_cancelation_planned": "Disattivazione programmata",
   "service_billing_state_manual_renewal": "Rinnovo manuale",
   "service_billing_state_automatic_renewal": "Rinnovo automatico",
-  "service_billing_state_unhandled": "N/A"
+  "service_billing_state_unhandled": "N/A",
+  "select_slot": "Seleziona una soluzione",
+  "offer": "Piano",
+  "monthly": "Mensile",
+  "renewal_at": "Rinnovo il {{ date }}"
 }
