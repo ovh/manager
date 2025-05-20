@@ -32,7 +32,7 @@ import { TileValueDate } from '@/components/dashboard/tile-value-date/tileValueD
 import { ServiceKeyStatus } from '@/components/serviceKey/serviceKeyStatus/serviceKeyStatus.component';
 import { ServiceKeyOperations } from '@/components/serviceKey/serviceKeyOperations/serviceKeyOperations.component';
 import { ServiceKeyType } from '@/components/serviceKey/serviceKeyType/serviceKeyType.component';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { getOkmsServiceKeyResourceQueryKey } from '@/data/api/okmsServiceKey';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { useOkmsById } from '@/data/hooks/useOkms';
@@ -70,7 +70,7 @@ export default function Key() {
     return (
       <ErrorBanner
         error={okmsError ? okmsError.response : serviceKeyError.response}
-        onRedirectHome={() => navigate(ROUTES_URLS.listing)}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
           queryClient.refetchQueries({
             queryKey: okmsError
@@ -88,22 +88,22 @@ export default function Key() {
     {
       id: okmsId,
       label: kms.iam.displayName,
-      navigateTo: `/${okmsId}`,
+      navigateTo: `/${KMS_ROUTES_URIS.root}/${okmsId}`,
     },
     {
-      id: ROUTES_URLS.keys,
+      id: KMS_ROUTES_URIS.keys,
       label: SERVICE_KEYS_LABEL,
-      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
+      navigateTo: `/${KMS_ROUTES_URIS.root}/${okmsId}/${KMS_ROUTES_URIS.keys}`,
     },
     {
       id: keyId,
       label: kmsKey.name,
-      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}/${keyId}`,
+      navigateTo: `/${KMS_ROUTES_URIS.root}/${okmsId}/${KMS_ROUTES_URIS.keys}/${keyId}`,
     },
     {
-      id: ROUTES_URLS.serviceKeyEditName,
+      id: KMS_ROUTES_URIS.serviceKeyEditName,
       label: t('key_management_service_service-keys_update_name_title'),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.serviceKeyEditName}`,
+      navigateTo: `/${KMS_ROUTES_URIS.root}/${okmsId}/${KMS_ROUTES_URIS.keys}/${KMS_ROUTES_URIS.serviceKeyEditName}`,
     },
   ];
 
@@ -116,7 +116,9 @@ export default function Key() {
           headerButton: <KmsGuidesHeader />,
         }}
         onClickReturn={() => {
-          navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
+          navigate(
+            `/${KMS_ROUTES_URIS.root}/${okmsId}/${KMS_ROUTES_URIS.keys}`,
+          );
           trackClick({
             location: PageLocation.page,
             buttonType: ButtonType.link,
@@ -172,7 +174,7 @@ export default function Key() {
                           actionType: 'action',
                           actions: ['rename_encryption_key'],
                         });
-                        navigate(ROUTES_URLS.serviceKeyEditName);
+                        navigate(KMS_ROUTES_URIS.serviceKeyEditName);
                       }}
                       icon={ODS_ICON_NAME.pen}
                     />

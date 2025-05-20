@@ -24,7 +24,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { ErrorBanner, Region } from '@ovh-ux/manager-react-components';
 import { useOrderCatalogOkms } from '@/data/hooks/useOrderCatalogOkms';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
 import { CREATE_KMS_TEST_IDS } from '@/pages/create/createKms.constants';
 
 export type RegionSelectorProps = {
@@ -121,7 +121,7 @@ const RegionSelector = ({
               actionType: 'navigation',
               actions: ['create_kms', 'cancel'],
             });
-            navigate(ROUTES_URLS.root);
+            navigate(`/${KMS_ROUTES_URIS.root}`);
           }}
           label={t('key_management_service_create_cta_cancel')}
           data-testid={CREATE_KMS_TEST_IDS.ctaCancel}

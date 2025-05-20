@@ -42,6 +42,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      '@secrets': path.resolve(__dirname, 'src/modules/secrets'),
     },
     mainFields: ['module'],
   },

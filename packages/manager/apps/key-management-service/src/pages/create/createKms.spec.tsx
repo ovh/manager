@@ -7,7 +7,7 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { catalogMock } from '@/mocks/catalog/catalog.mock';
 import * as getKMSExpressOrderLink from '../../components/layout-helpers/Create/order-utils';
 import kmsListingTestIds from '../listing/KmsListing.constants';
@@ -24,7 +24,7 @@ vi.spyOn(getKMSExpressOrderLink, 'getKMSExpressOrderLink').mockReturnValue(
 
 describe('KMS creation page test suite', () => {
   it('should display the KMS creation page', async () => {
-    await renderTestApp(`/${ROUTES_URLS.createKeyManagementService}`);
+    await renderTestApp(KMS_ROUTES_URLS.kmsCreate);
 
     await waitFor(
       () =>
@@ -65,7 +65,7 @@ describe('KMS creation page test suite', () => {
 
   it(`should navigate back to the list on click on ${labels.create.key_management_service_create_cta_cancel}`, async () => {
     const user = userEvent.setup();
-    await renderTestApp(`/${ROUTES_URLS.createKeyManagementService}`);
+    await renderTestApp(KMS_ROUTES_URLS.kmsCreate);
 
     await waitFor(
       () =>
@@ -85,7 +85,7 @@ describe('KMS creation page test suite', () => {
   });
 
   it('should display an error if the API is KO', async () => {
-    await renderTestApp(`/${ROUTES_URLS.createKeyManagementService}`, {
+    await renderTestApp(KMS_ROUTES_URLS.kmsCreate, {
       isCatalogOkmsKo: true,
     });
 
@@ -99,7 +99,7 @@ describe('KMS creation page test suite', () => {
   });
 
   it('should activate order button on region select', async () => {
-    await renderTestApp(`/${ROUTES_URLS.createKeyManagementService}`);
+    await renderTestApp(KMS_ROUTES_URLS.kmsCreate);
 
     await waitFor(
       () =>
@@ -127,7 +127,7 @@ describe('KMS creation page test suite', () => {
 describe('order KMS test suite', () => {
   beforeEach(async () => {
     const user = userEvent.setup();
-    await renderTestApp(`/${ROUTES_URLS.createKeyManagementService}`);
+    await renderTestApp(KMS_ROUTES_URLS.kmsCreate);
 
     await waitFor(
       () =>

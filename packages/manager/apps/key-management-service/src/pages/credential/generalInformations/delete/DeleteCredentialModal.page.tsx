@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { DeleteModal } from '@ovh-ux/manager-react-components';
 import { useDeleteOkmsCredential } from '@/data/hooks/useDeleteOkmsCredential';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
 
 const DeleteCredentialPage = () => {
   const navigate = useNavigate();
@@ -20,9 +20,12 @@ const DeleteCredentialPage = () => {
         pageType: PageType.bannerSuccess,
         pageName: 'delete_access_certificate',
       });
-      navigate(`/${okmsId}/${ROUTES_URLS.credentials}`, {
-        state: { deletingCredentialId: credentialId },
-      });
+      navigate(
+        `/${KMS_ROUTES_URIS.root}/${okmsId}/${KMS_ROUTES_URIS.credentials}`,
+        {
+          state: { deletingCredentialId: credentialId },
+        },
+      );
     },
     onError: () => {
       trackPage({
