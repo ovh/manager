@@ -1,8 +1,0 @@
-{
-  "veeam_update_offer_title": "Upgrade della tua offerta Veeam Cloud Connect",
-  "veeam_update_offer_information": "L'abbonamento è di <strong>{{ price }} +IVA/mese</strong>",
-  "veeam_update_offer_cancel": "Annulla",
-  "veeam_update_offer_continue": "Continua",
-  "veeam_update_offer_change": "Cambia",
-  "veeam_update_storage_add": "Aggiungi"
-}

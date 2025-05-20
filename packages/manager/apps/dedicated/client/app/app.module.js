@@ -94,7 +94,6 @@ import ovhManagerFilters from '@ovh-ux/manager-filters';
 import ovhManagerMetrics from '@ovh-ux/manager-metrics';
 import ovhManagerCda from '@ovh-ux/manager-cda';
 import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
-import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
 import ovhManagerVps from '@ovh-ux/manager-vps';
 import ovhManagerVrack from '@ovh-ux/manager-vrack';
 import ovhManagerIplb from '@ovh-ux/manager-iplb';
@@ -217,7 +216,6 @@ export default async (containerEl, shellClient) => {
         ovhManagerIplb,
         ovhManagerSupport,
         ovhManagerVeeamEnterprise,
-        ovhManagerVeeamCloudConnect,
         ovhManagerNutanix,
         ovhManagerFilters,
         ngTailLogs,
