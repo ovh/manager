@@ -6,7 +6,8 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "types/**"],
-      "outputLogs": "new-only"
+      "outputLogs": "new-only",
+      "env": ["VERSION"]
     },
     "test": {},
     "dev": {
