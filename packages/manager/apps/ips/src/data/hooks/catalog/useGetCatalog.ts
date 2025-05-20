@@ -45,7 +45,7 @@ export type CatalogResponse = {
   plans: Plan[];
 };
 
-export const useCatalog = () => {
+export const useGetCatalog = () => {
   const { shell } = useContext(ShellContext);
   const { environment } = shell;
 
