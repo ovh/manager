@@ -36,7 +36,6 @@ const features = [
   'cloud-disk-array',
   'dedicated-nasha',
   'veeam-backup',
-  'veeam-cloud-connect:order',
   'veeam-enterprise:order',
   'hycu',
   'vrack:bare-metal-cloud',

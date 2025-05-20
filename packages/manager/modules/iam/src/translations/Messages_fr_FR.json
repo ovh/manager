@@ -81,7 +81,6 @@
   "iam_resource_type_stackMis": "StackMis",
   "iam_resource_type_storageNetApp": "Enterprise File Storage",
   "iam_resource_type_supportVIP": "Support VIP",
-  "iam_resource_type_veeamCloudConnect": "Veeam Cloud Connect",
   "iam_resource_type_veeamEnterprise": "Veeam Enterprise",
   "iam_resource_type_vmwareCloudDirector": "VCD on OVHcloud",
   "iam_resource_type_vmwareCloudDirector/virtualDataCenter": "VDC on OVHcloud",
