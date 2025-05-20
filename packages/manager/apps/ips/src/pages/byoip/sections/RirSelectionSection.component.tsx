@@ -1,14 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { OptionCard } from '@/components/OptionCard/OptionCard.component';
-import { useCatalog, CONFIG_NAME } from '@/utils/getCatalog';
+import { useGetCatalog, CONFIG_NAME } from '@/data/hooks/catalog/useGetCatalog';
 import { ByoipContext } from '../Byoip.context';
-import { getConfigValues } from '@/utils/getConfigValues';
+import { getConfigValues } from '../Byoip.utils';
 
 export const RirSelectionSection: React.FC = () => {
   const { t } = useTranslation('byoip');
-  const { data: catalog, isLoading } = useCatalog();
+  const { data: catalog, isLoading } = useGetCatalog();
   const { ipRir, setIpRir } = React.useContext(ByoipContext);
 
   const ipRirValues = getConfigValues(
@@ -17,7 +19,11 @@ export const RirSelectionSection: React.FC = () => {
   ) as string[];
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <OdsSpinner size={ODS_SPINNER_SIZE.sm} />
+      </div>
+    );
   }
 
   return (
