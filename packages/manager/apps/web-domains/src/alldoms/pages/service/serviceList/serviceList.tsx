@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Breadcrumb,
@@ -19,6 +19,7 @@ import Modal from '@/alldoms/components/Modal/Modal';
 
 export default function ServiceList() {
   const { t } = useTranslation(['allDom', 'web-domains/error']);
+  type VisibilityState = Record<string, boolean>;
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [serviceInfoDetail, setServiceInfoDetail] = useState<TServiceDetail>(
     null,
@@ -32,8 +33,9 @@ export default function ServiceList() {
     hasNextPage,
     fetchNextPage,
     sorting,
-    totalCount,
     setSorting,
+    totalCount,
+    filters,
   } = useResourcesIcebergV6<TServiceProperty>({
     route: '/allDom',
     queryKey: ['/allDom'],
@@ -99,6 +101,9 @@ export default function ServiceList() {
             onFetchNextPage={fetchNextPage}
             sorting={sorting}
             onSortChange={setSorting}
+            filters={filters}
+            columnVisibility={columns.map((column) => column.id)}
+            onColumnVisibilityChange={() => {}}
           />
         </div>
       </React.Suspense>

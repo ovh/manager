@@ -7,7 +7,6 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TOngoingOperations } from 'src/types';
-import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ParentEnum } from '@/enum/parent.enum';
 import { formatDatagridDate, removeQuotes } from '@/utils/utils';
@@ -36,8 +35,6 @@ export const useOngoingOperationDatagridColumns = (
           parent === ParentEnum.DOMAIN
             ? t('domain_operations_table_header_domain')
             : DNS_OPERATIONS_TABLE_HEADER_DOMAIN,
-        comparator: FilterCategories.String,
-        isFilterable: true,
       },
       {
         id: 'function',
