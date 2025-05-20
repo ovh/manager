@@ -1,8 +1,0 @@
-{
-  "veeam_update_offer_title": "Zwiększ ofertę Veeam Cloud Connect",
-  "veeam_update_offer_information": "Abonament kosztuje <strong>{{price}} netto/m-c</strong>",
-  "veeam_update_offer_cancel": "Anuluj",
-  "veeam_update_offer_continue": "Kontynuuj",
-  "veeam_update_offer_change": "Zmień",
-  "veeam_update_storage_add": "Dodaj"
-}
