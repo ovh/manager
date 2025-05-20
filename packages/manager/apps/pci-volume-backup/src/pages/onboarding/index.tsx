@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   BaseLayout,
   Card,
@@ -6,16 +7,13 @@ import {
   useMe,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-
 import { PciAnnouncementBanner, useProject } from '@ovh-ux/manager-pci-common';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 import { useBackups } from '@/data/hooks/useVolumeBackup';
@@ -36,22 +34,21 @@ export default function Onboarding() {
     throwOnError: true,
     retry: false,
   } as unknown) as Parameters<typeof useProject>[1]);
-
-  const { tracking } = useContext(ShellContext).shell;
+  const { trackClick } = useOvhTracking();
 
   const handleDocumentationClick = (guideId: string) => {
-    tracking?.trackClick({
-      name: `${VOLUME_BACKUP_TRACKING.ONBOARDING.GUIDE}::${guideId}`,
-      type: 'action',
+    trackClick({
+      actionType: 'action',
+      actions: [...VOLUME_BACKUP_TRACKING.GUIDE, `go-to-${guideId}`],
     });
   };
 
   const goToCreateVolumeBackup = () => navigate('../create');
 
   const handleAddVolumeBlockStorageClick = () => {
-    tracking?.trackClick({
-      name: VOLUME_BACKUP_TRACKING.ONBOARDING.ADD,
-      type: 'action',
+    trackClick({
+      actionType: 'action',
+      actions: VOLUME_BACKUP_TRACKING.ONBOARDING.ADD,
     });
 
     goToCreateVolumeBackup();
