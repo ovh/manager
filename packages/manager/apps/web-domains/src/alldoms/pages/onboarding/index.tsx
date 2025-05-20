@@ -1,14 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Card,
-  OnboardingLayout,
-  Breadcrumb,
-} from '@ovh-ux/manager-react-components';
+import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import useGuideUtils from '@/alldoms/hooks/guide/useGuideUtils';
 import onboardingImgSrc from './onboarding-img.png';
-
 import appConfig from '@/web-domains.config';
+import Breadcrumb from '@/alldoms/components/breadcrumb/breadcrumb.component';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
@@ -52,7 +48,11 @@ export default function Onboarding() {
 
   return (
     <>
-      <Breadcrumb rootLabel={appConfig.rootLabel} appName="web-domains" />
+      <Breadcrumb
+        rootLabel={t('title')}
+        appName={`${appConfig.rootLabel}/${appConfig.alldomLabel}`}
+        ignoredLabel={[appConfig.alldomLabel]}
+      />
       <OnboardingLayout
         title={title}
         img={imgSrc}
