@@ -1,0 +1,8 @@
+{
+  "service_state_active": "Ativo",
+  "service_state_deleted": "Eliminado",
+  "service_state_suspended": "Suspenso",
+  "service_state_toActivate": "A ativar",
+  "service_state_toDelete": "Eliminação pendente",
+  "service_state_toSuspend": "Suspensão pendente"
+}
