@@ -34,7 +34,7 @@ function DatacentreDashboardPage() {
   const tabsList: DashboardTab[] = [
     {
       name: 'general_information',
-      title: t('managed_vcd_dashboard_general_information'),
+      title: t('dashboard:managed_vcd_dashboard_general_information'),
       to: useResolvedPath('').pathname,
       trackingActions: TRACKING_TABS_ACTIONS.datacentreDashboard,
     },
@@ -113,6 +113,24 @@ function DatacentreDashboardPage() {
         'datacentres/vrack-segment:managed_vcd_dashboard_vrack_segment_add_title',
       ),
     },
+    {
+      id: subRoutes.edit,
+      label: t(
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_network_edit_vlan',
+      ),
+    },
+    {
+      id: subRoutes.deleteNetwork,
+      label: t(
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_network_delete_subnet',
+      ),
+    },
+    {
+      id: subRoutes.addNetwork,
+      label: t(
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_segment_add_network_title',
+      ),
+    },
   ];
 
   return (
@@ -120,7 +138,7 @@ function DatacentreDashboardPage() {
       tabs={tabsList}
       breadcrumbItems={breadcrumbItems}
       header={header}
-      backLinkLabel={t('managed_vcd_dashboard_back_link')}
+      backLinkLabel={t('dashboard:managed_vcd_dashboard_back_link')}
       onClickReturn={() =>
         navigate(urls.datacentres.replace(subRoutes.dashboard, id))
       }
