@@ -39,7 +39,9 @@ const stepsConfig = ({
     key: 'location',
     component: LocationStep,
     titleKey: 'kubernetes_add_region_title',
-    extraProps: { projectId },
+    extraProps: {
+      projectId,
+    },
   },
   {
     key: 'plan',

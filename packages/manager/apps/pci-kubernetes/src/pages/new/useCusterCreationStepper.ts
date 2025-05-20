@@ -42,6 +42,7 @@ export function useClusterCreationStepper(has3AZRegions = false) {
 
   return {
     form,
+    setForm,
     clusterName: {
       step: clusterNameStep,
       edit: () => {
@@ -162,12 +163,7 @@ export function useClusterCreationStepper(has3AZRegions = false) {
       edit: () => {
         confirmStep.unlock();
       },
-      submit: (antiAffinity: boolean, isMonthlyBilled: boolean) => {
-        setForm((f) => ({
-          ...f,
-          antiAffinity,
-          isMonthlyBilled,
-        }));
+      submit: () => {
         confirmStep.check();
         confirmStep.lock();
       },

@@ -1,10 +1,7 @@
-import { useContext, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Region3AZChip,
-  RegionChipByType,
-  TLocalisation,
-} from '@ovh-ux/manager-pci-common';
+import { useContext, useEffect, useState } from 'react';
+import { Translation, useTranslation } from 'react-i18next';
+import { Region3AZChip, RegionChipByType } from '@ovh-ux/manager-pci-common';
+
 import {
   OsdsButton,
   OsdsDivider,
@@ -22,20 +19,27 @@ import clsx from 'clsx';
 import {
   Links,
   LinkType,
+  Notifications,
   Subtitle,
   TRegion,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { KubeRegionSelector } from '@/components/region-selector/KubeRegionSelector.component';
 import { StepState } from '../useStep';
 import { KubeDeploymentTile } from '@/components/region-selector/KubeDeploymentTile';
 import { DEPLOYMENT_URL } from '@/constants';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
+import { useRefreshProductAvailability } from '@/api/hooks/useAvailability';
+import { useAddProjectRegion } from '@/api/hooks/useAddRegion';
+import Loader from './Loader';
+import { TLocation } from '@/types/region';
 
 export interface LocationStepProps {
   projectId: string;
-  onSubmit: (region: TLocalisation) => void;
+  onSubmit?: (region: TLocation) => void;
   step: StepState;
 }
 
@@ -50,10 +54,10 @@ export function LocationStep({
   onSubmit,
   step,
 }: Readonly<LocationStepProps>) {
-  const { t } = useTranslation(['stepper', 'add']);
+  const { t } = useTranslation(['stepper', 'add', 'region-selector']);
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
-  const [region, setRegion] = useState<TLocalisation | undefined>();
+  const [region, setRegion] = useState<TLocation | undefined>();
   const [selectedDeployment, setSelectedDeployment] = useState<TRegion['type']>(
     undefined,
   );
@@ -75,9 +79,57 @@ export function LocationStep({
     description: t(`add:kubernetes_add_region_description_${regionType}`),
     regionType,
   }));
+  const { addError, addSuccess, clearNotifications } = useNotifications();
+  const { refresh: refreshRegionStatus } = useRefreshProductAvailability(
+    projectId,
+    ovhSubsidiary,
+    {
+      product: 'kubernetes',
+    },
+  );
+
+  useEffect(() => {
+    if (!step.isLocked) {
+      clearNotifications();
+    }
+    return clearNotifications;
+  }, [clearNotifications, step.isLocked]);
+
+  const { isPending, addRegion } = useAddProjectRegion({
+    projectId,
+    onSuccess: (data: TLocation) => {
+      refreshRegionStatus();
+      addSuccess(
+        t('region-selector:pci_projects_project_regions_add_region_success', {
+          code: data.name,
+        }),
+      );
+      onSubmit(data);
+      setRegion((reg) => ({ ...reg, enabled: true }));
+    },
+    onError: (error: ApiError) =>
+      addError(
+        <Translation ns="region-selector">
+          {(_t) =>
+            _t(
+              'pci_projects_project_storages_containers_add_add_region_error',
+              {
+                message:
+                  error?.response?.data?.message || error?.message || null,
+                requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
+              },
+            )
+          }
+        </Translation>,
+        true,
+      ),
+  });
 
   return (
     <>
+      <div className="my-4">
+        <Notifications />
+      </div>
       <div className={clsx(step.isLocked && 'hidden')}>
         {has3AZ && (
           <>
@@ -97,6 +149,7 @@ export function LocationStep({
                 type={LinkType.next}
               />
             </div>
+
             <div className="grid md:grid-cols-4 gap-4 my-5">
               {tilesData.map(
                 ({ title, pillLabel, description, regionType }) => (
@@ -146,13 +199,20 @@ export function LocationStep({
           </OsdsText>
         </OsdsTile>
       )}
-      {!step.isLocked && (
+      {isPending && (
+        <div className="mt-4">
+          <Loader />
+        </div>
+      )}
+      {!step.isLocked && !isPending && (
         <OsdsButton
           className="mt-4 w-fit"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
           disabled={region ? undefined : true}
-          onClick={() => region && onSubmit(region)}
+          onClick={() =>
+            !region.enabled ? addRegion(region.name) : onSubmit(region)
+          }
         >
           {t('stepper:common_stepper_next_button_label')}
         </OsdsButton>
