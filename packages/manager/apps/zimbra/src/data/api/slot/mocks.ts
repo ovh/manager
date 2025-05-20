@@ -43,7 +43,7 @@ export const slotsMock: SlotType[] = [
     ...{
       currentState: {
         ...slotMock.currentState,
-        offer: ZimbraOffer.BUSINESS,
+        offer: ZimbraOffer.PRO,
         billingStatus: SlotBillingStatus.SUSPENDED,
       },
     },
