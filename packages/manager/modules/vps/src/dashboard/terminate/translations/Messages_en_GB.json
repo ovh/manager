@@ -1,8 +1,5 @@
 {
-  "vps_terminate_title": "Delete my VPS",
-  "vps_terminate_question": "Are you sure you want to delete your service {{vps}}?",
-  "vps_terminate_cancel": "Cancel",
-  "vps_terminate_confirm": "Confirm",
+  "vps_terminate_service_type": "my VPS",
   "vps_terminate_success": "The cancellation of your service has been processed. You will receive a confirmation email to confirm the cancellation.",
   "vps_terminate_success_engagement": "Your request has been received, and will be processed as soon as possible.",
   "vps_terminate_error": "An error has occurred cancelling the service.",
@@ -11,13 +8,10 @@
   "vps_terminate_option_cancel_terminate_at_expiration": "Undo service cancellation.",
   "vps_terminate_option_terminate_now": "Cancel service now.",
   "vps_terminate_option_terminate_now_description": "You will be sent an email detailing the steps for cancelling this server.",
-  "vps_terminate_option_terminate_now_question": "Do you wish to continue?",
-  "vps_terminate_warning_data_deletion": "The deletion of your service will permanently erase all corresponding data.",
   "vps_terminate_warning_no_refund": "The cancellation action does not entitle you to a refund.",
   "vps_terminate_warning_manual_refund": "Cancelling your service does not guarantee that any refunds will be granted. Please contact the support team if you have any queries regarding refunds.",
   "vps_terminate_activate_delete_at_expiration_success": "Your request to cancel this service on its expiry date has been processed.",
   "vps_terminate_activate_delete_at_expiration_error": "An error has occurred submitting the request to cancel this service on its expiry date:",
   "vps_terminate_deactivate_delete_at_expiration_success": "The request to cancel this service on its expiry date has been suspended.",
-  "vps_terminate_deactivate_delete_at_expiration_error": "An error has occurred suspending the cancellation request for this service on its expiry date:",
-  "vps_terminate_service_type": "my VPS"
+  "vps_terminate_deactivate_delete_at_expiration_error": "An error has occurred suspending the cancellation request for this service on its expiry date:"
 }

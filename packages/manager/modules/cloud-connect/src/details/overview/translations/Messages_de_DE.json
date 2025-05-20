@@ -114,6 +114,5 @@
   "cloud_connect_region_us-west-lz-pao": "Nordamerika (USA – Westen – Palo Alto)",
   "cloud_connect_region_us-west-lz-den": "Nordamerika (USA – Westen – Denver)",
   "cloud_connect_region_us-east-lz-atl": "Nordamerika (USA – Osten – Atlanta)",
-  "cloud_connect_region_eu-west-lz-mrs": "Europa (Frankreich – Marseille)",
-  "cloud_connect_region_type": "Typ"
+  "cloud_connect_region_eu-west-lz-mrs": "Europa (Frankreich – Marseille)"
 }
