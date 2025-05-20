@@ -1,0 +1,22 @@
+{
+  "pci_project_regions_list_continent_all": "Wszystkie lokalizacje",
+  "pci_project_regions_list_empty": "Żadna z lokalizacji nie jest dostępna",
+  "pci_project_regions_list_add": "Włącz najnowsze regiony każdej strefy w sekcji <a href=\"{{url}}\"> Lokalizacje</a> ",
+  "pci_project_regions_list_region": "Lokalizacja",
+  "pci_project_regions_list_quota": "Zwiększ limit",
+  "pci_project_flavors_zone_compatible": "Kompatybilny z",
+  "pci_project_flavors_zone_localzone": "Local Zones",
+  "pci_project_flavors_zone_global_region": "Regiony",
+  "pci_project_flavors_zone_localzone_tooltip": "Local Zones to nowy rodzaj lokalizacji, obsługujących część naszego portfolio produktów Public Cloud. W ciągu najbliższych kilku lat będziemy stopniowo zwiększać liczbę Local Zones na świecie.",
+  "pci_project_flavors_zone_globalregions_tooltip": "Regiony są obsługiwane przez jedno lub kilka centrów danych zarządzanych przez OVHCloud. Każdy region obejmuje jedną lub kilka Availability Zones, wraz z pełnym portfolio usług OVHCloud.",
+  "pci_project_flavors_zone_tooltip_link": "Dowiedz się więcej",
+  "pci_project_flavors_zone_1AZ": "1-AZ",
+  "pci_project_flavors_zone_3AZ": "3-AZ",
+  "pci_project_flavors_zone_localzone_1AZ_tooltip": "Local Zone umożliwia wdrażanie produktów Public Cloud OVHcloud w centrach danych zlokalizowanych jak najbliżej użytkowników końcowych.",
+  "pci_project_flavors_zone_1AZ_with_3AZ_tooltip": "Wraz z pojawieniem się regionów 3-AZ, typ wdrożenia „Regiony” zmienia nazwę. Region 1-AZ (Availability Zone, strefa dostępności) to jedno lub więcej centrów danych zlokalizowanych w tym samym miejscu.",
+  "pci_project_flavors_zone_1AZ_tooltip": "Region 1-AZ (Availability Zone, strefa dostępności) to jedno lub więcej centrów danych zlokalizowanych w tym samym miejscu.",
+  "pci_project_flavors_zone_3AZ_tooltip": "Region 3-AZ składa się z trzech stref dostępności zlokalizowanych w tej samej aglomeracji, oddalonych od siebie o kilka kilometrów. Spełnia on najwyższe wymagania w zakresie odporności i gwarantuje wyjątkowo krótki czas odpowiedzi między AZ.",
+  "pci_project_flavors_desactivated_region": "Wybrana lokalizacja nie jest aktywna. Kliknij \"Dalej\", aby dodać go do Twojego projektu Public Cloud i kontynuować tworzenie klastra Kubernetes.",
+  "pci_projects_project_storages_containers_add_add_region_error": "Wystąpił błąd podczas dodawania lokalizacji: {{message}}",
+  "pci_projects_project_regions_add_region_success": "Lokalizacja {{ code }} została dodana do Twojego projektu."
+}
