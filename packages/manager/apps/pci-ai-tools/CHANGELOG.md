@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.2.4...@ovh-ux/manager-pci-ai-tools-app@1.3.0) (2025-05-20)
+
+
+### Features
+
+* **pci.ai-tools:** add notebooks ([d657289](https://github.com/ovh/manager/commit/d657289deedefc7b5f8f26483d739e8e3bafa13f)), closes [#DATATR-1095](https://github.com/ovh/manager/issues/DATATR-1095)
+
+
+
+
+
 ## [1.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.2.3...@ovh-ux/manager-pci-ai-tools-app@1.2.4) (2025-05-15)
 
 
