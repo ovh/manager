@@ -39,11 +39,28 @@ export type TInstanceAction = {
 
 export type TInstanceActions = Map<TInstanceActionGroup, TInstanceAction[]>;
 
+export type TFlavor = {
+  cpu: number;
+  ram: number;
+  storage: number;
+  bandwidth: {
+    public: number;
+    private: number;
+  };
+};
+
+export type TInstancePrice = {
+  type: 'hour' | 'month' | 'licence' | 'savingplans';
+  value: number;
+  status: 'enabled' | 'available' | 'eligible';
+};
+
 export type TInstance = DeepReadonly<{
   id: string;
   name: string;
   flavorId: string;
   flavorName: string;
+  flavorSpecs: TFlavor;
   status: TInstanceStatus;
   region: string;
   imageId: string;
@@ -54,4 +71,5 @@ export type TInstance = DeepReadonly<{
   pendingTask: boolean;
   availabilityZone: string | null;
   taskState: string | null;
+  prices: TInstancePrice[];
 }>;

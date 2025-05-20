@@ -3,12 +3,36 @@ import { useTranslation } from 'react-i18next';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_SIZE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { Links, LinkType, TileBlock } from '@ovh-ux/manager-react-components';
-import { RegionChipByType } from '@ovh-ux/manager-pci-common';
+import {
+  Links,
+  LinkType,
+  TileBlock,
+  useTranslatedMicroRegions,
+} from '@ovh-ux/manager-react-components';
+import { RegionChipByType, TRegionType } from '@ovh-ux/manager-pci-common';
 import DashboardCardLayout from './DashboardCardLayout.component';
+import { TInstancePrice } from '@/types/instance/entity.type';
+import PriceLabel from '@/components/priceLabel/PriceLabel.component';
 
-const Information: FC = () => {
+const InstanceGeneralDetails: FC<{
+  flavorName: string;
+  availabilityZone: string | null;
+  region: string;
+  regionType: TRegionType;
+  memory: number;
+  cpu: number;
+  prices: TInstancePrice[];
+}> = ({
+  flavorName,
+  availabilityZone,
+  region,
+  regionType,
+  cpu,
+  memory,
+  prices,
+}) => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
+  const { translateMicroRegion } = useTranslatedMicroRegions();
 
   return (
     <DashboardCardLayout title={t('pci_instances_dashboard_info_title')}>
@@ -20,7 +44,7 @@ const Information: FC = () => {
             level={ODS_TEXT_LEVEL.body}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            b44
+            {flavorName}
           </OsdsText>
           <Links
             label={t('pci_instances_dashboard_upgrade_model')}
@@ -36,9 +60,9 @@ const Information: FC = () => {
             level={ODS_TEXT_LEVEL.body}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            Manchester (EU-WEST-LZ-MNC-A)
+            {availabilityZone ?? translateMicroRegion(region)}
           </OsdsText>
-          <RegionChipByType type="region" showTooltip={false} />
+          <RegionChipByType type={regionType} showTooltip={false} />
         </div>
       </TileBlock>
       <TileBlock label={t('pci_instances_dashboard_memory_title')}>
@@ -47,7 +71,7 @@ const Information: FC = () => {
           level={ODS_TEXT_LEVEL.body}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          30 Go
+          {memory}
         </OsdsText>
       </TileBlock>
       <TileBlock label={t('pci_instances_dashboard_processor_title')}>
@@ -56,19 +80,14 @@ const Information: FC = () => {
           level={ODS_TEXT_LEVEL.body}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          8 vCores
+          {t('pci_instances_dashboard_cpu_value', { cpu })}
         </OsdsText>
       </TileBlock>
       <TileBlock label={t('pci_instances_dashboard_price_title')}>
         <div className="flex flex-col">
-          <OsdsText
-            className="my-4"
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            0.261 € HT/heure
-          </OsdsText>
+          {prices.map(({ value, type }, key) => (
+            <PriceLabel key={key} value={value} type={type} />
+          ))}
           <Links
             label={t(
               'actions:pci_instances_actions_billing_monthly_activate_instance_title',
@@ -81,4 +100,4 @@ const Information: FC = () => {
   );
 };
 
-export default Information;
+export default InstanceGeneralDetails;

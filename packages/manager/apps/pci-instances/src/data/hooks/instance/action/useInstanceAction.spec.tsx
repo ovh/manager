@@ -42,11 +42,30 @@ const fakeInstancesDto: TInstanceDto[] = [
   {
     id: `fake-id-1`,
     name: `fake-instance-name-1`,
+    flavor: {
+      id: 'fake-flavor-id',
+      name: 'fake-flavor-name',
+      specs: {
+        cpu: 0,
+        ram: 0,
+        storage: 0,
+        bandwidth: {
+          public: 0,
+          private: 0,
+        },
+      },
+    },
     flavorId: `fake-flavor-id-1`,
     flavorName: `fake-flavor-name-1`,
     imageId: `fake-image-id-1`,
     imageName: `fake-image-name-1`,
+    image: {
+      id: 'fake-image-id',
+      name: 'fake-image-name',
+      deprecated: false,
+    },
     region: `fake-region-1`,
+    regionType: 'region',
     status: 'ACTIVE',
     addresses: [],
     volumes: [],
@@ -54,15 +73,43 @@ const fakeInstancesDto: TInstanceDto[] = [
     pendingTask: false,
     availabilityZone: null,
     taskState: '',
+    prices: [
+      {
+        type: 'hour',
+        value: 0,
+        status: 'available',
+      },
+    ],
+    sshKey: 'ssht',
+    login: '',
   },
   {
     id: `fake-id-2`,
     name: `fake-instance-name-2`,
+    flavor: {
+      id: 'fake-flavor-id',
+      name: 'fake-flavor-name',
+      specs: {
+        cpu: 0,
+        ram: 0,
+        storage: 0,
+        bandwidth: {
+          public: 0,
+          private: 0,
+        },
+      },
+    },
     flavorId: `fake-flavor-id-2`,
     flavorName: `fake-flavor-name-2`,
     imageId: `fake-image-id-2`,
     imageName: `fake-image-name-2`,
+    image: {
+      id: 'fake-image-id',
+      name: 'fake-image-name',
+      deprecated: false,
+    },
     region: `fake-region-2`,
+    regionType: 'region',
     status: 'ACTIVE',
     addresses: [],
     volumes: [],
@@ -70,6 +117,15 @@ const fakeInstancesDto: TInstanceDto[] = [
     actions: [],
     availabilityZone: null,
     taskState: '',
+    prices: [
+      {
+        type: 'hour',
+        value: 0,
+        status: 'available',
+      },
+    ],
+    sshKey: 'ssht',
+    login: '',
   },
 ];
 

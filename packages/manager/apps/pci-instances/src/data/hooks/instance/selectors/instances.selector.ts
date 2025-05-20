@@ -186,6 +186,8 @@ export const instanceSelector = (
   projectUrl: string,
 ) => ({
   ...instanceDto,
+  flavorName: instanceDto.flavor.name,
+  flavorSpecs: instanceDto.flavor.specs,
   status: getInstanceStatus(instanceDto.status),
   addresses: mapInstanceAddresses(instanceDto),
   actions: mapInstanceActions(instanceDto, projectUrl),

@@ -6,6 +6,7 @@ import {
   TInstanceActionGroup,
   TStatus,
 } from './common.type';
+import { TFlavor, TInstancePrice } from './entity.type';
 
 export type TInstanceAddressTypeDto = TAddressType;
 
@@ -36,15 +37,7 @@ export type TInstanceActionDto = {
 export type TFlavorDto = {
   id: string;
   name: string;
-  specs: {
-    cpu: number;
-    ram: number;
-    storage: number;
-    bandwidth: {
-      public: number;
-      private: number;
-    };
-  };
+  specs: TFlavor;
 };
 
 export type TImageDto = {
@@ -53,11 +46,7 @@ export type TImageDto = {
   deprecated: boolean;
 };
 
-export type TPriceDto = {
-  type: 'hour' | 'month' | 'licence' | 'savingplans';
-  value: number;
-  status: 'enabled' | 'available' | 'eligible';
-};
+export type TPriceDto = TInstancePrice;
 
 export type TInstanceActionNameDto = TActionName;
 export type TInstanceStatusDto = TStatus;
