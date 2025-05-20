@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.14.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.14.1) (2025-05-20)
+
+
+### Bug Fixes
+
+* **hpc:** change link to descriptive text in hpc listing ([#16658](https://github.com/ovh/manager/issues/16658)) ([9f45c50](https://github.com/ovh/manager/commit/9f45c50fb17da43824730413a8a2f865c007b200)), closes [#MANAGER-17676](https://github.com/ovh/manager/issues/MANAGER-17676)
+
+
+
+
+
 # [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.13.1...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.14.0) (2025-05-15)
 
 
