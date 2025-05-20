@@ -5,7 +5,13 @@ import { Breadcrumb } from './breadcrumb.component';
 
 const setupSpecTest = async () =>
   waitFor(() =>
-    render(<Breadcrumb rootLabel="vRack services" appName="vrack-services" />),
+    render(
+      <Breadcrumb
+        rootLabel="vRack services"
+        appName="vrack-services"
+        ignoredLabel={['ignoredLabel']}
+      />,
+    ),
   );
 
 describe('breadcrumb component', () => {

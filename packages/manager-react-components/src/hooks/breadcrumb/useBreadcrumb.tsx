@@ -11,8 +11,13 @@ export interface UseBreadcrumbProps {
   rootLabel?: string;
   appName?: string;
   projectId?: string;
+  ignoredLabel?: string[];
 }
-export const useBreadcrumb = ({ rootLabel, appName }: UseBreadcrumbProps) => {
+export const useBreadcrumb = ({
+  rootLabel,
+  appName,
+  ignoredLabel = [],
+}: UseBreadcrumbProps) => {
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
   const [paths, setPaths] = useState<BreadcrumbItem[]>([]);
@@ -36,10 +41,12 @@ export const useBreadcrumb = ({ rootLabel, appName }: UseBreadcrumbProps) => {
 
   useEffect(() => {
     const pathnames = location?.pathname.split('/').filter((x) => x);
-    const pathsTab = pathnames?.map((value) => ({
-      label: value,
-      href: `/#/${appName}/${value}`,
-    }));
+    const pathsTab = pathnames
+      ?.map((value) => ({
+        label: value,
+        href: `/#/${appName}/${value}`,
+      }))
+      .filter((pathTab) => !ignoredLabel.includes(pathTab.label));
     setPaths(pathsTab);
   }, [location.pathname]);
 
