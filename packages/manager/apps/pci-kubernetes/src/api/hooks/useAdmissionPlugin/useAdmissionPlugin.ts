@@ -5,12 +5,19 @@ import { getAllKubeQueryKey } from '../useKubernetes';
 import { updateAdmissionPlugin } from '@/api/data/plugins';
 import { TKube } from '@/types';
 
+type UseUpdateAdmissionPluginProps = {
+  onError: (cause: Error) => void;
+  projectId: string;
+  onSuccess: () => void;
+  kubeId: string;
+};
+
 export const useUpdateAdmissionPlugin = ({
   onError,
   projectId,
   onSuccess,
   kubeId,
-}) => {
+}: UseUpdateAdmissionPluginProps) => {
   const mutation = useMutation({
     mutationFn: (customization: TKube['customization']) =>
       updateAdmissionPlugin({ projectId, kubeId, customization }),
