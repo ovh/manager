@@ -21,6 +21,7 @@
   "allDom_table_action_terminate": "Résilier",
   "allDom_table_action_enable_renewal": "Activer le renouvellement automatique",
   "allDom_table_action_disable_renewal": "Désactiver le renouvellement automatique",
+  "allDom_table_action_handle_contacts": "Gérer les contacts",
   "allDom_modal_title": "Résiliation du pack {{t0}}",
   "allDom_modal_subtitle": "Vous avez la possibilité de résilier tous vos services ou d'en conserver en gestion individuelle.",
   "allDom_modal_all_my_domains": "Tous mes domaines",

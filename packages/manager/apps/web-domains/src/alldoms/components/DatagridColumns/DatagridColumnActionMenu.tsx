@@ -19,7 +19,8 @@ export default function DatagridColumnActionMenu({
 }: DatagridColumnActionMenuProps) {
   const { t } = useTranslation('allDom');
   const { mode } = serviceInfoDetail.serviceInfo.billing.renew.current;
-  const { data: billingUrl } = useNavigationGetUrl(['manager', '/billing', {}]);
+  const { data: billingUrl } = useNavigationGetUrl(['billing', '', {}]);
+  const { data: handleContactUrl } = useNavigationGetUrl(['account', '', {}]);
   const renewAction =
     mode === ServiceInfoRenewMode.Automatic ? 'disable' : 'enable';
 
@@ -46,6 +47,13 @@ export default function DatagridColumnActionMenu({
           label: t(`allDom_table_action_${renewAction}_renewal`),
           href: `${billingUrl}/autorenew/${renewAction}?selectedType=ALL_DOMsearchText=${serviceInfoDetail.allDomProperty.name}&services=${serviceId}`,
           target: '_blank',
+        },
+        {
+          id: 4,
+          label: t(`allDom_table_action_handle_contacts`),
+          href: `${handleContactUrl}/contacts/services/edit?service=${serviceInfoDetail.allDomProperty.name}&categoryType=ALL_DOM`,
+          target: '_blank',
+          'data-testid': 'handleContact-button',
         },
       ]}
     />

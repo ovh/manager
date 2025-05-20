@@ -57,6 +57,13 @@ describe('AllDom datagrid', () => {
         'href',
         'https://www.ovh.com/cgi-bin/order/renew.cgi?domainChooser=1111111',
       );
+
+      const handleButtonAction = screen.getByTestId('handleContact-button');
+      expect(handleButtonAction).toBeInTheDocument();
+      expect(handleButtonAction).toHaveAttribute(
+        'href',
+        'https://ovh.test/#/account/contacts/services/edit?service=testdomain&categoryType=ALL_DOM',
+      );
     });
   });
 });
