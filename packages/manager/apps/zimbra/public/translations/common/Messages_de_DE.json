@@ -90,5 +90,9 @@
   "service_billing_state_cancelation_planned": "Kündigung geplant",
   "service_billing_state_manual_renewal": "Manuelle Verlängerung",
   "service_billing_state_automatic_renewal": "Automatische Verlängerung",
-  "service_billing_state_unhandled": "–"
+  "service_billing_state_unhandled": "–",
+  "select_slot": "Angebot auswählen",
+  "offer": "Angebot",
+  "monthly": "Monatlich",
+  "renewal_at": "Verlängerung am {{ date }}"
 }
