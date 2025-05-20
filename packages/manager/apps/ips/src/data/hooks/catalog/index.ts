@@ -6,3 +6,4 @@ export * from './useAvailableGeolocationFromPlanCode';
 export * from './useDedicatedCloudGeolocations';
 export * from './usePccCatalog';
 export * from './useVpsGeolocations';
+export * from './useGetCatalog';
