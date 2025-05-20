@@ -105,6 +105,15 @@ export const requiredString = z
   .string()
   .min(1, i18n?.t('common:form_required_field'));
 
+export const withSlotId = z.object({
+  slotId: z.string(),
+});
+
+// @TODO: remove when backend doesn't require that anymore
+export const withOffer = z.object({
+  offer: z.enum([ZimbraOffer.STARTER, ZimbraOffer.PRO]),
+});
+
 export const baseEmailAccountSchema = z.object({
   account,
   domain,
@@ -117,19 +126,25 @@ export const baseEmailAccountSchema = z.object({
   slotId: z.string().optional(),
 });
 
-export const addEmailAccountSchema = baseEmailAccountSchema.merge(withPassword);
+export const addEmailAccountSchema = baseEmailAccountSchema
+  .merge(withPassword)
+  .merge(withSlotId)
+  .merge(withOffer);
 
 export const addEmailAccountsSchema = z
   .object({
     accounts: z
       .array(
         // in this schema first and last names are required
-        addEmailAccountSchema.merge(
-          z.object({
-            firstName: requiredString,
-            lastName: requiredString,
-          }),
-        ),
+        baseEmailAccountSchema
+          .merge(withPassword)
+          .merge(withOffer)
+          .merge(
+            z.object({
+              firstName: requiredString,
+              lastName: requiredString,
+            }),
+          ),
       )
       .min(1),
   })

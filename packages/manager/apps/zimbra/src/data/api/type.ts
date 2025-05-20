@@ -1,7 +1,6 @@
 export const ZimbraOffer = {
   STARTER: 'STARTER',
   PRO: 'PRO',
-  BUSINESS: 'BUSINESS',
 } as const;
 
 export const ZimbraPlanCodes = {
