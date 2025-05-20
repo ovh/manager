@@ -21,10 +21,8 @@ export const ByoipPage: React.FC = () => {
       onClickReturn={() => navigate(urls.listing)}
       header={header}
       breadcrumb={<Breadcrumb />}
+      description={tByoip('description')}
     >
-      <div>
-        <OdsText>{tByoip('description')}</OdsText>
-      </div>
       <ByoipContextProvider>
         <ByoipOrder />
       </ByoipContextProvider>

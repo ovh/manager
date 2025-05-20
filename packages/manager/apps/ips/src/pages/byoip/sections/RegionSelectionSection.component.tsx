@@ -1,11 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText, OdsSpinner } from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
-import { OptionCard } from '@/components/OptionCard/OptionCard.component';
-import { useCatalog, CONFIG_NAME } from '@/utils/getCatalog';
-import { getConfigValues } from '@/utils/getConfigValues';
+import { RegionCard } from '@/components/RegionCard/RegionCard.component';
+import { useGetCatalog, CONFIG_NAME } from '@/data/hooks/catalog/useGetCatalog';
+import { getConfigValues } from '../Byoip.utils';
+import { ByoipContext } from '../Byoip.context';
 
 type CampusType = {
   name: string;
@@ -14,8 +15,8 @@ type CampusType = {
 
 export const RegionSelectionSection: React.FC = () => {
   const { t } = useTranslation('byoip');
-  const { data: catalog, isLoading } = useCatalog();
-  const [selectedRegion, setSelectedRegion] = React.useState<string>('');
+  const { data: catalog, isLoading } = useGetCatalog();
+  const { selectedRegion, setSelectedRegion } = React.useContext(ByoipContext);
 
   const campusValues = getConfigValues(
     catalog?.details.product.configurations,
@@ -23,27 +24,30 @@ export const RegionSelectionSection: React.FC = () => {
   ) as CampusType[];
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <OdsSpinner size={ODS_SPINNER_SIZE.sm} />
+      </div>
+    );
   }
 
-  /* TODO: Change the option card */
   return (
     <OrderSection
       title={t('region_selection_title')}
       description={t('region_selection_description')}
     >
-      <div className="grid grid-cols-4 gap-1">
+      <div className="grid grid-cols-3 gap-2">
         {campusValues.map((value) => (
-          <OptionCard
+          <RegionCard
             key={value.name}
             title={value.name}
             isSelected={selectedRegion === value.name}
-            onClick={() => setSelectedRegion(value.name)}
+            onClick={() => {
+              setSelectedRegion(value.name);
+            }}
           >
-            <OdsText className="text-xs" preset={ODS_TEXT_PRESET.paragraph}>
-              {value.name}
-            </OdsText>
-          </OptionCard>
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>{value.name}</OdsText>
+          </RegionCard>
         ))}
       </div>
     </OrderSection>
