@@ -1,7 +1,7 @@
 {
   "zones_title": "DNS zones",
   "zones_order": "Order",
-  "zones_name": "DNS Zone ",
+  "zones_name": "DNS zone",
   "zones_enabled": "Enabled",
   "zones_disabled": "Disabled",
   "base_dns_zone": "Basic DNS zone",

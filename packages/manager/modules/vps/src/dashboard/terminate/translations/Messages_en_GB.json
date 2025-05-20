@@ -8,7 +8,7 @@
   "vps_terminate_option_cancel_terminate_at_expiration": "Undo service cancellation.",
   "vps_terminate_option_terminate_now": "Cancel service now.",
   "vps_terminate_option_terminate_now_description": "You will be sent an email detailing the steps for cancelling this server.",
-  "vps_terminate_warning_no_refund": "The cancellation action does not entitle you to a refund.",
+  "vps_terminate_warning_no_refund": "The process of deletion does not entitle you to a refund.",
   "vps_terminate_warning_manual_refund": "Cancelling your service does not guarantee that any refunds will be granted. Please contact the support team if you have any queries regarding refunds.",
   "vps_terminate_activate_delete_at_expiration_success": "Your request to cancel this service on its expiry date has been processed.",
   "vps_terminate_activate_delete_at_expiration_error": "An error has occurred submitting the request to cancel this service on its expiry date:",

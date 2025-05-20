@@ -1,7 +1,7 @@
 {
   "zones_title": "DNS-Zone",
   "zones_order": "Bestellen",
-  "zones_name": "DNS Zone",
+  "zones_name": "DNS-Zone",
   "zones_enabled": "Aktiviert",
   "zones_disabled": "Deaktiviert",
   "base_dns_zone": "Basis-DNS-Zone",
