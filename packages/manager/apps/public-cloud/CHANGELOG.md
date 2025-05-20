@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.1.9...@ovh-ux/manager-public-cloud@7.2.0) (2025-05-20)
+
+
+### Features
+
+* **pci-dataplatform:** add deeplinks for new uapp ([8e14ed3](https://github.com/ovh/manager/commit/8e14ed373c165749192ad1095daf534b5f6a2792)), closes [#DATATR-2166](https://github.com/ovh/manager/issues/DATATR-2166)
+
+
+
+
+
 ## [7.1.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.1.8...@ovh-ux/manager-public-cloud@7.1.9) (2025-05-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud
