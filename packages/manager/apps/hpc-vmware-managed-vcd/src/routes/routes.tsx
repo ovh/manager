@@ -1,4 +1,3 @@
-import React from 'react';
 import { RouteObject } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
@@ -221,6 +220,44 @@ export const Routes: any = [
                 pageType: PageType.funnel,
               },
             },
+          },
+          {
+            id: 'vrack-network',
+            path: urls.vrackSegments,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/dashboard/datacentre/vrack-segment/VrackNetwork.page'
+              ),
+            ),
+            children: [
+              {
+                id: 'edit-vlan-id',
+                path: urls.vrackSegmentEditVlanId,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/datacentre/vrack-segment/edit/EditVrackSegmentId.page'
+                  ),
+                ),
+              },
+              {
+                id: 'delete-network',
+                path: urls.vrackSegmentDeleteNetwork,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/datacentre/vrack-segment/delete/DeleteVrackNetwork.page'
+                  ),
+                ),
+              },
+              {
+                id: 'add-network',
+                path: urls.vrackSegmentAddNetwork,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/datacentre/vrack-segment/add-network/AddNetworkInVrackSegment.page'
+                  ),
+                ),
+              },
+            ],
           },
         ],
       },
