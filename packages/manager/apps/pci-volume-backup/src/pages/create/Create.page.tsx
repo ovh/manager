@@ -222,6 +222,10 @@ export default function CreateVolumeBackup() {
 
   const handleBackupOptionChange = (option: TBackupOption) => {
     setSelectedBackup(option);
+    trackClick({
+      actionType: 'action',
+      actions: [...VOLUME_BACKUP_TRACKING.CREATE.CARD_CLICK, option.id],
+    });
     generateBackupName(selectedVolume?.name, option?.type);
   };
 
@@ -238,10 +242,6 @@ export default function CreateVolumeBackup() {
 
   const handleCreateBackupClick = () => {
     clearNotifications();
-    trackClick({
-      actionType: 'action',
-      actions: [VOLUME_BACKUP_TRACKING.CREATE.CTA_CONFIRM],
-    });
 
     if (
       selectedVolume?.region &&
@@ -250,12 +250,20 @@ export default function CreateVolumeBackup() {
       selectedBackup?.type
     ) {
       if (selectedBackup.type === VOLUME_OPTION_SNAPSHOT) {
+        trackClick({
+          actionType: 'action',
+          actions: VOLUME_BACKUP_TRACKING.CREATE.CTA_CONFIRM_SNAPSHOT,
+        });
         createVolumeSnapshot({
           regionName: selectedVolume?.region,
           volumeId: selectedVolume?.id,
           backupName,
         });
       } else {
+        trackClick({
+          actionType: 'action',
+          actions: VOLUME_BACKUP_TRACKING.CREATE.CTA_CONFIRM_BACKUP,
+        });
         createVolumeBackup({
           regionName: selectedVolume?.region,
           volumeId: selectedVolume?.id,

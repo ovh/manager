@@ -3,11 +3,14 @@ import { Trans, useTranslation } from 'react-i18next';
 import { PciModal, useInstance } from '@ovh-ux/manager-pci-common';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
 import { useDetachVolume, useVolume } from '@/data/hooks/useVolume';
 import { useNotifications } from '@/hooks/notifications/useNotifications';
+import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 
 export default function DetachVolume() {
   const { t } = useTranslation('detach-volume');
+  const { trackClick, trackPage } = useOvhTracking();
   const { projectId } = useParams();
   const [searchParams] = useSearchParams();
   const volumeId = searchParams.get('volumeId');
@@ -35,6 +38,11 @@ export default function DetachVolume() {
     volumeId,
     instanceId,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: VOLUME_BACKUP_TRACKING.DETACH_VOLUME.REQUEST_SUCCESS,
+      });
+
       addSuccessMessage({
         i18nKey:
           'pci_projects_project_storages_volume_backup_create_detach_volume_action_success',
@@ -47,6 +55,11 @@ export default function DetachVolume() {
       goBack();
     },
     onError: (error) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: VOLUME_BACKUP_TRACKING.DETACH_VOLUME.REQUEST_FAIL,
+      });
+
       addErrorMessage({
         i18nKey:
           'pci_projects_project_storages_volume_backup_create_detach_volume_action_fail',
@@ -56,6 +69,21 @@ export default function DetachVolume() {
       goBack();
     },
   });
+
+  const handleConfirm = () => {
+    trackClick({
+      actionType: 'action',
+      actions: VOLUME_BACKUP_TRACKING.DETACH_VOLUME.CTA_CONFIRM,
+    });
+    detachVolume();
+  };
+  const handleCancel = () => {
+    trackClick({
+      actionType: 'action',
+      actions: VOLUME_BACKUP_TRACKING.DETACH_VOLUME.CTA_CANCEL,
+    });
+    goBack();
+  };
 
   const isModalLoading =
     isVolumeLoading || isInstanceLoading || isDetachPending;
@@ -68,11 +96,11 @@ export default function DetachVolume() {
       type="warning"
       isPending={isModalLoading}
       onClose={goBack}
-      onCancel={goBack}
+      onCancel={handleCancel}
       cancelText={t(
         'pci_projects_project_storages_volume_backup_create_detach_volume_action_cancel',
       )}
-      onConfirm={detachVolume}
+      onConfirm={handleConfirm}
       submitText={t(
         'pci_projects_project_storages_volume_backup_create_detach_volume_action_detach',
       )}
