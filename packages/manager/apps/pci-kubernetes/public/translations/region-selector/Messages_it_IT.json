@@ -1,0 +1,22 @@
+{
+  "pci_project_regions_list_continent_all": "Tutte le Region",
+  "pci_project_regions_list_empty": "Nessuna Region disponibile",
+  "pci_project_regions_list_add": "Per attivare le ultime localizzazioni disponibili in ogni zona, accedi alla sezione <a href=\"{{url}}\">Localizzazioni</a> ",
+  "pci_project_regions_list_region": "Localizzazione",
+  "pci_project_regions_list_quota": "Aumenta la tua quota",
+  "pci_project_flavors_zone_compatible": "Compatibile con",
+  "pci_project_flavors_zone_localzone": "Local Zone",
+  "pci_project_flavors_zone_global_region": "Region",
+  "pci_project_flavors_zone_localzone_tooltip": "Le Local Zone sono un nuovo tipo di localizzazione che supporta una parte del nostro catalogo di prodotti Public Cloud. Prevediamo di aumentare gradualmente il numero di Local Zone disponibili nel mondo nei prossimi anni.",
+  "pci_project_flavors_zone_globalregions_tooltip": "Le Region sono supportate da uno o più datacenter gestiti da OVHcloud. Ogni Region fornisce una o più Availability Zone con il catalogo completo di servizi OVHcloud.",
+  "pci_project_flavors_zone_tooltip_link": "Scopri di più",
+  "pci_project_flavors_zone_1AZ": "1-AZ",
+  "pci_project_flavors_zone_3AZ": "3-AZ",
+  "pci_project_flavors_zone_localzone_1AZ_tooltip": "Una Local Zone corrisponde a una modalità di deploy dei servizi Public Cloud di OVHcloud in datacenter localizzati il più vicino possibile agli utenti finali.",
+  "pci_project_flavors_zone_1AZ_with_3AZ_tooltip": "Con l’arrivo delle Region 3-AZ, il tipo di deploy “Region” cambia nome! Una Region 1-AZ (zona di disponibilità) raggruppa uno o più datacenter presenti nella stessa localizzazione.",
+  "pci_project_flavors_zone_1AZ_tooltip": "Una Region 1-AZ (zona di disponibilità) raggruppa uno o più datacenter presenti nella stessa localizzazione.",
+  "pci_project_flavors_zone_3AZ_tooltip": "Una Region 3-AZ comprende tre zone di disponibilità presenti in una stessa area metropolitana, separate da alcuni chilometri. Risponde alle esigenze più rigorose in materia di resilienza, garantendo una latenza estremamente ridotta tra le AZ.",
+  "pci_project_flavors_desactivated_region": "La localizzazione selezionata non è attivata. Clicca su \"Avanti\" per aggiungerlo al tuo progetto Public Cloud e continuare la creazione del cluster Kubernetes.",
+  "pci_projects_project_storages_containers_add_add_region_error": "Si è verificato un errore durante l'aggiunta della localizzazione: {{message}}",
+  "pci_projects_project_regions_add_region_success": "La localizzazione {{ code }} è stata aggiunta correttamente al tuo progetto."
+}

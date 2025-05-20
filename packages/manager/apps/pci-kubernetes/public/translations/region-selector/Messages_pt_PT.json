@@ -1,0 +1,22 @@
+{
+  "pci_project_regions_list_continent_all": "Todas as localizações",
+  "pci_project_regions_list_empty": "Nenhuma localização disponível",
+  "pci_project_regions_list_add": "Pode ativar as últimas localizações de cada zona na secção <a href=\"{{url}}\">Localizações</a> ",
+  "pci_project_regions_list_region": "Localização",
+  "pci_project_regions_list_quota": "Aumentar o meu limite",
+  "pci_project_flavors_zone_compatible": "Compatível com",
+  "pci_project_flavors_zone_localzone": "Local Zones",
+  "pci_project_flavors_zone_global_region": "Regiões",
+  "pci_project_flavors_zone_localzone_tooltip": "As Local Zones (zonas locais) são um novo tipo de localização, que suporta parte da nossa carteira de produtos Public Cloud. A OVHcloud prevê aumentar gradualmente o número total de Local Zones em todo o mundo nos próximos anos.",
+  "pci_project_flavors_zone_globalregions_tooltip": "As Regiões são suportadas por um ou vários datacenters geridos pela OVHcloud. Cada região fornece uma ou várias Availability Zones com o portefólio completo de serviços da OVHcloud.",
+  "pci_project_flavors_zone_tooltip_link": "Saber mais",
+  "pci_project_flavors_zone_1AZ": "1-AZ",
+  "pci_project_flavors_zone_3AZ": "3-AZ",
+  "pci_project_flavors_zone_localzone_1AZ_tooltip": "Uma Local Zone corresponde a um modo de implementação dos produtos Public Cloud da OVHcloud em datacenters situados o mais próximo possível dos utilizadores finais.",
+  "pci_project_flavors_zone_1AZ_with_3AZ_tooltip": "Com a chegada próxima das regiões 3-AZ, o tipo de implementação «Regiões» muda de nome! Uma região 1-AZ (zona de disponibilidade) agrupa um ou vários datacenters localizados num mesmo site.",
+  "pci_project_flavors_zone_1AZ_tooltip": "Uma região 1-AZ (zona de disponibilidade) agrupa um ou vários datacenters localizados num mesmo site.",
+  "pci_project_flavors_zone_3AZ_tooltip": "Uma região 3-AZ compreende três zonas de disponibilidade situadas numa mesma área metropolitana, separadas por alguns quilómetros. Satisfaz as exigências mais elevadas em matéria de resiliência, garantindo uma latência extremamente baixa entre os AZ.",
+  "pci_project_flavors_desactivated_region": "A localização escolhida não está ativada. Clique em « Seguinte » para a adicionar ao seu projeto Public Cloud e continuar a criação do seu cluster Kubernetes.",
+  "pci_projects_project_storages_containers_add_add_region_error": "Ocorreu um erro ao adicionar a localização: {{message}}",
+  "pci_projects_project_regions_add_region_success": "A localização {{ code }} foi adicionada com êxito ao seu projeto."
+}

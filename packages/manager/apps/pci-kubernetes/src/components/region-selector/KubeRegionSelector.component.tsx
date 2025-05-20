@@ -1,15 +1,16 @@
 import { useCallback } from 'react';
 import {
-  RegionSelector,
-  RegionSelectorProps,
   TRegion,
   useProductAvailability,
+  RegionSelectorProps,
 } from '@ovh-ux/manager-pci-common';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import './KubeRegionSelector.css';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { RegionSelector } from './RegionSelector.component';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
+import { TLocation } from '@/types/region';
 
 export interface KubeRegionSelectorProps {
   projectId: string;
@@ -32,18 +33,18 @@ export function KubeRegionSelector({
   const has3AZ = contains3AZ && featureFlipping3az;
 
   const regionFilter = useCallback(
-    (region) => {
+    (region: TLocation) => {
       const product = availability?.products.find(
         ({ name }) => name === 'kubernetes',
       );
 
-      return (
+      return Boolean(
         region.isMacro ||
-        product?.regions.some(({ name, type }) =>
-          selectedDeployment
-            ? name === region.name && type === selectedDeployment
-            : name === region.name,
-        )
+          product?.regions.some(({ name, type }) =>
+            selectedDeployment
+              ? name === region.name && type === selectedDeployment
+              : name === region.name,
+          ),
       );
     },
     [availability, selectedDeployment],

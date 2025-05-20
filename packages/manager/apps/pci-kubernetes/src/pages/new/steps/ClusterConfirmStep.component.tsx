@@ -1,4 +1,10 @@
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
+import {
+  isDiscoveryProject,
+  TProject,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -18,11 +24,15 @@ export function ClusterConfirmationStep({
   plan,
 }: Readonly<BillingStepProps>) {
   const { t } = useTranslation('stepper');
+  const { projectId } = useParams();
+  const { data: project } = useProject(projectId);
+  const isDiscovery = isDiscoveryProject(project as TProject);
 
   return (
     <>
       <Estimation plan={plan} nodePools={nodePools} />
       <OsdsButton
+        disabled={isDiscovery || undefined}
         className="mt-4 w-fit"
         size={ODS_BUTTON_SIZE.md}
         color={ODS_THEME_COLOR_INTENT.primary}

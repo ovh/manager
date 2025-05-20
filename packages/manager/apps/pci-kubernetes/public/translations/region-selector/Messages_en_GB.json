@@ -1,0 +1,22 @@
+{
+  "pci_project_regions_list_continent_all": "All locations",
+  "pci_project_regions_list_empty": "No locations are available",
+  "pci_project_regions_list_add": "Please enable the latest locations for each zone in the Locations section of the <a href=\"{{url}}\">guide</a> ",
+  "pci_project_regions_list_region": "Location",
+  "pci_project_regions_list_quota": "Increase your quota",
+  "pci_project_flavors_zone_compatible": "Compatible with",
+  "pci_project_flavors_zone_localzone": "Local Zones",
+  "pci_project_flavors_zone_global_region": "Regions",
+  "pci_project_flavors_zone_localzone_tooltip": "Local Zones are a new type of location, which support part of our Public Cloud product portfolio. We will gradually deploy more Local Zones around the world over the next few years.",
+  "pci_project_flavors_zone_globalregions_tooltip": "Regions are supported by one or more datacentres managed by OVHcloud. There are one or more Availability Zones in each Region, with a comprehensive portfolio of OVHcloud services.",
+  "pci_project_flavors_zone_tooltip_link": "Find out more",
+  "pci_project_flavors_zone_1AZ": "1-AZ",
+  "pci_project_flavors_zone_3AZ": "3-AZ",
+  "pci_project_flavors_zone_localzone_1AZ_tooltip": "A Local Zone is a method of deploying OVHcloud Public Cloud products in datacentres that are located as close as possible to the end users.",
+  "pci_project_flavors_zone_1AZ_with_3AZ_tooltip": "With the arrival of the 3-AZ regions, the ‘Regions’ deployment type is changing its name! A 1-AZ (availability zone) region groups together one or more datacentres located on the same site.",
+  "pci_project_flavors_zone_1AZ_tooltip": "A 1-AZ (availability zone) region groups together one or more datacentres located on the same site.",
+  "pci_project_flavors_zone_3AZ_tooltip": "A 3-AZ region comprises three availability zones located in the same metropolitan area, separated by a few miles. It meets the highest resilience requirements while guaranteeing extremely low latency between AZs.",
+  "pci_project_flavors_desactivated_region": "The selected location is not currently active. Click \"Next\" to add it to your Public Cloud project and continue creating your Kubernetes cluster.",
+  "pci_projects_project_storages_containers_add_add_region_error": "An error has occurred adding the location: {{message}}",
+  "pci_projects_project_regions_add_region_success": "The location {{ code }} has been added to your project."
+}
