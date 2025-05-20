@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.127.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.126.1...@ovh-ux/manager-container-app@0.127.0) (2025-05-20)
+
+
+### Bug Fixes
+
+* **container.sidebar:** fix feature web-hosting ([edb87fc](https://github.com/ovh/manager/commit/edb87fcbb9e0a2d663227ed8e8e126e381b021a4)), closes [#MANAGER-14386](https://github.com/ovh/manager/issues/MANAGER-14386)
+* **web-hosting:** fix url on legacy sidebar and onboarding redirection ([66e1260](https://github.com/ovh/manager/commit/66e1260becd05c0d38a56efdea946aa0979d49b1)), closes [#MANAGER-14386](https://github.com/ovh/manager/issues/MANAGER-14386)
+
+
+### Features
+
+* **web-hosting:** website view ([#15546](https://github.com/ovh/manager/issues/15546)) ([4f494d4](https://github.com/ovh/manager/commit/4f494d46508ded693f303be4538332f2cceb6630)), closes [#MANAGER-14386](https://github.com/ovh/manager/issues/MANAGER-14386)
+
+
+
+
+
 ## [0.126.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.126.0...@ovh-ux/manager-container-app@0.126.1) (2025-05-15)
 
 
