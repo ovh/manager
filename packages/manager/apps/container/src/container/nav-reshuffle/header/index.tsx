@@ -15,7 +15,7 @@ import { Logo } from '@/container/common/Logo';
 
 import style from './style.module.scss';
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
-import { NotificationsButton } from './notifications-button.tsx/NotificationsButton.component';
+import { NotificationsButton } from './notifications-button/NotificationsButton.component';
 
 type Props = {
   isSidebarExpanded?: boolean;
