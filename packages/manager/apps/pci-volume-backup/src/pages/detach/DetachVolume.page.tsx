@@ -10,7 +10,7 @@ import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 
 export default function DetachVolume() {
   const { t } = useTranslation('detach-volume');
-  const { trackClick, trackPage } = useOvhTracking();
+  const { trackClick } = useOvhTracking();
   const { projectId } = useParams();
   const [searchParams] = useSearchParams();
   const volumeId = searchParams.get('volumeId');
@@ -38,11 +38,6 @@ export default function DetachVolume() {
     volumeId,
     instanceId,
     onSuccess: () => {
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: VOLUME_BACKUP_TRACKING.DETACH_VOLUME.REQUEST_SUCCESS,
-      });
-
       addSuccessMessage({
         i18nKey:
           'pci_projects_project_storages_volume_backup_create_detach_volume_action_success',
@@ -50,20 +45,23 @@ export default function DetachVolume() {
           volumeName: volume?.name,
           instanceName: instance?.name,
         },
+        trackingParams: {
+          pageType: PageType.bannerSuccess,
+          pageName: VOLUME_BACKUP_TRACKING.DETACH_VOLUME.REQUEST_SUCCESS,
+        },
       });
 
       goBack();
     },
     onError: (error) => {
-      trackPage({
-        pageType: PageType.bannerError,
-        pageName: VOLUME_BACKUP_TRACKING.DETACH_VOLUME.REQUEST_FAIL,
-      });
-
       addErrorMessage({
         i18nKey:
           'pci_projects_project_storages_volume_backup_create_detach_volume_action_fail',
         error,
+        trackingParams: {
+          pageType: PageType.bannerError,
+          pageName: VOLUME_BACKUP_TRACKING.DETACH_VOLUME.REQUEST_FAIL,
+        },
       });
 
       goBack();

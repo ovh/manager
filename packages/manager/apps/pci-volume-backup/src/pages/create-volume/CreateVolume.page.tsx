@@ -4,7 +4,6 @@ import {
   BaseLayout,
   ChangelogButton,
   PciGuidesHeader,
-  useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import {
@@ -19,6 +18,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import VolumeEdit from './VolumeEdit.component';
 import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 import {
@@ -26,6 +26,7 @@ import {
   useCreateVolumeFromBackup,
   useVolume,
 } from '@/data/hooks/useVolume';
+import { useNotifications } from '@/hooks/notifications/useNotifications';
 import { useBackups } from '@/data/hooks/useVolumeBackup';
 import config from '@/pci-volume-backup.config';
 
@@ -39,13 +40,15 @@ function useParam(param: string): string {
 
 export default function CreateVolumePage() {
   const { t } = useTranslation(['create-volume', 'listing']);
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccessMessage, addErrorMessage } = useNotifications({
+    ns: 'create-volume',
+  });
   const navigate = useNavigate();
   const projectId = useParam('projectId');
   const backupId = useParam('backupId');
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
-  const { trackClick, trackPage } = useOvhTracking();
+  const { trackClick } = useOvhTracking();
   const { shell } = useContext(ShellContext);
   const hrefListing = useHref('..');
   const goBack = () => navigate('..');
@@ -67,34 +70,33 @@ export default function CreateVolumePage() {
   const { createVolumeFromBackup, isPending } = useCreateVolumeFromBackup({
     projectId: projectId || '',
     onSuccess: (newVolume: TVolume) => {
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.REQUEST_SUCCESS,
-      });
-      addSuccess(
-        t(
+      addSuccessMessage({
+        i18nKey:
           'pci_projects_project_storages_volume_backup_list_create_volume_request_success',
-          { volumeName: newVolume.name },
-        ),
-      );
+        values: { volumeName: `<strong>${newVolume.name}</strong>` },
+        trackingParams: {
+          pageType: PageType.bannerSuccess,
+          pageName: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.REQUEST_SUCCESS,
+        },
+      });
       shell.navigation.navigateTo(
         'public-cloud',
         `#/pci/projects/${projectId}/storages/blocks`,
         {},
       );
     },
-    onError: (err: Error, data: TNewVolumeFromBackupData) => {
-      trackPage({
-        pageType: PageType.bannerError,
-        pageName: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.REQUEST_FAIL,
+    onError: (error: ApiError, data: TNewVolumeFromBackupData) => {
+      addErrorMessage({
+        i18nKey:
+          'pci_projects_project_storages_volume_backup_list_create_volume_request_fail',
+        values: { volumeName: `<strong>${data.volumeName}</strong>` },
+        error,
+        trackingParams: {
+          pageType: PageType.bannerError,
+          pageName: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.REQUEST_FAIL,
+        },
       });
       goBack();
-      addError(
-        t(
-          'pci_projects_project_storages_volume_backup_list_create_volume_request_fail',
-          { volumeName: data.volumeName, message: err },
-        ),
-      );
     },
   });
 

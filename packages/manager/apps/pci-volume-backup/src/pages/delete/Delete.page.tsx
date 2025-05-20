@@ -11,7 +11,7 @@ import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 
 export default function DeletePage() {
   const { t } = useTranslation('delete');
-  const { trackClick, trackPage } = useOvhTracking();
+  const { trackClick } = useOvhTracking();
   const { projectId } = useParams();
   const [searchParams] = useSearchParams();
   const backupId = searchParams.get('backupId') || '';
@@ -37,33 +37,31 @@ export default function DeletePage() {
     projectId: projectId || '',
     regionName: backupRegionName,
     onSuccess() {
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: VOLUME_BACKUP_TRACKING.DELETE_BACKUP.REQUEST_SUCCESS,
-      });
-
       addSuccessMessage({
         i18nKey:
           'pci_projects_project_storages_volume_backup_list_delete_success',
         values: {
           volumeBackupName: backup?.name || '',
         },
+        trackingParams: {
+          pageType: PageType.bannerSuccess,
+          pageName: VOLUME_BACKUP_TRACKING.DELETE_BACKUP.REQUEST_SUCCESS,
+        },
       });
 
       goBack();
     },
     onError(error: ApiError) {
-      trackPage({
-        pageType: PageType.bannerError,
-        pageName: VOLUME_BACKUP_TRACKING.DELETE_BACKUP.REQUEST_FAIL,
-      });
-
       addErrorMessage({
         i18nKey:
           'pci_projects_project_storages_volume_backup_list_delete_error',
         error,
         values: {
           volumeBackupName: backup?.name || '',
+        },
+        trackingParams: {
+          pageType: PageType.bannerError,
+          pageName: VOLUME_BACKUP_TRACKING.DELETE_BACKUP.REQUEST_FAIL,
         },
       });
 

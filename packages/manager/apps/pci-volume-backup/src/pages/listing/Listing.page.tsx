@@ -94,10 +94,34 @@ export default function Listing() {
   const shouldRedirectToOnboarding =
     !isLoading && !!volumeBackups && volumeBackups.length === 0;
 
+  const handleGuideTracking = (key: string) => {
+    trackClick({
+      actionType: 'action',
+      actions: [...VOLUME_BACKUP_TRACKING.GUIDE, `go-to-${key}`],
+    });
+  };
+
+  const handleChangelogTracking = (key: string) => {
+    trackClick({
+      actionType: 'action',
+      actions: [...VOLUME_BACKUP_TRACKING.CHANGELOG, `go-to-${key}`],
+    });
+  };
+
   const header = {
     title: t('pci_projects_project_storages_volume_backup_list_header'),
-    headerButton: <PciGuidesHeader category="volumeBackup" />,
-    changelogButton: <ChangelogButton links={config.changeLogLinks} />,
+    headerButton: (
+      <PciGuidesHeader
+        category="volumeBackup"
+        // onClick={handleGuideTracking}
+      />
+    ),
+    changelogButton: (
+      <ChangelogButton
+        links={config.changeLogLinks}
+        // onClick={handleChangelogTracking}
+      />
+    ),
   };
 
   const TopbarCTA = () => (

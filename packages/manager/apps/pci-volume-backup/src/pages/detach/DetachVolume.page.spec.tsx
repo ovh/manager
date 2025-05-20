@@ -2,12 +2,14 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { TInstance, TVolume, useInstance } from '@ovh-ux/manager-pci-common';
 import { UseQueryResult } from '@tanstack/react-query';
 import { fireEvent, render } from '@testing-library/react';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate, useParams } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { MOCKED_VOLUME } from '@/__tests__/mocks';
 import { useNotifications } from '@/hooks/notifications/useNotifications';
 import { useDetachVolume, useVolume } from '@/data/hooks/useVolume';
 import DetachVolume from './DetachVolume.page';
+import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 
 vi.mock('@ovh-ux/manager-pci-common', async () => {
   const mod = await vi.importActual('@ovh-ux/manager-pci-common');
@@ -145,6 +147,10 @@ describe('DetachVolume Page', () => {
         instanceName: 'TestInstance',
         volumeName: 'volume-name',
       },
+      trackingParams: {
+        pageType: PageType.bannerSuccess,
+        pageName: VOLUME_BACKUP_TRACKING.DETACH_VOLUME.REQUEST_SUCCESS,
+      },
     });
     expect(mockNavigate).toHaveBeenCalledWith('..');
   });
@@ -178,6 +184,10 @@ describe('DetachVolume Page', () => {
       i18nKey:
         'pci_projects_project_storages_volume_backup_create_detach_volume_action_fail',
       error: mockError,
+      trackingParams: {
+        pageType: PageType.bannerError,
+        pageName: VOLUME_BACKUP_TRACKING.DETACH_VOLUME.REQUEST_FAIL,
+      },
     });
     expect(mockNavigate).toHaveBeenCalledWith('..');
   });
