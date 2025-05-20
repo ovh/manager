@@ -18,7 +18,7 @@ export const formatAccountPayload = (
         'domain',
         isEdit ? 'password' : '',
         isEdit || !slotId ? 'slotId' : '',
-        'offer' /* @TODO remove when backend accept this */,
+        isEdit ? 'offer' : '', // @TODO: remove when backend make this optional
       ].includes(key)
     ) {
       payload[key] = value;

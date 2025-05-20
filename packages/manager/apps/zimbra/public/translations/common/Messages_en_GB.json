@@ -90,5 +90,9 @@
   "service_billing_state_cancelation_planned": "Cancellation scheduled",
   "service_billing_state_manual_renewal": "Manual renewal",
   "service_billing_state_automatic_renewal": "Automatic renewal",
-  "service_billing_state_unhandled": "N/A"
+  "service_billing_state_unhandled": "N/A",
+  "select_slot": "Select a plan",
+  "offer": "Service plan",
+  "monthly": "Monthly",
+  "renewal_at": "Renews on {{ date }}"
 }

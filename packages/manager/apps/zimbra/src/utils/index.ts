@@ -3,6 +3,7 @@ export * from './form';
 export * from './url';
 export * from './string';
 export * from './promise';
+export * from './object';
 
 export const DATAGRID_REFRESH_INTERVAL = 5_000;
 export const DATAGRID_REFRESH_ON_MOUNT = 'always';
