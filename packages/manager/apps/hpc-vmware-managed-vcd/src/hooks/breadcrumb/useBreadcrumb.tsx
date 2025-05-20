@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { OdsBreadcrumbItem } from '@ovhcloud/ods-components';
+import { useLocation, useHref } from 'react-router-dom';
+import { JSX } from '@ovhcloud/ods-components';
 import { urls } from '@/routes/routes.constant';
 
 export type BreadcrumbItem = {
@@ -9,49 +8,32 @@ export type BreadcrumbItem = {
   href?: string;
 };
 
-type BreadcrumbEvent = Event & {
-  target: { isCollapsed?: boolean; isLast?: boolean };
-};
-
-type BreadcrumbNavigationItem = BreadcrumbItem &
-  OdsBreadcrumbItem & {
-    onOdsClick?: (event?: BreadcrumbEvent) => void;
-  };
-
 export interface BreadcrumbProps {
   rootLabel?: string;
   items?: BreadcrumbItem[];
 }
 
 export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
-  const [paths, setPaths] = useState<BreadcrumbNavigationItem[]>([]);
   const location = useLocation();
-  const pathnames = location.pathname.split('/').filter((x) => x);
-  const navigate = useNavigate();
+  const rootHref = useHref(urls.root);
 
   const rootItem = {
     id: rootLabel,
     label: rootLabel,
-    onOdsClick: () => navigate(urls.root),
-  } as BreadcrumbNavigationItem;
+    href: rootHref,
+  };
 
-  useEffect(() => {
-    const pathsTab = pathnames.map((value, index) => {
-      const item = items?.find(({ id }) => id === value);
+  const pathnames = location.pathname.split('/').filter(Boolean);
+  const pathsTab = pathnames.map((value, index) => {
+    const item = items?.find(({ id }) => id === value);
 
-      return {
-        id: item?.id ?? value,
-        label: item?.label ?? value,
-        onOdsClick: (event: BreadcrumbEvent) => {
-          const { isCollapsed, isLast } = event.target;
-          if (!isCollapsed && !isLast) {
-            navigate(`/${pathnames.slice(0, index + 1).join('/')}`);
-          }
-        },
-      };
-    });
-    setPaths(pathsTab as BreadcrumbNavigationItem[]);
-  }, [location, items]);
+    return {
+      id: item?.id ?? value,
+      label: item?.label ?? value,
+      pathnames,
+      href: `${rootHref}${pathnames.slice(0, index + 1).join('/')}`,
+    };
+  });
 
-  return [rootItem, ...paths];
+  return [rootItem, ...pathsTab] as JSX.OdsBreadcrumbItem[];
 };
