@@ -19,7 +19,7 @@
   "dependencies": {
     "@ovh-ux/manager-common-translations": "^0.5.2",
     "@ovh-ux/manager-config": "^8.1.0",
-    "@ovh-ux/manager-core-api": "^0.11.0",
+    "@ovh-ux/manager-core-api": "^0.12.0",
     "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/manager-module-common-api": "^0.4.0",
     "@ovh-ux/manager-react-components": "^2.20.0",
