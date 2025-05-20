@@ -11,7 +11,10 @@ import { OdsDivider, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useEffect, useMemo } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useMedia } from 'react-use';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { convertUcentsToCurrency } from '@/hooks/currency';
 import {
   GUIDES,
@@ -19,6 +22,7 @@ import {
   VOLUME_OPTION_BACKUP,
   VOLUME_OPTION_SNAPSHOT,
 } from '@/constants';
+import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 
 export type TBackupOption = {
   id: string;
@@ -47,6 +51,7 @@ export default function BackupOptionStep({
   const { currency, ovhSubsidiary } = useContext(
     ShellContext,
   ).environment.getUser();
+  const { trackClick } = useOvhTracking();
 
   const isMobileView = useMedia(`(max-width: 36em)`);
 
@@ -158,6 +163,12 @@ export default function BackupOptionStep({
         label={t(
           'pci_projects_project_storages_volume_backup_create_step_2_description_link',
         )}
+        onClick={() => {
+          trackClick({
+            actionType: 'action',
+            actions: VOLUME_BACKUP_TRACKING.CREATE.KNOW_MORE_LINK,
+          });
+        }}
       />
 
       <TileInputChoice

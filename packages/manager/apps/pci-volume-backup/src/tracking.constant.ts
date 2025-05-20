@@ -18,52 +18,71 @@ export const LEVEL2 = {
 export const UNIVERSE = 'PublicCloud';
 export const SUB_UNIVERSE = 'storages';
 export const APP_NAME = 'volume-backup';
-export const VOLUME_BACKUP_BASE_TRACKING =
-  'pci::projects::project::storages::volume-backup';
-export const VOLUME_BACKUP_CTA_TRACKING = `PublicCloud::${VOLUME_BACKUP_BASE_TRACKING}`;
-export const GUIDES_STORAGES_VOLUME_BACKUP_OVERVIEW =
-  'storages_volume_backup_overview';
 
 export const VOLUME_BACKUP_TRACKING = {
-  GUIDES: 'public-cloud_volume_backup::guides::go_to',
+  GUIDE: ['page', 'tile-tutorial'],
+  CHANGELOG: ['page', 'tile-tutorial'],
   ONBOARDING: {
-    PAGE: `${VOLUME_BACKUP_BASE_TRACKING}::onboarding`,
-    ADD: `${VOLUME_BACKUP_CTA_TRACKING}::onboarding::add`,
-    GUIDE: `${VOLUME_BACKUP_CTA_TRACKING}::onboarding::docs`,
+    ADD: ['page', 'button', 'create_volume-backup'],
   },
   CREATE: {
-    PAGE: `${VOLUME_BACKUP_BASE_TRACKING}::create-backup`,
-    PRICE_LINK: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup::guide_${GUIDES_STORAGES_VOLUME_BACKUP_OVERVIEW}`,
-    CTA_CONFIRM: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup::confirm`,
-    REQUEST_FAIL: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup_error`,
-    REQUEST_SUCCESS: `${VOLUME_BACKUP_CTA_TRACKING}::create-backup_success`,
+    PAGE_NAME: 'create_volume-backup',
+    KNOW_MORE_LINK: [
+      'funnel',
+      'external-link',
+      'create_volume-backup',
+      'go-to-know-more-backup',
+    ],
+    CARD_CLICK: ['funnel', 'tile', 'create_volume-backup', 'select_volume'],
+    CTA_CONFIRM_BACKUP: [
+      'funnel',
+      'button',
+      'create_volume-backup',
+      'confirm',
+      'volume-backup_create_volume_backup',
+    ],
+    CTA_CONFIRM_SNAPSHOT: [
+      'funnel',
+      'button',
+      'create_volume-backup',
+      'confirm',
+      'volume-backup_create_volume_snapshot',
+    ],
+    REQUEST_FAIL: `create_volume-backup_error`,
+    REQUEST_SUCCESS: `create_volume-backup_success`,
+  },
+  DETACH_VOLUME: {
+    PAGE_NAME: 'detach_volume',
+    CTA_CANCEL: ['pop-up', 'button', 'detach_volume', 'cancel'],
+    CTA_CONFIRM: ['pop-up', 'button', 'detach_volume', 'confirm'],
+    REQUEST_FAIL: 'detach_volume_error',
+    REQUEST_SUCCESS: 'detach_volume_success',
   },
   LISTING: {
-    PAGE: `${VOLUME_BACKUP_BASE_TRACKING}`,
-    ADD: `${VOLUME_BACKUP_CTA_TRACKING}::add`,
-    ROW_CTA_RESTORE_VOLUME: `${VOLUME_BACKUP_CTA_TRACKING}::table-option-menu::restore-volume`,
-    ROW_CTA_CREATE_VOLUME: `${VOLUME_BACKUP_CTA_TRACKING}::table-option-menu::create-volume`,
-    ROW_CTA_DELETE_VOLUME: `${VOLUME_BACKUP_CTA_TRACKING}::table-option-menu::delete-volume`,
+    ADD: ['page', 'button', 'create_volume-backup'],
+    ROW_CTA_RESTORE_VOLUME: ['datagrid', 'button', 'restore_volume-backup'],
+    ROW_CTA_CREATE_VOLUME: ['datagrid', 'button', 'create_volume'],
+    ROW_CTA_DELETE_VOLUME: ['datagrid', 'button', 'delete_volume-backup'],
   },
   RESTORE_VOLUME: {
-    PAGE: 'restore',
-    CTA_CANCEL: 'cancel',
-    CTA_CONFIRM: 'confirm',
-    REQUEST_FAIL: 'restore_error',
-    REQUEST_SUCCESS: 'restore_success',
+    PAGE_NAME: 'restore_volume-backup',
+    CTA_CANCEL: ['pop-up', 'button', 'restore_volume-backup', 'cancel'],
+    CTA_CONFIRM: ['pop-up', 'button', 'restore_volume-backup', 'confirm'],
+    REQUEST_FAIL: 'restore_volume-backup_error',
+    REQUEST_SUCCESS: 'restore_volume-backup_success',
   },
   CREATE_VOLUME: {
-    PAGE: `${VOLUME_BACKUP_BASE_TRACKING}::create-volume`,
-    CTA_CANCEL: `${VOLUME_BACKUP_CTA_TRACKING}::create-volume::cancel`,
-    CTA_CONFIRM: `${VOLUME_BACKUP_CTA_TRACKING}::create-volume::confirm`,
-    REQUEST_FAIL: `${VOLUME_BACKUP_CTA_TRACKING}::create-volume_error`,
-    REQUEST_SUCCESS: `${VOLUME_BACKUP_CTA_TRACKING}::create-volume_success`,
+    PAGE_NAME: 'create_volume',
+    CTA_CANCEL: ['funnel', 'button', 'create_volume', 'cancel'],
+    CTA_CONFIRM: ['funnel', 'button', 'create_volume', 'confirm'],
+    REQUEST_FAIL: 'create_volume_error',
+    REQUEST_SUCCESS: 'create_volume_success',
   },
   DELETE_BACKUP: {
-    PAGE: `${VOLUME_BACKUP_BASE_TRACKING}::delete`,
-    CTA_CANCEL: `${VOLUME_BACKUP_CTA_TRACKING}::delete::cancel`,
-    CTA_CONFIRM: `${VOLUME_BACKUP_CTA_TRACKING}::delete::confirm`,
-    REQUEST_FAIL: `${VOLUME_BACKUP_CTA_TRACKING}::delete_error`,
-    REQUEST_SUCCESS: `${VOLUME_BACKUP_CTA_TRACKING}::delete_success`,
+    PAGE_NAME: 'delete_volume-backup',
+    CTA_CANCEL: ['pop-up', 'button', 'delete_volume-backup', 'cancel'],
+    CTA_CONFIRM: ['pop-up', 'button', 'delete_volume-backup', 'confirm'],
+    REQUEST_FAIL: 'delete_volume-backup_error',
+    REQUEST_SUCCESS: 'delete_volume-backup_success',
   },
 };

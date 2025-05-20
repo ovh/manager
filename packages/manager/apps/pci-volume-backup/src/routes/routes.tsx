@@ -3,6 +3,7 @@ import { Route, Navigate } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
+import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 
 const LayoutPage = lazy(() => import('@/pages/layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing.page'));
@@ -29,11 +30,40 @@ export default (
   >
     <Route path="" element={<Navigate to={urls.listing} replace />} />
     <Route
+      path={urls.onboarding}
+      Component={OnboardingPage}
+      handle={{
+        tracking: {
+          pageType: PageType.onboarding,
+        },
+      }}
+    />
+    <Route
+      path={urls.createVolumeBackup}
+      Component={CreateVolumeBackupPage}
+      handle={{
+        tracking: {
+          pageName: VOLUME_BACKUP_TRACKING.CREATE.PAGE_NAME,
+          pageType: PageType.funnel,
+        },
+      }}
+    >
+      <Route
+        path={urls.detachVolume}
+        Component={DetachVolumePage}
+        handle={{
+          tracking: {
+            pageName: VOLUME_BACKUP_TRACKING.DETACH_VOLUME.PAGE_NAME,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+    </Route>
+    <Route
       path={urls.listing}
       Component={ListingPage}
       handle={{
         tracking: {
-          pageName: 'listing',
           pageType: PageType.listing,
         },
       }}
@@ -43,61 +73,31 @@ export default (
         Component={RestorePage}
         handle={{
           tracking: {
-            pageName: 'restore',
+            pageName: VOLUME_BACKUP_TRACKING.RESTORE_VOLUME.PAGE_NAME,
             pageType: PageType.popup,
           },
         }}
-      ></Route>
+      />
       <Route
         path={urls.deleteBackup}
         Component={DeletePage}
         handle={{
           tracking: {
-            pageName: 'delete',
+            pageName: VOLUME_BACKUP_TRACKING.DELETE_BACKUP.PAGE_NAME,
             pageType: PageType.popup,
           },
         }}
       />
     </Route>
-    <Route
-      path={urls.onboarding}
-      Component={OnboardingPage}
-      handle={{
-        tracking: {
-          pageName: 'onboarding',
-          pageType: PageType.onboarding,
-        },
-      }}
-    />
     <Route
       path={urls.createVolume}
       Component={CreateVolumePage}
       handle={{
         tracking: {
-          pageName: 'create-volume',
+          pageName: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.PAGE_NAME,
+          pageType: PageType.funnel,
         },
       }}
     />
-    <Route
-      path={urls.createVolumeBackup}
-      Component={CreateVolumeBackupPage}
-      handle={{
-        tracking: {
-          pageName: 'create',
-          pageType: PageType.dashboard,
-        },
-      }}
-    >
-      <Route
-        path={urls.detachVolume}
-        Component={DetachVolumePage}
-        handle={{
-          tracking: {
-            pageName: 'detach-volume',
-            pageType: PageType.popup,
-          },
-        }}
-      />
-    </Route>
   </Route>
 );

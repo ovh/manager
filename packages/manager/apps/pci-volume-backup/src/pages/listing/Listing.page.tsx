@@ -19,12 +19,14 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
 import { TProjectParams, TVolumeBackup } from '@/data/api/api.types';
 import { useVolumeBackups } from '@/data/hooks/useVolumeBackups';
 import { getVolumeBackups, refetchInterval } from '@/data/api/volumeBackup';
 import config from '@/pci-volume-backup.config';
 import { backupsQueryKey } from '@/data/hooks/useVolumeBackup';
+import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 
 export default function Listing() {
   const columns = useDatagridColumn();
@@ -35,6 +37,7 @@ export default function Listing() {
     throwOnError: true,
     retry: false,
   } as unknown) as Parameters<typeof useProject>[1]);
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
 
@@ -108,6 +111,10 @@ export default function Listing() {
       )}
       onClick={() => {
         clearNotifications();
+        trackClick({
+          actionType: 'action',
+          actions: VOLUME_BACKUP_TRACKING.LISTING.ADD,
+        });
         navigate('../create');
       }}
     />

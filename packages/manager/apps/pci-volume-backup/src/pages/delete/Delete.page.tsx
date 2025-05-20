@@ -26,20 +26,12 @@ export default function DeletePage() {
   const backupRegionName = backup ? backup.region : '';
 
   const navigate = useNavigate();
-  const goBack = () => {
-    trackClick({
-      actionType: 'action',
-      actions: [VOLUME_BACKUP_TRACKING.DELETE_BACKUP.CTA_CANCEL],
-    });
-    navigate('..');
-  };
+  const goBack = () => navigate('..');
+  const handleClose = goBack;
 
   const { addSuccessMessage, addErrorMessage } = useNotifications({
     ns: 'delete',
   });
-
-  const handleCancel = goBack;
-  const handleClose = goBack;
 
   const { deleteBackup, isPending: isDeleteVolumePending } = useDeleteBackup({
     projectId: projectId || '',
@@ -79,14 +71,21 @@ export default function DeletePage() {
     },
   });
 
-  const onConfirm = () => {
+  const handleConfirm = () => {
     if (backupId) {
       trackClick({
         actionType: 'action',
-        actions: [VOLUME_BACKUP_TRACKING.DELETE_BACKUP.CTA_CONFIRM],
+        actions: VOLUME_BACKUP_TRACKING.DELETE_BACKUP.CTA_CONFIRM,
       });
       deleteBackup(backupId);
     }
+  };
+  const handleCancel = () => {
+    trackClick({
+      actionType: 'action',
+      actions: VOLUME_BACKUP_TRACKING.DELETE_BACKUP.CTA_CANCEL,
+    });
+    goBack();
   };
 
   const isModalLoading = isBackupsLoading || isDeleteVolumePending;
@@ -113,7 +112,7 @@ export default function DeletePage() {
       confirmationText="DELETE"
       confirmationLabel={(confirmationLabel as unknown) as string}
       onClose={handleClose}
-      onConfirm={onConfirm}
+      onConfirm={handleConfirm}
       data-testid="backup-deletion-modal"
     >
       <OdsText
