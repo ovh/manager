@@ -4,5 +4,3 @@ export * from './getTypeByServiceName';
 export * from './getLinkByServiceName';
 export * from './ipFeatureAvailbility';
 export * from './useGuideUtils';
-export * from './getCatalog';
-export * from './getConfigValues';

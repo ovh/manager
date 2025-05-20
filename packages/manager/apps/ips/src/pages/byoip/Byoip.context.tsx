@@ -9,6 +9,8 @@ export const ByoipContext = React.createContext<{
   setIpRange: React.Dispatch<React.SetStateAction<string>>;
   as: string;
   setAs: React.Dispatch<React.SetStateAction<string>>;
+  selectedToken: string;
+  setSelectedToken: React.Dispatch<React.SetStateAction<string>>;
 }>({
   ipRir: '',
   setIpRir: () => {},
@@ -18,6 +20,8 @@ export const ByoipContext = React.createContext<{
   setIpRange: () => {},
   as: '',
   setAs: () => {},
+  selectedToken: '',
+  setSelectedToken: () => {},
 });
 
 export const ByoipContextProvider: React.FC<React.PropsWithChildren> = ({
@@ -25,6 +29,7 @@ export const ByoipContextProvider: React.FC<React.PropsWithChildren> = ({
 }) => {
   const [ipRir, setIpRir] = React.useState<string>('');
   const [selectedRegion, setSelectedRegion] = React.useState<string>('');
+  const [selectedToken, setSelectedToken] = React.useState<string>('');
   const [ipRange, setIpRange] = React.useState<string>('');
   const [as, setAs] = React.useState<string>('');
 
@@ -38,17 +43,10 @@ export const ByoipContextProvider: React.FC<React.PropsWithChildren> = ({
       setIpRange,
       as,
       setAs,
+      selectedToken,
+      setSelectedToken,
     }),
-    [
-      ipRir,
-      setIpRir,
-      selectedRegion,
-      setSelectedRegion,
-      ipRange,
-      setIpRange,
-      as,
-      setAs,
-    ],
+    [ipRir, selectedRegion, ipRange, as, selectedToken],
   );
 
   return (
