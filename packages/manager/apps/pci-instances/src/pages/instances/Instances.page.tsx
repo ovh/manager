@@ -29,14 +29,7 @@ import {
 import { Button, Input } from '@datatr-ux/uxlib';
 import { Search, X } from 'lucide-react';
 
-import {
-  FC,
-  useCallback,
-  useDeferredValue,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { FC, FormEvent, useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Navigate,
@@ -67,35 +60,29 @@ const SearchBar = ({
   isDisabled: boolean;
 }) => {
   const [searchField, setSearchField] = useState('');
-  const deferredSearchField = useDeferredValue(searchField);
 
-  const onSearchHandler = () => {
-    onSearchSubmit(deferredSearchField);
+  const onSearchHandler = (event: FormEvent) => {
+    event.preventDefault();
+    onSearchSubmit(searchField);
     setSearchField('');
   };
 
   return (
-    <form className="flex justify-end w-full relative">
+    <form
+      className="flex justify-end w-full relative"
+      onSubmit={onSearchHandler}
+    >
       <Input
         value={searchField}
         disabled={isDisabled}
         onChange={(e) => setSearchField(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            onSearchHandler();
-          }
-        }}
         className="focus:bg-[#bef1ff] max-w-full sm:max-w-72 rounded-r-none focus-visible:ring-transparent focus-visible:bg-primary-300 text-primary-100 pr-8 mr-4"
       />
       <X
         onClick={() => setSearchField('')}
         className="absolute right-[68px] top-[8px] text-blue-500 cursor-pointer"
       />
-      <Button
-        className="rounded-l-none"
-        onClick={onSearchHandler}
-        disabled={isDisabled}
-      >
+      <Button className="rounded-l-none" disabled={isDisabled}>
         <Search />
       </Button>
     </form>
