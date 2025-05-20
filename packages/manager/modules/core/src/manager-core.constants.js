@@ -218,9 +218,6 @@ export const URLS = {
       SN: 'https://www.ovh.sn/public-cloud/storage/cloud-archive/',
       TN: 'https://www.ovh.com/tn/public-cloud/storage/cloud-archive/',
     },
-    veeam: {
-      FR: 'https://www.ovh.com/fr/storage-solutions/veeam-cloud-connect/',
-    },
     cloud_disk_array: {
       FR: 'https://www.ovh.com/fr/cloud/cloud-disk-array/',
     },
