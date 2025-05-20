@@ -29,7 +29,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { useAccount, useDomains } from '@/data/hooks';
+import { useAccount, useDomains, useSlotsWithService } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import {
   AccountBodyParamsType,

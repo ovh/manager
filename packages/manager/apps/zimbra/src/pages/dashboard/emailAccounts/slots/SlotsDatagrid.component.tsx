@@ -8,26 +8,15 @@ import {
   useBytes,
   useFormatDate,
 } from '@ovh-ux/manager-react-components';
-import { useSlots, useSlotServices } from '@/data/hooks';
+import { SlotWithService, useSlotsWithService } from '@/data/hooks';
 import { useOverridePage } from '@/hooks';
 import { ActionButtonSlot } from './ActionButton.component';
 import { DatagridTopbar } from '../DatagridTopBar.component';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
-import {
-  SlotService,
-  SlotType,
-  ZimbraOffer,
-  getOfferDefaultQuota,
-} from '@/data/api';
+import { getOfferDefaultQuota } from '@/data/api';
 import { BillingStateBadge } from '@/components';
 
-export type SlotItem = {
-  id: string;
-  offer: keyof typeof ZimbraOffer;
-  service?: SlotService;
-};
-
-const columns: DatagridColumn<SlotItem>[] = [
+const columns: DatagridColumn<SlotWithService>[] = [
   {
     id: 'offer',
     cell: (item) => (
@@ -69,7 +58,7 @@ const columns: DatagridColumn<SlotItem>[] = [
   },
   {
     id: 'tooltip',
-    cell: (item: SlotItem) => <ActionButtonSlot item={item} />,
+    cell: (item: SlotWithService) => <ActionButtonSlot item={item} />,
     label: '',
   },
 ];
@@ -79,30 +68,18 @@ export const SlotsDatagrid = () => {
   const isOverridedPage = useOverridePage();
 
   const {
-    data: slots,
+    slots: items,
     fetchAllPages,
     fetchNextPage,
     hasNextPage,
-    isLoading,
+    isLoadingSlots,
     isFetchingNextPage,
-  } = useSlots({
+  } = useSlotsWithService({
     used: 'false',
     refetchInterval: DATAGRID_REFRESH_INTERVAL,
     refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
     enabled: !isOverridedPage,
   });
-
-  const { data: services } = useSlotServices({ gcTime: 0 });
-
-  const items: SlotItem[] = useMemo(() => {
-    return (
-      slots?.map((item: SlotType) => ({
-        id: item.id,
-        offer: item.currentState.offer,
-        service: services?.[item.id],
-      })) ?? []
-    );
-  }, [slots, services]);
 
   return (
     <Datagrid
@@ -116,7 +93,7 @@ export const SlotsDatagrid = () => {
       hasNextPage={hasNextPage}
       onFetchNextPage={fetchNextPage}
       onFetchAllPages={fetchAllPages}
-      isLoading={isLoading || isFetchingNextPage}
+      isLoading={isLoadingSlots || isFetchingNextPage}
     />
   );
 };

@@ -7,12 +7,20 @@ import { useParams } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import {
   SlotBillingStatus,
+  SlotService,
   SlotType,
   ZimbraOffer,
   getZimbraPlatformSlots,
   getZimbraPlatformSlotsQueryKey,
 } from '@/data/api';
 import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
+import { useSlotServices } from '@/data/hooks';
+
+export type SlotWithService = {
+  id: string;
+  offer: keyof typeof ZimbraOffer;
+  service?: SlotService;
+};
 
 type UseSlotsParams = Omit<
   UseInfiniteQueryOptions,
@@ -92,5 +100,31 @@ export const useSlots = (props: UseSlotsParams = {}) => {
 
   return Object.assign(query, {
     fetchAllPages,
+  });
+};
+
+export const useSlotsWithService = (options: UseSlotsParams = {}) => {
+  const query = useSlots(options);
+  const { data: services, isLoading: isLoadingServices } = useSlotServices({
+    gcTime: 0,
+    ...(options.enabled ? { enabled: options.enabled } : {}),
+  });
+
+  const [slots, setSlots] = useState<SlotWithService[]>([]);
+
+  useEffect(() => {
+    setSlots(
+      query.data?.map((item) => ({
+        id: item.id,
+        offer: item.currentState.offer,
+        service: services?.[item.id],
+      })) ?? [],
+    );
+  }, [query.data, services]);
+
+  // use assign and make new properties to avoid rerenders
+  return Object.assign(query, {
+    slots,
+    isLoadingSlots: query.isLoading || isLoadingServices,
   });
 };

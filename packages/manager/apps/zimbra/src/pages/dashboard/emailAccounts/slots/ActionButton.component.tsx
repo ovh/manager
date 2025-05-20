@@ -8,14 +8,13 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { SlotItem } from './SlotsDatagrid.component';
-import { usePlatform } from '@/data/hooks';
+import { SlotWithService, usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { CONFIGURE_SLOT } from '@/tracking.constants';
 
 interface ActionButtonSlotProps {
-  item: SlotItem;
+  item: SlotWithService;
 }
 
 export const ActionButtonSlot: React.FC<ActionButtonSlotProps> = ({ item }) => {
