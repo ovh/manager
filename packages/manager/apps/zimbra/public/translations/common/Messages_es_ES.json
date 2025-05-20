@@ -90,5 +90,9 @@
   "service_billing_state_cancelation_planned": "Baja programada",
   "service_billing_state_manual_renewal": "Renovación manual",
   "service_billing_state_automatic_renewal": "Renovación automática",
-  "service_billing_state_unhandled": "N/A"
+  "service_billing_state_unhandled": "N/A",
+  "select_slot": "Seleccionar un plan",
+  "offer": "Plan",
+  "monthly": "Mensual",
+  "renewal_at": "Renovación el {{ date }}"
 }
