@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .then(
           (auditLogAvailability) =>
             !auditLogAvailability && {
-              state: 'iam',
+              state: 'iam.logs',
             },
         ),
     resolve: {
