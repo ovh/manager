@@ -34,6 +34,8 @@ export const useProcedures = (procedure: Procedure) => {
       onError: () => {
         onError?.();
       },
+      retry: 1,
+      retryDelay: 3000,
     });
 
   const useUploadDocuments = ({

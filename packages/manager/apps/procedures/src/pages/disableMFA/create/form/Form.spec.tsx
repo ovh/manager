@@ -36,6 +36,25 @@ vi.mock('@/context/User/useUser', () => ({
   }),
 }));
 
+// Override retryDelay to 0 in tests to eliminate artificial waiting
+// during React Query retries and make our tests instantaneous and deterministic.
+vi.mock('@tanstack/react-query', async () => {
+  const actual = await vi.importActual<typeof import('@tanstack/react-query')>(
+    '@tanstack/react-query',
+  );
+  return {
+    ...actual,
+    useMutation: (...args: any[]) => {
+      if (typeof args[0] === 'function') {
+        const [mutationFn, opts] = args;
+        return actual.useMutation(mutationFn, { ...opts, retryDelay: 0 });
+      }
+      const [opts] = args;
+      return actual.useMutation({ ...opts, retryDelay: 0 });
+    },
+  };
+});
+
 describe('Form.page', () => {
   it('should render select LegalForms correctly when the sub is FR and legalForms is other', async () => {
     renderFormComponent();
