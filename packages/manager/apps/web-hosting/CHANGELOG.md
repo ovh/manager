@@ -1,0 +1,17 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.0.0...@ovh-ux/manager-web-hosting-app@0.1.0) (2025-05-20)
+
+
+### Bug Fixes
+
+* **web-hosting:** fix name of key translation ([7a8aec6](https://github.com/ovh/manager/commit/7a8aec66eeb0d6c95e538f615ad6def1043f680b)), closes [#MANAGER-14386](https://github.com/ovh/manager/issues/MANAGER-14386)
+* **web-hosting:** fix url on legacy sidebar and onboarding redirection ([66e1260](https://github.com/ovh/manager/commit/66e1260becd05c0d38a56efdea946aa0979d49b1)), closes [#MANAGER-14386](https://github.com/ovh/manager/issues/MANAGER-14386)
+
+
+### Features
+
+* **web-hosting:** website view ([#15546](https://github.com/ovh/manager/issues/15546)) ([4f494d4](https://github.com/ovh/manager/commit/4f494d46508ded693f303be4538332f2cceb6630)), closes [#MANAGER-14386](https://github.com/ovh/manager/issues/MANAGER-14386)
