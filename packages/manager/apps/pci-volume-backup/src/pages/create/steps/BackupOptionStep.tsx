@@ -15,7 +15,10 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { convertUcentsToCurrency } from '@/hooks/currency';
+import {
+  convertHourlyPriceToMonthly,
+  useCatalogPrice,
+} from '@ovh-ux/manager-react-components';
 import {
   GUIDES,
   GUIDES_STORAGES_VOLUME_BACKUP_OVERVIEW,
@@ -48,9 +51,7 @@ export default function BackupOptionStep({
   backupOptions,
 }: BackupOptionStepProps) {
   const { t } = useTranslation(['create', 'pci-volume-backup']);
-  const { currency, ovhSubsidiary } = useContext(
-    ShellContext,
-  ).environment.getUser();
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const { trackClick } = useOvhTracking();
 
   const isMobileView = useMedia(`(max-width: 36em)`);
@@ -61,6 +62,8 @@ export default function BackupOptionStep({
   const volumeOptionParam = searchParams.get('volumeOption');
 
   const { data: catalog } = useCatalog();
+
+  const { getTextPrice } = useCatalogPrice(6);
 
   const { data: snapshotAvailabilityData } = useProductAvailability(
     projectId || '',
@@ -90,10 +93,14 @@ export default function BackupOptionStep({
   const formatVolumePrice = (addon: TAddon | undefined) => {
     const price = addon?.pricings[0]?.price;
 
-    if (typeof price !== 'number') return null;
+    if (typeof price !== 'number') {
+      return null;
+    }
 
-    const convertPrice = convertUcentsToCurrency(price * 730);
-    return `${convertPrice}${currency?.symbol}`;
+    const priceMonthlyInCent = convertHourlyPriceToMonthly(price);
+    const formattedPrice = getTextPrice(priceMonthlyInCent);
+
+    return formattedPrice;
   };
 
   const volumeOptionsWihPrice = useMemo(() => {
