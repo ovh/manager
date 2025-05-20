@@ -1,5 +1,6 @@
 export const IAM_LOG_KINDS_KEYS = {
   default: ['message'],
+  access: ['message'],
 };
 
 export const IAM_LOGS_AUDIT_TRACKING_PREFIX =
