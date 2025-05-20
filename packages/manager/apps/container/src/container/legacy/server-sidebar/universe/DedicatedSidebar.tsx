@@ -22,7 +22,6 @@ export const features = [
   'dedicated-nasha',
   'paas',
   'cloud-disk-array',
-  'veeam-cloud-connect',
   'dedicated-network',
   'vrack:bare-metal-cloud',
   'vrack:hosted-private-cloud',
@@ -39,7 +38,6 @@ export const features = [
   'kubernetes',
   'dedicated-cloud:order',
   'dedicated-cloud:sapHanaOrder',
-  'veeam-cloud-connect:order',
   'veeam-enterprise:order',
   'vrack:order',
   'ip-load-balancer',
@@ -187,24 +185,12 @@ export default function DedicatedSidebar() {
         icon: getIcon('ovh-font ovh-font-cloud-package'),
         routeMatcher: new RegExp('^(/paas/cda|/cda)'),
         async loader() {
-          const [ceph, veeamCloudConnect] = await Promise.all([
-            feature['cloud-disk-array'] ? loadServices('/dedicated/ceph') : [],
-            feature['veeam-cloud-connect']
-              ? loadServices('/veeamCloudConnect')
-              : [],
-          ]);
-          return [
-            ...ceph.map((cephItem) => ({
-              ...cephItem,
-              keywords: 'cda cloud disk array',
-              icon: getIcon('ovh-font ovh-font-cloud-disk-array'),
-            })),
-            ...veeamCloudConnect.map((veeamccItem) => ({
-              ...veeamccItem,
-              keywords: 'veeamcc veeam cloud connect',
-              icon: getIcon('ovh-font ovh-font-veeam'),
-            })),
-          ];
+          const ceph = feature['cloud-disk-array'] ? await loadServices('/dedicated/ceph') : [];
+          return ceph.map((cephItem) => ({
+            ...cephItem,
+            keywords: 'cda cloud disk array',
+            icon: getIcon('ovh-font ovh-font-cloud-disk-array'),
+          }));
         },
       });
     }

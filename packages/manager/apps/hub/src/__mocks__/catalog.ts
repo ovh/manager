@@ -655,25 +655,6 @@ export const rawCatalogData = [
   {
     categories: [
       'Catalogs',
-      'Bare Metal Cloud',
-      'Storage and Backup',
-      'Veeam Cloud Connect',
-    ],
-    category: 'Storage and Backup',
-    description:
-      'Easily and automatically outsource backups in the OVHcloud secure cloud. Using the Veeam Availability Suite®, you can ensure that your data is replicated in our datacentres.',
-    featureAvailability: 'veeam-cloud-connect',
-    id: 20847,
-    lang: 'en_GB',
-    name: 'Veeam Cloud Connect',
-    productName: 'VEEAM_CLOUD_CONNECT',
-    regionTags: ['EU', 'CA'],
-    universe: 'Bare Metal Cloud',
-    url: 'https://ovhcloud.com/en/storage-solutions/veeam-cloud-connect',
-  },
-  {
-    categories: [
-      'Catalogs',
       'Hosted Private Cloud',
       'Storage and Backup',
       'Veeam Enterprise',
