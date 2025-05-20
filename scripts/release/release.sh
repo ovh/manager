@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# this is branch betaOne
 RELEASE_NOTE=""
 DRY_RELEASE=false
 
