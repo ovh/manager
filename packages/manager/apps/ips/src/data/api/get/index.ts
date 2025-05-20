@@ -10,3 +10,4 @@ export * from './ipEdgeFirewall';
 export * from './ipGameFirewall';
 export * from './organisationsList';
 export * from './organisationsDetails';
+export * from './byoip';
