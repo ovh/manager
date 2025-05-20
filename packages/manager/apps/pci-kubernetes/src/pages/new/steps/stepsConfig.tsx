@@ -1,3 +1,5 @@
+import { TLocalisation } from '@ovh-ux/manager-pci-common';
+
 import { useClusterCreationStepper } from '../useCusterCreationStepper';
 import { ClusterConfirmationStep } from './ClusterConfirmStep.component';
 import { ClusterNameStep } from './ClusterNameStep.component';
@@ -6,7 +8,6 @@ import { NetworkStep } from './NetworkStep.component';
 import NodePoolStep from './NodePoolStep.component';
 import PlanStep from './PlanStep.component';
 import { VersionAndUpdatePolicyStep } from './VersionAndUpdatePolicyStep.component';
-import Loader from './Loader';
 
 type StepComponentProps = Record<string, unknown>;
 
@@ -28,6 +29,8 @@ const stepsConfig = ({
   createNewCluster: () => void;
   projectId?: string;
   are3AZRegions?: boolean;
+  addRegion: (region: string) => void;
+  isPending: boolean;
 }): StepConfig[] => [
   {
     key: 'clusterName',
@@ -39,7 +42,9 @@ const stepsConfig = ({
     key: 'location',
     component: LocationStep,
     titleKey: 'kubernetes_add_region_title',
-    extraProps: { projectId },
+    extraProps: {
+      projectId,
+    },
   },
   {
     key: 'plan',

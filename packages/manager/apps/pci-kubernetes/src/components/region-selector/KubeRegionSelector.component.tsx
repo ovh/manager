@@ -1,14 +1,14 @@
 import { useCallback } from 'react';
 import {
-  RegionSelector,
-  RegionSelectorProps,
   TRegion,
   useProductAvailability,
+  RegionSelectorProps,
 } from '@ovh-ux/manager-pci-common';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import './KubeRegionSelector.css';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { RegionSelector } from './RegionSelector.component';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 
 export interface KubeRegionSelectorProps {
