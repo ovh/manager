@@ -144,17 +144,17 @@ export default function CreateVolumeBackup() {
         pageName: VOLUME_BACKUP_TRACKING.CREATE.REQUEST_SUCCESS,
       });
 
-      addSuccessMessage({
-        i18nKey:
-          'pci_projects_project_storages_volume_backup_create_action_create_option_volume_snapshot_success',
-        values: {
-          backupName: `<strong>${backupName}</strong>`,
-        },
-      });
-
       shell.navigation.navigateTo(
         'public-cloud',
-        `#/pci/projects/${projectId}/storages/volume-snapshots`,
+        `#/pci/projects/${projectId}/storages/volume-snapshots?notificationType=success&notificationMsg=${encodeURIComponent(
+          t(
+            'pci_projects_project_storages_volume_backup_create_action_create_option_volume_snapshot_success',
+            {
+              backupName: `<strong>${backupName}</strong>`,
+              ns: 'create',
+            },
+          ),
+        )}`,
         {},
       );
     },
@@ -164,15 +164,17 @@ export default function CreateVolumeBackup() {
         pageName: VOLUME_BACKUP_TRACKING.CREATE.REQUEST_FAIL,
       });
 
-      addErrorMessage({
-        i18nKey:
-          'pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail',
-        error,
-      });
-
       shell.navigation.navigateTo(
         'public-cloud',
-        `#/pci/projects/${projectId}/storages/volume-snapshots`,
+        `#/pci/projects/${projectId}/storages/volume-snapshots?notificationType=error&notificationMsg=${encodeURIComponent(
+          t(
+            'pci_projects_project_storages_volume_backup_create_action_create_volume_backup_fail',
+            {
+              message: error?.response?.data?.message || error?.message || null,
+              ns: 'create',
+            },
+          ),
+        )}`,
         {},
       );
     },
