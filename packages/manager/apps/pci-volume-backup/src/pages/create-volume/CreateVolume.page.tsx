@@ -12,9 +12,13 @@ import {
   OdsBreadcrumbItem,
   OdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { useParams, useHref, useNavigate } from 'react-router-dom';
+import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { TVolume, useProject } from '@ovh-ux/manager-pci-common';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  PageType,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import VolumeEdit from './VolumeEdit.component';
 import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 import {
@@ -35,14 +39,14 @@ function useParam(param: string): string {
 
 export default function CreateVolumePage() {
   const { t } = useTranslation(['create-volume', 'listing']);
-  const { addError } = useNotifications();
+  const { addSuccess, addError } = useNotifications();
   const navigate = useNavigate();
   const projectId = useParam('projectId');
   const backupId = useParam('backupId');
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
+  const { trackClick, trackPage } = useOvhTracking();
   const { shell } = useContext(ShellContext);
-  const { tracking } = shell;
   const hrefListing = useHref('..');
   const goBack = () => navigate('..');
 
@@ -62,11 +66,17 @@ export default function CreateVolumePage() {
 
   const { createVolumeFromBackup, isPending } = useCreateVolumeFromBackup({
     projectId: projectId || '',
-    onSuccess: () => {
-      tracking?.trackClick({
-        name: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.REQUEST_SUCCESS,
-        type: 'event',
+    onSuccess: (newVolume: TVolume) => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.REQUEST_SUCCESS,
       });
+      addSuccess(
+        t(
+          'pci_projects_project_storages_volume_backup_list_create_volume_request_success',
+          { volumeName: newVolume.name },
+        ),
+      );
       shell.navigation.navigateTo(
         'public-cloud',
         `#/pci/projects/${projectId}/storages/blocks`,
@@ -74,15 +84,15 @@ export default function CreateVolumePage() {
       );
     },
     onError: (err: Error, data: TNewVolumeFromBackupData) => {
-      tracking?.trackClick({
-        name: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.REQUEST_FAIL,
-        type: 'event',
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.REQUEST_FAIL,
       });
       goBack();
       addError(
         t(
           'pci_projects_project_storages_volume_backup_list_create_volume_request_fail',
-          { volume: data.volumeName, message: err },
+          { volumeName: data.volumeName, message: err },
         ),
       );
     },
@@ -93,9 +103,9 @@ export default function CreateVolumePage() {
   }
 
   const handleSubmit = (editedVolume: Partial<TVolume>) => {
-    tracking?.trackClick({
-      name: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.CTA_CONFIRM,
-      type: 'action',
+    trackClick({
+      actionType: 'action',
+      actions: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.CTA_CONFIRM,
     });
     createVolumeFromBackup({
       regionName: volume.region,
@@ -105,9 +115,9 @@ export default function CreateVolumePage() {
   };
 
   const handleCancel = () => {
-    tracking?.trackClick({
-      name: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.CTA_CANCEL,
-      type: 'action',
+    trackClick({
+      actionType: 'action',
+      actions: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.CTA_CANCEL,
     });
     goBack();
   };
