@@ -2,11 +2,11 @@
 
 RELEASE_NOTE=""
 DRY_RELEASE=false
-# here the branch betaTwo
+
 create_smoke_tag() {
   git tag "$2@$3" "$1"
 }
-
+# here clean tags of the branch betaTwo
 clean_tags() {
   tags="$(git tag -l '@ovh*')"
   while read -r tag; do
