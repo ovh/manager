@@ -26,5 +26,6 @@
   "ai_endpoints_token_description_placeholder": "Adicionar descrição",
   "ai_endpoints_token_expiration_date": "Definir uma data de expiração da chave API",
   "ai_endpoints_token_expiration_date_update": "Redefinir uma data de expiração da chave API",
-  "ai_endpoints_token_discovery_mod": "O seu projeto Public Cloud está atualmente em modo «Descoberta». Para usar o AI Endpoints, é necessário ativar o seu projeto adicionando um método de pagamento à sua conta, o que lhe permitirá criar uma primeira chave API e dar início à respetiva utilização."
+  "ai_endpoints_token_discovery_mod": "O seu projeto Public Cloud está atualmente em modo «Descoberta». Para usar o AI Endpoints, é necessário ativar o seu projeto adicionando um método de pagamento à sua conta, o que lhe permitirá criar uma primeira chave API e dar início à respetiva utilização.",
+  "ai_endpoints_non_admin_user": "Deve beneficiar do estado Administrador para poder manipular as chaves API"
 }
