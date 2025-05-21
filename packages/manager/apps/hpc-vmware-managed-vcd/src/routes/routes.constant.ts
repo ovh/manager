@@ -2,7 +2,7 @@ export const subRoutes = {
   onboarding: 'onboarding',
   dashboard: ':id',
   order: 'order',
-  delete: 'delete',
+  edit: 'edit',
   editName: 'edit-name',
   editDescription: 'edit-description',
   vdcId: ':vdcId',
@@ -14,9 +14,9 @@ export const subRoutes = {
   vrackSegmentId: ':vrackSegmentId',
   vrackNetwork: 'vrack-networks',
   vrackNetworkId: ':vrackNetworkId',
-  edit: 'edit',
-  deleteNetwork: 'delete-network',
   addNetwork: 'add-network',
+  deleteSegment: 'delete-segment',
+  deleteNetwork: 'delete-network',
 } as const;
 
 export const urls = {
@@ -35,9 +35,10 @@ export const urls = {
   datacentreCompute: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.datacentreCompute}`,
   datacentreComputeOrder: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.datacentreCompute}/${subRoutes.order}`,
   vrackSegments: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}`,
+  vrackSegmentDelete: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}/${subRoutes.vrackSegmentId}/${subRoutes.deleteSegment}`,
   vrackSegmentEditVlanId: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}/${subRoutes.vrackSegmentId}/${subRoutes.edit}`,
-  vrackSegmentDeleteNetwork: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}/${subRoutes.vrackSegmentId}/${subRoutes.vrackNetwork}/${subRoutes.vrackNetworkId}/${subRoutes.deleteNetwork}`,
   vrackSegmentAddNetwork: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}/${subRoutes.vrackSegmentId}/${subRoutes.addNetwork}`,
+  vrackSegmentDeleteNetwork: `/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}/${subRoutes.vrackSegmentId}/${subRoutes.vrackNetwork}/${subRoutes.vrackNetworkId}/${subRoutes.deleteNetwork}`,
 } as const;
 
 export const veeamBackupAppName = 'veeam-backup';

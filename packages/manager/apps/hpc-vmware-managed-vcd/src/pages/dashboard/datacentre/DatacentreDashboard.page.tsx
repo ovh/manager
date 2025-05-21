@@ -119,6 +119,12 @@ function DatacentreDashboardPage() {
       ),
     },
     {
+      id: subRoutes.deleteSegment,
+      label: t(
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_network_delete_segment',
+      ),
+    },
+    {
       id: subRoutes.deleteNetwork,
       label: t(
         'datacentres/vrack-segment:managed_vcd_dashboard_vrack_network_delete_subnet',
