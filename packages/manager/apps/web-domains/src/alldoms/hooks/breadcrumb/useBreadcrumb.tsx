@@ -7,18 +7,21 @@ export type BreadcrumbItem = {
   href?: string;
 };
 
-export interface BreadcrumbProps {
+export interface UseBreadcrumbProps {
   rootLabel?: string;
   appName?: string;
   projectId?: string;
-  items?: BreadcrumbItem[];
+  ignoredLabel?: string[];
 }
-export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
+export const useBreadcrumb = ({
+  rootLabel,
+  appName,
+  ignoredLabel = [],
+}: UseBreadcrumbProps) => {
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
   const [paths, setPaths] = useState<BreadcrumbItem[]>([]);
   const location = useLocation();
-  const pathnames = location.pathname.split('/').filter((x) => x);
 
   useEffect(() => {
     const fetchRoot = async () => {
@@ -37,12 +40,15 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
   }, [rootLabel, appName, shell?.navigation]);
 
   useEffect(() => {
-    const pathsTab = pathnames.map((value) => ({
-      label: value,
-      href: `/#/${appName}/${value}`,
-    }));
+    const pathnames = location?.pathname.split('/').filter((x) => x);
+    const pathsTab = pathnames
+      ?.map((value) => ({
+        label: value,
+        href: `/#/${appName}/${value}`,
+      }))
+      .filter((pathTab) => !ignoredLabel.includes(pathTab.label));
     setPaths(pathsTab);
-  }, [location]);
+  }, [location.pathname]);
 
   return [...root, ...paths];
 };

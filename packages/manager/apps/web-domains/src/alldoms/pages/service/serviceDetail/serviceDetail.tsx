@@ -1,14 +1,17 @@
-import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
+import { BaseLayout } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import appConfig from '@/web-domains.config';
 import ServiceDetailDomains from '@/alldoms/components/ServiceDetail/ServiceDetailDomains';
 import ServiceDetailInformation from '@/alldoms/components/ServiceDetail/ServiceDetailInformation';
 import ServiceDetailSubscribing from '@/alldoms/components/ServiceDetail/ServiceDetailSubscribing';
 import { useGetServiceInfo } from '@/alldoms/hooks/data/useGetServiceInfo';
 import Loading from '@/alldoms/components/Loading/Loading';
+import Breadcrumb from '@/alldoms/components/breadcrumb/breadcrumb.component';
 
 export default function ServiceDetail() {
+  const { t } = useTranslation(['allDom', 'web-domains/error']);
   const { serviceName } = useParams<{ serviceName: string }>();
 
   const header = {
@@ -26,7 +29,11 @@ export default function ServiceDetail() {
   return (
     <BaseLayout
       breadcrumb={
-        <Breadcrumb rootLabel={appConfig.rootLabel} appName="web-domains" />
+        <Breadcrumb
+          rootLabel={t('title')}
+          appName={`${appConfig.rootLabel}/${appConfig.alldomLabel}`}
+          ignoredLabel={[appConfig.alldomLabel]}
+        />
       }
       header={header}
     >
