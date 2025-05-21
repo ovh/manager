@@ -9,6 +9,7 @@ export const subRoutes = {
   datacentreStorage: 'storage',
   datacentreCompute: 'compute',
   resetPassword: 'reset-password',
+  terminate: 'terminate',
 };
 
 export const urls = {
