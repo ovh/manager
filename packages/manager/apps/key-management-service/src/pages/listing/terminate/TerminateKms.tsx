@@ -6,6 +6,7 @@ import {
   useOvhTracking,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+import { useDeleteService } from '@ovh-ux/manager-module-common-api';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -15,7 +16,6 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { getOkmsServicesResourceListQueryKey } from '@/data/api/okms';
-import { useDeleteOkmsService } from '@/data/hooks/useDeleteOkmsService';
 
 export default function TerminateKms() {
   const navigate = useNavigate();
@@ -67,12 +67,7 @@ export default function TerminateKms() {
     });
   };
 
-  const {
-    mutate: terminateService,
-    isPending,
-    error,
-    isError,
-  } = useDeleteOkmsService({
+  const { terminateService, isPending, error, isError } = useDeleteService({
     onSuccess,
     onError,
   });

@@ -32,19 +32,3 @@ export const getServiceInfos = async (okmsId: string) => {
   const serviceId = await getOkmsServiceId(okmsId);
   return apiClient.v6.get<ServiceDetails>(`/services/${serviceId.data[0]}`);
 };
-
-/**
- * Delete service
- */
-export type DeleteServiceResponse = {
-  message: string;
-};
-
-export const deleteService = async (
-  serviceId: number,
-  ovhSubsidiary: string,
-) => {
-  return ovhSubsidiary === 'US'
-    ? v6.delete<DeleteServiceResponse>(`/services/${serviceId}`)
-    : v6.post<DeleteServiceResponse>(`/services/${serviceId}/terminate`);
-};
