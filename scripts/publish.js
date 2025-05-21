@@ -60,7 +60,7 @@ execa('lerna', ['ls', '-pl', '--json', '--toposort'])
                     '--scope',
                     pkg.name,
                     '--',
-                    'yarn',
+                    'pnpm',
                     'publish',
                     '--access=public',
                     '--non-interactive',

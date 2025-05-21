@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-timeline
+pnpm install @ovh-ux/ng-ovh-timeline
 ```
 
 ## Usage
@@ -59,7 +59,7 @@ There is a bit of markup here but `<timeline-heading>` is optional.
 ## Test
 
 ```sh
-yarn test
+pnpm test
 ```
 
 ## Contributing

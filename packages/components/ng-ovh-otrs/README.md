@@ -7,7 +7,7 @@
 # Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-otrs
+pnpm install @ovh-ux/ng-ovh-otrs
 ```
 
 ## Usage
@@ -46,7 +46,7 @@ const assistanceMenu = [
 ## Test
 
 ```sh
-yarn test
+pnpm test
 ```
 
 ## Contributing

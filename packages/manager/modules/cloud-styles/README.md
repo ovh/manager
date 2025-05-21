@@ -5,7 +5,7 @@ Legacy less/css styles used by ovh-manager-cloud.
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-cloud-styles
+pnpm install @ovh-ux/manager-cloud-styles
 ```
 
 ## Usage

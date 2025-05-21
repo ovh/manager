@@ -18,7 +18,7 @@ The component is not builded so you can import directly the component named `Car
 
 ## Main Scripts
 
-Always prepending yarn:
+Always prepending pnpm:
 
 - `start`: Run the storybook
 - `test:e2e`: Run e2e test using playwright

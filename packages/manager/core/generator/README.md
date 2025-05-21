@@ -17,7 +17,7 @@ At the root of the monorepo, simply run:
 ```sh
 $ yarn workspace @ovh-ux/manager-generator run start
 $ # or
-$ yarn run omg
+$ pnpm omg
 ```
 
 Then choose what you want to generate!

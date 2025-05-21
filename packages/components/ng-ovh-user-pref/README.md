@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-user-pref
+$ pnpm install @ovh-ux/ng-ovh-user-pref
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ Format:
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Related

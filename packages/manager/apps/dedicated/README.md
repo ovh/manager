@@ -17,12 +17,12 @@
 ## Prerequisites
 
 * Node.js v8+
-* Yarn v1.10.0
+* pnpm v1.10.0
 
 ## Install
 
 ```sh
-yarn install
+pnpm install
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ In order to run the manager in the development mode, you first you have to activ
 Once you have enabled the development mode just ran:
 
 ```sh
-yarn start
+pnpm start
 ```
 
 And now open `http://localhost:9000`.
@@ -40,7 +40,7 @@ And now open `http://localhost:9000`.
 ## Test
 
 ```sh
-yarn test
+pnpm test
 ```
 
 ## Related

@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-feature-flipping
+$ pnpm install @ovh-ux/ng-ovh-feature-flipping
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ angular.module('myModule', [ngOvhFeatureFlipping]);
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

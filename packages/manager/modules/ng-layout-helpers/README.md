@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-ng-layout-helpers
+pnpm install @ovh-ux/manager-ng-layout-helpers
 ```
 
 ## Available layouts
@@ -169,7 +169,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
 ```sh
 # Build in production mode
-yarn start
+pnpm start
 ```
 
 ## Development
@@ -179,16 +179,16 @@ If you want to contribute to the project, follow these instructions:
 Foremost, you should launch a global installation at the root folder of this repository:
 
 ```sh
-yarn install
+pnpm install
 ```
 
 Then you just have to start the project in development mode. For this, two choices are possible according to your needs:
 
 ```sh
 # Build the `manager-ng-layout-helpers` workspace and all the nested workspaces in development mode and watch only `manager-ng-layout-helpers` workspace
-yarn start:dev
+pnpm start:dev
 # Build and watch the `manager-ng-layout-helpers` workspace and all the nested workspaces in development mode
-yarn start:watch
+pnpm start:watch
 ```
 
 ## Contributing

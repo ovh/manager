@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-support
+pnpm install @ovh-ux/manager-support
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ angular.module('myApp', [ovhManagerSupport]);
 
 ```sh
 # Build in production mode
-yarn start
+pnpm start
 ```
 
 ## Development
@@ -31,16 +31,16 @@ If you want to contribute to the project, follow theses instructions:
 Foremost, you should launch a global installation at the root folder of this repository:
 
 ```sh
-yarn install
+pnpm install
 ```
 
 Then you just have to start the project in development mode. For this, two choices are possible according to your needs:
 
 ```sh
 # Build the `manager-support` workspace and all the nested workspaces in development mode and watch only `manager-support` workspace
-yarn start:dev
+pnpm start:dev
 # Build and watch the `manager-support` workspace and all the nested workspaces in development mode
-yarn start:watch
+pnpm start:watch
 ```
 
 ## Contributing

@@ -9,7 +9,7 @@ Poll a log API for displaying messages
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-tail-logs
+$ pnpm install @ovh-ux/ng-tail-logs
 ```
 
 ## Usage
@@ -42,7 +42,7 @@ angular.module('myApp', [ngTailLogs]).controller(
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

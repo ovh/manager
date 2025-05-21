@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ui-router-title
+pnpm install @ovh-ux/ng-ui-router-title
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ angular.module('myApp', ['ngUirouterTitle']).config(
 ## Test
 
 ```sh
-yarn test
+pnpm test
 ```
 
 ## Contributing

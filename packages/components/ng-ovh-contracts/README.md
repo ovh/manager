@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-contracts
+$ pnpm install @ovh-ux/ng-ovh-contracts
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ angular.module('myApp', ['ngOvhContracts']);
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

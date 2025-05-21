@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-line-diagnostics
+$ pnpm install @ovh-ux/ng-ovh-line-diagnostics
 ```
 ## Usage
 
@@ -21,7 +21,7 @@ angular.module('myApp', [ngOvhLineDiagnostics]);
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

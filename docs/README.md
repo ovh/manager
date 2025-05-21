@@ -13,7 +13,7 @@ $ git clone git@github.com:ovh/manager.git
 2. Install dependencies
 
 ```sh
-$ yarn
+$ pnpm
 ```
 
 3. Start local development environment

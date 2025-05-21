@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/manager-catalog-price
+$ pnpm install @ovh-ux/manager-catalog-price
 ```
 
 ## Usage

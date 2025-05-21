@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-at-internet
+$ pnpm install @ovh-ux/ng-at-internet
 ```
 
 ## Usage
@@ -114,7 +114,7 @@ atInternet.trackEvent({
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Related

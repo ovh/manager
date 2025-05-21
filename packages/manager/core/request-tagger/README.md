@@ -5,7 +5,7 @@
 ## Installation
 
 ```sh
-yarn add @ovh-ux/request-tagger
+pnpm install @ovh-ux/request-tagger
 ```
 
 ## Usage
