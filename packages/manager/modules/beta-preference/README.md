@@ -5,7 +5,7 @@ Management of the beta preference for an account
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-beta-preference
+pnpm install @ovh-ux/manager-beta-preference
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ angular.module('myApp', [ovhManagerBetaPreference]);
 
 ```sh
 # Build in production mode
-yarn start
+pnpm start
 ```
 
 ## Contributing

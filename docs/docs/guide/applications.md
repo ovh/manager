@@ -38,7 +38,7 @@ The container app contains all common elements to all applications.
 Running this command at the root folder, will launch a CLI that will prompt you to choose between launching your app in your container or not.
 
 ```sh
-$ yarn start
+$ pnpm start
 ```
 
 After it's finished, the app within the container will be available at `<http://localhost:9000>`
@@ -46,13 +46,13 @@ After it's finished, the app within the container will be available at `<http://
 The application can also be run from its own folder with the following command:
 
 ```sh
-$ yarn start:dev
+$ pnpm start:dev
 ```
 
 ### How to build the application?
 
 ```sh
-$ yarn run build -p @ovh-ux/manager-container-app
+$ pnpm build -p @ovh-ux/manager-container-app
 ```
 
 ## Dashboard
@@ -70,7 +70,7 @@ Go to `<http://localhost:9000>`
 ### How to build the application?
 
 ```sh
-$ yarn run build -p @ovh-ux/manager-hub-app
+$ pnpm build -p @ovh-ux/manager-hub-app
 ```
 
 ## Web Cloud
@@ -88,7 +88,7 @@ Go to `<http://localhost:9000>`
 ### How to build the application?
 
 ```sh
-$ yarn run build -p @ovh-ux/manager-web
+$ pnpm build -p @ovh-ux/manager-web
 ```
 
 ## Bare Metal Cloud
@@ -114,7 +114,7 @@ Go to `<http://localhost:9000>`
 ### How to build the application?
 
 ```sh
-$ yarn run build -p @ovh-ux/manager-dedicated
+$ pnpm build -p @ovh-ux/manager-dedicated
 ```
 
 ## Public Cloud
@@ -137,7 +137,7 @@ Go to `<http://localhost:9000>`
 ### How to build the application?
 
 ```sh
-$ yarn run build -p @ovh-ux/manager-public-cloud
+$ pnpm build -p @ovh-ux/manager-public-cloud
 ```
 
 ## Telecom
@@ -155,7 +155,7 @@ Go to `<http://localhost:9000>`
 ### How to build the application?
 
 ```sh
-$ yarn run build -p @ovh-ux/manager-telecom
+$ pnpm build -p @ovh-ux/manager-telecom
 ```
 
 ## Related

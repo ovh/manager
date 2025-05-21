@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-swimming-poll
+$ pnpm install @ovh-ux/ng-ovh-swimming-poll
 ```
 
 ## Usage
@@ -195,7 +195,7 @@ function createPoller(Poller) {
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

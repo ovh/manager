@@ -13,7 +13,7 @@ yarn global add @ovh-ux/manager-dev-server
 or
 
 ```sh
-yarn add @ovh-ux/manager-dev-server
+pnpm install @ovh-ux/manager-dev-server
 ```
 
 ## Usage

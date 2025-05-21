@@ -6,7 +6,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-request-tagger
+pnpm install @ovh-ux/ng-ovh-request-tagger
 ```
 ## Usage
 
@@ -24,7 +24,7 @@ angular.module('myApp', [ngOvhRequestTagger]).config(
 ## Test
 
 ```sh
-yarn test
+pnpm test
 ```
 
 ## Contributing

@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-sso-auth
+$ pnpm install @ovh-ux/ng-ovh-sso-auth
 ```
 
 # Usage
@@ -66,7 +66,7 @@ angular
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Related

@@ -32,7 +32,7 @@ $ cd manager
 $ nvm use
 
 # Install
-$ yarn install
+$ pnpm install
 ```
 
 ## Documentation

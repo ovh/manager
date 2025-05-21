@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-contact
+$ pnpm install @ovh-ux/ng-ovh-contact
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ angular.module('myApp', [ngOvhContact]);
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

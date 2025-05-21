@@ -22,7 +22,7 @@ $ cd manager
 $ nvm use
 
 # Install
-$ yarn install
+$ pnpm install
 ```
 
 ## Allow your account to be used to develop on our open-source customer interfaces

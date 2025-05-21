@@ -11,10 +11,10 @@ Our [`package.json`](package.json) houses a collection of [run-scripts](https://
 
 ```sh
 # `foo` is the name of your micro-application.
-$ yarn run generate:uapp
+$ pnpm generate:uapp
 
 # start the application
-$ yarn && cd packages/manager/apps/foo && yarn run start:dev
+$ pnpm && cd packages/manager/apps/foo && pnpm start:dev
 ```
 
 Now you are able to visit `http://localhost:9000/#!/foo` (route based on the module name).

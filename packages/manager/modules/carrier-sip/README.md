@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-carrier-sip
+pnpm install @ovh-ux/manager-carrier-sip
 ```
 
 ## Usage

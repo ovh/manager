@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-q-allsettled
+$ pnpm install @ovh-ux/ng-q-allsettled
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ angular.module('myApp', [ngQAllSettled]);
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

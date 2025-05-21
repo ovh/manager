@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-payment-method
+$ pnpm install @ovh-ux/ng-ovh-payment-method
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ angular.module('myApp', [ngOvhPaymentMethod]).config(
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing
