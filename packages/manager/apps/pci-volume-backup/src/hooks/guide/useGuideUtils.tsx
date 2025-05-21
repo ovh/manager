@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
-import { CountryCode } from '@ovh-ux/manager-config';
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useContext, useEffect, useState } from 'react';
 
 const docUrl = 'https://docs.ovh.com';
 
-type GuideLinks = { [key in CountryCode]: string };
+type GuideLinks = { [key in OvhSubsidiary]: string };
 
 const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
   guideLink1: {
@@ -52,49 +52,32 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     WS: '/update-path',
     US: '/update-path',
   },
-  /*
-  addNewGuideLink : {
-    DEFAULT: '/guide-link-3-path',
-    DE: '/guide-link-3-path',
-    ES: '/guide-link-3-path',
-    ...
-  }
-  */
 };
 
 type GetGuideLinkProps = {
   name?: string;
-  subsidiary: CountryCode | string;
+  subsidiary: string;
 };
 
 function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
   const list: { [guideName: string]: string } = {};
   const keys = Object.entries(GUIDE_LIST);
   keys.forEach((key) => {
-    list[key[0]] = docUrl + GUIDE_LIST[key[0]][subsidiary as CountryCode];
+    list[key[0]] = docUrl + GUIDE_LIST[key[0]][subsidiary as OvhSubsidiary];
   });
   return list;
 }
 
-interface GuideLinkProps {
-  [guideName: string]: string;
-}
-
 function useGuideUtils() {
-  const { shell } = useContext(ShellContext);
-  const { environment } = shell;
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const [list, setList] = useState({});
 
   useEffect(() => {
-    const getSubSidiary = async () => {
-      const env = await environment.getEnvironment();
-      const { ovhSubsidiary } = env.getUser();
-      const guideList = getGuideListLink({ subsidiary: ovhSubsidiary });
-      setList(guideList);
-    };
-    getSubSidiary();
-  }, []);
-  return list as GuideLinkProps;
+    const guideList = getGuideListLink({ subsidiary: ovhSubsidiary });
+    setList(guideList);
+  }, [ovhSubsidiary]);
+
+  return list;
 }
 
 export default useGuideUtils;

@@ -1,11 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import React from 'react';
 import { render, renderHook } from '@testing-library/react';
+import { useFormatDate } from '@ovh-ux/manager-react-components';
 import { useDatagridColumn } from './useDatagridColumn';
 import { TVolumeBackup } from '@/data/api/api.types';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useProjectUrl: vi.fn().mockReturnValue('/project-url'),
+  useFormatDate: vi.fn(),
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),
@@ -15,10 +17,6 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
   OdsLink: ({ label, href }: { label: string; href: string }) => (
     <a href={href}>{label}</a>
   ),
-}));
-
-vi.mock('@/hooks/useFormattedDate', () => ({
-  useFormattedDate: (date: string) => `formatted_${date}`,
 }));
 
 vi.mock('./Status.component', () => ({
@@ -58,6 +56,10 @@ const mockBackup: TVolumeBackup = {
 };
 
 describe('useDatagridColumn', () => {
+  const mockFormatDate = vi.fn(
+    ({ date, format }) => `formatted_${date}_${format}`,
+  );
+
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -111,17 +113,17 @@ describe('useDatagridColumn', () => {
     expect(otherColumnsSortable).toBe(true);
   });
 
-  it('should have only 1 column with isSearchable set to true', () => {
-    // Because search uses AND instead of OR, thus a computed searchable column
-    // is added programmatically in the listing page (and other are turned off)
+  it('should have 3 columns with isSearchable set to true', () => {
     const { result } = renderHook(() => useDatagridColumn());
     const searchableColumns = result.current.filter(
       (column) => column.isSearchable,
     );
-    expect(searchableColumns).toHaveLength(1);
+    expect(searchableColumns).toHaveLength(3);
   });
 
   it('should render cell content correctly for each column', () => {
+    vi.mocked(useFormatDate).mockReturnValue(mockFormatDate);
+
     const { result } = renderHook(() => useDatagridColumn());
 
     // Test name column cell renderer
@@ -146,7 +148,7 @@ describe('useDatagridColumn', () => {
 
     // Test creation date column cell renderer
     const { container: dateCell } = render(result.current[4].cell(mockBackup));
-    expect(dateCell.textContent).toBe('formatted_2023-01-01T00:00:00Z');
+    expect(dateCell.textContent).toBe('formatted_2023-01-01T00:00:00Z_P p');
 
     // Test size column cell renderer
     const { container: sizeCell } = render(result.current[5].cell(mockBackup));

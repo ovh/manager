@@ -1,14 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { Query } from '@tanstack/react-query';
-import { TVolumeBackup } from './api.types';
+import { TVolumeBackup, TApiData } from './api.types';
 import {
   isVolumeBackupPending,
   refetchInterval,
   getVolumeBackups,
   getVolumeBackup,
 } from './volumeBackup';
-import { ApiData } from '../hooks/useVolumeBackups';
 import {
   MOCKED_BACKUP,
   MOCKED_PROJECT_ID,
@@ -71,7 +70,7 @@ describe('pci-volume-backup', () => {
         state: {
           data: undefined,
         },
-      } as unknown) as Query<ApiData<TVolumeBackup[]>>;
+      } as unknown) as Query<TApiData<TVolumeBackup>>;
 
       expect(refetchInterval(query)).toBe(false);
     });
@@ -93,7 +92,7 @@ describe('pci-volume-backup', () => {
             ],
           },
         },
-      } as unknown) as Query<ApiData<TVolumeBackup[]>>;
+      } as unknown) as Query<TApiData<TVolumeBackup>>;
 
       expect(refetchInterval(query)).toBe(REFETCH_INTERVAL);
     });
@@ -115,7 +114,7 @@ describe('pci-volume-backup', () => {
             ],
           },
         },
-      } as unknown) as Query<ApiData<TVolumeBackup[]>>;
+      } as unknown) as Query<TApiData<TVolumeBackup>>;
 
       const result = refetchInterval(query);
       expect(result).toBe(false);
