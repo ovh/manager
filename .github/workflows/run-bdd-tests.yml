@@ -19,20 +19,20 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
       - name: Install repository
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
       - name: Build BDD covered packages and dependencies
         run: |
-          yarn exec turbo -- run build --filter="./packages/manager/core/*" --concurrency=5
-          yarn exec turbo -- run build --filter="./packages/manager-react-components"
-          yarn exec turbo -- run build --filter="./packages/manager/modules/order"
-          yarn exec turbo -- run build --filter="./packages/manager/modules/common-api"
-          yarn exec turbo -- run build --filter="./packages/manager/modules/vcd-api"
-          yarn exec turbo -- run build --filter="./packages/manager/modules/manager-pci-common"
-          yarn exec turbo -- run build --filter="./packages/manager/modules/network-common"
-          yarn exec turbo -- run build --filter="./packages/components/ovh-payment-method"
+          pnpm turbo -- run build --filter="./packages/manager/core/*" --concurrency=5
+          pnpm turbo -- run build --filter="./packages/manager-react-components"
+          pnpm turbo -- run build --filter="./packages/manager/modules/order"
+          pnpm turbo -- run build --filter="./packages/manager/modules/common-api"
+          pnpm turbo -- run build --filter="./packages/manager/modules/vcd-api"
+          pnpm turbo -- run build --filter="./packages/manager/modules/manager-pci-common"
+          pnpm turbo -- run build --filter="./packages/manager/modules/network-common"
+          pnpm turbo -- run build --filter="./packages/components/ovh-payment-method"
       # This task is for running the jest tests outside microApps
       - name: Run tests Jest
-        run: yarn test:jest
+        run: pnpm test:jest
       - name: Run tests on changed packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -55,4 +55,4 @@ jobs:
             echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
             echo "CURRENT_BRANCH=$CURRENT_BRANCH" >> $GITHUB_ENV
           fi
-          yarn exec turbo -- run test --concurrency=1 --filter=[origin/${BASE_BRANCH}...origin/${BRANCH}]
+          pnpm turbo -- run test --concurrency=1 --filter=[origin/${BASE_BRANCH}...origin/${BRANCH}]

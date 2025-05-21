@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add -D @ovh-ux/manager-webpack-dev-server
+pnpm install -D @ovh-ux/manager-webpack-dev-server
 ```
 
 ## Usage

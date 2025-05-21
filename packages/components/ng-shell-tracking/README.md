@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-shell-tracking
+$ pnpm install @ovh-ux/ng-shell-tracking
 ```
 
 ## Usage
@@ -114,7 +114,7 @@ atInternet.trackEvent({
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Related

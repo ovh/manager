@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-utils
+$ pnpm install @ovh-ux/ng-ovh-utils
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ angular.module('myModule', [ngOvhUtils]);
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

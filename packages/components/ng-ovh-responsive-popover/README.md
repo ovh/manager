@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-responsive-popover
+$ pnpm install @ovh-ux/ng-ovh-responsive-popover
 ```
 
 ## Usage
@@ -108,7 +108,7 @@ Get the current configured media query. It is used to detect the popover display
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Related

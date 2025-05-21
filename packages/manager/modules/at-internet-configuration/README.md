@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/manager-at-internet-configuration
+$ pnpm install @ovh-ux/manager-at-internet-configuration
 ```
 
 ## Usage

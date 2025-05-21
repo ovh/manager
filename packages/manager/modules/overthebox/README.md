@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-overthebox
+pnpm install @ovh-ux/manager-overthebox
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ angular.module('myApp', [ovhManagerOverthebox]);
 
 ```sh
 # Build in production mode
-yarn start
+pnpm start
 ```
 
 ## Development
@@ -31,16 +31,16 @@ If you want to contribute to the project, follow theses instructions:
 Foremost, you should launch a global installation at the root folder of this repository:
 
 ```sh
-yarn install
+pnpm install
 ```
 
 Then you just have to start the project in development mode. For this, two choices are possible according to your needs:
 
 ```sh
 # Build the `manager-overthebox` workspace and all the nested workspaces in development mode and watch only `manager-overthebox` workspace
-yarn start:dev
+pnpm start:dev
 # Build and watch the `manager-overthebox` workspace and all the nested workspaces in development mode
-yarn start:watch
+pnpm start:watch
 ```
 
 ## Documentation

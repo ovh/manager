@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-mondial-relay
+$ pnpm install @ovh-ux/ng-ovh-mondial-relay
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ angular.module('myApp', [ngOvhMondialRelay]);
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ui-router-breadcrumb
+pnpm install @ovh-ux/ng-ui-router-breadcrumb
 ```
 ## Usage
 
@@ -63,7 +63,7 @@ angular.module('myApp', [ngUiRouterBreadcrumb, uiRouter]).config(
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Related

@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-http
+$ pnpm install @ovh-ux/ng-ovh-http
 ```
 
 ## Usage
@@ -127,7 +127,7 @@ angular.module('myApp', [ngOvhHttp]).controller(
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

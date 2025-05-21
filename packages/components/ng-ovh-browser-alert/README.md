@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-browser-alert
+$ pnpm install @ovh-ux/ng-ovh-browser-alert
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ angular.module('myApp', [ovhBrowserAlert]);
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

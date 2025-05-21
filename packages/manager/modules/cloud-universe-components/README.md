@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-cloud-universe-components
+pnpm install @ovh-ux/ng-ovh-cloud-universe-components
 ```
 ## Usage
 
@@ -21,7 +21,7 @@ angular.module('myApp', [ngOvhCloudUniverseComponents]);
 ## Test
 
 ```sh
-yarn test
+pnpm test
 ```
 
 ## Related

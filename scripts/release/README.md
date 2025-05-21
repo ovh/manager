@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-* `yarn install` has been ran on repository
+* `pnpm install` has been ran on repository
 * git
 * NodeJS >= 16
 * gh (GitHub CLI)

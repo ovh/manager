@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-checkbox-table
+$ pnpm install @ovh-ux/ng-ovh-checkbox-table
 ```
 
 ## Usage
@@ -58,7 +58,7 @@ angular.module('myApp', [ngOvhCheckboxTable]);
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

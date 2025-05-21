@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-advices
+pnpm install @ovh-ux/manager-advices
 ```
 
 ## Usage

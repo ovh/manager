@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-chart
+$ pnpm install @ovh-ux/ng-ovh-chart
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ _Example simple configuration_
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

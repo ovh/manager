@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-simple-country-list
+$ pnpm install @ovh-ux/ng-ovh-simple-country-list
 ```
 
 ## Usage
@@ -43,7 +43,7 @@ angular.module('myApp', [ngOvhSimpleCountryList]).controller(
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

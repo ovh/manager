@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ui-router-layout
+$ pnpm install @ovh-ux/ng-ui-router-layout
 ```
 ## Usage
 
@@ -83,7 +83,7 @@ See [ouiModal layout](src/oui-modal/README.md).
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Related

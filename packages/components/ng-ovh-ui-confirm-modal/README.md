@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-ui-confirm-modal
+pnpm install @ovh-ux/ng-ovh-ui-confirm-modal
 ```
 
 ## Usage
@@ -42,7 +42,7 @@ angular.module('myApp', [ngOvhUiConfirmModal]);
 ## Test
 
 ```sh
-yarn test
+pnpm test
 ```
 
 ## Contributing

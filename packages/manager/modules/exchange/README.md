@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-exchange
+pnpm install @ovh-ux/manager-exchange
 ```
 
 ## Usage

@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-ng-layout-helpers
+pnpm install @ovh-ux/manager-ng-layout-helpers
 ```
 ## Usage
 
@@ -39,7 +39,7 @@ And in your html view:
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

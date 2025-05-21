@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-error-page
+pnpm install @ovh-ux/manager-error-page
 ```
 
 ## Usage

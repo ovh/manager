@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/manager-product-offers
+$ pnpm install @ovh-ux/manager-product-offers
 ```
 
 ## Usage

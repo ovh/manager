@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-translate-async-loader
+$ pnpm install @ovh-ux/ng-translate-async-loader
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ angular.module('myApp', [ngTranslateAsyncLoader]);
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Related

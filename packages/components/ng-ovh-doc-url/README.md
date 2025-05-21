@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-doc-url
+$ pnpm install @ovh-ux/ng-ovh-doc-url
 ```
 
 ## Usage
@@ -50,7 +50,7 @@ angular
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

@@ -13,7 +13,7 @@ inside the monorepo.
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-telecom-universe-components
+pnpm install @ovh-ux/ng-ovh-telecom-universe-components
 ```
 ## Usage
 
@@ -27,7 +27,7 @@ angular.module('myApp', [ngOvhTelecomUniverseComponents]);
 ## Test
 
 ```sh
-yarn test
+pnpm test
 ```
 
 ## Related

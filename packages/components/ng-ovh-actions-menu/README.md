@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-actions-menu
+$ pnpm install @ovh-ux/ng-ovh-actions-menu
 ```
 
 ## Usage
@@ -270,7 +270,7 @@ Load the translation file from the configured path.
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Related

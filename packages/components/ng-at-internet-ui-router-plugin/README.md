@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-at-internet-ui-router-plugin
+$ pnpm install @ovh-ux/ng-at-internet-ui-router-plugin
 ```
 
 ## Usage
@@ -85,7 +85,7 @@ app.config(
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Related

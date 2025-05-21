@@ -7,7 +7,7 @@
 ## Installation
 
 ```sh
-yarn add @ovh-ux/manager-dev-server-config
+pnpm install @ovh-ux/manager-dev-server-config
 ```
 
 ## Related

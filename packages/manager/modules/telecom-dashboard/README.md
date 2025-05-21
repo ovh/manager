@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-telecom-dashboard
+pnpm install @ovh-ux/manager-telecom-dashboard
 ```
 
 ## Usage

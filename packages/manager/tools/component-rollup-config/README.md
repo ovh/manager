@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add -D @ovh-ux/component-rollup-config
+$ pnpm install -D @ovh-ux/component-rollup-config
 ```
 
 ## Usage
@@ -139,7 +139,7 @@ $ rollup -c --environment LANGUAGES:fr_FR-en_GB-en_US
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

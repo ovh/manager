@@ -21,17 +21,17 @@ You can check out examples by clicking on this [link](https://github.com/ovh/man
 To run all your tests, you can use the following command:
 
 ```sh
-$ yarn test:jest
+$ pnpm test:jest
 ```
 
 You can also run a specific test from the root by specifying the part of a part of the path:
 
 ```sh
 # This will run container tests
-$ yarn test:jest container
+$ pnpm test:jest container
 
 # This will only run the shell test
-$ yarn test:jest shell.spec.ts
+$ pnpm test:jest shell.spec.ts
 ```
 
 To write a unit test:

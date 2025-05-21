@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-sidebar-menu
+$ pnpm install @ovh-ux/ng-ovh-sidebar-menu
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ angular.module('myApp', [ngOvhSidebarMenu]);
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Roadmap

@@ -13,7 +13,7 @@ inside the monorepo.
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-web-universe-components
+pnpm install @ovh-ux/ng-ovh-web-universe-components
 ```
 ## Usage
 
@@ -27,7 +27,7 @@ angular.module('myApp', [ngOvhWebUniverseComponents]);
 ## Test
 
 ```sh
-yarn test
+pnpm test
 ```
 
 ## Related

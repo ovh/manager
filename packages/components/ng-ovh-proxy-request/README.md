@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-proxy-request
+$ pnpm install @ovh-ux/ng-ovh-proxy-request
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ angular.module('myApp', [ngOvhProxyRequest]);
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

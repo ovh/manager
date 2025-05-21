@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-order-tracking
+pnpm install @ovh-ux/ng-ovh-order-tracking
 ```
 ## Usage
 

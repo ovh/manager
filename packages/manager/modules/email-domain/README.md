@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-email-domain
+pnpm install @ovh-ux/manager-email-domain
 ```
 
 ## Usage

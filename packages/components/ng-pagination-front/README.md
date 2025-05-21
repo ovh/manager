@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-pagination-front
+$ pnpm install @ovh-ux/ng-pagination-front
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ angular.module('myApp', [ngPaginationFront]);
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

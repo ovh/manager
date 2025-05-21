@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-ovh-export-csv
+$ pnpm install @ovh-ux/ng-ovh-export-csv
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ angular.module('myApp', [ngOvhExportCsv]);
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## Contributing

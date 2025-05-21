@@ -40,12 +40,12 @@ Ensure Node.js is installed with the following command:
 $ node --version
 ```
 
-## Install Yarn
+## Install pnpm
 
 ### Using yvm <Badge text="recommended"/>
 
-[yvm](https://yvm.js.org/docs/overview) (Yarn Version Manager) allow you to
-download, install and manage your Yarn versions. With yvm you can easily
+[yvm](https://yvm.js.org/docs/overview) (pnpm Version Manager) allow you to
+download, install and manage your pnpm versions. With yvm you can easily
 switch between different versions installed on your system. You can download it
 with the following links:
 
@@ -54,12 +54,12 @@ with the following links:
 
 ### Using alternatives
 
-Otherwise, you can download the Yarn installer corresponding to your system [here](https://yarnpkg.com/en/docs/install).
+Otherwise, you can download the pnpm installer corresponding to your system [here](https://yarnpkg.com/en/docs/install).
 
-### Is Yarn installed?
+### Is pnpm installed?
 
 Ensure Yarn is installed with the following command:
 
 ```sh
-$ yarn --version
+$ pnpm --version
 ```

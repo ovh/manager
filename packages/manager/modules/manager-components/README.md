@@ -3,7 +3,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-components
+pnpm install @ovh-ux/manager-components
 ```
 
 ## Usage

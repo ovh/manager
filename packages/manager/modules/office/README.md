@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-office
+pnpm install @ovh-ux/manager-office
 ```
 
 ## Usage
