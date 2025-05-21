@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.128.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.127.0...@ovh-ux/manager-container-app@0.128.0) (2025-05-21)
+
+
+### Features
+
+* **container:** add ServiceNow livechat integration ([3f98e99](https://github.com/ovh/manager/commit/3f98e99305a5f68173aa84c6bd787e6a4923adbb)), closes [#MANAGER-15587](https://github.com/ovh/manager/issues/MANAGER-15587) [#MANAGER-16561](https://github.com/ovh/manager/issues/MANAGER-16561)
+
+
+
+
+
 # [0.127.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.126.1...@ovh-ux/manager-container-app@0.127.0) (2025-05-20)
 
 
