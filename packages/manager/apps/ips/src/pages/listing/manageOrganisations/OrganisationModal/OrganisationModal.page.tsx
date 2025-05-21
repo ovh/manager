@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import {
   ODS_TEXT_PRESET,
   ODS_INPUT_TYPE,
@@ -32,19 +32,18 @@ import {
   OrgDetails,
 } from '@/data/api';
 import Loading from '../components/Loading/Loading';
+import { CountrySelector } from '@/components/CountrySelector/country-selector.component';
 import '../../../../index.scss';
 
-export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
-  isOpen = true,
-}) => {
+export default function OrganisationsModal() {
   const queryClient = useQueryClient();
   const [registry, setRegistry] = useState([]);
   const [countrylist, setCountrylist] = useState([]);
-  const { t, t: tcommon } = useTranslation([
+  const { t } = useTranslation([
     'manage-organisations',
     NAMESPACES?.ACTIONS,
+    'region-selector',
   ]);
-  const { t: tcountry } = useTranslation('region-selector');
   const navigate = useNavigate();
   const location = useLocation();
   const { organisationId } = useParams();
@@ -80,26 +79,16 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
     setCountrylist(models['nichandle.CountryEnum'].enum);
   }, [isLoading]);
 
-  const closeModal = () => {
+  const cancel = () => {
     navigate('..');
   };
 
-  const handleCancelClick = () => {
-    closeModal();
-  };
-
   const { mutate: postManageOrganisation, isPending: isSending } = useMutation({
-    mutationFn: (params: OrgDetails) => {
-      return postorputOrganisations(params, isEditMode);
-    },
+    mutationFn: (params: OrgDetails) =>
+      postorputOrganisations(params, isEditMode),
     onSuccess: () => {
       clearNotifications();
-      addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('manageOrganisationsSuccessMessage')}
-        </OdsText>,
-        true,
-      );
+      addSuccess(t('manageOrganisationsSuccessMessage'), true);
       queryClient.invalidateQueries({
         queryKey: getOrganisationListQueryKey(),
       });
@@ -115,11 +104,9 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
     onError: (error: ApiError) => {
       clearNotifications();
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('manageOrganisationsErrorMessage', {
-            error: error?.response?.data?.message,
-          })}
-        </OdsText>,
+        t('manageOrganisationsErrorMessage', {
+          error: error?.response?.data?.message,
+        }),
         true,
       );
       navigate('..');
@@ -127,17 +114,15 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
   });
 
   const onSubmit = (data: OrgDetails) => {
-    postManageOrganisation({
-      ...data,
-    } as OrgDetails);
+    postManageOrganisation(data);
   };
 
   return (
     <OdsModal
       class="ods-manage-org-modal"
-      isOpen={isOpen}
+      isOpen
       isDismissible
-      onOdsClose={closeModal}
+      onOdsClose={cancel}
     >
       <OdsText preset={ODS_TEXT_PRESET.heading3} data-testid="modal-title">
         {isEditMode
@@ -158,7 +143,7 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
                 <div className="flex">
                   <OdsSelect
                     key={registry.join('-')}
-                    placeholder={tcommon('select')}
+                    placeholder={t('select', { ns: NAMESPACES.ACTIONS })}
                     className="mt-1 flex-1"
                     id={name}
                     name={name}
@@ -188,24 +173,23 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
         </div>
 
         {/* firstName and surName */}
-        <div className="flex justify-between">
+        <div className="flex gap-2 mt-1">
           <Controller
             control={control}
             name="firstname"
             render={({ field: { name, value, onChange } }) => (
-              <OdsFormField>
+              <OdsFormField className="w-full">
                 <label htmlFor={name} slot="label">
                   {t('manageOrganisationsOrgModelFirstnameLabel')}
                 </label>
                 <OdsInput
-                  className="mt-1"
                   name={name}
                   value={value}
                   type={ODS_INPUT_TYPE.text}
                   isRequired
                   onOdsChange={(e) => onChange(e.detail.value)}
                   hasError={!!errors[name]}
-                ></OdsInput>
+                />
               </OdsFormField>
             )}
           />
@@ -213,12 +197,11 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
             control={control}
             name="lastname"
             render={({ field: { name, value, onChange } }) => (
-              <OdsFormField>
+              <OdsFormField className="w-full">
                 <label htmlFor={name} slot="label">
                   {t('manageOrganisationsOrgModelSurnameLabel')}
                 </label>
                 <OdsInput
-                  className="mt-1"
                   name={name}
                   value={value}
                   type={ODS_INPUT_TYPE.text}
@@ -237,45 +220,27 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
             control={control}
             name="country"
             render={({ field: { name, value, onChange, onBlur } }) => (
-              <OdsFormField className="w-full">
+              <OdsFormField className="w-full mt-1">
                 <label htmlFor={name} slot="label">
                   {t('manageOrganisationsOrgModelCountryLabel')}
                 </label>
-                <div className="flex">
-                  <OdsSelect
-                    key={registry.join('-')}
-                    placeholder={tcommon('select')}
-                    className="mt-1 flex-1"
-                    id={name}
-                    name={name}
-                    value={value}
-                    hasError={!!errors[name]}
-                    isDisabled={isLoading}
-                    isRequired
-                    onOdsChange={onChange}
-                    onOdsBlur={onBlur}
-                  >
-                    {countrylist
-                      ?.sort((a, b) =>
-                        tcountry(
-                          `region-selector-country-name_${a}`,
-                        ).localeCompare(
-                          tcountry(`region-selector-country-name_${b}`),
-                        ),
-                      )
-                      .map((item) => (
-                        <option key={item} value={item}>
-                          {tcountry(`region-selector-country-name_${item}`)}
-                        </option>
-                      )) || []}
-                  </OdsSelect>
-                  {isLoading && (
-                    <Loading
-                      className="flex justify-center"
-                      size={ODS_SPINNER_SIZE.sm}
-                    />
+                <CountrySelector
+                  countryCodeList={countrylist?.sort((a, b) =>
+                    t(`region-selector-country-name_${a}`, {
+                      ns: 'region-selector',
+                    }).localeCompare(
+                      t(`region-selector-country-name_${b}`, {
+                        ns: 'region-selector',
+                      }),
+                    ),
                   )}
-                </div>
+                  name={name}
+                  key={registry.join('-')}
+                  value={value}
+                  onChange={onChange}
+                  isReadyOnly={isSending}
+                  isLoading={isLoading}
+                />
               </OdsFormField>
             )}
           />
@@ -330,24 +295,23 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
         </div>
 
         {/* city and postcode */}
-        <div className="flex justify-between">
+        <div className="flex gap-2 mt-1">
           <Controller
             control={control}
             name="city"
             render={({ field: { name, value, onChange } }) => (
-              <OdsFormField>
+              <OdsFormField className="w-full">
                 <label htmlFor={name} slot="label">
                   {t('manageOrganisationsOrgModelCityLabel')}
                 </label>
                 <OdsInput
-                  className="mt-1"
                   name={name}
                   value={value}
                   type={ODS_INPUT_TYPE.text}
                   isRequired
                   onOdsChange={(e) => onChange(e.detail.value)}
                   hasError={!!errors[name]}
-                ></OdsInput>
+                />
               </OdsFormField>
             )}
           />
@@ -355,19 +319,18 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
             control={control}
             name="zip"
             render={({ field: { name, value, onChange } }) => (
-              <OdsFormField>
+              <OdsFormField className="w-full">
                 <label htmlFor={name} slot="label">
                   {t('manageOrganisationsOrgModelPostcodeLabel')}
                 </label>
                 <OdsInput
-                  className="mt-1"
                   name={name}
                   value={value}
                   type={ODS_INPUT_TYPE.text}
                   isRequired
                   onOdsChange={(e) => onChange(e.detail.value)}
                   hasError={!!errors[name]}
-                ></OdsInput>
+                />
               </OdsFormField>
             )}
           />
@@ -382,16 +345,16 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
               field: { onChange, value, name },
               fieldState: { error },
             }) => (
-              <OdsFormField className="mb-1" error={error?.message}>
+              <OdsFormField className="w-full my-1" error={error?.message}>
                 <label htmlFor={name} slot="label">
                   {t('manageOrganisationsOrgModelPhoneLabel')}
                 </label>
                 <OdsPhoneNumber
-                  className="w-full mt-1"
+                  className="block w-full"
                   name={name}
                   value={value}
                   isRequired
-                  isClearable={true}
+                  isClearable
                   isoCode={
                     selectedCountry?.toLowerCase() as OdsPhoneNumberCountryIsoCode
                   }
@@ -403,8 +366,9 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
                       setError(name, {
                         type: 'manual',
                         message: t('manageOrganisationsOrgModelPhoneInvalid', {
-                          countryCode: tcountry(
+                          countryCode: t(
                             `region-selector-country-name_${selectedCountry}`,
+                            { ns: 'region-selector' },
                           ),
                         }),
                       });
@@ -416,7 +380,7 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
             )}
           />
         </div>
-        <div className="flex flex-row-reverse">
+        <div className="flex flex-row-reverse mt-1">
           <OdsButton
             className="m-1"
             type="submit"
@@ -425,22 +389,18 @@ export const OpenOrganisationsModal: React.FC<{ isOpen: boolean }> = ({
             variant={ODS_BUTTON_VARIANT.default}
             isDisabled={isLoading || !isValid}
             isLoading={isSending}
-            label={tcommon('confirm')}
-            data-testid="confirm-btn"
-          ></OdsButton>
+            label={t('confirm', { ns: NAMESPACES.ACTIONS })}
+          />
           <OdsButton
             className="m-1"
             slot="actions"
-            onClick={handleCancelClick}
+            onClick={cancel}
             color={ODS_BUTTON_COLOR.primary}
             variant={ODS_BUTTON_VARIANT.outline}
-            label={tcommon('cancel')}
-            data-testid="cancel-btn"
-          ></OdsButton>
+            label={t('cancel', { ns: NAMESPACES.ACTIONS })}
+          />
         </div>
       </form>
     </OdsModal>
   );
-};
-
-export default OpenOrganisationsModal;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { OdsCard, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { handleClick } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { RegionTabs } from './region-tabs.component';
 import {
@@ -79,16 +80,19 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
             return (
               <div key={region}>
                 {disabledMessage && (
-                  <OdsPopover triggerId={region} withArrow>
+                  <OdsPopover triggerId={region} withArrow className="max-w-sm">
                     {disabledMessage}
                   </OdsPopover>
                 )}
                 <OdsCard
                   id={region}
+                  tabIndex={0}
                   className={`flex items-center p-3 transition-shadow cursor-pointer ${borderStyle} w-full sm:w-[245px] ${
                     disabledMessage ? 'opacity-40' : ''
                   }`}
-                  onClick={() => !disabledMessage && setSelectedRegion(region)}
+                  {...handleClick(
+                    () => !disabledMessage && setSelectedRegion(region),
+                  )}
                   color={ODS_CARD_COLOR.neutral}
                 >
                   <span
