@@ -1,6 +1,7 @@
 import {
   DataGridTextCell,
   DatagridColumn,
+  useFormatDate,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
@@ -8,19 +9,13 @@ import { useBytes } from '@ovh-ux/manager-pci-common';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import { OdsLink } from '@ovhcloud/ods-components/react';
 import { TVolumeBackup } from '@/data/api/api.types';
-import { useFormattedDate } from '@/hooks/useFormattedDate';
 import StatusComponent from './Status.component';
 import ActionsComponent from './Actions.component';
-
-const CreationDateCell = (props: TVolumeBackup) => (
-  <DataGridTextCell>
-    {useFormattedDate(props.creationDate, 'P p')}
-  </DataGridTextCell>
-);
 
 export const useDatagridColumn = () => {
   const { t } = useTranslation('listing');
 
+  const formatDate = useFormatDate();
   const { formatBytes } = useBytes();
   const hrefProject = useProjectUrl('public-cloud');
   const hrefBlockStorage = `${hrefProject}/storages/blocks`;
@@ -47,7 +42,7 @@ export const useDatagridColumn = () => {
       cell: (props: TVolumeBackup) => (
         <DataGridTextCell>{props.id}</DataGridTextCell>
       ),
-      isSearchable: false,
+      isSearchable: true,
       isSortable: true,
       isFilterable: true,
       type: FilterTypeCategories.String,
@@ -60,7 +55,7 @@ export const useDatagridColumn = () => {
       cell: (props: TVolumeBackup) => (
         <DataGridTextCell>{props.region}</DataGridTextCell>
       ),
-      isSearchable: false,
+      isSearchable: true,
       isSortable: true,
       isFilterable: true,
       type: FilterTypeCategories.String,
@@ -83,7 +78,11 @@ export const useDatagridColumn = () => {
       label: t(
         'pci_projects_project_storages_volume_backup_list_datagrid_column_create_date',
       ),
-      cell: CreationDateCell,
+      cell: (props: TVolumeBackup) => (
+        <DataGridTextCell>
+          {formatDate({ date: props.creationDate, format: 'P p' })}
+        </DataGridTextCell>
+      ),
       isSearchable: false,
       isSortable: true,
       isFilterable: true,

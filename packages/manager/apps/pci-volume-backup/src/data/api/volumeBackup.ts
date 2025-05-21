@@ -1,7 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { Query } from '@tanstack/react-query';
-import { TVolumeBackup } from '@/data/api/api.types';
-import { ApiData } from '@/data/hooks/useVolumeBackups';
+import { TVolumeBackup, TApiData } from '@/data/api/api.types';
 
 const REFETCH_INTERVAL = 3500;
 
@@ -9,7 +8,7 @@ export const isVolumeBackupPending = (volumeBackup: TVolumeBackup) =>
   ['creating', 'deleting', 'restoring'].includes(volumeBackup.status);
 
 export const refetchInterval = (
-  query: Query<ApiData<TVolumeBackup[]>>,
+  query: Query<TApiData<TVolumeBackup>>,
 ): false | number => {
   return (
     query.state.data !== undefined &&
@@ -19,7 +18,7 @@ export const refetchInterval = (
 };
 
 export const getVolumeBackups = (projectId: string) => async (): Promise<
-  ApiData<TVolumeBackup[]>
+  TApiData<TVolumeBackup>
 > => {
   const data = await v6.get(
     `/cloud/project/${projectId}/aggregated/volumeBackup`,

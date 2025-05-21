@@ -1,4 +1,4 @@
-import React, { useMemo, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   OdsButton,
@@ -8,7 +8,6 @@ import {
 import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import {
   Datagrid,
   BaseLayout,
@@ -18,14 +17,14 @@ import {
   ChangelogButton,
   Notifications,
   useNotifications,
+  useResourcesV6,
 } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
 import { TProjectParams, TVolumeBackup } from '@/data/api/api.types';
-import { useVolumeBackups } from '@/data/hooks/useVolumeBackups';
 import { getVolumeBackups, refetchInterval } from '@/data/api/volumeBackup';
 import config from '@/pci-volume-backup.config';
-import { backupsQueryKey } from '@/data/hooks/useVolumeBackup';
+import { getBackupsQueryKey } from '@/data/hooks/useVolumeBackup';
 import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 
 export default function Listing() {
@@ -41,24 +40,6 @@ export default function Listing() {
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
 
-  const columnsWithSearchable = useMemo(() => {
-    return [
-      ...columns.map((column) => ({
-        ...column,
-        isSearchable: false,
-      })),
-      {
-        id: 'search',
-        label: '',
-        cell: () => <></>,
-        isSearchable: true,
-        isFilterable: false,
-        isSortable: false,
-        type: FilterTypeCategories.String,
-      },
-    ];
-  }, [columns]);
-
   const {
     data: { data: volumeBackups } = {},
     flattenData,
@@ -70,8 +51,8 @@ export default function Listing() {
     sorting,
     setSorting,
     filters,
-  } = useVolumeBackups<TVolumeBackup>({
-    columns: columnsWithSearchable,
+  } = useResourcesV6<TVolumeBackup>({
+    columns,
     route: `/cloud/project/${projectId}/aggregated/volumeBackup`,
     queryFn: async () =>
       getVolumeBackups(projectId)().then(({ data }) => {
@@ -83,7 +64,7 @@ export default function Listing() {
         };
       }),
     refetchInterval,
-    queryKey: backupsQueryKey(projectId),
+    queryKey: getBackupsQueryKey(projectId)[0],
     pageSize: 10,
     defaultSorting: {
       id: 'creationDate',

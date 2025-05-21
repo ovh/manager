@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { useVolumeBackups } from '@/data/hooks/useVolumeBackups';
+import { useResourcesV6 } from '@ovh-ux/manager-react-components';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
 import Listing from './Listing.page';
 
@@ -10,10 +10,6 @@ vi.mock('@/pages/listing/useDatagridColumn', () => ({
     { id: 'name', label: 'Name' },
     { id: 'size', label: 'Size' },
   ]),
-}));
-
-vi.mock('@/data/hooks/useVolumeBackups', () => ({
-  useVolumeBackups: vi.fn(),
 }));
 
 vi.mock('@/data/api/volumeBackup', () => ({
@@ -39,7 +35,7 @@ describe('Listing Component', () => {
     sorting: { id: 'creationDate', desc: true },
     setSorting: vi.fn(),
     filters: {},
-  } as unknown) as ReturnType<typeof useVolumeBackups>;
+  } as unknown) as ReturnType<typeof useResourcesV6>;
 
   const mockVolumeBackupsEmpty = ({
     data: { data: [] },
@@ -52,14 +48,14 @@ describe('Listing Component', () => {
     sorting: { id: 'creationDate', desc: true },
     setSorting: vi.fn(),
     filters: {},
-  } as unknown) as ReturnType<typeof useVolumeBackups>;
+  } as unknown) as ReturnType<typeof useResourcesV6>;
 
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('should render the component with data', () => {
-    vi.mocked(useVolumeBackups).mockReturnValue(mockVolumeBackupsWithData);
+    vi.mocked(useResourcesV6).mockReturnValue(mockVolumeBackupsWithData);
 
     render(<Listing />);
 
@@ -83,7 +79,7 @@ describe('Listing Component', () => {
   });
 
   it('should redirect to onboarding when no volume backups are available', () => {
-    vi.mocked(useVolumeBackups).mockReturnValue(mockVolumeBackupsEmpty);
+    vi.mocked(useResourcesV6).mockReturnValue(mockVolumeBackupsEmpty);
 
     render(<Listing />);
 
@@ -94,7 +90,7 @@ describe('Listing Component', () => {
   });
 
   it('should not redirect to onboarding when still loading', () => {
-    vi.mocked(useVolumeBackups).mockReturnValue({
+    vi.mocked(useResourcesV6).mockReturnValue({
       ...mockVolumeBackupsEmpty,
       isLoading: true,
     });
@@ -106,7 +102,7 @@ describe('Listing Component', () => {
   });
 
   it('should render the create button with correct props', () => {
-    vi.mocked(useVolumeBackups).mockReturnValue(mockVolumeBackupsWithData);
+    vi.mocked(useResourcesV6).mockReturnValue(mockVolumeBackupsWithData);
 
     render(<Listing />);
 
@@ -122,13 +118,13 @@ describe('Listing Component', () => {
       { id: 'test', label: 'Test Column' },
     ] as unknown) as ReturnType<typeof useDatagridColumn>;
     vi.mocked(useDatagridColumn).mockReturnValue(mockColumns);
-    vi.mocked(useVolumeBackups).mockReturnValue(mockVolumeBackupsWithData);
+    vi.mocked(useResourcesV6).mockReturnValue(mockVolumeBackupsWithData);
 
     render(<Listing />);
 
-    expect(useVolumeBackups).toHaveBeenCalled();
+    expect(useResourcesV6).toHaveBeenCalled();
     // The first argument should have columns property
-    expect(useVolumeBackups).toHaveBeenCalledWith(
+    expect(useResourcesV6).toHaveBeenCalledWith(
       expect.objectContaining({
         columns: expect.arrayContaining([
           expect.objectContaining({ id: 'test' }),
