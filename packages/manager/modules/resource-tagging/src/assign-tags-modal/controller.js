@@ -100,12 +100,15 @@ export default class ovhManagerResourceTaggingAssignModalController {
       .then(() => {
         this.goBack(true).then(() => {
           this.loading = false;
-          this.Alerter.success(
-            this.$translate.instant(
-              'manager_components_resource_tagging_assign_modal_success',
-            ),
-            'resourcetagging.manager',
-          );
+          const successMessage =
+            this.selectedTags.length > 1
+              ? this.$translate.instant(
+                  'manager_components_resource_tagging_assign_modal_success_multiple',
+                )
+              : this.$translate.instant(
+                  'manager_components_resource_tagging_assign_modal_success',
+                );
+          this.Alerter.success(successMessage, 'resourcetagging.manager');
         });
       })
       .catch((error) => {
