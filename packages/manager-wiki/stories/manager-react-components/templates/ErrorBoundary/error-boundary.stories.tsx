@@ -11,7 +11,7 @@ export const defaultsProps = {
 };
 
 const meta: Meta = {
-  title: 'Core/manager-react-components/Templates/ErrorBoundary',
+  title: 'Manager React Components/Templates/ErrorBoundary',
   component: ErrorBoundary,
   decorators: [withRouter],
 };

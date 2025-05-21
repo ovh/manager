@@ -1,6 +1,6 @@
 import { Meta, Canvas, Source, ArgTypes } from '@storybook/blocks';
 
-<Meta title="Core/manager-react-components/Hooks/useBytes" />
+<Meta title="Manager React Components/Hooks/useBytes" />
 
 ## Overview
 
@@ -48,8 +48,8 @@ Binary (1024-based): Also known as IEC (International Electrotechnical Commissio
   code={`
   import { useBytes } from './useBytes';
 
-  const MyComponent = () => {
-    const { formatBytes } = useBytes();
+const MyComponent = () => {
+const { formatBytes } = useBytes();
 
     const size = 123456789;
 
@@ -59,12 +59,13 @@ Binary (1024-based): Also known as IEC (International Electrotechnical Commissio
         <p>Size: {formatBytes(size, 2, 1024)}</p>
       </div>
     );
-  };
-  `}
-  language="javascript"
+
+};
+`}
+language="javascript"
 />
 
-  On this example, the number defined 2 is the number of decimal.
+On this example, the number defined 2 is the number of decimal.
 
 The result for this 2 :
 Size: 123.46 MB and Size: 117.74 MiB

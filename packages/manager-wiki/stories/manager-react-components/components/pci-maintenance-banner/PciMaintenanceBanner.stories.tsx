@@ -19,6 +19,6 @@ export const Primary = {
 
 export default {
   title:
-    'Core/manager-react-components/Components/Public-cloud/PciMaintenanceBanner',
+    'Manager React Components/Components/Public-cloud/PciMaintenanceBanner',
   component: PciMaintenanceBannerProjectStory,
 };

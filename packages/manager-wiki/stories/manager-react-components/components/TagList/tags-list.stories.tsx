@@ -1,9 +1,9 @@
 import React from 'react';
 import { StoryObj } from '@storybook/react';
-import { TagsList } from './tags-list.component';
+import { TagsList } from '@ovh-ux/manager-react-components';
 
 const managerTagsList = {
-  title: 'Components/TagsList',
+  title: 'Manager React Components/Components/TagsList',
   component: TagsList,
 };
 

@@ -82,7 +82,7 @@ export const headerWithActions = () => <Headers {...HeadingWithActionButton} />;
 
 const meta: Meta = {
   decorators: [withRouter],
-  title: 'Core/manager-react-components/Content/Headers',
+  title: 'Manager React Components/Content/Headers',
   component: Headers,
   argTypes: {},
   args: Heading,

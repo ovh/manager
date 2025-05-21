@@ -17,7 +17,7 @@ Basic.args = {
 };
 
 export default {
-  title: 'Core/manager-react-components/Components/Breadcrumb',
+  title: 'Manager React Components/Components/Breadcrumb',
   component: Breadcrumb,
   decorators: [withRouter],
   parameters: {

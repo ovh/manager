@@ -1,5 +1,8 @@
 import { Meta } from '@storybook/react';
-import { ManagerLink, ManagerLinkProps } from './ManagerLink.component';
+import {
+  ManagerLink,
+  ManagerLinkProps,
+} from '@ovh-ux/manager-react-components';
 
 export const Default = {
   args: {
@@ -12,7 +15,7 @@ export const Default = {
 };
 
 const managerSimpleLink: Meta<ManagerLinkProps> = {
-  title: 'Components/Manager Link',
+  title: 'Manager React Components/Components/Manager Link',
   component: ManagerLink,
   parameters: {
     docs: {

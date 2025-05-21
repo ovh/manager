@@ -8,14 +8,12 @@ import {
 import meta, { Default } from './useFormatDate.stories';
 import { Meta, Source } from '@storybook/blocks';
 
-<Meta title="Core/manager-react-components/Hooks/useFormatDate/Documentation" />
-
+<Meta title="Manager React Components/Hooks/useFormatDate/Documentation" />
 <StoryBookBanner of={meta} />
 
 The useFormatDate hook leverages date-fns for formatting dates in a localized and customizable way.
 
 <StorybookHeading label="Output examples" level={2} />
-
 <Source
 code={`
 const formatDate = useFormatDate();
@@ -40,18 +38,15 @@ language="ts"
 />
 
 <StorybookHeading label="Handling invalid or missing dates" level={2} />
-
 <Source
-code={`formatDate({ date: undefined });
+  code={`formatDate({ date: undefined });
 // → "N/A"
 formatDate({ date: null });
 // → "N/A"
 formatDate({ date: '', unknownDateLabel: 'Unknown' });
 // → "Unknown"`}
-language="ts"
+  language="ts"
 />
-
-
 <StorybookHeading label="Localization" level={2} />
 
 The locale is automatically determined from the current i18n.language. Only 8 OVH locale are supported : en_GB, fr_FR, fr_CA, de_DE, es_ES, it_IT, pl_PL, pt_PT. If the locale is unsupported or undefined, it defaults to enGB.

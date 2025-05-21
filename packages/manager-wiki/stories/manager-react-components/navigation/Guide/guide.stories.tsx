@@ -29,7 +29,7 @@ export const GuideButtonLoading = () => (
 );
 
 const meta: Meta<GuideButtonProps> = {
-  title: 'Core/manager-react-components/Navigation/Menus',
+  title: 'Manager React Components/Navigation/Menus',
   decorators: [(story) => <div>{story()}</div>],
   component: GuideButton,
   argTypes: {},

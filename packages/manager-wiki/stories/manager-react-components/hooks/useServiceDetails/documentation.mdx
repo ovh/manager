@@ -1,10 +1,7 @@
 import { Meta } from '@storybook/blocks';
-import {
-    StorybookHeading,
-} from '../../../../components/';
+import { StorybookHeading } from '../../../../components/';
 
-<Meta title="Core/manager-react-components/Hooks/useServiceDetails" />
-
+<Meta title="Manager React Components/Hooks/useServiceDetails" />
 <StorybookHeading label="Overview" level={2} />
 
 A React Query hook that fetches service details for a given resource.
@@ -14,9 +11,11 @@ A React Query hook that fetches service details for a given resource.
 The hook uses two API endpoints:
 
 1. Get Service ID:
+
    ```typescript
    GET /services?resourceName={resourceName}
    ```
+
    - Method: `GET`
    - Query Parameters:
      - `resourceName`: Filter on a specific service family
@@ -24,7 +23,7 @@ The hook uses two API endpoints:
 
 2. Get Service Details:
    ```typescript
-   GET /services/{serviceId}
+   GET / services / { serviceId };
    ```
    - Method: `GET`
    - Path Parameters:
@@ -45,6 +44,7 @@ type UseServiceDetailsParams = {
 <StorybookHeading label="Returns" level={2} />
 
 Returns a React Query result object containing:
+
 - `data`: The service details
 - `isLoading`: Loading state
 - `isError`: Error state

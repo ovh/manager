@@ -3,22 +3,22 @@ import { Meta, StoryFn } from '@storybook/react';
 import { Card, CardProps } from '@ovh-ux/manager-react-components';
 
 export const defaultProps: CardProps = {
-  texts: {
-    title: 'Titre du produit',
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    category: 'NAS',
-  },
-  href: 'https://ovh.com',
   img: {
     alt: 'offer',
     src:
       'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png',
   },
+  texts: {
+    title: 'Title of the Card',
+    description:
+      "Here you can put the description of the card. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    category: 'NAS',
+  },
+  href: 'https://ovh.com',
 };
 
 const meta: Meta<typeof Card> = {
-  title: 'Core/manager-react-components/Navigation/Card',
+  title: 'Manager React Components/Navigation/Card',
   decorators: [
     // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
     (Story) => (
