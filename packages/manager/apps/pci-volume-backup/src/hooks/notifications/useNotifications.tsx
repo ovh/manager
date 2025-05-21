@@ -27,6 +27,8 @@ export const useNotifications = ({ ns }: { ns: string }) => {
                   ...values,
                   message:
                     error?.response?.data?.message || error?.message || null,
+                  errorMessage:
+                    error?.response?.data?.message || error?.message || null,
                 }}
               />
             )}

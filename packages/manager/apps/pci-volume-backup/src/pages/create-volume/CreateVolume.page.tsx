@@ -4,7 +4,6 @@ import {
   BaseLayout,
   ChangelogButton,
   PciGuidesHeader,
-  useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import {
@@ -19,7 +18,9 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import VolumeEdit from './VolumeEdit.component';
+import { useNotifications } from '@/hooks/notifications/useNotifications';
 import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
 import {
   TNewVolumeFromBackupData,
@@ -39,7 +40,9 @@ function useParam(param: string): string {
 
 export default function CreateVolumePage() {
   const { t } = useTranslation(['create-volume', 'listing']);
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccessMessage, addErrorMessage } = useNotifications({
+    ns: 'create-volume',
+  });
   const navigate = useNavigate();
   const projectId = useParam('projectId');
   const backupId = useParam('backupId');
@@ -71,30 +74,29 @@ export default function CreateVolumePage() {
         pageType: PageType.bannerSuccess,
         pageName: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.REQUEST_SUCCESS,
       });
-      addSuccess(
-        t(
+      addSuccessMessage({
+        i18nKey:
           'pci_projects_project_storages_volume_backup_list_create_volume_request_success',
-          { volumeName: newVolume.name },
-        ),
-      );
+        values: { volumeName: newVolume.name },
+      });
       shell.navigation.navigateTo(
         'public-cloud',
         `#/pci/projects/${projectId}/storages/blocks`,
         {},
       );
     },
-    onError: (err: Error, data: TNewVolumeFromBackupData) => {
+    onError: (error: ApiError, data: TNewVolumeFromBackupData) => {
       trackPage({
         pageType: PageType.bannerError,
         pageName: VOLUME_BACKUP_TRACKING.CREATE_VOLUME.REQUEST_FAIL,
       });
-      goBack();
-      addError(
-        t(
+      addErrorMessage({
+        i18nKey:
           'pci_projects_project_storages_volume_backup_list_create_volume_request_fail',
-          { volumeName: data.volumeName, message: err },
-        ),
-      );
+        values: { volumeName: data.volumeName },
+        error,
+      });
+      goBack();
     },
   });
 
