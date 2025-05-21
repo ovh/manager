@@ -123,6 +123,7 @@ export const useDatagridColumn = () => {
       id: 'actions',
       cell: (props: TVolumeBackup) => <ActionsComponent backup={props} />,
       label: '',
+      isSortable: false,
       isSearchable: false,
     },
   ];
