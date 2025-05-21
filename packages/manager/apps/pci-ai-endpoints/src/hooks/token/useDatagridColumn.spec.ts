@@ -19,6 +19,10 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
+vi.mock('@/hooks/token/useUserInfos', () => ({
+  default: () => ({ isAdmin: true }),
+}));
+
 const mockedUseGetTokens = vi.mocked(useGetTokens);
 const mockedUseQueries = vi.mocked(useQueries);
 
