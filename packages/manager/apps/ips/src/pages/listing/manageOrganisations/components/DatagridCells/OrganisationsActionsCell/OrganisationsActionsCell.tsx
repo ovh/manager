@@ -8,22 +8,19 @@ import { urls } from '@/routes/routes.constant';
 
 export const OrganisationsActionsCell = (org: OrgDetails) => {
   const { t } = useTranslation('manage-organisations');
-
   const navigate = useNavigate();
-  const openEditOrganisationsModal = () =>
-    navigate(
-      `${urls.openOrganisationsModel.replace(
-        ':organisationId',
-        org.organisationId,
-      )}?mode="edit"`,
-    );
 
   const items: ActionMenuItem[] = [
     {
       id: 1,
       label: t('manageOrganisationsTabEditOrgAction'),
       onClick: () => {
-        openEditOrganisationsModal();
+        navigate(
+          `${urls.openOrganisationsModal.replace(
+            ':organisationId',
+            org.organisationId,
+          )}?mode="edit"`,
+        );
       },
     },
   ];

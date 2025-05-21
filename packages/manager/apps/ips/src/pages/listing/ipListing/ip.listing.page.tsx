@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_VARIANT,
@@ -50,6 +50,7 @@ export default function IpListingPage() {
       <React.Suspense fallback={<Loading />}>
         <IpDatagrid />
       </React.Suspense>
+      <Outlet />
     </ListingContextProvider>
   );
 }
