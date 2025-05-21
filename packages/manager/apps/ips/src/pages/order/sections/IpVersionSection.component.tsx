@@ -10,7 +10,11 @@ import { OrderContext } from '../order.context';
 export const IpVersionSection: React.FC = () => {
   const { ipVersion, setIpVersion } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
-  const { ipv4LowestPrice, ipv6LowestPrice } = useCatalogLowestPrice();
+  const {
+    ipv4LowestPrice,
+    ipv6LowestPrice,
+    isLoading,
+  } = useCatalogLowestPrice();
 
   return (
     <OrderSection
@@ -23,6 +27,7 @@ export const IpVersionSection: React.FC = () => {
           description={t('ipv4_card_description')}
           isSelected={ipVersion === IpVersion.ipv4}
           onClick={() => setIpVersion(IpVersion.ipv4)}
+          isLoading={isLoading}
         >
           <PriceDescription
             isStartingPrice
@@ -35,6 +40,7 @@ export const IpVersionSection: React.FC = () => {
           description={t('ipv6_card_description')}
           isSelected={ipVersion === IpVersion.ipv6}
           onClick={() => setIpVersion(IpVersion.ipv6)}
+          isLoading={isLoading}
         >
           <PriceDescription price={ipv6LowestPrice} />
         </OptionCard>

@@ -2,7 +2,7 @@ import React from 'react';
 import { RouteObject } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
-import { urls } from '@/routes/routes.constant';
+import { subRoutes, urls } from '@/routes/routes.constant';
 
 const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   return {
@@ -38,6 +38,23 @@ export const Routes: any = [
                 pageType: PageType.listing,
               },
             },
+            children: [
+              {
+                id: subRoutes.configureReverseDns,
+                path: urls.configureReverseDns,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/configureReverseDns/configureReverseDns.page'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: subRoutes.configureReverseDns,
+                    pageType: PageType.popup,
+                  },
+                },
+              },
+            ],
           },
           {
             id: 'manage-organisations',
@@ -50,10 +67,10 @@ export const Routes: any = [
             children: [
               {
                 id: 'open',
-                path: urls.openOrganisationsModel,
+                path: urls.openOrganisationsModal,
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/listing/manageOrganisations/OpenOrganisations/OpenOrganisationsModal.page'
+                    '@/pages/listing/manageOrganisations/OrganisationModal/OrganisationModal.page'
                   ),
                 ),
                 handle: {
