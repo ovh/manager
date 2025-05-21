@@ -82,6 +82,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     useCatalogPrice: vi.fn(() => ({
       getFormattedCatalogPrice: () => `PRICE`,
     })),
+    useResourcesV6: vi.fn(),
     Datagrid: (props: Partial<{ topbar: JSX.Element }>) => (
       <div data-testid="datagrid">{props.topbar}</div>
     ),

@@ -10,7 +10,7 @@ import {
 import { createWrapper } from '@/wrapperRenders';
 import { TVolumeStatus } from '../api/api.types';
 import {
-  backupsQueryKey,
+  getBackupsQueryKey,
   useBackup,
   useBackups,
   useCreateVolumeBackup,
@@ -400,12 +400,14 @@ describe('volumeBackup hooks', () => {
     });
   });
 
-  describe('backupsQueryKey', () => {
+  describe('getBackupsQueryKey', () => {
     it('should return the correct query key format', () => {
-      const key = backupsQueryKey('project1');
+      const key = getBackupsQueryKey('project1');
       expect(key).toEqual([
-        'pci-volume-backup',
-        '/cloud/project/project1/aggregated/volumeBackup',
+        [
+          'pci-volume-backup',
+          '/cloud/project/project1/aggregated/volumeBackup',
+        ],
       ]);
     });
   });

@@ -113,3 +113,7 @@ export type TRegionQuota = {
 export type TProjectParams = {
   projectId: string;
 };
+
+export type TApiData<T> = {
+  data: T[];
+};
