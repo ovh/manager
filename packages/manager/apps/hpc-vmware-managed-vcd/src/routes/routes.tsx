@@ -240,11 +240,20 @@ export const Routes: any = [
                 ),
               },
               {
+                id: 'delete-segment',
+                path: urls.vrackSegmentDelete,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/datacentre/vrack-segment/delete-segment/DeleteVrackSegment.page'
+                  ),
+                ),
+              },
+              {
                 id: 'delete-network',
                 path: urls.vrackSegmentDeleteNetwork,
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/datacentre/vrack-segment/delete/DeleteVrackNetwork.page'
+                    '@/pages/dashboard/datacentre/vrack-segment/delete-network/DeleteVrackNetwork.page'
                   ),
                 ),
               },
