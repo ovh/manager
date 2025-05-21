@@ -46,6 +46,17 @@ export const Routes = [
               },
             },
           },
+          {
+            id: 'dashboard.allDom',
+            path: urls.allDom,
+            ...lazyRouteConfig(() => import('@/pages/dashboard/allDom/AllDom')),
+            handle: {
+              tracking: {
+                pageName: 'allDom',
+                pageType: PageType.dashboard,
+              },
+            },
+          },
         ],
       },
       {

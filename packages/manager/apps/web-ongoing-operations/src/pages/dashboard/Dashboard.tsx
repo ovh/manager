@@ -13,6 +13,7 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { urls } from '@/routes/routes.constant';
 
 export const DNS_OPERATIONS_TABLE_HEADER_DOMAIN = 'DNS';
 
@@ -37,12 +38,17 @@ export default function DashboardPage() {
     {
       name: 'domain',
       title: t('domain_operations_table_header_domain'),
-      to: useResolvedPath('domain').pathname,
+      to: useResolvedPath(urls.domain).pathname,
     },
     {
       name: 'dns',
       title: DNS_OPERATIONS_TABLE_HEADER_DOMAIN,
-      to: useResolvedPath('dns').pathname,
+      to: useResolvedPath(urls.dns).pathname,
+    },
+    {
+      name: 'allDom',
+      title: t('domain_operations_table_header_allDom'),
+      to: useResolvedPath(urls.allDom).pathname,
     },
   ];
 
