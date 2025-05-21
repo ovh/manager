@@ -3,8 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import OnBoardingPage from './Onboarding.page';
 import { createWrapper } from '@/wrapperRenders';
 import { useBackups } from '@/data/hooks/useVolumeBackup';
-import { TBackup } from '@/data/api/api.types';
-import { ApiData } from '@/data/hooks/useVolumeBackups';
+import { TBackup, TApiData } from '@/data/api/api.types';
 
 vi.mock('@/data/hooks/useVolumeBackup', () => ({
   useBackups: vi.fn(),
@@ -13,7 +12,7 @@ vi.mock('@/data/hooks/useVolumeBackup', () => ({
 describe('OnBoardingPage', () => {
   beforeEach(() => {
     vi.mocked(useBackups).mockReturnValue({
-      data: { data: [] } as ApiData<TBackup[]>,
+      data: { data: [] } as TApiData<TBackup>,
       isLoading: false,
     } as ReturnType<typeof useBackups>);
 
@@ -79,7 +78,7 @@ describe('OnBoardingPage', () => {
 
   it('redirects when backup exist', () => {
     vi.mocked(useBackups).mockReturnValue({
-      data: { data: [{ id: '12345678' }] } as ApiData<TBackup[]>,
+      data: { data: [{ id: '12345678' }] } as TApiData<TBackup>,
       isLoading: false,
     } as ReturnType<typeof useBackups>);
 
