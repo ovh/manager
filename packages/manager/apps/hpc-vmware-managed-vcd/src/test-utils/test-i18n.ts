@@ -5,6 +5,7 @@ import datacentres from '../../public/translations/datacentres/Messages_fr_FR.js
 import datacentresCompute from '../../public/translations/datacentres/compute/Messages_fr_FR.json';
 import datacentresOrder from '../../public/translations/datacentres/order/Messages_fr_FR.json';
 import datacentresStorage from '../../public/translations/datacentres/storage/Messages_fr_FR.json';
+import terminate from '../../public/translations/terminate/Messages_fr_FR.json';
 
 const error = {
   manager_error_page_title: 'Oops …!',
@@ -25,6 +26,7 @@ export const translations = {
   'datacentres/order': datacentresOrder,
   'datacentres/storage': datacentresStorage,
   error,
+  terminate,
 };
 
 export const labels = {
@@ -36,4 +38,5 @@ export const labels = {
   datacentresCompute,
   datacentresOrder,
   datacentresStorage,
+  terminate,
 };
