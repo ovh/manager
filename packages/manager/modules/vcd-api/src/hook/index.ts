@@ -1,3 +1,4 @@
+export * from './useDeleteVcdVrackSegment';
 export * from './useOrderableResource';
 export * from './useResetVcdPassword';
 export * from './useUpdateVcdDatacentre';
