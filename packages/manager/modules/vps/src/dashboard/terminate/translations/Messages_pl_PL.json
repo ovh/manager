@@ -1,8 +1,5 @@
 {
-  "vps_terminate_title": "Usuń serwer VPS",
-  "vps_terminate_question": "Czy na pewno chcesz usunąć Twoją usługę {{vps}}?",
-  "vps_terminate_cancel": "Anuluj",
-  "vps_terminate_confirm": "Zatwierdź",
+  "vps_terminate_service_type": "Mój VPS",
   "vps_terminate_success": "Dyspozycja rezygnacji z usługi została zarejestrowana. Otrzymasz e-mail z prośbą o potwierdzenie rezygnacji.",
   "vps_terminate_success_engagement": "Twój wniosek został zarejestrowany i zostanie przetworzony tak szybko, jak to możliwe.",
   "vps_terminate_error": "Wystąpił błąd podczas rezygnacji z usługi.",
@@ -11,13 +8,10 @@
   "vps_terminate_option_cancel_terminate_at_expiration": "Anuluj rezygnację z usługi.",
   "vps_terminate_option_terminate_now": "Zrezygnuj z usługi natychmiast.",
   "vps_terminate_option_terminate_now_description": "Otrzymasz wiadomość e-mail z procedurą rezygnacji z serwera.",
-  "vps_terminate_option_terminate_now_question": "Czy chcesz kontynuować?",
-  "vps_terminate_warning_data_deletion": "Usunięcie usługi spowoduje trwałe usunięcie wszystkich powiązanych z nią danych.",
   "vps_terminate_warning_no_refund": "Rezygnacja nie stanowi podstawy do zwrotu środków.",
   "vps_terminate_warning_manual_refund": "Rezygnacja nie stanowi podstawy do zwrotu środków. Skontaktuj się z obsługą klienta, jeśli masz pytania dotyczące ewentualnego zwrotu środków.",
   "vps_terminate_activate_delete_at_expiration_success": "Dyspozycja rezygnacji z usługi w dniu wygaśnięcia została przyjęte.",
   "vps_terminate_activate_delete_at_expiration_error": "Wystąpił błąd podczas składania rezygnacji z usługi w dniu jej wygaśnięcia:",
   "vps_terminate_deactivate_delete_at_expiration_success": "Dyspozycja rezygnacji z usługi w dniu jej wygaśnięcia została zawieszona.",
-  "vps_terminate_deactivate_delete_at_expiration_error": "Wystąpił błąd podczas anulowania dyspozycji rezygnacji z usługi w dniu jej wygaśnięcia:",
-  "vps_terminate_service_type": "Mój VPS"
+  "vps_terminate_deactivate_delete_at_expiration_error": "Wystąpił błąd podczas anulowania dyspozycji rezygnacji z usługi w dniu jej wygaśnięcia:"
 }

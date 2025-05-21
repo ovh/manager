@@ -22,7 +22,7 @@
   "billing_informations_tile_renew_state_manual": "Renovação manual",
   "billing_informations_tile_renew_state_automatic": "Renovação automática",
   "billing_informations_tile_engagement_status_none": "Sem compromisso",
-  "billing_informations_tile_engagement_status_commitement_pending": "O seu serviço será contratado a partir de {{ date }}",
+  "billing_informations_tile_engagement_status_commitement_pending": "O compromisso do seu serviço começará a {{ date }}",
   "billing_informations_tile_autorenew_every_1_month": "Todos os meses",
   "billing_informations_tile_autorenew_every_3_month": "A cada 3 meses",
   "billing_informations_tile_autorenew_every_6_month": "A cada 6 meses",
