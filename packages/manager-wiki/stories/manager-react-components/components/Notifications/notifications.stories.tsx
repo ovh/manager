@@ -58,7 +58,7 @@ export const Primary = {
 };
 
 export default {
-  title: 'Core/manager-react-components/Components/Notifications',
+  title: 'Manager React Components/Components/Notifications',
   component: NotificationsStory,
   decorators: [withRouter],
 };

@@ -16,7 +16,7 @@ export const Default = {
 };
 
 const simpleBadge: Meta<BadgeProps> = {
-  title: 'Core/manager-react-components/Components/Badge',
+  title: 'Manager React Components/Components/Badge',
   component: Badge,
   parameters: {
     docs: {

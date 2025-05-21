@@ -7,7 +7,7 @@ export const title = () => <Title>Title</Title>;
 export const subtitle = () => <Subtitle>Subtitle</Subtitle>;
 
 const meta: Meta = {
-  title: 'Core/manager-react-components/Typography/Texts',
+  title: 'Manager React Components/Typography/Texts',
   decorators: [(story) => <div>{story()}</div>],
   argTypes: {},
 };

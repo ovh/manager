@@ -1,8 +1,21 @@
 import React from 'react';
 import { waitFor } from '@testing-library/react';
 import { Card, CardProps } from './card.component';
-import { defaultProps } from './card.stories';
 import { render } from '../../../utils/test.provider';
+
+export const defaultProps: CardProps = {
+  texts: {
+    title: 'Titre du produit',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    category: 'NAS',
+  },
+  href: 'https://ovh.com',
+  img: {
+    alt: 'offer',
+    src: 'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png',
+  },
+};
 
 const setupSpecTest = async (customProps?: Partial<CardProps>) =>
   waitFor(() => render(<Card {...defaultProps} {...customProps} />));

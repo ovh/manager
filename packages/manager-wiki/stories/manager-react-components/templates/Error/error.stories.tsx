@@ -14,7 +14,7 @@ export const defaultProps: ErrorBannerProps = {
 };
 
 const meta: Meta<typeof ErrorBanner> = {
-  title: 'Core/manager-react-components/Templates/Errors',
+  title: 'Manager React Components/Templates/Errors',
   decorators: [(story) => <div className="w-2/3">{story()}</div>],
   component: ErrorBanner,
   argTypes: {},

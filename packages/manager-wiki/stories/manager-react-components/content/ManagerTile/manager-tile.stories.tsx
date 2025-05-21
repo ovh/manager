@@ -111,7 +111,7 @@ export const NoTitle = () => (
 );
 
 const meta: Meta = {
-  title: 'Core/manager-react-components/Content/Manager Tile',
+  title: 'Manager React Components/Content/Manager Tile',
   component: ManagerTile,
   argTypes: {},
   args: {},

@@ -14,7 +14,7 @@ export const Default = {
 };
 
 const managerSimpleButton: Meta<ManagerButtonProps> = {
-  title: 'Core/manager-react-components/Components/Manager Button',
+  title: 'Manager React Components/Components/Manager Button',
   component: ManagerButton,
   parameters: {
     docs: {
