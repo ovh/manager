@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { TVolumeBackup } from '@/data/api/api.types';
 import { VOLUME_BACKUP_STATUS } from '@/constants';
 import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
@@ -69,5 +70,12 @@ export default function Actions({ backup }: Readonly<ActionsProps>) {
     },
   ];
 
-  return <ActionMenu id={id} items={menuItems} isCompact />;
+  return (
+    <ActionMenu
+      id={id}
+      items={menuItems}
+      isCompact
+      variant={ODS_BUTTON_VARIANT.ghost}
+    />
+  );
 }

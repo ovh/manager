@@ -1,13 +1,8 @@
 import { useContext, useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  OdsButton,
-  OdsLink,
-  OdsPopover,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { TRegion } from '@ovh-ux/manager-react-components';
+import { OdsLink, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
+import { Badge, TRegion } from '@ovh-ux/manager-react-components';
 import { URL_INFO } from '@/constants';
 
 export type BadgeRegionTypeProps = {
@@ -60,14 +55,12 @@ export default function BadgeRegionType({
 
   return (
     <>
-      <OdsButton
+      <Badge
         id={triggerId}
-        className="badge-region-type"
-        icon="circle-question"
-        iconAlignment="right"
-        size="sm"
-        variant="ghost"
         label={label}
+        icon="circle-info"
+        iconAlignment="right"
+        tabIndex={1}
       />
       <OdsPopover triggerId={triggerId} position="right" withArrow>
         <div className="max-w-[18rem] region-tooltip-content">
