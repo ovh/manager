@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom",
-  "version": "16.9.12",
+  "version": "16.9.13",
   "private": true,
   "description": "OVHcloud Telecom control panel.",
   "repository": {
@@ -23,10 +23,10 @@
     "@ovh-ux/manager-carrier-sip": "^2.3.1",
     "@ovh-ux/manager-components": "^1.25.2",
     "@ovh-ux/manager-config": "^8.3.1",
-    "@ovh-ux/manager-core": "^13.1.4",
+    "@ovh-ux/manager-core": "^13.1.5",
     "@ovh-ux/manager-error-page": "^2.4.3",
     "@ovh-ux/manager-freefax": "^7.9.2",
-    "@ovh-ux/manager-models": "^2.4.4",
+    "@ovh-ux/manager-models": "^2.5.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.2",
     "@ovh-ux/manager-overthebox": "^6.24.0",
     "@ovh-ux/manager-sms": "^8.18.1",

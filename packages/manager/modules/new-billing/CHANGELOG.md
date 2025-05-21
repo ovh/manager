@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.38.1...@ovh-ux/manager-new-billing@0.39.0) (2025-05-21)
+
+
+### Features
+
+* **billing:** add delete hosting for suspended service ([#15900](https://github.com/ovh/manager/issues/15900)) ([d2fafca](https://github.com/ovh/manager/commit/d2fafcaaaec9469059cc932ec90f897cfafc84b2)), closes [#MANAGER-13617](https://github.com/ovh/manager/issues/MANAGER-13617)
+
+
+
+
+
 ## [0.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.38.0...@ovh-ux/manager-new-billing@0.38.1) (2025-05-15)
 
 

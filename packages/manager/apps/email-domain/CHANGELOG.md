@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.30](https://github.com/ovh/manager/compare/@ovh-ux/manager-emaildomain-app@3.0.29...@ovh-ux/manager-emaildomain-app@3.0.30) (2025-05-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-emaildomain-app
+
+
+
+
+
 ## [3.0.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-emaildomain-app@3.0.28...@ovh-ux/manager-emaildomain-app@3.0.29) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-emaildomain-app
