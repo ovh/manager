@@ -36,8 +36,8 @@ vi.mock('../DatagridCells', () => ({
 }));
 
 vi.mock('../ipGroupDatagrid/ipGroupDatagrid', () => ({
-  IpGroupDatagrid: ({ row }: { row: Row<string> }) => (
-    <div>{`row-${row.original}`}</div>
+  IpGroupDatagrid: ({ row }: { row: Row<{ ip: string }> }) => (
+    <div>{`row-${row.original.ip}`}</div>
   ),
 }));
 

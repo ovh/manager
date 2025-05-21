@@ -86,7 +86,7 @@ vi.mock('../DatagridCells', () => ({
 
 /** RENDER */
 const renderComponent = () => {
-  const row: Row<string> = { original: '123.123.123.160/30' } as Row<string>;
+  const row = { original: { ip: '123.123.123.160/30' } } as Row<{ ip: string }>;
   const parentHeaders: MutableRefObject<Record<
     string,
     HTMLTableCellElement

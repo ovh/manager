@@ -42,7 +42,7 @@
   "listingFilterType": "Sélectionnez un type d'IP",
   "listingColumnsTypeBadgeParked": "Parking",
   "listingColumnsTypeBadgeAssigned": "Assignée",
-  "listingColumnsType_failover": "Ip Additionnelle",
+  "listingColumnsType_failover": "Additional IP",
   "listingColumnsType_xdsl": "Offres internet",
   "listingColumnsType_overthebox": "Over the box",
   "listingColumnsType_cloud": "Public cloud",
