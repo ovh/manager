@@ -133,6 +133,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       const chatbotVisibility = await uxPlugin.isChatbotVisible();
       if (isLivechatEnabled) {
         setChatbotOpen(chatbotVisibility);
+        setChatbotReduced(false);
       }
     });
   }, [isLivechatEnabled]);
