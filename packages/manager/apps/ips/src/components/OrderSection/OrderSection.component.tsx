@@ -1,11 +1,16 @@
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
+import {
+  OdsDivider,
+  OdsText,
+  OdsSpinner,
+} from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 
 export const OrderSection: React.FC<React.PropsWithChildren<{
   title: string;
   description?: string;
-}>> = ({ title, description, children }) => (
+  isLoading?: boolean;
+}>> = ({ title, description, isLoading, children }) => (
   <section className="max-w-[784px] mb-8">
     <OdsText className="block mb-3" preset={ODS_TEXT_PRESET.heading2}>
       {title}
@@ -13,7 +18,13 @@ export const OrderSection: React.FC<React.PropsWithChildren<{
     <OdsText className="block mb-3" preset={ODS_TEXT_PRESET.paragraph}>
       {description}
     </OdsText>
-    {children}
+    {isLoading ? (
+      <div className="text-center">
+        <OdsSpinner size={ODS_SPINNER_SIZE.md} />
+      </div>
+    ) : (
+      children
+    )}
     <OdsDivider className="block mt-8" />
   </section>
 );

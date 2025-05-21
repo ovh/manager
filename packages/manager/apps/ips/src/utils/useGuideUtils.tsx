@@ -64,6 +64,12 @@ const URL_LIST: { [guideName: string]: GuideLinks } = {
     usFullLink:
       'https://support.us.ovhcloud.com/hc/en-us/articles/21134381741715-Concepts-Additional-IP-or-Floating-IP',
   }),
+  configureReverseDnsGuide: getGuideLinks({
+    link:
+      'vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047603',
+    usFullLink:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/360002181530-How-to-Configure-Reverse-DNS',
+  }),
   presentationLink: {
     DE: 'https://www.ovhcloud.com/de/network/additional-ip/',
     NL: 'https://www.ovhcloud.com/nl/network/additional-ip/',
