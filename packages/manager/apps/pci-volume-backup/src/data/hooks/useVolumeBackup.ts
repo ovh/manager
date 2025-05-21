@@ -10,14 +10,13 @@ import {
 } from '@/data/api/volumeBackup';
 import queryClient from '@/queryClient';
 
-export const backupsQueryKey = (projectId: string | undefined) => [
-  'pci-volume-backup',
-  `/cloud/project/${projectId}/aggregated/volumeBackup`,
+export const getBackupsQueryKey = (projectId: string | undefined) => [
+  ['pci-volume-backup', `/cloud/project/${projectId}/aggregated/volumeBackup`],
 ];
 
 export const useBackups = (projectId: string | undefined) =>
   useQuery({
-    queryKey: backupsQueryKey(projectId),
+    queryKey: getBackupsQueryKey(projectId),
     queryFn: getVolumeBackups(projectId as NonNullable<typeof projectId>),
     enabled: !!projectId,
   });
@@ -62,7 +61,7 @@ export const useRestoreVolume = ({
     onError,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: backupsQueryKey(projectId),
+        queryKey: getBackupsQueryKey(projectId),
       });
       onSuccess();
     },
@@ -96,7 +95,7 @@ export const useDeleteBackup = ({
     onError,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: backupsQueryKey(projectId),
+        queryKey: getBackupsQueryKey(projectId),
       });
       onSuccess();
     },
@@ -136,7 +135,7 @@ export const useCreateVolumeBackup = ({
     onError,
     onSuccess: async () => {
       queryClient.invalidateQueries({
-        queryKey: backupsQueryKey(projectId),
+        queryKey: getBackupsQueryKey(projectId),
       });
 
       onSuccess();

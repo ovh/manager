@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { TVolume } from '@ovh-ux/manager-pci-common';
+import { getVolumesQueryKey, TVolume } from '@ovh-ux/manager-pci-common';
 import queryClient from '@/queryClient';
 import {
   createVolumeFromBackup,
@@ -20,12 +20,17 @@ export type TCreateVolumeFromBackupArguments = {
   onError: (error: ApiError, newVolumeData: TNewVolumeFromBackupData) => void;
 };
 
+const getVolumeQueryKey = (
+  projectId: string | undefined,
+  volumeId?: string | null,
+) => ['project', projectId, 'volume', volumeId];
+
 export const useVolume = (
   projectId: string | undefined,
   volumeId?: string | null,
 ) =>
   useQuery({
-    queryKey: ['project', projectId, 'volume', volumeId],
+    queryKey: getVolumeQueryKey(projectId, volumeId),
     enabled: !!projectId && !!volumeId,
     queryFn: () =>
       getVolume(
@@ -50,7 +55,7 @@ export const useCreateVolumeFromBackup = ({
     onError,
     onSuccess: async (newVolume: TVolume) => {
       await queryClient.invalidateQueries({
-        queryKey: ['project', projectId, 'volumes'],
+        queryKey: getVolumesQueryKey(projectId),
       });
       onSuccess(newVolume);
     },
@@ -87,7 +92,7 @@ export const useDetachVolume = ({
     onError,
     onSuccess: (volume: TVolume) => {
       queryClient.setQueryData(
-        ['project', projectId, 'volumes'],
+        getVolumesQueryKey(projectId),
         (data: TVolume[]) =>
           data?.map((volumeItem) => {
             if (volumeItem.attachedTo && volumeItem.id === volumeId) {
@@ -96,13 +101,10 @@ export const useDetachVolume = ({
             return volumeItem;
           }),
       );
-      queryClient.setQueryData(
-        ['project', projectId, 'volume', volumeId],
-        () => ({
-          ...volume,
-          attachedTo: [],
-        }),
-      );
+      queryClient.setQueryData(getVolumeQueryKey(projectId, volumeId), () => ({
+        ...volume,
+        attachedTo: [],
+      }));
       onSuccess(volume);
     },
   });
