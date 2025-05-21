@@ -9,7 +9,7 @@ const LayoutPage = lazy(() => import('@/pages/layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing.page'));
 const RestorePage = lazy(() => import('@/pages/restore/Restore.page'));
 const DeletePage = lazy(() => import('@/pages/delete/Delete.page'));
-const OnboardingPage = lazy(() => import('@/pages/onboarding'));
+const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
 const CreateVolumePage = lazy(() =>
   import('@/pages/create-volume/CreateVolume.page'),
 );

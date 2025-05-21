@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import OnBoardingPage from './index';
+import OnBoardingPage from './Onboarding.page';
 import { createWrapper } from '@/wrapperRenders';
 import { useBackups } from '@/data/hooks/useVolumeBackup';
 import { TBackup } from '@/data/api/api.types';
