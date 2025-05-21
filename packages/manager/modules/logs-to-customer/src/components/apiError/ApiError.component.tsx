@@ -12,7 +12,7 @@ export default function ApiError({ error, onRetry, testId }: Readonly<IError>) {
   const { t } = useTranslation('error');
 
   return (
-    <div className="flex flex-col gap-4" data-testid={testId}>
+    <div className="flex flex-col gap-2" data-testid={testId}>
       <OdsMessage color="danger" isDismissible={false}>
         <span>
           {`${t('error_title')}: `}

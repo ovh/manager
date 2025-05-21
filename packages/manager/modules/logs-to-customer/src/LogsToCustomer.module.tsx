@@ -83,7 +83,7 @@ export function LogsToCustomerModule({
 
   if (isPending)
     return (
-      <div className="flex py-10">
+      <div className="flex py-8">
         <OdsSpinner size="md" data-testid="logKinds-spinner" />
       </div>
     );
@@ -114,8 +114,8 @@ export function LogsToCustomerModule({
     );
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         <OdsText preset="paragraph">
           {t('log_kind_selector_select_label')}
         </OdsText>

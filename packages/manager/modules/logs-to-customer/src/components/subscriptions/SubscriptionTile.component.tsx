@@ -14,8 +14,8 @@ const SubscriptionTile = ({ subscription }: SubscriptionTileProps) => {
   const { t } = useTranslation('logSubscription');
 
   return (
-    <OdsCard className="flex flex-col w-full h-fit p-6">
-      <div className="flex flex-col gap-6">
+    <OdsCard className="flex flex-col w-full h-fit p-4">
+      <div className="flex flex-col gap-4">
         <OdsText preset="heading-4">{t('log_subscription_tile_title')}</OdsText>
         <SubscriptionLogService
           subscription={subscription}
