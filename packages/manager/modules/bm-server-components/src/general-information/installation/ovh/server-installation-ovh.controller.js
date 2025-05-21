@@ -643,7 +643,7 @@ export default class ServerInstallationOvhCtrl {
         this.$scope.informations.raidController
       ) {
         realRemainingSize = remainingSize;
-      } else if (raidLevel) {
+      } else {
         switch (raidLevel) {
           case this.$scope.constants.warningRaid0:
             realRemainingSize = remainingSize;
