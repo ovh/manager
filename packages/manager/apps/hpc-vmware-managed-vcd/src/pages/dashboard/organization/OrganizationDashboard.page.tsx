@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ChangelogButton,
   HeadersProps,
@@ -18,7 +19,7 @@ import { VIRTUAL_DATACENTERS_LABEL } from './organizationDashboard.constants';
 
 export default function DashboardPage() {
   const { id } = useParams();
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation(['dashboard', NAMESPACES.ACTIONS]);
   const { data: vcdOrganisation } = useVcdOrganization({ id });
   const navigate = useNavigate();
 
@@ -61,6 +62,10 @@ export default function DashboardPage() {
     {
       id: subRoutes.virtualDatacenters,
       label: VIRTUAL_DATACENTERS_LABEL,
+    },
+    {
+      id: subRoutes.terminate,
+      label: t(`${NAMESPACES.ACTIONS}:terminate`),
     },
   ];
 
