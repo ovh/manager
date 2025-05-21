@@ -7,33 +7,38 @@ import path, { resolve } from 'path';
 const args = process.argv.slice(2);
 const [command, ...restArgs] = args;
 
-/**
- * Known CLI commands and their metadata.
- * @type {Record<string, {script: string, description: string}>}
- */
+// Known commands and metadata
 const knownCommands = {
   'routes-migrate': {
     script: 'json-to-component-route-migration',
     description: 'Migrate React Router config from JSON to JSX components',
+    help: `
+# Migrate routes and affecting files
+yarn manager-cli routes-migrate --app zimbra
+
+# Preview changes without affecting files
+yarn manager-cli routes-migrate --app zimbra --dry-run`
+  },
+  'tests-migrate': {
+    script: 'common-tests-config-migration',
+    description: 'Migrate test setup (unit, integration...) to centralized shared configuration (Vitest, Jest...)',
+    help: `
+# Migrate a unit test setup with Vitest (affect files)
+yarn manager-cli tests-migrate --app zimbra --testType unit
+
+# Migrate an integration test setup with Jest (affect files)
+yarn manager-cli tests-migrate --app zimbra --testType integration --framework jest
+
+# Preview changes without applying them (without affecting files)
+yarn manager-cli tests-migrate --app zimbra --testType unit --dry-run`
   },
 };
 
-/**
- * Absolute path to the app workspace directory (from monorepo root).
- * Adjusted dynamically via process.cwd().
- * @type {string}
- */
+const validTestTypes = ['unit', 'integration'];
+
 const basePath = path.resolve('../manager/apps');
 
-/**
- * Get all available app names under the `packages/manager/apps` directory.
- * Filters for directories only.
- *
- * @returns {string[]} Array of available app names
- */
 const getAvailableApps = () => {
-  console.log(`🧭 Scanning apps at: ${basePath}`);
-
   if (!existsSync(basePath)) {
     console.error(`❌ Directory not found: ${basePath}`);
     return [];
@@ -43,9 +48,7 @@ const getAvailableApps = () => {
     const appsDirContent = readdirSync(basePath);
     return appsDirContent.filter((name) => {
       const fullPath = resolve(basePath, name);
-      const isDir = statSync(fullPath).isDirectory();
-      console.debug(`📁 Found ${isDir ? 'directory' : 'file'}: ${name}`);
-      return isDir;
+      return statSync(fullPath).isDirectory();
     });
   } catch (error) {
     console.error(`❌ Error reading app directory at ${basePath}`);
@@ -54,40 +57,37 @@ const getAvailableApps = () => {
   }
 };
 
-/**
- * Display the general help output with commands and usage examples.
- * @returns {void}
- */
 const printHelp = () => {
   const commandsList = Object.entries(knownCommands)
-    .map(([cmd, meta]) => `  ${cmd.padEnd(16)} ${meta.description}`)
+    .map(([cmd, meta]) => `  ${cmd.padEnd(20)} ${meta.description}`)
+    .join('\n');
+  const commandsHelp = Object.entries(knownCommands)
+    .map(([_, meta]) => meta.help)
     .join('\n');
 
   console.log(`
 🛠️  manager-cli
 
 Usage:
-  yarn manager-cli <command> --app <app-name> [--dry-run]
+  yarn manager-cli <command> --app <app-name> [--testType <unit|integration>] [--framework <name>] [--dry-run]
 
 Options:
-  --list         List available app names
-  --help, -h     Show this help message
+  --list                  List available app names
+  --help, -h              Show this help message
 
 Commands:
 ${commandsList}
 
 Examples:
-  yarn manager-cli routes-migrate --app pci-ai-tools
-  yarn manager-cli routes-migrate --app pci-ai-tools --dry-run
+  ${commandsHelp}
+
+------------------------------------------------------------------------------------------
   yarn manager-cli --list
   yarn manager-cli --help
+------------------------------------------------------------------------------------------
 `);
 };
 
-/**
- * Print the list of available app names.
- * @returns {void}
- */
 const listApps = () => {
   const apps = getAvailableApps();
   if (apps.length === 0) {
@@ -100,18 +100,17 @@ const listApps = () => {
   console.log();
 };
 
-// Handle CLI options
+// Handle --help and --list
 if (args.includes('--help') || args.includes('-h')) {
   printHelp();
   process.exit(0);
 }
-
 if (args.includes('--list')) {
   listApps();
   process.exit(0);
 }
 
-// Validate top-level command
+// Validate command
 if (!command) {
   console.error('❌ No command provided.\n');
   printHelp();
@@ -125,7 +124,7 @@ if (!known) {
   process.exit(1);
 }
 
-// Parse flags
+// Validate app
 const hasDryRun = restArgs.includes('--dry-run');
 const appArgIndex = restArgs.findIndex((arg) => arg === '--app');
 const appName = appArgIndex !== -1 ? restArgs[appArgIndex + 1] : null;
@@ -136,21 +135,50 @@ if (!appName || appName.startsWith('--')) {
   process.exit(1);
 }
 
-// Validate app existence
 const availableApps = getAvailableApps();
 if (!availableApps.includes(appName)) {
-  console.error(`❌ App "${appName}" not found in ${basePath}\n`);
-  listApps();
+  console.error([
+    `❌ App "${appName}" not found in:`,
+    `   ${basePath}`,
+    '',
+    `📦 Available apps:`,
+    ...availableApps.map((a) => `  - ${a}`),
+    '',
+    `💡 Tip: Use "yarn manager-cli --list" to see all app names`,
+  ].join('\n'));
   process.exit(1);
 }
 
-// Build and run final command
+// Handle additional flags
 const extraFlags = [];
+
+const frameworkArgIndex = restArgs.findIndex((arg) => arg === '--framework');
+if (frameworkArgIndex !== -1 && restArgs[frameworkArgIndex + 1]) {
+  extraFlags.push('--framework', restArgs[frameworkArgIndex + 1]);
+}
+
 if (hasDryRun) extraFlags.push('--dry-run');
 
-/**
- * @type {string}
- */
+// Handle --testType for tests-migrate only
+let testType = null;
+const typeArgIndex = restArgs.findIndex((arg) => arg === '--testType');
+if (typeArgIndex !== -1 && restArgs[typeArgIndex + 1]) {
+  testType = restArgs[typeArgIndex + 1];
+}
+
+if (command === 'tests-migrate') {
+  if (!testType) {
+    console.error(`❌ Missing required flag: --testType <unit|integration>`);
+    process.exit(1);
+  }
+  if (!validTestTypes.includes(testType)) {
+    console.error(`❌ Invalid --testType "${testType}". Must be one of: ${validTestTypes.join(', ')}`);
+    process.exit(1);
+  }
+  extraFlags.push('--testType', testType);
+}
+
+// Final command
 const runCommand = `yarn run ${known.script} ${appName} ${extraFlags.join(' ')}`;
 
 try {

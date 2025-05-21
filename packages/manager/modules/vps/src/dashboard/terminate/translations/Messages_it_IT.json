@@ -1,8 +1,5 @@
 {
-  "vps_terminate_title": "Elimina il tuo VPS",
-  "vps_terminate_question": "vuoi davvero eliminare il servizio {{vps}}?",
-  "vps_terminate_cancel": "Annulla",
-  "vps_terminate_confirm": "Conferma",
+  "vps_terminate_service_type": "il mio VPS",
   "vps_terminate_success": "La richiesta di disattivazione del servizio è stata presa in carico. Riceverai un’email di conferma per convalidare l’operazione.",
   "vps_terminate_success_engagement": "La tua richiesta è stata presa in carico e verrà gestita nel minor tempo possibile.",
   "vps_terminate_error": "Si è verificato un errore durante la disattivazione del servizio.",
@@ -11,13 +8,10 @@
   "vps_terminate_option_cancel_terminate_at_expiration": "Annullare la disattivazione del servizio",
   "vps_terminate_option_terminate_now": "Disattivare il servizio immediatamente",
   "vps_terminate_option_terminate_now_description": "Riceverai un'email con la procedura di disattivazione di questo server.",
-  "vps_terminate_option_terminate_now_question": "Vuoi continuare?",
-  "vps_terminate_warning_data_deletion": "L'eliminazione di questo elemento comporta la cancellazione definitiva di tutti i dati ad esso associati.",
   "vps_terminate_warning_no_refund": "L’operazione di disattivazione non dà diritto ad alcun rimborso.",
   "vps_terminate_warning_manual_refund": "L’operazione di disattivazione non dà diritto ad alcun rimborso. Per maggiori informazioni, contatta il nostro supporto.",
   "vps_terminate_activate_delete_at_expiration_success": "La richiesta di disattivazione del servizio alla data di scadenza è stata presa in carico.",
   "vps_terminate_activate_delete_at_expiration_error": "Si è verificato un errore durante la richiesta di disattivazione del servizio alla data di scadenza:",
   "vps_terminate_deactivate_delete_at_expiration_success": "La richiesta di disattivazione di questo servizio alla data di scadenza è stata sospesa.",
-  "vps_terminate_deactivate_delete_at_expiration_error": "Si è verificato un errore durante la sospensione della richiesta di disattivazione del servizio alla data di scadenza:",
-  "vps_terminate_service_type": "il mio VPS"
+  "vps_terminate_deactivate_delete_at_expiration_error": "Si è verificato un errore durante la sospensione della richiesta di disattivazione del servizio alla data di scadenza:"
 }

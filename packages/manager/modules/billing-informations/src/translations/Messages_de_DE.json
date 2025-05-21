@@ -16,7 +16,7 @@
   "billing_informations_tile_field_label_state": "Status",
   "billing_informations_tile_engagement_status_engaged": "Endet am {{ date }}",
   "billing_informations_tile_engagement_status_engaged_renew": "Wird am {{ date }} verlängert",
-  "billing_informations_tile_engagement_status_engaged_expired": "Abgeschlossen am {{ date }}",
+  "billing_informations_tile_engagement_status_engaged_expired": "Geendet am {{ date }}",
   "billing_informations_tile_renew_state_resiliated": "Gekündigt",
   "billing_informations_tile_renew_state_resiliate_planned": "Kündigung geplant",
   "billing_informations_tile_renew_state_manual": "Manuelle Verlängerung",
