@@ -33,6 +33,21 @@ export const Routes: any = [
             pageType: PageType.listing,
           },
         },
+        children: [
+          {
+            id: 'listing-terminate',
+            path: `${subRoutes.terminate}/:id`,
+            ...lazyRouteConfig(() =>
+              import('@/pages/terminate/TerminateOrganization.page'),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'terminate',
+                pageType: PageType.popup,
+              },
+            },
+          },
+        ],
       },
       {
         path: urls.dashboard,
