@@ -29,6 +29,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...(actual as Record<string, unknown>),
     useHref: vi.fn(() => '/test-edit-url'),
+    useNavigate: () => ({ navigate: vi.fn() }),
   };
 });
 
