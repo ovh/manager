@@ -4,7 +4,7 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 
 const meta: Meta = {
-  title: 'Core/manager-react-components/Components/Step',
+  title: 'Manager React Components/Components/Step',
   component: StepComponent,
   parameters: {
     docs: {

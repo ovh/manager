@@ -2,7 +2,6 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import { render } from '../../utils/test.provider';
 import { Region, RegionProps } from './region.component';
-import { DemoRegion, DemoDatacenter } from './region.stories';
 import translatedRegion from './translations/region/Messages_fr_FR.json';
 
 const renderComponent = (props: RegionProps) => {
@@ -12,11 +11,12 @@ const renderComponent = (props: RegionProps) => {
 describe('Region component', () => {
   it('renders region correctly for region key', async () => {
     renderComponent({
-      ...DemoRegion.args,
+      mode: 'region',
+      name: 'ca-east-bhs',
     });
     const regionElement = screen.getByText(
       translatedRegion[
-        `region_${DemoRegion.args.name}` as keyof typeof translatedRegion
+        `region_${'ca-east-bhs'}` as keyof typeof translatedRegion
       ],
     );
     expect(regionElement).toBeVisible();
@@ -24,7 +24,9 @@ describe('Region component', () => {
 
   it('renders region correctly for datacenter key', async () => {
     renderComponent({
-      ...DemoDatacenter.args,
+      mode: 'datacenter',
+      name: 'RBX',
+      micro: 2,
     });
     const regionElement = screen.getByText('Roubaix (RBX2) - France');
     expect(regionElement).toBeVisible();

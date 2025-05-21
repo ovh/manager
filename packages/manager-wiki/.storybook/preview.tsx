@@ -8,7 +8,7 @@ import '@ovhcloud/ods-themes/default';
 
 import i18n from './i18n';
 import TechnicalInformation from './technical-information.mdx';
-import { normalizeLanguageCode } from '../src/utils/translation-helper';
+import { normalizeLanguageCode } from '../../manager-react-components/src/utils/translation-helper';
 
 const mockQueryClient = new QueryClient({
   defaultOptions: {
@@ -42,15 +42,24 @@ const preview: Preview = {
       storySort: {
         order: [
           'Introduction',
-          'Core',
+          'Manager React Components',
           [
-            'manager-react-components',
-            ['Introduction', "What's new", 'Changelog'],
+            'Introduction',
+            "What's new",
+            'Changelog',
+            'components',
+            'Content',
+            'Content',
+            'Navigation',
+            'Templates',
+            'Typography',
+            'Hooks',
             '*',
-            ['Overview', 'Changelog'],
           ],
+          'Core',
+          ['*', ['Overview', 'Changelog', '*']],
           'Features',
-          ['*', ['Overview', 'Changelog'], '*'],
+          ['*', ['Overview', 'Changelog', '*']],
         ],
       },
       showPanel: true,
@@ -94,14 +103,18 @@ const withI18next = (Story, context) => {
     };
   }, [locale]);
 
-
   useEffect(() => {
     const handleBrowserLanguageChange = () => {
       const normalizedLang = normalizeLanguageCode(navigator.language);
       console.info('Browser language changed:', normalizedLang);
-      i18n.changeLanguage(normalizedLang).catch((err) =>
-        console.error('Failed to change language on system languagechange:', err)
-      );
+      i18n
+        .changeLanguage(normalizedLang)
+        .catch((err) =>
+          console.error(
+            'Failed to change language on system languagechange:',
+            err,
+          ),
+        );
     };
 
     window.addEventListener('languagechange', handleBrowserLanguageChange);

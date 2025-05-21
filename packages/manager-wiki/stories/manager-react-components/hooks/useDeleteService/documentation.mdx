@@ -1,10 +1,7 @@
 import { Meta } from '@storybook/blocks';
-import {
-    StorybookHeading,
-} from '../../../../components/';
+import { StorybookHeading } from '../../../../components/';
 
-<Meta title="Core/manager-react-components/Hooks/useDeleteService" />
-
+<Meta title="Manager React Components/Hooks/useDeleteService" />
 <StorybookHeading label="Overview" level={2} />
 
 A React Query mutation hook that handles service deletion.
@@ -14,9 +11,11 @@ A React Query mutation hook that handles service deletion.
 The hook uses two API endpoints:
 
 1. Get Service ID:
+
    ```typescript
    GET /services?resourceName={resourceName}
    ```
+
    - Method: `GET`
    - Query Parameters:
      - `resourceName`: Filter on a specific service family
@@ -24,7 +23,7 @@ The hook uses two API endpoints:
 
 2. Terminate Service:
    ```typescript
-   POST /services/{serviceId}/terminate
+   POST / services / { serviceId } / terminate;
    ```
    - Method: `POST`
    - Path Parameters:
@@ -47,6 +46,7 @@ type UseDeleteServiceParams = {
 <StorybookHeading label="Returns" level={2} />
 
 Returns an object containing:
+
 - `terminateService`: Function to trigger service deletion
 - `isLoading`: Loading state
 - `isError`: Error state

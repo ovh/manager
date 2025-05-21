@@ -2,12 +2,14 @@ import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { Region } from '@ovh-ux/manager-react-components';
 
-export const ManagerRegion = {
-  title: 'Core/manager-react-components/Components/Region',
+const ManagerRegion = {
+  title: 'Manager React Components/Components/Region',
   component: Region,
 } as Meta;
 
 type Story = StoryObj<typeof ManagerRegion>;
+
+export default ManagerRegion;
 
 export const DemoRegion: Story = {
   args: {
