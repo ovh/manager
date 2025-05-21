@@ -10,6 +10,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
 import { TVolume } from '@ovh-ux/manager-pci-common';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { TRegion, TVolumePricing } from '@/data/api/api.types';
 import PriceEstimate from './PriceEstimate.component';
 import BadgeRegionType from './BadgeRegionType.component';
@@ -232,11 +233,11 @@ export default function VolumeEdit({
       <div className="flex mt-8 gap-4">
         <OdsButton
           type="button"
-          variant="outline"
           onClick={onCancel}
           label={t(
             'pci_projects_project_storages_blocks_block_volume-edit_cancel_label',
           )}
+          variant={ODS_BUTTON_VARIANT.ghost}
         />
         <OdsButton type="submit" label={submitLabel} isDisabled={hasError} />
       </div>
