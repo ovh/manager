@@ -98,9 +98,7 @@ export default function VrackNetworkDatagridSubDatagrid({
                   />
                   {isDeleting && (
                     <OdsTooltip triggerId={buttonId}>
-                      <OdsText>
-                        {t('managed_vcd_dashboard_vrack_network_deleting')}
-                      </OdsText>
+                      {t('managed_vcd_dashboard_vrack_network_deleting')}
                     </OdsTooltip>
                   )}
                 </div>
