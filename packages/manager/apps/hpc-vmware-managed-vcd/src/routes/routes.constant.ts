@@ -17,6 +17,7 @@ export const subRoutes = {
   addNetwork: 'add-network',
   deleteSegment: 'delete-segment',
   deleteNetwork: 'delete-network',
+  terminate: 'terminate',
 } as const;
 
 export const urls = {

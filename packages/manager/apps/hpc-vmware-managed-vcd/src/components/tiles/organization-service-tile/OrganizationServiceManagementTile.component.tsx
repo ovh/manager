@@ -21,7 +21,6 @@ export default function OrganizationServiceManagementTile() {
           },
           {
             id: 'serviceCancellation',
-            label: t('managed_vcd_dashboard_service_cancellation'),
             value: <CancellationTileItem />,
           },
           {
