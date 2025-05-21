@@ -30761,6 +30761,11 @@ victory-vendor@^36.6.8:
     d3-time "^3.0.0"
     d3-timer "^3.0.1"
 
+vite-bundle-analyzer@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/vite-bundle-analyzer/-/vite-bundle-analyzer-0.21.0.tgz#a5f566cc8f93b05795dab7d4fa393b5eaf4c8eaa"
+  integrity sha512-xi3/0EiLkbgeJmAApT8HT085twER9vAD7Dx9RW3pIeCKJVYqFKE/wL2jL9uFDeRlUmCvcsxFOHk8k0z+O0VFlA==
+
 vite-node@1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/vite-node/-/vite-node-1.6.1.tgz#fff3ef309296ea03ceaa6ca4bb660922f5416c57"
