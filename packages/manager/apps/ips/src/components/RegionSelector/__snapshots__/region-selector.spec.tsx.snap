@@ -40,6 +40,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-par"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -72,6 +74,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-gra"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -104,6 +108,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-rbx"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -136,6 +142,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-sbg"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -168,6 +176,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-lim"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -200,6 +210,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-central-waw"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -232,6 +244,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-eri"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -264,6 +278,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-east-vin"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -296,6 +312,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-west-hil"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -328,6 +346,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="ca-east-bhs"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -360,6 +380,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="ap-southeast-sgp"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -392,6 +414,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="ap-southeast-syd"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -424,6 +448,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-rbx-snc"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -456,6 +482,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-sbg-snc"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -485,6 +513,7 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-popover
+          class="max-w-sm"
           trigger-id="ca-east-tor"
           with-arrow="true"
         >
@@ -494,6 +523,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] opacity-40"
           color="neutral"
           id="ca-east-tor"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -526,6 +557,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="ap-south-mum"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -558,6 +591,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="labeu-west-1-preprod"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -590,6 +625,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="labeu-west-1-dev-2"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -622,6 +659,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="labeu-west-1-dev-1"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -654,6 +693,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-lz-bru"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -686,6 +727,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-lz-mad"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -718,6 +761,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-gra-snc"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -750,6 +795,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-east-lz-dal"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -782,6 +829,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-west-lz-lax"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -814,6 +863,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-east-lz-chi"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -846,6 +897,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-east-lz-nyc"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -878,6 +931,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-east-lz-mia"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -910,6 +965,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-west-lz-pao"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -942,6 +999,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-west-lz-den"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -974,6 +1033,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-east-lz-atl"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1006,6 +1067,8 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-lz-mrs"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1088,6 +1151,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-par"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1120,6 +1185,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer region_selector_selected w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-gra"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1152,6 +1219,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-rbx"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1184,6 +1253,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-sbg"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1216,6 +1287,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-lim"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1248,6 +1321,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-central-waw"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1280,6 +1355,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-eri"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1312,6 +1389,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-east-vin"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1344,6 +1423,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-west-hil"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1376,6 +1457,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="ca-east-bhs"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1408,6 +1491,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="ap-southeast-sgp"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1440,6 +1525,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="ap-southeast-syd"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1472,6 +1559,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-rbx-snc"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1504,6 +1593,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-sbg-snc"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1536,6 +1627,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="ca-east-tor"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1568,6 +1661,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="ap-south-mum"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1600,6 +1695,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="labeu-west-1-preprod"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1632,6 +1729,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="labeu-west-1-dev-2"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1664,6 +1763,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="labeu-west-1-dev-1"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1696,6 +1797,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-lz-bru"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1728,6 +1831,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-lz-mad"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1760,6 +1865,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-gra-snc"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1792,6 +1899,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-east-lz-dal"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1824,6 +1933,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-west-lz-lax"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1856,6 +1967,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-east-lz-chi"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1888,6 +2001,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-east-lz-nyc"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1920,6 +2035,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-east-lz-mia"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1952,6 +2069,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-west-lz-pao"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -1984,6 +2103,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-west-lz-den"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -2016,6 +2137,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="us-east-lz-atl"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -2048,6 +2171,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
           class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
           color="neutral"
           id="eu-west-lz-mrs"
+          tab-index="0"
+          tabindex="0"
         >
           <span
             class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"

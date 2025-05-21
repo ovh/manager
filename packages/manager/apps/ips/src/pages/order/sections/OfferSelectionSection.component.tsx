@@ -127,42 +127,37 @@ export const OfferSelectionSection: React.FC = () => {
                 setPricingMode(ipBlockPricingList[0].pricingMode);
               }
             }}
+            isLoading={isLoading}
           >
-            {isLoading ? (
-              <div className="text-center">
-                <OdsSpinner size={ODS_SPINNER_SIZE.sm} />
-              </div>
-            ) : (
-              <OdsSelect
-                key={ipBlockPricingList.reduce(
-                  (result, { value }) => result + value,
-                  '',
-                )}
-                name="ip_block_plancode_select"
-                value={selectedPlanCode}
-                onOdsChange={(event) => {
-                  if (
-                    ipBlockPricingList.some(
-                      (pricing) => pricing.value === event.target.value,
-                    )
-                  ) {
-                    setSelectedOffer(IpOffer.blockAdditionalIp);
-                    setSelectedPlanCode(event.target.value as string);
-                    setPricingMode(
-                      ipBlockPricingList.find(
-                        (p) => p.value === event.target.value,
-                      )?.pricingMode || DEFAULT_PRICING_MODE,
-                    );
-                  }
-                }}
-              >
-                {ipBlockPricingList.map(({ label, value }) => (
-                  <option key={value} value={value}>
-                    {label}
-                  </option>
-                ))}
-              </OdsSelect>
-            )}
+            <OdsSelect
+              key={ipBlockPricingList.reduce(
+                (result, { value }) => result + value,
+                '',
+              )}
+              name="ip_block_plancode_select"
+              value={selectedPlanCode}
+              onOdsChange={(event) => {
+                if (
+                  ipBlockPricingList.some(
+                    (pricing) => pricing.value === event.target.value,
+                  )
+                ) {
+                  setSelectedOffer(IpOffer.blockAdditionalIp);
+                  setSelectedPlanCode(event.target.value as string);
+                  setPricingMode(
+                    ipBlockPricingList.find(
+                      (p) => p.value === event.target.value,
+                    )?.pricingMode || DEFAULT_PRICING_MODE,
+                  );
+                }
+              }}
+            >
+              {ipBlockPricingList.map(({ label, value }) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </OdsSelect>
           </OptionCard>
         )}
       </div>
