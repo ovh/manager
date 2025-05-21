@@ -33,7 +33,7 @@ export const IpGroupDatagrid = ({
   row,
   parentHeaders,
 }: {
-  row: Row<string>;
+  row: Row<{ ip: string }>;
   parentHeaders: React.MutableRefObject<Record<string, HTMLTableCellElement>>;
 }) => {
   const [paginatedIpList, setPaginatedIpList] = useState<string[]>([]);
@@ -45,21 +45,21 @@ export const IpGroupDatagrid = ({
   const {
     ipsReverse: ipReverseList,
     isLoading: isIpReverseLoading,
-  } = useGetIpReverse({ ip: row.original });
+  } = useGetIpReverse({ ip: row.original.ip });
   const { ipDetails, isLoading: isIpDetailsLoading } = useGetIpdetails({
-    ip: row.original,
+    ip: row.original.ip,
   });
   const { ipMitigation, isLoading: isMitigationLoading } = useGetIpMitigation({
-    ip: row.original,
+    ip: row.original.ip,
   });
   const {
     ipEdgeFirewall,
     isLoading: isEdgeFirewallLoading,
-  } = useGetIpEdgeFirewall({ ip: row.original });
+  } = useGetIpEdgeFirewall({ ip: row.original.ip });
   const {
     ipGameFirewall,
     isLoading: isGameFirewallLoading,
-  } = useGetIpGameFirewall({ ip: row.original });
+  } = useGetIpGameFirewall({ ip: row.original.ip });
   const { vmacsWithIp, isLoading: isVmacsLoading } = useGetIpVmacWithIp({
     serviceName: ipDetails?.routedTo?.serviceName,
     enabled: !!ipDetails,
@@ -77,49 +77,39 @@ export const IpGroupDatagrid = ({
     {
       id: 'ip-type',
       label: t('listingColumnsIpType'),
-      cell: () => {
-        return <IpType ip={row.original}></IpType>;
-      },
+      cell: () => <IpType ip={row.original.ip} />,
       size: parentHeaders.current['ip-type'].clientWidth,
     },
     {
       id: 'ip-alerts',
       label: t('listingColumnsIpAlerts'),
-      cell: () => {
-        return <IpAlerts ip={row.original}></IpAlerts>;
-      },
+      cell: () => <IpAlerts ip={row.original.ip} />,
       size: parentHeaders.current['ip-alerts'].clientWidth,
     },
     {
       id: 'ip-region',
       label: t('listingColumnsIpRegion'),
-      cell: () => {
-        return <IpRegion ip={row.original}></IpRegion>;
-      },
+      cell: () => <IpRegion ip={row.original.ip} />,
       size: parentHeaders.current['ip-region'].clientWidth,
     },
     {
       id: 'ip-country',
       label: t('listingColumnsIpCountry'),
-      cell: () => {
-        return <IpCountry ip={row.original}></IpCountry>;
-      },
+      cell: () => <IpCountry ip={row.original.ip} />,
       size: parentHeaders.current['ip-country'].clientWidth,
     },
     {
       id: 'ip-attached-service',
       label: t('listingColumnsIpAttachedService'),
-      cell: () => {
-        return <IpAttachedService ip={row.original}></IpAttachedService>;
-      },
+      cell: () => <IpAttachedService ip={row.original.ip} />,
       size: parentHeaders.current['ip-attached-service'].clientWidth,
     },
     {
       id: 'ip-reverse',
       label: t('listingColumnsIpReverseDNS'),
-      cell: (ip: string) => {
-        return <IpReverse ip={ip} parentIpGroup={row.original}></IpReverse>;
-      },
+      cell: (ip: string) => (
+        <IpReverse ip={ip} parentIpGroup={row.original.ip} />
+      ),
       size: parentHeaders.current['ip-reverse'].clientWidth,
     },
     {
@@ -133,48 +123,42 @@ export const IpGroupDatagrid = ({
     {
       id: 'ip-ddos',
       label: t('listingColumnsIpAntiDDos'),
-      cell: (ip: string) => {
-        return (
-          <IpAntiDdosDisplay
-            ipMitigation={ipMitigation?.find(
-              (mitigation) => mitigation.ipOnMitigation === ip,
-            )}
-            enabled={isAntiDdosEnabled(ipDetails)}
-            ip={ip}
-          ></IpAntiDdosDisplay>
-        );
-      },
+      cell: (ip: string) => (
+        <IpAntiDdosDisplay
+          ipMitigation={ipMitigation?.find(
+            (mitigation) => mitigation.ipOnMitigation === ip,
+          )}
+          enabled={isAntiDdosEnabled(ipDetails)}
+          ip={ip}
+        />
+      ),
       size: parentHeaders.current['ip-ddos'].clientWidth,
     },
     {
       id: 'ip-edge-firewall',
       label: t('listingColumnsIpEdgeFirewall'),
-      cell: (ip: string) => {
-        return (
-          <IpEdgeFirewallDisplay
-            ip={ip}
-            ipEdgeFirewall={ipEdgeFirewall?.find(
-              (firewall) => firewall.ipOnFirewall === ip,
-            )}
-          />
-        );
-      },
+      cell: (ip: string) => (
+        <IpEdgeFirewallDisplay
+          ip={ip}
+          ipEdgeFirewall={ipEdgeFirewall?.find(
+            (firewall) => firewall.ipOnFirewall === ip,
+          )}
+        />
+      ),
       size: parentHeaders.current['ip-edge-firewall'].clientWidth,
     },
     {
       id: 'ip-game-firewall',
       label: t('listingColumnsIpGameFirewall'),
-      cell: (ip: string) => {
-        return (
-          <IpGameFirewallDisplay
-            ip={ip}
-            ipGameFirewall={ipGameFirewall?.find(
-              (firewall) => firewall.ipOnGame === ip,
-            )}
-            enabled={isGameFirewallEnabled(ipDetails)}
-          />
-        );
-      },
+      cell: (ip: string) => (
+        <IpGameFirewallDisplay
+          ip={ip}
+          ipGameFirewall={ipGameFirewall?.find(
+            (firewall) => firewall.ipOnGame === ip,
+          )}
+          enabled={isGameFirewallEnabled(ipDetails)}
+        />
+      ),
       size: parentHeaders.current['ip-game-firewall'].clientWidth,
     },
     {
@@ -210,8 +194,8 @@ export const IpGroupDatagrid = ({
       totalItems={ipReverseList?.length}
       hasNextPage={numberOfPageDisplayed * pageSize < ipReverseList?.length}
       onFetchNextPage={loadMoreIps}
-      hideHeader={true}
-      tableLayoutFixed={true}
+      hideHeader
+      tableLayoutFixed
       isLoading={isDatagridLoading}
       numberOfLoadingRows={1}
     />

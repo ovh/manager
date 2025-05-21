@@ -1,18 +1,18 @@
 import React from 'react';
 import { describe, it, expect } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import OpenOrganisationsModal from './OpenOrganisationsModal.page';
+import OpenOrganisationsModal from './OrganisationModal.page';
 
 const queryClient = new QueryClient();
 
 /** RENDER */
-const renderComponent = (isOpen: boolean) => {
+const renderComponent = () => {
   return render(
     <QueryClientProvider client={queryClient}>
       <MemoryRouter>
-        <OpenOrganisationsModal isOpen={isOpen}></OpenOrganisationsModal>
+        <OpenOrganisationsModal />
       </MemoryRouter>
     </QueryClientProvider>,
   );
@@ -20,6 +20,6 @@ const renderComponent = (isOpen: boolean) => {
 
 describe('Organisation Modal component', () => {
   it('should render modal when isOpen is true', () => {
-    expect(renderComponent(true).getByTestId('modal-title')).not.toBeNull();
+    expect(renderComponent().getByTestId('modal-title')).not.toBeNull();
   });
 });

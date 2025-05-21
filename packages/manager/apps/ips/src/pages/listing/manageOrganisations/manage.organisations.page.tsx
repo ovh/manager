@@ -27,7 +27,7 @@ export default function ManageOrganisationsPage() {
           className="mb-5 mr-2"
           variant={ODS_BUTTON_VARIANT.outline}
           icon={ODS_ICON_NAME.plus}
-          onClick={() => navigate(urls.openOrganisationsModel)}
+          onClick={() => navigate(urls.openOrganisationsModal)}
           label={t('manageOrganisationsOrderButtonLabel')}
         />
       </div>
