@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.36.0...@ovh-ux/manager-dedicated@20.37.0) (2025-05-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4009] ([#17081](https://github.com/ovh/manager/issues/17081)) ([0bee0ef](https://github.com/ovh/manager/commit/0bee0ef52a541f5ece916ef1d539ed0a9d7471c2)), closes [#MANAGER-18304](https://github.com/ovh/manager/issues/MANAGER-18304)
+
+
+### Features
+
+* **dedicated:** update ftc us legal wordings ([#16669](https://github.com/ovh/manager/issues/16669)) ([e31edb6](https://github.com/ovh/manager/commit/e31edb60eb70953550186d05a8ec3c9c2b7ae371)), closes [#MANAGER-17653](https://github.com/ovh/manager/issues/MANAGER-17653)
+
+
+
+
+
 # [20.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.35.5...@ovh-ux/manager-dedicated@20.36.0) (2025-05-19)
 
 

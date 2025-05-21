@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.24.0...@ovh-ux/manager-iplb@1.25.0) (2025-05-21)
+
+
+### Features
+
+* **dedicated:** reworded load balancer delete action in listing page ([#17160](https://github.com/ovh/manager/issues/17160)) ([7d58643](https://github.com/ovh/manager/commit/7d586435cd9e11536cde7a2997466447de041343)), closes [#MANAGER-18364](https://github.com/ovh/manager/issues/MANAGER-18364)
+
+
+
+
+
 # [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.23.0...@ovh-ux/manager-iplb@1.24.0) (2025-05-15)
 
 
