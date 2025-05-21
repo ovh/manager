@@ -8,7 +8,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMessageContext } from '@/context/Message.context';
 
@@ -19,6 +19,13 @@ export default function TerminateOrganization() {
   const { t } = useTranslation('terminate');
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const { addSuccess } = useMessageContext();
+  const {
+    state: { messageOptions },
+  } = useLocation();
+
+  const closeModal = () => {
+    navigate('..');
+  };
 
   const onSuccess = () => {
     trackPage({
@@ -30,9 +37,9 @@ export default function TerminateOrganization() {
         ovhSubsidiary === 'US'
           ? t('terminate_managed_vcd_ftc_success')
           : t('terminate_managed_vcd_success'),
-      includedSubRoutes: [id],
+      ...messageOptions,
     });
-    navigate('..');
+    closeModal();
   };
   const onError = () => {
     trackPage({
@@ -52,7 +59,7 @@ export default function TerminateOrganization() {
       actionType: 'exit',
       actions: ['delete_managed-vcd', 'cancel'],
     });
-    navigate('..');
+    closeModal();
   };
 
   const confirmHandler = () => {
