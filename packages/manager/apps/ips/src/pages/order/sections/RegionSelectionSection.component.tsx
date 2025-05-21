@@ -43,14 +43,14 @@ export const RegionSelectionSection: React.FC = () => {
   }
 
   return (
-    <OrderSection title={t('region_selection_title')}>
-      {(isError || isRegionAvailabilityError) && (
+    <OrderSection
+      isLoading={isLoading || isRegionAvailabilityLoading}
+      title={t('region_selection_title')}
+    >
+      {isError || isRegionAvailabilityError ? (
         <OdsMessage color={ODS_MESSAGE_COLOR.critical}>
           {t('error_message', { error: error || regionAvailabilityError })}
         </OdsMessage>
-      )}
-      {isLoading || isRegionAvailabilityLoading ? (
-        <OdsSpinner />
       ) : (
         <React.Suspense fallback={<OdsSpinner />}>
           <RegionSelector
