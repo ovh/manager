@@ -7,8 +7,9 @@ export function useDatagridColumnUrl({
   parent,
   props,
 }: OngoingOperationDatagridDomainProps) {
-  const value: string = props[parent];
+  let value: string = props.domain || props.zone;
   const { data: managerUrl } = useNavigationGetUrl(['web', '', {}]);
+  const { data: allDom } = useNavigationGetUrl(['web-domains', '', {}]);
   let url = `${managerUrl}/${ParentEnum.DOMAIN}/${value}/information`;
 
   if (parent === ParentEnum.ZONE) {
@@ -16,6 +17,11 @@ export function useDatagridColumnUrl({
     if (!serviceInfo) {
       url = `${managerUrl}/${parent}/${value}`;
     }
+  }
+
+  if (parent === ParentEnum.ALLDOM) {
+    value = props.domain;
+    url = `${allDom}/alldom/${value}`;
   }
 
   return { url, value };
