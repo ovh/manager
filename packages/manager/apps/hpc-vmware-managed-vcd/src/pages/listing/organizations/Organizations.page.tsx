@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
+import { Outlet, useHref } from 'react-router-dom';
 
 import {
   DatagridColumn,
@@ -21,6 +21,8 @@ import { subRoutes, urls } from '@/routes/routes.constant';
 import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
+import OrganizationActions from './OrganizationActions.component';
+import { MessageList } from '@/components/message/MessageList.component';
 
 const organizationMapper = (vdcOrgs?: VCDOrganization[]) => {
   return vdcOrgs?.map(({ id, currentState }) => ({ ...currentState, id }));
@@ -120,20 +122,28 @@ export default function Listing() {
       isFilterable: false,
       type: FilterTypeCategories.String,
     },
+    {
+      id: 'actions',
+      cell: OrganizationActions,
+    },
   ] as DatagridColumn<unknown>[];
 
   return (
-    <DatagridContainer
-      title={MANAGED_VCD_LABEL}
-      queryKey={vcdOrganizationListQueryKey}
-      route={{
-        api: VCD_ORGANIZATION_ROUTE,
-        onboarding: urls.onboarding,
-      }}
-      columns={columns}
-      columnsSearchable="fullName"
-      mapper={organizationMapper}
-      withFilter
-    />
+    <>
+      <MessageList className="px-10" />
+      <DatagridContainer
+        title={MANAGED_VCD_LABEL}
+        queryKey={vcdOrganizationListQueryKey}
+        route={{
+          api: VCD_ORGANIZATION_ROUTE,
+          onboarding: urls.onboarding,
+        }}
+        columns={columns}
+        columnsSearchable="fullName"
+        mapper={organizationMapper}
+        withFilter
+      />
+      <Outlet />
+    </>
   );
 }

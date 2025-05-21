@@ -9,15 +9,18 @@ import React, {
   useState,
 } from 'react';
 
-export type MessageType = {
-  uid: number;
-  content: ReactNode;
-  type: OdsMessageColor;
+export type MessageOptions = {
   isDismissible?: boolean;
   includedSubRoutes?: string[];
   excludedSubRoutes?: string[];
   duration?: number;
 };
+
+export type MessageType = {
+  uid: number;
+  content: ReactNode;
+  type: OdsMessageColor;
+} & MessageOptions;
 
 type AddGenericMessageProps = Omit<MessageType, 'uid'>;
 type AddMessageProps = Omit<AddGenericMessageProps, 'type'>;
