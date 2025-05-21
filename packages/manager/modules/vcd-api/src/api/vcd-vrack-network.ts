@@ -49,3 +49,20 @@ export const updateNetworkVrackSegment = ({
       data: payload,
     },
   );
+
+export const deleteVrackSegment = ({
+  id,
+  vcdId,
+  vrackSegmentId,
+}: {
+  id: string;
+  vcdId: string;
+  vrackSegmentId: string;
+}): Promise<ApiResponse<VrackSegment[]>> =>
+  apiClient.v2.delete(
+    getVcdDatacentreVrackNetworkSegmentRoute({
+      id,
+      vcdId,
+      vrackSegmentId,
+    }),
+  );

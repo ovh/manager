@@ -1,0 +1,1 @@
+export const VRACK_SEGMENTS_MIN_LENGTH = 5;
