@@ -1,12 +1,23 @@
 import React from 'react';
-import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_CARD_COLOR,
+  ODS_TEXT_PRESET,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
+import {
+  OdsCard,
+  OdsDivider,
+  OdsText,
+  OdsSpinner,
+} from '@ovhcloud/ods-components/react';
+import { handleClick } from '@ovh-ux/manager-react-components';
 import './option-card.scss';
 
 export type OptionCardProps = React.PropsWithChildren<{
   className?: string;
   isDisabled?: boolean;
   isSelected?: boolean;
+  isLoading?: boolean;
   onClick?: () => void;
   title: React.ReactNode;
   subtitle?: React.ReactNode;
@@ -17,6 +28,7 @@ export const OptionCard: React.FC<OptionCardProps> = ({
   className,
   isDisabled,
   isSelected,
+  isLoading,
   onClick,
   title,
   description,
@@ -29,8 +41,9 @@ export const OptionCard: React.FC<OptionCardProps> = ({
   const borderStyle = isSelected ? 'option_card_selected' : 'm-[1px]';
   return (
     <OdsCard
+      tabIndex={0}
       className={`flex flex-col p-3 transition-shadow ${stateStyle} ${borderStyle} ${className}`}
-      onClick={() => !isDisabled && onClick?.()}
+      {...handleClick(() => !isDisabled && onClick?.())}
       color={ODS_CARD_COLOR.neutral}
     >
       <OdsText
@@ -48,10 +61,22 @@ export const OptionCard: React.FC<OptionCardProps> = ({
         </OdsText>
       )}
       {description && (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{description}</OdsText>
+        <OdsText
+          className="flex justify-center text-center"
+          preset={ODS_TEXT_PRESET.paragraph}
+        >
+          {description}
+        </OdsText>
       )}
       {children && <OdsDivider className="block -ml-3 -mr-3 mt-auto mb-2" />}
-      {children}
+      <OdsDivider className="block -ml-3 -mr-3 mt-auto mb-2" />
+      {isLoading ? (
+        <div className="text-center">
+          <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
+        </div>
+      ) : (
+        children
+      )}
     </OdsCard>
   );
 };
