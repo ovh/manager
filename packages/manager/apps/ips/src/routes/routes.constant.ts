@@ -3,8 +3,14 @@ export const subRoutes = {
   onboarding: 'onboarding',
   order: 'order',
   byoip: 'byoip',
+  configureReverseDns: 'configure-reverse-dns',
   manageOrganisations: 'manage-organisations',
   openOrganisations: 'open',
+};
+
+export const urlDynamicParts = {
+  id: ':id',
+  organisationId: ':organisationId',
 };
 
 export const urls = {
@@ -14,5 +20,6 @@ export const urls = {
   order: `${subRoutes.root}/${subRoutes.order}`,
   byoip: `${subRoutes.root}/${subRoutes.byoip}`,
   manageOrganisations: `${subRoutes.root}/${subRoutes.manageOrganisations}`,
-  openOrganisationsModel: `${subRoutes.root}/${subRoutes.manageOrganisations}/:organisationId/${subRoutes.openOrganisations}`,
+  openOrganisationsModal: `${subRoutes.root}/${subRoutes.manageOrganisations}/${urlDynamicParts.organisationId}/${subRoutes.openOrganisations}`,
+  configureReverseDns: `${subRoutes.root}/${subRoutes.configureReverseDns}/${urlDynamicParts.id}`,
 };
