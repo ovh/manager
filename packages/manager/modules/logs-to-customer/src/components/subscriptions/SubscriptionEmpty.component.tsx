@@ -43,8 +43,8 @@ const SubscriptionEmpty = () => {
   const { trackClick } = useOvhTracking();
 
   return (
-    <OdsCard className="flex flex-col p-6">
-      <div className="flex flex-col gap-6">
+    <OdsCard className="flex flex-col p-4">
+      <div className="flex flex-col gap-4">
         <OdsText preset="heading-4">
           {t('log_subscription_empty_tile_title')}
         </OdsText>
