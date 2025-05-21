@@ -26,5 +26,6 @@
   "ai_endpoints_token_description_placeholder": "Dodaj opis",
   "ai_endpoints_token_expiration_date": "Ustaw datę wygaśnięcia klucza API",
   "ai_endpoints_token_expiration_date_update": "Zresetuj datę wygaśnięcia klucza API",
-  "ai_endpoints_token_discovery_mod": "Twój projekt Public Cloud jest aktualnie w trybie \"Discover\". Aby korzystać z AI Endpoints, należy aktywować projekt, dodając do konta sposób płatności, który pozwoli Ci utworzyć pierwszy klucz API i rozpocząć korzystanie z usługi."
+  "ai_endpoints_token_discovery_mod": "Twój projekt Public Cloud jest aktualnie w trybie \"Discover\". Aby korzystać z AI Endpoints, należy aktywować projekt, dodając do konta sposób płatności, który pozwoli Ci utworzyć pierwszy klucz API i rozpocząć korzystanie z usługi.",
+  "ai_endpoints_non_admin_user": "Aby móc wykonywać operacje na kluczach API, musisz mieć status administratora"
 }
