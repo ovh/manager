@@ -15,6 +15,7 @@ export const DATACENTER_TO_REGION: { [datacenter: string]: string } = {
   GRA: 'eu-west-gra',
   SBG: 'eu-west-sbg',
   PAR: 'eu-west-par',
+  MIL: 'eu-west-mil',
   CR2: 'labeu-west-1-preprod',
   LIM: 'eu-west-lim',
   // Keep it after LIM

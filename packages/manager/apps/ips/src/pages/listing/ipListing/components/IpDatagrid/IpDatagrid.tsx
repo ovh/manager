@@ -28,7 +28,7 @@ import { IpGroupDatagrid } from '../ipGroupDatagrid/ipGroupDatagrid';
 
 export const IpDatagrid = () => {
   const { apiFilter, ipToSearch } = useContext(ListingContext);
-  const [paginatedIpList, setPaginatedIpList] = useState<string[]>([]);
+  const [paginatedIpList, setPaginatedIpList] = useState<{ ip: string }[]>([]);
   const [numberOfPageDisplayed, setNumberOfPageDisplayed] = useState(1);
   const [filteredIpList, setFilteredIpList] = useState<string[]>([]);
 
@@ -40,84 +40,62 @@ export const IpDatagrid = () => {
     {
       id: 'ip',
       label: t('listingColumnsIp'),
-      cell: (ip: string) => {
-        return <IpCell ip={ip}></IpCell>;
-      },
+      cell: IpCell,
     },
     {
       id: 'ip-type',
       label: t('listingColumnsIpType'),
-      cell: (ip: string) => {
-        return <IpType ip={ip}></IpType>;
-      },
+      cell: IpType,
     },
     {
       id: 'ip-alerts',
       label: t('listingColumnsIpAlerts'),
-      cell: (ip: string) => {
-        return <IpAlerts ip={ip}></IpAlerts>;
-      },
+      cell: IpAlerts,
     },
     {
       id: 'ip-region',
       label: t('listingColumnsIpRegion'),
-      cell: (ip: string) => {
-        return <IpRegion ip={ip}></IpRegion>;
-      },
+      cell: IpRegion,
     },
     {
       id: 'ip-country',
       label: t('listingColumnsIpCountry'),
-      cell: (ip: string) => {
-        return <IpCountry ip={ip}></IpCountry>;
-      },
+      cell: IpCountry,
     },
     {
       id: 'ip-attached-service',
       label: t('listingColumnsIpAttachedService'),
-      cell: (ip: string) => {
-        return <IpAttachedService ip={ip}></IpAttachedService>;
-      },
+      cell: IpAttachedService,
     },
     {
       id: 'ip-reverse',
       label: t('listingColumnsIpReverseDNS'),
-      cell: (ip: string) => {
-        return <IpReverse ip={ip}></IpReverse>;
-      },
+      cell: IpReverse,
     },
     {
       id: 'ip-vmac',
       label: t('listingColumnsIpVMac'),
-      cell: (ip: string) => {
-        return <IpVmac ip={ip}></IpVmac>;
-      },
+      cell: IpVmac,
     },
     {
       id: 'ip-ddos',
       label: t('listingColumnsIpAntiDDos'),
-      cell: (ip: string) => {
-        return <IpAntiDdos ip={ip}></IpAntiDdos>;
-      },
+      cell: IpAntiDdos,
     },
     {
       id: 'ip-edge-firewall',
       label: t('listingColumnsIpEdgeFirewall'),
-      cell: (ip: string) => {
-        return <IpEdgeFirewall ip={ip}></IpEdgeFirewall>;
-      },
+      cell: IpEdgeFirewall,
     },
     {
       id: 'ip-game-firewall',
       label: t('listingColumnsIpGameFirewall'),
-      cell: (ip: string) => {
-        return <IpGameFirewall ip={ip}></IpGameFirewall>;
-      },
+      cell: IpGameFirewall,
     },
     {
       id: 'action',
       label: '',
-      cell: (ip: string) => <IpActionsCell ip={ip} />,
+      cell: IpActionsCell,
     },
   ];
 
@@ -127,7 +105,9 @@ export const IpDatagrid = () => {
       ? ipList.filter((ip) => ip.indexOf(ipToSearch) !== -1)
       : ipList;
     setFilteredIpList(filtered);
-    setPaginatedIpList(filtered.slice(0, pageSize * numberOfPageDisplayed));
+    setPaginatedIpList(
+      filtered.map((ip) => ({ ip })).slice(0, pageSize * numberOfPageDisplayed),
+    );
   }, [ipList, numberOfPageDisplayed, ipToSearch]);
 
   const loadMoreIps = () => {
@@ -148,18 +128,13 @@ export const IpDatagrid = () => {
         totalItems={filteredIpList?.length}
         hasNextPage={numberOfPageDisplayed * pageSize < filteredIpList?.length}
         onFetchNextPage={loadMoreIps}
-        getRowCanExpand={(row) => ipFormatter(row.original).isGroup}
-        renderSubComponent={(row, headerRefs) => {
-          return (
-            <IpGroupDatagrid
-              row={row}
-              parentHeaders={headerRefs}
-            ></IpGroupDatagrid>
-          );
-        }}
+        getRowCanExpand={(row) => ipFormatter(row.original.ip).isGroup}
+        renderSubComponent={(row, headerRefs) => (
+          <IpGroupDatagrid row={row} parentHeaders={headerRefs} />
+        )}
         isLoading={isLoading}
         numberOfLoadingRows={10}
-        resetExpandedRowsOnItemsChange={true}
+        resetExpandedRowsOnItemsChange
       />
     </RedirectionGuard>
   );
