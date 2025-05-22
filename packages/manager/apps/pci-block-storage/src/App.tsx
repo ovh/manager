@@ -6,7 +6,10 @@ import { odsSetup } from '@ovhcloud/ods-common-core';
 import appRoutes from '@/routes';
 import queryClient from './queryClient';
 
+import '@ovhcloud/ods-themes/default';
 import '@ovhcloud/ods-theme-blue-jeans';
+import '@ovh-ux/manager-pci-common/dist/style.css';
+import './index.scss';
 
 odsSetup();
 
