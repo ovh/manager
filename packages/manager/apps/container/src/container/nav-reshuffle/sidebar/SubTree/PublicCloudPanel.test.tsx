@@ -2,7 +2,7 @@ import { vi, it, describe, expect } from 'vitest';
 import { render, act, fireEvent } from '@testing-library/react';
 import { Node } from '../navigation-tree/node';
 import { PublicCloudPanel, PublicCloudPanelProps } from './PublicCloudPanel';
-import { mockShell, mockPlugins } from '../mocks/sidebarMocks';
+import { mockShell, mockPlugins, mockUser } from '../mocks/sidebarMocks';
 import { PciProject } from '../ProjectSelector/PciProject';
 import { Props as ProjectSelectorProps } from '../ProjectSelector/ProjectSelector';
 import { pciNode } from '../navigation-tree/services/publicCloud';
@@ -123,5 +123,22 @@ describe('PublicCloudPanel.component', () => {
     await act(() => fireEvent.click(createButton));
 
     expect(mockPlugins.navigation.navigateTo).toHaveBeenCalled();
+  });
+
+
+  it('should disable create button for indian user without KYC', () => {
+    mockUser.kycValidated = false;
+  
+    const { getByTestId } = renderPublicCloudPanelComponent(props);
+    const createButton = getByTestId('pci-create-project') as HTMLButtonElement;
+    expect(createButton.disabled).toBe(true);
+  });
+  
+  it('should enable create button for indian user with KYC', () => {
+    mockUser.kycValidated = true;
+  
+    const { getByTestId } = renderPublicCloudPanelComponent(props);
+    const createButton = getByTestId('pci-create-project') as HTMLButtonElement;
+    expect(createButton.disabled).toBe(undefined);
   });
 });

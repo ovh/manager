@@ -595,8 +595,8 @@
   "license_delete_server": "Servidor:",
   "license_delete_serial": "Número de licença:",
   "license_delete_step1_deleting": "Rescisão da licença em curso...",
-  "license_upgrade_redirection_popup_title": "Uma licença {{ type }} já está instalada",
-  "license_upgrade_redirection_popup_text": "Já está instalada uma licença {{ type }} para este IP. É possível efetuar a atualização.",
+  "license_upgrade_redirection_popup_title": "Uma licença {{ type }} já se encontra instalada",
+  "license_upgrade_redirection_popup_text": "Já se encontra instalada uma licença {{ type }} neste endereço IP. É possível atualizá-la.",
   "license_upgrade_redirection_popup_upgrade": "Atualizar a minha licença",
   "license_upgrade_title": "Atualizar a minha licença",
   "license_upgrade_title_button": "Atualizar a minha licença",
@@ -1451,6 +1451,8 @@
   "license_designation_PLESK_version_plesk-webpro-for-vps": "Plesk - Edição Web Pro para VPS",
   "license_designation_PLESK_version_PLESK_VPS_WEB_HOST_CLNX": "Plesk - Edição Web Host para VPS com CloudLinux",
   "license_designation_PLESK_version_PLESK_VPS_WEB_PRO_CLNX": "Plesk - Edição Web Pro para VPS com CloudLinux",
+  "license_delete_confirm": "Sim, rescindir",
+  "license_delete_cancel": "Não, recusar",
   "license_designation_WINDOWS_version_windows-server-2025-license-datacenter-edition-8-cores": "Windows Server 2025 Datacenter Edition license - 8 cores",
   "license_designation_WINDOWS_version_windows-server-2025-license-datacenter-edition-10-cores": "Windows Server 2025 Datacenter Edition license - 10 cores",
   "license_designation_WINDOWS_version_windows-server-2025-license-datacenter-edition-12-cores": "Windows Server 2025 Datacenter Edition license - 12 cores",
@@ -1508,7 +1510,5 @@
   "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-58-cores": "Windows Server 2025 Standard Edition license - 58 cores",
   "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-60-cores": "Windows Server 2025 Standard Edition license - 60 cores",
   "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-62-cores": "Windows Server 2025 Standard Edition license - 62 cores",
-  "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-64-cores": "Windows Server 2025 Standard Edition license - 64 cores",
-  "license_delete_confirm": "Sim, rescindir",
-  "license_delete_cancel": "Não, recusar"
+  "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-64-cores": "Windows Server 2025 Standard Edition license - 64 cores"
 }

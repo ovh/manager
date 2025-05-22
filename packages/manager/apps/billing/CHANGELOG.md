@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.57](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.2.56...@ovh-ux/manager-billing-app@0.2.57) (2025-05-21)
+
+
+### Bug Fixes
+
+* added level 2 for account and billing apps ([#16951](https://github.com/ovh/manager/issues/16951)) ([5788464](https://github.com/ovh/manager/commit/5788464befa8fb7bff7b3226b5fef7dd79c253f3)), closes [#MANAGER-18234](https://github.com/ovh/manager/issues/MANAGER-18234)
+
+
+
+
+
 ## [0.2.56](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.2.55...@ovh-ux/manager-billing-app@0.2.56) (2025-05-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-app

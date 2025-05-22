@@ -13,8 +13,9 @@ import UniqueMessageComposite from './unique-message-composite';
 
 export default class CuiMessageContainerCtrl {
   /* @ngInject */
-  constructor($scope) {
+  constructor($scope, CucCloudMessage) {
     this.$scope = $scope;
+    this.CucCloudMessage = CucCloudMessage;
   }
 
   $onInit() {
@@ -75,7 +76,10 @@ export default class CuiMessageContainerCtrl {
 
     return map(keys(groupedMessages), (key) => ({
       key,
-      values: this.constructor.extractUniqueMessage(groupedMessages[key]),
+      values: this.constructor.extractUniqueMessage(
+        groupedMessages[key],
+        (message) => this.CucCloudMessage.removeMessageFromSearch(message),
+      ),
       isGroupable: this.isGroupable(key),
       priority: messagePriorities[key],
       dismissable: this.isDismissable(key),
@@ -90,14 +94,14 @@ export default class CuiMessageContainerCtrl {
     return includes(this.dismissableTypes, type);
   }
 
-  static extractUniqueMessage(messageList) {
+  static extractUniqueMessage(messageList, onDismiss) {
     const groupedMessages = groupBy(
       messageList,
       (message) => message.text || message.textHtml,
     );
     const groupedMessagesHash = map(
       keys(groupedMessages),
-      (key) => new UniqueMessageComposite(groupedMessages[key]),
+      (key) => new UniqueMessageComposite(groupedMessages[key], onDismiss),
     );
     return groupedMessagesHash;
   }
