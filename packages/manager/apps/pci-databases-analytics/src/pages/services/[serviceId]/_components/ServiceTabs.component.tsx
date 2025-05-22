@@ -14,6 +14,7 @@ import { useGetPatterns } from '@/hooks/api/database/pattern/useGetPatterns.hook
 import { useGetTopics } from '@/hooks/api/database/topic/useGetTopics.hook';
 import { useGetTopicAcls } from '@/hooks/api/database/topicAcl/useGetTopicAcls.hook';
 import { useServiceData } from '../Service.context';
+import { useGetConnectors } from '@/hooks/api/database/connector/useGetConnectors.hook';
 
 interface ServiceTabsProps {
   service: database.Service;
@@ -103,6 +104,15 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
       enabled: !!service.capabilities.topicAcls?.read,
     },
   );
+  const { data: connectors } = useGetConnectors(
+    projectId,
+    service.engine,
+    service.id,
+    {
+      refetchInterval: isUserActive && POLLING.CONNECTORS,
+      enabled: !!service.capabilities.connectors?.read,
+    },
+  );
 
   const tabs = [
     { href: '', label: t('DashboardTab'), end: true },
@@ -165,6 +175,12 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
       label: t('TopicsTab'),
       count: topics?.length,
       disabled: !service.capabilities.topics.read,
+    },
+    service.capabilities.connectors && {
+      href: 'connectors',
+      label: t('ConnectorsTab'),
+      count: connectors?.length,
+      disabled: !service.capabilities.connectors.read,
     },
     { href: 'metrics', label: t('MetricsTab') },
     { href: 'logs', label: t('LogsTab') },

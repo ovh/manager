@@ -24,11 +24,12 @@ export const getService = async <
     .get(`/cloud/project/${projectId}/database/service/${serviceId}`)
     .then((res) => res.data as database.Service);
   // then get the engine's specific information
-  const serviceData = await apiClient.v6
-    .get<T>(
-      `/cloud/project/${projectId}/database/${serviceInfo.engine}/${serviceId}`,
-    )
-    .then((res) => res.data);
+  // const serviceData = await apiClient.v6
+  //   .get<T>(
+  //     `/cloud/project/${projectId}/database/${serviceInfo.engine}/${serviceId}`,
+  //   )
+  //   .then((res) => res.data);
+  const serviceData = serviceInfo as T;
   // TODO: remove once capabilities are added in API
   if (serviceData.engine === database.EngineEnum.kafka) {
     serviceData.capabilities = {
@@ -54,6 +55,18 @@ export const getService = async <
         update: database.service.capability.StateEnum.enabled,
       },
     };
+  }
+  if (serviceData.engine === database.EngineEnum.kafkaConnect) {
+    serviceData.capabilities = {
+      ...serviceData.capabilities,
+      connectors: {
+        create: database.service.capability.StateEnum.enabled,
+        read: database.service.capability.StateEnum.enabled,
+        update: database.service.capability.StateEnum.enabled,
+        delete: database.service.capability.StateEnum.enabled,
+      },
+    };
+    delete serviceData.capabilities.backups;
   }
   return serviceData;
 };

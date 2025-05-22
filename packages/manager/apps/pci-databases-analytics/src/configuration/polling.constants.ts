@@ -15,6 +15,7 @@ export const POLLING = {
   PATTERNS: 30_000,
   TOPICS: 30_000,
   TOPIC_ACL: 30_000,
+  CONNECTORS: 30_000,
 };
 
 export const USER_INACTIVITY_TIMEOUT = 5 * 60_000; // inactivity after 5 minutes
