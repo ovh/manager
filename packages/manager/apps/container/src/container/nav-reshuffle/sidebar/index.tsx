@@ -329,7 +329,7 @@ const Sidebar = (): JSX.Element => {
 
           <div className={style.sidebar_menu} role="menubar" aria-label={t('sidebar_description')}>
             <ul id="menu" role="menu">
-              <li className="px-3 mb-3 mt-2 h-8">
+              <li className="px-3 mb-3 mt-2 h-8 whitespace-nowrap">
                 {open && currentNavigationNode && (
                   <OsdsText
                     level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}

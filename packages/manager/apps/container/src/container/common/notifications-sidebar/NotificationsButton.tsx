@@ -1,15 +1,18 @@
-import { useTranslation } from 'react-i18next';
-
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import style from './notifications-sidebar.module.scss';
-
+import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
+import { FunctionComponent } from 'react';
 import useNotifications from '@/core/notifications';
 import { useHeader } from '@/context/header';
 import { useShell } from '@/context';
 
-function NavbarNotifications(): JSX.Element {
+const NavbarNotifications: FunctionComponent = () => {
   const { t } = useTranslation('navbar');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
@@ -37,13 +40,14 @@ function NavbarNotifications(): JSX.Element {
   }
 
   return (
-    <button
+    <OsdsButton
       role="button"
-      type="button"
-      className={`oui-navbar-link oui-navbar-link_icon oui-navbar-link_tertiary ${style.navbarLink}`}
       title={t('navbar_notifications')}
       aria-label={t('navbar_notifications')}
+      color={ODS_THEME_COLOR_INTENT.primary}
       onClick={onClick}
+      size={ODS_BUTTON_SIZE.sm}
+      variant={ODS_BUTTON_VARIANT.ghost}
     >
       <OsdsIcon
         name={ODS_ICON_NAME.BELL}
@@ -52,10 +56,16 @@ function NavbarNotifications(): JSX.Element {
         aria-hidden="true"
       ></OsdsIcon>
       {notificationsCount > 0 && (
-        <span className="oui-icon__badge">{notificationsCount}</span>
+        <span slot="end" className="!m-0">
+          <sub>
+            <div className="w-6 h-6 bg-red-700 text-white flex items-center justify-center rounded-full">
+              {notificationsCount}
+            </div>
+          </sub>
+        </span>
       )}
-    </button>
+    </OsdsButton>
   );
-}
+};
 
 export default NavbarNotifications;
