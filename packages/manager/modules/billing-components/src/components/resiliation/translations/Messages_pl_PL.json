@@ -9,6 +9,6 @@
   "billing_resiliation_details_CANCEL_SERVICE": "W dniu wygaśnięcia utracisz dostęp do usługi, a tym samym do wszystkich danych, które może zawierać. Możesz zmienić tę decyzję do 24 godzin przed datą wygaśnięcia.",
   "billing_resiliation_success": "Zlecenie rozwiązania umowy terminowej zostało złożone.",
   "billing_resiliation_error": "Wystąpił błąd podczas rozwiązywania umowy terminowej.",
-  "billing_resiliation_cancel": "Nie, nie chcę",
-  "billing_resiliation_validate": "Tak, chcę"
+  "billing_resiliation_cancel": "Nie",
+  "billing_resiliation_validate": "Tak"
 }
