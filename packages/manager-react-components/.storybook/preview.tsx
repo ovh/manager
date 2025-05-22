@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Preview } from '@storybook/react';
@@ -55,10 +55,40 @@ const preview: Preview = {
 
 const withI18next = (Story, context) => {
   const { locale } = context.globals;
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    i18n.changeLanguage(locale);
+    let isMounted = true;
+
+    const changeLanguage = async () => {
+      try {
+        setIsLoading(true);
+        await i18n.changeLanguage(locale);
+
+        // Small delay to ensure translations are fully loaded
+        await new Promise((resolve) => setTimeout(resolve, 50));
+
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.error('Language change failed:', error);
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    changeLanguage();
+
+    return () => {
+      isMounted = false;
+    };
   }, [locale]);
+
+  if (isLoading) {
+    return <div>Loading translations...</div>;
+  }
 
   return (
     <Suspense fallback={<div>loading translations...</div>}>
@@ -78,6 +108,7 @@ export const globalTypes = {
   locale: {
     name: 'Locale',
     description: 'Internationalization locale',
+    defaultValue: 'fr_FR',
     toolbar: {
       icon: 'globe',
       items: [
@@ -91,6 +122,7 @@ export const globalTypes = {
         { value: 'fr_CA', title: 'Canada' },
       ],
       showName: true,
+      dynamicTitle: true,
     },
   },
 };
