@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-sso-auth
+$ pnpm add @ovh-ux/ng-ovh-sso-auth
 ```
 
 # Usage

@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-simple-country-list
+$ pnpm add @ovh-ux/ng-ovh-simple-country-list
 ```
 
 ## Usage

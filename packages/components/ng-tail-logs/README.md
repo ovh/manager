@@ -9,7 +9,7 @@ Poll a log API for displaying messages
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-tail-logs
+$ pnpm add @ovh-ux/ng-tail-logs
 ```
 
 ## Usage
@@ -31,11 +31,12 @@ angular.module('myApp', [ngTailLogs]).controller(
 
 ```html
 <div data-ng-controller="MyCtrl as $ctrl">
-    <tail-logs>
-        <div data-ng-repeat="log in $ctrl.logger.logs track by $index"
-             data-ng-bind="log.message">
-        </div>
-    </tail-logs>
+  <tail-logs>
+    <div
+      data-ng-repeat="log in $ctrl.logger.logs track by $index"
+      data-ng-bind="log.message"
+    ></div>
+  </tail-logs>
 </div>
 ```
 

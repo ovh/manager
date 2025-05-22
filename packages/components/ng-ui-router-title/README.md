@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/ng-ui-router-title
+pnpm add @ovh-ux/ng-ui-router-title
 ```
 
 ## Usage

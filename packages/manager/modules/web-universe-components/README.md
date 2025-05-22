@@ -13,8 +13,9 @@ inside the monorepo.
 ## Install
 
 ```sh
-pnpm install @ovh-ux/ng-ovh-web-universe-components
+pnpm add @ovh-ux/ng-ovh-web-universe-components
 ```
+
 ## Usage
 
 ```js
@@ -32,7 +33,7 @@ pnpm test
 
 ## Related
 
-* [ovh-manager-web](https://github.com/ovh/manager/tree/master/packages/manager/apps/web) - OVH Control Panel Web UI
+- [ovh-manager-web](https://github.com/ovh/manager/tree/master/packages/manager/apps/web) - OVH Control Panel Web UI
 
 ## Contributing
 

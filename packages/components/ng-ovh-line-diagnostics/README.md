@@ -7,8 +7,9 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-line-diagnostics
+$ pnpm add @ovh-ux/ng-ovh-line-diagnostics
 ```
+
 ## Usage
 
 ```js

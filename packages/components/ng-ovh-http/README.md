@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-http
+$ pnpm add @ovh-ux/ng-ovh-http
 ```
 
 ## Usage

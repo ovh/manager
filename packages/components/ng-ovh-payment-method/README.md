@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-payment-method
+$ pnpm add @ovh-ux/ng-ovh-payment-method
 ```
 
 ## Usage

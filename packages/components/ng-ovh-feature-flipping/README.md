@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-feature-flipping
+$ pnpm add @ovh-ux/ng-ovh-feature-flipping
 ```
 
 ## Usage

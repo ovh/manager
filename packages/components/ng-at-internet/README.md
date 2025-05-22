@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-at-internet
+$ pnpm add @ovh-ux/ng-at-internet
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ angular.module('myApp', [ngAtInternet]);
 
 ### Provider configuration
 
-*Example simple provider configuration*
+_Example simple provider configuration_
 
 ```js
 app.config([
@@ -40,7 +40,7 @@ app.config([
 
 Please note that the level2 attribute must be your project ID ; configured in ATInternet manager.
 
-*Exemple provider configuration with identifiedVisitor set.*
+_Exemple provider configuration with identifiedVisitor set._
 
 ```js
 app.config([
@@ -60,7 +60,7 @@ Notice that visitorId is optional and set identifiedVisitor.id ATInternet Tag.
 
 ### Page tracking
 
-*Example of tracking a single page.*
+_Example of tracking a single page._
 
 ```js
 atInternet.trackPage({
@@ -72,7 +72,7 @@ atInternet.trackPage({
 
 ### Click tracking
 
-*Example of tracking a click action.*
+_Example of tracking a click action._
 
 ```js
 atInternet.trackClick({
@@ -82,9 +82,11 @@ atInternet.trackClick({
   visitorId: '123', // (optional) set identifiedVisitor.id sent with each hit
 });
 ```
+
 Tracking using the directive :
 
 Attributes
+
 - `track-on` : event to track (click, onFinish, onchange, etc)
 - `track-name` : Name of action (optional) Id will be used if absent
 - `track-type` : event type (optional) Possible values : action/navigation/download/exit
@@ -93,14 +95,17 @@ Attributes
 <button id="btnAction" data-track-on="click"></button>
 <!-- Tracking result: {name: "btnAction-click", type: "action"...} -->
 
-<button data-track-on="mouseover" data-track-name="MyAction" data-track-type="navigation"></button>
+<button
+  data-track-on="mouseover"
+  data-track-name="MyAction"
+  data-track-type="navigation"
+></button>
 <!-- Tracking result: {name: "MyAction", type: "navigation"...} -->
-
 ```
 
 ### Event tracking
 
-*Example of tracking a custom event.*
+_Example of tracking a custom event._
 
 ```js
 atInternet.trackEvent({

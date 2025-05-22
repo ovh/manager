@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-responsive-popover
+$ pnpm add @ovh-ux/ng-ovh-responsive-popover
 ```
 
 ## Usage
@@ -20,6 +20,7 @@ angular.module('myApp', [ngOvhResponsivePopover]);
 ```
 
 The two major directives are:
+
 - the `responsivePopover` directive that will display a uibPopover to the DOM element you instanciate it;
 - the `responsivePopoverClass` directive that is added to the popover popup.
 
@@ -40,11 +41,12 @@ For available options, see the doc of [uibPopover](https://angular-ui.github.io/
 The following example will open a popover with the content of path/of/popover/content.html file inside. This popover will be closed when focus is lost inside of it.
 
 ```html
-<button type="button"
-        data-responsive-popover="'path/of/popover/content.html'"
-        data-popover-placement="bottom-left"
-        data-popover-trigger="focus">
-</button>
+<button
+  type="button"
+  data-responsive-popover="'path/of/popover/content.html'"
+  data-popover-placement="bottom-left"
+  data-popover-trigger="focus"
+></button>
 ```
 
 ### <a name="responsivePopover_directive_responsivePopoverClass"></a>`responsivePopoverClass` - directive
@@ -56,24 +58,26 @@ It is automatically setted by `responsivePopover` directive.
 
 ### <a name="responsivePopover_responsivePopoverProvider"></a>`responsivePopoverProvider` - provider
 
-* relates to the service : [responsivePopover](#responsivePopover_service_responsivePopover)
+- relates to the service : [responsivePopover](#responsivePopover_service_responsivePopover)
 
 responsivePopoverProvider allows developer to configure which mediaQuery will be considered as a mobile.
 
 #### Methods
+
 ##### setMobileMediaQuery
+
 Allows you to determine what app will consider as a mobile for responsive popover display.
 
 ###### Parameters
 
-| Param | Type | Details |
-| ---- | ---- | ---- |
+| Param | Type   | Details                                                  |
+| ----- | ------ | -------------------------------------------------------- |
 | query | String | The matchMedia query that will be used to detect mobile. |
 
 ###### Returns
 
-| Type | Description |
-| ---- | ---- |
+| Type   | Description             |
+| ------ | ----------------------- |
 | String | The new query provided. |
 
 #### Example
@@ -91,18 +95,20 @@ angular.module('myApp').config(
 
 ### <a name="responsivePopover_service_responsivePopover"></a>`responsivePopover` - service
 
-* relates to the provider : [responsivePopoverProvider](#responsivePopover_responsivePopoverProvider)
+- relates to the provider : [responsivePopoverProvider](#responsivePopover_responsivePopoverProvider)
 
 This service enable you to get configured values.
 
 #### Methods
+
 ##### getMobileMediaQuery
+
 Get the current configured media query. It is used to detect the popover display (simple popover or full screen popover for mobile).
 
 ###### Returns
 
-| Type | Description |
-| ---- | ---- |
+| Type   | Description                |
+| ------ | -------------------------- |
 | String | The configured mediaQuery. |
 
 ## Test

@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/ng-ovh-ui-confirm-modal
+pnpm add @ovh-ux/ng-ovh-ui-confirm-modal
 ```
 
 ## Usage
@@ -21,21 +21,35 @@ angular.module('myApp', [ngOvhUiConfirmModal]);
 
 ```html
 <div data-ng-controller="XdslModemResetCtrl as ResetCtrl">
-    <button
-        <!--
-            data-ng-really-click: This parameter is required.
-            `resetModem()` will be called if you accept the confimation message.
-        -->
-        data-ng-really-click="ResetCtrl.resetModem()"
-        <!--
+  <button
+    <!--
+    data-ng-really-click:
+    This
+    parameter
+    is
+    required.
+    `resetModem()`
+    will
+    be
+    called
+    if
+    you
+    accept
+    the
+    confimation
+    message.
+    --
+  >
+    data-ng-really-click="ResetCtrl.resetModem()"
+    <!--
             data-ng-really-undo: This parameter is optional
             `undo()` will be called if you cancel the confimation message.
             data-ng-really-undo="ResetCtrl.undo()"
         -->
-        data-ng-really-message="{{ 'xdsl_modem_reset_really' | translate }}"
-        data-ng-really-confirm="{{ 'ok' | translate }}"
-        data-ng-really-cancel="{{ 'cancel' | translate }}">
-    </button>
+    data-ng-really-message="{{ 'xdsl_modem_reset_really' | translate }}"
+    data-ng-really-confirm="{{ 'ok' | translate }}" data-ng-really-cancel="{{
+    'cancel' | translate }}">
+  </button>
 </div>
 ```
 

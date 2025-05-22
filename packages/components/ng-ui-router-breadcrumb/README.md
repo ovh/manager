@@ -7,8 +7,9 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/ng-ui-router-breadcrumb
+pnpm add @ovh-ux/ng-ui-router-breadcrumb
 ```
+
 ## Usage
 
 ### `breadcrumb` resolve

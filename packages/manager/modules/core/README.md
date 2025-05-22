@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-core
+pnpm add @ovh-ux/manager-core
 ```
 
 ## Usage

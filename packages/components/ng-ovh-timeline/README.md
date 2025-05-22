@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/ng-ovh-timeline
+pnpm add @ovh-ux/ng-ovh-timeline
 ```
 
 ## Usage
@@ -40,19 +40,20 @@ $scope.events = [
 ```
 
 ```html
-  <!-- view -->
-  <timeline-event ng-repeat="event in events">
-    <timeline-badge class="{{event.badgeClass}}">
-      <i class="glyphicon {{event.badgeIconClass}}"></i>
-    </timeline-badge>
-    <timeline-panel class="{{event.badgeClass}}">
-      <timeline-heading>
-        <h4>{{event.title}}</h4>
-      </timeline-heading>
-      <p>{{event.content}}</p>
-    </timeline-panel>
-  </timeline-event>
+<!-- view -->
+<timeline-event ng-repeat="event in events">
+  <timeline-badge class="{{event.badgeClass}}">
+    <i class="glyphicon {{event.badgeIconClass}}"></i>
+  </timeline-badge>
+  <timeline-panel class="{{event.badgeClass}}">
+    <timeline-heading>
+      <h4>{{event.title}}</h4>
+    </timeline-heading>
+    <p>{{event.content}}</p>
+  </timeline-panel>
+</timeline-event>
 ```
+
 There is a bit of markup here but `<timeline-heading>` is optional.
 `<timeline-badge>` is for the centre line between the two sides, and should represent the event type that occured.
 

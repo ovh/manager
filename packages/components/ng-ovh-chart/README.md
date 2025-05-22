@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-chart
+$ pnpm add @ovh-ux/ng-ovh-chart
 ```
 
 ## Usage

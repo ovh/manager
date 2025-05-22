@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-banner
+pnpm add @ovh-ux/manager-banner
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ angular.module('myApp', [ovhManagerBanner]);
 
 ```html
 <ovh-manager-banner></ovh-manager-banner>
-````
+```
 
 ## Build
 

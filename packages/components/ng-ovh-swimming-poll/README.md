@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-swimming-poll
+$ pnpm add @ovh-ux/ng-ovh-swimming-poll
 ```
 
 ## Usage
@@ -107,9 +107,10 @@ function createPoller(Poller) {
 ### With custom validations rules, on a listing
 
 You can do a polling on listing request. In this case:
-* promise will return success when all elements of the list are successful.
-* promise will return error when one element or more in the list is in error state and all other are in success state
-* else, promise will send a notify with the http response
+
+- promise will return success when all elements of the list are successful.
+- promise will return error when one element or more in the list is in error state and all other are in success state
+- else, promise will send a notify with the http response
 
 ```js
 function createPoller(Poller) {

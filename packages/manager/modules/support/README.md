@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-support
+pnpm add @ovh-ux/manager-support
 ```
 
 ## Usage

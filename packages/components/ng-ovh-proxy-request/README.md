@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-proxy-request
+$ pnpm add @ovh-ux/ng-ovh-proxy-request
 ```
 
 ## Usage

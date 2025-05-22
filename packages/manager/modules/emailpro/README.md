@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-emailpro
+pnpm add @ovh-ux/manager-emailpro
 ```
 
 ## Usage

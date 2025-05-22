@@ -7,8 +7,9 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/ng-ovh-order-tracking
+pnpm add @ovh-ux/ng-ovh-order-tracking
 ```
+
 ## Usage
 
 ```js

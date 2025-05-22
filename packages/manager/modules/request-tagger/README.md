@@ -1,13 +1,13 @@
 # ng-ovh-request-tagger
 
-
 [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-request-tagger)](https://npmjs.com/package/@ovh-ux/ng-ovh-request-tagger) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/components/ng-ovh-request-tagger)](https://npmjs.com/package/@ovh-ux/ng-ovh-request-tagger?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/components/ng-ovh-request-tagger)](https://npmjs.com/package/@ovh-ux/ng-ovh-request-tagger?activeTab=dependencies)
 
 ## Install
 
 ```sh
-pnpm install @ovh-ux/ng-ovh-request-tagger
+pnpm add @ovh-ux/ng-ovh-request-tagger
 ```
+
 ## Usage
 
 ```js
