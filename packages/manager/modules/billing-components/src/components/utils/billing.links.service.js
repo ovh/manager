@@ -113,6 +113,7 @@ export default class BillingLinksService {
           }
           break;
         case SERVICE_TYPE.OKMS:
+        case SERVICE_TYPE.VMWARE_CLOUD_DIRECTOR_ORGANIZATION:
         case SERVICE_TYPE.VRACK_SERVICES:
         case SERVICE_TYPE.LICENSE_HYCU:
         case SERVICE_TYPE.VEEAM_BACKUP:
