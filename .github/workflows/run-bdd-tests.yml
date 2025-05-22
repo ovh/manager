@@ -25,14 +25,14 @@ jobs:
         run: pnpm install --ignore-scripts
       - name: Build BDD covered packages and dependencies
         run: |
-          pnpm turbo -- run build --filter="./packages/manager/core/*" --concurrency=5
-          pnpm turbo -- run build --filter="./packages/manager-react-components"
-          pnpm turbo -- run build --filter="./packages/manager/modules/order"
-          pnpm turbo -- run build --filter="./packages/manager/modules/common-api"
-          pnpm turbo -- run build --filter="./packages/manager/modules/vcd-api"
-          pnpm turbo -- run build --filter="./packages/manager/modules/manager-pci-common"
-          pnpm turbo -- run build --filter="./packages/manager/modules/network-common"
-          pnpm turbo -- run build --filter="./packages/components/ovh-payment-method"
+          pnpm exec turbo -- run build --filter="./packages/manager/core/*" --concurrency=5
+          pnpm exec turbo -- run build --filter="./packages/manager-react-components"
+          pnpm exec turbo -- run build --filter="./packages/manager/modules/order"
+          pnpm exec turbo -- run build --filter="./packages/manager/modules/common-api"
+          pnpm exec turbo -- run build --filter="./packages/manager/modules/vcd-api"
+          pnpm exec turbo -- run build --filter="./packages/manager/modules/manager-pci-common"
+          pnpm exec turbo -- run build --filter="./packages/manager/modules/network-common"
+          pnpm exec turbo -- run build --filter="./packages/components/ovh-payment-method"
       # This task is for running the jest tests outside microApps
       - name: Run tests Jest
         run: pnpm test:jest
@@ -58,4 +58,4 @@ jobs:
             echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
             echo "CURRENT_BRANCH=$CURRENT_BRANCH" >> $GITHUB_ENV
           fi
-          pnpm turbo -- run test --concurrency=1 --filter=[origin/${BASE_BRANCH}...origin/${BRANCH}]
+          pnpm exec turbo -- run test --concurrency=1 --filter=[origin/${BASE_BRANCH}...origin/${BRANCH}]
