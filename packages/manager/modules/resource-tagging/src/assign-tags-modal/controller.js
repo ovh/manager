@@ -109,6 +109,9 @@ export default class ovhManagerResourceTaggingAssignModalController {
                   'manager_components_resource_tagging_assign_modal_success',
                 );
           this.Alerter.success(successMessage, 'resourcetagging.manager');
+          this.ovhManagerResourceTaggingService.trackPage(
+            `${this.trackingPrefix}banner-info::assign-tag_success`,
+          );
         });
       })
       .catch((error) => {
@@ -122,6 +125,9 @@ export default class ovhManagerResourceTaggingAssignModalController {
             },
           ),
           'resourcetagging.assign',
+        );
+        this.ovhManagerResourceTaggingService.trackPage(
+          `${this.trackingPrefix}banner-info::assign-tag_error`,
         );
       });
   }
