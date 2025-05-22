@@ -42,7 +42,6 @@ import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 import HidePreloader from '@/core/HidePreloader';
 import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
 
-import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListingPage() {
@@ -117,12 +116,7 @@ export default function ListingPage() {
           <Headers
             title={t('pci_projects_project_storages_blocks_title')}
             headerButton={<PciGuidesHeader category="instances" />}
-            changelogButton={
-              <ChangelogButton
-                links={CHANGELOG_LINKS}
-                chapters={CHANGELOG_CHAPTERS}
-              />
-            }
+            changelogButton={<ChangelogButton links={CHANGELOG_LINKS} />}
           />
         </div>
         <OsdsDivider></OsdsDivider>
