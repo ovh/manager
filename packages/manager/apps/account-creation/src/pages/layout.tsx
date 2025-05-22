@@ -6,6 +6,7 @@ import {
   useRouteSynchro,
 } from '@ovh-ux/manager-react-shell-client';
 import UserProvider from '@/context/user/user.provider';
+import ReassuranceWording from '@/pages/ReassuranceWording.component';
 import ovhCloudLogo from '@/assets/logo-ovhcloud.png';
 import sideBackground from '@/assets/side_background.svg';
 
@@ -13,6 +14,7 @@ export default function Layout() {
   const location = useLocation();
   const matches = useMatches();
   const { trackCurrentPage } = useOvhTracking();
+
   useRouteSynchro();
 
   useEffect(() => {
@@ -27,26 +29,28 @@ export default function Layout() {
   return (
     <Suspense>
       <UserProvider>
-        <div className="flex h-screen w-screen sm:container mx-auto">
-          <div className="flex justify-center app-content lg:w-7/12 mx-auto min-h-[500px]">
-            <div className="inline-block p-0 pt-4 pl-6">
+        <div className="flex h-screen w-screen">
+          <div className="flex flex-col app-content basis-7/12">
+            <div className="p-0 pt-4 pl-6">
               <img
                 src={ovhCloudLogo}
                 alt="ovh-cloud-logo"
                 className="app-logo"
               />
             </div>
-            <div className="md:p-8 w-full">
-              <Outlet />
+            <div className="w-full h-full flex items-center justify-center">
+              <div className="max-w-lg">
+                <Outlet />
+              </div>
             </div>
           </div>
-          <div className="flex justify-center sidebar lg:w-5/12 mx-auto min-h-[500px] bg-gradient-to-br from-[#011B67] to-[#110BF5]">
+          <div className="hidden sm:flex justify-center sidebar basis-5/12 bg-gradient-to-br from-[#011B67] to-[#110BF5]">
             <img
               src={sideBackground}
               alt="reassuring wording background"
               className="sidebar-background-image"
             />
-            <div className="md:p-8 w-full">Blabla</div>
+            <ReassuranceWording />
           </div>
         </div>
       </UserProvider>
