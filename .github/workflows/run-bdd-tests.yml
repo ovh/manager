@@ -17,9 +17,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: '**/node_modules'
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
       - name: Install repository
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --ignore-scripts
       - name: Build BDD covered packages and dependencies
         run: |
           pnpm turbo -- run build --filter="./packages/manager/core/*" --concurrency=5
@@ -42,7 +42,7 @@ jobs:
           echo "My branch is $BRANCH"
 
           BASE_BRANCH=$(curl -s -H "Authorization: $GITHUB_TOKEN" "https://api.github.com/repos/$REPO/pulls?state=open" | jq ".[] | select(.head.ref == \"$BRANCH\") | .base.ref")
-          
+
           if [[ -z "$BASE_BRANCH" ]]; then
             export BASE_BRANCH="master"
             export CURRENT_BRANCH=${BRANCH}

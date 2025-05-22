@@ -15,7 +15,7 @@ The goal is to facilitate the reusability of the codebase.
 At the root of the monorepo, simply run:
 
 ```sh
-$ yarn workspace @ovh-ux/manager-generator run start
+$ pnpm --filter @ovh-ux/manager-generator run start
 $ # or
 $ pnpm omg
 ```

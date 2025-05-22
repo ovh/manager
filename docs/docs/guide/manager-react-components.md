@@ -14,7 +14,7 @@ The storybook is accessible on
 ## How to start the application?
 
 ```sh
-$ yarn workspace @ovh-ux/manager-react-components run start
+$ pnpm --filter @ovh-ux/manager-react-components run start
 ```
 
 Go to `<http://localhost:6006>`

@@ -7,7 +7,7 @@
 ## Installation
 
 ```sh
-yarn global add @ovh-ux/codename-generator
+pnpm add -g add @ovh-ux/codename-generator
 ```
 
 or
