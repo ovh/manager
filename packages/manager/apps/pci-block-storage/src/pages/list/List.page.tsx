@@ -38,7 +38,6 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
 
-import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListingPage() {
@@ -71,32 +70,27 @@ export default function ListingPage() {
 
   return (
     <div>
-      {project && (
-        <OsdsBreadcrumb
-          items={[
-            {
-              href: projectUrl,
-              label: project.description,
-            },
-            {
-              label: t('pci_projects_project_storages_blocks_title'),
-            },
-          ]}
-        />
-      )}
-      <div className="header mb-6 mt-8">
-        <Headers
-          title={t('pci_projects_project_storages_blocks_title')}
-          headerButton={<PciGuidesHeader category="instances" />}
-          changelogButton={
-            <ChangelogButton
-              links={CHANGELOG_LINKS}
-              chapters={CHANGELOG_CHAPTERS}
-            />
-          }
-        />
-      </div>
-      <OsdsDivider></OsdsDivider>
+        {project && (
+          <OsdsBreadcrumb
+            items={[
+              {
+                href: projectUrl,
+                label: project.description,
+              },
+              {
+                label: t('pci_projects_project_storages_blocks_title'),
+              },
+            ]}
+          />
+        )}
+        <div className="header mb-6 mt-8">
+          <Headers
+            title={t('pci_projects_project_storages_blocks_title')}
+            headerButton={<PciGuidesHeader category="instances" />}
+            changelogButton={<ChangelogButton links={CHANGELOG_LINKS} />}
+          />
+        </div>
+        <OsdsDivider></OsdsDivider>
 
       <PciAnnouncementBanner />
 
