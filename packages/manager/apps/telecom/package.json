@@ -127,7 +127,7 @@
     "moment": "^2.24.0",
     "ng-csv": "^0.3.6",
     "ng-slide-down": "TheRusskiy/ng-slide-down#v1.2.0",
-    "ngSmoothScroll": "d-oliveros/angular-smooth-scroll#v1.7.1",
+    "ngSmoothScroll": "d-oliveros/ngSmoothScroll#v1.7.1",
     "oclazyload": "^1.1.0",
     "office-ui-fabric-core": "^11.0.0",
     "os-browserify": "^0.3.0",
