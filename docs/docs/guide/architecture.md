@@ -4,11 +4,11 @@
 
 The monorepo is powered by:
 
-- [Yarn](https://yarnpkg.com) — Fast, reliable, and secure dependency management.
+- [Pnpm](https://pnpm.io/) — Fast, disk space efficient package manager.
 - [Lerna](https://lerna.js.org/) — A tool for managing JavaScript projects with multiple packages.
 - [Jest](https://jestjs.io/) - A JavaScript Testing framework with a focus on simplicity.
 
-Several [workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) are configured and you can find the list in the root [`package.json`](https://github.com/ovh/manager/blob/master/package.json#L7-L12) file.
+Several [workspaces](https://pnpm.io/workspaces) are configured and you can find the list in the root [`package.json`](https://github.com/ovh/manager/blob/master/package.json#L7-L12) file.
 
 ```json
 {

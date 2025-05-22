@@ -7,7 +7,7 @@ continuous-integration:
   - .github/**
 dependencies:
   - ./**/package.json
-  - yarn.lock
+  - pnpm-lock.yaml
 documentation:
   - docs/**
   - AUTHORS

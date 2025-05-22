@@ -14,7 +14,7 @@ Manager is the control panel built on top of the [OVHcloud API](https://api.ovh.
 
 - [Git](https://git-scm.com)
 - [Node.js](https://nodejs.org/en/) ^18
-- [Yarn](https://yarnpkg.com/lang/en/) >= 1.21.1
+- [Pnpm](https://pnpm.io/) >= 10
 - Supported OSes: GNU/Linux, macOS and Windows
 
 To install these prerequisites, you can follow the [How To section](https://ovh.github.io/manager/how-to/) of the documentation.

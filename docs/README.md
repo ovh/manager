@@ -19,13 +19,13 @@ $ pnpm
 3. Start local development environment
 
 ```sh
-$ yarn workspace @ovh-ux/manager-documentation run docs:dev
+$ pnpm --filter @ovh-ux/manager-documentation run docs:dev
 ```
 
 ## Deploying
 
 ```sh
-$ yarn workspace @ovh-ux/manager-documentation run docs:deploy
+$ pnpm --filter @ovh-ux/manager-documentation run docs:deploy
 ```
 
 [vuepress]: https://vuepress.vuejs.org/

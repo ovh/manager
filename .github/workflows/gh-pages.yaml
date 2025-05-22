@@ -15,8 +15,8 @@ jobs:
           node-version: 22
       - name: Install
         run: |
-          yarn --version
-          yarn install
+          pnpm --version
+          pnpm install
           pnpm turbo -- run build --filter="./packages/manager/core/api"
           pnpm turbo -- run build --filter="./packages/manager/core/url-builder"
           pnpm turbo -- run build --filter="./packages/components/ovh-shell"
@@ -24,7 +24,7 @@ jobs:
           pnpm turbo -- run build --filter="./packages/components/ovh-at-internet"
           pnpm turbo -- run build --filter="./packages/manager/modules/config"
           pnpm turbo -- run build --filter="./packages/manager/modules/common-translations"
-          yarn workspace @ovh-ux/manager-documentation run docs:build
+          pnpm --filter @ovh-ux/manager-documentation run docs:build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
