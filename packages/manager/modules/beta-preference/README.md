@@ -5,7 +5,7 @@ Management of the beta preference for an account
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-beta-preference
+pnpm add @ovh-ux/manager-beta-preference
 ```
 
 ## Usage

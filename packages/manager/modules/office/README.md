@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-office
+pnpm add @ovh-ux/manager-office
 ```
 
 ## Usage

@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/sign-up
+pnpm add @ovh-ux/sign-up
 ```
 
 ## Usage

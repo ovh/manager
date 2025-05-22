@@ -17,7 +17,7 @@ Toaster is a component to show an in-app notification, like a [toast](http://dev
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-toaster
+$ pnpm add @ovh-ux/ng-ovh-toaster
 ```
 
 ## Usage

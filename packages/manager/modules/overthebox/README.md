@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-overthebox
+pnpm add @ovh-ux/manager-overthebox
 ```
 
 ## Usage
@@ -45,7 +45,7 @@ pnpm start:watch
 
 ## Documentation
 
-* Documentation OVH OverTheBox — [https://docs.ovh.com/fr/overthebox/](https://docs.ovh.com/fr/overthebox/)
+- Documentation OVH OverTheBox — [https://docs.ovh.com/fr/overthebox/](https://docs.ovh.com/fr/overthebox/)
 
 ## Contributing
 

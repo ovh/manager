@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-doc-url
+$ pnpm add @ovh-ux/ng-ovh-doc-url
 ```
 
 ## Usage

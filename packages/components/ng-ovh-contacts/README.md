@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-contacts
+$ pnpm add @ovh-ux/ng-ovh-contacts
 ```
 
 ## Usage

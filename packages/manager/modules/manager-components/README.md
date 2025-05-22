@@ -3,10 +3,11 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-components
+pnpm add @ovh-ux/manager-components
 ```
 
 ## Usage
+
 This module supports importing only the required component, instead of importing the entire module at 1 shot. For example, to import a component named `my-component`, below is the code. Refer to the individual component's documentation, to find out exactly how to use the respective components.
 
 ```js

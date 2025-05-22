@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-user-pref
+$ pnpm add @ovh-ux/ng-ovh-user-pref
 ```
 
 ## Usage
@@ -26,6 +26,7 @@ angular.module('myApp', [ngOvhUserPref]);
 - Delete an user preference for a specific key.
 
 Format:
+
 - The format of a key must be in uppercase, words separated by underscores `_`.
 - Key name sample: (`COMMON_LANG`, `WEB_DOMAIN_FAVORITES`, `DEDICATED_DASHBOARD`, ...).
 
@@ -37,7 +38,7 @@ $ pnpm test
 
 ## Related
 
-- [ovh-api-services](https://github.com/ovh-ux/ovh-api-services) - Contains all AngularJS $resource for OVHcloud API
+- [ovh-api-services](https://github.com/ovh-ux/ovh-api-services) - Contains all AngularJS \$resource for OVHcloud API
 
 ## Contributing
 

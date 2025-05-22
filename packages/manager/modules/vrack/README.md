@@ -3,7 +3,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-vrack
+pnpm add @ovh-ux/manager-vrack
 ```
 
 ## Usage

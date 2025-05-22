@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-at-internet-ui-router-plugin
+$ pnpm add @ovh-ux/ng-at-internet-ui-router-plugin
 ```
 
 ## Usage

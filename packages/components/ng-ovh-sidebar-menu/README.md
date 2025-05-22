@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-sidebar-menu
+$ pnpm add @ovh-ux/ng-ovh-sidebar-menu
 ```
 
 ## Usage

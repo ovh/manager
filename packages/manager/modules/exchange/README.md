@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-exchange
+pnpm add @ovh-ux/manager-exchange
 ```
 
 ## Usage

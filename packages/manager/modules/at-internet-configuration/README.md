@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/manager-at-internet-configuration
+$ pnpm add @ovh-ux/manager-at-internet-configuration
 ```
 
 ## Usage
@@ -22,7 +22,6 @@ angular.module('managerApp', [ovhManagerAtInternetConfiguration]);
 ```
 
 ### Provider configuration
-
 
 #### Specific At Internet configuration
 
@@ -60,9 +59,9 @@ angular.module('managerApp').config(
 );
 ```
 
-#### App prefix 
+#### App prefix
 
-Will prefix all page tracking with the given prefix 
+Will prefix all page tracking with the given prefix
 
 ```js
 angular.module('managerApp').config(

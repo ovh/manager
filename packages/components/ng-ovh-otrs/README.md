@@ -7,7 +7,7 @@
 # Install
 
 ```sh
-pnpm install @ovh-ux/ng-ovh-otrs
+pnpm add @ovh-ux/ng-ovh-otrs
 ```
 
 ## Usage

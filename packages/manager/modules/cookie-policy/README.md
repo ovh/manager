@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-cookie-policy
+pnpm add @ovh-ux/manager-cookie-policy
 ```
 
 ## Usage

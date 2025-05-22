@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-telecom-task
+pnpm add @ovh-ux/manager-telecom-task
 ```
 
 ## Usage

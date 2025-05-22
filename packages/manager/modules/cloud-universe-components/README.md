@@ -7,8 +7,9 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/ng-ovh-cloud-universe-components
+pnpm add @ovh-ux/ng-ovh-cloud-universe-components
 ```
+
 ## Usage
 
 ```js
@@ -26,7 +27,7 @@ pnpm test
 
 ## Related
 
-* [ovh-manager-cloud](https://github.com/ovh/manager/tree/master/packages/manager/apps/cloud) - OVH Control Panel Cloud UI
+- [ovh-manager-cloud](https://github.com/ovh/manager/tree/master/packages/manager/apps/cloud) - OVH Control Panel Cloud UI
 
 ## Contributing
 

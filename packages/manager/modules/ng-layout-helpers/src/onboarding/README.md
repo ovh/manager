@@ -5,8 +5,9 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-ng-layout-helpers
+pnpm add @ovh-ux/manager-ng-layout-helpers
 ```
+
 ## Usage
 
 ```js
@@ -19,20 +20,19 @@ angular.module('myApp', [OnboardingLayoutHelper]);
 And in your html view:
 
 ```html
-<manager-on-boarding-layout guides="$ctrl.guides" image-source="$ctrl.illustration">
-    <h1 data-translate="title"></h1>
-    <p data-translate="onboarding_content1"></p>
-    <strong
-        data-translate="onboarding_content2"
-    ></strong>
-    <p data-translate="onboarding_content3"></p>
-    <p data-translate="onboarding_content4"></p>
+<manager-on-boarding-layout
+  guides="$ctrl.guides"
+  image-source="$ctrl.illustration"
+>
+  <h1 data-translate="title"></h1>
+  <p data-translate="onboarding_content1"></p>
+  <strong data-translate="onboarding_content2"></strong>
+  <p data-translate="onboarding_content3"></p>
+  <p data-translate="onboarding_content4"></p>
 
-    <oui-button data-variant="primary" data-on-click="$ctrl.onClick()">
-        <span
-            data-translate="onboarding_action_label"
-        ></span>
-    </oui-button>
+  <oui-button data-variant="primary" data-on-click="$ctrl.onClick()">
+    <span data-translate="onboarding_action_label"></span>
+  </oui-button>
 </manager-on-boarding-layout>
 ```
 

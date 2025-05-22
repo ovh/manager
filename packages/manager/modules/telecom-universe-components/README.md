@@ -13,8 +13,9 @@ inside the monorepo.
 ## Install
 
 ```sh
-pnpm install @ovh-ux/ng-ovh-telecom-universe-components
+pnpm add @ovh-ux/ng-ovh-telecom-universe-components
 ```
+
 ## Usage
 
 ```js
@@ -32,7 +33,7 @@ pnpm test
 
 ## Related
 
-* [ovh-manager-telecom](https://github.com/ovh/manager/tree/master/packages/manager/apps/telecom) - OVH Control Panel Telecom UI
+- [ovh-manager-telecom](https://github.com/ovh/manager/tree/master/packages/manager/apps/telecom) - OVH Control Panel Telecom UI
 
 ## Contributing
 

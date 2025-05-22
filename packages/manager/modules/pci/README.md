@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-pci
+pnpm add @ovh-ux/manager-pci
 ```
 
 ## Usage

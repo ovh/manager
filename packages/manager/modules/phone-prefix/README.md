@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-phone-prefix
+pnpm add @ovh-ux/manager-phone-prefix
 ```
 
 ## Imports data
@@ -14,7 +14,7 @@ pnpm install @ovh-ux/manager-phone-prefix
 
 Provides data to allow user to select a right telephone code
 
-#### Usage 
+#### Usage
 
 ```js
 import PHONE_PREFIX from '@ovh-ux/manager-phone-prefix';

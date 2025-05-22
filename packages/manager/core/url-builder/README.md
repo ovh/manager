@@ -5,7 +5,7 @@
 ## Installation
 
 ```sh
-pnpm install @ovh-ux/url-builder
+pnpm add @ovh-ux/url-builder
 ```
 
 ## Usage
