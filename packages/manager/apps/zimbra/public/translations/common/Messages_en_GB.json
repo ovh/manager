@@ -104,5 +104,8 @@
   "cancel_slot_refuse": "No, dismiss",
   "undo_cancel_slot": "Undo cancellation",
   "cancel_slot_title": "Cancel my Zimbra {{ offer }} service",
-  "undo_cancel_slot_title": "Re-enable renewal for my Zimbra {{ offer }} service"
+  "undo_cancel_slot_title": "Re-enable renewal for my Zimbra {{ offer }} service",
+  "zimbra_pro_beta_title": "Zimbra Pro is now available in beta!",
+  "zimbra_pro_beta_description": "Take advantage of five free beta Pro accounts—each with 50 GB of email storage, an ActiveSync licence, Drive storage, and all the features of our Starter plan.",
+  "order_an_account_type": "Order an account {{ type }}"
 }
