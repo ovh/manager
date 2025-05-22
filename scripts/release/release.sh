@@ -4,9 +4,9 @@ RELEASE_NOTE=""
 DRY_RELEASE=false
 
 create_smoke_tag() {
-  git tag "$2@$3" "$1"
+  git tag "$2@$3" "$1" "$2"
 }
-
+# this is branch betaOne
 clean_tags() {
   tags="$(git tag -l '@ovh*')"
   while read -r tag; do
