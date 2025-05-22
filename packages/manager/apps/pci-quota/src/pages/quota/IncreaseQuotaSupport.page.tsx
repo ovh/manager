@@ -42,9 +42,10 @@ const IncreaseQuotaForm = ({
   isPending: boolean;
 }) => {
   const { t } = useTranslation('quotas/increase');
-  const object = {};
 
-  useMemo(() => {
+  const schema = useMemo(() => {
+    const object = {};
+
     fields.forEach((field) => {
       object[field.id] = field.isRequired
         ? z.string().min(
@@ -55,9 +56,10 @@ const IncreaseQuotaForm = ({
           )
         : z.string().optional();
     });
-  }, [fields]);
 
-  const schema = z.object(object);
+    return z.object(object);
+  }, [fields, t]);
+
   const defaultValues = useMemo(
     () =>
       fields.reduce<Record<string, string>>((acc, field) => {
