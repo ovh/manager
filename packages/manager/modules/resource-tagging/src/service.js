@@ -2,9 +2,10 @@ import { OVHCLOUD_TAGS, OVHCLOUD_TAG_TYPES } from './constants';
 
 export default class ovhManagerResourceTaggingService {
   /* @ngInject */
-  constructor(Apiv2Service, $q) {
+  constructor(Apiv2Service, $q, atInternet) {
     this.Apiv2Service = Apiv2Service;
     this.$q = $q;
+    this.atInternet = atInternet;
   }
 
   /**
@@ -192,6 +193,13 @@ export default class ovhManagerResourceTaggingService {
         nextData,
         nextHeaders,
       );
+    });
+  }
+
+  trackPage(name) {
+    this.atInternet.trackPage({
+      name,
+      type: 'navigation',
     });
   }
 }

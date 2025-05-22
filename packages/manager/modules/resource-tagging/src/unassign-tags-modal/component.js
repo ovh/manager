@@ -7,6 +7,7 @@ export default {
     resourceUrn: '<',
     resourceName: '<',
     tagsToRemove: '<',
+    trackingPrefix: '<',
   },
   controller,
   template,
