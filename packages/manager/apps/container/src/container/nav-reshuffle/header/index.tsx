@@ -4,7 +4,6 @@ import { useMediaQuery } from 'react-responsive';
 import HamburgerMenu from './HamburgerMenu';
 import UserAccountMenu from './user-account-menu';
 
-import { LanguageMenu } from './language-menu/LanguageMenu.component';
 import modalStyle from '@/container/common/modal.module.scss';
 import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
 import NotificationsSidebar from '@/container/common/notifications-sidebar';
@@ -15,7 +14,8 @@ import { Logo } from '@/container/common/Logo';
 
 import style from './style.module.scss';
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
-import { NotificationsButton } from './notifications-button/NotificationsButton.component';
+import NotificationsButton from '@/container/common/notifications-sidebar/NotificationsButton';
+import LanguageMenu from '@/container/common/language';
 
 type Props = {
   isSidebarExpanded?: boolean;
