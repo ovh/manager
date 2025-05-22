@@ -88,6 +88,7 @@ export const EmailAccounts = () => {
             </div>
             <ManagerText
               className="flex gap-8"
+              data-testid="account-offers"
               urn={platformUrn}
               iamActions={[IAM_ACTIONS.account.get]}
             >

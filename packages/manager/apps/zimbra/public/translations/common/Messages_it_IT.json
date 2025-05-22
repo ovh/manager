@@ -104,5 +104,8 @@
   "cancel_slot_refuse": "No, annulla",
   "undo_cancel_slot": "Annullare la disattivazione",
   "cancel_slot_title": "Disattivare il servizio Zimbra {{ offer }}",
-  "undo_cancel_slot_title": "Riattivare il rinnovo per il servizio Zimbra {{ offer }}"
+  "undo_cancel_slot_title": "Riattivare il rinnovo per il servizio Zimbra {{ offer }}",
+  "zimbra_pro_beta_title": "Zimbra Pro è adesso disponibile in beta!",
+  "zimbra_pro_beta_description": "Durante il periodo della fase beta, usufruisci di 5 account Pro gratuiti, con 50 GB di spazio email, una licenza Active Sync e uno spazio di storage Drive, oltre a tutte le funzionalità già incluse nel piano Starter.",
+  "order_an_account_type": "Ordinare un account {{ type }}"
 }
