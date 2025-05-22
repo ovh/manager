@@ -1,8 +1,7 @@
 import { OdsText } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
 import { TLocalisation } from './useRegions';
-import { RegionLocalzoneChip } from './RegionLocalzoneChip.component';
-import { RegionGlobalzoneChip } from './RegionGlobalzoneChip.component';
+import { RegionChipByType } from './RegionChipByType';
 
 export interface RegionTileProps {
   region: TLocalisation;
@@ -25,11 +24,7 @@ export const RegionTile = ({
       <>
         <hr className="w-full border-solid border-0 border-b border-ods-primary-200" />
         <div>
-          {region?.isLocalZone ? (
-            <RegionLocalzoneChip id={`popover-localzone-${region.name}`} />
-          ) : (
-            <RegionGlobalzoneChip id={`popover-globalzone-${region.name}`} />
-          )}
+          <RegionChipByType type={region.type} />
         </div>
       </>
     )}

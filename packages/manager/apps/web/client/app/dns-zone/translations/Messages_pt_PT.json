@@ -1,8 +1,12 @@
 {
   "zones_title": "Zonas DNS",
   "zones_order": "Encomendar",
+  "zones_name": "Zona DNS",
+  "zones_enabled": "Ativado",
+  "zones_disabled": "Desativado",
   "base_dns_zone": "Zona DNS de base",
   "modified_dns_zone": "Zona DNS modificada",
+  "modified": "Alterado",
   "dashboard_history_creation_date": "Data de criação",
   "dashboard_history_view_zone": "Ver",
   "dashboard_history_current_zone_date": "{{creationDate}} (atual)",
@@ -18,10 +22,5 @@
   "dashboard_history_restore_modal_primary_label": "Restaurar",
   "dashboard_history_restore_modal_secondary_label": "Anular",
   "dashboard_history_restore_modal_warning_message": "Atenção! A zona atual será eliminada. A nova zona selecionada será restaurada",
-  "dashboard_history_restore_modal_info_message": "A reinicialização na zona DNS levará alguns instantes, mas tenha em conta o tempo de propagação (máximo 24h).",
-  "modified": "Alterado",
-  "zones_domain_name": "Domínio",
-  "zones_enabled": "Ativado",
-  "zones_disabled": "Desativado",
-  "zones_name": "Zona DNS"
+  "dashboard_history_restore_modal_info_message": "A reinicialização na zona DNS levará alguns instantes, mas tenha em conta o tempo de propagação (máximo 24h)."
 }

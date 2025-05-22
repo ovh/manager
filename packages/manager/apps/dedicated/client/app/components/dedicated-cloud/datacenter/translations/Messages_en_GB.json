@@ -13,5 +13,6 @@
   "dedicatedCloud_tab_network": "Network",
   "dedicatedCloud_datacenter_activate": "Enable",
   "dedicatedCloud_datacenter_add_edge": "Add an NSX Edge",
-  "dedicatedCloud_datacenter_relocate_datastore": "Relocate an NSX Edge"
+  "dedicatedCloud_datacenter_relocate_datastore": "Relocate an NSX Edge",
+  "dedicatedCloud_tab_virtualmachine": "Virtual Machines"
 }

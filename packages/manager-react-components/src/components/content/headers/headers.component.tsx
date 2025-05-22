@@ -18,7 +18,7 @@ export const Headers: React.FC<HeadersProps> = ({
   changelogButton,
 }) => {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-start justify-between">
       <div>
         {title && <Title>{title}</Title>}
         {subtitle && <Subtitle className="block mb-6">{subtitle}</Subtitle>}
@@ -29,7 +29,7 @@ export const Headers: React.FC<HeadersProps> = ({
         )}
       </div>
       {(headerButton || changelogButton) && (
-        <div className="flex flex-wrap justify-end">
+        <div className="flex flex-wrap justify-end items-center">
           {changelogButton}
           {headerButton}
         </div>

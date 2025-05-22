@@ -1,6 +1,4 @@
 {
-  "autorenew_service_terminate": "Validar",
-  "autorenew_service_terminate_cancel": "Anular",
   "billing_terminate_cancel_button": "Não, recusar",
   "billing_terminate_delete_button": "Sim, rescindir",
   "billing_terminate_description": "A rescisão do serviço eliminará definitivamente todos os dados correspondentes. Pretende proceder à rescisão do seu serviço?",
