@@ -54,11 +54,11 @@ with the following links:
 
 ### Using alternatives
 
-Otherwise, you can download the pnpm installer corresponding to your system [here](https://yarnpkg.com/en/docs/install).
+Otherwise, you can download the pnpm installer corresponding to your system [here](https://pnpm.io/installation).
 
 ### Is pnpm installed?
 
-Ensure Yarn is installed with the following command:
+Ensure Pnpm is installed with the following command:
 
 ```sh
 $ pnpm --version

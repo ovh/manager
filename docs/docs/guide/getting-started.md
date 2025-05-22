@@ -4,7 +4,7 @@
 
 - [Git](https://git-scm.com)
 - [Node.js](https://nodejs.org/en/) ^18
-- [Yarn](https://yarnpkg.com/lang/en/) >= 1.21.1
+- [Pnpm](https://pnpm.io/) >= 10
 - Supported OS: GNU/Linux, macOS and Windows
 
 To install these prerequisites, you can follow the [How To section](/how-to/) of the documentation.
@@ -30,6 +30,7 @@ $ pnpm install
 In order for you to allow your account to connect to the applications we will describe in the [Applications](/guide/applications.html), you will need to enable the "developer mode" on it.
 
 To do so connect to the customer interface of the region in which your account has been created and go to the "Advanced settings" tab of your account configuration page.
+
 - [EU](https://ovh.com/manager/dedicated/#/useraccount/advanced)
 - [CA](https://ca.ovh.com/manager/dedicated/#/useraccount/advanced)
 - [US](https://us.ovhcloud.com/manager/dedicated/#/useraccount/advanced)

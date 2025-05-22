@@ -23,10 +23,11 @@ The applications can be started for a specific region.
 
 :::tip Information
 Depending on the requested region, the URL to access the API will be different
+
 - <https://api.ovh.com/console/>
 - <https://ca.api.ovh.com/console/>
 - <https://api.us.ovhcloud.com/console/>
-:::
+  :::
 
 ## Container
 
@@ -62,7 +63,7 @@ $ pnpm build -p @ovh-ux/manager-container-app
 ### How to start the application?
 
 ```sh
-$ yarn workspace @ovh-ux/manager-hub-app run start:dev
+$ pnpm --filter @ovh-ux/manager-hub-app run start:dev
 ```
 
 Go to `<http://localhost:9000>`
@@ -80,7 +81,7 @@ $ pnpm build -p @ovh-ux/manager-hub-app
 ### How to start the application?
 
 ```sh
-$ yarn workspace @ovh-ux/manager-web run start:dev
+$ pnpm --filter @ovh-ux/manager-web run start:dev
 ```
 
 Go to `<http://localhost:9000>`
@@ -106,7 +107,7 @@ They can be started in different region with a given environment variable.
 
 ```sh
 $ export REGION=EU
-$ yarn workspace @ovh-ux/manager-dedicated run start:dev
+$ pnpm --filter @ovh-ux/manager-dedicated run start:dev
 ```
 
 Go to `<http://localhost:9000>`
@@ -129,7 +130,7 @@ Application can be started in different region with a given environment variable
 
 ```sh
 $ export REGION=EU
-$ yarn workspace @ovh-ux/manager-public-cloud run start:dev
+$ pnpm --filter @ovh-ux/manager-public-cloud run start:dev
 ```
 
 Go to `<http://localhost:9000>`
@@ -147,7 +148,7 @@ $ pnpm build -p @ovh-ux/manager-public-cloud
 ### How to start the application?
 
 ```sh
-$ yarn workspace @ovh-ux/manager-telecom run start:dev
+$ pnpm --filter @ovh-ux/manager-telecom run start:dev
 ```
 
 Go to `<http://localhost:9000>`

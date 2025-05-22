@@ -82,9 +82,9 @@ const questions = [
 
 async function getApplicationId(packageName) {
   return basename(
-    JSON.parse((await execa('yarn', ['workspaces', 'info'])).stdout)[
-      packageName
-    ].location,
+    JSON.parse(
+      (await execa('turbo', ['ls', '--output=json'])).stdout,
+    ).packages.items.find((item) => item.name === packageName)?.path,
   );
 }
 
@@ -103,6 +103,7 @@ inquirer
     try {
       if (container) {
         const appId = await getApplicationId(packageName);
+        console.log(appId);
         await concurrently(
           [
             `VITE_CONTAINER_APP=${appId} turbo run start --filter=${containerPackageName}`,
