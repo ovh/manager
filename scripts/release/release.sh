@@ -4,7 +4,7 @@ RELEASE_NOTE=""
 DRY_RELEASE=false
 
 create_smoke_tag() {
-  git tag "$2@$3" "$1"
+  git tag "$2@$3" "$1" "$1"
 }
 # here clean tag of the branch betaTwo
 clean_tags() {
