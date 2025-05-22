@@ -197,8 +197,8 @@ export default class HostingTabAutomatedEmailsCtrl {
   }
 
   retrievingEmailsSum(endpoint, token, start) {
-    const query = `mailout_sendmails_count{service_name="${this.$stateParams.productId}"} OR vector(0)`;
-    const url = `${endpoint}/prometheus/api/v1/query_range?query=${query}&start=${start.toISOString()}&end=${new Date().toISOString()}&step=30m`;
+    const query = `sum without(cluster, statusCode,cluster_name, datacenter, host, host_type, hw_profile, service_name, user) (label_replace((mailout_sendmails_count{service_name="${this.$stateParams.productId}"}), "mail", "sent", "", "")) OR label_replace(vector(0), "mail", "sent", "", "")`;
+    const url = `${endpoint}/prometheus/api/v1/query_range?query=${query}&start=${start.toISOString()}&end=${new Date().toISOString()}&step=1h`;
 
     const headers = {
       authorization: `bearer ${token}`,
