@@ -19,7 +19,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
       if (error?.status === 401) {
         navigate(urls.preferences);
       } else {
-        setLegalForm('association');
+        setLegalForm(me.legalform);
         navigate(urls.accountType);
       }
     }
