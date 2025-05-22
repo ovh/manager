@@ -84,5 +84,8 @@
   "skip_step": "Schritt überspringen",
   "configure_another_account": "Anderen Account einrichten",
   "generate_password_tooltip": "Passwort generieren",
-  "generated_password_tooltip": "Passwort in die Zwischenablage kopiert!"
+  "generated_password_tooltip": "Passwort in die Zwischenablage kopiert!",
+  "zimbra_pro_beta_title": "Zimbra Pro ist ab sofort als Beta verfügbar!",
+  "zimbra_pro_beta_description": "Profitieren Sie während des Betatests von 5 kostenlosen Pro Accounts mit 50 GB E-Mail-Speicherplatz, einer Active Sync-Lizenz und einem Drive-Speicherplatz zusätzlich zu allen bereits im Starter Angebot enthaltenen Funktionen.",
+  "order_an_account_type": "Einen {{ type }} Account bestellen"
 }

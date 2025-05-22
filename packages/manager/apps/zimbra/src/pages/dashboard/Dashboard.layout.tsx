@@ -7,6 +7,7 @@ import {
   Notifications,
   useNotifications,
   ChangelogButton,
+  useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OdsTag } from '@ovhcloud/ods-components/react';
@@ -23,10 +24,12 @@ import {
   TabsPanel,
   useComputePathMatchers,
   TabItemProps,
+  ProBetaBanner,
 } from '@/components';
 import { GUIDES_LIST, CHANGELOG_LINKS } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
 import { FEATURE_FLAGS } from '@/utils';
+import { FEATURE_AVAILABILITY } from '@/constants';
 import { useGenerateUrl, useOverridePage } from '@/hooks';
 import { useOrganization } from '@/data/hooks';
 import {
@@ -54,6 +57,10 @@ export const DashboardLayout: React.FC = () => {
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
   const basePath = useResolvedPath('').pathname;
+
+  const { data: availability } = useFeatureAvailability([
+    FEATURE_AVAILABILITY.PRO_BETA,
+  ]);
 
   const guideItems: GuideItem[] = [
     {
@@ -184,7 +191,15 @@ export const DashboardLayout: React.FC = () => {
       }
       message={
         // temporary fix margin even if empty
-        notifications.length ? <Notifications /> : null
+        notifications.length ||
+        availability?.[FEATURE_AVAILABILITY.PRO_BETA] ? (
+          <div className="flex flex-col gap-4">
+            {!!availability?.[FEATURE_AVAILABILITY.PRO_BETA] && (
+              <ProBetaBanner />
+            )}
+            {!!notifications.length && <Notifications />}
+          </div>
+        ) : null
       }
       tabs={isOverridePage ? null : <TabsPanel tabs={tabsList} />}
     >
