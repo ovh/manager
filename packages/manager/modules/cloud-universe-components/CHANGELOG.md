@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.17.1...@ovh-ux/ng-ovh-cloud-universe-components@2.18.0) (2025-05-22)
+
+
+### Features
+
+* **pci-instances:** create listing page ([4a69c77](https://github.com/ovh/manager/commit/4a69c772f3477a19cbf4ede491ec113d0ce17151)), closes [#TAPC-1509](https://github.com/ovh/manager/issues/TAPC-1509)
+
+
+
+
+
 ## [2.17.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.17.0...@ovh-ux/ng-ovh-cloud-universe-components@2.17.1) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
