@@ -1,17 +1,16 @@
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { PciTrustedZoneBanner } from '@ovh-ux/manager-pci-common';
 import { TRegion } from '@/api/data/regions';
 import { EncryptionType } from '@/api/select/volume';
 import { TVolumeModel, useVolumePricing } from '@/api/hooks/useCatalog';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
+import { Button } from '@/components/button/Button';
 
 interface ValidationStepProps {
   projectId: string;
@@ -28,11 +27,9 @@ export function ValidationStep({
   region,
   volumeType,
   encryptionType,
-  onSubmit,
+  onSubmit: propsOnSubmit,
 }: Readonly<ValidationStepProps>) {
   const { t } = useTranslation('add');
-  const navigate = useNavigate();
-  const { clearNotifications } = useNotifications();
 
   const { data } = useVolumePricing(
     projectId,
@@ -41,6 +38,8 @@ export function ValidationStep({
     encryptionType,
     volumeCapacity,
   );
+
+  const actionValues = [region.name, volumeType];
 
   return (
     <div className="mb-6">
@@ -57,29 +56,27 @@ export function ValidationStep({
         <PciTrustedZoneBanner />
       </div>
       <div className="flex flex-row">
-        <OsdsButton
+        <Button
           className="mt-4 mr-4 w-fit"
-          size={ODS_BUTTON_SIZE.md}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => {
-            clearNotifications();
-            onSubmit();
-          }}
+          size="md"
+          color="primary"
+          onClick={propsOnSubmit}
+          actionName="confirm"
+          actionValues={actionValues}
         >
           {t('pci_projects_project_storages_blocks_add_submit_label')}
-        </OsdsButton>
-        <OsdsButton
+        </Button>
+        <ButtonLink
           className="mt-4 w-fit"
-          size={ODS_BUTTON_SIZE.md}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={() => {
-            clearNotifications();
-            navigate('..');
-          }}
+          size="md"
+          color="primary"
+          variant="ghost"
+          to=".."
+          actionName="cancel"
+          actionValues={actionValues}
         >
           {t('pci_projects_project_storages_blocks_add_submit_cancel_label')}
-        </OsdsButton>
+        </ButtonLink>
       </div>
     </div>
   );
