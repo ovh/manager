@@ -20,13 +20,13 @@ jobs:
         run: |
           pnpm --version
           pnpm install
-          pnpm turbo -- run build --filter="./packages/manager/core/api"
-          pnpm turbo -- run build --filter="./packages/manager/core/url-builder"
-          pnpm turbo -- run build --filter="./packages/components/ovh-shell"
-          pnpm turbo -- run build --filter="./packages/components/ovh-reket"
-          pnpm turbo -- run build --filter="./packages/components/ovh-at-internet"
-          pnpm turbo -- run build --filter="./packages/manager/modules/config"
-          pnpm turbo -- run build --filter="./packages/manager/modules/common-translations"
+          pnpm exec turbo -- run build --filter="./packages/manager/core/api"
+          pnpm exec turbo -- run build --filter="./packages/manager/core/url-builder"
+          pnpm exec turbo -- run build --filter="./packages/components/ovh-shell"
+          pnpm exec turbo -- run build --filter="./packages/components/ovh-reket"
+          pnpm exec turbo -- run build --filter="./packages/components/ovh-at-internet"
+          pnpm exec turbo -- run build --filter="./packages/manager/modules/config"
+          pnpm exec turbo -- run build --filter="./packages/manager/modules/common-translations"
           pnpm --filter @ovh-ux/manager-documentation run docs:build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
