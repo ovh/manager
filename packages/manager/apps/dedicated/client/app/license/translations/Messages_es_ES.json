@@ -1451,6 +1451,8 @@
   "license_designation_PLESK_version_plesk-webpro-for-vps": "Plesk - Web Pro Edition para VPS",
   "license_designation_PLESK_version_PLESK_VPS_WEB_HOST_CLNX": "Plesk - Web Host Edition para VPS con CloudLinux",
   "license_designation_PLESK_version_PLESK_VPS_WEB_PRO_CLNX": "Plesk - Web Pro Edition para VPS con CloudLinux",
+  "license_delete_confirm": "Sí, dar de baja",
+  "license_delete_cancel": "No, cancelar",
   "license_designation_WINDOWS_version_windows-server-2025-license-datacenter-edition-8-cores": "Licencia Windows Server 2025 Datacenter Edition - 8 cores",
   "license_designation_WINDOWS_version_windows-server-2025-license-datacenter-edition-10-cores": "Licencia Windows Server 2025 Datacenter Edition - 10 cores",
   "license_designation_WINDOWS_version_windows-server-2025-license-datacenter-edition-12-cores": "Licencia Windows Server 2025 Datacenter Edition - 12 cores",
@@ -1508,7 +1510,5 @@
   "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-58-cores": "Licencia Windows Server 2025 Standard Edition - 58 cores",
   "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-60-cores": "Licencia Windows Server 2025 Standard Edition - 60 cores",
   "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-62-cores": "Licencia Windows Server 2025 Standard Edition - 62 cores",
-  "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-64-cores": "Licencia Windows Server 2025 Standard Edition - 64 cores",
-  "license_delete_confirm": "Sí, dar de baja",
-  "license_delete_cancel": "No, cancelar"
+  "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-64-cores": "Licencia Windows Server 2025 Standard Edition - 64 cores"
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.4.4...@ovh-ux/manager-models@2.5.0) (2025-05-21)
+
+
+### Features
+
+* **billing:** add delete hosting for suspended service ([#15900](https://github.com/ovh/manager/issues/15900)) ([d2fafca](https://github.com/ovh/manager/commit/d2fafcaaaec9469059cc932ec90f897cfafc84b2)), closes [#MANAGER-13617](https://github.com/ovh/manager/issues/MANAGER-13617)
+
+
+
+
+
 ## [2.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.4.3...@ovh-ux/manager-models@2.4.4) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-models

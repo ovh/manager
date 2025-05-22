@@ -7,5 +7,6 @@
   "autorenew_hosting_dashboard_close_service_warning": "La eliminación de este alojamiento provocará el borrado definitivo de todos los datos correspondientes. La acción de eliminar un alojamiento no implica ninguna devolución.",
   "autorenew_hosting_dashboard_close_service_desc1": "Recibirá por correo electrónico un mensaje con el procedimiento de cierre del alojamiento desde el que podrá confirmar la eliminación inmediata.",
   "autorenew_hosting_dashboard_close_confirm": "Aceptar",
-  "autorenew_hosting_dashboard_close_cancel": "Cancelar"
+  "autorenew_hosting_dashboard_close_cancel": "Cancelar",
+  "autorenew_hosting_dashboard_close_service_success_skip_retention_period": "La solicitud de eliminación definitiva del alojamiento se ha enviado correctamente."
 }

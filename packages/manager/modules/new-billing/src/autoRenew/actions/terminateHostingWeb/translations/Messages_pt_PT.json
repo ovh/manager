@@ -7,5 +7,6 @@
   "autorenew_hosting_dashboard_close_service_warning": "A eliminação de um alojamento apaga definitivamente todos os dados correspondentes. A operação de eliminação de um alojamento não garante o direito a reembolso.",
   "autorenew_hosting_dashboard_close_service_desc1": "Receberá por e-mail o procedimento de encerramento do seu alojamento, e assim que o confirmar, a eliminação será imediata.",
   "autorenew_hosting_dashboard_close_confirm": "Validar",
-  "autorenew_hosting_dashboard_close_cancel": "Anular"
+  "autorenew_hosting_dashboard_close_cancel": "Anular",
+  "autorenew_hosting_dashboard_close_service_success_skip_retention_period": "O seu pedido de eliminação definitiva do alojamento foi tomado em conta."
 }

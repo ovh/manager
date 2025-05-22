@@ -591,7 +591,7 @@
   "license_delete_already_terminating": "Dyspozycja rezygnacji jest już przetwarzana",
   "license_delete_success": "Otrzymasz e-mail z potwierdzeniem anulowania licencji.",
   "license_delete_step1_question": "Czy na pewno chcesz zrezygnować z następującej licencji?",
-  "license_delete_type": "Typ licencji:",
+  "license_delete_type": "Rodzaj licencji:",
   "license_delete_server": "Serwer:",
   "license_delete_serial": "Numer licencji:",
   "license_delete_step1_deleting": "Anulowanie licencji w trakcie ...",
@@ -1451,6 +1451,8 @@
   "license_designation_PLESK_version_plesk-webpro-for-vps": "Plesk - Web Pro Edition for VPS",
   "license_designation_PLESK_version_PLESK_VPS_WEB_HOST_CLNX": "Plesk - Web Host Edition for VPS with CloudLinux",
   "license_designation_PLESK_version_PLESK_VPS_WEB_PRO_CLNX": "Plesk - Web Pro Edition for VPS with CloudLinux",
+  "license_delete_confirm": "Tak, chcę",
+  "license_delete_cancel": "Nie, nie chcę",
   "license_designation_WINDOWS_version_windows-server-2025-license-datacenter-edition-8-cores": "Licencja Windows Server 2025 Datacenter  Edition - 8 rdzeni",
   "license_designation_WINDOWS_version_windows-server-2025-license-datacenter-edition-10-cores": "Licencja Windows Server 2025 Datacenter  Edition - 10 rdzeni",
   "license_designation_WINDOWS_version_windows-server-2025-license-datacenter-edition-12-cores": "Licencja Windows Server 2025 Datacenter  Edition - 12 rdzeni",
@@ -1508,7 +1510,5 @@
   "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-58-cores": "Licencja Windows Server 2025 Standard Edition   - 58 rdzeni",
   "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-60-cores": "Licencja Windows Server 2025 Standard Edition   - 60 rdzeni",
   "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-62-cores": "Licencja Windows Server 2025 Standard Edition   - 62 rdzenie",
-  "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-64-cores": "Licencja Windows Server 2025 Standard Edition   - 64 rdzenie",
-  "license_delete_confirm": "Tak, chcę",
-  "license_delete_cancel": "Nie, nie chcę"
+  "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-64-cores": "Licencja Windows Server 2025 Standard Edition   - 64 rdzenie"
 }
