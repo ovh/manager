@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-browser-alert
+$ pnpm add @ovh-ux/ng-ovh-browser-alert
 ```
 
 ## Usage

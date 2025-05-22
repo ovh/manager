@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-freefax
+pnpm add @ovh-ux/manager-freefax
 ```
 
 ## Usage

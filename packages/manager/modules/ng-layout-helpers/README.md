@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-ng-layout-helpers
+pnpm add @ovh-ux/manager-ng-layout-helpers
 ```
 
 ## Available layouts
@@ -37,7 +37,6 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   });
 };
-
 ```
 
 ```js
@@ -75,7 +74,6 @@ export default class ProductListCtrl extends ListLayoutHelper.ListLayoutCtrl {
     ];
   }
 }
-
 ```
 
 #### Add Simple CTA
@@ -163,6 +161,7 @@ export default /* @ngInject */ ($stateProvider) => {
 ```
 
 ### Onboarding component
+
 [Click here for documentation](src/onboarding/README.md)
 
 ## Build

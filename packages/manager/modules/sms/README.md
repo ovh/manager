@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-sms
+pnpm add @ovh-ux/manager-sms
 ```
 
 ## Usage
@@ -45,7 +45,7 @@ pnpm start:watch
 
 ## Documentation
 
-* Documentation OVH SMS — [https://docs.ovh.com/fr/sms/](https://docs.ovh.com/fr/sms/)
+- Documentation OVH SMS — [https://docs.ovh.com/fr/sms/](https://docs.ovh.com/fr/sms/)
 
 ## Contributing
 

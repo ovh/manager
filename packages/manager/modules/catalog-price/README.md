@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/manager-catalog-price
+$ pnpm add @ovh-ux/manager-catalog-price
 ```
 
 ## Usage
@@ -22,10 +22,10 @@ angular.module('myApp', [ovhManagerCatalogPrice]);
 
 ## Attributes
 
-| Attribute         | Type            | Binding | One-time binding | Values                    | Default    | Description
-| ----              | ----            | ----    | ----             | ----                      | ----       | ----
-| `price`           | string          | <       | no               |n/a                        | n/a        | The price to be shown
-| `interval-unit`   | string          | @?      | no               | n/a                       | n/a        | Time interval for which the price is expressed (e.g: month)
+| Attribute       | Type   | Binding | One-time binding | Values | Default | Description                                                 |
+| --------------- | ------ | ------- | ---------------- | ------ | ------- | ----------------------------------------------------------- |
+| `price`         | string | <       | no               | n/a    | n/a     | The price to be shown                                       |
+| `interval-unit` | string | @?      | no               | n/a    | n/a     | Time interval for which the price is expressed (e.g: month) |
 
 ## Contributing
 

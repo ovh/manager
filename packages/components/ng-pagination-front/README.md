@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-pagination-front
+$ pnpm add @ovh-ux/ng-pagination-front
 ```
 
 ## Usage

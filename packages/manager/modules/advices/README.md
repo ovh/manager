@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-advices
+pnpm add @ovh-ux/manager-advices
 ```
 
 ## Usage
@@ -18,11 +18,12 @@ angular.module('myApp', [ovhManagerAdvices]);
 ```
 
 ```html
-  <ovh-advices
-    service-type="dedicated-server"
-    service-name="{{ ::$ctrl.serviceName }}"
-    on-advice-click="$ctrl.onAdviceClick(advice)">
- </ovh-advices>
+<ovh-advices
+  service-type="dedicated-server"
+  service-name="{{ ::$ctrl.serviceName }}"
+  on-advice-click="$ctrl.onAdviceClick(advice)"
+>
+</ovh-advices>
 ```
 
 ## Contributing

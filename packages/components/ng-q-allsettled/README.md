@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-q-allsettled
+$ pnpm add @ovh-ux/ng-q-allsettled
 ```
 
 ## Usage

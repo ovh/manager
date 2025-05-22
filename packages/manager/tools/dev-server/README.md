@@ -13,7 +13,7 @@ yarn global add @ovh-ux/manager-dev-server
 or
 
 ```sh
-pnpm install @ovh-ux/manager-dev-server
+pnpm add @ovh-ux/manager-dev-server
 ```
 
 ## Usage
@@ -37,7 +37,6 @@ const { devServer } = require('@ovh-ux/manager-dev-server');
 devServer('.', 'ca', '1234', { local2API: true });
 ```
 
-
 ### CLI
 
 #### Help
@@ -58,12 +57,12 @@ Options:
 
 #### Options
 
-* `-V, --version` : Display version number
-* `-r, --region <region>` : Region to use (default to `eu` or `REGION` environment variable).
-* `-p, --port <port>`: Port (default to `3000`or or `PORT` environment variable)
-* `-h, --host <host>`: Define custom host
-* `--local2API`: Use local2API proxy (to localhost:8080)
-* `-h, --help`: Display help
+- `-V, --version` : Display version number
+- `-r, --region <region>` : Region to use (default to `eu` or `REGION` environment variable).
+- `-p, --port <port>`: Port (default to `3000`or or `PORT` environment variable)
+- `-h, --host <host>`: Define custom host
+- `--local2API`: Use local2API proxy (to localhost:8080)
+- `-h, --help`: Display help
 
 #### Examples
 
@@ -97,7 +96,7 @@ Serve: ./packages/manager/apps/hub/dist - region: ca - localhost:1234
 
 ## Related
 
-* [manager-dev-server-config](https://github.com/ovh/manager/tree/master/packages/manager/tools/dev-server-config) - OVHcloud manager shared dev server configuration
+- [manager-dev-server-config](https://github.com/ovh/manager/tree/master/packages/manager/tools/dev-server-config) - OVHcloud manager shared dev server configuration
 
 ## Contributing
 

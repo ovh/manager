@@ -7,8 +7,9 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ui-router-layout
+$ pnpm add @ovh-ux/ng-ui-router-layout
 ```
+
 ## Usage
 
 ### `modal` layout
@@ -78,7 +79,6 @@ $stateProvider.state('state.name', {
 ### `ouiModal` layout
 
 See [ouiModal layout](src/oui-modal/README.md).
-
 
 ## Test
 

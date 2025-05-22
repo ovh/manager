@@ -13,7 +13,7 @@ yarn global add @ovh-ux/codename-generator
 or
 
 ```sh
-pnpm install @ovh-ux/codename-generator
+pnpm add @ovh-ux/codename-generator
 ```
 
 ## Usage
@@ -46,14 +46,14 @@ codename.encode('1985-10-26');
 
 Create a Codename object
 
-* `source`: an array of array containing string
-* `seed`: seed used to shuffle source combinations (see [davidbau/seedrandom](https://github.com/davidbau/seedrandom))
+- `source`: an array of array containing string
+- `seed`: seed used to shuffle source combinations (see [davidbau/seedrandom](https://github.com/davidbau/seedrandom))
 
 #### codename.encode(date)
 
 Return a codename from date
 
-* `date` : string representing a date (exemple : `1985-10-26`)
+- `date` : string representing a date (exemple : `1985-10-26`)
 
 ### CLI
 
@@ -74,11 +74,11 @@ Options:
 
 #### Options
 
-* `-V, --version` : Display version number
-* `-s, --seed <seed>` : Random Seed (default to `RockPaperScissor`)
-* `-d, --date <date>`: Date (format Y-M-D)
-* `-v, --verbose` : Display current message and seed used
-* `-h, --help`: Display help
+- `-V, --version` : Display version number
+- `-s, --seed <seed>` : Random Seed (default to `RockPaperScissor`)
+- `-d, --date <date>`: Date (format Y-M-D)
+- `-v, --verbose` : Display current message and seed used
+- `-h, --help`: Display help
 
 #### Examples
 

@@ -9,7 +9,7 @@ Poll a log API for displaying messages
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-log-live-tail
+$ pnpm add @ovh-ux/ng-log-live-tail
 ```
 
 ## Usage
@@ -41,9 +41,11 @@ angular.module('myApp', [ngLogToCustomer]).controller(
 ```html
 <div data-ng-controller="MyCtrl as $ctrl">
   <log-to-customer source="$ctrl.logSrcUrl" log-keys="$ctrl.logKeys">
-    
     <!--Optionnal : right tile transclude content-->
-    <right-tile>Content will be placed right to the live tail. Tail will be fullscreen if no content is passed.</right-tile>
+    <right-tile
+      >Content will be placed right to the live tail. Tail will be fullscreen if
+      no content is passed.</right-tile
+    >
   </log-to-customer>
 </div>
 ```

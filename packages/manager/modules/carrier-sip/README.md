@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-pnpm install @ovh-ux/manager-carrier-sip
+pnpm add @ovh-ux/manager-carrier-sip
 ```
 
 ## Usage
@@ -19,11 +19,11 @@ angular.module('myApp', [ovhManagerCarrierSip]);
 
 ## Documentation
 
-* [Carrier SIP Trunk offer](https://www.ovhtelecom.fr/telephonie/carrier-sip-trunk/).
+- [Carrier SIP Trunk offer](https://www.ovhtelecom.fr/telephonie/carrier-sip-trunk/).
 
 ## Related
 
-* [manager-telecom](https://github.com/ovh/manager/blob/master/packages/manager/apps/telecom/README.md) - OVH Control Panel Telecom UI.
+- [manager-telecom](https://github.com/ovh/manager/blob/master/packages/manager/apps/telecom/README.md) - OVH Control Panel Telecom UI.
 
 ## Contributing
 

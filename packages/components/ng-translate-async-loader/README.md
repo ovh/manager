@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-translate-async-loader
+$ pnpm add @ovh-ux/ng-translate-async-loader
 ```
 
 ## Usage

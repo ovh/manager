@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-$ pnpm install @ovh-ux/ng-ovh-export-csv
+$ pnpm add @ovh-ux/ng-ovh-export-csv
 ```
 
 ## Usage
