@@ -161,10 +161,7 @@ export default class ServicesActionsCtrl {
       return this.service.renew?.automatic;
     }
 
-    return ![
-      SERVICE_TYPE.PACK_XDSL,
-      SERVICE_TYPE.VMWARE_CLOUD_DIRECTOR_ORGANIZATION,
-    ].includes(this.service.serviceType);
+    return ![SERVICE_TYPE.PACK_XDSL].includes(this.service.serviceType);
   }
 
   getExchangeBilling() {
