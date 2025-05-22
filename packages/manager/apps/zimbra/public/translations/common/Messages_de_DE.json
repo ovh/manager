@@ -104,5 +104,8 @@
   "cancel_slot_refuse": "Nein, ablehnen",
   "undo_cancel_slot": "Kündigung stornieren",
   "cancel_slot_title": "Meinen Zimbra-Dienst {{ offer }} kündigen",
-  "undo_cancel_slot_title": "Verlängerung für meinen Zimbra-Dienst {{ offer }} erneut aktivieren"
+  "undo_cancel_slot_title": "Verlängerung für meinen Zimbra-Dienst {{ offer }} erneut aktivieren",
+  "zimbra_pro_beta_title": "Zimbra Pro ist ab sofort als Beta verfügbar!",
+  "zimbra_pro_beta_description": "Profitieren Sie während des Betatests von 5 kostenlosen Pro Accounts mit 50 GB E-Mail-Speicherplatz, einer Active Sync-Lizenz und einem Drive-Speicherplatz zusätzlich zu allen bereits im Starter Angebot enthaltenen Funktionen.",
+  "order_an_account_type": "Einen {{ type }} Account bestellen"
 }
