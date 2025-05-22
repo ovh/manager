@@ -1,8 +1,6 @@
-import React from 'react';
 import { organizationList } from '@ovh-ux/manager-module-vcd-api';
-import { screen, waitFor } from '@testing-library/dom';
+import { screen } from '@testing-library/dom';
 import { act } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { renderTest, labels } from '../../test-utils';
 
 const openTerminateModal = async () => {
@@ -70,7 +68,10 @@ describe('Organization Terminate Page', () => {
     await act(() => new Promise((resolve) => setTimeout(resolve, 2000)));
 
     const successBanner = await screen.findByText(
-      labels.terminate.terminate_managed_vcd_success,
+      labels.terminate.terminate_managed_vcd_success.replace(
+        '{{service}}',
+        organizationList[0].id,
+      ),
     );
     expect(successBanner).toBeVisible();
 

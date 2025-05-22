@@ -32,11 +32,12 @@ export default function TerminateOrganization() {
       pageType: PageType.bannerSuccess,
       pageName: 'delete_managed-vcd_success',
     });
+    const messageKey =
+      ovhSubsidiary === 'US'
+        ? 'terminate_managed_vcd_ftc_success'
+        : 'terminate_managed_vcd_success';
     addSuccess({
-      content:
-        ovhSubsidiary === 'US'
-          ? t('terminate_managed_vcd_ftc_success')
-          : t('terminate_managed_vcd_success'),
+      content: t(messageKey, { service: id }),
       ...messageOptions,
     });
     closeModal();

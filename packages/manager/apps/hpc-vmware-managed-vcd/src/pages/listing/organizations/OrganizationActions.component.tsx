@@ -11,7 +11,6 @@ export default function OrganizationActions({ id }: VCDOrganization) {
   const { t } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
   const messageOptions: MessageOptions = {
-    duration: 5_000,
     isDismissible: true,
   };
 
