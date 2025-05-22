@@ -15,11 +15,12 @@ import {
 import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useHref, useParams } from 'react-router-dom';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
 import { useAllVolumes } from '@/api/hooks/useVolume';
+import { useTrackAction } from '@/hooks/useTrackAction';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation();
@@ -30,8 +31,9 @@ export default function OnBoardingPage() {
   const { ovhSubsidiary } = context.environment.getUser();
   const { data: project } = useProject();
   const [urlProject, setUrlProject] = useState('');
-  const navigate = useNavigate();
   const { data: volumes, isPending } = useAllVolumes(projectId);
+
+  const newHref = useHref('../new');
 
   useEffect(() => {
     navigation
@@ -100,6 +102,20 @@ export default function OnBoardingPage() {
     },
   ];
 
+  const onTrackingOrderClick = useTrackAction({
+    actionType: 'action',
+    buttonType: 'button',
+    actionName: 'create_volume_block_storage',
+  });
+
+  const onTrackingCardClick = useTrackAction<(tileId: string) => void>(
+    (tileId: string) => ({
+      buttonType: 'tile-tutorial',
+      actionName: 'go-to',
+      actionValues: [tileId],
+    }),
+  );
+
   return (
     <RedirectionGuard
       isLoading={isPending}
@@ -159,10 +175,16 @@ export default function OnBoardingPage() {
           orderButtonLabel={tOnBoarding(
             'pci_projects_project_storages_blocks_onboarding_action_label',
           )}
-          onOrderButtonClick={() => navigate(`../new`)}
+          onOrderButtonClick={onTrackingOrderClick}
+          orderHref={newHref}
         >
           {tileItems.map((tile) => (
-            <Card key={tile.id} href={tile.href} texts={tile.texts} />
+            <Card
+              key={tile.id}
+              href={tile.href}
+              onClick={() => onTrackingCardClick(tile.id)}
+              texts={tile.texts}
+            />
           ))}
         </OnboardingLayout>
         <Outlet />

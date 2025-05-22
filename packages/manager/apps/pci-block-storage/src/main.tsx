@@ -5,10 +5,8 @@ import {
   initShellContext,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+import { TRACKING_CONTEXT } from '@/tracking.constants';
 import App from './App';
-
-import '@ovh-ux/manager-pci-common/dist/style.css';
-import './index.css';
 
 import '@/vite-hmr.ts';
 
@@ -16,7 +14,7 @@ const init = async (
   appName: string,
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
 ) => {
-  const context = await initShellContext(appName);
+  const context = await initShellContext(appName, TRACKING_CONTEXT);
 
   const region = context.environment.getRegion();
   try {

@@ -24,9 +24,9 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import HidePreloader from '@/core/HidePreloader';
 import { VolumeTypeStep } from './components/VolumeTypeStep.component';
 import { CapacityStep } from './components/CapacityStep.component';
@@ -39,6 +39,8 @@ import { ExtenBannerBeta } from '@/components/exten-banner-beta/ExtenBannerBeta'
 import { AvailabilityZoneStep } from '@/pages/new/components/AvailabilityZoneStep';
 import { DEPLOYMENT_MODES_HELP_URL } from '@/constants';
 import ExternalLink from '@/components/ExternalLink';
+import { useTrackAction } from '@/hooks/useTrackAction';
+import { useTrackBanner } from '@/hooks/useTrackBanner';
 
 export default function NewPage(): JSX.Element {
   const { t } = useTranslation('common');
@@ -54,22 +56,23 @@ export default function NewPage(): JSX.Element {
   const stepper = useVolumeStepper(projectId);
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
-  const { addVolume } = useAddVolume({
-    projectId,
-    onSuccess: () => {
-      navigate('..');
-      addSuccess(
-        <Translation ns="add">
-          {(tr) =>
-            tr('pci_projects_project_storages_blocks_add_success_message', {
-              volume: stepper.form.volumeName,
-            })
-          }
-        </Translation>,
-        true,
-      );
-    },
-    onError: (err: unknown) => {
+  const onTrackingBannerSuccess = useTrackBanner({ type: 'success' }, () => {
+    navigate('..');
+    addSuccess(
+      <Translation ns="add">
+        {(tr) =>
+          tr('pci_projects_project_storages_blocks_add_success_message', {
+            volume: stepper.form.volumeName,
+          })
+        }
+      </Translation>,
+      true,
+    );
+  });
+
+  const onTrackingBannerError = useTrackBanner(
+    { type: 'error' },
+    (err: unknown) => {
       stepper.validation.step.unlock();
       if (isApiCustomError(err)) {
         if (isMaxQuotaReachedError(err)) {
@@ -102,11 +105,26 @@ export default function NewPage(): JSX.Element {
       // scroll to top of page to display error message
       window.scrollTo(0, 0);
     },
+  );
+
+  const { addVolume } = useAddVolume({
+    projectId,
+    onSuccess: onTrackingBannerSuccess,
+    onError: onTrackingBannerError,
   });
 
   const deploymentModesUrl =
     DEPLOYMENT_MODES_HELP_URL[ovhSubsidiary] ||
     DEPLOYMENT_MODES_HELP_URL.DEFAULT;
+
+  const onTrackingEditAvailabilityZone = useTrackAction(
+    {
+      buttonType: 'link',
+      actionName: 'edit_step_location_detailed',
+      actionValues: [stepper.form.region?.name, 'manually'],
+    },
+    stepper.availabilityZone.edit,
+  );
 
   return (
     <>
@@ -148,7 +166,14 @@ export default function NewPage(): JSX.Element {
           isLocked={stepper.location.step.isLocked || isDiscovery}
           title={tAdd('pci_projects_project_storages_blocks_add_region_title')}
           edit={{
-            action: stepper.location.edit,
+            action: useTrackAction(
+              {
+                buttonType: 'link',
+                actionName: 'edit_step_location',
+                actionValues: [stepper.form.region?.name],
+              },
+              stepper.location.edit,
+            ),
             label: tStepper('common_stepper_modify_this_step'),
             isDisabled: isDiscovery || stepper.validation.step.isLocked,
           }}
@@ -164,7 +189,14 @@ export default function NewPage(): JSX.Element {
           {...stepper.volumeType.step}
           title={tAdd('pci_projects_project_storages_blocks_add_type_title')}
           edit={{
-            action: stepper.volumeType.edit,
+            action: useTrackAction(
+              {
+                buttonType: 'link',
+                actionName: 'edit_step_volume',
+                actionValues: [stepper.form.volumeType],
+              },
+              stepper.volumeType.edit,
+            ),
             label: tStepper('common_stepper_modify_this_step'),
             isDisabled: stepper.validation.step.isLocked,
           }}
@@ -206,7 +238,7 @@ export default function NewPage(): JSX.Element {
               'pci_projects_project_storages_blocks_add_availability_zone',
             )}
             edit={{
-              action: stepper.availabilityZone.edit,
+              action: onTrackingEditAvailabilityZone,
               label: tStepper('common_stepper_modify_this_step'),
               isDisabled: stepper.validation.step.isLocked,
             }}
@@ -236,7 +268,13 @@ export default function NewPage(): JSX.Element {
           {...stepper.capacity.step}
           title={tAdd('pci_projects_project_storages_blocks_add_size_title')}
           edit={{
-            action: stepper.capacity.edit,
+            action: useTrackAction(
+              {
+                buttonType: 'link',
+                actionName: 'edit_step_configure_volume_capacity',
+              },
+              stepper.capacity.edit,
+            ),
             label: tStepper('common_stepper_modify_this_step'),
             isDisabled: stepper.validation.step.isLocked,
           }}
@@ -255,7 +293,10 @@ export default function NewPage(): JSX.Element {
           {...stepper.volumeName.step}
           title={tAdd('pci_projects_project_storages_blocks_add_name_title')}
           edit={{
-            action: stepper.volumeName.edit,
+            action: useTrackAction(
+              { buttonType: 'link', actionName: 'edit_step_name' },
+              stepper.volumeName.edit,
+            ),
             label: tStepper('common_stepper_modify_this_step'),
             isDisabled: stepper.validation.step.isLocked,
           }}

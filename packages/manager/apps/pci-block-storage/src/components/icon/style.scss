@@ -1,0 +1,441 @@
+@use 'ods-18/style' as ods-18;
+
+/**
+Since ODS 18 restricts icons to shadow dom we cannot import directly their style so it is copied here without the :host
+ */
+.icon {
+  @include ods-18.ods-icon();
+
+  &--arrow-crossed::before {
+    content: '\e901';
+  }
+  &--arrow-down::before {
+    content: '\e904';
+  }
+  &--arrow-down-left::before {
+    content: '\e902';
+  }
+  &--arrow-down-right::before {
+    content: '\e903';
+  }
+  &--arrow-left::before {
+    content: '\e906';
+  }
+  &--arrow-left-right::before {
+    content: '\e905';
+  }
+  &--arrow-right::before {
+    content: '\e907';
+  }
+  &--arrow-up::before {
+    content: '\e90b';
+  }
+  &--arrow-up-down::before {
+    content: '\e908';
+  }
+  &--arrow-up-left::before {
+    content: '\e909';
+  }
+  &--arrow-up-right::before {
+    content: '\e90a';
+  }
+  &--bell::before {
+    content: '\e90e';
+  }
+  &--bill::before {
+    content: '\e913';
+  }
+  &--book::before {
+    content: '\e90f';
+  }
+  &--box::before {
+    content: '\e91c';
+  }
+  &--calendar::before {
+    content: '\e910';
+  }
+  &--check::before {
+    content: '\e914';
+  }
+  &--chevron-double-left::before {
+    content: '\e915';
+  }
+  &--chevron-double-right::before {
+    content: '\e916';
+  }
+  &--chevron-down::before {
+    content: '\e917';
+  }
+  &--chevron-left::before {
+    content: '\e918';
+  }
+  &--chevron-right::before {
+    content: '\e919';
+  }
+  &--chevron-up::before {
+    content: '\e91a';
+  }
+  &--circle-check::before {
+    content: '\e912';
+  }
+  &--circle-info::before {
+    content: '\e956';
+  }
+  &--circle-question::before {
+    content: '\e96c';
+  }
+  &--circle-three-nodes::before {
+    content: '\e929';
+  }
+  &--circle-user::before {
+    content: '\e992';
+  }
+  &--circle-xmark::before {
+    content: '\e93f';
+  }
+  &--clock-time-four::before {
+    content: '\e91d';
+  }
+  &--clock-time-nine::before {
+    content: '\e91e';
+  }
+  &--clock-time-six::before {
+    content: '\e91f';
+  }
+  &--clock-time-three::before {
+    content: '\e920';
+  }
+  &--clock-time-twelve::before {
+    content: '\e921';
+  }
+  &--cloud::before {
+    content: '\e927';
+  }
+  &--cloud-check::before {
+    content: '\e922';
+  }
+  &--cloud-download::before {
+    content: '\e923';
+  }
+  &--cloud-lock::before {
+    content: '\e924';
+  }
+  &--cloud-upload::before {
+    content: '\e926';
+  }
+  &--cloud-xmark::before {
+    content: '\e925';
+  }
+  &--cog::before {
+    content: '\e928';
+  }
+  &--columns::before {
+    content: '\e932';
+  }
+  &--comment::before {
+    content: '\e911';
+  }
+  &--credit-card::before {
+    content: '\e92b';
+  }
+  &--d-pad::before {
+    content: '\e92e';
+  }
+  &--diamond-exclamation::before {
+    content: '\e930';
+  }
+  &--diamond-exclamation-full::before {
+    content: '\e92f';
+  }
+  &--diamonds-full::before {
+    content: '\e92a';
+  }
+  &--download::before {
+    content: '\e934';
+  }
+  &--ellipsis-horizontal::before {
+    content: '\e935';
+  }
+  &--ellipsis-vertical::before {
+    content: '\e936';
+  }
+  &--email::before {
+    content: '\e937';
+  }
+  &--emoticon::before {
+    content: '\e93d';
+  }
+  &--emoticon-dizzy::before {
+    content: '\e938';
+  }
+  &--emoticon-neutral::before {
+    content: '\e939';
+  }
+  &--emoticon-sad::before {
+    content: '\e93a';
+  }
+  &--emoticon-smile::before {
+    content: '\e93b';
+  }
+  &--emoticon-wink::before {
+    content: '\e93c';
+  }
+  &--equal::before {
+    content: '\e93e';
+  }
+  &--external-link::before {
+    content: '\e940';
+  }
+  &--eye::before {
+    content: '\e942';
+  }
+  &--eye-off::before {
+    content: '\e941';
+  }
+  &--file::before {
+    content: '\e946';
+  }
+  &--file-copy::before {
+    content: '\e943';
+  }
+  &--file-minus::before {
+    content: '\e944';
+  }
+  &--file-plus::before {
+    content: '\e945';
+  }
+  &--filter::before {
+    content: '\e947';
+  }
+  &--flask-empty::before {
+    content: '\e958';
+  }
+  &--flask-full::before {
+    content: '\e959';
+  }
+  &--flask-half::before {
+    content: '\e95a';
+  }
+  &--focus::before {
+    content: '\e948';
+  }
+  &--folder::before {
+    content: '\e94b';
+  }
+  &--folder-minus::before {
+    content: '\e949';
+  }
+  &--folder-plus::before {
+    content: '\e94a';
+  }
+  &--game-console::before {
+    content: '\e94c';
+  }
+  &--game-controller::before {
+    content: '\e94e';
+  }
+  &--game-controller-alt::before {
+    content: '\e94d';
+  }
+  &--gathering::before {
+    content: '\e94f';
+  }
+  &--globe::before {
+    content: '\e950';
+  }
+  &--grid::before {
+    content: '\e900';
+  }
+  &--grid-alt::before {
+    content: '\e951';
+  }
+  &--hamburger-menu::before {
+    content: '\e952';
+  }
+  &--hexagon-exclamation::before {
+    content: '\e92d';
+  }
+  &--hexagon-exclamation-full::before {
+    content: '\e92c';
+  }
+  &--hierarchy::before {
+    content: '\e954';
+  }
+  &--home::before {
+    content: '\e955';
+  }
+  &--key::before {
+    content: '\e957';
+  }
+  &--leaf::before {
+    content: '\e95b';
+  }
+  &--lifebuoy::before {
+    content: '\e95c';
+  }
+  &--lightbulb::before {
+    content: '\e95d';
+  }
+  &--list::before {
+    content: '\e95e';
+  }
+  &--location::before {
+    content: '\e95f';
+  }
+  &--lock-close::before {
+    content: '\e960';
+  }
+  &--lock-open::before {
+    content: '\e961';
+  }
+  &--magnifying-glass::before {
+    content: '\e971';
+  }
+  &--minus::before {
+    content: '\e963';
+  }
+  &--money::before {
+    content: '\e964';
+  }
+  &--monitor::before {
+    content: '\e931';
+  }
+  &--network::before {
+    content: '\e965';
+  }
+  &--pen::before {
+    content: '\e966';
+  }
+  &--phone::before {
+    content: '\e967';
+  }
+  &--plus::before {
+    content: '\e968';
+  }
+  &--printer::before {
+    content: '\e969';
+  }
+  &--question::before {
+    content: '\e96d';
+  }
+  &--refresh::before {
+    content: '\e96f';
+  }
+  &--resize::before {
+    content: '\e970';
+  }
+  &--server::before {
+    content: '\e90d';
+  }
+  &--server-rack::before {
+    content: '\e90c';
+  }
+  &--share-nodes::before {
+    content: '\e972';
+  }
+  &--shield::before {
+    content: '\e97b';
+  }
+  &--shield-check::before {
+    content: '\e973';
+  }
+  &--shield-exclamation::before {
+    content: '\e97a';
+  }
+  &--shield-firewall::before {
+    content: '\e974';
+  }
+  &--shield-lock::before {
+    content: '\e975';
+  }
+  &--shield-minus::before {
+    content: '\e976';
+  }
+  &--shield-off::before {
+    content: '\e977';
+  }
+  &--shield-plus::before {
+    content: '\e978';
+  }
+  &--shield-xmark::before {
+    content: '\e979';
+  }
+  &--shopping-cart::before {
+    content: '\e980';
+  }
+  &--shopping-cart-error::before {
+    content: '\e97d';
+  }
+  &--shopping-cart-minus::before {
+    content: '\e97e';
+  }
+  &--shopping-cart-plus::before {
+    content: '\e97f';
+  }
+  &--shopping-cart-xmark::before {
+    content: '\e97c';
+  }
+  &--shrink::before {
+    content: '\e981';
+  }
+  &--shutdown::before {
+    content: '\e982';
+  }
+  &--sort-alpha-down::before {
+    content: '\e983';
+  }
+  &--sort-alpha-up::before {
+    content: '\e984';
+  }
+  &--sort-numeric-down::before {
+    content: '\e985';
+  }
+  &--sort-numeric-up::before {
+    content: '\e986';
+  }
+  &--star::before {
+    content: '\e989';
+  }
+  &--star-full::before {
+    content: '\e988';
+  }
+  &--store::before {
+    content: '\e98a';
+  }
+  &--tag::before {
+    content: '\e96b';
+  }
+  &--timer::before {
+    content: '\e91b';
+  }
+  &--traffic-cone::before {
+    content: '\e98c';
+  }
+  &--trash::before {
+    content: '\e98d';
+  }
+  &--triangle-exclamation::before {
+    content: '\e995';
+  }
+  &--triangle-exclamation-full::before {
+    content: '\e994';
+  }
+  &--triangle-three-nodes::before {
+    content: '\e96a';
+  }
+  &--truck::before {
+    content: '\e98f';
+  }
+  &--undo::before {
+    content: '\e990';
+  }
+  &--upload::before {
+    content: '\e991';
+  }
+  &--user::before {
+    content: '\e993';
+  }
+  &--xmark::before {
+    content: '\e98b';
+  }
+}

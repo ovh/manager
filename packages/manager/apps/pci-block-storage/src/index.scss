@@ -17,3 +17,8 @@ code {
 html {
   font-family: var(--ods-font-family);
 }
+
+// Because ODS thinks that a search bar should always take full space
+osds-search-bar {
+  width: initial;
+}

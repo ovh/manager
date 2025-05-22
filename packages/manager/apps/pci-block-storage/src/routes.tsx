@@ -1,3 +1,5 @@
+import { RouteObject } from 'react-router-dom';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { StorageActionRedirect } from '@/components/StorageActionRedirect';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({
@@ -11,15 +13,11 @@ const lazyRouteConfig = (importFn: CallableFunction) => ({
   },
 });
 
-export interface RouteHandle {
-  tracking?: string;
-}
-
 const ROUTE_PATHS = {
   root: '/pci/projects/:projectId/storages/blocks',
 };
 
-export default [
+const ROUTES: RouteObject[] = [
   {
     path: '/',
     ...lazyRouteConfig(() => import('@/pages/Layout')),
@@ -32,7 +30,7 @@ export default [
       {
         path: '',
         handle: {
-          tracking: 'blocks',
+          tracking: { pageType: PageType.listing },
         },
         ...lazyRouteConfig(() => import('@/pages/list/List.page')),
         children: [
@@ -46,7 +44,10 @@ export default [
               import('@/pages/attach/AttachStorage.page'),
             ),
             handle: {
-              tracking: 'attach',
+              tracking: {
+                pageName: 'attach_instance',
+                pageType: PageType.popup,
+              },
             },
             children: [],
           },
@@ -60,7 +61,8 @@ export default [
               import('@/pages/detach/DetachStorage.page'),
             ),
             handle: {
-              tracking: 'detach',
+              pageName: 'detach_instance',
+              pageType: PageType.popup,
             },
             children: [],
           },
@@ -74,7 +76,10 @@ export default [
               import('@/pages/delete/DeleteStorage.page'),
             ),
             handle: {
-              tracking: 'delete',
+              tracking: {
+                pageName: 'delete_volume_block_storage',
+                pageType: PageType.popup,
+              },
             },
             children: [],
           },
@@ -83,6 +88,12 @@ export default [
       {
         path: 'onboarding',
         ...lazyRouteConfig(() => import('@/pages/onboarding/OnBoarding.page')),
+        handle: {
+          tracking: {
+            pageName: 'onboarding',
+            pageType: PageType.onboarding,
+          },
+        },
         children: [],
       },
       {
@@ -90,14 +101,20 @@ export default [
         id: 'edit',
         ...lazyRouteConfig(() => import('@/pages/edit/Edit.page')),
         handle: {
-          tracking: 'edit',
+          tracking: {
+            pageName: 'edit_volume_block_storage',
+            pageType: PageType.funnel,
+          },
         },
       },
       {
         path: 'new',
         ...lazyRouteConfig(() => import('@/pages/new/New.page')),
         handle: {
-          tracking: 'new',
+          tracking: {
+            pageName: 'create_volume_block_storage',
+            pageType: PageType.funnel,
+          },
         },
       },
     ],
@@ -107,3 +124,5 @@ export default [
     element: <>Not found page</>,
   },
 ];
+
+export default ROUTES;

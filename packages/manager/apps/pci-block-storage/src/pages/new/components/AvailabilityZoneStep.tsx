@@ -1,11 +1,9 @@
 import { useMemo, useState } from 'react';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { TilesInput } from '@ovh-ux/manager-pci-common';
 import { Step } from '@/pages/new/hooks/useStep';
 import { TRegion } from '@/api/data/regions';
+import { Button } from '@/components/button/Button';
 
 interface AvailabilityZoneStepProps {
   region: TRegion;
@@ -43,14 +41,16 @@ export function AvailabilityZoneStep({
       />
       {!!selectedZone && !step.isLocked && (
         <div className="mt-6">
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.md}
-            color={ODS_THEME_COLOR_INTENT.primary}
+          <Button
+            size="md"
+            color="primary"
+            actionName="select_location_detailed"
+            actionValues={[selectedZone.label, 'manually']}
             onClick={() => onSubmit(selectedZone.label)}
             className="w-fit"
           >
             {t('common_stepper_next_button_label')}
-          </OsdsButton>
+          </Button>
         </div>
       )}
     </div>
