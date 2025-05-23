@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.24.0...@ovh-ux/manager-react-components@2.25.0) (2025-05-23)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 4025] ([e95fb41](https://github.com/ovh/manager/commit/e95fb410146a8140c601438dd6d78072814042f3))
+- **mrc:** add default sorting to state in useResourcesV6 ([02f152c](https://github.com/ovh/manager/commit/02f152c13d228b465daf9b77c310cd2d6545ff4a)), closes [#17251](https://github.com/ovh/manager/issues/17251)
+- **mrc:** changelog and guides button alignment ([e64324c](https://github.com/ovh/manager/commit/e64324c2a95a264e6b0143762039e5e6c2ea64de)), closes [#17253](https://github.com/ovh/manager/issues/17253)
+
+### Features
+
+- **manager-react-components:** improve useResourcesV6 ([#16722](https://github.com/ovh/manager/issues/16722)) ([f802cdb](https://github.com/ovh/manager/commit/f802cdb74d417c89dd72aa1c031ce02cd36f3f18)), closes [#DTCORE-16722](https://github.com/ovh/manager/issues/DTCORE-16722) [#16721](https://github.com/ovh/manager/issues/16721) [#17170](https://github.com/ovh/manager/issues/17170)
+- **mrc:** add tags-list component ([7c6bde9](https://github.com/ovh/manager/commit/7c6bde967e8b02df0a4e0629f68d61b8f248824d)), closes [#MANAGER-18147](https://github.com/ovh/manager/issues/MANAGER-18147)
+
 # [2.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.23.0...@ovh-ux/manager-react-components@2.24.0) (2025-05-15)
 
 ### Bug Fixes
