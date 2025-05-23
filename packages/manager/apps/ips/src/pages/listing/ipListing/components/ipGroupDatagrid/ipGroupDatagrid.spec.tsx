@@ -20,7 +20,7 @@ import {
 
 const queryClient = new QueryClient();
 /** MOCKS */
-const useGetIpReverseMock = vi.hoisted(() =>
+const useGetIcebergIpReverseMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipsReverse: undefined,
     isLoading: true,
@@ -62,7 +62,7 @@ const useGetIpVmacWithIpMock = vi.hoisted(() =>
 
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
-  useGetIpReverse: useGetIpReverseMock,
+  useGetIcebergIpReverse: useGetIcebergIpReverseMock,
   useGetIpMitigation: useGetIpMitigationMock,
   useGetIpEdgeFirewall: useGetIpEdgeFirewallMock,
   useGetIpGameFirewall: useGetIpGameFirewallMock,
@@ -140,7 +140,7 @@ const renderComponent = () => {
 
 describe('IpDatagrid Component', async () => {
   beforeAll(() => {
-    useGetIpReverseMock.mockReturnValue({
+    useGetIcebergIpReverseMock.mockReturnValue({
       ipsReverse: ipReverseList,
       isLoading: false,
       error: undefined,
