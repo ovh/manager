@@ -4,15 +4,12 @@ import { wrapper } from '@/wrapperRenders';
 
 describe('RegionGlobalzoneChip', () => {
   it('renders tag with correct text', () => {
-    const { container } = render(<RegionGlobalzoneChip id="fake-id" />, {
+    const { container } = render(<RegionGlobalzoneChip />, {
       wrapper,
     });
-    const tagElt = container.querySelector('#fake-id').firstChild;
+    const tagElt = container.querySelector('ods-badge');
 
     expect(tagElt).toBeInTheDocument();
-    expect(tagElt).toHaveAttribute(
-      'label',
-      'pci_project_flavors_zone_global_region',
-    );
+    expect(tagElt).toHaveAttribute('label', 'pci_project_flavors_zone_1AZ');
   });
 });

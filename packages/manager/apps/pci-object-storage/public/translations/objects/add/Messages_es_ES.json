@@ -14,11 +14,11 @@
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link": "Ver los precios",
   "pci_projects_project_storages_containers_container_object_add_storage_class_standard": "Standard",
   "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Sólo las clases de almacenamiento Standard y Standard Infrequent Access están disponibles para los objetos de este modo de implementación.",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Solo las clases de almacenamiento Standard y Standard Infrequent Access están disponibles para los objetos de este modo de implementación.",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_storage_class": "clases de almacenamiento",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_part_2": "y las",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_part_2": "y los",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_price": "precios.",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_price_text": "Ver los precios",
   "pci_projects_project_storages_containers_container_object_add_storage_class_standard_infrequent_access": "Standard Infrequent Access",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner_lz": "Sólo la clase de almacenamiento estándar está disponible para los objetos de un contenedor creado con este modo de implementación."
+  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner_lz": "Solo la clase de almacenamiento estándar está disponible para los objetos de un contenedor creado con este modo de implementación."
 }

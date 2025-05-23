@@ -38,11 +38,11 @@ Why Use TanStack Table?
 
 #### How to use It
 
-1 - In your columns definition, fill `type` or `comparator` attributes
+1 - In your columns definition, fill `type` and/or `comparator` attributes
 
-- `type`comparator is a `FilterTypeCategories`
+- `type` is a `FilterTypeCategories` and will allow you to have enhanced filters (datepicker for date type, etc...)
 
-- `comparator`is a `string` of `FilterCategories`, if you fill this attribute, it override the `type` attributes
+- `comparator` is a `string` of `FilterCategories`. Use this option to define the set of comparators that can be applied on the data. By default, Datagrid determines the set of comparators that can be applied depending on the `type` field. **Only use this option if default comparators does not match your need.**
 
 <Source
   code={`
@@ -62,6 +62,15 @@ Why Use TanStack Table?
             },
             label: 'Price',
             comparator: FilterCategories.String,
+        },
+        {
+            id: 'creationDate',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{useFormattedDate(item.creationDate)}</DataGridTextCell>;
+            },
+            label: 'Creation date',
+            type: FilterTypeCategories.Date
+            comparator: FilterCategories.Date,
         },
     ];
     `}

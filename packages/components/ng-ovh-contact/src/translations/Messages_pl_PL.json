@@ -57,6 +57,6 @@
   "ovh_contact_edit_invalid_phone": "Sprawdź format numeru telefonu.",
   "ovh_contact_edit_label_address_cityName": "Miasto",
   "ovh_contact_edit_label_address_zipCode": "Kod pocztowy",
-  "ovh_contact_edit_label_city_name": "Miejscowość",
+  "ovh_contact_edit_label_city_name": "Miasto",
   "ovh_contact_edit_label_zip_code": "Kod pocztowy"
 }

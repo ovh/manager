@@ -1,8 +1,5 @@
 {
-  "vps_terminate_title": "Eliminar o meu VPS",
-  "vps_terminate_question": "Tem a certeza de que quer eliminar o seu serviço {{vps}}?",
-  "vps_terminate_cancel": "Anular",
-  "vps_terminate_confirm": "Confirmar",
+  "vps_terminate_service_type": "o meu VPS",
   "vps_terminate_success": "A rescisão do serviço foi efetuada. Receberá um e-mail de confirmação para validar esta rescisão.",
   "vps_terminate_success_engagement": "O seu pedido foi registado e será tratado o mais rapidamente possível.",
   "vps_terminate_error": "Ocorreu um erro aquando da rescisão do serviço.",
@@ -11,13 +8,10 @@
   "vps_terminate_option_cancel_terminate_at_expiration": "Anular a rescisão do serviço.",
   "vps_terminate_option_terminate_now": "Rescindir o serviço imediatamente",
   "vps_terminate_option_terminate_now_description": "Receberá por e-mail o procedimento de rescisão do servidor.",
-  "vps_terminate_option_terminate_now_question": "Deseja continuar?",
-  "vps_terminate_warning_data_deletion": "A eliminação deste elemento apaga definitivamente todos os dados correspondentes.",
   "vps_terminate_warning_no_refund": "A operação de cancelamento não garante o direito a reembolso.",
   "vps_terminate_warning_manual_refund": "A rescisão não garante a concessão de um reembolso. Contacte o suporte se tiver alguma pergunta sobre um possível reembolso.",
   "vps_terminate_activate_delete_at_expiration_success": "O pedido de rescisão deste serviço na data de expiração foi registado com sucesso.",
   "vps_terminate_activate_delete_at_expiration_error": "Ocorreu um erro aquando do pedido de rescisão do serviço na data de expiração:",
   "vps_terminate_deactivate_delete_at_expiration_success": "O pedido de rescisão deste serviço na data de expiração foi suspenso.",
-  "vps_terminate_deactivate_delete_at_expiration_error": "Ocorreu um erro aquando da suspensão do pedido de rescisão do serviço na data de expiração:",
-  "vps_terminate_service_type": "o meu VPS"
+  "vps_terminate_deactivate_delete_at_expiration_error": "Ocorreu um erro aquando da suspensão do pedido de rescisão do serviço na data de expiração:"
 }

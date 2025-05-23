@@ -7,6 +7,5 @@
   "overTheBox_tabs_tasks": "Tareas",
   "overTheBox_tabs_logs": "Logs",
   "overTheBox_no_device_found": "No hay ningún OverTheBox conectado. No podrá crear ningún acceso remoto ni utilizar los accesos creados. Si necesita ayuda para configurar su OverTheBox, consulte la guía de instalación <a href=\"{{url}}\" target=\"_blank\" title=\"Nueva ventana\">aquí</a>.",
-  "overTheBox_tabs_actions": "Acciones",
-  "overTheBox_tabs_autoconfigure": "Configuración"
+  "overTheBox_tabs_actions": "Acciones"
 }

@@ -5,14 +5,14 @@ import path from 'path';
 import prettier from 'prettier';
 import parser from '@babel/parser';
 import traverseModule from '@babel/traverse';
-import { traverseRoutesExportNodes } from '../utils/ASTUtils.mjs';
+import { traverseRoutesExportNodes } from '../../utils/ASTUtils.mjs';
 import {
   buildUniqueComponentName,
   extractPreservedBlocks,
   injectNamedImport,
   isCodeFileExists,
   splitImportsAndBody,
-} from '../utils/CodeTransformUtils.mjs';
+} from '../../utils/CodeTransformUtils.mjs';
 
 const traverse = traverseModule.default;
 
