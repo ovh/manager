@@ -1,4 +1,5 @@
 import { act, screen } from '@testing-library/react';
+import { expect } from 'vitest';
 import {
   organizationList,
   datacentreList,
@@ -14,13 +15,13 @@ const queryModalTitle = () => {
     (content, element) =>
       element?.tagName === 'ODS-TEXT' &&
       element?.getAttribute('preset') === 'heading-4' &&
-      content === fr_FR.managed_vcd_dashboard_vrack_network_edit_vlan,
+      content === fr_FR.managed_vcd_dashboard_vrack_edit_vlan,
   );
 };
 
 const checkFormInputAndCta = (container: HTMLElement) => {
   expect(
-    screen.getByText(fr_FR.managed_vcd_dashboard_vrack_network_edit_vlan),
+    screen.getByText(fr_FR.managed_vcd_dashboard_vrack_edit_vlan),
   ).toBeVisible();
   expect(container.querySelector('[label="modify"]')).toBeVisible();
   expect(container.querySelector('[label="cancel"]')).toBeVisible();
@@ -72,15 +73,12 @@ const editVlanValue = (newValue: string | number) => {
 };
 
 const checkSuccessBannerIsVisible = () => {
-  screen.getByText(fr_FR.managed_vcd_dashboard_vrack_network_edit_success);
+  screen.getByText(fr_FR.managed_vcd_dashboard_vrack_edit_success);
 };
 
 const checkErrorBannerIsVisible = () => {
   screen.queryByText(
-    fr_FR.managed_vcd_dashboard_vrack_network_edit_error.replace(
-      '{{errorApi}}',
-      '',
-    ),
+    fr_FR.managed_vcd_dashboard_vrack_edit_error.replace('{{errorApi}}', ''),
   );
 };
 
