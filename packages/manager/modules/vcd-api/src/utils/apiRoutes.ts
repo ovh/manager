@@ -31,7 +31,7 @@ export const getVcdDatacentreVrackNetworkRoute = (
   id: string,
   vdcId: string,
 ) => {
-  return `${getVcdDatacentresRoute(id)}/${vdcId}`;
+  return `${getVcdDatacentresRoute(id)}/${vdcId}/vrackSegment`;
 };
 
 export const getVcdDatacentreVrackNetworkSegmentRoute = ({
