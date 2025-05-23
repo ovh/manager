@@ -120,6 +120,7 @@ module.exports = {
         '**/App.tsx',
         '**/test.{setup,provider}.tsx',
         '**/vitest.config.{js,ts,mjs}',
+        '**/vite.config.{js,ts,mjs}',
         '**/tests-setup/src/index.js',
         '**/__tests__/**/*.{ts,tsx}',
         '**/*.{test,spec,step}.{ts,tsx}',
