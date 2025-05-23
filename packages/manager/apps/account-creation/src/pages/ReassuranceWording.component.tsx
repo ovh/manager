@@ -6,7 +6,6 @@ import { useReassuranceWording } from '@/hooks/reassuranceWording/useReassurance
 export default function ReassuranceWording() {
   const { t } = useTranslation('reassurance-wording');
   const { title, description } = useReassuranceWording();
-  console.log(title);
 
   return (
     <div
