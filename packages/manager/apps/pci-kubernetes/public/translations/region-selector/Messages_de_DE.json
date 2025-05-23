@@ -1,0 +1,19 @@
+{
+  "pci_project_regions_list_continent_all": "Alle Standorte",
+  "pci_project_regions_list_empty": "Kein Standort verfügbar",
+  "pci_project_regions_list_add": "Bitte aktivieren Sie die letzten Standorte jeder Zone im Bereich <a href=\"{{url}}\" class=\"oui-link\">Standorte</a>.",
+  "pci_project_regions_list_region": "Standort",
+  "pci_project_regions_list_quota": "Mein Quota erhöhen",
+  "pci_project_flavors_zone_compatible": "Kompatibel mit",
+  "pci_project_flavors_zone_localzone": "Local Zones",
+  "pci_project_flavors_zone_global_region": "Regionen",
+  "pci_project_flavors_zone_localzone_tooltip": "Local Zones sind eine neue Art der Lokalisierung, die einen Teil unseres Public-Cloud-Produktportfolios unterstützt. In den nächsten Jahren werden wir die Gesamtzahl der Local Zones weltweit schrittweise erhöhen.",
+  "pci_project_flavors_zone_globalregions_tooltip": "Die Regionen stützen sich auf ein oder mehrere Rechenzentren, die von OVHcloud verwaltet werden. Jede Region bietet eine oder mehrere Availability Zones mit dem vollständigen OVHcloud Dienstportfolio.",
+  "pci_project_flavors_zone_tooltip_link": "Mehr erfahren",
+  "pci_project_flavors_zone_1AZ": "1-AZ",
+  "pci_project_flavors_zone_3AZ": "3-AZ",
+  "pci_project_flavors_zone_localzone_1AZ_tooltip": "Eine Local Zone ermöglicht die Bereitstellung der Public-Cloud-Produkte von OVHcloud in Rechenzentren, die sich in unmittelbarer Nähe der Endnutzer:innen befinden.",
+  "pci_project_flavors_zone_1AZ_with_3AZ_tooltip": "Mit der bevorstehenden Einführung der 3-AZ-Regionen ändern wir den Namen des Bereitstellungstyps „Regionen“! Eine 1-AZ-Region („AZ“ steht für „Availability Zone“) besteht aus einem oder mehreren Rechenzentren, die sich am gleichen Standort befinden.",
+  "pci_project_flavors_zone_1AZ_tooltip": "Eine 1-AZ-Region („AZ“ steht für „Availability Zone“) besteht aus einem oder mehreren Rechenzentren, die sich am gleichen Standort befinden.",
+  "pci_project_flavors_zone_3AZ_tooltip": "Eine 3-AZ-Region besteht aus drei Availability Zones, die sich innerhalb des gleichen Ballungsgebiets befinden, aber einige Kilometer voneinander entfernt sind. Sie erfüllt höchste Anforderungen in puncto Resilienz und gewährleistet gleichzeitig eine extrem niedrige Latenz zwischen den AZs."
+}

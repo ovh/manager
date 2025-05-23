@@ -1,0 +1,51 @@
+import { OsdsTile } from '@ovhcloud/ods-components/react';
+import clsx from 'clsx';
+import { TLocalisation } from '@ovh-ux/manager-pci-common';
+
+export interface RegionListProps {
+  regions: TLocalisation[];
+  selectedRegion: string;
+  onClick: (region: TLocalisation) => void;
+  render: (region: TLocalisation, isSelected: boolean) => JSX.Element | string;
+  isUnselectableRegion?: boolean;
+}
+
+export const regionContainer =
+  'grid gap-6 list-none p-6 m-0 grid-cols-1 md:grid-cols-3';
+
+export const regionTile =
+  'cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600]';
+
+export const regionTileSelected =
+  'font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]';
+
+export function RegionList({
+  regions,
+  selectedRegion,
+  onClick,
+  render,
+  isUnselectableRegion,
+}: RegionListProps): JSX.Element {
+  const isDisabledRegion = (region) => isUnselectableRegion && !region?.enabled;
+
+  return (
+    <ul className={regionContainer}>
+      {regions.map((region) => (
+        <li className="w-full px-1" key={region.name}>
+          <OsdsTile
+            disabled={isDisabledRegion(region) || undefined}
+            className={clsx(
+              regionTile,
+              region.name === selectedRegion && regionTileSelected,
+            )}
+            checked={selectedRegion === region?.name}
+            onClick={() => !isDisabledRegion(region) && onClick(region)}
+            data-testid={`region-${region.name}`}
+          >
+            {render(region, selectedRegion === region.name)}
+          </OsdsTile>
+        </li>
+      ))}
+    </ul>
+  );
+}
