@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import {
   mockVrackSegmentList,
-  VrackSegment,
+  VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import fr_FR from '../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
@@ -37,8 +37,8 @@ vi.mock('@ovh-ux/manager-module-vcd-api', async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...(actual as Record<string, unknown>),
-    useVcdVrackNetworkOptions: () => ({
-      queryKey: ['vrackNetwork'],
+    useVcdVrackSegmentListOptions: () => ({
+      queryKey: ['vrackSegment'],
       queryFn: () =>
         Promise.resolve({
           data: mockVrackSegmentList,
@@ -46,7 +46,7 @@ vi.mock('@ovh-ux/manager-module-vcd-api', async (importOriginal) => {
           statusText: 'OK',
           headers: {},
           config: {},
-        } as ApiResponse<VrackSegment[]>),
+        } as ApiResponse<VCDVrackSegment[]>),
     }),
   };
 });

@@ -1,9 +1,9 @@
 import { Datagrid } from '@ovh-ux/manager-react-components';
-import { OdsButton, OdsTooltip, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsTooltip } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { VrackSegment } from '@ovh-ux/manager-module-vcd-api';
+import { VCDVrackSegment } from '@ovh-ux/manager-module-vcd-api';
 import { LABELS } from '../../utils/labels.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { encodeVrackNetwork } from '@/utils/encodeVrackNetwork';
@@ -36,7 +36,7 @@ const CSS = `
 export default function VrackNetworkDatagridSubDatagrid({
   vrackSegment,
 }: {
-  vrackSegment: VrackSegment;
+  vrackSegment: VCDVrackSegment;
   headerRefs?: React.RefObject<HTMLTableCellElement>;
 }) {
   const { t } = useTranslation('datacentres/vrack-segment');

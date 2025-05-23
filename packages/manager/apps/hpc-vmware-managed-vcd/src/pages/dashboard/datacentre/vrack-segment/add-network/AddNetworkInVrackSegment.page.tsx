@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import {
   mockVrackSegmentList,
-  useUpdateVcdVrackNetworkVrackSegment,
-  useVcdVrackNetworkSegmentOptions,
-  VrackSegment,
+  useUpdateVcdVrackSegment,
+  useVcdVrackSegmentOptions,
+  VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,9 +27,9 @@ function AddNetworkVrackSegmentLoaded() {
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
   const { addSuccess } = useMessageContext();
-  const defaultOptions = useVcdVrackNetworkSegmentOptions({
+  const defaultOptions = useVcdVrackSegmentOptions({
     id,
-    vcdId: vdcId,
+    vdcId,
     vrackSegmentId,
   });
 
@@ -46,10 +46,10 @@ function AddNetworkVrackSegmentLoaded() {
             statusText: 'OK',
             headers: {},
             config: {},
-          } as ApiResponse<VrackSegment>);
+          } as ApiResponse<VCDVrackSegment>);
         }, 1500);
       }),
-    select: (data: ApiResponse<VrackSegment>) => ({
+    select: (data: ApiResponse<VCDVrackSegment>) => ({
       ...data.data.targetSpec,
     }),
   };
@@ -87,9 +87,9 @@ function AddNetworkVrackSegmentLoaded() {
     mutate: updateVrackSegment,
     error: updateError,
     isPending: isUpdatePending,
-  } = useUpdateVcdVrackNetworkVrackSegment({
+  } = useUpdateVcdVrackSegment({
     id,
-    vcdId: vdcId,
+    vdcId,
     vrackSegmentId,
     onSuccess: () => {
       addSuccess({

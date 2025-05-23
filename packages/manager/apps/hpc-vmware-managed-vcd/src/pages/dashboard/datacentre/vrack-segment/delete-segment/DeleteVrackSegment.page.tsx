@@ -28,7 +28,7 @@ export default function DeleteVrackSegment() {
     isPending: isDeleting,
   } = useDeleteVcdVrackSegment({
     id,
-    vcdId: vdcId,
+    vdcId,
     vrackSegmentId,
     onSuccess: () => {
       addSuccess({

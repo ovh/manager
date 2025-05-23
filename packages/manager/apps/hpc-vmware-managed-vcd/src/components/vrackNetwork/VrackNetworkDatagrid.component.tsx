@@ -17,8 +17,8 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   mockVrackSegmentList,
-  useVcdVrackNetworkOptions,
-  VrackSegment,
+  useVcdVrackSegmentListOptions,
+  VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useHref, useNavigate } from 'react-router-dom';
@@ -41,7 +41,7 @@ export default function VrackNetworkDatagrid({
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchInput, setSearchInput] = useState('');
 
-  const vcdVrackNetworkOptions = useVcdVrackNetworkOptions(id, vdcId);
+  const vcdVrackNetworkOptions = useVcdVrackSegmentListOptions(id, vdcId);
   const { data: vrackNetworks, isLoading } = useQuery({
     ...vcdVrackNetworkOptions,
     queryFn: () =>
@@ -51,7 +51,7 @@ export default function VrackNetworkDatagrid({
         statusText: 'OK',
         headers: {},
         config: {},
-      } as ApiResponse<VrackSegment[]>),
+      } as ApiResponse<VCDVrackSegment[]>),
     select: (data) =>
       data.data.map((item) => ({
         ...item,
@@ -81,7 +81,7 @@ export default function VrackNetworkDatagrid({
     {
       id: 'searchableValue',
       label: t('managed_vcd_dashboard_vrack_network_segment'),
-      cell: (item: VrackSegment) => {
+      cell: (item: VCDVrackSegment) => {
         return (
           <OdsText preset="paragraph">
             {t(
@@ -103,7 +103,7 @@ export default function VrackNetworkDatagrid({
       isSearchable: false,
       isSortable: false,
       isFilterable: false,
-      cell: (item: VrackSegment) => {
+      cell: (item: VCDVrackSegment) => {
         const isDeleting = item.resourceStatus === 'deleting';
         const itemId = item.targetSpec.vlanId;
 
@@ -168,7 +168,7 @@ export default function VrackNetworkDatagrid({
         </OdsText>
       </div>
       <React.Suspense>
-        <Datagrid<VrackSegment>
+        <Datagrid<VCDVrackSegment>
           columns={columns}
           isLoading={isLoading}
           items={applyFilters(

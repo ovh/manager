@@ -3,9 +3,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import {
   mockVrackSegmentList,
-  useUpdateVcdVrackNetworkVrackSegment,
-  useVcdVrackNetworkSegmentOptions,
-  VrackSegment,
+  useUpdateVcdVrackSegment,
+  useVcdVrackSegmentOptions,
+  VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiResponse } from '@ovh-ux/manager-core-api';
@@ -23,9 +23,9 @@ export default function DeleteVrackNetwork() {
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
   const { addSuccess, addError } = useMessageContext();
-  const defaultQueryOptions = useVcdVrackNetworkSegmentOptions({
+  const defaultQueryOptions = useVcdVrackSegmentOptions({
     id,
-    vcdId: vdcId,
+    vdcId,
     vrackSegmentId,
   });
 
@@ -40,7 +40,7 @@ export default function DeleteVrackNetwork() {
             statusText: 'OK',
             headers: {},
             config: {},
-          } as ApiResponse<VrackSegment>);
+          } as ApiResponse<VCDVrackSegment>);
         }, 1500);
       }),
     refetchOnWindowFocus: false,
@@ -52,9 +52,9 @@ export default function DeleteVrackNetwork() {
   const {
     mutate: updateVrackSegment,
     isPending: isUpdatePending,
-  } = useUpdateVcdVrackNetworkVrackSegment({
+  } = useUpdateVcdVrackSegment({
     id,
-    vcdId: vdcId,
+    vdcId,
     vrackSegmentId,
     onSuccess: () => {
       addSuccess({
