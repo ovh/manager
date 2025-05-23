@@ -150,6 +150,7 @@ export default class IpListController {
       $scope.isDeleteByoipServiceAvailable = self.isDeleteByoipServiceAvailable;
       $scope.isPermanentMitigationAvailable =
         self.isPermanentMitigationAvailable;
+      $scope.goToDeleteIpService = self.goToDeleteIpService;
 
       $scope.tracking = {
         'enable-permanent-mitigation': `${TRACKING_PREFIX}::enable-permanent-mitigation`,
