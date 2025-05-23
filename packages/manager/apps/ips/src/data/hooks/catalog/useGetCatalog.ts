@@ -4,6 +4,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext } from 'react';
 
 export const BYOIP_FAILOVER_V4 = 'byoip-failover-v4';
+export const BYOIP_PRODUCT_ID = 'bringYourOwnIp';
 export const CONFIG_NAME = {
   CAMPUS: 'campus',
   IPRIR: 'ipRir',
