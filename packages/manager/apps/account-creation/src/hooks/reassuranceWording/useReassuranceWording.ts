@@ -1,6 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { useContext } from 'react';
-import userContext from '@/context/user/user.context';
+import { useUserContext } from '@/context/user/useUser';
 
 const getLegalFormKey = (legalForm: string): string => {
   switch (legalForm) {
@@ -14,7 +13,7 @@ const getLegalFormKey = (legalForm: string): string => {
 
 export const useReassuranceWording = () => {
   const { pathname } = useLocation();
-  const user = useContext(userContext);
+  const user = useUserContext();
   const currentPage = pathname.replace('/', '');
 
   if (currentPage !== 'info' || !user?.legalForm) {
