@@ -73,7 +73,7 @@ export default class HostingTabAutomatedEmailsCtrl {
 
   loadChart(endpoint, token) {
     this.loaders.volumes = true;
-    const query = `sum without(cluster, statusCode,cluster_name, datacenter, host, host_type, hw_profile, service_name, user) (label_replace(sum_over_time((mailout_sendmails_count{service_name="${this.$stateParams.productId}"}[30m])), "mail", "sent", "", "")) OR label_replace(vector(0), "mail", "sent", "", "")`;
+    const query = `sum without(cluster, statusCode,cluster_name, datacenter, host, host_type, hw_profile, service_name, user) (label_replace((mailout_sendmails_count{service_name="${this.$stateParams.productId}"}), "mail", "sent", "", "")) OR label_replace(vector(0), "mail", "sent", "", "")`;
 
     this.stats.chart = new this.ChartFactory({
       type: 'line',
@@ -99,7 +99,7 @@ export default class HostingTabAutomatedEmailsCtrl {
             fill: true,
             tension: 0.5,
             query: (start, end) => {
-              const url = `${endpoint}/prometheus/api/v1/query_range?query=${query}&start=${start.toISOString()}&end=${end.toISOString()}&step=30m`;
+              const url = `${endpoint}/prometheus/api/v1/query_range?query=${query}&start=${start.toISOString()}&end=${end.toISOString()}&step=1h`;
 
               const headers = {
                 authorization: `bearer ${token}`,
