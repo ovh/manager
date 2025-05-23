@@ -72,4 +72,6 @@ export type TInstance = DeepReadonly<{
   availabilityZone: string | null;
   taskState: string | null;
   prices: TInstancePrice[];
+  sshKey: string;
+  login: string;
 }>;

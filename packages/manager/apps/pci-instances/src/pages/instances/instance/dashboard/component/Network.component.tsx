@@ -76,9 +76,6 @@ const Network: FC = () => {
           -
         </OsdsText>
       </TileBlock>
-      <TileBlock label={t('pci_instances_dashboard_network_connexion')}>
-        <Clipboard value="ssh almalinux@57.128.88.29" />
-      </TileBlock>
     </DashboardCardLayout>
   );
 };

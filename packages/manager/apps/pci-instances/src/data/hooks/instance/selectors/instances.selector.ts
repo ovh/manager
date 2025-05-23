@@ -188,6 +188,8 @@ export const instanceSelector = (
   ...instanceDto,
   flavorName: instanceDto.flavor.name,
   flavorSpecs: instanceDto.flavor.specs,
+  imageId: instanceDto.image.id,
+  imageName: instanceDto.image.name,
   status: getInstanceStatus(instanceDto.status),
   addresses: mapInstanceAddresses(instanceDto),
   actions: mapInstanceActions(instanceDto, projectUrl),
