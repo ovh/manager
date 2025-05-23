@@ -25,31 +25,31 @@ export const ConfigureLayout: React.FC = () => {
   const backLink = useGenerateUrl(`/${platformId}`, 'href');
 
   return (
-    <Suspense fallback={<Loading />}>
-      <BaseLayout
-        header={{
-          title: 'Zimbra',
-        }}
-        subtitle={t('configure_title')}
-        message={
-          // temporary fix margin even if empty
-          notifications.length ? <Notifications clearAfterRead /> : null
-        }
-        backLinkLabel={t('configure_exit')}
-        hrefPrevious={backLink}
-        onClickReturn={() => {
-          trackClick({
-            location: PageLocation.funnel,
-            buttonType: ButtonType.button,
-            actionType: 'action',
-            actions: [ONBOARDING_CONFIGURE, EXIT],
-          });
-          setOnboarded();
-        }}
-      >
+    <BaseLayout
+      header={{
+        title: 'Zimbra',
+      }}
+      subtitle={t('configure_title')}
+      message={
+        // temporary fix margin even if empty
+        notifications.length ? <Notifications clearAfterRead /> : null
+      }
+      backLinkLabel={t('configure_exit')}
+      hrefPrevious={backLink}
+      onClickReturn={() => {
+        trackClick({
+          location: PageLocation.funnel,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: [ONBOARDING_CONFIGURE, EXIT],
+        });
+        setOnboarded();
+      }}
+    >
+      <Suspense fallback={<Loading />}>
         <Outlet />
-      </BaseLayout>
-    </Suspense>
+      </Suspense>
+    </BaseLayout>
   );
 };
 
