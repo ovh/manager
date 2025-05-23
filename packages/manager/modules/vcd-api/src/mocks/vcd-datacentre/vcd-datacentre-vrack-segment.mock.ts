@@ -1,6 +1,6 @@
-import { VrackSegment } from '../../types/vcd-vrack-segment.type';
+import { VCDVrackSegment } from '../../types/vcd-vrack-segment.type';
 
-export const mockVrackSegmentList: VrackSegment[] = [
+export const mockVrackSegmentList: VCDVrackSegment[] = [
   {
     id: 'uuid-1',
     resourceStatus: 'ACTIVE',
