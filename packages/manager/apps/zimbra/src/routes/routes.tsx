@@ -4,6 +4,10 @@ import { UIMatch, Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import NotFound from '@/pages/404';
+import OnboardingConfigureLayout from '@/pages/onboarding/configure/Configure.layout';
+import Layout from '@/pages/layout';
+import DashboardLayout from '@/pages/dashboard/Dashboard.layout';
+import EmailAccountSettingsLayout from '@/pages/dashboard/emailAccounts/settings/Settings.layout';
 import {
   ADD_AUTO_REPLY,
   ADD_DOMAIN,
@@ -65,10 +69,6 @@ export type RouteHandle = {
 
 export type RouteMatch = UIMatch<unknown, RouteHandle>;
 
-const Layout = React.lazy(() => import('@/pages/layout'));
-const DashboardLayout = React.lazy(() =>
-  import('@/pages/dashboard/Dashboard.layout'),
-);
 const GeneralInformationsPage = React.lazy(() =>
   import('@/pages/dashboard/generalInformations/GeneralInformations.page'),
 );
@@ -104,9 +104,6 @@ const EmailAccountPage = React.lazy(() =>
 );
 const AddEmailAccountPage = React.lazy(() =>
   import('@/pages/dashboard/emailAccounts/add/Add.page'),
-);
-const EmailAccountsLayout = React.lazy(() =>
-  import('@/pages/dashboard/emailAccounts/settings/Settings.layout'),
 );
 const EmailAccountSettingsPage = React.lazy(() =>
   import('@/pages/dashboard/emailAccounts/EmailAccountForm.component'),
@@ -157,9 +154,6 @@ const OnboardingPage = React.lazy(() =>
 );
 const OnboardingWelcomePage = React.lazy(() =>
   import('@/pages/onboarding/welcome/Welcome.page'),
-);
-const OnboardingLayout = React.lazy(() =>
-  import('@/pages/onboarding/configure/Configure.layout'),
 );
 const OnboardingOrganizationPage = React.lazy(() =>
   import('@/pages/onboarding/configure/organization/Organization.page'),
@@ -427,7 +421,7 @@ export default (
         <Route
           id={'email_accounts_layout'}
           path={':accountId'}
-          Component={EmailAccountsLayout}
+          Component={EmailAccountSettingsLayout}
           handle={{
             isOverridePage: true,
             breadcrumb: {
@@ -818,7 +812,10 @@ export default (
           },
         }}
       />
-      <Route path={'configure/:platformId'} Component={OnboardingLayout}>
+      <Route
+        path={'configure/:platformId'}
+        Component={OnboardingConfigureLayout}
+      >
         <Route
           path={'organization'}
           Component={OnboardingOrganizationPage}
