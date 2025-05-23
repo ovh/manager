@@ -31,7 +31,7 @@ export const features = [
   'private-network',
   'additional-ips',
   'public-gateways',
-  'octavia-load-balancer',
+  'pci-load-balancer',
   'load-balancer',
   'kubernetes',
   'private-registry',
@@ -168,7 +168,7 @@ export function getPciProjectMenu(
   if (
     isFeaturesAvailable(
       'private-network',
-      'octavia-load-balancer',
+      'pci-load-balancer',
       'additional-ips',
       'public-gateways',
     )
@@ -185,8 +185,8 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/private-networks`,
           ),
         },
-        isFeaturesAvailable('octavia-load-balancer') && {
-          id: 'octavia-load-balancer',
+        isFeaturesAvailable('pci-load-balancer') && {
+          id: 'pci-load-balancer',
           title: 'Load Balancer',
           badge: 'new',
           href: getURL(

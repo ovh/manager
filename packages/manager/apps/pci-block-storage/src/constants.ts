@@ -1,4 +1,11 @@
-import { ChangelogLinks } from '@ovh-ux/manager-react-components';
+import {
+  ChangelogLinks,
+  OvhSubsidiary,
+} from '@ovh-ux/manager-react-components';
+
+export type UrlRecord = { [Key in OvhSubsidiary]?: string } & {
+  DEFAULT: string;
+};
 
 export const LOCAL_ZONE_INFO_URL = {
   DEFAULT: 'https://ovhcloud.com/en/public-cloud/local-zone-compute/',
@@ -51,6 +58,51 @@ export const GLOBAL_REGIONS_INFO_URL = {
 export const URL_INFO = {
   GLOBAL_REGIONS: GLOBAL_REGIONS_INFO_URL,
   LOCAL_ZONE: LOCAL_ZONE_INFO_URL,
+};
+
+export const DEPLOYMENT_MODES_HELP_URL: UrlRecord = {
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067025',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067029',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067028',
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067024',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067034',
+  IN:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067025',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067035',
+  DE:
+    'https://help.ovhcloud.com/csm/de-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067014',
+  ES:
+    'https://help.ovhcloud.com/csm/es-es-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067026',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067031',
+  IT:
+    'https://help.ovhcloud.com/csm/it-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067036',
+  MA:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067031',
+  SN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067031',
+  TN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067031',
+  NL:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067034',
+  PL:
+    'https://help.ovhcloud.com/csm/pl-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067032',
+  PT:
+    'https://help.ovhcloud.com/csm/pt-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067033',
+  QC:
+    'https://help.ovhcloud.com/csm/fr-ca-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067037',
+  US:
+    'https://help.ovhcloud.com/csm/en-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067027',
+  WS:
+    'https://help.ovhcloud.com/csm/es-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067030',
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-public-cloud-deployments-modes-reference-architecture?id=kb_article_view&sysparm_article=KB0067027',
 };
 
 export const VOLUME_MIN_SIZE = 10; // 10 Gio

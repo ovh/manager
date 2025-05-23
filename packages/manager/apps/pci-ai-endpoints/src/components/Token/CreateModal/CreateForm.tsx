@@ -150,7 +150,7 @@ const CreateForm = ({
               value={value || ''}
               onOdsValueChange={(e) => {
                 const newVal = e.detail?.value;
-                onChange(newVal);
+                onChange(newVal.slice(0, 60));
               }}
               onBlur={onBlur}
               ref={ref}

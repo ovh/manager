@@ -19,13 +19,7 @@ translation required:
 universe-public-cloud:
   - packages/manager/*/pci/**
   - packages/manager/apps/public-cloud/**
-  - packages/manager/apps/octavia-load-balancer/**
-  - packages/manager/apps/pci-rancher/**
-  - packages/manager/apps/pci-ssh-keys/**
-  - packages/manager/apps/pci-users/**
-  - packages/manager/apps/pci-vouchers/**
-  - packages/manager/apps/pci-gateway/**
-  - packages/manager/apps/pci-private-network/**
+  - packages/manager/apps/pci-*/**
 universe-bare-metal-cloud:
   - packages/manager/apps/dedicated/**/!(dedicatedCloud)/**
   - packages/manager/*/billing/**

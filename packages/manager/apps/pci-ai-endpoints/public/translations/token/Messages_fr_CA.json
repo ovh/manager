@@ -24,7 +24,8 @@
   "ai_endpoints_token_name_required": "La clé doit obligatoirement être nommée",
   "ai_endpoints_token_invalid_format": "La clé ne dois pas contenir d'espaces ou de caractères spéciaux",
   "ai_endpoints_token_description_placeholder": "Ajouter une description",
-  "ai_endpoints_token_expiration_date": "Définir une date d'expiration da la clé API",
-  "ai_endpoints_token_expiration_date_update": "Redéfinir une date d'expiration da la clé API",
-  "ai_endpoints_token_discovery_mod": "Votre projet Public Cloud est actuellement en mode \"Découverte\". Afin d'utiliser AI Endpoints, il vous faut activer votre projet en ajoutant un moyen de paiement à votre compte, qui vous permettra ensuite de créer votre première clé API et démarrer votre utilisation."
+  "ai_endpoints_token_expiration_date": "Définir une date d'expiration de la clé API",
+  "ai_endpoints_token_expiration_date_update": "Redéfinir une date d'expiration de la clé API",
+  "ai_endpoints_token_discovery_mod": "Votre projet Public Cloud est actuellement en mode \"Découverte\". Afin d'utiliser AI Endpoints, il vous faut activer votre projet en ajoutant un moyen de paiement à votre compte, qui vous permettra ensuite de créer votre première clé API et démarrer votre utilisation.",
+  "ai_endpoints_non_admin_user": "Vous devez bénéficier du statut Administrateur pour pouvoir manipuler les clés API"
 }

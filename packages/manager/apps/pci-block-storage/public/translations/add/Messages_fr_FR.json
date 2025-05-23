@@ -3,6 +3,7 @@
   "pci_projects_project_storages_blocks_add_region_title": "Sélectionnez une localisation",
   "pci_projects_project_storages_blocks_add_type_title": "Type de volume",
   "pci_projects_project_storages_blocks_add_type_subtitle": "Optez pour une solution de stockage en blocs adaptée à votre cas d’usage, en tenant compte des niveaux souhaités de performance et de résilience des données.",
+  "pci_projects_project_storages_blocks_add_type_subtitle_3AZ_link": "En savoir plus sur les spécificités des services 3AZ",
   "pci_projects_project_storages_blocks_add_type_classic_label": "Classique",
   "pci_projects_project_storages_blocks_add_type_classic_description": "",
   "pci_projects_project_storages_blocks_add_type_high-speed_label": "Haute performance",

@@ -25,7 +25,11 @@ import { TNetwork, TNetworkRegion } from '@/api/data/network';
 import { isMonoDeploymentZone } from '@/helpers';
 import queryClient from '@/queryClient';
 import { DeploymentMode } from '@/types';
-import { getQueryKeyPrivateNetworksByRegion } from '@/api/hooks/useNetwork';
+import {
+  getListGatewaysQueryKey,
+  getQueryKeyPrivateNetworksByRegion,
+} from '@/api/hooks/useNetwork';
+import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 
 export type PrivateNetworkSelectProps = {
   network: TNetworkRegion;
@@ -33,6 +37,7 @@ export type PrivateNetworkSelectProps = {
   networks: TNetworkRegion[];
   type: DeploymentMode;
   region: string;
+  subnet: TPrivateNetworkSubnet;
 };
 
 export default function PrivateNetworkSelect({
@@ -41,6 +46,7 @@ export default function PrivateNetworkSelect({
   networks,
   region,
   type,
+  subnet,
 }: Readonly<PrivateNetworkSelectProps>) {
   const { t } = useTranslation('network-add');
 
@@ -49,6 +55,9 @@ export default function PrivateNetworkSelect({
   const refresh = () => {
     queryClient.invalidateQueries({
       queryKey: getQueryKeyPrivateNetworksByRegion(projectId, region),
+    });
+    queryClient.invalidateQueries({
+      queryKey: getListGatewaysQueryKey(projectId, region, subnet.id),
     });
   };
 

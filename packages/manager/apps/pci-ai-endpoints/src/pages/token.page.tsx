@@ -35,6 +35,7 @@ import {
 } from '@/hooks/api/database/token/useToken.hook';
 import { useGetProject } from '@/hooks/api/database/project/useGetProject.hook';
 import { TokenData } from '@/types/cloud/project/database/token';
+import useUserInfos from '@/hooks/token/useUserInfos';
 
 type ModalState = {
   isOpen: boolean;
@@ -60,6 +61,7 @@ export default function TokenPage() {
   const { t } = useTranslation('token');
   const { projectId } = useParams();
   const { pagination, setPagination } = useDataGrid();
+  const { isAdmin } = useUserInfos();
 
   const { data: availability } = useFeatureAvailability([CREATE_TOKEN]);
 
@@ -170,7 +172,7 @@ export default function TokenPage() {
             {t('ai_endpoints_token_intro')}
           </OsdsText>
           {projectData?.planCode === 'project.discovery' && (
-            <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="mb-12">
+            <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="mb-4">
               <OsdsText
                 level={ODS_TEXT_LEVEL.body}
                 size={ODS_TEXT_SIZE._400}
@@ -180,14 +182,26 @@ export default function TokenPage() {
               </OsdsText>
             </OsdsMessage>
           )}
-          <div className="sm:flex items-center justify-between mt-4">
+          {!isAdmin && (
+            <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="max-w-fit">
+              <OsdsText
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_TEXT_SIZE._400}
+                color={ODS_THEME_COLOR_INTENT.text}
+              >
+                {t('ai_endpoints_non_admin_user')}
+              </OsdsText>
+            </OsdsMessage>
+          )}
+          <div className="sm:flex items-center justify-between mt-16">
             <div className="flex flex-row items-center justify-between w-full">
               <OsdsButton
                 size={ODS_BUTTON_SIZE.sm}
                 variant={ODS_BUTTON_VARIANT.flat}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 className="xs:mb-0.5 sm:mb-0 mr-4"
-                onClick={() => openModal('create')}
+                onClick={() => isAdmin && openModal('create')}
+                disabled={!isAdmin || undefined}
               >
                 <OsdsIcon
                   name={ODS_ICON_NAME.PLUS}

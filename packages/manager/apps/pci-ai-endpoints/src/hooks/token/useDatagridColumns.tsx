@@ -15,6 +15,7 @@ import { isBefore, isSameDay, startOfDay } from 'date-fns';
 import { useGetTokens } from '@/hooks/api/database/token/useToken.hook';
 import { getTokenQueryOptions } from '@/components/utils/getTokenQueries';
 import { TokenData } from '@/types/cloud/project/database/token';
+import useUserInfos from '@/hooks/token/useUserInfos';
 
 export type UseDatagridColumnsProps = {
   projectId: string;
@@ -38,6 +39,8 @@ export const useDatagridColumns = ({
   onDelete,
 }: UseDatagridColumnsProps) => {
   const { t } = useTranslation('token');
+
+  const { isAdmin } = useUserInfos();
 
   const { data: tokenNames, isLoading: isNamesLoading } = useGetTokens({
     projectId,
@@ -127,14 +130,14 @@ export const useDatagridColumns = ({
               {
                 id: 0,
                 label: t('ai_endpoints_token_put'),
-                onClick: () => onUpdate(token),
-                disabled: false,
+                onClick: () => isAdmin && onUpdate(token),
+                disabled: !isAdmin || undefined,
               },
               {
                 id: 1,
                 label: t('ai_endpoints_token_delete'),
-                onClick: () => onDelete(token),
-                disabled: false,
+                onClick: () => isAdmin && onDelete(token),
+                disabled: !isAdmin || undefined,
               },
             ]}
             isCompact
