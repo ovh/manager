@@ -17,6 +17,6 @@
   "pci_ai_dashboard_users_tokens_tokens_table_regenerate_token": "Regenerar",
   "pci_ai_dashboard_users_tokens_tokens_table_delete_token": "Eliminar",
   "pci_ai_dashboard_users_tokens_tokens_table_create_token": "Criar um token",
-  "pci_ai_dashboard_users_tokens_role_name_ai_training_operator": "AI Platform - Operador",
-  "pci_ai_dashboard_users_tokens_role_name_ai_training_read": "AI Platform - Apenas leitura"
+  "pci_ai_dashboard_users_tokens_role_name_ai_training_operator": "AI Operator",
+  "pci_ai_dashboard_users_tokens_role_name_ai_training_read": "AI Reader"
 }
