@@ -1,44 +1,56 @@
+import React, { useContext } from 'react';
 import {
-  DeleteServiceModal,
   useNotifications,
+  DeleteModal,
 } from '@ovh-ux/manager-react-components';
-import { AxiosError } from 'axios';
-import React from 'react';
+import { useDeleteService } from '@ovh-ux/manager-module-common-api';
+
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { US_SUBSIDIARY } from '@/constants';
 
 export const TerminateLicensePage = () => {
   const { t } = useTranslation('hycu/terminate');
   const { serviceName } = useParams();
   const navigate = useNavigate();
   const { addSuccess, addError } = useNotifications();
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   const closeModal = () => {
     navigate('..');
   };
 
-  const handleSuccessDelete = async () => {
-    closeModal();
-    addSuccess(t('hycu_terminate_success_message', { serviceName }), true);
-  };
+  const { terminateService, isPending, error, isError } = useDeleteService({
+    onSuccess: () => {
+      closeModal();
+      addSuccess(
+        ovhSubsidiary === US_SUBSIDIARY
+          ? t('hycu_terminate_success_message_us')
+          : t('hycu_terminate_success_message', { serviceName }),
+        true,
+      );
+    },
+    onError: () => {
+      closeModal();
+      addError(
+        t('hycu_terminate_error_message', {
+          error: error?.message || 'Unknown error',
+        }),
+      );
+    },
+  });
 
-  const handleErrorDelete = async (error: AxiosError) => {
-    closeModal();
-    addError(t('hycu_terminate_error_message', { error: error.message }));
+  const onConfirmDelete = () => {
+    terminateService({ resourceName: serviceName });
   };
 
   return (
-    <DeleteServiceModal
-      headline={t('hycu_terminate_headline')}
-      description={t('hycu_terminate_description')}
-      deleteInputLabel=""
-      cancelButtonLabel={t('hycu_terminate_cancel_label')}
-      confirmButtonLabel={t('hycu_terminate_confirm_label')}
-      onSuccess={handleSuccessDelete}
-      onError={handleErrorDelete}
+    <DeleteModal
       closeModal={closeModal}
-      resourceName={serviceName}
-      onConfirmDelete={() => {}}
+      error={isError ? error?.message : null}
+      onConfirmDelete={onConfirmDelete}
+      isLoading={isPending}
     />
   );
 };

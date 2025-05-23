@@ -1,5 +1,6 @@
 import { ChangelogLinks } from '@ovh-ux/manager-react-components';
 
+export const US_SUBSIDIARY = 'US';
 export const packTypeLabel = {
   'hycu-cloud-vm-pack-25': '25 VMs',
   'hycu-cloud-vm-pack-50': '50 VMs',

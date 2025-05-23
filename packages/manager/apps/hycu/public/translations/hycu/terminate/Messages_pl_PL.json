@@ -5,5 +5,6 @@
   "hycu_terminate_cancel_label": "Anuluj",
   "hycu_terminate_confirm_label": "Rezygnacja",
   "hycu_terminate_success_message": "Rezygnacja z usługi {{serviceName}} została zarejestrowana. Otrzymasz e-mail z potwierdzeniem.",
-  "hycu_terminate_error_message": "Wystąpił błąd: {{error}}"
+  "hycu_terminate_error_message": "Wystąpił błąd: {{error}}",
+  "hycu_terminate_success_message_us": "Dyspozycja rezygnacji została przyjęta. Wiadomość z potwierdzeniem została wysłana na Twój adres e-mail."
 }
