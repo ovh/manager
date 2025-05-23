@@ -122,6 +122,21 @@ export const Routes: any = [
         id: 'byoip',
         path: urls.byoip,
         ...lazyRouteConfig(() => import('@/pages/byoip/Byoip.page')),
+        children: [
+          {
+            id: 'byoip-order',
+            path: urls.byoipOrderModal,
+            ...lazyRouteConfig(() =>
+              import('@/pages/byoip/ByoipOrderModal/ByoipOrderModal.page'),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'byoip-order',
+                pageType: PageType.listing,
+              },
+            },
+          },
+        ],
         handle: {
           tracking: {
             pageName: 'byoip',

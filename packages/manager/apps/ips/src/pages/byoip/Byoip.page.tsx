@@ -1,8 +1,7 @@
 import React from 'react';
 import { BaseLayout } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { urls } from '@/routes/routes.constant';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { useHeader } from '@/components/Header/Header';
@@ -25,6 +24,7 @@ export const ByoipPage: React.FC = () => {
     >
       <ByoipContextProvider>
         <ByoipOrder />
+        <Outlet />
       </ByoipContextProvider>
     </BaseLayout>
   );
