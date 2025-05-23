@@ -67,14 +67,12 @@ describe('VrackNetworkDatagrid', () => {
 
     // Check if title is rendered
     expect(
-      screen.getAllByText(
-        fr_FR.managed_vcd_dashboard_vrack_network_segments,
-      )[0],
+      screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segments)[0],
     ).toBeInTheDocument();
 
     // Check if description is rendered
     expect(
-      screen.getByText(fr_FR.managed_vcd_dashboard_vrack_network_description),
+      screen.getByText(fr_FR.managed_vcd_dashboard_vrack_description),
     ).toBeInTheDocument();
   });
 
@@ -83,18 +81,16 @@ describe('VrackNetworkDatagrid', () => {
 
     // Check if column headers are rendered
     expect(
-      screen.getAllByText(
-        fr_FR.managed_vcd_dashboard_vrack_network_segments,
-      )[0],
+      screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segments)[0],
     ).toBeInTheDocument();
     expect(
-      screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_network_segment)[0],
+      screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segment)[0],
     ).toBeInTheDocument();
 
     waitFor(() => {
       expect(
         screen.getAllByText(
-          fr_FR.managed_vcd_dashboard_vrack_network_column_segment_vrack_label.replace(
+          fr_FR.managed_vcd_dashboard_vrack_column_segment_vrack_label.replace(
             '{{ vlanId }}',
             mockVrackSegmentList[0].targetSpec.vlanId,
           ),

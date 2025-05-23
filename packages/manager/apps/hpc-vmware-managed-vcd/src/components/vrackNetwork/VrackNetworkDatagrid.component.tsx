@@ -56,7 +56,7 @@ export default function VrackNetworkDatagrid({
       data.data.map((item) => ({
         ...item,
         searchableValue: `${t(
-          'managed_vcd_dashboard_vrack_network_column_segment_vrack_label',
+          'managed_vcd_dashboard_vrack_column_segment_vrack_label',
           { vlanId: item.targetSpec.vlanId },
         )} ${item.targetSpec.networks.map((network) => network).join(' ')}`,
       })),
@@ -80,14 +80,13 @@ export default function VrackNetworkDatagrid({
   const columns = [
     {
       id: 'searchableValue',
-      label: t('managed_vcd_dashboard_vrack_network_segment'),
+      label: t('managed_vcd_dashboard_vrack_segment'),
       cell: (item: VCDVrackSegment) => {
         return (
           <OdsText preset="paragraph">
-            {t(
-              'managed_vcd_dashboard_vrack_network_column_segment_vrack_label',
-              { vlanId: item.targetSpec.vlanId },
-            )}
+            {t('managed_vcd_dashboard_vrack_column_segment_vrack_label', {
+              vlanId: item.targetSpec.vlanId,
+            })}
           </OdsText>
         );
       },
@@ -119,21 +118,19 @@ export default function VrackNetworkDatagrid({
                 {
                   id: 1,
                   href: hrefEdit.replace(subRoutes.vrackSegmentId, item.id),
-                  label: t('managed_vcd_dashboard_vrack_network_edit_vlan'),
+                  label: t('managed_vcd_dashboard_vrack_edit_vlan'),
                 },
                 {
                   id: 2,
                   href: hrefAddNetwork,
-                  label: t('managed_vcd_dashboard_vrack_network_add_subnet'),
+                  label: t('managed_vcd_dashboard_vrack_add_subnet'),
                 },
                 ...(hasExtraSegments
                   ? [
                       {
                         id: 3,
                         color: ODS_BUTTON_COLOR.critical,
-                        label: t(
-                          'managed_vcd_dashboard_vrack_network_delete_segment',
-                        ),
+                        label: t('managed_vcd_dashboard_vrack_delete_segment'),
                         onClick: () =>
                           navigate(
                             urls.vrackSegmentDelete
@@ -148,7 +145,7 @@ export default function VrackNetworkDatagrid({
             />
             {isDeleting && (
               <OdsTooltip triggerId={itemId}>
-                {t('managed_vcd_dashboard_vrack_network_deleting')}
+                {t('managed_vcd_dashboard_vrack_deleting')}
               </OdsTooltip>
             )}
           </div>
@@ -161,10 +158,10 @@ export default function VrackNetworkDatagrid({
     <div className="flex flex-col gap-8">
       <div className="flex flex-col justify-between">
         <OdsText preset="heading-3" className="mb-4">
-          {t('managed_vcd_dashboard_vrack_network_segments')}
+          {t('managed_vcd_dashboard_vrack_segments')}
         </OdsText>
         <OdsText preset="paragraph">
-          {t('managed_vcd_dashboard_vrack_network_description')}
+          {t('managed_vcd_dashboard_vrack_description')}
         </OdsText>
       </div>
       <React.Suspense>

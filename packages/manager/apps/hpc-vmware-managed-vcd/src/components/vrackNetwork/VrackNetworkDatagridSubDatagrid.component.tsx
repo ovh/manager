@@ -76,9 +76,7 @@ export default function VrackNetworkDatagridSubDatagrid({
                     id={buttonId}
                     aria-hidden="true"
                     label=""
-                    aria-label={t(
-                      'managed_vcd_dashboard_vrack_network_delete_network',
-                    )}
+                    aria-label={t('managed_vcd_dashboard_vrack_delete_network')}
                     icon="trash"
                     variant="ghost"
                     color="critical"
@@ -98,7 +96,7 @@ export default function VrackNetworkDatagridSubDatagrid({
                   />
                   {isDeleting && (
                     <OdsTooltip triggerId={buttonId}>
-                      {t('managed_vcd_dashboard_vrack_network_deleting')}
+                      {t('managed_vcd_dashboard_vrack_deleting')}
                     </OdsTooltip>
                   )}
                 </div>

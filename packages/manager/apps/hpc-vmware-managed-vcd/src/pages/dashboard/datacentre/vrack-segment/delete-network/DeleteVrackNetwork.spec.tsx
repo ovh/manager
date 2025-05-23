@@ -21,11 +21,11 @@ const initialRoute = urls.vrackSegmentDeleteNetwork
   );
 
 const {
-  managed_vcd_dashboard_vrack_network_delete_subnet: title,
-  managed_vcd_dashboard_vrack_network_delete_subnet_content1: content,
-  managed_vcd_dashboard_vrack_network_delete_subnet_content2: content2,
-  managed_vcd_dashboard_vrack_network_delete_subnet_success: success,
-  managed_vcd_dashboard_vrack_network_delete_subnet_error: error,
+  managed_vcd_dashboard_vrack_delete_subnet: title,
+  managed_vcd_dashboard_vrack_delete_subnet_content1: content,
+  managed_vcd_dashboard_vrack_delete_subnet_content2: content2,
+  managed_vcd_dashboard_vrack_delete_subnet_success: success,
+  managed_vcd_dashboard_vrack_delete_subnet_error: error,
 } = labels.datacentresVrackNetwork;
 
 const checkModalContent = () => {

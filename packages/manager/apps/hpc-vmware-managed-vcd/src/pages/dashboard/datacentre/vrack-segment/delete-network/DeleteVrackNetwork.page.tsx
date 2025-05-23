@@ -58,7 +58,7 @@ export default function DeleteVrackNetwork() {
     vrackSegmentId,
     onSuccess: () => {
       addSuccess({
-        content: t('managed_vcd_dashboard_vrack_network_delete_subnet_success'),
+        content: t('managed_vcd_dashboard_vrack_delete_subnet_success'),
         includedSubRoutes: [vdcId],
         excludedSubRoutes: [
           subRoutes.datacentreCompute,
@@ -69,7 +69,7 @@ export default function DeleteVrackNetwork() {
     },
     onError: (error) => {
       addError({
-        content: t('managed_vcd_dashboard_vrack_network_delete_subnet_error', {
+        content: t('managed_vcd_dashboard_vrack_delete_subnet_error', {
           errorApi: error.message,
         }),
         includedSubRoutes: [vdcId],
@@ -100,7 +100,7 @@ export default function DeleteVrackNetwork() {
   return (
     <Modal
       isOpen
-      heading={t('managed_vcd_dashboard_vrack_network_delete_subnet')}
+      heading={t('managed_vcd_dashboard_vrack_delete_subnet')}
       isLoading={isLoading}
       primaryLabel={tActions('delete')}
       isPrimaryButtonLoading={isUpdatePending}
@@ -113,10 +113,10 @@ export default function DeleteVrackNetwork() {
     >
       <div className="flex flex-col gap-2">
         <OdsText>
-          {t('managed_vcd_dashboard_vrack_network_delete_subnet_content1')}
+          {t('managed_vcd_dashboard_vrack_delete_subnet_content1')}
         </OdsText>
         <OdsMessage color="warning" isDismissible={false}>
-          {t('managed_vcd_dashboard_vrack_network_delete_subnet_content2')}
+          {t('managed_vcd_dashboard_vrack_delete_subnet_content2')}
         </OdsMessage>
       </div>
     </Modal>
