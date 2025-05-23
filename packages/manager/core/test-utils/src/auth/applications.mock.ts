@@ -126,17 +126,6 @@ export const applications = {
     },
     publicURL: 'https://www.ovh.com/manager/#/carbon-calculator',
   },
-  'octavia-load-balancer': {
-    universe: 'public-cloud',
-    url: 'https://www.ovh.com/manager/octavia-load-balancer/',
-    container: {
-      isDefault: false,
-      enabled: true,
-      path: 'public-cloud',
-      hash: '/pci/projects/:projectId/octavia-load-balancer',
-    },
-    publicURL: 'https://www.ovh.com/manager/#/public-cloud',
-  },
   'pci-vouchers': {
     universe: 'public-cloud',
     url: 'https://www.ovh.com/manager/pci-vouchers/',

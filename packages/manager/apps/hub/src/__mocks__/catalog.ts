@@ -841,7 +841,7 @@ export const rawCatalogData = [
     categories: ['Catalogs', 'Network', 'Network Services', 'Load Balancer'],
     category: 'Network Services',
     description: 'Automatic traffic distribution on Public Cloud resources',
-    featureAvailability: 'octavia-load-balancer',
+    featureAvailability: 'pci-load-balancer',
     id: 21764,
     lang: 'en_GB',
     name: 'Load Balancer',
