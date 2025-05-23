@@ -17,18 +17,15 @@ const redirectTo = (transition) =>
         activityLogsAvailability,
         accessPolicyLogsAvailability,
       ]) => {
-        if (auditLogsAvailability) {
-          return 'iam.logs.audit';
-        }
-
-        if (activityLogsAvailability) {
-          return 'iam.logs.activity';
-        }
-
         if (accessPolicyLogsAvailability) {
           return 'iam.logs.access-policy';
         }
-
+        if (activityLogsAvailability) {
+          return 'iam.logs.activity';
+        }
+        if (auditLogsAvailability) {
+          return 'iam.logs.audit';
+        }
         return 'iam';
       },
     );
