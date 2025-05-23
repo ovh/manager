@@ -48,9 +48,19 @@ export type TServerContainer = {
   staticUrl: string;
   replication: {
     rules: {
-      status: string;
+      id: string;
+      status: 'enabled' | 'disabled';
+      priority: number;
+      destination: {
+        name: string;
+        region: string;
+        storageClass: 'STANDARD' | 'STANDARD_IA' | 'HIGH_PERF';
+      };
+      deleteMarkerReplication: 'enabled' | 'disabled';
+      filter?: { prefix: string; tags: { [key: string]: string } };
     }[];
   };
+  deploymentMode?: string;
 };
 
 export const getServerContainer = async (
