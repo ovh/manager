@@ -6,7 +6,7 @@ import * as useReassuranceWordingApi from '@/hooks/reassuranceWording/useReassur
 import ReassuranceWording from '@/pages/ReassuranceWording.component';
 import userContext, { UserContext } from '@/context/user/user.context';
 
-const renderComponent = (user?: Partial<UserContext>) =>
+const renderComponent = (user: Partial<UserContext>) =>
   render(
     <userContext.Provider value={user as UserContext}>
       <ReassuranceWording />
@@ -46,7 +46,7 @@ describe('ReassuranceWording', () => {
   describe('Integration tests', () => {
     it('should display a generic message when on root route without customer data', async () => {
       mockLocation('/');
-      renderComponent();
+      renderComponent({});
 
       const titleElement = screen.getByTestId('reassurance_wording_title');
       const descriptionElement = screen.getByTestId(
@@ -58,7 +58,7 @@ describe('ReassuranceWording', () => {
 
     it('should display a generic message when on preferences route without customer data', async () => {
       mockLocation('/preferences');
-      renderComponent();
+      renderComponent({});
 
       const titleElement = screen.getByTestId('reassurance_wording_title');
       const descriptionElement = screen.getByTestId(
