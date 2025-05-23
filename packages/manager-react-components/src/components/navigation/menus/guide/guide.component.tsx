@@ -36,7 +36,7 @@ export const GuideButton: React.FC<GuideButtonProps> = ({
         <OdsButton
           isLoading={isLoading}
           slot="menu-title"
-          className="block mb-6"
+          className="block"
           variant={ODS_BUTTON_VARIANT.ghost}
           size={ODS_BUTTON_SIZE.sm}
           label={t('user_account_guides_header')}
