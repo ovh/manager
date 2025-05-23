@@ -1,14 +1,14 @@
-export interface VrackSegmentNetworkSpec {
+export interface VCDVrackSegmentSpec {
   vlanId: string;
   type: 'DEFAULT';
   mode: 'TAGGED';
   networks: string[];
 }
 
-export interface VrackSegment {
+export interface VCDVrackSegment {
   id: string;
   resourceStatus: string;
-  targetSpec: VrackSegmentNetworkSpec;
-  currentState: VrackSegmentNetworkSpec;
+  targetSpec: VCDVrackSegmentSpec;
+  currentState: VCDVrackSegmentSpec;
   currentTasks: unknown[];
 }

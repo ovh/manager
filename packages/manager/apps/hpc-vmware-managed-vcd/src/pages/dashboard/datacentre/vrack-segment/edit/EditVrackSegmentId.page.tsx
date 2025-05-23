@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import {
   mockVrackSegmentList,
-  useUpdateVcdVrackNetworkVrackSegment,
-  useVcdVrackNetworkSegmentOptions,
-  VrackSegment,
+  useUpdateVcdVrackSegment,
+  useVcdVrackSegmentOptions,
+  VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -35,9 +35,9 @@ export default function EditVrackSegmentId() {
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
   const { addSuccess } = useMessageContext();
-  const defaultOptions = useVcdVrackNetworkSegmentOptions({
+  const defaultOptions = useVcdVrackSegmentOptions({
     id,
-    vcdId: vdcId,
+    vdcId,
     vrackSegmentId,
   });
 
@@ -52,10 +52,10 @@ export default function EditVrackSegmentId() {
             statusText: 'OK',
             headers: {},
             config: {},
-          } as ApiResponse<VrackSegment>);
+          } as ApiResponse<VCDVrackSegment>);
         }, 1500);
       }),
-    select: (data: ApiResponse<VrackSegment>) => ({
+    select: (data: ApiResponse<VCDVrackSegment>) => ({
       ...data.data.targetSpec,
       vlanId: Number(data.data.targetSpec.vlanId),
     }),
@@ -69,13 +69,13 @@ export default function EditVrackSegmentId() {
     mutate: updateVrackSegment,
     error: updateError,
     isPending: isUpdatePending,
-  } = useUpdateVcdVrackNetworkVrackSegment({
+  } = useUpdateVcdVrackSegment({
     id,
-    vcdId: vdcId,
+    vdcId,
     vrackSegmentId,
     onSuccess: () => {
       addSuccess({
-        content: t('managed_vcd_dashboard_vrack_network_edit_success'),
+        content: t('managed_vcd_dashboard_vrack_edit_success'),
         includedSubRoutes: [vdcId],
         excludedSubRoutes: [
           subRoutes.datacentreCompute,
@@ -119,7 +119,7 @@ export default function EditVrackSegmentId() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Modal
         isOpen
-        heading={t('managed_vcd_dashboard_vrack_network_edit_vlan')}
+        heading={t('managed_vcd_dashboard_vrack_edit_vlan')}
         isLoading={isLoading}
         primaryLabel={tActions('modify')}
         isPrimaryButtonLoading={isUpdatePending}
@@ -136,24 +136,22 @@ export default function EditVrackSegmentId() {
         <div className="flex flex-col gap-2">
           {updateError && (
             <OdsMessage color="critical" isDismissible={false}>
-              {t('managed_vcd_dashboard_vrack_network_edit_error', {
+              {t('managed_vcd_dashboard_vrack_edit_error', {
                 errorApi: updateError.message,
               })}
             </OdsMessage>
           )}
           <OdsText>
-            {t('managed_vcd_dashboard_vrack_network_form_vlan_id_description')}
+            {t('managed_vcd_dashboard_vrack_form_vlan_id_description')}
           </OdsText>
           {watch('vlanId') !== undefined && (
             <RhfField
               control={control}
               controllerParams={register('vlanId')}
-              helperMessage={t(
-                'managed_vcd_dashboard_vrack_network_vlan_id_helper',
-              )}
+              helperMessage={t('managed_vcd_dashboard_vrack_vlan_id_helper')}
             >
               <RhfField.Label>
-                {t('managed_vcd_dashboard_vrack_network_vlan_id')}
+                {t('managed_vcd_dashboard_vrack_vlan_id')}
               </RhfField.Label>
               <RhfField.HelperAuto />
               <RhfField.Quantity max={VLAN_MAX} min={VLAN_MIN} />
