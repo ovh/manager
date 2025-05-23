@@ -8,6 +8,7 @@ export default {
     user: '<',
     authMethodProvider: '<',
     iamUsersLink: '<',
+    onClickShortcut: '<',
   },
   template,
 };
