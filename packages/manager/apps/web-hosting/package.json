@@ -38,6 +38,7 @@
     "export-to-csv": "^1.4.0",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.5.0",
+    "ipaddr.js": "^1.9.1",
     "p-limit": "^6.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
