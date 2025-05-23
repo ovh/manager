@@ -1,23 +1,40 @@
 import React from 'react';
 import { ByoipContext } from './Byoip.context';
-import { RirSelectionSection } from './sections/RirSelectionSection.component';
-import { RegionSelectionSection } from './sections/RegionSelectionSection.component';
-import { TokenSelectionSection } from './sections/TokenSection.component';
-import { IpRangeSelectionSection } from './sections/IpRangeSelectionSection.component';
+import {
+  RirSelectionSection,
+  RegionSelectionSection,
+  TokenSelectionSection,
+  IpRangeSelectionSection,
+  AsTypeSelectionSection,
+  AsOwnTypeSelectionSection,
+  OrderButtonSection,
+} from './sections';
 import { useGetTokens } from '@/data/hooks/useGetTokens';
+import { isValidIpRange } from './Byoip.utils';
 
 export const ByoipOrder: React.FC = () => {
-  const { ipRir, selectedRegion } = React.useContext(ByoipContext);
+  const {
+    ipRir,
+    selectedRegion,
+    ipRange,
+    asType,
+    asOwnRirType,
+    asOwnNumberType,
+  } = React.useContext(ByoipContext);
 
-  const { token } = useGetTokens({
-    campus: selectedRegion,
-  });
+  const { token } = selectedRegion
+    ? useGetTokens({
+        campus: selectedRegion,
+      })
+    : { token: null };
 
   const visibleSections = {
     regionSelection: ipRir,
     tokenSelection: selectedRegion,
     ipRangeSelection: token,
-    // asSelection: ipRange,
+    asTypeSelection: ipRange && isValidIpRange(ipRange),
+    asOwnTypeSelection: asType && asType === 'own',
+    orderButtonSelection: asOwnRirType && asOwnNumberType,
   };
 
   return (
@@ -26,10 +43,9 @@ export const ByoipOrder: React.FC = () => {
       {visibleSections.regionSelection && <RegionSelectionSection />}
       {visibleSections.tokenSelection && <TokenSelectionSection />}
       {visibleSections.ipRangeSelection && <IpRangeSelectionSection />}
-      {/* {visibleSections.ipRangeSelection && <AsSelectionSection />} */}
-      {/* { <IpRangeSelectionSection />}
-        { <AsSelectionSection />}
-        {<OrderButtonSection />}  */}
+      {visibleSections.asTypeSelection && <AsTypeSelectionSection />}
+      {visibleSections.asOwnTypeSelection && <AsOwnTypeSelectionSection />}
+      {visibleSections.orderButtonSelection && <OrderButtonSection />}
     </>
   );
 };

@@ -17,3 +17,5 @@ const byoipIpRangeRe = new RegExp(pattern);
 // The subnet address is limited to only "/24".
 export const isValidIpRange = (subnet: string): boolean =>
   byoipIpRangeRe.test(subnet);
+
+export const AS_OPTIONS = ['ovh_cloud', 'own'];
