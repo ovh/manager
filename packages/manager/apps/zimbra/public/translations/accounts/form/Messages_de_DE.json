@@ -37,5 +37,9 @@
   "zimbra_account_edit_tabs_settings": "Account-Einstellungen",
   "zimbra_account_edit_tabs_redirections": "Weiterleitungen",
   "zimbra_account_edit_tabs_alias": "Alias",
-  "zimbra_account_edit_tabs_auto_replies": "Beantworter"
+  "zimbra_account_edit_tabs_auto_replies": "Beantworter",
+  "zimbra_account_add_checkbox_hide_in_gal": "Adresse im Adressbuch verbergen",
+  "zimbra_account_add_checkbox_hide_in_gal_tooltip": "Das Firmenverzeichnis wird für alle Postfächer freigegeben, die dieselbe Domain verwenden.",
+  "zimbra_account_add_checkbox_force_change_password": "Änderung beim nächsten Anmelden erzwingen",
+  "zimbra_account_add_checkbox_force_change_password_tooltip": "Das definierte Passwort ist temporär. Der User muss bei der ersten Anmeldung den Webmail-Dienst verwenden, um es festzulegen."
 }
