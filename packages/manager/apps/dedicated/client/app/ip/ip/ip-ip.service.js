@@ -375,18 +375,19 @@ export default /* @ngInject */ function Ip(
       },
     });
 
-  /*= ==============================
-        =            IP DEL            =
-        =============================== */
-
-  this.deleteIpBlock = (ipBlock) => {
+  /*= ==========================================
+      =            IP ServiceInfos            =
+      ========================================== */
+  this.getIpServiceInfos = (ipBlock) => {
     const [ip, block] = ipBlock.split('/');
-    return OvhHttp.post('/ip/service/{serviceName}/terminate', {
+    const serviceName = `ip-${block === '32' ? ip : ipBlock}`;
+    return OvhHttp.get('/ip/service/{serviceName}/serviceInfos', {
       rootPath: 'apiv6',
-      urlParams: {
-        serviceName: `ip-${block === '32' ? ip : ipBlock}`,
-      },
-    });
+      urlParams: { serviceName },
+    }).then((data) => ({
+      serviceName,
+      ...data,
+    }));
   };
 
   /*= ==============================
