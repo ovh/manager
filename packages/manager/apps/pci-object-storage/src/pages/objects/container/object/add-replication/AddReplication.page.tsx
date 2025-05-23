@@ -391,6 +391,7 @@ export default function AddReplicationPage() {
       }
       header={{
         title: container.name,
+
         headerButton: <PciGuidesHeader category="objectStorage" />,
       }}
     >
