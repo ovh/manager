@@ -22,28 +22,28 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useHref, useNavigate } from 'react-router-dom';
-import VrackNetworkDatagridSubDatagrid from './VrackNetworkDatagridSubDatagrid.component';
+import { VrackSegmentSubDatagrid } from './VrackSegmentSubDatagrid.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import { VRACK_SEGMENTS_MIN_LENGTH } from '@/pages/dashboard/datacentre/vrack-segment/vrackDashboard.constants';
+import { VRACK_SEGMENTS_MIN_LENGTH } from '@/pages/dashboard/datacentre/vrack-segment/datacentreVrack.constants';
 
-export type VrackNetworkDatagridProps = {
+export type VrackSegmentDatagridProps = {
   id: string;
   vdcId: string;
 };
 
-export default function VrackNetworkDatagrid({
+export const VrackSegmentDatagrid = ({
   id,
   vdcId,
-}: VrackNetworkDatagridProps) {
+}: VrackSegmentDatagridProps) => {
   const navigate = useNavigate();
   const { t } = useTranslation('datacentres/vrack-segment');
   const [sorting, setSorting] = useState<ColumnSort>();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchInput, setSearchInput] = useState('');
 
-  const vcdVrackNetworkOptions = useVcdVrackSegmentListOptions(id, vdcId);
-  const { data: vrackNetworks, isLoading } = useQuery({
-    ...vcdVrackNetworkOptions,
+  const vcdVrackSegmentListOptions = useVcdVrackSegmentListOptions(id, vdcId);
+  const { data: vrackSegments, isLoading } = useQuery({
+    ...vcdVrackSegmentListOptions,
     queryFn: () =>
       Promise.resolve({
         data: mockVrackSegmentList,
@@ -75,7 +75,7 @@ export default function VrackNetworkDatagrid({
   );
 
   const hasExtraSegments =
-    (vrackNetworks?.length ?? 0) > VRACK_SEGMENTS_MIN_LENGTH;
+    (vrackSegments?.length ?? 0) > VRACK_SEGMENTS_MIN_LENGTH;
 
   const columns = [
     {
@@ -169,7 +169,7 @@ export default function VrackNetworkDatagrid({
           columns={columns}
           isLoading={isLoading}
           items={applyFilters(
-            vrackNetworks ?? [],
+            vrackSegments ?? [],
             !searchInput || searchInput.length === 0
               ? filters
               : [
@@ -181,11 +181,11 @@ export default function VrackNetworkDatagrid({
                   ...filters,
                 ],
           )}
-          totalItems={vrackNetworks?.length ?? 0}
+          totalItems={vrackSegments?.length ?? 0}
           contentAlignLeft
           getRowCanExpand={(row) => row.original.targetSpec.networks.length > 0}
           renderSubComponent={(row) => (
-            <VrackNetworkDatagridSubDatagrid vrackSegment={row.original} />
+            <VrackSegmentSubDatagrid vrackSegment={row.original} />
           )}
           sorting={sorting}
           onSortChange={setSorting}
@@ -200,4 +200,4 @@ export default function VrackNetworkDatagrid({
       </React.Suspense>
     </div>
   );
-}
+};

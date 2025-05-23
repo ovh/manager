@@ -26,7 +26,7 @@ const {
   managed_vcd_dashboard_vrack_delete_subnet_content2: content2,
   managed_vcd_dashboard_vrack_delete_subnet_success: success,
   managed_vcd_dashboard_vrack_delete_subnet_error: error,
-} = labels.datacentresVrackNetwork;
+} = labels.datacentresVrackSegment;
 
 const checkModalContent = () => {
   expect(screen.getByText(title)).toBeVisible();

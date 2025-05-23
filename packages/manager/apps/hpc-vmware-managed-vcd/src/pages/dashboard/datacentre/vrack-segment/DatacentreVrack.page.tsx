@@ -3,14 +3,12 @@ import { Outlet, useParams } from 'react-router-dom';
 import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
 import Loading from '@/components/loading/Loading.component';
 import Errors from '@/components/error/Error.component';
-import VrackNetworkDatagrid from '@/components/vrackNetwork/VrackNetworkDatagrid.component';
+import { VrackSegmentDatagrid } from '@/components/vrackSegment/VrackSegmentDatagrid.component';
 
-export default function VrackNetworkPage() {
+export default function VrackListingPage() {
   const { id, vdcId } = useParams();
 
-  const { isError, error } = useVcdOrganization({
-    id,
-  });
+  const { isError, error } = useVcdOrganization({ id });
 
   if (isError) {
     return <Errors error={error?.response} />;
@@ -19,7 +17,7 @@ export default function VrackNetworkPage() {
   return (
     <React.Suspense fallback={<Loading />}>
       <div className="px-10">
-        <VrackNetworkDatagrid id={id} vdcId={vdcId} />
+        <VrackSegmentDatagrid id={id} vdcId={vdcId} />
       </div>
       <Outlet />
     </React.Suspense>

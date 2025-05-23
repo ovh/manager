@@ -20,7 +20,7 @@ const {
   managed_vcd_dashboard_vrack_delete_segment_content: content,
   managed_vcd_dashboard_vrack_delete_segment_success: success,
   managed_vcd_dashboard_vrack_delete_segment_error: error,
-} = labels.datacentresVrackNetwork;
+} = labels.datacentresVrackSegment;
 
 const checkModalContent = () => {
   expect(screen.getByText(title)).toBeVisible();

@@ -33,12 +33,12 @@ const CSS = `
       }
 `;
 
-export default function VrackNetworkDatagridSubDatagrid({
+export const VrackSegmentSubDatagrid = ({
   vrackSegment,
 }: {
   vrackSegment: VCDVrackSegment;
   headerRefs?: React.RefObject<HTMLTableCellElement>;
-}) {
+}) => {
   const { t } = useTranslation('datacentres/vrack-segment');
   const navigate = useNavigate();
   const { id, vdcId } = useParams();
@@ -111,4 +111,4 @@ export default function VrackNetworkDatagridSubDatagrid({
       ></Datagrid>
     </>
   );
-}
+};
