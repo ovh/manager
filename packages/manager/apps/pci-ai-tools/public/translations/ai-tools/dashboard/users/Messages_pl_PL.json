@@ -21,6 +21,6 @@
   "formUserLabel": "Hasło powiązane z użytkownikiem",
   "formAddUserButtonClose": "Zamknij",
   "formUserPasswordCopy": "Skopiowano hasło",
-  "ai_training_operator": "AI Platform - operator",
-  "ai_training_read": "AI Platform - tylko do odczytu"
+  "ai_training_operator": "AI Operator",
+  "ai_training_read": "AI Reader"
 }
