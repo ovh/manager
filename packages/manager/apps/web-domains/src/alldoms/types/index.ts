@@ -18,6 +18,11 @@ export interface TServiceInfo {
         mode: ServiceInfoRenewMode | null;
       };
     } | null;
+    lifecycle: {
+      current: {
+        creationDate: string | null;
+      };
+    } | null;
   };
   customer: {
     contacts: {
@@ -41,7 +46,7 @@ export interface ModalStepsProps {
   domainAttached?: string[];
   domainAttachedChecked?: string[];
   domainTerminateList?: string[];
-  serviceInfoDetail?: TServiceDetail;
+  serviceName?: string;
   checkAllDomain?: boolean;
   changeStep: () => void;
   handleDomainAttached?: (domainSelected: string[]) => void;

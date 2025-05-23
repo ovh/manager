@@ -9,10 +9,9 @@ import DatagridColumnActionMenu from '@/alldoms/components/DatagridColumns/Datag
 import DatagridColumnContact from '@/alldoms/components/DatagridColumns/DatagridColumnContact';
 import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
 import DatagridColumnRenewMode from '@/alldoms/components/DatagridColumns/DatagridColumnRenewMode';
+import { findContact } from '../utils/utils';
 
-export const useAllDomDatagridColumns = (
-  openModal: (serviceInfoDetail: TServiceDetail) => void,
-) => {
+export const useAllDomDatagridColumns = () => {
   const { t } = useTranslation('allDom');
   return useMemo(
     () => [
@@ -70,8 +69,9 @@ export const useAllDomDatagridColumns = (
       {
         id: 'nicAdmin',
         cell: (props: TServiceDetail) => {
-          const contact = props.serviceInfo.customer.contacts.find(
-            (c) => c.type === ServiceInfoContactEnum.Administrator,
+          const contact = findContact(
+            props.serviceInfo.customer.contacts,
+            ServiceInfoContactEnum.Administrator,
           );
           return <DatagridColumnContact contact={contact} />;
         },
@@ -80,8 +80,9 @@ export const useAllDomDatagridColumns = (
       {
         id: 'nicTech',
         cell: (props: TServiceDetail) => {
-          const contact = props.serviceInfo.customer.contacts.find(
-            (c) => c.type === ServiceInfoContactEnum.Technical,
+          const contact = findContact(
+            props.serviceInfo.customer.contacts,
+            ServiceInfoContactEnum.Technical,
           );
           return <DatagridColumnContact contact={contact} />;
         },
@@ -90,8 +91,9 @@ export const useAllDomDatagridColumns = (
       {
         id: 'nicBilling',
         cell: (props: TServiceDetail) => {
-          const contact = props.serviceInfo.customer.contacts.find(
-            (c) => c.type === ServiceInfoContactEnum.Billing,
+          const contact = findContact(
+            props.serviceInfo.customer.contacts,
+            ServiceInfoContactEnum.Billing,
           );
           return <DatagridColumnContact contact={contact} />;
         },
@@ -102,8 +104,9 @@ export const useAllDomDatagridColumns = (
         cell: (props: TServiceDetail) => (
           <DatagridColumnActionMenu
             serviceId={`${props.serviceInfo.serviceId}`}
-            serviceInfoDetail={props}
-            openModal={openModal}
+            serviceName={props.allDomProperty.name}
+            serviceModeRenew={props.serviceInfo.billing.renew.current.mode}
+            context="listing"
           />
         ),
         label: '',

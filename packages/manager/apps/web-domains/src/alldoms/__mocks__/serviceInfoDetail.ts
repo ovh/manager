@@ -81,7 +81,13 @@ export const serviceInfoDetailObject: TServiceDetail = {
           mode: ServiceInfoRenewMode.Automatic,
         },
       },
+      lifecycle: {
+        current: {
+          creationDate: '2024-09-25T06:40:26Z',
+        },
+      },
     },
+
     customer: {
       contacts: [
         {
