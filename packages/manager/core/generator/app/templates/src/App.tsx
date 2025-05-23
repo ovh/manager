@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { Suspense, useEffect, useContext } from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -20,7 +20,9 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <Suspense fallback={<span>Loading routes ...</span>}>
+        <RouterProvider router={router} />
+      </Suspense>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );
