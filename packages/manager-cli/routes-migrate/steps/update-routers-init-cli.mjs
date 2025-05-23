@@ -87,6 +87,12 @@ const updateRouterInitialization = (code) => {
     '',
   );
 
+  // Update React import to include Suspense
+  transformed = transformed.replace(
+    /import\s+React\s+from\s+['"]react['"];/g,
+    `import React, { Suspense } from 'react';`,
+  );
+
   // Replace router assignments
   transformed = transformed.replace(
     /\bconst\s+(router|routes)\s*=\s*create(Hash|Memory)Router\s*\(([^)]*)\);?/g,
@@ -98,7 +104,7 @@ const updateRouterInitialization = (code) => {
   // Replace JSX usage of router
   transformed = transformed.replace(
     /<RouterProvider\s+router=\{router\}\s*\/>/g,
-    `<RouterProvider router={routes} />`,
+    `<Suspense fallback={<span>Loading routes ...</span>}><RouterProvider router={routes} /></Suspense>`,
   );
 
   // Inject createRoutesFromElements into react-router-dom imports
