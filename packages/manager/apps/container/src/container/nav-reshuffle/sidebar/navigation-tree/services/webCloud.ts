@@ -25,22 +25,9 @@ webCloudUniverse.children = [
     features: [
       'web:domains',
       'web:domains:zone',
-      'web:domains:operations',
       'web-ongoing-operations',
     ],
     children: [
-      {
-        id: 'domains-operations',
-        idAttr: 'domains-operations-link',
-        universe: webCloudUniverse.id,
-        translation: 'sidebar_domain_operations',
-        routing: {
-          application: 'web',
-          hash: '#/domain/operation',
-        },
-        hasService: false,
-        features: ['web:domains:operations'],
-      },
       {
         id: 'domains-operations',
         idAttr: 'domains-operations-link',
