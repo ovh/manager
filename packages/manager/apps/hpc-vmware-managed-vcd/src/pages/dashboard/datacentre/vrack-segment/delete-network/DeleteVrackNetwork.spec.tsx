@@ -21,12 +21,12 @@ const initialRoute = urls.vrackSegmentDeleteNetwork
   );
 
 const {
-  managed_vcd_dashboard_vrack_network_delete_subnet: title,
-  managed_vcd_dashboard_vrack_network_delete_subnet_content1: content,
-  managed_vcd_dashboard_vrack_network_delete_subnet_content2: content2,
-  managed_vcd_dashboard_vrack_network_delete_subnet_success: success,
-  managed_vcd_dashboard_vrack_network_delete_subnet_error: error,
-} = labels.datacentresVrackNetwork;
+  managed_vcd_dashboard_vrack_delete_network: title,
+  managed_vcd_dashboard_vrack_delete_network_content1: content,
+  managed_vcd_dashboard_vrack_delete_network_content2: content2,
+  managed_vcd_dashboard_vrack_delete_network_success: success,
+  managed_vcd_dashboard_vrack_delete_network_error: error,
+} = labels.datacentresVrackSegment;
 
 const checkModalContent = () => {
   expect(screen.getByText(title)).toBeVisible();

@@ -16,11 +16,11 @@ const initialRoute = urls.vrackSegmentDelete
   .replace(subRoutes.vrackSegmentId, testVrack.id);
 
 const {
-  managed_vcd_dashboard_vrack_network_delete_segment: title,
-  managed_vcd_dashboard_vrack_network_delete_segment_content: content,
-  managed_vcd_dashboard_vrack_network_delete_segment_success: success,
-  managed_vcd_dashboard_vrack_network_delete_segment_error: error,
-} = labels.datacentresVrackNetwork;
+  managed_vcd_dashboard_vrack_delete_segment: title,
+  managed_vcd_dashboard_vrack_delete_segment_content: content,
+  managed_vcd_dashboard_vrack_delete_segment_success: success,
+  managed_vcd_dashboard_vrack_delete_segment_error: error,
+} = labels.datacentresVrackSegment;
 
 const checkModalContent = () => {
   expect(screen.getByText(title)).toBeVisible();
