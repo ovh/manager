@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.2.0...@ovh-ux/billing-informations@1.2.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4020] ([287dc03](https://github.com/ovh/manager/commit/287dc03f5f1b3e5ebb9bc514cabe0d12989a4ada))
+* **i18n:** add missing translations [CDS 4025] ([e95fb41](https://github.com/ovh/manager/commit/e95fb410146a8140c601438dd6d78072814042f3))
+* **i18n:** add missing translations [CDS 4030] ([9d4ff63](https://github.com/ovh/manager/commit/9d4ff63338619d8a9df83dbaa4e41a17fcff667d))
+
+
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.1.0...@ovh-ux/billing-informations@1.2.0) (2025-05-15)
 
 
