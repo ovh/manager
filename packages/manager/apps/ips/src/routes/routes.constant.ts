@@ -6,6 +6,7 @@ export const subRoutes = {
   configureReverseDns: 'configure-reverse-dns',
   manageOrganisations: 'manage-organisations',
   openOrganisations: 'open',
+  byoipOrder: 'byoip-order',
 };
 
 export const urlDynamicParts = {
@@ -22,4 +23,5 @@ export const urls = {
   manageOrganisations: `${subRoutes.root}/${subRoutes.manageOrganisations}`,
   openOrganisationsModal: `${subRoutes.root}/${subRoutes.manageOrganisations}/${urlDynamicParts.organisationId}/${subRoutes.openOrganisations}`,
   configureReverseDns: `${subRoutes.root}/${subRoutes.configureReverseDns}/${urlDynamicParts.id}`,
+  byoipOrderModal: `${subRoutes.root}/${subRoutes.byoip}/${subRoutes.byoipOrder}`,
 };
