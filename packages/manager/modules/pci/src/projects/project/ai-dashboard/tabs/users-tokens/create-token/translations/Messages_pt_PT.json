@@ -15,6 +15,6 @@
   "pci_ai_dashboard_create_token_add_info_1": "Os tokens podem ser atribuídos a um recurso específico (AI Notebook, Job e Aplicação), utilizando os seletores de etiqueta, ou então a todos os seus recursos, deixando o campo vazio. Também pode especificar os privilégios do token para incluir permissões de administração ou apenas de leitura.",
   "pci_ai_dashboard_create_token_add_info_2": "Exemplo de seletores:",
   "pci_ai_dashboard_create_token_add_info_3": "Por predefinição, as suas aplicações terão as seguintes etiquetas: {{label1}} e {{label2}}",
-  "pci_ai_dashboard_create_token_role_name_ai_training_operator": "AI Platform - Operador",
-  "pci_ai_dashboard_create_token_role_name_ai_training_read": "AI Platform - Apenas leitura"
+  "pci_ai_dashboard_create_token_role_name_ai_training_operator": "AI Operator",
+  "pci_ai_dashboard_create_token_role_name_ai_training_read": "AI Reader"
 }

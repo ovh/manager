@@ -21,6 +21,6 @@
   "formUserLabel": "Mot de passe associé à l'utilisateur",
   "formAddUserButtonClose": "Fermer",
   "formUserPasswordCopy": "Mot de passe copié",
-  "ai_training_operator": "AI Platform - Opérateur",
-  "ai_training_read": "AI Plaform - Lecture seule"
+  "ai_training_operator": "AI Operator",
+  "ai_training_read": "AI Reader"
 }
