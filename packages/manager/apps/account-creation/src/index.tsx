@@ -7,12 +7,17 @@ import {
   detectUserLocale,
 } from '@ovh-ux/manager-config';
 import '@ovh-ux/manager-react-components/dist/style.css';
+import { defineApplicationVersion } from '@ovh-ux/request-tagger';
 import initI18n from './i18n';
 import App from './App';
 import './vite-hmr';
 import './index.scss';
 
 const region = HOSTNAME_REGIONS[window.location.hostname] || 'EU';
+
+if (__VERSION__) {
+  defineApplicationVersion(__VERSION__);
+}
 
 import(`./config-${region}.js`)
   .catch(() => {})
