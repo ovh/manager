@@ -69,7 +69,7 @@ const DatacentreComputeOrderPage = React.lazy(() =>
 );
 
 const DatacenterVrackSegmentPage = React.lazy(() =>
-  import('@/pages/dashboard/datacentre/vrack-segment/VrackNetwork.page'),
+  import('@/pages/dashboard/datacentre/vrack-segment/DatacentreVrack.page'),
 );
 
 const EditVrackSegmentIdPage = React.lazy(() =>

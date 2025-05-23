@@ -4,10 +4,11 @@ import {
   UseMutationOptions,
   useQueryClient,
 } from '@tanstack/react-query';
-import { deleteVrackSegment } from '../api/vcd-vrack-segment';
+import { updateVrackSegment } from '../api/vcd-vrack-segment';
+import { VCDVrackSegmentSpec } from '../types';
 import { getVrackSegmentListQueryKey } from '../utils';
 
-export const useDeleteVcdVrackSegment = ({
+export const useUpdateVcdVrackSegment = ({
   id,
   vdcId,
   vrackSegmentId,
@@ -17,11 +18,14 @@ export const useDeleteVcdVrackSegment = ({
   id: string;
   vdcId: string;
   vrackSegmentId: string;
-} & Partial<UseMutationOptions<unknown, ApiError, void, unknown>>) => {
+} & Partial<
+  UseMutationOptions<unknown, ApiError, VCDVrackSegmentSpec, unknown>
+>) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: () => deleteVrackSegment({ id, vdcId, vrackSegmentId }),
+    mutationFn: (payload: VCDVrackSegmentSpec) =>
+      updateVrackSegment({ id, vdcId, vrackSegmentId, payload }),
     onSuccess: (...params) => {
       queryClient.invalidateQueries({
         queryKey: getVrackSegmentListQueryKey(id, vdcId),

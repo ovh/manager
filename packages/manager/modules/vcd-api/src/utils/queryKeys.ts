@@ -68,27 +68,17 @@ export const updateVdcDetailsMutationKey = (vdcId: string) => [
   ...getVdcQueryKey(vdcId),
 ];
 
-export const getVcdVrackNetworkQueryKey = (id: string, vdcId: string) => [
+export const getVrackSegmentListQueryKey = (id: string, vdcId: string) => [
   ...getVcdDatacentreQueryKey(id, vdcId),
-  'vrackNetwork',
+  'vrackSegment',
 ];
 
-export const vdcNetworkVrackSegmentKey = ({
+export const getVrackSegmentQueryKey = ({
   id,
-  vcdId,
+  vdcId,
   vrackSegmentId,
 }: {
   id: string;
-  vcdId: string;
+  vdcId: string;
   vrackSegmentId: string;
-}) => [...getVcdVrackNetworkQueryKey(id, vcdId), vrackSegmentId];
-
-export const updateVdcNetworkVrackSegmentMutationKey = ({
-  id,
-  vcdId,
-  vrackSegmentId,
-}: {
-  id: string;
-  vcdId: string;
-  vrackSegmentId: string;
-}) => ['put', ...vdcNetworkVrackSegmentKey({ id, vcdId, vrackSegmentId })];
+}) => [...getVrackSegmentListQueryKey(id, vdcId), vrackSegmentId];

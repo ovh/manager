@@ -18,8 +18,8 @@ export default function DeleteVrackSegment() {
 
   const getDeleteErrorMessage = (message?: string) =>
     !message
-      ? t('managed_vcd_dashboard_vrack_network_delete_segment_error_default')
-      : t('managed_vcd_dashboard_vrack_network_delete_segment_error', {
+      ? t('managed_vcd_dashboard_vrack_delete_segment_error_default')
+      : t('managed_vcd_dashboard_vrack_delete_segment_error', {
           errorApi: message,
         });
 
@@ -28,13 +28,11 @@ export default function DeleteVrackSegment() {
     isPending: isDeleting,
   } = useDeleteVcdVrackSegment({
     id,
-    vcdId: vdcId,
+    vdcId,
     vrackSegmentId,
     onSuccess: () => {
       addSuccess({
-        content: t(
-          'managed_vcd_dashboard_vrack_network_delete_segment_success',
-        ),
+        content: t('managed_vcd_dashboard_vrack_delete_segment_success'),
         includedSubRoutes: [vdcId],
         excludedSubRoutes: [
           subRoutes.datacentreCompute,
@@ -59,7 +57,7 @@ export default function DeleteVrackSegment() {
   return (
     <Modal
       isOpen
-      heading={t('managed_vcd_dashboard_vrack_network_delete_segment')}
+      heading={t('managed_vcd_dashboard_vrack_delete_segment')}
       primaryLabel={tActions('delete')}
       isPrimaryButtonLoading={isDeleting}
       isPrimaryButtonDisabled={isDeleting}
@@ -71,7 +69,7 @@ export default function DeleteVrackSegment() {
     >
       <div className="flex flex-col gap-2">
         <OdsText>
-          {t('managed_vcd_dashboard_vrack_network_delete_segment_content')}
+          {t('managed_vcd_dashboard_vrack_delete_segment_content')}
         </OdsText>
       </div>
     </Modal>

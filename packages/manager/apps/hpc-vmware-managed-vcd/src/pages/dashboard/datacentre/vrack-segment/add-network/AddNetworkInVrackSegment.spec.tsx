@@ -11,20 +11,16 @@ import fr_FR from '../../../../../../public/translations/datacentres/vrack-segme
 
 const checkTitleIsVisible = () =>
   expect(
-    screen.queryAllByText(
-      fr_FR.managed_vcd_dashboard_vrack_segment_add_network_title,
-    )[0],
+    screen.queryAllByText(fr_FR.managed_vcd_dashboard_vrack_add_network)[0],
   ).toBeVisible();
 
 const checkFormInputAndCta = (container: HTMLElement) => {
   expect(
-    screen.queryAllByText(
-      fr_FR.managed_vcd_dashboard_vrack_segment_add_network_title,
-    )[0],
+    screen.queryAllByText(fr_FR.managed_vcd_dashboard_vrack_add_network)[0],
   ).toBeVisible();
   expect(
     container.querySelector(
-      `[label="${fr_FR.managed_vcd_dashboard_vrack_segment_add_network_title}"]`,
+      `[label="${fr_FR.managed_vcd_dashboard_vrack_add_network}"]`,
     ),
   ).toBeVisible();
   expect(container.querySelector('[label="cancel"]')).toBeVisible();
@@ -46,7 +42,7 @@ const submitForm = (container: HTMLElement) => {
   return act(() =>
     userEvent.click(
       container.querySelector(
-        `[label="${fr_FR.managed_vcd_dashboard_vrack_segment_add_network_title}"]`,
+        `[label="${fr_FR.managed_vcd_dashboard_vrack_add_network}"]`,
       ) as Element,
     ),
   );
@@ -54,7 +50,7 @@ const submitForm = (container: HTMLElement) => {
 
 const checkErrorBannerIsVisible = () => {
   screen.queryByText(
-    fr_FR.managed_vcd_dashboard_vrack_segment_add_network_error.replace(
+    fr_FR.managed_vcd_dashboard_vrack_add_network_error.replace(
       '{{errorApi}}',
       '',
     ),
