@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.37.1...@ovh-ux/manager-dedicated@20.38.0) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4025] ([e95fb41](https://github.com/ovh/manager/commit/e95fb410146a8140c601438dd6d78072814042f3))
+* **i18n:** add missing translations [CDS 4030] ([9d4ff63](https://github.com/ovh/manager/commit/9d4ff63338619d8a9df83dbaa4e41a17fcff667d))
+* **i18n:** add missing translations [CDS 4031] ([bed6b78](https://github.com/ovh/manager/commit/bed6b7860bef87342ed0a09217f9cecfd3dfec7c))
+* remove unused translations [CDS] ([53394aa](https://github.com/ovh/manager/commit/53394aa6ef4341ac89246cf5813337ee5b7cd41e))
+
+
+### Features
+
+* **manager-core:** Create a common Unit Tests configuration & Migration Automation CLI ([#16984](https://github.com/ovh/manager/issues/16984)) ([60eadbb](https://github.com/ovh/manager/commit/60eadbb129c651cc334c55629733e7f900981f3b))
+
+
+
+
+
 ## [20.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.37.0...@ovh-ux/manager-dedicated@20.37.1) (2025-05-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
