@@ -32,7 +32,7 @@ export default /* @ngInject */ function VpsService(
 
   const vpsTabVeeamCache = $cacheFactory('UNIVERS_WEB_VPS_TABS_VEEAM');
 
-  const apiCatalogProductName = 'vps';
+  const apiCatalogProductName = 'vpsSandbox';
 
   const vpsTabBackupStorageCache = $cacheFactory(
     'UNIVERS_WEB_VPS_TABS_BACKUP_STORAGE',
