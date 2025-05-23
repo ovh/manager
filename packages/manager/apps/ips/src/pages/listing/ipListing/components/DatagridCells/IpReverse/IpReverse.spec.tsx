@@ -10,12 +10,12 @@ import { IpReverseType } from '@/data/api';
 
 const queryClient = new QueryClient();
 /** MOCKS */
-const useGetIpReverseMock = vi.hoisted(() =>
+const useGetIcebergIpReverseMock = vi.hoisted(() =>
   vi.fn(() => ({ ipsReverse: undefined, isLoading: true, error: undefined })),
 );
 
 vi.mock('@/data/hooks/ip', () => ({
-  useGetIpReverse: useGetIpReverseMock,
+  useGetIcebergIpReverse: useGetIcebergIpReverseMock,
 }));
 
 vi.mock('../SkeletonCell/SkeletonCell', () => ({
@@ -35,7 +35,7 @@ const renderComponent = (params: IpReverseProps) => {
 
 describe('IpReverse Component', async () => {
   it('Should display reverse if exist', async () => {
-    useGetIpReverseMock.mockReturnValue({
+    useGetIcebergIpReverseMock.mockReturnValue({
       ipsReverse: [
         { ipReverse: '10.0.0.1', reverse: 'reverse-10.0.0.1' },
       ] as IpReverseType[],
@@ -48,7 +48,7 @@ describe('IpReverse Component', async () => {
     });
   });
   it('Should display "-" if no reverse exist', async () => {
-    useGetIpReverseMock.mockReturnValue({
+    useGetIcebergIpReverseMock.mockReturnValue({
       ipsReverse: [],
       isLoading: false,
       error: undefined,
