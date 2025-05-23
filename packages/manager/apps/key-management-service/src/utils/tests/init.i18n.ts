@@ -9,6 +9,7 @@ import onboarding from '../../../public/translations/key-management-service/onbo
 import serviceKeys from '../../../public/translations/key-management-service/serviceKeys/Messages_fr_FR.json';
 import credentials from '../../../public/translations/key-management-service/credential/Messages_fr_FR.json';
 import terminate from '../../../public/translations/key-management-service/terminate/Messages_fr_FR.json';
+import secretOnboarding from '../../../public/translations/secret-management-service/onboarding/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
@@ -36,6 +37,11 @@ function addTranslations() {
       defaultLocale,
       'key-management-service/credential',
       credentials,
+    )
+    .addResources(
+      defaultLocale,
+      'secret-management-service/onboarding',
+      secretOnboarding,
     )
     .use({
       type: 'postProcessor',
@@ -68,6 +74,10 @@ export const initTestI18n = () =>
     }
   });
 
+const secretsLabels = {
+  onboarding: secretOnboarding,
+};
+
 export const labels = {
   common,
   create,
@@ -79,4 +89,5 @@ export const labels = {
   serviceKeys,
   credentials,
   terminate,
+  secrets: secretsLabels,
 };
