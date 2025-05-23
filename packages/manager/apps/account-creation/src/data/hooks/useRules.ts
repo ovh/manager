@@ -5,6 +5,6 @@ import { Language } from '@/types/language';
 
 export const useRules = (country: Country | null, language: Language | null) =>
   useQuery({
-    queryKey: [`rules`],
+    queryKey: [`newAccount/rules`],
     queryFn: () => getRules({ country, language }),
   });
