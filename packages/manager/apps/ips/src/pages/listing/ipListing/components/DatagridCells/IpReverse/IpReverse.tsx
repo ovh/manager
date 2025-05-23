@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Translation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useGetIpReverse } from '@/data/hooks/ip';
+import { useGetIcebergIpReverse } from '@/data/hooks/ip';
 import { ipFormatter } from '@/utils/ipFormatter';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
@@ -33,7 +33,7 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
   const ipGroup = parentIpGroup || ip;
 
   // Get ip reverse
-  const { ipsReverse, isLoading, error } = useGetIpReverse({
+  const { ipsReverse, isLoading, error } = useGetIcebergIpReverse({
     ip: ipGroup,
     enabled: !isGroup && expiredIps.indexOf(ip) === -1,
   });
@@ -68,8 +68,8 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
     mutate: deleteIpReverse,
     isPending: pendingDelete,
   } = useDeleteIpReverse({
-    ip: formattedIp,
-    ipGroup,
+    ip: ipGroup,
+    ipReverse: formattedIp,
     onError,
   });
 
@@ -80,8 +80,8 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
     mutate: updateIpReverse,
     isPending: pendingUpdate,
   } = useUpdateIpReverse({
-    ip: formattedIp,
-    ipGroup,
+    ip: ipGroup,
+    ipReverse: formattedIp,
     onError,
   });
 
