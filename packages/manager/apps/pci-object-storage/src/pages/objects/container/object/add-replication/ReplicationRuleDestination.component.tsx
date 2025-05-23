@@ -9,7 +9,14 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
-import { STATUS_ENABLED, ReplicationStorageClass } from '@/constants';
+import {
+  STATUS_ENABLED,
+  ReplicationStorageClass,
+  STATUS_DISABLED,
+} from '@/constants';
+import { TContainer } from '../show/Show.page';
+import { TServerContainer } from '@/api/data/container';
+import { ContainerType } from './ManageReplicationPage.form';
 
 export type TReplicationDestination = {
   name: string;
@@ -24,7 +31,7 @@ export type TReplicationStorage = {
   containerCount: number;
   usedSpace: number;
   archive?: boolean;
-  containerType?: 'private' | 'public' | 'static';
+  containerType?: ContainerType;
   id: string;
   name: string;
   region: string;
@@ -44,20 +51,16 @@ export type TReplicationStorage = {
     }[];
   };
 };
-type TServerDestinationContainer = {
-  versioning: {
-    status: string;
-  };
-};
 
 type TReplicationRuleDestinationProps = {
   destination: TReplicationDestination;
   setDestination: (destination: TReplicationDestination) => void;
   allStorages: TReplicationStorage[];
   setDestinationDetails: (destinationDetails: TReplicationStorage) => void;
-  serverDestinationContainer: TServerDestinationContainer;
+  serverDestinationContainer: TServerContainer;
   asyncReplicationLink: string;
   setUseStorageclass: (useStorageclass: boolean) => void;
+  container: TContainer;
 };
 
 export function ReplicationRuleDestination({
@@ -68,6 +71,7 @@ export function ReplicationRuleDestination({
   serverDestinationContainer,
   asyncReplicationLink,
   setUseStorageclass,
+  container,
 }: TReplicationRuleDestinationProps) {
   const { t } = useTranslation(['containers/replication/add']);
 
@@ -90,14 +94,29 @@ export function ReplicationRuleDestination({
     }
   };
 
+  const showWarningVersioning =
+    allStorages.length === 0 ||
+    (serverDestinationContainer &&
+      !(
+        serverDestinationContainer?.versioning?.status === STATUS_ENABLED &&
+        container?.versioning?.status === STATUS_ENABLED
+      ));
+
+  const showWarningMessageObjectLock =
+    allStorages.length === 0 ||
+    (serverDestinationContainer &&
+      container?.objectLock?.status === STATUS_ENABLED &&
+      serverDestinationContainer?.objectLock?.status === STATUS_DISABLED);
+
   return (
     <OdsFormField className="mt-8 max-w-[800px] block">
-      <label slot="label">
+      <OdsText preset="heading-5">
         {t(
           'containers/replication/add:pci_projects_project_storages_containers_replication_add_destination',
         )}
-      </label>
+      </OdsText>
       <OdsCombobox
+        data-testid="replication-rule-combobox"
         placeholder={t(
           'containers/replication/add:pci_projects_project_storages_containers_replication_add_destination_placeholder',
         )}
@@ -119,18 +138,28 @@ export function ReplicationRuleDestination({
         )}
       </OdsText>
 
-      {(allStorages.length === 0 ||
-        (serverDestinationContainer?.versioning &&
-          !(
-            serverDestinationContainer.versioning?.status === STATUS_ENABLED
-          ))) && (
-        <OdsMessage color="warning" className="mt-6" isDismissible={false}>
-          <OdsText preset="paragraph">
-            {t(
-              'containers/replication/add:pci_projects_project_storages_containers_replication_add_destination_warning',
+      {(showWarningVersioning || showWarningMessageObjectLock) && (
+        <OdsMessage
+          color="warning"
+          className="mt-6"
+          isDismissible={false}
+          variant="default"
+        >
+          <span>
+            {showWarningVersioning &&
+              t(
+                'containers/replication/add:pci_projects_project_storages_containers_replication_add_destination_warning',
+              )}
+            {showWarningMessageObjectLock && (
+              <span className="ml-3">
+                &nbsp;
+                {t(
+                  'containers/replication/add:pci_projects_project_storages_containers_replication_add_destination_warning_object_lock',
+                )}
+              </span>
             )}
+            &nbsp;
             <Links
-              className="ml-4"
               href={asyncReplicationLink}
               target="_blank"
               type={LinkType.external}
@@ -138,7 +167,7 @@ export function ReplicationRuleDestination({
                 'containers/replication/add:pci_projects_project_storages_containers_replication_add_destination_warning_link',
               )}
             />
-          </OdsText>
+          </span>
         </OdsMessage>
       )}
     </OdsFormField>
