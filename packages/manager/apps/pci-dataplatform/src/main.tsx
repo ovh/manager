@@ -6,7 +6,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import initI18n from './i18n';
 import App from './App';
-
+import { LoadingIndicatorProvider } from './contexts/LoadingIndicator.context';
 import '@/vite-hmr.ts';
 import './index.css';
 
@@ -45,7 +45,9 @@ const init = async (
   ReactDOM.createRoot(root).render(
     <React.StrictMode>
       <ShellProvider client={context}>
-        <App />
+        <LoadingIndicatorProvider>
+          <App />
+        </LoadingIndicatorProvider>
       </ShellProvider>
     </React.StrictMode>,
   );
