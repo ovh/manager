@@ -51,9 +51,9 @@ function DatacentreDashboardPage() {
     },
     {
       name: 'vrack-segments',
-      title: t('dashboard:managed_vcd_dashboard_vrack_network_title'),
+      title: t('dashboard:managed_vcd_dashboard_vrack_title'),
       to: useResolvedPath(subRoutes.vrackSegments).pathname,
-      trackingActions: TRACKING_TABS_ACTIONS.vrackNetwork,
+      trackingActions: TRACKING_TABS_ACTIONS.vrack,
     },
   ];
 
@@ -115,25 +115,25 @@ function DatacentreDashboardPage() {
     {
       id: subRoutes.edit,
       label: t(
-        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_network_edit_vlan',
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan',
       ),
     },
     {
       id: subRoutes.deleteSegment,
       label: t(
-        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_network_delete_segment',
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_segment',
       ),
     },
     {
       id: subRoutes.deleteNetwork,
       label: t(
-        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_network_delete_subnet',
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_network',
       ),
     },
     {
       id: subRoutes.addNetwork,
       label: t(
-        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_segment_add_network_title',
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_segment_add_title',
       ),
     },
   ];

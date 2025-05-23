@@ -3,11 +3,11 @@ import { vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import {
   mockVrackSegmentList,
-  VrackSegment,
+  VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import fr_FR from '../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
-import VrackNetworkDatagrid from './VrackNetworkDatagrid.component';
+import { VrackSegmentDatagrid } from './VrackSegmentDatagrid.component';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -37,8 +37,8 @@ vi.mock('@ovh-ux/manager-module-vcd-api', async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...(actual as Record<string, unknown>),
-    useVcdVrackNetworkOptions: () => ({
-      queryKey: ['vrackNetwork'],
+    useVcdVrackSegmentListOptions: () => ({
+      queryKey: ['vrackSegment'],
       queryFn: () =>
         Promise.resolve({
           data: mockVrackSegmentList,
@@ -46,55 +46,51 @@ vi.mock('@ovh-ux/manager-module-vcd-api', async (importOriginal) => {
           statusText: 'OK',
           headers: {},
           config: {},
-        } as ApiResponse<VrackSegment[]>),
+        } as ApiResponse<VCDVrackSegment[]>),
     }),
   };
 });
 
-const renderVrackNetworkDatagrid = () => {
+const renderVrackSegmentDatagrid = () => {
   const queryClient = new QueryClient();
 
   return render(
     <QueryClientProvider client={queryClient}>
-      <VrackNetworkDatagrid id="test-id" vdcId="test-vdc-id" />
+      <VrackSegmentDatagrid id="test-id" vdcId="test-vdc-id" />
     </QueryClientProvider>,
   );
 };
 
-describe('VrackNetworkDatagrid', () => {
+describe('VrackSegmentDatagrid', () => {
   it('should render the component with title and description', () => {
-    renderVrackNetworkDatagrid();
+    renderVrackSegmentDatagrid();
 
     // Check if title is rendered
     expect(
-      screen.getAllByText(
-        fr_FR.managed_vcd_dashboard_vrack_network_segments,
-      )[0],
+      screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segments)[0],
     ).toBeInTheDocument();
 
     // Check if description is rendered
     expect(
-      screen.getByText(fr_FR.managed_vcd_dashboard_vrack_network_description),
+      screen.getByText(fr_FR.managed_vcd_dashboard_vrack_description),
     ).toBeInTheDocument();
   });
 
   it('should render the datagrid with correct columns', () => {
-    renderVrackNetworkDatagrid();
+    renderVrackSegmentDatagrid();
 
     // Check if column headers are rendered
     expect(
-      screen.getAllByText(
-        fr_FR.managed_vcd_dashboard_vrack_network_segments,
-      )[0],
+      screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segments)[0],
     ).toBeInTheDocument();
     expect(
-      screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_network_segment)[0],
+      screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segment)[0],
     ).toBeInTheDocument();
 
     waitFor(() => {
       expect(
         screen.getAllByText(
-          fr_FR.managed_vcd_dashboard_vrack_network_column_segment_vrack_label.replace(
+          fr_FR.managed_vcd_dashboard_vrack_column_segment_vrack_label.replace(
             '{{ vlanId }}',
             mockVrackSegmentList[0].targetSpec.vlanId,
           ),
