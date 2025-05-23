@@ -38,7 +38,7 @@ export const updateNetworkVrackSegment = ({
   vcdId: string;
   vrackSegmentId: string;
   payload: VrackSegmentNetworkSpec;
-}): Promise<ApiResponse<VrackSegment[]>> =>
+}): Promise<ApiResponse<VrackSegment>> =>
   apiClient.v2.put(
     getVcdDatacentreVrackNetworkSegmentRoute({
       id,
