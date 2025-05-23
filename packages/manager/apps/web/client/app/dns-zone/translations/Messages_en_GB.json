@@ -1,8 +1,12 @@
 {
   "zones_title": "DNS zones",
   "zones_order": "Order",
+  "zones_name": "DNS zone",
+  "zones_enabled": "Enabled",
+  "zones_disabled": "Disabled",
   "base_dns_zone": "Basic DNS zone",
   "modified_dns_zone": "Modified DNS zone",
+  "modified": "Modified",
   "dashboard_history_creation_date": "Creation date",
   "dashboard_history_view_zone": "View",
   "dashboard_history_current_zone_date": "{{creationDate}} (current)",
@@ -18,10 +22,5 @@
   "dashboard_history_restore_modal_primary_label": "Restore",
   "dashboard_history_restore_modal_secondary_label": "Cancel",
   "dashboard_history_restore_modal_warning_message": "Important! The current zone will be deleted. The new zone selected will be restored",
-  "dashboard_history_restore_modal_info_message": "The reset on the DNS zone will take a few moments. Please note that the change may take up to 24 hours to propagate.",
-  "modified": "Modified",
-  "zones_domain_name": "Domain name",
-  "zones_enabled": "Enabled",
-  "zones_disabled": "Disabled",
-  "zones_name": "DNS Zone "
+  "dashboard_history_restore_modal_info_message": "The reset on the DNS zone will take a few moments. Please note that the change may take up to 24 hours to propagate."
 }

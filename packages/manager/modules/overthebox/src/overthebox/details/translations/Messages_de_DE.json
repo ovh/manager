@@ -99,5 +99,6 @@
   "overTheBox_change_offer": "Angebot wechseln",
   "overTheBox_release_channel_deprecated": "Veraltete Version {{version}}",
   "overTheBox_detail_ips": "IP-Adressen",
-  "overTheBox_model_ips_unknown": "IPs nicht gefunden"
+  "overTheBox_model_ips_unknown": "IPs nicht gefunden",
+  "overTheBox_enabled_ipv6_error": "Bei der Aktivierung von IPv6 ist ein Fehler aufgetreten. Wenn der Fehler weiterhin besteht, wenden Sie sich bitte an den Support."
 }

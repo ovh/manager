@@ -115,5 +115,25 @@ module.exports = {
         jest: true,
       },
     },
+    {
+      files: [
+        '**/App.tsx',
+        '**/test.{setup,provider}.tsx',
+        '**/vitest.config.{js,ts,mjs}',
+        '**/tests-setup/src/index.js',
+        '**/__tests__/**/*.{ts,tsx}',
+        '**/*.{test,spec,step}.{ts,tsx}',
+        '**/*.{mock,Mock,MOCK,Mocked,Mocking}*.{ts,tsx}',
+        '**/*Test*.{ts,tsx}',
+      ],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+      env: {
+        mocha: true,
+        node: true,
+        jest: true,
+      },
+    },
   ],
 };

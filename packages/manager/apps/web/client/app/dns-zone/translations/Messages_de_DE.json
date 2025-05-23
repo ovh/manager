@@ -1,8 +1,12 @@
 {
   "zones_title": "DNS-Zone",
   "zones_order": "Bestellen",
+  "zones_name": "DNS-Zone",
+  "zones_enabled": "Aktiviert",
+  "zones_disabled": "Deaktiviert",
   "base_dns_zone": "Basis-DNS-Zone",
   "modified_dns_zone": "DNS-Zone geändert",
+  "modified": "Geändert",
   "dashboard_history_creation_date": "Erstellungsdatum",
   "dashboard_history_view_zone": "Anzeigen",
   "dashboard_history_current_zone_date": "{{creationDate}} (aktuell)",
@@ -18,10 +22,5 @@
   "dashboard_history_restore_modal_primary_label": "Wiederherstellen",
   "dashboard_history_restore_modal_secondary_label": "Abbrechen",
   "dashboard_history_restore_modal_warning_message": "Achtung! Die aktuelle Zone wird gelöscht. Die ausgewählte neue Zone wird wiederhergestellt.",
-  "dashboard_history_restore_modal_info_message": "Das Zurücksetzen in der DNS-Zone dauert einen Moment. Berücksichtigen Sie auch die Propagationszeit (maximal 24 Stunden).",
-  "modified": "Geändert",
-  "zones_domain_name": "Domainname",
-  "zones_enabled": "Aktiviert",
-  "zones_disabled": "Deaktiviert",
-  "zones_name": "DNS Zone"
+  "dashboard_history_restore_modal_info_message": "Das Zurücksetzen in der DNS-Zone dauert einen Moment. Berücksichtigen Sie auch die Propagationszeit (maximal 24 Stunden)."
 }

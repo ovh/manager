@@ -22,7 +22,7 @@
   "billing_informations_tile_renew_state_manual": "Rinnovo manuale",
   "billing_informations_tile_renew_state_automatic": "Rinnovo automatico",
   "billing_informations_tile_engagement_status_none": "Senza impegno contrattuale",
-  "billing_informations_tile_engagement_status_commitement_pending": "L’impegno contrattuale del servizio inizierà il {{ date }}",
+  "billing_informations_tile_engagement_status_commitement_pending": "L’impegno contrattuale del servizio comincerà il {{ date }}",
   "billing_informations_tile_autorenew_every_1_month": "Ogni mese",
   "billing_informations_tile_autorenew_every_3_month": "Ogni 3 mesi",
   "billing_informations_tile_autorenew_every_6_month": "Ogni 6 mesi",

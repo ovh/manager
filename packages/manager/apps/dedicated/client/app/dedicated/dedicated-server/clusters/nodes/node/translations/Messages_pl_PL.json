@@ -718,7 +718,7 @@
   "server_close_service_form_option_delete_at_expiration": "Zrezygnuj z usługi w dniu wygaśnięcia",
   "server_close_service_form_option_cancel": "Anuluj rezygnację z usługi",
   "server_close_service_warning_data_deletion": "Rezygnacja z usługi spowoduje trwałe usunięcie wszystkich powiązanych z nią danych.",
-  "server_close_service_warning_no_refund": "Rezygnacja z usługi nie stanowi podstawy do zwrotu środków.",
+  "server_close_service_warning_no_refund": "Rezygnacja nie stanowi podstawy do zwrotu środków.",
   "server_close_service_warning_manual_refund": "Rezygnacja z usługi nie stanowi podstawy do zwrotu środków. Skontaktuj się z obsługą klienta, jeśli masz pytania dotyczące ewentualnego zwrotu środków.",
   "server_close_service_desc": "Otrzymasz wiadomość e-mail z procedurą rezygnacji z serwera.",
   "server_close_service_question": "Czy chcesz kontynuować?",
