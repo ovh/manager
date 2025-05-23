@@ -39,6 +39,7 @@ export const ONBOARDING_ORDER_CTA = 'onboarding_order_cta';
 export const DASHBOARD = 'dashboard';
 export const WEBSITES = 'websites';
 export const SSL = 'ssl';
+export const DISABLE_SSL = 'disable-ssl';
 
 export const GUIDE_GETTING_STARTED = 'getting-started-guide';
 export const GUIDE_PUBLISHING = 'publishing-guide';
