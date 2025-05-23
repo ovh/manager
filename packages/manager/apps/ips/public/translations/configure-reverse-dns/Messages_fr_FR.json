@@ -1,4 +1,11 @@
 {
-  "back_link": "Retour à la page précédente",
-  "ips_dashboard_guide": "Tous les guides"
+  "listingReverseDnsUpdateSuccess": "La mise à jour du reverse est effectuée.",
+  "reverseDnsModalTitle": "Configurer le reverse DNS",
+  "reverseDnsModalDescription": "Veuillez entrer un nom de domaine en tant que reverse DNS pour une adresse IP donnée (enregistrement PTR). Pour plus d'informations vous pouvez consulter notre ",
+  "reverseDnsParentIpBlockFieldLabel": "Parent IP block",
+  "reverseDnsIpFieldLabel": "Adresse IP",
+  "reverseDnsIpError": "Veuillez entrer une adresse IP valide",
+  "reverseDnsIpNotInsideBlockError": "Veuillez entrer une adresse IP contenue dans le block",
+  "reverseDnsDnsFieldLabel": "Reverse DNS",
+  "reverseDnsDnsError": "Veuillez entrer un nom de domaine valide"
 }
