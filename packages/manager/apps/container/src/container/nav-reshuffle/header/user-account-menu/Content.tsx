@@ -35,9 +35,6 @@ const UserAccountMenu = ({
   const [isKycDocumentsVisible, setIsDocumentsVisible] = useState<boolean>(
     false,
   );
-  const [isNewAccountAvailable, setIsNewAccountAvailable] = useState<boolean>(
-    false,
-  );
   const user = shell
     .getPlugin('environment')
     .getEnvironment()
@@ -72,16 +69,11 @@ const UserAccountMenu = ({
   const getUrl = (key: string, hash: string) =>
     shell.getPlugin('navigation').getURL(key, hash);
   const ssoLink = getUrl('iam', '#/dashboard/users');
-  const [supportLink, setSupportLink] = useState(
-    getUrl('dedicated', '#/useraccount/support/level'),
-  );
 
-  const getAllLinks = useMemo(
-    () => async () => {
+  useEffect(() => {
+    const fetchData = async () => {
       let isIdentityDocumentsAvailable = false;
       const featureAvailability = await fetchFeatureAvailabilityData([
-        'new-billing',
-        'new-account',
         'identity-documents',
         'procedures:fraud',
       ]);
@@ -94,66 +86,50 @@ const UserAccountMenu = ({
         setIsDocumentsVisible(['required', 'open'].includes(status));
       }
 
-      setIsNewAccountAvailable(!!featureAvailability['new-account']);
-      const isNewBillingAvailable = !!featureAvailability['new-billing'];
-      if (isNewAccountAvailable) {
-        setSupportLink(getUrl('new-account', '#/useraccount/support/level'));
-      }
+      const myServicesIndex = links.indexOf(
+        links.find((link: UserLink) => link.key === 'myServices'),
+      );
+      const myAssistanceTickets = {
+        app: 'new-account',
+        key: 'myAssistanceTickets',
+        hash: '#/ticket',
+        i18nKey: 'user_account_menu_my_assistance_tickets',
+      };
 
-      setAllLinks([
-        ...links.map((link: UserLink) => {
-          if (
-            [
-              'user-account-menu-profile',
-              'myCommunications',
-              'myContacts',
-            ].includes(link.key)
-          ) {
-            link.app = isNewAccountAvailable ? 'new-account' : 'dedicated';
-          }
-          if (
-            [
-              'myInvoices',
-              'myServices',
-              'myPaymentMethods',
-              'myCommands',
-            ].includes(link.key)
-          ) {
-            link.app = isNewBillingAvailable ? 'new-billing' : 'dedicated';
-            if (isNewBillingAvailable) {
-              link.hash = link.hash.replace('/billing', '');
-            }
-          }
-          return link;
-        }),
-        ...(isIdentityDocumentsAvailable
-          ? [
-              {
-                app: isNewAccountAvailable ? 'new-account' : 'dedicated',
-                key: 'myIdentityDocuments',
-                hash: '#/identity-documents',
-                i18nKey: 'user_account_menu_my_identity_documents',
-              },
-            ]
-          : []),
-        ...(region === 'US'
-          ? [
-              {
-                app: isNewAccountAvailable ? 'new-account' : 'dedicated',
-                key: 'myAssistanceTickets',
-                hash: '#/ticket',
-                i18nKey: 'user_account_menu_my_assistance_tickets',
-              },
-            ]
-          : []),
-      ]);
-    },
-    [isNewAccountAvailable],
-  );
+      const myIdentityDocuments = isIdentityDocumentsAvailable
+        ? [
+            {
+              app: 'new-account',
+              key: 'myIdentityDocuments',
+              hash: '#/identity-documents',
+              i18nKey: 'user_account_menu_my_identity_documents',
+            },
+          ]
+        : [];
 
-  useEffect(() => {
-    getAllLinks();
-  }, [getAllLinks]);
+      const myContracts = {
+        app: 'new-billing',
+        key: 'myContracts',
+        hash: '#/autorenew/agreements',
+        i18nKey: 'user_account_menu_my_contracts',
+        trackingHit: tracking.contracts,
+      };
+
+      const computedLinks =
+        region !== 'US'
+          ? [
+              ...links.slice(0, myServicesIndex),
+              myContracts,
+              ...links.slice(myServicesIndex, links.length),
+              ...myIdentityDocuments,
+            ]
+          : [...links, ...myIdentityDocuments, myAssistanceTickets];
+
+      setAllLinks(computedLinks);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className={`${style.menuContent} oui-navbar-menu__wrapper`}>
@@ -216,7 +192,7 @@ const UserAccountMenu = ({
             >
               <span>{t('user_account_menu_support')}</span>
               <a
-                href={supportLink}
+                href={getUrl('new-account', '#/useraccount/support/level')}
                 onClick={() => onTrackNavigation(tracking.supportLevel)}
               >
                 <OsdsChip
@@ -258,7 +234,7 @@ const UserAccountMenu = ({
               id={'account_kyc_documents'}
               onClick={() =>
                 onLinkClick({
-                  app: isNewAccountAvailable ? 'new-account' : 'dedicated',
+                  app: 'new-account',
                   key: 'account_kyc_documents',
                   hash: '#/documents',
                   i18nKey: 'sidebar_account_kyc_documents',
@@ -267,10 +243,7 @@ const UserAccountMenu = ({
               className="d-block"
               aria-label={sidebarTranslation.t('sidebar_account_kyc_documents')}
               title={sidebarTranslation.t('sidebar_account_kyc_documents')}
-              href={getUrl(
-                isNewAccountAvailable ? 'new-account' : 'dedicated',
-                '#/documents',
-              )}
+              href={getUrl('new-account', '#/documents')}
               target="_top"
             >
               {sidebarTranslation.t('sidebar_account_kyc_documents')}
