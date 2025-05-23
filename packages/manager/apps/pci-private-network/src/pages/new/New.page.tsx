@@ -9,6 +9,11 @@ import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
@@ -45,6 +50,8 @@ export default function NewPage(): JSX.Element {
     resolver: zodResolver(NEW_PRIVATE_NETWORK_FORM_SCHEMA),
   });
 
+  const { trackClick } = useOvhTracking();
+
   useEffect(() => {
     clearNotifications();
   }, [project]);
@@ -67,7 +74,16 @@ export default function NewPage(): JSX.Element {
         ]}
       />
       <div className="my-8">
-        <BackButton />
+        <BackButton
+          onClick={() => {
+            trackClick({
+              location: PageLocation.funnel,
+              buttonType: ButtonType.link,
+              actionType: 'action',
+              actions: ['add_privateNetwork', 'back_previous_page'],
+            });
+          }}
+        />
       </div>
 
       <div className="header mb-10 mt-8">

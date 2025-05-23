@@ -4,6 +4,7 @@ import {
   initI18n,
   initShellContext,
   ShellContext,
+  TrackingContextParams,
 } from '@ovh-ux/manager-react-shell-client';
 import App from './App';
 
@@ -11,12 +12,22 @@ import './index.css';
 import '@ovh-ux/manager-pci-common/dist/style.css';
 
 import '@/vite-hmr.ts';
+import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constants';
+
+const trackingContext: TrackingContextParams = {
+  chapter1: UNIVERSE,
+  chapter2: SUB_UNIVERSE,
+  chapter3: APP_NAME,
+  appName: APP_NAME,
+  pageTheme: UNIVERSE,
+  level2Config: LEVEL2,
+};
 
 const init = async (
   appName: string,
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
 ) => {
-  const context = await initShellContext(appName);
+  const context = await initShellContext(appName, trackingContext);
 
   const region = context.environment.getRegion();
   try {
