@@ -86,6 +86,7 @@ interface ContainerInfoPanelProps {
   ) => {
     actions: string[];
   };
+  manageReplicationsHref: string;
 }
 
 export function ContainerInfoPanel({
@@ -101,6 +102,7 @@ export function ContainerInfoPanel({
   tracking,
   trackClick,
   trackAction,
+  manageReplicationsHref,
 }: ContainerInfoPanelProps) {
   const { t } = useTranslation([
     'container',
@@ -285,6 +287,22 @@ export function ContainerInfoPanel({
                 </OdsPopover>
               </span>
             </ContainerInfoItem>
+          )}
+
+        {isRightOffer &&
+          !isLocalZone &&
+          container.versioning?.status === STATUS_ENABLED && (
+            <>
+              <div className="flex ">
+                <Links
+                  label={t(
+                    'containers/enable-versioning:pci_projects_project_storages_containers_manage_replications',
+                  )}
+                  type={LinkType.next}
+                  href={manageReplicationsHref}
+                />
+              </div>
+            </>
           )}
       </div>
 

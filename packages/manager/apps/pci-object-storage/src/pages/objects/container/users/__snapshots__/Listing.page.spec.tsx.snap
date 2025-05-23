@@ -331,7 +331,7 @@ exports[`ListingPage > sould display datagrid 1`] = `
                         is-loading="false"
                         size="sm"
                         slot="menu-title"
-                        variant="outline"
+                        variant="ghost"
                       />
                     </div>
                     <ods-popover
