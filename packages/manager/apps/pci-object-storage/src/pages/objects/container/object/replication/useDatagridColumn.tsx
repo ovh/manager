@@ -3,11 +3,8 @@ import {
   DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-
-import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
-import { useHref } from 'react-router-dom';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { useMemo } from 'react';
 import ActionsComponent from './ActionsComponent';
 import { TObject } from '@/api/data/container';
 import { STATUS_DISABLED, STATUS_ENABLED } from '@/constants';
