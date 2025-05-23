@@ -1,9 +1,17 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 
 export type UpdateIpReverseParams = {
-  /**  */
-  ipGroup: string;
+  /**
+   * IP block
+   */
   ip: string;
+  /**
+   * Single IP contained in the IP Block "ip"
+   */
+  ipReverse: string;
+  /**
+   * Reverse DNS
+   */
   reverse: string;
 };
 
@@ -12,23 +20,23 @@ export type IpReverseResponseType = {
   reverse: string;
 };
 
-export const updateIpReverseQueryKey = (params: UpdateIpReverseParams) => [
-  `post/ip/${encodeURIComponent(params.ip)}/reverse/${encodeURIComponent(
-    params.ip,
-  )}`,
+export const updateIpReverseQueryKey = ({
+  ip,
+  ipReverse,
+}: UpdateIpReverseParams) => [
+  `post/ip/${encodeURIComponent(ip)}/reverse/${encodeURIComponent(ipReverse)}`,
 ];
 
-/**
- * Your IP : Get this object properties
- */
-export const updateIpReverse = async (
-  params: UpdateIpReverseParams,
-): Promise<ApiResponse<IpReverseResponseType>> => {
+export const updateIpReverse = async ({
+  ip,
+  ipReverse,
+  reverse,
+}: UpdateIpReverseParams): Promise<ApiResponse<IpReverseResponseType>> => {
   return apiClient.v6.post<IpReverseResponseType>(
-    `/ip/${encodeURIComponent(params.ipGroup)}/reverse`,
+    `/ip/${encodeURIComponent(ip)}/reverse`,
     {
-      ipReverse: params.ip,
-      reverse: params.reverse,
+      ipReverse,
+      reverse,
     },
   );
 };
