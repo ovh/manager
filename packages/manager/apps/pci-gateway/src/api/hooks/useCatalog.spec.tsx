@@ -3,8 +3,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import * as useMeModule from '@ovh-ux/manager-react-components';
 import { IMe } from '@ovh-ux/manager-react-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { getCatalog, TCatalog } from '@ovh-ux/manager-pci-common';
-import { useCatalog } from './useCatalog';
+import { getCatalog, TCatalog, useCatalog } from '@ovh-ux/manager-pci-common';
 
 vi.mock('@ovh-ux/manager-pci-common', () => ({
   getCatalog: vi.fn().mockResolvedValue({}),
