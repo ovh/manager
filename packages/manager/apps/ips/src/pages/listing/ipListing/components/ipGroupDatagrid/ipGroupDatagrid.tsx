@@ -20,7 +20,7 @@ import {
   useGetIpEdgeFirewall,
   useGetIpGameFirewall,
   useGetIpMitigation,
-  useGetIpReverse,
+  useGetIcebergIpReverse,
   useGetIpVmacWithIp,
   useGetIpdetails,
 } from '@/data/hooks/ip';
@@ -45,7 +45,7 @@ export const IpGroupDatagrid = ({
   const {
     ipsReverse: ipReverseList,
     isLoading: isIpReverseLoading,
-  } = useGetIpReverse({ ip: row.original.ip });
+  } = useGetIcebergIpReverse({ ip: row.original.ip });
   const { ipDetails, isLoading: isIpDetailsLoading } = useGetIpdetails({
     ip: row.original.ip,
   });
@@ -164,7 +164,9 @@ export const IpGroupDatagrid = ({
     {
       id: 'action',
       label: '',
-      cell: (ip: string) => <IpActionsCell ip={ip} />,
+      cell: (ip: string) => (
+        <IpActionsCell parentIpGroup={row.original.ip} ip={ip} />
+      ),
       size: parentHeaders.current.action.clientWidth,
     },
   ];
