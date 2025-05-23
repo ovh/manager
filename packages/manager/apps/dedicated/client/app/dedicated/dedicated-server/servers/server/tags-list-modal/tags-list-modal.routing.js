@@ -1,3 +1,5 @@
+import { TRACKING } from './tags-list-modal.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.dedicated-server.server.dashboard.tags-list-modal',
@@ -16,6 +18,9 @@ export default /* @ngInject */ ($stateProvider) => {
           goToServerDetails();
         },
         tags: /* @ngInject */ (server) => server.iam?.tags,
+      },
+      atInternet: {
+        rename: `${TRACKING.PREFIX}${TRACKING.PAGE.ALL_TAGS}`,
       },
     },
   );

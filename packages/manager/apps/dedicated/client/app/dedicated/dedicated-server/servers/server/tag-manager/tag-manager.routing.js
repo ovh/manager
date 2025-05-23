@@ -1,3 +1,5 @@
+import { TRACKING } from './tag-manager.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-server.server.dashboard.tag-manager', {
     url: '/tag-manager',
@@ -24,6 +26,11 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
       tags: /* @ngInject */ (server) => server.iam?.tags,
+      trackingPrefix: () => TRACKING.PREFIX,
+      trackingPage: () => TRACKING.PAGE.EDIT_TAGS,
+    },
+    atInternet: {
+      rename: `${TRACKING.PREFIX}${TRACKING.PAGE.EDIT_TAGS}`,
     },
   });
 };

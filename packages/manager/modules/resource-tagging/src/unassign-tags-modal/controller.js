@@ -28,6 +28,9 @@ export default class ovhManagerResourceTaggingUnassignModalController {
             ),
             'resourcetagging.manager',
           );
+          this.ovhManagerResourceTaggingService.trackPage(
+            `${this.trackingPrefix}banner-info::unassign-tag_success`,
+          );
         });
       })
       .catch((error) => {
@@ -41,6 +44,9 @@ export default class ovhManagerResourceTaggingUnassignModalController {
             },
           ),
           'resourcetagging.unassign',
+        );
+        this.ovhManagerResourceTaggingService.trackPage(
+          `${this.trackingPrefix}banner-info::unassign-tag_error`,
         );
       });
   }
