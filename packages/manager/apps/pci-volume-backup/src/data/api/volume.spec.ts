@@ -9,6 +9,7 @@ import {
   MOCKED_VOLUME_BACKUP_ID,
   MOCKED_VOLUME_ID,
   MOCKED_VOLUME_NAME,
+  MOCKED_VOLUME_TYPE,
 } from '@/__tests__/mocks';
 
 describe('Volume API Service', () => {
@@ -60,14 +61,49 @@ describe('Volume API Service', () => {
         MOCKED_REGION_NAME,
         MOCKED_VOLUME_BACKUP_ID,
         MOCKED_VOLUME_NAME,
+        MOCKED_VOLUME_TYPE,
       );
 
       expect(v6.post).toHaveBeenCalledTimes(1);
-      expect(
-        v6.post,
-      ).toHaveBeenCalledWith(
-        `/cloud/project/${MOCKED_PROJECT_ID}/region/${MOCKED_REGION_NAME}/volumeBackup/${MOCKED_VOLUME_BACKUP_ID}/volume`,
-        { name: MOCKED_VOLUME_NAME },
+      expect(v6.post).toHaveBeenCalledWith(
+        `/cloud/project/${MOCKED_PROJECT_ID}/region/${MOCKED_REGION_NAME}/volume`,
+        {
+          name: MOCKED_VOLUME_NAME,
+          backupId: MOCKED_VOLUME_BACKUP_ID,
+          type: MOCKED_VOLUME_TYPE,
+        },
+      );
+
+      expect(result).toEqual(mockResponse);
+    });
+
+    it('should create a volume from a backup with type high-speed', async () => {
+      const mockResponse = {
+        id: 'new-volume-id',
+        name: MOCKED_VOLUME_NAME,
+        status: 'creating',
+      };
+
+      vi.mocked(v6.post).mockResolvedValueOnce({
+        data: mockResponse,
+      });
+
+      const result = await createVolumeFromBackup(
+        MOCKED_PROJECT_ID,
+        MOCKED_REGION_NAME,
+        MOCKED_VOLUME_BACKUP_ID,
+        MOCKED_VOLUME_NAME,
+        'high-speed',
+      );
+
+      expect(v6.post).toHaveBeenCalledTimes(1);
+      expect(v6.post).toHaveBeenCalledWith(
+        `/cloud/project/${MOCKED_PROJECT_ID}/region/${MOCKED_REGION_NAME}/volume`,
+        {
+          name: MOCKED_VOLUME_NAME,
+          backupId: MOCKED_VOLUME_BACKUP_ID,
+          type: 'high-speed',
+        },
       );
 
       expect(result).toEqual(mockResponse);
@@ -83,6 +119,7 @@ describe('Volume API Service', () => {
           MOCKED_REGION_NAME,
           MOCKED_VOLUME_BACKUP_ID,
           MOCKED_VOLUME_NAME,
+          MOCKED_VOLUME_TYPE,
         ),
       ).rejects.toThrow('Backup not found');
 
