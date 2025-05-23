@@ -200,5 +200,9 @@ export default /* @ngInject */
     goToAntispam($location.search().ip);
   }
 
+  $scope.goToDeleteIpService = (ipBlock) => {
+    $state.go('app.ip.dashboard.terminate', { id: ipBlock });
+  };
+
   init();
 };

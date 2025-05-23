@@ -109,7 +109,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/block/delete/ip-ip-block-delete', { ipBlock: ipBlock })"
+                data-ng-click="goToDeleteIpService(ipBlock.ipBlock)"
                 data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
                 data-oui-tooltip-placement="left"
                 data-ng-disabled="!ipBlock.canBeTerminated"
