@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getLogKindsv2, getLogKindsv6 } from '../api/logKinds';
+import { getLogKindsV2, getLogKindsV6 } from '../api/logKinds';
 import { LogApiVersion } from '../types/apiVersion';
 import { ApiUrls } from '../../LogsToCustomer.module';
 
@@ -15,7 +15,7 @@ export const useLogKinds = ({
   logKindUrl: ApiUrls['logKind'];
   apiVersion: LogApiVersion;
 }) => {
-  const queryFunction = apiVersion === 'v2' ? getLogKindsv2 : getLogKindsv6;
+  const queryFunction = apiVersion === 'v2' ? getLogKindsV2 : getLogKindsV6;
 
   return useQuery({
     queryKey: getLogKindsQueryKey(logKindUrl),
