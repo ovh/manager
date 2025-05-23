@@ -212,26 +212,35 @@
                 />
             </oui-field>
 
-            <div class="col-lg-6 d-flex flex-column">
-                <oui-field
-                    data-label="{{ 'siret_vat' | translate }} ({{ 'siret_optional' | translate }})"
-                    data-label-popover="{{ 'siret_vat_helper' | translate }}"
-                >
-                    <input
-                        class="oui-input"
-                        name="vat"
-                        data-ng-model="$ctrl.model.vat"
-                        data-ng-required="$ctrl.rules.vat.mandatory"
-                        data-ng-maxlength="$ctrl.rules.vat.maxLength"
-                        data-ng-minlength="$ctrl.rules.vat.minLength"
-                        data-ng-pattern="$ctrl.rules.vat.regularExpression"
-                        type="text"
-                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.vat)"
-                        data-ng-focus="$ctrl.vatFieldTouched = true;"
-                        data-ng-disabled="$ctrl.disableField"
-                    />
-                </oui-field>
-            </div>
+            <oui-field
+                class="col-lg-6"
+                data-label="{{ 'siret_vat' | translate }} ({{ 'siret_optional' | translate }})"
+                data-label-popover="{{ 'siret_vat_helper' | translate }}"
+            >
+                <input
+                    class="oui-input"
+                    name="vat"
+                    data-ng-model="$ctrl.model.vat"
+                    data-ng-required="$ctrl.rules.vat.mandatory"
+                    data-ng-maxlength="$ctrl.rules.vat.maxLength"
+                    data-ng-minlength="$ctrl.rules.vat.minLength"
+                    data-ng-pattern="$ctrl.rules.vat.regularExpression"
+                    type="text"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.vat)"
+                    data-ng-focus="$ctrl.vatFieldTouched = true;"
+                    data-ng-disabled="$ctrl.disableField"
+                />
+            </oui-field>
+
+            <oui-field class="col-lg-12" data-label="N° SIREN">
+                <input
+                    class="oui-input"
+                    name="siren"
+                    data-ng-value="$ctrl.model.companyNationalIdentificationNumber.substring(0, 9)"
+                    type="text"
+                    disabled
+                />
+            </oui-field>
         </div>
     </div>
     <!-- end manual form -->
