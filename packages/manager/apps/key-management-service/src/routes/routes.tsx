@@ -317,7 +317,24 @@ const KMS_ROUTES: RouteObject = {
 
 const SMS_ROUTES: RouteObject = {
   path: SMS_ROUTES_URIS.root,
-  ...lazyRouteConfig(() => import('@secrets/pages/domain/dashboard.page')),
+  children: [
+    {
+      path: '',
+      ...lazyRouteConfig(() =>
+        import('@secrets/pages/onboarding/onboarding.page'),
+      ),
+    },
+    {
+      path: 'create',
+      ...lazyRouteConfig(() => import('@secrets/pages/create/create.page')),
+    },
+    {
+      path: `:id/${SMS_ROUTES_URIS.secrets}`,
+      ...lazyRouteConfig(() =>
+        import('@/modules/secrets/pages/listing/listing.page'),
+      ),
+    },
+  ],
 };
 
 const routes: RouteObject[] = [
