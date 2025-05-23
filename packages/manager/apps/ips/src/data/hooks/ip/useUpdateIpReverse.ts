@@ -1,38 +1,46 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import ipaddr from 'ipaddr.js';
 import {
   IpReverseResponseType,
   getIpReverseQueryKey,
   updateIpReverse,
 } from '@/data/api';
+import { ipFormatter } from '@/utils';
 
 export type UseUpdateIpReverseParams = {
-  ipGroup?: string;
   ip: string;
+  ipReverse?: string;
   onError?: (apiError: ApiError) => void;
   onSuccess?: (result: ApiResponse<IpReverseResponseType>) => void;
 };
 
 export const useUpdateIpReverse = ({
   ip,
-  ipGroup,
+  ipReverse,
   onError,
   onSuccess,
 }: UseUpdateIpReverseParams) => {
   const queryClient = useQueryClient();
   const { clearNotifications } = useNotifications();
-  const group = ipGroup || `${ip}/${ipaddr.IPv4.isIPv4(ip) ? 32 : 128}`;
+  const { ipGroup, ipAddress } = ipFormatter(ip);
 
   return useMutation({
     mutationFn: ({ reverse }: { reverse: string }) =>
-      updateIpReverse({ ipGroup: group, ip, reverse }),
+      updateIpReverse({
+        ip: ipGroup || ip,
+        ipReverse: ipReverse || ipAddress,
+        reverse,
+      }),
     onSuccess: async (data) => {
       clearNotifications();
       await queryClient.invalidateQueries({
-        queryKey: getIpReverseQueryKey({ ip: group }),
+        queryKey: getIpReverseQueryKey({
+          ip: ipGroup || ip,
+          ipReverse: ipReverse || ipAddress,
+        }),
       });
+      // Invalidate for iceberg query also
       await queryClient.invalidateQueries({
         queryKey: getIpReverseQueryKey({ ip }),
       });
