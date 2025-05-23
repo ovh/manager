@@ -1,9 +1,10 @@
 <oui-header data-heading="{{:: 'iam_logs_label' | translate }}">
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-state="iam.logs.audit"
-            data-ng-if="$ctrl.auditLogsAvailability"
-            ><span data-translate="iam_audit_logs_label"></span
+            data-state="iam.logs.access-policy"
+            data-ng-if="$ctrl.accessPolicyLogsAvailability"
+        >
+            <span data-translate="iam_access_policy_logs_label"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-state="iam.logs.activity"
@@ -12,10 +13,9 @@
             <span data-translate="iam_activity_logs_label"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-state="iam.logs.access-policy"
-            data-ng-if="$ctrl.accessPolicyLogsAvailability"
-        >
-            <span data-translate="iam_access_policy_logs_label"></span
+            data-state="iam.logs.audit"
+            data-ng-if="$ctrl.auditLogsAvailability"
+            ><span data-translate="iam_audit_logs_label"></span
         ></oui-header-tabs-item>
     </oui-header-tabs>
 
