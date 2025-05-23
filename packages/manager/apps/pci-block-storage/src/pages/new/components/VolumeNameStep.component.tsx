@@ -14,11 +14,17 @@ interface VolumeNameStepProps {
   projectId: string;
   step: StepState;
   onSubmit: (volumeName: string) => void;
+  volumeType?: string;
+  capacity?: number;
+  region?: string;
 }
 
 export function VolumeNameStep({
   step,
   onSubmit,
+  volumeType,
+  capacity,
+  region,
 }: Readonly<VolumeNameStepProps>) {
   const { t } = useTranslation('add');
   const { t: tStepper } = useTranslation('stepper');
@@ -35,7 +41,7 @@ export function VolumeNameStep({
         </OsdsText>
         <OsdsInput
           type={ODS_INPUT_TYPE.text}
-          defaultValue={volumeName}
+          defaultValue={`${volumeType}-${region}-${capacity}GB`}
           value={volumeName}
           color={
             missingNameError
