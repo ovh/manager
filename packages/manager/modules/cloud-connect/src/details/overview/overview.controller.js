@@ -1,4 +1,6 @@
 import { get } from 'lodash';
+import { format } from 'date-fns';
+import * as dateFnsLocales from 'date-fns/locale';
 
 import {
   POP_MAP,
@@ -7,11 +9,12 @@ import {
   CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
   getDiagnosticDashboardTrackingContext,
 } from '../../cloud-connect.constants';
-import { REGION_TYPE } from './overview.constants';
+import { REGION_TYPE, GAP, OPTIC_STATUS } from './overview.constants';
 
 export default class CloudConnectOverviewCtrl {
   /* @ngInject */
   constructor(
+    $locale,
     $state,
     $translate,
     atInternet,
@@ -19,6 +22,7 @@ export default class CloudConnectOverviewCtrl {
     CucCloudMessage,
     cloudConnectService,
   ) {
+    this.$locale = $locale;
     this.$state = $state;
     this.atInternet = atInternet;
     this.$translate = $translate;
@@ -28,15 +32,16 @@ export default class CloudConnectOverviewCtrl {
     this.$translate = $translate;
     this.POP_MAP = POP_MAP;
     this.REGION_TYPE = REGION_TYPE;
+    this.OPTIC_STATUS = OPTIC_STATUS;
   }
 
   $onInit() {
     this.loadMessages();
     this.loadServiceInfo();
     this.getMacLoading = false;
+    this.loadInterfaces();
     if (this.cloudConnect.isVrackAssociated()) {
       this.loadVrackDetails(this.cloudConnect.vrack);
-      this.loadInterfaces();
       this.loadPopConfigurations().then(() => {
         if (this.cloudConnect.isPopConfigurationExists()) {
           this.loadDatacenterConfigurations();
@@ -51,6 +56,26 @@ export default class CloudConnectOverviewCtrl {
       name: `${CLOUD_CONNECT_TRACKING_PREFIX}cloud-connect::dashboard::configure`,
       ...CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
     });
+
+    this.locale = this.constructor.getDateFnsLocale(this.$locale.localeID);
+    this.dateFnsLocale = dateFnsLocales[this.locale];
+  }
+
+  static getDateFnsLocale(ovhLocale) {
+    if (ovhLocale === 'en_GB') {
+      return 'enGB';
+    }
+
+    if (ovhLocale === 'fr_CA') {
+      return 'frCA';
+    }
+
+    if (typeof ovhLocale === 'string') {
+      const [locale] = ovhLocale.split('_');
+      return locale;
+    }
+
+    return 'enGB';
   }
 
   refreshMessages() {
@@ -262,5 +287,25 @@ export default class CloudConnectOverviewCtrl {
 
   getPopDescription(popName) {
     return this.POP_MAP[popName] ? this.POP_MAP[popName] : popName;
+  }
+
+  formatTimestamp(timestamp) {
+    const formattedDate = format(new Date(timestamp), 'Ppppp', {
+      locale: this.dateFnsLocale,
+    });
+
+    return formattedDate;
+  }
+
+  static is48hOlder(timestamp) {
+    const dateNow = Date.parse(new Date());
+    const dateToCheck = Date.parse(new Date(timestamp));
+    const gap = (dateNow - dateToCheck) / (1000 * 60 * 60);
+
+    // Check if timestamp is upper to 48 hours
+    if (gap > GAP) {
+      return true;
+    }
+    return false;
   }
 }

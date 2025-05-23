@@ -25,14 +25,12 @@ export default class RemovePopConfigurationCtrl {
       .then((task) => {
         this.pop.setDeleting();
         return this.goBack(
-          {
-            textHtml: this.$translate.instant(
-              'cloud_connect_pop_remove_configuration_success',
-              {
-                tasksUrl: this.tasksHref,
-              },
-            ),
-          },
+          this.$translate.instant(
+            'cloud_connect_pop_remove_configuration_success',
+            {
+              tasksUrl: this.tasksHref,
+            },
+          ),
           'success',
           false,
         ).then(() => {
