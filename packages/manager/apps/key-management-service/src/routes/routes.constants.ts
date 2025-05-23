@@ -49,8 +49,14 @@ export const SMS_ROUTES_URIS = {
   versions: 'versions',
   secrets: 'secrets',
   secretId: ':secretId',
+  create: 'create',
 };
 
 export const SMS_ROUTES_URLS = {
-  // Secrets urls pages
+  secretRoot: `/${SMS_ROUTES_URIS.root}`,
+  secretCreate: `/${SMS_ROUTES_URIS.root}/${SMS_ROUTES_URIS.create}`,
+  secretListing: (domainId: string) =>
+    `/${SMS_ROUTES_URIS.root}/${domainId}/${SMS_ROUTES_URIS.secrets}`,
+  secretDashboard: (domainId: string, secretId: string) =>
+    `/${SMS_ROUTES_URIS.root}/${domainId}/${SMS_ROUTES_URIS.secrets}/${secretId}`,
 };
