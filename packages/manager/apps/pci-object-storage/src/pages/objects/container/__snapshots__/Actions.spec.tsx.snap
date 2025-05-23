@@ -14,7 +14,7 @@ exports[`Actions > Action sould displayed 1`] = `
       is-loading="false"
       size="sm"
       slot="menu-title"
-      variant="outline"
+      variant="ghost"
     />
   </div>
   <ods-popover
@@ -38,6 +38,14 @@ exports[`Actions > Action sould displayed 1`] = `
         class="menu-item-button w-full"
         display-tooltip="false"
         label="pci_projects_project_storages_containers_view_object_label"
+        size="sm"
+        variant="ghost"
+      />
+      <ods-button
+        class="menu-item-button w-full"
+        condition="true"
+        display-tooltip="false"
+        label="pci_projects_project_storages_containers_manage_replication_label"
         size="sm"
         variant="ghost"
       />

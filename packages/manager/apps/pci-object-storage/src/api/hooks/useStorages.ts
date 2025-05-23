@@ -306,6 +306,20 @@ export interface UseUpdateStorageProps {
   onError: (error: ApiError) => void;
 }
 
+export interface ReplicationRule {
+  id: string;
+  status: 'enabled' | 'disabled';
+  filter?: { prefix: string };
+
+  destination?: {
+    name: string;
+    region: string;
+    storageClass?: 'STANDARD' | 'STANDARD_IA' | 'HIGH_PERF';
+  };
+  deleteMarkerReplication: 'enabled' | 'disabled';
+  priority: number;
+}
+
 export const useUpdateStorage = ({
   projectId,
   region,
@@ -320,14 +334,18 @@ export const useUpdateStorage = ({
     mutationFn: async (updateData: {
       versioning?: { status: string };
       encryption?: { sseAlgorithm: string };
-    }) =>
-      updateStorage({
+      replication?: {
+        rules: ReplicationRule[];
+      };
+    }) => {
+      return updateStorage({
         projectId,
         region,
         name,
         s3StorageType,
         ...updateData,
-      }),
+      });
+    },
     onError,
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -338,12 +356,22 @@ export const useUpdateStorage = ({
           containerName: name,
         }),
       });
+      queryClient.invalidateQueries({
+        queryKey: getAllStoragesQueryKey(projectId),
+      });
       onSuccess();
     },
   });
 
   return {
     updateContainer: mutation.mutate,
+    addReplicationRule: (rule: ReplicationRule) => {
+      return mutation.mutate({
+        replication: {
+          rules: [rule],
+        },
+      });
+    },
     ...mutation,
   };
 };
@@ -546,4 +574,75 @@ export const useStorageEndpoint = (projectId: string, storage: TStorage) => {
             ?.url
         }/${storage?.name}`,
   };
+};
+
+export const useAllServerStorages = (
+  projectId: string,
+  availability: {
+    isLocalZoneAvailable: boolean;
+    is3azAvailable: boolean;
+  },
+) => {
+  const { i18n, t } = useTranslation(['containers', 'containers/add']);
+  const queryClient = useQueryClient();
+
+  const { data, isLoading, isPending, isRefreshing, error } = useMappedStorages(
+    projectId,
+  );
+
+  const mappedStorages = useMemo(() => {
+    if (data) {
+      return data.map((storage) => {
+        const { deploymentMode } = storage;
+        let mode: string;
+        switch (deploymentMode) {
+          case OBJECT_CONTAINER_MODE_MULTI_ZONES:
+            mode = t(
+              `pci_projects_project_storages_containers_deployment_mode_region-3-az`,
+            );
+            break;
+          case OBJECT_CONTAINER_MODE_MONO_ZONE:
+            mode =
+              availability.isLocalZoneAvailable && availability.is3azAvailable
+                ? t(
+                    'pci_projects_project_storages_containers_deployment_mode_region',
+                  )
+                : t(
+                    'containers/add:pci_projects_project_storages_containers_add_deployment_mode_flipping_region',
+                  );
+            break;
+          case OBJECT_CONTAINER_MODE_LOCAL_ZONE:
+            mode = t(
+              'pci_projects_project_storages_containers_deployment_mode_localzone',
+            );
+            break;
+          default:
+        }
+        return {
+          ...storage,
+          mode,
+        };
+      });
+    }
+    return [];
+  }, [data, i18n?.language, availability]);
+
+  return useMemo(
+    () => ({
+      isLoading,
+      isPending,
+      allStorages: mappedStorages.filter(
+        (element) =>
+          element.s3StorageType &&
+          element.deploymentMode !== OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+      ),
+      error,
+      isRefreshing,
+      refresh: () =>
+        queryClient.invalidateQueries({
+          queryKey: getAllStoragesQueryKey(projectId),
+        }),
+    }),
+    [mappedStorages, error, isLoading, isPending, isRefreshing],
+  );
 };
