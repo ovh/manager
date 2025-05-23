@@ -90,7 +90,6 @@ import errorPage from './error-page/error-page.module';
 import hosting from './hosting';
 import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
-import domainOperationTable from './domain-operation/operation-table/operation-table.module';
 
 import hostingEmail from './hosting/email';
 import hostingEmailActivateModule from './hosting/email/activate';
@@ -197,7 +196,6 @@ export default async (containerEl, shellClient) => {
         hosting,
         privateDatabase,
         zone,
-        domainOperationTable,
         hostingEmail,
         hostingEmailActivateModule,
         ovhManagerDomainOperationModule,
