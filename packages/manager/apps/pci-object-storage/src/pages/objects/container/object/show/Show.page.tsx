@@ -21,7 +21,7 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useBytes, useProject } from '@ovh-ux/manager-pci-common';
+import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   ShellContext,
   useOvhTracking,
@@ -49,11 +49,6 @@ import {
   OBJECT_CONTAINER_MODE_MONO_ZONE,
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
   STORAGE_ASYNC_REPLICATION_LINK,
-  TRACKING,
-  MUMBAI_REGION_NAME,
-  STATUS_ENABLED,
-  STATUS_DISABLED,
-  STATUS_SUSPENDED,
   UNIVERSE,
   SUB_UNIVERSE,
   APP_NAME,
@@ -70,6 +65,7 @@ import { useSortedObjects } from './useSortedObjectsWithIndex';
 import { ContainerDatagrid } from './ContainerDataGrid';
 import { ContainerInfoPanel } from './ContainerInfoPanel';
 import UseStandardInfrequentAccessAvailability from '@/hooks/useStandardInfrequentAccessAvailability';
+import { useContainerMemo } from '@/hooks/useContainerMemo';
 
 export type TContainer = {
   id: string;
@@ -127,8 +123,6 @@ export default function ObjectPage() {
 
   const { me } = useMe();
 
-  const { formatBytes } = useBytes();
-
   const hrefProject = useProjectUrl('public-cloud');
   const { t: tObjects } = useTranslation('objects');
   const { t: tContainer } = useTranslation('container');
@@ -142,6 +136,10 @@ export default function ObjectPage() {
   );
   const enableEncryptionHref = useHref(
     `./enableEncryption?region=${searchParams.get('region')}`,
+  );
+
+  const manageReplicationsHref = useHref(
+    `./replications?region=${searchParams.get('region')}`,
   );
 
   const { data: region } = useGetRegion(
@@ -164,27 +162,12 @@ export default function ObjectPage() {
     targetContainer?.id,
   );
 
-  const container = useMemo((): TContainer => {
-    if (!serverContainer) return undefined;
-    const s3StorageType = targetContainer?.s3StorageType;
-
-    return {
-      ...serverContainer,
-      id: serverContainer?.id || targetContainer?.id,
-      name: serverContainer?.name || targetContainer?.name,
-      objectsCount:
-        serverContainer?.storedObjects || serverContainer?.objectsCount,
-      usedSpace: formatBytes(
-        serverContainer?.storedBytes || serverContainer?.objectsSize,
-        2,
-        1024,
-      ),
-      publicUrl: url,
-      s3StorageType,
-      regionDetails: s3StorageType ? region : undefined,
-      staticUrl: serverContainer?.staticUrl || serverContainer?.virtualHost,
-    };
-  }, [serverContainer, region, targetContainer, url]);
+  const container = useContainerMemo(
+    serverContainer,
+    targetContainer,
+    url,
+    region,
+  );
 
   const [enableVersionsToggle, setEnableVersionsToggle] = useState(false);
 
@@ -431,6 +414,7 @@ export default function ObjectPage() {
             tracking={tracking}
             trackClick={trackClick}
             trackAction={trackAction}
+            manageReplicationsHref={manageReplicationsHref}
           />
 
           <ContainerDatagrid

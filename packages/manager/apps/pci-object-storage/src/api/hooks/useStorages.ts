@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { ApiError, applyFilters, Filter } from '@ovh-ux/manager-core-api';
@@ -31,6 +31,19 @@ import { paginateResults } from '@/helpers';
 import { addUser, deleteSwiftObject, TStorageObject } from '../data/objects';
 import { getContainerQueryKey } from './useContainer';
 import { useGetRegion } from './useRegion';
+
+export type TObject = {
+  offer: string;
+  deploymentMode: string;
+  containerCount: number;
+  usedSpace: number;
+  archive?: boolean;
+  containerType?: 'private' | 'public' | 'static';
+  id: string;
+  name: string;
+  region: string;
+  state?: string;
+};
 
 export const sortStorages = (sorting: ColumnSort, storages: TStorage[]) => {
   const order = sorting.desc ? -1 : 1;
@@ -306,6 +319,20 @@ export interface UseUpdateStorageProps {
   onError: (error: ApiError) => void;
 }
 
+export type TReplicationRule = {
+  id: string;
+  status: 'enabled' | 'disabled';
+  filter?: { prefix: string };
+
+  destination?: {
+    name: string;
+    region: string;
+    storageClass?: 'STANDARD' | 'STANDARD_IA' | 'HIGH_PERF';
+  };
+  deleteMarkerReplication: 'enabled' | 'disabled';
+  priority: number;
+};
+
 export const useUpdateStorage = ({
   projectId,
   region,
@@ -320,14 +347,18 @@ export const useUpdateStorage = ({
     mutationFn: async (updateData: {
       versioning?: { status: string };
       encryption?: { sseAlgorithm: string };
-    }) =>
-      updateStorage({
+      replication?: {
+        rules: TReplicationRule[];
+      };
+    }) => {
+      return updateStorage({
         projectId,
         region,
         name,
         s3StorageType,
         ...updateData,
-      }),
+      });
+    },
     onError,
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -338,12 +369,22 @@ export const useUpdateStorage = ({
           containerName: name,
         }),
       });
+      queryClient.invalidateQueries({
+        queryKey: getAllStoragesQueryKey(projectId),
+      });
       onSuccess();
     },
   });
 
   return {
     updateContainer: mutation.mutate,
+    addReplicationRule: (rule: TReplicationRule) => {
+      return mutation.mutate({
+        replication: {
+          rules: [rule],
+        },
+      });
+    },
     ...mutation,
   };
 };
@@ -545,5 +586,85 @@ export const useStorageEndpoint = (projectId: string, storage: TStorage) => {
           access?.endpoints?.find(({ region: reg }) => reg === region?.name)
             ?.url
         }/${storage?.name}`,
+  };
+};
+
+export const useAllServerStorages = (
+  projectId: string,
+  availability: {
+    isLocalZoneAvailable: boolean;
+    is3azAvailable: boolean;
+  },
+) => {
+  const { t } = useTranslation(['containers', 'containers/add']);
+  const queryClient = useQueryClient();
+
+  const { data, isLoading, isPending, isRefreshing, error } = useMappedStorages(
+    projectId,
+  );
+
+  const getDeploymentModeLabel = useCallback(
+    (storage: TStorage) => {
+      const { deploymentMode } = storage;
+
+      switch (deploymentMode) {
+        case OBJECT_CONTAINER_MODE_MULTI_ZONES:
+          return t(
+            `pci_projects_project_storages_containers_deployment_mode_region-3-az`,
+          );
+        case OBJECT_CONTAINER_MODE_MONO_ZONE:
+          return availability.isLocalZoneAvailable &&
+            availability.is3azAvailable
+            ? t(
+                'pci_projects_project_storages_containers_deployment_mode_region',
+              )
+            : t(
+                'containers/add:pci_projects_project_storages_containers_add_deployment_mode_flipping_region',
+              );
+        case OBJECT_CONTAINER_MODE_LOCAL_ZONE:
+          return t(
+            'pci_projects_project_storages_containers_deployment_mode_localzone',
+          );
+        default:
+          return '';
+      }
+    },
+    [t, availability.isLocalZoneAvailable, availability.is3azAvailable],
+  );
+
+  const mappedStorages = useMemo(() => {
+    if (!data) return [];
+
+    return data.map((storage) => ({
+      ...storage,
+      mode: getDeploymentModeLabel(storage),
+    }));
+  }, [data, getDeploymentModeLabel]);
+
+  const allStorages = useMemo(
+    () =>
+      mappedStorages.filter(
+        (element) =>
+          element.s3StorageType &&
+          element.deploymentMode !== OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+      ),
+    [mappedStorages],
+  );
+
+  const refresh = useCallback(
+    () =>
+      queryClient.invalidateQueries({
+        queryKey: getAllStoragesQueryKey(projectId),
+      }),
+    [projectId, queryClient],
+  );
+
+  return {
+    isLoading,
+    isPending,
+    allStorages,
+    error,
+    isRefreshing,
+    refresh,
   };
 };
