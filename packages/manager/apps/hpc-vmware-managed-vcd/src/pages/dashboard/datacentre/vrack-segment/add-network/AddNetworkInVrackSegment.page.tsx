@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import {
   mockVrackSegmentList,
-  useUpdateVcdVrackNetworkVrackSegment,
-  useVcdVrackNetworkSegmentOptions,
-  VrackSegment,
+  useUpdateVcdVrackSegment,
+  useVcdVrackSegmentOptions,
+  VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,9 +27,9 @@ function AddNetworkVrackSegmentLoaded() {
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
   const { addSuccess } = useMessageContext();
-  const defaultOptions = useVcdVrackNetworkSegmentOptions({
+  const defaultOptions = useVcdVrackSegmentOptions({
     id,
-    vcdId: vdcId,
+    vdcId,
     vrackSegmentId,
   });
 
@@ -46,10 +46,10 @@ function AddNetworkVrackSegmentLoaded() {
             statusText: 'OK',
             headers: {},
             config: {},
-          } as ApiResponse<VrackSegment>);
+          } as ApiResponse<VCDVrackSegment>);
         }, 1500);
       }),
-    select: (data: ApiResponse<VrackSegment>) => ({
+    select: (data: ApiResponse<VCDVrackSegment>) => ({
       ...data.data.targetSpec,
     }),
   };
@@ -64,9 +64,7 @@ function AddNetworkVrackSegmentLoaded() {
           .trim()
           .cidr({
             version: 'v4',
-            message: t(
-              'managed_vcd_dashboard_vrack_segment_add_network_input_helper',
-            ),
+            message: t('managed_vcd_dashboard_vrack_add_network_input_helper'),
           })
           .refine(
             (network) =>
@@ -74,9 +72,7 @@ function AddNetworkVrackSegmentLoaded() {
                 hasIpv4CIDRConflict(network, networkB),
               ),
             {
-              message: t(
-                'managed_vcd_dashboard_vrack_segment_add_network_input_error',
-              ),
+              message: t('managed_vcd_dashboard_vrack_add_network_input_error'),
             },
           ),
       }),
@@ -87,13 +83,13 @@ function AddNetworkVrackSegmentLoaded() {
     mutate: updateVrackSegment,
     error: updateError,
     isPending: isUpdatePending,
-  } = useUpdateVcdVrackNetworkVrackSegment({
+  } = useUpdateVcdVrackSegment({
     id,
-    vcdId: vdcId,
+    vdcId,
     vrackSegmentId,
     onSuccess: () => {
       addSuccess({
-        content: t('managed_vcd_dashboard_vrack_segment_add_network_success'),
+        content: t('managed_vcd_dashboard_vrack_add_network_success'),
         includedSubRoutes: [vdcId],
         excludedSubRoutes: [
           subRoutes.datacentreCompute,
@@ -144,10 +140,8 @@ function AddNetworkVrackSegmentLoaded() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Modal
         isOpen
-        heading={t('managed_vcd_dashboard_vrack_segment_add_network_title')}
-        primaryLabel={t(
-          'managed_vcd_dashboard_vrack_segment_add_network_title',
-        )}
+        heading={t('managed_vcd_dashboard_vrack_add_network')}
+        primaryLabel={t('managed_vcd_dashboard_vrack_add_network')}
         isPrimaryButtonLoading={isUpdatePending}
         isPrimaryButtonDisabled={isUpdatePending || !isValid}
         onPrimaryButtonClick={handleSubmit(onSubmit)}
@@ -158,23 +152,21 @@ function AddNetworkVrackSegmentLoaded() {
         <div className="flex flex-col gap-2">
           {updateError && (
             <OdsMessage color="critical" isDismissible={false}>
-              {t('managed_vcd_dashboard_vrack_segment_add_network_error', {
+              {t('managed_vcd_dashboard_vrack_add_network_error', {
                 errorApi: updateError.message,
               })}
             </OdsMessage>
           )}
           <OdsText>
-            {t(
-              'managed_vcd_dashboard_vrack_segment_form_add_network_description',
-            )}
+            {t('managed_vcd_dashboard_vrack_form_add_network_description')}
           </OdsText>
           <RhfField controllerParams={register('network')} control={control}>
             <RhfField.Label>
-              {t('managed_vcd_dashboard_vrack_segment_add_network_title')}
+              {t('managed_vcd_dashboard_vrack_add_network')}
             </RhfField.Label>
             <RhfField.HelperAuto
               helperMessage={t(
-                'managed_vcd_dashboard_vrack_segment_add_network_input_helper',
+                'managed_vcd_dashboard_vrack_add_network_input_helper',
               )}
             />
             <RhfField.Input />
@@ -193,7 +185,7 @@ export default function AddNetworkVrackSegment() {
       fallback={
         <Modal
           isOpen
-          heading={t('managed_vcd_dashboard_vrack_segment_add_network_title')}
+          heading={t('managed_vcd_dashboard_vrack_add_network')}
           isLoading
         ></Modal>
       }

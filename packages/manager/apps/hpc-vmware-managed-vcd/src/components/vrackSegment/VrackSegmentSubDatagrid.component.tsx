@@ -1,9 +1,9 @@
 import { Datagrid } from '@ovh-ux/manager-react-components';
-import { OdsButton, OdsTooltip, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsTooltip } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { VrackSegment } from '@ovh-ux/manager-module-vcd-api';
+import { VCDVrackSegment } from '@ovh-ux/manager-module-vcd-api';
 import { LABELS } from '../../utils/labels.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { encodeVrackNetwork } from '@/utils/encodeVrackNetwork';
@@ -33,12 +33,12 @@ const CSS = `
       }
 `;
 
-export default function VrackNetworkDatagridSubDatagrid({
+export const VrackSegmentSubDatagrid = ({
   vrackSegment,
 }: {
-  vrackSegment: VrackSegment;
+  vrackSegment: VCDVrackSegment;
   headerRefs?: React.RefObject<HTMLTableCellElement>;
-}) {
+}) => {
   const { t } = useTranslation('datacentres/vrack-segment');
   const navigate = useNavigate();
   const { id, vdcId } = useParams();
@@ -76,9 +76,7 @@ export default function VrackNetworkDatagridSubDatagrid({
                     id={buttonId}
                     aria-hidden="true"
                     label=""
-                    aria-label={t(
-                      'managed_vcd_dashboard_vrack_network_delete_network',
-                    )}
+                    aria-label={t('managed_vcd_dashboard_vrack_delete_network')}
                     icon="trash"
                     variant="ghost"
                     color="critical"
@@ -98,7 +96,7 @@ export default function VrackNetworkDatagridSubDatagrid({
                   />
                   {isDeleting && (
                     <OdsTooltip triggerId={buttonId}>
-                      {t('managed_vcd_dashboard_vrack_network_deleting')}
+                      {t('managed_vcd_dashboard_vrack_deleting')}
                     </OdsTooltip>
                   )}
                 </div>
@@ -113,4 +111,4 @@ export default function VrackNetworkDatagridSubDatagrid({
       ></Datagrid>
     </>
   );
-}
+};

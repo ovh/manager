@@ -226,7 +226,7 @@ export const Routes: any = [
             path: urls.vrackSegments,
             ...lazyRouteConfig(() =>
               import(
-                '@/pages/dashboard/datacentre/vrack-segment/VrackNetwork.page'
+                '@/pages/dashboard/datacentre/vrack-segment/DatacentreVrack.page'
               ),
             ),
             children: [
