@@ -310,7 +310,7 @@ interface UseUpdateStorageProps {
 export type TReplicationRule = {
   id: string;
   status: 'enabled' | 'disabled';
-  filter?: { prefix: string };
+  filter?: { prefix: string; tags: { [key: string]: string } };
 
   destination?: {
     name: string;

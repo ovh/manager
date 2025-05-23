@@ -18,6 +18,7 @@ describe('getServerContainer', () => {
     storedBytes: 0,
     storedObjects: 0,
     versioning: { status: 'enabled' },
+    objectLock: { status: 'disabled' },
     virtualHost: 'virtualHost',
     staticUrl: 'staticUrl',
     replication: {

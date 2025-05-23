@@ -46,26 +46,6 @@ import { STATUS_ENABLED } from '@/constants';
 import { useStorageFeatures } from '@/hooks/useStorageFeatures';
 import { useMergedContainer } from '@/hooks/useContainerMemo';
 
-const WarningMessage = ({
-  links,
-  label,
-}: {
-  label: string;
-  links?: { href: string; label: string };
-}) => (
-  <OdsMessage color="warning" className="mt-6" isDismissible={false}>
-    <OdsText preset="paragraph">{label}</OdsText>
-    {links?.href && (
-      <Links
-        className="ml-4"
-        href={links.href}
-        type={LinkType.next}
-        label={links.label}
-      />
-    )}
-  </OdsMessage>
-);
-
 export default function ReplicationListPage() {
   const { storageId, projectId } = useParams();
 
@@ -207,39 +187,62 @@ export default function ReplicationListPage() {
       )}
 
       {container.versioning?.status !== STATUS_ENABLED && (
-        <WarningMessage
-          links={{
-            href: enableVersioningHref,
-            label: t(
-              'containers/replication:pci_projects_project_storages_containers_replication_list_warning_link',
-            ),
-          }}
-          label={t(
-            'containers/replication:pci_projects_project_storages_containers_replication_list_warning',
-          )}
-        />
+        <OdsMessage
+          color="warning"
+          className="mt-6"
+          isDismissible={false}
+          variant="default"
+        >
+          <span>
+            {t(
+              'containers/replication:pci_projects_project_storages_containers_replication_list_warning',
+            )}
+            &nbsp;
+            <Links
+              href={enableVersioningHref}
+              type={LinkType.next}
+              label={t(
+                'containers/replication:pci_projects_project_storages_containers_replication_list_warning_link',
+              )}
+            />
+          </span>
+        </OdsMessage>
       )}
 
       {filteredStorages.length === 0 && (
-        <WarningMessage
-          links={{
-            href: createContainerHref,
-            label: t(
-              'containers/replication:pci_projects_project_storages_containers_replication_list_destination_warning_link',
-            ),
-          }}
-          label={t(
-            'containers/replication:pci_projects_project_storages_containers_replication_list_destination_warning',
-          )}
-        />
+        <OdsMessage
+          color="warning"
+          className="mt-6"
+          isDismissible={false}
+          variant="default"
+        >
+          <span>
+            {t(
+              'containers/replication:pci_projects_project_storages_containers_replication_list_destination_warning',
+            )}
+            &nbsp;
+            <Links
+              href={createContainerHref}
+              type={LinkType.next}
+              label={t(
+                'containers/replication:pci_projects_project_storages_containers_replication_list_destination_warning_link',
+              )}
+            />
+          </span>
+        </OdsMessage>
       )}
 
       {hasInvalidReplication && (
-        <WarningMessage
-          label={t(
+        <OdsMessage
+          color="warning"
+          className="mt-6"
+          isDismissible={false}
+          variant="default"
+        >
+          {t(
             'containers/replication:pci_projects_project_storages_containers_replication_conflict_warning',
           )}
-        />
+        </OdsMessage>
       )}
 
       {container && (

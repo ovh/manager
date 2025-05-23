@@ -42,6 +42,7 @@ export function ReplicationRulePriority({
 
       <div className="mt-4">
         <OdsQuantity
+          data-testid="replication-rule-priority-input"
           onOdsChange={handlePriorityChange}
           value={priority}
           min={DEFAULT_PRIORITY}
