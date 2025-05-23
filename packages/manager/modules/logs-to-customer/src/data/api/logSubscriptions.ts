@@ -1,9 +1,4 @@
-import apiClient, {
-  fetchIcebergV2,
-  fetchIcebergV6,
-  v2,
-  v6,
-} from '@ovh-ux/manager-core-api';
+import { fetchIcebergV6, v2, v6 } from '@ovh-ux/manager-core-api';
 import {
   LogKind,
   LogSubscription,
@@ -18,9 +13,9 @@ export const getLogSubscriptionsv2 = async (
   logSubscriptionUrl: ApiUrls['logSubscription'],
   logKind: LogKind,
 ) => {
-  const { data } = await fetchIcebergV2<LogSubscription>({
-    route: `${logSubscriptionUrl}?kind=${logKind.name}`,
-  });
+  const { data } = await v2.get<LogSubscription[]>(
+    `${logSubscriptionUrl}?kind=${logKind.name}`,
+  );
   return data;
 };
 
@@ -40,14 +35,12 @@ export const getLogSubscriptionsv6 = async (
 export const getLogSubscriptionv2 = async (
   logSubscriptionUrl: ApiUrls['logSubscription'],
   subscriptionId: string,
-) =>
-  apiClient.v2.get<LogSubscription>(`${logSubscriptionUrl}/${subscriptionId}`);
+) => v2.get<LogSubscription>(`${logSubscriptionUrl}/${subscriptionId}`);
 
 export const getLogSubscriptionv6 = async (
   logSubscriptionUrl: ApiUrls['logSubscription'],
   subscriptionId: string,
-) =>
-  apiClient.v6.get<LogSubscription>(`${logSubscriptionUrl}/${subscriptionId}`);
+) => v6.get<LogSubscription>(`${logSubscriptionUrl}/${subscriptionId}`);
 
 /**
  * POST log subscription
