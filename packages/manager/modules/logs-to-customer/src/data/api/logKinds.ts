@@ -5,12 +5,12 @@ import { ApiUrls } from '../../LogsToCustomer.module';
 /**
  * LIST log kinds
  */
-export const getLogKindsv2 = async (logKindUrl: ApiUrls['logKind']) => {
+export const getLogKindsV2 = async (logKindUrl: ApiUrls['logKind']) => {
   const { data } = await v2.get<LogKind[]>(logKindUrl);
   return data;
 };
 
-export const getLogKindsv6 = async (logKindUrl: ApiUrls['logKind']) => {
+export const getLogKindsV6 = async (logKindUrl: ApiUrls['logKind']) => {
   const { data } = await fetchIcebergV6<LogKind>({
     route: logKindUrl,
   });
