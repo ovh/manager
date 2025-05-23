@@ -28,6 +28,7 @@
     "@ovhcloud/reket-core": "^0.2.1"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.2"
+    "@ovh-ux/component-rollup-config": "^13.0.2",
+    "@babel/preset-env": "^7.27.2"
   }
 }
