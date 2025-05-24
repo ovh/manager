@@ -27,6 +27,12 @@ export default class LogsDashboardsCtrl {
     this.CucControllerModalHelper = CucControllerModalHelper;
   }
 
+  $onInit() {
+    this.columnsParameters = [
+      { name: 'isEditable', hidden: this.service.isIamEnabled },
+    ];
+  }
+
   loadDashboards({ offset, pageSize = 1, sort, criteria }) {
     const filters = criteria.map((criterion) => {
       const name = criterion.property || 'title';
