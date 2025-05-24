@@ -30,6 +30,7 @@ export default function DeleteVrackServicesModal() {
     <DeleteServiceModal
       isOpen
       closeModal={onClose}
+      serviceTypeName={t('modalDeleteVrackServicesServiceTypeName')}
       resourceName={id}
       onSuccess={() => {
         trackPage({
