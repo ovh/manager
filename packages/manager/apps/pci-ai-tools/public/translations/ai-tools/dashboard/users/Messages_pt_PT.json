@@ -21,6 +21,6 @@
   "formUserLabel": "Palavra-passe associada ao utilizador",
   "formAddUserButtonClose": "Fechar",
   "formUserPasswordCopy": "Palavra-passe copiada",
-  "ai_training_operator": "AI Platform - Operador",
-  "ai_training_read": "AI Platform - Apenas leitura"
+  "ai_training_operator": "AI Operator",
+  "ai_training_read": "AI Reader"
 }

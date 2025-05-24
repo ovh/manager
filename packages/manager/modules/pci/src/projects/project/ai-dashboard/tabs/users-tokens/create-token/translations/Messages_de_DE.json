@@ -15,6 +15,6 @@
   "pci_ai_dashboard_create_token_add_info_1": "Die Tokens können mit dem Label-Selektor einer bestimmten Ressource zugewiesen werden, wie AI Notebook, Auftrag oder Anwendung. Wenn Sie das Feld leer lassen, weisen Sie die Tokens allen Ressourcen zu. Sie können auch die Rechte des Tokens festlegen: Administrationsrechte oder nur Leserechte.",
   "pci_ai_dashboard_create_token_add_info_2": "Beispiel für Selektoren:",
   "pci_ai_dashboard_create_token_add_info_3": "Ihre Anwendungen haben standardmäßig folgende Label: {{label1}} und {{label2}}",
-  "pci_ai_dashboard_create_token_role_name_ai_training_operator": "AI Platform - Operator",
-  "pci_ai_dashboard_create_token_role_name_ai_training_read": "AI Platform - nur Lesen"
+  "pci_ai_dashboard_create_token_role_name_ai_training_operator": "AI Operator",
+  "pci_ai_dashboard_create_token_role_name_ai_training_read": "AI Reader"
 }
