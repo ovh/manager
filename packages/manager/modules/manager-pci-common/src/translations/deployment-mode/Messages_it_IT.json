@@ -1,13 +1,13 @@
 {
-  "deployment_mode_title": "Seleziona una modalità di distribuzione",
-  "deployment_mode_description": "Seleziona la configurazione ottimale per garantire la disponibilità, la resilienza e la latenza appropriate per i dati in base alle modalità di utilizzo. <Link>Scopri di più</Link>",
+  "deployment_mode_title": "Seleziona una modalità di deploy",
+  "deployment_mode_description": "Seleziona una configurazione ottimale per assicurare la disponibilità, la resilienza e la latenza più appropriata per i tuoi dati in base alle modalità di utilizzo. <Link>Scopri di più</Link>",
   "deployment_mode_card_title_region": "Region 1-AZ",
-  "deployment_mode_card_description_region": "Installazione resiliente ed economica su 1 zona di disponibilità.",
+  "deployment_mode_card_description_region": "Deploy resiliente ed economico su 1 zona di disponibilità.",
   "deployment_mode_card_title_region-3-az": "Region 3-AZ",
-  "deployment_mode_card_description_region-3-az": "Installazione ad alta resilienza/high availability per le applicazioni critiche su 3 zone di disponibilità.",
+  "deployment_mode_card_description_region-3-az": "Deploy ad alta resilienza/alta disponibilità per le tue applicazioni critiche su 3 zone di disponibilità.",
   "deployment_mode_card_title_localzone": "Local Zone",
-  "deployment_mode_card_description_localzone": "Implementazione delle applicazioni il più vicino possibile agli utenti per una latenza ridotta e la residenza dei dati.",
+  "deployment_mode_card_description_localzone": "Esecuzione delle applicazioni il più vicino possibile ai tuoi utenti per una latenza ridotta e la localizzazione dei dati.",
   "deployment_mode_card_beta": "Beta",
-  "deployment_mode_card_beta_price": "Gratuito",
-  "deployment_mode_card_coming_soon": "Presto disponibile"
+  "deployment_mode_card_beta_price": "Gratis",
+  "deployment_mode_card_coming_soon": "In arrivo"
 }
