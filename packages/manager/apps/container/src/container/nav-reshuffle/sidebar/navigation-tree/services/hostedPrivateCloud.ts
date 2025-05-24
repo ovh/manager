@@ -75,7 +75,7 @@ hostedPrivateCloudUniverse.children = [
     idAttr: 'hpc-storage-backup-link',
     universe: hostedPrivateCloudUniverse.id,
     translation: 'sidebar_storage_backup',
-    features: ['veeam-enterprise', 'veeam-cloud-connect'],
+    features: ['veeam-enterprise'],
     children: [
       {
         id: 'veeam-enterprise',

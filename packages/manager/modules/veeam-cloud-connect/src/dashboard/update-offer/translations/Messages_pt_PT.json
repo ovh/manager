@@ -1,8 +1,0 @@
-{
-  "veeam_update_offer_title": "Aumentar a oferta Veeam Cloud Connect",
-  "veeam_update_offer_information": "A subscrição é de <strong>{{ price }} s/IVA/mês</strong>",
-  "veeam_update_offer_cancel": "Anular",
-  "veeam_update_offer_continue": "Continuar",
-  "veeam_update_offer_change": "Alterar",
-  "veeam_update_storage_add": "Adicionar"
-}
