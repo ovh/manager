@@ -6,7 +6,7 @@
     <div class="mb-3">
         <span
             data-translate="logs_password_setup_message"
-            data-translate-values="{userFullName : ctrl.fullName, userName: ctrl.userName}"
+            data-translate-values="{userName: ctrl.userName}"
         ></span>
     </div>
     <form novalidate name="ctrl.form">
@@ -46,9 +46,30 @@
             <div data-ng-if="!ctrl.saving.loading">
                 <button
                     type="submit"
-                    class="oui-button oui-button_primary"
+                    class="oui-button oui-button_secondary"
                     data-translate="logs_save"
                     data-ng-click="ctrl.changePassword()"
+                ></button>
+            </div>
+        </div>
+        <div class="oui-field" style="margin-top: 20px;">
+            <div class="oui-field__content">
+                <span data-translate="{{ 'logs_iam_setup_message' }}"></span>
+                <a
+                    data-translate="logs_iam_ovhcloud_iam"
+                    data-ng-href="{{ ::ctrl.iamUrl }}"
+                    target="_top"
+                ></a>
+            </div>
+        </div>
+        <div class="cui-form-actions">
+            <oui-spinner data-ng-if="ctrl.enableIam.loading"></oui-spinner>
+            <div data-ng-if="!ctrl.enableIam.loading">
+                <button
+                    type="submit"
+                    class="oui-button oui-button_primary"
+                    data-translate="logs_iam_enable_iam"
+                    data-ng-click="ctrl.enableIam()"
                 ></button>
             </div>
         </div>
