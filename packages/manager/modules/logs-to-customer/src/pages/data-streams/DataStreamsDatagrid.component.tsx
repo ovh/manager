@@ -66,7 +66,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
 
   if (isLoading)
     return (
-      <div className="flex py-10">
+      <div className="flex py-8">
         <OdsSpinner size="md" data-testid="logKinds-spinner" />
       </div>
     );
@@ -138,7 +138,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
   ];
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3">
       <div className="flex justify-between">
         <OdsButton
           size="sm"
@@ -183,9 +183,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
           />
         </OdsPopover>
       </div>
-      <div>
-        <FilterList filters={filters.filters} onRemoveFilter={filters.remove} />
-      </div>
+      <FilterList filters={filters.filters} onRemoveFilter={filters.remove} />
       <Datagrid
         columns={columns}
         items={flattenData}
