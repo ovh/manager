@@ -4,7 +4,6 @@
 
 <oui-datagrid
     data-rows="$ctrl.services"
-    data-row-loader="$ctrl.getServiceInfos($row)"
     data-criteria="$ctrl.criteria"
     data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
     data-page-size="10"
@@ -30,16 +29,25 @@
     <oui-datagrid-column
         data-title=":: 'account_contacts_service_contact_admin' | translate"
         data-property="contactAdmin"
+        data-filterable
+        data-type="options"
+        data-type-options="$ctrl.getContactColumnFilter('contactAdmin')"
     >
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'account_contacts_service_contact_tech' | translate"
         data-property="contactTech"
+        data-filterable
+        data-type="options"
+        data-type-options="$ctrl.getContactColumnFilter('contactTech')"
     >
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'account_contacts_service_contact_billing' | translate"
         data-property="contactBilling"
+        data-filterable
+        data-type="options"
+        data-type-options="$ctrl.getContactColumnFilter('contactBilling')"
     >
     </oui-datagrid-column>
     <oui-action-menu data-compact data-placement="end">
