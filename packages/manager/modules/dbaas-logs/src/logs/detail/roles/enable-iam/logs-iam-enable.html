@@ -1,0 +1,14 @@
+<oui-modal
+    data-primary-action="ctrl.enableIam()"
+    data-primary-label="{{ ::'logs_iam_modal_confirm' | translate }}"
+    data-secondary-action="ctrl.cancel()"
+    data-secondary-label="{{ ::'logs_cancel' | translate }}"
+    data-on-dismiss="ctrl.cancel()"
+    data-loading="ctrl.saving.loading"
+    data-heading="{{ ::ctrl.title }}"
+>
+    <oui-message data-type="warning" class="mb-3">
+        <span data-translate="{{ 'logs_iam_enable_usage_warning' }}"></span>
+    </oui-message>
+    <p data-translate="{{ 'logs_iam_enable_available' }}"></p>
+</oui-modal>

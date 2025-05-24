@@ -1,7 +1,11 @@
 <section class="log-osd">
     <h3 data-translate="logs_kibana_title"></h3>
     <p data-translate="logs_kibana_description"></p>
-    <oui-datagrid id="osds-datagrid" data-rows-loader="ctrl.loadOsds($config)">
+    <oui-datagrid
+        id="osds-datagrid"
+        data-columns-parameters="ctrl.columnsParameters"
+        data-rows-loader="ctrl.loadOsds($config)"
+    >
         <oui-datagrid-topbar>
             <button
                 type="button"

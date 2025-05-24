@@ -89,6 +89,31 @@ export default class LogsHomeService {
       );
   }
 
+  enableIam(serviceName, service) {
+    return this.$http
+      .put(`/dbaas/logs/${serviceName}`, {
+        displayName: service.displayName,
+        enableIam: true,
+      })
+      .then((operation) => {
+        return this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+          'logs_iam_enable_success',
+          { accountName: serviceName },
+        );
+      })
+      .catch((err) => {
+        return this.LogsHelperService.handleError(
+          'logs_iam_enable_error',
+          err,
+          {
+            accountName: serviceName,
+          },
+        );
+      });
+  }
+
   /**
    * Updates the current display name information
    *
@@ -101,6 +126,7 @@ export default class LogsHomeService {
     return this.$http
       .put(`/dbaas/logs/${serviceName}`, {
         displayName: service.displayName,
+        enableIam: service.isIamEnabled,
       })
       .then((operation) => {
         return this.LogsHelperService.handleOperation(
@@ -188,11 +214,7 @@ export default class LogsHomeService {
       urls,
       this.LogsConstants.URLS.GRAYLOG_WEBUI,
     );
-    set(
-      object,
-      'graylogEntryPoint',
-      graylogWebuiUrl.replace('https://', '').replace('/api', ''),
-    );
+    set(object, 'graylogEntryPoint', new URL(graylogWebuiUrl).hostname);
     return object;
   }
 

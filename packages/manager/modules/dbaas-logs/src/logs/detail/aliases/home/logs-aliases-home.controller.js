@@ -19,11 +19,16 @@ export default class LogsAliasesHomeCtrl {
     this.$translate = $translate;
     this.$window = $window;
     this.ouiDatagridService = ouiDatagridService;
-    this.serviceName = this.$stateParams.serviceName;
     this.LogsAliasesService = LogsAliasesService;
     this.LogsIndexService = LogsIndexService;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
+  }
+
+  $onInit() {
+    this.columnsParameters = [
+      { name: 'isEditable', hidden: this.service.isIamEnabled },
+    ];
   }
 
   loadAliases({ offset, pageSize = 1, sort, criteria }) {

@@ -4,27 +4,32 @@ export default class LogsAccountSetupCtrl {
     $q,
     $state,
     $stateParams,
+    coreURLBuilder,
     CucControllerHelper,
     CucCloudMessage,
     LogsAccountService,
     LogsHomeService,
     LogsDetailService,
+    LogsConstants,
   ) {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.serviceName = this.$stateParams.serviceName;
+    this.coreURLBuilder = coreURLBuilder;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.LogsAccountService = LogsAccountService;
     this.LogsHomeService = LogsHomeService;
     this.LogsDetailService = LogsDetailService;
+    this.LogsConstants = LogsConstants;
     this.passwordRules = this.LogsAccountService.getPasswordRules(false);
 
     this.initLoaders();
   }
 
   initLoaders() {
+    this.iamUrl = this.coreURLBuilder.buildURL('iam', '/#');
     this.service = this.CucControllerHelper.request
       .getHashLoader({
         loaderFunction: () =>
@@ -41,7 +46,6 @@ export default class LogsAccountSetupCtrl {
         loaderFunction: () =>
           this.LogsHomeService.getAccountDetails(this.serviceName).then(
             (account) => {
-              this.fullName = `${account.me.firstname} ${account.me.name}`;
               return account;
             },
           ),
@@ -69,5 +73,21 @@ export default class LogsAccountSetupCtrl {
         { reload: true },
       );
     });
+  }
+
+  enableIam() {
+    this.CucCloudMessage.flushChildMessage();
+    this.enableIam = this.CucControllerHelper.request.getArrayLoader({
+      loaderFunction: () =>
+        this.LogsHomeService.enableIam(this.serviceName, this.service),
+      successHandler: () =>
+        this.$state.go(
+          'dbaas-logs.detail.home',
+          { serviceName: this.serviceName },
+          { reload: true },
+        ),
+      errorHandler: () => this.CucControllerHelper.scrollPageToTop(),
+    });
+    return this.enableIam.load();
   }
 }

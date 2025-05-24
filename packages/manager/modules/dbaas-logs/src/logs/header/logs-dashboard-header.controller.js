@@ -12,6 +12,11 @@ export default class LogsDashboardHeaderCtrl {
   $onInit() {
     this.initLoaders();
     this.guides = this.LogsHelperService.getGuides();
+    this.LogsDetailService.getServiceDetails(this.serviceName).then(
+      (service) => {
+        this.iamEnabled = service.isIamEnabled;
+      },
+    );
   }
 
   initLoaders() {
