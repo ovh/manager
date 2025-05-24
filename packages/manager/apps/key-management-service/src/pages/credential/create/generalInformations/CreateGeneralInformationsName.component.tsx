@@ -54,8 +54,9 @@ const CreateGeneralInformationsName = ({
         </OdsText>
       </div>
       <OdsInput
-        name="input-service-key-name"
-        aria-label="input-service-key-name"
+        data-testid="input-name"
+        name="name"
+        aria-label="name"
         type={ODS_INPUT_TYPE.text}
         hasError={!!credentialNameError}
         isRequired
