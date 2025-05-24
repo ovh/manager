@@ -203,7 +203,7 @@ export default class LogsAliasesService {
         );
       })
       .catch((err) =>
-        this.LogsHelperService.handleError('logs_aliases_create_success', err, {
+        this.LogsHelperService.handleError('logs_aliases_create_error', err, {
           aliasName: alias.suffix,
         }),
       );
