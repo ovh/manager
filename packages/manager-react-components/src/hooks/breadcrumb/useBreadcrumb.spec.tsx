@@ -62,6 +62,39 @@ describe('useBreadcrumb', () => {
     expect(current[0].href).toBe('/#/vrack-services/vrackServices');
   });
 });
+
+describe('useBreadcrumb', () => {
+  it('should return an array of breadcrumb item without test label', async () => {
+    beforeEach(() => {
+      vitest.mock('react-router-dom', async () => ({
+        ...(await vitest.importActual('react-router-dom')),
+        useLocation: () => ({
+          pathname: 'vrackServices/test',
+        }),
+      }));
+    });
+    const { result } = renderHook(
+      () =>
+        useBreadcrumb({
+          rootLabel: 'vRack services',
+          appName: 'vrack-services',
+          ignoredLabel: ['test'],
+        }),
+      {
+        wrapper,
+      },
+    );
+    const { current } = result;
+    expect(current.length).toBe(3);
+    expect(current[0].label).toBe('vrackServices');
+    expect(current[0].href).toBe('/#/vrack-services/vrackServices');
+    expect(current[1].label).toBe('789789789');
+    expect(current[1].href).toBe('/#/vrack-services/789789789');
+    expect(current[2].label).toBe('listing');
+    expect(current[2].href).toBe('/#/vrack-services/listing');
+  });
+});
+
 describe('useBreadcrumb', () => {
   it('should return an array with 3 breadcrumb items', async () => {
     beforeEach(() => {
