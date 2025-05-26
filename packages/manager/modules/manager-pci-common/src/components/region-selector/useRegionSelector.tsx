@@ -1,5 +1,9 @@
 import { useMemo, useState } from 'react';
-import { TLocalisation, useProjectLocalisation } from './useRegions';
+import {
+  TContinent,
+  TLocalisation,
+  useProjectLocalisation,
+} from './useRegions';
 
 interface RegionSelectorProps {
   projectId: string;
@@ -12,7 +16,9 @@ export function useRegionSelector({
   onSelectRegion,
   regionFilter,
 }: Readonly<RegionSelectorProps>) {
-  const [selectedContinent, setSelectedContinent] = useState(null);
+  const [selectedContinent, setSelectedContinent] = useState<TContinent | null>(
+    null,
+  );
   const [selectedMacroRegion, setSelectedMacroRegion] = useState(null);
   const [selectedMicroRegion, setSelectedMicroRegion] = useState(null);
   const query = useProjectLocalisation(projectId);
