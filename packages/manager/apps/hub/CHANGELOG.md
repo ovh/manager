@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.13.4...@ovh-ux/manager-hub-app@0.14.0) (2025-05-26)
+
+
+### Features
+
+* **hub:** update the service wording in the hub ([51bc841](https://github.com/ovh/manager/commit/51bc841dd29e6296e07923bed61bd172afabba26)), closes [#MANAGER-16272](https://github.com/ovh/manager/issues/MANAGER-16272)
+
+
+
+
+
 ## [0.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.13.3...@ovh-ux/manager-hub-app@0.13.4) (2025-05-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app
