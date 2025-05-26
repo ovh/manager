@@ -1,7 +1,7 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 const moduleName = 'ovhManagerDedicatedIcebergUtilsServices';
-export const name = 'icerbergUtils';
+export const name = 'icebergUtils';
 
 class IcebergUtilsServices {
   /* @ngInject */
@@ -30,20 +30,12 @@ class IcebergUtilsServices {
       .sort(sort || defaultFilterColumn, sortOrder);
 
     if (filters?.length > 0) {
-      request = IcebergUtilsServices.constructor.filterIceberg(
-        request,
-        filters,
-      );
+      request = IcebergUtilsServices.filterIceberg(request, filters);
     }
 
-    return this.$q
-      .resolve(
-        request.execute(
-          urlParams,
-          isCacheDisabled ? { headers: { Pragma: 'no-cache' } } : true,
-        ).$promise,
-      )
-      .then(({ data, headers }) => ({
+    return request
+      .execute(urlParams, isCacheDisabled)
+      .$promise.then(({ data, headers }) => ({
         data,
         meta: {
           totalCount: headers['x-pagination-elements'],

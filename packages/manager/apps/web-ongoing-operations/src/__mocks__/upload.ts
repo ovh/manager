@@ -1,19 +1,5 @@
 import { TOngoingOperations, TArgument } from '@/types';
 
-export const uploadDomain: TOngoingOperations = {
-  id: 3,
-  domain: 'case-where-modal-is-document.ovh',
-  status: 'todo',
-  comment: '"Domain is scheduled for deletion on 2026-08-24 12:58:23"',
-  function: 'DomainRegistryDelete',
-  todoDate: '2026-08-24T12:58:23+02:00',
-  canCancel: true,
-  lastUpdate: '2024-09-03T23:39:14.483641+02:00',
-  canRelaunch: false,
-  creationDate: '2024-05-24T15:20:01.946487+02:00',
-  canAccelerate: false,
-};
-
 export const uploadArgument: { data: TArgument[] } = {
   data: [
     {

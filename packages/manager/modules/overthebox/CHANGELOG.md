@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.24.0...@ovh-ux/manager-overthebox@6.24.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4030] ([9d4ff63](https://github.com/ovh/manager/commit/9d4ff63338619d8a9df83dbaa4e41a17fcff667d))
+* **i18n:** add missing translations [CDS 4031] ([bed6b78](https://github.com/ovh/manager/commit/bed6b7860bef87342ed0a09217f9cecfd3dfec7c))
+* remove unused translations [CDS] ([53394aa](https://github.com/ovh/manager/commit/53394aa6ef4341ac89246cf5813337ee5b7cd41e))
+
+
+
+
+
+# [6.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.23.2...@ovh-ux/manager-overthebox@6.24.0) (2025-05-12)
+
+
+### Bug Fixes
+
+* **telecom.overthebox:** clean no used anymore code on autoconfig ([#16912](https://github.com/ovh/manager/issues/16912)) ([f3882ad](https://github.com/ovh/manager/commit/f3882adf3ae842a9047aed50dee7ed13191e5739)), closes [#MANAGER-17181](https://github.com/ovh/manager/issues/MANAGER-17181)
+
+
+### Features
+
+* **otb-ipv6:** adding a checkbox to enable ipv6 ([#16600](https://github.com/ovh/manager/issues/16600)) ([6652cfb](https://github.com/ovh/manager/commit/6652cfb8076c5be56f9f26ae843273a9a73732f8)), closes [#UXCT-713](https://github.com/ovh/manager/issues/UXCT-713)
+
+
+
+
+
 ## [6.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.23.1...@ovh-ux/manager-overthebox@6.23.2) (2025-04-30)
 
 

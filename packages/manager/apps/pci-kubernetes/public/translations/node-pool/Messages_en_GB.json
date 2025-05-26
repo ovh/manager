@@ -34,8 +34,8 @@
   "kube_common_min_max_nodes": "Min {{minNodes}}, Max {{maxNodes}}",
   "kube_common_estimation_price": "Free during the beta phase.",
   "kube_common_cluster_estimation_price": "Managed control plane:",
-  "kube_common_node_pool_deploy_title": "Choice of availability zone",
-  "kube_common_node_pool_deploy_description": "In a Kubernetes cluster spread across three availability zones (AZs), the use of node pools per zone is recommended to ensure resilience and high availability. This configuration allows you to distribute your workloads evenly across the AZ. This improves fault tolerance and ensures optimal continuity of service.",
+  "kube_common_node_pool_deploy_title": "Choosing an availability zone",
+  "kube_common_node_pool_deploy_description": "To achieve high availability and resilience within a three-zone Kubernetes cluster, we recommend deploying one node pool per zone. This configuration allows you to distribute your workloads evenly across the AZ. In addition, it improves fault tolerance and ensures service uptime.",
   "kube_node_pool": "Configure node pool",
   "kube_common_estimation_price_free": "Free"
 }

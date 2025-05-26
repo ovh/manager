@@ -44,6 +44,7 @@ export const OWNER_REGEX = /^[A-Za-z0-9]+$/;
 
 export const DOMAIN_REGEX = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+export const containsLowercase = (s: string) => !!(s && /[a-z]/.test(s));
 export const containsUppercase = (s: string) => !!(s && /[A-Z]/.test(s));
 export const containsDigit = (s: string) => !!(s && /\d/.test(s));
 export const containsSpecial = (s: string) =>
@@ -111,6 +112,8 @@ export const baseEmailAccountSchema = z.object({
   firstName: z.string().optional(),
   displayName: z.string().optional(),
   offer: z.enum([ZimbraOffer.STARTER, ZimbraOffer.PRO]).optional(),
+  hideInGal: z.boolean().optional(),
+  forceChangePasswordAfterLogin: z.boolean().optional(),
 });
 
 export const addEmailAccountSchema = baseEmailAccountSchema.merge(withPassword);

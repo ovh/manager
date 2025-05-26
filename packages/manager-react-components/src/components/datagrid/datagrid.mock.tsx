@@ -1,10 +1,15 @@
 import { FilterCategories } from '@ovh-ux/manager-core-api';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { DataGridTextCell } from './text-cell.component';
+import { ActionMenu } from '../navigation';
+import { DatagridColumn, DatagridColumnTypes } from './datagrid.component';
+import { IamObject } from '../../hooks';
 
 export interface Item {
   label: string;
   price: number;
   status: string;
+  iam: IamObject;
 }
 
 export const columns = [
@@ -24,7 +29,7 @@ export const columns = [
   },
 ];
 
-export const columnsFilters = [
+export const columnsFilters: DatagridColumn<unknown>[] = [
   {
     id: 'label',
     cell: (item: Item) => {
@@ -45,6 +50,38 @@ export const columnsFilters = [
   },
 ];
 
+export const columnsFiltersWithTags: DatagridColumn<unknown>[] = [
+  {
+    id: 'label',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.label}</DataGridTextCell>;
+    },
+    label: 'Label',
+    isFilterable: true,
+    comparator: FilterCategories.String,
+  },
+  {
+    id: 'price',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+    },
+    label: 'Price',
+    isFilterable: true,
+    comparator: FilterCategories.String,
+  },
+  {
+    id: 'Tags',
+    cell: (item: Item) => {
+      return (
+        <DataGridTextCell>{JSON.stringify(item.iam?.tags)}</DataGridTextCell>
+      );
+    },
+    label: 'Tags',
+    isFilterable: true,
+    type: DatagridColumnTypes.Tags,
+  },
+];
+
 export const columnsVisibility = [
   {
     id: 'label',
@@ -61,6 +98,29 @@ export const columnsVisibility = [
     },
     label: 'Price',
     enableHiding: true,
+  },
+  {
+    id: 'actions',
+    cell: (item: Item) => {
+      return (
+        <div className="flex items-center justify-center">
+          <ActionMenu
+            id={item.label.replace(/Item #/g, '')}
+            items={[
+              {
+                id: 1,
+                onClick: () => console.log(`Action on ${item.label}`),
+                label: `Action on ${item.label}`,
+              },
+            ]}
+            variant={ODS_BUTTON_VARIANT.ghost}
+            isCompact
+          />
+        </div>
+      );
+    },
+    label: '',
+    enableHiding: false,
   },
 ];
 

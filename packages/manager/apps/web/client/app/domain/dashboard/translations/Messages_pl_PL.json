@@ -644,7 +644,7 @@
   "domain_tab_TASKS_status_CANCELLED": "Anulowane",
   "domain_tab_TASKS_status_DOING": "W realizacji",
   "domain_tab_TASKS_status_DONE": "Zakończona",
-  "domain_tab_TASKS_status_ERROR": "Do wykonania",
+  "domain_tab_TASKS_status_ERROR": "Błąd",
   "domain_tab_TASKS_status_TODO": "Zaplanowana",
   "domain_order_start10M_choose_duration": "Wybierz czas abonamentu hostingu Start10M.",
   "domain_order_start10M_duration_choosed": "Kliknij \"Dalej\", aby kontynuować.",

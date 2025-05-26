@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.9.1...@ovh-ux/manager-pci-object-storage-app@0.10.0) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4030] ([9d4ff63](https://github.com/ovh/manager/commit/9d4ff63338619d8a9df83dbaa4e41a17fcff667d))
+* **i18n:** add missing translations [CDS 4031] ([bed6b78](https://github.com/ovh/manager/commit/bed6b7860bef87342ed0a09217f9cecfd3dfec7c))
+
+
+### Features
+
+* **pci-common:** add deployment tiles ([#16256](https://github.com/ovh/manager/issues/16256)) ([ca99da8](https://github.com/ovh/manager/commit/ca99da834817209988495df0cdc5a727d5331e29)), closes [#TAPC-2442](https://github.com/ovh/manager/issues/TAPC-2442)
+
+
+
+
+
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.9.0...@ovh-ux/manager-pci-object-storage-app@0.9.1) (2025-05-20)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** apply correct style for tags ([96958b5](https://github.com/ovh/manager/commit/96958b58022fab61b52e51f927dab6339a524fff)), closes [#TAPC-3559](https://github.com/ovh/manager/issues/TAPC-3559) [#TAPC-3124](https://github.com/ovh/manager/issues/TAPC-3124)
+
+
+
+
+
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.8.0...@ovh-ux/manager-pci-object-storage-app@0.9.0) (2025-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3970] ([c66b0ed](https://github.com/ovh/manager/commit/c66b0edc69907ee7682de6fc469f2693dbc97bb5))
+* **i18n:** add missing translations [CDS 4000] ([f065814](https://github.com/ovh/manager/commit/f0658149ca7294361082ef49ed4d795b42ed0dc8))
+* **i18n:** add missing translations [CDS 4017] ([e02aa4a](https://github.com/ovh/manager/commit/e02aa4af4043c7909fd978f324891e5751cc7a64))
+
+
+### Features
+
+* **mrc:** add iam tags filter on apiv6 iceberg call ([#16911](https://github.com/ovh/manager/issues/16911)) ([f52c2b1](https://github.com/ovh/manager/commit/f52c2b15714b624468132ac587602fe753d40174)), closes [#MANAGER-17692](https://github.com/ovh/manager/issues/MANAGER-17692)
+* **mrc:** bump ods 18.6.2 ([da8d233](https://github.com/ovh/manager/commit/da8d23327c353dda493f395d303ed128a2976c14)), closes [#MANAGER-17692](https://github.com/ovh/manager/issues/MANAGER-17692)
+
+
+
+
+
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.7.2...@ovh-ux/manager-pci-object-storage-app@0.8.0) (2025-05-12)
+
+
+### Features
+
+* **pci-object-storage:** add new standard infrequent access ([a0f7673](https://github.com/ovh/manager/commit/a0f76734de8020b4debee1ee6548609c26ce6f9f)), closes [#TAPC-2954](https://github.com/ovh/manager/issues/TAPC-2954) [#TAPC-3642](https://github.com/ovh/manager/issues/TAPC-3642) [#TAPC-3932](https://github.com/ovh/manager/issues/TAPC-3932) [#TAPC-4030](https://github.com/ovh/manager/issues/TAPC-4030)
+* **pci-object-storage:** tracking versioning ([bd98091](https://github.com/ovh/manager/commit/bd980917e01a250a097f68038c1cfea766d2bb59)), closes [#TAPC-3243](https://github.com/ovh/manager/issues/TAPC-3243)
+
+
+
+
+
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.7.1...@ovh-ux/manager-pci-object-storage-app@0.7.2) (2025-05-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.7.0...@ovh-ux/manager-pci-object-storage-app@0.7.1) (2025-05-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.6.3...@ovh-ux/manager-pci-object-storage-app@0.7.0) (2025-05-05)
 
 

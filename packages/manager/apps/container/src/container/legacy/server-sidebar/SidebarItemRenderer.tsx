@@ -80,7 +80,7 @@ export default function ServerSidebarItemRenderer({
       <ServerSidebarSearchField item={item} onUpdate={updateHandler} />
     );
   } else if (item.isNoResultField) {
-    itemRender = <div>{t('sidebar_no_result')}</div>;
+    itemRender = !item.parent?.ignoreSearch ? <div>{t('sidebar_no_result')}</div> : <></>;
   } else if (hasToggle) {
     const chevron = item.isOpen
       ? ODS_ICON_NAME.CHEVRON_DOWN

@@ -9,7 +9,7 @@
   "dedicated_server_dashboard_remove_hack_button": "Desbloquear",
   "dedicated_server_dashboard_remove_hack_success": "O pedido de remover o estado \"hacked\" está a ser processado.",
   "dedicated_server_dashboard_remove_hack_fail": "Ocorreu um pedido aquando do pedido de desbloqueio do seu servidor.",
-  "dedicated_server_dashboard_close_service": "Eliminar o meu serviço",
+  "dedicated_server_dashboard_close_service": "Rescindir o meu serviço",
   "dedicated_server_dashboard_monitoring": "Monitorização",
   "dedicated_server_dashboard_monitoring_activated": "Ativado",
   "dedicated_server_dashboard_monitoring_disabled": "Desativado",

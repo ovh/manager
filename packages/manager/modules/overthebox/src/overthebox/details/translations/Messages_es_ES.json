@@ -99,7 +99,6 @@
   "overTheBox_change_offer": "Cambiar de plan",
   "overTheBox_release_channel_deprecated": "Versión obsoleta {{version}}",
   "overTheBox_detail_ips": "IP",
-  "overTheBox_detail_ip_v4": "IPv4",
-  "overTheBox_detail_ip_v6": "IPv6",
-  "overTheBox_model_ips_unknown": "IP no encontradas"
+  "overTheBox_model_ips_unknown": "IP no encontradas",
+  "overTheBox_enabled_ipv6_error": "Se ha producido un error al activar la IPv6. Si el error persiste, contacte con el soporte."
 }

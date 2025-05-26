@@ -50,23 +50,17 @@ export default class {
         target: this.fetchTarget(),
       })
       .then(({ catalog, expressURL, service, target }) =>
-        this.fetchServiceOptionPlanCode(target).then((planCode) => ({
-          catalog,
-          expressURL,
-          service,
-          planCode,
-        })),
-      )
-      .then(({ catalog, expressURL, service, planCode }) => {
-        this.expressURL = expressURL;
-        this.service = service;
+        this.fetchServiceOptionPlanCode(target).then(({ planCode }) => {
+          this.expressURL = expressURL;
+          this.service = service;
 
-        this.plan = this.getPlanFromCatalog(planCode, catalog);
+          this.plan = this.getPlanFromCatalog(planCode, catalog);
 
-        [this.bindings.renewalPeriod] = this.plan.details.pricings[
-          `${ORDER_PARAMETERS.pricingModePrefix}${service.servicePackName}`
-        ];
-      });
+          [this.bindings.renewalPeriod] = this.plan.details.pricings[
+            `${ORDER_PARAMETERS.pricingModePrefix}${service.servicePackName}`
+          ];
+        }),
+      );
   }
 
   fetchServiceOptionPlanCode(target) {
@@ -76,15 +70,12 @@ export default class {
 
     return this.$http
       .get(`/order/cartServiceOption/privateCloud/${this.productId}`)
-      .then((data) => get(data, 'data'))
-      .then((options) =>
-        find(
-          options,
+      .then(({ data }) =>
+        data.find(
           ({ planCode, family }) =>
             planCode === targetPlanCode && family === targetFamily,
         ),
-      )
-      .then(({ planCode }) => planCode);
+      );
   }
 
   fetchInitialData() {

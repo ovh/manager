@@ -2,17 +2,14 @@ import { describe, it } from 'vitest';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import userEvent from '@testing-library/user-event';
 import { waitFor } from '@testing-library/react';
-import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 import { urls } from '@/routes/routes.constants';
 import {
   assertModalVisibility,
   getButtonByLabel,
   assertModalText,
-  changeInputValueByLabelText,
   getButtonByIcon,
   labels,
   renderTest,
-  assertDisabled,
   assertEnabled,
 } from '@/test-utils';
 
@@ -37,18 +34,12 @@ describe('Vrack Services delete test suite', () => {
 
     await assertModalText({
       container,
-      text: labels.common.modalDeleteVrackServicesHeadline,
+      text: labels.deleteModal.deleteModalDescription,
     });
+
     const submitButton = await getButtonByLabel({
       container,
-      value: labels.actions.delete,
-      nth: 2,
-    });
-    await assertDisabled(submitButton);
-
-    await changeInputValueByLabelText({
-      inputLabel: labels.common.modalDeleteVrackServicesInputLabel,
-      value: 'TERMINATE',
+      value: labels.deleteModal.deleteModalDeleteButton,
     });
 
     await assertEnabled(submitButton);

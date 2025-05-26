@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.21.2...@ovh-ux/manager-cloud-connect@1.21.3) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4020] ([287dc03](https://github.com/ovh/manager/commit/287dc03f5f1b3e5ebb9bc514cabe0d12989a4ada))
+* remove unused translations [CDS] ([53394aa](https://github.com/ovh/manager/commit/53394aa6ef4341ac89246cf5813337ee5b7cd41e))
+
+
+
+
+
+## [1.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.21.1...@ovh-ux/manager-cloud-connect@1.21.2) (2025-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4000] ([f065814](https://github.com/ovh/manager/commit/f0658149ca7294361082ef49ed4d795b42ed0dc8))
+* **i18n:** add missing translations [CDS 4012] ([dd2d7d8](https://github.com/ovh/manager/commit/dd2d7d837dd48025b32a5500331dc1c213e7ea3a))
+* **i18n:** add missing translations [CDS 4017] ([e02aa4a](https://github.com/ovh/manager/commit/e02aa4af4043c7909fd978f324891e5751cc7a64))
+* remove unused translations [CDS] ([cb0eb6a](https://github.com/ovh/manager/commit/cb0eb6ab78ed3f8c0c15e19e5c0f5236b76556e3))
+
+
+
+
+
+## [1.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.21.0...@ovh-ux/manager-cloud-connect@1.21.1) (2025-05-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3961] ([65225e1](https://github.com/ovh/manager/commit/65225e1393af8dcd96359bfcc075f705b29dc663))
+* **i18n:** add missing translations [CDS 3966] ([db15830](https://github.com/ovh/manager/commit/db158309d6532d9b37f2d2c1f6f1efc53d418fc0))
+* remove unused translations [CDS] ([385b00e](https://github.com/ovh/manager/commit/385b00ea5403f6f3eb25151b274f17f85a87a624))
+
+
+
+
+
 # [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.20.5...@ovh-ux/manager-cloud-connect@1.21.0) (2025-04-29)
 
 

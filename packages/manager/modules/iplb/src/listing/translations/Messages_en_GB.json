@@ -1,5 +1,5 @@
 {
-  "iplb_listing_action_delete": "Delete my service",
+  "iplb_listing_action_delete": "Cancel my service",
   "iplb_listing_action_detail": "View my service details",
   "iplb_terminate_service": "Delete my service",
   "iplb_terminate_service_warning": "Please confirm that you want to delete your service",

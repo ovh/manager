@@ -23,9 +23,9 @@ export default function SubnetsOnboarding() {
     <PageLayout>
       <OnboardingLayout
         moreInfoButtonLabel={t('createSubnetButtonLabel')}
-        onmoreInfoButtonClick={navigateToCreateSubnetPage}
-        moreInfoIcon={ODS_ICON_NAME.plus}
-        isMoreInfoDisabled={!isEditable(vs)}
+        onMoreInfoButtonClick={navigateToCreateSubnetPage}
+        moreInfoButtonIcon={ODS_ICON_NAME.plus}
+        isMoreInfoButtonDisabled={!isEditable(vs)}
         title={t('subnetsOnboardingTitle')}
         description={t('subnetsOnboardingDescription')}
         img={{ src: onboardingImgSrc }}

@@ -1,0 +1,13 @@
+{
+  "pci_instances_onboarding_not_created_message": "Non hai ancora creato istanze.",
+  "pci_instances_onboarding_content_message_1": "Implementa la tua istanza scegliendo tra una vasta gamma di modelli e approfitta della flessibilità del Cloud per sviluppare la tua attività.",
+  "pci_instances_onboarding_content_message_2": "Nel nostro catalogo di istanze, scegli il modello più adatto alle tue esigenze tra la gamma Sandbox, con risorse condivise, la gamma Guaranteed Resources, con prestazioni costanti per le applicazioni più esigenti, la gamma GPU, ideale per calcoli paralleli, e la gamma IOPS, per database e Big Data.",
+  "pci_instances_onboarding_advice_message": "In qualsiasi momento, hai la possibilità di aumentare la capacità delle tue istanze in base alle tue necessità. È inoltre possibile optare per le istanze di tipo Flex, che permettono anche di ridurre questa capacità.",
+  "pci_instances_onboarding_guide_title": "Tutorial",
+  "pci_instances_onboarding_create_instance_title": "Crea un’istanza dallo Spazio Cliente OVH",
+  "pci_instances_onboarding_post_install_script_title": "Eseguire uno script durante la creazione di un’istanza",
+  "pci_instances_onboarding_back_up_instance_title": "Effettuare il backup di un’istanza",
+  "pci_instances_onboarding_instance_introduction_title": "Introduzione alle istanze e altre nozioni Cloud",
+  "pci_instances_onboarding_create_instance_description": "Come creare un’istanza Public Cloud",
+  "pci_instances_onboarding_back_up_instance_description": "Scopri come effettuare il backup di un’istanza Public Cloud in pochi click"
+}

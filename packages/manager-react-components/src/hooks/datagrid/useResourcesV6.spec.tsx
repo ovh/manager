@@ -7,11 +7,11 @@ import {
 } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import {
-  IcebergFetchParamsV6,
   FilterCategories,
   FilterComparator,
+  FilterTypeCategories,
 } from '@ovh-ux/manager-core-api';
-import { ResourcesV6Hook, useResourcesV6 } from './useResourcesV6';
+import { ResourcesV6Params, useResourcesV6 } from './useResourcesV6';
 
 vitest.mock('@tanstack/react-query', async () => {
   const originalModule = await vitest.importActual('@tanstack/react-query');
@@ -21,9 +21,9 @@ vitest.mock('@tanstack/react-query', async () => {
   };
 });
 
-const renderUseResourcesV6Hook = (
-  hookParams: Partial<IcebergFetchParamsV6 & ResourcesV6Hook> = {},
-) => {
+function renderUseResourcesV6Hook<T>(
+  hookParams: Partial<ResourcesV6Params<T>> = {},
+) {
   const queryClient = new QueryClient();
 
   const wrapper = ({ children }: React.PropsWithChildren) => (
@@ -33,24 +33,20 @@ const renderUseResourcesV6Hook = (
   const columns = [
     {
       id: 'name',
-      header: 'name',
       label: 'name',
-      accessorKey: 'name',
       comparator: FilterCategories.String,
       isFilterable: true,
       isSearchable: true,
-      type: 'string',
+      type: FilterTypeCategories.String,
       cell: (props: any) => <div>{props.name}</div>,
     },
     {
       id: 'age',
-      header: 'age',
       label: 'age',
-      accessorKey: 'age',
-      comparator: FilterCategories.String,
+      comparator: FilterCategories.Numeric,
       isSearchable: true,
       isFilterable: true,
-      type: 'number',
+      type: FilterTypeCategories.Numeric,
       cell: (props: any) => <div>{props.name}</div>,
     },
   ];
@@ -67,7 +63,7 @@ const renderUseResourcesV6Hook = (
       wrapper,
     },
   );
-};
+}
 
 const mockData = {
   data: [...Array(26).keys()].map((_, i) => ({
@@ -103,7 +99,7 @@ describe('useResourcesV6', () => {
     act(() => hook.rerender());
     act(() => hook.result.current.fetchNextPage());
     act(() => hook.rerender());
-    const { flattenData } = hook.result.current as {
+    const { flattenData } = hook.result.current as unknown as {
       flattenData: { name: string }[];
     };
     expect(new Set(flattenData.map((data) => data.name)).size).toEqual(
@@ -282,5 +278,51 @@ describe('useResourcesV6', () => {
       const { current } = result;
       expect(current.flattenData.length).toBe(0);
     });
+  });
+
+  it('should use the custom queryFn when provided', async () => {
+    const customQueryFn = vitest.fn().mockResolvedValue({
+      data: [{ name: 'Custom Data', age: 99 }],
+    });
+
+    (useQuery as jest.Mock).mockImplementationOnce(({ queryFn }) => ({
+      data: queryFn(),
+      error: null,
+      isLoading: false,
+      hasNextPage: true,
+      staleTime: 3000,
+      retry: false,
+    }));
+
+    renderUseResourcesV6Hook({
+      queryFn: customQueryFn,
+    });
+
+    expect(customQueryFn).toHaveBeenCalledTimes(1);
+    expect(customQueryFn).toHaveBeenCalledWith('/dedicated/nasha');
+  });
+
+  it('should apply defaultSorting when provided', async () => {
+    const defaultSorting = { id: 'age', desc: true };
+
+    const { result } = renderUseResourcesV6Hook({ defaultSorting });
+
+    waitFor(() => {
+      const { flattenData } = result.current;
+      // With descending sort on age, first item should have highest age
+      expect(flattenData[0].age).toBe(25);
+    });
+  });
+
+  it('should use the provided refetchInterval function', async () => {
+    const mockRefetchInterval = vitest.fn().mockReturnValue(5000);
+
+    renderUseResourcesV6Hook({ refetchInterval: mockRefetchInterval });
+
+    expect(useQuery).toHaveBeenCalledWith(
+      expect.objectContaining({
+        refetchInterval: mockRefetchInterval,
+      }),
+    );
   });
 });

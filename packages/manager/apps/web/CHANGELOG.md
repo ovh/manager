@@ -3,6 +3,114 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.11.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.6...@ovh-ux/manager-web@19.11.7) (2025-05-26)
+
+
+### Bug Fixes
+
+* **web.hosting:** change call api extraSqlPerso by iceberg call ([70f7096](https://github.com/ovh/manager/commit/70f70960e1baf825baa455ad03400321b8320b42)), closes [#MANAGER-18375](https://github.com/ovh/manager/issues/MANAGER-18375)
+
+
+
+
+
+## [19.11.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.5...@ovh-ux/manager-web@19.11.6) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4025] ([e95fb41](https://github.com/ovh/manager/commit/e95fb410146a8140c601438dd6d78072814042f3))
+* remove unused translations [CDS] ([53394aa](https://github.com/ovh/manager/commit/53394aa6ef4341ac89246cf5813337ee5b7cd41e))
+
+
+
+
+
+## [19.11.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.4...@ovh-ux/manager-web@19.11.5) (2025-05-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.11.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.3...@ovh-ux/manager-web@19.11.4) (2025-05-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.2...@ovh-ux/manager-web@19.11.3) (2025-05-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.1...@ovh-ux/manager-web@19.11.2) (2025-05-19)
+
+
+### Bug Fixes
+
+* **web.zone:** update columns name ([#17084](https://github.com/ovh/manager/issues/17084)) ([6f2b914](https://github.com/ovh/manager/commit/6f2b914a2eb2fd0c3c6acb5f2a4788932af962ec)), closes [#MANAGER-17063](https://github.com/ovh/manager/issues/MANAGER-17063)
+
+
+
+
+
+## [19.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.0...@ovh-ux/manager-web@19.11.1) (2025-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3970] ([c66b0ed](https://github.com/ovh/manager/commit/c66b0edc69907ee7682de6fc469f2693dbc97bb5))
+* **i18n:** add missing translations [CDS 3983] ([3de9042](https://github.com/ovh/manager/commit/3de90422652ddaf4f7ef30e43d59050518d22811))
+* **i18n:** add missing translations [CDS 4000] ([f065814](https://github.com/ovh/manager/commit/f0658149ca7294361082ef49ed4d795b42ed0dc8))
+* **i18n:** add missing translations [CDS 4012] ([dd2d7d8](https://github.com/ovh/manager/commit/dd2d7d837dd48025b32a5500331dc1c213e7ea3a))
+
+
+
+
+
+# [19.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.20...@ovh-ux/manager-web@19.11.0) (2025-05-12)
+
+
+### Bug Fixes
+
+* **web:** removing target blank on ongoing-operation links ([#16893](https://github.com/ovh/manager/issues/16893)) ([6b90753](https://github.com/ovh/manager/commit/6b9075385f74a1db7f740b584f0ef3d5d5d2f2d4)), closes [#MANAGER-18123](https://github.com/ovh/manager/issues/MANAGER-18123)
+
+
+### Features
+
+* **web.zone:** add dns server section for zone standalone ([#16859](https://github.com/ovh/manager/issues/16859)) ([af21e8f](https://github.com/ovh/manager/commit/af21e8fb176bf3d0a3c44ff96866eb99b6182793)), closes [#MANAGER-13869](https://github.com/ovh/manager/issues/MANAGER-13869)
+
+
+
+
+
+## [19.10.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.19...@ovh-ux/manager-web@19.10.20) (2025-05-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.10.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.18...@ovh-ux/manager-web@19.10.19) (2025-05-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3961] ([65225e1](https://github.com/ovh/manager/commit/65225e1393af8dcd96359bfcc075f705b29dc663))
+* **i18n:** add missing translations [CDS 3966] ([db15830](https://github.com/ovh/manager/commit/db158309d6532d9b37f2d2c1f6f1efc53d418fc0))
+
+
+
+
+
 ## [19.10.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.10.17...@ovh-ux/manager-web@19.10.18) (2025-05-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

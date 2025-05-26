@@ -77,7 +77,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
 
   return (
     <OdsModal
-      color={ODS_MODAL_COLOR.warning}
+      color={ODS_MODAL_COLOR.critical}
       onOdsClose={close}
       isOpen={isOpen}
     >
@@ -104,7 +104,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
             slot="actions"
             data-testid="manager-delete-modal-cancel"
             variant={ODS_BUTTON_VARIANT.ghost}
-            color={ODS_BUTTON_COLOR.primary}
+            color={ODS_BUTTON_COLOR.critical}
             {...handleClick(close)}
             label={t('deleteModalCancelButton')}
           />
@@ -115,6 +115,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
             {...handleClick(() => {
               onConfirmDelete();
             })}
+            color={ODS_BUTTON_COLOR.critical}
             label={t('deleteModalDeleteButton')}
           />
         </div>

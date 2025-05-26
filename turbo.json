@@ -6,7 +6,8 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "types/**"],
-      "outputLogs": "new-only"
+      "outputLogs": "new-only",
+      "env": ["VERSION"]
     },
     "test": {},
     "dev": {
@@ -16,7 +17,15 @@
     "start": {
       "persistent": true,
       "cache": false,
-      "env": ["VITE_CONTAINER_APP", "CONTAINER"],
+      "env": [
+        "CONTAINER",
+        "LABEU",
+        "LABEU_HOST",
+        "local2API",
+        "REGION",
+        "VERSION",
+        "VITE_CONTAINER_APP"
+      ],
       "dependsOn": ["^dev"]
     }
   }

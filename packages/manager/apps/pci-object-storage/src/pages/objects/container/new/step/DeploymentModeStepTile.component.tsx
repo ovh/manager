@@ -14,6 +14,7 @@ import {
   STORAGE_STANDARD_REGION_PLANCODE,
 } from '@/constants';
 import { useStorageFeatures } from '@/hooks/useStorageFeatures';
+import UseStandardInfrequentAccessAvailability from '@/hooks/useStandardInfrequentAccessAvailability';
 
 export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
   const { t } = useTranslation('containers/add');
@@ -36,19 +37,25 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
 
   const lowestPrice = useMemo(() => {
     const addons = plans
-      ?.filter((p) => p.regions.some((region) => region.type === mode))
+      ?.filter((p) => p.regions?.some((region) => region.type === mode))
       ?.map(({ code }) =>
-        catalog?.addons.find((addon) => addon.planCode === code),
+        catalog?.addons?.find((addon) => addon?.planCode === code),
       )
+      ?.filter(Boolean)
       ?.filter(
-        ({ invoiceName }) => invoiceName === STORAGE_STANDARD_REGION_PLANCODE,
+        (addon) => addon?.invoiceName === STORAGE_STANDARD_REGION_PLANCODE,
       );
-    const pricings = addons?.map((addon) => addon?.pricings?.[0]);
-    return pricings?.sort((a, b) => a.price - b.price)?.[0];
+
+    const pricings = addons
+      ?.map((addon) => addon?.pricings?.[0])
+      ?.filter(Boolean);
+    return pricings?.sort((a, b) => (a?.price || 0) - (b?.price || 0))?.[0];
   }, [mode, plans, catalog]);
 
   const isPending =
     isCatalogPending || isAvailabilityPending || isProductAvailabilityPending;
+
+  const hasStandardInfrequentAccess = UseStandardInfrequentAccessAvailability();
 
   return (
     <div className="p-4">
@@ -56,7 +63,7 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
         preset="paragraph"
         className={clsx('leading-8', isItemSelected && 'font-bold')}
       >
-        <span className="mr-4">
+        <span className={clsx(isItemSelected && 'font-bold', 'mr-4')}>
           {t(
             isLocalZoneAvailable && is3azAvailable
               ? `pci_projects_project_storages_containers_add_deployment_mode_${mode}`
@@ -66,9 +73,7 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
         {OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[mode]?.isMultiZone && (
           <OdsBadge
             size="sm"
-            className={`${
-              isItemSelected ? 'font-bold' : ''
-            } bg-[--ods-color-blue-200]`}
+            className="chip-3AZ"
             label={t(
               `pci_projects_project_storages_containers_add_deployment_mode_${mode}_label`,
             )}
@@ -79,9 +84,7 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
           is3azAvailable && (
             <OdsBadge
               size="sm"
-              className={`${
-                isItemSelected ? 'font-bold' : ''
-              } bg-[--ods-color-blue-200]`}
+              className="chip-1AZ"
               label={t(
                 `pci_projects_project_storages_containers_add_deployment_mode_${mode}_label`,
               )}
@@ -90,9 +93,6 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
         {OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[mode]?.isLocalZone && (
           <OdsBadge
             size="sm"
-            className={`${
-              isItemSelected ? 'font-bold' : ''
-            } bg-[--ods-color-promotion-400] text-[--ods-color-orange-100]`}
             label={t(
               `pci_projects_project_storages_containers_add_deployment_mode_${mode}_label`,
             )}
@@ -106,24 +106,39 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
           )}
         </OdsText>
       </p>
-      <p>
-        {isPending && <OdsSkeleton />}
-        {!isPending && !!lowestPrice && (
-          <OdsText preset="caption" className="caption-price">
+      {hasStandardInfrequentAccess ? (
+        <p>
+          <OdsText preset="caption">
+            <span className="font-bold">
+              {t(
+                `pci_projects_project_storages_containers_add_deployment_mode_classes`,
+              )}
+            </span>
             {t(
-              OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[mode].isMultiZone
-                ? 'pci_projects_project_storages_containers_add_deployment_mode_price'
-                : 'pci_projects_project_storages_containers_add_offers_estimated_price',
-              {
-                price:
-                  getTextPrice(
-                    lowestPrice?.price * HOUR_IN_MONTH * MEGA_BYTES,
-                  ) || '?',
-              },
+              `pci_projects_project_storages_containers_add_deployment_mode_${mode}_classes`,
             )}
           </OdsText>
-        )}
-      </p>
+        </p>
+      ) : (
+        <p>
+          {isPending && <OdsSkeleton />}
+          {!isPending && !!lowestPrice && (
+            <OdsText preset="caption" className="caption-price">
+              {t(
+                OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[mode].isMultiZone
+                  ? 'pci_projects_project_storages_containers_add_deployment_mode_price'
+                  : 'pci_projects_project_storages_containers_add_offers_estimated_price',
+                {
+                  price:
+                    getTextPrice(
+                      lowestPrice?.price * HOUR_IN_MONTH * MEGA_BYTES,
+                    ) || '?',
+                },
+              )}
+            </OdsText>
+          )}
+        </p>
+      )}
     </div>
   );
 }

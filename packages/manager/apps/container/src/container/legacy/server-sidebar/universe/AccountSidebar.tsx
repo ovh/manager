@@ -192,12 +192,43 @@ export default function AccountSidebar() {
       routeMatcher: new RegExp('^/(ticket|support)'),
     });
 
-    if (availability.iam) {
+    if (availability['identity-access-management']) {
       menu.push({
         id: 'iam',
-        label: t('sidebar_account_iam'),
-        href: navigation.getURL('iam', '/'),
+        label: t('sidebar_security_identity_operations'),
         pathMatcher: new RegExp('^/iam'),
+        ignoreSearch: true,
+        subItems: [
+          {
+            id:'iam-identities',
+            href: navigation.getURL('iam', '#/identities'),
+            label: t('sidebar_security_identity_operations_iam_identities'),
+            pathMatcher: new RegExp('^/iam/identities'),
+            ignoreSearch: true,
+          },
+          {
+            id:'iam-policies',
+            href: navigation.getURL('iam', '#/policies'),
+            label: t('sidebar_security_identity_operations_iam_policies'),
+            pathMatcher: new RegExp('^/iam/policies'),
+            ignoreSearch: true,
+          },
+          {
+            id:'iam-api-keys',
+            href: navigation.getURL('iam', '#/api-keys'),
+            label: t('sidebar_security_identity_operations_iam_api-keys'),
+            pathMatcher: new RegExp('^/iam/api-keys'),
+            ignoreSearch: true,
+          },
+          availability['identity-access-management:logs'] && {
+            id:'iam-logs',
+            href: navigation.getURL('iam', '#/logs'),
+            label: t('sidebar_security_identity_operations_iam_logs'),
+            pathMatcher: new RegExp('^/iam/logs'),
+            ignoreSearch: true,
+          },
+        ].filter(Boolean)
+        
       });
     }
     return menu;

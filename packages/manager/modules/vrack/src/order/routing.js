@@ -11,6 +11,16 @@ export default /* @ngInject */ ($stateProvider) => {
         VrackOrderService.createCartWithOneVrack().then(({ data }) => data),
       vrackContracts: /* @ngInject */ (cart, VrackOrderService) =>
         VrackOrderService.getContracts(cart.cartId),
+      isVrackOrderAutoPayAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
+        const vrackOrderAutoPayFeatureId =
+          'vrack:order:autoPayWithPreferredPaymentMethod';
+        return ovhFeatureFlipping
+          .checkFeatureAvailability(vrackOrderAutoPayFeatureId)
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(vrackOrderAutoPayFeatureId),
+          )
+          .catch(() => false);
+      },
     },
   });
 };

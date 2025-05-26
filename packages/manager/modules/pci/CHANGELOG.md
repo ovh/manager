@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.90.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.89.4...@ovh-ux/manager-pci@6.90.0) (2025-05-20)
+
+
+### Features
+
+* **instance:** region sort order and add new badge on 3AZ ([0c45b77](https://github.com/ovh/manager/commit/0c45b77b1ca82d463c6643fe9ee08b46918865cb)), closes [#TAPC-3936](https://github.com/ovh/manager/issues/TAPC-3936)
+* **instance:** remove new on metal flavors category ([e35388b](https://github.com/ovh/manager/commit/e35388b042f8aae8363b8e2f2c22f4f1fdb7c3e9)), closes [#TAPC-3413](https://github.com/ovh/manager/issues/TAPC-3413)
+* **pci:** change delete endpoint for US ([4ec24f4](https://github.com/ovh/manager/commit/4ec24f44d17df9491affb71c013b2c26a4940814)), closes [#TAPC-3786](https://github.com/ovh/manager/issues/TAPC-3786)
+* **pci:** delete modal ([dbf59d6](https://github.com/ovh/manager/commit/dbf59d609826dc91aba87e17e61d5a735b7a25d6)), closes [#TAPC-3783](https://github.com/ovh/manager/issues/TAPC-3783)
+
+
+### Reverts
+
+* Revert "feat(pci): delete modal" ([a78dc73](https://github.com/ovh/manager/commit/a78dc730ed9d2de1fad7f271701084c89e0638e7))
+* Revert "feat(pci): change delete endpoint for US" ([311ef9d](https://github.com/ovh/manager/commit/311ef9dcdc7796861b6d14a7a0a261c518c81609))
+
+
+
+
+
+## [6.89.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.89.3...@ovh-ux/manager-pci@6.89.4) (2025-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3970] ([c66b0ed](https://github.com/ovh/manager/commit/c66b0edc69907ee7682de6fc469f2693dbc97bb5))
+* **i18n:** add missing translations [CDS 4000] ([f065814](https://github.com/ovh/manager/commit/f0658149ca7294361082ef49ed4d795b42ed0dc8))
+* **i18n:** add missing translations [CDS 4012] ([dd2d7d8](https://github.com/ovh/manager/commit/dd2d7d837dd48025b32a5500331dc1c213e7ea3a))
+* **i18n:** add missing translations [CDS 4017] ([e02aa4a](https://github.com/ovh/manager/commit/e02aa4af4043c7909fd978f324891e5751cc7a64))
+
+
+
+
+
+## [6.89.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.89.2...@ovh-ux/manager-pci@6.89.3) (2025-05-12)
+
+
+### Bug Fixes
+
+* **instance:** don't call svp in US ([#16925](https://github.com/ovh/manager/issues/16925)) ([4941e22](https://github.com/ovh/manager/commit/4941e22ffdf3bd4199146487fb91bd9f86f48d23)), closes [#TAPC-4042](https://github.com/ovh/manager/issues/TAPC-4042)
+
+
+
+
+
+## [6.89.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.89.1...@ovh-ux/manager-pci@6.89.2) (2025-05-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3961] ([65225e1](https://github.com/ovh/manager/commit/65225e1393af8dcd96359bfcc075f705b29dc663))
+* **i18n:** add missing translations [CDS 3966] ([db15830](https://github.com/ovh/manager/commit/db158309d6532d9b37f2d2c1f6f1efc53d418fc0))
+
+
+
+
+
+## [6.89.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.89.0...@ovh-ux/manager-pci@6.89.1) (2025-05-06)
+
+
+### Bug Fixes
+
+* **instance:** use flavorGroup prices ([#16914](https://github.com/ovh/manager/issues/16914)) ([#16930](https://github.com/ovh/manager/issues/16930)) ([f6e356c](https://github.com/ovh/manager/commit/f6e356c90ec7f41dcb1b4641827185ed0cf5329b)), closes [#INC0128395](https://github.com/ovh/manager/issues/INC0128395)
+
+
+
+
+
 # [6.89.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.88.0...@ovh-ux/manager-pci@6.89.0) (2025-04-28)
 
 

@@ -15,6 +15,7 @@ import { TContainer } from '@/pages/objects/container/object/show/Show.page';
 
 import { shouldShowVersions } from './useShouldShowVersions';
 import { NameCell } from './NameCell';
+import UseStandardInfrequentAccessAvailability from '@/hooks/useStandardInfrequentAccessAvailability';
 
 export type TIndexedObject = TObject & { index: string };
 
@@ -37,6 +38,8 @@ export const useDatagridColumn = ({
   const { formatBytes } = useBytes();
   const locales = useRef({ ...dateFnsLocales }).current;
   const userLocale = getDateFnsLocale(i18n.language);
+
+  const hasStandardInfrequentAccess = UseStandardInfrequentAccessAvailability();
 
   const columns: DatagridColumn<TIndexedObject>[] = [
     {
@@ -95,7 +98,9 @@ export const useDatagridColumn = ({
           <DataGridTextCell>
             {props.storageClass
               ? t(
-                  `pci_projects_project_storages_containers_container_storage_class_${props.storageClass}`,
+                  hasStandardInfrequentAccess
+                    ? `pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_${props.storageClass}`
+                    : `pci_projects_project_storages_containers_container_storage_class_${props.storageClass}`,
                 )
               : ''}
           </DataGridTextCell>

@@ -74,13 +74,6 @@ export default class ExchangeUpdateAccountCtrl {
         this.updateExchangeAccount();
         this.initFields();
       })
-      .then(() =>
-        this.wucExchange
-          .getSharepointService(this.exchange)
-          .then((sharepoint) => {
-            this.sharepoint = sharepoint;
-          }),
-      )
       .finally(() => {
         this.isFetchingUpdateOptions = false;
       });
@@ -462,15 +455,6 @@ export default class ExchangeUpdateAccountCtrl {
           'exchange_ACTION_update_account_step1_password_placeholder',
         )
       : ' ';
-  }
-
-  shouldDisplaySharepointPasswordWarning() {
-    const isChangingPassword =
-      this.selectedAccount.password != null &&
-      this.selectedAccount.canBeConfigured;
-    const hasSharepoint = this.sharepoint != null;
-
-    return isChangingPassword && hasSharepoint;
   }
 
   switchBetweenPasswordAndTextInput() {

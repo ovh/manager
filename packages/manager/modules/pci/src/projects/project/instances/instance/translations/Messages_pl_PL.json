@@ -22,7 +22,7 @@
   "pci_projects_project_instances_instance_storage_label": "Przestrzeń dyskowa",
   "pci_projects_project_instances_instance_bandwidth_label": "Przepustowość do sieci publicznej",
   "pci_projects_project_instances_instance_bandwidth_value": "{{bandwidth}} Mbps",
-  "pci_projects_project_instances_instance_price_label": "Model płatności",
+  "pci_projects_project_instances_instance_price_label": "Cena za instancję",
   "pci_projects_project_instances_instance_price_month_value": "{{ price }} netto/m-c",
   "pci_projects_project_instances_instance_price_hourly_value": "{{price}} netto/godz.",
   "pci_projects_project_instances_instance_price_action_activeMonthlyBilling_label": "Przejdź na abonament miesięczny",

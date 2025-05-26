@@ -5,6 +5,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getServerContainer, TObject } from '@/api/data/container';
 import { paginateResults, sortResults } from '@/helpers';
+import UseStandardInfrequentAccessAvailability from '@/hooks/useStandardInfrequentAccessAvailability';
 
 export const getContainerQueryKey = ({
   projectId,
@@ -62,6 +63,8 @@ export const usePaginatedObjects = (
     id,
   );
 
+  const hasStandardInfrequentAccess = UseStandardInfrequentAccessAvailability();
+
   return useMemo(
     () => ({
       isLoading,
@@ -72,7 +75,9 @@ export const usePaginatedObjects = (
             container?.objects?.map((object) => ({
               ...object,
               search: `${object.key} ${object.name} ${t(
-                `pci_projects_project_storages_containers_container_storage_class_${object.storageClass}`,
+                hasStandardInfrequentAccess
+                  ? `pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_${object.storageClass}`
+                  : `pci_projects_project_storages_containers_container_storage_class_${object.storageClass}`,
               )}`,
             })) || [],
             filters,

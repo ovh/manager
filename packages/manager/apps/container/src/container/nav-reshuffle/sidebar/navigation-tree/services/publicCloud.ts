@@ -638,7 +638,7 @@ pciNode.children = [
         },
         features: ['pci-ai-endpoints'],
         forceVisibility: true,
-        tag: NodeTag.BETA,
+        tag: NodeTag.NEW,
       },
     ],
   },

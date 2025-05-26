@@ -96,6 +96,7 @@ export const TabsPanel: React.FC<TabsPanelProps> = ({ tabs }) => {
               key={`osds-tab-bar-item-${tab.name}`}
               to={tab.to}
               className="no-underline"
+              tabIndex={-1}
               onClick={(e) => {
                 if (tab.isDisabled) {
                   e.preventDefault();

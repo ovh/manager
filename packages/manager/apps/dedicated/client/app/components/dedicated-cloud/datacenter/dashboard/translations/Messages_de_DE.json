@@ -125,5 +125,7 @@
   "dedicatedCloud_manage_nsx_choice_description_XLARGE": "Verwenden Sie das extragroße Format, wenn Sie eine große Anzahl von BGP-Peers mit dem Edge-Node konfigurieren möchten. Geeignet, wenn der erforderliche Gesamtdurchsatz für den L7-Loadbalancer und das VPN mehrere Gbit/s beträgt.",
   "dedicatedCloud_nsx_task_progress": "Wird ausgeführt",
   "dedicatedCloud_datacenter_nsx_resize_error": "Es ist ein Fehler aufgetreten.",
-  "dedicatedCloud_tab_datacenter_global_information": "Standardmäßig verfügen alle virtuellen NSX-Rechenzentren (VDC) über einen NSX-Edge-Cluster, der aus 2 NSX-Edges besteht. Sie können die Größe der Edges anschließend ändern. Zum Ändern der Größe oder Anzahl der Edges müssen Sie über die dafür erforderlichen Ressourcen verfügen."
+  "dedicatedCloud_tab_datacenter_global_information": "Standardmäßig verfügen alle virtuellen NSX-Rechenzentren (VDC) über einen NSX-Edge-Cluster, der aus 2 NSX-Edges besteht. Sie können die Größe der Edges anschließend ändern. Zum Ändern der Größe oder Anzahl der Edges müssen Sie über die dafür erforderlichen Ressourcen verfügen.",
+  "dedicatedCloud_manage_nsx_vcpu_price": "ab {{ price }} zzgl. MwSt./vCPU/Monat*",
+  "dedicatedCloud_manage_nsx_additionnal_price_informations": "* 2x 4 vCPUs im Standardangebot enthalten"
 }

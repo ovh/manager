@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.11.3...@ovh-ux/manager-pci-load-balancer-app@0.12.0) (2025-05-20)
+
+
+### Features
+
+* **pci-load-balancer:** display price in the deployment mode cards ([56c660f](https://github.com/ovh/manager/commit/56c660fa35f57e18b3b2cb2bbd8736400ae514c5)), closes [#TAPC-3261](https://github.com/ovh/manager/issues/TAPC-3261)
+
+
+
+
+
+## [0.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.11.2...@ovh-ux/manager-pci-load-balancer-app@0.11.3) (2025-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4000] ([f065814](https://github.com/ovh/manager/commit/f0658149ca7294361082ef49ed4d795b42ed0dc8))
+* **i18n:** add missing translations [CDS 4017] ([e02aa4a](https://github.com/ovh/manager/commit/e02aa4af4043c7909fd978f324891e5751cc7a64))
+
+
+
+
+
+## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.11.1...@ovh-ux/manager-pci-load-balancer-app@0.11.2) (2025-05-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.11.0...@ovh-ux/manager-pci-load-balancer-app@0.11.1) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app

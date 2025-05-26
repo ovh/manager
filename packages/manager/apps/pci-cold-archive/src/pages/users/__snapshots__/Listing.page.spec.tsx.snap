@@ -119,6 +119,7 @@ exports[`ListingPage > should match snapshot when is loading false 1`] = `
               </div>
               <div>
                 <ods-select
+                  data-testid="add-operator-username"
                   name="add-operator-username"
                   value="includes"
                 >
@@ -534,6 +535,7 @@ exports[`ListingPage > should match snapshot when is loading true 1`] = `
               </div>
               <div>
                 <ods-select
+                  data-testid="add-operator-username"
                   name="add-operator-username"
                   value="includes"
                 >

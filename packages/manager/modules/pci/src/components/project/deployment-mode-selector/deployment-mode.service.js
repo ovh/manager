@@ -4,6 +4,7 @@ import {
   DEPLOYMENT_MODES_TYPES,
   getDeploymentBetaKey,
   getDeploymentComingSoonKey,
+  getDeploymentNewKey,
 } from './deployment-mode.constant';
 
 export default class DeploymentModeService {
@@ -40,6 +41,7 @@ export default class DeploymentModeService {
           name: d,
           beta: features[getDeploymentBetaKey(d)] || false,
           comingSoon: features[getDeploymentComingSoonKey(d)] || false,
+          new: features[getDeploymentNewKey(d)] || false,
         }));
       },
     );

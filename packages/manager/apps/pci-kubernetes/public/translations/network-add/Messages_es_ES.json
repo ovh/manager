@@ -29,8 +29,8 @@
   "kubernetes_network_form_gateway_mode_custom": "Puerta de enlace predeterminada sobrecargada estáticamente",
   "kubernetes_network_form_gateway_mode_custom_placeholder": "Dirección IP de la puerta de enlace predeterminada",
   "kubernetes_network_form_rebuild": "Atención: Cambiar la estrategia de encaminamiento saliente implica redesplegar los nodos de su cluster en rolling update.",
-  "kubernetes_network_form_notify_users": "Para desplegar Managed Kubernetes en una región con 3 zonas de disponibilidad (3-AZ), es necesaria una subred con una puerta de enlace asociada. Asegúrese de que su red privada cumple estos requisitos para garantizar un funcionamiento óptimo.",
+  "kubernetes_network_form_notify_users": "Para desplegar Managed Kubernetes Service en una región con 3 zonas de disponibilidad (3-AZ), es necesaria una subred con una puerta de enlace asociada. Asegúrese de que su red privada cumple estos requisitos para garantizar un funcionamiento óptimo.",
   "kubernetes_network_form_select_private_option": "Seleccione una red privada",
   "kubernetes_network_form_no_associated_gateway": "Durante la fase beta, un servicio Gateway administrado debe estar asociado a la red privada.",
-  "kubernetes_network_form_no_private_network": "Es necesaria una red privada asociada para configurar su red para su Kubernetes. Le recomendamos que cree una red privada si todavía no dispone de una."
+  "kubernetes_network_form_no_private_network": "Se necesita una red privada asociada para configurar su red para su Kubernetes. Le recomendamos que cree una red privada si todavía no dispone de una."
 }

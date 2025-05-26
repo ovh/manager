@@ -3,6 +3,7 @@
   "pci_project_guides_header_all_guides": "Tous les guides",
   "pci_project_guides_header_all_storage_guides": "Tous les guides stockage et sauvegarde",
   "pci_project_guides_header_first_steps_with_instances": "Premiers pas avec les instances",
+  "pci_project_guides_header_storages_volume_backup_overview": "Créer une sauvegarde d’un volume",
   "pci_project_guides_header_ip_fail_over": "IP fail-over",
   "pci_project_guides_header_user_root_and_password": "Utilisateur root et mot de passe",
   "pci_project_guides_header_reverse_dns": "Reverse DNS",
@@ -30,5 +31,6 @@
   "pci_project_guides_header_deploying_a_custom_model": "Déployer un modèle personnalisé (EN)",
   "pci_project_guides_header_models_definition": "Modèles - définition (EN)",
   "pci_project_guides_header_exporting_a_tensorflow_model": "Exporter un modèle TensorFlow (EN)",
-  "pci_project_guides_header_public_cloud_guides": "Tous les guides Public Cloud"
+  "pci_project_guides_header_public_cloud_guides": "Tous les guides Public Cloud",
+  "pci_project_guides_header_savings_plans": "Comment fonctionnent les Savings Plans ?"
 }

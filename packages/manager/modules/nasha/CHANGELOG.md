@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.19.1...@ovh-ux/manager-nasha@2.20.0) (2025-05-12)
+
+
+### Features
+
+* **dedicated.nasha:** change order funnel to federated module ([#16806](https://github.com/ovh/manager/issues/16806)) ([abfee4d](https://github.com/ovh/manager/commit/abfee4d7a4e6518b82d2a1ec39d0a3236a785c4b)), closes [#ORDER-4085](https://github.com/ovh/manager/issues/ORDER-4085)
+
+
+
+
+
 ## [2.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.19.0...@ovh-ux/manager-nasha@2.19.1) (2025-04-03)
 
 

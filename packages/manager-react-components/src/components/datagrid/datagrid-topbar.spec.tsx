@@ -148,6 +148,9 @@ describe('datagrid topbar', () => {
             onChange: () => null,
           },
         ]}
+        toggleAllColumnsVisible={() => null}
+        getIsAllColumnsVisible={() => true}
+        getIsSomeColumnsVisible={() => true}
       />,
     );
 
@@ -155,9 +158,6 @@ describe('datagrid topbar', () => {
       'datagrid-topbar-visibility-button',
     );
 
-    expect(visibilityElement).toHaveAttribute(
-      'label',
-      'common_topbar_columns ',
-    );
+    expect(visibilityElement).toHaveAttribute('label', 'common_topbar_columns');
   });
 });

@@ -2,7 +2,12 @@ import filter from 'lodash/filter';
 import map from 'lodash/map';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.autorenew.enable', {
+  $stateProvider.state('billing.autorenew.enableRedirection', {
+    url: '/enable?services',
+    redirectTo: 'billing.autorenew.services.enable',
+  });
+
+  $stateProvider.state('billing.autorenew.services.enable', {
     url: '/enable?services',
     component: 'billingAutorenewEnable',
     translations: { value: ['.'], format: 'json' },

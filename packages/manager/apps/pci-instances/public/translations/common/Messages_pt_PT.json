@@ -1,0 +1,11 @@
+{
+  "pci_instances_common_instances_title": "Instâncias CPU",
+  "pci_instances_common_create_instance": "Criar uma instância",
+  "pci_instances_common_new": "Novo",
+  "pci_instances_common_go_back": "Voltar à página anterior",
+  "pci_instances_common_filter": "Filtrar",
+  "pci_instances_common_cancel": "Anular",
+  "pci_instances_common_confirm": "Confirmar",
+  "pci_instances_common_404_error_message": "Foi encontrado um erro 404 « File Not Found ».",
+  "pci_instances_common_pending": "Em curso..."
+}

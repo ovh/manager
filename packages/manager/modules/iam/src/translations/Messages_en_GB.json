@@ -102,6 +102,7 @@
   "iam_resource_type_vmwareCloudDirector/virtualDataCenter": "VDC on OVHcloud",
   "iam_resource_type_vmwareCloudDirectorBackup": "VEEAM backup on OVHcloud",
   "iam_resource_type_publicCloudProject/managedRegistry": "Public Cloud project/Managed Registry",
+  "iam_guide_header_label": "Guides",
   "iam_resource_type_zimbraPlatform": "Zimbra",
   "iam_resource_type_zimbraPlatform/account": "Zimbra/Email account",
   "iam_resource_type_zimbraPlatform/organization": "Zimbra/Organisation"

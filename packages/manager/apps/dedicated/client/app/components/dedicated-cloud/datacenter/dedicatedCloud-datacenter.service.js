@@ -5,10 +5,10 @@ import map from 'lodash/map';
 
 export default class OvhManagerPccDatacenterService {
   /* @ngInject */
-  constructor($http, OvhApiMe, icerbergUtils) {
+  constructor($http, OvhApiMe, icebergUtils) {
     this.OvhApiMe = OvhApiMe;
     this.$http = $http;
-    this.icerbergUtils = icerbergUtils;
+    this.icebergUtils = icebergUtils;
   }
 
   getCommercialRangeName(serviceName, datacenterId) {
@@ -60,7 +60,7 @@ export default class OvhManagerPccDatacenterService {
   }
 
   getNsxtEdgeByDatacenter(serviceName, datacenterId, paginationParams) {
-    return this.icerbergUtils.icebergQuery(
+    return this.icebergUtils.icebergQuery(
       `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,
       paginationParams,
     );

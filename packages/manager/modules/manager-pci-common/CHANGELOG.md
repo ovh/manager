@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.5.0...@ovh-ux/manager-pci-common@2.6.0) (2025-05-23)
+
+
+### Bug Fixes
+
+* **manager-pci-common:** export useVolumes queryKey ([7db3266](https://github.com/ovh/manager/commit/7db3266b7fa368a2b88a3ea837a2b01898b094e7)), closes [#17254](https://github.com/ovh/manager/issues/17254)
+
+
+### Features
+
+* **pci-common:** add 3AZ region and 1AZ chip ([#14672](https://github.com/ovh/manager/issues/14672)) ([dc1aedf](https://github.com/ovh/manager/commit/dc1aedf225081169159588292e353c7b92baad86)), closes [#TAPC-2624](https://github.com/ovh/manager/issues/TAPC-2624)
+* **pci-common:** add deployment tiles ([#16256](https://github.com/ovh/manager/issues/16256)) ([ca99da8](https://github.com/ovh/manager/commit/ca99da834817209988495df0cdc5a727d5331e29)), closes [#TAPC-2442](https://github.com/ovh/manager/issues/TAPC-2442)
+
+
+
+
+
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.4.10...@ovh-ux/manager-pci-common@2.5.0) (2025-05-15)
+
+
+### Features
+
+* **mrc:** bump ods 18.6.2 ([da8d233](https://github.com/ovh/manager/commit/da8d23327c353dda493f395d303ed128a2976c14)), closes [#MANAGER-17692](https://github.com/ovh/manager/issues/MANAGER-17692)
+
+
+
+
+
+## [2.4.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.4.9...@ovh-ux/manager-pci-common@2.4.10) (2025-05-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
 ## [2.4.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.4.8...@ovh-ux/manager-pci-common@2.4.9) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common

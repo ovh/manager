@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.2.0...@ovh-ux/manager-pci-cold-archive-app@0.2.1) (2025-05-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app
+
+
+
+
+
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.1.14...@ovh-ux/manager-pci-cold-archive-app@0.2.0) (2025-05-15)
+
+
+### Features
+
+* **mrc:** add iam tags filter on apiv6 iceberg call ([#16911](https://github.com/ovh/manager/issues/16911)) ([f52c2b1](https://github.com/ovh/manager/commit/f52c2b15714b624468132ac587602fe753d40174)), closes [#MANAGER-17692](https://github.com/ovh/manager/issues/MANAGER-17692)
+* **mrc:** bump ods 18.6.2 ([da8d233](https://github.com/ovh/manager/commit/da8d23327c353dda493f395d303ed128a2976c14)), closes [#MANAGER-17692](https://github.com/ovh/manager/issues/MANAGER-17692)
+
+
+
+
+
+## [0.1.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.1.13...@ovh-ux/manager-pci-cold-archive-app@0.1.14) (2025-05-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app
+
+
+
+
+
+## [0.1.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.1.12...@ovh-ux/manager-pci-cold-archive-app@0.1.13) (2025-05-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app
+
+
+
+
+
 ## [0.1.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.1.11...@ovh-ux/manager-pci-cold-archive-app@0.1.12) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app

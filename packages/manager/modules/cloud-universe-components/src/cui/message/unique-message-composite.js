@@ -4,7 +4,7 @@ import set from 'lodash/set';
 import some from 'lodash/some';
 
 export default class UniqueMessageComposite {
-  constructor(messageList) {
+  constructor(messageList, onDismiss) {
     this.messageList = messageList;
     this.text = messageList[0].text;
     this.textHtml = messageList[0].textHtml;
@@ -13,6 +13,8 @@ export default class UniqueMessageComposite {
     this.link = messageList[0].link;
     this.dismissable = messageList[0].dismissable;
     this.dismissed = !some(this.messageList, (message) => !message.dismissed);
+
+    this.onDismiss = onDismiss;
   }
 
   dismiss() {
@@ -23,5 +25,6 @@ export default class UniqueMessageComposite {
         message.dismiss();
       }
     });
+    if (this.onDismiss) this.onDismiss(this);
   }
 }

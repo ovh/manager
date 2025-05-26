@@ -132,17 +132,11 @@ describe('Vrack Services endpoints page test suite', () => {
 
     await assertModalText({
       container,
-      text: labels.endpoints.modalDeleteEndpointHeadline,
+      text: labels.deleteModal.deleteModalDescription,
     });
     const deleteButton = await getButtonByLabel({
       container,
-      value: labels.actions.delete,
-    });
-    await assertDisabled(deleteButton);
-
-    await changeInputValueByLabelText({
-      inputLabel: labels.endpoints.modalDeleteEndpointInputLabel,
-      value: 'TERMINATE',
+      value: labels.deleteModal.deleteModalDeleteButton,
     });
 
     await assertEnabled(deleteButton);

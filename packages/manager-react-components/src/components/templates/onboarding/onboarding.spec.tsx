@@ -1,6 +1,6 @@
 import React from 'react';
 import { vi, vitest } from 'vitest';
-import { waitFor } from '@testing-library/react';
+import { waitFor, fireEvent } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import {
   OnboardingLayout,
@@ -109,29 +109,39 @@ describe('specs:onboarding', () => {
     });
 
     it('displays order button correctly', async () => {
+      const onOrderButtonClick = vi.fn();
       const screen = await setupSpecTest({
         title: customTitle,
         orderHref: 'https://example.com/order',
         orderButtonLabel: orderBtnLabel,
+        onOrderButtonClick,
       });
 
       const orderButton = screen.container.querySelector(
         `[label="${orderBtnLabel}"]`,
       );
       expect(orderButton).toBeVisible();
+
+      await waitFor(() => fireEvent.click(orderButton));
+      expect(onOrderButtonClick).toHaveBeenCalledTimes(1);
     });
 
     it('displays more info button correctly', async () => {
+      const onMoreInfoButtonClick = vi.fn();
       const screen = await setupSpecTest({
         title: 'title',
         moreInfoHref: 'https://example.com/order',
         moreInfoButtonLabel: infoBtnLabel,
+        onMoreInfoButtonClick,
       });
 
-      const orderButton = screen.container.querySelector(
+      const moreInfoButton = screen.container.querySelector(
         `[label="${infoBtnLabel}"]`,
       );
-      expect(orderButton).toBeVisible();
+      expect(moreInfoButton).toBeVisible();
+
+      await waitFor(() => fireEvent.click(moreInfoButton));
+      expect(onMoreInfoButtonClick).toHaveBeenCalledTimes(1);
     });
 
     it('disable buttons', async () => {
@@ -141,7 +151,28 @@ describe('specs:onboarding', () => {
         moreInfoButtonLabel: infoBtnLabel,
         orderButtonLabel: orderBtnLabel,
         onOrderButtonClick: vi.fn(),
-        isMoreInfoDisabled: true,
+        isMoreInfoButtonDisabled: true,
+        isActionDisabled: true,
+      });
+
+      const orderButton = screen.container.querySelector(
+        `[label="${infoBtnLabel}"]`,
+      );
+      const moreInfoButton = screen.container.querySelector(
+        `[label="${orderBtnLabel}"]`,
+      );
+      expect(orderButton).toHaveAttribute('is-disabled', 'true');
+      expect(moreInfoButton).toHaveAttribute('is-disabled', 'true');
+    });
+
+    it('disable buttons', async () => {
+      const screen = await setupSpecTest({
+        title: 'title',
+        moreInfoHref: 'https://example.com/order',
+        moreInfoButtonLabel: infoBtnLabel,
+        orderButtonLabel: orderBtnLabel,
+        onOrderButtonClick: vi.fn(),
+        isMoreInfoButtonDisabled: true,
         isActionDisabled: true,
       });
 

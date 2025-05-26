@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.24.0...@ovh-ux/manager-react-components@2.25.0) (2025-05-23)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 4025] ([e95fb41](https://github.com/ovh/manager/commit/e95fb410146a8140c601438dd6d78072814042f3))
+- **mrc:** add default sorting to state in useResourcesV6 ([02f152c](https://github.com/ovh/manager/commit/02f152c13d228b465daf9b77c310cd2d6545ff4a)), closes [#17251](https://github.com/ovh/manager/issues/17251)
+- **mrc:** changelog and guides button alignment ([e64324c](https://github.com/ovh/manager/commit/e64324c2a95a264e6b0143762039e5e6c2ea64de)), closes [#17253](https://github.com/ovh/manager/issues/17253)
+
+### Features
+
+- **manager-react-components:** improve useResourcesV6 ([#16722](https://github.com/ovh/manager/issues/16722)) ([f802cdb](https://github.com/ovh/manager/commit/f802cdb74d417c89dd72aa1c031ce02cd36f3f18)), closes [#DTCORE-16722](https://github.com/ovh/manager/issues/DTCORE-16722) [#16721](https://github.com/ovh/manager/issues/16721) [#17170](https://github.com/ovh/manager/issues/17170)
+- **mrc:** add tags-list component ([7c6bde9](https://github.com/ovh/manager/commit/7c6bde967e8b02df0a4e0629f68d61b8f248824d)), closes [#MANAGER-18147](https://github.com/ovh/manager/issues/MANAGER-18147)
+
+# [2.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.23.0...@ovh-ux/manager-react-components@2.24.0) (2025-05-15)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 3983] ([3de9042](https://github.com/ovh/manager/commit/3de90422652ddaf4f7ef30e43d59050518d22811))
+- **i18n:** add missing translations [CDS 4000] ([f065814](https://github.com/ovh/manager/commit/f0658149ca7294361082ef49ed4d795b42ed0dc8))
+- **i18n:** add missing translations [CDS 4012] ([dd2d7d8](https://github.com/ovh/manager/commit/dd2d7d837dd48025b32a5500331dc1c213e7ea3a))
+- **i18n:** add missing translations [CDS 4017] ([e02aa4a](https://github.com/ovh/manager/commit/e02aa4af4043c7909fd978f324891e5751cc7a64))
+- **manager-react-component:** fix datagrid no result display ([46ea8dd](https://github.com/ovh/manager/commit/46ea8ddca1d4b9c760e8453bdd354f0b981773aa)), closes [#16826](https://github.com/ovh/manager/issues/16826)
+- **mrc:** add select all on visibility columns component ([#16633](https://github.com/ovh/manager/issues/16633)) ([ad13193](https://github.com/ovh/manager/commit/ad13193c237192c405c60f63b3bda692158299b8)), closes [#MANAGER-17733](https://github.com/ovh/manager/issues/MANAGER-17733)
+- **mrc:** filter translations ([#17071](https://github.com/ovh/manager/issues/17071)) ([d465e2d](https://github.com/ovh/manager/commit/d465e2d7dcbed7dfbd1bc9af094ae613fb5cba49)), closes [#17070](https://github.com/ovh/manager/issues/17070)
+- **mrc:** fix wrong link in GuideHeader ([f8435b7](https://github.com/ovh/manager/commit/f8435b73c79ba202056b8140abb33e7175019b26)), closes [#DTCORE-3318](https://github.com/ovh/manager/issues/DTCORE-3318) [#TAPC-1988](https://github.com/ovh/manager/issues/TAPC-1988)
+
+### Features
+
+- **mrc:** add iam tags filter on apiv6 iceberg call ([#16911](https://github.com/ovh/manager/issues/16911)) ([f52c2b1](https://github.com/ovh/manager/commit/f52c2b15714b624468132ac587602fe753d40174)), closes [#MANAGER-17692](https://github.com/ovh/manager/issues/MANAGER-17692)
+- **mrc:** bump ods 18.6.2 ([da8d233](https://github.com/ovh/manager/commit/da8d23327c353dda493f395d303ed128a2976c14)), closes [#MANAGER-17692](https://github.com/ovh/manager/issues/MANAGER-17692)
+- **mrc:** update delete modal ([11ac518](https://github.com/ovh/manager/commit/11ac5189c8804c0fd6467a30ee1943f50f60d7c6)), closes [#MANAGER-18211](https://github.com/ovh/manager/issues/MANAGER-18211)
+
+# [2.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.22.0...@ovh-ux/manager-react-components@2.23.0) (2025-05-08)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 3966] ([db15830](https://github.com/ovh/manager/commit/db158309d6532d9b37f2d2c1f6f1efc53d418fc0))
+- **mrc:** fix review request by team ([ccccec4](https://github.com/ovh/manager/commit/ccccec4ccd30cbff568fd88b0fbc3afb96215136)), closes [#MANAGER-17732](https://github.com/ovh/manager/issues/MANAGER-17732)
+- **mrc:** fix the issue on count visibility columns ([ecbc239](https://github.com/ovh/manager/commit/ecbc2391d2cee620ca679fb23b8554ed8596e34d)), closes [#MANAGER-17732](https://github.com/ovh/manager/issues/MANAGER-17732)
+- **mrc:** guide button and changelog menu default open position ([6b4c5e2](https://github.com/ovh/manager/commit/6b4c5e2c590be90df1182dbe9a37b0651e7b454f)), closes [#ISSUE-16878](https://github.com/ovh/manager/issues/ISSUE-16878)
+- **mrc:** move array excluded columns in constant file ([aec56cf](https://github.com/ovh/manager/commit/aec56cf3f7dacb1a1956c8242c92780b8817fc9f)), closes [#MANAGER-17732](https://github.com/ovh/manager/issues/MANAGER-17732)
+
+### Features
+
+- **mrc:** add disable more info prop to onboarding ([583a59d](https://github.com/ovh/manager/commit/583a59d20bc363aeca32f28a8d8e0ca2dc1dc0e3)), closes [#ISSUE-16382](https://github.com/ovh/manager/issues/ISSUE-16382)
+- **mrc:** add savings plan guide link ([#16875](https://github.com/ovh/manager/issues/16875)) ([7c1e063](https://github.com/ovh/manager/commit/7c1e063d541cda7abefaa6992c27c2754684b888)), closes [#TAPC-2692](https://github.com/ovh/manager/issues/TAPC-2692)
+- **mrc:** add volume backup guides ([122a674](https://github.com/ovh/manager/commit/122a6749515829b0b2b6b5b39e5c5a5f6736823a)), closes [#16714](https://github.com/ovh/manager/issues/16714)
+
 # [2.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.21.1...@ovh-ux/manager-react-components@2.22.0) (2025-04-30)
 
 ### Bug Fixes

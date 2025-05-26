@@ -7,5 +7,6 @@
   "autorenew_hosting_dashboard_close_service_warning": "Rezygnacja z hostingu spowoduje trwałe usunięcie wszystkich powiązanych z nim danych. Usunięcie hostingu nie stanowi podstawy do zwrotu środków.",
   "autorenew_hosting_dashboard_close_service_desc1": "Otrzymasz e-mail z opisem procedury zamknięcia hostingu.",
   "autorenew_hosting_dashboard_close_confirm": "Zatwierdź",
-  "autorenew_hosting_dashboard_close_cancel": "Anuluj"
+  "autorenew_hosting_dashboard_close_cancel": "Anuluj",
+  "autorenew_hosting_dashboard_close_service_success_skip_retention_period": "Dyspozycja trwałego usunięcia hostingu została zarejestrowana."
 }

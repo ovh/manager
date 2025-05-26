@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.2.0...@ovh-ux/manager-pci-volume-snapshot-app@0.2.1) (2025-05-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.1.9...@ovh-ux/manager-pci-volume-snapshot-app@0.2.0) (2025-05-15)
+
+
+### Features
+
+* **mrc:** bump ods 18.6.2 ([da8d233](https://github.com/ovh/manager/commit/da8d23327c353dda493f395d303ed128a2976c14)), closes [#MANAGER-17692](https://github.com/ovh/manager/issues/MANAGER-17692)
+
+
+
+
+
+## [0.1.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.1.8...@ovh-ux/manager-pci-volume-snapshot-app@0.1.9) (2025-05-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+## [0.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.1.7...@ovh-ux/manager-pci-volume-snapshot-app@0.1.8) (2025-05-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
 ## [0.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.1.6...@ovh-ux/manager-pci-volume-snapshot-app@0.1.7) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app

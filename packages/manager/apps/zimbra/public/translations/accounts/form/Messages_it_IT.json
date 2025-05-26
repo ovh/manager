@@ -37,5 +37,9 @@
   "zimbra_account_edit_tabs_settings": "Parametri dell’account",
   "zimbra_account_edit_tabs_redirections": "Reindirizzamenti",
   "zimbra_account_edit_tabs_alias": "Alias",
-  "zimbra_account_edit_tabs_auto_replies": "Risposte automatiche"
+  "zimbra_account_edit_tabs_auto_replies": "Risposte automatiche",
+  "zimbra_account_add_checkbox_hide_in_gal": "Nascondere l'indirizzo nella rubrica",
+  "zimbra_account_add_checkbox_hide_in_gal_tooltip": "La rubrica aziendale è condivisa con tutte le caselle di posta che utilizzano lo stesso dominio",
+  "zimbra_account_add_checkbox_force_change_password": "Forzare la modifica alla prossima connessione",
+  "zimbra_account_add_checkbox_force_change_password_tooltip": "La password impostata è temporanea. Al primo accesso, l’utente dovrà utilizzare la webmail per definirla."
 }

@@ -1,14 +1,14 @@
 {
-  "billing_resiliation_title": "Résilier mon service",
+  "billing_resiliation_title": "Résilier votre engagement",
   "billing_resiliation_service_name": "Nom du service",
   "billing_resiliation_choice": "Souhaitez vous :",
-  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Stopper votre engagement et conserver votre service en passant en sans engagement.",
-  "billing_resiliation_choice_CANCEL_SERVICE": "Stopper votre engagement et supprimer votre service à la date d'échéance.",
+  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Supprimer votre engagement et conserver votre service en passant en sans engagement.",
+  "billing_resiliation_choice_CANCEL_SERVICE": "Supprimer votre engagement et résilier votre service à la date d'échéance.",
   "billing_resiliation_commitment_end_date": "Fin d'engagement prévue le :",
   "billing_resiliation_details_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Au-delà de cette date vous conserverez votre service {{serviceName}} actif. Vous ne bénéficierez plus de la remise liée à l'engagement. Vous ne serez plus engagés et vous pourrez supprimer votre service à tout moment.",
   "billing_resiliation_details_CANCEL_SERVICE": "A cette date d’échéance, vous perdrez l’accès à votre service et donc à l’ensemble des données qu’il peut contenir. Vous pourrez revenir sur cette décision jusqu'à 24h avant la date d’expiration.",
   "billing_resiliation_success": "Votre demande de résiliation a été effectuée.",
   "billing_resiliation_error": "Une erreur est survenue lors de la demande de résiliation.",
-  "billing_resiliation_cancel": "Annuler",
-  "billing_resiliation_validate": "Valider"
+  "billing_resiliation_cancel": "Non, refuser",
+  "billing_resiliation_validate": "Oui, résilier"
 }

@@ -16,6 +16,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.product.terminate_anycast.confirm', {
     ...state,
   });
+  $stateProvider.state('app.zone.details.terminate_anycast.confirm', {
+    ...state,
+  });
   $stateProvider.state('app.alldom.domain.terminate_anycast.confirm', {
     ...state,
   });

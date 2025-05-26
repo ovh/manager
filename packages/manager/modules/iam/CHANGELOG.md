@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.15.3...@ovh-ux/manager-iam@1.15.4) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4030] ([9d4ff63](https://github.com/ovh/manager/commit/9d4ff63338619d8a9df83dbaa4e41a17fcff667d))
+
+
+
+
+
+## [1.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.15.2...@ovh-ux/manager-iam@1.15.3) (2025-05-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4008] ([#17078](https://github.com/ovh/manager/issues/17078)) ([e892673](https://github.com/ovh/manager/commit/e892673b6f44e3367c4263df5208f5a745b85a77)), closes [#MANAGER-18256](https://github.com/ovh/manager/issues/MANAGER-18256)
+
+
+
+
+
+## [1.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.15.1...@ovh-ux/manager-iam@1.15.2) (2025-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4012] ([dd2d7d8](https://github.com/ovh/manager/commit/dd2d7d837dd48025b32a5500331dc1c213e7ea3a))
+* remove unused translations [CDS] ([cb0eb6a](https://github.com/ovh/manager/commit/cb0eb6ab78ed3f8c0c15e19e5c0f5236b76556e3))
+
+
+
+
+
+## [1.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.15.0...@ovh-ux/manager-iam@1.15.1) (2025-05-12)
+
+
+### Bug Fixes
+
+* **iam:** fix missing dependency log to customer ([c050764](https://github.com/ovh/manager/commit/c0507640fed7b313279d57e4572707dddd9a1e82)), closes [#MANAGER-16249](https://github.com/ovh/manager/issues/MANAGER-16249)
+* **iam:** fix missing dependency ui-router-layout ([b100a04](https://github.com/ovh/manager/commit/b100a048dda857607758c3c5a06a22852bf9a9a8)), closes [#MANAGER-16233](https://github.com/ovh/manager/issues/MANAGER-16233)
+
+
+
+
+
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.14.6...@ovh-ux/manager-iam@1.15.0) (2025-05-12)
+
+
+### Features
+
+* revamp IAM navigation ([3208cb2](https://github.com/ovh/manager/commit/3208cb2c2433988c6b0cf8604014e66b59d70df5)), closes [#MANAGER-16233](https://github.com/ovh/manager/issues/MANAGER-16233) [#MANAGER-16249](https://github.com/ovh/manager/issues/MANAGER-16249) [#MANAGER-16250](https://github.com/ovh/manager/issues/MANAGER-16250)
+
+
+
+
+
 ## [1.14.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.14.5...@ovh-ux/manager-iam@1.14.6) (2025-04-14)
 
 

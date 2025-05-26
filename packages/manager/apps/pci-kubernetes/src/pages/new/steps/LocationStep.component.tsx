@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import {
   Region3AZChip,
   RegionChipByType,
-  RegionGlobalzoneChip,
   TLocalisation,
 } from '@ovh-ux/manager-pci-common';
 import {
@@ -15,7 +14,6 @@ import {
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_BUTTON_SIZE,
-  ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';

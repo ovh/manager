@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.0...@ovh-ux/manager-vrack@1.20.1) (2025-05-26)
+
+
+### Bug Fixes
+
+* **dedicated.vrack:** fix pagination using iceberg ([8110543](https://github.com/ovh/manager/commit/8110543458fde7f1f1310340887faee6b468b994)), closes [#PRB0042418](https://github.com/ovh/manager/issues/PRB0042418)
+
+
+
+
+
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.19.0...@ovh-ux/manager-vrack@1.20.0) (2025-05-19)
+
+
+### Features
+
+* **vrack:** disable autoPayWithPreferredPaymentMethod on ordering vrack in us ([#16145](https://github.com/ovh/manager/issues/16145)) ([992e56b](https://github.com/ovh/manager/commit/992e56bba01f28ad602f0604e65561aacf47f99d)), closes [#MANAGER-17612](https://github.com/ovh/manager/issues/MANAGER-17612)
+
+
+
+
+
 # [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.18.1...@ovh-ux/manager-vrack@1.19.0) (2025-04-22)
 
 

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.6.0...@ovh-ux/manager-common-translations@0.7.0) (2025-05-23)
+
+
+### Features
+
+* **common-translations:** add services label state ([95af46d](https://github.com/ovh/manager/commit/95af46d7bd28f0db2ffa1cce153e62d6d1383767)), closes [#15090](https://github.com/ovh/manager/issues/15090)
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.5.3...@ovh-ux/manager-common-translations@0.6.0) (2025-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3763] ([b0c0b82](https://github.com/ovh/manager/commit/b0c0b823b6c8f78187fafd167da3d0ff2b05eedb))
+
+
+### Features
+
+* **common-translation:** add iam translation ([79bfc06](https://github.com/ovh/manager/commit/79bfc067d850fafacf94a9521fa7f83a30dc540f)), closes [#15091](https://github.com/ovh/manager/issues/15091)
+
+
+
+
+
 ## [0.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.5.2...@ovh-ux/manager-common-translations@0.5.3) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-common-translations

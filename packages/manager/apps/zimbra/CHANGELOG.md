@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.26.1...@ovh-ux/manager-zimbra-app@0.27.0) (2025-05-26)
+
+
+### Bug Fixes
+
+* **zimbra:** issue layout lazyloading ([#17275](https://github.com/ovh/manager/issues/17275)) ([5dc49bb](https://github.com/ovh/manager/commit/5dc49bba8da74d468ee2bd91542fee35ebdedf0e)), closes [#MANAGER-18229](https://github.com/ovh/manager/issues/MANAGER-18229)
+* **zimbra:** make new account props optional ([#17278](https://github.com/ovh/manager/issues/17278)) ([0a15176](https://github.com/ovh/manager/commit/0a1517661d953f0390885dfe42fe31fee8ac8614)), closes [#MANAGER-18217](https://github.com/ovh/manager/issues/MANAGER-18217)
+
+
+### Features
+
+* **zimbra:** add account force password change & hide in gal ([#17064](https://github.com/ovh/manager/issues/17064)) ([f537c9b](https://github.com/ovh/manager/commit/f537c9beee64c4355d3534c5d2987a7c2c4da079)), closes [#MANAGER-18217](https://github.com/ovh/manager/issues/MANAGER-18217)
+* **zimbra:** disable actions on batch add accounts ([#17175](https://github.com/ovh/manager/issues/17175)) ([4f0219e](https://github.com/ovh/manager/commit/4f0219e6dd5c6c73040e5a869b74c8ee07d14691)), closes [#MANAGER-18301](https://github.com/ovh/manager/issues/MANAGER-18301)
+
+
+
+
+
+## [0.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.26.0...@ovh-ux/manager-zimbra-app@0.26.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4031] ([bed6b78](https://github.com/ovh/manager/commit/bed6b7860bef87342ed0a09217f9cecfd3dfec7c))
+
+
+
+
+
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.25.0...@ovh-ux/manager-zimbra-app@0.26.0) (2025-05-19)
+
+
+### Bug Fixes
+
+* **zimbra:** fix typo in guide description ([#17077](https://github.com/ovh/manager/issues/17077)) ([329b573](https://github.com/ovh/manager/commit/329b573c51a23787bc468206d16f45b3024e2a65))
+
+
+### Features
+
+* **zimbra:** add alias to email accounts actions ([10fffa3](https://github.com/ovh/manager/commit/10fffa35af6f81fe0aa6d1b86dc76d296269cade)), closes [#MANAGER-18298](https://github.com/ovh/manager/issues/MANAGER-18298)
+
+
+
+
+
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.24.0...@ovh-ux/manager-zimbra-app@0.25.0) (2025-05-15)
+
+
+### Features
+
+* **mrc:** bump ods 18.6.2 ([da8d233](https://github.com/ovh/manager/commit/da8d23327c353dda493f395d303ed128a2976c14)), closes [#MANAGER-17692](https://github.com/ovh/manager/issues/MANAGER-17692)
+
+
+
+
+
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.23.7...@ovh-ux/manager-zimbra-app@0.24.0) (2025-05-12)
+
+
+### Bug Fixes
+
+* **zimbra:** remove tabindex of <a> in tabs ([#16864](https://github.com/ovh/manager/issues/16864)) ([a4b802a](https://github.com/ovh/manager/commit/a4b802a9987af1aac574d1a20faf467a24d0cc96)), closes [#MANAGER-18186](https://github.com/ovh/manager/issues/MANAGER-18186)
+
+
+### Features
+
+* **zimbra:** add button to generate a password ([#16688](https://github.com/ovh/manager/issues/16688)) ([da8bf0d](https://github.com/ovh/manager/commit/da8bf0d439a5bc6e59c06d585594a75882f0e926)), closes [#MANAGER-17745](https://github.com/ovh/manager/issues/MANAGER-17745)
+
+
+
+
+
+## [0.23.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.23.6...@ovh-ux/manager-zimbra-app@0.23.7) (2025-05-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.23.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.23.5...@ovh-ux/manager-zimbra-app@0.23.6) (2025-05-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
 ## [0.23.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.23.4...@ovh-ux/manager-zimbra-app@0.23.5) (2025-05-05)
 
 

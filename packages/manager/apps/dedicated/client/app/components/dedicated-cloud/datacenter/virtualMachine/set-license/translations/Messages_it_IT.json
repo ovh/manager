@@ -1,0 +1,9 @@
+{
+  "set_license_modal_title": "Attivare la licenza",
+  "set_license_modal_confirm": "Attivare",
+  "set_license_modal_cancel": "Annullare",
+  "set_license_error_api": "Si è verificato un errore durante l'attivazione della licenza",
+  "set_license_success_api": "Attivazione della licenza in corso...",
+  "set_license_modal_select_placeholder": "Selezionare",
+  "set_license_modal_select_label": "Selezionare una licenza"
+}

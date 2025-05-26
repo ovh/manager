@@ -1,14 +1,14 @@
 {
-  "discoveryMode": "Sie befinden sich derzeit im „Discovery“-Modus. Um die Erstellung Ihrer Dienstleistung abzuschließen, müssen Sie Ihr Projekt aktivieren.",
-  "discoveryModeActivate": "Aktivieren Sie Ihr Projekt",
+  "discoveryMode": "Sie befinden sich derzeit im Discovery-Modus. Um die Erstellung Ihres Dienstes abzuschließen, müssen Sie Ihr Projekt aktivieren.",
+  "discoveryModeActivate": "Ihr Projekt aktivieren",
   "title": "AI Dashboard",
-  "paragraphe1": "Künstliche Intelligenz (KI) klingt oft wie eine Technologie, die nur für Eingeweihte gedacht ist. Bei OVHcloud sind wir vom enormen Potenzial dieser Technologie für jede Branche überzeugt. Wir konzentrieren uns daher auf die Bereitstellung von Tools, mit denen wir die Herausforderungen von Organisationen bewältigen können: Datenverarbeitung, Exploration, Training und Bereitstellung von Modellen... Unser Ziel: die Nutzung von Machine Learning für alle Benutzerprofile zu vereinfachen.",
-  "paragraphe2": "Entdecken Sie unser gesamtes AI Tools Angebot!",
-  "linkPrice": "Die Preise der Dienstleistung einsehen",
+  "paragraphe1": "Oft klingt „künstliche Intelligenz (AI)“ nach einer Technologie, die nur Spezialisten vorbehalten ist. Bei OVHcloud sind wir vom enormen Potenzial dieser Technologie für jede Branche überzeugt. Wir konzentrieren uns daher auf die Bereitstellung von Tools, mit denen Unternehmen und Organisationen ihre Herausforderungen bewältigen können: Datenverarbeitung und -exploration, Training und Einsetzen von Modellen... Unser Ziel: die Verwendung von Machine Learning Nutzern mit beliebigem Profil einfach zu machen.",
+  "paragraphe2": "Entdecken Sie unsere AI-Tools!",
+  "linkPrice": "Preise des Dienstes anzeigen",
   "homeTab": "Dashboard",
-  "usersTab": "Benutzer",
+  "usersTab": "User",
   "tokensTab": "Token",
-  "dockerRegistriesTab": "Docker Registrys",
-  "githubRegistriesTab": "Private Git Depots",
-  "datastoreTab": "S3 Datastores"
+  "dockerRegistriesTab": "Docker-Registrys",
+  "githubRegistriesTab": "Private Git-Repositorys",
+  "datastoreTab": "S3-Datastores"
 }

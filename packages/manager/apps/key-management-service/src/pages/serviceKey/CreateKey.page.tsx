@@ -30,7 +30,7 @@ import {
 import { ServiceKeyNameErrorsType } from '@/utils/serviceKey/validateServiceKeyName';
 import { useOkmsServiceKeyReference } from '@/data/hooks/useOkmsReferenceServiceKey';
 import { useCreateOkmsServiceKey } from '@/data/hooks/useCreateOkmsServiceKey';
-import { useOKMSById } from '@/data/hooks/useOKMS';
+import { useOkmsById } from '@/data/hooks/useOkms';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
@@ -52,7 +52,7 @@ export default function CreateKey() {
     isLoading: okmsIsLoading,
     error: okmsError,
     refetch: refetchOkms,
-  } = useOKMSById(okmsId);
+  } = useOkmsById(okmsId);
 
   const {
     data: servicekeyReference,

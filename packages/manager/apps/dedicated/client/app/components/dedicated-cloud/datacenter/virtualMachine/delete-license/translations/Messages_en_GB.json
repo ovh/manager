@@ -1,0 +1,8 @@
+{
+  "delete_license_modal_title": "Delete licence",
+  "delete_license_modal_content": "Are you sure you want to delete the licence for this virtual machine?",
+  "delete_license_modal_confirm": "Confirm",
+  "delete_license_modal_cancel": "Cancel",
+  "delete_license_error_api": "An error has occurred deleting the licence",
+  "delete_license_success_api": "The licence deletion request has been processed"
+}

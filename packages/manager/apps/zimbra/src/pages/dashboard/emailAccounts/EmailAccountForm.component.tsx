@@ -5,15 +5,19 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   OdsButton,
+  OdsCheckbox,
   OdsFormField,
+  OdsIcon,
   OdsInput,
   OdsMessage,
   OdsPassword,
   OdsSelect,
   OdsText,
+  OdsTooltip,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_COLOR,
+  ODS_ICON_NAME,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_COLOR,
   ODS_SPINNER_SIZE,
@@ -50,7 +54,7 @@ import {
   CONFIRM,
   EDIT_EMAIL_ACCOUNT,
 } from '@/tracking.constants';
-import { Loading } from '@/components';
+import { Loading, GeneratePasswordButton } from '@/components';
 
 export const EmailAccountForm = () => {
   const { trackClick, trackPage } = useOvhTracking();
@@ -161,6 +165,7 @@ export const EmailAccountForm = () => {
     handleSubmit,
     reset,
     formState: { isDirty, isValid, errors },
+    setValue,
   } = useForm({
     defaultValues: {
       account: emailAccount?.currentState?.email?.split('@')[0] || '',
@@ -169,6 +174,8 @@ export const EmailAccountForm = () => {
       lastName: emailAccount?.currentState?.lastName || '',
       displayName: emailAccount?.currentState?.displayName || '',
       password: '',
+      hideInGal: emailAccount?.currentState?.hideInGal || false,
+      forceChangePasswordAfterLogin: !accountId,
     },
     mode: 'onTouched',
     resolver: zodResolver(
@@ -185,6 +192,8 @@ export const EmailAccountForm = () => {
         lastName: emailAccount?.currentState?.lastName,
         displayName: emailAccount?.currentState?.displayName,
         password: '',
+        hideInGal: emailAccount?.currentState?.hideInGal,
+        forceChangePasswordAfterLogin: !accountId,
       });
     }
   }, [emailAccount]);
@@ -347,13 +356,13 @@ export const EmailAccountForm = () => {
           )}
         />
       </div>
-      <div className="flex w-full md:w-1/2">
+      <div className="flex">
         <Controller
           control={control}
           name="displayName"
           render={({ field: { name, value, onChange, onBlur } }) => (
             <OdsFormField
-              className="w-full md:pr-6"
+              className="w-full md:w-1/2 md:pr-6"
               error={errors?.[name]?.message}
             >
               <label htmlFor={name} slot="label">
@@ -374,35 +383,125 @@ export const EmailAccountForm = () => {
             </OdsFormField>
           )}
         />
+        <Controller
+          control={control}
+          name="hideInGal"
+          render={({ field: { name, value, onChange } }) => (
+            <OdsFormField
+              className="flex justify-center w-full mt-7 md:w-1/2 md:pl-6"
+              error={errors?.[name]?.message}
+            >
+              <div className="flex leading-none gap-4">
+                <OdsCheckbox
+                  inputId={name}
+                  id={name}
+                  name={name}
+                  value={(value as unknown) as string}
+                  isChecked={value}
+                  onClick={() => onChange(!value)}
+                ></OdsCheckbox>
+                <label htmlFor={name}>
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    {t('zimbra_account_add_checkbox_hide_in_gal')}
+                    <OdsIcon
+                      id="tooltip-hide-in-gal"
+                      className="ml-3 text-xs"
+                      name={ODS_ICON_NAME.circleQuestion}
+                    ></OdsIcon>
+                    <OdsTooltip
+                      role="tooltip"
+                      strategy="fixed"
+                      triggerId="tooltip-hide-in-gal"
+                    >
+                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                        {t('zimbra_account_add_checkbox_hide_in_gal_tooltip')}
+                      </OdsText>
+                    </OdsTooltip>
+                  </OdsText>
+                </label>
+              </div>
+            </OdsFormField>
+          )}
+        />
       </div>
-      <div className="flex w-full md:w-1/2">
+      <div className="flex">
         <Controller
           control={control}
           name="password"
           render={({ field: { name, value, onChange, onBlur } }) => (
             <OdsFormField
-              className="w-full md:pr-6"
+              className="w-full md:w-1/2 md:pr-6"
               error={errors?.[name]?.message}
             >
               <label htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_password_label')}
                 {!emailAccount && ' *'}
               </label>
-              <OdsPassword
-                data-testid="input-password"
-                isMasked
-                className="w-full"
-                id={name}
-                name={name}
-                hasError={!!errors[name]}
-                value={value}
-                onOdsBlur={onBlur}
-                onOdsChange={(e) => {
-                  // this is necessary because OdsPassword returns
-                  // value as null somehow
-                  onChange(e?.detail?.value || '');
-                }}
-              />
+              <div className="flex flex-1 gap-4">
+                <OdsPassword
+                  data-testid="input-password"
+                  isMasked
+                  className="w-full"
+                  id={name}
+                  name={name}
+                  hasError={!!errors[name]}
+                  value={value}
+                  onOdsBlur={onBlur}
+                  onOdsChange={(e) => {
+                    // this is necessary because OdsPassword returns
+                    // value as null somehow
+                    onChange(e?.detail?.value || '');
+                  }}
+                />
+                <GeneratePasswordButton
+                  id="generate-password-btn"
+                  onGenerate={(password) => {
+                    setValue('password', password);
+                  }}
+                />
+              </div>
+            </OdsFormField>
+          )}
+        />
+        <Controller
+          control={control}
+          name="forceChangePasswordAfterLogin"
+          render={({ field: { name, value, onChange } }) => (
+            <OdsFormField
+              className="flex justify-center w-full mt-7 md:w-1/2 md:pl-6"
+              error={errors?.[name]?.message}
+            >
+              <div className="flex leading-none gap-4">
+                <OdsCheckbox
+                  inputId={name}
+                  id={name}
+                  name={name}
+                  value={(value as unknown) as string}
+                  isChecked={value}
+                  onClick={() => onChange(!value)}
+                ></OdsCheckbox>
+                <label htmlFor={name}>
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    {t('zimbra_account_add_checkbox_force_change_password')}
+                    <OdsIcon
+                      id="tooltip-trigger"
+                      className="ml-3 text-xs"
+                      name={ODS_ICON_NAME.circleQuestion}
+                    ></OdsIcon>
+                    <OdsTooltip
+                      role="tooltip"
+                      strategy="fixed"
+                      triggerId="tooltip-trigger"
+                    >
+                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                        {t(
+                          'zimbra_account_add_checkbox_force_change_password_tooltip',
+                        )}
+                      </OdsText>
+                    </OdsTooltip>
+                  </OdsText>
+                </label>
+              </div>
             </OdsFormField>
           )}
         />
@@ -417,7 +516,6 @@ export const EmailAccountForm = () => {
           </span>
         ))}
       </OdsText>
-
       <OdsButton
         slot="actions"
         type="submit"

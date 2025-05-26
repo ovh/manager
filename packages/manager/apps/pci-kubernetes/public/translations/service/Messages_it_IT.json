@@ -100,5 +100,5 @@
   "kube_service_etcd_quota_error_link": "Come si gestiscono le risorse ETCD?",
   "kube_service_show_optional": "Mostra più parametri",
   "kube_service_hide_optional": "Visualizza meno parametri",
-  "kube_service_cluster_status_MULTI_ZONES": "L'offerta MKS Premium è attualmente in fase beta. Alcune funzionalità non sono ancora disponibili, ma saranno aggiunte a breve."
+  "kube_service_cluster_status_MULTI_ZONES": "La soluzione MKS Premium è attualmente in fase beta. Alcune funzionalità non sono ancora disponibili, ma saranno aggiunte presto."
 }

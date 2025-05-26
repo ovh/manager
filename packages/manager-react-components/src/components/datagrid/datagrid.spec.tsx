@@ -16,7 +16,7 @@ import {
   FilterProps,
 } from './datagrid.component';
 import DataGridTextCell from './text-cell.component';
-import { defaultNumberOfLoadingRows } from './datagrid.contants';
+import { defaultNumberOfLoadingRows } from './datagrid.constants';
 
 vitest.mock('react-i18next', async () => {
   const originalModule = await vitest.importActual('react-i18next');

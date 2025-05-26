@@ -1,0 +1,82 @@
+<div class="dedicatedCloud-datacenter-virtualmachines">
+    <h2 ng-bind=":: $ctrl.virtualMachinesTitle"></h2>
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-skeleton size="m"></oui-skeleton>
+    </div>
+    <div data-ng-if="!$ctrl.loading">
+        <oui-datagrid
+            data-rows-loader="$ctrl.loadVirtualMachines($config)"
+            data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+            data-criteria="$ctrl.criteria"
+        >
+            <oui-datagrid-column
+                data-sortable
+                data-title=":: 'virtualmachine_grid_name' | translate"
+                data-property="name"
+                data-searchable
+                data-filterable
+            >
+            </oui-datagrid-column>
+
+            <oui-datagrid-column
+                data-sortable
+                data-title=":: $ctrl.virtualMachinesGuesOS"
+                data-property="guestOsFamily"
+                data-filterable
+            >
+            </oui-datagrid-column>
+
+            <oui-datagrid-column
+                data-sortable
+                data-title=":: 'virtualmachine_grid_license' | translate"
+                data-property="license"
+                data-filterable
+            >
+                <span
+                    class="oui-badge oui-badge_info"
+                    data-ng-if="$row.license"
+                    data-ng-bind="$row.license"
+                >
+                </span>
+                <span
+                    data-ng-if="!$row.license"
+                    class="oui-badge oui-badge_sold-out"
+                    data-translate="virtualmachine_deactivated"
+                >
+                </span>
+            </oui-datagrid-column>
+
+            <oui-action-menu data-compact data-placement="end">
+                <span
+                    data-ng-if="!$row.allowEditLicense"
+                    oui-tooltip
+                    title="{{:: 'vitualmachine_unavailable_tooltip' | translate }}"
+                >
+                    <oui-action-menu-item disabled
+                        ><span
+                            data-translate="virtualmachine_action_activate_license"
+                        >
+                        </span
+                    ></oui-action-menu-item>
+                </span>
+
+                <oui-action-menu-item
+                    data-ng-if="!$row.license && $row.allowEditLicense"
+                    data-on-click="$ctrl.goToSetLicense($row)"
+                    ><span
+                        data-translate="virtualmachine_action_activate_license"
+                    >
+                    </span
+                ></oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-if="$row.license"
+                    data-on-click="$ctrl.goToDeleteLicense($row)"
+                    ><span
+                        data-translate="virtualmachine_action_deactivate_license"
+                    >
+                    </span
+                ></oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid>
+    </div>
+</div>

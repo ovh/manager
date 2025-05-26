@@ -14,12 +14,6 @@ export const RESOURCE_BILLING_TYPES = {
   freeSpare: 'freeSpare',
 };
 
-export const RESOURCE_BILLING_2API_TYPES = {
-  hourly: 'HOURLY',
-  monthly: 'MONTHLY',
-  freeSpare: 'FREE_SPARE',
-};
-
 export const RESOURCE_STATES = {
   delivered: 'delivered',
 };

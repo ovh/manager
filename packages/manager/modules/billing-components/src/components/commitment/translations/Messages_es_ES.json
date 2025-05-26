@@ -4,7 +4,7 @@
   "billing_commitment_none": "Actualmente no tiene ningún compromiso de permanencia en el servicio {{ serviceName }}.",
   "billing_commitment_commit_again_description": "Actualmente tiene contratado el servicio {{ serviceName }} con compromiso de permanencia hasta el {{ endDate }}. Ya puede renovar su compromiso de permanencia por la duración que desee.",
   "billing_commitment_service_dedicated_server": "servidor dedicado",
-  "billing_commitment_duration": "Seleccione un compromiso de permanencia",
+  "billing_commitment_duration": "Seleccionar un compromiso",
   "billing_commitment_duration_current_price": "Precio actual por defecto {{ price }}/mes",
   "billing_commitment_payment": "Seleccione una modalidad de pago",
   "billing_commitment_payment_method": "Seleccione una forma de pago",

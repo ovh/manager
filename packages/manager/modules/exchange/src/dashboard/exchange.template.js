@@ -44,8 +44,6 @@ import summaryTemplate from '../wizard-hosted-creation/summary/summary.html';
 import externalContactRemoveTemplate from '../external-contact/remove/external-contact-remove.html';
 import externalContactUpdateTemplate from '../external-contact/update/external-contact-update.html';
 import externalContactAddTemplate from '../external-contact/add/external-contact-add.html';
-import officeAttachDialogTemplate from '../office-attach/dialog/office-attach-dialog.html';
-import officeAttachTemplate from '../office-attach/office-attach.html';
 import accountOrderTemplate from '../account/order/account-order.html';
 import accountRemoveTemplate from '../account/remove/account-remove.html';
 import accountTemplate from '../account/account.html';
@@ -255,14 +253,6 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put(
     'exchange/external-contact/add/external-contact-add.html',
     externalContactAddTemplate,
-  );
-  $templateCache.put(
-    'exchange/office-attach/dialog/office-attach-dialog.html',
-    officeAttachDialogTemplate,
-  );
-  $templateCache.put(
-    'exchange/office-attach/office-attach.html',
-    officeAttachTemplate,
   );
   $templateCache.put(
     'exchange/account/order/account-order.html',

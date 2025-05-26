@@ -3,6 +3,7 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
+  ODS_POPOVER_POSITION,
 } from '@ovhcloud/ods-components';
 import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
@@ -43,7 +44,11 @@ export const GuideButton: React.FC<GuideButtonProps> = ({
         />
       </div>
 
-      <OdsPopover triggerId="navigation-menu-guide-trigger" withArrow>
+      <OdsPopover
+        triggerId="navigation-menu-guide-trigger"
+        withArrow
+        position={ODS_POPOVER_POSITION.bottom}
+      >
         <div className="flex flex-col gap-2 py-1">
           {items.map(({ id, onClick, ...rest }) => (
             <Links

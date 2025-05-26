@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.39.1...@ovh-ux/manager-new-billing@0.40.0) (2025-05-26)
+
+
+### Features
+
+* **billing:** move services list to its dedicated route ([a516b64](https://github.com/ovh/manager/commit/a516b64a377d21060072c17586d76b0549a948a2)), closes [#MANAGER-17700](https://github.com/ovh/manager/issues/MANAGER-17700)
+
+
+
+
+
+## [0.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.39.0...@ovh-ux/manager-new-billing@0.39.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([53394aa](https://github.com/ovh/manager/commit/53394aa6ef4341ac89246cf5813337ee5b7cd41e))
+
+
+
+
+
+# [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.38.1...@ovh-ux/manager-new-billing@0.39.0) (2025-05-21)
+
+
+### Features
+
+* **billing:** add delete hosting for suspended service ([#15900](https://github.com/ovh/manager/issues/15900)) ([d2fafca](https://github.com/ovh/manager/commit/d2fafcaaaec9469059cc932ec90f897cfafc84b2)), closes [#MANAGER-13617](https://github.com/ovh/manager/issues/MANAGER-13617)
+
+
+
+
+
+## [0.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.38.0...@ovh-ux/manager-new-billing@0.38.1) (2025-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4017] ([e02aa4a](https://github.com/ovh/manager/commit/e02aa4af4043c7909fd978f324891e5751cc7a64))
+
+
+
+
+
+# [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.37.0...@ovh-ux/manager-new-billing@0.38.0) (2025-05-14)
+
+
+### Features
+
+* update agora termination to manage FTC process ([5ebe59a](https://github.com/ovh/manager/commit/5ebe59ac630c769244b74c17705ef2884fca0442)), closes [#MANAGER-17779](https://github.com/ovh/manager/issues/MANAGER-17779) [#MANAGER-17781](https://github.com/ovh/manager/issues/MANAGER-17781) [#MANAGER-17909](https://github.com/ovh/manager/issues/MANAGER-17909) [#MANAGER-17910](https://github.com/ovh/manager/issues/MANAGER-17910) [#MANAGER-17913](https://github.com/ovh/manager/issues/MANAGER-17913)
+
+
+
+
+
+# [0.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.36.1...@ovh-ux/manager-new-billing@0.37.0) (2025-05-06)
+
+
+### Features
+
+* **billing:** simplify sshkey truncate filter and switch ([#16338](https://github.com/ovh/manager/issues/16338)) ([11cbaed](https://github.com/ovh/manager/commit/11cbaedbb456a006d603407330955796c338caf9)), closes [#MANAGER-17511](https://github.com/ovh/manager/issues/MANAGER-17511)
+
+
+
+
+
 ## [0.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.36.0...@ovh-ux/manager-new-billing@0.36.1) (2025-04-30)
 
 

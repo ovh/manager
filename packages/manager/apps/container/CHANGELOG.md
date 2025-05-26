@@ -3,6 +3,116 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.129.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.128.1...@ovh-ux/manager-container-app@0.129.0) (2025-05-26)
+
+
+### Bug Fixes
+
+* **container:** center chevron in button on public cloud sidebar ([25ba909](https://github.com/ovh/manager/commit/25ba909d7f631396cae810d7ac303cc0897cdc71)), closes [#MANAGER-18358](https://github.com/ovh/manager/issues/MANAGER-18358)
+* **pnr:** remove eloquant comment and resolve lvl1 issue ([c263643](https://github.com/ovh/manager/commit/c2636431cefb54773afc1183a1c34bc40fbc13d9)), closes [#MANAGER-18065](https://github.com/ovh/manager/issues/MANAGER-18065)
+
+
+### Features
+
+* **hub:** update the service wording in the hub ([51bc841](https://github.com/ovh/manager/commit/51bc841dd29e6296e07923bed61bd172afabba26)), closes [#MANAGER-16272](https://github.com/ovh/manager/issues/MANAGER-16272)
+
+
+
+
+
+## [0.128.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.128.0...@ovh-ux/manager-container-app@0.128.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4030] ([9d4ff63](https://github.com/ovh/manager/commit/9d4ff63338619d8a9df83dbaa4e41a17fcff667d))
+
+
+
+
+
+# [0.128.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.127.0...@ovh-ux/manager-container-app@0.128.0) (2025-05-21)
+
+
+### Bug Fixes
+
+* **pnr:** fix telecom lvl 2 opening on root ([#16954](https://github.com/ovh/manager/issues/16954)) ([5b20104](https://github.com/ovh/manager/commit/5b20104d484232314933b4382a5996263a9aab03)), closes [#MANAGER-18030](https://github.com/ovh/manager/issues/MANAGER-18030)
+
+
+### Features
+
+* **container:** add ServiceNow livechat integration ([3f98e99](https://github.com/ovh/manager/commit/3f98e99305a5f68173aa84c6bd787e6a4923adbb)), closes [#MANAGER-15587](https://github.com/ovh/manager/issues/MANAGER-15587) [#MANAGER-16561](https://github.com/ovh/manager/issues/MANAGER-16561)
+* **container:** disable create project when kyc india is not validated ([#16967](https://github.com/ovh/manager/issues/16967)) ([8179c56](https://github.com/ovh/manager/commit/8179c56c8afca94352371b3c792e654f60738148)), closes [#MANAGER-17340](https://github.com/ovh/manager/issues/MANAGER-17340)
+* **pnr:** allow project selector to be searchable ([#16892](https://github.com/ovh/manager/issues/16892)) ([3f07a9c](https://github.com/ovh/manager/commit/3f07a9cc1fce945000b9944ce0ae75e012edd4a7)), closes [#MANAGER-17905](https://github.com/ovh/manager/issues/MANAGER-17905)
+
+
+
+
+
+# [0.127.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.126.1...@ovh-ux/manager-container-app@0.127.0) (2025-05-20)
+
+
+### Bug Fixes
+
+* **container.sidebar:** fix feature web-hosting ([edb87fc](https://github.com/ovh/manager/commit/edb87fcbb9e0a2d663227ed8e8e126e381b021a4)), closes [#MANAGER-14386](https://github.com/ovh/manager/issues/MANAGER-14386)
+* **web-hosting:** fix url on legacy sidebar and onboarding redirection ([66e1260](https://github.com/ovh/manager/commit/66e1260becd05c0d38a56efdea946aa0979d49b1)), closes [#MANAGER-14386](https://github.com/ovh/manager/issues/MANAGER-14386)
+
+
+### Features
+
+* **web-hosting:** website view ([#15546](https://github.com/ovh/manager/issues/15546)) ([4f494d4](https://github.com/ovh/manager/commit/4f494d46508ded693f303be4538332f2cceb6630)), closes [#MANAGER-14386](https://github.com/ovh/manager/issues/MANAGER-14386)
+
+
+
+
+
+## [0.126.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.126.0...@ovh-ux/manager-container-app@0.126.1) (2025-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4000] ([f065814](https://github.com/ovh/manager/commit/f0658149ca7294361082ef49ed4d795b42ed0dc8))
+* **i18n:** add missing translations [CDS 4012] ([dd2d7d8](https://github.com/ovh/manager/commit/dd2d7d837dd48025b32a5500331dc1c213e7ea3a))
+* **pnr:** add a missing aria label ([de2cee8](https://github.com/ovh/manager/commit/de2cee85ed2f6d2bb543f407c071690acc3a50b8)), closes [#MANAGER-18297](https://github.com/ovh/manager/issues/MANAGER-18297)
+
+
+
+
+
+# [0.126.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.125.4...@ovh-ux/manager-container-app@0.126.0) (2025-05-12)
+
+
+### Features
+
+* revamp IAM navigation ([3208cb2](https://github.com/ovh/manager/commit/3208cb2c2433988c6b0cf8604014e66b59d70df5)), closes [#MANAGER-16233](https://github.com/ovh/manager/issues/MANAGER-16233) [#MANAGER-16249](https://github.com/ovh/manager/issues/MANAGER-16249) [#MANAGER-16250](https://github.com/ovh/manager/issues/MANAGER-16250)
+
+
+
+
+
+## [0.125.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.125.3...@ovh-ux/manager-container-app@0.125.4) (2025-05-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3961] ([65225e1](https://github.com/ovh/manager/commit/65225e1393af8dcd96359bfcc075f705b29dc663))
+* **i18n:** add missing translations [CDS 3966] ([db15830](https://github.com/ovh/manager/commit/db158309d6532d9b37f2d2c1f6f1efc53d418fc0))
+
+
+
+
+
+## [0.125.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.125.2...@ovh-ux/manager-container-app@0.125.3) (2025-05-06)
+
+
+### Bug Fixes
+
+* **pci-ai-endpoints:** remove pci-ai-endpoints:create-token from pci-menu ([#16853](https://github.com/ovh/manager/issues/16853)) ([e1e7f6d](https://github.com/ovh/manager/commit/e1e7f6d620ee84576acc69887a9db93dccacaa3c)), closes [#AIS-1219](https://github.com/ovh/manager/issues/AIS-1219)
+
+
+
+
+
 ## [0.125.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.125.1...@ovh-ux/manager-container-app@0.125.2) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

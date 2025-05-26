@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.13.0...@ovh-ux/manager-netapp@2.13.1) (2025-05-19)
+
+
+### Bug Fixes
+
+* **order-translations:** updating the translation of order funnel screen ([#16805](https://github.com/ovh/manager/issues/16805)) ([956656e](https://github.com/ovh/manager/commit/956656ee6ee8ca21c9846b55c2d70bed74993427)), closes [#MANAGER-17768](https://github.com/ovh/manager/issues/MANAGER-17768)
+
+
+
+
+
+# [2.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.12.1...@ovh-ux/manager-netapp@2.13.0) (2025-05-13)
+
+
+### Features
+
+* **dedicated:** add snapshot tracking ([90062bf](https://github.com/ovh/manager/commit/90062bfb007c56b7323f0db83ee91b3ba8f00891)), closes [#MANAGER-17498](https://github.com/ovh/manager/issues/MANAGER-17498)
+* **dedicated:** update volume snapshot tracking ([9c9e069](https://github.com/ovh/manager/commit/9c9e0693ca3b51683aabe6bdd32a863d1b840f5a)), closes [#MANAGER-17498](https://github.com/ovh/manager/issues/MANAGER-17498)
+
+
+
+
+
 ## [2.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.12.0...@ovh-ux/manager-netapp@2.12.1) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

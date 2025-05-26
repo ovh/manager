@@ -17,7 +17,8 @@ import {
   TileBlock as TileLine,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { TKube } from '@/types';
+import { RegionChipByType } from '@ovh-ux/manager-pci-common';
+import { DeploymentMode, TKube } from '@/types';
 import ClusterStatus from './ClusterStatus.component';
 import ClusterETCD from './ClusterETCD.component';
 import TileLineLegacy from './TileLine.component';
@@ -28,6 +29,8 @@ import ClusterTile from './ClusterTile.component';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 
 import { isMultiDeploymentZones } from '@/helpers';
+
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 
 export type ClusterInformationProps = {
   kubeDetail: TKube;
@@ -40,6 +43,8 @@ export default function ClusterInformation({
   const { t: tDetail } = useTranslation('listing');
   const { projectId } = useParams();
   const { clearNotifications } = useNotifications();
+  const has3AZ = use3AZPlanAvailable();
+
   const { data: regionInformations } = useRegionInformations(
     projectId,
     kubeDetail.region,
@@ -94,23 +99,33 @@ export default function ClusterInformation({
         {!isMultiDeploymentZones(regionInformations?.type) && (
           <TileLineLegacy title={<ClusterTile />} value={<ClusterETCD />} />
         )}
-        {!isMultiDeploymentZones(regionInformations?.type) && (
-          <TileLine label={t('kube_service_cluster_admission_plugins')}>
-            <AdmissionPlugins
-              plugins={kubeDetail.plugins}
-              isProcessing={isProcessing(kubeDetail.status)}
-            />
-          </TileLine>
-        )}
+
+        <TileLine label={t('kube_service_cluster_admission_plugins')}>
+          <AdmissionPlugins
+            plugins={kubeDetail.plugins}
+            isProcessing={isProcessing(kubeDetail.status)}
+          />
+        </TileLine>
+
         <TileLine label={t('kube_service_cluster_region')}>
-          <OsdsText
-            className="mb-4"
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {kubeDetail.region}
-          </OsdsText>
+          <div className="flex gap-2 items-baseline">
+            <OsdsText
+              className="mb-4"
+              size={ODS_TEXT_SIZE._400}
+              level={ODS_TEXT_LEVEL.body}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              {kubeDetail.region}
+            </OsdsText>
+
+            {has3AZ && (
+              <RegionChipByType
+                data-testId={regionInformations?.type}
+                showTooltip
+                type={regionInformations?.type as DeploymentMode}
+              />
+            )}
+          </div>
         </TileLine>
 
         {!isMultiDeploymentZones(regionInformations?.type) && (

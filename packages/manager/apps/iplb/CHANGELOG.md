@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.43](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.42...@ovh-ux/manager-iplb-app@3.1.43) (2025-05-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.1.42](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.41...@ovh-ux/manager-iplb-app@3.1.42) (2025-05-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.1.41](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.40...@ovh-ux/manager-iplb-app@3.1.41) (2025-05-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.1.40](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.39...@ovh-ux/manager-iplb-app@3.1.40) (2025-05-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.1.39](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.38...@ovh-ux/manager-iplb-app@3.1.39) (2025-05-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.1.38](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.37...@ovh-ux/manager-iplb-app@3.1.38) (2025-05-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.1.37](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.36...@ovh-ux/manager-iplb-app@3.1.37) (2025-05-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.1.36](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.35...@ovh-ux/manager-iplb-app@3.1.36) (2025-05-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
 ## [3.1.35](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.34...@ovh-ux/manager-iplb-app@3.1.35) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-iplb-app

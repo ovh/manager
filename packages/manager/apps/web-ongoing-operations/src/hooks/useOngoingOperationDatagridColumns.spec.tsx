@@ -18,14 +18,10 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-vi.mock('@/pages/dashboard/domain/Domain', () => ({
-  openModal: () => vi.fn(),
-}));
-
 describe('useDatagridColumn', () => {
   it('should return the correct columns', () => {
     const { result } = renderHook(() =>
-      useOngoingOperationDatagridColumns(ParentEnum.DOMAIN, domain, null),
+      useOngoingOperationDatagridColumns(ParentEnum.DOMAIN, domain),
     );
     const columns = result.current;
 

@@ -4,12 +4,18 @@ const state = {
     domainView: {
       component: 'domainAnycast',
     },
+    dnsZoneView: {
+      component: 'domainAnycast',
+    },
   },
   resolve: {
-    getDnsAnycast: /* @ngInject */ (Domain, domainName) =>
+    domainName: /* @ngInject */ ($transition$) =>
+      $transition$.params().productId,
+    getDnsAnycast: /* @ngInject */ (Domain, domainName) => {
       Domain.getDetails(domainName, ['dnsanycast']).then(
         ({ dnsanycast }) => dnsanycast,
-      ),
+      );
+    },
     previousState: /* @ngInject */ ($transition$) => $transition$.$from(),
     goBack: /* @ngInject */ ($state, previousState) => () => {
       if (previousState.name) {
@@ -25,5 +31,6 @@ const state = {
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.product.anycast', { ...state });
+  $stateProvider.state('app.zone.details.anycast', { ...state });
   $stateProvider.state('app.alldom.domain.anycast', { ...state });
 };

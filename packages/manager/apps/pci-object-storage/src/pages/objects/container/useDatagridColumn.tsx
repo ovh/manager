@@ -14,14 +14,25 @@ import {
 } from '@/constants';
 import { Actions } from './Actions';
 import { useUsers } from '@/api/hooks/useUser';
+import { useStorageFeatures } from '@/hooks/useStorageFeatures';
 
 export const useDatagridColumn = () => {
-  const { i18n, t } = useTranslation(['containers', 'pci-common']);
+  const { i18n, t } = useTranslation([
+    'containers',
+    'pci-common',
+    'containers/add',
+  ]);
 
   const { formatBytes } = useBytes();
   const { projectId } = useParams();
 
   const { validUsersWithCredentials } = useUsers(projectId);
+
+  const {
+    is3azAvailable,
+    isLocalZoneAvailable,
+    isPending,
+  } = useStorageFeatures();
 
   const columns: DatagridColumn<TStorage>[] = [
     {
@@ -56,10 +67,11 @@ export const useDatagridColumn = () => {
           return (
             <DataGridTextCell>
               <OdsBadge
-                color="information"
+                className="chip-3AZ"
                 size="sm"
-                label={props.mode}
-                className="badge-deployment-multizone"
+                label={t(
+                  'containers/add:pci_projects_project_storages_containers_add_deployment_mode_region-3-az_label',
+                )}
               />
             </DataGridTextCell>
           );
@@ -67,14 +79,30 @@ export const useDatagridColumn = () => {
         if (props.deploymentMode === OBJECT_CONTAINER_MODE_MONO_ZONE) {
           return (
             <DataGridTextCell>
-              <OdsBadge color="information" size="sm" label={props.mode} />
+              <OdsBadge
+                className="chip-1AZ"
+                size="sm"
+                label={
+                  !isPending && isLocalZoneAvailable && is3azAvailable
+                    ? t(
+                        'containers/add:pci_projects_project_storages_containers_add_deployment_mode_region_label',
+                      )
+                    : props.mode
+                }
+              />
             </DataGridTextCell>
           );
         }
         if (props.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE) {
           return (
             <DataGridTextCell>
-              <OdsBadge color="promotion" size="sm" label={props.mode} />
+              <OdsBadge
+                color="information"
+                size="sm"
+                label={t(
+                  'containers/add:pci_projects_project_storages_containers_add_deployment_mode_localzone_label',
+                )}
+              />
             </DataGridTextCell>
           );
         }

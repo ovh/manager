@@ -1,0 +1,72 @@
+<div data-ui-view>
+    <oui-datagrid
+        id="{{ $ctrl.datagridId }}"
+        data-rows-loader="$ctrl.getItems($config)"
+        data-page="{{ $ctrl.cursors.index }}"
+        data-page-size="{{ $ctrl.PAGE_SIZE }}"
+        data-pagination-mode="arrows"
+    >
+        <!-- <Columns> -->
+        <oui-datagrid-column
+            data-title="'iam_resource_groups_datagrid_column_group_name' | translate"
+        >
+            <oui-button
+                data-variant="link"
+                data-on-click="$ctrl.editResourceGroup($row)"
+            >
+                <span data-ng-bind="$row.name"></span>
+            </oui-button>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'iam_resource_groups_datagrid_column_resources_count' | translate"
+        >
+            <span data-ng-bind="$row.resources.length"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'iam_resource_groups_datagrid_column_creation_date' | translate"
+        >
+            <span
+                data-ng-bind="$row.createdAt | date:'dd/MM/yyyy HH:mm:ss'"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'iam_resource_groups_datagrid_column_last_modification_date' | translate"
+        >
+            <span
+                data-ng-bind="$row.updatedAt | date:'dd/MM/yyyy HH:mm:ss'"
+            ></span>
+        </oui-datagrid-column>
+        <!-- </Columns> -->
+
+        <!-- <Actions> -->
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-on-click="$ctrl.editResourceGroup($row)">
+                <span
+                    data-translate="iam_resource_groups_datagrid_action_edit_group"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.deleteResourceGroup($row)"
+            >
+                <span
+                    data-translate="iam_resource_groups_datagrid_action_delete_group"
+                    class="text-danger"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+        <!-- </Actions> -->
+
+        <!-- <Topbar> -->
+        <oui-datagrid-topbar>
+            <oui-button
+                data-on-click="$ctrl.createResourceGroup()"
+                class="mb-3"
+            >
+                <span
+                    data-translate="iam_resource_groups_datagrid_topbar_create_resource_group"
+                ></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+        <!-- </Topbar> -->
+    </oui-datagrid>
+</div>

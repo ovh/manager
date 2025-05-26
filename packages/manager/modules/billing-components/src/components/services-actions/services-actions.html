@@ -151,13 +151,13 @@
 
         <oui-action-menu-item
             ng-if="::$ctrl.canDisplayDeleteMenuEntry"
-            href="{{:: $ctrl.deleteLink }}"
+            href="{{:: $ctrl.getDeleteLink() }}"
             on-click="$ctrl.trackAction('go-to-resiliate')"
             data-navi-id="go-to-delete"
             top
         >
             <span
-                data-translate="{{:: 'billing_services_actions_menu_resiliate_' + $ctrl.service.serviceType }}"
+                data-translate="{{:: 'billing_services_actions_menu_resiliate_' + $ctrl.service.serviceType + ($ctrl.service.isSuspendedHostingWeb() ? '_SUSPENDED' : '') }}"
             ></span>
         </oui-action-menu-item>
     </div>

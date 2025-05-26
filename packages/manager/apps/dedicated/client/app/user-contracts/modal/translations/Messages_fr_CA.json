@@ -1,12 +1,14 @@
 {
-  "user_contracts_modal_title": "Termes et conditions",
-  "user_contracts_modal_term_of_service_updated_text": "Nos termes et conditions ont changé.",
-  "user_contracts_modal_term_of_service_updated_explanation": "Votre utilisation des services d'OVH, y compris l'accès à l'Espace Client, nécessite que vous acceptiez ces termes et conditions mis à jour :",
+  "user_contracts_modal_title": "Conditions d'utilisation",
+  "user_contracts_modal_term_of_service_updated_text": "Nos conditions d'utilisation ont changé.",
+  "user_contracts_modal_term_of_service_updated_explanation": "Pour continuer à utiliser vos services OVHcloud, y compris l'accès à l'espace client OVHcloud, vous devez accepter les conditions de service mises à jour et les documents annexes.",
   "user_contracts_modal_checkbox_label_both": "J’accepte les mises à jour des conditions d’utilisation et la politique de confidentialité",
   "user_contracts_modal_checkbox_label_tos": "J’accepte la mises à jour des conditions d’utilisation",
   "user_contracts_modal_checkbox_label_pp": "J’accepte la mise à jour des conditions de confidentialité",
   "user_contracts_modal_submit_button": "Continuer",
   "user_contracts_modal_submit_error": "Une erreur est survenue. Veuillez réessayer.",
-  "user_contracts_modal_display_text_tos": "Termes du contrat de service",
-  "user_contracts_modal_display_text_pp": "Politique de confidentialité"
+  "user_contracts_modal_display_text_tos": "Conditions d'utilisation",
+  "user_contracts_modal_display_text_pp": "Politique de confidentialité",
+  "user_contracts_modal_checkbox_label_multiple_documents": "J'accepte les modifications apportées aux documents ci-dessus.",
+  "user_contracts_modal_checkbox_label_one_document": "J'accepte les modifications apportées au document ci-dessus."
 }

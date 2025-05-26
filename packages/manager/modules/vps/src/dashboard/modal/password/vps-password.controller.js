@@ -1,5 +1,6 @@
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
+import { VPS_PASSWORD_GUIDE_URL } from './vps-password.constants';
 
 export default class VpsPasswordCtrl {
   /* @ngInject */
@@ -7,6 +8,7 @@ export default class VpsPasswordCtrl {
     $translate,
     CucControllerHelper,
     CucCloudMessage,
+    coreConfig,
     ovhDocUrl,
     VpsService,
   ) {
@@ -15,6 +17,7 @@ export default class VpsPasswordCtrl {
     this.ovhDocUrl = ovhDocUrl;
     this.VpsService = VpsService;
     this.CucControllerHelper = CucControllerHelper;
+    this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
 
     this.selected = {
       rescue: true,
@@ -22,7 +25,9 @@ export default class VpsPasswordCtrl {
   }
 
   $onInit() {
-    this.guide = this.ovhDocUrl.getDocUrl('vps/root-password');
+    this.guide =
+      VPS_PASSWORD_GUIDE_URL[this.ovhSubsidiary] ||
+      VPS_PASSWORD_GUIDE_URL.DEFAULT;
     this.tasks = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
         this.VpsService.getTaskInError(this.serviceName)

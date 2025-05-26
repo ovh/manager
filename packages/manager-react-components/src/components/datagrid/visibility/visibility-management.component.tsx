@@ -13,6 +13,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { INTERNAL_COLUMNS } from '../datagrid.constants';
 
 export type ColumnsVisibility = {
   id: string;
@@ -25,19 +26,29 @@ export type ColumnsVisibility = {
 
 export type ColumnsVisibilityProps = {
   columnsVisibility: ColumnsVisibility[];
+  toggleAllColumnsVisible: (a: boolean) => void;
+  getIsAllColumnsVisible: () => boolean;
+  getIsSomeColumnsVisible: () => boolean;
 };
 
 export function VisibilityManagement({
   columnsVisibility,
+  toggleAllColumnsVisible,
+  getIsAllColumnsVisible,
+  getIsSomeColumnsVisible,
 }: Readonly<ColumnsVisibilityProps>) {
   const { t } = useTranslation('datagrid');
   const visibilityPopoverRef = useRef(null);
-  const numberVisibleColumns = columnsVisibility?.filter((col) =>
-    col.isVisible(),
+  const eligibleColumns = columnsVisibility.filter(
+    (column) => !INTERNAL_COLUMNS.includes(column.id) && column.label !== '',
+  );
+
+  const visibleColumnsCount = eligibleColumns.filter((column) =>
+    column.isVisible(),
   ).length;
-  const disabledVisibleColumns = columnsVisibility?.filter(
-    (col) => col.enableHiding === false,
-  ).length;
+
+  const isAllColumnsVisible = getIsAllColumnsVisible();
+  const isSomeColumnsVisible = getIsSomeColumnsVisible();
 
   return (
     <>
@@ -46,12 +57,12 @@ export function VisibilityManagement({
         slot="datagrid-visibility-popover-trigger"
         data-testid="datagrid-topbar-visibility-button"
         size={ODS_BUTTON_SIZE.sm}
-        variant={ODS_BUTTON_VARIANT.ghost}
+        variant={ODS_BUTTON_VARIANT.outline}
         icon={ODS_ICON_NAME.columns}
         aria-label={t('common_topbar_columns')}
-        label={`${t('common_topbar_columns')} ${
-          numberVisibleColumns < columnsVisibility.length
-            ? `(${numberVisibleColumns - disabledVisibleColumns})`
+        label={`${t('common_topbar_columns')}${
+          visibleColumnsCount < eligibleColumns.length
+            ? ` (${visibleColumnsCount})`
             : ''
         }`}
       />
@@ -61,27 +72,40 @@ export function VisibilityManagement({
         with-arrow
       >
         <div className="flex flex-col">
-          {columnsVisibility
-            .filter(({ label }) => label !== '')
-            .map((column) => (
-              <OdsFormField key={column.id}>
-                <div className="flex flex-row items-center gap-x-2">
-                  <OdsCheckbox
-                    name={column.id}
-                    inputId={column.id}
-                    isDisabled={column.isDisabled}
-                    isChecked={column.isVisible()}
-                    onOdsChange={column.onChange}
-                    ariaLabel={column.label}
-                  />
-                  <label slot="label" htmlFor={column.id}>
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                      {column.label}
-                    </OdsText>
-                  </label>
-                </div>
-              </OdsFormField>
-            ))}
+          <div className="pr-5 flex flex-row items-center gap-x-2">
+            <OdsCheckbox
+              name={'toggle-all-columns-visibility'}
+              inputId={'toggle-all-columns-visibility'}
+              isChecked={isAllColumnsVisible}
+              onOdsChange={() => toggleAllColumnsVisible(!isAllColumnsVisible)}
+              ariaLabel={t('common_topbar_columns_select_all')}
+              isIndeterminate={!isAllColumnsVisible && isSomeColumnsVisible}
+            />
+            <label slot="label" htmlFor={'toggle-all-columns-visibility'}>
+              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                {t('common_topbar_columns_select_all')}
+              </OdsText>
+            </label>
+          </div>
+          {eligibleColumns.map((column) => (
+            <OdsFormField key={column.id}>
+              <div className="px-5 flex flex-row items-center gap-x-2">
+                <OdsCheckbox
+                  name={column.id}
+                  inputId={column.id}
+                  isDisabled={column.isDisabled}
+                  isChecked={column.isVisible()}
+                  onOdsChange={column.onChange}
+                  ariaLabel={column.label}
+                />
+                <label slot="label" htmlFor={column.id}>
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    {column.label}
+                  </OdsText>
+                </label>
+              </div>
+            </OdsFormField>
+          ))}
         </div>
       </OdsPopover>
     </>

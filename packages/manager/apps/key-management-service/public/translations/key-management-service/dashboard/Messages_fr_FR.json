@@ -36,5 +36,8 @@
   "key_management_service_dashboard_dashboard_field_state_toDelete": "À supprimer",
   "key_management_service_dashboard_dashboard_field_state_toSuspend": "À suspendre",
   "key_management_service_dashboard_field_label_kmip_count": "Nombre d'objets KMIP",
-  "key_management_service_dashboard_field_label_service-keys_count": "Nombre de Service Keys"
+  "key_management_service_dashboard_field_label_service-keys_count": "Nombre de Service Keys",
+  "key_management_service_dashboard_button_label_download_ca": "Télécharger CA",
+  "key_management_service_dashboard_button_label_download_rsa_ca": "Télécharger CA RSA",
+  "key_management_service_dashboard_error_download_ca": "Impossible de télécharger le certificat"
 }

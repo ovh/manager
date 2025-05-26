@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.47.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.47.3...@ovh-ux/manager-vps@2.47.4) (2025-05-26)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** update the guide reset password url ([99da7a9](https://github.com/ovh/manager/commit/99da7a9261720c3b745da0d4f37cfea295737e14)), closes [#MANAGER-13736](https://github.com/ovh/manager/issues/MANAGER-13736)
+
+
+
+
+
+## [2.47.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.47.2...@ovh-ux/manager-vps@2.47.3) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4020] ([287dc03](https://github.com/ovh/manager/commit/287dc03f5f1b3e5ebb9bc514cabe0d12989a4ada))
+* **i18n:** add missing translations [CDS 4025] ([e95fb41](https://github.com/ovh/manager/commit/e95fb410146a8140c601438dd6d78072814042f3))
+* remove unused translations [CDS] ([53394aa](https://github.com/ovh/manager/commit/53394aa6ef4341ac89246cf5813337ee5b7cd41e))
+
+
+
+
+
+## [2.47.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.47.1...@ovh-ux/manager-vps@2.47.2) (2025-05-19)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** changes vps FTC ([#16961](https://github.com/ovh/manager/issues/16961)) ([3fbc1a7](https://github.com/ovh/manager/commit/3fbc1a768754ff3dcd484aab9ccacd7ced99df94)), closes [#MANAGER-17939](https://github.com/ovh/manager/issues/MANAGER-17939)
+* **dedicated.vps:** improvement on error message for reboot vps ([#16959](https://github.com/ovh/manager/issues/16959)) ([3b64f06](https://github.com/ovh/manager/commit/3b64f06039f59a07818014e8868a2aa6e681a930)), closes [#MANAGER-18237](https://github.com/ovh/manager/issues/MANAGER-18237)
+
+
+
+
+
+## [2.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.47.0...@ovh-ux/manager-vps@2.47.1) (2025-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4000] ([f065814](https://github.com/ovh/manager/commit/f0658149ca7294361082ef49ed4d795b42ed0dc8))
+* **i18n:** add missing translations [CDS 4012] ([dd2d7d8](https://github.com/ovh/manager/commit/dd2d7d837dd48025b32a5500331dc1c213e7ea3a))
+* **i18n:** add missing translations [CDS 4017] ([e02aa4a](https://github.com/ovh/manager/commit/e02aa4af4043c7909fd978f324891e5751cc7a64))
+
+
+
+
+
+# [2.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.46.6...@ovh-ux/manager-vps@2.47.0) (2025-05-13)
+
+
+### Features
+
+* **dedicated:** ftc update delete vps label ([#16776](https://github.com/ovh/manager/issues/16776)) ([f7c68e0](https://github.com/ovh/manager/commit/f7c68e009164d329c9f49280ff9d9f9a5d299638)), closes [#MANAGER-17990](https://github.com/ovh/manager/issues/MANAGER-17990)
+
+
+
+
+
+## [2.46.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.46.5...@ovh-ux/manager-vps@2.46.6) (2025-05-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3961] ([65225e1](https://github.com/ovh/manager/commit/65225e1393af8dcd96359bfcc075f705b29dc663))
+* **i18n:** add missing translations [CDS 3966] ([db15830](https://github.com/ovh/manager/commit/db158309d6532d9b37f2d2c1f6f1efc53d418fc0))
+
+
+
+
+
 ## [2.46.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.46.4...@ovh-ux/manager-vps@2.46.5) (2025-04-29)
 
 

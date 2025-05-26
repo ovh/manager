@@ -3,6 +3,80 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.17.1...@ovh-ux/manager-billing-components@4.18.0) (2025-05-26)
+
+
+### Features
+
+* **billing:** move services list to its dedicated route ([a516b64](https://github.com/ovh/manager/commit/a516b64a377d21060072c17586d76b0549a948a2)), closes [#MANAGER-17700](https://github.com/ovh/manager/issues/MANAGER-17700)
+
+
+
+
+
+## [4.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.17.0...@ovh-ux/manager-billing-components@4.17.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4030] ([9d4ff63](https://github.com/ovh/manager/commit/9d4ff63338619d8a9df83dbaa4e41a17fcff667d))
+* **i18n:** add missing translations [CDS 4031] ([bed6b78](https://github.com/ovh/manager/commit/bed6b7860bef87342ed0a09217f9cecfd3dfec7c))
+
+
+
+
+
+# [4.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.16.0...@ovh-ux/manager-billing-components@4.17.0) (2025-05-21)
+
+
+### Features
+
+* **billing:** add delete hosting for suspended service ([#15900](https://github.com/ovh/manager/issues/15900)) ([d2fafca](https://github.com/ovh/manager/commit/d2fafcaaaec9469059cc932ec90f897cfafc84b2)), closes [#MANAGER-13617](https://github.com/ovh/manager/issues/MANAGER-13617)
+
+
+
+
+
+# [4.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.15.0...@ovh-ux/manager-billing-components@4.16.0) (2025-05-14)
+
+
+### Features
+
+* update agora termination to manage FTC process ([5ebe59a](https://github.com/ovh/manager/commit/5ebe59ac630c769244b74c17705ef2884fca0442)), closes [#MANAGER-17779](https://github.com/ovh/manager/issues/MANAGER-17779) [#MANAGER-17781](https://github.com/ovh/manager/issues/MANAGER-17781) [#MANAGER-17909](https://github.com/ovh/manager/issues/MANAGER-17909) [#MANAGER-17910](https://github.com/ovh/manager/issues/MANAGER-17910) [#MANAGER-17913](https://github.com/ovh/manager/issues/MANAGER-17913)
+
+
+
+
+
+# [4.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.14.0...@ovh-ux/manager-billing-components@4.15.0) (2025-05-13)
+
+
+### Bug Fixes
+
+* **billing-components:** change wording for subscription tile ([#16942](https://github.com/ovh/manager/issues/16942)) ([ddc1cb5](https://github.com/ovh/manager/commit/ddc1cb5422fe7e975ab949c5d1a66a2e2813c039)), closes [#MANAGER-18160](https://github.com/ovh/manager/issues/MANAGER-18160)
+* **billing.components:** change wording for resiliation form ([#16881](https://github.com/ovh/manager/issues/16881)) ([b7379fa](https://github.com/ovh/manager/commit/b7379fa01e9fd5cbf55e0df2678fea990cf98367)), closes [#MANAGER-18162](https://github.com/ovh/manager/issues/MANAGER-18162)
+* **billing:** use alternate nichandle to check action visibility ([#16940](https://github.com/ovh/manager/issues/16940)) ([de8aded](https://github.com/ovh/manager/commit/de8aded6528cfede8de8f68832da126b45407839)), closes [#MANAGER-18233](https://github.com/ovh/manager/issues/MANAGER-18233) [#INC0125894](https://github.com/ovh/manager/issues/INC0125894)
+
+
+### Features
+
+* **billing:** add some us wording in my offre tile ([#16340](https://github.com/ovh/manager/issues/16340)) ([413b656](https://github.com/ovh/manager/commit/413b656fdafe5779efb4de3f8e4c92ed2f8c539f)), closes [#MANAGER-17648](https://github.com/ovh/manager/issues/MANAGER-17648)
+
+
+
+
+
+# [4.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.13.4...@ovh-ux/manager-billing-components@4.14.0) (2025-05-06)
+
+
+### Features
+
+* **billing:** add some us wording in commitment page ([#16362](https://github.com/ovh/manager/issues/16362)) ([4efe425](https://github.com/ovh/manager/commit/4efe42560c36165d6ada8277dad4f280f233ae78)), closes [#MANAGER-17649](https://github.com/ovh/manager/issues/MANAGER-17649)
+
+
+
+
+
 ## [4.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.13.3...@ovh-ux/manager-billing-components@4.13.4) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

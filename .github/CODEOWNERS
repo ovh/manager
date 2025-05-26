@@ -61,9 +61,9 @@
 /packages/manager/apps/vrack @ovh/dev-manager-infra-all
 /packages/manager/apps/vrack-services @ovh/dev-manager-infra-all
 /packages/manager/apps/web @ovh/dev-manager-web-all
+/packages/manager/apps/web-hosting @ovh/dev-manager-web-all
 /packages/manager/apps/web-office @ovh/dev-manager-web-all
 /packages/manager/apps/web-ongoing-operations @ovh/dev-manager-web-domain
-/packages/manager/apps/web-paas @ovh/dev-manager-web-all
 /packages/manager/apps/zimbra @ovh/dev-manager-web-all
 
 # Core

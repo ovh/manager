@@ -9,7 +9,7 @@
   "dedicated_server_dashboard_remove_hack_button": "Unblock",
   "dedicated_server_dashboard_remove_hack_success": "Your un-hacking request has been processed.",
   "dedicated_server_dashboard_remove_hack_fail": "An error has occurred requesting the server to be unblocked.",
-  "dedicated_server_dashboard_close_service": "Delete my service",
+  "dedicated_server_dashboard_close_service": "Cancel my service",
   "dedicated_server_dashboard_monitoring": "Monitoring",
   "dedicated_server_dashboard_monitoring_activated": "Enabled",
   "dedicated_server_dashboard_monitoring_disabled": "Disabled",

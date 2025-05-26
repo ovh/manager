@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.1...@ovh-ux/manager-public-cloud@7.2.2) (2025-05-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.0...@ovh-ux/manager-public-cloud@7.2.1) (2025-05-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+# [7.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.1.9...@ovh-ux/manager-public-cloud@7.2.0) (2025-05-20)
+
+
+### Features
+
+* **pci-dataplatform:** add deeplinks for new uapp ([8e14ed3](https://github.com/ovh/manager/commit/8e14ed373c165749192ad1095daf534b5f6a2792)), closes [#DATATR-2166](https://github.com/ovh/manager/issues/DATATR-2166)
+
+
+
+
+
+## [7.1.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.1.8...@ovh-ux/manager-public-cloud@7.1.9) (2025-05-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.1.7...@ovh-ux/manager-public-cloud@7.1.8) (2025-05-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.1.6...@ovh-ux/manager-public-cloud@7.1.7) (2025-05-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.1.5...@ovh-ux/manager-public-cloud@7.1.6) (2025-05-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.1.4...@ovh-ux/manager-public-cloud@7.1.5) (2025-05-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.1.3...@ovh-ux/manager-public-cloud@7.1.4) (2025-05-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.1.2...@ovh-ux/manager-public-cloud@7.1.3) (2025-05-06)
+
+
+### Bug Fixes
+
+* **pci-ai-endpoints:** remove pci-ai-endpoints:create-token from pci-menu ([#16853](https://github.com/ovh/manager/issues/16853)) ([e1e7f6d](https://github.com/ovh/manager/commit/e1e7f6d620ee84576acc69887a9db93dccacaa3c)), closes [#AIS-1219](https://github.com/ovh/manager/issues/AIS-1219)
+
+
+
+
+
 ## [7.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.1.1...@ovh-ux/manager-public-cloud@7.1.2) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

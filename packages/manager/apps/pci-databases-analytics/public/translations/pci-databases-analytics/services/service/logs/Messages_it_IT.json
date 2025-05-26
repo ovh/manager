@@ -5,7 +5,7 @@
   "autoRefreshInputLabel": "Auto-Refresh",
   "streamsTitle": "Flussi di dati",
   "streamsBreadcrumb": "Flusso",
-  "streamsBackLink": "Ritorna alla pagina precedente",
-  "streamsDescription": "Sottoscrivendo i log di audit del servizio, questi verranno trasferiti in Logs Data Platform e sarà possibile centralizzarli con altri log, effettuare ricerche avanzate, gestirne la conservazione, definire allerte e dashboard per osservare facilmente i cluster.",
-  "streamsAdd": "Aggiungi un flusso di dati"
+  "streamsBackLink": "Torna alla pagina precedente",
+  "streamsDescription": "Abbonandoti ai log di audit del servizio, questi log verranno trasferiti in Logs Data Platform e potrai centralizzarli con altri log, effettuare ricerche avanzate, gestire la loro retention, definire alert e dashboard per osservare facilmente i cluster.",
+  "streamsAdd": "Aggiungere un flusso di dati"
 }

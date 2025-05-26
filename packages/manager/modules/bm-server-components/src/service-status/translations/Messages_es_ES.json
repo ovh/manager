@@ -9,7 +9,7 @@
   "dedicated_server_dashboard_remove_hack_button": "Desbloquear",
   "dedicated_server_dashboard_remove_hack_success": "La solicitud de deshackeo se ha enviado.",
   "dedicated_server_dashboard_remove_hack_fail": "Se ha producido un error al solicitar el desbloqueo del servidor.",
-  "dedicated_server_dashboard_close_service": "Eliminar el servicio",
+  "dedicated_server_dashboard_close_service": "Dar de baja mi servicio",
   "dedicated_server_dashboard_monitoring": "Monitoring",
   "dedicated_server_dashboard_monitoring_activated": "Activado",
   "dedicated_server_dashboard_monitoring_disabled": "Desactivado",

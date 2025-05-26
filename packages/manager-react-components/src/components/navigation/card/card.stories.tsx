@@ -45,7 +45,7 @@ const meta: Meta<typeof Card> = {
       description:
         'Change the icon of the link to indicate if the link is internal or external',
       table: {
-        defaultValue: { summary: 'false' },
+        defaultValue: { summary: '' },
       },
     },
     img: {

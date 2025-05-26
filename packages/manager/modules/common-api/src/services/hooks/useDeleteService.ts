@@ -1,9 +1,12 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   MutationOptions,
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
+import { useContext } from 'react';
+
 import {
   getResourceServiceId,
   getResourceServiceIdQueryKey,
@@ -27,6 +30,9 @@ export const useDeleteService = ({
   ...options
 }: UseDeleteServiceParams) => {
   const queryClient = useQueryClient();
+  const { ovhSubsidiary } =
+    useContext(ShellContext)?.environment?.getUser() || {};
+
   const { mutate: terminateService, ...mutation } = useMutation({
     mutationKey,
     mutationFn: async ({ resourceName }) => {
@@ -37,7 +43,7 @@ export const useDeleteService = ({
         queryKey: getResourceServiceIdQueryKey({ resourceName }),
         queryFn: () => getResourceServiceId({ resourceName }),
       });
-      return deleteService({ serviceId: data[0] });
+      return deleteService({ serviceId: data[0] }, ovhSubsidiary);
     },
     ...options,
   });

@@ -12,9 +12,11 @@ import {
   columnsFilters,
   columnsVisibility,
   columnsSearchAndFilters,
+  columnsFiltersWithTags,
 } from './datagrid.mock';
 import { ActionMenu } from '../navigation';
 import DataGridTextCell from './text-cell.component';
+import { IamObject } from '../../hooks';
 
 interface Item {
   label: string;
@@ -219,10 +221,28 @@ Filters.args = {
   columns: columnsFilters,
 };
 
+export const FiltersWithTags = DatagridStory.bind({});
+
+FiltersWithTags.args = {
+  items: [...Array(pageSize).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+    iam: {
+      id: 'test',
+      urn: 'urn:v9:eu:resource:manatestkds-fdsfsd',
+      tags: {
+        key1: `tag-1-${i}`,
+        key2: `tag-2-${i}`,
+        [i]: `value-test`,
+      },
+    } as IamObject,
+  })),
+  columns: columnsFiltersWithTags,
+};
+
 export const Visibility = DatagridStory.bind({});
 
 Visibility.args = {
-  columnVisibility: ['label', 'price'],
   items: [...Array(pageSize).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
@@ -312,8 +332,16 @@ WithDatagridSubComponent.args = {
         <Datagrid
           columns={subComponentColumns}
           items={[
-            { label: 'sub component label', price: 10 },
-            { label: 'sub component label #2', price: 100 },
+            {
+              label: 'sub component label',
+              price: 10,
+              status: '',
+            },
+            {
+              label: 'sub component label #2',
+              price: 100,
+              status: '',
+            },
           ]}
           totalItems={2}
           hideHeader={true}

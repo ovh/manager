@@ -196,27 +196,22 @@ describe('Vrack Services subnets page test suite', () => {
     });
     await waitFor(() => userEvent.click(actionMenuButton));
 
-    const editLink = await getButtonByLabel({
+    const deleteLink = await getButtonByLabel({
       container,
       value: labels.subnets['action-deleteSubnet'],
     });
-    await assertEnabled(editLink);
-    await waitFor(() => userEvent.click(editLink));
+    await assertEnabled(deleteLink);
+    await waitFor(() => userEvent.click(deleteLink));
 
     await assertModalText({
       container,
-      text: labels.subnets.modalDeleteSubnetHeadline,
-    });
-    const submitButton = await getButtonByLabel({
-      container,
-      value: labels.actions.delete,
-    });
-    await assertDisabled(submitButton);
-    await changeInputValueByLabelText({
-      inputLabel: labels.subnets.modalDeleteSubnetInputLabel,
-      value: 'TERMINATE',
+      text: labels.deleteModal.deleteModalDescription,
     });
 
+    const submitButton = await getButtonByLabel({
+      container,
+      value: labels.deleteModal.deleteModalDeleteButton,
+    });
     await assertEnabled(submitButton);
     await waitFor(() => userEvent.click(submitButton));
 

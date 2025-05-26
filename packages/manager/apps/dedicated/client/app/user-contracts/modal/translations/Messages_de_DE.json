@@ -1,12 +1,14 @@
 {
-  "user_contracts_modal_title": "Bedingungen und Konditionen",
-  "user_contracts_modal_term_of_service_updated_text": "Unsere Bedingungen und Konditionen wurden aktualisiert.",
-  "user_contracts_modal_term_of_service_updated_explanation": "Bitte akzeptieren Sie die aktualisierten Bedingungen und Konditionen, um Ihre OVH Dienste, darunter auch das OVH Kundencenter, weiterhin nutzen zu können.",
+  "user_contracts_modal_title": "Nutzungsbedingungen",
+  "user_contracts_modal_term_of_service_updated_text": "Unsere Nutzungsbedingungen haben sich geändert.",
+  "user_contracts_modal_term_of_service_updated_explanation": "Um Ihre OVHcloud Dienste weiterhin nutzen und auf das OVHcloud Kundencenter zugreifen zu können, müssen Sie den aktualisierten Vertragsbedingungen und den zugehörigen Dokumenten zustimmen.",
   "user_contracts_modal_checkbox_label_both": "Ich akzeptiere die aktualisierten Nutzungsbedingungen und Datenschutzbestimmungen",
   "user_contracts_modal_checkbox_label_tos": "Ich akzeptiere die aktualisierten Nutzungsbedingungen",
   "user_contracts_modal_checkbox_label_pp": "Ich akzeptiere die aktualisierten Datenschutzbestimmungen",
   "user_contracts_modal_submit_button": "Weiter",
   "user_contracts_modal_submit_error": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
-  "user_contracts_modal_display_text_tos": "Dienstleistungsbedingungen",
-  "user_contracts_modal_display_text_pp": "Datenschutzbestimmungen"
+  "user_contracts_modal_display_text_tos": "Nutzungsbedingungen",
+  "user_contracts_modal_display_text_pp": "Datenschutzbestimmungen",
+  "user_contracts_modal_checkbox_label_multiple_documents": "Ich akzeptiere die Änderungen an den oben genannten Dokumenten.",
+  "user_contracts_modal_checkbox_label_one_document": "Ich akzeptiere die Änderungen am oben genannten Dokument."
 }

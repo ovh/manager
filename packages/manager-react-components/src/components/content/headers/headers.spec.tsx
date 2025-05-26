@@ -16,6 +16,9 @@ vitest.mock('@ovh-ux/manager-react-shell-client', () => ({
     trackClick: vi.fn(),
   }),
 }));
+vitest.mock('storybook-addon-react-router-v6', () => ({
+  withRouter: () => vi.fn(),
+}));
 
 const mockedHook =
   useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;

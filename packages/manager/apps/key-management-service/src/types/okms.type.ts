@@ -12,6 +12,11 @@ export type OKMS = {
   iam: IAM;
 };
 
+export type OkmsPublicCa = {
+  publicCA: string;
+  publicRsaCA: string;
+};
+
 export type IAM = {
   displayName: string;
   id: string;

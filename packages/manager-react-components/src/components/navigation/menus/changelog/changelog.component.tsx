@@ -1,5 +1,9 @@
 import React from 'react';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_POPOVER_POSITION,
+} from '@ovhcloud/ods-components';
 import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
@@ -40,7 +44,8 @@ export const ChangelogButton: React.FC<ChangelogButtonProps> = ({
 
       <OdsPopover
         triggerId="navigation-menu-changelog-trigger"
-        with-arrow="true"
+        withArrow
+        position={ODS_POPOVER_POSITION.bottom}
       >
         {Object.entries(links).map(([key, value]) => (
           <div key={key}>

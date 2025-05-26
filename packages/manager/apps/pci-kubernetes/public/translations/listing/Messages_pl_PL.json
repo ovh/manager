@@ -19,7 +19,7 @@
   "kubernetes_add_private_network": "Wybierz prywatną sieć dla tego klastra",
   "kubernetes_add_private_network_label": "Przypisana prywatna sieć",
   "kubernetes_add_private_network_none": "Brak (IP publiczne)",
-  "kubernetes_add_private_network_description": "Węzłom zostanie przypisany IP w sieci vLAN wybranej prywatnej sieci.",
+  "kubernetes_add_private_network_description": "Twoje węzły otrzymają adres IP we VLAN-ie przypisanym do wybranej sieci prywatnej.",
   "kubernetes_add_private_network_add": "Utwórz prywatną sieć",
   "kube_common_node_pool_autoscaling_title": "Skonfiguruj rozmiar puli węzłów",
   "kube_common_node_pool_title_multiple": "Skonfiguruj jedną lub więcej pul węzłów (opcjonalnie)"

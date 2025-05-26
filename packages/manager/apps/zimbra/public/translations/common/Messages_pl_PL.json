@@ -82,5 +82,7 @@
   "configure_now": "Skonfiguruj teraz",
   "configure_later": "Skonfiguruj później",
   "skip_step": "Pomiń ten etap",
-  "configure_another_account": "Skonfiguruj inne konto"
+  "configure_another_account": "Skonfiguruj inne konto",
+  "generate_password_tooltip": "Wygeneruj hasło",
+  "generated_password_tooltip": "Hasło zostało skopiowane do schowka"
 }

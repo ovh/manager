@@ -4,17 +4,17 @@ import {
   DashboardGridLayout,
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
-import { useOKMSById } from '@/data/hooks/useOKMS';
+import { useOkmsById } from '@/data/hooks/useOkms';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import InformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/InformationsTile';
-import BillingInformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/BillingInformationsTile';
 import Loading from '@/components/Loading/Loading';
 import KmipTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/KmipTile';
 import RestApiTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/RestApiTile';
+import BillingInformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/BillingInformationsTile';
 
 function GeneralInformationsTab() {
   const { okmsId } = useParams();
-  const { data: okms, error, isLoading: isOkmsLoading } = useOKMSById(okmsId);
+  const { data: okms, error, isLoading: isOkmsLoading } = useOkmsById(okmsId);
   const {
     data: okmsService,
     isLoading: isOkmsServiceLoading,

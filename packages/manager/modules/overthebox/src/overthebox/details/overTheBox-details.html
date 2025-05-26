@@ -6,6 +6,16 @@
     >
         <span data-translate="overTheBox_available_update"></span>
     </oui-message>
+    <oui-message
+        id="overTheBox_enabled_ipv6_error_msg"
+        type="error"
+        data-ng-if="$ctrl.error.ipv6Update"
+        data-on-dismiss="$ctrl.onIpv6UpdateErrorMessageDismiss()"
+        dismissable
+        class="m-2"
+    >
+        <span data-translate="overTheBox_enabled_ipv6_error"></span>
+    </oui-message>
 
     <tuc-toast-message></tuc-toast-message>
 
@@ -143,22 +153,13 @@
                                     data-ng-repeat="ip in $ctrl.ips | orderBy:'version' track by ip.ip"
                                     data-ng-if="$ctrl.ips.length > 0"
                                 >
-                                    <div
-                                        class="oui-tile__term"
-                                        data-translate="overTheBox_detail_ip_v4"
-                                        data-ng-if="ip.version === $ctrl.OVERTHEBOX_DETAILS.ip.v4"
-                                    ></div>
-                                    <div
-                                        class="oui-tile__term"
-                                        data-translate="overTheBox_detail_ip_v6"
-                                        data-ng-if="ip.version === $ctrl.OVERTHEBOX_DETAILS.ip.v6"
-                                    ></div>
-                                    <div class="oui-tile__description">
-                                        <div
-                                            class="d-inline-block my-2"
-                                            data-ng-bind="ip.ip + '&nbsp;/&nbsp;' + ip.range"
-                                        ></div>
-                                    </div>
+                                    <ip-display
+                                        data-ip="ip"
+                                        data-is-updating="$ctrl.loaders.ipv6Update"
+                                        data-on-ip-activation-update="$ctrl.onIpActivationUpdate(isIpEnabled)"
+                                        data-is-ipv6-enabled="$ctrl.service.ipv6Enabled"
+                                    >
+                                    </ip-display>
                                 </div>
                                 <div
                                     data-ng-if="$ctrl.ips.length == 0"

@@ -128,7 +128,7 @@ const Sidebar = (): JSX.Element => {
     setSavedNode(node);
     if (isMobile) {
       closeNavigationSidebar();
-    } else {
+    } else if (!node?.children?.length) {
       setOpen(false);
     }
   };
@@ -210,6 +210,8 @@ const Sidebar = (): JSX.Element => {
     if (foundNode) {
       selectSubMenu(foundNode.node);
       selectLvl1Node(foundNode.universe);
+    } else {
+      setOpen(true);
     }
   }, [currentNavigationNode, location]);
 
@@ -325,7 +327,7 @@ const Sidebar = (): JSX.Element => {
             </a>
           )}
 
-          <div className={style.sidebar_menu} role="menubar">
+          <div className={style.sidebar_menu} role="menubar" aria-label="sidebar_description">
             <ul id="menu" role="menu">
               <li className="px-3 mb-3 mt-2 h-8">
                 {open && currentNavigationNode && (

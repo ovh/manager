@@ -39,4 +39,18 @@ export default class OverTheBoxDetailsService {
       .execute()
       .$promise.then(({ data: result }) => result);
   }
+
+  async updateIpActivation(serviceName, updatedValue) {
+    const response = await this.$http.put(`/overTheBox/${serviceName}/ipv6`, {
+      enabled: updatedValue,
+    });
+    return response?.data?.taskId;
+  }
+
+  async checkIpv6UpdateTask(serviceName, taskId) {
+    const response = await this.$http.get(
+      `/overTheBox/${serviceName}/tasks/${taskId}`,
+    );
+    return response?.data?.status === 'done';
+  }
 }

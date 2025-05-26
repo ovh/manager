@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.15...@ovh-ux/manager-telecom@16.10.0) (2025-05-26)
+
+
+### Features
+
+* **pack:** add otp reference on search meeting call api ([7b2b93e](https://github.com/ovh/manager/commit/7b2b93e2f284997c44054f4c58196dbcef3526a7))
+
+
+
+
+
+## [16.9.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.14...@ovh-ux/manager-telecom@16.9.15) (2025-05-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.9.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.13...@ovh-ux/manager-telecom@16.9.14) (2025-05-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.9.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.12...@ovh-ux/manager-telecom@16.9.13) (2025-05-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.9.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.11...@ovh-ux/manager-telecom@16.9.12) (2025-05-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.9.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.10...@ovh-ux/manager-telecom@16.9.11) (2025-05-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.9.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.9...@ovh-ux/manager-telecom@16.9.10) (2025-05-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.9.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.8...@ovh-ux/manager-telecom@16.9.9) (2025-05-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.9.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.7...@ovh-ux/manager-telecom@16.9.8) (2025-05-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
 ## [16.9.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.6...@ovh-ux/manager-telecom@16.9.7) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

@@ -1,0 +1,11 @@
+{
+  "virtualmachine_grid_name": "Nazwa",
+  "virtualmachine_grid_license": "Licencja",
+  "virtualmachine_error_loading": "Wystąpił błąd podczas pobierania informacji na temat maszyn wirtualnych.",
+  "virtualmachine_license": "Licencja",
+  "virtualmachine_unavailable": "Niedostępny",
+  "virtualmachine_deactivated": "Wyłączona",
+  "virtualmachine_action_activate_license": "Aktywuj licencję",
+  "virtualmachine_action_deactivate_license": "Usuń licencję",
+  "vitualmachine_unavailable_tooltip": "Licencja nie może zostać aktywowana na maszynie wirtualnej (guest) z systemem operacyjnym innym niż Windows. "
+}

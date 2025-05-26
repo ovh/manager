@@ -33,3 +33,4 @@ export * from './order';
 
 export * from './badge';
 export * from './Modal';
+export * from './tags-list';
