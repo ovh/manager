@@ -92,7 +92,7 @@ export default (
   <Route
     path={KMS_ROUTES_URIS.root}
     Component={KmsLayout}
-    id={'root'}
+    id={'kms-root'}
     errorElement={
       <ErrorBoundary
         redirectionApp="key-management-service"
