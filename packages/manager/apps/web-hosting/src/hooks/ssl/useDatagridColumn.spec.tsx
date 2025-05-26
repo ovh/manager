@@ -1,6 +1,10 @@
-import { describe, it } from 'vitest';
+import { describe, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import useDatagridColumn from '@/hooks/ssl/useDatagridColumn';
+
+vi.mock('react-router-dom', () => ({
+  useParams: () => ({ serviceName: 'serviceName' }),
+}));
 
 describe('useDatagridColumn', () => {
   it('should return correct columns', () => {

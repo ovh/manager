@@ -5,6 +5,7 @@ import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
 import {
   DASHBOARD,
+  DISABLE_SSL,
   ONBOARDING,
   SSL,
   WEBSITE,
@@ -79,6 +80,19 @@ export default [
           },
           breadcrumb: {
             label: 'ssl',
+          },
+        },
+      },
+      {
+        id: DISABLE_SSL,
+        path: urls.disableSsl,
+        ...lazyRouteConfig(() =>
+          import('@/pages/dashboard/ssl/manage/disableSsl.page'),
+        ),
+        handle: {
+          tracking: {
+            pageName: DISABLE_SSL,
+            pageType: PageType.popup,
           },
         },
       },
