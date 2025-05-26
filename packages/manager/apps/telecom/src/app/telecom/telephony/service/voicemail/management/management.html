@@ -189,6 +189,24 @@
                             <button
                                 class="btn btn-link mr-2"
                                 type="button"
+                                title="{{:: 'telephony_line_answer_voicemail_directories_transcript' | translate }} {{:: 'telephony_line_answer_voicemail_directories_transcript_beta' | translate }}"
+                                data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
+                                data-ng-click="VoicemailManagementCtrl.openTranscriptModal(message)"
+                            >
+                                <i
+                                    class="fa fa-eye"
+                                    data-ng-if="!message.pendingTranscript"
+                                ></i>
+                                <oui-spinner
+                                    class="ml-2"
+                                    data-ng-if="message.pendingTranscript"
+                                    data-size="s"
+                                >
+                                </oui-spinner>
+                            </button>
+                            <button
+                                class="btn btn-link mr-2"
+                                type="button"
                                 title="{{:: 'telephony_line_answer_voicemail_directories_download_message' | translate }}"
                                 data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
                                 data-ng-click="VoicemailManagementCtrl.downloadMessage(message)"
@@ -260,5 +278,38 @@
         ></div>
     </div>
     <!-- /.widget-presentation -->
+    <div data-ng-if="VoicemailManagementCtrl.isOpenModal">
+        <div class="modal d-block">
+            <div
+                class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            >
+                <div class="modal-content">
+                    <form>
+                        <oui-modal
+                            heading="{{:: 'telephony_line_answer_voicemail_directories_transcript_modal_title' | translate }} {{:: 'telephony_line_answer_voicemail_directories_transcript_beta' | translate }}"
+                            primary-action="VoicemailManagementCtrl.downloadActiveTranscript()"
+                            primary-label="{{ :: 'telephony_line_answer_voicemail_directories_transcript_modal_download' | translate }}"
+                            secondary-action="VoicemailManagementCtrl.resetModalInfo()"
+                            secondary-label="{{ :: 'telephony_line_answer_voicemail_directories_transcript_modal_close' | translate }}"
+                            on-dismiss="VoicemailManagementCtrl.resetModalInfo()"
+                        >
+                            <pre
+                                style="white-space: pre-wrap !important;  max-height: 400px; overflow-y: auto;"
+                                data-ng-bind="VoicemailManagementCtrl.activeTranscript"
+                            ></pre>
+
+                            <p>
+                                <em
+                                    data-translate="telephony_line_answer_voicemail_directories_transcript_modal_subtitle"
+                                ></em>
+                            </p>
+                        </oui-modal>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="oui-modal-backdrop"></div>
+    </div>
+    <!-- /.oui.modal -->
 </section>
 <!-- /.telephony-group-service-voicemail-management -->
