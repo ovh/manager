@@ -12,5 +12,11 @@
   "zimbra_account_tooltip_need_slot": "Aucun compte disponible, veuillez en commander.",
   "zimbra_account_delete_modal_content_step1": "Vous êtes sur le point de supprimer le compte email du serveur Zimbra.",
   "zimbra_account_delete_modal_content_step2": "Êtes-vous sûr de vouloir supprimer la boite mail du serveur Zimbra ?",
-  "zimbra_account_delete_modal_warn_message": "Attention cette action est irréversible et entraîne la suppression des données."
+  "zimbra_account_delete_modal_warn_message": "Attention cette action est irréversible et entraîne la suppression des données.",
+  "zimbra_account_cancel_modal_content": "Le compte email <strong>{{ email }}</strong> et toutes ses données seront définitivement supprimées à la fin de la période d'engagement du service.",
+  "zimbra_slot_cancel_modal_content": "Votre service sera supprimé à la fin de votre période d'engagement.",
+  "zimbra_slot_cancel_modal_confirm": "Souhaitez-vous procéder à la résiliation de votre service ?",
+  "zimbra_slot_undo_cancel_modal_content": "En activant le renouvellement automatique, votre service sera maintenu après la date de fin de votre engagement.",
+  "zimbra_slot_undo_cancel_modal_confirm": "Souhaitez-vous réactiver le renouvellement automatique de votre service ?",
+  "zimbra_slot_modal_renew_date": "Fin de l'engagement: {{ renewDate }}"
 }

@@ -16,6 +16,7 @@ import {
   DomainType,
   servicesMock,
   slotServicesMock,
+  serviceMock,
 } from '@/data/api';
 
 const mocksAxios = vi.hoisted(() => ({
@@ -165,6 +166,9 @@ vi.mock('@/data/api', async (importActual) => {
     }),
     getSlotServices: vi.fn(() => {
       return Promise.resolve(slotServicesMock);
+    }),
+    getServiceByResourceName: vi.fn(() => {
+      return Promise.resolve(serviceMock);
     }),
     // ORDER
     getOrderCatalog: vi.fn(() => {
