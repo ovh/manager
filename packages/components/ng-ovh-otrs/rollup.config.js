@@ -9,6 +9,7 @@ export default [
   config.cjs(),
   config.umd({
     output: {
+      inlineDynamicImports: true,
       globals: {
         angular: 'angular',
         jquery: '$',
