@@ -831,5 +831,11 @@
   "server_configuration_intervention_activate_failed": "An error has occurred enabling on-site interventions on server {{serverName}}",
   "server_nutanix_cluster_node_warning_1": "This dedicated server is part of a Nutanix cluster: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "We recommend making all of the configuration changes directly in the dashboard of the server linked to your Nutanix cluster: {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "All billing actions linked to this server are visible on your Nutanix cluster: {{clusterDashboardLink}}"
+  "server_nutanix_cluster_node_warning_3": "All billing actions linked to this server are visible on your Nutanix cluster: {{clusterDashboardLink}}",
+  "server_configuration_installation_ovh_step1_gabarit_eol": "OVHcloud is constantly adapting and improving its solutions to meet the growing demand for resilience. Soon, as we roll out updates, <b>personal templates will be phased out</b>. You can install OSs with the <b>same level of customisation as before</b>. To learn more about the impacts and the best strategy to effectively manage this change, please refer to <a href=\"{{t0}}\" rel=\"noopener noreferrer\" class=\"alert-link\" target=\"doc\">this documentation page<span class=\"fa fa-external-link\" aria-hidden=\"true\"></span></a>.",
+  "server_configuration_installation_ovh_step3_save_button": "Copy installation settings",
+  "server_configuration_installation_ovh_step3_save_button_tooltip": "Copy installation settings to clipboard to reuse them later via API (e.g., from the API console)",
+  "server_configuration_installation_ovh_step3_save_clipboard": "Installations settings copied to your clipboard. You can paste this settings into the <a href=\"{{t0}}\" rel=\"noopener noreferrer\" class=\"alert-link\" target=\"api\">API console<span class=\"fa fa-external-link\" aria-hidden=\"true\"></span></a> to install on another server (assuming it meets hardware and contractual requirements).",
+  "server_configuration_installation_ovh_step3_save_clipboard_doc": "See the <a href=\"{{t0}}\" rel=\"noopener noreferrer\" class=\"alert-link\" target=\"api\">published documentation<span class=\"fa fa-external-link\" aria-hidden=\"true\"></span></a> for more details.",
+  "server_configuration_installation_ovh_step3_save_clipboard_error": "An error occurred copying the installation settings to your clipboard. Check your browser settings to ensure it allows clipboard access and that the required permissions are enabled."
 }
