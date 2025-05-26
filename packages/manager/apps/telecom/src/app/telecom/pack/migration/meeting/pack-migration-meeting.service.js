@@ -4,13 +4,9 @@ export default class PackMigrationMeetingService {
     this.$http = $http;
   }
 
-  searchMeetings(eligibilityReference, productCode, installationType) {
+  searchMeetings(options) {
     return this.$http
-      .post(`/connectivity/eligibility/search/meetings`, {
-        eligibilityReference,
-        productCode,
-        installationType,
-      })
+      .post(`/connectivity/eligibility/search/meetings`, options)
       .then(({ data }) => data);
   }
 }
