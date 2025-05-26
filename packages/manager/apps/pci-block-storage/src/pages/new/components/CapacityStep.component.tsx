@@ -22,6 +22,7 @@ import {
 } from '@ovhcloud/ods-components';
 
 import { useTranslation } from 'react-i18next';
+import { ButtonType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { PriceEstimate } from '@/pages/new/components/PriceEstimate';
 import { HighSpeedV2Infos } from '@/pages/new/components/HighSpeedV2Infos';
 import { StepState } from '@/pages/new/hooks/useStep';
@@ -53,6 +54,8 @@ export function CapacityStep({
   const { t } = useTranslation('add');
   const { t: tStepper } = useTranslation('stepper');
   const { t: tGlobal } = useTranslation('global');
+  const { trackClick } = useOvhTracking();
+
   const [volumeCapacity, setVolumeCapacity] = useState<number>(VOLUME_MIN_SIZE);
   const [maxSize, setMaxSize] = useState(0);
   const {
@@ -196,7 +199,14 @@ export function CapacityStep({
             className="w-fit"
             size={ODS_BUTTON_SIZE.md}
             color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => onSubmit(volumeCapacity)}
+            onClick={() => {
+              trackClick({
+                buttonType: ButtonType.button,
+                actions: ['configure_volume_capacity', `add_${volumeCapacity}`],
+              });
+
+              onSubmit(volumeCapacity);
+            }}
           >
             {tStepper('common_stepper_next_button_label')}
           </OsdsButton>

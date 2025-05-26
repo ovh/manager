@@ -8,6 +8,7 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
+import { ButtonType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { Step } from '@/pages/new/hooks/useStep';
 import { TRegion } from '@/api/data/regions';
 
@@ -23,6 +24,7 @@ export function AvailabilityZoneStep({
   onSubmit,
 }: Readonly<AvailabilityZoneStepProps>) {
   const { t } = useTranslation('stepper');
+  const { trackClick } = useOvhTracking();
 
   const [selectedZone, setSelectedZone] = useState<string | undefined>(
     undefined,
@@ -57,7 +59,16 @@ export function AvailabilityZoneStep({
           <OsdsButton
             size={ODS_BUTTON_SIZE.md}
             color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => onSubmit(selectedZone)}
+            onClick={() => {
+              trackClick({
+                buttonType: ButtonType.button,
+                actions: [
+                  'select_location_detailed',
+                  `add_${selectedZone}-manually`,
+                ],
+              });
+              onSubmit(selectedZone);
+            }}
             className="w-fit"
           >
             {t('common_stepper_next_button_label')}
