@@ -6,6 +6,7 @@ import 'ovh-api-services';
 
 import controller from './management.controller';
 import template from './management.html';
+import service from './management.service';
 
 const moduleName = 'ovhManagerTelecomTelephonyServiceVoicemailManagement';
 
@@ -15,8 +16,10 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ovh-api-services',
+    'oui',
   ])
   .controller('TelecomTelephonyServiceVoicemailManagementCtrl', controller)
+  .service('VoicemailManagmentService', service)
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
