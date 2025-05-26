@@ -94,5 +94,15 @@
   "select_slot": "Wybierz ofertę",
   "offer": "Pakiet",
   "monthly": "Abonament miesięczny",
-  "renewal_at": "Odnowienie {{date}}"
+  "renewal_at": "Odnowienie {{date}}",
+  "terminate": "Zakończ",
+  "cancel_slot_success_message": "Dyspozycja zakończenia usługi została zarejestrowana. Zostanie wykonana w ciągu kilku minut.",
+  "cancel_slot_error_message": "Zakończenie usługi nie powiodło się. Spróbuj ponownie za kilka minut. {{error}}",
+  "undo_cancel_slot_success_message": "Dyspozycja anulowania zakończenia usługi została przyjęta. Zostanie wykonana w ciągu kilku minut.",
+  "undo_cancel_slot_error_message": "Anulowanie zakończenia usługi nie powiodło się. Spróbuj ponownie za kilka minut. {{error}}",
+  "cancel_slot": "Tak",
+  "cancel_slot_refuse": "Nie",
+  "undo_cancel_slot": "Anuluj rezygnację",
+  "cancel_slot_title": "Zakończenie usługi Zimbra {{offer}}",
+  "undo_cancel_slot_title": "Włącz ponownie odnowienie dla mojej usługi Zimbra {{offer}}"
 }

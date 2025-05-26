@@ -94,5 +94,15 @@
   "select_slot": "Seleziona una soluzione",
   "offer": "Piano",
   "monthly": "Mensile",
-  "renewal_at": "Rinnovo il {{ date }}"
+  "renewal_at": "Rinnovo il {{ date }}",
+  "terminate": "Disattivare",
+  "cancel_slot_success_message": "La tua richiesta di disattivazione è stata presa in carico. Sarà eseguita entro pochi minuti.",
+  "cancel_slot_error_message": "La tua richiesta di disattivazione non è andata a buon fine. Ti chiediamo di riprovare più tardi: {{ error }}",
+  "undo_cancel_slot_success_message": "La tua richiesta di annullamento della disattivazione è stata presa in carico. Sarà eseguita entro pochi minuti.",
+  "undo_cancel_slot_error_message": "La tua richiesta di annullamento della disattivazione non è andata a buon fine. Ti chiediamo di riprovare più tardi: {{ error }}",
+  "cancel_slot": "Sì, disattiva",
+  "cancel_slot_refuse": "No, annulla",
+  "undo_cancel_slot": "Annullare la disattivazione",
+  "cancel_slot_title": "Disattivare il servizio Zimbra {{ offer }}",
+  "undo_cancel_slot_title": "Riattivare il rinnovo per il servizio Zimbra {{ offer }}"
 }
