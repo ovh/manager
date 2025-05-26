@@ -7,6 +7,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useOkmsById } from '@/data/hooks/useOkms';
 import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 export default function KmsLogs() {
   const { okmsId } = useParams();
@@ -18,7 +19,7 @@ export default function KmsLogs() {
     <RedirectionGuard
       condition={features && !features[FEATURES.LOGS]}
       isLoading={isLoading}
-      route={`/${okmsId}`}
+      route={KMS_ROUTES_URLS.kmsDashboard(okmsId)}
     >
       <div className="flex flex-col gap-4">
         <LogsToCustomerModule
