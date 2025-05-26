@@ -4,6 +4,7 @@
   "validate": "Valider",
   "modify": "Modifier",
   "delete": "Supprimer",
+  "terminate": "Résilier",
   "save": "Enregistrer",
   "verify": "Vérifier",
   "configure": "Configurer",
@@ -15,6 +16,10 @@
   "skip_step": "Passer cette étape",
   "delete_success_message": "Votre demande de suppression a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
   "delete_error_message": "Votre demande de suppression n'a pas pu aboutir. Merci de réessayer dans quelques instants. {{ error }}",
+  "cancel_slot_success_message": "Votre demande de résiliation a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
+  "cancel_slot_error_message": "Votre demande de résiliation n'a pas pu aboutir. Merci de réessayer dans quelques instants. {{ error }}",
+  "undo_cancel_slot_success_message": "Votre demande d'annulation de résiliation a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
+  "undo_cancel_slot_error_message": "Votre demande d'annulation de résiliation n'a pas pu aboutir. Merci de réessayer dans quelques instants. {{ error }}",
   "add_success_message": "Votre demande d'ajout a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
   "add_error_message": "Votre demande d'ajout n'a pas pu aboutir. Merci de réessayer dans quelques instants. {{ error }}",
   "edit_success_message": "Votre demande de modification a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
@@ -94,5 +99,10 @@
   "diagnostics": "Diagnostics",
   "useful_links": "Liens utiles",
   "number_of_accounts": "Nombre de comptes",
-  "no_email_account": "Vous ne possedez actuellement aucune boite email."
+  "no_email_account": "Vous ne possedez actuellement aucune boite email.",
+  "cancel_slot": "Oui, résilier",
+  "cancel_slot_refuse": "Non, refuser",
+  "undo_cancel_slot": "Annuler la résiliation",
+  "cancel_slot_title": "Résilier mon service Zimbra {{ offer }}",
+  "undo_cancel_slot_title": "Réactiver le renouvellement pour mon service Zimbra {{ offer }}"
 }

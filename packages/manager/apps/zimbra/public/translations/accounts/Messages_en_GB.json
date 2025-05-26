@@ -25,5 +25,11 @@
   "zimbra_account_datagrid_renewal_date": "Until",
   "zimbra_account_datagrid_renewal_type": "Renewal",
   "zimbra_account_configured": "Configured accounts ({{ value }})",
-  "zimbra_account_unconfigured": "Unconfigured accounts ({{ value }})"
+  "zimbra_account_unconfigured": "Unconfigured accounts ({{ value }})",
+  "zimbra_account_cancel_modal_content": "The <strong>{{ email }}</strong> email and all of its data will be permanently erased when the subscription ends.",
+  "zimbra_slot_cancel_modal_content": "Your service will be deleted at the end of your commitment period.",
+  "zimbra_slot_cancel_modal_confirm": "Do you wish to cancel your service?",
+  "zimbra_slot_undo_cancel_modal_content": "With auto-renewal enabled, your service will continue uninterrupted beyond your subscription’s end date.",
+  "zimbra_slot_undo_cancel_modal_confirm": "Do you want to re-enable auto-renewal for your service?",
+  "zimbra_slot_modal_renew_date": "End of subscription: {{ renewDate }}"
 }
