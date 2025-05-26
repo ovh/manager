@@ -29,7 +29,7 @@ import {
   DatagridStatus,
 } from '@/components/Listing/ListingCells';
 import { useOkmsServiceKeys } from '@/data/hooks/useOkmsServiceKeys';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { OkmsContext } from '..';
 import Loading from '@/components/Loading/Loading';
 import { getOkmsServiceKeyResourceListQueryKey } from '@/data/api/okmsServiceKey';
@@ -90,7 +90,7 @@ export default function Keys() {
     return (
       <ErrorBanner
         error={error}
-        onRedirectHome={() => navigate(ROUTES_URLS.listing)}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
           queryClient.refetchQueries({
             queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),
@@ -122,7 +122,7 @@ export default function Keys() {
             actionType: 'action',
             actions: ['create_encryption_key'],
           });
-          navigate(ROUTES_URLS.createKmsServiceKey);
+          navigate(KMS_ROUTES_URLS.serviceKeyCreate(okmsId));
         }}
         urn={okms.iam.urn}
         iamActions={[kmsIamActions.serviceKeyCreate]}

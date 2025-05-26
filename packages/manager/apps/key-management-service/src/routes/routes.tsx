@@ -2,7 +2,7 @@ import React from 'react';
 import { logsRoutes } from '@ovh-ux/logs-to-customer';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '../pages/404';
-import { ROUTES_URLS } from './routes.constants';
+import { KMS_ROUTES_URIS, KMS_URL_PARAMS } from './routes.constants';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -21,11 +21,11 @@ export const COMMON_PATH = '/key-management-service';
 
 export default [
   {
-    path: ROUTES_URLS.root,
+    path: KMS_ROUTES_URIS.root,
     ...lazyRouteConfig(() => import('@/pages/layout')),
     children: [
       {
-        path: ROUTES_URLS.listing,
+        path: KMS_ROUTES_URIS.root,
         ...lazyRouteConfig(() => import('@/pages/listing')),
         handle: {
           tracking: {
@@ -35,7 +35,7 @@ export default [
         },
         children: [
           {
-            path: `${ROUTES_URLS.terminateOkms}/${ROUTES_URLS.okmsId}`,
+            path: `${KMS_ROUTES_URIS.kmsTerminate}/${KMS_URL_PARAMS.okmsId}`,
             ...lazyRouteConfig(() =>
               import('@/pages/listing/terminate/TerminateKms'),
             ),
@@ -49,7 +49,7 @@ export default [
         ],
       },
       {
-        path: ROUTES_URLS.createKeyManagementService,
+        path: KMS_ROUTES_URIS.kmsCreate,
         ...lazyRouteConfig(() => import('@/pages/create')),
         handle: {
           tracking: {
@@ -59,7 +59,7 @@ export default [
         },
       },
       {
-        path: ROUTES_URLS.onboarding,
+        path: KMS_ROUTES_URIS.kmsOnboarding,
         ...lazyRouteConfig(() => import('@/pages/onboarding')),
         handle: {
           tracking: {
@@ -69,7 +69,7 @@ export default [
         },
       },
       {
-        path: ROUTES_URLS.okmsId,
+        path: KMS_URL_PARAMS.okmsId,
         ...lazyRouteConfig(() => import('@/pages/dashboard')),
         children: [
           {
@@ -87,7 +87,7 @@ export default [
             },
             children: [
               {
-                path: ROUTES_URLS.okmsUpdateName,
+                path: KMS_ROUTES_URIS.kmsEditName,
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/dashboard/generalInformations/updateName/OkmsNameUpdateModal'
@@ -101,7 +101,7 @@ export default [
                 },
               },
               {
-                path: ROUTES_URLS.terminateOkms,
+                path: KMS_ROUTES_URIS.kmsTerminate,
                 ...lazyRouteConfig(() =>
                   import('@/pages/listing/terminate/TerminateKms'),
                 ),
@@ -115,7 +115,7 @@ export default [
             ],
           },
           {
-            path: ROUTES_URLS.keys,
+            path: KMS_ROUTES_URIS.serviceKeys,
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/serviceKeyList/ServiceKeyList.page'),
             ),
@@ -127,7 +127,7 @@ export default [
             },
             children: [
               {
-                path: `${ROUTES_URLS.serviceKeyDeactivate}/${ROUTES_URLS.keyId}`,
+                path: `${KMS_ROUTES_URIS.serviceKeyDeactivate}/${KMS_URL_PARAMS.keyId}`,
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/serviceKey/deactivateServiceKeyModal/DeactivateServiceKeyModal.page'
@@ -143,7 +143,7 @@ export default [
             ],
           },
           {
-            path: ROUTES_URLS.credentials,
+            path: KMS_ROUTES_URIS.credentials,
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/credentialList/CredentialList.page'),
             ),
@@ -155,7 +155,7 @@ export default [
             },
             children: [
               {
-                path: `${ROUTES_URLS.credentialDelete}/${ROUTES_URLS.credentialId}`,
+                path: `${KMS_ROUTES_URIS.credentialDelete}/${KMS_URL_PARAMS.credentialId}`,
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/dashboard/credentialList/delete/DeleteCredentialModal.page'
@@ -171,7 +171,7 @@ export default [
             ],
           },
           {
-            path: `${ROUTES_URLS.logs}/*`,
+            path: `${KMS_ROUTES_URIS.kmsLogs}/*`,
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/logs/Logs.page'),
             ),
@@ -180,7 +180,7 @@ export default [
         ],
       },
       {
-        path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.createKmsServiceKey}`,
+        path: `${KMS_URL_PARAMS.okmsId}/${KMS_ROUTES_URIS.serviceKeys}/${KMS_ROUTES_URIS.serviceKeyCreate}`,
         ...lazyRouteConfig(() => import('@/pages/serviceKey/CreateKey.page')),
         handle: {
           tracking: {
@@ -190,7 +190,7 @@ export default [
         },
       },
       {
-        path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.credentials}/${ROUTES_URLS.createCredential}`,
+        path: `${KMS_URL_PARAMS.okmsId}/${KMS_ROUTES_URIS.credentials}/${KMS_ROUTES_URIS.credentialCreate}`,
         ...lazyRouteConfig(() =>
           import('@/pages/credential/create/CreateCredential.page'),
         ),
@@ -202,7 +202,7 @@ export default [
         },
         children: [
           {
-            path: ROUTES_URLS.createCredentialAddUserModal,
+            path: KMS_ROUTES_URIS.credentialCreateAddUserModal,
             ...lazyRouteConfig(() =>
               import(
                 '@/pages/credential/create/addUsers/CreateCredentialIdentityUserList.page'
@@ -210,7 +210,7 @@ export default [
             ),
           },
           {
-            path: ROUTES_URLS.createCredentialAddGroupsModal,
+            path: KMS_ROUTES_URIS.credentialCreateAddGroupModal,
             ...lazyRouteConfig(() =>
               import(
                 '@/pages/credential/create/addGroups/CreateCredentialIdentityGroupList.page'
@@ -218,7 +218,7 @@ export default [
             ),
           },
           {
-            path: ROUTES_URLS.createCredentialAddServiceAccountModal,
+            path: KMS_ROUTES_URIS.credentialCreateAddServiceAccountModal,
             ...lazyRouteConfig(() =>
               import(
                 '@/pages/credential/create/addServiceAccount/CreateCredentialIdentityServiceAccountList.page'
@@ -228,7 +228,7 @@ export default [
         ],
       },
       {
-        path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.credentials}/${ROUTES_URLS.credentialId}`,
+        path: `${KMS_URL_PARAMS.okmsId}/${KMS_ROUTES_URIS.credentials}/${KMS_URL_PARAMS.credentialId}`,
         ...lazyRouteConfig(() => import('@/pages/credential/Credential.page')),
         children: [
           {
@@ -246,7 +246,7 @@ export default [
             },
             children: [
               {
-                path: ROUTES_URLS.credentialDelete,
+                path: KMS_ROUTES_URIS.credentialDelete,
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/credential/generalInformations/delete/DeleteCredentialModal.page'
@@ -262,7 +262,7 @@ export default [
             ],
           },
           {
-            path: ROUTES_URLS.credentialIdentities,
+            path: KMS_ROUTES_URIS.credentialIdentities,
             ...lazyRouteConfig(() =>
               import('@/pages/credential/identities/identities.page'),
             ),
@@ -276,7 +276,7 @@ export default [
         ],
       },
       {
-        path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.keyId}`,
+        path: `${KMS_URL_PARAMS.okmsId}/${KMS_ROUTES_URIS.serviceKeys}/${KMS_URL_PARAMS.keyId}`,
         ...lazyRouteConfig(() => import('@/pages/serviceKey/ServiceKey.page')),
         handle: {
           tracking: {
@@ -286,7 +286,7 @@ export default [
         },
         children: [
           {
-            path: ROUTES_URLS.serviceKeyEditName,
+            path: KMS_ROUTES_URIS.serviceKeyEditName,
             ...lazyRouteConfig(() =>
               import(
                 '@/pages/serviceKey/editServiceKeyNameModal/EditServiceKeyNameModal.page'
@@ -300,7 +300,7 @@ export default [
             },
           },
           {
-            path: ROUTES_URLS.serviceKeyDeactivate,
+            path: KMS_ROUTES_URIS.serviceKeyDeactivate,
             ...lazyRouteConfig(() =>
               import(
                 '@/pages/serviceKey/deactivateServiceKeyModal/DeactivateServiceKeyModal.page'

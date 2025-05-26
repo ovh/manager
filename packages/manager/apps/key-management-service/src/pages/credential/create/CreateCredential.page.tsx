@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   BaseLayout,
@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { useOkmsById } from '@/data/hooks/useOkms';
 import Loading from '@/components/Loading/Loading';
 import { IdentityDataProvider } from '@/hooks/credential/useIdentityData';
@@ -39,7 +39,7 @@ const CreateCredential = () => {
     onSuccess: (credential) => {
       if (credential.fromCSR) {
         // Navigate to the list if the credential is created from CSR
-        navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
+        navigate(KMS_ROUTES_URLS.credentialListing(okmsId));
       } else {
         // Else, go to the step 3
         setOkmsCredential(credential);
@@ -62,17 +62,17 @@ const CreateCredential = () => {
     {
       id: okmsId,
       label: okms?.data?.iam?.displayName,
-      navigateTo: `/${okmsId}`,
+      navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
-      id: ROUTES_URLS.credentials,
+      id: KMS_ROUTES_URIS.credentials,
       label: t('key_management_service_credential'),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}`,
+      navigateTo: KMS_ROUTES_URLS.credentialListing(okmsId),
     },
     {
-      id: ROUTES_URLS.createKmsServiceKey,
+      id: KMS_ROUTES_URIS.serviceKeyCreate,
       label: t('key_management_service_credential_create_title'),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}/${ROUTES_URLS.createCredential}`,
+      navigateTo: KMS_ROUTES_URLS.credentialCreate(okmsId),
     },
   ];
 
@@ -82,7 +82,9 @@ const CreateCredential = () => {
     return (
       <ErrorBanner
         error={error.response}
-        onRedirectHome={() => navigate(ROUTES_URLS.listing)}
+        onRedirectHome={() =>
+          navigate(KMS_ROUTES_URLS.credentialListing(okmsId))
+        }
       />
     );
 

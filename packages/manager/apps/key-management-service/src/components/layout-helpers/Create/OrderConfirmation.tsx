@@ -14,7 +14,7 @@ import {
 import { LinkType, Links } from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { getKMSExpressOrderLink } from './order-utils';
 import { CREATE_KMS_TEST_IDS } from '@/pages/create/createKms.constants';
 
@@ -77,7 +77,9 @@ const OrderConfirmation = ({ region }: OrderConfirmationProps) => {
             actionType: 'navigation',
             actions: ['finish'],
           });
-          navigate(ROUTES_URLS.root, { state: { hasPendingOrder: true } });
+          navigate(KMS_ROUTES_URLS.kmsListing, {
+            state: { hasPendingOrder: true },
+          });
         }}
         label={t('key_management_service_create_order_initiated_cta_done')}
       />

@@ -15,7 +15,7 @@ import { queryClient } from '@ovh-ux/manager-react-core-application';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import Loading from '@/components/Loading/Loading';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { getOkmsResourceQueryKey } from '@/data/api/okms';
 import { OKMS } from '@/types/okms.type';
@@ -59,23 +59,23 @@ export default function DashboardPage() {
     () =>
       [
         {
-          url: '',
+          url: KMS_ROUTES_URLS.kmsDashboard(okmsId),
           content: (
             <>{t('key-management-service/dashboard:general_informations')}</>
           ),
         },
         {
-          url: ROUTES_URLS.keys,
+          url: KMS_ROUTES_URLS.serviceKeyListing(okmsId),
           content: <>{SERVICE_KEYS_LABEL}</>,
         },
         {
-          url: ROUTES_URLS.credentials,
+          url: KMS_ROUTES_URLS.credentialListing(okmsId),
           content: (
             <>{t('key-management-service/dashboard:access_certificates')}</>
           ),
         },
         features?.[FEATURES.LOGS] && {
-          url: ROUTES_URLS.logs,
+          url: KMS_ROUTES_URLS.kmsLogs(okmsId),
           content: (
             <div className="flex gap-2">
               {t('key-management-service/dashboard:logs')}{' '}
@@ -96,31 +96,31 @@ export default function DashboardPage() {
     {
       id: okmsId,
       label: displayName,
-      navigateTo: `/${okmsId}`,
+      navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
-      id: ROUTES_URLS.keys,
+      id: KMS_ROUTES_URIS.serviceKeys,
       label: SERVICE_KEYS_LABEL,
-      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
+      navigateTo: KMS_ROUTES_URLS.serviceKeyListing(okmsId),
     },
     {
-      id: ROUTES_URLS.credentials,
+      id: KMS_ROUTES_URIS.credentials,
       label: t(
         'key-management-service/credential:key_management_service_credential',
       ),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}`,
+      navigateTo: KMS_ROUTES_URLS.credentialListing(okmsId),
     },
     {
-      id: ROUTES_URLS.okmsUpdateName,
+      id: KMS_ROUTES_URIS.kmsEditName,
       label: t(
         'key-management-service/dashboard:key_management_service_update_name',
       ),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.okmsUpdateName}`,
+      navigateTo: KMS_ROUTES_URLS.kmsEditName(okmsId),
     },
     {
-      id: ROUTES_URLS.logs,
+      id: KMS_ROUTES_URIS.kmsLogs,
       label: t('key-management-service/logs:key_management_service_logs'),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.logs}`,
+      navigateTo: KMS_ROUTES_URLS.kmsLogs(okmsId),
     },
   ];
 
@@ -135,7 +135,7 @@ export default function DashboardPage() {
             ? okmsServiceInfoError.response
             : okmsError.response
         }
-        onRedirectHome={() => navigate(ROUTES_URLS.listing)}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
           queryClient.refetchQueries({
             queryKey: getOkmsResourceQueryKey(okmsId),
@@ -157,7 +157,7 @@ export default function DashboardPage() {
         <BaseLayout
           header={headerProps}
           onClickReturn={() => {
-            navigate(ROUTES_URLS.root);
+            navigate(KMS_ROUTES_URLS.kmsListing);
           }}
           backLinkLabel={t(
             'key-management-service/dashboard:key_management_service_dashboard_back_link',

@@ -19,7 +19,7 @@ import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { CredentialStatus } from '../credentialStatus/CredentialStatus.component';
 import { getDownloadCredentialParameters } from '@/utils/credential/credentialDownload';
 import { OkmsContext } from '@/pages/dashboard';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
 
 export const DatagridCredentialCellName = (credential: OkmsCredential) => {
@@ -130,7 +130,7 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential) => {
           actionType: 'action',
           actions: ['delete_access_certificate'],
         });
-        navigate(`${ROUTES_URLS.credentialDelete}/${credential.id}`);
+        navigate(`${KMS_ROUTES_URIS.credentialDelete}/${credential.id}`);
       },
     },
   ];

@@ -7,7 +7,7 @@ import { queryClient } from '@ovh-ux/manager-react-core-application';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import {
   getOkmsCredentialsQueryKey,
   useOkmsCredentials,
@@ -45,7 +45,7 @@ const CredentialDatagrid = () => {
     return (
       <ErrorBanner
         error={credentialsError}
-        onRedirectHome={() => navigate(ROUTES_URLS.listing)}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
           queryClient.refetchQueries({
             queryKey: getOkmsCredentialsQueryKey(okmsId),

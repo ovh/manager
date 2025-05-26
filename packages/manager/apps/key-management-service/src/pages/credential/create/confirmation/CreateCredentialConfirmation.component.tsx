@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import CreateCredentialConfirmationDetails from './CreateCredentialConfirmationDetails.component';
 import CreateCredentialConfirmationPrivateKey from './CreateCredentialConfirmationPrivateKey.component';
 import { OkmsCredential } from '@/types/okmsCredential.type';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 type CreateCredentialConfirmationProps = {
   okmsCredential: OkmsCredential;
@@ -32,7 +32,7 @@ const CreateCredentialConfirmation = ({
       <OdsButton
         color={ODS_BUTTON_COLOR.primary}
         isDisabled={!isKeyDownloaded}
-        onClick={() => navigate(`/${okmsId}/${ROUTES_URLS.credentials}`)}
+        onClick={() => navigate(KMS_ROUTES_URLS.credentialListing(okmsId))}
         label={t(
           'key_management_service_credential_create_confirmation_button_done_label',
         )}
