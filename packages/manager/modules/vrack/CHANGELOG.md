@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.0...@ovh-ux/manager-vrack@1.20.1) (2025-05-26)
+
+
+### Bug Fixes
+
+* **dedicated.vrack:** fix pagination using iceberg ([8110543](https://github.com/ovh/manager/commit/8110543458fde7f1f1310340887faee6b468b994)), closes [#PRB0042418](https://github.com/ovh/manager/issues/PRB0042418)
+
+
+
+
+
 # [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.19.0...@ovh-ux/manager-vrack@1.20.0) (2025-05-19)
 
 
