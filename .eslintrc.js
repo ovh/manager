@@ -119,8 +119,8 @@ module.exports = {
       files: [
         '**/App.tsx',
         '**/test.{setup,provider}.tsx',
-        '**/vitest.config.{js,ts,mjs}',
-        '**/vite.config.{js,ts,mjs}',
+        '**/vitest.config.{js,ts,mjs,mts}',
+        '**/vite.config.{js,ts,mjs,mts}',
         '**/tests-setup/src/index.js',
         '**/__tests__/**/*.{ts,tsx}',
         '**/*.{test,spec,step}.{ts,tsx}',
