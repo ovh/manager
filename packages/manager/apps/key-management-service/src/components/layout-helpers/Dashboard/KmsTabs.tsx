@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { OdsTabs, OdsTab, OdsBadge } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
@@ -19,30 +19,41 @@ export type KmsTabsProps = {
   tabs: KmsTabProps[];
 };
 
+/**
+ * Get the index of the active tab based on the current path.
+ */
+function getActiveTabIndex(tabs: KmsTabProps[], currentPath: string): number {
+  // Find the tab with the longest matching URL prefix
+  let bestMatchIndex = -1;
+  let bestMatchLength = 0;
+
+  tabs.forEach((tab, index) => {
+    if (currentPath.startsWith(tab.url) && tab.url.length > bestMatchLength) {
+      bestMatchIndex = index;
+      bestMatchLength = tab.url.length;
+    }
+  });
+
+  return bestMatchIndex;
+}
+
 const KmsTabs: React.FC<KmsTabsProps> = ({ tabs }) => {
-  const [activePanel, setActivePanel] = useState('');
   const { trackClick } = useOvhTracking();
   const location = useLocation();
-  const { okmsId } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/dashboard');
 
-  useEffect(() => {
-    const activeTab = tabs.find(
-      (tab) =>
-        tab.url !== '' && location.pathname.startsWith(`/${okmsId}/${tab.url}`),
-    );
-    setActivePanel(activeTab?.url || '');
-  }, [location]);
+  const activeTabIndex = getActiveTabIndex(tabs, location.pathname);
 
   return (
     <div className="mb-6">
       <OdsTabs
         onOdsTabsSelected={(event) => {
-          const { id } = event.detail.target as HTMLElement;
-          const url = `/${okmsId}/${id}`;
+          const { id: url } = event.detail.target as HTMLElement;
 
-          const trackingTag = id ?? 'general-informations';
+          const trackingTag = url.split('/').pop().length
+            ? url.split('/').pop()
+            : 'general-informations';
 
           trackClick({
             location: PageLocation.page,
@@ -50,16 +61,14 @@ const KmsTabs: React.FC<KmsTabsProps> = ({ tabs }) => {
             actionType: 'navigation',
             actions: [trackingTag],
           });
-
-          setActivePanel(id);
           navigate(url);
         }}
       >
-        {tabs.map((tab: KmsTabProps) => (
+        {tabs.map((tab: KmsTabProps, index) => (
           <OdsTab
             key={`ods-tab-bar-item-${tab.url}`}
             id={tab.url}
-            isSelected={activePanel === tab.url}
+            isSelected={index === activeTabIndex}
             isDisabled={tab.disabled}
             className="flex items-center justify-center"
           >
