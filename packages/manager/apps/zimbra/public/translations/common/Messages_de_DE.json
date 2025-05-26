@@ -94,5 +94,15 @@
   "select_slot": "Angebot auswählen",
   "offer": "Angebot",
   "monthly": "Monatlich",
-  "renewal_at": "Verlängerung am {{ date }}"
+  "renewal_at": "Verlängerung am {{ date }}",
+  "terminate": "Löschen",
+  "cancel_slot_success_message": "Ihre Kündigungsanfrage wurde registriert. Sie wird in Kürze ausgeführt.",
+  "cancel_slot_error_message": "Ihre Kündigungsanfrage ist fehlgeschlagen. Bitte versuchen Sie es später erneut. {{ error }}",
+  "undo_cancel_slot_success_message": "Ihre Anfrage zur Stornierung der Kündigung wurde erfolgreich registriert. Sie wird in Kürze ausgeführt.",
+  "undo_cancel_slot_error_message": "Ihre Anfrage zur Stornierung der Kündigung ist fehlgeschlagen. Bitte versuchen Sie es später erneut. {{ error }}",
+  "cancel_slot": "Ja, kündigen",
+  "cancel_slot_refuse": "Nein, ablehnen",
+  "undo_cancel_slot": "Kündigung stornieren",
+  "cancel_slot_title": "Meinen Zimbra-Dienst {{ offer }} kündigen",
+  "undo_cancel_slot_title": "Verlängerung für meinen Zimbra-Dienst {{ offer }} erneut aktivieren"
 }
