@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "dom"],
@@ -20,6 +21,7 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@/*": ["./src/*"],
+      "axios": ["node_modules/axios"],
       "react": ["./node_modules/@types/react"]
     },
     "allowSyntheticDefaultImports": true,

@@ -1140,7 +1140,7 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1(@types/react@18.2.45)(react@18.2.0)
       '@ovh-ux/manager-common-translations':
-        specifier: ^0.6.0
+        specifier: ^0.7.0
         version: link:../manager/modules/common-translations
       '@ovh-ux/manager-core-api':
         specifier: ^0.12.0
@@ -1338,8 +1338,8 @@ importers:
         specifier: ^5.4.5
         version: 5.8.2
       undici:
-        specifier: 5.28.5
-        version: 5.28.5
+        specifier: 5.29.0
+        version: 5.29.0
       vite:
         specifier: ^5.4.18
         version: 5.4.18(@types/node@20.4.9)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
@@ -1359,7 +1359,7 @@ importers:
   packages/manager/apps/account:
     dependencies:
       '@ovh-ux/manager-account':
-        specifier: ^0.10.3
+        specifier: ^0.10.4
         version: link:../../modules/account
       '@ovh-ux/manager-at-internet-configuration':
         specifier: ^1.5.0
@@ -1368,7 +1368,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-error-page':
         specifier: ^2.4.3
@@ -1540,19 +1540,19 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-error-page':
         specifier: ^2.4.3
         version: link:../../modules/error-page
       '@ovh-ux/manager-exchange':
-        specifier: ^4.14.1
+        specifier: ^4.14.2
         version: link:../../modules/exchange
       '@ovh-ux/manager-models':
-        specifier: ^2.4.4
+        specifier: ^2.5.0
         version: link:../../modules/models
       '@ovh-ux/manager-new-billing':
-        specifier: ^0.38.1
+        specifier: ^0.39.1
         version: link:../../modules/new-billing
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.11.2
@@ -1745,7 +1745,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-error-page':
         specifier: ^2.4.3
@@ -1878,7 +1878,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-telecom-styles':
         specifier: ^4.8.4
@@ -2156,7 +2156,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-filters':
         specifier: ^0.1.0 || ^1.1.1
@@ -2177,7 +2177,7 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-doc-url':
         specifier: ^2.1.3
@@ -2301,13 +2301,13 @@ importers:
   packages/manager/apps/cloud-connect:
     dependencies:
       '@ovh-ux/manager-cloud-connect':
-        specifier: ^1.21.2
+        specifier: ^1.21.3
         version: link:../../modules/cloud-connect
       '@ovh-ux/manager-config':
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.11.2
@@ -2325,7 +2325,7 @@ importers:
         specifier: ^1.3.1
         version: link:../../../components/ng-ovh-chart
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-http':
         specifier: ^5.1.3
@@ -2663,13 +2663,13 @@ importers:
         specifier: ^1.5.0
         version: link:../../modules/at-internet-configuration
       '@ovh-ux/manager-billing-components':
-        specifier: ^4.16.0
+        specifier: ^4.17.1
         version: link:../../modules/billing-components
       '@ovh-ux/manager-config':
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-dbaas-logs':
         specifier: ^1.29.0
@@ -2696,7 +2696,7 @@ importers:
         specifier: ^1.3.1
         version: link:../../../components/ng-ovh-chart
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-doc-url':
         specifier: ^2.1.3
@@ -2862,10 +2862,10 @@ importers:
         specifier: ^1.0.0
         version: link:../../modules/beta-preference
       '@ovh-ux/manager-billing':
-        specifier: ^0.37.1
+        specifier: ^0.37.2
         version: link:../../modules/billing
       '@ovh-ux/manager-billing-components':
-        specifier: ^4.16.0
+        specifier: ^4.17.1
         version: link:../../modules/billing-components
       '@ovh-ux/manager-bm-server-components':
         specifier: ^2.10.0
@@ -2877,7 +2877,7 @@ importers:
         specifier: ^1.10.0
         version: link:../../modules/cda
       '@ovh-ux/manager-cloud-connect':
-        specifier: ^1.21.2
+        specifier: ^1.21.3
         version: link:../../modules/cloud-connect
       '@ovh-ux/manager-cloud-styles':
         specifier: ^1.8.5
@@ -2889,7 +2889,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-dbaas-logs':
         specifier: ^1.29.0
@@ -2898,19 +2898,19 @@ importers:
         specifier: ^2.4.3
         version: link:../../modules/error-page
       '@ovh-ux/manager-exchange':
-        specifier: ^4.14.1
+        specifier: ^4.14.2
         version: link:../../modules/exchange
       '@ovh-ux/manager-filters':
         specifier: ^1.1.1
         version: link:../../modules/filters
       '@ovh-ux/manager-iplb':
-        specifier: ^1.24.0
+        specifier: ^1.25.0
         version: link:../../modules/iplb
       '@ovh-ux/manager-metrics':
         specifier: ^1.6.1
         version: link:../../modules/metrics
       '@ovh-ux/manager-models':
-        specifier: ^2.4.4
+        specifier: ^2.5.0
         version: link:../../modules/models
       '@ovh-ux/manager-nasha':
         specifier: ^2.20.0
@@ -2925,10 +2925,10 @@ importers:
         specifier: ^2.11.2
         version: link:../../modules/ng-layout-helpers
       '@ovh-ux/manager-nutanix':
-        specifier: ^2.7.11
+        specifier: ^2.7.12
         version: link:../../modules/nutanix
       '@ovh-ux/manager-support':
-        specifier: ^2.1.10
+        specifier: ^2.1.11
         version: link:../../modules/support
       '@ovh-ux/manager-trusted-nic':
         specifier: ^1.2.1
@@ -2940,7 +2940,7 @@ importers:
         specifier: ^1.13.0
         version: link:../../modules/veeam-enterprise
       '@ovh-ux/manager-vps':
-        specifier: ^2.47.2
+        specifier: ^2.47.3
         version: link:../../modules/vps
       '@ovh-ux/manager-vrack':
         specifier: ^1.20.0
@@ -2961,7 +2961,7 @@ importers:
         specifier: ^1.3.1
         version: link:../../../components/ng-ovh-chart
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-contacts':
         specifier: ^5.3.4
@@ -3271,7 +3271,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-email-domain':
         specifier: ^1.11.3
@@ -3422,7 +3422,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-emailpro':
         specifier: ^3.17.3
@@ -3576,10 +3576,10 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-exchange':
-        specifier: ^4.14.1
+        specifier: ^4.14.2
         version: link:../../modules/exchange
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.11.2
@@ -3751,7 +3751,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-freefax':
         specifier: ^7.9.2
@@ -3956,10 +3956,10 @@ importers:
         specifier: ^0.9.9
         version: link:../../modules/order
       '@ovh-ux/manager-module-vcd-api':
-        specifier: ^0.5.8
+        specifier: ^0.5.9
         version: link:../../modules/vcd-api
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
@@ -4068,7 +4068,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-models':
-        specifier: ^2.4.4
+        specifier: ^2.5.0
         version: link:../../modules/models
       '@ovh-ux/manager-react-components':
         specifier: ^1.41.1
@@ -4328,10 +4328,10 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-iam':
-        specifier: ^1.15.3
+        specifier: ^1.15.4
         version: link:../../modules/iam
       '@ovh-ux/manager-log-to-customer':
         specifier: ^2.5.0
@@ -4473,13 +4473,13 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-filters':
         specifier: ^0.1.0 || ^1.1.1
         version: link:../../modules/filters
       '@ovh-ux/manager-iplb':
-        specifier: ^1.24.0
+        specifier: ^1.25.0
         version: link:../../modules/iplb
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.11.2
@@ -4497,7 +4497,7 @@ importers:
         specifier: ^1.3.1
         version: link:../../../components/ng-ovh-chart
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-doc-url':
         specifier: ^2.1.3
@@ -4666,7 +4666,7 @@ importers:
   packages/manager/apps/key-management-service:
     dependencies:
       '@ovh-ux/logs-to-customer':
-        specifier: ^1.3.0
+        specifier: ^1.3.1
         version: link:../../modules/logs-to-customer
       '@ovh-ux/manager-config':
         specifier: ^8.3.1
@@ -4684,7 +4684,7 @@ importers:
         specifier: ^0.9.9
         version: link:../../modules/order
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
@@ -4793,7 +4793,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-metrics':
         specifier: ^1.6.1
@@ -4811,7 +4811,7 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-doc-url':
         specifier: ^2.1.3
@@ -4941,7 +4941,7 @@ importers:
   packages/manager/apps/nasha:
     dependencies:
       '@ovh-ux/manager-billing-components':
-        specifier: ^4.16.0
+        specifier: ^4.17.1
         version: link:../../modules/billing-components
       '@ovh-ux/manager-catalog-price':
         specifier: ^1.8.0
@@ -4953,13 +4953,13 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-filters':
         specifier: ^0.1.0 || ^1.1.1
         version: link:../../modules/filters
       '@ovh-ux/manager-models':
-        specifier: ^2.4.4
+        specifier: ^2.5.0
         version: link:../../modules/models
       '@ovh-ux/manager-nasha':
         specifier: ^2.20.0
@@ -4977,7 +4977,7 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-doc-url':
         specifier: ^2.1.3
@@ -5128,7 +5128,7 @@ importers:
         specifier: ^1.8.3
         version: link:../../modules/advices
       '@ovh-ux/manager-billing-components':
-        specifier: ^4.16.0
+        specifier: ^4.17.1
         version: link:../../modules/billing-components
       '@ovh-ux/manager-catalog-price':
         specifier: ^1.8.0
@@ -5140,7 +5140,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-error-page':
         specifier: ^2.4.3
@@ -5149,7 +5149,7 @@ importers:
         specifier: ^0.1.0 || ^1.1.1
         version: link:../../modules/filters
       '@ovh-ux/manager-models':
-        specifier: ^2.4.4
+        specifier: ^2.5.0
         version: link:../../modules/models
       '@ovh-ux/manager-netapp':
         specifier: ^2.13.1
@@ -5300,7 +5300,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-error-page':
         specifier: ^2.4.3
@@ -5309,7 +5309,7 @@ importers:
         specifier: ^2.11.2
         version: link:../../modules/ng-layout-helpers
       '@ovh-ux/manager-nutanix':
-        specifier: ^2.7.11
+        specifier: ^2.7.12
         version: link:../../modules/nutanix
       '@ovh-ux/ng-at-internet':
         specifier: ^6.0.16
@@ -5448,7 +5448,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.11.2
@@ -5605,7 +5605,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/ng-at-internet':
         specifier: ^6.0.16
@@ -5720,13 +5720,13 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.11.2
         version: link:../../modules/ng-layout-helpers
       '@ovh-ux/manager-overthebox':
-        specifier: ^6.24.0
+        specifier: ^6.24.1
         version: link:../../modules/overthebox
       '@ovh-ux/manager-telecom-styles':
         specifier: ^4.8.4
@@ -5895,7 +5895,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-filters':
         specifier: ^1.1.1
@@ -5928,7 +5928,7 @@ importers:
         specifier: ^1.3.1
         version: link:../../../components/ng-ovh-chart
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-contacts':
         specifier: ^5.3.4
@@ -6719,10 +6719,10 @@ importers:
         specifier: ^0.3.0
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
-        specifier: ^2.5.0
+        specifier: ^2.6.0
         version: link:../../modules/manager-pci-common
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
@@ -7284,6 +7284,160 @@ importers:
         specifier: ^2.1.9
         version: 2.1.9(@types/node@20.14.10)(@vitest/ui@2.1.9)(jsdom@26.0.0)(less@3.13.1)(msw@2.4.9(typescript@5.8.2))(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
 
+  packages/manager/apps/pci-instances:
+    dependencies:
+      '@datatr-ux/ods-tailwind-config':
+        specifier: 1.0.3
+        version: 1.0.3
+      '@datatr-ux/ovhcloud-types':
+        specifier: 1.0.8
+        version: 1.0.8
+      '@datatr-ux/uxlib':
+        specifier: 0.0.10
+        version: 0.0.10(@datatr-ux/ods-tailwind-config@1.0.3)(@hookform/resolvers@5.0.1(react-hook-form@7.55.0(react@18.2.0)))(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react-hook-form@7.55.0(react@18.2.0))(react@18.2.0)(recharts@2.13.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(tailwindcss@3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2)))(zod@3.24.2)
+      '@ovh-ux/manager-common-translations':
+        specifier: ^0.7.0
+        version: link:../../modules/common-translations
+      '@ovh-ux/manager-config':
+        specifier: ^8.3.1
+        version: link:../../modules/config
+      '@ovh-ux/manager-core-api':
+        specifier: ^0.12.0
+        version: link:../../core/api
+      '@ovh-ux/manager-pci-common':
+        specifier: ^0.16.4
+        version: 0.16.4(16876dbf249d5d074cb8214305cdb6bd)
+      '@ovh-ux/manager-react-components':
+        specifier: ^1.48.0
+        version: 1.48.0(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
+      '@ovh-ux/manager-react-core-application':
+        specifier: ^0.11.23
+        version: link:../../core/application
+      '@ovh-ux/manager-react-shell-client':
+        specifier: ^0.8.7
+        version: link:../../core/shell-client
+      '@ovh-ux/manager-tailwind-config':
+        specifier: ^0.3.0
+        version: link:../../core/tailwind-config
+      '@ovhcloud/ods-common-core':
+        specifier: 17.2.2
+        version: 17.2.2
+      '@ovhcloud/ods-common-stencil':
+        specifier: 17.2.2
+        version: 17.2.2
+      '@ovhcloud/ods-common-theming':
+        specifier: 17.2.2
+        version: 17.2.2
+      '@ovhcloud/ods-components':
+        specifier: 17.2.2
+        version: 17.2.2
+      '@ovhcloud/ods-theme-blue-jeans':
+        specifier: 17.2.2
+        version: 17.2.2
+      '@tanstack/react-query':
+        specifier: ^5.51.21
+        version: 5.69.0(react@18.2.0)
+      axios:
+        specifier: ^1.6.0
+        version: 1.7.7
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      element-internals-polyfill:
+        specifier: ^1.3.11
+        version: 1.3.12
+      i18next:
+        specifier: ^23.8.2
+        version: 23.16.8
+      lodash.isequal:
+        specifier: ^4.5.0
+        version: 4.5.0
+      lucide-react:
+        specifier: ^0.334.0
+        version: 0.334.0(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-i18next:
+        specifier: ^14.1.2
+        version: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom:
+        specifier: ^6.3.0
+        version: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+    devDependencies:
+      '@ovh-ux/manager-vite-config':
+        specifier: ^0.9.3
+        version: link:../../core/vite-config
+      '@tanstack/react-query-devtools':
+        specifier: ^5.51.21
+        version: 5.74.4(@tanstack/react-query@5.69.0(react@18.2.0))(react@18.2.0)
+      '@testing-library/dom':
+        specifier: ^10.1.0
+        version: 10.4.0
+      '@testing-library/jest-dom':
+        specifier: ^6.4.5
+        version: 6.6.3
+      '@testing-library/react':
+        specifier: ^16.0.0
+        version: 16.3.0(@testing-library/dom@10.4.0)(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@testing-library/user-event':
+        specifier: ^14.5.2
+        version: 14.6.1(@testing-library/dom@10.4.0)
+      '@types/jest':
+        specifier: ^29.5.12
+        version: 29.5.13
+      '@types/react':
+        specifier: ^18.2.79
+        version: 18.3.18
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.0
+      '@types/react-query':
+        specifier: ^1.2.9
+        version: 1.2.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@vitejs/plugin-react':
+        specifier: ^4.3.0
+        version: 4.3.4(vite@5.4.18(@types/node@20.14.10)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0))
+      '@vitest/coverage-v8':
+        specifier: ^2.1.9
+        version: 2.1.9(vitest@2.1.9)
+      autoprefixer:
+        specifier: ^10.4.19
+        version: 10.4.21(postcss@8.5.3)
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-plugin-react:
+        specifier: ^7.37.4
+        version: 7.37.4(eslint@8.57.0)
+      msw:
+        specifier: ^2.4.9
+        version: 2.4.9(typescript@5.8.2)
+      postcss:
+        specifier: ^8.4.38
+        version: 8.5.3
+      tailwindcss:
+        specifier: ^3.4.4
+        version: 3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))
+      typescript:
+        specifier: ^5.5.4
+        version: 5.8.2
+      uuid:
+        specifier: ^9.0.1
+        version: 9.0.1
+      vite:
+        specifier: ^5.4.18
+        version: 5.4.18(@types/node@20.14.10)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
+      vitest:
+        specifier: ^2.1.9
+        version: 2.1.9(@types/node@20.14.10)(@vitest/ui@2.1.9)(jsdom@26.0.0)(less@3.13.1)(msw@2.4.9(typescript@5.8.2))(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
+      zustand:
+        specifier: ^4.5.5
+        version: 4.5.5(@types/react@18.3.18)(react@18.2.0)
+
   packages/manager/apps/pci-kubernetes:
     dependencies:
       '@datatr-ux/ods-tailwind-config':
@@ -7619,10 +7773,10 @@ importers:
         specifier: '*'
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
-        specifier: ^2.5.0
+        specifier: ^2.6.0
         version: link:../../modules/manager-pci-common
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
@@ -8229,6 +8383,145 @@ importers:
         specifier: ^2.1.9
         version: 2.1.9(@types/node@20.14.10)(@vitest/ui@2.1.9)(jsdom@26.0.0)(less@3.13.1)(msw@2.4.9(typescript@5.8.2))(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
 
+  packages/manager/apps/pci-quota:
+    dependencies:
+      '@datatr-ux/ods-tailwind-config':
+        specifier: 1.0.3
+        version: 1.0.3
+      '@datatr-ux/ovhcloud-types':
+        specifier: 1.0.8
+        version: 1.0.8
+      '@datatr-ux/uxlib':
+        specifier: 0.0.10
+        version: 0.0.10(@datatr-ux/ods-tailwind-config@1.0.3)(@hookform/resolvers@3.10.0(react-hook-form@7.55.0(react@18.2.0)))(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react-hook-form@7.55.0(react@18.2.0))(react@18.2.0)(recharts@2.13.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(tailwindcss@3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2)))(zod@3.24.2)
+      '@hookform/resolvers':
+        specifier: ^3.3.4
+        version: 3.10.0(react-hook-form@7.55.0(react@18.2.0))
+      '@ovh-ux/manager-config':
+        specifier: ^8.3.1
+        version: link:../../modules/config
+      '@ovh-ux/manager-core-api':
+        specifier: ^0.12.0
+        version: link:../../core/api
+      '@ovh-ux/manager-pci-common':
+        specifier: ^2.6.0
+        version: link:../../modules/manager-pci-common
+      '@ovh-ux/manager-react-components':
+        specifier: ^2.25.0
+        version: link:../../../manager-react-components
+      '@ovh-ux/manager-react-core-application':
+        specifier: ^0.11.23
+        version: link:../../core/application
+      '@ovh-ux/manager-react-shell-client':
+        specifier: ^0.8.7
+        version: link:../../core/shell-client
+      '@ovh-ux/manager-tailwind-config':
+        specifier: ^0.3.0
+        version: link:../../core/tailwind-config
+      '@ovh-ux/shell':
+        specifier: ^4.4.4
+        version: link:../../../components/ovh-shell
+      '@ovhcloud/ods-components':
+        specifier: ^18.6.2
+        version: 18.6.2
+      '@ovhcloud/ods-themes':
+        specifier: ^18.6.2
+        version: 18.6.2
+      '@tanstack/react-query':
+        specifier: ^5.51.21
+        version: 5.69.0(react@18.2.0)
+      '@tanstack/react-table':
+        specifier: ^8.17.3
+        version: 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      element-internals-polyfill:
+        specifier: ^1.3.11
+        version: 1.3.12
+      i18next:
+        specifier: ^23.8.2
+        version: 23.16.8
+      i18next-http-backend:
+        specifier: ^2.5.2
+        version: 2.5.2(encoding@0.1.13)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-hook-form:
+        specifier: ^7.52.1
+        version: 7.55.0(react@18.2.0)
+      react-i18next:
+        specifier: ^14.1.2
+        version: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom:
+        specifier: ^6.3.0
+        version: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-use:
+        specifier: ^17.5.0
+        version: 17.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      zod:
+        specifier: ^3.22.4
+        version: 3.24.2
+      zustand:
+        specifier: ^4.5.5
+        version: 4.5.5(@types/react@18.3.18)(react@18.2.0)
+    devDependencies:
+      '@ovh-ux/manager-vite-config':
+        specifier: ^0.9.3
+        version: link:../../core/vite-config
+      '@tanstack/react-query-devtools':
+        specifier: ^5.51.21
+        version: 5.74.4(@tanstack/react-query@5.69.0(react@18.2.0))(react@18.2.0)
+      '@testing-library/dom':
+        specifier: ^10.1.0
+        version: 10.4.0
+      '@testing-library/jest-dom':
+        specifier: ^6.4.5
+        version: 6.6.3
+      '@testing-library/react':
+        specifier: ^16.0.0
+        version: 16.3.0(@testing-library/dom@10.4.0)(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@testing-library/user-event':
+        specifier: ^14.5.2
+        version: 14.6.1(@testing-library/dom@10.4.0)
+      '@types/react':
+        specifier: ^18.2.79
+        version: 18.3.18
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.0
+      '@vitejs/plugin-react':
+        specifier: ^4.3.0
+        version: 4.3.4(vite@5.4.18(@types/node@20.14.10)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0))
+      '@vitest/coverage-v8':
+        specifier: ^2.1.9
+        version: 2.1.9(vitest@2.1.9)
+      autoprefixer:
+        specifier: ^10.4.19
+        version: 10.4.21(postcss@8.5.3)
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      postcss:
+        specifier: ^8.4.38
+        version: 8.5.3
+      tailwindcss:
+        specifier: ^3.4.4
+        version: 3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))
+      typescript:
+        specifier: ^5.4.5
+        version: 5.8.2
+      vite:
+        specifier: ^5.4.18
+        version: 5.4.18(@types/node@20.14.10)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
+      vitest:
+        specifier: ^2.1.9
+        version: 2.1.9(@types/node@20.14.10)(@vitest/ui@2.1.9)(jsdom@26.0.0)(less@3.13.1)(msw@2.4.9(typescript@5.8.2))(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
+
   packages/manager/apps/pci-rancher:
     dependencies:
       '@ovh-ux/manager-config':
@@ -8407,10 +8700,10 @@ importers:
         specifier: '*'
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
-        specifier: ^2.5.0
+        specifier: ^2.6.0
         version: link:../../modules/manager-pci-common
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
@@ -8833,10 +9126,10 @@ importers:
         specifier: ^0.3.0
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
-        specifier: ^2.5.0
+        specifier: ^2.6.0
         version: link:../../modules/manager-pci-common
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
@@ -9362,7 +9655,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-error-page':
         specifier: ^2.4.3
@@ -9398,7 +9691,7 @@ importers:
         specifier: ^1.3.1
         version: link:../../../components/ng-ovh-chart
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-contacts':
         specifier: ^5.3.4
@@ -9679,7 +9972,7 @@ importers:
         specifier: ^1.5.1
         version: link:../../modules/cookie-policy
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/ng-at-internet':
         specifier: ^6.0.16
@@ -9782,7 +10075,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.11.2
@@ -9954,10 +10247,10 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-support':
-        specifier: ^2.1.10
+        specifier: ^2.1.11
         version: link:../../modules/support
       '@ovh-ux/ng-at-internet':
         specifier: ^6.0.16
@@ -10096,7 +10389,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-error-page':
         specifier: ^2.4.3
@@ -10105,13 +10398,13 @@ importers:
         specifier: ^7.9.2
         version: link:../../modules/freefax
       '@ovh-ux/manager-models':
-        specifier: ^2.4.4
+        specifier: ^2.5.0
         version: link:../../modules/models
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.11.2
         version: link:../../modules/ng-layout-helpers
       '@ovh-ux/manager-overthebox':
-        specifier: ^6.24.0
+        specifier: ^6.24.1
         version: link:../../modules/overthebox
       '@ovh-ux/manager-sms':
         specifier: ^8.18.1
@@ -10147,10 +10440,10 @@ importers:
         specifier: ^2.1.3
         version: link:../../../components/ng-ovh-checkbox-table
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-contact':
-        specifier: ^5.2.8
+        specifier: ^5.2.9
         version: link:../../../components/ng-ovh-contact
       '@ovh-ux/ng-ovh-contracts':
         specifier: ^4.6.2
@@ -10481,7 +10774,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-telecom-dashboard':
         specifier: ^6.10.0
@@ -10635,7 +10928,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-telecom-styles':
         specifier: ^4.8.4
@@ -10798,10 +11091,10 @@ importers:
         specifier: ^0.9.9
         version: link:../../modules/order
       '@ovh-ux/manager-module-vcd-api':
-        specifier: ^0.5.8
+        specifier: ^0.5.9
         version: link:../../modules/vcd-api
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
@@ -10907,7 +11200,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-filters':
         specifier: ^0.1.0 || ^1.1.1
@@ -10922,7 +11215,7 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-http':
         specifier: ^5.1.3
@@ -11049,7 +11342,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.11.2
@@ -11061,7 +11354,7 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-http':
         specifier: ^5.1.3
@@ -11200,13 +11493,13 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-filters':
         specifier: ^1.1.1
         version: link:../../modules/filters
       '@ovh-ux/manager-models':
-        specifier: ^2.4.4
+        specifier: ^2.5.0
         version: link:../../modules/models
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.11.2
@@ -11215,7 +11508,7 @@ importers:
         specifier: ^5.6.1
         version: link:../../modules/product-offers
       '@ovh-ux/manager-vps':
-        specifier: ^2.47.2
+        specifier: ^2.47.3
         version: link:../../modules/vps
       '@ovh-ux/ng-at-internet':
         specifier: ^6.0.16
@@ -11227,7 +11520,7 @@ importers:
         specifier: ^1.3.1
         version: link:../../../components/ng-ovh-chart
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-contracts':
         specifier: ^4.6.2
@@ -11402,7 +11695,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.11.2
@@ -11414,7 +11707,7 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-contracts':
         specifier: ^4.6.2
@@ -11547,7 +11840,7 @@ importers:
   packages/manager/apps/vrack-services:
     dependencies:
       '@ovh-ux/manager-common-translations':
-        specifier: ^0.6.0
+        specifier: ^0.7.0
         version: link:../../modules/common-translations
       '@ovh-ux/manager-config':
         specifier: ^8.3.1
@@ -11565,10 +11858,10 @@ importers:
         specifier: ^0.9.9
         version: link:../../modules/order
       '@ovh-ux/manager-network-common':
-        specifier: ^0.4.4
+        specifier: ^0.4.5
         version: link:../../modules/network-common
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
@@ -11683,7 +11976,7 @@ importers:
         specifier: ^8.3.1
         version: link:../../modules/config
       '@ovh-ux/manager-core':
-        specifier: ^13.1.4
+        specifier: ^13.1.5
         version: link:../../modules/core
       '@ovh-ux/manager-email-domain':
         specifier: ^1.11.3
@@ -11695,7 +11988,7 @@ importers:
         specifier: ^2.4.3
         version: link:../../modules/error-page
       '@ovh-ux/manager-exchange':
-        specifier: ^4.14.1
+        specifier: ^4.14.2
         version: link:../../modules/exchange
       '@ovh-ux/manager-filters':
         specifier: ^1.1.1
@@ -11737,7 +12030,7 @@ importers:
         specifier: ^1.3.1
         version: link:../../../components/ng-ovh-chart
       '@ovh-ux/ng-ovh-cloud-universe-components':
-        specifier: ^2.17.1
+        specifier: ^2.18.0
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-contracts':
         specifier: ^4.6.2
@@ -12029,7 +12322,7 @@ importers:
         specifier: ^0.3.0
         version: link:../../core/utils
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.22
@@ -12159,7 +12452,7 @@ importers:
         specifier: ^0.9.9
         version: link:../../modules/order
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
@@ -12283,7 +12576,7 @@ importers:
   packages/manager/apps/web-ongoing-operations:
     dependencies:
       '@ovh-ux/manager-common-translations':
-        specifier: ^0.6.0
+        specifier: ^0.7.0
         version: link:../../modules/common-translations
       '@ovh-ux/manager-config':
         specifier: ^8.3.1
@@ -12295,7 +12588,7 @@ importers:
         specifier: ^0.3.0
         version: link:../../core/utils
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
@@ -12398,7 +12691,7 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1(react-hook-form@7.55.0(react@18.2.0))
       '@ovh-ux/manager-common-translations':
-        specifier: ^0.6.0
+        specifier: ^0.7.0
         version: link:../../modules/common-translations
       '@ovh-ux/manager-config':
         specifier: ^8.3.1
@@ -12413,7 +12706,7 @@ importers:
         specifier: ^0.9.9
         version: link:../../modules/order
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
@@ -12651,11 +12944,11 @@ importers:
   packages/manager/core/shell-client:
     dependencies:
       '@ovh-ux/manager-config':
-        specifier: ^8.0.2
-        version: 8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger)
+        specifier: ^8.3.1
+        version: link:../../modules/config
       '@ovh-ux/ovh-at-internet':
         specifier: ^0.21.6
-        version: 0.21.8(@ovh-ux/manager-config@8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger))
+        version: 0.21.8(@ovh-ux/manager-config@packages+manager+modules+config)
       '@ovh-ux/request-tagger':
         specifier: ^0.4.0
         version: link:../request-tagger
@@ -12745,6 +13038,40 @@ importers:
         specifier: ^2.1.9
         version: 2.1.9(@types/node@20.14.10)(@vitest/ui@2.1.9)(jsdom@26.0.0)(less@3.13.1)(msw@2.1.7(typescript@5.8.2))(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
 
+  packages/manager/core/tests-setup:
+    dependencies:
+      vite:
+        specifier: ^6.0.7
+        version: 6.2.5(@types/node@20.14.10)(jiti@2.4.2)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
+    devDependencies:
+      '@testing-library/dom':
+        specifier: ^10.4.0
+        version: 10.4.0
+      '@testing-library/jest-dom':
+        specifier: ^6.6.3
+        version: 6.6.3
+      '@testing-library/react':
+        specifier: ^16.3.0
+        version: 16.3.0(@testing-library/dom@10.4.0)(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@testing-library/user-event':
+        specifier: ^14.6.1
+        version: 14.6.1(@testing-library/dom@10.4.0)
+      '@vitejs/plugin-react':
+        specifier: ^4.2.1
+        version: 4.3.4(vite@6.2.5(@types/node@20.14.10)(jiti@2.4.2)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0))
+      '@vitest/coverage-v8':
+        specifier: ^2.1.9
+        version: 2.1.9(vitest@3.1.4)
+      '@vitest/ui':
+        specifier: ^2.1.9
+        version: 2.1.9(vitest@3.1.4)
+      vitest:
+        specifier: ^3.1.3
+        version: 3.1.4(@types/node@20.14.10)(@vitest/ui@2.1.9)(jsdom@26.0.0)(less@3.13.1)(msw@2.4.9(typescript@5.8.2))(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
+      webdriverio:
+        specifier: ^9.12.7
+        version: 9.14.0
+
   packages/manager/core/url-builder:
     devDependencies:
       typescript:
@@ -12815,7 +13142,7 @@ importers:
         specifier: ^13.0.5
         version: link:../core
       '@ovh-ux/manager-models':
-        specifier: ^2.4.4
+        specifier: ^2.5.0
         version: link:../models
       '@ovh-ux/manager-ng-apiv2-helper':
         specifier: ^0.2.1
@@ -13218,7 +13545,7 @@ importers:
         specifier: ^13.0.5
         version: link:../core
       '@ovh-ux/manager-models':
-        specifier: ^2.4.4
+        specifier: ^2.5.0
         version: link:../models
       '@ovh-ux/ng-at-internet':
         specifier: ^6.0.9
@@ -13291,7 +13618,7 @@ importers:
         version: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@ovh-ux/manager-common-translations':
-        specifier: ^0.6.0
+        specifier: ^0.7.0
         version: link:../common-translations
       '@ovh-ux/manager-core-api':
         specifier: ^0.12.0
@@ -13300,7 +13627,7 @@ importers:
         specifier: ^0.4.0
         version: link:../common-api
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-vite-config':
         specifier: ^0.9.0
@@ -13877,7 +14204,7 @@ importers:
         specifier: ^13.0.2
         version: link:../../tools/component-rollup-config
       '@ovh-ux/manager-models':
-        specifier: ^2.4.4
+        specifier: ^2.5.0
         version: link:../models
 
   packages/manager/modules/dbaas-logs:
@@ -14383,7 +14710,7 @@ importers:
         specifier: ^13.0.5
         version: link:../core
       '@ovh-ux/manager-models':
-        specifier: ^2.4.4
+        specifier: ^2.5.0
         version: link:../models
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.0.0
@@ -14531,7 +14858,7 @@ importers:
         specifier: ^0.1.0 || ^1.1.1
         version: link:../filters
       '@ovh-ux/manager-new-billing':
-        specifier: ^0.38.1
+        specifier: ^0.39.1
         version: link:../new-billing
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.0.0
@@ -14695,7 +15022,7 @@ importers:
         specifier: ^0.4.5
         version: link:../../core/test-utils
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-vite-config':
         specifier: ^0.9.2
@@ -14781,6 +15108,9 @@ importers:
       '@ovh-ux/shell':
         specifier: ^4.1.11
         version: link:../../../components/ovh-shell
+      axios:
+        specifier: ^1.1.2
+        version: 1.7.7
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -14798,7 +15128,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-react-shell-client':
         specifier: ^0.8.7
@@ -15162,7 +15492,7 @@ importers:
   packages/manager/modules/network-common:
     dependencies:
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@tanstack/react-query':
         specifier: 5.x
@@ -15471,7 +15801,7 @@ importers:
         specifier: ^13.0.5
         version: link:../core
       '@ovh-ux/manager-models':
-        specifier: ^2.4.4
+        specifier: ^2.5.0
         version: link:../models
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.0.0
@@ -16218,7 +16548,7 @@ importers:
         specifier: ^13.0.5
         version: link:../core
       '@ovh-ux/manager-models':
-        specifier: ^2.4.4
+        specifier: ^2.5.0
         version: link:../models
       '@ovh-ux/ng-at-internet':
         specifier: ^5.9.1
@@ -16509,7 +16839,7 @@ importers:
         specifier: ^0.9.9
         version: link:../order
       '@ovh-ux/manager-react-components':
-        specifier: ^2.24.0
+        specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@ovh-ux/manager-react-shell-client':
         specifier: ^0.8.7
@@ -16627,7 +16957,7 @@ importers:
         specifier: ^13.0.5
         version: link:../core
       '@ovh-ux/manager-new-billing':
-        specifier: ^0.38.1
+        specifier: ^0.39.1
         version: link:../new-billing
       '@ovh-ux/manager-ng-layout-helpers':
         specifier: ^2.0.0
@@ -19854,6 +20184,17 @@ packages:
       react-router-dom: ^6.3.0
       zustand: ^4.5.5
 
+  '@ovh-ux/manager-react-components@1.48.0':
+    resolution: {integrity: sha512-HSEVI9nNhG7byvy2HJty7dZNxD3ayETqOxDFBRbS/dVO5shBhHfwUrbHpr9iLe7bgWclJB3fk72IJpsBzIi3Ug==}
+    peerDependencies:
+      '@ovh-ux/manager-core-api': ^0.9.0-alpha.0
+      '@ovh-ux/manager-react-shell-client': ^0.8.0-alpha.0
+      i18next: ^23.8.2
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      react-router-dom: ^6.3.0
+      zustand: ^4.5.5
+
   '@ovh-ux/ng-at-internet@5.9.1':
     resolution: {integrity: sha512-pc/yayZin4ytjleR4jJoOwDUWAJL/xt4/LKYUPSCx7f4ALpazLb+YRsr7DhnJBV/cr4XeNJ8DPXP+bvmnl/bfw==}
     peerDependencies:
@@ -20001,6 +20342,9 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
+  '@promptbook/utils@0.69.5':
+    resolution: {integrity: sha512-xm5Ti/Hp3o4xHrsK9Yy3MS6KbDxYbq485hDsFvxqaNA7equHLPdo8H8faTitTeb14QCDfLW4iwCxdVYu5sn6YQ==}
+
   '@protobufjs/aspromise@1.1.2':
     resolution: {integrity: sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==}
 
@@ -20030,6 +20374,11 @@ packages:
 
   '@protobufjs/utf8@1.1.0':
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
+
+  '@puppeteer/browsers@2.10.5':
+    resolution: {integrity: sha512-eifa0o+i8dERnngJwKrfp3dEq7ia5XFyoqB17S4gK8GhsQE4/P8nxOfQSE0zQHxzzLo/cmF+7+ywEQ7wK7Fb+w==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   '@radix-ui/number@1.0.1':
     resolution: {integrity: sha512-T5gIdVO2mmPW3NNhjNgEP3cqMXjXL9UbO0BzWcXfvdBs+BohbQxvd/K5hSVKmn9/lbTdsQVKbUcP5WLCwvUbBg==}
@@ -21789,6 +22138,21 @@ packages:
       '@types/react-dom':
         optional: true
 
+  '@testing-library/react@16.3.0':
+    resolution: {integrity: sha512-kFSyxiEDwv1WLl2fgsq6pPBbw5aWKrsY2/noi1Id0TK0UParSF62oFQFGHXIyaG4pp2tEub/Zlel+fjjZILDsw==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@testing-library/dom': ^10.0.0
+      '@types/react': ^18.0.0 || ^19.0.0
+      '@types/react-dom': ^18.0.0 || ^19.0.0
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+
   '@testing-library/user-event@13.5.0':
     resolution: {integrity: sha512-5Kwtbo3Y/NowpkbRuSepbyMFkZmHgD+vPzYB/RJ4oxt5Gj/avFFBYjhw27cqSVPVw/3a67NK1PbiIr9k4Gwmdg==}
     engines: {node: '>=10', npm: '>=6'}
@@ -21807,6 +22171,12 @@ packages:
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
 
+  '@testing-library/user-event@14.6.1':
+    resolution: {integrity: sha512-vq7fv0rnt+QTXgPxr5Hjc210p6YKq2kmdziLgnsZGgLJ9e6VAShx1pACLuRjd/AS/sr7phAR58OIIpf0LlmQNw==}
+    engines: {node: '>=12', npm: '>=6'}
+    peerDependencies:
+      '@testing-library/dom': '>=7.21.4'
+
   '@tootallnate/once@1.1.2':
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
     engines: {node: '>= 6'}
@@ -21814,6 +22184,9 @@ packages:
   '@tootallnate/once@2.0.0':
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
+
+  '@tootallnate/quickjs-emscripten@0.23.0':
+    resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
 
   '@tsconfig/node10@1.0.11':
     resolution: {integrity: sha512-DcRjDCujK/kCk/cUe8Xz8ZSpm8mS3mNNpta+jGCA6USEDfktlNvm1+IuZ9eTcDbNk41BHwpHHeW+N1lKCz4zOw==}
@@ -22140,6 +22513,9 @@ packages:
   '@types/set-cookie-parser@2.4.7':
     resolution: {integrity: sha512-+ge/loa0oTozxip6zmhRIk8Z/boU51wl9Q6QdLZcokIGMzY5lFXYy/x7Htj2HTC6/KZP1hUbZ1ekx8DYXICvWg==}
 
+  '@types/sinonjs__fake-timers@8.1.5':
+    resolution: {integrity: sha512-mQkU2jY8jJEF7YHjHvsQO8+3ughTL1mcnn96igfhONmR+fUPSKIkefQYpSe8bsly2Ep7oQbn/6VG5/9/0qcArQ==}
+
   '@types/sockjs@0.3.36':
     resolution: {integrity: sha512-MK9V6NzAS1+Ud7JV9lJLFqW85VbC9dq3LmwZCuBe4wBDgKC0Kj/jd8Xl+nSviU+Qc3+m7umHHyHg//2KSa0a0Q==}
 
@@ -22179,6 +22555,9 @@ packages:
   '@types/web-bluetooth@0.0.20':
     resolution: {integrity: sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==}
 
+  '@types/which@2.0.2':
+    resolution: {integrity: sha512-113D3mDkZDjo+EeUEHCFy0qniNc1ZpecGiAU7WSo7YDoSzolZIQKpYFHrPpjkB2nuyahcKfrmLXeQlh7gqJYdw==}
+
   '@types/wrap-ansi@3.0.0':
     resolution: {integrity: sha512-ltIpx+kM7g/MLRZfkbL7EsCEjfzCcScLpkg37eXEtx5kmrAKBkTJwd1GIAjDSL8wTpM6Hzn5YO4pSb91BEwu1g==}
 
@@ -22193,6 +22572,9 @@ packages:
 
   '@types/yargs@17.0.32':
     resolution: {integrity: sha512-xQ67Yc/laOG5uMfX/093MRlGGCIBzZMarVa+gfNKJxWAIgykYpVGkBdbqEzGDDfCrVUj6Hiff4mTZ5BA6TmAog==}
+
+  '@types/yauzl@2.10.3':
+    resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
 
   '@typescript-eslint/eslint-plugin@4.33.0':
     resolution: {integrity: sha512-aINiAxGVdOl1eJyVjaWn/YcVAq4Gi/Yo35qHGCnqbWVz61g39D0h23veY/MA0rFFGfxK7TySg2uwDeNv+JgVpg==}
@@ -22368,6 +22750,9 @@ packages:
   '@vitest/expect@3.0.8':
     resolution: {integrity: sha512-Xu6TTIavTvSSS6LZaA3EebWFr6tsoXPetOWNMOlc7LO88QVVBwq2oQWBoDiLCN6YTvNYsGSjqOO8CAdjom5DCQ==}
 
+  '@vitest/expect@3.1.4':
+    resolution: {integrity: sha512-xkD/ljeliyaClDYqHPNCiJ0plY5YIcM0OlRiZizLhlPmpXWpxnGMyTZXOHFhFeG7w9P5PBeL4IdtJ/HeQwTbQA==}
+
   '@vitest/mocker@2.1.9':
     resolution: {integrity: sha512-tVL6uJgoUdi6icpxmdrn5YNo3g3Dxv+IHJBr0GXHaEdTcw3F+cPKnsXFhli6nO+f/6SDKPHEK1UN+k+TQv0Ehg==}
     peerDependencies:
@@ -22390,6 +22775,17 @@ packages:
       vite:
         optional: true
 
+  '@vitest/mocker@3.1.4':
+    resolution: {integrity: sha512-8IJ3CvwtSw/EFXqWFL8aCMu+YyYXG2WUSrQbViOZkWTKTVicVwZ/YiEZDSqD00kX+v/+W+OnxhNWoeVKorHygA==}
+    peerDependencies:
+      msw: ^2.4.9
+      vite: ^5.0.0 || ^6.0.0
+    peerDependenciesMeta:
+      msw:
+        optional: true
+      vite:
+        optional: true
+
   '@vitest/pretty-format@2.0.5':
     resolution: {integrity: sha512-h8k+1oWHfwTkyTkb9egzwNMfJAEx4veaPSnMeKbVSjp4euqGSbQlm5+6VHwTr7u4FJslVVsUG5nopCaAYdOmSQ==}
 
@@ -22398,6 +22794,9 @@ packages:
 
   '@vitest/pretty-format@3.0.8':
     resolution: {integrity: sha512-BNqwbEyitFhzYMYHUVbIvepOyeQOSFA/NeJMIP9enMntkkxLgOcgABH6fjyXG85ipTgvero6noreavGIqfJcIg==}
+
+  '@vitest/pretty-format@3.1.4':
+    resolution: {integrity: sha512-cqv9H9GvAEoTaoq+cYqUTCGscUjKqlJZC7PRwY5FMySVj5J+xOm1KQcCiYHJOEzOKRUhLH4R2pTwvFlWCEScsg==}
 
   '@vitest/runner@1.6.1':
     resolution: {integrity: sha512-3nSnYXkVkf3mXFfE7vVyPmi3Sazhb/2cfZGGs0JRzFsPFvAMBEcrweV1V1GsrstdXeKCTXlJbvnQwGWgEIHmOA==}
@@ -22408,6 +22807,9 @@ packages:
   '@vitest/runner@3.0.8':
     resolution: {integrity: sha512-c7UUw6gEcOzI8fih+uaAXS5DwjlBaCJUo7KJ4VvJcjL95+DSR1kova2hFuRt3w41KZEFcOEiq098KkyrjXeM5w==}
 
+  '@vitest/runner@3.1.4':
+    resolution: {integrity: sha512-djTeF1/vt985I/wpKVFBMWUlk/I7mb5hmD5oP8K9ACRmVXgKTae3TUOtXAEBfslNKPzUQvnKhNd34nnRSYgLNQ==}
+
   '@vitest/snapshot@1.6.1':
     resolution: {integrity: sha512-WvidQuWAzU2p95u8GAKlRMqMyN1yOJkGHnx3M1PL9Raf7AQ1kwLKg04ADlCa3+OXUZE7BceOhVZiuWAbzCKcUQ==}
 
@@ -22416,6 +22818,9 @@ packages:
 
   '@vitest/snapshot@3.0.8':
     resolution: {integrity: sha512-x8IlMGSEMugakInj44nUrLSILh/zy1f2/BgH0UeHpNyOocG18M9CWVIFBaXPt8TrqVZWmcPjwfG/ht5tnpba8A==}
+
+  '@vitest/snapshot@3.1.4':
+    resolution: {integrity: sha512-JPHf68DvuO7vilmvwdPr9TS0SuuIzHvxeaCkxYcCD4jTk67XwL45ZhEHFKIuCm8CYstgI6LZ4XbwD6ANrwMpFg==}
 
   '@vitest/spy@1.6.1':
     resolution: {integrity: sha512-MGcMmpGkZebsMZhbQKkAf9CX5zGvjkBTqf8Zx3ApYWXr3wG+QvEu2eXWfnIIWYSJExIp4V9FCKDEeygzkYrXMw==}
@@ -22428,6 +22833,9 @@ packages:
 
   '@vitest/spy@3.0.8':
     resolution: {integrity: sha512-MR+PzJa+22vFKYb934CejhR4BeRpMSoxkvNoDit68GQxRLSf11aT6CTj3XaqUU9rxgWJFnqicN/wxw6yBRkI1Q==}
+
+  '@vitest/spy@3.1.4':
+    resolution: {integrity: sha512-Xg1bXhu+vtPXIodYN369M86K8shGLouNjoVI78g8iAq2rFoHFdajNvJJ5A/9bPMFcfQqdaCpOgWKEoMQg/s0Yg==}
 
   '@vitest/ui@1.6.0':
     resolution: {integrity: sha512-k3Lyo+ONLOgylctiGovRKy7V4+dIN2yxstX3eY5cWFXH6WP+ooVX79YSyi0GagdTQzLmT43BF27T0s6dOIPBXA==}
@@ -22453,6 +22861,9 @@ packages:
 
   '@vitest/utils@3.0.8':
     resolution: {integrity: sha512-nkBC3aEhfX2PdtQI/QwAWp8qZWwzASsU4Npbcd5RdMPBSSLCpkZp52P3xku3s3uA0HIEhGvEcF8rNkBsz9dQ4Q==}
+
+  '@vitest/utils@3.1.4':
+    resolution: {integrity: sha512-yriMuO1cfFhmiGc8ataN51+9ooHRuURdfAZfwFd3usWynjzpLslZdYnRegTv32qdgtJTsj15FoeZe2g15fY1gg==}
 
   '@volar/language-core@1.11.1':
     resolution: {integrity: sha512-dOcNn3i9GgZAcJt43wuaEykSluAuOkQgzni1cuxLxTV0nJKanQztp7FxyswdRILaKH+P2XZMPRp2S4MV/pElCw==}
@@ -22590,6 +23001,29 @@ packages:
   '@vueuse/shared@10.9.0':
     resolution: {integrity: sha512-Uud2IWncmAfJvRaFYzv5OHDli+FbOzxiVEQdLCKQKLyhz94PIyFC3CHcH7EDMwIn8NPtD06+PNbC/PiO0LGLtw==}
 
+  '@wdio/config@9.14.0':
+    resolution: {integrity: sha512-mW6VAXfUgd2j+8YJfFWvg8Ba/7g1Brr6/+MFBpp5rTQsw/2bN3PBJsQbWpNl99OCgoS8vgc5Ykps5ZUEeffSVQ==}
+    engines: {node: '>=18.20.0'}
+
+  '@wdio/logger@9.4.4':
+    resolution: {integrity: sha512-BXx8RXFUW2M4dcO6t5Le95Hi2ZkTQBRsvBQqLekT2rZ6Xmw8ZKZBPf0FptnoftFGg6dYmwnDidYv/0+4PiHjpQ==}
+    engines: {node: '>=18.20.0'}
+
+  '@wdio/protocols@9.14.0':
+    resolution: {integrity: sha512-inJR+G8iiFrk8/JPMfxpy6wA7rvMIZFV0T8vDN1Io7sGGj+EXX7ujpDxoCns53qxV4RytnSlgHRcCaASPFcecQ==}
+
+  '@wdio/repl@9.4.4':
+    resolution: {integrity: sha512-kchPRhoG/pCn4KhHGiL/ocNhdpR8OkD2e6sANlSUZ4TGBVi86YSIEjc2yXUwLacHknC/EnQk/SFnqd4MsNjGGg==}
+    engines: {node: '>=18.20.0'}
+
+  '@wdio/types@9.14.0':
+    resolution: {integrity: sha512-Zqc4sxaQLIXdI1EHItIuVIOn7LvPmDvl9JEANwiJ35ck82Xlj+X55Gd9NtELSwChzKgODD0OBzlLgXyxTr69KA==}
+    engines: {node: '>=18.20.0'}
+
+  '@wdio/utils@9.14.0':
+    resolution: {integrity: sha512-oJapwraSflOe0CmeF3TBocdt983hq9mCutLCfie4QmE+TKRlCsZz4iidG1NRAZPGdKB32nfHtyQlW0Dfxwn6RA==}
+    engines: {node: '>=18.20.0'}
+
   '@webassemblyjs/ast@1.12.1':
     resolution: {integrity: sha512-EKfMUOPRRUTy5UII4qJDGPpqfwjOmZ5jeGFwid9mnoqIFK+e0vqoi1qH56JpmZSzEL53jKnNzScdmftJyG5xWg==}
 
@@ -22676,6 +23110,10 @@ packages:
     resolution: {integrity: sha512-aiATs7pSutzda/rq8fnuPwTglyVwjM22bNnK2ZgjrpAjQHSSl3lztd2f9evst1W/qnC58DRz7T7QndUDumAR4Q==}
     engines: {node: '>=14.15.0'}
 
+  '@zip.js/zip.js@2.7.62':
+    resolution: {integrity: sha512-OaLvZ8j4gCkLn048ypkZu29KX30r8/OfFF2w4Jo5WXFr+J04J+lzJ5TKZBVgFXhlvSkqNFQdfnY1Q8TMTCyBVA==}
+    engines: {bun: '>=0.7.0', deno: '>=1.0.0', node: '>=16.5.0'}
+
   '@zkochan/js-yaml@0.0.6':
     resolution: {integrity: sha512-nzvgl3VfhcELQ8LyVrYOru+UtAy1nrygk2+AGbTm8a5YcO6o8lSjAT+pfg3vJWxIoZKOUhrK6UU7xW/+00kQrg==}
     hasBin: true
@@ -22697,6 +23135,10 @@ packages:
 
   abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
+
+  abort-controller@3.0.0:
+    resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
+    engines: {node: '>=6.5'}
 
   accepts@1.3.8:
     resolution: {integrity: sha512-PYAthTa2m2VKxuvSD3DPC/Gy+U+sOA1LAuT8mkmRuvw+NACSaeXEQ+NHcVF7rONl6qcaxV3Uuemwawk+7+SJLw==}
@@ -23033,6 +23475,14 @@ packages:
   aproba@2.0.0:
     resolution: {integrity: sha512-lYe4Gx7QT+MKGbDsA+Z+he/Wtef0BiwDOlK/XkBrdfsh9J/jPPXbX0tE9x9cl27Tmu5gg3QUbUrQYa/y+KOHPQ==}
 
+  archiver-utils@5.0.2:
+    resolution: {integrity: sha512-wuLJMmIBQYCsGZgYLTy5FIB2pF6Lfb6cXMSF8Qywwk3t20zWnAi7zLcQFdKQmIB8wyZpY5ER38x08GbwtR2cLA==}
+    engines: {node: '>= 14'}
+
+  archiver@7.0.1:
+    resolution: {integrity: sha512-ZcbTaIqJOfCc03QwD468Unz/5Ir8ATtvAHsK+FdXbDIbGfihqh9mrvdcYunQzqn4HrvWWaFyaxJhGZagaJJpPQ==}
+    engines: {node: '>= 14'}
+
   are-we-there-yet@3.0.1:
     resolution: {integrity: sha512-QZW4EDmGwlYur0Yyf/b2uGucHQMa8aFUP7eu9ddR73vvhFyt4V0Vl3QHPcTNJ8l6qYOBdxgXdnBXQrHilfRQBg==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
@@ -23173,6 +23623,10 @@ packages:
     resolution: {integrity: sha512-Q+JC7Whu8HhmTdBph/Tq59IoRtoy6KAm5zzPv00WdujX82lbAL8K7WVjne7vdCsAmbF4AYaDOPyO3k0kl8qIrw==}
     engines: {node: '>=0.10.0'}
 
+  ast-types@0.13.4:
+    resolution: {integrity: sha512-x1FCFnFifvYDDzTaLII71vG5uvDwgtmDTEVWAxrgeiR8VjMONcCXJx7E+USjDtHlwFmt9MysbqgF9b9Vjr6w+w==}
+    engines: {node: '>=4'}
+
   ast-types@0.16.1:
     resolution: {integrity: sha512-6t10qk83GOG8p0vKmaCr8eiilZwO171AvbROMtvvNiwrTly62t+7XkA8RdIIVbpMhCASAsxgAzdRSwh6nw/5Dg==}
     engines: {node: '>=4'}
@@ -23248,6 +23702,9 @@ packages:
 
   axios@1.7.7:
     resolution: {integrity: sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==}
+
+  b4a@1.6.7:
+    resolution: {integrity: sha512-OnAYlL5b7LEkALw87fUVafQw5rVR9RjwGd4KUwNQ6DrrNmaVaUCgLipfVlzrPQ4tWOR9P0IXGNOx50jYCCdSJg==}
 
   babel-eslint@10.1.0:
     resolution: {integrity: sha512-ifWaTHQ0ce+448CYop8AdrQiBsGrnC+bMgfyKFdi6EsPLTAWG+QfyDeM6OH+FmWnKvEq5NnBMLvlBUPKQZoDSg==}
@@ -23357,6 +23814,36 @@ packages:
   balanced-match@2.0.0:
     resolution: {integrity: sha512-1ugUSr8BHXRnK23KfuYS+gVMC3LB8QGH9W1iGtDPsNWoQbgtXSExkBu2aDR4epiGWZOjZsj6lDl/N/AqqTC3UA==}
 
+  bare-events@2.5.4:
+    resolution: {integrity: sha512-+gFfDkR8pj4/TrWCGUGWmJIkBwuxPS5F+a5yWjOHQt2hHvNZd5YLzadjmDUtFmMM4y429bnKLa8bYBMHcYdnQA==}
+
+  bare-fs@4.1.5:
+    resolution: {integrity: sha512-1zccWBMypln0jEE05LzZt+V/8y8AQsQQqxtklqaIyg5nu6OAYFhZxPXinJTSG+kU5qyNmeLgcn9AW7eHiCHVLA==}
+    engines: {bare: '>=1.16.0'}
+    peerDependencies:
+      bare-buffer: '*'
+    peerDependenciesMeta:
+      bare-buffer:
+        optional: true
+
+  bare-os@3.6.1:
+    resolution: {integrity: sha512-uaIjxokhFidJP+bmmvKSgiMzj2sV5GPHaZVAIktcxcpCyBFFWO+YlikVAdhmUo2vYFvFhOXIAlldqV29L8126g==}
+    engines: {bare: '>=1.14.0'}
+
+  bare-path@3.0.0:
+    resolution: {integrity: sha512-tyfW2cQcB5NN8Saijrhqn0Zh7AnFNsnczRcuWODH0eYAXBsJ5gVxAUuNr7tsHSC6IZ77cA0SitzT+s47kot8Mw==}
+
+  bare-stream@2.6.5:
+    resolution: {integrity: sha512-jSmxKJNJmHySi6hC42zlZnq00rga4jjxcgNZjY9N5WlOe/iOoGRtdwGsHzQv2RlH2KOYMwGUXhf2zXd32BA9RA==}
+    peerDependencies:
+      bare-buffer: '*'
+      bare-events: '*'
+    peerDependenciesMeta:
+      bare-buffer:
+        optional: true
+      bare-events:
+        optional: true
+
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
@@ -23367,6 +23854,10 @@ packages:
   base@0.11.2:
     resolution: {integrity: sha512-5T6P4xPgpp0YDFvSWwEZ4NoE3aM4QBQXDzmVbraCkFj8zHM+mba8SyqB5DbZWyR7mYHo6Y7BdQo3MoA4m0TeQg==}
     engines: {node: '>=0.10.0'}
+
+  basic-ftp@5.0.5:
+    resolution: {integrity: sha512-4Bcg1P8xhUuqcii/S0Z9wiHIrQVPMermM1any+MX5GeGD7faD3/msQUDGLol9wOcz4/jbg/WJnGqoJF6LiBdtg==}
+    engines: {node: '>=10.0.0'}
 
   batch@0.6.1:
     resolution: {integrity: sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==}
@@ -23503,6 +23994,13 @@ packages:
 
   bser@2.1.1:
     resolution: {integrity: sha512-gQxTNE/GAfIIrmHLUE3oJyp5FO6HRBfhjnw4/wMmA63ZGDJnWBmgY/lyQBpnDUkGmAhbSe39tx2d/iTOAfglwQ==}
+
+  buffer-crc32@0.2.13:
+    resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
+
+  buffer-crc32@1.0.0:
+    resolution: {integrity: sha512-Db1SbgBS/fg/392AblrMJk97KggmvYhr4pB5ZIMTWtaivCPMWLkmb7m21cJvpvgK+J3nsU2CmmixNBZx4vFj/w==}
+    engines: {node: '>=8.0.0'}
 
   buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
@@ -23705,6 +24203,13 @@ packages:
   check-error@2.1.1:
     resolution: {integrity: sha512-OAlb+T7V4Op9OwdkjmguYRqncdlx5JiofwOAUkmTF+jNdHwzTaTs4sRAGpzLF3oOz5xAyDGrPgeIDFQmDOTiJw==}
     engines: {node: '>= 16'}
+
+  cheerio-select@2.1.0:
+    resolution: {integrity: sha512-9v9kG0LvzrlcungtnJtpGNxY+fzECQKhK4EGJX2vByejiMX84MFNQw4UxPJl3bFbTMw+Dfs37XaIkCwTZfLh4g==}
+
+  cheerio@1.0.0:
+    resolution: {integrity: sha512-quS9HgjQpdaXOvsZz82Oz7uxtXiy6UIsIQcpBj7HRw2M63Skasm9qlDocAM7jNuaxdhpPU7c4kJN+gA5MCu4ww==}
+    engines: {node: '>=18.17'}
 
   chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
@@ -23960,6 +24465,10 @@ packages:
     resolution: {integrity: sha512-i0/MaqBtdbnJ4XQs4Pmyb+oFQl+q0lsAmokVUH92SlSw4fkeAcG3bVon+Qt7hmtF+u3Het6o4VgrcY3qAoEB6w==}
     engines: {node: ^12.20.0 || >=14}
 
+  commander@9.5.0:
+    resolution: {integrity: sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==}
+    engines: {node: ^12.20.0 || >=14}
+
   common-ancestor-path@1.0.1:
     resolution: {integrity: sha512-L3sHRo1pXXEqX8VU28kfgUY+YGsk09hPqZiZmLacNib6XNTCM8ubYeT7ryXQw8asB1sKgcU5lkB7ONug08aB8w==}
 
@@ -23983,6 +24492,10 @@ packages:
 
   compose-function@3.0.3:
     resolution: {integrity: sha512-xzhzTJ5eC+gmIzvZq+C3kCJHsp9os6tJkrigDRZclyGtOKINbZtE8n1Tzmeh32jW+BUDPbvZpibwvJHBLGMVwg==}
+
+  compress-commons@6.0.2:
+    resolution: {integrity: sha512-6FqVXeETqWPoGcfzrXb37E50NP0LXT8kAMu5ooZayhWWdgEY4lBEEcbQNXtkuKQsGduxiIcI4gOTsxTmuq/bSg==}
+    engines: {node: '>= 14'}
 
   compressible@2.0.18:
     resolution: {integrity: sha512-AF3r7P5dWxL8MxyITRMlORQNaOA2IkAFaTr4k7BUumjPtRpGDTZpl0Pb1XCO6JeDCBdp126Cgs9sMxqSjgYyRg==}
@@ -24224,6 +24737,15 @@ packages:
       typescript:
         optional: true
 
+  crc-32@1.2.2:
+    resolution: {integrity: sha512-ROmzCKrTnOwybPcJApAA6WBWij23HVfGVNKqqrZpuyZOHqK2CwHSvpGuyt/UNNvaIjEd8X5IFGp4Mh+Ie1IHJQ==}
+    engines: {node: '>=0.8'}
+    hasBin: true
+
+  crc32-stream@6.0.0:
+    resolution: {integrity: sha512-piICUB6ei4IlTv1+653yq5+KoqfBYmj9bw6LqXoOneTMDXk5nM1qt12mFW1caG3LlJXEKW1Bp0WggEmIfQB34g==}
+    engines: {node: '>= 14'}
+
   create-jest@29.7.0:
     resolution: {integrity: sha512-Adz2bdH0Vq3F53KEMJOoftQFutWCukm6J24wbPWRO4k1kMY7gS7ds/uoJkNuV8wDCtWWnuwGcJwpWcih+zEW1Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -24267,9 +24789,18 @@ packages:
   css-select@4.3.0:
     resolution: {integrity: sha512-wPpOYtnsVontu2mODhA19JrqWxNsfdatRKd64kmpRbQgh1KtItko5sTnEpPdpSaJszTOhEMlF/RPz28qj4HqhQ==}
 
+  css-select@5.1.0:
+    resolution: {integrity: sha512-nwoRF1rvRRnnCqqY7updORDsuqKzqYJ28+oSMaJMMgOauh3fvwHqMS7EZpIPqK8GL+g9mKxF1vP/ZjSeNjEVHg==}
+
+  css-shorthand-properties@1.1.2:
+    resolution: {integrity: sha512-C2AugXIpRGQTxaCW0N7n5jD/p5irUmCrwl03TrnMFBHDbdq44CFWR2zO7rK9xPN4Eo3pUxC4vQzQgbIpzrD1PQ==}
+
   css-tree@1.1.3:
     resolution: {integrity: sha512-tRpdppF7TRazZrjJ6v3stzv93qxRcSsFmW6cX0Zm2NVKpxE1WV1HblnghVv9TreireHkqI/VDEsfolRF1p6y7Q==}
     engines: {node: '>=8.0.0'}
+
+  css-value@0.0.1:
+    resolution: {integrity: sha512-FUV3xaJ63buRLgHrLQVlVgQnQdR4yqdLGaDu7g8CQcWjInDfM9plBTPI9FRfpahju1UBSaMckeb2/46ApS/V1Q==}
 
   css-what@6.1.0:
     resolution: {integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==}
@@ -24452,6 +24983,14 @@ packages:
     resolution: {integrity: sha512-jRFi8UDGo6j+odZiEpjazZaWqEal3w/basFjQHQEwVtZJGDpxbH1MeYluwCS8Xq5wmLJooDlMgvVarmWfGM44g==}
     engines: {node: '>=0.10'}
 
+  data-uri-to-buffer@4.0.1:
+    resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
+    engines: {node: '>= 12'}
+
+  data-uri-to-buffer@6.0.2:
+    resolution: {integrity: sha512-7hvf7/GW8e86rW0ptuwS3OcBGDjIi6SZva7hCyWC0yYry2cOPmLIjXAUHI6DK2HsnwJd9ifmt57i8eV2n4YNpw==}
+    engines: {node: '>= 14'}
+
   data-urls@2.0.0:
     resolution: {integrity: sha512-X5eWTSXO/BJmpdIKCRuKUgSCgAN0OwliVK3yPKbwIWU1Tdw5BRajxlzMidvh+gwko9AfQ9zIj52pzF91Q3YAvQ==}
     engines: {node: '>=10'}
@@ -24526,6 +25065,15 @@ packages:
       supports-color:
         optional: true
 
+  debug@4.4.1:
+    resolution: {integrity: sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
   debuglog@1.0.1:
     resolution: {integrity: sha512-syBZ+rnAK3EgMsH2aYEOLUW7mZSY9Gb+0wUMCFsZvcmiz+HigA0LOcq/HoQqVuGG+EKykunc7QG2bzrponfaSw==}
     deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
@@ -24537,6 +25085,10 @@ packages:
   decamelize@1.2.0:
     resolution: {integrity: sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==}
     engines: {node: '>=0.10.0'}
+
+  decamelize@6.0.0:
+    resolution: {integrity: sha512-Fv96DCsdOgB6mdGl67MT5JaTNKRzrzill5OH5s8bjYJXVlcXyPYGyPsUkWyGV5p1TXI5esYIYMMeDJL0hEIwaA==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   decimal.js-light@2.5.1:
     resolution: {integrity: sha512-qIMFpTMZmny+MMIitAB6D7iVPEorVw6YQRWkvarTkT4tBeSLLiHzcwj6q0MmYSFCiVpiqPJTJEYIrpcPzVEIvg==}
@@ -24574,6 +25126,10 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
+  deepmerge-ts@7.1.5:
+    resolution: {integrity: sha512-HOJkrhaYsweh+W+e74Yn7YStZOilkoPb6fycpwNLKzSPtruFs48nYis0zy5yJz1+ktUhHxoRDJ27RQAWLIJVJw==}
+    engines: {node: '>=16.0.0'}
+
   deepmerge@4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
     engines: {node: '>=0.10.0'}
@@ -24608,6 +25164,10 @@ packages:
   define-property@2.0.2:
     resolution: {integrity: sha512-jwK2UV4cnPpbcG7+VRARKTZPUWowwXA8bzH5NP6ud0oeAxyYPuGZUAC7hMugpCdz4BeSZl2Dl9k66CHJ/46ZYQ==}
     engines: {node: '>=0.10.0'}
+
+  degenerator@5.0.1:
+    resolution: {integrity: sha512-TllpMR/t0M5sqCXfj85i4XaAzxmS5tVA16dqvdkMwGmzI+dXLXnw3J+3Vdv7VKw+ThlTMboK6i9rnZ6Nntj5CQ==}
+    engines: {node: '>= 14'}
 
   del@6.1.1:
     resolution: {integrity: sha512-ua8BhapfP0JUJKC/zV9yHHDW/rDoDxP4Zhn3AkA6/xT6gY7jYXJiaeyBZznYVujhZZET+UgcbZiQ7sN3WqcImg==}
@@ -24755,6 +25315,9 @@ packages:
   dom-serializer@1.4.1:
     resolution: {integrity: sha512-VHwB3KfrcOOkelEG2ZOfxqLZdfkil8PtJi4P8N2MMXucZq2yLp75ClViUlOVwyoHEDjYU433Aq+5zWP61+RGag==}
 
+  dom-serializer@2.0.0:
+    resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
+
   domelementtype@1.3.1:
     resolution: {integrity: sha512-BSKB+TSpMpFI/HOxCNr1O8aMOTZ8hT3pM3GQ0w/mWRmkhEDSFJkkyzz4XQsBV44BChwGkrDfMyjVD0eA2aFV3w==}
 
@@ -24778,6 +25341,10 @@ packages:
     resolution: {integrity: sha512-GrwoxYN+uWlzO8uhUXRl0P+kHE4GtVPfYzVLcUxPL7KNdHKj66vvlhiweIHqYYXWlw+T8iLMp42Lm67ghw4WMQ==}
     engines: {node: '>= 4'}
 
+  domhandler@5.0.3:
+    resolution: {integrity: sha512-cgwlv/1iFQiFnU96XXgROh8xTeetsnJiDsTc7TYCLFd9+/WNkIqPTxiM/8pSd8VIrhXGTf1Ny1q1hquVqDJB5w==}
+    engines: {node: '>= 4'}
+
   dompurify@3.2.4:
     resolution: {integrity: sha512-ysFSFEDVduQpyhzAob/kkuJjf5zWkZD8/A9ywSp1byueyuCfHamrCBa14/Oc2iiB0e51B+NpxSl5gmzn+Ms/mg==}
 
@@ -24786,6 +25353,9 @@ packages:
 
   domutils@2.8.0:
     resolution: {integrity: sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==}
+
+  domutils@3.2.2:
+    resolution: {integrity: sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==}
 
   dot-case@3.0.4:
     resolution: {integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==}
@@ -24832,6 +25402,15 @@ packages:
 
   ecc-jsbn@0.1.2:
     resolution: {integrity: sha512-eh9O+hwRHNbG4BLTjEl3nw044CkGm5X6LoaCf7LPp7UU8Qrt47JYNi6nPX8xjW97TKGKm1ouctg0QSpZe9qrnw==}
+
+  edge-paths@3.0.5:
+    resolution: {integrity: sha512-sB7vSrDnFa4ezWQk9nZ/n0FdpdUuC6R1EOrlU3DL+bovcNFK28rqu2emmAUjujYEJTWIgQGqgVVWUZXMnc8iWg==}
+    engines: {node: '>=14.0.0'}
+
+  edgedriver@6.1.1:
+    resolution: {integrity: sha512-/dM/PoBf22Xg3yypMWkmRQrBKEnSyNaZ7wHGCT9+qqT14izwtFT+QvdR89rjNkMfXwW+bSFoqOfbcvM+2Cyc7w==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
 
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
@@ -24894,6 +25473,9 @@ packages:
   encodeurl@2.0.0:
     resolution: {integrity: sha512-Q0n9HRi4m6JuGIV1eFlmvJB7ZEVxu93IrMyiMsGC0lrMJMWzRgx6WGquyfQgZVb31vhGgXnfmPNNXmxnOkRBrg==}
     engines: {node: '>= 0.8'}
+
+  encoding-sniffer@0.2.0:
+    resolution: {integrity: sha512-ju7Wq1kg04I3HtiYIOrUrdfdDvkyO9s5XM8QAj/bN61Yo/Vb4vgJxy5vi4Yxk01gWHbrofpPtpxM8bKger9jhg==}
 
   encoding@0.1.13:
     resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
@@ -24966,6 +25548,9 @@ packages:
 
   es-module-lexer@1.6.0:
     resolution: {integrity: sha512-qqnD1yMU6tk/jnaMosogGySTZP8YtUgAffA9nMN+E/rjxcfRQ6IEk7IiozUjgxKoFHBGjTLnrHB/YC45r/59EQ==}
+
+  es-module-lexer@1.7.0:
+    resolution: {integrity: sha512-jEQoCwk8hyb2AZziIOLhDqpm5+2ww5uIE6lkO/6jcOCusfk6LhMHpXXfBLXTZ7Ydyt0j4VoUQv6uGNYbdW+kBA==}
 
   es-object-atoms@1.1.1:
     resolution: {integrity: sha512-FGgH2h8zKNim9ljj7dankFPcICIK9Cp5bm+c2gQSYePhpaG5+esrLODihIorn+Pe6FGJzWhXQotPv73jTaldXA==}
@@ -25306,6 +25891,10 @@ packages:
   event-emitter@0.3.5:
     resolution: {integrity: sha512-D9rRn9y7kLPnJ+hMq7S/nhvoKwwvVJahBi2BPmx3bvbsEdK3W9ii8cBSGjP+72/LnM4n6fo3+dkCX5FeTQruXA==}
 
+  event-target-shim@5.0.1:
+    resolution: {integrity: sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==}
+    engines: {node: '>=6'}
+
   eventemitter3@4.0.7:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
 
@@ -25363,6 +25952,10 @@ packages:
     resolution: {integrity: sha512-bFi65yM+xZgk+u/KRIpekdSYkTB5W1pEf0Lt8Q8Msh7b+eQ7LXVtIB1Bkm4fvclDEL1b2CZkMhv2mOeF8tMdkA==}
     engines: {node: '>=12.0.0'}
 
+  expect-type@1.2.1:
+    resolution: {integrity: sha512-/kP8CAwxzLVEeFrMm4kMmy4CCDlpipyA7MYLVrdJIkV0fYF0UaigQHRsxHiuY/GEea+bh4KSv3TIlgr+2UL6bw==}
+    engines: {node: '>=12.0.0'}
+
   expect@26.6.2:
     resolution: {integrity: sha512-9/hlOBkQl2l/PLHJx6JjoDF6xPKcJEsUlWKb23rKE7KzeDqUZKXKNMW27KIue5JMdBV9HgmoJPcc8HtO85t9IA==}
     engines: {node: '>= 10.14.2'}
@@ -25415,6 +26008,11 @@ packages:
     resolution: {integrity: sha512-Nmb6QXkELsuBr24CJSkilo6UHHgbekK5UiZgfE6UHD3Eb27YC6oD+bhcT+tJ6cl8dmsgdQxnWlcry8ksBIBLpw==}
     engines: {node: '>=0.10.0'}
 
+  extract-zip@2.0.1:
+    resolution: {integrity: sha512-GDhU9ntwuKyGXdZBUgTIe+vXnWj0fppUEtMDL0+idd5Sta8TGpHssn/eusA9mrPr9qNDym6SxAYZjNvCn/9RBg==}
+    engines: {node: '>= 10.17.0'}
+    hasBin: true
+
   extsprintf@1.3.0:
     resolution: {integrity: sha512-11Ndz7Nv+mvAC1j0ktTa7fAb0vLyGGX+rMHNBYQviQDGU0Hw7lhctJANqbPhu9nV9/izT/IntTgZ7Im/9LJs9g==}
     engines: {'0': node >=0.6.0}
@@ -25422,6 +26020,9 @@ packages:
   extsprintf@1.4.1:
     resolution: {integrity: sha512-Wrk35e8ydCKDj/ArClo1VrPVmN8zph5V4AtHwIuHhvMXsKf73UT3BOD+azBIW+3wOJ4FhEH7zyaJCFvChjYvMA==}
     engines: {'0': node >=0.6.0}
+
+  fast-deep-equal@2.0.1:
+    resolution: {integrity: sha512-bCK/2Z4zLidyB4ReuIsvALH6w31YfAQDmXMqMx6FyfHqvBxtjC0eRumeSu4Bs3XtXwpyIywtSTrVT99BxY1f9w==}
 
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
@@ -25432,6 +26033,9 @@ packages:
   fast-equals@5.0.1:
     resolution: {integrity: sha512-WF1Wi8PwwSY7/6Kx0vKXtw8RwuSGoM1bvDaJbu7MxDlR1vovZjIAKrnzyrThgAjm6JDTu0fVgWXDlMGspodfoQ==}
     engines: {node: '>=6.0.0'}
+
+  fast-fifo@1.3.2:
+    resolution: {integrity: sha512-/d9sfos4yxzpwkDkuN7k2SqFKtYNmCTzgfEpz82x34IM9/zc8KGxQoXg1liNC/izpRM/MBdt44Nmx41ZWqk+FQ==}
 
   fast-glob@3.2.7:
     resolution: {integrity: sha512-rYGMRwip6lUMvYD3BTScMwT1HtAs2d71SMv66Vrxs0IekGZEjhM0pcMfjQPnknBt2zeCwQMEupiN02ZP4DiT1Q==}
@@ -25456,6 +26060,10 @@ packages:
   fast-shallow-equal@1.0.0:
     resolution: {integrity: sha512-HPtaa38cPgWvaCFmRNhlc6NG7pv6NUHqjPgVAkWGoB9mQMwYB27/K0CvOM5Czy+qpT3e8XJ6Q4aPAnzpNpzNaw==}
 
+  fast-xml-parser@4.5.3:
+    resolution: {integrity: sha512-RKihhV+SHsIUGXObeVy9AXiBbFwkVk7Syp8XgwN5U3JV416+Gwp/GO9i0JYKmikykgz/UHRrrV4ROuZEo/T0ig==}
+    hasBin: true
+
   fastest-levenshtein@1.0.16:
     resolution: {integrity: sha512-eRnCtTTtGZFpQCwhJiUOuxPQWRXVKYDn0b2PeHfXL6/Zi53SLAzAHfVhVWK2AryC/WH05kGfxhFIPvTF0SXQzg==}
     engines: {node: '>= 4.9.1'}
@@ -25476,6 +26084,9 @@ packages:
   fb-watchman@2.0.2:
     resolution: {integrity: sha512-p5161BqbuCaSnB8jIbzQHOlpgsPmK5rJVDfDKO91Axs5NC1uu3HRQm6wt9cd9/+GtQQIO53JdGXXoyDpTAsgYA==}
 
+  fd-slicer@1.1.0:
+    resolution: {integrity: sha512-cE1qsB/VwyQozZ+q1dGxR8LBYNZeofhEdUNGSMbQD3Gw2lAzX9Zb3uIU6Ebc/Fmyjo9AWWfnn0AUCHqtevs/8g==}
+
   fdir@6.4.3:
     resolution: {integrity: sha512-PMXmW2y1hDDfTSRc9gaXIuCCRpuoz3Kaz8cUelp3smouvfT632ozg2vrT6lJsHKKOF59YLbOGfAWGUcKEfRMQw==}
     peerDependencies:
@@ -25483,6 +26094,18 @@ packages:
     peerDependenciesMeta:
       picomatch:
         optional: true
+
+  fdir@6.4.4:
+    resolution: {integrity: sha512-1NZP+GK4GfuAv3PqKvxQRDMjdSRZjnkq7KfhlNrCNNlZ0ygQFpebfrnfnq/W7fpUnAv9aGWmY1zKx7FYL3gwhg==}
+    peerDependencies:
+      picomatch: ^3 || ^4
+    peerDependenciesMeta:
+      picomatch:
+        optional: true
+
+  fetch-blob@3.2.0:
+    resolution: {integrity: sha512-7yAQpD2UMJzLi1Dqv7qFYnPbaPx7ZfFK6PiIxQ4PfkGPyNyl2Ugx+a/umUonmKqjhM4DnfbMvdX6otXq83soQQ==}
+    engines: {node: ^12.20 || >= 14.13}
 
   fflate@0.8.2:
     resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
@@ -25693,6 +26316,10 @@ packages:
     resolution: {integrity: sha512-wzsgA6WOq+09wrU1tsJ09udeR/YZRaeArL9e1wPbFg3GG2yDnC2ldKpxs4xunpFF9DgqCqOIra3bc1HWrJ37Ww==}
     engines: {node: '>=0.4.x'}
 
+  formdata-polyfill@4.0.10:
+    resolution: {integrity: sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g==}
+    engines: {node: '>=12.20.0'}
+
   formidable@1.2.6:
     resolution: {integrity: sha512-KcpbcpuLNOwrEjnbpMC0gS+X8ciDoZE1kkqzat4a8vrprf+s9pKNQ/QIwWfbfs4ltgmFl3MD177SNTkve3BwGQ==}
     deprecated: 'Please upgrade to latest, formidable@v2 or formidable@v3! Check these notes: https://bit.ly/2ZEqIau'
@@ -25782,6 +26409,11 @@ packages:
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
     deprecated: This package is no longer supported.
 
+  geckodriver@5.0.0:
+    resolution: {integrity: sha512-vn7TtQ3b9VMJtVXsyWtQQl1fyBVFhQy7UvJF96kPuuJ0or5THH496AD3eUyaDD11+EqCxH9t6V+EP9soZQk4YQ==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
+
   generouted@1.6.4:
     resolution: {integrity: sha512-ffqRMgYasIOHafAhLu59IIEOgAGU2HZxyIcSE2N5N0b+ZkgXIhBuPBtlQnb5RXN4uKu8DchMtopW93lsuNqbUg==}
     peerDependencies:
@@ -25822,6 +26454,10 @@ packages:
     resolution: {integrity: sha512-g/Q1aTSDOxFpchXC4i8ZWvxA1lnPqx/JHqcpIw0/LX9T8x/GBbi6YnlN5nhaKIFkT8oFsscUKgDJYxfwfS6QsQ==}
     engines: {node: '>=8'}
 
+  get-port@7.1.0:
+    resolution: {integrity: sha512-QB9NKEeDg3xxVwCCwJQ9+xycaz6pBB6iQ76wiWMl1927n0Kir6alPiP+yuiICLLU4jpMe08dXfpebuQppFA2zw==}
+    engines: {node: '>=16'}
+
   get-proto@1.0.1:
     resolution: {integrity: sha512-sTSfBjoXBp89JvIKIefqw7U2CCebsc74kiY6awiGogKtoSGbgjYE/G/+l9sF3MWFPNc9IcoOC4ODfKHfxFmp0g==}
     engines: {node: '>= 0.4'}
@@ -25856,6 +26492,10 @@ packages:
 
   get-tsconfig@4.10.0:
     resolution: {integrity: sha512-kGzZ3LWWQcGIAmg6iWvXn0ei6WDtV26wzHRMwDSzmAbcXrTEXxHy6IehI6/4eT6VRKyMP1eF1VqwrVUmE/LR7A==}
+
+  get-uri@6.0.4:
+    resolution: {integrity: sha512-E1b1lFFLvLgak2whF2xDBcOy6NLVGZBqqjJjsIhvopKfWWEi64pLVTWWehV8KlLerZkfNTA95sTe2OdJKm1OzQ==}
+    engines: {node: '>= 14'}
 
   get-value@2.0.6:
     resolution: {integrity: sha512-Ln0UQDlxH1BapMu3GPtf7CuYNwRZf2gwCuPqbyG6pB8WfmFpzqcy4xtAaAMUhnNqjMKTiCPZG2oMT3YSx8U2NA==}
@@ -26021,6 +26661,9 @@ packages:
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+
+  grapheme-splitter@1.0.4:
+    resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
 
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
@@ -26230,6 +26873,9 @@ packages:
       webpack:
         optional: true
 
+  htmlfy@0.6.7:
+    resolution: {integrity: sha512-r8hRd+oIM10lufovN+zr3VKPTYEIvIwqXGucidh2XQufmiw6sbUXFUFjWlfjo3AnefIDTyzykVzQ8IUVuT1peQ==}
+
   htmlhint@0.15.2:
     resolution: {integrity: sha512-ciCpeMEGZ7CbfK+MgK8ykV+wzUHz5he06mAiq8OQLuYN6pxFxZDAhwPwByirOYwdF3GV2M4s7spq2A/g/XMncQ==}
     hasBin: true
@@ -26239,6 +26885,9 @@ packages:
 
   htmlparser2@6.1.0:
     resolution: {integrity: sha512-gyyPk6rgonLFEDGoeRgQNaEUvdJ4ktTmmUh/h2t7s+M8oPpIPxgNACWa+6ESR57kXstwqPiCut0V8NRpcwgU7A==}
+
+  htmlparser2@9.1.0:
+    resolution: {integrity: sha512-5zfg6mHUoaer/97TxnGpxmbR7zJtPwIYFMZ/H5ucTlPZhKvtum05yiPK3Mgai3a0DyVxv7qYqoweaEd2nrYQzQ==}
 
   http-cache-semantics@4.1.1:
     resolution: {integrity: sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ==}
@@ -26373,6 +27022,9 @@ packages:
     resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==}
     engines: {node: '>=0.10.0'}
     hasBin: true
+
+  immediate@3.0.6:
+    resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
 
   immutable@4.3.5:
     resolution: {integrity: sha512-8eabxkth9gZatlwl5TBuJnCsoTADlL6ftEr7A4qgdaTsPyreilDSnUk57SO+jfKcNtxPa22U5KK6DSeAYhpBJw==}
@@ -26718,6 +27370,10 @@ packages:
     resolution: {integrity: sha512-gwsOE28k+23GP1B6vFl1oVh/WOzmawBrKwo5Ev6wMKzPkaXaCDIQKzLnvsA42DRlbVTWorkgTKIviAKCWkfUwA==}
     engines: {node: '>=10'}
 
+  is-plain-obj@4.1.0:
+    resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
+    engines: {node: '>=12'}
+
   is-plain-object@2.0.4:
     resolution: {integrity: sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==}
     engines: {node: '>=0.10.0'}
@@ -26843,6 +27499,10 @@ packages:
 
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
+
+  isexe@3.1.1:
+    resolution: {integrity: sha512-LpB/54B+/2J5hqQ7imZHfdU31OlgQqx7ZicVlkm9kzg9/w8GKLEcFfJl/t7DCEDueOyBAD6zCCwTO6Fzs0NoEQ==}
+    engines: {node: '>=16'}
 
   isobject@2.1.0:
     resolution: {integrity: sha512-+OUdGJlgjOBZDfxnDjYYG6zp487z0JGNQq3cYQYg5f5hKR+syHMsaztzGeml/4kGG55CSpKSpWTY+jYGgsHLgA==}
@@ -27365,6 +28025,9 @@ packages:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
     engines: {node: '>=4.0'}
 
+  jszip@3.10.1:
+    resolution: {integrity: sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==}
+
   just-diff-apply@5.5.0:
     resolution: {integrity: sha512-OYTthRfSh55WOItVqwpefPtNt2VdKsq5AnAK6apdtR6yCH8pr0CmSr710J0Mf+WdQy7K/OzMy7K2MgAfdQURDw==}
 
@@ -27405,6 +28068,10 @@ packages:
   lazy-universal-dotenv@4.0.0:
     resolution: {integrity: sha512-aXpZJRnTkpK6gQ/z4nk+ZBLd/Qdp118cvPruLSIQzQNRhKwEcdXCOzXuF55VDqIiuAaY3UGZ10DJtvZzDcvsxg==}
     engines: {node: '>=14.0.0'}
+
+  lazystream@1.0.1:
+    resolution: {integrity: sha512-b94GiNHQNy6JNTrt5w6zNyffMrNkXZb3KTkCZJb2V1xaEGCk093vkZ2jk3tpaeP33/OiXC+WvK9AxUebnf5nbw==}
+    engines: {node: '>= 0.6.3'}
 
   leaflet@0.7.7:
     resolution: {integrity: sha512-H1lR7J5VxhvQJQHlW2UywtxO63zilLrnwVsDvjKeyfntffj63Ml94gCk9YPYWBkiQgxisdiA8aJ30Zoou4VhEA==}
@@ -27458,6 +28125,9 @@ packages:
   libnpmpublish@6.0.5:
     resolution: {integrity: sha512-LUR08JKSviZiqrYTDfywvtnsnxr+tOvBU0BF8H+9frt7HMvc6Qn6F8Ubm72g5hDTHbq8qupKfDvDAln2TVPvFg==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
+
+  lie@3.3.0:
+    resolution: {integrity: sha512-UaiMJzeWRlEujzAuw5LokY1L5ecNQYZKfmyZ9L7wDHb/p5etKaxXhohBcrw0EYby+G/NA52vRSN4N39dxHAIwQ==}
 
   liftoff@4.0.0:
     resolution: {integrity: sha512-rMGwYF8q7g2XhG2ulBmmJgWv25qBsqRbDn5gH0+wnuyeFt7QBJlHJmtg5qEdn4pN6WVAUMgXnIxytMFRX9c1aA==}
@@ -27540,6 +28210,9 @@ packages:
     resolution: {integrity: sha512-WunYko2W1NcdfAFpuLUoucsgULmgDBRkdxHxWQ7mK0cQqwPiy8E1enjuRBrhLtZkB5iScJ1XIPdhVEFK8aOLSg==}
     engines: {node: '>=14'}
 
+  locate-app@2.5.0:
+    resolution: {integrity: sha512-xIqbzPMBYArJRmPGUZD9CzV9wOqmVtQnaAn3wrj3s6WYW0bQvPI7x+sPYUGmDTYMHefVK//zc6HEYZ1qnxIK+Q==}
+
   locate-path@2.0.0:
     resolution: {integrity: sha512-NCI2kiDkyR7VeEKm27Kda/iQHyKJe1Bu0FlTbYp3CqJu+9IFe9bLyAjMxf5ZDDbEg+iMPzB5zYyUTSm8wVTKmA==}
     engines: {node: '>=4'}
@@ -27565,6 +28238,9 @@ packages:
 
   lodash.camelcase@4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
+
+  lodash.clonedeep@4.5.0:
+    resolution: {integrity: sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==}
 
   lodash.debounce@4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
@@ -27622,6 +28298,9 @@ packages:
   lodash.upperfirst@4.3.1:
     resolution: {integrity: sha512-sReKOYJIJf74dhJONhU4e0/shzi1trVbSWDOhKYE5XV2O+H7Sb2Dihwuc7xWxVl+DgFPyTqIN3zMfT9cq5iWDg==}
 
+  lodash.zip@4.2.0:
+    resolution: {integrity: sha512-C7IOaBBK/0gMORRBd8OETNx3kmOkgIWIPvyDpZSCTwUrpYmgZwJkjZeOD8ww4xbOUOs4/attY+pciKvadNfFbg==}
+
   lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
@@ -27648,6 +28327,13 @@ packages:
   log-update@5.0.1:
     resolution: {integrity: sha512-5UtUDQ/6edw4ofyljDNcOVJQ4c7OjDro4h3y8e1GQL5iYElYclVHJ3zeWchylvMaKnDbDilC8irOVyexnA/Slw==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
+  loglevel-plugin-prefix@0.8.4:
+    resolution: {integrity: sha512-WpG9CcFAOjz/FtNht+QJeGpvVl/cdR6P0z6OcXSkr8wFJOsV2GRj2j10JLfjuA4aYkcKCNIEqRGCyTife9R8/g==}
+
+  loglevel@1.9.2:
+    resolution: {integrity: sha512-HgMmCqIJSAKqo68l0rS2AanEWfkxaZ5wNiEFb5ggm08lDs9Xl2KxBlX3PTcaD2chBM1gXAYf491/M2Rv8Jwayg==}
+    engines: {node: '>= 0.6.0'}
 
   long@4.0.0:
     resolution: {integrity: sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA==}
@@ -28185,6 +28871,10 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
+  netmask@2.0.2:
+    resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
+    engines: {node: '>= 0.4.0'}
+
   next-themes@0.2.1:
     resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
     peerDependencies:
@@ -28250,6 +28940,11 @@ packages:
   node-addon-api@3.2.1:
     resolution: {integrity: sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==}
 
+  node-domexception@1.0.0:
+    resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
+    engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
+
   node-fetch@2.6.7:
     resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
     engines: {node: 4.x || >=6.0.0}
@@ -28267,6 +28962,10 @@ packages:
     peerDependenciesMeta:
       encoding:
         optional: true
+
+  node-fetch@3.3.2:
+    resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   node-forge@1.3.1:
     resolution: {integrity: sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==}
@@ -28729,6 +29428,14 @@ packages:
     resolution: {integrity: sha512-RRTnDb2TBG/epPRI2yYXsimO0v3BXC8Yd3ogr1545IaqKK17VGhbWVeGGN+XfCm/08OK8635nH31c8bATkHuSw==}
     engines: {node: '>=8'}
 
+  pac-proxy-agent@7.2.0:
+    resolution: {integrity: sha512-TEB8ESquiLMc0lV8vcd5Ql/JAKAoyzHFXaStwjkzpOpC5Yv+pIzLfHvjTSdf3vpa2bMiUQrg9i6276yn8666aA==}
+    engines: {node: '>= 14'}
+
+  pac-resolver@7.0.1:
+    resolution: {integrity: sha512-5NPgf87AT2STgwa2ntRMr45jTKrYBGkVU36yT0ig/n/GMAa3oPqhZfIQ2kMEimReg0+t9kZViDVZ83qfVUlckg==}
+    engines: {node: '>= 14'}
+
   package-json-from-dist@1.0.1:
     resolution: {integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==}
 
@@ -28740,6 +29447,9 @@ packages:
   pad-right@0.2.2:
     resolution: {integrity: sha512-4cy8M95ioIGolCoMmm2cMntGR1lPLEbOMzOKu8bzjuJP6JpzEMQcDHmh7hHLYGgob+nKe1YHFMaG4V59HQa89g==}
     engines: {node: '>=0.10.0'}
+
+  pako@1.0.11:
+    resolution: {integrity: sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==}
 
   param-case@2.1.1:
     resolution: {integrity: sha512-eQE845L6ot89sk2N8liD8HAuH4ca6Vvr7VWAWwt7+kvvG5aBcPmmphQ68JsEG2qa9n1TykS2DLeMt363AAH8/w==}
@@ -28786,6 +29496,12 @@ packages:
 
   parse-url@8.1.0:
     resolution: {integrity: sha512-xDvOoLU5XRrcOZvnI6b8zA6n9O9ejNk/GExuz1yBuWUGn9KA97GI6HTs6u02wKara1CeVmZhH+0TZFdWScR89w==}
+
+  parse5-htmlparser2-tree-adapter@7.1.0:
+    resolution: {integrity: sha512-ruw5xyKs6lrpo9x9rCZqZZnIUntICjQAd0Wsmp396Ul9lN/h+ifgVV1x1gZHi8euej6wTfpqX8j+BFQxF0NS/g==}
+
+  parse5-parser-stream@7.1.2:
+    resolution: {integrity: sha512-JyeQc9iwFLn5TbvvqACIF/VXG6abODeB3Fwmv/TGdLk2LfbWkaySGY72at4+Ty7EkPZj854u4CrICqNk2qIbow==}
 
   parse5@6.0.1:
     resolution: {integrity: sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==}
@@ -28879,6 +29595,9 @@ packages:
   pathval@2.0.0:
     resolution: {integrity: sha512-vE7JKRyES09KiunauX7nd2Q9/L7lhok4smP9RZTDeD4MVs72Dp2qNFVz39Nz5a0FVEW0BJR6C0DYrq6unoziZA==}
     engines: {node: '>= 14.16'}
+
+  pend@1.2.0:
+    resolution: {integrity: sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==}
 
   perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
@@ -29268,6 +29987,10 @@ packages:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
     engines: {node: '>= 0.10'}
 
+  proxy-agent@6.5.0:
+    resolution: {integrity: sha512-TmatMXdr2KlRiA2CyDu8GqR8EjahTG3aY3nXjdzFyoZbmB8hrBsTyMezhULIXKnC0jpfjlmiZ3+EaCzoInSu/A==}
+    engines: {node: '>= 14'}
+
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
@@ -29317,6 +30040,9 @@ packages:
 
   quansync@0.2.8:
     resolution: {integrity: sha512-4+saucphJMazjt7iOM27mbFCk+D9dd/zmgMDCzRZ8MEoBfYp7lAvoN38et/phRQF6wOPMy/OROBGgoWeSKyluA==}
+
+  query-selector-shadow-dom@1.0.1:
+    resolution: {integrity: sha512-lT5yCqEBgfoMYpf3F2xQRK7zEr1rhIIZuceDK6+xRkJQ4NMbHTwXqk4NkwDwQMNqXgG9r9fyHnzwNVs6zV5KRw==}
 
   querystringify@2.2.0:
     resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}
@@ -29648,6 +30374,13 @@ packages:
     resolution: {integrity: sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==}
     engines: {node: '>= 6'}
 
+  readable-stream@4.7.0:
+    resolution: {integrity: sha512-oIGGmcpTLwPga8Bn6/Z75SVaH1z5dUut2ibSyAMVhmUggWpmDn2dapB0n7f8nwaSiRtepAsfJyfXIO5DCVAODg==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  readdir-glob@1.1.3:
+    resolution: {integrity: sha512-v05I2k7xN8zXvPD9N+z/uhXPaj0sUFCe2rcWZIpBsqxfP7xXFQ0tipAd/wjj1YxWyWtUS5IDJpOG82JKt2EAVA==}
+
   readdir-scoped-modules@1.1.0:
     resolution: {integrity: sha512-asaikDeqAQg7JifRsZn1NJZXo9E+VwlyCfbkZhwyISinqk5zNS6266HS5kah6P0SaQKGF6SkNnZVHUzHFYxYDw==}
     deprecated: This functionality has been moved to @npmcli/fs
@@ -29938,6 +30671,9 @@ packages:
     resolution: {integrity: sha512-U7WjGVG9sH8tvjW5SmGbQuui75FiyjAX72HX15DwBBwF9dNiQZRQAg9nnPhYy+TUnE0+VcrttuvNI8oSxZcocA==}
     hasBin: true
 
+  resq@1.11.0:
+    resolution: {integrity: sha512-G10EBz+zAAy3zUd/CDoBbXRL6ia9kOo3xRHrMDsHljI0GDkhYlyjwoCx5+3eCC4swi1uCoZQhskuJkj7Gp57Bw==}
+
   restore-cursor@2.0.0:
     resolution: {integrity: sha512-6IzJLuGi4+R14vwagDHX+JrXmPVtPpn4mffDJ1UdR7/Edm87fl6yi8mMBIVvFtJaNTUvjughmW4hwLhRG7gC1Q==}
     engines: {node: '>=4'}
@@ -29978,6 +30714,9 @@ packages:
 
   rfdc@1.3.1:
     resolution: {integrity: sha512-r5a3l5HzYlIC68TpmYKlxWjmOP6wiPJ1vWv2HeLhNsRZMrCkxeqxiHlQ21oXmQ4F3SiryXBHhAD7JZqvOJjFmg==}
+
+  rgb2hex@0.2.5:
+    resolution: {integrity: sha512-22MOP1Rh7sAo1BZpDG6R5RFYzR2lYEgwq7HEmyW2qcsOqR2lQKmn+O//xV3YG/0rrhMC6KVX2hU+ZXuaw9a5bw==}
 
   rimraf@2.6.3:
     resolution: {integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==}
@@ -30071,6 +30810,10 @@ packages:
 
   rxjs@7.8.2:
     resolution: {integrity: sha512-dhKf903U/PQZY6boNNtAGdWbG85WAbjT/1xYoZIC7FAY0yWapOBQVsVrDl58W86//e1VpMNBtRV4MaXfdMySFA==}
+
+  safaridriver@1.0.0:
+    resolution: {integrity: sha512-J92IFbskyo7OYB3Dt4aTdyhag1GlInrfbPCmMteb7aBK7PwlnGz1HI0+oyNN97j7pV9DqUAVoVgkNRMrfY47mQ==}
+    engines: {node: '>=18.0.0'}
 
   safe-array-concat@1.1.3:
     resolution: {integrity: sha512-AURm5f0jYEOydBj7VQlVvDrjeFgthDdEF5H1dP+6mNpoXOMo1quQqJ4wvJDyRZ9+pO3kGWoOdmV08cSv2aJV6Q==}
@@ -30194,6 +30937,11 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  semver@7.7.2:
+    resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
+    engines: {node: '>=10'}
+    hasBin: true
+
   send@0.18.0:
     resolution: {integrity: sha512-qqWzuOjSFOuqPjFe4NOsMLafToQQwBSOEpS+FwEt3A2V3vKubTquT3vmLTQpFgMXp8AlFWFuP1qKaJZOtPpVXg==}
     engines: {node: '>= 0.8.0'}
@@ -30204,6 +30952,10 @@ packages:
 
   sentence-case@3.0.4:
     resolution: {integrity: sha512-8LS0JInaQMCRoQ7YUytAo/xUu5W2XnQxV2HI/6uM6U7CITS1RqPElr30V6uIqyMKM9lJGRVFy5/4CuzcixNYSg==}
+
+  serialize-error@11.0.3:
+    resolution: {integrity: sha512-2G2y++21dhj2R7iHAdd0FIzjGwuKZld+7Pl/bTU6YIkrC2ZMbVUjm+luj6A6V34Rv9XfKJDKpTWu9W4Gse1D9g==}
+    engines: {node: '>=14.16'}
 
   serialize-javascript@6.0.2:
     resolution: {integrity: sha512-Saa1xPByTTq2gdeFZYLLo+RFE35NHZkAbqZeWNd3BpzppeVisAqpDjcp8dyf6uIvEqJRd46jemmyA4iFIeVk8g==}
@@ -30241,6 +30993,9 @@ packages:
   set-value@2.0.1:
     resolution: {integrity: sha512-JxHc1weCN68wRY0fhCoXpyK55m/XPHafOmK4UWD7m2CI14GMcFypt4w/0+NV5f/ZMby2F6S2wwA7fgynh9gWSw==}
     engines: {node: '>=0.10.0'}
+
+  setimmediate@1.0.5:
+    resolution: {integrity: sha512-MATJdZp8sLqDl/68LfQmbP8zKPLQNV6BIZoIgrscFDQ+RsvK/BxeDQOgyxKKoh0y/8h3BqVFnCqQ/gd+reiIXA==}
 
   setprototypeof@1.1.0:
     resolution: {integrity: sha512-BvE/TwpZX4FXExxOxZyRGQQv651MSwmWKZGqvmPcRIjDqWub67kTKuIMx43cZZrS/cBBzwBcNDWoFxt2XEFIpQ==}
@@ -30394,8 +31149,16 @@ packages:
     resolution: {integrity: sha512-Fgl0YPZ902wEsAyiQ+idGd1A7rSFx/ayC1CQVMw5P+EQx2V0SgpGtf6OKFhVjPflPUl9YMmEOnmfjCdMUsygww==}
     engines: {node: '>= 10'}
 
+  socks-proxy-agent@8.0.5:
+    resolution: {integrity: sha512-HehCEsotFqbPW9sJ8WVYB6UbmIMv7kUUORIF2Nncq4VQvBfNBLibW9YZR5dlYCSUhwcD628pRllm7n+E+YTzJw==}
+    engines: {node: '>= 14'}
+
   socks@2.8.1:
     resolution: {integrity: sha512-B6w7tkwNid7ToxjZ08rQMT8M9BJAf8DKx8Ft4NivzH0zBUfd6jldGcisJn/RLgxcX3FPNDdNQCUEMMT79b+oCQ==}
+    engines: {node: '>= 10.0.0', npm: '>= 3.0.0'}
+
+  socks@2.8.4:
+    resolution: {integrity: sha512-D3YaD0aRxR3mEcqnidIs7ReYJFVzWdd6fXJYUM8ixcQcJRGTka/b3saV0KflYhyVJXKhb947GndU35SxYNResQ==}
     engines: {node: '>= 10.0.0', npm: '>= 3.0.0'}
 
   sonner@1.7.4:
@@ -30452,6 +31215,9 @@ packages:
 
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
+
+  spacetrim@0.11.59:
+    resolution: {integrity: sha512-lLYsktklSRKprreOm7NXReW8YiX2VBjbgmXYEziOoGf/qsJqAEACaDvoTtUOycwjpaSh+bT8eu0KrJn7UNxiCg==}
 
   spawn-command@0.0.2-1:
     resolution: {integrity: sha512-n98l9E2RMSJ9ON1AKisHzz7V42VDiBQGY6PB1BwRglz99wpVsSuGzQ+jOi6lFXBGVTCrRpltvjm+/XA+tpeJrg==}
@@ -30552,6 +31318,9 @@ packages:
   std-env@3.8.0:
     resolution: {integrity: sha512-Bc3YwwCB+OzldMxOXJIIvC6cPRWr/LxOp48CdQTOkPyk/t4JWWJbrilwBd7RJzKV8QW7tJkcgAmeuLLJugl5/w==}
 
+  std-env@3.9.0:
+    resolution: {integrity: sha512-UGvjygr6F6tpH7o2qyqR6QYpwraIjKSdtzyBdyytFOHmPZY917kwdwLG0RbOjWOnKmnm3PeHjaoLLMie7kPLQw==}
+
   stdin-discarder@0.1.0:
     resolution: {integrity: sha512-xhV7w8S+bUwlPTb4bAOUQhv8/cSS5offJuX8GQGq32ONF0ZtDWKfkdomM3HMRA+LhX6um/FZ0COqlwsjD53LeQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -30600,6 +31369,9 @@ packages:
   streamsearch@1.1.0:
     resolution: {integrity: sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==}
     engines: {node: '>=10.0.0'}
+
+  streamx@2.22.0:
+    resolution: {integrity: sha512-sLh1evHOzBy/iWRiR6d1zRcLao4gGZr3C1kzNz4fopCOKJb6xD9ub8Mpi9Mr1R6id5o43S+d93fI48UC5uM9aw==}
 
   strict-event-emitter@0.2.8:
     resolution: {integrity: sha512-KDf/ujU8Zud3YaLtMCcTI4xkZlZVIYxTLr+XIULexP+77EEVWixeXroLUXQXiVtH4XH2W7jr/3PT1v3zBuvc3A==}
@@ -30728,6 +31500,9 @@ packages:
   strip-outer@1.0.1:
     resolution: {integrity: sha512-k55yxKHwaXnpYGsOzg4Vl8+tDrWylxDEpknGjhTiZB8dFRU5rTo9CAzeycivxV3s+zlTKwrs6WxMxR95n26kwg==}
     engines: {node: '>=0.10.0'}
+
+  strnum@1.1.2:
+    resolution: {integrity: sha512-vrN+B7DBIoTTZjnPNewwhx6cBA/H+IS7rfW68n7XxC1y7uoiGQBxaKzqucGUgavX15dJgiGztLJ8vxuEzwqBdA==}
 
   strong-log-transformer@2.1.0:
     resolution: {integrity: sha512-B3Hgul+z0L9a236FAUC9iZsL+nVHgoCJnqCbN588DjYxvGXaXaaFbfmQ/JhvKjZwsOukuR72XbHv71Qkug0HxA==}
@@ -30884,9 +31659,15 @@ packages:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
     engines: {node: '>=6'}
 
+  tar-fs@3.0.9:
+    resolution: {integrity: sha512-XF4w9Xp+ZQgifKakjZYmFdkLoSWd34VGKcsTCwlNWM7QG3ZbaxnTsaBwnjFZqHRf/rROxaR8rXnbtwdvaDI+lA==}
+
   tar-stream@2.2.0:
     resolution: {integrity: sha512-ujeqbceABgwMZxEJnk2HDY2DlnUZ+9oEcb1KzTVfYHio0UE6dG71n60d8D2I4qNvleWrrXpmjpt7vZeF1LnMZQ==}
     engines: {node: '>=6'}
+
+  tar-stream@3.1.7:
+    resolution: {integrity: sha512-qJj60CXt7IU1Ffyc3NJMjh6EkuCFej46zUqJ4J7pqYlThyd9bO0XBTmcOIhSzZJVWfsLks0+nle/j538YAW9RQ==}
 
   tar@6.2.1:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
@@ -30939,6 +31720,9 @@ packages:
   test-exclude@7.0.1:
     resolution: {integrity: sha512-pFYqmTw68LXVjeWJMST4+borgQP2AyMNbg1BpZh9LbyhUeNkeaPF9gzfPGUAnSMV3qPYdWUwDIjjCLiSDOl7vg==}
     engines: {node: '>=18'}
+
+  text-decoder@1.2.3:
+    resolution: {integrity: sha512-3/o9z3X0X0fTupwsYvR03pJ/DjWuqqrfwBgTQzdWDiQSm9KitAyz/9WqsT2JQW7KV2m+bC2ol/zqpW37NHxLaA==}
 
   text-extensions@1.9.0:
     resolution: {integrity: sha512-wiBrwC1EhBelW12Zy26JeOUkQ5mRu+5o8rpsJk5+2t+Y5vE7e842qtZDQ2g1NpX/29HdyFeJ4nSIhI47ENSxlQ==}
@@ -30994,6 +31778,10 @@ packages:
 
   tinyglobby@0.2.12:
     resolution: {integrity: sha512-qkf4trmKSIiMTs/E63cxH+ojC2unam7rJ0WrauAzpT3ECNTxGRMlaXxVbfxMUC/w0LaYk6jQ4y/nGR9uBO3tww==}
+    engines: {node: '>=12.0.0'}
+
+  tinyglobby@0.2.14:
+    resolution: {integrity: sha512-tX5e7OM1HnYr2+a2C/4V0htOcSQcoSTH9KgJnVvNm5zm/cyEWKJ7j7YutsH9CxMdtOkkLFy2AHrMci9IM8IPZQ==}
     engines: {node: '>=12.0.0'}
 
   tinypool@0.8.4:
@@ -31311,6 +32099,10 @@ packages:
     resolution: {integrity: sha512-tB9lu0pQpX5KJq54g+oHOLumOx+pMep4RaM6liXh2PKmVRFF+/vAtUP0ZaJ0kOySfVNjF6doBWPHhBhISKdlIA==}
     engines: {node: '>=16'}
 
+  type-fest@4.26.0:
+    resolution: {integrity: sha512-OduNjVJsFbifKb57UqZ2EMP1i4u64Xwow3NYXUtBbD4vIwJdQd4+xl8YDou1dlm4DVrtwT/7Ky8z8WyCULVfxw==}
+    engines: {node: '>=16'}
+
   type-is@1.6.18:
     resolution: {integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==}
     engines: {node: '>= 0.6'}
@@ -31413,9 +32205,13 @@ packages:
   undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
 
-  undici@5.28.5:
-    resolution: {integrity: sha512-zICwjrDrcrUE0pyyJc1I2QzBkLM8FINsgOrt6WjA+BgajVq9Nxu2PbFFXUrAggLfDXlZGZBVZYw7WNV5KiBiBA==}
+  undici@5.29.0:
+    resolution: {integrity: sha512-raqeBD6NQK4SkWhQzeYKd1KmIG6dllBOTt55Rmkt4HtI9mwdWtJljnrXjAFUBLTSN67HWrOIZ3EPF4kjUw80Bg==}
     engines: {node: '>=14.0'}
+
+  undici@6.21.3:
+    resolution: {integrity: sha512-gBLkYIlEnSp8pFbT64yFgGE6UIB9tAkhukC23PmMDCe5Nd+cRqKxSjw5y54MK2AZMgZfJWMaNE4nYUHgi1XEOw==}
+    engines: {node: '>=18.17'}
 
   unherit@1.1.3:
     resolution: {integrity: sha512-Ft16BJcnapDKp0+J/rqFC3Rrk6Y/Ng4nzsC028k2jdDII/rdZ7Wd3pPT/6+vIIxRagwRc9K0IUX0Ra4fKvw+WQ==}
@@ -31595,6 +32391,9 @@ packages:
   url-parse@1.5.10:
     resolution: {integrity: sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==}
 
+  urlpattern-polyfill@10.1.0:
+    resolution: {integrity: sha512-IGjKp/o0NL3Bso1PymYURCJxMPNAf/ILOpendP9f5B6e1rTJgdgiOvgfoT8VxCAdY+Wisb9uhGaJJf3yZ2V9nw==}
+
   use-callback-ref@1.3.3:
     resolution: {integrity: sha512-jQL3lRnocaFtu3V00JToYz/4QkNWswxijDaCVNZRiRTO3HQDLsdu1ZtmIUvV4yPp+rvWm5j0y0TG/S61cuijTg==}
     engines: {node: '>=10'}
@@ -31643,6 +32442,10 @@ packages:
   use@3.1.1:
     resolution: {integrity: sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==}
     engines: {node: '>=0.10.0'}
+
+  userhome@1.0.1:
+    resolution: {integrity: sha512-5cnLm4gseXjAclKowC4IjByaGsjtAoV6PrOQOljplNB54ReUYJP8HdAFq2muHinSDAh09PPX/uXDPfdxRHvuSA==}
+    engines: {node: '>= 0.8.0'}
 
   util-arity@1.1.0:
     resolution: {integrity: sha512-kkyIsXKwemfSy8ZEoaIz06ApApnWsk5hQO0vLjZS6UkBiGiW++Jsyb8vSBoc0WKlffGoGs5yYy/j5pp8zckrFA==}
@@ -31784,6 +32587,11 @@ packages:
 
   vite-node@3.0.8:
     resolution: {integrity: sha512-6PhR4H9VGlcwXZ+KWCdMqbtG649xCPZqfI9j2PsK1FcXgEzro5bGHcVKFCTqPLaNKZES8Evqv4LwvZARsq5qlg==}
+    engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
+    hasBin: true
+
+  vite-node@3.1.4:
+    resolution: {integrity: sha512-6enNwYnpyDo4hEgytbmc6mYWHXDHYEn0D1/rw4Q+tnHUGtKTJsn8T1YkX6Q18wI5LCrS8CTYlBaiCqxOy2kvUA==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
 
@@ -32074,6 +32882,34 @@ packages:
       jsdom:
         optional: true
 
+  vitest@3.1.4:
+    resolution: {integrity: sha512-Ta56rT7uWxCSJXlBtKgIlApJnT6e6IGmTYxYcmxjJ4ujuZDI59GUQgVDObXXJujOmPDBYXHK1qmaGtneu6TNIQ==}
+    engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
+    hasBin: true
+    peerDependencies:
+      '@edge-runtime/vm': '*'
+      '@types/debug': ^4.1.12
+      '@types/node': ^18.0.0 || ^20.0.0 || >=22.0.0
+      '@vitest/browser': 3.1.4
+      '@vitest/ui': 3.1.4
+      happy-dom: '*'
+      jsdom: '*'
+    peerDependenciesMeta:
+      '@edge-runtime/vm':
+        optional: true
+      '@types/debug':
+        optional: true
+      '@types/node':
+        optional: true
+      '@vitest/browser':
+        optional: true
+      '@vitest/ui':
+        optional: true
+      happy-dom:
+        optional: true
+      jsdom:
+        optional: true
+
   void-elements@3.1.0:
     resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
     engines: {node: '>=0.10.0'}
@@ -32125,6 +32961,11 @@ packages:
     resolution: {integrity: sha512-o8qghlI8NZHU1lLPrpi2+Uq7abh4GGPpYANlalzWxyWteJOCsr/P+oPBA49TOLu5FTZO4d3F9MnWJfiMo4BkmA==}
     engines: {node: '>=18'}
 
+  wait-port@1.1.0:
+    resolution: {integrity: sha512-3e04qkoN3LxTMLakdqeWth8nih8usyg+sf1Bgdf9wwUkp05iuK1eSY/QpLvscT/+F/gA89+LpUmmgBtesbqI2Q==}
+    engines: {node: '>=10'}
+    hasBin: true
+
   walk-up-path@1.0.0:
     resolution: {integrity: sha512-hwj/qMDUEjCU5h0xr90KGCf0tg0/LgJbmOWgrWKYlcJZM7XvquvUJZ0G/HMGr7F7OQMOUuPHWP9JpriinkAlkg==}
 
@@ -32143,6 +32984,23 @@ packages:
 
   wcwidth@1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}
+
+  web-streams-polyfill@3.3.3:
+    resolution: {integrity: sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw==}
+    engines: {node: '>= 8'}
+
+  webdriver@9.14.0:
+    resolution: {integrity: sha512-0mVjxafQ5GNdK4l/FVmmmXGUfLHCSBE4Ml2LG23rxgmw53CThAos6h01UgIEINonxIzgKEmwfqJioo3/frbpbQ==}
+    engines: {node: '>=18.20.0'}
+
+  webdriverio@9.14.0:
+    resolution: {integrity: sha512-GP0p6J+yjcCXF9uXW7HjB6IEh33OKmZcLTSg/W2rnVYSWgsUEYPujKSXe5I8q5a99QID7OOKNKVMfs5ANoZ2BA==}
+    engines: {node: '>=18.20.0'}
+    peerDependencies:
+      puppeteer-core: '>=22.x || <=24.x'
+    peerDependenciesMeta:
+      puppeteer-core:
+        optional: true
 
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
@@ -32307,6 +33165,11 @@ packages:
   which@2.0.2:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}
     engines: {node: '>= 8'}
+    hasBin: true
+
+  which@5.0.0:
+    resolution: {integrity: sha512-JEdGzHwwkrbWoGOlIHqQ5gtprKGOenpDHpxE9zVR1bWbOtYRyPPHMe9FaP6x61CmNaTThSkb0DAJte5jD+DmzQ==}
+    engines: {node: ^18.17.0 || >=20.5.0}
     hasBin: true
 
   why-is-node-running@2.3.0:
@@ -32492,6 +33355,9 @@ packages:
     resolution: {integrity: sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==}
     engines: {node: '>=12'}
 
+  yauzl@2.10.0:
+    resolution: {integrity: sha512-p4a9I6X6nu6IhoGmBqAcbJy1mlC4j27vEPZX9F4L4/vZT3Lyq1VkFHw/V/PUcB9Buo+DG3iHkT0x3Qya58zc3g==}
+
   yn@3.1.1:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
@@ -32522,6 +33388,10 @@ packages:
 
   yup@1.2.0:
     resolution: {integrity: sha512-PPqYKSAXjpRCgLgLKVGPA33v5c/WgEx3wi6NFjIiegz90zSwyMpvTFp/uGcVnnbx6to28pgnzp/q8ih3QRjLMQ==}
+
+  zip-stream@6.0.1:
+    resolution: {integrity: sha512-zK7YHHz4ZXpW89AHXUPbQVGKI7uvkd3hzusTdotCg1UxyaVtg0zFJSTfW/Dq5f7OBBVnq6cZIaC8Ti4hb6dtCA==}
+    engines: {node: '>= 14'}
 
   zod@3.24.2:
     resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
@@ -34047,6 +34917,65 @@ snapshots:
       - '@types/react-dom'
       - tailwindcss
 
+  '@datatr-ux/uxlib@0.0.10(@datatr-ux/ods-tailwind-config@1.0.3)(@hookform/resolvers@3.10.0(react-hook-form@7.55.0(react@18.2.0)))(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react-hook-form@7.55.0(react@18.2.0))(react@18.2.0)(recharts@2.13.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(tailwindcss@3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2)))(zod@3.24.2)':
+    dependencies:
+      '@datatr-ux/ods-tailwind-config': 1.0.3
+      '@hookform/resolvers': 3.10.0(react-hook-form@7.55.0(react@18.2.0))
+      '@ovhcloud/ods-theme-blue-jeans': 17.2.2
+      '@ovhcloud/ods-themes': 18.6.2
+      '@radix-ui/react-accordion': 1.2.8(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-alert-dialog': 1.1.11(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-aspect-ratio': 1.1.4(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-avatar': 1.1.7(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-checkbox': 1.2.3(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-collapsible': 1.1.8(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-context-menu': 2.2.12(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-dialog': 1.1.11(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-dropdown-menu': 2.1.12(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-hover-card': 1.1.11(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-label': 2.1.4(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-menubar': 1.1.12(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-navigation-menu': 1.2.10(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-popover': 1.1.11(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-progress': 1.1.4(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-radio-group': 1.3.4(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-scroll-area': 1.2.6(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-select': 2.2.2(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-separator': 1.1.4(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-slider': 1.3.2(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-slot': 1.2.0(@types/react@18.3.18)(react@18.2.0)
+      '@radix-ui/react-switch': 1.2.2(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-tabs': 1.1.9(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-toast': 1.2.11(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-toggle': 1.1.6(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-toggle-group': 1.1.7(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-tooltip': 1.2.4(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      class-variance-authority: 0.7.1
+      clsx: 2.1.1
+      cmdk: 1.1.1(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      date-fns: 3.6.0
+      embla-carousel-react: 8.6.0(react@18.2.0)
+      input-otp: 1.4.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      lodash: 4.17.21
+      lucide-react: 0.469.0(react@18.2.0)
+      next-themes: 0.4.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-day-picker: 8.10.1(date-fns@3.6.0)(react@18.2.0)
+      react-dom: 18.2.0(react@18.2.0)
+      react-hook-form: 7.55.0(react@18.2.0)
+      react-resizable-panels: 2.1.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      recharts: 2.13.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      shiki: 3.3.0
+      sonner: 1.7.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      tailwind-merge: 2.6.0
+      tailwindcss-animate: 1.0.7(tailwindcss@3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2)))
+      vaul: 1.1.2(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      zod: 3.24.2
+    transitivePeerDependencies:
+      - '@types/react'
+      - '@types/react-dom'
+      - tailwindcss
+
   '@datatr-ux/uxlib@0.0.10(@datatr-ux/ods-tailwind-config@1.0.3)(@hookform/resolvers@5.0.1(react-hook-form@7.55.0(react@18.2.0)))(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react-hook-form@7.55.0(react@18.2.0))(react@18.2.0)(recharts@2.13.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(tailwindcss@3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2)))(zod@3.24.2)':
     dependencies:
       '@datatr-ux/ods-tailwind-config': 1.0.3
@@ -34593,6 +35522,10 @@ snapshots:
   '@hookform/resolvers@3.10.0(react-hook-form@7.54.2(react@18.2.0))':
     dependencies:
       react-hook-form: 7.54.2(react@18.2.0)
+
+  '@hookform/resolvers@3.10.0(react-hook-form@7.55.0(react@18.2.0))':
+    dependencies:
+      react-hook-form: 7.55.0(react@18.2.0)
 
   '@hookform/resolvers@4.1.3(react-hook-form@7.55.0(react@18.2.0))':
     dependencies:
@@ -36375,6 +37308,29 @@ snapshots:
       react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
+  '@ovh-ux/manager-pci-common@0.16.4(16876dbf249d5d074cb8214305cdb6bd)':
+    dependencies:
+      '@ovh-ux/manager-config': link:packages/manager/modules/config
+      '@ovh-ux/manager-core-api': link:packages/manager/core/api
+      '@ovh-ux/manager-react-components': 1.48.0(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
+      '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
+      '@ovh-ux/manager-tailwind-config': link:packages/manager/core/tailwind-config
+      '@ovh-ux/shell': link:packages/components/ovh-shell
+      '@ovhcloud/ods-common-core': 17.2.2
+      '@ovhcloud/ods-common-stencil': 17.2.2
+      '@ovhcloud/ods-common-theming': 17.2.2
+      '@ovhcloud/ods-components': 17.2.2
+      '@ovhcloud/ods-theme-blue-jeans': 17.2.2
+      '@tanstack/react-query': 5.69.0(react@18.2.0)
+      clsx: 2.1.1
+      date-fns: 3.6.0
+      i18next: 23.16.8
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+
   '@ovh-ux/manager-pci-common@0.16.4(381522a0b75528d3ba984efaa777b797)':
     dependencies:
       '@ovh-ux/manager-config': link:packages/manager/modules/config
@@ -36529,6 +37485,33 @@ snapshots:
       - react-native
       - ts-node
 
+  '@ovh-ux/manager-react-components@1.48.0(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))':
+    dependencies:
+      '@ovh-ux/manager-core-api': link:packages/manager/core/api
+      '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
+      '@ovhcloud/ods-common-core': 17.2.2
+      '@ovhcloud/ods-common-theming': 17.2.2
+      '@ovhcloud/ods-components': 17.2.2
+      '@ovhcloud/ods-theme-blue-jeans': 17.2.2
+      '@tanstack/react-query': 5.69.0(react@18.2.0)
+      '@tanstack/react-table': 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      clsx: 2.1.1
+      i18next: 23.16.8
+      lodash.isdate: 4.0.1
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-use: 17.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      sass: 1.56.1
+      tailwindcss: 3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))
+      uuid: 9.0.1
+      zustand: 4.5.5(@types/react@18.3.18)(react@18.2.0)
+    transitivePeerDependencies:
+      - react-native
+      - ts-node
+
   '@ovh-ux/ng-at-internet@5.9.1(@ovh-ux/manager-config@8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger))(angular@1.8.3)':
     dependencies:
       '@ovh-ux/ovh-at-internet': 0.1.0(@ovh-ux/manager-config@8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger))
@@ -36584,9 +37567,9 @@ snapshots:
       '@types/lodash-es': 4.17.12
       lodash-es: 4.17.21
 
-  '@ovh-ux/ovh-at-internet@0.21.8(@ovh-ux/manager-config@8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger))':
+  '@ovh-ux/ovh-at-internet@0.21.8(@ovh-ux/manager-config@packages+manager+modules+config)':
     dependencies:
-      '@ovh-ux/manager-config': 8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger)
+      '@ovh-ux/manager-config': link:packages/manager/modules/config
 
   '@ovh-ux/ovh-payment-method@0.2.0':
     dependencies:
@@ -36710,6 +37693,10 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
+  '@promptbook/utils@0.69.5':
+    dependencies:
+      spacetrim: 0.11.59
+
   '@protobufjs/aspromise@1.1.2': {}
 
   '@protobufjs/base64@1.1.2': {}
@@ -36732,6 +37719,19 @@ snapshots:
   '@protobufjs/pool@1.1.0': {}
 
   '@protobufjs/utf8@1.1.0': {}
+
+  '@puppeteer/browsers@2.10.5':
+    dependencies:
+      debug: 4.4.1
+      extract-zip: 2.0.1
+      progress: 2.0.3
+      proxy-agent: 6.5.0
+      semver: 7.7.2
+      tar-fs: 3.0.9
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - bare-buffer
+      - supports-color
 
   '@radix-ui/number@1.0.1':
     dependencies:
@@ -38834,6 +39834,16 @@ snapshots:
       '@types/react': 18.3.18
       '@types/react-dom': 18.3.0
 
+  '@testing-library/react@16.3.0(@testing-library/dom@10.4.0)(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@babel/runtime': 7.22.15
+      '@testing-library/dom': 10.4.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.0
+
   '@testing-library/user-event@13.5.0(@testing-library/dom@10.4.0)':
     dependencies:
       '@babel/runtime': 7.22.15
@@ -38865,9 +39875,15 @@ snapshots:
     dependencies:
       '@testing-library/dom': 9.3.4
 
+  '@testing-library/user-event@14.6.1(@testing-library/dom@10.4.0)':
+    dependencies:
+      '@testing-library/dom': 10.4.0
+
   '@tootallnate/once@1.1.2': {}
 
   '@tootallnate/once@2.0.0': {}
+
+  '@tootallnate/quickjs-emscripten@0.23.0': {}
 
   '@tsconfig/node10@1.0.11': {}
 
@@ -39224,6 +40240,8 @@ snapshots:
     dependencies:
       '@types/node': 20.14.10
 
+  '@types/sinonjs__fake-timers@8.1.5': {}
+
   '@types/sockjs@0.3.36':
     dependencies:
       '@types/node': 20.14.10
@@ -39256,6 +40274,8 @@ snapshots:
 
   '@types/web-bluetooth@0.0.20': {}
 
+  '@types/which@2.0.2': {}
+
   '@types/wrap-ansi@3.0.0': {}
 
   '@types/ws@8.5.10':
@@ -39271,6 +40291,11 @@ snapshots:
   '@types/yargs@17.0.32':
     dependencies:
       '@types/yargs-parser': 21.0.3
+
+  '@types/yauzl@2.10.3':
+    dependencies:
+      '@types/node': 20.14.10
+    optional: true
 
   '@typescript-eslint/eslint-plugin@4.33.0(@typescript-eslint/parser@4.33.0(eslint@6.8.0)(typescript@5.8.2))(eslint@6.8.0)(typescript@5.8.2)':
     dependencies:
@@ -39684,6 +40709,24 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@vitest/coverage-v8@2.1.9(vitest@3.1.4)':
+    dependencies:
+      '@ampproject/remapping': 2.3.0
+      '@bcoe/v8-coverage': 0.2.3
+      debug: 4.4.0(supports-color@8.1.1)
+      istanbul-lib-coverage: 3.2.2
+      istanbul-lib-report: 3.0.1
+      istanbul-lib-source-maps: 5.0.6
+      istanbul-reports: 3.1.7
+      magic-string: 0.30.17
+      magicast: 0.3.5
+      std-env: 3.8.0
+      test-exclude: 7.0.1
+      tinyrainbow: 1.2.0
+      vitest: 3.1.4(@types/node@20.14.10)(@vitest/ui@2.1.9)(jsdom@26.0.0)(less@3.13.1)(msw@2.4.9(typescript@5.8.2))(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
+    transitivePeerDependencies:
+      - supports-color
+
   '@vitest/coverage-v8@3.0.8(vitest@3.0.8(@types/node@20.4.9)(jsdom@26.0.0)(less@3.13.1)(msw@2.3.1(typescript@5.8.2))(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0))':
     dependencies:
       '@ampproject/remapping': 2.3.0
@@ -39726,6 +40769,13 @@ snapshots:
     dependencies:
       '@vitest/spy': 3.0.8
       '@vitest/utils': 3.0.8
+      chai: 5.2.0
+      tinyrainbow: 2.0.0
+
+  '@vitest/expect@3.1.4':
+    dependencies:
+      '@vitest/spy': 3.1.4
+      '@vitest/utils': 3.1.4
       chai: 5.2.0
       tinyrainbow: 2.0.0
 
@@ -39801,6 +40851,15 @@ snapshots:
       msw: 2.3.1(typescript@5.8.2)
       vite: 5.4.18(@types/node@20.4.9)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
 
+  '@vitest/mocker@3.1.4(msw@2.4.9(typescript@5.8.2))(vite@5.4.18(@types/node@20.14.10)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0))':
+    dependencies:
+      '@vitest/spy': 3.1.4
+      estree-walker: 3.0.3
+      magic-string: 0.30.17
+    optionalDependencies:
+      msw: 2.4.9(typescript@5.8.2)
+      vite: 5.4.18(@types/node@20.14.10)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
+
   '@vitest/pretty-format@2.0.5':
     dependencies:
       tinyrainbow: 1.2.0
@@ -39810,6 +40869,10 @@ snapshots:
       tinyrainbow: 1.2.0
 
   '@vitest/pretty-format@3.0.8':
+    dependencies:
+      tinyrainbow: 2.0.0
+
+  '@vitest/pretty-format@3.1.4':
     dependencies:
       tinyrainbow: 2.0.0
 
@@ -39827,6 +40890,11 @@ snapshots:
   '@vitest/runner@3.0.8':
     dependencies:
       '@vitest/utils': 3.0.8
+      pathe: 2.0.3
+
+  '@vitest/runner@3.1.4':
+    dependencies:
+      '@vitest/utils': 3.1.4
       pathe: 2.0.3
 
   '@vitest/snapshot@1.6.1':
@@ -39847,6 +40915,12 @@ snapshots:
       magic-string: 0.30.17
       pathe: 2.0.3
 
+  '@vitest/snapshot@3.1.4':
+    dependencies:
+      '@vitest/pretty-format': 3.1.4
+      magic-string: 0.30.17
+      pathe: 2.0.3
+
   '@vitest/spy@1.6.1':
     dependencies:
       tinyspy: 2.2.1
@@ -39860,6 +40934,10 @@ snapshots:
       tinyspy: 3.0.2
 
   '@vitest/spy@3.0.8':
+    dependencies:
+      tinyspy: 3.0.2
+
+  '@vitest/spy@3.1.4':
     dependencies:
       tinyspy: 3.0.2
 
@@ -39884,6 +40962,17 @@ snapshots:
       tinyglobby: 0.2.12
       tinyrainbow: 1.2.0
       vitest: 2.1.9(@types/node@20.14.10)(@vitest/ui@2.1.9)(jsdom@26.0.0)(less@3.13.1)(msw@2.4.9(typescript@5.8.2))(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
+
+  '@vitest/ui@2.1.9(vitest@3.1.4)':
+    dependencies:
+      '@vitest/utils': 2.1.9
+      fflate: 0.8.2
+      flatted: 3.3.3
+      pathe: 1.1.2
+      sirv: 3.0.1
+      tinyglobby: 0.2.12
+      tinyrainbow: 1.2.0
+      vitest: 3.1.4(@types/node@20.14.10)(@vitest/ui@2.1.9)(jsdom@26.0.0)(less@3.13.1)(msw@2.4.9(typescript@5.8.2))(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
 
   '@vitest/utils@1.6.0':
     dependencies:
@@ -39915,6 +41004,12 @@ snapshots:
   '@vitest/utils@3.0.8':
     dependencies:
       '@vitest/pretty-format': 3.0.8
+      loupe: 3.1.3
+      tinyrainbow: 2.0.0
+
+  '@vitest/utils@3.1.4':
+    dependencies:
+      '@vitest/pretty-format': 3.1.4
       loupe: 3.1.3
       tinyrainbow: 2.0.0
 
@@ -40095,6 +41190,54 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
+  '@wdio/config@9.14.0':
+    dependencies:
+      '@wdio/logger': 9.4.4
+      '@wdio/types': 9.14.0
+      '@wdio/utils': 9.14.0
+      deepmerge-ts: 7.1.5
+      glob: 10.4.5
+      import-meta-resolve: 4.1.0
+    transitivePeerDependencies:
+      - bare-buffer
+      - supports-color
+
+  '@wdio/logger@9.4.4':
+    dependencies:
+      chalk: 5.4.1
+      loglevel: 1.9.2
+      loglevel-plugin-prefix: 0.8.4
+      strip-ansi: 7.1.0
+
+  '@wdio/protocols@9.14.0': {}
+
+  '@wdio/repl@9.4.4':
+    dependencies:
+      '@types/node': 20.14.10
+
+  '@wdio/types@9.14.0':
+    dependencies:
+      '@types/node': 20.14.10
+
+  '@wdio/utils@9.14.0':
+    dependencies:
+      '@puppeteer/browsers': 2.10.5
+      '@wdio/logger': 9.4.4
+      '@wdio/types': 9.14.0
+      decamelize: 6.0.0
+      deepmerge-ts: 7.1.5
+      edgedriver: 6.1.1
+      geckodriver: 5.0.0
+      get-port: 7.1.0
+      import-meta-resolve: 4.1.0
+      locate-app: 2.5.0
+      safaridriver: 1.0.0
+      split2: 4.2.0
+      wait-port: 1.1.0
+    transitivePeerDependencies:
+      - bare-buffer
+      - supports-color
+
   '@webassemblyjs/ast@1.12.1':
     dependencies:
       '@webassemblyjs/helper-numbers': 1.11.6
@@ -40200,6 +41343,8 @@ snapshots:
       js-yaml: 3.14.1
       tslib: 2.8.1
 
+  '@zip.js/zip.js@2.7.62': {}
+
   '@zkochan/js-yaml@0.0.6':
     dependencies:
       argparse: 2.0.1
@@ -40216,6 +41361,10 @@ snapshots:
   abab@2.0.6: {}
 
   abbrev@1.1.1: {}
+
+  abort-controller@3.0.0:
+    dependencies:
+      event-target-shim: 5.0.1
 
   accepts@1.3.8:
     dependencies:
@@ -40519,6 +41668,26 @@ snapshots:
 
   aproba@2.0.0: {}
 
+  archiver-utils@5.0.2:
+    dependencies:
+      glob: 10.4.5
+      graceful-fs: 4.2.11
+      is-stream: 2.0.1
+      lazystream: 1.0.1
+      lodash: 4.17.21
+      normalize-path: 3.0.0
+      readable-stream: 4.7.0
+
+  archiver@7.0.1:
+    dependencies:
+      archiver-utils: 5.0.2
+      async: 3.2.5
+      buffer-crc32: 1.0.0
+      readable-stream: 4.7.0
+      readdir-glob: 1.1.3
+      tar-stream: 3.1.7
+      zip-stream: 6.0.1
+
   are-we-there-yet@3.0.1:
     dependencies:
       delegates: 1.0.0
@@ -40662,6 +41831,10 @@ snapshots:
 
   assign-symbols@1.0.0: {}
 
+  ast-types@0.13.4:
+    dependencies:
+      tslib: 2.8.1
+
   ast-types@0.16.1:
     dependencies:
       tslib: 2.8.1
@@ -40747,6 +41920,8 @@ snapshots:
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
+
+  b4a@1.6.7: {}
 
   babel-eslint@10.1.0(eslint@6.8.0):
     dependencies:
@@ -40991,6 +42166,31 @@ snapshots:
 
   balanced-match@2.0.0: {}
 
+  bare-events@2.5.4:
+    optional: true
+
+  bare-fs@4.1.5:
+    dependencies:
+      bare-events: 2.5.4
+      bare-path: 3.0.0
+      bare-stream: 2.6.5(bare-events@2.5.4)
+    optional: true
+
+  bare-os@3.6.1:
+    optional: true
+
+  bare-path@3.0.0:
+    dependencies:
+      bare-os: 3.6.1
+    optional: true
+
+  bare-stream@2.6.5(bare-events@2.5.4):
+    dependencies:
+      streamx: 2.22.0
+    optionalDependencies:
+      bare-events: 2.5.4
+    optional: true
+
   base64-js@1.5.1: {}
 
   base64url@3.0.1: {}
@@ -41004,6 +42204,8 @@ snapshots:
       isobject: 3.0.1
       mixin-deep: 1.3.2
       pascalcase: 0.1.1
+
+  basic-ftp@5.0.5: {}
 
   batch@0.6.1: {}
 
@@ -41186,6 +42388,10 @@ snapshots:
   bser@2.1.1:
     dependencies:
       node-int64: 0.4.0
+
+  buffer-crc32@0.2.13: {}
+
+  buffer-crc32@1.0.0: {}
 
   buffer-from@1.1.2: {}
 
@@ -41435,6 +42641,29 @@ snapshots:
 
   check-error@2.1.1: {}
 
+  cheerio-select@2.1.0:
+    dependencies:
+      boolbase: 1.0.0
+      css-select: 5.1.0
+      css-what: 6.1.0
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
+      domutils: 3.2.2
+
+  cheerio@1.0.0:
+    dependencies:
+      cheerio-select: 2.1.0
+      dom-serializer: 2.0.0
+      domhandler: 5.0.3
+      domutils: 3.2.2
+      encoding-sniffer: 0.2.0
+      htmlparser2: 9.1.0
+      parse5: 7.2.1
+      parse5-htmlparser2-tree-adapter: 7.1.0
+      parse5-parser-stream: 7.1.2
+      undici: 6.21.3
+      whatwg-mimetype: 4.0.0
+
   chokidar@3.6.0:
     dependencies:
       anymatch: 3.1.3
@@ -41666,6 +42895,8 @@ snapshots:
 
   commander@9.1.0: {}
 
+  commander@9.5.0: {}
+
   common-ancestor-path@1.0.1: {}
 
   common-path-prefix@3.0.0: {}
@@ -41686,6 +42917,14 @@ snapshots:
   compose-function@3.0.3:
     dependencies:
       arity-n: 1.0.4
+
+  compress-commons@6.0.2:
+    dependencies:
+      crc-32: 1.2.2
+      crc32-stream: 6.0.0
+      is-stream: 2.0.1
+      normalize-path: 3.0.0
+      readable-stream: 4.7.0
 
   compressible@2.0.18:
     dependencies:
@@ -41986,6 +43225,13 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.2
 
+  crc-32@1.2.2: {}
+
+  crc32-stream@6.0.0:
+    dependencies:
+      crc-32: 1.2.2
+      readable-stream: 4.7.0
+
   create-jest@29.7.0(@types/node@18.19.30)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.30)(typescript@5.8.2)):
     dependencies:
       '@jest/types': 29.6.3
@@ -42114,10 +43360,22 @@ snapshots:
       domutils: 2.8.0
       nth-check: 2.1.1
 
+  css-select@5.1.0:
+    dependencies:
+      boolbase: 1.0.0
+      css-what: 6.1.0
+      domhandler: 5.0.3
+      domutils: 3.2.2
+      nth-check: 2.1.1
+
+  css-shorthand-properties@1.1.2: {}
+
   css-tree@1.1.3:
     dependencies:
       mdn-data: 2.0.14
       source-map: 0.6.1
+
+  css-value@0.0.1: {}
 
   css-what@6.1.0: {}
 
@@ -42316,6 +43574,10 @@ snapshots:
     dependencies:
       assert-plus: 1.0.0
 
+  data-uri-to-buffer@4.0.1: {}
+
+  data-uri-to-buffer@6.0.2: {}
+
   data-urls@2.0.0:
     dependencies:
       abab: 2.0.6
@@ -42381,6 +43643,10 @@ snapshots:
     optionalDependencies:
       supports-color: 8.1.1
 
+  debug@4.4.1:
+    dependencies:
+      ms: 2.1.3
+
   debuglog@1.0.1: {}
 
   decamelize-keys@1.1.1:
@@ -42389,6 +43655,8 @@ snapshots:
       map-obj: 1.0.1
 
   decamelize@1.2.0: {}
+
+  decamelize@6.0.0: {}
 
   decimal.js-light@2.5.1: {}
 
@@ -42431,6 +43699,8 @@ snapshots:
 
   deep-is@0.1.4: {}
 
+  deepmerge-ts@7.1.5: {}
+
   deepmerge@4.3.1: {}
 
   default-gateway@6.0.3:
@@ -42467,6 +43737,12 @@ snapshots:
     dependencies:
       is-descriptor: 1.0.3
       isobject: 3.0.1
+
+  degenerator@5.0.1:
+    dependencies:
+      ast-types: 0.13.4
+      escodegen: 2.1.0
+      esprima: 4.0.1
 
   del@6.1.1:
     dependencies:
@@ -42594,6 +43870,12 @@ snapshots:
       domhandler: 4.3.1
       entities: 2.2.0
 
+  dom-serializer@2.0.0:
+    dependencies:
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
+      entities: 4.5.0
+
   domelementtype@1.3.1: {}
 
   domelementtype@2.3.0: {}
@@ -42614,6 +43896,10 @@ snapshots:
     dependencies:
       domelementtype: 2.3.0
 
+  domhandler@5.0.3:
+    dependencies:
+      domelementtype: 2.3.0
+
   dompurify@3.2.4:
     optionalDependencies:
       '@types/trusted-types': 2.0.7
@@ -42628,6 +43914,12 @@ snapshots:
       dom-serializer: 1.4.1
       domelementtype: 2.3.0
       domhandler: 4.3.1
+
+  domutils@3.2.2:
+    dependencies:
+      dom-serializer: 2.0.0
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
 
   dot-case@3.0.4:
     dependencies:
@@ -42668,6 +43960,25 @@ snapshots:
     dependencies:
       jsbn: 0.1.1
       safer-buffer: 2.1.2
+
+  edge-paths@3.0.5:
+    dependencies:
+      '@types/which': 2.0.2
+      which: 2.0.2
+
+  edgedriver@6.1.1:
+    dependencies:
+      '@wdio/logger': 9.4.4
+      '@zip.js/zip.js': 2.7.62
+      decamelize: 6.0.0
+      edge-paths: 3.0.5
+      fast-xml-parser: 4.5.3
+      http-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.6
+      node-fetch: 3.3.2
+      which: 5.0.0
+    transitivePeerDependencies:
+      - supports-color
 
   ee-first@1.1.1: {}
 
@@ -42710,6 +44021,11 @@ snapshots:
   encodeurl@1.0.2: {}
 
   encodeurl@2.0.0: {}
+
+  encoding-sniffer@0.2.0:
+    dependencies:
+      iconv-lite: 0.6.3
+      whatwg-encoding: 3.1.1
 
   encoding@0.1.13:
     dependencies:
@@ -42846,6 +44162,8 @@ snapshots:
       safe-array-concat: 1.1.3
 
   es-module-lexer@1.6.0: {}
+
+  es-module-lexer@1.7.0: {}
 
   es-object-atoms@1.1.1:
     dependencies:
@@ -43170,6 +44488,28 @@ snapshots:
       '@eslint-community/eslint-utils': 4.5.0(eslint@9.22.0(jiti@2.4.2))
       eslint: 9.22.0(jiti@2.4.2)
 
+  eslint-plugin-react@7.37.4(eslint@8.57.0):
+    dependencies:
+      array-includes: 3.1.8
+      array.prototype.findlast: 1.2.5
+      array.prototype.flatmap: 1.3.3
+      array.prototype.tosorted: 1.1.4
+      doctrine: 2.1.0
+      es-iterator-helpers: 1.2.1
+      eslint: 8.57.0
+      estraverse: 5.3.0
+      hasown: 2.0.2
+      jsx-ast-utils: 3.3.5
+      minimatch: 3.1.2
+      object.entries: 1.1.8
+      object.fromentries: 2.0.8
+      object.values: 1.2.1
+      prop-types: 15.8.1
+      resolve: 2.0.0-next.5
+      semver: 6.3.1
+      string.prototype.matchall: 4.0.12
+      string.prototype.repeat: 1.0.0
+
   eslint-plugin-react@7.37.4(eslint@9.22.0(jiti@2.4.2)):
     dependencies:
       array-includes: 3.1.8
@@ -43435,6 +44775,8 @@ snapshots:
       d: 1.0.2
       es5-ext: 0.10.64
 
+  event-target-shim@5.0.1: {}
+
   eventemitter3@4.0.7: {}
 
   eventemitter3@5.0.1: {}
@@ -43536,6 +44878,8 @@ snapshots:
       homedir-polyfill: 1.0.3
 
   expect-type@1.1.0: {}
+
+  expect-type@1.2.1: {}
 
   expect@26.6.2:
     dependencies:
@@ -43644,15 +44988,29 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  extract-zip@2.0.1:
+    dependencies:
+      debug: 4.4.1
+      get-stream: 5.2.0
+      yauzl: 2.10.0
+    optionalDependencies:
+      '@types/yauzl': 2.10.3
+    transitivePeerDependencies:
+      - supports-color
+
   extsprintf@1.3.0: {}
 
   extsprintf@1.4.1: {}
+
+  fast-deep-equal@2.0.1: {}
 
   fast-deep-equal@3.1.3: {}
 
   fast-diff@1.3.0: {}
 
   fast-equals@5.0.1: {}
+
+  fast-fifo@1.3.2: {}
 
   fast-glob@3.2.7:
     dependencies:
@@ -43680,6 +45038,10 @@ snapshots:
 
   fast-shallow-equal@1.0.0: {}
 
+  fast-xml-parser@4.5.3:
+    dependencies:
+      strnum: 1.1.2
+
   fastest-levenshtein@1.0.16: {}
 
   fastest-stable-stringify@2.0.2: {}
@@ -43700,9 +45062,22 @@ snapshots:
     dependencies:
       bser: 2.1.1
 
+  fd-slicer@1.1.0:
+    dependencies:
+      pend: 1.2.0
+
   fdir@6.4.3(picomatch@4.0.2):
     optionalDependencies:
       picomatch: 4.0.2
+
+  fdir@6.4.4(picomatch@4.0.2):
+    optionalDependencies:
+      picomatch: 4.0.2
+
+  fetch-blob@3.2.0:
+    dependencies:
+      node-domexception: 1.0.0
+      web-streams-polyfill: 3.3.3
 
   fflate@0.8.2: {}
 
@@ -43931,6 +45306,10 @@ snapshots:
 
   format@0.2.2: {}
 
+  formdata-polyfill@4.0.10:
+    dependencies:
+      fetch-blob: 3.2.0
+
   formidable@1.2.6: {}
 
   forwarded@0.2.0: {}
@@ -44027,6 +45406,20 @@ snapshots:
       strip-ansi: 6.0.1
       wide-align: 1.1.5
 
+  geckodriver@5.0.0:
+    dependencies:
+      '@wdio/logger': 9.4.4
+      '@zip.js/zip.js': 2.7.62
+      decamelize: 6.0.0
+      http-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.6
+      node-fetch: 3.3.2
+      tar-fs: 3.0.9
+      which: 5.0.0
+    transitivePeerDependencies:
+      - bare-buffer
+      - supports-color
+
   generouted@1.6.4(vite@6.2.5(@types/node@20.14.10)(jiti@2.4.2)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)):
     dependencies:
       vite: 6.2.5(@types/node@20.14.10)(jiti@2.4.2)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
@@ -44068,6 +45461,8 @@ snapshots:
 
   get-port@5.1.1: {}
 
+  get-port@7.1.0: {}
+
   get-proto@1.0.1:
     dependencies:
       dunder-proto: 1.0.1
@@ -44098,6 +45493,14 @@ snapshots:
   get-tsconfig@4.10.0:
     dependencies:
       resolve-pkg-maps: 1.0.0
+
+  get-uri@6.0.4:
+    dependencies:
+      basic-ftp: 5.0.5
+      data-uri-to-buffer: 6.0.2
+      debug: 4.4.1
+    transitivePeerDependencies:
+      - supports-color
 
   get-value@2.0.6: {}
 
@@ -44316,6 +45719,8 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
+  grapheme-splitter@1.0.4: {}
+
   graphemer@1.4.0: {}
 
   graphql@16.10.0: {}
@@ -44532,6 +45937,8 @@ snapshots:
     optionalDependencies:
       webpack: 5.94.0(webpack-cli@4.10.0)
 
+  htmlfy@0.6.7: {}
+
   htmlhint@0.15.2(encoding@0.1.13):
     dependencies:
       '@types/node-fetch': 2.6.11
@@ -44561,6 +45968,13 @@ snapshots:
       domhandler: 4.3.1
       domutils: 2.8.0
       entities: 2.2.0
+
+  htmlparser2@9.1.0:
+    dependencies:
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
+      domutils: 3.2.2
+      entities: 4.5.0
 
   http-cache-semantics@4.1.1: {}
 
@@ -44714,6 +46128,8 @@ snapshots:
 
   image-size@0.5.5:
     optional: true
+
+  immediate@3.0.6: {}
 
   immutable@4.3.5: {}
 
@@ -45063,6 +46479,8 @@ snapshots:
 
   is-plain-obj@3.0.0: {}
 
+  is-plain-obj@4.1.0: {}
+
   is-plain-object@2.0.4:
     dependencies:
       isobject: 3.0.1
@@ -45167,6 +46585,8 @@ snapshots:
   isbinaryfile@4.0.10: {}
 
   isexe@2.0.0: {}
+
+  isexe@3.1.1: {}
 
   isobject@2.1.0:
     dependencies:
@@ -46632,6 +48052,13 @@ snapshots:
       object.assign: 4.1.7
       object.values: 1.2.1
 
+  jszip@3.10.1:
+    dependencies:
+      lie: 3.3.0
+      pako: 1.0.11
+      readable-stream: 2.3.8
+      setimmediate: 1.0.5
+
   just-diff-apply@5.5.0: {}
 
   just-diff@5.2.0: {}
@@ -46670,6 +48097,10 @@ snapshots:
       app-root-dir: 1.0.2
       dotenv: 16.4.5
       dotenv-expand: 10.0.0
+
+  lazystream@1.0.1:
+    dependencies:
+      readable-stream: 2.3.8
 
   leaflet@0.7.7: {}
 
@@ -46782,6 +48213,10 @@ snapshots:
     transitivePeerDependencies:
       - bluebird
       - supports-color
+
+  lie@3.3.0:
+    dependencies:
+      immediate: 3.0.6
 
   liftoff@4.0.0:
     dependencies:
@@ -46909,6 +48344,12 @@ snapshots:
       pkg-types: 2.1.0
       quansync: 0.2.8
 
+  locate-app@2.5.0:
+    dependencies:
+      '@promptbook/utils': 0.69.5
+      type-fest: 4.26.0
+      userhome: 1.0.1
+
   locate-path@2.0.0:
     dependencies:
       p-locate: 2.0.0
@@ -46934,6 +48375,8 @@ snapshots:
   lodash-es@4.17.21: {}
 
   lodash.camelcase@4.3.0: {}
+
+  lodash.clonedeep@4.5.0: {}
 
   lodash.debounce@4.0.8: {}
 
@@ -46971,6 +48414,8 @@ snapshots:
 
   lodash.upperfirst@4.3.1: {}
 
+  lodash.zip@4.2.0: {}
+
   lodash@4.17.21: {}
 
   log-symbols@2.2.0:
@@ -47005,6 +48450,10 @@ snapshots:
       slice-ansi: 5.0.0
       strip-ansi: 7.1.0
       wrap-ansi: 8.1.0
+
+  loglevel-plugin-prefix@0.8.4: {}
+
+  loglevel@1.9.2: {}
 
   long@4.0.0: {}
 
@@ -47731,6 +49180,8 @@ snapshots:
 
   neo-async@2.6.2: {}
 
+  netmask@2.0.2: {}
+
   next-themes@0.2.1(next@15.2.4(@babel/core@7.26.9)(@playwright/test@1.49.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.56.1))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       next: 15.2.4(@babel/core@7.26.9)(@playwright/test@1.49.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.56.1)
@@ -47795,6 +49246,8 @@ snapshots:
 
   node-addon-api@3.2.1: {}
 
+  node-domexception@1.0.0: {}
+
   node-fetch@2.6.7(encoding@0.1.13):
     dependencies:
       whatwg-url: 5.0.0
@@ -47806,6 +49259,12 @@ snapshots:
       whatwg-url: 5.0.0
     optionalDependencies:
       encoding: 0.1.13
+
+  node-fetch@3.3.2:
+    dependencies:
+      data-uri-to-buffer: 4.0.1
+      fetch-blob: 3.2.0
+      formdata-polyfill: 4.0.10
 
   node-forge@1.3.1: {}
 
@@ -48370,6 +49829,24 @@ snapshots:
     dependencies:
       p-reduce: 2.1.0
 
+  pac-proxy-agent@7.2.0:
+    dependencies:
+      '@tootallnate/quickjs-emscripten': 0.23.0
+      agent-base: 7.1.3
+      debug: 4.4.1
+      get-uri: 6.0.4
+      http-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.6
+      pac-resolver: 7.0.1
+      socks-proxy-agent: 8.0.5
+    transitivePeerDependencies:
+      - supports-color
+
+  pac-resolver@7.0.1:
+    dependencies:
+      degenerator: 5.0.1
+      netmask: 2.0.2
+
   package-json-from-dist@1.0.1: {}
 
   pacote@13.6.2:
@@ -48402,6 +49879,8 @@ snapshots:
   pad-right@0.2.2:
     dependencies:
       repeat-string: 1.6.1
+
+  pako@1.0.11: {}
 
   param-case@2.1.1:
     dependencies:
@@ -48475,6 +49954,15 @@ snapshots:
     dependencies:
       parse-path: 7.0.0
 
+  parse5-htmlparser2-tree-adapter@7.1.0:
+    dependencies:
+      domhandler: 5.0.3
+      parse5: 7.2.1
+
+  parse5-parser-stream@7.1.2:
+    dependencies:
+      parse5: 7.2.1
+
   parse5@6.0.1: {}
 
   parse5@7.2.1:
@@ -48541,6 +50029,8 @@ snapshots:
   pathval@1.1.1: {}
 
   pathval@2.0.0: {}
+
+  pend@1.2.0: {}
 
   perfect-debounce@1.0.0: {}
 
@@ -48923,6 +50413,19 @@ snapshots:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
 
+  proxy-agent@6.5.0:
+    dependencies:
+      agent-base: 7.1.3
+      debug: 4.4.1
+      http-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.6
+      lru-cache: 7.18.3
+      pac-proxy-agent: 7.2.0
+      proxy-from-env: 1.1.0
+      socks-proxy-agent: 8.0.5
+    transitivePeerDependencies:
+      - supports-color
+
   proxy-from-env@1.1.0: {}
 
   prr@1.0.1:
@@ -48956,6 +50459,8 @@ snapshots:
   qs@6.5.3: {}
 
   quansync@0.2.8: {}
+
+  query-selector-shadow-dom@1.0.1: {}
 
   querystringify@2.2.0: {}
 
@@ -49333,6 +50838,18 @@ snapshots:
       inherits: 2.0.4
       string_decoder: 1.3.0
       util-deprecate: 1.0.2
+
+  readable-stream@4.7.0:
+    dependencies:
+      abort-controller: 3.0.0
+      buffer: 6.0.3
+      events: 3.3.0
+      process: 0.11.10
+      string_decoder: 1.3.0
+
+  readdir-glob@1.1.3:
+    dependencies:
+      minimatch: 5.1.6
 
   readdir-scoped-modules@1.1.0:
     dependencies:
@@ -49802,6 +51319,10 @@ snapshots:
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
+  resq@1.11.0:
+    dependencies:
+      fast-deep-equal: 2.0.1
+
   restore-cursor@2.0.0:
     dependencies:
       onetime: 2.0.1
@@ -49835,6 +51356,8 @@ snapshots:
       css: 2.2.4
 
   rfdc@1.3.1: {}
+
+  rgb2hex@0.2.5: {}
 
   rimraf@2.6.3:
     dependencies:
@@ -49945,6 +51468,8 @@ snapshots:
   rxjs@7.8.2:
     dependencies:
       tslib: 2.8.1
+
+  safaridriver@1.0.0: {}
 
   safe-array-concat@1.1.3:
     dependencies:
@@ -50069,6 +51594,8 @@ snapshots:
 
   semver@7.7.1: {}
 
+  semver@7.7.2: {}
+
   send@0.18.0:
     dependencies:
       debug: 2.6.9
@@ -50110,6 +51637,10 @@ snapshots:
       no-case: 3.0.4
       tslib: 2.8.1
       upper-case-first: 2.0.2
+
+  serialize-error@11.0.3:
+    dependencies:
+      type-fest: 2.19.0
 
   serialize-javascript@6.0.2:
     dependencies:
@@ -50171,6 +51702,8 @@ snapshots:
       is-plain-object: 2.0.4
       split-string: 3.1.0
 
+  setimmediate@1.0.5: {}
+
   setprototypeof@1.1.0: {}
 
   setprototypeof@1.2.0: {}
@@ -50185,7 +51718,7 @@ snapshots:
     dependencies:
       color: 4.2.3
       detect-libc: 2.0.3
-      semver: 7.7.1
+      semver: 7.7.2
     optionalDependencies:
       '@img/sharp-darwin-arm64': 0.33.5
       '@img/sharp-darwin-x64': 0.33.5
@@ -50376,7 +51909,20 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  socks-proxy-agent@8.0.5:
+    dependencies:
+      agent-base: 7.1.3
+      debug: 4.4.1
+      socks: 2.8.4
+    transitivePeerDependencies:
+      - supports-color
+
   socks@2.8.1:
+    dependencies:
+      ip-address: 9.0.5
+      smart-buffer: 4.2.0
+
+  socks@2.8.4:
     dependencies:
       ip-address: 9.0.5
       smart-buffer: 4.2.0
@@ -50427,6 +51973,8 @@ snapshots:
   sourcemap-codec@1.4.8: {}
 
   space-separated-tokens@2.0.2: {}
+
+  spacetrim@0.11.59: {}
 
   spawn-command@0.0.2-1: {}
 
@@ -50541,6 +52089,8 @@ snapshots:
 
   std-env@3.8.0: {}
 
+  std-env@3.9.0: {}
+
   stdin-discarder@0.1.0:
     dependencies:
       bl: 5.1.0
@@ -50585,6 +52135,13 @@ snapshots:
       readable-stream: 3.6.2
 
   streamsearch@1.1.0: {}
+
+  streamx@2.22.0:
+    dependencies:
+      fast-fifo: 1.3.2
+      text-decoder: 1.2.3
+    optionalDependencies:
+      bare-events: 2.5.4
 
   strict-event-emitter@0.2.8:
     dependencies:
@@ -50739,6 +52296,8 @@ snapshots:
   strip-outer@1.0.1:
     dependencies:
       escape-string-regexp: 1.0.5
+
+  strnum@1.1.2: {}
 
   strong-log-transformer@2.1.0:
     dependencies:
@@ -51078,6 +52637,16 @@ snapshots:
 
   tapable@2.2.1: {}
 
+  tar-fs@3.0.9:
+    dependencies:
+      pump: 3.0.0
+      tar-stream: 3.1.7
+    optionalDependencies:
+      bare-fs: 4.1.5
+      bare-path: 3.0.0
+    transitivePeerDependencies:
+      - bare-buffer
+
   tar-stream@2.2.0:
     dependencies:
       bl: 4.1.0
@@ -51085,6 +52654,12 @@ snapshots:
       fs-constants: 1.0.0
       inherits: 2.0.4
       readable-stream: 3.6.2
+
+  tar-stream@3.1.7:
+    dependencies:
+      b4a: 1.6.7
+      fast-fifo: 1.3.2
+      streamx: 2.22.0
 
   tar@6.2.1:
     dependencies:
@@ -51152,6 +52727,10 @@ snapshots:
       glob: 10.4.5
       minimatch: 9.0.5
 
+  text-decoder@1.2.3:
+    dependencies:
+      b4a: 1.6.7
+
   text-extensions@1.9.0: {}
 
   text-extensions@2.4.0: {}
@@ -51196,6 +52775,11 @@ snapshots:
   tinyglobby@0.2.12:
     dependencies:
       fdir: 6.4.3(picomatch@4.0.2)
+      picomatch: 4.0.2
+
+  tinyglobby@0.2.14:
+    dependencies:
+      fdir: 6.4.4(picomatch@4.0.2)
       picomatch: 4.0.2
 
   tinypool@0.8.4: {}
@@ -51572,6 +53156,8 @@ snapshots:
 
   type-fest@4.15.0: {}
 
+  type-fest@4.26.0: {}
+
   type-is@1.6.18:
     dependencies:
       media-typer: 0.3.0
@@ -51670,9 +53256,11 @@ snapshots:
 
   undici-types@5.26.5: {}
 
-  undici@5.28.5:
+  undici@5.29.0:
     dependencies:
       '@fastify/busboy': 2.1.1
+
+  undici@6.21.3: {}
 
   unherit@1.1.3:
     dependencies:
@@ -51910,6 +53498,8 @@ snapshots:
       querystringify: 2.2.0
       requires-port: 1.0.0
 
+  urlpattern-polyfill@10.1.0: {}
+
   use-callback-ref@1.3.3(@types/react@18.2.45)(react@18.2.0):
     dependencies:
       react: 18.2.0
@@ -51961,6 +53551,8 @@ snapshots:
       react: 18.2.0
 
   use@3.1.1: {}
+
+  userhome@1.0.1: {}
 
   util-arity@1.1.0: {}
 
@@ -52156,6 +53748,24 @@ snapshots:
       es-module-lexer: 1.6.0
       pathe: 2.0.3
       vite: 5.4.18(@types/node@20.4.9)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
+  vite-node@3.1.4(@types/node@20.14.10)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0):
+    dependencies:
+      cac: 6.7.14
+      debug: 4.4.0(supports-color@8.1.1)
+      es-module-lexer: 1.7.0
+      pathe: 2.0.3
+      vite: 5.4.18(@types/node@20.14.10)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -52769,6 +54379,44 @@ snapshots:
       - supports-color
       - terser
 
+  vitest@3.1.4(@types/node@20.14.10)(@vitest/ui@2.1.9)(jsdom@26.0.0)(less@3.13.1)(msw@2.4.9(typescript@5.8.2))(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0):
+    dependencies:
+      '@vitest/expect': 3.1.4
+      '@vitest/mocker': 3.1.4(msw@2.4.9(typescript@5.8.2))(vite@5.4.18(@types/node@20.14.10)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0))
+      '@vitest/pretty-format': 3.1.4
+      '@vitest/runner': 3.1.4
+      '@vitest/snapshot': 3.1.4
+      '@vitest/spy': 3.1.4
+      '@vitest/utils': 3.1.4
+      chai: 5.2.0
+      debug: 4.4.0(supports-color@8.1.1)
+      expect-type: 1.2.1
+      magic-string: 0.30.17
+      pathe: 2.0.3
+      std-env: 3.9.0
+      tinybench: 2.9.0
+      tinyexec: 0.3.2
+      tinyglobby: 0.2.14
+      tinypool: 1.0.2
+      tinyrainbow: 2.0.0
+      vite: 5.4.18(@types/node@20.14.10)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
+      vite-node: 3.1.4(@types/node@20.14.10)(less@3.13.1)(sass@1.56.1)(sugarss@2.0.0)(terser@5.39.0)
+      why-is-node-running: 2.3.0
+    optionalDependencies:
+      '@types/node': 20.14.10
+      '@vitest/ui': 2.1.9(vitest@3.1.4)
+      jsdom: 26.0.0
+    transitivePeerDependencies:
+      - less
+      - lightningcss
+      - msw
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
   void-elements@3.1.0: {}
 
   vscode-uri@3.1.0: {}
@@ -52815,6 +54463,14 @@ snapshots:
     dependencies:
       xml-name-validator: 5.0.0
 
+  wait-port@1.1.0:
+    dependencies:
+      chalk: 4.1.2
+      commander: 9.5.0
+      debug: 4.4.0(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - supports-color
+
   walk-up-path@1.0.0: {}
 
   walker@1.0.8:
@@ -52837,6 +54493,59 @@ snapshots:
   wcwidth@1.0.1:
     dependencies:
       defaults: 1.0.4
+
+  web-streams-polyfill@3.3.3: {}
+
+  webdriver@9.14.0:
+    dependencies:
+      '@types/node': 20.14.10
+      '@types/ws': 8.5.10
+      '@wdio/config': 9.14.0
+      '@wdio/logger': 9.4.4
+      '@wdio/protocols': 9.14.0
+      '@wdio/types': 9.14.0
+      '@wdio/utils': 9.14.0
+      deepmerge-ts: 7.1.5
+      undici: 6.21.3
+      ws: 8.18.1
+    transitivePeerDependencies:
+      - bare-buffer
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+
+  webdriverio@9.14.0:
+    dependencies:
+      '@types/node': 20.14.10
+      '@types/sinonjs__fake-timers': 8.1.5
+      '@wdio/config': 9.14.0
+      '@wdio/logger': 9.4.4
+      '@wdio/protocols': 9.14.0
+      '@wdio/repl': 9.4.4
+      '@wdio/types': 9.14.0
+      '@wdio/utils': 9.14.0
+      archiver: 7.0.1
+      aria-query: 5.3.0
+      cheerio: 1.0.0
+      css-shorthand-properties: 1.1.2
+      css-value: 0.0.1
+      grapheme-splitter: 1.0.4
+      htmlfy: 0.6.7
+      is-plain-obj: 4.1.0
+      jszip: 3.10.1
+      lodash.clonedeep: 4.5.0
+      lodash.zip: 4.2.0
+      query-selector-shadow-dom: 1.0.1
+      resq: 1.11.0
+      rgb2hex: 0.2.5
+      serialize-error: 11.0.3
+      urlpattern-polyfill: 10.1.0
+      webdriver: 9.14.0
+    transitivePeerDependencies:
+      - bare-buffer
+      - bufferutil
+      - supports-color
+      - utf-8-validate
 
   webidl-conversions@3.0.1: {}
 
@@ -53100,6 +54809,10 @@ snapshots:
     dependencies:
       isexe: 2.0.0
 
+  which@5.0.0:
+    dependencies:
+      isexe: 3.1.1
+
   why-is-node-running@2.3.0:
     dependencies:
       siginfo: 2.0.0
@@ -53272,6 +54985,11 @@ snapshots:
       y18n: 5.0.8
       yargs-parser: 21.1.1
 
+  yauzl@2.10.0:
+    dependencies:
+      buffer-crc32: 0.2.13
+      fd-slicer: 1.1.0
+
   yn@3.1.1: {}
 
   yn@4.0.0: {}
@@ -53292,6 +55010,12 @@ snapshots:
       tiny-case: 1.0.3
       toposort: 2.0.2
       type-fest: 2.19.0
+
+  zip-stream@6.0.1:
+    dependencies:
+      archiver-utils: 5.0.2
+      compress-commons: 6.0.2
+      readable-stream: 4.7.0
 
   zod@3.24.2: {}
 
