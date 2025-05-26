@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.15...@ovh-ux/manager-telecom@16.10.0) (2025-05-26)
+
+
+### Features
+
+* **pack:** add otp reference on search meeting call api ([7b2b93e](https://github.com/ovh/manager/commit/7b2b93e2f284997c44054f4c58196dbcef3526a7))
+
+
+
+
+
 ## [16.9.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.9.14...@ovh-ux/manager-telecom@16.9.15) (2025-05-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

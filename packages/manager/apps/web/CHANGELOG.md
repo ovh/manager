@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.11.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.6...@ovh-ux/manager-web@19.11.7) (2025-05-26)
+
+
+### Bug Fixes
+
+* **web.hosting:** change call api extraSqlPerso by iceberg call ([70f7096](https://github.com/ovh/manager/commit/70f70960e1baf825baa455ad03400321b8320b42)), closes [#MANAGER-18375](https://github.com/ovh/manager/issues/MANAGER-18375)
+
+
+
+
+
 ## [19.11.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.5...@ovh-ux/manager-web@19.11.6) (2025-05-23)
 
 
