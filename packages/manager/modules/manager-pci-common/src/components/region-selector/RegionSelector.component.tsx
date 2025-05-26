@@ -12,7 +12,7 @@ import {
 import { TabsComponent } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
-import { TLocalisation } from './useRegions';
+import { TContinent, TLocalisation } from './useRegions';
 import { useRegionSelector } from './useRegionSelector';
 import { RegionTile } from './RegionTile';
 import { RegionList } from './RegionList.component';
@@ -23,6 +23,7 @@ import './style.scss';
 export interface RegionSelectorProps {
   projectId: string;
   onSelectRegion: (region?: TLocalisation) => void;
+  onSelectContinent?: (continent: TContinent) => void;
   regionFilter?: (region: TLocalisation) => boolean;
   compactMode?: boolean;
 }
@@ -30,6 +31,7 @@ export interface RegionSelectorProps {
 export function RegionSelector({
   projectId,
   onSelectRegion,
+  onSelectContinent,
   regionFilter,
   compactMode,
 }: Readonly<RegionSelectorProps>): JSX.Element {
@@ -120,7 +122,10 @@ export function RegionSelector({
           </div>
         </OsdsText>
       )}
-      onChange={setSelectedContinent}
+      onChange={(continent) => {
+        onSelectContinent?.(continent);
+        setSelectedContinent(continent);
+      }}
     />
   );
 }
