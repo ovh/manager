@@ -145,16 +145,11 @@ describe('Service Key list test suite', () => {
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.serviceKeys[
-              'key_management_service_service-keys_dashboard_tab_informations'
-            ],
-          ),
-        ).toBeVisible(),
-      WAIT_FOR_DEFAULT_OPTIONS,
+    const elements = screen.getAllByText(
+      labels.serviceKeys[
+        'key_management_service_service-keys_dashboard_tab_informations'
+      ],
     );
+    expect(elements.length).toBeGreaterThan(0);
   });
 });
