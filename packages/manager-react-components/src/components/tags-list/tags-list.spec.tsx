@@ -14,6 +14,7 @@ describe('TagsList', () => {
   let resizeCallback: ResizeObserverCallback;
   let originalOffsetWidth: any;
   let originalOffsetHeight: any;
+  let originBoundingClientRect: any;
 
   beforeAll(() => {
     originalOffsetWidth = Object.getOwnPropertyDescriptor(
@@ -23,6 +24,11 @@ describe('TagsList', () => {
     originalOffsetHeight = Object.getOwnPropertyDescriptor(
       HTMLElement.prototype,
       'offsetHeight',
+    );
+
+    originBoundingClientRect = Object.getOwnPropertyDescriptor(
+      HTMLElement.prototype,
+      'getBoundingClientRect',
     );
 
     global.ResizeObserver = class {
@@ -56,6 +62,13 @@ describe('TagsList', () => {
         originalOffsetHeight,
       );
     }
+    if (originBoundingClientRect) {
+      Object.defineProperty(
+        HTMLElement.prototype,
+        'getBoundingClientRect',
+        originalOffsetHeight,
+      );
+    }
   });
 
   it('renders all badges when container is large enough (no truncate)', () => {
@@ -64,12 +77,17 @@ describe('TagsList', () => {
     act(() => {
       Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
         configurable: true,
-        value: 50,
+        value: 900,
       });
       Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
         configurable: true,
         value: 30,
       });
+      Object.defineProperty(HTMLElement.prototype, 'getBoundingClientRect', {
+        configurable: true,
+        value: () => ({ width: 20 }) as DOMRect,
+      });
+
       resizeCallback([], {} as ResizeObserver);
     });
 
@@ -91,6 +109,10 @@ describe('TagsList', () => {
         configurable: true,
         value: 10,
       });
+      Object.defineProperty(HTMLElement.prototype, 'getBoundingClientRect', {
+        configurable: true,
+        value: () => ({ width: 20 }) as DOMRect,
+      });
       resizeCallback([], {} as ResizeObserver);
     });
 
@@ -111,6 +133,10 @@ describe('TagsList', () => {
       Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
         configurable: true,
         value: 10,
+      });
+      Object.defineProperty(HTMLElement.prototype, 'getBoundingClientRect', {
+        configurable: true,
+        value: () => ({ width: 20 }) as DOMRect,
       });
     });
 
