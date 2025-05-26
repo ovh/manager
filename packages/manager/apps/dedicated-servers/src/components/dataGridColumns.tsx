@@ -5,6 +5,7 @@ import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import {
   DataGridTextCell,
   DatagridColumn,
+  TagsList,
 } from '@ovh-ux/manager-react-components';
 import { ActionCell } from '@/components/actionCell';
 import { DedicatedServer } from '@/data/types/server.type';
@@ -209,9 +210,20 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.Tags,
       label: 'Tags',
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{JSON.stringify(server.iam?.tags)}</DataGridTextCell>
-      ),
+      cell: (server: DedicatedServer) => {
+        return (
+          server.iam?.tags &&
+          Object.keys(server.iam?.tags).length > 0 && (
+            <TagsList
+              tags={server.iam?.tags}
+              lineNumber={1}
+              onClick={() => {
+                // open modal
+              }}
+            />
+          )
+        );
+      },
     },
     {
       id: 'actions',
