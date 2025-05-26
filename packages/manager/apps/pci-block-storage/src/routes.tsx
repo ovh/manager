@@ -1,4 +1,5 @@
 import { RouteObject } from 'react-router-dom';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { StorageActionRedirect } from '@/components/StorageActionRedirect';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({
@@ -100,7 +101,10 @@ const ROUTES: RouteObject[] = [
         path: 'new',
         ...lazyRouteConfig(() => import('@/pages/new/New.page')),
         handle: {
-          tracking: { pageName: 'new' },
+          tracking: {
+            pageName: 'create_volume_block_storage',
+            pageType: PageType.funnel,
+          },
         },
       },
     ],
