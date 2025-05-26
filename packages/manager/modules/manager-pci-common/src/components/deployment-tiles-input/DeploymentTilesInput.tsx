@@ -1,17 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next';
-import { OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
-import {
-  ComponentProps,
-  PropsWithChildren,
-  useCallback,
-  useContext,
-  useMemo,
-} from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { DEPLOYMENT_MODES_URL } from './website-link';
+import { ComponentProps, useCallback, useMemo } from 'react';
 import {
   TilesInput,
   TilesInputProps,
@@ -19,6 +7,7 @@ import {
 import { TDeployment } from '@/dto';
 import { ConfigCardElementProps } from '../config-card/ConfigCard';
 import { BadgeProps } from '@/components/badge/Badge';
+import { GuideLink } from '@/components/guide-link/GuideLink';
 import '@/translations/deployment-mode';
 
 export type DeploymentTilesInputProps<T extends TDeployment = TDeployment> = {
@@ -27,34 +16,6 @@ export type DeploymentTilesInputProps<T extends TDeployment = TDeployment> = {
   onChange?: (value: T) => void;
   inputProps?: (element: T) => ComponentProps<'input'>;
 } & Pick<TilesInputProps, 'name' | 'locked' | 'horizontal'>;
-
-const DescriptionLink = ({ children }: PropsWithChildren) => {
-  const shell = useContext(ShellContext);
-  const ovhSubsidiary = useMemo(
-    () => shell?.environment.getUser().ovhSubsidiary,
-    [shell],
-  );
-
-  return (
-    <OsdsLink
-      href={DEPLOYMENT_MODES_URL[ovhSubsidiary] ?? DEPLOYMENT_MODES_URL.DEFAULT}
-      color={ODS_THEME_COLOR_INTENT.primary}
-      target={OdsHTMLAnchorElementTarget._blank}
-    >
-      {children}
-      <span slot="end">
-        <OsdsIcon
-          aria-hidden="true"
-          className="ml-4"
-          name={ODS_ICON_NAME.EXTERNAL_LINK}
-          hoverable
-          size={ODS_ICON_SIZE.xxs}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        />
-      </span>
-    </OsdsLink>
-  );
-};
 
 const getRegionBadge = (deployment: TDeployment) => {
   switch (deployment.name) {
@@ -149,7 +110,7 @@ export const DeploymentTilesInput = <T extends TDeployment>({
           t={t}
           i18nKey="deployment_mode_description"
           components={{
-            Link: <DescriptionLink />,
+            Link: <GuideLink guideName="deployments-modes" />,
           }}
         />
       }
