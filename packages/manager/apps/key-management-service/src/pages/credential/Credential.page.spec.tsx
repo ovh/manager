@@ -10,8 +10,12 @@ import { labels } from '@/utils/tests/init.i18n';
 import { okmsMock } from '@/mocks/kms/okms.mock';
 import { credentialMock } from '@/mocks/credentials/credentials.mock';
 import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
-const mockPageUrl = `/${okmsMock[0].id}/credentials/${credentialMock[0].id}`;
+const mockPageUrl = KMS_ROUTES_URLS.credentialDashboard(
+  okmsMock[0].id,
+  credentialMock[0].id,
+);
 
 describe('Credential dashboard test suite', () => {
   it('should display an error if the API is KO', async () => {
