@@ -2,7 +2,12 @@ import map from 'lodash/map';
 import get from 'lodash/get';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.autorenew.terminate-all-dom', {
+  $stateProvider.state('billing.autorenew.terminate-all-domRedirection', {
+    url: '/delete-all-dom?serviceId&serviceType',
+    redirectTo: 'billing.autorenew.services.terminate-all-dom',
+  });
+
+  $stateProvider.state('billing.autorenew.services.terminate-all-dom', {
     url: '/delete-all-dom?serviceId&serviceType',
     views: {
       modal: {
