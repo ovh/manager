@@ -28,6 +28,7 @@ import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { OkmsServiceState } from '../layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
 import { OkmsContext } from '@/pages/dashboard';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
   return <Clipboard className="w-full" value={props.id} />;
@@ -46,7 +47,7 @@ export const DatagridCellName = (props: OKMS) => {
           actionType: 'navigation',
           actions: ['go-to-kms'],
         });
-        navigate(`/${props?.id}`);
+        navigate(KMS_ROUTES_URLS.kmsDashboard(props?.id));
       }}
       label={props?.iam.displayName}
     />
