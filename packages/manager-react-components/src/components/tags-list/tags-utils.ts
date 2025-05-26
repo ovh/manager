@@ -15,7 +15,11 @@ export const calculateAuthorizedTags = (
   tagRefs.forEach((tag) => {
     if (!tag) return;
     const tagWidth = tag.getBoundingClientRect().width;
-    if (usedWidth + tagWidth > maxCounter - 50) return;
+    if (
+      lineNumber &&
+      (tagWidth === 0 || usedWidth + tagWidth > maxCounter - 50)
+    )
+      return;
     usedWidth += tagWidth;
     count += 1;
   });

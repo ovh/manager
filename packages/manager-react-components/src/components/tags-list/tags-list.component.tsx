@@ -22,19 +22,20 @@ export const TagsList: React.FC<TagsListProps> = ({
   const [truncate, setTruncate] = useState(null);
   const [visibleCount, setVisibleCount] = useState(filteredTags.length);
   const tagRefs = useRef<HTMLOdsBadgeElement[]>([]);
+  const initialTagRefs = useRef<HTMLOdsBadgeElement[]>([]);
 
   useEffect(() => {
     if (filteredTags.length > 0) {
       const resizeObserver = new ResizeObserver(() => {
         const visibleTags = calculateAuthorizedTags(
-          tagRefs.current,
+          initialTagRefs.current,
           containerRef.current,
           lineNumber,
         );
 
         setVisibleCount(visibleTags || 1);
 
-        if (visibleTags === 0) {
+        if (visibleTags === 0 && tagRefs.current[0]) {
           setTruncate(
             truncateTag(
               containerRef.current,
@@ -54,34 +55,42 @@ export const TagsList: React.FC<TagsListProps> = ({
     return undefined;
   }, [filteredTags]);
 
-  return (
-    <div ref={containerRef} className="w-full h-full min-w-[85px]">
-      {truncate ? (
-        <OdsBadge className="mr-1 mb-1" color={color} label={truncate} />
-      ) : (
-        filteredTags.slice(0, visibleCount).map((tag, index) => {
-          return (
-            <OdsBadge
-              className="mr-1 mb-1"
-              key={tag}
-              ref={(el) => {
-                tagRefs.current[index] = el!;
-              }}
-              color={color}
-              label={tag}
-            />
-          );
-        })
-      )}
+  useEffect(() => {
+    if (initialTagRefs.current.length === 0) {
+      initialTagRefs.current = [...tagRefs.current];
+    }
+  }, []);
 
-      {visibleCount < filteredTags.length && (
-        <OdsLink
-          href="#"
-          className="text-xs"
-          onClick={onClick}
-          icon={ODS_ICON_NAME.chevronDoubleRight}
-        />
-      )}
-    </div>
+  return (
+    Object.keys(tags).length > 0 && (
+      <div ref={containerRef} className="w-full h-full min-w-[85px]">
+        {truncate ? (
+          <OdsBadge className="mr-1 mb-1" color={color} label={truncate} />
+        ) : (
+          filteredTags.slice(0, visibleCount).map((tag, index) => {
+            return (
+              <OdsBadge
+                className="mr-1 mb-1"
+                key={tag}
+                ref={(el) => {
+                  tagRefs.current[index] = el!;
+                }}
+                color={color}
+                label={tag}
+              />
+            );
+          })
+        )}
+
+        {visibleCount < filteredTags.length && (
+          <OdsLink
+            href="#"
+            className="text-xs"
+            onClick={onClick}
+            icon={ODS_ICON_NAME.chevronDoubleRight}
+          />
+        )}
+      </div>
+    )
   );
 };
