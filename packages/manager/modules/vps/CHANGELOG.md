@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.47.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.47.3...@ovh-ux/manager-vps@2.47.4) (2025-05-26)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** update the guide reset password url ([99da7a9](https://github.com/ovh/manager/commit/99da7a9261720c3b745da0d4f37cfea295737e14)), closes [#MANAGER-13736](https://github.com/ovh/manager/issues/MANAGER-13736)
+
+
+
+
+
 ## [2.47.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.47.2...@ovh-ux/manager-vps@2.47.3) (2025-05-23)
 
 
