@@ -1,13 +1,13 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { OsdsButton, OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import {
   DeploymentTilesInput,
   PCICommonContext,
   RegionSelector,
   RegionSummary,
+  TContinent,
   TDeployment,
   TLocalisation,
   usePCICommonContextFactory,
@@ -17,6 +17,8 @@ import { StepState } from '@/pages/new/hooks/useStep';
 import { useVolumeRegions } from '@/api/hooks/useCatalog';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
 import { TRegion } from '@/api/data/regions';
+import { useTrackAction } from '@/hooks/useTrackAction';
+import { Button } from '@/components/button/Button';
 
 interface LocationProps {
   projectId: string;
@@ -83,6 +85,30 @@ export function LocationStep({
     parentSubmit(selectedRegion);
   }, [deploymentsWithPrice, selectedRegion, parentSubmit]);
 
+  const onTrackingDeploymentChange = useTrackAction(
+    (regionGroup) => ({
+      buttonType: 'tile',
+      actionName: 'select_deployment',
+      actionValues: [regionGroup?.name],
+    }),
+    setSelectedRegionGroup,
+  );
+
+  const onTrackingSelectRegion = useTrackAction(
+    (localisation) => ({
+      buttonType: 'tile',
+      actionName: 'select_location',
+      actionValues: [localisation.name],
+    }),
+    setSelectedLocalisation,
+  );
+
+  const onTrackingSelectContinent = useTrackAction((continent: TContinent) => ({
+    buttonType: 'go-to-tab',
+    actionName: 'select_continent',
+    actionValues: [continent.code],
+  }));
+
   if (isPending) return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
 
   return (
@@ -91,7 +117,7 @@ export function LocationStep({
         <DeploymentTilesInput
           name="deployment"
           value={selectedRegionGroup}
-          onChange={setSelectedRegionGroup}
+          onChange={onTrackingDeploymentChange}
           deployments={deploymentsWithPrice}
           locked={step.isLocked}
         />
@@ -107,7 +133,8 @@ export function LocationStep({
           <div>
             <RegionSelector
               projectId={projectId}
-              onSelectRegion={setSelectedLocalisation}
+              onSelectRegion={onTrackingSelectRegion}
+              onSelectContinent={onTrackingSelectContinent}
               regionFilter={(r) =>
                 r.isMacro ||
                 selectedDeploymentRegions.some((r2) => r2.name === r.name)
@@ -117,14 +144,16 @@ export function LocationStep({
         )}
       </div>
       {hasRegion && !step.isLocked && (
-        <OsdsButton
+        <Button
           className="mt-4 w-fit"
-          size={ODS_BUTTON_SIZE.md}
-          color={ODS_THEME_COLOR_INTENT.primary}
+          size="md"
+          color="primary"
           onClick={onSubmit}
+          actionName="select_location_add"
+          actionValues={[selectedRegion?.name]}
         >
           {t('common_stepper_next_button_label')}
-        </OsdsButton>
+        </Button>
       )}
     </PCICommonContext.Provider>
   );

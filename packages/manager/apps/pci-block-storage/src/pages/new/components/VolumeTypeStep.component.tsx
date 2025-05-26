@@ -1,14 +1,6 @@
+import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
-  OsdsButton,
-  OsdsMessage,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
   ODS_MESSAGE_TYPE,
   ODS_TEXT_COLOR_HUE,
   ODS_TEXT_COLOR_INTENT,
@@ -30,6 +22,7 @@ import { MULTI_ATTACH_INFO_URL } from '@/constants';
 import { Encryption } from './Encryption';
 import { EncryptionType } from '@/api/select/volume';
 import ExternalLink from '@/components/ExternalLink';
+import { Button } from '@/components/button/Button';
 
 export interface VolumeTypeStepProps {
   projectId: string;
@@ -153,9 +146,9 @@ export function VolumeTypeStep({
       )}
       {volumeType && !step.isLocked && (
         <div className="mt-8">
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.md}
-            color={ODS_THEME_COLOR_INTENT.primary}
+          <Button
+            size="md"
+            color="primary"
             onClick={() =>
               onSubmit(
                 volumeType.name,
@@ -163,10 +156,12 @@ export function VolumeTypeStep({
                 encryptionType,
               )
             }
+            actionName="select_volume_add"
+            actionValues={[volumeType.name]}
             className="w-fit"
           >
             {t('common_stepper_next_button_label')}
-          </OsdsButton>
+          </Button>
         </div>
       )}
     </>
