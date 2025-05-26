@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.129.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.128.1...@ovh-ux/manager-container-app@0.129.0) (2025-05-26)
+
+
+### Bug Fixes
+
+* **container:** center chevron in button on public cloud sidebar ([25ba909](https://github.com/ovh/manager/commit/25ba909d7f631396cae810d7ac303cc0897cdc71)), closes [#MANAGER-18358](https://github.com/ovh/manager/issues/MANAGER-18358)
+* **pnr:** remove eloquant comment and resolve lvl1 issue ([c263643](https://github.com/ovh/manager/commit/c2636431cefb54773afc1183a1c34bc40fbc13d9)), closes [#MANAGER-18065](https://github.com/ovh/manager/issues/MANAGER-18065)
+
+
+### Features
+
+* **hub:** update the service wording in the hub ([51bc841](https://github.com/ovh/manager/commit/51bc841dd29e6296e07923bed61bd172afabba26)), closes [#MANAGER-16272](https://github.com/ovh/manager/issues/MANAGER-16272)
+
+
+
+
+
 ## [0.128.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.128.0...@ovh-ux/manager-container-app@0.128.1) (2025-05-23)
 
 

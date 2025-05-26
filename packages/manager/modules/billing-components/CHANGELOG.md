@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.17.1...@ovh-ux/manager-billing-components@4.18.0) (2025-05-26)
+
+
+### Features
+
+* **billing:** move services list to its dedicated route ([a516b64](https://github.com/ovh/manager/commit/a516b64a377d21060072c17586d76b0549a948a2)), closes [#MANAGER-17700](https://github.com/ovh/manager/issues/MANAGER-17700)
+
+
+
+
+
 ## [4.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.17.0...@ovh-ux/manager-billing-components@4.17.1) (2025-05-23)
 
 
