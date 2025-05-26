@@ -12,11 +12,13 @@ import { EmailAccountItem } from './EmailAccountsDatagrid.component';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { ResourceStatus } from '@/data/api';
+import { ResourceStatus, ServiceBillingState } from '@/data/api';
 import {
+  CANCEL_SLOT,
   DELETE_EMAIL_ACCOUNT,
   EDIT_EMAIL_ACCOUNT,
   GO_EMAIL_ACCOUNT_ALIASES,
+  UNDO_CANCEL_SLOT,
 } from '@/tracking.constants';
 
 interface ActionButtonEmailAccountProps {
@@ -70,6 +72,33 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
     navigate(hrefDeleteEmailAccount);
   };
 
+  const hrefCancelSlot = useGenerateUrl(`./slot/${item.slotId}/cancel`, 'path');
+
+  const handleCancelSlotClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [CANCEL_SLOT],
+    });
+    navigate(hrefCancelSlot);
+  };
+
+  const hrefUndoCancelSlot = useGenerateUrl(
+    `./slot/${item.slotId}/undo_cancel`,
+    'path',
+  );
+
+  const handleUndoCancelSlotClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [UNDO_CANCEL_SLOT],
+    });
+    navigate(hrefUndoCancelSlot);
+  };
+
   const actionItems = [
     {
       id: 1,
@@ -94,6 +123,28 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
       color: ODS_BUTTON_COLOR.critical,
     },
   ];
+
+  if (item?.service?.state === ServiceBillingState.AUTOMATIC_RENEWAL) {
+    actionItems.push({
+      id: actionItems.length + 1,
+      onClick: handleCancelSlotClick,
+      urn: platformUrn,
+      iamActions: [IAM_ACTIONS.account.edit],
+      label: t('terminate'),
+      color: ODS_BUTTON_COLOR.critical,
+    });
+  }
+
+  if (item?.service?.state === ServiceBillingState.CANCELATION_PLANNED) {
+    actionItems.push({
+      id: actionItems.length + 1,
+      onClick: handleUndoCancelSlotClick,
+      urn: platformUrn,
+      iamActions: [IAM_ACTIONS.account.edit],
+      label: t('undo_cancel_slot'),
+      color: ODS_BUTTON_COLOR.critical,
+    });
+  }
 
   return (
     <ActionMenu

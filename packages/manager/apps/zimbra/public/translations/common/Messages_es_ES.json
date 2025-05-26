@@ -94,5 +94,15 @@
   "select_slot": "Seleccionar un plan",
   "offer": "Plan",
   "monthly": "Mensual",
-  "renewal_at": "Renovación el {{ date }}"
+  "renewal_at": "Renovación el {{ date }}",
+  "terminate": "Eliminar",
+  "cancel_slot_success_message": "La solicitud de baja se ha enviado correctamente. Se ejecutará en unos instantes.",
+  "cancel_slot_error_message": "No se ha podido completar la solicitud de baja. Por favor, vuelva a intentarlo en unos instantes. {{ error }}",
+  "undo_cancel_slot_success_message": "La solicitud de anulación de la baja se ha enviado correctamente. Se ejecutará en unos instantes.",
+  "undo_cancel_slot_error_message": "No se ha podido completar la solicitud de anulación de la baja. Por favor, vuelva a intentarlo en unos instantes. {{ error }}",
+  "cancel_slot": "Sí, cancelar",
+  "cancel_slot_refuse": "No, denegar",
+  "undo_cancel_slot": "Cancelar la baja",
+  "cancel_slot_title": "Dar de baja el servicio Zimbra {{ offer }}",
+  "undo_cancel_slot_title": "Reactivar la renovación para mi servicio Zimbra {{ offer }}"
 }

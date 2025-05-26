@@ -25,5 +25,11 @@
   "zimbra_account_datagrid_renewal_date": "Scadenza",
   "zimbra_account_datagrid_renewal_type": "Rinnovo",
   "zimbra_account_configured": "Account configurati ({{ value }})",
-  "zimbra_account_unconfigured": "Account non configurati ({{ value }})"
+  "zimbra_account_unconfigured": "Account non configurati ({{ value }})",
+  "zimbra_account_cancel_modal_content": "L'account email <strong>{{ email }}</strong> e tutti i dati associati saranno eliminati definitivamente al termine del periodo di impegno contrattuale del servizio.",
+  "zimbra_slot_cancel_modal_content": "Il servizio verrà disattivato al termine del periodo di impegno contrattuale.",
+  "zimbra_slot_cancel_modal_confirm": "Vuoi procedere alla disattivazione del servizio?",
+  "zimbra_slot_undo_cancel_modal_content": "Attivando il rinnovo automatico, il tuo servizio resterà attivo anche dopo la data di scadenza dell’impegno contrattuale.",
+  "zimbra_slot_undo_cancel_modal_confirm": "Vuoi riattivare il rinnovo automatico del servizio?",
+  "zimbra_slot_modal_renew_date": "Fine dell’impegno contrattuale: {{ renewDate }}"
 }

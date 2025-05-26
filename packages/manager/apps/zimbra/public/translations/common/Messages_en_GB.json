@@ -94,5 +94,15 @@
   "select_slot": "Select a plan",
   "offer": "Service plan",
   "monthly": "Monthly",
-  "renewal_at": "Renews on {{ date }}"
+  "renewal_at": "Renews on {{ date }}",
+  "terminate": "Cancel",
+  "cancel_slot_success_message": "Your cancellation request has been processed. It will be executed in a few moments.",
+  "cancel_slot_error_message": "Unable to complete your cancellation request. Please try again in a few moments. {{ error }}",
+  "undo_cancel_slot_success_message": "Your cancellation undo request has been processed. It will be executed in a few moments.",
+  "undo_cancel_slot_error_message": "Unable to complete your cancellation undo request. Please try again in a few moments. {{ error }}",
+  "cancel_slot": "Yes, cancel",
+  "cancel_slot_refuse": "No, dismiss",
+  "undo_cancel_slot": "Undo cancellation",
+  "cancel_slot_title": "Cancel my Zimbra {{ offer }} service",
+  "undo_cancel_slot_title": "Re-enable renewal for my Zimbra {{ offer }} service"
 }

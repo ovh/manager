@@ -13,5 +13,7 @@ export * from './organization/useOrganization';
 export * from './organization/useOrganizations';
 export * from './platform/usePlatform';
 export * from './slot/useSlots';
+export * from './slot/useSlot';
 export * from './services/useSlotServices';
+export * from './services/useSlotService';
 export * from './task/useTasks';
