@@ -10,8 +10,8 @@
   "cloud_connect_pop_label": "PoP",
   "cloud_connect_delivery_label": "Fecha de entrega",
   "cloud_connect_vrack_label": "vRack",
-  "cloud_connect_status_label": "Estatus",
-  "cloud_connect_status_label_active": "OK",
+  "cloud_connect_status_label": "Estado del servicio",
+  "cloud_connect_status_label_active": "Activo",
   "cloud_connect_status_label_creating": "Creando...",
   "cloud_connect_status_label_deleted": "Eliminado",
   "cloud_connect_status_label_suspended": "Suspendido",
@@ -37,5 +37,6 @@
   "cloud_connect_order_follow_up_label_FINALIZING": "Finalización",
   "cloud_connect_order": "Contratar",
   "cloud_connect_active_notifications_label": "Notificaciones activas",
-  "cloud_connect_manage_notifications_label": "Gestión de notificaciones"
+  "cloud_connect_manage_notifications_label": "Gestión de notificaciones",
+  "cloud_connect_status_label_closed": "Cerrado"
 }
