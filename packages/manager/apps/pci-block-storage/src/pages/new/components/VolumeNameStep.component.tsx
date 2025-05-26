@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { ODS_INPUT_TYPE, ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ButtonType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { StepState } from '@/pages/new/hooks/useStep';
 
 interface VolumeNameStepProps {
@@ -24,6 +25,8 @@ export function VolumeNameStep({
 }: Readonly<VolumeNameStepProps>) {
   const { t } = useTranslation('add');
   const { t: tStepper } = useTranslation('stepper');
+  const { trackClick } = useOvhTracking();
+
   const [volumeName, setVolumeName] = useState('');
   const [isInputTouched, setIsInputTouched] = useState(false);
   const missingNameError = isInputTouched && !volumeName;
@@ -59,7 +62,14 @@ export function VolumeNameStep({
             size={ODS_BUTTON_SIZE.md}
             color={ODS_THEME_COLOR_INTENT.primary}
             {...(!volumeName ? { disabled: true } : {})}
-            onClick={() => onSubmit(volumeName)}
+            onClick={() => {
+              trackClick({
+                buttonType: ButtonType.button,
+                actions: ['name', 'add_name'],
+              });
+
+              onSubmit(volumeName);
+            }}
           >
             {tStepper('common_stepper_next_button_label')}
           </OsdsButton>
