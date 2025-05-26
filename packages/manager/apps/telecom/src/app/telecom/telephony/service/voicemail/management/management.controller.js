@@ -15,8 +15,21 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailManageme
   $window,
   TucToastError,
   OvhApiTelephony,
+  VoicemailManagmentService,
 ) {
   const self = this;
+  this.VoicemailManagmentService = VoicemailManagmentService;
+
+  this.isOpenModal = false;
+  this.isTranscriptInBeta = true;
+  this.activeTranscript = '';
+  this.activeDownloadUrl = '';
+
+  this.resetModalInfo = function resetModalInfo() {
+    this.isOpenModal = false;
+    this.activeTranscript = '';
+    this.activeDownloadUrl = '';
+  };
 
   function fetchMessageList() {
     return OvhApiTelephony.Voicemail()
@@ -169,6 +182,91 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailManageme
         });
     }
     return $q.when(null);
+  };
+
+  this.downloadMessage = function downloadMessage(message) {
+    set(message, 'pendingDownload', true);
+    return self
+      .fetchMessageFile(message)
+      .then((info) => {
+        // eslint-disable-next-line no-param-reassign
+        $window.location.href = info.url;
+      })
+      .catch((err) => new TucToastError(err))
+      .finally(() => {
+        set(message, 'pendingDownload', false);
+      });
+  };
+
+  this.getTranscript = function getTranscript(message) {
+    /**
+     * Fetching a transcript is a little bit tricky because if file state
+     * is not "done" the url will return doing.
+     * So we have to poll the query until the file state is "done"
+     * or until the call fails.
+     * Then we have to download the transcript and return it.
+     */
+    const tryDownload = function tryDownload() {
+      return VoicemailManagmentService.getTranscriptURL(
+        $stateParams.billingAccount,
+        $stateParams.serviceName,
+        message.id,
+      ).then((info) => {
+        if (info.status === 'error') {
+          return $q.reject({
+            statusText: 'Unable to download message',
+          });
+        }
+        if (info.status === 'done') {
+          return VoicemailManagmentService.getTranscriptText(info.url)
+            .then((txt) => {
+              return $q.when({
+                transcriptUrl: info.url,
+                transcriptText: txt,
+              });
+            })
+            .catch(() => {
+              return $q.reject({
+                statusText: 'Unable to download message',
+              });
+            });
+        }
+        if (info.status === 'doing') {
+          // file is not ready to download, just retry
+          return $timeout(() => {
+            return tryDownload();
+          }, 1000);
+        }
+        // Unknown status
+        return $q.reject({
+          statusText: 'Unable to download message',
+        });
+      });
+    };
+    return tryDownload();
+  };
+
+  this.downloadActiveTranscript = function downloadActiveTranscript() {
+    if (this.activeDownloadUrl === '') return;
+    // eslint-disable-next-line no-param-reassign
+    $window.location.href = this.activeDownloadUrl;
+    this.resetModalInfo();
+  };
+
+  this.openTranscriptModal = function openTranscriptModal(message) {
+    set(message, 'pendingTranscript', true);
+
+    return this.getTranscript(message)
+      .then(({ transcriptText, transcriptUrl }) => {
+        // Now we should download the text from S3 and display it in the modal
+        this.isOpenModal = true;
+        this.activeTranscript = transcriptText.replace(/^[\r\n]+/, '');
+        this.activeDownloadUrl = transcriptUrl;
+      })
+      .catch((err) => new TucToastError(err))
+      .finally(() => {
+        set(message, 'pendingTranscript', false);
+      });
   };
 
   this.downloadMessage = function downloadMessage(message) {
