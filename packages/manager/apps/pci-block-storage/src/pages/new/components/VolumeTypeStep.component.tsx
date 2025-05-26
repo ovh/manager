@@ -12,6 +12,7 @@ import {
 
 import { useTranslation } from 'react-i18next';
 import { useMemo, useState } from 'react';
+import { ButtonType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useTranslateBytes } from '@/pages/new/hooks/useTranslateBytes';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
@@ -128,6 +129,7 @@ export function VolumeTypeStep({
 }: Readonly<VolumeTypeStepProps>) {
   const { t } = useTranslation('stepper');
   const { data } = useVolumeCatalog(projectId);
+  const { trackClick } = useOvhTracking();
 
   const [volumeType, setVolumeType] = useState<TVolumeAddon>(undefined);
 
@@ -163,7 +165,13 @@ export function VolumeTypeStep({
           <OsdsButton
             size={ODS_BUTTON_SIZE.md}
             color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => onSubmit(volumeType)}
+            onClick={() => {
+              trackClick({
+                buttonType: ButtonType.button,
+                actions: ['select_volume', `add_${volumeType.name}`],
+              });
+              onSubmit(volumeType);
+            }}
             className="w-fit"
           >
             {t('common_stepper_next_button_label')}

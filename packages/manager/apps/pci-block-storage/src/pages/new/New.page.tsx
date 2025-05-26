@@ -21,9 +21,14 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import {
+  PageType,
+  useOvhTracking,
+  usePageTracking,
+  ShellContext,
+} from '@ovh-ux/manager-react-shell-client';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import HidePreloader from '@/core/HidePreloader';
 import { VolumeTypeStep } from './components/VolumeTypeStep.component';
 import { CapacityStep } from './components/CapacityStep.component';
@@ -48,6 +53,8 @@ export default function NewPage(): JSX.Element {
   const isDiscovery = isDiscoveryProject(project);
   const { addError, addSuccess, clearNotifications } = useNotifications();
   const stepper = useVolumeStepper(projectId);
+  const { trackPage } = useOvhTracking();
+  const pageTracking = usePageTracking();
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   const { addVolume } = useAddVolume({
@@ -58,6 +65,11 @@ export default function NewPage(): JSX.Element {
     volumeType: stepper.form.volumeType?.name,
     availabilityZone: stepper.form.availabilityZone,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: pageTracking.pageName,
+      });
+
       navigate('..');
       addSuccess(
         <Translation ns="add">
@@ -71,6 +83,11 @@ export default function NewPage(): JSX.Element {
       );
     },
     onError: (err: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: pageTracking.pageName,
+      });
+
       stepper.validation.step.unlock();
       addError(
         <Translation ns="add">
