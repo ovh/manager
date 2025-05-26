@@ -454,6 +454,7 @@ pciNode.children = [
         id: 'pci-databases-analytics-analysis',
         idAttr: 'pci-databases-analytics-analysis-link',
         translation: 'sidebar_pci_analytics_data_analysis',
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         serviceType: 'CLOUD_PROJECT_DATABASE',
         routing: {
           application: 'public-cloud',
