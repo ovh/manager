@@ -25,5 +25,11 @@
   "zimbra_account_datagrid_renewal_date": "Vencimento",
   "zimbra_account_datagrid_renewal_type": "Renovação",
   "zimbra_account_configured": "Contas configuradas ({{ value }})",
-  "zimbra_account_unconfigured": "Contas não configuradas ({{ value }})"
+  "zimbra_account_unconfigured": "Contas não configuradas ({{ value }})",
+  "zimbra_account_cancel_modal_content": "A conta de e-mail <strong>{{ email }}</strong> e todos os seus dados serão definitivamente eliminados no final do período de compromisso do serviço.",
+  "zimbra_slot_cancel_modal_content": "O seu serviço será eliminado ao fim do seu período de compromisso.",
+  "zimbra_slot_cancel_modal_confirm": "Pretende proceder à rescisão do seu serviço?",
+  "zimbra_slot_undo_cancel_modal_content": "Ao ativar a renovação automática, o seu serviço será mantido após a data de fim do seu compromisso.",
+  "zimbra_slot_undo_cancel_modal_confirm": "Pretende reativar a renovação automática do seu serviço?",
+  "zimbra_slot_modal_renew_date": "Fim do compromisso: {{ renewDate }}"
 }
