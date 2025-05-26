@@ -7,10 +7,6 @@ import {
 } from '../../projects.constant';
 
 const getPaymentMethodTimeoutLimit = 30000;
-const ANTI_FRAUD = {
-  CASE_FRAUD_REFUSED: '(error 906)',
-  POLLING_INTERVAL: 2000,
-};
 
 export default class PciProjectNewPaymentCtrl {
   /* @ngInject */
@@ -44,6 +40,13 @@ export default class PciProjectNewPaymentCtrl {
     this.PciProjectsService = PciProjectsService;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
+
+    this.ANTI_FRAUD = {
+      CASE_FRAUD_REFUSED: this.$translate.instant(
+        'pci_projects_payment_fraud_refused',
+      ),
+      POLLING_INTERVAL: 2000,
+    };
 
     // other attributes
     [
@@ -208,7 +211,7 @@ export default class PciProjectNewPaymentCtrl {
             this.startAntiFraudChecker(resolve, order);
           }
         });
-    }, ANTI_FRAUD.POLLING_INTERVAL);
+    }, this.ANTI_FRAUD.POLLING_INTERVAL);
   }
 
   manageProjectCreation() {
@@ -259,7 +262,7 @@ export default class PciProjectNewPaymentCtrl {
         return null;
       })
       .catch(({ data }) => {
-        if (data.message.includes(ANTI_FRAUD.CASE_FRAUD_REFUSED)) {
+        if (data.message.includes(this.ANTI_FRAUD.CASE_FRAUD_REFUSED)) {
           this.trackPage('antifraud-error');
           this.CucCloudMessage.error(
             this.$translate.instant(
