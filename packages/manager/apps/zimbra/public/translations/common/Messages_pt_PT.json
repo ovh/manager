@@ -94,5 +94,15 @@
   "select_slot": "Selecionar uma solução",
   "offer": "Plano",
   "monthly": "Mensal",
-  "renewal_at": "Renovação a {{ date }}"
+  "renewal_at": "Renovação a {{ date }}",
+  "terminate": "Rescindir",
+  "cancel_slot_success_message": "O seu pedido de rescisão foi registado com êxito. Será executado dentro de alguns instantes.",
+  "cancel_slot_error_message": "Não foi possível finalizar o seu pedido de rescisão. Tente novamente mais tarde. {{ error }}",
+  "undo_cancel_slot_success_message": "O seu pedido de anulação da rescisão foi registado. Será executado dentro de alguns instantes.",
+  "undo_cancel_slot_error_message": "Não foi possível finalizar o seu pedido de anulação da rescisão. Tente novamente mais tarde. {{ error }}",
+  "cancel_slot": "Sim, rescindir",
+  "cancel_slot_refuse": "Não, recusar",
+  "undo_cancel_slot": "Anular rescisão",
+  "cancel_slot_title": "Rescindir o meu serviço Zimbra {{ offer }}",
+  "undo_cancel_slot_title": "Reativar a renovação do meu serviço Zimbra {{ offer }}"
 }

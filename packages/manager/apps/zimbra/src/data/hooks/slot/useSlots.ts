@@ -18,6 +18,7 @@ import { useSlotServices } from '@/data/hooks';
 
 export type SlotWithService = {
   id: string;
+  email?: string;
   offer: keyof typeof ZimbraOffer;
   service?: SlotService;
 };

@@ -25,5 +25,11 @@
   "zimbra_account_datagrid_renewal_date": "Data wygaśnięcia",
   "zimbra_account_datagrid_renewal_type": "Odnowienie",
   "zimbra_account_configured": "Liczba skonfigurowanych kont: ({{value}})",
-  "zimbra_account_unconfigured": "Liczba nieskonfigurowanych kont: ({{value}})"
+  "zimbra_account_unconfigured": "Liczba nieskonfigurowanych kont: ({{value}})",
+  "zimbra_account_cancel_modal_content": "Konto e-mail <strong>{{email}}</strong> i wszystkie powiązane z nim dane zostaną definitywnie usunięte po zakończeniu umowy.",
+  "zimbra_slot_cancel_modal_content": "Usługa zostanie usunięta po zakończeniu umowy.",
+  "zimbra_slot_cancel_modal_confirm": "Czy chcesz  zrezygnować z usługi?",
+  "zimbra_slot_undo_cancel_modal_content": "Jeśli włączysz automatyczne odnawianie, usługa będzie działać po dacie zakończenia umowy.",
+  "zimbra_slot_undo_cancel_modal_confirm": "Czy chcesz ponownie włączyć automatyczne odnawianie usługi?",
+  "zimbra_slot_modal_renew_date": "Zakończenie umowy: {{renewDate}}"
 }

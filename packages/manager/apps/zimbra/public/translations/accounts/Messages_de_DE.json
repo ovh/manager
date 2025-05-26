@@ -25,5 +25,11 @@
   "zimbra_account_datagrid_renewal_date": "Verlängerungsdatum",
   "zimbra_account_datagrid_renewal_type": "Verlängerung",
   "zimbra_account_configured": "Konfigurierte Accounts ({{ value }})",
-  "zimbra_account_unconfigured": "Nicht konfigurierte Accounts ({{ value }})"
+  "zimbra_account_unconfigured": "Nicht konfigurierte Accounts ({{ value }})",
+  "zimbra_account_cancel_modal_content": "Der E-Mail-Account <strong>{{ email }}</strong> und alle zugehörigen Daten werden nach Ablauf der Vertragslaufzeit des Dienstes endgültig gelöscht.",
+  "zimbra_slot_cancel_modal_content": "Ihr Dienst wird nach Ablauf Ihrer Vertragslaufzeit gelöscht.",
+  "zimbra_slot_cancel_modal_confirm": "Möchten Sie Ihren Dienst kündigen?",
+  "zimbra_slot_undo_cancel_modal_content": "Wenn Sie die automatische Verlängerung aktivieren, wird Ihr Dienst nach dem Ablaufdatum Ihrer Vertragslaufzeit weitergeführt.",
+  "zimbra_slot_undo_cancel_modal_confirm": "Möchten Sie die automatische Verlängerung Ihres Dienstes erneut aktivieren?",
+  "zimbra_slot_modal_renew_date": "Ende der Vertragslaufzeit: {{ renewDate }}"
 }
