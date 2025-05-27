@@ -117,8 +117,8 @@ function GeneralInfos() {
           id: 'start-wizzard',
           value: (
             <Links
-              label={t('blocks_start_wizzard')}
-              onClickReturn={() => navigate(urls.installationInitialStep)}
+              label={t('blocks_start_wizard')}
+              onClickReturn={() => navigate(urls.installationWizardStep)}
               type={LinkType.next}
             />
           ),
