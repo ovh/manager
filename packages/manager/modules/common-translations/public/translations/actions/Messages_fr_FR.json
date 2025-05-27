@@ -39,5 +39,7 @@
   "back": "Retour",
   "back_to": "Retour à {{ value }}",
   "previous": "Précédent",
-  "next": "Suivant"
+  "next": "Suivant",
+  "renew": "Renouveler",
+  "restore": "Restaurer"
 }

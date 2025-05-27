@@ -7,4 +7,5 @@ export const NAMESPACES = {
   FORM: `${NAMESPACE_PREFIX}/form`,
   IAM: `${NAMESPACE_PREFIX}/iam`,
   SERVICE: `${NAMESPACE_PREFIX}/service`,
+  COUNTRIES: `${NAMESPACE_PREFIX}/countries`,
 };
