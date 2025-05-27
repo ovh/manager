@@ -6615,6 +6615,14 @@
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
 
+"@ovh-ux/manager-pci-common@file:./packages/manager/apps/pci-block-storage/ovh-ux-manager-pci-common-v0.18.0-deployment-tracking.tgz":
+  version "0.18.0-deployment-tracking"
+  resolved "file:./packages/manager/apps/pci-block-storage/ovh-ux-manager-pci-common-v0.18.0-deployment-tracking.tgz#fffcb5546c93e8af7e1ae6461049aa18a7963c69"
+  dependencies:
+    clsx "2.1.1"
+    date-fns "^3.6.0"
+    lodash.isequal "^4.5.0"
+
 "@ovh-ux/manager-react-components@^1.41.1":
   version "1.45.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.45.0.tgz#e48f51c2d225660fbd37a99e9eda5a8e86262ab3"
@@ -6708,6 +6716,11 @@
     "@tanstack/react-query" "^5.64.1"
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
+
+"@ovh-ux/manager-tests-setup@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-tests-setup/-/manager-tests-setup-0.1.0.tgz#d6924e90b7a463a586ff2a1c4c253205a02d12f1"
+  integrity sha512-YKVUnVwAQhpoZ2zwgxMxVB0iHzD5IO6/lnBEvdv3PqgqknCnfdqfXdCXLx794rfGnnfgu2+Eg5MALo+HkTh1gQ==
 
 "@ovh-ux/manager-tests-setup@latest":
   version "0.2.0"
