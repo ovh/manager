@@ -161,7 +161,7 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     NL:
       '/en-gb-sap-hana-install-ovhcloud-backint-agent?id=kb_article_view&sysparm_article=KB0059474',
   },
-  pre_installation_wizzard: {
+  pre_installation_wizard: {
     FR:
       '/fr-sap-installation-wizard?id=kb_article_view&sysparm_article=KB0067018',
     QC:
