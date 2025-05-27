@@ -9,7 +9,7 @@ import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { okmsMock } from '@/mocks/kms/okms.mock';
 import { credentialMock } from '@/mocks/credentials/credentials.mock';
-import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
+import { KMS_FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 const mockPageUrl = KMS_ROUTES_URLS.credentialDashboard(
@@ -28,7 +28,7 @@ describe('Credential dashboard test suite', () => {
   });
 
   it('should display the credential dashboard page', async () => {
-    await renderTestApp(mockPageUrl, { feature: FEATURES.LOGS });
+    await renderTestApp(mockPageUrl, { feature: KMS_FEATURES.LOGS });
 
     await waitFor(() => {
       expect(

@@ -10,7 +10,7 @@ import { UseQueryResult } from '@tanstack/react-query';
 import { Navigate } from 'react-router-dom';
 import { ApiResponse } from '@ovh-ux/manager-core-api';
 import KmsLogs from './Logs.page';
-import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
+import { KMS_FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 import { OKMS } from '@/types/okms.type';
 
 vi.mock('react-router-dom', async (importOriginal) => {
@@ -45,7 +45,7 @@ describe('Logs page tests suite', () => {
 
   it('should display logs if logs feature is enabled', async () => {
     vi.mocked(useFeatureAvailability).mockReturnValue({
-      data: { [FEATURES.LOGS]: true },
+      data: { [KMS_FEATURES.LOGS]: true },
     } as UseFeatureAvailabilityResult);
 
     renderLogsPage();
@@ -72,7 +72,7 @@ describe('Logs page tests suite', () => {
 
   it('should redirect to dashboard if logs feature is disabled', async () => {
     vi.mocked(useFeatureAvailability).mockReturnValue({
-      data: { [FEATURES.LOGS]: false },
+      data: { [KMS_FEATURES.LOGS]: false },
     } as UseFeatureAvailabilityResult);
 
     renderLogsPage();
