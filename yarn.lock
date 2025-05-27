@@ -7044,6 +7044,14 @@
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
 
+"@ovh-ux/manager-pci-common@file:./packages/manager/apps/pci-block-storage/ovh-ux-manager-pci-common-v0.18.0-deployment-tracking.tgz":
+  version "0.18.0-deployment-tracking"
+  resolved "file:./packages/manager/apps/pci-block-storage/ovh-ux-manager-pci-common-v0.18.0-deployment-tracking.tgz#fffcb5546c93e8af7e1ae6461049aa18a7963c69"
+  dependencies:
+    clsx "2.1.1"
+    date-fns "^3.6.0"
+    lodash.isequal "^4.5.0"
+
 "@ovh-ux/manager-react-components@^1.41.1":
   version "1.45.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.45.0.tgz#e48f51c2d225660fbd37a99e9eda5a8e86262ab3"
