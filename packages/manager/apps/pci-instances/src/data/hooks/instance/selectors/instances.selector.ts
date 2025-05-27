@@ -180,6 +180,17 @@ const mapInstanceActions = (
     return acc;
   }, new Map() as TInstanceActions);
 
+export const instanceSelector = (
+  instanceDto: TInstanceDto,
+  projectUrl: string,
+) => ({
+  ...instanceDto,
+  status: getInstanceStatus(instanceDto.status),
+  addresses: mapInstanceAddresses(instanceDto),
+  actions: mapInstanceActions(instanceDto, projectUrl),
+  taskState: getInstanceTaskState(instanceDto.taskState),
+});
+
 export const instancesSelector = (
   { pages }: InfiniteData<TInstanceDto[], number>,
   limit: number,
@@ -187,10 +198,4 @@ export const instancesSelector = (
 ): TInstance[] =>
   pages
     .flatMap((page) => (page.length > limit ? page.slice(0, limit) : page))
-    .map((instanceDto) => ({
-      ...instanceDto,
-      status: getInstanceStatus(instanceDto.status),
-      addresses: mapInstanceAddresses(instanceDto),
-      actions: mapInstanceActions(instanceDto, projectUrl),
-      taskState: getInstanceTaskState(instanceDto.taskState),
-    }));
+    .map((instanceDto) => instanceSelector(instanceDto, projectUrl));
