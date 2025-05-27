@@ -89,6 +89,17 @@ sioUniverse.children = [
           hash: '#/',
         },
       },
+      {
+        id: 'security-identity-operations-sms',
+        idAttr: 'security-identity-operations-sms-link',
+        translation: 'sidebar_security_identity_operations_sms',
+        universe: sioUniverse.id,
+        features: ['key-management-service:secret-management-service'],
+        routing: {
+          application: 'key-management-service',
+          hash: '#/secret-management-service',
+        },
+      },
     ],
   },
   {
