@@ -8,12 +8,38 @@ import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import InstallationFormLayout from '@/components/Form/FormLayout.component';
 
+type ServiceNameData = {
+  serviceName: string;
+  serviceDisplayName: string;
+};
+type DatacenterData = {
+  datacenterId: number;
+  datacenterName: string;
+};
+type ClusterData = {
+  clusterId: number;
+  clusterName: string;
+};
+
+export const getSelectDefaultValue = <T extends string | number>(
+  value: T,
+  list: T[] | undefined,
+): string | undefined => (list?.includes(value) ? `${value}` : undefined);
+
 export default function InstallationInitialStep() {
   const { t } = useTranslation('installation');
   const { initializeAndProceed } = useFormSteps();
   const {
     values: { serviceName, datacenterId, clusterName },
     setValues,
+    initializationState: {
+      isPrefilled,
+      prefilledData: {
+        serviceName: prefilledServiceName,
+        datacenterId: prefilledVdcId,
+        clusterName: prefilledClusterName,
+      },
+    },
   } = useInstallationFormContext();
 
   const {
@@ -37,19 +63,36 @@ export default function InstallationInitialStep() {
     datacenterId: datacenterId?.toString(),
   });
 
-  const isError = React.useMemo(
-    () =>
-      datacenterId &&
-      !clusters?.length &&
-      !isLoadingClusters &&
-      !isClustersError,
-    [clusters, isLoadingClusters, isClustersError],
-  );
+  const serviceNames = services?.map((s) => s?.serviceName);
+  const datacenterIds = datacentres?.map((d) => d?.datacenterId);
+  const clusterNames = clusters?.map((c) => c?.name);
 
-  const isStepValid = React.useMemo(() => clusterName && !isError, [
-    clusterName,
-    isError,
-  ]);
+  const isError =
+    serviceName &&
+    datacenterId &&
+    !clusters?.length &&
+    !isLoadingClusters &&
+    !isClustersError;
+
+  const isLoading =
+    isLoadingServices || isLoadingDatacentres || isLoadingClusters;
+  const isFormFilled = serviceName && datacenterId && clusterName;
+  const isStepValid = !isLoading && isFormFilled && !isError;
+
+  const getServiceData = (service: string | null): ServiceNameData => ({
+    serviceName: service || '',
+    serviceDisplayName:
+      services?.find((s) => s?.serviceName === service)?.displayName || '',
+  });
+  const getDatacenterData = (vdcId: number | null): DatacenterData => ({
+    datacenterId: vdcId || null,
+    datacenterName:
+      datacentres?.find((vdc) => vdc?.datacenterId === vdcId)?.name || '',
+  });
+  const getClusterData = (cluster: string | null): ClusterData => ({
+    clusterName: cluster || '',
+    clusterId: clusters?.find((c) => c?.name === cluster)?.clusterId || null,
+  });
 
   return (
     <InstallationFormLayout
@@ -68,17 +111,16 @@ export default function InstallationInitialStep() {
         optionLabelKey="displayName"
         isDisabled={isLoadingServices || isServicesError}
         isLoading={isLoadingServices}
-        defaultValue={serviceName}
-        handleChange={({ detail }) => {
+        defaultValue={getSelectDefaultValue(
+          isPrefilled ? prefilledServiceName : serviceName,
+          serviceNames,
+        )}
+        handleChange={(e) => {
           setValues((prev) => ({
             ...prev,
-            serviceName: detail.value,
-            serviceDisplayName:
-              services?.find((service) => service.serviceName === detail.value)
-                ?.displayName || '',
-            datacenterId: null,
-            datacenterName: null,
-            clusterName: null,
+            ...getServiceData(e.detail.value),
+            ...getDatacenterData(null),
+            ...getClusterData(null),
           }));
         }}
       />
@@ -91,15 +133,15 @@ export default function InstallationInitialStep() {
         optionLabelKey="name"
         isDisabled={!serviceName || isLoadingDatacentres || isDatacentresError}
         isLoading={isLoadingDatacentres}
-        defaultValue={datacenterId ? `${datacenterId}` : undefined}
-        handleChange={({ detail }) => {
+        defaultValue={getSelectDefaultValue(
+          isPrefilled ? prefilledVdcId : datacenterId,
+          datacenterIds,
+        )}
+        handleChange={(e) => {
           setValues((prev) => ({
             ...prev,
-            datacenterId: detail.value ? Number(detail.value) : null,
-            datacenterName:
-              datacentres?.find((vdc) => `${vdc.datacenterId}` === detail.value)
-                ?.name || '',
-            clusterName: null,
+            ...getDatacenterData(Number(e.detail.value)),
+            ...getClusterData(null),
           }));
         }}
         error={
@@ -116,15 +158,12 @@ export default function InstallationInitialStep() {
           !datacenterId || isLoadingClusters || isClustersError || isError
         }
         isLoading={!!datacenterId && isLoadingClusters}
-        defaultValue={clusterName}
-        handleChange={({ detail }) => {
-          setValues((prev) => ({
-            ...prev,
-            clusterName: detail.value,
-            clusterId:
-              clusters?.find((cluster) => cluster?.name === detail.value)
-                ?.clusterId || null,
-          }));
+        defaultValue={getSelectDefaultValue(
+          isPrefilled ? prefilledClusterName : clusterName,
+          clusterNames,
+        )}
+        handleChange={(e) => {
+          setValues((prev) => ({ ...prev, ...getClusterData(e.detail.value) }));
         }}
       />
     </InstallationFormLayout>

@@ -4,6 +4,7 @@ import {
   DEFAULT_APPLICATION_SERVER,
   DEFAULT_HANA_SERVER,
 } from '@/utils/defaultServers.constants';
+import { formMappers } from '@/mappers/formMappers';
 
 export const mockedValues: InstallationFormValues = {
   serviceName: 'pcc-145-239-132-226',
@@ -31,15 +32,15 @@ export const mockedValues: InstallationFormValues = {
   firewallService: true,
   firewallServer: false,
   firewallDatabase: false,
-  network: '',
-  netmask: '',
-  gateway: '',
+  network: 'network',
+  netmask: '1.1.1.1',
+  gateway: '3.3.3.3',
   passwordCrypted: false,
-  thickDatastorePolicy: '',
-  hanaServerOva: '',
-  hanaServerDatastore: '',
-  applicationServerOva: '',
-  applicationServerDatastore: '',
+  thickDatastorePolicy: 'storePolicy',
+  hanaServerOva: 'hanaOva',
+  hanaServerDatastore: 'hanaStore',
+  applicationServerOva: 'appOva',
+  applicationServerDatastore: 'appStore',
   hanaServers: [DEFAULT_HANA_SERVER],
   applicationServers: [DEFAULT_APPLICATION_SERVER],
   bucketBackint: {
@@ -69,3 +70,7 @@ export const mockedErrors = {
   domainName: '',
   osLicense: 'osLicense format is not valid',
 };
+
+export const mockedStructuredForm = formMappers.toStructured(mockedValues);
+
+export const mockedJSONSummary = JSON.stringify(mockedStructuredForm);

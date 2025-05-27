@@ -8,8 +8,10 @@ import {
 import { DeploymentType } from './sapCapabilities.type';
 import {
   ApplicationServer,
+  ApplicationServerExport,
   CommonServerConfig,
   HanaServer,
+  HanaServerExport,
 } from './servers.type';
 
 type InstallationForm = InitializationForm &
@@ -72,8 +74,49 @@ export type ServerConfigForm = CommonServerConfig & {
 };
 
 export type EnablementFormSchema = z.infer<typeof ENABLEMENT_FORM_SCHEMA>;
+type BucketBackint = z.infer<typeof ENABLEMENT_BUCKET_BACKINT>;
+type LogsDataPlatform = z.infer<typeof ENABLEMENT_LOGS_DATA_PLATFORM>;
 
 export type EnablementForm = {
-  bucketBackint?: z.infer<typeof ENABLEMENT_BUCKET_BACKINT>;
-  logsDataPlatform?: z.infer<typeof ENABLEMENT_LOGS_DATA_PLATFORM>;
+  bucketBackint?: BucketBackint;
+  logsDataPlatform?: LogsDataPlatform;
+};
+
+// structured form ready to be stringify according to the API
+export type StructuredInstallationForm = {
+  applicationServers: ApplicationServerExport[];
+  applicationType: string;
+  applicationVersion: string;
+  bucketBackint?: BucketBackint;
+  bucketSources: {
+    accessKey: string;
+    endpoint: string;
+    id: string;
+    secretKey: string;
+  };
+  clusterName: string;
+  deploymentType: DeploymentType;
+  domainName: string;
+  firewall: {
+    applicationServers: boolean;
+    centralServices: boolean;
+    hanaDatabase: boolean;
+  };
+  hanaServers: HanaServerExport[];
+  logsDataPlatform?: LogsDataPlatform;
+  osLicense?: string;
+  osUpdate: boolean;
+  passwords: {
+    masterSap: string;
+    masterSapHana: string;
+    sidadm: string;
+    system: string;
+  };
+  serviceName: string;
+  sids: {
+    sapHanaSid: string;
+    sapSid: string;
+  };
+  systemUsage: string;
+  vdcId: number;
 };
