@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Datagrid,
   ErrorBanner,
@@ -7,7 +7,6 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { TOngoingOperations } from 'src/types';
 import { useTranslation } from 'react-i18next';
-import Loading from '@/components/Loading/Loading';
 import { useOngoingOperationDatagridColumns } from '@/hooks/useOngoingOperationDatagridColumns';
 import { taskMeDns } from '@/constants';
 import { ParentEnum } from '@/enum/parent.enum';
@@ -15,9 +14,12 @@ import { ParentEnum } from '@/enum/parent.enum';
 export default function Domain() {
   const { t: tError } = useTranslation('web-ongoing-operations/error');
   const { notifications } = useNotifications();
+  const [searchInput, setSearchInput] = useState('');
+
+  const columns = useOngoingOperationDatagridColumns(ParentEnum.ZONE);
 
   const {
-    flattenData: dnsList,
+    flattenData,
     isError,
     totalCount,
     hasNextPage,
@@ -26,22 +28,26 @@ export default function Domain() {
     sorting,
     setSorting,
     filters,
+    search,
   } = useResourcesIcebergV6<TOngoingOperations>({
     route: taskMeDns.join('/'),
     queryKey: taskMeDns,
     pageSize: 30,
     disableCache: !!notifications.length,
+    columns,
   });
 
-  const columns = useOngoingOperationDatagridColumns(ParentEnum.ZONE, dnsList);
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      search.setSearchInput(searchInput.toLowerCase());
+    }, 300);
 
-  if (isLoading) {
-    return (
-      <div data-testid="listing-page-spinner">
-        <Loading />
-      </div>
-    );
-  }
+    return () => clearTimeout(debounce);
+  }, [searchInput]);
+
+  useEffect(() => {
+    search.onSearch(search.searchInput);
+  }, [search.searchInput]);
 
   if (isError) {
     return (
@@ -56,20 +62,24 @@ export default function Domain() {
 
   return (
     <React.Suspense>
-      {dnsList && (
-        <div data-testid="dns">
-          <Datagrid
-            columns={columns}
-            items={dnsList}
-            totalItems={totalCount || 0}
-            hasNextPage={hasNextPage && !isLoading}
-            onFetchNextPage={fetchNextPage}
-            sorting={sorting}
-            onSortChange={setSorting}
-            filters={filters}
-          />
-        </div>
-      )}
+      <div data-testid="datagrid">
+        <Datagrid
+          columns={columns}
+          items={flattenData || []}
+          totalItems={totalCount || 0}
+          hasNextPage={hasNextPage && !isLoading}
+          onFetchNextPage={fetchNextPage}
+          sorting={sorting}
+          onSortChange={setSorting}
+          filters={filters}
+          isLoading={isLoading}
+          search={{
+            searchInput,
+            setSearchInput,
+            onSearch: () => null,
+          }}
+        />
+      </div>
     </React.Suspense>
   );
 }
