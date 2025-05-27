@@ -177,6 +177,90 @@ export const OnboardingWithoutHeadingSection = () => (
 const meta: Meta<typeof OnboardingLayout> = {
   title: 'Manager React Components/Templates/Onboarding',
   component: OnboardingLayout,
+  argTypes: {
+    title: {
+      description: 'The main title of the onboarding layout',
+      control: 'text',
+      type: { required: true },
+    },
+    description: {
+      description:
+        'Rich text content displayed below the title. Can be a string or React node.',
+      control: 'text',
+    },
+    hideHeadingSection: {
+      description:
+        'When true, hides the entire heading section (title, description, buttons)',
+      control: 'boolean',
+      defaultValue: false,
+    },
+    orderButtonLabel: {
+      description: 'Label text for the order button',
+      control: 'text',
+    },
+    orderHref: {
+      description:
+        'URL to navigate to when order button is clicked. Opens in a new tab.',
+      control: 'text',
+    },
+    onOrderButtonClick: {
+      description: 'Callback function triggered when order button is clicked',
+      action: 'clicked',
+    },
+    isActionDisabled: {
+      description: 'Disables the order button when true',
+      control: 'boolean',
+      defaultValue: false,
+    },
+    orderIam: {
+      description: 'IAM configuration for the order button',
+      control: 'object',
+      table: {
+        type: {
+          summary:
+            '{ urn: string; iamActions: string[]; displayTooltip?: boolean }',
+        },
+      },
+    },
+    moreInfoHref: {
+      description: 'URL for the "More Info" button. Opens in a new tab.',
+      control: 'text',
+    },
+    moreInfoButtonLabel: {
+      description: 'Label text for the "More Info" button',
+      control: 'text',
+    },
+    moreInfoButtonIcon: {
+      description: 'Icon to display on the "More Info" button',
+      control: 'select',
+      options: ['externalLink', 'info', 'help'],
+      defaultValue: 'externalLink',
+    },
+    onMoreInfoButtonClick: {
+      description:
+        'Callback function triggered when "More Info" button is clicked',
+      action: 'clicked',
+    },
+    isMoreInfoButtonDisabled: {
+      description: 'Disables the "More Info" button when true',
+      control: 'boolean',
+      defaultValue: false,
+    },
+    img: {
+      description:
+        'Image configuration for the header. Extends standard img props.',
+      control: 'object',
+      table: {
+        type: {
+          summary: 'React.ComponentProps<"img">',
+        },
+      },
+    },
+    children: {
+      description: 'Child components to display below the header section',
+      control: false,
+    },
+  },
 };
 
 export default meta;

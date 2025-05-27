@@ -1,0 +1,77 @@
+import { Meta } from '@storybook/blocks';
+import { StorybookHeading } from '../../../../components/';
+
+<Meta title="Manager React Components/Hooks/useResourcesIcebergV2" />
+
+<StorybookHeading label="Overview" level={2} />
+
+The `useResourcesIcebergV2` hook is a data fetching utility designed to work with OVHcloud's Iceberg API v2. It provides a solution for handling pagination, searching, filtering and sorting capabilities.
+
+<StorybookHeading label="Features" level={3} />
+
+- Sorting functionality
+- Automatic data flattening
+- React Query integration for efficient data caching
+- Support for fetching all data at once
+
+<StorybookHeading label="Api" level={2} />
+
+<StorybookHeading label="Parameters" level={3} />
+
+The hook accepts the following parameters:
+
+```typescript
+interface IcebergV2HookParams<T> {
+  route: string;                    // The API endpoint to fetch data from
+  pageSize?: number;               // Number of items per page (default: from defaultPageSize)
+  queryKey: string[];             // Unique key for React Query cache
+  defaultSorting?: ColumnSort;    // Initial sorting configuration
+  shouldFetchAll?: boolean;       // Whether to fetch all data at once
+  ...options: UseInfiniteQueryOptions // Additional React Query options
+}
+```
+
+<StorybookHeading label="Return Value" level={3} />
+
+The hook returns an object with the following properties:
+
+```typescript
+{
+  flattenData: T[];                // All fetched data flattened into a single array
+  setSorting: (sort: ColumnSort) => void; // Function to update sorting
+  sorting: ColumnSort;             // Current sorting configuration
+  data: InfiniteData<IcebergFetchResultV2<T>>; // Raw query data
+  hasNextPage: boolean;            // Whether there are more pages to fetch
+  fetchNextPage: () => void;       // Function to fetch the next page
+  isError: boolean;                // Whether the query encountered an error
+  isLoading: boolean;              // Whether the query is loading
+  error: Error | null;             // Error object if query failed
+  status: 'idle' | 'loading' | 'success' | 'error'; // Query status
+}
+```
+
+<StorybookHeading label="Example Usage" level={3} />
+
+```tsx
+import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
+
+function MyComponent() {
+  const {
+    flattenData,
+    sorting,
+    setSorting,
+    hasNextPage,
+    fetchNextPage,
+  } = useResourcesIcebergV2({
+    route: '/api/v2/my-resources',
+    queryKey: ['my-resources'],
+    pageSize: 10,
+  });
+}
+```
+
+<StorybookHeading label="Notes" level={3} />
+
+- The hook uses React Query's `useInfiniteQuery` under the hood for efficient data caching and state management
+- When `shouldFetchAll` is true, it will automatically fetch all available data
+- The hook automatically flattens the paginated data into a single array for easier consumption
