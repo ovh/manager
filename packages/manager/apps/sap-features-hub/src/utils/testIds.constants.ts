@@ -5,4 +5,5 @@ export const testIds = {
   summaryUpdateCta: 'summary-update-cta',
   summaryFieldValue: 'summary-field-value',
   summaryDownloadLink: 'summary-download-link',
+  formFileUpload: 'installation-form-file-upload',
 } as const;
