@@ -1,0 +1,225 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guidelines/Github actions" />
+
+# GitHub Actions
+
+This document outlines the GitHub Actions workflows and templates used in our project for continuous integration, quality assurance, and project management.
+
+## Workflows
+
+### Quality Assurance
+
+#### Linter
+```yaml
+# .github/workflows/linter.yaml
+name: Linter
+on: [push, pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm run lint
+```
+Runs ESLint checks on every push and pull request to ensure code quality.
+
+#### Commit Lint
+```yaml
+# .github/workflows/commitlint.yaml
+name: Commit Lint
+on: [push, pull_request]
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm run commitlint
+```
+Ensures commit messages follow our conventional commit format.
+
+### Testing
+
+#### BDD Tests
+```yaml
+# .github/workflows/run-bdd-tests.yml
+name: BDD Tests
+on: [push, pull_request]
+jobs:
+  bdd-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm run test:bdd
+```
+Runs Behavior-Driven Development tests to ensure feature functionality.
+
+### Documentation
+
+#### GitHub Pages
+```yaml
+# .github/workflows/gh-pages.yaml
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm run build:docs
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+```
+Deploys documentation to GitHub Pages.
+
+### Project Management
+
+#### PR Triage
+```yaml
+# .github/workflows/pr-triage.yml
+name: PR Triage
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: PR Triage
+        uses: actions/github-script@v6
+```
+Automatically labels and assigns pull requests.
+
+#### Auto Label Merge Conflicts
+```yaml
+# .github/workflows/auto-label-merge-conflicts.yaml
+name: Auto Label Merge Conflicts
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Label Merge Conflicts
+        uses: actions/github-script@v6
+```
+Automatically labels pull requests with merge conflicts.
+
+### Release Management
+
+#### Auto PR Release
+```yaml
+# .github/workflows/auto-pr-release.yaml
+name: Auto PR Release
+on:
+  push:
+    branches: [main]
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create Release PR
+        uses: actions/github-script@v6
+```
+Automatically creates release pull requests.
+
+#### Release Branch Checker
+```yaml
+# .github/workflows/release-branch-checker.yaml
+name: Release Branch Checker
+on:
+  push:
+    branches: [main]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Release Branch
+        uses: actions/github-script@v6
+```
+Validates release branch status.
+
+## Templates
+
+### Pull Request Template
+Located at `.github/PULL_REQUEST_TEMPLATE.md`, this template helps contributors provide necessary information when creating pull requests.
+
+### Release Template
+Located at `.github/RELEASE_TEMPLATE.md`, this template standardizes the release process.
+
+### Issue Templates
+Located in `.github/ISSUE_TEMPLATE/`, these templates help users submit well-structured issues.
+
+## Configuration Files
+
+### CODEOWNERS
+Located at `.github/CODEOWNERS`, this file defines the default owners for different parts of the codebase.
+
+### Labeler
+Located at `.github/labeler.yml`, this configuration automatically labels pull requests based on file changes.
+
+## Best Practices
+
+1. **Workflow Organization**
+   - Separate workflows for different concerns
+   - Clear naming conventions
+   - Proper trigger conditions
+
+2. **Security**
+   - No sensitive data in logs
+   - Proper secret management
+   - Minimal permissions
+
+3. **Performance**
+   - Efficient caching
+   - Parallel job execution
+   - Resource optimization
+
+4. **Maintenance**
+   - Regular updates of actions
+   - Clear documentation
+   - Version pinning
+
+## Troubleshooting
+
+Common issues and their solutions:
+
+1. **Workflow Failures**
+   - Check Node.js version compatibility
+   - Verify dependency versions
+   - Review workflow logs
+
+2. **PR Issues**
+   - Check labeler configuration
+   - Verify CODEOWNERS file
+   - Review PR template
+
+3. **Release Issues**
+   - Check release template
+   - Verify branch protection rules
+   - Review release workflow
+
+
