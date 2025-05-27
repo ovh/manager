@@ -45,8 +45,8 @@
   "dedicatedCloud_USER_right_vlan_readonly": "Dostęp tylko do odczytu",
   "dedicatedCloud_USER_right_vlan_MANAGER": "Pozwala na zarządzanie grupami portów wirtualnego przełącznika (dodawanie, zmiana, usuwanie). Tylko dla SDDC i pakietów Hosted Private Cloud Premier.",
   "dedicatedCloud_USER_right_vlan_manager": "Pozwala na zarządzanie grupami portów wirtualnego przełącznika (dodawanie, zmiana, usuwanie). Tylko dla SDDC i pakietów Hosted Private Cloud Premier.",
-  "dedicatedCloud_USER_right_resources": "Dodawanie zasobów",
-  "dedicatedCloud_USER_right_resources_help": "Uprawnienia do dodawania dodatkowych zasobów za pomocą wtyczki OVH w vSphere Client",
+  "dedicatedCloud_USER_right_resources": "Zarządzanie hostami i przestrzenią dyskową",
+  "dedicatedCloud_USER_right_resources_help": "Zezwala na dodawanie i usuwanie hostów oraz przestrzeni dyskowej za pomocą wtyczki OVHcloud w kliencie vSphere.",
   "dedicatedCloud_USER_right_set_success": "Zmiana uprawnień dla {{t0}} dla centrum danych {{t1}} została przyjęta.",
   "dedicatedCloud_USER_right_set_fail": "Wystąpił błąd podczas modyfikacji uprawnień dla {{t0}} dla centrum danych {{t1}}"
 }
