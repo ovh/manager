@@ -29,6 +29,7 @@ import vrackAdd from '../add';
 import vrackSelectDialog from '../select-dialog';
 import vrackAddDialog from '../add-dialog';
 import vrackDeleteDialog from '../delete-dialog';
+import vrackNotEmptyModal from '../not-empty-modal';
 import vrackAssignedIp from '../vrack-associated-services/ipv6';
 import vrackMoveDialog from '../move-dialog/vrack-move-dialog.module';
 
@@ -36,7 +37,6 @@ import vrackDeleteModal from '../vrack-associated-services/ipv6/delete-dialog';
 import vrackAddModal from '../vrack-associated-services/ipv6/add-dialog';
 import IPv6SubnetAddModal from '../vrack-associated-services/ipv6/add-subnet';
 import IPv6SubnetDeleteModal from '../vrack-associated-services/ipv6/delete-subnet';
-import vrackTerminateModal from '../terminate-modal';
 
 const moduleName = 'ovhManagerVrackDetails';
 
@@ -58,11 +58,11 @@ angular
     vrackSelectDialog,
     vrackAddDialog,
     vrackDeleteDialog,
+    vrackNotEmptyModal,
     vrackMoveDialog,
     vrackAddModal,
     vrackDeleteModal,
     ApiV2ListHelper.moduleName,
-    vrackTerminateModal,
   ])
   .service('vrackService', service)
   .component('ovhManagerVrackComponent', component)
