@@ -2,15 +2,22 @@ import {
   GUIDES,
   LOAD_BALANCER_CONFIGURE_TRACKING,
   USING_LOAD_BALANCER_GUIDE_ID,
+  LOAD_BALANCER_MIGRATE_LINKS,
 } from './load-balancer.constants';
 
 import { getCriteria } from '../project.utils';
 
 export default class {
   /* @ngInject */
-  constructor(CucCloudMessage, PciLoadBalancerService, CHANGELOG) {
+  constructor(CucCloudMessage, PciLoadBalancerService, CHANGELOG, coreConfig) {
     this.CucCloudMessage = CucCloudMessage;
+    this.coreConfig = coreConfig;
+    this.user = coreConfig.getUser();
     this.PciLoadBalancerService = PciLoadBalancerService;
+    this.PciLoadBalancerGuides =
+      LOAD_BALANCER_MIGRATE_LINKS[this.user.ovhSubsidiary] ||
+      LOAD_BALANCER_MIGRATE_LINKS.DEFAULT;
+    this.PciLoadBalancerMigrateGuides = LOAD_BALANCER_MIGRATE_LINKS;
     this.CHANGELOG = CHANGELOG;
   }
 

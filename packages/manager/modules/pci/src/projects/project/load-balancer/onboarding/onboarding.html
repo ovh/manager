@@ -9,6 +9,27 @@
     data-on-guide-click="$ctrl.onGuideClick(guide)"
 >
     <h1 data-translate="pci_projects_project_load_balancer_title"></h1>
+    <oui-message data-type="warning">
+        <span
+            data-translate="pci_projects_project_load_balancer_end_service_welcome"
+        ></span>
+        <a
+            ng-attr-href="{{ $ctrl.PciLoadBalancerGuides }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-translate="pci_projects_project_load_balancer_more_information"
+        >
+        </a>
+        <a
+            ng-attr-href="{{ $ctrl.PciLoadBalancerGuides }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span
+                class="oui-icon oui-icon-arrow-right"
+                aria-hidden="true"
+            ></span
+        ></a>
+    </oui-message>
     <strong>
         <p
             data-translate="pci_projects_project_load_balancer_onboarding_content"
