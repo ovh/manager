@@ -6,7 +6,7 @@ import {
 import { OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 import { urls } from '@/routes/routes.constant';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import { BACKUP_SAP_TITLE } from './general-informations.constants';
@@ -14,7 +14,9 @@ import { BACKUP_SAP_TITLE } from './general-informations.constants';
 function GeneralInfos() {
   const { t } = useTranslation('dashboard');
   const guides = useGuideUtils();
-  const navigate = useNavigate();
+  const wizardHref = useHref(urls.installationWizardStep);
+  const listingHref = useHref(urls.installation);
+
   const Tiles = [
     {
       title: t('blocks_pre_installation_sap_hana_title'),
@@ -103,22 +105,22 @@ function GeneralInfos() {
       ],
     },
     {
-      title: t('blocks_pre_installation_wizzard_sap_title'),
+      title: t('blocks_pre_installation_wizard_sap_title'),
       items: [
         {
           id: 'description',
           value: (
             <OdsText>
-              {t('blocks_pre_installation_wizzard_sap_description')}
+              {t('blocks_pre_installation_wizard_sap_description')}
             </OdsText>
           ),
         },
         {
-          id: 'start-wizzard',
+          id: 'start-wizard',
           value: (
             <Links
-              label={t('blocks_start_wizzard')}
-              onClickReturn={() => navigate(urls.installationInitialStep)}
+              label={t('blocks_start_wizard')}
+              href={wizardHref}
               type={LinkType.next}
             />
           ),
@@ -128,7 +130,7 @@ function GeneralInfos() {
           value: (
             <Links
               label={t('blocks_pre_install_list')}
-              onClickReturn={() => navigate(urls.installation)}
+              href={listingHref}
               type={LinkType.next}
             />
           ),
@@ -138,7 +140,7 @@ function GeneralInfos() {
           value: (
             <Links
               label={t('blocks_documentation')}
-              href={guides.pre_installation_wizzard}
+              href={guides.pre_installation_wizard}
               target="_blank"
               type={LinkType.external}
             />

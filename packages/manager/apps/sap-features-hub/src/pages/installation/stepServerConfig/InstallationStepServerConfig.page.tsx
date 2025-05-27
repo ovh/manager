@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import {
   Controller,
   FormProvider,
@@ -33,6 +33,7 @@ import {
 } from '@/utils/applicationServers';
 import { useServerConfigQueries } from '@/hooks/serverConfig/useServerConfigQueries';
 import { SAP_ROLES } from '@/hooks/sapCapabilities/useSapCapabilities';
+import { getSelectDefaultValue } from '../initialStep/InstallationInitialStep.page';
 
 type FormData = z.output<typeof SERVER_CONFIG_SCHEMA>;
 
@@ -40,26 +41,21 @@ export default function InstallationStepServerConfig() {
   const { t } = useTranslation('installation');
   const { previousStep, nextStep, serviceName } = useFormSteps();
   const {
-    values: formValues,
-    errors: formErrors,
+    values,
+    errors,
     setValues,
+    initializationState: {
+      isPrefilled,
+      prefilledData: {
+        network: prefilledNetwork,
+        thickDatastorePolicy: prefilledPolicy,
+        applicationServerOva: prefilledAppOva,
+        applicationServerDatastore: prefilledAppStore,
+        hanaServerOva: prefilledHanaOva,
+        hanaServerDatastore: prefilledHanaStore,
+      },
+    },
   } = useInstallationFormContext();
-
-  const deploymentType = useMemo(() => formValues.deploymentType, [formValues]);
-
-  const defaultValues: ServerConfigForm = useMemo(
-    () => ({
-      ...getServerConfigFormData({ values: formValues, errors: formErrors })
-        .values,
-      hanaServers: formValues.hanaServers?.length
-        ? formValues.hanaServers
-        : [DEFAULT_HANA_SERVER],
-      applicationServers: formValues.applicationServers?.length
-        ? formValues.applicationServers
-        : getDefaultApplicationServers(deploymentType),
-    }),
-    [formValues, formErrors],
-  );
 
   const {
     datacentrePortGroupQuery: {
@@ -84,14 +80,54 @@ export default function InstallationStepServerConfig() {
     },
   } = useServerConfigQueries({
     serviceName,
-    datacenterId: formValues.datacenterId?.toString(),
-    clusterId: formValues.clusterId,
+    datacenterId: values.datacenterId?.toString(),
+    clusterId: values.clusterId,
   });
 
-  const datastoreNames = useMemo(
-    () => datastores?.map((store) => store.datastoreName),
-    [datastores],
-  );
+  const isLoadingQueries =
+    isLoadingPortGroup ||
+    isLoadingStoragePolicies ||
+    isLoadingSapCapabilities ||
+    isLoadingDatastores;
+
+  const networkNames = portGroup?.map((p) => p.name);
+  const policyNames = storagePolicies?.map((p) => p.name);
+  const datastoreNames = datastores?.map((d) => d.datastoreName);
+  const ovaTemplates = sapCapabilities?.ovaTemplates;
+
+  const defaultValues: ServerConfigForm = {
+    ...getServerConfigFormData({ values, errors }).values,
+    network: getSelectDefaultValue(
+      isPrefilled ? prefilledNetwork : values.network,
+      networkNames,
+    ),
+    thickDatastorePolicy: getSelectDefaultValue(
+      isPrefilled ? prefilledPolicy : values.thickDatastorePolicy,
+      policyNames,
+    ),
+    applicationServerDatastore: getSelectDefaultValue(
+      isPrefilled ? prefilledAppStore : values.applicationServerDatastore,
+      datastoreNames,
+    ),
+    applicationServerOva: getSelectDefaultValue(
+      isPrefilled ? prefilledAppOva : values.applicationServerOva,
+      ovaTemplates,
+    ),
+    hanaServerDatastore: getSelectDefaultValue(
+      isPrefilled ? prefilledHanaStore : values.hanaServerDatastore,
+      datastoreNames,
+    ),
+    hanaServerOva: getSelectDefaultValue(
+      isPrefilled ? prefilledHanaOva : values.hanaServerOva,
+      ovaTemplates,
+    ),
+    hanaServers: values.hanaServers?.length
+      ? values.hanaServers
+      : [DEFAULT_HANA_SERVER],
+    applicationServers: values.applicationServers?.length
+      ? values.applicationServers
+      : getDefaultApplicationServers(values.deploymentType),
+  };
 
   const {
     register,
@@ -99,6 +135,7 @@ export default function InstallationStepServerConfig() {
     getValues,
     handleSubmit,
     formState,
+    reset,
     ...restMethods
   } = useForm<FormData>({
     mode: 'onTouched',
@@ -145,6 +182,10 @@ export default function InstallationStepServerConfig() {
     return saveFormOnContext;
   }, []);
 
+  useEffect(() => {
+    if (!isLoadingQueries) reset(defaultValues);
+  }, [isLoadingQueries]);
+
   return (
     <FormProvider
       register={register}
@@ -152,6 +193,7 @@ export default function InstallationStepServerConfig() {
       getValues={getValues}
       handleSubmit={handleSubmit}
       formState={formState}
+      reset={reset}
       {...restMethods}
     >
       <FormLayout
@@ -171,8 +213,8 @@ export default function InstallationStepServerConfig() {
               placeholder={t('select_label')}
               options={portGroup}
               optionValueKey="name"
-              isLoading={isLoadingPortGroup}
-              isDisabled={isLoadingPortGroup || isPortGroupError}
+              isLoading={isLoadingQueries}
+              isDisabled={isLoadingQueries || isPortGroupError}
               error={fieldState.error && t('server_config_error_vmware_ports')}
             />
           )}
@@ -205,8 +247,8 @@ export default function InstallationStepServerConfig() {
               placeholder={t('select_label')}
               options={storagePolicies}
               optionValueKey="name"
-              isLoading={isLoadingStoragePolicies}
-              isDisabled={isLoadingStoragePolicies || isStoragePoliciesError}
+              isLoading={isLoadingQueries}
+              isDisabled={isLoadingQueries || isStoragePoliciesError}
               error={fieldState.error && t('server_config_error_thick_storage')}
             />
           )}
@@ -232,8 +274,8 @@ export default function InstallationStepServerConfig() {
               label={t('server_config_input_ova_model')}
               placeholder={t('select_label')}
               options={sapCapabilities.ovaTemplates}
-              isLoading={isLoadingSapCapabilities}
-              isDisabled={isLoadingSapCapabilities || isSapCapabilitiesError}
+              isLoading={isLoadingQueries}
+              isDisabled={isLoadingQueries || isSapCapabilitiesError}
               error={fieldState.error && t('server_config_error_ova_model')}
             />
           )}
@@ -247,8 +289,8 @@ export default function InstallationStepServerConfig() {
               label={FORM_LABELS.datastore}
               placeholder={t('select_label')}
               options={datastoreNames}
-              isLoading={isLoadingDatastores}
-              isDisabled={isLoadingDatastores || isDatastoresError}
+              isLoading={isLoadingQueries}
+              isDisabled={isLoadingQueries || isDatastoresError}
               error={fieldState.error && t('server_config_error_datastore')}
             />
           )}
@@ -365,8 +407,8 @@ export default function InstallationStepServerConfig() {
               label={t('server_config_input_ova_model')}
               placeholder={t('select_label')}
               options={sapCapabilities.ovaTemplates}
-              isLoading={isLoadingSapCapabilities}
-              isDisabled={isLoadingSapCapabilities || isSapCapabilitiesError}
+              isLoading={isLoadingQueries}
+              isDisabled={isLoadingQueries || isSapCapabilitiesError}
               error={fieldState.error && t('server_config_error_ova_model')}
             />
           )}
@@ -380,8 +422,8 @@ export default function InstallationStepServerConfig() {
               label={FORM_LABELS.datastore}
               placeholder={t('select_label')}
               options={datastoreNames}
-              isLoading={isLoadingDatastores}
-              isDisabled={isLoadingDatastores || isDatastoresError}
+              isLoading={isLoadingQueries}
+              isDisabled={isLoadingQueries || isDatastoresError}
               error={fieldState.error && t('server_config_error_datastore')}
             />
           )}
@@ -514,7 +556,7 @@ export default function InstallationStepServerConfig() {
                   isDisabled={
                     !isApplicationServerDeletable({
                       serverIndex: index,
-                      deploymentType,
+                      deploymentType: values.deploymentType,
                     })
                   }
                 />

@@ -15,7 +15,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   DashboardTile: vi.fn().mockReturnValue(<div>Block Tile</div>),
 }));
 vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(),
+  useHref: vi.fn(),
 }));
 const queryClient = new QueryClient();
 const shellContext = {
