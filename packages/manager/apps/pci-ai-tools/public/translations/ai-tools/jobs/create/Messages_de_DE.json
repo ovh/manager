@@ -43,5 +43,7 @@
   "cliEquivalentModalToastMessage": "Der Code wurde kopiert",
   "errorCreatingJob": "Fehler",
   "successCreatingJobTitle": "Erfolg",
-  "successCreatingJobDescription": "Ihr Auftrag wurde erfolgreich erstellt"
+  "successCreatingJobDescription": "Ihr Auftrag wurde erfolgreich erstellt",
+  "fieldDockerCommandLabel": "Docker-Befehle:",
+  "summaryFieldVolumesLabel": "Volumes:"
 }
