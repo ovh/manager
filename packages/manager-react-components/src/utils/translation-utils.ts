@@ -12,7 +12,7 @@ import i18next from 'i18next';
  * @param {string} language - The language code from browser or user input.
  * @returns {string} - Normalized language code in the format `ll_RR` (e.g., 'en_GB').
  */
-const normalizeLanguageCode = (language) => {
+export const normalizeLanguageCode = (language) => {
   let normalizedLang = language.replace('-', '_');
 
   if (!normalizedLang.includes('_')) {
@@ -29,13 +29,10 @@ const normalizeLanguageCode = (language) => {
 /**
  * Builds a resource loader function for dynamic translation loading.
  * This function is partially applied with a `translationLoaders` map and a namespace.
- *
- * @param {Record<string, () => Promise<any>>} translationLoaders -
- *   A map of language codes to dynamic import functions for translations.
- * @param {string} namespace - The namespace under which translations will be added.
- * @returns {(language: string) => Promise<void>} - A function to load and register translations.
+ * @param translationLoaders - A map of language codes to dynamic import functions for translations.
+ * @param namespace - The namespace under which translations will be added.
  */
-const buildTranslationResources =
+export const buildTranslationResources =
   (translationLoaders, namespace) => async (language) => {
     try {
       const normalizedLang = normalizeLanguageCode(language);
@@ -77,9 +74,4 @@ export const buildTranslationManager = (translationLoaders, namespace) => {
   }
 
   i18next.on('languageChanged', handleLanguageChange);
-
-  window.addEventListener('languagechange', () => {
-    const normalizedLang = normalizeLanguageCode(navigator.language);
-    i18next.changeLanguage(normalizedLang);
-  });
 };

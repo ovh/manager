@@ -1,4 +1,4 @@
-import { buildTranslationManager } from '../../../utils/TranslationUtils';
+import { buildTranslationManager } from '../../../utils/translation-utils';
 
 const translationLoaders = {
   de_DE: () => import('./Messages_de_DE.json'),

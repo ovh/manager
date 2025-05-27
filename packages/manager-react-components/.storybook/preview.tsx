@@ -8,6 +8,7 @@ import '../src/lib.scss';
 import '@ovhcloud/ods-themes/default';
 import i18n from './i18n';
 import TechnicalInformation from './technical-information.mdx';
+import { normalizeLanguageCode } from '../src/utils/translation-utils';
 
 const mockQueryClient = new QueryClient({
   defaultOptions: {
@@ -85,6 +86,23 @@ const withI18next = (Story, context) => {
       isMounted = false;
     };
   }, [locale]);
+
+
+  useEffect(() => {
+    const handleBrowserLanguageChange = () => {
+      const normalizedLang = normalizeLanguageCode(navigator.language);
+      console.info('Browser language changed:', normalizedLang);
+      i18n.changeLanguage(normalizedLang).catch((err) =>
+        console.error('Failed to change language on system languagechange:', err)
+      );
+    };
+
+    window.addEventListener('languagechange', handleBrowserLanguageChange);
+
+    return () => {
+      window.removeEventListener('languagechange', handleBrowserLanguageChange);
+    };
+  }, []);
 
   if (isLoading) {
     return <div>Loading translations...</div>;
