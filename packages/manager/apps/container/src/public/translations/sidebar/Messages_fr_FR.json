@@ -180,6 +180,7 @@
   "sidebar_security_identity_operations_iam_api-keys": "Clés API",
   "sidebar_security_identity_operations_iam_logs": "Logs du compte",
   "sidebar_security_identity_operations_kms": "Key Management Service",
+  "sidebar_security_identity_operations_sms": "Secret Management Service",
   "sidebar_security_identity_operations_logs": "Logs Data Platform",
   "sidebar_marketplace": "Marketplace",
   "sidebar_roadmap_changelog": "Roadmap & Changelog",
