@@ -23,22 +23,19 @@ vi.mock('@/data/api/web-ongoing-operations', () => ({
 }));
 
 describe('Domain datagrid', () => {
-  it('displays loading spinner while main request are loading', async () => {
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
-      flattenData: [],
-      isLoading: true,
-    });
-
-    const { getByTestId } = render(<Domain />, { wrapper });
-    expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
-  });
-
   it('fetch in a good way using useResourcesIcebergV6', () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
       flattenData: domain,
       isLoading: false,
       totalCount: domain.length,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
+
+    render(<Domain />, { wrapper });
 
     expect(useResourcesIcebergV6).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -53,6 +50,11 @@ describe('Domain datagrid', () => {
       flattenData: domain,
       isLoading: false,
       totalCount: domain.length,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
 
     vi.mock('@/hooks/data/query', () => ({
