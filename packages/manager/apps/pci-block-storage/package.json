@@ -11,6 +11,9 @@
     "start": "vite",
     "test": "vitest run"
   },
+  "resolutions": {
+    "@ovh-ux/manager-pci-common": "file:./ovh-ux-manager-pci-common-v0.16.5-deployment-tracking.tgz"
+  },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.3.1",
     "@ovh-ux/manager-core-api": "^0.12.0",
