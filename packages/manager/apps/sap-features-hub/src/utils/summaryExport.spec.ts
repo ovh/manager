@@ -1,7 +1,6 @@
 import { describe, expect } from 'vitest';
 import { getSummaryJSON } from './summaryExport';
-import { mockedValues } from '@/mocks/installationForm.mock';
-import { mockedJSONSummary } from '@/mocks/summaryExport.mock';
+import { mockedJSONSummary, mockedValues } from '@/mocks/installationForm.mock';
 
 describe('getSummaryJSON test suite', () => {
   it('should return the summary as JSON when everything is filled', () => {

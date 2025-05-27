@@ -5,6 +5,7 @@ import {
 } from '@/pages/installation/stepServerConfig/installationStepServerConfig.constants';
 import { hasDuplicatedValues } from '@/utils/duplicatedValues';
 import { schemaErrors } from './schemaErrors.constants';
+import { APPLICATION_SERVER_ROLES } from '@/utils/applicationServers.constants';
 
 export const VM_SCHEMA = z.object({
   name: z.string().regex(SERVER_CONFIG_PATTERNS.vmName),
@@ -27,7 +28,7 @@ export const HANA_SERVER_SCHEMA = VM_SCHEMA.extend({
 });
 
 export const APPLICATION_SERVER_SCHEMA = VM_SCHEMA.extend({
-  role: z.enum(['SCS', 'CI', 'ERS', 'DI'] as const),
+  role: z.enum(APPLICATION_SERVER_ROLES),
   vcpus: z
     .number()
     .int()
