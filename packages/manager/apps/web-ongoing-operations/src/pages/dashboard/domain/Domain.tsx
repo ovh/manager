@@ -16,6 +16,8 @@ export default function Domain() {
   const { t: tError } = useTranslation('web-ongoing-operations/error');
   const { notifications } = useNotifications();
 
+  const columns = useOngoingOperationDatagridColumns(ParentEnum.DOMAIN);
+
   const {
     flattenData: domainList,
     isError,
@@ -26,17 +28,14 @@ export default function Domain() {
     sorting,
     setSorting,
     filters,
+    search,
   } = useResourcesIcebergV6<TOngoingOperations>({
     route: taskMeDomain.join('/'),
     queryKey: taskMeDomain,
     pageSize: 30,
     disableCache: !!notifications.length,
+    columns,
   });
-
-  const columns = useOngoingOperationDatagridColumns(
-    ParentEnum.DOMAIN,
-    domainList,
-  );
 
   if (isLoading) {
     return (
@@ -70,6 +69,7 @@ export default function Domain() {
             sorting={sorting}
             onSortChange={setSorting}
             filters={filters}
+            search={search}
           />
         </div>
       )}
