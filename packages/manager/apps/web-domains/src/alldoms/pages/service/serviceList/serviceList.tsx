@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Breadcrumb,
   Datagrid,
   BaseLayout,
   useResourcesIcebergV6,
@@ -16,6 +15,7 @@ import { useAllDomDatagridColumns } from '@/alldoms/hooks/useAllDomDatagridColum
 import { useGetDatagridServiceInfoList } from '@/alldoms/hooks/data/useGetDatagridServiceInfoList';
 import { TServiceDetail, TServiceProperty } from '@/alldoms/types';
 import Modal from '@/alldoms/components/Modal/Modal';
+import Breadcrumb from '@/alldoms/components/breadcrumb/breadcrumb.component';
 
 export default function ServiceList() {
   const { t } = useTranslation(['allDom', 'web-domains/error']);
@@ -77,7 +77,11 @@ export default function ServiceList() {
   return (
     <BaseLayout
       breadcrumb={
-        <Breadcrumb rootLabel={appConfig.rootLabel} appName="web-domains" />
+        <Breadcrumb
+          rootLabel={t('title')}
+          appName={`${appConfig.rootLabel}/${appConfig.alldomLabel}`}
+          ignoredLabel={[appConfig.alldomLabel]}
+        />
       }
       header={header}
       message={notifications.length ? <Notifications /> : null}
