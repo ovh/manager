@@ -24,7 +24,7 @@ import { CHANGELOG_LINKS, SERVICE_KEYS_LABEL } from '@/constants';
 import KmsTabs, {
   KmsTabProps,
 } from '@/components/layout-helpers/Dashboard/KmsTabs';
-import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
+import { KMS_FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 
 export const OkmsContext = createContext<OKMS>(null);
 
@@ -51,7 +51,9 @@ export default function DashboardPage() {
     error: okmsServiceInfoError,
   } = useServiceDetails({ resourceName: okmsId });
 
-  const { data: features, isLoading } = useFeatureAvailability([FEATURES.LOGS]);
+  const { data: features, isLoading } = useFeatureAvailability([
+    KMS_FEATURES.LOGS,
+  ]);
 
   const displayName = okmsServiceInfos?.data?.resource.displayName;
 
@@ -74,7 +76,7 @@ export default function DashboardPage() {
             <>{t('key-management-service/dashboard:access_certificates')}</>
           ),
         },
-        features?.[FEATURES.LOGS] && {
+        features?.[KMS_FEATURES.LOGS] && {
           url: KMS_ROUTES_URLS.kmsLogs(okmsId),
           content: (
             <div className="flex gap-2">
