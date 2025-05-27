@@ -5,14 +5,20 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 export type BreadcrumbItem = {
   label: string | undefined;
   href?: string;
+  hideLabel?: boolean;
 };
 
 export interface UseBreadcrumbProps {
   rootLabel?: string;
   appName?: string;
   projectId?: string;
+  hideRootLabel?: boolean;
 }
-export const useBreadcrumb = ({ rootLabel, appName }: UseBreadcrumbProps) => {
+export const useBreadcrumb = ({
+  rootLabel,
+  appName,
+  hideRootLabel = false,
+}: UseBreadcrumbProps) => {
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
   const [paths, setPaths] = useState<BreadcrumbItem[]>([]);
@@ -25,6 +31,7 @@ export const useBreadcrumb = ({ rootLabel, appName }: UseBreadcrumbProps) => {
         const rootItem = {
           label: rootLabel,
           href: String(response),
+          hideLabel: hideRootLabel,
         };
         setRoot([rootItem]);
       } catch {
@@ -39,6 +46,7 @@ export const useBreadcrumb = ({ rootLabel, appName }: UseBreadcrumbProps) => {
     const pathsTab = pathnames?.map((value) => ({
       label: value,
       href: `/#/${appName}/${value}`,
+      hideLabel: false,
     }));
     setPaths(pathsTab);
   }, [location.pathname]);
