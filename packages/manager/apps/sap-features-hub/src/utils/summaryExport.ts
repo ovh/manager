@@ -1,46 +1,8 @@
 import { InstallationFormValues } from '@/types/form.type';
-import { getServersExport } from './serverExport';
+import { formMappers } from '../mappers/formMappers';
 
-export const getSummaryJSON = (form: InstallationFormValues) => {
-  return JSON.stringify({
-    applicationServers: getServersExport({ form, type: 'application' }),
-    applicationType: form.applicationType,
-    applicationVersion: form.applicationVersion,
-    bucketBackint: form.bucketBackint ? { ...form.bucketBackint } : undefined,
-    bucketSources: {
-      accessKey: form.accessKey,
-      endpoint: form.endpoint,
-      id: form.bucketId,
-      secretKey: form.secretKey,
-    },
-    clusterName: form.clusterName,
-    deploymentType: form.deploymentType,
-    domainName: form.domainName,
-    firewall: {
-      applicationServers: form.firewallServer,
-      centralServices: form.firewallService,
-      hanaDatabase: form.firewallDatabase,
-    },
-    hanaServers: getServersExport({ form, type: 'hana' }),
-    logsDataPlatform: form.logsDataPlatform
-      ? { ...form.logsDataPlatform }
-      : undefined,
-    osLicense: form.osLicense || undefined,
-    osUpdate: form.osUpdate,
-    passwords: {
-      masterSap: form.masterSapPassword,
-      masterSapHana: form.masterSapHanaPassword,
-      sidadm: form.sidadmPassword,
-      system: form.systemPassword,
-    },
-    sids: {
-      sapHanaSid: form.sapHanaSid,
-      sapSid: form.sapSid,
-    },
-    systemUsage: 'custom',
-    vdcId: form.datacenterId,
-  });
-};
+export const getSummaryJSON = (form: InstallationFormValues) =>
+  JSON.stringify(formMappers.toStructured(form));
 
 export const getSummaryFileName = (sapSid: string) =>
   `my-sap-installation-${sapSid || 'sapSid'}`;

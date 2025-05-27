@@ -18,6 +18,10 @@ export default function InstallationStepDeployment() {
   const {
     values: { applicationVersion, applicationType, deploymentType },
     setValues,
+    initializationState: {
+      isPrefilled,
+      prefilledData: { deploymentType: prefilledDeployment },
+    },
   } = useInstallationFormContext();
 
   const isStepValid = React.useMemo(
@@ -60,12 +64,20 @@ export default function InstallationStepDeployment() {
         label={t('deployment_input_deployment_type')}
         placeholder={t('select_label')}
         options={DEPLOYMENT_TYPES}
-        handleChange={(e: OdsInputChangeEvent) => {
-          setValues((prev) => ({
-            ...prev,
-            deploymentType: e.detail.value as DeploymentType,
-            applicationServers: null,
-          }));
+        handleChange={(e) => {
+          const newValue = e.detail.value as DeploymentType;
+          if (newValue) {
+            const hasChangedPrefilledValue =
+              isPrefilled && prefilledDeployment !== newValue;
+
+            if (!isPrefilled || hasChangedPrefilledValue) {
+              setValues((prev) => ({
+                ...prev,
+                deploymentType: newValue,
+                applicationServers: null,
+              }));
+            }
+          }
         }}
         defaultValue={deploymentType}
       />
