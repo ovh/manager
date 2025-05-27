@@ -1,24 +1,12 @@
 import { Trans, useTranslation } from 'react-i18next';
-import {
-  OsdsChip,
-  OsdsIcon,
-  OsdsLink,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { PropsWithChildren, useContext, useMemo } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { OsdsChip, OsdsText } from '@ovhcloud/ods-components/react';
+import { useMemo } from 'react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import {
-  ODS_CHIP_SIZE,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-} from '@ovhcloud/ods-components';
-import { DEPLOYMENT_MODES_URL } from './website-link';
+import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { DeploymentModeCard } from '@/components/deployment-mode-card';
 import {
   TilesInput,
@@ -26,6 +14,7 @@ import {
   TilesInputRenderProps,
 } from '@/components/tiles-input/TilesInput';
 import { TDeployment } from '@/dto';
+import { GuideLink } from '@/components/guide-link/GuideLink';
 
 export type DeploymentTilesInputProps = {
   deployments: TDeployment[];
@@ -84,34 +73,6 @@ const DeploymentTileRenderer = ({
   );
 };
 
-const DescriptionLink = ({ children }: PropsWithChildren) => {
-  const shell = useContext(ShellContext);
-  const ovhSubsidiary = useMemo(
-    () => shell?.environment.getUser().ovhSubsidiary,
-    [shell],
-  );
-
-  return (
-    <OsdsLink
-      href={DEPLOYMENT_MODES_URL[ovhSubsidiary] ?? DEPLOYMENT_MODES_URL.DEFAULT}
-      color={ODS_THEME_COLOR_INTENT.primary}
-      target={OdsHTMLAnchorElementTarget._blank}
-    >
-      {children}
-      <span slot="end">
-        <OsdsIcon
-          aria-hidden="true"
-          className="ml-4"
-          name={ODS_ICON_NAME.EXTERNAL_LINK}
-          hoverable
-          size={ODS_ICON_SIZE.xxs}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        />
-      </span>
-    </OsdsLink>
-  );
-};
-
 export const DeploymentTilesInput = ({
   deployments,
   ...tilesInputProps
@@ -133,7 +94,7 @@ export const DeploymentTilesInput = ({
           t={t}
           i18nKey="deployment_mode_description"
           components={{
-            Link: <DescriptionLink />,
+            Link: <GuideLink guideName="deployments-modes" />,
           }}
         />
       }
