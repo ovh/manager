@@ -1,0 +1,5 @@
+{
+  "vrack_not_empty_title": "Eliminar {{serviceName}}",
+  "vrack_not_empty_description": "Para dar de baja el vRack, deberá desconectar previamente todos los servicios asociados",
+  "vrack_not_empty_close": "Cerrar"
+}

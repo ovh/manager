@@ -1,0 +1,5 @@
+{
+  "vrack_not_empty_title": "Rezygnacja {{serviceName}}",
+  "vrack_not_empty_description": "Aby zrezygnować z Vracka, najpierw należy odłączyć wszystkie przypisane do niego usługi",
+  "vrack_not_empty_close": "Zamknij"
+}

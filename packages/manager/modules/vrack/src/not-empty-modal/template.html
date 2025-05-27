@@ -1,0 +1,11 @@
+<oui-modal
+    data-heading="{{:: 'vrack_not_empty_title' | translate:{ serviceName: $ctrl.serviceName } }}"
+    data-primary-action="$ctrl.goBack()"
+    data-primary-label="{{:: 'vrack_not_empty_close' | translate }}"
+    data-secondary-disabled="true"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <oui-message data-type="warning" class="mb-2">
+        <span data-translate="vrack_not_empty_description"></span>
+    </oui-message>
+</oui-modal>

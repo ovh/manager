@@ -1,0 +1,5 @@
+{
+  "vrack_not_empty_title": "Rescindir {{serviceName}}",
+  "vrack_not_empty_description": "Para rescindir o seu vRack, deve desligar previamente todos os serviços que estão associados ao mesmo.",
+  "vrack_not_empty_close": "Fechar"
+}
