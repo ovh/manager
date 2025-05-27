@@ -6,10 +6,7 @@ import { PropsWithChildren, useCallback } from 'react';
 import { ButtonType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { GuideName } from '@/contexts/GuideContext/GuideContext';
 import { useGuide } from '@/hooks/useGuide';
-
-function kebabToSnake(name: string) {
-  return name.replace(/-/g, '_').toLowerCase();
-}
+import { kebabToSnake } from '@/shared-lib/string';
 
 export const GuideLink = ({
   guideName,
