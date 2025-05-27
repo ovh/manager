@@ -25,5 +25,8 @@
   "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "La tua richiesta di disattivazione non è stata presa in carico: {{error}}",
   "autorenew_agora_terminate_service_success_IP": "La disattivazione dell’Additional IP \"{{serviceName}}\" è stata presa in carico. Riceverai un'email con i dettagli della procedura da seguire.",
   "autorenew_agora_terminate_service_success_ftc_IP": "La disattivazione dell’Additional IP \"{{serviceName}}\" è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
-  "autorenew_agora_terminate_service_error_IP": "La tua richiesta di disattivazione non è stata presa in carico: {{error}}"
+  "autorenew_agora_terminate_service_error_IP": "La tua richiesta di disattivazione non è stata presa in carico: {{error}}",
+  "autorenew_agora_terminate_service_success_VRACK": "La disattivazione della vRack \"{{serviceName}}\" è stata presa in carico. Riceverai un'email con i dettagli della procedura da seguire.",
+  "autorenew_agora_terminate_service_success_ftc_VRACK": "La disattivazione della vRack \"{{serviceName}}\" è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
+  "autorenew_agora_terminate_service_error_VRACK": "La tua richiesta di disattivazione non è stata presa in carico: {{error}}"
 }

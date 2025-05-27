@@ -25,5 +25,8 @@
   "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "Unable to process your cancellation request: {{error}}",
   "autorenew_agora_terminate_service_success_IP": "Your Additional IP \"{{serviceName}}\" cancellation has been processed. An email will be sent to you explaining the steps to follow.",
   "autorenew_agora_terminate_service_success_ftc_IP": "Your Additional IP \"{{serviceName}}\" cancellation has been processed. A confirmation email has been sent to you.",
-  "autorenew_agora_terminate_service_error_IP": "Unable to process your cancellation request: {{error}}"
+  "autorenew_agora_terminate_service_error_IP": "Unable to process your cancellation request: {{error}}",
+  "autorenew_agora_terminate_service_success_VRACK": "Your cancellation request for the \"{{serviceName}}\" has been processed. An email will be sent to you explaining the steps to follow.",
+  "autorenew_agora_terminate_service_success_ftc_VRACK": "Your cancellation request for the \"{{serviceName}}\" has been processed. A confirmation email has been sent to you.",
+  "autorenew_agora_terminate_service_error_VRACK": "Unable to process your cancellation request: {{error}}"
 }
