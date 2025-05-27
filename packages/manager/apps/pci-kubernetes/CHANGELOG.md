@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.21.0...@ovh-ux/manager-pci-kubernetes-app@0.22.0) (2025-05-27)
+
+
+### Features
+
+* **pci.kubernetes:** refresh gateway on network ([6ef744e](https://github.com/ovh/manager/commit/6ef744e2e0fca24559abb6e2c662c7ea312bf8eb)), closes [#TAPC-3966](https://github.com/ovh/manager/issues/TAPC-3966) [#TAPC-4028](https://github.com/ovh/manager/issues/TAPC-4028)
+
+
+
+
+
 # [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.20.4...@ovh-ux/manager-pci-kubernetes-app@0.21.0) (2025-05-20)
 
 
