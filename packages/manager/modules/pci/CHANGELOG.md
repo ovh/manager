@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.91.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.90.0...@ovh-ux/manager-pci@6.91.0) (2025-05-27)
+
+
+### Bug Fixes
+
+* **instance:** add us link for public cloud prices ([5f603b6](https://github.com/ovh/manager/commit/5f603b60a3871c8e07889ad4f0d56988860dafd5)), closes [#TAPC-3195](https://github.com/ovh/manager/issues/TAPC-3195)
+
+
+### Features
+
+* **instance:** add floating ip price ([075abea](https://github.com/ovh/manager/commit/075abeafd5b9341007e8ef0b1b3ad444c57ff4d0)), closes [#TAPC-2846](https://github.com/ovh/manager/issues/TAPC-2846)
+
+
+
+
+
 # [6.90.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.89.4...@ovh-ux/manager-pci@6.90.0) (2025-05-20)
 
 
