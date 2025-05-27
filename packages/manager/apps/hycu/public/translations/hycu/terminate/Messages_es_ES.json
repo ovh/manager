@@ -5,5 +5,6 @@
   "hycu_terminate_cancel_label": "Cancelar",
   "hycu_terminate_confirm_label": "Dar de baja",
   "hycu_terminate_success_message": "Su solicitud de baja para {{serviceName}} se ha enviado. Recibirá un mensaje de correo electrónico para validarla.",
-  "hycu_terminate_error_message": "Se ha producido un error: {{error}}."
+  "hycu_terminate_error_message": "Se ha producido un error: {{error}}.",
+  "hycu_terminate_success_message_us": "La solicitud de baja se ha enviado correctamente. Le hemos enviado un correo de confirmación."
 }
