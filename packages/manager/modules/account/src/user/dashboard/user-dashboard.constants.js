@@ -81,11 +81,11 @@ export const USER_DASHBOARD_SHORTCUTS = [
   },
 ];
 
-const TRACKING_CHAPTER_1 = 'dedicated';
+const TRACKING_CHAPTER_1 = 'Hub';
 const TRACKING_CHAPTER_2 = 'account';
 const TRACKING_CHAPTER_3 = 'user';
 
-const TRACKING_PAGE_SUFFIX = 'account::dashboard';
+const TRACKING_PAGE_SUFFIX = 'user::dashboard::general-informations';
 export const TRACKING_PAGE_CATEGORY = 'dashboard';
 export const TRACKING_PAGE = `${TRACKING_CHAPTER_1}::${TRACKING_CHAPTER_2}::${TRACKING_CHAPTER_3}::${TRACKING_PAGE_SUFFIX}`;
 export const TRACKING_SHORTCUT_ACTION_PREFIX_NAME = `${TRACKING_CHAPTER_1}::${TRACKING_CHAPTER_2}::${TRACKING_CHAPTER_3}::page::link`;
