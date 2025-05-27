@@ -3,7 +3,7 @@ import { JobData } from '@/data/api';
 import ai from '@/types/AI';
 
 export interface DataSyncProps extends JobData {
-  dataSyncSpec: ai.volume.DataSyncSpec;
+  dataSyncSpec: Omit<ai.volume.DataSyncSpec, 'manual'>;
 }
 
 export const dataSync = async ({

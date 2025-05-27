@@ -100,7 +100,6 @@ export function getJobSpec(formResult: JobOrderResult) {
     region: formResult.region.id,
     unsecureHttp: formResult.unsecureHttp,
     sshPublicKeys: formResult.sshKey,
-    // labels: formResult.labels,
     command: formResult.dockerCommand,
   };
 

@@ -120,7 +120,7 @@ const DockerCommand = React.forwardRef<
             type="button"
             mode="ghost"
             onClick={() => removeCommand()}
-            className="mt-[1.875rem] text-red-400 rounded-full p-2 ml-2 hover:text-red-400"
+            className="mt-7 text-red-400 rounded-full p-2 ml-2 hover:text-red-400"
           >
             <TrashIcon />
           </Button>

@@ -15,6 +15,11 @@ import {
 describe('Docker custom image component', () => {
   afterEach(() => {
     vi.clearAllMocks();
+    vi.mock('@/hooks/useLocale', () => {
+      return {
+        useLocale: vi.fn(() => 'fr_FR'),
+      };
+    });
   });
 
   const onChange = vi.fn();

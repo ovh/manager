@@ -10,6 +10,11 @@ import JobImagesSelect from './JobImageSelect.component';
 describe('Docker Image Select component', () => {
   afterEach(() => {
     vi.clearAllMocks();
+    vi.mock('@/hooks/useLocale', () => {
+      return {
+        useLocale: vi.fn(() => 'fr_FR'),
+      };
+    });
   });
 
   const onChange = vi.fn();

@@ -9,7 +9,7 @@ const LifeCycle = () => {
   return (
     <>
       <h5>{t('durationTitle')}</h5>
-      {convertSecondsToTimeString(job.status.duration, false)}
+      <span>{convertSecondsToTimeString(job.status.duration, false)}</span>
       <StatusHistory history={job.status.history} />
     </>
   );

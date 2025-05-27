@@ -20,7 +20,6 @@ interface OrderSummaryProps {
     image: string;
     jobName: string;
     unsecureHttp: boolean;
-    // labels: { [key: string]: string };
     sshKey: string[];
     volumes: OrderVolumes[];
     dockerCommand: string[];
@@ -159,11 +158,7 @@ const ImageDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         >
           {t('summaryFieldEditorLabel')}
         </Button>
-        {order.image && (
-          <>
-            <span>{order.image}</span>
-          </>
-        )}
+        {order.image && <span>{order.image}</span>}
       </div>
     </div>
   );
@@ -252,30 +247,6 @@ const VolumesDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   );
 };
 
-// const LabelsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
-//   const { t } = useTranslation('ai-tools/jobs/create');
-//   return (
-//     <div className="flex items-center gap-2">
-//       <Button
-//         data-testid="labels-section-button"
-//         variant={'link'}
-//         size={'link'}
-//         type="button"
-//         onClick={() => onSectionClicked('labels')}
-//         className="font-bold"
-//       >
-//         {t('summaryFieldLabelsLabel')}
-//       </Button>
-//       <span>
-//         {t(`summaryFieldLabels`, {
-//           count: Object.keys(order.labels).length,
-//           context: `${Object.keys(order.labels).length}`,
-//         })}
-//       </span>
-//     </div>
-//   );
-// };
-
 const SshKeysDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/jobs/create');
   return (
@@ -308,9 +279,6 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
       {order.volumes.length > 0 && (
         <VolumesDetails order={order} onSectionClicked={onSectionClicked} />
       )}
-      {/* {Object.keys(order.labels).length > 0 && (
-        <LabelsDetails order={order} onSectionClicked={onSectionClicked} />
-      )} */}
       {order.sshKey.length > 0 && (
         <SshKeysDetails order={order} onSectionClicked={onSectionClicked} />
       )}

@@ -19,6 +19,8 @@ import {
 } from '@datatr-ux/uxlib';
 import A from '@/components/links/A.component';
 import ai from '@/types/AI';
+import { GUIDES, getGuideUrl } from '@/configuration/guide';
+import { useLocale } from '@/hooks/useLocale';
 
 interface DockerCustomImageProps {
   value: string;
@@ -31,6 +33,7 @@ const DockerCustomImageInput = React.forwardRef<
   DockerCustomImageProps
 >(({ value, onChange, images }, ref) => {
   const { t } = useTranslation('ai-tools/components/docker-custom-image');
+  const locale = useLocale();
   const personalImageRules = z
     .string()
     .trim()
@@ -71,9 +74,7 @@ const DockerCustomImageInput = React.forwardRef<
           <p>
             {t('privateImageDesc4')}{' '}
             <A
-              href={
-                'https://docs.ovh.com/gb/en/publiccloud/ai/training/build-use-custom-image/'
-              }
+              href={getGuideUrl(GUIDES.HOW_TO_USE_CUSTOM_IMAGE, locale)}
               target="_blank"
               rel="noopener noreferrer"
             >

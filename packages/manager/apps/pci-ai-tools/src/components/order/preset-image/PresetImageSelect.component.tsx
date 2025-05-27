@@ -59,11 +59,7 @@ const PresetImageSelect = React.forwardRef<
             <RadioTile
               data-testid={`image-radio-tile-${image.id}`}
               key={image.id}
-              onChange={() => {
-                onChange(image.id);
-              }}
               value={image.id}
-              checked={image.id === value}
             >
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-center">
