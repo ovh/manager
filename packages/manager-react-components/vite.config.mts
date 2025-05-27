@@ -77,6 +77,12 @@ export default defineConfig({
           'react-router-dom': 'ReactRouterDOM',
           zustand: 'Zustand',
         },
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name?.endsWith('.css')) {
+            return 'style.css';
+          }
+          return '[name][extname]';
+        },
       },
     },
   },
