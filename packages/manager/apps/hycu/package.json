@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hycu-app",
-  "version": "0.11.10",
+  "version": "0.12.0",
   "private": true,
   "description": "Backup HYCU for OVHcloud",
   "repository": {
