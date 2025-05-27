@@ -1,0 +1,200 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guidelines/Naming Convention" />
+
+# Naming convention in React apps
+
+This guide outlines the standard naming conventions to be followed in React applications to maintain consistency and readability across the codebase.
+
+## File and Component Naming
+
+### React Components
+- Use PascalCase for component files and component names
+- Match the file name with the component name
+- Use `.tsx` extension for TypeScript React files
+
+```tsx
+// ✅ Good
+UserProfile.tsx
+const UserProfile = () => { ... }
+
+// ❌ Bad
+userProfile.tsx
+const userProfile = () => { ... }
+```
+
+### Page Components
+- Use PascalCase with `Page` suffix
+- Place in `pages` directory
+- Match the route name
+
+```tsx
+// ✅ Good
+pages/
+  UserProfile.page.tsx
+  Dashboard.page.tsx
+  Settings.page.tsx
+
+// ❌ Bad
+pages/
+  userProfile.tsx
+  dashboard.tsx
+  settings.tsx
+```
+
+## Variable Naming
+
+### Constants
+- Use UPPER_SNAKE_CASE for constant values
+- Group related constants in an object
+
+```tsx
+// ✅ Good
+const API_ENDPOINT = 'https://api.example.com';
+const MAX_RETRY_COUNT = 3;
+
+const STATUS = {
+  ACTIVE: 'active',
+  INACTIVE: 'inactive',
+  PENDING: 'pending',
+} as const;
+
+// ❌ Bad
+const apiEndpoint = 'https://api.example.com';
+const maxRetryCount = 3;
+```
+
+### Hooks
+- Use camelCase
+- Prefix with `use`
+- Describe the hook's purpose
+
+```tsx
+// ✅ Good
+const useUserData = () => { ... }
+const useAuthStatus = () => { ... }
+const useFormValidation = () => { ... }
+
+// ❌ Bad
+const userData = () => { ... }
+const authStatus = () => { ... }
+const formValidation = () => { ... }
+```
+
+### Regular Variables
+- Use camelCase
+- Use descriptive names
+- Avoid abbreviations unless common
+
+```tsx
+// ✅ Good
+const userProfile = { ... }
+const isLoading = true
+const errorMessage = '...'
+
+// ❌ Bad
+const up = { ... }
+const loading = true
+const err = '...'
+```
+
+### Functions
+- Use camelCase
+- Use verb-noun format for actions
+- Use descriptive names
+
+```tsx
+// ✅ Good
+const fetchUserData = () => { ... }
+const handleSubmit = () => { ... }
+const validateForm = () => { ... }
+
+// ❌ Bad
+const userData = () => { ... }
+const submit = () => { ... }
+const validate = () => { ... }
+```
+
+### Type Definitions
+- Use PascalCase
+- Use descriptive names
+- Add appropriate suffixes
+
+```tsx
+// ✅ Good
+type UserProfile = { ... }
+interface FormData { ... }
+type ApiResponse<T> = { ... }
+
+// ❌ Bad
+type userProfile = { ... }
+interface formData { ... }
+type apiResponse<T> = { ... }
+```
+
+## Folder Structure
+
+You can find the folder struture defined [here](https://manager.pages.ovhcloud.tools/technical-documentation/manager/development-guidelines/application-folder-structure/)
+
+### Assets Structure
+```
+src/
+  assets/
+    images/
+      logo.svg
+      icons/
+    styles/
+      global.css
+      variables.css
+    fonts/
+```
+
+### Configuration Structure
+```
+src/
+  config/
+    api.config.ts
+    app.config.ts
+    routes.config.ts
+    theme.config.ts
+```
+
+### Best Practices for Folder Structure
+
+1. **Organization**
+   - Group related files together
+   - Keep components close to where they're used
+   - Separate shared code from feature-specific code
+
+2. **Naming**
+   - Use kebab-case for folder names
+   - Use PascalCase for component folders
+   - Use descriptive names for feature folders
+
+3. **File Placement**
+   - Keep related files together
+   - Use index files for clean exports
+   - Maintain consistent file structure
+
+4. **Scalability**
+   - Plan for growth
+   - Keep folder structure flat when possible
+   - Use feature folders for complex features
+
+## Code Review Checklist
+
+- [ ] Follow PascalCase for components
+- [ ] Use camelCase for variables and functions
+- [ ] Use UPPER_SNAKE_CASE for constants
+- [ ] Prefix hooks with `use`
+- [ ] Use descriptive names
+- [ ] Follow folder structure conventions
+- [ ] Maintain consistent naming patterns
+- [ ] Document any exceptions
+
+## Reference
+
+### External Resources
+- [React Naming Conventions](https://reactjs.org/docs/faq-structure.html)
+- [TypeScript Naming Conventions](https://www.typescriptlang.org/docs/handbook/declaration-files/by-example.html)
+- [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)

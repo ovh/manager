@@ -1,0 +1,115 @@
+import { Meta } from '@storybook/blocks';
+import onboardingFlowImg from './images/onboarding-flow.png';
+
+<Meta title="Guidelines/React Templates/Onboarding page" />
+
+# How to add Onboarding Page
+
+The Onboarding page is a React component that guides users through the initial setup and configuration of your service. It provides a step-by-step process to help users get started with your service quickly and efficiently.
+
+> 💡 Good to know
+>
+> `Onboarding` is already implemented in the [`generator`](https://github.com/ovh/manager/tree/master/packages/manager/core/generator) by default, you just have to add and update some part of the code
+
+## As a developer
+
+Once the project generated, in your app folder, you will find `src/pages/onboarding/index.tsx` file.
+
+You have a default Onboarding template with a service description, a CTA Button and some external links.
+
+### Main Components
+
+<img src={onboardingFlowImg} alt="Complete onboarding flow" width="800" />
+
+#### OnboardingLayout
+
+The onboarding page uses the `OnboardingLayout` component from `manager-react-components` as its main container. This provides consistent styling and structure across the application.
+
+### Implementation Example
+
+Here's a comprehensive example showing all the features of the OnboardingLayout component:
+
+```tsx
+import { OnboardingLayout, Card } from '@ovh-ux/manager-react-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+const OnboardingPage = () => (
+  <OnboardingLayout
+    // Basic props
+    title="Welcome to Your Service"
+    
+    // Description with rich text
+    description={
+      <OdsText preset="paragraph" className="text-center">
+        Get started with your new service. Follow these simple steps to configure
+        and customize your experience.
+      </OdsText>
+    }
+    
+    // Header image
+    img={{ 
+      src: '/assets/onboarding-image.png',
+      alt: 'Welcome illustration'
+    }}
+    
+    // Order button with IAM check
+    orderButtonLabel="Start Now"
+    orderHref="https://example.com/order"
+    orderIam={{
+      urn: 'urn:v1:eu:resource:vrackServices:vrs-bby-zkm-3a9-tlk',
+      iamActions: ['vrackServices:apiovh:resource/edit'],
+      displayTooltip: false,
+    }}
+    
+    // More info button
+    moreInfoButtonLabel="Learn More"
+    moreInfoHref="https://example.com/docs"
+    moreInfoButtonIcon="externalLink"
+  >
+    {/* Content cards */}
+    <>
+      <Card
+        href="/service1"
+        texts={{
+          title: 'Configure Your Service',
+          description: 'Set up your basic configuration and preferences',
+          category: 'SETUP',
+        }}
+      />
+      <Card
+        href="/service2"
+        texts={{
+          title: 'Add Resources',
+          description: 'Add and manage your service resources',
+          category: 'RESOURCES',
+        }}
+      />
+      <Card
+        href="/service3"
+        texts={{
+          title: 'Monitor & Manage',
+          description: 'Monitor your service and manage settings',
+          category: 'MANAGEMENT',
+        }}
+      />
+    </>
+  </OnboardingLayout>
+);
+```
+
+## 📊 TRACKING Checklist
+
+- [ ] TrackPage display tracking on component mount
+- [ ] TrackClick - Order buttons
+- [ ] TrackClick - More Infos buttons
+- [ ] TrackClick - Card external links
+
+
+
+### Code Review Checklist
+
+- [ ] Use `OnboardingLayout` component from `manager-react-components`
+- [ ] Use `Card` component from `manager-react-components`
+- [ ] Add proper translations
+- [ ] Add success/error notifications
+- [ ] Follow accessibility guidelines

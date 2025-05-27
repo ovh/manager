@@ -1,0 +1,271 @@
+import { Meta } from '@storybook/blocks';
+import listingActionsImg from './images/listing-actions.png';
+import listingHeadersImg from './images/listing-headers.png';
+import listingCtaImg from './images/listing-cta.png';
+
+<Meta title="Guidelines/React Templates/Listing page" />
+
+# How to add a Listing Page
+
+The listing page is a React component that displays data in a datagrid format with filtering, sorting, and search capabilities. Here's how it's structured:
+
+> 💡 Good to know
+>
+> `Listing` is already implemented in the [`generator`](https://github.com/ovh/manager/tree/master/packages/manager/core/generator) by default, you just have to add and update some part of the code
+
+## 👨‍💻 As a developer
+
+When you generate a project, you have to choose your **listing endpoint** from `APIV2` or `APIV6`.
+
+Once the project generated, in you folder app generated, you will find `src/pages/listing/index.tsx` file.
+
+You have a default listing template that display all the attributes of your api response.
+
+## 📊 Datagrid
+
+### 🔌 API CALLS
+
+Here you can find the differents use cases for your app.
+
+#### 🚀 APIV6
+
+`useResourcesIcebergV6` (by default), [documentation](?path=/docs/manager-react-components-hooks-useresourcesicebergv6--technical-information) :
+
+  - Advanced hook for Iceberg V6 API calls
+  - Data Filtering, searching, sorting features
+
+  > 🔍 By default the search feature is configured on the first columns of your table
+  > 🔄 Sorting, Searching and filtering are provided by Iceberg
+
+
+`useResourcesV6` [documentation](?path=/docs/manager-react-components-hooks-useresourcesv6--technical-information) :
+
+  - Basic hook for V6 API calls
+  - Handles data fetching and state management
+  - Data Filtering, searching, sorting features
+  - Provides error handling and loading states
+
+  > 🔍 Search feature work in all your columns
+  > 🔄 Sorting, Searching and filtering are made in local
+
+
+If you want to change, the search columns, you have to update your columns definition object `isSearchable` at `true`
+
+#### 🚀 APIV2
+
+- `useResourcesIcebergV2` [documentation](?path=/docs/manager-react-components-hooks-useresourcesicebergv2--technical-information) :
+  - Advanced hook for Iceberg V2 API calls
+  - Sorting feature
+
+> 🔗 If you need to aggregate data from another with V6 or V2 response, you can create a `Custom Hook` or consider creating new BFF.
+
+### TANSTACK TABLE
+
+#### 📝 Columns Definition
+
+For the `column definition`, you have to create a constant variable `columns`.
+
+We recommand to create a component to display your custom data.
+
+Here an exemple for Key Management app.
+
+```tsx
+const columns = useMemo(() => {
+  return [
+    {
+      id: 'name',
+      cell: DatagridCellName,
+      label: t('key_management_service_listing_name_cell'),
+    },
+    {
+      id: 'id',
+      cell: DatagridCellId,
+      label: t('key_management_service_listing_id_cell'),
+    },
+    {
+      id: 'kmip_count',
+      cell: DatagridResourceKmipCountCell,
+      label: t('key_management_service_listing_kmip_cell'),
+    },
+    {
+      id: 'action',
+      cell: KmsActionMenu,
+      label: '',
+    },
+  ];
+}, []);
+```
+
+> ⚠️ **Important Note**
+>
+> - We recommand to use useMemo for you columns definition
+> - Action columns will be always at the end of the datagrid.
+
+### ⚙️ FEATURES
+
+If you want to :
+
+- 🔽 `expand` a row, you can use the `renderSubComponent` attributes.
+- 🔍 `search` in columns, add `isSearchable` attribute at `true`
+- 🔄 `filter` in columns, add `isFilterable` attribute at `true`
+
+#### 🎯 ACTIONS
+
+<img src={listingActionsImg} alt="Listing Page headers buttons" width="200" />
+
+When you want to trigger action from a service, you can use `ActionMenu` component from `manager-react-components`
+
+```tsx
+import { ActionMenu } from '@ovh-ux/manager-react-components';
+
+const Actions = () => {
+  const actionItems = [
+    {
+      id: 1,
+      onClick: () => console.info('edit'),
+      urn: infoServiceUrn',
+      iamActions: ['action-edit', 'getInfos'],
+      label: t('modify'),
+    },
+    {
+      id: 2,
+      onClick: () => console.info('delete'),
+      urn: infoServiceUrn',
+      iamActions: ['action-delete', 'getInfos'],
+      label: t('delete'),
+    },
+  ];
+
+  return (
+    <ActionMenu
+      id={item.id}
+      items={actionItems.filter((i) => !i.hidden)}
+      variant={ODS_BUTTON_VARIANT.ghost}
+      isCompact
+    />
+  );
+}
+```
+
+You can also check IAM right if needed.
+
+### 🔝 Header button
+
+If you need to add externals links for changelog or guides, you can use the header attributes of BaseComponent layout
+
+<img src={listingHeadersImg} alt="Listing Page headers buttons" width="200" />
+
+Here You can find a code exemple :
+
+```tsx
+import {
+  BaseLayout,
+  ChangelogButton,
+  GuideButton
+} from '@ovh-ux/manager-react-components';
+
+const guideItems = [
+  {
+    id: 1,
+    href: 'https://www.ovh.com',
+    target: '_blank',
+    label: 'ovh.com',
+  },
+  {
+    id: 2,
+    href: 'https://help.ovhcloud.com/csm/fr-documentation?id=kb_home',
+    target: '_blank',
+    label: 'Guides OVH',
+  },
+];
+
+return (
+  <BaseLayout
+    header={{
+      changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+      headerButton: <GuideButton items={guideItems} />
+    }}
+  >
+)
+```
+
+### ⚠️ DEPRECATION
+
+> ⚠️ **Warning**
+>
+> We have deprecated the `pagination` navigation.
+
+### 🔄 POLLING DATA
+
+If you need to refresh you data, you can use a polling from `tanstack query`.
+
+`refethInterval` is available from `useInfiniteQuery` then also in `useResourcesIcebergV6`, `useResourcesV6`and `useResourcesIcebergV2`.
+
+```tsx
+const POLLING_INTERVAL = 5000;
+
+const {
+  data,
+  fetchNextPage,
+  hasNextPage,
+  flattenData,
+  isError,
+  isLoading,
+  sorting,
+  setSorting,
+  error,
+  status,
+} = useResourcesIcebergV2({
+  route: `${API_ENDPOINT}`,
+  queryKey: [${API_QUERY_KEY}],
+  refetchInterval: POLLING_INTERVAL
+});
+```
+
+## 🚨 Handling errors
+
+In case of API V6 or V2, response error for the main request, app will be display `ErrorBanner` from `manager-react-components`.
+
+We redirect the user to the error page, if the main request endpoint is in failure.
+
+```tsx
+const { isError, error, status } = useResourcesIcebergV2({
+  route: '/dedicated/server',
+  queryKey: ['appName', '/dedicated/server'],
+});
+
+if (isError) {
+  const { response }: any = error;
+  const errorObj = {
+    data: error,
+    headers: response.headers,
+    status: response.status,
+  };
+  return <ErrorBanner error={errorObj} />;
+}
+```
+
+## 🎯 CTA BUTTON
+
+<img src={listingCtaImg} alt="Listing Page cta" />
+
+The CTA button is alway at datagrid top left, you need to fill `topbar` attributes of `datagrid` component from `manager-react-components`
+
+## 📊 TRACKING Checklist
+
+- [ ] TrackPage display tracking on component mount
+- [ ] TrackClick - BaseLayout Headers components links buttons
+- [ ] TrackClick - Datagrid action buttons
+- [ ] TrackClick - Datagrid links button
+- [ ] TrackClick - CTA button
+
+## ✅ Code Review Checklist
+
+- [ ] Use `BaseLayout` Component from `manager-react-components`
+- API call :
+  - [ ] For V2 API call with Iceberg, use `useResourcesIcebergV2`
+  - [ ] For V6 API call with Iceberg, use `useResourcesIcebergV6`
+  - [ ] For V6 API call without Iceberg, use `useResourcesV6`
+  - [ ] For API call with agregatted data, create a custom hook
+- [ ] `CTA Button` always in datagrid `topbar` attribute
+- [ ] Notifications success/errors`in`message` attribute of base layout component

@@ -8,14 +8,13 @@ import {
 const FormatDateComponent = ({
   date,
   format,
-  unknownDateLabel,
-  defaultUnknownLabel,
-}: Partial<FormatDateOptions & { defaultUnknownLabel: string }>) => {
-  const formatDate = useFormatDate({ defaultUnknownLabel });
+  invalidDateDisplayLabel,
+}: Partial<FormatDateOptions>) => {
+  const formatDate = useFormatDate({ invalidDateDisplayLabel });
 
   return (
     <>
-      <strong>Date :</strong> {formatDate({ date, format, unknownDateLabel })}
+      <strong>Date :</strong> {formatDate({ date, format })}
     </>
   );
 };
@@ -26,16 +25,44 @@ export const Default = {
   },
 };
 
+export const CustomFormat = {
+  args: {
+    date: new Date(),
+    format: 'dd/MM/yyyy',
+  },
+};
+
+export const WithTime = {
+  args: {
+    date: new Date(),
+    format: 'dd/MM/yyyy HH:mm',
+  },
+};
+
+export const FullDateTime = {
+  args: {
+    date: new Date(),
+    format: 'PPpp',
+  },
+};
+
+export const UnknownDate = {
+  args: {
+    date: 'invalid-date',
+    invalidDateDisplayLabel: 'Date inconnue',
+  },
+};
+
 const useFormatDateStories = {
   title: 'Manager React Components/Hooks/useFormatDate',
   component: FormatDateComponent,
   argTypes: {
-    defaultUnknownLabel: {
+    invalidDateDisplayLabel: {
       control: 'text',
-      value: 'N/A',
+      value: DEFAULT_UNKNOWN_DATE_LABEL,
       description: 'Label used when the date is invalid or missing.',
       table: {
-        defaultValue: { summary: 'N/A' },
+        defaultValue: { summary: DEFAULT_UNKNOWN_DATE_LABEL },
         type: { summary: 'string' },
       },
     },
@@ -45,15 +72,6 @@ const useFormatDateStories = {
       table: {
         defaultValue: { summary: 'undefined' },
         type: { summary: 'date | string' },
-      },
-    },
-    unknownDateLabel: {
-      control: 'text',
-      description:
-        'Label used when the date is invalid or missing. (Overwrite `unknownDateLabelDefault`)',
-      table: {
-        defaultValue: { summary: 'undefined' },
-        type: { summary: 'string' },
       },
     },
     format: {
