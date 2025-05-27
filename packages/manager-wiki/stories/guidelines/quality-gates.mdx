@@ -1,0 +1,214 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guidelines/Quality Gates" />
+
+# Quality Gates
+
+Quality gates are automated checks that ensure code meets our quality standards before it can be merged into the main branch. This guide outlines the different quality checks and their requirements for our React applications in the monorepo.
+
+## Code Quality
+
+### Linting
+
+We use multiple linters to ensure code quality across different file types:
+
+```bash
+# Run all linters
+yarn lint
+
+# Run specific linters
+yarn lint:js      # JavaScript files
+yarn lint:tsx     # TypeScript/React files
+yarn lint:css     # CSS/SCSS files
+yarn lint:html    # HTML files
+yarn lint:md      # Markdown files
+```
+
+#### ESLint Configuration
+```js
+// .eslintrc.cjs
+module.exports = {
+  extends: [
+    '@ovh-ux/manager-vite-config/eslint',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+  ],
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'react'],
+  rules: {
+    // Project specific rules
+  },
+};
+```
+
+### Code Formatting
+
+We use Prettier and other formatters to maintain consistent code style:
+
+```bash
+# Format all files
+yarn format
+
+# Format specific file types
+yarn format:js    # JavaScript files
+yarn format:tsx   # TypeScript/React files
+yarn format:css   # CSS/SCSS files
+yarn format:html  # HTML files
+yarn format:md    # Markdown files
+```
+
+## Build
+
+The build process is crucial for our React applications in the monorepo.
+
+### Build Commands
+```bash
+# Build all packages
+yarn build
+
+# Build with Turbo
+yarn build:turbo
+
+# Clean build artifacts
+yarn clean
+yarn clean:dist
+```
+
+### Build Requirements
+1. **TypeScript Compilation**
+   - No type errors
+   - No implicit any
+   - Proper type definitions
+   - Proper module resolution
+
+2. **Bundle Size**
+   - Maximum bundle size: 500KB
+   - Maximum chunk size: 200KB
+   - Proper code splitting
+   - Tree shaking optimization
+
+3. **Performance**
+   - First contentful paint < 1.5s
+   - Time to interactive < 3.5s
+   - No performance regressions
+   - Proper lazy loading
+
+## Testing
+
+We use Vitest for testing our applications.
+
+### Test Commands
+```bash
+# Run all tests
+yarn test
+
+# Run Jest tests
+yarn test:jest
+
+# Run script tests
+yarn test:scripts
+```
+
+### Coverage Requirements
+- Minimum 80% line coverage
+- Minimum 70% branch coverage
+- All critical paths tested
+- All edge cases covered
+
+### Test Types
+1. **Unit Tests (Jest)**
+   - Component rendering
+   - Function behavior
+   - State management
+   - Event handling
+   - Custom hooks testing
+
+2. **Integration Tests**
+   - Component interactions
+   - API integration
+   - State flow
+   - Error handling
+   - Route testing
+
+3. **E2E Tests (Playwright)**
+   - Critical user flows
+   - Cross-browser compatibility
+   - Performance metrics
+   - Accessibility testing
+
+## Development
+
+### Development Commands
+```bash
+# Start development server
+yarn dev
+
+# Start specific application
+yarn start
+```
+
+### Environment Requirements
+- Node.js v22
+- Yarn >= 1.21.1
+- Required system dependencies
+- Proper environment variables
+
+## Monorepo Management
+
+### Workspace Commands
+```bash
+# List package dependents
+yarn list-dependents
+
+# Generate new application
+yarn generate:uapp
+
+# Publish packages
+yarn packages:publish
+```
+
+### Workspace Structure
+```json
+{
+  "workspaces": {
+    "packages": [
+      "docs",
+      "packages/components/*",
+      "packages/manager/apps/*",
+      "packages/manager/core/*",
+      "packages/manager/modules/*",
+      "packages/manager/tools/*",
+      "packages/manager-cli",
+      "packages/manager-react-components",
+      "packages/manager-wiki"
+    ]
+  }
+}
+```
+
+## Quality Gate Checklist
+
+- [ ] All linters pass (js, tsx, css, html, md)
+- [ ] Code formatting is consistent
+- [ ] TypeScript compilation successful
+- [ ] Test coverage meets requirements
+- [ ] Build completes successfully
+- [ ] No security vulnerabilities
+- [ ] No performance regressions
+- [ ] Documentation updated
+- [ ] Storybook stories updated
+- [ ] Cross-package tests passing
+- [ ] Workspace dependencies verified
+
+## Reference
+
+### External Resources
+- [ESLint Documentation](https://eslint.org/docs/latest/)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [Jest Documentation](https://jestjs.io/docs/getting-started)
+- [Playwright Documentation](https://playwright.dev/docs/intro)
+- [Vite Documentation](https://vitejs.dev/guide/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [Storybook Documentation](https://storybook.js.org/docs/react/get-started/introduction)
+- [Turbo Documentation](https://turbo.build/repo/docs)
