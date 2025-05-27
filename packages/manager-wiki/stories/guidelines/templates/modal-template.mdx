@@ -1,0 +1,236 @@
+import { Meta } from '@storybook/blocks';
+import { Routes, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+<Meta title="Guidelines/React Templates/Modal Templates" />
+
+# How to implement Modal
+
+This guide explains how to implement different types of modals in the OVHcloud Manager using the `@ovh-ux/manager-react-components` library.
+
+## Modal in Routes.tsx in child path
+
+To add a modal that can be accessed via URL, you need to define the route in your `Routes.tsx` file. Here's how to set it up:
+
+```tsx
+// In your Routes.tsx file
+export default (
+  return (
+    <Routes>
+      {/* Parent route */}
+      <Route path="/resources" element={<ResourcesPage />}>
+        {/* Child route for the modal */}
+        <Route path=":id/modal" element={<ResourceModal />} />
+      </Route>
+    </Routes>
+  );
+)
+```
+
+### Route Structure
+
+The route structure should follow this pattern:
+- Parent route: The main page where the modal will be opened
+- Child route: The modal route, typically using a path like `:id/modal` or `modal/:id`
+
+Example route patterns:
+```tsx
+// Simple modal route
+<Route path="modal" element={<SimpleModal />} />
+
+// Modal with resource ID
+<Route path=":id/modal" element={<ResourceModal />} />
+```
+
+## Modal from manager-react-components
+
+The Modal component provides a consistent interface for displaying modal dialogs. Here's how to use it:
+
+[Here](?path=/docs/manager-react-components-components-modal-documentation--technical-information), the component
+
+```tsx
+import { Modal } from '@ovh-ux/manager-react-components';
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+
+function MyModal() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Modal
+      heading="Modal Title"
+      type={ODS_MODAL_COLOR.information}
+      isOpen={isOpen}
+      onDismiss={() => setIsOpen(false)}
+      primaryLabel="Confirm"
+      onPrimaryButtonClick={() => {
+        // Handle primary action
+        setIsOpen(false);
+      }}
+      secondaryLabel="Cancel"
+      onSecondaryButtonClick={() => setIsOpen(false)}
+      isLoading={false}
+    >
+      <div>Modal content goes here</div>
+    </Modal>
+  );
+}
+```
+
+To set up the route:
+```tsx
+import { Routes, Route } from 'react-router-dom';
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/path/to/modal/:id" element={<SubPathModal />} />
+    </Routes>
+  );
+}
+```
+
+## UpdateNameModal
+
+The `UpdateNameModal` component is a reusable modal for updating resource names or other text fields. It provides a consistent interface for name updates across the application.
+
+[Here](?path=/story/manager-react-components-templates-update-name-modal--update-name-modal), the component
+
+```tsx
+import { UpdateNameModal } from '@ovh-ux/manager-react-components';
+
+function MyComponent() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  const handleUpdateName = async (newName) => {
+    try {
+      setIsUpdating(true);
+      // API call to update name
+      await updateResourceName(newName);
+      setIsModalOpen(false);
+    } catch (error) {
+      // Handle error
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  return (
+    <>
+      <Button onClick={() => setIsModalOpen(true)}>Update Name</Button>
+      {isModalOpen && (
+        <UpdateNameModal
+          onClose={() => setIsModalOpen(false)}
+          onSubmit={handleUpdateName}
+          currentName="Current Name"
+          isSubmitting={isUpdating}
+          title="Update Resource Name"
+          submitLabel="Save Changes"
+          cancelLabel="Cancel"
+        />
+      )}
+    </>
+  );
+}
+```
+
+### Props
+
+The `UpdateNameModal` component accepts the following props:
+
+```typescript
+interface UpdateNameModalProps {
+  onClose: () => void;              // Function to close the modal
+  onSubmit: (newName: string) => void; // Function to handle name update
+  currentName: string;              // Current name of the resource
+  isSubmitting?: boolean;           // Whether the update is in progress
+  title?: string;                   // Modal title (defaults to "Update Name")
+  submitLabel?: string;             // Submit button label (defaults to "Save")
+  cancelLabel?: string;             // Cancel button label (defaults to "Cancel")
+  placeholder?: string;             // Input placeholder text
+  error?: string;                   // Error message to display
+}
+```
+
+### Features
+
+- Form validation
+- Loading state handling
+- Error display
+- Keyboard navigation
+- Accessible form controls
+- Consistent styling with OVHcloud design system
+
+## DeleteModal
+
+A reusable confirmation modal for destructive actions:
+
+[Here](?path=/story/manager-react-components-templates-delete-modal--delete-modal), the component
+
+```tsx
+import { Modal } from '@ovh-ux/manager-react-components';
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+
+function DeleteModal({ onClose, onConfirm, resourceName, resourceType = 'resource' }) {
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleConfirm = async () => {
+    try {
+      setIsDeleting(true);
+      await onConfirm();
+      onClose();
+    } catch (error) {
+      // Handle error
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
+  return (
+    <Modal
+      heading={`Delete ${resourceType}`}
+      type={ODS_MODAL_COLOR.critical}
+      isOpen={true}
+      onDismiss={onClose}
+      primaryLabel="Delete"
+      onPrimaryButtonClick={handleConfirm}
+      isPrimaryButtonLoading={isDeleting}
+      secondaryLabel="Cancel"
+      onSecondaryButtonClick={onClose}
+    >
+      <p>
+        Are you sure you want to delete {resourceType} "{resourceName}"? 
+        This action cannot be undone.
+      </p>
+    </Modal>
+  );
+}
+```
+
+Usage example:
+```tsx
+function MyComponent() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleDelete = async () => {
+    // API call to delete resource
+    await deleteResource();
+  };
+
+  return (
+    <>
+      <Button variant="danger" onClick={() => setIsModalOpen(true)}>
+        Delete Resource
+      </Button>
+      {isModalOpen && (
+        <DeleteModal
+          onClose={() => setIsModalOpen(false)}
+          onConfirm={handleDelete}
+          resourceName="My Resource"
+          resourceType="service"
+        />
+      )}
+    </>
+  );
+}
+```

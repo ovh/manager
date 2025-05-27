@@ -1,0 +1,113 @@
+import { Meta } from '@storybook/blocks';
+import onboardingFlowImg from './images/onboarding-flow.png';
+
+<Meta title="Guidelines/React Templates/Onboarding page" />
+
+# How to add Onboarding Page
+
+The Onboarding page is a React component that guides users through the initial setup and configuration of your service. It provides a step-by-step process to help users get started with your service quickly and efficiently.
+
+> 💡 Good to know
+>
+> `Onboarding` is already implemented in the [`generator`](https://github.com/ovh/manager/tree/master/packages/manager/core/generator) by default, you just have to add and update some part of the code
+
+## As a developer
+
+Once the project generated, in you folder app, you will find `src/pages/onboarding/index.tsx` file.
+
+You have a default Onboarding template with a service description, a CTA Button and some external links.
+
+### Main Components
+
+<img src={onboardingFlowImg} alt="Complete onboarding flow" width="800" />
+
+#### BaseLayout
+
+The onboarding page uses the `BaseLayout` component from `manager-react-components` as its main container. This provides consistent styling and structure across the application.
+
+```tsx
+import { BaseLayout } from '@ovh-ux/manager-react-components';
+
+const OnboardingPage = () => {
+  return (
+    <BaseLayout
+      header={{
+        title: t('onboarding.title'),
+        description: t('onboarding.description'),
+      }}
+    >
+      {/* Onboarding content goes here */}
+    </BaseLayout>
+  );
+};
+```
+
+### Implementation Example
+
+Here's a complete example of an onboarding flow:
+
+```tsx
+import { BaseLayout } from '@ovh-ux/manager-react-components';
+import { OdsFormField, OdsSelect, OdsCheckbox } from '@ovhcloud/ods-components/react';
+
+const OnboardingPage = () => {
+  const [currentStep, setCurrentStep] = useState(1);
+  const [formData, setFormData] = useState({
+    step1: { name: '', type: '' },
+    step2: { options: [] },
+    step3: { confirmed: false },
+  });
+
+  const handleStepSubmit = async (step) => {
+    try {
+      await validateStep(step, formData[step]);
+      setCurrentStep(step + 1);
+    } catch (error) {
+      // Handle validation error
+    }
+  };
+
+  return (
+    <BaseLayout
+      header={{
+        title: t('onboarding.title'),
+        description: t('onboarding.description'),
+      }}
+    >
+      <div className="onboarding-container">
+        <StepProgress currentStep={currentStep} totalSteps={3} />
+        
+        {currentStep === 1 && (
+          <form onSubmit={() => handleStepSubmit('step1')}>
+            <OdsFormField label={t('onboarding.step1.name.label')}>
+              <input
+                value={formData.step1.name}
+                onChange={(e) => setFormData({
+                  ...formData,
+                  step1: { ...formData.step1, name: e.target.value }
+                })}
+              />
+            </OdsFormField>
+            <button type="submit">{t('onboarding.next')}</button>
+          </form>
+        )}
+
+        {/* Additional steps */}
+      </div>
+    </BaseLayout>
+  );
+};
+```
+
+### Code Review Checklist
+
+- [ ] Use `BaseLayout` component from `manager-react-components`
+- [ ] Implement step navigation
+- [ ] Add progress tracking
+- [ ] Include form validation
+- [ ] Handle loading states
+- [ ] Use ODS components
+- [ ] Add proper translations
+- [ ] Implement error handling
+- [ ] Add success/error notifications
+- [ ] Follow accessibility guidelines
