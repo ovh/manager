@@ -1,0 +1,5 @@
+{
+  "vrack_not_empty_title": "Résilier {{serviceName}}",
+  "vrack_not_empty_description": "Afin de résilier votre Vrack vous devez au préalable deconnecter tous les services qui y sont ratachés",
+  "vrack_not_empty_close": "Fermer"
+}

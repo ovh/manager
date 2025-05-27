@@ -6,6 +6,7 @@ import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
 
 import vrackListing from './listing.component';
 import route from './listing.route';
+import vrackNotEmptyModal from '../not-empty-modal';
 import service from '../dashboard/vrack.service';
 
 const moduleName = 'ovhManagerVrackListing';
@@ -15,6 +16,7 @@ angular
     'oui',
     'ui.router',
     'ovhManagerCore',
+    vrackNotEmptyModal,
     ApiV2ListHelper.moduleName,
   ])
   .component('vrackListing', vrackListing)
