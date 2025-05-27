@@ -4,5 +4,7 @@
   "service_state_suspended": "Suspendu",
   "service_state_toActivate": "À activer",
   "service_state_toDelete": "À supprimer",
-  "service_state_toSuspend": "À suspendre"
+  "service_state_toSuspend": "À suspendre",
+  "service_state_enabled": "Activé",
+  "service_state_disabled": "Désactivé"
 }
