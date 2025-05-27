@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.14.1...@ovh-ux/manager-pci-savings-plan-app@1.14.2) (2025-05-27)
+
+
+### Bug Fixes
+
+* **pci-svp:** modify cta_plan italian translation ([8c5b201](https://github.com/ovh/manager/commit/8c5b201868bda6aefebd957cfab46cac0728ecfb)), closes [#TAPC-3572](https://github.com/ovh/manager/issues/TAPC-3572)
+
+
+
+
+
 ## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.14.0...@ovh-ux/manager-pci-savings-plan-app@1.14.1) (2025-05-23)
 
 

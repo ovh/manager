@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.6.7...@ovh-ux/manager-pci-ai-endpoints-app@0.7.0) (2025-05-27)
+
+
+### Features
+
+* **pci-ai-endpoints:** improve ui & add user role detection hook ([abe121b](https://github.com/ovh/manager/commit/abe121b593e26d1621f1807963d20ba7f0d140d5)), closes [#AIS-1182](https://github.com/ovh/manager/issues/AIS-1182)
+
+
+
+
+
 ## [0.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.6.6...@ovh-ux/manager-pci-ai-endpoints-app@0.6.7) (2025-05-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
