@@ -51,9 +51,7 @@
   "dedicatedCloud_USER_right_vlan_readonly": "Accès en lecture seule",
   "dedicatedCloud_USER_right_vlan_MANAGER": "Permet de gérer les port groups du switch virtuel (création, modification, suppression). Seulement pour les SDDC et les packs Hosted Private Cloud Premier.",
   "dedicatedCloud_USER_right_vlan_manager": "Permet de gérer les port groups du switch virtuel (création, modification, suppression). Seulement pour les SDDC et les packs Hosted Private Cloud Premier.",
-  "dedicatedCloud_USER_right_resources": "Ajout de ressource",
-  "dedicatedCloud_USER_right_resources_help": "Droit d'ajouter des ressources supplémentaires via le plugin OVH dans vSphere Client",
-  "dedicatedCloud_USER_resource": "Ajout de ressource",
+  "dedicatedCloud_USER_resource": "Gestion des hôtes et des stockages",
   "dedicatedCloud_USER_VM_NETWORK_ROLE": "Accès au vmNetwork",
   "dedicatedCloud_USER_NETWORK_ROLE_EPCC": "Accès à V(x)Lans / GENEVE",
   "dedicatedCloud_USER_NETWORK_ROLE_MBM": "Accès aux VLANs"
