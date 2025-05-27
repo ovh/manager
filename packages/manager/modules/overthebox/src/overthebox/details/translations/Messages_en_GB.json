@@ -99,5 +99,6 @@
   "overTheBox_change_offer": "Change plan",
   "overTheBox_release_channel_deprecated": "Deprecated version {{version}}",
   "overTheBox_detail_ips": "IPs",
-  "overTheBox_model_ips_unknown": "IPs not found"
+  "overTheBox_model_ips_unknown": "IPs not found",
+  "overTheBox_enabled_ipv6_error": "An error has occurred enabling IPv6. If the error persists, please contact our support team"
 }
