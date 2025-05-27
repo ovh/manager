@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/billing-informations",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -18,7 +18,7 @@
   "devDependencies": {
     "@ovh-ux/manager-common-translations": "^0.7.0",
     "@ovh-ux/manager-core-api": "^0.12.0",
-    "@ovh-ux/manager-module-common-api": "^0.4.0",
+    "@ovh-ux/manager-module-common-api": "^0.4.1",
     "@ovh-ux/manager-react-components": "^2.25.0",
     "@ovh-ux/manager-vite-config": "^0.9.0",
     "@ovhcloud/ods-components": "^18.6.2",
