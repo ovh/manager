@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.11.10...@ovh-ux/manager-hycu-app@0.12.0) (2025-05-27)
+
+
+### Features
+
+* **hycu:** ftc hycu modal resiliation ([61fdf09](https://github.com/ovh/manager/commit/61fdf0978b3d05567d6b421e894807dac2ac792b)), closes [#MANAGER-17911](https://github.com/ovh/manager/issues/MANAGER-17911)
+
+
+
+
+
 ## [0.11.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.11.9...@ovh-ux/manager-hycu-app@0.11.10) (2025-05-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-hycu-app
