@@ -1,6 +1,6 @@
 import React from 'react';
 import { vitest } from 'vitest';
-import { renderHook } from '@testing-library/react';
+import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import {
   ShellContext,
@@ -13,7 +13,7 @@ const shellContext = {
     getUser: () => ({ ovhSubsidiary: 'mocked_ovhSubsidiary' }),
   },
   shell: {
-    useNavigation: {
+    navigation: {
       getURL: vitest.fn(),
     },
   },
@@ -58,20 +58,22 @@ describe('useBreadcrumb', () => {
       },
     );
     const { current } = result;
-    expect(current[0].label).toBe('vrackServices');
-    expect(current[0].href).toBe('/#/vrack-services/vrackServices');
+    await waitFor(() => {
+      expect(current[0].label).toBe('vrackServices');
+      expect(current[0].href).toBe('/#/vrack-services/vrackServices');
+    });
   });
 });
 describe('useBreadcrumb', () => {
+  beforeEach(() => {
+    vitest.mock('react-router-dom', async () => ({
+      ...(await vitest.importActual('react-router-dom')),
+      useLocation: () => ({
+        pathname: 'vrackServices/789789789/listing',
+      }),
+    }));
+  });
   it('should return an array with 3 breadcrumb items', async () => {
-    beforeEach(() => {
-      vitest.mock('react-router-dom', async () => ({
-        ...(await vitest.importActual('react-router-dom')),
-        useLocation: () => ({
-          pathname: 'vrackServices/789789789/listing',
-        }),
-      }));
-    });
     const { result } = renderHook(
       () =>
         useBreadcrumb({
@@ -83,12 +85,32 @@ describe('useBreadcrumb', () => {
       },
     );
     const { current } = result;
-    expect(current.length).toBe(3);
-    expect(current[0].label).toBe('vrackServices');
-    expect(current[0].href).toBe('/#/vrack-services/vrackServices');
-    expect(current[1].label).toBe('789789789');
-    expect(current[1].href).toBe('/#/vrack-services/789789789');
-    expect(current[2].label).toBe('listing');
-    expect(current[2].href).toBe('/#/vrack-services/listing');
+    await waitFor(() => {
+      expect(current.length).toBe(3);
+      expect(current[0].label).toBe('vrackServices');
+      expect(current[0].href).toBe('/#/vrack-services/vrackServices');
+      expect(current[1].label).toBe('789789789');
+      expect(current[1].href).toBe('/#/vrack-services/789789789');
+      expect(current[2].label).toBe('listing');
+      expect(current[2].href).toBe('/#/vrack-services/listing');
+    });
+  });
+  it('should hide rootLabel', async () => {
+    const hook = renderHook(
+      () =>
+        useBreadcrumb({
+          rootLabel: 'vRack services',
+          appName: 'vrack-services',
+          hideRootLabel: true,
+        }),
+      {
+        wrapper,
+      },
+    );
+    await waitFor(() => {
+      expect(hook.result.current[0].hideLabel).toBeTruthy();
+      expect(hook.result.current[1].hideLabel).toBeFalsy();
+      expect(hook.result.current[2].hideLabel).toBeFalsy();
+    });
   });
 });

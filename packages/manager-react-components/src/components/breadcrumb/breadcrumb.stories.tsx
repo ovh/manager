@@ -6,7 +6,13 @@ import {
 import { Breadcrumb } from './breadcrumb.component';
 
 const BreadcrumbStory = (args) => {
-  return <Breadcrumb rootLabel={args.rootLabel} appName={args.appName} />;
+  return (
+    <Breadcrumb
+      rootLabel={args.rootLabel}
+      appName={args.appName}
+      hideRootLabel={args.hideRootLabel}
+    />
+  );
 };
 
 export const Basic = BreadcrumbStory.bind({});
@@ -14,6 +20,15 @@ export const Basic = BreadcrumbStory.bind({});
 Basic.args = {
   rootLabel: 'vRack Services',
   appName: 'vrack-services',
+  hideRootLabel: false,
+};
+
+export const HideRootLabel = BreadcrumbStory.bind({});
+
+HideRootLabel.args = {
+  rootLabel: 'vRack Services',
+  appName: 'vrack-services',
+  hideRootLabel: true,
 };
 
 export default {
