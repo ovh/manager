@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.13.2...@ovh-ux/manager-veeam-backup-app@0.14.0) (2025-05-27)
+
+
+### Features
+
+* **veeam:** ftc veeam backup modal resiliation ([fabbaa2](https://github.com/ovh/manager/commit/fabbaa21a2962185aaa4aba68fad6e84a13ef60b)), closes [#MANAGER-17908](https://github.com/ovh/manager/issues/MANAGER-17908)
+
+
+
+
+
 ## [0.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.13.1...@ovh-ux/manager-veeam-backup-app@0.13.2) (2025-05-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
