@@ -48,6 +48,9 @@ import { useRegionsQuota } from '@/api/hooks/useQuota';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
 import ExternalLink from '@/components/ExternalLink';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
+import { useTrackBanner } from '@/hooks/useTrackBanner';
+import { Button } from '@/components/button/Button';
 
 type TFormState = {
   name: string;
@@ -68,6 +71,7 @@ export default function EditPage() {
 
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
+
   const onClose = () => navigate('..');
   const backHref = useHref('..');
 
@@ -107,16 +111,9 @@ export default function EditPage() {
     isInitialized: false,
   });
 
-  const { updateVolume, isPending: isUpdatePending } = useUpdateVolume({
-    projectId,
-    volumeToEdit: {
-      name: formState.name,
-      size,
-      bootable: formState.bootable,
-    },
-    originalVolume: volume,
-    onError(err: Error) {
-      onClose();
+  const onTrackingBannerError = useTrackBanner(
+    { type: 'error' },
+    (err: Error) => {
       addError(
         <Translation ns="edit">
           {(_t) =>
@@ -128,23 +125,35 @@ export default function EditPage() {
         </Translation>,
         true,
       );
-    },
-    onSuccess() {
       onClose();
-      addSuccess(
-        <Translation ns="edit">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_blocks_block_edit_success_message',
-              {
-                volume: volume?.name,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
     },
+  );
+  const onTrackingBannerSuccess = useTrackBanner({ type: 'success' }, () => {
+    addSuccess(
+      <Translation ns="edit">
+        {(_t) =>
+          _t(
+            'pci_projects_project_storages_blocks_block_edit_success_message',
+            {
+              volume: volume?.name,
+            },
+          )
+        }
+      </Translation>,
+      true,
+    );
+    onClose();
+  });
+  const { updateVolume, isPending: isUpdatePending } = useUpdateVolume({
+    projectId,
+    volumeToEdit: {
+      name: formState.name,
+      size,
+      bootable: formState.bootable,
+    },
+    originalVolume: volume,
+    onError: onTrackingBannerError,
+    onSuccess: onTrackingBannerSuccess,
   });
 
   const { data: regionQuota, isPending: isPendingQuota } = useRegionsQuota(
@@ -194,6 +203,7 @@ export default function EditPage() {
     [formState.size, size],
   );
 
+  const actionValues = [volume?.region, volume?.type];
   const onEdit = () => {
     if (formState.name && !errorState.isMaxError && !errorState.isMinError) {
       updateVolume();
@@ -467,28 +477,32 @@ export default function EditPage() {
           </OsdsText>
 
           <div className="flex mt-8 gap-4">
-            <OsdsButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              variant={ODS_BUTTON_VARIANT.stroked}
-              onClick={() => onClose()}
+            <ButtonLink
+              color="primary"
+              variant="outline"
+              to=".."
+              actionName="cancel"
+              actionValues={actionValues}
               slot="actions"
             >
               {tVolumeEdit(
                 'pci_projects_project_storages_blocks_block_volume-edit_cancel_label',
               )}
-            </OsdsButton>
+            </ButtonLink>
 
-            <OsdsButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              onClick={() => onEdit()}
-              {...(formState.name && !hasError ? {} : { disabled: true })}
+            <Button
+              color="primary"
+              onClick={onEdit}
+              actionName="confirm"
+              actionValues={actionValues}
+              disabled={!formState.name || hasError}
               slot="actions"
               data-testid="editPage-button_submit"
             >
               {tEdit(
                 'pci_projects_project_storages_blocks_block_edit_submit_label',
               )}
-            </OsdsButton>
+            </Button>
           </div>
         </>
       )}
