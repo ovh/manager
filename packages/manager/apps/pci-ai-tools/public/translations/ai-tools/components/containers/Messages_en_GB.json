@@ -34,5 +34,5 @@
   "deleteContainerTitle": "Delete a container",
   "deleteContainerDescription": "Are you sure you want to delete this container?",
   "disabledButtonTooltip": "Notebook must be in stopped status",
-  "disabledSyncButtonTooltip": "The notebook must be in service or failed to synchronize"
+  "disabledSyncButtonTooltip": "Synchronization is possible only if the status is in service or failed to synchronize"
 }

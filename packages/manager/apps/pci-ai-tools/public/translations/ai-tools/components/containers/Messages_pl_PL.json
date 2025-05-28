@@ -34,5 +34,5 @@
   "deleteContainerTitle": "Usuń kontener",
   "deleteContainerDescription": "Czy na pewno chcesz usunąć ten kontener?",
   "disabledButtonTooltip": "Notebook musi być w stanie zatrzymania",
-  "disabledSyncButtonTooltip": "Notebook musi być w stanie aktywny lub nie może zostać zsynchronizowany"
+  "disabledSyncButtonTooltip": "Synchronizacja jest możliwa tylko wtedy, gdy stan jest aktywny lub synchronizacja nie powiodła się"
 }
