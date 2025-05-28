@@ -32,7 +32,44 @@ export default /* @ngInject */ ($stateProvider) => {
           offer: offerName,
         };
       },
-      defaultFilterColumn: () => 'serviceName',
+      defaultFilterColumn: () => 'displayName',
+      columnConfig: /* @ngInject */ ($translate) => ({
+        data: [
+          {
+            label: $translate.instant('hosting_databgrid_column_display_name'),
+            property: 'displayName',
+            serviceLink: true,
+            hidden: false,
+          },
+          {
+            label: 'Offre',
+            property: 'offer',
+            hidden: false,
+          },
+          {
+            label: 'Statut',
+            property: 'state',
+            hidden: false,
+          },
+          {
+            label: 'Type de ressource',
+            property: 'resourceType',
+            hidden: false,
+          },
+          {
+            label: 'Localisation',
+            property: 'datacenter',
+            hidden: false,
+          },
+          {
+            label: 'Nom du service',
+            property: 'serviceName',
+            hidden: false,
+          },
+        ],
+      }),
+      description: () =>
+        'Créez votre projet web en quelques minutes. Publiez votre blog, votre site internet professionnel ou votre boutique en ligne avec nos hébergements évolutifs taillés pour tous vos projets.',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('hostings_title'),
       changelog: () => 'hosting_plan',
