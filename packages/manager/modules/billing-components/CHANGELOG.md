@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.18.0...@ovh-ux/manager-billing-components@4.18.1) (2025-05-28)
+
+
+### Bug Fixes
+
+* **billing-components:** manage service and option commitment mapping properly ([47f6d15](https://github.com/ovh/manager/commit/47f6d1517f25580ef454d52c588b47b908cdd954)), closes [#MANAGER-18447](https://github.com/ovh/manager/issues/MANAGER-18447)
+
+
+
+
+
 # [4.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.17.1...@ovh-ux/manager-billing-components@4.18.0) (2025-05-26)
 
 
