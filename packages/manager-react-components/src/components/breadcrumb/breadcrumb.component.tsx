@@ -10,15 +10,19 @@ export interface BreadcrumbProps {
   rootLabel: string;
   /** application name define in the shell */
   appName: string;
+  /** paths to ignore in the breadcrumb */
+  ignoredLabel?: string[];
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   rootLabel,
   appName,
+  ignoredLabel,
 }) => {
   const breadcrumbItems = useBreadcrumb({
     rootLabel,
     appName,
+    ignoredLabel,
   });
   return (
     <OdsBreadcrumb>

@@ -14,6 +14,7 @@ export const Basic = BreadcrumbStory.bind({});
 Basic.args = {
   rootLabel: 'vRack Services',
   appName: 'vrack-services',
+  ignoredLabel: [],
 };
 
 export default {
