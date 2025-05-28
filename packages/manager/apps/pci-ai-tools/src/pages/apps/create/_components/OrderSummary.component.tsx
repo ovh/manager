@@ -1,5 +1,4 @@
 import {
-  ChevronRightSquare,
   Cpu,
   Globe,
   HardDrive,
@@ -314,15 +313,12 @@ const DockerCommandDetails = ({
           {t('fieldDockerCommandLabel')}
         </Button>
       </div>
-      <div className="flex items-center pl-4 gap-2">
-        <ChevronRightSquare className="size-4" />
-        <span>
-          {t(`summaryFieldDockerCommand`, {
-            count: order.dockerCommand.length,
-            context: `${order.dockerCommand.length}`,
-          })}
-        </span>
-      </div>
+      <span className="ml-4">
+        {t(`summaryFieldDockerCommand`, {
+          count: order.dockerCommand.length,
+          context: `${order.dockerCommand.length}`,
+        })}
+      </span>
     </div>
   );
 };
