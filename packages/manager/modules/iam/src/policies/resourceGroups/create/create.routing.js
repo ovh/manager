@@ -1,10 +1,14 @@
-import * as constants from '../../iam.constants';
-import { RESOURCE_GROUPS_TRACKING_HITS } from '../../policies/resourceGroups/resourceGroups.constants';
+import * as constants from '../../../iam.constants';
+import { RESOURCE_GROUPS_TRACKING_HITS } from '../resourceGroups.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('iam.resourceGroup.create', {
+  $stateProvider.state('iam.policies.resourceGroups.create', {
     url: '/create',
-    component: 'iamCreateResourceGroup',
+    views: {
+      '@iam': {
+        component: 'iamCreateResourceGroup',
+      },
+    },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('iam_resource_group_create'),

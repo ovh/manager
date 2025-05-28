@@ -1,10 +1,10 @@
 import angular from 'angular';
 
-import createResourceGroup from '../../components/createResourceGroup';
+import createResourceGroup from '../../../components/createResourceGroup';
 
-import routing from './edit.routing';
+import routing from './create.routing';
 
-const moduleName = 'ovhManagerIAMResourceGroupsEdit';
+const moduleName = 'ovhManagerIAMResourceGroupsCreate';
 
 angular
   .module(moduleName, [createResourceGroup])
