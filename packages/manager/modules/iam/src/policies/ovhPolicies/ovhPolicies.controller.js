@@ -30,7 +30,7 @@ export default class OvhPoliciesController extends AbstractCursorDatagridControl
   editPolicy({ id }) {
     this.trackClick(OVH_POLICIES_TRACKING_HITS.EDIT_POLICY);
     return this.goTo({
-      name: 'iam.policy.edit',
+      name: 'iam.policies.ovhPolicies.edit',
       params: { policy: id },
     });
   }

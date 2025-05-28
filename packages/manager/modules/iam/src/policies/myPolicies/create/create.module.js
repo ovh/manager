@@ -1,10 +1,10 @@
 import angular from 'angular';
 
-import createPolicy from '../../components/createPolicy';
+import createPolicy from '../../../components/createPolicy';
 
-import routing from './edit.routing';
+import routing from './create.routing';
 
-const moduleName = 'ovhManagerIAMPolicyEdit';
+const moduleName = 'ovhManagerIAMPolicyCreate';
 
 angular
   .module(moduleName, [createPolicy])

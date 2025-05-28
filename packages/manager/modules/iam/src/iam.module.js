@@ -16,7 +16,6 @@ import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
 
 import dashboard from './dashboard';
-import policy from './policy';
 import policies from './policies';
 import identities from './identities';
 import apiKeys from './api-keys';
@@ -59,7 +58,6 @@ angular
     ngOvhUtils,
     uiKit,
     dashboard,
-    policy,
     policies,
     identities,
     apiKeys,
