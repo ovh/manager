@@ -1,27 +1,18 @@
-import { BrowserRouter } from 'react-router-dom';
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { it, vi } from 'vitest';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
-import { QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult, UseMutateFunction } from '@tanstack/react-query';
 import EditPage from './Edit.page';
+import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
+import { useVolumeCatalog, useVolumePricing } from '@/api/hooks/useCatalog';
+import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
+import { useVolumeMaxSize } from '@/api/data/quota';
+import {
+  useVolume,
+  useUpdateVolume,
+  UseVolumeResult,
+} from '@/api/hooks/useVolume';
 
-import * as volumeHook from '@/api/hooks/useVolume';
-
-import queryClient from '@/queryClient';
-import { UseVolumeResult } from '@/api/hooks/useVolume';
-
-vi.mock('@/core/HidePreloader', () => ({
-  default: () => <div>HidePeloader</div>,
-}));
+vi.mock('react-router-dom');
 
 vi.mock('@/api/hooks/useQuota', () => ({
   useRegionsQuota: vi.fn().mockReturnValue({ data: [] }),
@@ -57,47 +48,52 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
   };
 });
 
-const shellContext = {
-  environment: {
-    getUser: () => ({ ovhSubsidiary: 'mocked_ovhSubsidiary' }),
+vi.mock('@/api/hooks/useCatalog');
+vi.mocked(useVolumeCatalog).mockReturnValue({
+  data: {
+    models: [],
+    regions: [],
   },
-  shell: {
-    navigation: {
-      getURL: vi.fn(),
-    },
-  },
-};
-
-const wrapper = ({ children }) => (
-  <BrowserRouter>
-    <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
-        {children}
-      </ShellContext.Provider>
-    </QueryClientProvider>
-  </BrowserRouter>
+} as ReturnType<typeof useVolumeCatalog>);
+vi.mocked(useVolumePricing).mockReturnValue(
+  {} as ReturnType<typeof useVolumePricing>,
 );
 
+vi.mock('@/api/hooks/useHas3AZRegion');
+vi.mocked(useHas3AZRegion).mockReturnValue({ has3AZ: true, isPending: false });
+
+vi.mock('@/api/data/quota');
+vi.mocked(useVolumeMaxSize).mockReturnValue({
+  volumeMaxSize: 10_000,
+} as ReturnType<typeof useVolumeMaxSize>);
+
+vi.mock('@/api/hooks/useVolume');
+const mockedVolumeData = {
+  data: {
+    name: 'Volume',
+    size: 10,
+    bootable: false,
+    region: 'EU',
+    type: 'standard',
+  },
+  isLoading: false,
+  isPending: false,
+} as UseQueryResult<UseVolumeResult>;
+
+const mockUpdateVolume = vi.fn();
+vi.mocked(useUpdateVolume).mockReturnValue({
+  updateVolume: mockUpdateVolume as UseMutateFunction,
+} as ReturnType<typeof useUpdateVolume>);
+
 const renderEditPage = () => {
-  render(<EditPage />, { wrapper });
+  renderWithMockedWrappers(<EditPage />);
 };
 
 describe('Edit volume page', () => {
   it('renders the component and displays volume information', () => {
-    vi.spyOn(volumeHook, 'useVolume').mockReturnValue({
-      data: {
-        name: 'Volume',
-        size: 10,
-        bootable: false,
-        region: 'EU',
-        type: 'standard',
-      },
-      isLoading: false,
-      isPending: false,
-    } as UseQueryResult<UseVolumeResult>);
-
+    vi.mocked(useVolume).mockReturnValue(
+      mockedVolumeData as ReturnType<typeof useVolume>,
+    );
     renderEditPage();
 
     expect(screen.getByTestId('editPage-input_volumeName')).toHaveValue(
@@ -108,18 +104,7 @@ describe('Edit volume page', () => {
   });
 
   it('handles name change correctly', async () => {
-    vi.spyOn(volumeHook, 'useVolume').mockReturnValue({
-      data: {
-        name: 'Volume',
-        size: 10,
-        bootable: false,
-        region: 'EU',
-        type: 'standard',
-      },
-      isLoading: false,
-      isPending: false,
-    } as UseQueryResult<UseVolumeResult>);
-
+    vi.mocked(useVolume).mockReturnValue(mockedVolumeData);
     renderEditPage();
 
     fireEvent.change(screen.getByTestId('editPage-input_volumeName'), {
@@ -131,7 +116,7 @@ describe('Edit volume page', () => {
   });
 
   it('displays loading spinner when data is being fetched', async () => {
-    vi.spyOn(volumeHook, 'useVolume').mockReturnValue({
+    vi.mocked(useVolume).mockReturnValue({
       data: null,
       isLoading: true,
       isPending: true,
@@ -143,23 +128,7 @@ describe('Edit volume page', () => {
   });
 
   it('updates the volume on form submission when valid', async () => {
-    const mockUpdateVolume = vi.fn();
-
-    vi.spyOn(volumeHook, 'useVolume').mockReturnValue({
-      data: {
-        name: 'Volume',
-        size: 10,
-        bootable: false,
-        region: 'EU',
-        type: 'standard',
-      },
-      isLoading: false,
-      isPending: false,
-    } as UseQueryResult<UseVolumeResult>);
-    vi.spyOn(volumeHook, 'useUpdateVolume').mockReturnValue(({
-      updateVolume: mockUpdateVolume,
-    } as unknown) as never);
-
+    vi.mocked(useVolume).mockReturnValue(mockedVolumeData);
     renderEditPage();
 
     fireEvent.change(screen.getByTestId('editPage-input_volumeName'), {
