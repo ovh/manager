@@ -12,7 +12,7 @@ const DataSync = () => {
   const { volumeId } = useParams();
   const [volume, setVolume] = useState<ai.volume.VolumeStatus>();
   const { app, projectId } = useAppData();
-  const { t } = useTranslation('components/containers');
+  const { t } = useTranslation('ai-tools/components/containers');
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -49,9 +49,8 @@ const DataSync = () => {
   });
 
   const syncData = (dir: ai.volume.DataSyncEnum) => {
-    const dataSyncValues: ai.volume.DataSyncSpec = {
+    const dataSyncValues: Omit<ai.volume.DataSyncSpec, 'manual'> = {
       direction: dir,
-      manual: true,
     };
     if (volume) dataSyncValues.volume = volume.id;
     dataSync({

@@ -10,7 +10,7 @@ import { OrderLabel } from '@/types/orderFunnel';
 
 const Labels = () => {
   const { app, appQuery, projectId } = useAppData();
-  const { t } = useTranslation('components/labels');
+  const { t } = useTranslation('ai-tools/components/labels');
   const toast = useToast();
 
   const configuredLabel: OrderLabel[] = useMemo(
@@ -38,7 +38,6 @@ const Labels = () => {
     onSuccess: () => {
       toast.toast({
         title: t('labelToastSuccessTitle'),
-        description: t('labelToastSuccessDescription'),
       });
       appQuery.refetch();
     },
