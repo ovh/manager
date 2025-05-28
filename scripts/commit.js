@@ -32,7 +32,7 @@ async function extractBranchInfo() {
   const branchType = branchName.split('/')[0];
 
   // Extract ticket number if it exists (e.g., "TAPC-1234" -> "TAPC-1234")
-  const ticketMatch = branchName.match(/([A-Z]+-\d+)/);
+  const ticketMatch = branchName.match(/(^([A-Z]+-\d+|\d+)$)/);
   const ticket = ticketMatch ? ticketMatch[1] : null;
 
   return {
@@ -84,7 +84,8 @@ async function commit() {
         name: 'ticket',
         message: 'Ticket number:',
         default: ticket || '',
-        validate: (input) => input.length === 0 || /^[A-Z]+-\d+$/.test(input),
+        validate: (input) =>
+          input.length === 0 || /^([A-Z]+-\d+|\d+)$/.test(input),
         optional: true,
       },
     ];
