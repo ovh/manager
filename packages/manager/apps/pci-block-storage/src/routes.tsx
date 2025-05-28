@@ -30,7 +30,7 @@ const ROUTES: RouteObject[] = [
       {
         path: '',
         handle: {
-          tracking: { pageName: 'blocks' },
+          tracking: { pageType: PageType.listing },
         },
         ...lazyRouteConfig(() => import('@/pages/list/List.page')),
         children: [

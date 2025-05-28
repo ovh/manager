@@ -13,3 +13,5 @@ export const useHref = vi.fn((path) => path);
 export const useHistory = vi.fn((path) => path);
 
 export const Navigate = vi.fn(() => <></>);
+
+export const useNavigate = vi.fn(() => vi.fn());
