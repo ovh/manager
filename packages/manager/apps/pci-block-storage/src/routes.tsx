@@ -76,7 +76,10 @@ const ROUTES: RouteObject[] = [
               import('@/pages/delete/DeleteStorage.page'),
             ),
             handle: {
-              tracking: { pageName: 'delete' },
+              tracking: {
+                pageName: 'delete_volume_block_storage',
+                pageType: PageType.popup,
+              },
             },
             children: [],
           },
