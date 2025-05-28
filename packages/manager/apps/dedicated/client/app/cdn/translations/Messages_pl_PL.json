@@ -1,3 +1,10 @@
 {
-  "cdn_title": "CDN Infrastructure"
+  "cdn_title": "CDN Infrastructure",
+  "cdn_columns_header_service": "Usługa",
+  "cdn_columns_header_backendLimit": "Limit użycia backendu",
+  "cdn_columns_header_backendUse": "Użycie backendu",
+  "cdn_columns_header_cacheRuleLimitPerDomain": "Limit reguł cache per domena",
+  "cdn_columns_header_logUrl": "URL logów",
+  "cdn_columns_header_offer": "Pakiet",
+  "cdn_columns_header_quota": "Limit"
 }

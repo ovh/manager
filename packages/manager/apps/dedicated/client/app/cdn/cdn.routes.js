@@ -14,6 +14,48 @@ export default /* @ngInject */ ($stateProvider) => {
       header: /* @ngInject */ ($translate) => $translate.instant('cdn_title'),
       changelog: () => 'cdn',
       customizableColumns: () => true,
+      columnConfig: /* @ngInject */ ($translate) => ({
+        data: [
+          {
+            label: $translate.instant(`cdn_columns_header_service`),
+            hidden: false,
+            property: 'service',
+            serviceLink: true,
+          },
+          {
+            label: $translate.instant(`cdn_columns_header_backendLimit`),
+            hidden: false,
+            property: 'backendLimit',
+          },
+          {
+            label: $translate.instant(`cdn_columns_header_backendUse`),
+            hidden: false,
+            property: 'backendUse',
+          },
+          {
+            label: $translate.instant(
+              `cdn_columns_header_cacheRuleLimitPerDomain`,
+            ),
+            hidden: false,
+            property: 'cacheRuleLimitPerDomain',
+          },
+          {
+            label: $translate.instant(`cdn_columns_header_logUrl`),
+            hidden: false,
+            property: 'logUrl',
+          },
+          {
+            label: $translate.instant(`cdn_columns_header_offer`),
+            hidden: true,
+            property: 'offer',
+          },
+          {
+            label: $translate.instant(`cdn_columns_header_quota`),
+            hidden: true,
+            property: 'quota',
+          },
+        ],
+      }),
       getServiceNameLink: /* @ngInject */ ($state) => ({
         service: productId,
       }) =>
