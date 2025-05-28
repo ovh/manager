@@ -30,7 +30,7 @@ export default function Layout() {
     <Suspense>
       <UserProvider>
         <div className="flex h-screen w-screen">
-          <div className="flex flex-col app-content basis-7/12">
+          <div className="w-full flex flex-col app-content sm:basis-7/12">
             <div className="p-0 pt-4 pl-6">
               <img
                 src={ovhCloudLogo}
