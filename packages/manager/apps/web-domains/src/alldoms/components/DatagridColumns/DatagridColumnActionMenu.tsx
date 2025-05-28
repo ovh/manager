@@ -1,28 +1,32 @@
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-import { TServiceDetail } from '@/alldoms/types';
+import { useNavigate } from 'react-router-dom';
 import { ServiceInfoRenewMode } from '@/alldoms/enum/service.enum';
 
 interface DatagridColumnActionMenuProps {
   readonly serviceId: string;
-  readonly serviceInfoDetail: TServiceDetail;
-  readonly openModal: (serviceInfoDetail: TServiceDetail) => void;
+  readonly serviceName: string;
+  readonly serviceModeRenew: string;
+  readonly context: string;
 }
 
 export default function DatagridColumnActionMenu({
   serviceId,
-  serviceInfoDetail,
-  openModal,
+  serviceName,
+  serviceModeRenew,
+  context,
 }: DatagridColumnActionMenuProps) {
   const { t } = useTranslation('allDom');
-  const { mode } = serviceInfoDetail.serviceInfo.billing.renew.current;
   const { data: billingUrl } = useNavigationGetUrl(['billing', '', {}]);
   const { data: handleContactUrl } = useNavigationGetUrl(['account', '', {}]);
+  const url = `terminate${context === 'listing' ? `/${serviceName}` : ''}`;
+
   const renewAction =
-    mode === ServiceInfoRenewMode.Automatic ? 'disable' : 'enable';
+    serviceModeRenew === ServiceInfoRenewMode.Automatic ? 'disable' : 'enable';
+  const navigate = useNavigate();
 
   return (
     <ActionMenu
@@ -40,18 +44,18 @@ export default function DatagridColumnActionMenu({
         {
           id: 2,
           label: t('allDom_table_action_terminate'),
-          onClick: () => openModal(serviceInfoDetail),
+          onClick: () => navigate(url),
         },
         {
           id: 3,
           label: t(`allDom_table_action_${renewAction}_renewal`),
-          href: `${billingUrl}/autorenew/${renewAction}?selectedType=ALL_DOMsearchText=${serviceInfoDetail.allDomProperty.name}&services=${serviceId}`,
+          href: `${billingUrl}/autorenew/${renewAction}?selectedType=ALL_DOMsearchText=${serviceName}&services=${serviceId}`,
           target: '_blank',
         },
         {
           id: 4,
           label: t(`allDom_table_action_handle_contacts`),
-          href: `${handleContactUrl}/contacts/services/edit?service=${serviceInfoDetail.allDomProperty.name}&categoryType=ALL_DOM`,
+          href: `${handleContactUrl}/contacts/services/edit?service=${serviceName}&categoryType=ALL_DOM`,
           target: '_blank',
           'data-testid': 'handleContact-button',
         },

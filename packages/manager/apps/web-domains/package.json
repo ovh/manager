@@ -18,6 +18,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@ovh-ux/manager-common-translations": "^0.6.0",
     "@ovh-ux/manager-config": "^8.1.0",
     "@ovh-ux/manager-core-api": "^0.10.1",
     "@ovh-ux/manager-core-utils": "^0.3.0",

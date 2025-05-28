@@ -5,6 +5,8 @@ import {
   getallDomService,
 } from '@/alldoms/data/api/web-domains';
 import { TServiceDetail, TServiceProperty } from '@/alldoms/types';
+import { findContact } from '@/alldoms/utils/utils';
+import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
 
 interface UseGetDatagridServiceInfoListProps {
   readonly allDomList: TServiceProperty[];
@@ -26,7 +28,17 @@ export const useGetDatagridServiceInfoList = ({
           getallDomService(serviceName.name),
           getAllDomainAttachedToAllDom(serviceName.name),
         ]);
-        return { allDomProperty, serviceInfo, domainAttached };
+
+        const contacts = serviceInfo?.customer?.contacts ?? [];
+
+        return {
+          allDomProperty,
+          serviceInfo,
+          domainAttached,
+          nicAdmin: findContact(contacts, ServiceInfoContactEnum.Administrator),
+          nicBilling: findContact(contacts, ServiceInfoContactEnum.Billing),
+          nicTechnical: findContact(contacts, ServiceInfoContactEnum.Technical),
+        };
       },
     })),
   });
