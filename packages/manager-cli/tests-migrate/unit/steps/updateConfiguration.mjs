@@ -51,10 +51,11 @@ export const updateConfiguration = async (appPath, dryRun = false) => {
         if (key === 'test' && t.isObjectExpression(prop.value)) {
           for (const testProp of prop.value.properties) {
             if (!t.isObjectProperty(testProp)) continue;
+
             const name = testProp.key.name || testProp.key.value;
 
             if (name === 'setupFiles') {
-              setupFiles = testProp?.value?.elements?.map?.((e) => e.value) || testProp.value.value;
+              setupFiles = testProp.value?.elements?.map?.((e) => e.value) || testProp.value?.value;
             } else if (name === 'coverage') {
               for (const c of testProp.value.properties) {
                 if (
