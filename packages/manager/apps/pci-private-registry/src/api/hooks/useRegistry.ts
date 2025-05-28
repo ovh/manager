@@ -42,6 +42,11 @@ export const getRegistryAvailablePlansQueryKey = (
   registryId: string,
 ) => [...getRegistryQueryPrefix(projectId), registryId, 'available-plans'];
 
+export const getRegistryIAMQueryKey = (
+  projectId: string,
+  registryId: string,
+) => [...getRegistryQueryKey(projectId, registryId), 'iam'];
+
 export const getRegistryCredentialsQueryKey = (
   projectId: string,
   registryId: string,
@@ -244,3 +249,10 @@ export const useUpdatePlan = ({
     ...mutation,
   };
 };
+
+export const useGetRegistryIAM = (projectId: string, registryId: string) =>
+  useQuery({
+    queryKey: getRegistryIAMQueryKey(projectId, registryId),
+    queryFn: () => getRegistry(projectId, registryId),
+    select: (registry) => registry.iamEnabled,
+  });
