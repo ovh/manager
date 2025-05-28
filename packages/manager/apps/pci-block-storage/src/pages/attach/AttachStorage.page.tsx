@@ -6,21 +6,23 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_COLOR_HUE,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_SPINNER_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useEffect, useRef, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageType,
+  useOvhTracking,
+  usePageTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useAttachableInstances } from '@/api/hooks/useInstance';
 import { useAttachVolume, useVolume } from '@/api/hooks/useVolume';
 import NoInstanceWarningMessage from './NoInstanceAvailableWarningMessage';
 import { TAttachableInstance } from '@/api/select/instances';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
 
 export default function AttachStorage() {
   const navigate = useNavigate();
@@ -35,6 +37,9 @@ export default function AttachStorage() {
     data: instances,
     isPending: isInstancesPending,
   } = useAttachableInstances(projectId, volumeId);
+  const { trackClick, trackPage } = useOvhTracking();
+  const pageTracking = usePageTracking();
+
   const [selectedInstance, setSelectedInstance] = useState<TAttachableInstance>(
     null,
   );
@@ -68,6 +73,11 @@ export default function AttachStorage() {
     volumeId,
     instanceId: selectedInstance?.id,
     onError(err: Error) {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: pageTracking.pageName,
+      });
+
       addError(
         <Translation ns="attach">
           {(_t) =>
@@ -85,6 +95,11 @@ export default function AttachStorage() {
       onClose();
     },
     onSuccess() {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: pageTracking.pageName,
+      });
+
       addSuccess(
         <Translation ns="attach">
           {(_t) =>
@@ -160,18 +175,26 @@ export default function AttachStorage() {
         )}
         {!isPending && !instances?.length && <NoInstanceWarningMessage />}
       </slot>
-      <OsdsButton
+      <ButtonLink
         slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={onClose}
+        color="primary"
+        variant="ghost"
+        to=".."
+        trackingName="cancel"
+        trackingParams={[volume.region]}
       >
         {t('pci_projects_project_storages_blocks_block_attach_cancel_label')}
-      </OsdsButton>
+      </ButtonLink>
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={attachVolume}
+        onClick={() => {
+          trackClick({
+            buttonType: ButtonType.button,
+            actions: ['confirm', volume.region],
+          });
+          attachVolume();
+        }}
         {...(canAttach ? {} : { disabled: true })}
       >
         {t('pci_projects_project_storages_blocks_block_attach_submit_label')}
