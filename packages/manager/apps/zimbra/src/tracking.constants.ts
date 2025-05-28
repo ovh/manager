@@ -113,6 +113,7 @@ export const EMAIL_ACCOUNT_DELETE_ALIAS = `${EMAIL_ACCOUNT}_${DELETE_ALIAS}`;
 // SLOTS
 export const SLOT = 'slot';
 export const CONFIGURE_SLOT = `configure_${SLOT}`;
+export const UPGRADE_SLOT = `upgrade_${SLOT}`;
 
 // GUIDES
 export const GUIDE_WEBMAIL = 'webmail';
