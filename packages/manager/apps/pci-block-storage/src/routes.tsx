@@ -65,7 +65,8 @@ const ROUTES: RouteObject[] = [
               import('@/pages/detach/DetachStorage.page'),
             ),
             handle: {
-              tracking: { pageName: 'detach' },
+              pageName: 'detach_instance',
+              pageType: PageType.popup,
             },
             children: [],
           },
