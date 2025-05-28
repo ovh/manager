@@ -2,14 +2,14 @@ import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import ocLazyLoad from 'oclazyload';
 
-const moduleName = 'ovhManagerIAMResourceGroupCreateLazyLoading';
+const moduleName = 'ovhManagerIAMResourceGroupEditLazyLoading';
 
 angular.module(moduleName, [uiRouter, ocLazyLoad]).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('iam.resourceGroup.create.**', {
-      url: '/create',
+    $stateProvider.state('iam.policies.resourceGroups.edit.**', {
+      url: '/edit/{resourceGroup:uuid}',
       lazyLoad: (transition) =>
-        import('./create.module').then((module) =>
+        import('./edit.module').then((module) =>
           transition
             .injector()
             .get('$ocLazyLoad')
