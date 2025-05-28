@@ -94,7 +94,10 @@ const ROUTES: RouteObject[] = [
         id: 'edit',
         ...lazyRouteConfig(() => import('@/pages/edit/Edit.page')),
         handle: {
-          tracking: { pageName: 'edit' },
+          tracking: {
+            pageName: 'edit_volume_block_storage',
+            pageType: PageType.funnel,
+          },
         },
       },
       {
