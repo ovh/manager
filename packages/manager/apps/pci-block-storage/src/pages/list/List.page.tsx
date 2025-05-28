@@ -43,6 +43,7 @@ import HidePreloader from '@/core/HidePreloader';
 import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
 
 import { CHANGELOG_LINKS } from '@/constants';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -50,7 +51,6 @@ export default function ListingPage() {
   const [projectUrl, setProjectUrl] = useState('');
 
   const { navigation } = useContext(ShellContext).shell;
-  const navigate = useNavigate();
   const { projectId } = useParams();
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
   const columns = useDatagridColumn(projectId, projectUrl);
@@ -69,6 +69,13 @@ export default function ListingPage() {
         setProjectUrl(data as string);
       });
   }, [projectId, navigation]);
+
+  useEffect(
+    () => () => {
+      clearNotifications();
+    },
+    [clearNotifications],
+  );
 
   const { data: allVolumes, isPending, isFetching } = useAllVolumes(projectId);
   const { data: volumes, error } = useVolumes(
@@ -121,15 +128,12 @@ export default function ListingPage() {
 
         <Notifications />
         <div className="sm:flex items-center justify-between mt-4">
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.flat}
-            color={ODS_THEME_COLOR_INTENT.primary}
+          <ButtonLink
+            to="./new"
+            color="primary"
+            size="sm"
             className="xs:mb-0.5 sm:mb-0"
-            onClick={() => {
-              clearNotifications();
-              navigate('./new');
-            }}
+            trackingName="create_volume_block_storage"
           >
             <OsdsIcon
               size={ODS_ICON_SIZE.xs}
@@ -137,7 +141,7 @@ export default function ListingPage() {
               className="mr-4 bg-white"
             />
             {t('pci_projects_project_storages_blocks_add_label')}
-          </OsdsButton>
+          </ButtonLink>
           <div className="justify-between flex">
             <OsdsSearchBar
               className="w-[70%]"
