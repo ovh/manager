@@ -117,6 +117,7 @@
   "cloud_connect_region_us-west-lz-den": "North America (US – West – Denver)",
   "cloud_connect_region_us-east-lz-atl": "North America (US – East – Atlanta)",
   "cloud_connect_region_eu-west-lz-mrs": "Europe (France – Marseille)",
+  "cloud_connect_region_eu-south-mil": "Europe (Italy - Milan)",
   "cloud_connect_general_informations": "General information",
   "cloud_connect_pop_unconfigured": "Not configured",
   "cloud_connect_pop_link_status": "Link status",

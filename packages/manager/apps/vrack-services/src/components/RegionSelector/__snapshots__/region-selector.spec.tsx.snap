@@ -196,6 +196,35 @@ exports[`RegionSelector component > renders correctly 1`] = `
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/it.svg);"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_it
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_eu-south-mil
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            eu-south-mil
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
           style="background-image: url(flags/pl.svg);"
         />
         <div
