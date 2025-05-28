@@ -14,6 +14,7 @@ export type VCDRegion =
   | 'EU-WEST-PAR'
   | 'EU-WEST-RBX'
   | 'EU-WEST-SBG'
+  | 'EU-SOUTH-MIL'
   | 'US-EAST-VIN'
   | 'US-WEST-HIL';
 
