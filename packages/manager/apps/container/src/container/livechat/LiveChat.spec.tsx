@@ -5,6 +5,7 @@ import { getCustomerLevel } from './liveChat.helpers';
 import { CHAT_TYPE_STORAGE_KEY } from './liveChat.constants';
 import useContainer from '@/core/container';
 import { ContainerContextType } from '@/core/container/container.context';
+import { format } from 'date-fns';
 
 vi.mock('@/context', () => ({
   useShell: () => ({
@@ -111,7 +112,7 @@ describe('LiveChat.component', {}, () => {
     // TODO: Change url after the livechat is ready
     expect(liveChatIFrame).toHaveAttribute(
       'src',
-      'https://chat.ovh.com/system/templates/liveChat-manager/STD/FR_fr/docs/index2.html',
+      `https://chat.ovh.com/system/templates/liveChat-manager/STD/FR_fr/docs/index2.html?v=${format(new Date(), 'yy-MM-dd')}`,
     );
   });
 
