@@ -89,5 +89,7 @@
   "ip_agora_table_next_text": "Seguinte",
   "ip_agora_ipv6_no_services": " Os endereços Additional IPv6 só podem ser associados a uma rede privada vRack. Pode criar uma aqui: ",
   "ip_agora_ipv6_no_services_link": " Criar uma vRack",
-  "ip_agora_ipv4_localisation_not_available": "As informações de geolocalização não podem ser alteradas para um único endereço IP."
+  "ip_agora_ipv4_localisation_not_available": "As informações de geolocalização não podem ser alteradas para um único endereço IP.",
+  "ip_agora_ipv6_location_eu-south-mil": "Europa (Itália - Milão)",
+  "ip_region_eu-south-mil": "Europa (Itália - Milão)"
 }
