@@ -20,7 +20,6 @@ import policies from './policies';
 import identities from './identities';
 import apiKeys from './api-keys';
 import logs from './logs';
-import resourceGroup from './resourceGroup';
 
 import filters from './iam.filters';
 import paramTypes from './iam.paramTypes';
@@ -62,7 +61,6 @@ angular
     identities,
     apiKeys,
     logs,
-    resourceGroup,
     ngUiRouterLayout,
   ])
   .config(routing)
