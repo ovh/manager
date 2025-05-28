@@ -25,7 +25,10 @@ export default [
     children: [
       {
         path: '',
-        ...lazyRouteConfig(() => import('@/pages/Root.page')),
+        id: 'onboarding',
+        ...lazyRouteConfig(() =>
+          import('@/pages/services/onboarding/Onboarding.page'),
+        ),
       },
     ],
   },
