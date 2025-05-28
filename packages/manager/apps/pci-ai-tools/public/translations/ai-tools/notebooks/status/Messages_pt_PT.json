@@ -1,9 +1,9 @@
 {
   "status-DELETING": "Eliminação em curso",
-  "status-RESTARTING": "Reinicialização em curso",
+  "status-RESTARTING": "Reboot em curso",
   "status-STARTING": "Arranque",
-  "status-STOPPING": "Em curso de extinção",
-  "status-FAILED": "Falha",
+  "status-STOPPING": "Cancelamento em curso",
+  "status-FAILED": "Falhado",
   "status-ERROR": "Erro",
   "status-STOPPED": "Parado",
   "status-SYNC_FAILED": "Falha de sincronização",
