@@ -3,6 +3,19 @@ import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import { useRouting, useShell } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import PageLayout from '@/components/page-layout/PageLayout.component';
+import Breadcrumb, {
+  BreadcrumbHandleParams,
+} from '@/components/breadcrumb/Breadcrumb.component';
+import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+
+export function breadcrumb({ params }: BreadcrumbHandleParams) {
+  return (
+    <BreadcrumbItem
+      translationKey="crumb-dataplatform"
+      namespace="dataplatform"
+    />
+  );
+}
 
 function RoutingSynchronisation() {
   const location = useLocation();
@@ -30,6 +43,7 @@ function RoutingSynchronisation() {
 export default function Layout() {
   return (
     <PageLayout>
+      <Breadcrumb />
       <RoutingSynchronisation />
       <Outlet />
     </PageLayout>
