@@ -1,7 +1,7 @@
 {
   "privateAccess": "Acesso restrito",
-  "privateAccessDescription": "O acesso é reservado aos utilizadores Public Cloud da OVHcloud criados no seu projeto.",
+  "privateAccessDescription": "O acesso é reservado aos utilizadores Public Cloud OVHcloud criados no seu projeto.",
   "publicAccess": "Acesso público",
-  "publicAccessDescription1": "Acessível a toda a gente graças ao seu URL. Qualquer pessoa pode aceder ao seu código e aos dados que lhe estão associados.",
-  "publicAccessDescription2": "Tenha cuidado com os dados sensíveis."
+  "publicAccessDescription1": "Acessível a toda a gente através do seu URL. Qualquer utilizador pode aceder ao código e aos dados associados.",
+  "publicAccessDescription2": "Seja prudente com os dados sensíveis."
 }

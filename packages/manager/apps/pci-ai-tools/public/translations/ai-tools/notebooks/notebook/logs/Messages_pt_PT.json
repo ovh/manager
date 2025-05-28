@@ -1,6 +1,6 @@
 {
   "breadcrumb": "Logs",
   "title": "Logs",
-  "description": "Encontrará aqui o conjunto dos logs do seu notebook para o ajudar a seguir e monitorizar a sua evolução.",
-  "autoRefreshInputLabel": "Autorrefresh"
+  "description": "Encontrará aqui os logs do seu notebook para acompanhar e monitorizar a respetiva evolução.",
+  "autoRefreshInputLabel": "Auto-Refresh"
 }
