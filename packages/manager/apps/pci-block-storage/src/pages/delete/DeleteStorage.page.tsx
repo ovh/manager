@@ -1,9 +1,5 @@
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsModal, OsdsSpinner } from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -15,11 +11,15 @@ import {
 } from '@/api/hooks/useVolume';
 import DeleteWarningMessage from './DeleteWarningMessage';
 import DeleteConstraintWarningMessage from './DeleteConstraintWarningMessage';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
+import { useTrackBanner } from '@/hooks/useTrackBanner';
+import { Button } from '@/components/button/Button';
 
 export default function DeleteStorage() {
   const { projectId, volumeId } = useParams();
   const { t } = useTranslation('delete');
   const navigate = useNavigate();
+
   const onClose = () => navigate('..');
   const { addError, addSuccess } = useNotifications();
   const { data: volume, isPending: isVolumePending } = useVolume(
@@ -29,10 +29,10 @@ export default function DeleteStorage() {
   const { data: snapshots, isPending: isSnapshotPending } = useVolumeSnapshot(
     projectId,
   );
-  const { deleteVolume, isPending: isDeletePending } = useDeleteVolume({
-    projectId,
-    volumeId,
-    onError(err: Error) {
+
+  const onTrackingBannerError = useTrackBanner(
+    { type: 'error' },
+    (err: Error) => {
       addError(
         <Translation ns="delete">
           {(_t) =>
@@ -49,22 +49,30 @@ export default function DeleteStorage() {
       );
       onClose();
     },
-    onSuccess() {
-      addSuccess(
-        <Translation ns="delete">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_blocks_block_delete_success_message',
-              {
-                volume: volume?.name,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
-      onClose();
-    },
+  );
+
+  const onTrackingBannerSuccess = useTrackBanner({ type: 'success' }, () => {
+    addSuccess(
+      <Translation ns="delete">
+        {(_t) =>
+          _t(
+            'pci_projects_project_storages_blocks_block_delete_success_message',
+            {
+              volume: volume?.name,
+            },
+          )
+        }
+      </Translation>,
+      true,
+    );
+    onClose();
+  });
+
+  const { deleteVolume, isPending: isDeletePending } = useDeleteVolume({
+    projectId,
+    volumeId,
+    onError: onTrackingBannerError,
+    onSuccess: onTrackingBannerSuccess,
   });
 
   const isPending = isVolumePending || isSnapshotPending || isDeletePending;
@@ -72,6 +80,8 @@ export default function DeleteStorage() {
     !isPending && snapshots?.some((s) => s.volumeId === volumeId);
   const isAttached = !isPending && volume?.attachedTo.length > 0;
   const canDelete = !isPending && !isAttached && !hasSnapshot;
+
+  const actionValues = [volume?.region];
 
   return (
     <OsdsModal
@@ -107,23 +117,26 @@ export default function DeleteStorage() {
           </>
         )}
       </slot>
-      <OsdsButton
+      <ButtonLink
         slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={() => onClose()}
+        color="primary"
+        variant="ghost"
+        to=".."
+        actionName="cancel"
+        actionValues={actionValues}
       >
         {t('pci_projects_project_storages_blocks_block_delete_cancel_label')}
-      </OsdsButton>
-      <OsdsButton
+      </ButtonLink>
+      <Button
         slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() => canDelete && deleteVolume()}
-        {...(canDelete ? {} : { disabled: true })}
-        data-testid="deleteGateway-button_submit"
+        color="primary"
+        onClick={deleteVolume}
+        disabled={!canDelete}
+        actionName="confirm"
+        actionValues={actionValues}
       >
         {t('pci_projects_project_storages_blocks_block_delete_submit_label')}
-      </OsdsButton>
+      </Button>
     </OsdsModal>
   );
 }
