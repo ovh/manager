@@ -18,7 +18,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { OkmsServiceKeyReference } from '@/types/okmsServiceKeyReference.type';
 import {
   OkmsKeyTypes,
@@ -78,7 +78,7 @@ export default function CreateKey() {
   const { createKmsServiceKey, isPending } = useCreateOkmsServiceKey({
     okmsId,
     onSuccess: () => {
-      navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
+      navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: 'create_encryption_key',
@@ -119,17 +119,17 @@ export default function CreateKey() {
     {
       id: okmsId,
       label: okms?.data?.iam?.displayName,
-      navigateTo: `/${okmsId}`,
+      navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
-      id: ROUTES_URLS.keys,
+      id: KMS_ROUTES_URIS.serviceKeys,
       label: SERVICE_KEYS_LABEL,
-      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
+      navigateTo: KMS_ROUTES_URLS.serviceKeyListing(okmsId),
     },
     {
-      id: ROUTES_URLS.createKmsServiceKey,
+      id: KMS_ROUTES_URIS.serviceKeyCreate,
       label: t('key_management_service_service-keys_create_title'),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.createKmsServiceKey}`,
+      navigateTo: KMS_ROUTES_URLS.serviceKeyCreate(okmsId),
     },
   ];
 
@@ -141,7 +141,7 @@ export default function CreateKey() {
     return (
       <ErrorBanner
         error={okmsError.response}
-        onRedirectHome={() => navigate(ROUTES_URLS.listing)}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={refetchOkms}
       />
     );
@@ -151,7 +151,7 @@ export default function CreateKey() {
     return (
       <ErrorBanner
         error={serviceKeyReferenceError.response}
-        onRedirectHome={() => navigate(ROUTES_URLS.listing)}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={refetchServiceKeyReference}
       />
     );
@@ -207,7 +207,7 @@ export default function CreateKey() {
                       actionType: 'action',
                       actions: ['cancel'],
                     });
-                    navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
+                    navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
                   }}
                   label={t(
                     'key_management_service_service-keys_create_cta_cancel',
