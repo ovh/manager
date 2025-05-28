@@ -144,6 +144,11 @@
     "whatwg-fetch": "^3.6.2"
   },
   "packageManager": "pnpm@10.6.5",
+  "pnpm": {
+    "overrides": {
+      "@tanstack/react-query": "5.51.21"
+    }
+  },
   "engines": {
     "node": "^22",
     "pnpm": ">=10"

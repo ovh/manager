@@ -14,10 +14,10 @@ overrides:
   angular-i18n: ^1.8.3
   angular-messages: ^1.8.3
   angular-mocks: ^1.8.3
-  angular-translate: ^2.19.1
   angular-resource: ^1.8.3
   angular-route: ^1.8.3
   angular-sanitize: ^1.8.3
+  angular-translate: ^2.19.1
   chart.js: ^4.4.3
   flatpickr: ^4.6.9
   graphql: ^16.6.0
@@ -25,6 +25,7 @@ overrides:
   lodash-es: 4.17.21
   rollup-plugin-sass: 1.12.16
   sass: 1.56.1
+  '@tanstack/react-query': 5.51.21
 
 packageExtensionsChecksum: sha256-33zwati2vsE0GQkpuPwu/r+dgkBFanTy6gKM0mbdijs=
 
@@ -1097,7 +1098,7 @@ importers:
         specifier: ^7.21.11
         version: 7.21.11(@babel/core@7.22.10)
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
@@ -2080,7 +2081,7 @@ importers:
         specifier: 17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       autoprefixer:
         specifier: ^10.4.16
@@ -2509,7 +2510,7 @@ importers:
         specifier: ^5.0.0
         version: 5.0.51(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-virtual':
         specifier: ^3.0.0-beta.18
@@ -3977,7 +3978,7 @@ importers:
         specifier: ^18.6.2
         version: 18.6.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-query-devtools':
         specifier: ^5.51.21
@@ -4095,8 +4096,8 @@ importers:
         specifier: 17.2.1
         version: 17.2.1
       '@tanstack/react-query':
-        specifier: ^5.51.21
-        version: 5.69.0(react@18.2.0)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.2.0)
       axios:
         specifier: ^1.1.2
         version: 1.7.7
@@ -4142,7 +4143,7 @@ importers:
         version: 1.49.1
       '@tanstack/react-query-devtools':
         specifier: ^5.51.21
-        version: 5.74.4(@tanstack/react-query@5.69.0(react@18.2.0))(react@18.2.0)
+        version: 5.74.4(@tanstack/react-query@5.51.21(react@18.2.0))(react@18.2.0)
       '@testing-library/jest-dom':
         specifier: ^6.4.6
         version: 6.6.3
@@ -4222,7 +4223,7 @@ importers:
         specifier: 17.2.1
         version: 17.2.1
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-query-devtools':
         specifier: ^5.51.21
@@ -4702,7 +4703,7 @@ importers:
         specifier: ^18.6.2
         version: 18.6.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
@@ -6145,7 +6146,7 @@ importers:
         specifier: 17.2.1
         version: 17.2.1
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
@@ -6305,8 +6306,8 @@ importers:
         specifier: ^4.4.4
         version: link:../../../components/ovh-shell
       '@tanstack/react-query':
-        specifier: ^5.51.21
-        version: 5.69.0(react@18.2.0)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
         version: 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -6459,7 +6460,7 @@ importers:
         specifier: ^18.0.0
         version: 18.5.3
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-query-devtools':
         specifier: ^5.51.21
@@ -6598,7 +6599,7 @@ importers:
         specifier: ^17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
@@ -6743,7 +6744,7 @@ importers:
         specifier: ^18.6.2
         version: 18.6.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
@@ -6897,7 +6898,7 @@ importers:
         specifier: ^17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
@@ -7042,8 +7043,8 @@ importers:
         specifier: ^4.4.4
         version: link:../../../components/ovh-shell
       '@tanstack/react-query':
-        specifier: ^5.51.21
-        version: 5.69.0(react@18.2.0)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
         version: 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -7166,7 +7167,7 @@ importers:
         specifier: 17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
@@ -7306,7 +7307,7 @@ importers:
         version: link:../../core/api
       '@ovh-ux/manager-pci-common':
         specifier: ^0.16.4
-        version: 0.16.4(16876dbf249d5d074cb8214305cdb6bd)
+        version: 0.16.4(ec7e83d4781a679d7410a12a6769ce6f)
       '@ovh-ux/manager-react-components':
         specifier: ^1.48.0
         version: 1.48.0(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
@@ -7335,8 +7336,8 @@ importers:
         specifier: 17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
-        version: 5.69.0(react@18.2.0)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.2.0)
       axios:
         specifier: ^1.6.0
         version: 1.7.7
@@ -7373,7 +7374,7 @@ importers:
         version: link:../../core/vite-config
       '@tanstack/react-query-devtools':
         specifier: ^5.51.21
-        version: 5.74.4(@tanstack/react-query@5.69.0(react@18.2.0))(react@18.2.0)
+        version: 5.74.4(@tanstack/react-query@5.51.21(react@18.2.0))(react@18.2.0)
       '@testing-library/dom':
         specifier: ^10.1.0
         version: 10.4.0
@@ -7495,7 +7496,7 @@ importers:
         specifier: 17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.17.3
@@ -7652,7 +7653,7 @@ importers:
         specifier: 17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-query-devtools':
         specifier: ^5.51.21
@@ -7797,7 +7798,7 @@ importers:
         specifier: ^18.6.2
         version: 18.6.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
@@ -7951,7 +7952,7 @@ importers:
         specifier: ^17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
@@ -8111,7 +8112,7 @@ importers:
         specifier: 17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.17.3
@@ -8262,7 +8263,7 @@ importers:
         specifier: 17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
@@ -8428,8 +8429,8 @@ importers:
         specifier: ^18.6.2
         version: 18.6.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
-        version: 5.69.0(react@18.2.0)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.17.3
         version: 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -8475,7 +8476,7 @@ importers:
         version: link:../../core/vite-config
       '@tanstack/react-query-devtools':
         specifier: ^5.51.21
-        version: 5.74.4(@tanstack/react-query@5.69.0(react@18.2.0))(react@18.2.0)
+        version: 5.74.4(@tanstack/react-query@5.51.21(react@18.2.0))(react@18.2.0)
       '@testing-library/dom':
         specifier: ^10.1.0
         version: 10.4.0
@@ -8564,7 +8565,7 @@ importers:
         specifier: 17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
@@ -8724,11 +8725,11 @@ importers:
         specifier: ^18.6.2
         version: 18.6.2
       '@tanstack/react-query':
-        specifier: 5.51.11
-        version: 5.51.11(react@18.2.0)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.2.0)
       '@tanstack/react-query-devtools':
         specifier: 5.29.2
-        version: 5.29.2(@tanstack/react-query@5.51.11(react@18.2.0))(react@18.2.0)
+        version: 5.29.2(@tanstack/react-query@5.51.21(react@18.2.0))(react@18.2.0)
       '@testing-library/react':
         specifier: ^16.0.0
         version: 16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.3.0)(@types/react@18.3.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -8866,7 +8867,7 @@ importers:
         specifier: 17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.11.8
@@ -9008,7 +9009,7 @@ importers:
         specifier: 17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
@@ -9150,8 +9151,8 @@ importers:
         specifier: ^18.6.2
         version: 18.6.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
-        version: 5.69.0(react@18.2.0)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
         version: 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -9197,7 +9198,7 @@ importers:
         version: link:../../core/vite-config
       '@tanstack/react-query-devtools':
         specifier: ^5.50.1
-        version: 5.74.4(@tanstack/react-query@5.69.0(react@18.2.0))(react@18.2.0)
+        version: 5.74.4(@tanstack/react-query@5.51.21(react@18.2.0))(react@18.2.0)
       '@testing-library/dom':
         specifier: ^10.1.0
         version: 10.4.0
@@ -9292,7 +9293,7 @@ importers:
         specifier: 17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
@@ -9434,7 +9435,7 @@ importers:
         specifier: 17.2.2
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-query-devtools':
         specifier: ^5.51.21
@@ -9558,7 +9559,7 @@ importers:
         specifier: 17.2.1
         version: 17.2.1
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       axios:
         specifier: ^1.1.2
@@ -11112,7 +11113,7 @@ importers:
         specifier: ^18.6.2
         version: 18.6.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-query-devtools':
         specifier: ^5.51.21
@@ -11879,7 +11880,7 @@ importers:
         specifier: ^18.6.2
         version: 18.6.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       i18next:
         specifier: ^23.8.2
@@ -12346,8 +12347,8 @@ importers:
         specifier: ^18.6.2
         version: 18.6.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
-        version: 5.69.0(react@18.2.0)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
         version: 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -12396,7 +12397,7 @@ importers:
         version: link:../../core/vite-config
       '@tanstack/react-query-devtools':
         specifier: ^5.51.21
-        version: 5.74.4(@tanstack/react-query@5.69.0(react@18.2.0))(react@18.2.0)
+        version: 5.74.4(@tanstack/react-query@5.51.21(react@18.2.0))(react@18.2.0)
       '@testing-library/dom':
         specifier: ^10.1.0
         version: 10.4.0
@@ -12476,8 +12477,8 @@ importers:
         specifier: ^18.6.2
         version: 18.6.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
-        version: 5.69.0(react@18.2.0)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
         version: 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -12532,7 +12533,7 @@ importers:
         version: link:../../core/vite-config
       '@tanstack/react-query-devtools':
         specifier: ^5.51.21
-        version: 5.74.4(@tanstack/react-query@5.69.0(react@18.2.0))(react@18.2.0)
+        version: 5.74.4(@tanstack/react-query@5.51.21(react@18.2.0))(react@18.2.0)
       '@testing-library/dom':
         specifier: ^10.1.0
         version: 10.4.0
@@ -12606,8 +12607,8 @@ importers:
         specifier: ^18.6.2
         version: 18.6.2
       '@tanstack/react-query':
-        specifier: ^5.69.0
-        version: 5.69.0(react@18.2.0)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.2.0)
       axios:
         specifier: ^1.1.2
         version: 1.7.7
@@ -12650,7 +12651,7 @@ importers:
         version: link:../../core/vite-config
       '@tanstack/react-query-devtools':
         specifier: ^5.69.0
-        version: 5.74.4(@tanstack/react-query@5.69.0(react@18.2.0))(react@18.2.0)
+        version: 5.74.4(@tanstack/react-query@5.51.21(react@18.2.0))(react@18.2.0)
       '@testing-library/dom':
         specifier: ^9.3.4
         version: 9.3.4
@@ -12730,7 +12731,7 @@ importers:
         specifier: ^18.6.2
         version: 18.6.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.1
@@ -12855,7 +12856,7 @@ importers:
         specifier: ^4.4.4
         version: link:../../../components/ovh-shell
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       generouted:
         specifier: 1.6.4
@@ -12959,8 +12960,8 @@ importers:
         specifier: ^2.0.0
         version: link:../url-builder
       '@tanstack/react-query':
-        specifier: ^5.64.1
-        version: 5.69.0(react@18.2.0)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.2.0)
       i18next:
         specifier: ^23.8.2
         version: 23.16.8
@@ -13001,7 +13002,7 @@ importers:
         specifier: 17.x
         version: 17.2.2
       '@tanstack/react-query':
-        specifier: 5.x
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       i18next:
         specifier: 23.x
@@ -13596,8 +13597,8 @@ importers:
         specifier: ^0.3.0
         version: link:../../core/tailwind-config
       '@tanstack/react-query':
-        specifier: ^5.51.21
-        version: 5.69.0(react@18.2.0)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.2.0)
       date-fns:
         specifier: ^3.6.0
         version: 3.6.0
@@ -14051,7 +14052,7 @@ importers:
   packages/manager/modules/common-api:
     dependencies:
       '@tanstack/react-query':
-        specifier: 5.x
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       axios:
         specifier: ^1.1.2
@@ -14991,8 +14992,8 @@ importers:
         specifier: ^0.8.7
         version: link:../../core/shell-client
       '@tanstack/react-query':
-        specifier: ^5.51.21
-        version: 5.69.0(react@18.2.0)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.2.0)
       '@tanstack/react-virtual':
         specifier: ^3.10.9
         version: 3.13.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -15143,7 +15144,7 @@ importers:
         specifier: ^18.6.2
         version: 18.6.2
       '@tanstack/react-query':
-        specifier: ^5.51.21
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       '@testing-library/dom':
         specifier: ^10.1.0
@@ -15495,7 +15496,7 @@ importers:
         specifier: ^2.25.0
         version: link:../../../manager-react-components
       '@tanstack/react-query':
-        specifier: 5.x
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       axios:
         specifier: ^1.1.2
@@ -15949,7 +15950,7 @@ importers:
         specifier: ^0.8.7
         version: link:../../core/shell-client
       '@tanstack/react-query':
-        specifier: 5.x
+        specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
       axios:
         specifier: ^1.1.2
@@ -16845,8 +16846,8 @@ importers:
         specifier: ^0.8.7
         version: link:../../core/shell-client
       '@tanstack/react-query':
-        specifier: ^5.51.21
-        version: 5.69.0(react@18.2.0)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.2.0)
       '@tanstack/table-core':
         specifier: ^8.21.2
         version: 8.21.2
@@ -20155,7 +20156,7 @@ packages:
       '@ovhcloud/ods-common-theming': ^17.2.2
       '@ovhcloud/ods-components': ^17.2.2
       '@ovhcloud/ods-theme-blue-jeans': ^17.2.2
-      '@tanstack/react-query': ^5.51.21
+      '@tanstack/react-query': 5.51.21
       i18next: ^23.8.2
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -21952,12 +21953,6 @@ packages:
   '@tanstack/query-core@5.51.21':
     resolution: {integrity: sha512-POQxm42IUp6n89kKWF4IZi18v3fxQWFRolvBA6phNVmA8psdfB1MvDnGacCJdS+EOX12w/CyHM62z//rHmYmvw==}
 
-  '@tanstack/query-core@5.51.9':
-    resolution: {integrity: sha512-HsAwaY5J19MD18ykZDS3aVVh+bAt0i7m6uQlFC2b77DLV9djo+xEN7MWQAQQTR8IM+7r/zbozTQ7P0xr0bHuew==}
-
-  '@tanstack/query-core@5.69.0':
-    resolution: {integrity: sha512-Kn410jq6vs1P8Nm+ZsRj9H+U3C0kjuEkYLxbiCyn3MDEiYor1j2DGVULqAz62SLZtUZ/e9Xt6xMXiJ3NJ65WyQ==}
-
   '@tanstack/query-devtools@5.28.10':
     resolution: {integrity: sha512-5UN629fKa5/1K/2Pd26gaU7epxRrYiT1gy+V+pW5K6hnf1DeUKK3pANSb2eHKlecjIKIhTwyF7k9XdyE2gREvQ==}
 
@@ -21970,35 +21965,25 @@ packages:
   '@tanstack/react-query-devtools@5.29.2':
     resolution: {integrity: sha512-EmsaLNa8iFtReAW+5ftom0/TW78fIosVor517ak/+JFaoTBw8Yub3ao937JFE6AM3K/HXhteqvObetgt1ndLcw==}
     peerDependencies:
-      '@tanstack/react-query': ^5.29.2
+      '@tanstack/react-query': 5.51.21
       react: ^18.0.0
 
   '@tanstack/react-query-devtools@5.66.0':
     resolution: {integrity: sha512-uB57wA2YZaQ2fPcFW0E9O1zAGDGSbRKRx84uMk/86VyU9jWVxvJ3Uzp+zNm+nZJYsuekCIo2opTdgNuvM3cKgA==}
     peerDependencies:
-      '@tanstack/react-query': ^5.66.0
+      '@tanstack/react-query': 5.51.21
       react: ^18 || ^19
 
   '@tanstack/react-query-devtools@5.74.4':
     resolution: {integrity: sha512-PGCAcytQMmeagoeGG45ccBhrC1x0/5OlNjsM1FAb9OfsQZIhPzjwjhGcwmMu6TbT4RIHgvjxLwC5NHgkUwJQzw==}
     peerDependencies:
-      '@tanstack/react-query': ^5.74.4
+      '@tanstack/react-query': 5.51.21
       react: ^18 || ^19
-
-  '@tanstack/react-query@5.51.11':
-    resolution: {integrity: sha512-4Kq2x0XpDlpvSnaLG+8pHNH60zEc3mBvb3B2tOMDjcPCi/o+Du3p/9qpPLwJOTliVxxPJAP27fuIhLrsRdCr7A==}
-    peerDependencies:
-      react: ^18.0.0
 
   '@tanstack/react-query@5.51.21':
     resolution: {integrity: sha512-Q/V81x3sAYgCsxjwOkfLXfrmoG+FmDhLeHH5okC/Bp8Aaw2c33lbEo/mMcMnkxUPVtB2FLpzHT0tq3c+OlZEbw==}
     peerDependencies:
       react: ^18.0.0
-
-  '@tanstack/react-query@5.69.0':
-    resolution: {integrity: sha512-Ift3IUNQqTcaFa1AiIQ7WCb/PPy8aexZdq9pZWLXhfLcLxH0+PZqJ2xFImxCpdDZrFRZhLJrh76geevS5xjRhA==}
-    peerDependencies:
-      react: ^18 || ^19
 
   '@tanstack/react-table@8.20.1':
     resolution: {integrity: sha512-PJK+07qbengObe5l7c8vCdtefXm8cyR4i078acWrHbdm8JKw1ES7YpmOtVt9ALUVEEFAHscdVpGRhRgikgFMbQ==}
@@ -37308,29 +37293,6 @@ snapshots:
       react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
-  '@ovh-ux/manager-pci-common@0.16.4(16876dbf249d5d074cb8214305cdb6bd)':
-    dependencies:
-      '@ovh-ux/manager-config': link:packages/manager/modules/config
-      '@ovh-ux/manager-core-api': link:packages/manager/core/api
-      '@ovh-ux/manager-react-components': 1.48.0(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
-      '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
-      '@ovh-ux/manager-tailwind-config': link:packages/manager/core/tailwind-config
-      '@ovh-ux/shell': link:packages/components/ovh-shell
-      '@ovhcloud/ods-common-core': 17.2.2
-      '@ovhcloud/ods-common-stencil': 17.2.2
-      '@ovhcloud/ods-common-theming': 17.2.2
-      '@ovhcloud/ods-components': 17.2.2
-      '@ovhcloud/ods-theme-blue-jeans': 17.2.2
-      '@tanstack/react-query': 5.69.0(react@18.2.0)
-      clsx: 2.1.1
-      date-fns: 3.6.0
-      i18next: 23.16.8
-      lodash.isequal: 4.5.0
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-
   '@ovh-ux/manager-pci-common@0.16.4(381522a0b75528d3ba984efaa777b797)':
     dependencies:
       '@ovh-ux/manager-config': link:packages/manager/modules/config
@@ -37359,6 +37321,29 @@ snapshots:
       '@ovh-ux/manager-config': link:packages/manager/modules/config
       '@ovh-ux/manager-core-api': link:packages/manager/core/api
       '@ovh-ux/manager-react-components': 1.47.1(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
+      '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
+      '@ovh-ux/manager-tailwind-config': link:packages/manager/core/tailwind-config
+      '@ovh-ux/shell': link:packages/components/ovh-shell
+      '@ovhcloud/ods-common-core': 17.2.2
+      '@ovhcloud/ods-common-stencil': 17.2.2
+      '@ovhcloud/ods-common-theming': 17.2.2
+      '@ovhcloud/ods-components': 17.2.2
+      '@ovhcloud/ods-theme-blue-jeans': 17.2.2
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
+      clsx: 2.1.1
+      date-fns: 3.6.0
+      i18next: 23.16.8
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+
+  '@ovh-ux/manager-pci-common@0.16.4(ec7e83d4781a679d7410a12a6769ce6f)':
+    dependencies:
+      '@ovh-ux/manager-config': link:packages/manager/modules/config
+      '@ovh-ux/manager-core-api': link:packages/manager/core/api
+      '@ovh-ux/manager-react-components': 1.48.0(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
       '@ovh-ux/manager-tailwind-config': link:packages/manager/core/tailwind-config
       '@ovh-ux/shell': link:packages/components/ovh-shell
@@ -37412,7 +37397,7 @@ snapshots:
       '@ovhcloud/ods-common-theming': 17.2.2
       '@ovhcloud/ods-components': 17.2.2
       '@ovhcloud/ods-theme-blue-jeans': 17.2.2
-      '@tanstack/react-query': 5.69.0(react@18.2.0)
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
       '@tanstack/react-table': 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       clsx: 2.1.1
       i18next: 23.16.8
@@ -37439,7 +37424,7 @@ snapshots:
       '@ovhcloud/ods-common-theming': 17.2.2
       '@ovhcloud/ods-components': 17.2.2
       '@ovhcloud/ods-theme-blue-jeans': 17.2.2
-      '@tanstack/react-query': 5.69.0(react@18.2.0)
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
       '@tanstack/react-table': 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       clsx: 2.1.1
       i18next: 23.16.8
@@ -37466,7 +37451,7 @@ snapshots:
       '@ovhcloud/ods-common-theming': 17.2.2
       '@ovhcloud/ods-components': 17.2.2
       '@ovhcloud/ods-theme-blue-jeans': 17.2.2
-      '@tanstack/react-query': 5.69.0(react@18.2.0)
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
       '@tanstack/react-table': 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       clsx: 2.1.1
       i18next: 23.16.8
@@ -37493,7 +37478,7 @@ snapshots:
       '@ovhcloud/ods-common-theming': 17.2.2
       '@ovhcloud/ods-components': 17.2.2
       '@ovhcloud/ods-theme-blue-jeans': 17.2.2
-      '@tanstack/react-query': 5.69.0(react@18.2.0)
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
       '@tanstack/react-table': 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       clsx: 2.1.1
       i18next: 23.16.8
@@ -39618,20 +39603,16 @@ snapshots:
 
   '@tanstack/query-core@5.51.21': {}
 
-  '@tanstack/query-core@5.51.9': {}
-
-  '@tanstack/query-core@5.69.0': {}
-
   '@tanstack/query-devtools@5.28.10': {}
 
   '@tanstack/query-devtools@5.65.0': {}
 
   '@tanstack/query-devtools@5.73.3': {}
 
-  '@tanstack/react-query-devtools@5.29.2(@tanstack/react-query@5.51.11(react@18.2.0))(react@18.2.0)':
+  '@tanstack/react-query-devtools@5.29.2(@tanstack/react-query@5.51.21(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@tanstack/query-devtools': 5.28.10
-      '@tanstack/react-query': 5.51.11(react@18.2.0)
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
       react: 18.2.0
 
   '@tanstack/react-query-devtools@5.66.0(@tanstack/react-query@5.51.21(react@18.2.0))(react@18.2.0)':
@@ -39640,25 +39621,15 @@ snapshots:
       '@tanstack/react-query': 5.51.21(react@18.2.0)
       react: 18.2.0
 
-  '@tanstack/react-query-devtools@5.74.4(@tanstack/react-query@5.69.0(react@18.2.0))(react@18.2.0)':
+  '@tanstack/react-query-devtools@5.74.4(@tanstack/react-query@5.51.21(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@tanstack/query-devtools': 5.73.3
-      '@tanstack/react-query': 5.69.0(react@18.2.0)
-      react: 18.2.0
-
-  '@tanstack/react-query@5.51.11(react@18.2.0)':
-    dependencies:
-      '@tanstack/query-core': 5.51.9
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
       react: 18.2.0
 
   '@tanstack/react-query@5.51.21(react@18.2.0)':
     dependencies:
       '@tanstack/query-core': 5.51.21
-      react: 18.2.0
-
-  '@tanstack/react-query@5.69.0(react@18.2.0)':
-    dependencies:
-      '@tanstack/query-core': 5.69.0
       react: 18.2.0
 
   '@tanstack/react-table@8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
