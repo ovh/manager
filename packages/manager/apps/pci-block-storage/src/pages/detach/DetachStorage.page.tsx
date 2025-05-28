@@ -9,13 +9,20 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useEffect } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useInstance } from '@ovh-ux/manager-pci-common';
+import {
+  ButtonType,
+  PageType,
+  useOvhTracking,
+  usePageTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useDetachVolume, useVolume } from '@/api/hooks/useVolume';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
 
 export default function DetachStorage() {
   const navigate = useNavigate();
@@ -29,12 +36,19 @@ export default function DetachStorage() {
     projectId,
     attachedInstanceId,
   );
+  const { trackClick, trackPage } = useOvhTracking();
+  const pageTracking = usePageTracking();
 
   const { detachVolume, isPending: isDetachPending } = useDetachVolume({
     projectId,
     volumeId,
     instanceId: attachedInstanceId,
     onError(err: Error) {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: pageTracking.pageName,
+      });
+
       addError(
         <Translation ns="detach">
           {(_t) =>
@@ -52,6 +66,11 @@ export default function DetachStorage() {
       onClose();
     },
     onSuccess() {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: pageTracking.pageName,
+      });
+
       addSuccess(
         <Translation ns="detach">
           {(_t) =>
@@ -108,18 +127,26 @@ export default function DetachStorage() {
           </OsdsText>
         )}
       </slot>
-      <OsdsButton
+      <ButtonLink
         slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={onClose}
+        color="primary"
+        variant="ghost"
+        to=".."
+        trackingName="cancel"
+        trackingParams={[volume.region]}
       >
         {t('pci_projects_project_storages_blocks_block_detach_cancel_label')}
-      </OsdsButton>
+      </ButtonLink>
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={detachVolume}
+        onClick={() => {
+          trackClick({
+            buttonType: ButtonType.button,
+            actions: ['confirm', volume.region],
+          });
+          detachVolume();
+        }}
         {...(canDetach ? {} : { disabled: true })}
       >
         {t('pci_projects_project_storages_blocks_block_detach_submit_label')}
