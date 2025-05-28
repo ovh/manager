@@ -65,7 +65,6 @@ const Sidebar = (): JSX.Element => {
     setCurrentNavigationNode,
     closeNavigationSidebar,
     isMobile,
-    firstFocusableElement,
     isAnimated,
     setIsAnimated,
     isNavigationSidebarOpened,
@@ -318,7 +317,6 @@ const Sidebar = (): JSX.Element => {
               aria-label="OVHcloud"
               target="_top"
               href={logoLink}
-              ref={firstFocusableElement}
           >
               <img
                 className={`${open ? 'mx-4' : 'mx-2'} my-3`}

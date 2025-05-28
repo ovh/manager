@@ -10,9 +10,7 @@ export type ProductNavReshuffleContextType = {
   isMobile: boolean;
   isAnimated: boolean;
   popoverPosition: number;
-  isFirstTabDone: boolean,
-  firstFocusableElement: MutableRefObject<any>,
-  setIsFirstTabDone: (isFirstTabDone: boolean) => void,
+  skipToTheMainContentSlot: MutableRefObject<any>,
   startOnboarding: () => void;
   openOnboarding: () => void;
   closeOnboarding: (isDone?: boolean) => void;

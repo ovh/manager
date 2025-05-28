@@ -39,6 +39,7 @@ function NavReshuffleContainer(): JSX.Element {
     isNavigationSidebarOpened,
     openNavigationSidebar,
     closeNavigationSidebar,
+    skipToTheMainContentSlot
   } = productNavReshuffle;
 
   const onHamburgerMenuClick = () => {
@@ -56,6 +57,7 @@ function NavReshuffleContainer(): JSX.Element {
 
   return (
     <div className={style.navReshuffle}>
+      <div ref={skipToTheMainContentSlot} />
       <div
         className={`${style.sidebar} ${
           isNavigationSidebarOpened ? '' : style.hidden
