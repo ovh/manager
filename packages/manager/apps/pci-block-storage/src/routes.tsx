@@ -44,7 +44,10 @@ const ROUTES: RouteObject[] = [
               import('@/pages/attach/AttachStorage.page'),
             ),
             handle: {
-              tracking: { pageName: 'attach' },
+              tracking: {
+                pageName: 'attach_instance',
+                pageType: PageType.popup,
+              },
             },
             children: [],
           },
