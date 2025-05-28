@@ -6,7 +6,7 @@
   "addVolumeButton": "Ajouter un conteneur",
   "disabledButtonTooltip": "Le notebook doit être en statut arrêté",
   "synchroniseDataButton": "Synchronisation globale des données",
-  "disabledSyncButtonTooltip": "Le notebook doit être en statut en service ou en echec de synchronisation",
+  "disabledSyncButtonTooltip": "La synchronisation est possible seulement si le statut est en service ou en echec de synchronisation",
   "tableHeaderAlias": "Alias",
   "tableHeaderContainer": "Conteneur de données",
   "tableHeaderMountPath": "Répertoire de montage",
