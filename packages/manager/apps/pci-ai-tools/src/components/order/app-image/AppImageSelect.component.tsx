@@ -38,7 +38,12 @@ const AppImagesSelect = React.forwardRef<HTMLInputElement, AppImageSelectProps>(
           </TabsList>
         )}
         <TabsContent value="customerImage" className="mt-0">
-          <DockerCustomImageInput value={value} onChange={onChange} ref={ref} />
+          <DockerCustomImageInput
+            value={value}
+            onChange={onChange}
+            ref={ref}
+            appImages={appImages}
+          />
         </TabsContent>
         {appImages.length > 0 && (
           <TabsContent value="partnerImage" className="mt-0">

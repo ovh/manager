@@ -55,7 +55,6 @@ const PartnerImageSelect = React.forwardRef<
 
   const locale = useLocale();
   useEffect(() => {
-    if (!value) return;
     setIsChecked(!!images.find((im) => im.id === value)?.contract?.signedAt);
     setContract(images.find((im) => im.id === value)?.contract);
   }, [value, images]);
@@ -76,7 +75,7 @@ const PartnerImageSelect = React.forwardRef<
             onChange(
               val,
               images.find((img) => img.id === val).versions[0],
-              isChecked,
+              !!images.find((im) => im.id === val)?.contract?.signedAt,
             );
           }}
         >
@@ -84,15 +83,7 @@ const PartnerImageSelect = React.forwardRef<
             <RadioTile
               data-testid={`image-radio-tile-${image.id}`}
               key={image.id}
-              onChange={() => {
-                onChange(
-                  image.id,
-                  image.versions[0],
-                  !!image?.contract?.signedAt,
-                );
-              }}
               value={image.id}
-              checked={image.id === value}
             >
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-center">
@@ -122,7 +113,7 @@ const PartnerImageSelect = React.forwardRef<
                 </div>
               </div>
               <Separator className="my-2" />
-              <div>
+              <div className="text-sm">
                 {image.pricingCpu && (
                   <ParnterOrderPrice
                     isCpu={true}
@@ -132,6 +123,8 @@ const PartnerImageSelect = React.forwardRef<
                     quantity={1}
                   />
                 )}
+              </div>
+              <div className="text-sm">
                 {image.pricingGpu && (
                   <ParnterOrderPrice
                     isCpu={false}

@@ -649,9 +649,8 @@ const OrderFunnel = ({
                       <TableCell className="py-1 px-2">
                         {t('priceRessourceLabel')}
                       </TableCell>
-                      <TableCell className="py-1 px-2">
+                      <TableCell className="py-1 px-2 text-right">
                         <Price
-                          classname="flex flex-row justify-end items-center flex-wrap"
                           decimals={2}
                           priceInUcents={
                             model.result.pricing.resourcePricing?.price
@@ -669,9 +668,8 @@ const OrderFunnel = ({
                       <TableCell className="py-1 px-2">
                         {t('priceScalingLabel')}
                       </TableCell>
-                      <TableCell className="py-1 px-2">
+                      <TableCell className="py-1 px-2 text-right">
                         <Price
-                          classname="flex flex-row justify-end items-center flex-wrap"
                           decimals={2}
                           priceInUcents={
                             model.result.pricing.scalingPricing.price
@@ -687,9 +685,8 @@ const OrderFunnel = ({
                       <TableCell className="py-1 px-2">
                         {t('priceLicenceLabel')}
                       </TableCell>
-                      <TableCell className="py-1 px-2">
+                      <TableCell className="py-1 px-2 text-right">
                         <Price
-                          classname="flex flex-row justify-end items-center flex-wrap"
                           decimals={2}
                           priceInUcents={
                             model.result.pricing.partnerLicence.price
@@ -705,9 +702,8 @@ const OrderFunnel = ({
                       <TableCell className="py-1 px-2 font-bold">
                         {t('priceTotalLabel')}
                       </TableCell>
-                      <TableCell className="py-1 px-2">
+                      <TableCell className="py-1 px-2 text-right">
                         <Price
-                          classname="flex flex-row justify-end items-center flex-wrap"
                           decimals={2}
                           priceInUcents={
                             model.result.pricing.resourcePricing.price +

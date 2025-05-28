@@ -7,14 +7,12 @@ interface PriceProps {
   taxInUcents: number;
   decimals: number;
   displayInHour: boolean;
-  classname?: string;
 }
 const Price = ({
   priceInUcents,
   taxInUcents,
   decimals = 2,
   displayInHour = true,
-  classname,
 }: PriceProps) => {
   const { t } = useTranslation('ai-tools/pricing');
   const catalog = useGetCatalog();
@@ -43,7 +41,7 @@ const Price = ({
   };
 
   return (
-    <div className={classname}>
+    <>
       <span data-testid="pricing-ht" className="font-bold">
         {t('pricingHt', { price: formatPrice(price) })}
       </span>{' '}
@@ -51,7 +49,7 @@ const Price = ({
       <span data-testid="pricing-ttc">
         ({t('pricingTtc', { price: formatPrice(priceWithTax) })})
       </span>
-    </div>
+    </>
   );
 };
 
