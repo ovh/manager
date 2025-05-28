@@ -1,0 +1,14 @@
+{
+  "fieldDockerCommandLabel": "Ordini",
+  "fieldDockedCommandDescription": "Inserisci il comando Docker da eseguire nel container.",
+  "commandInputLabel": "Comandi Docker",
+  "commandInputHelper": "Inserisci gli argomenti (separati da spazi) che saranno utilizzati dal comando Docker. Le virgolette singole (`) non sono supportate e devono essere sostituite da virgolette.",
+  "commandSumupTitle": "Comando specifico",
+  "formDockerCommandErrorPattern": "Le virgolette singole (`) non sono supportate e devono essere sostituite da virgolette.",
+  "updateDockerCommandTitle": "Aggiorna ordini docker",
+  "updateDockerCommandButtonCancel": "Annulla",
+  "updateDockerCommandButtonConfirm": "Conferma",
+  "updateDockerToastErrorTitle": "Errore",
+  "updateDockerToastSuccessTitle": "Riuscito",
+  "updateDockerToastSuccessDescription": "L'applicazione è stata aggiornata"
+}

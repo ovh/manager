@@ -1,4 +1,8 @@
-import { getNotebookSpec, humanizeFramework } from './orderFunnelHelper';
+import {
+  getJobSpec,
+  getNotebookSpec,
+  humanizeFramework,
+} from './orderFunnelHelper';
 import ai from '@/types/AI';
 import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/capabilities/region';
 import {
@@ -11,12 +15,16 @@ import {
   mockedOrderVolumesGit,
   mockedOrderVolumesS3,
 } from '@/__tests__/helpers/mocks/volume/datastore';
-import { NotebookOrderResult } from '@/types/orderFunnel';
+import { JobOrderResult, NotebookOrderResult } from '@/types/orderFunnel';
 import {
   mockedNotebookSpecInput,
   mockedNotebookSpecInputGPU,
 } from '@/__tests__/helpers/mocks/notebook/notebook';
 import { mockedFramework } from '@/__tests__/helpers/mocks/capabilities/notebookFramework';
+import {
+  mockedJobSpecInput,
+  mockedJobSpecInputGPU,
+} from '@/__tests__/helpers/mocks/job/job';
 
 describe('orderFunnelHelper', () => {
   it('getNotebookSpec', () => {
@@ -48,6 +56,29 @@ describe('orderFunnelHelper', () => {
     expect(getNotebookSpec(orderResultGPU)).toStrictEqual(
       mockedNotebookSpecInputGPU,
     );
+  });
+
+  it('getJobSpec', () => {
+    const jobOrderResultCPU: JobOrderResult = {
+      region: mockedCapabilitiesRegionGRA,
+      flavor: mockedOrderFlavorCPU,
+      resourcesQuantity: 2,
+      jobName: 'myNewJob',
+      unsecureHttp: false,
+      image: 'myImage',
+      sshKey: ['myNewSshKey'],
+      volumes: [mockedOrderVolumesS3, mockedOrderVolumesGit],
+      dockerCommand: ['command', 'docker'],
+    };
+
+    const jobOrderResultGPU: JobOrderResult = {
+      ...jobOrderResultCPU,
+      flavor: mockedOrderFlavorGPU,
+      volumes: [mockedOrderPublicGit],
+    };
+
+    expect(getJobSpec(jobOrderResultCPU)).toStrictEqual(mockedJobSpecInput);
+    expect(getJobSpec(jobOrderResultGPU)).toStrictEqual(mockedJobSpecInputGPU);
   });
 
   it('humanizeFramework', () => {
