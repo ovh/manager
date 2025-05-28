@@ -1,0 +1,16 @@
+{
+  "title": "AI Deploy",
+  "description1": "Wdrażaj swoje aplikacje i modele AI w wysokiej dostępności.",
+  "description2": "Wybierz z katalogu lub implementuj własne obrazy Docker.",
+  "description3": "Pracujesz jako data scientist lub deweloper i chcesz wdrożyć aplikację lub model sztucznej inteligencji w ciągu kilku minut? Wybierz z katalogu aplikacji lub zaimportuj Twoją własną skonteneryzowaną aplikację. OVHcloud zajmie się wdrożeniem jej w wysokiej dostępności oraz jej zabezpieczeniem. Korzystaj z zasobów CPU lub GPU, z narzędzi do monitorowania w czasie rzeczywistym oraz z prostego cennika rozliczanego według zużycia. Możesz następnie zalogować się przez API lub przez interfejs www HTTP.",
+  "createAppButton": "Uruchom aplikację",
+  "cardTutotitle": "Tutoriale",
+  "cardGuidetitle": "Przewodniki",
+  "cardLink": "Dowiedz się więcej",
+  "cardTuto1Description": "Pełna dokumentacja AI Deploy",
+  "cardTuto1Content": "Zapoznaj się z dokumentacją AI Deploy.",
+  "cardTuto2Description": "Charakterystyka, możliwości i ograniczenia",
+  "cardTuto2Content": "Sprawdź, co to jest aplikacja w OVHcloud.",
+  "cardTuto3Description": "Rozpocznij pracę z AI Deploy",
+  "cardTuto3Content": "Dowiedz się, jak szybko uruchomić aplikację z poziomu Panelu klienta, wiersza poleceń lub API."
+}
