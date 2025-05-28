@@ -13,6 +13,9 @@ const shellContextValue: RecursivePartial<ShellContextType> = {
     ux: {
       hidePreloader: () => Promise.resolve(),
     },
+    tracking: {
+      trackClick: () => {},
+    },
   },
   environment: {
     getUser: () => ({ ovhSubsidiary: 'test' }),
