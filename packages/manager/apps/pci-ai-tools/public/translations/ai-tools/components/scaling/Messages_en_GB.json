@@ -1,0 +1,16 @@
+{
+  "fieldScalingDesc1": "Choose the deployment strategy that best suits your app. Choose a fixed size for the number of replicas your app will be deployed on, or specify a minimum and maximum number of replicas for your deployments. This will dynamically optimize performance, and adapt to the number of requests via the auto-scaling option.",
+  "scalingLink": "Learn more about scaling strategies",
+  "scalingStratActiveLabel": "Auto-scaling enabled",
+  "noScalingStratActiveLabel": "Auto-scaling disabled",
+  "replicasInputLabel": "Number of replicas your app will be deployed on",
+  "haInfoHelper": "Deploy on a minimum of 2 replicas to have high availability",
+  "replicasMinInputLabel": "Minimum replica nodes",
+  "replicasMaxInputLabel": "Maximum replica nodes",
+  "resourceTypeLabel": "Metric monitored",
+  "resourceTypeInfo": "The metric that will act as the trigger for auto-scaling.",
+  "treshholderTargetLabel": "Trigger threshold (%)",
+  "treshholderTargetInfo": "The metric value, in percent.",
+  "scalingBillingInfo": "Please note that the number of replica nodes you choose will increase the number of resources you use.",
+  "errorFormMinMaxRepField": "Minimum Replicas must be less than Maximum Replicas"
+}

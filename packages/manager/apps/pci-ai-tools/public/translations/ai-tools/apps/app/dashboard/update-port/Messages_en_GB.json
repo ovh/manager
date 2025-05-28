@@ -1,0 +1,12 @@
+{
+  "updatePortTitle": "Modify the HTTP port",
+  "updateHttpPortDesc1": "You can update the port of your application. You keep your current configuration on other elements, such as your HTTP endpoint or deployment strategy.",
+  "updateHttpPortDesc2": "There may be latency time on your various replica nodes.",
+  "fieldHttpPortLabel": "HTTP port",
+  "httpPortInfo": "Enter the new HTTP port on which you want to deploy your app.",
+  "updatePortButtonCancel": "Cancel",
+  "updatePortButtonConfirm": "Modify",
+  "updatePortToastErrorTitle": "An error occurred",
+  "updatePortToastSuccessTitle": "Successes",
+  "updatePortToastSuccessDescription": "The http port has been updated"
+}
