@@ -1,0 +1,14 @@
+{
+  "fieldDockerCommandLabel": "Orders",
+  "fieldDockedCommandDescription": "Enter the Docker command to launch in the container.",
+  "commandInputLabel": "Docker Commands",
+  "commandInputHelper": "Enter the arguments (separated by spaces) that will be passed to the Docker command. Single quotation marks (`) are not supported and should be replaced with quotation marks.",
+  "commandSumupTitle": "Specific order",
+  "formDockerCommandErrorPattern": "Single quotation marks (`) are not supported and should be replaced with quotation marks.",
+  "updateDockerCommandTitle": "Maintain docker orders",
+  "updateDockerCommandButtonCancel": "Cancel",
+  "updateDockerCommandButtonConfirm": "Confirm",
+  "updateDockerToastErrorTitle": "Error",
+  "updateDockerToastSuccessTitle": "Successes",
+  "updateDockerToastSuccessDescription": "The application was updated"
+}
