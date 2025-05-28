@@ -36,6 +36,8 @@ const areaChartColors = {
   cumulPlanSize: { fill: 'white', stroke: '#157EEA' },
 };
 
+const CHART_TYPE = 'stepAfter';
+
 const GenericChart: React.FC<ChartProps> = ({
   chartTitle,
   consumption,
@@ -132,7 +134,7 @@ const GenericChart: React.FC<ChartProps> = ({
           />
 
           <Area
-            type="step"
+            type={CHART_TYPE}
             dataKey="included"
             stackId="2"
             stroke={areaChartColors.included.stroke}
@@ -140,7 +142,7 @@ const GenericChart: React.FC<ChartProps> = ({
             name={t('dashboard_graph_included')}
           />
           <Area
-            type="step"
+            type={CHART_TYPE}
             dataKey="excluded"
             stackId="2"
             fill={areaChartColors.excluded.fill}
@@ -148,7 +150,7 @@ const GenericChart: React.FC<ChartProps> = ({
             name={t('dashboard_graph_excluded')}
           />
           <Area
-            type="step"
+            type={CHART_TYPE}
             dataKey="cumulPlanSize"
             stackId="1"
             stroke={areaChartColors.cumulPlanSize.stroke}
