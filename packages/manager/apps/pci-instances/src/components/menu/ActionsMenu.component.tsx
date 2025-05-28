@@ -50,7 +50,7 @@ export const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
 
 export const ActionsMenu = ({ items }: TActionsMenuProps) => {
   return (
-    <DropdownMenu modal={false}>
+    <DropdownMenu>
       <DropdownMenuTrigger asChild disabled={!items.size}>
         <Button
           data-testid="actions-menu-button"
