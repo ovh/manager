@@ -70,17 +70,8 @@ export default function ListingPage() {
       });
   }, [projectId, navigation]);
 
-  const {
-    data: allVolumes,
-    isFetching: isFetchingllVolumes,
-    isPending: isPendingAllVolumes,
-  } = useAllVolumes(projectId);
-  const {
-    data: volumes,
-    isLoading: isVolumesLoading,
-    isPending: isVolumesPending,
-    error,
-  } = useVolumes(
+  const { data: allVolumes, isPending, isFetching } = useAllVolumes(projectId);
+  const { data: volumes, error } = useVolumes(
     projectId,
     {
       pagination,
@@ -89,11 +80,9 @@ export default function ListingPage() {
     filters,
   );
 
-  const isLoading = isVolumesLoading || isVolumesPending;
-
   return (
     <RedirectionGuard
-      isLoading={isFetchingllVolumes || isPendingAllVolumes}
+      isLoading={isPending}
       route={`/pci/projects/${projectId}/storages/blocks/onboarding`}
       condition={allVolumes?.length === 0}
     >
@@ -238,12 +227,12 @@ export default function ListingPage() {
         <div className="my-5">
           <FilterList filters={filters} onRemoveFilter={removeFilter} />
         </div>
-        {isLoading && (
+        {isFetching && (
           <div className="text-center">
             <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
           </div>
         )}
-        {!isLoading && !error && (
+        {!isPending && !error && (
           <div className="mt-8">
             <Datagrid
               columns={columns}
