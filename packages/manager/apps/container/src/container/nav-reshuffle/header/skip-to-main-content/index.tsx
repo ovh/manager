@@ -5,83 +5,91 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { useShell } from '@/context';
 import { useTranslation } from 'react-i18next';
+import { createPortal } from 'react-dom';
 
 export interface Props {
   iframeRef: React.MutableRefObject<HTMLIFrameElement>;
 }
 
 const SkipToMainContent = (props: Props) => {
-
   const { iframeRef } = props;
-  const { isFirstTabDone, setIsFirstTabDone, firstFocusableElement } = useProductNavReshuffle();
+  const {
+    skipToTheMainContentSlot,
+  } = useProductNavReshuffle();
   const [isButtonDisplayed, setIsButtonDisplayed] = useState(false);
   const buttonRef = useRef<HTMLOsdsButtonElement>(null);
-  const shell = useShell();
   const { t } = useTranslation('sidebar');
 
-  const handleGlobalKeyDown = (event: KeyboardEvent) => {
-    if (isFirstTabDone === true) return;
-    if (event.key === "Tab") {
-      setIsButtonDisplayed(true);
-      setIsFirstTabDone(true);
-      event.stopPropagation();
-      event.preventDefault();
-    }
-  }
-
   useEffect(() => {
-    document.addEventListener("keydown", handleGlobalKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
     return () => {
-      document.removeEventListener("keydown", handleGlobalKeyDown);
-    }
-  }, [setIsFirstTabDone, isFirstTabDone]);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [skipToTheMainContentSlot]);
 
-  useEffect(() => {
-    if (isButtonDisplayed) buttonRef?.current?.focus();
-  }, [isButtonDisplayed])
+  const skipToMainTheContent = () => {
+    const mainContent = iframeRef.current.contentWindow.document.getElementById(
+      'maincontent',
+    );
+    const mainView = iframeRef.current.contentWindow.document.getElementById(
+      'mainview',
+    );
 
-  const handleKeyDown = (e: any) => {
-    if (e.key === "Enter" && iframeRef?.current) {
-      const mainContent = iframeRef.current.contentWindow.document.getElementById('maincontent');
-      const mainView = iframeRef.current.contentWindow.document.getElementById('mainview');
-      
-      iframeRef.current.focus();
-      if (mainContent) {
-        mainContent.focus();
-        if (mainView) {
-          const rect = mainContent.getBoundingClientRect();
-          mainView.scrollTo(0, rect.y);
-        }
+    iframeRef.current.focus();
+    if (mainContent) {
+      mainContent.focus();
+      if (mainView) {
+        const rect = mainContent.getBoundingClientRect();
+        mainView.scrollTo(0, rect.y);
       }
     }
-    if (e.key === "Tab" && firstFocusableElement?.current) {
-      firstFocusableElement.current.focus();
-    }
-    e.preventDefault(); 
-    e.stopPropagation();
   }
-  
-  const handleBlur = (e: any) => {
+
+  const handleKeyDown = (e: any) => {
+    if (e.key === 'Enter') skipToMainTheContent();
+  };
+
+  const handleClick = () => {
+    skipToMainTheContent();
+  }
+
+  const handleBlur = () => {
     setIsButtonDisplayed(false);
-    e.stopPropagation();
-    e.preventDefault();
-  }
+  };
+
+  const handleFocus = () => {
+    setIsButtonDisplayed(true);
+  };
 
   return (
-    <OsdsButton
-      data-testid="skipToMainContent"
-      variant={ODS_BUTTON_VARIANT.stroked}
-      size={ODS_BUTTON_SIZE.sm}
-      color={ODS_THEME_COLOR_INTENT.primary}
-      role="button"
-      ref={buttonRef}
-      onKeyDown={(e: any) => handleKeyDown(e)}
-      onBlur={(e: any) => handleBlur(e)}
-      className={isButtonDisplayed ? 'flex': 'hidden'}
-    >
-      {t('sidebar_skip_to_the_main_content')}
-    </OsdsButton>
+    <>
+      <OsdsButton
+        data-testid="skipToMainContent"
+        variant={ODS_BUTTON_VARIANT.stroked}
+        size={ODS_BUTTON_SIZE.sm}
+        color={ODS_THEME_COLOR_INTENT.primary}
+        role="button"
+        ref={buttonRef}
+        onClick={handleClick}
+        className={isButtonDisplayed ? 'flex' : 'hidden'}
+        >
+        {t('sidebar_skip_to_the_main_content')}
+      </OsdsButton>
+      {skipToTheMainContentSlot?.current && createPortal(
+        <a
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onKeyDown={(e: any) => handleKeyDown(e)}
+          tabIndex={0}
+          className="block w-0 overflow-hidden"
+          aria-label={t('sidebar_skip_to_the_main_content')}
+          role="button"
+          data-testid="skipToMainContentLink"
+        >{t('sidebar_skip_to_the_main_content')}</a>,
+        skipToTheMainContentSlot.current,
+      )}
+    </>
   );
-}
+};
 
-export default SkipToMainContent
+export default SkipToMainContent;

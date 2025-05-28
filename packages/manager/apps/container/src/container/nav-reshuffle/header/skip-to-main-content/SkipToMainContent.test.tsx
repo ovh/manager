@@ -10,11 +10,18 @@ vi.mock('@/context', () => ({
   },
 }));
 
+let portalElement : HTMLDivElement = null;
+beforeAll(() => {
+  portalElement = document.createElement('div');
+  document.body.appendChild(portalElement);
+});
+
 vi.mock('@/core/product-nav-reshuffle', () => ({
   default: vi.fn(() => ({
     isFirstTabDone: false,
     setIsFirstTabDone: vi.fn(),
     firstFocusableElement: null,
+    skipToTheMainContentSlot: {current: portalElement},
   }))
 }))
 
@@ -31,11 +38,12 @@ describe('SkipToMainContent.component', () => {
   it('should appear when tab is pressed', () => {
     const { getByTestId } = renderSkipToMainContent();
     const button = getByTestId('skipToMainContent');
+    const link = getByTestId('skipToMainContentLink');
 
     expect(button).toHaveClass('hidden');
     
     act(() => {
-      fireEvent.keyDown(document, { key: "Tab", code: "Tab"});
+      fireEvent.focus(link);
     });
 
     expect(button).toHaveClass('flex');
