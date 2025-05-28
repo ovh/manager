@@ -32,7 +32,7 @@ export const accountMock: AccountType = {
     hideInGal: false,
     lastConnectionAt: '2024-07-09T13:27:12.775Z',
     lastName: 'string',
-    offer: 'BUSINESS',
+    offer: 'PRO',
     organizationId: '19097ad4-2870-4000-82b3-b71a147bc580',
     organizationLabel: 'string',
     quota: {
@@ -40,7 +40,7 @@ export const accountMock: AccountType = {
       used: 0,
     },
     updatedAt: '2024-07-09T13:27:12.775Z',
-    slotId: '19097ad4-2870-4000-8bed-qcab3a061781'
+    slotId: '19097ad4-2870-4000-8bed-qcab3a061781',
   },
   currentTasks: [
     {
