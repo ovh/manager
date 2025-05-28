@@ -1,10 +1,14 @@
-import { GUIDE } from '../../iam.constants';
-import { MY_POLICIES_TRACKING_HITS } from '../../policies/myPolicies/myPolicies.constants';
+import { GUIDE } from '../../../iam.constants';
+import { MY_POLICIES_TRACKING_HITS } from '../myPolicies.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('iam.policy.create', {
+  $stateProvider.state('iam.policies.myPolicies.create', {
     url: '/create',
-    component: 'iamCreatePolicy',
+    views: {
+      '@iam': {
+        component: 'iamCreatePolicy',
+      },
+    },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('iam_policy_create'),
