@@ -1,7 +1,4 @@
-import {
-  convertHourlyPriceToMonthly,
-  priceFromUcent,
-} from '@ovh-ux/manager-react-components';
+import { convertHourlyPriceToMonthly } from '@ovh-ux/manager-react-components';
 import { useProductAvailability, useCatalog } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
@@ -38,11 +35,7 @@ export const useInstanceBackupPrice = (projectId: string, region: string) => {
   const price = useMemo(() => {
     if (!pricing) return null;
 
-    return convertHourlyPriceToMonthly(
-      priceFromUcent(pricing.price),
-    ).toLocaleString(locale, {
-      maximumFractionDigits: 3,
-    });
+    return convertHourlyPriceToMonthly(pricing.price);
   }, [pricing, locale]);
 
   return {
