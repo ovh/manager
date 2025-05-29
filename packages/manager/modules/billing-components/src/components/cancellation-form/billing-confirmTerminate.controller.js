@@ -30,7 +30,7 @@ export default class TerminateServiceCtrl {
       .catch((error) =>
         this.Alerter.error(
           this.$translate.instant('billing_confirm_termination_error', {
-            message: error.message,
+            message: error?.data?.message || error?.message,
           }),
         ),
       )
