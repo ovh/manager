@@ -18,7 +18,7 @@ export type ModalToDisplayConfiguration = {
   };
   data?: {
     queryParams: UndefinedInitialDataOptions;
-    check?: (data: unknown) => boolean;
+    check?: (data: any, user: User) => boolean;
   };
   component: FunctionComponent;
 };
