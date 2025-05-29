@@ -281,19 +281,6 @@ export default class VrackMoveDialogCtrl {
     this.messages = this.messageHandler.getMessages();
   }
 
-  openTerminateVrackModal() {
-    this.atInternet.trackClick({
-      name: `${VRACK_TRACKING_PREFIX}page::button::delete_vrack-private-network`,
-      type: 'action',
-      ...VRACK_TRACKING_CONTEXT,
-      page: {
-        name: `${VRACK_TRACKING_PREFIX}vrack-private-network::detail`,
-      },
-      page_category: 'detail',
-    });
-    this.terminateVrackModalOpen = true;
-  }
-
   // Disable terminate option if the vrack is suspended or if its not empty
   getTerminateOption() {
     this.vrackService
