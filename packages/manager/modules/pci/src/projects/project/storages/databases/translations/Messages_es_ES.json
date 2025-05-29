@@ -15,7 +15,7 @@
   "pci_database_common_status_PENDING": "Pendiente",
   "pci_database_common_status_CREATING": "Creando...",
   "pci_database_common_status_UPDATING": "Actualizada",
-  "pci_database_common_delete_database": "Eliminar",
+  "pci_database_common_delete_database": "Dar de baja",
   "pci_database_common_price_starts_from": "Desde",
   "pci_database_common_price": "Precio",
   "pci_database_common_none": "Ninguno",
