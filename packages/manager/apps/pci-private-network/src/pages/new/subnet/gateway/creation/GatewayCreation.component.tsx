@@ -16,6 +16,11 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useTranslation, Trans } from 'react-i18next';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
@@ -30,6 +35,8 @@ const GatewayCreation: React.FC = () => {
   const guides = useGuideLink();
   const { watch, unregister } = useFormContext<NewPrivateNetworkForm>();
   const region = watch('region');
+
+  const { trackClick } = useOvhTracking();
 
   const {
     isLoading: isCatalogLoading,
@@ -78,9 +85,22 @@ const GatewayCreation: React.FC = () => {
         name="create-public-gateway"
         checked={createGateway}
         disabled={!gateway && !catalog}
-        onOdsCheckedChange={(event: CustomEvent) =>
-          setCreateGateway(event.detail.checked)
-        }
+        onOdsCheckedChange={(event: CustomEvent) => {
+          const isAssignGatewayChecked = event.detail.checked;
+          setCreateGateway(isAssignGatewayChecked);
+
+          trackClick({
+            location: PageLocation.funnel,
+            buttonType: ButtonType.select,
+            actionType: 'action',
+            actions: [
+              'add_privateNetwork',
+              isAssignGatewayChecked
+                ? 'create_gateway_connect_private_network'
+                : 'uncheck_create_gateway_connect_private_network',
+            ],
+          });
+        }}
       >
         <OsdsCheckboxButton
           interactive
@@ -113,6 +133,17 @@ const GatewayCreation: React.FC = () => {
                 label={t('common:common_click_here_btn')}
                 href={guides.PRIVATE_NETWORK_WITH_GATEWAY}
                 target={OdsHTMLAnchorElementTarget._blank}
+                onClickReturn={() =>
+                  trackClick({
+                    location: PageLocation.funnel,
+                    buttonType: ButtonType.link,
+                    actionType: 'action',
+                    actions: [
+                      'add_privateNetwork',
+                      'learn_more_gateway_options',
+                    ],
+                  })
+                }
               />
             ),
           }}
@@ -130,6 +161,17 @@ const GatewayCreation: React.FC = () => {
           href={guides.REGION_AVAILABILITY}
           target={OdsHTMLAnchorElementTarget._blank}
           type={LinkType.next}
+          onClickReturn={() =>
+            trackClick({
+              location: PageLocation.funnel,
+              buttonType: ButtonType.link,
+              actionType: 'action',
+              actions: [
+                'add_privateNetwork',
+                'learn_more_product_availability_by_region',
+              ],
+            })
+          }
         />
       </OsdsText>
     </>

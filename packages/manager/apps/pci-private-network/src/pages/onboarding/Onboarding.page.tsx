@@ -1,5 +1,10 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -63,6 +68,8 @@ export default function OnBoardingPage() {
 
   const isMissingVrack = !isPending && !vrack?.id;
   const isVrackCreationPending = !!operationId && !!vrackCreation;
+
+  const { trackClick } = useOvhTracking();
 
   useEffect(() => {
     navigation
@@ -161,9 +168,20 @@ export default function OnBoardingPage() {
                   )
                 : t('pci_projects_project_network_private_create'),
             })}
-          onOrderButtonClick={() =>
-            isMissingVrack ? navigate('./new') : navigate('../new')
-          }
+          onOrderButtonClick={() => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['add_privateNetwork'],
+            });
+
+            if (isMissingVrack) {
+              navigate('./new');
+            } else {
+              navigate('../new');
+            }
+          }}
         >
           {GUIDES.map((guide) => {
             const card = {
@@ -177,7 +195,21 @@ export default function OnBoardingPage() {
               },
             };
 
-            return <Card key={card.id} href={card.href} texts={card.texts} />;
+            return (
+              <Card
+                key={card.id}
+                href={card.href}
+                texts={card.texts}
+                onClick={() => {
+                  trackClick({
+                    location: PageLocation.page,
+                    buttonType: ButtonType.tutorial,
+                    actionType: 'action',
+                    actions: [`go-to-${card.texts.title}`],
+                  });
+                }}
+              />
+            );
           })}
         </OnboardingLayout>
         <Outlet />

@@ -1,3 +1,8 @@
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -25,6 +30,7 @@ export default function DeleteAction({
   region,
 }: Readonly<TDeleteAction>) {
   const { t } = useTranslation('listing');
+  const { trackClick } = useOvhTracking();
 
   const hrefDelete = useHref(
     `./delete?networkId=${networkId}&region=${region}`,
@@ -39,6 +45,14 @@ export default function DeleteAction({
           color={ODS_THEME_COLOR_INTENT.primary}
           data-testid="DeleteAction-deleteButton"
           href={hrefDelete}
+          onClick={() =>
+            trackClick({
+              location: PageLocation.datagrid,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['delete_privateNetwork'],
+            })
+          }
         >
           <OsdsIcon
             name={ODS_ICON_NAME.BIN}
