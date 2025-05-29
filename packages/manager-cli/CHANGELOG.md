@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.1.0...@ovh-ux/manager-cli@0.1.1) (2025-05-29)
+
+
+### Bug Fixes
+
+* **manager-cli:** adding Suspense in case of application does not include it ([c283e68](https://github.com/ovh/manager/commit/c283e68231ee7364752ab4f0f9306079fa0e463e))
+
+
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.0.2...@ovh-ux/manager-cli@0.1.0) (2025-05-23)
 
 

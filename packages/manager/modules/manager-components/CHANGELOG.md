@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.25.2...@ovh-ux/manager-components@1.25.3) (2025-05-29)
+
+
+### Bug Fixes
+
+* **mrc:** spanish and italian wording ([26b5bb4](https://github.com/ovh/manager/commit/26b5bb4fc52e4de014b36d2d9f48cebdd9f185e9))
+
+
+
+
+
 ## [1.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.25.1...@ovh-ux/manager-components@1.25.2) (2025-05-19)
 
 

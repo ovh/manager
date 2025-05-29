@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-cloud-connect-app",
-  "version": "4.0.37",
+  "version": "4.0.38",
   "private": true,
   "description": "Veeam Cloud Connect standalone application.",
   "repository": {
@@ -15,7 +15,7 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-components": "^1.25.2",
+    "@ovh-ux/manager-components": "^1.25.3",
     "@ovh-ux/manager-config": "^8.3.1",
     "@ovh-ux/manager-core": "^13.1.5",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
