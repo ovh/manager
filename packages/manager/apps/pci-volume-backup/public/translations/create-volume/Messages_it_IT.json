@@ -8,7 +8,7 @@
   "pci_projects_project_storages_volume_backup_list_create_volume_field_size_unit": "GB",
   "pci_projects_project_storages_volume_backup_list_create_volume_field_size_price": "Importo stimato: {{ price }} +IVA/mese",
   "pci_projects_project_storages_volume_backup_list_create_volume_field_size_help": "La dimensione massima dipende dalla quota disponibile.",
-  "pci_projects_project_storages_volume_backup_list_create_volume_action_confirm": "Crea il volume",
+  "pci_projects_project_storages_volume_backup_list_create_volume_action_confirm": "Creare il volume",
   "pci_projects_project_storages_volume_backup_list_create_volume_action_cancel": "Annullare",
   "pci_projects_project_storages_volume_backup_list_create_volume_request_success": "Creazione del volume {{ volumeName }} in corso...",
   "pci_projects_project_storages_volume_backup_list_create_volume_request_success_link": "Puoi consultarlo nella pagina Block Storage.",
