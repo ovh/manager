@@ -69,7 +69,6 @@ export default function Dashboard() {
   } = useContext(ShellContext);
   const { trackCurrentPage } = useOvhTracking();
   const { t } = useTranslation();
-  const mainContentRef = useRef<HTMLAnchorElement>(null);
   const [isAccountSidebarVisible, setIsAccountSidebarVisible] = useState(false);
   useRouteSynchro();
 
@@ -82,6 +81,7 @@ export default function Dashboard() {
       const newValueIsAccountSidebarVisible = (await shell.ux.isAccountSidebarVisible()) as boolean;
       setIsAccountSidebarVisible(() => newValueIsAccountSidebarVisible);
     };
+
     getIsAccountSidebarVisible();
   }, []);
 
@@ -91,10 +91,6 @@ export default function Dashboard() {
     isPending: areServicesLoading,
   } = useFetchHubServices();
   const { data: lastOrder, isPending: isLastOrderLoading } = useLastOrder();
-
-  function scrollToComponent() {
-    mainContentRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }
 
   const isLoading = areServicesLoading || isLastOrderLoading;
   const isFreshCustomer = !(
@@ -112,19 +108,7 @@ export default function Dashboard() {
 
   return (
     <Context.Provider value={context}>
-      <div className="skipnav">
-        <OsdsButton
-          inline
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          size={ODS_BUTTON_SIZE.sm}
-          onClick={scrollToComponent}
-          data-testid="skipnav_button"
-        >
-          {t('manager_hub_skip_to_main_content')}
-        </OsdsButton>
-      </div>
-      <div className="relative w-full h-full overflow-y-scroll">
+      <div className="relative w-full h-full overflow-y-scroll" id="mainview">
         <div
           className={`absolute hub-main w-full h-full ${
             isAccountSidebarVisible ? 'hub-main-view_sidebar_expanded' : ''
@@ -134,11 +118,7 @@ export default function Dashboard() {
           <div className="mb-12">
             {/* Skip content target */}
             <div className="skiptarget">
-              <a
-                id="maincontent"
-                data-testid="main_content"
-                ref={mainContentRef}
-              >
+              <a id="maincontent" data-testid="main_content">
                 -
               </a>
             </div>
