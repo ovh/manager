@@ -4,11 +4,9 @@ import { useMediaQuery } from 'react-responsive';
 import HamburgerMenu from './HamburgerMenu';
 import UserAccountMenu from './user-account-menu';
 
-import LanguageMenu from '@/container/common/language';
 import modalStyle from '@/container/common/modal.module.scss';
 import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
 import NotificationsSidebar from '@/container/common/notifications-sidebar';
-import Notifications from '@/container/common/notifications-sidebar/NotificationsButton';
 import ApplicationContext, { useShell } from '@/context';
 import { useHeader } from '@/context/header';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
@@ -16,6 +14,8 @@ import { Logo } from '@/container/common/Logo';
 
 import style from './style.module.scss';
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
+import NotificationsButton from '@/container/common/notifications-sidebar/NotificationsButton';
+import LanguageMenu from '@/container/common/language';
 
 type Props = {
   isSidebarExpanded?: boolean;
@@ -67,7 +67,7 @@ function Header({
               </a>
             )}
             <div
-              className={`oui-navbar-list oui-navbar-list_aside oui-navbar-list_end ${style.navbarList}`}
+              className={`oui-navbar-list oui-navbar-list_aside oui-navbar-list_end gap-1 ${style.navbarList}`}
             >
               {!isSmallDevice && (
                 <div
@@ -87,7 +87,7 @@ function Header({
                 ></LanguageMenu>
               </div>
               <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
-                <Notifications />
+                <NotificationsButton />
               </div>
               <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                 <UserAccountMenu
