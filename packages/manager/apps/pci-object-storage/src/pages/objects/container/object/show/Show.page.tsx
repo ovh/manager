@@ -49,11 +49,6 @@ import {
   OBJECT_CONTAINER_MODE_MONO_ZONE,
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
   STORAGE_ASYNC_REPLICATION_LINK,
-  TRACKING,
-  MUMBAI_REGION_NAME,
-  STATUS_ENABLED,
-  STATUS_DISABLED,
-  STATUS_SUSPENDED,
   UNIVERSE,
   SUB_UNIVERSE,
   APP_NAME,
@@ -142,6 +137,10 @@ export default function ObjectPage() {
   );
   const enableEncryptionHref = useHref(
     `./enableEncryption?region=${searchParams.get('region')}`,
+  );
+
+  const manageReplicationsHref = useHref(
+    `./replications?region=${searchParams.get('region')}`,
   );
 
   const { data: region } = useGetRegion(
@@ -431,6 +430,7 @@ export default function ObjectPage() {
             tracking={tracking}
             trackClick={trackClick}
             trackAction={trackAction}
+            manageReplicationsHref={manageReplicationsHref}
           />
 
           <ContainerDatagrid
