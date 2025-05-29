@@ -1,12 +1,13 @@
 {
   "cloud_connect_stats_title": "Statistiche",
   "cloud_connect_stats_type": "Tipo",
-  "cloud_connect_stats_type_light": "Luce",
-  "cloud_connect_stats_type_traffic": "Traffico",
-  "cloud_connect_stats_type_error": "Errore",
+  "cloud_connect_stats_type_light": "Livelli ottici",
+  "cloud_connect_stats_type_traffic": "Traffico di rete",
+  "cloud_connect_stats_type_error": "Tasso di errori",
   "cloud_connect_stats_period": "Periodicità",
   "cloud_connect_stats_period_hourly": "Ogni ora",
   "cloud_connect_stats_period_daily": "Giornaliera",
   "cloud_connect_stats_period_weekly": "Settimanale",
-  "cloud_connect_stats_no_data": "Nessun dato trovato"
+  "cloud_connect_stats_no_data": "Nessun dato trovato",
+  "cloud_connect_stats_type_bgp": "Rotte BGP in entrata"
 }

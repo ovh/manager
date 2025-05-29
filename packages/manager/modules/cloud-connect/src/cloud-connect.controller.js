@@ -95,7 +95,7 @@ export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
   }
 
   static isError(value) {
-    return ['deleted', 'suspended'].includes(value);
+    return ['deleted', 'suspended', 'closed'].includes(value);
   }
 
   static formatDate(dateTime) {

@@ -44,14 +44,9 @@ export default class DataCenterAddCtrl {
           this.checkStatus(dc, task);
         }
         return this.goBack(
-          {
-            textHtml: this.$translate.instant(
-              'cloud_connect_datacenter_add_success',
-              {
-                tasksUrl: this.tasksHref,
-              },
-            ),
-          },
+          this.$translate.instant('cloud_connect_datacenter_add_success', {
+            tasksUrl: this.tasksHref,
+          }),
           'success',
           false,
         );

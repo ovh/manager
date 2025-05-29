@@ -9,6 +9,8 @@ export default class CloudConnectPop {
     status,
     subnet,
     type,
+    bgpStatus,
+    lastUpdateBgpStatus,
   }) {
     Object.assign(this, {
       customerBgpArea,
@@ -18,6 +20,8 @@ export default class CloudConnectPop {
       status,
       subnet,
       type,
+      bgpStatus,
+      lastUpdateBgpStatus,
     });
   }
 
@@ -51,5 +55,13 @@ export default class CloudConnectPop {
 
   setDeleting() {
     this.status = STATUS.TO_DELETE;
+  }
+
+  isBgpStatusUp() {
+    return this.bgpStatus === STATUS.UP;
+  }
+
+  isBgpStatusDown() {
+    return this.bgpStatus === STATUS.DOWN;
   }
 }
