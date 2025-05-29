@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.25.0...@ovh-ux/manager-react-components@2.26.0) (2025-05-29)
+
+### Bug Fixes
+
+- **mrc:** remove unnecessary margin for guide button ([1b36e29](https://github.com/ovh/manager/commit/1b36e291594dd76caa5c0a60f2b90c138ff8374d)), closes [#17293](https://github.com/ovh/manager/issues/17293)
+
+### Features
+
+- **manager-react-component:** add manager-link component ([cb3f359](https://github.com/ovh/manager/commit/cb3f359bef5a87c012b69067bbe2ee272c15696c)), closes [#15091](https://github.com/ovh/manager/issues/15091)
+- **manager-react-components:** hide root label in breadcrumb ([069ba15](https://github.com/ovh/manager/commit/069ba15b4db43fdfa04c7377af3a6f1aa9716453)), closes [#MANAGER-18288](https://github.com/ovh/manager/issues/MANAGER-18288)
+
 # [2.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.24.0...@ovh-ux/manager-react-components@2.25.0) (2025-05-23)
 
 ### Bug Fixes
