@@ -12,6 +12,7 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+
 import {
   OsdsBreadcrumb,
   OsdsIcon,
@@ -31,6 +32,7 @@ import { PAGE_PREFIX } from '@/tracking.constants';
 import stepsConfig from './steps/stepsConfig';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { useRefreshProductAvailability } from '@/api/hooks/useAvailability';
 
 export default function NewPage() {
   const { t } = useTranslation(['add', 'listing', 'stepper']);
@@ -171,7 +173,7 @@ export default function NewPage() {
       <div className="mt-8">
         <Headers title={t('kubernetes_add')} />
       </div>
-      <Notifications />
+      {!stepper.location.step.isOpen && <Notifications />}
 
       <div className="mb-5 sticky top-0 z-50">
         <PciDiscoveryBanner project={project} />
