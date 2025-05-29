@@ -14,7 +14,7 @@
   "pci_projects_project_storages_volume_backup_list_datagrid_column_id": "ID",
   "pci_projects_project_storages_volume_backup_list_datagrid_column_region": "Location",
   "pci_projects_project_storages_volume_backup_list_datagrid_column_volume": "Volume",
-  "pci_projects_project_storages_volume_backup_list_datagrid_column_create_date": "Creation date",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_create_date": "Created on",
   "pci_projects_project_storages_volume_backup_list_datagrid_column_capacity": "Size",
   "pci_projects_project_storages_volume_backup_list_datagrid_column_status": "Status"
 }
