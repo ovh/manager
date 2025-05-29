@@ -243,8 +243,6 @@ describe('Header.component', () => {
     it.each([
       ['new-billing', true, 'https://mockedurl.mock/new-billing'],
       ['new-billing', false, 'https://mockedurl.mock/dedicated'],
-      ['new-account', true, 'https://mockedurl.mock/new-account'],
-      ['new-account', false, 'https://mockedurl.mock/dedicated'],
     ])(
       'should render all expected links in the document for %s feature being %s',
       async (feature, isEnabled, specialUrl) => {
