@@ -1,0 +1,9 @@
+<span class="d-flex">
+    <i
+        class="oui-icon mr-1"
+        ng-class="activationStateCtrl.getActivationClass()"
+    >
+    </i>
+    {{ activationStateCtrl.activationState ? 'xdsl_modem_service_wifi_activated'
+    : 'xdsl_modem_service_wifi_deactivated' | translate }}
+</span>

@@ -15,6 +15,7 @@ export default /* @ngInject */ function XdslModemWifiCtrl(
 
   self.wifis = null;
   self.defaultWifi = null;
+  self.canConfigureWifi = null;
 
   this.undo = function undo() {
     self.defaultWifi.enabled = self.undoData.enabled;
@@ -67,30 +68,42 @@ export default /* @ngInject */ function XdslModemWifiCtrl(
 
   function initModemWifi() {
     self.loader = true;
-    return OvhApiXdsl.Modem()
-      .Wifi()
-      .Aapi()
-      .getWifiDetails({
-        xdslId: $stateParams.serviceName,
-      })
-      .$promise.then((data) => {
-        self.wifis = data;
+    if (!self.mediator.capabilities.canUseWifiRadio) {
+      OvhApiXdsl.Modem()
+        .Wifi()
+        .Aapi()
+        .getWifiDetails({
+          xdslId: $stateParams.serviceName,
+        })
+        .$promise.then((data) => {
+          self.wifis = data;
 
-        self.defaultWifi = find(self.wifis, {
-          wifiName: 'defaultWIFI',
+          self.defaultWifi = find(self.wifis, {
+            wifiName: 'defaultWIFI',
+          });
+          self.undoData = {
+            enabled: self.defaultWifi ? self.defaultWifi.enabled : false,
+          };
+
+          self.isConfigureWifiDisabled =
+            !self.mediator.info.managedByOvh ||
+            !self.wifis.length ||
+            (self.wifis.length === 1 &&
+              (!self.mediator.capabilities.canChangeWLAN ||
+                self.mediator.tasks.changeModemConfigWLAN === true));
+
+          return data;
+        })
+        .catch((err) => {
+          TucToast.error($translate.instant('xdsl_modem_wifi_read_error'));
+          return $q.reject(err);
+        })
+        .finally(() => {
+          self.loader = false;
         });
-        self.undoData = {
-          enabled: self.defaultWifi ? self.defaultWifi.enabled : false,
-        };
-        return data;
-      })
-      .catch((err) => {
-        TucToast.error($translate.instant('xdsl_modem_wifi_read_error'));
-        return $q.reject(err);
-      })
-      .finally(() => {
-        self.loader = false;
-      });
+    } else {
+      self.isConfigureWifiDisabled = false;
+    }
   }
 
   initModemWifi();
