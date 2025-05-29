@@ -10,7 +10,7 @@
   "pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore": "Restaurar un volumen",
   "pci_projects_project_storages_volume_backup_list_datagrid_menu_action_create_volume": "Crear un volumen",
   "pci_projects_project_storages_volume_backup_list_datagrid_menu_action_delete": "Eliminar",
-  "pci_projects_project_storages_volume_backup_list_datagrid_column_name": "Nombre",
+  "pci_projects_project_storages_volume_backup_list_datagrid_column_name": "Apellido",
   "pci_projects_project_storages_volume_backup_list_datagrid_column_id": "ID",
   "pci_projects_project_storages_volume_backup_list_datagrid_column_region": "Localización",
   "pci_projects_project_storages_volume_backup_list_datagrid_column_volume": "Volumen",

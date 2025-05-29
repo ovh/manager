@@ -1,6 +1,6 @@
 {
   "pci_projects_project_storages_volume_backup_create_breadcrumb": "Backup eines Volumes erstellen",
-  "pci_projects_project_storages_volume_backup_create_guides_header": "Anleitungen",
+  "pci_projects_project_storages_volume_backup_create_guides_header": "Guides",
   "pci_projects_project_storages_volume_backup_create_header": "Backup eines Volumes erstellen",
   "pci_projects_project_storages_volume_backup_create_description": "Regelmäßige Kopien Ihrer Daten sind für den unterbrechungsfreien Betrieb Ihrer Anwendungen unabdingbar, denn nur so lassen sich diese bei Bedarf wiederherstellen.",
   "pci_projects_project_storages_volume_backup_create_banner_no_volumes_description": "Sie haben derzeit kein Volume erstellt. Bitte erstellen Sie für jedes Backup mindestens ein Volume im Block Storage.",
@@ -12,7 +12,7 @@
   "pci_projects_project_storages_volume_backup_create_step_2_description_part_1": "Führen Sie regelmäßige Backups durch",
   "pci_projects_project_storages_volume_backup_create_step_2_description_part_2": "Nutzen Sie einen Backup-Dienst ganz nach Ihren Anforderungen.",
   "pci_projects_project_storages_volume_backup_create_step_2_description_link": "Mehr über Backups erfahren",
-  "pci_projects_project_storages_volume_backup_create_step_2_option_price": "Preis: {{ priceValue }} zzgl. MwSt./GB/Monat",
+  "pci_projects_project_storages_volume_backup_create_step_2_option_price": "Preis : {{ priceValue }} zzgl. MwSt./GB/Monat",
   "pci_projects_project_storages_volume_backup_create_step_2_option_volume_backup_label": "Volume Backup",
   "pci_projects_project_storages_volume_backup_create_step_2_option_volume_backup_description_part_1": "Verringern Sie die Auswirkungen eines unerwünschten Datenverlusts Ihrer Anwendungsdaten.",
   "pci_projects_project_storages_volume_backup_create_step_2_option_volume_backup_description_part_2": "Das Backup wird auf einem anderen Cluster (Object Storage), aber am selben Standort wie Ihr Volume gespeichert.",
