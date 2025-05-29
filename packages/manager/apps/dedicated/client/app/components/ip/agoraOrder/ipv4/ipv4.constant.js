@@ -93,6 +93,7 @@ export const DATACENTER_TO_COUNTRY = {
   YYZ: 'ca',
   YNM: 'in',
   CR2: 'fr',
+  MIL: 'it',
 };
 
 export const DATACENTER_TO_REGION = {
@@ -111,6 +112,7 @@ export const DATACENTER_TO_REGION = {
   YNM: 'ap-south-mum',
   VIN: 'us-east-vin',
   HIL: 'us-west-hil',
+  MIL: 'eu-south-mil',
 };
 
 export const IP_LOCATION_GROUPS_BASED_ON_DATACENTER = [
@@ -144,7 +146,8 @@ export const REGION_TO_DATACENTER = {
   'ap-south-mum': 'YNM',
   'us-east-vin': 'VIN',
   'us-west-hil': 'HIL',
-}
+  'eu-south-mil': 'MIL',
+};
 export const SERVER_REGION = {
   USA: 'USA',
   CANADA: 'CANADA - ASIA',
