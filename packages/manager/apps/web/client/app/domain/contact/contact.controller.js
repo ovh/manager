@@ -1,13 +1,13 @@
 import {
+  CONTACT_MANAGEMENT_TRACKING,
+  GUIDE_URLS,
   INFO_PROPERTIES,
   INFO_PROPERTIES_ARRAY,
-  LEGAL_FORM_INDIVIDUAL,
-  GUIDE_URLS,
   INFO_PROPERTIES_ORGANISATION_ARRAY,
+  LEGAL_FORM_INDIVIDUAL,
   OWNER_INFO_PROPERTIES,
-  OWNER_INFO_PROPERTIES_ORGANISATION_ARRAY,
   OWNER_INFO_PROPERTIES_ARRAY,
-  CONTACT_MANAGEMENT_TRACKING,
+  OWNER_INFO_PROPERTIES_ORGANISATION_ARRAY,
 } from './contact.constants';
 
 export default class DomainContactDashboardCtrl {
@@ -104,9 +104,8 @@ export default class DomainContactDashboardCtrl {
     if (contactType !== 'holder') {
       return window.open(this.USER_ACCOUNT_INFOS_LINK, '_blank');
     }
-    return this.$state.go('app.domain.product.contact.edit', {
-      contactId: this.domain.whoisOwner.id,
-    });
+
+    return this.goToContactEdit(this.domain.whoisOwner.id);
   }
 
   showContactInfo(infoProperty) {

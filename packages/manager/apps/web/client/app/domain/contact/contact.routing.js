@@ -2,7 +2,7 @@ import { PRODUCT_TYPE } from '../list/list-domain-layout.constants';
 import { CONTACT_MANAGEMENT_TRACKING } from './contact.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.domain.product.contact', {
+  const state = {
     url: '/contact-management',
     views: {
       domainView: {
@@ -19,14 +19,40 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('contact_management'),
-      goBack: /* @ngInject */ ($state) => () =>
-        $state.go('app.domain.product.zone'),
     },
     atInternet: {
       ignore: true,
     },
     onEnter: /* @ngInject */ (atInternet) => {
       atInternet.trackPage(CONTACT_MANAGEMENT_TRACKING.PAGE);
+    },
+  };
+
+  $stateProvider.state('app.domain.product.contact', {
+    ...state,
+    resolve: {
+      ...state.resolve,
+      goToContactEdit: /* @ngInject */ ($state) => (contactIdParam = '') => {
+        return $state.go('app.domain.product.contact.edit', {
+          contactId: contactIdParam,
+        });
+      },
+      goBack: /* @ngInject */ ($state) => () =>
+        $state.go('app.domain.product.zone'),
+    },
+  });
+
+  $stateProvider.state('app.alldom.domain.contact', {
+    ...state,
+    resolve: {
+      ...state.resolve,
+      goToContactEdit: /* @ngInject */ ($state) => (contactIdParam = '') => {
+        return $state.go('app.alldom.domain.contact.edit', {
+          contactId: contactIdParam,
+        });
+      },
+      goBack: /* @ngInject */ ($state) => () =>
+        $state.go('app.alldom.domain.zone'),
     },
   });
 };
