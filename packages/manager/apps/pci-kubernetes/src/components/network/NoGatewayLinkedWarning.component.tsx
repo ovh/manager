@@ -38,7 +38,7 @@ const NoGatewayLinkedMessage = ({ network, gateways, type }: Props) => {
   const { t } = useTranslation(['network-add', 'service']);
   const projectURL = useProjectUrl('public-cloud');
   const privateNetworkURL = `${projectURL}/private-networks`;
-
+  const privateGatewayURL = `${projectURL}/gateway/new`;
   const noNetwork = !network.length;
   const invalidGateway = gateways && !isValidGateway3AZ(type, gateways);
 
@@ -71,7 +71,7 @@ const NoGatewayLinkedMessage = ({ network, gateways, type }: Props) => {
         <OsdsLink
           target={AnchorTarget._blank}
           color={ColorIntent.primary}
-          href={privateNetworkURL}
+          href={invalidGateway ? privateGatewayURL : privateNetworkURL}
         >
           {t('kubernetes_network_form_add')}
           <OsdsIcon
