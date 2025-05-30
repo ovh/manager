@@ -7,13 +7,18 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TOngoingOperations } from 'src/types';
-import { FilterCategories } from '@ovh-ux/manager-core-api';
+import {
+  FilterCategories,
+  FilterTypeCategories,
+} from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ParentEnum } from '@/enum/parent.enum';
 import { formatDatagridDate, removeQuotes } from '@/utils/utils';
 import OngoingOperationDatagridDomain from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridDomain';
 import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridBadge';
 import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard';
+import { StatusEnum } from '@/enum/status.enum';
+import { DOMAIN_OPERATIONS } from '@/constants';
 
 export const useOngoingOperationDatagridColumns = (
   parent: ParentEnum.DOMAIN | ParentEnum.ZONE,
@@ -47,6 +52,12 @@ export const useOngoingOperationDatagridColumns = (
           </DataGridTextCell>
         ),
         label: t('domain_operations'),
+        comparator: FilterCategories.Options,
+        isFilterable: true,
+        filterOptions: DOMAIN_OPERATIONS.map((op) => ({
+          label: t(`domain_operations_nicOperation_${op}`),
+          value: op,
+        })),
       },
       {
         id: 'comment',
@@ -81,6 +92,12 @@ export const useOngoingOperationDatagridColumns = (
           <OngoingOperationDatagridBadge props={props} locale={l.language} />
         ),
         label: t('domain_operations_table_header_status'),
+        comparator: FilterCategories.Options,
+        isFilterable: true,
+        filterOptions: Object.values(StatusEnum).map((status) => ({
+          label: t(`domain_operations_statusOperation_${status}`),
+          value: status,
+        })),
       },
       {
         cell: (props: TOngoingOperations) => (
