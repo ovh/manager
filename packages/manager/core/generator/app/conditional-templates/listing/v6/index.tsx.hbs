@@ -67,20 +67,28 @@ export default function Listing() {
 
   // Code to remove and declare definition columns in const variable
   useEffect(() => {
-    if (columns.length === 0 && status === 'success' && flattenData?.length > 0) {
-      const newColumns = Object.keys(flattenData[0] as object)
+    if (
+      columns.length === 0 &&
+      status === 'success' &&
+      flattenData?.length > 0
+    ) {
+      const newColumns = Object.keys(flattenData[0] as Record<string, unknown>)
         .filter((element) => element !== 'iam')
         .map((element) => ({
           id: element,
           label: element,
           isFilterable: true,
           isSearchable: true,
-          // @ts-ignore
           type: dataType(flattenData[0][element]),
-          // @ts-ignore
-          ...(comparatorType[dataType(flattenData[0][element])] && {
-            // @ts-ignore
-            comparator: comparatorType[dataType(flattenData[0][element])],
+                    ...(comparatorType[
+            (dataType(flattenData[0][element]) as string).charAt(0).toUpperCase() +
+              (dataType(flattenData[0][element]) as string).slice(1)
+          ] && {
+            comparator:
+              comparatorType[
+                (dataType(flattenData[0][element]) as string).charAt(0).toUpperCase() +
+                  (dataType(flattenData[0][element]) as string).slice(1)
+              ],
           }),
           cell: (props: any) => {
             const label = props[element] as string;
