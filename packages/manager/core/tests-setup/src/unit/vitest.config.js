@@ -4,7 +4,7 @@ import {
   coverageConfigDefaults as defaultCoverageConfig,
 } from 'vitest/config';
 
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-swc';
 
 /**
  * Exports the Vitest `defineConfig` function as `createConfig`,

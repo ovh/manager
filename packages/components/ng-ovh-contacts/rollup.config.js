@@ -17,6 +17,7 @@ if (process.env.BUILD === 'production') {
   outputs.push(
     config.umd({
       output: {
+        inlineDynamicImports: true,
         globals: {
           angular: 'angular',
           moment: 'moment',
