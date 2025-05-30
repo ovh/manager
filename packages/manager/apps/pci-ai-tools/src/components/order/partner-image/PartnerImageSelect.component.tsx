@@ -142,7 +142,7 @@ const PartnerImageSelect = React.forwardRef<
       </CardContent>
       {images.find((img) => img.id === value)?.versions?.length > 0 && (
         <div>
-          <CardContent>
+          <CardContent id="partner-version">
             <CardDescription className="mb-2">
               {t('partnerImageVersionDesc')}
             </CardDescription>

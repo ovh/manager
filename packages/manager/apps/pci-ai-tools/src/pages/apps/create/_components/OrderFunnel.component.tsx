@@ -141,7 +141,7 @@ const OrderFunnel = ({
   };
 
   const throwErrorContract = () => {
-    scrollToDiv('image');
+    scrollToDiv('partner-version');
     model.form.setError('image.name', {
       type: 'custom',
       message: t('formErrorPartnerContractNotSign'),
