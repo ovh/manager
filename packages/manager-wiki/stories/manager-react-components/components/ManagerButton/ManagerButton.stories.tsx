@@ -3,17 +3,18 @@ import {
   ManagerButton,
   ManagerButtonProps,
 } from '@ovh-ux/manager-react-components';
+import { IAM_URNS, IAM_ACTIONS } from '../../../../utils/iam.constants';
 
 export const Default = {
   args: {
     id: 'iam-button-urn-action-1',
     label: 'Remove button',
-    urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
-    iamActions: ['vrackServices:apiovh:iam/resource/tag/remove'],
+    urn: IAM_URNS.WITH_AUTH,
+    iamActions: IAM_ACTIONS,
   },
 };
 
-const managerSimpleButton: Meta<ManagerButtonProps> = {
+const ButtonWithAuthorization: Meta<ManagerButtonProps> = {
   title: 'Manager React Components/Components/Manager Button',
   component: ManagerButton,
   parameters: {
@@ -26,4 +27,21 @@ const managerSimpleButton: Meta<ManagerButtonProps> = {
   },
 };
 
-export default managerSimpleButton;
+export const ButtonWithoutAuthorization: Meta<ManagerButtonProps> = {
+  title: 'Manager React Components/Components/Manager Button',
+  component: ManagerButton,
+  args: {
+    ...Default.args,
+    urn: IAM_URNS.WITHOUT_AUTH,
+  },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'The `ManagerButton` component is used to trigger an action or event.',
+      },
+    },
+  },
+};
+
+export default ButtonWithAuthorization;

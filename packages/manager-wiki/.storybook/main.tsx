@@ -22,7 +22,7 @@ const config: StorybookConfig = {
       },
     },
   },
-  staticDirs: ['./public/assets'],
+  staticDirs: ['./public/assets', './public'],
   docs: {
     autodocs: true,
     defaultName: 'Technical information',

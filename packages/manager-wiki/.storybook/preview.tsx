@@ -1,6 +1,7 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { initialize, mswLoader } from 'msw-storybook-addon';
 import { Preview } from '@storybook/react';
 import './storybook.css';
 import '../../manager-react-components/src/lib.scss';
@@ -9,17 +10,27 @@ import '@ovhcloud/ods-themes/default';
 import i18n from './i18n';
 import TechnicalInformation from './technical-information.mdx';
 import { normalizeLanguageCode } from '../../manager-react-components/src/utils/translation-helper';
+import { handlers } from './msw-handlers';
 
 const mockQueryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: false, // Do not retry on failure
       staleTime: Infinity, // Data does not become stale
+      refetchOnWindowFocus: false,
     },
   },
 });
 
 const preview: Preview = {
+  beforeAll: async () => {
+    initialize(
+      {
+        onUnhandledRequest: 'bypass',
+      },
+      handlers,
+    );
+  },
   parameters: {
     docs: {
       toc: {
@@ -67,6 +78,7 @@ const preview: Preview = {
     status: {
       type: 'stable',
     },
+    loaders: [mswLoader],
   },
 };
 
