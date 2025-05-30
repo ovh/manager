@@ -3,6 +3,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import ovhManagerLogToCustomer from '@ovh-ux/manager-log-to-customer';
 
+import activity from './activity';
 import audit from './audit';
 import accessPolicy from './access-policy';
 import dataStream from '../components/logs/data-streams';
@@ -20,6 +21,7 @@ angular
     ovhManagerLogToCustomer,
     dataStream,
     liveTail,
+    activity,
     audit,
     accessPolicy,
   ])
