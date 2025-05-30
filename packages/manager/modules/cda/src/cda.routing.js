@@ -14,28 +14,64 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: () => '/dedicated/ceph',
       dataModel: () => 'dedicated.ceph.clusterGet.response',
       defaultFilterColumn: () => 'serviceName',
-      columnConfig: /* @ngInject */ () => ({
+      columnConfig: /* @ngInject */ ($translate) => ({
         data: [
           {
-            label: 'Service Name',
+            label: $translate.instant(`cda_columns_header_serviceName`),
             property: 'serviceName',
             serviceLink: true,
             hidden: false,
           },
-          { label: 'Ceph Version', property: 'cephVersion', hidden: false },
-          { label: 'Create Date', property: 'createDate', hidden: false },
-          { label: 'Crush Tunables', property: 'crushTunables', hidden: false },
-          { label: 'Label', property: 'label', hidden: false },
-          { label: 'Region', property: 'region', hidden: true },
           {
-            label: 'Size',
+            label: $translate.instant(`cda_columns_header_cephVersion`),
+            property: 'cephVersion',
+            hidden: false,
+          },
+          {
+            label: $translate.instant(`cda_columns_header_createDate`),
+            property: 'createDate',
+            hidden: false,
+          },
+          {
+            label: $translate.instant(`cda_columns_header_crushTunables`),
+            property: 'crushTunables',
+            hidden: false,
+          },
+          {
+            label: $translate.instant(`cda_columns_header_label`),
+            property: 'label',
+            hidden: false,
+          },
+          {
+            label: $translate.instant(`cda_columns_header_region`),
+            property: 'region',
+            hidden: true,
+          },
+          {
+            label: $translate.instant(`cda_columns_header_size`),
             property: 'size',
             hidden: true,
             format: (value) => `${value.size} TB`,
           },
-          { label: 'State', property: 'state', hidden: true },
-          { label: 'Status', property: 'status', hidden: true },
-          { label: 'Update Date', property: 'updateDate', hidden: true },
+          {
+            label: $translate.instant(`cda_columns_header_state`),
+            property: 'state',
+            hidden: true,
+            format: ({ state }) =>
+              $translate.instant(`cda_columns_header_state_${state}`),
+          },
+          {
+            label: $translate.instant(`cda_columns_header_status`),
+            property: 'status',
+            hidden: true,
+            format: ({ status }) =>
+              $translate.instant(`cda_columns_header_status_${status}`),
+          },
+          {
+            label: $translate.instant(`cda_columns_header_updateDate`),
+            property: 'updateDate',
+            hidden: true,
+          },
         ],
       }),
       header: /* @ngInject */ ($translate) => $translate.instant('cda_title'),
