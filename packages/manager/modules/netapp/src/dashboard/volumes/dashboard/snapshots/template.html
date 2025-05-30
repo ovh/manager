@@ -96,7 +96,7 @@
                 <oui-action-menu-item
                     data-ng-if="$row.type !== $ctrl.SNAPSHOT_TYPE.AUTOMATIC"
                     data-on-click="$ctrl.createVolumeFromSnapshot($row.id)"
-                    data-disabled="!$ctrl.isCreateVolumeAvailable"
+                    data-disabled="!$ctrl.canCreateVolumeFromSnapshot"
                 >
                     <span
                         data-translate="netapp_volumes_snapshots_actions_create_volume"

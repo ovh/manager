@@ -232,12 +232,14 @@ export default class NetAppDashboardService {
       )
       .then(({ data: shareSnapshot }) => {
         return shareSnapshot
-          .filter(({ type }) => type === SNAPSHOT_TYPE.SYSTEM)
+          .filter(({ type }) => type === SNAPSHOT_TYPE.MANUAL)
           .map((snapshot) => {
             return {
               size: volume.size,
               snapshotID: snapshot.id,
-              key: `${storage.name} : ${snapshot.name}`,
+              key: snapshot.name
+                ? `${storage.name} : ${snapshot.name}`
+                : storage.name,
             };
           });
       });

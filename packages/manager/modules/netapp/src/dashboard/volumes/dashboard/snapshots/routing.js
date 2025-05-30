@@ -73,6 +73,11 @@ export default /* @ngInject */ ($stateProvider) => {
           snapshotId,
         });
       },
+      canCreateVolumeFromSnapshot: (
+        volume,
+        isCreateVolumeAvailable,
+        availableVolumeSize,
+      ) => isCreateVolumeAvailable && volume.size < availableVolumeSize,
       /* @ngInject */
       createVolumeFromSnapshot: ($state, serviceName, volumeId) => (
         snapshotId,
