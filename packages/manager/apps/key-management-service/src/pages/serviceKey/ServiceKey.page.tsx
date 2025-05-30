@@ -40,7 +40,7 @@ import ServiceKeyStateActions from '@/components/serviceKey/serviceKeyStateActio
 import { getOkmsResourceQueryKey } from '@/data/api/okms';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
 import { SERVICE_KEY_TEST_IDS } from './ServiceKey.constants';
-import { SERVICE_KEYS_LABEL } from '@/constants';
+import { SERVICE_KEYS_LABEL, URN_LABEL } from '@/constants';
 
 export default function Key() {
   const { okmsId, keyId } = useParams();
@@ -185,6 +185,11 @@ export default function Key() {
                   'key_management_service_service-keys_dashboard_field_id',
                 ),
                 value: <Clipboard className="w-full" value={kmsKey.id} />,
+              },
+              {
+                id: 'urn',
+                label: URN_LABEL,
+                value: <Clipboard className="w-full" value={kmsKey.iam.urn} />,
               },
               {
                 id: 'state',
