@@ -17,6 +17,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useAllowedVrackList } from '@ovh-ux/manager-network-common';
 import { AssociateVrack } from './AssociateVrack.component';
 import { CreateVrack } from '@/components/CreateVrack.component';
@@ -26,7 +27,10 @@ export default function AssociateVrackModal() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('vrack-services/associate');
+  const { t } = useTranslation([
+    'vrack-services/associate',
+    NAMESPACES.ACTIONS,
+  ]);
   const {
     allowedVrackList,
     isError,
@@ -85,7 +89,7 @@ export default function AssociateVrackModal() {
           slot="actions"
           type="button"
           variant={ODS_BUTTON_VARIANT.ghost}
-          label={t('modalAssociateCancelButton')}
+          label={t('cancel', { ns: NAMESPACES.ACTIONS })}
           onClick={closeModal}
         />
       )}
