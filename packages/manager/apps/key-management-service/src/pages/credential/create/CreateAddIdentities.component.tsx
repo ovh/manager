@@ -23,7 +23,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useIdentityData } from '@/hooks/credential/useIdentityData';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import IdentitiesRootAccount from './identities/IdentitiesRootAccount.component';
 import IdentitiesSelectedUsersList from './identities/IdentitiesSelectedUsersList.component';
 import IdentitiesSelectedGroups from './identities/IdentitiesSelectedGroups.component';
@@ -105,7 +105,7 @@ const CreateAddIdentities = ({
                 actionType: 'action',
                 actions: ['cancel'],
               });
-              navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
+              navigate(KMS_ROUTES_URLS.credentialListing(okmsId));
             }}
             label={t(
               'key_management_service_credential_create_identities_button_cancel_label',

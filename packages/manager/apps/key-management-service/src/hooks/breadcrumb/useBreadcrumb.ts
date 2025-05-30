@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { OdsBreadcrumbItem as OdsBreadcrumbItemType } from '@ovhcloud/ods-components';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 export type BreadcrumbItem = {
   id: string;
@@ -26,7 +26,7 @@ export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
 
   const rootItem = ({
     label: rootLabel,
-    onOdsClick: () => navigate(ROUTES_URLS.root),
+    onOdsClick: () => navigate(KMS_ROUTES_URLS.kmsListing),
   } as unknown) as KmsBreadcrumbItemType;
 
   useEffect(() => {
