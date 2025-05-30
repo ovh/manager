@@ -6,6 +6,7 @@ export default {
   controllerAs: 'ctrl',
   template,
   bindings: {
+    service: '<',
     trackClick: '<',
   },
 };

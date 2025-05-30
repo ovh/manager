@@ -160,14 +160,16 @@ export default class LogsHomeCtrl {
       suggestedMax: max(chart.data[0]) * 1.3 || 5,
     };
 
-    updatedChart.data.labels = this.dataUsage[
-      metric
-    ].timestamps.map((timestamp) => moment(timestamp).format('DD MMM YY'));
+    if (this.dataUsage[metric]) {
+      updatedChart.data.labels = this.dataUsage[
+        metric
+      ].timestamps.map((timestamp) => moment(timestamp).format('DD MMM YY'));
 
-    updatedChart.data.datasets.push({
-      label: this.$translate.instant(label),
-      data: this.dataUsage[metric].usageData[0],
-    });
+      updatedChart.data.datasets.push({
+        label: this.$translate.instant(label),
+        data: this.dataUsage[metric].usageData[0],
+      });
+    }
 
     updatedChart.options.scales.y.ticks = {
       callback: (value) => {

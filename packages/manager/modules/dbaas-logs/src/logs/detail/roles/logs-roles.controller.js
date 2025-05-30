@@ -1,4 +1,5 @@
 import addTemplate from './add/logs-role-add.html';
+import iamTemplate from './enable-iam/logs-iam-enable.html';
 import overviewTemplate from './overview/logs-role-overview.html';
 import datagridToIcebergFilter from '../logs-iceberg.utils';
 
@@ -7,6 +8,7 @@ export default class LogsRolesCtrl {
   constructor(
     $state,
     $stateParams,
+    coreURLBuilder,
     ouiDatagridService,
     CucCloudMessage,
     CucControllerHelper,
@@ -14,11 +16,16 @@ export default class LogsRolesCtrl {
   ) {
     this.$state = $state;
     this.$stateParams = $stateParams;
+    this.coreURLBuilder = coreURLBuilder;
     this.ouiDatagridService = ouiDatagridService;
     this.serviceName = this.$stateParams.serviceName;
     this.CucControllerHelper = CucControllerHelper;
     this.LogsRolesService = LogsRolesService;
     this.CucCloudMessage = CucCloudMessage;
+  }
+
+  $onInit() {
+    this.iamUrl = this.coreURLBuilder.buildURL('iam', '/#');
   }
 
   loadRoles({ offset, pageSize = 1, sort, criteria }) {
@@ -34,6 +41,25 @@ export default class LogsRolesCtrl {
       { name: sort.property, dir: sort.dir === -1 ? 'DESC' : 'ASC' },
       filters,
     );
+  }
+
+  showEnableIam() {
+    this.CucCloudMessage.flushChildMessage();
+    this.CucControllerHelper.modal
+      .showModal({
+        modalConfig: {
+          template: iamTemplate,
+          controller: 'LogsIamEnableModalCtrl',
+          controllerAs: 'ctrl',
+          backdrop: 'static',
+          resolve: {
+            serviceName: () => this.serviceName,
+          },
+        },
+      })
+      .finally(() => {
+        this.ouiDatagridService.refresh('roles-datagrid', true);
+      });
   }
 
   add(info) {

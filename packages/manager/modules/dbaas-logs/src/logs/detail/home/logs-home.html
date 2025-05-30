@@ -247,11 +247,13 @@
                 >
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-ng-if="!ctrl.service.isIamEnabled"
                     data-term="{{::'logs_home_service'|translate}}"
                     data-description="{{ctrl.accountDetails.username}}"
                 >
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-ng-if="!ctrl.service.isIamEnabled"
                     data-term="{{::'logs_home_password'|translate}}"
                     data-description="******"
                 >
@@ -265,6 +267,7 @@
                 </oui-tile-definition>
 
                 <oui-tile-definition
+                    data-ng-if="!ctrl.service.isIamEnabled"
                     data-term="{{::'logs_home_tokens'|translate}}"
                     data-term-popover="{{::'logs_home_tokens_tooltip'|translate}}"
                 >
