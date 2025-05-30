@@ -137,5 +137,7 @@
   "domain_operations_upload_error_wrong-format": "Unsupported file format",
   "domain_operations_update_key_validationToken": "Validation token",
   "domain_operations_update_key_document": "Document",
-  "domain_operations_update_title": "Operation update for the {{t0}} domain"
+  "domain_operations_update_title": "Operation update for the {{t0}} domain",
+  "domain_operations_nicOperation_ContactControlNotify": "Contact verification notification",
+  "domain_operations_nicOperation_DomainSendRDRPNotice": "Sending the RDRP instruction manual"
 }
