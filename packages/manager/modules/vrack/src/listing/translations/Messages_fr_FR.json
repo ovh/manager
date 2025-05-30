@@ -1,3 +1,7 @@
 {
-  "vrack_listing_action_delete": "Résilier mon service"
+  "vrack_listing_action_delete": "Résilier mon service",
+  "vrack_listing_columns_header_serviceName": "Service",
+  "vrack_listing_columns_header_description": "Description",
+  "vrack_listing_columns_header_name": "Nom",
+  "vrack_listing_columns_header_state": "État"
 }
