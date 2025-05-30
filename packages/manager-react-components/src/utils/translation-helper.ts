@@ -38,10 +38,10 @@ export const buildTranslationResources =
       const normalizedLang = normalizeLanguageCode(language);
       const module = await translationLoaders[normalizedLang]();
       i18next.addResources(normalizedLang, namespace, module.default || module);
-      return true; // Return success status
+      return true;
     } catch (error) {
       console.error(`Failed to load translations for ${language}:`, error);
-      return false; // Return failure status
+      return false;
     }
   };
 
