@@ -34,7 +34,11 @@ import { useOverridePage, useGenerateUrl, useDebouncedValue } from '@/hooks';
 import { LabelChip, BadgeStatus } from '@/components';
 import { GUIDES_LIST } from '@/guides.constants';
 import ActionButtonEmail from './ActionButton.component';
-import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+import {
+  capitalize,
+  DATAGRID_REFRESH_INTERVAL,
+  DATAGRID_REFRESH_ON_MOUNT,
+} from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import {
   getZimbraPlatformListQueryKey,
@@ -234,22 +238,24 @@ export const EmailAccounts = () => {
               urn={platformUrn}
               iamActions={[IAM_ACTIONS.account.get]}
             >
-              {accountsStatistics?.length > 0
-                ? accountsStatistics?.map((stats: AccountStatistics) => (
-                    <div key={stats.offer}>
-                      <OdsText
-                        preset={ODS_TEXT_PRESET.heading6}
-                        className="mr-4"
-                      >
-                        {`Zimbra ${stats.offer.toLowerCase()} :`}
-                      </OdsText>
-                      <span>{`${
-                        stats.configuredAccountsCount
-                      } / ${stats.configuredAccountsCount +
-                        stats.availableAccountsCount}`}</span>
-                    </div>
-                  ))
-                : t('common:no_email_account_available')}
+              <div className="flex gap-8">
+                {accountsStatistics?.length > 0
+                  ? accountsStatistics?.map((stats: AccountStatistics) => (
+                      <span key={stats.offer}>
+                        <OdsText
+                          preset={ODS_TEXT_PRESET.heading6}
+                          className="mr-4"
+                        >
+                          {`Zimbra ${capitalize(stats.offer.toLowerCase())} :`}
+                        </OdsText>
+                        <span>{`${
+                          stats.configuredAccountsCount
+                        } / ${stats.configuredAccountsCount +
+                          stats.availableAccountsCount}`}</span>
+                      </span>
+                    ))
+                  : t('common:no_email_account_available')}
+              </div>
             </ManagerText>
           </div>
           <Datagrid

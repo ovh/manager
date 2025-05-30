@@ -71,6 +71,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.domain.product.terminate_anycast'),
       goToTerminate: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.product.terminate_anycast.confirm'),
+      goToContactManagement: /* @ngInject */ ($state) => () =>
+        $state.go('app.domain.product.contact'),
     },
     translations: {
       value: [
@@ -129,6 +131,9 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.alldom.product.terminate_anycast'),
       goToTerminate: /* @ngInject */ ($state) => () =>
         $state.go('app.alldom.product.terminate_anycast.confirm'),
+      goToContactManagement: /* @ngInject */ ($state) => () => {
+        $state.go('app.alldom.domain.contact');
+      },
     },
     translations: {
       value: [

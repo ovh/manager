@@ -99,7 +99,7 @@ angular.module('App').controller(
         });
 
         field.selectedValue = field.availableValues.find(
-          (value) => value.id === field.value,
+          (value) => value?.id === field.value,
         );
       } else if (field.availableValues.length === 2) {
         field.type = 'toggle';

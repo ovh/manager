@@ -8,6 +8,7 @@ import { Guide, GUIDES_LIST } from '@/guides.constants';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { BadgeStatus, GuideLink } from '@/components';
 import { OngoingTasks } from './OngoingTasks.component';
+import { capitalize } from '@/utils';
 
 export const GeneralInformations = () => {
   const { t } = useTranslation(['dashboard', 'common']);
@@ -69,14 +70,18 @@ export const GeneralInformations = () => {
             urn={platformUrn}
             iamActions={[IAM_ACTIONS.account.get]}
           >
-            {accountsStatistics?.length > 0
-              ? accountsStatistics?.map((stats) => (
-                  <span key={stats.offer}>{`${
-                    stats.configuredAccountsCount
-                  } / ${stats.configuredAccountsCount +
-                    stats.availableAccountsCount} ${stats.offer}`}</span>
-                ))
-              : t('common:no_email_account')}
+            <div className="flex flex-col">
+              {accountsStatistics?.length > 0
+                ? accountsStatistics?.map((stats) => (
+                    <span key={stats.offer}>{`${
+                      stats.configuredAccountsCount
+                    } / ${stats.configuredAccountsCount +
+                      stats.availableAccountsCount} ${capitalize(
+                      stats.offer.toLowerCase(),
+                    )}`}</span>
+                  ))
+                : t('common:no_email_account')}
+            </div>
           </ManagerText>
         ) : null,
       },

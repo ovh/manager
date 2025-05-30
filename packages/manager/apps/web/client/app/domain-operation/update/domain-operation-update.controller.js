@@ -4,7 +4,8 @@ import clone from 'lodash/clone';
 import isArray from 'lodash/isArray';
 import join from 'lodash/join';
 import map from 'lodash/map';
-import { ALERTER_ID } from '../operation-table/operation-table.constants';
+
+const ALERTER_ID = 'domains.operations.alerts';
 
 angular.module('App').controller(
   'DomainOperationUpdateCtrl',
