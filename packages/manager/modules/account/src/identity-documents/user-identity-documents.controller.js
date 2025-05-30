@@ -102,15 +102,15 @@ export default class AccountUserIdentityDocumentsController {
     this.displayError = false;
     if (this.isValid) {
       this.ExitGuardService.activate();
+      const count = Object.values(this.files).flatMap(({ files }) => files)
+        .length;
       const promise = this.links
         ? // We cannot re call getUploadDocumentsLinks if it answered successfully, so if we already
           // retrieve the links we directly try to "finalize" the procedure
           this.tryToFinalizeProcedure(this.links)
         : // In order to start the KYC procedure we need to request the upload links for the number of documents
           // the user wants to upload
-          this.getUploadDocumentsLinks(
-            Object.values(this.files).flatMap(({ files }) => files).length,
-          )
+          this.getUploadLinks(count)
             // Once we retrieved the upload links, we'll try to upload them and then "finalize" the procedure creation
             .then(({ data: { uploadLinks } }) => {
               this.links = uploadLinks;
@@ -200,7 +200,25 @@ export default class AccountUserIdentityDocumentsController {
     });
   }
 
-  // In order to avoid false positive from file upload endpoint, we'll retry all the process from the start
+  getUploadLinks(count) {
+    let remainingRetries = MAX_RETRIES;
+
+    const attempt = () => {
+      return this.getUploadDocumentsLinks(count).catch(async (error) => {
+        if (remainingRetries > 0) {
+          remainingRetries -= 1;
+          await new Promise((resolve) =>
+            setTimeout(resolve, DELAY_BETWEEN_RETRY),
+          );
+          return attempt();
+        }
+        return this.$q.reject(error);
+      });
+    };
+
+    return attempt();
+  }
+
   tryToFinalizeProcedure(uploadLinks) {
     let remainingRetries = MAX_RETRIES;
     // First we try to upload the file using the retrieved link
