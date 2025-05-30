@@ -8,7 +8,7 @@ import '../src/lib.scss';
 import '@ovhcloud/ods-themes/default';
 import i18n from './i18n';
 import TechnicalInformation from './technical-information.mdx';
-import { normalizeLanguageCode } from '../src/utils/translation-utils';
+import { normalizeLanguageCode } from '../src/utils/translation-helper';
 
 const mockQueryClient = new QueryClient({
   defaultOptions: {

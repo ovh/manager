@@ -1,6 +1,11 @@
 import i18next from 'i18next';
 
 /**
+ * Manager Fallback Language
+ */
+const fallbackLang = 'fr_FR';
+
+/**
  * Normalizes a language code to a format compatible with i18next loaders.
  * Converts hyphenated codes to underscore format and ensures region codes exist.
  *
@@ -34,15 +39,30 @@ export const normalizeLanguageCode = (language) => {
  */
 export const buildTranslationResources =
   (translationLoaders, namespace) => async (language) => {
-    try {
-      const normalizedLang = normalizeLanguageCode(language);
-      const module = await translationLoaders[normalizedLang]();
-      i18next.addResources(normalizedLang, namespace, module.default || module);
-      return true;
-    } catch (error) {
-      console.error(`Failed to load translations for ${language}:`, error);
-      return false;
+    const normalizedLang = normalizeLanguageCode(language);
+
+    // Always load fallbackLang once, before the user language
+    if (!i18next.hasResourceBundle(fallbackLang, namespace)) {
+      try {
+        console.info(`Loading fallback language: ${fallbackLang} for namespace: ${namespace}`);
+        const fallbackModule = await translationLoaders[fallbackLang]();
+        i18next.addResources(fallbackLang, namespace, fallbackModule.default || fallbackModule);
+      } catch (error) {
+        console.error(`Failed to load fallback translations (${fallbackLang}):`, error);
+      }
     }
+
+    // Then load the requested language
+    if (normalizedLang !== fallbackLang && !i18next.hasResourceBundle(normalizedLang, namespace)) {
+      try {
+        const module = await translationLoaders[normalizedLang]();
+        i18next.addResources(normalizedLang, namespace, module.default || module);
+      } catch (error) {
+        console.warn(`Could not load ${normalizedLang}. Will fallback to ${fallbackLang}.`, error);
+      }
+    }
+
+    return true;
   };
 
 /**
