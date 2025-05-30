@@ -7,6 +7,7 @@ export default {
   bindings: {
     contactsManagementUrl: '<',
     goBack: '<',
+    goToContactEdit: '<',
     domain: '<',
     domainName: '<',
   },
