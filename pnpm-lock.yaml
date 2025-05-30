@@ -26,6 +26,7 @@ overrides:
   rollup-plugin-sass: 1.12.16
   sass: 1.56.1
   '@tanstack/react-query': 5.51.21
+  '@ovh-ux/manager-core-utils': workspace:*
 
 packageExtensionsChecksum: sha256-33zwati2vsE0GQkpuPwu/r+dgkBFanTy6gKM0mbdijs=
 
@@ -1147,7 +1148,7 @@ importers:
         specifier: ^0.12.0
         version: link:../manager/core/api
       '@ovh-ux/manager-core-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../manager/core/utils
       '@ovh-ux/manager-react-shell-client':
         specifier: ^0.8.7
@@ -2054,7 +2055,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-react-components':
         specifier: ^1.41.1
@@ -3948,7 +3949,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-module-common-api':
         specifier: ^0.4.0
@@ -3961,7 +3962,7 @@ importers:
         version: link:../../modules/vcd-api
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@4.9.5))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
         version: link:../../core/application
@@ -4190,7 +4191,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-module-order':
         specifier: ^0.9.9
@@ -4676,7 +4677,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-module-common-api':
         specifier: ^0.4.0
@@ -4686,7 +4687,7 @@ importers:
         version: link:../../modules/order
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
         version: link:../../core/application
@@ -6116,7 +6117,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
         specifier: ^0.16.4
@@ -6421,7 +6422,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
         specifier: ^0.16.4
@@ -6717,14 +6718,14 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
         specifier: ^2.6.0
-        version: link:../../modules/manager-pci-common
+        version: 2.6.1(1d8b00bae5aa3bb6707c2df90a547418)
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
         version: link:../../core/application
@@ -7460,7 +7461,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
         specifier: ^0.16.4
@@ -7617,7 +7618,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
         specifier: ^0.16.4
@@ -7771,14 +7772,14 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
         specifier: ^2.6.0
-        version: link:../../modules/manager-pci-common
+        version: 2.6.1(1d8b00bae5aa3bb6707c2df90a547418)
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
         version: link:../../core/application
@@ -8076,7 +8077,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
         specifier: ^0.16.4
@@ -8406,10 +8407,10 @@ importers:
         version: link:../../core/api
       '@ovh-ux/manager-pci-common':
         specifier: ^2.6.0
-        version: link:../../modules/manager-pci-common
+        version: 2.6.1(1d8b00bae5aa3bb6707c2df90a547418)
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
         version: link:../../core/application
@@ -8532,7 +8533,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
         specifier: ^0.16.4
@@ -8698,14 +8699,14 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
         specifier: ^2.6.0
-        version: link:../../modules/manager-pci-common
+        version: 2.6.1(3609888ac7df3a2a826459c647ae7c5c)
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@3.6.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
         version: link:../../core/application
@@ -8973,7 +8974,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
         specifier: ^0.16.4
@@ -9124,14 +9125,14 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
         specifier: ^2.6.0
-        version: link:../../modules/manager-pci-common
+        version: 2.6.1(5182d5c2fd77680004bd2f79a706b26e)
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@3.6.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
         version: link:../../core/application
@@ -9260,7 +9261,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
         specifier: ^0.16.4
@@ -9399,7 +9400,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-pci-common':
         specifier: ^0.16.4
@@ -10445,7 +10446,7 @@ importers:
         version: link:../../modules/cloud-universe-components
       '@ovh-ux/ng-ovh-contact':
         specifier: ^5.2.9
-        version: link:../../../components/ng-ovh-contact
+        version: 5.2.10(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-translate-async-loader@packages+components+ng-translate-async-loader)(angular-translate@2.19.1)(angular-ui-bootstrap@1.3.3)(angular@1.8.3)(moment@2.30.1)(ovh-api-services@17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3))(ovh-manager-webfont@1.2.0)(ui-select@0.19.8)
       '@ovh-ux/ng-ovh-contracts':
         specifier: ^4.6.2
         version: link:../../../components/ng-ovh-contracts
@@ -11083,7 +11084,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-module-common-api':
         specifier: ^0.4.0
@@ -11096,7 +11097,7 @@ importers:
         version: link:../../modules/vcd-api
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@4.9.5))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
         version: link:../../core/application
@@ -11850,7 +11851,7 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-module-common-api':
         specifier: ^0.4.0
@@ -11863,7 +11864,7 @@ importers:
         version: link:../../modules/network-common
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
         version: link:../../core/application
@@ -12320,11 +12321,11 @@ importers:
         specifier: ^0.11.1
         version: 0.11.1
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@0.11.1)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.22
         version: link:../../core/application
@@ -12447,14 +12448,14 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-module-order':
         specifier: ^0.9.9
         version: link:../../modules/order
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@3.6.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@4.9.5))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
         version: link:../../core/application
@@ -12586,11 +12587,11 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@3.6.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
         version: link:../../core/application
@@ -12701,14 +12702,14 @@ importers:
         specifier: ^0.12.0
         version: link:../../core/api
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-module-order':
         specifier: ^0.9.9
         version: link:../../modules/order
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@4.9.5))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-core-application':
         specifier: ^0.11.23
         version: link:../../core/application
@@ -13588,7 +13589,7 @@ importers:
         specifier: ^0.4.5
         version: link:../../core/test-utils
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-react-shell-client':
         specifier: ^0.8.1
@@ -13629,7 +13630,7 @@ importers:
         version: link:../common-api
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@3.6.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@4.9.5))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-vite-config':
         specifier: ^0.9.0
         version: link:../../core/vite-config
@@ -14986,7 +14987,7 @@ importers:
         specifier: ^8.0.2
         version: link:../config
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-react-shell-client':
         specifier: ^0.8.7
@@ -15024,7 +15025,7 @@ importers:
         version: link:../../core/test-utils
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@3.6.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-vite-config':
         specifier: ^0.9.2
         version: link:../../core/vite-config
@@ -15101,7 +15102,7 @@ importers:
         specifier: ^8.0.2
         version: 8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger)
       '@ovh-ux/manager-core-utils':
-        specifier: ^0.3.0
+        specifier: workspace:*
         version: link:../../core/utils
       '@ovh-ux/manager-tailwind-config':
         specifier: ^0.3.0
@@ -15130,7 +15131,7 @@ importers:
         version: link:../../core/api
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@3.6.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@ovh-ux/manager-react-shell-client':
         specifier: ^0.8.7
         version: link:../../core/shell-client
@@ -15494,7 +15495,7 @@ importers:
     dependencies:
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@18.19.30)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
       '@tanstack/react-query':
         specifier: 5.51.21
         version: 5.51.21(react@18.2.0)
@@ -16841,7 +16842,7 @@ importers:
         version: link:../order
       '@ovh-ux/manager-react-components':
         specifier: ^2.25.0
-        version: link:../../../manager-react-components
+        version: 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@18.19.30)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.2.79)(react@18.2.0))
       '@ovh-ux/manager-react-shell-client':
         specifier: ^0.8.7
         version: link:../../core/shell-client
@@ -16860,6 +16861,9 @@ importers:
       react:
         specifier: 18.x
         version: 18.2.0
+      react-dom:
+        specifier: 18.x
+        version: 18.2.0(react@18.2.0)
     devDependencies:
       '@ovh-ux/manager-core-test-utils':
         specifier: ^0.4.5
@@ -20163,6 +20167,24 @@ packages:
       react-i18next: ^14.0.5
       react-router-dom: ^6.3.0
 
+  '@ovh-ux/manager-pci-common@2.6.1':
+    resolution: {integrity: sha512-4HHYjahAJFUCX55xmH+K3S3FFOntv1u3ocK6jHgWsXAa4DvjhLT+xLQEJ7rSYv3hEyzHrEr+RQtLgyDyo2lzhA==}
+    peerDependencies:
+      '@ovh-ux/manager-config': ^7.3.2
+      '@ovh-ux/manager-core-api': ^0.9.0
+      '@ovh-ux/manager-react-components': ^2.5.1
+      '@ovh-ux/manager-react-shell-client': ^0.8.7
+      '@ovh-ux/manager-tailwind-config': ^0.2.0
+      '@ovh-ux/shell': ^3.7.0
+      '@ovhcloud/ods-components': ^18.4.1
+      '@ovhcloud/ods-themes': ^18.4.1
+      '@tanstack/react-query': 5.51.21
+      i18next: ^23.8.2
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      react-i18next: ^14.0.5
+      react-router-dom: ^6.3.0
+
   '@ovh-ux/manager-react-components@1.45.0':
     resolution: {integrity: sha512-Uf/ojrsHiT8GDV+VkqJDeMa1HsqTijxNHsxBLDDJfylofc0eDU5C4ZTHEtjljaJ7e0xfzbQGZolAWx0/qdNMPg==}
     peerDependencies:
@@ -20196,6 +20218,22 @@ packages:
       react-router-dom: ^6.3.0
       zustand: ^4.5.5
 
+  '@ovh-ux/manager-react-components@2.26.0':
+    resolution: {integrity: sha512-NZObK+ROubozZDpxxphsBc/+NtJzRPlOsI/oqoA9qxAcGc6fZ1SKPBqkJi78QfASILPuyfB1mKh4/ZbQNWRu1g==}
+    peerDependencies:
+      '@ovh-ux/manager-common-translations': '*'
+      '@ovh-ux/manager-core-api': ^0.10.0
+      '@ovh-ux/manager-core-utils': workspace:*
+      '@ovh-ux/manager-react-shell-client': ^0.8.7
+      '@ovhcloud/ods-components': ^18.3.0
+      '@ovhcloud/ods-themes': ^18.3.0
+      date-fns: ~4.1.0
+      i18next: ^23.8.2
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      react-router-dom: ^6.3.0
+      zustand: ^4.5.5
+
   '@ovh-ux/ng-at-internet@5.9.1':
     resolution: {integrity: sha512-pc/yayZin4ytjleR4jJoOwDUWAJL/xt4/LKYUPSCx7f4ALpazLb+YRsr7DhnJBV/cr4XeNJ8DPXP+bvmnl/bfw==}
     peerDependencies:
@@ -20207,6 +20245,19 @@ packages:
     peerDependencies:
       angular: ^1.8.3
       angular-resource: ^1.8.3
+
+  '@ovh-ux/ng-ovh-contact@5.2.10':
+    resolution: {integrity: sha512-OAUkHaUpBv59LPeKl8CESYpZphXGIGaXi7E57sHpQY6JiBqQABrLHdnYmTkFk0O6xHGR6wbbDFpge4O4T9jnOQ==}
+    peerDependencies:
+      '@ovh-ux/ng-ovh-api-wrappers': ^5.0.0
+      '@ovh-ux/ng-translate-async-loader': ^2.1.4
+      angular: ^1.8.3
+      angular-translate: ^2.19.1
+      angular-ui-bootstrap: ~1.3.3
+      moment: ^2.24.0
+      ovh-api-services: ^15.0.0
+      ovh-manager-webfont: ^1.2.0
+      ui-select: ^0.19.8
 
   '@ovh-ux/ng-ovh-request-tagger@1.1.0':
     resolution: {integrity: sha512-K0/B58f/4guN4HBC7BYgKht3iRZcUTK9IzP2PewppPBjuy4N06Qh7lOD6Z2Eo+l9jm+Un4+WnlOxuwUoTSn1nQ==}
@@ -37362,6 +37413,69 @@ snapshots:
       react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
+  '@ovh-ux/manager-pci-common@2.6.1(1d8b00bae5aa3bb6707c2df90a547418)':
+    dependencies:
+      '@ovh-ux/manager-config': link:packages/manager/modules/config
+      '@ovh-ux/manager-core-api': link:packages/manager/core/api
+      '@ovh-ux/manager-core-utils': link:packages/manager/core/utils
+      '@ovh-ux/manager-react-components': 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
+      '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
+      '@ovh-ux/manager-tailwind-config': link:packages/manager/core/tailwind-config
+      '@ovh-ux/shell': link:packages/components/ovh-shell
+      '@ovhcloud/ods-components': 18.6.2
+      '@ovhcloud/ods-themes': 18.6.2
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
+      clsx: 2.1.1
+      date-fns: 3.6.0
+      i18next: 23.16.8
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+
+  '@ovh-ux/manager-pci-common@2.6.1(3609888ac7df3a2a826459c647ae7c5c)':
+    dependencies:
+      '@ovh-ux/manager-config': link:packages/manager/modules/config
+      '@ovh-ux/manager-core-api': link:packages/manager/core/api
+      '@ovh-ux/manager-core-utils': link:packages/manager/core/utils
+      '@ovh-ux/manager-react-components': 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@3.6.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
+      '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
+      '@ovh-ux/manager-tailwind-config': link:packages/manager/core/tailwind-config
+      '@ovh-ux/shell': link:packages/components/ovh-shell
+      '@ovhcloud/ods-components': 18.6.2
+      '@ovhcloud/ods-themes': 18.6.2
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
+      clsx: 2.1.1
+      date-fns: 3.6.0
+      i18next: 23.16.8
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-i18next: 15.1.0(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+
+  '@ovh-ux/manager-pci-common@2.6.1(5182d5c2fd77680004bd2f79a706b26e)':
+    dependencies:
+      '@ovh-ux/manager-config': link:packages/manager/modules/config
+      '@ovh-ux/manager-core-api': link:packages/manager/core/api
+      '@ovh-ux/manager-core-utils': link:packages/manager/core/utils
+      '@ovh-ux/manager-react-components': 2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@3.6.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))
+      '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
+      '@ovh-ux/manager-tailwind-config': link:packages/manager/core/tailwind-config
+      '@ovh-ux/shell': link:packages/components/ovh-shell
+      '@ovhcloud/ods-components': 18.6.2
+      '@ovhcloud/ods-themes': 18.6.2
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
+      clsx: 2.1.1
+      date-fns: 3.6.0
+      i18next: 23.16.8
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+
   '@ovh-ux/manager-react-components@1.45.0(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))':
     dependencies:
       '@ovh-ux/manager-core-api': link:packages/manager/core/api
@@ -37497,6 +37611,221 @@ snapshots:
       - react-native
       - ts-node
 
+  '@ovh-ux/manager-react-components@2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@0.11.1)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))':
+    dependencies:
+      '@babel/plugin-proposal-private-property-in-object': 7.21.11(@babel/core@7.26.9)
+      '@ovh-ux/manager-common-translations': link:packages/manager/modules/common-translations
+      '@ovh-ux/manager-core-api': 0.11.1
+      '@ovh-ux/manager-core-utils': link:packages/manager/core/utils
+      '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
+      '@ovhcloud/ods-components': 18.6.2
+      '@ovhcloud/ods-themes': 18.6.2
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
+      '@tanstack/react-table': 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      clsx: 2.1.1
+      date-fns: 4.1.0
+      i18next: 23.16.8
+      lodash.isdate: 4.0.1
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-use: 17.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      sass: 1.56.1
+      tailwindcss: 3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))
+      uuid: 9.0.1
+      zustand: 4.5.5(@types/react@18.3.18)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - react-native
+      - supports-color
+      - ts-node
+
+  '@ovh-ux/manager-react-components@2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@3.6.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@4.9.5))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))':
+    dependencies:
+      '@babel/plugin-proposal-private-property-in-object': 7.21.11(@babel/core@7.26.9)
+      '@ovh-ux/manager-common-translations': link:packages/manager/modules/common-translations
+      '@ovh-ux/manager-core-api': link:packages/manager/core/api
+      '@ovh-ux/manager-core-utils': link:packages/manager/core/utils
+      '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
+      '@ovhcloud/ods-components': 18.6.2
+      '@ovhcloud/ods-themes': 18.6.2
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
+      '@tanstack/react-table': 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      clsx: 2.1.1
+      date-fns: 3.6.0
+      i18next: 23.16.8
+      lodash.isdate: 4.0.1
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-use: 17.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      sass: 1.56.1
+      tailwindcss: 3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@4.9.5))
+      uuid: 9.0.1
+      zustand: 4.5.5(@types/react@18.3.18)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - react-native
+      - supports-color
+      - ts-node
+
+  '@ovh-ux/manager-react-components@2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@3.6.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))':
+    dependencies:
+      '@babel/plugin-proposal-private-property-in-object': 7.21.11(@babel/core@7.26.9)
+      '@ovh-ux/manager-common-translations': link:packages/manager/modules/common-translations
+      '@ovh-ux/manager-core-api': link:packages/manager/core/api
+      '@ovh-ux/manager-core-utils': link:packages/manager/core/utils
+      '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
+      '@ovhcloud/ods-components': 18.6.2
+      '@ovhcloud/ods-themes': 18.6.2
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
+      '@tanstack/react-table': 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      clsx: 2.1.1
+      date-fns: 3.6.0
+      i18next: 23.16.8
+      lodash.isdate: 4.0.1
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-use: 17.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      sass: 1.56.1
+      tailwindcss: 3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))
+      uuid: 9.0.1
+      zustand: 4.5.5(@types/react@18.3.18)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - react-native
+      - supports-color
+      - ts-node
+
+  '@ovh-ux/manager-react-components@2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@4.9.5))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))':
+    dependencies:
+      '@babel/plugin-proposal-private-property-in-object': 7.21.11(@babel/core@7.26.9)
+      '@ovh-ux/manager-common-translations': link:packages/manager/modules/common-translations
+      '@ovh-ux/manager-core-api': link:packages/manager/core/api
+      '@ovh-ux/manager-core-utils': link:packages/manager/core/utils
+      '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
+      '@ovhcloud/ods-components': 18.6.2
+      '@ovhcloud/ods-themes': 18.6.2
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
+      '@tanstack/react-table': 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      clsx: 2.1.1
+      date-fns: 4.1.0
+      i18next: 23.16.8
+      lodash.isdate: 4.0.1
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-use: 17.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      sass: 1.56.1
+      tailwindcss: 3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@4.9.5))
+      uuid: 9.0.1
+      zustand: 4.5.5(@types/react@18.3.18)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - react-native
+      - supports-color
+      - ts-node
+
+  '@ovh-ux/manager-react-components@2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-core-utils@packages+manager+core+utils)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))':
+    dependencies:
+      '@babel/plugin-proposal-private-property-in-object': 7.21.11(@babel/core@7.26.9)
+      '@ovh-ux/manager-common-translations': link:packages/manager/modules/common-translations
+      '@ovh-ux/manager-core-api': link:packages/manager/core/api
+      '@ovh-ux/manager-core-utils': link:packages/manager/core/utils
+      '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
+      '@ovhcloud/ods-components': 18.6.2
+      '@ovhcloud/ods-themes': 18.6.2
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
+      '@tanstack/react-table': 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      clsx: 2.1.1
+      date-fns: 4.1.0
+      i18next: 23.16.8
+      lodash.isdate: 4.0.1
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-use: 17.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      sass: 1.56.1
+      tailwindcss: 3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))
+      uuid: 9.0.1
+      zustand: 4.5.5(@types/react@18.3.18)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - react-native
+      - supports-color
+      - ts-node
+
+  '@ovh-ux/manager-react-components@2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@18.19.30)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.2.79)(react@18.2.0))':
+    dependencies:
+      '@babel/plugin-proposal-private-property-in-object': 7.21.11(@babel/core@7.26.9)
+      '@ovh-ux/manager-common-translations': link:packages/manager/modules/common-translations
+      '@ovh-ux/manager-core-api': link:packages/manager/core/api
+      '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
+      '@ovhcloud/ods-components': 18.6.2
+      '@ovhcloud/ods-themes': 18.6.2
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
+      '@tanstack/react-table': 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      clsx: 2.1.1
+      date-fns: 4.1.0
+      i18next: 23.16.8
+      lodash.isdate: 4.0.1
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-use: 17.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      sass: 1.56.1
+      tailwindcss: 3.4.14(ts-node@10.9.2(@types/node@18.19.30)(typescript@5.8.2))
+      uuid: 9.0.1
+      zustand: 4.5.5(@types/react@18.2.79)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - react-native
+      - supports-color
+      - ts-node
+
+  '@ovh-ux/manager-react-components@2.26.0(@babel/core@7.26.9)(@ovh-ux/manager-common-translations@packages+manager+modules+common-translations)(@ovh-ux/manager-core-api@packages+manager+core+api)(@ovh-ux/manager-react-shell-client@packages+manager+core+shell-client)(@ovhcloud/ods-components@18.6.2)(@ovhcloud/ods-themes@18.6.2)(date-fns@4.1.0)(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react-router-dom@6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(ts-node@10.9.2(@types/node@18.19.30)(typescript@5.8.2))(zustand@4.5.5(@types/react@18.3.18)(react@18.2.0))':
+    dependencies:
+      '@babel/plugin-proposal-private-property-in-object': 7.21.11(@babel/core@7.26.9)
+      '@ovh-ux/manager-common-translations': link:packages/manager/modules/common-translations
+      '@ovh-ux/manager-core-api': link:packages/manager/core/api
+      '@ovh-ux/manager-react-shell-client': link:packages/manager/core/shell-client
+      '@ovhcloud/ods-components': 18.6.2
+      '@ovhcloud/ods-themes': 18.6.2
+      '@tanstack/react-query': 5.51.21(react@18.2.0)
+      '@tanstack/react-table': 8.20.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      clsx: 2.1.1
+      date-fns: 4.1.0
+      i18next: 23.16.8
+      lodash.isdate: 4.0.1
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-i18next: 14.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-router-dom: 6.29.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-use: 17.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      sass: 1.56.1
+      tailwindcss: 3.4.14(ts-node@10.9.2(@types/node@18.19.30)(typescript@5.8.2))
+      uuid: 9.0.1
+      zustand: 4.5.5(@types/react@18.3.18)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - react-native
+      - supports-color
+      - ts-node
+
   '@ovh-ux/ng-at-internet@5.9.1(@ovh-ux/manager-config@8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger))(angular@1.8.3)':
     dependencies:
       '@ovh-ux/ovh-at-internet': 0.1.0(@ovh-ux/manager-config@8.2.0(@ovh-ux/request-tagger@packages+manager+core+request-tagger))
@@ -37518,6 +37847,20 @@ snapshots:
       angular: 1.8.3
       angular-resource: 1.8.3
       lodash: 4.17.21
+
+  '@ovh-ux/ng-ovh-contact@5.2.10(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-translate-async-loader@packages+components+ng-translate-async-loader)(angular-translate@2.19.1)(angular-ui-bootstrap@1.3.3)(angular@1.8.3)(moment@2.30.1)(ovh-api-services@17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3))(ovh-manager-webfont@1.2.0)(ui-select@0.19.8)':
+    dependencies:
+      '@ovh-ux/ng-ovh-api-wrappers': 5.1.0(angular-resource@1.8.3)(angular@1.8.3)
+      '@ovh-ux/ng-translate-async-loader': link:packages/components/ng-translate-async-loader
+      angular: 1.8.3
+      angular-translate: 2.19.1
+      angular-ui-bootstrap: 1.3.3
+      intl-tel-input: 17.0.21
+      lodash-es: 4.17.21
+      moment: 2.30.1
+      ovh-api-services: 17.0.0(@ovh-ux/ng-ovh-api-wrappers@5.1.0(angular-resource@1.8.3)(angular@1.8.3))(@ovh-ux/ng-ovh-swimming-poll@packages+components+ng-ovh-swimming-poll)(angular-resource@1.8.3)(angular@1.8.3)
+      ovh-manager-webfont: 1.2.0
+      ui-select: 0.19.8
 
   '@ovh-ux/ng-ovh-request-tagger@1.1.0(@uirouter/angularjs@1.0.23(angular@1.8.3))(angular@1.8.3)':
     dependencies:
@@ -50118,6 +50461,14 @@ snapshots:
     dependencies:
       postcss: 7.0.39
 
+  postcss-load-config@4.0.2(postcss@8.5.3)(ts-node@10.9.2(@types/node@18.19.30)(typescript@5.8.2)):
+    dependencies:
+      lilconfig: 3.1.1
+      yaml: 2.4.1
+    optionalDependencies:
+      postcss: 8.5.3
+      ts-node: 10.9.2(@types/node@18.19.30)(typescript@5.8.2)
+
   postcss-load-config@4.0.2(postcss@8.5.3)(ts-node@10.9.2(@types/node@20.14.10)(typescript@4.9.5)):
     dependencies:
       lilconfig: 3.1.1
@@ -52470,6 +52821,33 @@ snapshots:
   tailwindcss-animate@1.0.7(tailwindcss@3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))):
     dependencies:
       tailwindcss: 3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.8.2))
+
+  tailwindcss@3.4.14(ts-node@10.9.2(@types/node@18.19.30)(typescript@5.8.2)):
+    dependencies:
+      '@alloc/quick-lru': 5.2.0
+      arg: 5.0.2
+      chokidar: 3.6.0
+      didyoumean: 1.2.2
+      dlv: 1.1.3
+      fast-glob: 3.3.3
+      glob-parent: 6.0.2
+      is-glob: 4.0.3
+      jiti: 1.21.0
+      lilconfig: 2.1.0
+      micromatch: 4.0.8
+      normalize-path: 3.0.0
+      object-hash: 3.0.0
+      picocolors: 1.1.1
+      postcss: 8.5.3
+      postcss-import: 15.1.0(postcss@8.5.3)
+      postcss-js: 4.0.1(postcss@8.5.3)
+      postcss-load-config: 4.0.2(postcss@8.5.3)(ts-node@10.9.2(@types/node@18.19.30)(typescript@5.8.2))
+      postcss-nested: 6.0.1(postcss@8.5.3)
+      postcss-selector-parser: 6.0.16
+      resolve: 1.22.10
+      sucrase: 3.35.0
+    transitivePeerDependencies:
+      - ts-node
 
   tailwindcss@3.4.14(ts-node@10.9.2(@types/node@20.14.10)(typescript@4.9.5)):
     dependencies:
@@ -54995,6 +55373,13 @@ snapshots:
       use-sync-external-store: 1.2.2(react@18.2.0)
     optionalDependencies:
       '@types/react': 18.2.45
+      react: 18.2.0
+
+  zustand@4.5.5(@types/react@18.2.79)(react@18.2.0):
+    dependencies:
+      use-sync-external-store: 1.2.2(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.2.79
       react: 18.2.0
 
   zustand@4.5.5(@types/react@18.3.18)(react@18.2.0):
