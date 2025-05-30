@@ -14,6 +14,8 @@ import { formatDatagridDate, removeQuotes } from '@/utils/utils';
 import OngoingOperationDatagridDomain from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridDomain';
 import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridBadge';
 import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard';
+import { StatusEnum } from '@/enum/status.enum';
+import { DOMAIN_OPERATIONS, DNS_OPERATIONS } from '@/constants';
 
 export const useOngoingOperationDatagridColumns = (
   parent: ParentEnum.DOMAIN | ParentEnum.ZONE,
@@ -46,6 +48,15 @@ export const useOngoingOperationDatagridColumns = (
         </DataGridTextCell>
       ),
       label: t('domain_operations'),
+      comparator: FilterCategories.Options,
+      isFilterable: true,
+      filterOptions: (parent === ParentEnum.DOMAIN
+          ? DOMAIN_OPERATIONS
+          : DNS_OPERATIONS
+      ).map((op) => ({
+        label: t(`domain_operations_nicOperation_${op}`),
+        value: op,
+      })),
     },
     {
       id: 'comment',
@@ -80,6 +91,12 @@ export const useOngoingOperationDatagridColumns = (
         <OngoingOperationDatagridBadge props={props} locale={l.language} />
       ),
       label: t('domain_operations_table_header_status'),
+      comparator: FilterCategories.Options,
+      isFilterable: true,
+      filterOptions: Object.values(StatusEnum).map((status) => ({
+        label: t(`domain_operations_statusOperation_${status}`),
+        value: status,
+      })),
     },
     {
       cell: (props: TOngoingOperations) => (
