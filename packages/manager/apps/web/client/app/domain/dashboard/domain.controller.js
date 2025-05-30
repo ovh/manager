@@ -2,9 +2,9 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 
 import {
-  RENEW_URL,
-  DOMAIN_SERVICE_STATUS,
   CONTACT_MANAGEMENT_TRACKING,
+  DOMAIN_SERVICE_STATUS,
+  RENEW_URL,
 } from './domain.constant';
 
 angular.module('App').controller(
@@ -26,6 +26,7 @@ angular.module('App').controller(
       Domain,
       associatedHostings,
       goToWebhostingOrder,
+      goToContactManagement,
       hasEmailDomain,
       isEmailDomainAvailable,
       Hosting,
@@ -49,6 +50,7 @@ angular.module('App').controller(
       this.coreURLBuilder = coreURLBuilder;
       this.associatedHostings = associatedHostings;
       this.goToWebhostingOrder = goToWebhostingOrder;
+      this.goToContactManagement = goToContactManagement;
       this.isEmailDomainTabAvailable = isEmailDomainAvailable && hasEmailDomain;
       this.Hosting = Hosting;
       this.orderedHosting = orderedHosting;
@@ -271,8 +273,9 @@ angular.module('App').controller(
       return this.isAllDom ? 'app.alldom.domain' : 'app.domain.product';
     }
 
-    trackClickContactManagement() {
+    onGoToContactManagement() {
       this.atInternet.trackClick(CONTACT_MANAGEMENT_TRACKING);
+      return this.goToContactManagement();
     }
   },
 );
