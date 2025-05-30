@@ -31,6 +31,7 @@
   "kubernetes_network_form_rebuild": "Achtung: Um die Strategie für das ausgehende Routing zu ändern, müssen die Nodes Ihres Clusters zu einem Rolling Update umgeschaltet werden.",
   "kubernetes_network_form_notify_users": "Um Managed Kubernetes Service in einer Region mit 3 Availability Zones (3-AZ) zu deployen, ist ein Subnetz mit zugehörigem Gateway erforderlich. Stellen Sie sicher, dass Ihr privates Netzwerk diese Voraussetzungen erfüllt, um einen optimalen Betrieb zu gewährleisten.",
   "kubernetes_network_form_select_private_option": "Privates Netzwerk auswählen",
-  "kubernetes_network_form_no_associated_gateway": "Während der Betaphase muss ein verwaltetes Gateway mit dem privaten Netzwerk verbunden sein.",
-  "kubernetes_network_form_no_private_network": "Sie benötigen ein privates Netzwerk, um Ihr Netzwerk für Kubernetes zu konfigurieren. Falls Sie noch kein privates Netzwerk haben, empfehlen wir Ihnen, ein solches einzurichten."
+  "kubernetes_network_form_no_associated_gateway": "Ihrem Subnetz ist kein Gateway zugewiesen, was für den ordnungsgemäßen Betrieb des Clusters erforderlich ist. Bitte fügen Sie eine Subnetz-Adresse an dieses Subnetz an oder wählen Sie ein Subnetz aus, das diese Voraussetzungen erfüllt.",
+  "kubernetes_network_form_no_private_network": "Sie benötigen ein privates Netzwerk, um Ihr Netzwerk für Kubernetes zu konfigurieren. Falls Sie noch kein privates Netzwerk haben, empfehlen wir Ihnen, ein solches einzurichten.",
+  "kubernetes_network_form_add_gateway": "Einen Gateway erstellen"
 }
