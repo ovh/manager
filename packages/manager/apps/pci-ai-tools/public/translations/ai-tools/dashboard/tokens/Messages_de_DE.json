@@ -60,6 +60,6 @@
   "renewTokenButtonClose": "Schließen",
   "renewTokenButtonCancel": "Abbrechen",
   "renewTokenButtonConfirm": "Bestätigen",
-  "ai_training_operator": "AI Platform - Operator",
-  "ai_training_read": "AI Platform – Nur Lesen"
+  "ai_training_operator": "AI Operator",
+  "ai_training_read": "AI Reader"
 }

@@ -16,6 +16,7 @@
   "pci_projects_project_storages_blocks_add_type_addon_price": "{{price}} HT/Go/heure",
   "pci_projects_project_storages_blocks_add_type_availability_zone_one": "Données localisées dans {{count}} zone de disponibilité",
   "pci_projects_project_storages_blocks_add_type_availability_zone_other": "Données localisées dans {{count}} zones de disponibilité",
+  "pci_projects_project_storages_blocks_add_type_multi_attach_banner": "Il est impératif d'utiliser un système de fichiers compatible avec la gestion multi-attache ou en cluster pour vos volumes lorsque plusieurs instances sont attachées à ces derniers. Sans cette configuration, vos données risquent d'être corrompues. Pour plus d'informations, <Link>consultez notre guide sur la configuration des volumes multi-attache</Link>",
   "pci_projects_project_storages_blocks_add_availability_zone": "Sélectionnez une zone de disponibilité",
   "pci_projects_project_storages_blocks_add_availability_zone_subtitle": "Le choix d'une zone de disponibilité est définitif, si vous voulez changer votre volume de zone, vous devrez le supprimer et le créer à nouveau dans la nouvelle zone souhaitée.",
   "pci_projects_project_storages_blocks_add_size_title": "Capacité du volume",

@@ -7,7 +7,7 @@ export type UrlRecord = { [Key in OvhSubsidiary]?: string } & {
   DEFAULT: string;
 };
 
-export const LOCAL_ZONE_INFO_URL = {
+export const LOCAL_ZONE_INFO_URL: UrlRecord = {
   DEFAULT: 'https://ovhcloud.com/en/public-cloud/local-zone-compute/',
   ASIA: 'https://ovhcloud.com/asia/public-cloud/local-zone-compute/',
   DE: 'https://ovhcloud.com/de/public-cloud/local-zone-compute/',
@@ -31,7 +31,7 @@ export const LOCAL_ZONE_INFO_URL = {
   US: 'https://us.ovhcloud.com/public-cloud/local-zone-compute/',
 };
 
-export const GLOBAL_REGIONS_INFO_URL = {
+export const GLOBAL_REGIONS_INFO_URL: UrlRecord = {
   DEFAULT: 'https://ovhcloud.com/en/public-cloud/compute/',
   ASIA: 'https://ovhcloud.com/asia/public-cloud/compute/',
   DE: 'https://ovhcloud.com/de/public-cloud/compute/',
@@ -58,6 +58,52 @@ export const GLOBAL_REGIONS_INFO_URL = {
 export const URL_INFO = {
   GLOBAL_REGIONS: GLOBAL_REGIONS_INFO_URL,
   LOCAL_ZONE: LOCAL_ZONE_INFO_URL,
+};
+
+export const MULTI_ATTACH_INFO_URL: UrlRecord = {
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067595',
+  IN:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067595',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067598',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067608',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067601',
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067604',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067613',
+  NL:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067613',
+  US:
+    'https://help.ovhcloud.com/csm/en-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067607',
+  ES:
+    'https://help.ovhcloud.com/csm/es-es-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067599',
+  DE:
+    'https://help.ovhcloud.com/csm/de-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067606',
+  WS:
+    'https://help.ovhcloud.com/csm/es-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067603',
+  PT:
+    'https://help.ovhcloud.com/csm/pt-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067596',
+  PL:
+    'https://help.ovhcloud.com/csm/pl-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067600',
+  IT:
+    'https://help.ovhcloud.com/csm/it-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067594',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067602',
+
+  TN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067602',
+  SN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067602',
+  MA:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067602',
+  QC:
+    'https://help.ovhcloud.com/csm/fr-ca-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067597',
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067607',
 };
 
 export const DEPLOYMENT_MODES_HELP_URL: UrlRecord = {

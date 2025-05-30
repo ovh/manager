@@ -1,7 +1,7 @@
 import { useHref } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { TVolume } from '@/api/data/volume';
+import { TVolume } from '@/api/hooks/useVolume';
 
 type ActionsProps = {
   volume: TVolume;
@@ -25,29 +25,31 @@ export default function ActionsComponent({
       label: t('pci_projects_project_storages_blocks_edit_label'),
       dataTestid: 'actionComponent-edit-button',
     },
-    {
+    volume.canAttachInstance && {
       id: 1,
-      href: volume.attachedTo?.length ? hrefDetach : hrefAttach,
-      label: t(
-        `pci_projects_project_storages_blocks_instance_${
-          volume.attachedTo?.length ? 'detach' : 'attach'
-        }_label`,
-      ),
-      dataTestid: 'actionComponent-attach-detach-button',
+      href: hrefAttach,
+      label: t(`pci_projects_project_storages_blocks_instance_attach_label`),
+      dataTestid: 'actionComponent-attach-button',
+    },
+    volume.canDetachInstance && {
+      id: 2,
+      href: hrefDetach,
+      label: t(`pci_projects_project_storages_blocks_instance_detach_label`),
+      dataTestid: 'actionComponent-detach-button',
     },
     {
-      id: 2,
+      id: 3,
       href: hrefCreateBackup,
       label: t('pci_projects_project_storages_blocks_create_backup_label'),
       dataTestid: 'actionComponent-create-backup-button',
     },
     {
-      id: 3,
+      id: 4,
       href: hrefRemove,
       label: t('pci_projects_project_storages_blocks_delete_label'),
       dataTestid: 'actionComponent-remove-button',
     },
-  ];
+  ].filter(Boolean);
 
   return <ActionMenu items={items} isCompact />;
 }

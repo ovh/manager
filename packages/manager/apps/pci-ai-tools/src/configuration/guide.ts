@@ -105,6 +105,14 @@ export const GUIDES = {
     default:
       'https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-deploy-apps-deployments?id=kb_article_view&sysparm_article=KB0047997',
   },
+  HOW_TO_USE_CUSTOM_IMAGE: {
+    fr_FR:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-training-build-use-custom-image?id=kb_article_view&sysparm_article=KB0048520',
+    fr_CA:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-training-build-use-custom-image?id=kb_article_view&sysparm_article=KB0048520',
+    default:
+      'https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-training-build-use-custom-image?id=kb_article_view&sysparm_article=KB0048515',
+  },
 };
 
 export function getGuideUrl(

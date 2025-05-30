@@ -21,6 +21,6 @@
   "formUserLabel": "User’s password",
   "formAddUserButtonClose": "Close",
   "formUserPasswordCopy": "Password copied",
-  "ai_training_operator": "AI Platform - Operator",
-  "ai_training_read": "AI Platform - Read-only"
+  "ai_training_operator": "AI Operator",
+  "ai_training_read": "AI Reader"
 }

@@ -15,6 +15,6 @@
   "pci_ai_dashboard_create_token_add_info_1": "Les tokens peuvent être assignés à une ressource spécifique (AI Notebook, Job et App) en utilisant les selecteurs de label ou à toutes vos ressources en laissant le champs vide. Vous pouvez également spécifier les privilèges du jeton pour inclure des droits d'administration ou seulement en lecture.",
   "pci_ai_dashboard_create_token_add_info_2": "Exemple de sélecteurs :",
   "pci_ai_dashboard_create_token_add_info_3": "Par défaut, vos applications auront les labels suivants : {{label1}} et {{label2}}",
-  "pci_ai_dashboard_create_token_role_name_ai_training_operator": "AI Platform - Opérateur",
-  "pci_ai_dashboard_create_token_role_name_ai_training_read": "AI Platform - Lecture seule"
+  "pci_ai_dashboard_create_token_role_name_ai_training_operator": "AI Operator",
+  "pci_ai_dashboard_create_token_role_name_ai_training_read": "AI Reader"
 }

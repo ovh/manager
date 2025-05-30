@@ -35,10 +35,10 @@ const BackupActionPage = ({
 
   const [snapshotName, setSnapshotName] = useState(defaultSnapshotName);
 
-  const { price, isLoading: isBackupLoading } = useInstanceBackupPrice(
-    projectId,
-    instance?.region ?? '',
-  );
+  const {
+    price: backupPrice,
+    isLoading: isBackupLoading,
+  } = useInstanceBackupPrice(projectId, instance?.region ?? '');
 
   const { mutationHandler, isPending } = useInstanceBackupAction(projectId, {
     onError,
@@ -51,6 +51,7 @@ const BackupActionPage = ({
 
   const { getFormattedCatalogPrice } = useCatalogPrice(3);
 
+  const price = backupPrice ? getFormattedCatalogPrice(backupPrice) : null;
   return (
     <ActionModal
       title={title}
@@ -76,7 +77,7 @@ const BackupActionPage = ({
         {!!price && !isBackupLoading && (
           <p className="text-sm font-medium">
             {t('pci_instances_actions_backup_instance_price', {
-              price: getFormattedCatalogPrice(Number(price)),
+              price,
             })}
           </p>
         )}
