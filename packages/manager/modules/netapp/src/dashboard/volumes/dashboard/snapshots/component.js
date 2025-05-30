@@ -19,7 +19,7 @@ export default {
     trackCreate: '<',
     goToRestoreSnapshot: '<',
     goToSnapshots: '<',
-    isCreateVolumeAvailable: '<',
+    canCreateVolumeFromSnapshot: '<',
   },
   controller,
   template,
