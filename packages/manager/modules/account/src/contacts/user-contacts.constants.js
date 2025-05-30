@@ -25,6 +25,7 @@ export const AVAILABLE_SERVICES = [
   'NUTANIX',
   'DEDICATED_CLUSTER',
   'HYCU',
+  'ALL_DOM',
 ];
 
 export default {

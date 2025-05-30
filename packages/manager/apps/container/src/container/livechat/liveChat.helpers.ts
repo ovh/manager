@@ -1,6 +1,7 @@
 import { SnowChatContext } from '@/types/live-chat.type';
 import { SupportLevel } from '@ovh-ux/manager-config';
 import { adriellyChatUrl } from './liveChat.constants';
+import { format } from 'date-fns';
 
 /**
  * Utility function to construct query parameters
@@ -42,8 +43,17 @@ export const getCustomerLevel = (level: string) => {
   }
 };
 
+/**
+ * Generates the URL for the adrielly chat
+ *
+ * Since #MANAGER-18466, we introduce a workaround to force the client to refetch the most recent version of the chat once per day.
+ * @param ovhSupportLevel support level of the customer
+ * @param ovhSubsidiary subsidiary of the customer
+ * @param language language of the customer from environment
+ * @returns {string} URL of the adrielly chat
+ */
 export const generateAdriellyChatUrl = (
   ovhSupportLevel: SupportLevel,
   ovhSubsidiary: string,
   language: string,
-) => adriellyChatUrl(getCustomerLevel(ovhSupportLevel.level), ovhSubsidiary.toUpperCase(), language);
+) => `${adriellyChatUrl(getCustomerLevel(ovhSupportLevel.level), ovhSubsidiary.toUpperCase(), language)}?v=${format(new Date(), 'yy-MM-dd')}`;

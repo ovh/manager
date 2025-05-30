@@ -327,7 +327,7 @@ const Sidebar = (): JSX.Element => {
             </a>
           )}
 
-          <div className={style.sidebar_menu} role="menubar" aria-label="sidebar_description">
+          <div className={style.sidebar_menu} role="menubar" aria-label={t('sidebar_description')}>
             <ul id="menu" role="menu">
               <li className="px-3 mb-3 mt-2 h-8">
                 {open && currentNavigationNode && (
