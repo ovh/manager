@@ -22,13 +22,13 @@ import {
   StepComponent,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { useCatalog } from '@ovh-ux/manager-pci-common';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useNewPoolStore } from '@/pages/detail/nodepools/new/store';
 import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { createNodePool, TCreateNodePoolParam } from '@/api/data/node-pools';
-import { useCatalog } from '@/api/hooks/catalog';
 import BillingStep, {
   TBillingStepProps,
 } from '@/components/create/BillingStep.component';
