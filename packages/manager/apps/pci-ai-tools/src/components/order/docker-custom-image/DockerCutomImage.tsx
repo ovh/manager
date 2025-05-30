@@ -102,7 +102,7 @@ const DockerCustomImageInput = React.forwardRef<
                 defaultValue={''}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('priaveImageInputLabel')}</FormLabel>
+                    <FormLabel>{t('priaveImageInputLabel')} (*)</FormLabel>
                     <FormControl>
                       <Input
                         data-testid="docker-custom-image-input"
