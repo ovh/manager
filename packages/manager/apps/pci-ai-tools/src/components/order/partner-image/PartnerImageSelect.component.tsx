@@ -52,6 +52,7 @@ const PartnerImageSelect = React.forwardRef<
   const { t } = useTranslation('ai-tools/components/partner-image');
   const [contract, setContract] = useState<ai.partner.Contract>();
   const [isChecked, setIsChecked] = useState(false);
+  const [openVersionCb, setOpenVersionCb] = useState(false);
 
   const locale = useLocale();
   useEffect(() => {
@@ -145,7 +146,7 @@ const PartnerImageSelect = React.forwardRef<
             <CardDescription className="mb-2">
               {t('partnerImageVersionDesc')}
             </CardDescription>
-            <Popover>
+            <Popover open={openVersionCb} onOpenChange={setOpenVersionCb}>
               <div data-testid="fmk-tile-version-container" className="hidden">
                 {images
                   .find((img) => img.id === value)
@@ -186,6 +187,7 @@ const PartnerImageSelect = React.forwardRef<
                             value={fmkVersion}
                             onSelect={(vers) => {
                               onChange(value, vers, isChecked);
+                              setOpenVersionCb(false);
                             }}
                           >
                             <Check

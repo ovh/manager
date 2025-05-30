@@ -71,7 +71,7 @@ export function useOrderFunnel(
     labels: z
       .array(
         z.object({
-          key: z.string().optional(),
+          name: z.string().optional(),
           value: z.string().optional(),
         }),
       )
@@ -205,7 +205,7 @@ export function useOrderFunnel(
   const labelsObject: { [key: string]: string } = useMemo(() => {
     if (labels.length === 0) return {};
     return labels.reduce((acc, label) => {
-      acc[label.key] = label.value;
+      acc[label.name] = label.value;
       return acc;
     }, {} as { [key: string]: string });
   }, [labels]);
