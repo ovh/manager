@@ -46,6 +46,10 @@ export default [
               },
             },
           },
+          {
+            path: `${ROUTES_URLS.listing}/drawer-test-page`,
+            ...lazyRouteConfig(() => import('@/pages/listing/drawerTest.page')),
+          },
         ],
       },
       {

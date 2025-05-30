@@ -37,6 +37,7 @@ import { getOkmsServicesResourceListQueryKey } from '@/data/api/okms';
 import KmsActionMenu from '@/components/menu/KmsActionMenu.component';
 import kmsListingTestIds from './KmsListing.constants';
 import { CHANGELOG_LINKS, SERVICE_KEYS_LABEL } from '@/constants';
+import { Drawer } from '@/components/drawer/Drawer.component';
 
 export default function Listing() {
   const { t } = useTranslation('key-management-service/listing');
@@ -146,6 +147,15 @@ export default function Listing() {
             label={t('key_management_service_listing_add_kms_button')}
             data-testid={kmsListingTestIds.ctaOrder}
           />
+          <OdsButton
+            onClick={() => navigate('drawer-test-page')}
+            label={'Open Drawer with route'}
+          />
+          <OdsButton
+            onClick={() => navigate('..')}
+            label={'Close Drawer with route'}
+          />
+
           {flattenData && (
             <Datagrid
               columns={columns}
