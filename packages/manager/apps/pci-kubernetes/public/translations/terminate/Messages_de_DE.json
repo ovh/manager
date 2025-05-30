@@ -1,10 +1,10 @@
 {
-  "kube_service_terminate_title": "Cluster löschen",
-  "kube_service_terminate_description": "Sind Sie sicher, dass Sie den Cluster {{ clusterName }} löschen möchten?",
-  "kube_service_terminate_warning": "Beim Löschvorgang werden automatisch alle zugehörigen Daten unwiderruflich gelöscht. Das Löschen des Dienstes bedeutet keine Garantie zur Rückerstattung.",
-  "kube_service_terminate_success": "Ihre Anfrage zur Löschung des Kubernetes-Clusters ist eingegangen.",
+  "kube_service_terminate_title": "Cluster kündigen",
+  "kube_service_terminate_description": "Sind Sie sicher, dass Sie den Cluster {{ clusterName }} kündigen möchten?",
+  "kube_service_terminate_warning": "Bei einer Kündigung werden alle zugehörigen Daten unwiderruflich gelöscht. Das Kündigen bedeutet keine Garantie zur Rückerstattung.",
+  "kube_service_terminate_success": "Ihre Anfrage zur Kündigung des Kubernetes-Clusters wurde registriert.",
   "kube_service_terminate_common_confirm": "Bestätigen",
   "kube_service_terminate_common_cancel": "Abbrechen",
   "kube_service_terminate_enter": "Um zur bestätigen, geben Sie bitte „TERMINATE“ im unten stehen Feld ein.",
-  "kube_service_terminate_error": "Bei der Löschung Ihres Clusters ist ein Fehler aufgetreten: {{ message }}"
+  "kube_service_terminate_error": "Bei der Kündigung Ihres Clusters ist ein Fehler aufgetreten: {{ message }}"
 }
