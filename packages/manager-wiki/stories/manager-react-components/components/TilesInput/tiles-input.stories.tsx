@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useArgs } from '@storybook/client-api';
+import { useArgs } from '@storybook/manager-api';
 import { clsx } from 'clsx';
 import { TilesInputComponent } from '@ovh-ux/manager-react-components';
 import {
