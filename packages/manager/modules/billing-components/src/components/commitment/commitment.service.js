@@ -27,9 +27,11 @@ export default class CommitmentService {
         const options = groupBy(flatten(optionsEngagement), 'pricingMode');
         return optionsEngagement.length
           ? serviceEngagement.map((commitment) => {
-              options[commitment.pricingMode].map((option) =>
-                commitment.addOptionCommitment(option),
-              );
+              if (options[commitment.pricingMode]) {
+                options[commitment.pricingMode].map((option) =>
+                  commitment.addOptionCommitment(option),
+                );
+              }
               return commitment;
             })
           : serviceEngagement;

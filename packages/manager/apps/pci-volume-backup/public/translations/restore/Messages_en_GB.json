@@ -2,7 +2,7 @@
   "pci_projects_project_storages_volume_backup_list_restore_volume_header": "Restore your volume",
   "pci_projects_project_storages_volume_backup_list_restore_volume_description": "Are you sure you want to restore the {{volumeName}} volume from the {{volumeBackupName}} backup? This will result in data loss for your current volume.",
   "pci_projects_project_storages_volume_backup_list_restore_volume_action_confirm": "Confirm",
-  "pci_projects_project_storages_volume_backup_list_restore_volume_action_cancel": "Exit",
+  "pci_projects_project_storages_volume_backup_list_restore_volume_action_cancel": "Cancel",
   "pci_projects_project_storages_volume_backup_list_restore_volume_action_request_success": "The {{volumeName}} volume is being restored.",
   "pci_projects_project_storages_volume_backup_list_restore_volume_action_request_error": "An error has occurred restoring your {{volumeName}} volume: {{message}}"
 }

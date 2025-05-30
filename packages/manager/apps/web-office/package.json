@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-office-app",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "description": "React app for web office 365",
   "repository": {
@@ -22,7 +22,7 @@
     "@ovh-ux/manager-core-api": "^0.12.0",
     "@ovh-ux/manager-core-utils": "^0.3.0",
     "@ovh-ux/manager-module-order": "^0.9.9",
-    "@ovh-ux/manager-react-components": "^2.25.0",
+    "@ovh-ux/manager-react-components": "^2.26.0",
     "@ovh-ux/manager-react-core-application": "^0.11.23",
     "@ovh-ux/manager-react-shell-client": "^0.8.7",
     "@ovh-ux/manager-tailwind-config": "^0.3.0",
@@ -59,7 +59,6 @@
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^2.1.9",
     "typescript": "^4.3.2",
-    "vite": "^6.0.7",
     "vitest": "^2.1.9"
   },
   "regions": [

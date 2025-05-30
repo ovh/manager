@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.0...@ovh-ux/manager-pci-volume-backup-app@0.1.1) (2025-05-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4050] ([70c9086](https://github.com/ovh/manager/commit/70c9086ca04c4210dd01293c88d4580e12cb8d1e))
+
+
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.0.0...@ovh-ux/manager-pci-volume-backup-app@0.1.0) (2025-05-27)
 
 

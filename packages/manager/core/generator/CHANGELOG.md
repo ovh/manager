@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.30.0...@ovh-ux/manager-generator@0.30.1) (2025-05-29)
+
+
+### Bug Fixes
+
+* **generator:** adding suspense around routerprovider ([dd0f601](https://github.com/ovh/manager/commit/dd0f60146005fd7efd24ed3df356eaf8e87b2a4e))
+
+
+
+
+
 # [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.29.1...@ovh-ux/manager-generator@0.30.0) (2025-05-23)
 
 

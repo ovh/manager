@@ -8,7 +8,6 @@
   "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Boot",
   "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Definire un volume come “boot” permette di utilizzare questo disco all’avvio della tua istanza.",
   "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Annullare",
-
   "pci_project_flavors_zone_localzone": "Local Zone",
   "pci_project_flavors_zone_localzone_tooltip": "Una Local Zone corrisponde a una modalità di deploy dei servizi Public Cloud di OVHcloud in datacenter localizzati il più vicino possibile agli utenti finali.",
   "pci_project_flavors_zone_tooltip_link": "Scopri di più",
@@ -17,6 +16,5 @@
   "pci_project_flavors_zone_globalregions_tooltip_2": "Con l’arrivo delle Region 3-AZ, il tipo di deploy “Region” cambia nome! Una Region 1-AZ (zona di disponibilità) raggruppa uno o più datacenter presenti nella stessa localizzazione.",
   "pci_project_flavors_zone_3az_region": "3-AZ",
   "pci_project_flavors_zone_3az_tooltip": "Una Region 3-AZ comprende tre zone di disponibilità presenti in una stessa area metropolitana, separate da alcuni chilometri. Risponde alle esigenze più rigorose in materia di resilienza, garantendo una latenza estremamente ridotta tra le AZ.",
-
   "pci_projects_project_storages_blocks_add_submit_price_text": "Importo stimato: {{ price }} +IVA/mese"
 }

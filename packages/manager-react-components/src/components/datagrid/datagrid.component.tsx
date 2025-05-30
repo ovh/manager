@@ -299,7 +299,9 @@ export const Datagrid = <T,>({
   const columnsVisibility = useMemo(
     () =>
       table.getAllLeafColumns().map((column) => {
-        const col = columns.find((item) => column.id === item.id);
+        const col = columns.find(
+          (item) => column.id === item.id.replaceAll('.', '_'),
+        );
         return {
           id: column.id,
           label: col?.label,
