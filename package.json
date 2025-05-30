@@ -71,6 +71,7 @@
   "devDependencies": {
     "@babel/core": "^7.8.0",
     "@babel/helper-string-parser": "^7.18.10",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-react": "^7.26.3",
     "@commitlint/cli": "^19.7.1",
@@ -119,6 +120,7 @@
     "p-series": "^2.1.0",
     "prettier": "^1.18.2",
     "progress": "^2.0.3",
+    "regexpu-core": "^6.2.0",
     "remark-cli": "^8.0.1",
     "remark-lint": "^7.0.1",
     "remark-preset-lint-recommended": "^4.0.1",
