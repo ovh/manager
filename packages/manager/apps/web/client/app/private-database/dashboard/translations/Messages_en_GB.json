@@ -31,6 +31,8 @@
   "privateDatabase_dashboard_datacenter_gra3": "Gravelines 3",
   "privateDatabase_dashboard_datacenter_bhs": "Beauharnois",
   "privateDatabase_dashboard_datacenter_bhs1": "Beauharnois 1",
+  "privateDatabase_dashboard_datacenter_eu-west-gra": "eu-west-gra",
+  "privateDatabase_dashboard_datacenter_ca-east-bhs": "ca-east-bhs",
   "privateDatabase_dashboard_hostname": "Host name",
   "privateDatabase_dashboard_hostname_tooltip": "Please use the host name provided to connect to your instance, as the IP address associated with it may change over time.",
   "privateDatabase_dashboard_host": "Host",
