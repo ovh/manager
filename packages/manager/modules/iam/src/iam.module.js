@@ -16,12 +16,10 @@ import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
 
 import dashboard from './dashboard';
-import policy from './policy';
 import policies from './policies';
 import identities from './identities';
 import apiKeys from './api-keys';
 import logs from './logs';
-import resourceGroup from './resourceGroup';
 
 import filters from './iam.filters';
 import paramTypes from './iam.paramTypes';
@@ -59,12 +57,10 @@ angular
     ngOvhUtils,
     uiKit,
     dashboard,
-    policy,
     policies,
     identities,
     apiKeys,
     logs,
-    resourceGroup,
     ngUiRouterLayout,
   ])
   .config(routing)
