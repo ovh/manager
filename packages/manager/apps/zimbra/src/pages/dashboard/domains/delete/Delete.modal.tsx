@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import {
   ODS_MESSAGE_COLOR,
   ODS_MODAL_COLOR,
@@ -16,7 +16,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useAccounts } from '@/data/hooks';
+import { useAccounts, useDomain } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import {
   deleteZimbraPlatformDomain,
@@ -31,7 +31,10 @@ export const DeleteDomainModal = () => {
   const navigate = useNavigate();
   const { trackClick, trackPage } = useOvhTracking();
   const { platformId, domainId } = useParams();
-  const { data: accounts, isLoading } = useAccounts({
+  const { data: domain, isLoading: isDomainLoading } = useDomain({
+    domainId,
+  });
+  const { data: accounts, isLoading: isAccountsLoading } = useAccounts({
     domainId,
   });
 
@@ -105,7 +108,7 @@ export const DeleteDomainModal = () => {
       color={ODS_MODAL_COLOR.critical}
       onClose={onClose}
       isDismissible
-      isLoading={isLoading}
+      isLoading={isDomainLoading || isAccountsLoading}
       isOpen
       secondaryButton={{
         label: t('common:cancel'),
@@ -121,7 +124,13 @@ export const DeleteDomainModal = () => {
     >
       <>
         <OdsText preset={ODS_TEXT_PRESET.span} className="mb-4">
-          {t('zimbra_domains_delete_modal_content')}
+          <Trans
+            t={t}
+            i18nKey={'zimbra_domains_delete_modal_content'}
+            values={{
+              domain: domain?.currentState.name,
+            }}
+          />
         </OdsText>
         {accounts?.length > 0 && (
           <OdsMessage
