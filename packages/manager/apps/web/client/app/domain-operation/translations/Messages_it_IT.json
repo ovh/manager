@@ -128,5 +128,7 @@
   "domain_operations_nicOperation_ContactControlAcknowledge": "Conferma del contatto",
   "domain_operations_nicOperation_ContactControlCorrect": "Correzione del contatto",
   "domain_operations_table_header_creationDate": "Data di creazione",
-  "domain_operations_statusOperation_problem": "Fallito"
+  "domain_operations_statusOperation_problem": "Fallito",
+  "domain_operations_nicOperation_ContactControlNotify": "Notifica di verifica del contatto",
+  "domain_operations_nicOperation_DomainSendRDRPNotice": "Invio della notifica RDRP"
 }
