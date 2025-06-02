@@ -9,7 +9,13 @@ export const DSVrack = (server: DedicatedServer) => {
 
   return (
     <SkeletonCell isLoading={isLoading} error={error}>
-      {vrack?.[0] ? <DataGridTextCell>{vrack[0]}</DataGridTextCell> : <>-</>}
+      {vrack?.[0] ? (
+        <DataGridTextCell>
+          <span className="whitespace-nowrap">{vrack[0]}</span>
+        </DataGridTextCell>
+      ) : (
+        <>-</>
+      )}
     </SkeletonCell>
   );
 };

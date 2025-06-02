@@ -71,18 +71,22 @@ export function getColumns(
       type: FilterTypeCategories.String,
       label: t('server_display_reverse'),
       cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.reverse)}</DataGridTextCell>
+        <DataGridTextCell>
+          <span className="whitespace-nowrap">{t(server.reverse)}</span>
+        </DataGridTextCell>
       ),
     },
     {
-      id: 'model',
+      id: 'commercialRange',
       isSearchable: true,
       isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_model'),
       cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.commercialRange)}</DataGridTextCell>
+        <DataGridTextCell>
+          <span className="whitespace-nowrap">{t(server.commercialRange)}</span>
+        </DataGridTextCell>
       ),
     },
     {
@@ -99,11 +103,14 @@ export function getColumns(
     {
       id: 'region',
       isSearchable: true,
+      isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_region'),
       cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.region)}</DataGridTextCell>
+        <DataGridTextCell>
+          <span className="whitespace-nowrap">{t(server.region)}</span>
+        </DataGridTextCell>
       ),
     },
     {
@@ -118,7 +125,7 @@ export function getColumns(
       ),
     },
     {
-      id: 'datacentre',
+      id: 'datacenter',
       isSearchable: true,
       isFilterable: true,
       enableHiding: true,
@@ -131,7 +138,7 @@ export function getColumns(
     {
       id: 'state',
       isSearchable: false,
-      isFilterable: true,
+      isFilterable: false, // until fix
       enableHiding: true,
       type: FilterTypeCategories.Boolean,
       label: t('server_display_state'),
@@ -145,7 +152,7 @@ export function getColumns(
     },
     {
       id: 'monitoring',
-      isFilterable: true,
+      isFilterable: false, // until fix
       enableHiding: true,
       type: FilterTypeCategories.Boolean,
       label: t('server_display_monitoring'),
@@ -154,7 +161,7 @@ export function getColumns(
     {
       id: 'vrack',
       isSearchable: true,
-      isFilterable: true,
+      isFilterable: false, // until fix
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_vrack'),
