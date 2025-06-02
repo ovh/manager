@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.1.7...@ovh-ux/manager-pci-dataplatform-app@1.2.0) (2025-06-02)
+
+
+### Features
+
+* **pci-dataplatform:** add onboarding page ([#16738](https://github.com/ovh/manager/issues/16738)) ([694b182](https://github.com/ovh/manager/commit/694b1828968fc5b7aafe8565f218868028e01e61)), closes [#DATATR-2165](https://github.com/ovh/manager/issues/DATATR-2165)
+
+
+
+
+
 ## [1.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.1.6...@ovh-ux/manager-pci-dataplatform-app@1.1.7) (2025-05-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-dataplatform-app

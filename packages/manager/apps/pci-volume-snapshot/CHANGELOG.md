@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.2.2...@ovh-ux/manager-pci-volume-snapshot-app@0.3.0) (2025-06-02)
+
+
+### Features
+
+* **pci-volume-snapshot:** display notification from queryParams ([974ce01](https://github.com/ovh/manager/commit/974ce0149ceb67b943d0b83149fb91b0c8345774)), closes [#DTCORE-3340](https://github.com/ovh/manager/issues/DTCORE-3340)
+
+
+
+
+
 ## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.2.1...@ovh-ux/manager-pci-volume-snapshot-app@0.2.2) (2025-05-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app

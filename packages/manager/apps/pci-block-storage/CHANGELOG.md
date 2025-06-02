@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.14.0...@ovh-ux/manager-pci-block-storage-app@0.15.0) (2025-06-02)
+
+
+### Features
+
+* **pci-block-storage:** add classic multi attach naming ([e0e081e](https://github.com/ovh/manager/commit/e0e081e8996d0058afb1faa7d8f43ff8443bdfb5)), closes [#TAPC-3641](https://github.com/ovh/manager/issues/TAPC-3641) [#TAPC-3744](https://github.com/ovh/manager/issues/TAPC-3744) [#TAPC-3761](https://github.com/ovh/manager/issues/TAPC-3761) [#TAPC-3645](https://github.com/ovh/manager/issues/TAPC-3645)
+* **pci-block-storage:** autogenerate volume name based on volume type capacity and region ([#17154](https://github.com/ovh/manager/issues/17154)) ([967c58b](https://github.com/ovh/manager/commit/967c58b5a0b43a6723da3e19336bc6044ddd795c)), closes [#TAPC-3638](https://github.com/ovh/manager/issues/TAPC-3638)
+* **pci:** use common catalog method ([#17053](https://github.com/ovh/manager/issues/17053)) ([1f8cb3c](https://github.com/ovh/manager/commit/1f8cb3cf22407f5c27476e15c331f0314b485823)), closes [#TAPC-4029](https://github.com/ovh/manager/issues/TAPC-4029)
+
+
+
+
+
 # [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.13.10...@ovh-ux/manager-pci-block-storage-app@0.14.0) (2025-05-27)
 
 
