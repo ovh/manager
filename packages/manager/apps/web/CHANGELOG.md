@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.8...@ovh-ux/manager-web@19.12.0) (2025-06-02)
+
+
+### Bug Fixes
+
+* **web.database:** misconfiguration prevent render ([b682304](https://github.com/ovh/manager/commit/b6823042f519ded332fb41731079feb57835ac37)), closes [#INC0132372](https://github.com/ovh/manager/issues/INC0132372)
+* **web.domain:** alldom page remains blank (missing dependency injection) ([5ede980](https://github.com/ovh/manager/commit/5ede9806b717fd8baf643c2088fa13d4f842fe5e)), closes [#INC0133149](https://github.com/ovh/manager/issues/INC0133149)
+* **web.domain:** redirection to contact tab ([45dbb4d](https://github.com/ovh/manager/commit/45dbb4d82523887e6316334eb4a0264c575cfd32)), closes [#INC0133149](https://github.com/ovh/manager/issues/INC0133149)
+
+
+### Features
+
+* **web:** clean unused code replaced by web-ongoing-operations µApp ([ea7ee0e](https://github.com/ovh/manager/commit/ea7ee0ebb204a44c30bee0f5b29694a1de9f02cd)), closes [#MANAGER-18437](https://github.com/ovh/manager/issues/MANAGER-18437)
+
+
+
+
+
 ## [19.11.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.7...@ovh-ux/manager-web@19.11.8) (2025-05-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
