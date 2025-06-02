@@ -5,6 +5,7 @@ import {
   useNotifications,
   useResourcesIcebergV6,
 } from '@ovh-ux/manager-react-components';
+import { toASCII } from 'punycode';
 import { useTranslation } from 'react-i18next';
 import { useOngoingOperationDatagridColumns } from '@/hooks/useOngoingOperationDatagridColumns';
 import { taskMeDomain } from '@/constants';
@@ -39,7 +40,7 @@ export default function Domain() {
 
   useEffect(() => {
     const debounce = setTimeout(() => {
-      search.setSearchInput(searchInput.toLowerCase());
+      search.setSearchInput(toASCII(searchInput.toLowerCase()));
     }, 300);
 
     return () => clearTimeout(debounce);
