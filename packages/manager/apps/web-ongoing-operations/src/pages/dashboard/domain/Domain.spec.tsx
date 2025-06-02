@@ -27,6 +27,11 @@ describe('Domain datagrid', () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
       flattenData: [],
       isLoading: true,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
 
     const { getByTestId } = render(<Domain />, { wrapper });
@@ -38,6 +43,11 @@ describe('Domain datagrid', () => {
       flattenData: domain,
       isLoading: false,
       totalCount: domain.length,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
 
     expect(useResourcesIcebergV6).toHaveBeenCalledWith(
@@ -53,6 +63,11 @@ describe('Domain datagrid', () => {
       flattenData: domain,
       isLoading: false,
       totalCount: domain.length,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
 
     vi.mock('@/hooks/data/query', () => ({
