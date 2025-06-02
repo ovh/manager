@@ -84,5 +84,11 @@
   "skip_step": "Saltar este paso",
   "configure_another_account": "Configurar otra cuenta",
   "generate_password_tooltip": "Generar una contraseña",
-  "generated_password_tooltip": "La contraseña se ha copiado al portapapeles."
+  "generated_password_tooltip": "La contraseña se ha copiado al portapapeles.",
+  "configure_account": "Configurar la cuenta",
+  "service_billing_state_canceled": "Dado de baja",
+  "service_billing_state_cancelation_planned": "Baja programada",
+  "service_billing_state_manual_renewal": "Renovación manual",
+  "service_billing_state_automatic_renewal": "Renovación automática",
+  "service_billing_state_unhandled": "N/A"
 }
