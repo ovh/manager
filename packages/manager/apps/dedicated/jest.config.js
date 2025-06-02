@@ -4,7 +4,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleFileExtensions: ['js', 'json', 'html', 'node'],
-  transformIgnorePatterns: ['node_modules/(?!lodash-es|@ovhcloud|@stencil)'],
+  transformIgnorePatterns: ['node_modules/?!lodash-es'],
   testMatch: ['**/__tests__/**/*.spec.js'],
   transform: {
     '\\.html$': '<rootDir>/client/__tests__/jest-html.loader.js',
