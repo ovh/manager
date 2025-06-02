@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useHref } from 'react-router-dom';
 
+import { OdsButton } from '@ovhcloud/ods-components/react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   DatagridColumn,
   DataGridTextCell,
@@ -14,8 +16,11 @@ import {
   VCD_ORGANIZATION_ROUTE,
   VCDOrganization,
 } from '@ovh-ux/manager-module-vcd-api';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import {
+  useOvhTracking,
+  ShellContext,
+} from '@ovh-ux/manager-react-shell-client';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
@@ -23,6 +28,7 @@ import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
 import OrganizationActions from './OrganizationActions.component';
 import { MessageList } from '@/components/message/MessageList.component';
+import { ORDER_VCD_REDIRECTION_URL } from '@/utils/orderVcdRedirection.constants';
 
 const organizationMapper = (vdcOrgs?: VCDOrganization[]) => {
   return vdcOrgs?.map(({ id, currentState, resourceStatus }) => ({
@@ -82,7 +88,10 @@ const DatagridWebInterfaceCell = (vdcOrg: VCDOrganization['currentState']) => {
 
 /* ======= listing page ======= */
 export default function Listing() {
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation(['listing', NAMESPACES.ACTIONS]);
+
+  const { ovhSubsidiary } =
+    useContext(ShellContext)?.environment?.getUser() || {};
 
   const columns = [
     {
@@ -146,6 +155,20 @@ export default function Listing() {
         columnsSearchable="fullName"
         mapper={organizationMapper}
         withFilter
+        orderButton={
+          <OdsButton
+            label={t(`${NAMESPACES.ACTIONS}:order`)}
+            variant="outline"
+            onClick={() => {
+              window.open(
+                ORDER_VCD_REDIRECTION_URL[ovhSubsidiary] ||
+                  ORDER_VCD_REDIRECTION_URL.DEFAULT,
+                '_blank',
+              );
+            }}
+            data-testid={TEST_IDS.vcdOrderCta}
+          />
+        }
       />
       <Outlet />
     </>

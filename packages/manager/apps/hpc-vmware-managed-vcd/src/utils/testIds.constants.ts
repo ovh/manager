@@ -16,6 +16,7 @@ const TEST_IDS = {
   backupBadgeStatus: 'backup-badge-status',
   backupBadgeError: 'backup-badge-error',
   backupBadgeNone: 'backup-badge-none',
+  vcdOrderCta: 'vcd-order-cta',
 } as const;
 
 export default TEST_IDS;
