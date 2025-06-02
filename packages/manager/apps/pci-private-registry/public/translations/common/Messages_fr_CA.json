@@ -14,7 +14,7 @@
   "private_registry_iam_authentication_status": "Authentification IAM",
   "private_registry_iam_authentication_infos_tooltip": "Permet à Harbor d’utiliser les identités gérées par OVHcloud IAM (Identity and Access Management) pour contrôler l’accès au registre, évitant ainsi la gestion manuelle des utilisateurs.",
   "private_registry_upgrade_plan": "Changer de plan",
-  "private_registry_consumption": "Espace utilisé / Espace disponible",
+  "private_registry_consumption": "Espace utilisé",
   "private_registry_consumption_display": "{{ used }} / {{ limit }}",
   "private_registry_harbor_ui": "Interface utilisateur Harbor",
   "private_registry_harbor_api": "API Harbor",
