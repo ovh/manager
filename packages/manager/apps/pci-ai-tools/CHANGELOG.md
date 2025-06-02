@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.3.1...@ovh-ux/manager-pci-ai-tools-app@1.4.0) (2025-06-02)
+
+
+### Bug Fixes
+
+* **pci-ai-tools:** update translations ([085f0f8](https://github.com/ovh/manager/commit/085f0f8a0c6ba5400aa26d7499aa398c6bfbb2fd)), closes [#AIS-1282](https://github.com/ovh/manager/issues/AIS-1282)
+
+
+### Features
+
+* **pci.ai-tools:** add jobs ([#16111](https://github.com/ovh/manager/issues/16111)) ([1d148c6](https://github.com/ovh/manager/commit/1d148c62c424d63498ef8273eb9d83afa6ada18a)), closes [#DATATR-1921](https://github.com/ovh/manager/issues/DATATR-1921)
+
+
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.3.0...@ovh-ux/manager-pci-ai-tools-app@1.3.1) (2025-05-29)
 
 
