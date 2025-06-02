@@ -6,7 +6,6 @@ import {
   useResourcesIcebergV6,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { toASCII } from 'punycode';
 import Loading from '@/components/Loading/Loading';
 import { useOngoingOperationDatagridColumns } from '@/hooks/useOngoingOperationDatagridColumns';
 import { taskMeDomain } from '@/constants';
@@ -70,13 +69,7 @@ export default function Domain() {
             sorting={sorting}
             onSortChange={setSorting}
             filters={filters}
-            search={{
-              searchInput: search.searchInput,
-              setSearchInput: search.setSearchInput,
-              onSearch: (value) => {
-                search.onSearch(toASCII(value));
-              },
-            }}
+            search={search}
           />
         </div>
       )}

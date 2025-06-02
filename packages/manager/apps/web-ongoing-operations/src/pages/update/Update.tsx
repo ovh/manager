@@ -10,7 +10,6 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET, OdsFile } from '@ovhcloud/ods-components';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import pLimit from 'p-limit';
-import { toUnicode } from 'punycode';
 import { updateTask } from '@/data/api/web-ongoing-operations';
 import SubHeader from '@/components/SubHeader/SubHeader';
 import { saveFile } from '@/data/api/document';
@@ -206,7 +205,7 @@ export default function Update() {
     >
       <SubHeader
         title={t('domain_operations_update_title', {
-          t0: toUnicode(domain.domain),
+          t0: domain.domain,
         })}
       />
       <section>

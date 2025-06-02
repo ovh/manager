@@ -1,7 +1,6 @@
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { OdsLink } from '@ovhcloud/ods-components/react';
 import React from 'react';
-import { toUnicode } from 'punycode';
 import { OngoingOperationDatagridDomainProps } from '@/types';
 import { useDatagridColumnUrl } from '@/hooks/url/useDatagridColumnUrl';
 import {
@@ -20,7 +19,7 @@ export default function OngoingOperationDatagridDomain({
     <DataGridTextCell>
       <OdsLink
         href={url}
-        label={toUnicode(value)}
+        label={value}
         data-testid={value}
         isDisabled={
           !url ||
