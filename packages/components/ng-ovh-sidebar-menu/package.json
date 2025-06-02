@@ -41,7 +41,8 @@
     "ng-slide-down": "TheRusskiy/ng-slide-down#v1.2.0"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.2"
+    "@ovh-ux/component-rollup-config": "^13.0.2",
+    "rollup": "^2.79.2"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.12",

@@ -34,7 +34,8 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.2"
+    "@ovh-ux/component-rollup-config": "^13.0.2",
+    "rollup": "^2.79.2"
   },
   "peerDependencies": {
     "@uirouter/angularjs": "^1.0.22",
