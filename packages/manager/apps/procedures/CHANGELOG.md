@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.11.14...@ovh-ux/manager-procedures-app@0.12.0) (2025-06-02)
+
+
+### Bug Fixes
+
+* **procedures:** extend exit guard to cover the full upload process ([da83a89](https://github.com/ovh/manager/commit/da83a89a1e48e3bde69d890b9722fbb88144e773))
+* **procedures:** simplify exit guard extension ([6da07c1](https://github.com/ovh/manager/commit/6da07c10fc2fb7cac60f0744d1604fec99ff4042))
+
+
+### Features
+
+* standardize test filenames ([67d966e](https://github.com/ovh/manager/commit/67d966e308b2395c930902c5bf3e454b155ebb29)), closes [#MANAGER-18068](https://github.com/ovh/manager/issues/MANAGER-18068)
+
+
+
+
+
 ## [0.11.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.11.13...@ovh-ux/manager-procedures-app@0.11.14) (2025-05-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-procedures-app
