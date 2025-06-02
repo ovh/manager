@@ -37,6 +37,7 @@
     "@vitejs/plugin-react": "^4.3.3",
     "@vitest/coverage-v8": "^2.1.9",
     "msw": "2.1.7",
+    "react-dom": "^18.3.1",
     "react-router-dom": "^6.3.0",
     "typescript": "^5.4.5",
     "vite": "^6.0.7",
