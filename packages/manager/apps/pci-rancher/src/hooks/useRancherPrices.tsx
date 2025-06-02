@@ -1,4 +1,4 @@
-import { useCatalog } from '@/data/hooks/useCatalog/useCatalog';
+import { useCatalog } from '@ovh-ux/manager-pci-common';
 import { RancherPlanCode, TRancherPricing } from '@/types/api.type';
 import { getPlanPricing } from '@/utils/rancherPrices';
 
