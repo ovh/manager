@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.14.3...@ovh-ux/manager-pci-savings-plan-app@1.14.4) (2025-06-02)
+
+
+### Bug Fixes
+
+* **svp:** correct SVP graph prevent misleading mid-day bumps ([#17151](https://github.com/ovh/manager/issues/17151)) ([e239e96](https://github.com/ovh/manager/commit/e239e9621b8b7f17dcbcee5f5fe3f52fc49d3622)), closes [#TAPC-4093](https://github.com/ovh/manager/issues/TAPC-4093)
+
+
+
+
+
 ## [1.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.14.2...@ovh-ux/manager-pci-savings-plan-app@1.14.3) (2025-05-29)
 
 

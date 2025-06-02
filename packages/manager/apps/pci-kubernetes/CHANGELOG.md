@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.22.0...@ovh-ux/manager-pci-kubernetes-app@0.23.0) (2025-06-02)
+
+
+### Features
+
+* **pci.kubernetes:** filter quota api by region ([f76f58d](https://github.com/ovh/manager/commit/f76f58d236e87a6f39452da632ab4d993cf7f539)), closes [#TAPC-3575](https://github.com/ovh/manager/issues/TAPC-3575)
+* **pci:** use common catalog method ([#17053](https://github.com/ovh/manager/issues/17053)) ([1f8cb3c](https://github.com/ovh/manager/commit/1f8cb3cf22407f5c27476e15c331f0314b485823)), closes [#TAPC-4029](https://github.com/ovh/manager/issues/TAPC-4029)
+
+
+
+
+
 # [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.21.0...@ovh-ux/manager-pci-kubernetes-app@0.22.0) (2025-05-27)
 
 
