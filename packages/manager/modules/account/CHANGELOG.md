@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.10.4...@ovh-ux/manager-account@0.11.0) (2025-06-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4039] ([0d8d13d](https://github.com/ovh/manager/commit/0d8d13d82510bfcd9b514a720363fc1b3f14edf1))
+
+
+### Features
+
+* **modules-account:** add alldom service ([2f03291](https://github.com/ovh/manager/commit/2f03291e1ace2a81ad6c794c790e20c0d5dfd7a5)), closes [#MANAGER-18350](https://github.com/ovh/manager/issues/MANAGER-18350)
+
+
+
+
+
 ## [0.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.10.3...@ovh-ux/manager-account@0.10.4) (2025-05-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-account
