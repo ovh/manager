@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.25.4...@ovh-ux/manager-pci-rancher-app@1.26.0) (2025-06-02)
+
+
+### Features
+
+* **pci:** use common catalog method ([#17053](https://github.com/ovh/manager/issues/17053)) ([1f8cb3c](https://github.com/ovh/manager/commit/1f8cb3cf22407f5c27476e15c331f0314b485823)), closes [#TAPC-4029](https://github.com/ovh/manager/issues/TAPC-4029)
+
+
+
+
+
 ## [1.25.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.25.3...@ovh-ux/manager-pci-rancher-app@1.25.4) (2025-05-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app

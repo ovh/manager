@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-savings-plan-app",
-  "version": "1.14.3",
+  "version": "1.14.4",
   "private": true,
   "description": "savings plan application",
   "repository": {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.91.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.91.0...@ovh-ux/manager-pci@6.91.1) (2025-06-02)
+
+
+### Bug Fixes
+
+* **pci-ai-tools:** update translations ([085f0f8](https://github.com/ovh/manager/commit/085f0f8a0c6ba5400aa26d7499aa398c6bfbb2fd)), closes [#AIS-1282](https://github.com/ovh/manager/issues/AIS-1282)
+
+
+
+
+
 # [6.91.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.90.0...@ovh-ux/manager-pci@6.91.0) (2025-05-27)
 
 
