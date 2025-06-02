@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.130.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.129.2...@ovh-ux/manager-container-app@0.130.0) (2025-06-02)
+
+
+### Features
+
+* **web:** clean unused code replaced by web-ongoing-operations µApp ([ea7ee0e](https://github.com/ovh/manager/commit/ea7ee0ebb204a44c30bee0f5b29694a1de9f02cd)), closes [#MANAGER-18437](https://github.com/ovh/manager/issues/MANAGER-18437)
+
+
+
+
+
 ## [0.129.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.129.1...@ovh-ux/manager-container-app@0.129.2) (2025-05-29)
 
 
