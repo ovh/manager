@@ -75,7 +75,7 @@ export function getColumns(
       ),
     },
     {
-      id: 'model',
+      id: 'commercialRange',
       isSearchable: true,
       isFilterable: true,
       enableHiding: true,
@@ -99,6 +99,7 @@ export function getColumns(
     {
       id: 'region',
       isSearchable: true,
+      isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_region'),
@@ -118,7 +119,7 @@ export function getColumns(
       ),
     },
     {
-      id: 'datacentre',
+      id: 'datacenter',
       isSearchable: true,
       isFilterable: true,
       enableHiding: true,
@@ -131,7 +132,7 @@ export function getColumns(
     {
       id: 'state',
       isSearchable: false,
-      isFilterable: true,
+      isFilterable: false, // until fix
       enableHiding: true,
       type: FilterTypeCategories.Boolean,
       label: t('server_display_state'),
@@ -145,7 +146,7 @@ export function getColumns(
     },
     {
       id: 'monitoring',
-      isFilterable: true,
+      isFilterable: false, // until fix
       enableHiding: true,
       type: FilterTypeCategories.Boolean,
       label: t('server_display_monitoring'),
@@ -154,7 +155,7 @@ export function getColumns(
     {
       id: 'vrack',
       isSearchable: true,
-      isFilterable: true,
+      isFilterable: false, // until fix
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_vrack'),
