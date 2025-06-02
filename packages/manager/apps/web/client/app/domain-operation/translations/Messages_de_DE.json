@@ -128,5 +128,7 @@
   "domain_operations_nicOperation_ContactControlAcknowledge": "Bestätigung des Kontakts",
   "domain_operations_nicOperation_ContactControlCorrect": "Korrektur des Kontakts",
   "domain_operations_table_header_creationDate": "Erstellungsdatum",
-  "domain_operations_statusOperation_problem": "Abgebrochen"
+  "domain_operations_statusOperation_problem": "Abgebrochen",
+  "domain_operations_nicOperation_ContactControlNotify": "Kontaktüberprüfungsbenachrichtigung",
+  "domain_operations_nicOperation_DomainSendRDRPNotice": "Versand der RDRP-Benachrichtigung"
 }
