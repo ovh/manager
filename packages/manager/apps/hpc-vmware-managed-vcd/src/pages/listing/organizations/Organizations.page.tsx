@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-
+import { OdsButton } from '@ovhcloud/ods-components/react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   DataGridTextCell,
   Links,
@@ -13,12 +14,16 @@ import {
   VCD_ORGANIZATION_ROUTE,
   VCDOrganization,
 } from '@ovh-ux/manager-module-vcd-api';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  useOvhTracking,
+  ShellContext,
+} from '@ovh-ux/manager-react-shell-client';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { urls } from '@/routes/routes.constant';
 import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
+import { ORDER_VCD_REDIRECTION_URL } from '@/utils/orderVcdRedirection.constants';
 
 /* ========= datagrid cells ========== */
 const DatagridIdCell = (vdcOrg: VCDOrganization) => {
@@ -71,7 +76,10 @@ const DatagridWebInterfaceCell = (vdcOrg: VCDOrganization) => {
 
 /* ======= listing page ======= */
 export default function Listing() {
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation(['listing', NAMESPACES.ACTIONS]);
+
+  const { ovhSubsidiary } =
+    useContext(ShellContext)?.environment?.getUser() || {};
 
   const columns = [
     {
@@ -110,6 +118,20 @@ export default function Listing() {
         onboarding: urls.onboarding,
       }}
       columns={columns}
+      orderButton={
+        <OdsButton
+          label={t(`${NAMESPACES.ACTIONS}:order`)}
+          variant="outline"
+          onClick={() => {
+            window.open(
+              ORDER_VCD_REDIRECTION_URL[ovhSubsidiary] ||
+                ORDER_VCD_REDIRECTION_URL.DEFAULT,
+              '_blank',
+            );
+          }}
+          data-testid={TEST_IDS.vcdOrderCta}
+        />
+      }
     />
   );
 }
