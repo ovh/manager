@@ -1,3 +1,4 @@
+import { toASCII } from 'punycode';
 import React from 'react';
 import {
   Datagrid,
@@ -69,7 +70,13 @@ export default function Domain() {
             sorting={sorting}
             onSortChange={setSorting}
             filters={filters}
-            search={search}
+            search={{
+              searchInput: search.searchInput,
+              setSearchInput: search.setSearchInput,
+              onSearch: (value) => {
+                search.onSearch(toASCII(value));
+              },
+            }}
           />
         </div>
       )}
