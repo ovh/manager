@@ -13,9 +13,6 @@ linkWorkspacePackages: true
 # the following dependencies have been published with incorrect
 # peer dependencies, those overrides can be removed when they will be updated
 packageExtensions:
-  '@ovh-ux/manager-pci-common@2.4.3':
-    peerDependencies:
-      '@ovh-ux/manager-core-utils': 'workspace:*'
   '@ovh-ux/ovh-at-internet@0.1.0':
     peerDependencies:
       '@ovh-ux/manager-config': 'workspace:*'

@@ -23,7 +23,8 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.0.2",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "rollup": "^2.79.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^8.0.2",

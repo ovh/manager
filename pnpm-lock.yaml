@@ -28,7 +28,7 @@ overrides:
   '@tanstack/react-query': 5.51.21
   '@ovh-ux/manager-core-utils': workspace:*
 
-packageExtensionsChecksum: sha256-33zwati2vsE0GQkpuPwu/r+dgkBFanTy6gKM0mbdijs=
+packageExtensionsChecksum: sha256-cdaD99QjrHtUP9oBRvYLv21ZgAESTkQkl1Vr5xnmH1E=
 
 importers:
 
@@ -263,6 +263,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-at-internet-ui-router-plugin:
     dependencies:
@@ -282,6 +285,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-log-live-tail:
     dependencies:
@@ -304,6 +310,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-actions-menu:
     dependencies:
@@ -320,6 +329,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-browser-alert:
     dependencies:
@@ -333,6 +345,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-chart:
     dependencies:
@@ -361,6 +376,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-checkbox-table:
     dependencies:
@@ -374,6 +392,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-contact:
     dependencies:
@@ -417,6 +438,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-contacts:
     dependencies:
@@ -460,6 +484,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-contracts:
     dependencies:
@@ -485,6 +512,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-doc-url:
     dependencies:
@@ -501,6 +531,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-export-csv:
     dependencies:
@@ -517,6 +550,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-feature-flipping:
     dependencies:
@@ -527,6 +563,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-http:
     dependencies:
@@ -543,6 +582,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-jquery-ui-draggable:
     dependencies:
@@ -556,6 +598,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-line-diagnostics:
     dependencies:
@@ -593,6 +638,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-mondial-relay:
     dependencies:
@@ -630,6 +678,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-otrs:
     dependencies:
@@ -704,6 +755,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-proxy-request:
     dependencies:
@@ -714,6 +768,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-responsive-popover:
     dependencies:
@@ -733,6 +790,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-sidebar-menu:
     dependencies:
@@ -761,6 +821,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-simple-country-list:
     dependencies:
@@ -774,6 +837,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-sso-auth:
     dependencies:
@@ -787,6 +853,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-swimming-poll:
     dependencies:
@@ -800,6 +869,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-timeline:
     dependencies:
@@ -810,6 +882,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-toaster:
     dependencies:
@@ -826,6 +901,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-ui-confirm-modal:
     dependencies:
@@ -842,6 +920,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-user-pref:
     dependencies:
@@ -861,6 +942,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ovh-utils:
     dependencies:
@@ -889,6 +973,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-pagination-front:
     dependencies:
@@ -911,6 +998,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-q-allsettled:
     dependencies:
@@ -924,6 +1014,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-shell-tracking:
     dependencies:
@@ -937,6 +1030,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-tail-logs:
     dependencies:
@@ -953,6 +1049,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-translate-async-loader:
     dependencies:
@@ -963,6 +1062,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ui-router-breadcrumb:
     dependencies:
@@ -976,6 +1078,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ui-router-layout:
     dependencies:
@@ -998,6 +1103,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ng-ui-router-title:
     dependencies:
@@ -1014,6 +1122,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ovh-at-internet:
     devDependencies:
@@ -1033,6 +1144,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ovh-reket:
     dependencies:
@@ -1049,6 +1163,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../manager/tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/components/ovh-shell:
     dependencies:
@@ -13345,6 +13462,9 @@ importers:
       lodash:
         specifier: 4.17.21
         version: 4.17.21
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/manager/modules/advices:
     dependencies:
@@ -13370,6 +13490,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/manager/modules/at-internet-configuration:
     dependencies:
@@ -13422,6 +13545,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/manager/modules/beta-preference:
     dependencies:
@@ -14049,6 +14175,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/manager/modules/common-api:
     dependencies:
@@ -14208,6 +14337,9 @@ importers:
       '@ovh-ux/manager-models':
         specifier: ^2.5.0
         version: link:../models
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/manager/modules/dbaas-logs:
     dependencies:
@@ -14980,6 +15112,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/manager/modules/logs-to-customer:
     dependencies:
@@ -15750,6 +15885,9 @@ importers:
       lodash:
         specifier: 4.17.21
         version: 4.17.21
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/manager/modules/ng-ovh-order-tracking:
     dependencies:
@@ -15784,6 +15922,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/manager/modules/nutanix:
     dependencies:
@@ -16333,6 +16474,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/manager/modules/product-offers:
     dependencies:
@@ -16403,6 +16547,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/manager/modules/sign-up:
     dependencies:
@@ -16440,6 +16587,9 @@ importers:
       '@ovh-ux/component-rollup-config':
         specifier: ^13.0.2
         version: link:../../tools/component-rollup-config
+      rollup:
+        specifier: ^2.79.2
+        version: 2.79.2
 
   packages/manager/modules/sms:
     dependencies:
