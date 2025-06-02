@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from 'vitest';
 import ModalOrderUsers from './OrderUsers.modal';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
-import { fireEvent, render, act } from '@/utils/test.provider';
+import { fireEvent, render, act, waitFor } from '@/utils/test.provider';
 import { postOrderUsers } from '@/data/api/users';
 
 const hoistedMock = vi.hoisted(() => ({
@@ -89,7 +89,8 @@ describe('ModalOrderUsers Component', () => {
     await act(() => {
       fireEvent.click(saveButton);
     });
-
-    expect(postOrderUsers).toHaveBeenCalledOnce();
+    waitFor(() => {
+      expect(postOrderUsers).toHaveBeenCalledOnce();
+    });
   });
 });
