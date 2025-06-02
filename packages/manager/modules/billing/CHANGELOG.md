@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.37.2...@ovh-ux/manager-billing@0.37.3) (2025-06-02)
+
+
+### Bug Fixes
+
+* **billing:** fix display error issue ssh keys ([e10743b](https://github.com/ovh/manager/commit/e10743b218bfa311706254f3012ee3a42443c176)), closes [#MANAGER-18429](https://github.com/ovh/manager/issues/MANAGER-18429)
+
+
+
+
+
 ## [0.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.37.1...@ovh-ux/manager-billing@0.37.2) (2025-05-23)
 
 

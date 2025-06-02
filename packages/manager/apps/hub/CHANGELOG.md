@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.14.1...@ovh-ux/manager-hub-app@0.15.0) (2025-06-02)
+
+
+### Features
+
+* **hub:** add cancel advance commitment link in action menu ([ce06b00](https://github.com/ovh/manager/commit/ce06b000a35bdf6fd7331c8abab7bce5c2709808)), closes [#MANAGER-17066](https://github.com/ovh/manager/issues/MANAGER-17066)
+* standardize test filenames ([67d966e](https://github.com/ovh/manager/commit/67d966e308b2395c930902c5bf3e454b155ebb29)), closes [#MANAGER-18068](https://github.com/ovh/manager/issues/MANAGER-18068)
+
+
+
+
+
 ## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.14.0...@ovh-ux/manager-hub-app@0.14.1) (2025-05-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

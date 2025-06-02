@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.38.4...@ovh-ux/manager-dedicated@20.39.0) (2025-06-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4038] ([c81e377](https://github.com/ovh/manager/commit/c81e377caf5b2321cc6c9fb03f584f59cf2fc2b8))
+
+
+### Features
+
+* **dedicated:** add alldom service ([430a726](https://github.com/ovh/manager/commit/430a7267572b7680c852ee36a098120fe784cdbb)), closes [#MANAGER-18350](https://github.com/ovh/manager/issues/MANAGER-18350)
+
+
+
+
+
 ## [20.38.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.38.3...@ovh-ux/manager-dedicated@20.38.4) (2025-05-29)
 
 

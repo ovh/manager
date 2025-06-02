@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.131.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.130.0...@ovh-ux/manager-container-app@0.131.0) (2025-06-02)
+
+
+### Bug Fixes
+
+* **container:** fix aria label translation ([ede8df8](https://github.com/ovh/manager/commit/ede8df8f661b7a8df5b0442e7d5ea81b13cc04b1)), closes [#MANAGER-18297](https://github.com/ovh/manager/issues/MANAGER-18297)
+* **i18n:** add missing translations [CDS 4051] ([f824e2d](https://github.com/ovh/manager/commit/f824e2d173d0348c0c19e0114ddb9bbd38292671))
+* **pnr:** fix buildurl error ([c194f1f](https://github.com/ovh/manager/commit/c194f1fe4c824f22515a0678a2c181e96614c983)), closes [#MANAGER-18040](https://github.com/ovh/manager/issues/MANAGER-18040)
+* **pnr:** fix link error in user widget ([43d9173](https://github.com/ovh/manager/commit/43d9173625a9939039d79105f9b5cb710210687e)), closes [#MANAGER-18040](https://github.com/ovh/manager/issues/MANAGER-18040)
+
+
+### Features
+
+* **container:** add query parameter to adrielly url generator ([98514d4](https://github.com/ovh/manager/commit/98514d4d24ebe7a77c53dddd7e2c1902ad43d557)), closes [#MANAGER-18466](https://github.com/ovh/manager/issues/MANAGER-18466)
+* **container:** fix tests header and business ([99f74b1](https://github.com/ovh/manager/commit/99f74b1a2179944a8208953277dccba67fd861c7)), closes [#MANAGER-18040](https://github.com/ovh/manager/issues/MANAGER-18040)
+* **pnr:** add contract to user widget ([09e2ab5](https://github.com/ovh/manager/commit/09e2ab542ee3c8282d79ad648a224abd96d7f234)), closes [#MANAGER-18040](https://github.com/ovh/manager/issues/MANAGER-18040)
+* **pnr:** change  new link location ([aaf2873](https://github.com/ovh/manager/commit/aaf2873d0a6017bee0da0c9122509b7398d40eb4)), closes [#MANAGER-18040](https://github.com/ovh/manager/issues/MANAGER-18040)
+* **pnr:** change new link location ([50b9e21](https://github.com/ovh/manager/commit/50b9e21f32a76b06ab448796e49e2969e166a722))
+* standardize test filenames ([67d966e](https://github.com/ovh/manager/commit/67d966e308b2395c930902c5bf3e454b155ebb29)), closes [#MANAGER-18068](https://github.com/ovh/manager/issues/MANAGER-18068)
+
+
+
+
+
 # [0.130.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.129.2...@ovh-ux/manager-container-app@0.130.0) (2025-06-02)
 
 
