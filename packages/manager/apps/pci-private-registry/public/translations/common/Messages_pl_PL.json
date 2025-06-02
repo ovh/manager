@@ -11,7 +11,7 @@
   "private_registry_harbor_version": "Wersja rejestru Harbor",
   "private_registry_status": "Status",
   "private_registry_upgrade_plan": "Zmień pakiet",
-  "private_registry_consumption": "Wykorzystana przestrzeń / Dostępna przestrzeń",
+  "private_registry_consumption": "Wykorzystana przestrzeń",
   "private_registry_consumption_display": "{{used}} / {{limit}}",
   "private_registry_harbor_ui": "Interfejs użytkownika Harbor",
   "private_registry_harbor_api": "API Harbor",
