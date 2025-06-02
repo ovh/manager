@@ -2,7 +2,12 @@ import filter from 'lodash/filter';
 import map from 'lodash/map';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.autorenew.disable', {
+  $stateProvider.state('billing.autorenew.disableRedirection', {
+    url: '/disable?services',
+    redirectTo: 'billing.autorenew.services.disable',
+  });
+
+  $stateProvider.state('billing.autorenew.services.disable', {
     url: '/disable?services',
     component: 'billingAutorenewDisable',
     resolve: {

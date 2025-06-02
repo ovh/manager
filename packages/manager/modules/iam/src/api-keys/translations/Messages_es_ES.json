@@ -1,7 +1,7 @@
 {
   "iam_api_keys_create_api_key": "Crear una clave API",
   "iam_api_keys_datagrid_column_application_id": "ID",
-  "iam_api_keys_datagrid_column_application_name": "Nombre",
+  "iam_api_keys_datagrid_column_application_name": "Apellido",
   "iam_api_keys_datagrid_column_application_description": "Descripción",
   "iam_api_keys_datagrid_column_application_status": "Estado",
   "iam_api_keys_datagrid_column_application_key": "Clave",

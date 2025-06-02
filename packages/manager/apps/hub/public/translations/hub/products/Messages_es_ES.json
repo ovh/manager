@@ -1,5 +1,5 @@
 {
-  "manager_hub_dashboard_services": "Mis productos y servicios",
+  "manager_hub_dashboard_services": "Mis soluciones y servicios",
   "manager_hub_products_ALL_DOM": "Pack AllDom",
   "manager_hub_products_CDN_DEDICATED": "CDN",
   "manager_hub_products_CLOUD_PROJECT": "Proyectos PCI",
@@ -66,8 +66,8 @@
   "manager_hub_products_VRACK_SERVICES": "vRack Services",
   "manager_hub_products_XDSL": "xDSL",
   "manager_hub_products_WEB_PAA_S_SUBSCRIPTION": "Web PaaS",
-  "manager_hub_products_see_less": "Ver menos servicios",
-  "manager_hub_products_see_more": "Ver todos los productos y servicios",
+  "manager_hub_products_see_less": "Ver menos soluciones y servicios",
+  "manager_hub_products_see_more": "Ver todas las soluciones y servicios",
   "manager_hub_products_VMWARE_CLOUD_DIRECTOR": "Managed VCD",
   "manager_hub_products_LICENSE_HYCU": "HYCU",
   "manager_hub_products_VMWARE_CLOUD_DIRECTOR_BACKUP": "Managed Veeam for VCD",

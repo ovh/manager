@@ -1,8 +1,4 @@
 {
-  "discoveryMode": "Aktualnie jesteś w trybie Discovery. Aby uzyskać dostęp do produktów AI oferowanych przez OVHcloud, uruchom projekt.",
-  "discoveryModeActivate": "Uruchom projekt",
-  "authActivateProjectButton": "Uruchom projekt AI",
-  "authDescription": "Aby korzystać z usług AI od OVHcloud, zaloguj się przed utworzeniem pierwszego notebooka, zadania lub aplikacji.",
   "serviceTitle": "Twoje usługi",
   "store-title": "1. Przechowuj",
   "object-storage-title": "Object Storage",

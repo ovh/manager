@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.1.1...@ovh-ux/manager-web-hosting-app@0.2.0) (2025-05-26)
+
+
+### Features
+
+* **web-hosting:** add punycode for listing and search domain ([36acea5](https://github.com/ovh/manager/commit/36acea5b7b45df13aa2075401486f5ecc7c4a195)), closes [#MANAGER-18328](https://github.com/ovh/manager/issues/MANAGER-18328)
+
+
+
+
+
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.1.0...@ovh-ux/manager-web-hosting-app@0.1.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4030] ([9d4ff63](https://github.com/ovh/manager/commit/9d4ff63338619d8a9df83dbaa4e41a17fcff667d))
+
+
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.0.0...@ovh-ux/manager-web-hosting-app@0.1.0) (2025-05-20)
 
 

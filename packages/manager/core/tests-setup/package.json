@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-tests-setup",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Manager common tests configuration",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"
@@ -21,7 +21,6 @@
   "scripts": {
     "test": "vitest run --config src/__tests__/vite.config.mjs"
   },
-  "dependencies": {},
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",

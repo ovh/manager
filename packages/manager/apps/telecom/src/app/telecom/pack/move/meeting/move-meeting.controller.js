@@ -32,20 +32,30 @@ export default class MoveMeetingCtrl {
     this.installationType = this.selected.buildingDetails
       ? DICTIONNARY[this.selected.buildingDetails.selectedPto]
       : '';
+    this.ptoReference = this.selected.buildingDetails.ptoReference
+      ? this.selected.buildingDetails.ptoReference
+      : '';
 
     return this.searchMeetings(
       this.eligibilityReference,
       this.productCode,
       this.installationType,
+      this.ptoReference,
     );
   }
 
-  searchMeetings(eligibilityReference, productCode, installationType) {
+  searchMeetings(
+    eligibilityReference,
+    productCode,
+    installationType,
+    ptoReference,
+  ) {
     this.loading = true;
     return this.MoveMeetingService.searchMeetings(
       eligibilityReference,
       productCode,
       installationType,
+      ptoReference,
     )
       .then(({ status, result }) => {
         if (status === TASK_STATUS.PENDING) {
@@ -54,6 +64,7 @@ export default class MoveMeetingCtrl {
               eligibilityReference,
               productCode,
               installationType,
+              ptoReference,
             );
           }, 2000);
         } else if (result) {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.11.3...@ovh-ux/manager-pci-load-balancer-app@0.12.0) (2025-05-20)
+
+
+### Features
+
+* **pci-load-balancer:** display price in the deployment mode cards ([56c660f](https://github.com/ovh/manager/commit/56c660fa35f57e18b3b2cb2bbd8736400ae514c5)), closes [#TAPC-3261](https://github.com/ovh/manager/issues/TAPC-3261)
+
+
+
+
+
 ## [0.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.11.2...@ovh-ux/manager-pci-load-balancer-app@0.11.3) (2025-05-15)
 
 

@@ -7,6 +7,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { TOngoingOperations } from 'src/types';
 import { useTranslation } from 'react-i18next';
+import { toASCII } from 'punycode';
 import Loading from '@/components/Loading/Loading';
 import { useOngoingOperationDatagridColumns } from '@/hooks/useOngoingOperationDatagridColumns';
 import { taskMeDns } from '@/constants';
@@ -15,6 +16,8 @@ import { ParentEnum } from '@/enum/parent.enum';
 export default function Domain() {
   const { t: tError } = useTranslation('web-ongoing-operations/error');
   const { notifications } = useNotifications();
+
+  const columns = useOngoingOperationDatagridColumns(ParentEnum.ZONE);
 
   const {
     flattenData: dnsList,
@@ -26,14 +29,14 @@ export default function Domain() {
     sorting,
     setSorting,
     filters,
+    search,
   } = useResourcesIcebergV6<TOngoingOperations>({
     route: taskMeDns.join('/'),
     queryKey: taskMeDns,
     pageSize: 30,
     disableCache: !!notifications.length,
+    columns,
   });
-
-  const columns = useOngoingOperationDatagridColumns(ParentEnum.ZONE, dnsList);
 
   if (isLoading) {
     return (
@@ -67,6 +70,13 @@ export default function Domain() {
             sorting={sorting}
             onSortChange={setSorting}
             filters={filters}
+            search={{
+              searchInput: search.searchInput,
+              setSearchInput: search.setSearchInput,
+              onSearch: (value) => {
+                search.onSearch(toASCII(value));
+              },
+            }}
           />
         </div>
       )}

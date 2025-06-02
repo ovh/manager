@@ -393,6 +393,16 @@
   {
     "public": {
       "application": "public-cloud",
+      "path": "/create-dataplatform"
+    },
+    "redirect": {
+      "application": "public-cloud",
+      "path": "/pci/projects/{project}/dataplatform"
+    }
+  },
+  {
+    "public": {
+      "application": "public-cloud",
       "path": "/create-logs-data-platform"
     },
     "redirect": {

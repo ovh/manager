@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.18.3...@ovh-ux/manager-pci-gateway-app@0.19.0) (2025-05-20)
+
+
+### Features
+
+* **pci-gateway:** display price in the deployment mode cards ([8f29859](https://github.com/ovh/manager/commit/8f29859864d1f8b4fd90cc76b0fa6d237a93e4e6)), closes [#TAPC-3271](https://github.com/ovh/manager/issues/TAPC-3271)
+
+
+
+
+
 ## [0.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.18.2...@ovh-ux/manager-pci-gateway-app@0.18.3) (2025-05-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app

@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.129.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.128.1...@ovh-ux/manager-container-app@0.129.0) (2025-05-26)
+
+
+### Bug Fixes
+
+* **container:** center chevron in button on public cloud sidebar ([25ba909](https://github.com/ovh/manager/commit/25ba909d7f631396cae810d7ac303cc0897cdc71)), closes [#MANAGER-18358](https://github.com/ovh/manager/issues/MANAGER-18358)
+* **pnr:** remove eloquant comment and resolve lvl1 issue ([c263643](https://github.com/ovh/manager/commit/c2636431cefb54773afc1183a1c34bc40fbc13d9)), closes [#MANAGER-18065](https://github.com/ovh/manager/issues/MANAGER-18065)
+
+
+### Features
+
+* **hub:** update the service wording in the hub ([51bc841](https://github.com/ovh/manager/commit/51bc841dd29e6296e07923bed61bd172afabba26)), closes [#MANAGER-16272](https://github.com/ovh/manager/issues/MANAGER-16272)
+
+
+
+
+
+## [0.128.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.128.0...@ovh-ux/manager-container-app@0.128.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4030] ([9d4ff63](https://github.com/ovh/manager/commit/9d4ff63338619d8a9df83dbaa4e41a17fcff667d))
+
+
+
+
+
+# [0.128.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.127.0...@ovh-ux/manager-container-app@0.128.0) (2025-05-21)
+
+
+### Bug Fixes
+
+* **pnr:** fix telecom lvl 2 opening on root ([#16954](https://github.com/ovh/manager/issues/16954)) ([5b20104](https://github.com/ovh/manager/commit/5b20104d484232314933b4382a5996263a9aab03)), closes [#MANAGER-18030](https://github.com/ovh/manager/issues/MANAGER-18030)
+
+
+### Features
+
+* **container:** add ServiceNow livechat integration ([3f98e99](https://github.com/ovh/manager/commit/3f98e99305a5f68173aa84c6bd787e6a4923adbb)), closes [#MANAGER-15587](https://github.com/ovh/manager/issues/MANAGER-15587) [#MANAGER-16561](https://github.com/ovh/manager/issues/MANAGER-16561)
+* **container:** disable create project when kyc india is not validated ([#16967](https://github.com/ovh/manager/issues/16967)) ([8179c56](https://github.com/ovh/manager/commit/8179c56c8afca94352371b3c792e654f60738148)), closes [#MANAGER-17340](https://github.com/ovh/manager/issues/MANAGER-17340)
+* **pnr:** allow project selector to be searchable ([#16892](https://github.com/ovh/manager/issues/16892)) ([3f07a9c](https://github.com/ovh/manager/commit/3f07a9cc1fce945000b9944ce0ae75e012edd4a7)), closes [#MANAGER-17905](https://github.com/ovh/manager/issues/MANAGER-17905)
+
+
+
+
+
 # [0.127.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.126.1...@ovh-ux/manager-container-app@0.127.0) (2025-05-20)
 
 

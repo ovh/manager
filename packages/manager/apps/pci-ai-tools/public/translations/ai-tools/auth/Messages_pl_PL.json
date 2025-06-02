@@ -1,0 +1,10 @@
+{
+  "discoveryMode": "Pracujesz obecnie w trybie \"Odnajdowanie\". Aby uzyskać dostęp do produktów AI oferowanych przez OVHcloud, musisz aktywować Twój projekt.",
+  "discoveryModeActivate": "Uruchom Twój projekt",
+  "authActivateProjectButton": "Uruchom projekt AI",
+  "authDescription": "Aby korzystać z usług AI od OVHcloud, należy się uwierzytelnić przed utworzeniem pierwszego notebooka, zadania lub aplikacji.",
+  "onboardingTitle": "Łatwe wdrażanie produktów AI",
+  "formActiveUserToastErrorTitle": "Błąd",
+  "formActiveUserToastSuccessTitle": "Sukcesy",
+  "formActiveUserToastSuccessDescription": "Twój projekt został włączony"
+}

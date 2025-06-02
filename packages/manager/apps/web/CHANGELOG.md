@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.11.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.6...@ovh-ux/manager-web@19.11.7) (2025-05-26)
+
+
+### Bug Fixes
+
+* **web.hosting:** change call api extraSqlPerso by iceberg call ([70f7096](https://github.com/ovh/manager/commit/70f70960e1baf825baa455ad03400321b8320b42)), closes [#MANAGER-18375](https://github.com/ovh/manager/issues/MANAGER-18375)
+
+
+
+
+
+## [19.11.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.5...@ovh-ux/manager-web@19.11.6) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4025] ([e95fb41](https://github.com/ovh/manager/commit/e95fb410146a8140c601438dd6d78072814042f3))
+* remove unused translations [CDS] ([53394aa](https://github.com/ovh/manager/commit/53394aa6ef4341ac89246cf5813337ee5b7cd41e))
+
+
+
+
+
+## [19.11.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.4...@ovh-ux/manager-web@19.11.5) (2025-05-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.11.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.3...@ovh-ux/manager-web@19.11.4) (2025-05-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [19.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.11.2...@ovh-ux/manager-web@19.11.3) (2025-05-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

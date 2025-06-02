@@ -30,6 +30,11 @@ describe('Dns datagrid', () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
       flattenData: [],
       isLoading: true,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
 
     (useGetDomainInformation as jest.Mock).mockReturnValue({
@@ -43,6 +48,11 @@ describe('Dns datagrid', () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
 
     (useGetDomainInformation as jest.Mock).mockReturnValue({
@@ -61,6 +71,11 @@ describe('Dns datagrid', () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
 
     (useGetDomainInformation as jest.Mock).mockReturnValue({
@@ -83,6 +98,11 @@ describe('Dns datagrid', () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
 
     (useGetDomainInformation as jest.Mock).mockReturnValue({

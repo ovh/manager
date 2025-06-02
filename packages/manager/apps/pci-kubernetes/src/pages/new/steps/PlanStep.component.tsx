@@ -168,7 +168,7 @@ const PlanTile = ({
           type="submit"
           variant="primary"
           disabled={!selected}
-          className=" mt-6 py-4 px-5 "
+          className=" mt-6 py-8 px-6"
           size="md"
         >
           {t('stepper:common_stepper_next_button_label')}

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.20.4...@ovh-ux/manager-pci-kubernetes-app@0.21.0) (2025-05-20)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** resolve regression design issue on log and network ([6ad5c6c](https://github.com/ovh/manager/commit/6ad5c6cfeef7b88ab0541f7228520e1c6c6d6f49)), closes [#TAPC-4012](https://github.com/ovh/manager/issues/TAPC-4012) [#TAPC-4009](https://github.com/ovh/manager/issues/TAPC-4009)
+
+
+### Features
+
+* **pci-kubernetes:** add chip for region in cluster information ([8303b51](https://github.com/ovh/manager/commit/8303b5164610bc8d287a93dd8e3194119bca59f0)), closes [#TAPC-3170](https://github.com/ovh/manager/issues/TAPC-3170)
+* **pci-kubernetes:** reenable features from beta3AZ ([3b940b8](https://github.com/ovh/manager/commit/3b940b8ac8c6038563b1966bbe52fdae0e06e927)), closes [#TAPC-4060](https://github.com/ovh/manager/issues/TAPC-4060)
+
+
+
+
+
 ## [0.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.20.3...@ovh-ux/manager-pci-kubernetes-app@0.20.4) (2025-05-15)
 
 

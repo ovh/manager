@@ -100,7 +100,9 @@ export function useResourcesV6<T extends Record<string, unknown>>({
     retry: false,
   });
 
-  const [sorting, setSorting] = useState<ColumnSort>();
+  const [sorting, setSorting] = useState<ColumnSort | undefined>(
+    defaultSorting,
+  );
   const [pageIndex, setPageIndex] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const [flattenData, setFlattenData] = useState<T[]>([]);
@@ -115,17 +117,16 @@ export function useResourcesV6<T extends Record<string, unknown>>({
   }, [searchFilters, data?.data, filters]);
 
   const filteredAndSortedData = useMemo(() => {
-    const currSorting = sorting || defaultSorting;
-    if (currSorting) {
+    if (sorting) {
       const columnType =
-        columns.find((col) => col.id === currSorting.id)?.type ||
+        columns.find((col) => col.id === sorting.id)?.type ||
         FilterTypeCategories.String;
       return [...filteredData].sort((a, b) =>
         sortColumn(
           columnType,
-          `${a?.[currSorting.id]}`,
-          `${b?.[currSorting.id]}`,
-          currSorting.desc,
+          `${a?.[sorting.id]}`,
+          `${b?.[sorting.id]}`,
+          sorting.desc,
         ),
       );
     }

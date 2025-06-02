@@ -21,5 +21,6 @@
   "billing_services_actions_menu_commit": "Gestisci il tuo impegno contrattuale",
   "billing_services_actions_menu_commit_cancel": "Annulla la richiesta di sottoscrizione di un impegno contrattuale",
   "billing_services_actions_menu_resiliate_my_engagement": "Rescindi l’impegno contrattuale",
-  "billing_services_actions_menu_resiliate_LICENSE_HYCU": "Eliminare la tua licenza HYCU"
+  "billing_services_actions_menu_resiliate_LICENSE_HYCU": "Eliminare la tua licenza HYCU",
+  "billing_services_actions_menu_resiliate_HOSTING_WEB_SUSPENDED": "Eliminare definitivamente l'hosting e i dati associati"
 }

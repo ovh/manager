@@ -83,14 +83,13 @@ export default function ClusterManagement({
         </OsdsText>
         <OsdsDivider separator size={ODS_DIVIDER_SIZE.zero} />
 
-        {!isMultiDeploymentZones(regionInformations?.type) && (
-          <TileButton
-            title={t('kube_service_common_edit')}
-            isDisabled={isProcessing(kubeDetail?.status)}
-            href={hrefRenameCluster}
-            dataTestId="clusterManagement-edit"
-          />
-        )}
+        <TileButton
+          title={t('kube_service_common_edit')}
+          isDisabled={isProcessing(kubeDetail?.status)}
+          href={hrefRenameCluster}
+          dataTestId="clusterManagement-edit"
+        />
+
         <TileButton
           title={t('kube_service_reset')}
           isDisabled={isProcessing(kubeDetail?.status)}
@@ -108,13 +107,13 @@ export default function ClusterManagement({
             href={hrefResetClusterConfig}
           />
         )}
-        {!isMultiDeploymentZones(regionInformations?.type) && (
-          <TileButton
-            title={t('kube_service_common_edit_security_update_policy')}
-            isDisabled={isProcessing(kubeDetail?.status)}
-            href={hrefUpgradePolicy}
-          />
-        )}
+
+        <TileButton
+          title={t('kube_service_common_edit_security_update_policy')}
+          isDisabled={isProcessing(kubeDetail?.status)}
+          href={hrefUpgradePolicy}
+        />
+
         {!kubeDetail.isUpToDate && (
           <TileButton
             title={t('kube_service_common_update')}

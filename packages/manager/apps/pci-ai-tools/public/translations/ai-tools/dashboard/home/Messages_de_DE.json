@@ -1,9 +1,5 @@
 {
-  "discoveryMode": "Sie befinden sich derzeit im Discovery-Modus. Um auf die von OVHcloud angebotenen AI-Produkte zuzugreifen, müssen Sie Ihr Projekt aktivieren.",
-  "discoveryModeActivate": "Ihr Projekt aktivieren",
-  "authActivateProjectButton": "AI-Projekt aktivieren",
-  "authDescription": "Um die AI-Dienste von OVHcloud zu nutzen, müssen Sie sich authentifizieren, bevor Sie Ihr erstes Notebook, Ihren ersten Job oder Ihre erste Anwendung erstellen können.",
-  "serviceTitle": "Ihre Dienste",
+  "serviceTitle": "Ihre Dienstleistungen",
   "store-title": "1. Store",
   "object-storage-title": "Object Storage",
   "explore-title": "2. Explore",

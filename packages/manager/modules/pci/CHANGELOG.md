@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.90.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.89.4...@ovh-ux/manager-pci@6.90.0) (2025-05-20)
+
+
+### Features
+
+* **instance:** region sort order and add new badge on 3AZ ([0c45b77](https://github.com/ovh/manager/commit/0c45b77b1ca82d463c6643fe9ee08b46918865cb)), closes [#TAPC-3936](https://github.com/ovh/manager/issues/TAPC-3936)
+* **instance:** remove new on metal flavors category ([e35388b](https://github.com/ovh/manager/commit/e35388b042f8aae8363b8e2f2c22f4f1fdb7c3e9)), closes [#TAPC-3413](https://github.com/ovh/manager/issues/TAPC-3413)
+* **pci:** change delete endpoint for US ([4ec24f4](https://github.com/ovh/manager/commit/4ec24f44d17df9491affb71c013b2c26a4940814)), closes [#TAPC-3786](https://github.com/ovh/manager/issues/TAPC-3786)
+* **pci:** delete modal ([dbf59d6](https://github.com/ovh/manager/commit/dbf59d609826dc91aba87e17e61d5a735b7a25d6)), closes [#TAPC-3783](https://github.com/ovh/manager/issues/TAPC-3783)
+
+
+### Reverts
+
+* Revert "feat(pci): delete modal" ([a78dc73](https://github.com/ovh/manager/commit/a78dc730ed9d2de1fad7f271701084c89e0638e7))
+* Revert "feat(pci): change delete endpoint for US" ([311ef9d](https://github.com/ovh/manager/commit/311ef9dcdc7796861b6d14a7a0a261c518c81609))
+
+
+
+
+
 ## [6.89.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.89.3...@ovh-ux/manager-pci@6.89.4) (2025-05-15)
 
 

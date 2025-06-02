@@ -49,10 +49,14 @@ export default class TelecomPackMigrationMeetingCtrl {
           this.process.selectedOffer.productCode = productCode;
           const installationType =
             DICTIONNARY[this.process.selectedOffer.selectedPto];
+          const ptoReference = this.process.selectedOffer.ptoReference
+            ? this.process.selectedOffer.ptoReference
+            : '';
           this.searchMeetings(
             eligibilityReference,
             productCode,
             installationType,
+            ptoReference,
           );
         }
         return null;
@@ -69,13 +73,22 @@ export default class TelecomPackMigrationMeetingCtrl {
       });
   }
 
-  searchMeetings(eligibilityReference, productCode, installationType) {
+  searchMeetings(
+    eligibilityReference,
+    productCode,
+    installationType,
+    ptoReference,
+  ) {
     this.loading = true;
-    return this.PackMigrationMeetingService.searchMeetings(
+    const options = {
       eligibilityReference,
       productCode,
       installationType,
-    )
+    };
+    if (ptoReference) {
+      options.otp = ptoReference;
+    }
+    return this.PackMigrationMeetingService.searchMeetings(options)
       .then(({ status, result }) => {
         if (status === TASK_STATUS.PENDING) {
           setTimeout(() => {
@@ -83,6 +96,7 @@ export default class TelecomPackMigrationMeetingCtrl {
               eligibilityReference,
               productCode,
               installationType,
+              ptoReference,
             );
           }, 2000);
         } else if (result) {

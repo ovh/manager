@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.6.0...@ovh-ux/manager-common-translations@0.7.0) (2025-05-23)
+
+
+### Features
+
+* **common-translations:** add services label state ([95af46d](https://github.com/ovh/manager/commit/95af46d7bd28f0db2ffa1cce153e62d6d1383767)), closes [#15090](https://github.com/ovh/manager/issues/15090)
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.5.3...@ovh-ux/manager-common-translations@0.6.0) (2025-05-15)
 
 

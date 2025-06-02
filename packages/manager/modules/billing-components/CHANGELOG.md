@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.17.1...@ovh-ux/manager-billing-components@4.18.0) (2025-05-26)
+
+
+### Features
+
+* **billing:** move services list to its dedicated route ([a516b64](https://github.com/ovh/manager/commit/a516b64a377d21060072c17586d76b0549a948a2)), closes [#MANAGER-17700](https://github.com/ovh/manager/issues/MANAGER-17700)
+
+
+
+
+
+## [4.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.17.0...@ovh-ux/manager-billing-components@4.17.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4030] ([9d4ff63](https://github.com/ovh/manager/commit/9d4ff63338619d8a9df83dbaa4e41a17fcff667d))
+* **i18n:** add missing translations [CDS 4031] ([bed6b78](https://github.com/ovh/manager/commit/bed6b7860bef87342ed0a09217f9cecfd3dfec7c))
+
+
+
+
+
+# [4.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.16.0...@ovh-ux/manager-billing-components@4.17.0) (2025-05-21)
+
+
+### Features
+
+* **billing:** add delete hosting for suspended service ([#15900](https://github.com/ovh/manager/issues/15900)) ([d2fafca](https://github.com/ovh/manager/commit/d2fafcaaaec9469059cc932ec90f897cfafc84b2)), closes [#MANAGER-13617](https://github.com/ovh/manager/issues/MANAGER-13617)
+
+
+
+
+
 # [4.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.15.0...@ovh-ux/manager-billing-components@4.16.0) (2025-05-14)
 
 

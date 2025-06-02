@@ -1,8 +1,4 @@
 {
-  "discoveryMode": "Atualmente, está no modo “Descoberta”. Para aceder aos produtos AI disponibilizados pela OVHcloud, deve ativar o seu projeto.",
-  "discoveryModeActivate": "Ative o seu projeto",
-  "authActivateProjectButton": "Ativar o seu projeto AI",
-  "authDescription": "De modo a utilizar os serviços AI da OVHcloud, deve autenticar-se antes de criar o seu primeiro notebook, job ou app.",
   "serviceTitle": "Os seus serviços",
   "store-title": "1. Store",
   "object-storage-title": "Object Storage",
