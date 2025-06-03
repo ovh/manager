@@ -9,3 +9,9 @@ export { initShell } from './shell';
 export { DirectClientMessageBus, IFrameMessageBus };
 export * from './plugin/tracking/tracking';
 export * from './plugin/ux/components/modal';
+export {
+  CardinalPoint as LocationCardinalPoint,
+  SpecificType as LocationSpecificType,
+  Type as LocationType,
+  Location,
+} from './plugin/location';
