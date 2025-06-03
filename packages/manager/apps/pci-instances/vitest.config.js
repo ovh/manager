@@ -1,31 +1,34 @@
 import path from 'path';
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import {
+  sharedConfig,
+  mergeConfig,
+  createConfig,
+  defaultExcludedFiles,
+} from '@ovh-ux/manager-tests-setup';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    coverage: {
-      exclude: [
-        'vite-*.ts',
-        'App.tsx',
-        'core/ShellRoutingSync.tsx',
-        'main.tsx',
-        'routes.tsx',
-        '__mocks__',
-        'queryClient.ts',
-      ],
+export default mergeConfig(
+  sharedConfig,
+  createConfig({
+    test: {
+      setupFiles: ['./setup.vitest.ts'],
+      coverage: {
+        exclude: [
+          ...defaultExcludedFiles,
+          // App-specific exclusions (not in shared config):
+          'vite-*.ts',
+          'App.tsx',
+          'core/ShellRoutingSync.tsx',
+          'main.tsx',
+          'routes.tsx',
+          '__mocks__',
+          'queryClient.ts',
+        ],
+      },
     },
-    setupFiles: ['./setup.vitest.ts'],
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+      },
     },
-    mainFields: ['module'],
-  },
-  root: './src',
-});
+  }),
+);
