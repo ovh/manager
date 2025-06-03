@@ -11,8 +11,8 @@
   "cloud_connect_pop_label": "PoP",
   "cloud_connect_delivery_label": "Date de livraison",
   "cloud_connect_vrack_label": "vRack",
-  "cloud_connect_status_label": "Statut",
-  "cloud_connect_status_label_active": "OK",
+  "cloud_connect_status_label": "État du service",
+  "cloud_connect_status_label_active": "Actif",
   "cloud_connect_status_label_creating": "Création en cours",
   "cloud_connect_status_label_deleted": "Supprimé",
   "cloud_connect_status_label_suspended": "Suspendu",
@@ -37,5 +37,6 @@
   "cloud_connect_order_follow_up_label_CREATE_SERVICE_KEY": "Génération de la clé de service",
   "cloud_connect_order_follow_up_label_SEND_SERVICE_KEY": "Envoi de la clé de service",
   "cloud_connect_order_follow_up_label_CHECK_LIGHT": "Connectivité optique",
-  "cloud_connect_order_follow_up_label_FINALIZING": "Finalisation"
+  "cloud_connect_order_follow_up_label_FINALIZING": "Finalisation",
+  "cloud_connect_status_label_closed": "Clos"
 }

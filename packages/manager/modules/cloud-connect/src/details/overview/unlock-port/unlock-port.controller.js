@@ -22,15 +22,10 @@ export default class UnlockPortCtrl {
       .then((task) => {
         this.interface.setEnabling(true);
         return this.goBack(
-          {
-            textHtml: this.$translate.instant(
-              'cloud_connect_pop_unblock_port_success',
-              {
-                port: this.interfaceId,
-                tasksUrl: this.tasksHref,
-              },
-            ),
-          },
+          this.$translate.instant('cloud_connect_pop_unblock_port_success', {
+            port: this.interfaceId,
+            tasksUrl: this.tasksHref,
+          }),
           'success',
           false,
         ).then(() => {
