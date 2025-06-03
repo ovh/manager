@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.21.3...@ovh-ux/manager-cloud-connect@1.22.0) (2025-06-03)
+
+
+### Features
+
+* **cloud-connect:** rework on ovhcloud connect page and stats ([228344e](https://github.com/ovh/manager/commit/228344e589aa2308780d62b8f673b81e023daa94))
+
+
+
+
+
 ## [1.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.21.2...@ovh-ux/manager-cloud-connect@1.21.3) (2025-05-23)
 
 
