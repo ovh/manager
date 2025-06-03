@@ -28,5 +28,13 @@
   "server_network_ola_reset": "Déconfigurer l'agrégation privée",
   "server_network_ola_terminate": "Résilier OLA",
   "server_network_ola_mode_vrack_aggregation": "Agrégation privée",
-  "server_network_ola_mode_default": "Défaut"
+  "server_network_ola_mode_default": "Défaut",
+  "server_network_ola_mode_full_lag": "Actif - Total LAG",
+  "server_network_ola_mode_double_lag": "Actif - Double LAG",
+  "server_network_ola_mode_available": "Disponible",
+  "server_network_ola_mode_unavailable": "Indisponible",
+  "server_network_ola_mode_full_lag_description": "Les interfaces réseau sont entièrement agrégées et privées",
+  "server_network_ola_mode_double_lag_description": "Les deux paires d'interfaces réseau sont agrégées séparément, ce qui permet un trafic privé et public.",
+  "server_network_ola_mode_available_description": "Les interfaces réseau peuvent être aggrégées via l'interface de configuration",
+  "server_network_ola_mode_unavailable_description": "Votre serveur ne permet pas l'aggrégation des interfaces réseau"
 }
