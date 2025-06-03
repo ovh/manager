@@ -10,7 +10,7 @@ export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
-      setupFiles: ['./setup.vitest.ts'],
+      setupFiles: ['./setupTests.ts'],
       coverage: {
         exclude: [
           ...defaultExcludedFiles,
