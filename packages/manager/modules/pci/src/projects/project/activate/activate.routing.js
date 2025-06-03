@@ -140,13 +140,17 @@ export default /* @ngInject */ ($stateProvider) => {
         trackPage(
           'PublicCloud::pci::projects::project::activate-project-error',
         );
+        const translatedMessage = message.includes('error 906')
+          ? $translate.instant(
+              'pci_project_new_payment_check_anti_fraud_case_fraud_refused',
+            )
+          : message;
+
         return CucCloudMessage.error(
           {
             textHtml: $translate.instant(
               'pci_projects_project_activate_message_fail',
-              {
-                message,
-              },
+              { message: translatedMessage },
             ),
           },
           'pci.projects.project.activate',
