@@ -7,6 +7,7 @@ export default {
     currentService: '<',
     currentUser: '<',
     datacenterList: '<',
+    deactivateLogs: '<',
     deleteDrp: '<',
     drpAvailability: '<',
     drpGlobalStatus: '<',
