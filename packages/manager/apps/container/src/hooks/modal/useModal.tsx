@@ -33,15 +33,15 @@ export const useCheckModalDisplaySynchronous = (
 };
 
 export const useCheckModalDisplay = (
+  queryExecutor?: (enabled: boolean) => UseQueryResult,
+  dataCheck?: (data: any) => boolean,
+  features?: string[],
+  modalPreferenceKey?: string,
+  intervalInSeconds?: number,
   userCheck?: (user: User) => boolean,
   excludedUrls?: string[],
   includedUrls?: string[],
-  features?: string[],
   iamActions?: string[],
-  modalPreferenceKey?: string,
-  intervalInSeconds?: number,
-  queryExecutor?: (enabled: boolean) => UseQueryResult,
-  dataCheck?: (data: any) => boolean,
 ) => {
   const isCheckOk = useCheckModalDisplaySynchronous(userCheck, excludedUrls, includedUrls);
 

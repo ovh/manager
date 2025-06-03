@@ -45,15 +45,15 @@ export default function AgreementsUpdateModal() {
   const preferenceKey = toScreamingSnakeCase(AgreementsUpdateModal.name);
 
   const shouldDisplayModal = useCheckModalDisplay(
+    usePendingAgreements,
+    hasPendingAgreements,
+    [AGREEMENTS_UPDATE_MODAL_FEATURE],
+    preferenceKey,
+    INTERVAL_BETWEEN_DISPLAY_IN_S,
     undefined,
     [myContractsLink],
     undefined,
-    [AGREEMENTS_UPDATE_MODAL_FEATURE],
     [ACCEPT_AGREEMENTS_IAM_ACTION],
-    preferenceKey,
-    INTERVAL_BETWEEN_DISPLAY_IN_S,
-    usePendingAgreements,
-    hasPendingAgreements,
   );
   const [showModal, setShowModal] = useState(shouldDisplayModal);
   const { data: time } = useTime({ enabled: Boolean(shouldDisplayModal) });

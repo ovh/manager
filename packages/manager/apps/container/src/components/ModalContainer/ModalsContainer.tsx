@@ -13,7 +13,7 @@ const MODALS_TO_DISPLAY: (() => JSX.Element)[] = [
   SuggestionModal,
 ];
 
-export default function ModalsProvider(): JSX.Element {
+export default function ModalsContainer(): JSX.Element {
   const shell = useShell();
   const uxPlugin = shell.getPlugin('ux');
   const [isReady, setIsReady] = useState(false);

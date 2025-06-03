@@ -37,19 +37,16 @@ export const IdentityDocumentsModal = (): JSX.Element => {
   const preferenceKey = toScreamingSnakeCase(IdentityDocumentsModal.name);
 
   const shouldDisplayModal = useCheckModalDisplay(
-    isUserConcernedWithIndiaProcedure,
-    undefined,
-    undefined,
-    [kycIndiaFeature],
-    undefined,
-    preferenceKey,
-    Infinity,
     (enabled: boolean) => useProcedureStatus(Procedures.INDIA, {
       enabled,
       retry: 1,
       refetchOnWindowFocus: false,
     }),
     isIndiaProcedureToBeDone,
+    [kycIndiaFeature],
+    preferenceKey,
+    Infinity,
+    isUserConcernedWithIndiaProcedure,
   );
 
   const [showModal, setShowModal] = useState<boolean>(shouldDisplayModal);
