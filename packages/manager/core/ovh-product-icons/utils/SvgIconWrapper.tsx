@@ -20,12 +20,22 @@ interface IconComponents {
   >;
 }
 
-const iconComponents: IconComponents = {
+const isValidIconComponent = (
+  icon: unknown,
+): icon is FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string }> =>
+  typeof icon === 'function';
+
+const iconComponents: IconComponents = Object.entries({
   ...dedicatedIcons,
   ...webIcons,
   ...telecomIcons,
   ...containerIcons,
-};
+}).reduce((acc, [key, component]) => {
+  if (isValidIconComponent(component)) {
+    acc[key] = component;
+  }
+  return acc;
+}, {} as IconComponents);
 
 const DEFAULT_SIZE = 32;
 
