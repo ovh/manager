@@ -120,7 +120,10 @@ export const useVolumes = (
       isPending,
       error,
       data: paginateResults<TVolume>(
-        sortResults(applyFilters(volumes || [], filters), sorting),
+        sortResults(
+          applyFilters<TVolume>((volumes as TVolume[]) || [], filters),
+          sorting,
+        ),
         pagination,
       ),
     }),

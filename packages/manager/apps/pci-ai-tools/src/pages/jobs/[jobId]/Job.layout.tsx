@@ -18,7 +18,9 @@ interface JobLayoutProps {
   request: Request;
 }
 // try to fetch the service data, redirect to service page if it fails
-export const Loader = async ({ params }: JobLayoutProps) => {
+export const Loader = async ({
+  params,
+}: JobLayoutProps): Promise<null | Response> => {
   const { projectId, jobId } = params;
   return queryClient
     .fetchQuery({
