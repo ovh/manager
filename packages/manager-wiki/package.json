@@ -6,9 +6,10 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
+    "build-dependencies": "turbo run build --filter=\"@ovh-ux/manager-wiki\"",
     "build:storybook": "storybook build",
     "dev": "tsc",
-    "start": "rm -rf dist/.cache/storybook && storybook dev -p 6006"
+    "start": "yarn run build-dependencies && rm -rf dist/.cache/storybook && storybook dev -p 6006"
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.12.0",
@@ -22,7 +23,12 @@
   "devDependencies": {
     "@etchteam/storybook-addon-status": "^5.0.0",
     "@mdx-js/react": "^3.0.1",
+    "@ovh-ux/manager-config": "^8.2.1",
     "@ovh-ux/manager-core-api": "^0.12.0",
+    "@ovh-ux/ovh-at-internet": "^0.21.6",
+    "@ovh-ux/request-tagger": "^0.4.0",
+    "@ovh-ux/shell": "^4.1.0",
+    "@ovh-ux/url-builder": "^2.0.0",
     "@storybook/addon-docs": "^8.6.7",
     "@storybook/addon-essentials": "^8.6.7",
     "@storybook/addon-interactions": "^8.6.7",
