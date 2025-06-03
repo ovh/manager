@@ -1,7 +1,14 @@
 export const OLA_PLAN_CODE = 'ovh-link-aggregation-infra';
 
 export const OLA_MODES = {
+  DOUBLE_LAG: 'double_lag',
+  FULL_LAG: 'full_lag',
+  AVAILABLE: 'available',
+  UNAVAILABLE: 'unavailable',
   VRACK_AGGREGATION: 'vrack_aggregation',
+  PUBLIC_AGGREGATION: 'public_aggregation',
+  PUBLIC: 'public',
+  VRACK: 'vrack',
   DEFAULT: 'default',
 };
 
