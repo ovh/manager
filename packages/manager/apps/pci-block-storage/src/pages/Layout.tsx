@@ -17,6 +17,7 @@ export default function Layout() {
     <div className="application">
       <Suspense>
         <ShellRoutingSync />
+        <HidePreloader />
         {isSuccess && (
           <>
             <Outlet />
