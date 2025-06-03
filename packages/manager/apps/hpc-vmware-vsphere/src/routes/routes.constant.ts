@@ -4,7 +4,7 @@ export const urls = {
   listing: '',
   dashboard: ':serviceName',
   logs: 'logs',
-  datacenters: 'datacenters',
+  datacenter: 'datacenter',
   users: 'users',
   security: 'security',
   operations: 'operation',

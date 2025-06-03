@@ -51,7 +51,7 @@ export default (
         }}
       />
       <Route
-        path={urls.datacenters}
+        path={urls.datacenter}
         id="datacenters"
         Component={GeneralInfosPage}
         handle={{
