@@ -1,18 +1,13 @@
 import { User } from '@ovh-ux/manager-config';
 import { Suggestion } from '@/types/suggestion';
+import { SUGGESTION_TYPE_USER_FIELD_MAP } from '@/components/SuggestionModal/SuggestionModal.constants';
 
-export const IGNORED_SUGGESTION_TYPES = ['COMPANY NUMBER', 'DUNS', 'NIN'];
+export const isUserConcernedBySuggestion = (user: User) =>
+  user.legalform === 'corporation' &&
+  user.ovhSubsidiary === 'FR';
 
-export const SUGGESTION_TYPE_USER_FIELD_MAP: Partial<Record<
-  Suggestion['type'],
-  keyof User & string
->> = {
-  SIRET: 'companyNationalIdentificationNumber',
-  VAT: 'vat',
-  // @TODO: set value during MANAGER-16862
-  // SIREN: 'value_to_set';
+export const isSuggestionRelevant = (suggestion: Suggestion, user: User) => {
+  const userField = user[SUGGESTION_TYPE_USER_FIELD_MAP[suggestion.type]];
+  return Boolean(SUGGESTION_TYPE_USER_FIELD_MAP[suggestion.type]) &&
+    (!userField || userField !== suggestion.id);
 };
-export const isSuggestionRelevant = (suggestion: Suggestion, user: User) =>
-  Boolean(SUGGESTION_TYPE_USER_FIELD_MAP[suggestion.type]) &&
-  (!user[SUGGESTION_TYPE_USER_FIELD_MAP[suggestion.type]] ||
-    user[SUGGESTION_TYPE_USER_FIELD_MAP[suggestion.type]] !== suggestion.id);

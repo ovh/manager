@@ -10,7 +10,7 @@ import CookiePolicy from '@/cookie-policy/CookiePolicy';
 import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
 import LiveChat from '@/container/livechat/LiveChat.component';
 
-const ModalsProvider = lazy(() => import('@/context/modals/ModalsProvider'));
+const ModalsProvider = lazy(() => import('@/components/ModalContainer/ModalsProvider'));
 
 export default function Container(): JSX.Element {
   const { isLoading, betaVersion, useBeta } = useContainer();

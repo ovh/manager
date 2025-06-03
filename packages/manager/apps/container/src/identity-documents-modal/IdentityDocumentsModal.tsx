@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { Trans, useTranslation } from 'react-i18next';
 import {
@@ -14,26 +14,57 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import {
+  kycIndiaFeature,
   trackingContext,
   trackingPrefix,
 } from './IdentityDocumentsModal.constants';
 import { useShell } from '@/context';
+import { useCheckModalDisplay } from '@/hooks/modal/useModal';
+import { useProcedureStatus } from '@/hooks/procedure/useProcedure';
+import { useTime } from '@/hooks/time/useTime';
+import { useCreatePreference } from '@/hooks/preferences/usePreferences';
+import { isIndiaProcedureToBeDone, isUserConcernedWithIndiaProcedure } from '@/helpers/procedures/proceduresHelper';
+import { toScreamingSnakeCase } from '@/helpers';
+import { Procedures } from '@/types/procedure';
 
-export const IdentityDocumentsModal: FunctionComponent = () => {
+export const IdentityDocumentsModal = (): JSX.Element => {
+  const { t } = useTranslation('identity-documents-modal');
   const shell = useShell();
   const navigationPlugin = shell.getPlugin('navigation');
   const uxPlugin = shell.getPlugin('ux');
-
-  const { t } = useTranslation('identity-documents-modal');
   const legalInformationRef = useRef<HTMLOsdsCollapsibleElement>(null);
 
-  const [showModal, setShowModal] = useState<boolean>(true);
+  const preferenceKey = toScreamingSnakeCase(IdentityDocumentsModal.name);
+
+  const shouldDisplayModal = useCheckModalDisplay(
+    isUserConcernedWithIndiaProcedure,
+    undefined,
+    undefined,
+    [kycIndiaFeature],
+    undefined,
+    preferenceKey,
+    Infinity,
+    (enabled: boolean) => useProcedureStatus(Procedures.INDIA, {
+      enabled,
+      retry: 1,
+      refetchOnWindowFocus: false,
+    }),
+    isIndiaProcedureToBeDone,
+  );
+
+  const [showModal, setShowModal] = useState<boolean>(shouldDisplayModal);
+  const { data: time } = useTime({ enabled: Boolean(shouldDisplayModal) });
+  const { mutate: updatePreference } = useCreatePreference(
+    preferenceKey,
+    time,
+    false,
+  );
 
   const trackingPlugin = shell.getPlugin('tracking');
 
   const onCancel = () => {
     setShowModal(false);
-    uxPlugin.notifyModalActionDone('IdentityDocumentsModal');
+    uxPlugin.notifyModalActionDone(IdentityDocumentsModal.name);
     trackingPlugin.trackClick({
       name: `${trackingPrefix}::pop-up::link::kyc::cancel`,
       type: 'action',
@@ -57,6 +88,18 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
       ...trackingContext,
     });
   }, []);
+  
+  useEffect(() => {
+    if (shouldDisplayModal !== undefined) {
+      setShowModal(shouldDisplayModal);
+      if (shouldDisplayModal) {
+        updatePreference();
+      }
+      else {
+        uxPlugin.notifyModalActionDone(IdentityDocumentsModal.name);
+      }
+    }
+  }, [shouldDisplayModal]);
 
   return (
     showModal && (

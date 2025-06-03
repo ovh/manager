@@ -11,9 +11,18 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useApplication } from '@/context';
-import { useModals } from '@/context/modals';
 import { Suggestion } from '@/types/suggestion';
-import { isSuggestionRelevant } from '@/helpers/suggestions/suggestionsHelper';
+import { isSuggestionRelevant, isUserConcernedBySuggestion } from '@/helpers/suggestions/suggestionsHelper';
+import {
+  useSuggestions,
+  useSuggestionsCheck,
+  useSuggestionTargetUrl,
+} from '@/hooks/suggestion/useSuggestion';
+import { useCheckModalDisplay } from '@/hooks/modal/useModal';
+import { INTERVAL_BETWEEN_DISPLAY_IN_S, SIRET_MODAL_FEATURE } from './SuggestionModal.constants';
+import { useTime } from '@/hooks/time/useTime';
+import { useCreatePreference } from '@/hooks/preferences/usePreferences';
+import { toScreamingSnakeCase } from '@/helpers';
 
 const SuggestionModal = (): JSX.Element => {
   const { t } = useTranslation('suggestion-modal');
@@ -21,15 +30,31 @@ const SuggestionModal = (): JSX.Element => {
   const environment = shell.getPlugin('environment').getEnvironment();
   const user = environment.getUser();
   const ux = shell.getPlugin('ux');
-  const appName = environment.getApplicationURL('new-account')
-    ? 'new-account'
-    : 'dedicated';
-  const accountEditionLink = shell
-    .getPlugin('navigation')
-    .getURL(appName, '#/useraccount/infos');
 
-  const [showModal, setShowModal] = useState(true);
-  const { data } = useModals();
+  const preferenceKey = toScreamingSnakeCase(SuggestionModal.name);
+  const accountEditionLink = useSuggestionTargetUrl();
+  const suggestionsCheck = useSuggestionsCheck(user);
+
+  const shouldDisplayModal = useCheckModalDisplay(
+    isUserConcernedBySuggestion,
+    [accountEditionLink],
+    [],
+    [SIRET_MODAL_FEATURE],
+    [],
+    preferenceKey,
+    INTERVAL_BETWEEN_DISPLAY_IN_S,
+    useSuggestions,
+    suggestionsCheck,
+  );
+
+  const [showModal, setShowModal] = useState(shouldDisplayModal);
+  const { data: time } = useTime({ enabled: Boolean(shouldDisplayModal) });
+  const { mutate: updatePreference } = useCreatePreference(
+    preferenceKey,
+    time,
+    false,
+  );
+  const { data } = useSuggestions(Boolean(shouldDisplayModal));
   const suggestions: Suggestion[] = useMemo(() => 
     (data as Suggestion[] | undefined)?.filter((suggestion: Suggestion) =>
       isSuggestionRelevant(suggestion, user),
@@ -39,7 +64,7 @@ const SuggestionModal = (): JSX.Element => {
 
   const closeModal = () => {
     setShowModal(false);
-    ux.notifyModalActionDone('SuggestionModal');
+    ux.notifyModalActionDone(SuggestionModal.name);
     // @TODO: Handle tracking (ECAN-2228)
   };
   const goToProfileEdition = () => {
@@ -52,10 +77,17 @@ const SuggestionModal = (): JSX.Element => {
     // @TODO: Handle tracking (ECAN-2228)
   }, []);
 
-  if (suggestions.length === 0) {
-    ux.notifyModalActionDone('SuggestionModal');
-    return null;
-  }
+  useEffect(() => {
+    if (shouldDisplayModal !== undefined) {
+      setShowModal(shouldDisplayModal);
+      if (shouldDisplayModal) {
+        updatePreference();
+      }
+      else {
+        ux.notifyModalActionDone(SuggestionModal.name);
+      }
+    }
+  }, [shouldDisplayModal]);
 
   return (
     showModal && (
