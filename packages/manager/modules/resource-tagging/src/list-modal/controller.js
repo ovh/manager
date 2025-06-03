@@ -17,6 +17,10 @@ export default class ovhManagerResourceTaggingListModalController {
   }
 
   onSearch(value) {
+    if (!value || value === '') {
+      this.init();
+    }
+
     this.filteredTags = this.filteredTags.filter(
       (tag) => tag.displayName.indexOf(value) !== -1,
     );
