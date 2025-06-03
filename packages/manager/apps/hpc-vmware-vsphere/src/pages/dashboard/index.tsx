@@ -53,7 +53,7 @@ export default function DashboardPage() {
     {
       name: 'datacenters',
       title: t('tabs_label_datacenters'),
-      to: useResolvedPath('datacenters').pathname,
+      to: useResolvedPath('datacenter').pathname,
       isRedirectLegacy: true,
     },
     {
