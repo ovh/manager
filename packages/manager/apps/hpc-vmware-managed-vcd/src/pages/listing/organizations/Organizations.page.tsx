@@ -89,6 +89,7 @@ const DatagridWebInterfaceCell = (vdcOrg: VCDOrganization['currentState']) => {
 /* ======= listing page ======= */
 export default function Listing() {
   const { t } = useTranslation(['listing', NAMESPACES.ACTIONS]);
+  const { trackClick } = useOvhTracking();
 
   const { ovhSubsidiary } =
     useContext(ShellContext)?.environment?.getUser() || {};
@@ -160,6 +161,7 @@ export default function Listing() {
             label={t(`${NAMESPACES.ACTIONS}:order`)}
             variant="outline"
             onClick={() => {
+              trackClick(TRACKING.common.order);
               window.open(
                 ORDER_VCD_REDIRECTION_URL[ovhSubsidiary] ||
                   ORDER_VCD_REDIRECTION_URL.DEFAULT,
