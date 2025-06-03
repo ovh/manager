@@ -103,14 +103,14 @@ export default class {
           };
           primaryDatacenter = {
             id: currentDatacenterInformations.id,
-            formattedName: currentDatacenterInformations.formattedName,
+            displayName: currentDatacenterInformations.displayName,
           };
           secondaryPcc = {
             serviceName: remoteSiteInformation.serviceName,
           };
           secondaryDatacenter = {
             id: remoteSiteInformation.datacenterId,
-            formattedName: remoteSiteInformation.datacenterName,
+            displayName: remoteSiteInformation.datacenterName,
           };
           break;
         case DEDICATEDCLOUD_DATACENTER_DRP_ROLES.single:
@@ -119,7 +119,7 @@ export default class {
           };
           primaryDatacenter = {
             id: currentDatacenterInformations.id,
-            formattedName: currentDatacenterInformations.formattedName,
+            displayName: currentDatacenterInformations.displayName,
           };
 
           vpnConfiguration = remoteSiteInformation;
@@ -130,14 +130,14 @@ export default class {
           };
           primaryDatacenter = {
             id: remoteSiteInformation.datacenterId,
-            formattedName: remoteSiteInformation.datacenterName,
+            displayName: remoteSiteInformation.datacenterName,
           };
           secondaryPcc = {
             serviceName: currentPccInformations.serviceName,
           };
           secondaryDatacenter = {
             id: currentDatacenterInformations.id,
-            formattedName: currentDatacenterInformations.formattedName,
+            displayName: currentDatacenterInformations.displayName,
           };
           break;
       }

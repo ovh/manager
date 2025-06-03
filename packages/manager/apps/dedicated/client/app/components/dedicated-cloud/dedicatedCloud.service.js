@@ -144,15 +144,15 @@ class DedicatedCloudService {
   /* ------- DATACENTER -------*/
 
   getDatacenters(serviceName) {
-    return this.OvhHttp.get(
-      '/sws/dedicatedCloud/{serviceName}/datacenters-summary',
-      {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
-        },
-      },
-    );
+    return this.icebergUtils
+      .icebergQuery(`/dedicatedCloud/${serviceName}/datacenter`, {})
+      .then(({ data }) =>
+        data.map((datacenter) => ({
+          ...datacenter,
+          displayName: punycode.toUnicode(datacenter.name),
+          id: datacenter.datacenterId,
+        })),
+      );
   }
 
   getDatacentersInformations(serviceName, elementsByPage, elementsToSkip) {
@@ -1332,10 +1332,10 @@ class DedicatedCloudService {
 
   fetchHosts(serviceName) {
     return this.getDatacenters(serviceName).then((dataCenters) => {
-      if (dataCenters.results && dataCenters.results.length > 0) {
+      if (dataCenters?.length > 0) {
         return this.$q
           .all(
-            dataCenters.results.map((dataCenter) =>
+            dataCenters.map((dataCenter) =>
               this.getHosts(serviceName, dataCenter.id)
                 .then((hostIds) =>
                   this.$q.all(
