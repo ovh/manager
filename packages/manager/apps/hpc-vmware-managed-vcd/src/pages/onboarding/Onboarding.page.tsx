@@ -73,10 +73,14 @@ export default function Onboarding() {
         img={imgSrc}
         description={description}
         orderButtonLabel={t(`${NAMESPACES.ACTIONS}:order`)}
-        orderHref={
-          ORDER_VCD_REDIRECTION_URL[ovhSubsidiary] ||
-          ORDER_VCD_REDIRECTION_URL.DEFAULT
-        }
+        onOrderButtonClick={() => {
+          trackClick(TRACKING.common.order);
+          window.open(
+            ORDER_VCD_REDIRECTION_URL[ovhSubsidiary] ||
+              ORDER_VCD_REDIRECTION_URL.DEFAULT,
+            '_blank',
+          );
+        }}
       >
         {tileList.map((tile) => (
           <Card
