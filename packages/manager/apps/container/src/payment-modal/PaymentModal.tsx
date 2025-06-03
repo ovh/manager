@@ -45,13 +45,6 @@ const PaymentModal = (): JSX.Element => {
   const ux = shell.getPlugin('ux');
   
   const shouldDisplayModal = useCheckModalDisplay(
-    undefined,
-    undefined,
-    undefined,
-    undefined,
-    undefined,
-    undefined,
-    undefined,
     useExpiredDefaultCreditCardAlert,
     hasExpiredDefaultCreditCardAlert,
   );

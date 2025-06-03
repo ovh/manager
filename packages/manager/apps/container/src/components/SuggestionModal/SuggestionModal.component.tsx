@@ -36,15 +36,13 @@ const SuggestionModal = (): JSX.Element => {
   const suggestionsCheck = useSuggestionsCheck(user);
 
   const shouldDisplayModal = useCheckModalDisplay(
-    isUserConcernedBySuggestion,
-    [accountEditionLink],
-    [],
-    [SIRET_MODAL_FEATURE],
-    [],
-    preferenceKey,
-    INTERVAL_BETWEEN_DISPLAY_IN_S,
     useSuggestions,
     suggestionsCheck,
+    [SIRET_MODAL_FEATURE],
+    preferenceKey,
+    INTERVAL_BETWEEN_DISPLAY_IN_S,
+    isUserConcernedBySuggestion,
+    [accountEditionLink],
   );
 
   const [showModal, setShowModal] = useState(shouldDisplayModal);

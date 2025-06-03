@@ -10,7 +10,7 @@ import * as useTimeModule from '@/hooks/time/useTime';
 import { useCheckModalDisplay, useCheckModalDisplaySynchronous } from './useModal';
 import { ApplicationContextType } from '@/context/application.context';
 import { Shell } from '@ovh-ux/shell';
-import { renderHook, waitFor } from '@testing-library/react';
+import { renderHook } from '@testing-library/react';
 
 vi.spyOn(Context, 'useApplication').mockReturnValue({
   shell: {
@@ -161,18 +161,19 @@ describe('useModal', () => {
       const queryFn = vi.fn();
       renderHook(
         () => useCheckModalDisplay(
-          (user: User) => user.kycValidated,
-          undefined,
-          undefined,
-          ['feature'],
-          ['iam-action'],
-          'PREFERENCE_KEY',
-          500000,
           (enabled: boolean) => useQuery({
             queryKey: ['query-key'],
             queryFn,
             enabled,
           }),
+          undefined,
+          ['feature'],
+          'PREFERENCE_KEY',
+          500000,
+          (user: User) => user.kycValidated,
+          undefined,
+          undefined,
+          ['iam-action'],
         ),
         {
           wrapper,
@@ -210,14 +211,15 @@ describe('useModal', () => {
       const intervalInSeconds = 500000;
       const { result, rerender } = renderHook(
         () => useCheckModalDisplay(
-          undefined,
-          undefined,
+          queryExecutor,
           undefined,
           ['feature'],
-          iamActions,
           preferenceKey,
           intervalInSeconds,
-          queryExecutor,
+          undefined,
+          undefined,
+          undefined,
+          iamActions,
         ),
         {
           wrapper,
