@@ -43,7 +43,7 @@ const ScalingStrat = () => {
               {}
             </li>
             <li className="ml-8">
-              {t('minReplicasLabel', {
+              {t('maxReplicasLabel', {
                 rep: app.spec.scalingStrategy.automatic.replicasMax,
               })}
             </li>

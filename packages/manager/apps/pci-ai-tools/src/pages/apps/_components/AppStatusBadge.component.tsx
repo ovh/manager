@@ -27,7 +27,7 @@ const AppStatusBadge = ({ status }: { status: ai.app.AppStateEnum }) => {
   }
   return (
     <Badge
-      className="h-6 rounded-md px-2.5 py-0.5 text-sm font-semibold"
+      className="h-6 rounded-md px-2.5 py-0.5 text-sm font-semibold whitespace-nowrap"
       variant={variant}
     >
       {t(`status-${status}`)}
