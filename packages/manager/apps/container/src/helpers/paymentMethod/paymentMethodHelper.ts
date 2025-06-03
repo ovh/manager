@@ -1,0 +1,1 @@
+export const hasExpiredDefaultCreditCardAlert = (data: string | null) => data !== null;
