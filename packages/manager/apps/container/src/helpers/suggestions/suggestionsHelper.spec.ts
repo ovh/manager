@@ -1,8 +1,45 @@
 import { User } from '@ovh-ux/manager-config';
-import { isSuggestionRelevant } from '@/helpers/suggestions/suggestionsHelper';
+import { isUserConcernedBySuggestion, isSuggestionRelevant } from '@/helpers/suggestions/suggestionsHelper';
 import { Suggestion } from '@/types/suggestion';
 
 describe('suggestionsHelpers', () => {
+
+  describe('isUserConcernedBySuggestion', () => {
+    it('should consider user not concerned by suggestions if they are not a corporation', () => {
+      const user: Partial<User> = {
+        legalform: 'individual',
+        ovhSubsidiary: 'FR',
+      };
+      expect(isUserConcernedBySuggestion(user as User)).toEqual(false);
+    });
+
+    it('should consider user not concerned by suggestions if they are not on FR subsidiary', () => {
+      const user: Partial<User> = {
+        legalform: 'corporation',
+        ovhSubsidiary: 'GB',
+      };
+      expect(isUserConcernedBySuggestion(user as User)).toEqual(false);
+    });
+
+    it('should consider user concerned by suggestions if their SIRET is not filled', () => {
+      const user: Partial<User> = {
+        legalform: 'corporation',
+        ovhSubsidiary: 'FR',
+        vat: '123456789',
+      };
+      expect(isUserConcernedBySuggestion(user as User)).toEqual(true);
+    });
+
+    it('should consider user concerned by suggestions if their VAT number is not filled', () => {
+      const user: Partial<User> = {
+        legalform: 'corporation',
+        ovhSubsidiary: 'FR',
+        companyNationalIdentificationNumber: 12345678901234,
+      };
+      expect(isUserConcernedBySuggestion(user as User)).toEqual(true);
+    });
+  });
+
   describe('isSuggestionRelevant', () => {
     it('should consider suggestion irrelevant if its type is not managed', () => {
       const suggestion: Suggestion = { type: 'NIN', id: '11111' };
