@@ -26,8 +26,8 @@ export const Loader = async ({ params }: JobLayoutProps) => {
       queryFn: () => getJob({ projectId, jobId }),
     })
     .then(
-      () => null,
-      () => redirect(`/pci/projects/${projectId}/ai-ml/training`),
+      (): null => null,
+      (): Response => redirect(`/pci/projects/${projectId}/ai-ml/training`),
     );
 };
 
