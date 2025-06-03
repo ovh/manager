@@ -1,8 +1,8 @@
 {
   "breadcrumb": "Backups",
   "title": "Copias de seguridad",
-  "description": "Incluimos a continuación la lista de copias de seguridad de sus notebooks. Es posible crear un nuevo notebook a partir de cada una de ellas.",
-  "tableHeaderId": "Id",
+  "description": "Puede consultar a continuación la lista de copias de seguridad de sus notebooks. Se puede crear un nuevo notebook a partir de cada una de ellas.",
+  "tableHeaderId": "ID",
   "tableHeaderCreationDate": "Fecha de creación",
   "tableHeaderUpdateDate": "Fecha de modificación",
   "backupDropdownMenuLabel": "Acción",
@@ -12,6 +12,6 @@
   "forkButtonCancel": "Cancelar",
   "forkBackupButtonConfirm": "Contratar",
   "forkToastErrorTitle": "Se ha producido un error",
-  "forkToastSuccessTitle": "Superados",
-  "forkToastSuccessDescription": "Su notebook se ha creado correctamente"
+  "forkToastSuccessTitle": "Realizado",
+  "forkToastSuccessDescription": "Su notebook se ha creado correctamente."
 }

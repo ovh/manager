@@ -7,7 +7,7 @@
   "pci_projects_project_quota_instance_unlimited": "Ilimitado",
   "pci_projects_project_quota_loading_error": "¡Vaya! No se ha podido cargar la lista de límites.",
   "pci_projects_project_quota_restricted_account": "Su cuota es limitada porque no tiene ninguna forma de pago activa configurada en su cuenta.",
-  "pci_projects_project_quota_restricted_account_unlock": "<a href=\"{{url}}\">Añada una forma de pago</a> válida y vuelva a esta página para aumentar su cuota.",
+  "pci_projects_project_quota_restricted_account_unlock": "Añada <a href=\"{{url}}\">una forma de pago</a> válida y vuelva a esta página para aumentar su cuota.",
   "pci_projects_project_quota_restricted_paymentmean_active": "Ahora su cuenta ya tiene una forma de pago activa.",
   "pci_projects_project_quota_restricted_unlock_button": "Activar la cuota estándar",
   "pci_projects_project_quota_already_unleashed": "Parece que ya ha activado su cuota.",
@@ -25,5 +25,5 @@
   "pci_projects_project_quota_autoscaling_error": "Se ha producido un error al actualizar la cuota autoscaling.",
   "pci_projects_project_quota_autoscaling_help": "La cuota se actualizará de forma automática en función de su uso y según diferentes criterios.",
   "pci_projects_project_quota_protect_contact_support": "Contactar con el soporte",
-  "pci_projects_project_quota_error_forbidden": "No tiene suficientes permisos para gestionar los límites de sus cuotas. Contacte con el propietario del servicio"
+  "pci_projects_project_quota_error_forbidden": "No dispone de derechos necesarios para gestionar sus cuotas. Por favor, contacte con el propietario del servicio"
 }

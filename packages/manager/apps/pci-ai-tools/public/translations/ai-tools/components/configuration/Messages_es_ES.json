@@ -8,7 +8,7 @@
   "numberOfConfiguredKeys_one": "{{count}} llave SSH configurada en {{max}}",
   "numberOfConfiguredKeys_other": "{{count}} llaves SSH configuradas en {{max}}",
   "addSshKeyToastErrorTitle": "Se ha producido un error al crear la llave SSH",
-  "formConnectionPoolToastSuccessTitle": "Superados",
+  "formConnectionPoolToastSuccessTitle": "Realizado",
   "addSshKeySuccessDescription": "Nueva llave SSH creada",
   "addSshKeyTitle": "Configurar una nueva llave SSH",
   "formSshKeyButtonCancel": "Cancelar",

@@ -3,11 +3,11 @@
   "computeTitleSection": "Compute",
   "storageTitleSection": "Almacenamiento",
   "gpuMemoryField": "{{ gpu }} x {{ memory }} RAM",
-  "gcuComputeField": "CPU: {{ cpu }} vCores ",
+  "gcuComputeField": "CPU: {{cpu}} vCores ",
   "memoryField": "RAM: {{ memory }}",
   "publicNetworkField": "Red pública: {{ network }}/s",
   "temporaryLocalStorageField": "Almacenamiento local temporal: {{ storage }} SSD",
-  "temporaryLocalStorageHelper": "Almacenamiento local potente, pero sin backup",
+  "temporaryLocalStorageHelper": "Almacenamiento local potente, pero sin copia de seguridad",
   "modifyLabel": "Modificar",
   "disabledButtonTooltip": "El notebook debe estar en estado detenido"
 }
