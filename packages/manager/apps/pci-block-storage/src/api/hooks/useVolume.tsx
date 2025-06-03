@@ -110,22 +110,19 @@ export const useVolumes = (
   { pagination, sorting }: VolumeOptions,
   filters: Filter[] = [],
 ) => {
-  const { data: volumes, error, isLoading, isPending } = useAllVolumes(
-    projectId,
-  );
+  const { data: volumes, ...restQuery } = useAllVolumes(projectId);
 
-  return useMemo(
-    () => ({
-      isLoading,
-      isPending,
-      error,
-      data: paginateResults<TVolume>(
-        sortResults(applyFilters(volumes || [], filters), sorting),
-        pagination,
-      ),
-    }),
-    [isLoading, isPending, error, volumes, pagination, sorting, filters],
-  );
+  return {
+    data: useMemo(
+      () =>
+        paginateResults<TVolume>(
+          sortResults(applyFilters(volumes || [], filters), sorting),
+          pagination,
+        ),
+      [volumes, filters, sorting, pagination],
+    ),
+    ...restQuery,
+  };
 };
 
 export const getVolumeQueryKey = (projectId: string, volumeId: string) => [
