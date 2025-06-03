@@ -32,6 +32,7 @@ describe('Docker Image Select component', () => {
   });
 
   const onChange = vi.fn();
+  const onTabChange = vi.fn();
   it('should display Docker Image component with preset image select', async () => {
     render(
       <AppImagesSelect
@@ -39,6 +40,8 @@ describe('Docker Image Select component', () => {
           mockedPartnerImagePerApp,
           mockedPartnerSignedImagePerReplica,
         ]}
+        onTabChange={onTabChange}
+        activeTab="customerImage"
         value={''}
         onChange={onChange}
       />,
@@ -54,6 +57,8 @@ describe('Docker Image Select component', () => {
   it('should display personnal image input on custom image trigger', async () => {
     render(
       <AppImagesSelect
+        onTabChange={onTabChange}
+        activeTab="partnerImage"
         appImages={[
           mockedPartnerImagePerApp,
           mockedPartnerSignedImagePerReplica,

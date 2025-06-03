@@ -7,6 +7,8 @@ import PartnerImageSelect from '../partner-image/PartnerImageSelect.component';
 
 interface AppImageSelectProps {
   appImages: ImagePartnerApp[];
+  activeTab: 'customerImage' | 'partnerImage';
+  onTabChange: (value: 'customerImage' | 'partnerImage') => void;
   value: string;
   version?: string;
   onChange: (
@@ -17,10 +19,14 @@ interface AppImageSelectProps {
 }
 
 const AppImagesSelect = React.forwardRef<HTMLInputElement, AppImageSelectProps>(
-  ({ appImages, value, version, onChange }, ref) => {
+  ({ appImages, activeTab, onTabChange, value, version, onChange }, ref) => {
     const { t } = useTranslation('ai-tools/components/app-image');
     return (
-      <Tabs defaultValue="customerImage">
+      <Tabs
+        defaultValue="customerImage"
+        onValueChange={onTabChange}
+        value={activeTab}
+      >
         {appImages.length > 0 && (
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger

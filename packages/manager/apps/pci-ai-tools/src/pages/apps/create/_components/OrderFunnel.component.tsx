@@ -69,6 +69,9 @@ const OrderFunnel = ({
     false,
   );
   const [invalidScalingInput, setInvalidScalingInput] = useState(false);
+  const [activeTab, setActiveTab] = useState<'customerImage' | 'partnerImage'>(
+    'customerImage',
+  );
   const accordionContentRef = useRef(null);
   const cliEquivalentModale = useModale('cli');
   const navigate = useNavigate();
@@ -142,6 +145,7 @@ const OrderFunnel = ({
 
   const throwErrorContract = () => {
     scrollToDiv('partner-version');
+    setActiveTab('partnerImage');
     model.form.setError('image.name', {
       type: 'custom',
       message: t('formErrorPartnerContractNotSign'),
@@ -362,6 +366,8 @@ const OrderFunnel = ({
                       <FormControl>
                         <AppImagesSelect
                           {...field}
+                          activeTab={activeTab}
+                          onTabChange={setActiveTab}
                           appImages={model.lists.appImages}
                           version={model.form.getValues('image.version')}
                           value={field.value}
