@@ -123,5 +123,13 @@
 # Manager-components
 /packages/manager-components @ovh/dev-manager-control-tower
 
+# Manager-Wiki
+/packages/manager-wiki/stories/features/pci-common @ovh/dev-manager-pci-all
+/packages/manager-wiki/stories/features/vcd-api @ovh/dev-manager-hpc-all
+/packages/manager-wiki @ovh/dev-manager-control-tower
+
+# Manager CLI
+/packages/manager-cli @ovh/dev-manager-control-tower
+
 # Scripts
 /scripts @ovh/dev-manager-control-tower
