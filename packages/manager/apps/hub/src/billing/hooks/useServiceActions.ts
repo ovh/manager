@@ -142,7 +142,7 @@ export const useServiceActions = (
       items.push({
         label: t(
           `billing_services_actions_menu_resiliate${
-            service.hasEngagement() ? 'my_engagement' : ''
+            service.hasEngagement() ? '_my_engagement' : ''
           }`,
         ),
         color: ODS_THEME_COLOR_INTENT.primary,
