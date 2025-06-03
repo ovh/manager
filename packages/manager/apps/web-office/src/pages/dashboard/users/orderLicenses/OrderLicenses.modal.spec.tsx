@@ -1,4 +1,3 @@
-import React from 'react';
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { describe, expect, it } from 'vitest';
@@ -11,8 +10,8 @@ describe('modal order license', () => {
   it('should render the submit button', () => {
     const { getByTestId } = render(<ModalOrderLicenses />);
 
-    expect(getByTestId('confirm-btn')).toBeInTheDocument();
-    expect(getByTestId('confirm-btn')).toHaveAttribute(
+    expect(getByTestId('primary-button')).toBeInTheDocument();
+    expect(getByTestId('primary-button')).toHaveAttribute(
       'label',
       commonTranslation.cta_confirm,
     );
@@ -21,8 +20,8 @@ describe('modal order license', () => {
   it('should render the cancel button', () => {
     const { getByTestId } = render(<ModalOrderLicenses />);
 
-    expect(getByTestId('cancel-btn')).toBeInTheDocument();
-    expect(getByTestId('cancel-btn')).toHaveAttribute(
+    expect(getByTestId('secondary-button')).toBeInTheDocument();
+    expect(getByTestId('secondary-button')).toHaveAttribute(
       'label',
       commonTranslation.cta_cancel,
     );

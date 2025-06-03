@@ -1,4 +1,3 @@
-import React from 'react';
 import '@testing-library/jest-dom';
 import { useParams } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
@@ -16,8 +15,8 @@ describe('ModalOrderUsers Component', () => {
   it('should render the submit button', () => {
     const { getByTestId } = render(<ModalOrderUsers />);
 
-    expect(getByTestId('confirm-btn')).toBeInTheDocument();
-    expect(getByTestId('confirm-btn')).toHaveAttribute(
+    expect(getByTestId('primary-button')).toBeInTheDocument();
+    expect(getByTestId('primary-button')).toHaveAttribute(
       'label',
       commonTranslation.cta_confirm,
     );
@@ -41,7 +40,7 @@ describe('ModalOrderUsers Component', () => {
     const loginInput = getByTestId('input-login');
     const domainInput = getByTestId('input-domain');
     const licenceInput = getByTestId('input-licence');
-    const saveButton = getByTestId('confirm-btn');
+    const saveButton = getByTestId('primary-button');
 
     expect(firstNameInput).toBeInTheDocument();
     expect(lastNameInput).toBeInTheDocument();

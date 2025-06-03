@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import {
   OdsFormField,
@@ -7,15 +7,18 @@ import {
   OdsText,
   OdsRadio,
 } from '@ovhcloud/ods-components/react';
-import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import {
+  ODS_INPUT_TYPE,
+  ODS_MODAL_COLOR,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Modal from '@/components/modal/Modal.component';
 import { useGenerateUrl } from '@/hooks';
 import { postUsersPassword } from '@/data/api/users';
 import { CHANGE_PASSWORD_USERS_FORM_SCHEMA } from '@/utils/formSchemas.utils';
@@ -98,22 +101,16 @@ export default function ModalChangePasswordUsers() {
 
   return (
     <Modal
-      title={t('dashboard_users_change_password_title')}
-      isOpen
-      onClose={handleCancelClick}
-      isDismissible
-      secondaryButton={{
-        label: t('common:cta_cancel'),
-        action: handleCancelClick,
-        testid: 'cancel-btn',
-      }}
-      primaryButton={{
-        label: t('common:cta_confirm'),
-        action: handleSubmit(handleSaveClick),
-        testid: 'confirm-btn',
-        isLoading: isSending,
-        isDisabled: !isValid,
-      }}
+      heading={t('dashboard_users_change_password_title')}
+      type={ODS_MODAL_COLOR.information}
+      isOpen={true}
+      secondaryLabel={t('common:cta_cancel')}
+      onSecondaryButtonClick={handleCancelClick}
+      onDismiss={handleCancelClick}
+      primaryLabel={t('common:cta_confirm')}
+      isPrimaryButtonDisabled={!isValid}
+      onPrimaryButtonClick={handleSubmit(handleSaveClick)}
+      isPrimaryButtonLoading={isSending}
     >
       <form className="flex flex-col" onSubmit={handleSubmit(handleSaveClick)}>
         <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
