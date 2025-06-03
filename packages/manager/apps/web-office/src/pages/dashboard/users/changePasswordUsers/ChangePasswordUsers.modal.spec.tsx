@@ -1,4 +1,3 @@
-import React from 'react';
 import '@testing-library/jest-dom';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
@@ -34,7 +33,7 @@ describe('ModalChangePasswordUsers Component', () => {
 
     const manualRadio = getByTestId('radio-manual');
 
-    const saveButton = getByTestId('confirm-btn');
+    const saveButton = getByTestId('primary-button');
     await act(() => {
       fireEvent.click(manualRadio);
       manualRadio.odsChange.emit({
@@ -85,7 +84,7 @@ describe('ModalChangePasswordUsers Component', () => {
       'dashboard_users_change_password_radio_1',
     ).parentElement;
     const emailInput = getByTestId('input-email');
-    const saveButton = getByTestId('confirm-btn');
+    const saveButton = getByTestId('primary-button');
 
     await act(() => {
       fireEvent.click(automaticRadioSpan);

@@ -1,8 +1,7 @@
-import React from 'react';
 import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
 import {
@@ -11,7 +10,6 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { useGenerateUrl } from '@/hooks';
-import Modal from '@/components/modal/Modal.component';
 import {
   getOfficeLicenseQueryKey,
   postOfficePrepaidLicenseUnconfigure,
@@ -73,25 +71,18 @@ export default function ModalDeleteUsers() {
 
   return (
     <Modal
-      title={t('dashboard_users_delete_title')}
-      color={ODS_MODAL_COLOR.critical}
-      onClose={onClose}
-      isDismissible
-      isOpen
-      secondaryButton={{
-        label: t('dashboard_users_delete_cta_cancel'),
-        action: onClose,
-        testid: 'cancel-btn',
-      }}
-      primaryButton={{
-        label: t('dashboard_users_delete_cta_confirm'),
-        action: deleteUsers,
-        isDisabled: !activationEmail,
-        isLoading: isDeleting,
-        testid: 'delete-btn',
-      }}
+      heading={t('dashboard_users_delete_title')}
+      type={ODS_MODAL_COLOR.critical}
+      isOpen={true}
+      secondaryLabel={t('dashboard_users_delete_cta_cancel')}
+      onSecondaryButtonClick={onClose}
+      onDismiss={onClose}
+      primaryLabel={t('dashboard_users_delete_cta_confirm')}
+      isPrimaryButtonDisabled={!activationEmail}
+      onPrimaryButtonClick={deleteUsers}
+      isPrimaryButtonLoading={isDeleting}
     >
-      <>
+      <div>
         <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mt-4">
           <Trans
             t={t}
@@ -111,7 +102,7 @@ export default function ModalDeleteUsers() {
             <p>{t('dashboard_users_delete_info2')}</p>
           </div>
         </OdsMessage>
-      </>
+      </div>
     </Modal>
   );
 }
