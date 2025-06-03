@@ -2,7 +2,7 @@ import { TFunction } from 'i18next';
 import { imagesRescueSelector } from './image.selector';
 import { TImage } from '@/data/api/image';
 
-const t: TFunction = ((key: string, options?: any) => {
+const t: TFunction = ((key: string, options?: { name: string }) => {
   if (options && options.name) {
     return `${key} ${options.name}`;
   }
