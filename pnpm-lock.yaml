@@ -12679,6 +12679,9 @@ importers:
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.13
+      '@types/punycode':
+        specifier: ^2.1.4
+        version: 2.1.4
       '@types/react':
         specifier: ^18.2.55
         version: 18.3.18
