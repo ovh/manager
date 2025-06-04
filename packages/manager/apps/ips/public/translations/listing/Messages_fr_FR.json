@@ -56,5 +56,10 @@
   "listingColumnsType_mail": "Mail",
   "listingColumnsType_pcc": "Hosted Private cloud (VMWare)",
   "listingColumnsType_private": "Private",
-  "listingColumnsType_vpn": "VPN"
+  "listingColumnsType_vpn": "VPN",
+  "listingTerminateIp_confirm_Headline": "Résilier mon IP",
+  "listingTerminateIp_confirm_input": "Entrez \"TERMINATE\" dans le champ ci-dessous pour confirmer",
+  "listingTerminateIp_confirm_description": "Veuillez confirmer la résiliation de votre IP",
+  "listingTerminateIp_success": "La demande de résiliation de votre service {{service}} a bien été prise en compte. Vous allez recevoir un e-mail pour la valider.",
+  "listingTerminateIp_ftc_success": "La demande de résiliation de votre service {{service}} a bien été prise en compte. Un e-mail de confirmation vous a été envoyé."
 }
