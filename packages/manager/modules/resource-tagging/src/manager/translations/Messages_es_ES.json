@@ -1,0 +1,10 @@
+{
+  "manager_components_resource_tagging_manager_column_tag": "Etiqueta",
+  "manager_components_resource_tagging_manager_column_tag_type": "Tag Type",
+  "manager_components_resource_tagging_manager_tag_type_custom": "Custom Type",
+  "manager_components_resource_tagging_manager_tag_type_ovhcloud": "Tipo de OVHcloud",
+  "manager_components_resource_tagging_manager_action_assign_tag": "Asignar etiqueta",
+  "manager_components_resource_tagging_manager_action_unassign_tag": "Desasignar",
+  "manager_components_resource_tagging_manager_action_tag_details": "Etiqueta de detalles",
+  "manager_components_resource_tagging_manager_empty": "No se ha asignado ninguna etiqueta"
+}

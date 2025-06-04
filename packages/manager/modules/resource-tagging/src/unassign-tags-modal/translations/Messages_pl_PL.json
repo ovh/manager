@@ -1,0 +1,8 @@
+{
+  "manager_components_resource_tagging_unassign_modal_title": "Wyłącz tag(y) zasobu",
+  "manager_components_resource_tagging_unassign_modal_cancel": "Anuluj",
+  "manager_components_resource_tagging_unassign_modal_unassign": "Zatwierdź",
+  "manager_components_resource_tagging_unassign_modal_description": "Czy chcesz usunąć następujący(e) tag(y) zasobu {{resourceName}}?",
+  "manager_components_resource_tagging_unassign_modal_success": "Tagi zostały anulowane.",
+  "manager_components_resource_tagging_unassign_modal_error": "Wystąpił problem. Spróbuj ponownie: <br> {{message}}<br> request_id: {{requestId}}"
+}
