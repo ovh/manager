@@ -1,5 +1,3 @@
-import find from 'lodash/find';
-
 export default class {
   /* @ngInject */
   constructor($translate, DedicatedCloud) {
@@ -38,6 +36,7 @@ export default class {
   }
 
   getPolicyIP(id) {
-    return find(this.policies, { id }).network;
+    return this.policies.find(({ networkAccessId }) => networkAccessId === id)
+      ?.network;
   }
 }

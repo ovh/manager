@@ -10,6 +10,13 @@ export const VM_ENCRYPTION_KMS = {
   pollingDelay: 2000,
 };
 
+export const NETWORK_STATUS = {
+  ALLOWED: 'allowed',
+  TO_DELETE: 'toDelete',
+  TO_UPDATE: 'toUpdate',
+};
+
 export default {
   VM_ENCRYPTION_KMS,
+  NETWORK_STATUS,
 };

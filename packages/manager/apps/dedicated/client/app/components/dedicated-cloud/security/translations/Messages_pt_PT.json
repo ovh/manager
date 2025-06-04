@@ -46,5 +46,8 @@
   "dedicatedCloud_SECURITY_change_logout_policy": "Modificar a política de logout",
   "dedicatedCloud_SECURITY_add_IP": "Adicionar um novo intervale de endereços IP",
   "dedicatedCloud_SECURITY_delete_IP": "Eliminar intervalos de endereços IP",
-  "dedicatedCloud_dashboard_loading_error": "Erro ao carregar informação relativa ao seu serviço."
+  "dedicatedCloud_dashboard_loading_error": "Erro ao carregar informação relativa ao seu serviço.",
+  "dedicatedCloud_configuration_SECURITY_status_toDelete": "A eliminar",
+  "dedicatedCloud_configuration_SECURITY_status_toUpdate": "Atualização em curso",
+  "dedicatedCloud_configuration_SECURITY_status_allowed": "Autorizado e aplicado"
 }
