@@ -59,16 +59,12 @@ const InstanceAction: FC = () => {
             ip: instance?.addresses[0].ip,
           }}
           ns={'actions'}
-          components={
-            isRescue
-              ? [
-                  <code
-                    key="0"
-                    className="px-1 py-0.5 text-[90%] text-[#c7254e] bg-[#f9f2f4] rounded"
-                  />,
-                ]
-              : []
-          }
+          components={[
+            <code
+              key="0"
+              className="px-1 py-0.5 text-[90%] text-[#c7254e] bg-[#f9f2f4] rounded"
+            />,
+          ]}
         />,
         true,
       );
