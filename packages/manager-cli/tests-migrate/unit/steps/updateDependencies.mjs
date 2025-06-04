@@ -13,7 +13,7 @@ const VITEST_DEPS = [
 ];
 
 const UNIT_TEST_CONFIG_PKG = '@ovh-ux/manager-tests-setup';
-const UNIT_TEST_CONFIG_VERSION = '^0.0.1';
+const UNIT_TEST_CONFIG_VERSION = 'latest';
 
 /**
  * Removes Vitest-related deps and adds the shared unit-test config.
