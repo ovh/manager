@@ -1,17 +1,17 @@
 {
   "breadcrumb": "Backup",
   "title": "Backup",
-  "description": "Qui sotto trovi la lista dei backup dei tuoi notebook. Da ognuna di esse è possibile creare un nuovo notebook.",
-  "tableHeaderId": "Id",
+  "description": "Qui sotto è disponibile la lista dei backup dei tuoi notebook. Da ognuno di essi è possibile creare un nuovo notebook.",
+  "tableHeaderId": "ID",
   "tableHeaderCreationDate": "Data di creazione",
   "tableHeaderUpdateDate": "Data di modifica",
   "backupDropdownMenuLabel": "Azione",
   "tableActionFork": "Fork",
-  "forkBackupTitle": "Ordina un notebook da un backup",
-  "forkBackupDescription": "Utilizzare il backup {{id}} creato il {{date}} per ordinare un nuovo notebook?",
-  "forkButtonCancel": "Annulla",
-  "forkBackupButtonConfirm": "Ordina",
+  "forkBackupTitle": "Creare un notebook da un backup",
+  "forkBackupDescription": "Utilizzare il backup {{id}} effettuato il {{date}} per creare un nuovo notebook?",
+  "forkButtonCancel": "Annullare",
+  "forkBackupButtonConfirm": "Ordinare",
   "forkToastErrorTitle": "Si è verificato un errore",
   "forkToastSuccessTitle": "Riuscito",
-  "forkToastSuccessDescription": "il notebook è stato creato correttamente"
+  "forkToastSuccessDescription": "Il notebook è stato creato correttamente."
 }

@@ -1,19 +1,19 @@
 {
   "title": "AI Notebook",
   "createNewNotebook": "Crea un notebook",
-  "tableHeaderName": "Name",
-  "tableHeaderLocation": "Regione",
+  "tableHeaderName": "Nome",
+  "tableHeaderLocation": "Region",
   "tableHeaderFramework": "Framework",
   "tableHeaderEditor": "Editor",
   "tableHeaderResources": "Risorse",
-  "tableHeaderPrivacy": "Confidenzialità ",
+  "tableHeaderPrivacy": "Privacy ",
   "networkSecureTitle": "Privato",
-  "networkPublicTitle": "Pubblica",
+  "networkPublicTitle": "Pubblico",
   "tableHeaderDuration": "Durata",
-  "tableHeaderStatus": "Status",
-  "tableActionManage": "Amministrare",
+  "tableHeaderStatus": "Stato",
+  "tableActionManage": "Gestisci",
   "tableActionStart": "Comincia ora",
-  "tableActionStop": "Fermare",
+  "tableActionStop": "Arrestare",
   "tableActionDelete": "Eliminare",
-  "deleteTableTooltip": "Il notebook deve essere in stato interrotto"
+  "deleteTableTooltip": "Il notebook deve essere in stato “Arrestato”"
 }

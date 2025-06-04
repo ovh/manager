@@ -1,12 +1,12 @@
 {
   "pricingHt": "{{ price }} +IVA",
-  "pricingInHour": "/ ora",
-  "pricingTtc": "{{ price }} IVA INCL",
+  "pricingInHour": "/ora",
+  "pricingTtc": "{{price}} IVA incl.",
   "pricingLabel": "Prezzo",
-  "licenceCpuPriceLabel": "Prezzo licenza su CPU:",
-  "licenceGpuPriceLabel": "Prezzo licenza su GPU:",
-  "licenceFromLabel": "a partire da&amp;#160;",
-  "partnerPriceGPUPrefix": "Prezzo licenza su GPU: a partire da",
+  "licenceCpuPriceLabel": "Prezzo licenza per CPU:",
+  "licenceGpuPriceLabel": "Prezzo licenza per GPU:",
+  "licenceFromLabel": "a partire da",
+  "partnerPriceGPUPrefix": "Prezzo licenza per GPU: a partire da",
   "partnerPriceSuffix": "per risorsa/ora",
-  "partnerPricePerUsageSuffix": "per ora di utilizzo (vedi la documentazione)"
+  "partnerPricePerUsageSuffix": "per ora di utilizzo (vedi documentazione)"
 }

@@ -1,6 +1,6 @@
 {
   "breadcrumb": "Logi",
   "title": "Logi",
-  "description": "Tutaj znajdziesz wszystkie logi Twojego notebooka, które pomogą Ci śledzić i monitorować jego rozwój.",
-  "autoRefreshInputLabel": "Automatyczne Odświeżanie"
+  "description": "Tutaj znajdziesz wszystkie logi Twojego notebooka, aby móc śledzić i monitorować jego rozwój.",
+  "autoRefreshInputLabel": "Auto-Refresh"
 }

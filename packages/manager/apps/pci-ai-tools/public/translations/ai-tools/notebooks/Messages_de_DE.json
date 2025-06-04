@@ -4,16 +4,16 @@
   "tableHeaderName": "Name",
   "tableHeaderLocation": "Region",
   "tableHeaderFramework": "Framework",
-  "tableHeaderEditor": "Herausgeber",
+  "tableHeaderEditor": "Editor",
   "tableHeaderResources": "Ressourcen",
-  "tableHeaderPrivacy": "Vertraulichkeit ",
-  "networkSecureTitle": "Privat",
-  "networkPublicTitle": "Öffentlich",
+  "tableHeaderPrivacy": "Privacy ",
+  "networkSecureTitle": "Private",
+  "networkPublicTitle": "Public",
   "tableHeaderDuration": "Dauer",
   "tableHeaderStatus": "Status",
-  "tableActionManage": "Verwaltung der ",
-  "tableActionStart": "Jetzt loslegen",
+  "tableActionManage": "Verwalten",
+  "tableActionStart": "Starten",
   "tableActionStop": "Anhalten",
   "tableActionDelete": "Löschen",
-  "deleteTableTooltip": "Das Notebook muss sich im Status „Beendet“ befinden"
+  "deleteTableTooltip": "Das Notebook muss sich im Status „Angehalten“ befinden"
 }

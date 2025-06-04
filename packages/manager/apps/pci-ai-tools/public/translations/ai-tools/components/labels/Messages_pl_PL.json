@@ -3,8 +3,8 @@
   "valueFieldLabel": "Wartość",
   "existingKeyError": "Ten klucz już istnieje",
   "numberOfConfiguredLabels_zero": "Liczba skonfigurowanych etykiet: {{count}}",
-  "numberOfConfiguredLabels_one": "{{count}} etykieta skonfigurowana na {{max}}",
-  "numberOfConfiguredLabels_other": "{{count}} etykiet skonfigurowanych na {{max}}",
+  "numberOfConfiguredLabels_one": "{{count}} skonfigurowana etykieta na {{max}}",
+  "numberOfConfiguredLabels_other": "{{count}} skonfigurowanych etykiet na {{max}}",
   "labelToastErrorTitle": "Błąd",
-  "labelToastSuccessTitle": "Sukcesy"
+  "labelToastSuccessTitle": "Gotowe"
 }

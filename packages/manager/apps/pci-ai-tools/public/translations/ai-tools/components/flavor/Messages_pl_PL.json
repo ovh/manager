@@ -1,11 +1,11 @@
 {
   "fieldFlavorDescription": "Wybierz typ zasobów",
-  "tableHeadType": "Rodzaj",
+  "tableHeadType": "Typ",
   "tableHeadDescription": "Opis",
-  "tableHeadVcores": "Vcores",
+  "tableHeadVcores": "vCores",
   "tableHeadMemory": "RAM",
-  "tableHeadStorage": "Storage",
-  "tableHeadPrice": "Cena / godzina",
+  "tableHeadStorage": "Przestrzeń dyskowa",
+  "tableHeadPrice": "Cena / godzinę",
   "gpuMemorySpec": "{{memory}} RAM",
   "cpuCores_one": "CPU: {{count}} vCore",
   "cpuCores_other": "CPU: {{count}} vCores",
@@ -19,6 +19,6 @@
   "updateFlavorButtonCancel": "Anuluj",
   "updateFlavorButtonConfirm": "Zatwierdź",
   "updateFlavorToastErrorTitle": "Błąd",
-  "updateFlavorToastSuccessTitle": "Sukcesy",
+  "updateFlavorToastSuccessTitle": "Gotowe",
   "updateFlavorToastSuccessDescription": "Aplikacja została zaktualizowana"
 }

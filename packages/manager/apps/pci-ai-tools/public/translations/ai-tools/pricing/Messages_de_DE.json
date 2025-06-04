@@ -1,12 +1,12 @@
 {
-  "pricingHt": "{{ price }} zzgl. MwSt",
-  "pricingInHour": "/ Stunde",
-  "pricingTtc": "{{ price }} inkl. MwSt",
+  "pricingHt": "{{price}} zzgl. MwSt.",
+  "pricingInHour": "/Stunde abgerechnet.",
+  "pricingTtc": "{{ price }} inkl. MwSt.",
   "pricingLabel": "Preis",
-  "licenceCpuPriceLabel": "Preis der CPU Lizenz:",
-  "licenceGpuPriceLabel": "Preis der GPU Lizenz:",
+  "licenceCpuPriceLabel": "Preis der Lizenz auf der CPU:",
+  "licenceGpuPriceLabel": "Preis der Lizenz auf der GPU:",
   "licenceFromLabel": "ab",
-  "partnerPriceGPUPrefix": "Preis der GPU Lizenz: ab",
-  "partnerPriceSuffix": "Nach Ressource/Stunde",
-  "partnerPricePerUsageSuffix": "Nach Nutzungszeit (siehe Dokumentation)"
+  "partnerPriceGPUPrefix": "Preis der Lizenz auf der GPU: ab",
+  "partnerPriceSuffix": "pro Ressource/Stunde",
+  "partnerPricePerUsageSuffix": "pro Stunde Nutzung (siehe Dokumentation)"
 }

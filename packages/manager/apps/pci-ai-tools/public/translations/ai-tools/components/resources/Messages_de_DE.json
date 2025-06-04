@@ -1,7 +1,7 @@
 {
   "powerTitleSection": "Power",
   "computeTitleSection": "Compute",
-  "storageTitleSection": "Storage",
+  "storageTitleSection": "Speicher",
   "gpuMemoryField": "{{ gpu }} x {{ memory }} RAM",
   "gcuComputeField": "CPU: {{ cpu }} vCores ",
   "memoryField": "RAM: {{ memory }}",
@@ -9,5 +9,5 @@
   "temporaryLocalStorageField": "Temporärer lokaler Speicher: {{ storage }} SSD",
   "temporaryLocalStorageHelper": "Leistungsstarker lokaler Speicher ohne Backup",
   "modifyLabel": "Ändern",
-  "disabledButtonTooltip": "Das Notebook muss sich im Status „Beendet“ befinden"
+  "disabledButtonTooltip": "Das Notebook muss sich im Status „Angehalten“ befinden"
 }

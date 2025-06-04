@@ -1,17 +1,17 @@
 {
-  "breadcrumb": "Backup",
+  "breadcrumb": "Backups",
   "title": "Kopie zapasowe",
-  "description": "Poniżej znajdziesz listę kopii zapasowych Twoich notebooków. Na podstawie każdego z nich można utworzyć nowy notebook.",
-  "tableHeaderId": "Id",
+  "description": "Poniżej znajdziesz listę kopii zapasowych Twoich notebooków. Na podstawie każdej z nich możesz utworzyć nowy notebook.",
+  "tableHeaderId": "ID",
   "tableHeaderCreationDate": "Data utworzenia",
   "tableHeaderUpdateDate": "Data modyfikacji",
-  "backupDropdownMenuLabel": "Działanie",
+  "backupDropdownMenuLabel": "Operacja",
   "tableActionFork": "Fork",
   "forkBackupTitle": "Zamów notebook z kopii zapasowej",
-  "forkBackupDescription": "Skorzystaj z kopii zapasowej {{id}} utworzonej dnia {{date}}, aby zamówić nowy notebook?",
+  "forkBackupDescription": "Czy chcesz wykorzystać kopię zapasową {{id}} utworzoną dnia {{date}} do zamówienia nowego notebooka?",
   "forkButtonCancel": "Anuluj",
   "forkBackupButtonConfirm": "Zamów",
   "forkToastErrorTitle": "Wystąpił błąd",
-  "forkToastSuccessTitle": "Sukcesy",
+  "forkToastSuccessTitle": "Gotowe",
   "forkToastSuccessDescription": "Twój notebook został utworzony"
 }
