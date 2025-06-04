@@ -13,8 +13,8 @@
   "scripts": {
     "build": "tsc && vite build",
     "start": "tsc && vite",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test": "manager-test run",
+    "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.3.1",
@@ -47,20 +47,15 @@
   "devDependencies": {
     "@cucumber/cucumber": "^10.3.1",
     "@ovh-ux/manager-core-test-utils": "^0.4.6",
+    "@ovh-ux/manager-tests-setup": "*",
     "@ovh-ux/manager-vite-config": "^0.9.3",
     "@ovh-ux/url-builder": "^1.3.0-alpha.0",
-    "@testing-library/jest-dom": "^6.5.0",
-    "@testing-library/react": "^16.0.1",
     "@testing-library/react-hooks": "^8.0.1",
-    "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.13",
-    "@vitejs/plugin-react": "^4.3.2",
-    "@vitest/coverage-v8": "^2.1.3",
     "element-internals-polyfill": "^1.3.12",
     "eslint-plugin-prettier": "^5.2.1",
     "msw": "2.1.7",
-    "typescript": "^5.1.6",
-    "vitest": "^2.1.9"
+    "typescript": "^5.1.6"
   },
   "regions": [
     "CA",
