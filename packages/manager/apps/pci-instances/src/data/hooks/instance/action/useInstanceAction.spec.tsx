@@ -105,7 +105,7 @@ describe('Considering the useInstanceAction hook', () => {
     'Given a projectId <$projectId> and an instanceId <$instance.id>',
     ({ projectId, instance, type, queryPayload, mutationPayload }: Data) => {
       afterEach(() => {
-        server?.close();
+        server.close();
       });
       test("When invoking mutationHandler() mutate's function", async () => {
         const serverResponse: TInstancesServerResponse[] = [

@@ -1,6 +1,6 @@
 import { TFunction } from 'i18next';
 import { imagesRescueSelector } from './image.selector';
-import { TImage } from '@/data/api/image';
+import { TImageDto } from '@/types/image/api.types';
 
 const t: TFunction = ((key: string, options?: { name: string }) => {
   if (options && options.name) {
@@ -10,12 +10,25 @@ const t: TFunction = ((key: string, options?: { name: string }) => {
   return key;
 }) as TFunction;
 
+const fakeImage: TImageDto = {
+  name: 'Ubuntu',
+  osType: '',
+  baseImageRef: '',
+  createdAt: '',
+  id: 'foo',
+  region: '',
+  size: 0,
+  status: 'active',
+  type: 'official',
+  visibility: 'public',
+};
+
 describe('imagesRescueSelector', () => {
   it('should prioritize rescue images and sort the rest alphabetically', () => {
-    const images: TImage[] = [
-      { id: '3', name: 'Ubuntu', type: 'standard' },
-      { id: '1', name: 'Rescue Image', type: 'rescue' },
-      { id: '2', name: 'CentOS', type: 'standard' },
+    const images: TImageDto[] = [
+      { ...fakeImage, id: '3' },
+      { ...fakeImage, id: '1', name: 'Rescue Image', type: 'rescue' },
+      { ...fakeImage, id: '2', name: 'CentOS' },
     ];
 
     const result = imagesRescueSelector(images, t);
@@ -28,9 +41,9 @@ describe('imagesRescueSelector', () => {
   });
 
   it('should handle an array with only rescue images and rescue-ovh', () => {
-    const images: TImage[] = [
-      { id: '1', name: 'rescue-ovh', type: 'rescue' },
-      { id: '2', name: 'Rescue Image', type: 'rescue' },
+    const images: TImageDto[] = [
+      { ...fakeImage, id: '1', name: 'rescue-ovh', type: 'rescue' },
+      { ...fakeImage, id: '2', name: 'Rescue Image', type: 'rescue' },
     ];
 
     const result = imagesRescueSelector(images, t);
@@ -45,9 +58,9 @@ describe('imagesRescueSelector', () => {
   });
 
   it('should handle an array with no rescue images', () => {
-    const images: TImage[] = [
-      { id: '3', name: 'Ubuntu', type: 'standard' },
-      { id: '2', name: 'CentOS', type: 'standard' },
+    const images: TImageDto[] = [
+      { ...fakeImage, id: '3' },
+      { ...fakeImage, id: '2', name: 'CentOS' },
     ];
 
     const result = imagesRescueSelector(images, t);

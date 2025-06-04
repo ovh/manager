@@ -230,7 +230,7 @@ describe('UseInstances hook', () => {
     }: Data) => {
       describe('useInstances() hook', () => {
         afterEach(() => {
-          server?.close();
+          server.close();
         });
         test(`When invoking useInstances() hook', then, expect the computed instances to be '${JSON.stringify(
           expectedInstances,
