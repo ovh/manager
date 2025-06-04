@@ -1,8 +1,16 @@
-import React from 'react';
 import { RouteObject } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
+import {
+  EDIT_ACCOUNT,
+  EDIT_PASSWORD,
+  GENERAL_INFORMATION,
+  LICENCES,
+  USAGE,
+  DELETE_ACCOUNT,
+  ORDER_ACCOUNT,
+} from '@/tracking.constants';
 
 const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   return {
@@ -26,7 +34,6 @@ export const Routes: any = [
         ...lazyRouteConfig(() => import('@/pages/licenses/licenses.page')),
         handle: {
           tracking: {
-            pageName: 'licenses',
             pageType: PageType.listing,
           },
         },
@@ -44,7 +51,7 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'general-information',
+                pageName: GENERAL_INFORMATION,
                 pageType: PageType.dashboard,
               },
             },
@@ -72,8 +79,8 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'users',
-                pageType: PageType.dashboard,
+                pageName: LICENCES,
+                pageType: PageType.listing,
               },
             },
             children: [
@@ -86,7 +93,7 @@ export const Routes: any = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'users-delete',
+                    pageName: DELETE_ACCOUNT,
                     pageType: PageType.popup,
                   },
                 },
@@ -98,7 +105,7 @@ export const Routes: any = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'users-edit',
+                    pageName: EDIT_ACCOUNT,
                     pageType: PageType.popup,
                   },
                 },
@@ -113,7 +120,7 @@ export const Routes: any = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'users-changePassword',
+                    pageName: EDIT_PASSWORD,
                     pageType: PageType.popup,
                   },
                 },
@@ -127,7 +134,7 @@ export const Routes: any = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'users-orderLicenses',
+                    pageName: ORDER_ACCOUNT,
                     pageType: PageType.popup,
                   },
                 },
@@ -139,7 +146,7 @@ export const Routes: any = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'users-orderUsers',
+                    pageName: ORDER_ACCOUNT,
                     pageType: PageType.popup,
                   },
                 },
@@ -153,7 +160,7 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'consumption',
+                pageName: USAGE,
                 pageType: PageType.dashboard,
               },
             },
@@ -165,7 +172,6 @@ export const Routes: any = [
         ...lazyRouteConfig(() => import('@/pages/onboarding')),
         handle: {
           tracking: {
-            pageName: 'onboarding',
             pageType: PageType.onboarding,
           },
         },

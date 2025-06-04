@@ -1,3 +1,9 @@
+import {
+  ONBOARDING_CSP1,
+  ONBOARDING_CSP2,
+  ONBOARDING_REMOTE_DESKTOP,
+} from './tracking.constants';
+
 export interface GuideLinks {
   [key: string]: string;
   FR?: string;
@@ -114,14 +120,17 @@ export const GUIDES_LIST: GuidesList = {
   office_onboarding1_guides: {
     key: 'web-office_onboarding1_guides',
     url: WEB_OFFICE_ONBOARDING_1,
+    tracking: ONBOARDING_CSP1,
   },
   office_onboarding2_guides: {
     key: 'web-office_onboarding2_guides',
     url: WEB_OFFICE_ONBOARDING_2,
+    tracking: ONBOARDING_CSP2,
   },
   office_onboarding3_guides: {
     key: 'web-office_onboarding3_guides',
     url: WEB_OFFICE_ONBOARDING_3,
+    tracking: ONBOARDING_REMOTE_DESKTOP,
   },
 };
 

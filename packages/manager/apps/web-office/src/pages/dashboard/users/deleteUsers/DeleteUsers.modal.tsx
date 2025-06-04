@@ -9,6 +9,11 @@ import {
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGenerateUrl } from '@/hooks';
 import {
   getOfficeLicenseQueryKey,
@@ -16,9 +21,11 @@ import {
 } from '@/data/api/license';
 import { deleteOfficeUser, getOfficeUsersQueryKey } from '@/data/api/users';
 import queryClient from '@/queryClient';
+import { CANCEL, CONFIRM, DELETE_ACCOUNT } from '@/tracking.constants';
 
 export default function ModalDeleteUsers() {
   const { t } = useTranslation('dashboard/users/delete');
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
   const { serviceName: selectedServiceName } = useParams();
@@ -31,14 +38,29 @@ export default function ModalDeleteUsers() {
   const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
 
+  const tracking = (action: string) =>
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [DELETE_ACCOUNT, action],
+    });
+
+  const handleCancelClick = () => {
+    tracking(CANCEL);
+    onClose();
+  };
+
   const { mutate: deleteUsers, isPending: isDeleting } = useMutation({
-    mutationFn: () =>
-      licencePrepaidName
+    mutationFn: () => {
+      tracking(CONFIRM);
+      return licencePrepaidName
         ? postOfficePrepaidLicenseUnconfigure(
             selectedServiceName,
             licencePrepaidName,
           )
-        : deleteOfficeUser(selectedServiceName, activationEmail),
+        : deleteOfficeUser(selectedServiceName, activationEmail);
+    },
     onSuccess: () => {
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
@@ -75,8 +97,8 @@ export default function ModalDeleteUsers() {
       type={ODS_MODAL_COLOR.critical}
       isOpen={true}
       secondaryLabel={t('dashboard_users_delete_cta_cancel')}
-      onSecondaryButtonClick={onClose}
-      onDismiss={onClose}
+      onSecondaryButtonClick={handleCancelClick}
+      onDismiss={handleCancelClick}
       primaryLabel={t('dashboard_users_delete_cta_confirm')}
       isPrimaryButtonDisabled={!activationEmail}
       onPrimaryButtonClick={deleteUsers}

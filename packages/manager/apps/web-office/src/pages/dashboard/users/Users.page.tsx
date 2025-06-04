@@ -17,6 +17,11 @@ import {
   OdsMessage,
   OdsText,
 } from '@ovhcloud/ods-components/react';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { UserNativeType } from '@/data/api/users/type';
 import Loading from '@/components/loading/Loading.component';
 import { useGenerateUrl } from '@/hooks';
@@ -25,9 +30,11 @@ import { BadgeStatus } from '@/components/badgeStatus/BadgeStatus.component';
 import { UserStateEnum } from '@/data/api/api.type';
 import ActionButtonUsers from './ActionButtonUsers.component';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { ORDER_OFFICE } from '@/tracking.constants';
 
 export default function Users() {
   const { t } = useTranslation(['dashboard/users', 'common']);
+  const { trackClick } = useOvhTracking();
   const { data: dataUsers, isLoading: isLoadingUsers } = useUsers();
 
   const {
@@ -55,8 +62,22 @@ export default function Users() {
     },
   );
   const navigate = useNavigate();
-  const onOrderLicenses = () => navigate(hrefOrderLicenses);
-  const onOrderUsers = () => navigate(hrefOrderUsers);
+  const tracking = () =>
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [ORDER_OFFICE],
+    });
+  const onOrderLicenses = () => {
+    tracking();
+    navigate(hrefOrderLicenses);
+  };
+  const onOrderUsers = () => {
+    tracking();
+    navigate(hrefOrderUsers);
+  };
+
   const columns: DatagridColumn<UserNativeType>[] = [
     {
       id: 'firstName',
