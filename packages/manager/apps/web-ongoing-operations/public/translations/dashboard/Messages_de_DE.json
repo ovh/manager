@@ -137,7 +137,8 @@
   "domain_operations_upload_error_wrong-format": "Ungültiges Dateiformat",
   "domain_operations_update_key_validationToken": "Validierungstoken",
   "domain_operations_update_key_document": "Dokument",
-  "domain_operations_update_title": "Aktualisierung des Vorgangs für die Domain {{t0}}"
+  "domain_operations_update_title": "Aktualisierung des Vorgangs für die Domain {{t0}}",
   "domain_operations_nicOperation_ContactControlNotify": "Kontaktüberprüfungsbenachrichtigung",
-  "domain_operations_nicOperation_DomainSendRDRPNotice": "Versand der RDRP-Benachrichtigung"
+  "domain_operations_nicOperation_DomainSendRDRPNotice": "Versand der RDRP-Benachrichtigung",
+  "domain_operations_guides": "Allgemeine Informationen"
 }
