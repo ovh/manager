@@ -22,7 +22,7 @@ const BackupActionPage = ({
   isLoading,
 }: TBackupActionPageProps) => {
   const { t, i18n } = useTranslation('actions');
-  const locale = i18n?.language?.replace('_', '-');
+  const locale = i18n.language.replace('_', '-');
   const defaultSnapshotName = useMemo(
     () =>
       `${instance?.name} ${new Date().toLocaleDateString(locale, {
