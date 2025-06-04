@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.92.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.91.1...@ovh-ux/manager-pci@6.92.0) (2025-06-04)
+
+
+### Features
+
+* **pci:** change delete endpoint for US ([8f18ce9](https://github.com/ovh/manager/commit/8f18ce9079552da436f9bd772a974c606b553520)), closes [#TAPC-3783](https://github.com/ovh/manager/issues/TAPC-3783) [#TAPC-3786](https://github.com/ovh/manager/issues/TAPC-3786)
+
+
+
+
+
 ## [6.91.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.91.0...@ovh-ux/manager-pci@6.91.1) (2025-06-02)
 
 
