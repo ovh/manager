@@ -8,7 +8,7 @@
   "pci_projects_project_storages_blocks_add_type_high-speed_description": "",
   "pci_projects_project_storages_blocks_add_type_price": "{{price}} GB netto/m-c",
   "pci_projects_project_storages_blocks_add_size_title": "Rozmiar wolumenu",
-  "pci_projects_project_storages_blocks_add_size_help": "Maksymalny rozmiar zależy od dostępnego limitu.",
+  "pci_projects_project_storages_blocks_add_size_help": "Maksymalny rozmiar zależy od dostępnego limitu. <Link>Sprawdź limit pojemności</Link>",
   "pci_projects_project_storages_blocks_add_size_unit": "GB",
   "pci_projects_project_storages_blocks_add_name_title": "Nazwa wolumenu",
   "pci_projects_project_storages_blocks_add_submit_title": "Weryfikacja",
