@@ -1,4 +1,9 @@
-import { useMutation, useQuery, UseQueryOptions } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery,
+  UseQueryOptions,
+  QueryKey,
+} from '@tanstack/react-query';
 import { editInstanceName, getInstance } from '@/data/api/instance';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { TInstanceDto } from '@/types/instance/api.type';
@@ -6,9 +11,11 @@ import { instancesQueryKey } from '@/utils';
 import { DeepReadonly } from '@/types/utils.type';
 import queryClient from '@/queryClient';
 
-export type TUseInstanceQueryOptions = Pick<
-  UseQueryOptions<TInstanceDto>,
-  'enabled' | 'retry' | 'gcTime'
+export type TUseInstanceQueryOptions<T> = Partial<
+  Pick<
+    UseQueryOptions<TInstanceDto, Error, T>,
+    'enabled' | 'retry' | 'gcTime' | 'select'
+  >
 >;
 
 type TEditInstanceNameDto = { instanceName: string };
@@ -22,20 +29,27 @@ type TUseEditInstanceCallbacks = DeepReadonly<{
   onError?: (error: unknown) => void;
 }>;
 
-export const useInstance = (
+export const getInstanceQuery = <T = TInstanceDto>(
+  projectId: string,
   instanceId: string,
-  queryOptions?: TUseInstanceQueryOptions,
+): UseQueryOptions<TInstanceDto, Error, T, QueryKey> => ({
+  queryKey: instancesQueryKey(projectId, ['instance', instanceId]),
+  queryFn: () => getInstance({ projectId, instanceId }),
+});
+
+export const useInstance = <TData = TInstanceDto>(
+  instanceId: string,
+  queryOptions?: TUseInstanceQueryOptions<TData>,
 ) => {
   const projectId = useProjectId();
 
-  return useQuery({
-    queryKey: instancesQueryKey(projectId, ['instance', instanceId]),
-    queryFn: () => getInstance({ projectId, instanceId }),
+  return useQuery<TInstanceDto, Error, TData>({
+    ...getInstanceQuery(projectId, instanceId),
     ...queryOptions,
   });
 };
 
-export const updateInstanceFromCache = ({
+export const updateInstanceCache = ({
   projectId,
   instanceId,
   payload,

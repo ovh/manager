@@ -7,24 +7,24 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
-import InputCancellable from '../inputCancellable/InputCancellable.component';
+import InputCancellable from '../InputCancellable.component';
 
-const EditableText: FC<{
+const EditableContent: FC<{
   defaultValue: string;
-  handleValidate: (value: string) => void;
-}> = ({ defaultValue, handleValidate }) => {
+  onSubmit: (value: string) => void | Promise<void>;
+}> = ({ defaultValue, onSubmit }) => {
   const [isEditing, setEditing] = useState<boolean>(false);
   const [text, setText] = useState(defaultValue);
 
   const closeEdit = () => setEditing(false);
 
-  const onCancel = () => {
+  const handleCancel = () => {
     setText(defaultValue);
     closeEdit();
   };
 
-  const onValidate = () => {
-    handleValidate(text);
+  const handleSubmit = async () => {
+    await onSubmit(text);
     closeEdit();
   };
 
@@ -33,16 +33,17 @@ const EditableText: FC<{
       {isEditing ? (
         <InputCancellable
           value={text}
+          autoFocus
           className="text-[var(--ods-typography-heading-500-font-size)]"
           onChange={(e) => setText(e.target.value)}
-          handleClear={onCancel}
-          handleValidate={onValidate}
+          onClear={handleCancel}
+          onSubmit={handleSubmit}
         />
       ) : (
         <div className="flex">
-          {defaultValue}
+          {text}
           <OsdsButton
-            data-testid="edit-btn"
+            aria-label="Edit"
             variant={ODS_BUTTON_VARIANT.ghost}
             color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_BUTTON_SIZE.sm}
@@ -60,4 +61,4 @@ const EditableText: FC<{
   );
 };
 
-export default EditableText;
+export default EditableContent;

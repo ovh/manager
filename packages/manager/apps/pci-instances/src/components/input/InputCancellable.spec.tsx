@@ -11,8 +11,8 @@ const InputComponent = ({ isValid }: { isValid?: boolean }) => (
   <InputCancellable
     value="NAME"
     onChange={handleChange}
-    handleClear={handleClear}
-    handleValidate={handleValidate}
+    onClear={handleClear}
+    onSubmit={handleValidate}
     isValid={isValid}
   />
 );
@@ -35,7 +35,7 @@ describe('Input Component', () => {
   it('should call handleClear when cancel', async () => {
     render(<InputComponent />);
 
-    await userEvent.click(screen.getByTestId('cancel-change'));
+    await userEvent.click(screen.getByLabelText('Cancel'));
 
     expect(handleClear).toHaveBeenCalled();
   });
@@ -43,7 +43,7 @@ describe('Input Component', () => {
   it('should call handleValid', async () => {
     render(<InputComponent />);
 
-    await userEvent.click(screen.getByTestId('validate-change'));
+    await userEvent.click(screen.getByLabelText('Submit'));
 
     expect(handleValidate).toHaveBeenCalled();
   });
@@ -51,6 +51,6 @@ describe('Input Component', () => {
   it('should disabled validate button when input is not valid', async () => {
     render(<InputComponent isValid={false} />);
 
-    expect(screen.getByTestId('validate-change')).toBeDisabled();
+    expect(screen.getByLabelText('Submit')).toBeDisabled();
   });
 });

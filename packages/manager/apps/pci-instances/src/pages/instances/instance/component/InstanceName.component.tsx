@@ -1,28 +1,32 @@
 import { FC, useCallback } from 'react';
 import { Subtitle, useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import EditableText from '@/components/editableText/EditableText.component';
+import EditableText from '@/components/input/editableContent/EditableContent.component';
 import {
-  updateInstanceFromCache,
+  updateInstanceCache,
   useEditInstanceName,
 } from '@/data/hooks/instance/useInstance';
-import { TInstance } from '@/types/instance/entity.type';
+import { TInstanceStatusState } from '@/types/instance/entity.type';
 import { useProjectId } from '@/hooks/project/useProjectId';
 
-const InstanceName: FC<{ instance: TInstance }> = ({ instance }) => {
+const InstanceName: FC<{
+  instanceId: string;
+  status: TInstanceStatusState;
+  name: string;
+}> = ({ instanceId, status, name }) => {
   const { t } = useTranslation('dashboard');
   const { addError } = useNotifications();
   const projectId = useProjectId();
 
   const handleSuccessUpdate = useCallback(
-    (name: string) => {
-      updateInstanceFromCache({
+    (value: string) => {
+      updateInstanceCache({
         projectId,
-        instanceId: instance.id,
-        payload: { name },
+        instanceId,
+        payload: { name: value },
       });
     },
-    [instance.id, projectId],
+    [instanceId, projectId],
   );
 
   const {
@@ -31,7 +35,7 @@ const InstanceName: FC<{ instance: TInstance }> = ({ instance }) => {
     mutate: editInstanceName,
   } = useEditInstanceName({
     projectId,
-    instanceId: instance.id,
+    instanceId,
     callbacks: {
       onSuccess: (_data, { instanceName }) => handleSuccessUpdate(instanceName),
       onError: () =>
@@ -44,15 +48,13 @@ const InstanceName: FC<{ instance: TInstance }> = ({ instance }) => {
       {isPending && variables.instanceName}
       {!isPending && (
         <>
-          {instance.status.label !== 'ERROR' ? (
+          {status !== 'ERROR' ? (
             <EditableText
-              defaultValue={instance.name}
-              handleValidate={(instanceName) =>
-                editInstanceName({ instanceName })
-              }
+              defaultValue={name}
+              onSubmit={(instanceName) => editInstanceName({ instanceName })}
             />
           ) : (
-            instance?.name
+            name
           )}
         </>
       )}

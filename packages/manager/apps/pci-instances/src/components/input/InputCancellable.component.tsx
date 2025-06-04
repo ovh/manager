@@ -3,6 +3,7 @@ import { Input as DatatrInput } from '@datatr-ux/uxlib';
 import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
+  ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
@@ -10,25 +11,24 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { clsx } from 'clsx';
 
-type InputProps = {
-  handleClear?: () => void;
-  handleValidate?: () => void;
+type TInputCancellableProps = {
+  onClear?: () => void;
+  onSubmit?: () => void;
   isValid?: boolean;
 } & Omit<
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
   'ref'
 >;
 
-export const InputCancellable: FC<InputProps> = ({
-  handleClear,
-  handleValidate,
+export const InputCancellable: FC<TInputCancellableProps> = ({
+  onClear,
+  onSubmit,
   isValid = true,
   className,
   ...props
 }) => (
-  <div className="flex">
+  <form className="flex" onSubmit={onSubmit}>
     <DatatrInput
-      autoFocus
       className={clsx(
         'focus-visible:ring-transparent focus-visible:bg-primary-300 text-primary-100',
         className,
@@ -37,11 +37,11 @@ export const InputCancellable: FC<InputProps> = ({
     />
     <div className="flex">
       <OsdsButton
-        data-testid="cancel-change"
+        aria-label="Cancel"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
         size={ODS_BUTTON_SIZE.sm}
-        onClick={handleClear}
+        onClick={onClear}
       >
         <OsdsIcon
           name={ODS_ICON_NAME.CLOSE}
@@ -50,12 +50,12 @@ export const InputCancellable: FC<InputProps> = ({
         />
       </OsdsButton>
       <OsdsButton
-        data-testid="validate-change"
+        aria-label="Submit"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
         size={ODS_BUTTON_SIZE.sm}
         {...(!isValid && { disabled: true })}
-        onClick={handleValidate}
+        type={ODS_BUTTON_TYPE.submit}
       >
         <OsdsIcon
           name={ODS_ICON_NAME.CHECK}
@@ -64,7 +64,7 @@ export const InputCancellable: FC<InputProps> = ({
         />
       </OsdsButton>
     </div>
-  </div>
+  </form>
 );
 
 export default InputCancellable;

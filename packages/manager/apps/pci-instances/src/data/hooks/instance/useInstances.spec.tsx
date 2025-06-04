@@ -6,14 +6,44 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { useInstances, TUseInstancesQueryParams } from './useInstances';
-import { TInstanceDto } from '@/types/instance/api.type';
+import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.type';
 import { setupInstancesServer } from '@/__mocks__/instance/node';
-import {
-  instanceDtoBuilder,
-  instanceBuilder,
-} from '@/__mocks__/instance/builder';
 import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
-import { TInstance } from '@/types/instance/entity.type';
+import { TInstance, TInstanceStatus } from '@/types/instance/entity.type';
+
+// builders
+const instanceDtoBuilder = (
+  addresses: TInstanceDto['addresses'],
+  status: TInstanceStatusDto,
+): TInstanceDto => ({
+  id: `fake-id`,
+  name: `fake-instance-name`,
+  flavorId: `fake-flavor-id`,
+  flavorName: `fake-flavor-name`,
+  imageId: `fake-image-id`,
+  imageName: `fake-image-name`,
+  region: `fake-region`,
+  status,
+  addresses,
+  volumes: [],
+  actions: [],
+  pendingTask: false,
+  availabilityZone: null,
+  taskState: '',
+  isImageDeprecated: false,
+});
+
+export const instanceBuilder = (
+  instanceDto: TInstanceDto,
+  addresses: TInstance['addresses'],
+  status: TInstanceStatus,
+): TInstance => ({
+  ...instanceDto,
+  addresses,
+  status,
+  actions: new Map(),
+  taskState: null,
+});
 
 // initializers
 const initQueryClient = () => {
