@@ -60,7 +60,7 @@ export const DashboardHeader = () => {
 };
 
 DashboardHeader.Skeleton = function ServiceHeaderSkeleton() {
-  const { t } = useTranslation('pci-ai-dashboard');
+  const { t } = useTranslation('ai-tools/dashboard');
   return (
     <div
       data-testid="dashboard-header-skeleton"
