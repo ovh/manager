@@ -188,7 +188,7 @@ export default [
             ],
           },
           {
-            path: 'notebooks',
+            path: ':quantum?/notebooks',
             ...lazyRouteConfig(() =>
               import('@/pages/notebooks/NotebookRoot.layout'),
             ),

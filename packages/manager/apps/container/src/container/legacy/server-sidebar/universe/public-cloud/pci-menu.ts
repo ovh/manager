@@ -55,6 +55,7 @@ export const features = [
   'key-management-service',
   'pci-savings-plan',
   'pci-ai-endpoints',
+  'pci-quantum-emulators',
 ];
 
 export function getPciProjectMenu(
@@ -441,6 +442,28 @@ export function getPciProjectMenu(
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/ai/endpoints`,
+          ),
+        },
+      ],
+    });
+  }
+
+  if (
+    isFeaturesAvailable(
+      'pci-quantum-emulators',
+    )
+  ) {
+    pciMenu.push({
+      id: 'quantum',
+      title: 'Quantum',
+      subItems: [
+        {
+          id: 'pci-quantum-emulators',
+          title: 'Emulators',
+          badge: 'new',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/ai-ml/quantum/notebooks`,
           ),
         },
       ],

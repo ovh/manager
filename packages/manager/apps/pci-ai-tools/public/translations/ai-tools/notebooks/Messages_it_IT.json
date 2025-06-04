@@ -1,5 +1,5 @@
 {
-  "title": "AI Notebook",
+  "title": "AI Notebooks",
   "createNewNotebook": "Crea un notebook",
   "tableHeaderName": "Nome",
   "tableHeaderLocation": "Region",
@@ -15,5 +15,6 @@
   "tableActionStart": "Comincia ora",
   "tableActionStop": "Arrestare",
   "tableActionDelete": "Eliminare",
-  "deleteTableTooltip": "Il notebook deve essere in stato “Arrestato”"
+  "deleteTableTooltip": "Il notebook deve essere in stato interrotto",
+  "quantumTitle": "Emulators"
 }

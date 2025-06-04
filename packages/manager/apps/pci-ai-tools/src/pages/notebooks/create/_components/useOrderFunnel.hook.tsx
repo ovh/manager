@@ -22,6 +22,7 @@ import { createFlavorPricingList } from '@/lib/priceFlavorHelper';
 import publicCatalog from '@/types/Catalog';
 import { useGetFramework } from '@/data/hooks/ai/capabilities/useGetFramework.hook';
 import { useGetEditor } from '@/data/hooks/ai/capabilities/useGetEditor.hook';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 export function useOrderFunnel(
   regions: ai.capabilities.Region[],
@@ -29,6 +30,7 @@ export function useOrderFunnel(
   suggestions: NotebookSuggestions,
 ) {
   const { projectId } = useParams();
+  const { isQuantum } = useQuantum();
   const orderSchema = z.object({
     region: z.string(),
     flavorWithQuantity: z.object({
@@ -127,7 +129,9 @@ export function useOrderFunnel(
 
   const listFramework: ai.capabilities.notebook.Framework[] = useMemo(() => {
     if (frameworkQuery.isLoading) return [];
-    return frameworkQuery.data;
+    return frameworkQuery.data.filter((fmk) =>
+      isQuantum ? fmk.type === 'Quantum' : fmk.type === 'AI',
+    );
   }, [region, frameworkQuery.isSuccess]);
 
   const listEditor: ai.capabilities.notebook.Editor[] = useMemo(() => {
@@ -200,6 +204,7 @@ export function useOrderFunnel(
 
   // Change Framework when region change?
   useEffect(() => {
+    if (!frameworkQuery.isSuccess) return;
     const suggestedFramework =
       suggestions.suggestions.find((sug) => sug.region === regionObject.id)
         .framework.id ?? listFramework[0].id;
@@ -207,8 +212,16 @@ export function useOrderFunnel(
       (fmk) => fmk.id === suggestedFramework,
     )?.versions[0];
 
-    form.setValue('frameworkWithVersion.framework', suggestedFramework);
-    form.setValue('frameworkWithVersion.version', suggestedFrameworkVersion);
+    if (isQuantum) {
+      form.setValue('frameworkWithVersion.framework', listFramework[0].id);
+      form.setValue(
+        'frameworkWithVersion.version',
+        listFramework[0].versions[0],
+      );
+    } else {
+      form.setValue('frameworkWithVersion.framework', suggestedFramework);
+      form.setValue('frameworkWithVersion.version', suggestedFrameworkVersion);
+    }
   }, [regionObject, region, listFramework]);
 
   // Change editors when region change?

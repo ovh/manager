@@ -26,6 +26,7 @@ import Onboarding from '../dashboard/home/_components/Onboarding.component';
 
 export default function Auth() {
   const { t } = useTranslation('ai-tools/auth');
+  const { t: tdashboard } = useTranslation('ai-tools/dashboard/home');
   const toast = useToast();
   const navigate = useNavigate();
   const projectData = usePciProject();
@@ -115,26 +116,26 @@ export default function Auth() {
             <ProductInformations
               img={storeImage}
               isInternalAppLink={false}
-              title={t('store-title')}
-              productName={t('object-storage-title')}
+              title={tdashboard('store-title')}
+              productName={tdashboard('object-storage-title')}
             />
             <ProductInformations
               img={exploreImage}
               isInternalAppLink={true}
-              title={t('explore-title')}
-              productName={t('notebooks-title')}
+              title={tdashboard('explore-title')}
+              productName={tdashboard('notebooks-title')}
             />
             <ProductInformations
               img={trainImage}
               isInternalAppLink={false}
-              title={t('train-title')}
-              productName={t('training-title')}
+              title={tdashboard('train-title')}
+              productName={tdashboard('training-title')}
             />
             <ProductInformations
               img={deployImage}
               isInternalAppLink={false}
-              title={t('deploy-title')}
-              productName={t('ai-deploy-title')}
+              title={tdashboard('deploy-title')}
+              productName={tdashboard('ai-deploy-title')}
             />
           </div>
         </CardContent>
