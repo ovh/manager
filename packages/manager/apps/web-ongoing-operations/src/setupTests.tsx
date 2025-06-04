@@ -49,6 +49,7 @@ vi.mock(import('@ovh-ux/manager-react-components'), async (importOriginal) => {
 
 vi.mock('@/utils/utils', () => ({
   removeQuotes: vi.fn(),
+  getLanguageKey: vi.fn(),
 }));
 
 const mocks = vi.hoisted(() => ({
