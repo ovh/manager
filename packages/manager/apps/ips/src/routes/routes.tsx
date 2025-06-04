@@ -54,6 +54,19 @@ export const Routes: any = [
                   },
                 },
               },
+              {
+                id: 'listing-terminate',
+                path: urls.listingTerminate,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/terminate/terminateIp.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'terminate',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
             ],
           },
           {
