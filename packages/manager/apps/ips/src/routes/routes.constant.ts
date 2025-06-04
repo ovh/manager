@@ -7,6 +7,7 @@ export const subRoutes = {
   manageOrganisations: 'manage-organisations',
   openOrganisations: 'open',
   byoipOrder: 'byoip-order',
+  terminate: 'terminate',
 };
 
 export const urlDynamicParts = {
@@ -18,6 +19,7 @@ export const urls = {
   root: subRoutes.root,
   onboarding: `${subRoutes.root}/${subRoutes.onboarding}`,
   listing: subRoutes.root,
+  listingTerminate: `${subRoutes.root}/${subRoutes.terminate}/${urlDynamicParts.id}`,
   order: `${subRoutes.root}/${subRoutes.order}`,
   byoip: `${subRoutes.root}/${subRoutes.byoip}`,
   manageOrganisations: `${subRoutes.root}/${subRoutes.manageOrganisations}`,
