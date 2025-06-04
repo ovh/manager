@@ -12,7 +12,7 @@ type RouterErrorResponse = Pick<
 
 export const isApiErrorResponse = (error: unknown): error is ApiError =>
   isAxiosError(error) &&
-  (error as AxiosError<{ message: string }>).response?.data?.message !==
+  (error as AxiosError<{ message: string }>).response?.data.message !==
     undefined;
 
 export const mapUnknownErrorToBannerError = (
