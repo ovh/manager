@@ -1,0 +1,16 @@
+{
+  "manager_components_resource_tagging_assign_modal_title": "Assegna tag",
+  "manager_components_resource_tagging_assign_modal_cancel": "Indietro",
+  "manager_components_resource_tagging_assign_modal_assign": "Assegna",
+  "manager_components_resource_tagging_assign_modal_add": "Aggiungi",
+  "manager_components_resource_tagging_assign_modal_no_result": "Nessun risultato",
+  "manager_components_resource_tagging_assign_modal_help": "Massimo 25 caratteri alfanumerici e - consentiti",
+  "manager_components_resource_tagging_assign_modal_field_error": "Il formato non è corretto. È consentito solo il simbolo \"-\", massimo 25 caratteri",
+  "manager_components_resource_tagging_assign_modal_placeholder": "Ordina",
+  "manager_components_resource_tagging_assign_modal_key_label": "Chiave",
+  "manager_components_resource_tagging_assign_modal_value_label": "Valore",
+  "manager_components_resource_tagging_assign_modal_success": "Il tag è stato assegnato correttamente alla risorsa.",
+  "manager_components_resource_tagging_assign_modal_success_multiple": "Le tag sono state assegnate correttamente alla risorsa.",
+  "manager_components_resource_tagging_assign_modal_error": "Si è verificato un problema durante l'assegnazione: <br> {{message}}<br> request_id: {{requestId}}",
+  "manager_components_resource_tagging_assign_modal_selected_tags": "Tag che saranno assegnati alla risorsa"
+}
