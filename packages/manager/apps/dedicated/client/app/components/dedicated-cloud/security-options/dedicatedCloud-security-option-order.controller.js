@@ -2,6 +2,7 @@ import assign from 'lodash/assign';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import pick from 'lodash/pick';
+import { NETWORK_STATUS } from '../security/dedicatedCloud-security.constants';
 
 export default class {
   /* @ngInject */
@@ -72,11 +73,9 @@ export default class {
       null,
       null,
       true,
-    ).then((policies) => {
-      this.listIp = policies.list.results;
-      return policies.list.results.some(
-        (network) => network.status === 'ALLOWED',
-      );
+    ).then(({ data }) => {
+      this.listIp = data;
+      return data.some((network) => network.state === NETWORK_STATUS.ALLOWED);
     });
   }
 

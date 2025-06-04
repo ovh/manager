@@ -801,18 +801,16 @@ class DedicatedCloudService {
     }));
   }
 
-  getSecurityPolicies(serviceName, count, offset, clearCache) {
-    return this.OvhHttp.get('/sws/dedicatedCloud/{serviceName}/networks', {
-      rootPath: '2api',
-      urlParams: {
-        serviceName,
-      },
-      params: {
-        count,
+  getSecurityPolicies(serviceName, pageSize, offset, isCacheDisabled) {
+    return this.icebergUtils.icebergQuery(
+      `/dedicatedCloud/${serviceName}/allowedNetwork`,
+      {
+        pageSize,
         offset,
+        isCacheDisabled,
+        sort: 'networkAccessId',
       },
-      clearCache,
-    });
+    );
   }
 
   addSecurityPolicy(serviceName, network) {

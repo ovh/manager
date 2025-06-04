@@ -46,5 +46,8 @@
   "dedicatedCloud_SECURITY_change_logout_policy": "Modify the disconnection policy",
   "dedicatedCloud_SECURITY_add_IP": "Add a new IP address range",
   "dedicatedCloud_SECURITY_delete_IP": "Delete IP address ranges",
-  "dedicatedCloud_dashboard_loading_error": "An error has occurred loading your service information."
+  "dedicatedCloud_dashboard_loading_error": "An error has occurred loading your service information.",
+  "dedicatedCloud_configuration_SECURITY_status_toDelete": "To be deleted",
+  "dedicatedCloud_configuration_SECURITY_status_toUpdate": "Updating",
+  "dedicatedCloud_configuration_SECURITY_status_allowed": "Authorised and set up"
 }
