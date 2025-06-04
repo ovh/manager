@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import {
   OdsFormField,
@@ -9,7 +9,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -20,9 +25,11 @@ import { useGenerateUrl } from '@/hooks';
 import { postUsersPassword } from '@/data/api/users';
 import { CHANGE_PASSWORD_USERS_FORM_SCHEMA } from '@/utils/formSchemas.utils';
 import { UserChangePasswordType } from '@/data/api/api.type';
+import { CANCEL, CONFIRM, EDIT_PASSWORD } from '@/tracking.constants';
 
 export default function ModalChangePasswordUsers() {
   const { t } = useTranslation(['dashboard/users/change-password', 'common']);
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
@@ -82,10 +89,19 @@ export default function ModalChangePasswordUsers() {
     trigger();
   }, []);
 
+  const tracking = (action: string) =>
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [EDIT_PASSWORD, action],
+    });
+
   const handleSaveClick: SubmitHandler<{
     password: string;
     email: string;
   }> = ({ password, email }) => {
+    tracking(CONFIRM);
     editPassword({
       password,
       notifyEmail: email,
@@ -93,6 +109,7 @@ export default function ModalChangePasswordUsers() {
     });
   };
   const handleCancelClick = () => {
+    tracking(CANCEL);
     onClose();
   };
 

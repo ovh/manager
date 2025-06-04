@@ -17,6 +17,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGenerateUrl } from '@/hooks';
 import { useUserDetail } from '@/data/hooks';
 import Modal from '@/components/modal/Modal.component';
@@ -33,9 +38,11 @@ import {
   putOfficeUserDetail,
 } from '@/data/api/users';
 import { UserParamsType } from '@/data/api/api.type';
+import { CANCEL, CONFIRM, EDIT_ACCOUNT } from '@/tracking.constants';
 
 export default function ModalEditUsers() {
   const { t } = useTranslation(['dashboard/users/edit', 'common']);
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
   const { serviceName: selectedServiceName } = useParams();
@@ -122,18 +129,29 @@ export default function ModalEditUsers() {
     },
   });
 
+  const tracking = (action: string) =>
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [EDIT_ACCOUNT, action],
+    });
+
   const handleSaveClick: SubmitHandler<{
     firstname: string;
     lastname: string;
     login: string;
-  }> = ({ firstname, lastname, login }) =>
+  }> = ({ firstname, lastname, login }) => {
+    tracking(CONFIRM);
     editUser({
       firstName: firstname,
       lastName: lastname,
       activationEmail: `${login}@${userDetail.activationEmail.split('@')[1]}`,
     });
+  };
 
   const handleCancelClick = () => {
+    tracking(CANCEL);
     onClose();
   };
   return (

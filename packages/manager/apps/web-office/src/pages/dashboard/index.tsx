@@ -8,12 +8,18 @@ import {
   GuideButton,
   GuideItem,
 } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { GUIDES_LIST } from '@/guides.constants';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { urls } from '@/routes/routes.constants';
 import TabsPanel from '@/components/tabsPanel/TabsPanel.component';
 import { useParentTenant } from '@/data/hooks/parentTenant/useParentTenant';
+import { GUIDES } from '@/tracking.constants';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -27,6 +33,7 @@ export type DashboardLayoutProps = {
 };
 
 export default function DashboardPage() {
+  const { trackClick } = useOvhTracking();
   const { data } = useParentTenant();
   const serviceName = data?.serviceName;
   const { t } = useTranslation('common');
@@ -67,6 +74,14 @@ export default function DashboardPage() {
         GUIDES_LIST.office_guides.url.DEFAULT) as string,
       target: '_blank',
       label: t('common_guides_header'),
+      onClickReturn: () => {
+        trackClick({
+          location: PageLocation.page,
+          buttonType: ButtonType.externalLink,
+          actionType: 'action',
+          actions: [GUIDES],
+        });
+      },
     },
   ];
   const header = {
