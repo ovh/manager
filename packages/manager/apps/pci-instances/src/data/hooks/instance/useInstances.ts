@@ -10,7 +10,8 @@ import {
 import { useCallback, useEffect, useMemo } from 'react';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { Filter } from '@ovh-ux/manager-core-api';
-import isEqual from 'lodash.isequal';
+import { isEqual } from 'lodash';
+import fp from 'lodash/fp';
 import { getInstances } from '@/data/api/instance';
 import { instancesQueryKey } from '@/utils';
 import { TInstanceDto } from '@/types/instance/api.type';
@@ -42,11 +43,9 @@ const listQueryKeyPredicate = (projectId: string) => (query: Query) =>
   );
 
 export const updateInstanceFromCache: TUpdateInstanceFromCache = (
-  queryClient,
-  payload,
+  queryClient: QueryClient,
+  { projectId, instance },
 ) => {
-  const { projectId, instance } = payload;
-
   const queries = queryClient.getQueriesData<InfiniteData<TInstanceDto[]>>({
     predicate: listQueryKeyPredicate(projectId),
   });
@@ -54,17 +53,20 @@ export const updateInstanceFromCache: TUpdateInstanceFromCache = (
   queries.forEach(([queryKey, queryData]) => {
     if (!queryData) return;
 
-    let isPageModified = false;
+    const updatedPages = queryData.pages.map((page) => {
+      const foundIndex = fp.findIndex(fp.propEq('id', instance.id), page);
+      if (foundIndex === -1) return page;
 
-    const updatedPages = queryData.pages.map((page) =>
-      page.map((prevInstance) => {
-        if (prevInstance.id === instance.id) {
-          const mergedInstance = { ...prevInstance, ...instance };
-          isPageModified = !isEqual(mergedInstance, prevInstance);
-          return mergedInstance;
-        }
-        return prevInstance;
-      }),
+      const previousInstance = page[foundIndex];
+      const mergedInstance = { ...previousInstance, ...instance };
+
+      if (isEqual(previousInstance, mergedInstance)) return page;
+
+      return fp.update(foundIndex, () => mergedInstance, page);
+    });
+
+    const isPageModified = updatedPages.some(
+      (page, i) => page !== queryData.pages[i],
     );
 
     if (!isPageModified) return;
@@ -119,7 +121,7 @@ export const useInstances = ({
   const queryClient = useQueryClient();
   const filtersQueryKey = useMemo(
     () =>
-      filters?.length > 0
+      filters.length > 0
         ? [
             'filter',
             filters[0].label,
