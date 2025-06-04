@@ -1,5 +1,6 @@
 const URIS = {
   root: 'secret-management-service',
+  onboarding: 'onboarding',
   versions: 'versions',
   secrets: 'secrets',
   create: 'create',
@@ -7,6 +8,7 @@ const URIS = {
 
 const URLS = {
   smsRoot: `/${URIS.root}`,
+  smsOnboarding: `/${URIS.root}/${URIS.onboarding}`,
   secretCreate: `/${URIS.root}/${URIS.create}`,
   secretListing: (domainId: string) =>
     `/${URIS.root}/${domainId}/${URIS.secrets}`,
