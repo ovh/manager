@@ -20,7 +20,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
-  "include": ["src"],
+  "include": ["src", "setupTests.ts"],
   "exclude": [
     "node_modules",
     "public",
