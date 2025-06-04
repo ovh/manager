@@ -2,15 +2,15 @@ import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { FC, PropsWithChildren } from 'react';
 
-export const ExternalLink: FC<PropsWithChildren<{
+const ExternalLink: FC<PropsWithChildren<{
   href: string;
-  isExternal?: boolean;
-}>> = ({ children, href, isExternal }) => (
+  isTargetBlank?: boolean;
+}>> = ({ children, href, isTargetBlank = true }) => (
   <Links
     label={children}
     href={href}
     target={
-      isExternal
+      isTargetBlank
         ? OdsHTMLAnchorElementTarget._blank
         : OdsHTMLAnchorElementTarget._self
     }

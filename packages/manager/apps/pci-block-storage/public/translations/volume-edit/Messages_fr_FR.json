@@ -3,7 +3,7 @@
   "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Type de volume",
   "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Nom du volume",
   "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Capacité du volume",
-  "pci_projects_project_storages_blocks_block_volume-edit_size_help": "La taille maximale dépend de votre quota disponible. <Link>Verifier mon quota</Link>",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_help": "La taille maximale dépend de votre quota disponible. <Link>Vérifier mon quota</Link>",
   "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "Go",
   "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Amorçable",
   "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Définir un volume comme amorçable permet d'utiliser ce volume au démarrage de votre instance.",
