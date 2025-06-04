@@ -46,5 +46,8 @@
   "dedicatedCloud_SECURITY_change_logout_policy": "Modificar la política de desconexión",
   "dedicatedCloud_SECURITY_add_IP": "Añadir un nuevo rango de direcciones IP",
   "dedicatedCloud_SECURITY_delete_IP": "Eliminar los rangos de direcciones IP",
-  "dedicatedCloud_dashboard_loading_error": "Se ha producido un error al cargar los datos del servicio."
+  "dedicatedCloud_dashboard_loading_error": "Se ha producido un error al cargar los datos del servicio.",
+  "dedicatedCloud_configuration_SECURITY_status_toDelete": "Pendiente de eliminación",
+  "dedicatedCloud_configuration_SECURITY_status_toUpdate": "Actualizando...",
+  "dedicatedCloud_configuration_SECURITY_status_allowed": "Autorizado y aplicado"
 }
