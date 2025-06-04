@@ -12,5 +12,9 @@
   "cardTuto2Description": "Features, capabilities and limitations",
   "cardTuto2Content": "Find out what an AI Notebook is at OVHcloud.",
   "cardTuto3Description": "Getting started with AI Notebooks",
-  "cardTuto3Content": "Find out how to get started quickly with your Notebook via the OVHcloud Control Panel, command line or API."
+  "cardTuto3Content": "Find out how to get started quickly with your Notebook via the OVHcloud Control Panel, command line or API.",
+  "quantumTitle": "Quantum Emulators",
+  "quantumDescription1": "Explore quantum computing in total freedom with our ready-to-use notebooks in the cloud",
+  "quantumDescription2": "Simulate up to 20 qubits in a few seconds, without installation or configuration constraints.",
+  "quantumDescription3": "Access a preconfigured environment, compatible with the main frameworks (Qiskit, Pulser, MyQLM, Perceval, ...) and easily collaborate with your teams via a shared and secure interface"
 }
