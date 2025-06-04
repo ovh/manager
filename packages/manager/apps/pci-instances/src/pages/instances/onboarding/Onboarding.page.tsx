@@ -28,7 +28,7 @@ const Onboarding: FC = () => {
   const { ovhSubsidiary } = context.environment.getUser() as {
     ovhSubsidiary: OvhSubsidiary;
   };
-  const project = useRouteLoaderData('root') as TProject;
+  const project = useRouteLoaderData('root') as TProject | undefined;
   const createInstanceHref = useHref('../new');
   useHidePreloader();
 
