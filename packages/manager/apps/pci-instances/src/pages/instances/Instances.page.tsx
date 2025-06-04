@@ -91,16 +91,18 @@ const SearchBar = ({
 const Instances: FC = () => {
   const { t } = useTranslation(['list', 'common']);
 
-  const project = useRouteLoaderData('root') as TProject;
+  const project = useRouteLoaderData('root') as TProject | undefined;
   const createInstanceHref = useHref('./new');
   const [sorting, setSorting] = useState(initialSorting);
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(null);
   const section = useActionSection();
-  const routeLoaderData = useRouteLoaderData(section ?? '') as {
-    notFoundAction?: boolean;
-  };
+  const routeLoaderData = useRouteLoaderData(section ?? '') as
+    | {
+        notFoundAction?: boolean;
+      }
+    | undefined;
 
   const {
     data,
