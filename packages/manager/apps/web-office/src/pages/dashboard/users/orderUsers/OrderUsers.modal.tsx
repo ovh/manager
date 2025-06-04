@@ -22,7 +22,12 @@ import {
   Price,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useGenerateUrl } from '@/hooks';
@@ -35,9 +40,11 @@ import { getOfficePrice, getOfficePriceQueryKey } from '@/data/api/price';
 import { OfficeUserEnum } from '@/data/api/order/type';
 import { UserOrderParamsType } from '@/data/api/api.type';
 import { POST_USERS_FORM_SCHEMA } from '@/utils/formSchemas.utils';
+import { CANCEL, CONFIRM, ORDER_ACCOUNT } from '@/tracking.constants';
 
 export default function ModalOrderUsers() {
   const { t } = useTranslation(['dashboard/users/order-users', 'common']);
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
@@ -56,6 +63,17 @@ export default function ModalOrderUsers() {
     { label: 'Office Business', value: OfficeUserEnum.OFFICE_365_BUSINESS },
     { label: 'Office Pro Plus', value: OfficeUserEnum.OFFICE_365_PRO_PLUS },
   ];
+
+  const tracking = (action: string, productType?: string) =>
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [
+        ORDER_ACCOUNT,
+        productType ? `${action}_${productType}` : action,
+      ],
+    });
 
   const {
     handleSubmit,
@@ -124,6 +142,7 @@ export default function ModalOrderUsers() {
     const selectedOffer = offerOptions.find(
       (option) => option.value === licence,
     );
+    tracking(CONFIRM, selectedOffer.value);
     orderUsers({
       firstName,
       lastName,
@@ -133,9 +152,12 @@ export default function ModalOrderUsers() {
       licence: selectedOffer.value,
     });
   };
+
   const handleCancelClick = () => {
+    tracking(CANCEL);
     onClose();
   };
+
   return (
     <Modal
       heading={t('common:users_order_users')}
