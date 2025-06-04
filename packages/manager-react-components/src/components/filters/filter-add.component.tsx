@@ -141,8 +141,9 @@ export function FilterAdd({
   } else if (selectedColumn?.options?.length > 0) {
     inputComponent = (
       <OdsSelect
+        key={`filter-add_value-select-${selectedId}`}
         value={value}
-        name="filter-add_value-select"
+        name={`filter-add_value-select-${selectedId}`}
         data-testid="filter-add_value-select"
         onOdsChange={(event) => setValue(event.detail.value as string)}
       >
@@ -181,8 +182,9 @@ export function FilterAdd({
             </span>
           </div>
           <OdsSelect
+            key={`add-filter_select_idColumn-${selectedId}`}
             value={selectedId}
-            name="add-filter_select_idColumn"
+            name={`add-filter_select_idColumn-${selectedId}`}
             data-testid="add-filter_select_idColumn"
             onOdsChange={(event) => setSelectedId(event.detail.value as string)}
           >
@@ -204,6 +206,7 @@ export function FilterAdd({
           {selectedColumn && (
             <div key={`filter-condition-select-${selectedColumn.id}`}>
               <OdsSelect
+                key={`add-operator-${selectedColumn.id}`}
                 name={`add-operator-${selectedColumn.id}`}
                 value={selectedComparator}
                 onOdsChange={(event) => {
