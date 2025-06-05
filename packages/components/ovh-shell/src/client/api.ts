@@ -4,6 +4,7 @@ import { clientAuth } from '../plugin/auth';
 import { clientNavigation } from '../plugin/navigation';
 import { exposeTrackingAPI } from '../plugin/tracking';
 import { clientLogger } from '../plugin/logger';
+import { Location } from '../plugin/location';
 
 export type ShellClientApi = ReturnType<typeof exposeApi>;
 
@@ -182,6 +183,13 @@ export default function exposeApi(shellClient: ShellClient) {
           plugin: 'ux',
           method: 'notifyModalActionDone',
           args: [id],
+        }),
+    },
+    location: {
+      getLocations: () =>
+        shellClient.invokePluginMethod<Location[]>({
+          plugin: 'location',
+          method: 'getLocations',
         }),
     },
     navigation: clientNavigation(shellClient),
