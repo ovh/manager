@@ -1,0 +1,1 @@
+export const AVERAGE_NUMBER_OF_LEGAL_FORMS = 3;
