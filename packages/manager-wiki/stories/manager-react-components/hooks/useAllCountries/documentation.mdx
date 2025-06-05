@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/blocks';
+import { StorybookHeading } from '../../../../components/';
+
+<Meta title="Manager React Components/Hooks/useAllCountries" />
+
+<StorybookHeading label="Overview" level={2} />
+
+The `useAllCountries` hook is a data mapping utility designed to get a list of countries for all locations coming from the API v2 endpoint `/location`.
+
+<StorybookHeading label="Api" level={2} />
+
+<StorybookHeading label="Parameters" level={3} />
+
+The hook does not take any parameter.
+
+<StorybookHeading label="Return Value" level={3} />
+
+The hook returns a `UseQueryResult` object with:
+- `data`: an array of `Country` objects
+
+```tsx
+type Country = {
+  code: string;
+  name: string;
+};
+```
+
+<StorybookHeading label="Example Usage" level={3} />
+
+```tsx
+import { useAllCountries } from '@ovh-ux/manager-react-components';
+
+function MyComponent() {
+  const { data: allCountries } = useAllCountries();
+}
+```
+
+<StorybookHeading label="Notes" level={3} />
+
+- The hook uses React Query under the hood for efficient data caching and state management
+- The hook use the same `queryFn` and `queryKey` as `useAllLocationByType`, `useCityByCode` and `useLocationsByName` for efficiency

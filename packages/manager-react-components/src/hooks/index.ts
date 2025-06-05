@@ -12,3 +12,4 @@ export {
   useTranslatedMicroRegions,
   isLocalZone,
 } from './region/useTranslatedMicroRegions';
+export * from './location';

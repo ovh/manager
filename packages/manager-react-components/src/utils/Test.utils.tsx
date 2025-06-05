@@ -4,6 +4,11 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import { render } from './test.provider';
+import {
+  locations3AZ,
+  locations1AZ,
+  locationsLZ,
+} from '../__mocks__/locations';
 
 export const mockTrackPage = vitest.fn();
 export const mockGetEnvironment = vitest.fn();
@@ -22,6 +27,11 @@ export const shellContext = {
     },
     ux: {
       hidePreloader: vitest.fn(),
+    },
+    location: {
+      getLocations: vitest.fn(() =>
+        Promise.resolve([...locations3AZ, ...locations1AZ, ...locationsLZ]),
+      ),
     },
   },
 };
