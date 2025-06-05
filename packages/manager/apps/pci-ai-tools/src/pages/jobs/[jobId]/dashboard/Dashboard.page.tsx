@@ -30,6 +30,8 @@ import { useJobData } from '../Job.context';
 import ResourcesSpec from '@/components/resources-spec/ResourcesSpec.component';
 import BillingSupport from '@/components/biling-support/BillingSupport.component';
 import { useGetCommand } from '@/data/hooks/ai/job/useGetCommand.hook';
+import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
+import { JobsRoadmapLinks } from '@/configuration/roadmap-changelog.constants';
 
 const Dashboard = () => {
   const { job, projectId } = useJobData();
@@ -78,14 +80,17 @@ const Dashboard = () => {
     <>
       <div className="flex justify-between w-full items-center">
         <h2>{t('dashboardTitle')}</h2>
-        <Guides
-          section={[
-            GuideSections.cli,
-            GuideSections.ovhaiCli,
-            GuideSections.data,
-            GuideSections.faq,
-          ]}
-        />
+        <div className="flex flex-row gap-2">
+          <RoadmapChangelog links={JobsRoadmapLinks} />
+          <Guides
+            section={[
+              GuideSections.cli,
+              GuideSections.ovhaiCli,
+              GuideSections.data,
+              GuideSections.faq,
+            ]}
+          />
+        </div>
       </div>
       <div
         className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2"

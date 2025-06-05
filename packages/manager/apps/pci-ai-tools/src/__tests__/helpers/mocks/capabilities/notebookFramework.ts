@@ -7,7 +7,7 @@ export const mockedFramework: ai.capabilities.notebook.Framework = {
   logoUrl: 'logo',
   name: 'one-for-all',
   versions: ['version'],
-  type: 'ai',
+  type: 'AI',
 };
 
 export const mockedFrameworkBis: ai.capabilities.notebook.Framework = {
@@ -17,5 +17,5 @@ export const mockedFrameworkBis: ai.capabilities.notebook.Framework = {
   logoUrl: 'logoBis',
   name: 'Tensorflow',
   versions: ['ten1', 'ten2'],
-  type: 'ai',
+  type: 'AI',
 };

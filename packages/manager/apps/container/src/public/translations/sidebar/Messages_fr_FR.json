@@ -75,6 +75,8 @@
   "sidebar_pci_kubernetes_load_balancer": "Load Balancer for MKS",
   "sidebar_pci_private_registry": "Managed Private Registry",
   "sidebar_pci_workflow": "Workflow Management",
+  "sidebar_pci_quantum": "Quantum",
+  "sidebar_pci_quantum_emulators": "Emulators",
   "sidebar_pci_ai_notebooks": "AI Notebooks",
   "sidebar_pci_ai_training": "AI Training",
   "sidebar_pci_ai_app": "AI Deploy",

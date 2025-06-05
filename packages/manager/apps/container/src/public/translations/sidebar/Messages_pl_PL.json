@@ -215,5 +215,7 @@
   "sidebar_security_identity_operations_iam_policies": "Polityki",
   "sidebar_security_identity_operations_iam_api-keys": "Klucze API",
   "sidebar_security_identity_operations_iam_logs": "Logi konta",
-  "sidebar_web_hosting_websites": "Strony WWW"
+  "sidebar_web_hosting_websites": "Strony WWW",
+  "sidebar_pci_quantum": "Ilość",
+  "sidebar_pci_quantum_emulators": "Emulatory"
 }
