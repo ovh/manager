@@ -7,6 +7,7 @@ import {
   DATABASE_UAPP_CONFIG,
   DATA_PLATFORM_CONFIG,
   NOTEBOOKS_UAPP_CONFIG,
+  QUOTA_LIMIT_GUIDES,
 } from './project.constants';
 
 export default class ProjectController {
@@ -36,6 +37,9 @@ export default class ProjectController {
     this.PciProject = PciProject;
     this.CucCloudMessage = CucCloudMessage;
     this.CHANGELOG = CHANGELOG;
+    this.user = coreConfig.getUser();
+    this.quotaGuidesLink =
+      QUOTA_LIMIT_GUIDES[this.user.ovhSubsidiary] || QUOTA_LIMIT_GUIDES.DEFAULT;
 
     const filterByRegion = (list) =>
       list.filter(
