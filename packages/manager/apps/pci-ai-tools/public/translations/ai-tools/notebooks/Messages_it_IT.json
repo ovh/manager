@@ -15,5 +15,6 @@
   "tableActionStart": "Comincia ora",
   "tableActionStop": "Fermare",
   "tableActionDelete": "Eliminare",
-  "deleteTableTooltip": "Il notebook deve essere in stato interrotto"
+  "deleteTableTooltip": "Il notebook deve essere in stato interrotto",
+  "quantumTitle": "Emulatori"
 }

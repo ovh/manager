@@ -15,5 +15,6 @@
   "tableActionStart": "Jetzt loslegen",
   "tableActionStop": "Anhalten",
   "tableActionDelete": "Löschen",
-  "deleteTableTooltip": "Das Notebook muss sich im Status „Beendet“ befinden"
+  "deleteTableTooltip": "Das Notebook muss sich im Status „Beendet“ befinden",
+  "quantumTitle": "Emulatoren"
 }

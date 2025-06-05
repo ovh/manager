@@ -15,5 +15,6 @@
   "tableActionStart": "Iniciar",
   "tableActionStop": "Parar",
   "tableActionDelete": "Eliminar",
-  "deleteTableTooltip": "O notebook deve encontrar-se no estado «parado»"
+  "deleteTableTooltip": "O notebook deve encontrar-se no estado «parado»",
+  "quantumTitle": "Emulators"
 }
