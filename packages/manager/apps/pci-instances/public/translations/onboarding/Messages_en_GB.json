@@ -1,13 +1,13 @@
 {
   "pci_instances_onboarding_not_created_message": "You have not created an instance yet.",
-  "pci_instances_onboarding_content_message_1": "Deploy instances from a wide range of models, and harness the flexibility of the cloud to grow in a way that suits your needs.",
-  "pci_instances_onboarding_content_message_2": "In our catalog of instances, choose the model that suits you from the Sandbox range, with shared resources, the Guaranteed Resources range, with consistent performance for demanding applications, the GPU range, ideal for parallel computing, and the IOPS range, for databases or big data.",
+  "pci_instances_onboarding_content_message_1": "Deploy an option from our range of instances, and harness the flexibility of the cloud to grow in a way that suits your needs.",
+  "pci_instances_onboarding_content_message_2": "Choose an option from our catalogue to suit your requirements from the Sandbox range (shared resources), the Guaranteed Resources range (consistent performance for resource-intensive applications), the GPU range (perfect for parallel computing), and the IOPS range (for databases and big data).",
   "pci_instances_onboarding_advice_message": "You can increase the capacity of your instances at any time to suit your needs. You can also choose flex instances, which can also reduce this capacity.",
   "pci_instances_onboarding_guide_title": "Tutorial",
-  "pci_instances_onboarding_create_instance_title": "Create an instance via the OVH Control Panel",
-  "pci_instances_onboarding_post_install_script_title": "Launch a script when an instance is created",
-  "pci_instances_onboarding_back_up_instance_title": "Back up an instance",
-  "pci_instances_onboarding_instance_introduction_title": "Introduction to instances and other cloud-based concepts",
-  "pci_instances_onboarding_create_instance_description": "This guide will show you how to create an instance on Public Cloud",
-  "pci_instances_onboarding_back_up_instance_description": "Find out how to back up a Public Cloud instance in just a few clicks"
+  "pci_instances_onboarding_create_instance_title": "Create an instance in the OVHcloud Control Panel",
+  "pci_instances_onboarding_post_install_script_title": "Launching a script when an instance is created",
+  "pci_instances_onboarding_back_up_instance_title": "Backing up an instance",
+  "pci_instances_onboarding_instance_introduction_title": "Introduction to instances, and other cloud-based technology",
+  "pci_instances_onboarding_create_instance_description": "This guide will show you how to create a Public Cloud instance",
+  "pci_instances_onboarding_back_up_instance_description": "Find out how to back up a Public Cloud Instance in a few clicks"
 }
