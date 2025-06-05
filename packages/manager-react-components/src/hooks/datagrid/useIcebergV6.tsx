@@ -1,10 +1,13 @@
-import { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import {
   IcebergFetchParamsV6,
   fetchIcebergV6,
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import {
+  useInfiniteQuery,
+  UseInfiniteQueryResult,
+} from '@tanstack/react-query';
 import { defaultPageSize } from './index';
 import { DatagridColumn, useColumnFilters, ColumnSort } from '../../components';
 
@@ -14,6 +17,27 @@ interface IcebergV6Hook<T> {
   shouldFetchAll?: boolean;
   columns?: DatagridColumn<T>[];
 }
+
+export type UseResourcesIcebergV6Result<T> = {
+  data: any;
+  pageIndex: number;
+  totalCount: number;
+  flattenData: T[];
+  hasNextPage: boolean;
+  fetchNextPage: () => Promise<any>;
+  sorting: ColumnSort;
+  setSorting: React.Dispatch<React.SetStateAction<ColumnSort>>;
+  filters: {
+    filters: any[];
+    add: (filter: any) => void;
+    remove: (filter: any) => void;
+  };
+  search: {
+    onSearch: (search: string) => void;
+    searchInput: string;
+    setSearchInput: React.Dispatch<React.SetStateAction<string>>;
+  };
+} & Omit<UseInfiniteQueryResult<any, Error>, 'data'>;
 
 export const API_V6_MAX_PAGE_SIZE = 4999;
 
@@ -30,7 +54,7 @@ export function useResourcesIcebergV6<T = unknown>({
   shouldFetchAll = false,
   columns,
   disableCache,
-}: IcebergFetchParamsV6 & IcebergV6Hook<T>) {
+}: IcebergFetchParamsV6 & IcebergV6Hook<T>): UseResourcesIcebergV6Result<T> {
   const [searchInput, setSearchInput] = useState('');
   const [searchFilter, setSearchFilter] = useState<any>(null);
   const [sorting, setSorting] = useState<ColumnSort>(defaultSorting);

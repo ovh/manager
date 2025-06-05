@@ -1,0 +1,23 @@
+packages:
+  - 'packages/manager/core/api'
+  - 'packages/manager/core/application'
+  - 'packages/manager/core/request-tagger'
+  - 'packages/manager/core/shell'
+  - 'packages/manager/core/sso'
+  - 'packages/manager/core/tailwind-config'
+  - 'packages/manager/core/utils'
+  - 'packages/manager/core/vite-config'
+  - 'packages/manager/apps/pci-vouchers'
+  - 'packages/manager/modules/config'
+  - 'packages/manager/modules/manager-pci-common'
+  - 'packages/manager-react-components'
+  - 'packages/manager/components/ovh-shell'
+
+# https://pnpm.io/settings#linkworkspacepackages
+linkWorkspacePackages: true
+
+# because we are still using yarn
+packageManagerStrict: false
+
+overrides:
+  '@ovh-ux/manager-config': '^8.3.1'
