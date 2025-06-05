@@ -1,8 +1,10 @@
 import { createContext } from 'react';
-import { LegalForm } from '@ovh-ux/manager-config';
+import { Country, LegalForm, Subsidiary } from '@ovh-ux/manager-config';
 
 export type UserContext = {
   legalForm?: LegalForm;
+  country?: Country;
+  ovhSubsidiary?: Subsidiary;
   setLegalForm: (legalForm: LegalForm) => void;
 };
 

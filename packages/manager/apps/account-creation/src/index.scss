@@ -31,6 +31,11 @@ html {
   width: 100%;
 }
 
+.tooltip-trigger,
+.caption-title::part(text) {
+  font-weight: 600;
+}
+
 .reassurance-wording {
   position: absolute;
   width: calc(2 / 3 * 100%);
