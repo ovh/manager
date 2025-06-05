@@ -1,13 +1,13 @@
 {
   "pci_instances_onboarding_not_created_message": "Todavía no ha creado ninguna instancia.",
-  "pci_instances_onboarding_content_message_1": "Despliegue instancias entre una amplia gama de modelos y disfrute de la flexibilidad del cloud para crecer según sus necesidades.",
-  "pci_instances_onboarding_content_message_2": "En nuestro catálogo de instancias, elija el modelo que más le convenga: la gama Sandbox, con recursos compartidos; la gama Guaranteed Resources, con prestaciones constantes para aplicaciones exigentes; la gama GPU, ideal para cálculos paralelos; y la gama IOPS, para bases de datos o big data.",
-  "pci_instances_onboarding_advice_message": "En cualquier momento puede aumentar la capacidad de sus instancias para adaptarlas a sus necesidades. También puede optar por las instancias de tipo flexible, que permiten reducir esta capacidad.",
-  "pci_instances_onboarding_guide_title": "Tutorial",
-  "pci_instances_onboarding_create_instance_title": "Crear una instancia desde el área de cliente",
+  "pci_instances_onboarding_content_message_1": "Despliegue sus instancias eligiendo entre una gran variedad de modelos y disfrute de la flexibilidad del cloud para ir creciendo según sus necesidades.",
+  "pci_instances_onboarding_content_message_2": "Seleccione el modelo de instancia que más le convenga de las gamas de nuestro catálogo: la gama Sandbox, con recursos compartidos; la gama Guaranteed Resources, con un rendimiento constante para las aplicaciones más exigentes; la gama GPU, ideal para cálculos paralelos; y la gama IOPS, para bases de datos y big data.",
+  "pci_instances_onboarding_advice_message": "Podrá aumentar la capacidad de sus instancias en cualquier momento para adaptarlas a sus necesidades. También podrá optar por las instancias de tipo flexible, que permiten reducir su capacidad.",
+  "pci_instances_onboarding_guide_title": "Guía",
+  "pci_instances_onboarding_create_instance_title": "Crear una instancia desde el área de cliente de OVH",
   "pci_instances_onboarding_post_install_script_title": "Lanzar un script al crear una instancia",
-  "pci_instances_onboarding_back_up_instance_title": "Guardar una copia de seguridad (backup) de una instancia",
+  "pci_instances_onboarding_back_up_instance_title": "Guardar una copia de seguridad de una instancia",
   "pci_instances_onboarding_instance_introduction_title": "Introducción a las instancias y otros conceptos cloud",
-  "pci_instances_onboarding_create_instance_description": "Esta guía explica cómo crear una instancia en Public Cloud",
+  "pci_instances_onboarding_create_instance_description": "Cómo crear una instancia en Public Cloud",
   "pci_instances_onboarding_back_up_instance_description": "Cómo realizar el backup de una instancia de Public Cloud en pocos clics"
 }

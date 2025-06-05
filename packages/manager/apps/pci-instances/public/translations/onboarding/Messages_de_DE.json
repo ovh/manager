@@ -1,13 +1,13 @@
 {
   "pci_instances_onboarding_not_created_message": "Sie haben noch keine Instanz erstellt.",
-  "pci_instances_onboarding_content_message_1": "Deployen Sie Instanzen aus einer breiten Palette von Modellen und nutzen Sie die Flexibilität der Cloud, um nach Ihren Bedürfnissen zu wachsen.",
-  "pci_instances_onboarding_content_message_2": "Wählen Sie aus unserem Katalog das für Sie passende Instanz-Modell aus: Sandbox mit geteilten Ressourcen, Guaranteed Resources mit konstanter Performance für anspruchsvolle Applikationen, GPU für parallele Rechenoperationen und IOPS für Datenbanken und Big Data.",
-  "pci_instances_onboarding_advice_message": "Sie können die Kapazität Ihrer Instanzen jederzeit nach Bedarf erhöhen. Sie können sich auch für Instanzen vom Typ flex entscheiden, die diese Kapazität ebenfalls reduzieren.",
+  "pci_instances_onboarding_content_message_1": "Wählen Sie aus unseren vielfältigen Modellen die passenden Instanzen aus und nutzen Sie die Flexibilität der Cloud, um ganz nach Bedarf zu wachsen.",
+  "pci_instances_onboarding_content_message_2": "Suchen Sie sich aus unserem Katalog das für Sie passende Instanz-Modell aus. Bei unserer Sandbox Reihe werden die Ressourcen geteilt, die Reihe Guaranteed Resources bietet konstante Leistung für anspruchsvolle Anwendungen, GPU Instanzen sind ideal für parallele Rechenoperationen und IOPS Instanzen eignen sich für Datenbanken und Big Data.",
+  "pci_instances_onboarding_advice_message": "Sie haben jederzeit die Möglichkeit, die Kapazität Ihrer Instanzen nach Bedarf zu erhöhen. Sie können sich auch für Flex-Instanzen entscheiden, mit denen es außerdem möglich ist, die Kapazität zu verringern.",
   "pci_instances_onboarding_guide_title": "Anleitung",
-  "pci_instances_onboarding_create_instance_title": "Instanz über das Kundencenter erstellen",
-  "pci_instances_onboarding_post_install_script_title": "Skript bei der Erstellung einer Instanz ausführen",
-  "pci_instances_onboarding_back_up_instance_title": "Eine Instanz sichern",
-  "pci_instances_onboarding_instance_introduction_title": "Einführung in Instanzen und andere Cloud-Konzepte",
-  "pci_instances_onboarding_create_instance_description": "In dieser Anleitung erfahren Sie, wie Sie eine Public Cloud Instanz erstellen",
-  "pci_instances_onboarding_back_up_instance_description": "Hier erfahren Sie, wie Sie mit nur wenigen Klicks eine Public Cloud Instanz sichern"
+  "pci_instances_onboarding_create_instance_title": "Instanz im OVH Kundencenter erstellen",
+  "pci_instances_onboarding_post_install_script_title": "Launching a script when an instance is created",
+  "pci_instances_onboarding_back_up_instance_title": "Backup einer Instanz erstellen",
+  "pci_instances_onboarding_instance_introduction_title": "An introduction to instances and other cloud-based terms",
+  "pci_instances_onboarding_create_instance_description": "In dieser Anleitung erfahren Sie, wie Sie eine Public Cloud Instanz erstellen.",
+  "pci_instances_onboarding_back_up_instance_description": "Hier erfahren Sie, wie Sie eine Public Cloud Instanz mit nur wenigen Klicks sichern."
 }
