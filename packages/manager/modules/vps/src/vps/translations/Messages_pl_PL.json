@@ -537,5 +537,14 @@
   "vps_language_pt": "Portugalski",
   "vps_new_range_available_introduction": "Gama serwerów VPS zmienia się, podobnie jak Panel klienta.",
   "vps_new_range_available_call_to_upgrade_1": "Aby skorzystać z nowych funkcji, <a href=\"{{href}}\">zamów nowy model VPS&lt;/a></a> w Panelu klienta, przenieś dane, a następnie zrezygnuj ze starego serwera.",
-  "vps_new_range_available_call_to_upgrade_2": "W tym celu wymień Twoją maszynę <a href=\"{{href}}\">za pomocą kilku kliknięć.</a>"
+  "vps_new_range_available_call_to_upgrade_2": "W tym celu wymień Twoją maszynę <a href=\"{{href}}\">za pomocą kilku kliknięć.</a>",
+  "vps_dashboard_state_backuping": "Trwa wykonywanie kopii zapasowej",
+  "vps_dashboard_state_installing": "Trwa instalacja",
+  "vps_dashboard_state_maintenance": "Trwają prace konserwacyjne",
+  "vps_dashboard_state_rescued": "Tryb rescue",
+  "vps_dashboard_state_rebooting": "Trwa uruchamianie",
+  "vps_dashboard_state_running": "Aktywny",
+  "vps_dashboard_state_stopped": "Zatrzymano",
+  "vps_dashboard_state_stopping": "Wygasanie w trakcie",
+  "vps_dashboard_state_upgrading": "Zmiana oferty w trakcie"
 }
