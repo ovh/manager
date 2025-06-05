@@ -1,3 +1,14 @@
 {
-  "title": "Sélectionnez un type de compte"
+  "title": "Sélectionnez un type de compte",
+  "description": "Besoin d'aide ? <Tooltip>En savoir plus sur les types de comptes</Tooltip>",
+  "legal_form_association": "Association",
+  "legal_form_administration": "Administration publique",
+  "legal_form_corporation": "Entreprise",
+  "legal_form_individual": "Particulier",
+  "legal_form_personalcorporation": "Ditta individuale",
+  "legal_form_tooltip_corporation_description": "Créez un compte pour votre entreprise si vous avez une activité immatriculée, y compris les entreprises unipersonnelles.",
+  "legal_form_tooltip_individual_description": "Créez un compte en tant que particulier si vous n'avez pas d'entreprise immatriculée ou si vous êtes en train de créer votre entreprise.",
+  "legal_form_tooltip_administration_description": "Créez un compte pour votre organisation publique si vous représentez un État, une collectivité territoriale, une organisation ou institution internationale.",
+  "legal_form_tooltip_association_description": "Créez un compte pour votre association si vous êtes inscrite au répertoire national des entreprises et des établissements. Si vous n'êtes pas inscrite, veuillez créer un compte en tant que particulier.",
+  "legal_form_tooltip_personalcorporation_description": "Description Ditta Individuale."
 }
