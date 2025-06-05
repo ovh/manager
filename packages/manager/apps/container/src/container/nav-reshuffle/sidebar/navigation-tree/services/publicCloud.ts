@@ -643,6 +643,32 @@ pciNode.children = [
     ],
   },
   {
+    id: 'pci-quantum',
+    idAttr: 'pci-quantum-link',
+    universe: PUBLICCLOUD_UNIVERSE_ID,
+    translation: 'sidebar_pci_quantum',
+    features: [
+      'pci-quantum-emulators',
+    ],
+    forceVisibility: true,
+    children: [
+      {
+        id: 'pci-quantum-emulators',
+        idAttr: 'pci-quantum-emulators-link',
+        universe: PUBLICCLOUD_UNIVERSE_ID,
+        translation: 'sidebar_pci_quantum_emulators',
+        serviceType: 'CLOUD_PROJECT_QUANTUM_EMULATORS',
+        routing: {
+          application: 'public-cloud',
+          hash: '#/pci/projects/{projectId}/ai-ml/quantum/notebooks',
+        },
+        features: ['pci-quantum-emulators'],
+        forceVisibility: true,
+        tag: NodeTag.NEW
+      },
+    ],
+  },
+  {
     id: 'pci-management-interface',
     idAttr: 'pci-management-interface-link',
     universe: PUBLICCLOUD_UNIVERSE_ID,

@@ -8,7 +8,7 @@ import {
   TerminalSquare,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import {
   Card,
   CardContent,
@@ -31,9 +31,15 @@ import { GuideSections } from '@/configuration/guide';
 import ai from '@/types/AI';
 import { useGetCommand } from '@/data/hooks/ai/notebook/useGetCommand.hook';
 import BillingSupport from '@/components/biling-support/BillingSupport.component';
+import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
+import {
+  EmulatorRoadmapLinks,
+  NotebookRoadmapLinks,
+} from '@/configuration/roadmap-changelog.constants';
 
 const Dashboard = () => {
   const { notebook, projectId } = useNotebookData();
+  const { quantum } = useParams();
   const { t } = useTranslation('ai-tools/notebooks/notebook/dashboard');
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>();
@@ -66,14 +72,23 @@ const Dashboard = () => {
     <>
       <div className="flex justify-between w-full items-center">
         <h2>{t('dashboardTitle')}</h2>
-        <Guides
-          section={[
-            GuideSections.cli,
-            GuideSections.ovhaiCli,
-            GuideSections.data,
-            GuideSections.faq,
-          ]}
-        />
+        <div className="flex flex-row gap-2">
+          <RoadmapChangelog
+            links={
+              quantum === 'quantum'
+                ? EmulatorRoadmapLinks
+                : NotebookRoadmapLinks
+            }
+          />
+          <Guides
+            section={[
+              GuideSections.cli,
+              GuideSections.ovhaiCli,
+              GuideSections.data,
+              GuideSections.faq,
+            ]}
+          />
+        </div>
       </div>
       <div
         className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2"

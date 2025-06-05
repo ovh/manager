@@ -28,7 +28,7 @@ export function useOrderFunnel(
   catalog: publicCatalog.Catalog,
   suggestions: NotebookSuggestions,
 ) {
-  const { projectId } = useParams();
+  const { projectId, quantum } = useParams();
   const orderSchema = z.object({
     region: z.string(),
     flavorWithQuantity: z.object({
@@ -127,7 +127,9 @@ export function useOrderFunnel(
 
   const listFramework: ai.capabilities.notebook.Framework[] = useMemo(() => {
     if (frameworkQuery.isLoading) return [];
-    return frameworkQuery.data;
+    return frameworkQuery.data.filter((fmk) =>
+      quantum === 'quantum' ? fmk.type === 'Quantum' : fmk.type === 'AI',
+    );
   }, [region, frameworkQuery.isSuccess]);
 
   const listEditor: ai.capabilities.notebook.Editor[] = useMemo(() => {
@@ -207,8 +209,13 @@ export function useOrderFunnel(
       (fmk) => fmk.id === suggestedFramework,
     )?.versions[0];
 
-    form.setValue('frameworkWithVersion.framework', suggestedFramework);
-    form.setValue('frameworkWithVersion.version', suggestedFrameworkVersion);
+    if (quantum === 'quantum') {
+      form.setValue('frameworkWithVersion.framework', 'alicebob');
+      form.setValue('frameworkWithVersion.version', '1.2.0-py312-cpu');
+    } else {
+      form.setValue('frameworkWithVersion.framework', suggestedFramework);
+      form.setValue('frameworkWithVersion.version', suggestedFrameworkVersion);
+    }
   }, [regionObject, region, listFramework]);
 
   // Change editors when region change?

@@ -21,7 +21,7 @@ export function breadcrumb() {
 
 const Notebook = () => {
   const { t } = useTranslation('ai-tools/notebooks/create');
-  const { projectId } = useParams();
+  const { projectId, quantum } = useParams();
 
   const suggestionsQuery = useGetSuggestions(projectId, {
     refetchOnWindowFocus: false,
@@ -46,7 +46,9 @@ const Notebook = () => {
     <>
       <div className="flex justify-between w-full items-center">
         <h2>{t('title')}</h2>
-        <Guides section={[GuideSections.notebooks]} />
+        {quantum !== 'quantum' && (
+          <Guides section={[GuideSections.notebooks]} />
+        )}
       </div>
 
       {loading ? (
