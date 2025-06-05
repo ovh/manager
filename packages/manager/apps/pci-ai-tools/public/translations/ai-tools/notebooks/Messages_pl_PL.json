@@ -15,5 +15,6 @@
   "tableActionStart": "Pierwsze kroki",
   "tableActionStop": "Zatrzymaj",
   "tableActionDelete": "Usuń",
-  "deleteTableTooltip": "Notebook musi być w stanie zatrzymania"
+  "deleteTableTooltip": "Notebook musi być w stanie zatrzymania",
+  "quantumTitle": "Emulatory"
 }

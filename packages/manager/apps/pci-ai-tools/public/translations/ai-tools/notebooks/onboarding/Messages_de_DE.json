@@ -12,5 +12,9 @@
   "cardTuto2Description": "Merkmale, Kapazitäten und Grenzen",
   "cardTuto2Content": "Entdecken Sie bei OVHcloud, was ein AI Notebook ist.",
   "cardTuto3Description": "Erste Schritte mit AI Notebooks",
-  "cardTuto3Content": "Hier erfahren Sie, wie Sie Ihr Notebook schnell über Ihr Kundencenter, die Befehlszeile oder die API starten."
+  "cardTuto3Content": "Hier erfahren Sie, wie Sie Ihr Notebook schnell über Ihr Kundencenter, die Befehlszeile oder die API starten.",
+  "quantumTitle": "QUANTENEMULATOREN",
+  "quantumDescription1": "Entdecken Sie die Quantencomputing in aller Freiheit mit unseren gebrauchsfertigen Cloud Notebooks",
+  "quantumDescription2": "Simulieren Sie bis zu 20 Qubit in wenigen Sekunden ohne Installations- oder Konfigurationsaufwand.",
+  "quantumDescription3": "Greifen Sie auf eine vorkonfigurierte Umgebung zu, die mit den wichtigsten Frameworks kompatibel ist (Qiskit, Pulser, MyQLM, Perceval...), und arbeiten Sie einfach über ein gemeinsam genutztes und gesichertes Interface mit Ihren Teams zusammen"
 }
