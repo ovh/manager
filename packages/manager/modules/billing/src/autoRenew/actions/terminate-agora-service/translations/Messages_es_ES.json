@@ -22,5 +22,8 @@
   "autorenew_agora_terminate_service_error_NUTANIX_NODE": "No se ha enviado la solicitud de baja: {{error}}",
   "autorenew_agora_terminate_service_success_VEEAM_ENTERPRISE": "La baja de su licencia «{{serviceName}}» se ha registrado correctamente. Recibirá un correo electrónico con los detalles del procedimiento a seguir.",
   "autorenew_agora_terminate_service_success_ftc_VEEAM_ENTERPRISE": "La baja de su licencia «{{serviceName}}» se ha registrado correctamente. Le hemos enviado un correo de confirmación.",
-  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "No se ha enviado la solicitud de baja: {{error}}"
+  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "No se ha enviado la solicitud de baja: {{error}}",
+  "autorenew_agora_terminate_service_success_IP": "La cancelación de su Additional IP «{{serviceName}}» se ha registrado correctamente. Recibirá un correo electrónico con los detalles del procedimiento a seguir.",
+  "autorenew_agora_terminate_service_success_ftc_IP": "La cancelación de su Additional IP «{{serviceName}}» se ha registrado correctamente. Le hemos enviado un correo de confirmación.",
+  "autorenew_agora_terminate_service_error_IP": "No se ha enviado la solicitud de baja: {{error}}"
 }

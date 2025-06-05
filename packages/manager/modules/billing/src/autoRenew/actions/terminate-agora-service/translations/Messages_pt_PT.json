@@ -22,5 +22,8 @@
   "autorenew_agora_terminate_service_error_NUTANIX_NODE": "O seu pedido de cancelamento não foi registado: {{error}}",
   "autorenew_agora_terminate_service_success_VEEAM_ENTERPRISE": "O cancelamento da sua licença \"{{serviceName}}\" foi registado. Receberá um e-mail com os detalhes do procedimento a seguir.",
   "autorenew_agora_terminate_service_success_ftc_VEEAM_ENTERPRISE": "O cancelamento da sua licença \"{{serviceName}}\" foi registado. Foi-lhe enviado um e-mail de confirmação.",
-  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "O seu pedido de cancelamento não foi registado: {{error}}"
+  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "O seu pedido de cancelamento não foi registado: {{error}}",
+  "autorenew_agora_terminate_service_success_IP": "O cancelamento do Additional IP \"{{serviceName}}\" foi registado. Receberá um e-mail com os detalhes do procedimento a seguir.",
+  "autorenew_agora_terminate_service_success_ftc_IP": "O cancelamento do Additional IP \"{{serviceName}}\" foi registado. Foi-lhe enviado um e-mail de confirmação.",
+  "autorenew_agora_terminate_service_error_IP": "O seu pedido de cancelamento não foi registado: {{error}}"
 }
