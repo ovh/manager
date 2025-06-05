@@ -34,7 +34,7 @@
   "pci_instances_actions_reinstall_instance_success_message": "Trwa ponowna instalacja instancji {{ name }}. Może to potrwać kilka minut.",
   "pci_instances_actions_backup_instance_title": "Tworzenie kopii zapasowej",
   "pci_instances_actions_backup_instance_name_label": "Wpisz nazwę kopii zapasowej:",
-  "pci_instances_actions_backup_instance_price": "Cena: ~{{price}} nett/m-c/GB",
+  "pci_instances_actions_backup_instance_price": "Cena: ~{{price}}/m-c/GB",
   "pci_instances_actions_backup_instance_warning_message": "Twoja instancja będzie zawieszona przez kilka sekund. Następnie wydajność odczytu/zapisu dysku może się zmniejszyć, aż do zakończenia tworzenia kopii.",
   "pci_instances_actions_backup_instance_error_message": "Wystąpił błąd podczas tworzenia kopii zapasowej instancji {{ name }}: {{ error }}",
   "pci_instances_actions_backup_instance_success_message": "Trwa tworzenie kopii zapasowej {{ name }}.",
