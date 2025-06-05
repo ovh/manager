@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
 import { fetch } from 'cross-fetch';
+
 global.fetch = fetch;
 
 vi.mock('react-i18next', () => ({
@@ -23,7 +24,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
 });
 
 vi.mock('react-router-dom', async (importOriginal) => {
-  const actual: any = await importOriginal();
+  const actual: typeof import('react-router-dom') = await importOriginal();
   return {
     ...actual,
   };

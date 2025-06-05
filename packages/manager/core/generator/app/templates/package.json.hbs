@@ -13,7 +13,7 @@
   "scripts": {
     "build": "tsc && vite build",
     "coverage": "manager-test run --coverage",
-    "lint": "eslint ./src",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "start": "vite",
     "test": "manager-test run"
   },
@@ -27,6 +27,7 @@
     {{/if}}
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "*",
     "@ovhcloud/ods-components": "^18.3.0",
     "@ovhcloud/ods-themes": "^18.3.0",

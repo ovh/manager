@@ -1,9 +1,11 @@
 import { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 {{#if isPCI}}
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
+
 {{/if}}
 export type BreadcrumbItem = {
   label: string | undefined;
@@ -66,7 +68,11 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
   useEffect(() => {
     const fetchRoot = async () => {
       try {
-        const response = await shell?.navigation.getURL(appName as string, '#/', {});
+        const response = await shell?.navigation.getURL(
+          appName as string,
+          '#/',
+          {},
+        );
         const rootItem = {
           label: rootLabel,
           href: String(response),
