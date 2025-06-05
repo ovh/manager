@@ -24,7 +24,7 @@ import appConfig from '@/{{appName}}.config';
 export default function Listing() {
   const myConfig = appConfig;
   const serviceKey = myConfig.listing?.datagrid?.serviceKey;
-  const [columns, setColumns] = useState<any>([]);
+  const [columns, setColumns] = useState<Array<Record<string, unknown>>>([]);
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation('listing');
@@ -67,31 +67,39 @@ export default function Listing() {
 
   // Code to remove and declare definition columns in const variable
   useEffect(() => {
-    if (columns.length === 0 && status === 'success' && flattenData?.length > 0) {
-      const newColumns = Object.keys(flattenData[0] as object)
+    if (
+      columns.length === 0 &&
+      status === 'success' &&
+      flattenData?.length > 0
+    ) {
+      const newColumns = Object.keys(flattenData[0] as Record<string, unknown>)
         .filter((element) => element !== 'iam')
         .map((element) => ({
           id: element,
           label: element,
           isFilterable: true,
           isSearchable: true,
-          // @ts-ignore
           type: dataType(flattenData[0][element]),
-          // @ts-ignore
-          ...(comparatorType[dataType(flattenData[0][element])] && {
-            // @ts-ignore
-            comparator: comparatorType[dataType(flattenData[0][element])],
+                    ...(comparatorType[
+            (dataType(flattenData[0][element]) as string).charAt(0).toUpperCase() +
+              (dataType(flattenData[0][element]) as string).slice(1)
+          ] && {
+            comparator:
+              comparatorType[
+                (dataType(flattenData[0][element]) as string).charAt(0).toUpperCase() +
+                  (dataType(flattenData[0][element]) as string).slice(1)
+              ],
           }),
-          cell: (props: any) => {
-            const label = props[element] as string;
+          cell: (props: Record<string, unknown>) => {
+            const label = props[element] as string | number;
             if (typeof label === 'string' || typeof label === 'number') {
               if (serviceKey === element)
                 return (
                   <DataGridTextCell>
                     <OdsButton
                       variant={ODS_BUTTON_VARIANT.ghost}
-                      onClick={() => navigateToDashboard(label)}
-                      label={label}
+                      onClick={() => navigateToDashboard(label as string)}
+                      label={label as string}
                     />
                   </DataGridTextCell>
                 );
@@ -108,8 +116,8 @@ export default function Listing() {
     const { response }: any = error;
     const errorObj = {
       data: error,
-      headers: response.headers,
-      status: response.status,
+      headers: response?.headers,
+      status: response?.status,
     };
     return (
       <ErrorBanner

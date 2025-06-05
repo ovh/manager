@@ -1,9 +1,7 @@
-import React from 'react';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import { describe, it, vi, expect } from 'vitest';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Listing from './index';
+import { QueryClient } from '@tanstack/react-query';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   BaseLayout: vi.fn().mockReturnValue(<div></div>),

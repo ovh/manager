@@ -17,6 +17,8 @@ import {
 
 const appDirectory = dirname(fileURLToPath(import.meta.url));
 
+const UNIVERSES_LOCAL = UNIVERSES;
+
 const toChoice = ({ apiPath, functionName }) => ({
   name: apiPath,
   value: `${apiPath}-${functionName}`,
@@ -35,8 +37,8 @@ const getApiV2AndV6GetEndpointsChoices = ({
 ];
 
 const apiComputed = (data) => {
-  let apiV6Computed,
-    apiV2Computed = {};
+  let apiV6Computed;
+  let apiV2Computed = {};
   if (data.mainApiPathApiVersion === 'v6') {
     apiV6Computed = {
       get: {
@@ -67,6 +69,15 @@ const apiComputed = (data) => {
 };
 
 export default (plop) => {
+  // Register a custom Handlebars helper to quote property names only if needed
+  plop.handlebars.registerHelper('quoteIfNeeded', function(name) {
+    return name.includes('-') ? `'${name}'` : name;
+  });
+  // Register a custom Handlebars helper for equality check
+  plop.handlebars.registerHelper('eq', function(a, b) {
+    return a === b;
+  });
+
   plop.setGenerator('app', {
     description: 'Create a React app',
     prompts: [
@@ -105,11 +116,11 @@ export default (plop) => {
         type: 'checkbox',
         name: 'universes',
         message: 'what are the universes of the new app ?',
-        choices: UNIVERSES.map((element) => ({
+        choices: UNIVERSES_LOCAL.map((element) => ({
           name: element,
           value: element,
         })),
-        validate: (UNIVERSES) => UNIVERSES.length > 0,
+        validate: (universes) => universes.length > 0,
       },
       {
         type: 'checkbox',
@@ -154,7 +165,8 @@ export default (plop) => {
         when: (data) => {
           data.isPCI = data.appName.indexOf('pci') > -1;
           if (data.isPCI) {
-            data.pciName = data.appName.split('pci-')[1];
+            const [, pciName] = data.appName.split('pci-');
+            data.pciName = pciName;
           }
           data.isApiV6 = data.apiV6Endpoints.get?.operationList.length > 0;
           data.isApiV2 = data.apiV2Endpoints.get?.operationList.length > 0;
@@ -173,6 +185,7 @@ export default (plop) => {
           if (data.isPCI) {
             data.mainApiPathPci = listingPath.replace(
               data.isApiV2 ? '{projectId}' : '{serviceName}',
+              // eslint-disable-next-line no-template-curly-in-string
               '${projectId}',
             );
           }
@@ -208,7 +221,7 @@ export default (plop) => {
         type: 'list',
         name: 'universe',
         message: 'What is the universe of the app ? (tracking)',
-        choices: UNIVERSES.map((element) => ({
+        choices: UNIVERSES_LOCAL.map((element) => ({
           name: element,
           value: element,
         })),

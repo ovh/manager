@@ -1,6 +1,6 @@
 import React, { useState, useEffect, startTransition } from 'react';
 import { useTranslation } from 'react-i18next';
-import { {{#if isPCI }}useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
+import { {{#if isPCI }}useParams, {{/if}}useNavigate, useLocation } from 'react-router-dom';
 
 import { OdsButton, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
@@ -8,10 +8,10 @@ import {
   BaseLayout,
   Breadcrumb,
   Datagrid,
-  dataType,
   DataGridTextCell,
   ErrorBanner,
   useResourcesIcebergV2,
+  DatagridColumn,
 } from '@ovh-ux/manager-react-components';
 
 import appConfig from '@/{{appName}}.config';
@@ -21,7 +21,9 @@ export default function Listing() {
   const { t } = useTranslation('listing');
   const myConfig = appConfig;
   const serviceKey = myConfig.listing?.datagrid?.serviceKey;
-  const [columns, setColumns] = useState<any>([]);
+  const [columns, setColumns] = useState<
+    DatagridColumn<Record<string, unknown>>[]
+  >([]);
   const navigate = useNavigate();
   const location = useLocation();
   {{#if isPCI }}
@@ -49,32 +51,31 @@ export default function Listing() {
     startTransition(() => navigate(`${path}${label}`));
   };
 
-  // Code to remove and declare definition columns in const variable
   useEffect(() => {
     if (status === 'success' && data?.pages[0].data.length === 0) {
       navigate(urls.onboarding);
     } else if (status === 'success' && data?.pages.length > 0 && !flattenData) {
-      const tmp = Object.keys(data?.pages[0].data[0] as object)
+      const tmp = Object.keys(data?.pages[0].data[0] as Record<string, unknown>)
         .filter((element) => element !== 'iam')
         .map((element) => ({
           id: element,
           label: element,
-          cell: (props: any) => {
-            const label = props[element] as string;
+          cell: (props: Record<string, unknown>): JSX.Element => {
+            const label = props[element] as string | number;
             if (typeof label === 'string' || typeof label === 'number') {
               if (serviceKey === element)
                 return (
                   <DataGridTextCell>
                     <OdsButton
                       variant={ODS_BUTTON_VARIANT.ghost}
-                      onClick={() => navigateToDashboard(label)}
-                      label={label}
+                      onClick={() => navigateToDashboard(label.toString())}
+                      label={label.toString()}
                     />
                   </DataGridTextCell>
                 );
-              return <DataGridTextCell>{label}</DataGridTextCell>;
+              return <DataGridTextCell>{label.toString()}</DataGridTextCell>;
             }
-            return <div>-</div>;
+            return <DataGridTextCell>-</DataGridTextCell>;
           },
         }));
       setColumns(tmp);
@@ -82,18 +83,23 @@ export default function Listing() {
   }, [data]);
 
   if (isError) {
-    const { response }: any = error;
+    const response =
+      error && typeof error === 'object' && 'response' in error
+        ? (error as { response?: { headers?: unknown; status?: unknown } })
+            .response
+        : undefined;
     const errorObj = {
       data: error,
-      headers: response.headers,
-      status: response.status,
+      headers: response?.headers as unknown,
+      status:
+        typeof response?.status === 'number' ? response.status : undefined,
     };
-    return (<ErrorBanner error={errorObj} />);
+    return <ErrorBanner error={errorObj} />;
   }
 
   if (isLoading && !flattenData) {
     return (
-      <div className="flex justify-center"  data-testid="listing-page-spinner">
+      <div className="flex justify-center" data-testid="listing-page-spinner">
         <OdsSpinner />
       </div>
     );
@@ -105,19 +111,14 @@ export default function Listing() {
 
   return (
     <BaseLayout
-      breadcrumb={
-        <Breadcrumb
-          rootLabel={appConfig.rootLabel}
-          appName="{{appName}}"
-        />
-      }
+      breadcrumb={<Breadcrumb rootLabel={appConfig.rootLabel} appName="{{appName}}" />}
       header={header}
     >
       <React.Suspense>
         {columns && flattenData && (
           <Datagrid
             columns={columns}
-            items={flattenData || []}
+            items={(flattenData as Record<string, unknown>[]) || []}
             totalItems={0}
             onFetchNextPage={fetchNextPage}
             hasNextPage={hasNextPage && !isLoading}
