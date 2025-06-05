@@ -12,12 +12,57 @@ export default class {
     this.accountMigrationService = accountMigrationService;
     this.atInternet = atInternet;
     this.UserAccountServicesAgreements = UserAccountServicesAgreements;
+    this.agreements = null;
+    this.currentAgreement = null;
+    this.loading = true;
+    this.error = false;
+    this.primaryLabel = '';
+    this.secondaryLabel = '';
   }
 
   $onInit() {
     this.currentAgreementIndex = 0;
-    this.currentAgreement = this.agreements[this.currentAgreementIndex];
+    this.getAgreements();
     this.AgreementUnderProcess = false;
+  }
+
+  getAgreements() {
+    this.loading = true;
+    this.UserAccountServicesAgreements.getToValidate()
+      .then((result) => {
+        const parsedContractId = parseInt(this.contractId, 10);
+        this.agreements = parsedContractId
+          ? result.list.results.filter(
+              (agreement) => agreement.contractId === parsedContractId,
+            )
+          : result.list.results;
+
+        if (this.agreements?.length) {
+          this.currentAgreement = this.agreements[this.currentAgreementIndex];
+          this.secondaryLabel = 'wizard_cancel';
+          this.primaryLabel =
+            this.currentAgreementIndex === this.agreements.length - 1
+              ? 'user_agreements_accept'
+              : 'user_agreements_accept_all_accept_and_next';
+        } else {
+          this.primaryLabel = 'user_agreements_accept_all_ok';
+        }
+      })
+      .catch(() => {
+        this.error = true;
+        this.primaryLabel = 'user_agreements_accept_all_ok';
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  }
+
+  primaryAction() {
+    if ((!this.loading && !this.agreements.length) || this.error) {
+      this.goBack(false, 'success', true);
+    } else {
+      this.acceptAndNext();
+    }
   }
 
   acceptAndNext() {

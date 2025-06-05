@@ -1,29 +1,14 @@
-import head from 'lodash/head';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('billing.autorenew.agreements.popup-agreement', {
-    url: '/popup-agreement',
+    url: '/popup-agreement?contractId',
     views: {
       modal: {
         component: 'billingAutorenewPopupAgreement',
       },
     },
-    params: {
-      agreements: null,
-    },
     layout: 'modal',
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      activateAutorenew: /* @ngInject */ (BillingAutoRenew, nicRenew) => () =>
-        BillingAutoRenew.enableAutorenew(head(nicRenew.renewDays)),
-      agreements: /* @ngInject */ (
-        $transition$,
-        UserAccountServicesAgreements,
-      ) =>
-        $transition$.params().agreements ||
-        UserAccountServicesAgreements.getToValidate().then(
-          (result) => result.list.results,
-        ),
       goBack: /* @ngInject */ ($state, $timeout, Alerter) => (
         message = false,
         type = 'success',
@@ -47,6 +32,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      contractId: /* @ngInject */ ($transition$) =>
+        $transition$.params().contractId,
       breadcrumb: () => null,
     },
   });
