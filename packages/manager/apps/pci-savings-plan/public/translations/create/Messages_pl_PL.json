@@ -14,7 +14,7 @@
   "quantity_banner_see_more": "Dowiedz się więcej",
   "quantity_banner_instance": "Maksymalna ilość zasobów, które możesz uruchomić zależy od limitu Twojego projektu Public Cloud. Więcej informacji na temat limitów znajdziesz na stronie: ",
   "quantity_banner_instance_link": "Quota and Regions",
-  "quantity_banner_rancher": "Minimalną jednostką rozliczeniową w przypadku Managed Rancher Service jest 20 vCPU. Możesz jednak utworzyć Savings Plan z rozliczeniem począwszy od 1 vCPU.",
+  "quantity_banner_rancher": "Minimalne zużycie dla Managed Rancher wynosi 20 vCPU per Rancher. Możesz jednak wykupić jeden lub kilka Savings Plan już od 1 vCPU. Wykupione vCPU zostaną odliczone od całkowitej liczby wykorzystanych vCPU.",
   "select_commitment": "Wybierz czas trwania umowy terminowej",
   "select_commitment_description": "Dłuższy czas trwania umowy terminowej uprawnia do wyższego rabatu.",
   "choose_name": "Podaj nazwę",
@@ -46,5 +46,7 @@
   "choose_deployment_description": "Wybierz optymalną konfigurację, aby zapewnić dostępność, odporność i odpowiedni czas odpowiedzi w zależności od zastosowań.",
   "region": "Region",
   "deployment_one_az": "Wdrożenia zapewniające odporność infrastruktury i efektywność kosztową w 1 strefie dostępności.",
-  "deployment_three_az": "Wdrożenia zapewniające odporność infrastruktury i dostępność krytycznych aplikacji w 3 strefach dostępności."
+  "deployment_three_az": "Wdrożenia zapewniające odporność infrastruktury i dostępność krytycznych aplikacji w 3 strefach dostępności.",
+  "choose_ressource_description_info": "Zarządzasz swoimi usługami jak dotychczas. Platforma automatycznie oblicza zużycie na podstawie konfiguracji Savings Plans i wykorzystania istniejących lub przyszłych zasobów.",
+  "select_quantity_description_rancher_info": "Rancher jest fakturowany za godzinę, w oparciu o całkowitą liczbę vCPU w każdym z węzłów roboczych w „downstream clusters”. vCPU węzłów typu control-plane nie są fakturowane."
 }

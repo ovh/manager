@@ -14,7 +14,7 @@
   "quantity_banner_see_more": "Scopri di più",
   "quantity_banner_instance": "La quantità massima di risorse che è possibile avviare varia in base alla quota del tuo progetto Public Cloud. Per maggiori informazioni sulle tue quote, consulta questa pagina: ",
   "quantity_banner_instance_link": "Quota and Regions",
-  "quantity_banner_rancher": "La soluzione Managed Rancher Service è fatturata per un minimo di 20 vCPU. È però possibile creare un Savings Plan a partire da 1 vCPU.",
+  "quantity_banner_rancher": "Il consumo minimo per Managed Rancher Service è di 20 vCPU per Rancher, ma è possibile creare uno o più Savings Plan a partire da 1 vCPU. Le vCPU sottoscritte saranno detratte dal numero totale di vCPU consumate.",
   "select_commitment": "Selezionare la durata dell’impegno contrattuale",
   "select_commitment_description": "Un impegno contrattuale con durata superiore consente di usufruire di uno sconto maggiore.",
   "choose_name": "Specificare un nome",
@@ -46,5 +46,7 @@
   "choose_deployment_description": "Seleziona la configurazione ottimale per garantire la disponibilità, resilienza e latenza più appropriata per i tuoi dati in base alle modalità di utilizzo.",
   "region": "Region",
   "deployment_one_az": "Deploy resiliente ed economico su 1 zona di disponibilità.",
-  "deployment_three_az": "Deploy ad alta resilienza/alta disponibilità per le tue applicazioni critiche su 3 zone di disponibilità."
+  "deployment_three_az": "Deploy ad alta resilienza/alta disponibilità per le tue applicazioni critiche su 3 zone di disponibilità.",
+  "choose_ressource_description_info": "Continui a gestire i tuoi servizi come d’abitudine. La piattaforma calcola automaticamente l’utilizzo in base alle configurazioni dei tuoi Savings Plan e al consumo delle tue risorse esistenti o future.",
+  "select_quantity_description_rancher_info": "Rancher verrà fatturato in base al numero totale di vCPU di ciascun nodo di lavoro dei tuoi \"downstream cluster\". Le vCPU dei nodi di tipo “controle-plane” non vengono fatturate."
 }

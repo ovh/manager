@@ -14,7 +14,7 @@
   "quantity_banner_see_more": "Más información",
   "quantity_banner_instance": "La cantidad máxima de recursos que puede iniciar depende del límite de su proyecto Public Cloud Para más información sobre sus cuotas, consulte la siguiente página: ",
   "quantity_banner_instance_link": "Quota and Regions",
-  "quantity_banner_rancher": "El servicio Managed Rancher se factura por un mínimo de 20 vCPU. Sin embargo, puede crear un Savings Plan a partir de 1 vCPU.",
+  "quantity_banner_rancher": "El consumo mínimo para Managed Rancher Service es de 20 vCPU por Rancher, pero puede crear uno o varios Saving Plans a partir de 1 vCPU. Las vCPU contratadas se descontarán del número total de vCPU consumidas.",
   "select_commitment": "Seleccionar la duración del compromiso de permanencia",
   "select_commitment_description": "Un compromiso de permanencia más largo le otorga un descuento mayor.",
   "choose_name": "Especificar un nombre",
@@ -46,5 +46,7 @@
   "choose_deployment_description": "Seleccione la configuración óptima para garantizar la disponibilidad, la resiliencia y la latencia más adecuadas para los datos en función de sus casos de uso.",
   "region": "Región",
   "deployment_one_az": "Implementación resiliente y económica en 1 zona de disponibilidad.",
-  "deployment_three_az": "Despliegue de alta resiliencia/alta disponibilidad para sus aplicaciones críticas en 3 zonas de disponibilidad."
+  "deployment_three_az": "Despliegue de alta resiliencia/alta disponibilidad para sus aplicaciones críticas en 3 zonas de disponibilidad.",
+  "choose_ressource_description_info": "Con este modelo podrá seguir gestionando sus servicios con total normalidad. La plataforma calcula automáticamente su uso en función de la configuración de sus Savings Plans y del consumo de sus recursos existentes o futuros.",
+  "select_quantity_description_rancher_info": "Rancher se factura en función del número total de vCPU de cada nodo de trabajo de sus «downstream clusters». Los vCPU de los nodos de tipo plano de control no se facturan."
 }
