@@ -46,9 +46,15 @@ export default class VolumeCreateCtrl {
     this.NetAppDashboardService.getManualsnapshots(
       this.eligibleVolumes,
       this.storage,
-    ).then((result) => {
+    ).then((results) => {
       this.isLoading = false;
-      this.manualSnaphost = [...this.manualSnaphost, ...result.flat()];
+      this.manualSnaphost = [
+        ...this.manualSnaphost,
+        ...results.flat().filter((snapshot) => {
+          const newVolumeSize = snapshot?.size;
+          return (newVolumeSize ?? 0) < this.availableVolumeSize;
+        }),
+      ];
     });
   }
 
