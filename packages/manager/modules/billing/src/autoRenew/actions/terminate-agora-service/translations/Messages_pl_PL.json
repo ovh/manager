@@ -22,5 +22,8 @@
   "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Dyspozycja rezygnacji nie została zarejestrowana: {{error}}",
   "autorenew_agora_terminate_service_success_VEEAM_ENTERPRISE": "Rezygnacja z licencji „{{serviceName}}” została zarejestrowana. Otrzymasz e-mail ze szczegółami procedury.",
   "autorenew_agora_terminate_service_success_ftc_VEEAM_ENTERPRISE": "Rezygnacja z licencji „{{serviceName}}” została zarejestrowana. Wiadomość z potwierdzeniem została wysłana na Twój adres e-mail.",
-  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "Dyspozycja rezygnacji nie została zarejestrowana: {{error}}"
+  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "Dyspozycja rezygnacji nie została zarejestrowana: {{error}}",
+  "autorenew_agora_terminate_service_success_IP": "Rezygnacja z usługi Additional IP „{{serviceName}}” została zarejestrowana. Otrzymasz e-mail ze szczegółami procedury.",
+  "autorenew_agora_terminate_service_success_ftc_IP": "Rezygnacja z usługi Additional IP „{{serviceName}}” została zarejestrowana. Wiadomość e-mail z potwierdzeniem została wysłana na Twój adres e-mail.",
+  "autorenew_agora_terminate_service_error_IP": "Dyspozycja rezygnacji nie została zarejestrowana: {{error}}"
 }
