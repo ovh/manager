@@ -1,3 +1,9 @@
 {
-  "title": "Sélectionnez un type de compte"
+  "title": "Sélectionnez un type de compte",
+  "description": "Besoin d'aide ? <Tooltip>En savoir plus sur les types de comtpes</Tooltip>",
+  "legal_form_association": "Association",
+  "legal_form_administration": "Administration publique",
+  "legal_form_corporation": "Entreprise",
+  "legal_form_individual": "Particulier",
+  "legal_form_personalcorporation": "Ditta individuale"
 }

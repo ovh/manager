@@ -2,6 +2,7 @@ import { createContext } from 'react';
 
 export type UserContext = {
   legalForm?: string;
+  ovhSubsidiary?: string;
   setLegalForm: (legalForm: string) => void;
 };
 

@@ -10,9 +10,12 @@ type Props = {
 
 export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const navigate = useNavigate();
-  const { data: me, isFetched, error, refetch } = useMe({ retry: 0 });
+  const { data: me, isFetched, error } = useMe({ retry: 0 });
   // We will need to add states for country and language to prefill the /info form
   const [legalForm, setLegalForm] = useState<string | undefined>(undefined);
+  const [ovhSubsidiary, setOvhSubsidiary] = useState<string | undefined>(
+    undefined,
+  );
 
   useEffect(() => {
     if (isFetched) {
@@ -20,13 +23,14 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
         navigate(urls.preferences);
       } else {
         setLegalForm(me?.legalform);
+        setOvhSubsidiary(me?.ovhSubsidiary);
         navigate(urls.accountType);
       }
     }
   }, [isFetched]);
 
   return (
-    <userContext.Provider value={{ legalForm, setLegalForm }}>
+    <userContext.Provider value={{ legalForm, setLegalForm, ovhSubsidiary }}>
       {children}
     </userContext.Provider>
   );
