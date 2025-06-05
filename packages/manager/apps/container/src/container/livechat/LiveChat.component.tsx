@@ -215,7 +215,7 @@ export default function LiveChat({
               onClick={() => handleReduceChat(true)}
             >
               <OsdsIcon
-                name={ODS_ICON_NAME.SPEECH_BUBBLE_CONCEPT}
+                name={ODS_ICON_NAME.CLOSE}
                 size={ODS_ICON_SIZE.md}
                 className="m-2"
                 contrasted
