@@ -2,7 +2,7 @@ import React from 'react';
 import { RouteObject } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
-import { urls } from '@/routes/routes.constant';
+import { subRoutes, urls } from '@/routes/routes.constant';
 
 const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   return {
@@ -33,6 +33,21 @@ export const Routes: any = [
             pageType: PageType.listing,
           },
         },
+        children: [
+          {
+            id: 'listing-terminate',
+            path: `${subRoutes.terminate}/:id`,
+            ...lazyRouteConfig(() =>
+              import('@/pages/terminate/TerminateOrganization.page'),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'terminate',
+                pageType: PageType.popup,
+              },
+            },
+          },
+        ],
       },
       {
         path: urls.dashboard,
@@ -81,6 +96,19 @@ export const Routes: any = [
                 handle: {
                   tracking: {
                     pageName: 'edit-description',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
+              {
+                id: 'dashboard-terminate',
+                path: subRoutes.terminate,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/terminate/TerminateOrganization.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'terminate',
                     pageType: PageType.popup,
                   },
                 },
