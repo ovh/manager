@@ -200,6 +200,32 @@ export const TERRAFORM_GUIDES = {
   QC: 'https://docs.ovh.com/ca/fr/publiccloud/databases/order-terraform/',
   SG: 'https://docs.ovh.com/sg/en/publiccloud/databases/order-terraform/',
 };
+/**
+ *
+ * @type {Partial<Record<import('manager-react-components').OvhSubsidiary | 'DEFAULT', string>>}
+ */
+export const QUOTA_LIMIT_GUIDES = {
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050843',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050840',
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050843',
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050836',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050838',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050852',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050844',
+  WE:
+    'https://help.ovhcloud.com/csm/en-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050845',
+  IN:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050836',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050857',
+};
 
 export const DISCOVERY_PROMOTION_VOUCHER = 'FREETRIAL';
 
