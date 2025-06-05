@@ -43,16 +43,14 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       shellClient.ux.notifyModalActionDone('AgreementsUpdateModal');
     },
     resolve: {
-      gotoAcceptAllAgreements: /* @ngInject */ ($state, atInternet) => (
-        agreements,
-      ) => {
+      gotoAcceptAgreements: /* @ngInject */ ($state, atInternet) => (id) => {
         atInternet.trackClick({
           name:
             'dedicated::account::billing::autorenew::agreements::go-to-accept-all',
           type: 'action',
         });
         return $state.go('billing.autorenew.agreements.popup-agreement', {
-          agreements,
+          id,
         });
       },
       breadcrumb: /* @ngInject */ ($translate) =>

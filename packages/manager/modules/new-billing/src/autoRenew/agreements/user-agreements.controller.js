@@ -15,10 +15,11 @@ export default class UserAccountAgreementsController {
     this.UserAccountServicesAgreements = UserAccountServicesAgreements;
 
     this.loaders = {
-      toActivate: true,
-      toActivateList: true,
+      toActivate: false,
     };
+
     this.toActivate = [];
+    this.toActivateCount = 0;
     this.agreed = {};
   }
 
@@ -54,8 +55,6 @@ export default class UserAccountAgreementsController {
       });
     }
 
-    this.getToValidate();
-
     if (this.sorting?.predicate) {
       this.columnsConfig = COLUMNS_CONFIG.map((column) =>
         column.property === this.sorting.predicate
@@ -77,6 +76,9 @@ export default class UserAccountAgreementsController {
     )
       .then(
         (agreements) => {
+          this.toActivateCount = agreements.list.results.filter(
+            (agreement) => agreement.state === 'TODO',
+          ).length;
           return {
             data: agreements.list.results,
             meta: {
@@ -91,6 +93,7 @@ export default class UserAccountAgreementsController {
             )} ${err?.message || err}`,
             'agreements_alerter',
           );
+
           return {
             data: [],
             meta: {
