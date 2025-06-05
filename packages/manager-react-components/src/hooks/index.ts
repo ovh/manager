@@ -21,5 +21,6 @@ export {
   useTranslatedMicroRegions,
   isLocalZone,
 } from './region/useTranslatedMicroRegions';
+export * from './location';
 
 export type TRegion = Region;
