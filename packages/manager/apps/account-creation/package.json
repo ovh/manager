@@ -12,10 +12,10 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
-    "coverage": "vitest run --coverage",
+    "coverage": "manager-test run --coverage",
     "lint": "eslint ./src",
     "start": "tsc && vite",
-    "test": "vitest run"
+    "test": "manager-test run"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.3.1",
@@ -39,17 +39,12 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
+    "@ovh-ux/manager-tests-setup": "^0.1.0",
     "@ovh-ux/manager-vite-config": "^0.9.3",
     "@tanstack/react-query-devtools": "^5.51.21",
-    "@testing-library/dom": "^10.1.0",
-    "@testing-library/jest-dom": "^6.4.6",
-    "@testing-library/react": "^16.0.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "@vitest/coverage-v8": "^2.1.9",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.1.6",
-    "vite": "^6.0.7",
-    "vitest": "^2.1.9"
+    "vite": "^6.0.7"
   },
   "regions": [
     "CA",
