@@ -37,6 +37,7 @@ describe('Registry API Tests', () => {
         updatedAt: '2024-01-03',
         url: 'https://example.com/registry',
         version: '1.0',
+        iamEnabled: false,
         plan: {
           id: 'plan1',
           name: 'SMALL',
@@ -76,6 +77,7 @@ describe('Registry API Tests', () => {
       updatedAt: '2024-01-03',
       url: 'https://example.com/registry',
       version: '1.0',
+      iamEnabled: false,
       plan: {
         id: 'plan1',
         name: 'SMALL',

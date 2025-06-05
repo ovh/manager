@@ -28,10 +28,21 @@ export default function ActionComponent({
   const hrefRegenerateCredentials = useHref(`${registry?.id}/credentials`);
   const hrefManageCIDR = useHref(`${registry?.id}/manage-cidr`);
   const hrefDelete = useHref(`./delete?registryId=${registry.id}`);
+  const hrefManageIAM = useHref(`${registry?.id}/iam`);
 
   const items = [
     {
       id: 0,
+      label: t('private_registry_rename'),
+      href: hrefRename,
+      onClick: () =>
+        tracking?.trackClick({
+          name: 'PCI_PROJECTS_PRIVATEREGISTRY_UPDATE',
+          type: 'action',
+        }),
+    },
+    {
+      id: 1,
       label: t('private_registry_upgrade_plan'),
       href: hrefUpgradePlan,
       disabled:
@@ -45,7 +56,7 @@ export default function ActionComponent({
         }),
     },
     {
-      id: 1,
+      id: 2,
       label: t('private_registry_harbor_ui'),
       href: hrefHarborUI,
       disabled: registry.status !== PRIVATE_REGISTRY_STATUS.READY,
@@ -57,7 +68,7 @@ export default function ActionComponent({
         }),
     },
     {
-      id: 2,
+      id: 3,
       label: t('private_registry_harbor_api'),
       href: hrefHarborAPI,
       disabled: registry.status !== PRIVATE_REGISTRY_STATUS.READY,
@@ -68,10 +79,12 @@ export default function ActionComponent({
         }),
     },
     {
-      id: 3,
+      id: 4,
       label: t('private_registry_regenerate_creds'),
       href: hrefRegenerateCredentials,
-      disabled: registry.status !== PRIVATE_REGISTRY_STATUS.READY,
+      disabled:
+        registry.status !== PRIVATE_REGISTRY_STATUS.READY ||
+        registry.iamEnabled,
       onClick: () =>
         tracking?.trackClick({
           name: 'PCI_PROJECTS_PRIVATEREGISTRY_CREDENTIALS',
@@ -79,17 +92,24 @@ export default function ActionComponent({
         }),
     },
     {
-      id: 4,
-      label: t('private_registry_rename'),
-      href: hrefRename,
+      id: 5,
+      label: t('private_registry_iam_authentication_manage', {
+        manage: registry.iamEnabled
+          ? t('private_registry_common_status_DISABLE')
+          : t('private_registry_common_status_ENABLE'),
+      }),
+      href: hrefManageIAM,
+      disabled: registry.status !== PRIVATE_REGISTRY_STATUS.READY,
       onClick: () =>
         tracking?.trackClick({
-          name: 'PCI_PROJECTS_PRIVATEREGISTRY_UPDATE',
+          name: `PCI_PROJECTS_PRIVATEREGISTRY_${
+            registry.iamEnabled ? 'DISABLE' : 'ENABLE'
+          }_IAM_AUTHENTICATION`,
           type: 'action',
         }),
     },
     {
-      id: 5,
+      id: 6,
       label: t('ip-restrictions:private_registry_cidr_manage_title'),
       href: hrefManageCIDR,
       disabled:
@@ -102,7 +122,7 @@ export default function ActionComponent({
         }),
     },
     {
-      id: 6,
+      id: 7,
       label: t('private_registry_common_delete'),
       href: hrefDelete,
       disabled:
