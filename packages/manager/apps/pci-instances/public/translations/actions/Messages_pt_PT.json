@@ -34,7 +34,7 @@
   "pci_instances_actions_reinstall_instance_success_message": "A reinstalação da instância {{ name }} está em curso. Por favor, aguarde. Esta operação pode demorar alguns minutos.",
   "pci_instances_actions_backup_instance_title": "Criação de um backup",
   "pci_instances_actions_backup_instance_name_label": "Introduza o nome do seu backup:",
-  "pci_instances_actions_backup_instance_price": "Preço: ~{{price}}/mês por GB + IVA",
+  "pci_instances_actions_backup_instance_price": "Preço: ~{{price}}/mês/GB",
   "pci_instances_actions_backup_instance_warning_message": "A sua instância será suspensa durante alguns segundos e o desempenho de leitura/escrita do disco poderá ser afetado até que o backup termine",
   "pci_instances_actions_backup_instance_error_message": "Ocorreu um erro ao guardar a instância {{ name }}: {{ error }}",
   "pci_instances_actions_backup_instance_success_message": "O backup {{ name }} está a ser criado.",

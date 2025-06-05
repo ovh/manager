@@ -34,7 +34,7 @@
   "pci_instances_actions_reinstall_instance_success_message": "The instance {{ name }} is being reinstalled. Please wait... This may take a few minutes.",
   "pci_instances_actions_backup_instance_title": "Creating a backup",
   "pci_instances_actions_backup_instance_name_label": "Enter the backup name:",
-  "pci_instances_actions_backup_instance_price": "Price: ~{{ price }}/month/GB (+ VAT)",
+  "pci_instances_actions_backup_instance_price": "Price: ~{{price}}/month/GB",
   "pci_instances_actions_backup_instance_warning_message": "Your instance will be suspended for a few seconds, and the disk’s read/write performance may be impacted until the backup is complete.",
   "pci_instances_actions_backup_instance_error_message": "An error occurred while backing up the instance {{ name }}: {{ error }}",
   "pci_instances_actions_backup_instance_success_message": "The backup {{ name }} is being created.",

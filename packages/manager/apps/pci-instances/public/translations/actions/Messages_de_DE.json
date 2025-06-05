@@ -34,7 +34,7 @@
   "pci_instances_actions_reinstall_instance_success_message": "Die Instanz {{ name }} wird neu installiert. Bitte gedulden Sie sich einen Augenblick.",
   "pci_instances_actions_backup_instance_title": "Backup-Erstellung",
   "pci_instances_actions_backup_instance_name_label": "Geben Sie den Namen Ihres Backups ein:",
-  "pci_instances_actions_backup_instance_price": "Preis: ~{{price}} zzgl. MwSt./Monat/GB",
+  "pci_instances_actions_backup_instance_price": "Preis: ~{{price}}/Monat/GB",
   "pci_instances_actions_backup_instance_warning_message": "Ihre Instanz wird für einige Sekunden angehalten, danach kann die Lese- und Schreib-Performance der Festplatte bis zur Fertigstellung des Backups verringert sein.",
   "pci_instances_actions_backup_instance_error_message": "Beim Backup der Instanz {{ name }} ist ein Fehler aufgetreten: {{ error }}",
   "pci_instances_actions_backup_instance_success_message": "Das Backup {{ name }} wird erstellt.",
