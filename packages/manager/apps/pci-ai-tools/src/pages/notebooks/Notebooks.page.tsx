@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import { useParams, Outlet, redirect } from 'react-router-dom';
 import { POLLING } from '@/configuration/polling.constants';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
@@ -15,6 +14,7 @@ import {
   NotebookRoadmapLinks,
 } from '@/configuration/roadmap-changelog.constants';
 import { getFramework } from '@/data/api/ai/capabilities/capabilities.api';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 interface NotebooksProps {
   params: {
@@ -54,8 +54,8 @@ export const Loader = async ({ params }: NotebooksProps) => {
 };
 
 const Notebooks = () => {
-  const { t } = useTranslation('ai-tools/notebooks');
-  const { projectId, quantum } = useParams();
+  const { projectId } = useParams();
+  const { isQuantum, t } = useQuantum('ai-tools/notebooks');
   const { isUserActive } = useUserActivityContext();
   const notebooksQuery = useGetNotebooks(projectId, {
     refetchInterval: isUserActive && POLLING.NOTEBOOKS,
@@ -65,32 +65,21 @@ const Notebooks = () => {
   if (notebooksQuery.isLoading || fmkQuery.isLoading)
     return <NotebooksList.Skeleton />;
   const filterFmkIds = fmkQuery.data
-    .filter((fmk) =>
-      quantum === 'quantum' ? fmk.type === 'Quantum' : fmk.type === 'AI',
-    )
+    .filter((fmk) => (isQuantum ? fmk.type === 'Quantum' : fmk.type === 'AI'))
     .map((fwk) => fwk.id);
 
-  console.log(
-    notebooksQuery.data.filter((nb) =>
-      filterFmkIds.includes(nb.spec.env.frameworkId),
-    ),
-  );
   return (
     <>
       <div
         data-testid="notebooks-guides-container"
         className="flex justify-between w-full items-center"
       >
-        <h2>{quantum === 'quantum' ? t('quantumTitle') : t('title')}</h2>
+        <h2>{t('title')}</h2>
         <div className="flex flex-wrap justify-end gap-1">
           <RoadmapChangelog
-            links={
-              quantum !== 'quantum'
-                ? EmulatorRoadmapLinks
-                : NotebookRoadmapLinks
-            }
+            links={isQuantum ? EmulatorRoadmapLinks : NotebookRoadmapLinks}
           />
-          {quantum !== 'quantum' && <Guides section={notebookGuidesSections} />}
+          {!isQuantum && <Guides section={notebookGuidesSections} />}
         </div>
       </div>
       <NotebooksList

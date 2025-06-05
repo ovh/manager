@@ -1,6 +1,4 @@
-import { useTranslation } from 'react-i18next';
 import { Button } from '@datatr-ux/uxlib';
-import { useParams } from 'react-router-dom';
 import Guides from '@/components/guides/Guides.component';
 import Link from '@/components/links/Link.component';
 import onboardingImgSrc from '@/../public/assets/notebooks.png';
@@ -12,11 +10,11 @@ import {
 } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 import OnboardingTile from '@/components/onboarding-tile/OnboardingTile.component';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 const Onboarding = () => {
-  const { t } = useTranslation('ai-tools/notebooks/onboarding');
+  const { isQuantum, t } = useQuantum('ai-tools/notebooks/onboarding');
   const locale = useLocale();
-  const { quantum } = useParams();
 
   return (
     <div
@@ -24,25 +22,17 @@ const Onboarding = () => {
       className="flex flex-col items-center gap-4"
     >
       <div className="w-full text-right">
-        {quantum !== 'quantum' && <Guides section={notebookGuidesSections} />}
+        {!isQuantum && <Guides section={notebookGuidesSections} />}
       </div>
-      <h2>{quantum === 'quantum' ? t('quantumTitle') : t('title')}</h2>
+      <h2>{t('title')}</h2>
       <img
-        src={quantum === 'quantum' ? onboardingQuantumImgSrc : onboardingImgSrc}
+        src={isQuantum ? onboardingQuantumImgSrc : onboardingImgSrc}
         className="max-h-[250px]"
         alt="ai notebooks"
       />
-      <p className="font-bold">
-        {quantum === 'quantum' ? t('quantumDescription1') : t('description1')}
-      </p>
-      {quantum !== 'quantum' && (
-        <p className="font-bold">{t('description2')}</p>
-      )}
-
-      <p>
-        {quantum === 'quantum' ? t('quantumDescription2') : t('description3')}
-      </p>
-      {quantum === 'quantum' && <p>{t('quantumDescription3')}</p>}
+      <p className="font-bold">{t('description1')}</p>
+      <p>{t('description2')}</p>
+      <p>{t('description3')}</p>
       <Button data-testid="create-notebook-link" asChild>
         <Link
           to="../new"
@@ -51,7 +41,7 @@ const Onboarding = () => {
           {t('createNotebookButton')}
         </Link>
       </Button>
-      {quantum !== 'quantum' && (
+      {!isQuantum && (
         <div className="grid grid-cols-1 md:grid md:grid-cols-3 gap-2">
           <OnboardingTile
             title={t('cardGuidetitle')}

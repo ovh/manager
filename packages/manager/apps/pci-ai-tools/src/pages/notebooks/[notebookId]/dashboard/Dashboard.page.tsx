@@ -8,7 +8,7 @@ import {
   TerminalSquare,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import {
   Card,
   CardContent,
@@ -36,10 +36,12 @@ import {
   EmulatorRoadmapLinks,
   NotebookRoadmapLinks,
 } from '@/configuration/roadmap-changelog.constants';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 const Dashboard = () => {
   const { notebook, projectId } = useNotebookData();
-  const { quantum } = useParams();
+  const isQuantum = useQuantum();
+
   const { t } = useTranslation('ai-tools/notebooks/notebook/dashboard');
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>();
@@ -74,11 +76,7 @@ const Dashboard = () => {
         <h2>{t('dashboardTitle')}</h2>
         <div className="flex flex-row gap-2">
           <RoadmapChangelog
-            links={
-              quantum === 'quantum'
-                ? EmulatorRoadmapLinks
-                : NotebookRoadmapLinks
-            }
+            links={isQuantum ? EmulatorRoadmapLinks : NotebookRoadmapLinks}
           />
           <Guides
             section={[
