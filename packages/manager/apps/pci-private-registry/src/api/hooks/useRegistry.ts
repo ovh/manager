@@ -244,3 +244,15 @@ export const useUpdatePlan = ({
     ...mutation,
   };
 };
+
+export const useRegistry = (projectId: string, registryId: string) =>
+  useQuery({
+    queryKey: getRegistryQueryKey(projectId, registryId),
+    queryFn: () => getRegistry(projectId, registryId),
+    initialData: () => {
+      const registries = queryClient.getQueryData<TRegistry[]>(
+        getAllRegistriesQueryKey(projectId),
+      );
+      return registries?.find((registry) => registry.id === registryId);
+    },
+  });

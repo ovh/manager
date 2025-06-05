@@ -28,6 +28,7 @@ export default function ActionComponent({
   const hrefRegenerateCredentials = useHref(`${registry?.id}/credentials`);
   const hrefManageCIDR = useHref(`${registry?.id}/manage-cidr`);
   const hrefDelete = useHref(`./delete?registryId=${registry.id}`);
+  const hrefManageIAM = useHref(`${registry?.id}/iam`);
 
   const items = [
     {
@@ -71,7 +72,9 @@ export default function ActionComponent({
       id: 3,
       label: t('private_registry_regenerate_creds'),
       href: hrefRegenerateCredentials,
-      disabled: registry.status !== PRIVATE_REGISTRY_STATUS.READY,
+      disabled:
+        registry.status !== PRIVATE_REGISTRY_STATUS.READY ||
+        registry.iamEnabled,
       onClick: () =>
         tracking?.trackClick({
           name: 'PCI_PROJECTS_PRIVATEREGISTRY_CREDENTIALS',
@@ -103,6 +106,23 @@ export default function ActionComponent({
     },
     {
       id: 6,
+      label: t('private_registry_iam_authentication_manage', {
+        manage: registry.iamEnabled
+          ? t('private_registry_common_status_DISABLE')
+          : t('private_registry_common_status_ENABLE'),
+      }),
+      href: hrefManageIAM,
+      disabled: registry.status !== PRIVATE_REGISTRY_STATUS.READY,
+      onClick: () =>
+        tracking?.trackClick({
+          name: `PCI_PROJECTS_PRIVATEREGISTRY_${
+            registry.iamEnabled ? 'DISABLE' : 'ENABLE'
+          }_IAM_AUTHENTICATION`,
+          type: 'action',
+        }),
+    },
+    {
+      id: 7,
       label: t('private_registry_common_delete'),
       href: hrefDelete,
       disabled:
