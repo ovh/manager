@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.3.3...@ovh-ux/ng-ovh-line-diagnostics@5.3.4) (2025-06-05)
+
+
+### Bug Fixes
+
+* **manager:** handle angular parts build after removing vite legacy that hoist babel ([cc7b23d](https://github.com/ovh/manager/commit/cc7b23d67ff8aef4361fab48944616a6dd6ab576))
+
+
+
+
+
 ## [5.3.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.3.2...@ovh-ux/ng-ovh-line-diagnostics@5.3.3) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-line-diagnostics

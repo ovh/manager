@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.3](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@13.0.2...@ovh-ux/component-rollup-config@13.0.3) (2025-06-05)
+
+
+### Bug Fixes
+
+* **manager:** handle angular parts build after removing vite legacy that hoist babel ([cc7b23d](https://github.com/ovh/manager/commit/cc7b23d67ff8aef4361fab48944616a6dd6ab576))
+
+
+
+
+
 ## [13.0.2](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@13.0.1...@ovh-ux/component-rollup-config@13.0.2) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/component-rollup-config

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.5](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.4.4...@ovh-ux/shell@4.4.5) (2025-06-05)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
 ## [4.4.4](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.4.3...@ovh-ux/shell@4.4.4) (2025-05-15)
 
 **Note:** Version bump only for package @ovh-ux/shell

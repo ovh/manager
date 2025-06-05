@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.7.0...@ovh-ux/manager-pci-ai-endpoints-app@0.8.0) (2025-06-05)
+
+
+### Features
+
+* **manager:** remove vite dependency from applications ([14fedc4](https://github.com/ovh/manager/commit/14fedc47e9463b2abdaa054b7a854b198916d155))
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.6.7...@ovh-ux/manager-pci-ai-endpoints-app@0.7.0) (2025-05-27)
 
 

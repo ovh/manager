@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-tests-setup@0.1.0...@ovh-ux/manager-tests-setup@0.2.0) (2025-06-05)
+
+
+### Features
+
+* **mrc:** update common tests configuration to use swc ([fb08e50](https://github.com/ovh/manager/commit/fb08e5092ce5b0e072075134f7aa3603b1a82699))
+
+
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-tests-setup@0.0.1...@ovh-ux/manager-tests-setup@0.1.0) (2025-05-23)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.132.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.131.0...@ovh-ux/manager-container-app@0.132.0) (2025-06-05)
+
+
+### Features
+
+* **manager:** remove vite dependency from applications ([14fedc4](https://github.com/ovh/manager/commit/14fedc47e9463b2abdaa054b7a854b198916d155))
+
+
+
+
+
 # [0.131.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.130.0...@ovh-ux/manager-container-app@0.131.0) (2025-06-02)
 
 

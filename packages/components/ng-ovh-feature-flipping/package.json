@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-feature-flipping",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Feature flipping library",
   "keywords": [
     "angularjs",
@@ -33,7 +33,7 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.2"
+    "@ovh-ux/component-rollup-config": "^13.0.3"
   },
   "peerDependencies": {
     "angular": "^1.7"

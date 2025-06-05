@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-migration",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "private": true,
   "description": "OVHcloud Migration product",
   "repository": {
@@ -22,7 +22,7 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.2",
+    "@ovh-ux/component-rollup-config": "^13.0.3",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {

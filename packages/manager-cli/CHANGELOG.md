@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.1.1...@ovh-ux/manager-cli@0.2.0) (2025-06-05)
+
+
+### Bug Fixes
+
+* **manager-cli:** use latest common tests version instead of fixed one ([921999c](https://github.com/ovh/manager/commit/921999c32b277c53565da66cc96fd6a9a82bac47))
+* **manager:** unit tests cli update defensive condition ([620b83c](https://github.com/ovh/manager/commit/620b83ccf4bda53038f0b7ed2f0eef80ada69a21))
+* **manager:** unit tests fail after migration ([d9099cc](https://github.com/ovh/manager/commit/d9099cc74ae3d5055564216c2885847eb586c202))
+
+
+
+
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.1.0...@ovh-ux/manager-cli@0.1.1) (2025-05-29)
 
 
