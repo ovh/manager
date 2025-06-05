@@ -9,7 +9,7 @@ const PreferencesPage = lazy(() =>
   import('@/pages/preferences/preferences.page'),
 );
 const AccountTypePage = lazy(() =>
-  import('@/pages/accountType/accountType.page'),
+  import('@/pages/accountType/AccountType.page'),
 );
 const AccountDetailsPage = lazy(() =>
   import('@/pages/accountDetails/accountDetails.page'),
