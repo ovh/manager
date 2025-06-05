@@ -110,13 +110,17 @@ export const useAllRegistries = (
   filters: Filter[],
   sorting: ColumnSort,
 ) => {
-  const { data: allRegistries, error, isPending } = useGetAllRegistries(
-    projectId,
-  );
+  const {
+    data: allRegistries,
+    error,
+    isPending,
+    isFetching,
+  } = useGetAllRegistries(projectId);
 
   return useMemo(
     () => ({
       isPending,
+      isFetching,
       data: paginateResults<TRegistry>(
         applyFilters(sortRegistries(allRegistries || [], sorting), filters),
         pagination,
@@ -243,4 +247,12 @@ export const useUpdatePlan = ({
     updatePlan: () => mutation.mutate(),
     ...mutation,
   };
+};
+
+export const useGetCachedRegistry = (projectId: string, registryId: string) => {
+  const registries = queryClient.getQueryData<TRegistry[]>(
+    getAllRegistriesQueryKey(projectId),
+  );
+
+  return registries.find((registry) => registry.id === registryId);
 };

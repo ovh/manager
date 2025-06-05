@@ -1,5 +1,5 @@
 import z from 'zod';
-import { schemaAddCidr } from '@/schema/formSchema';
+import { confirmIAMSchema, schemaAddCidr } from '@/schema/formSchema';
 
 export type FilterRestrictionsServer = 'management' | 'registry';
 
@@ -36,3 +36,5 @@ export type TIPRestrictionsData = TIPRestrictions &
   TIPRestrictionsMethod;
 
 export type ConfirmCIDRSchemaType = z.infer<ReturnType<typeof schemaAddCidr>>;
+
+export type ConfirmIAMchemaType = z.infer<ReturnType<typeof confirmIAMSchema>>;

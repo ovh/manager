@@ -53,7 +53,7 @@ export default function ListPage() {
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState('');
 
-  const { data, isPending } = useAllRegistries(
+  const { data, isPending, isFetching } = useAllRegistries(
     projectId,
     pagination,
     filters,
@@ -188,9 +188,7 @@ export default function ListPage() {
           />
         </div>
       )}
-      <Suspense>
-        <Outlet />
-      </Suspense>
+      <Suspense>{!isFetching && <Outlet />}</Suspense>
     </RedirectionGuard>
   );
 }
