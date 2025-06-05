@@ -43,7 +43,7 @@ const Instance: FC = () => {
               {instance && (
                 <InstanceName
                   instanceId={instance.id}
-                  status={instance.status.label}
+                  isEditable={instance.isEditionEnabled}
                   name={instance.name}
                 />
               )}

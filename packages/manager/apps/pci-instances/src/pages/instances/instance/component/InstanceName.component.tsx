@@ -6,14 +6,13 @@ import {
   updateInstanceCache,
   useEditInstanceName,
 } from '@/data/hooks/instance/useInstance';
-import { TInstanceStatusState } from '@/types/instance/entity.type';
 import { useProjectId } from '@/hooks/project/useProjectId';
 
 const InstanceName: FC<{
   instanceId: string;
-  status: TInstanceStatusState;
+  isEditable: boolean;
   name: string;
-}> = ({ instanceId, status, name }) => {
+}> = ({ instanceId, isEditable, name }) => {
   const { t } = useTranslation('dashboard');
   const { addError } = useNotifications();
   const projectId = useProjectId();
@@ -48,7 +47,7 @@ const InstanceName: FC<{
       {isPending && variables.instanceName}
       {!isPending && (
         <>
-          {status !== 'ERROR' ? (
+          {isEditable ? (
             <EditableText
               defaultValue={name}
               onSubmit={(instanceName) => editInstanceName({ instanceName })}

@@ -33,7 +33,7 @@ const instanceDtoBuilder = (
   isImageDeprecated: false,
 });
 
-export const instanceBuilder = (
+const instanceBuilder = (
   instanceDto: TInstanceDto,
   addresses: TInstance['addresses'],
   status: TInstanceStatus,
@@ -43,6 +43,7 @@ export const instanceBuilder = (
   status,
   actions: new Map(),
   taskState: null,
+  isEditionEnabled: false,
 });
 
 // initializers

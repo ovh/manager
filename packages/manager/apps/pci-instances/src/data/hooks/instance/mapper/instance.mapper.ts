@@ -179,6 +179,9 @@ const mapInstanceActions = (
     return acc;
   }, new Map() as TInstanceActions);
 
+const isEditionEnabled = (instance: TInstanceDto) =>
+  instance.actions.some(({ name }) => name === 'edit');
+
 export const mapInstanceDto = (
   instanceDto: TInstanceDto,
   projectUrl: string,
@@ -188,4 +191,5 @@ export const mapInstanceDto = (
   addresses: mapInstanceAddresses(instanceDto),
   actions: mapInstanceActions(instanceDto, projectUrl),
   taskState: getInstanceTaskState(instanceDto.taskState),
+  isEditionEnabled: isEditionEnabled(instanceDto),
 });
