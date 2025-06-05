@@ -42,8 +42,8 @@ import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 import HidePreloader from '@/core/HidePreloader';
 import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
 
-import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/constants';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -51,7 +51,6 @@ export default function ListingPage() {
   const [projectUrl, setProjectUrl] = useState('');
 
   const { navigation } = useContext(ShellContext).shell;
-  const navigate = useNavigate();
   const { projectId } = useParams();
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
   const columns = useDatagridColumn(projectId, projectUrl);
@@ -71,17 +70,15 @@ export default function ListingPage() {
       });
   }, [projectId, navigation]);
 
-  const {
-    data: allVolumes,
-    isFetching: isFetchingllVolumes,
-    isPending: isPendingAllVolumes,
-  } = useAllVolumes(projectId);
-  const {
-    data: volumes,
-    isLoading: isVolumesLoading,
-    isPending: isVolumesPending,
-    error,
-  } = useVolumes(
+  useEffect(
+    () => () => {
+      clearNotifications();
+    },
+    [clearNotifications],
+  );
+
+  const { data: allVolumes, isPending, isFetching } = useAllVolumes(projectId);
+  const { data: volumes, error } = useVolumes(
     projectId,
     {
       pagination,
@@ -90,11 +87,9 @@ export default function ListingPage() {
     filters,
   );
 
-  const isLoading = isVolumesLoading || isVolumesPending;
-
   return (
     <RedirectionGuard
-      isLoading={isFetchingllVolumes || isPendingAllVolumes}
+      isLoading={isPending}
       route={`/pci/projects/${projectId}/storages/blocks/onboarding`}
       condition={allVolumes?.length === 0}
     >
@@ -117,12 +112,7 @@ export default function ListingPage() {
           <Headers
             title={t('pci_projects_project_storages_blocks_title')}
             headerButton={<PciGuidesHeader category="instances" />}
-            changelogButton={
-              <ChangelogButton
-                links={CHANGELOG_LINKS}
-                chapters={CHANGELOG_CHAPTERS}
-              />
-            }
+            changelogButton={<ChangelogButton links={CHANGELOG_LINKS} />}
           />
         </div>
         <OsdsDivider></OsdsDivider>
@@ -138,15 +128,12 @@ export default function ListingPage() {
 
         <Notifications />
         <div className="sm:flex items-center justify-between mt-4">
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.flat}
-            color={ODS_THEME_COLOR_INTENT.primary}
+          <ButtonLink
+            to="./new"
+            color="primary"
+            size="sm"
             className="xs:mb-0.5 sm:mb-0"
-            onClick={() => {
-              clearNotifications();
-              navigate('./new');
-            }}
+            trackingName="create_volume_block_storage"
           >
             <OsdsIcon
               size={ODS_ICON_SIZE.xs}
@@ -154,7 +141,7 @@ export default function ListingPage() {
               className="mr-4 bg-white"
             />
             {t('pci_projects_project_storages_blocks_add_label')}
-          </OsdsButton>
+          </ButtonLink>
           <div className="justify-between flex">
             <OsdsSearchBar
               className="w-[70%]"
@@ -244,12 +231,12 @@ export default function ListingPage() {
         <div className="my-5">
           <FilterList filters={filters} onRemoveFilter={removeFilter} />
         </div>
-        {isLoading && (
+        {isFetching && (
           <div className="text-center">
             <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
           </div>
         )}
-        {!isLoading && !error && (
+        {!isPending && !error && (
           <div className="mt-8">
             <Datagrid
               columns={columns}

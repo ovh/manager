@@ -6,16 +6,7 @@ import AttachStorage from './AttachStorage.page';
 import { useAttachableInstances } from '@/api/hooks/useInstance';
 import { TAttachableInstance } from '@/api/select/instances';
 
-vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(),
-  useParams: vi.fn(),
-}));
-
-vi.mock('react-i18next', () => ({
-  useTranslation: vi.fn().mockReturnValue({
-    t: vi.fn().mockReturnValue('Translated text'),
-  }),
-}));
+vi.mock('react-router-dom');
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useNotifications: vi.fn().mockReturnValue({

@@ -3,11 +3,17 @@ import {
   OsdsModal,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageType,
+  useOvhTracking,
+  usePageTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import {
   useDeleteVolume,
   useVolume,
@@ -15,11 +21,15 @@ import {
 } from '@/api/hooks/useVolume';
 import DeleteWarningMessage from './DeleteWarningMessage';
 import DeleteConstraintWarningMessage from './DeleteConstraintWarningMessage';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
 
 export default function DeleteStorage() {
   const { projectId, volumeId } = useParams();
   const { t } = useTranslation('delete');
   const navigate = useNavigate();
+  const { trackClick, trackPage } = useOvhTracking();
+  const pageTracking = usePageTracking();
+
   const onClose = () => navigate('..');
   const { addError, addSuccess } = useNotifications();
   const { data: volume, isPending: isVolumePending } = useVolume(
@@ -33,6 +43,11 @@ export default function DeleteStorage() {
     projectId,
     volumeId,
     onError(err: Error) {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: pageTracking.pageName,
+      });
+
       addError(
         <Translation ns="delete">
           {(_t) =>
@@ -50,6 +65,11 @@ export default function DeleteStorage() {
       onClose();
     },
     onSuccess() {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: pageTracking.pageName,
+      });
+
       addSuccess(
         <Translation ns="delete">
           {(_t) =>
@@ -107,20 +127,30 @@ export default function DeleteStorage() {
           </>
         )}
       </slot>
-      <OsdsButton
+      <ButtonLink
         slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={() => onClose()}
+        color="primary"
+        variant="ghost"
+        to=".."
+        trackingName="cancel"
+        trackingParams={[volume?.region]}
       >
         {t('pci_projects_project_storages_blocks_block_delete_cancel_label')}
-      </OsdsButton>
+      </ButtonLink>
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() => canDelete && deleteVolume()}
+        onClick={() => {
+          if (canDelete) {
+            trackClick({
+              buttonType: ButtonType.button,
+              actions: ['confirm', volume?.region],
+            });
+
+            deleteVolume();
+          }
+        }}
         {...(canDelete ? {} : { disabled: true })}
-        data-testid="deleteGateway-button_submit"
       >
         {t('pci_projects_project_storages_blocks_block_delete_submit_label')}
       </OsdsButton>

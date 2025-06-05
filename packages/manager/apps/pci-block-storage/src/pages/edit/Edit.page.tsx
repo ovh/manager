@@ -38,6 +38,11 @@ import {
   usePCICommonContextFactory,
   useProject,
 } from '@ovh-ux/manager-pci-common';
+import {
+  PageType,
+  useOvhTracking,
+  usePageTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { VOLUME_MIN_SIZE, VOLUME_UNLIMITED_QUOTA } from '@/constants';
 import ChipRegion from '@/components/edit/ChipRegion.component';
 import { TAPIVolume } from '@/api/data/volume';
@@ -48,6 +53,7 @@ import { useRegionsQuota } from '@/api/hooks/useQuota';
 import { PriceEstimate } from '@/pages/new/components/PriceEstimate';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
 
 type TFormState = {
   name: string;
@@ -69,6 +75,9 @@ export default function EditPage() {
 
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
+  const { trackClick, trackPage } = useOvhTracking();
+  const pageTracking = usePageTracking();
+
   const onClose = () => navigate('..');
   const backHref = useHref('..');
 
@@ -136,6 +145,11 @@ export default function EditPage() {
     },
     originalVolume: volume,
     onError(err: Error) {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: pageTracking.pageName,
+      });
+
       onClose();
       addError(
         <Translation ns="edit">
@@ -150,6 +164,11 @@ export default function EditPage() {
       );
     },
     onSuccess() {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: pageTracking.pageName,
+      });
+
       onClose();
       addSuccess(
         <Translation ns="edit">
@@ -210,6 +229,9 @@ export default function EditPage() {
 
   const onEdit = () => {
     if (formState.name && !errorState.isMaxError && !errorState.isMinError) {
+      trackClick({
+        actions: ['confirm', [volume.region, volume.type].join('_')],
+      });
       updateVolume();
     }
   };
@@ -477,16 +499,18 @@ export default function EditPage() {
           </OsdsText>
 
           <div className="flex mt-8 gap-4">
-            <OsdsButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              variant={ODS_BUTTON_VARIANT.stroked}
-              onClick={() => onClose()}
+            <ButtonLink
+              color="primary"
+              variant="stroked"
+              to=".."
+              trackingName="cancel"
+              trackingParams={[volume.region, volume.type]}
               slot="actions"
             >
               {tVolumeEdit(
                 'pci_projects_project_storages_blocks_block_volume-edit_cancel_label',
               )}
-            </OsdsButton>
+            </ButtonLink>
 
             <OsdsButton
               color={ODS_THEME_COLOR_INTENT.primary}

@@ -11,15 +11,17 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_TYPE,
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_BUTTON_TYPE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { PropsWithChildren, useEffect, useMemo } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageType,
+  useOvhTracking,
+  usePageTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import {
   Controller,
   FormProvider,
@@ -30,6 +32,7 @@ import {
 } from 'react-hook-form';
 import { z, ZodRawShape } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
 import {
   useDetachVolume,
   useVolume,
@@ -163,9 +166,15 @@ export default function DetachStorage() {
     data: instances,
     isPending: isInstancesPending,
   } = useAttachedInstances(projectId, volumeId);
+  const { trackClick, trackPage } = useOvhTracking();
+  const pageTracking = usePageTracking();
 
   const { detachVolume, isPending: isDetachPending } = useDetachVolume({
     onError(err) {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: pageTracking.pageName,
+      });
       addError(
         <Translation ns="detach">
           {(_t) =>
@@ -183,6 +192,11 @@ export default function DetachStorage() {
       onClose();
     },
     onSuccess() {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: pageTracking.pageName,
+      });
+
       addSuccess(
         <Translation ns="detach">
           {(_t) =>
@@ -214,13 +228,17 @@ export default function DetachStorage() {
   return (
     <Form
       schema={DETACH_SCHEMA}
-      onSubmit={(formData) =>
+      onSubmit={(formData) => {
+        trackClick({
+          buttonType: ButtonType.button,
+          actions: ['confirm', volume?.region],
+        });
         detachVolume({
           ...formData,
           projectId,
           volumeId,
-        })
-      }
+        });
+      }}
       values={{
         instanceId:
           !!volume && volume.attachedTo.length === 1
@@ -252,15 +270,16 @@ export default function DetachStorage() {
             </div>
           )}
         </slot>
-        <OsdsButton
+        <ButtonLink
           slot="actions"
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={onClose}
-          type={ODS_BUTTON_TYPE.button}
+          color="primary"
+          variant="ghost"
+          to=".."
+          trackingName="cancel"
+          trackingParams={[volume?.region]}
         >
           {t('pci_projects_project_storages_blocks_block_detach_cancel_label')}
-        </OsdsButton>
+        </ButtonLink>
         <SubmitButton
           label={t(
             'pci_projects_project_storages_blocks_block_detach_submit_label',
