@@ -1,9 +1,9 @@
 {
-  "status-DELETING": "Eliminazione in corso",
-  "status-RESTARTING": "Riavvio in corso",
+  "status-DELETING": "Eliminazione in corso...",
+  "status-RESTARTING": "Riavvio in corso...",
   "status-STARTING": "Avvio",
-  "status-STOPPING": "Estinzione in corso",
-  "status-FAILED": "Fallimento",
+  "status-STOPPING": "Cancellazione in corso...",
+  "status-FAILED": "Fallito",
   "status-ERROR": "Errore",
   "status-STOPPED": "Arrestato",
   "status-SYNC_FAILED": "Sincronizzazione non riuscita",

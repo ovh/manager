@@ -1,0 +1,10 @@
+{
+  "tutorial": "Tutorial",
+  "guides": "Guides",
+  "guide": "Guide",
+  "first_step_to_use_product": "Getting started with {{product}}",
+  "faq": "Frequently asked questions",
+  "browse_faq": "Browse FAQ",
+  "find_out_more": "Find out more",
+  "find_out_more_faq": "Browse the FAQs to find answers to common questions."
+}

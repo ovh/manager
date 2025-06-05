@@ -1,13 +1,13 @@
 {
   "pci_projects_project_quota": "Quota",
-  "pci_projects_project_quota_protect_explain": "Per una migliore gestione dei tuoi consumi Cloud, le risorse del tuo progetto sono limitate.",
+  "pci_projects_project_quota_protect_explain": "Per una migliore gestione dei tuoi consumi Cloud, abbiamo limitato le risorse per il tuo progetto.",
   "pci_projects_project_quota_protect_more": "Per usufruire di più risorse, è possibile ordinare credito Cloud o contattare il nostro team cliccando sui pulsanti qui sotto.",
   "pci_projects_project_quota_protect_more_btn": "Aumenta la quota disponibile",
   "pci_projects_project_quota_current_limit": "Limiti correnti",
   "pci_projects_project_quota_instance_unlimited": "Illimitato",
   "pci_projects_project_quota_loading_error": "Ops! Impossibile recuperare l'elenco delle quote.",
   "pci_projects_project_quota_restricted_account": "Quota limitata per mancanza di una modalità di pagamento attiva sul tuo account.",
-  "pci_projects_project_quota_restricted_account_unlock": "<a href=\"{{url}}\">Aggiungi una modalità di pagamento</a> valida, poi ritorna su questa pagina per aumentare la tua quota.",
+  "pci_projects_project_quota_restricted_account_unlock": "<a href=\"{{url}}\">Aggiungi un metodo di pagamento</a> valido, poi ritorna su questa pagina per aumentare la tua quota.",
   "pci_projects_project_quota_restricted_paymentmean_active": "Modalità di pagamento attiva sul tuo account",
   "pci_projects_project_quota_restricted_unlock_button": "Attiva la quota standard",
   "pci_projects_project_quota_already_unleashed": "Questa quota è già attiva",
@@ -20,10 +20,10 @@
   "pci_projects_project_quota_open_new_tab": "Apre una nuova scheda",
   "pci_projects_project_quota_threshold_reached": "quota limitata",
   "pci_projects_project_quota_autoscaling": "Quota autoscaling",
-  "pci_projects_project_quota_autoscaling_on": "Attivo",
+  "pci_projects_project_quota_autoscaling_on": "Attivato",
   "pci_projects_project_quota_autoscaling_off": "Disattivato",
   "pci_projects_project_quota_autoscaling_error": "Si è verificato un errore durante l'aggiornamento del quota autoscaling.",
   "pci_projects_project_quota_autoscaling_help": "La tua quota si evolve automaticamente in base all’utilizzo e secondo una serie di criteri.",
-  "pci_projects_project_quota_protect_contact_support": "Contatta il supporto",
+  "pci_projects_project_quota_protect_contact_support": "Contattare il supporto",
   "pci_projects_project_quota_error_forbidden": "Non disponi dei diritti necessari per gestire le quote. Contatta il proprietario del servizio"
 }

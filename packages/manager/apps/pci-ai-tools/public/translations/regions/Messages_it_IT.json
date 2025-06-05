@@ -74,12 +74,12 @@
   "region_US-EAST-VA_micro": "Virginia ({{ micro }})",
   "region_US-WEST-OR": "Oregon",
   "region_US-WEST-OR_micro": "Oregon ({{ micro }})",
-  "region_location_PAR": "Europa Occidentale (Francia)",
-  "region_location_EU-WEST-PAR": "Europa Occidentale (Francia)",
+  "region_location_PAR": "Europa occidentale (Francia)",
+  "region_location_EU-WEST-PAR": "Europa occidentale (Francia)",
   "region_location_MUM": "Asia Pacifica (Mumbai)",
   "region_continent_PAR": "Europa occidentale",
   "region_continent_EU-WEST-PAR": "Europa occidentale",
   "region_continent_MUM": "Asia Pacifica",
-  "region_continent_US-EAST-VA": "Nord America",
-  "region_continent_US-WEST-OR": "Nord America"
+  "region_continent_US-EAST-VA": "Nord America ",
+  "region_continent_US-WEST-OR": "Nord America "
 }

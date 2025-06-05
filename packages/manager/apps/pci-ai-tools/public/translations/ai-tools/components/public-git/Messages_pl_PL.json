@@ -6,13 +6,13 @@
   "tableHeaderMountPath": "Katalog montowania",
   "tableHeaderPermission": "Uprawnienie",
   "tableActionDelete": "Usuń",
-  "mountPathCopyToast": "Skopiowano katalog montowania",
-  "permission_RO": "Tylko Odczyt",
-  "permission_RW": "Odczyt I Zapis",
-  "permission_RWD": "Odczyt, Zapis I Usuwanie",
+  "mountPathCopyToast": "Katalog montowania został skopiowany",
+  "permission_RO": "Tylko odczyt",
+  "permission_RW": "Odczyt i Zapis",
+  "permission_RWD": "Odczyt, Zapis oraz Usuwanie",
   "addPublicGitButton": "Dodaj publiczny Git",
   "publicGitToastErrorTitle": "Błąd",
-  "publicGitToastSuccessTitle": "Sukcesy",
+  "publicGitToastSuccessTitle": "Gotowe",
   "deletePublicGitToastSuccessDescription": "Repozytorium Git zostało usunięte",
   "deletePublicGitTitle": "Usuń repozytorium Git",
   "deletePublicGitDescription": "Czy chcesz usunąć repozytorium Git?",
@@ -21,5 +21,5 @@
   "addPublicGitToastSuccessDescription": "Repozytorium Git zostało dodane",
   "addPublicGitTitle": "Dodaj repozytorium Git",
   "addPublicGitButtonConfirm": "Dodaj",
-  "disabledButtonTooltip": "Notebook musi być w stanie zatrzymania"
+  "disabledButtonTooltip": "Notebook musi mieć status „zatrzymany”"
 }

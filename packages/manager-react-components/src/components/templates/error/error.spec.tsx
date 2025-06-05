@@ -5,8 +5,15 @@ import { ErrorBanner } from './error.component';
 import userEvent from '@testing-library/user-event';
 import tradFr from './translations/Messages_fr_FR.json';
 import { ErrorObject, ErrorBannerProps } from './error.types';
-import { defaultProps } from './error.stories';
 import { vitest } from 'vitest';
+
+export const defaultProps: ErrorBannerProps = {
+  error: {
+    headers: { 'x-ovh-queryid': '123456789' },
+    data: { message: "Votre requête n'a pas abouti" },
+    status: 404,
+  },
+};
 
 const setupSpecTest = async (
   customProps?: Partial<ErrorBannerProps>,

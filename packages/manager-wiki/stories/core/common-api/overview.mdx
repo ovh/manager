@@ -1,0 +1,155 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../manager-wiki/components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+import Links from '../../../../manager-wiki/components/external-links';
+
+<Meta title="Core/common-api/Overview" />
+
+# Common API
+
+<StorybookHeading label="Overview" level={2} />
+
+The Common API module provides a standardized way to interact with OVHcloud's API services. It offers a set of React hooks and utilities for managing API requests, handling responses, and managing service-related operations across OVHcloud Manager applications.
+
+<StorybookHeading label="Key Features" level={2} />
+
+- **Service Management**: Comprehensive service operations including:
+  - Service details retrieval
+  - Service name updates
+  - Service termination
+  - Resource service ID management
+- **Task Management**: Built-in support for handling asynchronous tasks with:
+  - Task status tracking
+  - Progress monitoring
+  - Error handling
+  - Success/failure callbacks
+- **Feature Availability**: Tools to check feature availability across different regions and services
+- **React Query Integration**: Built on top of TanStack Query for efficient data fetching and caching
+- **TypeScript Support**: Full type definitions for all API operations and responses
+- **Error Handling**: Comprehensive error handling and type-safe error responses
+
+<StorybookHeading label="Usage" level={2} />
+
+### Service Operations
+
+```typescript
+import { useServiceDetails, useDeleteService } from '@ovh-ux/manager-module-common-api';
+
+function MyComponent() {
+  // Get service details
+  const { data: serviceDetails } = useServiceDetails({
+    resourceName: 'my-service'
+  });
+
+  // Delete service
+  const { terminateService } = useDeleteService();
+  
+  const handleDelete = () => {
+    terminateService({ resourceName: 'my-service' });
+  };
+
+  return (
+    <div>
+      <h1>{serviceDetails?.displayName}</h1>
+      <button onClick={handleDelete}>Delete Service</button>
+    </div>
+  );
+}
+```
+
+### Task Management
+
+```typescript
+import { useTask } from '@ovh-ux/manager-module-common-api';
+
+function TaskComponent() {
+  const { isPending, isSuccess, isError } = useTask({
+    resourceUrl: '/my-resource',
+    taskId: '123',
+    onSuccess: () => console.log('Task completed'),
+    onError: () => console.log('Task failed'),
+    onFinish: () => console.log('Task finished')
+  });
+
+  return (
+    <div>
+      {isPending && <p>Task in progress...</p>}
+      {isSuccess && <p>Task completed successfully!</p>}
+      {isError && <p>Task failed!</p>}
+    </div>
+  );
+}
+```
+
+### Feature Availability
+
+```typescript
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
+
+function FeatureComponent() {
+  const { data: features } = useFeatureAvailability(['feature1', 'feature2']);
+
+  return (
+    <div>
+      {features?.feature1 && <p>Feature 1 is available</p>}
+      {features?.feature2 && <p>Feature 2 is available</p>}
+    </div>
+  );
+}
+```
+
+<StorybookHeading label="API Reference" level={2} />
+
+### Hooks
+
+- `useServiceDetails`: Fetch and manage service details
+- `useDeleteService`: Handle service termination
+- `useTask`: Manage asynchronous tasks
+- `useFeatureAvailability`: Check feature availability
+
+### Types
+
+- `ServiceDetails`: Service information structure
+- `ApiError`: Standardized error response
+- `ApiResponse`: Generic API response wrapper
+
+<StorybookHeading label="Best Practices" level={2} />
+
+1. **Error Handling**: Always implement proper error handling using the provided error types
+2. **Type Safety**: Utilize TypeScript types for better development experience
+3. **Query Keys**: Use consistent query keys for better caching
+4. **Loading States**: Implement proper loading states using the provided status flags
+5. **Task Management**: Use the task management system for long-running operations
+6. **Feature Checks**: Always check feature availability before using new features
+7. **Service Operations**: Follow the service lifecycle management patterns
+
+<StorybookHeading label="Testing" level={2} />
+
+The module includes built-in testing utilities:
+
+```typescript
+import { getServicesMocks } from '@ovh-ux/manager-module-common-api';
+
+// Setup test mocks
+const mocks = getServicesMocks({
+  getServicesKo: false,
+  getDetailsServicesKo: false,
+  serviceResponse: {
+    // Your mock service response
+  }
+});
+```
+
+<StorybookHeading label="Support" level={2} />
+
+For issues, feature requests, or contributions:
+- Create an issue in the [GitHub repository](https://github.com/ovh/manager)
+- Follow the contribution guidelines in the repository
+- Ensure all changes are properly tested
+- Update documentation for any new features

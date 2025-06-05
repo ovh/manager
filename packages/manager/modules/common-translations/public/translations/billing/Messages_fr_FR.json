@@ -1,0 +1,8 @@
+{
+  "billing": "Facturation",
+  "automatic_renew": "Renouvellement automatique",
+  "subscription": "Abonnement",
+  "cancel_service": "Résilier le service",
+  "cancel_service_success": "Le service a été résilié",
+  "next_due_date": "Prochaine échéance"
+}

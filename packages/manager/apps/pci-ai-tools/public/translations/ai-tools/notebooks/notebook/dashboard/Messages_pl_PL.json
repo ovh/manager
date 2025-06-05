@@ -1,5 +1,5 @@
 {
-  "dashboardTitle": "Schowek",
+  "dashboardTitle": "Dashboard",
   "accessLinkTitle": "Dostęp",
   "labelsTitle": "Etykiety",
   "resourcesTitle": "Zasoby",
@@ -8,19 +8,19 @@
   "cliTitle": "CLI",
   "cliCodeTitle": "Możesz utworzyć ten sam notebook za pomocą tych wierszy poleceń w Twoim ovhai CLI.",
   "cliEquivalentToastMessage": "Zamówienie CLI zostało skopiowane",
-  "workspaceStorage": "Przestrzeń robocza {{ storage }} SSD w cenie",
-  "workspaceStorageHelper": "Kopia zapasowa zdalnej przestrzeni dyskowej. Po upływie 30 następujących po sobie dni przechowywania i/lub przekroczeniu tego limitu 10 GiB, stosowane będą ceny usługi Public Cloud Object Storage.",
+  "workspaceStorage": "Przestrzeń robocza {{storage}} SSD w cenie",
+  "workspaceStorageHelper": "Kopia zapasowa zdalnej przestrzeni dyskowej Po upływie 30 następujących po sobie dni przechowywania danych i/lub przekroczeniu limitu 10 GiB naliczane będą opłaty zgodnie z cennikiem Public Cloud Object Storage.",
   "sliderInfo": "{{ usedStorage }} / {{ totalStorage }}",
-  "durationTitle": "Czas działania",
+  "durationTitle": "Czas funkcjonowania",
   "notebookIdLabel": "Id notebooka",
-  "notebookIdCopyToast": "Skopiowano identyfikator notebooka",
+  "notebookIdCopyToast": "Identyfikator notebooka został skopiowany",
   "deleteNotebookButton": "Usuń notebook",
-  "liveCodeEditorTitle": "Edytor kodu na żywo",
+  "liveCodeEditorTitle": "Live code editor",
   "openEditor": "Otwórz {{editor}}",
   "grafanaTitle": "Monitorowanie zużycia",
-  "grafanaButton": "Dashboard grafana",
+  "grafanaButton": "Dashboard Grafana",
   "addLabelTitle": "Dodaj etykietę",
   "keyFieldLabel": "Klucz",
   "valueFieldLabel": "Wartość",
-  "deleteNotebookTooltip": "Notebook musi być w stanie zatrzymania"
+  "deleteNotebookTooltip": "Notebook musi mieć status „zatrzymany”"
 }

@@ -1,17 +1,17 @@
 {
   "breadcrumb": "Backups",
   "title": "Backups",
-  "description": "Im Folgenden finden Sie die Backups Ihrer Notebooks. Sie können aus jedem davon ein neues Notebook erstellen.",
+  "description": "Nachfolgend finden Sie die Backup-Liste Ihrer Notebooks. Es ist möglich, aus jedem davon ein neues Notebook zu erstellen.",
   "tableHeaderId": "ID",
   "tableHeaderCreationDate": "Erstellungsdatum",
   "tableHeaderUpdateDate": "Änderungsdatum",
   "backupDropdownMenuLabel": "Aktion",
   "tableActionFork": "Fork",
   "forkBackupTitle": "Notebook über ein Backup bestellen",
-  "forkBackupDescription": "Das am {{date}} erstellte Backup {{id}} für die Bestellung eines neuen Notebooks verwenden?",
+  "forkBackupDescription": "Möchten Sie das am {{date}} erstellte Backup {{id}} zur Bestellung eines neuen Notebooks verwenden?",
   "forkButtonCancel": "Abbrechen",
   "forkBackupButtonConfirm": "Bestellen",
-  "forkToastErrorTitle": "Es ist ein Fehler aufgetreten",
+  "forkToastErrorTitle": "Es ist ein Fehler aufgetreten.",
   "forkToastSuccessTitle": "Erfolg",
-  "forkToastSuccessDescription": "Ihr Notebook wurde erstellt"
+  "forkToastSuccessDescription": "Ihr Notebook wurde erfolgreich erstellt."
 }

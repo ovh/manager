@@ -1,13 +1,13 @@
 {
   "powerTitleSection": "Power",
   "computeTitleSection": "Compute",
-  "storageTitleSection": "Storage",
+  "storageTitleSection": "Przestrzeń dyskowa",
   "gpuMemoryField": "{{ gpu }} x {{ memory }} RAM",
   "gcuComputeField": "CPU: {{ cpu }} vCores ",
   "memoryField": "RAM: {{ memory }}",
   "publicNetworkField": "Sieć publiczna: {{ network }}/s",
   "temporaryLocalStorageField": "Lokalna krótkotrwała przestrzeń dyskowa: {{ storage }} SSD",
   "temporaryLocalStorageHelper": "Wydajna, ale nie zapisana lokalna przestrzeń dyskowa",
-  "modifyLabel": "Zmień",
-  "disabledButtonTooltip": "Notebook musi być w stanie zatrzymania"
+  "modifyLabel": "Zmodyfikuj",
+  "disabledButtonTooltip": "Notebook musi mieć status „zatrzymany”"
 }

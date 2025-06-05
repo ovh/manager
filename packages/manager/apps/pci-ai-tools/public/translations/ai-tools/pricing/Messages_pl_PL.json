@@ -1,12 +1,12 @@
 {
-  "pricingHt": "{{ price }} NETTO",
-  "pricingInHour": "/ godzina",
-  "pricingTtc": "{{ price }} BRUTTO",
+  "pricingHt": "{{price}} netto",
+  "pricingInHour": "/ godz.",
+  "pricingTtc": "{{price}} brutto",
   "pricingLabel": "Cena",
   "licenceCpuPriceLabel": "Cena licencji na CPU:",
   "licenceGpuPriceLabel": "Cena licencji na GPU:",
   "licenceFromLabel": "od",
   "partnerPriceGPUPrefix": "Cena licencji na GPU: od",
-  "partnerPriceSuffix": "na zasób/godzinę",
-  "partnerPricePerUsageSuffix": "na godzinę użytkowania (patrz dokumentacja)"
+  "partnerPriceSuffix": "dla zasobu/godzinę",
+  "partnerPricePerUsageSuffix": "za godzinę wykorzystania (sprawdź dokumentację)"
 }

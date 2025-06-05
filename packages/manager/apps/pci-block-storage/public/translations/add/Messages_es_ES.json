@@ -42,5 +42,5 @@
   "pci_projects_project_storages_blocks_add_availability_zone_subtitle": "La elección de una zona de disponibilidad es definitiva. Si desea cambiar su volumen de zona, deberá eliminarlo y volver a crearlo en la nueva zona deseada.",
   "pci_projects_project_storages_blocks_add_type_addon_iops_dynamic": "{{iops}} IOPS/GB hasta {{max}} IOPS{{separator}} ",
   "pci_projects_project_storages_blocks_add_type_multi_attach_banner": "Es imprescindible utilizar un sistema de archivos compatible con la gestión de múltiples conexiones o en clúster para tus volúmenes cuando están conectados a varias instancias. Sin esta configuración, los datos podrían corromperse. Para más información, <Link>consulte nuestra guía sobre la configuración de volúmenes con conexión múltiple</Link>",
-  "pci_projects_project_storages_blocks_add_type_subtitle_3AZ_link": "Más información sobre las especificaciones de los servicios 3AZ"
+  "pci_projects_project_storages_blocks_add_type_subtitle_3AZ_link": "Más información sobre las particularidades de los servicios 3-AZ"
 }

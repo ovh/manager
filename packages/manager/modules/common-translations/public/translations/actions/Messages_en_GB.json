@@ -39,5 +39,12 @@
   "back": "Back",
   "back_to": "Back to {{ value }}",
   "previous": "Previous",
-  "next": "Next"
+  "next": "Next",
+  "back_to_list": "Back to list",
+  "back_to_homepage": "Back to homepage",
+  "activate": "Enable",
+  "modify_name": "Change name",
+  "modify_name_success": "The name has been modified",
+  "retry": "Try again",
+  "start": "Start"
 }

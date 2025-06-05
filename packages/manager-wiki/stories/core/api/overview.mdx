@@ -1,0 +1,131 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../manager-wiki/components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+import Links from '../../../../manager-wiki/components/external-links';
+
+<Meta title="Core/api/Overview" />
+
+# Manager Core Api
+
+The Manager Core API is a powerful client library that provides a unified interface for interacting with OVHcloud's various API endpoints. It offers a standardized way to make HTTP requests to different API versions (v2, v6, aapi, and ws) while handling common concerns like request tagging and error handling.
+
+<StorybookHeading label="Overview" level={2} />
+
+The Core API provides a centralized way to interact with OVHcloud's APIs through pre-configured Axios instances. It supports multiple API versions:
+
+- **v6**: Base URL `/engine/apiv6`
+- **aapi**: Base URL `/engine/2api`
+- **ws**: Base URL `/engine/ws`
+- **v2**: Base URL `/engine/api/v2`
+
+<StorybookHeading label="Key Features" level={2} />
+
+- **Multiple API Version Support**: Unified interface for v2, v6, aapi, and ws endpoints
+- **Request Tagging**: Automatic request tagging with navigation and request IDs
+- **Error Handling**: Built-in error handling and response type definitions
+- **TypeScript Support**: Full TypeScript support with type definitions
+- **Iceberg Pagination**: Support for both v6 and v2 Iceberg pagination
+- **Request Interceptors**: Built-in request interceptors for common operations
+
+<StorybookHeading label="Usage" level={2} />
+
+### Basic Setup
+
+```typescript
+import apiClient from '@ovh-ux/manager-core-api';
+
+// Make a GET request to v6 API
+const response = await apiClient.v6.get('/me');
+
+// Make a POST request to v2 API
+const result = await apiClient.v2.post('/some/endpoint', {
+  data: { /* your data */ }
+});
+```
+
+### Using Request Tagging
+
+```typescript
+import { defineApplicationVersion, defineApplicationPage } from '@ovh-ux/request-tagger';
+
+// Define application version and page
+defineApplicationVersion('v1.0.0');
+defineApplicationPage('homepage');
+
+// Headers will be automatically added to requests
+const response = await apiClient.v6.get('/me');
+```
+
+### Working with Iceberg Pagination
+
+```typescript
+import { fetchIcebergV6, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
+
+// V6 Iceberg pagination
+const { data, status, totalCount } = await fetchIcebergV6({
+  route: '/your/endpoint',
+  pageSize: 10,
+  page: 1
+});
+
+// V2 Iceberg pagination
+const { data, status, totalCount } = await fetchIcebergV2({
+  route: '/your/endpoint',
+  pageSize: 10,
+  page: 1
+});
+```
+
+<StorybookHeading label="Best Practices" level={2} />
+
+1. **Always use the appropriate API version** for your use case:
+   - Use v6 for most standard operations
+   - Use v2 for newer features and endpoints
+   - Use aapi for application-specific endpoints on 2API and BFF
+   - Use ws for WebSocket connections
+
+2. **Handle errors appropriately**:
+   ```typescript
+   try {
+     const response = await apiClient.v6.get('/endpoint');
+   } catch (error) {
+     // Handle error appropriately
+   }
+   ```
+
+3. **Use TypeScript types** for better type safety:
+   ```typescript
+   import { ApiResponse } from '@ovh-ux/manager-core-api';
+   
+   interface YourDataType {
+     // Your type definition
+   }
+   
+   const response: ApiResponse<YourDataType> = await apiClient.v6.get('/endpoint');
+   ```
+
+4. **Implement proper error handling** for failed requests:
+   ```typescript
+   const response = await apiClient.v6.get('/endpoint');
+   if (response.status > 400) {
+     throw new Error('Request failed');
+   }
+   ```
+
+5. **Use request tagging** for better request tracking and debugging:
+   ```typescript
+   defineApplicationVersion('v1.0.0');
+   defineApplicationPage('your-page');
+   ```
+
+6. **Consider pagination** for large data sets:
+   - Use Iceberg pagination for v6 and v2 endpoints
+   - Implement proper page size and navigation controls
+   - Handle total count for UI feedback
+

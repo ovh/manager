@@ -1,0 +1,131 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+import Links from '../../../components/external-links';
+
+<Meta title="Core/request-tagger/Overview" />
+
+# Manager Request Tagger
+
+The Request Tagger is an essential tool for tracking and debugging API requests in the OVHcloud Manager ecosystem. It automatically adds tracing headers to each HTTP request, making it easier to track API calls across different applications.
+
+<StorybookHeading label="Overview" level={2} />
+
+The Request Tagger automatically adds four important HTTP headers to each request:
+
+- `X-OVH-MANAGER-NAVIGATION-ID`: A unique navigation identifier (common for all calls in the same session)
+- `X-OVH-MANAGER-REQUEST-ID`: A request identifier (based on date + incremented session index)
+- `X-OVH-MANAGER-PAGE`: The origin page of the request
+- `X-OVH-MANAGER-VERSION`: The application version
+
+<StorybookHeading label="Key Features" level={2} />
+
+- **Automatic Tracing**: Automatic addition of tracing headers
+- **Unique Identifiers**: Generation of unique identifiers for each session and request
+- **Flexibility**: Ability to override headers as needed
+- **Easy Integration**: Simple to integrate into any application
+- **TypeScript Support**: Full typing for better development experience
+
+<StorybookHeading label="Usage" level={2} />
+
+### Installation
+
+```bash
+yarn add @ovh-ux/request-tagger
+```
+
+### Basic Setup
+
+```typescript
+import { 
+  defineApplicationVersion, 
+  defineApplicationPage, 
+  getHeaders 
+} from '@ovh-ux/request-tagger';
+
+// Define application version
+defineApplicationVersion('v1.0.0');
+
+// Define current page
+defineApplicationPage('homepage');
+
+// Get headers for a request
+const headers = getHeaders('/engine/apiv6/me');
+```
+
+### Header Overrides
+
+```typescript
+import { 
+  Header, 
+  defineApplicationVersion, 
+  defineApplicationPage, 
+  getHeaders,
+  addHeadersOverride 
+} from '@ovh-ux/request-tagger';
+
+// Define application version
+defineApplicationVersion('v1.0.0');
+
+// Add header override for specific URL pattern
+addHeadersOverride('^/engine/2api/notification', {
+  [Header.PAGE]: 'notification-sidebar',
+});
+
+// Define current page
+defineApplicationPage('homepage');
+
+// Headers will be automatically applied with the override
+const headers = getHeaders('/engine/2api/notification');
+```
+
+<StorybookHeading label="Best Practices" level={2} />
+
+1. **Define Application Version**:
+   - Always define the application version at startup
+   - Use a consistent version format (e.g., 'v1.0.0')
+
+2. **Page Management**:
+   - Update the current page on route changes
+   - Use descriptive page identifiers
+
+3. **Header Overrides**:
+   - Use precise URL patterns for overrides
+   - Document custom header overrides
+
+4. **Axios Integration**:
+   ```typescript
+   import axios from 'axios';
+   import { getHeaders } from '@ovh-ux/request-tagger';
+
+   const api = axios.create({
+     baseURL: '/engine/apiv6',
+   });
+
+   api.interceptors.request.use((config) => {
+     const headers = getHeaders(config.url);
+     return {
+       ...config,
+       headers: {
+         ...config.headers,
+         ...headers,
+       },
+     };
+   });
+   ```
+
+5. **Debugging**:
+   - Use navigation IDs to track sessions
+   - Use request IDs to trace specific calls
+   - Check headers in browser development tools
+
+6. **Security**:
+   - Don't expose sensitive information in headers
+   - Use non-predictable identifiers
+   - Validate URL patterns for overrides

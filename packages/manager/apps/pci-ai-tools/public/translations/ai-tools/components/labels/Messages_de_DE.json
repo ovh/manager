@@ -1,10 +1,10 @@
 {
   "keyFieldLabel": "Schlüssel",
   "valueFieldLabel": "Wert",
-  "existingKeyError": "Der Schlüssel ist bereits vorhanden",
-  "numberOfConfiguredLabels_zero": "{{count}} Label konfiguriert",
-  "numberOfConfiguredLabels_one": "{{count}} Label auf {{max}} konfiguriert",
-  "numberOfConfiguredLabels_other": "{{count}} Labels auf {{max}} konfiguriert",
+  "existingKeyError": "Dieser Schlüssel besteht bereits",
+  "numberOfConfiguredLabels_zero": "{{count}} Labels konfiguriert",
+  "numberOfConfiguredLabels_one": "{{count}} Label von {{max}} konfiguriert",
+  "numberOfConfiguredLabels_other": "{{count}} Labels von {{max}} konfiguriert",
   "labelToastErrorTitle": "Fehler",
   "labelToastSuccessTitle": "Erfolg"
 }

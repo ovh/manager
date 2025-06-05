@@ -1,7 +1,7 @@
 {
   "status-DELETING": "Wird gelöscht",
-  "status-RESTARTING": "Neustart wird ausgeführt",
-  "status-STARTING": "Starten",
+  "status-RESTARTING": "Neustart wird durchgeführt",
+  "status-STARTING": "Start",
   "status-STOPPING": "Wird gelöscht",
   "status-FAILED": "Fehlgeschlagen",
   "status-ERROR": "Fehler",

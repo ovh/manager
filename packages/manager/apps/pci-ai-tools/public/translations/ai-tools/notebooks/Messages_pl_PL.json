@@ -11,9 +11,9 @@
   "networkPublicTitle": "Publiczny",
   "tableHeaderDuration": "Czas trwania",
   "tableHeaderStatus": "Status",
-  "tableActionManage": "Administracja",
-  "tableActionStart": "Pierwsze kroki",
+  "tableActionManage": "Zarządzaj",
+  "tableActionStart": "Wyślij teraz",
   "tableActionStop": "Zatrzymaj",
   "tableActionDelete": "Usuń",
-  "deleteTableTooltip": "Notebook musi być w stanie zatrzymania"
+  "deleteTableTooltip": "Notebook musi mieć status „zatrzymany”"
 }
