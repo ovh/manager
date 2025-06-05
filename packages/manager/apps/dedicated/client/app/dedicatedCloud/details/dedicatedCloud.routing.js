@@ -184,6 +184,17 @@ export default /* @ngInject */ ($stateProvider) => {
             }),
           },
         }),
+      deactivateLogs: /* @ngInject */ ($uibModal) => (data) =>
+        $uibModal.open({
+          animation: true,
+          templateUrl:
+            'components/dedicated-cloud/dashboard/tiles/options/components/logs/deactivate/logs-deactivate.html',
+          controller: 'LogsDeactivateCtrl',
+          controllerAs: '$ctrl',
+          resolve: {
+            data,
+          },
+        }),
       isDrpActionPossible: /* @ngInject */ (currentDrp, dedicatedCloudDrp) =>
         dedicatedCloudDrp.constructor.isDrpActionPossible(currentDrp),
 

@@ -5,6 +5,7 @@ import './expiration/service-expiration-date.component';
 import './expiration/service-expiration-label.component.controller';
 import './expiration/service-expiration-label.component';
 import './name-edition/name-edition.controller';
+import './dedicated-cloud/dashboard/tiles/options/components/logs/deactivate/logs-deactivate.controller';
 import './no-default-means-of-payment/index';
 import './no-default-means-of-payment/no-default-means-of-payment.component';
 import './paymentMethod/services/billing-payment-method.constant';

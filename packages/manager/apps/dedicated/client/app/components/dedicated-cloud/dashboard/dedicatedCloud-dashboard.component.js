@@ -11,6 +11,7 @@ export default {
     drpAvailability: '<',
     drpGlobalStatus: '<',
     editDetails: '<',
+    deactivateLogs: '<',
     goToDrp: '<',
     goToVcdOrder: '<',
     goToDatacenter: '<',
