@@ -3,7 +3,7 @@ import template from './user-agreements.html';
 
 export default {
   bindings: {
-    gotoAcceptAllAgreements: '<',
+    gotoAcceptAgreements: '<',
     onQueryParamsChange: '<',
     page: '<',
     itemsPerPage: '<',
