@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Breadcrumb,
@@ -8,6 +8,7 @@ import {
   ErrorBanner,
   useNotifications,
   Notifications,
+  useAuthorizationIam,
 } from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
 import Loading from '@/alldoms/components/Loading/Loading';

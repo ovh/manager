@@ -1,6 +1,6 @@
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,8 @@ interface DatagridColumnActionMenuProps {
   readonly serviceName: string;
   readonly serviceRenewMode: string;
   readonly isServiceNameUrl: boolean;
+  readonly iam: string;
+  readonly urn: string;
 }
 
 export default function DatagridColumnActionMenu({
@@ -18,6 +20,8 @@ export default function DatagridColumnActionMenu({
   serviceName,
   serviceRenewMode,
   isServiceNameUrl,
+  iam,
+  urn,
 }: DatagridColumnActionMenuProps) {
   const { t } = useTranslation('allDom');
   const { data: billingUrl } = useNavigationGetUrl(['billing', '', {}]);
@@ -44,17 +48,20 @@ export default function DatagridColumnActionMenu({
           href: `https://www.ovh.com/cgi-bin/order/renew.cgi?domainChooser=${serviceId}`,
           target: '_blank',
           'data-testid': 'renew-button',
+          urn,
         },
         {
           id: 2,
           label: t('allDom_table_action_terminate'),
           onClick: () => navigate(url),
+          urn,
         },
         {
           id: 3,
           label: t(`allDom_table_action_${renewAction}_renewal`),
           href: `${billingUrl}/autorenew/${renewAction}?selectedType=ALL_DOM&searchText=${serviceName}&services=${serviceId}`,
           target: '_blank',
+          urn,
         },
         {
           id: 4,
@@ -62,6 +69,7 @@ export default function DatagridColumnActionMenu({
           href: `${handleContactUrl}/contacts/services/edit?service=${serviceName}&categoryType=ALL_DOM`,
           target: '_blank',
           'data-testid': 'handleContact-button',
+          urn,
         },
       ]}
     />

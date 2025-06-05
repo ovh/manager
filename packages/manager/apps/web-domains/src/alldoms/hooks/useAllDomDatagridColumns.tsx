@@ -93,6 +93,8 @@ export const useAllDomDatagridColumns = () => {
             serviceName={props.allDomProperty.name}
             serviceRenewMode={props.serviceInfo.billing.renew.current.mode}
             isServiceNameUrl={true}
+            iam={props.allDomProperty.iam.id}
+            urn={props.allDomProperty.iam.urn}
           />
         ),
         label: '',
