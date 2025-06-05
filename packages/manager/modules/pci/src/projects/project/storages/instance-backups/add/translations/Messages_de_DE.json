@@ -9,7 +9,7 @@
   "pci_projects_project_instances_backup_add_numInstances_label": "Anzahl zu erstellender Instanzen",
   "pci_projects_project_instances_backup_add_numInstances_help": "Mit Ihrem aktuellen Quota können Sie für die Region {{ region }} gleichzeitig bis zu {{ num }} Instanz(en) des Typs {{ flavor }} einrichten.",
   "pci_projects_project_instances_backup_add_numInstances_quotaLink_label": "Quota einsehen",
-  "pci_projects_project_instances_backup_add_same_numInstances_configuration": "Alle Ihre Instanzen werden auf die gleiche Art konfiguriert und in der gleichen Region eingerichtet.",
+  "pci_projects_project_instances_backup_add_same_numInstances_configuration": "Alle Ihre Instanzen werden auf die gleiche Weise konfiguriert und in der gleichen Verfügbarkeitszone bereitgestellt.",
   "pci_projects_project_instances_backup_add_private_network_label": "Verbundenes privates Netzwerk",
   "pci_projects_project_instances_backup_add_private_network_none": "Keines",
   "pci_projects_project_instances_backup_add_billing_label": "Abrechnungszeitraum",
