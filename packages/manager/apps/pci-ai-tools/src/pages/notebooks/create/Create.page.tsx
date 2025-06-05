@@ -23,7 +23,7 @@ export function breadcrumb() {
 const Notebook = () => {
   const { t } = useTranslation('ai-tools/notebooks/create');
   const { projectId } = useParams();
-  const isQuantum = useQuantum();
+  const { isQuantum } = useQuantum();
   const suggestionsQuery = useGetSuggestions(projectId, {
     refetchOnWindowFocus: false,
   });
