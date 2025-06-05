@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.5.0...@ovh-ux/manager-log-to-customer@2.5.1) (2025-06-05)
+
+
+### Bug Fixes
+
+* **manager:** handle angular parts build after removing vite legacy that hoist babel ([cc7b23d](https://github.com/ovh/manager/commit/cc7b23d67ff8aef4361fab48944616a6dd6ab576))
+
+
+
+
+
 # [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.4.1...@ovh-ux/manager-log-to-customer@2.5.0) (2025-05-12)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-translate-async-loader",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "Angular translate asynchronous loader",
   "keywords": [
     "angularjs",
@@ -35,7 +35,7 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.2"
+    "@ovh-ux/component-rollup-config": "^13.0.3"
   },
   "peerDependencies": {
     "angular": "^1.5.0"

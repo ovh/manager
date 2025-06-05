@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.26.0...@ovh-ux/manager-react-components@2.27.0) (2025-06-05)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 4072] ([d97c754](https://github.com/ovh/manager/commit/d97c754b1e9a593e50c3fa0ca4e6677cdec44b59))
+- **manager:** rename emitted CSS file to style.css in library output ([7d455bd](https://github.com/ovh/manager/commit/7d455bd9171596d64deb1e56ce47570fa7780fe8))
+- **mrc:** fix datagrid filter issue ([ff13f60](https://github.com/ovh/manager/commit/ff13f60936f1269fd09a68576fafd3b42fcc5a76)), closes [#MANAGER-18415](https://github.com/ovh/manager/issues/MANAGER-18415)
+
+### Features
+
+- generic lazy load approach ([ef1d158](https://github.com/ovh/manager/commit/ef1d158d0e4b90152dd092ce8b6ac819c31a72d2))
+- lazy load hooks translation ([5fc5531](https://github.com/ovh/manager/commit/5fc5531e4b06d33d440e2e7f0a4eb71287d5cd34))
+- manager applications handle default french fallback ([8e455f2](https://github.com/ovh/manager/commit/8e455f2e8aee8a2b6f8e74e7ac6fe4dbbd7b9e35))
+- **manager:** remove vite dependency from applications ([14fedc4](https://github.com/ovh/manager/commit/14fedc47e9463b2abdaa054b7a854b198916d155))
+- **mrc:** handle default french fallback ([3fdf5b8](https://github.com/ovh/manager/commit/3fdf5b8fda80f92253b6f1bcf9983d6cc23001c6))
+- **mrc:** lazy loading translation on different components ([7d8b968](https://github.com/ovh/manager/commit/7d8b968adb51f8dcd914b1af04bc47241438d27d))
+- **mrc:** tags-modal component ([95760e5](https://github.com/ovh/manager/commit/95760e51d9e36451b17e11c437962b9c0052b4b8)), closes [#MANAGER-18148](https://github.com/ovh/manager/issues/MANAGER-18148)
+- **mrc:** update mrc to use swc ([4c2daee](https://github.com/ovh/manager/commit/4c2daee8e6213bbd790aff39b5db7bb15aeee8e3))
+- **mrc:** update storybook configuration to use swc ([52e925b](https://github.com/ovh/manager/commit/52e925bc029c463b31cfe90b180b291db839ae56))
+
 # [2.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.25.0...@ovh-ux/manager-react-components@2.26.0) (2025-05-29)
 
 ### Bug Fixes

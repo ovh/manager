@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-user-pref",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "An AngularJS service to create/get/delete user preferences",
   "keywords": [
     "angularjs",
@@ -40,7 +40,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.2"
+    "@ovh-ux/component-rollup-config": "^13.0.3"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.4",

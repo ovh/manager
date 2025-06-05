@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.2.0...@ovh-ux/manager-pci-dataplatform-app@1.3.0) (2025-06-05)
+
+
+### Features
+
+* **manager:** remove vite dependency from applications ([14fedc4](https://github.com/ovh/manager/commit/14fedc47e9463b2abdaa054b7a854b198916d155))
+
+
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.1.7...@ovh-ux/manager-pci-dataplatform-app@1.2.0) (2025-06-02)
 
 

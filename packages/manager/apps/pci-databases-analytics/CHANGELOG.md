@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.20.3...@ovh-ux/manager-pci-databases-analytics-app@1.21.0) (2025-06-05)
+
+
+### Features
+
+* **manager:** remove vite dependency from applications ([14fedc4](https://github.com/ovh/manager/commit/14fedc47e9463b2abdaa054b7a854b198916d155))
+
+
+
+
+
 ## [1.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.20.2...@ovh-ux/manager-pci-databases-analytics-app@1.20.3) (2025-05-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app

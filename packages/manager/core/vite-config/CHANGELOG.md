@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.9.3...@ovh-ux/manager-vite-config@0.10.0) (2025-06-05)
+
+
+### Bug Fixes
+
+* **manager-core:** wrong dependencies order ([9455422](https://github.com/ovh/manager/commit/9455422209e91373870f6f732d29bebcca913d38))
+
+
+### Features
+
+* **manager-core:** upgrade vite-plugin-svgr version ([3753f28](https://github.com/ovh/manager/commit/3753f28503d141c394b774dd60231dd77f650bc1))
+* **manager:** remove vite dependency from applications ([14fedc4](https://github.com/ovh/manager/commit/14fedc47e9463b2abdaa054b7a854b198916d155))
+* **mrc:** update common vite configuration to use swc ([c989c79](https://github.com/ovh/manager/commit/c989c79bf3fc4a384545a71ba629659ebf5a4b34))
+
+
+
+
+
 ## [0.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.9.2...@ovh-ux/manager-vite-config@0.9.3) (2025-03-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-vite-config
