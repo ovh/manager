@@ -17,7 +17,7 @@
   "pci_projects_project_keystone_upgrade": "El 23 de junio de 2020 se produjo un cambio importante. Por favor, planifique su migración a <strong>Keystone v3</strong>.",
   "pci_projects_project_keystone_upgrade_more": "Más información",
   "pci_projects_project_quota_warning_message": "Por motivos de seguridad, su proyecto tiene una cuota asignada. Si desea aumentar esta cuota, acceda a la página <a data-ui-sref=\"{{ quotaUrl }}\">Quota and localization</a>.",
-  "pci_projects_project_quota_threshold_warning_message": "Está a punto de alcanzar el límite máximo de su cuota. <a href=\"{{ quotaUrl }}\">Haga clic aquí para gestionar sus cuotas</a>.",
+  "pci_projects_project_quota_threshold_warning_message": "Sus niveles de cuota están llegando a su máximo. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ quotaGuidesLink }}\"> Entender las limitaciones de las cuotas<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a> .<br/><a href=\"{{ quotaUrl }}\"> Haga clic aquí para gestionar sus cuotas</a> .",
   "pci_projects_project_billing": "Facturación",
   "pci_projects_project_billing_voucher_credit": "Código promocional: {{ voucher }}",
   "pci_projects_project_billing_active_credit_balance": "Válido hasta el {{ expirationDate }}",
