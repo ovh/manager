@@ -19,7 +19,7 @@ export const IpActionsCell = ({ ip }: IpActionsCellParams) => {
   const { ip: ipAddress, isGroup } = ipFormatter(ip);
   const { ipDetails, isLoading } = useGetIpdetails({ ip });
   const navigate = useNavigate();
-  const { t: tcommon } = useTranslation([NAMESPACES?.ACTIONS]);
+  const { t, t: tcommon } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
   const items: ActionMenuItem[] = [
     (ipaddr.IPv6.isIPv6(ipAddress) || !isGroup) && {
       id: 0,
@@ -37,6 +37,14 @@ export const IpActionsCell = ({ ip }: IpActionsCellParams) => {
         onClick: () =>
           navigate(urls.listingTerminate.replace(urlDynamicParts.id, id)),
       },
+    {
+      id: 2,
+      label: ipDetails?.description
+        ? t('listingActionEditDescription')
+        : t('listingActionAddDescription'),
+      onClick: () =>
+        navigate(urls.listingUpsertDescription.replace(urlDynamicParts.id, id)),
+    },
   ].filter(Boolean);
 
   return (
