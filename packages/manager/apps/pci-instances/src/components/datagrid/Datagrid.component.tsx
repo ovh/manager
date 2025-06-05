@@ -313,7 +313,7 @@ const DatagridComponent = ({
   }, [isError, addError, t, errorMessage]);
 
   return (
-    <div>
+    <div className="overflow-x-auto">
       <div className="mt-10">
         <Datagrid
           columns={datagridColumns}
