@@ -1,4 +1,4 @@
-import { waitFor, within } from '@testing-library/react';
+import { fireEvent, waitFor, within } from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import '@testing-library/jest-dom';
 
@@ -171,4 +171,22 @@ export const getComboboxByName = async ({
     expect(combobox).toBeInTheDocument();
   }, WAIT_FOR_DEFAULT_OPTIONS);
   return combobox;
+};
+
+export const changeTextareaValue = async ({
+  container,
+  testId,
+  value,
+}: {
+  container: HTMLElement;
+  testId: string;
+  value: string;
+}) => {
+  const textarea = container.querySelector(
+    `ods-textarea[data-testid="${testId}"]`,
+  );
+  const event = new CustomEvent('odsChange', {
+    detail: { value },
+  });
+  return waitFor(() => fireEvent(textarea, event), WAIT_FOR_DEFAULT_OPTIONS);
 };
