@@ -43,13 +43,16 @@ yarn manager-cli migrations-status
 
 # Filter by type (routes, tests or swc)
 yarn manager-cli migrations-status --type routes
-yarn manager-cli migrations-status --type tests
-yarn manager-cli migrations-status --type swc`
+
+# Export as HTML or JSON
+yarn manager-cli migrations-status --format html
+yarn manager-cli migrations-status --format json`
   }
 };
 
 const validMigrationTypes = ['routes', 'tests', 'swc'];
 const validTestTypes = ['unit', 'integration'];
+const validFormats = ['json', 'html'];
 
 const printHelp = () => {
   const commandsList = Object.entries(knownCommands)
@@ -64,7 +67,7 @@ const printHelp = () => {
 🛠️  manager-cli
 
 Usage:
-  yarn manager-cli <command> --app <app-name> [--testType <unit|integration>] [--framework <name>] [--dry-run]
+  yarn manager-cli <command> [--app <app-name>] [--testType <unit|integration>] [--framework <name>] [--dry-run] [--type <routes|tests|swc>] [--format <json|html>]
 
 Options:
   --list                  List available app names
@@ -151,10 +154,42 @@ if (frameworkArgIndex !== -1 && restArgs[frameworkArgIndex + 1]) {
 const hasDryRun = restArgs.includes('--dry-run');
 if (hasDryRun) extraFlags.push('--dry-run');
 
-const typeArgIndex = restArgs.findIndex((arg) => arg === '--testType');
-const testType = typeArgIndex !== -1 ? restArgs[typeArgIndex + 1] : null;
+const typeArgIndex = restArgs.findIndex((arg) => arg === '--type');
+const typeValue = typeArgIndex !== -1 ? restArgs[typeArgIndex + 1] : null;
+
+if (command === 'migrations-status') {
+  if (typeArgIndex !== -1) {
+    if (!typeValue || typeValue.startsWith('--')) {
+      console.error(`❌ Missing value for "--type" flag. Valid values: ${validMigrationTypes.join(', ')}`);
+      process.exit(1);
+    }
+    if (!validMigrationTypes.includes(typeValue)) {
+      console.error(`❌ Invalid --type "${typeValue}". Must be one of: ${validMigrationTypes.join(', ')}`);
+      process.exit(1);
+    }
+    extraFlags.push('--type', typeValue);
+  }
+
+  const formatArgIndex = restArgs.findIndex((arg) => arg === '--format');
+  const formatValue = formatArgIndex !== -1 ? restArgs[formatArgIndex + 1] : null;
+
+  if (formatArgIndex !== -1) {
+    if (!formatValue || formatValue.startsWith('--')) {
+      console.error(`❌ Missing value for "--format" flag. Valid values: ${validFormats.join(', ')}`);
+      process.exit(1);
+    }
+    if (!validFormats.includes(formatValue)) {
+      console.error(`❌ Invalid --format "${formatValue}". Must be one of: ${validFormats.join(', ')}`);
+      process.exit(1);
+    }
+    extraFlags.push('--format', formatValue);
+  }
+}
 
 if (command === 'tests-migrate') {
+  const typeArgIndex = restArgs.findIndex((arg) => arg === '--testType');
+  const testType = typeArgIndex !== -1 ? restArgs[typeArgIndex + 1] : null;
+
   if (!testType || testType.startsWith('--')) {
     console.error(`❌ Missing required flag: --testType <unit|integration>`);
     process.exit(1);
@@ -164,22 +199,6 @@ if (command === 'tests-migrate') {
     process.exit(1);
   }
   extraFlags.push('--testType', testType);
-}
-
-if (command === 'migrations-status') {
-  const typeArgIndex = restArgs.findIndex((arg) => arg === '--type');
-  const typeValue = typeArgIndex !== -1 ? restArgs[typeArgIndex + 1] : null;
-  if (typeArgIndex !== -1) {
-    if (!typeValue || typeValue.startsWith('--')) {
-      console.error(`❌ Missing value for "--type" flag. Valid values: routes, tests`);
-      process.exit(1);
-    }
-    if (!validMigrationTypes.includes(typeValue)) {
-      console.error(`❌ Invalid --type "${typeValue}". Must be one of: ${validMigrationTypes.join(', ')}`);
-      process.exit(1);
-    }
-    extraFlags.push('--type', typeValue);
-  }
 }
 
 // Final command assembly

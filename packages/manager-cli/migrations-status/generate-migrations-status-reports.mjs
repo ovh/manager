@@ -2,7 +2,6 @@
 
 import { runMigration } from '../utils/ScriptUtils.mjs';
 
-// Parse CLI args
 const args = process.argv.slice(2);
 const isDryRun = args.includes('--dry-run');
 
@@ -12,6 +11,19 @@ args[typeArgIndex + 1] &&
 !args[typeArgIndex + 1].startsWith('--')
   ? args[typeArgIndex + 1]
   : null;
+
+const formatArgIndex = args.findIndex((arg) => arg === '--format');
+const format = formatArgIndex !== -1 &&
+args[formatArgIndex + 1] &&
+!args[formatArgIndex + 1].startsWith('--')
+  ? args[formatArgIndex + 1]
+  : null;
+
+const validFormats = ['json', 'html'];
+if (format && !validFormats.includes(format)) {
+  console.error(`❌ Invalid --format "${format}". Must be one of: ${validFormats.join(', ')}`);
+  process.exit(1);
+}
 
 const allSteps = {
   routes: 'node ./migrations-status/steps/generate-routes-migrations-status-report.mjs',
@@ -24,11 +36,13 @@ if (selectedType && !Object.keys(allSteps).includes(selectedType)) {
   process.exit(1);
 }
 
-const steps = selectedType
-  ? [allSteps[selectedType]]
-  : Object.values(allSteps);
+const steps = (selectedType ? [selectedType] : Object.keys(allSteps)).map((type) => {
+  const script = allSteps[type];
+  const formatFlag = format ? `--format ${format}` : '';
+  const dryRunFlag = isDryRun ? '--dry-run' : '';
+  return `${script} ${formatFlag} ${dryRunFlag}`.trim();
+});
 
-// Execute migration status steps
 runMigration({
   commandLabel: 'migrations-status',
   scriptOrSteps: steps,
