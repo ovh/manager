@@ -69,6 +69,7 @@ describe('useCreateVolumeFromBackup', () => {
     regionName: 'region-1',
     volumeBackupId: 'backup-1',
     volumeName: 'new-volume',
+    type: 'classic',
   };
 
   beforeEach(() => {
@@ -97,6 +98,7 @@ describe('useCreateVolumeFromBackup', () => {
       newVolumeData.regionName,
       newVolumeData.volumeBackupId,
       newVolumeData.volumeName,
+      newVolumeData.type,
     );
     expect(onSuccess).toHaveBeenCalledWith(MOCKED_VOLUME);
   });
