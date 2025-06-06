@@ -317,7 +317,7 @@ const Sidebar = (): JSX.Element => {
               aria-label="OVHcloud"
               target="_top"
               href={logoLink}
-            >
+          >
               <img
                 className={`${open ? 'mx-4' : 'mx-2'} my-3`}
                 src={open ? logo : shortLogo}
