@@ -28,19 +28,19 @@ const SkipToMainContent = (props: Props) => {
   }, [skipToTheMainContentSlot]);
 
   const skipToMainTheContent = () => {
-    const mainContent = iframeRef.current.contentWindow.document.getElementById(
+    const mainContent = iframeRef?.current?.contentWindow?.document?.getElementById(
       'maincontent',
     );
-    const mainView = iframeRef.current.contentWindow.document.getElementById(
+    const mainView = iframeRef?.current?.contentWindow?.document?.getElementById(
       'mainview',
     );
 
-    iframeRef.current.focus();
+    iframeRef?.current?.focus();
     if (mainContent) {
       mainContent.focus();
       if (mainView) {
         const rect = mainContent.getBoundingClientRect();
-        mainView.scrollTo(0, rect.y);
+        mainView.scrollTo(0, rect?.y || 0);
       }
     }
   }
