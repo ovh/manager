@@ -18,3 +18,11 @@ export const getMe = async (): Promise<User> => {
   const { data } = await axiosInstance.get<User>(endpointPath);
   return data;
 };
+
+export const putMe = async (data: Partial<User>): Promise<User> => {
+  const { data: updatedData } = await axiosInstance.put<User>(
+    endpointPath,
+    data,
+  );
+  return updatedData;
+};
