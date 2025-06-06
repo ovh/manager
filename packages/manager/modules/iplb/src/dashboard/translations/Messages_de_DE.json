@@ -84,5 +84,6 @@
   "iplb_preview_see": "Übersicht anzeigen",
   "iplb_complete_order": "Bestellschein begleichen",
   "iplb_tile_subscription_autorenew": "Automatische Verlängerung",
-  "iplb_tile_subscription_expiration_date": "Ablaufdatum"
+  "iplb_tile_subscription_expiration_date": "Ablaufdatum",
+  "iplb_tab_logs": "Logs"
 }
