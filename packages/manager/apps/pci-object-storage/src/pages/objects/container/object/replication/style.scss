@@ -1,0 +1,6 @@
+.ellipsis-link::part(link) {
+  max-width: 20rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

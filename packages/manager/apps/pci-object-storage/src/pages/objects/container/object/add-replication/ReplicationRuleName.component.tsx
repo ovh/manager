@@ -63,6 +63,7 @@ export function ReplicationRuleId({
       </label>
 
       <OdsInput
+        data-testid="replication-rule-name-input"
         className="w-full"
         value={replicationRuleId}
         placeholder={t(

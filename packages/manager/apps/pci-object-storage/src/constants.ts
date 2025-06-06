@@ -506,6 +506,3 @@ export enum ReplicationStorageClass {
   STANDARD_IA = 'STANDARD_IA',
   HIGH_PERF = 'HIGH_PERF',
 }
-export const STANDARD = 'STANDARD';
-export const HIGH_PERFORMANCE = 'HIGH_PERF';
-export const STANDARD_INFREQUENT_ACCESS = 'STANDARD_IA';

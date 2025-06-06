@@ -76,6 +76,17 @@ import {
 import { ReplicationRuleStorageClass } from './ReplicationRuleStorageClass.component';
 import { useMergedContainer } from '@/hooks/useContainerMemo';
 
+import {
+  ReplicationRuleTag,
+  TDraftTags,
+  TErrorMap,
+  TIsTouched,
+  TTagMap,
+  TTagOrder,
+} from './ReplicationRuleTag.component';
+
+import { ReplicationRuleApplication } from './ReplicationRuleApplication.component';
+
 const validIdRegex = /^[\x20-\x7E]{3,255}$/;
 const validPrefixRegex = /^[\p{L}\p{N}\p{S}\p{P}\p{M}\p{Z}](?:[\p{L}\p{N}\p{S}\p{P}\p{M}\p{Z}]{0,255})?$/u;
 
@@ -97,18 +108,14 @@ export type ReplicationStorage = {
 
 export default function AddReplicationPage() {
   const { storageId } = useParams();
-
   const [searchParams] = useSearchParams();
   const { data: project } = useProject();
-
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(
     project?.project_id,
   );
 
   const navigate = useNavigate();
-
   const hrefProject = useProjectUrl('public-cloud');
-
   const { t } = useTranslation([
     'objects',
     'containers/replication',
@@ -119,8 +126,7 @@ export default function AddReplicationPage() {
   const containerDetailsHref = useHref(
     `../${storageId}?region=${searchParams.get('region')}`,
   );
-
-  const managereplicationsHref = useHref(
+  const manageReplicationsHref = useHref(
     `../${storageId}/replications?region=${searchParams.get('region')}`,
   );
 
@@ -167,6 +173,13 @@ export default function AddReplicationPage() {
     return allStorages.filter((storage) => !isCurrentContainer(storage));
   }, [allStorages, container]);
 
+  const { replicationId } = useParams();
+  const replicationRuleIdParam =
+    replicationId && decodeURIComponent(atob(replicationId));
+
+  const isEditMode = !!replicationRuleIdParam;
+  const [isInitializing, setIsInitializing] = useState(isEditMode);
+
   const [replicationRuleId, setReplicationRuleId] = useState('');
   const [isReplicationRuleIdTouched, setIsReplicationRuleIdTouched] = useState(
     false,
@@ -179,6 +192,7 @@ export default function AddReplicationPage() {
   const [replicationStatus, setReplicationStatus] = useState<
     TReplicationStatus
   >(STATUS_ENABLED);
+  const [replicationApplication, setReplicationApplication] = useState(true);
 
   const [replicationRulePrefix, setReplicationRulePrefix] = useState('');
 
@@ -233,14 +247,14 @@ export default function AddReplicationPage() {
         const isPriorityTaken = container?.replication?.rules.find((item) => {
           return (
             item.priority === newValue &&
-            destination?.name === item.destination?.name
+            destination?.name === item.destination?.name &&
+            item.id !== replicationRuleIdParam
           );
         });
 
         if (isPriorityTaken) {
           setPriority(newValue);
           setPriorityError(true);
-
           return;
         }
 
@@ -250,7 +264,7 @@ export default function AddReplicationPage() {
         setPriority(DEFAULT_PRIORITY);
       }
     },
-    [container?.replication, setPriority, destination],
+    [container?.replication, setPriority, destination, replicationRuleIdParam],
   );
 
   const handleDestinationChange = useCallback(
@@ -262,19 +276,110 @@ export default function AddReplicationPage() {
     [setDestination],
   );
 
+  const [replicationRuleTags, setReplicationRuleTags] = useState<TTagMap>({});
+  const [draftTags, setDraftTags] = useState<TDraftTags>({});
+  const [keyErrors, setKeyErrors] = useState<TErrorMap>({});
+  const [valueErrors, setValueErrors] = useState<TErrorMap>({});
+  const [isTouched, setIsTouched] = useState<TIsTouched>({});
+  const [tagOrder, setTagOrder] = useState<TTagOrder>([]);
+
+  const areAllValuesUndefined = (obj) => {
+    if (Object.keys(obj).length === 0) {
+      return true;
+    }
+
+    return Object.values(obj).every((value) => value === undefined);
+  };
+
+  const existingRule = useMemo(() => {
+    if (!isEditMode || !container?.replication?.rules) return undefined;
+    return container.replication.rules.find(
+      (rule) => rule.id === replicationRuleIdParam,
+    );
+  }, [isEditMode, container, replicationRuleIdParam]);
+
+  useEffect(() => {
+    handlePriorityChange({ detail: { value: 1 } } as OdsInputChangeEvent);
+    if (isEditMode && existingRule) {
+      setPriority(existingRule.priority);
+      handlePriorityChange({
+        detail: { value: existingRule.priority },
+      } as OdsInputChangeEvent);
+
+      setUseStorageclass(!!existingRule.destination?.storageClass);
+      setStorageClass(
+        existingRule.destination?.storageClass ||
+          ReplicationStorageClass.STANDARD,
+      );
+    }
+  }, [destination]);
+
+  useEffect(() => {
+    if (isEditMode && existingRule) {
+      setReplicationRuleId(existingRule.id);
+      setReplicationStatus(existingRule.status);
+      setReplicationRulePrefix(existingRule.filter?.prefix || '');
+      setDestination(
+        existingRule.destination
+          ? {
+              name: existingRule.destination.name,
+              region: existingRule.destination.region,
+              storageClass: existingRule.destination.storageClass,
+            }
+          : undefined,
+      );
+      setUseStorageclass(!!existingRule.destination?.storageClass);
+      setStorageClass(
+        existingRule.destination?.storageClass ||
+          ReplicationStorageClass.STANDARD,
+      );
+      setDeleteMarkerReplication(
+        existingRule.deleteMarkerReplication || STATUS_DISABLED,
+      );
+      setPriority(existingRule.priority || 1);
+
+      const tags = existingRule.filter?.tags || {};
+      setReplicationRuleTags(tags);
+      setTagOrder(Object.keys(tags));
+
+      const initialDraftTags = Object.keys(tags).reduce((acc, key) => {
+        acc[key] = { key, value: tags[key] };
+        return acc;
+      }, {});
+      setDraftTags(initialDraftTags);
+
+      setIsInitializing(false);
+
+      if (!existingRule.filter) {
+        setReplicationApplication(false);
+      }
+    } else if (!isEditMode) {
+      setIsInitializing(false);
+    }
+  }, [isEditMode, existingRule]);
+
   const isButtonActive = useMemo(() => {
     const hasValidPrefix =
       (isValidReplicationRulePrefix && replicationRulePrefix !== '') ||
       replicationRulePrefix === '';
 
+    const isReplicationApplicationMode =
+      !replicationApplication ||
+      (replicationApplication &&
+        ((isValidReplicationRulePrefix && replicationRulePrefix !== '') ||
+          Object.keys(replicationRuleTags).length > 0));
+
     return (
       isValidReplicationRuleId &&
       hasValidPrefix &&
+      isReplicationApplicationMode &&
       destination?.name &&
       serverDestinationContainer?.versioning?.status === STATUS_ENABLED &&
       deleteMarkerReplication &&
       priority &&
-      !priorityError
+      !priorityError &&
+      areAllValuesUndefined(keyErrors) &&
+      areAllValuesUndefined(valueErrors)
     );
   }, [
     isValidReplicationRuleId,
@@ -285,6 +390,9 @@ export default function AddReplicationPage() {
     deleteMarkerReplication,
     priority,
     priorityError,
+    keyErrors,
+    valueErrors,
+    replicationApplication,
   ]);
 
   const { updateContainer, isPending } = useUpdateStorage({
@@ -298,7 +406,9 @@ export default function AddReplicationPage() {
         <Translation ns="containers/replication/add">
           {(_t) =>
             _t(
-              'pci_projects_project_storages_containers_replication_add_error_message',
+              isEditMode
+                ? 'pci_projects_project_storages_containers_replication_edit_error_message'
+                : 'pci_projects_project_storages_containers_replication_add_error_message',
               {
                 message:
                   error?.response?.data?.message || error?.message || null,
@@ -314,7 +424,9 @@ export default function AddReplicationPage() {
         <Translation ns="containers/replication/add">
           {(_t) =>
             _t(
-              'pci_projects_project_storages_containers_replication_add_success_message',
+              isEditMode
+                ? 'pci_projects_project_storages_containers_replication_edit_success_message'
+                : 'pci_projects_project_storages_containers_replication_add_success_message',
             )
           }
         </Translation>,
@@ -329,12 +441,19 @@ export default function AddReplicationPage() {
   const onCreateReplicationRule = () => {
     if (!isButtonActive) return;
 
+    const filteredTags = Object.fromEntries(
+      Object.entries(replicationRuleTags).filter(([key]) => key.trim() !== ''),
+    );
+
     const newReplicationRule = {
       id: replicationRuleId,
       status: replicationStatus,
-      filter: {
-        prefix: replicationRulePrefix || undefined,
-      },
+      ...(replicationApplication && {
+        filter: {
+          prefix: replicationRulePrefix || undefined,
+          tags: Object.keys(filteredTags).length > 0 ? filteredTags : undefined,
+        },
+      }),
       destination: {
         name: destination.name,
         region: destination.region,
@@ -344,9 +463,15 @@ export default function AddReplicationPage() {
       priority,
     };
 
+    const updatedRules = isEditMode
+      ? container.replication.rules.map((rule) =>
+          rule.id === replicationRuleIdParam ? newReplicationRule : rule,
+        )
+      : [...(container.replication?.rules || []), newReplicationRule];
+
     updateContainer({
       replication: {
-        rules: [...(container.replication?.rules || []), newReplicationRule],
+        rules: updatedRules,
       },
     });
   };
@@ -355,7 +480,13 @@ export default function AddReplicationPage() {
     clearNotifications();
   }, []);
 
-  if (!container || !url) {
+  if (
+    !container ||
+    !url ||
+    isLoading ||
+    isInitializing ||
+    (isEditMode && existingRule === undefined)
+  ) {
     return <OdsSpinner size="md" />;
   }
 
@@ -375,23 +506,23 @@ export default function AddReplicationPage() {
             label={container.name}
           />
           <OdsBreadcrumbItem
-            href={managereplicationsHref}
+            href={manageReplicationsHref}
             label={t(
               'containers/replication:pci_projects_project_storages_containers_replication_list_sub_title',
             )}
           />
-
           <OdsBreadcrumbItem
             href=""
             label={t(
-              'containers/replication/add:pci_projects_project_storages_containers_replication_add_replication_rule_sub_title',
+              isEditMode
+                ? 'containers/replication/add:pci_projects_project_storages_containers_replication_edit_replication_rule_sub_title'
+                : 'containers/replication/add:pci_projects_project_storages_containers_replication_add_replication_rule_sub_title',
             )}
           />
         </OdsBreadcrumb>
       }
       header={{
         title: container.name,
-
         headerButton: <PciGuidesHeader category="objectStorage" />,
       }}
     >
@@ -401,14 +532,17 @@ export default function AddReplicationPage() {
         <PciMaintenanceBanner maintenanceURL={maintenanceURL} />
       )}
 
-      {container && (
+      {((container && !isEditMode) ||
+        (isEditMode && existingRule && !isInitializing)) && (
         <>
           {container?.s3StorageType &&
             (!isLoading ? (
-              <div className="mt-9 sm:w-3/4">
-                <OdsText preset="heading-4" className="mt-6 block">
+              <div className="sm:w-3/4">
+                <OdsText preset="heading-3" className=" block">
                   {t(
-                    'containers/replication/add:pci_projects_project_storages_containers_replication_add_replication_rule_sub_title',
+                    isEditMode
+                      ? 'containers/replication/add:pci_projects_project_storages_containers_replication_edit_replication_rule_sub_title'
+                      : 'containers/replication/add:pci_projects_project_storages_containers_replication_add_replication_rule_sub_title',
                   )}
                 </OdsText>
                 <OdsText preset="paragraph" className="mt-8 block">
@@ -437,25 +571,56 @@ export default function AddReplicationPage() {
                     }
                     isValidReplicationRuleId={isValidReplicationRuleId}
                   />
-                  <ReplicationRulePrefix
-                    setIsReplicationRulePrefixTouched={
-                      setIsReplicationRulePrefixTouched
-                    }
-                    replicationRulePrefix={replicationRulePrefix}
-                    setReplicationRulePrefix={setReplicationRulePrefix}
-                    prefixError={
-                      isReplicationRulePrefixTouched &&
-                      !isValidReplicationRulePrefix &&
-                      replicationRulePrefix !== ''
-                        ? t('pci-common:common_field_error_pattern')
-                        : undefined
-                    }
+
+                  <ReplicationRuleApplication
+                    replicationApplication={replicationApplication}
+                    setReplicationApplication={setReplicationApplication}
+                    setDeleteMarkerReplication={setDeleteMarkerReplication}
+                    replicationRuleTags={replicationRuleTags}
                   />
+
+                  {replicationApplication && (
+                    <>
+                      <ReplicationRulePrefix
+                        setIsReplicationRulePrefixTouched={
+                          setIsReplicationRulePrefixTouched
+                        }
+                        replicationRulePrefix={replicationRulePrefix}
+                        setReplicationRulePrefix={setReplicationRulePrefix}
+                        prefixError={
+                          isReplicationRulePrefixTouched &&
+                          !isValidReplicationRulePrefix &&
+                          replicationRulePrefix !== ''
+                            ? t('pci-common:common_field_error_pattern')
+                            : undefined
+                        }
+                      />
+
+                      <ReplicationRuleTag
+                        replicationRuleTags={replicationRuleTags}
+                        setReplicationRuleTags={setReplicationRuleTags}
+                        draftTags={draftTags}
+                        setDraftTags={setDraftTags}
+                        keyErrors={keyErrors}
+                        setKeyErrors={setKeyErrors}
+                        valueErrors={valueErrors}
+                        setValueErrors={setValueErrors}
+                        isTouched={isTouched}
+                        setIsTouched={setIsTouched}
+                        deleteMarkerReplication={deleteMarkerReplication}
+                        tagOrder={tagOrder}
+                        setTagOrder={setTagOrder}
+                        isEditMode={isEditMode}
+                      />
+                    </>
+                  )}
 
                   <ReplicationRuleDeleteMarker
                     deleteMarkerReplication={deleteMarkerReplication}
                     setDeleteMarkerReplication={setDeleteMarkerReplication}
                     asyncReplicationLink={asyncReplicationLink}
+                    replicationRuleTags={replicationRuleTags}
+                    replicationApplication={replicationApplication}
                   />
 
                   <ReplicationRuleDestination
@@ -466,6 +631,7 @@ export default function AddReplicationPage() {
                     serverDestinationContainer={serverDestinationContainer}
                     asyncReplicationLink={asyncReplicationLink}
                     setUseStorageclass={setUseStorageclass}
+                    container={container}
                   />
 
                   <ReplicationRuleStorageClass
@@ -512,7 +678,9 @@ export default function AddReplicationPage() {
                     <OdsButton
                       data-testid="cta-plan-button"
                       label={t(
-                        'containers/replication/add:pci_projects_project_storages_containers_replication_add_create',
+                        isEditMode
+                          ? 'containers/replication/add:pci_projects_project_storages_containers_replication_add_update'
+                          : 'containers/replication/add:pci_projects_project_storages_containers_replication_add_create',
                       )}
                       isDisabled={!isButtonActive}
                       onClick={onCreateReplicationRule}
