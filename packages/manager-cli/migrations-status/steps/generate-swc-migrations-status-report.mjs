@@ -21,7 +21,7 @@ const getSwcMigrationStatus = (appName) => {
     if (isDryRun) {
       console.log(`⏭️ ${appName}: Skipping SWC check (tests not fully migrated)`);
     }
-    return '⏭️ Skipped';
+    return '📝 TODO';
   }
 
   const appPath = path.join(applicationsBasePath, appName);
