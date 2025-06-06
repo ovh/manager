@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-query';
 import { updateVrackSegment } from '../api/vcd-vrack-segment';
 import { VCDVrackSegmentSpec } from '../types';
-import { getVrackSegmentListQueryKey } from '../utils';
+import { getVrackSegmentListQueryKey, getVrackSegmentQueryKey } from '../utils';
 
 export const useUpdateVcdVrackSegment = ({
   id,
@@ -29,6 +29,9 @@ export const useUpdateVcdVrackSegment = ({
     onSuccess: (...params) => {
       queryClient.invalidateQueries({
         queryKey: getVrackSegmentListQueryKey(id, vdcId),
+      });
+      queryClient.invalidateQueries({
+        queryKey: getVrackSegmentQueryKey({ id, vdcId, vrackSegmentId }),
       });
       onSuccess?.(...params);
     },

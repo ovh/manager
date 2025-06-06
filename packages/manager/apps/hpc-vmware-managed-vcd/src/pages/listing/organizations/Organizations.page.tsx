@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 
 import {
   DataGridTextCell,
@@ -15,14 +15,14 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
-import { urls } from '@/routes/routes.constant';
+import { subRoutes, urls } from '@/routes/routes.constant';
 import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
 
 /* ========= datagrid cells ========== */
 const DatagridIdCell = (vdcOrg: VCDOrganization) => {
-  const navigate = useNavigate();
+  const vcdDashboard = useHref(urls.dashboard);
   const { trackClick } = useOvhTracking();
 
   return (
@@ -30,8 +30,8 @@ const DatagridIdCell = (vdcOrg: VCDOrganization) => {
       <Links
         onClickReturn={() => {
           trackClick(TRACKING.listing.details);
-          navigate(`/${vdcOrg.id}`);
         }}
+        href={vcdDashboard.replace(subRoutes.dashboard, vdcOrg.id)}
         label={vdcOrg.currentState?.fullName}
         data-testid={TEST_IDS.listingVcdNameLink}
       ></Links>
