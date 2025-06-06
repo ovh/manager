@@ -28,7 +28,7 @@ export default class MyPoliciesController extends AbstractCursorDatagridControll
    */
   createPolicy() {
     this.trackClick(MY_POLICIES_TRACKING_HITS.CREATE_POLICY);
-    return this.goTo({ name: 'iam.policy.create' });
+    return this.goTo({ name: 'iam.policies.myPolicies.create' });
   }
 
   /**
@@ -39,7 +39,7 @@ export default class MyPoliciesController extends AbstractCursorDatagridControll
   editPolicy({ id }) {
     this.trackClick(MY_POLICIES_TRACKING_HITS.EDIT_POLICY);
     return this.goTo({
-      name: 'iam.policy.edit',
+      name: 'iam.policies.myPolicies.edit',
       params: { policy: id },
     });
   }

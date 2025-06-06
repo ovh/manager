@@ -95,7 +95,6 @@ baremetalUniverse.children = [
       'dedicated-nasha',
       'netapp',
       'cloud-disk-array',
-      'veeam-cloud-connect',
     ],
     children: [
       {
