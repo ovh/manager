@@ -5,7 +5,7 @@ import {
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import { useOkmsById } from '@/data/hooks/useOkms';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import InformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/InformationsTile';
 import Loading from '@/components/Loading/Loading';
 import KmipTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/KmipTile';
@@ -23,7 +23,7 @@ function GeneralInformationsTab() {
   const navigate = useNavigate();
 
   if (error) {
-    navigate(ROUTES_URLS.root);
+    navigate(KMS_ROUTES_URLS.kmsListing);
   }
 
   if (isOkmsLoading || isOkmsServiceLoading || !okms || !okmsService) {
@@ -40,7 +40,7 @@ function GeneralInformationsTab() {
         okmsData={okms.data}
         okmsServiceInfos={okmsService.data}
       />
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-4 md:gap-6">
         <KmipTile okmsData={okms.data} />
         <RestApiTile okmsData={okms.data} />
       </div>

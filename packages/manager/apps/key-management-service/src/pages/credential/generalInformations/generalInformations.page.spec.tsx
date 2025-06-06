@@ -9,9 +9,13 @@ import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { okmsMock } from '@/mocks/kms/okms.mock';
 import { credentialMock } from '@/mocks/credentials/credentials.mock';
 import { labels } from '@/utils/tests/init.i18n';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 const mockCredentialItem = credentialMock[0];
-const mockPageUrl = `/${okmsMock[0].id}/credentials/${mockCredentialItem.id}`;
+const mockPageUrl = KMS_ROUTES_URLS.credentialDashboard(
+  okmsMock[0].id,
+  mockCredentialItem.id,
+);
 
 describe('Credential general informations test suite', () => {
   test('should display the credentials details', async () => {
