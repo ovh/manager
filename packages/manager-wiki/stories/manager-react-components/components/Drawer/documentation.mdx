@@ -1,0 +1,54 @@
+import { Meta, Canvas, Source } from '@storybook/blocks';
+import * as DrawerStories from './Drawer.stories';
+
+<Meta title="Manager React Components/components/Drawer/Documentation" />
+
+## Overview
+
+The `Drawer` component is an expandable panel that slides in from the right side of the screen, designed to display contextual content or forms without disrupting the main interface.
+The `DrawerCollapsible` is very similar, but lets the user access to the content of the page by having no overlay, and being able to collapse completly and reveal what could be hidden behind.
+
+## Usage
+
+**Drawers** are used in different cases:
+
+- Displaying supplementary content while maintaining the main view
+- Providing forms or information panels that slide in from the edge of the screen
+- Creating a workflow that doesn't completely interrupt the user's current context
+
+Drawers typically consist of:
+- Header section with title and dismiss button
+- Content area with scrolling capability for overflow content
+- Optional footer section with primary and secondary action buttons
+
+## Example of definition
+
+<Source
+  code={`
+    <Drawer
+      heading={'Example drawer'}
+      isLoading={false}
+      primaryButtonLabel={'Confirm'}
+      isPrimaryButtonLoading={false}
+      isPrimaryButtonDisabled={false}
+      onPrimaryButtonClick={() => {}}
+      secondaryButtonLabel={'Cancel'}
+      isSecondaryButtonDisabled={false}
+      isSecondaryButtonLoading={false}
+      onSecondaryButtonClick={() => {}}
+      onDismiss={() => {}}
+      isOpen={true}
+    >
+      <div>Example content</div>
+    </Drawer>`}
+  language="javascript"
+/>
+
+
+## Features
+
+- Loading state to display a spinner while content loads
+- Automatic vertical scroll for long content
+- Backdrop overlay for the classic variant to focus user attention
+- Collapsible functionality with a handle for the collapsible variant
+- Keyboard accessibility (Esc key to close)
