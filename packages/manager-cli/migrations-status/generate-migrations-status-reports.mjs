@@ -16,6 +16,7 @@ args[typeArgIndex + 1] &&
 const allSteps = {
   routes: 'node ./migrations-status/steps/generate-routes-migrations-status-report.mjs',
   tests: 'node ./migrations-status/steps/generate-tests-migrations-status-report.mjs',
+  swc: 'node ./migrations-status/steps/generate-swc-migrations-status-report.mjs'
 };
 
 if (selectedType && !Object.keys(allSteps).includes(selectedType)) {
@@ -34,5 +35,5 @@ runMigration({
   dryRun: isDryRun,
   statusOnly: true,
   formatGlob: '*.tsx',
-  docLink: '/development-guidelines/update-react-routes/ & /development-guidelines/update-unit-tests/',
+  docLink: '/development-guidelines/update-react-routes/ & /development-guidelines/update-unit-tests/ & /development-guidelines/vite-swc-migration/',
 });

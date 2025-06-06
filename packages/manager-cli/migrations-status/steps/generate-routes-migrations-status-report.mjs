@@ -3,33 +3,10 @@
 import fs from 'fs/promises';
 import { existsSync, statSync, readdirSync } from 'fs';
 import { join } from 'path';
-import { applicationsBasePath } from '../../utils/AppUtils.mjs'
+import { applicationsBasePath, resolveRoutePath } from '../../utils/AppUtils.mjs';
 
 const args = process.argv.slice(2);
 const isDryRun = args.includes('--dry-run'); // verbose mode enabled implicitly
-
-/**
- * Resolve all potential route file locations for a given app.
- * @param {string} appName
- * @returns {string|null} path if found, else null
- */
-const resolveRoutePath = (appName) => {
-  const candidates = [
-    join(applicationsBasePath, appName, 'src/routes/routes.tsx'),
-    join(applicationsBasePath, appName, 'src/routes.tsx'),
-    join(applicationsBasePath, appName, 'src/routes/index.tsx'),
-  ];
-
-  for (const path of candidates) {
-    if (existsSync(path)) {
-      if (isDryRun) console.log(`✅ Found route file for ${appName} → ${path}`);
-      return path;
-    }
-  }
-
-  if (isDryRun) console.log(`❌ No route file found for ${appName}`);
-  return null;
-};
 
 /**
  * Get the list of available apps by filtering valid directories.
@@ -64,7 +41,7 @@ const getAvailableApps = () => {
  * @returns {Promise<'✅ Done' | '📝 TODO'>}
  */
 const getRouteMigrationStatus = async (appName) => {
-  const path = resolveRoutePath(appName);
+  const path = resolveRoutePath(appName, { verbose: isDryRun });
   if (!path) return '📝 TODO';
 
   try {

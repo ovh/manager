@@ -20,6 +20,7 @@
     "manager-cli": "node ./manager-cli.mjs",
     "migrations-status": "node migrations-status/generate-migrations-status-reports.mjs",
     "routes-migrations-status": "node migrations-status/steps/generate-routes-migrations-status-report.mjs",
+    "swc-migrations-status": "node migrations-status/steps/generate-swc-migrations-status-report.mjs",
     "tests-migrations-status": "node migrations-status/steps/generate-tests-migrations-status-report.mjs",
     "transform-routes": "node routes/steps/transform-routes-cli.mjs",
     "update-routers-init": "node routes/steps/update-routers-init-cli.mjs"
