@@ -8,12 +8,8 @@ import map from 'lodash/map';
 import 'moment';
 
 import IplbHomeUpdateQuotaTemplate from './updateQuota/iplb-update-quota.html';
-import {
-  INFO_LINK,
-  MESSAGE_DISPLAY_DATE,
-  LB_TEMPORARY_WARNING_BANNER_FEATURE,
-  LB_SUBSCRIPTION_CONTACT_SECTION,
-} from './iplb-home.constants';
+import { INFO_LINK, MESSAGE_DISPLAY_DATE } from './iplb-home.constants';
+import { FEATURES } from '../iplb.constants';
 
 export default class IpLoadBalancerHomeCtrl {
   /* @ngInject */
@@ -39,7 +35,7 @@ export default class IpLoadBalancerHomeCtrl {
     IpLoadBalancerVrackService,
     ovhManagerRegionService,
     CucVrackService,
-    ovhFeatureFlipping,
+    features,
     isDeleteOptionsAvailable,
   ) {
     this.$http = $http;
@@ -63,7 +59,7 @@ export default class IpLoadBalancerHomeCtrl {
     this.IpLoadBalancerVrackService = IpLoadBalancerVrackService;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.VrackService = CucVrackService;
-    this.ovhFeatureFlipping = ovhFeatureFlipping;
+    this.features = features;
     this.isDeleteOptionsAvailable = isDeleteOptionsAvailable;
 
     this.serviceName = this.$stateParams.serviceName;
@@ -105,13 +101,9 @@ export default class IpLoadBalancerHomeCtrl {
       isAvailable: () => true,
     };
 
-    this.ovhFeatureFlipping
-      .checkFeatureAvailability(LB_SUBSCRIPTION_CONTACT_SECTION)
-      .then((lbSubscriptionContactSectionFeatureResult) => {
-        this.showIplbSubscriptionContactSection = lbSubscriptionContactSectionFeatureResult.isFeatureAvailable(
-          LB_SUBSCRIPTION_CONTACT_SECTION,
-        );
-      });
+    this.showIplbSubscriptionContactSection = this.features.isFeatureAvailable(
+      FEATURES.LB_SUBSCRIPTION_CONTACT_SECTION,
+    );
   }
 
   initLoaders() {
@@ -308,22 +300,18 @@ export default class IpLoadBalancerHomeCtrl {
   }
 
   showBillingEvolMessages(subscriptionInfos) {
-    this.ovhFeatureFlipping
-      .checkFeatureAvailability(LB_TEMPORARY_WARNING_BANNER_FEATURE)
-      .then((tempWarnBannerFeatureResult) => {
-        const isTempWarnBannerAvailable = tempWarnBannerFeatureResult.isFeatureAvailable(
-          LB_TEMPORARY_WARNING_BANNER_FEATURE,
-        );
-        // displayed when this feature is available and only if the
-        // Load balancer is created befor the date 2023-04-01.
-        if (
-          isTempWarnBannerAvailable &&
-          moment(subscriptionInfos?.creation).isBefore(MESSAGE_DISPLAY_DATE)
-        ) {
-          this.displayBillingIssuesWarnMessage();
-          this.displayBillingEvolutionInfoMessage();
-        }
-      });
+    const isTempWarnBannerAvailable = this.features.isFeatureAvailable(
+      FEATURES.LB_TEMPORARY_WARNING_BANNER_FEATURE,
+    );
+    // displayed when this feature is available and only if the
+    // Load balancer is created befor the date 2023-04-01.
+    if (
+      isTempWarnBannerAvailable &&
+      moment(subscriptionInfos?.creation).isBefore(MESSAGE_DISPLAY_DATE)
+    ) {
+      this.displayBillingIssuesWarnMessage();
+      this.displayBillingEvolutionInfoMessage();
+    }
   }
 
   updateQuotaAlert(quota) {
