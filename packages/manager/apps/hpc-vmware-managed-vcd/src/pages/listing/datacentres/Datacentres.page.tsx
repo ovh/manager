@@ -1,11 +1,10 @@
-import React from 'react';
 import {
   DataGridTextCell,
   Links,
   LinkType,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useHref, useParams } from 'react-router-dom';
 import {
   getVcdDatacentreListQueryKey,
   getVcdDatacentresRoute,
@@ -29,8 +28,12 @@ import { VRACK_PATH, DEDICATED_PATH } from './Datacentres.constants';
 
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (vcdDatacentre: VCDDatacentre) => {
-  const navigate = useNavigate();
   const { id } = useParams();
+  const datacentreDashboardHref = useHref(
+    urls.datacentreDashboard
+      .replace(subRoutes.dashboard, id)
+      .replace(subRoutes.vdcId, vcdDatacentre.id),
+  );
   const { trackClick } = useOvhTracking();
 
   return (
@@ -38,12 +41,8 @@ const DatagridIdCell = (vcdDatacentre: VCDDatacentre) => {
       <Links
         onClickReturn={() => {
           trackClick(TRACKING.datacentreListing.details);
-          navigate(
-            urls.datacentreDashboard
-              .replace(subRoutes.dashboard, id)
-              .replace(subRoutes.vdcId, vcdDatacentre.id),
-          );
         }}
+        href={datacentreDashboardHref}
         label={vcdDatacentre.currentState.name}
         data-testid={TEST_IDS.listingDatacentreNameLink}
       />

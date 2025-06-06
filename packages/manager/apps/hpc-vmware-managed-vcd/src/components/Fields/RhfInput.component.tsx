@@ -18,6 +18,7 @@ export function RhfInput(
       id={id}
       {...props}
       {...field}
+      aria-describedby={`helper-${id}`}
       hasError={!!error}
       onOdsBlur={field.onBlur}
       onOdsChange={field.onChange}

@@ -21,7 +21,7 @@ import {
   VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { useHref, useNavigate } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 import { VrackSegmentSubDatagrid } from './VrackSegmentSubDatagrid.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { VRACK_SEGMENTS_MIN_LENGTH } from '@/pages/dashboard/datacentre/vrack-segment/datacentreVrack.constants';
@@ -35,7 +35,6 @@ export const VrackSegmentDatagrid = ({
   id,
   vdcId,
 }: VrackSegmentDatagridProps) => {
-  const navigate = useNavigate();
   const { t } = useTranslation('datacentres/vrack-segment');
   const [sorting, setSorting] = useState<ColumnSort>();
   const { filters, addFilter, removeFilter } = useColumnFilters();
@@ -70,6 +69,12 @@ export const VrackSegmentDatagrid = ({
 
   const hrefAddNetwork = useHref(
     urls.vrackSegmentAddNetwork
+      .replace(subRoutes.dashboard, id)
+      .replace(subRoutes.vdcId, vdcId),
+  );
+
+  const hrefVrackSegmentDelete = useHref(
+    urls.vrackSegmentDelete
       .replace(subRoutes.dashboard, id)
       .replace(subRoutes.vdcId, vdcId),
   );
@@ -122,7 +127,10 @@ export const VrackSegmentDatagrid = ({
                 },
                 {
                   id: 2,
-                  href: hrefAddNetwork,
+                  href: hrefAddNetwork.replace(
+                    subRoutes.vrackSegmentId,
+                    item.id,
+                  ),
                   label: t('managed_vcd_dashboard_vrack_add_network'),
                 },
                 ...(hasExtraSegments
@@ -131,13 +139,10 @@ export const VrackSegmentDatagrid = ({
                         id: 3,
                         color: ODS_BUTTON_COLOR.critical,
                         label: t('managed_vcd_dashboard_vrack_delete_segment'),
-                        onClick: () =>
-                          navigate(
-                            urls.vrackSegmentDelete
-                              .replace(subRoutes.dashboard, id)
-                              .replace(subRoutes.vdcId, vdcId)
-                              .replace(subRoutes.vrackSegmentId, item.id),
-                          ),
+                        href: hrefVrackSegmentDelete.replace(
+                          subRoutes.vrackSegmentId,
+                          item.id,
+                        ),
                       },
                     ]
                   : []),
