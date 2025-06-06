@@ -1,15 +1,29 @@
 {
-  "billing_autorenew_service_update_title": "Configuration du renouvellement",
-  "billing_autorenew_service_update_description": "Choisissez le type de renouvellement souhaité (automatique ou manuel). Pour le renouvellement automatique, vous pourrez également choisir la fréquence des prélèvements.",
-  "billing_autorenew_service_update_service_renewal": "Type de renouvellement",
-  "billing_autorenew_service_update_service_automatic": "Automatique",
-  "billing_autorenew_service_update_service_manualPayment": "Manuel",
-  "billing_autorenew_service_update_service_period": "Fréquence",
-  "billing_autorenew_service_update_service_period_value": "{{ month }} mois",
-  "billing_autorenew_service_update_confirm": "Confirmer",
-  "billing_autorenew_service_update_success": "Le renouvellement du service {{ service }} a bien été mis à jour. Si la modification n'apparaît pas dans la liste, veuillez rafraîchir la page.",
-  "billing_autorenew_service_update_error": "Une erreur est survenue lors de la configuration du renouvellement {{ message }}",
-  "billing_autorenew_service_update_add_mean": "Ajouter un moyen de paiement",
-  "billing_autorenew_service_update_validate": "Validation",
-  "billing_autorenew_service_update_next": "Suivant"
+  "autorenew_service_update_modal_title": "Configurer le renouvellement",
+  "autorenew_service_update_modal_description": "Définissez une fréquence de renouvellement pour votre service : {{ serviceName }} ",
+  "autorenew_service_update_modal_period_manual": "Aucune fréquence (Renouvellement manuel)",
+  "autorenew_service_update_modal_period_every_month": "Tous les mois",
+  "autorenew_service_update_modal_period_every_x_months": "Tous les {{ months }} mois",
+  "autorenew_service_update_modal_period_every_year": "Tous les ans",
+  "autorenew_service_update_modal_period_every_x_years": "Tous les {{ years }} ans",
+
+  "autorenew_service_update_modal_automatic_renewal_notice": "Si vous ne souhaitez pas continuer à utiliser votre service, vous pouvez désactiver ce renouvellement avant la date d'expiration",
+
+  "autorenew_service_update_modal_automatic_every_month_renewal_notice": "Ce service sera automatiquement renouvelé tous les mois.",
+  "autorenew_service_update_modal_automatic_every_x_month_renewal_notice": "Ce service sera automatiquement renouvelé tous les {{ months }} mois.",
+
+  "autorenew_service_update_modal_automatic_every_year_renewal_notice": "Ce service sera automatiquement renouvelé tous les ans.",
+  "autorenew_service_update_modal_automatic_every_x_year_renewal_notice": "Ce service sera automatiquement renouvelé tous les {{ years }} ans.",
+
+  "autorenew_service_update_modal_manual_notice_intro": "Vous avez choisi le renouvellement manuel pour votre service {{ serviceName }}. Dans ce mode, votre service n’est pas automatiquement reconduit à son échéance.",
+  "autorenew_service_update_modal_manual_notice_emails": "Vous recevrez plusieurs notifications par e-mail dans les semaines et jours précédant la date d’expiration ({{ expirationDate }}), afin de vous en informer.",
+  "autorenew_service_update_modal_manual_notice_instruction": "Si vous souhaitez conserver votre service, il vous suffira de le renouveler avant cette date.",
+  "autorenew_service_update_modal_manual_notice_warning": "<b>Attention :</b> une fois expiré, le service sera immédiatement suspendu et deviendra inaccessible. Sans règlement de votre part dans les jours suivants son expiration, les données associées seront définitivement supprimées.",
+
+  "autorenew_service_update_modal_cancel": "Annuler",
+  "autorenew_service_update_modal_confirm": "Confirmer",
+  "autorenew_service_update_modal_add_payment_method": "Ajouter un moyen de paiement",
+  "autorenew_service_update_modal_payment_method_notice": "Vous avez sélectionné le paiement automatique pour votre service {{ serviceName }}. Pour utiliser ce mode de renouvellement, veuillez enregistrer un moyen de paiement dans la section dédiée aux moyens de paiement.",
+  "autorenew_service_update_modal_update_success": "Le renouvellement du service a bien été mis à jour. Si la modification n'apparaît pas dans la liste, veuillez rafraîchir la page.",
+  "autorenew_service_update_modal_update_error": "Une erreur est survenue lors de la configuration du renouvellement {{ message }}"
 }
