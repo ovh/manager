@@ -84,5 +84,8 @@
   "skip_step": "Skip this step",
   "configure_another_account": "Configure another account",
   "generate_password_tooltip": "Generate a password",
-  "generated_password_tooltip": "Password copied to clipboard"
+  "generated_password_tooltip": "Password copied to clipboard",
+  "zimbra_pro_beta_title": "Zimbra Pro is now available in beta!",
+  "zimbra_pro_beta_description": "Take advantage of five free beta Pro accounts—each with 50 GB of email storage, an ActiveSync licence, Drive storage, and all the features of our Starter plan.",
+  "order_an_account_type": "Order an account {{ type }}"
 }
