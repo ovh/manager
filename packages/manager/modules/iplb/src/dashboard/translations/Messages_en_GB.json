@@ -84,5 +84,6 @@
   "iplb_preview_see": "See a preview",
   "iplb_complete_order": "Pay bill",
   "iplb_tile_subscription_autorenew": "Automatic renewal",
-  "iplb_tile_subscription_expiration_date": "Expiry date"
+  "iplb_tile_subscription_expiration_date": "Expiry date",
+  "iplb_tab_logs": "Logs"
 }
