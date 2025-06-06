@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useUserContext } from '@/context/user/useUser';
+import { urls } from '@/routes/routes.constant';
 
 const getLegalFormKey = (legalForm: string): string => {
   switch (legalForm) {
@@ -14,9 +15,8 @@ const getLegalFormKey = (legalForm: string): string => {
 export const useReassuranceWording = () => {
   const { pathname } = useLocation();
   const user = useUserContext();
-  const currentPage = pathname.replace('/', '');
 
-  if (currentPage !== 'info' || !user?.legalForm) {
+  if (pathname !== urls.accountDetails || !user?.legalForm) {
     return {
       title: 'generic_title',
       description: 'generic_description',
@@ -26,7 +26,7 @@ export const useReassuranceWording = () => {
   const legalFormKey = getLegalFormKey(user.legalForm);
 
   return {
-    title: `info_title_${legalFormKey}`,
-    description: `info_description_${legalFormKey}`,
+    title: `details_title_${legalFormKey}`,
+    description: `details_description_${legalFormKey}`,
   };
 };
