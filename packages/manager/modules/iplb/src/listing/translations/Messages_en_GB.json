@@ -7,5 +7,13 @@
   "iplb_terminate_service_error": "An error has occurred requesting to delete your service. {{error}}",
   "iplb_terminate_service_confirm_input": "Enter “TERMINATE” in the field below to confirm",
   "iplb_terminate_service_terminate_valid": "Confirm",
-  "iplb_terminate_service_terminate_cancel": "Cancel"
+  "iplb_terminate_service_terminate_cancel": "Cancel",
+  "iplb_listing_header_serviceName": "Service name",
+  "iplb_listing_header_displayName": "Name",
+  "iplb_listing_header_metricsToken": "Token",
+  "iplb_listing_header_offer": "Service plan",
+  "iplb_listing_header_sslConfiguration": "SSL configuration",
+  "iplb_listing_header_state": "Status",
+  "iplb_listing_header_vrackEligibility": "Eligible for vRack",
+  "iplb_listing_header_vrackName": "vRack name"
 }
