@@ -12,6 +12,7 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+
 import {
   OsdsBreadcrumb,
   OsdsIcon,
@@ -171,7 +172,8 @@ export default function NewPage() {
       <div className="mt-8">
         <Headers title={t('kubernetes_add')} />
       </div>
-      <Notifications />
+      {/**  need to hide the global notif if opened * */}
+      {!stepper.location.step.isOpen && <Notifications />}
 
       <div className="mb-5 sticky top-0 z-50">
         <PciDiscoveryBanner project={project} />
