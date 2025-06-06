@@ -8,7 +8,7 @@
   "pci_instances_list_column_region": "Standort",
   "pci_instances_list_column_actions": "Aktionen",
   "pci_instances_list_column_volumes": "Volume(s)",
-  "pci_instances_list_inconsistency_message": "Es konnten nicht alle Daten geladen werden. Unser technisches Team ist informiert und arbeitet an der Behebung des Problems.",
+  "pci_instances_list_inconsistency_message": "Es konnten nicht alle Daten geladen werden. Unser technisches Team ist informiert und arbeitet an der Lösung des Problems.",
   "pci_instances_list_unknown_error_message1": "Die Liste Ihrer Instanzen konnte nicht abgerufen werden. Bitte klicken Sie auf den Button <Link>„Aktualisieren“,</Link> um es erneut zu versuchen.",
   "pci_instances_list_unknown_error_message2": "Unsere technischen Teams wurden über dieses Problem informiert und arbeiten derzeit an einer Lösung.",
   "pci_instances_list_action_details": "Details der Instanz",
