@@ -7,5 +7,13 @@
   "iplb_terminate_service_error": "Bei der Anfrage zum Löschen Ihres Dienstes ist ein Fehler aufgetreten. {{error}}",
   "iplb_terminate_service_confirm_input": "Geben Sie im folgenden Feld „TERMINATE\" ein, um den Vorgang zu bestätigen.",
   "iplb_terminate_service_terminate_valid": "Bestätigen",
-  "iplb_terminate_service_terminate_cancel": "Abbrechen"
+  "iplb_terminate_service_terminate_cancel": "Abbrechen",
+  "iplb_listing_header_serviceName": "Name des Dienstes",
+  "iplb_listing_header_displayName": "Name",
+  "iplb_listing_header_metricsToken": "Token",
+  "iplb_listing_header_offer": "Angebot",
+  "iplb_listing_header_sslConfiguration": "SSL-Konfiguration",
+  "iplb_listing_header_state": "Status",
+  "iplb_listing_header_vrackEligibility": "Für vRack qualifiziert",
+  "iplb_listing_header_vrackName": "Name des vRack"
 }

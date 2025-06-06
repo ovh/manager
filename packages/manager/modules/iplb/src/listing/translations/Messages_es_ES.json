@@ -7,5 +7,13 @@
   "iplb_terminate_service_error": "Se ha producido un error al solicitar la eliminación del servicio. {{error}}",
   "iplb_terminate_service_confirm_input": "Introduzca «TERMINATE» en el siguiente campo para confirmar la operación.",
   "iplb_terminate_service_terminate_valid": "Confirmar",
-  "iplb_terminate_service_terminate_cancel": "Cancelar"
+  "iplb_terminate_service_terminate_cancel": "Cancelar",
+  "iplb_listing_header_serviceName": "Nombre del servicio",
+  "iplb_listing_header_displayName": "Apellido",
+  "iplb_listing_header_metricsToken": "Token",
+  "iplb_listing_header_offer": "Plan",
+  "iplb_listing_header_sslConfiguration": "Configuración SSL",
+  "iplb_listing_header_state": "Estado",
+  "iplb_listing_header_vrackEligibility": "Compatible con el vRack",
+  "iplb_listing_header_vrackName": "Nombre del vRack"
 }
