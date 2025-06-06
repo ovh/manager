@@ -1,0 +1,44 @@
+#mrc-drawer {
+  --mrc-drawer-width: 28.5em;
+  --mrc-drawer-header-height: 6em;
+  --mrc-drawer-handle-size: 3.5em;
+  --mrc-drawer-collapse-duration: 300ms;
+}
+
+/* Drawer Handle */
+
+.mrc-drawer-handle-shadow {
+  // ODS Drawer shadow style
+  box-shadow: rgba(0, 14, 156, 0.2) 0px 2px 8px 0px;
+  clip-path: inset(-15px 0px -15px -15px);
+}
+
+@keyframes mrcDrawerHandlefadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.mrc-drawer-handle-fade-in {
+  opacity: 0;
+  animation: mrcDrawerHandlefadeIn 0.3s ease-in-out 300ms forwards;
+}
+
+/* Drawer Backdrop */
+
+@keyframes mrcDrawerBackdropfadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.75;
+  }
+}
+
+.mrc-drawer-backdrop-fade-in {
+  opacity: 0.75;
+  animation: mrcDrawerBackdropfadeIn 0.3s ease-in-out;
+}
