@@ -11,7 +11,6 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementLanguageCt
   $filter,
 ) {
   const self = this;
-
   this.loaders = {
     init: true,
     change: false,
@@ -19,7 +18,6 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementLanguageCt
   this.availableLanguages = [];
   this.language = null;
   this.changeSuccess = false;
-
   this.changeLanguage = function changeLanguage() {
     self.loaders.change = true;
 
@@ -69,12 +67,14 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementLanguageCt
         angular.forEach(
           schema.models['telephony.LineOptionLanguageEnum'].enum,
           (language) => {
-            self.availableLanguages.push({
-              value: language,
-              label: $translate.instant(
-                `telephony_line_language_value_${snakeCase(language)}`,
-              ),
-            });
+            if (language.toLowerCase() !== 'dutch') {
+              self.availableLanguages.push({
+                value: language,
+                label: $translate.instant(
+                  `telephony_line_language_value_${snakeCase(language)}`,
+                ),
+              });
+            }
           },
         );
         self.availableLanguages = $filter('orderBy')(
