@@ -5,7 +5,6 @@ import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import {
   DataGridTextCell,
   DatagridColumn,
-  TagsList,
 } from '@ovh-ux/manager-react-components';
 import { ActionCell } from '@/components/actionCell';
 import { DedicatedServer } from '@/data/types/server.type';
@@ -16,6 +15,7 @@ import RenewCell from './cells/renewCell';
 import ExpirationCell from './cells/expirationCell';
 import EngagementCell from './cells/engagementCell';
 import PriceCell from './cells/priceCell';
+import TagsCell from './cells/tagsCell';
 
 const colorByProductStatus: Record<string, ODS_BADGE_COLOR> = {
   ok: ODS_BADGE_COLOR.success,
@@ -210,20 +210,7 @@ export function getColumns(
       enableHiding: true,
       type: FilterTypeCategories.Tags,
       label: 'Tags',
-      cell: (server: DedicatedServer) => {
-        return (
-          server.iam?.tags &&
-          Object.keys(server.iam?.tags).length > 0 && (
-            <TagsList
-              tags={server.iam?.tags}
-              lineNumber={1}
-              onClick={() => {
-                // open modal
-              }}
-            />
-          )
-        );
-      },
+      cell: TagsCell,
     },
     {
       id: 'actions',
