@@ -1,8 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { TVolume } from '@ovh-ux/manager-pci-common';
 
-export type TNewVolumeData = Partial<TVolume> & { snapshotId?: string };
-
 export const getVolume = async (
   projectId: string,
   volumeId: string,
@@ -19,12 +17,15 @@ export async function createVolumeFromBackup(
   regionName: string,
   volumeBackupId: string,
   volumeName: string,
-) {
-  const {
-    data,
-  } = await v6.post(
-    `/cloud/project/${projectId}/region/${regionName}/volumeBackup/${volumeBackupId}/volume`,
-    { name: volumeName },
+  type: string,
+): Promise<TVolume> {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/region/${regionName}/volume`,
+    {
+      name: volumeName,
+      backupId: volumeBackupId,
+      type,
+    },
   );
 
   return data;
