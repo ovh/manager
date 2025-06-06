@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('billing.autorenew.agreements.popup-agreement', {
-    url: '/popup-agreement?contractId',
+    url: '/popup-agreement?id',
     views: {
       modal: {
         component: 'billingAutorenewPopupAgreement',
@@ -32,8 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      contractId: /* @ngInject */ ($transition$) =>
-        $transition$.params().contractId,
+      agreementId: /* @ngInject */ ($transition$) => $transition$.params().id,
       breadcrumb: () => null,
     },
   });

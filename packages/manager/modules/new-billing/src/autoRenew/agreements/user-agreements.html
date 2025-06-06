@@ -14,20 +14,17 @@
         </button>
         <span data-ng-bind="message"></span>
     </div>
-
-    <div data-ng-if="$ctrl.toActivateCount">
-        <div class="row">
-            <div class="col">
-                <h2 data-translate="user_agreements_list_title"></h2>
-            </div>
-            <div class="col">
-                <oui-button
-                    class="d-block text-right"
-                    data-on-click="$ctrl.gotoAcceptAgreements()"
-                >
-                    <span data-translate="user_agreements_accept_all"></span>
-                </oui-button>
-            </div>
+    <div class="row">
+        <div class="col">
+            <h2 data-translate="user_agreements_list_title"></h2>
+        </div>
+        <div class="col">
+            <oui-button
+                class="d-block text-right"
+                data-on-click="$ctrl.gotoAcceptAgreements()"
+            >
+                <span data-translate="user_agreements_accept_all"></span>
+            </oui-button>
         </div>
     </div>
 
@@ -81,7 +78,7 @@
         <oui-datagrid-column>
             <oui-action-menu aria-label="Actions" compact>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.gotoAcceptAgreements($row.contractId)"
+                    data-on-click="$ctrl.gotoAcceptAgreements($row.id)"
                     data-title="{{ 'user_agreements_accept_title' | translate:{ t0: $row.name } }}"
                     data-disabled="$row.state !== 'TODO'"
                 >
