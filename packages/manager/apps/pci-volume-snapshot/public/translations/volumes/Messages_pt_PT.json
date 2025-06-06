@@ -13,6 +13,6 @@
   "pci_projects_project_storages_snapshots_status_ERROR": "Erro",
   "pci_projects_project_storages_snapshots_add_label": "Criar uma snapshot de volume",
   "pci_projects_project_storages_snapshots_create_volume_label": "Criar um volume",
-  "pci_projects_project_storages_snapshots_delete_label": "Eliminar",
+  "pci_projects_project_storages_snapshots_delete_label": "Rescindir",
   "pci_projects_project_storages_snapshots_id_label": "ID"
 }
