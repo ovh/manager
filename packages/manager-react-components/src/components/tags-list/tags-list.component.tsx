@@ -86,7 +86,10 @@ export const TagsList: React.FC<TagsListProps> = ({
           <OdsLink
             href="#"
             className="text-xs"
-            onClick={onClick}
+            onClick={(e) => {
+              if (onClick) onClick();
+              e.preventDefault();
+            }}
             icon={ODS_ICON_NAME.chevronDoubleRight}
           />
         )}
