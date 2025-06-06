@@ -73,6 +73,7 @@ const BackupActionPage = ({
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setSnapshotName(e.target.value)
           }
+          autoFocus
         />
         {!!price && !isBackupLoading && (
           <p className="text-sm font-medium">

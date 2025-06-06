@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 import { ActionModalContent } from '@/pages/instances/action/modal/ActionModalContent.component';
-import Modal from '@/components/modal/Modal.component';
+import Modal, { TVariant } from '@/components/modal/Modal.component';
 import { Spinner } from '../spinner/Spinner.component';
 import { TSectionType } from '@/types/instance/action/action.type';
 import { TInstanceDto } from '@/types/instance/api.type';
@@ -12,7 +12,7 @@ export type TActionModalProps = PropsWithChildren<{
   onModalClose: () => void;
   instance?: TInstanceDto;
   section: TSectionType;
-  variant?: 'primary' | 'warning';
+  variant?: TVariant;
   isLoading: boolean;
 }>;
 
