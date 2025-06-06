@@ -1,22 +1,38 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { Country, UserLocales } from '@ovh-ux/manager-config';
 
-export type GetRulesParams = {
-  /** selected country */
-  country: Country | null;
-  /** selected language */
-  language: UserLocales | null;
+import { Rule } from '@/types/rule';
+import { Subsidiary } from '@/types/subsidiary';
+
+export type RulesParam = {
+  country?: Country;
+  language?: UserLocales;
+  phoneCountry?: Country;
+  phoneType?: 'landline' | 'mobile';
+  ovhSubsidiary?: Subsidiary;
+  legalform?:
+    | 'administration'
+    | 'association'
+    | 'corporation'
+    | 'individual'
+    | 'personalcorporation';
 };
+
 /**
  *  Get account creation rules
  */
-export const getRules = async ({ country, language }: GetRulesParams) => {
-  const { data, status } = await v6.post(`/newAccount/rules`, {
-    country,
-    language,
-  });
-  if (status > 400) {
-    throw new Error();
+export const getRules = async (params: RulesParam) => {
+  const { data, status } = await v6.post<Array<Rule>>(
+    `/newAccount/rules`,
+    params,
+  );
+  if (status !== 200) {
+    throw new Error('Failed to get account creation rules');
   }
-  return { data, status };
+  return data.reduce((acc, rule) => {
+    if (rule.fieldName) {
+      acc[rule.fieldName] = rule;
+    }
+    return acc;
+  }, {} as Record<string, Rule>);
 };
