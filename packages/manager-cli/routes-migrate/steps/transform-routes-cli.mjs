@@ -13,13 +13,19 @@ import {
   isCodeFileExists,
   splitImportsAndBody,
 } from '../../utils/CodeTransformUtils.mjs';
-import { getApplicationRoutesPath } from '../../utils/AppUtils.mjs';
+import { resolveRoutePath } from '../../utils/AppUtils.mjs';
 
 const traverse = traverseModule.default;
 
 const appName = process.argv[2];
-
+const isDryRun = process.argv.includes('--dry-run');
 const NOT_FOUND_ROUTE = '@/pages/404';
+
+/**
+ * Resolve all possible applications routes path
+ * @type {string|null}
+ */
+const applicationRoutePath = resolveRoutePath(appName, { verbose: isDryRun });
 
 /**
  * Find routes export start line
@@ -309,12 +315,12 @@ const generateTransformedRoutes = (code) => {
  * @returns {Promise<void>}
  */
 const transformRoutesToJsx = async () => {
-  if (!(await isCodeFileExists(getApplicationRoutesPath(appName)))) {
-    console.error(`❌ Error: routes.tsx file not found at ${getApplicationRoutesPath(appName)}`);
+  if (!(await isCodeFileExists(applicationRoutePath))) {
+    console.error(`❌ Error: routes.tsx file not found at ${applicationRoutePath}`);
     process.exit(1);
   }
 
-  const actualSourceCode = await fs.readFile(getApplicationRoutesPath(appName), 'utf-8');
+  const actualSourceCode = await fs.readFile(applicationRoutePath, 'utf-8');
   const { routesTransformedBlock, lazyRoutesBlock, routesPreservedBlocks } = generateTransformedRoutes(
     removeLazyRouteConfig(actualSourceCode),
   );
@@ -342,13 +348,12 @@ ${routesTransformedBlock}
     endOfLine: 'lf',
   });
 
-  const isDryRun = process.argv.includes('--dry-run');
   if (isDryRun) {
     console.log('ℹ️  Dry run output:');
     console.log(formatted);
   } else {
-    await fs.writeFile(getApplicationRoutesPath(appName), formatted);
-    console.log(`✅ Successfully written JSX tree to ${getApplicationRoutesPath(appName)}`);
+    await fs.writeFile(applicationRoutePath, formatted);
+    console.log(`✅ Successfully written JSX tree to ${applicationRoutePath}`);
   }
 };
 

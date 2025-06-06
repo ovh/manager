@@ -1,22 +1,26 @@
-import fs from 'fs';
 import path from 'path';
-import { EXCLUDED_TESTS_DEPS } from '../../../utils/AppUtils.mjs';
-
-const UNIT_TEST_CONFIG_PKG = '@ovh-ux/manager-tests-setup';
-const UNIT_TEST_CONFIG_VERSION = 'latest';
+import {
+  readPackageJson,
+  writePackageJson,
+  EXCLUDED_TESTS_DEPS,
+  UNIT_TEST_CONFIG_PKG,
+  UNIT_TEST_CONFIG_VERSION,
+} from '../../../utils/DependenciesUtils.mjs';
 
 /**
- * Removes Vitest-related deps and adds the shared unit-test config.
+ * Removes deprecated test deps and adds the shared config package.
+ * @param {string} appPath - Path to the app.
+ * @param {boolean} dryRun - Preview changes only.
+ * @param {string} [versionOverride] - Optional version override for shared config.
+ * @returns {Promise<{ removedFromDeps: string[], removedFromDevDeps: string[], added: string[], updated: boolean }>}
  */
-export const updateDependencies = async (appPath, dryRun) => {
-  const pkgPath = path.join(appPath, 'package.json');
-
-  if (!fs.existsSync(pkgPath)) {
+export const updateDependencies = async (appPath, dryRun, versionOverride) => {
+  const pkg = readPackageJson(appPath);
+  if (!pkg) {
     console.warn(`⚠️ No package.json found in ${appPath}`);
-    return;
+    return { removedFromDeps: [], removedFromDevDeps: [], added: [], updated: false };
   }
 
-  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
   const beforeDeps = { ...(pkg.dependencies || {}) };
   const beforeDevDeps = { ...(pkg.devDependencies || {}) };
 
@@ -37,26 +41,27 @@ export const updateDependencies = async (appPath, dryRun) => {
     }
   });
 
-  // Add shared config package if not already present
   const added = [];
+  const versionToInstall = versionOverride || UNIT_TEST_CONFIG_VERSION;
   if (!pkg.devDependencies[UNIT_TEST_CONFIG_PKG]) {
-    pkg.devDependencies[UNIT_TEST_CONFIG_PKG] = UNIT_TEST_CONFIG_VERSION;
-    added.push(`${UNIT_TEST_CONFIG_PKG}@${UNIT_TEST_CONFIG_VERSION}`);
+    pkg.devDependencies[UNIT_TEST_CONFIG_PKG] = versionToInstall;
+    added.push(`${UNIT_TEST_CONFIG_PKG}@${versionToInstall}`);
   }
 
-  const removed = [...removedFromDeps, ...removedFromDevDeps];
-  if (removed.length === 0 && added.length === 0) {
+  const updated = removedFromDeps.length > 0 || removedFromDevDeps.length > 0 || added.length > 0;
+
+  if (!updated) {
     console.log('ℹ️ No changes to dependencies.');
-    return;
+    return { removedFromDeps, removedFromDevDeps, added, updated: false };
   }
 
   console.log(`📦 Original dependencies:\n${JSON.stringify(beforeDeps, null, 2)}\n`);
   console.log(`📦 Original devDependencies:\n${JSON.stringify(beforeDevDeps, null, 2)}\n`);
 
-  const newPackageJsonContent = JSON.stringify(pkg, null, 2) + '\n';
+  const newContent = JSON.stringify(pkg, null, 2) + '\n';
 
   if (!dryRun) {
-    fs.writeFileSync(pkgPath, newPackageJsonContent, 'utf-8');
+    writePackageJson(appPath, pkg);
     console.log(`✅ Removed from dependencies: ${removedFromDeps.join(', ') || 'None'}`);
     console.log(`✅ Removed from devDependencies: ${removedFromDevDeps.join(', ') || 'None'}`);
     console.log(`✅ Added to devDependencies: ${added.join(', ') || 'None'}`);
@@ -66,5 +71,7 @@ export const updateDependencies = async (appPath, dryRun) => {
     console.log(`🧪 [dry-run] Would add to devDependencies: ${added.join(', ') || 'None'}`);
   }
 
-  console.log(`📦 Resulting package.json:\n${newPackageJsonContent}`);
+  console.log(`📦 Resulting package.json:\n${newContent}`);
+
+  return { removedFromDeps, removedFromDevDeps, added, updated };
 };
