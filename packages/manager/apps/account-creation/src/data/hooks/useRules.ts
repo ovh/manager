@@ -1,12 +1,29 @@
-import { Country, UserLocales } from '@ovh-ux/manager-config';
 import { useQuery } from '@tanstack/react-query';
-import { getRules } from '@/data/api/rules';
+import { getRules, RulesParam } from '@/data/api/rules';
+import { Rule } from '@/types/rule';
 
-export const useRules = (
-  country: Country | null,
-  language: UserLocales | null,
-) =>
+/**
+ * Query key generation in the format of ['key1=value1', 'key2=value2'] since some
+ * parameters contain the same value (e.g. country and phoneCountry)
+ * @param params parameters to query from the API
+ * @returns String array in the form of ['country=GB', 'language=en_GB']
+ */
+const generateQueryKey = (params: RulesParam) =>
+  Object.entries(params).map(([key, value]) => `${key}=${value}`);
+
+export const useRules = (params: RulesParam, fields?: string[]) =>
   useQuery({
-    queryKey: [`newAccount/rules`],
-    queryFn: () => getRules({ country, language }),
+    queryKey: ['/newAccount/rules', ...generateQueryKey(params)],
+    queryFn: () => getRules(params),
+    select: fields
+      ? (data) => {
+          const selectedData = {} as Record<string, Rule>;
+          fields.forEach((field) => {
+            if (field in data) {
+              selectedData[field] = data[field];
+            }
+          });
+          return selectedData;
+        }
+      : undefined,
   });
