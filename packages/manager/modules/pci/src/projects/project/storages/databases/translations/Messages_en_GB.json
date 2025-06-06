@@ -15,7 +15,7 @@
   "pci_database_common_status_PENDING": "Queued",
   "pci_database_common_status_CREATING": "Creating...",
   "pci_database_common_status_UPDATING": "Updating",
-  "pci_database_common_delete_database": "Delete",
+  "pci_database_common_delete_database": "Cancel",
   "pci_database_common_price_starts_from": "From",
   "pci_database_common_price": "Price",
   "pci_database_common_none": "None",
