@@ -90,7 +90,7 @@ export default /* @ngInject */ ($stateProvider) => {
       urls: /* @ngInject */ (constants, user) =>
         constants.urls[user.ovhSubsidiary],
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('dedicated_server_interfaces'),
+        $translate.instant('dedicated_server_interfaces_breadcrumb'),
       goToInterfaces: ($state, Alerter, serverName) => (
         message = false,
         type = 'success',
