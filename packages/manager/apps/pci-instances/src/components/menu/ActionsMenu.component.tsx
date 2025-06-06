@@ -38,7 +38,7 @@ export const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
 
   return (
     <DropdownMenuItem
-      className="cursor-pointer text-base text-blue-700 font-semibold focus:text-blue-700 focus:bg-[--ods-color-primary-100]"
+      className="cursor-pointer text-base text-blue-500 font-semibold focus:text-blue-500 focus:bg-[--ods-color-primary-100]"
       asChild
     >
       <a href={href} data-testid="actions-menu-item">
