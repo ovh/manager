@@ -228,7 +228,7 @@ export default function AccountSidebar() {
             ignoreSearch: true,
           },
         ].filter(Boolean)
-        
+
       });
     }
     return menu;
