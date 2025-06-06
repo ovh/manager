@@ -1,7 +1,6 @@
-import fs, { existsSync, readdirSync, statSync } from 'fs';
+import { existsSync, readdirSync, statSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, resolve, join } from 'path';
-import { EXCLUDED_TESTS_DEPS } from './DependenciesUtils.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -54,21 +53,3 @@ export const getAvailableApps = () => {
     return [];
   }
 };
-
-export const hasSharedVitestConfig = (appPath) => {
-  const configPath = path.join(appPath, 'vitest.config.js');
-  if (!fs.existsSync(configPath)) return false;
-  const content = fs.readFileSync(configPath, 'utf-8');
-  return content.includes('mergeConfig') && content.includes('@ovh-ux/manager-tests-setup');
-};
-
-export const hasDeprecatedTestDeps = (deps) =>
-  EXCLUDED_TESTS_DEPS.some(dep => dep in deps);
-
-export const hasBabelConfigFiles = (appPath) => {
-  const configFiles = ['.babelrc', 'babel.config.js'];
-  return configFiles.some(file => fs.existsSync(path.join(appPath, file)));
-};
-
-export const hasBabelDeps = (deps) =>
-  Object.keys(deps).some(dep => dep.startsWith('@babel/') || dep === 'babel-loader');
