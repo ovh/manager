@@ -40,6 +40,11 @@ const SelectQuantity = ({
           `select_quantity_description_${isInstance ? 'instance' : 'rancher'}`,
         )}
       </DescriptionWrapper>
+      {!isInstance && (
+        <DescriptionWrapper className="mb-[12px]">
+          {t('select_quantity_description_rancher_info')}
+        </DescriptionWrapper>
+      )}
       <OdsMessage className="my-2" isDismissible={false}>
         <OdsText className="inline-block">
           {t(`quantity_banner_${isInstance ? 'instance' : 'rancher'}`)}

@@ -31,8 +31,8 @@
   "createRancherName": "Apellido",
   "createRancherDescription": "En este servicio podrá gestionar varios «downstream clusters».",
   "createRancherPlaceholder": "mi_rancher",
-  "createRancherServiceLevel": "Selección de la solución",
-  "createRancherServiceLevelDescription": "Ambos servicios le permitirán disfrutar de todas las funcionalidades de Rancher. El servicio OVHcloud Edition solo permite crear «downstream clusters» en el cloud público de OVHcloud, con nodos autoadministrados añadidos de uno en uno.<br> El servicio Standard es perfecto para los usos del cloud privado, multicloud o «edge». Puede migrar a la versión Standard en cualquier momento.<br> Su uso se facturará por horas, en función del número total de vCPU de cada uno de los nodos de trabajo de sus «downstream clusters» Rancher. <strong>Los nodos de tipo plano de control no se facturan.</strong>",
+  "createRancherServiceLevel": "Elección del plan",
+  "createRancherServiceLevelDescription": "Ambos planes ofrecen todas las funcionalidades de Rancher. El plan OVHcloud Edition solo permite crear «downstream clusters» en el cloud público de OVHcloud, con nodos autoadministrados añadidos de uno en uno.<br> El plan Standard es ideal para los usos de cloud privado, multicloud o Edge. Puede migrar al plan Standard en cualquier momento.",
   "createRancherVersion": "Versión del Rancher",
   "createRancherVersionDescription": "Este servicio se basa en SUSE Rancher. OVHcloud es compatible con las últimas versiones de Rancher. Le recomendamos que utilice la versión más reciente.<br> De acuerdo con nuestra política de ciclo de vida del software, aplicamos regularmente parches de seguridad y ofrecemos nuevas versiones.",
   "createRancherCTA": "Crear un servicio Managed Rancher",
@@ -56,5 +56,6 @@
   "createRancherOfferDescription": "Con un mínimo de 20 vCPU facturadas por Rancher",
   "egress_title": "Rancher egress CIDRs",
   "egress_tooltip": "Las notaciones CIDR representan los rangos de las direcciones IP de salida utilizadas por Rancher. Puede ser necesario autorizar estas direcciones IP («whitelisting») a acceder a sus plataformas de terceros (p. ej., llamadas a la API para aprovisionar recursos).",
-  "badRequestSwitchPlan": "Se ha producido un error al cambiar su plan Managed Rancher Service. Actualmente utiliza drivers que no son compatibles con el plan {{plan}}: {{drivers}}"
+  "badRequestSwitchPlan": "Se ha producido un error al cambiar su plan Managed Rancher Service. Actualmente utiliza drivers que no son compatibles con el plan {{plan}}: {{drivers}}",
+  "savingsPlanUsage": "Si ya ha contratado uno o varios Saving Plans para el plan seleccionado, las vCPU de sus «downstream clusters» se contabilizarán automáticamente en este plan."
 }
