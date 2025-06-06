@@ -3,7 +3,7 @@
   "zimbra_account_datagrid_organization_label": "Organisation",
   "zimbra_account_datagrid_offer_label": "Angebot",
   "zimbra_account_datagrid_webmail_label": "Webmail:",
-  "zimbra_account_datagrid_quota": "Größe",
+  "zimbra_account_datagrid_quota": "Quota",
   "zimbra_account_datagrid_quota_octets": "Byte",
   "zimbra_account_datagrid_quota_ko": "KB",
   "zimbra_account_datagrid_quota_mo": "MB",
@@ -20,5 +20,10 @@
   "zimbra_account_tooltip_need_slot": "Es sind keine Accounts verfügbar. Bitte bestellen Sie einen.",
   "zimbra_account_delete_modal_content_step1": "Sie sind im Begriff, den E-Mail-Account vom Zimbra-Server zu löschen.",
   "zimbra_account_delete_modal_content_step2": "Sind Sie sicher, dass Sie das Postfach des Zimbra-Servers löschen möchten?",
-  "zimbra_account_delete_modal_warn_message": "Achtung: Diese Aktion kann nicht rückgängig gemacht werden und führt zur Löschung der Daten."
+  "zimbra_account_delete_modal_warn_message": "Achtung: Diese Aktion kann nicht rückgängig gemacht werden und führt zur Löschung der Daten.",
+  "zimbra_account_datagrid_size": "Größe",
+  "zimbra_account_datagrid_renewal_date": "Verlängerungsdatum",
+  "zimbra_account_datagrid_renewal_type": "Verlängerung",
+  "zimbra_account_configured": "Konfigurierte Accounts ({{ value }})",
+  "zimbra_account_unconfigured": "Nicht konfigurierte Accounts ({{ value }})"
 }

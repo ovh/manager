@@ -143,7 +143,7 @@ export const Domains = () => {
   return (
     <div>
       <Outlet />
-      {platformUrn && !isOverridedPage && (
+      {!isOverridedPage && (
         <Datagrid
           topbar={
             <div className="flex items-center justify-between">

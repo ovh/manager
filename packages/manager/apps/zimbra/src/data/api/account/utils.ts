@@ -5,7 +5,7 @@ export const formatAccountPayload = (
   data: AddEmailAccountSchema,
   isEdit = false,
 ): AccountBodyParamsType => {
-  const { account, domain } = data;
+  const { account, domain, slotId } = data;
 
   const payload: Record<string, unknown> = {
     email: `${account}@${domain}`.toLowerCase(),
@@ -17,6 +17,7 @@ export const formatAccountPayload = (
         'account',
         'domain',
         isEdit ? 'password' : '',
+        isEdit || !slotId ? 'slotId' : '',
         'offer' /* @TODO remove when backend accept this */,
       ].includes(key)
     ) {

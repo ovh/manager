@@ -84,5 +84,11 @@
   "skip_step": "Saltare questo step",
   "configure_another_account": "Configurare un altro account",
   "generate_password_tooltip": "Generare una password",
-  "generated_password_tooltip": "Password copiata negli appunti"
+  "generated_password_tooltip": "Password copiata negli appunti",
+  "configure_account": "Configurare l’account",
+  "service_billing_state_canceled": "Disattivato",
+  "service_billing_state_cancelation_planned": "Disattivazione programmata",
+  "service_billing_state_manual_renewal": "Rinnovo manuale",
+  "service_billing_state_automatic_renewal": "Rinnovo automatico",
+  "service_billing_state_unhandled": "N/A"
 }
