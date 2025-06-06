@@ -21,9 +21,9 @@ const SkipToMainContent = (props: Props) => {
   const { t } = useTranslation('sidebar');
 
   useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
+    buttonRef.current.addEventListener('keydown', handleKeyDown);
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      buttonRef.current.removeEventListener('keydown', handleKeyDown);
     };
   }, [skipToTheMainContentSlot]);
 
