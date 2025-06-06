@@ -44,6 +44,9 @@ export type TServerContainer = {
   versioning: {
     status: string;
   };
+  objectLock: {
+    status: string;
+  };
   virtualHost: string;
   staticUrl: string;
   replication: {

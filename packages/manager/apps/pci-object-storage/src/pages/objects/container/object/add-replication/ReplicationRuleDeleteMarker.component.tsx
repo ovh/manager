@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import {
   OdsFormField,
+  OdsIcon,
+  OdsPopover,
   OdsRadio,
   OdsText,
 } from '@ovhcloud/ods-components/react';
@@ -15,12 +17,16 @@ type TReplicationRuleDeleteMarkerProps = {
     deleteMarkerReplication: TReplicationStatus,
   ) => void;
   asyncReplicationLink: string;
+  replicationRuleTags: Record<string, string>;
+  replicationApplication: boolean;
 };
 
 export function ReplicationRuleDeleteMarker({
   deleteMarkerReplication,
   setDeleteMarkerReplication,
   asyncReplicationLink,
+  replicationRuleTags,
+  replicationApplication,
 }: TReplicationRuleDeleteMarkerProps) {
   const { t } = useTranslation(['containers/replication/add']);
 
@@ -40,6 +46,10 @@ export function ReplicationRuleDeleteMarker({
             onOdsChange={() => setDeleteMarkerReplication(STATUS_ENABLED)}
             inputId="replicate-delete-marker-true"
             isChecked={deleteMarkerReplication === STATUS_ENABLED}
+            isDisabled={
+              Object.keys(replicationRuleTags).length > 0 &&
+              replicationApplication
+            }
           />
           <label htmlFor="vreplicate-delete-marker-true">
             <OdsText>
@@ -48,6 +58,23 @@ export function ReplicationRuleDeleteMarker({
               )}
             </OdsText>
           </label>
+          {Object.keys(replicationRuleTags).length > 0 &&
+            replicationApplication && (
+              <div className="mt-2 ml-3 cursor-pointer">
+                <OdsIcon
+                  id="trigger-popover"
+                  name="circle-question"
+                  className="text-[var(--ods-color-information-500)]"
+                />
+                <OdsPopover triggerId="trigger-popover">
+                  <OdsText preset="caption">
+                    {t(
+                      'containers/replication/add:pci_projects_project_storages_containers_replication_add_tags_replicatDelete_marker_tooltip',
+                    )}
+                  </OdsText>
+                </OdsPopover>
+              </div>
+            )}
         </div>
         <div className="flex items-center gap-4">
           <OdsRadio

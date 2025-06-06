@@ -33,19 +33,6 @@ import { addUser, deleteSwiftObject, TStorageObject } from '../data/objects';
 import { getContainerQueryKey } from './useContainer';
 import { useGetRegion } from './useRegion';
 
-export type TObject = {
-  offer: string;
-  deploymentMode: string;
-  containerCount: number;
-  usedSpace: number;
-  archive?: boolean;
-  containerType?: 'private' | 'public' | 'static';
-  id: string;
-  name: string;
-  region: string;
-  state?: string;
-};
-
 export const sortStorages = (sorting: ColumnSort, storages: TStorage[]) => {
   const order = sorting.desc ? -1 : 1;
   switch (sorting?.id) {
