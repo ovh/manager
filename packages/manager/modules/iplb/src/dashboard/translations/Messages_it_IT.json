@@ -84,5 +84,6 @@
   "iplb_preview_see": "Visualizza l'anteprima",
   "iplb_complete_order": "Salda il buono d’ordine",
   "iplb_tile_subscription_autorenew": "Rinnovo automatico",
-  "iplb_tile_subscription_expiration_date": "Data di scadenza"
+  "iplb_tile_subscription_expiration_date": "Data di scadenza",
+  "iplb_tab_logs": "Log"
 }

@@ -84,5 +84,6 @@
   "iplb_preview_see": "Ver la vista previa",
   "iplb_complete_order": "Abonar la orden de pedido",
   "iplb_tile_subscription_autorenew": "Renovación automática",
-  "iplb_tile_subscription_expiration_date": "Fecha de expiración"
+  "iplb_tile_subscription_expiration_date": "Fecha de expiración",
+  "iplb_tab_logs": "Logs"
 }
