@@ -45,6 +45,10 @@ export const RhfField = ({
       <OdsFormField
         className={`max-w-md ${className || ''}`}
         error={hasError ? errorMessage : undefined}
+        role="group"
+        data-fieldname={controller.field.name}
+        aria-labelledby={id}
+        aria-describedby={`helper-${id}`}
         {...rest}
       ></OdsFormField>
     </RhfFieldContext.Provider>
@@ -67,8 +71,11 @@ export const RhfHelper = ({
   className,
   ...rest
 }: Readonly<React.ComponentProps<typeof OdsText>>) => {
+  const { id } = useRhfFieldContext();
+
   return (
     <OdsText
+      id={`helper-${id}`}
       className={`ods-field-helper ${className ?? ''}`}
       slot="helper"
       preset="caption"

@@ -28,7 +28,7 @@ export const getVdcOrderableResourceRoute = (id: string, vdcId: string) => {
 };
 
 export const getVdcVrackSegmentListRoute = (id: string, vdcId: string) => {
-  return `${getVcdDatacentresRoute(id)}/${vdcId}`;
+  return `${getVcdDatacentresRoute(id)}/${vdcId}/vrackSegment`;
 };
 
 export const getVdcVrackSegmentRoute = ({
@@ -40,8 +40,5 @@ export const getVdcVrackSegmentRoute = ({
   vdcId: string;
   vrackSegmentId: string;
 }) => {
-  return `${getVdcVrackSegmentListRoute(
-    id,
-    vdcId,
-  )}/vrackSegment/${vrackSegmentId}`;
+  return `${getVdcVrackSegmentListRoute(id, vdcId)}/${vrackSegmentId}`;
 };
