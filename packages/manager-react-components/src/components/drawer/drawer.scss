@@ -1,0 +1,13 @@
+@keyframes drawerBackdropfadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.75;
+  }
+}
+
+.drawer-backdrop-fade-in {
+  opacity: 0.75;
+  animation: drawerBackdropfadeIn 0.3s ease-in-out;
+}
