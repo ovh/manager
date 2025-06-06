@@ -1,8 +1,9 @@
 import { createContext } from 'react';
+import { LegalFrom } from '@/types/legalForm';
 
 export type UserContext = {
-  legalForm?: string;
-  setLegalForm: (legalForm: string) => void;
+  legalForm?: LegalFrom;
+  setLegalForm: (legalForm: LegalFrom) => void;
 };
 
 const userContext = createContext<UserContext | undefined>(undefined);

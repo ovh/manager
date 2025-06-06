@@ -23,6 +23,14 @@ html {
   z-index: 1;
 }
 
+.text-critical::part(text) {
+  color: var(--ods-color-critical-500);
+}
+
+.w-full::part(button) {
+  width: 100%;
+}
+
 .reassurance-wording {
   position: absolute;
   width: calc(2 / 3 * 100%);
