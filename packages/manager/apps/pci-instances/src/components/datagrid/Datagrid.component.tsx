@@ -12,10 +12,13 @@ import {
   useMemo,
 } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { OsdsLink } from '@ovhcloud/ods-components/react';
+import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { ApiError, Filter } from '@ovh-ux/manager-core-api';
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+} from '@ovhcloud/ods-common-theming';
 import { useQueryClient } from '@tanstack/react-query';
 import { TextCell } from './cell/TextCell.component';
 import { NameIdCell } from '@/pages/instances/datagrid/cell/NameIdCell.component';
@@ -298,7 +301,15 @@ const DatagridComponent = ({
 
   useEffect(() => {
     if (hasInconsistency)
-      addWarning(t('pci_instances_list_inconsistency_message'), true);
+      addWarning(
+        <OsdsText
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {t('pci_instances_list_inconsistency_message')}
+        </OsdsText>,
+        true,
+      );
     return () => {
       clearNotifications();
     };
@@ -314,7 +325,7 @@ const DatagridComponent = ({
 
   return (
     <div className="overflow-x-auto">
-      <div className="mt-10">
+      <div className="mt-8">
         <Datagrid
           columns={datagridColumns}
           hasNextPage={!isFetchingNextPage && !isRefetching && hasNextPage}
