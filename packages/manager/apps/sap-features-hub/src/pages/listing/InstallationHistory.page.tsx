@@ -11,7 +11,7 @@ import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { LABELS } from '@/utils/label.constants';
-import { subRoutes, urls } from '@/routes/routes.constant';
+import { urls } from '@/routes/routes.constant';
 import { TSAPInstallation } from '@/types/installation.type';
 import useInstallationHistory from '@/data/hooks/useInstallationHistory';
 import {
@@ -115,7 +115,7 @@ export default function HistoryPage() {
       </OdsText>
       <OdsButton
         variant={ODS_BUTTON_VARIANT.outline}
-        onClick={() => navigate(subRoutes.initialStep)}
+        onClick={() => navigate(urls.installationWizardStep)}
         label={t('sap_hub_history_run_installation')}
         className="my-8"
       />

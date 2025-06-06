@@ -18,6 +18,8 @@ export default function InstallationStepDeployment() {
   const {
     values: { applicationVersion, applicationType, deploymentType },
     setValues,
+    initializationState,
+    setHasChangedPrefilledDeploymentType,
   } = useInstallationFormContext();
 
   const isStepValid = React.useMemo(
@@ -28,6 +30,29 @@ export default function InstallationStepDeployment() {
   const handleChange = (e: OdsInputChangeEvent) => {
     const { name, value } = e.detail;
     setValues((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleDeploymentTypeChange = (e: OdsInputChangeEvent) => {
+    const newDeploymentType = e.detail.value as DeploymentType;
+    const {
+      isPrefilled,
+      prefilledDeploymentType,
+      hasChangedPrefilledDeploymentType,
+    } = initializationState;
+
+    const updateDeploymentTypeAndServers = () =>
+      setValues((prev) => ({
+        ...prev,
+        deploymentType: newDeploymentType,
+        applicationServers: null,
+      }));
+
+    if (!isPrefilled || hasChangedPrefilledDeploymentType) {
+      updateDeploymentTypeAndServers();
+    } else if (prefilledDeploymentType !== newDeploymentType) {
+      setHasChangedPrefilledDeploymentType(true);
+      updateDeploymentTypeAndServers();
+    }
   };
 
   return (
@@ -60,13 +85,7 @@ export default function InstallationStepDeployment() {
         label={t('deployment_input_deployment_type')}
         placeholder={t('select_label')}
         options={DEPLOYMENT_TYPES}
-        handleChange={(e: OdsInputChangeEvent) => {
-          setValues((prev) => ({
-            ...prev,
-            deploymentType: e.detail.value as DeploymentType,
-            applicationServers: null,
-          }));
-        }}
+        handleChange={handleDeploymentTypeChange}
         defaultValue={deploymentType}
       />
     </InstallationFormLayout>

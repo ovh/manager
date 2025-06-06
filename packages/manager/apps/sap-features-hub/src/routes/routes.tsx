@@ -86,6 +86,19 @@ export const Routes: any = [
         ),
         children: [
           {
+            id: 'wizard',
+            path: urls.installationWizardStep,
+            ...lazyRouteConfig(() =>
+              import('@/pages/installation/wizardStep/InstallationWizard.page'),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'wizard',
+                pageType: PageType.popup,
+              },
+            },
+          },
+          {
             id: 'initialStep',
             path: urls.installationInitialStep,
             ...lazyRouteConfig(() =>
