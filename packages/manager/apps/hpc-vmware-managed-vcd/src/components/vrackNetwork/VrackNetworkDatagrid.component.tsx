@@ -74,6 +74,12 @@ export default function VrackNetworkDatagrid({
       .replace(subRoutes.vdcId, vdcId),
   );
 
+  const hrefVrackSegmentDelete = useHref(
+    urls.vrackSegmentDelete
+      .replace(subRoutes.dashboard, id)
+      .replace(subRoutes.vdcId, vdcId),
+  );
+
   const hasExtraSegments =
     (vrackNetworks?.length ?? 0) > VRACK_SEGMENTS_MIN_LENGTH;
 
@@ -123,7 +129,10 @@ export default function VrackNetworkDatagrid({
                 },
                 {
                   id: 2,
-                  href: hrefAddNetwork,
+                  href: hrefAddNetwork.replace(
+                    subRoutes.vrackSegmentId,
+                    item.id,
+                  ),
                   label: t('managed_vcd_dashboard_vrack_network_add_subnet'),
                 },
                 ...(hasExtraSegments
@@ -134,13 +143,10 @@ export default function VrackNetworkDatagrid({
                         label: t(
                           'managed_vcd_dashboard_vrack_network_delete_segment',
                         ),
-                        onClick: () =>
-                          navigate(
-                            urls.vrackSegmentDelete
-                              .replace(subRoutes.dashboard, id)
-                              .replace(subRoutes.vdcId, vdcId)
-                              .replace(subRoutes.vrackSegmentId, item.id),
-                          ),
+                        href: hrefVrackSegmentDelete.replace(
+                          subRoutes.vrackSegmentId,
+                          item.id,
+                        ),
                       },
                     ]
                   : []),
