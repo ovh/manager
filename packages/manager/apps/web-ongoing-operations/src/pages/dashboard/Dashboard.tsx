@@ -10,9 +10,13 @@ import {
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import {
   BaseLayout,
+  GuideButton,
+  GuideItem,
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { GUIDES_LIST } from '@/guides.constants';
+import { getLanguageKey } from '@/utils/utils';
 
 export const DNS_OPERATIONS_TABLE_HEADER_DOMAIN = 'DNS';
 
@@ -30,8 +34,18 @@ export default function DashboardPage() {
   const [activePanel, setActivePanel] = useState<string>('');
   const location = useLocation();
   const navigate = useNavigate();
-  const { t } = useTranslation('dashboard');
+  const { t, i18n } = useTranslation('dashboard');
   const { notifications } = useNotifications();
+  const langCode = getLanguageKey(i18n.language);
+
+  const guideItems: GuideItem[] = [
+    {
+      id: 1,
+      href: GUIDES_LIST.domains.url[langCode],
+      target: '_blank',
+      label: t('domain_operations_guides'),
+    },
+  ];
 
   const tabsList: DashboardTabItemProps[] = [
     {
@@ -60,6 +74,7 @@ export default function DashboardPage() {
     <BaseLayout
       header={{
         title: t('domain_operations_dashboard_title'),
+        headerButton: <GuideButton items={guideItems} />,
       }}
       description={t('domain_operations_dashboard_info')}
       tabs={
