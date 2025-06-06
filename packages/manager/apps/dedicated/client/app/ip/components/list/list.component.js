@@ -21,6 +21,7 @@ export default {
     trackingData: '<',
     goToStatistics: '<',
     isDeleteByoipServiceAvailable: '<',
+    isPermanentMitigationAvailable: '<',
   },
   transclude: {
     actions: '?ipListActions',
