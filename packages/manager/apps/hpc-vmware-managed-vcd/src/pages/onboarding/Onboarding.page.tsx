@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  useOvhTracking,
+  ShellContext,
+} from '@ovh-ux/manager-react-shell-client';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import vmwareBroadcomOVHCloud from '@/assets/VmwareBroadcomxOVHcloud.svg';
 import { TRACKING } from '@/tracking.constants';
+import { ORDER_VCD_REDIRECTION_URL } from '@/utils/orderVcdRedirection.constants';
 
 export default function Onboarding() {
-  const { t } = useTranslation('onboarding');
+  const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS]);
+
   const link = useGuideUtils();
   const { trackClick } = useOvhTracking();
+  const { ovhSubsidiary } =
+    useContext(ShellContext)?.environment?.getUser() || {};
 
   const tileList = [
     {
@@ -64,6 +72,11 @@ export default function Onboarding() {
         title="Managed VMware Cloud Director"
         img={imgSrc}
         description={description}
+        orderButtonLabel={t(`${NAMESPACES.ACTIONS}:order`)}
+        orderHref={
+          ORDER_VCD_REDIRECTION_URL[ovhSubsidiary] ||
+          ORDER_VCD_REDIRECTION_URL.DEFAULT
+        }
       >
         {tileList.map((tile) => (
           <Card
