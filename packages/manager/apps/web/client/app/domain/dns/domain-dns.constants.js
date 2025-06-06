@@ -2,6 +2,7 @@ export const DNS_STATUS = {
   ACTIVATED: 'activated',
   ADDING: 'adding',
   DELETING: 'deleting',
+  ERROR: 'error',
 };
 
 export const DNS_TYPE = {
@@ -10,3 +11,5 @@ export const DNS_TYPE = {
   STANDARD: 'standard',
   DEDICATED: 'dedicated',
 };
+
+export const DNS_OPERATION = 'DomainDnsUpdate';

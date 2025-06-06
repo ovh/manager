@@ -3455,7 +3455,7 @@
     tailwindcss-animate "^1.0.7"
     vaul "^1.1.2"
 
-"@datatr-ux/uxlib@^0.0.11-beta-8":
+"@datatr-ux/uxlib@^0.0.11-beta-7", "@datatr-ux/uxlib@^0.0.11-beta-8":
   version "0.0.11-beta-8"
   resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-0.0.11-beta-8.tgz#e47edc3465d6ea8add18e81717193d3d543223c8"
   integrity sha512-yAIPXaEVXtv0uxj7Z8A8GMIOUrtzuC06gG1Uw9proXtjCGSh6yBpnjaNIRhK0LWORtBQFxs9yVwy/M8CjkJkKw==
