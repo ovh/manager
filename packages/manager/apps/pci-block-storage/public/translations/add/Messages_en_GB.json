@@ -8,7 +8,7 @@
   "pci_projects_project_storages_blocks_add_type_high-speed_description": "",
   "pci_projects_project_storages_blocks_add_type_price": "{{price}} GB/month",
   "pci_projects_project_storages_blocks_add_size_title": "Volume capacity",
-  "pci_projects_project_storages_blocks_add_size_help": "The maximum size depends on your available quota.",
+  "pci_projects_project_storages_blocks_add_size_help": "The maximum size depends on your available quota. <Link>Check my quota</Link>",
   "pci_projects_project_storages_blocks_add_size_unit": "GB",
   "pci_projects_project_storages_blocks_add_name_title": "Volume name",
   "pci_projects_project_storages_blocks_add_submit_title": "Confirmation",
