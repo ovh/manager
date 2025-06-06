@@ -179,7 +179,7 @@ export default function ReplicationListPage() {
 
       {!(container.versioning?.status === STATUS_ENABLED) && (
         <OdsMessage color="warning" className="mt-6" isDismissible={false}>
-          <OdsText preset="paragraph">
+          <OdsText>
             {t(
               'containers/replication:pci_projects_project_storages_containers_replication_list_warning',
             )}
@@ -197,7 +197,7 @@ export default function ReplicationListPage() {
 
       {filteredStorages.length === 0 && (
         <OdsMessage color="warning" className="mt-6" isDismissible={false}>
-          <OdsText preset="paragraph">
+          <OdsText>
             {t(
               'containers/replication:pci_projects_project_storages_containers_replication_list_destination_warning',
             )}

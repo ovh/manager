@@ -99,11 +99,11 @@ export function ReplicationRuleDestination({
 
   return (
     <OdsFormField className="mt-8 max-w-[800px] block">
-      <label slot="label">
+      <OdsText preset="heading-5">
         {t(
           'containers/replication/add:pci_projects_project_storages_containers_replication_add_destination',
         )}
-      </label>
+      </OdsText>
       <OdsCombobox
         placeholder={t(
           'containers/replication/add:pci_projects_project_storages_containers_replication_add_destination_placeholder',

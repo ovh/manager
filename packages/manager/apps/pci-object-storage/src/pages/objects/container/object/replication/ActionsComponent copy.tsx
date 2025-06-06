@@ -14,7 +14,6 @@ export default function ActionsComponent({
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
-  const encodeName = (name: string) => btoa(encodeURIComponent(name));
 
   const items = [
     {
@@ -22,11 +21,6 @@ export default function ActionsComponent({
       label: t(
         'pci_projects_project_storages_containers_replication_list_data_grid_action_edit',
       ),
-      onClick: () => {
-        navigate(
-          `./${replication.id}/edit?region=${searchParams.get('region')}`,
-        );
-      },
     },
     {
       id: 2,
@@ -35,9 +29,7 @@ export default function ActionsComponent({
       ),
       onClick: () => {
         navigate(
-          `./${encodeName(replication.id)}/delete?region=${searchParams.get(
-            'region',
-          )}`,
+          `./${replication.id}/delete?region=${searchParams.get('region')}`,
         );
       },
     },
