@@ -1,16 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-
-const VITEST_DEPS = [
-  'vitest',
-  '@vitest/ui',
-  '@vitest/coverage-v8',
-  '@vitejs/plugin-react',
-  '@testing-library/jest-dom',
-  '@testing-library/dom',
-  '@testing-library/react',
-  '@testing-library/user-event'
-];
+import { EXCLUDED_TESTS_DEPS } from '../../../utils/AppUtils.mjs';
 
 const UNIT_TEST_CONFIG_PKG = '@ovh-ux/manager-tests-setup';
 const UNIT_TEST_CONFIG_VERSION = 'latest';
@@ -36,7 +26,7 @@ export const updateDependencies = async (appPath, dryRun) => {
   const removedFromDeps = [];
   const removedFromDevDeps = [];
 
-  VITEST_DEPS.forEach((dep) => {
+  EXCLUDED_TESTS_DEPS.forEach((dep) => {
     if (pkg.dependencies[dep]) {
       removedFromDeps.push(dep);
       delete pkg.dependencies[dep];

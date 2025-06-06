@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import path, { dirname, resolve, join } from 'path';
@@ -8,22 +10,24 @@ const __dirname = dirname(__filename);
 const basePath = path.resolve('../manager/apps');
 
 export const runMigration = ({
-  appName,
-  commandLabel,
-  scriptOrSteps,
-  formatGlob = '*.{js,ts,tsx}',
-  framework = null,
-  testType = null,
-  testCommand = null,
-  dryRun = false,
-  docLink = null,
+   appName = null,
+   commandLabel,
+   scriptOrSteps,
+   formatGlob = '*.{js,ts,tsx}',
+   framework = null,
+   testType = null,
+   testCommand = null,
+   dryRun = false,
+   docLink = null,
+   statusOnly = false,
 }) => {
-  const appPath = path.join(basePath, appName);
-  const isValidAppName = /^[a-zA-Z0-9_-]+$/.test(appName);
+  const appPath = appName ? path.join(basePath, appName) : null;
 
-  if (!appName || !isValidAppName || !isCodeFileExistsSync(appPath)) {
-    console.error(
-      [
+  if (appName) {
+    const isValidAppName = /^[a-zA-Z0-9_-]+$/.test(appName);
+
+    if (!isValidAppName || !isCodeFileExistsSync(appPath)) {
+      console.error([
         `❌ Unable to proceed: invalid or missing application setup.`,
         '',
         `Possible issues:`,
@@ -31,17 +35,24 @@ export const runMigration = ({
         `  - App folder not found at: ${appPath}`,
         '',
         `Usage: yarn manager-cli ${commandLabel} --app <app-name> ${framework ? '[--framework <name>] ' : ''}${commandLabel.includes('tests-migrate') ? '--testType <unit|integration> ' : ''}[--dry-run]`,
-      ].join('\n'),
-    );
-    process.exit(1);
+      ].join('\n'));
+      process.exit(1);
+    }
+
+    console.log(`🔄 Starting ${commandLabel}${testType ? ` (${testType} tests)` : ''} for app: ${appName}${framework ? ` using ${framework}` : ''}`);
+  } else {
+    console.log(`🔄 Running ${commandLabel}${dryRun ? ' in dry-run mode' : ''}`);
   }
 
   try {
-    console.log(`🔄 Starting ${commandLabel}${testType ? ` (${testType} tests)` : ''} for app: ${appName}${framework ? ` using ${framework}` : ''}`);
-
     if (Array.isArray(scriptOrSteps)) {
       for (const cmd of scriptOrSteps) {
-        const finalCmd = `${cmd} ${appName}${dryRun ? ' --dry-run' : ''}${testType ? ` --testType ${testType}` : ''}`;
+        const finalCmd = [
+          cmd,
+          appName ? appName : '',
+          dryRun ? '--dry-run' : '',
+          testType ? `--testType ${testType}` : '',
+        ].filter(Boolean).join(' ');
         console.log(`📦 Running: ${finalCmd}`);
         execSync(finalCmd, { stdio: 'inherit' });
       }
@@ -49,26 +60,33 @@ export const runMigration = ({
       const migrateScript = testType
         ? `./${commandLabel}/${testType}/migrate-${framework || 'default'}.mjs`
         : `./${commandLabel}/migrate-${framework || 'default'}.mjs`;
-      const migrateCommand = `node ${migrateScript} ${dryRun ? '--dry-run' : ''} --only ${appName}`;
+      const migrateCommand = [
+        'node', migrateScript,
+        dryRun ? '--dry-run' : '',
+        appName ? `--only ${appName}` : ''
+      ].filter(Boolean).join(' ');
       execSync(migrateCommand, { stdio: 'inherit' });
     }
 
-    console.log(`✅ ${commandLabel} completed for "${appName}".`);
+    if (appName) {
+      console.log(`✅ ${commandLabel} completed for "${appName}".`);
+    } else {
+      console.log(`✅ ${commandLabel} completed.`);
+    }
+
   } catch (error) {
-    console.error(
-      [
-        `❌ Failed during the ${commandLabel} process.`,
-        '',
-        docLink ? `See: ${docLink}` : '',
-        '',
-        'Please check the logs above for more details.',
-      ].join('\n'),
-    );
+    console.error([
+      `❌ Failed during the ${commandLabel} process.`,
+      '',
+      docLink ? `See: ${docLink}` : '',
+      '',
+      'Please check the logs above for more details.',
+    ].join('\n'));
     console.error(error);
     process.exit(1);
   }
 
-  if (dryRun) process.exit(0);
+  if (dryRun || !appName || statusOnly) return;
 
   const appFullPath = join('packages', 'manager', 'apps', appName, '**', formatGlob);
 
