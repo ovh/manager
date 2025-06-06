@@ -1,9 +1,9 @@
 import { FC, useContext } from 'react';
 import {
+  BaseLayout,
   Card,
   OnboardingLayout,
   OvhSubsidiary,
-  PageLayout,
 } from '@ovh-ux/manager-react-components';
 import { Navigate, useHref, useRouteLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -44,8 +44,11 @@ const Onboarding: FC = () => {
   return data && data.length > 0 ? (
     <Navigate to={'..'} />
   ) : (
-    <PageLayout>
-      {project && <Breadcrumb projectLabel={project.description ?? ''} />}
+    <BaseLayout
+      breadcrumb={
+        project && <Breadcrumb projectLabel={project.description ?? ''} />
+      }
+    >
       <OnboardingLayout
         title={t('common:pci_instances_common_instances_title')}
         img={{ src: InstanceImageSrc }}
@@ -57,7 +60,7 @@ const Onboarding: FC = () => {
               color={ODS_THEME_COLOR_INTENT.text}
               level={ODS_TEXT_LEVEL.body}
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              className="mt-8 block"
+              className="mt-6 block"
             >
               {t('pci_instances_onboarding_not_created_message')}
             </OsdsText>
@@ -65,7 +68,7 @@ const Onboarding: FC = () => {
               color={ODS_THEME_COLOR_INTENT.text}
               level={ODS_TEXT_LEVEL.body}
               size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-              className="mt-8 block"
+              className="mt-6 block"
             >
               {t('pci_instances_onboarding_content_message_1')}
             </OsdsText>
@@ -81,7 +84,7 @@ const Onboarding: FC = () => {
               color={ODS_THEME_COLOR_INTENT.text}
               level={ODS_TEXT_LEVEL.body}
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              className="mt-8 block"
+              className="mt-6 block"
             >
               {t('pci_instances_onboarding_advice_message')}
             </OsdsText>
@@ -106,7 +109,7 @@ const Onboarding: FC = () => {
           />
         ))}
       </OnboardingLayout>
-    </PageLayout>
+    </BaseLayout>
   );
 };
 
