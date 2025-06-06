@@ -27,6 +27,7 @@ export default class {
   }
 
   getTodoAgreements() {
+    console.log('getTodoAgreements user contract');
     return this.OvhHttp.get('/me/agreements', {
       rootPath: 'apiv6',
       params: {

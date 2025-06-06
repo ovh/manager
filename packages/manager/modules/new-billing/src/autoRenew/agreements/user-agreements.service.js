@@ -12,6 +12,7 @@ export default /* @ngInject */ function UserAccountAgreementsService(
   $translate,
   accountMigrationService,
   constants,
+  // iceberg,
 ) {
   const userAgreementsCache = $cacheFactory('USER_AGREEMENTS');
 
@@ -22,6 +23,7 @@ export default /* @ngInject */ function UserAccountAgreementsService(
   }
 
   function formatList(response) {
+    console.log('formatList response', response);
     if (
       response.data.list &&
       response.data.list.results &&
@@ -57,6 +59,32 @@ export default /* @ngInject */ function UserAccountAgreementsService(
       .then(formatList)
       .then(getSuccessDataOrReject);
   };
+
+  // With iceberg
+  // this.getList = function getList(count, offset, state, sorting) {
+
+  //       // console.log("wolooo", iceberg('/me/agreements').query().expand('CachedObjectList-Pages').limit(50000)
+  //   // .execute(null, true)
+  //   // .$promise.then(console.log)
+  //   // .catch(console.error)  )
+
+  //   return   iceberg('/me/agreements').query().expand('CachedObjectList-Pages').execute(null, true).$promise.then(formatList)
+  //   .then(getSuccessDataOrReject)
+  //   .catch(console.error);
+  //   // return $http
+  //   //   .get('/sws/agreements', {
+  //   //     cache: userAgreementsCache,
+  //   //     params: {
+  //   //       count,
+  //   //       offset,
+  //   //       ...(state ? { agreed: state } : {}),
+  //   //       ...(sorting ? { sortOrder: sorting.reverse ? 'DESC' : 'ASC' } : {}),
+  //   //     },
+  //   //     serviceType: 'aapi',
+  //   //   })
+  //   //   .then(formatList)
+  //   //   .then(getSuccessDataOrReject);
+  // };
 
   this.getAgreementIds = function getAgreementIds() {
     return $http
