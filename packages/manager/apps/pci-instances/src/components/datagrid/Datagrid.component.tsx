@@ -71,6 +71,7 @@ const getPlaceHolderData = (count: number): TInstance[] =>
     availabilityZone: null,
     taskState: null,
     isImageDeprecated: false,
+    isEditionEnabled: false,
   }));
 
 const DatagridComponent = ({
