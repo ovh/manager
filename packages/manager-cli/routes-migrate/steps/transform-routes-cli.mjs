@@ -13,16 +13,13 @@ import {
   isCodeFileExists,
   splitImportsAndBody,
 } from '../../utils/CodeTransformUtils.mjs';
+import { getApplicationRoutesPath } from '../../utils/AppUtils.mjs';
 
 const traverse = traverseModule.default;
 
 const appName = process.argv[2];
 
 const NOT_FOUND_ROUTE = '@/pages/404';
-
-const basePath = path.resolve('../manager/apps');
-const filePath = path.join(basePath, appName, 'src/routes/routes.tsx');
-const outputFilePath = path.join(basePath, appName, 'src/routes/routes.tsx');
 
 /**
  * Find routes export start line
@@ -312,12 +309,12 @@ const generateTransformedRoutes = (code) => {
  * @returns {Promise<void>}
  */
 const transformRoutesToJsx = async () => {
-  if (!(await isCodeFileExists(filePath))) {
-    console.error(`❌ Error: routes.tsx file not found at ${filePath}`);
+  if (!(await isCodeFileExists(getApplicationRoutesPath(appName)))) {
+    console.error(`❌ Error: routes.tsx file not found at ${getApplicationRoutesPath(appName)}`);
     process.exit(1);
   }
 
-  const actualSourceCode = await fs.readFile(filePath, 'utf-8');
+  const actualSourceCode = await fs.readFile(getApplicationRoutesPath(appName), 'utf-8');
   const { routesTransformedBlock, lazyRoutesBlock, routesPreservedBlocks } = generateTransformedRoutes(
     removeLazyRouteConfig(actualSourceCode),
   );
@@ -350,8 +347,8 @@ ${routesTransformedBlock}
     console.log('ℹ️  Dry run output:');
     console.log(formatted);
   } else {
-    await fs.writeFile(outputFilePath, formatted);
-    console.log(`✅ Successfully written JSX tree to ${outputFilePath}`);
+    await fs.writeFile(getApplicationRoutesPath(appName), formatted);
+    console.log(`✅ Successfully written JSX tree to ${getApplicationRoutesPath(appName)}`);
   }
 };
 
