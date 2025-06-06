@@ -24,6 +24,8 @@ const useLocationsQueryOptions = () => {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchInterval: false,
+    retry: 3,
+    retryDelay: 5000,
   });
 };
 

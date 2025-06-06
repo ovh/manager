@@ -155,7 +155,6 @@ const shellContext = {
   shell: {
     location: {
       getLocations: () => {
-        console.log('Using mocked `getLocations`');
         return Promise.resolve([
           ...locations['3AZ'],
           ...locations['1AZ'],
