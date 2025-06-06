@@ -1142,7 +1142,7 @@
   "hosting_tab_BOOST_request_title": "Va a mejorar su plan de hosting.",
   "hosting_tab_BOOST_request_heading": "Seleccione el plan",
   "hosting_tab_BOOST_request_description": "La opción Boost le permite disfrutar de prestaciones superiores en su alojamiento web de manera temporal, con un precio por día, en función de sus necesidades.",
-  "hosting_tab_BOOST_request_description_billing_new": "Esta opción tiene un coste de {{price}} + IVA por día de uso y por tramo. Puede desactivarla o cambiar de plan, pasando a un tramo superior o inferior, en cualquier momento.",
+  "hosting_tab_BOOST_request_description_billing_new": "Esta opción tiene un coste de <strong>{{price}} + IVA por día de uso y por tramo</strong>. Puede desactivarla o cambiar de plan, pasando a un tramo superior o inferior, en cualquier momento.",
   "hosting_tab_BOOST_request_description_payment_renew": "Se prorrogará tácitamente hasta su desactivación. Al desactivar esta opción, se emitirá una factura correspondiente al período de uso. El importe se cargará en la forma de pago que haya registrado en la sección «Mis formas de pago» de su área de cliente.",
   "hosting_tab_BOOST_request_activation": "El «boost» de su producto se está activando...",
   "hosting_tab_BOOST_request_success": "El «boost» de su producto se ha activado correctamente.",

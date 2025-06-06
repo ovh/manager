@@ -1152,7 +1152,7 @@
   "hosting_tab_BOOST_request_title": "Stai per effettuare un Boost sulla tua offerta ",
   "hosting_tab_BOOST_request_heading": "Seleziona l'offerta ",
   "hosting_tab_BOOST_request_description": "L'opzione Boost permette all’hosting di usufruire temporaneamente di prestazioni superiori, con una tariffa calcolata su base giornaliera in base alle necessità.",
-  "hosting_tab_BOOST_request_description_billing_new": "Questa opzione sarà fatturata {{price}} +IVA per giorno di utilizzo e per livello. Potrai disattivarla o cambiare piano, passando a un livello superiore o inferiore, in qualsiasi momento.",
+  "hosting_tab_BOOST_request_description_billing_new": "Questa opzione sarà fatturata <strong>{{price}} +IVA per giorno di utilizzo e per livello</strong>. Potrai disattivarla o cambiare piano, passando a un livello superiore o inferiore, in qualsiasi momento.",
   "hosting_tab_BOOST_request_description_payment_renew": "Verrà conservata per tacito rinnovo fino alla sua disattivazione. Una volta disattivata, verrà emessa una fattura per l’intero periodo di utilizzo. L’importo verrà addebitato sul metodo di pagamento rehistrato nella sezione \"Fatturazione/I miei metodi di pagamento\" dello Spazio Cliente.",
   "hosting_tab_BOOST_request_activation": "Attivazione del Boost in corso...",
   "hosting_tab_BOOST_request_success": "Boost attivato con successo! ",

@@ -8,11 +8,16 @@ import {
   OdsSelect,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import {
+  ODS_MODAL_COLOR,
+  ODS_INPUT_TYPE,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import {
   IntervalUnitType,
+  Modal,
   OvhSubsidiary,
   Price,
   useNotifications,
@@ -20,7 +25,6 @@ import {
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Modal from '@/components/modal/Modal.component';
 import { useGenerateUrl } from '@/hooks';
 import {
   getOfficeUserDomainQueryKey,
@@ -134,22 +138,15 @@ export default function ModalOrderUsers() {
   };
   return (
     <Modal
-      title={t('common:users_order_users')}
-      onClose={onClose}
-      isDismissible
-      isOpen
-      secondaryButton={{
-        label: t('common:cta_cancel'),
-        action: handleCancelClick,
-        testid: 'cancel-btn',
-      }}
-      primaryButton={{
-        label: t('common:cta_confirm'),
-        action: handleSubmit(handleSaveClick),
-        isDisabled: !isDirty || !isValid,
-
-        testid: 'confirm-btn',
-      }}
+      heading={t('common:users_order_users')}
+      type={ODS_MODAL_COLOR.information}
+      isOpen={true}
+      secondaryLabel={t('common:cta_cancel')}
+      onSecondaryButtonClick={handleCancelClick}
+      onDismiss={handleCancelClick}
+      primaryLabel={t('common:cta_confirm')}
+      isPrimaryButtonDisabled={!isDirty || !isValid}
+      onPrimaryButtonClick={handleSubmit(handleSaveClick)}
     >
       <form
         className="flex flex-col text-left gap-y-5"
