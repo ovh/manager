@@ -28,9 +28,22 @@
         </a>
     </div>
     <oui-datagrid
-        data-rows="$ctrl.interfaces"
+        data-rows="$ctrl.displayedInterfaces"
         class="oui-tile__body table-striped "
     >
+        <oui-datagrid-column
+            data-title="::'dedicated_server_interfaces_type_label' | translate"
+            data-property="type"
+        >
+            <div
+                data-translate="{{ 'dedicated_server_interfaces_type_' + $row.type + '_label' }}"
+            ></div>
+            <div
+                data-ng-if="$row.displayedMacAdresses.length > 1"
+                class="oui-badge oui-badge_success"
+                data-translate="{{ 'dedicated_server_interfaces_type_badge_aggregated' }}"
+            ></div>
+        </oui-datagrid-column>
         <oui-datagrid-column
             data-title="::'dedicated_server_interfaces_name_label' | translate"
             data-property="name"
@@ -38,18 +51,19 @@
             <span data-ng-bind="$row.name"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title="::'dedicated_server_interfaces_type_label' | translate"
-            data-property="type"
-        >
-            <span
-                data-translate="{{ 'dedicated_server_interfaces_type_' + $row.type + '_label' }}"
-            ></span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
             data-title="::'dedicated_server_interfaces_mac_label' | translate"
-            data-property="mac"
+            data-property="displayedMacAdresses"
         >
-            <span data-ng-bind="$row.mac"></span>
+            <div data-ng-if="$row.displayedMacAdresses.length > 1">
+                <ul class="mb-0">
+                    <li data-ng-repeat="mac in $row.displayedMacAdresses">
+                        <p class="mb-0" data-ng-bind="mac"></p>
+                    </li>
+                </ul>
+            </div>
+            <div data-ng-if="$row.displayedMacAdresses.length <= 1">
+                <span data-ng-bind="$row.mac"></span>
+            </div>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title="::'dedicated_server_interfaces_bandwidth_outgoing_label' | translate"
