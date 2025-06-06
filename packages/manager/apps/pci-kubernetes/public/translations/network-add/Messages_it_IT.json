@@ -31,6 +31,7 @@
   "kubernetes_network_form_rebuild": "Attenzione: modificare la strategia di routing in uscita implica un nuovo deploy dei nodi del cluster in rolling update.",
   "kubernetes_network_form_notify_users": "Per eseguire il deploy di Managed Kubernetes Service in una Region con 3 zone di disponibilità (3-AZ), è necessaria una sottorete con un gateway associato. Assicurati che la tua rete privata rispetti questi prerequisiti per garantire un funzionamento ottimale.",
   "kubernetes_network_form_select_private_option": "Selezionare una rete privata",
-  "kubernetes_network_form_no_associated_gateway": "Durante la fase beta, un Gateway gestito deve essere collegato alla rete privata.",
-  "kubernetes_network_form_no_private_network": "Per configurare la rete per il tuo Kubernetes è necessaria una rete privata associata. Se non ne hai già una, ti consigliamo di crearla."
+  "kubernetes_network_form_no_associated_gateway": "La tua sottorete non dispone di un gateway associato, necessario per il corretto funzionamento del cluster. Associarne una a questa sottorete o selezionare una sottorete conforme a questo requisito.",
+  "kubernetes_network_form_no_private_network": "Per configurare la rete per il tuo Kubernetes è necessaria una rete privata associata. Se non ne hai già una, ti consigliamo di crearla.",
+  "kubernetes_network_form_add_gateway": "Crea un gateway"
 }

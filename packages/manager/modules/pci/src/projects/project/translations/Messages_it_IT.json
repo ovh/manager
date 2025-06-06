@@ -17,7 +17,7 @@
   "pci_projects_project_keystone_upgrade": "Il 23 giugno 2020 avverrà un cambiamento importante. Pianifica in anticipo la migrazione a &lt;strong>Keystone v3&lt;/strong>.",
   "pci_projects_project_keystone_upgrade_more": "Scopri di più",
   "pci_projects_project_quota_warning_message": "Per motivi di sicurezza, al tuo progetto è stata assegnata una quota. Per aumentare la quota disponibile, accedi alla pagina <a data-ui-sref=\"{{ quotaUrl }}\">Quota and localization</a>.",
-  "pci_projects_project_quota_threshold_warning_message": "I tuoi livelli di quote stanno raggiungendo il livello massimo, <a href=\"{{ quotaUrl }}\">clicca qui per gestire le quote</a>.",
+  "pci_projects_project_quota_threshold_warning_message": "I livelli di quote stanno raggiungendo il livello massimo. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ quotaGuidesLink }}\"> Comprendere i limiti delle quote<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a> .<br/><a href=\"{{ quotaUrl }}\"> Clicca qui per gestire le quote</a>.",
   "pci_projects_project_billing": "Fatturazione",
   "pci_projects_project_billing_voucher_credit": "Codice promozionale: {{ voucher }}",
   "pci_projects_project_billing_active_credit_balance": "Valido fino al {{ expirationDate }}",

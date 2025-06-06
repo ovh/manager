@@ -6,6 +6,8 @@ import {
   PCI_FEATURES,
   DATABASE_UAPP_CONFIG,
   DATA_PLATFORM_CONFIG,
+  NOTEBOOKS_UAPP_CONFIG,
+  QUOTA_LIMIT_GUIDES,
 } from './project.constants';
 
 export default class ProjectController {
@@ -35,6 +37,9 @@ export default class ProjectController {
     this.PciProject = PciProject;
     this.CucCloudMessage = CucCloudMessage;
     this.CHANGELOG = CHANGELOG;
+    this.user = coreConfig.getUser();
+    this.quotaGuidesLink =
+      QUOTA_LIMIT_GUIDES[this.user.ovhSubsidiary] || QUOTA_LIMIT_GUIDES.DEFAULT;
 
     const filterByRegion = (list) =>
       list.filter(
@@ -56,6 +61,7 @@ export default class ProjectController {
     this.loadMessages();
     this.uAppActions = [];
     this.displayDatabaseLink();
+    this.displayNotebookLink();
   }
 
   displayDatabaseLink() {
@@ -91,6 +97,26 @@ export default class ProjectController {
             ),
           });
         }
+      });
+    }
+  }
+
+  displayNotebookLink() {
+    // Add databases µApp link if feature is activated
+    if (this.pciFeatures.isFeatureAvailable(PCI_FEATURES.PRODUCTS.NOTEBOOKS)) {
+      // remove link for old application
+      this.actions = this.actions.filter(
+        (action) => action.feature !== PCI_FEATURES.PRODUCTS.NOTEBOOKS,
+      );
+      // add new link for uApp
+      this.getUAppUrl(
+        NOTEBOOKS_UAPP_CONFIG.universe,
+        NOTEBOOKS_UAPP_CONFIG.url.replace('{projectId}', this.projectId),
+      ).then((url) => {
+        this.uAppActions.push({
+          ...NOTEBOOKS_UAPP_CONFIG,
+          url,
+        });
       });
     }
   }
