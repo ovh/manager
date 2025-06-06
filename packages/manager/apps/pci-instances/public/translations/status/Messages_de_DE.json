@@ -32,7 +32,7 @@
   "pci_instances_status_resuming": "Wird fortgesetzt",
   "pci_instances_tooltip_content_status_shelved": "Es wird nur der Snapshot abgerechnet.",
   "pci_instances_tooltip_content_status_shelved_offloaded": "$t(pci_instances_tooltip_content_status_shelved)",
-  "pci_instances_tooltip_content_status_shutoff": "Ihre Instanz wird immer noch für die zugewiesenen Ressourcen abgerechnet.",
+  "pci_instances_tooltip_content_status_shutoff": "Ihre Instanz wird für die zugewiesenen Ressourcen weiterhin in Rechnung gestellt.",
   "pci_instances_tooltip_content_status_paused": "$t(pci_instances_tooltip_content_status_shutoff)",
   "pci_instances_tooltip_content_status_suspended": "$t(pci_instances_tooltip_content_status_shutoff)"
 }

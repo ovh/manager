@@ -23,10 +23,12 @@ import tasks from '../tasks';
 import interventions from '../intervention';
 import ipmi from '../ipmi';
 import netboot from '../netboot';
+import tagsListModal from './tags-list-modal';
 import trafficOrder from './traffic/order';
 import trafficCancel from './traffic/cancel';
 import trafficService from './traffic/traffic.service';
 import routing from './server.routing';
+import tagManager from './tag-manager';
 
 const moduleName = 'ovhManagerDedicatedServerDetail';
 
@@ -54,6 +56,8 @@ angular
     reverseDnsDelete,
     trafficOrder,
     trafficCancel,
+    tagsListModal,
+    tagManager,
   ])
   .config(routing)
   .service('ServerTrafficService', trafficService)

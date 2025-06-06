@@ -1,0 +1,8 @@
+{
+  "manager_components_resource_tagging_unassign_modal_title": "Desatribuir uma(s) etiqueta(ões) do recurso",
+  "manager_components_resource_tagging_unassign_modal_cancel": "Anular",
+  "manager_components_resource_tagging_unassign_modal_unassign": "Confirmar",
+  "manager_components_resource_tagging_unassign_modal_description": "Tem a certeza de que deseja desatribuir a(s) seguinte(s) tag(s) do recurso {{resourceName}} ?",
+  "manager_components_resource_tagging_unassign_modal_success": "As tags foram anuladas.",
+  "manager_components_resource_tagging_unassign_modal_error": "Ocorreu um problema, queira tentar novamente: <br> {{message}}<br> request_id: {{requestId}}"
+}

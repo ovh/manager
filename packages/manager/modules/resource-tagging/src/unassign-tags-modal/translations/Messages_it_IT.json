@@ -1,0 +1,8 @@
+{
+  "manager_components_resource_tagging_unassign_modal_title": "Rimuovi un tag dalla risorsa",
+  "manager_components_resource_tagging_unassign_modal_cancel": "Annulla",
+  "manager_components_resource_tagging_unassign_modal_unassign": "Conferma",
+  "manager_components_resource_tagging_unassign_modal_description": "Vuoi davvero eliminare l’assegnazione dei tag seguenti dalla risorsa {{resourceName}}?",
+  "manager_components_resource_tagging_unassign_modal_success": "Le etichette sono state rimosse correttamente.",
+  "manager_components_resource_tagging_unassign_modal_error": "Si è verificato un problema, ti preghiamo di riprovare: <br> {{message}}<br> request_id: {{requestId}}"
+}
