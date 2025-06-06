@@ -129,7 +129,7 @@
 
         <!-- MITIGATION::SWITCH DEFAULT > PERMANENT -->
         <li
-            data-ng-if="(!ip.mitigation || ip.mitigation == 'DEFAULT') && ipBlock.service.category !== 'HOUSING'"
+            data-ng-if="(!ip.mitigation || ip.mitigation == 'DEFAULT') && ipBlock.service.category !== 'HOUSING' && isPermanentMitigationAvailable"
         >
             <button
                 type="button"
@@ -140,7 +140,7 @@
         </li>
         <!-- MITIGATION::SWITCH PERMANENT > DEFAULT -->
         <li
-            data-ng-if="ip.mitigation == 'PERMANENT' && ipBlock.service.category !== 'HOUSING'"
+            data-ng-if="ip.mitigation == 'PERMANENT' && ipBlock.service.category !== 'HOUSING' && isPermanentMitigationAvailable"
         >
             <button
                 type="button"

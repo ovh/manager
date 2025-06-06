@@ -11,6 +11,11 @@
         <div data-wizard-step data-wizard-step-valid="!loading">
             <div data-ng-show="!loading">
                 <p
+                    class="red bold"
+                    data-ng-if="mitigationStatusAuto"
+                    data-translate="ip_permanent_mitigation_EOL"
+                ></p>
+                <p
                     class="blue bold"
                     data-ng-bind="translations.wizardQuestion"
                 ></p>
