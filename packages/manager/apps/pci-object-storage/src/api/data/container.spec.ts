@@ -19,7 +19,21 @@ describe('getServerContainer', () => {
     versioning: { status: 'enabled' },
     virtualHost: 'virtualHost',
     staticUrl: 'staticUrl',
-    replication: { rules: [{ status: 'enabled' }] },
+    replication: {
+      rules: [
+        {
+          id: 'some-id',
+          status: 'enabled',
+          priority: 1,
+          destination: {
+            name: 'some-name',
+            region: 'some-region',
+            storageClass: 'STANDARD',
+          },
+          deleteMarkerReplication: 'enabled',
+        },
+      ],
+    },
   };
 
   it('should get server container by id', async () => {
