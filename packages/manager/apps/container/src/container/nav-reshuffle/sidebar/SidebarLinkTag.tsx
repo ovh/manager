@@ -1,19 +1,18 @@
 import { useTranslation } from 'react-i18next';
-
 import { Node } from './navigation-tree/node';
-import style from './style.module.scss';
+import { OsdsChip } from '@ovhcloud/ods-components/react';
+import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 export default function SidebarLinkTag({ node }: { node: Node }): JSX.Element {
   const { t } = useTranslation('sidebar');
+
   return (
     <>
       {node.tag && (
-        <span
-          data-testid={`static-link-tag-${node.id}`}
-          className={`oui-badge oui-badge_s oui-badge_new ml-1 ${style.sidebar_tag}`}
-        >
+        <OsdsChip data-testid={`static-link-tag-${node.id}`} size={ODS_CHIP_SIZE.sm} className='ml-1' color={ODS_THEME_COLOR_INTENT.info}>
           {t(`sidebar_tag_${node.tag}`)}
-        </span>
+        </OsdsChip>
       )}
     </>
   );
