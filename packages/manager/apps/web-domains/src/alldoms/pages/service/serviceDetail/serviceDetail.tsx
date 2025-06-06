@@ -1,6 +1,7 @@
 import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { Outlet, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import appConfig from '@/web-domains.config';
 import ServiceDetailDomains from '@/alldoms/components/ServiceDetail/ServiceDetailDomains';
 import ServiceDetailInformation from '@/alldoms/components/ServiceDetail/ServiceDetailInformation';
@@ -10,6 +11,7 @@ import Loading from '@/alldoms/components/Loading/Loading';
 
 export default function ServiceDetail() {
   const { serviceName } = useParams<{ serviceName: string }>();
+  const { t } = useTranslation(['allDom', 'web-domains/error']);
 
   const header = {
     title: serviceName,
@@ -26,7 +28,11 @@ export default function ServiceDetail() {
   return (
     <BaseLayout
       breadcrumb={
-        <Breadcrumb rootLabel={appConfig.rootLabel} appName="web-domains" />
+        <Breadcrumb
+          rootLabel={t('title')}
+          appName={appConfig.rootLabel}
+          hideRootLabel
+        />
       }
       header={header}
     >

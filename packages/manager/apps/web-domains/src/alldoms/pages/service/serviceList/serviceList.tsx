@@ -64,7 +64,11 @@ export default function ServiceList() {
   return (
     <BaseLayout
       breadcrumb={
-        <Breadcrumb rootLabel={appConfig.rootLabel} appName="web-domains" />
+        <Breadcrumb
+          rootLabel={t('title')}
+          appName={appConfig.rootLabel}
+          hideRootLabel
+        />
       }
       header={header}
       message={notifications.length ? <Notifications /> : null}
