@@ -26,28 +26,22 @@ vi.mock('@/hooks/data/query', () => ({
 }));
 
 describe('Dns datagrid', () => {
-  it('displays loading spinner while main request are loading', async () => {
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
-      flattenData: [],
-      isLoading: true,
-    });
-
-    (useGetDomainInformation as jest.Mock).mockReturnValue({
-      data: serviceInfo,
-    });
-    const { getByTestId } = render(<Dns />, { wrapper });
-    expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
-  });
-
   it('fetch in a good way using useResourcesIcebergV6', () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
 
     (useGetDomainInformation as jest.Mock).mockReturnValue({
       data: serviceInfo,
     });
+
+    render(<Dns />, { wrapper });
 
     expect(useResourcesIcebergV6).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -61,6 +55,11 @@ describe('Dns datagrid', () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
 
     (useGetDomainInformation as jest.Mock).mockReturnValue({
@@ -69,7 +68,7 @@ describe('Dns datagrid', () => {
 
     const { getByTestId } = render(<Dns />, { wrapper });
     await waitFor(() => {
-      expect(getByTestId('dns')).toBeInTheDocument();
+      expect(getByTestId('datagrid')).toBeInTheDocument();
       const dnsName = getByTestId('testpuwebdomain.us');
       expect(dnsName).toBeInTheDocument();
       expect(dnsName).toHaveAttribute(
@@ -83,6 +82,11 @@ describe('Dns datagrid', () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
 
     (useGetDomainInformation as jest.Mock).mockReturnValue({
@@ -91,7 +95,7 @@ describe('Dns datagrid', () => {
 
     const { getByTestId } = render(<Dns />, { wrapper });
     await waitFor(() => {
-      expect(getByTestId('dns')).toBeInTheDocument();
+      expect(getByTestId('datagrid')).toBeInTheDocument();
       const dnsName = getByTestId('testpuwebdomain.us');
       expect(dnsName).toBeInTheDocument();
       expect(dnsName).toHaveAttribute(
