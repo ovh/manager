@@ -44,7 +44,7 @@ export const Routes: any = [
                 path: urls.configureReverseDns,
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/configureReverseDns/configureReverseDns.page'
+                    '@/pages/actions/configureReverseDns/configureReverseDns.page'
                   ),
                 ),
                 handle: {
@@ -58,11 +58,26 @@ export const Routes: any = [
                 id: 'listing-terminate',
                 path: urls.listingTerminate,
                 ...lazyRouteConfig(() =>
-                  import('@/pages/terminate/terminateIp.page'),
+                  import('@/pages/actions/terminate/terminateIp.page'),
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'terminate',
+                    pageName: 'listing-terminate-ip',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
+              {
+                id: 'listing-description',
+                path: urls.listingUpsertDescription,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/actions/upsertDescription/upsertDescription.page'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'listing-upsert-description',
                     pageType: PageType.popup,
                   },
                 },

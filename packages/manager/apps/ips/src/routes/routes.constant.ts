@@ -8,6 +8,7 @@ export const subRoutes = {
   openOrganisations: 'open',
   byoipOrder: 'byoip-order',
   terminate: 'terminate',
+  upsertDescription: 'upsert-description',
 };
 
 export const urlDynamicParts = {
@@ -20,6 +21,7 @@ export const urls = {
   onboarding: `${subRoutes.root}/${subRoutes.onboarding}`,
   listing: subRoutes.root,
   listingTerminate: `${subRoutes.root}/${subRoutes.terminate}/${urlDynamicParts.id}`,
+  listingUpsertDescription: `${subRoutes.root}/${subRoutes.upsertDescription}/${urlDynamicParts.id}`,
   order: `${subRoutes.root}/${subRoutes.order}`,
   byoip: `${subRoutes.root}/${subRoutes.byoip}`,
   manageOrganisations: `${subRoutes.root}/${subRoutes.manageOrganisations}`,
