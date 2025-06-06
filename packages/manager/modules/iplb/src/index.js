@@ -7,6 +7,7 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 import onboarding from './onboarding';
 import listing from './listing';
 import IpLoadBalancerService from './iplb.service';
+import { FEATURES } from './iplb.constants';
 
 const moduleName = 'ovhManagerIplbLazyLoading';
 
@@ -26,6 +27,10 @@ angular
           resolve: {
             breadcrumb: /* @ngInject */ ($translate) =>
               $translate.instant('iplb_title'),
+            features: /* @ngInject */ (ovhFeatureFlipping) =>
+              ovhFeatureFlipping.checkFeatureAvailability(
+                Object.values(FEATURES),
+              ),
           },
         })
         .state('iplb.detail.**', {

@@ -32,6 +32,7 @@ import IplbSSLcertificateModule from '../sslCertificate';
 import IplbTaskModule from '../task';
 import IplbVrackModule from '../vrack';
 import IplbZoneModule from '../zone';
+import IplbLogsModule from '../logs';
 
 import routing from './routing';
 
@@ -62,6 +63,7 @@ angular
     IplbGraphModule,
     IplbFrontendsModule,
     IplbConfigurationModule,
+    IplbLogsModule,
     region,
   ])
   .config(routing)
