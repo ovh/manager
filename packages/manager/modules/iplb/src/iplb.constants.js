@@ -139,6 +139,16 @@ export const IPLB_GUIDES = {
 
 export const SERVICE_TYPE = 'IPLB';
 
+const APP = 'ip-load-balancer';
+
+export const FEATURES = {
+  APP,
+  LOGS: `${APP}:logs`,
+  LB_DELETE_FEATURE: `${APP}:delete`,
+  LB_SUBSCRIPTION_CONTACT_SECTION: `${APP}:lb-contact-section`,
+  LB_TEMPORARY_WARNING_BANNER_FEATURE: `${APP}:lb-temporary-warning-banner`,
+};
+
 export default {
   IPLB_GUIDES,
   SERVICE_TYPE,

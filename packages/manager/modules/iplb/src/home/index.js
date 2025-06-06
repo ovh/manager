@@ -14,7 +14,8 @@ import './bullet-chart.less';
 import './status-card.less';
 import './home.less';
 
-import { LB_DELETE_FEATURE, SERVICE_TYPE } from './iplb-home.constants';
+import { SERVICE_TYPE } from './iplb-home.constants';
+import { FEATURES } from '../iplb.constants';
 
 const moduleName = 'ovhManagerIplbHome';
 
@@ -43,14 +44,8 @@ angular
           },
           resolve: {
             breadcrumb: () => null,
-            isDeleteOptionsAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
-              return ovhFeatureFlipping
-                .checkFeatureAvailability([LB_DELETE_FEATURE])
-                .then((featureAvailability) =>
-                  featureAvailability.isFeatureAvailable(LB_DELETE_FEATURE),
-                )
-                .catch(() => false);
-            },
+            isDeleteOptionsAvailable: /* @ngInject */ (features) =>
+              features.isFeatureAvailable(FEATURES.LB_DELETE_FEATURE),
           },
         })
         .state('iplb.detail.home.terminate', {
