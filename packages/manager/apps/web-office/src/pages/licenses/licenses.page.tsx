@@ -21,7 +21,6 @@ import { urls } from '@/routes/routes.constants';
 import { LicenseType } from '@/data/api/license';
 import { useGenerateUrl } from '@/hooks';
 import { useLicenses } from '@/data/hooks';
-import Loading from '@/components/loading/Loading.component';
 import { OfficeServiceState } from '@/components/officeServiceState/OfficeServiceState.component';
 
 export default function Licenses() {
@@ -106,33 +105,27 @@ export default function Licenses() {
   );
 
   return (
-    <>
-      {isLoading && <Loading />}
-      {!isLoading && (
-        <BaseLayout header={header}>
-          {columns && (
-            <Datagrid
-              columns={columns.map((column) => ({
-                ...column,
-                label: t(column.label),
-              }))}
-              items={sortedData || []}
-              totalItems={sortedData?.length || 0}
-              sorting={sorting}
-              onSortChange={setSorting}
-              topbar={
-                <OdsButton
-                  color={ODS_BUTTON_COLOR.primary}
-                  variant={ODS_BUTTON_VARIANT.outline}
-                  onClick={goToOrder}
-                  label={t('microsoft_office_licenses_order')}
-                  data-testid="licenses-order-button"
-                ></OdsButton>
-              }
-            />
-          )}
-        </BaseLayout>
-      )}
-    </>
+    <BaseLayout header={header}>
+      <Datagrid
+        columns={columns.map((column) => ({
+          ...column,
+          label: t(column.label),
+        }))}
+        items={sortedData || []}
+        totalItems={sortedData?.length || 0}
+        sorting={sorting}
+        onSortChange={setSorting}
+        topbar={
+          <OdsButton
+            color={ODS_BUTTON_COLOR.primary}
+            variant={ODS_BUTTON_VARIANT.outline}
+            onClick={goToOrder}
+            label={t('microsoft_office_licenses_order')}
+            data-testid="licenses-order-button"
+          ></OdsButton>
+        }
+        isLoading={isLoading}
+      />
+    </BaseLayout>
   );
 }
