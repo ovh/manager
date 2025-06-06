@@ -1,6 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import { LB_DELETE_FEATURE } from '../home/iplb-home.constants';
-import { IPLB_GUIDES, SERVICE_TYPE } from '../iplb.constant';
+import { IPLB_GUIDES, SERVICE_TYPE, FEATURES } from '../iplb.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -27,14 +26,8 @@ export default /* @ngInject */ ($stateProvider) => {
           }),
         breadcrumb: () => null,
         hideBreadcrumb: () => true,
-        isDeleteOptionsAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
-          return ovhFeatureFlipping
-            .checkFeatureAvailability([LB_DELETE_FEATURE])
-            .then((featureAvailability) =>
-              featureAvailability.isFeatureAvailable(LB_DELETE_FEATURE),
-            )
-            .catch(() => false);
-        },
+        isDeleteOptionsAvailable: /* @ngInject */ (features) =>
+          features.isFeatureAvailable(FEATURES.LB_DELETE_FEATURE),
         guideLinks: /* @ngInject */ (coreConfig) =>
           IPLB_GUIDES[coreConfig.getUser().ovhSubsidiary] ||
           IPLB_GUIDES.DEFAULT,
