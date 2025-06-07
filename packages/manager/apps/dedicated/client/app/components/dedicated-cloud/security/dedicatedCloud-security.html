@@ -49,18 +49,18 @@
                     ></oui-datagrid-column>
                     <oui-datagrid-column
                         data-title="'dedicatedCloud_SECURITY_allow' | translate"
-                        data-property="status"
+                        data-property="state"
                     >
                         <span
                             class="oui-badge"
                             data-ng-class="{
-                                'oui-badge_success': $row.status == 'ALLOWED',
-                                'oui-badge_error': $row.status == 'TO_DELETE',
-                                'oui-badge_warning': $row.status == 'TO_UPDATE'
+                                'oui-badge_success': $row.state === $ctrl.NETWORK_STATUS.ALLOWED,
+                                'oui-badge_error': $row.state === $ctrl.NETWORK_STATUS.TO_DELETE,
+                                'oui-badge_warning': $row.state === $ctrl.NETWORK_STATUS.TO_UPDATE
                             }"
                         >
                             <span
-                                data-translate="{{ 'dedicatedCloud_configuration_SECURITY_status_' + $row.status }}"
+                                data-translate="{{:: 'dedicatedCloud_configuration_SECURITY_status_' + $row.state }}"
                             ></span>
                         </span>
                     </oui-datagrid-column>
@@ -70,7 +70,7 @@
                         data-type="string"
                     ></oui-datagrid-column>
                     <oui-action-menu
-                        data-ng-if="$row.status === 'ALLOWED'"
+                        data-ng-if="$row.state === $ctrl.NETWORK_STATUS.ALLOWED"
                         aria-label="{{:: 'common_actions' | translate }}"
                         data-compact
                     >
@@ -82,7 +82,7 @@
                             ></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item
-                            data-on-click="$ctrl.deleteSecurity([$row.id], $ctrl.policies.model.list.results)"
+                            data-on-click="$ctrl.deleteSecurity([$row.networkAccessId], $ctrl.policies.model)"
                         >
                             <span
                                 data-translate="dedicatedCloud_SECURITY_delete"
@@ -201,7 +201,7 @@
             <button
                 type="button"
                 class="btn btn-block btn-default"
-                data-ng-click="$ctrl.deleteSecurity($ctrl.selectedPolicies, $ctrl.policies.model.list.results)"
+                data-ng-click="$ctrl.deleteSecurity($ctrl.selectedPolicies, $ctrl.policies.model)"
                 data-ng-disabled="$ctrl.selectedPolicies.length == 0"
                 data-translate="dedicatedCloud_SECURITY_delete_IP"
             ></button>

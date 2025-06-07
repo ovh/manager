@@ -46,5 +46,8 @@
   "dedicatedCloud_SECURITY_change_logout_policy": "Zmień politykę wylogowania",
   "dedicatedCloud_SECURITY_add_IP": "Dodaj nowy zakres adresów IP",
   "dedicatedCloud_SECURITY_delete_IP": "Usuń zakresy adresów IP",
-  "dedicatedCloud_dashboard_loading_error": "Wystąpił błąd podczas pobierania informacji o usłudze."
+  "dedicatedCloud_dashboard_loading_error": "Wystąpił błąd podczas pobierania informacji o usłudze.",
+  "dedicatedCloud_configuration_SECURITY_status_toDelete": "Do usunięcia",
+  "dedicatedCloud_configuration_SECURITY_status_toUpdate": "W trakcie aktualizacji",
+  "dedicatedCloud_configuration_SECURITY_status_allowed": "Dozwolony i wprowadzony"
 }
