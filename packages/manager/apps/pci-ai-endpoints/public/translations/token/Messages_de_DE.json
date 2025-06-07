@@ -25,7 +25,7 @@
   "ai_endpoints_token_invalid_format": "Der Schlüssel darf keine Leerzeichen oder Sonderzeichen enthalten.",
   "ai_endpoints_token_description_placeholder": "Beschreibung hinzufügen",
   "ai_endpoints_token_expiration_date": "Ablaufdatum für API-Schlüssel festlegen",
-  "ai_endpoints_token_expiration_date_update": "Ablaufdatum für API-Schlüssel zurücksetzen",
+  "ai_endpoints_token_expiration_date_update": "Ablaufdatum für API-Schlüssel aktualisieren",
   "ai_endpoints_token_discovery_mod": "Ihr Public-Cloud-Projekt befindet sich derzeit im „Discovery“-Modus. Um AI Endpoints zu verwenden, müssen Sie Ihr Projekt aktivieren, indem Sie ein Zahlungsmittel zu Ihrem Account hinzufügen. Anschließend können Sie Ihren ersten API-Schlüssel erstellen und mit der Nutzung beginnen.",
-  "ai_endpoints_non_admin_user": "Sie müssen den Administratorstatus besitzen, um die API-Schlüssel bearbeiten zu können"
+  "ai_endpoints_non_admin_user": "Sie müssen den Administratorstatus haben, um API-Schlüssel bearbeiten zu können."
 }

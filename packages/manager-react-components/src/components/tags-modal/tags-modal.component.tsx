@@ -45,7 +45,7 @@ export const TagsModal = React.forwardRef<HTMLOdsModalElement, TagsModalProps>(
         search
           ? Object.fromEntries(
               Object.entries(tags).filter(
-                ([key, value]) =>
+                ([key, value]: [string, string]) =>
                   key.toLowerCase().includes(search.toLowerCase()) ||
                   value.toLowerCase().includes(search.toLowerCase()),
               ),
@@ -85,7 +85,7 @@ export const TagsModal = React.forwardRef<HTMLOdsModalElement, TagsModalProps>(
         </div>
 
         <div className="w-full min-w-[85px] h-[120px] overflow-auto">
-          <TagsList tags={results} />
+          {results && <TagsList tags={results} />}
         </div>
         <OdsButton
           variant={ODS_BUTTON_VARIANT.ghost}

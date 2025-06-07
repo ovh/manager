@@ -33,5 +33,6 @@
   "streams_disk_full": "Espacio en disco insuficiente",
   "error_message": "Se ha producido un error: {{message}}",
   "log_tile_empty_state_description": "Al suscribirse a este flujo, podrá transferir sus logs directamente a Logs Data Platform de OVHcloud y, de este modo, realizar búsquedas más avanzadas, crear alertas y visualizaciones o, simplemente, archivarlas.",
-  "logs_list_title": "Flujos de datos"
+  "logs_list_title": "Flujos de datos",
+  "logs_select_kind": "Seleccione un tipo de log"
 }
