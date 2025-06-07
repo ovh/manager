@@ -1,0 +1,11 @@
+{
+  "dedicated_servers_onboarding_title": "Choisissez le serveur dédié le plus adapté à vos applications métier",
+  "dedicated_servers_onboarding_description": "Avec OVHcloud, appuyez-vous sur un expert du bare metal. Hébergez votre site web, déployez votre infrastructure à haute résilience ou personnalisez votre machine pour l’adapter à vos projets, en quelques clics.",
+  "dedicated_servers_onboarding_category": "Tutoriel",
+  "dedicated_servers_onboarding_guide_getting_started_title": "Premiers pas avec un serveur dédié",
+  "dedicated_servers_onboarding_guide_getting_started_description": "Découvrez comment prendre en main votre nouveau serveur dédié",
+  "dedicated_servers_onboarding_guide_backup_storage_title": "Utiliser Backup Storage sur un serveur dédié",
+  "dedicated_servers_onboarding_guide_backup_storage_description": "Découvrez comment activer et accéder à votre espace de stockage supplémentaire",
+  "dedicated_servers_onboarding_guide_firewall_network_title": "Configurer le Firewall Network",
+  "dedicated_servers_onboarding_guide_firewall_network_description": "Configurer le Firewall Network"
+}
