@@ -17,6 +17,8 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 import React from 'react';
@@ -72,8 +74,12 @@ const ControllerIdHycuLicense = ({ serviceName }: { serviceName: string }) => {
 };
 
 const GeneralInformationsTile = ({ serviceName }: { serviceName: string }) => {
-  const { t: tCommon } = useTranslation('hycu');
-  const { t } = useTranslation('hycu/dashboard');
+  const { t } = useTranslation([
+    'hycu',
+    'hycu/dashboard',
+    NAMESPACES.DASHBOARD,
+    NAMESPACES.STATUS,
+  ]);
   const navigate = useNavigate();
   const {
     data: hycuDetail,
@@ -87,11 +93,11 @@ const GeneralInformationsTile = ({ serviceName }: { serviceName: string }) => {
 
   return (
     <DashboardTile
-      title={t('hycu_dashboard_generals_informations_title')}
+      title={t(`${NAMESPACES.DASHBOARD}:general_information`)}
       items={[
         {
           id: 'name',
-          label: t('hycu_dashboard_label_name'),
+          label: t(`${NAMESPACES.DASHBOARD}:name`),
           value: isLoading ? (
             <OsdsSkeleton />
           ) : (
@@ -125,7 +131,7 @@ const GeneralInformationsTile = ({ serviceName }: { serviceName: string }) => {
         },
         {
           id: 'status',
-          label: t('hycu_dashboard_label_status'),
+          label: t(`${NAMESPACES.STATUS}:status`),
           value: isLoadingLicence ? (
             <OsdsSkeleton />
           ) : (
@@ -134,16 +140,16 @@ const GeneralInformationsTile = ({ serviceName }: { serviceName: string }) => {
               size={ODS_CHIP_SIZE.sm}
               inline
             >
-              {tCommon([
-                `hycu_status_${hycuDetail?.data.licenseStatus}`,
-                'hycu_status_error',
+              {t([
+                `hycu:hycu_status_${hycuDetail?.data.licenseStatus}`,
+                'hycu:hycu_status_error',
               ])}
             </OsdsChip>
           ),
         },
         {
           id: 'pack_type',
-          label: t('hycu_dashboard_label_pack_type'),
+          label: t('hycu/dashboard:hycu_dashboard_label_pack_type'),
           value: isLoading ? (
             <OsdsSkeleton />
           ) : (
@@ -154,12 +160,12 @@ const GeneralInformationsTile = ({ serviceName }: { serviceName: string }) => {
         },
         {
           id: 'controller_id',
-          label: t('hycu_dashboard_label_controller_id'),
+          label: t('hycu/dashboard:hycu_dashboard_label_controller_id'),
           value: ControllerIdHycuLicense({ serviceName }),
         },
         {
           id: 'license_key',
-          label: t('hycu_dashboard_label_license_key'),
+          label: t('hycu/dashboard:hycu_dashboard_label_license_key'),
           value: isLoading ? (
             <OsdsSkeleton />
           ) : (
