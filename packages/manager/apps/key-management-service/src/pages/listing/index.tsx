@@ -88,6 +88,8 @@ export default function Listing() {
     },
   ];
 
+  const [fetchAll, setFetchAll] = useState<boolean>(false);
+
   const {
     data,
     flattenData,
@@ -98,13 +100,21 @@ export default function Listing() {
     status,
   } = useOkmsList({
     pageSize: 10,
+    shouldFetchAll: fetchAll,
   });
+
+  const test =
+    flattenData?.map((item) => ({
+      ...item,
+      id: `${item.id}`,
+    })) || [];
 
   useAutoRefetch({
     queryKey: getOkmsServicesResourceListQueryKey,
     enabled: isRefetchEnabled,
     onFinish: () => setIsRefetchEnabled(false),
   });
+
   const headerProps: HeadersProps = {
     title: t('key_management_service_listing_title'),
     headerButton: <KmsGuidesHeader />,
@@ -149,10 +159,41 @@ export default function Listing() {
           {flattenData && (
             <Datagrid
               columns={columns}
-              items={flattenData}
+              items={
+                fetchAll
+                  ? [
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                      ...test,
+                    ]
+                  : flattenData
+              }
               totalItems={flattenData.length || 0}
               hasNextPage={hasNextPage}
               onFetchNextPage={() => fetchNextPage()}
+              onFetchAllPages={() => setFetchAll(true)}
+              isFetchAll={fetchAll}
               contentAlignLeft
             />
           )}
