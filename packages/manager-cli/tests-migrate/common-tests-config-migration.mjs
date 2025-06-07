@@ -59,4 +59,5 @@ runMigration({
   testType,
   testCommand: testCommands[testType],
   dryRun: isDryRun,
+  docLink: '/development-guidelines/update-unit-tests/',
 });
