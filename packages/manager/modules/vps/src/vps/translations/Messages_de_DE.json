@@ -537,5 +537,14 @@
   "vps_language_pt": "Portugiesisch",
   "vps_new_range_available_introduction": "Unsere VPS-Reihen entwickeln sich weiter, Ihr Kundencenter auch.",
   "vps_new_range_available_call_to_upgrade_1": "Möchten Sie die neuen Möglichkeiten nutzen? , <a href=\"{{href}}\">Bestellen Sie ein neues Modell</a> in Ihrem Kundencenter, übertragen Sie Ihre Daten und kündigen Sie dann Ihren vorherigen Server.",
-  "vps_new_range_available_call_to_upgrade_2": "Nutzen Sie die Vorteile und bringen Sie Ihre Maschine <a href=\"{{href}}\">mit nur wenigen Klicks</a> auf die nächste Stufe."
+  "vps_new_range_available_call_to_upgrade_2": "Nutzen Sie die Vorteile und bringen Sie Ihre Maschine <a href=\"{{href}}\">mit nur wenigen Klicks</a> auf die nächste Stufe.",
+  "vps_dashboard_state_backuping": "Backup wird erstellt",
+  "vps_dashboard_state_installing": "Wird installiert",
+  "vps_dashboard_state_maintenance": "Wartungsarbeiten laufen",
+  "vps_dashboard_state_rescued": "Im Rescue-Modus",
+  "vps_dashboard_state_rebooting": "Wird neu gestartet",
+  "vps_dashboard_state_running": "Aktiv",
+  "vps_dashboard_state_stopped": "Angehalten",
+  "vps_dashboard_state_stopping": "Wird gelöscht",
+  "vps_dashboard_state_upgrading": "Angebot hierfür wird gerade gewechselt"
 }
