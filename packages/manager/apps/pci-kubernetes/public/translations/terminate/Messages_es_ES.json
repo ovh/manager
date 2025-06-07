@@ -1,10 +1,10 @@
 {
   "kube_service_terminate_common_confirm": "Confirmar",
   "kube_service_terminate_common_cancel": "Cancelar",
-  "kube_service_terminate_title": "Eliminar el cluster",
-  "kube_service_terminate_warning": "La eliminación del cluster provocará el borrado definitivo de todos los datos correspondientes. La acción de eliminación no implica ninguna devolución.",
+  "kube_service_terminate_title": "Dar de baja el clúster",
+  "kube_service_terminate_warning": "La baja del servicio provocará el borrado definitivo de todos los datos correspondientes. La baja no implica ninguna devolución.",
   "kube_service_terminate_enter": "Introduzca «TERMINATE» en el siguiente campo para confirmar la operación.",
-  "kube_service_terminate_success": "La solicitud de eliminación del cluster Kubernetes se ha enviado correctamente.",
-  "kube_service_terminate_error": "¡Vaya! Se ha producido un error al eliminar el cluster: {{ message }}.",
-  "kube_service_terminate_description": "¿Seguro que quiere eliminar el cluster {{ clusterName }}?"
+  "kube_service_terminate_success": "La solicitud de baja del clúster Kubernetes se ha enviado correctamente.",
+  "kube_service_terminate_error": "Se ha producido un error al dar de baja el clúster: {{ message }}",
+  "kube_service_terminate_description": "¿Seguro/a que quiere dar de baja el clúster {{ clusterName }} ?"
 }
