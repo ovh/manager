@@ -110,7 +110,7 @@ describe('Vrack Services endpoints page test suite', () => {
   });
 
   it('should delete an endpoint', async () => {
-    const { container } = await renderTest({
+    const { container, getByTestId } = await renderTest({
       nbVs: 2,
       initialRoute: urls.endpointsListing.replace(
         ':id',
@@ -132,12 +132,10 @@ describe('Vrack Services endpoints page test suite', () => {
 
     await assertModalText({
       container,
-      text: labels.deleteModal.deleteModalDescription,
+      text: labels.endpoints.modalDeleteEndpointServiceTypeName,
     });
-    const deleteButton = await getButtonByLabel({
-      container,
-      value: labels.deleteModal.deleteModalDeleteButton,
-    });
+
+    const deleteButton = getByTestId('manager-delete-modal-confirm');
 
     await assertEnabled(deleteButton);
     await waitFor(() => userEvent.click(deleteButton));
