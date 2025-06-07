@@ -1,0 +1,199 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guidelines/Quality Gates" />
+
+# Quality Gates
+
+Quality gates are automated checks that ensure code meets our quality standards before it can be merged into the main branch. This guide outlines the different quality checks and their requirements.
+
+## ESLint
+
+ESLint is our primary tool for enforcing code style and catching potential errors.
+
+### Configuration
+```json
+{
+  "extends": [
+    "@ovh-ux/eslint-config-react",
+    "@ovh-ux/eslint-config-typescript"
+  ],
+  "rules": {
+    // Project-specific rules
+  }
+}
+```
+
+### Key Rules
+- No unused variables
+- No console statements in production
+- Proper TypeScript types
+- Consistent import ordering
+- Proper React hooks usage
+
+### Running ESLint
+```bash
+# Check all files
+npm run lint
+
+# Fix automatically fixable issues
+npm run lint:fix
+```
+
+## Sonarqube
+
+Sonarqube provides static code analysis and quality metrics.
+
+### Quality Metrics
+- Code coverage
+- Code smells
+- Bugs
+- Security vulnerabilities
+- Technical debt
+
+### Sonarqube Rules
+1. **Code Quality**
+   - Maximum complexity per function
+   - Maximum file length
+   - Maximum function length
+   - Maximum parameters per function
+
+2. **Security**
+   - No hardcoded credentials
+   - Proper input validation
+   - Secure dependencies
+   - No sensitive data exposure
+
+3. **Maintainability**
+   - Code duplication threshold
+   - Comment density
+   - File naming conventions
+   - Component complexity
+
+### Running Sonarqube
+```bash
+# Run analysis
+npm run sonar
+
+# View report
+npm run sonar:report
+```
+
+## Test Coverage
+
+We require a minimum test coverage for all new code.
+
+### Coverage Requirements
+- Minimum 80% line coverage
+- Minimum 70% branch coverage
+- All critical paths tested
+- All edge cases covered
+
+### Test Types
+1. **Unit Tests**
+   - Component rendering
+   - Function behavior
+   - State management
+   - Event handling
+
+2. **Integration Tests**
+   - Component interactions
+   - API integration
+   - State flow
+   - Error handling
+
+3. **E2E Tests**
+   - Critical user flows
+   - Cross-browser compatibility
+   - Performance metrics
+
+### Running Tests
+```bash
+# Run all tests
+npm run test
+
+# Run with coverage
+npm run test:coverage
+
+# Run specific test file
+npm run test -- path/to/test.tsx
+```
+
+## Build
+
+The build process must complete successfully before code can be merged.
+
+### Build Requirements
+1. **TypeScript Compilation**
+   - No type errors
+   - No implicit any
+   - Proper type definitions
+
+2. **Bundle Size**
+   - Maximum bundle size: 500KB
+   - Maximum chunk size: 200KB
+   - Proper code splitting
+
+3. **Performance**
+   - First contentful paint < 1.5s
+   - Time to interactive < 3.5s
+   - No performance regressions
+
+### Running Build
+```bash
+# Development build
+npm run build:dev
+
+# Production build
+npm run build:prod
+
+# Analyze bundle
+npm run build:analyze
+```
+
+## Installation
+
+The installation process must complete successfully.
+
+### Installation Requirements
+1. **Dependencies**
+   - All dependencies resolved
+   - No version conflicts
+   - Proper peer dependencies
+
+2. **Environment**
+   - Correct Node.js version
+   - Required system dependencies
+   - Proper environment variables
+
+3. **Cache**
+   - Clean installation
+   - Proper cache handling
+   - No stale dependencies
+
+### Running Installation
+```bash
+# Clean install
+npm run clean:install
+
+# Verify installation
+npm run verify:install
+```
+
+## Quality Gate Checklist
+
+- [ ] ESLint passes with no errors
+- [ ] Sonarqube analysis meets thresholds
+- [ ] Test coverage meets requirements
+- [ ] Build completes successfully
+- [ ] Installation completes successfully
+- [ ] No security vulnerabilities
+- [ ] No performance regressions
+- [ ] Documentation updated
+
+## Reference
+
+### External Resources
+- [ESLint Documentation](https://eslint.org/docs/latest/)
+- [Sonarqube Documentation](https://docs.sonarqube.org/)
+- [Jest Documentation](https://jestjs.io/docs/getting-started)
+- [Webpack Documentation](https://webpack.js.org/concepts/)
