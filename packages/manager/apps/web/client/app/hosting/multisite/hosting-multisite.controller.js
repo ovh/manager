@@ -44,6 +44,7 @@ angular
       hostingSSLCertificate,
       hostingSSLCertificateType,
       Alerter,
+      coreURLBuilder,
     ) => {
       atInternet.trackPage({ name: 'web::hosting::multisites' });
 
@@ -75,6 +76,12 @@ angular
       };
 
       $scope.certificateTypes = hostingSSLCertificateType.constructor.getCertificateTypes();
+
+      $scope.manageSslLink = coreURLBuilder.buildURL(
+        'web-hosting',
+        '#/:serviceName/ssl',
+        { serviceName: $stateParams.productId },
+      );
 
       HostingDomain.getZones()
         .then((zones) => {
@@ -187,6 +194,10 @@ angular
               .some((mainDomain) => mainDomain === domain.name);
       };
 
+      $scope.isMultipleSSL = function isMultipleSSL(hosting) {
+        return hosting.multipleSSL;
+      };
+
       $scope.isUpdateDomainDisabled = function isUpdateDomainDisabled(
         hosting,
         domain,
@@ -262,9 +273,11 @@ angular
               }),
             );
 
-            return hostingSSLCertificate.retrievingLinkedDomains(
-              $stateParams.productId,
-            );
+            return !$scope.hosting.multipleSSL
+              ? hostingSSLCertificate.retrievingLinkedDomains(
+                  $stateParams.productId,
+                )
+              : [];
           })
           .then((sslLinked) => {
             const linkedSSLs = isArray(sslLinked) ? sslLinked : [sslLinked];
@@ -314,7 +327,11 @@ angular
             return null;
           })
           .then(() =>
-            hostingSSLCertificate.retrievingCertificate($stateParams.productId),
+            !$scope.hosting.multipleSSL
+              ? hostingSSLCertificate.retrievingCertificate(
+                  $stateParams.productId,
+                )
+              : {},
           )
           .then((certificate) => {
             if (certificate.status === HOSTING_STATUS.REGENERATING) {
