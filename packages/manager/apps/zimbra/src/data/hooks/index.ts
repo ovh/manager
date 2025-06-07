@@ -1,5 +1,6 @@
 export * from './account/useAccount';
 export * from './account/useAccounts';
+export * from './alias/useAlias';
 export * from './alias/useAliases';
 export * from './domain/useDomain';
 export * from './domain/useDomainDiagnostic';
