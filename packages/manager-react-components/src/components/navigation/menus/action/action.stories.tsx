@@ -42,6 +42,13 @@ const actionItems: ActionMenuItem[] = [
     urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
     iamActions: ['vrackServices:apiovh:iam/resource/tag/remove'],
   },
+  {
+    id: 6,
+    onClick: () => '',
+    isDisabled: true,
+    label: 'action disabled with tooltip',
+    tooltipMessage: 'This action is disabled because [...]',
+  },
 ];
 
 export const actionMenuStandard = {
