@@ -1,0 +1,18 @@
+{
+  "exclude-yarn-apps": [
+    "packages/manager/apps/zimbra"
+  ],
+  "pnpm-link-modules": {
+    "@ovh-ux/manager-module-order": "packages/manager/modules/order",
+    "@ovh-ux/manager-core-utils": "packages/manager/core/utils",
+    "@ovh-ux/manager-core-api": "packages/manager/core/api",
+    "@ovh-ux/manager-phone-prefix": "packages/manager/modules/phone-prefix",
+    "@ovh-ux/manager-react-core-application": "packages/manager/core/application",
+    "@ovh-ux/request-tagger": "packages/manager/core/request-tagger",
+    "@ovh-ux/manager-vite-config": "packages/manager/core/vite-config",
+    "@ovh-ux/manager-react-shell-client": "packages/manager/core/shell-client",
+    "@ovh-ux/manager-tailwind-config": "packages/manager/core/tailwind-config",
+    "@ovh-ux/manager-common-translations": "packages/manager/modules/common-translations",
+    "@ovh-ux/manager-config": "packages/manager/modules/config"
+  }
+}
