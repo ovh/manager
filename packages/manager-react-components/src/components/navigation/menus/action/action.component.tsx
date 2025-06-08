@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import {
   ODS_BUTTON_VARIANT,
   ODS_BUTTON_SIZE,
@@ -6,7 +6,11 @@ import {
   ODS_BUTTON_COLOR,
   ODS_POPOVER_POSITION,
 } from '@ovhcloud/ods-components';
-import { OdsButton, OdsPopover } from '@ovhcloud/ods-components/react';
+import {
+  OdsButton,
+  OdsPopover,
+  OdsTooltip,
+} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import '../translations/translation';
 
@@ -28,6 +32,7 @@ export interface ActionMenuItem {
   isLoading?: boolean;
   color?: ODS_BUTTON_COLOR;
   'data-testid'?: string;
+  tooltipMessage?: string;
 }
 
 export interface ActionMenuProps {
@@ -41,6 +46,33 @@ export interface ActionMenuProps {
   popoverPosition?: ODS_POPOVER_POSITION;
 }
 
+const ButtonItem = ({
+  item,
+  isTrigger,
+  id,
+}: {
+  item: Omit<ActionMenuItem, 'id'>;
+  isTrigger: boolean;
+  id: string;
+}) => {
+  const buttonProps = {
+    size: ODS_BUTTON_SIZE.sm,
+    variant: ODS_BUTTON_VARIANT.ghost,
+    displayTooltip: false,
+    className: 'menu-item-button w-full',
+    ...item,
+    id,
+  };
+
+  return !item?.iamActions ||
+    item?.iamActions?.length === 0 ||
+    item.isDisabled ? (
+    <OdsButton {...buttonProps} />
+  ) : (
+    <ManagerButton isIamTrigger={isTrigger} {...buttonProps} />
+  );
+};
+
 const MenuItem = ({
   item,
   isTrigger,
@@ -50,26 +82,48 @@ const MenuItem = ({
   isTrigger: boolean;
   id: number;
 }) => {
-  const buttonProps = {
-    size: ODS_BUTTON_SIZE.sm,
-    variant: ODS_BUTTON_VARIANT.ghost,
-    displayTooltip: false,
-    className: 'menu-item-button w-full',
-    ...item,
-  };
+  const tooltipId = useId();
+
+  const tooltip = item.tooltipMessage ? (
+    <OdsTooltip
+      triggerId={`tooltip-action-${tooltipId}`}
+      position="left"
+      withArrow
+    >
+      {item.tooltipMessage}
+    </OdsTooltip>
+  ) : (
+    <></>
+  );
 
   if (item.href) {
     return (
-      <a href={item.href} download={item.download} target={item.target}>
-        <OdsButton {...buttonProps} />
-      </a>
+      <>
+        <a
+          href={!item.isDisabled && item.href}
+          download={item.download}
+          target={item.target}
+        >
+          <ButtonItem
+            item={item}
+            isTrigger={isTrigger}
+            id={`tooltip-action-${tooltipId}`}
+          />
+        </a>
+        {tooltip}
+      </>
     );
   }
 
-  return !item?.iamActions || item?.iamActions?.length === 0 ? (
-    <OdsButton {...buttonProps} />
-  ) : (
-    <ManagerButton id={`${id}`} isIamTrigger={isTrigger} {...buttonProps} />
+  return (
+    <>
+      <ButtonItem
+        item={item}
+        isTrigger={isTrigger}
+        id={`tooltip-action-${tooltipId}`}
+      />
+      {tooltip}
+    </>
   );
 };
 
