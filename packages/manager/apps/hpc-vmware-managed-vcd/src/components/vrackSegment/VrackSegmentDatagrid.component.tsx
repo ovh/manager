@@ -1,5 +1,4 @@
 import {
-  ActionMenu,
   ColumnSort,
   Datagrid,
   DatagridColumnTypes,
@@ -25,6 +24,7 @@ import { useHref } from 'react-router-dom';
 import { VrackSegmentSubDatagrid } from './VrackSegmentSubDatagrid.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { VRACK_SEGMENTS_MIN_LENGTH } from '@/pages/dashboard/datacentre/vrack-segment/datacentreVrack.constants';
+import ActionMenu from '../action/Action.component';
 
 export type VrackSegmentDatagridProps = {
   id: string;
