@@ -1,0 +1,13 @@
+<div class="oui-modal oui-modal_shadow">
+    <oui-modal
+        data-primary-label="{{ :: 'logs_deactivate_modal_confirm' | translate }}"
+        data-primary-action="$ctrl.deactivateLogs()"
+        data-secondary-label="{{ :: 'logs_deactivate_modal_cancel' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.loading"
+        data-heading="{{ 'logs_deactivate_modal_title' | translate }}"
+    >
+        <span data-translate="logs_deactivate_modal_description"></span>
+    </oui-modal>
+</div>
