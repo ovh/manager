@@ -5,7 +5,6 @@ import '@ovh-ux/manager-filters';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@uirouter/angularjs';
 import 'angular-translate';
-import '@ovh-ux/ng-ovh-doc-url';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 
@@ -51,7 +50,6 @@ angular
     streams,
     tokens,
     encryptionKeys,
-    'ngOvhDocUrl',
   ])
   .config(routing)
   .service('LogsDetailService', logsDetailService)

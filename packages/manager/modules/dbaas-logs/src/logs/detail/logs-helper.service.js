@@ -11,7 +11,6 @@ export default class LogsHelperService {
     CucCloudPoll,
     CucControllerModalHelper,
     LogsConstants,
-    ovhDocUrl,
     coreConfig,
   ) {
     this.$translate = $translate;
@@ -20,7 +19,6 @@ export default class LogsHelperService {
     this.CucCloudPoll = CucCloudPoll;
     this.CucControllerModalHelper = CucControllerModalHelper;
     this.LogsConstants = LogsConstants;
-    this.ovhDocUrl = ovhDocUrl;
     this.user = coreConfig.getUser();
     this.initGuides();
   }
@@ -104,7 +102,7 @@ export default class LogsHelperService {
     this.guides.title = this.$translate.instant('logs_guides');
     const url =
       LOG_DATA_PLATFORM_GUIDES[this.user.ovhSubsidiary] ??
-      this.ovhDocUrl.getDocUrl(this.LogsConstants.LOGS_DOCS_NAME);
+      LOG_DATA_PLATFORM_GUIDES.GB;
     this.guides.list = [
       {
         name: this.$translate.instant('logs_guides_title'),

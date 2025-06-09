@@ -28,6 +28,46 @@ export const GUIDES = {
 export const LOG_DATA_PLATFORM_GUIDES = {
   US:
     'https://support.us.ovhcloud.com/hc/en-us/sections/27230973429523-Logs-Data-Platform',
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  DE:
+    'https://help.ovhcloud.com/csm/de-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  ES:
+    'https://help.ovhcloud.com/csm/es-es-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1,',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  IT:
+    'https://help.ovhcloud.com/csm/it-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  NL:
+    'https://help.ovhcloud.com/csm/en-nl-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  PL:
+    'https://help.ovhcloud.com/csm/pl-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  PT:
+    'https://help.ovhcloud.com/csm/pt-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  QC:
+    'https://help.ovhcloud.com/csm/fr-ca-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  WS:
+    'https://help.ovhcloud.com/csm/es-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  MA:
+    'https://help.ovhcloud.com/csm/fr-ma-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  SN:
+    'https://help.ovhcloud.com/csm/fr-sn-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  TN:
+    'https://help.ovhcloud.com/csm/fr-tn-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  IN:
+    'https://help.ovhcloud.com/csm/en-in-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
+  WE:
+    'https://help.ovhcloud.com/csm/world-documentation-observability-logs-data-platform?id=kb_browse_cat&kb_id=3d4a8129a884a950f07829d7d5c75243&kb_category=dfee0bc85cfb2950476b9f64a6a3f149&spa=1',
 };
 
 export const OFFER_TYPES = {
