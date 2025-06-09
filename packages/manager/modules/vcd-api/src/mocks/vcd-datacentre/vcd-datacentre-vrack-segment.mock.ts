@@ -109,13 +109,13 @@ export const mockVrackSegmentList: VCDVrackSegment[] = [
     targetSpec: {
       vlanId: '426',
       type: 'MIGRATED',
-      mode: 'TAGGED',
+      mode: 'PUBLIC',
       networks: ['192.168.4.0/24', '10.0.7.0/24'],
     },
     currentState: {
       vlanId: '426',
       type: 'MIGRATED',
-      mode: 'TAGGED',
+      mode: 'PUBLIC',
       networks: ['192.168.4.0/24', '10.0.7.0/24'],
     },
     currentTasks: [],
