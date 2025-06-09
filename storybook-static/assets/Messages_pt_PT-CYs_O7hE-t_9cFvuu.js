@@ -1,0 +1,1 @@
+const s="Não tem as permissões necessárias para apresentar os dados deste recurso. Contacte o seu administrador.",a="Não tem as permissões necessárias para efetuar esta ação, contacte o seu administrador.",e={common_iam_get_message:s,common_iam_actions_message:a};export{a as common_iam_actions_message,s as common_iam_get_message,e as default};

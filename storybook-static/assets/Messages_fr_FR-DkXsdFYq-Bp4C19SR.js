@@ -1,0 +1,1 @@
+const o="Copié",r="Erreur de copie.",p="Copier dans le presse-papier",c={clipboard_copy_success:o,clipboard_copy_error:r,clipboard_copy:p};export{p as clipboard_copy,r as clipboard_copy_error,o as clipboard_copy_success,c as default};

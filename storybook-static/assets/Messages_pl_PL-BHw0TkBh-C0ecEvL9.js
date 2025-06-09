@@ -1,0 +1,1 @@
+const a="Wystąpił następujący błąd: {{error}}.",t="Anuluj",o="Zatwierdź",d={updateModalError:a,updateModalCancelButton:t,updateModalConfirmButton:o};export{d as default,t as updateModalCancelButton,o as updateModalConfirmButton,a as updateModalError};

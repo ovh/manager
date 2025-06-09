@@ -1,0 +1,1 @@
+const e="Non disponi dei permessi necessari per visualizzare i dati di questa risorsa. Contattare l'amministratore.",a="Non disponi dei permessi necessari per effettuare questa azione, contatta l'amministratore.",s={common_iam_get_message:e,common_iam_actions_message:a};export{a as common_iam_actions_message,e as common_iam_get_message,s as default};

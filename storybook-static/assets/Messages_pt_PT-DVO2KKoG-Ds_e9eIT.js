@@ -1,0 +1,1 @@
+const a="Copiado",o="Erro de cópia.",r="Copiar para a área de transferência",c={clipboard_copy_success:a,clipboard_copy_error:o,clipboard_copy:r};export{r as clipboard_copy,o as clipboard_copy_error,a as clipboard_copy_success,c as default};

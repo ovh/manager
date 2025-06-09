@@ -1,0 +1,1 @@
+const a="Nie masz wystarczających uprawnień do wyświetlenia danych tego zasobu. Skontaktuj się z Twoim administratorem.",s="Nie masz wystarczających uprawnień, aby wykonać tę operację. Skontaktuj się z administratorem",m={common_iam_get_message:a,common_iam_actions_message:s};export{s as common_iam_actions_message,a as common_iam_get_message,m as default};

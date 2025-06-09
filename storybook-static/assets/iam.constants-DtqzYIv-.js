@@ -1,0 +1,1 @@
+const e={WITH_AUTH:"urn:v9:eu:resource:manager-react-components:with-authorization",WITHOUT_AUTH:"urn:v9:eu:resource:manager-react-components:without-authorization"},r=["vrackServices:apiovh:iam/resource/tag/remove"];export{e as I,r as a};
