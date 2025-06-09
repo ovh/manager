@@ -13,13 +13,13 @@ import {
   GuideItem,
   OvhSubsidiary,
   PageLayout,
+  useResourcesIcebergV6,
 } from '@ovh-ux/manager-react-components';
 import {
   OdsButton,
   OdsInput,
   OdsMessage,
   OdsTab,
-  OdsTabs,
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import {
@@ -37,12 +37,14 @@ import {
   useGetHostingService,
   useUpdateHostingService,
 } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
-import { useHostingUrl } from '@/hooks/useHostingUrl';
+import { EmailOptionType } from '@/data/type';
+import { useHostingUrl, useEmailsUrl } from '@/hooks';
 import { GUIDE_URL } from '../websites/websites.constants';
 import { DashboardTab } from '@/types/ssl';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import ExpirationDate from '@/components/expirationDate/ExpirationDate.component';
+import Tabs from '@/components/tabs/Tabs.component';
 
 export default function Layout() {
   const { shell } = useContext(ShellContext);
@@ -50,6 +52,10 @@ export default function Layout() {
   const { t } = useTranslation('dashboard');
 
   const { data } = useGetHostingService(serviceName);
+  const { flattenData } = useResourcesIcebergV6<EmailOptionType>({
+    route: `/hosting/web/${serviceName}/emailOption`,
+    queryKey: ['hosting', 'web', serviceName, 'emailOption'],
+  });
   const [newDisplayName, setNewDisplayName] = useState<string>('');
   const [editDisplayName, setEditDisplayName] = useState<boolean>(false);
   const [onUpdateError, setOnUpdateError] = useState<boolean>(false);
@@ -116,6 +122,11 @@ export default function Layout() {
       name: 'boost',
       title: t('hosting_tab_BOOST'),
       to: useHostingUrl(serviceName, 'boost'),
+    },
+    {
+      name: 'mails',
+      title: t('domain_tab_emails'),
+      to: useEmailsUrl(flattenData?.[0]?.domain, 'mailing-list'),
     },
   ];
 
@@ -231,7 +242,7 @@ export default function Layout() {
         </OdsMessage>
       )}
       <div className=" mt-8 mb-6">
-        <OdsTabs>
+        <Tabs>
           {tabs.map((tab: DashboardTab) => (
             <a href={tab.to} className="no-underline" key={tab.name}>
               <OdsTab isSelected={tab.name === activeTab?.name} role="tab">
@@ -239,7 +250,7 @@ export default function Layout() {
               </OdsTab>
             </a>
           ))}
-        </OdsTabs>
+        </Tabs>
       </div>
       <Outlet />
     </PageLayout>
