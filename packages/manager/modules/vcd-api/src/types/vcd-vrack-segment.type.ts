@@ -1,7 +1,7 @@
 export interface VCDVrackSegmentSpec {
   vlanId: string;
-  type: 'DEFAULT';
-  mode: 'TAGGED';
+  type: 'DEFAULT' | 'MIGRATED';
+  mode: 'TAGGED' | 'TRUNK' | 'UNTAGGED' | 'PUBLIC';
   networks: string[];
 }
 
