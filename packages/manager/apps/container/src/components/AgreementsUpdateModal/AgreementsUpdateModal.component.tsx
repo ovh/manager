@@ -59,7 +59,6 @@ export default function AgreementsUpdateModal() {
   const { data: time } = useTime({ enabled: Boolean(shouldDisplayModal) });
   const { mutate: updatePreference } = useCreatePreference(
     preferenceKey,
-    time,
     false,
   );
 
@@ -72,7 +71,7 @@ export default function AgreementsUpdateModal() {
     if (shouldDisplayModal !== undefined) {
       setShowModal(shouldDisplayModal);
       if (shouldDisplayModal) {
-        updatePreference();
+        updatePreference(time);
       }
       else {
         ux.notifyModalActionDone(AgreementsUpdateModal.name);
