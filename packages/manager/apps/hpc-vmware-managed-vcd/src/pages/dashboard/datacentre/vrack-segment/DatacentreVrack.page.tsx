@@ -16,7 +16,7 @@ export default function VrackListingPage() {
 
   return (
     <React.Suspense fallback={<Loading />}>
-      <div className="px-10">
+      <div className="px-10 mt-4">
         <VrackSegmentDatagrid id={id} vdcId={vdcId} />
       </div>
       <Outlet />

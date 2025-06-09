@@ -59,7 +59,7 @@ export const VrackSegmentSubDatagrid = ({
             cell: (network: string) => {
               return (
                 <>
-                  {LABELS.network} {network}
+                  {t('managed_vcd_dashboard_vrack_sub_network')} {network}
                 </>
               );
             },

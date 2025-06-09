@@ -17,6 +17,7 @@ import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 import { VIRTUAL_DATACENTERS_LABEL } from '../organization/organizationDashboard.constants';
+import { VRACK_LABEL } from '../dashboard.constants';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
@@ -86,7 +87,7 @@ function DatacentreDashboardPage() {
     },
     {
       id: subRoutes.vrackSegments,
-      label: t('dashboard:managed_vcd_dashboard_vrack_title'),
+      label: VRACK_LABEL,
     },
     {
       id: subRoutes.edit,

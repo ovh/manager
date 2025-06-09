@@ -105,6 +105,7 @@ export const VrackSegmentDatagrid = ({
       cell: (item: VCDVrackSegment) => {
         const isDeleting = item.resourceStatus === 'deleting';
         const itemId = item.targetSpec.vlanId;
+        const isNotEditable = item.currentState.mode !== 'TAGGED';
 
         return (
           <div className="flex justify-end">
@@ -119,13 +120,17 @@ export const VrackSegmentDatagrid = ({
                   id: 1,
                   href: hrefEdit.replace(subRoutes.vrackSegmentId, item.id),
                   label: t('managed_vcd_dashboard_vrack_edit_vlan'),
+                  isDisabled: isNotEditable,
+                  tooltipMessage:
+                    isNotEditable &&
+                    t('managed_vcd_dashboard_vrack_edit_vlan_not_available'),
                 },
                 {
                   id: 2,
                   href: hrefAddNetwork,
                   label: t('managed_vcd_dashboard_vrack_add_network'),
                 },
-                ...(hasExtraSegments
+                ...(hasExtraSegments && item.targetSpec.type !== 'DEFAULT'
                   ? [
                       {
                         id: 3,
