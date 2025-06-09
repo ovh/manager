@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, lazy } from 'react';
 
 import LegacyContainer from '@/container/legacy';
 import NavReshuffleContainer from '@/container/nav-reshuffle';
@@ -8,8 +8,9 @@ import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
 import { ProgressProvider } from '@/context/progress';
 import CookiePolicy from '@/cookie-policy/CookiePolicy';
 import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
-import { ModalsProvider } from '@/context/modals';
 import LiveChat from '@/container/livechat/LiveChat.component';
+
+const ModalsContainer = lazy(() => import('@/components/ModalContainer/ModalsContainer'));
 
 export default function Container(): JSX.Element {
   const { isLoading, betaVersion, useBeta } = useContainer();
@@ -63,7 +64,7 @@ export default function Container(): JSX.Element {
       <Suspense fallback="">
         <SSOAuthModal />
       </Suspense>
-      {isCookiePolicyApplied && <ModalsProvider />}
+      {isCookiePolicyApplied && <ModalsContainer />}
       <Suspense fallback="...">
         <CookiePolicy shell={shell} onValidate={cookiePolicyHandler} />
       </Suspense>
