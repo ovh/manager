@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-public-cloud",
-  "version": "7.2.7",
+  "version": "7.2.8",
   "private": true,
   "description": "OVHcloud Public Cloud control panel.",
   "repository": {
