@@ -39,8 +39,8 @@
   "optionsAddressTypesIpv6": "Blocs d'adresses IP",
 
   "optionsModes": "Modes*",
-  "optionsModesIpv4": "Ponté (avec option vMac)",
-  "optionsModesIpv6": "Ponté\nRouté",
+  "optionsModesIpv4": "Bridged (avec option vMac)",
+  "optionsModesIpv6": "Bridged\nRouted",
 
   "optionsGeolocation": "Géolocalisation**",
   "optionsGeolocationIpv4": "Disponible dans plusieurs pays",
