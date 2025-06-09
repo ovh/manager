@@ -22,5 +22,6 @@
   "kubernetes_add_private_network_description": "A sus nodos se les asignará una IP en la VLAN de la red privada elegida.",
   "kubernetes_add_private_network_add": "Crear una red privada",
   "kube_common_node_pool_autoscaling_title": "Configurar el tamaño del pool de nodos",
-  "kube_common_node_pool_title_multiple": "Configurar uno o varios pools de nodos (opcional)"
+  "kube_common_node_pool_title_multiple": "Configurar uno o varios pools de nodos (opcional)",
+  "kubernetes_containers_deployment_mode_label": "Modo de implementación"
 }

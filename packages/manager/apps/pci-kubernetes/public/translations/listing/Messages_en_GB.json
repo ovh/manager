@@ -22,5 +22,6 @@
   "kubernetes_add_private_network_none": "None (public IPs)",
   "kubernetes_add_private_network_description": "IP addresses from the selected private network’s VLAN will be assigned to your nodes.",
   "kubernetes_add_private_network_add": "Create a private network",
-  "kube_common_node_pool_autoscaling_title": "Configure node pool size"
+  "kube_common_node_pool_autoscaling_title": "Configure node pool size",
+  "kubernetes_containers_deployment_mode_label": "Deployment mode"
 }

@@ -22,5 +22,6 @@
   "kubernetes_add_private_network_description": "Twoje węzły otrzymają adres IP we VLAN-ie przypisanym do wybranej sieci prywatnej.",
   "kubernetes_add_private_network_add": "Utwórz prywatną sieć",
   "kube_common_node_pool_autoscaling_title": "Skonfiguruj rozmiar puli węzłów",
-  "kube_common_node_pool_title_multiple": "Skonfiguruj jedną lub więcej pul węzłów (opcjonalnie)"
+  "kube_common_node_pool_title_multiple": "Skonfiguruj jedną lub więcej pul węzłów (opcjonalnie)",
+  "kubernetes_containers_deployment_mode_label": "Tryb wdrożenia"
 }
