@@ -19,8 +19,6 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { useShell } from '@/context';
-import logo from '@/assets/images/OVHcloud_logo.svg';
-import shortLogo from '@/assets/images/icon-logo-ovh.svg';
 import Assistance from './Assistance';
 import navigationTree from './navigation-tree/root';
 import SidebarLink from './SidebarLink';
@@ -318,11 +316,12 @@ const Sidebar = (): JSX.Element => {
               target="_top"
               href={logoLink}
             >
-              <img
+              <SvgIconWrapper
+                name={open ? OvhProductName.OVH_LOGO : OvhProductName.OVH_SHORT_LOGO}
                 className={`${open ? 'mx-4' : 'mx-2'} my-3`}
-                src={open ? logo : shortLogo}
-                alt="OVHcloud"
                 aria-hidden="true"
+                height={40}
+                width={open ? 200 : 50}
               />
             </a>
           )}
