@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.7...@ovh-ux/manager-public-cloud@7.2.8) (2025-06-09)
+
+
+### Bug Fixes
+
+* **pci-ai-tools:emulators:** add quantum section and emulators application ([c5f9ecc](https://github.com/ovh/manager/commit/c5f9ecc31db61e5ab2f44bf128c5e6581f58256e)), closes [#AIS-1189](https://github.com/ovh/manager/issues/AIS-1189)
+
+
+
+
+
 ## [7.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.6...@ovh-ux/manager-public-cloud@7.2.7) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud
