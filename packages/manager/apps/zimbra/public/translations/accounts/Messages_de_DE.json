@@ -31,5 +31,11 @@
   "zimbra_slot_modal_renew_date": "Ende der Vertragslaufzeit: {{ renewDate }}",
   "zimbra_account_delete_modal_content_step1": "Sind Sie sicher, dass Sie den E-Mail-Account <strong>{{ email }}</strong> löschen möchten?",
   "zimbra_account_delete_modal_content_step2": "Sind Sie sicher, dass Sie diesen E-Mail-Account <strong>{{ email }}</strong> löschen möchten?",
-  "zimbra_account_delete_modal_warn_message": "Achtung: Diese Aktion kann nicht rückgängig gemacht werden und führt zur Löschung der Daten."
+  "zimbra_account_delete_modal_warn_message": "Achtung: Diese Aktion kann nicht rückgängig gemacht werden und führt zur Löschung der Daten.",
+  "zimbra_account_upgrade_cta_back": "Zurück zu meinen E-Mail-Accounts",
+  "zimbra_account_upgrade_new_offer": "Wir starten unser <Link href=\"{{ zimbra_emails_link }}\">neues Zimbra Pro Angebot</Link>in der Beta-Version.",
+  "zimbra_account_upgrade_offer_details": "Wir bieten Ihnen an, Ihr Konto während der gesamten Betaphase kostenlos upzugraden.",
+  "zimbra_account_upgrade_lab_page": "Für mehr Informationen lesen Sie bitte <Link href=\"{{ zimbra_beta_link }}\">die Beta-Bedingungen auf der Lab-Seite</Link>.",
+  "zimbra_account_upgrade_success_message": "Ihre Upgrade-Anfrage wurde registriert. Sie wird in Kürze bearbeitet.",
+  "zimbra_account_upgrade_error_message": "Die Upgradeanfrage ist fehlgeschlagen. {{ error }}"
 }

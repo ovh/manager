@@ -107,5 +107,9 @@
   "cancel_slot_refuse": "Non, refuser",
   "undo_cancel_slot": "Annuler la résiliation",
   "cancel_slot_title": "Résilier mon service Zimbra {{ offer }}",
-  "undo_cancel_slot_title": "Réactiver le renouvellement pour mon service Zimbra {{ offer }}"
+  "undo_cancel_slot_title": "Réactiver le renouvellement pour mon service Zimbra {{ offer }}",
+  "upgrade_pro": "Mettre à niveau",
+  "upgrade_account_pro": "Mettre à niveau mon compte",
+  "upgrade_btn_account": "Mise à niveau vers Zimbra Pro",
+  "email_account_upgrade": "Changer l'offre"
 }

@@ -107,5 +107,9 @@
   "undo_cancel_slot_title": "Verlängerung für meinen Zimbra-Dienst {{ offer }} erneut aktivieren",
   "zimbra_pro_beta_title": "Zimbra Pro ist ab sofort als Beta verfügbar!",
   "zimbra_pro_beta_description": "Profitieren Sie während des Betatests von 5 kostenlosen Pro Accounts mit 50 GB E-Mail-Speicherplatz, einer Active Sync-Lizenz und einem Drive-Speicherplatz zusätzlich zu allen bereits im Starter Angebot enthaltenen Funktionen.",
-  "order_an_account_type": "Einen {{ type }} Account bestellen"
+  "order_an_account_type": "Einen {{ type }} Account bestellen",
+  "upgrade_pro": "Upgrade durchführen",
+  "upgrade_account_pro": "Meinen Account upgraden",
+  "upgrade_btn_account": "Auf Zimbra Pro upgraden",
+  "email_account_upgrade": "Das Angebot ändern"
 }
