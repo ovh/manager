@@ -124,7 +124,7 @@
   "pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description3": "Modificare la localizzazione",
   "pci_projects_project_instances_add_attch_floating_ip_checkbox_label_tooltip": "Opzione non disponibile durante la configurazione di più istanze. Accedi a “Public IP” per associare un Floating IP alle tue istanze.",
   "pci_project_instances_instance_add_region_savings_plan_info": "Le Local Zone non sono compatibili con i Savings Plan.",
-  "pci_projects_project_instances_add_billing_savings_plan_banner_windows_gen_3": "Usufruisci di tariffe mensili vantaggiose grazie ai Savings Plans, mantenendo la flessibilità delle istanze su base oraria. Tieni presente che i costi delle licenze Windows non sono inclusi nei piani Savings",
+  "pci_projects_project_instances_add_billing_savings_plan_banner_windows_gen_3": "Usufruisci di tariffe mensili vantaggiose grazie ai Savings Plan, conservando la flessibilità delle istanze all’ora. Ti ricordiamo che i costi delle licenze Windows non sono inclusi nei Savings Plan",
   "pci_projects_project_instances_add_windows_gen3_license_unit": "+IVA/ora",
   "pci_projects_project_instances_add_windows_gen3_license_unit_w_core": "+IVA/vCore/ora",
   "pci_projects_project_instances_add_windows_gen3_license_total_price_label": "Prezzo della licenza:",
