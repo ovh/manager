@@ -23,6 +23,7 @@ export const links: UserLink[] = [
     hash: '#/useraccount/dashboard',
     i18nKey: 'user_account_menu_profile',
     trackingHit: tracking.goToProfile,
+    regions: ['EU', 'CA', 'US'],
   },
   {
     app: 'new-billing',
@@ -30,6 +31,7 @@ export const links: UserLink[] = [
     hash: '#/history',
     i18nKey: 'user_account_menu_my_invoices',
     trackingHit: tracking.billingBills,
+    regions: ['EU', 'CA', 'US'],
   },
   {
     app: 'new-billing',
@@ -37,6 +39,15 @@ export const links: UserLink[] = [
     hash: '#/autorenew',
     i18nKey: 'user_account_menu_my_services',
     trackingHit: tracking.myServices,
+    regions: ['EU', 'CA', 'US']
+  },
+  {
+    app: 'new-billing',
+    key: 'myContracts',
+    hash: '#/autorenew/agreements',
+    i18nKey: 'user_account_menu_my_contracts',
+    trackingHit: tracking.contracts,
+    regions: ['EU', 'CA'],
   },
   {
     app: 'new-account',
@@ -44,6 +55,7 @@ export const links: UserLink[] = [
     hash: '#/useraccount/emails',
     i18nKey: 'user_account_menu_my_communication',
     trackingHit: tracking.accountContacts,
+    regions: ['EU', 'CA'],
   },
   {
     app: 'new-billing',
@@ -51,6 +63,7 @@ export const links: UserLink[] = [
     hash: '#/payment/method',
     i18nKey: 'user_account_menu_my_payment_methods',
     trackingHit: tracking.paymentMethod,
+    regions: ['EU', 'CA', 'US'],
   },
   {
     app: 'new-billing',
@@ -58,6 +71,7 @@ export const links: UserLink[] = [
     hash: '#/orders',
     i18nKey: 'user_account_menu_my_commands',
     trackingHit: tracking.orders,
+    regions: ['EU', 'CA', 'US'],
   },
   {
     app: 'new-account',
@@ -65,5 +79,13 @@ export const links: UserLink[] = [
     hash: '#/contacts/services',
     i18nKey: 'user_account_menu_my_contacts',
     trackingHit: tracking.contacts,
+    regions: ['EU', 'CA'],
   },
+  {
+    app: 'dedicated',
+    key: 'myAssistanceTickets',
+    hash: '#/ticket',
+    i18nKey: 'user_account_menu_my_assistance_tickets',
+    regions: ['US'],
+  }
 ];
