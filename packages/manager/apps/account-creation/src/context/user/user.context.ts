@@ -1,8 +1,9 @@
 import { createContext } from 'react';
+import { Subsidiary } from '@/types/subsidary';
 
 export type UserContext = {
   legalForm?: string;
-  ovhSubsidiary?: string;
+  ovhSubsidiary?: Subsidiary;
   setLegalForm: (legalForm: string) => void;
 };
 

@@ -15,3 +15,17 @@ export const useRules = (params: RulesParam) =>
     queryKey: ['/newAccount/rules', ...generateQueryKey(params)],
     queryFn: () => getRules(params),
   });
+
+export const useLegalFormRules = (params: RulesParam) =>
+  useQuery({
+    queryKey: ['/newAccount/rules', ...generateQueryKey(params)],
+    queryFn: () => getRules(params),
+    select: (rules) => {
+      if (!rules.legalform) return undefined;
+
+      return {
+        ...rules.legalform,
+        in: rules.legalform.in.filter((value) => value !== 'other'),
+      };
+    },
+  });
