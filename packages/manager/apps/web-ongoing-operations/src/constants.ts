@@ -4,6 +4,7 @@ export const taskMeDns = ['me', 'task', 'dns'];
 export const domainCreate = 'DomainCreate';
 export const domainIncomingTransfer = 'DomainIncomingTransfer';
 export const domainResourceDelete = 'DomainResourceDelete';
+export const domainDnsUpdate = 'DomainDnsUpdate';
 
 export const DOMAIN_OPERATIONS = [
   'ContactControlAcknowledge',
