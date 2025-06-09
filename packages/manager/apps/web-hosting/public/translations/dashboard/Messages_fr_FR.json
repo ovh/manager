@@ -14,6 +14,7 @@
   "hosting_tab_CRON": "Cron",
   "hosting_tab_LOCAL_SEO": "Visibilité Pro",
   "hosting_tab_BOOST": "Booster mon offre",
+  "domain_tab_emails": "E-mails et mailing-lists",
   "hosting_dashboard_loading_error": "Une erreur s'est produite lors du chargement des informations. Cela peut se produire lorsqu'un bloqueur de publicités est activé.",
   "expiration_new_tab": "S'ouvre dans un nouvel onglet",
   "expiration_expired_date": "Expiré le <strong>{{expirationDate}}</strong>",
