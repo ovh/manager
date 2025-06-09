@@ -143,5 +143,6 @@
   "domain_operations_guides": "Informazioni generali",
   "domain_operations_upload_file_template_1": "Solo i file seguenti ",
   "domain_operations_upload_file_template_link": "modello di documento",
-  "domain_operations_upload_file_template_2": " saranno accettati."
+  "domain_operations_upload_file_template_2": " saranno accettati.",
+  "domain_operations_update_dns_click": "Clicca qui per correggere la configurazione dei tuoi server DNS"
 }
