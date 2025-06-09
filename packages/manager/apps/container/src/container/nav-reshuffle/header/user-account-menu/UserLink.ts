@@ -4,4 +4,5 @@ export type UserLink = {
   hash: string;
   i18nKey: string;
   trackingHit?: string;
+  region?: string[];
 };
