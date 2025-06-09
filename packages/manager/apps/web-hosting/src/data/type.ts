@@ -349,3 +349,9 @@ export type DomainServiceType = {
   transferLockStatus: TransferLockStatus;
   whoisOwner: string;
 };
+
+export type EmailOptionType = {
+  id: number;
+  domain: string;
+  creationDate: string;
+};
