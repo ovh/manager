@@ -45,6 +45,8 @@ import ShoppingCartPlus from './container/shopping-cart-plus.svg';
 import Star from './container/star.svg';
 import CloudChangelog from './container/cloud_changelog.svg';
 import HostingChangelog from './container/hosting_changelog.svg';
+import OVHLogo from './container/OVHcloud_logo.svg';
+import OVHShortLogo from './container/icon-logo-ovh.svg';
 
 export { Hosting, Office365, Sharepoint, Exchange, Zimbra };
 export { TelecomEthernet, Telephony, Headset };
@@ -73,6 +75,8 @@ export {
   Star,
   CloudChangelog,
   HostingChangelog,
+  OVHLogo,
+  OVHShortLogo,
 };
 
 export {
