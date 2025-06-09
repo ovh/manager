@@ -52,8 +52,12 @@ export default class {
       })
       .then(({ globalFilers, filers }) => {
         const datastores = [
-          ...globalFilers.data,
-          ...filers.data.map((filer) => ({ ...filer, dc: datacenterId })),
+          ...globalFilers.data.map((filer) => ({ ...filer, isGlobal: true })),
+          ...filers.data.map((filer) => ({
+            ...filer,
+            dc: datacenterId,
+            isGlobal: false,
+          })),
         ].sort((a, b) => a.filerId - b.filerId);
 
         const count = datastores.length;
