@@ -5,6 +5,7 @@ import dashboardComponent from '../../components/dedicated-cloud/dashboard';
 import deleteDrp from './deleteDrp';
 import drpDatacenterSelection from './drpDatacenterSelection';
 import mailingListSubscribe from './mailing-list/subscribe';
+import deactivateLogs from './deactivateLogs';
 import routing from './dedicatedCloud-dashboard.routing';
 import securityOptions from './security-options';
 import servicePackUpgrade from '../service-pack/upgrade';
@@ -24,6 +25,7 @@ angular
     deleteDrp,
     drpDatacenterSelection,
     mailingListSubscribe,
+    deactivateLogs,
     securityOptions,
     servicePackUpgrade,
     terminate,
