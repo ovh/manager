@@ -1,6 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActionMenu } from '@ovh-ux/manager-react-components';
+import {
+  ActionMenu,
+  useFeatureAvailability,
+} from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import {
@@ -19,7 +22,9 @@ import {
   EDIT_EMAIL_ACCOUNT,
   GO_EMAIL_ACCOUNT_ALIASES,
   UNDO_CANCEL_SLOT,
+  UPGRADE_SLOT,
 } from '@/tracking.constants';
+import { FEATURE_AVAILABILITY } from '@/contants';
 
 interface ActionButtonEmailAccountProps {
   item: EmailAccountItem;
@@ -32,6 +37,9 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
   const { t } = useTranslation('common');
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
+  const { data: availability } = useFeatureAvailability([
+    FEATURE_AVAILABILITY.PRO_BETA,
+  ]);
 
   const hrefEditEmailAccount = useGenerateUrl(`./${item.id}/settings`, 'path');
 
@@ -97,6 +105,21 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
       actions: [UNDO_CANCEL_SLOT],
     });
     navigate(hrefUndoCancelSlot);
+  }
+
+  const hrefUpgradeEmailAccount = useGenerateUrl(
+    `./slot/${item?.slotId}/upgrade`,
+    'path',
+  );
+
+  const handleUpgradeEmailClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [UPGRADE_SLOT],
+    });
+    navigate(hrefUpgradeEmailAccount);
   };
 
   const actionItems = [
@@ -143,6 +166,16 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
       iamActions: [IAM_ACTIONS.account.edit],
       label: t('undo_cancel_slot'),
       color: ODS_BUTTON_COLOR.critical,
+    });
+  }
+
+  if (availability?.[FEATURE_AVAILABILITY.PRO_BETA]) {
+    actionItems.push({
+      id: actionItems.length + 1,
+      onClick: handleUpgradeEmailClick,
+      urn: platformUrn,
+      iamActions: [IAM_ACTIONS.account.edit],
+      label: t('upgrade_pro'),
     });
   }
 

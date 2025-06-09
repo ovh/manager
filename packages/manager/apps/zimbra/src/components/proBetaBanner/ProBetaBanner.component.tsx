@@ -34,7 +34,7 @@ export const ProBetaBanner = () => {
       baseURL: getExpressOrderURL(region, ovhSubsidiary),
       products: [
         {
-          planCode: ZimbraPlanCodes.ZIMBRA_ACCOUNT_PP_PRO,
+          planCode: ZimbraPlanCodes.ZIMBRA_PRO,
           quantity: 1,
           platformId,
         },

@@ -18,5 +18,11 @@
   "zimbra_slot_modal_renew_date": "Fin de l'engagement: {{ renewDate }}",
   "zimbra_account_delete_modal_content_step1": "Êtes-vous sûr(e) de vouloir supprimer le compte email <strong>{{ email }}</strong> ?",
   "zimbra_account_delete_modal_content_step2": "Êtes-vous vraiment sûr(e) de vouloir supprimer ce compte email <strong>{{ email }}</strong> ?",
-  "zimbra_account_delete_modal_warn_message": "Attention cette action est irréversible et entraîne la suppression des données."
+  "zimbra_account_delete_modal_warn_message": "Attention cette action est irréversible et entraîne la suppression des données.",
+  "zimbra_account_upgrade_cta_back": "Retour vers mes comptes emails",
+  "zimbra_account_upgrade_new_offer": "Nous lançons en version bêta notre <Link href=\"{{ zimbra_emails_link }}\">nouvelle offre Zimbra Pro</Link>.",
+  "zimbra_account_upgrade_offer_details": "Nous vous proposons de mettre à niveau votre compte gratuitement pendant toute la durée de la phase bêta.",
+  "zimbra_account_upgrade_lab_page": "Pour plus de détails, veuillez lire <Link href=\"{{ zimbra_beta_link }}\">les conditions de béta sur la page lab</Link>.",
+  "zimbra_account_upgrade_success_message": "Votre demande de mise à niveau a bien été prise en compte. Elle sera traitée d'ici quelques instants.",
+  "zimbra_account_upgrade_error_message": "Votre demande de mise à niveau n'a pas pu aboutir. {{ error }}"
 }

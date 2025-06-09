@@ -116,6 +116,7 @@ export const SLOT = 'slot';
 export const CONFIGURE_SLOT = `configure_${SLOT}`;
 export const CANCEL_SLOT = `cancel_${SLOT}`;
 export const UNDO_CANCEL_SLOT = `undo_cancel_${SLOT}`;
+export const UPGRADE_SLOT = `upgrade_${SLOT}`;
 
 // GUIDES
 export const GUIDE_WEBMAIL = 'webmail';

@@ -107,5 +107,9 @@
   "undo_cancel_slot_title": "Reactivar la renovación para mi servicio Zimbra {{ offer }}",
   "zimbra_pro_beta_title": "¡Zimbra Pro ya está disponible en beta!",
   "zimbra_pro_beta_description": "Durante el período de la beta, disfrute de 5 cuentas Pro gratuitas, con 50 GB de espacio de correo, una licencia Active Sync y un espacio de almacenamiento Drive, además de todas las funcionalidades ya incluidas en la oferta Starter.",
-  "order_an_account_type": "Contratar una cuenta {{ type }}"
+  "order_an_account_type": "Contratar una cuenta {{ type }}",
+  "upgrade_pro": "Upgrade",
+  "upgrade_account_pro": "Mejorar mi cuenta",
+  "upgrade_btn_account": "Pasar a Zimbra Pro",
+  "email_account_upgrade": "Cambiar el producto"
 }
