@@ -24,6 +24,8 @@ import {
   Star,
   CloudChangelog,
   HostingChangelog,
+  OVHLogo,
+  OVHShortLogo,
 } from '../assets-icon-svg/icons';
 
 const containerIcons = {
@@ -52,6 +54,8 @@ const containerIcons = {
   Star,
   CloudChangelog,
   HostingChangelog,
+  OVHLogo,
+  OVHShortLogo,
 };
 
 export default containerIcons;

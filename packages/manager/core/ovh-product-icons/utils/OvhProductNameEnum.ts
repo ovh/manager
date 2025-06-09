@@ -42,6 +42,8 @@ enum OvhProductName {
   CLOUD_CHANGELOG = 'CloudChangelog',
   HOSTING_CHANGELOG = 'HostingChangelog',
   ZIMBRA = 'Zimbra',
+  OVH_LOGO = 'OVHLogo',
+  OVH_SHORT_LOGO = 'OVHShortLogo',
 }
 
 export default OvhProductName;
