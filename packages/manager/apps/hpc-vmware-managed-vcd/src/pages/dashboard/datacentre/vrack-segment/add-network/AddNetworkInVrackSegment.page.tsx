@@ -162,7 +162,7 @@ function AddNetworkVrackSegmentLoaded() {
           </OdsText>
           <RhfField controllerParams={register('network')} control={control}>
             <RhfField.Label>
-              {t('managed_vcd_dashboard_vrack_add_network')}
+              {t('managed_vcd_dashboard_vrack_network_address')}
             </RhfField.Label>
             <RhfField.HelperAuto
               helperMessage={t(
