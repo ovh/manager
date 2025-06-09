@@ -9,6 +9,7 @@ import { links as constantLinks } from './user-account-menu/constants';
 import UserAccountMenuButton from './user-account-menu/Button';
 import HeaderComponent from './index';
 import UserAccountMenu from './user-account-menu/Content';
+import { UserLink } from './user-account-menu/UserLink';
 
 /**
  * Mocked Data
@@ -215,7 +216,7 @@ describe('Header.component', () => {
           }
         });
 
-        constantLinks.forEach((link) => {
+        constantLinks.filter((link: UserLink) => !link.region || link.region.includes(mockedRegion)).forEach((link) => {
           const linkElement = screen.getByText(link.i18nKey);
           expect(linkElement).toBeInTheDocument();
           expect(linkElement.closest('a').getAttribute('aria-label')).toBe(
