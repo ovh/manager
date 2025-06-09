@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Navigate, Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import NotFound from '@/alldoms/pages/404';
@@ -15,67 +15,72 @@ const AllDomDetailPage = React.lazy(() =>
 const AllDomTerminatePage = React.lazy(() =>
   import('@/alldoms/pages/service/serviceTerminate/serviceTerminate'),
 );
-const OnboardingPage = React.lazy(() => import('@/alldoms/pages/onboarding'));
+const OnboardingPage = React.lazy(() =>
+  import('@/alldoms/pages/onboarding/onboarding'),
+);
 
 export default (
-  <Route
-    path={urls.alldomsRoot}
-    Component={LayoutPage}
-    id="root"
-    errorElement={
-      <ErrorBoundary
-        redirectionApp="web-domains-alldoms-backup"
-        isPreloaderHide={true}
-        isRouteShellSync={true}
-      />
-    }
-  >
+  <>
+    <Route path={'/'} element={<Navigate to={urls.alldomsRoot} replace />} />
     <Route
       path={urls.alldomsRoot}
-      Component={AllDomListingPage}
-      id="allDomListing"
-      handle={{
-        tracking: {
-          pageName: 'listing',
-          pageType: PageType.listing,
-        },
-      }}
+      Component={LayoutPage}
+      id="root"
+      errorElement={
+        <ErrorBoundary
+          redirectionApp="web-domains-alldoms-backup"
+          isPreloaderHide
+          isRouteShellSync
+        />
+      }
     >
       <Route
-        path={urls.alldomsListingTerminate}
-        Component={AllDomTerminatePage}
-        id="allDomListingTerminate"
-      ></Route>
-    </Route>
+        path={urls.alldomsRoot}
+        Component={AllDomListingPage}
+        id="allDomListing"
+        handle={{
+          tracking: {
+            pageName: 'listing',
+            pageType: PageType.listing,
+          },
+        }}
+      >
+        <Route
+          path={urls.alldomsListingTerminate}
+          Component={AllDomTerminatePage}
+          id="allDomListingTerminate"
+        ></Route>
+      </Route>
 
-    <Route
-      path={urls.alldomsDetail}
-      Component={AllDomDetailPage}
-      id="allDomDetail"
-      handle={{
-        tracking: {
-          pageName: 'listing',
-          pageType: PageType.listing,
-        },
-      }}
-    >
       <Route
-        path={urls.alldomsDetailTerminate}
-        Component={AllDomTerminatePage}
-        id="allDomDetailTerminate"
+        path={urls.alldomsDetail}
+        Component={AllDomDetailPage}
+        id="allDomDetail"
+        handle={{
+          tracking: {
+            pageName: 'listing',
+            pageType: PageType.listing,
+          },
+        }}
+      >
+        <Route
+          path={urls.alldomsDetailTerminate}
+          Component={AllDomTerminatePage}
+          id="allDomDetailTerminate"
+        ></Route>
+      </Route>
+      <Route
+        path={urls.alldomsOnboarding}
+        Component={OnboardingPage}
+        id="onboarding"
+        handle={{
+          tracking: {
+            pageName: 'onboarding',
+            pageType: PageType.onboarding,
+          },
+        }}
       ></Route>
     </Route>
-    <Route
-      path={urls.alldomsOnboarding}
-      Component={OnboardingPage}
-      id="onboarding"
-      handle={{
-        tracking: {
-          pageName: 'onboarding',
-          pageType: PageType.onboarding,
-        },
-      }}
-    ></Route>
     <Route path="*" element={<NotFound />} />
-  </Route>
+  </>
 );
