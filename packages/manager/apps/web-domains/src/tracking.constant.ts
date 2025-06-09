@@ -17,4 +17,4 @@ export const LEVEL2 = {
 };
 export const UNIVERSE = 'Web';
 export const SUB_UNIVERSE = 'Web';
-export const APP_NAME = 'web-domains'
+export const APP_NAME = 'web-domains';
