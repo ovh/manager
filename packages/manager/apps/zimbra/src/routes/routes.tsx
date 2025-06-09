@@ -55,6 +55,7 @@ import {
   ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS,
   CANCEL_SLOT,
   UNDO_CANCEL_SLOT,
+  UPGRADE_SLOT,
 } from '@/tracking.constants';
 
 export type RouteHandle = {
@@ -115,6 +116,9 @@ const CancelSlotPage = React.lazy(() =>
 );
 const UndoCancelSlotPage = React.lazy(() =>
   import('@/pages/dashboard/emailAccounts/undoCancel/UndoCancel.modal'),
+);
+const UpgradeAccountPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/upgrade/Upgrade.page'),
 );
 const AliasPage = React.lazy(() =>
   import('@/pages/dashboard/emailAccounts/settings/aliases/Aliases.page'),
@@ -449,6 +453,20 @@ export default (
             },
             breadcrumb: {
               label: 'common:undo_cancel_slot',
+            },
+          }}
+        />
+        <Route
+          path={'slot/:slotId/upgrade'}
+          Component={UpgradeAccountPage}
+          handle={{
+            isOverridePage: true,
+            tracking: {
+              pageName: UPGRADE_SLOT,
+              pageType: PageType.funnel,
+            },
+            breadcrumb: {
+              label: 'common:email_account_upgrade',
             },
           }}
         />
