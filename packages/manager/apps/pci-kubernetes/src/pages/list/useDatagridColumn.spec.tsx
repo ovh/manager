@@ -5,6 +5,7 @@ const test = [
   ['name', 'kube_list_name'],
   ['id', 'kube_list_id'],
   ['region', 'kube_list_region'],
+  ['mode', 'kubernetes_containers_deployment_mode_label'],
   ['attachedTo', 'kube_list_network_attached'],
   ['version', 'kube_list_version'],
   ['status', 'kube:kube_service_cluster_status'],
