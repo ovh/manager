@@ -52,7 +52,11 @@ export default function Onboarding() {
 
   return (
     <>
-      <Breadcrumb rootLabel={appConfig.rootLabel} appName="web-domains" />
+      <Breadcrumb
+        rootLabel={t('title')}
+        appName={appConfig.rootLabel}
+        hideRootLabel
+      />
       <OnboardingLayout
         title={title}
         img={imgSrc}
