@@ -215,5 +215,7 @@
   "sidebar_security_identity_operations_iam_policies": "Políticas",
   "sidebar_security_identity_operations_iam_api-keys": "Claves API",
   "sidebar_security_identity_operations_iam_logs": "Logs de la cuenta",
-  "sidebar_web_hosting_websites": "Sitios web"
+  "sidebar_web_hosting_websites": "Sitios web",
+  "sidebar_pci_quantum": "Quantum",
+  "sidebar_pci_quantum_emulators": "Emulators"
 }
