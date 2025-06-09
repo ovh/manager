@@ -12,7 +12,8 @@
   "scripts": {
     "build": "tsc && yarn copy-files",
     "copy-files": "cp ./assets-icon-svg/*.svg ./dist/assets-icon-svg/",
-    "start": "plop"
+    "start": "plop",
+    "test": "manager-test run"
   },
   "dependencies": {
     "@ovhcloud/ods-common-core": "17.2.2",
@@ -20,6 +21,9 @@
     "@ovhcloud/ods-components": "17.2.2",
     "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
     "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-tests-setup": "latest"
   },
   "preferGlobal": true
 }
