@@ -1,37 +1,35 @@
 import path from 'path';
-import { defineConfig, coverageConfigDefaults } from 'vitest/config';
-import react from '@vitejs/plugin-react';
+import {
+  sharedConfig,
+  mergeConfig,
+  createConfig,
+  defaultExcludedFiles,
+} from '@ovh-ux/manager-tests-setup';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    coverage: {
-      include: ['src'],
-      exclude: [
-        'src/configInterface.ts',
-        'src/api',
-        'src/web-office.config.ts',
-        'src/vite-*.ts',
-        'src/App.tsx',
-        'src/hooks/index.ts',
-        'src/hooks/types.ts',
-        'src/index.tsx',
-        'src/routes/routes.tsx',
-        'src/utils/index.ts',
-        'src/**/*constants.ts',
-        ...coverageConfigDefaults.exclude,
-      ],
+export default mergeConfig(
+  sharedConfig,
+  createConfig({
+    test: {
+      setupFiles: ['src/utils/test.setup.tsx'],
+      coverage: {
+        exclude: [
+          ...defaultExcludedFiles,
+          // App-specific exclusions (not in shared config):
+          'src/configInterface.ts',
+          'src/api',
+          'src/web-office.config.ts',
+          'src/hooks/index.ts',
+          'src/hooks/types.ts',
+          'src/routes/routes.tsx',
+          'src/utils/index.ts',
+        ],
+      },
     },
-    setupFiles: ['src/utils/test.setup.tsx'],
-  },
-  resolve: {
-    alias: {
-      '@/public': path.resolve(__dirname, 'public'),
-      '@': path.resolve(__dirname, 'src'),
+    resolve: {
+      alias: {
+        '@/public': path.resolve(__dirname, 'public'),
+        '@': path.resolve(__dirname, 'src'),
+      },
     },
-    mainFields: ['module'],
-  },
-});
+  }),
+);
