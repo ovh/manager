@@ -53,7 +53,6 @@ export const IdentityDocumentsModal = (): JSX.Element => {
   const { data: time } = useTime({ enabled: Boolean(shouldDisplayModal) });
   const { mutate: updatePreference } = useCreatePreference(
     preferenceKey,
-    time,
     false,
   );
 
@@ -90,7 +89,7 @@ export const IdentityDocumentsModal = (): JSX.Element => {
     if (shouldDisplayModal !== undefined) {
       setShowModal(shouldDisplayModal);
       if (shouldDisplayModal) {
-        updatePreference();
+        updatePreference(time);
       }
       else {
         uxPlugin.notifyModalActionDone(IdentityDocumentsModal.name);

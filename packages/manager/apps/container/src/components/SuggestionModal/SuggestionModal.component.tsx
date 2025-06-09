@@ -49,7 +49,6 @@ const SuggestionModal = (): JSX.Element => {
   const { data: time } = useTime({ enabled: Boolean(shouldDisplayModal) });
   const { mutate: updatePreference } = useCreatePreference(
     preferenceKey,
-    time,
     false,
   );
   const { data } = useSuggestions(Boolean(shouldDisplayModal));
@@ -63,10 +62,14 @@ const SuggestionModal = (): JSX.Element => {
   const closeModal = () => {
     setShowModal(false);
     ux.notifyModalActionDone(SuggestionModal.name);
+    // Update preference so the modal is not display until 60 days later, time for the update to be done on our side
+    updatePreference(time + 60 * 24 * 60 * 60);
     // @TODO: Handle tracking (ECAN-2228)
   };
   const goToProfileEdition = () => {
     setShowModal(false);
+    // Update preference so the modal is not displayed until a day later
+    updatePreference(time);
     // @TODO: Handle tracking (ECAN-2228)
     window.top.location.href = `${accountEditionLink}?fieldToFocus=ovh_form_content_activity`;
   };
@@ -78,10 +81,7 @@ const SuggestionModal = (): JSX.Element => {
   useEffect(() => {
     if (shouldDisplayModal !== undefined) {
       setShowModal(shouldDisplayModal);
-      if (shouldDisplayModal) {
-        updatePreference();
-      }
-      else {
+      if (!shouldDisplayModal) {
         ux.notifyModalActionDone(SuggestionModal.name);
       }
     }
