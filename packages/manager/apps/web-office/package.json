@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-office-app",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "React app for web office 365",
   "repository": {
