@@ -31,5 +31,7 @@
   "vrackServicesNotReadyInfoMessage": "vRack Services {{displayName}} tiene una operación en curso",
   "vrackServicesInErrorMessage": "vRack Services {{displayName}} está en error",
   "modalSubmitOrderWaitMessage": "Por favor, espere.",
-  "modalConfirmContractsCheckboxLabel": "He leído y acepto los términos y condiciones de los siguientes contratos:"
+  "modalConfirmContractsCheckboxLabel": "He leído y acepto los términos y condiciones de los siguientes contratos:",
+  "modalDeleteVrackServicesServiceTypeName": "vRack Services",
+  "modalError": "Se ha producido el siguiente error: {{error}}."
 }
