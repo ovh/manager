@@ -62,6 +62,10 @@ export default class OverTheBoxDetailsCtrl {
       ipv6Update: false,
     };
 
+    this.errorMsg = {
+      ipv6Update: undefined,
+    };
+
     this.nameEditable = false;
 
     this.deviceIds = [];
@@ -943,6 +947,7 @@ export default class OverTheBoxDetailsCtrl {
       this.$scope.$apply(() => {
         this.loaders.ipv6Update = false;
         this.error.ipv6Update = true;
+        this.errorMsg.ipv6Update = e.data?.message;
         this.service.ipv6Enabled = previousValue;
       });
       this.$timeout(() => {
@@ -959,5 +964,6 @@ export default class OverTheBoxDetailsCtrl {
 
   onIpv6UpdateErrorMessageDismiss() {
     this.error.ipv6Update = false;
+    this.errorMsg.ipv6Update = undefined;
   }
 }
