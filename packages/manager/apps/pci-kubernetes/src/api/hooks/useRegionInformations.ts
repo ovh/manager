@@ -9,10 +9,14 @@ export const getRegionInfo = (projectId: string, regionName: string) => [
   regionName,
 ];
 
-export const useRegionInformations = (projectId: string, regionName: string) =>
-  useQuery<TRegionInformations>({
-    queryKey: getRegionInfo(projectId, regionName),
-    queryFn: () => getRegionInformations(projectId, regionName),
+export const useRegionInformations = (
+  projectId: string,
+  regionName: string | null = null,
+) =>
+  useQuery<TRegionInformations | null>({
+    queryKey: regionName ? getRegionInfo(projectId, regionName) : [],
+    queryFn: () =>
+      regionName ? getRegionInformations(projectId, regionName) : null,
     enabled: !!projectId && !!regionName,
     retry: false,
   });
