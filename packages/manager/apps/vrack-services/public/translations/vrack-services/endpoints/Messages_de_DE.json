@@ -44,5 +44,6 @@
   "endpointUpdateDisplayNameSuccess": "Die Änderung des Namens der Ressource {{name}} wurde registriert.",
   "endpointCreationPending": "Ihr Service Endpoint wird konfiguriert.",
   "endpointCreationSuccess": "Ihr Service Endpoint wurde erfolgreich auf dem vRack Services mit der ID {{id}} konfiguriert.",
-  "endpointDeleteSuccess": "Ihr Service Endpoint wurde erfolgreich aus den vRack Services mit der ID {{id}} gelöscht."
+  "endpointDeleteSuccess": "Ihr Service Endpoint wurde erfolgreich aus den vRack Services mit der ID {{id}} gelöscht.",
+  "modalDeleteServiceEndpointHeadline": "Service Endpoint löschen"
 }

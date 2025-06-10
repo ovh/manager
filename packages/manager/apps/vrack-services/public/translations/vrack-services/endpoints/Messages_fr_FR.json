@@ -17,7 +17,7 @@
   "endpointDatagridManagedServiceURNLabel": "Nom du service",
   "endpointDatagridServiceTypeLabel": "Type de service",
   "endpointDatagridActionsLabel": "",
-  "modalDeleteEndpointServiceTypeName": "le Service Endpoint",
+  "modalDeleteServiceEndpointHeadline": "Supprimer le Service Endpoint",
   "modalDeleteEndpointDescription": "Si vous supprimez ce Service Endpoint, vous perdrez la connectivité au service associé.",
   "storageNetApp": "Enterprise File Storage",
   "action-deleteServiceEndpoint": "Supprimer le Service Endpoint",
