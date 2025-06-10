@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 
+import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
+import { useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -25,7 +25,7 @@ import NodePoolType from './node-pool/NodePoolType.component';
 import NodePoolSize from './node-pool/NodePoolSize.component';
 import NodePoolAntiAffinity from './node-pool/NodePoolAntiAffinity.component';
 
-import { NodePool, NodePoolPrice } from '@/api/data/kubernetes';
+import { NodePoolPrice } from '@/api/data/kubernetes';
 import {
   generateUniqueName,
   isMonoDeploymentZone,
@@ -33,27 +33,18 @@ import {
 } from '@/helpers';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import DeploymentZone from './node-pool/DeploymentZone.component';
-import { KubeFlavor } from '@/components/flavor-selector/FlavorSelector.component';
+import { TComputedKubeFlavor } from '@/components/flavor-selector/FlavorSelector.component';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import useMergedFlavorById, {
+  getPriceByDesiredScale,
+} from '@/hooks/useMergedFlavorById';
 import { isNodePoolNameValid } from '@/helpers/matchers/matchers';
-
-const getPrice = (flavor: KubeFlavor, scaling: AutoscalingState | null) => {
-  if (flavor && scaling) {
-    return {
-      hour: flavor.pricingsHourly.price * scaling.quantity.desired,
-      month: flavor.pricingsMonthly
-        ? flavor.pricingsMonthly.price * scaling.quantity.desired
-        : null,
-    };
-  }
-  return { hour: 0, month: 0 };
-};
 
 export type NodePoolState = {
   antiAffinity: boolean;
   name: string;
   isTouched: boolean;
-  selectedAvailibilityZone?: string;
+  selectedAvailabilityZone?: string;
   scaling: AutoscalingState | null;
 };
 
@@ -83,7 +74,11 @@ const NodePoolStep = ({
 
   const hasError = nodePoolState.isTouched && !isValidName;
   const [isMonthlyBilled, setIsMonthlyBilled] = useState(false);
-  const [flavor, setFlavor] = useState<KubeFlavor | null>(null);
+  const [
+    selectedFlavor,
+    setSelectedFlavor,
+  ] = useState<TComputedKubeFlavor | null>(null);
+
   const featureFlipping3az = use3AZPlanAvailable();
   const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
   const [nodes, setNodes] = useState<NodePoolPrice[] | null>(null);
@@ -97,10 +92,26 @@ const NodePoolStep = ({
     t,
   ]);
 
-  const isNodePoolValid = !nodePoolEnabled || (Boolean(flavor) && isValidName);
+  const isNodePoolValid =
+    !nodePoolEnabled || (Boolean(selectedFlavor) && isValidName);
 
   const exceedsMaxNodes = (quantity: number) => quantity > NODE_RANGE.MAX;
-  const { projectId } = useParams();
+  const { projectId } = useSafeParams('projectId');
+
+  const price = useMergedFlavorById<{ hour: number; month?: number } | null>(
+    projectId,
+    stepper.form.region?.name,
+    selectedFlavor?.id ?? null,
+    {
+      select: (flavor) =>
+        getPriceByDesiredScale(
+          flavor.pricingsHourly?.price,
+          flavor.pricingsMonthly?.price,
+          nodePoolState.scaling?.quantity.desired,
+        ),
+    },
+  );
+
   // The maxValue is NODE_RANGE.MAX cause isAntiAffinity is hardcoded to false
   // change to ANTI_AFFINITY_MAX_NODES otherwise
   const isScalingValid = useMemo(() => {
@@ -128,19 +139,20 @@ const NodePoolStep = ({
 
   const { data: regionInformations } = useRegionInformations(
     projectId,
-    stepper.form.region.name,
+    stepper.form.region?.name ?? null,
   );
 
   const zoneAZisChecked =
-    isMonoDeploymentZone(regionInformations?.type) ||
-    nodePoolState.selectedAvailibilityZone;
+    (regionInformations?.type &&
+      isMonoDeploymentZone(regionInformations.type)) ||
+    nodePoolState.selectedAvailabilityZone;
   const isButtonDisabled =
     !isScalingValid ||
     !isNodePoolValid ||
     !hasMax5NodesAntiAffinity ||
     !zoneAZisChecked;
 
-  const isPricingComingSoon = flavor?.blobs?.tags?.includes(
+  const isPricingComingSoon = selectedFlavor?.blobs?.tags?.includes(
     TAGS_BLOB.COMING_SOON,
   );
 
@@ -148,9 +160,12 @@ const NodePoolStep = ({
 
   const canSubmit =
     (isStepUnlocked && !nodePoolEnabled) ||
-    (isStepUnlocked && nodePoolEnabled && nodes?.length > 0);
+    (isStepUnlocked &&
+      nodePoolEnabled &&
+      Array.isArray(nodes) &&
+      nodes.length > 0);
 
-  useEffect(() => setIsMonthlyBilled(false), [flavor]);
+  useEffect(() => setIsMonthlyBilled(false), [selectedFlavor]);
 
   useEffect(() => {
     setNodes(!nodePoolEnabled ? null : []);
@@ -165,19 +180,23 @@ const NodePoolStep = ({
   }, [nodePoolEnabled]);
 
   const setNewNodePool = useCallback(() => {
-    if (nodes || nodePoolState.scaling || flavor) {
+    if (nodes && nodePoolState.scaling && selectedFlavor) {
       const newNodePool: NodePoolPrice = {
-        name: generateUniqueName(nodePoolState.name, nodes as NodePool[]),
+        name: generateUniqueName(nodePoolState.name, nodes),
         antiAffinity: nodePoolState.antiAffinity,
         autoscale: nodePoolState.scaling.isAutoscale,
-        ...(isMultiDeploymentZones(regionInformations?.type) && {
-          availabilityZones: [nodePoolState.selectedAvailibilityZone],
-        }),
+        ...(regionInformations?.type &&
+          isMultiDeploymentZones(regionInformations.type) &&
+          nodePoolState.selectedAvailabilityZone && {
+            availabilityZones: [nodePoolState.selectedAvailabilityZone],
+          }),
         localisation:
-          nodePoolState.selectedAvailibilityZone ?? stepper.form.region.name,
+          nodePoolState.selectedAvailabilityZone ??
+          stepper.form.region?.name ??
+          null,
         desiredNodes: nodePoolState.scaling.quantity.desired,
         minNodes: nodePoolState.scaling.quantity.min,
-        flavorName: flavor.name,
+        flavorName: selectedFlavor.name ?? '',
         maxNodes: nodePoolState.antiAffinity
           ? Math.min(
               ANTI_AFFINITY_MAX_NODES,
@@ -185,10 +204,8 @@ const NodePoolStep = ({
             )
           : nodePoolState.scaling.quantity.max,
         monthlyPrice: isMonthlyBilled
-          ? getPrice(flavor, nodePoolState.scaling).month
-          : convertHourlyPriceToMonthly(
-              getPrice(flavor, nodePoolState.scaling).hour,
-            ),
+          ? price?.month ?? 0
+          : convertHourlyPriceToMonthly(price?.hour ?? 0),
         monthlyBilled: isMonthlyBilled,
       };
       setNodePoolState((state) => ({
@@ -201,8 +218,8 @@ const NodePoolStep = ({
   }, [
     nodePoolState,
     nodes,
-    stepper.form.region.name,
-    flavor,
+    stepper.form.region?.name,
+    selectedFlavor,
     isMonthlyBilled,
     setNodePoolState,
     setNodes,
@@ -226,38 +243,29 @@ const NodePoolStep = ({
               : 'invisible w-0 h-0 overflow-hidden'
           }
         >
-          <div className="mb-8">
-            <NodePoolName
-              onTouched={(isTouched: boolean) =>
-                setNodePoolState((state) => ({ ...state, isTouched }))
-              }
-              hasError={hasError}
-              onNameChange={(name: string) =>
-                setNodePoolState((state) => ({ ...state, name }))
-              }
-              name={nodePoolState.name}
-            />
-          </div>
-          <div className="mb-8">
-            <NodePoolType
-              projectId={projectId as string}
-              region={stepper.form.region.name}
-              onSelect={setFlavor}
-            />
+          <div className="mb-8 mt-4">
+            {stepper.form.region?.name && (
+              <NodePoolType
+                projectId={projectId}
+                region={stepper.form.region.name}
+                onSelect={setSelectedFlavor}
+              />
+            )}
           </div>
           {featureFlipping3az &&
-            isMultiDeploymentZones(regionInformations?.type) && (
+            regionInformations?.type &&
+            isMultiDeploymentZones(regionInformations.type) && (
               <div className="mb-8 flex gap-4">
                 <DeploymentZone
                   onSelect={(zone) =>
                     setNodePoolState((state) => ({
                       ...state,
-                      selectedAvailibilityZone: zone,
+                      selectedAvailabilityZone: zone,
                     }))
                   }
                   availabilityZones={regionInformations?.availabilityZones}
-                  selectedAvailibilityZone={
-                    nodePoolState.selectedAvailibilityZone
+                  selectedAvailabilityZone={
+                    nodePoolState.selectedAvailabilityZone ?? ''
                   }
                 />
               </div>
@@ -271,21 +279,22 @@ const NodePoolStep = ({
               antiAffinity={nodePoolState.antiAffinity}
             />
           </div>
-          {!isMultiDeploymentZones(regionInformations?.type) && (
-            <div className="mb-8">
-              <NodePoolAntiAffinity
-                isChecked={nodePoolState.antiAffinity}
-                isEnabled={!nodePoolState.scaling?.isAutoscale}
-                onChange={(antiAffinity: boolean) =>
-                  setNodePoolState((state) => ({ ...state, antiAffinity }))
-                }
-              />
-            </div>
-          )}
+          {regionInformations?.type &&
+            !isMultiDeploymentZones(regionInformations.type) && (
+              <div className="mb-8">
+                <NodePoolAntiAffinity
+                  isChecked={nodePoolState.antiAffinity}
+                  isEnabled={!nodePoolState.scaling?.isAutoscale}
+                  onChange={(antiAffinity: boolean) =>
+                    setNodePoolState((state) => ({ ...state, antiAffinity }))
+                  }
+                />
+              </div>
+            )}
           <div className="mb-8">
             <BillingStep
-              price={getPrice(flavor, nodePoolState.scaling).hour}
-              monthlyPrice={getPrice(flavor, nodePoolState.scaling).month}
+              price={price?.hour ?? null}
+              monthlyPrice={price?.month}
               monthlyBilling={{
                 isComingSoon: isPricingComingSoon ?? false,
                 isChecked: isMonthlyBilled,
@@ -294,6 +303,18 @@ const NodePoolStep = ({
               warn={
                 (nodePoolState.scaling?.isAutoscale && isMonthlyBilled) ?? false
               }
+            />
+          </div>
+          <div className="mb-8">
+            <NodePoolName
+              onTouched={(isTouched: boolean) =>
+                setNodePoolState((state) => ({ ...state, isTouched }))
+              }
+              hasError={hasError}
+              onNameChange={(name: string) =>
+                setNodePoolState((state) => ({ ...state, name }))
+              }
+              name={nodePoolState.name}
             />
           </div>
         </div>
@@ -335,7 +356,9 @@ const NodePoolStep = ({
           <OsdsButton
             data-testid="submit-button-node"
             onClick={() => {
-              stepper.node.submit(nodes);
+              if (nodes) {
+                stepper.node.submit(nodes);
+              }
             }}
             className="mt-4 w-fit"
             size={ODS_BUTTON_SIZE.md}
