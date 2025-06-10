@@ -48,7 +48,6 @@ vi.mock(import('@ovh-ux/manager-react-components'), async (importOriginal) => {
 });
 
 vi.mock('@/utils/utils', () => ({
-  formatDatagridDate: vi.fn(),
   removeQuotes: vi.fn(),
 }));
 
