@@ -103,7 +103,7 @@ describe('NewPoolStore', () => {
       name: state.name,
       flavor: state.flavor,
       autoScaling: state.autoScaling,
-      selectedAvailibilityZone: state.selectedAvailibilityZone,
+      selectedAvailabilityZone: state.selectedAvailabilityZone,
       antiAffinity: state.antiAffinity,
       isMonthlyBilling: state.isMonthlyBilling,
       steps: state.steps,
@@ -120,7 +120,7 @@ describe('NewPoolStore', () => {
         flavor: undefined,
         isMonthlyBilling: false,
         name: { value: '', hasError: false, isTouched: false },
-        selectedAvailibilityZone: '',
+        selectedAvailabilityZone: '',
         steps: new Map([
           [
             'NAME',
@@ -173,7 +173,7 @@ describe('NewPoolStore', () => {
         flavor: undefined,
         isMonthlyBilling: false,
         name: { hasError: false, isTouched: false, value: '' },
-        selectedAvailibilityZone: '',
+        selectedAvailabilityZone: '',
         steps: new Map([
           [
             'NAME',
@@ -230,7 +230,7 @@ describe('NewPoolStore', () => {
           isTouched: false,
           value: '',
         },
-        selectedAvailibilityZone: '',
+        selectedAvailabilityZone: '',
         steps: new Map([
           [
             'NAME',
