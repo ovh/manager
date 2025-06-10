@@ -14,7 +14,8 @@
         dismissable
         class="m-2"
     >
-        <span data-translate="overTheBox_enabled_ipv6_error"></span>
+        <p data-translate="overTheBox_enabled_ipv6_error"></p>
+        <p data-ng-bind="$ctrl.errorMsg.ipv6Update"></p>
     </oui-message>
 
     <tuc-toast-message></tuc-toast-message>
