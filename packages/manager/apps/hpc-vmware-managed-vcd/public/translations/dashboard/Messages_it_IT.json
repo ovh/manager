@@ -48,10 +48,10 @@
   "managed_vcd_dashboard_contact_list_administrator": "{{code}} Amministratore",
   "managed_vcd_dashboard_contact_list_billing": "{{code}} Fatturazione",
   "managed_vcd_dashboard_contact_list_technical": "{{code}} Tecnico",
-  "managed_vcd_dashboard_password_modal_title": "Modificare la password",
-  "managed_vcd_dashboard_password_modal_subtitle": "Vuoi davvero cambiare la password?",
-  "managed_vcd_dashboard_password_renew_success": "Riceverai un'email per visualizzare la tua password",
-  "managed_vcd_dashboard_password_renew_error": "Si è verificato un errore,,, Riprova più tardi o contatta il supporto per modificare la tua password amministratore.",
+  "managed_vcd_dashboard_password_modal_title": "Rinnovare la password",
+  "managed_vcd_dashboard_password_modal_subtitle": "Vuoi davvero rinnovare la tua password?",
+  "managed_vcd_dashboard_password_renew_success": "La richiesta di rinnovo della tua password amministratore è stata presa in carico. Riceverai un’email con un link che ti permetterà di consultare la tua password.",
+  "managed_vcd_dashboard_password_renew_error": "Si è verificato un errore durante il rinnovo della password amministratore. Riprova più tardi o contatta il nostro supporto clienti.",
   "managed_vcd_dashboard_edit_modal_cta_validate": "Confermare",
   "managed_vcd_dashboard_cancellation_tooltip": "Per disattivare il servizio, contatta il nostro supporto."
 }

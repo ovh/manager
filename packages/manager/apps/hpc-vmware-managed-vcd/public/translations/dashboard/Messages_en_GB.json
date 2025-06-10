@@ -48,10 +48,10 @@
   "managed_vcd_dashboard_contact_list_administrator": "{{code}} Administrator",
   "managed_vcd_dashboard_contact_list_billing": "{{code}} Billing",
   "managed_vcd_dashboard_contact_list_technical": "{{code}} Technical",
-  "managed_vcd_dashboard_password_modal_title": "Change password",
-  "managed_vcd_dashboard_password_modal_subtitle": "Are you sure you want to change your password?",
-  "managed_vcd_dashboard_password_renew_success": "You will receive an email to view your password",
-  "managed_vcd_dashboard_password_renew_error": "An error has occurred. Please try again later or contact our Support team to change your admin password",
+  "managed_vcd_dashboard_password_modal_title": "Renew password",
+  "managed_vcd_dashboard_password_modal_subtitle": "Are you sure you want to renew your password?",
+  "managed_vcd_dashboard_password_renew_success": "Your admin password renewal request has been processed. You will receive an email containing a link to view your password.",
+  "managed_vcd_dashboard_password_renew_error": "An error has occurred renewing your admin password. Please try again later or contact our customer support team.",
   "managed_vcd_dashboard_edit_modal_cta_validate": "Confirm",
   "managed_vcd_dashboard_cancellation_tooltip": "If you would like to cancel your service, please contact our support team."
 }
