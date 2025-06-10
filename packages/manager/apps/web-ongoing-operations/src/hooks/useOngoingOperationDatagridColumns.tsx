@@ -1,16 +1,17 @@
 import React from 'react';
-import { useTranslation, getI18n } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import {
   ActionMenu,
   DataGridTextCell,
   useNotifications,
+  useFormatDate,
 } from '@ovh-ux/manager-react-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TOngoingOperations } from 'src/types';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ParentEnum } from '@/enum/parent.enum';
-import { formatDatagridDate, removeQuotes } from '@/utils/utils';
+import { removeQuotes } from '@/utils/utils';
 import OngoingOperationDatagridDomain from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridDomain';
 import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridBadge';
 import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard';
@@ -20,9 +21,9 @@ export const useOngoingOperationDatagridColumns = (
 ) => {
   const { t } = useTranslation('dashboard');
   const { clearNotifications } = useNotifications();
-  const l = getI18n();
   const navigate = useNavigate();
   const location = useLocation();
+  const formatDate = useFormatDate();
 
   const columns = [
     {
@@ -60,7 +61,7 @@ export const useOngoingOperationDatagridColumns = (
       id: 'created_on',
       cell: (props: TOngoingOperations) => (
         <DataGridTextCell>
-          {formatDatagridDate(props.creationDate, l.language)}
+          {formatDate({ date: props.creationDate, format: 'P p' })}
         </DataGridTextCell>
       ),
       label: t('domain_operations_table_header_creationDate'),
@@ -69,7 +70,7 @@ export const useOngoingOperationDatagridColumns = (
       id: 'last_updated',
       cell: (props: TOngoingOperations) => (
         <DataGridTextCell>
-          {formatDatagridDate(props.lastUpdate, l.language)}
+          {formatDate({ date: props.lastUpdate, format: 'P p' })}
         </DataGridTextCell>
       ),
       label: t('domain_operations_table_header_lastUpdate'),
@@ -77,7 +78,7 @@ export const useOngoingOperationDatagridColumns = (
     {
       id: 'status',
       cell: (props: TOngoingOperations) => (
-        <OngoingOperationDatagridBadge props={props} locale={l.language} />
+        <OngoingOperationDatagridBadge props={props} />
       ),
       label: t('domain_operations_table_header_status'),
     },
