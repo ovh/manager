@@ -14,9 +14,17 @@ function installPnpm() {
   mkdirSync(targetDir, { recursive: true });
 
   const platform = os.platform();
-  const installScript = platform ===  'win32'
-    ? `powershell -Command "Invoke-WebRequest https://get.pnpm.io/install.ps1 -UseBasicParsing | Invoke-Expression"`
-    : `curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=${version} PNPM_HOME=${targetDir} sh -`;
+  let installScript;
+
+  if (platform === 'win32') {
+    installScript =
+      `powershell -Command "Invoke-WebRequest https://get.pnpm.io/install.ps1 -UseBasicParsing | Invoke-Expression"`;
+  } else {
+    // Set SHELL explicitly to satisfy install.sh in CI (like GitHub Actions)
+    const shell = '/bin/bash';
+    installScript =
+      `curl -fsSL https://get.pnpm.io/install.sh | env SHELL=${shell} PNPM_VERSION=${version} PNPM_HOME=${targetDir} sh -`;
+  }
 
   try {
     execSync(installScript, { stdio: 'inherit' });
