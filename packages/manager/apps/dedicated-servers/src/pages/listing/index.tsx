@@ -14,8 +14,8 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import {
   ChangelogButton,
-  ErrorBanner,
   BaseLayout,
+  useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
@@ -28,6 +28,9 @@ export default function Layout() {
   const { shell } = useContext(ShellContext);
   const matches = useMatches();
   const { trackCurrentPage } = useOvhTracking();
+  const { data: features, isSuccess } = useFeatureAvailability([
+    'dedicated-server:cluster',
+  ]);
 
   const [activePanel, setActivePanel] = useState('');
   const navigate = useNavigate();
@@ -90,20 +93,22 @@ export default function Layout() {
                   {t('all_servers')}
                 </OdsTab>
               </NavLink>
-              <NavLink
-                key={`osds-tab-bar-item-cluster`}
-                to={'/cluster'}
-                className="no-underline"
-              >
-                <OdsTab
-                  id={'cluster-tab'}
-                  role="tab"
-                  isSelected={activePanel === 'cluster'}
-                  isDisabled={false}
+              {isSuccess && features?.['dedicated-server:cluster'] && (
+                <NavLink
+                  key={`osds-tab-bar-item-cluster`}
+                  to={'/cluster'}
+                  className="no-underline"
                 >
-                  {t('clusters')}
-                </OdsTab>
-              </NavLink>
+                  <OdsTab
+                    id={'cluster-tab'}
+                    role="tab"
+                    isSelected={activePanel === 'cluster'}
+                    isDisabled={false}
+                  >
+                    {t('clusters')}
+                  </OdsTab>
+                </NavLink>
+              )}
             </OdsTabs>
           </div>
         }
