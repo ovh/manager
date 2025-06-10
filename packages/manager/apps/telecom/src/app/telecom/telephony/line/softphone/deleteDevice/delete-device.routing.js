@@ -4,26 +4,21 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'telecom.telephony.billingAccount.line.dashboard.softphone.delete',
     {
-      url: '/delete?deviceId',
+      url: '/delete',
       views: {
         modal: {
           component: 'softphoneDeleteDevice',
         },
       },
       layout: 'modal',
-      params: {
-        deviceId: null,
-      },
       resolve: {
-        deviceId: /* @ngInject */ ($transition$) =>
-          $transition$.params().deviceId,
-        goBack: /* @ngInject */ ($state, trackPage, deviceId) => (reload) => {
+        goBack: /* @ngInject */ ($state, trackPage) => (reload) => {
           if (reload) {
             trackPage({
               ...SOFTPHONE_TRACKING.DEVICE_MANAGEMENT.DATAGRID,
               name: SOFTPHONE_TRACKING.DEVICE_MANAGEMENT.DATAGRID.name.replace(
                 /{{deviceAction}}/g,
-                deviceId ? 'device-addition' : 'all-device-deletion',
+                'all-device-deletion',
               ),
             });
           }

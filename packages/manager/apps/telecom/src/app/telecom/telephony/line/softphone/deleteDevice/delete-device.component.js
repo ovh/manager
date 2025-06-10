@@ -7,7 +7,6 @@ export default {
   bindings: {
     billingAccount: '<',
     goBack: '<',
-    deviceId: '<?',
     serviceName: '<',
     trackClick: '<',
     trackPage: '<',
