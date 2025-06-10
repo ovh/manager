@@ -85,62 +85,71 @@ export const Drawer = ({
           collapseState === 'hidden' && `[&::part(drawer)]:translate-x-[456px]`,
         )}
       >
-        {isLoading && (
-          <div
-            data-testid="drawer-spinner"
-            className="h-full flex justify-center items-center"
-          >
-            <OdsSpinner size={ODS_SPINNER_SIZE.md}></OdsSpinner>
-          </div>
-        )}
-
-        {!isLoading && (
-          <div className="h-screen overflow-hidden flex flex-col justify-between">
-            <header className="px-[24px] min-h-[100px] flex items-center">
-              <div className="flex justify-between items-center w-full py-[24px] space-x-[8px]">
+        <div className="h-screen overflow-hidden flex flex-col justify-between">
+          <header className="px-[24px] min-h-[100px] flex items-center">
+            <div
+              className={clsx(
+                'flex items-center w-full py-[24px] space-x-[8px]',
+                !isLoading ? 'justify-between' : 'justify-end',
+              )}
+            >
+              {!isLoading && (
                 <OdsText preset={ODS_TEXT_PRESET.heading2}>{heading}</OdsText>
-                <OdsButton
-                  data-testid="drawer-dismiss-button"
-                  label=""
-                  aria-label="Dismiss"
-                  icon="xmark"
-                  onClick={onDismiss}
-                  color={ODS_BUTTON_COLOR.primary}
-                  variant={ODS_BUTTON_VARIANT.ghost}
-                />
-              </div>
-            </header>
+              )}
+              <OdsButton
+                data-testid="drawer-dismiss-button"
+                label=""
+                aria-label="Dismiss"
+                icon="xmark"
+                onClick={onDismiss}
+                color={ODS_BUTTON_COLOR.primary}
+                variant={ODS_BUTTON_VARIANT.ghost}
+              />
+            </div>
+          </header>
 
-            <section className="px-[24px] flex-1 overflow-y-auto outline-none">
-              {children}
-            </section>
+          {isLoading && (
+            <div
+              data-testid="drawer-spinner"
+              className="h-full flex justify-center items-center"
+            >
+              <OdsSpinner size={ODS_SPINNER_SIZE.md}></OdsSpinner>
+            </div>
+          )}
 
-            {hasFooter && (
-              <footer className="px-[24px] py-[24px] space-x-[8px]">
-                {hasSecondaryButton && (
-                  <OdsButton
-                    variant={ODS_BUTTON_VARIANT.ghost}
-                    label={secondaryButtonLabel}
-                    isLoading={isSecondaryButtonLoading}
-                    isDisabled={isSecondaryButtonDisabled}
-                    onClick={onSecondaryButtonClick}
-                    color={ODS_BUTTON_COLOR.primary}
-                  />
-                )}
-                {hasPrimaryButton && (
-                  <OdsButton
-                    variant={ODS_BUTTON_VARIANT.default}
-                    label={primaryButtonLabel}
-                    isLoading={isPrimaryButtonLoading}
-                    isDisabled={isPrimaryButtonDisabled}
-                    onClick={onPrimaryButtonClick}
-                    color={ODS_BUTTON_COLOR.primary}
-                  />
-                )}
-              </footer>
-            )}
-          </div>
-        )}
+          {!isLoading && (
+            <>
+              <section className="px-[24px] flex-1 overflow-y-auto outline-none">
+                {children}
+              </section>
+
+              {hasFooter && (
+                <footer className="px-[24px] py-[24px] space-x-[8px]">
+                  {hasSecondaryButton && (
+                    <OdsButton
+                      variant={ODS_BUTTON_VARIANT.ghost}
+                      label={secondaryButtonLabel}
+                      isLoading={isSecondaryButtonLoading}
+                      isDisabled={isSecondaryButtonDisabled}
+                      onClick={onSecondaryButtonClick}
+                      color={ODS_BUTTON_COLOR.primary}
+                    />
+                  )}
+                  {hasPrimaryButton && (
+                    <OdsButton
+                      variant={ODS_BUTTON_VARIANT.default}
+                      label={primaryButtonLabel}
+                      isLoading={isPrimaryButtonLoading}
+                      isDisabled={isPrimaryButtonDisabled}
+                      onClick={onPrimaryButtonClick}
+                      color={ODS_BUTTON_COLOR.primary}
+                    />
+                  )}
+                </footer>
+              )}
+            </>
+          )}
+        </div>
       </OdsDrawer>
       {isOpen && variant === 'collapsible' && (
         <DrawerHandle
