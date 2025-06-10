@@ -1,11 +1,11 @@
 {
   "status-DELETING": "Deleting",
-  "status-RESTARTING": "Restarting",
-  "status-STARTING": "Starting",
-  "status-STOPPING": "Extinguishing",
+  "status-RESTARTING": "Restarting...",
+  "status-STARTING": "Pending",
+  "status-STOPPING": "Cancelling...",
   "status-FAILED": "Failed",
   "status-ERROR": "Error",
   "status-STOPPED": "Stopped",
-  "status-SYNC_FAILED": "Synchronization failed",
-  "status-RUNNING": "In service"
+  "status-SYNC_FAILED": "Sync failed",
+  "status-RUNNING": "Running"
 }

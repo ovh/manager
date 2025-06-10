@@ -7,12 +7,12 @@
   "tableHeaderPermission": "Permission",
   "tableActionDelete": "Delete",
   "mountPathCopyToast": "The mount directory has been copied",
-  "permission_RO": "Read-Only",
+  "permission_RO": "Read-only",
   "permission_RW": "Read &amp; Write",
   "permission_RWD": "Read &amp; Write &amp; Delete",
   "addPublicGitButton": "Add a public Git",
   "publicGitToastErrorTitle": "Error",
-  "publicGitToastSuccessTitle": "Successes",
+  "publicGitToastSuccessTitle": "Completed",
   "deletePublicGitToastSuccessDescription": "Git repository deleted",
   "deletePublicGitTitle": "Delete a Git repository",
   "deletePublicGitDescription": "Are you sure you want to delete the Git repository?",
@@ -21,5 +21,5 @@
   "addPublicGitToastSuccessDescription": "Git repository added",
   "addPublicGitTitle": "Add a Git repository",
   "addPublicGitButtonConfirm": "Add",
-  "disabledButtonTooltip": "Notebook must be in stopped status"
+  "disabledButtonTooltip": "Make sure the notebook is in ‘Stopped’ status"
 }

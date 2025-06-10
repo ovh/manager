@@ -3,8 +3,8 @@
   "valueFieldLabel": "Value",
   "existingKeyError": "This key already exists",
   "numberOfConfiguredLabels_zero": "{{count}} labels configured",
-  "numberOfConfiguredLabels_one": "{{count}} label configured on {{max}}",
-  "numberOfConfiguredLabels_other": "{{count}} labels configured on {{max}}",
+  "numberOfConfiguredLabels_one": "{{count}} of {{max}} label configured",
+  "numberOfConfiguredLabels_other": "{{count}} of {{max}} labels configured",
   "labelToastErrorTitle": "Error",
-  "labelToastSuccessTitle": "Successes"
+  "labelToastSuccessTitle": "Completed"
 }
