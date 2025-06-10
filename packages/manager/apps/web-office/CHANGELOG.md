@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.1...@ovh-ux/manager-web-office-app@0.3.2) (2025-06-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.0...@ovh-ux/manager-web-office-app@0.3.1) (2025-06-10)
+
+
+### Bug Fixes
+
+* **web-office:** use generic modal from mrc ([1a34e76](https://github.com/ovh/manager/commit/1a34e76badb8355b0d7b5a42d91a6de491270d9f)), closes [#MANAGER-16944](https://github.com/ovh/manager/issues/MANAGER-16944)
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.2.2...@ovh-ux/manager-web-office-app@0.3.0) (2025-06-05)
 
 

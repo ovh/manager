@@ -1,12 +1,12 @@
 {
-  "pricingHt": "{{ price }} EX. VAT",
+  "pricingHt": "{{ price }} ex. VAT",
   "pricingInHour": "/hour",
-  "pricingTtc": "{{ price }} INCL. VAT",
+  "pricingTtc": "{{price}} incl. VAT",
   "pricingLabel": "Price",
-  "licenceCpuPriceLabel": "License price on CPU:",
-  "licenceGpuPriceLabel": "License price on GPU:",
+  "licenceCpuPriceLabel": "Licence price - CPU:",
+  "licenceGpuPriceLabel": "Licence price - GPU:",
   "licenceFromLabel": "from",
-  "partnerPriceGPUPrefix": "License price on GPU: from",
+  "partnerPriceGPUPrefix": "Licence price - GPU: from",
   "partnerPriceSuffix": "per resource/hour",
-  "partnerPricePerUsageSuffix": "per hour of use (see documentation)"
+  "partnerPricePerUsageSuffix": "per hour of use (view documentation)"
 }

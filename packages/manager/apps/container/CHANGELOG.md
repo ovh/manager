@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.133.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.132.1...@ovh-ux/manager-container-app@0.133.0) (2025-06-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4046] ([e555b7a](https://github.com/ovh/manager/commit/e555b7a12b5386182a0579db20b985b30c7dcc30)), closes [#MANAGER-18256](https://github.com/ovh/manager/issues/MANAGER-18256)
+* **iam:** add beta badge on logs menu entry ([7c20e61](https://github.com/ovh/manager/commit/7c20e616fd0318350a3415d4929cf3c3a98128ab)), closes [#MANAGER-18324](https://github.com/ovh/manager/issues/MANAGER-18324)
+
+
+### Features
+
+* **veeam:** remove veeam cloud connect ([8ac3049](https://github.com/ovh/manager/commit/8ac3049049f8398114f6966441e8d8e583c57a04)), closes [#MANAGER-16416](https://github.com/ovh/manager/issues/MANAGER-16416)
+
+
+
+
+
 ## [0.132.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.132.0...@ovh-ux/manager-container-app@0.132.1) (2025-06-09)
 
 

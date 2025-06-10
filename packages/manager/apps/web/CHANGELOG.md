@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.2...@ovh-ux/manager-web@19.12.3) (2025-06-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.1...@ovh-ux/manager-web@19.12.2) (2025-06-10)
+
+
+### Bug Fixes
+
+* **web.hosting:** add guide for languages versions ([46133a5](https://github.com/ovh/manager/commit/46133a5db849e19bed4915c00bc4e584cf16c7f5)), closes [#MANAGER-18336](https://github.com/ovh/manager/issues/MANAGER-18336)
+* **web.hosting:** fix wording on activate boost option ([31cf570](https://github.com/ovh/manager/commit/31cf57009ca53a0d017e6bac2031f252132b02d4)), closes [#MANAGER-17551](https://github.com/ovh/manager/issues/MANAGER-17551)
+
+
+
+
+
 ## [19.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.0...@ovh-ux/manager-web@19.12.1) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

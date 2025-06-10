@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.47.4...@ovh-ux/manager-vps@2.48.0) (2025-06-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4067] ([cf7023a](https://github.com/ovh/manager/commit/cf7023add8f511c9750d7618d60e3da01b9cdf2f))
+
+
+### Features
+
+* **dedicated.vps:** using display name instead of name ([94433fa](https://github.com/ovh/manager/commit/94433fa7b344a856e88672e7bc76f24d9bc91246)), closes [#MANAGER-18295](https://github.com/ovh/manager/issues/MANAGER-18295)
+
+
+
+
+
 ## [2.47.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.47.3...@ovh-ux/manager-vps@2.47.4) (2025-05-26)
 
 
