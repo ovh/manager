@@ -8,25 +8,23 @@ import {
   OdsRadio,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { TReplicationDestination } from './ReplicationRuleDestination.component';
-import { ReplicationStorage } from './AddReplication.page';
 import { ReplicationStorageClass } from '@/constants';
 
 interface TReplicationRuleStorageClassProps {
-  destination: TReplicationDestination;
+  destinationName?: string;
   useStorageclass: boolean;
   setUseStorageclass: (value: boolean) => void;
   storageClass: ReplicationStorageClass;
   setStorageClass: (value: ReplicationStorageClass) => void;
-  destinationDetails: ReplicationStorage;
+  destinationDetailsMode?: string;
 }
 export function ReplicationRuleStorageClass({
-  destination,
+  destinationName,
   useStorageclass,
   setUseStorageclass,
   storageClass,
   setStorageClass,
-  destinationDetails,
+  destinationDetailsMode,
 }: TReplicationRuleStorageClassProps) {
   const { t } = useTranslation(['containers/replication/add']);
 
@@ -35,7 +33,7 @@ export function ReplicationRuleStorageClass({
       <OdsFormField className="flex">
         <span className="flex">
           <OdsCheckbox
-            isDisabled={!destination?.name}
+            isDisabled={!destinationName}
             className="mt-2"
             name="use-storageclass"
             inputId="use-storageclass"
@@ -51,7 +49,7 @@ export function ReplicationRuleStorageClass({
               'containers/replication/add:pci_projects_project_storages_containers_replication_add_use_storageclass',
             )}
           </label>
-          {!destination?.name && (
+          {!destinationName && (
             <div className="mt-2 ml-3 cursor-pointer">
               <OdsIcon
                 id="trigger-popover"
@@ -108,7 +106,7 @@ export function ReplicationRuleStorageClass({
               </OdsText>
             </label>
           </div>
-          {destinationDetails?.mode !==
+          {destinationDetailsMode !==
             t(
               `containers:pci_projects_project_storages_containers_deployment_mode_region-3-az`,
             ) && (

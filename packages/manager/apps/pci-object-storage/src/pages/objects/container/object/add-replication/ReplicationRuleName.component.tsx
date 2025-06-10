@@ -1,7 +1,5 @@
 import { useTranslation } from 'react-i18next';
 
-import { useEffect } from 'react';
-
 import {
   OdsFormField,
   OdsInput,
@@ -9,6 +7,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import clsx from 'clsx';
+import { TFunction } from 'i18next';
 
 type TReplicationRuleIdProps = {
   replicationRuleId: string;
@@ -16,8 +15,25 @@ type TReplicationRuleIdProps = {
   isReplicationRuleIdTouched: boolean;
   setIsReplicationRuleIdTouched: (isTouched: boolean) => void;
   isValidReplicationRuleId: boolean;
-  idError?: string;
-  setIdError: (error: string | undefined) => void;
+};
+
+const getErrorMessage = (
+  isValidReplicationRuleId: boolean,
+  isReplicationRuleIdTouched: boolean,
+  replicationRuleId: string,
+  t: TFunction,
+) => {
+  let idError: string | undefined;
+
+  if (isReplicationRuleIdTouched && !isValidReplicationRuleId) {
+    idError = t('pci-common:common_field_error_pattern');
+  }
+
+  if (isReplicationRuleIdTouched && !replicationRuleId) {
+    idError = t('pci-common:common_field_error_required');
+  }
+
+  return idError;
 };
 
 export function ReplicationRuleId({
@@ -26,28 +42,18 @@ export function ReplicationRuleId({
   isReplicationRuleIdTouched,
   setIsReplicationRuleIdTouched,
   isValidReplicationRuleId,
-  idError,
-  setIdError,
 }: TReplicationRuleIdProps) {
   const { t } = useTranslation([
     'containers/add',
     'containers/replication/add',
   ]);
 
-  useEffect(() => {
-    if (isReplicationRuleIdTouched && !replicationRuleId) {
-      setIdError(t('pci-common:common_field_error_required'));
-    } else if (isReplicationRuleIdTouched && !isValidReplicationRuleId) {
-      setIdError(t('pci-common:common_field_error_pattern'));
-    } else {
-      setIdError(undefined);
-    }
-  }, [
+  const idError = getErrorMessage(
+    isValidReplicationRuleId,
     isReplicationRuleIdTouched,
     replicationRuleId,
-    isValidReplicationRuleId,
     t,
-  ]);
+  );
 
   return (
     <OdsFormField error={idError} className="max-w-[800px] block">
