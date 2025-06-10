@@ -15,6 +15,18 @@
             data-wizard-step-on-load="$ctrl.loadStep1.bind($ctrl)"
             data-wizard-step-on-next="$ctrl.checkNextStep1.bind($ctrl)"
         >
+            <oui-message
+                class="mb-3"
+                data-type="warning"
+                data-dismissable
+                data-ng-if="informations.hasSomePersonalTemplates"
+            >
+                <span
+                    data-translate="server_configuration_installation_ovh_step1_gabarit_eol"
+                    data-translate-values="{ t0: $ctrl.doc.eolPersonalInstallationTemplates }"
+                ></span>
+            </oui-message>
+
             <div class="text-center" data-ng-show="loader.loading">
                 <oui-spinner></oui-spinner>
             </div>
@@ -1790,6 +1802,42 @@
                         data-option-form="optionForm"
                         data-input-rules="inputRules"
                     ></server-installation-inputs>
+
+                    <!-- clipboard help for customers who want to save their install parameters for later use -->
+                    <oui-button
+                        class="container mb-2 text-center"
+                        data-on-click="$ctrl.copyInstallToClipboard()"
+                        data-oui-tooltip="{{::'server_configuration_installation_ovh_step3_save_button_tooltip' | translate}}"
+                        data-oui-tooltip-placement="top"
+                        data-disabled="errorInst.ws
+                                        || configError.raidDiskUse
+                                        || !installation.options.validForm
+                                        || loader.loading
+                                        || !optionForm.$valid"
+                    >
+                        <span data-translate="server_configuration_installation_ovh_step3_save_button"></span>
+                    </oui-button>
+                    <oui-message
+                        data-type="success"
+                        data-ng-if="!errorInst.copyInstallToClipboard && informations.showClipboardMessage"
+                    >
+                        <span
+                            data-translate="server_configuration_installation_ovh_step3_save_clipboard"
+                            data-translate-values="{ t0: $ctrl.doc.consoleForClipboard }"
+                        ></span>
+                        <span
+                            data-translate="server_configuration_installation_ovh_step3_save_clipboard_doc"
+                            data-translate-values="{ t0: $ctrl.doc.apiOsInstallation }"
+                        ></span>
+                    </oui-message>
+                    <oui-message
+                        data-type="error"
+                        data-ng-if="errorInst.copyInstallToClipboard && informations.showClipboardMessage"
+                    >
+                        <span
+                            data-translate="server_configuration_installation_ovh_step3_save_clipboard_error"
+                        ></span>
+                    </oui-message>
 
                     <div data-ng-if="errorInst.ws">
                         <p

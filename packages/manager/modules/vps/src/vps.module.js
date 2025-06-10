@@ -6,6 +6,9 @@ import '@ovh-ux/ng-ui-router-breadcrumb';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 import routing from './vps.routing';
+import vpsListComponent from './list';
+import VpsService from './import/vps.service';
+import VpsTaskService from './vps/vps-task.service';
 
 const moduleName = 'ovhManagerVPS';
 
@@ -16,7 +19,10 @@ angular
     ListLayoutHelper.moduleName,
     ngAtInternet,
     'ui.router',
+    vpsListComponent,
   ])
+  .service('VpsService', VpsService)
+  .service('VpsTaskService', VpsTaskService)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./vps/translations */);
 export default moduleName;

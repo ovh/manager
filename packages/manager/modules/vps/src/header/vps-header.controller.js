@@ -8,8 +8,6 @@ import {
   TAB_FEATURES,
 } from './vps-header.constants';
 
-import { PRODUCT_NAME } from '../vps/constants';
-
 export default class {
   /* @ngInject */
   constructor(
@@ -55,10 +53,6 @@ export default class {
       }
     });
 
-    this.description = this.CucProductsService.getDisplayName(
-      PRODUCT_NAME,
-      this.serviceName,
-    );
     const features = this.getFeatures();
 
     this.features = features.filter(

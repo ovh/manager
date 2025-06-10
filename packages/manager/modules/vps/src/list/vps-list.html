@@ -5,33 +5,36 @@
                 class="oui-header__title"
                 data-translate="{{:: $ctrl.header }}"
             ></h1>
-            <div class="d-flex">
-                <changelog-button
-                    links="$ctrl.constants.CHANGELOG.managed_baremetal.links"
-                    chapters="$ctrl.constants.CHANGELOG.managed_baremetal.chapters"
-                ></changelog-button>
-                <ovh-manager-pcc-guides />
-            </div>
+            <changelog-button
+                links="$ctrl.constants.CHANGELOG.vps.links"
+                chapters="$ctrl.constants.CHANGELOG.vps.chapters"
+            ></changelog-button>
         </div>
     </oui-header-heading>
 </oui-header>
+
 <div data-ng-bind-html="$ctrl.description"></div>
 
-<div data-ovh-alert="dedicatedCloud"></div>
+<div data-ovh-alert="vps"></div>
+
+<ovh-manager-auto-renew-2016-deployment-banner
+    data-show="$ctrl.isAutorenew2016DeploymentBannerAvailable"
+></ovh-manager-auto-renew-2016-deployment-banner>
 
 <oui-datagrid
     class="table-striped"
     id="{{ $ctrl.datagridId }}"
-    rows="$ctrl.resources"
+    rows="$ctrl.resources.data"
     data-page-size="{{ $ctrl.paginationSize }}"
     data-row-loader="$ctrl.loadResource($row)"
+    data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
     data-criteria="$ctrl.criteria"
     data-on-page-change="$ctrl.onPageChange($pagination)"
     data-customizable
 >
     <oui-datagrid-column
-        data-title=":: 'dedicatedCloud_list_description' | translate"
-        data-property="description"
+        data-title=":: 'vps_list_displayName' | translate"
+        data-property="displayName"
         data-searchable
         data-filterable
         data-sortable
@@ -39,12 +42,12 @@
         data-prevent-customization
     >
         <a data-ng-href="{{ $ctrl.getServiceNameLink($row) }}"
-            >{{ $row.description || $row.serviceName }}</a
+            >{{ $row.displayName || $row.name }}</a
         >
     </oui-datagrid-column>
     <oui-datagrid-column
-        data-title=":: 'dedicatedCloud_list_serviceName' | translate"
-        data-property="serviceName"
+        data-title=":: 'vps_list_name' | translate"
+        data-property="name"
         data-searchable
         data-filterable
         data-sortable
@@ -52,57 +55,72 @@
     >
     </oui-datagrid-column>
     <oui-datagrid-column
-        data-title=":: 'dedicatedCloud_list_softwareSolution' | translate"
-        data-property="softwareSolution"
-        data-filterable
-        data-sortable
-        data-type="string"
-    >
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        data-title=":: 'dedicatedCloud_list_commercialRange' | translate"
-        data-property="commercialRange"
-        data-filterable
-        data-sortable
-        data-type="string"
-        data-hidden
-    >
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        title=":: 'dedicatedCloud_list_zone' | translate"
-        data-property="location"
-        data-filterable
-        data-sortable
-        data-type="string"
-        data-hidden
-    >
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        title=":: 'dedicatedCloud_list_regionLocation' | translate"
-        data-property="regionLocation"
+        data-title=":: 'vps_list_model' | translate"
+        data-property="model.offer"
         data-searchable
         data-filterable
         data-sortable
         data-type="string"
+        data-hidden
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title=":: 'vps_list_region' | translate"
+        data-property="locationName"
+        data-searchable
+        data-filterable
+        data-sortable
+        data-type="string"
+    >
+        <span class="{{ $row.region.icon }} mr-1" aria-hidden="true"></span>
+        <span data-ng-bind="$row.region.microRegion.text"></span>
+        -
+        <span data-ng-bind="$row.region.country"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'vps_list_vcore' | translate"
+        data-property="vcore"
+        data-filterable
+        data-sortable
+        data-type="string"
+        data-hidden
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'vps_list_memory' | translate"
+        data-property="model.memory"
+        data-filterable
+        data-sortable
+        data-type="string"
+        data-hidden
     >
         <span
-            class="oui-flag oui-flag_{{ $row.countryCode.toLowerCase() }} mr-1"
-            aria-hidden="true"
+            data-ng-bind=":: ($row.model.memory / 1024) | bytes:0:false:'GB'"
         ></span>
-        <span data-ng-bind="$row.regionLocation"></span>
     </oui-datagrid-column>
     <oui-datagrid-column
-        title=":: 'dedicatedCloud_list_region' | translate"
-        data-property="region"
+        data-title=":: 'vps_list_disk' | translate"
+        data-property="model.disk"
         data-filterable
         data-sortable
         data-type="string"
         data-hidden
     >
+        <span data-ng-bind=":: $row.model.disk | bytes:0:false:'GB'"></span>
     </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'vps_list_state' | translate"
+        data-property="state"
+        data-filterable
+        data-sortable
+        data-type="string"
+    >
+        <vps-state-info vps-state="$row"></vps-state-info>
+    </oui-datagrid-column>
+
     <oui-action-menu compact data-placement="end">
         <oui-action-menu-item href="{{ $ctrl.getServiceNameLink($row) }}"
-            ><span data-translate="dedicatedCloud_list_popover_details"></span>
+            ><span data-translate="vps_list_popover_details"></span>
         </oui-action-menu-item>
     </oui-action-menu>
     <oui-datagrid-topbar data-ng-if="$ctrl.topbarOptions">
