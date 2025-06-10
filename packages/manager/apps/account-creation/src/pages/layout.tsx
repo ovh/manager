@@ -39,7 +39,7 @@ export default function Layout() {
               />
             </div>
             <div className="w-full h-full flex items-center justify-center">
-              <div className="max-w-lg">
+              <div className="p-6 sm:p-0 max-w-lg">
                 <Outlet />
               </div>
             </div>
