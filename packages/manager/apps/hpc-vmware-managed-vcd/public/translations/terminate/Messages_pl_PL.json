@@ -1,0 +1,4 @@
+{
+  "terminate_managed_vcd_success": "Dyspozycja rezygnacji z usługi {{service}}  została przyjęta. Otrzymasz e-mail z prośbą o jej potwierdzenie.",
+  "terminate_managed_vcd_ftc_success": "Dyspozycja rezygnacji z usługi {{service}}  została przyjęta. Wiadomość e-mail z potwierdzeniem została wysłana na Twój adres e-mail."
+}
