@@ -182,7 +182,7 @@ describe('Vrack Services subnets page test suite', () => {
   });
 
   it('should delete a subnet', async () => {
-    const { container, getByTestId } = await renderTest({
+    const { container } = await renderTest({
       nbVs: 2,
       initialRoute: urls.subnetsListing.replace(
         ':id',
@@ -205,10 +205,13 @@ describe('Vrack Services subnets page test suite', () => {
 
     await assertModalText({
       container,
-      text: labels.subnets.modalDeleteSubnetServiceTypeName,
+      text: labels.subnets.modalDeleteSubnetHeadline,
     });
 
-    const deleteButton = getByTestId('manager-delete-modal-confirm');
+    const deleteButton = await getButtonByLabel({
+      container,
+      value: labels.actions.delete,
+    });
     await assertEnabled(deleteButton);
     await waitFor(() => userEvent.click(deleteButton));
 

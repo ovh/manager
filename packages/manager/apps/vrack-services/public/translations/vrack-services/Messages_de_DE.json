@@ -31,5 +31,7 @@
   "vrackServicesNotReadyInfoMessage": "vRack Services {{displayName}} wird ausgeführt",
   "vrackServicesInErrorMessage": "vRack Services {{displayName}} ist fehlerhaft",
   "modalSubmitOrderWaitMessage": "Bitte gedulden Sie sich einen Augenblick ...",
-  "modalConfirmContractsCheckboxLabel": "Ich habe die folgenden Vertragsbedingungen zur Kenntnis genommen und akzeptiere sie:"
+  "modalConfirmContractsCheckboxLabel": "Ich habe die folgenden Vertragsbedingungen zur Kenntnis genommen und akzeptiere sie:",
+  "modalDeleteVrackServicesServiceTypeName": "vRack Services",
+  "modalError": "Der folgende Fehler ist aufgetreten: {{error}}."
 }
