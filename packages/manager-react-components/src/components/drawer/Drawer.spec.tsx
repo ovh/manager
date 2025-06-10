@@ -1,6 +1,11 @@
 import { vi } from 'vitest';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import {
+  WAIT_FOR_DEFAULT_OPTIONS,
+  assertTextVisibility,
+  getOdsButtonByLabel,
+} from '@ovh-ux/manager-core-test-utils';
 import { Drawer, DrawerProps } from './Drawer.component';
 
 vi.mock('@ovhcloud/ods-components/react', async () => {
@@ -30,15 +35,21 @@ export const mockedProps: DrawerProps = {
   onDismiss: vi.fn(),
 };
 
-it('should display the drawer in its classic variant', () => {
-  render(<Drawer {...mockedProps} />);
+it('should display the drawer in its classic variant', async () => {
+  const { container } = render(<Drawer {...mockedProps} />);
   expect(screen.getByTestId('drawer')).not.toBeNull();
   expect(screen.queryByText('Drawer heading')).not.toBeNull();
   expect(screen.queryByText('Drawer content')).not.toBeNull();
 
   const dismissButton = screen.getByTestId('drawer-dismiss-button');
-  const primaryButton = screen.getByTestId('drawer-primary-button');
-  const secondaryButton = screen.getByTestId('drawer-secondary-button');
+  const primaryButton = await getOdsButtonByLabel({
+    container,
+    label: mockedProps.primaryButtonLabel,
+  });
+  const secondaryButton = await getOdsButtonByLabel({
+    container,
+    label: mockedProps.secondaryButtonLabel,
+  });
 
   expect(dismissButton).toHaveAttribute('aria-label', 'Dismiss');
 

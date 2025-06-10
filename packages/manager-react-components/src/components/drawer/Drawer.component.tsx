@@ -119,7 +119,6 @@ export const Drawer = ({
               <footer className="px-[24px] py-[24px] space-x-[8px]">
                 {hasSecondaryButton && (
                   <OdsButton
-                    data-testid="drawer-secondary-button"
                     variant={ODS_BUTTON_VARIANT.ghost}
                     label={secondaryButtonLabel}
                     isLoading={isSecondaryButtonLoading}
@@ -130,7 +129,6 @@ export const Drawer = ({
                 )}
                 {hasPrimaryButton && (
                   <OdsButton
-                    data-testid="drawer-primary-button"
                     variant={ODS_BUTTON_VARIANT.default}
                     label={primaryButtonLabel}
                     isLoading={isPrimaryButtonLoading}
