@@ -172,7 +172,6 @@
                         class="oui-table__header"
                         data-translate="telephony_line_softphone_table_header_agent"
                     ></th>
-                    <th class="oui-table__header"></th>
                 </tr>
             </thead>
             <tbody>
@@ -203,14 +202,6 @@
                         class="oui-table__cell text-wrap"
                         data-ng-bind="device.userAgent"
                     ></td>
-                    <td class="oui-table__cell">
-                        <oui-button
-                            variant="link"
-                            data-on-click="$ctrl.trackClick($ctrl.SOFTPHONE_TRACKING.DEVICE_MANAGEMENT.DELETE);$ctrl.goToDeleteDevice(device.id)"
-                        >
-                            <span class="oui-icon oui-icon-bin"></span
-                        ></oui-button>
-                    </td>
                 </tr>
             </tbody>
         </table>
