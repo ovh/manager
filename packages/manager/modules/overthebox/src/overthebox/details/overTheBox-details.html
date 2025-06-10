@@ -14,7 +14,8 @@
         dismissable
         class="m-2"
     >
-        <span data-translate="overTheBox_enabled_ipv6_error"></span>
+        <div data-translate="overTheBox_enabled_ipv6_error" class="mb-2"></div>
+        <div>{{$ctrl.errorMsg.ipv6Update}}</div>
     </oui-message>
 
     <tuc-toast-message></tuc-toast-message>
