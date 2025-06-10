@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.10.1...@ovh-ux/manager-bm-server-components@2.11.0) (2025-06-10)
+
+
+### Bug Fixes
+
+* **dedicated:** os installation raid 0 space remaining ([c76b83b](https://github.com/ovh/manager/commit/c76b83b61341add13882075526fbc2c8ec28e44e)), closes [#MANAGER-18173](https://github.com/ovh/manager/issues/MANAGER-18173)
+
+
+### Features
+
+* **dedicated:** clean type & mode params for template following finished migration ([a3e5b7f](https://github.com/ovh/manager/commit/a3e5b7f8973f57bf9e1fbb91f7bf398db941b178)), closes [#MANAGER-17980](https://github.com/ovh/manager/issues/MANAGER-17980)
+* **dedicated:** clean type param for partition following finished migration ([12fdcda](https://github.com/ovh/manager/commit/12fdcdaed66db80fc1a5f322d80cc62726b63940)), closes [#MANAGER-17361](https://github.com/ovh/manager/issues/MANAGER-17361)
+* **dedicated:** copy to clipboard os installation parameters ([dd9c952](https://github.com/ovh/manager/commit/dd9c9523a56d0ffc6e6ccff13ef5c379f26b3de5)), closes [#MANAGER-18151](https://github.com/ovh/manager/issues/MANAGER-18151)
+* **dedicated:** warning banner for personal templates eol ([3119dc9](https://github.com/ovh/manager/commit/3119dc90ca1668cd662661877b8e5fc4aaaebd42)), closes [#MANAGER-18151](https://github.com/ovh/manager/issues/MANAGER-18151)
+
+
+
+
+
 ## [2.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.10.0...@ovh-ux/manager-bm-server-components@2.10.1) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-bm-server-components
