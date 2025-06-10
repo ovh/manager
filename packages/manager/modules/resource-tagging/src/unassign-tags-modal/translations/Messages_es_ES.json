@@ -1,0 +1,8 @@
+{
+  "manager_components_resource_tagging_unassign_modal_title": "Desasignar una o varias etiquetas del recurso",
+  "manager_components_resource_tagging_unassign_modal_cancel": "Cancelar",
+  "manager_components_resource_tagging_unassign_modal_unassign": "Confirmar",
+  "manager_components_resource_tagging_unassign_modal_description": "¿Seguro que quiere desasignar la siguiente(s) etiqueta(s) del recurso {{resourceName}} ?",
+  "manager_components_resource_tagging_unassign_modal_success": "Las etiquetas se han desasignado correctamente.",
+  "manager_components_resource_tagging_unassign_modal_error": "Se ha producido un problema. Por favor, vuelva a intentarlo: <br> {{message}}<br> request_id: {{requestId}}"
+}
