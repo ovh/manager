@@ -9,13 +9,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
-import { STATUS_ENABLED } from '@/constants';
-import { TReplicationStorageClass } from './AddReplication.page';
+import { STATUS_ENABLED, ReplicationStorageClass } from '@/constants';
 
 export type TReplicationDestination = {
   name: string;
   region: string;
-  storageClass?: 'STANDARD' | 'STANDARD_IA' | 'HIGH_PERF';
+  storageClass?: ReplicationStorageClass;
 };
 
 export type TReplicationStorage = {
@@ -42,7 +41,7 @@ export type TReplicationStorage = {
       destination: {
         name: string;
         region: string;
-        storageClass: 'STANDARD' | 'STANDARD_IA' | 'HIGH_PERF';
+        storageClass: ReplicationStorageClass;
       };
       deleteMarkerReplication: 'enabled' | 'disabled';
       filter?: { prefix: string; tags: { [key: string]: string } };
@@ -63,7 +62,7 @@ interface TReplicationRuleDestinationProps {
   serverDestinationContainer: TServerDestinationContainer;
   asyncReplicationLink: string;
   setUseStorageclass: (useStorageclass: boolean) => void;
-  setStorageClass: (value: TReplicationStorageClass) => void;
+  setStorageClass: (value: ReplicationStorageClass) => void;
 }
 
 export function ReplicationRuleDestination({
@@ -90,7 +89,6 @@ export function ReplicationRuleDestination({
       };
       setDestinationDetails(storage);
       setDestination(replicationDestination);
-      setStorageClass(undefined);
     } else {
       setDestination(null);
       setUseStorageclass(false);

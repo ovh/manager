@@ -8,11 +8,12 @@ import {
 import clsx from 'clsx';
 
 import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
+import { ReplicationStorageClass } from '@/constants';
 
 export type ReplicationDestination = {
   name: string;
   region: string;
-  storageClass?: 'STANDARD' | 'STANDARD_IA' | 'HIGH_PERF';
+  storageClass?: ReplicationStorageClass;
 };
 
 export const DEFAULT_PRIORITY = 1;

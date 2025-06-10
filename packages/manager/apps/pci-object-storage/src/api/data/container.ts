@@ -1,5 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { ITEMS_PER_PAGE } from '@/constants';
+import { ITEMS_PER_PAGE, ReplicationStorageClass } from '@/constants';
 
 export type TObject = {
   key: string;
@@ -54,7 +54,7 @@ export type TServerContainer = {
       destination: {
         name: string;
         region: string;
-        storageClass: 'STANDARD' | 'STANDARD_IA' | 'HIGH_PERF';
+        storageClass: ReplicationStorageClass;
       };
       deleteMarkerReplication: 'enabled' | 'disabled';
       filter?: { prefix: string; tags: { [key: string]: string } };
