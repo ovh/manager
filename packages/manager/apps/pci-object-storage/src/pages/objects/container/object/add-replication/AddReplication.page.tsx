@@ -61,6 +61,7 @@ import {
   STATUS_DISABLED,
   STATUS_ENABLED,
   STORAGE_ASYNC_REPLICATION_LINK,
+  ReplicationStorageClass,
 } from '@/constants';
 import { ReplicationRuleDeleteMarker } from './ReplicationRuleDeleteMarker.component';
 import {
@@ -79,8 +80,6 @@ const validIdRegex = /^[\x20-\x7E]{3,255}$/;
 const validPrefixRegex = /^[\p{L}\p{N}\p{S}\p{P}\p{M}\p{Z}](?:[\p{L}\p{N}\p{S}\p{P}\p{M}\p{Z}]{0,255})?$/u;
 
 export type TReplicationStatus = 'enabled' | 'disabled';
-
-export type TReplicationStorageClass = 'STANDARD' | 'STANDARD_IA' | 'HIGH_PERF';
 
 export type ReplicationStorage = {
   mode: string;
@@ -203,8 +202,8 @@ export default function AddReplicationPage() {
 
   const [useStorageclass, setUseStorageclass] = useState<boolean>(false);
   const [storageClass, setStorageClass] = useState<
-    TReplicationStorageClass | undefined
-  >(undefined);
+    ReplicationStorageClass | undefined
+  >(ReplicationStorageClass.STANDARD);
 
   const [deleteMarkerReplication, setDeleteMarkerReplication] = useState<
     TReplicationStatus

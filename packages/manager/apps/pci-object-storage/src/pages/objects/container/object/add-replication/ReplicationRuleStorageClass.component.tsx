@@ -9,22 +9,15 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { TReplicationDestination } from './ReplicationRuleDestination.component';
-import {
-  ReplicationStorage,
-  TReplicationStorageClass,
-} from './AddReplication.page';
-import {
-  HIGH_PERFORMANCE,
-  STANDARD,
-  STANDARD_INFREQUENT_ACCESS,
-} from '@/constants';
+import { ReplicationStorage } from './AddReplication.page';
+import { ReplicationStorageClass } from '@/constants';
 
 interface TReplicationRuleStorageClassProps {
   destination: TReplicationDestination;
   useStorageclass: boolean;
   setUseStorageclass: (value: boolean) => void;
-  storageClass: TReplicationStorageClass;
-  setStorageClass: (value: TReplicationStorageClass) => void;
+  storageClass: ReplicationStorageClass;
+  setStorageClass: (value: ReplicationStorageClass) => void;
   destinationDetails: ReplicationStorage;
 }
 export function ReplicationRuleStorageClass({
@@ -83,9 +76,11 @@ export function ReplicationRuleStorageClass({
             <OdsRadio
               value="standard"
               name="storageClass"
-              onOdsChange={() => setStorageClass(STANDARD)}
+              onOdsChange={() =>
+                setStorageClass(ReplicationStorageClass.STANDARD)
+              }
               inputId="storage-cLass-standard"
-              isChecked={storageClass === STANDARD}
+              isChecked={storageClass === ReplicationStorageClass.STANDARD}
             />
             <label htmlFor="storage-cLass-standard">
               <OdsText>
@@ -99,9 +94,11 @@ export function ReplicationRuleStorageClass({
             <OdsRadio
               value="standard-ia"
               name="storageClass"
-              onOdsChange={() => setStorageClass(STANDARD_INFREQUENT_ACCESS)}
+              onOdsChange={() =>
+                setStorageClass(ReplicationStorageClass.STANDARD_IA)
+              }
               inputId="storage-cLass-standard-ia"
-              isChecked={storageClass === STANDARD_INFREQUENT_ACCESS}
+              isChecked={storageClass === ReplicationStorageClass.STANDARD_IA}
             />
             <label htmlFor="storage-cLass-standard-ia">
               <OdsText>
@@ -119,11 +116,13 @@ export function ReplicationRuleStorageClass({
               <OdsRadio
                 value="high-perf"
                 name="storageClass"
-                onOdsChange={() => setStorageClass(HIGH_PERFORMANCE)}
-                inputId="storage-cLass-high-perf"
-                isChecked={storageClass === HIGH_PERFORMANCE}
+                onOdsChange={() =>
+                  setStorageClass(ReplicationStorageClass.HIGH_PERF)
+                }
+                inputId="storage-class-high-perf"
+                isChecked={storageClass === ReplicationStorageClass.HIGH_PERF}
               />
-              <label htmlFor="storage-cLass-high-perf">
+              <label htmlFor="storage-class-high-perf">
                 <OdsText>
                   {t(
                     'containers/replication/add:pci_projects_project_storages_containers_replication_add_storageclass_high_perf',
