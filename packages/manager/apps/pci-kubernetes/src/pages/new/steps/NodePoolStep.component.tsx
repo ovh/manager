@@ -100,7 +100,7 @@ const NodePoolStep = ({
 
   const price = useMergedFlavorById<{ hour: number; month?: number } | null>(
     projectId,
-    stepper.form.region?.name,
+    stepper.form.region?.name ?? null,
     selectedFlavor?.id ?? null,
     {
       select: (flavor) =>
@@ -247,7 +247,7 @@ const NodePoolStep = ({
             {stepper.form.region?.name && (
               <NodePoolType
                 projectId={projectId}
-                region={stepper.form.region.name}
+                region={stepper.form.region?.name}
                 onSelect={setSelectedFlavor}
               />
             )}
