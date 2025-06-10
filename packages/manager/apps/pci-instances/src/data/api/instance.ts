@@ -16,12 +16,15 @@ type TInstanceAction =
   | 'snapshot'
   | 'activeMonthlyBilling';
 
+const instanceUrl = (projectId: string, instanceId: string) =>
+  `/cloud/project/${projectId}/instance/${instanceId}`;
+
 const instanceActionUrl = (
   projectId: string,
   instanceId: string,
   action: TInstanceAction,
 ): string => {
-  const basePathname = `/cloud/project/${projectId}/instance/${instanceId}`;
+  const basePathname = instanceUrl(projectId, instanceId);
   return action === 'delete' ? basePathname : `${basePathname}/${action}`;
 };
 
@@ -147,3 +150,16 @@ export const getInstance = ({
   v6
     .get(`/cloud/project/${projectId}/aggregated/instance/${instanceId}`)
     .then((response) => response.data);
+
+export const editInstanceName = ({
+  projectId,
+  instanceId,
+  instanceName,
+}: {
+  projectId: string;
+  instanceId: string;
+  instanceName: string;
+}): Promise<TInstanceDto> =>
+  v6.put(instanceUrl(projectId, instanceId), {
+    instanceName,
+  });
