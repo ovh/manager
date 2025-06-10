@@ -22,5 +22,8 @@
   "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Ihre Kündigungsanfrage wurde nicht registriert: {{error}}",
   "autorenew_agora_terminate_service_success_VEEAM_ENTERPRISE": "Die Kündigung Ihrer Lizenz „{{serviceName}}“ wurde registriert. Sie erhalten eine E-Mail mit den Details zum weiteren Vorgehen.",
   "autorenew_agora_terminate_service_success_ftc_VEEAM_ENTERPRISE": "Die Kündigung Ihrer Lizenz „{{serviceName}}“ wurde registriert. Ihnen wurde eine Bestätigungs-E-Mail gesendet.",
-  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "Ihre Kündigungsanfrage wurde nicht registriert: {{error}}"
+  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "Ihre Kündigungsanfrage wurde nicht registriert: {{error}}",
+  "autorenew_agora_terminate_service_success_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Die Kündigung Ihres Dienstes wurde erfolgreich registriert. Sie erhalten eine E-Mail mit den Details zum weiteren Vorgehen.",
+  "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Die Kündigung Ihres Dienstes wurde erfolgreich registriert. Ihnen wurde eine Bestätigungs-E-Mail gesendet.",
+  "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Ihre Kündigungsanfrage wurde nicht registriert: {{error}}"
 }
