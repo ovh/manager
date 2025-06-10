@@ -1,16 +1,26 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
+  createAttachedDomainService,
+  createAttachedDomainsService,
   getDomainService,
+  getDomainZone,
   getHostingService,
   getServiceInfos,
   updateHostingService,
 } from '@/data/api/dashboard';
+import { TCreateAttachedDomain } from '@/data/type';
 
 export const useGetHostingService = (serviceName: string) =>
   useQuery({
     queryKey: ['hosting', 'web', serviceName],
     queryFn: () => getHostingService(serviceName),
     enabled: Boolean(serviceName),
+  });
+
+export const useGetDomainZone = () =>
+  useQuery({
+    queryKey: ['domain', 'zone'],
+    queryFn: () => getDomainZone(),
   });
 
 export const useGetServiceInfos = (serviceName: string) =>
@@ -47,6 +57,98 @@ export const useUpdateHostingService = (
 
   return {
     updateHostingService: mutation.mutate,
+    ...mutation,
+  };
+};
+
+export const useCreateAttachedDomainService = (
+  serviceName: string,
+  onSuccess: () => void,
+  onError: () => void,
+) => {
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: ({
+      domain,
+      cdn,
+      firewall,
+      ownLog,
+      path,
+      runtimeId,
+      ssl,
+      bypassDNSConfiguration,
+      ipLocation,
+    }: TCreateAttachedDomain) =>
+      createAttachedDomainService({
+        serviceName,
+        domain,
+        cdn,
+        firewall,
+        ownLog,
+        path,
+        runtimeId,
+        ssl,
+        bypassDNSConfiguration,
+        ipLocation,
+      }),
+    onSuccess: () => {
+      onSuccess?.();
+      queryClient.invalidateQueries({
+        queryKey: ['hosting', 'web', serviceName, 'attachedDomain'],
+      });
+    },
+    onError,
+  });
+
+  return {
+    createAttachedDomainService: mutation.mutate,
+    ...mutation,
+  };
+};
+
+export const useCreateAttachedDomainsService = (
+  serviceName: string,
+  onSuccess: () => void,
+  onError: () => void,
+) => {
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: ({
+      domain,
+      cdn,
+      firewall,
+      ownLog,
+      path,
+      runtimeId,
+      ssl,
+      bypassDNSConfiguration,
+      ipLocation,
+      wwwNeeded,
+    }: TCreateAttachedDomain) =>
+      createAttachedDomainsService({
+        serviceName,
+        domain,
+        cdn,
+        firewall,
+        ownLog,
+        path,
+        runtimeId,
+        ssl,
+        bypassDNSConfiguration,
+        ipLocation,
+        wwwNeeded,
+      }),
+    onSuccess: () => {
+      onSuccess?.();
+      queryClient.invalidateQueries({
+        queryKey: ['hosting', 'web', serviceName, 'attachedDomain'],
+      });
+    },
+    onError,
+  });
+
+  return {
+    createAttachedDomainsService: mutation.mutate,
     ...mutation,
   };
 };
