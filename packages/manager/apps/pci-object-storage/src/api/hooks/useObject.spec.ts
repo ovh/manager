@@ -10,6 +10,7 @@ import {
 
 import { wrapper } from '@/wrapperRenders';
 import { useAddObjects, useAddUser, useDeleteObject } from './useObject';
+import { ReplicationStorageClass } from '@/constants';
 
 vi.mock('@/api/data/objects');
 vi.mock('../data/storages', () => ({
@@ -23,7 +24,7 @@ describe('useObject hooks', () => {
       const onError = vi.fn();
       const storage = {
         name: 'test',
-        s3StorageType: 'STANDARD',
+        s3StorageType: ReplicationStorageClass.STANDARD,
         id: '1',
         region: 'us-east-1',
       } as TStorage;
@@ -164,7 +165,7 @@ describe('useObject hooks', () => {
       const container = {
         name: 'test',
         id: '1',
-        s3StorageType: 'STANDARD',
+        s3StorageType: ReplicationStorageClass.STANDARD,
         region: 'region',
       } as TStorage;
       const files = [{ name: 'object1' }] as File[];

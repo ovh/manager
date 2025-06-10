@@ -26,6 +26,7 @@ import {
   OBJECT_CONTAINER_OFFER_SWIFT,
   OBJECT_CONTAINER_TYPE_PUBLIC,
   OBJECT_CONTAINER_TYPE_STATIC,
+  ReplicationStorageClass,
 } from '@/constants';
 import { paginateResults } from '@/helpers';
 import { addUser, deleteSwiftObject, TStorageObject } from '../data/objects';
@@ -327,7 +328,7 @@ export type TReplicationRule = {
   destination?: {
     name: string;
     region: string;
-    storageClass?: 'STANDARD' | 'STANDARD_IA' | 'HIGH_PERF';
+    storageClass?: ReplicationStorageClass;
   };
   deleteMarkerReplication: 'enabled' | 'disabled';
   priority: number;
