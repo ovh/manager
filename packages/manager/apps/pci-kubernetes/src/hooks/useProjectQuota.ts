@@ -8,6 +8,7 @@ export const getProjectQuotaQuery = <T = TQuota>(
 ): UseQueryOptions<TQuota, ResponseAPIError, T, QueryKey> => ({
   queryKey: ['project', projectId, 'region', regionName, 'quota'],
   queryFn: () => getProjectQuotaByRegion(projectId, regionName),
+  enabled: !!projectId && !!regionName,
 });
 
 export const useProjectQuotaByRegion = <TData = TQuota>(
