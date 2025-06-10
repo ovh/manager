@@ -172,7 +172,6 @@ export default function AddReplicationPage() {
     false,
   );
 
-  const [idError, setIdError] = useState<string | undefined>(undefined);
   const isValidReplicationRuleId = useMemo(() => {
     return validIdRegex.test(replicationRuleId);
   }, [replicationRuleId]);
@@ -254,9 +253,14 @@ export default function AddReplicationPage() {
     [container?.replication, setPriority, destination],
   );
 
-  useEffect(() => {
-    handlePriorityChange({ detail: { value: 1 } } as OdsInputChangeEvent);
-  }, [destination]);
+  const handleDestinationChange = useCallback(
+    (dest: TReplicationDestination) => {
+      setDestination(dest);
+      handlePriorityChange({ detail: { value: 1 } } as OdsInputChangeEvent);
+      setStorageClass(ReplicationStorageClass.STANDARD);
+    },
+    [setDestination],
+  );
 
   const isButtonActive = useMemo(() => {
     const hasValidPrefix =
@@ -386,7 +390,6 @@ export default function AddReplicationPage() {
       }
       header={{
         title: container.name,
-
         headerButton: <PciGuidesHeader category="objectStorage" />,
       }}
     >
@@ -431,8 +434,6 @@ export default function AddReplicationPage() {
                       setIsReplicationRuleIdTouched
                     }
                     isValidReplicationRuleId={isValidReplicationRuleId}
-                    idError={idError}
-                    setIdError={setIdError}
                   />
                   <ReplicationRulePrefix
                     replicationRulePrefix={replicationRulePrefix}
@@ -456,22 +457,21 @@ export default function AddReplicationPage() {
 
                   <ReplicationRuleDestination
                     destination={destination}
-                    setDestination={setDestination}
+                    setDestination={handleDestinationChange}
                     allStorages={filteredStorages}
                     setDestinationDetails={setDestinationDetails}
                     serverDestinationContainer={serverDestinationContainer}
                     asyncReplicationLink={asyncReplicationLink}
                     setUseStorageclass={setUseStorageclass}
-                    setStorageClass={setStorageClass}
                   />
 
                   <ReplicationRuleStorageClass
-                    destination={destination}
+                    destinationName={destination?.name}
                     useStorageclass={useStorageclass}
                     setUseStorageclass={setUseStorageclass}
                     storageClass={storageClass}
                     setStorageClass={setStorageClass}
-                    destinationDetails={destinationDetails}
+                    destinationDetailsMode={destinationDetails?.mode}
                   />
                   <ReplicationRulePriority
                     handlePriorityChange={handlePriorityChange}

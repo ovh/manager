@@ -62,7 +62,6 @@ interface TReplicationRuleDestinationProps {
   serverDestinationContainer: TServerDestinationContainer;
   asyncReplicationLink: string;
   setUseStorageclass: (useStorageclass: boolean) => void;
-  setStorageClass: (value: ReplicationStorageClass) => void;
 }
 
 export function ReplicationRuleDestination({
@@ -73,7 +72,6 @@ export function ReplicationRuleDestination({
   serverDestinationContainer,
   asyncReplicationLink,
   setUseStorageclass,
-  setStorageClass,
 }: TReplicationRuleDestinationProps) {
   const { t } = useTranslation(['containers/replication/add']);
 
@@ -87,6 +85,7 @@ export function ReplicationRuleDestination({
         name: storage.name,
         region: storage.region,
       };
+
       setDestinationDetails(storage);
       setDestination(replicationDestination);
     } else {
@@ -110,6 +109,7 @@ export function ReplicationRuleDestination({
         className="w-full mt-4"
         value={destination?.name}
         onOdsChange={handleDestinationChange}
+        allowNewElement={false}
       >
         {allStorages.map((storage) => (
           <OdsComboboxItem key={storage.name} value={storage.name}>
