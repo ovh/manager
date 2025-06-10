@@ -15,6 +15,8 @@ import clsx from 'clsx';
 import { DrawerVariant, DrawerCollapseState } from './Drawer.types';
 import DrawerBackdrop from './DrawerBackdrop.component';
 import DrawerHandle from './DrawerHandle.component';
+import { useTranslation } from 'react-i18next';
+import './translations';
 
 export type DrawerProps = PropsWithChildren & {
   /** Drawer heading */
@@ -61,6 +63,7 @@ export const Drawer = ({
   onSecondaryButtonClick,
   secondaryButtonLabel,
 }: DrawerProps) => {
+  const { t } = useTranslation('drawer');
   const [collapseState, setCollapsedState] =
     useState<DrawerCollapseState>('visible');
   const hasPrimaryButton = Boolean(primaryButtonLabel);
@@ -99,7 +102,7 @@ export const Drawer = ({
               <OdsButton
                 data-testid="drawer-dismiss-button"
                 label=""
-                aria-label="Dismiss"
+                aria-label={t('close')}
                 icon="xmark"
                 onClick={onDismiss}
                 color={ODS_BUTTON_COLOR.primary}

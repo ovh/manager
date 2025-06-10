@@ -3,6 +3,8 @@ import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import clsx from 'clsx';
 import { DrawerCollapseState } from './Drawer.types';
+import { useTranslation } from 'react-i18next';
+import './translations';
 
 type DrawerHandleProps = {
   onClick: () => void;
@@ -10,6 +12,7 @@ type DrawerHandleProps = {
 };
 
 const DrawerHandle = ({ onClick, collapseState }: DrawerHandleProps) => {
+  const { t } = useTranslation('drawer');
   const [isDrawerSlideInFinished, setIsDrawerSlideInFinished] = useState(false);
   const [hasEscapeBeenPressed, setHasEscapeBeenPressed] = useState(false);
 
@@ -61,7 +64,7 @@ const DrawerHandle = ({ onClick, collapseState }: DrawerHandleProps) => {
             data-testid="drawer-handle"
             label={undefined}
             aria-label={
-              collapseState === 'visible' ? 'Hide drawer' : 'Show drawer'
+              collapseState === 'visible' ? t('collapse') : t('expand')
             }
             icon={
               collapseState === 'visible'
