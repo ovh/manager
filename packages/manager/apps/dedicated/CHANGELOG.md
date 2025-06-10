@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.40.0...@ovh-ux/manager-dedicated@20.41.0) (2025-06-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4044] ([9e72f83](https://github.com/ovh/manager/commit/9e72f83d91e2a3848615a3b8c170a8d7778c617b))
+
+
+### Features
+
+* **dedicated.dedicated-cloud:** adding display name and search field to services list ([7f843d3](https://github.com/ovh/manager/commit/7f843d310ff10547c5ca84f18817b5685b0bb3de)), closes [#MANAGER-18293](https://github.com/ovh/manager/issues/MANAGER-18293)
+* **dedicated:** copy to clipboard os installation parameters ([dd9c952](https://github.com/ovh/manager/commit/dd9c9523a56d0ffc6e6ccff13ef5c379f26b3de5)), closes [#MANAGER-18151](https://github.com/ovh/manager/issues/MANAGER-18151)
+* **dedicated:** warning banner for personal templates eol ([3119dc9](https://github.com/ovh/manager/commit/3119dc90ca1668cd662661877b8e5fc4aaaebd42)), closes [#MANAGER-18151](https://github.com/ovh/manager/issues/MANAGER-18151)
+
+
+
+
+
 # [20.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.39.2...@ovh-ux/manager-dedicated@20.40.0) (2025-06-10)
 
 
