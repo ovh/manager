@@ -11,6 +11,7 @@ export default {
     setMessage: '<',
     goToDeleteLicense: '<',
     goToSetLicense: '<',
+    trackClick: '<',
   },
   controller,
   template,

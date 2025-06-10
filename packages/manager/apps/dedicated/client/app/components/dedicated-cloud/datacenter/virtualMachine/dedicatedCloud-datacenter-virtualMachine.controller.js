@@ -1,5 +1,9 @@
 import pick from 'lodash/pick';
-import { VIRTUAL_MACHINES_GUEST_OS, VIRTUAL_MACHINES_TITLE } from './constants';
+import {
+  VIRTUAL_MACHINES_GUEST_OS,
+  VIRTUAL_MACHINES_TITLE,
+  TRACKING_ACTION_DATAGRID_PREFIX,
+} from './constants';
 
 export default class {
   /* @ngInject */
@@ -9,6 +13,10 @@ export default class {
     this.$translate = $translate;
     this.virtualMachinesTitle = VIRTUAL_MACHINES_TITLE;
     this.virtualMachinesGuesOS = VIRTUAL_MACHINES_GUEST_OS;
+  }
+
+  trackDatagridAction(hit) {
+    this.trackClick(`${TRACKING_ACTION_DATAGRID_PREFIX}${hit}`);
   }
 
   loadVirtualMachines(config) {
