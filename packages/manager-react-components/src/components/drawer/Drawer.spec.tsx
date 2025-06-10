@@ -139,3 +139,17 @@ it('should collapse and reopen the drawer when the handle is clicked', async () 
     expect(hasTranslateX).toBe(false);
   });
 });
+
+it('should hide the handle immediately after the user presses the “Esc” key', () => {
+  render(<Drawer {...mockedProps} variant="collapsible" />);
+  expect(screen.getByTestId('drawer')).not.toBeNull();
+  const handle = screen.getByTestId('drawer-handle');
+  expect(handle).toBeVisible();
+  act(() => {
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+  });
+  waitFor(() => {
+    expect(handle).not.toBeVisible();
+    expect(screen.queryByTestId('drawer-handle')).toBeNull();
+  });
+});
