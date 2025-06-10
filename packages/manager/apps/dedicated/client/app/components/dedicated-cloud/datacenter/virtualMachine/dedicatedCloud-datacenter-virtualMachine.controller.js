@@ -1,4 +1,8 @@
-import { VIRTUAL_MACHINES_ID, VIRTUAL_MACHINES_VCPU } from './constants';
+import {
+  TRACKING_ACTION_DATAGRID_PREFIX,
+  VIRTUAL_MACHINES_ID,
+  VIRTUAL_MACHINES_VCPU,
+} from './constants';
 
 export default class {
   /* @ngInject */
@@ -8,6 +12,10 @@ export default class {
     this.$translate = $translate;
     this.virtualMachinesId = VIRTUAL_MACHINES_ID;
     this.virtualMachinesVcpu = VIRTUAL_MACHINES_VCPU;
+  }
+
+  trackDatagridAction(hit) {
+    this.trackClick(`${TRACKING_ACTION_DATAGRID_PREFIX}${hit}`);
   }
 
   loadVirtualMachines(config) {
