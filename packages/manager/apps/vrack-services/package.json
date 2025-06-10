@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-services-app",
-  "version": "0.20.0",
+  "version": "0.20.1",
   "private": true,
   "description": "OVHcloud VrackServices app",
   "repository": {
@@ -22,8 +22,8 @@
     "@ovh-ux/manager-core-api": "^0.12.0",
     "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/manager-module-common-api": "^0.4.1",
-    "@ovh-ux/manager-module-order": "^0.9.9",
-    "@ovh-ux/manager-network-common": "^0.4.8",
+    "@ovh-ux/manager-module-order": "^0.10.0",
+    "@ovh-ux/manager-network-common": "^0.4.9",
     "@ovh-ux/manager-react-components": "^2.27.0",
     "@ovh-ux/manager-react-core-application": "^0.11.24",
     "@ovh-ux/manager-react-shell-client": "^0.8.7",

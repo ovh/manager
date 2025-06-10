@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-task-app",
-  "version": "8.0.18",
+  "version": "8.0.19",
   "private": true,
   "description": "Telecom task standalone application.",
   "repository": {
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.3.2",
-    "@ovh-ux/manager-core": "^13.1.6",
+    "@ovh-ux/manager-core": "^13.2.0",
     "@ovh-ux/manager-telecom-styles": "^4.8.5",
     "@ovh-ux/manager-telecom-task": "^6.5.1",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.1.4",

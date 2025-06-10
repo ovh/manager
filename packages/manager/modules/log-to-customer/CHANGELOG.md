@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.5.1...@ovh-ux/manager-log-to-customer@2.5.2) (2025-06-10)
+
+
+### Bug Fixes
+
+* **logs:** fix US guide link ([0daf8f6](https://github.com/ovh/manager/commit/0daf8f6b149a4b4c2e326920ab32e4cd06a1f273)), closes [#MANAGER-18363](https://github.com/ovh/manager/issues/MANAGER-18363)
+
+
+
+
+
 ## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.5.0...@ovh-ux/manager-log-to-customer@2.5.1) (2025-06-05)
 
 

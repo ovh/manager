@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.37.3...@ovh-ux/manager-billing@0.38.0) (2025-06-10)
+
+
+### Features
+
+* **veeam:** remove veeam cloud connect ([8ac3049](https://github.com/ovh/manager/commit/8ac3049049f8398114f6966441e8d8e583c57a04)), closes [#MANAGER-16416](https://github.com/ovh/manager/issues/MANAGER-16416)
+
+
+
+
+
 ## [0.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.37.2...@ovh-ux/manager-billing@0.37.3) (2025-06-02)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-office-app",
-  "version": "0.12.36",
+  "version": "0.12.37",
   "private": true,
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.8.4",
     "@ovh-ux/manager-config": "^8.3.2",
-    "@ovh-ux/manager-core": "^13.1.6",
+    "@ovh-ux/manager-core": "^13.2.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.3",
     "@ovh-ux/manager-office": "^2.12.3",
     "@ovh-ux/ng-at-internet": "^6.0.17",

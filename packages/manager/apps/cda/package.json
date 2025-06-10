@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cda-app",
-  "version": "3.0.32",
+  "version": "3.0.33",
   "private": true,
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   "dependencies": {
     "@ovh-ux/manager-cda": "^1.10.0",
     "@ovh-ux/manager-config": "^8.3.2",
-    "@ovh-ux/manager-core": "^13.1.6",
+    "@ovh-ux/manager-core": "^13.2.0",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.3",
     "@ovh-ux/ng-at-internet": "^6.0.17",
