@@ -12,9 +12,9 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
-    "coverage": "TZ=UTC vitest run --coverage",
+    "coverage": "vitest run --coverage",
     "start": "vite",
-    "test": "TZ=UTC vitest run"
+    "test": "vitest run"
   },
   "dependencies": {
     "@ovh-ux/manager-common-translations": "^0.8.0",
