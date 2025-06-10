@@ -5,11 +5,19 @@ import path from 'path';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(__dirname, '..', '..');
-const migrationDataPath = path.resolve(repoRoot, 'packages-apps-migration-data.json');
+// Paths
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const migrationDataPath = path.resolve(__dirname, 'packages-apps-migration-data.json');
 
-// Utility to check for file existence
+const repoRoot = path.resolve(__dirname, '..', '..');
+const pnpmBinary = path.resolve(repoRoot, 'target/pnpm/pnpm');
+const pnpmStorePath = path.resolve(repoRoot, 'target/.pnpm-store');
+const setupScript = path.resolve(__dirname, 'setup-local-pnpm.mjs');
+
+const filesToClean = ['node_modules', 'dist', '.turbo', 'pnpm-lock.yaml'];
+
+// Utility
 function fileExists(p) {
   try {
     return existsSync(p);
@@ -18,13 +26,26 @@ function fileExists(p) {
   }
 }
 
+// Ensure local PNPM exists by calling the setup script
+function ensureLocalPnpmInstalled() {
+  if (!fileExists(pnpmBinary)) {
+    console.warn('⚠️ Local PNPM not found. Bootstrapping setup...');
+    try {
+      execSync(`node ${setupScript}`, { stdio: 'inherit' });
+    } catch (err) {
+      console.error('❌ Failed to install local PNPM:', err.message);
+      process.exit(1);
+    }
+  } else {
+    console.log(`✔ Using local PNPM at ${pnpmBinary}`);
+  }
+}
+
 // Recursively remove directories like node_modules, dist, .turbo
 async function findAndRemoveDirs(root, dirNames = new Set()) {
   const entries = await fs.readdir(root, { withFileTypes: true });
-
   for (const entry of entries) {
     const entryPath = path.join(root, entry.name);
-
     if (entry.isDirectory()) {
       if (dirNames.has(entry.name)) {
         console.log(`🧹 Removing ${entryPath}`);
@@ -41,7 +62,11 @@ async function getMigrationData() {
   try {
     if (!fileExists(migrationDataPath)) {
       console.warn(`⚠️ Migration data file not found: ${migrationDataPath}`);
-      return { excludeYarnApps: [], pnpmLinkModules: {} };
+      return {
+        excludeYarnApps: [],
+        pnpmLinkDependencies: {},
+        pnpmLinkDevDependencies: {}
+      };
     }
 
     const raw = await fs.readFile(migrationDataPath, 'utf-8');
@@ -49,55 +74,73 @@ async function getMigrationData() {
 
     return {
       excludeYarnApps: Array.isArray(data['exclude-yarn-apps']) ? data['exclude-yarn-apps'] : [],
-      pnpmLinkModules:
-        typeof data['pnpm-link-modules'] === 'object' && data['pnpm-link-modules'] !== null
-          ? data['pnpm-link-modules']
+      pnpmLinkDependencies:
+        typeof data['pnpm-link-dependencies'] === 'object' && data['pnpm-link-dependencies'] !== null
+          ? data['pnpm-link-dependencies']
+          : {},
+      pnpmLinkDevDependencies:
+        typeof data['pnpm-link-devDependencies'] === 'object' && data['pnpm-link-devDependencies'] !== null
+          ? data['pnpm-link-devDependencies']
           : {}
     };
   } catch (err) {
     console.error('❌ Failed to read or parse migration data:', err.message);
-    return { excludeYarnApps: [], pnpmLinkModules: {} };
+    return {
+      excludeYarnApps: [],
+      pnpmLinkDependencies: {},
+      pnpmLinkDevDependencies: {}
+    };
   }
 }
 
 // Unlink global PNPM modules
-function unlinkGlobalModules(modules) {
-  for (const moduleName of Object.keys(modules)) {
+function unlinkGlobalModules(...moduleGroups) {
+  const allModules = Object.assign({}, ...moduleGroups);
+  for (const moduleName of Object.keys(allModules)) {
     console.log(`🧹 Unlinking global module: ${moduleName}`);
     try {
-      execSync(`pnpm unlink --global ${moduleName}`, { stdio: 'inherit' });
+      execSync(`${pnpmBinary} unlink --global ${moduleName}`, { stdio: 'inherit' });
     } catch (err) {
       console.warn(`⚠️ Failed to unlink ${moduleName}: ${err.message}`);
     }
   }
 }
 
-// Full cleanup operation
-async function cleanEnvironment(modulesToUnlink) {
+// Clean environment
+async function cleanEnvironment(deps, devDeps) {
   console.log('🧹 Cleaning node_modules, dist, .turbo in monorepo...');
-  await findAndRemoveDirs(repoRoot, new Set(['node_modules', 'dist', '.turbo']));
+  await findAndRemoveDirs(repoRoot, new Set(filesToClean));
 
   console.log('🧹 Unlinking global PNPM modules...');
-  unlinkGlobalModules(modulesToUnlink);
+  unlinkGlobalModules(deps, devDeps);
 
-  console.log('🧹 Pruning PNPM store...');
+  console.log(`🧹 Removing local PNPM store at ${pnpmStorePath}`);
   try {
-    execSync('pnpm store prune', { stdio: 'inherit' });
+    await fs.rm(pnpmStorePath, { recursive: true, force: true });
   } catch (err) {
-    console.warn('⚠️ pnpm store prune failed:', err.message);
+    console.warn(`⚠️ Failed to remove local PNPM store: ${err.message}`);
+  }
+
+  console.log('🧹 Pruning PNPM store (just in case)...');
+  try {
+    execSync(`${pnpmBinary} store prune`, { stdio: 'inherit' });
+  } catch (err) {
+    console.warn(`⚠️ pnpm store prune failed: ${err.message}`);
   }
 }
 
-// Main entry point
+// Main
 async function main() {
   const shouldClean = process.argv.includes('--clean');
   console.log('🚀 Running preinstall script...');
 
-  const { pnpmLinkModules } = await getMigrationData();
+  ensureLocalPnpmInstalled();
+
+  const { pnpmLinkDependencies, pnpmLinkDevDependencies } = await getMigrationData();
 
   if (shouldClean) {
     console.log('🧽 --clean flag detected. Performing environment cleanup...');
-    await cleanEnvironment(pnpmLinkModules);
+    await cleanEnvironment(pnpmLinkDependencies, pnpmLinkDevDependencies);
   } else {
     console.log('ℹ️ Skipping cleanup. Use --clean to enable it.');
   }

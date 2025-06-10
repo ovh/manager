@@ -1,12 +1,2 @@
-overrides:
-  '@ovh-ux/manager-module-order': link:../../../../../../../.pnpm-bin/global/5/node_modules/@ovh-ux/manager-module-order
-  '@ovh-ux/manager-core-utils': link:../../../../../../../.pnpm-bin/global/5/node_modules/@ovh-ux/manager-core-utils
-  '@ovh-ux/manager-core-api': link:../../../../../../../.pnpm-bin/global/5/node_modules/@ovh-ux/manager-core-api
-  '@ovh-ux/manager-phone-prefix': link:../../../../../../../.pnpm-bin/global/5/node_modules/@ovh-ux/manager-phone-prefix
-  '@ovh-ux/manager-react-core-application': link:../../../../../../../.pnpm-bin/global/5/node_modules/@ovh-ux/manager-react-core-application
-  '@ovh-ux/request-tagger': link:../../../../../../../.pnpm-bin/global/5/node_modules/@ovh-ux/request-tagger
-  '@ovh-ux/manager-react-shell-client': link:../../../../../../../.pnpm-bin/global/5/node_modules/@ovh-ux/manager-react-shell-client
-  '@ovh-ux/manager-tailwind-config': link:../../../../../../../.pnpm-bin/global/5/node_modules/@ovh-ux/manager-tailwind-config
-  '@ovh-ux/manager-vite-config': link:../../../../../../../.pnpm-bin/global/5/node_modules/@ovh-ux/manager-vite-config
-  '@ovh-ux/manager-common-translations': link:../../../../../../../.pnpm-bin/global/5/node_modules/@ovh-ux/manager-common-translations
-  '@ovh-ux/manager-config': link:../../../../../../../.pnpm-bin/global/5/node_modules/@ovh-ux/manager-config
+packages:
+  - 'packages/manager/apps/zimbra'
