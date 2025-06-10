@@ -143,8 +143,8 @@
 
                 <oui-action-menu-item
                     data-ng-if="!$row.license && $row.allowEditLicense"
-                    data-on-click="$ctrl.goToSetLicense($row)"
                     data-disabled="!$ctrl.dedicatedCloud.spla"
+                    data-on-click="$ctrl.trackDatagridAction('activate_license');$ctrl.goToSetLicense($row)"
                     ><span
                         data-translate="virtualmachine_action_activate_license"
                     >
@@ -152,7 +152,7 @@
                 ></oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.license"
-                    data-on-click="$ctrl.goToDeleteLicense($row)"
+                    data-on-click="$ctrl.trackDatagridAction('delete_license');$ctrl.goToDeleteLicense($row)"
                     ><span
                         data-translate="virtualmachine_action_deactivate_license"
                     >
