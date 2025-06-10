@@ -1,22 +1,22 @@
 import React from 'react';
+import { useFormatDate } from '@ovh-ux/manager-react-components';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components/src/components/badge/src/constants/badge-color';
 import { OdsBadge, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { formatDatagridDate } from '@/utils/utils';
 import { TOngoingOperations } from '@/types';
 import { StatusEnum } from '@/enum/status.enum';
 
 interface OngoingOperationDatagridBadgeProps {
   readonly props: TOngoingOperations;
-  readonly locale: string;
 }
 
 export default function OngoingOperationDatagridBadge({
   props,
-  locale,
 }: OngoingOperationDatagridBadgeProps) {
   const { t } = useTranslation('dashboard');
+  const formatDate = useFormatDate();
+
   const badgeColor = (status: string) => {
     switch (status) {
       case StatusEnum.TODO:
@@ -64,7 +64,7 @@ export default function OngoingOperationDatagridBadge({
                 props.status === StatusEnum.TODO
                   ? 'domain_operations_statusOperation_todo_next_execution'
                   : 'domain_operations_statusOperation_done_end_execution',
-              )} ${formatDatagridDate(props.todoDate, locale)}`}
+              )} ${formatDate({ date: props.todoDate, format: 'P p' })}`}
             </OdsText>
           </OdsTooltip>
         </div>
