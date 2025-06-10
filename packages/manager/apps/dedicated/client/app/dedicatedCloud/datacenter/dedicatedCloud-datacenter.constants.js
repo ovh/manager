@@ -40,6 +40,9 @@ export const DATACENTER_NETWORK_SITE_WEB_LINK = {
   ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/vmware/nsx/',
 };
 
+export const TRACKING_PREFIX_DATACENTER =
+  'Enterprise_solutions::managed_vmware_vsphere::managed_vmware_vsphere::';
+
 export default {
   MAX_NSX_EDGES,
   MIN_NSX_EDGES,

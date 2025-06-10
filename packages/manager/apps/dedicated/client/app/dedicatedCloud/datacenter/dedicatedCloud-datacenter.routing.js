@@ -3,6 +3,7 @@ import {
   NSX_COMPATIBLE_COMMERCIAL_RANGE,
   MIN_NSX_EDGES,
   MAX_NSX_EDGES,
+  TRACKING_PREFIX_DATACENTER,
 } from './dedicatedCloud-datacenter.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -21,6 +22,9 @@ export default /* @ngInject */ ($stateProvider) => {
             ? 'app.dedicatedCloud.details.dashboard-light'
             : 'app.dedicatedCloud.details.datacenter.details.dashboard',
         );
+    },
+    atInternet: {
+      rename: TRACKING_PREFIX_DATACENTER,
     },
     resolve: {
       datacenterId: /* @ngInject */ ($transition$) =>
@@ -125,6 +129,19 @@ export default /* @ngInject */ ($stateProvider) => {
           'dedicatedCloudDatacenterAlert',
         );
       },
+      trackClick: /* @ngInject */ (atInternet) => (hit, hitPage) =>
+        atInternet.trackClick({
+          name: `${TRACKING_PREFIX_DATACENTER}${hit}`,
+          type: 'action',
+          ...(hitPage && {
+            page: { name: `${TRACKING_PREFIX_DATACENTER}${hitPage}` },
+          }),
+        }),
+      trackPage: /* @ngInject */ (atInternet) => (hit) =>
+        atInternet.trackPage({
+          name: `${TRACKING_PREFIX_DATACENTER}${hit}`,
+        }),
+
       breadcrumb: /* @ngInject */ (datacenter) => datacenter.model.name,
     },
   });

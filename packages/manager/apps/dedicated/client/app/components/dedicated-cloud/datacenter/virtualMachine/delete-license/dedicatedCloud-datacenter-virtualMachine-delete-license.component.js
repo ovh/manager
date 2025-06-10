@@ -5,8 +5,12 @@ export default {
   bindings: {
     datacenterId: '<',
     vmId: '<',
+    license: '<',
+    guestOsFamily: '<',
     goBack: '<',
     serviceName: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
   controller,
   template,
