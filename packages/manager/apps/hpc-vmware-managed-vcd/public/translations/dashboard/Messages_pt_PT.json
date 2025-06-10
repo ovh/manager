@@ -48,10 +48,10 @@
   "managed_vcd_dashboard_contact_list_administrator": "{{code}} Administrador",
   "managed_vcd_dashboard_contact_list_billing": "{{code}} Faturação",
   "managed_vcd_dashboard_contact_list_technical": "{{code}} Técnico",
-  "managed_vcd_dashboard_password_modal_title": "Alterar palavra-passe",
-  "managed_vcd_dashboard_password_modal_subtitle": "Tem a certeza de que pretende alterar a sua palavra-passe?",
-  "managed_vcd_dashboard_password_renew_success": "Receberá um e-mail para visualizar a sua palavra-passe",
-  "managed_vcd_dashboard_password_renew_error": "Ocorreu um erro. Tente novamente mais tarde ou contacte o suporte para alterar a sua palavra-passe de administrador",
+  "managed_vcd_dashboard_password_modal_title": "Renovar a palavra-passe",
+  "managed_vcd_dashboard_password_modal_subtitle": "Tem a certeza de que quer renovar a sua palavra-passe?",
+  "managed_vcd_dashboard_password_renew_success": "O pedido de renovação da sua palavra-passe admin foi registado. Receberá um e-mail com uma hiperligação para consultar a sua palavra-passe.",
+  "managed_vcd_dashboard_password_renew_error": "Ocorreu um erro aquando da renovação da sua palavra-passe admin. Tente novamente mais tarde ou contacte o nosso apoio ao cliente.",
   "managed_vcd_dashboard_edit_modal_cta_validate": "Validar",
   "managed_vcd_dashboard_cancellation_tooltip": "Se pretender rescindir o seu serviço, contacte o nosso suporte."
 }
