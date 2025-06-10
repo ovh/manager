@@ -1,0 +1,16 @@
+{
+  "manager_components_resource_tagging_assign_modal_title": "Tag zuweisen",
+  "manager_components_resource_tagging_assign_modal_cancel": "Zurück",
+  "manager_components_resource_tagging_assign_modal_assign": "zuweisen",
+  "manager_components_resource_tagging_assign_modal_add": "Hinzufügen",
+  "manager_components_resource_tagging_assign_modal_no_result": "Keine Ergebnisse",
+  "manager_components_resource_tagging_assign_modal_help": "Maximal 25 alphanumerische Zeichen und - zulässig",
+  "manager_components_resource_tagging_assign_modal_field_error": "Das Format ist falsch. Nur „-“ ist zulässig, maximal 25 Zeichen",
+  "manager_components_resource_tagging_assign_modal_placeholder": "Mehr erfahren",
+  "manager_components_resource_tagging_assign_modal_key_label": "Schlüssel",
+  "manager_components_resource_tagging_assign_modal_value_label": "Wert",
+  "manager_components_resource_tagging_assign_modal_success": "Der Ressource wurde erfolgreich ein Tag zugewiesen.",
+  "manager_components_resource_tagging_assign_modal_success_multiple": "Die Tags wurden Ihrer Ressource zugewiesen.",
+  "manager_components_resource_tagging_assign_modal_error": "Bei der Zuweisung ist ein Problem aufgetreten: <br> {{message}}<br> request_id: {{requestId}}",
+  "manager_components_resource_tagging_assign_modal_selected_tags": "Tags, die Ihrer Ressource zugewiesen werden"
+}

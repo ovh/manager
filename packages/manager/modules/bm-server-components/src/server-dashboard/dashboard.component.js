@@ -49,6 +49,8 @@ export default {
     goToDeleteReverseDns: '<',
     goToTrafficOrder: '<',
     goToTrafficCancel: '<',
+    goToTagsModal: '<',
+    goToTagManager: '<',
     serverType: '<?',
     displayRbxEolBanner: '<?',
   },

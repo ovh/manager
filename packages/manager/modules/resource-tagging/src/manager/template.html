@@ -1,0 +1,56 @@
+<div data-ovh-alert="resourcetagging.manager"></div>
+<div class="container-fluid">
+    <oui-back-button on-click="$ctrl.goBack()"></oui-back-button>
+    <oui-datagrid
+        class="oui-tile__body table-responsive"
+        page-size="10"
+        data-rows="$ctrl.formattedTags"
+        data-selectable-rows
+        data-on-row-select="$ctrl.onRowSelect($rows)"
+        data-empty-placeholder="{{:: 'manager_components_resource_tagging_manager_empty' | translate}}"
+    >
+        <oui-datagrid-topbar>
+            <oui-button
+                variant="secondary"
+                type="button"
+                data-on-click="$ctrl.goToTagAssign()"
+            >
+                <span
+                    data-translate="manager_components_resource_tagging_manager_action_assign_tag"
+                ></span>
+            </oui-button>
+            <oui-button
+                variant="secondary"
+                type="button"
+                data-on-click="$ctrl.goToTagUnassign($selectedRows)"
+                data-disabled="!$selectedRows.length"
+            >
+                <span
+                    data-translate="manager_components_resource_tagging_manager_action_unassign_tag"
+                ></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title="::'manager_components_resource_tagging_manager_column_tag' | translate"
+        >
+            <span data-ng-bind="$row.displayName"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'manager_components_resource_tagging_manager_column_tag_type' | translate"
+        >
+            <span
+                data-translate="{{'manager_components_resource_tagging_manager_tag_type_'+ $row.type}}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="top-end">
+            <oui-action-menu-item
+                disabled="$ctrl.selectedRows.length > 1 || ($ctrl.selectedRows.length === 1 && !$isSelected)"
+                data-on-click="$ctrl.goToTagUnassign($row)"
+            >
+                <span
+                    data-translate="manager_components_resource_tagging_manager_action_unassign_tag"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>

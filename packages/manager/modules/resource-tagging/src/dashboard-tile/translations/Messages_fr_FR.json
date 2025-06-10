@@ -1,0 +1,8 @@
+{
+  "manager_components_resource_tagging_dashboard_tile_title": "Tags {{beta}}",
+  "manager_components_resource_tagging_dashboard_tile_assigned": "Tags assignés",
+  "manager_components_resource_tagging_dashboard_tile_assigned_button": "Gérer mes tags",
+  "manager_components_resource_tagging_dashboard_tile_assigned_more": "Plus de tags",
+  "manager_components_resource_tagging_dashboard_tile_empty": "Aucun tag n'est associé",
+  "manager_components_resource_tagging_dashboard_tile_empty_button": "Ajouter un tag"
+}

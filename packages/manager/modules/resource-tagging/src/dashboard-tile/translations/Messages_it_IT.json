@@ -1,0 +1,8 @@
+{
+  "manager_components_resource_tagging_dashboard_tile_title": "Tags {{beta}}",
+  "manager_components_resource_tagging_dashboard_tile_assigned": "Etichette assegnate",
+  "manager_components_resource_tagging_dashboard_tile_assigned_button": "Gestisci le tue etichette",
+  "manager_components_resource_tagging_dashboard_tile_assigned_more": "Più tag",
+  "manager_components_resource_tagging_dashboard_tile_empty": "Nessuna etichetta associata",
+  "manager_components_resource_tagging_dashboard_tile_empty_button": "Aggiungi un tag"
+}

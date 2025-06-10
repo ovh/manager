@@ -1,0 +1,25 @@
+<oui-modal
+    data-on-dismiss="$ctrl.cancel()"
+    data-primary-action="$ctrl.goToTagManager()"
+    data-secondary-action="$ctrl.cancel()"
+    data-primary-label="{{:: 'manager_components_resource_tagging_list_modal_edit' | translate }}"
+    data-secondary-label="{{:: 'manager_components_resource_tagging_list_modal_cancel' | translate }}"
+    data-heading="{{ 'manager_components_resource_tagging_list_modal_title' | translate:{resourceName: $ctrl.resourceName} }}"
+>
+    <oui-search
+        model="$ctrl.search"
+        on-reset="$ctrl.onReset()"
+        on-submit="$ctrl.onSearch(modelValue)"
+        placeholder="{{:: 'manager_components_resource_tagging_list_modal_search' | translate}}"
+    >
+    </oui-search>
+    <div class="mt-2 d-flex flex-row flex-wrap">
+        <div data-ng-repeat="tag in $ctrl.filteredTags" class="flex-shrink-1">
+            <span
+                class="oui-badge oui-badge_info"
+                data-ng-bind="tag.displayName"
+            >
+            </span>
+        </div>
+    </div>
+</oui-modal>

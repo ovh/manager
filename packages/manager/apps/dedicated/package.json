@@ -46,6 +46,7 @@
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.3",
     "@ovh-ux/manager-nutanix": "^2.7.14",
     "@ovh-ux/manager-support": "^2.1.13",
+    "@ovh-ux/manager-resource-tagging": "^1.0.0",
     "@ovh-ux/manager-trusted-nic": "^1.2.1",
     "@ovh-ux/manager-veeam-enterprise": "^1.13.0",
     "@ovh-ux/manager-vps": "^2.48.0",

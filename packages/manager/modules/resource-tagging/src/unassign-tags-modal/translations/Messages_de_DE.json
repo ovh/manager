@@ -1,0 +1,8 @@
+{
+  "manager_components_resource_tagging_unassign_modal_title": "Tag(s) der Ressource aufheben",
+  "manager_components_resource_tagging_unassign_modal_cancel": "Abbrechen",
+  "manager_components_resource_tagging_unassign_modal_unassign": "Bestätigen",
+  "manager_components_resource_tagging_unassign_modal_description": "Sind Sie sicher, dass Sie die folgenden Tags der Ressource {{resourceName}} löschen möchten?",
+  "manager_components_resource_tagging_unassign_modal_success": "Die Tags wurden nicht zugewiesen.",
+  "manager_components_resource_tagging_unassign_modal_error": "Es ist ein Problem aufgetreten, bitte versuchen Sie es erneut: <br> {{message}}<br> request_id: {{requestId}}"
+}
