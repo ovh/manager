@@ -16,6 +16,6 @@ html {
   }
 }
 
-ods-modal.max-height-modal::part(dialog) {
+ods-modal::part(dialog) {
   max-height: 90%;
 }

@@ -1152,7 +1152,7 @@
   "hosting_tab_BOOST_request_title": "You're about to boost to",
   "hosting_tab_BOOST_request_heading": "Please select a plan",
   "hosting_tab_BOOST_request_description": "The Boost option gives your web hosting plan a temporary performance boost, with a daily rate based on your specific needs.",
-  "hosting_tab_BOOST_request_description_billing_new": "This option is billed at {{price}} ex. VAT per day of usage, for each additional use. You can disable it or change the level, higher or lower, at any time.",
+  "hosting_tab_BOOST_request_description_billing_new": "This option is billed at <strong>{{price}} ex. VAT per day of usage, for each additional use</strong>. You can disable it or change the level, higher or lower, at any time.",
   "hosting_tab_BOOST_request_description_payment_renew": "Unless you choose to disable it, this option will remain activated. When you disable it, you’ll be billed for the entire duration of usage. The amount will be debited from your payment method, saved in the “Billing/My payment methods” section of the OVHcloud Control Panel.",
   "hosting_tab_BOOST_request_activation": "Boosting your plan...",
   "hosting_tab_BOOST_request_success": "Your plan has been successfully boosted.",

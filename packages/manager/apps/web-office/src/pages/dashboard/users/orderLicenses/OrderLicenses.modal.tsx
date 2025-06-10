@@ -1,17 +1,17 @@
-import React, { useContext, useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import {
   OdsFormField,
   OdsMessage,
   OdsSelect,
   OdsQuantity,
 } from '@ovhcloud/ods-components/react';
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { Modal, OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useForm, Controller } from 'react-hook-form';
-import Modal from '@/components/modal/Modal.component';
 import { useGenerateUrl } from '@/hooks';
 import { useLicenseDetail, useOrderCatalog } from '@/data/hooks';
 import { generateOrderURL } from '@/data/api/order';
@@ -71,21 +71,15 @@ export default function ModalOrderLicenses() {
 
   return (
     <Modal
-      title={t('dashboard_users_order_licences_title')}
-      onClose={onClose}
-      isDismissible
-      isOpen
-      secondaryButton={{
-        label: t('common:cta_cancel'),
-        action: onClose,
-        testid: 'cancel-btn',
-      }}
-      primaryButton={{
-        label: t('common:cta_confirm'),
-        action: handleSubmit(onSubmit),
-        testid: 'confirm-btn',
-        isDisabled: !watch('productType'),
-      }}
+      heading={t('dashboard_users_order_licences_title')}
+      type={ODS_MODAL_COLOR.information}
+      isOpen={true}
+      secondaryLabel={t('common:cta_cancel')}
+      onSecondaryButtonClick={onClose}
+      onDismiss={onClose}
+      primaryLabel={t('common:cta_confirm')}
+      isPrimaryButtonDisabled={!watch('productType')}
+      onPrimaryButtonClick={handleSubmit(onSubmit)}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-wrap justify-between mb-4">
