@@ -1,8 +1,0 @@
-{
-  "veeam_update_offer_title": "Veeam Cloud Connect upgraden",
-  "veeam_update_offer_information": "Das Abbonement kostet <strong>{{ price }} /Monat</strong>",
-  "veeam_update_offer_cancel": "Abbrechen",
-  "veeam_update_offer_continue": "Weiter",
-  "veeam_update_offer_change": "Ändern",
-  "veeam_update_storage_add": "Hinzufügen"
-}

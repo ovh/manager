@@ -214,7 +214,7 @@
   "sidebar_security_identity_operations_iam_identities": "Identità",
   "sidebar_security_identity_operations_iam_policies": "Policy",
   "sidebar_security_identity_operations_iam_api-keys": "Chiavi API",
-  "sidebar_security_identity_operations_iam_logs": "Log dell'account:",
+  "sidebar_security_identity_operations_iam_logs": "Log dell'account",
   "sidebar_web_hosting_websites": "Siti Internet",
   "sidebar_pci_quantum": "Quantum",
   "sidebar_pci_quantum_emulators": "Emulators"

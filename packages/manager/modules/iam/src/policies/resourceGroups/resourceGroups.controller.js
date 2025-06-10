@@ -25,7 +25,7 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
    */
   createResourceGroup() {
     this.trackClick(RESOURCE_GROUPS_TRACKING_HITS.ADD_RESOURCE_GROUP);
-    return this.goTo({ name: 'iam.resourceGroup.create' });
+    return this.goTo({ name: 'iam.policies.resourceGroups.create' });
   }
 
   /**
@@ -36,7 +36,7 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
   editResourceGroup({ id }) {
     this.trackClick(RESOURCE_GROUPS_TRACKING_HITS.UPDATE_RESOURCE_GROUP);
     return this.goTo({
-      name: 'iam.resourceGroup.edit',
+      name: 'iam.policies.resourceGroups.edit',
       params: { resourceGroup: id },
     });
   }

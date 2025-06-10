@@ -86,9 +86,6 @@ export const ORDER_URLS: Record<
     cloud_disk_array: {
       FR: 'https://www.ovh.com/fr/cloud/cloud-disk-array/',
     },
-    veeam: {
-      FR: 'https://www.ovh.com/fr/storage-solutions/veeam-cloud-connect/',
-    },
     veeam_enterprise: {
       DE: 'https://www.ovh.de/storage-solutions/veeam-enterprise.xml',
       ES: 'https://www.ovh.es/storage-solutions/veeam-enterprise.xml',
