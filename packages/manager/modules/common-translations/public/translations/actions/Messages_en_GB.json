@@ -46,5 +46,7 @@
   "modify_name": "Change name",
   "modify_name_success": "The name has been modified",
   "retry": "Try again",
-  "start": "Start"
+  "start": "Start",
+  "renew": "Renew",
+  "restore": "Restore"
 }
