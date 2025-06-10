@@ -11,7 +11,7 @@ const userMock: Partial<User> = {
 
 const updatedUserMock: Partial<User> = {
   ...userMock,
-  phoneCountry: 'EN',
+  phoneCountry: 'GB',
   firstname: 'doe',
 };
 
