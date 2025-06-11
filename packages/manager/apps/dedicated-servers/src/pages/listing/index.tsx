@@ -58,7 +58,7 @@ export default function Layout() {
     const hasClusterFeature = features?.['dedicated-server:cluster'];
     const hasClusterData = isSuccess && isSuccessCluster && data?.length > 0;
     setHasCluster(hasClusterFeature && hasClusterData);
-  }, [isSuccessCluster, isSuccess, features, data]);
+  }, [isSuccessCluster, isSuccess]);
 
   useEffect(() => {
     if (!location.pathname) {
