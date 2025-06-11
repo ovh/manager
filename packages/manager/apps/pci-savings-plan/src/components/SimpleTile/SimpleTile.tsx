@@ -17,8 +17,8 @@ const SimpleTile: React.FC<React.PropsWithChildren<{
       {
         'cursor-pointer': onClick,
         'cursor-default': !onClick,
-        'border-[--ods-color-primary-500] border-2': isActive,
-        'hover:border-2': !isActive,
+        'border-[--ods-color-primary-500] border-2 bg-[--ods-color-primary-050]': isActive,
+        'hover:border-2 hover:border-[--ods-color-primary-500] hover:bg-[--ods-color-primary-050]': !isActive,
       },
       className,
     )}
