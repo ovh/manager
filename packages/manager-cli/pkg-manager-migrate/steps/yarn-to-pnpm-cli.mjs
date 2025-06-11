@@ -76,21 +76,26 @@ async function updateMigrationData() {
 
 async function updateYarnBackupPackage() {
   const backup = await readJson(yarnBackupPath);
-  const field = backup.workspaces?.packages || [];
 
-  if (!field.includes(appPath)) {
-    field.push(appPath);
-    field.sort();
+  // Ensure structure exists
+  if (!backup.workspaces) backup.workspaces = {};
+  if (!Array.isArray(backup.workspaces.packages)) backup.workspaces.packages = [];
 
-    if (!isDryRun) {
-      backup.workspaces.packages = field;
-      await writeJson(yarnBackupPath, backup);
-    }
+  const oldPackages = backup.workspaces.packages;
 
-    logChange('Updated package-yarn-backup.json', `➕ Added workspace: "${appPath}"`);
-  } else {
-    console.log(`✅ "${appPath}" already present in yarn backup.`);
+  if (!oldPackages.includes(appPath)) {
+    console.log(`✅ "${appPath}" already removed from yarn backup.`);
+    return;
   }
+
+  const newPackages = oldPackages.filter((entry) => entry !== appPath);
+
+  if (!isDryRun) {
+    backup.workspaces.packages = newPackages;
+    await writeJson(yarnBackupPath, backup);
+  }
+
+  logChange('Updated package-yarn-backup.json', `❌ Removed workspace: "${appPath}"`);
 }
 
 async function migrateAppToPnpm(appName) {

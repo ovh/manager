@@ -12,10 +12,23 @@
     "@ovh-ux/request-tagger": "packages/manager/core/request-tagger",
     "@ovh-ux/manager-react-shell-client": "packages/manager/core/shell-client",
     "@ovh-ux/manager-common-translations": "packages/manager/modules/common-translations",
-    "@ovh-ux/manager-config": "packages/manager/modules/config"
+    "@ovh-ux/manager-config": "packages/manager/modules/config",
+    "@ovh-ux/manager-module-vcd-api": "packages/manager/modules/vcd-api",
+    "@ovh-ux/logs-to-customer": "packages/manager/modules/logs-to-customer",
+    "@ovh-ux/manager-core-test-utils": "packages/manager/core/test-utils",
+    "@ovh-ux/manager-models": "packages/manager/modules/models",
+    "@ovh-ux/manager-module-common-api": "packages/manager/modules/common-api",
+    "@ovh-ux/manager-network-common": "packages/manager/modules/network-common",
+    "@ovh-ux/manager-pci-common": "packages/manager/modules/manager-pci-common",
+    "@ovh-ux/manager-react-components": "packages/manager-react-components",
+    "@ovh-ux/ovh-product-icons": "packages/manager/core/ovh-product-icons",
+    "@ovh-ux/url-builder": "packages/manager/core/url-builder",
+    "@ovh-ux/shell": "packages/components/ovh-shell"
   },
   "pnpm-link-devDependencies": {
     "@ovh-ux/manager-vite-config": "packages/manager/core/vite-config",
-    "@ovh-ux/manager-tailwind-config": "packages/manager/core/tailwind-config"
+    "@ovh-ux/manager-tailwind-config": "packages/manager/core/tailwind-config",
+    "@ovh-ux/manager-dev-server-config": "packages/manager/tools/dev-server-config",
+    "@ovh-ux/manager-tests-setup": "packages/manager/core/tests-setup"
   }
 }

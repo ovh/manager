@@ -127,33 +127,30 @@ async function linkModulesToApps(depModules, devDepModules, apps) {
     pkgJson.dependencies = pkgJson.dependencies || {};
     pkgJson.devDependencies = pkgJson.devDependencies || {};
 
-    // Remove old entries before linking
-    for (const moduleName of Object.keys(depModules)) {
-      if (pkgJson.dependencies[moduleName]) {
-        console.log(`🧹 [dep] Removing old ${moduleName} from dependencies`);
-        delete pkgJson.dependencies[moduleName];
-      }
-      if (pkgJson.devDependencies[moduleName]) {
-        console.log(`🧹 [dep] Removing old ${moduleName} from devDependencies`);
-        delete pkgJson.devDependencies[moduleName];
-      }
+    // Link only used dependencies
+    for (const [moduleName, modulePath] of Object.entries(depModules)) {
+      const isUsed =
+        moduleName in pkgJson.dependencies || moduleName in pkgJson.devDependencies;
+      if (!isUsed) continue;
 
-      const relPath = path.relative(appDir, path.resolve(repoRoot, depModules[moduleName]));
+      delete pkgJson.dependencies[moduleName];
+      delete pkgJson.devDependencies[moduleName];
+
+      const relPath = path.relative(appDir, path.resolve(repoRoot, modulePath));
       pkgJson.dependencies[moduleName] = `file:${relPath}`;
       console.log(`🔗 [dep] Linked ${moduleName} → file:${relPath}`);
     }
 
-    for (const moduleName of Object.keys(devDepModules)) {
-      if (pkgJson.dependencies[moduleName]) {
-        console.log(`🧹 [devDep] Removing old ${moduleName} from dependencies`);
-        delete pkgJson.dependencies[moduleName];
-      }
-      if (pkgJson.devDependencies[moduleName]) {
-        console.log(`🧹 [devDep] Removing old ${moduleName} from devDependencies`);
-        delete pkgJson.devDependencies[moduleName];
-      }
+    // Link only used devDependencies
+    for (const [moduleName, modulePath] of Object.entries(devDepModules)) {
+      const isUsed =
+        moduleName in pkgJson.dependencies || moduleName in pkgJson.devDependencies;
+      if (!isUsed) continue;
 
-      const relPath = path.relative(appDir, path.resolve(repoRoot, devDepModules[moduleName]));
+      delete pkgJson.dependencies[moduleName];
+      delete pkgJson.devDependencies[moduleName];
+
+      const relPath = path.relative(appDir, path.resolve(repoRoot, modulePath));
       pkgJson.devDependencies[moduleName] = `file:${relPath}`;
       console.log(`🔗 [devDep] Linked ${moduleName} → file:${relPath}`);
     }
@@ -172,7 +169,7 @@ async function buildSharedModulesTurbo(paths) {
   const result = spawnSync('yarn', args, {
     cwd: repoRoot,
     stdio: 'inherit',
-    env: process.env // Use native env as Yarn is global here
+    env: process.env
   });
 
   if (result.status !== 0) {
@@ -191,7 +188,6 @@ async function main() {
   console.log('📦 PNPM devDependencies:', Object.keys(pnpmLinkDevDependencies));
 
   await installGlobalDeps();
-
   await buildSharedModulesTurbo({ ...pnpmLinkDependencies, ...pnpmLinkDevDependencies });
 
   await linkModulesToApps(pnpmLinkDependencies, pnpmLinkDevDependencies, excludeYarnApps);

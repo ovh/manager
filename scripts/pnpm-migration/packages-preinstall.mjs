@@ -93,10 +93,33 @@ async function getMigrationData() {
   }
 }
 
-// Unlink global PNPM modules
-function unlinkGlobalModules(...moduleGroups) {
-  const allModules = Object.assign({}, ...moduleGroups);
-  for (const moduleName of Object.keys(allModules)) {
+// Check which modules are actually used in apps
+async function getUsedModules(allModules, apps) {
+  const used = new Set();
+
+  for (const app of apps) {
+    const pkgPath = path.join(repoRoot, app, 'package.json');
+    if (!fileExists(pkgPath)) continue;
+
+    try {
+      const raw = await fs.readFile(pkgPath, 'utf-8');
+      const pkg = JSON.parse(raw);
+
+      const deps = Object.assign({}, pkg.dependencies || {}, pkg.devDependencies || {});
+      for (const name of Object.keys(allModules)) {
+        if (deps[name]) used.add(name);
+      }
+    } catch {
+      continue;
+    }
+  }
+
+  return [...used];
+}
+
+// Unlink global PNPM modules that are used
+function unlinkGlobalModules(usedModules) {
+  for (const moduleName of usedModules) {
     console.log(`🧹 Unlinking global module: ${moduleName}`);
     try {
       execSync(`${pnpmBinary} unlink --global ${moduleName}`, { stdio: 'inherit' });
@@ -107,12 +130,15 @@ function unlinkGlobalModules(...moduleGroups) {
 }
 
 // Clean environment
-async function cleanEnvironment(deps, devDeps) {
+async function cleanEnvironment(apps, deps, devDeps) {
   console.log('🧹 Cleaning node_modules, dist, .turbo in monorepo...');
   await findAndRemoveDirs(repoRoot, new Set(filesToClean));
 
-  console.log('🧹 Unlinking global PNPM modules...');
-  unlinkGlobalModules(deps, devDeps);
+  const usedDepModules = await getUsedModules(deps, apps);
+  const usedDevDepModules = await getUsedModules(devDeps, apps);
+
+  console.log('🧹 Unlinking used global PNPM modules...');
+  unlinkGlobalModules([...usedDepModules, ...usedDevDepModules]);
 
   console.log(`🧹 Removing local PNPM store at ${pnpmStorePath}`);
   try {
@@ -136,11 +162,11 @@ async function main() {
 
   ensureLocalPnpmInstalled();
 
-  const { pnpmLinkDependencies, pnpmLinkDevDependencies } = await getMigrationData();
+  const { excludeYarnApps, pnpmLinkDependencies, pnpmLinkDevDependencies } = await getMigrationData();
 
   if (shouldClean) {
     console.log('🧽 --clean flag detected. Performing environment cleanup...');
-    await cleanEnvironment(pnpmLinkDependencies, pnpmLinkDevDependencies);
+    await cleanEnvironment(excludeYarnApps, pnpmLinkDependencies, pnpmLinkDevDependencies);
   } else {
     console.log('ℹ️ Skipping cleanup. Use --clean to enable it.');
   }
