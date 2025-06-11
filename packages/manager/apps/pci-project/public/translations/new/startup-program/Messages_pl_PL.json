@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_startup_program_title": "OVHcloud Startup Program",
+  "pci_project_new_payment_startup_program_info": "W ramach OVHcloud Startup Program posiadasz dedykowane konto przedpłacone.",
+  "pci_project_new_payment_startup_program_amount_available": "Kwota: {{amount}}",
+  "pci_project_new_payment_startup_program_explain": "Kwota zasilenia zostanie wykorzystana na pokrycie należności za zużycie zasobów w ramach projektu Public Cloud.  Pamietaj, że zasilenie jest dostępne tylko dla określonych produktów. Więcej informacji na temat kompatybilnych produktów znajdziesz w tym <guideLink label='guide'></guideLink> . Kiedy zasilenie się wyczerpie, dodany poniżej sposób płatności zostanie automatycznie użyty, aby zapewnić ciągłość działania utworzonych instancji."
+}

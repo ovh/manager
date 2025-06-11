@@ -1,0 +1,174 @@
+import { Suspense, useEffect } from 'react';
+
+import { Outlet, useHref, useNavigate } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
+import {
+  ODS_BUTTON_COLOR,
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+} from '@ovhcloud/ods-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { PciTrustedZoneBanner, useTrustedZoneBanner } from '@ovh-ux/manager-pci-common';
+import {
+  BaseLayout,
+  Datagrid,
+  ErrorBanner,
+  Notifications,
+  useNotifications,
+  useResourcesV6,
+} from '@ovh-ux/manager-react-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import ManagerBannerText from '@/components/manager-banner-text/ManagerBannerText';
+import {
+  getProjectsWithServices,
+  projectsWithServiceQueryKey,
+} from '@/data/api/projects-with-services';
+import useRedirectAfterProjectSelection from '@/hooks/useRedirectAfterProjectSelection';
+import { urls } from '@/routes/routes.constant';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
+
+import { getDatagridColumns } from './datagrid-columns';
+
+type ErrorResponse = {
+  response?: {
+    headers?: Record<string, string>;
+    status?: number;
+  };
+};
+
+export default function Listing() {
+  const { trackClick } = useOvhTracking();
+  const { t } = useTranslation(['listing', NAMESPACES.DASHBOARD, NAMESPACES.STATUS]);
+
+  const projectPath = useHref(`${urls.root}/${urls.project}`);
+  const navigate = useNavigate();
+
+  const { redirectUrl, isRedirectRequired, isRedirectExternal } =
+    useRedirectAfterProjectSelection();
+  const { addInfo } = useNotifications();
+
+  const getProjectUrl = async (projectId: string): Promise<string> => {
+    if (isRedirectRequired) {
+      return redirectUrl(projectId);
+    }
+
+    return Promise.resolve(projectPath.replace(':projectId', projectId));
+  };
+
+  const columns = getDatagridColumns(t, getProjectUrl, isRedirectExternal);
+
+  const {
+    flattenData,
+    isError,
+    error,
+    totalCount,
+    hasNextPage,
+    fetchNextPage,
+    isLoading,
+    search,
+    sorting,
+    setSorting,
+    filters,
+  } = useResourcesV6({
+    columns,
+    route: `/cloud/project`,
+    queryFn: getProjectsWithServices,
+    queryKey: projectsWithServiceQueryKey(),
+    defaultSorting: {
+      id: 'aggregatedStatus',
+      desc: true,
+    },
+  });
+
+  const trustedZoneResult = (
+    useTrustedZoneBanner as unknown as () => {
+      isBannerVisible?: boolean;
+      isLoading?: boolean;
+    }
+  )();
+  const isTrustedZone =
+    (trustedZoneResult as { isBannerVisible?: boolean })?.isBannerVisible ?? false;
+  const isTrustedZoneLoading = (trustedZoneResult as { isLoading?: boolean })?.isLoading ?? false;
+
+  useEffect(() => {
+    if (isRedirectRequired) {
+      addInfo(
+        <Translation ns="listing">
+          {(_t) => _t('pci_projects_redirect_to_dedicated_page')}
+        </Translation>,
+      );
+    }
+  }, [isRedirectRequired, addInfo]);
+
+  if (isError) {
+    const { response } = error as ErrorResponse;
+    const errorObj = {
+      data: error,
+      headers: response?.headers,
+      status: response?.status,
+    };
+    return <ErrorBanner error={errorObj} />;
+  }
+
+  const header = {
+    title: t('pci_projects'),
+  };
+
+  const handleCreateProjectClick = () => {
+    trackClick({
+      actionType: 'action',
+      actions: PROJECTS_TRACKING.LISTING.CTA_CREATE_PROJECT,
+    });
+    navigate(urls.creation);
+  };
+
+  return (
+    <BaseLayout header={header}>
+      <div className="mb-6 flex flex-col items-stretch gap-4">
+        <ManagerBannerText />
+        <Notifications />
+        <PciTrustedZoneBanner />
+      </div>
+
+      {columns && (
+        <Datagrid
+          columns={columns}
+          items={flattenData || []}
+          totalItems={totalCount || 0}
+          hasNextPage={hasNextPage && !isLoading}
+          onFetchNextPage={fetchNextPage}
+          sorting={sorting}
+          onSortChange={setSorting}
+          isLoading={isLoading}
+          filters={filters}
+          search={search}
+          topbar={
+            <div>
+              {!isTrustedZoneLoading && !isTrustedZone && (
+                <OdsButton
+                  data-testid="listing_create-project_button"
+                  variant={ODS_BUTTON_VARIANT.default}
+                  color={ODS_BUTTON_COLOR.primary}
+                  icon={ODS_ICON_NAME.plus}
+                  size={ODS_BUTTON_SIZE.md}
+                  label={t('pci_projects_create_project')}
+                  onClick={handleCreateProjectClick}
+                />
+              )}
+            </div>
+          }
+        />
+      )}
+
+      <Suspense>
+        <Outlet />
+      </Suspense>
+    </BaseLayout>
+  );
+}
