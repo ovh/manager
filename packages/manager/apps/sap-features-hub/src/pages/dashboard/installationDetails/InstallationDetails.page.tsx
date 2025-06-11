@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { BaseLayout } from '@ovh-ux/manager-react-components';
 import React, { Suspense } from 'react';
 
@@ -14,7 +14,10 @@ import { SAPInstallationStatus } from '@/types/installation.type';
 const REFECTH_INTERVAL_INSTALLATION_STATUS = 30_000;
 
 export default function InstallationDetailsPage() {
-  const { serviceName, taskId } = useParams();
+  const [searchParams] = useSearchParams();
+  const serviceName = searchParams.get('serviceName');
+  const taskId = searchParams.get('taskId');
+
   const { t } = useTranslation('dashboard/installation');
   const header = {
     title: t('dashboard_installation_title'),
