@@ -16,14 +16,17 @@ import {
   ChangelogButton,
   BaseLayout,
   useFeatureAvailability,
+  useResourcesIcebergV6,
 } from '@ovh-ux/manager-react-components';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { CHANGELOG_LINKS } from '@/data/constants/changelogLinks';
 import { urls } from '@/routes/routes.constant';
+import { Cluster } from '@/data/types/cluster.type';
 
 export default function Layout() {
   const { t } = useTranslation('dedicated-servers');
+  const [hasCluster, setHasCluster] = useState(false);
   const location = useLocation();
   const { shell } = useContext(ShellContext);
   const matches = useMatches();
@@ -31,6 +34,12 @@ export default function Layout() {
   const { data: features, isSuccess } = useFeatureAvailability([
     'dedicated-server:cluster',
   ]);
+  const { flattenData, isSuccess: isSuccessCluster } = useResourcesIcebergV6<
+    Cluster[]
+  >({
+    route: `/dedicated/cluster`,
+    queryKey: ['dedicated-servers', `/dedicated/cluster`],
+  });
 
   const [activePanel, setActivePanel] = useState('');
   const navigate = useNavigate();
@@ -49,6 +58,15 @@ export default function Layout() {
   useEffect(() => {
     shell.ux.hidePreloader();
   }, []);
+
+  useEffect(() => {
+    setHasCluster(
+      isSuccess &&
+        features?.['dedicated-server:cluster'] &&
+        isSuccessCluster &&
+        flattenData?.length !== 0,
+    );
+  }, [isSuccessCluster, isSuccess]);
 
   useEffect(() => {
     if (!location.pathname) {
@@ -93,7 +111,7 @@ export default function Layout() {
                   {t('all_servers')}
                 </OdsTab>
               </NavLink>
-              {isSuccess && features?.['dedicated-server:cluster'] && (
+              {hasCluster && (
                 <NavLink
                   key={`osds-tab-bar-item-cluster`}
                   to={'/cluster'}
