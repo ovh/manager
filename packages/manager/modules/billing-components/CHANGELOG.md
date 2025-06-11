@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.18.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.18.3...@ovh-ux/manager-billing-components@4.18.4) (2025-06-11)
+
+
+### Bug Fixes
+
+* **billing:** display API error message on unsuccessful termination ([9450b06](https://github.com/ovh/manager/commit/9450b06a613546203bbcd7ab01e38d08e0f849a6)), closes [#PRB0041386](https://github.com/ovh/manager/issues/PRB0041386) [#MANAGER-18445](https://github.com/ovh/manager/issues/MANAGER-18445)
+
+
+
+
+
 ## [4.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.18.2...@ovh-ux/manager-billing-components@4.18.3) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

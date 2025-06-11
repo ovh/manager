@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.17.0...@ovh-ux/manager-hub-app@0.17.1) (2025-06-11)
+
+
+### Bug Fixes
+
+* **hub:** fix resiliate label on elipsis menu ([06a2218](https://github.com/ovh/manager/commit/06a2218f5f0499e55cd31630b8bf6e643a3329eb)), closes [#MANAGER-17066](https://github.com/ovh/manager/issues/MANAGER-17066)
+* **hub:** fix roadmap and changelog us translations ([b45ec4a](https://github.com/ovh/manager/commit/b45ec4a8120d22eafbdff299eb49ac611f4f470f)), closes [#MANAGER-17726](https://github.com/ovh/manager/issues/MANAGER-17726)
+
+
+
+
+
 # [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.16.0...@ovh-ux/manager-hub-app@0.17.0) (2025-06-10)
 
 

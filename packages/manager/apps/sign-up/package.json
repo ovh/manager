@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sign-up-app",
-  "version": "4.2.26",
+  "version": "4.2.27",
   "private": true,
   "description": "Sign-up form application.",
   "repository": {
@@ -17,10 +17,10 @@
   },
   "dependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
-    "@ovh-ux/manager-config": "^8.3.2",
+    "@ovh-ux/manager-config": "^8.4.0",
     "@ovh-ux/manager-cookie-policy": "^1.5.1",
-    "@ovh-ux/manager-core": "^13.2.0",
-    "@ovh-ux/ng-at-internet": "^6.0.17",
+    "@ovh-ux/manager-core": "^13.2.1",
+    "@ovh-ux/ng-at-internet": "^6.0.18",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.3",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.5",
     "@ovh-ux/ng-ovh-http": "^5.1.4",
@@ -28,7 +28,7 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.8.4",
     "@ovh-ux/ng-translate-async-loader": "^2.2.4",
     "@ovh-ux/request-tagger": "^0.4.1",
-    "@ovh-ux/sign-up": "^3.1.8",
+    "@ovh-ux/sign-up": "^3.1.9",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.8",

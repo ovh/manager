@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.41.0...@ovh-ux/manager-new-billing@0.41.1) (2025-06-11)
+
+
+### Bug Fixes
+
+* **billing:** fix some regressions on billing pages ([bcd0d5d](https://github.com/ovh/manager/commit/bcd0d5d4d0c38bc4a097010eadcef3533e0d9eaa)), closes [#MANAGER-18544](https://github.com/ovh/manager/issues/MANAGER-18544)
+* **billing:** put defaultPaymentMean back to autorenew resolve ([acacf6e](https://github.com/ovh/manager/commit/acacf6ebcbab5feddd1ffda04b23b146ba5b76ff)), closes [#MANAGER-18574](https://github.com/ovh/manager/issues/MANAGER-18574) [#INC0133696](https://github.com/ovh/manager/issues/INC0133696)
+
+
+
+
+
 # [0.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.40.1...@ovh-ux/manager-new-billing@0.41.0) (2025-06-10)
 
 
