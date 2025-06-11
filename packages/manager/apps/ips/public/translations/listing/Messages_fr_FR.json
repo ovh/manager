@@ -57,6 +57,7 @@
   "listingColumnsType_pcc": "Hosted Private cloud (VMWare)",
   "listingColumnsType_private": "Private",
   "listingColumnsType_vpn": "VPN",
+  "listingActionManageGameMitigation": "Configurer le firewall game",
   "listingActionAddDescription": "Ajouter une description",
   "listingActionEditDescription": "Editer la description",
   "listingUpsertDescription": "Description",
