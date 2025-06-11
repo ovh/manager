@@ -1,9 +1,10 @@
 export const subRoutes = {
   onboarding: 'onboarding',
-  installation: 'installation',
+  listing: 'installations',
   serviceName: ':serviceName',
   initialStep: 'initialization',
-  wizard: 'wizard',
+  report: 'report',
+  wizard: 'installation',
   stepId: ':stepId',
   taskId: ':taskId',
 } as const;
@@ -12,9 +13,9 @@ export const urls = {
   root: `/`,
   dashboard: `/`,
   onboarding: `/${subRoutes.onboarding}`,
-  installation: `/${subRoutes.installation}`,
-  installationWizardStep: `/${subRoutes.installation}/${subRoutes.wizard}`,
-  installationInitialStep: `/${subRoutes.installation}/${subRoutes.initialStep}`,
-  installationStep: `/${subRoutes.installation}/${subRoutes.stepId}/${subRoutes.serviceName}`,
-  installationDashboard: `/${subRoutes.serviceName}/${subRoutes.installation}/${subRoutes.taskId}`,
+  listing: `/${subRoutes.listing}`,
+  installationReport: `/${subRoutes.listing}/${subRoutes.report}`,
+  installationWizard: `/${subRoutes.wizard}`,
+  installationInitialStep: `/${subRoutes.wizard}/${subRoutes.initialStep}`,
+  installationStep: `/${subRoutes.wizard}/${subRoutes.stepId}`,
 } as const;
