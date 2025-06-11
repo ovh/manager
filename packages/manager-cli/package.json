@@ -18,8 +18,9 @@
     "common-tests-config-migration": "node ./tests-migrate/common-tests-config-migration.mjs",
     "json-to-component-route-migration": "node ./routes-migrate/json-to-component-route-migration.mjs",
     "manager-cli": "node ./manager-cli.mjs",
-    "transform-routes": "node routes/steps/transform-routes-cli.mjs",
-    "update-routers-init": "node routes/steps/update-routers-init-cli.mjs"
+    "pkg-manager-migrate": "node pkg-manager-migrate/pkg-manager-migration.mjs",
+    "transform-routes": "node routes-migrate/steps/transform-routes-cli.mjs",
+    "update-routers-init": "node routes-migrate/steps/update-routers-init-cli.mjs"
   },
   "dependencies": {
     "@babel/parser": "^7.27.0",
