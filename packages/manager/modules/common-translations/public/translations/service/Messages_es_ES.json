@@ -6,5 +6,6 @@
   "service_state_toDelete": "Pendiente de eliminar",
   "service_state_toSuspend": "Pendiente de suspender",
   "service_state_enabled": "Activado",
-  "service_state_disabled": "Desactivado"
+  "service_state_disabled": "Desactivado",
+  "service_state_draft": "Pendiente de configuración"
 }
