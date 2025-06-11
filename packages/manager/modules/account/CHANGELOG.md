@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.11.1...@ovh-ux/manager-account@0.12.0) (2025-06-11)
+
+
+### Features
+
+* **account:** add retry loop on KYC fraud ([048ab2e](https://github.com/ovh/manager/commit/048ab2e5f9fa522932f04d3b22365406f0332ec3)), closes [#MANAGER-17734](https://github.com/ovh/manager/issues/MANAGER-17734)
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.11.0...@ovh-ux/manager-account@0.11.1) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-account
