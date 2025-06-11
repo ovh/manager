@@ -7,11 +7,7 @@ import {
   OsdsText,
   OsdsMessage,
 } from '@ovhcloud/ods-components/react';
-import {
-  Datagrid,
-  useDataGrid,
-  useFeatureAvailability,
-} from '@ovh-ux/manager-react-components';
+import { Datagrid, useDataGrid } from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -44,7 +40,6 @@ type ModalState = {
 };
 
 const INFINITE_DATE = new Date('2105-12-31T23:59:59.999Z');
-const CREATE_TOKEN = 'pci-ai-endpoints:create-token';
 
 const formatDateForSearch = (date: Date, t: (key: string) => string) => {
   if (date.getTime() === INFINITE_DATE.getTime()) {
@@ -61,9 +56,9 @@ export default function TokenPage() {
   const { t } = useTranslation('token');
   const { projectId } = useParams();
   const { pagination, setPagination } = useDataGrid();
-  const { isAdmin } = useUserInfos();
-
-  const { data: availability } = useFeatureAvailability([CREATE_TOKEN]);
+  const { data: isAuthorized, isLoading: isAuthLoading } = useUserInfos(
+    projectId,
+  );
 
   const { data: projectData } = useGetProject(projectId);
 
@@ -154,7 +149,7 @@ export default function TokenPage() {
 
   return (
     <>
-      {availability && (
+      {!isAuthLoading && (
         <>
           <OsdsText
             level={ODS_TEXT_LEVEL.heading}
@@ -182,7 +177,7 @@ export default function TokenPage() {
               </OsdsText>
             </OsdsMessage>
           )}
-          {!isAdmin && (
+          {!isAuthorized && (
             <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="max-w-fit">
               <OsdsText
                 level={ODS_TEXT_LEVEL.body}
@@ -200,8 +195,8 @@ export default function TokenPage() {
                 variant={ODS_BUTTON_VARIANT.flat}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 className="xs:mb-0.5 sm:mb-0 mr-4"
-                onClick={() => isAdmin && openModal('create')}
-                disabled={!isAdmin || undefined}
+                onClick={() => isAuthorized && openModal('create')}
+                disabled={!isAuthorized || undefined}
               >
                 <OsdsIcon
                   name={ODS_ICON_NAME.PLUS}

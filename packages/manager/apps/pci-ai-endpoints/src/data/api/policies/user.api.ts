@@ -1,6 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { v6, v2 } from '@ovh-ux/manager-core-api';
 
+export const getUserPermissions = async () => {
+  const { data } = await v6.get(`/me/identity/user`);
+  return data;
+};
+
 export const getUserId = async (projectId: string) => {
   const { data } = await v6.get(
     `/me/identity/user/ai-endpoints-user-${projectId}`,
