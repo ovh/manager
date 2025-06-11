@@ -1,0 +1,68 @@
+{
+  "name": "@ovh-ux/manager-pci-project-app",
+  "version": "0.0.0",
+  "private": true,
+  "description": "PCI project react application",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/apps/pci-project"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build",
+    "coverage": "manager-test run --coverage",
+    "format": "run-p format:*",
+    "format:css": "yarn run lint:css --fix",
+    "format:html": "yarn run lint:html && prettier --parser=html --write \"**/*.html\"",
+    "format:js": "yarn run lint:js --fix",
+    "format:md": "yarn run lint:md --fix",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "lint:css": "stylelint \"**/*.{css,less,scss}\"",
+    "lint:html": "htmlhint --ignore \"**/dist/**,**/www/**,**/coverage/**,**/screenshot/**,**/docs-api/**\" \"packages/**/*.html\"",
+    "lint:js": "eslint --cache --quiet --format=pretty .",
+    "lint:md": "remark -qf . && eslint --quiet --format=pretty --ext .md .",
+    "start": "vite",
+    "test": "manager-test run"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-config": "*",
+    "@ovh-ux/manager-core-api": "*",
+    "@ovh-ux/manager-core-utils": "*",
+    "@ovh-ux/manager-pci-common": "^2.4.2",
+    "@ovh-ux/manager-react-components": "^2.2.0",
+    "@ovh-ux/manager-react-core-application": "*",
+    "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/manager-tailwind-config": "*",
+    "@ovh-ux/request-tagger": "*",
+    "@ovhcloud/ods-components": "^18.3.0",
+    "@ovhcloud/ods-themes": "^18.3.0",
+    "@tanstack/react-query": "^5.51.21",
+    "axios": "^1.1.2",
+    "clsx": "^1.2.1",
+    "element-internals-polyfill": "^3.0.0",
+    "i18next": "^23.8.2",
+    "i18next-http-backend": "^2.4.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^14.0.5",
+    "react-router-dom": "^6.3.0",
+    "tailwindcss": "^3.4.4"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-tests-setup": "^0.2.0",
+    "@ovh-ux/manager-vite-config": "*",
+    "@tanstack/react-query-devtools": "^5.51.21",
+    "typescript": "^5.1.6"
+  },
+  "regions": [
+    "CA",
+    "EU",
+    "US"
+  ],
+  "universes": [
+    "PublicCloud"
+  ]
+}
