@@ -11,6 +11,7 @@ vi.mock('react-router-dom', () => ({
   useLocation: () => ({ pathname: '/somewhere' }),
   useNavigate: () => ({ navigate: vi.fn() }),
   useParams: () => ({ stepId: '1' }),
+  useSearchParams: () => [new URLSearchParams(), vi.fn()],
 }));
 
 describe('FormStepSummary component unit test suite', () => {

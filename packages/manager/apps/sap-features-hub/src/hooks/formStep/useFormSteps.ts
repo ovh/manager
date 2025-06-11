@@ -1,18 +1,29 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { StepId } from '@/types/formStep.type';
+import { buildSearchQuery } from '@/utils/buildSearchQuery';
 
-const createStepUrl = (stepNumber: number, serviceName?: string) =>
-  stepNumber === 1 || !serviceName
-    ? urls.installationInitialStep
-    : urls.installationStep
-        .replace(':stepId', stepNumber.toString())
-        .replace(':serviceName', serviceName);
+const createStepUrl = (stepNumber: number, serviceName?: string) => {
+  if (serviceName && stepNumber !== 1) {
+    const url = urls.installationStep.replace(':stepId', stepNumber.toString());
+    const query = buildSearchQuery({ serviceName });
+    return `${url}${query}`;
+  }
+  return urls.installationInitialStep;
+};
 
 export const useFormSteps = () => {
-  const { stepId, serviceName } = useParams();
+  const { stepId } = useParams();
+  const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
   const navigate = useNavigate();
+
+  const serviceName = searchParams.get('serviceName');
   const isInitialStep = pathname.includes(subRoutes.initialStep);
   const currentStep: StepId = isInitialStep ? '1' : (stepId as StepId);
 
@@ -27,8 +38,8 @@ export const useFormSteps = () => {
   };
 
   const previousStep = () => {
-    if (!stepId || !serviceName || isInitialStep) return;
-    if (stepId === '2') {
+    if (!stepId || isInitialStep) return;
+    if (stepId === '2' || !serviceName) {
       navigate(urls.installationInitialStep);
     } else {
       navigate(createStepUrl(Number(stepId) - 1, serviceName));
