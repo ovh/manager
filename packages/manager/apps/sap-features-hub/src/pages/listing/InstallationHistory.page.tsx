@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
   BaseLayout,
   Datagrid,
@@ -104,29 +104,31 @@ export default function HistoryPage() {
   }
 
   return (
-    <BaseLayout
-      breadcrumb={<Breadcrumb />}
-      header={header}
-      backLinkLabel={tInstallation('backlink_label')}
-      onClickReturn={() => navigate(urls.dashboard)}
-    >
-      <OdsText preset="heading-2" className="flex flex-col">
-        {t('sap_hub_history_title')}
-      </OdsText>
-      <OdsButton
-        variant={ODS_BUTTON_VARIANT.outline}
-        onClick={() => navigate(urls.installationWizardStep)}
-        label={t('sap_hub_history_run_installation')}
-        className="my-8"
-      />
-      {installations && (
-        <Datagrid
-          columns={columns}
-          items={installations}
-          totalItems={0}
-          hasNextPage={false}
+    <Suspense>
+      <BaseLayout
+        breadcrumb={<Breadcrumb />}
+        header={header}
+        backLinkLabel={tInstallation('backlink_label')}
+        onClickReturn={() => navigate(urls.dashboard)}
+      >
+        <OdsText preset="heading-2" className="flex flex-col">
+          {t('sap_hub_history_title')}
+        </OdsText>
+        <OdsButton
+          variant={ODS_BUTTON_VARIANT.outline}
+          onClick={() => navigate(urls.installationWizard)}
+          label={t('sap_hub_history_run_installation')}
+          className="my-8"
         />
-      )}
-    </BaseLayout>
+        {installations && (
+          <Datagrid
+            columns={columns}
+            items={installations}
+            totalItems={0}
+            hasNextPage={false}
+          />
+        )}
+      </BaseLayout>
+    </Suspense>
   );
 }
