@@ -68,8 +68,6 @@ const getDateParams = () => {
   return { startDate, endDate };
 };
 
-const CREATE_TOKEN = 'pci-ai-endpoints:create-token';
-
 export default function Layout() {
   const { projectId } = useParams<{ projectId: string }>();
   const { t } = useTranslation(['metric', 'token']);
@@ -78,7 +76,6 @@ export default function Layout() {
   const { pathname } = useLocation();
 
   const ROOT = `/pci/projects/${projectId}/ai/endpoints`;
-  const { data: availability } = useFeatureAvailability([CREATE_TOKEN]);
 
   const dateParams = getDateParams();
   const metricsQuery = useGetMetrics(
@@ -97,18 +94,15 @@ export default function Layout() {
         title: t('metric:ai_endpoints_metrics'),
         to: metricsPath,
       },
-    ];
-
-    if (availability?.[CREATE_TOKEN]) {
-      list.push({
+      {
         name: 'token',
         title: t('token:ai_endpoints_token'),
         to: tokenPath,
-      });
-    }
+      },
+    ];
 
     return list;
-  }, [availability, metricsPath, tokenPath, t]);
+  }, [metricsPath, tokenPath, t]);
 
   const [activePanel, setActivePanel] = useState<string>('');
   const [titleHeader, setTitleHeader] = useState<string>('');
@@ -187,13 +181,7 @@ export default function Layout() {
                 breadcrumb={<Breadcrumb />}
               />
               {pathname !== ROOT && (
-                <div
-                  className={`customTabs:flex self-end customTabs:-mt-[5.31rem] md:-mt-[5.56rem] ${
-                    availability?.[CREATE_TOKEN]
-                      ? 'customTabs:ml-[14.38rem]'
-                      : 'customTabs:ml-[9rem]'
-                  } customTabs:absolute`}
-                >
+                <div className="customTabs:flex self-end customTabs:-mt-[5.31rem] md:-mt-[5.56rem] customTabs:ml-[14.38rem] customTabs:absolute">
                   <OsdsButton
                     inline
                     color={ODS_THEME_COLOR_INTENT.primary}

@@ -1,21 +1,19 @@
-import { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { getUserPermissions } from '@/data/api/policies/user.api';
 
-interface UseUserInfos {
-  isAdmin: boolean;
-}
+type UseUserInfosResult = UseQueryResult<boolean, Error>;
 
-const USER_ADMIN_ROLE = 'ADMIN';
-
-const useUserInfos = (): UseUserInfos => {
-  const shellContext = useContext(ShellContext);
-  const user = shellContext.environment.getUser();
-
-  const role = Array.isArray(user?.auth?.roles) ? user?.auth?.roles[0] : '';
-
-  const isAdmin = role === USER_ADMIN_ROLE;
-
-  return { isAdmin };
+const useUserInfos = (projectId?: string): UseUserInfosResult => {
+  return useQuery<string[], Error, boolean>({
+    queryKey: ['userPermissions', projectId],
+    queryFn: getUserPermissions,
+    select: (permissions) =>
+      permissions.some((perm) => {
+        const suffix = perm.split('ai-endpoints-user-')[1];
+        return suffix === projectId;
+      }),
+    enabled: !!projectId,
+  });
 };
 
 export default useUserInfos;

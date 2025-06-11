@@ -40,7 +40,7 @@ export const useDatagridColumns = ({
 }: UseDatagridColumnsProps) => {
   const { t } = useTranslation('token');
 
-  const { isAdmin } = useUserInfos();
+  const { data: isAuthorized } = useUserInfos(projectId);
 
   const { data: tokenNames, isLoading: isNamesLoading } = useGetTokens({
     projectId,
@@ -130,14 +130,14 @@ export const useDatagridColumns = ({
               {
                 id: 0,
                 label: t('ai_endpoints_token_put'),
-                onClick: () => isAdmin && onUpdate(token),
-                disabled: !isAdmin || undefined,
+                onClick: () => isAuthorized && onUpdate(token),
+                disabled: !isAuthorized || undefined,
               },
               {
                 id: 1,
                 label: t('ai_endpoints_token_delete'),
-                onClick: () => isAdmin && onDelete(token),
-                disabled: !isAdmin || undefined,
+                onClick: () => isAuthorized && onDelete(token),
+                disabled: !isAuthorized || undefined,
               },
             ]}
             isCompact
