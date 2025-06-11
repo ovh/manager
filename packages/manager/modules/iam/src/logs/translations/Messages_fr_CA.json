@@ -1,8 +1,9 @@
 {
   "iam_logs_label": "Identity Logs",
-  "iam_audit_logs_label": "Logs Audit",
+  "iam_audit_logs_label": "Logs d'Audit",
   "iam_audit_logs_description_default": "Vous trouverez ci-dessous les logs en temps réel des actions liées à la sécurité de votre compte client : action de connexion des utilisateurs, changement de mot de passe, création et modification d'utilisateurs et de groupes d'utilisateurs.",
-  "iam_activity_logs_label": "Logs Activity",
+  "iam_activity_logs_label": "Logs d'Activités",
+  "iam_activity_logs_description_access": "Vous trouverez ci-dessous les logs en temps réel des actions liées aux API OVHcloud.",
   "iam_access_policy_logs_label": "Logs des politiques d'accès",
   "iam_access_policy_logs_description_default": "Vous trouverez ci-dessous les logs en temps réel de l'évaluation des politiques d'accès lors des actions sur les ressources de votre compte."
 }
