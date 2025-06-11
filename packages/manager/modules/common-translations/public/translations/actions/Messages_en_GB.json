@@ -48,5 +48,6 @@
   "retry": "Try again",
   "start": "Start",
   "renew": "Renew",
-  "restore": "Restore"
+  "restore": "Restore",
+  "see_details": "See details"
 }
