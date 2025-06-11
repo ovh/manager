@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import clsx from 'clsx';
-import { DrawerCollapseState } from './Drawer.types';
 import { useTranslation } from 'react-i18next';
+import { DrawerCollapseState } from './Drawer.types';
 import './translations';
 
 type DrawerHandleProps = {

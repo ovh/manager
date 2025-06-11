@@ -1,11 +1,7 @@
 import { vi } from 'vitest';
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertTextVisibility,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
+import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 import { Drawer, DrawerProps } from './Drawer.component';
 
 vi.mock('@ovhcloud/ods-components/react', async () => {
@@ -35,7 +31,7 @@ export const mockedProps: DrawerProps = {
   onDismiss: vi.fn(),
 };
 
-it('should display the drawer in its classic variant', async () => {
+it('should display the drawer', async () => {
   const { container } = render(<Drawer {...mockedProps} />);
   expect(screen.getByTestId('drawer')).not.toBeNull();
   expect(screen.queryByText('Drawer heading')).not.toBeNull();
@@ -51,7 +47,7 @@ it('should display the drawer in its classic variant', async () => {
     label: mockedProps.secondaryButtonLabel,
   });
 
-  expect(dismissButton).toHaveAttribute('aria-label', 'Dismiss');
+  expect(dismissButton).toHaveAttribute('aria-label', 'close');
 
   expect(primaryButton).toHaveAttribute('label', 'Confirm');
   expect(primaryButton).toHaveAttribute('color', 'primary');
@@ -89,7 +85,15 @@ it('should close the drawer when the dismiss button is clicked', async () => {
   expect(mockedProps.onDismiss).toHaveBeenCalled();
 });
 
-it('should close the drawer when the backdrop is clicked', async () => {
+it('should display a backdrop overlay', async () => {
+  const user = userEvent.setup();
+  render(<Drawer {...mockedProps} />);
+
+  expect(screen.getByTestId('drawer')).not.toBeNull();
+  expect(screen.getByTestId('drawer-backdrop')).toBeVisible();
+});
+
+it('should close the drawer on backdrop click', async () => {
   const user = userEvent.setup();
   render(<Drawer {...mockedProps} />);
 
@@ -99,57 +103,4 @@ it('should close the drawer when the backdrop is clicked', async () => {
   await act(() => user.click(backdrop));
 
   expect(mockedProps.onDismiss).toHaveBeenCalled();
-});
-
-it('should display the drawer in its collapsible variant', () => {
-  render(<Drawer {...mockedProps} variant="collapsible" />);
-  expect(screen.getByTestId('drawer')).not.toBeNull();
-  expect(screen.queryByTestId('drawer-backdrop')).toBeNull();
-  expect(screen.queryByTestId('drawer-handle')).not.toBeNull();
-});
-
-it('should collapse and reopen the drawer when the handle is clicked', async () => {
-  const user = userEvent.setup();
-
-  render(<Drawer {...mockedProps} variant="collapsible" />);
-  expect(screen.getByTestId('drawer')).not.toBeNull();
-
-  // Collapse the drawer
-  const handle = screen.getByTestId('drawer-handle');
-  await act(() => user.click(handle));
-
-  await waitFor(() => {
-    const drawer = screen.getByTestId('drawer');
-    const classList = Array.from(drawer.classList);
-    const hasTranslateX = classList.some((className) =>
-      className.includes('translate-x'),
-    );
-    expect(hasTranslateX).toBe(true);
-  });
-
-  // Reopen the drawer
-  await act(() => user.click(handle));
-
-  await waitFor(() => {
-    const drawer = screen.getByTestId('drawer');
-    const classList = Array.from(drawer.classList);
-    const hasTranslateX = classList.some((className) =>
-      className.includes('translate-x'),
-    );
-    expect(hasTranslateX).toBe(false);
-  });
-});
-
-it('should hide the handle immediately after the user presses the “Esc” key', () => {
-  render(<Drawer {...mockedProps} variant="collapsible" />);
-  expect(screen.getByTestId('drawer')).not.toBeNull();
-  const handle = screen.getByTestId('drawer-handle');
-  expect(handle).toBeVisible();
-  act(() => {
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-  });
-  waitFor(() => {
-    expect(handle).not.toBeVisible();
-    expect(screen.queryByTestId('drawer-handle')).toBeNull();
-  });
 });

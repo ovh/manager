@@ -1,12 +1,15 @@
 import React from 'react';
-import { Drawer, DrawerProps } from '@ovh-ux/manager-react-components';
+import {
+  DrawerCollapsible,
+  DrawerCollapsibleProps,
+} from '@ovh-ux/manager-react-components';
 import { Meta } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
 import { DrawerContent } from './DrawerContent.component';
 
-const meta: Meta<typeof Drawer> = {
+const meta: Meta<typeof DrawerCollapsible> = {
   title: 'Manager React Components/Components/Drawer',
-  component: Drawer,
+  component: DrawerCollapsible,
   args: {
     heading: 'Drawer Title',
     isOpen: true,
@@ -38,7 +41,7 @@ const meta: Meta<typeof Drawer> = {
     const onDismiss = () => updateArgs({ isOpen: !isOpen });
 
     return (
-      <Drawer
+      <DrawerCollapsible
         {...args}
         isOpen={isOpen}
         onDismiss={onDismiss}
@@ -51,17 +54,9 @@ const meta: Meta<typeof Drawer> = {
 
 export default meta;
 
-export const Default: Meta<DrawerProps> = {
+export const Collapsible: Meta<DrawerCollapsibleProps> = {
   args: {
-    heading: 'Classic Drawer',
+    heading: 'Collapsible Drawer',
     isOpen: true,
-  },
-};
-
-export const ScrollableContent: Meta<DrawerProps> = {
-  args: {
-    heading: 'Scrollable Content',
-    isOpen: true,
-    children: <DrawerContent size="long" />,
   },
 };

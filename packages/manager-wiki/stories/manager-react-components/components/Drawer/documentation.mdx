@@ -6,6 +6,7 @@ import * as DrawerStories from './Drawer.stories';
 ## Overview
 
 The `Drawer` component is an expandable panel that slides in from the right side of the screen, designed to display contextual content or forms without disrupting the main interface.
+The `DrawerCollapsible` is very similar, but lets the user access to the content of the page by having no overlay, and being able to collapse completly and reveal what could be hidden behind.
 
 ## Usage
 
@@ -14,11 +15,6 @@ The `Drawer` component is an expandable panel that slides in from the right side
 - Displaying supplementary content while maintaining the main view
 - Providing forms or information panels that slide in from the edge of the screen
 - Creating a workflow that doesn't completely interrupt the user's current context
-
-There are two different variants of **Drawers**:
-
-- **classic**: includes a backdrop overlay and slides in from the edge of the screen
-- **collapsible**: includes a handle to toggle visibility and can be collapsed/expanded without closing
 
 Drawers typically consist of:
 - Header section with title and dismiss button
@@ -31,7 +27,6 @@ Drawers typically consist of:
   code={`
     <Drawer
       heading={'Example drawer'}
-      variant={'classic'}
       isLoading={false}
       primaryButtonLabel={'Confirm'}
       isPrimaryButtonLoading={false}
