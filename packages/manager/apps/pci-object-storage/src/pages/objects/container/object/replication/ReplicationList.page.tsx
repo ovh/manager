@@ -44,7 +44,7 @@ import '../show/style.scss';
 
 import { STATUS_ENABLED } from '@/constants';
 import { useStorageFeatures } from '@/hooks/useStorageFeatures';
-import { useContainerMemo } from '@/hooks/useContainerMemo';
+import { useMergedContainer } from '@/hooks/useContainerMemo';
 
 export default function ReplicationListPage() {
   const { storageId, projectId } = useParams();
@@ -90,7 +90,7 @@ export default function ReplicationListPage() {
     targetContainer?.id,
   );
 
-  const container = useContainerMemo(
+  const container = useMergedContainer(
     serverContainer,
     targetContainer,
     url,

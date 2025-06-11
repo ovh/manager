@@ -65,7 +65,7 @@ import { useSortedObjects } from './useSortedObjectsWithIndex';
 import { ContainerDatagrid } from './ContainerDataGrid';
 import { ContainerInfoPanel } from './ContainerInfoPanel';
 import UseStandardInfrequentAccessAvailability from '@/hooks/useStandardInfrequentAccessAvailability';
-import { useContainerMemo } from '@/hooks/useContainerMemo';
+import { useMergedContainer } from '@/hooks/useContainerMemo';
 
 export type TContainer = {
   id: string;
@@ -162,7 +162,7 @@ export default function ObjectPage() {
     targetContainer?.id,
   );
 
-  const container = useContainerMemo(
+  const container = useMergedContainer(
     serverContainer,
     targetContainer,
     url,

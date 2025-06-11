@@ -34,7 +34,7 @@ import { useStorage, useStorageEndpoint } from '@/api/hooks/useStorages';
 import '../show/style.scss';
 import { useServerContainerObjectVersions } from '@/api/hooks/useContainerObjectVersions';
 import { useSortedObjects } from '../show/useSortedObjectsWithIndex';
-import { useContainerMemo } from '@/hooks/useContainerMemo';
+import { useMergedContainer } from '@/hooks/useContainerMemo';
 
 export default function ObjectPage() {
   const { storageId, objectName: encodedObjectName } = useParams();
@@ -75,7 +75,7 @@ export default function ObjectPage() {
     targetContainer?.id,
   );
 
-  const container = useContainerMemo(
+  const container = useMergedContainer(
     serverContainer,
     targetContainer,
     url,

@@ -11,6 +11,7 @@ import { useMemo } from 'react';
 import ActionsComponent from './ActionsComponent';
 import { TObject } from '@/api/data/container';
 import { STATUS_DISABLED, STATUS_ENABLED } from '@/constants';
+import DestinationNameCell from './DestinationNameCell';
 
 export type TIndexedObject = TObject & { index: string };
 
@@ -52,16 +53,9 @@ export const useDatagridColumn = () => {
     },
     {
       id: 'destinationName',
-      cell: (props: TIndexedBackupConfiguration) => {
-        const { name, region } = props.destination;
-        const href = useHref(`../${name}?region=${region}`);
-
-        return (
-          <div className="flex flex-col">
-            <OdsLink color="primary" href={href} label={name} />
-          </div>
-        );
-      },
+      cell: (props: TIndexedBackupConfiguration) => (
+        <DestinationNameCell destination={props.destination} />
+      ),
       label: t(
         'pci_projects_project_storages_containers_replication_list_data_grid_destination_name',
       ),
@@ -120,14 +114,13 @@ export const useDatagridColumn = () => {
       cell: (props: TIndexedBackupConfiguration) => {
         const { status } = props;
 
-        const getVersioningBadgeColor = useMemo(() => {
-          const statusMap = {
-            [STATUS_ENABLED]: ODS_BADGE_COLOR.success,
-            [STATUS_DISABLED]: ODS_BADGE_COLOR.critical,
-          };
+        const statusMap = {
+          [STATUS_ENABLED]: ODS_BADGE_COLOR.success,
+          [STATUS_DISABLED]: ODS_BADGE_COLOR.critical,
+        };
 
-          return statusMap[status] ?? ODS_BADGE_COLOR.information;
-        }, [status]);
+        const getVersioningBadgeColor =
+          statusMap[status] ?? ODS_BADGE_COLOR.information;
 
         return (
           <div className="flex flex-col">

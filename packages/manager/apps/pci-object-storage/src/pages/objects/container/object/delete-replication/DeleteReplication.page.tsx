@@ -20,7 +20,7 @@ import {
 
 import { useServerContainer } from '@/api/hooks/useContainer';
 import { useGetRegion } from '@/api/hooks/useRegion';
-import { useContainerMemo } from '@/hooks/useContainerMemo';
+import { useMergedContainer } from '@/hooks/useContainerMemo';
 
 export default function DeleteReplicationPage() {
   const { t } = useTranslation(['containers/replication/delete']);
@@ -50,7 +50,7 @@ export default function DeleteReplicationPage() {
 
   const { data: region } = useGetRegion(projectId, searchParams.get('region'));
 
-  const container = useContainerMemo(
+  const container = useMergedContainer(
     serverContainer,
     targetContainer,
     url,

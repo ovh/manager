@@ -38,23 +38,19 @@ export type TReplicationStorage = {
       id: string;
       status: 'enabled' | 'disabled';
       priority: number;
-      destination: {
-        name: string;
-        region: string;
-        storageClass: ReplicationStorageClass;
-      };
+      destination: TReplicationDestination;
       deleteMarkerReplication: 'enabled' | 'disabled';
       filter?: { prefix: string; tags: { [key: string]: string } };
     }[];
   };
 };
-interface TServerDestinationContainer {
+type TServerDestinationContainer = {
   versioning: {
     status: string;
   };
-}
+};
 
-interface TReplicationRuleDestinationProps {
+type TReplicationRuleDestinationProps = {
   destination: TReplicationDestination;
   setDestination: (destination: TReplicationDestination) => void;
   allStorages: TReplicationStorage[];
@@ -62,7 +58,7 @@ interface TReplicationRuleDestinationProps {
   serverDestinationContainer: TServerDestinationContainer;
   asyncReplicationLink: string;
   setUseStorageclass: (useStorageclass: boolean) => void;
-}
+};
 
 export function ReplicationRuleDestination({
   destination,

@@ -74,7 +74,7 @@ import {
   ReplicationRulePriority,
 } from './ReplicationRulePriority.component';
 import { ReplicationRuleStorageClass } from './ReplicationRuleStorageClass.component';
-import { useContainerMemo } from '@/hooks/useContainerMemo';
+import { useMergedContainer } from '@/hooks/useContainerMemo';
 
 const validIdRegex = /^[\x20-\x7E]{3,255}$/;
 const validPrefixRegex = /^[\p{L}\p{N}\p{S}\p{P}\p{M}\p{Z}](?:[\p{L}\p{N}\p{S}\p{P}\p{M}\p{Z}]{0,255})?$/u;
@@ -151,7 +151,7 @@ export default function AddReplicationPage() {
     targetContainer?.id,
   );
 
-  const container = useContainerMemo(
+  const container = useMergedContainer(
     serverContainer,
     targetContainer,
     url,
@@ -181,15 +181,15 @@ export default function AddReplicationPage() {
   >(STATUS_ENABLED);
 
   const [replicationRulePrefix, setReplicationRulePrefix] = useState('');
+
+  const isValidReplicationRulePrefix = useMemo(() => {
+    return validPrefixRegex.test(replicationRulePrefix);
+  }, [replicationRulePrefix]);
+
   const [
     isReplicationRulePrefixTouched,
     setIsReplicationRulePrefixTouched,
   ] = useState(false);
-
-  const [prefixError, setPrefixError] = useState<string | undefined>(undefined);
-  const isValidReplicationRulePrefix = useMemo(() => {
-    return validPrefixRegex.test(replicationRulePrefix);
-  }, [replicationRulePrefix]);
 
   const [destination, setDestination] = useState<
     TReplicationDestination | undefined
@@ -437,17 +437,18 @@ export default function AddReplicationPage() {
                     isValidReplicationRuleId={isValidReplicationRuleId}
                   />
                   <ReplicationRulePrefix
-                    replicationRulePrefix={replicationRulePrefix}
-                    setReplicationRulePrefix={setReplicationRulePrefix}
-                    isReplicationRulePrefixTouched={
-                      isReplicationRulePrefixTouched
-                    }
                     setIsReplicationRulePrefixTouched={
                       setIsReplicationRulePrefixTouched
                     }
-                    isValidReplicationRulePrefix={isValidReplicationRulePrefix}
-                    prefixError={prefixError}
-                    setPrefixError={setPrefixError}
+                    replicationRulePrefix={replicationRulePrefix}
+                    setReplicationRulePrefix={setReplicationRulePrefix}
+                    prefixError={
+                      isReplicationRulePrefixTouched &&
+                      !isValidReplicationRulePrefix &&
+                      replicationRulePrefix !== ''
+                        ? t('pci-common:common_field_error_pattern')
+                        : undefined
+                    }
                   />
 
                   <ReplicationRuleDeleteMarker
