@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.4.5...@ovh-ux/shell@4.5.0) (2025-06-11)
+
+
+### Features
+
+* incorporate procedure changes, fix config ([5bd9e38](https://github.com/ovh/manager/commit/5bd9e388efd0ed1a46934f04c8182aab31d56d9c)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+* remove last occurances of reket ([af0883e](https://github.com/ovh/manager/commit/af0883e36655bc0defcc9122db92073254f1566b)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
 ## [4.4.5](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.4.4...@ovh-ux/shell@4.4.5) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/shell

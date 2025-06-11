@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.134.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.133.0...@ovh-ux/manager-container-app@0.134.0) (2025-06-11)
+
+
+### Bug Fixes
+
+* **container:** fix navigation tree issues ([ff5be11](https://github.com/ovh/manager/commit/ff5be114f276b9feb9258dea98e50a8756b8e121)), closes [#MANAGER-17837](https://github.com/ovh/manager/issues/MANAGER-17837)
+* fix usage of useOvhPaymentMethod in apps and packages ([14cf10c](https://github.com/ovh/manager/commit/14cf10cb5b73962f41c462187f42b8ef088291f4)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+### Features
+
+* **container:** change billing trad ([6cf7a86](https://github.com/ovh/manager/commit/6cf7a862799940eb8d3022e8671c1ada22f524df)), closes [#MANAGER-17636](https://github.com/ovh/manager/issues/MANAGER-17636)
+* **container:** migrate from reket to axios ([b4519df](https://github.com/ovh/manager/commit/b4519dfc90482cb6eac17a125e538f4b48a7eeab)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+* **container:** redirect metrics data platform to ldp ([9e4c71d](https://github.com/ovh/manager/commit/9e4c71de575d9528ac8e225618b2cb26009ba677)), closes [#MANAGER-16730](https://github.com/ovh/manager/issues/MANAGER-16730)
+* incorporate procedure changes, fix config ([5bd9e38](https://github.com/ovh/manager/commit/5bd9e388efd0ed1a46934f04c8182aab31d56d9c)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+* remove last occurances of reket ([af0883e](https://github.com/ovh/manager/commit/af0883e36655bc0defcc9122db92073254f1566b)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
 # [0.133.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.132.1...@ovh-ux/manager-container-app@0.133.0) (2025-06-10)
 
 

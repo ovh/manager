@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-volume-backup-app",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "description": "PCI volume backup react application ",
   "repository": {
@@ -18,12 +18,12 @@
     "test": "vitest run --pool=threads"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.3.2",
+    "@ovh-ux/manager-config": "^8.4.0",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/manager-pci-common": "^2.6.2",
     "@ovh-ux/manager-react-components": "^2.27.0",
-    "@ovh-ux/manager-react-core-application": "^0.11.24",
+    "@ovh-ux/manager-react-core-application": "^0.11.25",
     "@ovh-ux/manager-react-shell-client": "^0.8.7",
     "@ovh-ux/request-tagger": "*",
     "@ovhcloud/ods-components": "^18.6.2",

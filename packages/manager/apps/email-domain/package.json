@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-emaildomain-app",
-  "version": "3.0.32",
+  "version": "3.0.33",
   "private": true,
   "repository": {
     "type": "git",
@@ -14,14 +14,14 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.3.2",
-    "@ovh-ux/manager-core": "^13.2.0",
+    "@ovh-ux/manager-config": "^8.4.0",
+    "@ovh-ux/manager-core": "^13.2.1",
     "@ovh-ux/manager-email-domain": "^1.11.3",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.3",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.1.4",
     "@ovh-ux/ng-ovh-http": "^5.1.4",
-    "@ovh-ux/ng-ovh-payment-method": "^9.16.8",
+    "@ovh-ux/ng-ovh-payment-method": "^9.17.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.4",
     "@ovh-ux/ng-ovh-request-tagger": "^2.0.3",
     "@ovh-ux/ng-ovh-sso-auth": "^4.8.4",
