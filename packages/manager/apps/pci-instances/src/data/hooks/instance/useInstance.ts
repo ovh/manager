@@ -4,9 +4,13 @@ import {
   UseQueryOptions,
   QueryKey,
 } from '@tanstack/react-query';
-import { editInstanceName, getInstance } from '@/data/api/instance';
+import {
+  editInstanceName,
+  getInstance,
+  getRegionInstance,
+} from '@/data/api/instance';
 import { useProjectId } from '@/hooks/project/useProjectId';
-import { TInstanceDto } from '@/types/instance/api.type';
+import { TInstanceDetailDto, TInstanceDto } from '@/types/instance/api.type';
 import { instancesQueryKey } from '@/utils';
 import { DeepReadonly } from '@/types/utils.type';
 import queryClient from '@/queryClient';
@@ -66,6 +70,34 @@ export const updateInstanceCache = ({
     },
   );
 };
+
+export const getRegionInstanceQuery = <T = TInstanceDetailDto>(
+  projectId: string,
+  region: string,
+  instanceId: string,
+): UseQueryOptions<TInstanceDetailDto, Error, T, QueryKey> => ({
+  queryKey: instancesQueryKey(projectId, [
+    'instance',
+    instanceId,
+    'region',
+    region,
+  ]),
+  queryFn: () => getRegionInstance({ projectId, region, instanceId }),
+});
+
+export const useRegionInstance = <TData = TInstanceDetailDto>(
+  projectId: string,
+  instance: string,
+  region: string,
+  options?: Omit<
+    UseQueryOptions<TInstanceDetailDto, Error, TData>,
+    'queryKey' | 'queryFn'
+  >,
+) =>
+  useQuery<TInstanceDetailDto, Error, TData>({
+    ...getRegionInstanceQuery(projectId, region, instance),
+    ...options,
+  });
 
 export const useEditInstanceName = ({
   projectId,
