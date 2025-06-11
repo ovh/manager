@@ -17,7 +17,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { OKMS } from '@/types/okms.type';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 type InformationTileProps = {
   okmsData?: OKMS;
@@ -46,7 +46,9 @@ const InformationsTile = ({
               size={ODS_BUTTON_SIZE.sm}
               variant={ODS_BUTTON_VARIANT.ghost}
               color={ODS_BUTTON_COLOR.primary}
-              onClick={() => navigate(ROUTES_URLS.okmsUpdateName)}
+              onClick={() =>
+                navigate(KMS_ROUTES_URLS.kmsEditName(okmsData?.id))
+              }
               icon={ODS_ICON_NAME.pen}
               label=""
             />

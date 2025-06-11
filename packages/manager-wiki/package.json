@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-wiki",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "private": true,
   "description": "Manager Wiki",
   "license": "BSD-3-Clause",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.12.0",
-    "@ovh-ux/manager-react-components": "^2.27.0",
+    "@ovh-ux/manager-react-components": "^2.27.1",
     "@ovhcloud/ods-components": "^18.6.2",
     "@tanstack/react-table": "^8.10.0",
     "clsx": "^2.1.1",
@@ -23,11 +23,11 @@
   "devDependencies": {
     "@etchteam/storybook-addon-status": "^5.0.0",
     "@mdx-js/react": "^3.0.1",
-    "@ovh-ux/manager-config": "^8.3.2",
+    "@ovh-ux/manager-config": "^8.4.0",
     "@ovh-ux/manager-core-api": "^0.12.0",
     "@ovh-ux/ovh-at-internet": "^0.21.6",
     "@ovh-ux/request-tagger": "^0.4.0",
-    "@ovh-ux/shell": "^4.4.5",
+    "@ovh-ux/shell": "^4.5.1",
     "@ovh-ux/url-builder": "^2.0.0",
     "@storybook/addon-docs": "^8.6.7",
     "@storybook/addon-essentials": "^8.6.7",

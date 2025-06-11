@@ -6638,9 +6638,18 @@
   version "0.8.0"
 
 "@ovh-ux/manager-config@file:packages/manager/modules/config":
-  version "8.3.2"
+  version "8.4.0"
   dependencies:
-    "@ovh-ux/ovh-reket" "^2.1.9"
+    "@ovh-ux/manager-core-api" "^0.10.1"
+
+"@ovh-ux/manager-core-api@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.10.1.tgz#139b02351d8bd72479fbc5a6861dae17a875108e"
+  integrity sha512-rDoN7OHsqeRoW4iepD1FrFApOkN/RBkIwxT7dqZmPQfnq0J+a1szoXPRzDiN2g/SXRSsTqUEhSPdoGvhooapvg==
+  dependencies:
+    "@ovh-ux/manager-core-sso" "^0.3.0"
+    "@ovh-ux/request-tagger" "^0.4.0"
+    axios "^1.1.2"
 
 "@ovh-ux/manager-core-api@^0.11.1":
   version "0.11.1"
@@ -6765,12 +6774,12 @@
     uuid "^9.0.1"
 
 "@ovh-ux/manager-react-core-application@file:packages/manager/core/application":
-  version "0.11.24"
+  version "0.11.26"
   dependencies:
-    "@ovh-ux/manager-config" "^8.3.2"
+    "@ovh-ux/manager-config" "^8.4.0"
     "@ovh-ux/manager-core-api" "^0.12.0"
-    "@ovh-ux/ovh-at-internet" "^0.23.1"
-    "@ovh-ux/shell" "^4.4.5"
+    "@ovh-ux/ovh-at-internet" "^0.23.2"
+    "@ovh-ux/shell" "^4.5.1"
     "@tanstack/react-query" "^5.51.21"
     generouted "1.6.4"
     i18next "^23.8.2"
@@ -16244,6 +16253,11 @@ element-internals-polyfill@^3.0.0, element-internals-polyfill@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-3.0.1.tgz#46e69c38c87313d9863fa4ec949517c26ca3beb5"
   integrity sha512-gHt0mrRy/y7VIymHIcq1U/IZOci3Z8qUy/YyMBSoSIfMHqO4v6Sm6igGpoFeljroo0Q2wjkInUafB79M6WAocQ==
+
+element-internals-polyfill@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-3.0.2.tgz#df7a0dcd5e39f64d46115efc61e497359edc3e8e"
+  integrity sha512-uB0/Qube3lkwh8SmkTnGIyUgJ9YdqVSzIoHMRCEQjAbD4Y5UzsVbch1tIxjTgUe5k3gy1U0ZMKMJ90A81lqwig==
 
 email-addresses@^5.0.0:
   version "5.0.0"

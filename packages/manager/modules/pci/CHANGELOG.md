@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.93.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.93.0...@ovh-ux/manager-pci@6.93.1) (2025-06-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4094] ([ad15f88](https://github.com/ovh/manager/commit/ad15f88b3927485c9e2603541ff313808074b1b4))
+
+
+
+
+
+# [6.93.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.92.0...@ovh-ux/manager-pci@6.93.0) (2025-06-11)
+
+
+### Bug Fixes
+
+* **pci-instances:** use native oui-radio style ([f85e6e0](https://github.com/ovh/manager/commit/f85e6e09ec6ff2f7376f6b43d7444bb773edc43b))
+* **public-cloud:** restore and change dataplatform and notebooks card link ([#17453](https://github.com/ovh/manager/issues/17453)) ([019ba02](https://github.com/ovh/manager/commit/019ba02647abb6af3357b28da3c05c6fae9753d6)), closes [#DATATR-2269](https://github.com/ovh/manager/issues/DATATR-2269)
+
+
+### Features
+
+* **pci-instances:** add guide to availability zone choice ([9ea06a2](https://github.com/ovh/manager/commit/9ea06a288684f843593d812aee1a0fbe97917592)), closes [#TAPC-3481](https://github.com/ovh/manager/issues/TAPC-3481)
+* **pci-private-registry:** add a ending banner ([9e10fa2](https://github.com/ovh/manager/commit/9e10fa2154d9eaede00c7151fdd07d2dccddc4b2)), closes [#TAPC-3134](https://github.com/ovh/manager/issues/TAPC-3134) [#TAPC-3135](https://github.com/ovh/manager/issues/TAPC-3135)
+* **pci.quota:** quota guides link ([81d02e2](https://github.com/ovh/manager/commit/81d02e23e4300ea0bf117a7f23aee93e2378934b)), closes [#TAPC-1908](https://github.com/ovh/manager/issues/TAPC-1908)
+* **pci:** handle error message ([9a24299](https://github.com/ovh/manager/commit/9a242997e8eaf32ac7fe66e362c7b23ed7b075e2)), closes [#TAPC-1622](https://github.com/ovh/manager/issues/TAPC-1622)
+
+
+### Reverts
+
+* Revert "feat(pci): handle error message" ([1985eb8](https://github.com/ovh/manager/commit/1985eb825aabb137a3458d05a6968896728755c5))
+
+
+
+
+
 # [6.92.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.91.1...@ovh-ux/manager-pci@6.92.0) (2025-06-04)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-payment-method",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "description": "Get payment methods from different OVHcloud APIs",
   "repository": {
     "type": "git",
@@ -23,9 +23,13 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
+    "@ovh-ux/manager-core-api": "^0.10.1",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.0.3"
+  },
+  "peerDependencies": {
+    "axios": "^1.1.2"
   }
 }

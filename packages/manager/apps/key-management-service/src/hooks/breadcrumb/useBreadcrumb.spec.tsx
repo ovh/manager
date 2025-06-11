@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useLocation } from 'react-router-dom';
 import { BreadcrumbItem, useBreadcrumb } from './useBreadcrumb';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 const useNavigateMock = vi.fn();
 
@@ -60,7 +60,7 @@ describe('useBreadcumb test suite', () => {
     result.current[0].onOdsClick();
 
     // then
-    expect(useNavigateMock).toHaveBeenCalledWith(ROUTES_URLS.root);
+    expect(useNavigateMock).toHaveBeenCalledWith(KMS_ROUTES_URLS.kmsListing);
   });
 
   it('should replace url path value with given item label', () => {

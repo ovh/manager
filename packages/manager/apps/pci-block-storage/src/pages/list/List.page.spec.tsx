@@ -1,5 +1,4 @@
 import { render, waitFor } from '@testing-library/react';
-import * as managerComponentsModule from '@ovh-ux/manager-react-components';
 import { describe, it, vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
@@ -43,8 +42,6 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
     })),
   };
 });
-
-vi.mock('@/core/HidePreloader');
 
 vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
   const actual: any = await importOriginal();
@@ -146,24 +143,10 @@ const wrapper = ({ children }) => (
 );
 
 afterEach(() => {
-  vi.restoreAllMocks();
+  vi.clearAllMocks();
 });
 
 describe('ListingPage', () => {
-  it('renders maintenance banner when product has maintenance', async () => {
-    vi.spyOn(managerComponentsModule, 'useProductMaintenance').mockReturnValue({
-      hasMaintenance: true,
-      maintenanceURL: 'http://maintenance.com',
-    });
-
-    const { getByTestId } = render(<ListingPage />, {
-      wrapper,
-    });
-    await waitFor(() =>
-      expect(getByTestId('maintenance-banner')).toBeInTheDocument(),
-    );
-  });
-
   it('renders volumes when volumes are available', async () => {
     const { getByText } = render(<ListingPage />, {
       wrapper,

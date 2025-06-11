@@ -73,12 +73,6 @@ export const ACTIONS = [
     stateParams: { type: ENGINES_TYPES.databases.label },
   },
   {
-    translation: 'pci_projects_project_create_ai_notebook',
-    state: 'pci.projects.project.notebooks',
-    feature: PCI_FEATURES.PRODUCTS.NOTEBOOKS,
-    name: 'ainotebook',
-  },
-  {
     translation: 'pci_projects_project_activate_private_networks',
     state: 'pci.projects.project.privateNetwork',
     feature: PCI_FEATURES.PRODUCTS.PRIVATE_NETWORK,
@@ -102,11 +96,18 @@ export const DATABASE_UAPP_CONFIG = {
 };
 
 export const DATA_PLATFORM_CONFIG = {
-  url:
-    'https://hq-api.eu.dataplatform.ovh.net/iam/v4/login?authentication_provider=ovh&project={projectId}&app_id=forepaas&&response_type=token&redirect_uri=https%3A%2F%2Feu.dataplatform.ovh.net&authorize_bypass=true&token_mode=cookie&force_auth=false',
+  url: '#/pci/projects/{projectId}/dataplatform',
   translation: 'pci_projects_project_data_platform',
+  feature: PCI_FEATURES.PRODUCTS.DATA_PLATFORM,
   name: 'dataplatform',
-  external: true,
+};
+
+export const NOTEBOOKS_UAPP_CONFIG = {
+  universe: 'public-cloud',
+  url: '#/pci/projects/{projectId}/ai-ml/notebooks',
+  translation: 'pci_projects_project_create_ai_notebook',
+  feature: PCI_FEATURES.PRODUCTS.NOTEBOOKS,
+  name: 'ainotebook',
 };
 
 const PROJECT_PAGE_TRACKING_NAME = 'PublicCloud::pci::projects::project';
@@ -198,6 +199,32 @@ export const TERRAFORM_GUIDES = {
   IE: 'https://docs.ovh.com/ie/en/publiccloud/databases/order-terraform/',
   QC: 'https://docs.ovh.com/ca/fr/publiccloud/databases/order-terraform/',
   SG: 'https://docs.ovh.com/sg/en/publiccloud/databases/order-terraform/',
+};
+/**
+ *
+ * @type {Partial<Record<import('manager-react-components').OvhSubsidiary | 'DEFAULT', string>>}
+ */
+export const QUOTA_LIMIT_GUIDES = {
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050843',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050840',
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050843',
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050836',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050838',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050852',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050844',
+  WE:
+    'https://help.ovhcloud.com/csm/en-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050845',
+  IN:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050836',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050857',
 };
 
 export const DISCOVERY_PROMOTION_VOUCHER = 'FREETRIAL';
