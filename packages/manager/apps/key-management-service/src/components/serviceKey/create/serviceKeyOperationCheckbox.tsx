@@ -29,9 +29,9 @@ export const ServiceKeyOperationCheckbox = ({
   const key = operation.value.join('_');
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center gap-3">
       <OdsCheckbox inputId={key} value={key} {...props} />
-      <label className="ml-2" htmlFor={key}>
+      <label htmlFor={key}>
         <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
           {translatedOperations.join(' / ')}
         </OdsText>
