@@ -30,10 +30,14 @@ import {
   createApplicationServer,
   getDefaultApplicationServers,
   isApplicationServerDeletable,
+  isValidApplicationServerList,
 } from '@/utils/applicationServers';
 import { useServerConfigQueries } from '@/hooks/serverConfig/useServerConfigQueries';
-import { SAP_ROLES } from '@/hooks/sapCapabilities/useSapCapabilities';
-import { getSelectDefaultValue } from '../initialStep/InstallationInitialStep.page';
+import {
+  getSelectDefaultValue,
+  getSelectLatestValue,
+} from '@/utils/selectValues';
+import { APPLICATION_SERVER_ROLES } from '@/utils/applicationServers.constants';
 
 type FormData = z.output<typeof SERVER_CONFIG_SCHEMA>;
 
@@ -98,33 +102,60 @@ export default function InstallationStepServerConfig() {
   const defaultValues: ServerConfigForm = {
     ...getServerConfigFormData({ values, errors }).values,
     network: getSelectDefaultValue(
-      isPrefilled ? prefilledNetwork : values.network,
+      getSelectLatestValue({
+        isPrefilled,
+        value: values.network,
+        prefilledValue: prefilledNetwork,
+      }),
       networkNames,
     ),
     thickDatastorePolicy: getSelectDefaultValue(
-      isPrefilled ? prefilledPolicy : values.thickDatastorePolicy,
+      getSelectLatestValue({
+        isPrefilled,
+        value: values.thickDatastorePolicy,
+        prefilledValue: prefilledPolicy,
+      }),
       policyNames,
     ),
     applicationServerDatastore: getSelectDefaultValue(
-      isPrefilled ? prefilledAppStore : values.applicationServerDatastore,
+      getSelectLatestValue({
+        isPrefilled,
+        value: values.applicationServerDatastore,
+        prefilledValue: prefilledAppStore,
+      }),
       datastoreNames,
     ),
     applicationServerOva: getSelectDefaultValue(
-      isPrefilled ? prefilledAppOva : values.applicationServerOva,
+      getSelectLatestValue({
+        isPrefilled,
+        value: values.applicationServerOva,
+        prefilledValue: prefilledAppOva,
+      }),
       ovaTemplates,
     ),
     hanaServerDatastore: getSelectDefaultValue(
-      isPrefilled ? prefilledHanaStore : values.hanaServerDatastore,
+      getSelectLatestValue({
+        isPrefilled,
+        value: values.hanaServerDatastore,
+        prefilledValue: prefilledHanaStore,
+      }),
       datastoreNames,
     ),
     hanaServerOva: getSelectDefaultValue(
-      isPrefilled ? prefilledHanaOva : values.hanaServerOva,
+      getSelectLatestValue({
+        isPrefilled,
+        value: values.hanaServerOva,
+        prefilledValue: prefilledHanaOva,
+      }),
       ovaTemplates,
     ),
     hanaServers: values.hanaServers?.length
       ? values.hanaServers
       : [DEFAULT_HANA_SERVER],
-    applicationServers: values.applicationServers?.length
+    applicationServers: isValidApplicationServerList({
+      applicationServers: values.applicationServers,
+      deploymentType: values.deploymentType,
+    })
       ? values.applicationServers
       : getDefaultApplicationServers(values.deploymentType),
   };
@@ -461,7 +492,7 @@ export default function InstallationStepServerConfig() {
                     field={field}
                     label={t('role')}
                     placeholder={t('select_label')}
-                    options={SAP_ROLES}
+                    options={Array.from(APPLICATION_SERVER_ROLES)}
                     isDisabled={true}
                   />
                 )}

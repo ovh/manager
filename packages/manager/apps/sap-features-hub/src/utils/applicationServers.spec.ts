@@ -4,15 +4,20 @@ import {
   getDefaultApplicationServers,
   isApplicationServerDeletable,
   isDefaultApplicationServer,
+  isValidApplicationServerList,
 } from './applicationServers';
 import { ApplicationServer } from '@/types/servers.type';
 import { DEFAULT_APPLICATION_SERVER } from './defaultServers.constants';
-import { DeploymentType, SAPRole } from '@/types/sapCapabilities.type';
+import { DeploymentType } from '@/types/sapCapabilities.type';
+import {
+  ApplicationServerRole,
+  SERVER_ROLE,
+} from './applicationServers.constants';
 
 describe('createApplicationServer test suite', () => {
   it("returns an application server with 'DI' role when no args are passed", () => {
     const vm = createApplicationServer();
-    expect(vm.role).toBe('DI');
+    expect(vm.role).toBe(SERVER_ROLE.di);
     expect(vm).toStrictEqual(DEFAULT_APPLICATION_SERVER);
   });
 
@@ -30,7 +35,7 @@ describe('getDefaultApplicationServer test suite', () => {
   const testCases: {
     deploymentType: DeploymentType;
     length: number;
-    roles: SAPRole[];
+    roles: ApplicationServerRole[];
   }[] = [
     { deploymentType: 'Standard', length: 1, roles: ['SCS'] },
     { deploymentType: 'Distributed', length: 2, roles: ['SCS', 'CI'] },
@@ -107,6 +112,85 @@ describe('isApplicationServerDeletable test suite', () => {
         serverIndex,
       });
       expect(isDefault).toBe(expected);
+    },
+  );
+});
+
+describe('isValidApplicationServerList test suite', () => {
+  const baseVM = DEFAULT_APPLICATION_SERVER;
+  const testCases: {
+    description: string;
+    deploymentType: DeploymentType;
+    applicationServers: ApplicationServer[];
+    expected: boolean;
+  }[] = [
+    {
+      description: 'default server list',
+      deploymentType: 'Standard',
+      applicationServers: getDefaultApplicationServers('Standard'),
+      expected: true,
+    },
+    {
+      description: 'default server list',
+      deploymentType: 'Distributed',
+      applicationServers: getDefaultApplicationServers('Distributed'),
+      expected: true,
+    },
+    {
+      description: 'default server list',
+      deploymentType: 'High Availability',
+      applicationServers: getDefaultApplicationServers('High Availability'),
+      expected: true,
+    },
+    {
+      description: 'list with additional valid server',
+      deploymentType: 'Standard',
+      applicationServers: [...getDefaultApplicationServers('Standard'), baseVM],
+      expected: true,
+    },
+    {
+      description: 'list with additional invalid server',
+      deploymentType: 'Standard',
+      applicationServers: [
+        ...getDefaultApplicationServers('Standard'),
+        { ...baseVM, role: SERVER_ROLE.scs },
+      ],
+      expected: false,
+    },
+    {
+      description: 'duplicated default server list',
+      deploymentType: 'Standard',
+      applicationServers: [
+        ...getDefaultApplicationServers('Standard'),
+        ...getDefaultApplicationServers('Standard'),
+      ],
+      expected: false,
+    },
+    {
+      description: 'default server with incorrect role',
+      deploymentType: 'Standard',
+      applicationServers: [baseVM],
+      expected: false,
+    },
+    {
+      description: 'default list with a server removed',
+      deploymentType: 'Distributed',
+      applicationServers: [
+        ...getDefaultApplicationServers('Distributed').slice(0, -1),
+      ],
+      expected: false,
+    },
+  ];
+
+  test.each(testCases)(
+    'returns $expected for validity of $description with deploymentType $deploymentType',
+    ({ deploymentType, applicationServers, expected }) => {
+      const isValidList = isValidApplicationServerList({
+        deploymentType,
+        applicationServers,
+      });
+
+      expect(isValidList).toBe(expected);
     },
   );
 });

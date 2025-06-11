@@ -7,6 +7,7 @@ import { SelectField } from '@/components/Form/SelectField.component';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import InstallationFormLayout from '@/components/Form/FormLayout.component';
+import { getSelectDefaultValue } from '@/utils/selectValues';
 
 type ServiceNameData = {
   serviceName: string;
@@ -20,11 +21,6 @@ type ClusterData = {
   clusterId: number;
   clusterName: string;
 };
-
-export const getSelectDefaultValue = <T extends string | number>(
-  value: T,
-  list: T[] | undefined,
-): string | undefined => (list?.includes(value) ? `${value}` : undefined);
 
 export default function InstallationInitialStep() {
   const { t } = useTranslation('installation');
