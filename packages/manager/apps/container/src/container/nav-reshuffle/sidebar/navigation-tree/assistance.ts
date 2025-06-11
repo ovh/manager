@@ -42,7 +42,7 @@ export const assistanceTree: Node = {
       isExternal: true,
     },
     {
-      id: 'create_ticket',
+      id: 'createTicket',
       translation: 'sidebar_create_ticket',
       url: 'createTicket',
       hasService: false,

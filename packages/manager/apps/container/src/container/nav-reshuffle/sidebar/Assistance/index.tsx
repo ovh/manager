@@ -73,6 +73,16 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
             : null;
           node.isExternal = isEUOrCA;
           break;
+        case 'createTicket':
+          node.url = isEUOrCA ? node.url : null;
+          node.routing = !isEUOrCA
+            ? {
+                application: 'dedicated',
+                hash: '#/ticket/create',
+              }
+            : null;
+          node.isExternal = isEUOrCA;
+          break;
         case 'assistance_status':
           node.onClick = () => trackNode('assistance_status');
           break;
