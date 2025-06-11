@@ -14,7 +14,7 @@ import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import { UserLink } from './UserLink';
 
-export type Props = {
+type Props = {
   defaultPaymentMethod?: unknown;
   isLoading?: boolean;
 };
