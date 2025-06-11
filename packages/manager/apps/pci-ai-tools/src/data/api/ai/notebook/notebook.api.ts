@@ -1,4 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
+import { AxiosResponse } from 'axios';
 import ai from '@/types/AI';
 import { NotebookData, PCIAi } from '../..';
 
@@ -41,7 +42,10 @@ export const stopNotebook = async ({ projectId, notebookId }: NotebookData) => {
     .then((res) => res.data as ai.notebook.Notebook);
 };
 
-export const deleteNotebook = async ({ projectId, notebookId }: NotebookData) =>
+export const deleteNotebook = async ({
+  projectId,
+  notebookId,
+}: NotebookData): Promise<AxiosResponse<void>> =>
   apiClient.v6.delete(`/cloud/project/${projectId}/ai/notebook/${notebookId}`);
 
 export const getCommand = async ({ projectId, notebookInfo }: AddNotebook) =>

@@ -54,8 +54,8 @@ export const useGetDatastoresWithContainers = (
     containersQueries.forEach((ds) => ds.refetch());
   }, [containersQueries]);
   const dataStoresWithContainers: DataStoresWithContainers[] = containersQueries.flatMap(
-    (container) => {
-      return container.data || [];
+    (container): DataStoresWithContainers[] => {
+      return (container?.data || []) as DataStoresWithContainers[];
     },
   );
 

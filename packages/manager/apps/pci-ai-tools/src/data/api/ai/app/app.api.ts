@@ -1,4 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
+import { AxiosResponse } from 'axios';
 import ai from '@/types/AI';
 import { AppData, PCIAi } from '../..';
 
@@ -53,5 +54,8 @@ export const stopApp = async ({ projectId, appId }: AppData) => {
     .then((res) => res.data as ai.app.App);
 };
 
-export const deleteApp = async ({ projectId, appId }: AppData) =>
+export const deleteApp = async ({
+  projectId,
+  appId,
+}: AppData): Promise<AxiosResponse<void>> =>
   apiClient.v6.delete(`/cloud/project/${projectId}/ai/app/${appId}`);

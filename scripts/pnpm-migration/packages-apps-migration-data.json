@@ -1,5 +1,8 @@
 {
-  "exclude-yarn-apps": ["packages/manager/apps/zimbra"],
+  "exclude-yarn-apps": [
+    "packages/manager/apps/zimbra",
+    "packages/manager/apps/pci-ai-tools"
+  ],
   "pnpm-link-dependencies": {
     "@ovh-ux/manager-module-order": "packages/manager/modules/order",
     "@ovh-ux/manager-core-utils": "packages/manager/core/utils",

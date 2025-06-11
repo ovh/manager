@@ -1,4 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
+import { AxiosResponse } from 'axios';
 import ai from '@/types/AI';
 import { JobData, PCIAi } from '../..';
 
@@ -32,7 +33,10 @@ export const killJob = async ({ projectId, jobId }: JobData) => {
     .then((res) => res.data as ai.job.Job);
 };
 
-export const deleteJob = async ({ projectId, jobId }: JobData) =>
+export const deleteJob = async ({
+  projectId,
+  jobId,
+}: JobData): Promise<AxiosResponse<void>> =>
   apiClient.v6.delete(`/cloud/project/${projectId}/ai/job/${jobId}`);
 
 export const getCommand = async ({ projectId, jobInfo }: AddJob) =>

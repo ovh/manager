@@ -3452,9 +3452,9 @@
   integrity sha512-Fze56Qv4qkucB3/w5/bl1lNVCNKlOdSBKYDVLaHNCJhHs+JbHCtMR4Ki29dA+Lk8mti0r3g1fdMZ7Hb2YBZ8gA==
 
 "@datatr-ux/ovhcloud-types@^1.0.11":
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.11.tgz#bac1d9b460cc969a191967cd2b1d0858de713d78"
-  integrity sha512-NSqgUoIXKHxVRY5fnp5hV2kNQJxbX9/Om0naInG1tnztBvdkRuuhfzga9+ReYVqkktaSg/kb3CGZzyWi2tpvCg==
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.16.tgz#83b497612db234d471eb0ef74d4593d287da7c1c"
+  integrity sha512-wMb8aDIRVjQ27CCRqQHpfESxdX0NiQ8bM+mpC4tuB1lWk38oHYe7OR2fKXP3yockJ3/m6euyN9414xkZE3XBUQ==
 
 "@datatr-ux/uxlib@0.0.10":
   version "0.0.10"
@@ -3507,10 +3507,61 @@
     tailwindcss-animate "^1.0.7"
     vaul "^1.1.2"
 
-"@datatr-ux/uxlib@^0.0.11-beta-7", "@datatr-ux/uxlib@^0.0.11-beta-8":
+"@datatr-ux/uxlib@^0.0.11-beta-7":
   version "0.0.11-beta-8"
   resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-0.0.11-beta-8.tgz#e47edc3465d6ea8add18e81717193d3d543223c8"
   integrity sha512-yAIPXaEVXtv0uxj7Z8A8GMIOUrtzuC06gG1Uw9proXtjCGSh6yBpnjaNIRhK0LWORtBQFxs9yVwy/M8CjkJkKw==
+  dependencies:
+    "@ovhcloud/ods-theme-blue-jeans" "^17.2.2"
+    "@ovhcloud/ods-themes" "^18.4.1"
+    "@radix-ui/react-accordion" "^1.2.2"
+    "@radix-ui/react-alert-dialog" "^1.1.4"
+    "@radix-ui/react-aspect-ratio" "^1.1.1"
+    "@radix-ui/react-avatar" "^1.1.2"
+    "@radix-ui/react-checkbox" "^1.1.3"
+    "@radix-ui/react-collapsible" "^1.1.2"
+    "@radix-ui/react-context-menu" "^2.2.4"
+    "@radix-ui/react-dialog" "^1.1.4"
+    "@radix-ui/react-dropdown-menu" "^2.1.4"
+    "@radix-ui/react-hover-card" "^1.1.4"
+    "@radix-ui/react-label" "^2.1.1"
+    "@radix-ui/react-menubar" "^1.1.4"
+    "@radix-ui/react-navigation-menu" "^1.2.3"
+    "@radix-ui/react-popover" "^1.1.4"
+    "@radix-ui/react-progress" "^1.1.1"
+    "@radix-ui/react-radio-group" "^1.2.2"
+    "@radix-ui/react-scroll-area" "^1.2.2"
+    "@radix-ui/react-select" "^2.1.4"
+    "@radix-ui/react-separator" "^1.1.1"
+    "@radix-ui/react-slider" "^1.2.2"
+    "@radix-ui/react-slot" "^1.1.1"
+    "@radix-ui/react-switch" "^1.1.2"
+    "@radix-ui/react-tabs" "^1.1.2"
+    "@radix-ui/react-toast" "^1.2.4"
+    "@radix-ui/react-toggle" "^1.1.1"
+    "@radix-ui/react-toggle-group" "^1.1.1"
+    "@radix-ui/react-tooltip" "^1.1.6"
+    class-variance-authority "^0.7.1"
+    clsx "^2.1.1"
+    cmdk "^1.0.0"
+    date-fns "^3.6.0"
+    embla-carousel-react "^8.5.1"
+    input-otp "^1.4.1"
+    lodash "^4.17.21"
+    lucide-react "^0.469.0"
+    next-themes "^0.4.4"
+    react-day-picker "^8.10.1"
+    react-resizable-panels "^2.1.7"
+    shiki "^3.2.1"
+    sonner "^1.7.1"
+    tailwind-merge "^2.6.0"
+    tailwindcss-animate "^1.0.7"
+    vaul "^1.1.2"
+
+"@datatr-ux/uxlib@^0.0.11-beta-8":
+  version "0.0.11-beta-9"
+  resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-0.0.11-beta-9.tgz#f1222f8c18c40c4c532a29b0b6dec48db6c9643c"
+  integrity sha512-rM774FrzESm9Q/sqs072kjn9hICt/Jz3aVoFi/gFqd397LnIvOhMYD5+SoHCQypmWEbfYiVcXrO/xrKpH5z1Bg==
   dependencies:
     "@ovhcloud/ods-theme-blue-jeans" "^17.2.2"
     "@ovhcloud/ods-themes" "^18.4.1"
@@ -6583,6 +6634,14 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
+"@ovh-ux/manager-common-translations@file:packages/manager/modules/common-translations":
+  version "0.8.0"
+
+"@ovh-ux/manager-config@file:packages/manager/modules/config":
+  version "8.3.2"
+  dependencies:
+    "@ovh-ux/ovh-reket" "^2.1.9"
+
 "@ovh-ux/manager-core-api@^0.11.1":
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.11.1.tgz#182cc03bd8532dcc08c09f1df7d34bb7ed349efe"
@@ -6592,6 +6651,27 @@
     "@ovh-ux/request-tagger" "^0.4.1"
     axios "^1.1.2"
 
+"@ovh-ux/manager-core-api@file:packages/manager/core/api":
+  version "0.12.0"
+  dependencies:
+    "@ovh-ux/manager-core-sso" "^0.3.1"
+    "@ovh-ux/request-tagger" "^0.4.1"
+    axios "^1.1.2"
+
+"@ovh-ux/manager-core-utils@file:packages/manager/core/utils":
+  version "0.3.0"
+  dependencies:
+    react "^18.2.0"
+    react-dom "^18.2.0"
+    react-router-dom "^6.3.0"
+
+"@ovh-ux/manager-module-order@file:packages/manager/modules/order":
+  version "0.10.0"
+  dependencies:
+    "@ovh-ux/manager-core-api" "^0.12.0"
+    "@ovh-ux/manager-react-shell-client" "^0.8.7"
+    jsurl "^0.1.5"
+
 "@ovh-ux/manager-pci-common@^0.16.4":
   version "0.16.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.16.4.tgz#0d9f4efd0140cd4f2eb0f9b508f3e53a8120e5c2"
@@ -6600,6 +6680,9 @@
     clsx "2.1.1"
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
+
+"@ovh-ux/manager-phone-prefix@file:packages/manager/modules/phone-prefix":
+  version "1.1.4"
 
 "@ovh-ux/manager-react-components@^1.41.1":
   version "1.45.0"
@@ -6681,6 +6764,50 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
+"@ovh-ux/manager-react-core-application@file:packages/manager/core/application":
+  version "0.11.24"
+  dependencies:
+    "@ovh-ux/manager-config" "^8.3.2"
+    "@ovh-ux/manager-core-api" "^0.12.0"
+    "@ovh-ux/ovh-at-internet" "^0.23.1"
+    "@ovh-ux/shell" "^4.4.5"
+    "@tanstack/react-query" "^5.51.21"
+    generouted "1.6.4"
+    i18next "^23.8.2"
+    i18next-http-backend "^2.4.3"
+    react "^18.2.0"
+    react-dom "^18.2.0"
+    react-i18next "^14.0.5"
+    react-router-dom "^6.3.0"
+
+"@ovh-ux/manager-react-shell-client@file:packages/manager/core/shell-client":
+  version "0.8.7"
+  dependencies:
+    "@ovh-ux/manager-config" "^8.2.1"
+    "@ovh-ux/ovh-at-internet" "^0.21.6"
+    "@ovh-ux/request-tagger" "^0.4.0"
+    "@ovh-ux/shell" "^4.1.0"
+    "@ovh-ux/url-builder" "^2.0.0"
+    "@tanstack/react-query" "^5.64.1"
+    i18next "^23.8.2"
+    i18next-http-backend "^2.4.2"
+
+"@ovh-ux/manager-tailwind-config@file:packages/manager/core/tailwind-config":
+  version "0.3.0"
+
+"@ovh-ux/manager-vite-config@file:packages/manager/core/vite-config":
+  version "0.10.0"
+  dependencies:
+    "@ovh-ux/manager-dev-server-config" "^6.1.3"
+    "@vitejs/plugin-react-swc" "^3.9.0"
+    express "^4.17.1"
+    http-proxy-middleware "^2.0.7"
+    terser "^5.16.0"
+    vite "^6.0.7"
+    vite-plugin-static-copy "^2.0.0"
+    vite-plugin-svgr "^4.3.0"
+    yn "^5.0.0"
+
 "@ovh-ux/ng-ovh-api-wrappers@^5.0.0", "@ovh-ux/ng-ovh-api-wrappers@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-5.1.0.tgz#b8bfef258a4e0860eabf219cb1880ca0a15da687"
@@ -6699,6 +6826,9 @@
   version "0.21.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.21.8.tgz#91f6b35e77eb60839a715d787e6ab9a22e7ec183"
   integrity sha512-RBrew2Xnkhw/gqvDhLDBiv3mQMlTn6yLNDrF0kc8JtuYG1FiNdM7ucIOq581jZJ598GNhCMIbjvpQ2XjysnKuQ==
+
+"@ovh-ux/request-tagger@file:packages/manager/core/request-tagger":
+  version "0.4.1"
 
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.6"
@@ -25994,9 +26124,9 @@ react-hook-form@^7.53.1:
   integrity sha512-6aiQeBda4zjcuaugWvim9WsGqisoUk+etmFEsSUMm451/Ic8L/UAb7sRtMj3V+Hdzm6mMjU1VhiSzYUZeBm0Vg==
 
 react-hook-form@^7.55.0:
-  version "7.55.0"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.55.0.tgz#df3c80a20a68f6811f49bec3406defaefb6dce80"
-  integrity sha512-XRnjsH3GVMQz1moZTW53MxfoWN7aDpUg/GpVNc4A3eXRVNdGXfbzJ4vM4aLQ8g6XCUh1nIbx70aaNCl7kxnjog==
+  version "7.57.0"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.57.0.tgz#d0bb0c84060c6b9282d99c64566ec919dfca9409"
+  integrity sha512-RbEks3+cbvTP84l/VXGUZ+JMrKOS8ykQCRYdm5aYsxnDquL0vspsyNhGRO7pcH6hsZqWlPOjLye7rJqdtdAmlg==
 
 react-i18next@^11.18.1:
   version "11.18.6"
@@ -30214,6 +30344,11 @@ typescript@^5.5.4:
   version "5.6.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.6.2.tgz#d1de67b6bef77c41823f822df8f0b3bcff60a5a0"
   integrity sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==
+
+typescript@^5.8.3:
+  version "5.8.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.8.3.tgz#92f8a3e5e3cf497356f4178c34cd65a7f5e8440e"
+  integrity sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==
 
 u2f-api-polyfill@^0.4.3:
   version "0.4.4"

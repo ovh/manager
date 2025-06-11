@@ -1,4 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
+import { AxiosResponse } from 'axios';
 import ai from '@/types/AI';
 import { PCIAi } from '../..';
 
@@ -23,7 +24,10 @@ export const addToken = async ({ projectId, token }: AddTokenProps) =>
     .post(`/cloud/project/${projectId}/ai/token`, token)
     .then((res) => res.data as ai.token.Token);
 
-export const deleteToken = async ({ projectId, tokenId }: TokenProps) =>
+export const deleteToken = async ({
+  projectId,
+  tokenId,
+}: TokenProps): Promise<AxiosResponse<void>> =>
   apiClient.v6.delete(`/cloud/project/${projectId}/ai/token/${tokenId}`);
 
 export const renewToken = async ({ projectId, tokenId }: TokenProps) =>
