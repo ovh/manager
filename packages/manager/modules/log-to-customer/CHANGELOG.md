@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.5.2...@ovh-ux/manager-log-to-customer@2.6.0) (2025-06-11)
+
+
+### Features
+
+* manage multi kinds for log to customer ([654c9e6](https://github.com/ovh/manager/commit/654c9e67ca3b50ecfd0e89dc51997abddae980e8)), closes [#MANAGER-17438](https://github.com/ovh/manager/issues/MANAGER-17438)
+
+
+
+
+
 ## [2.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.5.1...@ovh-ux/manager-log-to-customer@2.5.2) (2025-06-10)
 
 
