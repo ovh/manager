@@ -155,7 +155,9 @@ export default function DeleteReplicationPage() {
           }
           values={{ decodedReplicationId }}
           components={{
-            strong: <strong />,
+            strong: (
+              <strong className="inline-block max-w-40 overflow-hidden text-ellipsis whitespace-nowrap align-text-bottom" />
+            ),
           }}
         />
       </OdsText>
