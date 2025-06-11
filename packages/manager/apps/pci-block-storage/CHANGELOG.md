@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.16.0...@ovh-ux/manager-pci-block-storage-app@0.17.0) (2025-06-11)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** remove double redirection on detach ([3cff09f](https://github.com/ovh/manager/commit/3cff09f2dd3f3bd9dc392ef870454e89118a24f3)), closes [#TAPC-4248](https://github.com/ovh/manager/issues/TAPC-4248)
+
+
+### Features
+
+* **pci-block-storage:** add minimum price in deployment tiles ([9e741d1](https://github.com/ovh/manager/commit/9e741d1c6cc1dd236d6fe2f3b75caa22dfcdc6c7)), closes [#TAPC-2887](https://github.com/ovh/manager/issues/TAPC-2887)
+* **pci-block-storage:** add refresh button ([539b423](https://github.com/ovh/manager/commit/539b423ed64d14586a0f143ac9f555eb11735e6b)), closes [#TAPC-4245](https://github.com/ovh/manager/issues/TAPC-4245)
+
+
+
+
+
 # [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.15.0...@ovh-ux/manager-pci-block-storage-app@0.16.0) (2025-06-05)
 
 
