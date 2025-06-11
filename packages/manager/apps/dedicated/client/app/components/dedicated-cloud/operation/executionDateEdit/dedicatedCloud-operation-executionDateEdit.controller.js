@@ -2,10 +2,11 @@ import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
-  constructor($locale, $translate, DedicatedCloud) {
+  constructor($locale, $translate, DedicatedCloud, $timeout) {
     this.$locale = $locale;
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
+    this.$timeout = $timeout;
   }
 
   $onInit() {
@@ -28,27 +29,26 @@ export default class {
 
   onExecutionDateEditFormSubmit() {
     this.loading.save = true;
-
-    return this.DedicatedCloud.updateOperation(this.productId, {
-      taskId: this.operationToEdit.taskId,
-      data: {
-        executionDate: this.model.newExecutionDate,
-      },
-    })
-      .then(() =>
-        this.goBack(
-          this.$translate.instant('dedicatedCloud_OPERATIONS_success'),
-        ),
-      )
-      .catch((error) =>
-        this.goBack(
-          `${this.$translate.instant('dedicatedCloud_OPERATIONS_error')} ${get(
-            error,
-            'message',
-            '',
-          )}`,
-          'danger',
-        ),
-      );
+    this.$timeout(() => {
+      return this.DedicatedCloud.updateOperation(this.productId, {
+        taskId: this.operationToEdit.taskId,
+        data: {
+          executionDate: this.model.newExecutionDate,
+        },
+      })
+        .then(() =>
+          this.goBack(
+            this.$translate.instant('dedicatedCloud_OPERATIONS_success'),
+          ),
+        )
+        .catch((error) =>
+          this.goBack(
+            `${this.$translate.instant(
+              'dedicatedCloud_OPERATIONS_error',
+            )} ${get(error, 'message', '')}`,
+            'danger',
+          ),
+        );
+    }, 500); // to wait for newExecutionDate change sync
   }
 }
