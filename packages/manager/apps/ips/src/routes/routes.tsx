@@ -41,7 +41,7 @@ export const Routes: any = [
             children: [
               {
                 id: subRoutes.configureReverseDns,
-                path: urls.configureReverseDns,
+                path: urls.listingConfigureReverseDns,
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/actions/configureReverseDns/configureReverseDns.page'
@@ -55,7 +55,7 @@ export const Routes: any = [
                 },
               },
               {
-                id: 'listing-terminate',
+                id: subRoutes.terminate,
                 path: urls.listingTerminate,
                 ...lazyRouteConfig(() =>
                   import('@/pages/actions/terminate/terminateIp.page'),
@@ -68,7 +68,7 @@ export const Routes: any = [
                 },
               },
               {
-                id: 'listing-description',
+                id: subRoutes.upsertDescription,
                 path: urls.listingUpsertDescription,
                 ...lazyRouteConfig(() =>
                   import(
@@ -78,6 +78,21 @@ export const Routes: any = [
                 handle: {
                   tracking: {
                     pageName: 'listing-upsert-description',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
+              {
+                id: subRoutes.configureGameFirewall,
+                path: urls.listingConfigureGameFirewall,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/configureGameFirewall/configureGameFirewall.page'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'listing-configure-game-firewall',
                     pageType: PageType.popup,
                   },
                 },
