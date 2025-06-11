@@ -72,7 +72,7 @@ export const useGetDomainDetail = (domainName: string) => {
   });
 };
 
-export const useGetDomainDetailInfo = ({ serviceName }) => {
+export const useGetDomainDetailInfo = (serviceName: string) => {
   return useQuery<TAllDomDomains>({
     queryKey: ['domain', 'information', serviceName],
     queryFn: () => getDomainDetailInformation(serviceName),

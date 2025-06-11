@@ -1,4 +1,4 @@
-import { v6 } from '@ovh-ux/manager-core-api';
+import { v2, v6 } from '@ovh-ux/manager-core-api';
 import {
   TAllDomDomains,
   TDomainDetail,
@@ -89,8 +89,8 @@ export const updateDomainServiceInfo = async (domainName: string) => {
 };
 
 export const getDomainDetailInformation = async (serviceName: string) => {
-  const { data } = await v6.get<TAllDomDomains>(
-    `/allDom/${serviceName}/domainInfo`,
+  const { data } = await v2.get<TAllDomDomains>(
+    `/domain/alldom/${serviceName}`,
   );
   return data;
 };
