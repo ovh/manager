@@ -1,5 +1,4 @@
 import {
-  DomainDnssecStatus,
   DomainRegistrationStateEnum,
   ServiceInfoRenewMode,
   ServiceInfoType,
@@ -48,7 +47,7 @@ export interface TServiceProperty {
 }
 
 export interface ModalStepsProps {
-  domains?: TDomainsInfo[];
+  domainsAttached?: TDomainsInfo[];
   domainAttachedChecked?: string[];
   domainTerminateList?: string[];
   serviceName?: string;
@@ -76,11 +75,15 @@ export interface TAllDomDomains {
 export interface TDomainsInfo {
   name: string;
   registrationStatus: DomainRegistrationStateEnum;
-  expiration?: string;
+  expiresAt?: string;
   extension?: string;
   mainState?: string;
-  protectionState?: string;
-  suspensionState?: string;
-  nameServers: string[];
-  isDnssecActivated: boolean;
+  protectionState?: string | null;
+  suspensionState?: string | null;
+  nameServers: [
+    {
+      nameServer: string;
+    },
+  ];
+  dnssecActivated: boolean;
 }

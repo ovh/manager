@@ -1,5 +1,5 @@
 import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
@@ -47,21 +47,22 @@ export default function DatagridColumnActionMenu({
         },
         {
           id: 2,
-          label: t('allDom_table_action_terminate'),
-          onClick: () => navigate(url),
-        },
-        {
-          id: 3,
           label: t(`allDom_table_action_${renewAction}_renewal`),
           href: `${billingUrl}/autorenew/${renewAction}?selectedType=ALL_DOM&searchText=${serviceName}&services=${serviceId}`,
           target: '_blank',
         },
         {
-          id: 4,
+          id: 3,
           label: t(`allDom_table_action_handle_contacts`),
           href: `${handleContactUrl}/contacts/services/edit?service=${serviceName}&categoryType=ALL_DOM`,
           target: '_blank',
           'data-testid': 'handleContact-button',
+        },
+        {
+          id: 4,
+          label: t('allDom_table_action_terminate'),
+          onClick: () => navigate(url),
+          color: ODS_BUTTON_COLOR.critical,
         },
       ]}
     />

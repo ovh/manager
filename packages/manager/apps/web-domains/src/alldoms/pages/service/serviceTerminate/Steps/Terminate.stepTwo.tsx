@@ -68,6 +68,8 @@ export default function TerminateModalStepTwo({
     }
   };
 
+  console.log(domainTerminateList);
+
   return (
     <div>
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>

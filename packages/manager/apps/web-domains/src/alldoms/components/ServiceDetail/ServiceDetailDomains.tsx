@@ -2,7 +2,6 @@ import { Datagrid } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useDomainDatagridColumns } from '@/alldoms/hooks/domainDatagrid/useDomainDatagridColumns';
 import { TDomainsInfo } from '@/alldoms/types';
-import { DomainRegistrationStateEnum } from '@/alldoms/enum/service.enum';
 
 interface ServiceDetailDomainsProps {
   readonly items: TDomainsInfo[];

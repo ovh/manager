@@ -37,18 +37,20 @@ export default function ServiceDetail() {
       header={header}
     >
       <React.Suspense>
-        <section className="grid grid-cols-1 gap-6 items-start lg:grid-cols-2">
-          <div className="flex flex-col gap-6">
+        <section>
+          <div className="grid grid-cols-1 gap-6 items-start mb-8 lg:grid-cols-2">
             <ServiceDetailInformation
               allDomProperty={serviceInfoDetail.allDomProperty}
-              domainsAttached={serviceInfoDetail.domainAttached}
+              extensionsList={
+                serviceInfoDetail.domainAttached.currentState.extensions
+              }
               status={serviceInfoDetail.serviceInfo.billing.renew.current.mode}
             />
-            <ServiceDetailDomains
-              domainsAttached={serviceInfoDetail.domainAttached}
-            />
+            <ServiceDetailSubscribing serviceInfoDetail={serviceInfoDetail} />
           </div>
-          <ServiceDetailSubscribing serviceInfoDetail={serviceInfoDetail} />
+          <ServiceDetailDomains
+            items={serviceInfoDetail.domainAttached.currentState.domains}
+          />
         </section>
         <Outlet />
       </React.Suspense>
