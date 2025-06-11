@@ -1,5 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import {
+  TInstanceDetailDto,
   TInstanceDto,
   TRetrieveInstancesQueryParams,
 } from '@/types/instance/api.type';
@@ -140,6 +141,7 @@ export const activateMonthlyBilling = (
     serviceName: projectId,
   });
 
+/** @deprecated use regionalized getRegionInstance call instead */
 export const getInstance = ({
   projectId,
   instanceId,
@@ -149,6 +151,19 @@ export const getInstance = ({
 }): Promise<TInstanceDto> =>
   v6
     .get(`/cloud/project/${projectId}/aggregated/instance/${instanceId}`)
+    .then((response) => response.data);
+
+export const getRegionInstance = ({
+  projectId,
+  region,
+  instanceId,
+}: {
+  projectId: string;
+  region: string;
+  instanceId: string;
+}): Promise<TInstanceDetailDto> =>
+  v6
+    .get(`/cloud/project/${projectId}/region/${region}/instance/${instanceId}`)
     .then((response) => response.data);
 
 export const editInstanceName = ({

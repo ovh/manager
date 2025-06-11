@@ -12,7 +12,8 @@ const InstanceName: FC<{
   instanceId: string;
   isEditable: boolean;
   name: string;
-}> = ({ instanceId, isEditable, name }) => {
+  region: string;
+}> = ({ instanceId, isEditable, name, region }) => {
   const { t } = useTranslation('dashboard');
   const { addError } = useNotifications();
   const projectId = useProjectId();
@@ -22,6 +23,7 @@ const InstanceName: FC<{
       updateInstanceCache({
         projectId,
         instanceId,
+        region,
         payload: { name: value },
       });
     },

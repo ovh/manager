@@ -51,7 +51,7 @@ export const INSTANCE_PATH = 'instance/:instanceId';
 export const SECTIONS = {
   onboarding: 'onboarding',
   new: 'new',
-  instance: ':instanceId',
+  instance: ':instanceId/region/:regionId',
   delete: 'delete',
   stop: 'stop',
   start: 'start',

@@ -55,5 +55,14 @@ export type TInstance = DeepReadonly<{
   availabilityZone: string | null;
   taskState: string | null;
   isImageDeprecated: boolean;
+}>;
+
+export type TInstanceDetail = DeepReadonly<{
+  id: string;
+  name: string;
+  status: TInstanceStatus;
+  pendingTask: boolean;
+  availabilityZone: string | null;
+  taskState: string | null;
   isEditionEnabled: boolean;
 }>;

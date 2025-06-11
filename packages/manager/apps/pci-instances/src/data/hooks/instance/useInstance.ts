@@ -4,9 +4,13 @@ import {
   UseQueryOptions,
   QueryKey,
 } from '@tanstack/react-query';
-import { editInstanceName, getInstance } from '@/data/api/instance';
+import {
+  editInstanceName,
+  getInstance,
+  getRegionInstance,
+} from '@/data/api/instance';
 import { useProjectId } from '@/hooks/project/useProjectId';
-import { TInstanceDto } from '@/types/instance/api.type';
+import { TInstanceDetailDto, TInstanceDto } from '@/types/instance/api.type';
 import { instancesQueryKey } from '@/utils';
 import { DeepReadonly } from '@/types/utils.type';
 import queryClient from '@/queryClient';
@@ -52,20 +56,50 @@ export const useInstance = <TData = TInstanceDto>(
 export const updateInstanceCache = ({
   projectId,
   instanceId,
+  region,
   payload,
 }: {
   projectId: string;
   instanceId: string;
-  payload: Partial<Omit<TInstanceDto, 'id'>>;
+  region: string;
+  payload: Partial<Omit<TInstanceDetailDto, 'id'>>;
 }) => {
-  queryClient.setQueryData<TInstanceDto>(
-    instancesQueryKey(projectId, ['instance', instanceId]),
+  queryClient.setQueryData<TInstanceDetailDto>(
+    instancesQueryKey(projectId, ['instance', instanceId, 'region', region]),
     (prevData) => {
       if (!prevData) return undefined;
       return { ...prevData, ...payload };
     },
   );
 };
+
+export const getRegionInstanceQuery = <T = TInstanceDetailDto>(
+  projectId: string,
+  region: string,
+  instanceId: string,
+): UseQueryOptions<TInstanceDetailDto, Error, T, QueryKey> => ({
+  queryKey: instancesQueryKey(projectId, [
+    'instance',
+    instanceId,
+    'region',
+    region,
+  ]),
+  queryFn: () => getRegionInstance({ projectId, region, instanceId }),
+});
+
+export const useRegionInstance = <TData = TInstanceDetailDto>(
+  projectId: string,
+  instance: string,
+  region: string,
+  options?: Omit<
+    UseQueryOptions<TInstanceDetailDto, Error, TData>,
+    'queryKey' | 'queryFn'
+  >,
+) =>
+  useQuery<TInstanceDetailDto, Error, TData>({
+    ...getRegionInstanceQuery(projectId, region, instance),
+    ...options,
+  });
 
 export const useEditInstanceName = ({
   projectId,
