@@ -5,7 +5,7 @@
   "status-SCALING": "Escalado",
   "status-QUEUED": "Pendiente",
   "status-INITIALIZING": "Inicio",
-  "status-FAILED": "Error",
+  "status-FAILED": "Fallo",
   "status-ERROR": "Error",
   "status-STOPPED": "Detenido",
   "status-RUNNING": "En servicio"

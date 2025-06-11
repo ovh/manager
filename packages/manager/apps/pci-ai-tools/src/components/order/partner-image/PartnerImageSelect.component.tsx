@@ -31,7 +31,6 @@ import A from '@/components/links/A.component';
 import { ImagePartnerApp } from '@/types/orderFunnel';
 import ParnterOrderPrice from '../price/OrderPricePartner.component';
 import { useLocale } from '@/hooks/useLocale';
-import ai from '@/types/AI';
 import { cn } from '@/lib/utils';
 
 interface PartnerImageSelectProps {
@@ -50,14 +49,13 @@ const PartnerImageSelect = React.forwardRef<
   PartnerImageSelectProps
 >(({ images, value, onChange, version }, ref) => {
   const { t } = useTranslation('ai-tools/components/partner-image');
-  const [contract, setContract] = useState<ai.partner.Contract>();
+  const contract = images.find((im) => im.id === value)?.contract;
   const [isChecked, setIsChecked] = useState(false);
   const [openVersionCb, setOpenVersionCb] = useState(false);
 
   const locale = useLocale();
   useEffect(() => {
     setIsChecked(!!images.find((im) => im.id === value)?.contract?.signedAt);
-    setContract(images.find((im) => im.id === value)?.contract);
   }, [value, images]);
 
   return (

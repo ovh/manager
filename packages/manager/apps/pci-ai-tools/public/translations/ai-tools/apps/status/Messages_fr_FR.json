@@ -5,8 +5,8 @@
   "status-SCALING": "Mise à l'échelle",
   "status-QUEUED": "En attente",
   "status-INITIALIZING": "Initialisation",
-  "status-FAILED": "Erreur",
+  "status-FAILED": "Echec",
   "status-ERROR": "Erreur",
-  "status-STOPPED": "Arrêté",
+  "status-STOPPED": "Arrêtée",
   "status-RUNNING": "En service"
 }

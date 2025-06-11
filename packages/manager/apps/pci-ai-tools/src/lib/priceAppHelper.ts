@@ -11,7 +11,7 @@ export function createAppPriceObject(
     name?: string;
     version?: string;
   },
-  partnerAppImage: ImagePartnerApp[],
+  partnerAppImages: ImagePartnerApp[],
   scaling: Scaling,
   resource: Flavor,
   resourceNumber: number,
@@ -28,75 +28,45 @@ export function createAppPriceObject(
   };
 
   if (image.version) {
-    const selectedPartnerApp = partnerAppImage.find(
+    const selectedPartnerApp = partnerAppImages.find(
       (app) => app.id === image.name,
     );
 
-    if (
-      selectedPartnerApp?.licensing ===
-      ai.capabilities.LicensingTypeEnum['per-resource']
-    ) {
-      appPricing.partnerLicence = {
-        price:
-          resource.type === ai.capabilities.FlavorTypeEnum.gpu
-            ? 60 *
-              selectedPartnerApp.pricingGpu.price *
-              resourceNumber *
-              nbReplicas
-            : 60 *
-              selectedPartnerApp.pricingCpu.price *
-              resourceNumber *
-              nbReplicas,
-        tax:
-          resource.type === ai.capabilities.FlavorTypeEnum.gpu
-            ? 60 *
-              selectedPartnerApp.pricingGpu.tax *
-              resourceNumber *
-              nbReplicas
-            : 60 *
-              selectedPartnerApp.pricingCpu.tax *
-              resourceNumber *
-              nbReplicas,
-      };
-    } else if (
-      selectedPartnerApp?.licensing ===
-      ai.capabilities.LicensingTypeEnum['per-replica']
-    ) {
-      appPricing.partnerLicence = {
-        price:
-          resource.type === ai.capabilities.FlavorTypeEnum.gpu
-            ? selectedPartnerApp.pricingGpu.price * nbReplicas
-            : selectedPartnerApp.pricingCpu.price * nbReplicas,
-        tax:
-          resource.type === ai.capabilities.FlavorTypeEnum.gpu
-            ? selectedPartnerApp.pricingGpu.tax * nbReplicas
-            : selectedPartnerApp.pricingCpu.tax * nbReplicas,
-      };
-    } else if (
-      selectedPartnerApp?.licensing ===
-      ai.capabilities.LicensingTypeEnum['per-second-bracket']
-    ) {
-      appPricing.partnerLicence = {
-        price:
-          resource.type === ai.capabilities.FlavorTypeEnum.gpu
-            ? selectedPartnerApp.pricingGpu.price * 60
-            : selectedPartnerApp.pricingCpu.price * 60,
-        tax:
-          resource.type === ai.capabilities.FlavorTypeEnum.gpu
-            ? selectedPartnerApp.pricingGpu.tax * 60
-            : selectedPartnerApp.pricingCpu.tax * 60,
-      };
-    } else if (selectedPartnerApp) {
-      appPricing.partnerLicence = {
-        price:
-          resource.type === ai.capabilities.FlavorTypeEnum.gpu
-            ? selectedPartnerApp.pricingGpu.price
-            : selectedPartnerApp.pricingCpu.price,
-        tax:
-          resource.type === ai.capabilities.FlavorTypeEnum.gpu
-            ? selectedPartnerApp.pricingGpu.tax
-            : selectedPartnerApp.pricingCpu.tax,
-      };
+    const price =
+      resource.type === ai.capabilities.FlavorTypeEnum.gpu
+        ? selectedPartnerApp.pricingGpu.price
+        : selectedPartnerApp.pricingCpu.price;
+
+    const tax =
+      resource.type === ai.capabilities.FlavorTypeEnum.gpu
+        ? selectedPartnerApp.pricingGpu.tax
+        : selectedPartnerApp.pricingCpu.tax;
+
+    switch (selectedPartnerApp?.licensing) {
+      case ai.capabilities.LicensingTypeEnum['per-resource']:
+        appPricing.partnerLicence = {
+          price: 60 * price * resourceNumber * nbReplicas,
+          tax: 60 * tax * resourceNumber * nbReplicas,
+        };
+        break;
+      case ai.capabilities.LicensingTypeEnum['per-replica']:
+        appPricing.partnerLicence = {
+          price: price * nbReplicas,
+          tax: tax * nbReplicas,
+        };
+        break;
+      case ai.capabilities.LicensingTypeEnum['per-second-bracket']:
+        appPricing.partnerLicence = {
+          price: price * 60,
+          tax: tax * 60,
+        };
+        break;
+      default:
+        appPricing.partnerLicence = {
+          price,
+          tax,
+        };
+        break;
     }
   }
 

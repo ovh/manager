@@ -57,7 +57,7 @@ export default function AppLayout() {
   if (!app) {
     return (
       <>
-        {/* <AppHeader.Skeleton /> */}
+        <AppHeader.Skeleton />
         <TabsMenu.Skeleton />
       </>
     );

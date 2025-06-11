@@ -116,7 +116,6 @@ export const AppHeader = ({ app }: { app: ai.app.App }) => {
 };
 
 AppHeader.Skeleton = function AppHeaderSkeleton() {
-  const { t } = useTranslation('pci-ai-training/apps/app');
   return (
     <div
       data-testid="app-header-skeleton"
@@ -124,7 +123,6 @@ AppHeader.Skeleton = function AppHeaderSkeleton() {
     >
       <Skeleton className="rounded-full h-14 w-14" />
       <div>
-        <h2>{t('dashboardTab')}</h2>
         <div className="flex gap-2">
           <Skeleton className="h-4 w-10" />
           <Skeleton className="h-4 w-10" />

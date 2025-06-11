@@ -10,14 +10,15 @@ export function createAppImagePricingList(
   return appImage.map((app) => {
     let appCpuPlanCode = '';
     let appGpuPlanCode = '';
+
     if (
       app.licensing === ai.capabilities.LicensingTypeEnum['per-second-bracket']
     ) {
-      appCpuPlanCode = `ai-${app.partnerName.toLocaleLowerCase()}.${app.id.toLocaleLowerCase()}-cpu-bracket1.unit.consumption`;
-      appGpuPlanCode = `ai-${app.partnerName.toLocaleLowerCase()}.${app.id.toLocaleLowerCase()}-gpu-bracket1.unit.consumption`;
+      appCpuPlanCode = `ai-${app.partnerName}.${app.id}-cpu-bracket1.unit.consumption`.toLocaleLowerCase();
+      appGpuPlanCode = `ai-${app.partnerName}.${app.id}-gpu-bracket1.unit.consumption`.toLocaleLowerCase();
     } else {
-      appCpuPlanCode = `ai-app.${app.partnerId.toLocaleLowerCase()}-${app.id.toLocaleLowerCase()}-cpu.minute.consumption`;
-      appGpuPlanCode = `ai-app.${app.partnerId.toLocaleLowerCase()}-${app.id.toLocaleLowerCase()}-gpu.minute.consumption`;
+      appCpuPlanCode = `ai-app.${app.partnerId}-${app.id}-cpu.minute.consumption`.toLocaleLowerCase();
+      appGpuPlanCode = `ai-app.${app.partnerId}-${app.id}-gpu.minute.consumption`.toLocaleLowerCase();
     }
 
     const noPriceFound: AppPricing = {
@@ -37,37 +38,25 @@ export function createAppImagePricingList(
       (partner) => partner.id === app.partnerId,
     )?.contract;
 
+    // if per-second-bracket, price must be * 60
+    const pricingFactor =
+      app.licensing === ai.capabilities.LicensingTypeEnum['per-second-bracket']
+        ? 60
+        : 1;
+
     return {
       ...app,
       contract: contractPart,
       pricingCpu: appCpuPrice
         ? {
-            // if per-second-bracket, price must be * 60
-            price:
-              app.licensing ===
-              ai.capabilities.LicensingTypeEnum['per-second-bracket']
-                ? appCpuPrice[0]?.price * 60
-                : appCpuPrice[0]?.price,
-            tax:
-              app.licensing ===
-              ai.capabilities.LicensingTypeEnum['per-second-bracket']
-                ? appCpuPrice[0]?.tax * 60
-                : appCpuPrice[0]?.tax,
+            price: appCpuPrice[0]?.price * pricingFactor,
+            tax: appCpuPrice[0]?.tax * pricingFactor,
           }
         : noPriceFound,
       pricingGpu: appGpuPrice
         ? {
-            // if per-second-bracket, price must be * 60
-            price:
-              app.licensing ===
-              ai.capabilities.LicensingTypeEnum['per-second-bracket']
-                ? appGpuPrice[0]?.price * 60
-                : appGpuPrice[0]?.price,
-            tax:
-              app.licensing ===
-              ai.capabilities.LicensingTypeEnum['per-second-bracket']
-                ? appGpuPrice[0]?.tax * 60
-                : appGpuPrice[0]?.tax,
+            price: appGpuPrice[0]?.price * pricingFactor,
+            tax: appGpuPrice[0]?.tax * pricingFactor,
           }
         : noPriceFound,
     };

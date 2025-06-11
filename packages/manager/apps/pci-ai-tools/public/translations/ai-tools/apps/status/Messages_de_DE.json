@@ -5,7 +5,7 @@
   "status-SCALING": "Skalierung",
   "status-QUEUED": "In Wartestellung",
   "status-INITIALIZING": "Initialisierung",
-  "status-FAILED": "Fehler",
+  "status-FAILED": "Fehlgeschlagen",
   "status-ERROR": "Fehler",
   "status-STOPPED": "Angehalten",
   "status-RUNNING": "In Betrieb"
