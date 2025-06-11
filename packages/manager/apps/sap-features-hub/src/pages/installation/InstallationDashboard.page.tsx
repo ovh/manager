@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import {
   BaseLayout,
@@ -12,7 +12,7 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { InstallationFormContextProvider } from '@/context/InstallationForm.context';
 import { INSTALLATION_STEPS } from './installation.constants';
-import { subRoutes, urls } from '@/routes/routes.constant';
+import { urls } from '@/routes/routes.constant';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -28,10 +28,9 @@ export default function InstallationDashboard() {
   const { t } = useTranslation('installation');
   const { currentStep } = useFormSteps();
   const navigate = useNavigate();
-  const location = useLocation();
 
-  const pageTitle = location.pathname.includes(subRoutes.wizard)
-    ? t('title_without_step')
+  const pageTitle = !currentStep
+    ? t('common_assistant_title')
     : t('title', {
         step: currentStep,
         total: Object.keys(INSTALLATION_STEPS).length,
