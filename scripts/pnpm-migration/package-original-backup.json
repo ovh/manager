@@ -57,7 +57,7 @@
     "packages:publish": "scripts/publish.js",
     "prepare": "husky install",
     "release": "scripts/release/release.sh",
-    "start": "node scripts/start-application.mjs",
+    "start": "node scripts/pnpm-migration/hybrid-start-application.mjs",
     "test": "yarn run test:custom",
     "test:custom": "node ./scripts/pnpm-migration/packages-custom-turbo-test.mjs",
     "test:jest": "jest --runInBand",
