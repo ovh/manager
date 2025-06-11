@@ -16,7 +16,8 @@ function useLinkUtils<T extends string | UrlEntry | UrlLinks | LinkEntry>(
     const getSubSidiary = async () => {
       const env = await environment.getEnvironment();
       const { ovhSubsidiary } = env.getUser();
-      const localLinks = dictionaryLinks[ovhSubsidiary];
+      const localLinks =
+        dictionaryLinks[ovhSubsidiary] || dictionaryLinks.DEFAULT;
       setLinks(localLinks);
     };
     getSubSidiary();
