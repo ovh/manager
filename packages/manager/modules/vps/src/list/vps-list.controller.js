@@ -43,6 +43,9 @@ export default class extends ListLayoutHelper.ListLayoutCtrl {
       })
       .catch((error) => {
         const errorMessage = error.data?.message || error.data || error;
+        if (errorMessage === 'This service is expired') {
+          return this.buildRow($row);
+        }
         this.Alerter.error(
           [
             this.$translate.instant('vps_list_loadLocation_error'),
