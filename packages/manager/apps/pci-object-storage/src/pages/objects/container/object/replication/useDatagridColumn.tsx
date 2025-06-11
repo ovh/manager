@@ -37,8 +37,12 @@ export const useDatagridColumn = () => {
         const { id } = props;
 
         return (
-          <div className="flex flex-col">
-            <DataGridTextCell>{id}</DataGridTextCell>
+          <div className="flex flex-col max-w-40">
+            <DataGridTextCell>
+              <span className="block overflow-hidden text-ellipsis whitespace-nowrap">
+                {id}
+              </span>
+            </DataGridTextCell>
           </div>
         );
       },

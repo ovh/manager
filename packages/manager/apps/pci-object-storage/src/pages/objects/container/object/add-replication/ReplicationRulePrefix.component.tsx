@@ -18,6 +18,7 @@ type TReplicationRulePrefix = {
   prefixError: string | undefined;
   setPrefixError: (value: string | undefined) => void;
 };
+
 export function ReplicationRulePrefix({
   replicationRulePrefix,
   setReplicationRulePrefix,

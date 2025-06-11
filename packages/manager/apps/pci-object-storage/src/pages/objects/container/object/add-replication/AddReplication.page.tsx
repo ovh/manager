@@ -228,7 +228,7 @@ export default function AddReplicationPage() {
 
   const handlePriorityChange = useCallback(
     (event: OdsInputChangeEvent) => {
-      const newValue = Number(event.detail.value);
+      const newValue = Math.round(Number(event.detail.value));
       if (newValue >= DEFAULT_PRIORITY && newValue <= MAX_PRIORITY) {
         const isPriorityTaken = container?.replication?.rules.find((item) => {
           return (
@@ -238,7 +238,7 @@ export default function AddReplicationPage() {
         });
 
         if (isPriorityTaken) {
-          setPriority(DEFAULT_PRIORITY);
+          setPriority(newValue);
           setPriorityError(true);
 
           return;
@@ -325,6 +325,7 @@ export default function AddReplicationPage() {
       );
     },
   });
+
   const onCreateReplicationRule = () => {
     if (!isButtonActive) return;
 

@@ -46,6 +46,7 @@ export function ReplicationRulePriority({
           value={priority}
           min={DEFAULT_PRIORITY}
           max={MAX_PRIORITY}
+          step={1}
           name="priority"
           className={clsx(priorityError && 'priority-error')}
         />
