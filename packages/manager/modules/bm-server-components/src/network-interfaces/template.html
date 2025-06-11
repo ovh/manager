@@ -27,6 +27,24 @@
             ></span>
         </a>
     </div>
+    <oui-button
+        data-ng-if="$ctrl.isFullyAggregated"
+        data-variant="primary"
+        data-ui-sref=".ola-reset({ola: $ctrl.ola})"
+    >
+        <span
+            data-translate="dedicated_server_interfaces_disaggregate_button"
+        ></span>
+    </oui-button>
+    <oui-button
+        data-ng-if="!$ctrl.isFullyAggregated"
+        data-variant="primary"
+        data-ui-sref=".ola-configuration"
+    >
+        <span
+            data-translate="dedicated_server_interfaces_aggregate_button"
+        ></span>
+    </oui-button>
     <oui-datagrid
         data-rows="$ctrl.displayedInterfaces"
         class="oui-tile__body table-striped "
