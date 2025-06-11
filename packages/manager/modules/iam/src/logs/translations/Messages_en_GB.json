@@ -4,5 +4,6 @@
   "iam_activity_logs_label": "Activity Logs",
   "iam_access_policy_logs_label": "Access policy logs",
   "iam_audit_logs_description_default": "Below are real-time logs of security-related customer account actions: user login, password change, user and group creation and modification.",
-  "iam_access_policy_logs_description_default": "Below are real-time logs for reviewing access policies when performing actions on your account resources."
+  "iam_access_policy_logs_description_default": "Below are real-time logs for reviewing access policies when performing actions on your account resources.",
+  "iam_activity_logs_description_access": "You can find real-time OVHcloud API activity logs below."
 }
