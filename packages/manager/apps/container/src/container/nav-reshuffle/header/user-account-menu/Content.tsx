@@ -94,7 +94,7 @@ const UserAccountMenu = ({
         links.find((link: UserLink) => link.key === 'myServices'),
       );
       const myAssistanceTickets = {
-        app: 'new-account',
+        app: 'account',
         key: 'myAssistanceTickets',
         hash: '#/ticket',
         i18nKey: 'user_account_menu_my_assistance_tickets',
@@ -103,7 +103,7 @@ const UserAccountMenu = ({
       const myIdentityDocuments = isIdentityDocumentsAvailable
         ? [
             {
-              app: 'new-account',
+              app: 'account',
               key: 'myIdentityDocuments',
               hash: '#/identity-documents',
               i18nKey: 'user_account_menu_my_identity_documents',
@@ -196,7 +196,7 @@ const UserAccountMenu = ({
             >
               <span>{t('user_account_menu_support')}</span>
               <a
-                href={getUrl('new-account', '#/useraccount/support/level')}
+                href={getUrl('account', '#/useraccount/support/level')}
                 onClick={() => onTrackNavigation(tracking.supportLevel)}
               >
                 <OsdsChip
@@ -238,7 +238,7 @@ const UserAccountMenu = ({
               id={'account_kyc_documents'}
               onClick={() =>
                 onLinkClick({
-                  app: 'new-account',
+                  app: 'account',
                   key: 'account_kyc_documents',
                   hash: '#/documents',
                   i18nKey: 'sidebar_account_kyc_documents',
@@ -247,7 +247,7 @@ const UserAccountMenu = ({
               className="d-block"
               aria-label={sidebarTranslation.t('sidebar_account_kyc_documents')}
               title={sidebarTranslation.t('sidebar_account_kyc_documents')}
-              href={getUrl('new-account', '#/documents')}
+              href={getUrl('account', '#/documents')}
               target="_top"
             >
               {sidebarTranslation.t('sidebar_account_kyc_documents')}
