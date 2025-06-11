@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.24.0...@ovh-ux/manager-pci-kubernetes-app@0.24.1) (2025-06-11)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** change unexpected url gateway ([584bde1](https://github.com/ovh/manager/commit/584bde14d0e4b9ecd48854e47e76d703c5648ff4)), closes [#TAPC-4010](https://github.com/ovh/manager/issues/TAPC-4010)
+
+
+
+
+
 # [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.23.0...@ovh-ux/manager-pci-kubernetes-app@0.24.0) (2025-06-05)
 
 
