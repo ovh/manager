@@ -1,7 +1,18 @@
-import { OsdsButton, OsdsIcon, OsdsMenu, OsdsMenuGroup, OsdsMenuItem, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { FunctionComponent, useEffect, useRef, useState } from 'react';
+import {
+    ODS_BUTTON_SIZE,
+    ODS_BUTTON_VARIANT,
+    ODS_ICON_NAME,
+    ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
+import {
+    OsdsButton,
+    OsdsIcon,
+    OsdsPopover,
+    OsdsPopoverContent,
+    OsdsText,
+} from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
 import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
@@ -19,7 +30,7 @@ const LanguageMenu: FunctionComponent<Props> = ({
     userLocale = '',
 }) => {
     const { i18n } = useTranslation('language');
-    const ref = useRef<HTMLOsdsMenuElement>();
+    const ref = useRef<HTMLOsdsPopoverElement>();
     const shell = useShell();
     const trackingPlugin = shell.getPlugin('tracking');
     const isSmallDevice = useMediaQuery({
@@ -91,26 +102,32 @@ const LanguageMenu: FunctionComponent<Props> = ({
     }
 
     return (
-        <OsdsMenu ref={ref} data-testid="languageMenu">
-            <OsdsButton data-testid="languageButton" slot='menu-title' size={ODS_BUTTON_SIZE.sm} color={ODS_THEME_COLOR_INTENT.primary} variant={ODS_BUTTON_VARIANT.ghost}>
+        <OsdsPopover ref={ref} data-testid="languageMenu">
+            <OsdsButton data-testid="languageButton" slot="popover-trigger" size={ODS_BUTTON_SIZE.sm} color={ODS_THEME_COLOR_INTENT.primary} variant={ODS_BUTTON_VARIANT.ghost}>
                 {getLanguageLabel()}
                 {!isSmallDevice && (<span slot='end'>
                     <OsdsIcon name={ODS_ICON_NAME.CHEVRON_DOWN} size={ODS_ICON_SIZE.xxs} color={ODS_THEME_COLOR_INTENT.primary} />
                 </span>)}
             </OsdsButton>
-            <OsdsMenuGroup className='w-60'>
-                <OsdsText>{t('language_change')}</OsdsText>
-            </OsdsMenuGroup>
-            {availableLanguages.map(({ name, key }) => (
-                <OsdsMenuItem key={key}>
-                    <OsdsButton onClick={() => {
-                        onLocaleChange(key);
-                    }} color={ODS_THEME_COLOR_INTENT.primary} size={ODS_BUTTON_SIZE.sm} variant={ODS_BUTTON_VARIANT.ghost} text-align='start'>
-                        <span>{name}</span>
-                    </OsdsButton>
-                </OsdsMenuItem>
-            ))}
-        </OsdsMenu>
+            <OsdsPopoverContent >
+                <div className='p-1 w-60'>
+                    <span slot="popover-header">
+                        <OsdsText>{t('language_change')}</OsdsText>
+                    </span>
+                    <div className='mt-2'>
+                        {availableLanguages.map(({ name, key }) => (
+                            <div key={key}>
+                                <OsdsButton onClick={() => {
+                                    onLocaleChange(key);
+                                }} color={ODS_THEME_COLOR_INTENT.primary} size={ODS_BUTTON_SIZE.sm} variant={ODS_BUTTON_VARIANT.ghost} text-align='start'>
+                                    <span>{name}</span>
+                                </OsdsButton>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </OsdsPopoverContent>
+        </OsdsPopover>
     );
 }
 
