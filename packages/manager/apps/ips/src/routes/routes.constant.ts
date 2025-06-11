@@ -9,6 +9,7 @@ export const subRoutes = {
   byoipOrder: 'byoip-order',
   terminate: 'terminate',
   upsertDescription: 'upsert-description',
+  configureGameFirewall: 'game-firewal',
 };
 
 export const urlDynamicParts = {
@@ -24,10 +25,11 @@ export const urls = {
   listing: subRoutes.root,
   listingTerminate: `${subRoutes.root}/${subRoutes.terminate}/${urlDynamicParts.id}`,
   listingUpsertDescription: `${subRoutes.root}/${subRoutes.upsertDescription}/${urlDynamicParts.id}`,
+  listingConfigureGameFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureGameFirewall}`,
   order: `${subRoutes.root}/${subRoutes.order}`,
   byoip: `${subRoutes.root}/${subRoutes.byoip}`,
   manageOrganisations: `${subRoutes.root}/${subRoutes.manageOrganisations}`,
   openOrganisationsModal: `${subRoutes.root}/${subRoutes.manageOrganisations}/${urlDynamicParts.organisationId}/${subRoutes.openOrganisations}`,
-  configureReverseDns: `${subRoutes.root}/${subRoutes.configureReverseDns}/${urlDynamicParts.parentId}/${urlDynamicParts.optionalId}`,
+  listingConfigureReverseDns: `${subRoutes.root}/${subRoutes.configureReverseDns}/${urlDynamicParts.parentId}/${urlDynamicParts.optionalId}`,
   byoipOrderModal: `${subRoutes.root}/${subRoutes.byoip}/${subRoutes.byoipOrder}`,
 };

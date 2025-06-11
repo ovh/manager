@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigate } from 'react-router-dom';
+import ipaddr from 'ipaddr.js';
 import { urlDynamicParts, urls } from '@/routes/routes.constant';
 import { fromIpToId, ipFormatter } from '@/utils';
-import { useGetIpdetails } from '@/data/hooks/ip';
 import { IpTypeEnum } from '@/data/api';
+import {
+  useGetIpdetails,
+  useGetProductService,
+  useGetGameMitigation,
+} from '@/data/hooks';
 
 export type IpActionsCellParams = {
   ip: string;
@@ -42,13 +47,28 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const navigate = useNavigate();
   const { t } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
 
+  const productServices = useGetProductService({
+    path: '/cloud/project',
+    category: 'CLOUD',
+  });
+  const gameMitigationDetails = useGetGameMitigation({ ip: ipAddress });
+
+  const hasServiceAttached = useMemo(
+    () =>
+      !!ipDetails?.routedTo?.serviceName &&
+      productServices?.services?.some(
+        (service) => ipDetails.routedTo.serviceName === service.serviceName,
+      ),
+    [ipDetails?.routedTo?.serviceName, productServices],
+  );
+
   const items: ActionMenuItem[] = [
     {
       id: 0,
       label: t('listingMenuReverseDns'),
       onClick: () =>
         navigate(
-          urls.configureReverseDns
+          urls.listingConfigureReverseDns
             .replace(urlDynamicParts.parentId, parentId)
             .replace(urlDynamicParts.optionalId, isGroup ? '' : id),
         ),
@@ -71,6 +91,17 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
       onClick: () =>
         navigate(urls.listingUpsertDescription.replace(urlDynamicParts.id, id)),
     },
+    !isGroup &&
+      ipaddr.IPv4.isIPv4(ipAddress) &&
+      !hasServiceAttached &&
+      Boolean(gameMitigationDetails?.result?.length) && {
+        id: 3,
+        label: t('listingActionManageGameMitigation'),
+        onClick: () =>
+          navigate(
+            urls.listingConfigureGameFirewall.replace(urlDynamicParts.id, id),
+          ),
+      },
   ].filter(Boolean);
 
   return (
