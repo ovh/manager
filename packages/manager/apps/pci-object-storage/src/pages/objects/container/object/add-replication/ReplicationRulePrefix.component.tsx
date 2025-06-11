@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 
-import { useEffect } from 'react';
 import {
   OdsFormField,
   OdsInput,
@@ -12,42 +11,19 @@ import clsx from 'clsx';
 type TReplicationRulePrefix = {
   replicationRulePrefix: string;
   setReplicationRulePrefix: (value: string) => void;
-  isReplicationRulePrefixTouched: boolean;
   setIsReplicationRulePrefixTouched: (value: boolean) => void;
-  isValidReplicationRulePrefix: boolean;
   prefixError: string | undefined;
-  setPrefixError: (value: string | undefined) => void;
 };
 
 export function ReplicationRulePrefix({
   replicationRulePrefix,
   setReplicationRulePrefix,
-  isReplicationRulePrefixTouched,
   setIsReplicationRulePrefixTouched,
-  isValidReplicationRulePrefix,
   prefixError,
-  setPrefixError,
-}: TReplicationRulePrefix) {
+}: Readonly<TReplicationRulePrefix>) {
   const { t } = useTranslation([
     'containers/add',
     'containers/replication/add',
-  ]);
-
-  useEffect(() => {
-    if (
-      isReplicationRulePrefixTouched &&
-      !isValidReplicationRulePrefix &&
-      replicationRulePrefix !== ''
-    ) {
-      setPrefixError(t('pci-common:common_field_error_pattern'));
-    } else {
-      setPrefixError(undefined);
-    }
-  }, [
-    isReplicationRulePrefixTouched,
-    replicationRulePrefix,
-    isValidReplicationRulePrefix,
-    t,
   ]);
 
   return (

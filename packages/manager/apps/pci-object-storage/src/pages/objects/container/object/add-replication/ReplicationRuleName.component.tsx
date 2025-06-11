@@ -23,17 +23,16 @@ const getErrorMessage = (
   replicationRuleId: string,
   t: TFunction,
 ) => {
-  let idError: string | undefined;
-
-  if (isReplicationRuleIdTouched && !isValidReplicationRuleId) {
-    idError = t('pci-common:common_field_error_pattern');
+  if (!isReplicationRuleIdTouched) {
+    return null;
   }
-
-  if (isReplicationRuleIdTouched && !replicationRuleId) {
-    idError = t('pci-common:common_field_error_required');
+  if (!replicationRuleId) {
+    return t('pci-common:common_field_error_required');
   }
-
-  return idError;
+  if (!isValidReplicationRuleId) {
+    return t('pci-common:common_field_error_pattern');
+  }
+  return null;
 };
 
 export function ReplicationRuleId({
@@ -42,7 +41,7 @@ export function ReplicationRuleId({
   isReplicationRuleIdTouched,
   setIsReplicationRuleIdTouched,
   isValidReplicationRuleId,
-}: TReplicationRuleIdProps) {
+}: Readonly<TReplicationRuleIdProps>) {
   const { t } = useTranslation([
     'containers/add',
     'containers/replication/add',

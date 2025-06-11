@@ -5,16 +5,16 @@ import { TRegion } from '@/api/data/region';
 import { TStorage } from '@/api/data/storages';
 import { TContainer } from '@/pages/objects/container/object/show/Show.page';
 
-export const useContainerMemo = (
-  serverContainer: TServerContainer,
+export const useMergedContainer = (
+  serverContainer: TServerContainer | null,
   targetContainer: TStorage,
   url: string,
   region: TRegion,
 ) => {
   const { formatBytes } = useBytes();
 
-  return useMemo((): TContainer | undefined => {
-    if (!serverContainer) return undefined;
+  return useMemo((): TContainer | null => {
+    if (!serverContainer) return null;
     const s3StorageType = targetContainer?.s3StorageType;
 
     return {

@@ -3,7 +3,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { getContainerObjects } from '@/api/data/container';
 import { ITEMS_PER_PAGE } from '@/constants';
 
-export const getContainerObjectsQueryKey = ({
+const getContainerObjectsQueryKey = ({
   projectId,
   region,
   containerName,
