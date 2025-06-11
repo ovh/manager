@@ -11,5 +11,6 @@ export default {
     trackingHits: '<',
     trackClick: '<',
     apiVersion: '<?',
+    logKindsList: '<?',
   },
 };

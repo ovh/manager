@@ -33,5 +33,6 @@
   "streams_disk_full": "Niewystarczająca przestrzeń dyskowa",
   "error_message": "Wystąpił błąd: {{message}}",
   "log_tile_empty_state_description": "Subskrybując ten strumień, możesz przenieść logi bezpośrednio do Logs Data Platform, co pozwoli na bardziej zaawansowane wyszukiwanie, tworzenie alertów i wizualizacji lub po prostu ich archiwizację.",
-  "logs_list_title": "Strumień danych"
+  "logs_list_title": "Strumień danych",
+  "logs_select_kind": "Wybierz rodzaj logu"
 }

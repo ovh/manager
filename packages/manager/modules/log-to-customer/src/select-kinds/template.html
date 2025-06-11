@@ -1,0 +1,15 @@
+<div class="form-group col-md-2 col-xs-6">
+    <label
+        for="select-logs-kind"
+        class="control-label"
+        data-translate="logs_select_kind"
+    >
+    </label>
+    <oui-select
+        name="select-logs-kind"
+        data-model="$ctrl.ngModel"
+        data-items=":: $ctrl.kinds"
+        data-on-change="$ctrl.onChange()"
+        data-placeholder="{{:: 'logs_select_kind' | translate }}"
+    ></oui-select>
+</div>
