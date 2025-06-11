@@ -1,7 +1,4 @@
-import filter from 'lodash/filter';
-import flatten from 'lodash/flatten';
 import get from 'lodash/get';
-import map from 'lodash/map';
 
 import {
   OLA_MODES,
@@ -49,20 +46,21 @@ export default class {
         });
     }
 
-    this.configuration = {
-      mode:
-        this.ola.getCurrentMode() === OLA_MODES.DEFAULT
-          ? OLA_MODES.VRACK_AGGREGATION
-          : OLA_MODES.DEFAULT,
-    };
+    this.configurationName = undefined;
+    this.targetInterfaceType = OLA_MODES.VRACK_AGGREGATION;
+
     this.selectedInterfaces = [];
-    this.notAllowedInterfaces = filter(
-      this.interfaces,
+    this.notAllowedInterfaces = this.interfaces.filter(
       (item) => item.hasFailoverIps() || item.hasVrack(),
     );
-    this.allowedInterfaces = this.interfaces.filter(
-      (i) => !this.notAllowedInterfaces.includes(i),
-    );
+    this.allowedInterfaces = this.interfaces
+      .filter((i) => !this.notAllowedInterfaces.includes(i))
+      .map((nic) => ({
+        ...nic,
+        displayedMacAdresses: nic.mac ? nic.mac.split(', ') : [],
+        isPublic: nic.isPublic(),
+        isPrivate: nic.isPrivate(),
+      }));
   }
 
   selectAllRows() {
@@ -88,30 +86,20 @@ export default class {
 
   onRowSelect(selectedRows) {
     this.selectedInterfaces = selectedRows;
-
-    if (this.configuration.mode === OLA_MODES.DEFAULT) {
-      this.networkInterfaces = flatten(
-        map(this.selectedInterfaces, ({ mac }) => mac.split(',')),
-      );
-    }
   }
 
   configureInterface() {
-    switch (this.configuration.mode) {
-      case OLA_MODES.VRACK_AGGREGATION:
-        return this.olaService.setPrivateAggregation(
-          this.serverName,
-          this.configuration.name,
-          this.selectedInterfaces,
-        );
-      case OLA_MODES.DEFAULT:
-        return this.olaService.setDefaultInterfaces(
-          this.serverName,
-          this.selectedInterfaces[0],
-        );
-      default:
-        return this.$q.when();
+    if (this.ola.getCurrentMode() !== OLA_MODES.VRACK_AGGREGATION) {
+      return this.olaService.setPrivateAggregation(
+        this.serverName,
+        this.configurationName,
+        this.selectedInterfaces,
+      );
     }
+    return this.olaService.setDefaultInterfaces(
+      this.serverName,
+      this.selectedInterfaces[0],
+    );
   }
 
   onFinish() {

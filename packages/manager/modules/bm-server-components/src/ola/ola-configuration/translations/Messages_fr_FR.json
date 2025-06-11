@@ -8,7 +8,7 @@
   "dedicated_server_interfaces_ola_alert_obsolete_option": "Dans le cadre d'une configuration Agrégation privée, votre option de bande passante sortante publique ne sera pas utilisée.",
 
   "dedicated_server_interfaces_ola_column_mode": "Mode",
-  "dedicated_server_interfaces_ola_column_name": "Interface",
+  "dedicated_server_interfaces_ola_column_mac_address": "Adresse MAC",
   "dedicated_server_interfaces_ola_column_current_type": "Type",
   "dedicated_server_interfaces_ola_column_network_offer": "Offre réseau",
   "dedicated_server_interfaces_ola_column_bandwidth_outgoing": "Bande passante sortante",
