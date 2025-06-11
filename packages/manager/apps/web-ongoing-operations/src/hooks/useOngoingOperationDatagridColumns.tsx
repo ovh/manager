@@ -40,6 +40,7 @@ export const useOngoingOperationDatagridColumns = (
       comparator: FilterCategories.String,
       isFilterable: true,
       isSearchable: true,
+      enableHiding: false,
     },
     {
       id: 'function',
@@ -51,9 +52,10 @@ export const useOngoingOperationDatagridColumns = (
       label: t('domain_operations'),
       comparator: FilterCategories.Options,
       isFilterable: true,
+      enableHiding: false,
       filterOptions: (parent === ParentEnum.DOMAIN
-          ? DOMAIN_OPERATIONS
-          : DNS_OPERATIONS
+        ? DOMAIN_OPERATIONS
+        : DNS_OPERATIONS
       ).map((op) => ({
         label: t(`domain_operations_nicOperation_${op}`),
         value: op,
@@ -67,6 +69,7 @@ export const useOngoingOperationDatagridColumns = (
         </DataGridTextCell>
       ),
       label: t('domain_operations_table_header_comment'),
+      enableHiding: true,
     },
     {
       id: 'created_on',
@@ -76,6 +79,7 @@ export const useOngoingOperationDatagridColumns = (
         </DataGridTextCell>
       ),
       label: t('domain_operations_table_header_creationDate'),
+      enableHiding: true,
     },
     {
       id: 'last_updated',
@@ -85,6 +89,7 @@ export const useOngoingOperationDatagridColumns = (
         </DataGridTextCell>
       ),
       label: t('domain_operations_table_header_lastUpdate'),
+      enableHiding: true,
     },
     {
       id: 'status',
@@ -94,6 +99,7 @@ export const useOngoingOperationDatagridColumns = (
       label: t('domain_operations_table_header_status'),
       comparator: FilterCategories.Options,
       isFilterable: true,
+      enableHiding: false,
       filterOptions: Object.values(StatusEnum).map((status) => ({
         label: t(`domain_operations_statusOperation_${status}`),
         value: status,
@@ -134,6 +140,7 @@ export const useOngoingOperationDatagridColumns = (
       id: 'actions',
       label: '',
       isSortable: false,
+      enableHiding: false,
     },
   ];
   return columns;
