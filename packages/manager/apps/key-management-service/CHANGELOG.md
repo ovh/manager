@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.29.1...@ovh-ux/manager-key-management-service-app@0.30.0) (2025-06-11)
+
+
+### Features
+
+* **kms:** add urn to service key information ([b841362](https://github.com/ovh/manager/commit/b8413629a6f68c8cba3b62a7ae769ba33d1a50f1)), closes [#MANAGER-16280](https://github.com/ovh/manager/issues/MANAGER-16280)
+
+
+
+
+
 ## [0.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.29.0...@ovh-ux/manager-key-management-service-app@0.29.1) (2025-06-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
