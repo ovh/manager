@@ -94,5 +94,9 @@
   "diagnostics": "Diagnostics",
   "useful_links": "Liens utiles",
   "number_of_accounts": "Nombre de comptes",
-  "no_email_account": "Vous ne possedez actuellement aucune boite email."
+  "no_email_account": "Vous ne possedez actuellement aucune boite email.",
+  "upgrade_pro": "Mettre à niveau",
+  "upgrade_account_pro": "Mettre à niveau mon compte",
+  "upgrade_btn_account": "Mise à niveau vers Zimbra Pro",
+  "email_account_upgrade": "Changer l'offre"
 }

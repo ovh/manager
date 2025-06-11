@@ -53,6 +53,7 @@ import {
   VERIFY_DOMAIN,
   ONBOARDING_CONFIGURE_DOMAIN,
   ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS,
+  UPGRADE_SLOT,
 } from '@/tracking.constants';
 
 export type RouteHandle = {
@@ -107,6 +108,9 @@ const AddEmailAccountPage = React.lazy(() =>
 );
 const EmailAccountSettingsPage = React.lazy(() =>
   import('@/pages/dashboard/emailAccounts/EmailAccountForm.component'),
+);
+const UpgradeAccountPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/upgrade/Upgrade.page'),
 );
 const AliasPage = React.lazy(() =>
   import('@/pages/dashboard/emailAccounts/settings/aliases/Aliases.page'),
@@ -415,6 +419,20 @@ export default (
             },
             breadcrumb: {
               label: 'common:add_email_account',
+            },
+          }}
+        />
+        <Route
+          path={':slotId/upgrade'}
+          Component={UpgradeAccountPage}
+          handle={{
+            isOverridePage: true,
+            tracking: {
+              pageName: UPGRADE_SLOT,
+              pageType: PageType.funnel,
+            },
+            breadcrumb: {
+              label: 'common:email_account_upgrade',
             },
           }}
         />
