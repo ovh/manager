@@ -23,6 +23,7 @@ import { useTranslation } from 'react-i18next';
 import { CHANGELOG_LINKS } from '@/data/constants/changelogLinks';
 import { urls } from '@/routes/routes.constant';
 import { Cluster } from '@/data/types/cluster.type';
+import { useCluster } from '@/hooks/useCluster';
 
 export default function Layout() {
   const { t } = useTranslation('dedicated-servers');
@@ -34,13 +35,7 @@ export default function Layout() {
   const { data: features, isSuccess } = useFeatureAvailability([
     'dedicated-server:cluster',
   ]);
-  const { flattenData, isSuccess: isSuccessCluster } = useResourcesIcebergV6<
-    Cluster[]
-  >({
-    route: `/dedicated/cluster`,
-    queryKey: ['dedicated-servers', `/dedicated/cluster`],
-  });
-
+  const { data, isSuccess: isSuccessCluster } = useCluster();
   const [activePanel, setActivePanel] = useState('');
   const navigate = useNavigate();
 
@@ -60,13 +55,10 @@ export default function Layout() {
   }, []);
 
   useEffect(() => {
-    setHasCluster(
-      isSuccess &&
-        features?.['dedicated-server:cluster'] &&
-        isSuccessCluster &&
-        flattenData?.length !== 0,
-    );
-  }, [isSuccessCluster, isSuccess]);
+    const hasClusterFeature = features?.['dedicated-server:cluster'];
+    const hasClusterData = isSuccess && isSuccessCluster && data?.length > 0;
+    setHasCluster(hasClusterFeature && hasClusterData);
+  }, [isSuccessCluster, isSuccess, features, data]);
 
   useEffect(() => {
     if (!location.pathname) {
