@@ -42,7 +42,7 @@ export const Routes: any = [
       },
       {
         id: 'listing',
-        path: urls.installation,
+        path: urls.listing,
         ...lazyRouteConfig(() =>
           import('@/pages/listing/InstallationHistory.page'),
         ),
@@ -55,7 +55,7 @@ export const Routes: any = [
       },
       {
         id: 'dashboard.installationDashboard',
-        path: urls.installationDashboard,
+        path: urls.installationReport,
         ...lazyRouteConfig(() =>
           import(
             '@/pages/dashboard/installationDetails/InstallationDetails.page'
@@ -80,14 +80,14 @@ export const Routes: any = [
         },
       },
       {
-        path: urls.installation,
+        path: urls.installationWizard,
         ...lazyRouteConfig(() =>
           import('@/pages/installation/InstallationDashboard.page'),
         ),
         children: [
           {
             id: 'wizard',
-            path: urls.installationWizardStep,
+            path: '',
             ...lazyRouteConfig(() =>
               import('@/pages/installation/wizardStep/InstallationWizard.page'),
             ),

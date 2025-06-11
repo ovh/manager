@@ -14,8 +14,8 @@ import { BACKUP_SAP_TITLE } from './general-informations.constants';
 function GeneralInfos() {
   const { t } = useTranslation('dashboard');
   const guides = useGuideUtils();
-  const wizardHref = useHref(urls.installationWizardStep);
-  const listingHref = useHref(urls.installation);
+  const wizardHref = useHref(urls.installationWizard);
+  const listingHref = useHref(urls.listing);
 
   const Tiles = [
     {

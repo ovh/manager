@@ -19,7 +19,7 @@ export default function InstallationDetailsPage() {
   const [searchParams] = useSearchParams();
   const serviceName = searchParams.get('serviceName');
   const taskId = searchParams.get('taskId');
-  const hrefPrevious = useHref(urls.installation);
+  const hrefPrevious = useHref(urls.listing);
 
   const { t } = useTranslation('dashboard/installation');
   const header = {
