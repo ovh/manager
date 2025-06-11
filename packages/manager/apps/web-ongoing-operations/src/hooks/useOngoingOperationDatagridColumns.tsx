@@ -38,6 +38,7 @@ export const useOngoingOperationDatagridColumns = (
             : DNS_OPERATIONS_TABLE_HEADER_DOMAIN,
         comparator: FilterCategories.String,
         isFilterable: true,
+        enableHiding: false,
       },
       {
         id: 'function',
@@ -47,6 +48,7 @@ export const useOngoingOperationDatagridColumns = (
           </DataGridTextCell>
         ),
         label: t('domain_operations'),
+        enableHiding: true,
       },
       {
         id: 'comment',
@@ -56,6 +58,7 @@ export const useOngoingOperationDatagridColumns = (
           </DataGridTextCell>
         ),
         label: t('domain_operations_table_header_comment'),
+        enableHiding: true,
       },
       {
         id: 'created_on',
@@ -65,6 +68,7 @@ export const useOngoingOperationDatagridColumns = (
           </DataGridTextCell>
         ),
         label: t('domain_operations_table_header_creationDate'),
+        enableHiding: true,
       },
       {
         id: 'last_updated',
@@ -74,6 +78,7 @@ export const useOngoingOperationDatagridColumns = (
           </DataGridTextCell>
         ),
         label: t('domain_operations_table_header_lastUpdate'),
+        enableHiding: true,
       },
       {
         id: 'status',
@@ -81,6 +86,7 @@ export const useOngoingOperationDatagridColumns = (
           <OngoingOperationDatagridBadge props={props} locale={l.language} />
         ),
         label: t('domain_operations_table_header_status'),
+        enableHiding: true,
       },
       {
         cell: (props: TOngoingOperations) => (
