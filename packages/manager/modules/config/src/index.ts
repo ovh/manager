@@ -81,6 +81,15 @@ export const fetchConfiguration = async (
         };
         throw errorObj;
       }
+      if (err?.status >= 500) {
+        const errorObj = {
+          error: {
+            message: err?.response?.data || err?.response?.statusText,
+          },
+          environment,
+        };
+        throw errorObj;
+      }
       return environment;
     });
 };
