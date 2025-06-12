@@ -12,6 +12,7 @@ import {
   REGENERATE_SSL,
   SSL,
   WEBSITE,
+  SAN_SSL,
 } from '@/utils/tracking.constants';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
@@ -134,6 +135,19 @@ export default [
         handle: {
           tracking: {
             pageName: REGENERATE_SSL,
+            pageType: PageType.popup,
+          },
+        },
+      },
+      {
+        id: SAN_SSL,
+        path: urls.sanSsl,
+        ...lazyRouteConfig(() =>
+          import('@/pages/dashboard/ssl/manage/sanSsl.page'),
+        ),
+        handle: {
+          tracking: {
+            pageName: SAN_SSL,
             pageType: PageType.popup,
           },
         },
