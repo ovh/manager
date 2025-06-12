@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-breadcrumb@1.3.4...@ovh-ux/ng-ui-router-breadcrumb@1.4.0) (2025-06-12)
+
+
+### Features
+
+* **dedicated-servers:** bump server listing to react ([#16397](https://github.com/ovh/manager/issues/16397)) ([9ffba99](https://github.com/ovh/manager/commit/9ffba993219c75f3b5e18da9928fda44f664c00b)), closes [#MANAGER-17448](https://github.com/ovh/manager/issues/MANAGER-17448)
+
+
+
+
+
 ## [1.3.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-breadcrumb@1.3.3...@ovh-ux/ng-ui-router-breadcrumb@1.3.4) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/ng-ui-router-breadcrumb
