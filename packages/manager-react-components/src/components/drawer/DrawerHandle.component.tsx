@@ -49,7 +49,7 @@ const DrawerHandle = ({ onClick, collapseState }: DrawerHandleProps) => {
         className={clsx(
           'right-0 w-[56px] h-[56px] bg-white',
           'rounded-l-lg absolute justify-center items-center',
-          // Hide the handle on small screens to avoid design issues
+          // Hide the handle on small screens when the drawer becomes w-full
           collapseState === 'visible' ? 'hidden sm:flex' : 'flex',
         )}
         style={{

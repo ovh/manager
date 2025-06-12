@@ -20,7 +20,7 @@ export type DrawerBaseProps = PropsWithChildren & {
   heading: string;
   /** Open/close the drawer */
   isOpen: boolean;
-  /** Called when the drawer is closed internally */
+  /** Callback function to be called on close of the Drawer */
   onDismiss: () => void;
   /** Show a loader instead of the drawer content  */
   isLoading?: boolean;
@@ -60,9 +60,6 @@ export const DrawerBase = ({
   className,
 }: DrawerBaseProps) => {
   const { t } = useTranslation('drawer');
-  const hasPrimaryButton = Boolean(primaryButtonLabel);
-  const hasSecondaryButton = Boolean(secondaryButtonLabel);
-  const hasFooter = hasPrimaryButton || hasSecondaryButton;
 
   return (
     <OdsDrawer
@@ -71,7 +68,7 @@ export const DrawerBase = ({
       position={'right'}
       onOdsClose={onDismiss}
       className={clsx(
-        '[&::part(drawer)]:w-[456px] [&::part(drawer)]:p-0 [&::part(drawer)]:duration-300',
+        '[&::part(drawer)]:w-full [&::part(drawer)]:sm:w-[456px] [&::part(drawer)]:max-w-full [&::part(drawer)]:p-0 [&::part(drawer)]:duration-300',
         className,
       )}
     >
@@ -113,9 +110,9 @@ export const DrawerBase = ({
               {children}
             </section>
 
-            {hasFooter && (
-              <footer className="px-[24px] py-[24px] space-x-[8px]">
-                {hasSecondaryButton && (
+            {(primaryButtonLabel || secondaryButtonLabel) && (
+              <footer className="p-[24px] space-x-[8px]">
+                {secondaryButtonLabel && (
                   <OdsButton
                     variant={ODS_BUTTON_VARIANT.ghost}
                     label={secondaryButtonLabel}
@@ -125,7 +122,7 @@ export const DrawerBase = ({
                     color={ODS_BUTTON_COLOR.primary}
                   />
                 )}
-                {hasPrimaryButton && (
+                {primaryButtonLabel && (
                   <OdsButton
                     variant={ODS_BUTTON_VARIANT.default}
                     label={primaryButtonLabel}
