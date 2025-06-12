@@ -8,5 +8,6 @@
   "manager_billing_service_status_delete_at_expiration": "Baja programada",
   "manager_billing_service_status_expired": "Dado de baja",
   "manager_billing_service_status_billing_suspended": "Facturación aplazada",
-  "manager_billing_service_status_forced_manual": "Renovación manual"
+  "manager_billing_service_status_forced_manual": "Renovación manual",
+  "manager_billing_service_status_restorable": "Restaurable"
 }
