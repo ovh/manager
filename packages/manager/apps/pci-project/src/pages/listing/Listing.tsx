@@ -20,6 +20,7 @@ import {
   useTrustedZoneBanner,
 } from '@ovh-ux/manager-pci-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { Outlet } from 'react-router-dom';
 import { getDatagridColumns } from './datagrid-columns';
 import {
   getProjectsWithServices,
@@ -158,6 +159,8 @@ export default function Listing() {
           />
         )}
       </React.Suspense>
+
+      <Outlet />
     </BaseLayout>
   );
 }
