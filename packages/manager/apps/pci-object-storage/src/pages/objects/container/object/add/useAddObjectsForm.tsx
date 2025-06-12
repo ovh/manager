@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { OBJECT_CONTAINER_STORAGE_CLASS } from '@/constants';
+import { ReplicationStorageClass } from '@/constants';
 
 type TFormState = {
   prefix: string;
@@ -10,7 +10,7 @@ type TFormState = {
 export const useAddObjectForm = () => {
   const [formState, setFormState] = useState<TFormState>({
     prefix: '/',
-    storageClass: OBJECT_CONTAINER_STORAGE_CLASS.STANDARD,
+    storageClass: ReplicationStorageClass.STANDARD,
     files: [],
   });
 

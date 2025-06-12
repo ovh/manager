@@ -8,5 +8,6 @@
   "pci_projects_project_storages_containers_update_versioning_versioning": "Versioning :",
   "pci_projects_project_storages_containers_update_versioning_enable_success_message": "L'activation du versioning a été effectuée avec succès.",
   "pci_projects_project_storages_containers_update_versioning_enable_error_message": "Une erreur est survenue lors de l'activation du versioning : {{ message }}.",
-  "pci_projects_project_storages_containers_bucket_versioning_description": "Automatise la création de versions d’un objet pour pallier la suppression accidentelle de ce dernier, ou simplement quand un nouvel objet est uploadé."
+  "pci_projects_project_storages_containers_bucket_versioning_description": "Automatise la création de versions d’un objet pour pallier la suppression accidentelle de ce dernier, ou simplement quand un nouvel objet est uploadé.",
+  "pci_projects_project_storages_containers_manage_replications": "Gérer la réplication"
 }
