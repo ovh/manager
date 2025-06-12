@@ -50,7 +50,7 @@
   "pci_projects_project_storages_containers_container_offsite_replication_enabled": "Configurée",
   "pci_projects_project_storages_containers_container_offsite_replication_disabled": "Non configurée",
   "pci_projects_project_storages_containers_container_offsite_replication_tooltip": "Une règle de réplication automatique ou manuelle a été configurée ou non sur ce conteneur.",
-  "pci_projects_project_storages_containers_container_storage_class_STANDARD_IA": "Standard IA",
+  "pci_projects_project_storages_containers_container_storage_class_STANDARD_IA": "Infrequent Access",
   "pci_projects_project_storages_containers_container_enable_encryption": "Activer le chiffrement (SSE-OMK)",
   "pci_projects_project_storages_containers_container_delete_marker": "Marqueur de suppression",
   "pci_projects_project_storages_containers_container_show_versions": "Voir les versions",
