@@ -30,8 +30,8 @@
     ]
   },
   "scripts": {
-    "preinstall": "node ./scripts/pnpm-migration/packages-preinstall.mjs --clean",
-    "postinstall": "node ./scripts/pnpm-migration/packages-postinstall.mjs",
+    "preinstall": "node scripts/pnpm-migration/pnpm-setup-workspace.mjs",
+    "postinstall": "node scripts/pnpm-migration/pnpm-install-dependencies.mjs",
     "build": "yarn run build:custom",
     "build:custom": "node ./scripts/pnpm-migration/packages-custom-turbo-build.mjs",
     "build:turbo": "turbo run build --concurrency=5",
@@ -57,7 +57,7 @@
     "packages:publish": "scripts/publish.js",
     "prepare": "husky install",
     "release": "scripts/release/release.sh",
-    "start": "node scripts/pnpm-migration/hybrid-start-application.mjs",
+    "start": "node scripts/pnpm-migration/hybrid-application-start.mjs",
     "test": "yarn run test:custom",
     "test:custom": "node ./scripts/pnpm-migration/packages-custom-turbo-test.mjs",
     "test:jest": "jest --runInBand",
@@ -89,6 +89,7 @@
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^4.7.4",
     "@typescript-eslint/parser": "^4.7.4",
+    "@yarnpkg/lockfile": "^1.1.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^29.7.0",
     "babel-preset-react-app": "^10.0.0",
