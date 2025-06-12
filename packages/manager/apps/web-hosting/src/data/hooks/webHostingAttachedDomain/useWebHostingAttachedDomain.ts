@@ -3,12 +3,13 @@ import {
   useInfiniteQuery,
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
+import { useCallback, useEffect, useState } from 'react';
 import {
   getWebHostingAttachedDomain,
   getWebHostingAttachedDomainQueryKey,
 } from '@/data/api/AttachedDomain';
 import { WebsiteType } from '@/data/type';
-import { buildURLSearchParams } from '@/utils';
+import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 
 type UseWebsitesListParams = Omit<
   UseInfiniteQueryOptions,
@@ -21,21 +22,22 @@ type UseWebsitesListParams = Omit<
 export const useWebHostingAttachedDomain = (
   props: UseWebsitesListParams = {},
 ) => {
-  const { domain, ...options } = props;
+  const { domain, shouldFetchAll, ...options } = props;
   const searchParams = buildURLSearchParams({
     domain,
   });
+  const [allPages, setAllPages] = useState(!!shouldFetchAll);
 
   const query = useInfiniteQuery({
     ...options,
     initialPageParam: null,
 
-    queryKey: getWebHostingAttachedDomainQueryKey(searchParams),
+    queryKey: getWebHostingAttachedDomainQueryKey(searchParams, allPages),
     queryFn: ({ pageParam }) =>
       getWebHostingAttachedDomain({
         pageParam: pageParam as string,
         searchParams,
-        pageSize: 15,
+        ...(allPages ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
       }),
     enabled: (q) =>
       typeof props.enabled === 'function'
@@ -49,5 +51,28 @@ export const useWebHostingAttachedDomain = (
       ),
   });
 
-  return query;
+  const fetchAllPages = useCallback(() => {
+    if (!allPages) {
+      setAllPages(true);
+    }
+  }, [allPages, setAllPages]);
+
+  useEffect(() => {
+    if (allPages && query.hasNextPage && !query.isFetchingNextPage) {
+      query.fetchNextPage();
+    }
+  }, [query.data, allPages]);
+
+  // reset when searchParams changes
+  useEffect(() => {
+    if (!shouldFetchAll) {
+      setAllPages(false);
+    }
+  }, [searchParams]);
+
+  // use object assign instead of spread
+  // to avoid unecessary rerenders
+  return Object.assign(query, {
+    fetchAllPages,
+  });
 };
