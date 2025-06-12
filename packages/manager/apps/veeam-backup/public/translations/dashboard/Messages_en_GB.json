@@ -14,7 +14,7 @@
   "subscription": "Subscription",
   "next_billing": "Next payment date",
   "creation_date": "Created on",
-  "delete_service": "Close service",
+  "delete_service": "Cancel the service",
   "contacts": "Contacts",
   "automatic_renew": "Automatic renewal",
   "manual_renew": "Manual renewal",
