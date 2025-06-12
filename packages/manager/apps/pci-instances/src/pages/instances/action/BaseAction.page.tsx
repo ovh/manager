@@ -56,7 +56,7 @@ const BaseInstanceActionPage: FC<TBaseInstanceActionPageProps> = ({
       onModalClose={onModalClose}
       instance={instance}
       section={section}
-      variant={section === 'delete' ? 'critical' : 'primary'}
+      variant={section === 'delete' ? 'warning' : 'primary'}
       isLoading={isLoading}
     />
   );
