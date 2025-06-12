@@ -41,23 +41,25 @@ export interface IEnvironment {
   setApplications: (applications: Applications) => void;
 }
 export class Environment implements IEnvironment {
-  private region: Region;
+  // TODO: After the addition of reket, we had to remove the private attribute
+  // This should be refactored to private and only use accessors.
+  region: Region;
 
-  private userLocale: string;
+  userLocale: string;
 
-  private version: string;
+  version: string;
 
-  private user: User;
+  user: User;
 
-  private applicationName: string;
+  applicationName: string;
 
-  private universe: string;
+  universe: string;
 
-  private applicationURLs: Record<string, string>;
+  applicationURLs: Record<string, string>;
 
-  private message: EnvMessage;
+  message: EnvMessage;
 
-  private applications: Applications;
+  applications: Applications;
 
   constructor(config: Environment = null) {
     this.region = DEFAULT_REGION as Region;
