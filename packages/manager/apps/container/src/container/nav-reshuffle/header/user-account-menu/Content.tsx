@@ -12,8 +12,8 @@ import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import { UserLink } from './UserLink';
-import { Procedures } from '@/types/procedure';
-import { fetchProcedureStatus } from '@/api/procedure/procedure';
+import { v6 } from '@ovh-ux/manager-core-api';
+import { FraudProcedure, IdentityDocumentsProcedure } from '@/types/procedures';
 
 type Props = {
   defaultPaymentMethod?: unknown;
@@ -79,14 +79,14 @@ const UserAccountMenu = ({
       ]);
       if (featureAvailability['identity-documents']) {
         try {
-          const identityProcedure = await fetchProcedureStatus(Procedures.INDIA);
-          isIdentityDocumentsAvailable = identityProcedure?.status && ['required', 'open'].includes(identityProcedure.status);
+          const { data } = await v6.get<IdentityDocumentsProcedure>(`/me/procedure/identity`);
+          isIdentityDocumentsAvailable = data?.status && ['required', 'open'].includes(data.status);
         } catch {}
       }
       if (featureAvailability['procedures:fraud']) {
         try {
-          const fraudProcedure = await fetchProcedureStatus(Procedures.FRAUD);
-          setIsDocumentsVisible(fraudProcedure?.status && ['required', 'open'].includes(fraudProcedure.status));
+          const { data } = await v6.get<FraudProcedure>(`/me/procedure/fraud`);
+          setIsDocumentsVisible(data?.status && ['required', 'open'].includes(data.status));
         } catch {}
       }
 

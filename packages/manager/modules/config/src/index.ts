@@ -27,6 +27,15 @@ export const fetchConfiguration = async (
   applicationName: string,
 ): Promise<Environment> => {
   const environment = new Environment();
+  const configRequestOptions = {
+    requestType: 'aapi',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      Accept: 'application/json',
+      ...getHeaders('/engine/2api/configuration'),
+    },
+    credentials: 'same-origin',
+  };
   let configurationURL = '/configuration';
   if (applicationName) {
     environment.setApplicationName(applicationName);
@@ -35,22 +44,8 @@ export const fetchConfiguration = async (
     )}`;
   }
   return aapi
-    .get(configurationURL, {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Accept: 'application/json',
-        ...getHeaders('/engine/2api/configuration'),
-      },
-    })
-    .then(({ data }) => {
-      environment.setRegion(data.region);
-      environment.setUser(data.user);
-      environment.setApplicationURLs(data.applicationURLs);
-      environment.setUniverse(data.universe);
-      environment.setMessage(data.message);
-      environment.setApplications(data.applications);
-      return environment;
-    })
+    .get(configurationURL, configRequestOptions)
+    .then(({ data }) => data)
     .catch((err) => {
       if (err?.response?.status === 401 && !isTopLevelApplication()) {
         window.parent.postMessage({
@@ -81,6 +76,15 @@ export const fetchConfiguration = async (
         };
         throw errorObj;
       }
+      return environment;
+    })
+    .then((config: Environment) => {
+      environment.setRegion(config.getRegion());
+      environment.setUser(config.getUser());
+      environment.setApplicationURLs(config.getApplicationURLs());
+      environment.setUniverse(config.getUniverse());
+      environment.setMessage(config.getMessage());
+      environment.setApplications(config.getApplications());
       return environment;
     });
 };
