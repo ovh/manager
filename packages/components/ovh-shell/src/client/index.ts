@@ -1,4 +1,4 @@
-import { aapi } from '@ovh-ux/manager-core-api';
+import { useReket } from '@ovh-ux/ovh-reket';
 import {
   isTopLevelApplication,
   Application,
@@ -11,16 +11,16 @@ import StandaloneShellClient from './standalone-shell-client';
 import IFrameMessageBus from '../message-bus/iframe';
 import { ShellClientApi } from './api';
 
-async function fetchApplications(): Promise<Record<string, Application>> {
-  return aapi
-    .get('/applications', {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Accept: 'application/json',
-        ...getHeaders('/engine/2api/applications'),
-      },
-    })
-    .then(({ data }) => data);
+function fetchApplications(): Promise<Record<string, Application>> {
+  return useReket(true).get('/applications', {
+    requestType: 'aapi',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      Accept: 'application/json',
+      ...getHeaders('/engine/2api/applications'),
+    },
+    credentials: 'same-origin',
+  });
 }
 
 export const buildURLIfStandalone = (appConfig: Application) => {
@@ -57,7 +57,7 @@ export function initIFrameClientApi(appId: ApplicationId) {
   return Promise.resolve(clientApi);
 }
 
-export async function initStandaloneClientApi(
+export function initStandaloneClientApi(
   appId: ApplicationId,
   applications: Record<string, Application>,
 ) {
