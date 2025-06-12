@@ -5,13 +5,13 @@ import {
   RouterProvider,
   createRoutesFromElements,
 } from 'react-router-dom';
-import smsRoutes from '@sms/routes/routes';
+import secretManagerRoutes from '@secret-manager/routes/routes';
 import kmsRoutes from '@/routes/routes';
 import Loading from '@/components/Loading/Loading';
 
 export function TestApp({ initialRoute = '/' }: { initialRoute: string }) {
   const router = createMemoryRouter(
-    createRoutesFromElements([kmsRoutes, smsRoutes]),
+    createRoutesFromElements([kmsRoutes, secretManagerRoutes]),
     {
       initialEntries: [initialRoute],
       initialIndex: 0,

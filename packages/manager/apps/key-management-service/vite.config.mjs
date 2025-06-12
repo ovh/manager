@@ -7,7 +7,9 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(join(process.cwd(), 'src')),
-      '@sms': resolve(join(process.cwd(), 'src/modules/sms')),
+      '@secret-manager': resolve(
+        join(process.cwd(), 'src/modules/secret-manager'),
+      ),
     },
   },
   root: resolve(process.cwd()),
