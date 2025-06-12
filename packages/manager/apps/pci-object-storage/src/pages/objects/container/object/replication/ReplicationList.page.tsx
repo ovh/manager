@@ -46,6 +46,26 @@ import { STATUS_ENABLED } from '@/constants';
 import { useStorageFeatures } from '@/hooks/useStorageFeatures';
 import { useMergedContainer } from '@/hooks/useContainerMemo';
 
+const WarningMessage = ({
+  links,
+  label,
+}: {
+  label: string;
+  links?: { href: string; label: string };
+}) => (
+  <OdsMessage color="warning" className="mt-6" isDismissible={false}>
+    <OdsText preset="paragraph">{label}</OdsText>
+    {links?.href && (
+      <Links
+        className="ml-4"
+        href={links.href}
+        type={LinkType.next}
+        label={links.label}
+      />
+    )}
+  </OdsMessage>
+);
+
 export default function ReplicationListPage() {
   const { storageId, projectId } = useParams();
 
@@ -138,6 +158,15 @@ export default function ReplicationListPage() {
     return <OdsSpinner size="md" />;
   }
 
+  const hasInvalidReplication = sortedReplications.some(
+    (replication) => !replication.destination.region,
+  );
+
+  const isCreateButtonDisabled =
+    !(container.versioning?.status === STATUS_ENABLED) ||
+    filteredStorages.length === 0 ||
+    hasInvalidReplication;
+
   return (
     <BaseLayout
       breadcrumb={
@@ -177,40 +206,40 @@ export default function ReplicationListPage() {
         <PciMaintenanceBanner maintenanceURL={maintenanceURL} />
       )}
 
-      {!(container.versioning?.status === STATUS_ENABLED) && (
-        <OdsMessage color="warning" className="mt-6" isDismissible={false}>
-          <OdsText preset="paragraph">
-            {t(
-              'containers/replication:pci_projects_project_storages_containers_replication_list_warning',
-            )}
-            <Links
-              className="ml-4"
-              href={enableVersioningHref}
-              type={LinkType.next}
-              label={t(
-                'containers/replication:pci_projects_project_storages_containers_replication_list_warning_link',
-              )}
-            />
-          </OdsText>
-        </OdsMessage>
+      {container.versioning?.status !== STATUS_ENABLED && (
+        <WarningMessage
+          links={{
+            href: enableVersioningHref,
+            label: t(
+              'containers/replication:pci_projects_project_storages_containers_replication_list_warning_link',
+            ),
+          }}
+          label={t(
+            'containers/replication:pci_projects_project_storages_containers_replication_list_warning',
+          )}
+        />
       )}
 
       {filteredStorages.length === 0 && (
-        <OdsMessage color="warning" className="mt-6" isDismissible={false}>
-          <OdsText preset="paragraph">
-            {t(
-              'containers/replication:pci_projects_project_storages_containers_replication_list_destination_warning',
-            )}
-            <Links
-              className="ml-4"
-              href={createContainerHref}
-              type={LinkType.next}
-              label={t(
-                'containers/replication:pci_projects_project_storages_containers_replication_list_destination_warning_link',
-              )}
-            />
-          </OdsText>
-        </OdsMessage>
+        <WarningMessage
+          links={{
+            href: createContainerHref,
+            label: t(
+              'containers/replication:pci_projects_project_storages_containers_replication_list_destination_warning_link',
+            ),
+          }}
+          label={t(
+            'containers/replication:pci_projects_project_storages_containers_replication_list_destination_warning',
+          )}
+        />
+      )}
+
+      {hasInvalidReplication && (
+        <WarningMessage
+          label={t(
+            'containers/replication:pci_projects_project_storages_containers_replication_conflict_warning',
+          )}
+        />
       )}
 
       {container && (
@@ -229,10 +258,7 @@ export default function ReplicationListPage() {
                   )}
                 </OdsText>
                 <OdsButton
-                  isDisabled={
-                    !(container.versioning?.status === STATUS_ENABLED) ||
-                    filteredStorages.length === 0
-                  }
+                  isDisabled={isCreateButtonDisabled}
                   onClick={() => {
                     clearNotifications();
                     navigate(`./new?region=${searchParams.get('region')}`);

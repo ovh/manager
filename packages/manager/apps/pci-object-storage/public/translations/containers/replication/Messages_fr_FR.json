@@ -22,5 +22,6 @@
   "pci_projects_project_storages_containers_replication_list_warning_link": "Activer le versioning",
   "pci_projects_project_storages_containers_replication_list_storage_class_undefined": "Identique à la source",
   "pci_projects_project_storages_containers_replication_list_destination_warning": "Pour utiliser la réplication asynchrone, vous avez besoin d'un autre conteneur avec le versioning activé.",
-  "pci_projects_project_storages_containers_replication_list_destination_warning_link": "Créer un autre conteneur."
+  "pci_projects_project_storages_containers_replication_list_destination_warning_link": "Créer un autre conteneur.",
+  "pci_projects_project_storages_containers_replication_conflict_warning": "Une ou plusieurs règles de réplication ne sont plus fonctionnelles car leurs conteneurs de destination n'existent plus. Pour créer une nouvelle règle, vous devez soit les supprimer soit les corriger et leur attribuer des conteneurs de destination ayant le versioning activé."
 }
