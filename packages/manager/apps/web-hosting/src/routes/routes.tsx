@@ -14,6 +14,7 @@ import {
   REGENERATE_SSL,
   SSL,
   WEBSITE,
+  SAN_SSL,
 } from '@/utils/tracking.constants';
 
 const RootPage = React.lazy(() => import('@/pages/layout'));
@@ -34,6 +35,9 @@ const DisableSslPage = React.lazy(() =>
 );
 const RegenerateSslPage = React.lazy(() =>
   import('@/pages/dashboard/ssl/manage/regenerateSsl.page'),
+);
+const SanSslPage = React.lazy(() =>
+  import('@/pages/dashboard/ssl/manage/sanSsl.page'),
 );
 
 export default (
@@ -139,6 +143,17 @@ export default (
         handle={{
           tracking: {
             pageName: REGENERATE_SSL,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+      <Route
+        id={SAN_SSL}
+        path={urls.sanSsl}
+        Component={SanSslPage}
+        handle={{
+          tracking: {
+            pageName: SAN_SSL,
             pageType: PageType.popup,
           },
         }}
