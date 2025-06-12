@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.135.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.134.2...@ovh-ux/manager-container-app@0.135.0) (2025-06-12)
+
+
+### Features
+
+* **dedicated-servers:** bump server listing to react ([#16397](https://github.com/ovh/manager/issues/16397)) ([9ffba99](https://github.com/ovh/manager/commit/9ffba993219c75f3b5e18da9928fda44f664c00b)), closes [#MANAGER-17448](https://github.com/ovh/manager/issues/MANAGER-17448)
+
+
+
+
+
 ## [0.134.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.134.1...@ovh-ux/manager-container-app@0.134.2) (2025-06-12)
 
 

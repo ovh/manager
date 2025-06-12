@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.41.3...@ovh-ux/manager-dedicated@20.42.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* **dedicated-servers:** fix hybrid apps redirection ([9352520](https://github.com/ovh/manager/commit/9352520998233c32787f12c2e3988cff365737cc)), closes [#MANAGER-14393](https://github.com/ovh/manager/issues/MANAGER-14393)
+
+
+### Features
+
+* **dedicated-servers:** bump server listing to react ([#16397](https://github.com/ovh/manager/issues/16397)) ([9ffba99](https://github.com/ovh/manager/commit/9ffba993219c75f3b5e18da9928fda44f664c00b)), closes [#MANAGER-17448](https://github.com/ovh/manager/issues/MANAGER-17448)
+* **dedicated:** bare metal tagging project ([#17435](https://github.com/ovh/manager/issues/17435)) ([b727e9e](https://github.com/ovh/manager/commit/b727e9e38051b2b67dc3f8b160d9ac8f50e49474)), closes [#MANAGER-12894](https://github.com/ovh/manager/issues/MANAGER-12894)
+
+
+
+
+
 ## [20.41.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.41.2...@ovh-ux/manager-dedicated@20.41.3) (2025-06-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
