@@ -1,0 +1,99 @@
+/**
+ * This is a copy of ODS 18 radio style
+ * TODO: remove when migrating
+ */
+$ods-state-is-disabled-background-color: var(
+  --ods-color-background-disabled-default,
+  #e6e6e6
+);
+$ods-state-is-disabled-border-color: var(
+  --ods-color-border-disabled-default,
+  #cccccc
+);
+$ods-state-is-disabled-text-color: var(
+  --ods-color-text-disabled-default,
+  #808080
+);
+$ods-state-is-readonly-background-color: var(
+  --ods-color-background-readonly-default,
+  #f2f2f2
+);
+$ods-state-is-readonly-border-color: var(
+  --ods-color-border-readonly-default,
+  #f2f2f2
+);
+
+@mixin ods-is-disabled() {
+  border-color: $ods-state-is-disabled-border-color;
+  background-color: $ods-state-is-disabled-background-color;
+  cursor: not-allowed;
+  color: $ods-state-is-disabled-text-color;
+}
+
+@mixin ods-is-readonly() {
+  border-color: $ods-state-is-readonly-border-color;
+  background-color: $ods-state-is-readonly-background-color;
+}
+
+.pci-ods-radio__radio {
+  appearance: none;
+  display: inline-flex;
+  margin: 0;
+  border: 1px solid var(--ods-color-neutral-300, #b3b3b3);
+  border-radius: 50%;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+
+  &::before {
+    transform: scale(0);
+    transition: 120ms all ease-in-out;
+    margin: auto;
+    border-radius: 50%;
+    background-color: var(--ods-color-primary-000, #fff);
+    width: 4px;
+    height: 4px;
+    content: '';
+  }
+
+  &:focus {
+    outline: var(--ods-outline-style-default, solid)
+      var(--ods-outline-width, 2px) var(--ods-outline-color-default, #000e9c);
+    outline-offset: var(--ods-outline-offset, 2px);
+  }
+
+  &:not(&--error):not(:disabled) {
+    &:focus {
+      border-color: var(--ods-color-form-element-border-focus-default, #808080);
+    }
+
+    &:hover {
+      border-color: var(--ods-color-form-element-border-hover-default, #808080);
+    }
+  }
+
+  &:checked::before {
+    transform: scale(1);
+  }
+
+  &:disabled {
+    @include ods-is-disabled();
+
+    &:checked {
+      &::before {
+        background-color: $ods-state-is-disabled-text-color;
+      }
+    }
+  }
+
+  &:not(:disabled):checked {
+    border-color: var(--ods-color-primary-500, #0050d7);
+    background-color: var(--ods-color-primary-500, #0050d7);
+
+    &:focus,
+    &:hover {
+      border-color: var(--ods-color-primary-700, #000e9c);
+      background-color: var(--ods-color-primary-700, #000e9c);
+    }
+  }
+}
