@@ -29,7 +29,7 @@ describe('Docker custom image component', () => {
       <DockerCustomImageInput
         value={''}
         onChange={onChange}
-        images={[mockedPresetImage, mockedPresetImageBis]}
+        jobImages={[mockedPresetImage, mockedPresetImageBis]}
       />,
     );
     expect(screen.getByTestId('docker-custom-image')).toBeTruthy();
@@ -42,7 +42,7 @@ describe('Docker custom image component', () => {
       <DockerCustomImageInput
         value={''}
         onChange={onChange}
-        images={[mockedPresetImage, mockedPresetImageBis]}
+        jobImages={[mockedPresetImage, mockedPresetImageBis]}
       />,
     );
     const customerImage = 'my personnal image';

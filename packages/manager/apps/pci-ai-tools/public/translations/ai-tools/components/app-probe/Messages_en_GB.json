@@ -1,0 +1,11 @@
+{
+  "appProbeOffField": "Readiness probe disabled",
+  "appProbeOnField": "Readiness probe enabled",
+  "pathFieldLabel": "Probe API endpoint",
+  "pathFieldInfo": "Availability probe API endpoint. Must return a 2XX or 3XX status",
+  "formPathFormatError": "Please enter a valid format (numbers, letters, ., /)",
+  "portFieldLabel": "Probe port",
+  "portFieldInfo": "Allows you to configure a specific port for this API path",
+  "formPortMinError": "Please enter a value greater than or equal to {{min}}.",
+  "formPortMaxError": "Please enter a value less than or equal to {{max}}."
+}

@@ -103,12 +103,15 @@ export interface JobSuggestions {
 }
 
 export interface AppSuggestions {
-  region: string;
-  ressources: {
-    nb: number;
-    flavor: string;
-  };
-  unsecureHttp: boolean;
+  defaultRegion: string;
+  suggestions: {
+    region: string;
+    resources: {
+      quantity: number;
+      flavorId: string;
+    };
+    unsecureHttp: boolean;
+  }[];
 }
 
 export interface NotebookOrderResult {
@@ -155,16 +158,16 @@ export interface AppOrderResult {
   };
   dockerCommand: string[];
   probe: {
-    path: string;
-    port: number;
+    path?: string;
+    port?: number;
   };
 }
 
 export interface Scaling {
-  autoScaling: boolean;
-  replicas: number;
-  averageUsageTarget: number;
-  replicasMax: number;
-  replicasMin: number;
-  resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum;
+  autoScaling?: boolean;
+  replicas?: number;
+  averageUsageTarget?: number;
+  replicasMax?: number;
+  replicasMin?: number;
+  resourceType?: ai.app.ScalingAutomaticStrategyResourceTypeEnum;
 }

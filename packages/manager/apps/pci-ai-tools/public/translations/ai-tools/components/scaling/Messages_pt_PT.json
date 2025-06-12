@@ -1,0 +1,16 @@
+{
+  "fieldScalingDesc1": "Escolha a estratégia de implementação mais adequada à sua aplicação: opte por um dimensionamento fixo do número de réplicas nas quais será implementada a sua app, ou então indique um mínimo e um máximo de réplicas para as implementações de forma a otimizar dinamicamente os desempenhos e adaptar-se ao número de pedidos através da opção Autoscaling.",
+  "scalingLink": "Mais informações sobre estratégias de escalabilidade",
+  "scalingStratActiveLabel": "Autoscaling ativado",
+  "noScalingStratActiveLabel": "Autoscaling desativado",
+  "replicasInputLabel": "Número de réplicas em que será implementada a sua aplicação",
+  "haInfoHelper": "Implemente num mínimo de 2 réplicas para dispor de alta disponibilidade",
+  "replicasMinInputLabel": "Mínimo de réplicas",
+  "replicasMaxInputLabel": "Máximo de réplicas",
+  "resourceTypeLabel": "Métrica monitorizada",
+  "resourceTypeInfo": "Métrica que atuará como elemento desencadeante do Autoscaling.",
+  "treshholderTargetLabel": "Patamar de acionamento (%)",
+  "treshholderTargetInfo": "Valor da métrica, em percentagem.",
+  "scalingBillingInfo": "Tenha em conta que o número de réplicas escolhidas multiplicará o número de recursos consumidos.",
+  "errorFormMinMaxRepField": "Mínimo réplicas deve ser inferior a Máximo réplicas"
+}

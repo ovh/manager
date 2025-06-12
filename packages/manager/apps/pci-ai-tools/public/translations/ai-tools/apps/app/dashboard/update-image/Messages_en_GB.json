@@ -1,0 +1,12 @@
+{
+  "updateImageTitle": "Modify image",
+  "updateImageDesc1": "You can update your application's Docker image to offer an up-to-date version of your service. Updates are incremental and uninterrupted. You keep your current configuration, such as your HTTP endpoint or deployment strategy.",
+  "updateImageDesc2": "Please provide a different tag so that the Docker image update is taken into account.",
+  "fieldImageLabel": "Path to your Docker image",
+  "imageInfo": "Enter the path to your Docker image. Images hosted on a private or public registry are accepted (GitHub, GitLab, DockerHub, etc.)",
+  "updateImageButtonCancel": "Cancel",
+  "updateImageButtonConfirm": "Modify",
+  "updateImageToastErrorTitle": "An error occurred",
+  "updateImageToastSuccessTitle": "Successes",
+  "updateImageToastSuccessDescription": "Image updated"
+}
