@@ -9,11 +9,16 @@ const targetDir = path.resolve('./target/pnpm');
 const pnpmPath = path.join(targetDir, 'pnpm');
 const CLEAN_ROOT = path.resolve('./packages');
 
-// 🔹 Clean folders
+const args = process.argv.slice(2);
+const shouldClean = args.includes('--clean');
+
+// 🔹 Step 1: Clean legacy folders (node_modules, dist, .turbo)
 async function findAndRemoveDirs(root, dirNames = new Set(['node_modules', 'dist', '.turbo'])) {
   const entries = await fs.readdir(root, { withFileTypes: true });
+
   for (const entry of entries) {
     const entryPath = path.join(root, entry.name);
+
     if (entry.isDirectory()) {
       if (dirNames.has(entry.name)) {
         console.log(`🧹 Removing ${entryPath}`);
@@ -33,12 +38,12 @@ async function cleanWorkspace() {
     await fs.rm(rootNodeModules, { recursive: true, force: true });
   }
 
-  console.log('🧹 Cleaning node_modules, dist, and .turbo folders inside packages/...');
+  console.log('🧹 Cleaning node_modules, dist, and .turbo inside packages/...');
   await findAndRemoveDirs(CLEAN_ROOT);
-  console.log('✅ Clean complete.');
+  console.log('✅ Workspace clean complete.');
 }
 
-// 🔹 Install PNPM CLI
+// 🔹 Step 2: Install PNPM locally (isolated inside target/)
 function installPnpm() {
   console.log(`⬇️ Installing PNPM v${version} locally...`);
   mkdirSync(targetDir, { recursive: true });
@@ -58,18 +63,23 @@ function installPnpm() {
   }
 }
 
+// 🔹 Step 3: Ensure PNPM is functional
 function verifyInstall() {
   if (existsSync(pnpmPath)) {
     console.log(`✔ pnpm is available at ${pnpmPath}`);
   } else {
-    console.warn(`⚠ pnpm was not found at ${pnpmPath}`);
+    console.error(`❌ pnpm not found at ${pnpmPath} after install.`);
     process.exit(1);
   }
 }
 
-// 🔁 Run setup (yarn install --rebuild or yarn install)
+// 🔁 Main
 (async () => {
-  await cleanWorkspace();
+  if (shouldClean) {
+    await cleanWorkspace();
+  } else {
+    console.log('ℹ️ Skipping workspace cleaning (use --clean to enable it).');
+  }
 
   if (!existsSync(pnpmPath)) {
     installPnpm();
@@ -77,6 +87,5 @@ function verifyInstall() {
     console.log('✔ pnpm is already installed locally.');
   }
 
-  // verify that pnpm was correctly installed else exit
   verifyInstall();
 })();

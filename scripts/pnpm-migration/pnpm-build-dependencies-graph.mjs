@@ -14,6 +14,7 @@ const EXCLUDE_APPS_JSON = path.join(ROOT_DIR, 'scripts/pnpm-migration/exclude-ya
 
 const PACKAGE_DIRS = [
   'packages/manager',
+  'packages/manager/modules',
   'packages/components',
   'packages/manager-react-components',
 ].map(sub => path.join(ROOT_DIR, sub));
