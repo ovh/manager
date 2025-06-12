@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_edit_remove_title": "Disattivare il progetto",
+  "pci_projects_project_edit_remove_please_note": "Ti ricordiamo che tutti i servizi, parametri e dati verranno rimossi senza possibilità di ripristino, ad eccezione degli IP Failover su cui verrà attivato lo stato di “parking”.",
+  "pci_projects_project_edit_remove_submit": "Sì, disattiva",
+  "pci_projects_project_edit_remove_cancel": "No, annulla",
+  "pci_projects_project_edit_remove_error": "Si è verificato un errore durante l’eliminazione del progetto: {{ error }}",
+  "pci_projects_project_edit_remove_success": "Ti abbiamo inviato la conferma dell’eliminazione via email.",
+  "pci_projects_project_discovery_edit_remove_please_note": "Ti ricordiamo che l'eliminazione del tuo progetto è irreversibile. Sarà necessario ricrearne uno per continuare a usufruire dell'universo Public Cloud.",
+  "pci_projects_project_discovery_edit_savings_plan": "Su questo progetto è attivo un Savings Plan. Non puoi eliminarlo. Contatta il servizio clienti per informazioni sulla procedura di eliminazione.",
+  "pci_projects_project_edit_remove_submit_client_service": "Contattare il servizio clienti"
+}
