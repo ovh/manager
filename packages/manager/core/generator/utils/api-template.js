@@ -46,12 +46,12 @@ const toOperationList = (apiVersion) => ({ path, description, operations }) =>
             const paramType = fullType
               ? getTypeFromString(fullType)
               : 'unknown';
-            let paramName =
+            const paramName =
               name ||
               `${paramType[0].toLowerCase()}${paramType
                 .substring(1)
                 .toLowerCase()}Custom`;
-            let nameCustom = paramName;
+            const nameCustom = paramName;
             return {
               name: nameCustom.replaceAll('.', ''),
               type: transformTypeToTypescript(paramType),
@@ -132,11 +132,10 @@ const groupOperationsByHttpMethod = (groupedByMethod, operation) => {
  * @returns template data for API service operations
  */
 export const getApiTemplateData = async (apiPaths) => {
-  let endpoints = [];
-  for (const path of apiPaths) {
-    const result = await getApiServiceOperations(path);
-    endpoints = endpoints.concat(result);
-  }
+  const results = await Promise.all(
+    apiPaths.map((path) => getApiServiceOperations(path)),
+  );
+  const endpoints = results.flat();
   return endpoints
     .flatMap(toOperationList(isV2Endpoint(apiPaths[0]) ? 'v2' : 'v6'))
     .map(setUrlAndBodyParams)

@@ -35,8 +35,8 @@ const getApiV2AndV6GetEndpointsChoices = ({
 ];
 
 const apiComputed = (data) => {
-  let apiV6Computed,
-    apiV2Computed = {};
+  let apiV6Computed;
+  let apiV2Computed = {};
   if (data.mainApiPathApiVersion === 'v6') {
     apiV6Computed = {
       get: {
@@ -67,6 +67,19 @@ const apiComputed = (data) => {
 };
 
 export default (plop) => {
+  /**
+   * Handlebars helper to quote property names only if needed (contains '-').
+   * @param {string} name
+   * @returns {string}
+   */
+  plop.handlebars.registerHelper('quoteIfNeeded', function(name) {
+    return name.includes('-') ? `'${name}'` : name;
+  });
+  // Register a custom Handlebars helper for equality check
+  plop.handlebars.registerHelper('eq', function(a, b) {
+    return a === b;
+  });
+
   plop.setGenerator('app', {
     description: 'Create a React app',
     prompts: [
@@ -80,9 +93,7 @@ export default (plop) => {
         type: 'input',
         name: 'packageName',
         message: 'What is the packageName of the new app?',
-        default: ({ appName }) => {
-          return `@ovh-ux/manager-${appName}-app`;
-        },
+        default: ({ appName }) => `@ovh-ux/manager-${appName}-app`,
       },
       {
         type: 'input',
@@ -109,7 +120,7 @@ export default (plop) => {
           name: element,
           value: element,
         })),
-        validate: (UNIVERSES) => UNIVERSES.length > 0,
+        validate: (universes) => universes.length > 0,
       },
       {
         type: 'checkbox',
@@ -154,7 +165,8 @@ export default (plop) => {
         when: (data) => {
           data.isPCI = data.appName.indexOf('pci') > -1;
           if (data.isPCI) {
-            data.pciName = data.appName.split('pci-')[1];
+            const [, pciName] = data.appName.split('pci-');
+            data.pciName = pciName;
           }
           data.isApiV6 = data.apiV6Endpoints.get?.operationList.length > 0;
           data.isApiV2 = data.apiV2Endpoints.get?.operationList.length > 0;
@@ -173,6 +185,7 @@ export default (plop) => {
           if (data.isPCI) {
             data.mainApiPathPci = listingPath.replace(
               data.isApiV2 ? '{projectId}' : '{serviceName}',
+              // eslint-disable-next-line no-template-curly-in-string
               '${projectId}',
             );
           }
@@ -216,7 +229,7 @@ export default (plop) => {
       {
         type: 'list',
         name: 'subuniverse',
-        message: 'What is the subuniverse of the app ? (tracking)',
+        message: 'What is the sub-universe of the app ? (tracking)',
         choices: SUB_UNIVERSES.map((element) => ({
           name: element,
           value: element,
@@ -253,7 +266,7 @@ export default (plop) => {
           : [];
 
       const pages = createPages(templates, appDirectory, isApiV6);
-      const translations = createTranslations(templates, appName, appDirectory);
+      const translations = createTranslations(templates, appDirectory);
       return [
         {
           type: 'addMany',

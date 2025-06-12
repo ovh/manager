@@ -6,12 +6,12 @@ import { urls } from '@/routes/routes.constant';
 
 const LayoutPage = lazy(() => import('@/pages/layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing'));
-const DashboardPage = lazy(() => import('@/pages/dashboard'));
+const DashboardPage = lazy(() => import('@/pages/dashboard/Dashboard'));
 const GeneralInfosPage = lazy(() =>
-  import('@/pages/dashboard/general-informations'),
+  import('@/pages/dashboard/general-informations/GeneralInfos'),
 );
-const Tab2Page = lazy(() => import('@/pages/dashboard/tab2'));
-const OnboardingPage = lazy(() => import('@/pages/onboarding'));
+const Tab2Page = lazy(() => import('@/pages/dashboard/tab2/Tab2'));
+const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding'));
 
 export default (
   <Route
@@ -36,7 +36,7 @@ export default (
     <Route
       path={urls.listing}
       Component={ListingPage}
-      handle=\{{
+      handle={{
         tracking: {
           pageName: 'listing',
           pageType: PageType.listing,
@@ -47,7 +47,7 @@ export default (
       <Route
         path=""
         Component={GeneralInfosPage}
-        handle=\{{
+        handle={{
           tracking: {
             pageName: 'dashboard',
             pageType: PageType.dashboard,
@@ -57,7 +57,7 @@ export default (
       <Route
         path={urls.tab2}
         Component={Tab2Page}
-        handle=\{{
+        handle={{
           tracking: {
             pageName: 'tab2',
             pageType: PageType.dashboard,
@@ -68,7 +68,7 @@ export default (
     <Route
       path={urls.onboarding}
       Component={OnboardingPage}
-      handle=\{{
+      handle={{
         tracking: {
           pageName: 'onboarding',
           pageType: PageType.onboarding,

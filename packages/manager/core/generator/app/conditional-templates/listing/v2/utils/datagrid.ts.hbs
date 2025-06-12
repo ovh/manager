@@ -1,0 +1,38 @@
+{{! Factorized utility for building columns in listing templates }}
+/**
+ * Build columns for Datagrid listing.
+ * @param {Record<string, unknown>} data - The data object for a row.
+ * @param {string} serviceKey - The key used for navigation.
+ * @param {(id: string) => void} navigateToDashboard - Navigation callback.
+ * @returns {Array} Array of column definitions.
+ */
+export function buildColumns(
+  data: Record<string, unknown>,
+  serviceKey: string,
+  navigateToDashboard: (id: string) => void,
+) {
+  return Object.keys(data)
+    .filter((element) => element !== 'iam')
+    .map((element) => ({
+      id: element,
+      label: element,
+      cell: (props: Record<string, unknown>) => {
+        const label = props[element];
+        if (typeof label === 'string' || typeof label === 'number') {
+          if (serviceKey === element) {
+            return (
+              <DataGridTextCell>
+                <OdsButton
+                  variant={ODS_BUTTON_VARIANT.ghost}
+                  onClick={() => navigateToDashboard(label.toString())}
+                  label={label.toString()}
+                />
+              </DataGridTextCell>
+            );
+          }
+          return <DataGridTextCell>{label.toString()}</DataGridTextCell>;
+        }
+        return <DataGridTextCell>-</DataGridTextCell>;
+      },
+    }));
+}

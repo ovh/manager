@@ -34,43 +34,36 @@ export const createApiQueryFilesActions = ({
  * We use the listing as home page
  */
 export const createPages = (templates, appDirectory, isApiV6) =>
-  templates.map((template) =>
-    template === 'listing'
-      ? {
-          type: 'addMany',
-          destination: join(
-            appDirectory,
-            `../../../apps/{{dashCase appName}}/src/pages/listing/`,
-          ),
-          templateFiles: join(
-            appDirectory,
-            `./conditional-templates/listing/${isApiV6 ? 'v6' : 'v2'}`,
-          ),
-          base: join(
-            appDirectory,
-            `./conditional-templates/listing/${isApiV6 ? 'v6' : 'v2'}`,
-          ),
-        }
-      : {
-          type: 'addMany',
-          destination: join(
-            appDirectory,
-            `../../../apps/{{dashCase appName}}/src/pages/${template}/`,
-          ),
-          templateFiles: join(
-            appDirectory,
-            `./conditional-templates/${template}`,
-          ),
-          base: join(appDirectory, `./conditional-templates/${template}`),
-        },
-  );
+  templates.map((template) => {
+    const templatePath =
+      template === 'listing'
+        ? `./conditional-templates/listing/${isApiV6 ? 'v6' : 'v2'}`
+        : `./conditional-templates/${template}`;
+
+    return {
+      type: 'addMany',
+      destination: join(
+        appDirectory,
+        `../../../apps/{{dashCase appName}}/src/pages/${template}/`,
+      ),
+      templateFiles: join(appDirectory, templatePath),
+      base: join(appDirectory, templatePath),
+      globOptions: {
+        dot: true,
+      },
+      data: {
+        isApiV6,
+        template,
+      },
+    };
+  });
 
 /**
  * Copy all translations files in conditional-translations
  * into public/translations/appName/**
  * Corresponding to the template selected
  */
-export const createTranslations = (templates, appName, appDirectory) =>
+export const createTranslations = (templates, appDirectory) =>
   templates.map((template) => ({
     type: 'add',
     path: join(
