@@ -4,6 +4,7 @@ import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
 
+import { useReket } from '@ovh-ux/ovh-reket';
 import UserDefaultPaymentMethod from './DefaultPaymentMethod';
 import style from './style.module.scss';
 import { links, tracking } from './constants';
@@ -12,8 +13,6 @@ import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import { UserLink } from './UserLink';
-import { v6 } from '@ovh-ux/manager-core-api';
-import { FraudProcedure, IdentityDocumentsProcedure } from '@/types/procedures';
 
 type Props = {
   defaultPaymentMethod?: unknown;
@@ -32,6 +31,7 @@ const UserAccountMenu = ({
   const region = environment.getRegion();
   const { closeAccountSidebar } = useProductNavReshuffle();
   const [allLinks, setAllLinks] = useState<UserLink[]>(links);
+  const reketInstance = useReket();
   const [isKycDocumentsVisible, setIsDocumentsVisible] = useState<boolean>(
     false,
   );
@@ -78,16 +78,12 @@ const UserAccountMenu = ({
         'procedures:fraud',
       ]);
       if (featureAvailability['identity-documents']) {
-        try {
-          const { data } = await v6.get<IdentityDocumentsProcedure>(`/me/procedure/identity`);
-          isIdentityDocumentsAvailable = data?.status && ['required', 'open'].includes(data.status);
-        } catch {}
+        const { status } = await reketInstance.get(`/me/procedure/identity`);
+        isIdentityDocumentsAvailable = ['required', 'open'].includes(status);
       }
       if (featureAvailability['procedures:fraud']) {
-        try {
-          const { data } = await v6.get<FraudProcedure>(`/me/procedure/fraud`);
-          setIsDocumentsVisible(data?.status && ['required', 'open'].includes(data.status));
-        } catch {}
+        const { status } = await reketInstance.get(`/me/procedure/fraud`);
+        setIsDocumentsVisible(['required', 'open'].includes(status));
       }
 
       const myServicesIndex = links.indexOf(

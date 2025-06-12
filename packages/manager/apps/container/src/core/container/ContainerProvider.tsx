@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useReket } from '@ovh-ux/ovh-reket';
 import { Application } from '@ovh-ux/manager-config';
 import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
 import {
@@ -8,12 +9,11 @@ import {
 } from './localStorage';
 import { BetaVersion, ContainerContext } from './container.context';
 import { useShell } from '@/context';
-import { v6 } from '@ovh-ux/manager-core-api';
-import { Preference } from '@/types/preferences';
 
 export const BETA = 1;
 
 export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
+  const reketInstance = useReket();
   const shell = useShell();
   const uxPlugin = shell.getPlugin('ux');
   const preferenceKey = 'NAV_RESHUFFLE_BETA_ACCESS';
@@ -61,16 +61,16 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     const betaValue = getBetaAvailabilityFromLocalStorage();
     const fetchPromise = betaValue
       ? Promise.resolve({ value: betaValue })
-      : (v6.get<Preference>(
+      : (reketInstance.get(
           `/me/preferences/manager/${preferenceKey}`,
-        ).then(({ data }) => data) as Promise<{ value: string }>);
+        ) as Promise<{ value: string }>);
 
     return fetchPromise
       .then(({ value }) => {
         setUseBeta(value === 'true');
       })
       .catch((error) => {
-        if (error?.response?.status === 404) {
+        if (error?.status === 404) {
           setAskBeta(true);
         } else {
           throw error;
@@ -81,12 +81,15 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const updateBetaChoice = async (accept = false) => {
     const updatePromise = isBetaForced()
       ? Promise.resolve(setBetaAvailabilityToLocalStorage(accept))
-      : v6.put(`/me/preferences/manager/${preferenceKey}`, {
+      : reketInstance.put(`/me/preferences/manager/${preferenceKey}`, {
           key: preferenceKey,
           value: accept.toString(),
-        }).catch(() => {});
+        });
 
     return updatePromise.then(() => {
+      if (!accept) {
+        // @TODO open new tab for survey
+      }
       window.location.reload();
     });
   };
@@ -94,10 +97,10 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const createBetaChoice = async (accept = false) => {
     const createPromise = isBetaForced()
       ? Promise.resolve(setBetaAvailabilityToLocalStorage(accept))
-      : v6.post(`/me/preferences/manager`, {
+      : reketInstance.post(`/me/preferences/manager`, {
           key: preferenceKey,
           value: accept.toString(),
-        }).catch(() => {});
+        });
 
     return createPromise.then(() => {
       window.location.reload();
