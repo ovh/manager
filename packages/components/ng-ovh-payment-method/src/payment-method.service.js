@@ -1,9 +1,27 @@
+import { useReket, ssoAuthHookFn } from '@ovh-ux/ovh-reket';
 import { useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
 
 export default class OvhPaymentMethodService {
   /* @ngInject */
-  constructor($q, paymentMethodPageUrl, userLocale) {
-    this.ovhPaymentMethod = useOvhPaymentMethod();
+  constructor($q, coreConfig, paymentMethodPageUrl, userLocale) {
+    const ovhPaymentMethodReketInstance = useReket(false);
+    const responseSuccessHook = (response) => $q.when(response);
+
+    const responseErrorHook = (error) => {
+      return ssoAuthHookFn(error).catch((hookFnError) =>
+        $q.reject(hookFnError),
+      );
+    };
+
+    ovhPaymentMethodReketInstance.config.hooks.response.set(
+      responseSuccessHook,
+      responseErrorHook,
+    );
+
+    this.ovhPaymentMethod = useOvhPaymentMethod({
+      reketInstance: ovhPaymentMethodReketInstance,
+      region: coreConfig.getRegion(),
+    });
 
     this.$q = $q;
     this.paymentMethodPageUrl = paymentMethodPageUrl;
