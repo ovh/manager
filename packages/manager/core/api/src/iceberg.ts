@@ -23,7 +23,12 @@ export type IcebergFetchParamsV6 = {
   sortReverse?: boolean;
 } & IcebergCommonOptions;
 
-export type IcebergFetchParamsV2 = { cursor?: string } & IcebergCommonOptions;
+export type IcebergFetchParamsV2 = {
+  cursor?: string;
+  filters?: Filter[];
+  sortBy?: string;
+  sortReverse?: boolean;
+} & IcebergCommonOptions;
 
 export type IcebergFetchResultV6<T> = {
   data: T[];
@@ -41,7 +46,7 @@ function icebergFilter(comparator: FilterComparator, value: string | string[]) {
   const v = encodeURIComponent(`${value}`);
   switch (comparator) {
     case FilterComparator.Includes:
-      return `like=%25${v}%25`;
+      return `like="${v}"`;
     case FilterComparator.StartsWith:
       return `like=${v}%25`;
     case FilterComparator.EndsWith:
@@ -74,6 +79,9 @@ export async function fetchIcebergV2<T>({
   route,
   pageSize,
   cursor,
+  filters,
+  sortBy,
+  sortReverse,
   disableCache,
 }: IcebergFetchParamsV2): Promise<IcebergFetchResultV2<T>> {
   const requestHeaders: Record<string, string> = {
@@ -81,6 +89,28 @@ export async function fetchIcebergV2<T>({
     ...(cursor ? { 'X-Pagination-Cursor': `${cursor}` } : {}),
     ...(disableCache ? { Pragma: 'no-cache' } : {}),
   };
+
+  const params = new URLSearchParams();
+
+  if (sortBy) {
+    requestHeaders['x-pagination-sort'] = encodeURIComponent(sortBy);
+    requestHeaders['x-pagination-sort-order'] = sortReverse ? 'DESC' : 'ASC';
+  }
+
+  if (filters?.length) {
+    requestHeaders['x-pagination-filter'] = filters
+      .filter(({ type }) => type !== FilterTypeCategories.Tags)
+      .map(
+        ({ comparator, key, value }) =>
+          `${encodeURIComponent(key)}:${icebergFilter(comparator, value)}`,
+      )
+      .join('&');
+
+    const tagsFilterParams = transformTagsFiltersToQuery(filters);
+    if (tagsFilterParams) {
+      params.append('iamTags', tagsFilterParams);
+    }
+  }
 
   const { data, headers, status } = await apiClient.v2.get(route, {
     headers: requestHeaders,
