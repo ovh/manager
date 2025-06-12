@@ -12,8 +12,10 @@ import {
   ErrorBanner,
   BaseLayout,
   useResourcesV6,
+  Notifications,
 } from '@ovh-ux/manager-react-components';
 
+import { Outlet } from 'react-router-dom';
 import { getDatagridColumns } from './datagrid-columns';
 import {
   getProjectsWithServices,
@@ -100,6 +102,10 @@ export default function Listing() {
 
   return (
     <BaseLayout header={header}>
+      <div className="my-6">
+        <Notifications />
+      </div>
+
       <React.Suspense>
         {columns && (
           <Datagrid
@@ -117,6 +123,8 @@ export default function Listing() {
           />
         )}
       </React.Suspense>
+
+      <Outlet />
     </BaseLayout>
   );
 }
