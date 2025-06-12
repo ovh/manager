@@ -12,7 +12,6 @@ import { TFunction } from 'i18next';
 import { TrackingClickParams } from '@ovh-ux/manager-react-shell-client';
 import LabelComponent from '@/components/Label.component';
 import {
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
   OBJECT_CONTAINER_S3_STATIC_URL_INFO,
   STATUS_ENABLED,
   STATUS_DISABLED,
@@ -86,6 +85,7 @@ interface ContainerInfoPanelProps {
   ) => {
     actions: string[];
   };
+  manageReplicationsHref: string;
 }
 
 export function ContainerInfoPanel({
@@ -101,6 +101,7 @@ export function ContainerInfoPanel({
   tracking,
   trackClick,
   trackAction,
+  manageReplicationsHref,
 }: ContainerInfoPanelProps) {
   const { t } = useTranslation([
     'container',
@@ -250,42 +251,49 @@ export function ContainerInfoPanel({
           </>
         )}
 
-        {isRightOffer &&
-          !isLocalZone &&
-          container.regionDetails?.type ===
-            OBJECT_CONTAINER_MODE_MULTI_ZONES && (
-            <ContainerInfoItem className="flex gap-4 mb-4 mt-4">
-              <OdsText>
-                {t(
-                  'container:pci_projects_project_storages_containers_container_offsite_replication_title',
-                )}
-              </OdsText>
-              <OdsBadge
-                className="ml-4"
-                size="sm"
-                label={t(
-                  `container:pci_projects_project_storages_containers_container_offsite_replication_${
-                    isReplicationRulesBannerShown ? 'disabled' : 'enabled'
-                  }`,
-                )}
-                color={!isReplicationRulesBannerShown ? 'success' : 'critical'}
+        {isRightOffer && !isLocalZone && (
+          <ContainerInfoItem className="flex gap-4  mt-4">
+            <OdsText>
+              {t(
+                'container:pci_projects_project_storages_containers_container_offsite_replication_title',
+              )}
+            </OdsText>
+            <OdsBadge
+              className="ml-4"
+              size="sm"
+              label={t(
+                `container:pci_projects_project_storages_containers_container_offsite_replication_${
+                  isReplicationRulesBannerShown ? 'disabled' : 'enabled'
+                }`,
+              )}
+              color={!isReplicationRulesBannerShown ? 'success' : 'critical'}
+            />
+            <span className="ml-4">
+              <OdsIcon
+                id="trigger-popover"
+                name="circle-question"
+                className="text-[var(--ods-color-information-500)]"
               />
-              <span className="ml-4">
-                <OdsIcon
-                  id="trigger-popover"
-                  name="circle-question"
-                  className="text-[var(--ods-color-information-500)]"
-                />
-                <OdsPopover triggerId="trigger-popover">
-                  <OdsText preset="caption">
-                    {t(
-                      'container:pci_projects_project_storages_containers_container_offsite_replication_tooltip',
-                    )}
-                  </OdsText>
-                </OdsPopover>
-              </span>
-            </ContainerInfoItem>
-          )}
+              <OdsPopover triggerId="trigger-popover">
+                <OdsText preset="caption">
+                  {t(
+                    'container:pci_projects_project_storages_containers_container_offsite_replication_tooltip',
+                  )}
+                </OdsText>
+              </OdsPopover>
+            </span>
+
+            <div className="flex mt-3">
+              <Links
+                label={t(
+                  'containers/enable-versioning:pci_projects_project_storages_containers_manage_replications',
+                )}
+                type={LinkType.next}
+                href={manageReplicationsHref}
+              />
+            </div>
+          </ContainerInfoItem>
+        )}
       </div>
 
       <div className="grid col-span-12 md:col-span-8 gap-4">

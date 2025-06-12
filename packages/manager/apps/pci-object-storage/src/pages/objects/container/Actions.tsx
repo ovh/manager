@@ -4,6 +4,7 @@ import { Translation, useTranslation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
 
 import { useMemo } from 'react';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { TStorage } from '@/api/data/storages';
 import { OBJECT_CONTAINER_MODE_LOCAL_ZONE } from '@/constants';
 import { isSwiftType } from '@/helpers';
@@ -89,8 +90,26 @@ export function Actions({
           })}`,
         }),
     },
+
     {
       id: 2,
+      label: t(
+        'pci_projects_project_storages_containers_manage_replication_label',
+      ),
+      onClick: () =>
+        navigate({
+          pathname: `./${storage.id || storage.name}/replications`,
+          search: `?${createSearchParams({
+            region: storage.region,
+          })}`,
+        }),
+      condition:
+        storage.s3StorageType &&
+        (!storage.deploymentMode ||
+          storage.deploymentMode !== OBJECT_CONTAINER_MODE_LOCAL_ZONE),
+    },
+    {
+      id: 3,
       onClick: () => {
         clearNotifications();
         updateStorageType(
@@ -109,7 +128,7 @@ export function Actions({
       isDisabled: isPending,
     },
     {
-      id: 3,
+      id: 4,
       label: t('pci_projects_project_storages_containers_delete_label'),
       onClick: () => {
         const searchParams = {
@@ -132,5 +151,12 @@ export function Actions({
       ...i,
     }));
 
-  return <ActionMenu id={uid} items={items} isCompact />;
+  return (
+    <ActionMenu
+      id={uid}
+      items={items}
+      isCompact
+      variant={ODS_BUTTON_VARIANT.ghost}
+    />
+  );
 }

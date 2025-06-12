@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_containers_replication_delete_replication_rule_title": "Delete a replication rule",
+  "pci_projects_project_storages_containers_replication_delete_replication_rule_sub_title": "Are you sure you want to delete the <strong>{{decodedReplicationId}}</strong> replication rule?",
+  "pci_projects_project_storages_containers_replication_delete_replication_rule_cta": "Delete",
+  "pci_projects_project_storages_containers_replication_delete_replication_rule_cancel": "Cancel",
+  "pci_projects_project_storages_containers_replication_delete_success_message": "Your replication rule has been deleted.",
+  "pci_projects_project_storages_containers_replication_delete_error_message": "An error has occurred deleting your replication rule: {{ message }}."
+}

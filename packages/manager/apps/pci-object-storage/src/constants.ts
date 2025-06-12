@@ -468,11 +468,6 @@ export const CONTAINER_USER_ASSOCIATION_MODES = {
   LINKED: 'LINKED',
   CREATE: 'CREATE',
 };
-export const OBJECT_CONTAINER_STORAGE_CLASS = {
-  STANDARD: 'STANDARD',
-  HIGH_PERFORMANCE: 'HIGH_PERF',
-  STANDARD_INFREQUENT_ACCESS: 'STANDARD_IA',
-};
 
 export const X_CONTAINER_HEADERS_REGEX = /^(X-Container|X-Storage)/i;
 
@@ -505,3 +500,9 @@ export const ITEMS_PER_PAGE = 999;
 export const UNIVERSE = 'PublicCloud';
 export const SUB_UNIVERSE = 'storages';
 export const APP_NAME = 'objects_storage_container';
+
+export enum ReplicationStorageClass {
+  STANDARD = 'STANDARD',
+  STANDARD_IA = 'STANDARD_IA',
+  HIGH_PERF = 'HIGH_PERF',
+}
