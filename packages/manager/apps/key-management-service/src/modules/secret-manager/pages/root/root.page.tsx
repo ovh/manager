@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SMS_ROUTES_URLS } from '@sms/routes/routes.constants';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useOkmsList } from '@/data/hooks/useOkms';
 import Loading from '@/components/Loading/Loading';
 
-export default function SmsRootPage() {
+export default function SecretManagerRootPage() {
   const navigate = useNavigate();
   const hasNavigated = useRef(false);
 
@@ -19,9 +19,13 @@ export default function SmsRootPage() {
       return;
     }
     if (firstKmsId) {
-      navigate(SMS_ROUTES_URLS.secretListing(firstKmsId), { replace: true });
+      navigate(SECRET_MANAGER_ROUTES_URLS.secretListing(firstKmsId), {
+        replace: true,
+      });
     } else {
-      navigate(SMS_ROUTES_URLS.smsOnboarding, { replace: true });
+      navigate(SECRET_MANAGER_ROUTES_URLS.secretManagerOnboarding, {
+        replace: true,
+      });
     }
     hasNavigated.current = true;
   }, [firstKmsId, isPending, navigate]);
