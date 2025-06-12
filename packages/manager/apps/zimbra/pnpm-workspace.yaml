@@ -1,0 +1,14 @@
+packages:
+  - .
+
+overrides:
+  "@ovh-ux/manager-common-translations": "link:../../modules/common-translations"
+  "@ovh-ux/manager-config": "link:../../modules/config"
+  "@ovh-ux/manager-core-utils": "link:../../core/utils"
+  "@ovh-ux/manager-module-order": "link:../../modules/order"
+  "@ovh-ux/manager-react-core-application": "link:../../core/application"
+  "@ovh-ux/manager-react-shell-client": "link:../../core/shell-client"
+  "@ovh-ux/manager-tailwind-config": "link:../../core/tailwind-config"
+  "@ovh-ux/request-tagger": "link:../../core/request-tagger"
+  "@ovh-ux/shell": "link:../../../components/ovh-shell"
+  "@ovh-ux/manager-vite-config": "link:../../core/vite-config"

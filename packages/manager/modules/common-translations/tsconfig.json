@@ -2,7 +2,7 @@
   "compilerOptions": {
     "lib": ["dom", "es2021"],
     "target": "es2021",
-    "types": ["vite/client", "node"],
+    "types": ["vite/client"],
     "module": "ES2020",
     "outDir": "dist",
     "allowJs": false,
