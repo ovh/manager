@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_containers_replication_delete_replication_rule_title": "Usuń regułę replikacji",
+  "pci_projects_project_storages_containers_replication_delete_replication_rule_sub_title": "Czy na pewno chcesz usunąć regułę replikacji <strong>{{decodedReplicationId}}</strong>?",
+  "pci_projects_project_storages_containers_replication_delete_replication_rule_cta": "Usuń",
+  "pci_projects_project_storages_containers_replication_delete_replication_rule_cancel": "Anuluj",
+  "pci_projects_project_storages_containers_replication_delete_success_message": "Reguła replikacji została usunięta.",
+  "pci_projects_project_storages_containers_replication_delete_error_message": "Wystąpił błąd podczas usuwania reguły replikacji: {{ message }}."
+}
