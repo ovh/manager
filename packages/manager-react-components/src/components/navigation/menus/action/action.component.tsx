@@ -100,7 +100,7 @@ const MenuItem = ({
     return (
       <>
         <a
-          href={!item.isDisabled && item.href}
+          href={!item.isDisabled ? item.href : undefined}
           download={item.download}
           target={item.target}
         >
