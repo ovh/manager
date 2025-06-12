@@ -6,6 +6,7 @@ import { urls } from '@/routes/routes.constant';
 
 const LayoutPage = lazy(() => import('@/pages/layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing'));
+const RemovePage = lazy(() => import('@/pages/remove/Remove.page'));
 const DashboardPage = lazy(() => import('@/pages/dashboard'));
 const GeneralInfosPage = lazy(() =>
   import('@/pages/dashboard/general-informations'),
@@ -34,7 +35,18 @@ export default (
           pageType: PageType.listing,
         },
       }}
-    />
+    >
+      <Route
+        path={urls.remove}
+        Component={RemovePage}
+        handle={{
+          tracking: {
+            pageName: 'remove',
+            pageType: PageType.popup,
+          },
+        }}
+      />
+    </Route>
     <Route path={urls.dashboard} Component={DashboardPage}>
       <Route
         path=""

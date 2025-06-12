@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_edit_remove_title": "Cancel project",
+  "pci_projects_project_edit_remove_please_note": "Important: Please note that all of your services, resources, settings and data will be destroyed, without any option to restore at a later date. The only exception to this is failover IPs, which will be parked.",
+  "pci_projects_project_edit_remove_submit": "Yes, cancel",
+  "pci_projects_project_edit_remove_cancel": "No, dismiss",
+  "pci_projects_project_edit_remove_error": "An error has occurred deleting the project: {{ error }}.",
+  "pci_projects_project_edit_remove_success": "You have been sent an email confirming the deletion.",
+  "pci_projects_project_discovery_edit_remove_please_note": "Please note that deleting your project cannot be undone. To use the Public Cloud solutions again, you’ll need to recreate one from scratch.",
+  "pci_projects_project_discovery_edit_savings_plan": "You currently have a Savings Plan for this project. You cannot delete it. Please reach out to our Customer Service team for more information on how to delete.",
+  "pci_projects_project_edit_remove_submit_client_service": "Contact Customer Support"
+}
