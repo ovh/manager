@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-workflow-app",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "private": true,
   "description": "PCI Workflow react app",
   "type": "module",
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@ovh-ux/manager-vite-config": "^0.10.0",
+    "@ovh-ux/manager-vite-config": "^0.10.1",
     "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^16.0.0",

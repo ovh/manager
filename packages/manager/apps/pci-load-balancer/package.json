@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-load-balancer-app",
-  "version": "0.13.2",
+  "version": "0.13.3",
   "private": true,
   "description": "PCI Octavia load balancer react app",
   "type": "module",
@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@ovh-ux/manager-vite-config": "^0.10.0",
+    "@ovh-ux/manager-vite-config": "^0.10.1",
     "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^16.0.0",

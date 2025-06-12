@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-billing-app",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "private": true,
   "description": "PCI Billing react app",
   "type": "module",
@@ -45,7 +45,7 @@
     "zustand": "^4.5.5"
   },
   "devDependencies": {
-    "@ovh-ux/manager-vite-config": "^0.10.0",
+    "@ovh-ux/manager-vite-config": "^0.10.1",
     "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^16.0.0",

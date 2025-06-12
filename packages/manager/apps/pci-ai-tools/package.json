@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-ai-tools-app",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "private": true,
   "description": "pci-ai-tools",
   "repository": {
@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@ovh-ux/manager-vite-config": "^0.10.0",
+    "@ovh-ux/manager-vite-config": "^0.10.1",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^13.2.1",
     "@types/node": "^20.10.6",
