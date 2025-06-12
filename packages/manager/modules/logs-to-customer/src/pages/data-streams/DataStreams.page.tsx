@@ -24,16 +24,42 @@ import getServiceLabel from '../../helpers/getServiceLabel';
 import ServiceLink from '../../components/services/ServiceLink.component';
 import { LogsActionEnum } from '../../types/logsTracking';
 import useLogTrackingActions from '../../hooks/useLogTrackingActions';
+import OrderServiceButton from '../../components/services/OrderServiceButton.component';
+import KnowMoreLink from '../../components/services/KnowMoreLink.component';
 
-export default function DataStreams() {
-  const queryClient = useQueryClient();
-  const navigate = useNavigate();
+const BackButton = () => {
   const { t } = useTranslation('logStreams');
   const { trackClick } = useOvhTracking();
-  const [currentService, setCurrentService] = useState<Service>();
+  const navigate = useNavigate();
   const subscribeLogsAccessAction = useLogTrackingActions(
     LogsActionEnum.subscribe_logs_access,
   );
+
+  return (
+    <OdsButton
+      icon="arrow-left"
+      iconAlignment="left"
+      size="sm"
+      variant="outline"
+      label={t('log_streams_back_button')}
+      onClick={() => {
+        trackClick({
+          location: PageLocation.page,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: [subscribeLogsAccessAction],
+        });
+        navigate('..');
+      }}
+    />
+  );
+};
+
+export default function DataStreams() {
+  const queryClient = useQueryClient();
+  const { t } = useTranslation('logStreams');
+  const { t: tService } = useTranslation('logService');
+  const [currentService, setCurrentService] = useState<Service>();
 
   const { data: logServices, isPending, error } = useLogServices();
 
@@ -65,9 +91,15 @@ export default function DataStreams() {
 
   if (logServices.length === 0)
     return (
-      <OdsText preset="paragraph">
-        {t('log_kind_empty_state_description')}
-      </OdsText>
+      <div className="flex flex-col gap-3">
+        <OdsText preset="paragraph">
+          {tService('log_service_no_service_description')} <KnowMoreLink />
+        </OdsText>
+        <div className="flex items-center gap-3">
+          <BackButton />
+          <OrderServiceButton />
+        </div>
+      </div>
     );
 
   if (!currentService)
@@ -102,20 +134,7 @@ export default function DataStreams() {
               );
             })}
           </OdsSelect>
-          <OdsButton
-            size="sm"
-            variant="outline"
-            label={t('log_streams_back_button')}
-            onClick={() => {
-              trackClick({
-                location: PageLocation.page,
-                buttonType: ButtonType.button,
-                actionType: 'action',
-                actions: [subscribeLogsAccessAction],
-              });
-              navigate('..');
-            }}
-          />
+          <BackButton />
         </div>
       </div>
       <div className="flex gap-3">
