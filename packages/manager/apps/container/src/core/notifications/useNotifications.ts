@@ -1,5 +1,6 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { aapi } from '@ovh-ux/manager-core-api';
+import { useReket } from '@ovh-ux/ovh-reket';
+
 import { useApplication } from '@/context';
 import transformNotification, {
   APINotification,
@@ -9,16 +10,18 @@ import { MAX_NOTIFICATIONS, NOTIFICATION_STATUS_ENUM } from './constants';
 
 const useNotifications = () => {
   const { environment } = useApplication();
+  const reketInstance = useReket();
   const queryClient = useQueryClient();
 
   const getNotifications = async (): Promise<Notification[]> => {
     try {
-      const { data: apiNotifications } = await aapi.get<APINotification[]>('/notification', {
+      const apiNotifications = await reketInstance.get('/notification', {
+        requestType: 'aapi',
         params: {
           target: environment.getRegion(),
           lang: environment.getUserLocale(),
         },
-      }).catch(() => ({ data: [] }));
+      });
 
       const newNotifications: APINotification[] = [];
       apiNotifications.forEach((notif: APINotification) => {
@@ -51,7 +54,7 @@ const useNotifications = () => {
   // UPDATE NOTIFICATIONS
 
   const updateNotications = (status: unknown): Promise<unknown> => {
-    return aapi.post('/notification', status).catch(() => {});
+    return reketInstance.post('/notification', status, { requestType: 'aapi' });
   };
 
   const updateNotificationReadStatus = (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { v6 } from '@ovh-ux/manager-core-api';
+import { useReket } from '@ovh-ux/ovh-reket';
 
 export enum MfaEnrollmentState {
   HIDE,
@@ -11,12 +11,15 @@ export default function useMfaEnrollment() {
   const [state, setState] = useState<MfaEnrollmentState>(
     MfaEnrollmentState.HIDE,
   );
+  const reketInstance = useReket();
 
   useEffect(() => {
-    v6
-      .get<string>('/auth/shouldDisplayMFAEnrollment')
-      .then(({ data }) => {
-        switch (data) {
+    reketInstance
+      .get('/auth/shouldDisplayMFAEnrollment', {
+        requestType: 'apiv6',
+      })
+      .then(({ value }: { value: string }) => {
+        switch (value) {
           case 'forced':
             setState(MfaEnrollmentState.FORCED);
             break;
