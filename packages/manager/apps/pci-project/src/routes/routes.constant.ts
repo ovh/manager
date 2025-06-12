@@ -4,4 +4,5 @@ export const urls = {
   listing: '',
   dashboard: ':serviceName',
   tab2: 'tab2',
+  remove: 'remove',
 };
