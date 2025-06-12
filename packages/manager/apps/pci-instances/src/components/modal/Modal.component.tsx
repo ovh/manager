@@ -42,12 +42,14 @@ const Modal = ({
     <Dialog defaultOpen onOpenChange={onModalClose}>
       <DialogContent
         aria-describedby={id}
-        className="p-0 !rounded-[--ods-border-radius-md] [&>button]:hidden focus-visible:outline-none"
+        className="p-0 !rounded-[--ods-border-radius-md] [&_button:focus-visible]:outline-none [&_button:focus-visible]:ring-0 [&_button:focus-visible]:ring-offset-0 [&_button]:text-[--ods-color-info-500] [&_button]:top-3.5 [&_button_svg]:w-8 [&_button_svg]:h-8"
       >
         <DialogHeader
           className={clsx(
             `p-6 rounded-t-md `,
-            `bg-[--ods-color-${variant}-100]`,
+            variant === 'warning'
+              ? 'bg-[--ods-color-warning-100]'
+              : 'bg-[--ods-color-primary-100]',
           )}
         />
         <div id={id} className="p-6 pt-0">
