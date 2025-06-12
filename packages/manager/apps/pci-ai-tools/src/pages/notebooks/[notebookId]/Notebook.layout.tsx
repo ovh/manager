@@ -26,7 +26,7 @@ export const Loader = async ({ params }: NotebookLayoutProps) => {
       queryFn: () => getNotebook({ projectId, notebookId }),
     })
     .then(
-      (): null => null,
+      () => null,
       () => redirect(`/pci/projects/${projectId}/ai-ml/notebooks`),
     );
 };

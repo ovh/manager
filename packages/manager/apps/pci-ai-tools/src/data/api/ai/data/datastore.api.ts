@@ -1,5 +1,4 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { AxiosResponse } from 'axios';
 import ai from '@/types/AI';
 import { PCIAi } from '../..';
 import { Containers } from '@/types/orderFunnel';
@@ -68,7 +67,7 @@ export const deleteDatastore = async ({
   projectId,
   region,
   alias,
-}: DatastoreProps): Promise<AxiosResponse<void>> =>
+}: DatastoreProps) =>
   apiClient.v6.delete(
     `/cloud/project/${projectId}/ai/data/region/${region}/alias/${alias}`,
   );
