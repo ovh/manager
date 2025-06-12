@@ -1,0 +1,105 @@
+/**
+This is a copy of ODS style
+ */
+@use '@ovhcloud/ods-common-theming/size/ods-component-size';
+$ods-badge-height-sm: 19px;
+$ods-badge-height-md: 26px;
+$ods-badge-height-lg: 28px;
+
+@mixin ods-badge() {
+  opacity: 1;
+  margin: 0;
+  border-style: solid;
+  border-color: transparent;
+  box-shadow: none;
+  overflow: hidden;
+  line-height: 1;
+
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-flow: row;
+  grid-gap: 0.25rem;
+  align-items: center;
+  border-radius: var(--ods-border-radius-sm, 4px);
+  color: var(--ods-color-primary-900, #000d1f);
+}
+
+@mixin ods-badge-color() {
+  &--color-alpha {
+    background-color: var(--ods-color-alpha, #fbfe47);
+    color: var(--ods-color-primary-900, #000d1f);
+  }
+  &--color-beta {
+    background-color: var(--ods-color-beta, #47fe78);
+    color: var(--ods-color-primary-900, #000d1f);
+  }
+  &--color-critical {
+    background-color: var(--ods-color-critical-100, #ffccd9);
+    color: var(--ods-color-critical-900, #4d000d);
+  }
+  &--color-information {
+    background-color: var(--ods-color-information-100, #bef1ff);
+    color: var(--ods-color-information-900, #000d1f);
+  }
+  &--color-neutral {
+    background-color: var(--ods-color-neutral-100, #e6e6e6);
+    color: var(--ods-color-neutral-700, #4d4d4d);
+  }
+  &--color-new {
+    background-color: var(--ods-color-new, #47fffa);
+    color: var(--ods-color-primary-900, #000d1f);
+  }
+  &--color-promotion {
+    background-color: var(--ods-color-promotion, #ac246f);
+    color: var(--ods-color-neutral-000, #ffffff);
+  }
+  &--color-success {
+    background-color: var(--ods-color-success-100, #d2f2c2);
+    color: var(--ods-color-success-900, #113300);
+  }
+  &--color-warning {
+    background-color: var(--ods-color-warning-100, #feea86);
+    color: var(--ods-color-warning-900, #4d2a00);
+  }
+}
+
+.pci-badge {
+  @include ods-badge;
+  @include ods-badge-color();
+
+  &--size-sm {
+    padding: 2px 6px;
+    height: $ods-badge-height-sm;
+    font-size: 0.75rem;
+
+    & .badge__icon {
+      font-size: 0.625rem;
+      width: 0.625rem;
+      height: 0.625rem;
+    }
+  }
+
+  &--size-md {
+    padding: 4px 8px;
+    height: $ods-badge-height-md;
+    font-size: 0.875rem;
+
+    & .badge__icon {
+      font-size: 0.833rem;
+      width: 0.833rem;
+      height: 0.833rem;
+    }
+  }
+
+  &--size-lg {
+    padding: 4px 10px;
+    height: $ods-badge-height-lg;
+    font-size: 1rem;
+
+    & .badge__icon {
+      font-size: 1.05rem;
+      width: 1.05rem;
+      height: 1.05rem;
+    }
+  }
+}

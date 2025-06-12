@@ -90,5 +90,6 @@
   "common_password_strong_password": "Mot de passe fort.",
   "common_cancel": "Annuler",
   "common_confirm": "Confirmer",
-  "common_not_supported": "Non supporté"
+  "common_not_supported": "Non supporté",
+  "common_price_from": "À partir de"
 }
