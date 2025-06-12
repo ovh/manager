@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.27.2...@ovh-ux/manager-react-components@2.28.0) (2025-06-12)
+
+### Features
+
+- **manager-react-component:** add service state badge component ([58f0ee8](https://github.com/ovh/manager/commit/58f0ee86dbca4507a3f4e114d9e3ec935d148dbc)), closes [#15090](https://github.com/ovh/manager/issues/15090)
+
 ## [2.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.27.1...@ovh-ux/manager-react-components@2.27.2) (2025-06-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-components

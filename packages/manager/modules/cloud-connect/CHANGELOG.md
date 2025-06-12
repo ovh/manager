@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.22.1...@ovh-ux/manager-cloud-connect@1.22.2) (2025-06-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4100] ([5ae216d](https://github.com/ovh/manager/commit/5ae216d093757f9965fff45050251b7147c8d474))
+
+
+
+
+
 ## [1.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.22.0...@ovh-ux/manager-cloud-connect@1.22.1) (2025-06-11)
 
 
