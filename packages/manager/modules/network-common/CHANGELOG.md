@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.4.11...@ovh-ux/manager-network-common@0.4.12) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-network-common
+
+
+
+
+
 ## [0.4.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.4.10...@ovh-ux/manager-network-common@0.4.11) (2025-06-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-network-common
