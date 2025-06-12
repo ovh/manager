@@ -1,0 +1,119 @@
+/**
+ * This is a copy of ODS 18 checkbox style
+ * TODO: remove when migrating
+ */
+$ods-checkbox-size: 16px;
+
+@mixin ods-checkbox() {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  border: solid 1px var(--ods-color-neutral-300, #b3b3b3);
+  border-radius: var(--ods-border-radius-sm, 4px);
+  cursor: pointer;
+  width: $ods-checkbox-size;
+  height: $ods-checkbox-size;
+  font-size: 0.5rem;
+}
+
+$ods-state-is-disabled-background-color: var(
+  --ods-color-background-disabled-default,
+  #e6e6e6
+);
+$ods-state-is-disabled-border-color: var(
+  --ods-color-border-disabled-default,
+  #cccccc
+);
+$ods-state-is-disabled-text-color: var(
+  --ods-color-text-disabled-default,
+  #808080
+);
+
+@mixin ods-is-disabled() {
+  border-color: $ods-state-is-disabled-border-color;
+  background-color: $ods-state-is-disabled-background-color;
+  cursor: not-allowed;
+  color: $ods-state-is-disabled-text-color;
+}
+
+@mixin ods-focus() {
+  outline: var(--ods-outline-style-default, solid) var(--ods-outline-width, 2px)
+    var(--ods-outline-color-default, #000e9c);
+  outline-offset: var(--ods-outline-offse, 2pxt);
+}
+
+.pci-ods-checkbox {
+  display: inline-flex;
+  width: inherit;
+  height: inherit;
+}
+
+.pci-ods-checkbox__checkbox {
+  appearance: none;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  border: solid 1px var(--ods-color-neutral-300, #b3b3b3);
+  border-radius: var(--ods-border-radius-sm, 4px);
+  background: var(--ods-color-primary-000, #ffffff);
+  cursor: pointer;
+  width: $ods-checkbox-size;
+  height: $ods-checkbox-size;
+
+  &::before {
+    position: relative;
+    display: inline-block;
+    vertical-align: var(--ods-icon-vertical-align, bottom);
+    mask: center/contain no-repeat;
+    content: ' ';
+    width: inherit;
+    height: inherit;
+  }
+
+  &:focus {
+    @include ods-focus();
+
+    border-color: var(--ods-color-form-element-border-focus-default, #808080);
+  }
+
+  &:hover {
+    border-color: var(--ods-color-form-element-border-hover-default, #808080);
+  }
+
+  &:checked {
+    &::before {
+      background: #fff;
+      mask-image: var(--icon-mask-check);
+    }
+  }
+
+  &:indeterminate {
+    &::before {
+      mask-image: var(--icon-mask-minus);
+    }
+  }
+
+  &:disabled {
+    @include ods-is-disabled();
+
+    &::before {
+      color: $ods-state-is-disabled-text-color;
+    }
+  }
+
+  &:not(:disabled):checked,
+  &:not(:disabled):indeterminate {
+    border-color: var(--ods-color-primary-500, #0050d7);
+    background: var(--ods-color-primary-500, #0050d7);
+
+    &:focus,
+    &:hover {
+      border-color: var(--ods-color-primary-700, #000e9c);
+      background: var(--ods-color-primary-700, #000e9c);
+    }
+  }
+}

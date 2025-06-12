@@ -17,4 +17,5 @@ export * from './components/deployment-mode-card';
 export * from './components/deployment-tiles-input';
 export * from './components/input-adapter';
 export * from './components/tiles-input';
+export * from './components/config-card/ConfigCard';
 export * from './dto';
