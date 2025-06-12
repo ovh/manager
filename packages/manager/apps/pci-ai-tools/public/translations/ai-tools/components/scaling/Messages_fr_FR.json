@@ -1,0 +1,16 @@
+{
+  "fieldScalingDesc1": "Selon votre préférence, choisissez la stratégie de déploiement qui convient le mieux pour votre app : optez pour un dimensionnement fixe du nombre de réplicas sur lesquels sera déployée votre app ou bien indiquez un minimum et maximum de réplicas pour vos déploiements afin d'en optimiser dynamiquement les performances et vous adapter au nombre de requêtes via l'option Autoscaling.",
+  "scalingLink": "Plus d'informations sur les stratégies de mise à l'échelle",
+  "scalingStratActiveLabel": "Autoscaling activé",
+  "noScalingStratActiveLabel": "Autoscaling désactivé",
+  "replicasInputLabel": "Nombre de réplicas sur lesquels sera déployée votre app",
+  "haInfoHelper": "Déployez sur un minimum de 2 réplicas pour disposer de haute-disponibilité",
+  "replicasMinInputLabel": "Minimum de réplicas",
+  "replicasMaxInputLabel": "Maximum de réplicas",
+  "resourceTypeLabel": "Métrique surveillée",
+  "resourceTypeInfo": "Métrique qui agira comme élément déclencheur de l'Autoscaling.",
+  "treshholderTargetLabel": "Seuil de déclenchement (%)",
+  "treshholderTargetInfo": "Valeur de la métrique, en pourcentage.",
+  "scalingBillingInfo": "Veuillez noter que le nombre de réplicas choisi multipliera d'autant le nombre de ressources prises.",
+  "errorFormMinMaxRepField": "Minimum réplicas doit être inférieur à Maximum réplicas"
+}

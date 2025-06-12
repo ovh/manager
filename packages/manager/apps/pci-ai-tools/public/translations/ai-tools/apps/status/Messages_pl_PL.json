@@ -1,0 +1,12 @@
+{
+  "status-DELETING": "W trakcie usuwania",
+  "status-DELETED": "Usunięte",
+  "status-STOPPING": "Wygasanie w trakcie",
+  "status-SCALING": "Skalowanie",
+  "status-QUEUED": "Oczekujące",
+  "status-INITIALIZING": "Utwórz klaster",
+  "status-FAILED": "Błąd",
+  "status-ERROR": "Błąd",
+  "status-STOPPED": "Zatrzymano",
+  "status-RUNNING": "W użyciu"
+}

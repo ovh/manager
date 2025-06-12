@@ -1,0 +1,12 @@
+{
+  "updatePortTitle": "Cambiar el puerto HTTP",
+  "updateHttpPortDesc1": "Puede actualizar el puerto de su aplicación. La configuración actual se conserva en otros elementos, como el extremo HTTP o la estrategia de implementación.",
+  "updateHttpPortDesc2": "Puede haber latencia en las distintas réplicas.",
+  "fieldHttpPortLabel": "Puerto HTTP",
+  "httpPortInfo": "Introduzca el nuevo puerto HTTP en el que quiere desplegar su app.",
+  "updatePortButtonCancel": "Cancelar",
+  "updatePortButtonConfirm": "Modificar",
+  "updatePortToastErrorTitle": "Se ha producido un error",
+  "updatePortToastSuccessTitle": "Superados",
+  "updatePortToastSuccessDescription": "Se ha actualizado el puerto http"
+}
