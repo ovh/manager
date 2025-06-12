@@ -1,0 +1,18 @@
+{
+  "pci_projects": "Progetti",
+  "pci_projects_description": "Descrizione",
+  "pci_projects_status": "Stato",
+  "pci_projects_status_ok": "Attivo",
+  "pci_projects_status_deleting": "Eliminazione in corso...",
+  "pci_projects_status_creating": "Creazione in corso...",
+  "pci_projects_project_show": "Visualizza",
+  "pci_projects_status_suspended": "Sospeso",
+  "pci_projects_status_pendingDebt": "Fattura da pagare",
+  "pci_projects_project_pay_bill": "Paga la tua fattura",
+  "pci_projects_project_view": "Visualizza il progetto",
+  "pci_projects_create_project": "Crea un nuovo progetto",
+  "pci_projects_project_delete": "Elimina",
+  "pci_projects_redirect_to_dedicated_page": "Per continuare, seleziona un progetto esistente o creane uno nuovo.",
+  "pci_projects_project_delete_success": "Ti abbiamo inviato la conferma dell’eliminazione via email.",
+  "pci_projects_status_deleted": "Eliminato "
+}
