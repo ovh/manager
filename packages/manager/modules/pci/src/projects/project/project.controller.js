@@ -62,6 +62,7 @@ export default class ProjectController {
     this.uAppActions = [];
     this.displayDatabaseLink();
     this.displayNotebookLink();
+    this.displayDataplatformLink();
   }
 
   displayDatabaseLink() {
@@ -84,31 +85,31 @@ export default class ProjectController {
           ...DATABASE_UAPP_CONFIG,
           url,
         });
-        if (
-          this.pciFeatures.isFeatureAvailable(
-            PCI_FEATURES.PRODUCTS.DATA_PLATFORM,
-          )
-        ) {
-          this.uAppActions.push({
-            ...DATA_PLATFORM_CONFIG,
-            url: DATA_PLATFORM_CONFIG.url.replace(
-              '{projectId}',
-              this.projectId,
-            ),
-          });
-        }
+      });
+    }
+  }
+
+  displayDataplatformLink() {
+    // Add Dataplatform µApp link if feature is activated
+    if (
+      this.pciFeatures.isFeatureAvailable(PCI_FEATURES.PRODUCTS.DATA_PLATFORM)
+    ) {
+      // add new link for uApp
+      this.getUAppUrl(
+        DATA_PLATFORM_CONFIG.universe,
+        DATA_PLATFORM_CONFIG.url.replace('{projectId}', this.projectId),
+      ).then((url) => {
+        this.uAppActions.push({
+          ...DATA_PLATFORM_CONFIG,
+          url,
+        });
       });
     }
   }
 
   displayNotebookLink() {
-    // Add databases µApp link if feature is activated
+    // Add Noteboos µApp link if feature is activated
     if (this.pciFeatures.isFeatureAvailable(PCI_FEATURES.PRODUCTS.NOTEBOOKS)) {
-      // remove link for old application
-      this.actions = this.actions.filter(
-        (action) => action.feature !== PCI_FEATURES.PRODUCTS.NOTEBOOKS,
-      );
-      // add new link for uApp
       this.getUAppUrl(
         NOTEBOOKS_UAPP_CONFIG.universe,
         NOTEBOOKS_UAPP_CONFIG.url.replace('{projectId}', this.projectId),
