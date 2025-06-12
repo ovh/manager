@@ -120,3 +120,6 @@ export const PCI_FEATURES_STATES: TFeatureState = {
     PROJECT_SETTINGS: { url: `${BASE_PROJECT_PATH}/edit` },
   },
 };
+
+export const SUPPORT_URL =
+  'https://help.ovhcloud.com/csm?id=csm_get_help&ovhSubsidiary=';
