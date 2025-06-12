@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_edit_remove_title": "Usuń projekt",
+  "pci_projects_project_edit_remove_please_note": "Pamiętaj, że wszystkie Twoje usługi, zasoby, parametry i dane zostaną zniszczone, bez możliwości późniejszego przywrócenia, z wyjątkiem adresów IP Failover, które zostaną zaparkowane.",
+  "pci_projects_project_edit_remove_submit": "Tak",
+  "pci_projects_project_edit_remove_cancel": "Nie",
+  "pci_projects_project_edit_remove_error": "Wystąpił błąd podczas usuwania projektu: {{ error }}",
+  "pci_projects_project_edit_remove_success": "Właśnie wysłaliśmy do Ciebie wiadomość e-mail z potwierdzeniem usunięcia projektu.",
+  "pci_projects_project_discovery_edit_remove_please_note": "Pamiętaj, że usunięcie projektu jest nieodwracalne. Aby nadal korzystać z rozwiązań Public Cloud, będziesz musiał utworzyć nowy projekt.",
+  "pci_projects_project_discovery_edit_savings_plan": "Savings Plan jest włączony dla tego projektu. Nie możesz go usunąć. Skontaktuj się z obsługą klienta, aby poznać procedurę usunięcia.",
+  "pci_projects_project_edit_remove_submit_client_service": "Skontaktuj się z obsługą klienta"
+}

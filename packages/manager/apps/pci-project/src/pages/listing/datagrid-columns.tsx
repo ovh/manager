@@ -7,6 +7,7 @@ import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import { TProjectWithService } from '@/data/types/project.type';
 import StatusComponent from './Status.component';
+import Actions from './Actions.component';
 
 export const getDatagridColumns = (
   t: (key: string) => string,
@@ -46,7 +47,9 @@ export const getDatagridColumns = (
   },
   {
     id: 'actions',
-    cell: () => <div></div>,
+    cell: (props: TProjectWithService) => (
+      <Actions projectWithService={props} />
+    ),
     label: '',
     isSortable: false,
     isSearchable: false,
