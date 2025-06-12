@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { FetchResultV6 } from '@ovh-ux/manager-react-components';
-import { TService } from '../types/service.type';
+import { TService } from '@/data/types/service.type';
 
 export const getServices = async (): Promise<FetchResultV6<TService>> => {
   const headers: Record<string, string> = {
