@@ -1,0 +1,18 @@
+{
+  "pci_projects": "Projects",
+  "pci_projects_description": "Description",
+  "pci_projects_status": "Status",
+  "pci_projects_status_ok": "Active",
+  "pci_projects_status_deleting": "Deleting...",
+  "pci_projects_status_creating": "Creating...",
+  "pci_projects_project_show": "View",
+  "pci_projects_status_suspended": "Suspended",
+  "pci_projects_status_pendingDebt": "Bill to pay",
+  "pci_projects_project_pay_bill": "Pay my bill",
+  "pci_projects_project_view": "View project",
+  "pci_projects_create_project": "Create a new project",
+  "pci_projects_project_delete": "Delete",
+  "pci_projects_redirect_to_dedicated_page": "To continue, please select an existing project or create a new project.",
+  "pci_projects_project_delete_success": "You have been sent an email confirming the deletion.",
+  "pci_projects_status_deleted": "Deleted"
+}
