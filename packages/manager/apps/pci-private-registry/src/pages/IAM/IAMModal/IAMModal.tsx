@@ -91,9 +91,16 @@ export const IAMModal = ({
 
   const handleQuit = (action: TRegistryAction) => () => onQuit(action);
 
-  const { handleSubmit, control } = useForm<IAMchemaType>({
+  const {
+    handleSubmit,
+    control,
+    formState: { isValid },
+  } = useForm<IAMchemaType>({
     resolver: zodResolver(confirmIAMSchema()),
-    mode: 'onSubmit',
+    mode: 'onChange',
+    defaultValues: {
+      confirmIAM: '',
+    },
   });
 
   useEffect(() => {
@@ -113,6 +120,7 @@ export const IAMModal = ({
           : t('private_registry_common_status_ENABLE'),
       })}
       isPending={loading}
+      isDisabled={!isValid}
       onConfirm={handleSubmit(onManageIAM)}
       onClose={handleQuit('CLOSE')}
       onCancel={handleQuit('CANCEL')}
