@@ -1,0 +1,69 @@
+<oui-tile
+    data-heading="{{:: $ctrl.LABELS.TILE_TITLE }}"
+    data-loading="$ctrl.loading"
+>
+    <oui-tile-definition data-ng-if="$ctrl.formattedTags.length > 0">
+        <oui-tile-term>
+            <span
+                data-translate="manager_components_resource_tagging_dashboard_tile_assigned"
+            ></span>
+        </oui-tile-term>
+        <oui-tile-description class="mt-2 d-flex flex-row flex-wrap">
+            <div
+                data-ng-repeat="tag in $ctrl.formattedTags track by $index"
+                class="flex-shrink-1"
+            >
+                <span
+                    class="oui-badge oui-badge_info"
+                    data-ng-if="$index < 10"
+                    data-ng-bind="tag.displayName"
+                >
+                </span>
+            </div>
+            <oui-button
+                class="my-2"
+                data-variant="link"
+                data-on-click="$ctrl.goToTagsModal()"
+                data-icon-right="oui-icon-chevron-right"
+                data-ng-if="$ctrl.formattedTags.length > 9"
+            >
+                <span
+                    data-translate="manager_components_resource_tagging_dashboard_tile_assigned_more"
+                ></span>
+            </oui-button>
+        </oui-tile-description>
+        <oui-tile-description>
+            <oui-button
+                class="my-2"
+                data-variant="link"
+                data-icon-right="oui-icon-chevron-right"
+                data-on-click="$ctrl.goToTagManager()"
+            >
+                <span
+                    data-translate="manager_components_resource_tagging_dashboard_tile_assigned_button"
+                ></span>
+            </oui-button>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition
+        data-ng-if="!$ctrl.tags || $ctrl.formattedTags.length  == 0"
+    >
+        <oui-tile-description>
+            <span
+                data-translate="manager_components_resource_tagging_dashboard_tile_empty"
+            ></span>
+        </oui-tile-description>
+        <oui-tile-description>
+            <oui-button
+                class="my-2"
+                data-variant="link"
+                data-icon-right="oui-icon-chevron-right"
+                data-on-click="$ctrl.goToTagManager()"
+            >
+                <span
+                    data-translate="manager_components_resource_tagging_dashboard_tile_empty_button"
+                ></span>
+            </oui-button>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>

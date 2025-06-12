@@ -27,6 +27,7 @@ export const features = [
   'vrack:hosted-private-cloud',
   'cloud-connect',
   'vrack-services',
+  'dedicated-servers',
   'netapp',
   'exchange:dedicated-dashboard',
   'license',
@@ -59,6 +60,7 @@ export default function DedicatedSidebar() {
   const environment = shell.getPlugin('environment').getEnvironment();
   const { ovhSubsidiary, isTrusted } = environment.getUser();
   const region = environment.getRegion();
+  const {data: availability} = useFeatureAvailability(features);
 
   const getDedicatedMenu = (feature: Record<string, boolean>) => {
     const menu = [];
@@ -68,7 +70,12 @@ export default function DedicatedSidebar() {
         id: 'dedicated-server',
         label: t('sidebar_dedicated'),
         icon: getIcon('ovh-font ovh-font-server'),
-        routeMatcher: new RegExp('^/(configuration/)?(server|housing|cluster)'),
+        ...(feature['dedicated-servers'] ? {
+          routeMatcher: new RegExp('^/(configuration/)?(server|housing|cluster|dedicated-servers)'),
+          pathMatcher: new RegExp('^(/dedicated-servers/)'),
+        } : {
+          routeMatcher: new RegExp('^/(configuration/)?(server|housing|cluster)'),
+        }),
         async loader() {
           const clusters = await loadServices('/dedicated/cluster');
           const servers = await loadServices('/dedicated/server');
@@ -78,10 +85,15 @@ export default function DedicatedSidebar() {
               id: 'dedicated-server-all',
               label: t('sidebar_dedicated_all'),
               icon: getIcon('ovh-font ovh-font-server'),
-              href: navigation.getURL('dedicated', '#/server'),
-              routeMatcher: new RegExp(`/server$`),
               ignoreSearch: true,
               title: t('sidebar_access_list'),
+              ...(feature['dedicated-servers'] ? {
+                href: navigation.getURL('dedicated-servers', '#/'),
+                pathMatcher: new RegExp('/dedicated-servers'),
+              } : {
+                href: navigation.getURL('dedicated', '#/server'),
+                routeMatcher: new RegExp(`/server$`),
+              })
             },
             ...clusters.map((service) => {
               return {
@@ -415,8 +427,6 @@ export default function DedicatedSidebar() {
 
     return menu;
   };
-
-  const { data: availability } = useFeatureAvailability(features);
 
   useEffect(() => {
     if (availability) {
