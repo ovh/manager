@@ -16,7 +16,6 @@
       "packages/manager/apps/cloud-connect",
       "packages/manager/apps/container",
       "packages/manager/apps/dbaas-logs",
-      "packages/manager/apps/dedicated",
       "packages/manager/apps/email-domain",
       "packages/manager/apps/email-pro",
       "packages/manager/apps/exchange",
@@ -101,7 +100,7 @@
     ]
   },
   "scripts": {
-    "preinstall": "node scripts/pnpm-migration/pnpm-setup-workspace.mjs",
+    "preinstall": "node scripts/pnpm-migration/pnpm-setup-workspace.mjs --clean",
     "postinstall": "node scripts/pnpm-migration/pnpm-install-dependencies.mjs",
     "build": "yarn run build:custom",
     "build:custom": "node ./scripts/pnpm-migration/packages-custom-turbo-build.mjs",
