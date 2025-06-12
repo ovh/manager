@@ -7,5 +7,6 @@
   "autorenew_hosting_dashboard_close_service_warning": "Deleting a web hosting plan will permanently erase all corresponding data. The process of deleting a web hosting plan does not entitle you to a refund.",
   "autorenew_hosting_dashboard_close_service_desc1": "You will get an email containing the procedure for closing your web hosting plan, so you can confirm that you want it deleted immediately.",
   "autorenew_hosting_dashboard_close_confirm": "Confirm",
-  "autorenew_hosting_dashboard_close_cancel": "Cancel"
+  "autorenew_hosting_dashboard_close_cancel": "Cancel",
+  "autorenew_hosting_dashboard_close_service_success_skip_retention_period": "Your request to permanently delete your web hosting plan has been processed."
 }

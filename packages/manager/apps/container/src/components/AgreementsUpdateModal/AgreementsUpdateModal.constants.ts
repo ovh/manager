@@ -11,14 +11,8 @@ export const AgreementsUpdateModalConfiguration: ModalToDisplayConfiguration = {
     intervalInSeconds: 24 * 60 * 60,
     excludedUrls: [
       {
-        appName: (environment: Environment) =>
-          environment.getApplicationURL('new-billing')
-            ? 'new-billing'
-            : 'dedicated',
-        appPath: (environment: Environment) =>
-          `#/${
-            environment.getApplicationURL('new-billing') ? '' : 'billing/'
-          }autorenew/agreements`,
+        appName: () => 'billing',
+        appPath: () => '#/autorenew/agreements',
       },
     ],
   },

@@ -1,4 +1,0 @@
-{
-  "billing_autorenew_service_update_no_payment_mean_description": "You have selected automatic payment for your {{ service }} service",
-  "billing_autorenew_service_update_no_payment_mean_add": "To use this renewal method, please enter a payment method in the “My payment methods” section."
-}
