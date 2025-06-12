@@ -23,7 +23,6 @@ export default function DisableSslModal() {
       addSuccess(t('hosting_dashboard_ssl_delete_success'), true);
     },
     (error) => {
-      addSuccess(t('hosting_dashboard_ssl_delete_success'), true);
       addWarning(
         t('hosting_dashboard_ssl_delete_error', {
           error: error?.response?.data?.message,

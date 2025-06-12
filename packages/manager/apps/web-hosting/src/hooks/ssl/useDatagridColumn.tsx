@@ -10,6 +10,7 @@ import {
   DateFormat,
   useFormattedDate,
 } from '@ovh-ux/manager-react-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import {
   ODS_BADGE_COLOR,
@@ -65,6 +66,8 @@ export const DatagridActionCell = (props: SslCertificate) => {
 };
 
 export default function useDatagridColumn() {
+  const navigate = useNavigate();
+  const { serviceName } = useParams();
   const { t } = useTranslation('ssl');
 
   const StatusColor = {
@@ -90,14 +93,25 @@ export default function useDatagridColumn() {
         <DataGridTextCell>
           {props?.currentState?.additionalDomains?.[0] || '-'}
           {props?.currentState?.additionalDomains?.length > 1 && (
-            <small className="text-blue-700 pl-6">
-              {t(
+            <OdsButton
+              onClick={() => {
+                navigate({
+                  pathname: urls.sanSsl
+                    .replace(subRoutes.serviceName, serviceName)
+                    .replace(subRoutes.domain, props?.currentState?.mainDomain),
+                  search: `?${new URLSearchParams({
+                    san: props?.currentState?.additionalDomains?.join('; '),
+                  })}`,
+                });
+              }}
+              variant={ODS_BUTTON_VARIANT.ghost}
+              label={t(
                 props?.currentState?.additionalDomains?.length === 2
                   ? 'additional_domains_singular_total'
                   : 'additional_domains_plural_total',
                 { n: props?.currentState?.additionalDomains?.length - 1 },
               )}
-            </small>
+            />
           )}
         </DataGridTextCell>
       ),
