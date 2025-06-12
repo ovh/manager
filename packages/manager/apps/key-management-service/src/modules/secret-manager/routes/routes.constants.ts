@@ -1,5 +1,5 @@
 const URIS = {
-  root: 'secret-management-service',
+  root: 'secret-manager',
   onboarding: 'onboarding',
   versions: 'versions',
   secrets: 'secrets',
@@ -7,8 +7,8 @@ const URIS = {
 };
 
 const URLS = {
-  smsRoot: `/${URIS.root}`,
-  smsOnboarding: `/${URIS.root}/${URIS.onboarding}`,
+  secretManagerRoot: `/${URIS.root}`,
+  secretManagerOnboarding: `/${URIS.root}/${URIS.onboarding}`,
   secretCreate: `/${URIS.root}/${URIS.create}`,
   secretListing: (domainId: string) =>
     `/${URIS.root}/${domainId}/${URIS.secrets}`,
@@ -16,10 +16,10 @@ const URLS = {
     `/${URIS.root}/${domainId}/${URIS.secrets}/${secretId}`,
 };
 
-export const SMS_URL_PARAMS = {
+export const SECRET_MANAGER_URL_PARAMS = {
   domainId: ':domainId',
   secretId: ':secretId',
 };
 
-export const SMS_ROUTES_URIS = URIS;
-export const SMS_ROUTES_URLS = URLS;
+export const SECRET_MANAGER_ROUTES_URIS = URIS;
+export const SECRET_MANAGER_ROUTES_URLS = URLS;
