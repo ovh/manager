@@ -96,6 +96,7 @@ export const DATABASE_UAPP_CONFIG = {
 };
 
 export const DATA_PLATFORM_CONFIG = {
+  universe: 'public-cloud',
   url: '#/pci/projects/{projectId}/dataplatform',
   translation: 'pci_projects_project_data_platform',
   feature: PCI_FEATURES.PRODUCTS.DATA_PLATFORM,
