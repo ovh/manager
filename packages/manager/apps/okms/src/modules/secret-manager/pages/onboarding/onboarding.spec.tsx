@@ -4,18 +4,20 @@ import {
   getOdsButtonByLabel,
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
-import { SMS_ROUTES_URLS } from '@sms/routes/routes.constants';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 
-describe('SMS onboarding test suite', () => {
+describe('Secret Manager onboarding test suite', () => {
   it('should display the onboarding page', async () => {
-    const { container } = await renderTestApp(SMS_ROUTES_URLS.smsOnboarding);
+    const { container } = await renderTestApp(
+      SECRET_MANAGER_ROUTES_URLS.secretManagerOnboarding,
+    );
 
     const labelsToTest = [
-      labels.secrets.onboarding.title,
-      labels.secrets.onboarding.description1,
-      labels.secrets.onboarding.description2,
+      labels.secretManager.onboarding.title,
+      labels.secretManager.onboarding.description1,
+      labels.secretManager.onboarding.description2,
     ];
 
     const checkAllLabelsPromises = labelsToTest.map(async (label) => {
@@ -28,18 +30,20 @@ describe('SMS onboarding test suite', () => {
 
     getOdsButtonByLabel({
       container,
-      label: labels.secrets.onboarding.createButton,
+      label: labels.secretManager.onboarding.createButton,
       ...WAIT_FOR_DEFAULT_OPTIONS,
     });
   });
 
   it('should navigate to the secrets creation page', async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(SMS_ROUTES_URLS.smsOnboarding);
+    const { container } = await renderTestApp(
+      SECRET_MANAGER_ROUTES_URLS.secretManagerOnboarding,
+    );
 
     const button = await getOdsButtonByLabel({
       container,
-      label: labels.secrets.onboarding.createButton,
+      label: labels.secretManager.onboarding.createButton,
       ...WAIT_FOR_DEFAULT_OPTIONS,
     });
 

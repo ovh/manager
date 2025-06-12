@@ -42,7 +42,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      '@sms': path.resolve(__dirname, 'src/modules/sms'),
+      '@secret-manager': path.resolve(__dirname, 'src/modules/secret-manager'),
     },
     mainFields: ['module'],
   },

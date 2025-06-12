@@ -1,0 +1,6 @@
+{
+  "title": "Secret Manager",
+  "description1": "Securisez vos secrets",
+  "description2": "Secret Manager est le service centralisé de gestion des secrets basé sur OKMS entièrement managé pour vos applications et vos services OVHcloud.",
+  "createButton": "Créer un secret"
+}
