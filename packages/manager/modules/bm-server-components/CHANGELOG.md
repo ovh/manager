@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.11.1...@ovh-ux/manager-bm-server-components@2.12.0) (2025-06-12)
+
+
+### Features
+
+* **dedicated:** bare metal tagging project ([#17435](https://github.com/ovh/manager/issues/17435)) ([b727e9e](https://github.com/ovh/manager/commit/b727e9e38051b2b67dc3f8b160d9ac8f50e49474)), closes [#MANAGER-12894](https://github.com/ovh/manager/issues/MANAGER-12894)
+
+
+
+
+
 ## [2.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.11.0...@ovh-ux/manager-bm-server-components@2.11.1) (2025-06-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-bm-server-components
