@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { buildURL, buildURLs } from '../src';
 
 describe('uniq URL generation', () => {
