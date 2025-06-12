@@ -46,7 +46,7 @@ function icebergFilter(comparator: FilterComparator, value: string | string[]) {
   const v = encodeURIComponent(`${value}`);
   switch (comparator) {
     case FilterComparator.Includes:
-      return `like="${v}"`;
+      return `like=%25${v}%25`;
     case FilterComparator.StartsWith:
       return `like=${v}%25`;
     case FilterComparator.EndsWith:
@@ -85,6 +85,7 @@ export async function fetchIcebergV2<T>({
   disableCache,
 }: IcebergFetchParamsV2): Promise<IcebergFetchResultV2<T>> {
   const requestHeaders: Record<string, string> = {
+    'x-pagination-mode': 'CachedObjectList-Pages',
     'X-Pagination-Size': `${encodeURIComponent(pageSize || 5000)}`,
     ...(cursor ? { 'X-Pagination-Cursor': `${cursor}` } : {}),
     ...(disableCache ? { Pragma: 'no-cache' } : {}),
