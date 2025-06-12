@@ -27,7 +27,7 @@
     "prepare": "tsc"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-api": "^0.10.1"
+    "@ovh-ux/ovh-reket": "^2.1.9"
   },
   "devDependencies": {
     "@ovh-ux/request-tagger": "^0.4.1"
