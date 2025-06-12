@@ -8,5 +8,6 @@
   "manager_billing_service_status_delete_at_expiration": "Planowane zakończenie usługi",
   "manager_billing_service_status_expired": "Anulowany",
   "manager_billing_service_status_billing_suspended": "Faktura odroczona",
-  "manager_billing_service_status_forced_manual": "Odnowienie ręczne"
+  "manager_billing_service_status_forced_manual": "Odnowienie ręczne",
+  "manager_billing_service_status_restorable": "Możliwe przywrócenie"
 }
