@@ -1,29 +1,33 @@
-import React, { useEffect, useState, startTransition } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  FilterCategories,
-  FilterTypeCategories,
-} from '@ovh-ux/manager-core-api';
-import { useNavigate, useLocation } from 'react-router-dom';
 
-import { OdsButton, OdsSpinner, OdsIcon } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsSpinner } from '@ovhcloud/ods-components/react';
 import {
-  ODS_BUTTON_VARIANT,
   ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
 import {
-  Breadcrumb,
   Datagrid,
-  DataGridTextCell,
   ErrorBanner,
-  useResourcesIcebergV6,
-  dataType,
   BaseLayout,
-  DatagridColumn,
+  useResourcesV6,
+  Notifications,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
-
-import appConfig from '@/pci-project.config';
+import {
+  PciTrustedZoneBanner,
+  useTrustedZoneBanner,
+} from '@ovh-ux/manager-pci-common';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { getDatagridColumns } from './datagrid-columns';
+import {
+  getProjectsWithServices,
+  projectsWithServiceQueryKey,
+} from '@/data/api/projects-with-services';
+import ManagerBannerText from '@/components/ManagerBannerText';
+import useRedirectAfterProjectSelection from '@/hooks/useRedirectAfterProjectSelection';
+import { BASE_PROJECT_PATH } from '@/constants';
 
 type ErrorResponse = {
   response?: {
@@ -33,14 +37,30 @@ type ErrorResponse = {
 };
 
 export default function Listing() {
-  const myConfig = appConfig;
-  const serviceKey = myConfig.listing?.datagrid?.serviceKey;
-  const [columns, setColumns] = useState<
-    DatagridColumn<Record<string, unknown>>[]
-  >([]);
-  const navigate = useNavigate();
-  const location = useLocation();
   const { t } = useTranslation('listing');
+  const {
+    shell: { navigation },
+  } = useContext(ShellContext);
+
+  const {
+    redirectUrl,
+    isRedirectRequired,
+  } = useRedirectAfterProjectSelection();
+  const { addInfo } = useNotifications();
+
+  const getProjectUrl = async (projectId: string): Promise<string> => {
+    if (isRedirectRequired) {
+      return redirectUrl(projectId);
+    }
+    return navigation
+      .getURL('public-cloud', BASE_PROJECT_PATH, {
+        projectId,
+      })
+      .then((url) => url as string);
+  };
+
+  const columns = getDatagridColumns(t, getProjectUrl);
+
   const {
     flattenData,
     isError,
@@ -49,81 +69,31 @@ export default function Listing() {
     hasNextPage,
     fetchNextPage,
     isLoading,
-    status,
     search,
     sorting,
     setSorting,
     filters,
-  } = useResourcesIcebergV6({
+  } = useResourcesV6({
     columns,
     route: `/cloud/project`,
-    queryKey: ['pci-project', `/cloud/project`],
+    queryFn: getProjectsWithServices,
+    queryKey: projectsWithServiceQueryKey(),
+    defaultSorting: {
+      id: 'aggregatedStatus',
+      desc: true,
+    },
   });
 
-  const navigateToDashboard = (label: string) => {
-    const path =
-      location.pathname.indexOf('pci') > -1 ? `${location.pathname}/` : '/';
-    startTransition(() => navigate(`${path}${label}`));
-  };
-
-  const typeToFilterType = (type: string): FilterTypeCategories => {
-    switch (type.toLowerCase()) {
-      case 'number':
-        return FilterTypeCategories.Numeric;
-      case 'date':
-        return FilterTypeCategories.Date;
-      case 'string':
-        return FilterTypeCategories.String;
-      case 'boolean':
-        return FilterTypeCategories.Boolean;
-      default:
-        return FilterTypeCategories.String;
-    }
-  };
+  const {
+    isBannerVisible: isTrustedZone,
+    isLoading: isTrustedZoneLoading,
+  } = useTrustedZoneBanner();
 
   useEffect(() => {
-    if (
-      columns.length === 0 &&
-      status === 'success' &&
-      flattenData?.length > 0
-    ) {
-      const newColumns = Object.keys(flattenData[0] as Record<string, unknown>)
-        .filter((element) => element !== 'iam')
-        .map((element) => {
-          const type = dataType(flattenData[0][element]);
-          const filterType = typeToFilterType(type);
-
-          return {
-            id: element,
-            label: element,
-            isFilterable: true,
-            isSearchable: true,
-            type: filterType,
-            comparator: FilterCategories[filterType],
-            cell: (props: Record<string, unknown>) => {
-              const label = props[element] as string | number;
-              if (typeof label === 'string' || typeof label === 'number') {
-                if (serviceKey === element)
-                  return (
-                    <DataGridTextCell>
-                      <OdsButton
-                        variant={ODS_BUTTON_VARIANT.ghost}
-                        onClick={() => navigateToDashboard(label.toString())}
-                        label={label.toString()}
-                      >
-                        {label.toString()}
-                      </OdsButton>
-                    </DataGridTextCell>
-                  );
-                return <DataGridTextCell>{label.toString()}</DataGridTextCell>;
-              }
-              return <DataGridTextCell>-</DataGridTextCell>;
-            },
-          };
-        });
-      setColumns(newColumns);
+    if (isRedirectRequired) {
+      addInfo(t('pci_projects_redirect_to_dedicated_page'));
     }
-  }, [flattenData, serviceKey]);
+  }, [isRedirectRequired, addInfo]);
 
   if (isError) {
     const { response } = error as ErrorResponse;
@@ -147,29 +117,30 @@ export default function Listing() {
   }
 
   const header = {
-    title: t('title'),
+    title: t('pci_projects'),
   };
 
   const TopbarCTA = () => (
     <div>
-      <OdsButton
-        variant={ODS_BUTTON_VARIANT.ghost}
-        size={ODS_BUTTON_SIZE.sm}
-        label="Add service"
-      >
-        <OdsIcon name={ODS_ICON_NAME.plus} />
-        Add service
-      </OdsButton>
+      {!isTrustedZoneLoading && !isTrustedZone && (
+        <OdsButton
+          variant={ODS_BUTTON_VARIANT.outline}
+          icon={ODS_ICON_NAME.plus}
+          size={ODS_BUTTON_SIZE.sm}
+          label={t('pci_projects_create_project')}
+        />
+      )}
     </div>
   );
 
   return (
-    <BaseLayout
-      breadcrumb={
-        <Breadcrumb rootLabel={appConfig.rootLabel} appName="pci-project" />
-      }
-      header={header}
-    >
+    <BaseLayout header={header}>
+      <div className="mb-6 flex flex-col items-stretch gap-4">
+        <ManagerBannerText />
+        <Notifications />
+        <PciTrustedZoneBanner />
+      </div>
+
       <React.Suspense>
         {columns && (
           <Datagrid
