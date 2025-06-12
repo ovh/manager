@@ -1,9 +1,9 @@
 import { FetchResultV6 } from '@ovh-ux/manager-react-components';
 import { TProject } from '@ovh-ux/manager-pci-common';
-import { TProjectWithService } from '../types/project.type';
-import { getDefaultProject, getProjects } from './projects';
+import { getProjects, getDefaultProject } from './projects';
 import { getServices } from './services';
-import { TService } from '../types/service.type';
+import { TProjectWithService } from '@/data/types/project.type';
+import { TService } from '@/data/types/service.type';
 
 /**
  * Retrieves a list of projects, each enriched with its corresponding service and an aggregated status.
