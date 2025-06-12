@@ -14,7 +14,7 @@
   "quantity_banner_see_more": "Find out more",
   "quantity_banner_instance": "The maximum resources you can start with depend on your Public Cloud project quota. For more information on your quotas, please visit: ",
   "quantity_banner_instance_link": "Quota and Regions",
-  "quantity_banner_rancher": "The Managed Rancher Service is charged at a minimum rate for 20 vCPUs. However, you can create a Savings Plan from the first vCPU.",
+  "quantity_banner_rancher": "While Managed Rancher Service needs at least 20 vCPUs per Rancher, Saving Plans can be created using a single vCPU or more. The vCPUs you subscribe to are subtracted from your total vCPU usage.",
   "select_commitment": "Select the subscription period",
   "select_commitment_description": "You save more when you opt for a longer commitment period.",
   "choose_name": "Enter a name",
@@ -46,5 +46,7 @@
   "choose_deployment_description": "Pick the optimal configuration to ensure your data is always accessible, reliable, and has the right latency based on your use cases.",
   "region": "Region",
   "deployment_one_az": "Resilient and low cost deployment in 1 availability zone.",
-  "deployment_three_az": "High resilience/high availability deployment for your critical applications across 3 availability zones."
+  "deployment_three_az": "High resilience/high availability deployment for your critical applications across 3 availability zones.",
+  "choose_ressource_description_info": "You continue to manage your services as usual. The platform automatically calculates your usage based on your Savings Plans configurations, and consumption of your current or future resources.",
+  "select_quantity_description_rancher_info": "Rancher is billed based on the total number of vCPUs on each worker node in your downstream clusters. Control plane node vCPUs are not billed."
 }

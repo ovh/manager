@@ -88,7 +88,7 @@
   "pci_projects_project_instances_add_billing_short_period_message": "Pour une utilisation sur de courtes périodes, il est recommandé de choisir la facturation à l'heure et de basculer au forfait mensuel par la suite.",
   "pci_projects_project_instances_add_billing_monthly_label": "Mensuel",
   "pci_projects_project_instances_add_billing_hourly_label": "Horaire",
-  "pci_projects_project_instances_add_billing_savings_plan_banner_windows_gen_3": "Bénéficiez de tarifs mensuels avantageux grâce aux Savings Plans, tout en gardant la flexibilité des instances à l'heure. Notez que les coûts de licence Windows ne sont pas inclus dans les Savings Plans",
+  "pci_projects_project_instances_add_billing_savings_plan_banner_windows_gen_3": "Bénéficiez de tarifs mensuels avantageux grâce aux Savings Plans, tout en gardant la flexibilité des instances à l'heure. Notez que les coûts de licence Windows ne sont pas inclus dans les Savings Plans.",
 
   "pci_projects_project_instances_add_billing_gateway_info": "Nous avons détecté des composants manquants : <strong>Gateway</strong>",
   "pci_projects_project_instances_add_billing_gateway_detail": "La flavor sélectionnée est :",
