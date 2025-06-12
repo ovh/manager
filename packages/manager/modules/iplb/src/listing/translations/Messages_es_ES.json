@@ -9,7 +9,7 @@
   "iplb_terminate_service_terminate_valid": "Confirmar",
   "iplb_terminate_service_terminate_cancel": "Cancelar",
   "iplb_listing_header_serviceName": "Nombre del servicio",
-  "iplb_listing_header_displayName": "Apellido",
+  "iplb_listing_header_displayName": "Nombre",
   "iplb_listing_header_metricsToken": "Token",
   "iplb_listing_header_offer": "Plan",
   "iplb_listing_header_sslConfiguration": "Configuración SSL",
