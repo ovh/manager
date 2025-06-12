@@ -61,6 +61,10 @@
 /packages/manager/apps/vrack @ovh/dev-manager-infra-all
 /packages/manager/apps/vrack-services @ovh/dev-manager-infra-all
 /packages/manager/apps/web @ovh/dev-manager-web-all
+/packages/manager/apps/web/client/app/domains @ovh/dev-manager-web-domain
+/packages/manager/apps/web/client/app/domain @ovh/dev-manager-web-domain
+/packages/manager/apps/web/client/app/domain-operation @ovh/dev-manager-web-domain
+/packages/manager/apps/web/client/app/dns-zone @ovh/dev-manager-web-domain
 /packages/manager/apps/web-hosting @ovh/dev-manager-web-all
 /packages/manager/apps/web-office @ovh/dev-manager-web-all
 /packages/manager/apps/web-ongoing-operations @ovh/dev-manager-web-domain
@@ -114,8 +118,7 @@
 /packages/manager/modules/veeam-enterprise @ovh/dev-manager-infra-all
 /packages/manager/modules/vps @ovh/dev-manager-web-all
 /packages/manager/modules/vrack @ovh/dev-manager-infra-all
-/packages/manager/modules/web-paas @ovh/dev-manager-web-all
-/packages/manager/modules/web-universe-components @ovh/dev-manager-web-all
+/packages/manager/modules/web-universe-components @ovh/dev-manager-web-all @ovh/dev-manager-web-domain
 
 # Tools
 /packages/manager/tools @ovh/dev-manager-control-tower
