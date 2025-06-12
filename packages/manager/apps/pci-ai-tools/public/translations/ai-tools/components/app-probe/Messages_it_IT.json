@@ -1,0 +1,11 @@
+{
+  "appProbeOffField": "Sonda di disponibilità disattivata",
+  "appProbeOnField": "Sonda di disponibilità attivata",
+  "pathFieldLabel": "Endpoint API della sonda",
+  "pathFieldInfo": "Endpoint API della sonda di disponibilità. Deve restituire uno stato 2XX o 3XX",
+  "formPathFormatError": "Inserisci un formato valido (cifre, lettere, ., /)",
+  "portFieldLabel": "Porta della sonda",
+  "portFieldInfo": "Consente di configurare una porta specifica per questo percorso API",
+  "formPortMinError": "Inserisci un valore maggiore o uguale a {{min}}.",
+  "formPortMaxError": "Inserisci un valore inferiore o uguale a {{max}}."
+}

@@ -1,0 +1,13 @@
+{
+  "partnerImageTitle": "Catalog of ready-to-use Apps",
+  "partnerImageDesc": "Choose from the following catalog of applications to speed up the delivery of your services",
+  "documentationLinkLabel": "Documentation",
+  "imageDocLink": "More information",
+  "partnerImageVersionDesc": "Choose the version of the image",
+  "versionPlaceholder": "Search",
+  "noVersionFound": "No version found",
+  "partnerContractSignedOff": "I have read and accept the Partner Terms of Use for the deployment of this model.",
+  "partnerContractSignedOn": "I have read and accepted the partner terms of use on {{signedDate}} for the deployment of this model.",
+  "partnerConditionLink": "Read the partner terms of use",
+  "signContract": "Sign"
+}

@@ -1,0 +1,12 @@
+{
+  "updateImageTitle": "Edytuj obraz",
+  "updateImageDesc1": "Możesz zaktualizować obraz Docker aplikacji, aby proponować zawsze aktualną wersję usługi. Aktualizacje są przyrostowe i nie powodują przerw w działaniu. Zachowujesz aktualną konfigurację, taką jak punkt końcowy HTTP lub strategia wdrażania.",
+  "updateImageDesc2": "Prosimy o podanie innego tagu, aby uwzględniał on aktualizację obrazu Docker.",
+  "fieldImageLabel": "Ścieżka dostępu Twojego obrazu Docker",
+  "imageInfo": "Wpisz ścieżkę dostępu do obrazu Docker. Akceptowane są obrazy przechowywane w prywatnym lub publicznym rejestrze (GitHub, GitLab, DockerHub, ...)",
+  "updateImageButtonCancel": "Anuluj",
+  "updateImageButtonConfirm": "Zmień",
+  "updateImageToastErrorTitle": "Wystąpił błąd",
+  "updateImageToastSuccessTitle": "Sukcesy",
+  "updateImageToastSuccessDescription": "Obraz został zaktualizowany"
+}

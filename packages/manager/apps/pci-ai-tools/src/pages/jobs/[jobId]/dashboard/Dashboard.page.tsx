@@ -14,6 +14,7 @@ import {
   CardContent,
   CardHeader,
   Code,
+  Skeleton,
   bash,
   githubDark,
   useToast,
@@ -158,7 +159,7 @@ const Dashboard = () => {
             </h4>
           </CardHeader>
           <CardContent>
-            {command && (
+            {command ? (
               <Code
                 label={t('cliCodeTitle')}
                 code={command.command}
@@ -171,6 +172,8 @@ const Dashboard = () => {
                 }
                 lineNumbers={true}
               />
+            ) : (
+              <Skeleton className="w-full h-52" />
             )}
           </CardContent>
         </Card>

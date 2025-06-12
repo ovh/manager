@@ -1,0 +1,12 @@
+{
+  "status-DELETING": "Deleting",
+  "status-DELETED": "Deleted",
+  "status-STOPPING": "Extinguishing",
+  "status-SCALING": "Scaling",
+  "status-QUEUED": "Pending",
+  "status-INITIALIZING": "Startup",
+  "status-FAILED": "Failed",
+  "status-ERROR": "Error",
+  "status-STOPPED": "Stopped",
+  "status-RUNNING": "In service"
+}

@@ -1,4 +1,8 @@
-import { JobSuggestions, NotebookSuggestions } from '@/types/orderFunnel';
+import {
+  AppSuggestions,
+  JobSuggestions,
+  NotebookSuggestions,
+} from '@/types/orderFunnel';
 
 const baseGRA = {
   region: 'GRA',
@@ -52,6 +56,18 @@ export const mockedSuggestionsForJob: JobSuggestions = {
     {
       ...baseBHS,
       presetImage: 'ovhcom/ai-training-mxnet:1.5.0',
+    },
+  ],
+};
+
+export const mockedSuggestionsForApp: AppSuggestions = {
+  defaultRegion: 'GRA',
+  suggestions: [
+    {
+      ...baseGRA,
+    },
+    {
+      ...baseBHS,
     },
   ],
 };

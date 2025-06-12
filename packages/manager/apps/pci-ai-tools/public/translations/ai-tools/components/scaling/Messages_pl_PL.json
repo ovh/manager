@@ -1,0 +1,16 @@
+{
+  "fieldScalingDesc1": "W zależności od preferencji wybierz strategię wdrażania, która najlepiej pasuje do Twojej aplikacji: wybierz stałą liczbę replik, na których aplikacja zostanie wdrożona lub wskaż minimalną i maksymalną liczbę replik dla wdrożeń. Dzięki temu dynamicznie zoptymalizujesz ich wydajność i dostosujesz do liczby żądań za pomocą opcji Autoscaling.",
+  "scalingLink": "Więcej informacji na temat zasad skalowania",
+  "scalingStratActiveLabel": "Autoscaling włączony",
+  "noScalingStratActiveLabel": "Autoscaling wyłączony",
+  "replicasInputLabel": "Liczba replik, na których zostanie uruchomiona aplikacja",
+  "haInfoHelper": "Uruchom minimum 2 repliki, aby zyskać wysoką dostępność",
+  "replicasMinInputLabel": "Minimalna liczba replik",
+  "replicasMaxInputLabel": "Maksymalna liczba replik",
+  "resourceTypeLabel": "Monitorowana metryka",
+  "resourceTypeInfo": "Metryka, która będzie działać jako element uruchamiający Autoscaling.",
+  "treshholderTargetLabel": "Próg uruchomienia (%)",
+  "treshholderTargetInfo": "Wartość metryki, w procentach.",
+  "scalingBillingInfo": "Pamiętaj, że wybrana liczba replik zwielokrotni pobrane zasoby o tę samą liczbę.",
+  "errorFormMinMaxRepField": "Minimalna liczba replik musi być mniejsza niż maksymalna liczba replik"
+}

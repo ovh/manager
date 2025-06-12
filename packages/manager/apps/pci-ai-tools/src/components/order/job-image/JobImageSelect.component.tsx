@@ -38,7 +38,7 @@ const JobImagesSelect = React.forwardRef<HTMLInputElement, ImageSelectProps>(
             value={value}
             onChange={onChange}
             ref={ref}
-            images={images}
+            jobImages={images}
           />
         </TabsContent>
       </Tabs>

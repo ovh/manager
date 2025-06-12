@@ -1,0 +1,11 @@
+{
+  "appProbeOffField": "Sonde de disponibilité désactivée",
+  "appProbeOnField": "Sonde de disponibilité activée",
+  "pathFieldLabel": "Point de terminaison API de la sonde",
+  "pathFieldInfo": "Point de terminaison API de la sonde de disponibilité. Doit renvoyer un statut 2XX ou 3XX",
+  "formPathFormatError": "Veuillez saisir un format valide (chiffres, lettres, ., /)",
+  "portFieldLabel": "Port de la sonde",
+  "portFieldInfo": "Vous permet de configurer un port spécifique pour ce chemin d'accès API",
+  "formPortMinError": "Veuillez saisir une valeur supérieure ou égale à {{min}}.",
+  "formPortMaxError": "Veuillez saisir une valeur inférieure ou égale à {{max}}."
+}
