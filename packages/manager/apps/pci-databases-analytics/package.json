@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-databases-analytics-app",
-  "version": "1.21.2",
+  "version": "1.21.3",
   "private": true,
   "description": "pci-databases-analytics",
   "repository": {
@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@ovh-ux/manager-vite-config": "^0.10.0",
+    "@ovh-ux/manager-vite-config": "^0.10.1",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.11.0...@ovh-ux/ovh-product-icons@0.11.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* loading svgs sidebar ([a240564](https://github.com/ovh/manager/commit/a24056426986c708c6f199ee20f4cec1aebef4eb)), closes [#MANAGER-17397](https://github.com/ovh/manager/issues/MANAGER-17397) [#INC0135230](https://github.com/ovh/manager/issues/INC0135230)
+
+
+
+
+
 # [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.10.0...@ovh-ux/ovh-product-icons@0.11.0) (2025-06-05)
 
 
