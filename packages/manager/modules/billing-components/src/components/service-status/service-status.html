@@ -26,6 +26,11 @@
         data-ng-if="!$ctrl.service.hasDebt() && !$ctrl.shouldHideAutorenewStatus() && $ctrl.service.getRenew()"
         data-translate="{{:: 'manager_billing_service_status_' + $ctrl.service.getRenew() | translate }}"
     ></span>
+    <span
+        data-ng-if="$ctrl.service.isRestorable"
+        class="oui-badge text-wrap oui-badge_warning"
+        data-translate="{{:: 'manager_billing_service_status_restorable' | translate }}"
+    ></span>
     <button
         type="button"
         class="oui-popover-button"
