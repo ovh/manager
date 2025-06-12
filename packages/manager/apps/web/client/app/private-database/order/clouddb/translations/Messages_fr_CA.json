@@ -9,6 +9,7 @@
   "private_database_order_clouddb_server_version_mysql": "MySQL {{version}}",
   "private_database_order_clouddb_server_version_postgresql": "PostgreSQL {{version}}",
   "private_database_order_clouddb_server_version_redis": "Caching {{version}}",
+  "private_database_order_clouddb_server_version_valkey": "Valkey {{version}}",
 
   "private_database_order_clouddb_ram_option": "RAM",
   "private_database_order_clouddb_ram_option_placeholder": "Sélectionnez la quantité de RAM",

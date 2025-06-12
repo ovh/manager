@@ -29,5 +29,6 @@
   "private_database_order_clouddb_bill_success_link": "buono d’ordine",
   "private_database_order_clouddb_bill_success_noCheckout": "L’ordine è stato preso in carico La soluzione scelta sarà attiva entro pochi minuti.",
   "private_database_order_clouddb_bill_success_checkout": "Il tuo <a href=\"{{url}}\" target=\"_blank\">buono d’ordine</a>è stato generato correttamente! Una volta convalidato, il servizio verrà attivato.",
-  "private_database_order_error": "Si è verificato un errore durante l'ordine del database: {{message}}"
+  "private_database_order_error": "Si è verificato un errore durante l'ordine del database: {{message}}",
+  "private_database_order_clouddb_server_version_valkey": "Valkey {{version}}"
 }
