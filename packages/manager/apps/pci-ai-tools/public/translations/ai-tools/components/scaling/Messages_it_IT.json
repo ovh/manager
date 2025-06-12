@@ -1,0 +1,16 @@
+{
+  "fieldScalingDesc1": "In base alle tue preferenze, scegli la strategia di deploy più adatta alla tua App: opta per un numero fisso di repliche su cui verrà eseguita la tua App o inserisci un numero minimo e massimo di repliche per i tuoi deploy, per ottimizzarne in modo dinamico le prestazioni e adattarli al numero di richieste tramite l'opzione Autoscaling.",
+  "scalingLink": "Ulteriori informazioni sui criteri di scalatura",
+  "scalingStratActiveLabel": "Autoscaling attivato",
+  "noScalingStratActiveLabel": "Autoscaling disattivato",
+  "replicasInputLabel": "Numero di repliche su cui verrà eseguita l’App",
+  "haInfoHelper": "Esegui su almeno 2 repliche per disporre di alta disponibilità",
+  "replicasMinInputLabel": "Numero minimo di repliche",
+  "replicasMaxInputLabel": "Numero massimo di repliche",
+  "resourceTypeLabel": "Metrica monitorata",
+  "resourceTypeInfo": "Metrica che attiverà l'autoscaling.",
+  "treshholderTargetLabel": "Soglia di attivazione (%)",
+  "treshholderTargetInfo": "Valore della metrica, in percentuale.",
+  "scalingBillingInfo": "Ti ricordiamo che il numero di repliche scelto moltiplicherà il numero di risorse selezionate.",
+  "errorFormMinMaxRepField": "Minimo repliche deve essere inferiore a Massimo repliche"
+}

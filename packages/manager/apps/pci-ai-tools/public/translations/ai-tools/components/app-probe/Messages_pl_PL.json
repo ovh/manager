@@ -1,0 +1,11 @@
+{
+  "appProbeOffField": "Sonda dostępności wyłączona",
+  "appProbeOnField": "Sonda dostępności włączona",
+  "pathFieldLabel": "Punkt końcowy API sondy",
+  "pathFieldInfo": "Punkt końcowy API sondy dostępności. Musi zwracać status 2XX lub 3XX",
+  "formPathFormatError": "Prosimy o podanie poprawnego formatu wiadomości (cyfry, litery, ., /)",
+  "portFieldLabel": "Port sondy",
+  "portFieldInfo": "Umożliwia skonfigurowanie określonego portu dla tej ścieżki dostępu API",
+  "formPortMinError": "Wpisz wartość większą lub równą {{min}}.",
+  "formPortMaxError": "Wpisz wartość mniejszą lub równą {{max}}."
+}

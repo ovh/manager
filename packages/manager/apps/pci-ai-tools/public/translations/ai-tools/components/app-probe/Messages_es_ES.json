@@ -1,0 +1,11 @@
+{
+  "appProbeOffField": "Sonda de disponibilidad desactivada",
+  "appProbeOnField": "Sonda de disponibilidad activada",
+  "pathFieldLabel": "Extremo de API de sondeo",
+  "pathFieldInfo": "Extremo de API de la sonda de disponibilidad. Debe devolver un estado 2XX o 3XX",
+  "formPathFormatError": "Introduzca un formato válido (cifras, letras, ., /)",
+  "portFieldLabel": "Puerto de la sonda",
+  "portFieldInfo": "Le permite configurar un puerto específico para esta ruta de acceso de la API",
+  "formPortMinError": "Introduzca un valor superior o igual a {{min}}.",
+  "formPortMaxError": "Introduzca un valor menor o igual que {{max}}."
+}

@@ -1,0 +1,8 @@
+{
+  "updateScalingTitle": "Update application sizing",
+  "updateScalingButtonCancel": "Cancel",
+  "updateScalingButtonConfirm": "Modify",
+  "updateScalingStratToastErrorTitle": "Error",
+  "updateScalingStratToastSuccessTitle": "Successes",
+  "updateScalingStratToastSuccessDescription": "Application sizing policy updated"
+}

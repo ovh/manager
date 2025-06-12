@@ -1,0 +1,17 @@
+{
+  "title": "AI Deploy",
+  "createNewApp": "Deploy di un’App",
+  "tableHeaderName": "Name",
+  "tableHeaderImage": "Immagine",
+  "tableHeaderLocation": "Regione",
+  "tableHeaderResources": "Risorse",
+  "tableHeaderReplicas": "Repliche",
+  "tableHeaderUpdateDate": "Data di aggiornamento",
+  "tableHeaderStatus": "Status",
+  "tableActionManage": "Amministrare",
+  "tableActionStart": "Comincia ora",
+  "tableActionStop": "Fermare",
+  "tableActionDelete": "Eliminare",
+  "tableImagePartner": "Immagine fornita da {{partner}}",
+  "tableReplic": "{{rep }} repliche"
+}

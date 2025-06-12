@@ -2,5 +2,6 @@
   "crumb-dashboard": "AI Dashboard",
   "crumb-notebook": "AI Notebooks",
   "crumb-training": "AI Training",
-  "crumb-quantum": "Emulators"
+  "crumb-quantum": "Emulators",
+  "crumb-deploy": "AI Deploy"
 }
