@@ -43,19 +43,7 @@ export default function EditVrackSegmentId() {
 
   const options = {
     ...defaultOptions,
-    queryFn: () =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({
-            data: mockVrackSegmentList[0],
-            status: 200,
-            statusText: 'OK',
-            headers: {},
-            config: {},
-          } as ApiResponse<VCDVrackSegment>);
-        }, 1500);
-      }),
-    select: (data: ApiResponse<VCDVrackSegment>) => ({
+    select: (data: ApiResponse<VrackSegment>) => ({
       ...data.data.targetSpec,
       vlanId: Number(data.data.targetSpec.vlanId),
     }),
