@@ -86,16 +86,6 @@ const UserAccountMenu = ({
         setIsDocumentsVisible(['required', 'open'].includes(status));
       }
 
-      const myServicesIndex = links.indexOf(
-        links.find((link: UserLink) => link.key === 'myServices'),
-      );
-      const myAssistanceTickets = {
-        app: 'new-account',
-        key: 'myAssistanceTickets',
-        hash: '#/ticket',
-        i18nKey: 'user_account_menu_my_assistance_tickets',
-      };
-
       const myIdentityDocuments = isIdentityDocumentsAvailable
         ? [
             {
@@ -103,29 +93,12 @@ const UserAccountMenu = ({
               key: 'myIdentityDocuments',
               hash: '#/identity-documents',
               i18nKey: 'user_account_menu_my_identity_documents',
+              regions: ['EU', 'CA', 'US'],
             },
           ]
         : [];
 
-      const myContracts = {
-        app: 'new-billing',
-        key: 'myContracts',
-        hash: '#/autorenew/agreements',
-        i18nKey: 'user_account_menu_my_contracts',
-        trackingHit: tracking.contracts,
-      };
-
-      const computedLinks =
-        region !== 'US'
-          ? [
-              ...links.slice(0, myServicesIndex),
-              myContracts,
-              ...links.slice(myServicesIndex, links.length),
-              ...myIdentityDocuments,
-            ]
-          : [...links, ...myIdentityDocuments, myAssistanceTickets];
-
-      setAllLinks(computedLinks);
+      setAllLinks([...links, ...myIdentityDocuments].filter((link) => link.regions?.includes(region)));
     };
 
     fetchData();

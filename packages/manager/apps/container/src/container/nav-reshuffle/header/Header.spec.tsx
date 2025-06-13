@@ -213,7 +213,7 @@ describe('Header.component', () => {
           }
         });
 
-        constantLinks.forEach((link) => {
+        constantLinks.filter((link) => link?.regions.includes(mockedRegion)).forEach((link) => {
           const linkElement = screen.getByText(link.i18nKey);
           expect(linkElement).toBeInTheDocument();
           expect(linkElement.closest('a').getAttribute('aria-label')).toBe(
