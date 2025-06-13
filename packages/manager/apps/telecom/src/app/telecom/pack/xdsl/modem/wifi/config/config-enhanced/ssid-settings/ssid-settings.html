@@ -1,0 +1,230 @@
+<div class="telecom-pack-xdsl-wifi-config-ssid-settings">
+    <section class="widget-presentation">
+        <header class="widget-presentation-header">
+            <h2
+                class="widget-presentation-title"
+                data-translate="xdsl_modem_service_wifi_ssid_settings"
+            ></h2>
+        </header>
+
+        <div>
+            <oui-spinner
+                data-ng-if="SSIDSettingsCtrl.isLoading"
+                data-size="m"
+                class="d-flex justify-content-center"
+            >
+            </oui-spinner>
+
+            <table
+                class="table table-hover table-condensed"
+                data-ng-if="!SSIDSettingsCtrl.isLoading"
+            >
+                <thead>
+                    <tr>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_ssid_settings_ssid"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_ssid_settings_status"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_ssid_settings_type"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_ssid_settings_frequency"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_ssid_settings_security_mode"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_ssid_settings_isolate"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="xdsl_modem_service_wifi_ssid_settings_advertise"
+                        ></th>
+                        <th
+                            data-translate="common_actions"
+                            data-ng-if="SSIDSettingsCtrl.isUpdateEnabled"
+                        ></th>
+                    </tr>
+                </thead>
+                <tbody
+                    data-ng-repeat="ssid in SSIDSettingsCtrl.editableSsidSettings track by ssid.wifiName"
+                >
+                    <tr data-ng-hide="ssid.editMode">
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_ssid_settings_ssid' | translate }}"
+                            data-ng-bind="ssid.SSID"
+                        ></td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_ssid_settings_status' | translate }}"
+                        >
+                            <activation-state-display
+                                activation-state="ssid.enabled"
+                            ></activation-state-display>
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_ssid_settings_type' | translate }}"
+                        >
+                            {{ ssid.guest ?
+                            'xdsl_modem_service_wifi_ssid_settings_type_guest' :
+                            'xdsl_modem_service_wifi_ssid_settings_type_principal'
+                            | translate}}
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_ssid_settings_frequency' | translate }}"
+                            data-ng-bind="ssid.frequency"
+                        ></td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_ssid_settings_security_mode' | translate }}"
+                        >
+                            {{ SSIDSettingsCtrl.getSecurityModeLabel(ssid) }}
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_ssid_settings_isolate' | translate }}"
+                        >
+                            <activation-state-display
+                                activation-state="ssid.isolate"
+                            ></activation-state-display>
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_ssid_settings_advertise' | translate }}"
+                        >
+                            <activation-state-display
+                                activation-state="ssid.advertise"
+                            ></activation-state-display>
+                        </td>
+                        <td
+                            class="col-mobile-button-big"
+                            data-ng-if="SSIDSettingsCtrl.isUpdateEnabled"
+                        >
+                            <button
+                                class="btn btn-default"
+                                type="button"
+                                title="{{ 'common_table_edit' | translate }}"
+                                data-ng-click="SSIDSettingsCtrl.activateEditMode(ssid)"
+                            >
+                                <span
+                                    class="ovh-font ovh-font-editer"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr
+                        data-ng-form
+                        name="localForm"
+                        data-ng-show="ssid.editMode"
+                        data-ng-keydown="SSIDSettingsCtrl.watchKey($event, ssid, localForm.$valid)"
+                    >
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_ssid_settings_ssid' | translate }}"
+                        >
+                            <label
+                                for="ssid"
+                                data-translate="xdsl_modem_service_wifi_ssid_settings_ssid"
+                                class="sr-only"
+                            ></label>
+                            <input
+                                name="ssid"
+                                id="ssid"
+                                type="text"
+                                class="form-control"
+                                data-ng-model="ssid.tempValue.SSID"
+                                required="true"
+                                data-maxlength="15"
+                            />
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_ssid_settings_status' | translate }}"
+                        >
+                            <oui-switch
+                                name="ssidStatus"
+                                model="ssid.tempValue.enabled"
+                            >
+                            </oui-switch>
+                            <span>
+                                {{ ssid.tempValue.enabled ? 'active' :
+                                'inactive' | translate}}
+                            </span>
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_ssid_settings_type' | translate }}"
+                        >
+                            {{ ssid.guest ?
+                            'xdsl_modem_service_wifi_ssid_settings_type_guest' :
+                            'xdsl_modem_service_wifi_ssid_settings_type_principal'
+                            | translate}}
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_ssid_settings_frequency' | translate }}"
+                            data-ng-bind="ssid.frequency"
+                        ></td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_ssid_settings_security_mode' | translate }}"
+                        >
+                            <oui-select
+                                items="ssid.supportedSecurityMode"
+                                model="ssid.tempValue.securityMode"
+                                match="name"
+                                value-property="id"
+                                name="ssidSecurityMode"
+                            >
+                            </oui-select>
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_ssid_settings_isolate' | translate }}"
+                        >
+                            <activation-state-display
+                                activation-state="ssid.isolate"
+                            ></activation-state-display>
+                        </td>
+                        <td
+                            data-title="{{ 'xdsl_modem_service_wifi_ssid_settings_advertise' | translate }}"
+                        >
+                            <activation-state-display
+                                activation-state="ssid.advertise"
+                            ></activation-state-display>
+                        </td>
+                        <td
+                            class="form-group col-mobile-button-big"
+                            data-ng-if="SSIDSettingsCtrl.isUpdateEnabled"
+                        >
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                data-ng-click="SSIDSettingsCtrl.submit(ssid)"
+                                data-ng-disabled="localForm.$invalid"
+                                title="{{ 'common_table_validate_modifications' | translate }}"
+                            >
+                                <span
+                                    class="ovh-font ovh-font-check"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                            <button
+                                type="reset"
+                                class="btn btn-default"
+                                data-ng-click="SSIDSettingsCtrl.cancel(ssid)"
+                                title="{{ 'common_table_cancel_modifications' | translate }}"
+                            >
+                                <span
+                                    class="ovh-font ovh-font-wrong"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
