@@ -30,7 +30,7 @@ export default function ServiceList() {
   } = useResourcesIcebergV6<TServiceProperty>({
     route: '/allDom',
     queryKey: ['/allDom'],
-    pageSize: 30,
+    pageSize: 10,
   });
 
   const { data: serviceInfoList, listLoading } = useGetAllDoms({

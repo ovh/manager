@@ -32,7 +32,7 @@ describe('Domain datagrid', () => {
 
     expect(useResourcesIcebergV6).toHaveBeenCalledWith(
       expect.objectContaining({
-        pageSize: 30,
+        pageSize: 10,
         route: `${taskMeDomain.join('/')}?type=domain`,
         disableCache: false,
         queryKey: taskMeDomain,
