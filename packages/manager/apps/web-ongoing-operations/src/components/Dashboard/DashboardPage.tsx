@@ -47,7 +47,7 @@ export default function DashboardPage({
   } = useResourcesIcebergV6<TOngoingOperations>({
     route,
     queryKey,
-    pageSize: 30,
+    pageSize: 10,
     disableCache: !!notifications.length,
     columns,
   });
