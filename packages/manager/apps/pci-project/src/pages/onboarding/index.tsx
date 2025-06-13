@@ -1,12 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import {
-  Breadcrumb,
   Card,
+  Breadcrumb,
   OnboardingLayout,
 } from '@ovh-ux/manager-react-components';
-import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import onboardingImgSrc from './onboarding-img.png';
-
+import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import appConfig from '@/pci-project.config';
 
 export default function Onboarding() {
@@ -47,6 +46,7 @@ export default function Onboarding() {
   const description: string = t('description');
   const imgSrc = {
     src: onboardingImgSrc,
+    alt: t('onboarding_image_alt', 'Onboarding illustration'),
   };
 
   return (
