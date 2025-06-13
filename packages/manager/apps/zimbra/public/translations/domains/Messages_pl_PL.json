@@ -15,7 +15,7 @@
   "zimbra_domains_datagrid_cname_tooltip_title": "Weryfikacja domeny",
   "zimbra_domains_datagrid_cname_tooltip": "Aby potwierdzić, że jesteś właścicielem tej domeny, utwórz rekord CNAME: <br/><br/><strong>{{cname}}</strong> wskazujący na <strong>ovh.com</strong> <br/><br/>Etap ten należy ukończyć w ciągu 48 godzin.",
   "zimbra_domains_tooltip_diagnostics": "Raporty diagnostyczne",
-  "zimbra_domains_delete_modal_content": "Czy na pewno chcesz usunąć domenę z serwera Zimbra?",
+  "zimbra_domains_delete_modal_content": "Czy na pewno chcesz usunąć domenę <strong>{{domain}}</strong>?",
   "zimbra_domains_delete_modal_message_disabled_part1": "Z tą domeną powiązane jest co najmniej jedno konto e-mail.",
   "zimbra_domains_delete_modal_message_disabled_part2": "Przed usunięciem domeny usuń powiązane z nią konta e-mail."
 }

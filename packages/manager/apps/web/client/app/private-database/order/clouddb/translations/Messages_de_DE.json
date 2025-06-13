@@ -29,5 +29,6 @@
   "private_database_order_clouddb_bill_success_link": "Bestellschein",
   "private_database_order_clouddb_bill_success_noCheckout": "Ihre Bestellung wurde registriert. Ihr Produkt wird in wenigen Minuten aktiviert.",
   "private_database_order_clouddb_bill_success_checkout": "Ihr <a href=\"{{url}}\" target=\"_blank\">Bestellschein</a> wurde erstellt. Sobald Sie den Bestellschein bestätigen, wird Ihr Produkt aktiviert.",
-  "private_database_order_error": "Bei der Bestellung einer Datenbank ist ein Fehler aufgetreten: {{message}}"
+  "private_database_order_error": "Bei der Bestellung einer Datenbank ist ein Fehler aufgetreten: {{message}}",
+  "private_database_order_clouddb_server_version_valkey": "Valkey {{version}}"
 }

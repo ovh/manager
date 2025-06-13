@@ -29,5 +29,6 @@
   "private_database_order_clouddb_bill_success_link": "zamówienie",
   "private_database_order_clouddb_bill_success_noCheckout": "Twoje zamówienie zostało zarejestrowane. Usługa zostanie włączona za kilka minut.",
   "private_database_order_clouddb_bill_success_checkout": "<a href=\"{{url}}\" target=\"_blank\">Zamówienie</a> zostało wygenerowane. Twoja usługa zostanie włączona, kiedy ją zatwierdzisz.",
-  "private_database_order_error": "Wystąpił błąd podczas zamawiania bazy danych: {{message}}"
+  "private_database_order_error": "Wystąpił błąd podczas zamawiania bazy danych: {{message}}",
+  "private_database_order_clouddb_server_version_valkey": "Valkey {{version}}"
 }

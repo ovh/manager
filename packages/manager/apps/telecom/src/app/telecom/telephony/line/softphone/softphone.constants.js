@@ -67,13 +67,6 @@ export const SOFTPHONE_TRACKING = {
       },
       ...TRACKING_CATEGORY_AND_THEME,
     },
-    DELETE: {
-      name: `${TRACKING_PREFIX}datagrid::button::delete_device::softphone`,
-      page: {
-        name: `${TRACKING_PREFIX}${TRACKING_SOFTPHONE_DASHBOARD_SUFFIX}`,
-      },
-      ...TRACKING_CATEGORY_AND_THEME,
-    },
     DATAGRID: {
       name: `${TRACKING_PREFIX}{{serviceType}}::dashboard::softphone::device-listing::{{deviceAction}}`,
       page: {

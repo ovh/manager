@@ -1,5 +1,6 @@
 export * from './account/useAccount';
 export * from './account/useAccounts';
+export * from './alias/useAlias';
 export * from './alias/useAliases';
 export * from './domain/useDomain';
 export * from './domain/useDomainDiagnostic';
@@ -12,4 +13,8 @@ export * from './order/useOrderCatalog';
 export * from './organization/useOrganization';
 export * from './organization/useOrganizations';
 export * from './platform/usePlatform';
+export * from './slot/useSlots';
+export * from './slot/useSlot';
+export * from './services/useSlotServices';
+export * from './services/useSlotService';
 export * from './task/useTasks';

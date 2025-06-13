@@ -15,17 +15,23 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ORDER_URL } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
 import { LicenseType } from '@/data/api/license';
 import { useGenerateUrl } from '@/hooks';
 import { useLicenses } from '@/data/hooks';
-import Loading from '@/components/loading/Loading.component';
 import { OfficeServiceState } from '@/components/officeServiceState/OfficeServiceState.component';
+import { DETAILS_SERVICE, GO_TO_ORDER } from '@/tracking.constants';
 
 export default function Licenses() {
   const { t } = useTranslation(['licenses', 'common']);
+  const { trackClick } = useOvhTracking();
   const { data, isLoading } = useLicenses();
 
   const { sorting, setSorting } = useDatagridSearchParams();
@@ -35,6 +41,12 @@ export default function Licenses() {
 
   const goToOrder = () => {
     const url = ORDER_URL[ovhSubsidiary as OvhSubsidiary] || ORDER_URL.DEFAULT;
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: GO_TO_ORDER,
+    });
     window.open(url, '_blank');
   };
 
@@ -66,7 +78,20 @@ export default function Licenses() {
             serviceName: item.serviceName,
           });
 
-          return <Links href={href} label={item.tenantServiceName}></Links>;
+          return (
+            <Links
+              href={href}
+              label={item.tenantServiceName}
+              onClickReturn={() =>
+                trackClick({
+                  location: PageLocation.datagrid,
+                  buttonType: ButtonType.link,
+                  actionType: 'action',
+                  actions: DETAILS_SERVICE,
+                })
+              }
+            ></Links>
+          );
         },
         label: 'microsoft_office_licenses_servicename',
         isSortable: true,
@@ -106,33 +131,27 @@ export default function Licenses() {
   );
 
   return (
-    <>
-      {isLoading && <Loading />}
-      {!isLoading && (
-        <BaseLayout header={header}>
-          {columns && (
-            <Datagrid
-              columns={columns.map((column) => ({
-                ...column,
-                label: t(column.label),
-              }))}
-              items={sortedData || []}
-              totalItems={sortedData?.length || 0}
-              sorting={sorting}
-              onSortChange={setSorting}
-              topbar={
-                <OdsButton
-                  color={ODS_BUTTON_COLOR.primary}
-                  variant={ODS_BUTTON_VARIANT.outline}
-                  onClick={goToOrder}
-                  label={t('microsoft_office_licenses_order')}
-                  data-testid="licenses-order-button"
-                ></OdsButton>
-              }
-            />
-          )}
-        </BaseLayout>
-      )}
-    </>
+    <BaseLayout header={header}>
+      <Datagrid
+        columns={columns.map((column) => ({
+          ...column,
+          label: t(column.label),
+        }))}
+        items={sortedData || []}
+        totalItems={sortedData?.length || 0}
+        sorting={sorting}
+        onSortChange={setSorting}
+        topbar={
+          <OdsButton
+            color={ODS_BUTTON_COLOR.primary}
+            variant={ODS_BUTTON_VARIANT.outline}
+            onClick={goToOrder}
+            label={t('microsoft_office_licenses_order')}
+            data-testid="licenses-order-button"
+          ></OdsButton>
+        }
+        isLoading={isLoading}
+      />
+    </BaseLayout>
   );
 }
