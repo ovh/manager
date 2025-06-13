@@ -1,4 +1,4 @@
-import i18n from 'i18next';
+import i18n, { InitOptions } from 'i18next';
 import I18NextHttpBackend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
@@ -18,7 +18,7 @@ export default async function initI18n(
     .init({
       lng: locale,
       fallbackLng: 'fr_FR',
-      supportedlangs: availableLocales,
+      supportedLngs: availableLocales,
       defaultNS: 'common',
       ns: ['common'], // namespaces to load by default
       backend: {
@@ -28,6 +28,6 @@ export default async function initI18n(
           }.json`,
       },
       postProcess: 'normalize',
-    });
+    } as InitOptions);
   return i18n;
 }
