@@ -13,7 +13,6 @@ export { PCICommonContext } from './contexts/PCICommonContext/PCICommonContext';
 export * from './components/quantity-selector';
 export * from './components/Pricing';
 export * from './components/shape-input/ShapeInput.component';
-export * from './components/deployment-mode-card';
 export * from './components/deployment-tiles-input';
 export * from './components/input-adapter';
 export * from './components/tiles-input';
