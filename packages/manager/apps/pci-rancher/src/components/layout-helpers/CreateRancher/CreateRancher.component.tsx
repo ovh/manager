@@ -258,7 +258,8 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             color={ODS_THEME_COLOR_INTENT.text}
             className="flex items-center"
           >
-            <Trans>{t('savingsPlanMessage')}</Trans>
+            <span>{t('savingsPlanMessage')}</span>
+            <span>{t('savingsPlanUsage')}</span>
           </OsdsText>
           <OsdsLink
             className="sm:mt-0 mt-4 sm:ml-4 ml-0"
