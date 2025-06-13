@@ -1,8 +1,5 @@
 export const PAGE_SIZE = 300;
 
-export const MILLISECONDS_PER_MINUTE = 60000;
-export const TIMEZONE_MULTIPLIER = 4;
-
 export const TRAFFIC_PERIODS = [
   { key: 'last6h', value: 'network_security_dashboard_filter_6_hours' },
   { key: 'last24h', value: 'network_security_dashboard_filter_24_hours' },
