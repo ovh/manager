@@ -8,6 +8,14 @@ import InstallationStepSummary from './InstallationStepSummary.page';
 import { InstallationFormContextProvider } from '@/context/InstallationForm.context';
 import { testIds } from '@/utils/testIds.constants';
 
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: vi.fn() }),
+  };
+});
+
 vi.mock('react-router-dom', () => ({
   useLocation: () => ({ pathname: '/somewhere' }),
   useNavigate: () => ({ navigate: vi.fn() }),

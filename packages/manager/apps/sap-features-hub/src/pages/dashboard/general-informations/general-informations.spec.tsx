@@ -9,14 +9,24 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import GeneralInformations from './index';
 
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: vi.fn() }),
+  };
+});
+
 vi.mock('@ovh-ux/manager-react-components', () => ({
   Links: vi.fn().mockReturnValue(<div></div>),
   LinkType: vi.fn().mockReturnValue('External'),
   DashboardTile: vi.fn().mockReturnValue(<div>Block Tile</div>),
 }));
+
 vi.mock('react-router-dom', () => ({
   useHref: vi.fn(),
 }));
+
 const queryClient = new QueryClient();
 const shellContext = {
   shell: {

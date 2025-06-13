@@ -7,15 +7,18 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import { BACKUP_SAP_TITLE } from './general-informations.constants';
+import { TRACKING } from '@/tracking.constants';
 
 function GeneralInfos() {
   const { t } = useTranslation('dashboard');
   const guides = useGuideUtils();
   const wizardHref = useHref(urls.installationWizard);
   const listingHref = useHref(urls.listing);
+  const { trackClick } = useOvhTracking();
 
   const Tiles = [
     {
@@ -37,6 +40,14 @@ function GeneralInfos() {
               href={guides.pre_installation_sap}
               target="_blank"
               type={LinkType.external}
+              onClickReturn={() =>
+                trackClick(
+                  TRACKING.dashboard.linkClick({
+                    tileName: 'pre_installation_sap_hana',
+                    type: 'documentation',
+                  }),
+                )
+              }
             />
           ),
         },
@@ -59,6 +70,14 @@ function GeneralInfos() {
               href={guides.infrastructure_as_code}
               target="_blank"
               type={LinkType.external}
+              onClickReturn={() =>
+                trackClick(
+                  TRACKING.dashboard.linkClick({
+                    tileName: 'infrastructure_as_code',
+                    type: 'documentation',
+                  }),
+                )
+              }
             />
           ),
         },
@@ -70,6 +89,14 @@ function GeneralInfos() {
               href="https://github.com/ovh/terraform-vsphere-sap-system/tree/master"
               target="_blank"
               type={LinkType.external}
+              onClickReturn={() =>
+                trackClick(
+                  TRACKING.dashboard.linkClick({
+                    tileName: 'infrastructure_as_code',
+                    type: 'git',
+                  }),
+                )
+              }
             />
           ),
         },
@@ -88,6 +115,9 @@ function GeneralInfos() {
             <Links
               label={t('blocks_download')}
               href="https://ovhcloud-backint-agent.s3.rbx.io.cloud.ovh.net/ovhcloud-backint-agent.zip"
+              onClickReturn={() =>
+                trackClick(TRACKING.dashboard.downloadBackint)
+              }
             />
           ),
         },
@@ -99,6 +129,14 @@ function GeneralInfos() {
               href={guides.backup_sap_hana}
               target="_blank"
               type={LinkType.external}
+              onClickReturn={() =>
+                trackClick(
+                  TRACKING.dashboard.linkClick({
+                    tileName: 'backup_sap_hana',
+                    type: 'documentation',
+                  }),
+                )
+              }
             />
           ),
         },
@@ -122,6 +160,7 @@ function GeneralInfos() {
               label={t('blocks_start_wizard')}
               href={wizardHref}
               type={LinkType.next}
+              onClickReturn={() => trackClick(TRACKING.wizard.start)}
             />
           ),
         },
@@ -143,6 +182,14 @@ function GeneralInfos() {
               href={guides.pre_installation_wizard}
               target="_blank"
               type={LinkType.external}
+              onClickReturn={() =>
+                trackClick(
+                  TRACKING.dashboard.linkClick({
+                    tileName: 'pre_installation_wizard',
+                    type: 'documentation',
+                  }),
+                )
+              }
             />
           ),
         },
@@ -167,6 +214,14 @@ function GeneralInfos() {
               href={t('logs_analysis_and_extract')}
               target="_blank"
               type={LinkType.external}
+              onClickReturn={() =>
+                trackClick(
+                  TRACKING.dashboard.linkClick({
+                    tileName: 'analysis_and_extract',
+                    type: 'documentation',
+                  }),
+                )
+              }
             />
           ),
         },
@@ -178,6 +233,14 @@ function GeneralInfos() {
               href="https://github.com/ovh/terraform-vsphere-sap-system/tree/master"
               target="_blank"
               type={LinkType.external}
+              onClickReturn={() =>
+                trackClick(
+                  TRACKING.dashboard.linkClick({
+                    tileName: 'analysis_and_extract',
+                    type: 'git',
+                  }),
+                )
+              }
             />
           ),
         },
