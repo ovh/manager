@@ -58,17 +58,19 @@ const NodePoolName = ({
         >
           {t('kubernetes_add_name')}
         </OsdsText>
-        <OsdsInput
-          placeholder={t('kube_add_node_pool_name_label')}
-          value={name}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          type={ODS_INPUT_TYPE.text}
-          onOdsValueChange={(e) => {
-            onNameChange(e.detail.value);
-          }}
-          onOdsInputBlur={() => onTouched(true)}
-          error={hasError}
-        />
+        <div className="w-fit">
+          <OsdsInput
+            placeholder={t('kube_add_node_pool_name_label')}
+            value={name}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            type={ODS_INPUT_TYPE.text}
+            onOdsValueChange={(e) => {
+              onNameChange(e.detail.value ?? '');
+            }}
+            onOdsInputBlur={() => onTouched(true)}
+            error={hasError}
+          />
+        </div>
       </OsdsFormField>
     </>
   );

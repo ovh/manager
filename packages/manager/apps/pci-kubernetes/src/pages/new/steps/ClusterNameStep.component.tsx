@@ -60,17 +60,19 @@ export function ClusterNameStep({
         >
           {t('kubernetes_add_name')}
         </OsdsText>
-        <OsdsInput
-          placeholder={t('kubernetes_add_name_placeholder')}
-          value={name}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          type={ODS_INPUT_TYPE.text}
-          onOdsValueChange={(e) => {
-            setName(e.detail.value ?? '');
-          }}
-          onOdsInputBlur={() => setIsTouched(true)}
-          error={hasError}
-        />
+        <div className="w-fit">
+          <OsdsInput
+            placeholder={t('kubernetes_add_name_placeholder')}
+            value={name}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            type={ODS_INPUT_TYPE.text}
+            onOdsValueChange={(e) => {
+              setName(e.detail.value ?? '');
+            }}
+            onOdsInputBlur={() => setIsTouched(true)}
+            error={hasError}
+          />
+        </div>
       </OsdsFormField>
       <OsdsButton
         className="mt-8 w-fit"

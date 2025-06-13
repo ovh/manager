@@ -14,14 +14,14 @@ import {
 } from '@/hooks/useFlavors';
 import { FlavorTile } from './FlavorTile.component';
 
-export type KubeFlavor = ReturnType<
+export type TComputedKubeFlavor = ReturnType<
   typeof useMergedKubeFlavors
 >['mergedFlavors'][0];
 
 interface FlavorSelectorProps {
   projectId: string;
   region: string;
-  onSelect?: (flavor: KubeFlavor) => void;
+  onSelect?: (flavor: TComputedKubeFlavor) => void;
 }
 
 export function FlavorSelector({

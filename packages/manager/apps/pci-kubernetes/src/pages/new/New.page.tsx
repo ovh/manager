@@ -124,15 +124,15 @@ export default function NewPage() {
       version: stepper.form.version,
       updatePolicy: stepper.form.updatePolicy,
       ...(nodePoolEnabled && {
-        nodepools: stepper.form.nodePools.map(
+        nodepools: stepper.form.nodePools?.map(
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           ({ localisation: _1, monthlyPrice: _2, ...nodePool }) => nodePool,
         ),
       }),
-      privateNetworkId: stepper.form.network?.privateNetwork?.id || undefined,
+      privateNetworkId: stepper.form.network.privateNetwork?.id ?? '',
       loadBalancersSubnetId:
-        stepper.form.network?.loadBalancersSubnet?.id || undefined,
-      nodesSubnetId: stepper.form.network?.subnet?.id || undefined,
+        stepper.form.network.loadBalancersSubnet?.id || undefined,
+      nodesSubnetId: stepper.form.network.subnet?.id || undefined,
       privateNetworkConfiguration: {
         defaultVrackGateway: stepper.form.network?.gateway?.ip || '',
         privateNetworkRoutingAsDefault:
@@ -174,7 +174,7 @@ export default function NewPage() {
       <Notifications />
 
       <div className="mb-5 sticky top-0 z-50">
-        <PciDiscoveryBanner project={project} />
+        {project && <PciDiscoveryBanner project={project} />}
       </div>
 
       <div className="mt-8">
