@@ -1,9 +1,8 @@
 import { z } from 'zod/v3';
 import {
-  mockVrackSegmentList,
+  VCDVrackSegment,
   useUpdateVcdVrackSegment,
   useVcdVrackSegmentOptions,
-  VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -37,18 +36,6 @@ function AddNetworkVrackSegmentLoaded() {
     ...defaultOptions,
     refetchOnWindowFocus: false,
     refetchOnMount: true,
-    queryFn: () =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({
-            data: mockVrackSegmentList[0],
-            status: 200,
-            statusText: 'OK',
-            headers: {},
-            config: {},
-          } as ApiResponse<VCDVrackSegment>);
-        }, 1500);
-      }),
     select: (data: ApiResponse<VCDVrackSegment>) => ({
       ...data.data.targetSpec,
     }),
