@@ -19,7 +19,7 @@ describe('Datagrid columns', () => {
   const { result } = renderHook(() => useAllDomDatagridColumns());
   const columns = result.current;
   it('should return the correct number of column', () => {
-    expect(columns).toHaveLength(10);
+    expect(columns).toHaveLength(9);
   });
 
   it('should return the good labels', () => {
@@ -27,8 +27,7 @@ describe('Datagrid columns', () => {
       serviceName: 'allDom_table_header_serviceName',
       renewMode: 'allDom_table_header_renewMode',
       type: 'allDom_table_header_type',
-      register_domain: 'allDom_table_header_register_domain',
-      authorized_domain: 'allDom_table_header_authorized_domain',
+      authorized_domain: 'allDom_table_header_registered_authorized_domain',
       expiration_date: 'allDom_domain_table_header_expiration_date',
       nicAdmin: 'allDom_table_header_nicAdmin',
       nicTech: 'allDom_table_header_nicTech',
