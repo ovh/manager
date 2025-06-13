@@ -505,3 +505,7 @@ export const ITEMS_PER_PAGE = 999;
 export const UNIVERSE = 'PublicCloud';
 export const SUB_UNIVERSE = 'storages';
 export const APP_NAME = 'objects_storage_container';
+
+export const STANDARD = 'STANDARD';
+export const HIGH_PERFORMANCE = 'HIGH_PERF';
+export const STANDARD_INFREQUENT_ACCESS = 'STANDARD_IA';
