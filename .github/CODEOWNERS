@@ -49,6 +49,7 @@
 /packages/manager/apps/procedures @ovh/dev-manager-gcj-all
 /packages/manager/apps/public-cloud @ovh/dev-manager-pci-all
 /packages/manager/apps/restricted @ovh/dev-manager-enabler-all
+/packages/manager/apps/sap-features-hub @ovh/dev-manager-hpc-all
 /packages/manager/apps/sharepoint @ovh/dev-manager-web-all
 /packages/manager/apps/sign-up @ovh/dev-manager-gcj-all
 /packages/manager/apps/sms @ovh/dev-manager-web-all
