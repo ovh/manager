@@ -20,7 +20,10 @@ export default class VolumeCreateCtrl {
     this.isLoading = true;
     this.manualSnaphost = [
       {
-        key: this.CUSTOM_SELECTION,
+        type: this.CUSTOM_SELECTION,
+        key: this.$translate.instant(
+          `netapp_volume_create_snapshot_selection_custom`,
+        ),
       },
     ];
     this.protocolList = this.protocolEnum.map((protocol) => ({
