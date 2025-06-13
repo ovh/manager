@@ -1,0 +1,5 @@
+packages:
+  - .
+
+overrides:
+  "@ovh-ux/manager-models": "link:../../modules/models"
