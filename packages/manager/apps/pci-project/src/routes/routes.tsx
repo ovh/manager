@@ -11,7 +11,7 @@ const GeneralInfosPage = lazy(() =>
   import('@/pages/dashboard/general-informations'),
 );
 const Tab2Page = lazy(() => import('@/pages/dashboard/tab2'));
-const OnboardingPage = lazy(() => import('@/pages/onboarding'));
+const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
 
 export default (
   <Route
