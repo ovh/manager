@@ -14,9 +14,12 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "prepare": "tsc"
+    "prepare": "tsc",
+    "test": "manager-test",
+    "test:ci": "manager-test run --coverage"
   },
   "devDependencies": {
+    "@ovh-ux/manager-tests-setup": "^0.2.0",
     "typescript": "^5.1.6"
   }
 }
