@@ -4,10 +4,12 @@ import { ServiceInfoType } from '@/alldoms/enum/service.enum';
 
 interface DatagridColumnDomainNumberProps {
   readonly allDomType: ServiceInfoType;
+  readonly registeredDomainCount: number;
 }
 
 export default function DatagridColumnDomainNumber({
   allDomType,
+  registeredDomainCount,
 }: DatagridColumnDomainNumberProps) {
   const domainLimits = {
     [ServiceInfoType.FrenchInternational]: 8,
@@ -17,5 +19,9 @@ export default function DatagridColumnDomainNumber({
 
   const numberOfAuthorizedDomain = domainLimits[allDomType];
 
-  return <DataGridTextCell>{numberOfAuthorizedDomain}</DataGridTextCell>;
+  return (
+    <DataGridTextCell>
+      {numberOfAuthorizedDomain} / {registeredDomainCount}
+    </DataGridTextCell>
+  );
 }
