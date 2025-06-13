@@ -5,7 +5,7 @@ export default {
   name: 'ovhSignUpDetails',
   controller,
   bindings: {
-    onFieldError: '<',
+    onFieldBlur: '<',
     trackField: '<',
   },
   template,
