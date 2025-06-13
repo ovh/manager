@@ -1,18 +1,42 @@
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, screen, act } from '@testing-library/react';
 import { describe, expect, vi } from 'vitest';
+import userEvent from '@testing-library/user-event';
 import InstallationStepEnablement from './InstallationStepEnablement.page';
 import { installationInitialValues } from '@/context/installationInitialValues.constants';
 import { FORM_LABELS } from '@/constants/form.constants';
+import { testIds } from '@/utils/testIds.constants';
+import { TRACKING } from '@/tracking.constants';
+
+const trackClickMock = vi.fn();
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: trackClickMock }),
+  };
+});
 
 vi.mock('react-router-dom', () => ({
   useLocation: () => ({ pathname: '/somewhere' }),
-  useNavigate: () => ({ navigate: vi.fn() }),
+  useNavigate: () => vi.fn(),
   useParams: () => ({ stepId: '1' }),
   useSearchParams: () => [new URLSearchParams(), vi.fn()],
 }));
+
+vi.mock('react-hook-form', async () => {
+  const original: any = await vi.importActual('react-hook-form');
+  return {
+    ...original,
+    useForm: () => ({
+      ...original.useForm(),
+      formState: { isValid: true },
+      handleSubmit: (cb: () => void) => () => cb(),
+    }),
+  };
+});
 
 vi.mock('@/context/InstallationForm.context', () => ({
   useInstallationFormContext: () => ({
@@ -89,6 +113,22 @@ describe('InstallationStepEnablement page unit test suite', () => {
         );
       },
       { timeout: 5_000 },
+    );
+  });
+});
+
+describe('Tracking test suite', () => {
+  it('should track form submit', async () => {
+    render(<InstallationStepEnablement />);
+
+    const user = userEvent.setup();
+    const submitCta = screen.getByTestId(testIds.formSubmitCta);
+
+    expect(submitCta).toBeEnabled();
+    await act(() => user.click(submitCta));
+
+    expect(trackClickMock).toHaveBeenCalledWith(
+      TRACKING.installation.startSAPDeployment,
     );
   });
 });
