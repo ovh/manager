@@ -50,8 +50,13 @@ export const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
 
 export const ActionsMenu = ({ items }: TActionsMenuProps) => {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild disabled={!items.size}>
+    <DropdownMenu modal={false}>
+      <DropdownMenuTrigger
+        // prevent default to avoid auto hiding the dropdown on mobile device
+        onTouchEnd={(e) => e.preventDefault()}
+        asChild
+        disabled={!items.size}
+      >
         <Button
           data-testid="actions-menu-button"
           className="size-9 p-0 text-primary border-primary border bg-background font-semibold hover:bg-primary-100 rounded-8 data-[state=open]:bg-[--ods-color-primary-100] focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
