@@ -57,7 +57,7 @@ export default class {
         ),
       })
       .then(({ datacenters, ipAddressDetails }) => {
-        this.availableDatacenters = datacenters.results;
+        this.availableDatacenters = datacenters;
         this.availableIpAddress = ipAddressDetails.filter(
           ({ usageDetails }) =>
             isNull(usageDetails) &&

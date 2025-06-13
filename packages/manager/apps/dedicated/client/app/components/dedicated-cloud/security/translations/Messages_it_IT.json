@@ -46,5 +46,8 @@
   "dedicatedCloud_SECURITY_change_logout_policy": "Modifica la politica di disconnessione",
   "dedicatedCloud_SECURITY_add_IP": "Aggiungi una nuova classe di indirizzi IP",
   "dedicatedCloud_SECURITY_delete_IP": "Rimuovi classi di indirizzi IP",
-  "dedicatedCloud_dashboard_loading_error": "Si è verificato un errore durante il caricamento delle informazioni relative al tuo servizio."
+  "dedicatedCloud_dashboard_loading_error": "Si è verificato un errore durante il caricamento delle informazioni relative al tuo servizio.",
+  "dedicatedCloud_configuration_SECURITY_status_toDelete": "Da eliminare",
+  "dedicatedCloud_configuration_SECURITY_status_toUpdate": "Aggiornamento in corso...",
+  "dedicatedCloud_configuration_SECURITY_status_allowed": "Autorizzato e installato"
 }

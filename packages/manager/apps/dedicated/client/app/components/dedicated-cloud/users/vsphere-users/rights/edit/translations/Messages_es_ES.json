@@ -45,8 +45,8 @@
   "dedicatedCloud_USER_right_vlan_readonly": "Acceso de solo lectura",
   "dedicatedCloud_USER_right_vlan_MANAGER": "Permite gestionar los «port groups« del switch virtual (creación, modificación y eliminación). Solo para SDDC y los packs Hosted Private Cloud Premier.",
   "dedicatedCloud_USER_right_vlan_manager": "Permite gestionar los «port groups« del switch virtual (creación, modificación y eliminación). Solo para SDDC y los packs Hosted Private Cloud Premier.",
-  "dedicatedCloud_USER_right_resources": "Añadir recursos",
-  "dedicatedCloud_USER_right_resources_help": "Permiso para añadir recursos adicionales a través del plugin de OVHcloud en vSphere Client",
+  "dedicatedCloud_USER_right_resources": "Gestión de hosts y almacenamiento",
+  "dedicatedCloud_USER_right_resources_help": "Autorización para la adición y la eliminación de hosts y almacenamiento a través del plugin OVHcloud en el cliente vSphere.",
   "dedicatedCloud_USER_right_set_success": "El cambio de los permisos de {{t0}} para el datacenter {{t1}} se ha enviado correctamente.",
   "dedicatedCloud_USER_right_set_fail": "Se ha producido un error al cambiar los permisos de {{t0}} para el datacenter {{t1}}."
 }

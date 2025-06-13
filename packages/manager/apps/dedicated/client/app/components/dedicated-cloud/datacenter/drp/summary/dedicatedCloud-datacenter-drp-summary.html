@@ -23,7 +23,7 @@
             ></dt>
             <dd
                 class="col-md-7"
-                data-ng-bind="::$ctrl.drpInformations.primaryDatacenter.formattedName || '-'"
+                data-ng-bind="::$ctrl.drpInformations.primaryDatacenter.displayName || '-'"
             ></dd>
             <dt
                 class="col-md-5"
@@ -41,7 +41,7 @@
             <dd
                 class="col-md-7"
                 data-ng-if="!$ctrl.isDrpTypeOnPremise()"
-                data-ng-bind="::$ctrl.drpInformations.secondaryDatacenter.formattedName || '-'"
+                data-ng-bind="::$ctrl.drpInformations.secondaryDatacenter.displayName || '-'"
             ></dd>
             <dt
                 class="col-md-5"
