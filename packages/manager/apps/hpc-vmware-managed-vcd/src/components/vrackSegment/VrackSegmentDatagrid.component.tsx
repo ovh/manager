@@ -6,7 +6,6 @@ import {
   useColumnFilters,
 } from '@ovh-ux/manager-react-components';
 import {
-  ApiResponse,
   applyFilters,
   FilterCategories,
   FilterComparator,
@@ -16,12 +15,11 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  mockVrackSegmentList,
   useVcdVrackSegmentListOptions,
   VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { useHref, useNavigate } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 import { VrackSegmentSubDatagrid } from './VrackSegmentSubDatagrid.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { VRACK_SEGMENTS_MIN_LENGTH } from '@/pages/dashboard/datacentre/vrack-segment/datacentreVrack.constants';
@@ -35,23 +33,14 @@ export const VrackSegmentDatagrid = ({
   id,
   vdcId,
 }: VrackSegmentDatagridProps) => {
-  const navigate = useNavigate();
   const { t } = useTranslation('datacentres/vrack-segment');
   const [sorting, setSorting] = useState<ColumnSort>();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchInput, setSearchInput] = useState('');
 
-  const vcdVrackSegmentListOptions = useVcdVrackSegmentListOptions(id, vdcId);
+  const vcdVrackNetworkOptions = useVcdVrackSegmentListOptions(id, vdcId);
   const { data: vrackSegments, isLoading } = useQuery({
-    ...vcdVrackSegmentListOptions,
-    queryFn: () =>
-      Promise.resolve({
-        data: mockVrackSegmentList,
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config: {},
-      } as ApiResponse<VCDVrackSegment[]>),
+    ...vcdVrackNetworkOptions,
     select: (data) =>
       data.data.map((item) => ({
         ...item,
@@ -70,6 +59,12 @@ export const VrackSegmentDatagrid = ({
 
   const hrefAddNetwork = useHref(
     urls.vrackSegmentAddNetwork
+      .replace(subRoutes.dashboard, id)
+      .replace(subRoutes.vdcId, vdcId),
+  );
+
+  const hrefVrackSegmentDelete = useHref(
+    urls.vrackSegmentDelete
       .replace(subRoutes.dashboard, id)
       .replace(subRoutes.vdcId, vdcId),
   );
@@ -127,7 +122,10 @@ export const VrackSegmentDatagrid = ({
                 },
                 {
                   id: 2,
-                  href: hrefAddNetwork,
+                  href: hrefAddNetwork.replace(
+                    subRoutes.vrackSegmentId,
+                    item.id,
+                  ),
                   label: t('managed_vcd_dashboard_vrack_add_network'),
                 },
                 ...(hasExtraSegments && item.targetSpec.type !== 'DEFAULT'
@@ -136,13 +134,10 @@ export const VrackSegmentDatagrid = ({
                         id: 3,
                         color: ODS_BUTTON_COLOR.critical,
                         label: t('managed_vcd_dashboard_vrack_delete_segment'),
-                        onClick: () =>
-                          navigate(
-                            urls.vrackSegmentDelete
-                              .replace(subRoutes.dashboard, id)
-                              .replace(subRoutes.vdcId, vdcId)
-                              .replace(subRoutes.vrackSegmentId, item.id),
-                          ),
+                        href: hrefVrackSegmentDelete.replace(
+                          subRoutes.vrackSegmentId,
+                          item.id,
+                        ),
                       },
                     ]
                   : []),

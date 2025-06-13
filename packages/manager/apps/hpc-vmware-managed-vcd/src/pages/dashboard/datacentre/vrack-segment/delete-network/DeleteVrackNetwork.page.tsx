@@ -31,18 +31,6 @@ export default function DeleteVrackNetwork() {
 
   const queryOptions = {
     ...defaultQueryOptions,
-    queryFn: () =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({
-            data: mockVrackSegmentList[0],
-            status: 200,
-            statusText: 'OK',
-            headers: {},
-            config: {},
-          } as ApiResponse<VCDVrackSegment>);
-        }, 1500);
-      }),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
   };
