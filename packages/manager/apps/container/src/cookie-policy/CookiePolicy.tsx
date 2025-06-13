@@ -39,7 +39,7 @@ const ModalContent = ({ label }: { label: string }) => (
 );
 
 const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
-  const { t } = useTranslation('cookie-policy');
+  const { t } = useTranslation('consent-policy');
   const [cookies, setCookies] = useCookies(['MANAGER_TRACKING']);
   const { environment } = useApplication();
   const [show, setShow] = useState(false);
