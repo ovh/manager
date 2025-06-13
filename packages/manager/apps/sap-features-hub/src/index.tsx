@@ -10,7 +10,7 @@ import App from './App';
 import './vite-hmr';
 import './index.scss';
 
-import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
+import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constants';
 
 const trackingContext = {
   chapter1: UNIVERSE,

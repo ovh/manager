@@ -33,7 +33,7 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'dashboard',
+                pageName: 'catalog',
                 pageType: PageType.dashboard,
               },
             },
@@ -63,7 +63,7 @@ export const Routes: any = [
         ),
         handle: {
           tracking: {
-            pageName: 'installationDashboard',
+            pageName: 'detail',
             pageType: PageType.dashboard,
           },
         },
@@ -93,7 +93,7 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'wizard',
+                pageName: 'install_sap-installation',
                 pageType: PageType.popup,
               },
             },
@@ -108,8 +108,8 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'dashboard',
-                pageType: PageType.dashboard,
+                pageName: 'install_sap-installation',
+                pageType: PageType.funnel,
               },
             },
           },
@@ -121,8 +121,8 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'dashboard',
-                pageType: PageType.dashboard,
+                pageName: 'install_sap-installation',
+                pageType: PageType.funnel,
               },
             },
           },
