@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import FormLayout from '@/components/Form/FormLayout.component';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
@@ -38,6 +39,7 @@ import {
   getSelectLatestValue,
 } from '@/utils/selectValues';
 import { APPLICATION_SERVER_ROLES } from '@/utils/applicationServers.constants';
+import { TRACKING } from '@/tracking.constants';
 
 type FormData = z.output<typeof SERVER_CONFIG_SCHEMA>;
 
@@ -60,6 +62,7 @@ export default function InstallationStepServerConfig() {
       },
     },
   } = useInstallationFormContext();
+  const { trackClick } = useOvhTracking();
 
   const {
     datacentrePortGroupQuery: {
@@ -230,8 +233,12 @@ export default function InstallationStepServerConfig() {
       <FormLayout
         title={t('server_config_title')}
         subtitle={t('server_config_subtitle')}
+        isSubmitDisabled={!formState.isValid}
         submitLabel={t('server_config_cta')}
-        onSubmit={handleSubmit(nextStep)}
+        onSubmit={handleSubmit(() => {
+          trackClick(TRACKING.installation.enableAdditionalFeatures);
+          nextStep();
+        })}
         onPrevious={previousStep}
       >
         <Controller
