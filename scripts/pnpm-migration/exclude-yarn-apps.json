@@ -1,4 +1,4 @@
 [
-  "packages/manager/apps/zimbra",
-  "packages/manager/apps/dedicated"
+  "packages/manager/apps/dedicated",
+  "packages/manager/apps/zimbra"
 ]

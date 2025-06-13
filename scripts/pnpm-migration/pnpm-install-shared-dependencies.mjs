@@ -8,8 +8,13 @@ const forceRebuild = args.includes('--rebuild-graph');
 
 const pnpmPath = path.resolve('./target/pnpm/pnpm');
 const depsPath = path.resolve('./target/pnpm-dependencies.json');
-const requiredTools = ['rollup@^3.29.4', 'typescript@^5.0.0', 'typescript@^5.8.2', ];
 const REGISTRY = '--registry=https://registry.yarnpkg.com';
+const requiredTools = [
+  'rollup@^3.29.4',
+  'typescript@^5.0.0',
+  'typescript@^5.8.2',
+  '@module-federation/runtime@^0.8.11'
+];
 
 function buildPnpmDependenciesGraph() {
   console.log('🧠 Building dependency map using yarn.lock...');

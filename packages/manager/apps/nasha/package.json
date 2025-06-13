@@ -73,6 +73,7 @@
     "@ovh-ux/manager-webpack-config": "^7.0.8",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
+    "@module-federation/runtime": "^0.15.0",
     "webpack-merge": "^4.2.2"
   },
   "regions": [
