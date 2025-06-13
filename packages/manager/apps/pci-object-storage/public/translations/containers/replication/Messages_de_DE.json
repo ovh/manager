@@ -22,5 +22,6 @@
   "pci_projects_project_storages_containers_replication_list_warning_link": "Versionierung aktivieren",
   "pci_projects_project_storages_containers_replication_list_storage_class_undefined": "Wie Quelle",
   "pci_projects_project_storages_containers_replication_list_destination_warning": "Um die asynchrone Replikation zu verwenden, benötigen Sie einen anderen Container mit aktivierter Versionsverwaltung.",
-  "pci_projects_project_storages_containers_replication_list_destination_warning_link": "Einen neuen Container erstellen."
+  "pci_projects_project_storages_containers_replication_list_destination_warning_link": "Einen neuen Container erstellen.",
+  "pci_projects_project_storages_containers_replication_conflict_warning": "Mindestens eine Replikationsregel ist nicht mehr funktionsfähig, da ihre Zielcontainer nicht mehr vorhanden sind. Um eine neue Regel zu erstellen, müssen Sie diese entweder löschen oder korrigieren und Zielcontainer mit aktivierter Versionsverwaltung zuweisen."
 }

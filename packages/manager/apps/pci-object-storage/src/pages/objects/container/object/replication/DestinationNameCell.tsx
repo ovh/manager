@@ -7,7 +7,7 @@ const DestinationNameCell = ({ destination }) => {
 
   return (
     <div className="flex flex-col">
-      <OdsLink color="primary" href={href} label={name} />
+      <OdsLink isDisabled={!region} color="primary" href={href} label={name} />
     </div>
   );
 };
