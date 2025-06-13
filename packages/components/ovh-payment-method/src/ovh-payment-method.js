@@ -56,7 +56,6 @@ export const useOvhPaymentMethod = () => {
   /**
    *  Add an new payment method
    *  @param  {Object}          params The attributes of payment method to add
-   *  @return {Promise<PaymentMethod>} returns an instance of PaymentMethod.
    */
   const addPaymentMethod = async (availablePaymentMethod, params = {}) => {
     return v6
@@ -64,7 +63,7 @@ export const useOvhPaymentMethod = () => {
         ...params,
         paymentType: availablePaymentMethod.paymentType,
       })
-      .then(({ data }) => new PaymentMethod(data))
+      .then(({ data }) => data)
       .then((paymentMethod) => {
         if (params.orderId && paymentMethod.paymentMethodId) {
           return v6
@@ -73,7 +72,7 @@ export const useOvhPaymentMethod = () => {
                 id: paymentMethod.paymentMethodId,
               },
             })
-            .then(({ data }) => new PaymentMethod(data));
+            .then(({ data }) => data);
         }
 
         return paymentMethod;
