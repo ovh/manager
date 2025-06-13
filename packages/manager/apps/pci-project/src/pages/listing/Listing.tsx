@@ -1,9 +1,12 @@
 import React, { useEffect, useState, startTransition } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FilterCategories } from '@ovh-ux/manager-core-api';
+import {
+  FilterCategories,
+  FilterTypeCategories,
+} from '@ovh-ux/manager-core-api';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { OdsButton, OdsSpinner } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsSpinner, OdsIcon } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_VARIANT,
   ODS_BUTTON_SIZE,
@@ -17,18 +20,27 @@ import {
   useResourcesIcebergV6,
   dataType,
   BaseLayout,
+  DatagridColumn,
 } from '@ovh-ux/manager-react-components';
 
 import appConfig from '@/pci-project.config';
 
+type ErrorResponse = {
+  response?: {
+    headers?: Record<string, string>;
+    status?: number;
+  };
+};
+
 export default function Listing() {
   const myConfig = appConfig;
   const serviceKey = myConfig.listing?.datagrid?.serviceKey;
-  const [columns, setColumns] = useState<Array<Record<string, unknown>>>([]);
+  const [columns, setColumns] = useState<
+    DatagridColumn<Record<string, unknown>>[]
+  >([]);
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation('listing');
-
   const {
     flattenData,
     isError,
@@ -54,16 +66,21 @@ export default function Listing() {
     startTransition(() => navigate(`${path}${label}`));
   };
 
-  // Code to remove
-  const comparatorType = {
-    Number: FilterCategories.Numeric,
-    Date: FilterCategories.Date,
-    String: FilterCategories.String,
-    Boolean: FilterCategories.Boolean,
-    Options: FilterCategories.Options,
+  const typeToFilterType = (type: string): FilterTypeCategories => {
+    switch (type.toLowerCase()) {
+      case 'number':
+        return FilterTypeCategories.Numeric;
+      case 'date':
+        return FilterTypeCategories.Date;
+      case 'string':
+        return FilterTypeCategories.String;
+      case 'boolean':
+        return FilterTypeCategories.Boolean;
+      default:
+        return FilterTypeCategories.String;
+    }
   };
 
-  // Code to remove and declare definition columns in const variable
   useEffect(() => {
     if (
       columns.length === 0 &&
@@ -72,50 +89,44 @@ export default function Listing() {
     ) {
       const newColumns = Object.keys(flattenData[0] as Record<string, unknown>)
         .filter((element) => element !== 'iam')
-        .map((element) => ({
-          id: element,
-          label: element,
-          isFilterable: true,
-          isSearchable: true,
-          type: dataType(flattenData[0][element]),
-          ...(comparatorType[
-            (dataType(flattenData[0][element]) as string)
-              .charAt(0)
-              .toUpperCase() +
-              (dataType(flattenData[0][element]) as string).slice(1)
-          ] && {
-            comparator:
-              comparatorType[
-                (dataType(flattenData[0][element]) as string)
-                  .charAt(0)
-                  .toUpperCase() +
-                  (dataType(flattenData[0][element]) as string).slice(1)
-              ],
-          }),
-          cell: (props: Record<string, unknown>) => {
-            const label = props[element] as string | number;
-            if (typeof label === 'string' || typeof label === 'number') {
-              if (serviceKey === element)
-                return (
-                  <DataGridTextCell>
-                    <OdsButton
-                      variant={ODS_BUTTON_VARIANT.ghost}
-                      onClick={() => navigateToDashboard(label as string)}
-                      label={label as string}
-                    />
-                  </DataGridTextCell>
-                );
-              return <DataGridTextCell>{label}</DataGridTextCell>;
-            }
-            return <div>-</div>;
-          },
-        }));
+        .map((element) => {
+          const type = dataType(flattenData[0][element]);
+          const filterType = typeToFilterType(type);
+
+          return {
+            id: element,
+            label: element,
+            isFilterable: true,
+            isSearchable: true,
+            type: filterType,
+            comparator: FilterCategories[filterType],
+            cell: (props: Record<string, unknown>) => {
+              const label = props[element] as string | number;
+              if (typeof label === 'string' || typeof label === 'number') {
+                if (serviceKey === element)
+                  return (
+                    <DataGridTextCell>
+                      <OdsButton
+                        variant={ODS_BUTTON_VARIANT.ghost}
+                        onClick={() => navigateToDashboard(label.toString())}
+                        label={label.toString()}
+                      >
+                        {label.toString()}
+                      </OdsButton>
+                    </DataGridTextCell>
+                  );
+                return <DataGridTextCell>{label.toString()}</DataGridTextCell>;
+              }
+              return <DataGridTextCell>-</DataGridTextCell>;
+            },
+          };
+        });
       setColumns(newColumns);
     }
-  }, [flattenData]);
+  }, [flattenData, serviceKey]);
 
   if (isError) {
-    const { response }: any = error;
+    const { response } = error as ErrorResponse;
     const errorObj = {
       data: error,
       headers: response?.headers,
@@ -142,10 +153,13 @@ export default function Listing() {
   const TopbarCTA = () => (
     <div>
       <OdsButton
-        icon={ODS_ICON_NAME.plus}
+        variant={ODS_BUTTON_VARIANT.ghost}
         size={ODS_BUTTON_SIZE.sm}
         label="Add service"
-      />
+      >
+        <OdsIcon name={ODS_ICON_NAME.plus} />
+        Add service
+      </OdsButton>
     </div>
   );
 
