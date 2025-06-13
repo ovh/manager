@@ -1,28 +1,26 @@
 import {
-  ComponentType,
   DetailedHTMLProps,
   InputHTMLAttributes,
+  useCallback,
   useMemo,
 } from 'react';
-import {
-  RadioAdapter,
-  RadioAdapterFactoryProps,
-  RadioFieldProps,
-} from '@/components/input-adapter';
+import { RadioFieldProps } from '@/components/input-adapter';
 import { RadioField } from '@/components/input-adapter/radio-adapter/RadioField';
+import {
+  ConfigCard,
+  ConfigCardElementProps,
+} from '@/components/config-card/ConfigCard';
 
 type KeyValue = string | number;
 
-export type TilesInputRenderProps<T> = RadioAdapterFactoryProps & {
-  element: T;
-};
-
-export type TilesInputProps<T> = Pick<RadioFieldProps, 'label' | 'subtitle'> & {
+export type TilesInputProps<T extends ConfigCardElementProps> = Pick<
+  RadioFieldProps,
+  'label' | 'subtitle'
+> & {
   elements: T[];
   value: T | null;
-  elementKey: (element: T) => KeyValue;
+  elementKey?: (element: T) => KeyValue;
   onChange?: (value: T) => void;
-  render: ComponentType<TilesInputRenderProps<T>>;
   inputProps?: (
     element: T,
   ) => Omit<
@@ -33,24 +31,20 @@ export type TilesInputProps<T> = Pick<RadioFieldProps, 'label' | 'subtitle'> & {
   locked?: boolean;
 };
 
-export const TilesInput = <
-  T extends string | number | Record<string, unknown>
->({
+export const TilesInput = <T extends ConfigCardElementProps>({
   label,
   elements: elementsProps,
   elementKey,
   value: selectedValue,
   onChange,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  render: Renderer,
   inputProps,
   subtitle,
   locked,
   name,
 }: TilesInputProps<T>) => {
-  const selectedValueKey = useMemo(
-    () => (selectedValue !== null ? elementKey(selectedValue) : null),
-    [elementKey, selectedValue],
+  const getKey = useCallback(
+    (element: T) => elementKey?.(selectedValue) ?? element.label,
+    [elementKey],
   );
 
   const elements = useMemo(() => {
@@ -63,20 +57,20 @@ export const TilesInput = <
 
   return (
     <RadioField label={label} subtitle={subtitle} disabled={locked}>
-      <div className="grid gap-6 p-6 m-0 grid-cols-1 md:grid-cols-3">
+      <div className="grid gap-6 p-6 m-0 grid-cols-1 md:grid-cols-3 auto-rows-auto">
         {elements.map((element) => {
-          const key = elementKey(element);
+          const key = getKey(element);
           return (
-            <RadioAdapter
-              name={name}
+            <ConfigCard
               key={key}
-              value={key}
-              checked={key === selectedValueKey}
-              onChange={() => onChange?.(element)}
-              render={(adapterProps) => (
-                <Renderer {...adapterProps} element={element} />
-              )}
-              {...inputProps?.(element)}
+              inputProps={{
+                name,
+                type: 'radio',
+                value: key,
+                onChange: () => onChange?.(element),
+                ...inputProps?.(element),
+              }}
+              {...element}
             />
           );
         })}
