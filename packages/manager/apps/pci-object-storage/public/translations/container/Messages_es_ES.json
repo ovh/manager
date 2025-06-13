@@ -50,7 +50,7 @@
   "pci_projects_project_storages_containers_container_offsite_replication_enabled": "Configurada",
   "pci_projects_project_storages_containers_container_offsite_replication_disabled": "No configurada",
   "pci_projects_project_storages_containers_container_offsite_replication_tooltip": "Una regla de replicación automática o manual se ha configurado o no en este contenedor.",
-  "pci_projects_project_storages_containers_container_storage_class_STANDARD_IA": "Standard IA",
+  "pci_projects_project_storages_containers_container_storage_class_STANDARD_IA": "Infrequent Access",
   "pci_projects_project_storages_containers_container_enable_encryption": "Activar el cifrado (SSE-OMK)",
   "pci_projects_project_storages_containers_container_delete_marker": "Marcador de eliminación",
   "pci_projects_project_storages_containers_container_show_versions": "Ver las versiones",
@@ -59,5 +59,5 @@
   "pci_projects_project_storages_containers_container_objects_sort_warining": "Las operaciones de clasificación en la lista de objetos sólo se realizan en los resultados que se muestran. Usar \"Cargar más\" para ampliar esta clasificación a otros resultados.",
   "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_STANDARD": "Standard",
   "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_HIGH_PERF": "High Performance",
-  "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_STANDARD_IA": "Standard Infrequent Access"
+  "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_STANDARD_IA": "Infrequent Access"
 }

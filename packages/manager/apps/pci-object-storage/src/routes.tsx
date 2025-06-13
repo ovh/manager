@@ -21,6 +21,10 @@ export const ROUTE_PATHS = {
   DELETE_OBJECT: `:objectName/delete`,
   ENABLE_VERSIONING: 'enableVersioning',
   ENABLE_ENCRYPTION: 'enableEncryption',
+  REPLICATIONS: `/pci/projects/:projectId/storages/objects/:storageId/replications`,
+  ADD_REPLICATION:
+    '/pci/projects/:projectId/storages/objects/:storageId/replications/new',
+  DELETE_REPLICATION: `/pci/projects/:projectId/storages/objects/:storageId/replications/:replicationId/delete`,
   DOWNLOAD_RCLONE: 'rclone/download',
   ADD_USER_OBJECT: `:objectName/addUser`,
   EMPTY_USER_OBJECT: `:objectName/emptyUser`,
@@ -74,6 +78,22 @@ const EnableVersioningPage = lazy(() =>
 );
 const EnableEncryptiongPage = lazy(() =>
   import('@/pages/objects/container/enable-encryption/EnableEncryption.page'),
+);
+
+const ReplicationsListPage = lazy(() =>
+  import('@/pages/objects/container/object/replication/ReplicationList.page'),
+);
+
+const AddReplicationPage = lazy(() =>
+  import(
+    '@/pages/objects/container/object/add-replication/AddReplication.page'
+  ),
+);
+
+const DeleteReplicationPage = lazy(() =>
+  import(
+    '@/pages/objects/container/object/delete-replication/DeleteReplication.page'
+  ),
 );
 
 const DownloadRClonePage = lazy(() =>
@@ -279,6 +299,23 @@ export default (
         }}
       />
     </Route>
+    <Route path={ROUTE_PATHS.REPLICATIONS} Component={ReplicationsListPage}>
+      <Route
+        path={ROUTE_PATHS.ENABLE_VERSIONING}
+        Component={EnableVersioningPage}
+        handle={{
+          tracking: {
+            pageName: 'object_activate_versioning',
+            pageType: PageType.popup,
+          },
+        }}
+      />
+      <Route
+        path={ROUTE_PATHS.DELETE_REPLICATION}
+        Component={DeleteReplicationPage}
+      />
+    </Route>
+    <Route path={ROUTE_PATHS.ADD_REPLICATION} Component={AddReplicationPage} />
     <Route path="" element={<>Page not found</>}></Route>
   </Route>
 );

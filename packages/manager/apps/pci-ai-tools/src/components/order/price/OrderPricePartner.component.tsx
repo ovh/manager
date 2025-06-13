@@ -19,34 +19,29 @@ const ParnterOrderPrice = ({
 }: PartnerOrderPriceProps) => {
   const { t } = useTranslation('ai-tools/pricing');
   return (
-    <div
-      data-testid="order-price-container"
-      className="flex justify-between items-baseline gap-2"
-    >
-      <div className="inline-block text-sm">
-        {isCpu ? (
-          <span>{t('licenceCpuPriceLabel')} </span>
-        ) : (
-          <span>{t('licenceGpuPriceLabel')} </span>
-        )}
-        {licencingType !==
-          ai.capabilities.LicensingTypeEnum['per-second-bracket'] && (
-          <span>{t('licenceFromLabel')} </span>
-        )}
-        <Price
-          decimals={2}
-          priceInUcents={minuteConverter * quantity * price.price}
-          taxInUcents={minuteConverter * quantity * price.tax}
-          displayInHour={false}
-        />
-        {licencingType !==
-        ai.capabilities.LicensingTypeEnum['per-second-bracket'] ? (
-          <span> {t('partnerPriceSuffix')}</span>
-        ) : (
-          <span> {t('partnerPricePerUsageSuffix')}</span>
-        )}
-      </div>
-    </div>
+    <>
+      {isCpu ? (
+        <span>{t('licenceCpuPriceLabel')} </span>
+      ) : (
+        <span>{t('licenceGpuPriceLabel')} </span>
+      )}
+      {licencingType !==
+        ai.capabilities.LicensingTypeEnum['per-second-bracket'] && (
+        <span>{t('licenceFromLabel')} </span>
+      )}
+      <Price
+        decimals={2}
+        priceInUcents={minuteConverter * quantity * price.price}
+        taxInUcents={minuteConverter * quantity * price.tax}
+        displayInHour={false}
+      />
+      {licencingType !==
+      ai.capabilities.LicensingTypeEnum['per-second-bracket'] ? (
+        <span> {t('partnerPriceSuffix')}</span>
+      ) : (
+        <span> {t('partnerPricePerUsageSuffix')}</span>
+      )}
+    </>
   );
 };
 

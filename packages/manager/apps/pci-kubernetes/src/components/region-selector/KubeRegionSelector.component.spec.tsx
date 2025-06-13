@@ -1,17 +1,26 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi, Mock } from 'vitest';
-import { useProductAvailability } from '@ovh-ux/manager-pci-common';
+import { UseQueryResult } from '@tanstack/react-query';
+
+import { describe, it, expect, vi } from 'vitest';
+import {
+  ResponseAPIError,
+  TProductAvailability,
+  TProject,
+  useProductAvailability,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
 import { KubeRegionSelector } from './KubeRegionSelector.component';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import { RegionType } from '@/pages/new/steps/LocationStep.component';
 import { wrapper } from '@/wrapperRenders';
 
-vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
-  const actual: any = await importOriginal();
+vi.mock('@ovh-ux/manager-pci-common', async () => {
+  const actual = await vi.importActual('@ovh-ux/manager-pci-common');
   return {
     ...actual,
     useProductAvailability: vi.fn(),
+    useProject: vi.fn(),
   };
 });
 
@@ -32,10 +41,10 @@ describe('KubeRegionSelector', () => {
     });
   });
   it('renders the spinner when data is loading', () => {
-    vi.mocked(useProductAvailability as Mock).mockReturnValue({
+    vi.mocked(useProductAvailability).mockReturnValue({
       data: null,
       isPending: true,
-    });
+    } as UseQueryResult<TProductAvailability>);
     vi.mocked(use3AZPlanAvailable).mockReturnValue(false);
 
     render(
@@ -51,7 +60,7 @@ describe('KubeRegionSelector', () => {
   });
 
   it('renders the RegionSelector when data is available', () => {
-    vi.mocked(useProductAvailability as Mock).mockReturnValue({
+    vi.mocked(useProductAvailability).mockReturnValue({
       data: {
         products: [
           {
@@ -74,9 +83,11 @@ describe('KubeRegionSelector', () => {
         ],
       },
       isPending: false,
-    });
+    } as UseQueryResult<TProductAvailability>);
     vi.mocked(use3AZPlanAvailable).mockReturnValue(true);
-
+    vi.mocked(useProject).mockReturnValue({
+      data: { project_id: 'test' },
+    } as UseQueryResult<TProject, ResponseAPIError>);
     render(
       <KubeRegionSelector
         projectId="test"

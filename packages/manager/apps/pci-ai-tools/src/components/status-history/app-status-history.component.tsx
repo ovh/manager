@@ -20,11 +20,11 @@ const AppStatusHistory = ({ history }: AppStatusHistoryProps) => {
         <TableBody>
           {history?.slice(TIMELINE_MAX).map((state) => (
             <TableRow key={`${state.date}-${state.state}`} className="text-sm">
-              <TableCell>
+              <TableCell className="p-2">
                 <Check className="size-4 text-sky-600" />
               </TableCell>
-              <TableCell className="font-semibold">{state.state}</TableCell>
-              <TableCell className="font-semibold">
+              <TableCell className="font-semibold p-2">{state.state}</TableCell>
+              <TableCell className="font-semibold p-2">
                 {format(state.date, 'PPpp', { locale: dateLocale })}
               </TableCell>
             </TableRow>

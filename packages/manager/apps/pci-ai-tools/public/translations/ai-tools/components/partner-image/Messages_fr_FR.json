@@ -1,0 +1,13 @@
+{
+  "partnerImageTitle": "Catalogue d'Apps prêtes à l'emploie",
+  "partnerImageDesc": "Choisissez parmi le catalogue d'applications suivantes afin d'accélérer la mise à disposition de vos services",
+  "documentationLinkLabel": "Documentation",
+  "imageDocLink": "Plus d'informations",
+  "partnerImageVersionDesc": "Choisissez la version de l'image",
+  "versionPlaceholder": "Rechercher",
+  "noVersionFound": "Aucune version trouvée",
+  "partnerContractSignedOff": "J'ai pris connaissance et accepte les conditions d'utilisation partenaires pour le déploiement de ce modèle.",
+  "partnerContractSignedOn": "J'ai pris connaissance et accepté les conditions d'utilisation partenaires le {{signedDate}} pour le déploiement de ce modèle.",
+  "partnerConditionLink": "Lire les conditions d'utilisation partenaires",
+  "signContract": "Signer"
+}

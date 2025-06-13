@@ -1,0 +1,12 @@
+{
+  "updatePortTitle": "Modifica la porta HTTP",
+  "updateHttpPortDesc1": "È possibile aggiornare la porta dell’applicazione. La configurazione corrente verrà mantenuta su altri elementi, ad esempio l'endpoint HTTP o la strategia di deploy.",
+  "updateHttpPortDesc2": "Potrebbe verificarsi un tempo di latenza sulle diverse repliche.",
+  "fieldHttpPortLabel": "Porta HTTP",
+  "httpPortInfo": "Inserire la nuova porta HTTP su cui implementare l’App.",
+  "updatePortButtonCancel": "Annulla",
+  "updatePortButtonConfirm": "Modifica",
+  "updatePortToastErrorTitle": "Si è verificato un errore",
+  "updatePortToastSuccessTitle": "Riuscito",
+  "updatePortToastSuccessDescription": "La porta http è stata aggiornata"
+}

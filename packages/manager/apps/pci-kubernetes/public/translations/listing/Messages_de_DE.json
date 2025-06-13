@@ -22,5 +22,6 @@
   "kubernetes_add_private_network_description": "Ihren Nodes wird eine IP-Adresse im VLAN des ausgewählten privaten Netzwerks zugewiesen.",
   "kubernetes_add_private_network_add": "Privates Netzwerk erstellen",
   "kube_common_node_pool_autoscaling_title": "Größe des Node-Pools konfigurieren",
-  "kube_common_node_pool_title_multiple": "Konfigurieren Sie mindestens einen Node-Pool (optional)"
+  "kube_common_node_pool_title_multiple": "Konfigurieren Sie mindestens einen Node-Pool (optional)",
+  "kubernetes_containers_deployment_mode_label": "Bereitstellungsmodus"
 }

@@ -1,11 +1,4 @@
-import {
-  ChevronRightSquare,
-  Cpu,
-  Globe,
-  HardDrive,
-  LockKeyhole,
-  MemoryStick,
-} from 'lucide-react';
+import { Cpu, Globe, HardDrive, LockKeyhole, MemoryStick } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button, Skeleton } from '@datatr-ux/uxlib';
 import { bytesConverter } from '@/lib/bytesHelper';
@@ -199,7 +192,7 @@ const DockerCommandDetails = ({
 }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/jobs/create');
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       <div className="flex items-center gap-2">
         <Button
           data-testid="dockerCommand-section-button"
@@ -210,15 +203,12 @@ const DockerCommandDetails = ({
           {t('fieldDockerCommandLabel')}
         </Button>
       </div>
-      <div className="flex items-center pl-4 gap-2">
-        <ChevronRightSquare className="size-4" />
-        <span>
-          {t(`summaryFieldDockerCommand`, {
-            count: order.dockerCommand.length,
-            context: `${order.dockerCommand.length}`,
-          })}
-        </span>
-      </div>
+      <span className="ml-4">
+        {t(`summaryFieldDockerCommand`, {
+          count: order.dockerCommand.length,
+          context: `${order.dockerCommand.length}`,
+        })}
+      </span>
     </div>
   );
 };

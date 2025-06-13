@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { getServerContainer, TServerContainer } from './container';
+import { ReplicationStorageClass } from '@/constants';
 
 describe('getServerContainer', () => {
   const mockContainer: TServerContainer = {
@@ -13,13 +14,27 @@ describe('getServerContainer', () => {
     objectsSize: 0,
     ownerId: 123,
     region: 'region',
-    s3StorageType: 'STANDARD',
+    s3StorageType: ReplicationStorageClass.STANDARD,
     storedBytes: 0,
     storedObjects: 0,
     versioning: { status: 'enabled' },
     virtualHost: 'virtualHost',
     staticUrl: 'staticUrl',
-    replication: { rules: [{ status: 'enabled' }] },
+    replication: {
+      rules: [
+        {
+          id: 'some-id',
+          status: 'enabled',
+          priority: 1,
+          destination: {
+            name: 'some-name',
+            region: 'some-region',
+            storageClass: ReplicationStorageClass.STANDARD,
+          },
+          deleteMarkerReplication: 'enabled',
+        },
+      ],
+    },
   };
 
   it('should get server container by id', async () => {

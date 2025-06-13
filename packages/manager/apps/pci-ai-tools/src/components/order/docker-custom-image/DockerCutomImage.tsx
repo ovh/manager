@@ -21,17 +21,19 @@ import A from '@/components/links/A.component';
 import ai from '@/types/AI';
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
+import { ImagePartnerApp } from '@/types/orderFunnel';
 
 interface DockerCustomImageProps {
   value: string;
   onChange: (newImage: string) => void;
-  images: ai.job.PresetImage[];
+  jobImages?: ai.job.PresetImage[];
+  appImages?: ImagePartnerApp[];
 }
 
 const DockerCustomImageInput = React.forwardRef<
   HTMLInputElement,
   DockerCustomImageProps
->(({ value, onChange, images }, ref) => {
+>(({ value, onChange, jobImages, appImages }, ref) => {
   const { t } = useTranslation('ai-tools/components/docker-custom-image');
   const locale = useLocale();
   const personalImageRules = z
@@ -87,9 +89,12 @@ const DockerCustomImageInput = React.forwardRef<
       <CardContent className="space-y-2">
         <Form {...imageForm}>
           <div className="flex w-full items-start gap-2">
-            {!images.find((im) => im.id === value) && (
-              <Check className="size-6 shrink-0 text-green-200 mt-10" />
-            )}
+            {(jobImages && !jobImages.find((im) => im.id === value)) ||
+              (value &&
+                appImages &&
+                !appImages.find((im) => im.id === value) && (
+                  <Check className="size-6 shrink-0 text-green-200 mt-10" />
+                ))}
             <div className="w-full">
               <FormField
                 control={imageForm.control}
@@ -97,7 +102,7 @@ const DockerCustomImageInput = React.forwardRef<
                 defaultValue={''}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('priaveImageInputLabel')}</FormLabel>
+                    <FormLabel>{t('priaveImageInputLabel')} (*)</FormLabel>
                     <FormControl>
                       <Input
                         data-testid="docker-custom-image-input"

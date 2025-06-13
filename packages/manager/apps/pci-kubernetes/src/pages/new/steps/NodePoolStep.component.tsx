@@ -162,8 +162,6 @@ const NodePoolStep = ({
     if (!nodePoolEnabled) {
       setNodePoolState((state) => ({
         ...state,
-        scaling: null,
-        flavor: null,
 
         name: '',
         isTouched: false,
