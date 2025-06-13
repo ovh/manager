@@ -55,7 +55,7 @@
             type="text"
             autocomplete="off"
             placeholder="{{:: 'dedicated_server_interfaces_ola_field_name_placeholder' | translate }}"
-            data-ng-model="$ctrl.configuration.name"
+            data-ng-model="$ctrl.configurationName"
             data-required
         />
     </oui-field>
@@ -99,17 +99,32 @@
         data-selectable-rows
     >
         <oui-datagrid-column
-            data-title=":: 'dedicated_server_interfaces_ola_column_name' | translate"
-            data-property="mac"
-        >
-        </oui-datagrid-column>
-        <oui-datagrid-column
             data-title=":: 'dedicated_server_interfaces_ola_column_current_type' | translate"
             data-property="type"
         >
-            <span
+            <div
                 data-translate="{{ 'dedicated_server_interfaces_type_' + $value + '_label' }}"
-            ></span>
+            ></div>
+            <div
+                data-ng-if="$row.displayedMacAdresses.length > 1"
+                class="oui-badge oui-badge_success"
+                data-translate="{{ 'dedicated_server_interfaces_type_badge_aggregated' }}"
+            ></div>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicated_server_interfaces_ola_column_mac_address' | translate"
+            data-property="displayedMacAdresses"
+        >
+            <div data-ng-if="$row.displayedMacAdresses.length > 1">
+                <ul class="mb-0">
+                    <li data-ng-repeat="mac in $row.displayedMacAdresses">
+                        <p class="mb-0" data-ng-bind="mac"></p>
+                    </li>
+                </ul>
+            </div>
+            <div data-ng-if="$row.displayedMacAdresses.length <= 1">
+                <span data-ng-bind="$row.mac"></span>
+            </div>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicated_server_interfaces_ola_column_bandwidth_outgoing' | translate"
@@ -143,61 +158,66 @@
         </oui-datagrid-column>
     </oui-datagrid>
 
-    <strong
-        data-translate="dedicated_server_interfaces_ola_network_interfaces_after"
-    ></strong>
-    <table data-ng-if="$ctrl.isInterfaceSelectionValid()" class="oui-table">
-        <thead class="oui-table__headers">
-            <tr>
-                <th
-                    class="oui-table__header"
-                    data-translate="dedicated_server_interfaces_ola_column_mode"
-                ></th>
-                <th
-                    class="oui-table__header"
-                    data-translate="dedicated_server_interfaces_ola_column_name"
-                ></th>
-                <th
-                    class="oui-table__header"
-                    data-translate="dedicated_server_interfaces_ola_column_bandwidth_outgoing"
-                ></th>
-                <th
-                    class="oui-table__header"
-                    data-translate="dedicated_server_interfaces_ola_column_bandwidth_incoming"
-                ></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr
-                class="oui-table__row"
-                data-ng-repeat="interface in $ctrl.selectedInterfaces track by interface.name"
-            >
-                <td
-                    class="oui-table__cell"
-                    data-ng-if="!$index"
-                    data-ng-bind="'dedicated_server_interfaces_ola_field_mode_choice_' + $ctrl.configuration.mode | translate"
-                    rowspan="{{ $ctrl.selectedInterfaces.length }}"
-                ></td>
-                <td class="oui-table__cell" data-ng-bind="interface.mac"></td>
-                <td class="oui-table__cell">
-                    <span
-                        class="oui-icon oui-icon-arrow-up font-inherit"
-                    ></span>
-                    <span
-                        data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
-                    ></span>
-                </td>
-                <td class="oui-table__cell">
-                    <span
-                        class="oui-icon oui-icon-arrow-down font-inherit"
-                    ></span>
-                    <span
-                        data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
-                    ></span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div data-ng-if="$ctrl.isInterfaceSelectionValid()">
+        <strong
+            data-translate="dedicated_server_interfaces_ola_network_interfaces_after"
+        ></strong>
+        <table class="oui-table">
+            <thead class="oui-table__headers">
+                <tr>
+                    <th
+                        class="oui-table__header"
+                        data-translate="dedicated_server_interfaces_ola_column_mode"
+                    ></th>
+                    <th
+                        class="oui-table__header"
+                        data-translate="dedicated_server_interfaces_ola_column_mac_address"
+                    ></th>
+                    <th
+                        class="oui-table__header"
+                        data-translate="dedicated_server_interfaces_ola_column_bandwidth_outgoing"
+                    ></th>
+                    <th
+                        class="oui-table__header"
+                        data-translate="dedicated_server_interfaces_ola_column_bandwidth_incoming"
+                    ></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    class="oui-table__row"
+                    data-ng-repeat="interface in $ctrl.selectedInterfaces track by interface.name"
+                >
+                    <td
+                        class="oui-table__cell"
+                        data-ng-if="!$index"
+                        data-ng-bind="'dedicated_server_interfaces_ola_field_mode_choice_' + $ctrl.targetInterfaceType | translate"
+                        rowspan="{{ $ctrl.selectedInterfaces.length }}"
+                    ></td>
+                    <td
+                        class="oui-table__cell"
+                        data-ng-bind="interface.mac"
+                    ></td>
+                    <td class="oui-table__cell">
+                        <span
+                            class="oui-icon oui-icon-arrow-up font-inherit"
+                        ></span>
+                        <span
+                            data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
+                        ></span>
+                    </td>
+                    <td class="oui-table__cell">
+                        <span
+                            class="oui-icon oui-icon-arrow-down font-inherit"
+                        ></span>
+                        <span
+                            data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
+                        ></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <oui-button data-size="l" data-on-click="$ctrl.cancel()">
         <span data-translate="common_cancel"></span>
     </oui-button>
