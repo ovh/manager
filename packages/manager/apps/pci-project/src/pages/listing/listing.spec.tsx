@@ -10,7 +10,9 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
 }));
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
-  BaseLayout: ({ children }) => <div>{children}</div>,
+  BaseLayout: ({ children }: { children: React.ReactNode }) => (
+    <div>{children}</div>
+  ),
   useResourcesIcebergV6: () => ({
     flattenData: undefined,
     isError: false,
