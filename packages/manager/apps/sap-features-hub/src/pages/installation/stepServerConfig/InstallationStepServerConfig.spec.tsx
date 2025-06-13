@@ -7,6 +7,14 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import InstallationStepServerConfig from './InstallationStepServerConfig.page';
 import { InstallationFormContextProvider } from '@/context/InstallationForm.context';
 
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: vi.fn() }),
+  };
+});
+
 vi.mock('react-router-dom', () => ({
   useLocation: () => ({ pathname: '/somewhere' }),
   useNavigate: () => ({ navigate: vi.fn() }),

@@ -9,6 +9,14 @@ import { InstallationFormContextProvider } from '@/context/InstallationForm.cont
 import { testIds } from '@/utils/testIds.constants';
 import { WIZARD_SETTINGS } from './installationWizard.constants';
 
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: vi.fn() }),
+  };
+});
+
 vi.mock('react-router-dom', () => ({
   useNavigate: () => ({ navigate: vi.fn() }),
 }));
