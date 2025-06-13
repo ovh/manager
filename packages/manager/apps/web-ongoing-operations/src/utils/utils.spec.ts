@@ -1,10 +1,18 @@
-import { expect, it } from 'vitest';
-import { formatDatagridDate, removeQuotes } from '@/utils/utils';
+import { expect, it, vi } from 'vitest';
+import { useFormatDate } from '@ovh-ux/manager-react-components';
+import { removeQuotes } from '@/utils/utils';
+
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  useFormatDate: () => () => '03/01/2025 10:15',
+}));
 
 describe('It displays the manager in the good format', () => {
   it('return the date in dd/MM/yyyy HH:mm for France', () => {
     const testDate = '2025-01-03T11:15:40.311595+01:00';
-    expect(formatDatagridDate(testDate, 'fr_FR')).toBe('03/01/2025 10:15');
+    const formatDate = useFormatDate();
+    expect(formatDate({ date: testDate, format: 'P p' })).toBe(
+      '03/01/2025 10:15',
+    );
   });
 });
 
