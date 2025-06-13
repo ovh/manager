@@ -2,7 +2,7 @@ import React from 'react';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { TServiceDetail } from '@/alldoms/types';
-import DatagridColumnDomainNumber from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnDomainNumber';
+import DatagridColumnDomainNumber from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnDomainRegisteredAuthorized';
 import DatagridColumnServiceName from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnServiceName';
 import { DatagridColumnDate } from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnDate';
 import DatagridColumnActionMenu from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnActionMenu';
@@ -39,22 +39,16 @@ export const useAllDomDatagridColumns = () => {
       label: t('allDom_table_header_type'),
     },
     {
-      id: 'register_domain',
-      cell: (props: TServiceDetail) => (
-        <DataGridTextCell>
-          {props.domainAttached.currentState.domains.length}
-        </DataGridTextCell>
-      ),
-      label: t('allDom_table_header_register_domain'),
-    },
-    {
-      id: 'authorized_domain',
+      id: 'authorized_registered_domain',
       cell: (props: TServiceDetail) => (
         <DatagridColumnDomainNumber
           allDomProperty={props.allDomProperty.type}
+          registeredDomainCount={
+            props.domainAttached.currentState.domains.length
+          }
         />
       ),
-      label: t('allDom_table_header_authorized_domain'),
+      label: t('allDom_table_header_registered_authorized_domain'),
     },
     {
       id: 'expiration_date',
