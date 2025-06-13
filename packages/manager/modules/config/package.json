@@ -30,7 +30,8 @@
     "@ovh-ux/manager-core-api": "^0.10.1"
   },
   "devDependencies": {
-    "@ovh-ux/request-tagger": "^0.4.1"
+    "@ovh-ux/request-tagger": "^0.4.1",
+    "vite": "^6.3.5"
   },
   "peerDependencies": {
     "@ovh-ux/request-tagger": "^0.4.0"
