@@ -22,5 +22,6 @@
   "pci_projects_project_storages_containers_replication_list_warning_link": "Enable versioning",
   "pci_projects_project_storages_containers_replication_list_storage_class_undefined": "Same as source",
   "pci_projects_project_storages_containers_replication_list_destination_warning": "To use asynchronous replication, you need another container with versioning enabled.",
-  "pci_projects_project_storages_containers_replication_list_destination_warning_link": "Create another container."
+  "pci_projects_project_storages_containers_replication_list_destination_warning_link": "Create another container.",
+  "pci_projects_project_storages_containers_replication_conflict_warning": "One or more replication rules are no longer functional because their destination containers no longer exist. To create a new rule, you must either delete them or fix them and assign them to destination containers that have versioning enabled."
 }
