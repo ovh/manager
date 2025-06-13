@@ -10,9 +10,8 @@ export const getcloudProjectListQueryKey = ['get/cloud/project'];
 /**
  * Operations about the PUBLICCLOUD service : List available services
  */
-export const getcloudProjectList = async (
-  params: GetcloudProjectListParams,
-): Promise<unknown> => apiClient.v6.get('/cloud/project', { data: params });
+export const getcloudProjectList = async (params: GetcloudProjectListParams) =>
+  apiClient.v6.get('/cloud/project', { data: params });
 export type GetcloudProjectServiceParams = {
   /** Service name */
   serviceName?: string;
@@ -27,13 +26,12 @@ export const getcloudProjectServiceQueryKey = (
  */
 export const getcloudProjectService = async (
   params: GetcloudProjectServiceParams,
-): Promise<unknown> => apiClient.v6.get(`/cloud/project/${params.serviceName}`);
+) => apiClient.v6.get(`/cloud/project/${params.serviceName}`);
 
 /**
  *  Get listing with iceberg V6
  */
 export const getListingIcebergV6 = async ({
-  projectId,
   pageSize,
   page,
 }: {
@@ -43,7 +41,6 @@ export const getListingIcebergV6 = async ({
 }) => {
   const { data, status, totalCount } = await fetchIcebergV6({
     route: `/cloud/project`,
-    projectId,
     pageSize,
     page,
   });
