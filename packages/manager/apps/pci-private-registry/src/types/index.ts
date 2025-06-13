@@ -37,7 +37,7 @@ export type TIPRestrictionsData = TIPRestrictions &
 
 export type ConfirmCIDRSchemaType = z.infer<ReturnType<typeof schemaAddCidr>>;
 
-export type IAMchemaType = z.infer<ReturnType<typeof confirmIAMSchema>>;
+export type IAMchemaType = { confirmIAM: string };
 
 export type TRegistryAction =
   | 'CLOSE'
