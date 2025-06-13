@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useVMwareServices } from '@/hooks/vmwareServices/useVMwareServices';
 import { useVMwareDatacentres } from '@/hooks/vmwareServices/useDatacentres';
 import { useClusters } from '@/hooks/vmwareServices/useClusters';
@@ -8,6 +9,7 @@ import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import InstallationFormLayout from '@/components/Form/FormLayout.component';
 import { getSelectDefaultValue } from '@/utils/selectValues';
+import { TRACKING } from '@/tracking.constants';
 
 type ServiceNameData = {
   serviceName: string;
@@ -37,6 +39,7 @@ export default function InstallationInitialStep() {
       },
     },
   } = useInstallationFormContext();
+  const { trackClick } = useOvhTracking();
 
   const {
     data: services,
@@ -96,7 +99,10 @@ export default function InstallationInitialStep() {
       subtitle={t('service_subtitle')}
       submitLabel={t('service_cta')}
       isSubmitDisabled={!isStepValid}
-      onSubmit={() => initializeAndProceed(serviceName)}
+      onSubmit={() => {
+        trackClick(TRACKING.installation.chooseDeployment);
+        initializeAndProceed(serviceName);
+      }}
     >
       <SelectField
         name="serviceName"

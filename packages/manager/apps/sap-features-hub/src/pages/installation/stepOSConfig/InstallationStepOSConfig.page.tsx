@@ -4,6 +4,7 @@ import {
   OdsInputChangeEvent,
   OdsToggleChangeEvent,
 } from '@ovhcloud/ods-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import { TextField } from '@/components/Form/TextField.component';
@@ -18,6 +19,7 @@ import {
 import { isValidDomain, isValidInput } from '@/utils/formValidation';
 import { ToggleField } from '@/components/Form/ToggleField.component';
 import { HandleInputChangeProps } from '@/types/formChange.type';
+import { TRACKING } from '@/tracking.constants';
 
 export default function InstallationStepOSConfig() {
   const { t } = useTranslation('installation');
@@ -28,6 +30,7 @@ export default function InstallationStepOSConfig() {
     setValues,
     setErrors,
   } = useInstallationFormContext();
+  const { trackClick } = useOvhTracking();
 
   const { values, errors } = getOSConfigFormData({
     values: formValues,
@@ -55,7 +58,10 @@ export default function InstallationStepOSConfig() {
       subtitle={t('os_config_subtitle')}
       submitLabel={t('os_config_cta')}
       isSubmitDisabled={!isStepValid}
-      onSubmit={nextStep}
+      onSubmit={() => {
+        trackClick(TRACKING.installation.virtualMachines);
+        nextStep();
+      }}
       onPrevious={previousStep}
     >
       <TextField

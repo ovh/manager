@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import {
   SYSTEM_PASSWORD_INPUTS,
@@ -12,6 +13,7 @@ import { getSystemFormData } from '@/utils/formStepData';
 import { isValidInput, isValidSapPassword } from '@/utils/formValidation';
 import FormLayout from '@/components/Form/FormLayout.component';
 import { FORM_LABELS } from '@/constants/form.constants';
+import { TRACKING } from '@/tracking.constants';
 
 export default function InstallationStepSystemInformation() {
   const { t } = useTranslation('installation');
@@ -22,6 +24,7 @@ export default function InstallationStepSystemInformation() {
     setValues,
     setErrors,
   } = useInstallationFormContext();
+  const { trackClick } = useOvhTracking();
 
   const { values, errors } = getSystemFormData({
     values: formValues,
@@ -44,7 +47,10 @@ export default function InstallationStepSystemInformation() {
       subtitle={t('system_subtitle')}
       submitLabel={t('system_cta')}
       isSubmitDisabled={!isStepValid}
-      onSubmit={nextStep}
+      onSubmit={() => {
+        trackClick(TRACKING.installation.provideSources);
+        nextStep();
+      }}
       onPrevious={previousStep}
     >
       <OdsText preset="heading-3">{FORM_LABELS.sids}</OdsText>

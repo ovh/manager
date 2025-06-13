@@ -3,6 +3,7 @@ import { RouteObject } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constant';
+import { wizardPageName } from '@/tracking.constants';
 
 const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   return {
@@ -33,7 +34,7 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'dashboard',
+                pageName: '',
                 pageType: PageType.dashboard,
               },
             },
@@ -48,7 +49,7 @@ export const Routes: any = [
         ),
         handle: {
           tracking: {
-            pageName: 'listing',
+            pageName: 'history',
             pageType: PageType.listing,
           },
         },
@@ -63,7 +64,7 @@ export const Routes: any = [
         ),
         handle: {
           tracking: {
-            pageName: 'installationDashboard',
+            pageName: 'history-detail',
             pageType: PageType.dashboard,
           },
         },
@@ -93,7 +94,7 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'wizard',
+                pageName: wizardPageName,
                 pageType: PageType.popup,
               },
             },
@@ -108,8 +109,8 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'dashboard',
-                pageType: PageType.dashboard,
+                pageName: wizardPageName,
+                pageType: PageType.funnel,
               },
             },
           },
@@ -121,8 +122,8 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'dashboard',
-                pageType: PageType.dashboard,
+                pageName: wizardPageName,
+                pageType: PageType.funnel,
               },
             },
           },

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { SelectField } from '@/components/Form/SelectField.component';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import {
@@ -11,6 +12,7 @@ import {
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import InstallationFormLayout from '@/components/Form/FormLayout.component';
 import { DeploymentType } from '@/types/sapCapabilities.type';
+import { TRACKING } from '@/tracking.constants';
 
 export default function InstallationStepDeployment() {
   const { t } = useTranslation('installation');
@@ -23,6 +25,7 @@ export default function InstallationStepDeployment() {
       prefilledData: { deploymentType: prefilledDeployment },
     },
   } = useInstallationFormContext();
+  const { trackClick } = useOvhTracking();
 
   const isStepValid = React.useMemo(
     () => applicationVersion && applicationType && deploymentType,
@@ -40,7 +43,10 @@ export default function InstallationStepDeployment() {
       subtitle={t('deployment_subtitle')}
       submitLabel={t('deployment_cta')}
       isSubmitDisabled={!isStepValid}
-      onSubmit={nextStep}
+      onSubmit={() => {
+        trackClick(TRACKING.installation.completeInformations);
+        nextStep();
+      }}
       onPrevious={previousStep}
     >
       <SelectField

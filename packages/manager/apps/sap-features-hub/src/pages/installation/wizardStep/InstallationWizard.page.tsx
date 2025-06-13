@@ -9,6 +9,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { OdsFile } from '@ovhcloud/ods-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
 import { isImportFormCompatible, readJsonFile } from '@/utils/importJson';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
@@ -19,6 +20,7 @@ import {
 import { formMappers } from '@/mappers/formMappers';
 import { testIds } from '@/utils/testIds.constants';
 import { WIZARD_SETTINGS } from './installationWizard.constants';
+import { TRACKING } from '@/tracking.constants';
 
 type Upload = {
   file: OdsFile | null;
@@ -41,8 +43,12 @@ export default function InstallationWizard() {
     readError: '',
   });
   const { setValues, setInitializationState } = useInstallationFormContext();
+  const { trackClick } = useOvhTracking();
 
-  const closeModal = () => navigate(urls.dashboard);
+  const closeModal = () => {
+    trackClick(TRACKING.wizard.submit('cancel'));
+    navigate(urls.dashboard);
+  };
 
   const readUploadedFile = async (file: File) => {
     try {
@@ -92,7 +98,10 @@ export default function InstallationWizard() {
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onDismiss={closeModal}
       onSecondaryButtonClick={closeModal}
-      onPrimaryButtonClick={handleSubmit}
+      onPrimaryButtonClick={() => {
+        trackClick(TRACKING.wizard.submit('confirm'));
+        handleSubmit();
+      }}
     >
       <div className="flex flex-col gap-2">
         <OdsText>{t('wizard_subtitle')}</OdsText>

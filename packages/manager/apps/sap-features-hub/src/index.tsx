@@ -10,11 +10,11 @@ import App from './App';
 import './vite-hmr';
 import './index.scss';
 
-import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
+import { UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constants';
 
 const trackingContext = {
   chapter1: UNIVERSE,
-  chapter2: SUB_UNIVERSE,
+  chapter2: APP_NAME,
   chapter3: APP_NAME,
   appName: APP_NAME,
   pageTheme: UNIVERSE,

@@ -32,7 +32,7 @@ type InitializationState = {
   >;
 };
 
-type FormContextType = {
+export type FormContextType = {
   values: InstallationFormValues;
   setValues: Dispatch<SetStateAction<InstallationFormValues>>;
   errors: InstallationFormErrors;

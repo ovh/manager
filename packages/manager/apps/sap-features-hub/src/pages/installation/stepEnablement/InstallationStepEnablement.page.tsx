@@ -4,6 +4,7 @@ import { FormProvider, Path, useForm, UseFormTrigger } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { OdsIcon, OdsTooltip } from '@ovhcloud/ods-components/react';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import FormLayout from '@/components/Form/FormLayout.component';
 import { RhfField } from '@/components/Fields';
@@ -14,6 +15,7 @@ import {
   CONTAINER_ID_MAX_LENGTH,
   FORM_LABELS,
 } from '@/constants/form.constants';
+import { TRACKING } from '@/tracking.constants';
 
 const triggerFilledInput = <T,>({
   getValues,
@@ -36,6 +38,7 @@ export default function InstallationStepEnablement() {
   const { t } = useTranslation('installation');
   const { previousStep, nextStep } = useFormSteps();
   const { values: formValues, setValues } = useInstallationFormContext();
+  const { trackClick } = useOvhTracking();
 
   const defaultValues = useMemo(
     () => ({
@@ -119,7 +122,10 @@ export default function InstallationStepEnablement() {
         subtitle={t('enablement_subtitle')}
         submitLabel={t('enablement_cta')}
         isSubmitDisabled={!isValid}
-        onSubmit={nextStep}
+        onSubmit={() => {
+          trackClick(TRACKING.installation.startSAPDeployment);
+          nextStep();
+        }}
         onPrevious={previousStep}
       >
         <RhfField

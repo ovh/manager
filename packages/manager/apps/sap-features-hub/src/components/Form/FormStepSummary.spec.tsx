@@ -9,7 +9,7 @@ import { StepSummary } from '@/types/formStep.type';
 
 vi.mock('react-router-dom', () => ({
   useLocation: () => ({ pathname: '/somewhere' }),
-  useNavigate: () => ({ navigate: vi.fn() }),
+  useNavigate: () => vi.fn(),
   useParams: () => ({ stepId: '1' }),
   useSearchParams: () => [new URLSearchParams(), vi.fn()],
 }));

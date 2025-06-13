@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import { TextField } from '@/components/Form/TextField.component';
@@ -13,6 +14,7 @@ import { getSourceFormData } from '@/utils/formStepData';
 import { isValidInput, isValidUrl } from '@/utils/formValidation';
 import FormLayout from '@/components/Form/FormLayout.component';
 import { HandleInputChangeProps } from '@/types/formChange.type';
+import { TRACKING } from '@/tracking.constants';
 
 export default function InstallationStepSourceInformation() {
   const { t } = useTranslation('installation');
@@ -23,6 +25,7 @@ export default function InstallationStepSourceInformation() {
     setValues,
     setErrors,
   } = useInstallationFormContext();
+  const { trackClick } = useOvhTracking();
 
   const { values, errors } = getSourceFormData({
     values: formValues,
@@ -50,7 +53,10 @@ export default function InstallationStepSourceInformation() {
       subtitle={t('source_subtitle')}
       submitLabel={t('source_cta')}
       isSubmitDisabled={!isStepValid}
-      onSubmit={nextStep}
+      onSubmit={() => {
+        trackClick(TRACKING.installation.defineOsConfig);
+        nextStep();
+      }}
       onPrevious={previousStep}
     >
       <TextField
