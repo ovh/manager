@@ -33,7 +33,7 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'dashboard',
+                pageName: 'catalog',
                 pageType: PageType.dashboard,
               },
             },
