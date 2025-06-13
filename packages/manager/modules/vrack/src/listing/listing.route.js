@@ -26,18 +26,30 @@ export default /* @ngInject */ ($stateProvider) => {
           });
       },
       defaultFilterColumn: () => 'serviceName',
-      columnConfig: /* @ngInject */ () => ({
+      columnConfig: /* @ngInject */ ($translate) => ({
         data: [
           {
-            label: 'Service Name',
+            label: $translate.instant(
+              `vrack_listing_columns_header_serviceName`,
+            ),
             serviceLink: true,
             property: 'serviceName',
             hidden: false,
           },
-          { label: 'Description', property: 'description', hidden: false },
-          { label: 'Name', property: 'name', hidden: false },
           {
-            label: 'Status',
+            label: $translate.instant(
+              `vrack_listing_columns_header_description`,
+            ),
+            property: 'description',
+            hidden: false,
+          },
+          {
+            label: $translate.instant(`vrack_listing_columns_header_name`),
+            property: 'name',
+            hidden: false,
+          },
+          {
+            label: $translate.instant(`vrack_listing_columns_header_state`),
             property: 'state',
             sortable: false,
             filterable: false,
