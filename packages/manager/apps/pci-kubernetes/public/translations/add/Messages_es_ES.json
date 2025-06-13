@@ -36,7 +36,7 @@
   "kube_add_node_pool_error_InsufficientInstancesQuota": "El límite de instancias de su proyecto es insuficiente para realizar la operación. Por favor, aumente los límites de su cuota o solicite menos recursos.",
   "kube_add_node_pool_error_quota_link": "Aumentar los límites de mi cuota",
   "kube_add_billing_auto_scaling_monthly_warning": "Atención: Puede activar simultáneamente el autoscaling y la tarificación mensual para este pool de nodos. Al crear un nodo a través de la funcionalidad de autoscaling, este se facturará de forma inmediata teniendo en cuenta la parte proporcional correspondiente al tiempo restante del mes en curso. Le recomendamos que evite esta combinación si prevé que el tamaño de su pool de nodos se reduzca con frecuencia.",
-  "kube_add_node_pool_name_input_pattern_validation_error": "El nombre debe contener al menos dos caracteres, comenzar por un carácter alfabético y terminar por un carácter alfanumérico. Los únicos caracteres especiales permitidos son el guion y la barra baja.",
+  "kube_add_node_pool_name_input_pattern_validation_error": "El nombre debe tener al menos dos caracteres, comenzar con una letra minúscula, terminar con una letra minúscula o un número y solo puede contener letras minúsculas, números, guiones y barras bajas.",
   "kube_add_billing_anti_affinity_coming_soon_message_title": "Precios mensuales",
   "kube_add_billing_anti_affinity_coming_soon_message_description": "Los precios mensuales pronto estarán disponibles con la llegada de los Saving Planes.",
   "kubernetes_add_version_and_upgrade_policy_title": "Seleccione la versión menor de Kubernetes y la política de seguridad que desee",
