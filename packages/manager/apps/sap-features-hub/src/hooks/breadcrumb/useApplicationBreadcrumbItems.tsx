@@ -5,7 +5,7 @@ import { subRoutes, urls } from '@/routes/routes.constant';
 
 export const useApplicationBreadcrumbItems = (): BreadcrumbItem[] => {
   const { t } = useTranslation([
-    'dashboard',
+    'listing',
     'installation',
     'dashboard/installation',
   ]);
@@ -16,7 +16,7 @@ export const useApplicationBreadcrumbItems = (): BreadcrumbItem[] => {
   const applicationBreadcrumbItems: BreadcrumbItem[] = [
     {
       id: subRoutes.listing,
-      label: t('dashboard:blocks_pre_install_list'),
+      label: t('listing:sap_hub_history_list'),
     },
     {
       id: subRoutes.report,
