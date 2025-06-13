@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-payment-method@0.6.0...@ovh-ux/ovh-payment-method@0.6.1) (2025-06-13)
+
+
+### Reverts
+
+* Revert "feat(ovh-payment-method): switch to axios, improve documentation" ([329c89f](https://github.com/ovh/manager/commit/329c89f66c9b238aadec0fe667f9e72e43b8fcad))
+* Revert "feat(*): incorporate procedure changes, fix config" ([0f0faaa](https://github.com/ovh/manager/commit/0f0faaaae2e03b97e92d0becded7a8e0d0c7e287))
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-payment-method@0.5.3...@ovh-ux/ovh-payment-method@0.6.0) (2025-06-11)
 
 

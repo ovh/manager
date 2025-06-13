@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.2](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.5.1...@ovh-ux/shell@4.5.2) (2025-06-13)
+
+
+### Reverts
+
+* Revert "feat(*): remove last occurances of reket" ([5fcc1e0](https://github.com/ovh/manager/commit/5fcc1e0e2348528194b73e4833c51ba901c71cde))
+* Revert "feat(*): incorporate procedure changes, fix config" ([0f0faaa](https://github.com/ovh/manager/commit/0f0faaaae2e03b97e92d0becded7a8e0d0c7e287))
+* Revert "build(ovh-shell): add missing deps" ([6e459f4](https://github.com/ovh/manager/commit/6e459f4325b31c4445bdb8fcdd9f399384385535))
+
+
+
+
+
 ## [4.5.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.5.0...@ovh-ux/shell@4.5.1) (2025-06-11)
 
 **Note:** Version bump only for package @ovh-ux/shell

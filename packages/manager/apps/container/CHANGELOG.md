@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.135.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.135.0...@ovh-ux/manager-container-app@0.135.1) (2025-06-13)
+
+
+### Reverts
+
+* Revert "feat(container): migrate from reket to axios" ([5d31af9](https://github.com/ovh/manager/commit/5d31af9925de55882e02eeff66136b6e10ee8951))
+* Revert "fix(*): fix usage of useOvhPaymentMethod in apps and packages" ([22a0034](https://github.com/ovh/manager/commit/22a003476308e34e1975c0fef8d2ed8b7766adfb))
+* Revert "feat(*): remove last occurances of reket" ([5fcc1e0](https://github.com/ovh/manager/commit/5fcc1e0e2348528194b73e4833c51ba901c71cde))
+* Revert "feat(*): incorporate procedure changes, fix config" ([0f0faaa](https://github.com/ovh/manager/commit/0f0faaaae2e03b97e92d0becded7a8e0d0c7e287))
+
+
+
+
+
 # [0.135.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.134.2...@ovh-ux/manager-container-app@0.135.0) (2025-06-12)
 
 
