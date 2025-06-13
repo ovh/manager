@@ -2,7 +2,7 @@
   "name": "@ovh-ux/manager-pci-project-app",
   "version": "0.0.0",
   "private": true,
-  "description": "PCI project react application",
+  "description": "PCI Project react application",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
@@ -51,12 +51,7 @@
     "react-router-dom": "^6.3.0",
     "tailwindcss": "^3.4.4"
   },
-  "devDependencies": {
-    "@ovh-ux/manager-tests-setup": "^0.2.0",
-    "@ovh-ux/manager-vite-config": "*",
-    "@tanstack/react-query-devtools": "^5.51.21",
-    "typescript": "^5.1.6"
-  },
+  "devDependencies": {},
   "regions": [
     "CA",
     "EU",
