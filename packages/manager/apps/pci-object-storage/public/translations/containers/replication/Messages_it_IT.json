@@ -22,5 +22,6 @@
   "pci_projects_project_storages_containers_replication_list_warning_link": "Attiva la versione",
   "pci_projects_project_storages_containers_replication_list_storage_class_undefined": "Identico alla fonte",
   "pci_projects_project_storages_containers_replication_list_destination_warning": "Per utilizzare la replica asincrona, è necessario un altro contenitore con il versioning abilitato.",
-  "pci_projects_project_storages_containers_replication_list_destination_warning_link": "Creare un altro container."
+  "pci_projects_project_storages_containers_replication_list_destination_warning_link": "Creare un altro container.",
+  "pci_projects_project_storages_containers_replication_conflict_warning": "Una o più regole di replica non sono più funzionanti perché i relativi contenitori di destinazione non esistono più. Per creare una nuova regola, è necessario eliminarli o correggerli e assegnare loro container di destinazione con il versioning attivato."
 }

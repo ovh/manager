@@ -22,5 +22,6 @@
   "pci_projects_project_storages_containers_replication_list_warning_link": "Włącz wersjonowanie",
   "pci_projects_project_storages_containers_replication_list_storage_class_undefined": "Identyczne ze źródłem",
   "pci_projects_project_storages_containers_replication_list_destination_warning": "Aby użyć replikacji asynchronicznej, musisz mieć inny kontener z włączoną funkcją wersjonowania.",
-  "pci_projects_project_storages_containers_replication_list_destination_warning_link": "Utwórz inny kontener."
+  "pci_projects_project_storages_containers_replication_list_destination_warning_link": "Utwórz inny kontener.",
+  "pci_projects_project_storages_containers_replication_conflict_warning": "Co najmniej jedna reguła replikacji nie działa, ponieważ ich kontenery docelowe już nie istnieją. Aby utworzyć nową regułę, musisz albo usunąć je albo poprawić i przypisać do nich kontenery docelowe z włączoną wersjonowaniem."
 }
