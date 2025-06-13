@@ -43,7 +43,8 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
   const [cookies, setCookies] = useCookies(['MANAGER_TRACKING']);
   const { environment } = useApplication();
   const [show, setShow] = useState(false);
-  const { ovhSubsidiary } = shell.getPlugin('environment').getEnvironment().user as User;
+  const { ovhSubsidiary } = shell.getPlugin('environment').getEnvironment()
+    .user as User;
   const trackingPlugin = shell.getPlugin('tracking');
 
   const linksArray: LinksProps[] = [

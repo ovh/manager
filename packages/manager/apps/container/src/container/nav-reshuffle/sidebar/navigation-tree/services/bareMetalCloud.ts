@@ -22,7 +22,7 @@ baremetalUniverse.children = [
     universe: baremetalUniverse.id,
     idAttr: 'bmc-dedicated-vps-link',
     translation: 'sidebar_dedicated_vps',
-    features: ['dedicated-server', 'vps', 'managed-bare-metal', 'license'],
+    features: ['dedicated-server', 'vps', 'dedicated-servers:container', 'managed-bare-metal', 'license'],
     children: [
       {
         id: 'dedicated-servers',
@@ -34,7 +34,7 @@ baremetalUniverse.children = [
           application: 'dedicated',
           hash: '#/server',
         },
-        features: ['dedicated-server'],
+        hideIfFeatures: ['dedicated-servers:container'],
       },
       {
         id: 'dedicated-servers',
@@ -46,7 +46,19 @@ baremetalUniverse.children = [
           application: 'dedicated',
           hash: '#/cluster',
         },
-        features: ['dedicated-server'],
+        hideIfFeatures: ['dedicated-servers:container'],
+      },
+      {
+        id: 'dedicated-servers-react',
+        universe: baremetalUniverse.id,
+        idAttr: 'dedicated-servers-link',
+        translation: 'sidebar_dedicated',
+        serviceType: 'DEDICATED_SERVER',
+        routing: {
+          application: 'dedicated-servers',
+          hash: '#/',
+        },
+        features: ['dedicated-servers:container'],
       },
       {
         id: 'vps',

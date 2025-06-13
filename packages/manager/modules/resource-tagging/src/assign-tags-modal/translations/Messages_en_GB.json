@@ -1,0 +1,16 @@
+{
+  "manager_components_resource_tagging_assign_modal_title": "Assign a tag",
+  "manager_components_resource_tagging_assign_modal_cancel": "Back",
+  "manager_components_resource_tagging_assign_modal_assign": "Assign",
+  "manager_components_resource_tagging_assign_modal_add": "Add",
+  "manager_components_resource_tagging_assign_modal_no_result": "No result",
+  "manager_components_resource_tagging_assign_modal_help": "25 Alphanumeric characters maximum and - authorized",
+  "manager_components_resource_tagging_assign_modal_field_error": "The format is incorrect. Only \"-\" is allowed, 25 characters maximum",
+  "manager_components_resource_tagging_assign_modal_placeholder": "Select",
+  "manager_components_resource_tagging_assign_modal_key_label": "Key",
+  "manager_components_resource_tagging_assign_modal_value_label": "Value",
+  "manager_components_resource_tagging_assign_modal_success": "The tag has been assigned to your resource.",
+  "manager_components_resource_tagging_assign_modal_success_multiple": "The tags have been assigned to your resource.",
+  "manager_components_resource_tagging_assign_modal_error": "There was a problem assigning: <br> {{message}}<br> request_id: {{requestId}}",
+  "manager_components_resource_tagging_assign_modal_selected_tags": "Tags that will be assigned to your resource"
+}

@@ -1,0 +1,16 @@
+{
+  "manager_components_resource_tagging_assign_modal_title": "Asignar etiqueta",
+  "manager_components_resource_tagging_assign_modal_cancel": "Volver",
+  "manager_components_resource_tagging_assign_modal_assign": "Asignar",
+  "manager_components_resource_tagging_assign_modal_add": "Añadir",
+  "manager_components_resource_tagging_assign_modal_no_result": "No hay resultados.",
+  "manager_components_resource_tagging_assign_modal_help": "Máximo de 25 caracteres alfanuméricos y - permitido",
+  "manager_components_resource_tagging_assign_modal_field_error": "El formato no es válido. Solo se permite \"-\", máximo 25 caracteres",
+  "manager_components_resource_tagging_assign_modal_placeholder": "Seleccionar",
+  "manager_components_resource_tagging_assign_modal_key_label": "Clave",
+  "manager_components_resource_tagging_assign_modal_value_label": "Valor",
+  "manager_components_resource_tagging_assign_modal_success": "La etiqueta se ha asignado correctamente a su recurso.",
+  "manager_components_resource_tagging_assign_modal_success_multiple": "Las etiquetas se han asignado correctamente al recurso.",
+  "manager_components_resource_tagging_assign_modal_error": "Se ha producido un problema durante la asignación: <br> {{message}}<br> request_id: {{requestId}}",
+  "manager_components_resource_tagging_assign_modal_selected_tags": "Etiquetas que se asignarán al recurso"
+}

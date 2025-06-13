@@ -51,7 +51,7 @@
   "cloud_connect_pop_port_lock": "Blokada portu",
   "cloud_connect_pop_port_id": "ID portu",
   "cloud_connect_pop_optic_status": "Stan połączeń optycznych",
-  "cloud_connect_pop_optic_description": "Sprawdzany co 5 minut",
+  "cloud_connect_pop_optic_description": "(Sprawdzany co 5 minut)",
   "cloud_connect_pop_configuration_status": "Stan konfiguracji",
   "cloud_connect_dc_title": "Konfiguracja AZ",
   "cloud_connect_dc_add_button": "Dodaj konfigurację",
@@ -130,5 +130,6 @@
   "cloud_connect_old_48_h_status": "Ten status ma ponad 48 godz. i może być już nieaktualny.",
   "cloud_connect_pop_add_button": "Konfiguracja portu",
   "cloud_connect_dc_status": "Stan konfiguracji",
-  "cloud_connect_dc_config_title": "Konfiguracja {{dcName}}"
+  "cloud_connect_dc_config_title": "Konfiguracja {{dcName}}",
+  "cloud_connect_specifications": "Specyfikacja"
 }

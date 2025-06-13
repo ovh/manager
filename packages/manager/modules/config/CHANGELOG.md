@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.4.0...@ovh-ux/manager-config@8.4.1) (2025-06-13)
+
+
+### Reverts
+
+* Revert "feat(*): remove last occurances of reket" ([5fcc1e0](https://github.com/ovh/manager/commit/5fcc1e0e2348528194b73e4833c51ba901c71cde))
+* Revert "feat(*): incorporate procedure changes, fix config" ([0f0faaa](https://github.com/ovh/manager/commit/0f0faaaae2e03b97e92d0becded7a8e0d0c7e287))
+
+
+
+
+
 # [8.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.3.2...@ovh-ux/manager-config@8.4.0) (2025-06-11)
 
 

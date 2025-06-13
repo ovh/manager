@@ -1,0 +1,10 @@
+{
+  "manager_components_resource_tagging_manager_column_tag": "Tag",
+  "manager_components_resource_tagging_manager_column_tag_type": "Typ Tag",
+  "manager_components_resource_tagging_manager_tag_type_custom": "Typ niestandardowy",
+  "manager_components_resource_tagging_manager_tag_type_ovhcloud": "Typ OVHcloud",
+  "manager_components_resource_tagging_manager_action_assign_tag": "Przypisz tag",
+  "manager_components_resource_tagging_manager_action_unassign_tag": "Wyłącz",
+  "manager_components_resource_tagging_manager_action_tag_details": "Tag szczegółów",
+  "manager_components_resource_tagging_manager_empty": "Nie przypisano tagu"
+}

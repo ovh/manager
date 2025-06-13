@@ -28,6 +28,7 @@ overrides:
   "@ovh-ux/manager-netapp": "link:../../modules/netapp"
   "@ovh-ux/manager-ng-layout-helpers": "link:../../modules/ng-layout-helpers"
   "@ovh-ux/manager-nutanix": "link:../../modules/nutanix"
+  "@ovh-ux/manager-resource-tagging": "link:../../modules/resource-tagging"
   "@ovh-ux/manager-support": "link:../../modules/support"
   "@ovh-ux/manager-trusted-nic": "link:../../modules/trusted-nic"
   "@ovh-ux/manager-veeam-enterprise": "link:../../modules/veeam-enterprise"
