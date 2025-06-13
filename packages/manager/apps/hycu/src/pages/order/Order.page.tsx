@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { Suspense, useContext, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -32,6 +32,7 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import Errors from '@/components/Error/Error';
@@ -51,9 +52,11 @@ import { TRACKING } from '@/tracking.constant';
 
 export default function Order() {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('hycu/order');
-  const { t: tCommon } = useTranslation('hycu');
-  const { t: tError } = useTranslation('hycu/error');
+  const { t } = useTranslation([
+    'hycu/order',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.ERROR,
+  ]);
   const navigate = useNavigate();
 
   const { environment } = useContext(ShellContext);
@@ -87,139 +90,146 @@ export default function Order() {
     },
   ];
 
-  if (isError) return <Errors>{tError('manager_error_page_default')}</Errors>;
+  if (isError)
+    return <Errors>{t(`${NAMESPACES.ERROR}:error_loading_page`)}</Errors>;
 
   if (isLoading) return <Loading />;
 
   return (
-    <BaseLayout
-      breadcrumb={<Breadcrumb items={breadcrumbItems} />}
-      description={description}
-      header={header}
-    >
-      {!isOrderInitiated ? (
-        <>
-          <Subtitle className="block mb-6">{t('hycu_order_subtitle')}</Subtitle>
-          <Description className="mb-8">
-            <Trans
-              t={t}
-              i18nKey="hycu_order_subtitle_description"
-              components={{
-                contact: (
+    <Suspense fallback={<Loading />}>
+      <BaseLayout
+        breadcrumb={<Breadcrumb items={breadcrumbItems} />}
+        description={description}
+        header={header}
+      >
+        {!isOrderInitiated ? (
+          <>
+            <Subtitle className="block mb-6">
+              {t('hycu_order_subtitle')}
+            </Subtitle>
+            <Description className="mb-8">
+              <Trans
+                t={t}
+                i18nKey="hycu_order_subtitle_description"
+                components={{
+                  contact: (
+                    <OsdsLink
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                      href={CONTACT_URL_BY_SUBSIDIARY[subsidiary]}
+                      onClick={() => {
+                        trackClick(TRACKING.order.goToSalesClick);
+                      }}
+                      target={OdsHTMLAnchorElementTarget._blank}
+                    ></OsdsLink>
+                  ),
+                }}
+              ></Trans>
+            </Description>
+            <OrderTileWrapper>
+              {sortPacksByPrice(orderCatalogHYCU?.plans).map((product) => (
+                <OrderTile
+                  checked={product.planCode === selectedPack || undefined}
+                  key={product.planCode}
+                  label={product.invoiceName}
+                  pricing={getRenewPrice(product.pricings)}
+                  subsidiary={subsidiary}
+                  onClick={() => {
+                    trackClick(
+                      TRACKING.order.selectPackClick(product.planCode),
+                    );
+                    setSelectedPack(product.planCode);
+                  }}
+                ></OrderTile>
+              ))}
+            </OrderTileWrapper>
+            <div className="flex flex-row">
+              <OsdsButton
+                className="mr-4"
+                color={ODS_THEME_COLOR_INTENT.primary}
+                onClick={() => {
+                  trackClick(TRACKING.order.cancelClick(selectedPack));
+                  navigate(urls.listing);
+                }}
+                slot="actions"
+                variant={ODS_BUTTON_VARIANT.ghost}
+              >
+                {t(`${NAMESPACES.ACTIONS}:cancel`)}
+              </OsdsButton>
+              <OsdsButton
+                color={ODS_THEME_COLOR_INTENT.primary}
+                disabled={(!selectedPack && !orderLink) || undefined}
+                onClick={() => {
+                  trackClick(TRACKING.order.orderClick(selectedPack));
+                  setIsOrderInitiated(true);
+                  redirectToOrder();
+                }}
+                slot="actions"
+              >
+                {t(`${NAMESPACES.ACTIONS}:order`)}
+              </OsdsButton>
+            </div>
+          </>
+        ) : (
+          <>
+            <OsdsTile className="mb-8">
+              <span slot="start">
+                <div className="flex flex-col gap-6 mb-6">
+                  <OsdsText
+                    level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+                    size={ODS_THEME_TYPOGRAPHY_SIZE._600}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                  >
+                    {t('hycu_order_initiated_title')}
+                  </OsdsText>
+                  <OsdsText
+                    level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
+                    size={ODS_THEME_TYPOGRAPHY_SIZE._800}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                  >
+                    {t('hycu_order_initiated_description')}
+                  </OsdsText>
                   <OsdsLink
                     color={ODS_THEME_COLOR_INTENT.primary}
-                    href={CONTACT_URL_BY_SUBSIDIARY[subsidiary]}
-                    onClick={() => {
-                      trackClick(TRACKING.order.goToSalesClick);
-                    }}
                     target={OdsHTMLAnchorElementTarget._blank}
-                  ></OsdsLink>
-                ),
-              }}
-            ></Trans>
-          </Description>
-          <OrderTileWrapper>
-            {sortPacksByPrice(orderCatalogHYCU?.plans).map((product) => (
-              <OrderTile
-                checked={product.planCode === selectedPack || undefined}
-                key={product.planCode}
-                label={product.invoiceName}
-                pricing={getRenewPrice(product.pricings)}
-                subsidiary={subsidiary}
-                onClick={() => {
-                  trackClick(TRACKING.order.selectPackClick(product.planCode));
-                  setSelectedPack(product.planCode);
-                }}
-              ></OrderTile>
-            ))}
-          </OrderTileWrapper>
-          <div className="flex flex-row">
+                    referrerpolicy={
+                      ODS_LINK_REFERRER_POLICY.strictOriginWhenCrossOrigin
+                    }
+                    href={orderLink}
+                  >
+                    {orderLink}
+                    <span slot="end">
+                      <OsdsIcon
+                        className="ml-4 cursor-pointer"
+                        name={ODS_ICON_NAME.EXTERNAL_LINK}
+                        size={ODS_ICON_SIZE.xs}
+                        hoverable
+                      ></OsdsIcon>
+                    </span>
+                  </OsdsLink>
+                  <OsdsText
+                    level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
+                    size={ODS_THEME_TYPOGRAPHY_SIZE._800}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                  >
+                    {t('hycu_order_initiated_info')}
+                  </OsdsText>
+                </div>
+              </span>
+            </OsdsTile>
             <OsdsButton
-              className="mr-4"
+              inline
+              size={ODS_BUTTON_SIZE.md}
+              variant={ODS_BUTTON_VARIANT.flat}
               color={ODS_THEME_COLOR_INTENT.primary}
               onClick={() => {
-                trackClick(TRACKING.order.cancelClick(selectedPack));
                 navigate(urls.listing);
               }}
-              slot="actions"
-              variant={ODS_BUTTON_VARIANT.ghost}
             >
-              {tCommon('hycu_cta_cancel')}
+              {t(`${NAMESPACES.ACTIONS}:end`)}
             </OsdsButton>
-            <OsdsButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              disabled={(!selectedPack && !orderLink) || undefined}
-              onClick={() => {
-                trackClick(TRACKING.order.orderClick(selectedPack));
-                setIsOrderInitiated(true);
-                redirectToOrder();
-              }}
-              slot="actions"
-            >
-              {tCommon('hycu_cta_order')}
-            </OsdsButton>
-          </div>
-        </>
-      ) : (
-        <>
-          <OsdsTile className="mb-8">
-            <span slot="start">
-              <div className="flex flex-col gap-6 mb-6">
-                <OsdsText
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
-                  {t('hycu_order_initiated_title')}
-                </OsdsText>
-                <OsdsText
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._800}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
-                  {t('hycu_order_initiated_description')}
-                </OsdsText>
-                <OsdsLink
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  target={OdsHTMLAnchorElementTarget._blank}
-                  referrerpolicy={
-                    ODS_LINK_REFERRER_POLICY.strictOriginWhenCrossOrigin
-                  }
-                  href={orderLink}
-                >
-                  {orderLink}
-                  <span slot="end">
-                    <OsdsIcon
-                      className="ml-4 cursor-pointer"
-                      name={ODS_ICON_NAME.EXTERNAL_LINK}
-                      size={ODS_ICON_SIZE.xs}
-                      hoverable
-                    ></OsdsIcon>
-                  </span>
-                </OsdsLink>
-                <OsdsText
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._800}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
-                  {t('hycu_order_initiated_info')}
-                </OsdsText>
-              </div>
-            </span>
-          </OsdsTile>
-          <OsdsButton
-            inline
-            size={ODS_BUTTON_SIZE.md}
-            variant={ODS_BUTTON_VARIANT.flat}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => {
-              navigate(urls.listing);
-            }}
-          >
-            {tCommon('hycu_cta_done')}
-          </OsdsButton>
-        </>
-      )}
-    </BaseLayout>
+          </>
+        )}
+      </BaseLayout>
+    </Suspense>
   );
 }

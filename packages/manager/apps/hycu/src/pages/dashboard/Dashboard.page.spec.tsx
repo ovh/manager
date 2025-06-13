@@ -68,9 +68,7 @@ describe('License Hycu Dashboard route test suite', () => {
     await waitFor(
       () =>
         expect(
-          screen.getByText(
-            labels.dashboard.hycu_dashboard_warning_license_suspended_message,
-          ),
+          screen.getByText(labels.billing.cancel_service_success),
         ).toBeVisible(),
       {
         timeout: 30_000,

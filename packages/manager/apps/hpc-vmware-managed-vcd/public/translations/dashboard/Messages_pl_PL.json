@@ -48,10 +48,10 @@
   "managed_vcd_dashboard_contact_list_administrator": "{{code}} Kontakt administracyjny",
   "managed_vcd_dashboard_contact_list_billing": "{{code}} Kontakt księgowy",
   "managed_vcd_dashboard_contact_list_technical": "{{code}} Kontakt techniczny",
-  "managed_vcd_dashboard_password_modal_title": "Zmień hasło",
-  "managed_vcd_dashboard_password_modal_subtitle": "Czy na pewno chcesz zmienić hasło?",
-  "managed_vcd_dashboard_password_renew_success": "Otrzymasz e-mail, który umożliwi zmianę hasła.",
-  "managed_vcd_dashboard_password_renew_error": "Wystąpił błąd. Spróbuj ponownie później lub skontaktuj się z pomocą techniczną, aby zmienić hasło administratora.",
+  "managed_vcd_dashboard_password_modal_title": "Odnów hasło",
+  "managed_vcd_dashboard_password_modal_subtitle": "Czy na pewno chcesz zresetować hasło?",
+  "managed_vcd_dashboard_password_renew_success": "Dyspozycja resetu hasła administratora została zarejestrowana. Otrzymasz e-mail z linkiem umożliwiającym reset hasła.",
+  "managed_vcd_dashboard_password_renew_error": "Wystąpił błąd podczas resetu hasła administratora. Spróbuj ponownie później lub skontaktuj się z pomocą techniczną.",
   "managed_vcd_dashboard_edit_modal_cta_validate": "Zatwierdź",
   "managed_vcd_dashboard_cancellation_tooltip": "Jeśli chcesz zrezygnować z usługi, skontaktuj się z działem obsługi klienta."
 }

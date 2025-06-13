@@ -1,4 +1,4 @@
-import { act, fireEvent, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import '@testing-library/jest-dom';
@@ -16,14 +16,14 @@ describe('License Hycu listing test suite', () => {
     ).toBeInTheDocument();
 
     expect(
-      screen.queryByText(labels.listing.hycu_name),
+      screen.queryByText(labels.commonDashboard.name),
     ).not.toBeInTheDocument();
   });
 
   it('should display the hycu listing page', async () => {
     await renderTestApp();
 
-    expect(screen.getByText(labels.listing.hycu_order)).toBeVisible();
+    expect(screen.getByText(labels.actions.order)).toBeVisible();
 
     expect(
       screen.queryByText(labels.onboarding.hycu_onboarding_guide1_title),
@@ -40,9 +40,7 @@ describe('License Hycu listing test suite', () => {
     await waitFor(
       () =>
         expect(
-          screen.getAllByText(
-            labels.dashboard.hycu_dashboard_generals_informations_title,
-          )[0],
+          screen.getAllByText(labels.commonDashboard.general_information)[0],
         ).toBeVisible(),
       { timeout: 30_000 },
     );
@@ -51,9 +49,7 @@ describe('License Hycu listing test suite', () => {
   it('should navigate to hycu order on click order button ', async () => {
     await renderTestApp();
 
-    await act(() =>
-      userEvent.click(screen.getByText(labels.listing.hycu_order)),
-    );
+    await act(() => userEvent.click(screen.getByText(labels.actions.order)));
 
     await waitFor(
       () =>
@@ -69,9 +65,7 @@ describe('License Hycu listing test suite', () => {
     await waitFor(
       () => {
         expect(
-          screen.getAllByText(
-            labels.dashboard.hycu_dashboard_subscription_title,
-          )[0],
+          screen.getAllByText(labels.billing.subscription)[0],
         ).toBeVisible();
         expect(
           screen.getByText(labels.dashboard.hycu_dashboard_link_terminate),

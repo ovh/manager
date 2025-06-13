@@ -1,41 +1,41 @@
 import { IAM_LOGS_TRACKING_HITS } from '../logs.constants';
 import { name } from '../../components/logs/live-tail/live-tail.component';
-import { URL } from './access-policy-logs.service';
+import { URL } from './activity-logs.service';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('iam.logs.access-policy', {
-    url: '/access-policy',
+  $stateProvider.state('iam.logs.activity', {
+    url: '/activity',
     views: { logsView: name },
     atInternet: {
-      rename: IAM_LOGS_TRACKING_HITS.ACCESS_POLICY.LOGS_PAGE,
+      rename: IAM_LOGS_TRACKING_HITS.ACTIVITY.LOGS_PAGE,
     },
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('accessPolicyLogsAvailability')
+        .getAsync('activityLogsAvailability')
         .then(
-          (accessPolicyLogsAvailability) =>
-            !accessPolicyLogsAvailability && {
+          (activityLogAvailability) =>
+            !activityLogAvailability && {
               state: 'iam.logs',
             },
         ),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('iam_access_policy_logs_label'),
-      trackingHits: () => IAM_LOGS_TRACKING_HITS.ACCESS_POLICY,
+        $translate.instant('iam_activity_logs_label'),
+      trackingHits: () => IAM_LOGS_TRACKING_HITS.ACTIVITY,
       url: () => URL,
-      apiVersion: /* @ngInject */ (API_VERSION) => API_VERSION.v2,
+      apiVersion: /* @ngInject */ (API_VERSION) => API_VERSION.v1,
       kind: /* @ngInject */ (logKinds, $state) =>
         $state.params.kind || logKinds[0],
       description: /* @ngInject */ ($translate, kind) =>
-        $translate.instant(`iam_access_policy_logs_description_${kind}`),
+        $translate.instant(`iam_activity_logs_description_${kind}`),
       goToListingPage: /* @ngInject */ ($state, $transition$) => (params) =>
-        $state.go('iam.logs.access-policy.data-streams', {
+        $state.go('iam.logs.activity.data-streams', {
           ...$transition$.params(),
           ...params,
         }),
-      logKinds: /* @ngInject */ (accessPolicyLogsService) =>
-        accessPolicyLogsService.getLogKinds(),
+      logKinds: /* @ngInject */ (activityLogsService) =>
+        activityLogsService.getLogKinds(),
     },
   });
 };
