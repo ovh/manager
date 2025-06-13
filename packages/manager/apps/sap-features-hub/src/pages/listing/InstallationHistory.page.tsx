@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { LABELS } from '@/utils/label.constants';
 import { urls } from '@/routes/routes.constant';
@@ -26,11 +27,13 @@ import {
   VMwareServiceCell,
 } from '@/components/Datagrid/DatagridHistoryCells.component';
 import Loading from '@/components/Loading/Loading';
+import { TRACKING } from '@/tracking.constants';
 
 export default function HistoryPage() {
   const { t } = useTranslation('listing');
   const { t: tInstallation } = useTranslation('installation');
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
 
   const { data: installations, isLoading } = useInstallationHistory();
 
@@ -116,7 +119,10 @@ export default function HistoryPage() {
         </OdsText>
         <OdsButton
           variant={ODS_BUTTON_VARIANT.outline}
-          onClick={() => navigate(urls.installationWizard)}
+          onClick={() => {
+            trackClick(TRACKING.wizard.start);
+            navigate(urls.installationWizard);
+          }}
           label={t('sap_hub_history_run_installation')}
           className="my-8"
         />
