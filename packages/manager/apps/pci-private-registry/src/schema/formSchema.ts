@@ -51,3 +51,6 @@ export const schemaAddCidr = (dataCIDR: string[], isUpdating: boolean) =>
         message: 'private_registry_cidr_validation_authorization',
       }),
   });
+
+export const confirmIAMSchema = () =>
+  z.object({ confirmIAM: z.literal('CONFIRM') });
