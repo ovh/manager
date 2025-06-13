@@ -447,19 +447,6 @@ describe('Layout.page', () => {
     });
   });
 
-  it('should scroll into view skipnav button is clicked', async () => {
-    const { getByTestId } = renderComponent(<Layout />);
-
-    // This is a workaround to overcome this jsdom issue: https://github.com/jsdom/jsdom/issues/1695
-    const scrollIntoView = vi.fn();
-    Element.prototype.scrollIntoView = scrollIntoView;
-
-    const button = getByTestId('skipnav_button');
-    await act(() => fireEvent.click(button));
-
-    expect(scrollIntoView).toHaveBeenCalled();
-  });
-
   it('should display enterprise billing summary if customer is enterprise', async () => {
     mocks.shellContext.environment.user.enterprise = true;
     const { findByTestId } = renderComponent(<Layout />);

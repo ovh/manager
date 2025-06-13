@@ -217,5 +217,6 @@
   "sidebar_security_identity_operations_iam_logs": "Account logs",
   "sidebar_web_hosting_websites": "Websites",
   "sidebar_pci_quantum": "Quantum",
-  "sidebar_pci_quantum_emulators": "Emulators"
+  "sidebar_pci_quantum_emulators": "Emulators",
+  "sidebar_skip_to_the_main_content": "Go to main content"
 }
