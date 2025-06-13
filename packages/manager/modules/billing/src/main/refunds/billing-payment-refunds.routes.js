@@ -1,7 +1,7 @@
 import template from './billing-refunds.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const name = 'app.account.billing.main.refunds';
+  const name = 'billing.main.refunds';
 
   $stateProvider.state(name, {
     url: '/refunds',

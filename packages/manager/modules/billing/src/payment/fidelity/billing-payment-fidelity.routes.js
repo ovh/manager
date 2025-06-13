@@ -4,7 +4,7 @@ export default /* @ngInject */ (
   coreConfigProvider,
 ) => {
   if (coreConfigProvider.isRegion('EU')) {
-    const name = 'app.account.billing.payment.fidelity';
+    const name = 'billing.payment.fidelity';
 
     $stateProvider.state(name, {
       url: '/fidelity',

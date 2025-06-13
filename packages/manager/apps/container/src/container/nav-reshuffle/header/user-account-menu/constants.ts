@@ -25,14 +25,14 @@ export const links: UserLink[] = [
     trackingHit: tracking.goToProfile,
   },
   {
-    app: 'new-billing',
+    app: 'billing',
     key: 'myInvoices',
     hash: '#/history',
     i18nKey: 'user_account_menu_my_invoices',
     trackingHit: tracking.billingBills,
   },
   {
-    app: 'new-billing',
+    app: 'billing',
     key: 'myServices',
     hash: '#/autorenew',
     i18nKey: 'user_account_menu_my_services',
@@ -46,14 +46,14 @@ export const links: UserLink[] = [
     trackingHit: tracking.accountContacts,
   },
   {
-    app: 'new-billing',
+    app: 'billing',
     key: 'myPaymentMethods',
     hash: '#/payment/method',
     i18nKey: 'user_account_menu_my_payment_methods',
     trackingHit: tracking.paymentMethod,
   },
   {
-    app: 'new-billing',
+    app: 'billing',
     key: 'myCommands',
     hash: '#/orders',
     i18nKey: 'user_account_menu_my_commands',

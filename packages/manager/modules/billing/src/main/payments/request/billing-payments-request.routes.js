@@ -3,7 +3,7 @@ import template from './billing-payments-request.html';
 
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
   if (coreConfigProvider.isRegion('US')) {
-    $stateProvider.state('app.account.billing.main.payments.request', {
+    $stateProvider.state('billing.main.payments.request', {
       url: '/request',
       template,
       controller,
