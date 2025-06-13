@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-emailpro-app",
-  "version": "0.11.38",
+  "version": "0.11.39",
   "private": true,
   "repository": {
     "type": "git",
@@ -15,13 +15,13 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.4.1",
-    "@ovh-ux/manager-core": "^13.2.2",
+    "@ovh-ux/manager-core": "^13.2.3",
     "@ovh-ux/manager-emailpro": "^3.17.3",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.3",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.1.4",
     "@ovh-ux/ng-ovh-http": "^5.1.4",
-    "@ovh-ux/ng-ovh-payment-method": "^9.17.1",
+    "@ovh-ux/ng-ovh-payment-method": "^9.17.2",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.4",
     "@ovh-ux/ng-ovh-request-tagger": "^2.0.3",
     "@ovh-ux/ng-ovh-sso-auth": "^4.8.4",
