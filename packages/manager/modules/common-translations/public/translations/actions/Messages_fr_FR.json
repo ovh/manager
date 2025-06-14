@@ -45,6 +45,8 @@
   "activate": "Activer",
   "modify_name": "Modifier le nom",
   "modify_name_success": "Le nom a été modifié avec succès",
+  "modify_success": "{{ value }} a été modifié avec succès",
   "retry": "Réessayer",
-  "start": "Commencer"
+  "start": "Commencer",
+  "see_details": "Aller au détail"
 }
