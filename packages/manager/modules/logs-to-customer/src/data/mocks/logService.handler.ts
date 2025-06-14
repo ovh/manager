@@ -22,16 +22,20 @@ export const getLogServiceMocks = ({
 
 export type GetLogServicesMocksParams = {
   isLogServicesKO?: boolean;
+  nbLogServices?: number;
 };
 
 export const LogServicesError = 'log services error';
 
 export const getLogServicesMocks = ({
   isLogServicesKO,
+  nbLogServices = logServicesMock.length,
 }: GetLogServicesMocksParams): Handler[] => [
   {
     url: '/dbaas/logs',
-    response: isLogServicesKO ? { message: LogServicesError } : logServicesMock,
+    response: isLogServicesKO
+      ? { message: LogServicesError }
+      : logServicesMock.slice(0, nbLogServices),
     status: isLogServicesKO ? 500 : 200,
     api: 'v6',
   },
