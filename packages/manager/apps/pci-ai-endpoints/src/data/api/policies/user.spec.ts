@@ -1,6 +1,7 @@
 import { describe, expect, it, vi, afterEach } from 'vitest';
 import { v6, v2 } from '@ovh-ux/manager-core-api';
 import {
+  getUserPermissions,
   getUserId,
   createUserId,
   getPolicy,
@@ -21,6 +22,14 @@ vi.mock('@ovh-ux/manager-core-api', () => ({
 describe('User API functions', () => {
   afterEach(() => {
     vi.clearAllMocks();
+  });
+
+  describe('getUserPermissions', () => {
+    it('should call v6.get with the correct URL and return data', async () => {
+      const result = await getUserPermissions();
+      expect(v6.get).toHaveBeenCalledWith('/me/identity/user');
+      expect(result).toEqual({});
+    });
   });
 
   describe('getUserId', () => {
