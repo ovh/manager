@@ -1,3 +1,7 @@
 {
-  "dbaas_logs_roles": "Ruoli"
+  "dbaas_logs_roles": "Ruoli",
+  "logs_iam_modal_enable_title": "Attivare l’IAM di OVHcloud per il servizio \"{{accountName}}\"",
+  "logs_iam_modal_confirm": "Confermare",
+  "logs_iam_enable_usage_warning": "L’IAM OVHcloud è disponibile per tutto il servizio Logs Data Platform. La sua attivazione è un'operazione a <strong>senso unico</strong> che ti permette di usufruire di una centralizzazione e gestione granulare dei diritti di accesso degli elementi associati al tuo servizio.",
+  "logs_iam_enable_available": "Vuoi davvero attivare IAM OVHcloud?"
 }
