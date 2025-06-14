@@ -1,0 +1,120 @@
+#!/usr/bin/expect -f
+#
+# Automation for generating a new app
+# in the OVH Manager monorepo.
+# Docs: https://gist.github.com/fstab/6d39fae3a436d9bd6cecb1d9fde9a667
+
+# ───────────────────────────────────────────────────────────
+# Configuration
+# ───────────────────────────────────────────────────────────
+set appName        "pci-project"
+set appDescription "PCI Project react app"
+
+# Relative path to the repo root
+set rootDir       "../../../.."
+set workspace     "@ovh-ux/manager-$appName-app"
+set appDir        "packages/manager/apps/$appName"
+
+# ───────────────────────────────────────────────────────────
+# Helpers
+# ───────────────────────────────────────────────────────────
+# Launch an interactive command (spawn) in rootDir
+proc rootDirSpawn {cmd} {
+    global rootDir spawn_id
+    spawn bash -c "cd $rootDir && $cmd"
+    return $spawn_id
+}
+
+# Launch a long running command and wait until it is done
+proc rootDirLongExec {cmd expectedOutput} {
+    global rootDir
+    spawn bash -c "cd $rootDir && $cmd"
+    expect {
+        -exact $expectedOutput {}
+        timeout { puts "❌ Timeout waiting for command: $cmd"; exit 1 }
+    }
+}
+
+# Launch a non-interactive command (exec) in rootDir
+proc rootDirExec {cmd} {
+    global rootDir
+    exec bash -c "cd $rootDir && $cmd"
+}
+
+# Send arrow keys
+proc arrow {dir} {
+  set KEY_UP    "\033\[A"
+  set KEY_DOWN  "\033\[B"
+  set KEY_RIGHT "\033\[C"
+  set KEY_LEFT  "\033\[D"
+  switch -- $dir {
+      up    { send -- $KEY_UP }
+      down  { send -- $KEY_DOWN }
+      right { send -- $KEY_RIGHT }
+      left  { send -- $KEY_LEFT }
+      default { error "Unknown direction: $dir" }
+  }
+}
+
+puts "ℹ️  Removing $appDir"
+rootDirExec "rm -rf ./$appDir"
+
+set timeout -1
+puts "ℹ️  Starting the generator"
+rootDirSpawn "yarn generate:uapp"
+# # Set match max to 100000 to prevent the script from timing out during app generation
+match_max 100000
+
+expect -exact "What is the name of the new app?"
+send   -- "$appName\r"
+
+expect -exact "What is the packageName of the new app?"
+send   -- "\r"
+
+expect -exact "How would you describe the new app?"
+send   -- "$appDescription\r"
+
+expect -exact "EU"
+send   -- "\r"
+
+expect -exact "Dedicated"
+for {set i 0} {$i < 9} {incr i} { arrow down }
+send -- " \r"
+
+expect -exact "Which API base route is used?"
+for {set i 0} {$i < 13} {incr i} { arrow down }
+send -- " \r"
+
+expect -exact "What is the listing endpoint?"
+for {set i 0} {$i < 4} {incr i} { arrow down }
+send -- "\r"
+
+expect -exact "What is the dashboard endpoint?"
+for {set i 0} {$i < 5} {incr i} { arrow down }
+send -- "\r"
+
+expect -exact "What is the service key ?"
+send   -- "NONE\r"
+
+expect -exact "What is the level2 of the app ? (tracking)"
+send   -- "8\r"
+
+expect -exact "What is the universe of the app ? (tracking)"
+for {set i 0} {$i < 5} {incr i} { arrow up }
+send   -- "\r"
+
+expect -exact "What is the sub-universe of the app ? (tracking)"
+for {set i 0} {$i < 5} {incr i} { arrow up }
+send   -- "\r"
+
+# wait until the app is generated
+expect -exact "run start:dev"
+
+puts "ℹ️  Installing dependencies"
+rootDirLongExec "yarn workspace $workspace install" "\[5/5\] Building fresh packages..."
+
+puts "ℹ️  Starting the build"
+rootDirLongExec "yarn workspace $workspace build" " built in "
+
+puts "ℹ️  Running unit tests"
+rootDirLongExec "yarn workspace $workspace test" "Done in "

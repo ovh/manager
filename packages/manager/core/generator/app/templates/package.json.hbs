@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "{{ description }}",
   "private": true,
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
@@ -13,9 +14,18 @@
   "scripts": {
     "build": "tsc && vite build",
     "coverage": "manager-test run --coverage",
-    "lint": "eslint ./src",
     "start": "vite",
-    "test": "manager-test run"
+    "test": "manager-test run",
+    "format": "run-p format:*",
+    "format:css": "yarn run lint:css --fix",
+    "format:html": "yarn run lint:html && prettier --parser=html --write \"**/*.html\"",
+    "format:js": "yarn run lint:js --fix",
+    "format:md": "yarn run lint:md --fix",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "lint:css": "stylelint \"**/*.{css,less,scss}\"",
+    "lint:html": "htmlhint --ignore \"**/dist/**,**/www/**,**/coverage/**,**/screenshot/**,**/docs-api/**\" \"packages/**/*.html\"",
+    "lint:js": "eslint --cache --quiet --format=pretty .",
+    "lint:md": "remark -qf . && eslint --quiet --format=pretty --ext .md ."
   },
   "dependencies": {
     "@tanstack/react-query": "^5.51.21",
@@ -27,6 +37,7 @@
     {{/if}}
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "*",
     "@ovhcloud/ods-components": "^18.3.0",
     "@ovhcloud/ods-themes": "^18.3.0",
@@ -46,7 +57,7 @@
     "@tanstack/react-query-devtools": "^5.51.21",
     "@ovh-ux/manager-vite-config": "*",
     "typescript": "^5.1.6",
-    "@ovh-ux/manager-tests-setup": "^0.0.1"
+    "@ovh-ux/manager-tests-setup": "^0.2.0"
   },
   "regions": [
     {{#each regions}}
