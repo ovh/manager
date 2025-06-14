@@ -8,7 +8,6 @@ const forceRebuild = args.includes('--rebuild-graph');
 
 const pnpmPath = path.resolve('./target/pnpm/pnpm');
 const depsPath = path.resolve('./target/pnpm-dependencies.json');
-const REGISTRY = '--registry=https://registry.yarnpkg.com';
 const requiredTools = [
   'rollup@^3.29.4',
   'typescript@^5.0.0',
@@ -37,7 +36,7 @@ function installRequiredTooling() {
   console.log('🔧 Installing build tooling before running prepare scripts...');
   for (const tool of requiredTools) {
     try {
-      execSync(`${pnpmPath} fetch ${tool} ${REGISTRY}`, { stdio: 'inherit' });
+      execSync(`${pnpmPath} fetch ${tool}`, { stdio: 'inherit' });
       console.log(`✅ Fetched ${tool} into PNPM store`);
     } catch (err) {
       console.error(`❌ Failed to fetch ${tool}:`, err.message);
@@ -57,7 +56,7 @@ function feedLocalPnpmStore() {
       const fullPath = path.resolve(meta.path);
       console.log(`➡️ Installing ${pkg} from ${fullPath}`);
       try {
-        execSync(`${pnpmPath} install --lockfile=false ${REGISTRY}`, {
+        execSync(`${pnpmPath} install --lockfile=false`, {
           cwd: fullPath,
           stdio: 'inherit',
         });

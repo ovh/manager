@@ -6,7 +6,6 @@ import path from 'path';
 const pnpmPath = path.resolve('./target/pnpm/pnpm');
 const depsPath = path.resolve('./target/pnpm-dependencies.json');
 const excludeAppsPath = path.resolve('./scripts/pnpm-migration/exclude-yarn-apps.json');
-const REGISTRY = '--registry=https://registry.yarnpkg.com';
 
 function loadJson(filePath) {
   try {
@@ -63,10 +62,10 @@ function installPnpmApps() {
     // Step 1: Write pnpm-workspace.yaml for the app
     writeLocalWorkspaceYaml(fullPath, allDeps);
 
-    // Step 2: Install dependencies using npm registry
+    // Step 2: Install dependencies
     console.log(`📥 Installing dependencies in ${app}`);
     try {
-      execSync(`${pnpmPath} install --lockfile=false ${REGISTRY}`, {
+      execSync(`${pnpmPath} install --lockfile=false`, {
         cwd: fullPath,
         stdio: 'inherit',
       });
