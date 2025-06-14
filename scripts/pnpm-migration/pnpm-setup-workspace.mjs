@@ -8,18 +8,21 @@ const version = '10.11.1';
 const targetDir = path.resolve('./target/pnpm');
 const pnpmPath = path.join(targetDir, 'pnpm');
 const CLEAN_ROOT = path.resolve('./packages');
+const FOLDERS_TO_REMOVE = new Set(['target', 'dist', '.turbo']);
 
 const args = process.argv.slice(2);
 const shouldClean = args.includes('--clean');
 
-// 🔹 Step 1: Clean legacy folders (node_modules, dist, .turbo)
-async function findAndRemoveDirs(root, dirNames = new Set(['node_modules', 'dist', '.turbo'])) {
+// 🔹 Step 1: Clean legacy folders (excluding node_modules)
+async function findAndRemoveDirs(root, dirNames = FOLDERS_TO_REMOVE) {
   const entries = await fs.readdir(root, { withFileTypes: true });
 
   for (const entry of entries) {
     const entryPath = path.join(root, entry.name);
 
     if (entry.isDirectory()) {
+      if (entry.name === 'node_modules') continue;
+
       if (dirNames.has(entry.name)) {
         console.log(`🧹 Removing ${entryPath}`);
         await fs.rm(entryPath, { recursive: true, force: true });
@@ -31,15 +34,14 @@ async function findAndRemoveDirs(root, dirNames = new Set(['node_modules', 'dist
 }
 
 async function cleanWorkspace() {
-  const rootNodeModules = path.resolve('./node_modules');
+  console.log('🧹 Cleaning matching folders in root and inside packages/...');
 
-  if (existsSync(rootNodeModules)) {
-    console.log(`🧹 Removing root ${rootNodeModules}`);
-    await fs.rm(rootNodeModules, { recursive: true, force: true });
-  }
+  // Clean from root
+  await findAndRemoveDirs(path.resolve('.'));
 
-  console.log('🧹 Cleaning node_modules, dist, and .turbo inside packages/...');
+  // Clean inside CLEAN_ROOT
   await findAndRemoveDirs(CLEAN_ROOT);
+
   console.log('✅ Workspace clean complete.');
 }
 

@@ -31,8 +31,9 @@
   },
   "devDependencies": {
     "@ovh-ux/request-tagger": "^0.4.1",
-    "vite": "^6.3.5",
-    "@types/node": "^20.10.6"
+    "@types/node": "^20.10.6",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
   },
   "peerDependencies": {
     "@ovh-ux/request-tagger": "^0.4.0"
