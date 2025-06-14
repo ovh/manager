@@ -1,0 +1,8 @@
+{
+  "iam_identities_account_delegation_add_account": "Aggiungere un account",
+  "iam_identities_account_delegation_account": "Account",
+  "iam_identities_account_delegation_disclaimer": "Solo il tuo account cliente (NIC) potrà accedere ai ticket di supporto",
+  "iam_identities_account_delegation_cancel": "Annullare",
+  "iam_identities_account_delegation_confirm": "Aggiungere",
+  "iam_identities_account_delegation_format_error": "Il formato dell'account non è valido (esempio: {{format}})"
+}
