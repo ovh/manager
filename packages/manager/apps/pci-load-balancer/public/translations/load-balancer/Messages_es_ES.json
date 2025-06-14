@@ -18,7 +18,7 @@
   "octavia_load_balancer_creation_date": "Fecha de creación",
   "octavia_load_balancer_operating_status": "Estado del proceso",
   "octavia_load_balancer_actions_detail": "Detalle del Load Balancer",
-  "octavia_load_balancer_actions_delete": "Eliminar",
+  "octavia_load_balancer_actions_delete": "Dar de baja",
   "octavia_load_balancer_operating_status_online": "online",
   "octavia_load_balancer_operating_status_offline": "offline",
   "octavia_load_balancer_operating_status_degraded": "degradado",
@@ -28,9 +28,9 @@
   "octavia_load_balancer_provisioning_status": "Estado de aprovisionamiento",
   "octavia_load_balancer_provisioning_status_active": "activo",
   "octavia_load_balancer_provisioning_status_creating": "creando...",
-  "octavia_load_balancer_provisioning_status_deleted": "eliminado",
-  "octavia_load_balancer_provisioning_status_deleting": "eliminando...",
+  "octavia_load_balancer_provisioning_status_deleted": "dado de baja",
+  "octavia_load_balancer_provisioning_status_deleting": "en proceso de baja",
   "octavia_load_balancer_provisioning_status_updating": "actualizando...",
   "octavia_load_balancer_provisioning_status_error": "error",
-  "octavia_load_balancer_delete_success": "Su Load Balancer se ha eliminado correctamente."
+  "octavia_load_balancer_delete_success": "El Load Balancer se ha dado de baja correctamente"
 }
