@@ -3,9 +3,17 @@ import { execSync } from 'child_process';
 import { readFileSync, writeFileSync, unlinkSync, existsSync } from 'fs';
 import path from 'path';
 
+// Paths
+const ROOT_DIR = path.resolve('.');
+const STORE_DIR = path.resolve(ROOT_DIR, 'target/.pnpm-store');
 const pnpmPath = path.resolve('./target/pnpm/pnpm');
+const pnpmOptions = ` --ignore-scripts --no-lockfile --store-dir=${STORE_DIR}`;
 const depsPath = path.resolve('./target/pnpm-dependencies.json');
-const excludeAppsPath = path.resolve('./scripts/pnpm-migration/exclude-yarn-apps.json');
+const excludeAppsPath = path.resolve('./scripts/pnpm-migration/settings/exclude-yarn-apps.json');
+const specialOverridesPath = path.resolve('./scripts/pnpm-migration/settings/special-version-overrides.json');
+
+// Load shared override config
+const SPECIAL_VERSION_OVERRIDES = JSON.parse(readFileSync(specialOverridesPath, 'utf-8'));
 
 // Track created workspace files for cleanup
 const createdWorkspaceFiles = new Set();
@@ -30,11 +38,22 @@ function createWorkspaceYaml(appPath, allDeps) {
   };
 
   const overrides = {};
+
   for (const [depName] of Object.entries(deps)) {
     const meta = allDeps[depName];
-    if (meta?.isInternal && meta.path) {
+    if (meta?.isInternal && meta?.private && meta.path) {
       const relativePath = path.relative(appPath, path.resolve(meta.path));
       overrides[depName] = `link:${relativePath}`;
+      console.log(`🔗 Linking private internal: ${depName} → ${relativePath}`);
+    } else if (meta?.isInternal && !meta?.private) {
+      console.log(`📦 Skipping public internal: ${depName}`);
+    }
+  }
+
+  for (const [specialDep, version] of Object.entries(SPECIAL_VERSION_OVERRIDES)) {
+    if (!overrides[specialDep]) {
+      overrides[specialDep] = version;
+      console.log(`🔁 Injected special override: ${specialDep} → ${version}`);
     }
   }
 
@@ -91,10 +110,11 @@ function installPnpmApps() {
     console.log(`\n➡️ Setting up PNPM workspace in: ${app}`);
 
     const workspaceFile = createWorkspaceYaml(fullPath, allDeps);
+    console.log(`📝 Temporary workspace file ${workspaceFile}`);
 
     try {
       console.log(`📥 Installing dependencies in ${app}`);
-      execSync(`${pnpmPath} install --lockfile=false --ignore-scripts`, {
+      execSync(`${pnpmPath} install ${pnpmOptions}`, {
         cwd: fullPath,
         stdio: 'inherit',
       });
@@ -104,7 +124,6 @@ function installPnpmApps() {
       process.exit(1);
     }
 
-    // Clean up after success
     cleanupAllWorkspaceFiles();
   }
 

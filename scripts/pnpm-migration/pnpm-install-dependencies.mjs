@@ -31,12 +31,10 @@ function runSubScript(name, scriptPath) {
 async function main() {
   const delayMs = 2000;
 
-  // Delay before Shared Dependencies
   console.log(`⏳ Waiting ${delayMs / 1000} seconds before starting Shared Dependencies Install...`);
   await sleep(delayMs);
   runSubScript('Shared Dependencies Install', SHARED_SCRIPT);
 
-  // Delay before App Dependencies
   console.log(`⏳ Waiting ${delayMs / 1000} seconds before starting App Dependencies Install...`);
   await sleep(delayMs);
   runSubScript('App Dependencies Install', APP_SCRIPT);

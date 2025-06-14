@@ -39,7 +39,8 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.3"
+    "@ovh-ux/component-rollup-config": "^13.0.3",
+    "bs4": "github:twbs/bootstrap#v4.0.0-beta"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
@@ -48,7 +49,6 @@
     "angular": "^1.5.0",
     "angular-translate": "^2.17.0",
     "bootstrap": "~3.3.7",
-    "bs4": "twbs/bootstrap#v4.0.0-beta",
     "flag-icon-css": "^3.2.1",
     "moment": "^2.20.1",
     "ovh-api-services": "^15.0.0",

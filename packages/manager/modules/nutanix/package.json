@@ -13,7 +13,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "@ovh-ux/manager-models": "^2.5.3",
-    "bootstrap4": "twbs/bootstrap#v4.6.2",
+    "bootstrap4": "github:twbs/bootstrap#v4.6.2",
     "ipaddr.js": "^1.9.1",
     "jsurl": "^0.1.4",
     "lodash": "^4.17.14"

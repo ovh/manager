@@ -44,7 +44,7 @@
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "bootstrap4": "twbs/bootstrap#v4.6.2",
+    "bootstrap4": "github:twbs/bootstrap#v4.6.2",
     "core-js": "^3.6.5",
     "flatpickr": "^4.6.3",
     "lodash-es": "^4.17.15",

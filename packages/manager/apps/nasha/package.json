@@ -56,7 +56,7 @@
     "angular-translate-loader-pluggable": "^1.3.1",
     "angular-ui-bootstrap": "1.3.3",
     "bloodhound-js": "^1.2.3",
-    "bootstrap4": "twbs/bootstrap#v4.6.2",
+    "bootstrap4": "github:twbs/bootstrap#v4.6.2",
     "clipboard": "^2.0.4",
     "core-js": "^3.6.5",
     "flatpickr": "^4.6.3",
@@ -73,7 +73,6 @@
     "@ovh-ux/manager-webpack-config": "^7.0.8",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
-    "@module-federation/runtime": "^0.15.0",
     "webpack-merge": "^4.2.2"
   },
   "regions": [

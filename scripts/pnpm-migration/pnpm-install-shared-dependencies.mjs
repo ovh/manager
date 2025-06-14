@@ -8,15 +8,16 @@ const args = process.argv.slice(2);
 const forceRebuild = args.includes('--rebuild-graph');
 
 // Paths
+const ROOT_DIR = path.resolve('.');
+const STORE_DIR = path.resolve(ROOT_DIR, 'target/.pnpm-store');
 const pnpmPath = path.resolve('./target/pnpm/pnpm');
+const pnpmOptions = ` --ignore-scripts --no-lockfile --store-dir=${STORE_DIR}`;
 const depsPath = path.resolve('./target/pnpm-dependencies.json');
-const requiredTools = [
-  'typescript@^5.0.0',
-  'typescript@^5.8.2',
-  'rollup@^3.29.4',
-];
+const specialOverridesPath = path.resolve('./scripts/pnpm-migration/settings/special-version-overrides.json');
 
-// Track created workspace files for cleanup
+// Load version overrides
+const SPECIAL_VERSION_OVERRIDES = JSON.parse(readFileSync(specialOverridesPath, 'utf-8'));
+
 const createdWorkspaceFiles = new Set();
 
 function buildPnpmDependenciesGraph() {
@@ -30,28 +31,21 @@ function buildPnpmDependenciesGraph() {
   console.log('✅ Dependency map ready.');
 }
 
-function installRequiredTooling() {
-  if (!Array.isArray(requiredTools) || requiredTools.length === 0) return;
-
-  console.log('🔧 Installing build tooling before running prepare scripts...');
-  for (const tool of requiredTools) {
-    try {
-      execSync(`${pnpmPath} fetch ${tool}`, { stdio: 'inherit' });
-      console.log(`✅ Fetched ${tool} into PNPM store`);
-    } catch (err) {
-      console.error(`❌ Failed to fetch ${tool}:`, err.message);
-      process.exit(1);
-    }
-  }
-}
-
 function writeTemporaryWorkspaceYaml(appPath, allDeps, packageDeps) {
   const overrides = {};
+
   for (const depName of Object.keys(packageDeps)) {
     const meta = allDeps[depName];
-    if (meta?.isInternal && meta.path) {
-      const relativePath = path.relative(appPath, path.resolve(meta.path));
-      overrides[depName] = `link:${relativePath}`;
+    if (meta?.isInternal && meta.private && meta.path) {
+      const rel = path.relative(appPath, path.resolve(meta.path));
+      overrides[depName] = `link:${rel}`;
+    }
+  }
+
+  for (const [specialDep, version] of Object.entries(SPECIAL_VERSION_OVERRIDES)) {
+    if (!overrides[specialDep]) {
+      overrides[specialDep] = version;
+      console.log(`🔁 Injected special override: ${specialDep} → ${version}`);
     }
   }
 
@@ -60,7 +54,7 @@ function writeTemporaryWorkspaceYaml(appPath, allDeps, packageDeps) {
     '  - .',
     '',
     'overrides:',
-    ...Object.entries(overrides).map(([pkg, val]) => `  "${pkg}": "${val}"`),
+    ...Object.entries(overrides).map(([k, v]) => `  "${k}": "${v}"`),
     '',
   ].join('\n');
 
@@ -71,21 +65,18 @@ function writeTemporaryWorkspaceYaml(appPath, allDeps, packageDeps) {
   return workspacePath;
 }
 
-function deleteTemporaryWorkspaceYaml(workspacePath) {
-  if (existsSync(workspacePath)) {
-    unlinkSync(workspacePath);
-    createdWorkspaceFiles.delete(workspacePath);
-    console.log(`🧹 Deleted temporary workspace file: ${workspacePath}`);
+function deleteTemporaryWorkspaceYaml(p) {
+  if (existsSync(p)) {
+    unlinkSync(p);
+    createdWorkspaceFiles.delete(p);
+    console.log(`🧹 Deleted temporary workspace file: ${p}`);
   }
 }
 
 function cleanupAllWorkspaceFiles() {
-  for (const path of createdWorkspaceFiles) {
-    deleteTemporaryWorkspaceYaml(path);
-  }
+  for (const p of createdWorkspaceFiles) deleteTemporaryWorkspaceYaml(p);
 }
 
-// Handle termination signals
 process.on('SIGINT', () => {
   console.log('\n🛑 Caught SIGINT (Ctrl+C). Cleaning up...');
   cleanupAllWorkspaceFiles();
@@ -105,20 +96,19 @@ function feedLocalPnpmStore() {
   for (const pkg of pkgs) {
     const meta = data.all[pkg];
     if (!meta?.path) {
-      console.warn(`⚠️ Skipping ${pkg} – no path info in metadata.`);
+      console.warn(`⚠️ Skipping ${pkg} – no path info`);
       continue;
     }
 
     const fullPath = path.resolve(meta.path);
     const isInternal = Boolean(meta.isInternal ?? false);
+    const isPrivate = Boolean(meta.private ?? false);
 
     if (isInternal) {
       if (!existsSync(fullPath)) {
-        console.error(`❌ Internal package ${pkg} has invalid path: ${fullPath}`);
+        console.error(`❌ Invalid path for ${pkg}: ${fullPath}`);
         process.exit(1);
       }
-
-      console.log(`📦 Installing INTERNAL package ${pkg} from ${fullPath}`);
 
       const pkgJsonPath = path.join(fullPath, 'package.json');
       const pkgJson = JSON.parse(readFileSync(pkgJsonPath, 'utf8'));
@@ -128,27 +118,35 @@ function feedLocalPnpmStore() {
         ...pkgJson.peerDependencies,
       };
 
-      const workspacePath = writeTemporaryWorkspaceYaml(fullPath, data.all, allPackageDeps);
-
-      try {
-        execSync(`${pnpmPath} install --lockfile=false --ignore-scripts`, {
-          cwd: fullPath,
-          stdio: 'inherit',
-        });
-      } catch (err) {
-        console.error(`❌ Failed to install ${pkg} at ${fullPath}:\n`, err.message);
-        cleanupAllWorkspaceFiles();
-        process.exit(1);
+      if (isPrivate) {
+        console.log(`🔗 Linking PRIVATE internal package ${pkg}`);
+        const workspacePath = writeTemporaryWorkspaceYaml(fullPath, data.all, allPackageDeps);
+        try {
+          execSync(`${pnpmPath} install ${pnpmOptions}`, {
+            cwd: fullPath,
+            stdio: 'inherit',
+          });
+        } catch (err) {
+          console.error(`❌ Failed to install ${pkg}:\n`, err.message);
+          cleanupAllWorkspaceFiles();
+          process.exit(1);
+        }
+        deleteTemporaryWorkspaceYaml(workspacePath);
+      } else {
+        const version = meta?.versions?.[0] || 'latest';
+        console.log(`🌐 Fetching PUBLIC internal package ${pkg}@${version}`);
+        try {
+          execSync(`${pnpmPath} fetch ${pkg}@${version} ${pnpmOptions}`, { stdio: 'inherit' });
+        } catch (err) {
+          console.error(`❌ Failed to fetch ${pkg}@${version}:`, err.message);
+          process.exit(1);
+        }
       }
-
-      deleteTemporaryWorkspaceYaml(workspacePath);
     } else {
-      const version = meta?.version || 'latest';
-      console.log(`🌍 Fetching EXTERNAL package ${pkg}@${version} from registry...`);
+      const version = meta?.versions?.[0] || 'latest';
+      console.log(`🌍 Fetching EXTERNAL package ${pkg}@${version}`);
       try {
-        execSync(`${pnpmPath} fetch ${pkg}@${version}`, {
-          stdio: 'inherit',
-        });
+        execSync(`${pnpmPath} fetch ${pkg}@${version} ${pnpmOptions}`, { stdio: 'inherit' });
       } catch (err) {
         const msg = err.message || '';
         if (/403|unauthorized|not found|forbidden/i.test(msg)) {
@@ -165,13 +163,11 @@ function feedLocalPnpmStore() {
   console.log('✅ Internal packages installed in correct order.');
 }
 
-// 🔁 Execute logic
 const hasGraph = existsSync(depsPath);
 
 if (forceRebuild || !hasGraph) {
   console.log(forceRebuild ? '🔄 Rebuilding dependency graph by user request...' : '📋 No dependency graph found — running full setup...');
   buildPnpmDependenciesGraph();
-  installRequiredTooling();
   feedLocalPnpmStore();
 } else {
   console.log('⚡ Skipping shared dependency install — graph already present.');

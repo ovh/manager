@@ -15,7 +15,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "bootstrap4": "twbs/bootstrap#v4.6.2"
+    "bootstrap4": "github:twbs/bootstrap#v4.6.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",

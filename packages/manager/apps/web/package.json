@@ -85,7 +85,7 @@
     "animate.css": "^3.5.0",
     "bloodhound-js": "^1.2.3",
     "bootstrap": "^3.3.6",
-    "bootstrap4": "twbs/bootstrap#v4.6.2",
+    "bootstrap4": "github:twbs/bootstrap#v4.6.2",
     "chart.js": "^4.4.2",
     "chartjs-adapter-date-fns": "^3.0.0",
     "chartjs-plugin-datasource-prometheus": "^2.3.0",

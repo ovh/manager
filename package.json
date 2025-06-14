@@ -100,8 +100,10 @@
     ]
   },
   "scripts": {
-    "preinstall": "node scripts/pnpm-migration/pnpm-setup-workspace.mjs --clean",
-    "postinstall": "node scripts/pnpm-migration/pnpm-install-dependencies.mjs",
+    "pnpm-setup-workspace-clean": "node scripts/pnpm-migration/pnpm-setup-workspace.mjs --clean",
+    "pnpm-setup-workspace": "node scripts/pnpm-migration/pnpm-setup-workspace.mjs",
+    "pnpm-install-dependencies": "node scripts/pnpm-migration/pnpm-install-dependencies.mjs",
+    "postinstall": "run-s pnpm-setup-workspace-clean pnpm-install-dependencies",
     "build": "yarn run build:custom",
     "build:custom": "node ./scripts/pnpm-migration/packages-custom-turbo-build.mjs",
     "build:turbo": "turbo run build --concurrency=5",

@@ -6048,33 +6048,6 @@
   resolved "https://registry.yarnpkg.com/@microsoft/tsdoc/-/tsdoc-0.15.1.tgz#d4f6937353bc4568292654efb0a0e0532adbcba2"
   integrity sha512-4aErSrCR/On/e5G2hDP0wjooqDdauzEbIq8hIkIe5pXV0rtWJZvdCEKL0ykZxex+IxIwBp0eGeV48hQN07dXtw==
 
-"@module-federation/error-codes@0.15.0":
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/@module-federation/error-codes/-/error-codes-0.15.0.tgz#1e3ae45186a4034d806875cc61dd721b3826f462"
-  integrity sha512-CFJSF+XKwTcy0PFZ2l/fSUpR4z247+Uwzp1sXVkdIfJ/ATsnqf0Q01f51qqSEA6MYdQi6FKos9FIcu3dCpQNdg==
-
-"@module-federation/runtime-core@0.15.0":
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/@module-federation/runtime-core/-/runtime-core-0.15.0.tgz#353113beee4fc50aeb85c1214202214a995ac4b4"
-  integrity sha512-RYzI61fRDrhyhaEOXH3AgIGlHiot0wPFXu7F43cr+ZnTi+VlSYWLdlZ4NBuT9uV6JSmH54/c+tEZm5SXgKR2sQ==
-  dependencies:
-    "@module-federation/error-codes" "0.15.0"
-    "@module-federation/sdk" "0.15.0"
-
-"@module-federation/runtime@^0.15.0":
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/@module-federation/runtime/-/runtime-0.15.0.tgz#8ea3fd190211f78e95f5a7b32f0ed3a428c2ea91"
-  integrity sha512-dTPsCNum9Bhu3yPOcrPYq0YnM9eCMMMNB1wuiqf1+sFbQlNApF0vfZxooqz3ln0/MpgE0jerVvFsLVGfqvC9Ug==
-  dependencies:
-    "@module-federation/error-codes" "0.15.0"
-    "@module-federation/runtime-core" "0.15.0"
-    "@module-federation/sdk" "0.15.0"
-
-"@module-federation/sdk@0.15.0":
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/@module-federation/sdk/-/sdk-0.15.0.tgz#31e0b1e443e9e5761345e298ba5e49eab273e51d"
-  integrity sha512-PWiYbGcJrKUD6JZiEPihrXhV3bgXdll4bV7rU+opV7tHaun+Z0CdcawjZ82Xnpb8MCPGmqHwa1MPFeUs66zksw==
-
 "@motionone/animation@^10.17.0":
   version "10.17.0"
   resolved "https://registry.yarnpkg.com/@motionone/animation/-/animation-10.17.0.tgz#7633c6f684b5fee2b61c405881b8c24662c68fca"
@@ -13331,16 +13304,11 @@ bootstrap-additions@~0.3.1:
   resolved "https://registry.yarnpkg.com/bootstrap-additions/-/bootstrap-additions-0.3.1.tgz#9ab976c2d88b9ab747c376c757a80031f2ccf83e"
   integrity sha512-fMCLO1wP7wT9tPo0EAq1f2ylKRNRonMUWVT10VFsx1aprECiUkBHSzUqo3mRsdlEKQRQSHT5d67aygDAIsKY6g==
 
-"bootstrap4@npm:bootstrap@^4.6.2":
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.2.tgz#8e0cd61611728a5bf65a3a2b8d6ff6c77d5d7479"
-  integrity sha512-51Bbp/Uxr9aTuy6ca/8FbFloBUJZLHwnhTcnjIeRn2suQWsWzcuJhGjKDB5eppVte/8oCdOL3VuwxvZDUggwGQ==
-
-bootstrap4@twbs/bootstrap#v4.0.0:
+"bootstrap4@github:twbs/bootstrap#v4.0.0":
   version "4.0.0"
   resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/8a628b943cf31ca0a002c08af661a95772480225"
 
-bootstrap4@twbs/bootstrap#v4.6.2:
+"bootstrap4@github:twbs/bootstrap#v4.6.2":
   version "4.6.2"
   resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/e5643aaa89eb67327a5b4abe7db976f0ea276b70"
 
@@ -13479,6 +13447,10 @@ bs-logger@0.x:
   integrity sha512-pd8DCoxmbgc7hyPKOvxtqNcjYoOsABPQdcCUjGp3d42VR2CX1ORhk2A87oqqu5R1kk+76nsxZupkmyd+MVtCog==
   dependencies:
     fast-json-stable-stringify "2.x"
+
+"bs4@github:twbs/bootstrap#v4.0.0-beta":
+  version "4.0.0-beta"
+  resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/35f80bb12e4e71fd777ee60ffa43711d8f84b1a6"
 
 bser@2.1.1:
   version "2.1.1"

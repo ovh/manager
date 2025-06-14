@@ -28,7 +28,7 @@
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "angular-ui-validate": "^1.2.3",
-    "bootstrap4": "twbs/bootstrap#v4.6.2",
+    "bootstrap4": "github:twbs/bootstrap#v4.6.2",
     "lodash": "^4.17.14",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^15.0.0",
