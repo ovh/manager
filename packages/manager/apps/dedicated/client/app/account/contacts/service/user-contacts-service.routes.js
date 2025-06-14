@@ -5,7 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
   const stateName = 'app.account.contacts.services';
 
   $stateProvider.state(stateName, {
-    url: '/services?serviceName&category',
+    url:
+      '/services?serviceName&category&contactAdmin&contactTech&contactBilling',
     component: 'accountContactsService',
     translations: {
       format: 'json',
@@ -17,6 +18,18 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
       },
       category: {
+        value: null,
+        dynamic: true,
+      },
+      contactAdmin: {
+        value: null,
+        dynamic: true,
+      },
+      contactTech: {
+        value: null,
+        dynamic: true,
+      },
+      contactBilling: {
         value: null,
         dynamic: true,
       },
@@ -32,6 +45,33 @@ export default /* @ngInject */ ($stateProvider) => {
               operator: 'contains',
               value: $transition$.params().serviceName,
               title: $transition$.params().serviceName,
+            });
+          }
+
+          if ($transition$.params().contactAdmin) {
+            criteria.push({
+              operator: 'is',
+              property: 'contactAdmin',
+              value: $transition$.params().contactAdmin,
+              title: $transition$.params().contactAdmin,
+            });
+          }
+
+          if ($transition$.params().contactTech) {
+            criteria.push({
+              operator: 'is',
+              property: 'contactTech',
+              value: $transition$.params().contactTech,
+              title: $transition$.params().contactTech,
+            });
+          }
+
+          if ($transition$.params().contactBilling) {
+            criteria.push({
+              operator: 'is',
+              property: 'contactBilling',
+              value: $transition$.params().contactBilling,
+              title: $transition$.params().contactBilling,
             });
           }
 
@@ -59,10 +99,31 @@ export default /* @ngInject */ ($stateProvider) => {
             'value',
             null,
           ),
+          contactAdmin: get(
+            find(criteria, { property: 'contactAdmin' }),
+            'value',
+            null,
+          ),
+          contactTech: get(
+            find(criteria, { property: 'contactTech' }),
+            'value',
+            null,
+          ),
+          contactBilling: get(
+            find(criteria, { property: 'contactBilling' }),
+            'value',
+            null,
+          ),
         });
       },
       category: /* @ngInject */ ($transition$) =>
         $transition$.params().category,
+      contactAdmin: /* @ngInject */ ($transition$) =>
+        $transition$.params().contactAdmin,
+      contactTech: /* @ngInject */ ($transition$) =>
+        $transition$.params().contactTech,
+      contactBilling: /* @ngInject */ ($transition$) =>
+        $transition$.params().contactBilling,
       editContacts: /* @ngInject */ ($state) => (service) =>
         $state.go(`${stateName}.edit`, {
           service: service.serviceName,
