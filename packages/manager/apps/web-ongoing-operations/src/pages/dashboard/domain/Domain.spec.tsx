@@ -15,13 +15,6 @@ vi.mock('react-router-dom', () => ({
   useLocation: vi.fn(),
 }));
 
-vi.mock('@/data/api/web-ongoing-operations', () => ({
-  getmeTaskDomainList: vi.fn(),
-  getmeTaskDomainArgumentNames: vi
-    .fn()
-    .mockImplementation(() => Promise.resolve(['nic1', 'nic2'])),
-}));
-
 describe('Domain datagrid', () => {
   it('displays loading spinner while main request are loading', async () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
@@ -43,7 +36,9 @@ describe('Domain datagrid', () => {
     expect(useResourcesIcebergV6).toHaveBeenCalledWith(
       expect.objectContaining({
         pageSize: 30,
-        route: taskMeDomain.join('/'),
+        route: `${taskMeDomain.join('/')}?type=domain`,
+        disableCache: false,
+        queryKey: taskMeDomain,
       }),
     );
   });
@@ -65,7 +60,7 @@ describe('Domain datagrid', () => {
 
     const { getByTestId } = render(<Domain />, { wrapper });
     await waitFor(() => {
-      expect(getByTestId('datagrid')).toBeInTheDocument();
+      expect(getByTestId('domain')).toBeInTheDocument();
 
       const domainName = getByTestId('case-where-modal-cant-be-open.ovh');
       expect(domainName).toBeInTheDocument();
