@@ -29,6 +29,7 @@ import {
   getVrackListQueryKey,
   useCreateCartWithVrack,
 } from '@ovh-ux/manager-network-common';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { DeliveringMessages } from '@/components/feedback-messages/DeliveringMessages.component';
 import { MessagesContext } from './feedback-messages/Messages.context';
 import { LoadingText } from './LoadingText.component';
@@ -44,7 +45,10 @@ export type CreateVrackProps = {
 };
 
 export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
-  const { t } = useTranslation('vrack-services/create-vrack');
+  const { t } = useTranslation([
+    'vrack-services/create-vrack',
+    NAMESPACES.ACTIONS,
+  ]);
   const queryClient = useQueryClient();
   const { addSuccessMessage } = React.useContext(MessagesContext);
   const { environment } = React.useContext(ShellContext);
@@ -100,7 +104,7 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
         slot="actions"
         type="button"
         variant={ODS_BUTTON_VARIANT.ghost}
-        label={t('modalVrackCreationCancel')}
+        label={t('cancel', { ns: NAMESPACES.ACTIONS })}
         onClick={closeModal}
       />
       {data?.contractList?.length > 0 ? (
