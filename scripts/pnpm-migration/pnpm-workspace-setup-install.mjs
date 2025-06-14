@@ -7,13 +7,8 @@ import path from 'path';
 const version = '10.11.1';
 const targetDir = path.resolve('./target/pnpm');
 const pnpmPath = path.join(targetDir, 'pnpm');
-const CLEAN_ROOT = path.resolve('./packages');
-const FOLDERS_TO_REMOVE = new Set(['dist', '.turbo']);
 const INSTALL_SCRIPT = path.resolve('./scripts/pnpm-migration/pnpm-install-dependencies.mjs');
 const REFRESH_FLAG = path.resolve('.yarn-refreshed');
-
-const args = process.argv.slice(2);
-const shouldClean = args.includes('--clean');
 
 // ✅ Check if Yarn refresh already happened
 function hasYarnBeenRefreshed() {
@@ -34,44 +29,17 @@ async function clearYarnRefreshFlag() {
   }
 }
 
-// Safe clean temporary resources
+// Cleanup on interrupt signals
 process.on('SIGINT', () => {
-  console.log('\n🛑 Caught SIGINT (Ctrl+C). Cleaning up...');
+  console.log('\n🛑 Caught SIGINT. Cleaning up...');
   clearYarnRefreshFlag();
 });
-
-// Safe clean temporary resources
 process.on('SIGTERM', () => {
   console.log('\n🛑 Caught SIGTERM. Cleaning up...');
   clearYarnRefreshFlag();
 });
 
-// 🔹 Recursively delete specified folders (excluding node_modules)
-async function findAndRemoveDirs(root, dirNames = FOLDERS_TO_REMOVE) {
-  const entries = await fs.readdir(root, { withFileTypes: true });
-  for (const entry of entries) {
-    const entryPath = path.join(root, entry.name);
-    if (entry.isDirectory()) {
-      if (entry.name === 'node_modules') continue;
-      if (dirNames.has(entry.name)) {
-        console.log(`🧹 Removing ${entryPath}`);
-        await fs.rm(entryPath, { recursive: true, force: true });
-      } else {
-        await findAndRemoveDirs(entryPath, dirNames);
-      }
-    }
-  }
-}
-
-// 🧹 Clean folders from root and inside CLEAN_ROOT
-async function cleanWorkspace() {
-  console.log('🧹 Cleaning matching folders in root and inside packages/...');
-  await findAndRemoveDirs(path.resolve('.'));
-  await findAndRemoveDirs(CLEAN_ROOT);
-  console.log('✅ Workspace clean complete.');
-}
-
-// ⬇️ Install PNPM locally in target/
+// ⬇️ Install PNPM locally
 function installPnpm() {
   console.log(`⬇️ Installing PNPM v${version} locally...`);
   mkdirSync(targetDir, { recursive: true });
@@ -91,31 +59,30 @@ function installPnpm() {
   }
 }
 
-// 🧪 Ensure PNPM was correctly installed
+// 🧪 Ensure PNPM is functional
 function verifyInstall() {
-  if (existsSync(pnpmPath)) {
-    console.log(`✔ pnpm is available at ${pnpmPath}`);
-  } else {
-    console.error(`❌ pnpm not found at ${pnpmPath} after install.`);
+  if (!existsSync(pnpmPath)) {
+    console.error('❌ pnpm not found after install.');
     process.exit(1);
   }
+  console.log(`✔ pnpm is available at ${pnpmPath}`);
 }
 
-// 📦 Trigger install logic
+// 📦 Install all dependencies
 function runInstallDependencies() {
-  console.log('📦 Installing app and shared dependencies...');
+  console.log('📦 Installing dependencies...');
   try {
     execSync(`node ${INSTALL_SCRIPT}`, { stdio: 'inherit' });
-    console.log('✅ Dependencies installed successfully.');
+    console.log('✅ Dependencies installed.');
   } catch (err) {
-    console.error('❌ Failed to install dependencies:', err.message);
+    console.error('❌ Dependency installation failed:', err.message);
     process.exit(1);
   }
 }
 
-// 🔁 Refresh Yarn to restore environment (e.g., husky)
+// 🔁 Refresh Yarn
 function refreshYarn() {
-  console.log('🔁 Refreshing Yarn (force reinstall to fix husky env)...');
+  console.log('🔁 Refreshing Yarn (force reinstall)...');
   try {
     execSync('yarn install --force', { stdio: 'inherit' });
     console.log('✅ Yarn refresh complete.');
@@ -124,36 +91,23 @@ function refreshYarn() {
   }
 }
 
-// 🔁 Main entry
+// 🔁 Main
 (async () => {
-  // Exit if this is the second pass
   await clearYarnRefreshFlag();
 
-  // Clear all generated pnpm assets and resources
-  if (shouldClean) {
-    await cleanWorkspace();
-  } else {
-    console.log('ℹ️ Skipping workspace cleaning (use --clean to enable it).');
-  }
-
-  // Install pnpm binary inside root/target/pnpm
   if (!existsSync(pnpmPath)) {
     installPnpm();
   } else {
-    console.log('✔ pnpm is already installed locally.');
+    console.log('✔ PNPM already installed.');
   }
 
-  // Check if pnpm is installed else we exit
   verifyInstall();
-
-  // Install shared and applications dependencies
   runInstallDependencies();
 
-  // Refresh yarn (once)
   if (!hasYarnBeenRefreshed()) {
     await markYarnRefreshed();
-    console.log('🔁 First pass done. Re-running yarn install to finalize environment...');
+    console.log('🔁 First pass done. Re-running yarn install...');
     refreshYarn();
-    process.exit(0); // exit cleanly
+    process.exit(0);
   }
 })();

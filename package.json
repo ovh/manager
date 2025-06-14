@@ -100,7 +100,9 @@
     ]
   },
   "scripts": {
-    "postinstall": "node scripts/pnpm-migration/pnpm-setup-install-workspace.mjs --clean",
+    "clean:full": "node scripts/pnpm-migration/pnpm-workspace-clean.mjs",
+    "pnpm-workspace-setup-install": "node scripts/pnpm-migration/pnpm-workspace-setup-install.mjs",
+    "postinstall": "yarn pnpm-workspace-setup-install",
     "build": "yarn run build:custom",
     "build:custom": "node ./scripts/pnpm-migration/packages-custom-turbo-build.mjs",
     "build:turbo": "turbo run build --concurrency=5",

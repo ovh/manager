@@ -100,8 +100,9 @@
     ]
   },
   "scripts": {
-    "preinstall": "node scripts/pnpm-migration/pnpm-setup-workspace.mjs --clean",
-    "postinstall": "node scripts/pnpm-migration/pnpm-install-dependencies.mjs",
+    "clean:full": "node scripts/pnpm-migration/pnpm-workspace-clean.mjs",
+    "pnpm-workspace-setup-install": "node scripts/pnpm-migration/pnpm-workspace-setup-install.mjs",
+    "postinstall": "yarn pnpm-workspace-setup-install",
     "build": "yarn run build:custom",
     "build:custom": "node ./scripts/pnpm-migration/packages-custom-turbo-build.mjs",
     "build:turbo": "turbo run build --concurrency=5",
@@ -125,7 +126,7 @@
     "list-dependents": "node scripts/list-dependents.js",
     "manager-cli": "yarn workspace @ovh-ux/manager-cli run manager-cli",
     "packages:publish": "scripts/publish.js",
-    "prepare": "husky install",
+    "prepare": "command -v husky >/dev/null 2>&1 && husky install || echo 'No husky, skipping'",
     "release": "scripts/release/release.sh",
     "start": "node scripts/pnpm-migration/hybrid-application-start.mjs",
     "test": "yarn run test:custom",
