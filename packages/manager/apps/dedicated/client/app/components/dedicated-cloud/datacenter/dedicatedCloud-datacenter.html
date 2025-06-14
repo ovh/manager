@@ -59,7 +59,10 @@
         >
             <span data-translate="dedicatedCloud_tab_drp"></span>
         </oui-header-tabs-item>
-        <oui-header-tabs-item data-state="{{:: $ctrl.virtualMachinesState }}">
+        <oui-header-tabs-item
+            data-state="{{:: $ctrl.virtualMachinesState }}"
+            data-ng-click=":: $ctrl.trackTab('virtual-machine')"
+        >
             <span data-translate="dedicatedCloud_tab_virtualmachine"> </span>
         </oui-header-tabs-item>
     </oui-header-tabs>
