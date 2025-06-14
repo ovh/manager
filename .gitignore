@@ -17,4 +17,5 @@ e2e-dist
 coverage
 .vscode
 .DS_Store
+**/target/**
 .xtmrc.yaml

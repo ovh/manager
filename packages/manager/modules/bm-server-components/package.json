@@ -14,7 +14,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^8.4.1",
     "angular-ui-validate": "angular-ui/ui-validate#~1.2.2",
-    "bootstrap4": "twbs/bootstrap#v4.6.2",
+    "bootstrap4": "github:twbs/bootstrap#v4.6.2",
     "ipaddr.js": "^1.6.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",

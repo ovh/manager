@@ -32,10 +32,20 @@ yarn manager-cli tests-migrate --app zimbra --testType integration --framework j
 # Preview changes without applying them (without affecting files)
 yarn manager-cli tests-migrate --app zimbra --testType unit --dry-run`
   },
+  'pkg-manager-migrate': {
+    script: 'pkg-manager-migrate',
+    description: 'Migrate a specific app to a new package manager (e.g., pnpm)',
+    help: `
+# Migrate an app from Yarn to PNPM
+yarn manager-cli pkg-manager-migrate --app zimbra --type pnpm
+
+# Dry-run preview
+yarn manager-cli pkg-manager-migrate --app zimbra --type pnpm --dry-run`,
+  },
 };
 
 const validTestTypes = ['unit', 'integration'];
-
+const validPkgManagerTypes = ['pnpm'];
 const basePath = path.resolve('../manager/apps');
 
 const getAvailableApps = () => {
@@ -160,13 +170,13 @@ if (frameworkArgIndex !== -1 && restArgs[frameworkArgIndex + 1]) {
 if (hasDryRun) extraFlags.push('--dry-run');
 
 // Handle --testType for tests-migrate only
-let testType = null;
-const typeArgIndex = restArgs.findIndex((arg) => arg === '--testType');
-if (typeArgIndex !== -1 && restArgs[typeArgIndex + 1]) {
-  testType = restArgs[typeArgIndex + 1];
-}
-
 if (command === 'tests-migrate') {
+  let testType = null;
+  const typeArgIndex = restArgs.findIndex((arg) => arg === '--testType');
+  if (typeArgIndex !== -1 && restArgs[typeArgIndex + 1]) {
+    testType = restArgs[typeArgIndex + 1];
+  }
+
   if (!testType) {
     console.error(`❌ Missing required flag: --testType <unit|integration>`);
     process.exit(1);
@@ -176,6 +186,25 @@ if (command === 'tests-migrate') {
     process.exit(1);
   }
   extraFlags.push('--testType', testType);
+}
+
+//
+if (command === 'pkg-manager-migrate') {
+  let pckManagerType = null;
+  const typeArgIndex = restArgs.findIndex((arg) => arg === '--type');
+  if (typeArgIndex !== -1 && restArgs[typeArgIndex + 1]) {
+    pckManagerType = restArgs[typeArgIndex + 1];
+  }
+
+  if (!pckManagerType) {
+    console.error(`❌ Missing required flag: --type <${validPkgManagerTypes.join('|')}>`);
+    process.exit(1);
+  }
+  if (!validPkgManagerTypes.includes(pckManagerType)) {
+    console.error(`❌ Invalid --type "${pckManagerType}". Must be one of: ${validPkgManagerTypes.join(', ')}`);
+    process.exit(1);
+  }
+  extraFlags.push('--type', restArgs[typeArgIndex + 1]);
 }
 
 // Final command

@@ -13,7 +13,7 @@
   "sideEffects": false,
   "main": "./src/index.js",
   "dependencies": {
-    "bootstrap4": "twbs/bootstrap#v4.6.2",
+    "bootstrap4": "github:twbs/bootstrap#v4.6.2",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {

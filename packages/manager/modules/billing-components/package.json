@@ -13,7 +13,8 @@
   "main": "./src/index.js",
   "dependencies": {
     "@ovh-ux/manager-models": "^2.5.3",
-    "lodash-es": "^4.17.15"
+    "lodash-es": "^4.17.15",
+    "bootstrap4": "github:twbs/bootstrap#v4.6.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^8.0.0",
@@ -26,7 +27,6 @@
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "bootstrap": "~3.3.7",
-    "bootstrap4": "twbs/bootstrap#v4.6.2",
     "moment": "^2.24.0"
   }
 }

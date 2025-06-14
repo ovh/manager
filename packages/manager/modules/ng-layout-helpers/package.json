@@ -23,14 +23,14 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.0.3",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "bootstrap4": "github:twbs/bootstrap#v4.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ui-kit": "^6.10.0",
     "angular": "^1.7.9",
-    "angular-translate": "^2.18.1",
-    "bootstrap4": "^4.0.0"
+    "angular-translate": "^2.18.1"
   }
 }
