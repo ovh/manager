@@ -1,22 +1,30 @@
 import fs from 'fs';
 
-const path = './package.json';
+const pkgPath = './package.json';
 const backupPath = './.packageManagerBackup.json';
 
-if (!fs.existsSync(backupPath)) {
-  console.log('ℹ️ No backup found, skipping restore.');
-  process.exit(0);
-}
+try {
+  if (!fs.existsSync(backupPath)) {
+    console.log('ℹ️ No backup found; skipping restore.');
+    process.exit(0);
+  }
 
-const pkg = JSON.parse(fs.readFileSync(path, 'utf-8'));
-const backup = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+  const backup = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
 
-if (!pkg.packageManager && backup.packageManager) {
-  pkg.packageManager = backup.packageManager;
-  fs.writeFileSync(path, JSON.stringify(pkg, null, 2));
+  if (pkg.packageManager === backup.packageManager) {
+    console.log('✅ packageManager already present with same value; skipping.');
+    fs.unlinkSync(backupPath);
+    process.exit(0);
+  }
+
+  const updated = { ...pkg, packageManager: backup.packageManager };
+
+  fs.writeFileSync(pkgPath, JSON.stringify(updated, null, 2));
+  fs.unlinkSync(backupPath);
+
   console.log('♻️ Restored packageManager field after install');
-} else {
-  console.log('⚠️ packageManager already present; skipping restore.');
+} catch (err) {
+  console.error('❌ Failed to restore packageManager:', err);
+  process.exit(1);
 }
-
-fs.unlinkSync(backupPath); // clean up
