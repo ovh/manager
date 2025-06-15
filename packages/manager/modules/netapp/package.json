@@ -13,7 +13,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "@ovh-ux/manager-config": "^8.4.1",
-    "bootstrap4": "twbs/bootstrap#v4.6.2",
+    "bootstrap4": "github:twbs/bootstrap#v4.6.2",
     "jsurl": "^0.1.5",
     "lodash-es": "^4.17.21"
   },
