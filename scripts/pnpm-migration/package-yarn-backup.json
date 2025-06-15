@@ -16,6 +16,7 @@
       "packages/manager/apps/cloud-connect",
       "packages/manager/apps/container",
       "packages/manager/apps/dbaas-logs",
+      "packages/manager/apps/dedicated-servers",
       "packages/manager/apps/email-domain",
       "packages/manager/apps/email-pro",
       "packages/manager/apps/exchange",

@@ -25,11 +25,11 @@ async function clearYarnRefreshFlag() {
   if (existsSync(REFRESH_FLAG)) {
     await fs.unlink(REFRESH_FLAG).catch(() => {});
     console.log('🧹 Yarn refresh flag cleared. Ready for next cycle.');
-    process.exit(0); // graceful exit
+    process.exit(0);
   }
 }
 
-// Cleanup on interrupt signals
+// Safe cleanup on interrupt signals
 process.on('SIGINT', () => {
   console.log('\n🛑 Caught SIGINT. Cleaning up...');
   clearYarnRefreshFlag();
@@ -39,36 +39,52 @@ process.on('SIGTERM', () => {
   clearYarnRefreshFlag();
 });
 
-// ⬇️ Install PNPM locally
+// ⬇️ Download and install PNPM binary directly into targetDir
 function installPnpm() {
-  console.log(`⬇️ Installing PNPM v${version} locally...`);
+  console.log(`⬇️ Downloading PNPM v${version} binary...`);
   mkdirSync(targetDir, { recursive: true });
 
   const platform = os.platform();
-  const shell = platform === 'win32' ? 'powershell' : '/bin/bash';
-  const installScript = platform === 'win32'
-    ? 'powershell -Command "Invoke-WebRequest https://get.pnpm.io/install.ps1 -UseBasicParsing | Invoke-Expression"'
-    : `curl -fsSL https://get.pnpm.io/install.sh | env SHELL=${shell} PNPM_VERSION=${version} PNPM_HOME=${targetDir} sh -`;
+  const arch = os.arch();
+
+  let binaryName = '';
+  if (platform === 'darwin') {
+    binaryName = arch === 'arm64' ? 'pnpm-macos-arm64' : 'pnpm-macos-x64';
+  } else if (platform === 'linux') {
+    binaryName = arch === 'arm64' ? 'pnpm-linux-arm64' : 'pnpm-linux-x64';
+  } else if (platform === 'win32') {
+    binaryName = 'pnpm-win.exe';
+  } else {
+    console.error(`❌ Unsupported platform: ${platform}-${arch}`);
+    process.exit(1);
+  }
+
+  const url = `https://github.com/pnpm/pnpm/releases/download/v${version}/${binaryName}`;
+  const outputPath = pnpmPath + (platform === 'win32' ? '.exe' : '');
 
   try {
-    execSync(installScript, { stdio: 'inherit' });
-    console.log(`✅ PNPM v${version} installed in ${targetDir}`);
+    execSync(`curl -fsSL ${url} -o ${outputPath}`, { stdio: 'inherit' });
+    execSync(`chmod +x ${outputPath}`);
+    console.log(`✅ PNPM v${version} downloaded to ${outputPath}`);
   } catch (err) {
-    console.error('❌ Failed to install PNPM:', err.message);
+    console.error('❌ Failed to download PNPM binary:', err.message);
     process.exit(1);
   }
 }
 
-// 🧪 Ensure PNPM is functional
+// ✅ Check if PNPM binary is functional
 function verifyInstall() {
-  if (!existsSync(pnpmPath)) {
-    console.error('❌ pnpm not found after install.');
+  const testCmd = pnpmPath + (os.platform() === 'win32' ? '.exe' : '');
+  try {
+    execSync(`${testCmd} --version`, { stdio: 'inherit' });
+    console.log(`✔ pnpm binary is working from ${testCmd}`);
+  } catch {
+    console.error('❌ pnpm binary not working after install.');
     process.exit(1);
   }
-  console.log(`✔ pnpm is available at ${pnpmPath}`);
 }
 
-// 📦 Install all dependencies
+// 📦 Run install logic
 function runInstallDependencies() {
   console.log('📦 Installing dependencies...');
   try {
@@ -98,7 +114,7 @@ function refreshYarn() {
   if (!existsSync(pnpmPath)) {
     installPnpm();
   } else {
-    console.log('✔ PNPM already installed.');
+    console.log('✔ PNPM binary already exists at', pnpmPath);
   }
 
   verifyInstall();
