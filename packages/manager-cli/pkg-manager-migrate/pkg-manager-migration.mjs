@@ -48,5 +48,7 @@ runMigration({
   scriptOrSteps: pkgManagerSteps[type],
   formatGlob: '*.tsx',
   dryRun: isDryRun,
+  testType: 'unit',
+  testCommand: 'test',
   docLink: '/development-guidelines/pnpm-migration/',
 });

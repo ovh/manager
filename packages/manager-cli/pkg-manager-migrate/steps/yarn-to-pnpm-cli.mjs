@@ -14,7 +14,7 @@ console.log('📁 Using repoRoot:', repoRoot);
 
 const appRelativePath = (appName) => `packages/manager/apps/${appName}`;
 const packageJsonPath = path.join(repoRoot, 'package.json');
-const migrationDataPath = path.join(repoRoot, 'scripts/pnpm-migration/packages-apps-migration-data.json');
+const excludeYarnAppsPath = path.join(repoRoot, 'scripts/pnpm-migration/settings/exclude-yarn-apps.json');
 const yarnBackupPath = path.join(repoRoot, 'scripts/pnpm-migration/package-yarn-backup.json');
 
 // Input
@@ -38,6 +38,7 @@ function logChange(label, details) {
   console.log(details);
 }
 
+// Step 1: Remove from root package.json
 async function updateRootPackageJson() {
   const pkg = await readJson(packageJsonPath);
   const oldPackages = pkg.workspaces?.packages || [];
@@ -57,27 +58,26 @@ async function updateRootPackageJson() {
   logChange('Updated root package.json', `❌ Removed workspace: "${appPath}"`);
 }
 
-async function updateMigrationData() {
-  const data = await readJson(migrationDataPath);
-  const field = 'exclude-yarn-apps';
-  const apps = new Set(data[field] || []);
+// Step 2: Append to exclude-yarn-apps.json
+async function updateExcludeYarnApps() {
+  const data = await readJson(excludeYarnAppsPath);
+  const apps = new Set(data);
 
   if (!apps.has(appPath)) {
     apps.add(appPath);
     if (!isDryRun) {
-      data[field] = Array.from(apps).sort();
-      await writeJson(migrationDataPath, data);
+      await writeJson(excludeYarnAppsPath, Array.from(apps).sort());
     }
-    logChange('Updated packages-apps-migration-data.json', `➕ Added "${appPath}" to ${field}`);
+    logChange('Updated exclude-yarn-apps.json', `➕ Added "${appPath}"`);
   } else {
-    console.log(`✅ "${appPath}" already present in migration config.`);
+    console.log(`✅ "${appPath}" already present in exclude-yarn-apps.json.`);
   }
 }
 
+// Step 3: Remove from backup
 async function updateYarnBackupPackage() {
   const backup = await readJson(yarnBackupPath);
 
-  // Ensure structure exists
   if (!backup.workspaces) backup.workspaces = {};
   if (!Array.isArray(backup.workspaces.packages)) backup.workspaces.packages = [];
 
@@ -98,15 +98,16 @@ async function updateYarnBackupPackage() {
   logChange('Updated package-yarn-backup.json', `❌ Removed workspace: "${appPath}"`);
 }
 
+// Entry point
 async function migrateAppToPnpm(appName) {
   console.log(`\n🚀 Migrating "${appPath}" from Yarn to PNPM...`);
   await updateRootPackageJson();
-  await updateMigrationData();
+  await updateExcludeYarnApps();
   await updateYarnBackupPackage();
   console.log('\n✅ Migration logic completed.\n');
 }
 
-// Entry
+// Run
 if (!appName) {
   console.error('❌ Please provide an application name. Example: `yarn-to-pnpm-cli.mjs zimbra`');
   process.exit(1);
