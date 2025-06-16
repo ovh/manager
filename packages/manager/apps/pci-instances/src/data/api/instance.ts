@@ -1,5 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import {
+  TInstanceDetailDto,
   TInstanceDto,
   TRetrieveInstancesQueryParams,
 } from '@/types/instance/api.type';
@@ -140,6 +141,7 @@ export const activateMonthlyBilling = (
     serviceName: projectId,
   });
 
+/** @deprecated use regionalized getRegionInstance call instead */
 export const getInstance = ({
   projectId,
   instanceId,
@@ -149,6 +151,112 @@ export const getInstance = ({
 }): Promise<TInstanceDto> =>
   v6
     .get(`/cloud/project/${projectId}/aggregated/instance/${instanceId}`)
+    .then((response) => response.data);
+
+// TODO: remove this mock function when api is ready
+export const getRegionInstanceMock = ({
+  projectId,
+  region,
+  instanceId,
+}: {
+  projectId: string;
+  region: string;
+  instanceId: string;
+}): Promise<TInstanceDetailDto> =>
+  v6
+    .get(`/cloud/project/${projectId}/region/${region}/instance/${instanceId}`)
+    .then(({ data }) => ({
+      ...data,
+      regionType: 'region',
+      image: {
+        id: data.imageId,
+        name: 'image-name',
+        deprecated: false,
+      },
+      flavor: {
+        id: data.flavorId,
+        name: data.flavorName,
+        specs: {
+          cpu: 32,
+          ram: 128000,
+          storage: 400,
+          bandwidth: {
+            public: 20000,
+            private: 20000,
+          },
+        },
+      },
+      actions: [
+        {
+          name: 'details',
+          group: 'details',
+        },
+        {
+          name: 'edit',
+          group: 'details',
+        },
+        {
+          name: 'assign_floating_ip',
+          group: 'details',
+        },
+        {
+          name: 'create_backup',
+          group: 'details',
+        },
+        {
+          name: 'create_autobackup',
+          group: 'details',
+        },
+        {
+          name: 'stop',
+          group: 'lifecycle',
+        },
+        {
+          name: 'rescue',
+          group: 'boot',
+        },
+        {
+          name: 'soft_reboot',
+          group: 'boot',
+        },
+        {
+          name: 'hard_reboot',
+          group: 'boot',
+        },
+        {
+          name: 'shelve',
+          group: 'shelve',
+        },
+        {
+          name: 'reinstall',
+          group: 'delete',
+        },
+        {
+          name: 'delete',
+          group: 'delete',
+        },
+      ],
+      prices: [
+        {
+          type: 'hour',
+          value: 297561000,
+          status: 'enabled',
+        },
+      ],
+      login: 'ssh almalinux@51.161.81.152',
+    }));
+
+export const getRegionInstance = ({
+  projectId,
+  region,
+  instanceId,
+}: {
+  projectId: string;
+  region: string;
+  instanceId: string;
+}): Promise<TInstanceDetailDto> =>
+  v6
+    .get(`/cloud/project/${projectId}/region/${region}/instance/${instanceId}`)
     .then((response) => response.data);
 
 export const editInstanceName = ({

@@ -7,25 +7,31 @@ import {
   PageLayout,
   PciGuidesHeader,
   Notifications,
-  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { TProject } from '@ovh-ux/manager-pci-common';
 import { GoBack } from '@/components/navigation/GoBack.component';
 import InstanceWrapper from './InstanceWrapper.page';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { CHANGELOG_LINKS } from '@/constants';
-import { useInstance } from '@/data/hooks/instance/useInstance';
+import { useRegionInstance } from '@/data/hooks/instance/useInstance';
 import InstanceName from './component/InstanceName.component';
-import { mapInstanceDto } from '@/data/hooks/instance/mapper/instance.mapper';
+import { getInstanceDetail } from '@/data/hooks/instance/selectors/instances.selector';
 
 const Instance: FC = () => {
   const project = useRouteLoaderData('root') as TProject;
-  const { instanceId } = useParams() as { instanceId: string };
-  const projectUrl = useProjectUrl('public-cloud');
+  const { instanceId, regionId } = useParams() as {
+    instanceId: string;
+    regionId: string;
+  };
 
-  const { data: instance, isLoading } = useInstance(instanceId, {
-    select: (dto) => mapInstanceDto(dto, projectUrl),
-  });
+  const { data: instance, isLoading } = useRegionInstance(
+    project.project_id,
+    instanceId,
+    regionId,
+    {
+      select: (dto) => getInstanceDetail(dto),
+    },
+  );
 
   return (
     <InstanceWrapper>
@@ -45,6 +51,7 @@ const Instance: FC = () => {
                   instanceId={instance.id}
                   isEditable={instance.isEditionEnabled}
                   name={instance.name}
+                  region={regionId}
                 />
               )}
             </div>

@@ -1,11 +1,17 @@
 import { InfiniteData } from '@tanstack/react-query';
-import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.type';
+import {
+  TInstanceActionDto,
+  TInstanceDetailDto,
+  TInstanceDto,
+  TInstanceStatusDto,
+} from '@/types/instance/api.type';
 import {
   TAddress,
   TInstance,
   TInstanceAction,
   TInstanceActions,
   TInstanceAddressType,
+  TInstanceDetail,
   TInstanceStatus,
   TInstanceStatusSeverity,
 } from '@/types/instance/entity.type';
@@ -65,7 +71,7 @@ const getActionHrefByName = (
   { region, id }: Pick<TInstance, 'id' | 'region'>,
 ): TInstanceAction['link'] => {
   if (name === 'details') {
-    return { path: id, isExternal: false };
+    return { path: `${id}/region/${region}`, isExternal: false };
   }
 
   if (name === 'edit') {
@@ -194,3 +200,14 @@ export const instancesSelector = (
       actions: mapInstanceActions(instanceDto, projectUrl),
       taskState: getInstanceTaskState(instanceDto.taskState),
     }));
+
+const isEditionEnabled = (actions: TInstanceActionDto[]) =>
+  actions.some(({ name }) => name === 'edit');
+
+export const getInstanceDetail = (
+  instanceDto: TInstanceDetailDto,
+): TInstanceDetail => ({
+  ...instanceDto,
+  status: getInstanceStatus(instanceDto.status),
+  isEditionEnabled: isEditionEnabled(instanceDto.actions),
+});
