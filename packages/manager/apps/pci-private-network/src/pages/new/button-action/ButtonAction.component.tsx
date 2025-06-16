@@ -1,12 +1,15 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OsdsButton,
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  useNotifications,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_VARIANT,
   ODS_BUTTON_TYPE,
@@ -15,13 +18,14 @@ import {
 import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 import { useNavigate } from 'react-router-dom';
 import { useFormContext } from 'react-hook-form';
-import { ErrorResponse } from '@/types/network.type';
+import { ErrorClass, ErrorResponse } from '@/types/network.type';
 import { ROUTE_PATHS } from '@/routes';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import {
   createPrivateNetwork,
   refreshPrivateNetworkList,
 } from '@/data/services/services';
+import GuideLink from '@/components/GuideLink/GuideLink.component';
 
 const ButtonAction: React.FC = () => {
   const { t } = useTranslation(['new', 'common']);
@@ -29,6 +33,7 @@ const ButtonAction: React.FC = () => {
 
   const form = useFormContext<NewPrivateNetworkForm>();
 
+  const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
   const projectId = project.project_id;
   const isDiscovery = isDiscoveryProject(project);
@@ -57,14 +62,27 @@ const ButtonAction: React.FC = () => {
   };
 
   const onError = (e: ErrorResponse) => {
-    addError(
-      <span>
-        {t('new:pci_projects_project_network_private_create_error', {
-          message: e?.response?.data?.message || e?.message,
-        })}
-      </span>,
-      true,
-    );
+    if (e?.response?.data?.class.includes(ErrorClass.MaxQuotaReached)) {
+      addError(
+        <Trans
+          ns="new"
+          i18nKey="pci_projects_project_network_private_create_error_quota_exceeded"
+          components={{
+            Link: <GuideLink href={`${hrefProject}/quota`} />,
+          }}
+        />,
+        true,
+      );
+    } else {
+      addError(
+        <span>
+          {t('new:pci_projects_project_network_private_create_error', {
+            message: e?.response?.data?.message || e?.message,
+          })}
+        </span>,
+        true,
+      );
+    }
   };
 
   const create = async (values: NewPrivateNetworkForm) => {
