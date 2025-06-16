@@ -1,4 +1,4 @@
-// vitest.setup.js
+// vitest.setup.ts
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 
