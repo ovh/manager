@@ -32,7 +32,7 @@ async function extractBranchInfo() {
   const branchType = branchName.split('/')[0];
 
   // Extract ticket number if it exists (e.g., "TAPC-1234" -> "TAPC-1234")
-  const ticketMatch = branchName.match(/(^([A-Z]+-\d+|\d+)$)/);
+  const ticketMatch = branchName.match(/([A-Z]+-\d+)/);
   const ticket = ticketMatch ? ticketMatch[1] : null;
 
   return {
