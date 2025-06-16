@@ -1,10 +1,10 @@
 {
   "manager_components_resource_tagging_manager_column_tag": "Tag",
-  "manager_components_resource_tagging_manager_column_tag_type": "Tag Type",
-  "manager_components_resource_tagging_manager_tag_type_custom": "Custom Type",
-  "manager_components_resource_tagging_manager_tag_type_ovhcloud": "OVHcloud Type",
+  "manager_components_resource_tagging_manager_column_tag_type": "Tipo de tag",
+  "manager_components_resource_tagging_manager_tag_type_custom": "Tipo personalizado",
+  "manager_components_resource_tagging_manager_tag_type_ovhcloud": "Tipo OVHcloud",
   "manager_components_resource_tagging_manager_action_assign_tag": "Atribuir uma tag",
-  "manager_components_resource_tagging_manager_action_unassign_tag": "Desatribuir",
-  "manager_components_resource_tagging_manager_action_tag_details": "Tag details",
+  "manager_components_resource_tagging_manager_action_unassign_tag": "Anular atribuição",
+  "manager_components_resource_tagging_manager_action_tag_details": "Detalhes da tag",
   "manager_components_resource_tagging_manager_empty": "Nenhuma tag atribuída"
 }

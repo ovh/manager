@@ -1,8 +1,8 @@
 {
-  "manager_components_resource_tagging_dashboard_tile_title": "Etiquetas {{beta}}",
-  "manager_components_resource_tagging_dashboard_tile_assigned": "Etiquetas asignadas",
-  "manager_components_resource_tagging_dashboard_tile_assigned_button": "Gestionar mis etiquetas",
-  "manager_components_resource_tagging_dashboard_tile_assigned_more": "Más etiquetas",
-  "manager_components_resource_tagging_dashboard_tile_empty": "No hay etiquetas asociadas",
-  "manager_components_resource_tagging_dashboard_tile_empty_button": "Añadir una etiqueta"
+  "manager_components_resource_tagging_dashboard_tile_title": "Tags {{beta}}",
+  "manager_components_resource_tagging_dashboard_tile_assigned": "Tags asignadas",
+  "manager_components_resource_tagging_dashboard_tile_assigned_button": "Gestionar mis tags",
+  "manager_components_resource_tagging_dashboard_tile_assigned_more": "Más tags",
+  "manager_components_resource_tagging_dashboard_tile_empty": "No hay tags asociadas",
+  "manager_components_resource_tagging_dashboard_tile_empty_button": "Añadir una tag"
 }
