@@ -7,7 +7,7 @@ import {
 import {
   editInstanceName,
   getInstance,
-  getRegionInstance,
+  getRegionInstanceMock,
 } from '@/data/api/instance';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { TInstanceDetailDto, TInstanceDto } from '@/types/instance/api.type';
@@ -84,7 +84,7 @@ export const getRegionInstanceQuery = <T = TInstanceDetailDto>(
     'region',
     region,
   ]),
-  queryFn: () => getRegionInstance({ projectId, region, instanceId }),
+  queryFn: () => getRegionInstanceMock({ projectId, region, instanceId }),
 });
 
 export const useRegionInstance = <TData = TInstanceDetailDto>(
