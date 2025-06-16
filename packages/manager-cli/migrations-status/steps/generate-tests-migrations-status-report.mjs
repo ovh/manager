@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { getAvailableApps } from '../../utils/AppUtils.mjs';
+import { getReactApplications } from '../../utils/AppUtils.mjs';
 import { getTestMigrationStatus } from '../../utils/TestUtils.mjs';
 import { renderReport, reportOutputBasePath } from '../../utils/ExportUtils.mjs';
 
@@ -22,14 +22,14 @@ const outputFile = format === 'json'
  * Generates and prints a Tests migration status table for all applications.
  */
 const generateTestsMigrationsStatusReport = () => {
-  const apps = appFilter ? [appFilter] : getAvailableApps();
+  const apps = appFilter ? [appFilter] : getReactApplications();
   const report = apps.map((app) => ({
     Application: app,
     'Tests Migration': getTestMigrationStatus(app, { verbose: isDryRun }),
   }));
 
   renderReport(report, {
-    title: 'Tests Migration',
+    title: 'Follow Up Tests Migration',
     statusKeys: ['Tests Migration'],
     format,
     filename: outputFile,

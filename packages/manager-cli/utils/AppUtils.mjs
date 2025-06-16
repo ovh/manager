@@ -1,10 +1,36 @@
-import { existsSync, readdirSync, statSync } from 'fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, resolve, join } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const applicationsBasePath = resolve(__dirname, '../../manager/apps');
+
+/**
+ * Check if a given app is a React application
+ * @param appName
+ * @returns {boolean}
+ */
+const isReactApp = (appName) => {
+  try {
+    const pkgPath = resolve(applicationsBasePath, appName, 'package.json');
+    if (!existsSync(pkgPath)) return false;
+
+    const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'));
+    const deps = {
+      ...pkg.dependencies,
+      ...pkg.devDependencies,
+    };
+
+    return (
+      deps['react'] !== undefined &&
+      deps['react-dom'] !== undefined
+    );
+  } catch (err) {
+    console.error(`❌ Failed to read package.json for ${appName}`, err);
+    return false;
+  }
+};
 
 /**
  * Resolve all potential route file locations for a given app.
@@ -52,4 +78,14 @@ export const getAvailableApps = () => {
     console.error(error);
     return [];
   }
+};
+
+
+/**
+ * Get all React applications
+ * @returns {string[]}
+ */
+export const getReactApplications = () => {
+  const allApps = getAvailableApps();
+  return allApps.filter(isReactApp);
 };

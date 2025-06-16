@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { getAvailableApps, resolveRoutePath } from '../../utils/AppUtils.mjs';
+import { getReactApplications, resolveRoutePath } from '../../utils/AppUtils.mjs';
 import fs from 'fs/promises';
 import { existsSync } from 'fs';
 import { renderReport, reportOutputBasePath } from '../../utils/ExportUtils.mjs';
@@ -43,7 +43,7 @@ const getRouteMigrationStatus = async (appName) => {
  * Run migration status analysis and render output.
  */
 const generateRoutesMigrationsStatusReport = async () => {
-  const apps = getAvailableApps();
+  const apps = getReactApplications();
   const report = [];
 
   for (const app of apps) {
@@ -52,7 +52,7 @@ const generateRoutesMigrationsStatusReport = async () => {
   }
 
   renderReport(report, {
-    title: 'Routes Migration',
+    title: 'Follow Up Routes Migration',
     statusKeys: ['Routes Migration'],
     format,
     filename: outputFile,
