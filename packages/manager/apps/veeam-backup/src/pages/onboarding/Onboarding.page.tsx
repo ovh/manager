@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useOrganizationList } from '@ovh-ux/manager-module-vcd-api';
 import { useGuideUtils } from './useGuideUtils';
-import onboardingImgSrc from '@/assets/veeamxOVHcloud.svg';
+import onboardingImgSrc from '@/assets/veeamxOVHcloud.svg?url';
 import { urls } from '@/routes/routes.constant';
 import { useBillingUrl } from '@/components/Links/BillingLink.component';
 import { productFullName } from '@/veeam-backup.config';
