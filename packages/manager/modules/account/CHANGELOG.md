@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.12.4...@ovh-ux/manager-account@0.13.0) (2025-06-16)
+
+
+### Features
+
+* **account:** add a shorcut to the contracts page ([1efae96](https://github.com/ovh/manager/commit/1efae96c4863115aa086c13fc32bc06e3c053721)), closes [#MANAGER-18361](https://github.com/ovh/manager/issues/MANAGER-18361)
+
+
+
+
+
 ## [0.12.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.12.3...@ovh-ux/manager-account@0.12.4) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-account
