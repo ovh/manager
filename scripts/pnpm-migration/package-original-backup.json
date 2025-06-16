@@ -30,17 +30,12 @@
     ]
   },
   "scripts": {
-    "clean:full": "node scripts/pnpm-migration/pnpm-workspace-clean.mjs",
-    "pnpm-workspace-setup-install": "node scripts/pnpm-migration/pnpm-workspace-setup-install.mjs",
-    "pnpm-workspace-prepare": "node scripts/pnpm-migration/remove-package-manager-field.mjs",
-    "pnpm-workspace-restore": "node scripts/pnpm-migration/restore-package-manager-field.mjs",
-    "preinstall": "run-s pnpm-workspace-prepare",
-    "postinstall": "run-s pnpm-workspace-setup-install pnpm-workspace-restore",
     "build": "yarn run build:custom",
     "build:custom": "node ./scripts/pnpm-migration/packages-custom-turbo-build.mjs",
     "build:turbo": "turbo run build --concurrency=5",
     "clean": "yarn run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf \"packages/**/dist\"",
+    "clean:full": "node scripts/pnpm-migration/pnpm-workspace-clean.mjs",
     "commit": "node scripts/commit.js",
     "dev": "turbo run dev",
     "format": "run-p format:*",
@@ -50,6 +45,8 @@
     "format:md": "yarn run lint:md --fix",
     "format:tsx": "yarn run lint:tsx --fix && prettier --write \"packages/{manager/apps,manager-react-components}/**/*.{tsx,ts}\"",
     "generate:uapp": "yarn workspace @ovh-ux/manager-generator run start",
+    "preinstall": "yarn pnpm-workspace-prepare",
+    "postinstall": "yarn pnpm-workspace-setup-install && yarn pnpm-workspace-restore",
     "lint": "run-p lint:*",
     "lint:css": "stylelint \"packages/**/*.{css,less,scss}\"",
     "lint:html": "htmlhint --ignore \"**/dist/**,**/www/**,**/coverage/**,**/screenshot/**,**/docs-api/**\" \"packages/**/*.html\"",
@@ -59,6 +56,9 @@
     "list-dependents": "node scripts/list-dependents.js",
     "manager-cli": "yarn workspace @ovh-ux/manager-cli run manager-cli",
     "packages:publish": "scripts/publish.js",
+    "pnpm-workspace-prepare": "node scripts/pnpm-migration/remove-package-manager-field.mjs",
+    "pnpm-workspace-restore": "node scripts/pnpm-migration/restore-package-manager-field.mjs",
+    "pnpm-workspace-setup-install": "node scripts/pnpm-migration/pnpm-workspace-setup-install.mjs",
     "prepare": "command -v husky >/dev/null 2>&1 && husky install || echo 'No husky, skipping'",
     "release": "scripts/release/release.sh",
     "start": "node scripts/pnpm-migration/hybrid-application-start.mjs",
@@ -146,9 +146,9 @@
     "vite": "^5.4.18",
     "whatwg-fetch": "^3.6.2"
   },
+  "packageManager": "yarn@1.22.22",
   "engines": {
     "node": "^22",
     "yarn": ">=1.21.1"
-  },
-  "packageManager": "yarn@1.22.22"
+  }
 }

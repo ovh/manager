@@ -13,8 +13,8 @@
   "main": "./src/index.js",
   "dependencies": {
     "@ovh-ux/manager-models": "^2.5.3",
-    "lodash-es": "^4.17.15",
-    "bootstrap4": "github:twbs/bootstrap#v4.6.2"
+    "bootstrap4": "github:twbs/bootstrap#v4.6.2",
+    "lodash-es": "^4.17.15"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^8.0.0",

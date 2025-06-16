@@ -70,8 +70,8 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.8",
     "@module-federation/runtime": "^0.15.0",
+    "@ovh-ux/manager-webpack-config": "^7.0.8",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"
