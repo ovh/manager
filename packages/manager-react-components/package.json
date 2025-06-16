@@ -23,9 +23,8 @@
     "dev": "tsc && vite build",
     "prepare": "tsc && vite build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
-    "test": "TZ=UTC vitest run",
-    "test:cov": "TZ=UTC vitest run --coverage",
-    "test:watch": "TZ=UTC vitest"
+    "test": "TZ=UTC manager-test",
+    "test:ci": "TZ=UTC manager-test run --coverage"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,json,css,md}": [
@@ -54,11 +53,9 @@
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
     "@ovh-ux/manager-tailwind-config": "^0.4.0",
     "@ovh-ux/manager-vite-config": "^0.11.0",
+    "@ovh-ux/manager-tests-setup": "^0.2.0",
     "@ovhcloud/ods-components": "^18.6.2",
     "@ovhcloud/ods-themes": "^18.6.2",
-    "@testing-library/jest-dom": "6.4.2",
-    "@testing-library/react": "14.0.0",
-    "@types/jest": "^29.5.5",
     "@types/lodash.isdate": "^4.0.9",
     "@types/lodash.isequal": "^4.5.0",
     "@types/node": "20.4.9",
@@ -93,13 +90,11 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^14.0.5",
     "react-router-dom": "^6.3.0",
-    "ts-jest": "^29.1.1",
     "typescript": "^4.3.2",
     "undici": "5.29.0",
     "vite": "^6.0.7",
     "vite-plugin-dts": "^4.5.3",
     "vite-plugin-static-copy": "^2.3.0",
-    "vitest": "^3.0.8",
     "zustand": "^4.5.5"
   },
   "peerDependencies": {
