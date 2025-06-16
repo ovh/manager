@@ -21,12 +21,12 @@ export default function DashboardPage() {
     [useResolvedPath],
   );
 
-  useEffect(() => {
-    const activeTab = tabsList.find((tab) => tab.to === location.pathname);
-    if (!activeTab) {
-      navigate(tabsList[0].to);
-    }
-  }, [location.pathname, navigate, tabsList]);
+  // useEffect(() => {
+  //   const activeTab = tabsList.find((tab) => tab.to === location.pathname);
+  //   if (!activeTab) {
+  //     navigate(tabsList[0].to);
+  //   }
+  // }, [location.pathname, navigate, tabsList]);
 
-  return <div>{/* Render your component content here */}</div>;
+  return <div>Hello</div>;
 }

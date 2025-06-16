@@ -1,4 +1,4 @@
-export const urls = {
+export const APP_URL = {
   root: '/',
   onboarding: 'onboarding',
   listing: '',

@@ -6681,7 +6681,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@^0.8.7":
+"@ovh-ux/manager-react-shell-client@*", "@ovh-ux/manager-react-shell-client@^0.8.7":
   version "0.8.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.7.tgz#aa40336eb8fc68458a89801d0ae24607d57c8252"
   integrity sha512-/+FTo1KThBGRQj15gyxZgjQG4E86mdeEZ4T3a0PdY3sixqgu30b7CI3NcIkPDEPmDv/3rfCNouceXvPNoICrIg==
@@ -6795,6 +6795,19 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
+"@ovhcloud/ods-components@^18.3.0":
+  version "18.6.3"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.3.tgz#6915b3f6b6618d51253d70f75bb3e99e8eb78700"
+  integrity sha512-rByW67Fr1Rr+HZ7rNhGDA+mHBN3XQRF9Y3VhEwUcUf3OG5QnfS9NhduXWHweKOpzZUD7hbfoqh0tRolNALrOkw==
+  dependencies:
+    "@floating-ui/dom" "1.6.11"
+    "@stencil/core" "4.16.0"
+    google-libphonenumber "3.2.35"
+    mark.js "8.11.1"
+    tom-select "2.3.1"
+    tslib "2.6.3"
+    vanillajs-datepicker "1.3.4"
+
 "@ovhcloud/ods-components@^18.6.2":
   version "18.6.2"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.2.tgz#eac36f664d0a5f7773dde14addd7db9db1346f7f"
@@ -6821,6 +6834,11 @@
   integrity sha512-0Fr6ZJ10btgkGAXJDun5tftlV1gYFevB7piQiYT4kFjfVXmxmpSw9A1nusPHiZfmV+Dnzv3/+SVxpYK/uccYXw==
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
+
+"@ovhcloud/ods-themes@^18.3.0":
+  version "18.6.3"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.3.tgz#a8a6162a8d260de199c887b6e0fd903160f7b2e9"
+  integrity sha512-U+S/Kfki6aLchHf+rQiFggP9Zg/km4RV+zTWPbK1Ms76f2nT1RmHz1MhURhbRjv9iwdfKUeIKCcV8j73VAwOGA==
 
 "@ovhcloud/ods-themes@^18.4.1":
   version "18.4.1"
@@ -13592,35 +13610,10 @@ camelcase@^6.0.0, camelcase@^6.2.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-6.3.0.tgz#5685b95eb209ac9c0c177467778c9c84df58ba9a"
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
-caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001464:
-  version "1.0.30001607"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001607.tgz#b91e8e033f6bca4e13d3d45388d87fa88931d9a5"
-  integrity sha512-WcvhVRjXLKFB/kmOFVwELtMxyhq3iM/MvmXcyCe2PNf166c39mptscOc/45TTS96n2gpNV2z7+NakArTWZCQ3w==
-
-caniuse-lite@^1.0.30001599:
-  version "1.0.30001636"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001636.tgz#b15f52d2bdb95fad32c2f53c0b68032b85188a78"
-  integrity sha512-bMg2vmr8XBsbL6Lr0UHXy/21m84FTxDLWn2FSqMd5PrlbMxwJlQnC2YWYxVgp66PZE+BBNF2jYQUBKCo1FDeZg==
-
-caniuse-lite@^1.0.30001640:
-  version "1.0.30001643"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001643.tgz#9c004caef315de9452ab970c3da71085f8241dbd"
-  integrity sha512-ERgWGNleEilSrHM6iUz/zJNSQTP8Mr21wDWpdgvRwcTXGAq6jMtOUPP4dqFPTdKqZ2wKTdtB+uucZ3MRpAUSmg==
-
-caniuse-lite@^1.0.30001669:
-  version "1.0.30001680"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001680.tgz#5380ede637a33b9f9f1fc6045ea99bd142f3da5e"
-  integrity sha512-rPQy70G6AGUMnbwS1z6Xg+RkHYPAi18ihs47GH0jcxIG7wArmPgY3XbS2sRdBbxJljp3thdT8BIqv9ccCypiPA==
-
-caniuse-lite@^1.0.30001688:
-  version "1.0.30001703"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001703.tgz#977cb4920598c158f491ecf4f4f2cfed9e354718"
-  integrity sha512-kRlAGTRWgPsOj7oARC9m1okJEXdL/8fekFVcxA8Hl7GH4r/sN4OJn/i6Flde373T50KS7Y37oFbMwlE8+F42kQ==
-
-caniuse-lite@^1.0.30001702:
-  version "1.0.30001709"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001709.tgz#61b34187b52851ef34c44d90f39a94dc5b0acb43"
-  integrity sha512-NgL3vUTnDrPCZ3zTahp4fsugQ4dc7EKTSzwQDPEel6DMoMnfH2jhry9n2Zm8onbSR+f/QtKHFOA+iAQu4kbtWA==
+caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001464, caniuse-lite@^1.0.30001599, caniuse-lite@^1.0.30001640, caniuse-lite@^1.0.30001669, caniuse-lite@^1.0.30001688, caniuse-lite@^1.0.30001702:
+  version "1.0.30001723"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001723.tgz"
+  integrity sha512-1R/elMjtehrFejxwmexeXAtae5UO9iSyFn6G/I806CYC/BLyyBk1EPhrKBkWhy6wM6Xnm47dSJQec+tLJ39WHw==
 
 capital-case@^1.0.4:
   version "1.0.4"
@@ -16128,6 +16121,11 @@ element-internals-polyfill@^3.0.0, element-internals-polyfill@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-3.0.1.tgz#46e69c38c87313d9863fa4ec949517c26ca3beb5"
   integrity sha512-gHt0mrRy/y7VIymHIcq1U/IZOci3Z8qUy/YyMBSoSIfMHqO4v6Sm6igGpoFeljroo0Q2wjkInUafB79M6WAocQ==
+
+element-internals-polyfill@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-3.0.2.tgz#df7a0dcd5e39f64d46115efc61e497359edc3e8e"
+  integrity sha512-uB0/Qube3lkwh8SmkTnGIyUgJ9YdqVSzIoHMRCEQjAbD4Y5UzsVbch1tIxjTgUe5k3gy1U0ZMKMJ90A81lqwig==
 
 email-addresses@^5.0.0:
   version "5.0.0"

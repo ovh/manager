@@ -2,11 +2,11 @@ import { lazy } from 'react';
 import { Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
-import { urls } from '@/routes/routes.constant';
+import { APP_URL } from '@/routes/routes.constant';
 
-const LayoutPage = lazy(() => import('@/pages/layout'));
+const LayoutPage = lazy(() => import('@/pages/Layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing'));
-const DashboardPage = lazy(() => import('@/pages/dashboard'));
+const DashboardPage = lazy(() => import('@/pages/dashboard/DashboardPage'));
 const GeneralInfosPage = lazy(() =>
   import('@/pages/dashboard/general-informations'),
 );
@@ -26,7 +26,17 @@ export default (
     }
   >
     <Route
-      path={urls.listing}
+      path={APP_URL.dashboard}
+      Component={DashboardPage}
+      handle={{
+        tracking: {
+          pageName: 'index',
+          pageType: PageType.listing,
+        },
+      }}
+    />
+    <Route
+      path={APP_URL.listing}
       Component={ListingPage}
       handle={{
         tracking: {
@@ -35,7 +45,7 @@ export default (
         },
       }}
     />
-    <Route path={urls.dashboard} Component={DashboardPage}>
+    <Route path={APP_URL.dashboard} Component={DashboardPage}>
       <Route
         path=""
         Component={GeneralInfosPage}
@@ -47,7 +57,7 @@ export default (
         }}
       />
       <Route
-        path={urls.tab2}
+        path={APP_URL.tab2}
         Component={Tab2Page}
         handle={{
           tracking: {
@@ -58,7 +68,7 @@ export default (
       />
     </Route>
     <Route
-      path={urls.onboarding}
+      path={APP_URL.onboarding}
       Component={OnboardingPage}
       handle={{
         tracking: {

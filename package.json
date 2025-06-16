@@ -69,6 +69,7 @@
     "rollup-plugin-sass": "1.12.16",
     "sass": "1.56.1"
   },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.8.0",
     "@babel/helper-string-parser": "^7.18.10",
