@@ -29,23 +29,6 @@ export const ActionCell: React.FC<{
       variant={ODS_BUTTON_VARIANT.ghost}
       items={[
         {
-          id: 0,
-          label: t('action-editServiceDisplayName'),
-          onClick: () => {
-            trackClick({
-              location: PageLocation.datagrid,
-              buttonType: ButtonType.button,
-              actionType: 'navigation',
-              actions: ['edit-endpoints'],
-            });
-            navigate(
-              urls.endpointsEdit
-                .replace(':id', vs.id)
-                .replace(':urn', endpoint.managedServiceURN),
-            );
-          },
-        },
-        {
           id: 1,
           label: t('action-deleteServiceEndpoint'),
           color: ODS_BUTTON_COLOR.critical,
