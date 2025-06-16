@@ -3,7 +3,6 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Navigate } from 'react-router-dom';
 import { RedirectionGuard } from './redirection-guard.component';
-import '@testing-library/jest-dom';
 
 vi.mock('react-router-dom', () => ({
   Navigate: vi.fn(() => null),
