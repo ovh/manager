@@ -16,5 +16,6 @@
   "user_account_dashboard_customer_code": "Codice cliente",
   "user_account_dashboard_nichandle": "NIC handle",
   "user_account_dashboard_shortcut_MANAGE_USERS": "Gestisci i tuoi utenti",
-  "user_account_dashboard_new": "Novità!"
+  "user_account_dashboard_new": "Novità!",
+  "user_account_dashboard_shortcut_ALL_AGREEMENTS": "Visualizzare i miei contratti"
 }

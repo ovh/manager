@@ -138,7 +138,8 @@ describe('Header.component', () => {
     }));
 
     await act(async () => {
-      render(<HeaderComponent />);
+      const iframeRef = { current: document.createElement("iframe")};
+      render(<HeaderComponent iframeRef={iframeRef} />);
     });
 
     await waitFor(() => {
@@ -161,7 +162,8 @@ describe('Header.component', () => {
     async (_, legalForm) => {
       mockedUser.legalform = legalForm;
       await act(async () => {
-        render(<HeaderComponent />);
+        const iframeRef = { current: document.createElement("iframe")};
+        render(<HeaderComponent iframeRef={iframeRef} />);
       });
       if (legalForm === LEGAL_FORMS.CORPORATION) {
         expect(screen.getByText(/Testcompany/)).toBeInTheDocument();
