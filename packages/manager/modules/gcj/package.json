@@ -26,14 +26,15 @@
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },
-  "dependencies": {
-    "@ovh-ux/manager-react-components": "^2.27.0"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@ovh-ux/manager-react-components": "^2.27.0",
     "@ovh-ux/manager-tests-setup": "^0.2.0",
     "@ovh-ux/manager-vite-config": "^0.10.0",
     "typescript": "^5.1.6",
     "vite": "^6.0.7"
   },
-  "peerDependencies": {}
+  "peerDependencies": {
+    "@ovh-ux/manager-react-components": "^2.27.0"
+  }
 }
