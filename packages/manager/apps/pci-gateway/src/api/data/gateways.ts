@@ -7,6 +7,15 @@ export type TNewGateway = {
   model: string;
 };
 
+export type TGatewayError = {
+  class: string;
+  message: string;
+};
+
+export enum TGatewayErrorClass {
+  MaxQuotaReached = 'MaxQuotaReached',
+}
+
 export const createGateway = async (
   projectId: string,
   regionName: string,
@@ -22,7 +31,7 @@ export const createGateway = async (
     return data;
   } catch (e) {
     const error = e as AxiosError;
-    throw new Error((error.response.data as { message: string })?.message);
+    throw error.response.data;
   }
 };
 
