@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import {
   IcebergFetchParamsV2,
   IcebergFetchResultV2,
@@ -121,20 +121,23 @@ export function useResourcesIcebergV2<T>({
     [columns],
   );
 
-  const onSearch = (search: string) => {
-    if (searchableColumn) {
-      setSearchFilter(
-        !search || search.length === 0
-          ? null
-          : {
-              key: searchableColumn.id,
-              value: searchInput,
-              comparator: FilterComparator.Includes,
-              label: searchableColumn.id,
-            },
-      );
-    }
-  };
+  const onSearch = useCallback(
+    (search: string) => {
+      if (searchableColumn) {
+        setSearchFilter(
+          !search || search.length === 0
+            ? null
+            : {
+                key: searchableColumn.id,
+                value: searchInput,
+                comparator: FilterComparator.Includes,
+                label: searchableColumn.id,
+              },
+        );
+      }
+    },
+    [searchableColumn, searchInput],
+  );
 
   return {
     ...query,

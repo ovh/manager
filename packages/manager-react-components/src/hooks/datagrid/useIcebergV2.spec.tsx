@@ -5,8 +5,14 @@ import {
   QueryClientProvider,
   useInfiniteQuery,
 } from '@tanstack/react-query';
-import { renderHook } from '@testing-library/react';
+import { renderHook, act, waitFor } from '@testing-library/react';
+import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { useResourcesIcebergV2 } from './useIcebergV2';
+
+interface TestData {
+  ip: string;
+  newUpgradeSystem: boolean;
+}
 
 vitest.mock('@tanstack/react-query', async () => {
   const originalModule = await vitest.importActual('@tanstack/react-query');
@@ -16,7 +22,7 @@ vitest.mock('@tanstack/react-query', async () => {
   };
 });
 
-const renderUseIcebergV2Hook = () => {
+const renderUseIcebergV2Hook = (props = {}) => {
   const queryClient = new QueryClient();
 
   const wrapper = ({ children }: React.PropsWithChildren) => (
@@ -25,9 +31,24 @@ const renderUseIcebergV2Hook = () => {
 
   const { result } = renderHook(
     () =>
-      useResourcesIcebergV2({
+      useResourcesIcebergV2<TestData>({
         route: '/dedicated/nasha',
         queryKey: ['/dedicated/nasha'],
+        columns: [
+          {
+            id: 'ip',
+            isSearchable: true,
+            label: 'IP Address',
+            cell: (data: TestData) => <div>{data.ip}</div>,
+          },
+          {
+            id: 'newUpgradeSystem',
+            isFilterable: true,
+            label: 'Upgrade System',
+            cell: (data: TestData) => <div>{data.newUpgradeSystem}</div>,
+          },
+        ],
+        ...props,
       }),
     {
       wrapper,
@@ -111,5 +132,91 @@ describe('useIcebergV2', () => {
     const result = renderUseIcebergV2Hook();
     const { hasNextPage } = result.current;
     expect(hasNextPage).toBeTruthy();
+  });
+
+  describe('Search functionality', () => {
+    it('should trigger search with correct filter', () => {
+      const result = renderUseIcebergV2Hook();
+
+      act(() => {
+        result.current.search.setSearchInput('51.222');
+      });
+
+      waitFor(() => {
+        const { data } = result.current;
+        expect(result?.current?.search.searchInput).toBe('51.222');
+      });
+    });
+  });
+
+  describe('Filter functionality', () => {
+    it('should add a filter', () => {
+      const result = renderUseIcebergV2Hook();
+
+      act(() => {
+        result.current.filters.add({
+          key: 'newUpgradeSystem',
+          value: 'true',
+          comparator: FilterComparator.IsEqual,
+          label: 'Upgrade System',
+        });
+      });
+
+      expect(result.current.filters.filters).toHaveLength(1);
+      expect(result.current.filters.filters[0]).toEqual({
+        key: 'newUpgradeSystem',
+        value: 'true',
+        comparator: FilterComparator.IsEqual,
+        label: 'Upgrade System',
+      });
+    });
+
+    it('should remove a filter', () => {
+      const result = renderUseIcebergV2Hook();
+      const filter = {
+        key: 'newUpgradeSystem',
+        value: 'true',
+        comparator: FilterComparator.IsEqual,
+        label: 'Upgrade System',
+      };
+
+      act(() => {
+        result.current.filters.add(filter);
+        result.current.filters.remove(filter);
+      });
+
+      expect(result.current.filters.filters).toHaveLength(0);
+    });
+  });
+
+  describe('Combined Search and Filter', () => {
+    it('should handle both search and filters together', async () => {
+      const result = renderUseIcebergV2Hook();
+
+      act(() => {
+        // Add a filter
+        result.current.filters.add({
+          key: 'newUpgradeSystem',
+          value: 'true',
+          comparator: FilterComparator.IsEqual,
+          label: 'Upgrade System',
+        });
+
+        // Set search
+        result.current.search.setSearchInput('51.222');
+        result.current.search.onSearch('51.222');
+      });
+
+      await waitFor(() => {
+        expect(result.current.filters.filters).toHaveLength(1);
+        expect(result.current.filters.filters[0]).toEqual({
+          key: 'newUpgradeSystem',
+          value: 'true',
+          comparator: FilterComparator.IsEqual,
+          label: 'Upgrade System',
+        });
+        expect(result.current.search.searchInput).toBe('51.222');
+      });
+    });
   });
 });
