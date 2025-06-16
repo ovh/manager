@@ -5,7 +5,7 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
-import onboardingImgSrc from './hycu-x-ovhcloud.svg';
+import onboardingImgSrc from './hycu-x-ovhcloud.svg?url';
 import HYCU_CONFIG from '@/hycu.config';
 import { urls } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constant';
