@@ -11,12 +11,7 @@ export default defineConfig({
     setupFiles: [],
     coverage: {
       include: ['src'],
-      exclude: [
-        'src/vite-*.ts',
-        'src/App.tsx',
-        'src/index.tsx',
-        'src/pages/layout.tsx',
-      ],
+      exclude: [],
     },
     testTimeout: 60_000,
     fileParallelism: false,

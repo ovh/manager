@@ -4,6 +4,7 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import NotFound from '@/alldoms/pages/404';
 import { urls } from '@/alldoms/routes/routes.constant';
+import Domain from '@/alldoms/pages/ongoingOperations/Domain';
 
 const LayoutPage = React.lazy(() => import('@/alldoms/pages/layout'));
 const AllDomListingPage = React.lazy(() =>
@@ -81,6 +82,17 @@ export default (
         }}
       ></Route>
     </Route>
+    <Route
+      path={urls.ongoingOperations}
+      Component={Domain}
+      id="ongoing-operations"
+      handle={{
+        tracking: {
+          pageName: 'onboarding',
+          pageType: PageType.onboarding,
+        },
+      }}
+    ></Route>
     <Route path="*" element={<NotFound />} />
   </>
 );

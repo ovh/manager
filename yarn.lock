@@ -6583,6 +6583,11 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
+"@ovh-ux/manager-common-translations@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.6.0.tgz#622e0407c0b63b498e4d84f771aec96b64ad1a94"
+  integrity sha512-omxrCIGsjWzH8I3DLro9GLgsiBLwIP8KJR1BtAidy2lqUXBZt2yIwdW2i3W/hPTrKKWzfIVhx8vJfYK6UWu/EA==
+
 "@ovh-ux/manager-core-api@^0.10.1":
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.10.1.tgz#139b02351d8bd72479fbc5a6861dae17a875108e"
@@ -6690,7 +6695,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@^0.8.7":
+"@ovh-ux/manager-react-shell-client@^0.8.6", "@ovh-ux/manager-react-shell-client@^0.8.7":
   version "0.8.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.7.tgz#aa40336eb8fc68458a89801d0ae24607d57c8252"
   integrity sha512-/+FTo1KThBGRQj15gyxZgjQG4E86mdeEZ4T3a0PdY3sixqgu30b7CI3NcIkPDEPmDv/3rfCNouceXvPNoICrIg==
@@ -6809,6 +6814,19 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
+"@ovhcloud/ods-components@^18.6.0":
+  version "18.6.3"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.3.tgz#6915b3f6b6618d51253d70f75bb3e99e8eb78700"
+  integrity sha512-rByW67Fr1Rr+HZ7rNhGDA+mHBN3XQRF9Y3VhEwUcUf3OG5QnfS9NhduXWHweKOpzZUD7hbfoqh0tRolNALrOkw==
+  dependencies:
+    "@floating-ui/dom" "1.6.11"
+    "@stencil/core" "4.16.0"
+    google-libphonenumber "3.2.35"
+    mark.js "8.11.1"
+    tom-select "2.3.1"
+    tslib "2.6.3"
+    vanillajs-datepicker "1.3.4"
+
 "@ovhcloud/ods-components@^18.6.2":
   version "18.6.2"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.2.tgz#eac36f664d0a5f7773dde14addd7db9db1346f7f"
@@ -6840,6 +6858,11 @@
   version "18.4.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.4.1.tgz#1c8dfeff1ba0b829fd61e8dea41af4cdbed46912"
   integrity sha512-bezBp/Bgbo19IFPJ/+a/bFt2IArjq8wGrHPshpk/bVVZsxkgpAiUfRERmftU+l7gYU3e+yvFdopNL6eRaJDPWQ==
+
+"@ovhcloud/ods-themes@^18.6.0":
+  version "18.6.3"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.3.tgz#a8a6162a8d260de199c887b6e0fd903160f7b2e9"
+  integrity sha512-U+S/Kfki6aLchHf+rQiFggP9Zg/km4RV+zTWPbK1Ms76f2nT1RmHz1MhURhbRjv9iwdfKUeIKCcV8j73VAwOGA==
 
 "@ovhcloud/ods-themes@^18.6.2":
   version "18.6.2"
@@ -25798,15 +25821,15 @@ pump@^3.0.0:
     end-of-stream "^1.1.0"
     once "^1.3.1"
 
+punycode@2.3.1, punycode@^2.1.0, punycode@^2.1.1, punycode@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.1.tgz#027422e2faec0b25e1549c3e1bd8309b9133b6e5"
+  integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
+
 punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
   integrity sha512-jmYNElW7yvO7TV33CjSmvSiE2yco3bV2czu/OzDKdMNVZQWfxCblURLhf+47syQRBntjfLdd/H0egrzIG+oaFQ==
-
-punycode@^2.1.0, punycode@^2.1.1, punycode@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.1.tgz#027422e2faec0b25e1549c3e1bd8309b9133b6e5"
-  integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
 
 pure-rand@^6.0.0:
   version "6.1.0"
@@ -31196,6 +31219,17 @@ vite@^5.0.0:
   optionalDependencies:
     fsevents "~2.3.3"
 
+vite@^5.2.13, vite@^5.3.3:
+  version "5.4.19"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.19.tgz#20efd060410044b3ed555049418a5e7d1998f959"
+  integrity sha512-qO3aKv3HoQC8QKiNSTuUM1l9o/XX3+c+VTgLHbJWHZGeTPVAg2XwazI9UWzoxjIJCGCV2zU60uqMzjeLZuULqA==
+  dependencies:
+    esbuild "^0.21.3"
+    postcss "^8.4.43"
+    rollup "^4.20.0"
+  optionalDependencies:
+    fsevents "~2.3.3"
+
 vite@^5.2.2:
   version "5.3.5"
   resolved "https://registry.yarnpkg.com/vite/-/vite-5.3.5.tgz#b847f846fb2b6cb6f6f4ed50a830186138cb83d8"
@@ -31204,17 +31238,6 @@ vite@^5.2.2:
     esbuild "^0.21.3"
     postcss "^8.4.39"
     rollup "^4.13.0"
-  optionalDependencies:
-    fsevents "~2.3.3"
-
-vite@^5.3.3:
-  version "5.4.19"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.19.tgz#20efd060410044b3ed555049418a5e7d1998f959"
-  integrity sha512-qO3aKv3HoQC8QKiNSTuUM1l9o/XX3+c+VTgLHbJWHZGeTPVAg2XwazI9UWzoxjIJCGCV2zU60uqMzjeLZuULqA==
-  dependencies:
-    esbuild "^0.21.3"
-    postcss "^8.4.43"
-    rollup "^4.20.0"
   optionalDependencies:
     fsevents "~2.3.3"
 
