@@ -7,6 +7,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { TRegistry } from '@/api/data/registry';
 import { useGetRegistryPlan } from '@/api/hooks/useRegistry';
 import { PRIVATE_REGISTRY_STATUS } from '@/constants';
+import { useIAMFeatureAvailability } from '@/hooks/features/useIAMFeatureAvailability';
 
 type ActionComponentProps = {
   registry: TRegistry;
@@ -20,6 +21,7 @@ export default function ActionComponent({
   const { projectId } = useParams();
   const { data: registryPlan } = useGetRegistryPlan(projectId, registry?.id);
   const { tracking } = useContext(ShellContext)?.shell || {};
+  const IAMEnabled = useIAMFeatureAvailability();
 
   const hrefUpgradePlan = useHref(`./upgrade-plan?registryId=${registry.id}`);
   const hrefRename = useHref(`./update?registryId=${registry.id}`);
@@ -99,7 +101,8 @@ export default function ActionComponent({
           : t('private_registry_common_status_ENABLE'),
       }),
       href: hrefManageIAM,
-      disabled: registry.status !== PRIVATE_REGISTRY_STATUS.READY,
+      disabled:
+        registry.status !== PRIVATE_REGISTRY_STATUS.READY || !IAMEnabled,
       onClick: () =>
         tracking?.trackClick({
           name: `PCI_PROJECTS_PRIVATEREGISTRY_${

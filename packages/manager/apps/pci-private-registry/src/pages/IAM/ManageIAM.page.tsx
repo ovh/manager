@@ -10,6 +10,7 @@ import { useToggleIAMAuthentication } from '@/api/hooks/useIAMAuthentication';
 import { TRegistryAction, TRegistryActionToggle } from '@/types';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useRegistryId } from '@/hooks/registry/usRegistryId';
+import { useIAMFeatureAvailability } from '@/hooks/features/useIAMFeatureAvailability';
 
 const ManageIAM = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const ManageIAM = () => {
   const { addError, addSuccess } = useNotifications();
   const projectId = useProjectId();
   const registryId = useRegistryId();
+  const IAMEnabled = useIAMFeatureAvailability();
 
   const { data: registry, isPending } =
     useRegistry(projectId, registryId) ?? {};
@@ -97,6 +99,10 @@ const ManageIAM = () => {
   useEffect(() => {
     if (!registry) handleFailure('private_registry_retrieving_failure');
   }, [registry, handleFailure]);
+
+  useEffect(() => {
+    if (!IAMEnabled) handleQuitModal('DISABLED_FEATURE');
+  }, [IAMEnabled, handleQuitModal]);
 
   return registry ? (
     <IAMModal
