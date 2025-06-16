@@ -1,5 +1,6 @@
 {
-  "dedicated_server_interfaces": "Interfaces réseau",
+  "dedicated_server_interfaces": "Contrôleurs d'interfaces réseau (NICs)",
+  "dedicated_server_interfaces_breadcrumb": "Interfaces réseau",
   "dedicated_server_interfaces_vrack_information": "Veuillez noter que par défaut aucune IP n’existe pour le réseau privé (vRack). En effet vous devez au préalable créer un réseau privé (vRack), y ajouter votre serveur, puis configurez vos IP.",
   "dedicated_server_interfaces_vrack_information_link_label": "En savoir plus sur le vRack.",
   "dedicated_server_interfaces_step_checker_title": "OVHcloud Link Aggregation (OLA)",
@@ -48,6 +49,7 @@
   "dedicated_server_interfaces_type_vrack_aggregation_label": "Agrégation Privée",
   "dedicated_server_interfaces_type_public_aggregation_label": "Agrégation Publique",
   "dedicated_server_interfaces_type_isolated_label": "Isolée",
+  "dedicated_server_interfaces_type_badge_aggregated": "Aggrégé",
   "dedicated_server_interfaces_mac_label": "Adresse MAC",
   "dedicated_server_interfaces_bandwidth_label": "Bande passante",
   "dedicated_server_interfaces_bandwidth_incoming_label": "Bande passante entrante",
