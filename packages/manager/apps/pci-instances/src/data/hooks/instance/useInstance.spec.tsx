@@ -3,7 +3,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, Mock, vi } from 'vitest';
 import { useEditInstanceName, useRegionInstance } from './useInstance';
-import { editInstanceName, getRegionInstance } from '@/data/api/instance';
+import { editInstanceName, getRegionInstanceMock } from '@/data/api/instance';
 import queryClient from '@/queryClient';
 import { buildPartialInstanceDto } from './builder/instanceDto.builder';
 import { TInstanceDetailDto } from '@/types/instance/api.type';
@@ -18,7 +18,7 @@ const fakeInstanceDto = buildPartialInstanceDto<TInstanceDetailDto>({
 const editInstanceNameMock = vi.fn();
 
 vi.mock('@/data/api/instance');
-vi.mocked(getRegionInstance as Mock).mockResolvedValue(fakeInstanceDto);
+vi.mocked(getRegionInstanceMock as Mock).mockResolvedValue(fakeInstanceDto);
 vi.mocked(editInstanceName).mockImplementation(editInstanceNameMock);
 
 const wrapper: FC<PropsWithChildren> = ({ children }) => (
@@ -32,7 +32,8 @@ describe('useRegionInstance', () => {
       { wrapper },
     );
 
-    expect(getRegionInstance).toHaveBeenCalledWith({
+    // TODO: expect with the good function
+    expect(getRegionInstanceMock).toHaveBeenCalledWith({
       projectId,
       instanceId,
       region,
