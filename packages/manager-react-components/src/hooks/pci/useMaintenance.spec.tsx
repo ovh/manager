@@ -12,7 +12,6 @@ import * as useAggregatedPrivateNetworks from './useAggregatedPrivateNetworks';
 import * as useProjectRegions from './useProjectRegions';
 import { Stein } from './useMigrationSteins';
 import { Region } from './useProjectRegions';
-import '@testing-library/jest-dom';
 
 const renderUseMaintenanceHook = () => {
   const queryClient = new QueryClient();
