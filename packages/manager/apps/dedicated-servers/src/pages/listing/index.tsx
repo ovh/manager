@@ -24,7 +24,7 @@ export default function Layout() {
   const location = useLocation();
   const { shell } = useContext(ShellContext);
   const matches = useMatches();
-  const { trackCurrentPage } = useOvhTracking();
+  const { trackCurrentPage, trackClick } = useOvhTracking();
   const { data, isSuccess: isSuccessCluster } = useCluster();
   const [activePanel, setActivePanel] = useState('');
   const navigate = useNavigate();
@@ -37,11 +37,8 @@ export default function Layout() {
   }, [location]);
 
   useEffect(() => {
-    trackCurrentPage();
-  }, [location]);
-
-  useEffect(() => {
     shell.ux.hidePreloader();
+    trackCurrentPage();
   }, []);
 
   useEffect(() => {
@@ -77,6 +74,12 @@ export default function Layout() {
                 key={'osds-tab-bar-item-server'}
                 to={'/server'}
                 className="no-underline"
+                onClick={() => {
+                  trackClick({
+                    actionType: 'action',
+                    actions: ['main-tabnav', 'go-to-tab', 'all-servers'],
+                  });
+                }}
               >
                 <OdsTab
                   id={'server-tab'}
@@ -92,6 +95,12 @@ export default function Layout() {
                   key={`osds-tab-bar-item-cluster`}
                   to={'/cluster'}
                   className="no-underline"
+                  onClick={() => {
+                    trackClick({
+                      actionType: 'action',
+                      actions: ['main-tabnav', 'go-to-tab', '3az-clusters'],
+                    });
+                  }}
                 >
                   <OdsTab
                     id={'cluster-tab'}
