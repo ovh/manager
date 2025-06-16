@@ -2,7 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { applicationsBasePath, getAvailableApps } from '../../utils/AppUtils.mjs';
+import { applicationsBasePath, getReactApplications } from '../../utils/AppUtils.mjs';
 import { babelConfigurationFiles, REQUIRED_DEP_VERSIONS, satisfiesVersion } from '../../utils/DependenciesUtils.mjs';
 import { getTestMigrationStatus } from '../../utils/TestUtils.mjs';
 import { renderReport, reportOutputBasePath } from '../../utils/ExportUtils.mjs';
@@ -98,14 +98,14 @@ const getSwcMigrationStatus = (appName) => {
  * Run and render SWC migration report.
  */
 const generateSwcMigrationsStatusReport = () => {
-  const apps = getAvailableApps();
+  const apps = getReactApplications();
   const report = apps.map((app) => ({
     Application: app,
     'SWC Migration': getSwcMigrationStatus(app),
   }));
 
   renderReport(report, {
-    title: 'SWC Migration',
+    title: 'Follow Up SWC Migration',
     statusKeys: ['SWC Migration'],
     format,
     filename: outputFile,

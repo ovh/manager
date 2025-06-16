@@ -32,12 +32,13 @@ const renderHtml = (title, data) => {
     table { border-collapse: collapse; width: 100%; }
     th, td { border: 1px solid #ddd; padding: 8px; }
     th { background: #f2f2f2; text-align: left; }
+    h1 { text-align: center;}
     caption { caption-side: top; text-align: left; font-size: 1.2em; font-weight: bold; margin-bottom: 10px; }
   </style>
 </head>
 <body>
+  <h1>${title}</h1>
   <table>
-    <caption>${title}</caption>
     <thead><tr>${thead}</tr></thead>
     <tbody>${rows}</tbody>
   </table>
