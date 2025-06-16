@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.136.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.135.2...@ovh-ux/manager-container-app@0.136.0) (2025-06-16)
+
+
+### Bug Fixes
+
+* **container:** fix livechat reduce button ([2249500](https://github.com/ovh/manager/commit/224950059218ee96f89916e01c3af344665fad7d)), closes [#MANAGER-18560](https://github.com/ovh/manager/issues/MANAGER-18560)
+
+
+### Features
+
+* **container:** add a skip to the main content button ([71dd970](https://github.com/ovh/manager/commit/71dd970c9d300d504f90bd3e986f30cb2ee1ce7e)), closes [#MANAGER-15487](https://github.com/ovh/manager/issues/MANAGER-15487)
+
+
+
+
+
 ## [0.135.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.135.1...@ovh-ux/manager-container-app@0.135.2) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

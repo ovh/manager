@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "20.42.3",
+  "version": "20.42.4",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -86,7 +86,7 @@
     "@ovh-ux/ng-ui-router-layout": "^4.3.4",
     "@ovh-ux/request-tagger": "^0.4.1",
     "@ovh-ux/shell": "^4.5.3",
-    "@ovh-ux/sign-up": "^3.1.10",
+    "@ovh-ux/sign-up": "^3.2.0",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "1.7.x",

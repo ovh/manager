@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.2.18...@ovh-ux/manager-account-app@0.3.0) (2025-06-16)
+
+
+### Features
+
+* **container:** add a skip to the main content button ([71dd970](https://github.com/ovh/manager/commit/71dd970c9d300d504f90bd3e986f30cb2ee1ce7e)), closes [#MANAGER-15487](https://github.com/ovh/manager/issues/MANAGER-15487)
+
+
+
+
+
 ## [0.2.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.2.17...@ovh-ux/manager-account-app@0.2.18) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-account-app
