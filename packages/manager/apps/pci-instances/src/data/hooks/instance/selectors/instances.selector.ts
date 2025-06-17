@@ -260,6 +260,10 @@ export const getInstanceDetail = (
   flavorRam: `${instanceDto.flavor.specs.ram}`,
   flavorCpu: `${instanceDto.flavor.specs.cpu}`,
   actions: mapInstanceDashboardActions(instanceDto as any, projectUrl), // TODO: fix type after refactor TAPC-4385
+  storage: `${instanceDto.flavor.specs.storage}`,
+  publicBandwidth: `${instanceDto.flavor.specs.bandwidth.public}`,
+  imageName: instanceDto.image.name,
+  sshLogin: instanceDto.login,
   status: getInstanceStatus(instanceDto.status),
   prices: mapInstancePricings(instanceDto.prices),
   isEditionEnabled: isEditionEnabled(instanceDto.actions),
