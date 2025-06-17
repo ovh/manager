@@ -1,5 +1,12 @@
 {
   "dedicated_server_interfaces_bandwidth_title": "Bande passante",
   "dedicated_server_interfaces_bandwidth_description": "La bande passante publique (depuis et vers internet) n'est pas limitée en entrée. Vous pouvez augmenter la bande passante publique et privée en souscrivant à une option",
-  "dedicated_server_interfaces_bandwidth_ola_warning": "Dans le cadre d'une configuration agrégation privée complète, votre option de bande passante sortante publique ne sera pas utilisée du fait que l'interface dédiée au réseau public sera utilisée pour le réseau privé."
+  "dedicated_server_interfaces_bandwidth_server_ola": "OVHcloud Link Aggregation",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_available": "Disponible",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_double_lag": "Actif - Double LAG",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_double_lag_tooltip": "Les deux paires d'interfaces réseau sont agrégées séparément, ce qui permet un trafic privé et public.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag": "Actif - total LAG",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag_2_tooltip": "Les deux interfaces réseau sont entièrement agrégées et privées.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag_4_tooltip": "Les quatres interfaces réseau sont entièrement agrégées et privées.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_unavailable": "Indisponible"
 }
