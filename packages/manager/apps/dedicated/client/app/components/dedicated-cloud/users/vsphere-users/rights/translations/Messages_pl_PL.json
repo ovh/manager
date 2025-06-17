@@ -50,7 +50,7 @@
   "dedicatedCloud_USER_right_vlan_manager": "Pozwala na zarządzanie grupami portów wirtualnego przełącznika (dodawanie, zmiana, usuwanie). Tylko dla SDDC i pakietów Hosted Private Cloud Premier.",
   "dedicatedCloud_USER_right_resources": "Dodawanie zasobów",
   "dedicatedCloud_USER_right_resources_help": "Uprawnienia do dodawania dodatkowych zasobów za pomocą wtyczki OVH w vSphere Client",
-  "dedicatedCloud_USER_resource": "Dodawanie zasobów",
+  "dedicatedCloud_USER_resource": "Zarządzanie hostami i przestrzenią dyskową",
   "dedicatedCloud_USER_VM_NETWORK_ROLE": "Dostęp do vmNetwork",
   "dedicatedCloud_USER_NETWORK_ROLE_EPCC": "Dostęp do V(x)Lans / GENEWA",
   "dedicatedCloud_USER_NETWORK_ROLE_MBM": "Dostęp do sieci VLAN",

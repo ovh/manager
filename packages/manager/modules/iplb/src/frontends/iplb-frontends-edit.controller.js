@@ -257,6 +257,8 @@ export default class IpLoadBalancerFrontendsEditCtrl {
       request.httpHeader = Array.isArray(request.httpHeader)
         ? request.httpHeader
         : request.httpHeader.split(',');
+    } else {
+      request.httpHeader = [];
     }
 
     if (includes(['udp', 'tcp'], this.type)) {
