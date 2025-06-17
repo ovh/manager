@@ -3,11 +3,6 @@
     data-heading="{{:: 'dedicated_server_interfaces_bandwidth_title' | translate}}"
     data-description="{{:: 'dedicated_server_interfaces_bandwidth_description' | translate }}"
 >
-    <oui-message data-type="warning">
-        <span
-            data-translate="dedicated_server_interfaces_bandwidth_ola_warning"
-        ></span>
-    </oui-message>
     <server-bandwidth-dashboard
         data-bandwidth-option="$ctrl.bandwidthOption"
         data-display-public-bandwidth="true"
@@ -19,4 +14,37 @@
         data-specifications="$ctrl.specifications"
     >
     </server-bandwidth-dashboard>
+    <oui-tile-definition
+        data-term="{{:: 'dedicated_server_interfaces_bandwidth_server_ola' | translate}}"
+    >
+        <oui-tile-description>
+            <span data-ng-class="::$ctrl.olaModeBadgeClasses">
+                <span data-translate="{{::$ctrl.olaModeTanslateCode}}"></span>
+                <i
+                    data-ng-if="::$ctrl.tooltipText"
+                    class="oui-icon oui-icon-info-circle ml-1"
+                    oui-tooltip="{{::$ctrl.tooltipText}}"
+                    oui-tooltip-placement="bottom-start"
+                ></i>
+            </span>
+        </oui-tile-description>
+        <oui-action-menu
+            data-ng-if="$ctrl.ola.isAvailable()"
+            data-compact
+            data-placement="end"
+        >
+            <oui-action-menu-item
+                data-ng-if="$ctrl.ola.isConfigured()"
+                data-ui-sref=".ola-reset"
+            >
+                <span data-translate="server_ola_reset"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="!$ctrl.ola.isConfigured()"
+                data-ui-sref=".ola-configuration"
+            >
+                <span data-translate="server_ola_configure"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-tile-definition>
 </oui-tile>
