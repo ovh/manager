@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.42.4...@ovh-ux/manager-dedicated@20.43.0) (2025-06-17)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** fix time update for operations scheduler ([98c824a](https://github.com/ovh/manager/commit/98c824a42d573ee26d476077eecfd5db9b7a4f4e)), closes [#MANAGER-18610](https://github.com/ovh/manager/issues/MANAGER-18610) [#INC0132492](https://github.com/ovh/manager/issues/INC0132492)
+* **dedicated:** resolve custom utc time issue ([eedc27d](https://github.com/ovh/manager/commit/eedc27d601468f4cded151187cbc8c00cb2d1d6c)), closes [#PRB0042549](https://github.com/ovh/manager/issues/PRB0042549)
+
+
+### Features
+
+* **dedicated.pcc:** replace 2API datacenters-summary by iceberg query ([d10e62d](https://github.com/ovh/manager/commit/d10e62d9c69b3d5a976ad12c76a465178fef5d65)), closes [#MANAGER-17156](https://github.com/ovh/manager/issues/MANAGER-17156)
+* **dedicated.pcc:** replace 2API networks by iceberg query ([f5163b5](https://github.com/ovh/manager/commit/f5163b579e87c1e770c0a8735c75ccdba4f41b0b)), closes [#MANAGER-17157](https://github.com/ovh/manager/issues/MANAGER-17157)
+* **dedicated.pcc:** update edit user rights content ([d7f4d9d](https://github.com/ovh/manager/commit/d7f4d9da77c5d8a0285549cf53bdff6dce994186)), closes [#MANAGER-18365](https://github.com/ovh/manager/issues/MANAGER-18365)
+* **dedicated:** remove old skipnav ([6ae7413](https://github.com/ovh/manager/commit/6ae74133afd02dce0169564640071a910577492b)), closes [#MANAGER-15487](https://github.com/ovh/manager/issues/MANAGER-15487)
+
+
+
+
+
 ## [20.42.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.42.3...@ovh-ux/manager-dedicated@20.42.4) (2025-06-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
