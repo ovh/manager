@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.93.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.93.1...@ovh-ux/manager-pci@6.93.2) (2025-06-17)
+
+
+### Bug Fixes
+
+* **public-cloud:** fix dpf card link in public cloud dashboard ([77339a8](https://github.com/ovh/manager/commit/77339a88c9b77c5c100d4e8044126b8c571c84b4)), closes [#DATATR-2286](https://github.com/ovh/manager/issues/DATATR-2286)
+
+
+
+
+
 ## [6.93.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.93.0...@ovh-ux/manager-pci@6.93.1) (2025-06-11)
 
 
