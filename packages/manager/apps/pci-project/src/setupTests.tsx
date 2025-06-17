@@ -3,6 +3,7 @@ import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
 import { fetch } from 'cross-fetch';
+import { ActionMenuItem } from '@ovh-ux/manager-react-components';
 
 global.fetch = fetch;
 
@@ -42,39 +43,69 @@ vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
     useProject: () => ({
       data: { status: 'ok' },
     }),
+    PciTrustedZoneBanner: () => <div data-testid="pci-trusted-zone-banner" />,
+    useTrustedZoneBanner: vi.fn(),
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="text-cell">{children}</div>
-  ),
-  DatagridColumn: {},
-  Datagrid: ({
-    children,
-    topbar,
-  }: {
-    children?: React.ReactNode;
-    topbar?: React.ReactNode;
-  }) => (
-    <div data-testid="datagrid">
-      <div data-testid="layout-topbar">{topbar}</div>
-      {children}
-    </div>
-  ),
-  ErrorBanner: ({ error }: { error: unknown }) => (
-    <div data-testid="error-banner">{JSON.stringify(error)}</div>
-  ),
-  BaseLayout: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="base-layout">{children}</div>
-  ),
-  useResourcesV6: vi.fn(),
-  Notifications: () => <div data-testid="notifications" />,
-  useNotifications: () => ({
-    addInfo: vi.fn(),
-  }),
-  useFeatureAvailability: vi.fn(),
-}));
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual: typeof import('@ovh-ux/manager-react-components') = await importOriginal();
+  return {
+    ...actual,
+    DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
+      <div data-testid="text-cell">{children}</div>
+    ),
+    DatagridColumn: {},
+    Datagrid: ({
+      children,
+      topbar,
+    }: {
+      children?: React.ReactNode;
+      topbar?: React.ReactNode;
+    }) => (
+      <div data-testid="datagrid">
+        <div data-testid="layout-topbar">{topbar}</div>
+        {children}
+      </div>
+    ),
+    ErrorBanner: ({ error }: { error: unknown }) => (
+      <div data-testid="error-banner">{JSON.stringify(error)}</div>
+    ),
+    BaseLayout: ({ children }: { children: React.ReactNode }) => (
+      <div data-testid="base-layout">{children}</div>
+    ),
+    useResourcesV6: vi.fn(),
+    Notifications: () => <div data-testid="notifications" />,
+    useNotifications: vi.fn(() => ({
+      addInfo: vi.fn(),
+      addSuccess: vi.fn(),
+      addError: vi.fn(),
+    })),
+    useFeatureAvailability: vi.fn(),
+    ActionMenu: ({
+      id,
+      items,
+      isCompact,
+    }: {
+      id: string;
+      items: ActionMenuItem[];
+      isCompact: boolean;
+    }) => (
+      <div data-testid="action-menu" data-id={id} data-is-compact={isCompact}>
+        {items.map((item) => (
+          <a
+            key={item.id}
+            data-testid={`action-item-${item.id}`}
+            href={item.href}
+            onClick={item.onClick}
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    ),
+  };
+});
 
 vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   const actual: typeof import('@ovhcloud/ods-components/react') = await importOriginal();
@@ -129,8 +160,3 @@ vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => {
     },
   };
 });
-
-vi.mock('@ovh-ux/manager-pci-common', () => ({
-  PciTrustedZoneBanner: () => <div data-testid="pci-trusted-zone-banner" />,
-  useTrustedZoneBanner: vi.fn(),
-}));

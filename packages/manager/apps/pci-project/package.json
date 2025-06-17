@@ -28,6 +28,7 @@
     "test": "manager-test run"
   },
   "dependencies": {
+    "@ovh-ux/manager-common-translations": "^0.8.0",
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
@@ -53,6 +54,7 @@
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^2.1.9",
+    "vite": "^5.3.3",
     "vitest": "^2.1.9"
   },
   "regions": [
