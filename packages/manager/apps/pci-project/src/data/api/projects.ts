@@ -25,6 +25,15 @@ export const removeProject = (params: {
   return v6.post(`cloud/project/${projectId}/terminate`);
 };
 
+export const setAsDefaultProject = async (projectId: string) => {
+  const { data } = await v6.post('me/preferences/manager', {
+    key: 'PUBLIC_CLOUD_DEFAULT_PROJECT',
+    value: JSON.stringify({ projectId }),
+  });
+
+  return data;
+};
+
 export const unFavProject = async (): Promise<unknown> => {
   const { data } = await v6.delete(
     'me/preferences/manager/PUBLIC_CLOUD_DEFAULT_PROJECT',
