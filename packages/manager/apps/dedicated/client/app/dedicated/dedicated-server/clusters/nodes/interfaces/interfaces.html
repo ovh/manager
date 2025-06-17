@@ -1,19 +1,7 @@
 <div data-ovh-alert></div>
 
 <div class="row">
-    <div
-        class="col-md-4 mb-5"
-        data-ng-if="$ctrl.ola.isAvailable() && $ctrl.ola.isActivated()"
-    >
-        <!-- OLA -->
-        <server-ola
-            data-server="$ctrl.server"
-            data-guide-url="{{::$ctrl.guideUrl}}"
-            data-ola="$ctrl.ola"
-        ></server-ola>
-    </div>
-
-    <div class="col-md-4 mb-5">
+    <div class="col-md-8 mb-5">
         <server-bandwidth-tile
             data-bandwidth-option="$ctrl.bandwidthOption"
             data-bandwidth-vrack-option="$ctrl.bandwidthVrackOptions"
@@ -21,6 +9,7 @@
             data-order-private-link="$ctrl.orderPrivateBandwidthLink"
             data-order-public-link="$ctrl.orderPublicBandwidthLink"
             data-server="$ctrl.server"
+            data-ola="$ctrl.ola"
             data-specifications="$ctrl.specifications"
         >
         </server-bandwidth-tile>
