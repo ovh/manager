@@ -96,7 +96,7 @@ export function useResourcesIcebergV2<T>({
         pageSize: shouldFetchAll ? API_V2_MAX_PAGE_SIZE : pageSize,
         cursor: pageParam as string,
         sortBy: sorting?.[0]?.id || null,
-        sortReverse: sorting?.[0]?.desc,
+        sortOrder: sorting?.[0]?.desc ? 'DESC' : 'ASC',
         filters: searchFilter ? [searchFilter, ...filters] : filters,
       }),
     getNextPageParam: (lastPage) => lastPage.cursorNext,
