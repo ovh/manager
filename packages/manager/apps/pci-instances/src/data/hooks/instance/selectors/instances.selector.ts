@@ -71,7 +71,7 @@ const getActionHrefByName = (
   { region, id }: Pick<TInstance, 'id' | 'region'>,
 ): TInstanceAction['link'] => {
   if (name === 'details') {
-    return { path: `${id}/region/${region}`, isExternal: false };
+    return { path: `region/${region}/instance/${id}`, isExternal: false };
   }
 
   if (name === 'edit') {
@@ -208,6 +208,10 @@ export const getInstanceDetail = (
   instanceDto: TInstanceDetailDto,
 ): TInstanceDetail => ({
   ...instanceDto,
+  flavorName: instanceDto.flavor.name,
+  // TODO: get the unit from api
+  flavorRam: `${instanceDto.flavor.specs.ram}`,
+  flavorCpu: `${instanceDto.flavor.specs.cpu}`,
   status: getInstanceStatus(instanceDto.status),
   isEditionEnabled: isEditionEnabled(instanceDto.actions),
 });

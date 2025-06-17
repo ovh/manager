@@ -1,5 +1,11 @@
-import { FC } from 'react';
-import { useParams, useRouteLoaderData } from 'react-router-dom';
+import { createContext, FC, useMemo } from 'react';
+import {
+  Outlet,
+  useParams,
+  useResolvedPath,
+  useRouteLoaderData,
+} from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
 import { ODS_SKELETON_SIZE } from '@ovhcloud/ods-components';
 import {
@@ -16,13 +22,24 @@ import { CHANGELOG_LINKS } from '@/constants';
 import { useRegionInstance } from '@/data/hooks/instance/useInstance';
 import InstanceName from './component/InstanceName.component';
 import { getInstanceDetail } from '@/data/hooks/instance/selectors/instances.selector';
+import TabsPanel from '@/components/tab/TabsPanel.component';
+import { TInstanceDetailContextType } from '@/types/instance/entity.type';
+import { placeholderInstanceDetail } from './instance.constants';
+
+export const InstanceDetailContext = createContext<TInstanceDetailContextType>({
+  data: placeholderInstanceDetail,
+  isLoading: false,
+});
 
 const Instance: FC = () => {
+  const { t } = useTranslation('dashboard');
   const project = useRouteLoaderData('root') as TProject;
   const { instanceId, regionId } = useParams() as {
     instanceId: string;
     regionId: string;
   };
+  const dashboardPath = useResolvedPath('');
+  const vncPath = useResolvedPath('vnc');
 
   const { data: instance, isLoading } = useRegionInstance(
     project.project_id,
@@ -31,6 +48,20 @@ const Instance: FC = () => {
     {
       select: (dto) => getInstanceDetail(dto),
     },
+  );
+
+  const tabs = useMemo(
+    () => [
+      {
+        label: t('pci_instances_dashboard_tab_info_title'),
+        to: dashboardPath.pathname,
+      },
+      {
+        label: t('pci_instances_dashboard_tab_vnc_title'),
+        to: vncPath.pathname,
+      },
+    ],
+    [],
   );
 
   return (
@@ -65,6 +96,16 @@ const Instance: FC = () => {
           <Notifications />
         </div>
         <GoBack />
+        <div className="mt-8">
+          <TabsPanel tabs={tabs} />
+        </div>
+        <div className="mt-8">
+          <InstanceDetailContext.Provider
+            value={{ data: instance ?? placeholderInstanceDetail, isLoading }}
+          >
+            <Outlet />
+          </InstanceDetailContext.Provider>
+        </div>
       </PageLayout>
     </InstanceWrapper>
   );
