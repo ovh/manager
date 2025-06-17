@@ -1,9 +1,29 @@
 import { FetchResultV6 } from '@ovh-ux/manager-react-components';
 import { TProject } from '@ovh-ux/manager-pci-common';
-import { getProjects, getDefaultProject } from './projects';
+import { getDefaultProject, getProjects } from './projects';
 import { getServices } from './services';
 import { TProjectWithService } from '@/data/types/project.type';
 import { TService } from '@/data/types/service.type';
+
+/**
+ * Sorts projects by default status first, then by description alphabetically.
+ * Default projects are sorted to the top, followed by non-default projects sorted by description.
+ *
+ * @param firstProject - First project to compare
+ * @param secondProject - Second project to compare
+ * @returns Negative value if firstProject should come before secondProject, positive if secondProject should come before firstProject, 0 if equal
+ */
+export const sortProjectsByDefaultAndDescription = (
+  firstProject: TProjectWithService,
+  secondProject: TProjectWithService,
+): number => {
+  if (firstProject.isDefault === secondProject.isDefault) {
+    return (firstProject.description || '').localeCompare(
+      secondProject.description || '',
+    );
+  }
+  return firstProject.isDefault ? -1 : 1;
+};
 
 /**
  * Retrieves a list of projects, each enriched with its corresponding service and an aggregated status.
@@ -51,13 +71,7 @@ export const getProjectsWithServices = async (): Promise<FetchResultV6<
             },
             [] as TProjectWithService[],
           )
-          // Sort by isDefault first, then by description
-          .sort((a: TProjectWithService, b: TProjectWithService) => {
-            if (a.isDefault === b.isDefault) {
-              return (a.description || '').localeCompare(b.description || '');
-            }
-            return a.isDefault ? -1 : 1;
-          }),
+          .sort(sortProjectsByDefaultAndDescription),
       };
     },
   );
