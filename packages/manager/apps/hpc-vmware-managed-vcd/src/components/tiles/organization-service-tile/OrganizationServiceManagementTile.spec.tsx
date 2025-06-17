@@ -11,12 +11,15 @@ import OrganizationServiceManagementTile from './OrganizationServiceManagementTi
 import { labels } from '../../../test-utils';
 import { subRoutes, urls } from '../../../routes/routes.constant';
 
-vi.mock('react-router-dom', async (importOriginal) => ({
-  ...(await importOriginal()),
-  useHref: () => urls.resetPassword.replace(subRoutes.dashboard, 'id'),
-  useNavigate: () => ({ navigate: vi.fn() }),
-  useParams: () => ({ id: 'id' }),
-}));
+vi.mock('react-router-dom', async (importOriginal) => {
+  const module: typeof import('react-router-dom') = await importOriginal();
+  return {
+    ...module,
+    useHref: () => urls.resetPassword.replace(subRoutes.dashboard, 'id'),
+    useNavigate: () => vi.fn(),
+    useParams: () => ({ id: 'id' }),
+  };
+});
 
 const shellContext = {
   environment: {
