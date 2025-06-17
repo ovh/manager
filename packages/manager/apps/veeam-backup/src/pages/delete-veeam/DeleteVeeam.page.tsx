@@ -10,10 +10,6 @@ import {
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import { DeleteModal } from '@ovh-ux/manager-react-components';
-import {
-  getVeeamBackupDisplayName,
-  useVeeamBackup,
-} from '@ovh-ux/manager-module-vcd-api';
 import { useDeleteService } from '@ovh-ux/manager-module-common-api';
 import { US_SUBSIDIARY } from '@/constants';
 
@@ -28,7 +24,6 @@ export const sharedTrackingParams: TrackingClickParams = {
 export default function DeleteVeeamBackupModal() {
   const { id } = useParams();
   const { t } = useTranslation('delete-veeam');
-  const { data, isLoading } = useVeeamBackup(id);
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const { trackClick, trackPage } = useOvhTracking();
   const { addSuccessMessage } = React.useContext(MessagesContext);
@@ -40,11 +35,12 @@ export default function DeleteVeeamBackupModal() {
       pageName: PageName.successDeleteVeeamBackup,
     });
     addSuccessMessage(
-      ovhSubsidiary === US_SUBSIDIARY
-        ? t('terminate_veeam_backup_success_us')
-        : t('terminate_veeam_backup_success', {
-            name: getVeeamBackupDisplayName(data.data),
-          }),
+      t(
+        ovhSubsidiary === US_SUBSIDIARY
+          ? 'terminate_veeam_backup_success_us'
+          : 'terminate_veeam_backup_success',
+        { serviceName: id },
+      ),
       { veeamBackupId: id },
     );
     navigate('..');
@@ -83,7 +79,7 @@ export default function DeleteVeeamBackupModal() {
     <DeleteModal
       isOpen
       closeModal={onClose}
-      isLoading={isPending || isLoading}
+      isLoading={isPending}
       onConfirmDelete={onConfirmDelete}
       error={isError ? error?.message : null}
     />
