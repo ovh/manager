@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-styles@1.8.6...@ovh-ux/manager-cloud-styles@1.9.0) (2025-06-17)
+
+
+### Features
+
+* **dedicated:** remove old skipnav ([6ae7413](https://github.com/ovh/manager/commit/6ae74133afd02dce0169564640071a910577492b)), closes [#MANAGER-15487](https://github.com/ovh/manager/issues/MANAGER-15487)
+
+
+
+
+
 ## [1.8.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-styles@1.8.5...@ovh-ux/manager-cloud-styles@1.8.6) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-cloud-styles
