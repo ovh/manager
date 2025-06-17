@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.24.6...@ovh-ux/manager-pci-kubernetes-app@0.25.0) (2025-06-17)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** reset min max node when turning autoscale off ([e986e94](https://github.com/ovh/manager/commit/e986e94d97055a1379a16a92f682cf2e9e4a4b43)), closes [#TAPC-4277](https://github.com/ovh/manager/issues/TAPC-4277)
+* **pci-kubernetes:** scaling and flavor when toggling create cluster ([#17582](https://github.com/ovh/manager/issues/17582)) ([256cd8e](https://github.com/ovh/manager/commit/256cd8e9720c27afc99293ffef82b4b748deb07e)), closes [#TAPC-4320](https://github.com/ovh/manager/issues/TAPC-4320)
+
+
+### Features
+
+* **pci-kubernetes:** add deployment mode on kube list ([ccebf36](https://github.com/ovh/manager/commit/ccebf36dd2f5fe507ccb9563b108cb467d88cd8d)), closes [#TAPC-3167](https://github.com/ovh/manager/issues/TAPC-3167)
+* **pci-kubernetes:** allow region enabling on cluster ([c909331](https://github.com/ovh/manager/commit/c9093310428877b2aa3423f75f1bfa2ec17cff3c)), closes [#TAPC-3439](https://github.com/ovh/manager/issues/TAPC-3439)
+
+
+
+
+
 ## [0.24.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.24.5...@ovh-ux/manager-pci-kubernetes-app@0.24.6) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
