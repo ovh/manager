@@ -3,6 +3,7 @@ import controller from './controller';
 
 export default {
   bindings: {
+    nodeId: '<',
     goBack: '<',
     availableVersions: '<',
     installNode: '<',
