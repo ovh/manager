@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-hosting-app",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "private": true,
   "description": "Manage web hostings in the OVH Control Panel",
   "repository": {
@@ -43,8 +43,8 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@ovh-ux/manager-vite-config": "^0.10.1",
     "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-vite-config": "^0.10.1",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.55",

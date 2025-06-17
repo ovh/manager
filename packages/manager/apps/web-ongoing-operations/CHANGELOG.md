@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.4.7...@ovh-ux/manager-web-ongoing-operations-app@1.5.0) (2025-06-17)
+
+
+### Features
+
+* **web-ongoing-operations:** add punycode ([961c041](https://github.com/ovh/manager/commit/961c0417443607a40405ee52e02e345a6dce2c52)), closes [#MANAGER-17373](https://github.com/ovh/manager/issues/MANAGER-17373)
+* **web-ongoing-operations:** react-router migration ([8cc3ff7](https://github.com/ovh/manager/commit/8cc3ff7bdc42a81067b3f1858c9662940ccc29e6)), closes [#MANAGER-18312](https://github.com/ovh/manager/issues/MANAGER-18312)
+* **web-ongoing-operations:** search added to domain and dns ([5cdc229](https://github.com/ovh/manager/commit/5cdc229885b3fa043b92d83e50f4f00db5ca3a61)), closes [#MANAGER-17832](https://github.com/ovh/manager/issues/MANAGER-17832)
+
+
+
+
+
 ## [1.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.4.6...@ovh-ux/manager-web-ongoing-operations-app@1.4.7) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app

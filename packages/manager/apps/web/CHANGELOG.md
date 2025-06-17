@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.10...@ovh-ux/manager-web@19.13.0) (2025-06-17)
+
+
+### Features
+
+* **hub:** add translate Valkey caching ([3f6cb4b](https://github.com/ovh/manager/commit/3f6cb4bd7c30e51f699e8b3d14b9091348437a27)), closes [#MANAGER-18654](https://github.com/ovh/manager/issues/MANAGER-18654)
+* **web:** remove old skipnav ([3bab04b](https://github.com/ovh/manager/commit/3bab04b4325c08b9ca9c42d992dd31e60c2501d7)), closes [#MANAGER-15487](https://github.com/ovh/manager/issues/MANAGER-15487)
+
+
+
+
+
 ## [19.12.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.9...@ovh-ux/manager-web@19.12.10) (2025-06-17)
 
 
