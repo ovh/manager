@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { Trans, useTranslation } from 'react-i18next';
 import {
@@ -17,6 +17,7 @@ import {
   kycIndiaFeature,
   trackingContext,
   trackingPrefix,
+  MODAL_NAME,
 } from './IdentityDocumentsModal.constants';
 import { useShell } from '@/context';
 import { useCheckModalDisplay } from '@/hooks/modal/useModal';
@@ -27,14 +28,14 @@ import { isIndiaProcedureToBeDone, isUserConcernedWithIndiaProcedure } from '@/h
 import { toScreamingSnakeCase } from '@/helpers';
 import { Procedures } from '@/types/procedure';
 
-export const IdentityDocumentsModal = (): JSX.Element => {
+export const IdentityDocumentsModal: FC = () => {
   const { t } = useTranslation('identity-documents-modal');
   const shell = useShell();
   const navigationPlugin = shell.getPlugin('navigation');
   const uxPlugin = shell.getPlugin('ux');
   const legalInformationRef = useRef<HTMLOsdsCollapsibleElement>(null);
 
-  const preferenceKey = toScreamingSnakeCase(IdentityDocumentsModal.name);
+  const preferenceKey = toScreamingSnakeCase(MODAL_NAME);
 
   const shouldDisplayModal = useCheckModalDisplay(
     (enabled: boolean) => useProcedureStatus(Procedures.INDIA, {
@@ -60,7 +61,7 @@ export const IdentityDocumentsModal = (): JSX.Element => {
 
   const onCancel = () => {
     setShowModal(false);
-    uxPlugin.notifyModalActionDone(IdentityDocumentsModal.name);
+    uxPlugin.notifyModalActionDone(IdentityDocumentsModal.displayName);
     trackingPlugin.trackClick({
       name: `${trackingPrefix}::pop-up::link::kyc::cancel`,
       type: 'action',
@@ -92,7 +93,7 @@ export const IdentityDocumentsModal = (): JSX.Element => {
         updatePreference(time);
       }
       else {
-        uxPlugin.notifyModalActionDone(IdentityDocumentsModal.name);
+        uxPlugin.notifyModalActionDone(IdentityDocumentsModal.displayName);
       }
     }
   }, [shouldDisplayModal]);

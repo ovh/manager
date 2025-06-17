@@ -1,4 +1,10 @@
-import { createElement, Suspense, useEffect, useState } from 'react';
+import {
+  FC,
+  Suspense,
+  useEffect,
+  useState,
+  useCallback,
+} from 'react';
 import { useShell } from '@/context';
 
 import SuggestionModal from '@/components/SuggestionModal/SuggestionModal.component';
@@ -6,56 +12,72 @@ import AgreementsUpdateModal from '@/components/AgreementsUpdateModal/Agreements
 import PaymentModal from '@/payment-modal/PaymentModal';
 import { IdentityDocumentsModal } from '@/identity-documents-modal/IdentityDocumentsModal';
 
-const MODALS_TO_DISPLAY: (() => JSX.Element)[] = [
+const MODALS: FC[] = [
   IdentityDocumentsModal,
   PaymentModal,
   AgreementsUpdateModal,
   SuggestionModal,
 ];
 
-export default function ModalsContainer(): JSX.Element {
+type ModalsContainerProps = {
+  isPreloaderVisible: boolean;
+};
+
+export default function ModalsContainer({
+  isPreloaderVisible
+}: ModalsContainerProps) {
   const shell = useShell();
   const uxPlugin = shell.getPlugin('ux');
   const [isReady, setIsReady] = useState(false);
-  const [current, setCurrent] = useState<() => JSX.Element | null>(
-    null,
-  );
+  const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    if (current === null) return;
-    uxPlugin.registerModalActionDoneListener((id: string) => {
-      if (id === current?.name) {
-        setCurrent((previous) => {
-          const nextConfigurationIndex = MODALS_TO_DISPLAY.indexOf(current) + 1;
-          if (
-            previous === null ||
-            nextConfigurationIndex === MODALS_TO_DISPLAY.length
-          ) {
-            return null;
-          }
-          return MODALS_TO_DISPLAY[nextConfigurationIndex];
-        });
-      }
-    });
-  }, [current]);
-
-  useEffect(() => {
-    // On the first inner app full display we'll start managing modals lifecycle
+    // If the preloader is already hidden we start managing modals lifecycle
+    // Otherwise we listen for the hidding of the preloader to do so
+    if (!isPreloaderVisible) {
+      setIsReady(true);
+      return;
+    }
+    
     const initModalLifeCycleManagement = () => setIsReady(true);
     uxPlugin.onHidePreloader(initModalLifeCycleManagement, { once: true });
+    return () => {
+      uxPlugin.removeOnHidePreloader(initModalLifeCycleManagement);
+    };
   }, []);
 
+  // Launch the first modal when ready
   useEffect(() => {
     if (isReady) {
-      setCurrent(() => MODALS_TO_DISPLAY[0]);
+      setCurrentIndex(0);
     }
   }, [isReady]);
 
-  if (current === null) return null;
+  // Move to the next modal when the action is completed
+  const handleActionDone = useCallback((id: string) => {
+    if (currentIndex === null) return;
+    const CurrentModal = MODALS[currentIndex];
+    if (id === CurrentModal.displayName || id === CurrentModal.name) {
+      const next = currentIndex + 1;
+      setCurrentIndex(next < MODALS.length ? next : null);
+    }
+  }, [currentIndex]);
 
+  useEffect(() => {
+    if (currentIndex === null) return;
+    uxPlugin.registerModalActionDoneListener(handleActionDone);
+    // TODO: implement the unregisterModalActionDoneListener in order to clean up this event listener (MANAGER-18813)
+    /*return () => {
+      uxPlugin.unregisterModalActionDoneListener(handleActionDone);
+    };*/
+  }, [currentIndex, uxPlugin, handleActionDone]);
+
+  if (currentIndex === null) return null;
+
+  const ActiveModal = MODALS[currentIndex];
   return (
-    <Suspense>
-      { createElement(current) }
+    <Suspense fallback={null}>
+      <ActiveModal />
     </Suspense>
   );
 };

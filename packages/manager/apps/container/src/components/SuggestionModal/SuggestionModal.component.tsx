@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   OsdsButton,
   OsdsModal,
@@ -19,19 +19,23 @@ import {
   useSuggestionTargetUrl,
 } from '@/hooks/suggestion/useSuggestion';
 import { useCheckModalDisplay } from '@/hooks/modal/useModal';
-import { INTERVAL_BETWEEN_DISPLAY_IN_S, SIRET_MODAL_FEATURE } from './SuggestionModal.constants';
+import {
+  INTERVAL_BETWEEN_DISPLAY_IN_S,
+  SIRET_MODAL_FEATURE,
+  MODAL_NAME,
+} from './SuggestionModal.constants';
 import { useTime } from '@/hooks/time/useTime';
 import { useCreatePreference } from '@/hooks/preferences/usePreferences';
 import { toScreamingSnakeCase } from '@/helpers';
 
-const SuggestionModal = (): JSX.Element => {
+const SuggestionModal: FC = () => {
   const { t } = useTranslation('suggestion-modal');
   const { shell } = useApplication();
   const environment = shell.getPlugin('environment').getEnvironment();
   const user = environment.getUser();
   const ux = shell.getPlugin('ux');
 
-  const preferenceKey = toScreamingSnakeCase(SuggestionModal.name);
+  const preferenceKey = toScreamingSnakeCase(MODAL_NAME);
   const accountEditionLink = useSuggestionTargetUrl();
   const suggestionsCheck = useSuggestionsCheck(user);
 
@@ -59,30 +63,26 @@ const SuggestionModal = (): JSX.Element => {
     [data],
   );
 
-  const closeModal = () => {
+  const closeModal = () => useCallback(() => {
     setShowModal(false);
-    ux.notifyModalActionDone(SuggestionModal.name);
+    ux.notifyModalActionDone(SuggestionModal.displayName);
     // Update preference so the modal is not display until 60 days later, time for the update to be done on our side
     updatePreference(time + 60 * 24 * 60 * 60);
     // @TODO: Handle tracking (ECAN-2228)
-  };
-  const goToProfileEdition = () => {
+  }, [ux, time]);
+  const goToProfileEdition = useCallback(() => {
     setShowModal(false);
     // Update preference so the modal is not displayed until a day later
     updatePreference(time);
     // @TODO: Handle tracking (ECAN-2228)
     window.top.location.href = `${accountEditionLink}?fieldToFocus=ovh_form_content_activity`;
-  };
-
-  useEffect(() => {
-    // @TODO: Handle tracking (ECAN-2228)
-  }, []);
+  }, [accountEditionLink, time]);
 
   useEffect(() => {
     if (shouldDisplayModal !== undefined) {
       setShowModal(shouldDisplayModal);
       if (!shouldDisplayModal) {
-        ux.notifyModalActionDone(SuggestionModal.name);
+        ux.notifyModalActionDone(SuggestionModal.displayName);
       }
     }
   }, [shouldDisplayModal]);

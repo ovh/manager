@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import './styles.scss';
 import {
   OsdsButton,
@@ -39,7 +39,7 @@ export interface IPaymentMethod {
   paymentMethodId: number;
 }
 
-const PaymentModal = (): JSX.Element => {
+const PaymentModal: FC = () => {
   const { t } = useTranslation('payment-modal');
   const { shell } = useApplication();
   const ux = shell.getPlugin('ux');
@@ -58,7 +58,7 @@ const PaymentModal = (): JSX.Element => {
 
   const closeHandler = () => {
     setShowPaymentModal(false);
-    ux.notifyModalActionDone('PaymentModal');
+    ux.notifyModalActionDone(PaymentModal.displayName);
   };
   const validateHandler = () => {
     setShowPaymentModal(false);
@@ -69,7 +69,7 @@ const PaymentModal = (): JSX.Element => {
     if (shouldDisplayModal !== undefined) {
       setShowPaymentModal(shouldDisplayModal);
       if (!shouldDisplayModal) {
-        ux.notifyModalActionDone(PaymentModal.name);
+        ux.notifyModalActionDone(PaymentModal.displayName);
       }
     }
   }, [shouldDisplayModal]);

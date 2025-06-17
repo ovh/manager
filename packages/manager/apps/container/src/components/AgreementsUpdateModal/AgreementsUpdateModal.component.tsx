@@ -22,7 +22,12 @@ import ovhCloudLogo from '@/assets/images/logo-ovhcloud.png';
 import { useCheckModalDisplay } from '@/hooks/modal/useModal';
 import { useTime } from '@/hooks/time/useTime';
 import { useCreatePreference } from '@/hooks/preferences/usePreferences';
-import { ACCEPT_AGREEMENTS_IAM_ACTION, AGREEMENTS_UPDATE_MODAL_FEATURE, INTERVAL_BETWEEN_DISPLAY_IN_S } from './AgreementsUpdateModal.constants';
+import {
+  ACCEPT_AGREEMENTS_IAM_ACTION,
+  AGREEMENTS_UPDATE_MODAL_FEATURE,
+  INTERVAL_BETWEEN_DISPLAY_IN_S,
+  MODAL_NAME,
+} from './AgreementsUpdateModal.constants';
 import { useAgreementsPageNavigationParam, usePendingAgreements } from '@/hooks/agreements/useAgreements';
 import { hasPendingAgreements } from '@/helpers/agreements/agreementsHelper';
 import { toScreamingSnakeCase } from '@/helpers';
@@ -42,7 +47,7 @@ export default function AgreementsUpdateModal() {
   const { app, path } = useAgreementsPageNavigationParam();
   const myContractsLink = navigation.getURL(app, path);
 
-  const preferenceKey = toScreamingSnakeCase(AgreementsUpdateModal.name);
+  const preferenceKey = toScreamingSnakeCase(MODAL_NAME);
 
   const shouldDisplayModal = useCheckModalDisplay(
     usePendingAgreements,
