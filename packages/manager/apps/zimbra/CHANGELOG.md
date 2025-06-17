@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.29.8...@ovh-ux/manager-zimbra-app@0.30.0) (2025-06-17)
+
+
+### Features
+
+* **zimbra:** add pro beta banner ([#17263](https://github.com/ovh/manager/issues/17263)) ([eaf97cd](https://github.com/ovh/manager/commit/eaf97cddf87e2ee43d65884cde2594d995cf13a8)), closes [#MANAGER-18253](https://github.com/ovh/manager/issues/MANAGER-18253)
+* **zimbra:** add slot selection in add account ([#17218](https://github.com/ovh/manager/issues/17218)) ([f0018df](https://github.com/ovh/manager/commit/f0018df21bd2725611a8380e1893bfa951b3f78d)), closes [#MANAGER-17311](https://github.com/ovh/manager/issues/MANAGER-17311)
+* **zimbra:** cancel & revert account subscription ([#17322](https://github.com/ovh/manager/issues/17322)) ([b4a6230](https://github.com/ovh/manager/commit/b4a6230413d8a0373b705bbf0a24d3d5d39b91f5)), closes [#MANAGER-18252](https://github.com/ovh/manager/issues/MANAGER-18252)
+* **zimbra:** display unconfigured accounts ([#17095](https://github.com/ovh/manager/issues/17095)) ([79c1a16](https://github.com/ovh/manager/commit/79c1a163753da1e6a2b20d1c170d8cbaefae9a27)), closes [#MANAGER-18250](https://github.com/ovh/manager/issues/MANAGER-18250)
+* **zimbra:** enhance delete modals with targeted entity info ([#17191](https://github.com/ovh/manager/issues/17191)) ([d41b2d1](https://github.com/ovh/manager/commit/d41b2d1d16ed1bd6021c9ffed8e14f2d1e9ec5b1)), closes [#MANAGER-18228](https://github.com/ovh/manager/issues/MANAGER-18228)
+
+
+
+
+
 ## [0.29.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.29.7...@ovh-ux/manager-zimbra-app@0.29.8) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app
