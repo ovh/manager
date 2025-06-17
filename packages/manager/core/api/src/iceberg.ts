@@ -27,7 +27,7 @@ export type IcebergFetchParamsV2 = {
   cursor?: string;
   filters?: Filter[];
   sortBy?: string;
-  sortReverse?: boolean;
+  sortOrder?: 'ASC' | 'DESC';
 } & IcebergCommonOptions;
 
 export type IcebergFetchResultV6<T> = {
@@ -75,45 +75,95 @@ function icebergFilter(comparator: FilterComparator, value: string | string[]) {
   }
 }
 
+const buildHeaders = () => {
+  const headers = {};
+
+  const builder = {
+    setPaginationMode: (mode = 'CachedObjectList-Pages') => {
+      headers['x-pagination-mode'] = mode;
+      return builder;
+    },
+    setPaginationNumber: (page = 1) => {
+      headers['x-pagination-number'] = `${encodeURIComponent(page || 1)}`;
+      return builder;
+    },
+    setPaginationSize: (pageSize = 5000) => {
+      headers['X-Pagination-Size'] = `${encodeURIComponent(pageSize || 5000)}`;
+      return builder;
+    },
+    setPaginationCursor: (cursor: string) => {
+      if (cursor) headers['X-Pagination-Cursor'] = cursor;
+      return builder;
+    },
+    setDisabledCache: (disableCache: boolean) => {
+      if (disableCache) headers['Pragma'] = 'no-cache';
+      return builder;
+    },
+    setPaginationSort: (sortBy: string, sortOrder = 'ASC') => {
+      if (sortBy) {
+        headers['x-pagination-sort'] = encodeURIComponent(sortBy);
+        headers['x-pagination-sort-order'] = sortOrder;
+      }
+      return builder;
+    },
+    setPaginationFilter: (filters: Filter[]) => {
+      if (filters?.length) {
+        headers['x-pagination-filter'] = filters
+          .filter(({ type }) => type !== FilterTypeCategories.Tags)
+          .map(
+            ({ comparator, key, value }) =>
+              `${encodeURIComponent(key)}:${icebergFilter(comparator, value)}`,
+          )
+          .join('&');
+      }
+      return builder;
+    },
+    setCustomHeader: (key: string, value: string) => {
+      headers[key] = value;
+      return builder;
+    },
+    build: () => headers,
+  };
+
+  return builder;
+};
+
 export async function fetchIcebergV2<T>({
   route,
   pageSize,
   cursor,
   filters,
   sortBy,
-  sortReverse,
+  sortOrder,
   disableCache,
 }: IcebergFetchParamsV2): Promise<IcebergFetchResultV2<T>> {
-  const requestHeaders: Record<string, string> = {
-    'x-pagination-mode': 'CachedObjectList-Pages',
-    'X-Pagination-Size': `${encodeURIComponent(pageSize || 5000)}`,
-    ...(cursor ? { 'X-Pagination-Cursor': `${cursor}` } : {}),
-    ...(disableCache ? { Pragma: 'no-cache' } : {}),
-  };
+  const requestHeaders = buildHeaders()
+    .setPaginationMode()
+    .setPaginationSize(pageSize)
+    .setPaginationCursor(cursor)
+    .setDisabledCache(disableCache)
+    .setPaginationSort(sortBy, sortOrder)
+    .setPaginationFilter(filters)
+    .build();
 
   const params = new URLSearchParams();
 
-  if (sortBy) {
-    requestHeaders['x-pagination-sort'] = encodeURIComponent(sortBy);
-    requestHeaders['x-pagination-sort-order'] = sortReverse ? 'DESC' : 'ASC';
-  }
-
   if (filters?.length) {
-    requestHeaders['x-pagination-filter'] = filters
-      .filter(({ type }) => type !== FilterTypeCategories.Tags)
-      .map(
-        ({ comparator, key, value }) =>
-          `${encodeURIComponent(key)}:${icebergFilter(comparator, value)}`,
-      )
-      .join('&');
-
     const tagsFilterParams = transformTagsFiltersToQuery(filters);
     if (tagsFilterParams) {
       params.append('iamTags', tagsFilterParams);
     }
   }
 
-  const { data, headers, status } = await apiClient.v2.get(route, {
+  let routeWithParams = route;
+  if (params.size) {
+    routeWithParams =
+      route.indexOf('?') > -1
+        ? `${route}&${params.toString()}`
+        : `${route}?${params.toString()}`;
+  }
+
+  const { data, headers, status } = await apiClient.v2.get(routeWithParams, {
     headers: requestHeaders,
   });
 
@@ -129,39 +179,22 @@ export async function fetchIcebergV6<T>({
   sortReverse,
   disableCache,
 }: IcebergFetchParamsV6): Promise<IcebergFetchResultV6<T>> {
-  const requestHeaders: Record<string, string> = {
-    'x-pagination-mode': 'CachedObjectList-Pages',
-    'x-pagination-number': `${encodeURIComponent(page || 1)}`,
-    'x-pagination-size': `${encodeURIComponent(pageSize || 5000)}`,
-  };
+  const requestHeaders = buildHeaders()
+    .setPaginationMode()
+    .setPaginationSize(pageSize)
+    .setPaginationNumber(page)
+    .setDisabledCache(disableCache)
+    .setPaginationSort(sortBy, sortReverse ? 'DESC' : 'ASC')
+    .setPaginationFilter(filters)
+    .build();
 
   const params = new URLSearchParams();
 
-  if (sortBy) {
-    requestHeaders['x-pagination-sort'] = encodeURIComponent(sortBy);
-    requestHeaders['x-pagination-sort-order'] = sortReverse ? 'DESC' : 'ASC';
-  }
   if (filters?.length) {
-    requestHeaders['x-pagination-filter'] = filters
-      .filter(({ type }) => type !== FilterTypeCategories.Tags)
-      .map(
-        ({ comparator, key, value }) =>
-          `${encodeURIComponent(key)}:${icebergFilter(comparator, value)}`,
-      )
-      .join('&');
-
     const tagsFilterParams = transformTagsFiltersToQuery(filters);
     if (tagsFilterParams) {
       params.append('iamTags', tagsFilterParams);
     }
-  }
-
-  if (requestHeaders['x-pagination-filter'] === '') {
-    delete requestHeaders['x-pagination-filter'];
-  }
-
-  if (disableCache) {
-    requestHeaders.Pragma = 'no-cache';
   }
 
   let routeWithParams = route;
