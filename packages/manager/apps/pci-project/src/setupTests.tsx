@@ -43,6 +43,8 @@ vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
     useProject: () => ({
       data: { status: 'ok' },
     }),
+    PciTrustedZoneBanner: () => <div data-testid="pci-trusted-zone-banner" />,
+    useTrustedZoneBanner: vi.fn(),
   };
 });
 
@@ -149,8 +151,3 @@ vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => {
     },
   };
 });
-
-vi.mock('@ovh-ux/manager-pci-common', () => ({
-  PciTrustedZoneBanner: () => <div data-testid="pci-trusted-zone-banner" />,
-  useTrustedZoneBanner: vi.fn(),
-}));
