@@ -7,14 +7,7 @@ export default class Ola {
 
   getCurrentMode() {
     if (this.isAvailable() && this.interfaces.length) {
-      const formattedInterfaces = this.interfaces.reduce(
-        (interfaces, iface) => {
-          const updatedIfaces = interfaces;
-          updatedIfaces[iface.type] = iface.mac.split(', ');
-          return updatedIfaces;
-        },
-        {},
-      );
+      const formattedInterfaces = this.getFormattedInterfaces();
 
       if (
         (formattedInterfaces[this.constants.OLA_MODES.VRACK_AGGREGATION]
@@ -41,6 +34,12 @@ export default class Ola {
     return this.constants.OLA_MODES.UNAVAILABLE;
   }
 
+  nbNICs() {
+    const formattedInterfaces = this.getFormattedInterfaces();
+    return formattedInterfaces[this.constants.OLA_MODES.VRACK_AGGREGATION]
+      ?.length;
+  }
+
   isActivated() {
     return !isEmpty(this.supportedModes);
   }
@@ -53,5 +52,13 @@ export default class Ola {
     return (
       this.interfaces.length === 1 && this.interfaces[0].isVrackAggregation()
     );
+  }
+
+  getFormattedInterfaces() {
+    return this.interfaces.reduce((interfaces, iface) => {
+      const updatedIfaces = interfaces;
+      updatedIfaces[iface.type] = iface.mac.split(', ');
+      return updatedIfaces;
+    }, {});
   }
 }
