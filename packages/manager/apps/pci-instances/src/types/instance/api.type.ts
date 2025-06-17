@@ -13,7 +13,7 @@ export type TInstanceAddressTypeDto = TAddressType;
 export type TSubnetDto = {
   id: string;
   name: string;
-  gatewayIp: string;
+  gatewayIP: string;
   network: {
     id: string;
     name: string;

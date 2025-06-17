@@ -1,4 +1,11 @@
-import { createContext, FC, useMemo } from 'react';
+import {
+  createContext,
+  FC,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import {
   Outlet,
   useParams,
@@ -7,6 +14,7 @@ import {
 } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_SKELETON_SIZE } from '@ovhcloud/ods-components';
 import {
   ChangelogButton,
@@ -39,16 +47,20 @@ const Instance: FC = () => {
     instanceId: string;
     regionId: string;
   };
-  const projectUrl = useProjectUrl('public-cloud');
+  const {
+    shell: { navigation },
+  } = useContext(ShellContext);
+
   const dashboardPath = useResolvedPath('');
   const vncPath = useResolvedPath('vnc');
+  const [dedicatedUrl, setDedicatedUrl] = useState('');
 
   const { data: instance, isLoading } = useRegionInstance(
     project.project_id,
     instanceId,
     regionId,
     {
-      select: (dto) => getInstanceDetail(dto, projectUrl),
+      select: (dto) => getInstanceDetail(dto, dedicatedUrl, project.project_id),
     },
   );
 
@@ -65,6 +77,13 @@ const Instance: FC = () => {
     ],
     [],
   );
+
+  // TODO: verify if there is a best way to build this external url
+  useEffect(() => {
+    navigation
+      .getURL('dedicated', '#/configuration/ip', {})
+      .then((data) => setDedicatedUrl(data as string));
+  }, [navigation]);
 
   return (
     <InstanceWrapper>
