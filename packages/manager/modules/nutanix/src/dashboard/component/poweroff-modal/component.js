@@ -6,7 +6,7 @@ export default {
     goBack: '<',
     handleSuccess: '<',
     handleError: '<',
-    nodeId: '<',
+    commercialRange: '<',
     poweroffNode: '<',
     userSubsidiary: '<',
   },

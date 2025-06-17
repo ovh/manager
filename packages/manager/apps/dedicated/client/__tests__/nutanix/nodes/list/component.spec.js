@@ -18,6 +18,11 @@ describe('ovhManagerNutanixAllNodes component tests suite', () => {
       .mockResolvedValue(CLUSTER_RESPONSE_MOCK.targetSpec.nodes[0]),
   };
 
+  const mockAtInternet = {
+    trackClick: jest.fn().mockResolvedValue(),
+    trackPage: jest.fn().mockResolvedValue(),
+  };
+
   angular.module('ovhManagerCore', []);
   beforeEach(() => {
     angular.mock.module(
@@ -27,6 +32,7 @@ describe('ovhManagerNutanixAllNodes component tests suite', () => {
       ($provide) => {
         $provide.value('coreConfig', mockCoreConfig);
         $provide.value('NutanixNode', mockNutanixNode);
+        $provide.value('atInternet', mockAtInternet);
       },
     );
   });

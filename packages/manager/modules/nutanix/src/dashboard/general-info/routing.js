@@ -1,3 +1,4 @@
+import { ENTERPRISE_SOLUTIONS_LEVEL_2_CODE } from '../../constants';
 import { FEATURES, TRACKING, LEGACY_PACK_TYPES } from './constants';
 
 const STATUS_DONE = 'DONE';
@@ -70,6 +71,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     atInternet: {
       rename: TRACKING.DASHBOARD,
+      level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
     },
   });
 };

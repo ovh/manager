@@ -24,5 +24,8 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => NutanixService.reinstallClusterNode(serviceName, nodeId, params),
       availableVersions: /* ngInject */ (cluster) => cluster.availableVersions,
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

@@ -32,6 +32,7 @@
                 class="oui-link"
                 data-ui-sref="{{:: $ctrl.constructor.getNodeDetailsState($row.name) }}"
                 data-ng-bind=":: $row.iam.displayName"
+                data-ng-click="$ctrl.trackClickDisplayNodeDetails()"
             >
             </a>
         </iam-protected-data>
