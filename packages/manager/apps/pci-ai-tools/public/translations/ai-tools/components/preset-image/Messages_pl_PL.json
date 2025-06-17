@@ -1,7 +1,7 @@
 {
-  "presetImageTitle": "Katalog obrazów prekonstruowanych",
-  "presetImageDesc": "Poznaj nasze gotowe obrazy Docker i rozpocznij pracę.",
-  "missingImageDesc": "Brakuje Ci frameworku? Zasugeruj klient na Discordzie społeczności OVHcloud AI.",
-  "discordLinkLabel": "Dyskusja OVHcloud",
+  "presetImageTitle": "Katalog wstępnie skonfigurowanych obrazów",
+  "presetImageDesc": "Skorzystaj z gotowych obrazów Docker i uruchom zadanie.",
+  "missingImageDesc": "Nie znalazłeś potrzebnego frameworka? Zaproponuj jego dodanie na Discordzie OVHcloud AI.",
+  "discordLinkLabel": "Discord OVHCloud",
   "imageDocLink": "Więcej informacji"
 }
