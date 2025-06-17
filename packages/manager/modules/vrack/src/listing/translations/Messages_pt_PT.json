@@ -1,3 +1,7 @@
 {
-  "vrack_listing_action_delete": "Rescindir o meu serviço"
+  "vrack_listing_action_delete": "Rescindir o meu serviço",
+  "vrack_listing_columns_header_serviceName": "Serviço",
+  "vrack_listing_columns_header_description": "Descrição",
+  "vrack_listing_columns_header_name": "Nome",
+  "vrack_listing_columns_header_state": "Estado"
 }
