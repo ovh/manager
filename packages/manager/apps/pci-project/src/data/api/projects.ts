@@ -26,11 +26,11 @@ export const removeProject = (params: {
 };
 
 export const unFavProject = async (): Promise<unknown> => {
-  const response = await v6.delete(
+  const { data } = await v6.delete(
     'me/preferences/manager/PUBLIC_CLOUD_DEFAULT_PROJECT',
   );
 
-  return response.data;
+  return data;
 };
 
 /**

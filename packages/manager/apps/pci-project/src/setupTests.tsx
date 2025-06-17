@@ -3,6 +3,7 @@ import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
 import { fetch } from 'cross-fetch';
+import { ActionMenuItem } from '@ovh-ux/manager-react-components';
 
 global.fetch = fetch;
 
@@ -28,6 +29,20 @@ vi.mock('react-router-dom', async (importOriginal) => {
   const actual: typeof import('react-router-dom') = await importOriginal();
   return {
     ...actual,
+    useHref: vi.fn(),
+    useNavigate: vi.fn(),
+    useSearchParams: vi.fn(),
+  };
+});
+
+vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
+  const actual: typeof import('@ovh-ux/manager-pci-common') = await importOriginal();
+  return {
+    ...actual,
+    isDiscoveryProject: vi.fn(),
+    useProject: () => ({
+      data: { status: 'ok' },
+    }),
   };
 });
 
@@ -55,34 +70,73 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
     <div data-testid="base-layout">{children}</div>
   ),
   useResourcesV6: vi.fn(),
-  Notifications: () => <div data-testid="notifications" />,
+  Notifications: vi
+    .fn()
+    .mockReturnValue(<div data-testid="notifications"></div>),
+  useNotifications: vi.fn(() => ({
+    addError: vi.fn(),
+    addSuccess: vi.fn(),
+  })),
+  ActionMenu: ({
+    id,
+    items,
+    isCompact,
+  }: {
+    id: string;
+    items: ActionMenuItem[];
+    isCompact: boolean;
+  }) => (
+    <div data-testid="action-menu" data-id={id} data-is-compact={isCompact}>
+      {items.map((item) => (
+        <a
+          key={item.id}
+          data-testid={`action-item-${item.id}`}
+          href={item.href}
+          onClick={item.onClick}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  ),
 }));
 
-vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsBadge: ({ color, label, ...props }: { color: string; label: string }) => (
-    <div data-testid="status_badge" data-color={color} {...props}>
-      {label}
-    </div>
-  ),
-  OdsButton: ({ label, ...props }: { label: string }) => (
-    <button data-testid="ods-button" {...props}>
-      {label}
-    </button>
-  ),
-  OdsSpinner: () => <div data-testid="ods-spinner" />,
-  OdsMessage: ({
-    color,
-    children,
-    ...props
-  }: {
-    color: string;
-    children: React.ReactNode;
-  }) => (
-    <div data-testid="ods-message" color={color} {...props}>
-      {children}
-    </div>
-  ),
-}));
+vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
+  const actual: typeof import('@ovhcloud/ods-components/react') = await importOriginal();
+  return {
+    ...actual,
+    OdsBadge: ({
+      color,
+      label,
+      ...props
+    }: {
+      color: string;
+      label: string;
+    }) => (
+      <div data-testid="status_badge" data-color={color} {...props}>
+        {label}
+      </div>
+    ),
+    OdsButton: ({ label, ...props }: { label: string }) => (
+      <button data-testid="ods-button" {...props}>
+        {label}
+      </button>
+    ),
+    OdsMessage: ({
+      color,
+      children,
+      ...props
+    }: {
+      color: string;
+      children: React.ReactNode;
+    }) => (
+      <div data-testid="ods-message" color={color} {...props}>
+        {children}
+      </div>
+    ),
+    OdsSpinner: () => <div data-testid="ods-spinner" />,
+  };
+});
 
 vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => {
   const actual: typeof import('@ovh-ux/manager-core-api') = await importOriginal();
@@ -90,6 +144,8 @@ vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => {
     ...actual,
     v6: {
       get: vi.fn(),
+      delete: vi.fn(),
+      post: vi.fn(),
     },
   };
 });
