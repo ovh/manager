@@ -62,6 +62,15 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(
           'app.managedBaremetal.details.datacenters.datacenter.dashboard.deleteDrp',
         ),
+
+      virtualMachinesState: () =>
+        'app.managedBaremetal.details.datacenters.datacenter.virtualMachines',
+
+      goToVirtualMachines: /* @ngInject */ (
+        $state,
+        virtualMachinesState,
+      ) => () => $state.go(virtualMachinesState),
+
       setMessage: /* @ngInject */ (Alerter) => (
         message = false,
         type = 'success',
