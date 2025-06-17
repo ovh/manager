@@ -1,8 +1,7 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import { getDomainOrderUrl } from './domains.order';
 import {
-  DOMAIN_PREFIX_PAGE_BUTTON_GO_TO_ORDER,
   DOMAIN_PREFIX_LISTING_MANAGE_DOMAINS,
+  DOMAIN_PREFIX_PAGE_BUTTON_GO_TO_ORDER,
 } from '../domains/domains.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -60,6 +59,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $window,
         coreConfig,
         atInternet,
+        RedirectionService,
       ) => ({
         cta: {
           type: 'button',
@@ -72,10 +72,8 @@ export default /* @ngInject */ ($stateProvider) => {
               name: `${DOMAIN_PREFIX_PAGE_BUTTON_GO_TO_ORDER}`,
               type: 'action',
             });
-            $window.open(
-              getDomainOrderUrl(coreConfig.getUser().ovhSubsidiary),
-              '_blank',
-            );
+            const url = `${RedirectionService.getURL('order')}webcloud`;
+            $window.open(url, '_blank');
           },
         },
       }),
