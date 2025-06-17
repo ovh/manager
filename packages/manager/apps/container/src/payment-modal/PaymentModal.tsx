@@ -69,7 +69,7 @@ const PaymentModal = (): JSX.Element => {
     if (shouldDisplayModal !== undefined) {
       setShowPaymentModal(shouldDisplayModal);
       if (!shouldDisplayModal) {
-        ux.notifyModalActionDone(PaymentModal.name);
+        ux.notifyModalActionDone('PaymentModal');
       }
     }
   }, [shouldDisplayModal]);

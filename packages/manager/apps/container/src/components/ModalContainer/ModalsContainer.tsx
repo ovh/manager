@@ -13,7 +13,13 @@ const MODALS_TO_DISPLAY: (() => JSX.Element)[] = [
   SuggestionModal,
 ];
 
-export default function ModalsContainer(): JSX.Element {
+type ModalsContainerProps = {
+  isPreloaderVisible: boolean;
+};
+
+export default function ModalsContainer({
+  isPreloaderVisible
+}: ModalsContainerProps): JSX.Element {
   const shell = useShell();
   const uxPlugin = shell.getPlugin('ux');
   const [isReady, setIsReady] = useState(false);
@@ -40,9 +46,15 @@ export default function ModalsContainer(): JSX.Element {
   }, [current]);
 
   useEffect(() => {
-    // On the first inner app full display we'll start managing modals lifecycle
-    const initModalLifeCycleManagement = () => setIsReady(true);
-    uxPlugin.onHidePreloader(initModalLifeCycleManagement, { once: true });
+    // If the preloader is already hidden we stat managing modals lifecycle
+    // Otherwise we listen for the hidding of the preloader to do so
+    if (!isPreloaderVisible) {
+      setIsReady(true);
+    }
+    else {
+      const initModalLifeCycleManagement = () => setIsReady(true);
+      uxPlugin.onHidePreloader(initModalLifeCycleManagement, { once: true });
+    }
   }, []);
 
   useEffect(() => {

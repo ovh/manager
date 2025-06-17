@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 
 import { IFrameMessageBus } from '@ovh-ux/shell';
 import { IFrameAppRouter } from '@/core/routing';
@@ -17,8 +17,11 @@ import usePreloader from '../common/Preloader/usePreloader';
 import useContainer from '@/core/container';
 import useMfaEnrollment from '@/container/mfa-enrollment';
 import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
+import { ContainerProps } from '@/types/container';
 
-function LegacyContainer(): JSX.Element {
+const ModalsContainer = lazy(() => import('@/components/ModalContainer/ModalsContainer'));
+
+function LegacyContainer({ isCookiePolicyModalClosed }: ContainerProps): JSX.Element {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState<HTMLIFrameElement>(null);
   const { betaVersion } = useContainer();
@@ -59,6 +62,7 @@ function LegacyContainer(): JSX.Element {
     <LegacyContainerProvider>
       <>
         <Progress isAnimating={isProgressAnimating}></Progress>
+        {isCookiePolicyModalClosed && <ModalsContainer isPreloaderVisible={preloaderVisible} />}
 
         <div className={style.managerShell}>
           <Suspense fallback="">

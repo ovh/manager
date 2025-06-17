@@ -19,7 +19,11 @@ import {
   useSuggestionTargetUrl,
 } from '@/hooks/suggestion/useSuggestion';
 import { useCheckModalDisplay } from '@/hooks/modal/useModal';
-import { INTERVAL_BETWEEN_DISPLAY_IN_S, SIRET_MODAL_FEATURE } from './SuggestionModal.constants';
+import {
+  INTERVAL_BETWEEN_DISPLAY_IN_S,
+  SIRET_MODAL_FEATURE,
+  MODAL_NAME,
+} from './SuggestionModal.constants';
 import { useTime } from '@/hooks/time/useTime';
 import { useCreatePreference } from '@/hooks/preferences/usePreferences';
 import { toScreamingSnakeCase } from '@/helpers';
@@ -31,7 +35,7 @@ const SuggestionModal = (): JSX.Element => {
   const user = environment.getUser();
   const ux = shell.getPlugin('ux');
 
-  const preferenceKey = toScreamingSnakeCase(SuggestionModal.name);
+  const preferenceKey = toScreamingSnakeCase(MODAL_NAME);
   const accountEditionLink = useSuggestionTargetUrl();
   const suggestionsCheck = useSuggestionsCheck(user);
 
@@ -82,7 +86,7 @@ const SuggestionModal = (): JSX.Element => {
     if (shouldDisplayModal !== undefined) {
       setShowModal(shouldDisplayModal);
       if (!shouldDisplayModal) {
-        ux.notifyModalActionDone(SuggestionModal.name);
+        ux.notifyModalActionDone(MODAL_NAME);
       }
     }
   }, [shouldDisplayModal]);

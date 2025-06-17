@@ -7,3 +7,4 @@ export const trackingContext = {
   chapter3: 'identity-files',
   level2: '88',
 };
+export const MODAL_NAME = 'IdentityDocumentsModal';

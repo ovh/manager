@@ -10,8 +10,6 @@ import CookiePolicy from '@/cookie-policy/CookiePolicy';
 import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
 import LiveChat from '@/container/livechat/LiveChat.component';
 
-const ModalsContainer = lazy(() => import('@/components/ModalContainer/ModalsContainer'));
-
 export default function Container(): JSX.Element {
   const { isLoading, betaVersion, useBeta } = useContainer();
   const shell = useShell();
@@ -47,11 +45,11 @@ export default function Container(): JSX.Element {
       <ProgressProvider>
         {isNavReshuffle ? (
           <ProductNavReshuffleProvider>
-            <NavReshuffleContainer />
+            <NavReshuffleContainer isCookiePolicyModalClosed={isCookiePolicyApplied}/>
           </ProductNavReshuffleProvider>
         ) : (
           <>
-            <LegacyContainer />
+            <LegacyContainer isCookiePolicyModalClosed={isCookiePolicyApplied}/>
           </>
         )}
         <Suspense fallback="">
@@ -64,7 +62,6 @@ export default function Container(): JSX.Element {
       <Suspense fallback="">
         <SSOAuthModal />
       </Suspense>
-      {isCookiePolicyApplied && <ModalsContainer />}
       <Suspense fallback="...">
         <CookiePolicy shell={shell} onValidate={cookiePolicyHandler} />
       </Suspense>

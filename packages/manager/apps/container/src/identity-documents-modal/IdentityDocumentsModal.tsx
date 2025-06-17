@@ -17,6 +17,7 @@ import {
   kycIndiaFeature,
   trackingContext,
   trackingPrefix,
+  MODAL_NAME,
 } from './IdentityDocumentsModal.constants';
 import { useShell } from '@/context';
 import { useCheckModalDisplay } from '@/hooks/modal/useModal';
@@ -34,7 +35,7 @@ export const IdentityDocumentsModal = (): JSX.Element => {
   const uxPlugin = shell.getPlugin('ux');
   const legalInformationRef = useRef<HTMLOsdsCollapsibleElement>(null);
 
-  const preferenceKey = toScreamingSnakeCase(IdentityDocumentsModal.name);
+  const preferenceKey = toScreamingSnakeCase(MODAL_NAME);
 
   const shouldDisplayModal = useCheckModalDisplay(
     (enabled: boolean) => useProcedureStatus(Procedures.INDIA, {
@@ -92,7 +93,7 @@ export const IdentityDocumentsModal = (): JSX.Element => {
         updatePreference(time);
       }
       else {
-        uxPlugin.notifyModalActionDone(IdentityDocumentsModal.name);
+        uxPlugin.notifyModalActionDone(MODAL_NAME);
       }
     }
   }, [shouldDisplayModal]);
