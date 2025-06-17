@@ -767,22 +767,6 @@ export default class Server {
     return this.aggregateMRTG(productId, mac, type, period);
   }
 
-  getInterventions(serviceName, count, offset) {
-    return this.OvhHttp.get(
-      '/sws/dedicated/server/{serviceName}/interventions',
-      {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
-        },
-        params: {
-          count,
-          offset,
-        },
-      },
-    );
-  }
-
   getTaskInProgress(serviceName, type) {
     return this.OvhHttp.get(
       '/sws/dedicated/server/{serviceName}/tasks/uncompleted',
