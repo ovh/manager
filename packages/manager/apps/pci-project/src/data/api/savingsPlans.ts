@@ -1,5 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { SavingsPlan } from '@/data/savingPlan.type';
+import { SavingsPlan } from '@/data/types/savingPlan.type';
 
 export const getSavingsPlans = async (
   serviceId: string,
