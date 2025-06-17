@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_edit_project_name": "Nome do projeto",
+  "pci_projects_project_edit_default_project": "Projeto predefinido",
+  "pci_projects_project_edit_default_project_description": "Projeto predefinido a cada ligação à Área de Cliente Public Cloud",
+  "pci_projects_project_edit_update": "Atualizar",
+  "pci_projects_project_edit_update_success": "O projeto foi atualizado.",
+  "pci_projects_project_edit_update_error": "Ocorreu um erro ao atualizar o projeto ({{ error }}).",
+  "pci_projects_project_edit_remove": "Eliminar o projeto",
+  "pci_projects_project_edit_remove_description": "A eliminação do projeto implicará a supressão de todos os recursos existentes, quer sejam dados, infraestruturas ou serviços. Certifique-se de que descarregou as suas informações importantes antes de executar esta operação irreversível.",
+  "pci_projects_project_edit_error_forbidden": "Não tem permissões suficientes para visualizar os seus dados de certificação HDS. Contacte o proprietário do serviço",
+  "pci_projects_project_edit_discovery_disable_tooltip": "A edição só é possível num projeto ativo."
+}

@@ -4,9 +4,12 @@ import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { urls } from '@/routes/routes.constant';
 import { TProjectWithService } from '@/data/types/project.type';
 import { removeProject } from '@/data/api/projects';
+import { useSetAsDefaultProject } from '@/data/hooks/useProjects';
 
 type ActionsProps = {
   projectWithService: TProjectWithService;
@@ -15,8 +18,8 @@ type ActionsProps = {
 export default function Actions({
   projectWithService,
 }: Readonly<ActionsProps>) {
-  const { t } = useTranslation('listing');
-  const { addSuccess } = useNotifications();
+  const { t } = useTranslation(['listing', 'edit', NAMESPACES.ERROR]);
+  const { addSuccess, addError } = useNotifications();
   const {
     shell: { navigation },
   } = useContext(ShellContext);
@@ -34,6 +37,7 @@ export default function Actions({
     isActive: projectWithService.status === 'ok',
     isSuspended: projectWithService.status === 'suspended',
     hasPendingDebt: projectWithService.isUnpaid,
+    isDefault: projectWithService.isDefault,
   };
 
   const handleDeleteProject = () => {
@@ -41,6 +45,17 @@ export default function Actions({
       addSuccess(t('pci_projects_project_delete_success')),
     );
   };
+
+  const { mutate: setAsDefaultProject } = useSetAsDefaultProject({
+    onSuccess: () => {
+      addSuccess(t('pci_projects_project_edit_update_success', { ns: 'edit' }));
+    },
+    onError: (error: ApiError) => {
+      addError(
+        t('error_message', { message: error.message, ns: NAMESPACES.ERROR }),
+      );
+    },
+  });
 
   useEffect(() => {
     navigation
@@ -84,6 +99,17 @@ export default function Actions({
         ...(projectStatus.isCreating
           ? { onClick: handleDeleteProject }
           : { href: deleteHref }),
+      });
+    }
+
+    // View/Show project option
+    if (!projectStatus.isDefault) {
+      items.push({
+        id: 3,
+        label: t('pci_projects_project_edit_set_as_default_project', {
+          ns: 'edit',
+        }),
+        onClick: () => setAsDefaultProject(projectWithService.project_id),
       });
     }
 
