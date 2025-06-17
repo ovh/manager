@@ -1,20 +1,10 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { AxiosError } from 'axios';
 import { TOperation } from '@/api/data/operation';
 
 export type TNewGateway = {
   name: string;
   model: string;
 };
-
-export type TGatewayError = {
-  class: string;
-  message: string;
-};
-
-export enum TGatewayErrorClass {
-  MaxQuotaReached = 'MaxQuotaReached',
-}
 
 export const createGateway = async (
   projectId: string,
@@ -25,14 +15,8 @@ export const createGateway = async (
 ) => {
   const url = `/cloud/project/${projectId}/region/${regionName}/network/${networkId}/subnet/${subnetId}/gateway`;
 
-  try {
-    const { data } = await v6.post<TOperation>(url, newGateway);
-
-    return data;
-  } catch (e) {
-    const error = e as AxiosError;
-    throw error.response.data;
-  }
+  const { data } = await v6.post<TOperation>(url, newGateway);
+  return data;
 };
 
 export type TGateway = {

@@ -4,7 +4,6 @@ import {
   createGateway,
   getGateway,
   getGatewayUrl,
-  TGatewayError,
   TNewGateway,
   updateGateway,
 } from '@/api/data/gateways';
@@ -16,7 +15,7 @@ export type TCreateGatewayParam = {
   regionName: string;
   networkId: string;
   subnetId: string;
-  onError: (error: TGatewayError) => void;
+  onError: (error: unknown) => void;
   onSuccess: (op: TOperation) => void;
 };
 
