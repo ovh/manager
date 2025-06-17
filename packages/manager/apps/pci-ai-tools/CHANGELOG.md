@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.7...@ovh-ux/manager-pci-ai-tools-app@1.6.0) (2025-06-17)
+
+
+### Features
+
+* **pci-ai-tools:deploy:** new react version of AI Deploy ([25024a7](https://github.com/ovh/manager/commit/25024a70772049e0100ceb6b6ab67da9dc13703d)), closes [#DATATR-1976](https://github.com/ovh/manager/issues/DATATR-1976)
+
+
+
+
+
 ## [1.5.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.6...@ovh-ux/manager-pci-ai-tools-app@1.5.7) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
