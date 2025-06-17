@@ -24,14 +24,19 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { z } from 'zod';
 import getLocaleForDatePicker from '@/components/utils/getLocaleForDatepicker';
-import { useCreateToken } from '@/hooks/api/database/token/useToken.hook';
-import { TokenData } from '@/types/cloud/project/database/token/index';
+import { TokenData, TokensPayload } from '@/types/cloud/project/database/token';
 
 export type CreateFormProps = {
   projectId: string;
   tokens: string[];
   infiniteDate: Date;
-  onSuccess: (token: TokenData) => void;
+  createToken: (
+    payload: TokensPayload,
+    opts?: { onSuccess: (token: TokenData) => void },
+  ) => void;
+  isRestricted: boolean;
+  onClose: () => void;
+  onSuccess?: (token: TokenData) => void; // ✅ nouvelle prop
 };
 
 type FormValues = {
@@ -41,10 +46,7 @@ type FormValues = {
   isChecked: boolean;
 };
 
-export function createTokenSchema(
-  tokens: string[],
-  t: (key: string) => string,
-) {
+function createTokenSchema(tokens: string[], t: (key: string) => string) {
   return z.object({
     tokenName: z
       .string()
@@ -52,33 +54,28 @@ export function createTokenSchema(
       .regex(/^[A-Za-z0-9-]+$/, {
         message: t('ai_endpoints_token_invalid_format'),
       })
-      .refine(
-        (value) => !tokens.some((existing) => existing === value.trim()),
-        { message: t('ai_endpoints_token_name_error') },
-      ),
+      .refine((v) => !tokens.includes(v.trim()), {
+        message: t('ai_endpoints_token_name_error'),
+      }),
     description: z.string(),
     expirationDate: z.date(),
     isChecked: z.boolean(),
   });
 }
 
-const CreateForm = ({
+export default function CreateForm({
   projectId,
   tokens,
   infiniteDate,
+  createToken,
+  onClose,
   onSuccess,
-}: CreateFormProps) => {
+  isRestricted,
+}: CreateFormProps) {
   const { t } = useTranslation('token');
   const localDatePicker = getLocaleForDatePicker();
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-
-  const { createToken } = useCreateToken({
-    projectId,
-    onSuccess: (newToken) => {
-      onSuccess(newToken);
-    },
-  });
 
   const {
     control,
@@ -97,8 +94,6 @@ const CreateForm = ({
     mode: 'onChange',
   });
 
-  // Surveillance des valeurs du formulaire
-  const tokenNameValue = watch('tokenName');
   const isChecked = watch('isChecked');
   const expirationDate = watch('expirationDate');
 
@@ -109,14 +104,20 @@ const CreateForm = ({
   }, [isChecked, infiniteDate, setValue]);
 
   const onSubmit = (data: FormValues) => {
-    const payload = {
+    const payload: TokensPayload = {
       projectId,
       name: data.tokenName,
       description: data.description,
       expiresAt: data.expirationDate.toISOString(),
     };
-
-    createToken(payload);
+    createToken(payload, {
+      onSuccess: (token) => {
+        onSuccess?.(token);
+        if (isRestricted) {
+          onClose();
+        }
+      },
+    });
   };
 
   const displayChipValue = useMemo(() => {
@@ -128,17 +129,13 @@ const CreateForm = ({
   return (
     <>
       <OsdsFormField>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="mt-6"
-          slot="label"
-        >
+        <OsdsText color={ODS_THEME_COLOR_INTENT.text} slot="label">
           {t('ai_endpoints_token_name')}
         </OsdsText>
         <Controller
-          control={control}
           name="tokenName"
-          render={({ field: { onChange, onBlur, value, ref } }) => (
+          control={control}
+          render={({ field }) => (
             <OsdsInput
               ariaLabel="token-name-input"
               color={
@@ -147,18 +144,17 @@ const CreateForm = ({
                   : ODS_THEME_COLOR_INTENT.primary
               }
               type={ODS_INPUT_TYPE.text}
-              value={value || ''}
-              onOdsValueChange={(e) => {
-                const newVal = e.detail?.value;
-                onChange(newVal.slice(0, 60));
-              }}
-              onBlur={onBlur}
-              ref={ref}
+              value={field.value}
+              onOdsValueChange={(e) =>
+                field.onChange(e.detail.value.slice(0, 60))
+              }
+              onBlur={field.onBlur}
+              ref={field.ref}
               className="max-w-[23.125rem] mt-2"
             />
           )}
         />
-        {errors.tokenName && tokenNameValue.trim() !== '' && (
+        {errors.tokenName && (
           <OsdsText color={ODS_THEME_COLOR_INTENT.error} slot="helper">
             {errors.tokenName.message}
           </OsdsText>
@@ -179,10 +175,7 @@ const CreateForm = ({
           placeholder={t('ai_endpoints_token_description_placeholder')}
           className="mt-2"
           value={watch('description')}
-          onOdsValueChange={(e) => {
-            const newVal = e.detail?.value;
-            setValue('description', newVal);
-          }}
+          onOdsValueChange={(e) => setValue('description', e.detail?.value)}
         />
       </OsdsFormField>
 
@@ -267,6 +260,4 @@ const CreateForm = ({
       </OsdsButton>
     </>
   );
-};
-
-export default CreateForm;
+}

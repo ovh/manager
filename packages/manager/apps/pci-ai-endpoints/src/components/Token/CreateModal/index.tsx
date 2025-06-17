@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   OsdsModal,
@@ -14,14 +13,21 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { TokenData } from '@/types/cloud/project/database/token/index';
 import CreateForm from './CreateForm';
+import { TokenData, TokensPayload } from '@/types/cloud/project/database/token';
 
 type CreateModalProps = {
   onClose: () => void;
   projectId: string;
   tokens: string[];
   infiniteDate: Date;
+  createToken: (
+    payload: TokensPayload,
+    opts?: { onSuccess: (token: TokenData) => void },
+  ) => void;
+  isRestricted: boolean;
+  isSuccess: boolean;
+  createdToken: TokenData | null;
 };
 
 export default function CreateModal({
@@ -29,18 +35,17 @@ export default function CreateModal({
   projectId,
   tokens,
   infiniteDate,
+  createToken,
+  isRestricted,
+  isSuccess,
+  createdToken,
 }: CreateModalProps) {
   const { t } = useTranslation('token');
-  const [createdToken, setCreatedToken] = useState<TokenData | null>(null);
 
-  const handleFormSuccess = (token: TokenData) => {
-    setCreatedToken(token);
-  };
-
-  const modalHeadline = createdToken
+  const headline = isSuccess
     ? t('ai_endpoints_token_success')
     : t('ai_endpoints_token_creation');
-  const actionLabel = createdToken
+  const actionLabel = isSuccess
     ? t('ai_endpoints_token_understand')
     : t('ai_endpoints_token_create');
 
@@ -49,9 +54,17 @@ export default function CreateModal({
       color={ODS_THEME_COLOR_INTENT.info}
       onOdsModalClose={onClose}
       dismissible
-      headline={modalHeadline}
+      headline={headline}
     >
-      {createdToken ? (
+      {isRestricted && (
+        <OsdsMessage type={ODS_MESSAGE_TYPE.error} className="mb-4">
+          <OsdsText level={ODS_TEXT_LEVEL.body} size={ODS_TEXT_SIZE._400}>
+            {t('ai_endpoints_error_no_permission_create')}
+          </OsdsText>
+        </OsdsMessage>
+      )}
+
+      {isSuccess && createdToken ? (
         <>
           <OsdsMessage
             type={ODS_MESSAGE_TYPE.info}
@@ -65,10 +78,7 @@ export default function CreateModal({
               {t('ai_endpoints_token_success_message')}
             </OsdsText>
           </OsdsMessage>
-          <OsdsClipboard
-            aria-label="clipboard"
-            value={createdToken.token || ''}
-          />
+          <OsdsClipboard aria-label="clipboard" value={createdToken.token} />
           <OsdsButton
             slot="actions"
             color={ODS_THEME_COLOR_INTENT.primary}
@@ -84,7 +94,9 @@ export default function CreateModal({
           projectId={projectId}
           tokens={tokens}
           infiniteDate={infiniteDate}
-          onSuccess={handleFormSuccess}
+          createToken={createToken}
+          onClose={onClose}
+          isRestricted={isRestricted}
         />
       )}
     </OsdsModal>

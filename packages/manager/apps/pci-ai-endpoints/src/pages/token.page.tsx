@@ -26,12 +26,11 @@ import useUserPolicy from '@/hooks/api/database/token/user.hook';
 import { useDatagridColumns } from '@/hooks/token/useDatagridColumns';
 import {
   useGetTokens,
-  useUpdateToken,
-  useDeleteToken,
+  useTokenMutations,
 } from '@/hooks/api/database/token/useToken.hook';
 import { useGetProject } from '@/hooks/api/database/project/useGetProject.hook';
-import { TokenData } from '@/types/cloud/project/database/token';
 import useUserInfos from '@/hooks/token/useUserInfos';
+import { TokenData } from '@/types/cloud/project/database/token';
 
 type ModalState = {
   isOpen: boolean;
@@ -54,14 +53,25 @@ const formatDateForSearch = (date: Date, t: (key: string) => string) => {
 
 export default function TokenPage() {
   const { t } = useTranslation('token');
-  const { projectId } = useParams();
+  const { projectId } = useParams<{ projectId: string }>();
   const { pagination, setPagination } = useDataGrid();
+
+  const [createdToken, setCreatedToken] = useState<TokenData | null>(null);
+
   const { data: isAuthorized, isLoading: isAuthLoading } = useUserInfos(
     projectId,
   );
-
+  const {
+    createToken,
+    updateToken,
+    deleteToken,
+    isRestricted,
+    isCreateSuccess,
+  } = useTokenMutations({
+    projectId,
+    onSuccess: (tok) => setCreatedToken(tok),
+  });
   const { data: projectData } = useGetProject(projectId);
-
   useUserPolicy(projectId);
 
   const [modalState, setModalState] = useState<ModalState>({
@@ -70,49 +80,20 @@ export default function TokenPage() {
     selectedToken: null,
   });
   const [searchQuery, setSearchQuery] = useState('');
-
   const { data: tokensData, isLoading } = useGetTokens({ projectId });
 
-  const updateTokenMutation = useUpdateToken({
-    projectId,
-    onError: () => {},
-    onSuccess: () => {},
-  });
-
-  const deleteTokenMutation = useDeleteToken({
-    projectId,
-    onError: () => {},
-    onSuccess: () => {},
-  });
-
-  const openModal = (
-    mode: 'create' | 'update' | 'delete',
-    token?: TokenData,
-  ) => {
-    setModalState({
-      isOpen: true,
-      mode,
-      selectedToken: token || null,
-    });
+  const openModal = (mode: ModalState['mode'], token?: TokenData) => {
+    setModalState({ isOpen: true, mode, selectedToken: token || null });
   };
-
   const closeModal = () => {
-    setModalState({
-      isOpen: false,
-      mode: 'create',
-      selectedToken: null,
-    });
+    setModalState({ isOpen: false, mode: 'create', selectedToken: null });
+    setCreatedToken(null);
   };
 
-  const handleUpdateToken = (token: TokenData) => {
-    if (!token.name) return;
-    openModal('update', token);
-  };
-
-  const handleDeleteToken = (token: TokenData) => {
-    if (!token.name) return;
-    openModal('delete', token);
-  };
+  const handleUpdateToken = (token: TokenData) =>
+    token.name && openModal('update', token);
+  const handleDeleteToken = (token: TokenData) =>
+    token.name && openModal('delete', token);
 
   const { columns, tokenItems } = useDatagridColumns({
     projectId,
@@ -122,23 +103,21 @@ export default function TokenPage() {
   });
 
   const filteredAndSortedTokens = useMemo(() => {
-    let tokens = tokenItems;
+    let list = tokenItems;
     if (searchQuery.trim()) {
-      const query = searchQuery.trim().toLowerCase();
-      tokens = tokens.filter((token) => {
-        const nameMatch = token.name?.toLowerCase().includes(query);
-        let expirationMatch = false;
-        if (token.expiresAt) {
-          const tokenDate = new Date(token.expiresAt);
-          const formattedDate = formatDateForSearch(tokenDate, t).toLowerCase();
-          expirationMatch = formattedDate.includes(query);
+      const q = searchQuery.trim().toLowerCase();
+      list = list.filter((tk) => {
+        const nameMatch = tk.name?.toLowerCase().includes(q);
+        let expMatch = false;
+        if (tk.expiresAt) {
+          expMatch = formatDateForSearch(new Date(tk.expiresAt), t)
+            .toLowerCase()
+            .includes(q);
         }
-        return nameMatch || expirationMatch;
+        return nameMatch || expMatch;
       });
     }
-    return [...tokens].sort((a, b) =>
-      (a.name || '').localeCompare(b.name || ''),
-    );
+    return [...list].sort((a, b) => (a.name || '').localeCompare(b.name || ''));
   }, [searchQuery, tokenItems, t]);
 
   const startIndex = pagination.pageIndex * pagination.pageSize;
@@ -178,7 +157,18 @@ export default function TokenPage() {
             </OsdsMessage>
           )}
           {!isAuthorized && (
-            <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="max-w-fit">
+            <OsdsMessage type={ODS_MESSAGE_TYPE.warning} className="max-w-fit">
+              <OsdsText
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_TEXT_SIZE._400}
+                color={ODS_THEME_COLOR_INTENT.text}
+              >
+                {t('ai_endpoints_non_admin_user')}
+              </OsdsText>
+            </OsdsMessage>
+          )}
+          {isRestricted && (
+            <OsdsMessage type={ODS_MESSAGE_TYPE.warning} className="max-w-fit">
               <OsdsText
                 level={ODS_TEXT_LEVEL.body}
                 size={ODS_TEXT_SIZE._400}
@@ -194,9 +184,9 @@ export default function TokenPage() {
                 size={ODS_BUTTON_SIZE.sm}
                 variant={ODS_BUTTON_VARIANT.flat}
                 color={ODS_THEME_COLOR_INTENT.primary}
-                className="xs:mb-0.5 sm:mb-0 mr-4"
+                className="mr-4"
                 onClick={() => isAuthorized && openModal('create')}
-                disabled={!isAuthorized || undefined}
+                disabled={!isAuthorized}
               >
                 <OsdsIcon
                   name={ODS_ICON_NAME.PLUS}
@@ -231,19 +221,22 @@ export default function TokenPage() {
 
           {modalState.isOpen && modalState.mode === 'create' && (
             <CreateModal
-              infiniteDate={INFINITE_DATE}
               onClose={closeModal}
               projectId={projectId}
               tokens={Array.isArray(tokensData) ? tokensData : []}
+              infiniteDate={INFINITE_DATE}
+              createToken={createToken}
+              isRestricted={isRestricted}
+              isSuccess={isCreateSuccess}
+              createdToken={createdToken}
             />
           )}
-
           {modalState.isOpen &&
             modalState.mode === 'update' &&
             modalState.selectedToken && (
               <UpdateModal
-                infiniteDate={INFINITE_DATE}
                 onClose={closeModal}
+                infiniteDate={INFINITE_DATE}
                 initialValues={{
                   tokenName: modalState.selectedToken.name || '',
                   description: modalState.selectedToken.description || '',
@@ -251,33 +244,30 @@ export default function TokenPage() {
                     ? new Date(modalState.selectedToken.expiresAt)
                     : undefined,
                 }}
-                onSubmit={(payload) => {
-                  if (payload) {
-                    updateTokenMutation.updateToken({
-                      projectId,
-                      name: modalState.selectedToken?.name,
-                      description: payload.description,
-                      expiresAt: payload.expirationDate
-                        ? payload.expirationDate.toISOString()
-                        : undefined,
-                    });
-                  }
-                }}
+                onSubmit={(payload) =>
+                  updateToken({
+                    projectId,
+                    name: modalState.selectedToken.name,
+                    description: payload.description,
+                    expiresAt: payload.expirationDate
+                      ? payload.expirationDate.toISOString()
+                      : undefined,
+                  })
+                }
               />
             )}
-
           {modalState.isOpen &&
             modalState.mode === 'delete' &&
             modalState.selectedToken && (
               <DeleteModal
                 onClose={closeModal}
                 tokenName={modalState.selectedToken.name || ''}
-                onSubmit={() => {
-                  deleteTokenMutation.deleteToken({
+                onSubmit={() =>
+                  deleteToken({
                     projectId,
-                    name: modalState.selectedToken?.name,
-                  });
-                }}
+                    name: modalState.selectedToken.name,
+                  })
+                }
               />
             )}
 
@@ -287,9 +277,7 @@ export default function TokenPage() {
             <div className="mt-12">
               <Datagrid
                 columns={columns}
-                items={
-                  filteredAndSortedTokens.length > 0 ? paginatedTokens : []
-                }
+                items={paginatedTokens}
                 totalItems={filteredAndSortedTokens.length}
                 pagination={pagination}
                 onPaginationChange={setPagination}

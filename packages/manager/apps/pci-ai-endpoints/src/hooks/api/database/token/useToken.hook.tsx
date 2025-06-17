@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import * as database from '@/types/cloud/project/database';
 import {
@@ -13,6 +14,16 @@ import {
 } from '@/types/cloud/project/database/token';
 import { getTokenQueryOptions } from '@/components/utils/getTokenQueries';
 
+interface ApiError extends Error {
+  response?: { status?: number };
+}
+
+interface UseTokenMutationOptions {
+  projectId: string;
+  onError?: (error: ApiError) => void;
+  onSuccess?: (token: TokenData) => void;
+}
+
 export function useGetTokens({ projectId }: PCI) {
   return useQuery<string[], Error>({
     queryKey: ['tokens', projectId],
@@ -26,97 +37,105 @@ export function useGetToken({ projectId, name }: TokenData) {
   );
 }
 
+function useTokenMutationHandler<TPayload, TResult extends TokenData>(
+  projectId: string,
+  mutationFn: (payload: TPayload) => Promise<TResult>,
+  invalidateExtra?: (variables: TPayload) => Promise<void>,
+  options?: Pick<UseTokenMutationOptions, 'onError' | 'onSuccess'>,
+) {
+  const queryClient = useQueryClient();
+  const [isRestricted, setIsRestricted] = useState(false);
+
+  const mutation = useMutation<TResult, ApiError, TPayload>({
+    mutationFn,
+    onError: (error) => {
+      // Only set restricted when HTTP 403
+      const status = error.response?.status;
+      setIsRestricted(status === 403);
+      options?.onError?.(error);
+    },
+    onSuccess: async (data, variables) => {
+      await queryClient.invalidateQueries({ queryKey: ['tokens', projectId] });
+      if (invalidateExtra) {
+        await invalidateExtra(variables);
+      }
+      setIsRestricted(false);
+      options?.onSuccess?.(data);
+    },
+  });
+
+  return {
+    mutate: (payload: TPayload) => mutation.mutate(payload),
+    isRestricted,
+    isSuccess: mutation.isSuccess,
+    data: mutation.data,
+    ...mutation,
+  };
+}
+
 export const useCreateToken = ({
   projectId,
   onError,
   onSuccess,
-}: {
-  projectId: string;
-  onError?: (error: Error) => void;
-  onSuccess?: (token: TokenData) => void;
-}) => {
-  const queryClient = useQueryClient();
-  const mutation = useMutation<TokenData, Error, TokensPayload>({
-    mutationFn: async (payload: TokensPayload) => createToken(payload),
-    onError,
-    onSuccess: async (newToken) => {
-      await queryClient.invalidateQueries({ queryKey: ['tokens', projectId] });
-      if (onSuccess) {
-        onSuccess(newToken);
-      }
-    },
-  });
-  return {
-    createToken: (payload: TokensPayload) => mutation.mutate(payload),
-    ...mutation,
-  };
-};
+}: UseTokenMutationOptions) =>
+  useTokenMutationHandler<TokensPayload, TokenData>(
+    projectId,
+    createToken,
+    undefined,
+    { onError, onSuccess },
+  );
 
 export const useUpdateToken = ({
   projectId,
   onError,
   onSuccess,
-}: {
-  projectId: string;
-  onError?: (error: Error) => void;
-  onSuccess?: (token: TokenData) => void;
-}) => {
-  const queryClient = useQueryClient();
-  const mutation = useMutation<TokenData, Error, TokensPayload>({
-    mutationFn: async (payload: TokensPayload) => updateToken(payload),
-    onError,
-    onSuccess: async (data, variables) => {
-      await queryClient.invalidateQueries({ queryKey: ['tokens', projectId] });
-      const tokenName = variables.name;
-      if (tokenName) {
-        await queryClient.invalidateQueries({
-          queryKey: ['tokens', projectId, tokenName],
+}: UseTokenMutationOptions) =>
+  useTokenMutationHandler<TokensPayload, TokenData>(
+    projectId,
+    updateToken,
+    async (variables) => {
+      if (variables.name) {
+        await useQueryClient().invalidateQueries({
+          queryKey: ['tokens', projectId, variables.name],
         });
       }
-      if (onSuccess) {
-        onSuccess(data);
-      }
     },
-  });
-  return {
-    updateToken: (payload: TokensPayload) => mutation.mutate(payload),
-    ...mutation,
-  };
-};
+    { onError, onSuccess },
+  );
 
 export const useDeleteToken = ({
   projectId,
   onError,
   onSuccess,
-}: {
-  projectId: string;
-  onError?: (error: Error) => void;
-  onSuccess?: (token: TokenData) => void;
-}) => {
-  const queryClient = useQueryClient();
-  const mutation = useMutation<
-    TokenData,
-    Error,
-    { projectId: string; name: string }
-  >({
-    mutationFn: async (payload: { projectId: string; name: string }) =>
-      deleteToken(payload),
-    onError,
-    onSuccess: async (data, variables) => {
-      await queryClient.invalidateQueries({ queryKey: ['tokens', projectId] });
-      const tokenName = variables.name;
-      if (tokenName) {
-        await queryClient.invalidateQueries({
-          queryKey: ['tokens', projectId, tokenName],
+}: UseTokenMutationOptions) =>
+  useTokenMutationHandler<{ projectId: string; name: string }, TokenData>(
+    projectId,
+    deleteToken,
+    async (variables) => {
+      if (variables.name) {
+        await useQueryClient().invalidateQueries({
+          queryKey: ['tokens', projectId, variables.name],
         });
       }
-      if (onSuccess) {
-        onSuccess(data);
-      }
     },
-  });
+    { onError, onSuccess },
+  );
+
+export const useTokenMutations = ({
+  projectId,
+  onError,
+  onSuccess,
+}: UseTokenMutationOptions) => {
+  const create = useCreateToken({ projectId, onError, onSuccess });
+  const update = useUpdateToken({ projectId, onError, onSuccess });
+  const deletion = useDeleteToken({ projectId, onError, onSuccess });
+
   return {
-    deleteToken: mutation.mutate,
-    ...mutation,
+    createToken: create.mutate,
+    updateToken: update.mutate,
+    deleteToken: deletion.mutate,
+    isRestricted:
+      create.isRestricted || update.isRestricted || deletion.isRestricted,
+    isCreateSuccess: create.isSuccess,
   };
 };

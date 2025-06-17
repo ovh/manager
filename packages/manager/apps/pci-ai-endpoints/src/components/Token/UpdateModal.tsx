@@ -85,8 +85,8 @@ export default function UpdateModal({
     });
   }, [initialValues, infiniteDate, reset]);
 
-  const isChecked = watch('isChecked'); // getValue
-  const expirationDate = watch('expirationDate'); // getValue
+  const isChecked = watch('isChecked');
+  const expirationDate = watch('expirationDate');
 
   useEffect(() => {
     if (!isChecked) {
