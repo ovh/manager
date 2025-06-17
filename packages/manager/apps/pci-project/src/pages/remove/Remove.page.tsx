@@ -126,7 +126,6 @@ export default function RemovePage() {
       onCancel={goBack}
       onClose={goBack}
       onConfirm={handleConfirm}
-      data-testid="remove-project-modal"
     >
       <OdsText preset="paragraph">{modalContentMessage}</OdsText>
     </DeletionModal>
