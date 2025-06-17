@@ -1,3 +1,7 @@
+import {
+  TContinent,
+  TLocalisation as TLocPCI,
+} from '@ovh-ux/manager-pci-common';
 import { DeploymentMode } from '.';
 
 export type TAvailabilityZone = string;
@@ -296,4 +300,18 @@ export type TRegionInformations = {
   services: TService[];
   status: TOpenstackRegionStatus;
   type: TRegionType;
+};
+
+export type TRegionBase = {
+  name: string;
+  type: TRegionType;
+  availabilityZones: string[];
+  continentCode: 'ASIA' | 'EU' | 'NA' | 'US' | string;
+};
+
+export type TLocation = TLocPCI & { enabled?: boolean };
+
+export type TProjectLocation = {
+  regions: TLocation[];
+  continents: TContinent[];
 };

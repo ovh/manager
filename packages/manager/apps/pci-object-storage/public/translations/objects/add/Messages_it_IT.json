@@ -14,11 +14,11 @@
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link": "Visualizza i prezzi",
   "pci_projects_project_storages_containers_container_object_add_storage_class_standard": "Standard",
   "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Solo le classi di storage Standard e Standard Infrequent Access sono disponibili per gli oggetti in questa modalità di deploy.",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "In questa modalità di distribuzione sono disponibili solo le classi di archiviazione Standard e Infrequent Access.",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_storage_class": "classi di storage",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_part_2": "e le",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_price": "tariffe.",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_price_text": "Visualizza i prezzi",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_standard_infrequent_access": "Standard Infrequent Access",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_standard_infrequent_access": "Infrequent Access",
   "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner_lz": "Solo la classe di storage standard è disponibile per gli oggetti di un container creato con questa modalità di deploy."
 }

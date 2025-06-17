@@ -100,9 +100,6 @@ export const PCI_FEATURES = {
 };
 
 export const PCI_FEATURES_STATES = {
-  DATAPLATFORM: {
-    LIST: 'pci.projects.project.dataplatform',
-  },
   INSTANCES: {
     LIST: 'pci.projects.project.instances',
     ADD: 'pci.projects.project.instances.add',
@@ -157,14 +154,6 @@ export const PCI_FEATURES_STATES = {
   WORKFLOW: {
     LIST: 'pci.projects.project.workflow',
     ADD: 'pci.projects.project.workflow.new',
-  },
-  NOTEBOOKS: {
-    LIST: 'pci.projects.project.notebooks',
-    ADD: 'pci.projects.project.notebooks.add',
-  },
-  TRAINING: {
-    LIST: 'pci.projects.project.training',
-    ADD: 'pci.projects.project.training.jobs.submit',
   },
   SERVING: {
     LIST: 'pci.projects.project.serving',
