@@ -3,17 +3,23 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { useHref } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { createWrapper } from '@/wrapperRenders';
-import { TService } from '@/data/types/service.type';
+import { removeProject } from '@/data/api/projects';
+import { useSetAsDefaultProject } from '@/data/hooks/useProjects';
 import {
   TAggregatedStatus,
   TProjectWithService,
 } from '@/data/types/project.type';
-import { removeProject } from '@/data/api/projects';
+import { TService } from '@/data/types/service.type';
+import { createWrapper } from '@/wrapperRenders';
 import Actions from './Actions.component';
 
 vi.mock('@/data/api/projects', () => ({
   removeProject: vi.fn().mockResolvedValue({}),
+  getDefaultProject: vi.fn().mockResolvedValue({}),
+}));
+
+vi.mock('@/data/hooks/useProjects', () => ({
+  useSetAsDefaultProject: vi.fn(),
 }));
 
 describe('Actions Component', () => {
@@ -80,6 +86,7 @@ describe('Actions Component', () => {
     project_id: 'test-project-id',
     status: 'ok' as TProjectStatus,
     isUnpaid: false,
+    isDefault: false,
     service: mockService,
     access: 'full',
     creationDate: '2024-01-01',
@@ -97,11 +104,34 @@ describe('Actions Component', () => {
   };
 
   const mockAddSuccess = vi.fn();
+  const mockAddError = vi.fn();
+  const mockSetAsDefaultProject = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.mocked(useNotifications).mockReturnValue({ addSuccess: mockAddSuccess });
+    vi.mocked(useNotifications).mockReturnValue({
+      addSuccess: mockAddSuccess,
+      addError: mockAddError,
+    });
     vi.mocked(useHref).mockImplementation((path) => path as string);
+    vi.mocked(useSetAsDefaultProject).mockReturnValue({
+      mutate: mockSetAsDefaultProject,
+      mutateAsync: vi.fn(),
+      isPending: false,
+      isSuccess: false,
+      isError: false,
+      error: null,
+      reset: vi.fn(),
+      data: undefined,
+      variables: undefined,
+      isIdle: true,
+      status: 'idle' as const,
+      failureCount: 0,
+      failureReason: null,
+      isPaused: false,
+      context: undefined,
+      submittedAt: 0,
+    });
   });
 
   it('should render action menu with correct items for active project', () => {
@@ -112,6 +142,7 @@ describe('Actions Component', () => {
     expect(screen.getByTestId('action-menu')).toBeInTheDocument();
     expect(screen.getByTestId('action-item-1')).toBeInTheDocument();
     expect(screen.getByTestId('action-item-2')).toBeInTheDocument();
+    expect(screen.getByTestId('action-item-3')).toBeInTheDocument();
   });
 
   it('should show pay bill option when project has pending debt', async () => {
@@ -181,5 +212,142 @@ describe('Actions Component', () => {
     });
 
     expect(screen.queryByTestId('action-item-2')).not.toBeInTheDocument();
+  });
+
+  it('should show set ad default project option when project is not default', () => {
+    const nonDefaultProject = {
+      ...mockProject,
+      isDefault: false,
+    };
+
+    render(<Actions projectWithService={nonDefaultProject} />, {
+      wrapper: createWrapper(),
+    });
+
+    const setAsDefaultButton = screen.getByTestId('action-item-3');
+    expect(setAsDefaultButton).toBeInTheDocument();
+    expect(setAsDefaultButton).toHaveTextContent(
+      'pci_projects_project_edit_set_as_default_project',
+    );
+  });
+
+  it('should not show set ad default project option when project is already default', () => {
+    const defaultProject = {
+      ...mockProject,
+      isDefault: true,
+    };
+
+    render(<Actions projectWithService={defaultProject} />, {
+      wrapper: createWrapper(),
+    });
+
+    expect(screen.queryByTestId('action-item-3')).not.toBeInTheDocument();
+  });
+
+  it('should call setAsDefaultProject when action clicked', async () => {
+    const nonDefaultProject = {
+      ...mockProject,
+      isDefault: false,
+    };
+
+    render(<Actions projectWithService={nonDefaultProject} />, {
+      wrapper: createWrapper(),
+    });
+
+    const setAsDefaultButton = screen.getByTestId('action-item-3');
+
+    await fireEvent.click(setAsDefaultButton);
+
+    expect(mockSetAsDefaultProject).toHaveBeenCalledWith('test-project-id');
+  });
+
+  it('should show success notification when setting project as default succeeds', async () => {
+    const nonDefaultProject = {
+      ...mockProject,
+      isDefault: false,
+    };
+
+    // Mock the success callback
+    const mockOnSuccess = vi.fn();
+    const customMutate = vi.fn((projectId: string) => {
+      mockSetAsDefaultProject(projectId);
+      mockOnSuccess();
+    });
+
+    vi.mocked(useSetAsDefaultProject).mockReturnValue({
+      mutate: customMutate,
+      mutateAsync: vi.fn(),
+      isPending: false,
+      isSuccess: false,
+      isError: false,
+      error: null,
+      reset: vi.fn(),
+      data: undefined,
+      variables: undefined,
+      isIdle: true,
+      status: 'idle' as const,
+      failureCount: 0,
+      failureReason: null,
+      isPaused: false,
+      context: undefined,
+      submittedAt: 0,
+    });
+
+    render(<Actions projectWithService={nonDefaultProject} />, {
+      wrapper: createWrapper(),
+    });
+
+    const setAsDefaultButton = screen.getByTestId('action-item-3');
+
+    await fireEvent.click(setAsDefaultButton);
+
+    expect(mockSetAsDefaultProject).toHaveBeenCalledWith('test-project-id');
+    expect(mockOnSuccess).toHaveBeenCalled();
+  });
+
+  it('should show error notification when setting project as default fails', async () => {
+    const nonDefaultProject = {
+      ...mockProject,
+      isDefault: false,
+    };
+
+    const mockError = new Error('API Error');
+
+    // Mock the error callback
+    const mockOnError = vi.fn();
+    const customMutate = vi.fn((projectId: string) => {
+      mockSetAsDefaultProject(projectId);
+      mockOnError(mockError);
+    });
+
+    vi.mocked(useSetAsDefaultProject).mockReturnValue({
+      mutate: customMutate,
+      mutateAsync: vi.fn(),
+      isPending: false,
+      isSuccess: false,
+      isError: false,
+      error: null,
+      reset: vi.fn(),
+      data: undefined,
+      variables: undefined,
+      isIdle: true,
+      status: 'idle' as const,
+      failureCount: 0,
+      failureReason: null,
+      isPaused: false,
+      context: undefined,
+      submittedAt: 0,
+    });
+
+    render(<Actions projectWithService={nonDefaultProject} />, {
+      wrapper: createWrapper(),
+    });
+
+    const setAsDefaultButton = screen.getByTestId('action-item-3');
+
+    await fireEvent.click(setAsDefaultButton);
+
+    expect(mockSetAsDefaultProject).toHaveBeenCalledWith('test-project-id');
+    expect(mockOnError).toHaveBeenCalledWith(mockError);
   });
 });
