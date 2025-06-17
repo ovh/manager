@@ -11,7 +11,7 @@ type Props = {
 
 export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const navigate = useNavigate();
-  const { data: me, isFetched, error, refetch } = useMe({ retry: 0 });
+  const { data: me, isFetched, error } = useMe({ retry: 0 });
   // We will need to add states for country and language to prefill the /info form
   const [legalForm, setLegalForm] = useState<LegalFrom | undefined>(undefined);
 
