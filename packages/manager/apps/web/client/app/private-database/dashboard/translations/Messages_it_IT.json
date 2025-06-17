@@ -505,5 +505,7 @@
   "privateDatabase_tabs_list_extensions_disable_success": "Estensione disattivata correttamente.",
   "privateDatabase_tabs_list_extensions_disable_error": "Si è verificato un errore durante la disattivazione dell'estensione.",
   "privateDatabase_order_sql_period_sub_title": "Per quanto tempo vuoi utilizzarla?",
-  "privateDatabase_beta_status": "Beta"
+  "privateDatabase_beta_status": "Beta",
+  "privateDatabase_dashboard_version_valkey": "Valkey {{version}}",
+  "privateDatabase_configurations_general_valkey": "Configurazione generale di Valkey"
 }
