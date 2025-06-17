@@ -123,17 +123,6 @@ export type TCreateLoadBalancerParam = {
   name: string;
 };
 
-export type TCreateLoadBalancerError = {
-  response: {
-    data: { class: string; message: string };
-    headers: Record<string, unknown>;
-  };
-};
-
-export enum LoadBalancerErrorClass {
-  MAX_QUOTA_REACHED = 'MaxQuotaReached',
-}
-
 export const createLoadBalancer = async ({
   projectId,
   flavor,

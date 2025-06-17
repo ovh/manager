@@ -4,15 +4,15 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { useNavigate, useParams } from 'react-router-dom';
+import {
+  isApiCustomError,
+  isMaxQuotaReachedError,
+} from '@ovh-ux/manager-core-api';
 import { LOAD_BALANCER_CREATION_TRACKING } from '@/constants';
 import queryClient from '@/queryClient';
 import { getAllLoadBalancersQueryKey } from '@/api/hook/useLoadBalancer';
 import { useTracking } from '@/pages/create/hooks/useTracking';
 import GuideLink from '@/components/GuideLink/GuideLink.component';
-import {
-  LoadBalancerErrorClass,
-  TCreateLoadBalancerError,
-} from '@/api/data/load-balancer';
 
 export const useCreateCallbacks = () => {
   const navigate = useNavigate();
@@ -37,42 +37,41 @@ export const useCreateCallbacks = () => {
         queryKey: getAllLoadBalancersQueryKey(projectId),
       });
     },
-    onError: (error: TCreateLoadBalancerError) => {
+    onError: (error: unknown) => {
       trackPage({
         name: LOAD_BALANCER_CREATION_TRACKING.ERROR,
         type: 'navigation',
       });
 
-      if (
-        error.response.data.class.includes(
-          LoadBalancerErrorClass.MAX_QUOTA_REACHED,
-        )
-      ) {
-        addError(
-          <Trans
-            ns="load-balancer"
-            i18nKey="octavia_load_balancer_quota_creation_error"
-            components={{
-              Link: <GuideLink href={`${hrefProject}/quota`} />,
-            }}
-          />,
-        );
-      } else {
-        addError(
-          <Translation ns="load-balancer">
-            {(_t) => (
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: _t('octavia_load_balancer_global_error', {
-                    message: error.response.data.message,
-                    requestId: error.response.headers['x-ovh-queryid'],
-                  }),
-                }}
-              ></span>
-            )}
-          </Translation>,
-          false,
-        );
+      if (isApiCustomError(error)) {
+        if (isMaxQuotaReachedError(error)) {
+          addError(
+            <Trans
+              ns="load-balancer"
+              i18nKey="octavia_load_balancer_quota_creation_error"
+              components={{
+                Link: (
+                  <GuideLink
+                    href={`${hrefProject}/quota`}
+                    isTargetBlank={false}
+                  />
+                ),
+              }}
+            />,
+          );
+        } else {
+          addError(
+            <Trans
+              ns="load-balancer"
+              i18nKey="octavia_load_balancer_global_error"
+              values={{
+                message: error.response.data.message,
+                requestId: error.response.headers['x-ovh-queryid'],
+              }}
+            />,
+            false,
+          );
+        }
       }
     },
   };
