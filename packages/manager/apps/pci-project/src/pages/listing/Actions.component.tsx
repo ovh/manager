@@ -36,17 +36,16 @@ export default function Actions({
     hasPendingDebt: projectWithService.isUnpaid,
   };
 
-  const handleDeleteProject = () =>
+  const handleDeleteProject = () => {
     removeProject({ projectId: projectWithService.project_id }).then(() =>
       addSuccess(t('pci_projects_project_delete_success')),
     );
+  };
 
   useEffect(() => {
-    const fetchBillingUrl = async () => {
-      const url = await navigation.getURL('dedicated', '#/billing/history', {});
-      setBillingHref(`${url}`);
-    };
-    fetchBillingUrl();
+    navigation
+      .getURL('dedicated', '#/billing/history', {})
+      .then((url) => setBillingHref(`${url}`));
   }, [navigation]);
 
   const getMenuItems = () => {
@@ -83,7 +82,7 @@ export default function Actions({
         id: 2,
         label: t('pci_projects_project_delete'),
         ...(projectStatus.isCreating
-          ? { onclick: handleDeleteProject }
+          ? { onClick: handleDeleteProject }
           : { href: deleteHref }),
       });
     }
