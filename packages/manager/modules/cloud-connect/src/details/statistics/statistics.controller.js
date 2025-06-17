@@ -125,8 +125,8 @@ export default class CloudConnectStatisticsCtrl {
         .then((stats) => {
           if (stats.down.length > 0 || stats.up.length > 0) {
             this.updateStats(type, interfaceId, stats);
-            this.isLoading = false;
           }
+          this.isLoading = false;
         });
     });
   }
