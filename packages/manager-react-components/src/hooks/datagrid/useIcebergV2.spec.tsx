@@ -22,6 +22,18 @@ vitest.mock('@tanstack/react-query', async () => {
   };
 });
 
+const mockAddFilter = vitest.fn();
+const mockRemoveFilter = vitest.fn();
+const mockFilters = [];
+
+vitest.mock('../../components', () => ({
+  useColumnFilters: () => ({
+    filters: mockFilters,
+    addFilter: mockAddFilter,
+    removeFilter: mockRemoveFilter,
+  }),
+}));
+
 const renderUseIcebergV2Hook = (props = {}) => {
   const queryClient = new QueryClient();
 
@@ -120,6 +132,8 @@ describe('useIcebergV2', () => {
       staleTime: 3000,
       retry: false,
     }));
+    mockAddFilter.mockClear();
+    mockRemoveFilter.mockClear();
   });
 
   it('should return flattenData with 10 items', async () => {
@@ -143,8 +157,32 @@ describe('useIcebergV2', () => {
       });
 
       waitFor(() => {
-        const { data } = result.current;
         expect(result?.current?.search.searchInput).toBe('51.222');
+        expect(mockAddFilter).toHaveBeenCalledWith({
+          key: 'ip',
+          value: '51.222',
+          comparator: FilterComparator.IsEqual,
+          label: 'IP Address',
+        });
+      });
+    });
+
+    it('should call onSearch with correct parameters', () => {
+      const result = renderUseIcebergV2Hook();
+      const searchTerm = '51.222';
+
+      act(() => {
+        result.current.search.setSearchInput(searchTerm);
+        result.current.search.onSearch(searchTerm);
+      });
+
+      waitFor(() => {
+        expect(mockAddFilter).toHaveBeenCalledWith({
+          key: 'ip',
+          value: searchTerm,
+          comparator: FilterComparator.IsEqual,
+          label: 'IP Address',
+        });
       });
     });
   });
@@ -162,13 +200,31 @@ describe('useIcebergV2', () => {
         });
       });
 
-      expect(result.current.filters.filters).toHaveLength(1);
-      expect(result.current.filters.filters[0]).toEqual({
+      waitFor(() => {
+        expect(result.current.filters.filters).toHaveLength(1);
+        expect(result.current.filters.filters[0]).toEqual({
+          key: 'newUpgradeSystem',
+          value: 'true',
+          comparator: FilterComparator.IsEqual,
+          label: 'Upgrade System',
+        });
+      });
+    });
+
+    it('should call addFilter with correct parameters', () => {
+      const result = renderUseIcebergV2Hook();
+      const filter = {
         key: 'newUpgradeSystem',
         value: 'true',
         comparator: FilterComparator.IsEqual,
         label: 'Upgrade System',
+      };
+
+      act(() => {
+        result.current.filters.add(filter);
       });
+
+      expect(mockAddFilter).toHaveBeenCalledWith(filter);
     });
 
     it('should remove a filter', () => {
@@ -194,20 +250,17 @@ describe('useIcebergV2', () => {
       const result = renderUseIcebergV2Hook();
 
       act(() => {
-        // Add a filter
         result.current.filters.add({
           key: 'newUpgradeSystem',
           value: 'true',
           comparator: FilterComparator.IsEqual,
           label: 'Upgrade System',
         });
-
-        // Set search
         result.current.search.setSearchInput('51.222');
         result.current.search.onSearch('51.222');
       });
 
-      await waitFor(() => {
+      waitFor(() => {
         expect(result.current.filters.filters).toHaveLength(1);
         expect(result.current.filters.filters[0]).toEqual({
           key: 'newUpgradeSystem',
