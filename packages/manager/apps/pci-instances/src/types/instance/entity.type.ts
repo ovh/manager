@@ -1,8 +1,10 @@
+import { TRegionType } from '@ovh-ux/manager-pci-common';
 import { DeepReadonly } from '../utils.type';
 import {
   TActionName,
   TAddressType,
   TInstanceActionGroup,
+  TInstancePrice,
   TStatus,
 } from './common.type';
 
@@ -61,9 +63,20 @@ export type TInstance = DeepReadonly<{
 export type TInstanceDetail = DeepReadonly<{
   id: string;
   name: string;
+  flavorName: string;
+  flavorRam: string;
+  flavorCpu: string;
   status: TInstanceStatus;
+  region: string;
+  regionType: TRegionType;
   pendingTask: boolean;
   availabilityZone: string | null;
+  prices: TInstancePrice[];
   taskState: string | null;
   isEditionEnabled: boolean;
 }>;
+
+export type TInstanceDetailContextType = {
+  data: TInstanceDetail;
+  isLoading: boolean;
+};

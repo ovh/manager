@@ -9,6 +9,7 @@ import '@/vite-hmr';
 import App from './App';
 
 import './index.css';
+import '@ovh-ux/manager-pci-common/dist/style.css';
 import '@datatr-ux/ods-tailwind-config/style.css';
 import '@datatr-ux/uxlib/style.css';
 
