@@ -1,9 +1,11 @@
 import { TRegionType } from '@ovh-ux/manager-pci-common';
+import { TRegionType } from '@ovh-ux/manager-pci-common';
 import { DeepReadonly } from '../utils.type';
 import {
   TActionName,
   TAddressType,
   TInstanceActionGroup,
+  TInstancePrice,
   TInstancePrice,
   TStatus,
 } from './common.type';
