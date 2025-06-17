@@ -1,4 +1,4 @@
-import React, { useEffect, startTransition } from 'react';
+import React, { useEffect, startTransition, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -6,9 +6,15 @@ import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_TEXT_PRESET,
+  OdsCheckboxChangeEventDetail,
 } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OdsButton, OdsModal, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  OdsButton,
+  OdsModal,
+  OdsText,
+  OdsCheckbox,
+} from '@ovhcloud/ods-components/react';
 import { useOrderURL } from '@ovh-ux/manager-module-order';
 import { urls } from '@/routes/routes.constant';
 import { ByoipContext } from '../Byoip.context';
@@ -18,6 +24,11 @@ import {
   getByoipProductSettings,
 } from '../Byoip.utils';
 import { BYOIP_FAILOVER_V4, CONFIG_NAME } from '@/data/hooks/catalog';
+
+interface DeclarationItem {
+  declaration: string;
+  translationKey: string;
+}
 
 export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
   isOpen = true,
@@ -34,6 +45,39 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
   } = React.useContext(ByoipContext);
 
   const orderBaseUrl = useOrderURL('express_review_base');
+
+  const declarationItems: DeclarationItem[] = [
+    {
+      declaration: 'point1',
+      translationKey: 'ip_byoip_disclaimer_description_point_1',
+    },
+    {
+      declaration: 'point2',
+      translationKey: 'ip_byoip_disclaimer_description_point_2',
+    },
+    {
+      declaration: 'point3',
+      translationKey: 'ip_byoip_disclaimer_description_point_3',
+    },
+  ];
+
+  const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>(
+    declarationItems.reduce(
+      (acc, item) => ({ ...acc, [item.declaration]: false }),
+      {},
+    ),
+  );
+
+  const declaratiosChecked = Object.values(checkedItems).every(Boolean);
+
+  const handleCheckboxChange = (id: string) => (
+    e: CustomEvent<OdsCheckboxChangeEventDetail>,
+  ) => {
+    setCheckedItems((prev) => ({
+      ...prev,
+      [id]: e.detail.checked,
+    }));
+  };
 
   const handleClose = () => {
     startTransition(() => {
@@ -58,15 +102,22 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
         <OdsText preset={ODS_TEXT_PRESET.span}>
           {t('ip_byoip_disclaimer_description')}
         </OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.span}>
-          {t('ip_byoip_disclaimer_description_point_1')}
-        </OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.span}>
-          {t('ip_byoip_disclaimer_description_point_2')}
-        </OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.span}>
-          {t('ip_byoip_disclaimer_description_point_3')}
-        </OdsText>
+
+        {declarationItems.map(({ declaration, translationKey }) => (
+          <div key={declaration} className="flex items-start gap-2">
+            <OdsCheckbox
+              name={declaration}
+              isChecked={checkedItems[declaration]}
+              onOdsChange={handleCheckboxChange(declaration)}
+            />
+            <label htmlFor={declaration} className="flex-1">
+              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                {t(translationKey)}
+              </OdsText>
+            </label>
+          </div>
+        ))}
+
         <OdsText preset={ODS_TEXT_PRESET.span}>
           {t('ip_byoip_disclaimer_ordering_delay_message')}
         </OdsText>
@@ -87,6 +138,7 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
           color={ODS_BUTTON_COLOR.primary}
           size={ODS_BUTTON_SIZE.md}
           label={tcommon('confirm')}
+          isDisabled={!declaratiosChecked}
           onClick={() => {
             const payload: ByoipPayloadParams = {
               ipRir,
