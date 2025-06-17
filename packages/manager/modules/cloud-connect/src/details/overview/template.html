@@ -408,7 +408,7 @@
                                         data-ng-bind="$ctrl.getPopTypeName($pop.type)"
                                     ></span>
                                 </td>
-                                <!-- ASN client -->
+                                <!-- ASN utilisateur -->
                                 <td
                                     class="oui-datagrid__cell"
                                     data-ng-if="$ctrl.cloudConnect.isL3PopType()"
@@ -456,6 +456,7 @@
                                             }"
                                             data-translate="cloud_connect_light_value"
                                             data-translate-values="{lightValue: interface.incomingLightValue, type: $ctrl.OPTIC_STATUS.in}"
+                                            data-oui-tooltip="{{::'cloud_connect_pop_optic_description' | translate}}"
                                         ></span>
                                         <span
                                             class="oui-badge"
@@ -466,11 +467,9 @@
                                             }"
                                             data-translate="cloud_connect_light_value"
                                             data-translate-values="{lightValue: interface.outgoingLightValue, type: $ctrl.OPTIC_STATUS.out}"
+                                            data-oui-tooltip="{{::'cloud_connect_pop_optic_description' | translate}}"
                                         ></span>
                                     </div>
-                                    <div
-                                        data-translate="cloud_connect_pop_optic_description"
-                                    ></div>
                                 </td>
                                 <!-- Status link -->
                                 <td
@@ -484,24 +483,19 @@
                                         'oui-badge_error': interface.isInterfaceStatusDown(),
                                     }"
                                         data-ng-bind="'cloud_connect_status_' +  interface.interfaceStatus | translate"
+                                        data-oui-tooltip="{{::$ctrl.formatTimestamp(interface.lastUpdateInterfaceStatus)}}"
+                                        data-oui-tooltip-placement="bottom"
                                     ></div>
-                                    <div
-                                        data-ng-bind="$ctrl.formatTimestamp(interface.lastUpdateInterfaceStatus)"
-                                        data-ng-if="!$ctrl.constructor.is48hOlder(interface.lastUpdateInterfaceStatus)"
-                                    ></div>
-                                    <div
+                                    <span
                                         class="oui-color-ae-500"
                                         data-ng-if="$ctrl.constructor.is48hOlder(interface.lastUpdateInterfaceStatus)"
                                     >
-                                        <span
-                                            data-ng-bind="$ctrl.formatTimestamp(interface.lastUpdateInterfaceStatus)"
-                                        ></span>
                                         <span
                                             class="oui-icon oui-icon-info-circle"
                                             data-oui-tooltip="{{:: 'cloud_connect_old_48_h_status' | translate}}"
                                             data-oui-tooltip-placement="bottom"
                                         ></span>
-                                    </div>
+                                    </span>
                                 </td>
                                 <!-- Status BGP -->
                                 <td
@@ -517,24 +511,19 @@
                                         }"
                                         data-ng-bind="'cloud_connect_status_' +  $pop.bgpStatus | translate"
                                         data-ng-if="$pop"
+                                        data-oui-tooltip="{{::$ctrl.formatTimestamp($pop.lastUpdateBgpStatus)}}"
+                                        data-oui-tooltip-placement="bottom"
                                     ></div>
-                                    <div
-                                        data-ng-bind="$ctrl.formatTimestamp($pop.lastUpdateBgpStatus)"
-                                        data-ng-if="$pop && !$ctrl.constructor.is48hOlder($pop.lastUpdateBgpStatus)"
-                                    ></div>
-                                    <div
+                                    <span
                                         class="oui-color-ae-500"
                                         data-ng-if="$pop && $ctrl.constructor.is48hOlder($pop.lastUpdateBgpStatus)"
                                     >
-                                        <span
-                                            data-ng-bind="$ctrl.formatTimestamp($pop.lastUpdateBgpStatus)"
-                                        ></span>
                                         <span
                                             class="oui-icon oui-icon-info-circle"
                                             data-oui-tooltip="{{:: 'cloud_connect_old_48_h_status' | translate}}"
                                             data-oui-tooltip-placement="bottom"
                                         ></span>
-                                    </div>
+                                    </span>
                                 </td>
                                 <!-- Configuration status -->
                                 <td class="oui-datagrid__cell">

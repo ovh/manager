@@ -63,8 +63,8 @@
   "cloud_connect_service_key_active": "Chiave di servizio",
   "cloud_connect_service_key_active_not_found": "Nessuna chiave di servizio valida",
   "cloud_connect_loa_download_error": "Download della LOA non andato a buon fine: {{message}}",
-  "cloud_connect_datacenter_add_configuration": "Aggiungi una configurazione",
-  "cloud_connect_datacenter_add_routage_configuration": "Aggiungi una configurazione di routing",
+  "cloud_connect_datacenter_add_configuration": "Aggiungere un’AZ",
+  "cloud_connect_datacenter_add_routage_configuration": "Regole di routing",
   "cloud_connect_pop_configure_delete": "Eliminare",
   "cloud_connect_pop_port_block": "Blocca la porta",
   "cloud_connect_unblock": "Sblocca",
@@ -131,6 +131,5 @@
   "cloud_connect_old_48_h_status": "Questo stato ha più di 48 ore e potrebbe non essere più esatto.",
   "cloud_connect_pop_add_button": "Configurare la porta",
   "cloud_connect_dc_status": "Stato della configurazione",
-  "cloud_connect_dc_config_title": "Configurazione {{dcName}}",
-  "cloud_connect_specifications": "Specifiche tecniche"
+  "cloud_connect_dc_config_title": "Configurazione {{dcName}}"
 }

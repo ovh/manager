@@ -1,10 +1,22 @@
 <div class="d-flex flex-row border-bottom">
     <h4
-        class="oui-heading_4 oui-tile__title"
+        class="oui-heading_4 oui-tile__title flex-grow-1"
         data-translate="cloud_connect_dc_config_title"
         data-translate-values="{ dcName: $ctrl.datacenter.dcName }"
     ></h4>
+    <oui-button
+        class="flex-end"
+        data-variant="secondary"
+        data-icon-left="oui-icon-plus"
+        data-ng-if="$ctrl.cloudConnect.isL3PopType()"
+        data-disabled="$ctrl.datacenter.isLoadingExtraConfigurations() || !$ctrl.datacenter.isActive()"
+        data-on-click="$ctrl.addExtra()"
+        ><span
+            data-translate="cloud_connect_datacenter_add_routage_configuration"
+        ></span>
+    </oui-button>
 </div>
+
 <!-- Datacenter details -->
 <div class="oui-tile__body">
     <div class="oui-datagrid-responsive">
@@ -70,14 +82,6 @@
                             class="float-right"
                             data-placement="end"
                         >
-                            <oui-action-menu-item
-                                data-ng-if="$ctrl.cloudConnect.isL3PopType()"
-                                data-disabled="$ctrl.datacenter.isLoadingExtraConfigurations() || !$ctrl.datacenter.isActive()"
-                                data-on-click="$ctrl.addExtra()"
-                                ><span
-                                    data-translate="cloud_connect_datacenter_add_routage_configuration"
-                                ></span
-                            ></oui-action-menu-item>
                             <oui-action-menu-item
                                 data-disabled="!$ctrl.datacenter.isActive()"
                                 data-on-click="$ctrl.removeDatacenter()"

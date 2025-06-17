@@ -63,8 +63,8 @@
   "cloud_connect_service_key_active": "Clave de servicio",
   "cloud_connect_service_key_active_not_found": "No hay ninguna clave de servicio válida.",
   "cloud_connect_loa_download_error": "Se ha producido un error al descargar la LOA: {{message}}",
-  "cloud_connect_datacenter_add_configuration": "Añadir una configuración",
-  "cloud_connect_datacenter_add_routage_configuration": "Añadir una configuración de enrutamiento",
+  "cloud_connect_datacenter_add_configuration": "Añadir una AZ",
+  "cloud_connect_datacenter_add_routage_configuration": "Reglas de enrutamiento",
   "cloud_connect_pop_configure_delete": "Eliminar",
   "cloud_connect_pop_port_block": "Bloquear el puerto",
   "cloud_connect_unblock": "Desbloquear",
@@ -131,6 +131,5 @@
   "cloud_connect_old_48_h_status": "Este estado tiene más de 48 horas y puede que no esté actualizado.",
   "cloud_connect_pop_add_button": "Configurar el puerto",
   "cloud_connect_dc_status": "Estado de la configuración",
-  "cloud_connect_dc_config_title": "Configuración {{dcName}}",
-  "cloud_connect_specifications": "Especificaciones"
+  "cloud_connect_dc_config_title": "Configuración {{dcName}}"
 }
