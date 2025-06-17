@@ -7,6 +7,7 @@ import datastore from './datastore';
 import drp from './drp';
 import host from './host';
 import routing from './datacenter.routing';
+import virtualMachine from './virtualMachine';
 
 const moduleName = 'managedBaremetalDatacenter';
 
@@ -18,6 +19,7 @@ angular
     datastore,
     drp,
     host,
+    virtualMachine,
   ])
   .config(routing);
 
