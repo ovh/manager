@@ -2,12 +2,16 @@ import {
   MAX_NODES_BY_CLUSTER,
   NODE_STATUS,
   SERVICE_STATES,
+  PREFIX_TRACKING_NUTANIX_DATAGRID,
+  PREFIX_TRACKING_NUTANIX_NUTANIX,
+  ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
 } from '../../../constants';
 
 export default class NutanixAllNodesCtrl {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, atInternet) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.nodesMapped = [];
     this.SERVICE_STATES = SERVICE_STATES;
   }
@@ -83,6 +87,10 @@ export default class NutanixAllNodesCtrl {
   onPowerOn(nodeName) {
     this.powerOnNode(nodeName)
       .then(() => {
+        this.atInternet.trackPage({
+          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-success::cluster::nodes::poweron-node-${this.commercialRange}_success`,
+          level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
+        });
         this.handleSuccess(
           `${this.$translate.instant(
             'nutanix_dashboard_nodes_poweron_success_banner',
@@ -90,11 +98,22 @@ export default class NutanixAllNodesCtrl {
         );
       })
       .catch((error) => {
+        this.atInternet.trackPage({
+          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-error::cluster::nodes::poweron-node-${this.commercialRange}_error`,
+          level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
+        });
         this.handleError(
           `${this.$translate.instant(
             'nutanix_dashboard_nodes_poweron_error_banner',
           )} ${error?.data?.message}`,
         );
       });
+  }
+
+  trackClickDisplayNodeDetails() {
+    return this.trackClick({
+      name: `${PREFIX_TRACKING_NUTANIX_DATAGRID}::link::details_node::${this.commercialRange}`,
+      type: 'action',
+    });
   }
 }

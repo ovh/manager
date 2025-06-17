@@ -82,7 +82,7 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ () => null,
     },
     atInternet: {
-      rename: 'hpc::nutanix::cluster::node::dashboard',
+      ignore: true,
     },
   });
 };
