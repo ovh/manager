@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.12.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.9...@ovh-ux/manager-web@19.12.10) (2025-06-17)
+
+
+### Bug Fixes
+
+* **web:** delete test tag from page template ([#17634](https://github.com/ovh/manager/issues/17634)) ([5157235](https://github.com/ovh/manager/commit/5157235919460c4c1e1630b2ebf2bbf71374a7b2)), closes [#INC0136185](https://github.com/ovh/manager/issues/INC0136185)
+
+
+
+
+
 ## [19.12.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.8...@ovh-ux/manager-web@19.12.9) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
