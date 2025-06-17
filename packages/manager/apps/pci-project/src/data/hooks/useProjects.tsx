@@ -1,10 +1,17 @@
-import { queryOptions, useMutation, useQuery } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { FetchResultV6 } from '@ovh-ux/manager-react-components';
+import { queryOptions, useMutation, useQuery } from '@tanstack/react-query';
 import {
-  removeProject,
   getDefaultProject,
+  removeProject,
+  setAsDefaultProject,
   unFavProject,
 } from '@/data/api/projects';
+import {
+  projectsWithServiceQueryKey,
+  sortProjectsByDefaultAndDescription,
+} from '@/data/api/projects-with-services';
+import { TProjectWithService } from '@/data/types/project.type';
 import queryClient from '@/queryClient';
 
 type DeleteProjectParams = {
@@ -25,6 +32,34 @@ export const getDefaultProjectOptions = queryOptions({
   queryKey: getDefaultProjectQueryKey,
   queryFn: getDefaultProject,
 });
+
+export function useSetAsDefaultProject(options: {
+  onSuccess: () => void;
+  onError: (error: ApiError) => void;
+}) {
+  return useMutation({
+    mutationFn: async (projectId: string) => setAsDefaultProject(projectId),
+    onSuccess: (_, projectId) => {
+      queryClient.invalidateQueries({ queryKey: getDefaultProjectQueryKey });
+
+      queryClient.setQueryData(
+        [projectsWithServiceQueryKey()],
+        (oldData: FetchResultV6<TProjectWithService>) => ({
+          ...oldData,
+          data: oldData.data
+            .map((project) => ({
+              ...project,
+              isDefault: project.project_id === projectId,
+            }))
+            .sort(sortProjectsByDefaultAndDescription),
+        }),
+      );
+
+      options.onSuccess();
+    },
+    onError: options.onError,
+  });
+}
 
 export function useRemoveProjectMutation(options: {
   onSuccess: () => void;
