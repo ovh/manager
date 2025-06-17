@@ -15,6 +15,7 @@ export const placeholderInstanceDetail: TInstanceDetail = {
   region: '',
   regionType: '',
   imageName: '',
+  networks: new Map(),
   volumes: [],
   pendingTask: false,
   availabilityZone: '',
