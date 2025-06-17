@@ -1,0 +1,6 @@
+{
+  "manager_components_resource_tagging_list_modal_title": "Tags: {{resourceName}}",
+  "manager_components_resource_tagging_list_modal_search": "Chercher",
+  "manager_components_resource_tagging_list_modal_cancel": "Retour",
+  "manager_components_resource_tagging_list_modal_edit": "Gérer les tags"
+}

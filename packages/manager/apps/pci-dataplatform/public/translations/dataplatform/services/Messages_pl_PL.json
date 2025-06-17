@@ -1,0 +1,17 @@
+{
+  "title": "Usprawnij procesy związane z danymi dzięki Data Platform",
+  "description_top": "Zoptymalizuj operacje dzięki wydajnej platformie, która łączy wysoką wydajność, elastyczność i łatwość obsługi. Możesz przetwarzać <strong>duże zbiory danych</strong>, <strong>integrować analizy</strong> lub <strong>automatyzować procesy</strong> - Data Platform zapewnia w pełni zarządzane środowisko, które pozwoli Ci skupić się na identyfikowaniu insightów, a nie na zarządzaniu infrastrukturą.\n Dzięki przetwarzaniu w czasie rzeczywistym, obsłudze różnorodnych obciążeń oraz skalowalności możesz podejmować decyzje oparte na danych - szybciej i skuteczniej.",
+  "description_bottom": "Nie potrzebujesz do tego specjalistycznej infrastruktury ani zaawansowanych umiejętności technicznych. Skorzystaj ze <strong>skalowalnych narzędzi do przetwarzania i analizy danych</strong>, <strong>płynnej integracji z systemami BI</strong> i stabilnego <strong>środowiska serverless</strong>, aby szybciej wydobywać cenne insighty.",
+  "button_text": "Sprawdź Data Platform",
+  "card_section_title": "Zacznij korzystać Data Platform",
+  "card_top_guide": "Przewodniki",
+  "card_left_title": "Pierwsze kroki z Data Platform",
+  "card_left_description": "Poznaj możliwości naszej bezpiecznej platformy serverless do przetwarzania danych, przeznaczonej dla deweloperów i analityków. Dowiedz się, jak w prosty sposób łączyć, przekształcać i analizować dane.<br>Szybko naucz się podstaw - od podłączenia pierwszego źródła danych po wykonanie pierwszej analizy. Idealne rozwiązanie dla nowych użytkowników!",
+  "card_middle_title": "Rozwijaj kompetencje, korzystając z Data Platform",
+  "card_middle_description": "Pogłębiaj swoją wiedzę dzięki zaawansowanym technikom, praktycznym przykładom i sprawdzonym metodom, które pozwolą Ci w pełni wykorzystać możliwości Data Platform i osiągnąć poziom ekspercki.",
+  "card_right_title": "Szczegółowa specyfikacja produktu",
+  "card_right_description": "Uzyskaj szczegółowe informacje o wszystkich funkcjach Data Platform, obsługiwanych typach danych, wymaganiach systemowych oraz ustawieniach.",
+  "card_find_out_more": "Dowiedz się więcej",
+  "discoveryMode": "Aktualnie pracujesz w trybie Discovery. Aby uzyskać dostęp do Data Platform i tworzyć usługi, aktywuj projekt.",
+  "discoveryModeActivate": "Aktywuj projekt"
+}

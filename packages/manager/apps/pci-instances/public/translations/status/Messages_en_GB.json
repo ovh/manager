@@ -29,7 +29,7 @@
   "pci_instances_status_rescuing": "Reboot (rescue)",
   "pci_instances_status_unrescuing": "Reboot",
   "pci_instances_status_snapshotting": "Backup instance creation",
-  "pci_instances_status_resuming": "Resuming",
+  "pci_instances_status_resuming": "Recovering",
   "pci_instances_tooltip_content_status_shelved": "Only the snapshot is charged.",
   "pci_instances_tooltip_content_status_shelved_offloaded": "$t(pci_instances_tooltip_content_status_shelved)",
   "pci_instances_tooltip_content_status_shutoff": "Your instance is always billed for the allocated resources.",
