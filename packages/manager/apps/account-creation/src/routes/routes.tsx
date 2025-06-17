@@ -29,7 +29,7 @@ export default (
   >
     <Route
       path={urls.preferences}
-      Component={AccountDetailsPage}
+      Component={PreferencesPage}
       handle={{
         tracking: {
           pageName: 'preferences',
@@ -39,7 +39,7 @@ export default (
     />
     <Route
       path={urls.accountType}
-      Component={AccountDetailsPage}
+      Component={AccountTypePage}
       handle={{
         tracking: {
           pageName: 'account-type',
