@@ -14,6 +14,11 @@ export default mergeConfig(createConfig(), {
       include: ['src'],
       exclude: [...defaultExcludedFiles],
     },
+    server: {
+      deps: {
+        inline: [/@ovhcloud\/ods-react.*/],
+      },
+    },
     testTimeout: 60000,
     fileParallelism: false,
     maxWorkers: 1,
