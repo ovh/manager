@@ -144,5 +144,6 @@
   "domain_operations_upload_file_template_1": "Solo i file che seguono questo ",
   "domain_operations_upload_file_template_link": "modello di documento",
   "domain_operations_upload_file_template_2": " saranno accettati.",
-  "domain_operations_update_dns_click": "Clicca qui per correggere la configurazione dei tuoi server DNS"
+  "domain_operations_update_dns_click": "Clicca qui per correggere la configurazione dei tuoi server DNS",
+  "domain_operations_update_field_bad_value": "Il valore inserito nel campo {{t0}} non è valido"
 }
