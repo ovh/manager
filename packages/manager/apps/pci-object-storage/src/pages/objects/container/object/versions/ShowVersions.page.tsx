@@ -11,7 +11,7 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useBytes, useProject } from '@ovh-ux/manager-pci-common';
+import { useProject } from '@ovh-ux/manager-pci-common';
 
 import {
   OdsBreadcrumb,
@@ -33,8 +33,8 @@ import { useStorage, useStorageEndpoint } from '@/api/hooks/useStorages';
 
 import '../show/style.scss';
 import { useServerContainerObjectVersions } from '@/api/hooks/useContainerObjectVersions';
-import { TContainer } from '../show/Show.page';
 import { useSortedObjects } from '../show/useSortedObjectsWithIndex';
+import { useContainerMemo } from '@/hooks/useContainerMemo';
 
 export default function ObjectPage() {
   const { storageId, objectName: encodedObjectName } = useParams();
@@ -46,8 +46,6 @@ export default function ObjectPage() {
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(
     project?.project_id,
   );
-
-  const { formatBytes } = useBytes();
 
   const hrefProject = useProjectUrl('public-cloud');
   const { t } = useTranslation(['objects', 'container']);
@@ -77,27 +75,12 @@ export default function ObjectPage() {
     targetContainer?.id,
   );
 
-  const container = useMemo((): TContainer => {
-    if (!serverContainer) return undefined;
-    const s3StorageType = targetContainer?.s3StorageType;
-
-    return {
-      ...serverContainer,
-      id: serverContainer?.id || targetContainer?.id,
-      name: serverContainer?.name || targetContainer?.name,
-      objectsCount:
-        serverContainer?.storedObjects || serverContainer?.objectsCount,
-      usedSpace: formatBytes(
-        serverContainer?.storedBytes || serverContainer?.objectsSize,
-        2,
-        1024,
-      ),
-      publicUrl: url,
-      s3StorageType,
-      regionDetails: s3StorageType ? region : undefined,
-      staticUrl: serverContainer?.staticUrl || serverContainer?.virtualHost,
-    };
-  }, [serverContainer, region, targetContainer, url]);
+  const container = useContainerMemo(
+    serverContainer,
+    targetContainer,
+    url,
+    region,
+  );
 
   const {
     data: objectsVersions,
