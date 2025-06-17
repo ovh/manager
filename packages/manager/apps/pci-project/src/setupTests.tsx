@@ -28,7 +28,20 @@ vi.mock('react-router-dom', async (importOriginal) => {
   const actual: typeof import('react-router-dom') = await importOriginal();
   return {
     ...actual,
+    useHref: vi.fn(),
+    useNavigate: vi.fn(),
     useSearchParams: vi.fn(),
+  };
+});
+
+vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
+  const actual: typeof import('@ovh-ux/manager-pci-common') = await importOriginal();
+  return {
+    ...actual,
+    isDiscoveryProject: vi.fn(),
+    useProject: () => ({
+      data: { status: 'ok' },
+    }),
   };
 });
 
@@ -63,36 +76,47 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   useFeatureAvailability: vi.fn(),
 }));
 
-vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsBadge: ({ color, label, ...props }: { color: string; label: string }) => (
-    <div data-testid="status_badge" data-color={color} {...props}>
-      {label}
-    </div>
-  ),
-  OdsButton: ({ label, ...props }: { label: string }) => (
-    <button data-testid="ods-button" {...props}>
-      {label}
-    </button>
-  ),
-  OdsLink: ({ label, ...props }: { label: string }) => (
-    <a data-testid="ods-link" {...props}>
-      {label}
-    </a>
-  ),
-  OdsSpinner: () => <div data-testid="ods-spinner" />,
-  OdsMessage: ({
-    color,
-    children,
-    ...props
-  }: {
-    color: string;
-    children: React.ReactNode;
-  }) => (
-    <div data-testid="ods-message" color={color} {...props}>
-      {children}
-    </div>
-  ),
-}));
+vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
+  const actual: typeof import('@ovhcloud/ods-components/react') = await importOriginal();
+  return {
+    ...actual,
+    OdsBadge: ({
+      color,
+      label,
+      ...props
+    }: {
+      color: string;
+      label: string;
+    }) => (
+      <div data-testid="status_badge" data-color={color} {...props}>
+        {label}
+      </div>
+    ),
+    OdsButton: ({ label, ...props }: { label: string }) => (
+      <button data-testid="ods-button" {...props}>
+        {label}
+      </button>
+    ),
+    OdsLink: ({ label, ...props }: { label: string }) => (
+      <a data-testid="ods-link" {...props}>
+        {label}
+      </a>
+    ),
+    OdsMessage: ({
+      color,
+      children,
+      ...props
+    }: {
+      color: string;
+      children: React.ReactNode;
+    }) => (
+      <div data-testid="ods-message" color={color} {...props}>
+        {children}
+      </div>
+    ),
+    OdsSpinner: () => <div data-testid="ods-spinner" />,
+  };
+});
 
 vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => {
   const actual: typeof import('@ovh-ux/manager-core-api') = await importOriginal();
@@ -100,6 +124,8 @@ vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => {
     ...actual,
     v6: {
       get: vi.fn(),
+      delete: vi.fn(),
+      post: vi.fn(),
     },
   };
 });
