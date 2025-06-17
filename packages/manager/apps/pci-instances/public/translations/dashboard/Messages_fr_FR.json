@@ -24,5 +24,7 @@
   "pci_instances_dashboard_cpu_value": "{{cpu}} vCores",
   "pci_instances_dashboard_all_actions": "Actions supplémentaires",
   "pci_instances_dashboard_instance_price_label": "Prix de l'instance : ",
-  "pci_instances_dashboard_licence_price_label": "Prix de la licence : "
+  "pci_instances_dashboard_licence_price_label": "Prix de la licence : ",
+  "pci_instances_dashboard_public_network_title": "Réseaux publics",
+  "pci_instances_dashboard_network_floating_title": "Floating IP"
 }

@@ -186,6 +186,50 @@ export const getRegionInstanceMock = ({
           },
         },
       },
+      addresses: [
+        {
+          ip: '10.3.1.17',
+          version: 4,
+          type: 'private',
+          subnet: {
+            name: 'monsubnet5',
+            id: 'e09dbf37-664e-4286-a829-ba26e46d9ede',
+            gatewayIP: '10.3.0.1',
+            network: {
+              id: 'b444f6e4-df5e-483c-b037-b61b36b8137e',
+              name: 'monnetworkprive',
+            },
+          },
+        },
+        {
+          ip: '15.235.69.65',
+          version: 4,
+          type: 'public',
+          subnet: {
+            name: 'Ext-Net',
+            id: '63185a5f-5ed7-4778-8232-cfcd08737a7b',
+            gatewayIP: '15.235.68.1',
+            network: {
+              id: '1cd75937-a054-4f11-8ecd-acce164a38be',
+              name: 'Ext-Net',
+            },
+          },
+        },
+        {
+          ip: '2607:5300:205:600::26e',
+          version: 6,
+          type: 'public',
+          subnet: {
+            name: 'Ext-Net',
+            id: '144d324b-f21c-465e-be0a-7d953fcabc99',
+            gatewayIP: '2607:5300:205:600::',
+            network: {
+              id: '1cd75937-a054-4f11-8ecd-acce164a38be',
+              name: 'Ext-Net',
+            },
+          },
+        },
+      ],
       actions: [
         {
           name: 'details',
