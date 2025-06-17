@@ -12,7 +12,9 @@ type TNameIdCellProps = {
 };
 
 export const NameIdCell: FC<TNameIdCellProps> = ({ isLoading, instance }) => {
-  const detailHref = useHref(`${instance.id}/region/${instance.region}`);
+  const detailHref = useHref(
+    `region/${instance.region}/instance/${instance.id}`,
+  );
 
   return (
     <LoadingCell isLoading={isLoading}>
