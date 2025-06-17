@@ -66,13 +66,19 @@ export type TInstanceDetail = DeepReadonly<{
   flavorName: string;
   flavorRam: string;
   flavorCpu: string;
+  storage: string;
+  publicBandwidth: string;
   status: TInstanceStatus;
   region: string;
   regionType: TRegionType;
+  imageName: string;
+  volumes: TVolume[];
   pendingTask: boolean;
   availabilityZone: string | null;
   prices: TInstancePrice[];
   taskState: string | null;
+  sshKey: string;
+  sshLogin: string;
   isEditionEnabled: boolean;
 }>;
 

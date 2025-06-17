@@ -243,6 +243,16 @@ export const getRegionInstanceMock = ({
           status: 'enabled',
         },
       ],
+      volumes: [
+        {
+          id: '4889596a-0b81-4757-89f9-200ce2ac6539',
+          name: 'testVolume1',
+        },
+        {
+          id: '82003196-51c8-4602-9847-3caaea2a12d2',
+          name: 'testVOlume2',
+        },
+      ],
       login: 'ssh almalinux@51.161.81.152',
     }));
 

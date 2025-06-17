@@ -212,6 +212,10 @@ export const getInstanceDetail = (
   // TODO: get the unit from api
   flavorRam: `${instanceDto.flavor.specs.ram}`,
   flavorCpu: `${instanceDto.flavor.specs.cpu}`,
+  storage: `${instanceDto.flavor.specs.storage}`,
+  publicBandwidth: `${instanceDto.flavor.specs.bandwidth.public}`,
+  imageName: instanceDto.image.name,
+  sshLogin: instanceDto.login,
   status: getInstanceStatus(instanceDto.status),
   isEditionEnabled: isEditionEnabled(instanceDto.actions),
 });
