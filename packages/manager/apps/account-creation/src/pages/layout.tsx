@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense } from 'react';
+import { useEffect, Suspense } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import {
@@ -7,8 +7,8 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import UserProvider from '@/context/user/user.provider';
 import ReassuranceWording from '@/pages/ReassuranceWording.component';
-import ovhCloudLogo from '@/assets/logo-ovhcloud.png';
 import sideBackground from '@/assets/side_background.svg';
+import Header from '@/components/header/Header.component';
 
 export default function Layout() {
   const location = useLocation();
@@ -29,22 +29,20 @@ export default function Layout() {
   return (
     <Suspense>
       <UserProvider>
-        <div className="flex h-screen w-screen">
-          <div className="w-full flex flex-col app-content sm:basis-7/12">
-            <div className="p-0 pt-4 pl-6">
-              <img
-                src={ovhCloudLogo}
-                alt="ovh-cloud-logo"
-                className="app-logo"
-              />
-            </div>
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="p-6 sm:p-0 max-w-lg">
-                <Outlet />
+        <div className="flex flex-row h-screen">
+          <div className="w-full flex flex-col app-content md:basis-7/12 max-h-screen">
+            {/* header component */}
+            <Header />
+            {/* app component */}
+            <div className="flex-1 overflow-y-auto">
+              <div className="min-h-full flex items-center justify-center">
+                <div className="w-full p-6 sm:p-0 max-w-lg">
+                  <Outlet />
+                </div>
               </div>
             </div>
           </div>
-          <div className="hidden sm:flex justify-center sidebar basis-5/12 bg-gradient-to-br from-[#011B67] to-[#110BF5]">
+          <div className="hidden md:flex justify-center sidebar basis-5/12 bg-gradient-to-br from-[#011B67] to-[#110BF5]">
             <img
               src={sideBackground}
               alt="reassuring wording background"
