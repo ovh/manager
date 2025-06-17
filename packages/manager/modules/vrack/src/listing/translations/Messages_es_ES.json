@@ -1,3 +1,7 @@
 {
-  "vrack_listing_action_delete": "Dar de baja mi servicio"
+  "vrack_listing_action_delete": "Dar de baja mi servicio",
+  "vrack_listing_columns_header_serviceName": "Servicio",
+  "vrack_listing_columns_header_description": "Descripción",
+  "vrack_listing_columns_header_name": "Nombre",
+  "vrack_listing_columns_header_state": "Estado"
 }

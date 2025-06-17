@@ -1,3 +1,7 @@
 {
-  "vrack_listing_action_delete": "Meinen Dienst kündigen"
+  "vrack_listing_action_delete": "Meinen Dienst kündigen",
+  "vrack_listing_columns_header_serviceName": "Dienst",
+  "vrack_listing_columns_header_description": "Beschreibung",
+  "vrack_listing_columns_header_name": "Name",
+  "vrack_listing_columns_header_state": "Status"
 }
