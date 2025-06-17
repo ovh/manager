@@ -94,16 +94,11 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
 
           return promise;
         },
+        agreementsLink: /* @ngInject */ ($state) =>
+          $state.href('billing.autorenew.agreements', {}, { inherit: false }),
       },
       !coreConfigProvider.isRegion('US')
         ? {
-            agreementsLink: /* @ngInject */ ($state) =>
-              $state.href(
-                'billing.autorenew.agreements',
-                {},
-                { inherit: false },
-              ),
-
             homeLink: /* @ngInject */ ($state) =>
               $state.href('billing.autorenew.services', {}, { inherit: false }),
 
