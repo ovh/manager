@@ -208,6 +208,10 @@ export const getInstanceDetail = (
   instanceDto: TInstanceDetailDto,
 ): TInstanceDetail => ({
   ...instanceDto,
+  flavorName: instanceDto.flavor.name,
+  // TODO: get the unit from api
+  flavorRam: `${instanceDto.flavor.specs.ram}`,
+  flavorCpu: `${instanceDto.flavor.specs.cpu}`,
   status: getInstanceStatus(instanceDto.status),
   isEditionEnabled: isEditionEnabled(instanceDto.actions),
 });
