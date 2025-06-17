@@ -11,8 +11,8 @@ const PreferencesPage = lazy(() =>
 const AccountTypePage = lazy(() =>
   import('@/pages/accountType/accountType.page'),
 );
-const AccountInfoPage = lazy(() =>
-  import('@/pages/accountInfo/accountInfo.page'),
+const AccountDetailsPage = lazy(() =>
+  import('@/pages/accountDetails/accountDetails.page'),
 );
 
 export default (
@@ -48,11 +48,11 @@ export default (
       }}
     />
     <Route
-      path={urls.accountInfo}
-      Component={AccountInfoPage}
+      path={urls.accountDetails}
+      Component={AccountDetailsPage}
       handle={{
         tracking: {
-          pageName: 'account-info',
+          pageName: 'account-details',
           pageType: PageType.funnel,
         },
       }}
