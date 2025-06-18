@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
-import { Button, Label, Switch, Card, CardContent } from '@datatr-ux/uxlib';
+import {
+  Button,
+  Label,
+  Switch,
+  Card,
+  CardContent,
+  CardHeader,
+} from '@datatr-ux/uxlib';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useServiceData } from '../Service.context';
 import * as database from '@/types/cloud/project/database';
@@ -12,6 +19,7 @@ import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 import PrometheusConfigTile from './prometheus/PrometheusConfigTile.component';
+import MetricTitle from './_components/MetricTitle.component';
 
 export function breadcrumb() {
   return (
@@ -32,7 +40,13 @@ const Metrics = () => {
   const [period, setPeriod] = useState<database.service.MetricPeriodEnum>(
     database.service.MetricPeriodEnum.lastHour,
   );
-  const metricPeriods = Object.values(database.service.MetricPeriodEnum);
+  const metricPeriods = [
+    database.service.MetricPeriodEnum.lastHour,
+    database.service.MetricPeriodEnum.lastDay,
+    database.service.MetricPeriodEnum.lastWeek,
+    database.service.MetricPeriodEnum.lastMonth,
+    database.service.MetricPeriodEnum.lastYear,
+  ];
   return (
     <>
       <div className="flex justify-between w-full items-center">
@@ -81,6 +95,11 @@ const Metrics = () => {
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-2">
             {metricsQuery.data.map((metric) => (
               <Card key={metric}>
+                <CardHeader>
+                  <h5>
+                    <MetricTitle metric={metric} />
+                  </h5>
+                </CardHeader>
                 <CardContent>
                   <MetricChart
                     metric={metric}
