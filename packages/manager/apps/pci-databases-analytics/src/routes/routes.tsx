@@ -302,7 +302,52 @@ export default [
               },
             ],
           },
-
+          {
+            path: 'connectors',
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/services/[serviceId]/connectors/Connectors.layout'
+              ),
+            ),
+            children: [
+              {
+                id: 'service.{service.engine}.connectors',
+                path: '',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/connectors/Connectors.page'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.connectors.add',
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/connectors/add/AddConnector.page'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.connectors.edit',
+                path: 'edit/:connectorId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/connectors/edit/EditConnector.page'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.connectors.tasks',
+                path: 'tasks/:connectorId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/connectors/tasks/Tasks.page'
+                  ),
+                ),
+              },
+            ],
+          },
           {
             path: 'integrations',
             id: 'service.{service.engine}.integrations',
