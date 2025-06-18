@@ -22,7 +22,7 @@ describe('UpgradePolicyTileSelector', () => {
   // Mock ShellContext
   const mockShellContextValue = {
     environment: {
-      getUser: () => ({ ovhSubsidiary: 'en' }),
+      getUser: () => ({ ovhSubsidiary: 'GB' }),
     },
   } as ShellContextType;
 
