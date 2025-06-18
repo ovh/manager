@@ -9,7 +9,8 @@ import { useRegistry } from '@/api/hooks/useRegistry';
 import { useToggleIAMAuthentication } from '@/api/hooks/useIAMAuthentication';
 import { TRegistryAction, TRegistryActionToggle } from '@/types';
 import { useProjectId } from '@/hooks/project/useProjectId';
-import { useRegistryId } from '@/hooks/registry/usRegistryId';
+import { useRegistryId } from '@/hooks/registry/useRegistryId';
+import { useIAMFeatureAvailability } from '@/hooks/features/useIAMFeatureAvailability';
 
 const ManageIAM = () => {
   const navigate = useNavigate();
@@ -17,17 +18,24 @@ const ManageIAM = () => {
   const { addError, addSuccess } = useNotifications();
   const projectId = useProjectId();
   const registryId = useRegistryId();
+  const {
+    isIAMEnabled,
+    isPending: isIAMAvailablePending,
+  } = useIAMFeatureAvailability();
 
   const { data: registry, isPending } =
     useRegistry(projectId, registryId) ?? {};
 
-  const handleQuitModal = (action: TRegistryAction) => {
-    shell.tracking.trackClick({
-      name: `PCI_PROJECTS_PRIVATEREGISTRY_IAM_${action}`,
-      type: 'action',
-    });
-    navigate(`/pci/projects/${projectId}/private-registry`);
-  };
+  const handleQuitModal = useCallback(
+    (action: TRegistryAction) => {
+      shell.tracking.trackClick({
+        name: `PCI_PROJECTS_PRIVATEREGISTRY_IAM_${action}`,
+        type: 'action',
+      });
+      navigate(`/pci/projects/${projectId}/private-registry`);
+    },
+    [navigate, projectId, shell.tracking],
+  );
 
   const handleSuccess = useCallback(
     (message: string) => {
@@ -97,6 +105,11 @@ const ManageIAM = () => {
   useEffect(() => {
     if (!registry) handleFailure('private_registry_retrieving_failure');
   }, [registry, handleFailure]);
+
+  useEffect(() => {
+    if (!isIAMAvailablePending && !isIAMEnabled)
+      handleQuitModal('DISABLED_FEATURE');
+  }, [isIAMAvailablePending, isIAMEnabled, handleQuitModal]);
 
   return registry ? (
     <IAMModal

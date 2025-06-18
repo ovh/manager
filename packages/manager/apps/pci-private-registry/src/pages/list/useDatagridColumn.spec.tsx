@@ -1,8 +1,16 @@
 import { render, renderHook } from '@testing-library/react';
 import { Datagrid } from '@ovh-ux/manager-react-components';
+import { vi } from 'vitest';
 import { useDatagridColumn } from './useDatagridColumn';
 import { wrapper } from '@/wrapperRenders';
 import { TRegistry } from '@/api/data/registry';
+import { useIAMFeatureAvailability } from '@/hooks/features/useIAMFeatureAvailability';
+
+vi.mock('@/hooks/features/useIAMFeatureAvailability', () => ({
+  useIAMFeatureAvailability: vi.fn(),
+}));
+
+const mockedUseIAMFeatureAvailability = vi.mocked(useIAMFeatureAvailability);
 
 describe('useDatagridColumn', () => {
   const mockedPartialRegistry: Omit<TRegistry, 'iamEnabled'> = {
@@ -34,6 +42,10 @@ describe('useDatagridColumn', () => {
   };
 
   it('should return the correct columns', () => {
+    mockedUseIAMFeatureAvailability.mockReturnValue({
+      isIAMEnabled: true,
+      isPending: false,
+    });
     const { result } = renderHook(() => useDatagridColumn());
 
     const columns = result.current;
@@ -76,8 +88,27 @@ describe('useDatagridColumn', () => {
     expect(actionsColumn?.label).toBe('');
   });
 
+  it('should not display IAM column if IAM feature is disabled', () => {
+    mockedUseIAMFeatureAvailability.mockReturnValue({
+      isIAMEnabled: false,
+      isPending: false,
+    });
+
+    const { result } = renderHook(() => useDatagridColumn());
+
+    const columns = result.current;
+
+    const iamColumn = columns.find((col) => col.id === 'iam');
+    expect(iamColumn).toBeUndefined();
+  });
+
   it('should display enabled IAM authentication status if registry IAM is enabled', () => {
-    const columns = useDatagridColumn();
+    mockedUseIAMFeatureAvailability.mockReturnValue({
+      isIAMEnabled: true,
+      isPending: false,
+    });
+
+    const { result } = renderHook(() => useDatagridColumn());
     const mockedRegistries: TRegistry[] = [
       { ...mockedPartialRegistry, iamEnabled: true },
     ];
@@ -90,7 +121,7 @@ describe('useDatagridColumn', () => {
 
     const { getByTestId } = render(
       <Datagrid
-        columns={columns}
+        columns={result.current}
         items={fakeData.rows}
         totalItems={fakeData.totalRows}
       />,
@@ -103,7 +134,13 @@ describe('useDatagridColumn', () => {
   });
 
   it('should display disabled IAM authentication status if registry IAM is disabled', () => {
-    const columns = useDatagridColumn();
+    mockedUseIAMFeatureAvailability.mockReturnValue({
+      isIAMEnabled: true,
+      isPending: false,
+    });
+
+    const { result } = renderHook(() => useDatagridColumn());
+
     const mockedRegistries: TRegistry[] = [
       { ...mockedPartialRegistry, iamEnabled: false },
     ];
@@ -116,7 +153,7 @@ describe('useDatagridColumn', () => {
 
     const { getByTestId } = render(
       <Datagrid
-        columns={columns}
+        columns={result.current}
         items={fakeData.rows}
         totalItems={fakeData.totalRows}
       />,

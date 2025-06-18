@@ -83,4 +83,6 @@ export const IAM_DOC_LINKS: Partial<{ [key in OvhSubsidiary]: string }> = {
     'https://www.ovhcloud.com/de/identity-security-operations/identity-access-management/',
   NL:
     'https://www.ovhcloud.com/nl/identity-security-operations/identity-access-management/',
+  US:
+    'https://us.ovhcloud.com/identity-security-operations/identity-access-management/',
 };
