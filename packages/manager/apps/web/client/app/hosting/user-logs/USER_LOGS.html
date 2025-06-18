@@ -75,6 +75,14 @@
         <div data-ng-include="'hosting/statistics/STATISTICS.html'"></div>
     </div>
 
+    <div data-ng-if="databaseIds.length > 0">
+        <h3 data-translate="hosting_user_logs_dashboard_databases_stats"></h3>
+
+        <div
+            data-ng-include="'hosting/database-statistics/database-statistics.html'"
+        ></div>
+    </div>
+
     <div>
         <h3 data-translate="hosting_user_logs_dashboard_users"></h3>
         <p data-translate="hosting_user_logs_dashboard_users_description"></p>
