@@ -18,6 +18,8 @@ import {
   PciTrustedZoneBanner,
   useTrustedZoneBanner,
 } from '@ovh-ux/manager-pci-common';
+
+import { Outlet } from 'react-router-dom';
 import { getDatagridColumns } from './datagrid-columns';
 import {
   getProjectsWithServices,
@@ -135,6 +137,8 @@ export default function Listing() {
           />
         )}
       </React.Suspense>
+
+      <Outlet />
     </BaseLayout>
   );
 }
