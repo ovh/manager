@@ -86,7 +86,7 @@ export default function DashboardPage() {
           ),
         },
       ].filter(Boolean),
-    [features, t],
+    [features, t, okmsId],
   );
 
   if (isOkmsServiceLoading || isOkmsLoading || isFeatureAvailabilityLoading) {
