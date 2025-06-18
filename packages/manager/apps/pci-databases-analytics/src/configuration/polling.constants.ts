@@ -13,6 +13,8 @@ export const POLLING = {
   MAINTENANCE: 30_000,
   INDEXES: 30_000,
   PATTERNS: 30_000,
+  CONNECTORS: 30_000,
+  CONNECTOR_TASKS: 30_000,
 };
 
 export const USER_INACTIVITY_TIMEOUT = 5 * 60_000; // inactivity after 5 minutes
