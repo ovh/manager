@@ -30,6 +30,7 @@ import {
   ODS_MESSAGE_TYPE,
   ODS_BUTTON_SIZE,
 } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import HYCU_CONFIG from '@/hycu.config';
 import { IHycuDetails } from '@/types/hycu.details.interface';
 
@@ -145,9 +146,14 @@ const DatagridActionCell = (hycuDetail: IHycuDetails) => {
 export default function Listing() {
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
-  const { t } = useTranslation('hycu/listing');
-  const { t: tCommon } = useTranslation('hycu');
-  const { t: tError } = useTranslation('hycu/error');
+  const { t } = useTranslation([
+    'hycu/listing',
+    'hycu',
+    NAMESPACES.ERROR,
+    NAMESPACES.ACTIONS,
+    NAMESPACES.DASHBOARD,
+    NAMESPACES.STATUS,
+  ]);
   const {
     flattenData,
     isError,
@@ -167,7 +173,7 @@ export default function Listing() {
     return [
       {
         id: 'name',
-        label: t('hycu_name'),
+        label: t(`${NAMESPACES.DASHBOARD}:name`),
         isSortable: false,
         cell: DatagridIdCell,
       },
@@ -178,7 +184,7 @@ export default function Listing() {
       },
       {
         id: 'licenseStatus',
-        label: t('hycu_status'),
+        label: t(`${NAMESPACES.STATUS}:status`),
         cell: DatagridStatusCell,
       },
       {
@@ -204,7 +210,7 @@ export default function Listing() {
 
   const header = {
     title: HYCU_CONFIG.rootLabel,
-    description: tCommon('hycu_description'),
+    description: t('hycu:hycu_description'),
   };
 
   return (
@@ -216,7 +222,7 @@ export default function Listing() {
         isError={isError}
         errorComponent={
           <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
-            {tError('manager_error_page_default')}
+            {t(`${NAMESPACES.ERROR}:error_loading_page`)}
           </OsdsMessage>
         }
       >
@@ -235,7 +241,7 @@ export default function Listing() {
                   }}
                   inline
                 >
-                  {t('hycu_order')}
+                  {t(`${NAMESPACES.ACTIONS}:order`)}
                 </OsdsButton>
               </div>
               {columns && flattenData && (
