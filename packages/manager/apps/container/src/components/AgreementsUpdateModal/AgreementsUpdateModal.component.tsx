@@ -79,7 +79,7 @@ export default function AgreementsUpdateModal() {
         updatePreference(time);
       }
       else {
-        ux.notifyModalActionDone(MODAL_NAME);
+        ux.notifyModalActionDone(AgreementsUpdateModal.name);
       }
     }
   }, [shouldDisplayModal]);

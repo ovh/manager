@@ -86,7 +86,7 @@ const SuggestionModal = (): JSX.Element => {
     if (shouldDisplayModal !== undefined) {
       setShowModal(shouldDisplayModal);
       if (!shouldDisplayModal) {
-        ux.notifyModalActionDone(MODAL_NAME);
+        ux.notifyModalActionDone(SuggestionModal.name);
       }
     }
   }, [shouldDisplayModal]);

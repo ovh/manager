@@ -93,7 +93,7 @@ export const IdentityDocumentsModal = (): JSX.Element => {
         updatePreference(time);
       }
       else {
-        uxPlugin.notifyModalActionDone(MODAL_NAME);
+        uxPlugin.notifyModalActionDone(IdentityDocumentsModal.name);
       }
     }
   }, [shouldDisplayModal]);

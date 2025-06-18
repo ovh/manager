@@ -58,7 +58,7 @@ const PaymentModal = (): JSX.Element => {
 
   const closeHandler = () => {
     setShowPaymentModal(false);
-    ux.notifyModalActionDone('PaymentModal');
+    ux.notifyModalActionDone(PaymentModal.name);
   };
   const validateHandler = () => {
     setShowPaymentModal(false);
@@ -69,7 +69,7 @@ const PaymentModal = (): JSX.Element => {
     if (shouldDisplayModal !== undefined) {
       setShowPaymentModal(shouldDisplayModal);
       if (!shouldDisplayModal) {
-        ux.notifyModalActionDone('PaymentModal');
+        ux.notifyModalActionDone(PaymentModal.name);
       }
     }
   }, [shouldDisplayModal]);
