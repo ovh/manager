@@ -69,11 +69,16 @@ export const deleteVolume = async (
   }
 };
 
-export const updateVolume = async (
-  projectId: string,
-  { name, bootable, size }: Partial<TAPIVolume>,
-  originalVolume: TAPIVolume,
-) => {
+export type TUpdateVolumeProps = {
+  projectId: string;
+  volumeToUpdate: Partial<TAPIVolume>;
+  originalVolume: Pick<TAPIVolume, 'id' | 'name' | 'bootable' | 'size'>;
+};
+export const updateVolume = async ({
+  projectId,
+  volumeToUpdate: { name, size, bootable },
+  originalVolume,
+}: TUpdateVolumeProps) => {
   let promise1;
   let promise2;
   try {
@@ -134,28 +139,20 @@ export const detachVolume = async (
 export interface AddVolumeProps {
   name: string;
   projectId: string;
-  regionName: string;
-  volumeCapacity: number;
-  volumeType: string;
+  region: string;
+  size: number;
+  type: string;
   availabilityZone: string | null;
 }
 
 export const addVolume = async ({
-  name,
   projectId,
-  regionName,
-  volumeCapacity,
-  volumeType,
-  availabilityZone,
+  region,
+  ...props
 }: AddVolumeProps): Promise<void> => {
   const { data } = await v6.post<void>(
-    `/cloud/project/${projectId}/region/${regionName}/volume`,
-    {
-      name,
-      size: volumeCapacity,
-      type: volumeType,
-      availabilityZone,
-    },
+    `/cloud/project/${projectId}/region/${region}/volume`,
+    props,
   );
 
   return data;
