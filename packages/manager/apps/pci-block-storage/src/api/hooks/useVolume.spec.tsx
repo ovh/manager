@@ -50,7 +50,7 @@ const onError = vi.fn();
 
 describe('useVolume', () => {
   it('returns volume data when volumeId is provided', async () => {
-    const volumeMock: TAPIVolume = {
+    const volumeMock = {
       id: '1',
       name: 'Volume 1',
       attachedTo: [],
@@ -63,7 +63,7 @@ describe('useVolume', () => {
       planCode: '',
       type: 'model1',
       availabilityZone: 'any',
-    };
+    } as TAPIVolume;
 
     vi.mocked(getVolume).mockResolvedValue(volumeMock);
 
@@ -116,7 +116,7 @@ describe('useVolumes', () => {
         type: 'model1',
         availabilityZone: 'any',
       },
-    ];
+    ] as TAPIVolume[];
 
     vi.mocked(getAllVolumes).mockResolvedValue(volumesMock);
 
@@ -145,7 +145,7 @@ describe('useVolumes', () => {
             name: 'Volume 1',
             planCode: '',
             region: 'region1',
-            regionName: 'manager_components_region_region_micro',
+            regionName: 'region:manager_components_region_region_micro',
             size: 0,
             status: 'available',
             statusGroup: 'ACTIVE',
@@ -163,7 +163,7 @@ describe('useVolumes', () => {
             name: 'Volume 2',
             planCode: '',
             region: 'region2',
-            regionName: 'manager_components_region_region_micro',
+            regionName: 'region:manager_components_region_region_micro',
             size: 0,
             status: 'available',
             statusGroup: 'ACTIVE',
@@ -252,7 +252,7 @@ describe('useAttachVolume', () => {
       planCode: '',
       type: '',
       availabilityZone: 'any',
-    });
+    } as TAPIVolume);
 
     const { result } = renderHook(
       () =>
@@ -292,7 +292,7 @@ describe('useDetachVolume', () => {
       planCode: '',
       type: '',
       availabilityZone: 'any',
-    });
+    } as TAPIVolume);
 
     const { result } = renderHook(
       () =>
