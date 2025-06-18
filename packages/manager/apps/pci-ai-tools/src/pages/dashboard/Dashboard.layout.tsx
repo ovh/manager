@@ -8,6 +8,7 @@ import { useGetNotebooks } from '@/data/hooks/ai/notebook/useGetNotebooks.hook';
 import { useGetJobs } from '@/data/hooks/ai/job/useGetJobs.hook';
 import { useGetApps } from '@/data/hooks/ai/app/useGetApps.hook';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+import { useGetFramework } from '@/data/hooks/ai/capabilities/useGetFramework.hook';
 
 export function breadcrumb() {
   return (
@@ -27,16 +28,24 @@ export default function DashboardLayout() {
   const appsQuery = useGetApps(projectId, {
     refetchInterval: isUserActive && POLLING.APPS,
   });
+  const frameworkQuery = useGetFramework(projectId, 'GRA');
 
   if (
     !notebooksQuery.isSuccess ||
     !jobsQuery.isSuccess ||
-    !appsQuery.isSuccess
+    !appsQuery.isSuccess ||
+    !frameworkQuery.isSuccess
   ) {
     return <DashboardHeader.Skeleton />;
   }
 
-  const notebooks = notebooksQuery.data;
+  const filterFmkIds = frameworkQuery.data
+    .filter((fmk) => fmk.type === 'AI')
+    .map((fwk) => fwk.id);
+
+  const notebooks = notebooksQuery.data.filter((nb) =>
+    filterFmkIds.includes(nb.spec.env.frameworkId),
+  );
   const jobs = jobsQuery.data;
   const apps = appsQuery.data;
 
