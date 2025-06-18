@@ -7,20 +7,27 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import onboardingImage from './onboarding.svg';
 
 export default function SecretManagerOnboardingPage() {
-  const { t } = useTranslation('secret-manager/onboarding');
+  const { t } = useTranslation([
+    'secret-manager/onboarding',
+    'secret-manager/common',
+  ]);
   const navigate = useNavigate();
 
   return (
     <OnboardingLayout
-      title={t('title')}
+      title={t('secret-manager/common:secret_manager')}
       img={{ src: onboardingImage }}
       description={
         <div className="flex flex-col gap-2">
-          <OdsText className="text-center">{t('description1')}</OdsText>
-          <OdsText className="text-center">{t('description2')}</OdsText>
+          <OdsText className="text-center">
+            {t('secret-manager/onboarding:description_1')}
+          </OdsText>
+          <OdsText className="text-center">
+            {t('secret-manager/onboarding:description_2')}
+          </OdsText>
         </div>
       }
-      orderButtonLabel={t('createButton')}
+      orderButtonLabel={t('create_button')}
       onOrderButtonClick={() =>
         navigate(SECRET_MANAGER_ROUTES_URLS.secretCreate)
       }
