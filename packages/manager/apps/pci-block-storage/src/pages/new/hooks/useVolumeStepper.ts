@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Step, useStep } from '@/pages/new/hooks/useStep';
 import { TFormState } from '@/pages/new/form.type';
-import { TVolumeAddon } from '@/api/data/catalog';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
 import { TRegion } from '@/api/data/regions';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
+import { EncryptionType } from '@/api/select/volume';
 
 export function useVolumeStepper(projectId: string) {
   const { data: volumeCatalog } = useVolumeCatalog(projectId);
@@ -94,13 +94,14 @@ export function useVolumeStepper(projectId: string) {
         });
         setForm((f) => ({ region: f.region }));
       },
-      submit: (volumeType: TVolumeAddon) => {
+      submit: (
+        volumeType: string,
+        showAvailabilityZones: boolean,
+        encryptionType: EncryptionType | null,
+      ) => {
         volumeTypeStep.check();
         volumeTypeStep.lock();
-        const pricing = volumeType.pricings.find((p) =>
-          p.regions.includes(form.region.name),
-        );
-        if (has3AZ && pricing.showAvailabilityZones) {
+        if (showAvailabilityZones) {
           availabilityZoneStep.show();
           availabilityZoneStep.open();
         } else {
@@ -110,7 +111,7 @@ export function useVolumeStepper(projectId: string) {
         setForm((f) => ({
           ...f,
           volumeType,
-          pricing,
+          encryptionType,
         }));
       },
     },
@@ -126,7 +127,6 @@ export function useVolumeStepper(projectId: string) {
         setForm((f) => ({
           region: f.region,
           volumeType: f.volumeType,
-          pricing: f.pricing,
         }));
       },
       submit: (availabilityZone: string) => {
@@ -151,7 +151,6 @@ export function useVolumeStepper(projectId: string) {
         setForm((f) => ({
           region: f.region,
           volumeType: f.volumeType,
-          pricing: f.pricing,
           availabilityZone: f.availabilityZone,
         }));
       },
@@ -175,7 +174,6 @@ export function useVolumeStepper(projectId: string) {
         setForm((f) => ({
           region: f.region,
           volumeType: f.volumeType,
-          pricing: f.pricing,
           availabilityZone: f.availabilityZone,
           volumeCapacity: f.volumeCapacity,
         }));

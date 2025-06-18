@@ -3,11 +3,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, it, vi } from 'vitest';
 import { getInstancesByRegion, TInstance } from '@ovh-ux/manager-pci-common';
 import { useAttachableInstances } from '@/api/hooks/useInstance';
-import { getVolume, TAPIVolume } from '@/api/data/volume';
+import { useVolume } from './useVolume';
 
 vi.mock('@ovh-ux/manager-pci-common');
-vi.mock('@/api/data/volume');
-vi.mock('@/api/data/catalog');
+vi.mock('@/api/hooks/useVolume');
 
 const queryClient = new QueryClient();
 
@@ -56,11 +55,13 @@ describe('useAttachableInstances', () => {
   });
 
   it('returns instances data when volumeId is provided', async () => {
-    vi.mocked(getVolume).mockResolvedValue({
-      region: 'region1',
-      attachedTo: [],
-      type: 'model1',
-    } as TAPIVolume);
+    vi.mocked(useVolume).mockReturnValue({
+      data: {
+        region: 'region1',
+        attachedTo: [],
+        type: 'model1',
+      },
+    } as ReturnType<typeof useVolume>);
 
     const { result } = renderHook(
       () => useAttachableInstances('123', 'volume1'),
@@ -76,7 +77,9 @@ describe('useAttachableInstances', () => {
   });
 
   it('does not fetch data when volume is not provided', () => {
-    vi.mocked(getVolume).mockRejectedValue('no volume');
+    vi.mocked(useVolume).mockReturnValue({ isPending: true } as ReturnType<
+      typeof useVolume
+    >);
 
     const { result } = renderHook(() => useAttachableInstances('123', null), {
       wrapper,
@@ -87,11 +90,13 @@ describe('useAttachableInstances', () => {
   });
 
   it('returns active instances', async () => {
-    vi.mocked(getVolume).mockResolvedValue({
-      region: 'region1',
-      attachedTo: [],
-      type: 'model1',
-    } as TAPIVolume);
+    vi.mocked(useVolume).mockReturnValue({
+      data: {
+        region: 'region1',
+        attachedTo: [],
+        type: 'model1',
+      },
+    } as ReturnType<typeof useVolume>);
     const { result } = renderHook(
       () => useAttachableInstances('123', 'volume1'),
       {
@@ -109,12 +114,14 @@ describe('useAttachableInstances', () => {
   });
 
   it('returns instances when availability zone is any', async () => {
-    vi.mocked(getVolume).mockResolvedValue({
-      region: 'region2',
-      availabilityZone: 'any',
-      attachedTo: [],
-      type: 'model1',
-    } as TAPIVolume);
+    vi.mocked(useVolume).mockReturnValue({
+      data: {
+        region: 'region2',
+        availabilityZone: 'any',
+        attachedTo: [],
+        type: 'model1',
+      },
+    } as ReturnType<typeof useVolume>);
     const { result } = renderHook(
       () => useAttachableInstances('123', 'volume1'),
       {
@@ -132,12 +139,14 @@ describe('useAttachableInstances', () => {
   });
 
   it('returns instances with same availability zone', async () => {
-    vi.mocked(getVolume).mockResolvedValue({
-      region: 'region2',
-      availabilityZone: 'region2-a',
-      attachedTo: [],
-      type: 'model1',
-    } as TAPIVolume);
+    vi.mocked(useVolume).mockReturnValue({
+      data: {
+        region: 'region2',
+        availabilityZone: 'region2-a',
+        attachedTo: [],
+        type: 'model1',
+      },
+    } as ReturnType<typeof useVolume>);
     const { result } = renderHook(
       () => useAttachableInstances('123', 'volume1'),
       {
@@ -155,12 +164,14 @@ describe('useAttachableInstances', () => {
   });
 
   it('returns instances not already attached', async () => {
-    vi.mocked(getVolume).mockResolvedValue({
-      region: 'region2',
-      availabilityZone: 'region2-a',
-      attachedTo: ['1'],
-      type: 'model1',
-    } as TAPIVolume);
+    vi.mocked(useVolume).mockReturnValue({
+      data: {
+        region: 'region2',
+        availabilityZone: 'region2-a',
+        attachedTo: ['1'],
+        type: 'model1',
+      },
+    } as ReturnType<typeof useVolume>);
     const { result } = renderHook(
       () => useAttachableInstances('123', 'volume1'),
       {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useDeferredValue, useEffect, useState } from 'react';
 import {
   OsdsButton,
   OsdsIcon,
@@ -22,13 +22,12 @@ import {
 } from '@ovhcloud/ods-components';
 
 import { useTranslation } from 'react-i18next';
-import { PriceEstimate } from '@/pages/new/components/PriceEstimate';
-import { HighSpeedV2Infos } from '@/pages/new/components/HighSpeedV2Infos';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
 import { useVolumeMaxSize } from '@/api/data/quota';
-import { TVolumeAddon, TVolumePricing } from '@/api/data/catalog';
 import { TRegion } from '@/api/data/regions';
+import { useVolumePricing } from '@/api/hooks/useCatalog';
+import { EncryptionType } from '@/api/select/volume';
 
 export const VOLUME_MIN_SIZE = 10; // 10 Gio
 export const VOLUME_UNLIMITED_QUOTA = -1; // Should be 10 * 1024 (but API is wrong)
@@ -36,8 +35,8 @@ export const VOLUME_UNLIMITED_QUOTA = -1; // Should be 10 * 1024 (but API is wro
 interface CapacityStepProps {
   projectId: string;
   region: TRegion;
-  volumeType: TVolumeAddon;
-  pricing: TVolumePricing;
+  volumeType: string;
+  encryptionType: EncryptionType | null;
   step: StepState;
   onSubmit: (volumeCapacity: number) => void;
 }
@@ -46,14 +45,25 @@ export function CapacityStep({
   projectId,
   region,
   volumeType,
-  pricing,
+  encryptionType,
   step,
   onSubmit,
 }: Readonly<CapacityStepProps>) {
   const { t } = useTranslation('add');
   const { t: tStepper } = useTranslation('stepper');
   const { t: tGlobal } = useTranslation('global');
+
   const [volumeCapacity, setVolumeCapacity] = useState<number>(VOLUME_MIN_SIZE);
+  const deferredVolumeCapacity = useDeferredValue(volumeCapacity);
+
+  const { data } = useVolumePricing(
+    projectId,
+    region.name,
+    volumeType,
+    encryptionType,
+    deferredVolumeCapacity,
+  );
+
   const [maxSize, setMaxSize] = useState(0);
   const {
     data: regionQuotas,
@@ -145,12 +155,43 @@ export function CapacityStep({
           {t('pci_projects_project_storages_blocks_add_size_unit')}
         </OsdsText>
       </div>
-      <HighSpeedV2Infos
-        volumeCapacity={volumeCapacity}
-        volumeType={volumeType}
-        pricing={pricing}
-      />
-      <PriceEstimate volumeCapacity={volumeCapacity} pricing={pricing} />
+
+      <div>
+        {!!data?.bandwidth && data.isBandwidthDynamic && (
+          <OsdsText
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('pci_projects_project_storages_blocks_add_size_bandwidth', {
+              bandwidth: data.bandwidth,
+            })}
+          </OsdsText>
+        )}
+        <br />
+        {!!data?.iops && data.areIOPSDynamic && (
+          <OsdsText
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('pci_projects_project_storages_blocks_add_size_iops', {
+              iops: data.iops,
+            })}
+          </OsdsText>
+        )}
+      </div>
+      {!!data && (
+        <OsdsText
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {t('pci_projects_project_storages_blocks_add_submit_price_text', {
+            price: data.monthlyPrice.value,
+          })}
+        </OsdsText>
+      )}
       <div className="my-6">
         {volumeCapacity < VOLUME_MIN_SIZE && (
           <div>
