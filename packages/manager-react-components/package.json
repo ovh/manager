@@ -21,6 +21,7 @@
   "scripts": {
     "build": "tsc && vite build",
     "dev": "tsc -p tsconfig.new.json && vite build",
+    "lint": "eslint --quiet ./src",
     "prepare": "tsc && vite build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "TZ=UTC manager-test",
@@ -76,6 +77,9 @@
     "eslint-plugin-n": "^17.16.2",
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-react": "^7.37.4",
+    "esrecurse": "^4.3.0",
+    "@eslint/js": "^9.15.0",
+    "@eslint/eslintrc": "^3.3.1",
     "file-loader": "^6.2.0",
     "husky": "8.0.3",
     "i18next": "^23.8.2",
