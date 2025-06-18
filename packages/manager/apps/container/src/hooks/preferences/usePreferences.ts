@@ -20,12 +20,11 @@ export const usePreferences = (
 
 export const useCreatePreference = (
   key: string,
-  value: unknown,
   invalidateQueries = true,
 ) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => createPreferences(key, value),
+    mutationFn: (value: unknown) => createPreferences(key, value),
     onSuccess: () => {
       if (invalidateQueries) {
         queryClient.invalidateQueries({ queryKey: ['preferences', key] });
