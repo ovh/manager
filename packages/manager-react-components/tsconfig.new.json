@@ -5,6 +5,7 @@
   },
   "include": [
     // Add you components migrated here
+    "./src/components/Links/*"
   ],
   "exclude": [
     "./src/hooks/*",
