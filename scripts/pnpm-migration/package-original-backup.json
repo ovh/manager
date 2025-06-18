@@ -14,7 +14,6 @@
       "packages/manager/core/generator",
       "packages/manager/core/ovh-product-icons",
       "packages/manager/core/request-tagger",
-      "packages/manager/core/shell-client",
       "packages/manager/core/sso",
       "packages/manager/core/tailwind-config",
       "packages/manager/core/url-builder",
@@ -146,9 +145,9 @@
     "vite": "^5.4.18",
     "whatwg-fetch": "^3.6.2"
   },
-  "packageManager": "yarn@1.22.22",
   "engines": {
     "node": "^22",
     "yarn": ">=1.21.1"
-  }
+  },
+  "packageManager": "yarn@1.22.22"
 }
