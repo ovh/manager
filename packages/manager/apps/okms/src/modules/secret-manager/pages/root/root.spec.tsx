@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
@@ -12,7 +12,7 @@ describe('Secret Manager root page test suite', () => {
 
     expect(
       await screen.findByText(
-        labels.secretManager.onboarding.title,
+        labels.secretManager.common.secret_manager,
         {},
         WAIT_FOR_DEFAULT_OPTIONS,
       ),
@@ -24,13 +24,15 @@ describe('Secret Manager root page test suite', () => {
       nbOkms: 1,
     });
 
-    expect(
-      await screen.findByText(
-        // TODO: replace this with a real label when the page is available
-        'Secrets Listing',
-        {},
-        WAIT_FOR_DEFAULT_OPTIONS,
-      ),
-    ).toBeVisible();
+    const secretListTableHeaders = [
+      labels.secretManager.common.path,
+      labels.secretManager.common.version,
+    ];
+
+    waitFor(() => {
+      secretListTableHeaders.forEach((header) => {
+        expect(screen.queryAllByText(header)).toBeVisible();
+      });
+    });
   });
 });

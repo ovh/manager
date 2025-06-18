@@ -15,9 +15,9 @@ describe('Secret Manager onboarding test suite', () => {
     );
 
     const labelsToTest = [
-      labels.secretManager.onboarding.title,
-      labels.secretManager.onboarding.description1,
-      labels.secretManager.onboarding.description2,
+      labels.secretManager.common.secret_manager,
+      labels.secretManager.onboarding.description_1,
+      labels.secretManager.onboarding.description_2,
     ];
 
     const checkAllLabelsPromises = labelsToTest.map(async (label) => {
@@ -30,7 +30,7 @@ describe('Secret Manager onboarding test suite', () => {
 
     getOdsButtonByLabel({
       container,
-      label: labels.secretManager.onboarding.createButton,
+      label: labels.secretManager.onboarding.create_button,
       ...WAIT_FOR_DEFAULT_OPTIONS,
     });
   });
@@ -43,7 +43,7 @@ describe('Secret Manager onboarding test suite', () => {
 
     const button = await getOdsButtonByLabel({
       container,
-      label: labels.secretManager.onboarding.createButton,
+      label: labels.secretManager.onboarding.create_button,
       ...WAIT_FOR_DEFAULT_OPTIONS,
     });
 
