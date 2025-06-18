@@ -21,6 +21,7 @@ export type IAM = {
   displayName: string;
   id: string;
   urn: string;
+  tags?: Record<string, string>;
 };
 
 export type OKMSOptions = {
