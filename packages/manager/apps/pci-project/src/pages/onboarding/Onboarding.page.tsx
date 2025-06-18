@@ -9,10 +9,6 @@ import {
   OdsAccordion,
   OdsMessage,
 } from '@ovhcloud/ods-components/react';
-import {
-  PciTrustedZoneBanner,
-  useTrustedZoneBanner,
-} from '@ovh-ux/manager-pci-common';
 
 import { ITALY_AGREEMENT_TEXT } from '@/constants';
 
@@ -45,7 +41,6 @@ const MOCK_CONTRACTS: ContractLink[] = [
 
 const IS_US_REGION = false;
 const IS_IT_REGION = true;
-const IS_TRUSTED_ZONE = false;
 const HAS_KYC_VERIFICATION_PENDING = true;
 
 export default function OnboardingPage() {
@@ -54,14 +49,9 @@ export default function OnboardingPage() {
   const [hasItalyAgreements, setHasItalyAgreements] = useState(false);
   const isUsRegion = IS_US_REGION;
   const isItRegion = IS_IT_REGION;
-  const isTrustedZone = IS_TRUSTED_ZONE;
   const hasKycValidationPending = HAS_KYC_VERIFICATION_PENDING;
   const contractAgreementLinks = MOCK_CONTRACTS;
-  const {
-    isBannerVisible, // TODO: set 'isTrustedZone' instead
-    isLoading: isTrustedZoneLoading,
-  } = useTrustedZoneBanner();
-  const isLoading = isTrustedZoneLoading;
+  const isLoading = false; // TODO
 
   const isContractAgreementDisabled = hasKycValidationPending;
   const isProjectCreationDisabled =
@@ -72,7 +62,6 @@ export default function OnboardingPage() {
   if (isUsRegion) {
     return (
       <div className="pci_project_onboarding_us w-100 h-100 flex flex-row max-w-[100vw] overflow-x-hidden">
-        <PciTrustedZoneBanner />
         <img
           className="onboarding-us-img invisible md:visible"
           src={onboardingUsImage}
@@ -97,21 +86,7 @@ export default function OnboardingPage() {
           </OdsText>
 
           {/* CTA: Create a project */}
-          {!isTrustedZone && (
-            <OdsButton label={t('pci_projects_onboarding_create_project')} />
-          )}
-
-          {/* CTA: Call customer (for trusted zone) */}
-          {isTrustedZone && (
-            <>
-              <OdsText preset="paragraph" className={'font-bold'}>
-                {t('pci_projects_onboarding_us_banner_trusted_customer_info_1')}
-              </OdsText>
-              <OdsText preset="paragraph" className={'font-bold'}>
-                {t('pci_projects_onboarding_us_banner_trusted_customer_info_2')}
-              </OdsText>
-            </>
-          )}
+          <OdsButton label={t('pci_projects_onboarding_create_project')} />
         </div>
       </div>
     );
@@ -227,24 +202,10 @@ export default function OnboardingPage() {
         )}
 
         {/* CTA: Create a project */}
-        {!isTrustedZone && (
-          <OdsButton
-            label={t('pci_projects_onboarding_create_project')}
-            isDisabled={isProjectCreationDisabled}
-          />
-        )}
-
-        {/* CTA: Call customer (for trusted zone) */}
-        {isTrustedZone && (
-          <>
-            <OdsText preset="paragraph" className={'font-bold'}>
-              {t('pci_projects_onboarding_banner_trusted_customer_info_1')}
-            </OdsText>
-            <OdsText preset="paragraph" className={'font-bold'}>
-              {t('pci_projects_onboarding_banner_trusted_customer_info_2')}
-            </OdsText>
-          </>
-        )}
+        <OdsButton
+          label={t('pci_projects_onboarding_create_project')}
+          isDisabled={isProjectCreationDisabled}
+        />
       </div>
     </div>
   );
