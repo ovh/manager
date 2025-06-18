@@ -69,17 +69,3 @@ export type TNetworkCreationResponse = {
   startedAt: string | null;
   status: CreationStatus;
 };
-
-export enum ErrorClass {
-  MaxQuotaReached = 'MaxQuotaReached',
-}
-
-export type ErrorResponse = {
-  response?: {
-    data: {
-      message: string;
-      class?: string;
-    };
-  };
-  message?: string;
-};

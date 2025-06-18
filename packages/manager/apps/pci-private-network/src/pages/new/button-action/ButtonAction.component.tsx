@@ -15,10 +15,13 @@ import {
   ODS_BUTTON_TYPE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
+import {
+  isApiCustomError,
+  isMaxQuotaReachedError,
+} from '@ovh-ux/manager-core-api';
 import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 import { useNavigate } from 'react-router-dom';
 import { useFormContext } from 'react-hook-form';
-import { ErrorClass, ErrorResponse } from '@/types/network.type';
 import { ROUTE_PATHS } from '@/routes';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import {
@@ -61,28 +64,28 @@ const ButtonAction: React.FC = () => {
     navigate(`../${redirectPath}`);
   };
 
-  const onError = (e: ErrorResponse) => {
-    if (e?.response?.data?.class.includes(ErrorClass.MaxQuotaReached)) {
-      addError(
+  const onError = (e: unknown) => {
+    const errorMessage =
+      isApiCustomError(e) && isMaxQuotaReachedError(e) ? (
         <Trans
           ns="new"
           i18nKey="pci_projects_project_network_private_create_error_quota_exceeded"
           components={{
-            Link: <GuideLink href={`${hrefProject}/quota`} />,
+            Link: (
+              <GuideLink href={`${hrefProject}/quota`} isTargetBlank={false} />
+            ),
           }}
-        />,
-        true,
+        />
+      ) : (
+        <Trans
+          ns="new"
+          i18nKey="pci_projects_project_network_private_create_error"
+          values={{
+            message: isApiCustomError(e) ? e.response.data.message : '',
+          }}
+        />
       );
-    } else {
-      addError(
-        <span>
-          {t('new:pci_projects_project_network_private_create_error', {
-            message: e?.response?.data?.message || e?.message,
-          })}
-        </span>,
-        true,
-      );
-    }
+    addError(errorMessage, true);
   };
 
   const create = async (values: NewPrivateNetworkForm) => {

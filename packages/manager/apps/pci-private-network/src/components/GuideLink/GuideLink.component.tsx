@@ -4,11 +4,16 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 const GuideLink = ({
   children,
   href,
-}: Readonly<{ href: string; children?: string }>) => (
+  isTargetBlank = true,
+}: Readonly<{ href: string; children?: string; isTargetBlank?: boolean }>) => (
   <Links
     label={children}
     href={href}
-    target={OdsHTMLAnchorElementTarget._blank}
+    target={
+      isTargetBlank
+        ? OdsHTMLAnchorElementTarget._blank
+        : OdsHTMLAnchorElementTarget._self
+    }
   />
 );
 
