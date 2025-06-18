@@ -93,7 +93,7 @@ export default class DedicatedServerInterfacesService {
           ({ mac, linkType: type }) =>
             new Interface({
               id: mac,
-              name: mac,
+              name: '',
               mac,
               type,
               vrack: null,
