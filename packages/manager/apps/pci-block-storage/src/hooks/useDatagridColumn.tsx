@@ -3,6 +3,7 @@ import {
   DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
+import { Badge } from '@ovh-ux/manager-pci-common';
 import { TVolume } from '@/api/hooks/useVolume';
 import CapacityComponent from '@/components/list/Capacity.component';
 import ActionsComponent from '@/components/list/Actions.component';
@@ -55,11 +56,21 @@ export const useDatagridColumn = (projectId: string, projectUrl: string) => {
       label: t('pci_projects_project_storages_blocks_attachedTo_label'),
     },
     {
+      id: 'encryptionStatus',
+      cell: (volume) => (
+        <Badge
+          label={volume.encryptionStatus}
+          color={volume.encrypted ? 'success' : 'neutral'}
+        />
+      ),
+      label: t('pci_projects_project_storages_blocks_encrypted_label'),
+    },
+    {
       id: 'status',
       cell: (props) => (
         <StatusComponent
           statusGroup={props.statusGroup}
-          status={props.status}
+          status={props.statusLabel}
         />
       ),
       label: t('pci_projects_project_storages_blocks_status_label'),

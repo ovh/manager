@@ -1,10 +1,10 @@
-import { TVolumeAddon, TVolumePricing } from '@/api/data/catalog';
 import { TRegion } from '@/api/data/regions';
+import { EncryptionType } from '@/api/select/volume';
 
 export type TFormState = {
   region: TRegion;
-  volumeType: TVolumeAddon;
-  pricing: TVolumePricing;
+  volumeType: string;
+  encryptionType: EncryptionType | null;
   volumeName: string;
   volumeCapacity: number;
   availabilityZone: string;

@@ -52,11 +52,6 @@ export default function NewPage(): JSX.Element {
 
   const { addVolume } = useAddVolume({
     projectId,
-    name: stepper.form.volumeName,
-    regionName: stepper.form.region?.name,
-    volumeCapacity: stepper.form.volumeCapacity,
-    volumeType: stepper.form.volumeType?.name,
-    availabilityZone: stepper.form.availabilityZone,
     onSuccess: () => {
       navigate('..');
       addSuccess(
@@ -229,7 +224,7 @@ export default function NewPage(): JSX.Element {
             projectId={projectId}
             region={stepper.form.region}
             volumeType={stepper.form.volumeType}
-            pricing={stepper.form.pricing}
+            encryptionType={stepper.form.encryptionType}
             step={stepper.capacity.step}
             onSubmit={stepper.capacity.submit}
           />
@@ -244,12 +239,19 @@ export default function NewPage(): JSX.Element {
             isDisabled: stepper.validation.step.isLocked,
           }}
         >
-          <VolumeNameStep
-            projectId={projectId}
-            step={stepper.volumeName.step}
-            onSubmit={stepper.volumeName.submit}
-            defaultVolumeName={`${stepper.form.volumeType?.name}-${stepper.form.region?.name}-${stepper.form.volumeCapacity}GB`}
-          />
+          {!!stepper.form.region &&
+            !!stepper.form.region &&
+            !!stepper.form.volumeCapacity && (
+              <VolumeNameStep
+                projectId={projectId}
+                step={stepper.volumeName.step}
+                onSubmit={stepper.volumeName.submit}
+                volumeType={stepper.form.volumeType}
+                encryptionType={stepper.form.encryptionType}
+                region={stepper.form.region.name}
+                volumeCapacity={stepper.form.volumeCapacity}
+              />
+            )}
         </StepComponent>
         <StepComponent
           order={stepper.getOrder(stepper.validation.step)}
@@ -258,11 +260,21 @@ export default function NewPage(): JSX.Element {
         >
           <ValidationStep
             volumeCapacity={stepper.form.volumeCapacity}
-            pricing={stepper.form.pricing}
+            projectId={projectId}
+            region={stepper.form.region}
+            volumeType={stepper.form.volumeType}
+            encryptionType={stepper.form.encryptionType}
             onSubmit={() => {
               clearNotifications();
               stepper.validation.submit();
-              addVolume();
+              addVolume({
+                region: stepper.form.region.name,
+                type: stepper.form.volumeType,
+                encryptionType: stepper.form.encryptionType,
+                name: stepper.form.volumeName,
+                size: stepper.form.volumeCapacity,
+                availabilityZone: stepper.form.availabilityZone,
+              });
             }}
           />
         </StepComponent>
