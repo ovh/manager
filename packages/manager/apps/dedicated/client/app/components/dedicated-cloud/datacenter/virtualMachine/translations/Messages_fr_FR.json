@@ -29,5 +29,6 @@
   "virtualmachine_deactivated": "Désactivée",
   "virtualmachine_action_activate_license": "Activer la licence",
   "virtualmachine_action_deactivate_license": "Supprimer la licence",
-  "vitualmachine_unavailable_tooltip": "La licence ne peut pas être activée sur un guest OS non Windows"
+  "vitualmachine_unavailable_tooltip": "La licence ne peut pas être activée sur un guest OS non Windows",
+  "vitualmachine_spla_disabled_information": "L'activation de licences sur les machines virtuelles nécessite que l'option Microsoft SPLA soit activée sur votre PCC"
 }

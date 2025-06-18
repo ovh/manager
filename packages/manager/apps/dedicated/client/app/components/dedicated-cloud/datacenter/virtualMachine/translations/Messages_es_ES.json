@@ -29,5 +29,6 @@
   "virtualmachine_backup_state_toDisable": "Por desactivar",
   "virtualmachine_backup_state_toEnable": "Pendiente de activar",
   "virtualmachine_backup_state_toStop": "Por detener",
-  "virtualmachine_backup_state_unknown": "Desconocido"
+  "virtualmachine_backup_state_unknown": "Desconocido",
+  "vitualmachine_spla_disabled_information": "La activación de licencias en las máquinas virtuales requiere que la opción Microsoft SPLA esté activada en su PCC"
 }
