@@ -19,5 +19,13 @@ module.exports = {
     'prefer-const': 'error',
     'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
     'react/jsx-boolean-value': ['error', 'never'],
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsForRegex: ['[Aa]cc(umulator)?$'],
+      },
+    ],
+    'react/display-name': 'off',
   },
 };
