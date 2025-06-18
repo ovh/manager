@@ -7,13 +7,7 @@ export default class BMNetworkInterfaceController {
     this.LABELS = LABELS;
   }
 
-  $onChanges({ interfaces, ola }) {
-    this.displayedInterfaces = interfaces.currentValue.map((nic) => ({
-      ...nic,
-      displayedMacAdresses: nic.mac ? nic.mac.split(', ') : [],
-    }));
-
-    this.isFullyAggregated =
-      ola.currentValue.getCurrentMode() === OLA_MODES.FULL_LAG;
+  $onInit() {
+    this.isFullyAggregated = this.ola.getCurrentMode() === OLA_MODES.FULL_LAG;
   }
 }

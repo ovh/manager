@@ -4,6 +4,7 @@ export default class Interface {
   constructor(resource) {
     Object.assign(this, resource);
     this.taskInProgress = false;
+    this.displayedMacAdresses = this.mac ? this.mac.split(', ') : [];
   }
 
   isPhysical() {
