@@ -111,6 +111,7 @@ const MetricChart = ({
 
   return (
     <ChartContainer
+      data-testid="metric-chart-container"
       className={cn('relative min-h-[100px] w-full', className)}
       config={{}}
     >
