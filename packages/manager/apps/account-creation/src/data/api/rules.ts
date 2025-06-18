@@ -1,12 +1,11 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { Country } from '@/types/country';
-import { Language } from '@/types/language';
+import { Country, UserLocales } from '@ovh-ux/manager-config';
 
 export type GetRulesParams = {
   /** selected country */
   country: Country | null;
   /** selected language */
-  language: Language | null;
+  language: UserLocales | null;
 };
 /**
  *  Get account creation rules
