@@ -1,0 +1,100 @@
+<div data-ng-controller="DatabaseStatisticsCtrl as $ctrl">
+    <div class="oui-box">
+        <div class="d-md-flex align-items-md-center justify-content-md-between">
+            <div>
+                <label
+                    class="oui-label d-inline-block mr-2"
+                    for="databaseStatisticsName"
+                >
+                    <span data-translate="hosting_tab_STATISTICS_db"></span
+                    >&nbsp;:
+                </label>
+                <div class="oui-select mb-0 oui-select_inline align-middle">
+                    <select
+                        class="oui-select__input"
+                        id="databaseStatisticsName"
+                        name="database"
+                        data-ng-change="$ctrl.initDatabaseChart()"
+                        data-ng-model="$ctrl.databaseSelected.name"
+                        data-ng-options="option for option in $ctrl.databaseIds"
+                    >
+                    </select>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
+                </div>
+            </div>
+            <div>
+                <label
+                    class="oui-label d-inline-block mr-2"
+                    for="databaseStatisticsPeriod"
+                >
+                    <span data-translate="hosting_tab_STATISTICS_period"></span
+                    >&nbsp;:
+                </label>
+                <div class="oui-select mb-0 oui-select_inline align-middle">
+                    <select
+                        class="oui-select__input"
+                        id="databaseStatisticsPeriod"
+                        name="period"
+                        data-ng-change="$ctrl.initDatabaseChart()"
+                        data-ng-model="$ctrl.databaseSelected.period"
+                        data-ng-options="option as ('hosting_tab_STATISTICS_period_' + option.label | translate) for option in $ctrl.DATABASE_MONITORING_PERIODS track by option.label"
+                    >
+                    </select>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="my-5 text-center">
+            <span
+                class="oui-label d-inline-block mr-2"
+                data-translate="hosting_tab_STATISTICS_aggregate"
+            ></span>
+            <div
+                class="oui-radio oui-radio_inline"
+                data-ng-repeat="option in $ctrl.DATABASE_MONITORING_AGGREGATE_MODES track by option.label"
+            >
+                <input
+                    type="radio"
+                    class="oui-radio__input"
+                    id="aggregateMode-{{option.label}}"
+                    name="aggregateMode-{{option.label}}"
+                    data-ng-change="$ctrl.initDatabaseChart()"
+                    data-ng-model="$ctrl.aggregateMode"
+                    data-ng-value="option"
+                />
+                <label
+                    class="oui-radio__label-container"
+                    for="aggregateMode-{{option.label}}"
+                >
+                    <span class="oui-radio__label">
+                        <span class="oui-radio__icon"></span>
+                        <span
+                            class="oui-radio__text"
+                            data-ng-bind="'hosting_tab_STATISTICS_aggregate_' + option.label | translate"
+                        ></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="text-center mt-5" data-ng-if="$ctrl.loadingDatabaseGraph">
+            <oui-spinner data-size="l"></oui-spinner>
+        </div>
+        <div
+            data-ng-if="!$ctrl.loadingDatabaseGraph"
+            style="height: 350px"
+            class="chart-container mt-5"
+            data-chart
+            data-chartjs="$ctrl.databaseChart"
+            data-auto-reload="true"
+        ></div>
+    </div>
+</div>
