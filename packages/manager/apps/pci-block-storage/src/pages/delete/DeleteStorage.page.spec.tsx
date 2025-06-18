@@ -8,8 +8,7 @@ import {
 } from '@tanstack/react-query';
 import DeleteStorage from './DeleteStorage.page';
 import * as useVolumeModule from '@/api/hooks/useVolume';
-import { TAPIVolume, TVolumeSnapshot } from '@/api/data/volume';
-import { WithAttach } from '@/api/select/volume';
+import { TVolumeSnapshot } from '@/api/data/volume';
 import { UseVolumeResult } from '@/api/hooks/useVolume';
 
 type UseDeleteVolumeReturnType = UseMutationResult<

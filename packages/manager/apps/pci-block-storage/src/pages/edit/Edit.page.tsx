@@ -40,14 +40,42 @@ import {
 } from '@ovh-ux/manager-pci-common';
 import { VOLUME_MIN_SIZE, VOLUME_UNLIMITED_QUOTA } from '@/constants';
 import ChipRegion from '@/components/edit/ChipRegion.component';
-import { TAPIVolume } from '@/api/data/volume';
-import { useUpdateVolume, useVolume } from '@/api/hooks/useVolume';
+import { TVolume, useUpdateVolume, useVolume } from '@/api/hooks/useVolume';
 import HidePreloader from '@/core/HidePreloader';
 import { useVolumeMaxSize } from '@/api/data/quota';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
-import { PriceEstimate } from '@/pages/new/components/PriceEstimate';
-import { useVolumeCatalog } from '@/api/hooks/useCatalog';
+import { useVolumeCatalog, useVolumePricing } from '@/api/hooks/useCatalog';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
+
+type TPriceProps = {
+  projectId: string;
+  volume: TVolume;
+  size: number;
+};
+const Price = ({ projectId, volume, size }: TPriceProps) => {
+  const { t } = useTranslation('add');
+  const { data: pricing } = useVolumePricing(
+    projectId,
+    volume.region,
+    volume.type,
+    volume.encryptionType,
+    size,
+  );
+
+  return (
+    !!pricing && (
+      <OsdsText
+        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+        color={ODS_THEME_COLOR_INTENT.text}
+      >
+        {t('pci_projects_project_storages_blocks_add_submit_price_text', {
+          price: pricing.monthlyPrice.value,
+        })}
+      </OsdsText>
+    )
+  );
+};
 
 type TFormState = {
   name: string;
@@ -92,27 +120,12 @@ export default function EditPage() {
   const { has3AZ } = useHas3AZRegion(projectId);
   const pciCommonProperties = usePCICommonContextFactory({ has3AZ });
 
-  const catalogVolume = useMemo(() => {
-    if (!!catalog && !!volume) {
-      return catalog.models.find((addon) => addon.name === volume.type) || null;
-    }
-    return null;
-  }, [catalog, volume]);
-
   const region = useMemo(() => {
     if (!!catalog && !!volume) {
       return catalog.regions.find((r) => r.name === volume.region) || null;
     }
     return null;
   }, [catalog, volume]);
-
-  const pricing = useMemo(
-    () =>
-      catalogVolume
-        ? catalogVolume.pricings.find((p) => p.regions.includes(volume.region))
-        : null,
-    [catalogVolume, volume],
-  );
 
   const { volumeMaxSize } = useVolumeMaxSize(volume?.region);
 
@@ -172,7 +185,7 @@ export default function EditPage() {
     volume?.region,
   );
 
-  const getMaxSize = (_volume: TAPIVolume) => {
+  const getMaxSize = (_volume: TVolume) => {
     if (regionQuota) {
       if (
         regionQuota.volume &&
@@ -430,11 +443,12 @@ export default function EditPage() {
             </OsdsText>
           </div>
 
-          {!hasError && !!catalogVolume && (
+          {!hasError && (
             <div className="mb-6">
-              <PriceEstimate
-                volumeCapacity={formState.size.value}
-                pricing={pricing}
+              <Price
+                projectId={projectId}
+                volume={volume}
+                size={formState.size.value}
               />
             </div>
           )}
