@@ -86,10 +86,14 @@ export default function HostedPrivateCloudSidebar() {
                 `^(/configuration)?/dedicated_cloud/${service.serviceName}`,
               ),
               async loader() {
-                return loadServices(
+                const datacenters = await loadServices(
                   `/dedicatedCloud/${service.serviceName}/datacenter`,
                   'EPCC',
                 );
+                return datacenters.map((datacenter) => ({
+                  ...datacenter,
+                  routeMatcher: new RegExp(`/datacenter/${datacenter.stateParams[1]}`),
+                }));
               },
             })),
           ];
