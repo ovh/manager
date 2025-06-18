@@ -44,7 +44,8 @@ export type TRegistryAction =
   | 'CANCEL'
   | 'FAILURE'
   | 'ENABLE'
-  | 'DISABLE';
+  | 'DISABLE'
+  | 'DISABLED_FEATURE';
 
 export type TRegistryActionToggle = Extract<
   TRegistryAction,
