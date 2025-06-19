@@ -1,10 +1,8 @@
-import { z } from 'zod';
-
 export type Rule = {
   defaultValue: string | null;
-  examples: string[];
+  examples: string[] | null;
   fieldName: string | null;
-  in: string[];
+  in: string[] | null;
   mandatory: boolean;
   maxLength: number | null;
   minLength: number | null;
