@@ -69,6 +69,6 @@
   "pci_projects_project_instances_status_SHUTOFF_TOOLTIP": "Terá sempre uma faturação ao mesmo preço para a sua instância.",
   "pci_projects_project_instances_status_SHELVED_TOOLTIP": "Apenas a snapshot é faturada.",
   "pci_projects_project_instances_status_SHELVED_OFFLOADED_TOOLTIP": "Apenas a snapshot é faturada.",
-  "pci_projects_project_instances_add_billing_savings_plan_banner": "Graças aos Savings Plans, beneficie de preços mensais vantajosos, enquanto conserva a flexibilidade das instâncias à hora.",
+  "pci_projects_project_instances_add_billing_savings_plan_banner": "Graças aos Savings Plans, beneficie de preços mensais vantajosos, enquanto conserva a flexibilidade das instâncias à hora. Se já tiver subscrito um ou vários Saving Plans para este modelo de instância, as novas instâncias serão automaticamente contabilizados nele(s).",
   "pci_projects_project_instances_add_billing_savings_plan_cta": "Configure os seus Savings Plans"
 }

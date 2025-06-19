@@ -69,6 +69,6 @@
   "pci_projects_project_instances_status_SHUTOFF_TOOLTIP": "You will still be charged the same price for your instance.",
   "pci_projects_project_instances_status_SHELVED_TOOLTIP": "Only the snapshot is charged.",
   "pci_projects_project_instances_status_SHELVED_OFFLOADED_TOOLTIP": "Only the snapshot is charged.",
-  "pci_projects_project_instances_add_billing_savings_plan_banner": "Take advantage of low monthly rates with Savings Plans—save money without sacrificing the flexibility to use instances whenever you need them.",
+  "pci_projects_project_instances_add_billing_savings_plan_banner": "Take advantage of low monthly rates with Savings Plans—save money without sacrificing the flexibility to use instances whenever you need them. If you’ve already subscribed to one or more Savings Plans for this instance type, your new instances will be automatically included",
   "pci_projects_project_instances_add_billing_savings_plan_cta": "Set up your Savings Plan"
 }
