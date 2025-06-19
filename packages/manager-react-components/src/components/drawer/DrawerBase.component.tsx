@@ -1,4 +1,4 @@
-import { useState, PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import {
   OdsButton,
   OdsDrawer,
@@ -18,9 +18,9 @@ import './translations';
 export type DrawerBaseProps = PropsWithChildren & {
   /** Drawer heading */
   heading: string;
-  /** Open/close the drawer */
-  isOpen: boolean;
-  /** Called when the drawer is closed internally */
+  /** Open/close the drawer (default to true) */
+  isOpen?: boolean;
+  /** Callback function to be called on close of the Drawer */
   onDismiss: () => void;
   /** Show a loader instead of the drawer content  */
   isLoading?: boolean;
@@ -46,7 +46,7 @@ export type DrawerBaseProps = PropsWithChildren & {
 export const DrawerBase = ({
   children,
   heading,
-  isOpen,
+  isOpen = true,
   isLoading,
   onDismiss,
   isPrimaryButtonLoading,
@@ -60,9 +60,6 @@ export const DrawerBase = ({
   className,
 }: DrawerBaseProps) => {
   const { t } = useTranslation('drawer');
-  const hasPrimaryButton = Boolean(primaryButtonLabel);
-  const hasSecondaryButton = Boolean(secondaryButtonLabel);
-  const hasFooter = hasPrimaryButton || hasSecondaryButton;
 
   return (
     <OdsDrawer
@@ -71,15 +68,15 @@ export const DrawerBase = ({
       position={'right'}
       onOdsClose={onDismiss}
       className={clsx(
-        '[&::part(drawer)]:w-[456px] [&::part(drawer)]:p-0 [&::part(drawer)]:duration-300',
+        '[&::part(drawer)]:w-full [&::part(drawer)]:sm:w-[var(--mrc-drawer-width)] [&::part(drawer)]:max-w-full [&::part(drawer)]:p-0',
         className,
       )}
     >
       <div className="h-screen overflow-hidden flex flex-col justify-between">
-        <header className="px-[24px] min-h-[100px] flex items-center">
+        <header className="min-h-[var(--mrc-drawer-header-height)] px-6 flex items-center">
           <div
             className={clsx(
-              'flex items-center w-full py-[24px] space-x-[8px]',
+              'flex items-center w-full py-6 space-x-2',
               !isLoading ? 'justify-between' : 'justify-end',
             )}
           >
@@ -109,13 +106,13 @@ export const DrawerBase = ({
 
         {!isLoading && (
           <>
-            <section className="px-[24px] flex-1 overflow-y-auto outline-none">
+            <section className="px-6 flex-1 overflow-y-auto outline-none">
               {children}
             </section>
 
-            {hasFooter && (
-              <footer className="px-[24px] py-[24px] space-x-[8px]">
-                {hasSecondaryButton && (
+            {(primaryButtonLabel || secondaryButtonLabel) && (
+              <footer className="p-6 space-x-2">
+                {secondaryButtonLabel && (
                   <OdsButton
                     variant={ODS_BUTTON_VARIANT.ghost}
                     label={secondaryButtonLabel}
@@ -125,7 +122,7 @@ export const DrawerBase = ({
                     color={ODS_BUTTON_COLOR.primary}
                   />
                 )}
-                {hasPrimaryButton && (
+                {primaryButtonLabel && (
                   <OdsButton
                     variant={ODS_BUTTON_VARIANT.default}
                     label={primaryButtonLabel}

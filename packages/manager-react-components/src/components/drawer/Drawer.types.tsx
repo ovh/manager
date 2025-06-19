@@ -1,1 +1,1 @@
-export type DrawerCollapseState = 'visible' | 'hidden';
+export type DrawerCollapseState = 'visible' | 'collapsed';

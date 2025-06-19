@@ -6,7 +6,7 @@ export type DrawerProps = Omit<DrawerBaseProps, 'className'>;
 
 export const Drawer = (props: DrawerProps) => {
   return (
-    <div className="relative bg-transparent">
+    <div id="mrc-drawer" className="relative">
       <DrawerBase {...props} />
       {props.isOpen && <DrawerBackdrop onClick={props.onDismiss} />}
     </div>

@@ -1,37 +1,7 @@
-import { vi } from 'vitest';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {
-  DrawerCollapsible,
-  DrawerCollapsibleProps,
-} from './DrawerCollapsible.component';
-
-vi.mock('@ovhcloud/ods-components/react', async () => {
-  const original = await vi.importActual('@ovhcloud/ods-components/react');
-  return {
-    ...original,
-    OdsDrawer: vi.fn(({ children, className, ...props }) => (
-      <div data-testid={props['data-testid']} className={className}>
-        {children}
-      </div>
-    )),
-  };
-});
-
-export const mockedProps: DrawerCollapsibleProps = {
-  heading: 'Drawer heading',
-  isOpen: true,
-  children: <div>Drawer content</div>,
-  primaryButtonLabel: 'Confirm',
-  isPrimaryButtonLoading: false,
-  isPrimaryButtonDisabled: false,
-  onPrimaryButtonClick: vi.fn(),
-  secondaryButtonLabel: 'Cancel',
-  isSecondaryButtonDisabled: false,
-  isSecondaryButtonLoading: false,
-  onSecondaryButtonClick: vi.fn(),
-  onDismiss: vi.fn(),
-};
+import { mockedProps } from './DrawerBase.mock';
+import { DrawerCollapsible } from './DrawerCollapsible.component';
 
 it('should display the drawer in its collapsible variant', () => {
   render(<DrawerCollapsible {...mockedProps} />);

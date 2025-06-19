@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import clsx from 'clsx';
 import DrawerHandle from './DrawerHandle.component';
 import { DrawerBase, DrawerBaseProps } from './DrawerBase.component';
 import { DrawerCollapseState } from './Drawer.types';
@@ -7,22 +8,25 @@ import './translations';
 export type DrawerCollapsibleProps = Omit<DrawerBaseProps, 'className'>;
 
 export const DrawerCollapsible = (props: DrawerCollapsibleProps) => {
-  const [collapseState, setCollapsedState] =
+  const [collapseState, setCollapseState] =
     useState<DrawerCollapseState>('visible');
 
   const handleToggleCollapseState = () => {
-    setCollapsedState((prevState) =>
-      prevState === 'visible' ? 'hidden' : 'visible',
+    setCollapseState((prevState) =>
+      prevState === 'visible' ? 'collapsed' : 'visible',
     );
   };
 
   return (
-    <div className="relative bg-transparent">
+    <div id="mrc-drawer" className="relative">
       <DrawerBase
         {...props}
-        className={
-          collapseState === 'hidden' && `[&::part(drawer)]:translate-x-[456px]`
-        }
+        className={clsx(
+          '[&::part(drawer)]:duration-[var(--mrc-drawer-collapse-duration)]',
+          '[&::part(drawer)]:ease-in-out',
+          collapseState === 'collapsed' &&
+            '[&::part(drawer)]:translate-x-[var(--mrc-drawer-width)]',
+        )}
       />
 
       {props.isOpen && (

@@ -13,15 +13,7 @@ type DrawerHandleProps = {
 
 const DrawerHandle = ({ onClick, collapseState }: DrawerHandleProps) => {
   const { t } = useTranslation('drawer');
-  const [isDrawerSlideInFinished, setIsDrawerSlideInFinished] = useState(false);
   const [hasEscapeBeenPressed, setHasEscapeBeenPressed] = useState(false);
-
-  // Wait for the drawer to slide in before showing the handle with a fade-in effect
-  // This is to ensure the handle is not visible during the initial slide-in animation
-  useEffect(() => {
-    const timer = setTimeout(() => setIsDrawerSlideInFinished(true), 300);
-    return () => clearTimeout(timer);
-  }, []);
 
   // Handle Escape key press to hide the handle
   useEffect(() => {
@@ -39,25 +31,23 @@ const DrawerHandle = ({ onClick, collapseState }: DrawerHandleProps) => {
   return (
     <div
       className={clsx(
-        'fixed z-[100] top-[100px] right-[456px] transition-all duration-300 ease-in-out',
-        isDrawerSlideInFinished ? 'opacity-100' : 'opacity-0',
+        'fixed z-[100] top-[var(--mrc-drawer-header-height)] right-[var(--mrc-drawer-width)]',
+        'transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out',
+        'mrc-drawer-handle-fade-in',
         hasEscapeBeenPressed && 'hidden',
-        collapseState === 'hidden' && 'translate-x-[456px]',
+        collapseState === 'collapsed' &&
+          'translate-x-[var(--mrc-drawer-width)]',
       )}
     >
       <div
         className={clsx(
-          'right-0 w-[56px] h-[56px] bg-white',
-          'rounded-l-lg absolute justify-center items-center',
-          // Hide the handle on small screens to avoid design issues
+          'w-[var(--mrc-drawer-handle-size)] h-[var(--mrc-drawer-handle-size)]',
+          'right-0 bg-white',
+          'rounded-l-lg justify-center items-center',
+          'mrc-drawer-handle-shadow',
+          // Hide the handle on small screens when the drawer becomes w-full
           collapseState === 'visible' ? 'hidden sm:flex' : 'flex',
         )}
-        style={{
-          // Apply ODS Drawer shadow style
-          boxShadow: 'rgba(0, 14, 156, 0.2) 0px 2px 8px 0px',
-          // Remove shadow on right side to avoid overlap with the drawer
-          clipPath: 'inset(-15px 0px -15px -15px)',
-        }}
       >
         <div>
           <OdsButton
