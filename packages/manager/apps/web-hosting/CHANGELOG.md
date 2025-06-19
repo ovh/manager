@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.3.8...@ovh-ux/manager-web-hosting-app@0.3.9) (2025-06-19)
+
+
+### Bug Fixes
+
+* **web-hosting:** fix issue svg on onboarding page ([fb5ec99](https://github.com/ovh/manager/commit/fb5ec99ac953b5d49605e7fee4d86cd1f5367ef4)), closes [#INC0137105](https://github.com/ovh/manager/issues/INC0137105)
+
+
+
+
+
 ## [0.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.3.7...@ovh-ux/manager-web-hosting-app@0.3.8) (2025-06-17)
 
 

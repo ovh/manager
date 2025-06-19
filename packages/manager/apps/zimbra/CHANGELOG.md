@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.30.0...@ovh-ux/manager-zimbra-app@0.30.1) (2025-06-19)
+
+
+### Bug Fixes
+
+* **zimbra:** fix password update in account edit form ([165d93a](https://github.com/ovh/manager/commit/165d93af9267a36b9e527748716c201d857c5adb)), closes [#MANAGER-18755](https://github.com/ovh/manager/issues/MANAGER-18755)
+
+
+
+
+
 # [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.29.8...@ovh-ux/manager-zimbra-app@0.30.0) (2025-06-17)
 
 
