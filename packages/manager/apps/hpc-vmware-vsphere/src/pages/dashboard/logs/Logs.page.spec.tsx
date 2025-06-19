@@ -6,7 +6,11 @@ import {
   UseFeatureAvailabilityResult,
 } from '@ovh-ux/manager-react-components';
 import { LogsToCustomerModule } from '@ovh-ux/logs-to-customer';
-import { UseQueryResult } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import { ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   ShellContext,
@@ -15,6 +19,8 @@ import {
 import { FEATURES } from '@/utils/features.constant';
 import { TVMwareVSphere } from '@/types/vsphere';
 import LogsPage from './Logs.page';
+import { SecurityOption } from '@/types/compatibilityMatrix';
+import { Datacenter } from '@/types/datacenter';
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const module = await importOriginal<typeof import('react-router-dom')>();
@@ -29,6 +35,19 @@ vi.mock('@/data/hooks/useVmwareVsphere', () => ({
     ({
       data: { data: { serviceName, iam: { urn: `urn:${serviceName}` } } },
     } as UseQueryResult<ApiResponse<TVMwareVSphere>>),
+}));
+vi.mock('@/data/hooks/useVmwareVsphereDatacenter', () => ({
+  useVmwareVsphereDatacenter: () =>
+    ({
+      data: { data: { commercialName: 'PREMIER' } },
+    } as UseQueryResult<ApiResponse<Datacenter>>),
+}));
+
+vi.mock('@/data/hooks/useVmwareVsphereCompatibilityMatrix', () => ({
+  useVmwareVsphereCompatibilityMatrix: () =>
+    ({
+      data: { data: [{ name: 'logForwarder', state: 'delivered' }] },
+    } as UseQueryResult<ApiResponse<SecurityOption[]>>),
 }));
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
@@ -51,6 +70,7 @@ const shellContext = {
 };
 
 describe('Logs page tests suite', () => {
+  const queryClient = new QueryClient();
   beforeEach(() => vi.stubGlobal('location', { href: 'https://fakehost' }));
 
   afterEach(() => {
@@ -60,11 +80,13 @@ describe('Logs page tests suite', () => {
 
   const renderLogsPage = () =>
     render(
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
-        <LogsPage />
-      </ShellContext.Provider>,
+      <QueryClientProvider client={queryClient}>
+        <ShellContext.Provider
+          value={(shellContext as unknown) as ShellContextType}
+        >
+          <LogsPage />
+        </ShellContext.Provider>
+      </QueryClientProvider>,
     );
 
   it('should display logs if logs feature is enabled', async () => {
