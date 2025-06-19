@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.17.0 (2025-06-19)
+
+
+### Features
+
+* **pci-common:** add config cards ([e606134](https://github.com/ovh/manager/commit/e60613453339efccd11ed41f1ce2d01e408928a8)), closes [#TAPC-3456](https://github.com/ovh/manager/issues/TAPC-3456)
+* **pci-common:** move tiles input to config card design ([5331643](https://github.com/ovh/manager/commit/533164314f32f86b4c362726b7819ba58f8244da)), closes [#TAPC-3456](https://github.com/ovh/manager/issues/TAPC-3456)
+
+
+
+
+
 # [0.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.16.3...@ovh-ux/manager-pci-common@0.16.4) (2025-04-04)
 
 
