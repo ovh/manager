@@ -13,6 +13,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React, {
   FC,
+  PropsWithChildren,
   useCallback,
   useContext,
   useEffect,
@@ -71,10 +72,9 @@ import SelectResource from './SelectResource';
 
 const COMMON_SPACING = 'my-4';
 
-export const DescriptionWrapper: React.FC<{
-  children: string;
+export const DescriptionWrapper: React.FC<PropsWithChildren<{
   className?: string;
-}> = ({ children, className }) => {
+}>> = ({ children, className }) => {
   return (
     <div className={clsx(COMMON_SPACING, className)}>
       <OdsText>{children}</OdsText>

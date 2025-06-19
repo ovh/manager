@@ -14,7 +14,7 @@
   "quantity_banner_see_more": "Saber mais",
   "quantity_banner_instance": "A quantidade máxima de recursos que lhe é possível iniciar depende da quota do seu projeto Public Cloud. Para mais informações sobre as suas quotas, consulte a seguinte página: ",
   "quantity_banner_instance_link": "Quota and Regions",
-  "quantity_banner_rancher": "O serviço Managed Rancher Service é faturado por um mínimo de 20 vCPU. No entanto, pode criar um Savings Plan a partir de 1 vCPU.",
+  "quantity_banner_rancher": "O mínimo de consumo para o Managed Rancher Service é de 20 vCPU por Rancher; no entanto, pode criar um ou vários Saving Plans a partir de 1 vCPU. Os vCPU subscritos serão deduzidos do número total de vCPU consumidos.",
   "select_commitment": "Escolher a duração do compromisso",
   "select_commitment_description": "Uma duração de compromisso mais longa concede um desconto superior.",
   "choose_name": "Especificar um nome",
@@ -46,5 +46,7 @@
   "choose_deployment_description": "Selecione a configuração ideal para garantir a disponibilidade, a resiliência e a latência adequada dos seus dados em função dos seus casos de uso.",
   "region": "Região",
   "deployment_one_az": "Implementação resiliente e económica em 1 zona de disponibilidade.",
-  "deployment_three_az": "Implementação de alta resiliência/alta disponibilidade para as suas aplicações críticas em 3 zonas de disponibilidade."
+  "deployment_three_az": "Implementação de alta resiliência/alta disponibilidade para as suas aplicações críticas em 3 zonas de disponibilidade.",
+  "choose_ressource_description_info": "Continuará a gerir os seus serviços como habitualmente. A plataforma calcula automaticamente a sua utilização em função das configurações dos seus Savings Plans e do consumo dos seus recursos existentes ou futuros.",
+  "select_quantity_description_rancher_info": "O Rancher é faturado em função do número total de vCPU de cada um dos nós de trabalho dos seus downstream clusters. Os vCPU dos nós de tipo control-plane não são faturados."
 }

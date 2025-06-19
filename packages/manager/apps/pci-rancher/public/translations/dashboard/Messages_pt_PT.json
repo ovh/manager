@@ -31,8 +31,8 @@
   "createRancherName": "Nome",
   "createRancherDescription": "Poderá gerir vários «downstream clusters» no seio deste serviço.",
   "createRancherPlaceholder": "meu_rancher",
-  "createRancherServiceLevel": "Escolha da oferta",
-  "createRancherServiceLevelDescription": "As duas ofertas disponibilizam o conjunto das funcionalidades do Rancher. A oferta OVHcloud Edition permite apenas a criação de «downstream clusters» no Public Cloud da OVHcloud dos nós autogeridos, entregues um a um.<br> A oferta Standard é ideal para as utilizações do tipo Private Cloud, multicloud ou Edge. Pode migrar para a oferta Standard a qualquer momento.<br> A sua utilização será faturada à hora, em função do número total de vCPU de cada um dos nós de trabalho dos seus “downstream clusters” Rancher. <strong>Os nós do tipo controle-plane não são faturados.</strong>",
+  "createRancherServiceLevel": "Escolha do plano",
+  "createRancherServiceLevelDescription": "Ambos os planos disponibilizam as funcionalidades do Rancher. A oferta OVHcloud Edition permite apenas a criação de «downstream clusters» no Public Cloud da OVHcloud dos nós autogeridos, entregues um a um.<br> A oferta Standard é ideal para as utilizações do tipo Private Cloud, Multicloud ou Edge. Pode migrar para o plano Standard a qualquer momento.",
   "createRancherVersion": "Versão do Rancher",
   "createRancherVersionDescription": "Este serviço é baseado no SUSE Rancher. A OVHcloud suporta as últimas versões do Rancher. Recomendamos que utilize a mais recente.<br> Aplicamos patches de segurança regularmente e fornecemos novas versões, de acordo com a nossa política de ciclo de vida do software.",
   "createRancherCTA": "Criar um Managed Rancher Service",
@@ -56,5 +56,6 @@
   "createRancherOfferDescription": "Com um mínimo de 20 vCPU faturadas por Rancher",
   "egress_title": "Rancher egress CIDRs",
   "egress_tooltip": "Estes CIDR representam os intervalos de endereços IP de saída utilizados pelo Rancher. Pode ser necessário autorizar estes endereços IP (whitelisting) a aceder às suas plataformas de terceiros (ex: chamadas API para aprovisionar recursos).",
-  "badRequestSwitchPlan": "Ocorreu um erro aquando da alteração da oferta do seu Managed Rancher Service. Atualmente, está a utilizar drivers que não são suportados na oferta {{plan}}: {{drivers}}"
+  "badRequestSwitchPlan": "Ocorreu um erro aquando da alteração da oferta do seu Managed Rancher Service. Atualmente, está a utilizar drivers que não são suportados na oferta {{plan}}: {{drivers}}",
+  "savingsPlanUsage": "Se já tiver subscrito um ou vários Saving Plans para a oferta escolhida, os vCPU dos seus downstream clusters serão automaticamente contabilizados nele(s)."
 }
