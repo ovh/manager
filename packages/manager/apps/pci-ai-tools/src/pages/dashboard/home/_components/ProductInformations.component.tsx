@@ -12,6 +12,7 @@ interface ProductInformationsProps {
   isInternalAppLink: boolean;
   active?: number;
   stopped?: number;
+  comingSoon?: boolean;
 }
 
 export default function ProductInformations({
@@ -22,6 +23,7 @@ export default function ProductInformations({
   isInternalAppLink,
   active,
   stopped,
+  comingSoon,
 }: ProductInformationsProps) {
   const { t } = useTranslation('ai-tools/dashboard/home');
   const isOnbording = active === undefined || active < 0;
@@ -59,6 +61,11 @@ export default function ProductInformations({
             })}
           </Badge>
         </div>
+      )}
+      {comingSoon && (
+        <Badge className="mt-2" variant="info">
+          Coming Soon
+        </Badge>
       )}
     </div>
   );

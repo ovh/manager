@@ -1,3 +1,4 @@
+import { TOptions } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
@@ -6,12 +7,12 @@ export function useQuantum(namespace?: string) {
   const { t: tOrig } = useTranslation(namespace);
   const isQuantum = quantum === 'quantum';
   const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
-  const t = (key: string) => {
+  const t = (key: string, options?: TOptions) => {
     if (isQuantum) {
       const quantumKey = `quantum${capitalize(key)}`;
-      return tOrig([quantumKey, key]);
+      return tOrig([quantumKey, key], options);
     }
-    return tOrig(key);
+    return tOrig(key, options);
   };
   return {
     isQuantum,

@@ -1,6 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import user from '@/types/User';
-import ai from '@/types/AI';
 import { PCIAi } from '..';
 
 export const getUsers = async ({ projectId }: PCIAi) =>
@@ -11,7 +10,7 @@ export const getUsers = async ({ projectId }: PCIAi) =>
 export interface AddUserProps extends PCIAi {
   newUser: {
     description: string;
-    role: ai.TokenRoleEnum;
+    role: user.RoleEnum;
   };
 }
 export const addUser = async ({ projectId, newUser }: AddUserProps) =>

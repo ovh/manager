@@ -22,5 +22,7 @@
   "formAddUserButtonClose": "Fermer",
   "formUserPasswordCopy": "Mot de passe copié",
   "ai_training_operator": "AI Operator",
-  "ai_training_read": "AI Reader"
+  "ai_training_read": "AI Reader",
+  "quantum_operator": "Quantum Operator",
+  "quantum_reader": "Quantum Reader"
 }

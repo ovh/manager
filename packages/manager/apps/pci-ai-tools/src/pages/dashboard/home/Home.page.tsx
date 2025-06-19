@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, Skeleton } from '@datatr-ux/uxlib';
 import { Activity, BrainCircuit, TerminalSquare } from 'lucide-react';
 import storeImage from '@/../public/assets/stock.png';
@@ -20,14 +19,17 @@ import {
   isStoppedJob,
   isStoppedNotebook,
 } from '@/lib/statusHelper';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 export default function Home() {
   const { projectId } = useParams();
-  const { t } = useTranslation('ai-tools/dashboard/home');
+  const { isQuantum, t } = useQuantum('ai-tools/dashboard/home');
   const { notebooks, jobs, apps } = useDashboardData();
   const regionQuery = useGetRegions(projectId);
   const objectStoragePath = `/pci/projects/${projectId}/storages/objects`;
-  const notebooksPath = `/pci/projects/${projectId}/ai-ml/notebooks`;
+  const notebooksPath = `/pci/projects/${projectId}/ai-ml${
+    isQuantum ? '/quantum' : ''
+  }/notebooks`;
   const jobsPath = `/pci/projects/${projectId}/ai-ml/training`;
   const appsPath = `/pci/projects/${projectId}/ai-ml/deploy`;
 
@@ -69,7 +71,11 @@ export default function Home() {
           )}
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 content-end">
+          <div
+            className={`grid grid-cols-1 md:grid-cols-2 lg:${
+              isQuantum ? 'grid-cols-3' : 'grid-cols-4'
+            } gap-6 content-end`}
+          >
             <ProductInformations
               img={storeImage}
               isInternalAppLink={false}
@@ -98,44 +104,57 @@ export default function Home() {
                     ).length || 0
               }
             />
-            <ProductInformations
-              img={trainImage}
-              link={jobsPath}
-              isInternalAppLink={false}
-              title={t('train-title')}
-              productName={t('training-title')}
-              active={
-                isOnbording
-                  ? -1
-                  : jobs?.filter((job) => isRunningJob(job.status.state))
-                      .length || 0
-              }
-              stopped={
-                isOnbording
-                  ? -1
-                  : jobs?.filter((job) => isStoppedJob(job.status.state))
-                      .length || 0
-              }
-            />
-            <ProductInformations
-              img={deployImage}
-              isInternalAppLink={false}
-              link={appsPath}
-              title={t('deploy-title')}
-              productName={t('ai-deploy-title')}
-              active={
-                isOnbording
-                  ? -1
-                  : apps?.filter((app) => isRunningApp(app.status.state))
-                      .length || 0
-              }
-              stopped={
-                isOnbording
-                  ? -1
-                  : apps?.filter((app) => isStoppedApp(app.status.state))
-                      .length || 0
-              }
-            />
+            {!isQuantum ? (
+              <ProductInformations
+                img={trainImage}
+                link={jobsPath}
+                isInternalAppLink={false}
+                title={t('train-title')}
+                productName={t('training-title')}
+                active={
+                  isOnbording
+                    ? -1
+                    : jobs?.filter((job) => isRunningJob(job.status.state))
+                        .length || 0
+                }
+                stopped={
+                  isOnbording
+                    ? -1
+                    : jobs?.filter((job) => isStoppedJob(job.status.state))
+                        .length || 0
+                }
+              />
+            ) : (
+              <ProductInformations
+                img={trainImage}
+                // link={jobsPath}
+                isInternalAppLink={false}
+                title={t('3. Emulators Action')}
+                productName={t('Emulators Project')}
+                comingSoon={true}
+              />
+            )}
+            {!isQuantum && (
+              <ProductInformations
+                img={deployImage}
+                isInternalAppLink={false}
+                link={appsPath}
+                title={t('deploy-title')}
+                productName={t('ai-deploy-title')}
+                active={
+                  isOnbording
+                    ? -1
+                    : apps?.filter((app) => isRunningApp(app.status.state))
+                        .length || 0
+                }
+                stopped={
+                  isOnbording
+                    ? -1
+                    : apps?.filter((app) => isStoppedApp(app.status.state))
+                        .length || 0
+                }
+              />
+            )}
           </div>
         </CardContent>
       </Card>

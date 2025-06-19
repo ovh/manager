@@ -1,6 +1,5 @@
 import { Plus } from 'lucide-react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import * as role from '@datatr-ux/ovhcloud-types/cloud/role/index';
 import { Button } from '@datatr-ux/uxlib';
 import user from '@/types/User';
@@ -12,6 +11,7 @@ import Guides from '@/components/guides/Guides.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import { useGetUsers } from '@/data/hooks/user/useGetUsers.hook';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 export function breadcrumb() {
   return (
@@ -23,7 +23,7 @@ export function breadcrumb() {
 }
 
 const Users = () => {
-  const { t } = useTranslation('ai-tools/dashboard/users');
+  const { isQuantum, t } = useQuantum('ai-tools/dashboard/users');
   const { projectId } = useParams();
   const navigate = useNavigate();
   const { isUserActive } = useUserActivityContext();
@@ -53,10 +53,12 @@ const Users = () => {
               number: userQuery.data?.filter(
                 (us: user.User) =>
                   us.status === user.UserStatusEnum.creating ||
-                  us.roles.find(
-                    (aiRole: role.Role) =>
-                      aiRole.name === ai.TokenRoleEnum.ai_training_operator ||
-                      aiRole.name === ai.TokenRoleEnum.ai_training_read,
+                  us.roles.find((aiRole: role.Role) =>
+                    isQuantum
+                      ? aiRole.name === user.RoleEnum.quantum_reader ||
+                        aiRole.name === user.RoleEnum.quantum_operator
+                      : aiRole.name === ai.TokenRoleEnum.ai_training_operator ||
+                        aiRole.name === ai.TokenRoleEnum.ai_training_read,
                   ),
               ).length,
             })}

@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import {
@@ -26,18 +25,22 @@ import {
   githubDark,
   useToast,
 } from '@datatr-ux/uxlib';
-import ai from '@/types/AI';
 import { useUserForm } from './useUserForm.hook';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { MutateUserProps, useAddUser } from '@/data/hooks/user/useAddUser.hook';
+import { useQuantum } from '@/hooks/useQuantum.hook';
+import user from '@/types/User';
 
 const AddUser = () => {
   const [newPass, setNewPass] = useState<string>();
   const { projectId } = useParams();
   const { form } = useUserForm();
   const navigate = useNavigate();
-  const { t } = useTranslation('ai-tools/dashboard/users');
+  const { isQuantum, t } = useQuantum('ai-tools/dashboard/users');
   const toast = useToast();
+  const userRole = Object.values(user.RoleEnum).filter((role) =>
+    isQuantum ? role.startsWith('quantum') : role.startsWith('ai'),
+  );
 
   const AddUserMutationProps: MutateUserProps = {
     onError(err) {
@@ -151,7 +154,7 @@ const AddUser = () => {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          {Object.values(ai.TokenRoleEnum).map((option) => (
+                          {userRole.map((option) => (
                             <SelectItem key={option} value={option}>
                               {t(option)}
                             </SelectItem>

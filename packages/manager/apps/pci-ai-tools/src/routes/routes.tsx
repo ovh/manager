@@ -39,7 +39,7 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/Auth.layout')),
         children: [
           {
-            path: 'dashboard',
+            path: ':quantum?/dashboard',
             id: 'dashboard',
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/Dashboard.layout'),

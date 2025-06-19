@@ -458,6 +458,15 @@ export function getPciProjectMenu(
       title: 'Quantum',
       subItems: [
         {
+          id: 'pci-quantum-dashboard',
+          title: 'Dashboard',
+          badge: 'new',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/ai-ml/quantum/dashboard`,
+          ),
+        },
+        {
           id: 'pci-quantum-emulators',
           title: 'Emulators',
           badge: 'new',

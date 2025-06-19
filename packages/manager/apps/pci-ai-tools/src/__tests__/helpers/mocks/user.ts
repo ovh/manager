@@ -1,6 +1,5 @@
 import { User } from '@ovh-ux/manager-config';
 import user from '@/types/User';
-import ai from '@/types/AI';
 
 export const mockedUser: User = {
   nichandle: 'test123',
@@ -91,5 +90,5 @@ export const mockedPublicCloudUser: user.User = {
 
 export const mockedUserCreation = {
   description: 'description',
-  role: ai.TokenRoleEnum.ai_training_operator,
+  role: user.RoleEnum.ai_training_operator,
 };

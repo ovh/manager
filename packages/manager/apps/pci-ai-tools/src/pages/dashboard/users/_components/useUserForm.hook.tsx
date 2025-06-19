@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslation } from 'react-i18next';
-import ai from '@/types/AI';
+import user from '@/types/User';
 import { USER_CONFIG } from './users.constants';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 export const useUserForm = () => {
-  const { t } = useTranslation('ai-tools/dashboard/users');
+  const { isQuantum, t } = useQuantum('ai-tools/dashboard/users');
 
   const descriptionRules = z
     .string()
@@ -25,7 +25,7 @@ export const useUserForm = () => {
       message: t('formUserNameErrorPattern'),
     });
 
-  const userRoleRules = z.nativeEnum(ai.TokenRoleEnum);
+  const userRoleRules = z.nativeEnum(user.RoleEnum);
 
   const schema = z.object({
     description: descriptionRules,
@@ -36,7 +36,9 @@ export const useUserForm = () => {
 
   const defaultValues: ValidationSchema = {
     description: '',
-    userRole: ai.TokenRoleEnum.ai_training_operator,
+    userRole: isQuantum
+      ? user.RoleEnum.quantum_operator
+      : user.RoleEnum.ai_training_operator,
   };
 
   const form = useForm<ValidationSchema>({

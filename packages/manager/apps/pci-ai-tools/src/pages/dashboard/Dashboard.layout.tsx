@@ -9,15 +9,26 @@ import { useGetJobs } from '@/data/hooks/ai/job/useGetJobs.hook';
 import { useGetApps } from '@/data/hooks/ai/app/useGetApps.hook';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useGetFramework } from '@/data/hooks/ai/capabilities/useGetFramework.hook';
+import { useQuantum } from '@/hooks/useQuantum.hook';
+
+function ManageBreadcrumb() {
+  const { isQuantum } = useQuantum('');
+
+  const translationKey = isQuantum
+    ? 'crumb-quantum-dashboard'
+    : 'crumb-dashboard';
+  return (
+    <BreadcrumbItem translationKey={translationKey} namespace="ai-tools" />
+  );
+}
 
 export function breadcrumb() {
-  return (
-    <BreadcrumbItem translationKey="crumb-dashboard" namespace="ai-tools" />
-  );
+  return <ManageBreadcrumb />;
 }
 
 export default function DashboardLayout() {
   const { projectId } = useParams();
+  const { isQuantum } = useQuantum();
   const { isUserActive } = useUserActivityContext();
   const notebooksQuery = useGetNotebooks(projectId, {
     refetchInterval: isUserActive && POLLING.NOTEBOOKS,
@@ -40,7 +51,7 @@ export default function DashboardLayout() {
   }
 
   const filterFmkIds = frameworkQuery.data
-    .filter((fmk) => fmk.type === 'AI')
+    .filter((fmk) => (isQuantum ? fmk.type === 'Quantum' : fmk.type === 'AI'))
     .map((fwk) => fwk.id);
 
   const notebooks = notebooksQuery.data.filter((nb) =>
