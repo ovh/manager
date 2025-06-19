@@ -7,7 +7,7 @@
 </server-public-bandwidth-tile-definition>
 
 <oui-tile-button
-    data-ng-if="$ctrl.server.canOrderBandwith"
+    data-ng-if="$ctrl.server.canOrderBandwith && $ctrl.displayPublicBandwidth"
     data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
     data-href="{{ $ctrl.orderPublicLink }}"
 >

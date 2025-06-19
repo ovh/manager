@@ -1,0 +1,63 @@
+<table style="font-size: 14px" class="oui-table">
+    <thead class="oui-table__headers">
+        <tr>
+            <th
+                class="oui-table__header text-wrap"
+                data-translate="dedicated_server_interfaces_ola_column_current_type"
+            ></th>
+            <th
+                class="oui-table__header text-wrap"
+                data-translate="dedicated_server_interfaces_ola_column_mac_address"
+            ></th>
+            <th
+                class="oui-table__header text-wrap"
+                data-translate="dedicated_server_interfaces_ola_column_bandwidth_outgoing"
+            ></th>
+            <th
+                class="oui-table__header text-wrap"
+                data-translate="dedicated_server_interfaces_ola_column_bandwidth_incoming"
+            ></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+            class="oui-table__row"
+            data-ng-repeat="$row in $ctrl.interfaces track by $row.id"
+        >
+            <td class="oui-table__cell  py-2">
+                <div
+                    data-translate="{{ 'dedicated_server_interfaces_type_' + $row.type + '_label' }}"
+                ></div>
+                <div
+                    data-ng-if="$row.displayedMacAdresses.length > 1"
+                    class="oui-badge oui-badge_success"
+                    data-translate="{{ 'dedicated_server_interfaces_type_badge_aggregated' }}"
+                ></div>
+            </td>
+            <td class="oui-table__cell  py-2">
+                <div data-ng-if="$row.displayedMacAdresses.length > 1">
+                    <ul class="mb-0">
+                        <li data-ng-repeat="mac in $row.displayedMacAdresses">
+                            <p class="mb-0" data-ng-bind="mac"></p>
+                        </li>
+                    </ul>
+                </div>
+                <div data-ng-if="$row.displayedMacAdresses.length <= 1">
+                    <span data-ng-bind="$row.mac"></span>
+                </div>
+            </td>
+            <td class="oui-table__cell  py-2">
+                <span class="oui-icon oui-icon-arrow-up font-inherit"></span>
+                <span
+                    data-ng-bind="$row.uploadBandwidth | serverBandwidth"
+                ></span>
+            </td>
+            <td class="oui-table__cell  py-2">
+                <span class="oui-icon oui-icon-arrow-down font-inherit"></span>
+                <span
+                    data-ng-bind="$row.downloadBandwidth | serverBandwidth"
+                ></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

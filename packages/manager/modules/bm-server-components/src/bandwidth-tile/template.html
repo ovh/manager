@@ -5,7 +5,7 @@
 >
     <server-bandwidth-dashboard
         data-bandwidth-option="$ctrl.bandwidthOption"
-        data-display-public-bandwidth="true"
+        data-display-public-bandwidth="!$ctrl.ola.isConfigured()"
         data-bandwidth-vrack-option="$ctrl.bandwidthVrackOptions"
         data-bandwidth-vrack-order-option="$ctrl.bandwidthVrackOrderOptions"
         data-order-private-link="$ctrl.orderPrivateLink"

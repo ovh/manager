@@ -17,6 +17,8 @@ export const INTERFACE_GROUP_TASK = 'INFRA_002_VirtualNetworkInterface_group';
 export const INTERFACE_UNGROUP_TASK =
   'INFRA_002_VirtualNetworkInterface_ungroup';
 
+
+export const OLA_PREVIEW_ID = 'ola_preview';
 export const NEW_LACP_MODE_BANNER_FEATURE_ID =
   'dedicated-server:ola-new-lacp-mode-banner';
 
@@ -61,4 +63,5 @@ export default {
   INTERFACE_TASK,
   INTERFACE_GROUP_TASK,
   INTERFACE_UNGROUP_TASK,
+  OLA_PREVIEW_ID,
 };
