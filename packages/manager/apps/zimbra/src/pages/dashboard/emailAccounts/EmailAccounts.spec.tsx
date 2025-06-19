@@ -34,9 +34,7 @@ describe('EmailAccounts page', () => {
 
     expect(switchAccounts).toHaveAttribute('is-checked', 'true');
 
-    expect(
-      getByText(commonTranslation.email_account),
-    ).toBeTruthy();
+    expect(getByText(commonTranslation.email_account)).toBeTruthy();
   });
 
   it('should switch to slots when clicked', async () => {
@@ -48,9 +46,7 @@ describe('EmailAccounts page', () => {
 
     const switchSlots = getByTestId('switch-slots');
 
-    expect(
-      getByText(commonTranslation.email_account),
-    ).toBeTruthy();
+    expect(getByText(commonTranslation.email_account)).toBeTruthy();
 
     act(() => {
       fireEvent.click(switchSlots);
