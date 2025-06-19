@@ -6,7 +6,11 @@ import {
   UseFeatureAvailabilityResult,
 } from '@ovh-ux/manager-react-components';
 import { LogsToCustomerModule } from '@ovh-ux/logs-to-customer';
-import { UseQueryResult } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import { ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   ShellContext,
@@ -51,6 +55,7 @@ const shellContext = {
 };
 
 describe('Logs page tests suite', () => {
+  const queryClient = new QueryClient();
   beforeEach(() => vi.stubGlobal('location', { href: 'https://fakehost' }));
 
   afterEach(() => {
@@ -60,11 +65,13 @@ describe('Logs page tests suite', () => {
 
   const renderLogsPage = () =>
     render(
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
-        <LogsPage />
-      </ShellContext.Provider>,
+      <QueryClientProvider client={queryClient}>
+        <ShellContext.Provider
+          value={(shellContext as unknown) as ShellContextType}
+        >
+          <LogsPage />
+        </ShellContext.Provider>
+      </QueryClientProvider>,
     );
 
   it('should display logs if logs feature is enabled', async () => {
