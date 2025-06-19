@@ -17,10 +17,13 @@ export const INTERFACE_GROUP_TASK = 'INFRA_002_VirtualNetworkInterface_group';
 export const INTERFACE_UNGROUP_TASK =
   'INFRA_002_VirtualNetworkInterface_ungroup';
 
+export const OLA_PREVIEW_ID = 'ola_preview';
+
 export default {
   OLA_PLAN_CODE,
   OLA_MODES,
   INTERFACE_TASK,
   INTERFACE_GROUP_TASK,
   INTERFACE_UNGROUP_TASK,
+  OLA_PREVIEW_ID,
 };
