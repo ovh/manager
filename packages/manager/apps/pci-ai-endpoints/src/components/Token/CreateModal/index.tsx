@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsModal,
   OsdsButton,
@@ -14,6 +15,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { TRACKING } from '../../../../src/configuration/tracking.constants';
 import { TokenData } from '@/types/cloud/project/database/token/index';
 import CreateForm from './CreateForm';
 
@@ -30,11 +32,13 @@ export default function CreateModal({
   tokens,
   infiniteDate,
 }: CreateModalProps) {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('token');
   const [createdToken, setCreatedToken] = useState<TokenData | null>(null);
 
   const handleFormSuccess = (token: TokenData) => {
     setCreatedToken(token);
+    trackClick(TRACKING.apikey.successCreatApikeyPopUpShown);
   };
 
   const modalHeadline = createdToken
