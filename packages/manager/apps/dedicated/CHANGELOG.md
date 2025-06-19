@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.43.1...@ovh-ux/manager-dedicated@20.44.0) (2025-06-19)
+
+
+### Features
+
+* **dedicated:** enable virtual machines tab in baremetal ([5cd9eca](https://github.com/ovh/manager/commit/5cd9ecaff36e28182163d9d059672acbd2944899)), closes [#MANAGER-18720](https://github.com/ovh/manager/issues/MANAGER-18720) [#INC0136087](https://github.com/ovh/manager/issues/INC0136087)
+
+
+
+
+
 ## [20.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.43.0...@ovh-ux/manager-dedicated@20.43.1) (2025-06-18)
 
 

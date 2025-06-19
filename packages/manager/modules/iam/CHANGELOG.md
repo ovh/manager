@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.17.0...@ovh-ux/manager-iam@1.17.1) (2025-06-19)
+
+
+### Bug Fixes
+
+* **iam:** unit test of logs routing ([55b966b](https://github.com/ovh/manager/commit/55b966bdb3cd4a46c5b9e15830252601f4f295e9)), closes [#MANAGER-18760](https://github.com/ovh/manager/issues/MANAGER-18760)
+
+
+
+
+
 # [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.16.0...@ovh-ux/manager-iam@1.17.0) (2025-06-18)
 
 
