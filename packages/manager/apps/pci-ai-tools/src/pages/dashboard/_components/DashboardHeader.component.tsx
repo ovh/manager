@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { AlertCircle, ArrowRight } from 'lucide-react';
 import { Alert, AlertDescription, Button, Skeleton } from '@datatr-ux/uxlib';
 import OvhLink from '@/components/links/OvhLink.component';
-import A from '@/components/links/A.component';
 import usePciProject from '@/data/hooks/project/usePciProject.hook';
 import { PlanCode } from '@/configuration/project';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
@@ -51,15 +50,6 @@ export const DashboardHeader = () => {
       )}
       <p>{t('paragraphe1')}</p>
       <p>{t('paragraphe2')}</p>
-
-      <A
-        href="https://www.ovhcloud.com/fr/public-cloud/prices/#ai-&-machine-learning"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {t('linkPrice')}
-        <ArrowRight className="size-4 inline ml-2" />
-      </A>
     </div>
   );
 };
