@@ -46,6 +46,7 @@ export type Subsidiary =
   | 'ASIA'
   | 'SG'
   | 'IN'
+  | 'US'
   | 'EU'
   | 'WE';
 
