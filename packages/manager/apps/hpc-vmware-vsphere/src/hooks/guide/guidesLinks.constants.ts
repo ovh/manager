@@ -7,6 +7,11 @@ export const SUPPORT_URL: Record<string, string> = {
   US: 'https://support.us.ovhcloud.com',
 };
 
+export const LANDING_URL: Record<string, string> = {
+  EU: 'https://www.ovhcloud.com',
+  US: 'https://us.ovhcloud.com',
+};
+
 export const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
   discover: {
     DE:
@@ -91,5 +96,27 @@ export const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
       '/csm/es-vmware-veeam-backup-as-a-service?id=kb_article_view&sysparm_article=KB0064999',
     US:
       '/hc/en-us/articles/360013652139-How-to-Enable-and-Use-Managed-Veeam-Backup',
+  },
+  logs_data_platform: {
+    DE: '/de/identity-security-operations/logs-data-platform',
+    ES: '/es-es/identity-security-operations/logs-data-platform',
+    FR: '/fr/identity-security-operations/logs-data-platform',
+    IE: '/en-ie/identity-security-operations/logs-data-platform',
+    NL: '/nl/identity-security-operations/logs-data-platform',
+    PL: '/pl/identity-security-operations/logs-data-platform',
+    PT: '/pt/identity-security-operations/logs-data-platform',
+    GB: '/en-gb/identity-security-operations/logs-data-platform',
+    CA: '/en-ca/identity-security-operations/logs-data-platform',
+    QC: '/fr-ca/identity-security-operations/logs-data-platform',
+    WS: '/es/identity-security-operations/logs-data-platform',
+    MA: '/fr-ma/identity-security-operations/logs-data-platform',
+    SN: '/fr-sn/identity-security-operations/logs-data-platform',
+    TN: '/fr-tn/identity-security-operations/logs-data-platform',
+    AU: '/en-au/identity-security-operations/logs-data-platform',
+    SG: '/en-sg/identity-security-operations/logs-data-platform',
+    ASIA: '/asia/identity-security-operations/logs-data-platform',
+    IN: '/en-in/identity-security-operations/logs-data-platform',
+    WE: '/en/identity-security-operations/logs-data-platform/',
+    US: '/identity-security-operations/logs-data-platform/',
   },
 };
