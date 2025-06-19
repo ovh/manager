@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-import { OLA_MODES } from '../ola.constants';
+import { OLA_MODES, OLA_PREVIEW_ID } from '../ola.constants';
 
 export default class {
   /* @ngInject */
@@ -31,43 +31,54 @@ export default class {
     this.configurationName = undefined;
     this.targetInterfaceType = OLA_MODES.VRACK_AGGREGATION;
 
-    this.selectedInterfaces = [];
     this.notAllowedInterfaces = this.interfaces.filter(
       (item) => item.hasFailoverIps() || item.hasVrack(),
     );
-    this.allowedInterfaces = this.interfaces
-      .filter((i) => !this.notAllowedInterfaces.includes(i))
-      .map((nic) => ({
-        ...nic,
-        displayedMacAdresses: nic.mac ? nic.mac.split(', ') : [],
-        isPublic: nic.isPublic(),
-        isPrivate: nic.isPrivate(),
-      }));
-  }
 
-  selectAllRows() {
-    const datagrid = get(
-      this.ouiDatagridService,
-      'datagrids.olaConfigDatagrid',
+    this.displayedInterfaces = this.interfaces.map((nic) => ({
+      id: nic.id,
+      name: nic.name,
+      type: nic.type,
+      mac: nic.mac,
+      displayedMacAdresses: nic.displayedMacAdresses,
+      uploadBandwidth: nic.isPublic()
+        ? this.specifications.bandwidth.OvhToInternet
+        : this.specifications.vrack.bandwidth,
+      downloadBandwidth: nic.isPublic()
+        ? this.specifications.connection
+        : this.specifications.vrack.bandwidth,
+    }));
+
+    const hasExistingVrackAggregation = this.interfaces.some(
+      (nic) => nic.type === OLA_MODES.VRACK_AGGREGATION,
     );
-    if (datagrid) {
-      this.$timeout(() => {
-        datagrid.toggleAllRowsSelection(true);
-        datagrid.selectAllRows = true;
-      });
-    }
+    const previewBandwidth = hasExistingVrackAggregation
+      ? {
+          ...this.specifications.vrack.bandwidth,
+          value: this.specifications.vrack.bandwidth.value * 2,
+        }
+      : this.specifications.vrack.bandwidth;
+
+    this.previewAggregatedInterfaces = [
+      {
+        id: OLA_PREVIEW_ID,
+        name: OLA_PREVIEW_ID,
+        type: OLA_MODES.VRACK_AGGREGATION,
+        displayedMacAdresses: this.interfaces.reduce(
+          (adresses, nic) => adresses.concat(nic.displayedMacAdresses),
+          [],
+        ),
+        uploadBandwidth: previewBandwidth,
+        downloadBandwidth: previewBandwidth,
+      },
+    ];
+
+    this.hasObsoleteBandwithOption =
+      this.specifications.bandwidth.type !== 'included';
   }
 
-  hasObsoleteBandwithOption() {
-    return this.specifications.bandwidth.type !== 'included';
-  }
-
-  isInterfaceSelectionValid() {
-    return [2, 4].includes(this.selectedInterfaces.length);
-  }
-
-  onRowSelect(selectedRows) {
-    this.selectedInterfaces = selectedRows;
+  isAggregationValid() {
+    return this.notAllowedInterfaces.length === 0;
   }
 
   configureInterface() {
@@ -75,12 +86,12 @@ export default class {
       return this.olaService.setPrivateAggregation(
         this.serverName,
         this.configurationName,
-        this.selectedInterfaces,
+        this.interfaces,
       );
     }
     return this.olaService.setDefaultInterfaces(
       this.serverName,
-      this.selectedInterfaces[0],
+      this.interfaces[0],
     );
   }
 
