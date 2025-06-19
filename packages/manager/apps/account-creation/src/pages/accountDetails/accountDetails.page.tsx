@@ -32,7 +32,6 @@ import { useEffect, useState } from 'react';
 import { User } from '@ovh-ux/manager-config';
 import { AxiosError } from 'axios';
 import { useRules } from '@/data/hooks/useRules';
-import { toZodSchema, useTranslatedZodError } from '@/utils/zod';
 import { Rule } from '@/types/rule';
 import { Country } from '@/types/country';
 import { RulesParam } from '@/data/api/rules';
@@ -41,12 +40,17 @@ import { useUserContext } from '@/context/user/useUser';
 import { useMe } from '@/data/hooks/useMe';
 import { Language } from '@/types/language';
 import { Subsidiary } from '@/types/subsidiary';
+import {
+  useZodSchemaGenerator,
+  useZodTranslatedError,
+} from '@/hooks/zod/useZod';
 
 export default function AccountDetailsPage() {
   const { t } = useTranslation('account-details');
   const { t: tForm } = useTranslation(NAMESPACES.FORM);
   const { addError, addSuccess } = useNotifications();
   // const { t: tCountry } = useTranslation(NAMESPACES.COUNTRY);
+  // const { t: tLanguage } = useTranslation(NAMESPACES.LANGUAGE);
 
   type FormData = Partial<User> & { confirmSend?: boolean };
   const { legalForm } = useUserContext();
@@ -57,11 +61,11 @@ export default function AccountDetailsPage() {
   };
 
   const [rulesParams, setRulesParams] = useState<RulesParam>({
-    country: (currentUser?.country as Country) || 'FR',
-    language: (currentUser?.language as Language) || 'fr_FR',
-    legalform: legalForm,
-    ovhSubsidiary: (currentUser?.ovhSubsidiary as Subsidiary) || 'FR',
-    phoneCountry: (currentUser?.country as Country) || 'FR',
+    country: (currentUser?.country as Country) || 'GB',
+    language: (currentUser?.language as Language) || 'en_GB',
+    legalform: legalForm || 'corporation',
+    ovhSubsidiary: (currentUser?.ovhSubsidiary as Subsidiary) || 'GB',
+    phoneCountry: (currentUser?.country as Country) || 'GB',
   });
 
   const {
@@ -84,13 +88,13 @@ export default function AccountDetailsPage() {
     'language',
   ]);
 
-  const zodSchema = toZodSchema(rules || {}).extend({
+  const zodSchema = useZodSchemaGenerator(rules || {}).extend({
     confirmSend: z.literal(true),
   });
 
   function renderTranslatedZodError(message: string | undefined, rule: Rule) {
     if (!message) return undefined;
-    const { key, options } = useTranslatedZodError(message, rule);
+    const { key, options } = useZodTranslatedError(message, rule);
     return tForm(key, options);
   }
 
@@ -150,11 +154,16 @@ export default function AccountDetailsPage() {
     addAccountDetails(formData);
   };
 
+  /**
+   * TODO: For FR, check / add from context if user has found company. If so, make company info readonly
+   */
   return (
     <>
       <BaseLayout header={header}>
         <Notifications />
-        <p>Assurez-vous...</p>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-6">
+          {t('account_details_info_message')}
+        </OdsText>
         <form
           onSubmit={handleSubmit(handleValidateClick)}
           className="flex flex-col gap-6"
@@ -184,7 +193,7 @@ export default function AccountDetailsPage() {
                     maxlength={rules?.firstname.maxLength || undefined}
                     hasError={!!errors[name]}
                     onOdsChange={onChange}
-                    onOdsBlur={onBlur}
+                    onBlur={onBlur}
                   />
                   {errors[name] && rules?.firstname && (
                     <OdsText
@@ -376,20 +385,24 @@ export default function AccountDetailsPage() {
                   <OdsText preset="caption">
                     <label>{t('account_details_field_country')}</label>
                   </OdsText>
-                  <OdsSelect
-                    isDisabled={true}
-                    name={name}
-                    value={value}
-                    onOdsChange={onChange}
-                    onOdsBlur={onBlur}
-                    className="flex-1"
-                  >
-                    {rules?.country.in.map((countryCode: string) => (
-                      <option key={countryCode} value={countryCode}>
-                        {t(`country_${countryCode}`)}
-                      </option>
-                    ))}
-                  </OdsSelect>
+                  {isRulesFetched ? (
+                    <OdsSelect
+                      isDisabled={true}
+                      name={name}
+                      value={value}
+                      onOdsChange={onChange}
+                      onOdsBlur={onBlur}
+                      className="flex-1"
+                    >
+                      {rules?.country.in?.map((countryCode: string) => (
+                        <option key={countryCode} value={countryCode}>
+                          {t(`country_${countryCode}`)}
+                        </option>
+                      ))}
+                    </OdsSelect>
+                  ) : (
+                    <OdsSkeleton className="w-full" />
+                  )}
                 </OdsFormField>
               )}
             />
@@ -516,7 +529,7 @@ export default function AccountDetailsPage() {
                 name="phoneType"
                 render={({ field }) => (
                   <OdsFormField class="w-full mt-8 mb-4 flex flex-row gap-4">
-                    {rules?.phoneType.in.map((type: string) => (
+                    {rules?.phoneType.in?.map((type: string) => (
                       <div key={type} className="flex leading-none gap-4">
                         <OdsRadio
                           name={field.name}
@@ -544,7 +557,7 @@ export default function AccountDetailsPage() {
                 <OdsPhoneNumber
                   name="phone"
                   countries={
-                    rules?.phoneCountry
+                    rules?.phoneCountry && rules?.phoneCountry.in
                       ? [
                           ...rules?.phoneCountry.in
                             .filter(
@@ -626,7 +639,7 @@ export default function AccountDetailsPage() {
                       className="flex-1"
                     >
                       {rules?.language
-                        ? rules?.language.in.map((language: string) => (
+                        ? rules?.language.in?.map((language: string) => (
                             <option key={language} value={language}>
                               {t(`language_${language}`)}
                             </option>
@@ -659,7 +672,7 @@ export default function AccountDetailsPage() {
                     ></OdsCheckbox>
                     <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                       <label htmlFor={name}>
-                        {t('account_details_field_confirmSend')}
+                        {t('account_details_field_confirm_send')}
                       </label>
                     </OdsText>
                   </div>
@@ -675,19 +688,16 @@ export default function AccountDetailsPage() {
               )}
             />
           </div>
-
-          <div className="">
-            <OdsButton
-              type="submit"
-              slot="actions"
-              className="w-full"
-              color={ODS_BUTTON_COLOR.primary}
-              variant={ODS_BUTTON_VARIANT.default}
-              isLoading={isFormPending}
-              data-testid="confirm-btn"
-              label={t('account_details_button_validate')}
-            ></OdsButton>
-          </div>
+          <OdsButton
+            type="submit"
+            slot="actions"
+            className="w-full"
+            color={ODS_BUTTON_COLOR.primary}
+            variant={ODS_BUTTON_VARIANT.default}
+            isLoading={isFormPending}
+            data-testid="confirm-btn"
+            label={t('account_details_button_validate')}
+          ></OdsButton>
         </form>
       </BaseLayout>
     </>
