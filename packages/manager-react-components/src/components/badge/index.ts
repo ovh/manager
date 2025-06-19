@@ -1,1 +1,3 @@
-export * from './badge.component';
+export { Badge } from './badge.component';
+
+export type { BadgeProps } from './badge.props';
