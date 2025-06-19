@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.18...@ovh-ux/manager-public-cloud@7.2.19) (2025-06-19)
+
+
+### Bug Fixes
+
+* **pci-instances:** deploy pci-instances with angularjs app ([#17346](https://github.com/ovh/manager/issues/17346)) ([f20db4c](https://github.com/ovh/manager/commit/f20db4c1ac5c614fbbc21da5f6c8fceda55a534a)), closes [#TAPC-4135](https://github.com/ovh/manager/issues/TAPC-4135)
+
+
+
+
+
 ## [7.2.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.17...@ovh-ux/manager-public-cloud@7.2.18) (2025-06-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud
