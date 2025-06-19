@@ -1,5 +1,5 @@
 {
-  "dedicated_server_interfaces_ola_reset_title": "Déconfigurer l'agrégation privée",
-  "dedicated_server_interfaces_ola_reset_text": "Êtes-vous sûr de vouloir déconfigurer l'agrégation privée sur ce serveur?",
-  "dedicated_server_interfaces_ola_reset_error": "Une erreur est survenue lors de la déconfiguration de l'agrégation privée."
+  "dedicated_server_interfaces_ola_reset_title": "Détacher le réseau agrégé",
+  "dedicated_server_interfaces_ola_reset_text": "Vous sûr de vouloir détacher ce réseau agrégé ? Les interfaces réseau fonctionneront indépendamment après cette action.",
+  "dedicated_server_interfaces_ola_reset_error": "Une erreur est survenue lors du détachement du réseau agrégé."
 }
