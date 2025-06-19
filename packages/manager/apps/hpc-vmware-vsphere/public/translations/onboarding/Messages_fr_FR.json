@@ -9,5 +9,16 @@
   "guide2Title": "Monter votre NAS via un partage NFS",
   "guide2Description": "Découvrez comment monter un NAS via un partage NFS",
   "guide3Title": "Monter votre NAS sur Windows Server via CIFS",
-  "guide3Description": "Découvrez comment monter un NAS sur Windows Server via le protocole CIFS"
+  "guide3Description": "Découvrez comment monter un NAS sur Windows Server via le protocole CIFS",
+  "logs_onboarding_activation_title": "Activation des logs en cours",
+  "logs_onboarding_activation_description": "La transmission des logs est en cours d’activation. Cette opération peut prendre jusqu’à 20 minutes. Vous pourrez accéder aux logs une fois le processus terminé. Veuillez patienter pendant que nous finalisons cette étape. Vous pouvez quitter cette page en toute sécurité, le processus se poursuivra en arrière-plan. En savoir plus sur OVHcloud Logs Data Platform",
+  "logs_onboarding_activation_caption": "Cela peut prendre quelques minutes",
+  "logs_onboarding_default_description": "Vous pouvez récupérer certains logs des composants VMware (ex. ESXi, NSX-T Edge, VCSA, NSX-T Manager) dans l’OVHcloud Data Platform pour analyser le service VMware on OVHcloud. Pour bénéficier de cet avantage, vous devez cependant activer d’abord le service.",
+  "logs_onboarding_default_title": "Logs de service VMware",
+  "logs_onboarding_secondary_cta": "En savoir plus sur logs",
+  "logs_onboarding_primary_cta_upgrade": "Passer à Premier",
+  "logs_onboarding_primary_cta_activate": "Activer le transfert de logs",
+  "logs_onboarding_primary_cta_activate_snc": "Activer le transfert de logs via le système Syslog",
+  "logs_onboarding_migration_banner_title": "Activation indisponible – Migration en cours",
+  "logs_onboarding_migration_banner_description": "Votre service est actuellement en cours de migration vers VMware Cloud Director (VCD). Par conséquent, l'activation du transfert des logs est indisponible."
 }
