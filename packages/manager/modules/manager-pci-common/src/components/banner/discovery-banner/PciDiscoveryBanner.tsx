@@ -11,7 +11,7 @@ import '../../../translations/discovery-banner';
 
 const DISCOVERY_PROJECT_PLAN_CODE = 'project.discovery';
 
-export const isDiscoveryProject = (project: TProject) =>
+export const isDiscoveryProject = (project?: TProject) =>
   project?.planCode === DISCOVERY_PROJECT_PLAN_CODE;
 
 export interface PciDiscoveryBannerProps {
