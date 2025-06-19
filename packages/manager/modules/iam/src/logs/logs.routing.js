@@ -6,7 +6,6 @@ const redirectTo = (transition) =>
     .injector()
     .get('$q')
     .all([
-      transition.injector().getAsync('logsAvailability'),
       transition.injector().getAsync('auditLogsAvailability'),
       transition.injector().getAsync('activityLogsAvailability'),
       transition.injector().getAsync('accessPolicyLogsAvailability'),
