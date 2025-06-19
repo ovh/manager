@@ -31,7 +31,12 @@ export default [
       {
         path: 'auth',
         id: 'auth',
-        ...lazyRouteConfig(() => import('@/pages/auth/Auth.page')),
+        ...lazyRouteConfig(() => import('@/pages/auth-ai/Auth.page')),
+      },
+      {
+        path: 'quantum/auth',
+        id: 'quantum-auth',
+        ...lazyRouteConfig(() => import('@/pages/auth-quantum/Auth.page')),
       },
       {
         path: '',
