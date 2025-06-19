@@ -1,7 +1,7 @@
 import React, { useEffect, useState, startTransition } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FilterCategories, FilterTypeCategories } from '@ovh-ux/manager-core-api';
-import { {{#if isPCI }} useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
+import { FilterCategories } from '@ovh-ux/manager-core-api';
+import { {{#if isPCI}}useParams,{{/if}} useNavigate, useLocation } from 'react-router-dom';
 
 import { OdsButton, OdsSpinner, OdsIcon } from '@ovhcloud/ods-components/react';
 import {
@@ -21,6 +21,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import appConfig from '@/{{appName}}.config';
+import { mapDataTypeToFilterType } from '@/utils/datagrid-helpers';
 
 export default function Listing() {
   const myConfig = appConfig;
@@ -29,7 +30,7 @@ export default function Listing() {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation('listing');
-  {{#if isPCI }}
+  {{#if isPCI}}
   const { projectId } = useParams();
   {{/if}}
   const {
@@ -57,64 +58,53 @@ export default function Listing() {
     startTransition(() => navigate(`${path}${label}`));
   };
 
-  const typeToFilterType = (type: string): FilterTypeCategories => {
-    switch (type.toLowerCase()) {
-      case 'number':
-        return FilterTypeCategories.Numeric;
-      case 'date':
-        return FilterTypeCategories.Date;
-      case 'string':
-        return FilterTypeCategories.String;
-      case 'boolean':
-        return FilterTypeCategories.Boolean;
-      default:
-        return FilterTypeCategories.String;
-    }
-  };
+  // Helper function to generate columns from data
+  function generateColumns(
+    data: Record<string, unknown>[]
+  ): DatagridColumn<Record<string, unknown>>[] {
+    if (!data || data.length === 0) return [];
+    return Object.keys(data[0])
+      .filter((element) => element !== 'iam')
+      .map((element) => {
+        const type = dataType(data[0][element]);
+        const filterType = mapDataTypeToFilterType(type);
+        return {
+          id: element,
+          label: element,
+          isFilterable: true,
+          isSearchable: true,
+          type: filterType,
+          comparator: FilterCategories[filterType],
+          cell: (props: Record<string, unknown>) => {
+            const label = props[element] as string | number;
+            if (typeof label === 'string' || typeof label === 'number') {
+              if (serviceKey === element)
+                return (
+                  <DataGridTextCell>
+                    <OdsButton
+                      variant={ODS_BUTTON_VARIANT.ghost}
+                      onClick={() => navigateToDashboard(label.toString())}
+                      label={label.toString()}
+                    >
+                      {label.toString()}
+                    </OdsButton>
+                  </DataGridTextCell>
+                );
+              return <DataGridTextCell>{label.toString()}</DataGridTextCell>;
+            }
+            return <DataGridTextCell>-</DataGridTextCell>;
+          },
+        };
+      });
+  }
 
   useEffect(() => {
-    if (
-      columns.length === 0 &&
-      status === 'success' &&
-      flattenData?.length > 0
-    ) {
-      const newColumns = Object.keys(flattenData[0] as Record<string, unknown>)
-        .filter((element) => element !== 'iam')
-        .map((element) => {
-          const type = dataType(flattenData[0][element]);
-          const filterType = typeToFilterType(type);
-
-          return {
-            id: element,
-            label: element,
-            isFilterable: true,
-            isSearchable: true,
-            type: filterType,
-            comparator: FilterCategories[filterType],
-            cell: (props: Record<string, unknown>) => {
-              const label = props[element] as string | number;
-              if (typeof label === 'string' || typeof label === 'number') {
-                if (serviceKey === element)
-                  return (
-                    <DataGridTextCell>
-                      <OdsButton
-                        variant={ODS_BUTTON_VARIANT.ghost}
-                        onClick={() => navigateToDashboard(label.toString())}
-                        label={label.toString()}
-                      >
-                        {label.toString()}
-                      </OdsButton>
-                    </DataGridTextCell>
-                  );
-                return <DataGridTextCell>{label.toString()}</DataGridTextCell>;
-              }
-              return <DataGridTextCell>-</DataGridTextCell>;
-            },
-          };
-        });
-      setColumns(newColumns);
-    }
-  }, [flattenData, serviceKey]);
+    // Only generate columns if not already set, data is loaded, and data is available
+    if (columns.length > 0) return;
+    if (status !== 'success') return;
+    if (!flattenData || flattenData.length === 0) return;
+    setColumns(generateColumns(flattenData));
+  }, [flattenData, serviceKey, status]);
 
   if (isError) {
     const { response }: any = error;
@@ -123,16 +113,15 @@ export default function Listing() {
       headers: response?.headers,
       status: response?.status,
     };
-    return (
-      <ErrorBanner
-        error={errorObj}
-      />
-    );
+    return <ErrorBanner error={errorObj} />;
   }
 
   if (isLoading && !flattenData) {
     return (
-      <div className="flex justify-center" data-testid="listing-spinner-container">
+      <div
+        className="flex justify-center"
+        data-testid="listing-spinner-container"
+      >
         <OdsSpinner />
       </div>
     );

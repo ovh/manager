@@ -57,7 +57,7 @@ proc arrow {dir} {
 }
 
 puts "ℹ️  Removing $appDir"
-rootDirExec "rm -rf ./$appDir"
+rootDirExec "rm -rf $appDir"
 
 set timeout -1
 puts "ℹ️  Starting the generator"

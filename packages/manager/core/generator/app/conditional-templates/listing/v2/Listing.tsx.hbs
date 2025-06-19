@@ -1,7 +1,7 @@
 import React, { useEffect, useState, startTransition } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FilterCategories, FilterTypeCategories } from '@ovh-ux/manager-core-api';
-import { {{#if isPCI }} useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
+import { FilterCategories } from '@ovh-ux/manager-core-api';
+import { {{#if isPCI }}useParams,{{/if}} useNavigate, useLocation } from 'react-router-dom';
 
 import { OdsButton, OdsSpinner, OdsIcon } from '@ovhcloud/ods-components/react';
 import {
@@ -21,11 +21,14 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import appConfig from '@/{{appName}}.config';
+import { mapDataTypeToFilterType } from '@/utils/datagrid-helpers';
 
 export default function Listing() {
   const myConfig = appConfig;
   const serviceKey = myConfig.listing?.datagrid?.serviceKey;
-  const [columns, setColumns] = useState<DatagridColumn<Record<string, unknown>>[]>([]);
+  const [columns, setColumns] = useState<
+    DatagridColumn<Record<string, unknown>>[]
+  >([]);
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation('listing');
@@ -57,21 +60,6 @@ export default function Listing() {
     startTransition(() => navigate(`${path}${label}`));
   };
 
-  const typeToFilterType = (type: string): FilterTypeCategories => {
-    switch (type.toLowerCase()) {
-      case 'number':
-        return FilterTypeCategories.Numeric;
-      case 'date':
-        return FilterTypeCategories.Date;
-      case 'string':
-        return FilterTypeCategories.String;
-      case 'boolean':
-        return FilterTypeCategories.Boolean;
-      default:
-        return FilterTypeCategories.String;
-    }
-  };
-
   useEffect(() => {
     if (
       columns.length === 0 &&
@@ -82,7 +70,7 @@ export default function Listing() {
         .filter((element) => element !== 'iam')
         .map((element) => {
           const type = dataType(flattenData[0][element]);
-          const filterType = typeToFilterType(type);
+          const filterType = mapDataTypeToFilterType(type);
 
           return {
             id: element,
@@ -116,6 +104,13 @@ export default function Listing() {
     }
   }, [flattenData, serviceKey]);
 
+  // Helper function to generate columns from data
+  function generateColumns(
+    data: Record<string, unknown>[]
+  ): DatagridColumn<Record<string, unknown>>[] {
+    // ... existing code ...
+  }
+
   if (isError) {
     const { response }: any = error;
     const errorObj = {
@@ -123,16 +118,15 @@ export default function Listing() {
       headers: response?.headers,
       status: response?.status,
     };
-    return (
-      <ErrorBanner
-        error={errorObj}
-      />
-    );
+    return <ErrorBanner error={errorObj} />;
   }
 
   if (isLoading && !flattenData) {
     return (
-      <div className="flex justify-center" data-testid="listing-spinner-container">
+      <div
+        className="flex justify-center"
+        data-testid="listing-spinner-container"
+      >
         <OdsSpinner />
       </div>
     );

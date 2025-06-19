@@ -11,11 +11,8 @@ export type {{pascalCase this.functionName}}Params = {
 
 {{/if}}
 export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(
-  params: {{pascalCase this.functionName}}Params
-) => [
-  `{{this.httpMethod}}{{this.url}}`
-]{{else}}[
-  '{{this.httpMethod}}{{this.url}}'
+  params: {{pascalCase this.functionName}}Params,
+) => [`{{this.httpMethod}}{{this.url}}`]{{else}}[{{this.httpMethod}}{{this.url}}',
 ]{{/if}};
 
 {{#if this.description}}
@@ -24,11 +21,9 @@ export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(
  */
 {{/if}}
 export const {{this.functionName}} = async (
-  {{#if this.params}}params: {{pascalCase this.functionName}}Params{{/if}}
+  {{#if this.params}}params: {{pascalCase this.functionName}}Params{{/if}},
 ) =>
-  apiClient.{{this.apiVersion}}.{{this.httpMethod}}(
-    {{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}}
-  );
+  apiClient.{{this.apiVersion}}.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
 {{/each}}
 {{#ifEq arg1=apiVersion arg2=mainApiPathApiVersion}}
 
