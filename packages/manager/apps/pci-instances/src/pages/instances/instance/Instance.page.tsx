@@ -39,7 +39,7 @@ const Instance: FC = () => {
     regionId: string;
   };
   const dashboardPath = useResolvedPath('');
-  const vncPath = useResolvedPath('vnc');
+  const vncPath = useResolvedPath(`../${instanceId}/vnc`);
 
   const { data: instance, isLoading } = useRegionInstance(
     project.project_id,
@@ -50,19 +50,24 @@ const Instance: FC = () => {
     },
   );
 
-  const tabs = useMemo(
-    () => [
+  const tabs = useMemo(() => {
+    const defaultTab = [
       {
         label: t('pci_instances_dashboard_tab_info_title'),
         to: dashboardPath.pathname,
       },
-      {
-        label: t('pci_instances_dashboard_tab_vnc_title'),
-        to: vncPath.pathname,
-      },
-    ],
-    [],
-  );
+    ];
+
+    return instance?.isEditionEnabled
+      ? [
+          ...defaultTab,
+          {
+            label: t('pci_instances_dashboard_tab_vnc_title'),
+            to: vncPath.pathname,
+          },
+        ]
+      : defaultTab;
+  }, [dashboardPath.pathname, vncPath.pathname, t, instance?.isEditionEnabled]);
 
   return (
     <InstanceWrapper>
