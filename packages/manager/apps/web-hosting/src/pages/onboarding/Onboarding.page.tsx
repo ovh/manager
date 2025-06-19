@@ -9,7 +9,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import useGuides from '@/hooks/useGuides';
-import onboardingImgSrc from './onboarding.svg';
+import onboardingImgSrc from './onboarding.svg?url';
 import { GO_TO, ORDER_CTA } from '@/utils/tracking.constants';
 import { ORDER_LINK } from './onboarding.constants';
 
@@ -64,7 +64,7 @@ export default function Onboarding() {
   return (
     <OnboardingLayout
       title={t('title')}
-      img={{ src: onboardingImgSrc }}
+      img={{ src: onboardingImgSrc, alt: '' }}
       description={
         <OdsText className="text-center">{t('description')}</OdsText>
       }
