@@ -37,6 +37,7 @@ import {
   useHref,
   useRouteLoaderData,
 } from 'react-router-dom';
+import clsx from 'clsx';
 import NotFoundPage from '../404/NotFound.page';
 import DatagridComponent from '@/components/datagrid/Datagrid.component';
 import { useInstances } from '@/data/hooks/instance/useInstances';
@@ -265,7 +266,7 @@ const Instances: FC = () => {
               </OsdsPopover>
             </div>
           </div>
-          <div className="my-5">
+          <div className={clsx({ 'mt-8': filters.length })}>
             <FilterList filters={filters} onRemoveFilter={removeFilter} />
           </div>
           <DatagridComponent

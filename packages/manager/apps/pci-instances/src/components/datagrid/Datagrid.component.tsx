@@ -324,22 +324,20 @@ const DatagridComponent = ({
   }, [isError, addError, t, errorMessage]);
 
   return (
-    <div className="overflow-x-auto">
-      <div className="mt-8">
-        <Datagrid
-          columns={datagridColumns}
-          hasNextPage={!isFetchingNextPage && !isRefetching && hasNextPage}
-          items={data}
-          onFetchNextPage={fetchNextPage}
-          totalItems={data.length}
-          sorting={sorting}
-          onSortChange={onSortChange}
-          manualSorting
-          className={
-            '[&_osds-table_table_thead_tr_th]:bg-[--ods-color-default-050]'
-          }
-        />
-      </div>
+    <div className="overflow-x-auto mt-8">
+      <Datagrid
+        columns={datagridColumns}
+        hasNextPage={!isFetchingNextPage && !isRefetching && hasNextPage}
+        items={data}
+        onFetchNextPage={fetchNextPage}
+        totalItems={data.length}
+        sorting={sorting}
+        onSortChange={onSortChange}
+        manualSorting
+        className={
+          '[&_osds-table_table_thead_tr_th]:bg-[--ods-color-default-050] [&_osds-table]:mb-8'
+        }
+      />
     </div>
   );
 };
