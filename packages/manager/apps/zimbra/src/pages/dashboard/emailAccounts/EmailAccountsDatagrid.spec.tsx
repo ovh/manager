@@ -22,8 +22,6 @@ describe('EmailAccounts datagrid', () => {
     );
 
     // columns are displayed
-    expect(
-      getByText(commonTranslation.email_account),
-    ).toBeTruthy();
+    expect(getByText(commonTranslation.email_account)).toBeTruthy();
   });
 });
