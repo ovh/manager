@@ -6,13 +6,15 @@ export type RuleZodSchema =
   | z.ZodEffects<z.ZodString, string, string>
   | z.ZodOptional<z.ZodString | z.ZodEffects<z.ZodString, string, string>>;
 
-export const toZodField = (field: Rule): RuleZodSchema => {
-  let zodSchema: RuleZodSchema = z.string({
-    required_error: 'required_field',
-  });
+const toZodField = (field: Rule): RuleZodSchema => {
+  let zodSchema: RuleZodSchema = z
+    .string({
+      required_error: 'required_field',
+    })
+    .min(1, 'required_field');
 
   if (field.in) {
-    zodSchema = zodSchema.refine((value) => field.in.includes(value));
+    zodSchema = zodSchema.refine((value) => field.in?.includes(value));
   } else {
     if (field.maxLength) {
       zodSchema = zodSchema.max(field.maxLength, 'error_max_chars');
@@ -38,7 +40,7 @@ export const toZodField = (field: Rule): RuleZodSchema => {
   return zodSchema;
 };
 
-export const toZodSchema = (fields: Record<string, Rule>) =>
+export const useZodSchemaGenerator = (fields: Record<string, Rule>) =>
   z.object(
     Object.keys(fields).reduce((acc, fieldName) => {
       acc[fieldName] = toZodField(fields[fieldName]);
@@ -46,7 +48,7 @@ export const toZodSchema = (fields: Record<string, Rule>) =>
     }, {} as Record<string, RuleZodSchema>),
   );
 
-export const useTranslatedZodError = (errorMessage: string, rule: Rule) => {
+export const useZodTranslatedError = (errorMessage: string, rule: Rule) => {
   switch (errorMessage) {
     case 'error_max_chars':
       return {
