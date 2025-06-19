@@ -1,5 +1,6 @@
 {
   "account_details_title": "Renseignez vos informations",
+  "account_details_info_message": "Assurez-vous que les informations que vous avez renseignées sont exactes.",
   "account_details_corporation_title": "Vérifiez et validez les informations de l'entreprise",
   "account_details_section_personal": "Informations personnelles",
   "account_details_section_legal": "Informations légales",
@@ -21,5 +22,7 @@
   "account_details_phone_type_option_landline": "Téléphone fixe",
   "account_details_field_preferred_language": "Langue préférée",
   "account_details_field_confirm_send": "Je déclare l'exactitude des informations renseignées.",
-  "account_details_button_validate": "Valider"
+  "account_details_button_validate": "Valider",
+  "account_details_error_message": "Veuillez vérifier les champs marqués en rouge.",
+  "account_details_success_message": "Vos informations ont été enregistrées avec succès."
 }
