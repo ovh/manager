@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { LogsToCustomerModule } from '@ovh-ux/logs-to-customer';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { FEATURES } from '@/utils/features.constant';
 import { useVmwareVsphere } from '@/data/hooks/useVmwareVsphere';
+import LogsOnboarding from './LogsOnboarding.component';
 
 const LogsPage: React.FC = () => {
   const { serviceName } = useParams();
@@ -44,25 +45,27 @@ const LogsPage: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <LogsToCustomerModule
-        logApiVersion="v6"
-        logApiUrls={{
-          logKind: `/dedicatedCloud/${serviceName}/log/kind`,
-          logSubscription: `/dedicatedCloud/${serviceName}/log/subscription`,
-          logUrl: `/dedicatedCloud/${serviceName}/log/url`,
-        }}
-        logIamActions={{
-          postSubscription: [
-            'pccVMware:apiovh:log/subscription/create',
-            'ldp:apiovh:output/graylog/stream/forwardTo',
-          ],
-          deleteSubscription: ['pccVMware:apiovh:log/subscription/delete'],
-        }}
-        resourceURN={vmwareVsphere.data.iam.urn}
-        // trackingOptions={{ trackingSuffix: 'vsphere' }} // TODO
-      />
-    </div>
+    <LogsOnboarding>
+      <div className="flex flex-col gap-4">
+        <LogsToCustomerModule
+          logApiVersion="v6"
+          logApiUrls={{
+            logKind: `/dedicatedCloud/${serviceName}/log/kind`,
+            logSubscription: `/dedicatedCloud/${serviceName}/log/subscription`,
+            logUrl: `/dedicatedCloud/${serviceName}/log/url`,
+          }}
+          logIamActions={{
+            postSubscription: [
+              'pccVMware:apiovh:log/subscription/create',
+              'ldp:apiovh:output/graylog/stream/forwardTo',
+            ],
+            deleteSubscription: ['pccVMware:apiovh:log/subscription/delete'],
+          }}
+          resourceURN={vmwareVsphere.data.iam.urn}
+          // trackingOptions={{ trackingSuffix: 'vsphere' }} // TODO
+        />
+      </div>
+    </LogsOnboarding>
   );
 };
 
