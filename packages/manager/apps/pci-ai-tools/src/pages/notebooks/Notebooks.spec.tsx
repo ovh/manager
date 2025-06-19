@@ -11,6 +11,10 @@ import {
   mockedFramework,
   mockedFrameworkBis,
 } from '@/__tests__/helpers/mocks/capabilities/notebookFramework';
+import {
+  mockedCapabilitiesRegionBHS,
+  mockedCapabilitiesRegionGRA,
+} from '@/__tests__/helpers/mocks/capabilities/region';
 
 const NotebookProps = {
   params: {
@@ -34,6 +38,10 @@ describe('Notebooks List page', () => {
     }));
 
     vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
+      getRegions: vi.fn(() => [
+        mockedCapabilitiesRegionBHS,
+        mockedCapabilitiesRegionGRA,
+      ]),
       getFramework: vi.fn(() => [mockedFramework, mockedFrameworkBis]),
     }));
   });

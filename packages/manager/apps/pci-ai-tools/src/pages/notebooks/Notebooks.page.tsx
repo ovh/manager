@@ -13,7 +13,10 @@ import {
   EmulatorRoadmapLinks,
   NotebookRoadmapLinks,
 } from '@/configuration/roadmap-changelog.constants';
-import { getFramework } from '@/data/api/ai/capabilities/capabilities.api';
+import {
+  getFramework,
+  getRegions,
+} from '@/data/api/ai/capabilities/capabilities.api';
 import { useQuantum } from '@/hooks/useQuantum.hook';
 
 interface NotebooksProps {
@@ -26,13 +29,17 @@ interface NotebooksProps {
 
 export const Loader = async ({ params }: NotebooksProps) => {
   const { projectId, quantum } = params;
+  const regions = await queryClient.fetchQuery({
+    queryKey: [projectId],
+    queryFn: () => getRegions({ projectId }),
+  });
   const notebooks = await queryClient.fetchQuery({
     queryKey: [projectId, 'ai', 'notebook'],
     queryFn: () => getNotebooks({ projectId }),
   });
   const fmks = await queryClient.fetchQuery({
-    queryKey: [projectId, 'ai', 'capabilities', 'region', 'framework'],
-    queryFn: () => getFramework({ projectId, region: 'GRA' }),
+    queryKey: [projectId, 'ai', 'capabilities', regions[0].id, 'framework'],
+    queryFn: () => getFramework({ projectId, region: regions[0].id }),
   });
   const filterFmkIds = fmks
     .filter((fmk) =>
