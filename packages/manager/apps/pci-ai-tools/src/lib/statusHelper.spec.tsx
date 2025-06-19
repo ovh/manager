@@ -59,7 +59,6 @@ describe('notebookHelper', () => {
     expect(isRunningJob(ai.job.JobStateEnum.INITIALIZING)).toBe(true);
     expect(isRunningJob(ai.job.JobStateEnum.PENDING)).toBe(true);
     expect(isRunningJob(ai.job.JobStateEnum.QUEUED)).toBe(true);
-    expect(isRunningJob(ai.job.JobStateEnum.INTERRUPTING)).toBe(true);
     expect(isRunningJob(ai.job.JobStateEnum.INTERRUPTED)).toBe(false);
   });
 
@@ -70,6 +69,7 @@ describe('notebookHelper', () => {
     expect(isStoppedJob(ai.job.JobStateEnum.INTERRUPTED)).toBe(true);
     expect(isStoppedJob(ai.job.JobStateEnum.SYNC_FAILED)).toBe(true);
     expect(isStoppedJob(ai.job.JobStateEnum.TIMEOUT)).toBe(true);
+    expect(isStoppedJob(ai.job.JobStateEnum.INTERRUPTING)).toBe(true);
     expect(isStoppedJob(ai.job.JobStateEnum.RUNNING)).toBe(false);
   });
 });

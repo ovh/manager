@@ -40,7 +40,6 @@ export const isRunningJob = (currentState: ai.job.JobStateEnum) =>
     ai.job.JobStateEnum.INITIALIZING,
     ai.job.JobStateEnum.PENDING,
     ai.job.JobStateEnum.QUEUED,
-    ai.job.JobStateEnum.INTERRUPTING,
   ].includes(currentState);
 
 export const isStoppedJob = (currentState: ai.job.JobStateEnum) =>
