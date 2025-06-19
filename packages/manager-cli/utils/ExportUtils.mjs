@@ -1,9 +1,34 @@
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import { dirname, resolve, join } from 'path';
+import { dirname, resolve } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 export const reportOutputBasePath = resolve(__dirname, '../../../migration-status-reports');
+
+export const buildRoutesReportFileName = (outputFormat) => outputFormat === 'json'
+  ? `${reportOutputBasePath}/routes-migration-report.json`
+  : outputFormat === 'html'
+    ? `${reportOutputBasePath}/routes-migration-report.html`
+    : null;
+
+export const buildSwcReportFileName = (outputFormat) => outputFormat === 'json'
+  ? `${reportOutputBasePath}/swc-migration-report.json`
+  : outputFormat === 'html'
+    ? `${reportOutputBasePath}/swc-migration-report.html`
+    : null;
+
+export const buildTestsReportFileName = (outputFormat) => outputFormat === 'json'
+  ? `${reportOutputBasePath}/tests-migration-report.json`
+  : outputFormat === 'html'
+    ? `${reportOutputBasePath}/tests-migration-report.html`
+    : null;
+
+export const buildMergedReportFileName = (outputFormat) =>
+  outputFormat === 'json'
+    ? `${reportOutputBasePath}/migration-status-full-report.json`
+    : outputFormat === 'html'
+      ? `${reportOutputBasePath}/migration-status-full-report.html`
+      : null;
 
 /**
  * Ensure directory exists.
@@ -82,5 +107,50 @@ export const renderReport = (report, { title, statusKeys, format, filename }) =>
   console.log('\n📊 Summary:');
   Object.entries(summary).forEach(([status, count]) => {
     console.log(`  ${status.padEnd(12)}: ${count}`);
+  });
+};
+
+/**
+ * Build merged migration report
+ * @returns {any[]}
+ */
+const buildMergedMigrationReport = () => {
+  const reportSources = {
+    'Routes Migration': buildRoutesReportFileName('json'),
+    'Tests Migration': buildTestsReportFileName('json'),
+    'SWC Migration': buildSwcReportFileName('json'),
+  };
+
+  const mergedMap = new Map();
+
+  for (const [label, filePath] of Object.entries(reportSources)) {
+    try {
+      const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+      for (const entry of content) {
+        const app = entry.Application;
+        if (!mergedMap.has(app)) mergedMap.set(app, { Application: app });
+        mergedMap.get(app)[label] = entry[label];
+      }
+    } catch (err) {
+      console.warn(`⚠️ Could not load ${filePath}: ${err.message}`);
+    }
+  }
+
+  return Array.from(mergedMap.values());
+};
+
+/**
+ * Render merged migration report (routes + tests + swc).
+ * Honors format: json, html, or undefined (logs to console).
+ */
+export const renderMergedReport = ({ format }) => {
+  const filename = buildMergedReportFileName(format);
+  const mergedReport = buildMergedMigrationReport();
+
+  renderReport(mergedReport, {
+    title: 'Merged Migration Status',
+    statusKeys: ['Routes Migration', 'Tests Migration', 'SWC Migration'],
+    format,
+    filename,
   });
 };

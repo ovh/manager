@@ -18,3 +18,4 @@ coverage
 .vscode
 .DS_Store
 .xtmrc.yaml
+**/migration-status-reports/**

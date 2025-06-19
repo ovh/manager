@@ -39,18 +39,23 @@ yarn manager-cli tests-migrate --app zimbra --testType unit --dry-run`
     description: 'Check status of all migrations across all apps',
     help: `
 # Check all migrations
-yarn manager-cli migrations-status
+yarn manager-cli migrations-status --type all
 
 # Filter by type (routes, tests or swc)
 yarn manager-cli migrations-status --type routes
+yarn manager-cli migrations-status --type tests
+yarn manager-cli migrations-status --type swc
 
 # Export as HTML or JSON
-yarn manager-cli migrations-status --format html
-yarn manager-cli migrations-status --format json`
+yarn manager-cli migrations-status --type routes --format json
+yarn manager-cli migrations-status --type tests --format html
+
+yarn manager-cli migrations-status --type all --format html
+yarn manager-cli migrations-status --type all --format json`
   }
 };
 
-const validMigrationTypes = ['routes', 'tests', 'swc'];
+const validMigrationTypes = ['routes', 'tests', 'swc', 'all'];
 const validTestTypes = ['unit', 'integration'];
 const validFormats = ['json', 'html'];
 
