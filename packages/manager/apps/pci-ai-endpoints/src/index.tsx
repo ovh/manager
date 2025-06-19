@@ -11,13 +11,12 @@ import './vite-hmr';
 import '@ovh-ux/manager-pci-common/dist/style.css';
 
 import './index.scss';
-
 import {
-  UNIVERSE,
-  SUB_UNIVERSE,
   APP_NAME,
   LEVEL2,
-} from './configuration/pci.constant';
+  SUB_UNIVERSE,
+  UNIVERSE,
+} from './configuration/tracking.constants';
 
 const trackingContext = {
   chapter1: UNIVERSE,
