@@ -1,15 +1,11 @@
-import { ComponentProps } from 'react';
-import { OdsBadge, OdsSkeleton } from '@ovhcloud/ods-components/react';
 
-export interface BadgeProps extends ComponentProps<typeof OdsBadge> {
-  isLoading?: boolean;
-  'data-testid'?: string;
-}
+import { Badge as OdsBadge, Skeleton } from '@ovhcloud/ods-react';
+import { BadgeProps } from './badge.props';
 
-export const Badge = ({ isLoading, ...props }: BadgeProps) => {
+export const Badge = ({ children, isLoading, ...props }: BadgeProps) => {
   return isLoading ? (
-    <OdsSkeleton data-testid={`${props['data-testid']}`} />
+    <Skeleton data-testid={`${props['data-testid']}`} />
   ) : (
-    <OdsBadge {...props} />
+    <OdsBadge {...props}>{children}</OdsBadge>
   );
 };
