@@ -1,7 +1,7 @@
 import { AxiosError, isAxiosError } from 'axios';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { isApiErrorResponse, isMaxQuotaReachedError } from './error.typeguards';
-import { TErrorClass, AxiosCustomError } from '../../types/error.type';
+import { isApiCustomError, isMaxQuotaReachedError } from './error.guard';
+import { ApiErrorClass, TApiCustomError } from '../../../types/error.type';
 
 vi.mock('axios', () => ({
   isAxiosError: vi.fn(),
@@ -12,100 +12,100 @@ beforeEach(() => {
   vi.clearAllMocks();
 });
 
-describe('error.typeguards', () => {
-  describe('isApiErrorResponse', () => {
-    it('should return true for valid API error response', () => {
+describe('Typeguard functions', () => {
+  describe('isApiCustomError typeguard', () => {
+    it('should return true for custom API error response', () => {
       vi.mocked(isAxiosError).mockReturnValue(true);
 
-      const mockError: AxiosCustomError = {
+      const mockError: unknown = {
         response: {
           data: {
             class: 'SomeErrorClass',
             message: 'Some error message',
           },
         },
-      } as AxiosCustomError;
+      };
 
-      expect(isApiErrorResponse(mockError)).toBe(true);
+      expect(isApiCustomError(mockError)).toBe(true);
     });
 
     it('should return false for non-Axios error', () => {
       const mockError = new Error('Regular error');
 
-      expect(isApiErrorResponse(mockError)).toBe(false);
+      expect(isApiCustomError(mockError)).toBe(false);
     });
 
     it('should return false for Axios error without response data', () => {
-      const mockError = new AxiosError('Network error') as AxiosCustomError;
+      const mockError = new AxiosError('Network error');
 
-      expect(isApiErrorResponse(mockError)).toBe(false);
+      expect(isApiCustomError(mockError)).toBe(false);
     });
 
     it('should return false for Axios error with missing message property', () => {
-      const mockError: AxiosCustomError = {
+      const mockError: unknown = {
         response: {
           data: {
             class: 'SomeErrorClass',
             // message is missing
           },
         },
-      } as AxiosCustomError;
+      };
 
-      expect(isApiErrorResponse(mockError)).toBe(false);
+      expect(isApiCustomError(mockError)).toBe(false);
     });
 
     it('should return false for Axios error with non-object data', () => {
-      const mockError: AxiosCustomError = {
+      const mockError: unknown = {
         response: {
-          data: 'string data' as any,
+          data: 'string data',
         },
-      } as AxiosCustomError;
+      };
 
-      expect(isApiErrorResponse(mockError)).toBe(false);
+      expect(isApiCustomError(mockError)).toBe(false);
     });
 
     it('should return false for null/undefined error', () => {
-      expect(isApiErrorResponse(null)).toBe(false);
-      expect(isApiErrorResponse(undefined)).toBe(false);
+      expect(isApiCustomError(null)).toBe(false);
+      expect(isApiCustomError(undefined)).toBe(false);
     });
   });
 
-  describe('isMaxQuotaReachedError', () => {
+  describe('isMaxQuotaReachedError function', () => {
     it('should return true for error class containing MaxQuotaReached', () => {
-      const mockError: AxiosCustomError = {
+      const mockError = {
         response: {
           data: {
-            class: `SomePrefix${TErrorClass.MaxQuotaReached}SomeSuffix`,
+            class: `SomePrefix${ApiErrorClass.MaxQuotaReached}SomeSuffix`,
             message: 'Some error',
           },
         },
-      } as AxiosCustomError;
+      } as TApiCustomError;
 
       expect(isMaxQuotaReachedError(mockError)).toBe(true);
     });
 
     it('should return false for different error class', () => {
-      const mockError: AxiosCustomError = {
+      const mockError = {
         response: {
           data: {
             class: 'OtherErrorClass',
             message: 'Some error',
           },
         },
-      } as AxiosCustomError;
+      } as TApiCustomError;
 
       expect(isMaxQuotaReachedError(mockError)).toBe(false);
     });
 
     it('should return false for empty class string', () => {
-      const mockError: AxiosCustomError = {
+      const mockError = {
         response: {
           data: {
             class: '',
             message: 'Some error',
           },
         },
-      } as AxiosCustomError;
+      } as TApiCustomError;
 
       expect(isMaxQuotaReachedError(mockError)).toBe(false);
     });

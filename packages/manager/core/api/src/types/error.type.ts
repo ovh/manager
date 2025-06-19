@@ -1,11 +1,11 @@
 import { AxiosError } from 'axios';
 
-export enum TErrorClass {
+export enum ApiErrorClass {
   MaxQuotaReached = 'MaxQuotaReached',
 }
-export type DataResponse = {
+export type TApiDataResponse = {
   class: string;
   message: string;
 };
 
-export type AxiosCustomError = AxiosError<DataResponse>;
+export type TApiCustomError = AxiosError<TApiDataResponse>;
