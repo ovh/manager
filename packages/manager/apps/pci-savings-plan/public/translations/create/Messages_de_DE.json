@@ -14,7 +14,7 @@
   "quantity_banner_see_more": "Mehr erfahren",
   "quantity_banner_instance": "Die maximale Menge an Ressourcen, die Sie starten können, hängt vom Kontingent Ihres Public Cloud Projekts ab. Weitere Informationen zu Ihren Kontingenten finden Sie hier: ",
   "quantity_banner_instance_link": "Quota and Regions",
-  "quantity_banner_rancher": "Für die Rechnungsstellung des Managed Rancher Service werden mindestens 20 vCPU zugrunde gelegt. Sie können jedoch einen Savings Plan ab 1 vCPU erstellen.",
+  "quantity_banner_rancher": "Die Mindestnutzung für Managed Rancher Service beträgt 20 vCPUs pro Rancher. Sie können jedoch einen oder mehrere Savings Plans ab 1 vCPU erstellen. Die abonnierten vCPUs werden von der Gesamtzahl der genutzten vCPUs abgezogen.",
   "select_commitment": "Vertragslaufzeit auswählen",
   "select_commitment_description": "Mit einer längeren Vertragslaufzeit erhalten Sie einen höheren Rabatt.",
   "choose_name": "Namen angeben",
@@ -45,6 +45,8 @@
   "choose_deployment": "Bereitstellungsmodus auswählen",
   "choose_deployment_description": "Wählen Sie die optimale Konfiguration für Ihre Use Cases aus, um Verfügbarkeit, Resilienz und eine angemessene Latenz für Ihre Daten zu gewährleisten.",
   "region": "Region",
-  "deployment_one_az": "Resiliente und kostengünstige Bereitstellung in 1 Availability Zone.",
-  "deployment_three_az": "Bereitstellung mit hoher Resilienz/hoher Verfügbarkeit für Ihre kritischen Anwendungen in 3 Availability Zones."
+  "deployment_one_az": "Resiliente und kostengünstige Bereitstellung in 1 Verfügbarkeitszone.",
+  "deployment_three_az": "Bereitstellung mit hoher Resilienz/Hochverfügbarkeit für kritische Anwendungen in 3 Verfügbarkeitszonen.",
+  "choose_ressource_description_info": "Sie können Ihre Dienste weiter wie gewohnt verwalten. Die Plattform berechnet automatisch Ihre Nutzung basierend auf den Konfigurationen Ihrer Savings Plans und der Nutzung Ihrer bestehenden oder künftigen Ressourcen.",
+  "select_quantity_description_rancher_info": "Rancher wird je nach Gesamtzahl der vCPUs jedes Worker-Nodes Ihrer Downstream-Cluster abgerechnet. Die vCPUs der Control-Plane-Nodes werden nicht abgerechnet."
 }
