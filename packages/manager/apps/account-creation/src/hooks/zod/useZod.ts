@@ -11,6 +11,7 @@ const toZodField = (field: Rule): RuleZodSchema => {
     .string({
       required_error: 'required_field',
     })
+    .trim()
     .min(1, 'required_field');
 
   if (field.in) {
