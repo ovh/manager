@@ -1,6 +1,6 @@
 import { Outlet, useParams } from 'react-router-dom';
-import { useState, useMemo, useEffect } from 'react';
-import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
+import { useState, useMemo } from 'react';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsButton,
   OsdsIcon,
