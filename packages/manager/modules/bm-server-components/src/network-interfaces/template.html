@@ -38,7 +38,7 @@
         ></span>
     </oui-button>
     <oui-button
-        data-ng-if="!$ctrl.isFullyAggregated"
+        data-ng-if="!$ctrl.isFullyAggregated && $ctrl.ola.isAvailable()"
         data-variant="primary"
         data-ui-sref=".ola-configuration"
     >

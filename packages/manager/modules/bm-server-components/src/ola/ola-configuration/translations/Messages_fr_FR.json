@@ -15,7 +15,7 @@
   "dedicated_server_interfaces_ola_column_bandwidth_incoming": "Bande passante entrante",
 
   "dedicated_server_interfaces_ola_network_interfaces": "Votre interface réseau actuelle",
-  "dedicated_server_interfaces_ola_network_interfaces_after": "Votre interface réseau après activation",
+  "dedicated_server_interfaces_ola_network_interfaces_after": "Simulation d'interface réseau après l'activation de l'aggregation des liens",
 
   "dedicated_server_interfaces_ola_field_mode_label": "Choisissez un mode",
   "dedicated_server_interfaces_ola_field_mode_description": "OLA est capable de proposer differents types de configuration des interfaces",
@@ -25,6 +25,7 @@
   "dedicated_server_interfaces_ola_field_mode_choice_vrack_aggregation_description": "Les 2 interfaces réseau du serveur sont utilisées pour le réseau privé (vRack). Chaque lien dispose alors de la bande passante de base ou prise en option. A savoir : le serveur n'est dès lors plus accessible par son IP publique.",
   "dedicated_server_interfaces_ola_field_name_label": "Nommez l'interface",
   "dedicated_server_interfaces_ola_field_name_placeholder": "Nom de l'interface",
+  "dedicated_server_interfaces_ola_activate": "Activer l'aggregation",
 
   "dedicated_server_interfaces_ola_step1_title": "Configurez votre OLA",
   "dedicated_server_interfaces_ola_step2_title": "Sélectionnez vos interfaces",
