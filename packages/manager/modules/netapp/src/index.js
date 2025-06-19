@@ -20,3 +20,4 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
 );
 
 export default moduleName;
+// add a commentto test the new script of build
