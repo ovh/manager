@@ -3,18 +3,12 @@
 import { getReactApplications, resolveRoutePath } from '../../utils/AppUtils.mjs';
 import fs from 'fs/promises';
 import { existsSync } from 'fs';
-import { renderReport, reportOutputBasePath } from '../../utils/ExportUtils.mjs';
+import { buildRoutesReportFileName, renderReport } from '../../utils/ExportUtils.mjs';
 
 const args = process.argv.slice(2);
 const isDryRun = args.includes('--dry-run');
 const formatArgIndex = args.findIndex(arg => arg === '--format');
 const format = formatArgIndex !== -1 ? args[formatArgIndex + 1] : null;
-
-const outputFile = format === 'json'
-  ? `${reportOutputBasePath}/routes-migration-report.json`
-  : format === 'html'
-    ? `${reportOutputBasePath}/routes-migration-report.html`
-    : null;
 
 /**
  * Check if an app's route file is migrated to JSX-style.
@@ -55,7 +49,7 @@ const generateRoutesMigrationsStatusReport = async () => {
     title: 'Follow Up Routes Migration',
     statusKeys: ['Routes Migration'],
     format,
-    filename: outputFile,
+    filename: buildRoutesReportFileName(format),
   });
 };
 

@@ -5,19 +5,13 @@ import path from 'path';
 import { applicationsBasePath, getReactApplications } from '../../utils/AppUtils.mjs';
 import { babelConfigurationFiles, REQUIRED_DEP_VERSIONS, satisfiesVersion } from '../../utils/DependenciesUtils.mjs';
 import { getTestMigrationStatus } from '../../utils/TestUtils.mjs';
-import { renderReport, reportOutputBasePath } from '../../utils/ExportUtils.mjs';
+import { buildSwcReportFileName, renderReport } from '../../utils/ExportUtils.mjs';
 
 const args = process.argv.slice(2);
 const isDryRun = args.includes('--dry-run');
 
 const formatArgIndex = args.findIndex(arg => arg === '--format');
 const format = formatArgIndex !== -1 ? args[formatArgIndex + 1] : null;
-
-const outputFile = format === 'json'
-  ? `${reportOutputBasePath}/swc-migration-report.json`
-  : format === 'html'
-    ? `${reportOutputBasePath}/swc-migration-report.html`
-    : null;
 
 /**
  * Check whether an app is migrated to SWC.
@@ -108,7 +102,7 @@ const generateSwcMigrationsStatusReport = () => {
     title: 'Follow Up SWC Migration',
     statusKeys: ['SWC Migration'],
     format,
-    filename: outputFile,
+    filename: buildSwcReportFileName(format),
   });
 };
 

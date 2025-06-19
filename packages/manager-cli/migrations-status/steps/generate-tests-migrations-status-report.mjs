@@ -2,7 +2,7 @@
 
 import { getReactApplications } from '../../utils/AppUtils.mjs';
 import { getTestMigrationStatus } from '../../utils/TestUtils.mjs';
-import { renderReport, reportOutputBasePath } from '../../utils/ExportUtils.mjs';
+import { buildTestsReportFileName, renderReport } from '../../utils/ExportUtils.mjs';
 
 const args = process.argv.slice(2);
 const isDryRun = args.includes('--dry-run');
@@ -11,12 +11,6 @@ const format = formatArgIndex !== -1 ? args[formatArgIndex + 1] : null;
 
 const appArgIndex = args.findIndex(arg => arg === '--app');
 const appFilter = appArgIndex !== -1 ? args[appArgIndex + 1] : null;
-
-const outputFile = format === 'json'
-  ? `${reportOutputBasePath}/tests-migration-report.json`
-  : format === 'html'
-    ? `${reportOutputBasePath}/tests-migration-report.html`
-    : null;
 
 /**
  * Generates and prints a Tests migration status table for all applications.
@@ -32,7 +26,7 @@ const generateTestsMigrationsStatusReport = () => {
     title: 'Follow Up Tests Migration',
     statusKeys: ['Tests Migration'],
     format,
-    filename: outputFile,
+    filename: buildTestsReportFileName(format),
   });
 };
 

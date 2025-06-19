@@ -20,6 +20,7 @@ export const runMigration = ({
    dryRun = false,
    docLink = null,
    statusOnly = false,
+   onEnd = () => {}
 }) => {
   const appPath = appName ? path.join(basePath, appName) : null;
 
@@ -86,6 +87,10 @@ export const runMigration = ({
     process.exit(1);
   }
 
+  if ((dryRun || statusOnly)  && typeof onEnd === 'function') {
+    onEnd();
+  }
+
   if (dryRun || !appName || statusOnly) return;
 
   const appFullPath = join('packages', 'manager', 'apps', appName, '**', formatGlob);
@@ -135,5 +140,9 @@ export const runMigration = ({
       console.error(error);
       process.exit(1);
     }
+  }
+
+  if ((dryRun || statusOnly)  && typeof onEnd === 'function') {
+    onEnd();
   }
 };
