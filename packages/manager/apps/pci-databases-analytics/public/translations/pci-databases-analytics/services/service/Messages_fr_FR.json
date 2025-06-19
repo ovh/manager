@@ -11,6 +11,7 @@
   "LogsTab": "Logs",
   "SettingsTab": "Configuration",
   "IndexPatternsTab": "Index patterns",
+  "ConnectorsTab": "Connectors",
   "renameServiceToastErrorTitle": "Erreur lors du changement de nom de votre service",
   "renameServiceToastSuccessTitle": "Service renommé",
   "renameServiceToastSuccessDescription": "Le nom de votre service a été mis à jour.",
