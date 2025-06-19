@@ -5,7 +5,6 @@ import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import serverBandwidthDashboard from '../bandwidth-dashboard';
-import component from './component';
 import olaReset from './ola-reset/ola-reset.module';
 import olaConfiguration from './ola-configuration/ola-configuration.module';
 import olaPendingTask from './ola-pending-task/ola-pending-task.module';
@@ -26,7 +25,6 @@ angular
     olaConfiguration,
     olaPendingTask,
   ])
-  .component('serverOla', component)
   .constant('olaConstants', constants)
   .service('olaService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
