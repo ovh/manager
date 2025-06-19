@@ -1,4 +1,21 @@
 {
   "cda_title": "Cloud Disk Array",
-  "cda_order": "Order"
+  "cda_order": "Order",
+  "cda_columns_header_serviceName": "Service",
+  "cda_columns_header_cephVersion": "Version",
+  "cda_columns_header_createDate": "Created on",
+  "cda_columns_header_crushTunables": "Crush tunables",
+  "cda_columns_header_label": "Name",
+  "cda_columns_header_region": "Region",
+  "cda_columns_header_size": "Size",
+  "cda_columns_header_state": "State",
+  "cda_columns_header_state_ACTIVE": "Active",
+  "cda_columns_header_state_SUSPENDED": "Suspended",
+  "cda_columns_header_status": "Status",
+  "cda_columns_header_status_CREATING": "Creating",
+  "cda_columns_header_status_DELETED": "Deleted",
+  "cda_columns_header_status_DELETING": "Deleting",
+  "cda_columns_header_status_INSTALLED": "Installed",
+  "cda_columns_header_status_TASK_IN_PROGRESS": "Task in progress",
+  "cda_columns_header_updateDate": "Modified on"
 }
