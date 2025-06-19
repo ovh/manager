@@ -5,17 +5,22 @@ import { getAuthorization } from '@/data/api/ai/authorization.api';
 interface AuthLayoutProps {
   params: {
     projectId: string;
+    quantum: string;
   };
 }
 // check if the user has authentication
 export const Loader = async ({ params }: AuthLayoutProps) => {
-  const { projectId } = params;
+  const { projectId, quantum } = params;
   const authResult = await queryClient.fetchQuery({
     queryKey: [projectId, 'ai/authorization'],
     queryFn: () => getAuthorization({ projectId }),
   });
   if (!authResult.authorized) {
-    return redirect(`/pci/projects/${projectId}/ai-ml/auth`);
+    return redirect(
+      quantum === 'quantum'
+        ? `/pci/projects/${projectId}/ai-ml/quantum/auth`
+        : `/pci/projects/${projectId}/ai-ml/auth`,
+    );
   }
   return null;
 };
