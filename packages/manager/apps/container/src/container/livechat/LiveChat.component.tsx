@@ -134,6 +134,7 @@ export default function LiveChat({
      */
     if (chatbotOpen && chatType === null) {
       setChatType('Adrielly');
+      setChatState('open'); // initialize chat state to open
     }
 
     const livechatMessageEventHandler = async (
@@ -172,12 +173,12 @@ export default function LiveChat({
   }, []);
 
   useEffect(() => {
-    if (chatType === 'SNOW' && !snowContext.session_id) {
+    if (chatType === 'SNOW' && !snowContext.session_id && chatState === 'open') {
       fetchAuthToken().then((token) => {
         setSnowContext((prev) => ({ ...prev, session_id: token }));
       });
     }
-  }, [chatType]);
+  }, [chatType, chatState]);
 
   if (region === 'US') return null;
 
