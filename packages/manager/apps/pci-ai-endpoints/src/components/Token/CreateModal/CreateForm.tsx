@@ -1,8 +1,11 @@
-import { useMemo, useEffect } from 'react';
+import { useMemo, useEffect, useContext } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsFormField,
   OsdsText,
@@ -82,6 +85,7 @@ const CreateForm = ({
     },
   });
   const { trackClick } = useOvhTracking();
+  const { trackPage } = useContext(ShellContext).shell.tracking;
   const {
     control,
     handleSubmit,
@@ -108,7 +112,7 @@ const CreateForm = ({
     if (!isChecked) {
       setValue('expirationDate', infiniteDate);
     }
-    trackClick(TRACKING.apikey.createNewApikeyPopUpShow);
+    trackPage(TRACKING.apikey.createNewApikeyPopUpShow);
   }, [isChecked, infiniteDate, setValue]);
 
   const onSubmit = (data: FormValues) => {
