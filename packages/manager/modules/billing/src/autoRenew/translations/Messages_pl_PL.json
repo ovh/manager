@@ -164,5 +164,6 @@
   "billing_autorenew_service_every_6_month": "Co 6 miesięcy",
   "billing_autorenew_service_every_12_month": "Co rok",
   "billing_autorenew_engagement_none": "Bez umowy terminowej",
-  "billing_autorenew_service_type_ZIMBRA_SLOT": "Zimbra Starter"
+  "billing_autorenew_service_type_ZIMBRA_SLOT": "Zimbra Starter",
+  "billing_autorenew_service_type_HOSTING_WEB_EXTRA_SQL_PERSO": "Dodatkowy SQL Perso"
 }

@@ -108,7 +108,7 @@ const UserAccountMenu = ({
         : [];
 
       const myContracts = {
-        app: 'new-billing',
+        app: 'billing',
         key: 'myContracts',
         hash: '#/autorenew/agreements',
         i18nKey: 'user_account_menu_my_contracts',

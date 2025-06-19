@@ -66,7 +66,7 @@ export default class {
       : '';
     const type = this.service.renew.automatic ? 'auto' : 'manual';
     const period = this.service.renew.period
-      ? `_${this.service.renew.period}m`
+      ? `_${this.service.cleanRenewPeriod}m`
       : '';
     this.atInternet.trackClick({
       name: `autorenew::${kebabCase(

@@ -1,8 +1,0 @@
-{
-  "billing_main_history_debt_pay_title": "Pago del importe pendiente",
-  "billing_main_history_debt_pay_confirm": "Abonar el importe pendiente",
-  "billing_main_history_debt_pay_explanation": "Esta acción generará una orden de pedido válida durante una hora que le permitirá abonar el importe pendiente inmediatamente.",
-  "billing_main_history_debt_pay_success": "Se ha generado la <a href=\"{{t1}}\" target=\"_blank\" rel=\"noopener\">orden de pedido {{t0}}</a> para que pueda abonar el importe pendiente.",
-  "billing_main_history_debt_pay_error": "Se ha producido un error al abonar el importe pendiente.",
-  "billing_main_history_debt_pay_error_nothing_to_pay": "Actualmente tiene ningún pago pendiente."
-}
