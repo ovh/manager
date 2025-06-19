@@ -11,12 +11,10 @@ const RESCUE_TYPE = 'rescue';
 const RESCUE_IMAGE_NAME = 'rescue-ovh';
 
 export const imagesOptionsSelector = (data: TImage[]) => {
-  return (
-    data?.map((image) => ({
-      label: image.name,
-      value: image.id,
-    })) ?? []
-  );
+  return data.map((image) => ({
+    label: image.name,
+    value: image.id,
+  }));
 };
 
 export const imagesRescueSelector = (
