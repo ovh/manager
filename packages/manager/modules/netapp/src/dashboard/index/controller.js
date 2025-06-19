@@ -28,6 +28,7 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
   }
 
   $onInit() {
+    this.isNetworkTypePublic = !this.networkInformations;
     this.commitImpressionData = this.shouldReengage()
       ? RECOMMIT_IMPRESSION_TRACKING_DATA
       : COMMIT_IMPRESSION_TRACKING_DATA;
