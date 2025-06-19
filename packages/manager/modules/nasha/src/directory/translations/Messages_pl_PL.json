@@ -1,4 +1,16 @@
 {
   "nasha_directory_order_label": "Zamów usługę NAS-HA",
-  "nasha_directory_order_value": "Zamów usługę NAS-HA"
+  "nasha_directory_order_value": "Zamów usługę NAS-HA",
+  "nasha_directory_columns_header_serviceName": "ID usługi",
+  "nasha_directory_columns_header_canCreatePartition": "Tworzenie partycji",
+  "nasha_directory_columns_header_canCreatePartition_true": "Dozwolone",
+  "nasha_directory_columns_header_canCreatePartition_false": "Niedozwolone",
+  "nasha_directory_columns_header_customName": "Nazwa",
+  "nasha_directory_columns_header_datacenter": "Lokalizacja centrum danych",
+  "nasha_directory_columns_header_diskType": "Rodzaj dysku",
+  "nasha_directory_columns_header_monitored": "Monitorowany",
+  "nasha_directory_columns_header_monitored_true": "Tak",
+  "nasha_directory_columns_header_monitored_false": "Nie",
+  "nasha_directory_columns_header_zpoolCapacity": "Pojemność Zpool",
+  "nasha_directory_columns_header_zpoolSize": "Rozmiar Zpool"
 }
