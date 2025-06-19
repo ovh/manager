@@ -14,7 +14,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "prepare": "tsc"
+    "prepare": "tsc",
+    "test": "vitest"
   },
   "dependencies": {
     "@ovh-ux/manager-core-sso": "^0.3.1",
