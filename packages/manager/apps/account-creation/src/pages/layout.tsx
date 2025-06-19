@@ -6,7 +6,7 @@ import {
   useRouteSynchro,
 } from '@ovh-ux/manager-react-shell-client';
 import UserProvider from '@/context/user/user.provider';
-import ReassuranceWording from '@/pages/ReassuranceWording.component';
+import ReassuranceWording from '@/components/reassuranceWording/ReassuranceWording.component';
 import sideBackground from '@/assets/side_background.svg';
 import Header from '@/components/header/Header.component';
 
