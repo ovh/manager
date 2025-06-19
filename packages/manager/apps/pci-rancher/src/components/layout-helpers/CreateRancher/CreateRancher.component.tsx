@@ -254,26 +254,34 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
           type={ODS_MESSAGE_TYPE.info}
           className="my-6 flex items-center max-w-5xl"
         >
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="flex items-center"
-          >
-            <Trans>{t('savingsPlanMessage')}</Trans>
-          </OsdsText>
-          <OsdsLink
-            className="sm:mt-0 mt-4 sm:ml-4 ml-0"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            href={`${url}/savings-plan`}
-            target={OdsHTMLAnchorElementTarget._blank}
-          >
-            {t('savingsPlanCTA')}
-          </OsdsLink>
-          <OsdsIcon
-            className="ml-3"
-            name={ODS_ICON_NAME.ARROW_RIGHT}
-            size={ODS_ICON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          />
+          <div className="flex flex-col ">
+            <div>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                className="flex items-center mr-0"
+              >
+                {t('savingsPlanMessage')}
+              </OsdsText>
+              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                {t('savingsPlanUsage')}
+              </OsdsText>
+            </div>
+            <div className="flex mt-4 ">
+              <OsdsLink
+                color={ODS_THEME_COLOR_INTENT.primary}
+                href={`${url}/savings-plan`}
+                target={OdsHTMLAnchorElementTarget._blank}
+              >
+                {t('savingsPlanCTA')}
+              </OsdsLink>
+              <OsdsIcon
+                className="ml-3"
+                name={ODS_ICON_NAME.ARROW_RIGHT}
+                size={ODS_ICON_SIZE.sm}
+                color={ODS_THEME_COLOR_INTENT.primary}
+              />
+            </div>
+          </div>
         </OsdsMessage>
         <div className="flex my-5">
           <ul
