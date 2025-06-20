@@ -9,3 +9,4 @@ export * from './useGetIpGameFirewall';
 export * from './useIpHasAlerts';
 export * from './useUpdateIpReverse';
 export * from './useDeleteIpReverse';
+export * from './useUpdateIpGameFirewall';
