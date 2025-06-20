@@ -29,6 +29,8 @@ import './database/import/hosting-database-import.controller';
 import './database/quota/hosting-database-quota.controller';
 import './database/restore/hosting-database-restore.controller';
 import './database/update-password/hosting-database-update-password.controller';
+import './database-statistics/database-statistics.controller';
+import './database-statistics/database-statistics.service';
 import './email/activate/activate.component';
 import './email/activate/activate.constants';
 import './email/activate/activate.controller';
