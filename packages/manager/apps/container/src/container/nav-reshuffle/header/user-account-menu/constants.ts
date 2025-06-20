@@ -39,11 +39,20 @@ export const links: UserLink[] = [
     trackingHit: tracking.myServices,
   },
   {
+    app: 'new-billing',
+    key: 'myContracts',
+    hash: '#/autorenew/agreements',
+    i18nKey: 'user_account_menu_my_contracts',
+    trackingHit: tracking.contracts,
+    region: ['EU', 'CA'],
+  },
+  {
     app: 'new-account',
     key: 'myCommunications',
     hash: '#/useraccount/emails',
     i18nKey: 'user_account_menu_my_communication',
     trackingHit: tracking.accountContacts,
+    region: ['EU', 'CA'],
   },
   {
     app: 'new-billing',
@@ -65,5 +74,13 @@ export const links: UserLink[] = [
     hash: '#/contacts/services',
     i18nKey: 'user_account_menu_my_contacts',
     trackingHit: tracking.contacts,
+    region: ['EU', 'CA'],
   },
+  {
+    app: 'dedicated',
+    key: 'myAssistanceTickets',
+    hash: '#/ticket',
+    i18nKey: 'user_account_menu_my_assistance_tickets',
+    region: ['US'],
+  }
 ];

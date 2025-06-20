@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useURL, ContentURLS } from '@/container/common/urls-constants';
 import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
@@ -25,7 +25,8 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   const environment = shell.getPlugin('environment').getEnvironment();
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
-  const isEUOrCA = ['EU', 'CA'].includes(environment.getRegion());
+  const region = environment.getRegion();
+
   const {
     closeNavigationSidebar,
     setPopoverPosition,
@@ -39,8 +40,8 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
     });
   };
 
-  useEffect(() => {
-    nodeTree.children.forEach((node: Node) => {
+  const assistanceTree = nodeTree.children
+    .map((node: Node) => {
       if (
         node.url &&
         typeof node.url === 'string' &&
@@ -64,14 +65,9 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
           break;
         case 'tickets':
           node.onClick = () => trackNode('assistance_support_tickets');
-          node.url = isEUOrCA ? node.url : null;
-          node.routing = !isEUOrCA
-            ? {
-                application: 'dedicated',
-                hash: '#/ticket',
-              }
-            : null;
-          node.isExternal = isEUOrCA;
+          break;
+        case 'createTicket':
+          node.onClick = () => trackNode('assistance_create_ticket');
           break;
         case 'assistance_status':
           node.onClick = () => trackNode('assistance_status');
@@ -93,8 +89,8 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
         default:
           break;
       }
+      return node;
     });
-  }, []);
 
   useEffect(() => {
     const updatePopoverPosition = () => {
@@ -136,7 +132,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
       role="menu"
       data-testid="assistance-sidebar"
     >
-      {nodeTree.children.map((node: Node) => (
+      {assistanceTree.map((node: Node) => (
         <AssistanceLinkItem
           key={`assistance_${node.id}`}
           node={node}
