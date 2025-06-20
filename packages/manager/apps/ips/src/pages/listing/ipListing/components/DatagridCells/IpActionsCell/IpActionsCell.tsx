@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import ipaddr from 'ipaddr.js';
 import { urlDynamicParts, urls } from '@/routes/routes.constant';
@@ -45,7 +46,10 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const id = fromIpToId(ipAddress);
   const { ipDetails, isLoading } = useGetIpdetails({ ip });
   const navigate = useNavigate();
-  const { t } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
+  const { t, t: tcommon } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
+  const isAdmin = useContext(ShellContext)
+    .environment.getUser()
+    .auth?.roles?.includes('ADMIN');
 
   const productServices = useGetProductService({
     path: '/cloud/project',
@@ -74,14 +78,27 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         ),
     },
     !!ipDetails?.canBeTerminated &&
+      !ipDetails.bringYourOwnIp &&
       [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
         ipDetails?.type,
       ) && {
         id: 1,
-        label: `${t('delete', { ns: NAMESPACES.ACTIONS })} Additional IP`,
+        label: `${tcommon('delete')} Additional IP`,
         isLoading,
         onClick: () =>
-          navigate(urls.listingTerminate.replace(urlDynamicParts.id, id)),
+          navigate(urls.listingIpTerminate.replace(urlDynamicParts.id, id)),
+      },
+    !!ipDetails?.canBeTerminated &&
+      ipDetails.bringYourOwnIp &&
+      isAdmin &&
+      [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
+        ipDetails?.type,
+      ) && {
+        id: 1,
+        label: `${tcommon('delete')} Additional IP`,
+        isLoading,
+        onClick: () =>
+          navigate(urls.listingByoipTerminate.replace(urlDynamicParts.id, id)),
       },
     {
       id: 2,

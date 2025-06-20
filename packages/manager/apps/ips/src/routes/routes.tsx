@@ -55,14 +55,27 @@ export const Routes: any = [
                 },
               },
               {
-                id: subRoutes.terminate,
-                path: urls.listingTerminate,
+                id: subRoutes.terminateIp,
+                path: urls.listingIpTerminate,
                 ...lazyRouteConfig(() =>
                   import('@/pages/actions/terminate/terminateIp.page'),
                 ),
                 handle: {
                   tracking: {
                     pageName: 'listing-terminate-ip',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
+              {
+                id: subRoutes.terminateByoip,
+                path: urls.listingByoipTerminate,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/actions/terminate/terminateByoip.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'listing-terminate-byoip',
                     pageType: PageType.popup,
                   },
                 },

@@ -37,6 +37,7 @@ export type IpDetails = {
   description: string;
   country: string;
   canBeTerminated: boolean;
+  bringYourOwnIp?: boolean;
 };
 
 export const getIpDetailsQueryKey = (params: GetIpDetailsParams) => [
