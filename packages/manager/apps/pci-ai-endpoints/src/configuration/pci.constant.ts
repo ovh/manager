@@ -17,4 +17,4 @@ export const LEVEL2 = {
 };
 export const UNIVERSE = 'PublicCloud';
 export const SUB_UNIVERSE = 'PublicCloud';
-export const APP_NAME = 'pci-ai-endpoints';
+export const APP_NAME = 'ai_endpoints';

@@ -102,6 +102,9 @@ export default function TokenPage() {
       mode,
       selectedToken: token || null,
     });
+    if (mode === 'create') {
+      trackClick(TRACKING.apikey.createNewApikeyClick);
+    }
   };
 
   const closeModal = () => {
@@ -156,7 +159,6 @@ export default function TokenPage() {
   );
 
   useEffect(() => {
-    console.log('==> Page API key chargée via tab');
     trackClick(TRACKING.apikey.gotoApikeyClick);
   }, []);
 
@@ -208,12 +210,8 @@ export default function TokenPage() {
                 variant={ODS_BUTTON_VARIANT.flat}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 className="xs:mb-0.5 sm:mb-0 mr-4"
-                onClick={() => {
-                  // isAdmin &&
-                  openModal('create');
-                  trackClick(TRACKING.apikey.createNewApikeyClick);
-                }}
-                // disabled={!isAdmin || undefined}
+                onClick={() => isAdmin && openModal('create')}
+                disabled={!isAdmin || undefined}
               >
                 <OsdsIcon
                   name={ODS_ICON_NAME.PLUS}

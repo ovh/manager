@@ -2,6 +2,7 @@ import {
   ButtonType,
   PageLocation,
   TrackingClickParams,
+  PageType,
 } from '@ovh-ux/manager-react-shell-client';
 import { APP_NAME, SUB_UNIVERSE, UNIVERSE, LEVEL2 } from './pci.constant';
 
@@ -16,43 +17,71 @@ export const TRACKING: Record<
 > = {
   metrics: {
     gotometricsClick: {
-      location: PageLocation.page,
-      buttonType: ButtonType.tab,
-      actions: [`metrics_${APP_NAME}`, `go-to-tab_${APP_NAME}`],
+      actions: [
+        `${UNIVERSE}`,
+        'ai_maching_learning',
+        `${APP_NAME}`,
+        `${PageType.dashboard}`,
+        'metrics',
+      ],
       actionType: 'action',
     },
   },
 
   apikey: {
     gotoApikeyClick: {
-      location: PageLocation.page,
-      buttonType: ButtonType.tab,
-      actions: [`api-key_${APP_NAME}`],
+      actions: [
+        `${UNIVERSE}`,
+        'ai_maching_learning',
+        `${APP_NAME}`,
+        `${APP_NAME}`,
+        `${PageType.listing}`,
+      ],
       actionType: 'action',
     },
     createNewApikeyClick: {
-      location: PageLocation.page,
-      buttonType: ButtonType.button,
-      actions: [`create_api-key_${APP_NAME}`],
+      actions: [
+        `${UNIVERSE}`,
+        `${APP_NAME}`,
+        PageLocation.page,
+        `${ButtonType.button}`,
+        'create_api-key',
+        `${APP_NAME}`,
+      ],
       actionType: 'action',
     },
     createNewApikeyPopUpShow: {
-      location: PageLocation.popup,
-      buttonType: ButtonType.button,
-      actions: [`${APP_NAME}_pop-up_create_api-key`],
+      actions: [
+        `${UNIVERSE}`,
+        'ai_maching_learning',
+        `${APP_NAME}`,
+        `${APP_NAME}`,
+        `${PageLocation.popup}`,
+        `create_api-key`,
+      ],
       actionType: 'action',
     },
 
     confirmClick: {
-      location: PageLocation.popup,
-      buttonType: ButtonType.button,
-      actions: [`create_api-key_${APP_NAME}_confirm`],
+      actions: [
+        `${UNIVERSE}`,
+        'ai_maching_learning',
+        `${APP_NAME}`,
+        `${PageLocation.popup}`,
+        `create_api-key`,
+        `confirm`,
+      ],
       actionType: 'action',
     },
     successCreatApikeyPopUpShown: {
-      location: PageLocation.popup,
-      buttonType: ButtonType.button,
-      actions: [`${APP_NAME}_pop-up_api-key_success`],
+      actions: [
+        `${UNIVERSE}`,
+        'ai_maching_learning',
+        `${APP_NAME}`,
+        `${APP_NAME}`,
+        `${PageLocation.popup}`,
+        `create_api-key_success`,
+      ],
       actionType: 'action',
     },
   },
