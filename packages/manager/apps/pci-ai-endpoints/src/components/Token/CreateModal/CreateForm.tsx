@@ -108,12 +108,10 @@ const CreateForm = ({
     if (!isChecked) {
       setValue('expirationDate', infiniteDate);
     }
-    console.log('==> Page popup chargée ');
     trackClick(TRACKING.apikey.createNewApikeyPopUpShow);
   }, [isChecked, infiniteDate, setValue]);
 
   const onSubmit = (data: FormValues) => {
-    alert('onSubmit called');
     const payload = {
       projectId,
       name: data.tokenName,
@@ -228,7 +226,7 @@ const CreateForm = ({
                     level={ODS_TEXT_LEVEL.body}
                     size={ODS_TEXT_SIZE._400}
                   >
-                    {t('ai_endpoints_token_expiration_date')} vvvvvvv
+                    {t('ai_endpoints_token_expiration_date')}
                   </OsdsText>
                 </span>
               </OsdsCheckboxButton>
@@ -271,7 +269,7 @@ const CreateForm = ({
         }}
         disabled={!isValid || undefined}
       >
-        {t('ai_endpoints_token_create')} vfvfv
+        {t('ai_endpoints_token_create')}
       </OsdsButton>
     </>
   );

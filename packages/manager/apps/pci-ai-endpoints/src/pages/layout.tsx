@@ -134,8 +134,6 @@ export default function Layout() {
       setTitleHeader(tabsList[0].title);
       navigate(tabsList[0].to);
     }
-
-    //   alert(`Active tab: ${activePanel}, Title: ${titleHeader}`);
   }, [pathname, tabsList, navigate, ROOT]);
 
   const headerProps: HeadersProps = {
@@ -178,7 +176,7 @@ export default function Layout() {
                               panel={tab.name}
                               className="m-0 cursor-pointer"
                             >
-                              {tab.title} cff
+                              {tab.title}
                             </OsdsTabBarItem>
                           </NavLink>
                         ))}
