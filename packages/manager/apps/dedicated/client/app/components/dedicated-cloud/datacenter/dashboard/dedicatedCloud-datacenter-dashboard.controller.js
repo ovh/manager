@@ -7,6 +7,7 @@ import {
 } from '../drp/dedicatedCloud-datacenter-drp.constants';
 
 import { DEDICATED_CLOUD_DATACENTER } from '../dedicatedCloud-datacenter.constants';
+import { LABELS } from '../../dedicatedCloud.constant';
 
 export default class {
   /* @ngInject */
@@ -17,6 +18,7 @@ export default class {
     this.$q = $q;
     this.DRP_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_STATUS;
     this.DRP_VPN_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS;
+    this.LABELS = LABELS;
   }
 
   $onInit() {

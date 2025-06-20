@@ -20,6 +20,7 @@ export default {
     isNsxEdgeAvailable: '<',
     isNsxtCompatible: '<',
     trackClick: '<',
+    goBackToList: '<',
   },
   controller,
   template,
