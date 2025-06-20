@@ -10,7 +10,11 @@ import {
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import { TextField } from '@/components/Form/TextField.component';
 import { getSystemFormData } from '@/utils/formStepData';
-import { isValidInput, isValidSapPassword } from '@/utils/formValidation';
+import { isValidInput } from '@/utils/formValidation';
+import {
+  isValidSapPassword,
+  isValidSapHanaPassword,
+} from '@/utils/passwordValidation';
 import FormLayout from '@/components/Form/FormLayout.component';
 import { FORM_LABELS } from '@/constants/form.constants';
 import { TRACKING } from '@/tracking.constants';
@@ -39,7 +43,6 @@ export default function InstallationStepSystemInformation() {
   );
 
   const sidRule = t('system_sid_validation_message');
-  const pwdRule = t('system_password_validation_message');
 
   return (
     <FormLayout
@@ -71,23 +74,32 @@ export default function InstallationStepSystemInformation() {
         />
       ))}
       <OdsText preset="heading-3">{t('passwords')}</OdsText>
-      <OdsText className="italic">{pwdRule}</OdsText>
-      {SYSTEM_PASSWORD_INPUTS.map(({ name, helperKey, ...inputProps }) => (
-        <TextField
-          key={name}
-          type="password"
-          name={name}
-          onOdsChange={(e) => {
-            const isValid = isValidSapPassword(e.detail.value as string);
-            setValues((val) => ({ ...val, [name]: e.detail.value }));
-            setErrors((err) => ({ ...err, [name]: isValid ? '' : pwdRule }));
-          }}
-          value={values[name]}
-          error={values[name] && errors[name]}
-          helperText={t(helperKey)}
-          {...inputProps}
-        />
-      ))}
+      {SYSTEM_PASSWORD_INPUTS.map(
+        ({ name, helperKey, passwordType, ...inputProps }) => (
+          <TextField
+            key={name}
+            type="password"
+            name={name}
+            onOdsChange={(e) => {
+              const isValid =
+                passwordType === 'sapHana'
+                  ? isValidSapHanaPassword(e.detail.value as string)
+                  : isValidSapPassword(e.detail.value as string);
+              const rule =
+                passwordType === 'sapHana'
+                  ? t('system_password_sap_hana_validation_message')
+                  : t('system_password_sap_validation_message');
+
+              setValues((val) => ({ ...val, [name]: e.detail.value }));
+              setErrors((err) => ({ ...err, [name]: isValid ? '' : rule }));
+            }}
+            value={values[name]}
+            error={values[name] && errors[name]}
+            helperText={t(helperKey)}
+            {...inputProps}
+          />
+        ),
+      )}
     </FormLayout>
   );
 }
