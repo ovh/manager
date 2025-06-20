@@ -6,7 +6,7 @@ import {
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import {
   getOkmsCredentialsQueryKey,
@@ -23,19 +23,25 @@ import {
 } from '@/components/credential/credentialDatagrid/CredentialDatagridCells';
 import Loading from '@/components/Loading/Loading';
 import { OkmsCredential } from '@/types/okmsCredential.type';
+import { OKMS } from '@/types/okms.type';
 
-const CredentialDatagrid = () => {
+type CredentialDatagridProps = {
+  okms: OKMS;
+};
+
+const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
-  const { okmsId } = useParams();
   const { state } = useLocation();
+
+  const okmsId = okms.id;
 
   const {
     data: credentials,
     isLoading: isLoadingCredentials,
     error: credentialsError,
   } = useOkmsCredentials({
-    okmsId,
+    okmsId: okms.id,
     deletingCredentialId: state?.deletingCredentialId,
   });
 
@@ -93,7 +99,8 @@ const CredentialDatagrid = () => {
     },
     {
       id: 'actions',
-      cell: DatagridCredentialCellActions,
+      cell: (credential: OkmsCredential) =>
+        DatagridCredentialCellActions(credential, okms),
       label: '',
       isSortable: false,
     },

@@ -10,7 +10,7 @@ import {
 import routes from '@/routes/routes';
 import Loading from '@/components/Loading/Loading';
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 300_000,

@@ -51,17 +51,21 @@ describe('InformationsTile component tests suite', () => {
     tags: null,
   };
 
-  const renderComponent = (okms: OKMS) =>
-    render(<InformationsTile okmsData={okms} okmsServiceInfos={serviceInfo} />);
-
   test('Should display information tile with only all mandatory data', async () => {
-    const { container } = renderComponent(kms);
+    const { container } = render(
+      <InformationsTile
+        okmsData={kms}
+        okmsDisplayName={serviceInfo.resource.displayName}
+        canEditName={true}
+      />,
+    );
 
     await waitFor(() => {
       expect(
         screen.getByText('key_management_service_dashboard_field_label_name'),
       ).toBeVisible();
       expect(screen.getByText(serviceInfo.resource.displayName)).toBeVisible();
+      expect(screen.getByLabelText('edit')).toBeVisible();
 
       expect(
         screen.getByText('key_management_service_dashboard_field_label_id'),
@@ -81,6 +85,20 @@ describe('InformationsTile component tests suite', () => {
         screen.getByText('key_management_service_dashboard_field_label_region'),
       ).toBeVisible();
       expect(screen.getByText(`region_${kms.region}`)).toBeVisible();
+    });
+  });
+
+  test('Should not display edit button if canEditName prop is false', async () => {
+    render(
+      <InformationsTile
+        okmsData={kms}
+        okmsDisplayName={serviceInfo.resource.displayName}
+        canEditName={false}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(screen.queryByLabelText('edit')).toBeNull();
     });
   });
 });

@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   ActionMenu,
   Clipboard,
   DataGridTextCell,
   Links,
   Region,
-  useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -19,6 +18,7 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { useOkmsServiceDetails } from '@/data/hooks/useOkmsServiceDetails';
 import { OKMS } from '@/types/okms.type';
 import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
 import { useServiceKeyTypeTranslations } from '@/hooks/serviceKey/useServiceKeyTypeTranslations';
@@ -27,7 +27,6 @@ import useServiceKeyActionsList from '@/hooks/serviceKey/useServiceKeyActionsLis
 import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { OkmsServiceState } from '../layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
-import { OkmsContext } from '@/pages/dashboard';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
@@ -66,16 +65,21 @@ export const DatagridCellRegion = (kms: OKMS) => {
 };
 
 export const DatagridCellStatus = (kms: OKMS) => {
-  const { data: OkmsServiceInfos, isLoading, isError } = useServiceDetails({
-    resourceName: kms.id,
-  });
-  if (isLoading) {
+  const {
+    okmsService,
+    isOkmsServiceLoading,
+    hasServicesPermissions,
+  } = useOkmsServiceDetails(kms.id);
+
+  if (isOkmsServiceLoading) {
     return <OdsSpinner size={ODS_SPINNER_SIZE.sm} />;
   }
-  if (isError) {
+
+  if (!hasServicesPermissions) {
     return <></>;
   }
-  return <OkmsServiceState state={OkmsServiceInfos.data.resource.state} />;
+
+  return <OkmsServiceState state={okmsService.resource.state} />;
 };
 
 export const DatagridResourceKmipCountCell = (kms: OKMS) => {
@@ -139,8 +143,10 @@ export const DatagridStatus = (props: OkmsAllServiceKeys) => {
   return <ServiceKeyStatus state={props.state} />;
 };
 
-export const DatagridServiceKeyActionMenu = (props: OkmsAllServiceKeys) => {
-  const okms = useContext(OkmsContext);
+export const DatagridServiceKeyActionMenu = (
+  props: OkmsAllServiceKeys,
+  okms: OKMS,
+) => {
   const { data: serviceKey, isPending } = useOkmsServiceKeyById({
     okmsId: okms.id,
     keyId: props.id,
