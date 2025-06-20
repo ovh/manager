@@ -8,7 +8,19 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { urls } from '@/routes/routes.constant';
 import { APP_NAME } from '@/tracking.constant';
 
-export function Breadcrumb(): JSX.Element {
+export type BreadcrumbItem = {
+  label: string;
+  href?: string;
+  onClick?: () => void;
+};
+
+export type BreadcrumbProps = {
+  mapper?: (item: BreadcrumbItem, index: number) => BreadcrumbItem;
+};
+
+export function Breadcrumb({
+  mapper = (item) => item,
+}: BreadcrumbProps): JSX.Element {
   const { t } = useTranslation('ips');
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,16 +28,17 @@ export function Breadcrumb(): JSX.Element {
   const pathnames = location.pathname.split('/').filter(Boolean);
   const paths = pathnames
     .filter((value) => value !== 'ip')
-    .map((value) => ({
-      label: t(value),
-      onClick: () => navigate(`/#/${APP_NAME}/${value}`),
-    }));
+    .map((value, index) =>
+      mapper(
+        {
+          label: t(value),
+          onClick: () => navigate(`/#/${APP_NAME}/${value}`),
+        },
+        index,
+      ),
+    );
 
-  const breadcrumbItems: {
-    label: string;
-    href?: string;
-    onClick?: () => void;
-  }[] = [
+  const breadcrumbItems: BreadcrumbItem[] = [
     {
       label: t('breadcrumb_root_label'),
       onClick: () => navigate(urls.listing),
@@ -37,7 +50,7 @@ export function Breadcrumb(): JSX.Element {
     <OdsBreadcrumb>
       {breadcrumbItems?.map((item) => (
         <OdsBreadcrumbItem
-          key={item.label}
+          key={`breadcrumb-key-${item.label}`}
           href={item.href}
           label={item.label}
           onClick={item.onClick}
