@@ -6681,7 +6681,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@^0.8.7":
+"@ovh-ux/manager-react-shell-client@^0.8.5", "@ovh-ux/manager-react-shell-client@^0.8.7":
   version "0.8.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.7.tgz#aa40336eb8fc68458a89801d0ae24607d57c8252"
   integrity sha512-/+FTo1KThBGRQj15gyxZgjQG4E86mdeEZ4T3a0PdY3sixqgu30b7CI3NcIkPDEPmDv/3rfCNouceXvPNoICrIg==
@@ -6694,6 +6694,11 @@
     "@tanstack/react-query" "^5.64.1"
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
+
+"@ovh-ux/manager-tests-setup@latest":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-tests-setup/-/manager-tests-setup-0.2.0.tgz#63f3ec12e420e73072656d3cec5e7b2c4c7c15e5"
+  integrity sha512-VK04xo5oKo+3ge3iYkBUic/l5RTjkDAqdC7y3KGs40fo8iR7AhL6f2JVDdfoamTa3FtwsaLW8RcMjP5U/H8Lzw==
 
 "@ovh-ux/ng-ovh-api-wrappers@^5.0.0", "@ovh-ux/ng-ovh-api-wrappers@^5.1.0":
   version "5.1.0"
@@ -6795,7 +6800,7 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-components@^18.6.2":
+"@ovhcloud/ods-components@18.6.2", "@ovhcloud/ods-components@^18.6.2":
   version "18.6.2"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.2.tgz#eac36f664d0a5f7773dde14addd7db9db1346f7f"
   integrity sha512-lLkTN+EwAhx/aqa50WwZ56ivhr1swpA+cgiTwtSwSWbXGoyPl0kwaWXtD6Sa5bh2Rrm8uw01tV4HawPM+dlScQ==
@@ -6822,15 +6827,15 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
 
+"@ovhcloud/ods-themes@18.6.2", "@ovhcloud/ods-themes@^18.6.2":
+  version "18.6.2"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.2.tgz#a30da060530c4e7c2e95610ce49a858fc03cfa15"
+  integrity sha512-RSn1FGXc5szaGn/Jz/Pu2ww85KKboaX3VgCFDmYMyv1EC6QNBIYoTItOBMT2Xkvmv2xsnFnCCphI0D/sXSjVGQ==
+
 "@ovhcloud/ods-themes@^18.4.1":
   version "18.4.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.4.1.tgz#1c8dfeff1ba0b829fd61e8dea41af4cdbed46912"
   integrity sha512-bezBp/Bgbo19IFPJ/+a/bFt2IArjq8wGrHPshpk/bVVZsxkgpAiUfRERmftU+l7gYU3e+yvFdopNL6eRaJDPWQ==
-
-"@ovhcloud/ods-themes@^18.6.2":
-  version "18.6.2"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.2.tgz#a30da060530c4e7c2e95610ce49a858fc03cfa15"
-  integrity sha512-RSn1FGXc5szaGn/Jz/Pu2ww85KKboaX3VgCFDmYMyv1EC6QNBIYoTItOBMT2Xkvmv2xsnFnCCphI0D/sXSjVGQ==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -16128,6 +16133,11 @@ element-internals-polyfill@^3.0.0, element-internals-polyfill@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-3.0.1.tgz#46e69c38c87313d9863fa4ec949517c26ca3beb5"
   integrity sha512-gHt0mrRy/y7VIymHIcq1U/IZOci3Z8qUy/YyMBSoSIfMHqO4v6Sm6igGpoFeljroo0Q2wjkInUafB79M6WAocQ==
+
+element-internals-polyfill@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-3.0.2.tgz#df7a0dcd5e39f64d46115efc61e497359edc3e8e"
+  integrity sha512-uB0/Qube3lkwh8SmkTnGIyUgJ9YdqVSzIoHMRCEQjAbD4Y5UzsVbch1tIxjTgUe5k3gy1U0ZMKMJ90A81lqwig==
 
 email-addresses@^5.0.0:
   version "5.0.0"
@@ -25779,15 +25789,15 @@ pump@^3.0.0:
     end-of-stream "^1.1.0"
     once "^1.3.1"
 
+punycode@2.3.1, punycode@^2.1.0, punycode@^2.1.1, punycode@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.1.tgz#027422e2faec0b25e1549c3e1bd8309b9133b6e5"
+  integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
+
 punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
   integrity sha512-jmYNElW7yvO7TV33CjSmvSiE2yco3bV2czu/OzDKdMNVZQWfxCblURLhf+47syQRBntjfLdd/H0egrzIG+oaFQ==
-
-punycode@^2.1.0, punycode@^2.1.1, punycode@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.1.tgz#027422e2faec0b25e1549c3e1bd8309b9133b6e5"
-  integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
 
 pure-rand@^6.0.0:
   version "6.1.0"

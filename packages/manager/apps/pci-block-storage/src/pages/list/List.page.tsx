@@ -1,5 +1,5 @@
-import { Suspense, useContext, useEffect, useRef, useState } from 'react';
-import { Outlet, useParams, useNavigate } from 'react-router-dom';
+import { Suspense, useRef, useState } from 'react';
+import { Outlet, useParams, useNavigate, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ChangelogButton,
@@ -9,12 +9,10 @@ import {
   Headers,
   Notifications,
   PciGuidesHeader,
-  PciMaintenanceBanner,
-  RedirectionGuard,
   useColumnFilters,
   useDataGrid,
   useNotifications,
-  useProductMaintenance,
+  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -28,7 +26,6 @@ import {
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -37,23 +34,19 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { PciAnnouncementBanner, useProject } from '@ovh-ux/manager-pci-common';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
-
-import HidePreloader from '@/core/HidePreloader';
 import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
 
 import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListingPage() {
-  const { t } = useTranslation('common');
-  const { t: tFilter } = useTranslation('filter');
-  const [projectUrl, setProjectUrl] = useState('');
+  const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
+  const projectUrl = useProjectUrl('public-cloud');
 
-  const { navigation } = useContext(ShellContext).shell;
   const navigate = useNavigate();
   const { projectId } = useParams();
-  const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
   const columns = useDatagridColumn(projectId, projectUrl);
   const [searchField, setSearchField] = useState('');
   const { data: project } = useProject();
@@ -63,25 +56,8 @@ export default function ListingPage() {
 
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
 
-  useEffect(() => {
-    navigation
-      .getURL('public-cloud', `#/pci/projects/${projectId}`, {})
-      .then((data) => {
-        setProjectUrl(data as string);
-      });
-  }, [projectId, navigation]);
-
-  const {
-    data: allVolumes,
-    isFetching: isFetchingllVolumes,
-    isPending: isPendingAllVolumes,
-  } = useAllVolumes(projectId);
-  const {
-    data: volumes,
-    isLoading: isVolumesLoading,
-    isPending: isVolumesPending,
-    error,
-  } = useVolumes(
+  const { data: allVolumes } = useAllVolumes(projectId);
+  const { data: volumes, error, isFetching, isPending, refetch } = useVolumes(
     projectId,
     {
       pagination,
@@ -90,183 +66,184 @@ export default function ListingPage() {
     filters,
   );
 
-  const isLoading = isVolumesLoading || isVolumesPending;
+  if (allVolumes && !allVolumes.length && !isFetching)
+    return <Navigate to="./onboarding" />;
 
   return (
-    <RedirectionGuard
-      isLoading={isFetchingllVolumes || isPendingAllVolumes}
-      route={`/pci/projects/${projectId}/storages/blocks/onboarding`}
-      condition={allVolumes?.length === 0}
-    >
-      <>
-        <HidePreloader />
-        {project && (
-          <OsdsBreadcrumb
-            items={[
-              {
-                href: projectUrl,
-                label: project.description,
-              },
-              {
-                label: t('pci_projects_project_storages_blocks_title'),
-              },
-            ]}
-          />
-        )}
-        <div className="header mb-6 mt-8">
-          <Headers
-            title={t('pci_projects_project_storages_blocks_title')}
-            headerButton={<PciGuidesHeader category="instances" />}
-            changelogButton={
-              <ChangelogButton
-                links={CHANGELOG_LINKS}
-                chapters={CHANGELOG_CHAPTERS}
-              />
-            }
-          />
-        </div>
-        <OsdsDivider></OsdsDivider>
-
-        {hasMaintenance && (
-          <PciMaintenanceBanner
-            maintenanceURL={maintenanceURL}
-            productName={t('pci_projects_project_storages_blocks_title')}
-          />
-        )}
-
-        <PciAnnouncementBanner />
-
-        <Notifications />
-        <div className="sm:flex items-center justify-between mt-4">
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.flat}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            className="xs:mb-0.5 sm:mb-0"
-            onClick={() => {
-              clearNotifications();
-              navigate('./new');
-            }}
-          >
-            <OsdsIcon
-              size={ODS_ICON_SIZE.xs}
-              name={ODS_ICON_NAME.PLUS}
-              className="mr-4 bg-white"
+    <div>
+      {project && (
+        <OsdsBreadcrumb
+          items={[
+            {
+              href: projectUrl,
+              label: project.description,
+            },
+            {
+              label: t('pci_projects_project_storages_blocks_title'),
+            },
+          ]}
+        />
+      )}
+      <div className="header mb-6 mt-8">
+        <Headers
+          title={t('pci_projects_project_storages_blocks_title')}
+          headerButton={<PciGuidesHeader category="instances" />}
+          changelogButton={
+            <ChangelogButton
+              links={CHANGELOG_LINKS}
+              chapters={CHANGELOG_CHAPTERS}
             />
-            {t('pci_projects_project_storages_blocks_add_label')}
-          </OsdsButton>
-          <div className="justify-between flex">
-            <OsdsSearchBar
-              className="w-[70%]"
-              value={searchField}
-              onOdsSearchSubmit={({ detail }) => {
-                setPagination({
-                  pageIndex: 0,
-                  pageSize: pagination.pageSize,
-                });
-                addFilter({
-                  key: 'name',
-                  value: detail.inputValue,
-                  comparator: FilterComparator.Includes,
-                  label: '',
-                });
-                setSearchField('');
-              }}
-            />
-            <OsdsPopover ref={filterPopoverRef}>
+          }
+        />
+      </div>
+      <OsdsDivider></OsdsDivider>
+
+      <PciAnnouncementBanner />
+
+      <Notifications />
+
+      <div className="sm:flex items-center justify-between mt-4 min-h-[40px]">
+        <OsdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.flat}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          className="xs:mb-0.5 sm:mb-0"
+          onClick={() => {
+            clearNotifications();
+            navigate('./new');
+          }}
+        >
+          <OsdsIcon
+            size={ODS_ICON_SIZE.xs}
+            name={ODS_ICON_NAME.PLUS}
+            className="mr-4 bg-white"
+          />
+          {t('pci_projects_project_storages_blocks_add_label')}
+        </OsdsButton>
+
+        <div className="justify-between flex gap-5 min-h-[40px] items-center">
+          <div className="flex items-center">
+            {isFetching ? (
+              <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+            ) : (
               <OsdsButton
-                slot="popover-trigger"
                 size={ODS_BUTTON_SIZE.sm}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 variant={ODS_BUTTON_VARIANT.stroked}
+                onClick={() => refetch()}
               >
+                <span slot="start" className="flex items-center mr-0">
+                  <OsdsIcon
+                    name={ODS_ICON_NAME.REFRESH}
+                    size={ODS_ICON_SIZE.sm}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                  />
+                </span>
+              </OsdsButton>
+            )}
+          </div>
+          <OsdsSearchBar
+            className="w-[70%]"
+            value={searchField}
+            onOdsSearchSubmit={({ detail }) => {
+              setPagination({
+                pageIndex: 0,
+                pageSize: pagination.pageSize,
+              });
+              addFilter({
+                key: 'name',
+                value: detail.inputValue,
+                comparator: FilterComparator.Includes,
+                label: '',
+              });
+              setSearchField('');
+            }}
+          />
+          <OsdsPopover ref={filterPopoverRef}>
+            <OsdsButton
+              slot="popover-trigger"
+              size={ODS_BUTTON_SIZE.sm}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              variant={ODS_BUTTON_VARIANT.stroked}
+            >
+              <span slot="start" className="flex items-center mr-0">
                 <OsdsIcon
                   name={ODS_ICON_NAME.FILTER}
-                  size={ODS_ICON_SIZE.xs}
-                  className="mr-2"
+                  size={ODS_ICON_SIZE.sm}
                   color={ODS_THEME_COLOR_INTENT.primary}
                 />
-                {tFilter('common_criteria_adder_filter_label')}
-              </OsdsButton>
-              <OsdsPopoverContent>
-                <FilterAdd
-                  columns={[
-                    {
-                      id: 'name',
-                      label: t(
-                        'pci_projects_project_storages_blocks_name_label',
-                      ),
-                      comparators: FilterCategories.String,
-                    },
-                    {
-                      id: 'id',
-                      label: t('pci_projects_project_storages_blocks_id_label'),
-                      comparators: FilterCategories.String,
-                    },
-                    {
-                      id: 'regionName',
-                      label: t(
-                        'pci_projects_project_storages_blocks_region_label',
-                      ),
-                      comparators: FilterCategories.String,
-                    },
-                    {
-                      id: 'size',
-                      label: t(
-                        'pci_projects_project_storages_blocks_size_label',
-                      ),
-                      comparators: FilterCategories.Numeric,
-                    },
-                    {
-                      id: 'status',
-                      label: t(
-                        'pci_projects_project_storages_blocks_status_label',
-                      ),
-                      comparators: FilterCategories.String,
-                    },
-                  ]}
-                  onAddFilter={(addedFilter, column) => {
-                    setPagination({
-                      pageIndex: 0,
-                      pageSize: pagination.pageSize,
-                    });
-                    addFilter({
-                      ...addedFilter,
-                      label: column.label,
-                    });
-                    filterPopoverRef.current?.closeSurface();
-                  }}
-                />
-              </OsdsPopoverContent>
-            </OsdsPopover>
-          </div>
+                <span>{t('filter', { ns: NAMESPACES.ACTIONS })}</span>
+              </span>
+            </OsdsButton>
+            <OsdsPopoverContent>
+              <FilterAdd
+                columns={[
+                  {
+                    id: 'name',
+                    label: t('pci_projects_project_storages_blocks_name_label'),
+                    comparators: FilterCategories.String,
+                  },
+                  {
+                    id: 'id',
+                    label: t('pci_projects_project_storages_blocks_id_label'),
+                    comparators: FilterCategories.String,
+                  },
+                  {
+                    id: 'regionName',
+                    label: t(
+                      'pci_projects_project_storages_blocks_region_label',
+                    ),
+                    comparators: FilterCategories.String,
+                  },
+                  {
+                    id: 'size',
+                    label: t('pci_projects_project_storages_blocks_size_label'),
+                    comparators: FilterCategories.Numeric,
+                  },
+                  {
+                    id: 'status',
+                    label: t(
+                      'pci_projects_project_storages_blocks_status_label',
+                    ),
+                    comparators: FilterCategories.String,
+                  },
+                ]}
+                onAddFilter={(addedFilter, column) => {
+                  setPagination({
+                    pageIndex: 0,
+                    pageSize: pagination.pageSize,
+                  });
+                  addFilter({
+                    ...addedFilter,
+                    label: column.label,
+                  });
+                  filterPopoverRef.current?.closeSurface();
+                }}
+              />
+            </OsdsPopoverContent>
+          </OsdsPopover>
         </div>
-        <div className="my-5">
-          <FilterList filters={filters} onRemoveFilter={removeFilter} />
+      </div>
+      <div className="my-5">
+        <FilterList filters={filters} onRemoveFilter={removeFilter} />
+      </div>
+      {!isPending && !error && (
+        <div className="mt-8">
+          <Datagrid
+            columns={columns}
+            items={volumes?.rows || []}
+            totalItems={volumes?.totalRows || 0}
+            pagination={pagination}
+            onPaginationChange={setPagination}
+            className="overflow-x-visible"
+            sorting={sorting}
+            onSortChange={setSorting}
+          />
         </div>
-        {isLoading && (
-          <div className="text-center">
-            <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-          </div>
-        )}
-        {!isLoading && !error && (
-          <div className="mt-8">
-            <Datagrid
-              columns={columns}
-              items={volumes?.rows || []}
-              totalItems={volumes?.totalRows || 0}
-              pagination={pagination}
-              onPaginationChange={setPagination}
-              className="overflow-x-visible"
-              sorting={sorting}
-              onSortChange={setSorting}
-            />
-          </div>
-        )}
-        <Suspense>
-          <Outlet />
-        </Suspense>
-      </>
-    </RedirectionGuard>
+      )}
+      <Suspense>
+        <Outlet />
+      </Suspense>
+    </div>
   );
 }

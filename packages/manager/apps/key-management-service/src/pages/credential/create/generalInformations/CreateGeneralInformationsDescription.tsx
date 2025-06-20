@@ -45,19 +45,21 @@ const CreateGeneralInformationsDescription = ({
     <OdsFormField
       error={getDescriptionErrorMessage(credentialDescriptionError)}
     >
-      <OdsText slot="label" preset={ODS_TEXT_PRESET.heading5}>
+      <OdsText slot="label" preset={ODS_TEXT_PRESET.heading5} className="mb-2">
         {t(
           'key_management_service_credential_create_general_information_description_title',
         )}
       </OdsText>
       <OdsTextarea
-        name="credentialDescription"
+        name="description"
+        aria-label="description"
+        data-testid="input-description"
         value={description}
         hasError={!!credentialDescriptionError}
         onOdsChange={(e) => setDescription(e.detail.value)}
         rows={4}
       />
-      <OdsText slot="visual-hint" preset={ODS_TEXT_PRESET.span}>
+      <OdsText slot="visual-hint" preset={ODS_TEXT_PRESET.caption}>
         {description?.length || 0}/{CredentialDescriptionMaxCharacters}
       </OdsText>
     </OdsFormField>

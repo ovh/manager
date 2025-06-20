@@ -8,9 +8,13 @@
   "cardGuidetitle": "Guides",
   "cardLink": "Mehr erfahren",
   "cardTuto1Description": "Vollständige Dokumentation zu AI Notebooks",
-  "cardTuto1Content": "Nutzen Sie die umfangreiche Dokumentation zu AI Notebooks.",
-  "cardTuto2Description": "Eigenschaften, Kapazitäten und Grenzen",
-  "cardTuto2Content": "Was ist ein AI Notebook? Erfahren Sie es bei OVHcloud.",
-  "cardTuto3Description": "Mit AI Notebooks starten",
-  "cardTuto3Content": "Hier erfahren Sie, wie Sie Ihr Notebook schnell über Ihr Kundencenter, die Befehlszeile oder die API starten."
+  "cardTuto1Content": "Die gesamte Dokumentation zu AI Notebooks.",
+  "cardTuto2Description": "Merkmale, Kapazitäten und Grenzen",
+  "cardTuto2Content": "Entdecken Sie bei OVHcloud, was ein AI Notebook ist.",
+  "cardTuto3Description": "Erste Schritte mit AI Notebooks",
+  "cardTuto3Content": "Hier erfahren Sie, wie Sie Ihr Notebook schnell über Ihr Kundencenter, die Befehlszeile oder die API starten.",
+  "quantumTitle": "QUANTENEMULATOREN",
+  "quantumDescription1": "Entdecken Sie die Quantencomputing in aller Freiheit mit unseren gebrauchsfertigen Cloud Notebooks",
+  "quantumDescription2": "Simulieren Sie bis zu 20 Qubit in wenigen Sekunden ohne Installations- oder Konfigurationsaufwand.",
+  "quantumDescription3": "Greifen Sie auf eine vorkonfigurierte Umgebung zu, die mit den wichtigsten Frameworks kompatibel ist (Qiskit, Pulser, MyQLM, Perceval...), und arbeiten Sie einfach über ein gemeinsam genutztes und gesichertes Interface mit Ihren Teams zusammen"
 }

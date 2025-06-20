@@ -17,7 +17,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import CredentialDatagrid from '../../../components/credential/credentialDatagrid/CredentialDatagrid';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { OkmsContext } from '..';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
 
@@ -33,7 +33,7 @@ const CredentialList = () => {
   );
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-6">
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         {t('key_management_service_credential_headline')}
       </OdsText>
@@ -50,7 +50,7 @@ const CredentialList = () => {
             actionType: 'action',
             actions: ['create_access_certificate'],
           });
-          navigate(ROUTES_URLS.createCredential);
+          navigate(KMS_ROUTES_URLS.credentialCreate(okms.id));
         }}
         iamActions={[kmsIamActions.credentialCreate]}
         urn={okms.iam.urn}

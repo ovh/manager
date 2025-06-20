@@ -1,8 +1,0 @@
-{
-  "veeam_update_offer_title": "Augmenter l'offre Veeam Cloud Connect",
-  "veeam_update_offer_information": "L'abonnement est de <strong>{{ price }} HT/mois</strong>",
-  "veeam_update_offer_cancel": "Annuler",
-  "veeam_update_offer_continue": "Continuer",
-  "veeam_update_offer_change": "Changer",
-  "veeam_update_storage_add": "Ajouter"
-}

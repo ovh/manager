@@ -8,6 +8,11 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import {
+  IdentityUser,
+  IdentityGroup,
+  IdentityOauthClient,
+} from '@/types/identity.type';
 
 type IdentitiesSelectedBaseProps = {
   title: string;
@@ -16,7 +21,7 @@ type IdentitiesSelectedBaseProps = {
   addButtonLabel: string;
   deleteCallback: () => void;
   datagridColumns: DatagridColumn<unknown>[];
-  items: any[];
+  items: IdentityUser[] | IdentityGroup[] | IdentityOauthClient[];
 };
 
 const IdentitiesSelectedBase = ({

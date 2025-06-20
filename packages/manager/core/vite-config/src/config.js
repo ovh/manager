@@ -63,7 +63,9 @@ const getBaseConfig = (config) => {
       react(),
       viteOvhDevServerPlugin({ isContainerApp, envConfig }),
       IframeHmrPlugin(),
-      svgr(),
+      svgr({
+        include: "**/*.svg",
+      }),
       viteStaticCopy({
         targets: [...getCommonTranslations()],
       }),

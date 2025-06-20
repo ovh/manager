@@ -3,6 +3,79 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.7...@ovh-ux/manager-pci-ai-tools-app@1.6.0) (2025-06-17)
+
+
+### Features
+
+* **pci-ai-tools:deploy:** new react version of AI Deploy ([25024a7](https://github.com/ovh/manager/commit/25024a70772049e0100ceb6b6ab67da9dc13703d)), closes [#DATATR-1976](https://github.com/ovh/manager/issues/DATATR-1976)
+
+
+
+
+
+## [1.5.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.6...@ovh-ux/manager-pci-ai-tools-app@1.5.7) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.5.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.5...@ovh-ux/manager-pci-ai-tools-app@1.5.6) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.4...@ovh-ux/manager-pci-ai-tools-app@1.5.5) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.3...@ovh-ux/manager-pci-ai-tools-app@1.5.4) (2025-06-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4087] ([1d5a0e2](https://github.com/ovh/manager/commit/1d5a0e2ec2f652734a31bfd19c502cab443e809a))
+
+
+
+
+
+## [1.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.2...@ovh-ux/manager-pci-ai-tools-app@1.5.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.1...@ovh-ux/manager-pci-ai-tools-app@1.5.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.0...@ovh-ux/manager-pci-ai-tools-app@1.5.1) (2025-06-09)
+
+
+### Bug Fixes
+
+* **pci-ai-tools:emulators:** add quantum section and emulators application ([c5f9ecc](https://github.com/ovh/manager/commit/c5f9ecc31db61e5ab2f44bf128c5e6581f58256e)), closes [#AIS-1189](https://github.com/ovh/manager/issues/AIS-1189)
+
+
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.4.0...@ovh-ux/manager-pci-ai-tools-app@1.5.0) (2025-06-05)
 
 

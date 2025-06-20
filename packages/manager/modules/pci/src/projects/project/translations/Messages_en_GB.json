@@ -37,7 +37,7 @@
   "pci_projects_project_keystone_upgrade": "An important change took place on 23rd June 2020. Please prepare for the upgrade to <strong>Keystone v3</strong>.",
   "pci_projects_project_keystone_upgrade_more": "Find out more",
   "pci_projects_project_quota_warning_message": "As a security measure, your project is subject to a quota. If you want to increase this quota, go to the <a data-ui-sref=\"{{ quotaUrl }}\">Quota and location</a> page.",
-  "pci_projects_project_quota_threshold_warning_message": "Your quota levels are reaching their maximum. <a href=\"{{ quotaUrl }}\">Click here to manage your quota</a>.",
+  "pci_projects_project_quota_threshold_warning_message": "Your quota levels are reaching their maximum. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ quotaGuidesLink }}\"> Understanding quota<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a> limitations .<br/><a href=\"{{ quotaUrl }}\"> Click here to manage your quotas</a> .",
   "pci_projects_project_activateDiscovery_activate": "Enable",
   "pci_projects_project_activateDiscovery_close": "Maybe later",
   "pci_projects_project_activateDiscovery_heading": "Activate a project",

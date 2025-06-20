@@ -10,7 +10,7 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import onboardingImgSrc from './onboarding-img.png';
 
 export default function Onboarding() {
@@ -45,7 +45,7 @@ export default function Onboarding() {
           actionType: 'navigation',
           actions: ['create_kms'],
         });
-        navigate(`/${ROUTES_URLS.createKeyManagementService}`);
+        navigate(KMS_ROUTES_URLS.kmsCreate);
       }}
       moreInfoButtonLabel={t('moreInfoButtonLabel')}
       moreInfoHref={guideLinks?.quickStart}

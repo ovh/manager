@@ -13,7 +13,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useDeleteOkmsServiceKey } from '@/data/hooks/useDeleteOkmsServiceKey';
 import { useUpdateOkmsServiceKey } from '@/data/hooks/useUpdateOkmsServiceKey';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import {
   OkmsAllServiceKeys,
   OkmsKeyTypes,
@@ -40,7 +40,7 @@ const useServiceKeyActionsList = (
     okmsId: okms.id,
     keyId: okmsKey?.id,
     onSuccess: () => {
-      navigate(`/${okms.id}/${ROUTES_URLS.keys}`);
+      navigate(KMS_ROUTES_URLS.serviceKeyListing(okms.id));
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: 'delete_encryption_key',
@@ -111,9 +111,14 @@ const useServiceKeyActionsList = (
           actions: ['deactivate_encryption_key'],
         });
         return isListMode
-          ? navigate(`${ROUTES_URLS.serviceKeyDeactivate}/${okmsKey?.id}`)
+          ? navigate(
+              KMS_ROUTES_URLS.serviceKeyListingDeactivate(okms.id, okmsKey?.id),
+            )
           : navigate(
-              `/${okms.id}/${ROUTES_URLS.keys}/${okmsKey?.id}/${ROUTES_URLS.serviceKeyDeactivate}`,
+              KMS_ROUTES_URLS.serviceKeyDashboardDeactivate(
+                okms.id,
+                okmsKey?.id,
+              ),
             );
       },
       iamActions: [

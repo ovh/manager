@@ -17,7 +17,7 @@
   "pci_projects_project_keystone_upgrade": "W dniu 23 czerwca 2020 roku nastąpi istotna zmiana, dlatego już teraz prosimy o zaplanowanie działań związanych z aktualizacją Keystone do <strong>Keystone v3</strong>.",
   "pci_projects_project_keystone_upgrade_more": "Dowiedz się więcej",
   "pci_projects_project_quota_warning_message": "Ze względów bezpieczeństwa w odniesieniu do Twojego projektu zastosowany został limit.  Jeśli chcesz zwiększyć ten limit, przejdź do strony <a data-ui-sref=\"{{ quotaUrl }}\">Quota and localization</a>.",
-  "pci_projects_project_quota_threshold_warning_message": "Twoje limity zbliżają się do maksymalnych wartości <a href=\"{{ quotaUrl }}\">kliknij tutaj, aby zarządzać limitami</a>.",
+  "pci_projects_project_quota_threshold_warning_message": "Twoje limity zbliżają się do maksymalnych wartości. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ quotaGuidesLink }}\"> Zrozumienie ograniczeń limitów<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a> .<br/><a href=\"{{ quotaUrl }}\"> Kliknij tutaj, aby zarządzać limitami</a>.",
   "pci_projects_project_billing": "Płatności",
   "pci_projects_project_billing_voucher_credit": "Kod promocyjny: {{voucher}}",
   "pci_projects_project_billing_active_credit_balance": "Ważny do {{expirationDate}}",

@@ -46,5 +46,8 @@
   "dedicatedCloud_SECURITY_change_logout_policy": "Abmeldeeinstellungen ändern",
   "dedicatedCloud_SECURITY_add_IP": "Neuen IP-Bereich hinzufügen",
   "dedicatedCloud_SECURITY_delete_IP": "IP-Bereiche löschen",
-  "dedicatedCloud_dashboard_loading_error": "Beim Laden der Informationen Ihres Dienstes ist ein Fehler aufgetreten."
+  "dedicatedCloud_dashboard_loading_error": "Beim Laden der Informationen Ihres Dienstes ist ein Fehler aufgetreten.",
+  "dedicatedCloud_configuration_SECURITY_status_toDelete": "Zu löschen",
+  "dedicatedCloud_configuration_SECURITY_status_toUpdate": "Update wird ausgeführt",
+  "dedicatedCloud_configuration_SECURITY_status_allowed": "Autorisiert und eingerichtet"
 }

@@ -45,7 +45,7 @@ export default function DataStreams() {
 
   if (isPending)
     return (
-      <div className="flex py-10">
+      <div className="flex py-8">
         <OdsSpinner size="md" data-testid="logServices-spinner" />
       </div>
     );
@@ -76,11 +76,11 @@ export default function DataStreams() {
     );
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <OdsText preset="heading-3">{t('log_streams_title')}</OdsText>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         <OdsText preset="paragraph">{t('log_streams_select_account')}</OdsText>
-        <div className="flex flex-col md:flex-row gap-5 ">
+        <div className="flex flex-col md:flex-row gap-2">
           <OdsSelect
             className="w-full md:w-96"
             value={currentService?.serviceName}
@@ -118,7 +118,7 @@ export default function DataStreams() {
           />
         </div>
       </div>
-      <div className="flex gap-5">
+      <div className="flex gap-3">
         <OdsText>{t('log_streams_account_label')}</OdsText>
         <ServiceLink service={currentService} />
       </div>

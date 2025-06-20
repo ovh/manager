@@ -31,7 +31,7 @@ export const searchContext = createContext<ISearchContext>({
 
 const BlinkingCursor = () => {
   return (
-    <div className="w-4 h-6 bg-white animate-[cursor-blink_1s_step-end_infinite]" />
+    <div className="w-2 h-4 bg-white animate-[cursor-blink_1s_step-end_infinite]" />
   );
 };
 
@@ -118,13 +118,13 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
 
   return (
     <>
-      <div className="h-[--toolbox-height] flex items-center justify-between px-6 box-border border-solid border-0 border-b border-slate-600">
-        <div className="flex gap-4 items-center">
+      <div className="h-[--toolbox-height] flex items-center justify-between px-4 box-border border-solid border-0 border-b border-slate-600">
+        <div className="flex gap-2 items-center w-full">
           <OdsInput
             name="log-tail-search"
             type="search"
             placeholder={t('log_tail_search_placeholder')}
-            class="min-w-80"
+            className="flex-grow max-w-80"
             onOdsChange={(e) => setSearchQuery(e.detail.value as string)}
             data-testid="logTail-searchInput"
           />
@@ -145,20 +145,20 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
             data-testid="logTail-clearSession"
             label=""
           />
+          <OdsButton
+            className="bg-white h-auto ml-auto"
+            variant="ghost"
+            size="sm"
+            onClick={() => toggleZoom()}
+            data-testid="logTail-zoom"
+            icon={isZoomedIn ? 'shrink' : 'resize'}
+            label=""
+          />
         </div>
-        <OdsButton
-          className="bg-white h-auto"
-          variant="ghost"
-          size="sm"
-          onClick={() => toggleZoom()}
-          data-testid="logTail-zoom"
-          icon={isZoomedIn ? 'shrink' : 'resize'}
-          label=""
-        />
       </div>
       <div className="relative font-mono text-xs ">
         <div
-          className="px-6 overflow-y-auto contain-strict h-[--messages-height]"
+          className="px-4 overflow-y-auto contain-strict h-[--messages-height]"
           ref={parentRef}
           data-testid="logTail-listContainer"
         >
@@ -169,7 +169,7 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
             }}
           >
             <div
-              className="pt-6 absolute top-0 left-0 w-full"
+              className="pt-4 absolute top-0 left-0 w-full"
               style={{
                 transform: `translateY(${items[0]?.start ?? 0}px)`,
               }}
@@ -206,7 +206,7 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
         </div>
         {!autoScroll && (
           <OdsButton
-            className="absolute right-14 bottom-11 bg-white"
+            className="absolute right-10 bottom-8 bg-white"
             variant="ghost"
             size="sm"
             onClick={scrollToBottom}

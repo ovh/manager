@@ -3,6 +3,123 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.136.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.135.2...@ovh-ux/manager-container-app@0.136.0) (2025-06-16)
+
+
+### Bug Fixes
+
+* **container:** fix livechat reduce button ([2249500](https://github.com/ovh/manager/commit/224950059218ee96f89916e01c3af344665fad7d)), closes [#MANAGER-18560](https://github.com/ovh/manager/issues/MANAGER-18560)
+
+
+### Features
+
+* **container:** add a skip to the main content button ([71dd970](https://github.com/ovh/manager/commit/71dd970c9d300d504f90bd3e986f30cb2ee1ce7e)), closes [#MANAGER-15487](https://github.com/ovh/manager/issues/MANAGER-15487)
+
+
+
+
+
+## [0.135.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.135.1...@ovh-ux/manager-container-app@0.135.2) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.135.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.135.0...@ovh-ux/manager-container-app@0.135.1) (2025-06-13)
+
+
+### Reverts
+
+* Revert "feat(container): migrate from reket to axios" ([5d31af9](https://github.com/ovh/manager/commit/5d31af9925de55882e02eeff66136b6e10ee8951))
+* Revert "fix(*): fix usage of useOvhPaymentMethod in apps and packages" ([22a0034](https://github.com/ovh/manager/commit/22a003476308e34e1975c0fef8d2ed8b7766adfb))
+* Revert "feat(*): remove last occurances of reket" ([5fcc1e0](https://github.com/ovh/manager/commit/5fcc1e0e2348528194b73e4833c51ba901c71cde))
+* Revert "feat(*): incorporate procedure changes, fix config" ([0f0faaa](https://github.com/ovh/manager/commit/0f0faaaae2e03b97e92d0becded7a8e0d0c7e287))
+
+
+
+
+
+# [0.135.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.134.2...@ovh-ux/manager-container-app@0.135.0) (2025-06-12)
+
+
+### Features
+
+* **dedicated-servers:** bump server listing to react ([#16397](https://github.com/ovh/manager/issues/16397)) ([9ffba99](https://github.com/ovh/manager/commit/9ffba993219c75f3b5e18da9928fda44f664c00b)), closes [#MANAGER-17448](https://github.com/ovh/manager/issues/MANAGER-17448)
+
+
+
+
+
+## [0.134.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.134.1...@ovh-ux/manager-container-app@0.134.2) (2025-06-12)
+
+
+### Bug Fixes
+
+* loading svgs sidebar ([a240564](https://github.com/ovh/manager/commit/a24056426986c708c6f199ee20f4cec1aebef4eb)), closes [#MANAGER-17397](https://github.com/ovh/manager/issues/MANAGER-17397) [#INC0135230](https://github.com/ovh/manager/issues/INC0135230)
+
+
+
+
+
+## [0.134.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.134.0...@ovh-ux/manager-container-app@0.134.1) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.134.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.133.0...@ovh-ux/manager-container-app@0.134.0) (2025-06-11)
+
+
+### Bug Fixes
+
+* **container:** fix navigation tree issues ([ff5be11](https://github.com/ovh/manager/commit/ff5be114f276b9feb9258dea98e50a8756b8e121)), closes [#MANAGER-17837](https://github.com/ovh/manager/issues/MANAGER-17837)
+* fix usage of useOvhPaymentMethod in apps and packages ([14cf10c](https://github.com/ovh/manager/commit/14cf10cb5b73962f41c462187f42b8ef088291f4)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+### Features
+
+* **container:** change billing trad ([6cf7a86](https://github.com/ovh/manager/commit/6cf7a862799940eb8d3022e8671c1ada22f524df)), closes [#MANAGER-17636](https://github.com/ovh/manager/issues/MANAGER-17636)
+* **container:** migrate from reket to axios ([b4519df](https://github.com/ovh/manager/commit/b4519dfc90482cb6eac17a125e538f4b48a7eeab)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+* **container:** redirect metrics data platform to ldp ([9e4c71d](https://github.com/ovh/manager/commit/9e4c71de575d9528ac8e225618b2cb26009ba677)), closes [#MANAGER-16730](https://github.com/ovh/manager/issues/MANAGER-16730)
+* incorporate procedure changes, fix config ([5bd9e38](https://github.com/ovh/manager/commit/5bd9e388efd0ed1a46934f04c8182aab31d56d9c)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+* remove last occurances of reket ([af0883e](https://github.com/ovh/manager/commit/af0883e36655bc0defcc9122db92073254f1566b)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
+# [0.133.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.132.1...@ovh-ux/manager-container-app@0.133.0) (2025-06-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4046] ([e555b7a](https://github.com/ovh/manager/commit/e555b7a12b5386182a0579db20b985b30c7dcc30)), closes [#MANAGER-18256](https://github.com/ovh/manager/issues/MANAGER-18256)
+* **iam:** add beta badge on logs menu entry ([7c20e61](https://github.com/ovh/manager/commit/7c20e616fd0318350a3415d4929cf3c3a98128ab)), closes [#MANAGER-18324](https://github.com/ovh/manager/issues/MANAGER-18324)
+
+
+### Features
+
+* **veeam:** remove veeam cloud connect ([8ac3049](https://github.com/ovh/manager/commit/8ac3049049f8398114f6966441e8d8e583c57a04)), closes [#MANAGER-16416](https://github.com/ovh/manager/issues/MANAGER-16416)
+
+
+
+
+
+## [0.132.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.132.0...@ovh-ux/manager-container-app@0.132.1) (2025-06-09)
+
+
+### Bug Fixes
+
+* **pci-ai-tools:emulators:** add quantum section and emulators application ([c5f9ecc](https://github.com/ovh/manager/commit/c5f9ecc31db61e5ab2f44bf128c5e6581f58256e)), closes [#AIS-1189](https://github.com/ovh/manager/issues/AIS-1189)
+
+
+
+
+
 # [0.132.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.131.0...@ovh-ux/manager-container-app@0.132.0) (2025-06-05)
 
 

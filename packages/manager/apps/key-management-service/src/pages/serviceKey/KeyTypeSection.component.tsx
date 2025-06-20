@@ -53,11 +53,11 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
 
   return (
     <>
-      <div className="flex flex-col gap-6 md:gap-8">
+      <div className="flex flex-col gap-3 md:gap-4">
         <Subtitle>
           {t('key_management_service_service-keys_create_crypto_title')}
         </Subtitle>
-        <OdsFormField>
+        <div className="space-y-2">
           <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
             {t(
               'key_management_service_service-keys_create_crypto_origin_title',
@@ -68,9 +68,9 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
               'key_management_service_service-keys_create_crypto_origin_subtitle',
             )}
           </OdsText>
-        </OdsFormField>
+        </div>
         <OdsFormField>
-          <div slot="label">
+          <div slot="label" className="space-y-2 mb-2">
             <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
               {t(
                 'key_management_service_service-keys_create_crypto_field_type_title',
@@ -113,9 +113,10 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
           </div>
         </OdsFormField>
       </div>
+
       {[OkmsKeyTypes.oct, OkmsKeyTypes.RSA].includes(serviceKey?.type) && (
         <OdsFormField key={serviceKey.type}>
-          <div slot="label">
+          <div slot="label" className="space-y-2 mb-2">
             <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
               {t(
                 'key_management_service_service-keys_create_crypto_field_size_title',
@@ -154,7 +155,7 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
       )}
       {serviceKey?.type === OkmsKeyTypes.EC && (
         <OdsFormField>
-          <div slot="label">
+          <div slot="label" className="space-y-2 mb-2">
             <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
               {t(
                 'key_management_service_service-keys_create_crypto_field_curve_title',

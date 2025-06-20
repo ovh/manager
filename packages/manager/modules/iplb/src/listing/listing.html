@@ -49,7 +49,7 @@
     id="{{ $ctrl.datagridId }}"
     rows-loader="$ctrl.loadPage()"
     row-loader="$ctrl.loadResource($row)"
-    columns="$ctrl.columns"
+    columns="$ctrl.columnsWithTranslatedHeaders"
     customizable="true"
     criteria="$ctrl.criteria"
     on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"

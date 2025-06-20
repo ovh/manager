@@ -25,7 +25,7 @@ import {
   useOkmsCredentialById,
 } from '@/data/hooks/useOkmsCredential';
 import Loading from '@/components/Loading/Loading';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
@@ -68,7 +68,7 @@ const CredentialDashboard = () => {
     return (
       <ErrorBanner
         error={errorKms?.response || errorCredential?.response}
-        onRedirectHome={() => navigate(ROUTES_URLS.listing)}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
           queryClient.refetchQueries({
             queryKey: getOkmsCredentialQueryKey({ okmsId, credentialId }),
@@ -84,22 +84,17 @@ const CredentialDashboard = () => {
     {
       id: okmsId,
       label: okms.data.iam.displayName,
-      navigateTo: `/${okmsId}`,
+      navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
-      id: ROUTES_URLS.credentials,
+      id: KMS_ROUTES_URIS.credentials,
       label: t('key_management_service_credential'),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}`,
+      navigateTo: KMS_ROUTES_URLS.credentialListing(okmsId),
     },
     {
       id: credentialId,
       label: credential.name,
-      navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}`,
-    },
-    {
-      id: ROUTES_URLS.credentialIdentities,
-      label: t('key_management_service_credential_identities'),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}/${ROUTES_URLS.credentialIdentities}`,
+      navigateTo: KMS_ROUTES_URLS.credentialDashboard(okmsId, credentialId),
     },
   ];
 
@@ -116,7 +111,7 @@ const CredentialDashboard = () => {
         )}
         message={<Notifications />}
         onClickReturn={() => {
-          navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
+          navigate(KMS_ROUTES_URLS.credentialListing(okmsId));
           trackClick({
             location: PageLocation.page,
             buttonType: ButtonType.link,
@@ -129,11 +124,11 @@ const CredentialDashboard = () => {
             <OdsTab
               isSelected={
                 location.pathname ===
-                `/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}`
+                KMS_ROUTES_URLS.credentialDashboard(okmsId, credentialId)
               }
             >
               <NavLink
-                to={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}`}
+                to={KMS_ROUTES_URLS.credentialDashboard(okmsId, credentialId)}
                 className="flex no-underline"
                 onClick={() => {
                   trackClick({
@@ -152,11 +147,14 @@ const CredentialDashboard = () => {
             <OdsTab
               isSelected={
                 location.pathname ===
-                `/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}/${ROUTES_URLS.credentialIdentities}`
+                KMS_ROUTES_URLS.credentialIdentitiesList(okmsId, credentialId)
               }
             >
               <NavLink
-                to={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}/${ROUTES_URLS.credentialIdentities}`}
+                to={KMS_ROUTES_URLS.credentialIdentitiesList(
+                  okmsId,
+                  credentialId,
+                )}
                 className="flex no-underline"
                 onClick={() => {
                   trackClick({

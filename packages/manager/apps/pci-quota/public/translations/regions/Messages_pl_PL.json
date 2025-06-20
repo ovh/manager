@@ -1,13 +1,13 @@
 {
   "pci_projects_project_regions": "Lokalizacje",
   "pci_projects_project_regions_title": "Dodaj lokalizacje",
-  "pci_projects_project_regions_description": "OVH oferuje kilka lokalizacji do wyboru, w których możesz utworzyć infrastrukturę lub kontener. Domyślnie masz dostęp do wybranych regionów, ale możesz dodawać nowe.",
+  "pci_projects_project_regions_description": "OVHcloud oferuje kilka lokalizacji do wyboru, w których możesz utworzyć infrastrukturę lub kontener. Domyślnie masz dostęp do wybranych lokalizacji, ale możesz dodawać nowe.",
   "pci_projects_project_regions_added_title": "Dostępne lokalizacje",
   "pci_projects_project_regions_available_to_add_title": "Lokalizacje, które możesz dodać",
   "pci_projects_project_regions_add_region": "Dodaj lokalizację",
   "pci_projects_project_regions_all_added": "Wszystkie dodane lokalizacje",
-  "pci_projects_project_regions_info_message": "Dodanie nowych lokalizacji może potrwać. Po dodaniu lokalizacji będziesz mógł dodać serwer lub kontener.",
+  "pci_projects_project_regions_info_message": "Dodanie nowych lokalizacji może potrwać kilka minut. Po dodaniu lokalizacji będziesz mógł dodać serwer lub kontener.",
   "pci_projects_project_regions_all": "Wszystkie lokalizacje",
   "pci_projects_project_regions_add_region_error": "Wystąpił błąd podczas dodawania lokalizacji: {{message}}.",
-  "pci_projects_project_regions_add_region_success": "Trwa dodawanie nowej lokalizacji {{ code }}, może to potrwać do 60 minut. Zostaniesz powiadomiony e-mailem, kiedy lokalizacja będzie dostępna."
+  "pci_projects_project_regions_add_region_success": "Lokalizacja {{code}} jest w trakcie aktywacji - może to potrwać do 60 minut. Zostaniesz powiadomiony e-mailem, gdy lokalizacja będzie dostępna."
 }

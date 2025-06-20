@@ -8,6 +8,8 @@ import JobsList from './_components/JobsListTable.component';
 import { useGetJobs } from '@/data/hooks/ai/job/useGetJobs.hook';
 import queryClient from '@/query.client';
 import { getJobs } from '@/data/api/ai/job/job.api';
+import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
+import { JobsRoadmapLinks } from '@/configuration/roadmap-changelog.constants';
 
 interface JobsProps {
   params: {
@@ -44,7 +46,10 @@ const Jobs = () => {
         className="flex justify-between w-full items-center"
       >
         <h2>{t('title')}</h2>
-        <Guides section={jobGuidesSections} />
+        <div className="flex flex-wrap justify-end gap-1">
+          <RoadmapChangelog links={JobsRoadmapLinks} />
+          <Guides section={jobGuidesSections} />
+        </div>
       </div>
       <JobsList jobs={jobQuery.data} />
       <Outlet />

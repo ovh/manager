@@ -48,10 +48,10 @@
   "managed_vcd_dashboard_contact_list_administrator": "{{code}} Administrator",
   "managed_vcd_dashboard_contact_list_billing": "{{code}} Abrechnung",
   "managed_vcd_dashboard_contact_list_technical": "{{code}} Technik",
-  "managed_vcd_dashboard_password_modal_title": "Passwort ändern",
-  "managed_vcd_dashboard_password_modal_subtitle": "Sind Sie sicher, dass Sie Ihr Passwort ändern möchten?",
-  "managed_vcd_dashboard_password_renew_success": "Sie erhalten eine E-Mail, um sich Ihr Passwort anzusehen.",
-  "managed_vcd_dashboard_password_renew_error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie den Support, um Ihr Administrator-Passwort zu ändern.",
+  "managed_vcd_dashboard_password_modal_title": "Passwort erneuern",
+  "managed_vcd_dashboard_password_modal_subtitle": "Sind Sie sicher, dass Sie Ihr Passwort erneuern möchten?",
+  "managed_vcd_dashboard_password_renew_success": "Die Anfrage zur Erneuerung Ihres Admin-Passworts wurde registriert. Sie erhalten in Kürze eine E-Mail mit einem Link, über den Sie Ihr Passwort einsehen können.",
+  "managed_vcd_dashboard_password_renew_error": "Beim Erneuern Ihres Admin-Passworts ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie unseren Kundensupport.",
   "managed_vcd_dashboard_edit_modal_cta_validate": "Bestätigen",
   "managed_vcd_dashboard_cancellation_tooltip": "Wenn Sie Ihren Dienst kündigen möchten, kontaktieren Sie bitte unseren Support."
 }

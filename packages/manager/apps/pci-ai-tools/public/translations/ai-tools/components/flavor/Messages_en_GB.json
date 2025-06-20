@@ -1,8 +1,8 @@
 {
-  "fieldFlavorDescription": "Select Resource Type",
+  "fieldFlavorDescription": "Select resource type",
   "tableHeadType": "Type",
   "tableHeadDescription": "Description",
-  "tableHeadVcores": "Vcores",
+  "tableHeadVcores": "vCores",
   "tableHeadMemory": "RAM",
   "tableHeadStorage": "Storage",
   "tableHeadPrice": "Price per hour",
@@ -13,12 +13,12 @@
   "localStorageSpec": "Temporary local storage: {{disk}} SSD",
   "networkSpec": "Public network: {{network}}/s",
   "resourcePrice": "Resource prices",
-  "updateFlavorTitle": "Change the resources",
+  "updateFlavorTitle": "Modify resources",
   "fieldFlavorQuantityDescription": "Select the quantity of resources",
   "fieldFlavorQuantityInformation": "Maximum quantity for ",
   "updateFlavorButtonCancel": "Cancel",
   "updateFlavorButtonConfirm": "Confirm",
   "updateFlavorToastErrorTitle": "Error",
-  "updateFlavorToastSuccessTitle": "Successes",
-  "updateFlavorToastSuccessDescription": "The application was updated"
+  "updateFlavorToastSuccessTitle": "Completed",
+  "updateFlavorToastSuccessDescription": "Application updated!"
 }

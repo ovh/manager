@@ -24,7 +24,7 @@ const SubscriptionLogService = ({
 
   if (isLoading || isPending) {
     return (
-      <div className="flex justify-center w-full py-6">
+      <div className="flex justify-center w-full py-4">
         <OdsSpinner size="sm" data-testid="logService-spinner" />
       </div>
     );
@@ -45,21 +45,17 @@ const SubscriptionLogService = ({
 
   return (
     <>
-      <div className="flex flex-col gap-5">
-        <div className="flex flex-row justify-between ">
-          <OdsText preset="heading-6">
-            {data?.data.displayName || subscription.serviceName}
-          </OdsText>
-          <OdsText preset="span">{subscription.serviceName}</OdsText>
-        </div>
+      <div className="flex flex-row justify-between ">
+        <OdsText preset="heading-6">
+          {data?.data.displayName || subscription.serviceName}
+        </OdsText>
+        <OdsText preset="span">{subscription.serviceName}</OdsText>
       </div>
-      <div className="flex flex-col gap-5">
-        <div className="flex flex-row justify-between ">
-          <OdsText preset="heading-6">
-            {t('log_service_username_tile_label')}
-          </OdsText>
-          <OdsText preset="span">{data?.data.username}</OdsText>
-        </div>
+      <div className="flex flex-row justify-between ">
+        <OdsText preset="heading-6">
+          {t('log_service_username_tile_label')}
+        </OdsText>
+        <OdsText preset="span">{data?.data.username}</OdsText>
       </div>
     </>
   );

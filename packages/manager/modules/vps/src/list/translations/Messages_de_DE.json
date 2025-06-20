@@ -1,0 +1,12 @@
+{
+  "vps_list_displayName": "Anzeigename",
+  "vps_list_name": "Name",
+  "vps_list_model": "Modell",
+  "vps_list_region": "Standort",
+  "vps_list_state": "Status",
+  "vps_list_loadLocation_error": "Beim Abrufen der Daten, die zum Anzeigen der Standortinformationen erforderlich sind, ist ein Fehler aufgetreten.",
+  "vps_list_popover_details": "Details",
+  "vps_list_vcore": "vCores",
+  "vps_list_memory": "RAM",
+  "vps_list_disk": "Speicher"
+}

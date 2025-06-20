@@ -231,6 +231,8 @@ const GUIDE = {
       'https://help.ovhcloud.com/csm/en-au-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060442',
     SG:
       'https://help.ovhcloud.com/csm/en-sg-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060444',
+    US:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/28789800400659-Generating-OVHcloud-Account-Logs-with-Logs-Data-Platform',
     ASIA:
       'https://help.ovhcloud.com/csm/asia-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060435',
   },

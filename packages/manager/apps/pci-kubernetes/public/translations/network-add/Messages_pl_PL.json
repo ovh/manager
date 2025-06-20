@@ -31,6 +31,7 @@
   "kubernetes_network_form_rebuild": "Uwaga: zmiana strategii routingu wychodzącego wymaga ponownego wdrożenia węzłów klastra do aktualizacji rolling.",
   "kubernetes_network_form_notify_users": "Do uruchomienia Managed Kubernetes Service w regionie z 3 strefami dostępności (3-AZ) niezbędna jest podsieć z bramą. Upewnij się, że Twoja prywatna sieć spełnia te wymagania, aby zapewnić optymalne działanie.",
   "kubernetes_network_form_select_private_option": "Wybierz sieć prywatną",
-  "kubernetes_network_form_no_associated_gateway": "W trakcie fazy beta, do sieci prywatnej musi być przypisany zarządzany Gateway.",
-  "kubernetes_network_form_no_private_network": "Aby skonfigurować sieć dla usługi Kubernetes, musisz posiadać sieć prywatną. Sugerujemy utworzenie prywatnej sieci, jeśli jeszcze jej nie posiadasz."
+  "kubernetes_network_form_no_associated_gateway": "Podsieć nie ma przypisanej bramy, która jest niezbędna do prawidłowego działania klastra. Przypisz jedną z nich do tej podsieci lub wybierz podsieć spełniającą te wymagania.",
+  "kubernetes_network_form_no_private_network": "Aby skonfigurować sieć dla usługi Kubernetes, musisz posiadać sieć prywatną. Sugerujemy utworzenie prywatnej sieci, jeśli jeszcze jej nie posiadasz.",
+  "kubernetes_network_form_add_gateway": "Utwórz gateway"
 }

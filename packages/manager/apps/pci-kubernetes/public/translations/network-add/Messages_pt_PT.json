@@ -31,6 +31,7 @@
   "kubernetes_network_form_rebuild": "Atenção: alterar a estratégia de roteamento de saída implica uma reimplementação dos nós do seu cluster em rolling update.",
   "kubernetes_network_form_notify_users": "Para implementar o Managed Kubernetes Service numa região com 3 Availability Zones (3-AZ), é obrigatória uma sub-rede com uma gateway associada. Certifique-se de que a sua rede privada cumpre estes requisitos para garantir o melhor funcionamento possível.",
   "kubernetes_network_form_select_private_option": "Escolha uma rede privada",
-  "kubernetes_network_form_no_associated_gateway": "Durante a fase beta, deve ser associada à rede privada uma gateway gerida.",
-  "kubernetes_network_form_no_private_network": "É necessária uma rede privada associada para configurar a sua rede para o Kubernetes. Sugerimos que crie uma rede privada se ainda não tiver uma."
+  "kubernetes_network_form_no_associated_gateway": "A sua sub-rede não tem um gateway associado, o que é necessário para o bom funcionamento do cluster. Associe uma a esta sub-rede ou selecione uma sub-rede que cumpra estes requisitos.",
+  "kubernetes_network_form_no_private_network": "É necessária uma rede privada associada para configurar a sua rede para o Kubernetes. Sugerimos que crie uma rede privada se ainda não tiver uma.",
+  "kubernetes_network_form_add_gateway": "Criar um gateway"
 }

@@ -48,44 +48,43 @@ export const GeneralInformationSection: React.FC<GeneralInformationSectionProps>
   };
 
   return (
-    <div className="grid gap-6 md:gap-8">
+    <div className="flex flex-col space-y-3 md:space-y-4">
       <Subtitle>
         {t(
           'key_management_service_service-keys_create_general_information_title',
         )}
       </Subtitle>
-      <div className="grid gap-5 md:gap-6">
-        <OdsFormField error={getErrorMessage(serviceKeyNameError)}>
-          <div slot="label">
-            <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
-              {t(
-                'key_management_service_service-keys_create_general_information_field_name_title',
-              )}
-            </OdsText>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t(
-                'key_management_service_service-keys_create_general_information_field_name_subtitle',
-              )}
-            </OdsText>
-          </div>
-          <OdsInput
-            name="input-service-key-name"
-            aria-label="input-service-key-name"
-            type={ODS_INPUT_TYPE.text}
-            hasError={!!serviceKeyNameError}
-            isRequired
-            placeholder={t(
-              'key_management_service_service-keys_create_general_information_field_name_placeholder',
+
+      <OdsFormField error={getErrorMessage(serviceKeyNameError)}>
+        <div slot="label" className="space-y-2 mb-2">
+          <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+            {t(
+              'key_management_service_service-keys_create_general_information_field_name_title',
             )}
-            value={keyDisplayName}
-            onOdsChange={(e) => {
-              const newServiceKeyName = e.detail.value as string;
-              setServiceKeyNameError(validateServiceKeyName(newServiceKeyName));
-              setKeyDisplayName(newServiceKeyName);
-            }}
-          />
-        </OdsFormField>
-      </div>
+          </OdsText>
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            {t(
+              'key_management_service_service-keys_create_general_information_field_name_subtitle',
+            )}
+          </OdsText>
+        </div>
+        <OdsInput
+          name="input-service-key-name"
+          aria-label="input-service-key-name"
+          type={ODS_INPUT_TYPE.text}
+          hasError={!!serviceKeyNameError}
+          isRequired
+          placeholder={t(
+            'key_management_service_service-keys_create_general_information_field_name_placeholder',
+          )}
+          value={keyDisplayName}
+          onOdsChange={(e) => {
+            const newServiceKeyName = e.detail.value as string;
+            setServiceKeyNameError(validateServiceKeyName(newServiceKeyName));
+            setKeyDisplayName(newServiceKeyName);
+          }}
+        />
+      </OdsFormField>
     </div>
   );
 };

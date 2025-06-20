@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.27.2...@ovh-ux/manager-react-components@2.28.0) (2025-06-12)
+
+### Features
+
+- **manager-react-component:** add service state badge component ([58f0ee8](https://github.com/ovh/manager/commit/58f0ee86dbca4507a3f4e114d9e3ec935d148dbc)), closes [#15090](https://github.com/ovh/manager/issues/15090)
+
+## [2.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.27.1...@ovh-ux/manager-react-components@2.27.2) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+## [2.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.27.0...@ovh-ux/manager-react-components@2.27.1) (2025-06-11)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 4075] ([3767ecc](https://github.com/ovh/manager/commit/3767ecc118a72aa312c3e3bc856454cb60c3f42a))
+- **i18n:** add missing translations [CDS 4087] ([1d5a0e2](https://github.com/ovh/manager/commit/1d5a0e2ec2f652734a31bfd19c502cab443e809a))
+- **i18n:** add missing translations [CDS 4094] ([ad15f88](https://github.com/ovh/manager/commit/ad15f88b3927485c9e2603541ff313808074b1b4))
+- **mrc:** fix onclick event on tags-list and export tags-modal ([18f56b7](https://github.com/ovh/manager/commit/18f56b76fb706f5aa244f2821a35f140ec8acad1)), closes [#MANAGER-18147](https://github.com/ovh/manager/issues/MANAGER-18147)
+
 # [2.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.26.0...@ovh-ux/manager-react-components@2.27.0) (2025-06-05)
 
 ### Bug Fixes

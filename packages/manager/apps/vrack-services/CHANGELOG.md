@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.20.7...@ovh-ux/manager-vrack-services-app@0.20.8) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.20.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.20.6...@ovh-ux/manager-vrack-services-app@0.20.7) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.20.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.20.5...@ovh-ux/manager-vrack-services-app@0.20.6) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.20.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.20.4...@ovh-ux/manager-vrack-services-app@0.20.5) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.20.3...@ovh-ux/manager-vrack-services-app@0.20.4) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.20.2...@ovh-ux/manager-vrack-services-app@0.20.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.20.1...@ovh-ux/manager-vrack-services-app@0.20.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.20.0...@ovh-ux/manager-vrack-services-app@0.20.1) (2025-06-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
 # [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.19.3...@ovh-ux/manager-vrack-services-app@0.20.0) (2025-06-05)
 
 

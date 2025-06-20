@@ -1152,7 +1152,7 @@
   "hosting_tab_BOOST_request_title": "Sie werden Ihr Angebot boosten",
   "hosting_tab_BOOST_request_heading": "Bitte wählen Sie das Angebot aus",
   "hosting_tab_BOOST_request_description": "Mit der Boost Option können Sie vorübergehend von höherer Leistung für Ihr Hosting profitieren. Der Preis wird bedarfsbasiert pro Tag berechnet.",
-  "hosting_tab_BOOST_request_description_billing_new": "Für diese Option werden Ihnen {{price}} inkl. MwSt. pro Nutzungstag berechnet und die Abrechnung erfolgt je nach Stufe (Tier). Sie können sie jederzeit deaktivieren oder den Tier ändern.",
+  "hosting_tab_BOOST_request_description_billing_new": "Für diese Option werden Ihnen <strong>{{price}} inkl. MwSt. pro Nutzungstag berechnet und die Abrechnung erfolgt je nach Stufe (Tier).</strong> Sie können sie jederzeit deaktivieren oder den Tier ändern.",
   "hosting_tab_BOOST_request_description_payment_renew": "Die Option wird bis zu ihrer Deaktivierung automatisch verlängert. Nach der Deaktivierung wird eine Rechnung für den gesamten Nutzungszeitraum erstellt. Der Betrag wird von Ihrem im Bereich „Meine Zahlungsarten“ Ihres Kundencenters hinterlegten Zahlungsmittel abgebucht.",
   "hosting_tab_BOOST_request_activation": "Der Boost Ihres Angebots wird aktiviert...",
   "hosting_tab_BOOST_request_success": "Der Boost Ihres Angebots wurde erfolgreich aktiviert.",

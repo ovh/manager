@@ -147,6 +147,18 @@ export default /* @ngInject */ function VpsService(
   };
 
   /*
+   * Get the location of the VPS
+   */
+  this.getVpsLocation = function getVpsLocation(serviceName) {
+    if (!serviceName) {
+      return $q.reject('No serviceName');
+    }
+    return $http
+      .get([swsVpsProxypass, serviceName, 'datacenter'].join('/'))
+      .then(({ data }) => data);
+  };
+
+  /*
    * Get monitoring data
    */
   this.getMonitoring = function getMonitoring(serviceName, period) {

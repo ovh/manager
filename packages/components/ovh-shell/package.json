@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/shell",
-  "version": "4.4.5",
+  "version": "4.5.3",
   "description": "Communication and interaction between applications",
   "repository": {
     "type": "git",
@@ -23,11 +23,12 @@
     "prepare": "tsc"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.3.2",
-    "@ovh-ux/ovh-at-internet": "^0.23.1",
+    "@ovh-ux/manager-config": "^8.4.1",
+    "@ovh-ux/manager-core-sso": "^0.3.1",
+    "@ovh-ux/ovh-at-internet": "^0.23.3",
     "@ovh-ux/ovh-reket": "^2.1.9",
     "@ovh-ux/request-tagger": "^0.4.1",
-    "@ovh-ux/url-builder": "^2.0.1",
+    "@ovh-ux/url-builder": "^2.0.2",
     "dompurify": "^3.2.4",
     "nanoid": "^3.1.25"
   },

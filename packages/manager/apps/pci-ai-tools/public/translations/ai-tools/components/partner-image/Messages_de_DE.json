@@ -1,0 +1,13 @@
+{
+  "partnerImageTitle": "Katalog der gebrauchsfertigen Apps",
+  "partnerImageDesc": "Wählen Sie aus dem folgenden Katalog von Anwendungen aus, um die Bereitstellung Ihrer Dienste zu beschleunigen",
+  "documentationLinkLabel": "Dokumentation",
+  "imageDocLink": "Mehr Informationen",
+  "partnerImageVersionDesc": "Wählen Sie die Version des Bildes aus",
+  "versionPlaceholder": "Suchen",
+  "noVersionFound": "Keine Versionen gefunden",
+  "partnerContractSignedOff": "Ich habe die Partnerbestimmungen zur Bereitstellung dieses Modells gelesen und akzeptiere diese.",
+  "partnerContractSignedOn": "Ich habe die Nutzungsbedingungen der Partner am {{signedDate}} für die Bereitstellung dieses Modells zur Kenntnis genommen und akzeptiere diese.",
+  "partnerConditionLink": "Lesen Sie die Nutzungsbedingungen der Partner",
+  "signContract": "Unterschreiben"
+}

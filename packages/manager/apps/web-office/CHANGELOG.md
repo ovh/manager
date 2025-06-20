@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.9...@ovh-ux/manager-web-office-app@0.3.10) (2025-06-17)
+
+
+### Bug Fixes
+
+* **web-office:** add the tracking ([912501e](https://github.com/ovh/manager/commit/912501e28d98127956084b37f03ef677f978fd9b)), closes [#MANAGER-16498](https://github.com/ovh/manager/issues/MANAGER-16498)
+* **web-office:** change the datagrid loading ([6af5b92](https://github.com/ovh/manager/commit/6af5b929584c0a5cdbe0853c16761c7fb4b2f53a)), closes [#MANAGER-17357](https://github.com/ovh/manager/issues/MANAGER-17357)
+* **web-office:** update router and vitest config ([2e32d77](https://github.com/ovh/manager/commit/2e32d7760a13f29d974ab236b6e515dfebf561da)), closes [#MANAGER-18503](https://github.com/ovh/manager/issues/MANAGER-18503)
+
+
+
+
+
+## [0.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.8...@ovh-ux/manager-web-office-app@0.3.9) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.7...@ovh-ux/manager-web-office-app@0.3.8) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.6...@ovh-ux/manager-web-office-app@0.3.7) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.5...@ovh-ux/manager-web-office-app@0.3.6) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.4...@ovh-ux/manager-web-office-app@0.3.5) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.3...@ovh-ux/manager-web-office-app@0.3.4) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.2...@ovh-ux/manager-web-office-app@0.3.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.1...@ovh-ux/manager-web-office-app@0.3.2) (2025-06-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.0...@ovh-ux/manager-web-office-app@0.3.1) (2025-06-10)
+
+
+### Bug Fixes
+
+* **web-office:** use generic modal from mrc ([1a34e76](https://github.com/ovh/manager/commit/1a34e76badb8355b0d7b5a42d91a6de491270d9f)), closes [#MANAGER-16944](https://github.com/ovh/manager/issues/MANAGER-16944)
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.2.2...@ovh-ux/manager-web-office-app@0.3.0) (2025-06-05)
 
 

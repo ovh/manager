@@ -34,7 +34,7 @@
   "pci_projects_project_storages_blocks_add_deployment_mode_description_region-3-az": "Wdrożenia zapewniające odporność infrastruktury i dostępność krytycznych aplikacji w 3 strefach dostępności.",
   "pci_projects_project_storages_blocks_add_deployment_mode_title_localzone": "Local Zone",
   "pci_projects_project_storages_blocks_add_deployment_mode_description_localzone": "Wdrażanie aplikacji jak najbliżej użytkowników w celu minimalizacji opóźnień i zapewnienia lokalizacji danych spełniającej wymogi regulacyjne obowiązujące na określonym terytorium.",
-  "pci_projects_project_storages_blocks_add_deployment_mode_price_from": "Od {{price}} netto/GB/godz.",
+  "pci_projects_project_storages_blocks_add_deployment_mode_price_from": "Od {{price}} netto/GB/m-c",
   "pci_projects_project_storages_blocks_add_beta_free": "Gratis",
   "pci_projects_project_storages_blocks_add_type_subtitle": "Wybierz rozwiązanie block storage dopasowane do Twoich potrzeb, uwzględniając wymagany poziom wydajności i odporności danych.",
   "pci_projects_project_storages_blocks_add_type_availability_zone_one": "Dane zlokalizowane w {{count}} strefie dostępności",

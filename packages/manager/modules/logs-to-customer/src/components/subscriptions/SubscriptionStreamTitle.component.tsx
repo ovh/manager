@@ -25,7 +25,7 @@ const SubscriptionStreamTitle = ({
 
   if (isLoading || isPending) {
     return (
-      <div className="flex justify-center w-full py-6">
+      <div className="flex justify-center w-full py-4">
         <OdsSpinner size="sm" data-testid="logStream-spinner" />
       </div>
     );
@@ -47,11 +47,9 @@ const SubscriptionStreamTitle = ({
       />
     );
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-row justify-between ">
-        <OdsText preset="heading-6">{t('log_stream_title_tile_label')}</OdsText>
-        <OdsText preset="paragraph">{data?.data.title}</OdsText>
-      </div>
+    <div className="flex flex-row justify-between ">
+      <OdsText preset="heading-6">{t('log_stream_title_tile_label')}</OdsText>
+      <OdsText preset="paragraph">{data?.data.title}</OdsText>
     </div>
   );
 };

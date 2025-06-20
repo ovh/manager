@@ -1,4 +1,3 @@
-import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { useSearchParams } from 'react-router-dom';
 import ModalDeleteUsers from './DeleteUsers.modal';
@@ -18,7 +17,7 @@ describe('ModalDeleteUsers Component', () => {
 
     const { getByTestId } = render(<ModalDeleteUsers />);
 
-    const deleteButton = getByTestId('delete-btn');
+    const deleteButton = getByTestId('primary-button');
 
     await act(() => {
       fireEvent.click(deleteButton);
@@ -37,7 +36,7 @@ describe('ModalDeleteUsers Component', () => {
 
     const { getByTestId } = render(<ModalDeleteUsers />);
 
-    const deleteButton = getByTestId('delete-btn');
+    const deleteButton = getByTestId('primary-button');
 
     expect(deleteButton).toBeInTheDocument();
 

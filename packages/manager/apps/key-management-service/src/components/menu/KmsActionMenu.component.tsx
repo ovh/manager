@@ -9,7 +9,7 @@ import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { OKMS } from '@/types/okms.type';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 const KmsActionMenu = ({ id }: OKMS) => {
   const { t } = useTranslation('key-management-service/listing');
@@ -27,7 +27,7 @@ const KmsActionMenu = ({ id }: OKMS) => {
           actionType: 'navigation',
           actions: ['delete_kms'],
         });
-        navigate(`${ROUTES_URLS.terminateOkms}/${id}`);
+        navigate(KMS_ROUTES_URLS.kmsListingTerminate(id));
       },
     },
   ];

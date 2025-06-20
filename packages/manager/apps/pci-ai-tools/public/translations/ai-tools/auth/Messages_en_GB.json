@@ -2,9 +2,9 @@
   "discoveryMode": "You are currently in Discovery mode. To access AI products offered by OVHcloud, you need to activate your project.",
   "discoveryModeActivate": "Activate your project",
   "authActivateProjectButton": "Activate your AI project",
-  "authDescription": "To use OVHcloud AI services, you will need to authenticate before you can create your first notebook, job or app.",
-  "onboardingTitle": "Deploy your AI products easily",
+  "authDescription": "You have to sign in to use OVHcloud AI services, and create your first notebook, job, or app.",
+  "onboardingTitle": "Easily deploy your AI products",
   "formActiveUserToastErrorTitle": "Error",
-  "formActiveUserToastSuccessTitle": "Successes",
+  "formActiveUserToastSuccessTitle": "Completed",
   "formActiveUserToastSuccessDescription": "Your project has been activated"
 }

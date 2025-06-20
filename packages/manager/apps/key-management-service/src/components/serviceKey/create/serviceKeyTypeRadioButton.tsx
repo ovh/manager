@@ -23,9 +23,9 @@ export const ServiceKeyTypeRadioButton = ({
   const buttonId = `serviceKeyType-${type}`;
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center gap-3">
       <OdsRadio inputId={buttonId} {...props} />
-      <label className="ml-2" htmlFor={buttonId}>
+      <label htmlFor={buttonId}>
         <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
           {translatedType}
         </OdsText>

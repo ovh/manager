@@ -39,7 +39,7 @@ export type NetworkClusterStepProps = {
 };
 
 export const isValidGateway3AZ = (type: DeploymentMode, gateways: TGateway[]) =>
-  isMultiDeploymentZones(type) && Array.isArray(gateways) && gateways?.length;
+  isMultiDeploymentZones(type) && Array.isArray(gateways) && gateways.length;
 
 export default function NetworkClusterStep({
   region,

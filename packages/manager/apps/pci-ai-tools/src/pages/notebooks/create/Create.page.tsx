@@ -9,6 +9,7 @@ import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
 import { useGetCatalog } from '@/data/hooks/catalog/useGetCatalog.hook';
 import { useGetSshkey } from '@/data/hooks/sshkey/useGetSshkey.hook';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 export function breadcrumb() {
   return (
@@ -22,7 +23,7 @@ export function breadcrumb() {
 const Notebook = () => {
   const { t } = useTranslation('ai-tools/notebooks/create');
   const { projectId } = useParams();
-
+  const { isQuantum } = useQuantum();
   const suggestionsQuery = useGetSuggestions(projectId, {
     refetchOnWindowFocus: false,
   });
@@ -46,7 +47,7 @@ const Notebook = () => {
     <>
       <div className="flex justify-between w-full items-center">
         <h2>{t('title')}</h2>
-        <Guides section={[GuideSections.notebooks]} />
+        {isQuantum && <Guides section={[GuideSections.notebooks]} />}
       </div>
 
       {loading ? (

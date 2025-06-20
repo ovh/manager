@@ -8,19 +8,28 @@ import {
   OdsSelect,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import {
+  ODS_MODAL_COLOR,
+  ODS_INPUT_TYPE,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import {
   IntervalUnitType,
+  Modal,
   OvhSubsidiary,
   Price,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Modal from '@/components/modal/Modal.component';
 import { useGenerateUrl } from '@/hooks';
 import {
   getOfficeUserDomainQueryKey,
@@ -31,9 +40,11 @@ import { getOfficePrice, getOfficePriceQueryKey } from '@/data/api/price';
 import { OfficeUserEnum } from '@/data/api/order/type';
 import { UserOrderParamsType } from '@/data/api/api.type';
 import { POST_USERS_FORM_SCHEMA } from '@/utils/formSchemas.utils';
+import { CANCEL, CONFIRM, ORDER_ACCOUNT } from '@/tracking.constants';
 
 export default function ModalOrderUsers() {
   const { t } = useTranslation(['dashboard/users/order-users', 'common']);
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
@@ -52,6 +63,17 @@ export default function ModalOrderUsers() {
     { label: 'Office Business', value: OfficeUserEnum.OFFICE_365_BUSINESS },
     { label: 'Office Pro Plus', value: OfficeUserEnum.OFFICE_365_PRO_PLUS },
   ];
+
+  const tracking = (action: string, productType?: string) =>
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [
+        ORDER_ACCOUNT,
+        productType ? `${action}_${productType}` : action,
+      ],
+    });
 
   const {
     handleSubmit,
@@ -120,6 +142,7 @@ export default function ModalOrderUsers() {
     const selectedOffer = offerOptions.find(
       (option) => option.value === licence,
     );
+    tracking(CONFIRM, selectedOffer.value);
     orderUsers({
       firstName,
       lastName,
@@ -129,27 +152,23 @@ export default function ModalOrderUsers() {
       licence: selectedOffer.value,
     });
   };
+
   const handleCancelClick = () => {
+    tracking(CANCEL);
     onClose();
   };
+
   return (
     <Modal
-      title={t('common:users_order_users')}
-      onClose={onClose}
-      isDismissible
-      isOpen
-      secondaryButton={{
-        label: t('common:cta_cancel'),
-        action: handleCancelClick,
-        testid: 'cancel-btn',
-      }}
-      primaryButton={{
-        label: t('common:cta_confirm'),
-        action: handleSubmit(handleSaveClick),
-        isDisabled: !isDirty || !isValid,
-
-        testid: 'confirm-btn',
-      }}
+      heading={t('common:users_order_users')}
+      type={ODS_MODAL_COLOR.information}
+      isOpen={true}
+      secondaryLabel={t('common:cta_cancel')}
+      onSecondaryButtonClick={handleCancelClick}
+      onDismiss={handleCancelClick}
+      primaryLabel={t('common:cta_confirm')}
+      isPrimaryButtonDisabled={!isDirty || !isValid}
+      onPrimaryButtonClick={handleSubmit(handleSaveClick)}
     >
       <form
         className="flex flex-col text-left gap-y-5"

@@ -28,6 +28,8 @@ export * from './ManagerButton/ManagerButton';
 export * from './ManagerLink/ManagerLink.component';
 export * from './ManagerText/ManagerText';
 
+export * from './ServiceStateBadge/ServiceStateBadge.component';
+
 export * from './pci-maintenance-banner';
 export * from './region/region.component';
 export * from './order';
@@ -35,3 +37,4 @@ export * from './order';
 export * from './badge';
 export * from './Modal';
 export * from './tags-list';
+export * from './tags-modal';

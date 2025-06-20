@@ -1,0 +1,16 @@
+{
+  "title": "AI Deploy",
+  "description1": "Applicazioni e modelli di IA eseguiti in alta disponibilità.",
+  "description2": "Scegli da un catalogo o esegui le tue immagini Docker.",
+  "description3": "Sei un data scientist o uno sviluppatore e vuoi avviare un'applicazione o un modello di Intelligenza Artificiale in pochi minuti? Seleziona da un catalogo di applicazioni o importa la tua applicazione containerizzata. OVHcloud si occupa del deploy in alta disponibilità e della sicurezza. A tua disposizione risorse CPU e GPU, strumenti di monitoraggio in tempo reale e una tariffazione semplice con fatturazione a consumo. In seguito sarete liberi di collegarvi via API o tramite interfaccia Web HTTP.",
+  "createAppButton": "Deploy di un’App",
+  "cardTutotitle": "Tutorial",
+  "cardGuidetitle": "Guide",
+  "cardLink": "Scopri di più",
+  "cardTuto1Description": "Documentazione completa AI Deploy",
+  "cardTuto1Content": "Consulta tutta la documentazione di AI Deploy.",
+  "cardTuto2Description": "Caratteristiche, capacità e limiti",
+  "cardTuto2Content": "Scopri cos'è un’App in OVHcloud.",
+  "cardTuto3Description": "Iniziare a utilizzare AI Deploy",
+  "cardTuto3Content": "Questa guida ti mostra come avviare rapidamente la tua app dallo Spazio Cliente, dalla riga di comando o tramite API."
+}

@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.12.4...@ovh-ux/manager-account@0.13.0) (2025-06-16)
+
+
+### Features
+
+* **account:** add a shorcut to the contracts page ([1efae96](https://github.com/ovh/manager/commit/1efae96c4863115aa086c13fc32bc06e3c053721)), closes [#MANAGER-18361](https://github.com/ovh/manager/issues/MANAGER-18361)
+
+
+
+
+
+## [0.12.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.12.3...@ovh-ux/manager-account@0.12.4) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.12.2...@ovh-ux/manager-account@0.12.3) (2025-06-13)
+
+
+### Reverts
+
+* Revert "feat(account): add retry loop on KYC fraud" ([30e1b40](https://github.com/ovh/manager/commit/30e1b40356c22d03aa5759ccf0b56aff97f8b0d4))
+
+
+
+
+
+## [0.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.12.1...@ovh-ux/manager-account@0.12.2) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.12.0...@ovh-ux/manager-account@0.12.1) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.11.1...@ovh-ux/manager-account@0.12.0) (2025-06-11)
+
+
+### Features
+
+* **account:** add retry loop on KYC fraud ([048ab2e](https://github.com/ovh/manager/commit/048ab2e5f9fa522932f04d3b22365406f0332ec3)), closes [#MANAGER-17734](https://github.com/ovh/manager/issues/MANAGER-17734)
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.11.0...@ovh-ux/manager-account@0.11.1) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-account

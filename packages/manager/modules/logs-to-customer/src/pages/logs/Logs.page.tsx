@@ -11,7 +11,7 @@ export default function Logs() {
   const containerClasses = isZoomedIn ? 'flex-col' : '';
 
   return (
-    <div className={`flex gap-6 ${containerClasses}`}>
+    <div className={`flex gap-4 ${containerClasses}`}>
       <div className={`${logTailClasses} overflow-y-auto`}>
         <LogTail />
       </div>

@@ -66,6 +66,7 @@
   "terminate_service_legacy_type_license_windows": "Windows-Lizenz",
   "terminate_service_legacy_type_metrics": "Metrics",
   "terminate_service_legacy_type_msServices_sharepoint": "SharePoint",
+  "terminate_service_legacy_type_nutanix": "Nutanix",
   "terminate_service_legacy_type_overTheBox": "OverTheBox",
   "terminate_service_legacy_type_paas_database": "PaaS Database",
   "terminate_service_legacy_type_paas_monitoring": "PaaS Monitoring",
@@ -80,12 +81,10 @@
   "terminate_service_legacy_type_telephony_aliases": "Telefonie",
   "terminate_service_legacy_type_telephony_lines": "Telefonie",
   "terminate_service_legacy_type_telephony_trunks": "Telefonie",
-  "terminate_service_legacy_type_veeamCloudConnect": "Veeam Cloud Connect",
   "terminate_service_legacy_type_vps": "Virtual Private Server",
   "terminate_service_legacy_type_xdsl": "xDSL-Leitung",
   "terminate_service_legacy_type_kube": "Kubernetes",
   "terminate_service_legacy_type_webcoach": "WebCoach",
   "terminate_service_legacy_comments": "Kommentare",
-  "terminate_service_legacy_type_MBM": "Managed Bare Metal",
-  "terminate_service_legacy_type_nutanix": "Nutanix"
+  "terminate_service_legacy_type_MBM": "Managed Bare Metal"
 }

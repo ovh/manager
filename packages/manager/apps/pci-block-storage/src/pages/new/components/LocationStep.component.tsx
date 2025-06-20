@@ -1,5 +1,9 @@
-import { useCallback, useMemo, useState } from 'react';
-import { OsdsButton, OsdsSpinner } from '@ovhcloud/ods-components/react';
+import React, { useCallback, useMemo, useState } from 'react';
+import {
+  OsdsButton,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
@@ -12,17 +16,71 @@ import {
   TLocalisation,
   usePCICommonContextFactory,
 } from '@ovh-ux/manager-pci-common';
-import { Subtitle } from '@ovh-ux/manager-react-components';
+import {
+  convertHourlyPriceToMonthly,
+  Subtitle,
+  useCatalogPrice,
+} from '@ovh-ux/manager-react-components';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
 import { TRegion } from '@/api/data/regions';
+import {
+  getGroupLeastPrice,
+  TCatalogGroup,
+  TVolumeCatalog,
+} from '@/api/data/catalog';
 
 interface LocationProps {
   projectId: string;
   step: StepState;
   onSubmit: (region: TRegion) => void;
 }
+
+interface PriceDisplayProps {
+  catalogGroup: TCatalogGroup;
+  volumeCatalog: TVolumeCatalog;
+}
+
+const PriceDisplay: React.FC<PriceDisplayProps> = ({
+  catalogGroup,
+  volumeCatalog,
+}) => {
+  const { t } = useTranslation('add');
+  const { getFormattedCatalogPrice } = useCatalogPrice(6, {
+    hideTaxLabel: true,
+  });
+
+  const formattedPrice = useMemo(
+    () =>
+      getFormattedCatalogPrice(
+        convertHourlyPriceToMonthly(
+          getGroupLeastPrice(
+            catalogGroup,
+            volumeCatalog.regions,
+            volumeCatalog.models,
+          ),
+        ),
+      ),
+    [
+      catalogGroup,
+      volumeCatalog.regions,
+      volumeCatalog.models,
+      getFormattedCatalogPrice,
+    ],
+  );
+
+  return (
+    <OsdsText color={ODS_THEME_COLOR_INTENT.text} slot="label">
+      {t(
+        'pci_projects_project_storages_blocks_add_deployment_mode_price_from',
+        {
+          price: formattedPrice,
+        },
+      )}
+    </OsdsText>
+  );
+};
 
 export function LocationStep({
   projectId,
@@ -70,6 +128,7 @@ export function LocationStep({
         name: d.name,
         beta: d.tags.includes('is_new'),
         comingSoon: d.tags.includes('coming_soon'),
+        price: <PriceDisplay catalogGroup={d} volumeCatalog={volumeCatalog} />,
       })) || [],
     [volumeCatalog],
   );

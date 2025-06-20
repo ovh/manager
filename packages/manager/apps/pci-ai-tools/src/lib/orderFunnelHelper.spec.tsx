@@ -1,4 +1,5 @@
 import {
+  getAppSpec,
   getJobSpec,
   getNotebookSpec,
   humanizeFramework,
@@ -15,7 +16,11 @@ import {
   mockedOrderVolumesGit,
   mockedOrderVolumesS3,
 } from '@/__tests__/helpers/mocks/volume/datastore';
-import { JobOrderResult, NotebookOrderResult } from '@/types/orderFunnel';
+import {
+  AppOrderResult,
+  JobOrderResult,
+  NotebookOrderResult,
+} from '@/types/orderFunnel';
 import {
   mockedNotebookSpecInput,
   mockedNotebookSpecInputGPU,
@@ -25,6 +30,12 @@ import {
   mockedJobSpecInput,
   mockedJobSpecInputGPU,
 } from '@/__tests__/helpers/mocks/job/job';
+import { mockedOrderScaling } from '@/__tests__/helpers/mocks/app/appHelper';
+import { mockedPartnerImagePerApp } from '@/__tests__/helpers/mocks/partner/partner';
+import {
+  mockedAppSpecInput,
+  mockedAppSpecInputGPU,
+} from '@/__tests__/helpers/mocks/app/app';
 
 describe('orderFunnelHelper', () => {
   it('getNotebookSpec', () => {
@@ -79,6 +90,47 @@ describe('orderFunnelHelper', () => {
 
     expect(getJobSpec(jobOrderResultCPU)).toStrictEqual(mockedJobSpecInput);
     expect(getJobSpec(jobOrderResultGPU)).toStrictEqual(mockedJobSpecInputGPU);
+  });
+
+  it('getAppSpec', () => {
+    const appOrderResultCPU: AppOrderResult = {
+      region: mockedCapabilitiesRegionGRA,
+      flavor: mockedOrderFlavorCPU,
+      resourcesQuantity: 2,
+      appName: 'myNewApp',
+      unsecureHttp: false,
+      image: 'myImage',
+      version: '',
+      httpPort: 8080,
+      volumes: [mockedOrderVolumesS3, mockedOrderVolumesGit],
+      dockerCommand: ['command', 'docker'],
+      scaling: mockedOrderScaling,
+      labels: {
+        test: 'testLabel',
+      },
+      probe: {
+        path: '/health',
+        port: 8080,
+      },
+    };
+
+    const appOrderResultGPU: AppOrderResult = {
+      ...appOrderResultCPU,
+      flavor: mockedOrderFlavorGPU,
+      volumes: [mockedOrderPublicGit],
+      version: '1',
+      image: 'sentiment-analysis-app',
+      scaling: {
+        ...mockedOrderScaling,
+        autoScaling: false,
+      },
+    };
+    expect(
+      getAppSpec(appOrderResultCPU, [mockedPartnerImagePerApp]),
+    ).toStrictEqual(mockedAppSpecInput);
+    expect(
+      getAppSpec(appOrderResultGPU, [mockedPartnerImagePerApp]),
+    ).toStrictEqual(mockedAppSpecInputGPU);
   });
 
   it('humanizeFramework', () => {

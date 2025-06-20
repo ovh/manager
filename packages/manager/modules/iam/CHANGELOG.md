@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.17.0...@ovh-ux/manager-iam@1.17.1) (2025-06-19)
+
+
+### Bug Fixes
+
+* **iam:** unit test of logs routing ([55b966b](https://github.com/ovh/manager/commit/55b966bdb3cd4a46c5b9e15830252601f4f295e9)), closes [#MANAGER-18760](https://github.com/ovh/manager/issues/MANAGER-18760)
+
+
+
+
+
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.16.0...@ovh-ux/manager-iam@1.17.0) (2025-06-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4097] ([b3934e4](https://github.com/ovh/manager/commit/b3934e46471029a48981b4d561955ed0e6d3c955))
+* **iam:** fix logs labels ([c691ccf](https://github.com/ovh/manager/commit/c691ccf707723a9a789d16478df10254a9bbe674)), closes [#MANAGER-17514](https://github.com/ovh/manager/issues/MANAGER-17514)
+* **iam:** fix logs redirection rules ([7052c1e](https://github.com/ovh/manager/commit/7052c1eeb4ebd496f71a130c6af68b05f9d48c03)), closes [#MANAGER-17514](https://github.com/ovh/manager/issues/MANAGER-17514)
+* **iam:** fix logs tab order ([3af195c](https://github.com/ovh/manager/commit/3af195c947023fcc24fefc1d97a79416b42caa15)), closes [#MANAGER-17514](https://github.com/ovh/manager/issues/MANAGER-17514)
+
+
+### Features
+
+* **iam:** add activity logs tabs ([d7de81c](https://github.com/ovh/manager/commit/d7de81c8e31d6c6c11f34ebb410078ab06dd6c6a)), closes [#MANAGER-17514](https://github.com/ovh/manager/issues/MANAGER-17514)
+
+
+
+
+
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.15.5...@ovh-ux/manager-iam@1.16.0) (2025-06-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4046] ([e555b7a](https://github.com/ovh/manager/commit/e555b7a12b5386182a0579db20b985b30c7dcc30)), closes [#MANAGER-18256](https://github.com/ovh/manager/issues/MANAGER-18256)
+* **iam:** fix policy create and edit forms urls ([05e6a1c](https://github.com/ovh/manager/commit/05e6a1c81f366ce0a2a62bcaa7ce2f2a8f60ce71)), closes [#MANAGER-18218](https://github.com/ovh/manager/issues/MANAGER-18218)
+* **iam:** fix resource-groups create and edit forms urls ([7c00dd2](https://github.com/ovh/manager/commit/7c00dd2f6e58d8b327529f7c9078bf601e8de00a)), closes [#MANAGER-18218](https://github.com/ovh/manager/issues/MANAGER-18218)
+* **iam:** fix US logs guide link ([05bd2d5](https://github.com/ovh/manager/commit/05bd2d50483899ff7ae6602272fe7ff4d94e9042)), closes [#MANAGER-18363](https://github.com/ovh/manager/issues/MANAGER-18363)
+
+
+### Features
+
+* **veeam:** remove veeam cloud connect ([8ac3049](https://github.com/ovh/manager/commit/8ac3049049f8398114f6966441e8d8e583c57a04)), closes [#MANAGER-16416](https://github.com/ovh/manager/issues/MANAGER-16416)
+
+
+
+
+
 ## [1.15.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.15.4...@ovh-ux/manager-iam@1.15.5) (2025-05-29)
 
 

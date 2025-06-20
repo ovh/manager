@@ -7,7 +7,10 @@
   "pci_projects_project_load_balancer_list_last_applied_configuration": "Ultima configurazione applicata",
   "pci_projects_project_load_balancer_list_reqs": "Richiesta/secondo",
   "pci_projects_project_load_balancer_guide_using_load_balancer": "Configura un servizio Kubernetes con un Load Balancer",
-  "pci_projects_project_load_balancer_list_region": "Region",
+  "pci_projects_project_load_balancer_list_region": "Regione",
   "pci_projects_project_load_balancer_list_id": "ID",
-  "pci_projects_project_load_balancer_list_order": "Ordina"
+  "pci_projects_project_load_balancer_list_order": "Ordina",
+  "pci_projects_project_load_balancer_end_service": "Load Balancer for Managed Kubernetes Service sarà in vendita (End of Sale) e alla fine del supporto (EoS) a settembre 2025. La fine del ciclo di vita (EoL) è prevista per marzo 2026. Ti consigliamo di avviare la migrazione prima di settembre 2025 per continuare a utilizzare i servizi supportati ed effettuare la migrazione prima di marzo 2026 per evitare qualsiasi interruzione del servizio.",
+  "pci_projects_project_load_balancer_end_service_welcome": "Load Balancer for Managed Kubernetes Service sarà in vendita (End of Sale) e alla fine del supporto (EoS) a settembre 2025. La fine del ciclo di vita (EoL) è prevista per marzo 2026. Per evitare un’eventuale migrazione futura, ti consigliamo di adottare Load Balancer for Public Cloud (Octavia) immediatamente.",
+  "pci_projects_project_load_balancer_more_information": "Per maggiori informazioni clicca qui"
 }

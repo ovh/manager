@@ -110,10 +110,14 @@ export const ActionModalContent: FC<TActionModalProps> = ({
       ))}
       {children}
       {warningMessage && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.warning} className="mt-6">
+        <OsdsMessage
+          color={ODS_THEME_COLOR_INTENT.warning}
+          type={ODS_MESSAGE_TYPE.warning}
+          className="mt-6"
+        >
           <OsdsText
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.default}
+            color={ODS_THEME_COLOR_INTENT.text}
           >
             {warningMessage}
           </OsdsText>

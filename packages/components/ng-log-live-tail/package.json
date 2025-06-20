@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-log-live-tail",
-  "version": "2.5.2",
+  "version": "2.6.0",
   "description": "Poll a log API for displaying messages",
   "keywords": [
     "angularjs",

@@ -43,7 +43,7 @@ const SubscriptionStreamActions = ({
 
   if (isLoading || isPending) {
     return (
-      <div className="flex justify-center w-full py-6">
+      <div className="flex justify-center w-full py-4">
         <OdsSpinner size="md" data-testid="logStreamUrl-spinner" />
       </div>
     );
@@ -66,7 +66,7 @@ const SubscriptionStreamActions = ({
     );
 
   return (
-    <div className="flex flex-col gap-6 ">
+    <div className="flex flex-col gap-4 items-center">
       <Links
         href={data?.streamURL?.address}
         type={LinkType.external}
@@ -82,7 +82,7 @@ const SubscriptionStreamActions = ({
         label={t('log_stream_button_graylog_watch_label')}
       />
       <OdsButton
-        className="[&::part(button)]:w-full"
+        className="[&::part(button)]:w-full self-stretch"
         variant="outline"
         size="sm"
         onClick={() => {

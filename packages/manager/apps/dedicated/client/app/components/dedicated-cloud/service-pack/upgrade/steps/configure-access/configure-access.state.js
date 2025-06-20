@@ -9,7 +9,7 @@ const resolveAllowedIPsAndBlocks = /* @ngInject */ (
     null,
     null,
     true,
-  ).then((allowedIPsAndBlocks) => allowedIPsAndBlocks.list.results);
+  ).then(({ data }) => data);
 
 const resolveHasDefaultMeansOfPayment = /* @ngInject */ (ovhPaymentMethod) =>
   ovhPaymentMethod.hasDefaultPaymentMethod();

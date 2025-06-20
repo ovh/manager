@@ -22,7 +22,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useOkmsList } from '@/data/hooks/useOkms';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import {
   DatagridCellId,
   DatagridCellName,
@@ -119,7 +119,7 @@ export default function Listing() {
         !isRefetchEnabled &&
         data?.pages[0].data.length === 0
       }
-      route={ROUTES_URLS.onboarding}
+      route={KMS_ROUTES_URLS.kmsOnboarding}
       isError={isError}
       errorComponent={
         <OdsMessage className="mt-4" color={ODS_MESSAGE_COLOR.critical}>
@@ -128,7 +128,7 @@ export default function Listing() {
       }
     >
       <BaseLayout header={headerProps} message={<Notifications />}>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-6">
           <OdsButton
             className="w-fit"
             size={ODS_BUTTON_SIZE.sm}
@@ -141,7 +141,7 @@ export default function Listing() {
                 actionType: 'navigation',
                 actions: ['create_kms'],
               });
-              navigate(ROUTES_URLS.createKeyManagementService);
+              navigate(KMS_ROUTES_URLS.kmsCreate);
             }}
             label={t('key_management_service_listing_add_kms_button')}
             data-testid={kmsListingTestIds.ctaOrder}

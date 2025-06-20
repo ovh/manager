@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.4.2...@ovh-ux/logs-to-customer@1.4.3) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.4.1...@ovh-ux/logs-to-customer@1.4.2) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.4.0...@ovh-ux/logs-to-customer@1.4.1) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.3.5...@ovh-ux/logs-to-customer@1.4.0) (2025-06-11)
+
+
+### Features
+
+* **logs-to-customer:** add component Route for logs routing ([0135a44](https://github.com/ovh/manager/commit/0135a44d384dd4106d0dfa8d3f4de10fd2c93f3a)), closes [#MANAGER-18438](https://github.com/ovh/manager/issues/MANAGER-18438)
+
+
+
+
+
+## [1.3.5](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.3.4...@ovh-ux/logs-to-customer@1.3.5) (2025-06-10)
+
+
+### Bug Fixes
+
+* **logs:** fix css layout ([4fae091](https://github.com/ovh/manager/commit/4fae0914dae7f843e65d31a8bf484b7431425a94)), closes [#MANAGER-17703](https://github.com/ovh/manager/issues/MANAGER-17703)
+* **logs:** fix kind and subscription api calls ([8a6fabd](https://github.com/ovh/manager/commit/8a6fabd43ecdba1fd1c5b8b7b096c22b7df1c858)), closes [#MANAGER-17702](https://github.com/ovh/manager/issues/MANAGER-17702)
+
+
+
+
+
 ## [1.3.4](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.3.3...@ovh-ux/logs-to-customer@1.3.4) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/logs-to-customer

@@ -159,10 +159,6 @@ const productListingPages = {
     application: 'telecom',
     hash: '#/telephony',
   },
-  VEEAM_CLOUD_CONNECT: {
-    application: 'dedicated',
-    hash: '#/veeam',
-  },
   VEEAM_VEEAM_ENTERPRISE: {
     application: 'dedicated',
     hash: '#/veeam-enterprise',

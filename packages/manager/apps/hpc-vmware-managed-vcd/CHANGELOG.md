@@ -3,6 +3,87 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.8...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.0) (2025-06-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4089] ([42efa30](https://github.com/ovh/manager/commit/42efa30c659543af0610cd912fc3bbfe0229c7cc))
+* update svg import for svgr plugin ([91773fd](https://github.com/ovh/manager/commit/91773fde810627253d39739ad4ad8086f18619cf)), closes [#MANAGER-17397](https://github.com/ovh/manager/issues/MANAGER-17397)
+
+
+### Features
+
+* **vcd:** add reset password modal feature ([18c4774](https://github.com/ovh/manager/commit/18c4774b7dcf3c35c510f48217dc8374c9d885bc)), closes [#MANAGER-15191](https://github.com/ovh/manager/issues/MANAGER-15191)
+
+
+
+
+
+## [0.15.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.7...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.8) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.15.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.6...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.7) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.15.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.5...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.6) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.15.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.4...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.5) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.3...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.4) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.2...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.1...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.1) (2025-06-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
 # [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.14.4...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.0) (2025-06-05)
 
 

@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.2.18...@ovh-ux/manager-account-app@0.3.0) (2025-06-16)
+
+
+### Features
+
+* **container:** add a skip to the main content button ([71dd970](https://github.com/ovh/manager/commit/71dd970c9d300d504f90bd3e986f30cb2ee1ce7e)), closes [#MANAGER-15487](https://github.com/ovh/manager/issues/MANAGER-15487)
+
+
+
+
+
+## [0.2.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.2.17...@ovh-ux/manager-account-app@0.2.18) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.2.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.2.16...@ovh-ux/manager-account-app@0.2.17) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.2.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.2.15...@ovh-ux/manager-account-app@0.2.16) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.2.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.2.14...@ovh-ux/manager-account-app@0.2.15) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.2.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.2.13...@ovh-ux/manager-account-app@0.2.14) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.2.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.2.12...@ovh-ux/manager-account-app@0.2.13) (2025-06-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
 ## [0.2.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.2.11...@ovh-ux/manager-account-app@0.2.12) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-account-app

@@ -3,6 +3,79 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.11.7...@ovh-ux/manager-pci-object-storage-app@0.12.0) (2025-06-17)
+
+
+### Bug Fixes
+
+* **storage:** handle destination removed ([#17600](https://github.com/ovh/manager/issues/17600)) ([3aa794e](https://github.com/ovh/manager/commit/3aa794ee93ab25bc5b9ce69afb034e7f24f037a3)), closes [#TAPC-4330](https://github.com/ovh/manager/issues/TAPC-4330)
+
+
+### Features
+
+* **pci-object-storage:** add async repli mvp ([#17291](https://github.com/ovh/manager/issues/17291)) ([7680dae](https://github.com/ovh/manager/commit/7680dae37e2c7af16000a1154efb7250bc5a1433)), closes [#TAPC-447](https://github.com/ovh/manager/issues/TAPC-447) [#TAPC-2282](https://github.com/ovh/manager/issues/TAPC-2282) [#TAPC-2280](https://github.com/ovh/manager/issues/TAPC-2280)
+* **pci-object-storage:** rename standard infrequent access ([#17468](https://github.com/ovh/manager/issues/17468)) ([551f227](https://github.com/ovh/manager/commit/551f227334d56832f08bf94e93bf654e92ddf58e)), closes [#TAPC-4286](https://github.com/ovh/manager/issues/TAPC-4286)
+
+
+
+
+
+## [0.11.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.11.6...@ovh-ux/manager-pci-object-storage-app@0.11.7) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.11.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.11.5...@ovh-ux/manager-pci-object-storage-app@0.11.6) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.11.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.11.4...@ovh-ux/manager-pci-object-storage-app@0.11.5) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.11.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.11.3...@ovh-ux/manager-pci-object-storage-app@0.11.4) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.11.2...@ovh-ux/manager-pci-object-storage-app@0.11.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.11.1...@ovh-ux/manager-pci-object-storage-app@0.11.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.11.0...@ovh-ux/manager-pci-object-storage-app@0.11.1) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
 # [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.10.1...@ovh-ux/manager-pci-object-storage-app@0.11.0) (2025-06-05)
 
 

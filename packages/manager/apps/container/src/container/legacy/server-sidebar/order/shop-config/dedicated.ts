@@ -107,15 +107,6 @@ const dedicatedShopConfig = (
         tracking: 'dedicated::orders::nasha::order',
       }
     : null,
-  features['veeam-cloud-connect:order'] && ORDER_URLS[region].veeam
-    ? {
-        label: 'order_item_paas_veeam',
-        icon: VEEAM_SVG,
-        url: getOrderURL('veeam', region, sub),
-        external: true,
-        tracking: 'dedicated::orders::veeam-cc::order',
-      }
-    : null,
   features['veeam-enterprise:order'] && ORDER_URLS[region].veeam_enterprise
     ? {
         label: 'order_item_paas_veeam_enterprise',

@@ -32,5 +32,6 @@
   "kubernetes_network_form_notify_users": "You need a subnet with an attached gateway to deploy the Managed Kubernetes Service across three availability zones (3-AZ). To ensure your private network works smoothly, make sure it meets these requirements.",
   "kubernetes_network_form_select_private_option": "Select a private network",
   "kubernetes_network_form_no_private_network": "Configuring your Kubernetes network requires a private network. We recommend creating a private network if you don’t already have one.",
-  "kubernetes_network_form_no_associated_gateway": "A managed gateway needs to be attached to your private network during the beta phase."
+  "kubernetes_network_form_no_associated_gateway": "Your subnet does not have an associated gateway, which is necessary for the cluster to work properly. Please attach one to this subnet or select a subnet that meets these requirements.",
+  "kubernetes_network_form_add_gateway": "Create a gateway"
 }

@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.17.5...@ovh-ux/manager-hub-app@0.18.0) (2025-06-16)
+
+
+### Features
+
+* **container:** add a skip to the main content button ([71dd970](https://github.com/ovh/manager/commit/71dd970c9d300d504f90bd3e986f30cb2ee1ce7e)), closes [#MANAGER-15487](https://github.com/ovh/manager/issues/MANAGER-15487)
+
+
+
+
+
+## [0.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.17.4...@ovh-ux/manager-hub-app@0.17.5) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.17.3...@ovh-ux/manager-hub-app@0.17.4) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.17.2...@ovh-ux/manager-hub-app@0.17.3) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.17.1...@ovh-ux/manager-hub-app@0.17.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.17.0...@ovh-ux/manager-hub-app@0.17.1) (2025-06-11)
+
+
+### Bug Fixes
+
+* **hub:** fix resiliate label on elipsis menu ([06a2218](https://github.com/ovh/manager/commit/06a2218f5f0499e55cd31630b8bf6e643a3329eb)), closes [#MANAGER-17066](https://github.com/ovh/manager/issues/MANAGER-17066)
+* **hub:** fix roadmap and changelog us translations ([b45ec4a](https://github.com/ovh/manager/commit/b45ec4a8120d22eafbdff299eb49ac611f4f470f)), closes [#MANAGER-17726](https://github.com/ovh/manager/issues/MANAGER-17726)
+
+
+
+
+
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.16.0...@ovh-ux/manager-hub-app@0.17.0) (2025-06-10)
+
+
+### Features
+
+* **veeam:** remove veeam cloud connect ([8ac3049](https://github.com/ovh/manager/commit/8ac3049049f8398114f6966441e8d8e583c57a04)), closes [#MANAGER-16416](https://github.com/ovh/manager/issues/MANAGER-16416)
+
+
+
+
+
 # [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.15.0...@ovh-ux/manager-hub-app@0.16.0) (2025-06-05)
 
 

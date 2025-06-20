@@ -1,6 +1,6 @@
 {
   "pci_projects_project_quota": "Limites",
-  "pci_projects_project_quota_protect_explain": "Para controlar os seus consumos cloud, o seu projeto tem um limite de recursos.",
+  "pci_projects_project_quota_protect_explain": "Para controlar os seus consumos cloud, o seu projeto tem um limite relativo aos recursos que podem ser usados.",
   "pci_projects_project_quota_protect_more": "Se precisar de mais recursos, pode encomendar crédito cloud ou solicitá-los à nossa equipa, clicando nos botões em baixo.",
   "pci_projects_project_quota_protect_more_btn": "Aumentar os meus limites",
   "pci_projects_project_quota_current_limit": "Limites atuais",

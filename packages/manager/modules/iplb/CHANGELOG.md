@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.26.1...@ovh-ux/manager-iplb@1.26.2) (2025-06-17)
+
+
+### Bug Fixes
+
+* **iplb:** fix frontend edit while removing headers ([1109be8](https://github.com/ovh/manager/commit/1109be8467c23fdcee9f9558a5333a4a2c38419e)), closes [#PRB0042156](https://github.com/ovh/manager/issues/PRB0042156)
+
+
+
+
+
+## [1.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.26.0...@ovh-ux/manager-iplb@1.26.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4100] ([5ae216d](https://github.com/ovh/manager/commit/5ae216d093757f9965fff45050251b7147c8d474))
+
+
+
+
+
+# [1.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.25.0...@ovh-ux/manager-iplb@1.26.0) (2025-06-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4078] ([6517003](https://github.com/ovh/manager/commit/651700338727064660ee67520c17fa7343de1dd1))
+
+
+### Features
+
+* **iplb-listing:** using translations for displaying the headers of the list of ip load balancers ([107f79b](https://github.com/ovh/manager/commit/107f79b85ad19cbaf5d10c5341aa68d59c43dd49)), closes [#MANAGER-17906](https://github.com/ovh/manager/issues/MANAGER-17906)
+
+
+
+
+
 # [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.24.0...@ovh-ux/manager-iplb@1.25.0) (2025-05-21)
 
 

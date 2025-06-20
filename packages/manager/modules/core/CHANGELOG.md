@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.2.2...@ovh-ux/manager-core@13.2.3) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+## [13.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.2.1...@ovh-ux/manager-core@13.2.2) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+## [13.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.2.0...@ovh-ux/manager-core@13.2.1) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+# [13.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.1.6...@ovh-ux/manager-core@13.2.0) (2025-06-10)
+
+
+### Features
+
+* **veeam:** remove veeam cloud connect ([8ac3049](https://github.com/ovh/manager/commit/8ac3049049f8398114f6966441e8d8e583c57a04)), closes [#MANAGER-16416](https://github.com/ovh/manager/issues/MANAGER-16416)
+
+
+
+
+
 ## [13.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.1.5...@ovh-ux/manager-core@13.1.6) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-core
