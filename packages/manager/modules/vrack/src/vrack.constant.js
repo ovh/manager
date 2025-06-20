@@ -212,10 +212,13 @@ export const GUIDELINK = {
   },
 };
 
+export const VRACK_SERVICE_TYPE = 'VRACK';
+
 export default {
   SURVEY_LANGUAGES,
   BASE_URL_SURVEY,
   US_SURVEY_LINK,
   VRACK_DELETE_FEATURE,
   GUIDELINK,
+  VRACK_SERVICE_TYPE,
 };

@@ -55,5 +55,8 @@
   "vrack_add_dialog_modal_title": "Ajouter un ou plusieurs services",
   "vrack_add_dialog_modal_description": "Etes-vous sûr(e) de vouloir ajouter {{ services }} de votre vRack ?",
   "vrack_delete_dialog_modal_title": "Retirer un ou plusieurs services",
-  "vrack_delete_dialog_modal_description": "Etes-vous sûr(e) de vouloir retirer {{ services }} de votre vRack ?"
+  "vrack_delete_dialog_modal_description": "Etes-vous sûr(e) de vouloir retirer {{ services }} de votre vRack ?",
+  "vrack_terminate_title": "Résilier mon vRack",
+  "vrack_terminate_description": "Afin de résilier votre Vrack vous devez au préalable deconnecter tous les services qui y sont ratachés",
+  "vrack_terminate": "Résilier"
 }
