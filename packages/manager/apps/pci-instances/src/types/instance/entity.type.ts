@@ -70,6 +70,7 @@ export type TInstanceDetail = DeepReadonly<{
   regionType: TRegionType;
   pendingTask: boolean;
   availabilityZone: string | null;
+  actions: TInstanceActions;
   prices: TInstancePrice[];
   taskState: string | null;
   isEditionEnabled: boolean;

@@ -204,14 +204,47 @@ export const instancesSelector = (
 const isEditionEnabled = (actions: TInstanceActionDto[]) =>
   actions.some(({ name }) => name === 'edit');
 
+// TODO: verify if needed to sync for routing (this will redirect action in the listing page)
+const mapInstanceDashboardActions = (
+  instance: TInstanceDto,
+  projectUrl: string,
+) => {
+  const filteredAction = instance.actions.filter(
+    ({ name }) =>
+      !['delete', 'activate_monthly_billing', 'details'].includes(name),
+  );
+
+  const actions = mapInstanceActions(
+    { ...instance, actions: filteredAction },
+    projectUrl,
+  );
+
+  return new Map(
+    Array.from(actions.entries()).map(([group, item]) => {
+      const updatedActions = item.map((action) => ({
+        ...action,
+        link: {
+          ...action.link,
+          path: action.link.isExternal
+            ? action.link.path
+            : `../${action.link.path}`,
+        },
+      }));
+      return [group, updatedActions];
+    }),
+  );
+};
+
 export const getInstanceDetail = (
   instanceDto: TInstanceDetailDto,
+  projectUrl: string,
 ): TInstanceDetail => ({
   ...instanceDto,
   flavorName: instanceDto.flavor.name,
   // TODO: get the unit from api
   flavorRam: `${instanceDto.flavor.specs.ram}`,
   flavorCpu: `${instanceDto.flavor.specs.cpu}`,
+  actions: mapInstanceDashboardActions(instanceDto as any, projectUrl), // TODO: fix type after refactor TAPC-4385
   status: getInstanceStatus(instanceDto.status),
   isEditionEnabled: isEditionEnabled(instanceDto.actions),
 });

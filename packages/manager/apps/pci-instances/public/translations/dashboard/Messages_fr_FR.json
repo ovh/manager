@@ -21,5 +21,6 @@
   "pci_instances_dashboard_network_ipv6": "IPv6",
   "pci_instances_dashboard_network_private": "Réseau(x) privé(s)",
   "pci_instances_dashboard_network_connexion": "Informations de connexion",
-  "pci_instances_dashboard_cpu_value": "{{cpu}} vCores"
+  "pci_instances_dashboard_cpu_value": "{{cpu}} vCores",
+  "pci_instances_dashboard_all_actions": "Actions supplémentaires"
 }
