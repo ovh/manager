@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-ai-tools-app",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "private": true,
   "description": "pci-ai-tools",
   "repository": {
@@ -24,7 +24,7 @@
     "@datatr-ux/uxlib": "^0.0.11-beta-8",
     "@hookform/resolvers": "^5.0.1",
     "@ovh-ux/manager-config": "^8.5.0",
-    "@ovh-ux/manager-core-api": "^0.12.1",
+    "@ovh-ux/manager-core-api": "^0.13.0",
     "@ovh-ux/manager-react-shell-client": "^0.8.7",
     "@ovh-ux/request-tagger": "^0.4.1",
     "@ovh-ux/shell": "^4.5.4",
