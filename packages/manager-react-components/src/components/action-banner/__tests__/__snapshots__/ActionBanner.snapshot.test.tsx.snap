@@ -1,0 +1,206 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ActionBanner Snapshot Tests > Displays ActionBanner 1`] = `
+<div>
+  <div
+    class="_message_udq9t_2 _message--information_udq9t_13 _message--default_udq9t_9 mt-3 action-banner action-banner—-undefined"
+    data-testid="actionBanner-message_container"
+  >
+    <div
+      class="w-full"
+    >
+      <p
+        class="_text--paragraph_1aw48_54 action-banner__text block"
+      >
+        <span>
+          Test Message
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays ActionBanner with Button 1`] = `
+<div>
+  <div
+    class="_message_udq9t_2 _message--information_udq9t_13 _message--default_udq9t_9 mt-3 action-banner action-banner—-information"
+    data-testid="actionBanner-message_container"
+  >
+    <div
+      class="w-full"
+    >
+      <p
+        class="_text--paragraph_1aw48_54 action-banner__text block"
+      >
+        <span>
+          Test Message
+        </span>
+      </p>
+      <button
+        class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--default_10f3x_48 sm:mt-0 md:mt-2 ml-0"
+        data-testid="action-banner-button"
+        type="button"
+      >
+        Button Label
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays ActionBanner with Link 1`] = `
+<div>
+  <div
+    class="_message_udq9t_2 _message--information_udq9t_13 _message--default_udq9t_9 mt-3 action-banner action-banner—-information"
+    data-testid="actionBanner-message_container"
+  >
+    <div
+      class="w-full"
+    >
+      <p
+        class="_text--paragraph_1aw48_54 action-banner__text block"
+      >
+        <span>
+          Test Message
+        </span>
+      </p>
+      <a
+        class="_link_udbet_2 sm:mt-0 md:mt-2 ml-0"
+        data-testid="action-banner-link"
+        href="https://www.ovhcloud.com"
+        id="action-banner-link"
+        target="_blank"
+      >
+        Link Label
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays Critical ActionBanner 1`] = `
+<div>
+  <div
+    class="_message_udq9t_2 _message--critical_udq9t_9 _message--default_udq9t_9 mt-3 action-banner action-banner—-critical"
+    data-testid="actionBanner-message_container"
+  >
+    <div
+      class="w-full"
+    >
+      <p
+        class="_text--paragraph_1aw48_54 action-banner__text block"
+      >
+        <span>
+          Test Message
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays Information ActionBanner 1`] = `
+<div>
+  <div
+    class="_message_udq9t_2 _message--information_udq9t_13 _message--default_udq9t_9 mt-3 action-banner action-banner—-information"
+    data-testid="actionBanner-message_container"
+  >
+    <div
+      class="w-full"
+    >
+      <p
+        class="_text--paragraph_1aw48_54 action-banner__text block"
+      >
+        <span>
+          Test Message
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays Neutral ActionBanner 1`] = `
+<div>
+  <div
+    class="_message_udq9t_2 _message--neutral_udq9t_17 _message--default_udq9t_9 mt-3 action-banner action-banner—-neutral"
+    data-testid="actionBanner-message_container"
+  >
+    <div
+      class="w-full"
+    >
+      <p
+        class="_text--paragraph_1aw48_54 action-banner__text block"
+      >
+        <span>
+          Test Message
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays Primary ActionBanner 1`] = `
+<div>
+  <div
+    class="_message_udq9t_2 _message--primary_udq9t_21 _message--default_udq9t_9 mt-3 action-banner action-banner—-primary"
+    data-testid="actionBanner-message_container"
+  >
+    <div
+      class="w-full"
+    >
+      <p
+        class="_text--paragraph_1aw48_54 action-banner__text block"
+      >
+        <span>
+          Test Message
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays Warning ActionBanner 1`] = `
+<div>
+  <div
+    class="_message_udq9t_2 _message--warning_udq9t_29 _message--default_udq9t_9 mt-3 action-banner action-banner—-warning"
+    data-testid="actionBanner-message_container"
+  >
+    <div
+      class="w-full"
+    >
+      <p
+        class="_text--paragraph_1aw48_54 action-banner__text block"
+      >
+        <span>
+          Test Message
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays success ActionBanner 1`] = `
+<div>
+  <div
+    class="_message_udq9t_2 _message--success_udq9t_25 _message--default_udq9t_9 mt-3 action-banner action-banner—-success"
+    data-testid="actionBanner-message_container"
+  >
+    <div
+      class="w-full"
+    >
+      <p
+        class="_text--paragraph_1aw48_54 action-banner__text block"
+      >
+        <span>
+          Test Message
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+`;
