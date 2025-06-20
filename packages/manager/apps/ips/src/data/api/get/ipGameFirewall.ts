@@ -17,6 +17,7 @@ export type IpGameFirewallType = {
   ipOnGame: string;
   maxRules: number;
   state: IpGameFirewallStateEnum;
+  supportedProtocols?: string[];
 };
 
 export const getIpGameFirewallQueryKey = (params: GetIpGameFirewallParams) => [
