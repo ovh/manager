@@ -31,8 +31,8 @@
   "createRancherName": "Nazwa",
   "createRancherDescription": "W ramach tej usługi będziesz mógł zarządzać kilkoma „downstream clusters”.",
   "createRancherPlaceholder": "moj_rancher",
-  "createRancherServiceLevel": "Wybór usługi",
-  "createRancherServiceLevelDescription": "Obydwie oferty zapewniają wszystkie funkcjonalności Ranchera. Usługa OVHcloud Edition umożliwia jedynie tworzenie „downstream clusters” w chmurze publicznej OVHcloud, przy czym „samozarządzające się” węzły są dodawane pojedynczo.<br> Usługa Standard jest idealna do zastosowań typu prywatna chmura, multicloud lub Edge. W każdej chwili możesz zmienić usługę na Standard.<br> Zużycie będzie fakturowane za godzinę, w oparciu o całkowitą liczbę vCPU w każdym z węzłów roboczych w „downstream clusters” Rancher. <strong>Węzły typu control-plane nie są fakturowane.</strong>",
+  "createRancherServiceLevel": "Wybór pakietu",
+  "createRancherServiceLevelDescription": "Obydwa pakiety zawierają wszystkie funkcjonalności Ranchera. Pakiet OVHcloud Edition umożliwia jedynie tworzenie „downstream clusters” w chmurze publicznej OVHcloud, przy czym samodzielnie zarządzane węzły są dodawane pojedynczo.<br> Pakiet Standard jest idealny do zastosowań typu chmura prywatna, multicloud lub Edge. W każdej chwili możesz migrować do pakietu Standard.",
   "createRancherVersion": "Wersja Ranchera",
   "createRancherVersionDescription": "Usługa oparta jest na SUSE Rancher. OVHcloud wspiera najnowsze wersje Ranchera. Zalecamy użycie najnowszej wersji.<br> Regularnie wdrażamy łatki bezpieczeństwa i dostarczamy nowe wersje, zgodnie z naszą polityką cyklu życia oprogramowania.",
   "createRancherCTA": "Utwórz usługę Managed Rancher",
@@ -56,5 +56,6 @@
   "createRancherOfferDescription": "Minimalną jednostką rozliczeniową w przypadku Ranchera jest 20 vCPU.",
   "egress_title": "Rancher egress CIDRs",
   "egress_tooltip": "CIDRs to zapisy odnoszące się do zakresów adresów IP używanych przez Rancher do ruchu wychodzącego. Może być konieczne dodanie tych adresów IP do białej listy, aby miały dostęp do zewnętrznych platform (np. wywołania API w celu dostarczania zasobów).",
-  "badRequestSwitchPlan": "Wystąpił błąd podczas zmiany oferty Managed Rancher Service. Aktualnie korzystasz ze sterowników, które nie są obsługiwane w ofercie {{plan}}: {{drivers}}"
+  "badRequestSwitchPlan": "Wystąpił błąd podczas zmiany oferty Managed Rancher Service. Aktualnie korzystasz ze sterowników, które nie są obsługiwane w ofercie {{plan}}: {{drivers}}",
+  "savingsPlanUsage": "Jeśli zamówiłeś już jeden lub więcej Saving Plan dla wybranego pakietu, vCPU przypisane do „downstream clusters” będą automatycznie wliczane do tego planu (planów)."
 }

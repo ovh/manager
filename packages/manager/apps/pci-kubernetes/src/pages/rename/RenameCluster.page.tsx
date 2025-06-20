@@ -29,12 +29,11 @@ import {
   useKubernetesCluster,
   useRenameKubernetesCluster,
 } from '@/api/hooks/useKubernetes';
-import { NAME_INPUT_CONSTRAINTS } from '@/constants';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
+import { isClusterNameValid } from '@/helpers/matchers/matchers';
 
 export default function RenameClusterPage() {
   const { t: tEditName } = useTranslation('edit-name');
-  const { t: tCommon } = useTranslation('common');
   const { projectId, kubeId } = useParams();
   const { addError, addSuccess } = useNotifications();
   const {
@@ -42,10 +41,7 @@ export default function RenameClusterPage() {
     isPending: isPendingCluster,
   } = useKubernetesCluster(projectId, kubeId);
   const [name, setName] = useState('');
-  const [errors, setErrors] = useState({
-    length: false,
-    pattern: false,
-  });
+  const [hasNameError, setHasNameError] = useState(false);
   const navigate = useNavigate();
   const onClose = () => navigate('..');
   const { tracking } = useContext(ShellContext)?.shell || {};
@@ -83,23 +79,15 @@ export default function RenameClusterPage() {
     },
   });
 
+  const renameDisabled = isPendingCluster || isPendingRename || hasNameError;
+
   useEffect(() => {
     setName(kubernetesCluster?.name || '');
   }, [kubernetesCluster]);
 
   useEffect(() => {
-    setErrors({
-      length: name.length > NAME_INPUT_CONSTRAINTS.MAX_LENGTH,
-      pattern: RegExp(NAME_INPUT_CONSTRAINTS.PATTERN).test(name) === false,
-    });
+    setHasNameError(!isClusterNameValid(name));
   }, [name]);
-
-  const canRename =
-    isPendingCluster ||
-    isPendingRename ||
-    name === '' ||
-    errors.length ||
-    errors.pattern;
 
   return (
     <OsdsModal
@@ -137,19 +125,13 @@ export default function RenameClusterPage() {
             </OsdsText>
             <OsdsFormField
               data-testid="renameCluster-formfield"
-              error={`${
-                errors.pattern
+              error={
+                hasNameError
                   ? tEditName(
                       'pci_projects_project_kubernetes_details_service_name_input_pattern_validation_error',
                     )
                   : ''
-              } ${
-                errors.length
-                  ? tCommon('common_field_error_maxlength', {
-                      maxlength: NAME_INPUT_CONSTRAINTS.MAX_LENGTH,
-                    })
-                  : ''
-              }`}
+              }
               className="mt-6"
             >
               <div slot="label">
@@ -157,7 +139,7 @@ export default function RenameClusterPage() {
                   level={ODS_TEXT_LEVEL.body}
                   size={ODS_TEXT_SIZE._200}
                   color={
-                    errors.length || errors.pattern
+                    hasNameError
                       ? ODS_TEXT_COLOR_INTENT.error
                       : ODS_THEME_COLOR_INTENT.text
                   }
@@ -176,7 +158,7 @@ export default function RenameClusterPage() {
                   setName(event.detail.value)
                 }
                 className={
-                  errors.length || errors.pattern
+                  hasNameError
                     ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
                     : 'border-color-[var(--ods-color-default-200)] bg-white'
                 }
@@ -204,7 +186,7 @@ export default function RenameClusterPage() {
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        disabled={canRename || undefined}
+        disabled={renameDisabled || undefined}
         onClick={() => {
           tracking?.trackClick({
             name: `${KUBE_TRACK_PREFIX}::details::service::name::confirm`,

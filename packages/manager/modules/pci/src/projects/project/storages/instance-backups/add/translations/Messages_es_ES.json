@@ -9,7 +9,7 @@
   "pci_projects_project_instances_backup_add_numInstances_label": "Número de instancias que quiere crear",
   "pci_projects_project_instances_backup_add_numInstances_help": "Su cuota actual le permite crear simultáneamente hasta {{ num }} instancia(s) de tipo {{ flavor }} en la región {{ region }}.",
   "pci_projects_project_instances_backup_add_numInstances_quotaLink_label": "Consulte su cuota.",
-  "pci_projects_project_instances_backup_add_same_numInstances_configuration": "Todas las instancias se configurarán de la misma forma y se desplegarán en la misma región.",
+  "pci_projects_project_instances_backup_add_same_numInstances_configuration": "Todas las instancias se configurarán de la misma forma y se desplegarán en la misma zona de disponibilidad.",
   "pci_projects_project_instances_backup_add_private_network_label": "Red privada asociada",
   "pci_projects_project_instances_backup_add_private_network_none": "Ninguna",
   "pci_projects_project_instances_backup_add_billing_label": "Período de facturación",

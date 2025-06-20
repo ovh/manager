@@ -6583,6 +6583,11 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
+"@ovh-ux/manager-common-translations@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.5.3.tgz#3dcb779e67ab035c84cccbd5e378d19533115e90"
+  integrity sha512-h3bscckVssRx3lrIJg+YJtj9i2FEQc1SAJUt0WE0gILp0ruuWWlRfn9KEKTtMexEne9K4PNhTTYISG5G9h0n+w==
+
 "@ovh-ux/manager-core-api@^0.11.1":
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.11.1.tgz#182cc03bd8532dcc08c09f1df7d34bb7ed349efe"
@@ -6596,6 +6601,15 @@
   version "0.16.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.16.4.tgz#0d9f4efd0140cd4f2eb0f9b508f3e53a8120e5c2"
   integrity sha512-Oy7HIPOPZx55DKM3dIkI4XpDlGpCwiyYRL19qkAdh1LJ8b3JU9JK/nLSkuA2Oh2gzwD9CU4+asWASa7dxGVtTA==
+  dependencies:
+    clsx "2.1.1"
+    date-fns "^3.6.0"
+    lodash.isequal "^4.5.0"
+
+"@ovh-ux/manager-pci-common@^0.17.0":
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.17.0.tgz#e1f430399136557c0a33e0a0799cd5327e0d09fe"
+  integrity sha512-olz7ZGqIqcJGU+tpWsAhyP9MZXyhyTuMAr871i8x9ibYrDBFkJIpTMLMIddHEYh+Ic/DmVGwW2kjRPCSB95/Mw==
   dependencies:
     clsx "2.1.1"
     date-fns "^3.6.0"

@@ -54,7 +54,8 @@ vi.mock('react-i18next', () => ({
       language: 'fr_FR',
     },
   }),
-  Trans: ({ children }: { children: string }) => children,
+  Trans: ({ children, i18nKey }: { children: string; i18nKey: string }) =>
+    i18nKey ?? children,
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => {

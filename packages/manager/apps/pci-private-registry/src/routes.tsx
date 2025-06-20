@@ -58,6 +58,11 @@ export default [
             path: 'update',
             ...lazyRouteConfig(() => import('@/pages/update/Update.page')),
           },
+          {
+            id: 'iam',
+            path: ':registryId/iam',
+            ...lazyRouteConfig(() => import('@/pages/IAM/ManageIAM.page')),
+          },
         ],
       },
       {

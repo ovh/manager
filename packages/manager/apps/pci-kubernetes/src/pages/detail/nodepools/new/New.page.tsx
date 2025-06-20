@@ -4,6 +4,7 @@ import {
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
+  OdsInputValueChangeEvent,
 } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -240,6 +241,10 @@ export default function NewPage(): JSX.Element {
       store.autoScaling &&
       store.autoScaling.quantity.desired <= ANTI_AFFINITY_MAX_NODES);
 
+  const handleValueChange = (e: OdsInputValueChangeEvent) => {
+    store.set.name(e.detail.value);
+  };
+
   return (
     <>
       <Notifications />
@@ -304,9 +309,7 @@ export default function NewPage(): JSX.Element {
             value={store.name.value}
             inline
             color={ODS_THEME_COLOR_INTENT.primary}
-            onOdsValueChange={(e) => {
-              store.set.name(e.detail.value);
-            }}
+            onOdsValueChange={handleValueChange}
             type={ODS_INPUT_TYPE.text}
             error={store.name.hasError}
             className="border"

@@ -32,6 +32,9 @@ const SelectResource = ({
       <DescriptionWrapper>
         {t('choose_ressource_description')}
       </DescriptionWrapper>
+      <DescriptionWrapper>
+        {t('choose_ressource_description_info')}
+      </DescriptionWrapper>
       <div className="flex flex-row  w-full overflow-x-auto gap-6">
         {resources.map((resource) => (
           <SimpleTile

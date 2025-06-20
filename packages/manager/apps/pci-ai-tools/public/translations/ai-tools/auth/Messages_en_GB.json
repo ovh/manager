@@ -6,5 +6,8 @@
   "onboardingTitle": "Easily deploy your AI products",
   "formActiveUserToastErrorTitle": "Error",
   "formActiveUserToastSuccessTitle": "Completed",
-  "formActiveUserToastSuccessDescription": "Your project has been activated"
+  "formActiveUserToastSuccessDescription": "Your project has been activated",
+  "authQuantumActivateProjectButton": "Activate your Quantum project",
+  "authQuantumDescription": "To use OVHcloud’s Quantum services, you will need to authenticate before you can create your first emulator.",
+  "quantumTitle": "Quantum Emulators"
 }
