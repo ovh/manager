@@ -87,13 +87,9 @@
 >
     <oui-tile-definition
         data-ng-if="$ctrl.drpAvailability"
-        data-term="{{:: 'ovhManagerPccDashboardOptions_security_term' | translate }}"
+        data-term="{{ $ctrl.LABELS.ZERTO }}"
     >
         <oui-tile-description>
-            <div
-                data-translate="ovhManagerPccDashboardOptions_security_drp"
-            ></div>
-
             <span
                 class="oui-badge"
                 data-ng-class="{
@@ -118,7 +114,7 @@
                 data-on-click="$ctrl.bindings.options.security.actionMenu.items.selectDatacenter.action()"
             >
                 <span
-                    data-translate="ovhManagerPccDashboardOptions_security_drp_action_install"
+                    data-translate="ovhManagerPccDashboardOptions_security_drp_action_activate"
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
