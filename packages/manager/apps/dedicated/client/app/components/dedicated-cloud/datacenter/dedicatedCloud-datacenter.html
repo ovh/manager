@@ -24,6 +24,15 @@
         </div>
     </div>
 
+    <oui-button
+        class="my-2"
+        data-variant="link"
+        data-icon-left="oui-icon-arrow-left"
+        data-on-click="$ctrl.goBackToList()"
+    >
+        {{ :: 'dedicatedCloud_go_back_to_list' | translate }}
+    </oui-button>
+
     <ovh-manager-pcc-managed-vcd-migration-banner
         data-tracking-prefix="$ctrl.vcdTrackingPrefix"
         data-vcd-migration-state="$ctrl.dedicatedCloudVCDMigrationState"
@@ -58,7 +67,7 @@
             data-ng-if="$ctrl.drpAvailability"
             data-state="{{:: $ctrl.drpState }}"
         >
-            <span data-translate="dedicatedCloud_tab_drp"></span>
+            <span data-ng-bind="$ctrl.LABELS.ZERTO"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-state="{{:: $ctrl.virtualMachinesState }}"
