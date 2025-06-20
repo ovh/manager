@@ -21,8 +21,7 @@ export const LEVEL2 = {
     },
   },
 };
-export const UNIVERSE = 'Enterprise';
-export const SUB_UNIVERSE = 'HostedPrivatedCloud';
+export const UNIVERSE = 'Enterprise_solutions';
 export const APP_NAME = 'sap-features-hub';
 
 type GetTrackingParams = (params: unknown) => TrackingClickParams;
