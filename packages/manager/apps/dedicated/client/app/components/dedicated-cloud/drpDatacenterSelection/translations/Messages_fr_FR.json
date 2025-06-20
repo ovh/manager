@@ -1,5 +1,5 @@
 {
   "dedicatedCloud_drp_datacenter_selection_title": "Sélectionnez un datacenter",
-  "dedicatedCloud_drp_datacenter_selection_label": "Pour configurer votre Plan de Reprise d‘Activité, vous devez sélectionnez un datacenter",
+  "dedicatedCloud_drp_datacenter_selection_label": "Pour activer votre option Zerto, sélectionnez un datacenter.",
   "dedicatedCloud_drp_datacenter_selection_action": "Sélectionner"
 }
