@@ -22,7 +22,8 @@ const InstanceGeneralDetails: FC = () => {
   const { translateMicroRegion } = useTranslatedMicroRegions();
   const { data: instance, isLoading } = useContext(InstanceDetailContext);
   const hrefEditInstance = useHref(`../${instance.id}/edit`);
-  const hrefDeleteInstance = useHref(`delete`);
+  const hrefDeleteInstance = useHref('delete');
+  const hrefBillingMonthlyActivate = useHref('billing/monthly/activate');
 
   return (
     <DashboardCardLayout title={t('pci_instances_dashboard_info_title')}>
@@ -90,12 +91,17 @@ const InstanceGeneralDetails: FC = () => {
             {instance.prices.map(({ value, type }) => (
               <PriceLabel key={type} value={value} type={type} />
             ))}
-            <Links
-              label={t(
-                'actions:pci_instances_actions_billing_monthly_activate_instance_title',
-              )}
-              type={LinkType.next}
-            />
+            {instance.standaloneActions.includes(
+              'activate_monthly_billing',
+            ) && (
+              <Links
+                label={t(
+                  'actions:pci_instances_actions_billing_monthly_activate_instance_title',
+                )}
+                type={LinkType.next}
+                href={hrefBillingMonthlyActivate}
+              />
+            )}
           </div>
         </LoadingCell>
       </TileBlock>
