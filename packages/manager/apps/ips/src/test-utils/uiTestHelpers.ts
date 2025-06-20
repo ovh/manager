@@ -190,3 +190,41 @@ export const changeTextareaValue = async ({
   });
   return waitFor(() => fireEvent(textarea, event), WAIT_FOR_DEFAULT_OPTIONS);
 };
+
+export const getTableCellByContentText = async ({
+  container,
+  text,
+  nth = 0,
+}: {
+  container: HTMLElement;
+  text: string;
+  nth?: number;
+}) => {
+  let cell: HTMLTableCellElement;
+  await waitFor(() => {
+    cell = Array.from(container.querySelectorAll('td'))?.filter((c) =>
+      within(c).queryByText(text),
+    )?.[nth];
+    expect(cell).toBeDefined();
+  }, WAIT_FOR_DEFAULT_OPTIONS);
+  return cell;
+};
+
+export const getToggleByName = async ({
+  container,
+  name,
+  nth = 0,
+}: {
+  container: HTMLElement;
+  name: string;
+  nth?: number;
+}) => {
+  let toggle: HTMLOdsToggleElement;
+  await waitFor(() => {
+    toggle = Array.from(container.querySelectorAll('ods-toggle'))?.filter(
+      (el) => el.name === name,
+    )?.[nth];
+    expect(toggle).toBeDefined();
+  }, WAIT_FOR_DEFAULT_OPTIONS);
+  return toggle;
+};

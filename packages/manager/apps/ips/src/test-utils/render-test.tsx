@@ -40,6 +40,7 @@ import {
   getIamMocks,
   GetIamMocksParams,
   GetCatalogMocksParams,
+  getCloudProjectMocks,
 } from '../../mocks';
 
 export type MockParams = GetIpsMocksParams &
@@ -75,6 +76,7 @@ export const renderTest = async ({
       ...getVrackMocks(mockParams),
       ...getVpsMocks(mockParams),
       ...getOrganisationMocks(mockParams),
+      ...getCloudProjectMocks(),
     ]),
   );
 
