@@ -19,12 +19,13 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "tsc && yarn tsc:v3 && vite build",
     "dev": "tsc && vite build",
     "prepare": "tsc && vite build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "TZ=UTC manager-test",
-    "test:ci": "TZ=UTC manager-test run --coverage"
+    "test:ci": "TZ=UTC manager-test run --coverage",
+    "tsc:v3": "tsc -p tsconfig.new.json"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,json,css,md}": [
