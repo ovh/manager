@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "strict": true
+  },
+  "include": [
+    // Add you components migrated here
+  ],
+  "exclude": [
+    "./src/hooks/*",
+    "./src/utils/*",
+    "./src/tailwind/*",
+    "./src/__mocks__/*",
+    "./src/enumTypes/*"
+  ]
+}
