@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import {
@@ -16,15 +16,15 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import CredentialDatagrid from '../../../components/credential/credentialDatagrid/CredentialDatagrid';
+import CredentialDatagrid from '@/components/credential/credentialDatagrid/CredentialDatagrid';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
-import { OkmsContext } from '..';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
+import { KmsDashboardOutletContext } from '@/pages/dashboard/KmsDashboard.type';
 
 const CredentialList = () => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
-  const okms = useContext(OkmsContext);
+  const { okms } = useOutletContext<KmsDashboardOutletContext>();
   const { trackClick } = useOvhTracking();
 
   const { isAuthorized, isLoading: isLoadingIam } = useAuthorizationIam(
@@ -58,7 +58,7 @@ const CredentialList = () => {
       />
       {!isLoadingIam &&
         (isAuthorized ? (
-          <CredentialDatagrid />
+          <CredentialDatagrid okms={okms} />
         ) : (
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             {t('key_management_service_credential_not_authorized')}
