@@ -1,4 +1,4 @@
-import React, { createContext, Suspense, useMemo } from 'react';
+import React, { Suspense, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -6,9 +6,9 @@ import {
   BaseLayout,
   HeadersProps,
   ErrorBanner,
-  useServiceDetails,
   ChangelogButton,
   useFeatureAvailability,
+  useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
@@ -18,15 +18,13 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { getOkmsResourceQueryKey } from '@/data/api/okms';
-import { OKMS } from '@/types/okms.type';
 import { useOkmsById } from '@/data/hooks/useOkms';
 import { CHANGELOG_LINKS, SERVICE_KEYS_LABEL } from '@/constants';
 import KmsTabs, {
   KmsTabProps,
 } from '@/components/layout-helpers/Dashboard/KmsTabs';
 import { KMS_FEATURES } from '@/utils/feature-availability/feature-availability.constants';
-
-export const OkmsContext = createContext<OKMS>(null);
+import { KmsDashboardOutletContext } from './KmsDashboard.type';
 
 export default function DashboardPage() {
   const { t } = useTranslation([
@@ -45,17 +43,14 @@ export default function DashboardPage() {
   } = useOkmsById(okmsId);
 
   const {
-    data: okmsServiceInfos,
-    isLoading: isOkmsServiceInfosLoading,
-    isError: isOkmsServiceInfosError,
-    error: okmsServiceInfoError,
+    data: okmsService,
+    isPending: isOkmsServiceLoading,
   } = useServiceDetails({ resourceName: okmsId });
 
-  const { data: features, isLoading } = useFeatureAvailability([
-    KMS_FEATURES.LOGS,
-  ]);
-
-  const displayName = okmsServiceInfos?.data?.resource.displayName;
+  const {
+    data: features,
+    isLoading: isFeatureAvailabilityLoading,
+  } = useFeatureAvailability([KMS_FEATURES.LOGS]);
 
   const tabsList: KmsTabProps[] = useMemo(
     () =>
@@ -94,6 +89,29 @@ export default function DashboardPage() {
     [features, t],
   );
 
+  if (isOkmsServiceLoading || isOkmsLoading || isFeatureAvailabilityLoading) {
+    return <Loading />;
+  }
+
+  if (isOkmsError) {
+    return (
+      <ErrorBanner
+        error={okmsError.response}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
+        onReloadPage={() =>
+          queryClient.refetchQueries({
+            queryKey: getOkmsResourceQueryKey(okmsId),
+          })
+        }
+      />
+    );
+  }
+
+  // If the service information is not accessible, we fallback to the okms id
+  const displayName = okmsService
+    ? okmsService?.data?.resource.displayName
+    : okms?.data?.id;
+
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
@@ -126,51 +144,34 @@ export default function DashboardPage() {
     },
   ];
 
-  if (isOkmsServiceInfosLoading || isOkmsLoading || isLoading)
-    return <Loading />;
-
-  if (isOkmsServiceInfosError || isOkmsError) {
-    return (
-      <ErrorBanner
-        error={
-          okmsServiceInfoError
-            ? okmsServiceInfoError.response
-            : okmsError.response
-        }
-        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
-        onReloadPage={() =>
-          queryClient.refetchQueries({
-            queryKey: getOkmsResourceQueryKey(okmsId),
-          })
-        }
-      />
-    );
-  }
-
   const headerProps: HeadersProps = {
     title: displayName,
     headerButton: <KmsGuidesHeader />,
     changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
   };
 
+  const contextValue: KmsDashboardOutletContext = {
+    okms: okms.data,
+    okmsDisplayName: displayName,
+    okmsService: okmsService?.data,
+  };
+
   return (
     <Suspense fallback={<Loading />}>
-      <OkmsContext.Provider value={okms?.data}>
-        <BaseLayout
-          header={headerProps}
-          onClickReturn={() => {
-            navigate(KMS_ROUTES_URLS.kmsListing);
-          }}
-          backLinkLabel={t(
-            'key-management-service/dashboard:key_management_service_dashboard_back_link',
-          )}
-          breadcrumb={<Breadcrumb items={breadcrumbItems} />}
-          message={<Notifications />}
-          tabs={<KmsTabs tabs={tabsList} />}
-        >
-          <Outlet />
-        </BaseLayout>
-      </OkmsContext.Provider>
+      <BaseLayout
+        header={headerProps}
+        onClickReturn={() => {
+          navigate(KMS_ROUTES_URLS.kmsListing);
+        }}
+        backLinkLabel={t(
+          'key-management-service/dashboard:key_management_service_dashboard_back_link',
+        )}
+        breadcrumb={<Breadcrumb items={breadcrumbItems} />}
+        message={<Notifications />}
+        tabs={<KmsTabs tabs={tabsList} />}
+      >
+        <Outlet context={contextValue} />
+      </BaseLayout>
     </Suspense>
   );
 }
