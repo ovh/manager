@@ -49,6 +49,8 @@ export type TKube = {
   privateNetworkConfiguration: TNetworkConfiguration;
   isClusterReady: boolean;
   plugins: typeof pluginData;
+  // TODO: enlever le ? pour mettre mandatory
+  offer?: TClusterOffer;
 };
 
 export type TAdmissionPlugin = {
@@ -63,6 +65,8 @@ export type TApiServerCustomization = {
 export type TClusterCustomization = {
   apiServer: TApiServerCustomization;
 };
+
+export type TClusterOffer = 'free' | 'standard';
 
 export type TNetworkConfiguration = {
   privateNetworkRoutingAsDefault: boolean;
