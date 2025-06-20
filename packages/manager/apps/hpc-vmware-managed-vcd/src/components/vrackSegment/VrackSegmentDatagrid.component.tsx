@@ -6,7 +6,6 @@ import {
   useColumnFilters,
 } from '@ovh-ux/manager-react-components';
 import {
-  ApiResponse,
   applyFilters,
   FilterCategories,
   FilterComparator,
@@ -16,7 +15,6 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  mockVrackSegmentList,
   useVcdVrackSegmentListOptions,
   VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
@@ -40,17 +38,9 @@ export const VrackSegmentDatagrid = ({
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchInput, setSearchInput] = useState('');
 
-  const vcdVrackSegmentListOptions = useVcdVrackSegmentListOptions(id, vdcId);
+  const vcdVrackNetworkOptions = useVcdVrackSegmentListOptions(id, vdcId);
   const { data: vrackSegments, isLoading } = useQuery({
-    ...vcdVrackSegmentListOptions,
-    queryFn: () =>
-      Promise.resolve({
-        data: mockVrackSegmentList,
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config: {},
-      } as ApiResponse<VCDVrackSegment[]>),
+    ...vcdVrackNetworkOptions,
     select: (data) =>
       data.data.map((item) => ({
         ...item,
