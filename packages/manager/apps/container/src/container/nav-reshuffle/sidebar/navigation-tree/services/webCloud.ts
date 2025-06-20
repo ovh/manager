@@ -111,27 +111,6 @@ webCloudUniverse.children = [
     ],
   },
   {
-    id: 'web-paas',
-    idAttr: 'web-paas-link',
-    universe: webCloudUniverse.id,
-    translation: 'sidebar_web_paas',
-    children: [
-      {
-        id: 'platform-sh',
-        idAttr: 'platform-sh-link',
-        universe: webCloudUniverse.id,
-        translation: 'sidebar_platform_sh',
-        serviceType: 'WEBPAAS_SUBSCRIPTION',
-        routing: {
-          application: 'web',
-          hash: '#/paas/webpaas/projects',
-        },
-        features: ['web-paas'],
-      },
-    ],
-    features: ['web-paas'],
-  },
-  {
     id: 'emails',
     idAttr: 'emails-link',
     universe: webCloudUniverse.id,
@@ -192,20 +171,8 @@ webCloudUniverse.children = [
     idAttr: 'microsoft-link',
     universe: webCloudUniverse.id,
     translation: 'sidebar_microsoft',
-    features: ['office', 'web-office', 'exchange'],
+    features: ['web-office', 'exchange'],
     children: [
-      {
-        id: 'office',
-        idAttr: 'office-link',
-        universe: webCloudUniverse.id,
-        translation: 'sidebar_license_office',
-        serviceType: 'LICENSE_OFFICE',
-        routing: {
-          application: 'web',
-          hash: '#/office/license',
-        },
-        features: ['office'],
-      },
       {
         id: 'web-office',
         idAttr: 'web-office-link',
@@ -229,18 +196,6 @@ webCloudUniverse.children = [
           hash: '#/exchange',
         },
         features: ['exchange'],
-      },
-      {
-        id: 'sharepoint',
-        idAttr: 'sharepoint-link',
-        universe: webCloudUniverse.id,
-        translation: 'sidebar_sharepoint',
-        serviceType: 'MSSERVICES_SHAREPOINT',
-        routing: {
-          application: 'web',
-          hash: '#/sharepoint',
-        },
-        features: ['sharepoint'],
       },
     ],
   },
