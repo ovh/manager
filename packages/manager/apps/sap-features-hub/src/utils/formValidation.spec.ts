@@ -1,11 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
-import {
-  isValidDomain,
-  isValidInput,
-  isValidSapPassword,
-  isValidUrl,
-} from './formValidation';
+import { isValidDomain, isValidInput, isValidUrl } from './formValidation';
 
 describe('isValid test suite', () => {
   it('should return true if input is valid', () => {
@@ -57,22 +52,4 @@ describe('isValidDomain test suite', () => {
   ])('should evaluate validity of domain %s as: %s', (input, expected) => {
     expect(isValidDomain(input)).toBe(expected);
   });
-});
-
-describe('isValidSapPassword test suite', () => {
-  test.each([
-    ['Password1!', true],
-    ["Pa1!@$%&/()=? '*+~#-.,;:{[]}<>_|", true],
-    ['Short1!', false],
-    ['NOLOWER1!', false],
-    ['noupper1!', false],
-    ['Nonumber!', false],
-    ['Nospecial1', false],
-    ['Invalid1char€', false],
-  ])(
-    'should evaluate validity of SAP password %s as: %s',
-    (input, expected) => {
-      expect(isValidSapPassword(input)).toBe(expected);
-    },
-  );
 });
