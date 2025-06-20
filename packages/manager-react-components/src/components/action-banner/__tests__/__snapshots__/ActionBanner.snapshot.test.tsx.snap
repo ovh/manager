@@ -1,0 +1,241 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ActionBanner Snapshot Tests > Displays ActionBanner 1`] = `
+<div>
+  <div
+    class="_message_1fc37_2 _message--information_1fc37_18 _message--default_1fc37_10 mt-3 action-banner action-banner—-undefined"
+    data-testid="actionBanner-message_container"
+  >
+    <span
+      class="_icon_3t4o5_2 _icon--circle-info_3t4o5_85 _message__icon_1fc37_50"
+    />
+    <div
+      class="_message__body_1fc37_54"
+    >
+      <div
+        class="w-full"
+      >
+        <p
+          class="_text--paragraph_1m9su_54 action-banner__text block"
+        >
+          <span>
+            Test Message
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays ActionBanner with Button 1`] = `
+<div>
+  <div
+    class="_message_1fc37_2 _message--information_1fc37_18 _message--default_1fc37_10 mt-3 action-banner action-banner—-information"
+    data-testid="actionBanner-message_container"
+  >
+    <span
+      class="_icon_3t4o5_2 _icon--circle-info_3t4o5_85 _message__icon_1fc37_50"
+    />
+    <div
+      class="_message__body_1fc37_54"
+    >
+      <div
+        class="w-full"
+      >
+        <p
+          class="_text--paragraph_1m9su_54 action-banner__text block"
+        >
+          <span>
+            Test Message
+          </span>
+        </p>
+        <button
+          class="_button_kl6dq_2 _button--primary_kl6dq_82 _button--xs_kl6dq_25 _button--default_kl6dq_48 sm:mt-0 md:mt-2 ml-0"
+          data-testid="action-banner-button"
+          type="button"
+        >
+          Button Label
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays ActionBanner with Link 1`] = `
+<div>
+  <div
+    class="_message_1fc37_2 _message--information_1fc37_18 _message--default_1fc37_10 mt-3 action-banner action-banner—-information"
+    data-testid="actionBanner-message_container"
+  >
+    <span
+      class="_icon_3t4o5_2 _icon--circle-info_3t4o5_85 _message__icon_1fc37_50"
+    />
+    <div
+      class="_message__body_1fc37_54"
+    >
+      <div
+        class="w-full"
+      >
+        <p
+          class="_text--paragraph_1m9su_54 action-banner__text block"
+        >
+          <span>
+            Test Message
+          </span>
+        </p>
+        <a
+          class="_link_1pimt_2 _link--primary_1pimt_27 sm:mt-0 md:mt-2 ml-0"
+          data-testid="action-banner-link"
+          href="https://www.ovhcloud.com"
+          id="action-banner-link"
+          target="_blank"
+        >
+          Link Label
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays Critical ActionBanner 1`] = `
+<div>
+  <div
+    class="_message_1fc37_2 _message--critical_1fc37_10 _message--default_1fc37_10 mt-3 action-banner action-banner—-critical"
+    data-testid="actionBanner-message_container"
+  >
+    <span
+      class="_icon_3t4o5_2 _icon--hexagon-exclamation_3t4o5_259 _message__icon_1fc37_50"
+    />
+    <div
+      class="_message__body_1fc37_54"
+    >
+      <div
+        class="w-full"
+      >
+        <p
+          class="_text--paragraph_1m9su_54 action-banner__text block"
+        >
+          <span>
+            Test Message
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays Danger ActionBanner 1`] = `
+<div>
+  <div
+    class="_message_1fc37_2 _message--danger_1fc37_14 _message--default_1fc37_10 mt-3 action-banner action-banner—-danger"
+    data-testid="actionBanner-message_container"
+  >
+    <span
+      class="_icon_3t4o5_2 _icon--diamond-exclamation_3t4o5_148 _message__icon_1fc37_50"
+    />
+    <div
+      class="_message__body_1fc37_54"
+    >
+      <div
+        class="w-full"
+      >
+        <p
+          class="_text--paragraph_1m9su_54 action-banner__text block"
+        >
+          <span>
+            Test Message
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays Information ActionBanner 1`] = `
+<div>
+  <div
+    class="_message_1fc37_2 _message--information_1fc37_18 _message--default_1fc37_10 mt-3 action-banner action-banner—-information"
+    data-testid="actionBanner-message_container"
+  >
+    <span
+      class="_icon_3t4o5_2 _icon--circle-info_3t4o5_85 _message__icon_1fc37_50"
+    />
+    <div
+      class="_message__body_1fc37_54"
+    >
+      <div
+        class="w-full"
+      >
+        <p
+          class="_text--paragraph_1m9su_54 action-banner__text block"
+        >
+          <span>
+            Test Message
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays Warning ActionBanner 1`] = `
+<div>
+  <div
+    class="_message_1fc37_2 _message--warning_1fc37_26 _message--default_1fc37_10 mt-3 action-banner action-banner—-warning"
+    data-testid="actionBanner-message_container"
+  >
+    <span
+      class="_icon_3t4o5_2 _icon--triangle-exclamation_3t4o5_421 _message__icon_1fc37_50"
+    />
+    <div
+      class="_message__body_1fc37_54"
+    >
+      <div
+        class="w-full"
+      >
+        <p
+          class="_text--paragraph_1m9su_54 action-banner__text block"
+        >
+          <span>
+            Test Message
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ActionBanner Snapshot Tests > Displays success ActionBanner 1`] = `
+<div>
+  <div
+    class="_message_1fc37_2 _message--success_1fc37_22 _message--default_1fc37_10 mt-3 action-banner action-banner—-success"
+    data-testid="actionBanner-message_container"
+  >
+    <span
+      class="_icon_3t4o5_2 _icon--circle-check_3t4o5_82 _message__icon_1fc37_50"
+    />
+    <div
+      class="_message__body_1fc37_54"
+    >
+      <div
+        class="w-full"
+      >
+        <p
+          class="_text--paragraph_1m9su_54 action-banner__text block"
+        >
+          <span>
+            Test Message
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
