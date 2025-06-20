@@ -82,21 +82,6 @@ export const Routes: any = [
                   },
                 },
               },
-              {
-                id: subRoutes.configureGameFirewall,
-                path: urls.listingConfigureGameFirewall,
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/configureGameFirewall/configureGameFirewall.page'
-                  ),
-                ),
-                handle: {
-                  tracking: {
-                    pageName: 'listing-configure-game-firewall',
-                    pageType: PageType.popup,
-                  },
-                },
-              },
             ],
           },
           {
@@ -135,6 +120,19 @@ export const Routes: any = [
         handle: {
           tracking: {
             pageName: 'listing',
+            pageType: PageType.listing,
+          },
+        },
+      },
+      {
+        id: subRoutes.configureGameFirewall,
+        path: urls.configureGameFirewall,
+        ...lazyRouteConfig(() =>
+          import('@/pages/configureGameFirewall/configureGameFirewall.page'),
+        ),
+        handle: {
+          tracking: {
+            pageName: 'configure-game-firewall',
             pageType: PageType.listing,
           },
         },

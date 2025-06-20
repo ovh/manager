@@ -9,7 +9,7 @@ export const subRoutes = {
   byoipOrder: 'byoip-order',
   terminate: 'terminate',
   upsertDescription: 'upsert-description',
-  configureGameFirewall: 'game-firewal',
+  configureGameFirewall: 'game-firewall',
 };
 
 export const urlDynamicParts = {
@@ -25,7 +25,7 @@ export const urls = {
   listing: subRoutes.root,
   listingTerminate: `${subRoutes.root}/${subRoutes.terminate}/${urlDynamicParts.id}`,
   listingUpsertDescription: `${subRoutes.root}/${subRoutes.upsertDescription}/${urlDynamicParts.id}`,
-  listingConfigureGameFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureGameFirewall}`,
+  configureGameFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureGameFirewall}`,
   order: `${subRoutes.root}/${subRoutes.order}`,
   byoip: `${subRoutes.root}/${subRoutes.byoip}`,
   manageOrganisations: `${subRoutes.root}/${subRoutes.manageOrganisations}`,
