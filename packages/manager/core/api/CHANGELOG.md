@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.12.1...@ovh-ux/manager-core-api@0.13.0) (2025-06-20)
+
+
+### Features
+
+* **core-api:** add ovh  api typguard ([e7de36c](https://github.com/ovh/manager/commit/e7de36ce84f1a560e450c3df36f37049d3e04cff))
+* **core-api:** enhance folder architecture ([f35e4d2](https://github.com/ovh/manager/commit/f35e4d22239f72664a79516ec877ba4fc28b1c6d))
+
+
+
+
+
 ## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.12.0...@ovh-ux/manager-core-api@0.12.1) (2025-06-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-core-api
