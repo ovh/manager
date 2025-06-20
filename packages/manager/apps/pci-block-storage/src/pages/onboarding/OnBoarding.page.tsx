@@ -1,4 +1,8 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import {
   Card,
   OnboardingLayout,
@@ -15,7 +19,7 @@ import {
 import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useHref, useParams } from 'react-router-dom';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
@@ -30,8 +34,11 @@ export default function OnBoardingPage() {
   const { ovhSubsidiary } = context.environment.getUser();
   const { data: project } = useProject();
   const [urlProject, setUrlProject] = useState('');
-  const navigate = useNavigate();
   const { data: volumes, isPending } = useAllVolumes(projectId);
+
+  const { trackClick } = useOvhTracking();
+
+  const newHref = useHref('../new');
 
   useEffect(() => {
     navigation
@@ -159,10 +166,27 @@ export default function OnBoardingPage() {
           orderButtonLabel={tOnBoarding(
             'pci_projects_project_storages_blocks_onboarding_action_label',
           )}
-          onOrderButtonClick={() => navigate(`../new`)}
+          onOrderButtonClick={() =>
+            trackClick({
+              actionType: 'action',
+              buttonType: ButtonType.button,
+              actions: ['create_volume_block_storage'],
+            })
+          }
+          orderHref={newHref}
         >
           {tileItems.map((tile) => (
-            <Card key={tile.id} href={tile.href} texts={tile.texts} />
+            <Card
+              key={tile.id}
+              href={tile.href}
+              onClick={() =>
+                trackClick({
+                  buttonType: ButtonType.tutorial,
+                  actions: [`go-to-${tile.id}`],
+                })
+              }
+              texts={tile.texts}
+            />
           ))}
         </OnboardingLayout>
         <Outlet />

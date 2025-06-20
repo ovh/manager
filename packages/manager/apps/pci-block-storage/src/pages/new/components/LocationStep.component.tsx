@@ -21,6 +21,7 @@ import {
   Subtitle,
   useCatalogPrice,
 } from '@ovh-ux/manager-react-components';
+import { ButtonType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
@@ -30,6 +31,7 @@ import {
   TCatalogGroup,
   TVolumeCatalog,
 } from '@/api/data/catalog';
+import { useTrackClick } from '@/hooks/useTrackClick';
 
 interface LocationProps {
   projectId: string;
@@ -89,6 +91,7 @@ export function LocationStep({
 }: Readonly<LocationProps>) {
   const { t } = useTranslation(['stepper', 'add']);
   const { data: volumeCatalog, isPending } = useVolumeCatalog(projectId);
+  const { trackClick } = useOvhTracking();
 
   const [
     selectedRegionGroup,
@@ -134,6 +137,11 @@ export function LocationStep({
   );
 
   const onSubmit = useCallback(() => {
+    trackClick({
+      buttonType: ButtonType.button,
+      actions: ['select_location', `add_${selectedRegion.name}`],
+    });
+
     setSelectedRegionGroup(
       volumeCatalog.filters.deployment.find(
         (g) => g.name === selectedRegion.filters.deployment[0],
@@ -141,6 +149,22 @@ export function LocationStep({
     );
     parentSubmit(selectedRegion);
   }, [volumeCatalog, selectedRegion, parentSubmit]);
+
+  const onTrackingDeploymentChange = useTrackClick(
+    (regionGroup) => ({
+      buttonType: ButtonType.tile,
+      actions: ['select_deployment', regionGroup?.name],
+    }),
+    setSelectedRegionGroup,
+  );
+
+  const onTrackingSelectRegion = useTrackClick(
+    (localisation) => ({
+      buttonType: ButtonType.tile,
+      actions: ['select_location', localisation.name],
+    }),
+    setSelectedLocalisation,
+  );
 
   if (isPending) return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
 
@@ -150,7 +174,7 @@ export function LocationStep({
         <DeploymentTilesInput
           name="deployment"
           value={selectedRegionGroup}
-          onChange={setSelectedRegionGroup}
+          onChange={onTrackingDeploymentChange}
           deployments={deployments}
           locked={step.isLocked}
         />
@@ -166,7 +190,13 @@ export function LocationStep({
           <div>
             <RegionSelector
               projectId={projectId}
-              onSelectRegion={setSelectedLocalisation}
+              onSelectRegion={onTrackingSelectRegion}
+              onSelectContinent={(continent) => {
+                trackClick({
+                  buttonType: ButtonType.tab,
+                  actions: ['select_continent', continent.code],
+                });
+              }}
               regionFilter={(r) =>
                 r.isMacro || regions.some((r2) => r2.name === r.name)
               }

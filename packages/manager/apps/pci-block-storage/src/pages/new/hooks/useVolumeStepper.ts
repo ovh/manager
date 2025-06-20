@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { ButtonType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { Step, useStep } from '@/pages/new/hooks/useStep';
 import { TFormState } from '@/pages/new/form.type';
 import { TVolumeAddon } from '@/api/data/catalog';
@@ -9,6 +10,7 @@ import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 export function useVolumeStepper(projectId: string) {
   const { data: volumeCatalog } = useVolumeCatalog(projectId);
   const { has3AZ } = useHas3AZRegion(projectId);
+  const { trackClick } = useOvhTracking();
 
   const [form, setForm] = useState<Partial<TFormState>>({});
   const locationStep = useStep({ isOpen: true });
@@ -40,6 +42,11 @@ export function useVolumeStepper(projectId: string) {
     location: {
       step: locationStep,
       edit: () => {
+        trackClick({
+          buttonType: ButtonType.link,
+          actions: [`edit_step_location_${form.region.name}`],
+        });
+
         locationStep.unlock();
         [
           volumeTypeStep,
@@ -81,6 +88,11 @@ export function useVolumeStepper(projectId: string) {
     volumeType: {
       step: volumeTypeStep,
       edit: () => {
+        trackClick({
+          buttonType: ButtonType.link,
+          actions: [`edit_step_volume_${form.volumeType.name}`],
+        });
+
         volumeTypeStep.unlock();
         [
           availabilityZoneStep,
@@ -117,6 +129,13 @@ export function useVolumeStepper(projectId: string) {
     availabilityZone: {
       step: availabilityZoneStep,
       edit: () => {
+        trackClick({
+          buttonType: ButtonType.link,
+          actions: [
+            `edit_step_location_detailed_${form.volumeType.name}-manually`,
+          ],
+        });
+
         availabilityZoneStep.unlock();
         [capacityStep, volumeNameStep, validationStep].forEach((step) => {
           step.uncheck();
@@ -142,6 +161,11 @@ export function useVolumeStepper(projectId: string) {
     capacity: {
       step: capacityStep,
       edit: () => {
+        trackClick({
+          buttonType: ButtonType.link,
+          actions: ['edit_step_configure_volume_capacity'],
+        });
+
         capacityStep.unlock();
         [volumeNameStep, validationStep].forEach((step) => {
           step.uncheck();
@@ -168,6 +192,11 @@ export function useVolumeStepper(projectId: string) {
     volumeName: {
       step: volumeNameStep,
       edit: () => {
+        trackClick({
+          buttonType: ButtonType.link,
+          actions: ['edit_step_name'],
+        });
+
         volumeNameStep.unlock();
         validationStep.uncheck();
         validationStep.unlock();

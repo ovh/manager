@@ -5,6 +5,7 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { PciTrustedZoneBanner } from '@ovh-ux/manager-pci-common';
+import { ButtonType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { PriceEstimate } from '@/pages/new/components/PriceEstimate';
 import { TVolumePricing } from '@/api/data/catalog';
 
@@ -22,6 +23,7 @@ export function ValidationStep({
   const { t } = useTranslation('add');
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
+  const { trackClick } = useOvhTracking();
 
   return (
     <div className="mb-6">
@@ -35,6 +37,11 @@ export function ValidationStep({
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => {
+            trackClick({
+              buttonType: ButtonType.button,
+              actions: ['confirm'],
+            });
+
             clearNotifications();
             onSubmit();
           }}
@@ -47,6 +54,11 @@ export function ValidationStep({
           color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.ghost}
           onClick={() => {
+            trackClick({
+              buttonType: ButtonType.button,
+              actions: ['cancel'],
+            });
+
             clearNotifications();
             navigate('..');
           }}

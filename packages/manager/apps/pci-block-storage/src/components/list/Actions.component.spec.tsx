@@ -8,9 +8,7 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),
 }));
 
-vi.mock('react-router-dom', () => ({
-  useHref: vi.fn(),
-}));
+vi.mock('react-router-dom');
 const mockVolume: TVolume = {
   id: '1',
   attachedTo: [],

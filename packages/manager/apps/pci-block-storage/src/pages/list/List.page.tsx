@@ -38,20 +38,18 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
 
-import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/constants';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
 
 export default function ListingPage() {
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const projectUrl = useProjectUrl('public-cloud');
 
-  const navigate = useNavigate();
   const { projectId } = useParams();
   const columns = useDatagridColumn(projectId, projectUrl);
   const [searchField, setSearchField] = useState('');
   const { data: project } = useProject();
   const { filters, addFilter, removeFilter } = useColumnFilters();
-  const { clearNotifications } = useNotifications();
   const filterPopoverRef = useRef(undefined);
 
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
@@ -88,12 +86,7 @@ export default function ListingPage() {
         <Headers
           title={t('pci_projects_project_storages_blocks_title')}
           headerButton={<PciGuidesHeader category="instances" />}
-          changelogButton={
-            <ChangelogButton
-              links={CHANGELOG_LINKS}
-              chapters={CHANGELOG_CHAPTERS}
-            />
-          }
+          changelogButton={<ChangelogButton links={CHANGELOG_LINKS} />}
         />
       </div>
       <OsdsDivider></OsdsDivider>
@@ -103,15 +96,12 @@ export default function ListingPage() {
       <Notifications />
 
       <div className="sm:flex items-center justify-between mt-4 min-h-[40px]">
-        <OsdsButton
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.flat}
-          color={ODS_THEME_COLOR_INTENT.primary}
+        <ButtonLink
+          to="./new"
+          color="primary"
+          size="sm"
           className="xs:mb-0.5 sm:mb-0"
-          onClick={() => {
-            clearNotifications();
-            navigate('./new');
-          }}
+          trackingName="create_volume_block_storage"
         >
           <OsdsIcon
             size={ODS_ICON_SIZE.xs}
@@ -119,7 +109,7 @@ export default function ListingPage() {
             className="mr-4 bg-white"
           />
           {t('pci_projects_project_storages_blocks_add_label')}
-        </OsdsButton>
+        </ButtonLink>
 
         <div className="justify-between flex gap-5 min-h-[40px] items-center">
           <div className="flex items-center">
