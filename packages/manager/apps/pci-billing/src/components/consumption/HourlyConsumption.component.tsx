@@ -14,6 +14,7 @@ import OutgoingTrafficList from './OutgoingTrafficList.component';
 import ResourceUsageList from './ResourceUsageList.component';
 import SnapshotList from './SnapshotList.component';
 import VolumeList from './VolumeList.component';
+import { ResourcesColumn } from './useResourceUsageListColumns';
 
 type HourlyConsumptionProps = {
   consumption: TConsumptionDetail;
@@ -82,6 +83,17 @@ export default function HourlyConsumption({
       title: t('cpbc_hourly_private_registry_title'),
       component: (
         <ResourceUsageList resourcesUsage={consumption?.privateRegistry} />
+      ),
+      condition: !isTrustedZone,
+    },
+    {
+      key: 'rancher',
+      title: t('cpbc_hourly_rancher_title'),
+      component: (
+        <ResourceUsageList
+          resourcesUsage={consumption.rancher}
+          disabledColumns={[ResourcesColumn.region]}
+        />
       ),
       condition: !isTrustedZone,
     },
