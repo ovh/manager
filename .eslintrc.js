@@ -118,6 +118,7 @@ module.exports = {
     {
       files: [
         '**/App.tsx',
+        'packages/manager/modules/**/index*',
         '**/test.{setup,provider}.tsx',
         '**/vitest.config.{js,ts,mjs,mts}',
         '**/vite.config.{js,ts,mjs,mts}',
