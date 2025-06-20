@@ -18,4 +18,5 @@ export const placeholderInstanceDetail: TInstanceDetail = {
   prices: [],
   taskState: null,
   isEditionEnabled: false,
+  standaloneActions: [],
 };

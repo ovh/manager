@@ -74,6 +74,7 @@ export type TInstanceDetail = DeepReadonly<{
   prices: TInstancePrice[];
   taskState: string | null;
   isEditionEnabled: boolean;
+  standaloneActions: TInstanceActionName[];
 }>;
 
 export type TInstanceDetailContextType = {
