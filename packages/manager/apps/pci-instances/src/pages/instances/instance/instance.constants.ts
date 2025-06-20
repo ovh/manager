@@ -14,6 +14,7 @@ export const placeholderInstanceDetail: TInstanceDetail = {
   regionType: '',
   pendingTask: false,
   availabilityZone: '',
+  actions: new Map(),
   prices: [],
   taskState: null,
   isEditionEnabled: false,

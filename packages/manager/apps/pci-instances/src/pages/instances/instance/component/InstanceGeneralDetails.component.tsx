@@ -15,6 +15,7 @@ import DashboardCardLayout from './DashboardCardLayout.component';
 import PriceLabel from '@/components/priceLabel/PriceLabel.component';
 import { InstanceDetailContext } from '../Instance.page';
 import { LoadingCell } from '@/components/datagrid/cell/LoadingCell.component';
+import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
 
 const InstanceGeneralDetails: FC = () => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
@@ -94,6 +95,21 @@ const InstanceGeneralDetails: FC = () => {
               )}
               type={LinkType.next}
             />
+          </div>
+        </LoadingCell>
+      </TileBlock>
+      <TileBlock>
+        <LoadingCell isLoading={isLoading}>
+          <div className="flex justify-between items-center">
+            <OsdsText
+              className="my-4"
+              size={ODS_TEXT_SIZE._400}
+              level={ODS_TEXT_LEVEL.body}
+              color={ODS_THEME_COLOR_INTENT.primary}
+            >
+              {t('pci_instances_dashboard_all_actions')}
+            </OsdsText>
+            <ActionsMenu items={instance.actions} />
           </div>
         </LoadingCell>
       </TileBlock>
