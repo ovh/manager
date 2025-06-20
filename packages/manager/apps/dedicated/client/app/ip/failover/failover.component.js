@@ -16,6 +16,7 @@ export default {
     trackingData: '<',
     unusedFilter: '<',
     goToStatistics: '<',
+    goToDeleteIpService: '<',
   },
   controller,
   template,
