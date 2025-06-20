@@ -4,18 +4,23 @@ import { useTranslation } from 'react-i18next';
 import { paginateResults } from '@/api/data/consumption';
 import NoDataMessage from './NoDataMessage.component';
 import { TResourceUsage } from '@/api/hook/useConsumption';
-import { useResourceUsageListColumns } from './useResourceUsageListColumns';
+import {
+  ResourcesColumn,
+  useResourceUsageListColumns,
+} from './useResourceUsageListColumns';
 
 type ResourceUsageListProps = {
   resourcesUsage: TResourceUsage[];
+  disabledColumns?: ResourcesColumn[];
 };
 
 export default function ResourceUsageList({
   resourcesUsage,
+  disabledColumns,
 }: Readonly<ResourceUsageListProps>) {
   const { t } = useTranslation('consumption/hourly-instance/resource-usage');
   const { pagination, setPagination } = useDataGrid();
-  const columns = useResourceUsageListColumns();
+  const columns = useResourceUsageListColumns({ disabledColumns });
 
   const paginatedResourcesUsage = useMemo(() => {
     const sortedResources = resourcesUsage.sort((a, b) =>
