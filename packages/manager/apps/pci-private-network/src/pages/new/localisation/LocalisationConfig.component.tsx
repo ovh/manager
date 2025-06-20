@@ -21,6 +21,11 @@ import {
 } from '@ovh-ux/manager-pci-common';
 import { Trans, useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
 
@@ -71,6 +76,8 @@ const LocalisationConfig: React.FC = () => {
 
   const guides = useGuideLink();
 
+  const { trackClick } = useOvhTracking();
+
   const onSelectRegion = (region: TLocalisation) => {
     unregister('region');
     setSelectedRegionType(undefined);
@@ -81,6 +88,13 @@ const LocalisationConfig: React.FC = () => {
         shouldValidate: true,
       });
       setSelectedRegionType(region.type);
+
+      trackClick({
+        location: PageLocation.funnel,
+        buttonType: ButtonType.tile,
+        actionType: 'action',
+        actions: ['add_privateNetwork', 'select_localisation', region.name],
+      });
     }
   };
 
