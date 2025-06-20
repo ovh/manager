@@ -26,6 +26,7 @@ webCloudUniverse.children = [
       'web:domains',
       'web:domains:zone',
       'web-ongoing-operations',
+      'web:domains:all-dom'
     ],
     children: [
       {
@@ -50,6 +51,18 @@ webCloudUniverse.children = [
           hash: '#/domain',
         },
         features: ['web:domains'],
+      },
+      {
+        id: 'alldom',
+        idAttr: 'alldom-link',
+        universe: webCloudUniverse.id,
+        translation: 'sidebar_alldom',
+        routing: {
+          application: 'alldoms',
+          hash: '#/',
+        },
+        serviceType: 'DOMAIN',
+        features: ['web:domains:all-dom'],
       },
       {
         id: 'dns',
