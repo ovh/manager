@@ -132,7 +132,7 @@
             >
                 <oui-tile-definition
                     data-ng-if="$ctrl.drpAvailability"
-                    data-term="{{:: 'dedicatedCloud_datacenter_drp' | translate }}"
+                    data-term="{{:: $ctrl.LABELS.ZERTO }}"
                 >
                     <oui-tile-description>
                         <span
@@ -153,36 +153,6 @@
                             ></span>
                         </span>
                     </oui-tile-description>
-                    <oui-action-menu
-                        data-ng-if="::$ctrl.isDrpActionPossible"
-                        data-compact
-                        data-placement="end"
-                    >
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.goToDrp()"
-                            data-ng-if="$ctrl.drpStatus === 'disabled'"
-                        >
-                            <span
-                                data-translate="dedicatedCloud_options_zerto_action_install"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.goToDrpSummary()"
-                            data-ng-if="::$ctrl.currentDrp.vpnStatus === $ctrl.DRP_VPN_STATUS.notConfigured"
-                        >
-                            <span
-                                data-translate="dedicatedCloud_options_zerto_action_add_configuration"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-ng-if="$ctrl.drpStatus === $ctrl.DRP_STATUS.delivered && $ctrl.drpRemotePccStatus === $ctrl.DRP_STATUS.delivered"
-                            data-on-click="$ctrl.goToDeleteDrp()"
-                        >
-                            <span
-                                data-translate="dedicatedCloud_options_zerto_action_delete"
-                            ></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
                 </oui-tile-definition>
             </oui-tile>
             <oui-tile

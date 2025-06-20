@@ -35,6 +35,8 @@ export default /* @ngInject */ ($stateProvider) => {
             id: datacenterId,
           },
         })),
+      goBackToList: /* @ngInject */ ($state) => () =>
+        $state.go('app.dedicatedCloud.details.datacenter'),
       commercialRangeName: /* @ngInject */ (
         DedicatedCloud,
         datacenterId,
