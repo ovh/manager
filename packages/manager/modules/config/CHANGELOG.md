@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.4.1...@ovh-ux/manager-config@8.5.0) (2025-06-20)
+
+
+### Bug Fixes
+
+* fix issue with new subsidiary type ([ae64695](https://github.com/ovh/manager/commit/ae6469540f442231c25869ebca1b0955730347e9)), closes [#MANAGER-17333](https://github.com/ovh/manager/issues/MANAGER-17333)
+
+
+### Features
+
+* **config:** extend error response to general unavailability ([0909ce9](https://github.com/ovh/manager/commit/0909ce971a865a4f20f05c2b00d2aea868532643)), closes [#MANAGER-18615](https://github.com/ovh/manager/issues/MANAGER-18615)
+* **manager-config:** added user related types ([76a0cb1](https://github.com/ovh/manager/commit/76a0cb1e34eba52f9d814023b784fccc4f502068)), closes [#MANAGER-17333](https://github.com/ovh/manager/issues/MANAGER-17333)
+
+
+
+
+
 ## [8.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.4.0...@ovh-ux/manager-config@8.4.1) (2025-06-13)
 
 
