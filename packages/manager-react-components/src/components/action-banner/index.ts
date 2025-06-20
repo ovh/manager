@@ -1,1 +1,3 @@
-export { ActionBanner } from './action-banner.component';
+export { ActionBanner } from './ActionBanner.component';
+
+export type { ActionBannerProps } from './ActionBanner.props';
