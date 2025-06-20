@@ -137,5 +137,8 @@
   "domain_operations_upload_error_wrong-format": "Formato del file non autorizzato.",
   "domain_operations_update_key_validationToken": "Token di conferma",
   "domain_operations_update_key_document": "Documento",
-  "domain_operations_update_title": "Aggiornamento dell'operazione per il dominio {{t0}}"
+  "domain_operations_update_title": "Aggiornamento dell'operazione per il dominio {{t0}}",
+  "domain_operations_nicOperation_ContactControlNotify": "Notifica di verifica del contatto",
+  "domain_operations_nicOperation_DomainSendRDRPNotice": "Invio della notifica RDRP",
+  "domain_operations_guides": "Informazioni generali"
 }

@@ -31,5 +31,11 @@
   "zimbra_slot_modal_renew_date": "Fine dell’impegno contrattuale: {{ renewDate }}",
   "zimbra_account_delete_modal_content_step1": "Vuoi davvero eliminare l'account email <strong>{{ email }}</strong>?",
   "zimbra_account_delete_modal_content_step2": "Vuoi davvero eliminare questo account email <strong>{{ email }}</strong>?",
-  "zimbra_account_delete_modal_warn_message": "Attenzione: questa azione è irreversibile e comporta la cancellazione dei dati."
+  "zimbra_account_delete_modal_warn_message": "Attenzione: questa azione è irreversibile e comporta la cancellazione dei dati.",
+  "zimbra_account_upgrade_cta_back": "Tornare ai miei account email",
+  "zimbra_account_upgrade_new_offer": "È disponibile in versione beta la nostra <Link href=\"{{ zimbra_emails_link }}\">nuova soluzione Zimbra Pro</Link>.",
+  "zimbra_account_upgrade_offer_details": "Ti offriamo la possibilità di aggiornare gratuitamente il tuo account per l’intera durata della fase beta.",
+  "zimbra_account_upgrade_lab_page": "Per maggiori dettagli, leggi <Link href=\"{{ zimbra_beta_link }}\">le condizioni della versione beta nella pagina Labs</Link>.",
+  "zimbra_account_upgrade_success_message": "La tua richiesta di aggiornamento è stata presa in carico. Sarà elaborata entro pochi minuti.",
+  "zimbra_account_upgrade_error_message": "La tua richiesta di aggiornamento non è andata a buon fine: {{ error }}"
 }

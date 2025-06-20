@@ -171,7 +171,7 @@ export type EditEmailAccountSchema = z.infer<typeof editEmailAccountSchema>;
 
 export const orderEmailAccountSchema = z.object({
   consent: z.literal<boolean>(true),
-  [ZimbraPlanCodes.ZIMBRA_ACCOUNT_PP_STARTER]: z
+  [ZimbraPlanCodes.ZIMBRA_STARTER]: z
     .number()
     .positive()
     .min(1)
