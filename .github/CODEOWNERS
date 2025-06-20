@@ -39,7 +39,6 @@
 /packages/manager/apps/nasha @ovh/dev-manager-infra-all
 /packages/manager/apps/netapp @ovh/dev-manager-infra-all
 /packages/manager/apps/nutanix @ovh/dev-manager-hpc-all
-/packages/manager/apps/office @ovh/dev-manager-web-all
 /packages/manager/apps/overthebox @ovh/dev-manager-web-all
 /packages/manager/apps/pci @ovh/dev-manager-pci-all
 /packages/manager/apps/pci-* @ovh/dev-manager-pci-all
@@ -102,7 +101,6 @@
 /packages/manager/modules/netapp @ovh/dev-manager-infra-all
 /packages/manager/modules/new-billing @ovh/dev-manager-gcj-all
 /packages/manager/modules/nutanix @ovh/dev-manager-hpc-all
-/packages/manager/modules/office @ovh/dev-manager-web-all
 /packages/manager/modules/overthebox @ovh/dev-manager-web-all
 /packages/manager/modules/pci @ovh/dev-manager-pci-all
 /packages/manager/modules/pci-universe-components @ovh/dev-manager-pci-all
