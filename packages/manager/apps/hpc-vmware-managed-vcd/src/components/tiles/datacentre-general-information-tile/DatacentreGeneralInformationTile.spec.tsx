@@ -24,6 +24,16 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 
+vi.mock('react-router-dom', async (importOriginal) => {
+  const module: typeof import('react-router-dom') = await importOriginal();
+  return {
+    ...module,
+    useNavigate: () => vi.fn(),
+    useParams: () => ({ id: 'id' }),
+    Route: module.Route,
+  };
+});
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -34,11 +44,6 @@ const queryClient = new QueryClient({
     },
   },
 });
-
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => ({ navigate: vi.fn() }),
-  useParams: () => ({ id: 'id' }),
-}));
 
 const vcdOrg = {
   currentState: {
