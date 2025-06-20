@@ -115,9 +115,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         id: 3,
         label: t('listingActionManageGameMitigation'),
         onClick: () =>
-          navigate(
-            urls.listingConfigureGameFirewall.replace(urlDynamicParts.id, id),
-          ),
+          navigate(urls.configureGameFirewall.replace(urlDynamicParts.id, id)),
       },
   ].filter(Boolean);
 
