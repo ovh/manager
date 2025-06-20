@@ -17,7 +17,6 @@ export type Node = {
   id?: string;
   path?: string;
   serviceType?: string | string[];
-  hideIfFeatures?: string[];
   translation?: string;
   shortTranslation?: string;
   illustration?: string;
