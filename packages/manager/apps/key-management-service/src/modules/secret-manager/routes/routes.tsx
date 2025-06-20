@@ -9,19 +9,19 @@ import NotFound from '@/pages/404';
 
 const KmsLayout = React.lazy(() => import('@/pages/layout'));
 const Root = React.lazy(() =>
-  import('@/modules/secret-manager/pages/root/root.page'),
+  import('@/modules/secret-manager/pages/root/Root.page'),
 );
 const Onboarding = React.lazy(() =>
-  import('@/modules/secret-manager/pages/onboarding/onboarding.page'),
+  import('@/modules/secret-manager/pages/onboarding/Onboarding.page'),
 );
 const SecretListing = React.lazy(() =>
   import('@/modules/secret-manager/pages/listing/Listing.page'),
 );
 const SecretDetail = React.lazy(() =>
-  import('@/modules/secret-manager/pages/detail.page'),
+  import('@/modules/secret-manager/pages/Detail.page'),
 );
 const SecretCreate = React.lazy(() =>
-  import('@/modules/secret-manager/pages/create.page'),
+  import('@/modules/secret-manager/pages/Create.page'),
 );
 
 export default (
