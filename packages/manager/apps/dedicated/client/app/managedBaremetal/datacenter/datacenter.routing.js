@@ -28,6 +28,12 @@ export default /* @ngInject */ ($stateProvider) => {
             id: datacenterId,
           },
         })),
+      goBackToList: /* @ngInject */ ($state, productId) => () =>
+        $state.go('app.managedBaremetal.details.datacenters', {
+          params: {
+            productId,
+          },
+        }),
       deleteDatacenter: /* @ngInject */ ($state) => () =>
         $state.go(
           'app.managedBaremetal.details.datacenters.datacenter.dashboard.delete',

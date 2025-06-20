@@ -10,7 +10,6 @@
   "dedicatedCloud_tab_datastore": "Datastores",
   "dedicatedCloud_tab_backup": "Backup",
   "dedicatedCloud_tab_virtualmachine": "Machines virtuelles",
-  "dedicatedCloud_tab_drp": "Plan de reprise d’activité (PRA)",
   "dedicatedCloud_tab_network": "Network",
   "dedicatedCloud_datacenter_EOL_title": "Date de fin de vie de Dedicated Cloud : 30 Septembre 2022",
   "dedicatedCloud_datacenter_EOL_part_1": "Nous vous avons informé en Octobre 2021 que nos offres Dedicated Cloud arrivaient en fin de vie et seront définitivement arrêtées le 30 Septembre 2022. Cette étape est importante pour vos plateformes VMware afin d’améliorer la qualité de service, les performances et la sécurité de vos clusters. En effet, le matériel des offres « Dedicated Cloud » utilisé, antérieur à 2018, ne nous permet plus d’assurer le meilleur niveau de service et l’intégration avec les nouvelles architectures modernes de VMware.",
