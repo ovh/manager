@@ -1,5 +1,4 @@
-import pick from 'lodash/pick';
-import { VIRTUAL_MACHINES_GUEST_OS, VIRTUAL_MACHINES_TITLE } from './constants';
+import { VIRTUAL_MACHINES_ID, VIRTUAL_MACHINES_VCPU } from './constants';
 
 export default class {
   /* @ngInject */
@@ -7,8 +6,8 @@ export default class {
     this.$q = $q;
     this.DedicatedCloud = DedicatedCloud;
     this.$translate = $translate;
-    this.virtualMachinesTitle = VIRTUAL_MACHINES_TITLE;
-    this.virtualMachinesGuesOS = VIRTUAL_MACHINES_GUEST_OS;
+    this.virtualMachinesId = VIRTUAL_MACHINES_ID;
+    this.virtualMachinesVcpu = VIRTUAL_MACHINES_VCPU;
   }
 
   loadVirtualMachines(config) {
@@ -32,10 +31,20 @@ export default class {
     )
       .then((res) => {
         const data = res.data.map((item) => ({
-          ...pick(item, ['vmId', 'license', 'name', 'guestOsFamily']),
+          ...item,
           allowEditLicense: item.guestOsFamily
             ?.toLowerCase()
             .includes('windows'),
+          guestOs: item.guestOsFamily
+            ?.replace(/(_?\d+)?Guest$/, '')
+            ?.replace(/([a-zA-Z])(\d+)/g, '$1 $2')
+            ?.replace(/(\d+)([a-zA-Z])/g, '$1 $2'),
+          backupState: item.backup?.state,
+          disksSize: item.filers?.reduce(
+            (total, filer) =>
+              total + filer.disks.reduce((sum, disk) => sum + disk.capacity, 0),
+            0,
+          ),
         }));
 
         return {

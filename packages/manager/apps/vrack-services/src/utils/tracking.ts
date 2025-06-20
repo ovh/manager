@@ -24,7 +24,6 @@ export enum PageName {
   deleteSubnets = 'delete_subnets',
   endpoints = 'endpoints',
   createEndpoints = 'add_endpoints',
-  editEndpoints = 'edit_endpoints',
   deleteEndpoints = 'delete_endpoints',
 
   successCreateSubnet = 'create_subnets_success',
@@ -36,8 +35,6 @@ export enum PageName {
 
   successCreateEndpoint = 'create_endpoints_success',
   errorCreateEndpoint = 'create_endpoints_error',
-  successUpdateEndpoint = 'update_endpoints_success',
-  errorUpdateEndpoint = 'update_endpoints_error',
   successDeleteEndpoint = 'delete_endpoints_success',
   errorDeleteEndpoint = 'delete_endpoints_error',
 
