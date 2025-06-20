@@ -1,6 +1,6 @@
 import { FC, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_SIZE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -22,6 +22,7 @@ const InstanceGeneralDetails: FC = () => {
   const { translateMicroRegion } = useTranslatedMicroRegions();
   const { data: instance, isLoading } = useContext(InstanceDetailContext);
   const hrefEditInstance = useHref(`../${instance.id}/edit`);
+  const hrefDeleteInstance = useHref(`delete`);
 
   return (
     <DashboardCardLayout title={t('pci_instances_dashboard_info_title')}>
@@ -113,6 +114,16 @@ const InstanceGeneralDetails: FC = () => {
           </div>
         </LoadingCell>
       </TileBlock>
+      {instance.standaloneActions.includes('delete') && (
+        <LoadingCell isLoading={isLoading}>
+          <OsdsLink
+            color={ODS_THEME_COLOR_INTENT.error}
+            href={hrefDeleteInstance}
+          >
+            {t('list:pci_instances_list_action_delete')}
+          </OsdsLink>
+        </LoadingCell>
+      )}
     </DashboardCardLayout>
   );
 };
