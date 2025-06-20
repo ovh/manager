@@ -4,7 +4,6 @@ import {
   DashboardTile,
   DashboardTileBlockItem,
   Region,
-  ServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import {
@@ -20,13 +19,15 @@ import { OKMS } from '@/types/okms.type';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 type InformationTileProps = {
-  okmsData?: OKMS;
-  okmsServiceInfos?: ServiceDetails;
+  okmsData: OKMS;
+  okmsDisplayName: string;
+  canEditName: boolean;
 };
 
 const InformationsTile = ({
   okmsData,
-  okmsServiceInfos,
+  okmsDisplayName,
+  canEditName,
 }: InformationTileProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
   const navigate = useNavigate();
@@ -38,21 +39,23 @@ const InformationsTile = ({
       value: (
         <div className="flex justify-between items-center gap-2">
           <OdsText preset={ODS_TEXT_PRESET.paragraph} className="break-all">
-            {okmsServiceInfos?.resource.displayName}
+            {okmsDisplayName}
           </OdsText>
-          <div className="min-w-fit">
-            <OdsButton
-              aria-label="edit"
-              size={ODS_BUTTON_SIZE.sm}
-              variant={ODS_BUTTON_VARIANT.ghost}
-              color={ODS_BUTTON_COLOR.primary}
-              onClick={() =>
-                navigate(KMS_ROUTES_URLS.kmsEditName(okmsData?.id))
-              }
-              icon={ODS_ICON_NAME.pen}
-              label=""
-            />
-          </div>
+          {canEditName && (
+            <div className="min-w-fit">
+              <OdsButton
+                aria-label="edit"
+                size={ODS_BUTTON_SIZE.sm}
+                variant={ODS_BUTTON_VARIANT.ghost}
+                color={ODS_BUTTON_COLOR.primary}
+                onClick={() =>
+                  navigate(KMS_ROUTES_URLS.kmsEditName(okmsData?.id))
+                }
+                icon={ODS_ICON_NAME.pen}
+                label=""
+              />
+            </div>
+          )}
         </div>
       ),
     },
