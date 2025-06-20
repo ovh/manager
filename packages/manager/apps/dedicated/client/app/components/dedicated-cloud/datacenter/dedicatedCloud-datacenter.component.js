@@ -19,6 +19,7 @@ export default {
     vcdTrackingPrefix: '<?',
     isNsxEdgeAvailable: '<',
     isNsxtCompatible: '<',
+    goBackToList: '<',
   },
   controller,
   template,

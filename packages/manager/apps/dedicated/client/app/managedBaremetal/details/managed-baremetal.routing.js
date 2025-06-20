@@ -76,7 +76,6 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       datacenterList: /* @ngInject */ ($stateParams, DedicatedCloud) =>
         DedicatedCloud.getDatacenters($stateParams.productId),
-
       dedicatedCloud: /* @ngInject */ (
         $stateParams,
         currentUser,
