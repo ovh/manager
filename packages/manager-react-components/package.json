@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "build": "tsc && vite build",
-    "dev": "tsc && vite build",
+    "dev": "tsc -p tsconfig.new.json && vite build",
     "prepare": "tsc && vite build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "TZ=UTC manager-test",
