@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-resource-tagging@1.1.1...@ovh-ux/manager-resource-tagging@1.1.2) (2025-06-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4113] ([be9c942](https://github.com/ovh/manager/commit/be9c9421f3e293cf914ad00f2f2c25f4da791efc))
+
+
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-resource-tagging@1.1.0...@ovh-ux/manager-resource-tagging@1.1.1) (2025-06-17)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.137.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.136.0...@ovh-ux/manager-container-app@0.137.0) (2025-06-20)
+
+
+### Features
+
+* **manager-config:** added user related types ([76a0cb1](https://github.com/ovh/manager/commit/76a0cb1e34eba52f9d814023b784fccc4f502068)), closes [#MANAGER-17333](https://github.com/ovh/manager/issues/MANAGER-17333)
+
+
+
+
+
 # [0.136.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.135.2...@ovh-ux/manager-container-app@0.136.0) (2025-06-16)
 
 

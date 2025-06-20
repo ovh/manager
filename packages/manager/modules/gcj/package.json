@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-gcj-module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "description": "Generic Customer Journey components and hooks",
   "homepage": "https://github.com/ovh/manager/blob/master/packages/manager/modules/gcj/README.md",
@@ -26,9 +26,8 @@
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@ovh-ux/manager-react-components": "^2.27.0",
+    "@ovh-ux/manager-react-components": "^2.29.0",
     "@ovh-ux/manager-tests-setup": "^0.2.0",
     "@ovh-ux/manager-vite-config": "^0.10.0",
     "typescript": "^5.1.6",
