@@ -247,4 +247,5 @@ export const getInstanceDetail = (
   actions: mapInstanceDashboardActions(instanceDto as any, projectUrl), // TODO: fix type after refactor TAPC-4385
   status: getInstanceStatus(instanceDto.status),
   isEditionEnabled: isEditionEnabled(instanceDto.actions),
+  standaloneActions: ['activate_monthly_billing', 'delete'],
 });
