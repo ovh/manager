@@ -10,11 +10,12 @@ export default function Domain() {
   return (
     <React.Suspense>
       <DashboardPage
+        id={ParentEnum.ZONE}
         parent={ParentEnum.ZONE}
         notifications={notifications}
         route={`${taskMeDns.join('/')}`}
         queryKey={taskMeDns}
-        testID={'dns'}
+        testID={'datagrid'}
       />
     </React.Suspense>
   );

@@ -15,7 +15,10 @@ import OngoingOperationDatagridDomain from '@/components/OngoingOperationDatagri
 import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridBadge';
 import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard';
 
-export const useOngoingOperationDatagridColumns = (parent: ParentEnum) => {
+export const useOngoingOperationDatagridColumns = (
+  id: string,
+  parent: ParentEnum,
+) => {
   const { t } = useTranslation('dashboard');
   const { clearNotifications } = useNotifications();
   const l = getI18n();
@@ -24,7 +27,7 @@ export const useOngoingOperationDatagridColumns = (parent: ParentEnum) => {
 
   const columns = [
     {
-      id: parent,
+      id,
       cell: (props: TOngoingOperations) => (
         <OngoingOperationDatagridDomain parent={parent} props={props} />
       ),

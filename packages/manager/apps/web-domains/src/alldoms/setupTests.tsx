@@ -62,3 +62,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
     } as UseQueryResult<unknown, Error>;
   },
 }));
+
+vi.mock('punycode', () => ({
+  toUnicode: vi.fn(),
+}));

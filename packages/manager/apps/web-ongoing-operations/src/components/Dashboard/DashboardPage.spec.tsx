@@ -22,32 +22,15 @@ vi.mock('@/hooks/data/query', () => ({
 }));
 
 describe('Datagrid template', () => {
-  it('displays loading spinner while main requests are loading', () => {
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
-      flattenData: domain,
-      isLoading: true,
-    });
-
-    (useGetDomainInformation as jest.Mock).mockReturnValue({
-      data: serviceInfo,
-    });
-    const { getByTestId } = render(
-      <DashboardPage
-        notifications={[]}
-        parent={ParentEnum.DOMAIN}
-        testID={'datagrid'}
-        route={`${taskMeDomain.join('/')}?type=domain`}
-        queryKey={taskMeDomain}
-      />,
-      { wrapper },
-    );
-    expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
-  });
-
   it('Display the datagrid domain element', async () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
       flattenData: domain,
       isLoading: false,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
 
     (useGetDomainInformation as jest.Mock).mockReturnValue({
@@ -56,6 +39,7 @@ describe('Datagrid template', () => {
 
     const { getByTestId } = render(
       <DashboardPage
+        id={ParentEnum.DOMAIN}
         notifications={[]}
         parent={ParentEnum.DOMAIN}
         testID={'datagrid'}

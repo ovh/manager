@@ -1,8 +1,8 @@
 import { useQueries } from '@tanstack/react-query';
 import {
-  getAllDomainAttachedToAllDom,
   getAllDomProperty,
   getallDomService,
+  getDomainAttachedToAllDom,
 } from '@/alldoms/data/api/web-domains';
 import { TServiceDetail, TServiceProperty } from '@/alldoms/types';
 import { findContact } from '@/alldoms/utils/utils';
@@ -12,7 +12,7 @@ interface UseGetDatagridServiceInfoListProps {
   readonly allDomList: TServiceProperty[];
 }
 
-export const useGetDatagridServiceInfoList = ({
+export const useGetAllDoms = ({
   allDomList = [],
 }: UseGetDatagridServiceInfoListProps) => {
   const queries = useQueries({
@@ -26,7 +26,7 @@ export const useGetDatagridServiceInfoList = ({
         ] = await Promise.all([
           getAllDomProperty(serviceName.name),
           getallDomService(serviceName.name),
-          getAllDomainAttachedToAllDom(serviceName.name),
+          getDomainAttachedToAllDom(serviceName.name),
         ]);
 
         const contacts = serviceInfo?.customer?.contacts ?? [];

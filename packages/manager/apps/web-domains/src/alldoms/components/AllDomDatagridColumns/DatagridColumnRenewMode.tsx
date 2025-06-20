@@ -14,7 +14,7 @@ export default function DatagridColumnRenewMode({
   const { t } = useTranslation('allDom');
 
   if (!renewMode) {
-    return '-';
+    return '';
   }
 
   return (

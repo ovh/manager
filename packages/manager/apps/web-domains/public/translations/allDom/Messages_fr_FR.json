@@ -30,6 +30,8 @@
   "allDom_modal_step_two_warning": "Attention, les services suivants seront résiliés :",
   "allDom_modal_step_terminate": "Résilier",
   "allDom_modal_success_message": "Le service {{t0}} et le(s) domaine(s) {{t1}} ont bien été mis à jour",
+  "allDom_detail_page_technical_flags": "Technical flags",
+  "allDom_detail_page_domain_unavailable": "Ce domaine n'est pas disponible. Nous vous informerons s'il est à nouveau disponible.",
   "allDom_modal_error_message": "Une erreur est survenue : {{t0}}",
   "allDom_page_detail_information_general_pack": "Pack {{t0}}",
   "allDom_page_detail_information_general_extensions": "Les extensions incluses : {{t0}}",
@@ -38,5 +40,17 @@
   "allDom_page_detail_subscribing_contact_admin": "{{t0}} : Administrateur",
   "allDom_page_detail_subscribing_contact_tech": "{{t0}} : Technique",
   "allDom_page_detail_subscribing_contact_billing": "{{t0}} : Facturation",
-  "allDom_page_detail_subscribing_contact_creation_date": "Date de création"
+  "allDom_page_detail_subscribing_contact_creation_date": "Date de création",
+  "allDom_page_detail_domain_transfert_protected": "Le domaine est protégé contre le transfert",
+  "allDom_page_detail_domain_dnssec_enable": "Dnssec est désactivé",
+  "allDom_domain_table_header_domain_name": "Nom de domaine",
+  "allDom_domain_table_header_status": "Statut",
+  "allDom_domain_table_header_dns_server": "Serveur DNS",
+  "allDom_domain_table_header_transfert_protection": "Protection contre le transfert",
+  "allDom_domain_table_header_dnssec": "DNSSEC",
+  "allDom_domain_table_header_expiration_date": "Date d'expiration",
+  "allDom_domain_table_header_enable": "Activée",
+  "allDom_domain_table_header_disable": "Désactivée",
+  "allDom_domain_table_registration_status_registered": "Enregistré",
+  "allDom_domain_table_registration_status_unregistered": "Non enregistré"
 }
