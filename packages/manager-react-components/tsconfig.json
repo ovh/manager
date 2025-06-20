@@ -17,6 +17,6 @@
     "jsx": "react-jsx"
   },
   "files": ["global.d.ts"],
-  "include": ["src/**/*", "*.spec.tsx"],
+  "include": ["src/**/*", "*.spec.tsx", "types"],
   "exclude": ["./src/**/*.stories.*"]
 }
