@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.28.0...@ovh-ux/manager-react-components@2.29.0) (2025-06-20)
+
+### Bug Fixes
+
+- **mrc:** white page when multiple FilterCategories.Options filters [#17449](https://github.com/ovh/manager/issues/17449) ([6ab5d58](https://github.com/ovh/manager/commit/6ab5d58f6a1d34127674068f166c4af5df62a4ed)), closes [#MANAGER-18548](https://github.com/ovh/manager/issues/MANAGER-18548)
+
+### Features
+
+- **docs:** add documentation react templates ([88fb974](https://github.com/ovh/manager/commit/88fb974fe31aa73aa47c340fc8b22c9da72b678b)), closes [#MANAGER-17263](https://github.com/ovh/manager/issues/MANAGER-17263)
+
 # [2.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.27.2...@ovh-ux/manager-react-components@2.28.0) (2025-06-12)
 
 ### Features

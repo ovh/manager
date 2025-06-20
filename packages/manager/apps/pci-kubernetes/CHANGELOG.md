@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.25.0...@ovh-ux/manager-pci-kubernetes-app@0.25.1) (2025-06-20)
+
+
+### Bug Fixes
+
+* fix issue with new subsidiary type ([ae64695](https://github.com/ovh/manager/commit/ae6469540f442231c25869ebca1b0955730347e9)), closes [#MANAGER-17333](https://github.com/ovh/manager/issues/MANAGER-17333)
+
+
+
+
+
 # [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.24.6...@ovh-ux/manager-pci-kubernetes-app@0.25.0) (2025-06-17)
 
 
