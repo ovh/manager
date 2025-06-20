@@ -13,6 +13,7 @@ import {
   PageLayout,
   PciGuidesHeader,
   Notifications,
+  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { TProject } from '@ovh-ux/manager-pci-common';
 import { GoBack } from '@/components/navigation/GoBack.component';
@@ -38,6 +39,7 @@ const Instance: FC = () => {
     instanceId: string;
     regionId: string;
   };
+  const projectUrl = useProjectUrl('public-cloud');
   const dashboardPath = useResolvedPath('');
   const vncPath = useResolvedPath('vnc');
 
@@ -46,7 +48,7 @@ const Instance: FC = () => {
     instanceId,
     regionId,
     {
-      select: (dto) => getInstanceDetail(dto),
+      select: (dto) => getInstanceDetail(dto, projectUrl),
     },
   );
 
