@@ -148,7 +148,7 @@ export const renderMergedReport = ({ format }) => {
   const mergedReport = buildMergedMigrationReport();
 
   renderReport(mergedReport, {
-    title: 'Merged Migration Status',
+    title: 'Follow Up All Manager Migration Status',
     statusKeys: ['Routes Migration', 'Tests Migration', 'SWC Migration'],
     format,
     filename,
