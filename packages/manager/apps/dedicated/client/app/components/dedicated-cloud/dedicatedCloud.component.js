@@ -18,6 +18,7 @@ export default {
     hasVCDMigration: '<',
     vcdTrackingPrefix: '<',
     customerSurveyBannerAvailability: '<',
+    goBackToList: '<',
   },
   controller,
   template,
