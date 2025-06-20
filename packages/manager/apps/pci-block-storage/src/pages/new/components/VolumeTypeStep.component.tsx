@@ -16,16 +16,13 @@ import {
   ODS_TEXT_COLOR_HUE,
   ODS_TEXT_COLOR_INTENT,
 } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
-  Links,
-  LinkType,
   TilesInputComponent,
   useCatalogPrice,
 } from '@ovh-ux/manager-react-components';
 
 import { Trans, useTranslation } from 'react-i18next';
-import { FC, PropsWithChildren, useContext, useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useTranslateBytes } from '@/pages/new/hooks/useTranslateBytes';
 import { StepState } from '@/pages/new/hooks/useStep';
@@ -33,6 +30,7 @@ import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { TVolumeAddon } from '@/api/data/catalog';
 import { TRegion } from '@/api/data/regions';
 import { MULTI_ATTACH_INFO_URL } from '@/constants';
+import ExternalLink from '@/components/ExternalLink';
 
 const BETA_TAG = 'is_new';
 
@@ -129,18 +127,6 @@ function VolumeTypeTile({
   );
 }
 
-const GuideLink: FC<PropsWithChildren<{ href: string }>> = ({
-  children,
-  href,
-}) => (
-  <Links
-    label={children}
-    href={href}
-    target={OdsHTMLAnchorElementTarget._blank}
-    type={LinkType.external}
-  />
-);
-
 export interface VolumeTypeStepProps {
   projectId: string;
   region: TRegion;
@@ -201,7 +187,7 @@ export function VolumeTypeStep({
               t={t}
               i18nKey="add:pci_projects_project_storages_blocks_add_type_multi_attach_banner"
               components={{
-                Link: <GuideLink href={attachGuideLink} />,
+                Link: <ExternalLink href={attachGuideLink} />,
               }}
             />
           </OsdsText>
