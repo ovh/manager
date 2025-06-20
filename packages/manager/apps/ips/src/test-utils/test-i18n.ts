@@ -5,6 +5,7 @@ import ips from '../../public/translations/ips/Messages_fr_FR.json';
 import error from '../../public/translations/error/Messages_fr_FR.json';
 import regionSelector from '../../public/translations/region-selector/Messages_fr_FR.json';
 import configureReverseDns from '../../public/translations/configure-reverse-dns/Messages_fr_FR.json';
+import gameFirewall from '../../public/translations/game-firewall/Messages_fr_FR.json';
 
 export const translations = {
   ips,
@@ -14,6 +15,7 @@ export const translations = {
   error,
   'region-selector': regionSelector,
   'configure-reverse-dns': configureReverseDns,
+  'game-firewall': gameFirewall,
 };
 
 export const labels = {
@@ -24,4 +26,5 @@ export const labels = {
   error,
   regionSelector,
   configureReverseDns,
+  gameFirewall,
 };

@@ -7,10 +7,12 @@ import icebergIpListFull from './iceberg-get-ip-full';
 import ipDetails from './get-ip-details.json';
 import getIpReverseForBlock from './get-ip-reverse-for-block.json';
 import getIpv6ReverseForBlock from './get-ipv6-reverse-for-block.json';
+import { getIpGameFirewallResponse } from './get-ip-game-firewall';
 import {
   IpAntihackType,
   IpEdgeFirewallStateEnum,
   IpEdgeFirewallType,
+  IpGameFirewallStateEnum,
   IpGameFirewallType,
   IpMitigationType,
   IpReverseType,
@@ -24,6 +26,11 @@ export type GetIpsMocksParams = {
   isIpv6LimitReached?: boolean;
   getReverseApiKo?: boolean;
   postReverseApiKo?: boolean;
+  gameFirewallConfig?: {
+    isUpdateKo?: boolean;
+    firewallModeEnabled?: boolean;
+    state?: IpGameFirewallStateEnum;
+  };
 };
 
 export const getIpsMocks = ({
@@ -33,6 +40,7 @@ export const getIpsMocks = ({
   isIpv6LimitReached = false,
   getReverseApiKo = false,
   postReverseApiKo = false,
+  gameFirewallConfig,
 }: GetIpsMocksParams): Handler[] => [
   {
     url: '/ip/:ip/reverse/:reverseIp',
@@ -84,8 +92,23 @@ export const getIpsMocks = ({
     api: 'v6',
   },
   {
+    url: '/ip/:ipGroup/game/:ip',
+    response: () =>
+      gameFirewallConfig?.isUpdateKo
+        ? { message: 'game firewall update KO' }
+        : null,
+    status: gameFirewallConfig?.isUpdateKo ? 400 : 200,
+    api: 'v6',
+    method: 'put',
+  },
+  {
     url: '/ip/:ip/game',
-    response: (): IpGameFirewallType[] => [],
+    response: (_: unknown, params: PathParams): IpGameFirewallType[] =>
+      getIpGameFirewallResponse({
+        ipOnGame: params.ip as string,
+        firewallModeEnabled: gameFirewallConfig?.firewallModeEnabled,
+        state: gameFirewallConfig?.state,
+      }),
     api: 'v6',
   },
   {
