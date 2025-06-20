@@ -1,0 +1,18 @@
+{
+  "pci_projects": "Projekte",
+  "pci_projects_description": "Beschreibung",
+  "pci_projects_status": "Status",
+  "pci_projects_status_ok": "Aktiv",
+  "pci_projects_status_deleting": "Wird gelöscht",
+  "pci_projects_status_creating": "Wird erstellt",
+  "pci_projects_project_show": "Anzeigen",
+  "pci_projects_project_delete": "Löschen",
+  "pci_projects_project_delete_success": "Ihnen wird eine E-Mail zur Bestätigung des Löschvorgangs zugesandt.",
+  "pci_projects_status_suspended": "Geschlossen",
+  "pci_projects_status_pendingDebt": "Zu begleichende Rechnung",
+  "pci_projects_project_pay_bill": "Meine Rechnung begleichen",
+  "pci_projects_project_view": "Projekt anzeigen",
+  "pci_projects_create_project": "Neues Projekt erstellen",
+  "pci_projects_redirect_to_dedicated_page": "Bitte wählen Sie ein bereits bestehendes Projekt aus oder erstellen Sie ein neues, um fortzufahren.",
+  "pci_projects_status_deleted": "Gelöscht"
+}
