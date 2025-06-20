@@ -38,6 +38,8 @@ export default /* @ngInject */ ($stateProvider) => {
         .catch(() => 'app.dedicatedCloud.details.dashboard');
     },
     resolve: {
+      goBackToList: /* @ngInject */ ($state) => () =>
+        $state.go('app.dedicatedCloud.index'),
       currentService: /* @ngInject */ (DedicatedCloud, productId) =>
         DedicatedCloud.getSelected(productId, true).then(
           (dedicatedCloudData) => new DedicatedCloudInfo(dedicatedCloudData),
