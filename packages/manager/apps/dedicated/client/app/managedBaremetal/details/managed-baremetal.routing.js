@@ -36,6 +36,8 @@ export default /* @ngInject */ ($stateProvider) => {
         .catch(() => 'app.managedBaremetal.details.dashboard');
     },
     resolve: {
+      goBackToList: /* @ngInject */ ($state) => () =>
+        $state.go('app.managedBaremetal.index'),
       currentService: /* @ngInject */ (DedicatedCloud, productId) =>
         DedicatedCloud.getSelected(productId, true).then(
           (dedicatedCloudData) => new DedicatedCloudInfo(dedicatedCloudData),

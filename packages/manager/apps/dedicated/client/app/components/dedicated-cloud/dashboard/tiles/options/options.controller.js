@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import { SNC_LABEL } from './options.constants';
+import { LABELS } from '../../../dedicatedCloud.constant';
 
 export default class Options {
   /* @ngInject */
@@ -22,6 +23,7 @@ export default class Options {
     this.ovhManagerPccDashboardOptionsService = ovhManagerPccDashboardOptionsService;
     this.bindings = ovhManagerPccDashboardOptionsModelBindings;
     this.SNC_LABEL = SNC_LABEL;
+    this.LABELS = LABELS;
   }
 
   $onInit() {
