@@ -34,5 +34,5 @@
   "deleteContainerTitle": "Container löschen",
   "deleteContainerDescription": "Sind Sie sicher, dass Sie diesen Container löschen möchten?",
   "disabledButtonTooltip": "Das Notebook muss sich im Status „Angehalten“ befinden",
-  "disabledSyncButtonTooltip": "Das Notebook muss sich im Status „In Betrieb“ oder „Synchronisierungsfehler“ befinden"
+  "disabledSyncButtonTooltip": "Die Synchronisation ist nur möglich, wenn der Status „Aktiv“ oder „Synchronisation fehlgeschlagen“ ist."
 }

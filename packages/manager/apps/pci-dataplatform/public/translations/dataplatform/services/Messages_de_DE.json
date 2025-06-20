@@ -1,0 +1,17 @@
+{
+  "title": "Mit Data Platform Ihre Daten-Workflows revolutionieren",
+  "description_top": "Verbessern Sie Ihre Datenoperationen mit einer leistungsstarken Plattform, die für starke Leistung, Flexibilität und Benutzerfreundlichkeit konzipiert ist. Ganz gleich, ob Sie mit <strong>großen Datenmengen</strong> arbeiten, <strong>Analysen integrieren</strong> oder <strong>Workflows automatisieren</strong>, Data Platform bietet Ihnen eine komplett gemanagte Umgebung, in der Sie sich auf die Nutzung von Insights statt auf das Management der Infrastruktur konzentrieren können. Durch die Verarbeitung in Echtzeit, die Unterstützung verschiedener Workloads und die mühelose Skalierbarkeit können Organisationen schneller und effizienter datengestützte Entscheidungen treffen.",
+  "description_bottom": "Es ist keine spezialisierte Infrastruktur und auch kein umfassendes technisches Fachwissen erforderlich. Nutzen Sie <strong>skalierbare Datentools</strong>, <strong>transparente BI-Integrationen</strong> und eine robuste <strong>Serverless-Umgebung</strong>, um Insights schneller als je zuvor zu generieren.",
+  "button_text": "Data Platform besuchen",
+  "card_section_title": "Erste Schritte mit Data Platform",
+  "card_top_guide": "Guides",
+  "card_left_title": "Erste Schritte mit Data Platform",
+  "card_left_description": "Entdecken Sie die Funktionen unserer sicheren Serverless-Datenverarbeitungsplattform, die für Entwickler:innen und Analyst:innen konzipiert wurde. Sehen Sie, wie Sie Ihre Daten ganz einfach verbinden, transformieren und analysieren können.<br>Machen Sie sich schnell mit den Grundlagen vertraut, von der Verbindung Ihrer ersten Datenquelle bis zur ersten Analyse. Perfekt für neue User!",
+  "card_middle_title": "Ihre Kompetenzen auf Data Platform erweitern",
+  "card_middle_description": "Vertiefen Sie Ihr Wissen mit fortgeschrittenen Techniken, konkreten Beispielen und Best Practices, um das Potenzial von Data Platform voll auszuschöpfen und Expert:in zu werden.",
+  "card_right_title": "Detaillierte Produktspezifikationen",
+  "card_right_description": "Informieren Sie sich eingehend über alle Funktionen von Data Platform, die unterstützten Datentypen, die Systemanforderungen und die konfigurierbaren Einstellungen.",
+  "card_find_out_more": "Mehr erfahren",
+  "discoveryMode": "Sie befinden sich derzeit im Discovery-Modus. Um auf Data Platform zuzugreifen und Dienste zu erstellen, müssen Sie Ihr Projekt aktivieren.",
+  "discoveryModeActivate": "Projekt aktivieren"
+}
