@@ -33,6 +33,14 @@ export const ActionCell = (server: DedicatedServer) => {
           variant="ghost"
           label={t('action-goDetails')}
           onClick={() => {
+            trackClick({
+              actionType: 'action',
+              actions: [
+                'button',
+                'details_dedicated-server',
+                `${server.region}_${server.commercialRange}`,
+              ],
+            });
             shell.navigation.navigateTo(
               'dedicated',
               `#/server/${server.name}`,
