@@ -1,7 +1,8 @@
 import React from 'react';
 import { vitest } from 'vitest';
 import { fireEvent, screen, render, act } from '@testing-library/react';
-import { ActionBanner, ActionBannerProps } from './action-banner.component';
+import { ActionBannerProps } from '../ActionBanner.props';
+import { ActionBanner } from '../ActionBanner.component';
 
 const renderComponent = (props: ActionBannerProps) =>
   render(<ActionBanner {...props} />);
@@ -10,8 +11,9 @@ describe('ActionBanner tests', () => {
   it('should display message', () => {
     renderComponent({
       message: 'hello world',
-      cta: 'custom action',
+      label: 'custom action',
       onClick: () => {},
+      dismissible: true,
     });
 
     expect(screen.getAllByText('hello world')).not.toBeNull();
@@ -22,11 +24,11 @@ describe('ActionBanner tests', () => {
 
     renderComponent({
       message: 'hello world',
-      cta: 'custom action',
+      label: 'custom action',
       onClick: mockOnClick,
     });
-    expect(screen.getByTestId('actionBanner-button')).not.toBeNull();
-    const cta = screen.queryByTestId('actionBanner-button');
+    expect(screen.getByTestId('action-banner-button')).not.toBeNull();
+    const cta = screen.queryByTestId('action-banner-button');
     expect(mockOnClick).not.toHaveBeenCalled();
     act(() => fireEvent.click(cta));
     expect(mockOnClick).toHaveBeenCalled();
@@ -36,7 +38,7 @@ describe('ActionBanner tests', () => {
     const href = 'www.ovhcloud.com';
     renderComponent({
       message: 'hello world',
-      cta: 'custom action',
+      label: 'custom action',
       href,
     });
     const link = screen.queryByTestId('action-banner-link');
