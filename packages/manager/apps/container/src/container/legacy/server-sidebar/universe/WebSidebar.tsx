@@ -14,6 +14,7 @@ export const webFeatures = [
   'web:domains',
   'web:domains:all-dom',
   'web:domains:zone',
+  'web-domains:alldoms',
   'web-ongoing-operations',
   'web-hosting:websites',
   'hosting',
@@ -59,7 +60,7 @@ export default function WebSidebar() {
           `^(/configuration)?/(domain|all_dom|zone|dns|upload|tracking)`,
         ),
         async loader() {
-          const allDom = features['web:domains:all-dom']
+          const allDom = (features['web:domains:all-dom'] || features['web-domains:alldoms'])
             ? await loadServices('/allDom')
             : [];
           const domains = await loadServices('/domain');
@@ -79,6 +80,14 @@ export default function WebSidebar() {
               id: 'domain_operations',
               label: t('sidebar_domain_operations'),
               href: navigation.getURL('web-ongoing-operations', '#/'),
+              routeMatcher: new RegExp('/'),
+              icon: getIcon('ovh-font ovh-font-config'),
+              ignoreSearch: true,
+            },
+            features['web-domains:alldoms'] && allDom.length > 0 && {
+              id: 'alldoms',
+              label: t('sidebar_alldom_list'),
+              href: navigation.getURL('web-domains', '#/alldoms'),
               routeMatcher: new RegExp('/'),
               icon: getIcon('ovh-font ovh-font-config'),
               ignoreSearch: true,
