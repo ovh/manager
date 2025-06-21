@@ -1,20 +1,14 @@
 import isFunction from 'lodash/isFunction';
-import get from 'lodash/get';
 
 export default class BMServerComponentsInterventionsController {
   /* @ngInject */
-  constructor($http) {
-    this.$http = $http;
+  constructor(serverIntervention) {
+    this.serverIntervention = serverIntervention;
   }
 
   getInterventions({ offset, pageSize }) {
-    return this.loadInterventions(this.serviceName, pageSize, offset - 1)
-      .then((interventions) => ({
-        data: get(interventions, 'list.results', []),
-        meta: {
-          totalCount: get(interventions, 'count', 0),
-        },
-      }))
+    return this.serverIntervention
+      .fetchInterventions(this.serviceName, { pageSize, offset })
       .catch((error) => {
         this.handleError(error);
         return {
@@ -24,18 +18,6 @@ export default class BMServerComponentsInterventionsController {
           },
         };
       });
-  }
-
-  loadInterventions(serviceName, count, offset) {
-    return this.$http
-      .get(`/sws/dedicated/server/${serviceName}/interventions`, {
-        serviceType: 'aapi',
-        params: {
-          count,
-          offset,
-        },
-      })
-      .then(({ data }) => data);
   }
 
   handleError(error) {
