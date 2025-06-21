@@ -11,9 +11,10 @@ import './translations';
 
 interface PciGuidesHeaderProps {
   category: string;
+  onClick?: (key: string) => void;
 }
 
-export function PciGuidesHeader({ category }: PciGuidesHeaderProps) {
+export function PciGuidesHeader({ category, onClick }: PciGuidesHeaderProps) {
   const { ovhSubsidiary } = useEnvironment().getUser();
   const { trackClick } = useTracking();
   const [t] = useTranslation('pci-guides-header');
@@ -26,10 +27,14 @@ export function PciGuidesHeader({ category }: PciGuidesHeaderProps) {
         t(`pci_project_guides_header_${guide.key}`)
       }
       onGuideClick={(guide: Guide) => {
-        trackClick({
-          name: `public-cloud_credit_and_vouchers${guide.tracking}`,
-          type: 'action',
-        });
+        if (onClick) {
+          onClick(guide.key);
+        } else {
+          trackClick({
+            name: `public-cloud_credit_and_vouchers${guide.tracking}`,
+            type: 'action',
+          });
+        }
       }}
     />
   );
