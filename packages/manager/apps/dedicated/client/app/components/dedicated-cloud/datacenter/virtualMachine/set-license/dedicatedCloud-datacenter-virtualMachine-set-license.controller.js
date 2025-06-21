@@ -1,3 +1,9 @@
+import {
+  TRACKING_ACTION_POPUP_CONFIRM_PREFIX,
+  TRACKING_DISPLAY_BANNER_INFO_PREFIX,
+  TRACKING_DISPLAY_BANNER_ERROR_PREFIX,
+} from '../constants';
+
 export default class {
   /* @ngInject */
   constructor(
@@ -31,6 +37,9 @@ export default class {
   }
 
   setLicense() {
+    this.trackClick(
+      `${TRACKING_ACTION_POPUP_CONFIRM_PREFIX}activate_license::${this.guestOsFamily}_${this.selectedLicense}`,
+    );
     this.loading = true;
 
     return this.ovhManagerDedicatedCloudDatacenterVirtualMachineService
@@ -41,9 +50,16 @@ export default class {
         this.selectedLicense,
       )
       .then(() => {
+        this.trackPage(
+          `${TRACKING_DISPLAY_BANNER_INFO_PREFIX}activate_license_${this.guestOsFamily}_${this.selectedLicense}_pending`,
+        );
+
         this.goBack(this.$translate.instant('set_license_success_api'));
       })
       .catch((err) => {
+        this.trackPage(
+          `${TRACKING_DISPLAY_BANNER_ERROR_PREFIX}delete_license_${this.guestOsFamily}_${this.selectedLicense}_error`,
+        );
         this.goBack(
           `${this.$translate.instant('set_license_error_api')}: ${err.data
             ?.message ||
