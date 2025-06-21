@@ -24,6 +24,7 @@ import {
   useAssociateVrack,
   useVrackService,
 } from '@ovh-ux/manager-network-common';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { LoadingText } from '@/components/LoadingText.component';
 import { PageName } from '@/utils/tracking';
@@ -39,7 +40,10 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
   closeModal,
 }) => {
   const { id } = useParams();
-  const { t } = useTranslation('vrack-services/associate');
+  const { t } = useTranslation([
+    'vrack-services/associate',
+    NAMESPACES.ACTIONS,
+  ]);
   const { addSuccessMessage } = React.useContext(MessagesContext);
   const [selectedVrack, setSelectedVrack] = React.useState('');
   const { data: vs } = useVrackService();
@@ -106,7 +110,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
       </OdsSelect>
       {isPending && (
         <LoadingText
-          title={t('modalAssociateVrackWaitMessage')}
+          title={t('cancel', { ns: NAMESPACES.ACTIONS })}
           description={t('addVrackServicesToVrack')}
         />
       )}
@@ -115,7 +119,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
         isDisabled={isPending}
         type="button"
         variant={ODS_BUTTON_VARIANT.ghost}
-        label={t('modalAssociateCancelButton')}
+        label={t('cancel', { ns: NAMESPACES.ACTIONS })}
         onClick={closeModal}
       />
       <OdsButton
