@@ -14,7 +14,7 @@
     "build": "tsc && vite build",
     "lint": "eslint ./src",
     "start": "vite",
-    "test": "vitest run"
+    "testo": "vitest run"
   },
   "dependencies": {
     "@datatr-ux/ods-tailwind-config": "1.0.3",
