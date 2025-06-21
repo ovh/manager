@@ -15,9 +15,7 @@ import OngoingOperationDatagridDomain from '@/components/OngoingOperationDatagri
 import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridBadge';
 import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard';
 
-export const useOngoingOperationDatagridColumns = (
-  parent: ParentEnum.DOMAIN | ParentEnum.ZONE,
-) => {
+export const useOngoingOperationDatagridColumns = (parent: ParentEnum) => {
   const { t } = useTranslation('dashboard');
   const { clearNotifications } = useNotifications();
   const l = getI18n();
@@ -31,9 +29,11 @@ export const useOngoingOperationDatagridColumns = (
         <OngoingOperationDatagridDomain parent={parent} props={props} />
       ),
       label:
-        parent === ParentEnum.DOMAIN
-          ? t('domain_operations_table_header_domain')
-          : DNS_OPERATIONS_TABLE_HEADER_DOMAIN,
+        (parent === ParentEnum.DOMAIN &&
+          t('domain_operations_table_header_domain')) ||
+        (parent === ParentEnum.ZONE && DNS_OPERATIONS_TABLE_HEADER_DOMAIN) ||
+        (parent === ParentEnum.ALLDOM &&
+          t('domain_operations_table_header_name')),
       comparator: FilterCategories.String,
       isFilterable: true,
       isSearchable: true,

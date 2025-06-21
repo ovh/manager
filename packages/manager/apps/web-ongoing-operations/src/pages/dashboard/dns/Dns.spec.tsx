@@ -46,7 +46,9 @@ describe('Dns datagrid', () => {
     expect(useResourcesIcebergV6).toHaveBeenCalledWith(
       expect.objectContaining({
         pageSize: 30,
-        route: taskMeDns.join('/'),
+        route: `${taskMeDns.join('/')}`,
+        disableCache: false,
+        queryKey: taskMeDns,
       }),
     );
   });
