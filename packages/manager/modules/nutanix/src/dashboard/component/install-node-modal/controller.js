@@ -1,8 +1,15 @@
+import {
+  PREFIX_TRACKING_NUTANIX_NUTANIX,
+  PREFIX_TRACKING_NUTANIX_NUTANIX_POPUP,
+  PREFIX_TRACKING_NUTANIX_POPUP,
+} from '../../../constants';
+
 export default class NutanixDashboarInstallNodeModal {
   /* @ngInject */
-  constructor(NutanixService, $translate) {
+  constructor(NutanixService, $translate, atInternet) {
     this.NutanixService = NutanixService;
     this.$translate = $translate;
+    this.atInternet = atInternet;
 
     this.errorMessages = {
       ipSubnetValidator: this.$translate.instant(
@@ -17,11 +24,21 @@ export default class NutanixDashboarInstallNodeModal {
     };
   }
 
+  $onInit() {
+    this.atInternet.trackPage({
+      name: `${PREFIX_TRACKING_NUTANIX_NUTANIX_POPUP}::cluster::nodes::install_node::${this.nodeId}`,
+    });
+  }
+
   ipUnavailableWith(ip) {
     return [...this.ipUnavailable, ip];
   }
 
   onSubmit() {
+    this.atInternet.trackClick({
+      name: `${PREFIX_TRACKING_NUTANIX_POPUP}::button::install_node::confirm::${this.nodeId}`,
+      type: 'action',
+    });
     if (this.installNodeForm.$invalid) {
       return;
     }
@@ -34,6 +51,9 @@ export default class NutanixDashboarInstallNodeModal {
       version: this.version,
     })
       .then(() => {
+        this.atInternet.trackPage({
+          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-success::cluster::nodes::install-node-${this.nodeId}_success`,
+        });
         this.handleSuccess(
           `${this.$translate.instant(
             'nutanix_dashboard_install_node_success_banner',
@@ -41,6 +61,9 @@ export default class NutanixDashboarInstallNodeModal {
         );
       })
       .catch(() => {
+        this.atInternet.trackPage({
+          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-error::cluster::nodes::install-node-${this.nodeId}_error`,
+        });
         this.handleError(
           this.$translate.instant(
             'nutanix_dashboard_install_node_error_banner',
@@ -50,5 +73,13 @@ export default class NutanixDashboarInstallNodeModal {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  onCancel() {
+    this.atInternet.trackClick({
+      name: `${PREFIX_TRACKING_NUTANIX_POPUP}::button::install_node::cancel::${this.nodeId}`,
+      type: 'action',
+    });
+    this.goBack();
   }
 }

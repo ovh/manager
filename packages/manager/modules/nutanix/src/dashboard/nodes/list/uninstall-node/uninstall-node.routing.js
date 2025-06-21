@@ -27,5 +27,8 @@ export default /* @ngInject */ ($stateProvider) => {
       userSubsidiary: /* ngInject */ (coreConfig) =>
         coreConfig.getUser().ovhSubsidiary,
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

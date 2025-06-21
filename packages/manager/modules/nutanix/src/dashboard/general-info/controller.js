@@ -2,6 +2,7 @@ import {
   CLUSTER_STATUS,
   NUTANIX_AUTHORIZATION_TYPE,
   MAX_NODES_BY_CLUSTER,
+  PREFIX_TRACKING_NUTANIX,
 } from '../../constants';
 import {
   GENERAL_INFO_TILE_TITLE,
@@ -134,5 +135,12 @@ export default class NutanixGeneralInfoCtrl {
 
   haveSupportAuthorizations() {
     return this.accountAuthorizations[NUTANIX_AUTHORIZATION_TYPE.SUPPORT];
+  }
+
+  onClickOnAddNode() {
+    this.atInternet.trackClick(
+      `${PREFIX_TRACKING_NUTANIX}::::tile::button::add-nodes`,
+    );
+    this.goToAddNode();
   }
 }
