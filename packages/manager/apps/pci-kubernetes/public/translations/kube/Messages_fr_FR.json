@@ -48,7 +48,7 @@
   "kube_service_upgrade_policy_error": "Échec de la modification de la 'politique de mise à niveau': {{ message }}",
   "kube_service_reset": "Réinitialiser votre cluster",
   "kube_service_reset_kubeconfig": "Réinitialiser le kubeconfig",
-  "kube_service_terminate": "Supprimer",
+  "kube_service_terminate": "Résilier",
   "kube_service_common_edit": "Renommer le cluster",
   "kube_service_common_update": "Forcer la mise à jour de sécurité (patch)",
   "kube_service_common_confirm": "Confirmer",
