@@ -1,35 +1,86 @@
-import { renderHook } from '@testing-library/react';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
-import { describe, it, expect, vi } from 'vitest';
 import React from 'react';
+import { renderHook, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { getUserPermissions } from '@/data/api/policies/user.api';
 import useUserInfos from './useUserInfos';
 
-describe('useUserInfos', () => {
-  const mockGetUser = vi.fn();
-  const mockShellContext = ({
-    environment: {
-      getUser: mockGetUser,
-    },
-  } as unknown) as ShellContextType;
+vi.mock('@/data/api/policies/user.api', () => ({
+  getUserPermissions: vi.fn(),
+}));
 
-  const wrapper = ({ children }: { children: React.ReactNode }) => (
-    <ShellContext.Provider value={mockShellContext}>
-      {children}
-    </ShellContext.Provider>
-  );
+type WrapperProps = { children: React.ReactNode };
+const createQueryClient = () =>
+  new QueryClient({
+    defaultOptions: { queries: { retry: false } },
+  });
 
-  it.each([
-    [{ auth: { roles: ['ADMIN'] } }, true],
-    [{ auth: { roles: ['USER'] } }, false],
-    [{ auth: { roles: [] } }, false],
-    [{ auth: { roles: null } }, false],
-    [undefined, false],
-  ])('should return isAdmin=%s for user=%j', (user, expected) => {
-    mockGetUser.mockReturnValue(user);
-    const { result } = renderHook(() => useUserInfos(), { wrapper });
-    expect(result.current.isAdmin).toBe(expected);
+const wrapper = ({ children }: WrapperProps) => (
+  <QueryClientProvider client={createQueryClient()}>
+    {children}
+  </QueryClientProvider>
+);
+
+describe('useUserInfos hook', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('should return true when matching permission exists', async () => {
+    vi.mocked(getUserPermissions).mockResolvedValue([
+      'ai-endpoints-user-project-1',
+      'ai-endpoints-user-other',
+    ]);
+
+    const { result } = renderHook(() => useUserInfos('project-1'), { wrapper });
+
+    await waitFor(() => {
+      expect(getUserPermissions).toHaveBeenCalledTimes(1);
+      expect(result.current.isLoading).toBe(false);
+    });
+
+    expect(result.current.data).toBe(true);
+    expect(result.current.isError).toBe(false);
+  });
+
+  it('should return false when no matching permission', async () => {
+    vi.mocked(getUserPermissions).mockResolvedValue([
+      'ai-endpoints-user-other',
+    ]);
+
+    const { result } = renderHook(() => useUserInfos('project-1'), { wrapper });
+
+    await waitFor(() => {
+      expect(getUserPermissions).toHaveBeenCalledTimes(1);
+      expect(result.current.isLoading).toBe(false);
+    });
+
+    expect(result.current.data).toBe(false);
+    expect(result.current.isError).toBe(false);
+  });
+
+  it('should set isError when getUserPermissions throws', async () => {
+    const error = new Error('API failure');
+    vi.mocked(getUserPermissions).mockRejectedValue(error);
+
+    const { result } = renderHook(() => useUserInfos('project-1'), { wrapper });
+
+    await waitFor(() => {
+      expect(getUserPermissions).toHaveBeenCalledTimes(1);
+      expect(result.current.isLoading).toBe(false);
+    });
+
+    expect(result.current.isError).toBe(true);
+    expect(result.current.error).toBe(error);
+    expect(result.current.data).toBeUndefined();
+  });
+
+  it('should not fetch when no projectId is provided', () => {
+    const { result } = renderHook(() => useUserInfos(undefined), { wrapper });
+
+    expect(getUserPermissions).not.toHaveBeenCalled();
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.data).toBeUndefined();
+    expect(result.current.isError).toBe(false);
   });
 });
