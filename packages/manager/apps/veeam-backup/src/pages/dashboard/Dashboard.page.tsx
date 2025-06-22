@@ -22,11 +22,8 @@ import { urls } from '@/routes/routes.constant';
 import { SuccessMessages } from '@/components/Messages/SuccessMessage.component';
 import { OrganizationCell } from '../listing/DatagridCell.component';
 import { DisplayNameWithEditButton } from './DisplayName.component';
-import { ConsumedVms } from './ConsumedVms.component';
-import { OfferProgress } from './OfferProgress.component';
 import { SubscriptionTile } from './SubscriptionTile.component';
-import { ComingSoonBadge } from '@/components/ComingSoonBadge/ComingSoonBadge';
-import { BillingLink } from '@/components/Links/BillingLink.component';
+import { BillingTile } from './BillingTile.component';
 import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 
@@ -121,34 +118,8 @@ export default function DashboardPage() {
                 },
               ]}
             />
-            <DashboardTile
-              title={t('billing')}
-              items={[
-                {
-                  id: 'consumedVms',
-                  label: t('consumed_vms'),
-                  value: <ConsumedVms id={id} backup={data?.data} />,
-                },
-                ...(data?.data?.currentState?.offers?.map((offer) => ({
-                  id: offer.name,
-                  label: `${offer.name
-                    .at(0)
-                    .toUpperCase()}${offer.name.substring(1).toLowerCase()}`,
-                  value: <OfferProgress offer={offer} id={id} />,
-                })) || []),
-                data?.data?.currentState.offers.every(
-                  (offer) => offer.name !== 'GOLD',
-                ) && {
-                  id: 'gold',
-                  label: 'Gold',
-                  value: <ComingSoonBadge />,
-                },
-                {
-                  id: 'bilingModalities',
-                  value: <BillingLink />,
-                },
-              ].filter(Boolean)}
-            />
+
+            <BillingTile backup={data?.data} id={id} />
             <SubscriptionTile {...data?.data} />
           </DashboardGridLayout>
         </React.Suspense>
