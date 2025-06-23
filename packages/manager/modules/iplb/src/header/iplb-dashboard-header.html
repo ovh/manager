@@ -70,5 +70,15 @@
             data-state-params="{ serviceName: ctrl.serviceName }"
             ><span data-translate="iplb_tab_task"></span>
         </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if=":: ctrl.isLogsAvailable"
+            data-state="iplb.detail.logs"
+            data-state-params="{ serviceName: ctrl.serviceName }"
+            ><span data-translate="iplb_tab_logs"></span>
+            <span
+                class="oui-badge oui-badge_beta"
+                data-ng-bind=":: ctrl.BETA"
+            ></span>
+        </oui-header-tabs-item>
     </oui-header-tabs>
 </header>
