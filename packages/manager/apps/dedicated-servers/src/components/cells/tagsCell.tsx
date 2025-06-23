@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { TagsList, TagsModal } from '@ovh-ux/manager-react-components';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { DedicatedServer } from '@/data/types/server.type';
 import { useServerUrl } from '@/hooks/useServerUrl';
 
 export const TagsCell = (server: DedicatedServer) => {
   const [toggleModal, setTogglModal] = useState(false);
-  const { trackClick } = useOvhTracking();
+  const { trackClick, trackPage } = useOvhTracking();
   const serverUrl = useServerUrl(server);
   return (
     <>
@@ -40,9 +44,14 @@ export const TagsCell = (server: DedicatedServer) => {
             onClick={() => {
               trackClick({
                 actionType: 'action',
-                actions: ['button', 'listing', 'all-tags'],
+                buttonType: ButtonType.button,
+                actions: ['datagrid', ButtonType.button, 'edit-tags'],
               });
               setTogglModal(true);
+              trackPage({
+                pageType: PageType.popup,
+                pageName: 'edit-tags',
+              });
             }}
           />
         </>
