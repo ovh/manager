@@ -6,7 +6,10 @@ export const CATALOG_URL_REGEX = /^\/catalog(\/.)*/;
 
 export const BILLING_REDIRECTIONS: RegExp[] = [BILLING_URL, USER_ACCOUNT_URL];
 
+export const DESCRIPTION_COLLAPSED_LENGTH = 80;
+
 export default {
   BILLING_REDIRECTIONS,
   CATALOG_URL_REGEX,
+  DESCRIPTION_COLLAPSED_LENGTH,
 };
