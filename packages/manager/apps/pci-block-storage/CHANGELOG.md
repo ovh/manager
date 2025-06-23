@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.17.8...@ovh-ux/manager-pci-block-storage-app@0.18.0) (2025-06-23)
+
+
+### Features
+
+* **pci-block-storage:** add volume encryption ([9b2bac1](https://github.com/ovh/manager/commit/9b2bac18488f86975bf5038d0ade16006a279c3d)), closes [#TAPC-3456](https://github.com/ovh/manager/issues/TAPC-3456)
+* **pci-common:** use new config cards ([ddd6c33](https://github.com/ovh/manager/commit/ddd6c33ddc65543fee27e30a3c3f02f6b319f13b)), closes [#TAPC-3456](https://github.com/ovh/manager/issues/TAPC-3456)
+
+
+
+
+
 ## [0.17.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.17.7...@ovh-ux/manager-pci-block-storage-app@0.17.8) (2025-06-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app

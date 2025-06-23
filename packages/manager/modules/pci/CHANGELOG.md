@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.94.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.93.2...@ovh-ux/manager-pci@6.94.0) (2025-06-23)
+
+
+### Bug Fixes
+
+* **instance:** translation misleading ([#17239](https://github.com/ovh/manager/issues/17239)) ([95b7ca3](https://github.com/ovh/manager/commit/95b7ca394f31032425a3ff69d329c0ca326794bf)), closes [#TAPC-4109](https://github.com/ovh/manager/issues/TAPC-4109)
+
+
+### Features
+
+* **pci.svp:** wording svp ([#16156](https://github.com/ovh/manager/issues/16156)) ([10aac20](https://github.com/ovh/manager/commit/10aac20d6b19ef6fdce9110f7290e9ed7398ea4a)), closes [#TAPC-2510](https://github.com/ovh/manager/issues/TAPC-2510)
+
+
+
+
+
 ## [6.93.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.93.1...@ovh-ux/manager-pci@6.93.2) (2025-06-17)
 
 
