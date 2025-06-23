@@ -837,5 +837,7 @@
   "domain_tab_TASKS_status_PROBLEM": "Fallida",
   "domain_dashboard_general_information_suspended_by_procedure_message": "El dominio está suspendido como parte de un procedimiento de verificación de los datos de contacto. Revise las operaciones en curso para determinar si es necesaria alguna acción. ",
   "domain_dashboard_general_information_being_suspended_by_procedure_message": "Su dominio está sujeto a un procedimiento de verificación de los datos de contacto. Revise las operaciones en curso para determinar si es necesaria alguna acción. ",
-  "domain_dashboard_general_information_see_operations": "Ver las operaciones en curso"
+  "domain_dashboard_general_information_see_operations": "Ver las operaciones en curso",
+  "domain_tab_DNS_state_error": "En error",
+  "domain_tab_DNS_error_warning": "Se ha detectado un error al actualizar los DNS. Por favor, corríjalos."
 }
