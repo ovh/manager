@@ -1,11 +1,10 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { OdsTooltip } from "@ovhcloud/ods-components/react"
-
 import { Links, LinksProps, LinkType } from '@ovh-ux/manager-react-components';
+import { IAM_ACTIONS, IAM_URNS } from '../../../../utils/iam.constants';
 
 const backLink: LinksProps = {
-  label: 'Back to the list',
+  children: 'Back to the list',
   href: 'https://www.ovhcloud.com',
   target: '_blank',
   type: LinkType.back,
@@ -14,26 +13,46 @@ const backLink: LinksProps = {
 const nextLink: LinksProps = {
   href: 'https://www.ovhcloud.com/',
   target: '_blank',
-  label: 'Next Page',
+  children: 'Next Page',
   type: LinkType.next,
 };
 
 const externalLink: LinksProps = {
   href: 'https://www.ovhcloud.com/',
   target: '_blank',
-  label: 'External Page',
+  children: 'External Page',
   type: LinkType.external,
 };
 
-const linkWithTooltip: LinksProps = {
+const iamLinkWithAuth: LinksProps = {
   href: 'https://www.ovhcloud.com/',
   target: '_blank',
-  label: 'With tootltip helper',
-  id: "linkWithTooltip"
+  children: 'Resiliate Link',
+  urn: IAM_URNS.WITH_AUTH,
+  iamActions: IAM_ACTIONS,
+  displayTooltip: true,
+};
+
+const iamLinkWithoutAuth: LinksProps = {
+  href: 'https://www.ovhcloud.com/',
+  target: '_blank',
+  children: 'Resiliate Link',
+  urn: IAM_URNS.WITHOUT_AUTH,
+  iamActions: IAM_ACTIONS,
+  displayTooltip: true,
+};
+
+const iamLinkWithoutAuthAndTooltip: LinksProps = {
+  href: 'https://www.ovhcloud.com/',
+  target: '_blank',
+  children: 'Resiliate Link',
+  urn: IAM_URNS.WITHOUT_AUTH,
+  iamActions: IAM_ACTIONS,
+  displayTooltip: false,
 };
 
 const meta: Meta<LinksProps> = {
-  title: 'Manager React Components/Typography/Links',
+  title: 'Manager React Components/Components/Links',
   decorators: [(story) => <div>{story()}</div>],
   argTypes: {},
   args: backLink,
@@ -47,9 +66,10 @@ export const NextLink = () => <Links {...nextLink} />;
 
 export const ExternalLink = () => <Links {...externalLink} />;
 
-export const LinkWithTooltip = () => <>
-<Links {...linkWithTooltip} />
-<OdsTooltip triggerId={linkWithTooltip.id as string} withArrow>
-    Custom tooltip
-</OdsTooltip>
-</>;
+export const IamLinkWithAuth = () => <Links {...iamLinkWithAuth} />;
+
+export const IamLinkWithoutAuth = () => <Links {...iamLinkWithoutAuth} />;
+
+export const IamLinkWithoutAuthAndTooltip = () => (
+  <Links {...iamLinkWithoutAuthAndTooltip} />
+);
