@@ -837,5 +837,7 @@
   "domain_tab_TASKS_status_PROBLEM": "Fehlgeschlagen",
   "domain_dashboard_general_information_suspended_by_procedure_message": "Ihr Domainname wurde im Rahmen einer Überprüfung der Kontaktdaten ausgesetzt. Bitte überprüfen Sie die laufenden Vorgänge, um zu sehen, ob eine Aktion Ihrerseits erforderlich ist. ",
   "domain_dashboard_general_information_being_suspended_by_procedure_message": "Ihr Domainname unterliegt einer Überprüfung der Kontaktdaten. Bitte überprüfen Sie die laufenden Vorgänge, um zu sehen, ob eine Aktion Ihrerseits erforderlich ist. ",
-  "domain_dashboard_general_information_see_operations": "Laufende Vorgänge ansehen"
+  "domain_dashboard_general_information_see_operations": "Laufende Vorgänge ansehen",
+  "domain_tab_DNS_state_error": "Fehler",
+  "domain_tab_DNS_error_warning": "Bei der Aktualisierung Ihrer DNS wurde ein Fehler festgestellt. Bitte korrigieren Sie sie."
 }
