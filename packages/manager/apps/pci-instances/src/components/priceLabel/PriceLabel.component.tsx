@@ -3,9 +3,9 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_SIZE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
-import { TInstancePrice } from '@/types/instance/common.type';
+import { TInstancePrice } from '@/types/instance/entity.type';
 
-const PriceLabel: FC<Omit<TInstancePrice, 'status'>> = ({ value, type }) => {
+const PriceLabel: FC<Omit<TInstancePrice, 'label'>> = ({ value, type }) => {
   const {
     getFormattedHourlyCatalogPrice,
     getFormattedMonthlyCatalogPrice,
@@ -18,9 +18,9 @@ const PriceLabel: FC<Omit<TInstancePrice, 'status'>> = ({ value, type }) => {
       level={ODS_TEXT_LEVEL.body}
       color={ODS_THEME_COLOR_INTENT.text}
     >
-      {type === 'hour'
-        ? getFormattedHourlyCatalogPrice(value)
-        : getFormattedMonthlyCatalogPrice(value)}
+      {type === 'month'
+        ? getFormattedMonthlyCatalogPrice(value)
+        : getFormattedHourlyCatalogPrice(value)}
     </OsdsText>
   );
 };
