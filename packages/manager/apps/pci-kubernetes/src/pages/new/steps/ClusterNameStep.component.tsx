@@ -17,7 +17,7 @@ import {
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StepState } from '../useStep';
-import { NAME_INPUT_CONSTRAINTS } from '@/constants';
+import { isClusterNameValid } from '@/helpers/matchers/matchers';
 
 export interface ClusterNameStepProps {
   step: StepState;
@@ -34,9 +34,7 @@ export function ClusterNameStep({
   const { t: tCommon } = useTranslation('common');
   const [name, setName] = useState('');
   const [isTouched, setIsTouched] = useState(false);
-  const isValidName =
-    name?.length <= NAME_INPUT_CONSTRAINTS.MAX_LENGTH &&
-    NAME_INPUT_CONSTRAINTS.PATTERN.test(name);
+  const isValidName = isClusterNameValid(name);
   const hasError = isTouched && !isValidName;
   useEffect(() => {
     onNameChange(isValidName ? name : '');

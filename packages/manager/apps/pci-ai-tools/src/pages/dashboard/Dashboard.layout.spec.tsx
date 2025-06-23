@@ -9,6 +9,10 @@ import { mockedJob } from '@/__tests__/helpers/mocks/job/job';
 import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
 import { mockedPciDiscoveryProject } from '@/__tests__/helpers/mocks/project';
 import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
+import {
+  mockedFramework,
+  mockedFrameworkBis,
+} from '@/__tests__/helpers/mocks/capabilities/notebookFramework';
 
 describe('Dashboard Layout', () => {
   beforeEach(() => {
@@ -25,6 +29,9 @@ describe('Dashboard Layout', () => {
     }));
     vi.mock('@/data/api/ai/notebook/notebook.api', () => ({
       getNotebooks: vi.fn(),
+    }));
+    vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
+      getFramework: vi.fn(() => [mockedFramework, mockedFrameworkBis]),
     }));
   });
   afterEach(() => {
