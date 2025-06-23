@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.137.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.137.1...@ovh-ux/manager-container-app@0.137.2) (2025-06-23)
+
+
+### Bug Fixes
+
+* **container:** prevent auth token refresh on reduced chat ([602c1b1](https://github.com/ovh/manager/commit/602c1b1c865de4072ed64890ca0c62fed5cfd61b)), closes [#MANAGER-18788](https://github.com/ovh/manager/issues/MANAGER-18788)
+
+
+
+
+
 ## [0.137.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.137.0...@ovh-ux/manager-container-app@0.137.1) (2025-06-20)
 
 
