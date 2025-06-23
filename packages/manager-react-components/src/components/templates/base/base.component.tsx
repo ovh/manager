@@ -1,7 +1,8 @@
 import React from 'react';
 import { Headers, HeadersProps } from '../../content';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { LinkType, Links, Subtitle } from '../../typography';
+import { LinkType, Links } from '../../Links';
+import { Subtitle } from '../../typography';
 import { PageLayout } from '../layout/layout.component';
 
 export type BaseLayoutProps = React.PropsWithChildren<{
