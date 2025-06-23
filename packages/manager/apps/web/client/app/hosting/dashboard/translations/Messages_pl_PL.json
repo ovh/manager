@@ -1398,5 +1398,8 @@
   "hosting_dashboard_tabs_dropdown": "Więcej",
   "hosting_dashboard_service_activate_email_tooltip": "Aby utworzyć konto e-mail, najpierw przypisz domenę do Twojego hostingu.",
   "hosting_dashboard_service_datacenter_eu-west-gra": "eu-west-gra",
-  "hosting_dashboard_service_datacenter_ca-east-bhs": "ca-east-bhs"
+  "hosting_dashboard_service_datacenter_ca-east-bhs": "ca-east-bhs",
+  "hosting_tab_STATISTICS_type_allowed": "Dozwolone zapytania",
+  "hosting_tab_STATISTICS_type_denied": "Żądania odrzucone",
+  "hosting_tab_SSL": "Certyfikaty SSL"
 }
