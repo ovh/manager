@@ -9,6 +9,8 @@ export default {
     snapshotPoliciesLink: '<',
     volumesLink: '<',
     isSnapshotPoliciesAvailable: '<',
+    isPublicNetworkAvailable: '<',
+    networkInformations: '<',
     trackClick: '<',
   },
   template,

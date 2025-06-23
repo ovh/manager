@@ -107,6 +107,8 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => NetAppDashboardService.getNetworkInformations(serviceName),
       isNetworkAvailable: /* @ngInject */ (features, networkInformations) =>
         features.isFeatureAvailable('vrack-services') && networkInformations,
+      isPublicNetworkAvailable: /* @ngInject */ (features) =>
+        features.isFeatureAvailable('netapp:public-network'),
     },
   });
 };
