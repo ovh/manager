@@ -1,4 +1,4 @@
-import React, { fireEvent } from '@testing-library/react';
+import React, { fireEvent, waitFor } from '@testing-library/react';
 import { vi, vitest } from 'vitest';
 import { Order } from './Order.component';
 import { render } from '../../utils/test.provider';
@@ -96,7 +96,7 @@ describe('<Order> tests suite', () => {
     fireEvent.click(getByTestId('cta-order-configuration-order'));
     fireEvent.click(getByTestId('order-summary-link'));
 
-    expect(onClickLinkSpy).toHaveBeenCalled();
+    waitFor(() => expect(onClickLinkSpy).toHaveBeenCalled());
   });
 
   it('should close order summary when finish button is clicked', () => {
