@@ -17,6 +17,7 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
+    "@ovh-ux/manager-common-translations": "^0.9.1",
     "@ovh-ux/manager-config": "^8.5.0",
     "@ovh-ux/manager-core-api": "^0.15.0",
     "@ovh-ux/manager-core-utils": "*",
