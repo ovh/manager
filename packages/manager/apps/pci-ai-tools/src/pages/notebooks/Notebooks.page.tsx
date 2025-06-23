@@ -18,6 +18,7 @@ import {
   getRegions,
 } from '@/data/api/ai/capabilities/capabilities.api';
 import { useQuantum } from '@/hooks/useQuantum.hook';
+import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
 
 interface NotebooksProps {
   params: {
@@ -64,13 +65,18 @@ const Notebooks = () => {
   const { projectId } = useParams();
   const { isQuantum, t } = useQuantum('ai-tools/notebooks');
   const { isUserActive } = useUserActivityContext();
+  const regionQuery = useGetRegions(projectId);
   const notebooksQuery = useGetNotebooks(projectId, {
     refetchInterval: isUserActive && POLLING.NOTEBOOKS,
   });
-  const fmkQuery = useGetFramework(projectId, 'GRA');
+  const regionId = regionQuery?.data?.length > 0 && regionQuery?.data[0]?.id;
+  const fmkQuery = useGetFramework(projectId, regionId, {
+    enabled: !!regionId,
+  });
 
-  if (notebooksQuery.isLoading || fmkQuery.isLoading)
+  if (notebooksQuery.isLoading || regionQuery.isLoading || fmkQuery.isLoading)
     return <NotebooksList.Skeleton />;
+
   const filterFmkIds = fmkQuery.data
     .filter((fmk) => (isQuantum ? fmk.type === 'Quantum' : fmk.type === 'AI'))
     .map((fwk) => fwk.id);
