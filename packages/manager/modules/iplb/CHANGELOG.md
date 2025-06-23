@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.26.2...@ovh-ux/manager-iplb@1.26.3) (2025-06-23)
+
+
+### Bug Fixes
+
+* **iplb:** fix frontend edit while removing headers ([212ca98](https://github.com/ovh/manager/commit/212ca986f5fc21c146b5f8f607434e9b54681f15)), closes [#MANAGER-18490](https://github.com/ovh/manager/issues/MANAGER-18490)
+
+
+
+
+
 ## [1.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.26.1...@ovh-ux/manager-iplb@1.26.2) (2025-06-17)
 
 
