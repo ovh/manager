@@ -17,10 +17,12 @@ export const OrderMenu: React.FC = () => {
   const { trackClick } = useOvhTracking();
   const links = useLinkUtils<UrlLinks>(orderLinks);
 
-  const linkHandler = (link: string) => (e: React.MouseEvent) => {
+  const linkHandler = (trackName: string, link: string) => (
+    e: React.MouseEvent,
+  ) => {
     trackClick({
       actionType: 'action',
-      actions: ['page', 'button', 'order_dedicated-server'],
+      actions: ['page', 'button', trackName],
     });
     window.open(link);
     e.preventDefault();
@@ -45,7 +47,10 @@ export const OrderMenu: React.FC = () => {
           href="#"
           target="_blank"
           icon={ODS_ICON_NAME.externalLink}
-          onClick={linkHandler(links.dedicatedOrder as string)}
+          onClick={linkHandler(
+            'order_dedicated-server',
+            links.dedicatedOrder as string,
+          )}
           label={t('server_order_dedicated')}
         />
         <OdsLink
@@ -54,7 +59,10 @@ export const OrderMenu: React.FC = () => {
           href="#"
           target="_blank"
           icon={ODS_ICON_NAME.externalLink}
-          onClick={linkHandler(links.dedicatedEcoRangeOrder as string)}
+          onClick={linkHandler(
+            'order_eco-dedicated-server',
+            links.dedicatedEcoRangeOrder as string,
+          )}
           label={t('server_order_eco')}
         />
       </OdsPopover>
