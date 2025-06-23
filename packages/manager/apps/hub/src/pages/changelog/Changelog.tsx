@@ -25,6 +25,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { EXTERNAL_LINKS } from '@/changelog.constants';
+import RoadmapChangelogDatagrid from '@/components/roadmap-changelog-datagrid/RoadmapChangelogDatagrid';
 
 export default function Changelog() {
   const { t } = useTranslation('changelog');
@@ -48,7 +49,6 @@ export default function Changelog() {
   const isRegionUS = environment.getRegion() === 'US';
 
   const [isAccountSidebarVisible, setIsAccountSidebarVisible] = useState(false);
-
   useEffect(() => {
     const getIsAccountSidebarVisible = async () => {
       const newValueIsAccountSidebarVisible = (await shell.ux.isAccountSidebarVisible()) as boolean;
@@ -81,6 +81,9 @@ export default function Changelog() {
               >
                 {t('changelog_subtitle_1')}
               </OsdsText>
+            </div>
+            <div className="pt-6">
+              <RoadmapChangelogDatagrid />
             </div>
             <div>
               <OsdsText
