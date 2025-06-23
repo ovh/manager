@@ -133,7 +133,9 @@ describe('BaseLayout component', () => {
         onClickReturn={spy}
       />,
     );
+    expect(screen.getByTestId('manager-back-link')).toBeInTheDocument();
+    expect(screen.getByTestId('manager-back-link')).toBeVisible();
     fireEvent.click(screen.getByTestId('manager-back-link'));
-    await waitFor(() => expect(spy).toHaveBeenCalled());
+    waitFor(() => expect(spy).toHaveBeenCalled());
   });
 });
