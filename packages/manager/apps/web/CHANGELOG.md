@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.13.1...@ovh-ux/manager-web@19.14.0) (2025-06-23)
+
+
+### Bug Fixes
+
+* **web:** use RedirectionService to handle redirections ([f9f01c1](https://github.com/ovh/manager/commit/f9f01c1deec9075fb972414f98d3ea163bf9134b)), closes [#MANAGER-18722](https://github.com/ovh/manager/issues/MANAGER-18722)
+
+
+### Features
+
+* **web-hosting:** change m4m query for mail charts ([6592c56](https://github.com/ovh/manager/commit/6592c568c6724a94f0dde490e2216755bd6b35a1)), closes [#WEB-20483](https://github.com/ovh/manager/issues/WEB-20483)
+* **web-hosting:** change query for mailout total ([504ad51](https://github.com/ovh/manager/commit/504ad51412629bdccd52198460ca0faa3c549731)), closes [#WEB-20574](https://github.com/ovh/manager/issues/WEB-20574)
+* **web:** translations added for Task tab ([65299ca](https://github.com/ovh/manager/commit/65299ca3244bce3ffea9224a37aec3c6359320b1)), closes [#MANAGER-18509](https://github.com/ovh/manager/issues/MANAGER-18509)
+
+
+
+
+
 ## [19.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.13.0...@ovh-ux/manager-web@19.13.1) (2025-06-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.5.2...@ovh-ux/manager-web-ongoing-operations-app@1.6.0) (2025-06-23)
+
+
+### Features
+
+* **web-ongoing-operations:** filters added for operation and status in domain tab ([698e096](https://github.com/ovh/manager/commit/698e096457bdfae00a4f319b8ce043405eb41bb8)), closes [#MANAGER-17831](https://github.com/ovh/manager/issues/MANAGER-17831)
+* **web-ongoing-operations:** guide button ([265f90c](https://github.com/ovh/manager/commit/265f90c99271ec3fae05e736a38fe0fee73dcdc2)), closes [#MANAGER-18425](https://github.com/ovh/manager/issues/MANAGER-18425)
+* **web-ongoing-operations:** use of MRC formatted date ([b7d2389](https://github.com/ovh/manager/commit/b7d2389752f82d5e1e9183ce51da2938c9949a14)), closes [#MANAGER-18534](https://github.com/ovh/manager/issues/MANAGER-18534)
+
+
+
+
+
 ## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.5.1...@ovh-ux/manager-web-ongoing-operations-app@1.5.2) (2025-06-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app

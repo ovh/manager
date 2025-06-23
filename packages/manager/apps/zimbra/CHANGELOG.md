@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.30.3...@ovh-ux/manager-zimbra-app@0.31.0) (2025-06-23)
+
+
+### Features
+
+* **zimbra:** upgrade account to zimbra PRO ([6eea148](https://github.com/ovh/manager/commit/6eea1486a79bbe8031612dc2a317038d66442e84)), closes [#MANAGER-17310](https://github.com/ovh/manager/issues/MANAGER-17310)
+
+
+
+
+
 ## [0.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.30.2...@ovh-ux/manager-zimbra-app@0.30.3) (2025-06-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app
