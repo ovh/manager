@@ -393,6 +393,7 @@ export type TConsumptionDetail = {
   rancher: TResourceUsage[];
   kubernetesLoadBalancer: TResourceUsage[];
   training: TResourceUsage[];
+  aiEndpoint?: TResourceUsage[];
   notebooks: TResourceUsage[];
   aiDeploy: TResourceUsage[];
   coldArchive: TResourceUsage[];
@@ -419,6 +420,7 @@ export type TConsumptionDetail = {
       coldArchive: number;
       serving: number;
       training: number;
+      aiEndpoint: number;
       aiDeploy: number;
       dataProcessing: number;
       databases: number;
@@ -448,6 +450,7 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   training: [],
   notebooks: [],
   aiDeploy: [],
+  aiEndpoint: [],
   coldArchive: [],
   dataProcessing: [],
   databases: [],
@@ -473,6 +476,7 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
       serving: 0,
       training: 0,
       aiDeploy: 0,
+      aiEndpoint: 0,
       dataProcessing: 0,
       databases: 0,
       floatingIP: 0,
@@ -494,6 +498,7 @@ export const getConsumptionDetails = (usage: TCurrentUsage) => {
     { type: 'ai-notebook', key: 'notebooks' },
     { type: 'ai-serving-engine', key: 'serving' },
     { type: 'ai-training', key: 'training' },
+    { type: 'ai-endpoints', key: 'aiEndpoint' },
     { type: 'data-processing-job', key: 'dataProcessing' },
     { type: 'databases', key: 'databases' },
     { type: 'coldarchive', key: 'coldArchive' },
