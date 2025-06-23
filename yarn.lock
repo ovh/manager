@@ -6583,7 +6583,7 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
-"@ovh-ux/manager-common-translations@^0.5.1":
+"@ovh-ux/manager-common-translations@^0.5.3":
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.5.3.tgz#3dcb779e67ab035c84cccbd5e378d19533115e90"
   integrity sha512-h3bscckVssRx3lrIJg+YJtj9i2FEQc1SAJUt0WE0gILp0ruuWWlRfn9KEKTtMexEne9K4PNhTTYISG5G9h0n+w==
@@ -6699,6 +6699,11 @@
     "@tanstack/react-query" "^5.64.1"
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
+
+"@ovh-ux/manager-tests-setup@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-tests-setup/-/manager-tests-setup-0.1.0.tgz#d6924e90b7a463a586ff2a1c4c253205a02d12f1"
+  integrity sha512-YKVUnVwAQhpoZ2zwgxMxVB0iHzD5IO6/lnBEvdv3PqgqknCnfdqfXdCXLx794rfGnnfgu2+Eg5MALo+HkTh1gQ==
 
 "@ovh-ux/manager-tests-setup@latest":
   version "0.2.0"
