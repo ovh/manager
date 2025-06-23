@@ -1398,5 +1398,8 @@
   "hosting_dashboard_tabs_dropdown": "Più",
   "hosting_dashboard_service_activate_email_tooltip": "Per creare un indirizzo email è prima necessario associare un nome di dominio al tuo hosting.",
   "hosting_dashboard_service_datacenter_eu-west-gra": "eu-west-gra",
-  "hosting_dashboard_service_datacenter_ca-east-bhs": "ca-east-bhs"
+  "hosting_dashboard_service_datacenter_ca-east-bhs": "ca-east-bhs",
+  "hosting_tab_STATISTICS_type_allowed": "Richieste autorizzate",
+  "hosting_tab_STATISTICS_type_denied": "Richieste rifiutate",
+  "hosting_tab_SSL": "Certificati SSL"
 }

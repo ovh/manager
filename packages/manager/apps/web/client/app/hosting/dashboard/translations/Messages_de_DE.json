@@ -1398,5 +1398,8 @@
   "hosting_dashboard_tabs_dropdown": "Mehr",
   "hosting_dashboard_service_activate_email_tooltip": "Um eine E-Mail-Adresse erstellen zu können, muss Ihrem Hosting zunächst ein Domainname zugeordnet werden.",
   "hosting_dashboard_service_datacenter_eu-west-gra": "eu-west-gra",
-  "hosting_dashboard_service_datacenter_ca-east-bhs": "ca-east-bhs"
+  "hosting_dashboard_service_datacenter_ca-east-bhs": "ca-east-bhs",
+  "hosting_tab_STATISTICS_type_allowed": "Zulässige Anfragen",
+  "hosting_tab_STATISTICS_type_denied": "Abgelehnte Anfragen",
+  "hosting_tab_SSL": "SSL-Zertifikate"
 }
