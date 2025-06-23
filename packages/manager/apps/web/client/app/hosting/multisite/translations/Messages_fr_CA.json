@@ -1,6 +1,8 @@
 {
   "hosting_multisite": "Multisite",
   "hosting_multisite_actions": "Actions",
+  "hosting_multisite_ssl_message": "La gestion de vos certificats SSL a été déplacée vers un nouvel onglet dédié. Découvrez le dès maintenant !",
+  "hosting_multisite_manage_ssl": "Gérer les certificats SSL",
   "hosting_multisite_dialog_title": "Vérification des serveurs DNS",
   "hosting_multisite_dialog_edit_record_description": "Modifiez le champ de type {{ recordType }} avec l'adresse IP {{ ip }} dans la zone DNS du domaine {{ domain }}.",
   "hosting_multisite_dialog_edit_record_link": "Modifier le champ de type {{ recordType }}.",
