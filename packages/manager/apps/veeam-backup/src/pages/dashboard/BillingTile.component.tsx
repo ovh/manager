@@ -6,7 +6,7 @@ import { BillingLink } from '@/components/Links/BillingLink.component';
 
 import { ConsumedVms } from './ConsumedVms.component';
 import { OfferProgress } from './OfferProgress.component';
-import { DeactivatedOfferGold } from './DeactivatedOfferGold.component';
+import { ActivateOfferGold } from './ActivateOfferGold.component';
 
 type BillingTileProps = {
   id: string;
@@ -15,33 +15,42 @@ type BillingTileProps = {
 
 export const BillingTile: React.FC<BillingTileProps> = ({ id, backup }) => {
   const { t } = useTranslation('dashboard');
+  const hasGoldOffer = backup?.currentState.offers.some(
+    (offer) => offer.name === 'GOLD',
+  );
 
+  const consumedVmsItem = {
+    id: 'consumedVms',
+    label: t('consumed_vms'),
+    value: <ConsumedVms id={id} backup={backup} />,
+  };
+
+  const billingLinkItem = {
+    id: 'billingModalities',
+    value: <BillingLink />,
+  };
+
+  const offerItems = (backup?.currentState.offers || []).map((offer) => ({
+    id: offer.name,
+    label: `${offer.name.charAt(0).toUpperCase()}${offer.name
+      .slice(1)
+      .toLowerCase()}`,
+    value: <OfferProgress offer={offer} id={id} />,
+  }));
+
+  const goldItem = !hasGoldOffer
+    ? {
+        id: 'gold',
+        label: 'Gold',
+        value: ActivateOfferGold(id),
+      }
+    : null;
   return (
     <DashboardTile
       title={t('billing')}
-      items={[
-        {
-          id: 'consumedVms',
-          label: t('consumed_vms'),
-          value: <ConsumedVms id={id} backup={backup} />,
-        },
-        ...(backup?.currentState?.offers?.map((offer) => ({
-          id: offer.name,
-          label: `${offer.name.at(0).toUpperCase()}${offer.name
-            .substring(1)
-            .toLowerCase()}`,
-          value: <OfferProgress offer={offer} id={id} />,
-        })) || []),
-        backup?.currentState.offers.every((offer) => offer.name !== 'GOLD') && {
-          id: 'gold',
-          label: 'Gold',
-          value: <DeactivatedOfferGold />,
-        },
-        {
-          id: 'bilingModalities',
-          value: <BillingLink />,
-        },
-      ].filter(Boolean)}
+      items={[consumedVmsItem, ...offerItems, goldItem, billingLinkItem].filter(
+        Boolean,
+      )}
     />
   );
 };
