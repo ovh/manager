@@ -837,5 +837,7 @@
   "domain_tab_TASKS_status_PROBLEM": "Falhou",
   "domain_dashboard_general_information_suspended_by_procedure_message": "O seu nome de domínio está suspenso no âmbito de um procedimento de verificação dos dados de contacto. Consulte as operações em curso para determinar se é necessária uma ação da sua parte. ",
   "domain_dashboard_general_information_being_suspended_by_procedure_message": "O seu nome de domínio está sujeito a um procedimento de verificação dos dados de contacto. Consulte as operações em curso para determinar se é necessária uma ação da sua parte. ",
-  "domain_dashboard_general_information_see_operations": "Ver operações em curso"
+  "domain_dashboard_general_information_see_operations": "Ver operações em curso",
+  "domain_tab_DNS_state_error": "Erro",
+  "domain_tab_DNS_error_warning": "Foi detetado um erro aquando da atualização dos seus DNS. Por favor, corrija-os."
 }

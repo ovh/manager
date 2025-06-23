@@ -7,7 +7,7 @@ import {
   NS_UPDATE_RESULT,
   STATUS,
 } from '../dns-modify/domain-dns-modify.constants';
-import { DNS_STATUS, DNS_TYPE } from './domain-dns.constants';
+import { DNS_OPERATION, DNS_STATUS, DNS_TYPE } from './domain-dns.constants';
 
 export default class DomainDnsCtrl {
   /* @ngInject */
@@ -44,6 +44,7 @@ export default class DomainDnsCtrl {
       nameServers: [],
       isAnycastSubscribed: false,
       isUpdatingNameServers: false,
+      isUpdateInError: false,
     };
     this.isLoading = true;
     this.urls = {
@@ -88,8 +89,13 @@ export default class DomainDnsCtrl {
       return this.Domain.getResource(this.$stateParams.productId).then(
         (resource) => {
           const current = resource.currentState.dnsConfiguration.nameServers;
+          const currentTask = resource.currentTasks;
           const target = resource.targetSpec.dnsConfiguration.nameServers;
-
+          this.dns.isUpdateInError = currentTask.find(
+            (task) =>
+              task.type === DNS_OPERATION &&
+              task.status.toLowerCase() === DNS_STATUS.ERROR,
+          );
           function isIncluded(dns, search) {
             return dns.some(
               (x) =>
@@ -138,7 +144,12 @@ export default class DomainDnsCtrl {
             .map((x) => transform(x, DNS_STATUS.ACTIVATED));
           const adding = target
             .filter((x) => !isIncluded(current, x))
-            .map((x) => transform(x, DNS_STATUS.ADDING));
+            .map((x) => {
+              if (this.dns.isUpdateInError) {
+                return transform(x, DNS_STATUS.ERROR);
+              }
+              return transform(x, DNS_STATUS.ADDING);
+            });
           const deleting = current
             .filter((x) => !isIncluded(target, x))
             .map((x) => transform(x, DNS_STATUS.DELETING));

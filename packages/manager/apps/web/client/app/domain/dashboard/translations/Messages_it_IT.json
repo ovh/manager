@@ -837,5 +837,7 @@
   "domain_tab_TASKS_status_PROBLEM": "Fallito",
   "domain_dashboard_general_information_suspended_by_procedure_message": "Il tuo dominio è sospeso nell'ambito di una procedura di verifica dei dati di contatto. Consulta le operazioni in corso per verificare se è richiesta un’azione da parte tua. ",
   "domain_dashboard_general_information_being_suspended_by_procedure_message": "Il tuo dominio è oggetto di una procedura di verifica dei dati di contatto. Consulta le operazioni in corso per verificare se è richiesta un’azione da parte tua. ",
-  "domain_dashboard_general_information_see_operations": "Visualizza le operazioni in corso"
+  "domain_dashboard_general_information_see_operations": "Visualizza le operazioni in corso",
+  "domain_tab_DNS_state_error": "In errore",
+  "domain_tab_DNS_error_warning": "Si è verificato un errore durante l'aggiornamento dei tuoi DNS, ti chiediamo di correggerlo."
 }

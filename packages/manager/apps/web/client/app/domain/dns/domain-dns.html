@@ -53,6 +53,13 @@
                 </a>
             </oui-message>
 
+            <oui-message
+                data-type="warning"
+                data-ng-if="$ctrl.dns.isUpdateInError"
+            >
+                <span data-translate="domain_tab_DNS_error_warning"></span>
+            </oui-message>
+
             <oui-datagrid
                 data-page-size="8"
                 data-rows="$ctrl.dns.nameServers"
@@ -76,6 +83,7 @@
                         class="oui-badge"
                         data-ng-class="::{
                             'oui-badge_info': $row.status === $ctrl.constants.DNS_STATUS.ADDING,
+                            'oui-badge_error': $row.status === $ctrl.constants.DNS_STATUS.ERROR,
                             'oui-badge_warning': $row.status === $ctrl.constants.DNS_STATUS.DELETING,
                             'oui-badge_success': $row.status === $ctrl.constants.DNS_STATUS.ACTIVATED
                         }"

@@ -7,7 +7,6 @@ import {
   CONFIGURATION_TYPES,
   ERRORS,
   NS_UPDATE_RESULT,
-  OPERATIONS,
   STATUS,
 } from './domain-dns-modify.constants';
 
@@ -94,7 +93,6 @@ export default class DomainDnsModifyCtrl {
       .then(([resource]) => {
         this.setCurrentDns(resource);
         this.setDnsRegistryConfiguration(resource);
-        this.checkOperationOngoing(resource);
       })
       .finally(() => {
         this.isLoading = false;
@@ -354,31 +352,6 @@ export default class DomainDnsModifyCtrl {
   cancelModifications() {
     this.initDnsList();
     this.shouldClearForm = true;
-  }
-
-  checkOperationOngoing(resource) {
-    this.isOperationOngoing = resource.currentTasks?.some(
-      (task) =>
-        task.type === OPERATIONS.DOMAIN_DNS_UPDATE &&
-        (task.status === STATUS.ERROR ||
-          task.status === STATUS.PENDING ||
-          task.status === STATUS.SCHEDULED ||
-          task.status === STATUS.RUNNING),
-    );
-
-    if (this.isOperationOngoing) {
-      this.$scope.alerts.main = {
-        message: 'domain_dns_error_operation_ongoing',
-        type: 'info',
-        data: {
-          domain: this.$stateParams.productId,
-        },
-        link: {
-          href: this.ongoingOperationsLink,
-          message: 'domain_dns_error_operation_ongoing_link',
-        },
-      };
-    }
   }
 
   checkCanSubmit() {
