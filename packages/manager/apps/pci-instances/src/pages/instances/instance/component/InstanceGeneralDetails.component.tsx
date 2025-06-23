@@ -88,9 +88,20 @@ const InstanceGeneralDetails: FC = () => {
       <TileBlock label={t('pci_instances_dashboard_price_title')}>
         <LoadingCell isLoading={isLoading}>
           <div className="flex flex-col">
-            {instance.prices.map(({ value, type }) => (
-              <PriceLabel key={type} value={value} type={type} />
-            ))}
+            <div>
+              {instance.prices.map(({ value, type, label }) => (
+                <div className="my-4" key={type}>
+                  <OsdsText
+                    size={ODS_TEXT_SIZE._400}
+                    level={ODS_TEXT_LEVEL.body}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                  >
+                    {t(label)}
+                  </OsdsText>
+                  <PriceLabel key={type} value={value} type={type} />
+                </div>
+              ))}
+            </div>
             {instance.standaloneActions.includes(
               'activate_monthly_billing',
             ) && (
