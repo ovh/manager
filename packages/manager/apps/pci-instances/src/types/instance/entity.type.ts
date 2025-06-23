@@ -4,8 +4,8 @@ import {
   TActionName,
   TAddressType,
   TInstanceActionGroup,
-  TInstancePrice,
   TStatus,
+  TInstancePriceType,
 } from './common.type';
 
 export type TInstanceAddressType = TAddressType;
@@ -59,6 +59,12 @@ export type TInstance = DeepReadonly<{
   isImageDeprecated: boolean;
   isEditionEnabled: boolean;
 }>;
+
+export type TInstancePrice = {
+  type: TInstancePriceType;
+  value: number;
+  label: string;
+};
 
 export type TInstanceDetail = DeepReadonly<{
   id: string;

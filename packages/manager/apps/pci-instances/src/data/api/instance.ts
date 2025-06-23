@@ -242,6 +242,11 @@ export const getRegionInstanceMock = ({
           value: 297561000,
           status: 'enabled',
         },
+        {
+          type: 'licence',
+          value: 17561000,
+          status: 'enabled',
+        },
       ],
       login: 'ssh almalinux@51.161.81.152',
     }));

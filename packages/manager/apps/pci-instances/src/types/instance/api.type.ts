@@ -4,8 +4,8 @@ import {
   TActionName,
   TAddressType,
   TInstanceActionGroup,
-  TInstancePrice,
   TStatus,
+  TInstancePriceType,
 } from './common.type';
 
 export type TInstanceAddressTypeDto = TAddressType;
@@ -64,7 +64,13 @@ export type TImageDto = {
   deprecated: boolean;
 };
 
-export type TPriceDto = TInstancePrice;
+export type TInstancePriceTypeDto = TInstancePriceType;
+
+export type TInstancePriceDto = {
+  type: TInstancePriceTypeDto;
+  value: number;
+  status: 'enabled' | 'available' | 'eligible';
+};
 
 export type TInstanceActionNameDto = TActionName;
 export type TInstanceStatusDto = TStatus;
@@ -111,7 +117,7 @@ export type TInstanceDetailDto = {
   volumes: TInstanceVolumeDto[];
   actions: TInstanceActionDto[];
   pendingTask: boolean;
-  prices: TPriceDto[];
+  prices: TInstancePriceDto[];
   availabilityZone: string | null;
   taskState: string;
   isImageDeprecated: boolean;
