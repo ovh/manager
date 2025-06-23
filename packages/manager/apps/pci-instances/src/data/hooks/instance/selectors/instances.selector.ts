@@ -3,6 +3,7 @@ import {
   TInstanceActionDto,
   TInstanceDetailDto,
   TInstanceDto,
+  TInstancePriceDto,
   TInstanceStatusDto,
 } from '@/types/instance/api.type';
 import {
@@ -12,6 +13,7 @@ import {
   TInstanceActions,
   TInstanceAddressType,
   TInstanceDetail,
+  TInstancePrice,
   TInstanceStatus,
   TInstanceStatusSeverity,
 } from '@/types/instance/entity.type';
@@ -235,6 +237,19 @@ const mapInstanceDashboardActions = (
   );
 };
 
+// we will not display savingplans for now
+const mapInstancePricings = (pricings: TInstancePriceDto[]): TInstancePrice[] =>
+  pricings
+    .filter(({ type }) => type !== 'savingplans')
+    .map((pricing) => ({
+      type: pricing.type,
+      value: pricing.value,
+      label:
+        pricing.type === 'licence'
+          ? 'pci_instances_dashboard_licence_price_label'
+          : 'pci_instances_dashboard_instance_price_label',
+    }));
+
 export const getInstanceDetail = (
   instanceDto: TInstanceDetailDto,
   projectUrl: string,
@@ -246,6 +261,7 @@ export const getInstanceDetail = (
   flavorCpu: `${instanceDto.flavor.specs.cpu}`,
   actions: mapInstanceDashboardActions(instanceDto as any, projectUrl), // TODO: fix type after refactor TAPC-4385
   status: getInstanceStatus(instanceDto.status),
+  prices: mapInstancePricings(instanceDto.prices),
   isEditionEnabled: isEditionEnabled(instanceDto.actions),
   standaloneActions: ['activate_monthly_billing', 'delete'],
 });
