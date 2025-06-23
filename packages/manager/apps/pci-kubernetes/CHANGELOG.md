@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.25.2...@ovh-ux/manager-pci-kubernetes-app@0.26.0) (2025-06-23)
+
+
+### Features
+
+* **pci-common:** use new config cards ([ddd6c33](https://github.com/ovh/manager/commit/ddd6c33ddc65543fee27e30a3c3f02f6b319f13b)), closes [#TAPC-3456](https://github.com/ovh/manager/issues/TAPC-3456)
+* **pci-kubernetes:** update nodepool name input regex ([0569919](https://github.com/ovh/manager/commit/056991967e4c755c8d07174cf56b06b05148341f)), closes [#TAPC-4074](https://github.com/ovh/manager/issues/TAPC-4074)
+
+
+
+
+
 ## [0.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.25.1...@ovh-ux/manager-pci-kubernetes-app@0.25.2) (2025-06-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
