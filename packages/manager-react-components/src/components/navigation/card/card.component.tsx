@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { OdsBadge, OdsCard } from '@ovhcloud/ods-components/react';
-import { LinkType, Links } from '../../typography';
+import { LinkType, Links } from '../../Links';
 import './translations/translations';
 
 export interface IBadge {
