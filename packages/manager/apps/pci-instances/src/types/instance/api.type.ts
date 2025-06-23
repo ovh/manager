@@ -1,17 +1,36 @@
+import { TRegionType } from '@ovh-ux/manager-pci-common';
 import { DeepReadonly } from '../utils.type';
 import {
   TActionName,
   TAddressType,
   TInstanceActionGroup,
   TStatus,
+  TInstancePriceType,
 } from './common.type';
 
 export type TInstanceAddressTypeDto = TAddressType;
 
-export type TInstanceAddressDto = {
+export type TBaseInstanceAddressDto = {
   ip: string;
   version: number;
   type: TInstanceAddressTypeDto;
+};
+
+export type TSubnetDto = {
+  id: string;
+  name: string;
+  gatewayIp: string;
+  network: {
+    id: string;
+    name: string;
+  };
+};
+
+export type TInstanceDetailAddressDto = TBaseInstanceAddressDto & {
+  subnet: TSubnetDto;
+};
+
+export type TInstanceAddressDto = TBaseInstanceAddressDto & {
   gatewayIp: string;
 };
 
@@ -57,3 +76,47 @@ export type TRetrieveInstancesQueryParams = DeepReadonly<{
   searchField?: string;
   searchValue?: string;
 }>;
+
+export type TFlavorSpecDto = {
+  value: number;
+  unit: string;
+};
+
+export type TFlavorDto = {
+  id: string;
+  name: string;
+  specs: {
+    vcores: TFlavorSpecDto;
+    ram: TFlavorSpecDto;
+    storage: TFlavorSpecDto;
+    bandwidth: {
+      public: TFlavorSpecDto;
+      private: TFlavorSpecDto;
+    };
+  };
+};
+
+export type TInstancePriceTypeDto = TInstancePriceType;
+
+export type TInstancePriceDto = {
+  type: TInstancePriceTypeDto;
+  value: number;
+  status: 'enabled' | 'available' | 'eligible';
+};
+
+export type TBaseInstanceDto = {
+  id: string;
+  name: string;
+  status: TInstanceStatusDto;
+  addresses: TBaseInstanceAddressDto[];
+  volumes: TInstanceVolumeDto[];
+  region: string;
+  availabilityZone: string | null;
+  regionType: TRegionType;
+  actions: TInstanceActionDto[];
+  pendingTask: boolean;
+  taskState: string;
+  flavor: TFlavorDto;
+  pricings: TInstancePriceDto[];
+  sshKey: string;
+};

@@ -57,3 +57,4 @@ export type TInstanceActionGroup =
   | 'details'
   | 'lifecycle'
   | 'shelve';
+export type TInstancePriceType = 'hour' | 'month' | 'licence' | 'savingplans';
