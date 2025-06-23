@@ -6,7 +6,7 @@ import { BillingLink } from '@/components/Links/BillingLink.component';
 
 import { ConsumedVms } from './ConsumedVms.component';
 import { OfferProgress } from './OfferProgress.component';
-import { DeactivatedOfferGold } from './DeactivatedOfferGold.component';
+import { ActivateOfferGold } from './ActivateOfferGold.component';
 
 type BillingTileProps = {
   id: string;
@@ -35,7 +35,7 @@ export const BillingTile: React.FC<BillingTileProps> = ({ id, backup }) => {
         backup?.currentState.offers.every((offer) => offer.name !== 'GOLD') && {
           id: 'gold',
           label: 'Gold',
-          value: <DeactivatedOfferGold />,
+          value: <ActivateOfferGold id={id} />,
         },
         {
           id: 'bilingModalities',
