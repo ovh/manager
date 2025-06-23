@@ -7,7 +7,7 @@ import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { Trans, useTranslation } from 'react-i18next';
 import React, { useEffect } from 'react';
 import { useOrderContext } from './Order.context';
-import { Links, LinkType } from '../typography';
+import { Links, LinkType } from '../Links';
 
 export type TOrderSummary = {
   onFinish: () => void;
