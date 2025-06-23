@@ -9,6 +9,7 @@ import { useGetJobs } from '@/data/hooks/ai/job/useGetJobs.hook';
 import { useGetApps } from '@/data/hooks/ai/app/useGetApps.hook';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useGetFramework } from '@/data/hooks/ai/capabilities/useGetFramework.hook';
+import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
 
 export function breadcrumb() {
   return (
@@ -19,6 +20,7 @@ export function breadcrumb() {
 export default function DashboardLayout() {
   const { projectId } = useParams();
   const { isUserActive } = useUserActivityContext();
+  const regionQuery = useGetRegions(projectId);
   const notebooksQuery = useGetNotebooks(projectId, {
     refetchInterval: isUserActive && POLLING.NOTEBOOKS,
   });
@@ -28,7 +30,11 @@ export default function DashboardLayout() {
   const appsQuery = useGetApps(projectId, {
     refetchInterval: isUserActive && POLLING.APPS,
   });
-  const frameworkQuery = useGetFramework(projectId, 'GRA');
+  const regionId = regionQuery?.data?.length > 0 && regionQuery?.data[0]?.id;
+
+  const frameworkQuery = useGetFramework(projectId, regionId, {
+    enabled: !!regionId,
+  });
 
   if (
     !notebooksQuery.isSuccess ||
