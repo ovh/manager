@@ -1,5 +1,5 @@
 <div>
-    <oui-header description="{{ $ctrl.storage.id }}">
+    <oui-header>
         <oui-header-heading>
             <div class="d-flex justify-content-between">
                 <h1
@@ -11,6 +11,18 @@
                     chapters="$ctrl.constants.CHANGELOG.file_storage.chapters"
                 ></changelog-button>
             </div>
+            <h2 class="oui-header__description">{{ $ctrl.storage.id }}</h2>
+            <oui-message
+                class="mb-3"
+                data-ng-if="!$ctrl.networkInformations && $ctrl.isPublicNetworkAvailable"
+                data-type="warning"
+            >
+                <div class="d-flex align-items-baseline">
+                    <span
+                        data-translate="netapp_dashboard_global_network_type_banner"
+                    ></span>
+                </div>
+            </oui-message>
         </oui-header-heading>
         <oui-header-tabs>
             <oui-header-tabs-item

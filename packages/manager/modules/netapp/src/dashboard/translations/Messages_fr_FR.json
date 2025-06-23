@@ -2,5 +2,6 @@
   "netapp_dashboard_general_information": "Informations générales",
   "netapp_dashboard_volumes": "Volumes",
   "netapp_dashboard_snapshot_policies": "Snapshot policies",
-  "netapp_dashboard_global_error": "L'erreur suivante est survenue : <br> {{message}}<br> request_id: {{requestId}}"
+  "netapp_dashboard_global_error": "L'erreur suivante est survenue : <br> {{message}}<br> request_id: {{requestId}}",
+  "netapp_dashboard_global_network_type_banner": "Tous les services EFS montés sur des IP publiques seront bientôt déconseillés. Veuillez migrer les volumes de ces services vers un système de fichiers EFS monté en rack en les synchronisant et en supprimant l'ancien service avant le 17/12/2025."
 }
