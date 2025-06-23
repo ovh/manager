@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.7.1...@ovh-ux/manager-pci-ai-tools-app@1.8.0) (2025-06-23)
+
+
+### Bug Fixes
+
+* **pci-ai-tools:notebooks:** remove hardcoded region to fix US issue in notebooks ([#17711](https://github.com/ovh/manager/issues/17711)) ([7f40509](https://github.com/ovh/manager/commit/7f4050987c58f04266d44b7ade0471b99f306845)), closes [#DATATR-2317](https://github.com/ovh/manager/issues/DATATR-2317)
+* **pci-ai-tools.dashboard:** count of notebooks after quantum split ([#17703](https://github.com/ovh/manager/issues/17703)) ([10170e8](https://github.com/ovh/manager/commit/10170e878ec04711853733a1f3a7c2f9c01ad6af)), closes [#DATATR-2316](https://github.com/ovh/manager/issues/DATATR-2316)
+
+
+### Features
+
+* **pci-ai-tools:** rework quantum auth flow and remove price link in dashboard ([#17692](https://github.com/ovh/manager/issues/17692)) ([22b4905](https://github.com/ovh/manager/commit/22b4905f0d22c6699eb9a898ba7338da8bc370a8)), closes [#DATATR-2314](https://github.com/ovh/manager/issues/DATATR-2314)
+
+
+
+
+
 ## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.7.0...@ovh-ux/manager-pci-ai-tools-app@1.7.1) (2025-06-20)
 
 
