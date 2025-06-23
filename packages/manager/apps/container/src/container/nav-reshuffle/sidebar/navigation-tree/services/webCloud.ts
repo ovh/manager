@@ -52,6 +52,18 @@ webCloudUniverse.children = [
         features: ['web:domains'],
       },
       {
+        id: 'alldom',
+        idAttr: 'alldom-link',
+        universe: webCloudUniverse.id,
+        translation: 'sidebar_alldom',
+        routing: {
+          application: 'alldoms',
+          hash: '#/',
+        },
+        serviceType: 'DOMAIN',
+        features: ['web-domains:alldoms'],
+      },
+      {
         id: 'dns',
         idAttr: 'dns-link',
         universe: webCloudUniverse.id,
