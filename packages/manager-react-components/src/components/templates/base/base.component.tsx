@@ -1,7 +1,8 @@
 import React from 'react';
 import { Headers, HeadersProps } from './headers';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { LinkType, Links, Subtitle } from '../../typography';
+import { LinkType, Links } from '../../Links';
+import { Subtitle } from '../../typography';
 import { PageLayout } from '../layout/layout.component';
 
 export type BaseLayoutProps = React.PropsWithChildren<{
@@ -42,11 +43,12 @@ export const BaseLayout = ({
         <Links
           data-testid="manager-back-link"
           onClickReturn={onClickReturn}
-          label={backLinkLabel}
           type={LinkType.back}
           target="_self"
           href={hrefPrevious}
-        />
+        >
+          {backLinkLabel}
+        </Links>
       </div>
     )}
     {description && (

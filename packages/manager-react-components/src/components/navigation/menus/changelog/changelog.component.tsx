@@ -7,7 +7,7 @@ import {
 import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { Links, LinkType } from '../../../typography';
+import { Links, LinkType } from '../../../Links';
 import '../translations/translation';
 
 export interface ChangelogLinks {
