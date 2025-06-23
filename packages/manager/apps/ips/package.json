@@ -18,6 +18,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@ovh-ux/manager-common-translations": "^0.8.0",
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
@@ -42,7 +43,6 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-common-translations": "^0.5.1",
     "@ovh-ux/manager-core-test-utils": "^0.4.0",
     "@ovh-ux/manager-vite-config": "*",
     "@tanstack/react-query": "^5.51.21",
