@@ -17,7 +17,7 @@
   "managed_vcd_dashboard_service_management": "Service management",
   "managed_vcd_dashboard_mailing_list": "Mailing list",
   "managed_vcd_dashboard_service_renew": "Renewal",
-  "managed_vcd_dashboard_service_cancellation": "Close service",
+  "managed_vcd_dashboard_service_cancellation": "Cancel the service",
   "managed_vcd_dashboard_password": "Password",
   "managed_vcd_dashboard_password_renew": "Renew the admin password",
   "managed_vcd_dashboard_password_tooltip": "If you would like to change your admin password, please contact support",
