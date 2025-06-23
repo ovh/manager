@@ -71,6 +71,16 @@ export const getFlavors = async (
   return data;
 };
 
+export const getFlavorDetails = async (
+  projectId: string,
+  region: string,
+): Promise<TFlavor[]> => {
+  const { data } = await v6.get<TFlavor[]>(
+    `/cloud/project/${projectId}/flavor?region=${region}`,
+  );
+  return data;
+};
+
 export type TKubeFlavor = {
   category: string;
   gpus: number;
