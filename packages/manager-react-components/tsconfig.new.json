@@ -3,9 +3,7 @@
   "compilerOptions": {
     "strict": true
   },
-  "include": [
-    // Add you components migrated here
-  ],
+  "include": ["./src/components/Breadcrumb/*"],
   "exclude": [
     "./src/hooks/*",
     "./src/utils/*",
