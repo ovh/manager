@@ -31,5 +31,11 @@
   "zimbra_slot_modal_renew_date": "Zakończenie umowy: {{renewDate}}",
   "zimbra_account_delete_modal_content_step1": "Czy na pewno chcesz usunąć konto e-mail <strong>{{email}}</strong>?",
   "zimbra_account_delete_modal_content_step2": "Czy na pewno chcesz usunąć to konto e-mail <strong>{{email}}</strong>?",
-  "zimbra_account_delete_modal_warn_message": "Uwaga: operacja ta jest nieodwracalna i skutkuje usunięciem danych."
+  "zimbra_account_delete_modal_warn_message": "Uwaga: operacja ta jest nieodwracalna i skutkuje usunięciem danych.",
+  "zimbra_account_upgrade_cta_back": "Powrót do kont e-mail",
+  "zimbra_account_upgrade_new_offer": "Uruchamiamy wersję beta naszej <Link href=\"{{ zimbra_emails_link }}\">nowej oferty Zimbra Pro</Link>.",
+  "zimbra_account_upgrade_offer_details": "Oferujemy możliwość bezpłatnego upgrade’u konta na czas trwania fazy beta.",
+  "zimbra_account_upgrade_lab_page": "Aby uzyskać więcej informacji, sprawdź <Link href=\"{{ zimbra_beta_link }}\">warunki korzystania z wersji beta na stronie lab</Link>.",
+  "zimbra_account_upgrade_success_message": "Dyspozycja upgrade’u została przyjęta. Zostanie przetworzona w ciągu kilku minut.",
+  "zimbra_account_upgrade_error_message": "Upgrade nie powiódł się. {{error}}"
 }
