@@ -7,7 +7,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { Links, LinksProps, LinkType } from '../../../typography';
+import { Links, LinksProps, LinkType } from '../../../Links';
 import '../translations/translation';
 
 export interface GuideItem extends Omit<LinksProps, 'id'> {
