@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Link component > renders a back link correctly 1`] = `
+<DocumentFragment>
+  <a
+    class="_link_udbet_2"
+    href="https://www.example.com"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--arrow-left_i4xp0_25"
+    />
+    Back to the list
+  </a>
+</DocumentFragment>
+`;
+
+exports[`Link component > renders a external link correctly with label as prop 1`] = `
+<DocumentFragment>
+  <a
+    class="_link_udbet_2"
+    href="https://www.ovhcloud.com/"
+    target="_blank"
+  >
+    External Page
+    <span
+      class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+    />
+  </a>
+</DocumentFragment>
+`;
+
+exports[`Link component > renders a next link correctly 1`] = `
+<DocumentFragment>
+  <a
+    class="_link_udbet_2"
+    href="https://www.example.com"
+  >
+    Next Page
+    <span
+      class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+    />
+  </a>
+</DocumentFragment>
+`;
+
+exports[`Link component > renders a simple link correctly 1`] = `
+<DocumentFragment>
+  <a
+    class="_link_udbet_2"
+    href="https://www.example.com"
+  >
+    test link
+  </a>
+</DocumentFragment>
+`;
