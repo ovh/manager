@@ -26,7 +26,5 @@
   "space_summary": "{{usedSpaceInGB}} Go ({{percent}}% de {{quotaInTB}} To)",
   "storage_primary": "Primaire",
   "storage_secondary": "Secondaire",
-  "error_api": "Erreur",
-  "deactivated_label": "Désactivé",
-  "activate_action": "Activer"
+  "error_api": "Erreur"
 }

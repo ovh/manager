@@ -22,6 +22,10 @@ const OnboardingPage = React.lazy(() =>
   import('@/pages/onboarding/Onboarding.page'),
 );
 
+const ActivateOfferModal = React.lazy(() =>
+  import('@/pages/activate-offer/ActivateOfferModal.page'),
+);
+
 export default (
   <Route
     id="root"
@@ -79,6 +83,12 @@ export default (
           },
         }}
         Component={DeletePage}
+      />
+
+      <Route
+        id="activate-veeam-offer"
+        path={urls.activateVeeamBackupOffer}
+        Component={ActivateOfferModal}
       />
     </Route>
     <Route
