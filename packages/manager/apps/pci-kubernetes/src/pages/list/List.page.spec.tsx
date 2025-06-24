@@ -4,7 +4,7 @@ import { vi } from 'vitest';
 import ListPage from '@/pages/list/List.page';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { wrapper } from '@/wrapperRenders';
-import { TKube } from '@/types';
+import { TClusterPlan, TKube } from '@/types';
 
 type TKubesPaginated = {
   data: { rows: TKube[]; pageCount: number; totalRows: number };
@@ -12,6 +12,8 @@ type TKubesPaginated = {
   isPending: boolean;
   error: Error;
 };
+
+const clusterPlans: TClusterPlan[] = ['free', 'standard'];
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const actual: any = await importOriginal();
@@ -60,5 +62,20 @@ describe('ListPage', () => {
     } as unknown) as TKubesPaginated);
     const { getByText } = render(<ListPage />, { wrapper });
     expect(getByText('Kube1')).toBeInTheDocument();
+  });
+
+  it.each(clusterPlans)('renders %s cluster plan ', (plan) => {
+    vi.spyOn(useKubernetesModule, 'useKubes').mockReturnValue({
+      isPending: false,
+      data: {
+        rows: [{ id: '1', plan } as TKube],
+        totalRows: 1,
+      },
+    } as TKubesPaginated);
+
+    const { getByText } = render(<ListPage />, { wrapper });
+    expect(
+      getByText(`kube:kube_service_cluster_plan_${plan}`),
+    ).toBeInTheDocument();
   });
 });
