@@ -1,0 +1,8 @@
+{
+  "logs_iam_policies_description": "Die hier aufgeführten IAM-Richtlinien gelten allesamt für Ihren Dienst „{{serviceName}}“. Diese Richtlinien können auch für andere Ressourcen von OVHcloud gelten.",
+  "logs_iam_policies_create": "IAM-Richtlinie erstellen",
+  "logs_iam_policies_column_actions": "Anzahl der Aktionen",
+  "logs_iam_policies_column_identities": "Anzahl der Identitäten",
+  "logs_iam_policies_column_description": "Beschreibung",
+  "logs_iam_policies_column_name": "Name"
+}

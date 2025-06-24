@@ -75,11 +75,18 @@
         <oui-header-tabs-item
             data-state="dbaas-logs.detail.roles"
             data-disabled="ctrl.disableTabs"
-            data-state-params="{ serviceName: ctrl.serivceName }"
+            data-state-params="{ serviceName: ctrl.serviceName }"
             data-on-click="ctrl.trackClick(ctrl.TRACKING_HITS.ROLES)"
-            ><span
-                data-translate="{{ ctrl.iamEnabled ? 'logs_tab_iam' : 'logs_tab_roles' }}"
-            ></span>
+            data-ng-if="!ctrl.iamEnabled"
+            ><span data-translate="logs_tab_roles"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-state="dbaas-logs.detail.iam-policies"
+            data-disabled="ctrl.disableTabs"
+            data-state-params="{ serviceName: ctrl.serviceName }"
+            data-on-click="ctrl.trackClick(ctrl.TRACKING_HITS.IAM)"
+            data-ng-if="ctrl.iamEnabled"
+            ><span data-translate="logs_iam_policies"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
 </header>

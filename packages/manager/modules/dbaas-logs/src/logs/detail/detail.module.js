@@ -24,6 +24,7 @@ import logsDetailService from './logs-detail.service';
 import logsOrderService from './logs-order.service';
 import logsHelperService from './logs-helper.service';
 import roles from './roles/roles.module';
+import iamPolicies from './iam-policies';
 import streams from './streams/streams.module';
 import tokens from './tokens/tokens.module';
 import encryptionKeys from './encryption-keys/encryption-keys.module';
@@ -47,6 +48,7 @@ angular
     osd,
     logsDashboardHeader,
     roles,
+    iamPolicies,
     streams,
     tokens,
     encryptionKeys,
