@@ -177,7 +177,7 @@ export default function AccountSidebar() {
       menu.push({
         id: 'iam',
         label: t('sidebar_security_identity_operations'),
-        pathMatcher: new RegExp('^/iam'),
+        pathMatcher: new RegExp('^/(iam|identity-access-management)'),
         ignoreSearch: true,
         subItems: [
           {
@@ -199,6 +199,13 @@ export default function AccountSidebar() {
             href: navigation.getURL('iam', '#/api-keys'),
             label: t('sidebar_security_identity_operations_iam_api-keys'),
             pathMatcher: new RegExp('^/iam/api-keys'),
+            ignoreSearch: true,
+          },
+          availability['identity-access-management:tag-management'] && {
+            id:'iam-tag-management',
+            href: navigation.getURL('identity-access-management', '#/tag-manager'),
+            label: t('sidebar_security_identity_operations_iam_tag-management'),
+            pathMatcher: new RegExp('^/identity-access-management/tag-manager'),
             ignoreSearch: true,
           },
           availability['identity-access-management:logs'] && {
