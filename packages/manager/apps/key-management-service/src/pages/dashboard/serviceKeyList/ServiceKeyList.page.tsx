@@ -1,10 +1,5 @@
-import React from 'react';
-import {
-  Outlet,
-  useNavigate,
-  useParams,
-  useOutletContext,
-} from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import {
@@ -35,26 +30,17 @@ import {
 } from '@/components/Listing/ListingCells';
 import { useOkmsServiceKeys } from '@/data/hooks/useOkmsServiceKeys';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
+import { OkmsContext } from '..';
 import Loading from '@/components/Loading/Loading';
 import { getOkmsServiceKeyResourceListQueryKey } from '@/data/api/okmsServiceKey';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
 import { SERVICE_KEY_LIST_TEST_IDS } from './ServiceKeyList.constants';
-import { KmsDashboardOutletContext } from '@/pages/dashboard/KmsDashboard.type';
-import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
 
 export default function Keys() {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { t: tError } = useTranslation('error');
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
-
-  const { sorting, setSorting } = useDatagridSearchParams();
-  const { okmsId } = useParams();
-  const { error, data: okmsServiceKey, isLoading } = useOkmsServiceKeys({
-    sorting,
-    okmsId,
-  });
-  const { okms } = useOutletContext<KmsDashboardOutletContext>();
 
   const columns = [
     {
@@ -84,12 +70,19 @@ export default function Keys() {
     },
     {
       id: 'action',
-      cell: (serviceKey: OkmsAllServiceKeys) =>
-        DatagridServiceKeyActionMenu(serviceKey, okms),
+      cell: DatagridServiceKeyActionMenu,
       isSortable: false,
       label: '',
     },
   ];
+
+  const { sorting, setSorting } = useDatagridSearchParams();
+  const okms = useContext(OkmsContext);
+  const { okmsId } = useParams();
+  const { error, data: okmsServiceKey, isLoading } = useOkmsServiceKeys({
+    sorting,
+    okmsId,
+  });
 
   if (isLoading) return <Loading />;
 

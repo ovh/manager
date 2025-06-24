@@ -1,25 +1,50 @@
 import React from 'react';
-import { Outlet, useOutletContext } from 'react-router-dom';
-import { DashboardGridLayout } from '@ovh-ux/manager-react-components';
+import { useNavigate, useParams } from 'react-router-dom';
+import {
+  DashboardGridLayout,
+  useServiceDetails,
+} from '@ovh-ux/manager-react-components';
+import { useOkmsById } from '@/data/hooks/useOkms';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import InformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/InformationsTile';
+import Loading from '@/components/Loading/Loading';
 import KmipTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/KmipTile';
 import RestApiTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/RestApiTile';
 import BillingInformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/BillingInformationsTile';
-import { KmsDashboardOutletContext } from '@/pages/dashboard/KmsDashboard.type';
 
 function GeneralInformationsTab() {
-  const contextValue = useOutletContext<KmsDashboardOutletContext>();
-  const { okmsService, okms, okmsDisplayName } = contextValue;
+  const { okmsId } = useParams();
+  const { data: okms, error, isLoading: isOkmsLoading } = useOkmsById(okmsId);
+  const {
+    data: okmsService,
+    isLoading: isOkmsServiceLoading,
+  } = useServiceDetails({ resourceName: okms?.data.id });
+
+  const navigate = useNavigate();
+
+  if (error) {
+    navigate(KMS_ROUTES_URLS.kmsListing);
+  }
+
+  if (isOkmsLoading || isOkmsServiceLoading || !okms || !okmsService) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <DashboardGridLayout>
-      <InformationsTile okmsData={okms} okmsDisplayName={okmsDisplayName} />
+      <InformationsTile
+        okmsData={okms.data}
+        okmsServiceInfos={okmsService.data}
+      />
       <div className="flex flex-col gap-4 md:gap-6">
-        <KmipTile okmsData={okms} />
-        <RestApiTile okmsData={okms} />
+        <KmipTile okmsData={okms.data} />
+        <RestApiTile okmsData={okms.data} />
       </div>
-      {okmsService && <BillingInformationsTile okmsService={okmsService} />}
-      <Outlet context={contextValue} />
+      <BillingInformationsTile okmsService={okmsService.data} />
     </DashboardGridLayout>
   );
 }

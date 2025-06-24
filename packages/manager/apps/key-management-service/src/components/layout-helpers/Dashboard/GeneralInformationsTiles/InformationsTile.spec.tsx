@@ -51,20 +51,17 @@ describe('InformationsTile component tests suite', () => {
     tags: null,
   };
 
+  const renderComponent = (okms: OKMS) =>
+    render(<InformationsTile okmsData={okms} okmsServiceInfos={serviceInfo} />);
+
   test('Should display information tile with only all mandatory data', async () => {
-    const { container } = render(
-      <InformationsTile
-        okmsData={kms}
-        okmsDisplayName={serviceInfo.resource.displayName}
-      />,
-    );
+    const { container } = renderComponent(kms);
 
     await waitFor(() => {
       expect(
         screen.getByText('key_management_service_dashboard_field_label_name'),
       ).toBeVisible();
       expect(screen.getByText(serviceInfo.resource.displayName)).toBeVisible();
-      expect(screen.getByLabelText('edit')).toBeVisible();
 
       expect(
         screen.getByText('key_management_service_dashboard_field_label_id'),

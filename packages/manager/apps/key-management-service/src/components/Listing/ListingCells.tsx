@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   ActionMenu,
   Clipboard,
@@ -24,8 +24,10 @@ import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
 import { useServiceKeyTypeTranslations } from '@/hooks/serviceKey/useServiceKeyTypeTranslations';
 import { ServiceKeyStatus } from '../serviceKey/serviceKeyStatus/serviceKeyStatus.component';
 import useServiceKeyActionsList from '@/hooks/serviceKey/useServiceKeyActionsList';
+import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { OkmsServiceState } from '../layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
+import { OkmsContext } from '@/pages/dashboard';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
@@ -64,19 +66,16 @@ export const DatagridCellRegion = (kms: OKMS) => {
 };
 
 export const DatagridCellStatus = (kms: OKMS) => {
-  const { data: okmsService, isPending, isError } = useServiceDetails({
+  const { data: OkmsServiceInfos, isLoading, isError } = useServiceDetails({
     resourceName: kms.id,
   });
-
-  if (isPending) {
+  if (isLoading) {
     return <OdsSpinner size={ODS_SPINNER_SIZE.sm} />;
   }
-
-  if (!isError) {
+  if (isError) {
     return <></>;
   }
-
-  return <OkmsServiceState state={okmsService?.data?.resource?.state} />;
+  return <OkmsServiceState state={OkmsServiceInfos.data.resource.state} />;
 };
 
 export const DatagridResourceKmipCountCell = (kms: OKMS) => {
@@ -140,14 +139,18 @@ export const DatagridStatus = (props: OkmsAllServiceKeys) => {
   return <ServiceKeyStatus state={props.state} />;
 };
 
-export const DatagridServiceKeyActionMenu = (
-  serviceKey: OkmsAllServiceKeys,
-  okms: OKMS,
-) => {
-  const actionList = useServiceKeyActionsList(okms, serviceKey, true);
+export const DatagridServiceKeyActionMenu = (props: OkmsAllServiceKeys) => {
+  const okms = useContext(OkmsContext);
+  const { data: serviceKey, isPending } = useOkmsServiceKeyById({
+    okmsId: okms.id,
+    keyId: props.id,
+  });
+  const actionList = useServiceKeyActionsList(okms, serviceKey?.data, true);
+
   return (
     <ActionMenu
-      id={`service-key-actions-${serviceKey.id}`}
+      id={`service-key-actions-${props.id}`}
+      isLoading={isPending}
       isCompact
       variant={ODS_BUTTON_VARIANT.ghost}
       icon={ODS_ICON_NAME.ellipsisVertical}
