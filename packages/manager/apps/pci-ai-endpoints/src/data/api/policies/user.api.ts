@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { v6, v2 } from '@ovh-ux/manager-core-api';
 
 export const getUserPermissions = async () => {

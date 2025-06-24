@@ -56,14 +56,6 @@ export default function CreateModal({
       dismissible
       headline={headline}
     >
-      {isRestricted && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.error} className="mb-4">
-          <OsdsText level={ODS_TEXT_LEVEL.body} size={ODS_TEXT_SIZE._400}>
-            {t('ai_endpoints_error_no_permission_create')}
-          </OsdsText>
-        </OsdsMessage>
-      )}
-
       {isSuccess && createdToken ? (
         <>
           <OsdsMessage

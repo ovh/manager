@@ -186,7 +186,7 @@ export default function TokenPage() {
                 color={ODS_THEME_COLOR_INTENT.primary}
                 className="mr-4"
                 onClick={() => isAuthorized && openModal('create')}
-                disabled={!isAuthorized}
+                disabled={!isAuthorized || isRestricted || undefined}
               >
                 <OsdsIcon
                   name={ODS_ICON_NAME.PLUS}

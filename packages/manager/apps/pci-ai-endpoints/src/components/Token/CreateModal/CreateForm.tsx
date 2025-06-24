@@ -24,19 +24,15 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { z } from 'zod';
 import getLocaleForDatePicker from '@/components/utils/getLocaleForDatepicker';
-import { TokenData, TokensPayload } from '@/types/cloud/project/database/token';
+import { TokensPayload } from '@/types/cloud/project/database/token';
 
 export type CreateFormProps = {
   projectId: string;
   tokens: string[];
   infiniteDate: Date;
-  createToken: (
-    payload: TokensPayload,
-    opts?: { onSuccess: (token: TokenData) => void },
-  ) => void;
+  createToken: (payload: TokensPayload) => void;
   isRestricted: boolean;
   onClose: () => void;
-  onSuccess?: (token: TokenData) => void; // ✅ nouvelle prop
 };
 
 type FormValues = {
@@ -68,9 +64,8 @@ export default function CreateForm({
   tokens,
   infiniteDate,
   createToken,
-  onClose,
-  onSuccess,
   isRestricted,
+  onClose,
 }: CreateFormProps) {
   const { t } = useTranslation('token');
   const localDatePicker = getLocaleForDatePicker();
@@ -110,15 +105,14 @@ export default function CreateForm({
       description: data.description,
       expiresAt: data.expirationDate.toISOString(),
     };
-    createToken(payload, {
-      onSuccess: (token) => {
-        onSuccess?.(token);
-        if (isRestricted) {
-          onClose();
-        }
-      },
-    });
+    createToken(payload);
   };
+
+  useEffect(() => {
+    if (isRestricted) {
+      onClose();
+    }
+  }, [isRestricted, onClose]);
 
   const displayChipValue = useMemo(() => {
     return expirationDate.getTime() === infiniteDate.getTime()

@@ -49,7 +49,6 @@ function useTokenMutationHandler<TPayload, TResult extends TokenData>(
   const mutation = useMutation<TResult, ApiError, TPayload>({
     mutationFn,
     onError: (error) => {
-      // Only set restricted when HTTP 403
       const status = error.response?.status;
       setIsRestricted(status === 403);
       options?.onError?.(error);
