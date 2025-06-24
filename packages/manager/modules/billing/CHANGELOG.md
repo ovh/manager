@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.38.1...@ovh-ux/manager-billing@0.39.0) (2025-06-24)
+
+
+### Features
+
+* **billing:** rename zimbra service name on services page ([216e472](https://github.com/ovh/manager/commit/216e472733f56c4a3cf2cc368d53c6f72e18aec3)), closes [#MANAGER-17342](https://github.com/ovh/manager/issues/MANAGER-17342)
+
+
+
+
+
 ## [0.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.38.0...@ovh-ux/manager-billing@0.38.1) (2025-06-20)
 
 
