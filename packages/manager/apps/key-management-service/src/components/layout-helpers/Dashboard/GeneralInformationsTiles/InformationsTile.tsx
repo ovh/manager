@@ -4,6 +4,7 @@ import {
   DashboardTile,
   DashboardTileBlockItem,
   Region,
+  ServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import {
@@ -19,13 +20,13 @@ import { OKMS } from '@/types/okms.type';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 type InformationTileProps = {
-  okmsData: OKMS;
-  okmsDisplayName: string;
+  okmsData?: OKMS;
+  okmsServiceInfos?: ServiceDetails;
 };
 
 const InformationsTile = ({
   okmsData,
-  okmsDisplayName,
+  okmsServiceInfos,
 }: InformationTileProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const InformationsTile = ({
       value: (
         <div className="flex justify-between items-center gap-2">
           <OdsText preset={ODS_TEXT_PRESET.paragraph} className="break-all">
-            {okmsDisplayName}
+            {okmsServiceInfos?.resource.displayName}
           </OdsText>
           <div className="min-w-fit">
             <OdsButton

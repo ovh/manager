@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -18,9 +18,9 @@ import { OkmsCredential } from '@/types/okmsCredential.type';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { CredentialStatus } from '../credentialStatus/CredentialStatus.component';
 import { getDownloadCredentialParameters } from '@/utils/credential/credentialDownload';
+import { OkmsContext } from '@/pages/dashboard';
 import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
-import { OKMS } from '@/types/okms.type';
 
 export const DatagridCredentialCellName = (credential: OkmsCredential) => {
   const navigate = useNavigate();
@@ -94,11 +94,9 @@ export const DatagridCredentialCellStatus = (credential: OkmsCredential) => {
   return <CredentialStatus state={credential.status} />;
 };
 
-export const DatagridCredentialCellActions = (
-  credential: OkmsCredential,
-  okms: OKMS,
-) => {
+export const DatagridCredentialCellActions = (credential: OkmsCredential) => {
   const { t } = useTranslation('key-management-service/credential');
+  const okms = useContext(OkmsContext);
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const { filename, href, isDisabled } = getDownloadCredentialParameters(
