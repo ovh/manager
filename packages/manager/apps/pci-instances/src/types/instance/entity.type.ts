@@ -7,6 +7,7 @@ import {
   TInstancePrice,
   TStatus,
 } from './common.type';
+import { TBaseAction } from './action/action.type';
 
 export type TInstanceAddressType = TAddressType;
 
@@ -23,7 +24,7 @@ export type TInstanceStatus = {
 export type TAddress = {
   ip: string;
   version: number;
-  gatewayIp: string;
+  gatewayIp?: string;
 };
 
 export type TVolume = {
@@ -59,6 +60,12 @@ export type TInstance = DeepReadonly<{
   isImageDeprecated: boolean;
 }>;
 
+export type TNetwork = TAddress & {
+  name: string;
+  actions: TBaseAction[];
+  flag?: string;
+};
+
 export type TInstanceDetail = DeepReadonly<{
   id: string;
   name: string;
@@ -71,6 +78,7 @@ export type TInstanceDetail = DeepReadonly<{
   region: string;
   regionType: TRegionType;
   imageName: string;
+  networks: Map<TInstanceAddressType, TNetwork[]>;
   volumes: TVolume[];
   pendingTask: boolean;
   availabilityZone: string | null;

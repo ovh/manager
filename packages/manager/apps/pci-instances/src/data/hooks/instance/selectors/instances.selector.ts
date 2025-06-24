@@ -3,6 +3,7 @@ import {
   TInstanceActionDto,
   TInstanceDetailDto,
   TInstanceDto,
+  TInstanceNetworkAddressDto,
   TInstanceStatusDto,
 } from '@/types/instance/api.type';
 import {
@@ -14,8 +15,10 @@ import {
   TInstanceDetail,
   TInstanceStatus,
   TInstanceStatusSeverity,
+  TNetwork,
 } from '@/types/instance/entity.type';
 import { TActionName } from '@/types/instance/common.type';
+import { TBaseAction } from '@/types/instance/action/action.type';
 
 const getInstanceStatusSeverity = (
   status: TInstanceStatusDto,
@@ -204,8 +207,69 @@ export const instancesSelector = (
 const isEditionEnabled = (actions: TInstanceActionDto[]) =>
   actions.some(({ name }) => name === 'edit');
 
+const getNetworkActionHref = (
+  dedicatedUrl: string,
+  projectId: string,
+  ip: string,
+): TBaseAction[] => {
+  const ipParams = `ip=${ip}&ipBlock=${ip}`;
+
+  const actions = [
+    {
+      label: 'pci_instances_actions_instance_network_change_dns',
+      path: dedicatedUrl,
+    },
+    {
+      label: 'pci_instances_actions_instance_network_activate_mitigation',
+      path: `${dedicatedUrl}?action=mitigation&${ipParams}&serviceName=${projectId}`,
+    },
+    {
+      label: 'pci_instances_actions_instance_network_firewall_settings',
+      path: `${dedicatedUrl}?action=toggleFirewall&${ipParams}`,
+    },
+  ];
+
+  return actions.map(({ label, path }) => ({
+    label,
+    link: {
+      path,
+      isExternal: true,
+      target: 'blank',
+    },
+  }));
+};
+
+const mapInstanceNetworks = (
+  networks: TInstanceNetworkAddressDto[],
+  dedicatedUrl: string,
+  projectId: string,
+) =>
+  networks.reduce((acc, { type, ip, version, subnet }) => {
+    const section = type === 'floating' ? 'public' : type;
+    const foundNetwork = acc.get(section);
+    const network: TNetwork = {
+      ip,
+      version,
+      name: subnet.network.name,
+      gatewayIp: subnet.gatewayIP,
+      flag:
+        type === 'floating'
+          ? `pci_instances_dashboard_network_floating_title`
+          : undefined,
+      actions: getNetworkActionHref(dedicatedUrl, projectId, ip),
+    };
+
+    if (!foundNetwork) {
+      return acc.set(type, [network]);
+    }
+    foundNetwork.push(network);
+    return acc;
+  }, new Map<TInstanceAddressType, TNetwork[]>());
+
 export const getInstanceDetail = (
   instanceDto: TInstanceDetailDto,
+  dedicatedUrl: string,
+  projectId: string,
 ): TInstanceDetail => ({
   ...instanceDto,
   flavorName: instanceDto.flavor.name,
@@ -215,6 +279,7 @@ export const getInstanceDetail = (
   storage: `${instanceDto.flavor.specs.storage}`,
   publicBandwidth: `${instanceDto.flavor.specs.bandwidth.public}`,
   imageName: instanceDto.image.name,
+  networks: mapInstanceNetworks(instanceDto.addresses, dedicatedUrl, projectId),
   sshLogin: instanceDto.login,
   status: getInstanceStatus(instanceDto.status),
   isEditionEnabled: isEditionEnabled(instanceDto.actions),
