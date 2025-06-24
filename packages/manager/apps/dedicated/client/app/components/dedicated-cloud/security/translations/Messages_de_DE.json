@@ -17,9 +17,9 @@
   "dedicatedCloud_SECURITY_allow": "Recht",
   "dedicatedCloud_SECURITY_description": "Beschreibung",
   "dedicatedCloud_SECURITY_empty_policies": "Kein IP-Bereich",
-  "dedicatedCloud_configuration_SECURITY_status_TO_DELETE": "Zu löschen",
-  "dedicatedCloud_configuration_SECURITY_status_ALLOWED": "Autorisiert und eingerichtet",
-  "dedicatedCloud_configuration_SECURITY_status_TO_UPDATE": "Update wird ausgeführt",
+  "dedicatedCloud_configuration_SECURITY_status_toDelete": "Zu löschen",
+  "dedicatedCloud_configuration_SECURITY_status_allowed": "Autorisiert und eingerichtet",
+  "dedicatedCloud_configuration_SECURITY_status_toUpdate": "Update wird ausgeführt",
   "dedicatedCloud_SECURITY_modify": "IP-Bereich ändern",
   "dedicatedCloud_SECURITY_delete": "IP-Bereich löschen",
   "dedicatedCloud_vm_encryption_kms_title": "Virtual Machine Encryption Key Management Servers",
@@ -46,8 +46,5 @@
   "dedicatedCloud_SECURITY_change_logout_policy": "Abmeldeeinstellungen ändern",
   "dedicatedCloud_SECURITY_add_IP": "Neuen IP-Bereich hinzufügen",
   "dedicatedCloud_SECURITY_delete_IP": "IP-Bereiche löschen",
-  "dedicatedCloud_dashboard_loading_error": "Beim Laden der Informationen Ihres Dienstes ist ein Fehler aufgetreten.",
-  "dedicatedCloud_configuration_SECURITY_status_toDelete": "Zu löschen",
-  "dedicatedCloud_configuration_SECURITY_status_toUpdate": "Update wird ausgeführt",
-  "dedicatedCloud_configuration_SECURITY_status_allowed": "Autorisiert und eingerichtet"
+  "dedicatedCloud_dashboard_loading_error": "Beim Laden der Informationen Ihres Dienstes ist ein Fehler aufgetreten."
 }

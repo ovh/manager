@@ -1,5 +1,8 @@
 {
   "dedicatedCloud_USER_rights_management_by_datacenter": "Gestione dei diritti di <b>{{t0}}</b> per datacenter",
+  "dedicatedCloud_USER_rights_management_by_datacenter_user": "Gestione dei diritti dell'utente {{t0}} per datacenter",
+  "dedicatedCloud_USER_rights_management_by_datacenter_group": "Gestione dei diritti del gruppo {{t0}} per datacenter",
+  "dedicatedCloud_USER_rights_management_by_datacenter_role": "Gestione dei diritti del ruolo {{t0}} per datacenter",
   "dedicatedCloud_USER_warning_line": "Conferma o annulla la modifica apportata ai diritti dell'utente",
   "dedicatedCloud_datacenter_count": "Datacenter",
   "dedicatedCloud_USER_access_vsphere": "Accesso vSphere",
@@ -48,13 +51,8 @@
   "dedicatedCloud_USER_right_vlan_readonly": "Accesso in sola lettura",
   "dedicatedCloud_USER_right_vlan_MANAGER": "Permette di gestire le \"port groups\" dello switch virtuale (creazione, modifica, eliminazione). Solo per SDDC e pack Hosted Private Cloud Premier.",
   "dedicatedCloud_USER_right_vlan_manager": "Permette di gestire le \"port groups\" dello switch virtuale (creazione, modifica, eliminazione). Solo per SDDC e pack Hosted Private Cloud Premier.",
-  "dedicatedCloud_USER_right_resources": "Aggiungi risorse",
-  "dedicatedCloud_USER_right_resources_help": "Permesso di aggiungere risorse supplementari tramite il plugin OVHcloud nel client vSphere",
   "dedicatedCloud_USER_resource": "Gestione di host e storage",
   "dedicatedCloud_USER_VM_NETWORK_ROLE": "Accesso al vmNetwork",
   "dedicatedCloud_USER_NETWORK_ROLE_EPCC": "Accesso a V(x)LAN/GENEVE",
-  "dedicatedCloud_USER_NETWORK_ROLE_MBM": "Accesso alle VLAN",
-  "dedicatedCloud_USER_rights_management_by_datacenter_user": "Gestione dei diritti dell'utente {{t0}} per datacenter",
-  "dedicatedCloud_USER_rights_management_by_datacenter_group": "Gestione dei diritti del gruppo {{t0}} per datacenter",
-  "dedicatedCloud_USER_rights_management_by_datacenter_role": "Gestione dei diritti del ruolo {{t0}} per datacenter"
+  "dedicatedCloud_USER_NETWORK_ROLE_MBM": "Accesso alle VLAN"
 }
