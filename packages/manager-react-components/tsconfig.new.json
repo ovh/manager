@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "strict": true
+  },
+  "include": ["./src/components/Breadcrumb/*"],
+  "exclude": [
+    "./src/hooks/*",
+    "./src/utils/*",
+    "./src/tailwind/*",
+    "./src/__mocks__/*",
+    "./src/enumTypes/*"
+  ]
+}
