@@ -78,7 +78,7 @@ exports[`ListingPage > should match snapshot when is loading false 1`] = `
               </div>
               <ods-select
                 data-testid="add-filter_select_idColumn"
-                name="add-filter_select_idColumn"
+                name="add-filter_select_idColumn-username"
                 value="username"
               >
                 <option
@@ -494,7 +494,7 @@ exports[`ListingPage > should match snapshot when is loading true 1`] = `
               </div>
               <ods-select
                 data-testid="add-filter_select_idColumn"
-                name="add-filter_select_idColumn"
+                name="add-filter_select_idColumn-username"
                 value="username"
               >
                 <option
