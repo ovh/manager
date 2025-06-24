@@ -16,7 +16,7 @@ import {
   ODS_MESSAGE_TYPE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { TRACKING } from '../../src/configuration/tracking.constants';
+import { TRACKING } from '@/configuration/tracking.constants';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 import Metric from '@/components/Metric';
 import { useDateLocale } from '@/hooks/metric/useDateLocale.hook';

@@ -24,7 +24,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { z } from 'zod';
-import { TRACKING } from '../../../../src/configuration/tracking.constants';
+import { TRACKING } from '@/configuration/tracking.constants';
 import getLocaleForDatePicker from '@/components/utils/getLocaleForDatepicker';
 import { useCreateToken } from '@/hooks/api/database/token/useToken.hook';
 import { TokenData } from '@/types/cloud/project/database/token/index';
