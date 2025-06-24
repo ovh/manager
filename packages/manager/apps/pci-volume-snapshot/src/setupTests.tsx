@@ -220,9 +220,14 @@ vi.mock('date-fns', async (importOriginal) => {
 
 vi.mock('date-fns/locale', () => ({
   enUS: { code: 'en' },
+  enGB: { code: 'en-GB' },
   fr: { code: 'fr' },
+  frCA: { code: 'fr-CA' },
   de: { code: 'de' },
   es: { code: 'es' },
+  it: { code: 'it' },
+  pl: { code: 'pl' },
+  pt: { code: 'pt' },
 }));
 
 vi.mock('@ovh-ux/manager-core-utils', () => ({
