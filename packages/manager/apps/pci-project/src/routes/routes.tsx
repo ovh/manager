@@ -5,17 +5,16 @@ import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
-const ListingPage = lazy(() => import('@/pages/listing/Listing'));
-const DashboardPage = lazy(() => import('@/pages/dashboard/Dashboard.page'));
-const GeneralInfosPage = lazy(() =>
-  import('@/pages/dashboard/general-informations'),
+const MainPage = lazy(() => import('@/pages/main/Main.page'));
+const DashboardPage = lazy(() =>
+  import('@/pages/main/dashboard/Dashboard.page'),
 );
-const Tab2Page = lazy(() => import('@/pages/dashboard/tab2'));
+const SettingsPage = lazy(() => import('@/pages/main/settings/Settings.page'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding'));
 
 export default (
   <Route
-    path="/pci/projects"
+    path={urls.root}
     Component={LayoutPage}
     errorElement={
       <ErrorBoundary
@@ -25,20 +24,10 @@ export default (
       />
     }
   >
-    <Route
-      path={urls.listing}
-      Component={ListingPage}
-      handle={{
-        tracking: {
-          pageName: 'listing',
-          pageType: PageType.listing,
-        },
-      }}
-    />
-    <Route path={urls.dashboard} Component={DashboardPage}>
+    <Route path=":resourceName" Component={MainPage}>
       <Route
-        path=""
-        Component={GeneralInfosPage}
+        index
+        Component={DashboardPage}
         handle={{
           tracking: {
             pageName: 'dashboard',
@@ -47,11 +36,11 @@ export default (
         }}
       />
       <Route
-        path={urls.tab2}
-        Component={Tab2Page}
+        path={urls.settings}
+        Component={SettingsPage}
         handle={{
           tracking: {
-            pageName: 'tab2',
+            pageName: 'settings',
             pageType: PageType.dashboard,
           },
         }}

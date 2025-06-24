@@ -3,5 +3,5 @@ export const urls = {
   onboarding: 'onboarding',
   listing: '',
   dashboard: ':resourceName',
-  tab2: 'tab2',
+  settings: 'edit',
 };
