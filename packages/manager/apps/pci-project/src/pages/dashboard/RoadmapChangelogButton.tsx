@@ -1,0 +1,12 @@
+import { ChangelogButton } from '@ovh-ux/manager-react-components';
+
+export const ROADMAP_CHANGELOG_LINKS = {
+  changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
+  roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
+  'feature-request':
+    'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+};
+
+export default function RoadmapChangelogButton() {
+  return <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />;
+}
