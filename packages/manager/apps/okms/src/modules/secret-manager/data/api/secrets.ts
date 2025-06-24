@@ -1,6 +1,11 @@
 import apiClient from '@ovh-ux/manager-core-api';
-import { Secret } from '@secret-manager/types/secret.type';
+import {
+  Secret,
+  SecretMetadata,
+  SecretVersion,
+} from '@secret-manager/types/secret.type';
 
+// LIST Secret
 export const secretListQueryKey = (okmsId: string) => [
   'secrets',
   'list',
@@ -13,3 +18,24 @@ export const getSecretList = async (okmsId: string) => {
   );
   return data;
 };
+
+// POST Secret
+export type CreateSecretBody = {
+  path: string;
+  metadata?: Pick<
+    SecretMetadata,
+    'casRequired' | 'customMetadata' | 'deactivateVersionAfter' | 'maxVersions'
+  >;
+  version: Pick<SecretVersion, 'data'>;
+};
+export type CreateSecretResponse = Pick<Secret, 'path' | 'metadata'>;
+
+// PUT Secret
+export type UpdateSecretBody = {
+  metadata?: Pick<
+    SecretMetadata,
+    'casRequired' | 'customMetadata' | 'deactivateVersionAfter' | 'maxVersions'
+  >;
+  version: Pick<SecretVersion, 'data'>;
+};
+export type UpdateSecretResponse = Pick<Secret, 'path' | 'metadata'>;
