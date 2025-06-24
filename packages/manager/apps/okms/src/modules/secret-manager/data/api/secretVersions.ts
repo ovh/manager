@@ -1,9 +1,13 @@
-import { SecretVersion } from '@secret-manager/types/secret.type';
+import {
+  SecretVersion,
+  SecretVersionDataField,
+  SecretVersionWithData,
+} from '@secret-manager/types/secret.type';
 
 // POST version
-export type CreateSecretVersionBody = Pick<SecretVersion, 'data'>;
-export type CreateSecretVersionResponse = SecretVersion;
+export type CreateSecretVersionBody = SecretVersionDataField;
+export type CreateSecretVersionResponse = SecretVersionWithData;
 
 // PUT version
 export type UpdateSecretVersionBody = Pick<SecretVersion, 'state'>;
-export type UpdateSecretVersionResponse = Omit<SecretVersion, 'data'>;
+export type UpdateSecretVersionResponse = SecretVersion;
