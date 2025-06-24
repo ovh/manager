@@ -8,7 +8,6 @@ export default class LogsRolesCtrl {
   constructor(
     $state,
     $stateParams,
-    coreURLBuilder,
     ouiDatagridService,
     CucCloudMessage,
     CucControllerHelper,
@@ -16,16 +15,11 @@ export default class LogsRolesCtrl {
   ) {
     this.$state = $state;
     this.$stateParams = $stateParams;
-    this.coreURLBuilder = coreURLBuilder;
     this.ouiDatagridService = ouiDatagridService;
     this.serviceName = this.$stateParams.serviceName;
     this.CucControllerHelper = CucControllerHelper;
     this.LogsRolesService = LogsRolesService;
     this.CucCloudMessage = CucCloudMessage;
-  }
-
-  $onInit() {
-    this.iamUrl = this.coreURLBuilder.buildURL('iam', '/#');
   }
 
   loadRoles({ offset, pageSize = 1, sort, criteria }) {
