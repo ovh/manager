@@ -26,8 +26,8 @@ describe('OnBoardingPage', () => {
       getByText('pci_projects_project_storages_snapshots_title'),
     ).toBeVisible();
     expect(
-      container.querySelector(
-        'ods-button[label="pci_projects_project_storages_snapshots_onboarding_action_label"]',
+      getByText(
+        'pci_projects_project_storages_snapshots_onboarding_action_label',
       ),
     ).toBeVisible();
   });

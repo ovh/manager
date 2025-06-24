@@ -14,5 +14,11 @@ export interface LinksProps {
   target?: string;
   type?: LinkType;
   onClickReturn?: () => void;
-  isDisabled?: boolean;
+  // Iam trigger
+  iamActions?: string[];
+  urn?: string;
+  displayTooltip?: boolean;
+  isIamTrigger?: boolean;
+  disabledIamCheck?: boolean;
+  disabled?: boolean;
 }

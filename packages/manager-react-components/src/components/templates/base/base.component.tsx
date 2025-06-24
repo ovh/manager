@@ -43,11 +43,12 @@ export const BaseLayout = ({
         <Links
           data-testid="manager-back-link"
           onClickReturn={onClickReturn}
-          label={backLinkLabel}
           type={LinkType.back}
           target="_self"
           href={hrefPrevious}
-        />
+        >
+          {backLinkLabel}
+        </Links>
       </div>
     )}
     {description && (
