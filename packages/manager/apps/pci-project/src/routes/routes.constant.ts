@@ -1,7 +1,7 @@
-export const APP_URL = {
-  root: '/',
+export const urls = {
+  root: '/public-cloud/pci/projects',
   onboarding: 'onboarding',
   listing: '',
-  dashboard: ':serviceName',
+  dashboard: ':resourceName',
   tab2: 'tab2',
 };

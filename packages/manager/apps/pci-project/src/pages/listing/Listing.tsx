@@ -48,7 +48,7 @@ export default function Listing() {
   // };
 
   if (isError) {
-    const { response } = error as ErrorResponse;
+    const { response }: any = error;
     const errorObj = {
       data: error,
       headers: response?.headers,
@@ -75,7 +75,7 @@ export default function Listing() {
   const TopbarCTA = () => (
     <div>
       <OdsButton
-        variant={ODS_BUTTON_VARIANT.ghost}
+        icon={ODS_ICON_NAME.plus}
         size={ODS_BUTTON_SIZE.sm}
         label={t('pci_projects_create_project')}
       />

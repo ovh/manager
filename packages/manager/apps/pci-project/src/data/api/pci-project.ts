@@ -1,6 +1,7 @@
 import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
+import { TProject } from '@ovh-ux/manager-pci-common';
 
-export type GetcloudProjectListParams = {
+export type GetCloudProjectListParams = {
   /** Filter resources on IAM tags */
   iamTags: unknown;
 };
@@ -10,23 +11,22 @@ export const getcloudProjectListQueryKey = ['get/cloud/project'];
 /**
  * Operations about the PUBLICCLOUD service : List available services
  */
-export const getcloudProjectList = async (params: GetcloudProjectListParams) =>
+export const getCloudProjectList = async (params: GetCloudProjectListParams) =>
   apiClient.v6.get('/cloud/project', { data: params });
-export type GetcloudProjectServiceParams = {
+export type GetCloudProjectServiceParams = {
   /** Service name */
   serviceName?: string;
 };
 
-export const getcloudProjectServiceQueryKey = (
-  params: GetcloudProjectServiceParams,
+export const getCloudProjectServiceQueryKey = (
+  params: GetCloudProjectServiceParams,
 ) => [`get/cloud/project/${params.serviceName}`];
 
 /**
  * Operations about the PUBLICCLOUD service : Get this object properties
  */
-export const getcloudProjectService = async (
-  params: GetcloudProjectServiceParams,
-) => apiClient.v6.get(`/cloud/project/${params.serviceName}`);
+export const getCloudProjectService = async (serviceName: string) =>
+  apiClient.v6.get<TProject>(`/cloud/project/${serviceName}`);
 
 /**
  *  Get listing with iceberg V6
