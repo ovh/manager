@@ -44,6 +44,15 @@ export const useDatagridColumn = () => {
       label: t('kube_list_id'),
     },
     {
+      id: 'plan',
+      cell: (props: TKube) => (
+        <DataGridTextCell>
+          {t(`kube:kube_service_cluster_plan_${props.plan}`)}
+        </DataGridTextCell>
+      ),
+      label: t('kube:kube_service_cluster_plan'),
+    },
+    {
       id: 'region',
       cell: (props: TKube) => (
         <DataGridTextCell>{props.region}</DataGridTextCell>

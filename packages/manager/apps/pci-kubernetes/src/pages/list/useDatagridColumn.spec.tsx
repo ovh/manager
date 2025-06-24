@@ -4,6 +4,7 @@ import { useDatagridColumn } from './useDatagridColumn';
 const test = [
   ['name', 'kube_list_name'],
   ['id', 'kube_list_id'],
+  ['plan', 'kube:kube_service_cluster_plan'],
   ['region', 'kube_list_region'],
   ['mode', 'kubernetes_containers_deployment_mode_label'],
   ['attachedTo', 'kube_list_network_attached'],
