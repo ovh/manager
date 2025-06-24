@@ -6,7 +6,7 @@ export const mockSecret1: Secret = {
     id: 1,
     createdAt: '2023-01-15T08:30:45Z',
     deactivatedAt: '',
-    state: 'ENABLED',
+    state: 'ACTIVE',
   },
   metadata: {
     casRequired: false,
@@ -34,7 +34,7 @@ export const mockSecret2: Secret = {
     id: 3,
     createdAt: '2023-04-22T14:15:30Z',
     deactivatedAt: '',
-    state: 'ENABLED',
+    state: 'ACTIVE',
   },
   metadata: {
     casRequired: true,
