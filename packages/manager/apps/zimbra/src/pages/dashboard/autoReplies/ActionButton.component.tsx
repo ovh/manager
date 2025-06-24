@@ -11,7 +11,6 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { AutoReplyItem } from './AutoReplies.page';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -20,6 +19,7 @@ import {
   DELETE_AUTO_REPLY,
   EMAIL_ACCOUNT_DELETE_AUTO_REPLY,
 } from '@/tracking.constants';
+import { AutoReplyItem } from './AutoReplies.types';
 
 export interface ActionButtonAutoReplyProps {
   item: AutoReplyItem;
