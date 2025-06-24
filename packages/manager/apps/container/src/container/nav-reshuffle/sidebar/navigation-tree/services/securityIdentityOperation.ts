@@ -58,6 +58,17 @@ sioUniverse.children = [
         },
       },
       {
+        id: 'iam-tag-management',
+        idAttr: 'iam-tag-management-link',
+        translation: 'sidebar_security_identity_operations_iam_tag-management',
+        universe: sioUniverse.id,
+        features: ['identity-access-management:tag-management'],
+        routing: {
+          application: 'identity-access-management',
+          hash: '#/tag-manager',
+        },
+      },
+      {
         id: 'iam-logs',
         idAttr: 'iam-logs-link',
         translation: 'sidebar_security_identity_operations_iam_logs',
