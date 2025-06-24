@@ -25,28 +25,31 @@ export default function DatagridColumnActionMenu({
   serviceRegistrationStatus,
 }: DatagridColumnActionMenuProps) {
   const { t } = useTranslation('allDom');
+  const navigate = useNavigate();
+
+  const renewAction =
+    serviceRenewMode === ServiceInfoRenewMode.Automatic ? 'disable' : 'enable';
+
   const { data: billingUrl } = useNavigationGetUrl([
-    'billing',
-    '/autorenew',
-    {},
+    'dedicated',
+    `#/billing/${renewAction}`,
+    { selectedType: 'ALL_DOM', searchText: serviceName, services: serviceId },
   ]);
+
   const { data: handleContactUrl } = useNavigationGetUrl([
-    'account',
-    '/contacts',
-    {},
+    'new-account',
+    '/contacts/services/edit',
+    { categoryType: 'ALL_DOM', service: serviceName },
   ]);
+
   const disableAction =
     serviceRegistrationStatus === ServiceResourceStatus.Deleting ||
     serviceRegistrationStatus === ServiceResourceStatus.Suspended;
 
-  let url = 'terminate';
+  let terminateURL = 'terminate';
   if (isServiceNameUrl) {
-    url += `/${serviceName}`;
+    terminateURL += `/${serviceName}`;
   }
-
-  const renewAction =
-    serviceRenewMode === ServiceInfoRenewMode.Automatic ? 'disable' : 'enable';
-  const navigate = useNavigate();
 
   return (
     <ActionMenu
@@ -64,19 +67,21 @@ export default function DatagridColumnActionMenu({
         {
           id: 2,
           label: t(`allDom_table_action_${renewAction}_renewal`),
-          href: `${billingUrl}/${renewAction}?selectedType=ALL_DOM&searchText=${serviceName}&services=${serviceId}`,
+          href: `${billingUrl}`,
+          target: '_blank',
           isDisabled: disableAction,
         },
         {
           id: 3,
           label: t(`allDom_table_action_handle_contacts`),
-          href: `${handleContactUrl}/services/edit?service=${serviceName}&categoryType=ALL_DOM`,
+          href: `${handleContactUrl}`,
+          target: '_blank',
           'data-testid': 'handleContact-button',
         },
         {
           id: 4,
           label: t('allDom_table_action_terminate'),
-          onClick: () => navigate(url),
+          onClick: () => navigate(terminateURL),
           color: ODS_BUTTON_COLOR.critical,
           isDisabled: disableAction,
         },
