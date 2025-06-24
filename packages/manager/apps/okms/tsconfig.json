@@ -20,8 +20,8 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@secret-manager/*": ["src/modules/secret-manager/*"]
+      "@secret-manager/*": ["src/modules/secret-manager/*"],
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"],
