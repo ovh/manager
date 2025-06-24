@@ -17,22 +17,9 @@ import {
   getZimbraPlatformListQueryKey,
   ResourceStatus,
   AccountType,
-  SlotService,
 } from '@/data/api';
 import queryClient from '@/queryClient';
-
-export type EmailAccountItem = {
-  id: string;
-  email: string;
-  offer: string;
-  organizationId: string;
-  organizationLabel: string;
-  used: number;
-  available: number;
-  status: keyof typeof ResourceStatus;
-  slotId: string;
-  service?: SlotService;
-};
+import { EmailAccountItem } from './EmailAccounts.types';
 
 const columns: DatagridColumn<EmailAccountItem>[] = [
   {

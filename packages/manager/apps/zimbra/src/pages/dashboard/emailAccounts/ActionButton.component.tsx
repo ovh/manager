@@ -11,7 +11,6 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { EmailAccountItem } from './EmailAccountsDatagrid.component';
 import { usePlatform } from '@/data/hooks';
 import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -29,6 +28,7 @@ import {
   UPGRADE_SLOT,
 } from '@/tracking.constants';
 import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
+import { EmailAccountItem } from './EmailAccounts.types';
 
 interface ActionButtonEmailAccountProps {
   item: EmailAccountItem;
