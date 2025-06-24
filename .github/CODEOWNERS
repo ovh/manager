@@ -30,6 +30,7 @@
 /packages/manager/apps/hub @ovh/dev-manager-gcj-all
 /packages/manager/apps/hycu @ovh/dev-manager-hpc-all
 /packages/manager/apps/iam @ovh/dev-manager-enabler-all
+/packages/manager/apps/identity-access-management @ovh/dev-manager-infra-all @ovh/dev-manager-enabler-all
 /packages/manager/apps/iplb @ovh/dev-manager-infra-all
 /packages/manager/apps/key-management-service @ovh/dev-manager-kms
 /packages/manager/apps/ips @ovh/dev-manager-infra-all
