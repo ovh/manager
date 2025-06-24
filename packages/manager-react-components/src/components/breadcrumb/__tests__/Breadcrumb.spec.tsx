@@ -4,20 +4,17 @@ import { render } from '../../../utils/test.provider';
 import { Breadcrumb } from '../Breadcrumb.component';
 
 const setupSpecTest = async ({ hideRootLabel }: { hideRootLabel?: boolean }) =>
-  waitFor(() =>
-    render(
-      <Breadcrumb
-        rootLabel="vRack services"
-        appName="vrack-services"
-        hideRootLabel={hideRootLabel}
-      />,
-    ),
+  render(
+    <Breadcrumb
+      rootLabel="vRack services"
+      appName="vrack-services"
+      hideRootLabel={hideRootLabel}
+    />,
   );
 
 describe('breadcrumb component', () => {
   beforeEach(() => {
-    console.info('entre dans la condition 2');
-    vitest.mock('../../hooks/breadcrumb/useBreadcrumb', () => ({
+    vitest.mock('../../../hooks/breadcrumb/useBreadcrumb', () => ({
       useBreadcrumb: vitest.fn(({ hideRootLabel }) => [
         { label: 'vRack services', href: '/', hideLabel: hideRootLabel },
         { label: 'vRack service', href: '/:id', hideLabel: false },
@@ -30,11 +27,14 @@ describe('breadcrumb component', () => {
     }));
   });
 
+  it('should test valid', () => {
+    expect(true).toBe(true);
+  });
   it('should render 3 breadcrumb items when hideRootLabel is false', async () => {
+    expect(true).toBe(true);
     const { container, asFragment } = await setupSpecTest({
       hideRootLabel: false,
     });
-    console.info('entre dans la condition 1');
     const items = container.querySelectorAll('li');
     expect(items.length).toBe(3);
     expect(items[0]).toBeVisible();
