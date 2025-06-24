@@ -24,7 +24,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { TRACKING } from '../../src/configuration/tracking.constants';
+import { TRACKING } from '@/configuration/tracking.constants';
 import CreateModal from '@/components/Token/CreateModal';
 import UpdateModal from '@/components/Token/UpdateModal';
 import DeleteModal from '@/components/Token/DeleteModal';

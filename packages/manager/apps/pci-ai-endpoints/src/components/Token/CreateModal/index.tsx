@@ -15,7 +15,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { TRACKING } from '../../../../src/configuration/tracking.constants';
+import { TRACKING } from '@/configuration/tracking.constants';
 import { TokenData } from '@/types/cloud/project/database/token/index';
 import CreateForm from './CreateForm';
 
