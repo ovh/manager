@@ -27,16 +27,7 @@ import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 import { AccountStatistics, ResourceStatus, DomainType } from '@/data/api';
 import { ADD_DOMAIN } from '@/tracking.constants';
-
-export type DomainItem = {
-  id: string;
-  name: string;
-  organizationId: string;
-  organizationLabel: string;
-  account: number;
-  status: keyof typeof ResourceStatus;
-  cnameToCheck?: string;
-};
+import { DomainItem } from './Domains.types';
 
 const columns: DatagridColumn<DomainItem>[] = [
   {

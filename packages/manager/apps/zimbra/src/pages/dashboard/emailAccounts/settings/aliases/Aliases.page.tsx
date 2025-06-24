@@ -19,7 +19,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { AliasType, ResourceStatus } from '@/data/api';
+import { AliasType } from '@/data/api';
 import { usePlatform, useAliases } from '@/data/hooks';
 import { useDebouncedValue, useGenerateUrl } from '@/hooks';
 import ActionButtonAlias from './ActionButton.component';
@@ -27,12 +27,7 @@ import { BadgeStatus } from '@/components';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { EMAIL_ACCOUNT_ADD_ALIAS } from '@/tracking.constants';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
-
-export type AliasItem = {
-  id: string;
-  alias: string;
-  status: keyof typeof ResourceStatus;
-};
+import { AliasItem } from './Aliases.types';
 
 const columns: DatagridColumn<AliasItem>[] = [
   {

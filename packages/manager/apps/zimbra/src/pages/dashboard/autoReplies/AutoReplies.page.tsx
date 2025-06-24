@@ -33,15 +33,7 @@ import {
   ADD_AUTO_REPLY,
   EMAIL_ACCOUNT_ADD_AUTO_REPLY,
 } from '@/tracking.constants';
-
-export type AutoReplyItem = {
-  id: string;
-  name: string;
-  from: string;
-  until: string;
-  copyTo: string;
-  status: keyof typeof ResourceStatus;
-};
+import { AutoReplyItem } from './AutoReplies.types';
 
 const items: AutoReplyItem[] = [
   {

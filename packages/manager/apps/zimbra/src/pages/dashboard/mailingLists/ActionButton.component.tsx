@@ -11,7 +11,6 @@ import {
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { MailingListItem } from './MailingLists.page';
 import { ResourceStatus } from '@/data/api';
 import {
   CONFIGURE_DELEGATION_MAILING_LIST,
@@ -19,6 +18,7 @@ import {
   DELETE_MAILING_LIST,
   EDIT_MAILING_LIST,
 } from '@/tracking.constants';
+import { MailingListItem } from './MailingLists.types';
 
 interface ActionButtonMailingListProps {
   item: MailingListItem;

@@ -12,9 +12,9 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { DomainItem } from './Domains.page';
 import { useGenerateUrl } from '@/hooks';
 import { VERIFY_DOMAIN } from '@/tracking.constants';
+import { DomainItem } from './Domains.types';
 
 export type CnameBadgeProps = {
   item: DomainItem;

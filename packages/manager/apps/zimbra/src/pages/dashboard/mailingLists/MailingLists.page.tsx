@@ -22,22 +22,11 @@ import { usePlatform, useMailingLists } from '@/data/hooks';
 import { useGenerateUrl, useOverridePage } from '@/hooks';
 import ActionButtonMailingList from './ActionButton.component';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { MailingListType, ResourceStatus } from '@/data/api';
+import { MailingListType } from '@/data/api';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 import { BadgeStatus, LabelChip } from '@/components';
 import { ADD_MAILING_LIST } from '@/tracking.constants';
-
-export type MailingListItem = {
-  id: string;
-  name: string;
-  organizationLabel: string;
-  organizationId: string;
-  owner: string;
-  aliases: number;
-  moderators: number;
-  subscribers: number;
-  status: keyof typeof ResourceStatus;
-};
+import { MailingListItem } from './MailingLists.types';
 
 const columns: DatagridColumn<MailingListItem>[] = [
   {
