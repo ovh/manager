@@ -15,4 +15,5 @@ export interface LinksProps {
   type?: LinkType;
   onClickReturn?: () => void;
   isDisabled?: boolean;
+  'data-testid'?: string;
 }

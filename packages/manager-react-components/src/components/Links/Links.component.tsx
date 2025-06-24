@@ -8,9 +8,16 @@ export const Links: React.FC<LinksProps> = ({
   type,
   href,
   className = '',
+  'data-testid': dataTestId,
   ...props
 }) => (
-  <Link className={className} href={href} onClick={onClickReturn} {...props}>
+  <Link
+    className={className}
+    href={href}
+    onClick={onClickReturn}
+    data-testid={dataTestId}
+    {...props}
+  >
     {type === LinkType.back && <Icon name="arrow-left" />}
     {children}
     {type === LinkType.external && <Icon name="external-link" />}
