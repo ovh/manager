@@ -36,6 +36,7 @@ export default function ServerSidebarIndex() {
       '/documents',
     ],
     iam: '*',
+    'identity-access-management': '*',
     'carbon-calculator': '*',
     account: '*',
     billing: '*',
@@ -45,6 +46,10 @@ export default function ServerSidebarIndex() {
     const accountMenuPathEntry = Object.entries(accountMenuPath).find(
       ([path]) => path === application?.container?.path,
     );
+    console.log("CONTAINER", {
+      path: application?.container?.path,
+      accountMenuPathEntry
+    });
     if (accountMenuPathEntry) {
       const [path, routes] = accountMenuPathEntry;
       if (routes === '*') {
