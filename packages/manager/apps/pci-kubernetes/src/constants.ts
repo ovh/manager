@@ -1,4 +1,7 @@
-import { ChangelogLinks } from '@ovh-ux/manager-react-components';
+import {
+  ChangelogLinks,
+  OvhSubsidiary,
+} from '@ovh-ux/manager-react-components';
 
 export const ANTI_AFFINITY_MAX_NODES = 5;
 
@@ -242,4 +245,29 @@ export const DEPLOYMENT_URL = {
     'https://help.ovhcloud.com/csm/es-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066028',
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-gb-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066027',
+};
+
+export const PLAN_DOC_LINKS: Partial<{ [key in OvhSubsidiary]: string }> = {
+  DEFAULT: 'https://www.ovhcloud.com/en/public-cloud/kubernetes/',
+  FR: 'https://www.ovhcloud.com/fr/public-cloud/kubernetes/',
+  MA: 'https://www.ovhcloud.com/fr-ma/public-cloud/kubernetes/',
+  TN: 'https://www.ovhcloud.com/fr-tn/public-cloud/kubernetes/',
+  SN: 'https://www.ovhcloud.com/fr-sn/public-cloud/kubernetes/',
+  QC: 'https://www.ovhcloud.com/fr-ca/public-cloud/kubernetes/',
+  GB: 'https://www.ovhcloud.com/en-gb/public-cloud/kubernetes/',
+  IE: 'https://www.ovhcloud.com/en-ie/public-cloud/kubernetes/',
+  WE: 'https://www.ovhcloud.com/en/public-cloud/kubernetes/',
+  CA: 'https://www.ovhcloud.com/en-ca/public-cloud/kubernetes/',
+  AU: 'https://www.ovhcloud.com/en-au/public-cloud/kubernetes/',
+  SG: 'https://www.ovhcloud.com/en-sg/public-cloud/kubernetes/',
+  ASIA: 'https://www.ovhcloud.com/asia/public-cloud/kubernetes/',
+  IN: 'https://www.ovhcloud.com/en-in/public-cloud/kubernetes/',
+  ES: 'https://www.ovhcloud.com/es-es/public-cloud/kubernetes/',
+  WS: 'https://www.ovhcloud.com/es/public-cloud/kubernetes/',
+  PT: 'https://www.ovhcloud.com/pt/public-cloud/kubernetes/',
+  IT: 'https://www.ovhcloud.com/it/public-cloud/kubernetes/',
+  PL: 'https://www.ovhcloud.com/pl/public-cloud/kubernetes/',
+  DE: 'https://www.ovhcloud.com/de/public-cloud/kubernetes/',
+  NL: 'https://www.ovhcloud.com/nl/public-cloud/kubernetes/',
+  US: 'https://us.ovhcloud.com/public-cloud/kubernetes/',
 };
