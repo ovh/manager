@@ -2,7 +2,7 @@ import apiClient from '@ovh-ux/manager-core-api';
 import {
   Secret,
   SecretMetadata,
-  SecretVersion,
+  SecretVersionDataField,
 } from '@secret-manager/types/secret.type';
 
 // LIST Secret
@@ -26,7 +26,7 @@ export type CreateSecretBody = {
     SecretMetadata,
     'casRequired' | 'customMetadata' | 'deactivateVersionAfter' | 'maxVersions'
   >;
-  version: Pick<SecretVersion, 'data'>;
+  version: SecretVersionDataField;
 };
 export type CreateSecretResponse = Pick<Secret, 'path' | 'metadata'>;
 
@@ -36,6 +36,6 @@ export type UpdateSecretBody = {
     SecretMetadata,
     'casRequired' | 'customMetadata' | 'deactivateVersionAfter' | 'maxVersions'
   >;
-  version: Pick<SecretVersion, 'data'>;
+  version: SecretVersionDataField;
 };
 export type UpdateSecretResponse = Pick<Secret, 'path' | 'metadata'>;
