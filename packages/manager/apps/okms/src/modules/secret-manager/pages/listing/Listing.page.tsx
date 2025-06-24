@@ -3,7 +3,7 @@ import { BaseLayout, Datagrid } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useSecretList } from '@/modules/secret-manager/data/hooks/useSecretList';
+import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
 import {
   DatagridCellPath,
   DatagridCellVersion,
