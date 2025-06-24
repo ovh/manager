@@ -32,6 +32,13 @@ type AppTracking = Record<
 
 const defineTrackingConfig = <T extends AppTracking>(config: T) => config;
 
+export const wizardPageName = `install_${APP_NAME}`;
+const wizardAction = {
+  install: wizardPageName,
+  activate: `activate_${APP_NAME}`,
+  start: `start_${APP_NAME}`,
+};
+
 export const TRACKING = defineTrackingConfig({
   dashboard: {
     linkClick: ({
@@ -70,13 +77,13 @@ export const TRACKING = defineTrackingConfig({
       location: PageLocation.page,
       buttonType: ButtonType.button,
       actionType: 'action',
-      actions: ['install_sap-installation'],
+      actions: [wizardAction.install],
     },
     submit: (action: 'confirm' | 'cancel'): TrackingClickParams => ({
       location: PageLocation.popup,
       buttonType: ButtonType.button,
       actionType: 'action',
-      actions: ['install_sap-installation', action],
+      actions: [wizardAction.install, action],
     }),
   },
   installation: {
@@ -84,49 +91,49 @@ export const TRACKING = defineTrackingConfig({
       location: PageLocation.funnel,
       buttonType: ButtonType.button,
       actionType: 'navigation',
-      actions: ['add_sap-installation', 'deployment'],
+      actions: [wizardAction.install, 'deployment'],
     },
     completeInformations: {
       location: PageLocation.funnel,
       buttonType: ButtonType.button,
       actionType: 'navigation',
-      actions: ['add_sap-installation', 'information'],
+      actions: [wizardAction.install, 'information'],
     },
     provideSources: {
       location: PageLocation.funnel,
       buttonType: ButtonType.button,
       actionType: 'navigation',
-      actions: ['add_sap-installation', 'sources'],
+      actions: [wizardAction.install, 'sources'],
     },
     defineOsConfig: {
       location: PageLocation.funnel,
       buttonType: ButtonType.button,
       actionType: 'navigation',
-      actions: ['add_sap-installation', 'os-configuration'],
+      actions: [wizardAction.install, 'os-configuration'],
     },
     virtualMachines: {
       location: PageLocation.funnel,
       buttonType: ButtonType.button,
       actionType: 'navigation',
-      actions: ['add_sap-installation', 'virtual-machines'],
+      actions: [wizardAction.install, 'virtual-machines'],
     },
     enableAdditionalFeatures: {
       location: PageLocation.funnel,
       buttonType: ButtonType.button,
       actionType: 'navigation',
-      actions: ['activate_sap-installation', 'additional-features'],
+      actions: [wizardAction.activate, 'additional-features'],
     },
     startSAPDeployment: {
       location: PageLocation.funnel,
       buttonType: ButtonType.button,
       actionType: 'navigation',
-      actions: ['start_sap-installation', 'deployment'],
+      actions: [wizardAction.start, 'deployment'],
     },
     submitSummary: (action: 'confirm' | 'previous') => ({
       location: PageLocation.funnel,
       buttonType: ButtonType.button,
       actionType: 'navigation',
-      actions: ['install_sap-installation', action],
+      actions: [wizardAction.install, action],
     }),
   },
 });
