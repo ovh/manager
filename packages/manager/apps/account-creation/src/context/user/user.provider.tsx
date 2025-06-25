@@ -4,6 +4,7 @@ import { Country, LegalForm, Subsidiary } from '@ovh-ux/manager-config';
 import userContext from '@/context/user/user.context';
 import { useMe } from '@/data/hooks/useMe';
 import { urls } from '@/routes/routes.constant';
+import { Company } from '@/types/company';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -18,6 +19,15 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     undefined,
   );
   const [country, setCountry] = useState<Country | undefined>(undefined);
+  const [organisation, setOrganisation] = useState<string | undefined>(
+    undefined,
+  );
+  const [
+    companyNationalIdentificationNumber,
+    setCompanyNationalIdentificationNumber,
+  ] = useState<string | undefined>(undefined);
+  const [address, setAddress] = useState<string | undefined>(undefined);
+  const [city, setCity] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (isFetched) {
@@ -32,11 +42,29 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     }
   }, [isFetched]);
 
+  const setCompany = (company: Company) => {
+    setOrganisation(company.name);
+    setCompanyNationalIdentificationNumber(
+      company.secondaryCNIN || company.primaryCNIN,
+    );
+    if (company.address) {
+      setAddress(company.address);
+    }
+    if (company.city) {
+      setCity(company.city);
+    }
+  };
+
   const context = {
     legalForm,
     setLegalForm,
     ovhSubsidiary,
     country,
+    organisation,
+    companyNationalIdentificationNumber,
+    address,
+    city,
+    setCompany,
   };
 
   return (
