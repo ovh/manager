@@ -1,5 +1,6 @@
 import { ServiceDetails } from '@ovh-ux/manager-react-components';
 import { ServiceBillingState, SlotService } from './type';
+import { ZimbraPlanCodes } from '../type';
 
 export const getServiceBillingState = (service: ServiceDetails) => {
   switch (true) {
@@ -23,6 +24,7 @@ export const makeSlotService = (service: ServiceDetails): SlotService => {
     id: service.serviceId,
     nextBillingDate: service.billing?.nextBillingDate,
     state: getServiceBillingState(service),
+    planCode: service.billing.plan.code as ZimbraPlanCodes,
   };
 };
 

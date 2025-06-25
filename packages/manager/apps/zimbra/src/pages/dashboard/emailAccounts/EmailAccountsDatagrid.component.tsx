@@ -114,7 +114,11 @@ export const EmailAccountsDatagrid = () => {
     enabled: !isOverridedPage,
   });
 
-  const { data: services } = useSlotServices({ gcTime: 0 });
+  const { data: services } = useSlotServices({
+    refetchInterval: DATAGRID_REFRESH_INTERVAL,
+    refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+    enabled: !isOverridedPage,
+  });
 
   /* This is necessary to enable back the "Create account" button when your
    * slots are full and you delete an account and the account goes
