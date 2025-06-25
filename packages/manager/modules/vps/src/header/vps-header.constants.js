@@ -1,6 +1,5 @@
 export const STOP_NOTIFICATION_USER_PREF = {
   autoRenew: 'VPS_AUTORENEW_STOP_BOTHER',
-  ipV6: 'VPS_IPV6_STOP_NOTIFICATION',
 };
 
 export const TAB_FEATURES = [
