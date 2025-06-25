@@ -82,7 +82,7 @@ export const Routes: any = [
               },
               {
                 id: subRoutes.upsertDescription,
-                path: urls.listingUpsertDescription,
+                path: urls.upsertDescription,
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/actions/upsertDescription/upsertDescription.page'
@@ -150,6 +150,22 @@ export const Routes: any = [
           },
         },
       },
+      {
+        id: subRoutes.configureEdgeNetworkFirewall,
+        path: urls.configureEdgeNetworkFirewall,
+        ...lazyRouteConfig(() =>
+          import(
+            '@/pages/configureEdgeNetworkFirewall/configureEdgeNetworkFirewall.page'
+          ),
+        ),
+        handle: {
+          tracking: {
+            pageName: 'configure-edge-network-firewall',
+            pageType: PageType.listing,
+          },
+        },
+      },
+
       {
         id: 'onboarding',
         path: urls.onboarding,

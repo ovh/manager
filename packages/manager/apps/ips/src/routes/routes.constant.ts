@@ -11,6 +11,7 @@ export const subRoutes = {
   terminateByoip: 'terminate-byoip',
   upsertDescription: 'upsert-description',
   configureGameFirewall: 'game-firewall',
+  configureEdgeNetworkFirewall: 'edge-network-firewall',
 };
 
 export const urlDynamicParts = {
@@ -26,7 +27,8 @@ export const urls = {
   listing: subRoutes.root,
   listingIpTerminate: `${subRoutes.root}/${subRoutes.terminateIp}/${urlDynamicParts.id}`,
   listingByoipTerminate: `${subRoutes.root}/${subRoutes.terminateByoip}/${urlDynamicParts.id}`,
-  listingUpsertDescription: `${subRoutes.root}/${subRoutes.upsertDescription}/${urlDynamicParts.id}`,
+  upsertDescription: `${subRoutes.root}/${subRoutes.upsertDescription}/${urlDynamicParts.id}`,
+  configureEdgeNetworkFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureEdgeNetworkFirewall}`,
   configureGameFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureGameFirewall}`,
   order: `${subRoutes.root}/${subRoutes.order}`,
   byoip: `${subRoutes.root}/${subRoutes.byoip}`,
