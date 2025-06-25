@@ -96,9 +96,7 @@ export default function Listing() {
     isError,
     isLoading,
     status,
-  } = useOkmsList({
-    pageSize: 10,
-  });
+  } = useOkmsList();
 
   useAutoRefetch({
     queryKey: getOkmsServicesResourceListQueryKey,

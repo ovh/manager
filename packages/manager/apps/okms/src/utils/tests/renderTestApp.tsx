@@ -18,6 +18,10 @@ import {
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
 import {
+  createSecretsMock,
+  CreateSecretsMockParams,
+  getSecretMock,
+  GetSecretMockParams,
   getSecretsMock,
   GetSecretsMockParams,
 } from '@secret-manager/mocks/secrets/secrets.handler';
@@ -71,7 +75,9 @@ export const renderTestApp = async (
     GetIamAuthorizationMockParams &
     DeleteCredentialsMockParams &
     CreateCredentialsMockParams &
-    GetSecretsMockParams = {},
+    GetSecretsMockParams &
+    GetSecretMockParams &
+    CreateSecretsMockParams = {},
 ) => {
   global.server?.resetHandlers(
     ...toMswHandlers([
@@ -89,6 +95,8 @@ export const renderTestApp = async (
       ...getIdentityUserIds(),
       ...getIdentityUsers(),
       ...getSecretsMock(mockParams),
+      ...getSecretMock(mockParams),
+      ...createSecretsMock(mockParams),
     ]),
   );
 

@@ -16,4 +16,18 @@ export const okmsMock: OKMS[] = [
     kmipObjectCount: 1,
     serviceKeyCount: 3,
   },
+  {
+    iam: {
+      displayName: kmsServicesMock.resource.displayName,
+      id: 'cf7d1dc3-20a8-4692-96a6-4b329f94a325',
+      urn: `urn:v1:eu:resource:okms:cf7d1dc3-20a8-4692-96a6-4b329f94a325`,
+    },
+    id: '494cad6b-e64b-4b5a-8803-c8838a78eceb',
+    kmipEndpoint: 'eu-west-sbg.okms.ovh.net:1234',
+    region: 'EU_WEST_SBG',
+    restEndpoint: 'https://eu-west-sbg.okms.ovh.net',
+    swaggerEndpoint: '"https://swagger-eu-west-sbg.okms.ovh.net',
+    kmipObjectCount: 1,
+    serviceKeyCount: 3,
+  },
 ];
