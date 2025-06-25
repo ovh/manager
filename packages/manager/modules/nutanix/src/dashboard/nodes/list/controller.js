@@ -4,6 +4,7 @@ import {
   SERVICE_STATES,
   PREFIX_TRACKING_NUTANIX_DATAGRID,
   PREFIX_TRACKING_NUTANIX_NUTANIX,
+  ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
 } from '../../../constants';
 
 export default class NutanixAllNodesCtrl {
@@ -87,7 +88,8 @@ export default class NutanixAllNodesCtrl {
     this.powerOnNode(nodeName)
       .then(() => {
         this.atInternet.trackPage({
-          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-success::cluster::nodes::poweron-node-${this.nodeId}_success`,
+          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-success::cluster::nodes::poweron-node-${this.commercialRange}_success`,
+          level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
         });
         this.handleSuccess(
           `${this.$translate.instant(
@@ -97,7 +99,8 @@ export default class NutanixAllNodesCtrl {
       })
       .catch((error) => {
         this.atInternet.trackPage({
-          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-error::cluster::nodes::poweron-node-${this.nodeId}_error`,
+          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-error::cluster::nodes::poweron-node-${this.commercialRange}_error`,
+          level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
         });
         this.handleError(
           `${this.$translate.instant(

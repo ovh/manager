@@ -20,6 +20,7 @@ export default {
     isOldCluster: '<',
     orderPrivateBandwidthLink: '<',
     hidePublicBandwidth: '<',
+    commercialRange: '<',
   },
   controller,
   template,

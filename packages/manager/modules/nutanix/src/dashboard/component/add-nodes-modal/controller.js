@@ -1,4 +1,5 @@
 import {
+  ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
   MAX_NODES_BY_CLUSTER,
   PREFIX_TRACKING_NUTANIX_NUTANIX,
   PREFIX_TRACKING_NUTANIX_POPUP,
@@ -65,7 +66,7 @@ export default class {
   }
 
   onCancel() {
-    this.trackClick({
+    this.atInternet.trackClick({
       name: `${PREFIX_TRACKING_NUTANIX_POPUP}::button::order-nodes::cancel`,
       type: 'action',
     });
@@ -73,7 +74,7 @@ export default class {
   }
 
   onSubmit() {
-    this.trackClick({
+    this.atInternet.trackClick({
       name: `${PREFIX_TRACKING_NUTANIX_POPUP}::button::order-nodes::confirm`,
       type: 'action',
     });
@@ -83,8 +84,9 @@ export default class {
 
     this.openExpressOrderTab();
 
-    this.trackPage({
-      name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-success::cluster::nodes::add-node-${this.nodeId}_success`,
+    this.atInternet.trackPage({
+      name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-success::cluster::nodes::add-node-${this.commercialRange}_success`,
+      level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
     });
     this.handleSuccess(this.generateSuccessMessage());
   }

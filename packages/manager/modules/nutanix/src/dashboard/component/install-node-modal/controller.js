@@ -1,4 +1,5 @@
 import {
+  ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
   PREFIX_TRACKING_NUTANIX_NUTANIX,
   PREFIX_TRACKING_NUTANIX_NUTANIX_POPUP,
   PREFIX_TRACKING_NUTANIX_POPUP,
@@ -26,7 +27,8 @@ export default class NutanixDashboarInstallNodeModal {
 
   $onInit() {
     this.atInternet.trackPage({
-      name: `${PREFIX_TRACKING_NUTANIX_NUTANIX_POPUP}::cluster::nodes::install_node::${this.nodeId}`,
+      name: `${PREFIX_TRACKING_NUTANIX_NUTANIX_POPUP}::cluster::nodes::install_node::${this.commercialRange}`,
+      level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
     });
   }
 
@@ -36,7 +38,7 @@ export default class NutanixDashboarInstallNodeModal {
 
   onSubmit() {
     this.atInternet.trackClick({
-      name: `${PREFIX_TRACKING_NUTANIX_POPUP}::button::install_node::confirm::${this.nodeId}`,
+      name: `${PREFIX_TRACKING_NUTANIX_POPUP}::button::install_node::confirm::${this.commercialRange}`,
       type: 'action',
     });
     if (this.installNodeForm.$invalid) {
@@ -52,7 +54,8 @@ export default class NutanixDashboarInstallNodeModal {
     })
       .then(() => {
         this.atInternet.trackPage({
-          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-success::cluster::nodes::install-node-${this.nodeId}_success`,
+          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-success::cluster::nodes::install-node-${this.commercialRange}_success`,
+          level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
         });
         this.handleSuccess(
           `${this.$translate.instant(
@@ -62,7 +65,8 @@ export default class NutanixDashboarInstallNodeModal {
       })
       .catch(() => {
         this.atInternet.trackPage({
-          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-error::cluster::nodes::install-node-${this.nodeId}_error`,
+          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-error::cluster::nodes::install-node-${this.commercialRange}_error`,
+          level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
         });
         this.handleError(
           this.$translate.instant(
@@ -77,7 +81,7 @@ export default class NutanixDashboarInstallNodeModal {
 
   onCancel() {
     this.atInternet.trackClick({
-      name: `${PREFIX_TRACKING_NUTANIX_POPUP}::button::install_node::cancel::${this.nodeId}`,
+      name: `${PREFIX_TRACKING_NUTANIX_POPUP}::button::install_node::cancel::${this.commercialRange}`,
       type: 'action',
     });
     this.goBack();

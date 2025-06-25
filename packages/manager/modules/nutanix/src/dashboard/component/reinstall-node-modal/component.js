@@ -3,7 +3,7 @@ import controller from './controller';
 
 export default {
   bindings: {
-    nodeId: '<',
+    commercialRange: '<',
     goBack: '<',
     availableVersions: '<',
     reinstallNode: '<',

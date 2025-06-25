@@ -84,6 +84,8 @@ export const NUTANIX_AUTHORIZATION_TYPE = {
 export const NUTANIX_GUIDE_LINK =
   'https://portal.nutanix.com/page/documents/list?type=software';
 
+export const ENTERPRISE_SOLUTIONS_LEVEL_2_CODE = '120';
+
 // Base prefixes for different contexts
 export const PREFIX_TRACKING_NUTANIX = 'Enterprise_solutions::nutanix';
 export const PREFIX_TRACKING_NUTANIX_NUTANIX = `${PREFIX_TRACKING_NUTANIX}::::nutanix`;
@@ -92,6 +94,7 @@ export const PREFIX_TRACKING_NUTANIX_DATAGRID = `${PREFIX_TRACKING_NUTANIX}::::d
 export const PREFIX_TRACKING_NUTANIX_POPUP = `${PREFIX_TRACKING_NUTANIX}::::pop-up`;
 
 export default {
+  ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
   PREFIX_TRACKING_NUTANIX_NUTANIX,
   PREFIX_TRACKING_NUTANIX_NUTANIX_POPUP,
   PREFIX_TRACKING_NUTANIX_DATAGRID,

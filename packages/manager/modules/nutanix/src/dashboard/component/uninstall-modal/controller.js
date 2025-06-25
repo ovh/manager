@@ -1,5 +1,6 @@
 import { UNINSTALL_PATTERN } from './constants';
 import {
+  ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
   NUTANIX_GUIDE_LINK,
   PREFIX_TRACKING_NUTANIX_NUTANIX,
   PREFIX_TRACKING_NUTANIX_NUTANIX_POPUP,
@@ -18,20 +19,22 @@ export default class {
 
   $onInit() {
     this.atInternet.trackPage({
-      name: `${PREFIX_TRACKING_NUTANIX_NUTANIX_POPUP}::cluster::nodes::uninstall_node::${this.nodeId}`,
+      name: `${PREFIX_TRACKING_NUTANIX_NUTANIX_POPUP}::cluster::nodes::uninstall_node::${this.commercialRange}`,
+      level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
     });
   }
 
   onSubmit() {
     this.atInternet.trackClick({
-      name: `${PREFIX_TRACKING_NUTANIX_POPUP}::button::uninstall_node::confirm::${this.nodeId}`,
+      name: `${PREFIX_TRACKING_NUTANIX_POPUP}::button::uninstall_node::confirm::${this.commercialRange}`,
       type: 'action',
     });
     this.isLoading = true;
     this.uninstallNode()
       .then(() => {
         this.atInternet.trackPage({
-          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-success::cluster::nodes::uninstall-node-${this.nodeId}_success`,
+          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-success::cluster::nodes::uninstall-node-${this.commercialRange}_success`,
+          level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
         });
         this.handleSuccess(
           `${this.$translate.instant(
@@ -41,7 +44,8 @@ export default class {
       })
       .catch(() => {
         this.atInternet.trackPage({
-          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-error::cluster::nodes::uninstall-node-${this.nodeId}_error`,
+          name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-error::cluster::nodes::uninstall-node-${this.commercialRange}_error`,
+          level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
         });
         this.handleError(
           this.$translate.instant(
@@ -56,7 +60,7 @@ export default class {
 
   onCancel() {
     this.atInternet.trackClick({
-      name: `${PREFIX_TRACKING_NUTANIX_POPUP}::button::uninstall_node::cancel::${this.nodeId}`,
+      name: `${PREFIX_TRACKING_NUTANIX_POPUP}::button::uninstall_node::cancel::${this.commercialRange}`,
       type: 'action',
     });
     return this.goBack();

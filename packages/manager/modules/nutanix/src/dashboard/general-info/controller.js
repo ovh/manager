@@ -138,9 +138,10 @@ export default class NutanixGeneralInfoCtrl {
   }
 
   onClickOnAddNode() {
-    this.atInternet.trackClick(
-      `${PREFIX_TRACKING_NUTANIX}::::tile::button::add-nodes`,
-    );
+    this.atInternet.trackClick({
+      name: `${PREFIX_TRACKING_NUTANIX}::::tile::button::add-nodes`,
+      type: 'action',
+    });
     this.goToAddNode();
   }
 }
