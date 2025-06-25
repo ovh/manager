@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { vi } from 'vitest';
 import ListPage from '@/pages/list/List.page';

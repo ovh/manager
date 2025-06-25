@@ -30,7 +30,7 @@ describe('Estimation Component', () => {
       getFormattedMonthlyCatalogPrice: vi.fn().mockReturnValue('0.00 €'),
     });
 
-    const { getByText } = render(<Estimation />, { wrapper });
+    const { getByText } = render(<Estimation plan="free" />, { wrapper });
 
     expect(
       getByText('kube_common_node_pool_estimated_cost'),
@@ -42,7 +42,7 @@ describe('Estimation Component', () => {
       getFormattedMonthlyCatalogPrice: vi.fn().mockReturnValue('0.00 €'),
     });
 
-    const { getByText } = render(<Estimation />, { wrapper });
+    const { getByText } = render(<Estimation plan="free" />, { wrapper });
 
     expect(
       getByText('kube_common_node_pool_estimation_text'),
@@ -70,9 +70,12 @@ describe('Estimation Component', () => {
       getFormattedMonthlyCatalogPrice: getFormattedMonthlyCatalogPriceMock,
     });
 
-    const { getByText } = render(<Estimation nodePools={mockNodePools} />, {
-      wrapper,
-    });
+    const { getByText } = render(
+      <Estimation nodePools={mockNodePools} plan="free" />,
+      {
+        wrapper,
+      },
+    );
 
     expect(getFormattedMonthlyCatalogPriceMock).toHaveBeenCalledWith(30);
     expect(
@@ -90,7 +93,7 @@ describe('Estimation Component', () => {
       getFormattedMonthlyCatalogPrice: getFormattedMonthlyCatalogPriceMock,
     });
 
-    const { getByText } = render(<Estimation />, { wrapper });
+    const { getByText } = render(<Estimation plan="free" />, { wrapper });
 
     expect(getFormattedMonthlyCatalogPriceMock).toHaveBeenCalledWith(0);
     expect(
