@@ -54,6 +54,7 @@ export const DNS_OPERATIONS = [
   'ZoneImport',
   'ZoneRestore',
 ];
+
 export const editableArgument: Record<string, z.ZodString> = {
   authInfo: z
     .string()
@@ -76,3 +77,6 @@ export const editableArgument: Record<string, z.ZodString> = {
   validationToken: z.string(),
   default: z.string(),
 };
+
+export const iamGetAllDomAction = 'domain:apiovh:alldom/get';
+export const allDomFeatureAvailibility = 'web-domains:alldoms';
