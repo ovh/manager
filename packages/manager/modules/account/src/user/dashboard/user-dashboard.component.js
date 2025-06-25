@@ -1,8 +1,8 @@
 import template from './user-dashboard.html';
+import controller from './user-dashboard.controller';
 
 export default {
   bindings: {
-    lastBill: '<',
     shortcuts: '<',
     supportLevel: '<',
     user: '<',
@@ -11,4 +11,5 @@ export default {
     onClickShortcut: '<',
   },
   template,
+  controller,
 };
