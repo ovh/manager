@@ -8,6 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('user_infos'),
       fieldToFocus: /* @ngInject */ ($stateParams) => $stateParams.fieldToFocus,
+      kycStatus: /* @ngInject */ (getKycStatus) => getKycStatus(),
     },
   });
 };
