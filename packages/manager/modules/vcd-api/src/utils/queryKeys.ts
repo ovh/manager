@@ -9,6 +9,7 @@ export const getVeeamBackupQueryKey = (id: string) => [
   ...veeamBackupListQueryKey,
   id,
 ];
+
 export const veeamBackupCatalogQueryKey = [veeamBackupBaseKey, 'catalog'];
 
 // VCD organizations
