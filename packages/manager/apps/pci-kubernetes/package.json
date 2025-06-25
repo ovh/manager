@@ -17,6 +17,7 @@
     "@datatr-ux/ovhcloud-types": "1.0.8",
     "@datatr-ux/uxlib": "0.0.10",
     "@hookform/resolvers": "^3.3.4",
+    "@ovh-ux/manager-common-translations": "0.9.1",
     "@ovh-ux/manager-config": "^8.5.0",
     "@ovh-ux/manager-core-api": "^0.13.0",
     "@ovh-ux/manager-core-utils": "^0.3.0",

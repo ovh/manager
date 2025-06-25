@@ -1,5 +1,5 @@
 // versionSelector.test.ts
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import {
   QueryObserverBaseResult,
   QueryObserverSuccessResult,
