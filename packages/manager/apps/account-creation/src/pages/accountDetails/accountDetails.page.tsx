@@ -29,17 +29,14 @@ import { z } from 'zod';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
-import { User } from '@ovh-ux/manager-config';
+import { User, Country, Subsidiary, UserLocales } from '@ovh-ux/manager-config';
 import { AxiosError } from 'axios';
 import { useRules } from '@/data/hooks/useRules';
 import { Rule } from '@/types/rule';
-import { Country } from '@/types/country';
 import { RulesParam } from '@/data/api/rules';
 import { putMe } from '@/data/api/me';
 import { useUserContext } from '@/context/user/useUser';
 import { useMe } from '@/data/hooks/useMe';
-import { Language } from '@/types/language';
-import { Subsidiary } from '@/types/subsidiary';
 import {
   useZodSchemaGenerator,
   useZodTranslatedError,
@@ -49,6 +46,10 @@ export default function AccountDetailsPage() {
   const { t } = useTranslation('account-details');
   const { t: tForm } = useTranslation(NAMESPACES.FORM);
   const { addError, addSuccess } = useNotifications();
+
+  /**
+   * TODO: Import country and language translations from common-translations module once ready
+   */
   // const { t: tCountry } = useTranslation(NAMESPACES.COUNTRY);
   // const { t: tLanguage } = useTranslation(NAMESPACES.LANGUAGE);
 
@@ -62,7 +63,7 @@ export default function AccountDetailsPage() {
 
   const [rulesParams, setRulesParams] = useState<RulesParam>({
     country: (currentUser?.country as Country) || 'GB',
-    language: (currentUser?.language as Language) || 'en_GB',
+    language: (currentUser?.language as UserLocales) || 'en_GB',
     legalform: legalForm || 'corporation',
     ovhSubsidiary: (currentUser?.ovhSubsidiary as Subsidiary) || 'GB',
     phoneCountry: (currentUser?.country as Country) || 'GB',
@@ -139,14 +140,13 @@ export default function AccountDetailsPage() {
         true,
       );
     },
-    onError: (error: AxiosError<User>) => {
+    onError: () => {
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('account_details_error_message')}
         </OdsText>,
         true,
       );
-      console.error(error.response?.data);
     },
   });
 
