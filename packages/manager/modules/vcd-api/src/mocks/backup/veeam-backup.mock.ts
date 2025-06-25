@@ -33,12 +33,10 @@ export const backupList: VeeamBackup[] = [
         {
           name: 'BRONZE',
           quotaInTB: 100,
-          status: 'READY',
         },
         {
           name: 'SILVER',
           quotaInTB: 100,
-          status: 'READY',
         },
       ],
     },
@@ -75,12 +73,10 @@ export const backupList: VeeamBackup[] = [
         {
           name: 'BRONZE',
           quotaInTB: 100,
-          status: 'READY',
         },
         {
           name: 'SILVER',
           quotaInTB: 100,
-          status: 'READY',
         },
       ],
     },
@@ -117,12 +113,10 @@ export const backupList: VeeamBackup[] = [
         {
           name: 'BRONZE',
           quotaInTB: 1000,
-          status: 'READY',
         },
         {
           name: 'SILVER',
           quotaInTB: 1000,
-          status: 'READY',
         },
       ],
     },
