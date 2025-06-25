@@ -14,32 +14,25 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useDomains, useOrganization, usePlatform } from '@/data/hooks';
-import { useGenerateUrl } from '@/hooks';
+import { useDomains, usePlatform } from '@/data/hooks';
+import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import {
   ADD_EMAIL_ACCOUNT,
   ORDER_ZIMBRA_EMAIL_ACCOUNT,
 } from '@/tracking.constants';
-import { AccountStatistics } from '@/data/api';
 
 export const DatagridTopbar = () => {
   const { t } = useTranslation(['accounts', 'common']);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
-  const { data: platform, platformUrn } = usePlatform();
-  const { data: organisation } = useOrganization();
+  const { platformUrn } = usePlatform();
+  const { accountsStatistics } = useAccountsStatistics();
 
   const hrefAddEmailAccount = useGenerateUrl('./add', 'path');
   const hrefOrderEmailAccount = useGenerateUrl('./order', 'path');
 
   const { data: domains, isLoading: isLoadingDomains } = useDomains();
-
-  const accountsStatistics: AccountStatistics[] = useMemo(() => {
-    return organisation
-      ? organisation.currentState?.accountsStatistics
-      : platform?.currentState?.accountsStatistics;
-  }, [organisation, platform]);
 
   const hasAvailableAccounts = useMemo(() => {
     return accountsStatistics
@@ -47,7 +40,7 @@ export const DatagridTopbar = () => {
         return stats.availableAccountsCount > 0;
       })
       .some(Boolean);
-  }, [accountsStatistics, platform, organisation]);
+  }, [accountsStatistics]);
 
   const canCreateAccount =
     !isLoadingDomains && !!domains?.length && hasAvailableAccounts;
