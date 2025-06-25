@@ -15,6 +15,7 @@ import ResourceUsageList from './ResourceUsageList.component';
 import SnapshotList from './SnapshotList.component';
 import VolumeList from './VolumeList.component';
 import { ResourcesColumn } from './useResourceUsageListColumns';
+import AiEndpointList from './AiEndpointList.component';
 
 type HourlyConsumptionProps = {
   consumption: TConsumptionDetail;
@@ -127,7 +128,7 @@ export default function HourlyConsumption({
     {
       key: 'aiEndpoint',
       title: t('cpbc_hourly_ai_endpoint_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.aiEndpoint} />,
+      component: <AiEndpointList resourcesUsage={consumption.aiEndpoint} />,
     },
     {
       key: 'dataProcessing',

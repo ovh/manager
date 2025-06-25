@@ -393,7 +393,7 @@ export type TConsumptionDetail = {
   rancher: TResourceUsage[];
   kubernetesLoadBalancer: TResourceUsage[];
   training: TResourceUsage[];
-  aiEndpoint?: TResourceUsage[];
+  aiEndpoint: TResourceUsage[];
   notebooks: TResourceUsage[];
   aiDeploy: TResourceUsage[];
   coldArchive: TResourceUsage[];
