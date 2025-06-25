@@ -41,7 +41,7 @@ export default function AccountType() {
     } else {
       setLegalForm(selectedLegalForm);
       if (country === 'FR' && selectedLegalForm !== 'individual') {
-        navigate('/company');
+        navigate(urls.company);
       } else {
         navigate(urls.accountDetails);
       }
