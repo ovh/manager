@@ -1,28 +1,58 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { OdsText, OdsModal, OdsButton } from '@ovhcloud/ods-components/react';
+
 import {
   ODS_BUTTON_VARIANT,
   ODS_BUTTON_COLOR,
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import { useActivateVmwareCloudDirectorBackupOfferGold } from '@ovh-ux/manager-module-vcd-api';
+import { MessagesContext } from '@/components/Messages/Messages.context';
+import TEST_IDS from '@/utils/testIds.constants';
 
 export default function ActivateOfferModal() {
   const { t } = useTranslation('activate-offer');
-  const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
+  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
+  const { id } = useParams();
 
   const navigate = useNavigate();
+  const { addSuccessMessage, addCriticalMessage } = useContext(MessagesContext);
 
-  const onClose = () => {
-    navigate('..');
+  const onClose = () => navigate('..');
+
+  const onSuccess = () => {
+    onClose();
+    addSuccessMessage(t('success'), {
+      veeamBackupId: id,
+    });
   };
 
+  const {
+    activateGoldOffer,
+    isPending,
+  } = useActivateVmwareCloudDirectorBackupOfferGold({
+    backupId: id,
+    onSuccess,
+    onError: (err) => {
+      onClose();
+      addCriticalMessage(
+        t('error', {
+          errorAPI: err?.response?.data?.message,
+        }),
+        {
+          veeamBackupId: id,
+        },
+      );
+    },
+  });
+
   const onActivate = () => {
-    // TODO
+    activateGoldOffer().catch(() => {});
   };
 
   return (
@@ -40,18 +70,20 @@ export default function ActivateOfferModal() {
         <div className="flex justify-end gap-2">
           <OdsButton
             slot="actions"
-            data-testid="manager-delete-modal-cancel"
+            data-testid={TEST_IDS.cancelOfferModalAction}
             variant={ODS_BUTTON_VARIANT.ghost}
             color={ODS_BUTTON_COLOR.primary}
             onClick={onClose}
-            label={tAction('cancel')}
+            label={tActions('cancel')}
           />
           <OdsButton
             slot="actions"
-            data-testid="manager-delete-modal-confirm"
+            data-testid={TEST_IDS.activateOfferModalAction}
             onClick={onActivate}
             color={ODS_BUTTON_COLOR.primary}
-            label={tAction('activate')}
+            isLoading={isPending}
+            isDisabled={isPending}
+            label={tActions('activate')}
           />
         </div>
       </div>
