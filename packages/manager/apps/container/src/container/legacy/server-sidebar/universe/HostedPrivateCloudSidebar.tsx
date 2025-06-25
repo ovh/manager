@@ -47,7 +47,9 @@ const features = [
   'dedicated-server:nutanixOrder',
   'network-security',
   'key-management-service',
+  'okms',
   'okms:key-management-service',
+  'okms:secret-manager',
 ];
 
 export default function HostedPrivateCloudSidebar() {
@@ -410,7 +412,7 @@ export default function HostedPrivateCloudSidebar() {
       });
     }
 
-    if (feature['okms:key-management-service']) {
+    if (feature['okms']) {
       const keyIcon = (
         <OsdsIcon
           name={ODS_ICON_NAME.KEY_CONCEPT}
@@ -437,7 +439,7 @@ export default function HostedPrivateCloudSidebar() {
             id: 'key-management-service',
             label: t('sidebar_key-management-service'),
             href: baseUrl,
-            pathMatcher: new RegExp('^/okms/key-management-service'),
+            pathMatcher: new RegExp('^/okms/key-management-service(/(?!secret-manager).*)?$'),
             icon: keyIcon,
             async loader() {
               const services = await loadServices(
@@ -462,6 +464,17 @@ export default function HostedPrivateCloudSidebar() {
                 })),
               ];
             },
+          },
+          feature['okms:secret-manager'] && {
+            id: 'okms-secret-manager',
+            label: 'Secret Manager',
+            icon: <OsdsIcon
+                    name={ODS_ICON_NAME.SHIELD_CONCEPT}
+                    size={ODS_ICON_SIZE.xxs}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                  />,
+            href: navigation.getURL(app, '#/secret-manager'),
+            routeMatcher: new RegExp('/okms/secret-manager'),
           },
         ],
       });
