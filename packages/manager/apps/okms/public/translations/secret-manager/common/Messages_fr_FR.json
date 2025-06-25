@@ -3,5 +3,6 @@
   "secret_manager": "Secret Manager",
   "urn": "URN",
   "version": "Version",
-  "versions": "Versions"
+  "versions": "Versions",
+  "create_secret": "Créer un secret"
 }

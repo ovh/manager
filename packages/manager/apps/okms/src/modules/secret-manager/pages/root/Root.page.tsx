@@ -8,7 +8,7 @@ export default function SecretManagerRootPage() {
   const navigate = useNavigate();
   const hasNavigated = useRef(false);
 
-  const { data, isPending } = useOkmsList({ pageSize: 1 });
+  const { data, isPending } = useOkmsList();
   const firstKmsId = data?.pages[0]?.data?.[0]?.id;
 
   // If firstKmsId is available, navigate to the secret listing page

@@ -1,3 +1,4 @@
+import { CreateSecretResponse } from '@secret-manager/data/api/secrets';
 import { Secret } from '@secret-manager/types/secret.type';
 
 export const mockSecret1: Secret = {
@@ -29,7 +30,7 @@ export const mockSecret1: Secret = {
 };
 
 export const mockSecret2: Secret = {
-  path: 'projects/acme-corp/secrets/database-password',
+  path: 'a/path',
   version: {
     id: 3,
     createdAt: '2023-04-22T14:15:30Z',
@@ -58,3 +59,21 @@ export const mockSecret2: Secret = {
 };
 
 export const secretsMock: Secret[] = [mockSecret1, mockSecret2];
+
+export const createSecretResponseMock: CreateSecretResponse = {
+  path: 'a/path',
+  metadata: {
+    casRequired: true,
+    createdAt: '2022-11-10T09:45:12Z',
+    updatedAt: '2023-04-22T14:15:30Z',
+    currentVersion: 1,
+    customMetadata: {
+      environment: 'staging',
+      application: 'user-database',
+      owner: 'db-team',
+    },
+    deactivateVersionAfter: '2024-04-22T14:15:30Z',
+    oldestVersion: 1,
+    maxVersions: 10,
+  },
+};
