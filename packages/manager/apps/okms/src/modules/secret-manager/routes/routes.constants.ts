@@ -25,5 +25,9 @@ export const SECRET_MANAGER_URL_PARAMS = {
   secretPath: ':secretPath',
 };
 
+export const SECRET_MANAGER_SEARCH_PARAMS = {
+  domainId: 'domainId',
+};
+
 export const SECRET_MANAGER_ROUTES_URIS = URIS;
 export const SECRET_MANAGER_ROUTES_URLS = URLS;
