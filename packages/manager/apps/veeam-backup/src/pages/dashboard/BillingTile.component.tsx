@@ -13,11 +13,33 @@ type BillingTileProps = {
   backup: VeeamBackup;
 };
 
+const capitalize = (label: string) =>
+  `${label.charAt(0).toUpperCase()}${label.slice(1).toLowerCase()}`;
+
 export const BillingTile: React.FC<BillingTileProps> = ({ id, backup }) => {
   const { t } = useTranslation('dashboard');
-  const hasGoldOffer = backup?.currentState.offers.some(
-    (offer) => offer.name === 'GOLD',
-  );
+
+  const offers = backup?.currentState.offers || [];
+  const goldOffer = offers.find((offer) => offer.name === 'GOLD');
+  const isGoldOfferEnabled = !!goldOffer && goldOffer?.status !== 'CREATING';
+
+  const bronzeAndSilverItems = offers
+    .filter((offer) => offer.name !== 'GOLD')
+    .map((offer) => ({
+      id: offer.name,
+      label: capitalize(offer.name),
+      value: <OfferProgress offer={offer} id={id} />,
+    }));
+
+  const goldItem = {
+    id: 'gold',
+    label: 'Gold',
+    value: isGoldOfferEnabled ? (
+      <OfferProgress offer={goldOffer} id={id} />
+    ) : (
+      <ActivateOfferGold id={id} status={goldOffer?.status} />
+    ),
+  };
 
   const consumedVmsItem = {
     id: 'consumedVms',
@@ -30,27 +52,15 @@ export const BillingTile: React.FC<BillingTileProps> = ({ id, backup }) => {
     value: <BillingLink />,
   };
 
-  const offerItems = (backup?.currentState.offers || []).map((offer) => ({
-    id: offer.name,
-    label: `${offer.name.charAt(0).toUpperCase()}${offer.name
-      .slice(1)
-      .toLowerCase()}`,
-    value: <OfferProgress offer={offer} id={id} />,
-  }));
-
-  const goldItem = !hasGoldOffer
-    ? {
-        id: 'gold',
-        label: 'Gold',
-        value: ActivateOfferGold(id),
-      }
-    : null;
   return (
     <DashboardTile
       title={t('billing')}
-      items={[consumedVmsItem, ...offerItems, goldItem, billingLinkItem].filter(
-        Boolean,
-      )}
+      items={[
+        consumedVmsItem,
+        ...bronzeAndSilverItems,
+        goldItem,
+        billingLinkItem,
+      ].filter(Boolean)}
     />
   );
 };
