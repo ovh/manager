@@ -13,7 +13,7 @@ import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import getIcon from './GetIcon';
 import infinityCLoud from '@/assets/images/sidebar/infinity-cloud.png';
-import hycuLogo from '@/assets/images/sidebar/hycu-logo.svg';
+import hycuLogo from '@/assets/images/sidebar/hycu-logo.svg?url';
 import veeamBackupLogo from '@/assets/images/sidebar/veeam-backup-logo.png';
 
 const features = [
