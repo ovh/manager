@@ -1,0 +1,54 @@
+<section>
+    <h3 data-translate="logs_iam_policies"></h3>
+    <p
+        data-translate="logs_iam_policies_description"
+        data-translate-values=":: {serviceName: $ctrl.service.serviceName}"
+    ></p>
+
+    <oui-datagrid
+        id="iam-policies-datagrid"
+        data-rows-loader="$ctrl.getItems($config)"
+        data-page="{{ $ctrl.cursors.index || 1 }}"
+        data-page-size="{{ $ctrl.pageSize }}"
+        data-pagination-mode="arrows"
+    >
+        <oui-datagrid-topbar>
+            <a
+                data-translate="logs_iam_policies_create"
+                data-ng-href="{{ :: $ctrl.getIAMPolicyUrl('create') }}"
+                target="_top"
+                class="oui-button oui-button_primary"
+            ></a>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title="'logs_iam_policies_column_name' | translate"
+        >
+            <a
+                data-ng-href="{{ :: $ctrl.getIAMPolicyUrl('edit/' + $row.id) }}"
+                target="_top"
+                class="oui-link"
+            >
+                <span data-ng-bind="$row.name"></span>
+            </a>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'logs_iam_policies_column_description' | translate"
+        >
+            <span
+                data-oui-tooltip="{{ :: $row.description }}"
+                class="d-inline-block text-truncate w-100"
+                data-ng-bind="$row.description"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'logs_iam_policies_column_identities' | translate"
+        >
+            <span data-ng-bind="$row.identities.length"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'logs_iam_policies_column_actions' | translate"
+        >
+            <span data-ng-bind="$row.permissions.allow.length"></span>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</section>
