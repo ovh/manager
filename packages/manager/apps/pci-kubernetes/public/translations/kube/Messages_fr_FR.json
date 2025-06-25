@@ -12,7 +12,7 @@
   "kube_service_file_more_information": "Plus d'informations disponibles ici",
   "kube_service_cluster_information": "Informations sur le cluster",
   "kube_service_cluster_plan": "Plan",
-  "kube_service_cluster_plan_free": "Gratuit",
+  "kube_service_cluster_plan_free": "Free",
   "kube_service_cluster_plan_standard": "Standard",
   "kube_service_cluster_plan_description": "Le niveau de service associé à ce cluster MKS.",
   "kube_service_cluster_plan_description_link": "En savoir plus",
