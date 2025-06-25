@@ -1,5 +1,3 @@
-import head from 'lodash/head';
-
 import {
   USER_DASHBOARD_SHORTCUTS,
   TRACKING_PAGE,
@@ -32,14 +30,6 @@ export default /* @ngInject */ ($stateProvider) => {
         };
       },
       authMethodProvider: /* @ngInject */ () => 'provider',
-      lastBill: /* @ngInject */ (OvhApiMeBillIceberg) =>
-        OvhApiMeBillIceberg.query()
-          .expand('CachedObjectList-Pages')
-          .sort('date', 'DESC')
-          .limit(1)
-          .execute(null, true)
-          .$promise.then((lastBill) => head(lastBill.data))
-          .catch(() => ({})),
       shortcuts: /* @ngInject */ (
         $state,
         coreConfig,

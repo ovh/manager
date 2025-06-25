@@ -18,17 +18,11 @@ export default /* @ngInject */ ($stateProvider) => {
     controllerAs: '$ctrl',
     redirectTo: `${name}.dashboard`,
     resolve: {
-      angularQr: /* @ngInject */ ($ocLazyLoad) =>
-        import('angular-qr').then((module) =>
-          $ocLazyLoad.inject(module.default || module),
-        ),
       schema: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().schema().$promise,
-      supportLevel: /* @ngInject */ (OvhApiMe, schema) =>
+      supportLevel: /* @ngInject */ (currentUser, schema) =>
         schema.models[API_MODEL_SUPPORT_LEVEL]
-          ? OvhApiMe.v6()
-              .supportLevel()
-              .$promise.then((supportLevel) => new SupportLevel(supportLevel))
-          : Promise.resolve(null),
+          ? new SupportLevel(currentUser.supportLevel)
+          : null,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('user_account'),
 
