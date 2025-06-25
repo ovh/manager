@@ -49,6 +49,7 @@ export const features = [
   'carbon-calculator',
   'network-security',
   'key-management-service',
+  'key-management-service:secret-manager',
 ];
 
 export default function DedicatedSidebar() {
@@ -395,7 +396,7 @@ export default function DedicatedSidebar() {
             id: 'key-management-service',
             label: t('sidebar_key-management-service'),
             href: navigation.getURL('key-management-service', '/'),
-            pathMatcher: new RegExp('^/key-management-service'),
+            pathMatcher: new RegExp('^/key-management-service(/(?!secret-manager).*)?$'),
             icon: keyIcon,
             async loader() {
               const app = 'key-management-service';
@@ -422,6 +423,18 @@ export default function DedicatedSidebar() {
               ];
             },
           },
+          feature['key-management-service:secret-manager'] && {
+            id: 'okms-secret-manager',
+            label: 'Secret Manager',
+            icon: <OsdsIcon
+                    name={ODS_ICON_NAME.SHIELD_CONCEPT}
+                    size={ODS_ICON_SIZE.xxs}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                  />,
+            href: navigation.getURL('key-management-service', '#/secret-manager'),
+            routeMatcher: new RegExp('/secret-manager'),
+          },
+
         ],
       });
     }

@@ -53,6 +53,7 @@ export const features = [
   'ai-dashboard',
   'data-platform',
   'key-management-service',
+  'key-management-service:secret-manager',
   'pci-savings-plan',
   'pci-ai-endpoints',
   'pci-quantum-emulators',
@@ -501,6 +502,11 @@ export function getPciProjectMenu(
           id: 'key-management-service',
           title: 'Key Management Service',
           href: getURL('key-management-service', `/`),
+        },
+        isFeaturesAvailable('key-management-service:secret-manager') && {
+          id: 'okms-secret-manager',
+          title: 'Secret Manager',
+          href: getURL('key-management-service', `#/secret-manager`),
         },
       ],
     });
