@@ -1,7 +1,5 @@
-import {
-  ChangelogLinks,
-  OvhSubsidiary,
-} from '@ovh-ux/manager-react-components';
+import { ChangelogLinks } from '@ovh-ux/manager-react-components';
+import { UrlRecord } from './types';
 
 export const ANTI_AFFINITY_MAX_NODES = 5;
 
@@ -242,7 +240,7 @@ export const DEPLOYMENT_URL = {
     'https://help.ovhcloud.com/csm/en-gb-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066027',
 };
 
-export const PLAN_DOC_LINKS: Partial<{ [key in OvhSubsidiary]: string }> = {
+export const PLAN_DOC_LINKS: UrlRecord = {
   DEFAULT: 'https://www.ovhcloud.com/en/public-cloud/kubernetes/#prix',
   FR: 'https://www.ovhcloud.com/fr/public-cloud/kubernetes/#prix',
   MA: 'https://www.ovhcloud.com/fr-ma/public-cloud/kubernetes/#prix',
