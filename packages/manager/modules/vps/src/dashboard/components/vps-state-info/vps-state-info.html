@@ -8,3 +8,6 @@
         data-ng-bind="'vps_dashboard_state_' + $ctrl.vpsStateInfo.state | translate"
     ></span>
 </span>
+<span class="oui-badge oui-badge_error" data-ng-if="$ctrl.isLocked">
+    <span data-translate="vps_dashboard_state_locked"></span>
+</span>
