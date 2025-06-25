@@ -1,9 +1,9 @@
 import { createContext } from 'react';
-import { LegalFrom } from '@/types/legalForm';
+import { LegalForm } from '@ovh-ux/manager-config';
 
 export type UserContext = {
-  legalForm?: LegalFrom;
-  setLegalForm: (legalForm: LegalFrom) => void;
+  legalForm?: LegalForm;
+  setLegalForm: (legalForm: LegalForm) => void;
 };
 
 const userContext = createContext<UserContext | undefined>(undefined);
