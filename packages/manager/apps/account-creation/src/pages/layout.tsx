@@ -9,6 +9,7 @@ import UserProvider from '@/context/user/user.provider';
 import ReassuranceWording from '@/components/reassuranceWording/ReassuranceWording.component';
 import sideBackground from '@/assets/side_background.svg?url';
 import Header from '@/components/header/Header.component';
+import Footer from '@/components/footer/Footer.component';
 
 export default function Layout() {
   const location = useLocation();
@@ -35,10 +36,14 @@ export default function Layout() {
             <Header />
             {/* app component */}
             <div className="flex-1 overflow-y-auto">
-              <div className="min-h-full flex items-center justify-center">
-                <div className="w-full p-6 sm:p-0 max-w-lg">
-                  <Outlet />
+              <div className="flex flex-col min-h-full">
+                <div className="flex flex-9 flex-col flex-auto items-center justify-center">
+                  <div className="w-full p-6 sm:p-0 max-w-lg">
+                    <Outlet />
+                  </div>
                 </div>
+                {/* footer component */}
+                <Footer />
               </div>
             </div>
           </div>
