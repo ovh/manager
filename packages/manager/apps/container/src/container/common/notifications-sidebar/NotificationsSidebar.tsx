@@ -77,6 +77,7 @@ const NotificationsSidebar = () => {
         style.notificationsSidebar
       } ${isNotificationsSidebarVisible && style.notificationsSidebar_toggle}`}
     >
+      {/* Just add a comment to trigger CDS */}
       <div className="flex justify-end">
         <OsdsIcon
           onClick={onClick}
