@@ -1,9 +1,17 @@
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import { VeeamBackup } from '../types';
-import { getVmwareCloudDirectorBackup } from '../api';
-import { getVeeamBackupQueryKey, veeamBackupListQueryKey } from '../utils';
+import {
+  getVmwareCloudDirectorBackup,
+  activateVmwareCloudDirectorBackupOfferGold,
+} from '../api';
+import {
+  getVeeamBackupQueryKey,
+  veeamBackupListQueryKey,
+  activateVeeamBackupOfferGoldMutationKey,
+} from '../utils';
 
 export const getRegionNameFromAzName = (azName = '') => azName?.split('-a')[0];
 
@@ -28,3 +36,32 @@ export const useVeeamBackup = (id?: string) =>
 
 export const getVeeamBackupDisplayName = (backup?: VeeamBackup) =>
   backup?.iam?.displayName || backup?.id;
+
+export const useActivateVmwareCloudDirectorBackupOfferGold = ({
+  backupId,
+  onSuccess,
+  onError,
+}: {
+  backupId: string;
+  onSuccess?: () => void;
+  onError?: (error: ApiError) => void;
+}) => {
+  const queryClient = useQueryClient();
+
+  const { mutateAsync, ...mutation } = useMutation({
+    mutationKey: activateVeeamBackupOfferGoldMutationKey(backupId),
+    mutationFn: (quotaInTB: number) =>
+      activateVmwareCloudDirectorBackupOfferGold(backupId, quotaInTB),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: veeamBackupListQueryKey,
+      });
+      onSuccess?.();
+    },
+    onError: (error: ApiError) => onError?.(error),
+  });
+
+  const activateGoldOffer = (quotaInTB?: number) => mutateAsync(quotaInTB);
+
+  return { activateGoldOffer, ...mutation };
+};

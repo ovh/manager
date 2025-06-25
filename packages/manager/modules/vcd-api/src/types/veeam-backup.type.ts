@@ -14,8 +14,10 @@ export enum BackupStatus {
   error = 'error',
 }
 
+export type VeeamBackupOfferName = 'BRONZE' | 'SILVER' | 'GOLD';
+
 export type VeeamBackupOffer = {
-  name: 'BRONZE' | 'SILVER' | 'GOLD';
+  name: VeeamBackupOfferName;
   quotaInTB: number;
   usedSpaceInGB: number;
   status:
@@ -27,6 +29,11 @@ export type VeeamBackupOffer = {
     | 'UPDATING';
   protectionPrimaryRegion?: string;
   protectionReplicatedRegion?: string;
+};
+
+export type VeeamBackupOfferTargetSpec = {
+  name: VeeamBackupOfferName;
+  quotaInTB: number;
 };
 
 export type VeeamBackup = WithIam<{

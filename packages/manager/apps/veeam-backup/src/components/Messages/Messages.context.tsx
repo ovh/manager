@@ -1,9 +1,19 @@
 import React from 'react';
 
+export type MessageType =
+  | 'critical'
+  | 'danger'
+  | 'information'
+  | 'success'
+  | 'warning';
+
 export type MessageOptions = {
+  // TODO: Consider replacing veeamBackupId with a more generic identifier ( contextId or ...) for reusability
   veeamBackupId?: string;
   linkUrl?: string;
   linkLabel?: string;
+  type?: MessageType;
+  // TODO:  Consider allowing injection of a JSX !!
 };
 
 export type MessageData = {
@@ -13,15 +23,40 @@ export type MessageData = {
 };
 
 export type MessagesContextType = {
-  addSuccessMessage: (msg: string, options?: MessageOptions) => void;
-  successMessages: MessageData[];
+  addMessage: (msg: string, options?: MessageOptions) => void;
+  addSuccessMessage: (
+    msg: string,
+    options?: Omit<MessageOptions, 'type'>,
+  ) => void;
+  addDangerMessage: (
+    msg: string,
+    options?: Omit<MessageOptions, 'type'>,
+  ) => void;
+  addCriticalMessage: (
+    msg: string,
+    options?: Omit<MessageOptions, 'type'>,
+  ) => void;
+  addInformationMessage: (
+    msg: string,
+    options?: Omit<MessageOptions, 'type'>,
+  ) => void;
+  addWarningMessage: (
+    msg: string,
+    options?: Omit<MessageOptions, 'type'>,
+  ) => void;
+  messages: MessageData[];
   hiddenMessages: number[];
   hideMessage: (id: number) => void;
 };
 
 export const MessagesContext = React.createContext<MessagesContextType>({
+  addMessage: () => undefined,
   addSuccessMessage: () => undefined,
-  successMessages: [],
+  addDangerMessage: () => undefined,
+  addCriticalMessage: () => undefined,
+  addInformationMessage: () => undefined,
+  addWarningMessage: () => undefined,
+  messages: [],
   hiddenMessages: [],
   hideMessage: () => undefined,
 });
@@ -29,25 +64,46 @@ export const MessagesContext = React.createContext<MessagesContextType>({
 export const MessageContextProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  const [successMessages, setSuccessMessages] = React.useState<MessageData[]>(
-    [],
-  );
+  const [messages, setMessages] = React.useState<MessageData[]>([]);
   const [hiddenMessages, setHiddenMessages] = React.useState<number[]>([]);
 
-  const messageContext = React.useMemo(
+  const addMessage = React.useCallback(
+    (message: string, options?: MessageOptions) => {
+      setMessages((prev) =>
+        prev.concat({
+          id: Date.now(),
+          message,
+          options: {
+            type: options?.type || 'success',
+            ...options,
+          },
+        }),
+      );
+    },
+    [],
+  );
+
+  const createTypeHandler = (type: MessageType) => {
+    return (msg: string, options?: Omit<MessageOptions, 'type'>) => {
+      addMessage(msg, { ...options, type });
+    };
+  };
+
+  const messageContext: MessagesContextType = React.useMemo(
     () => ({
-      successMessages,
+      messages,
       hiddenMessages,
-      addSuccessMessage: (message: string, options?: MessageOptions) => {
-        setSuccessMessages((messageList) =>
-          messageList.concat({ id: Date.now(), message, options }),
-        );
-      },
+      addMessage,
+      addSuccessMessage: createTypeHandler('success'),
+      addDangerMessage: createTypeHandler('danger'),
+      addCriticalMessage: createTypeHandler('critical'),
+      addInformationMessage: createTypeHandler('information'),
+      addWarningMessage: createTypeHandler('warning'),
       hideMessage: (id: number) => {
-        setHiddenMessages((hiddenMessage) => hiddenMessage.concat(id));
+        setHiddenMessages((prev) => prev.concat(id));
       },
     }),
-    [successMessages, hiddenMessages],
+    [messages, hiddenMessages, addMessage],
   );
 
   return (

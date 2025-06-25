@@ -17,7 +17,10 @@ export const ActivateOfferGold = ({ id }: { id: string }): JSX.Element => {
 
   return (
     <div className="flex justify-between items-center">
+      {/* TODO should be diabled or en cours d'acitvation (depending of the status of the offer)
+       Which api to use /beckup or /backup/taskId */}
       <OdsBadge label={tStatus('disabled')} />
+
       <ActionMenu
         id={`action-gold-offer-${id}`}
         isCompact

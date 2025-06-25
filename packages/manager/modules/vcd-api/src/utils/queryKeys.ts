@@ -9,6 +9,15 @@ export const getVeeamBackupQueryKey = (id: string) => [
   ...veeamBackupListQueryKey,
   id,
 ];
+
+export const activateVeeamBackupOfferGoldMutationKey = (backupId: string) => [
+  'put',
+  vcdBaseKey,
+  veeamBackupBaseKey,
+  backupId,
+  'activateGold',
+];
+
 export const veeamBackupCatalogQueryKey = [veeamBackupBaseKey, 'catalog'];
 
 // VCD organizations
