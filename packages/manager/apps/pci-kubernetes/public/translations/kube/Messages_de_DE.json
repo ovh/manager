@@ -82,6 +82,5 @@
   "pci_project_flavors_zone_3az": "3-AZ",
   "pci_project_flavors_zone_3az_tooltip": "Eine 3-AZ Region umfasst drei Availability Zones innerhalb eines Ballungsraums, die nur wenige Kilometer voneinander entfernt sind. Eine solche Region erfüllt die höchsten Resilienzanforderungen und gewährleistet gleichzeitig extrem geringe Latenzen zwischen AZs.",
   "pci_project_flavors_zone_globalregions_tooltip": "Eine 1-AZ (Availability Zone) Region fasst ein oder mehrere Rechenzentren zusammen, die sich am selben Standort befinden.",
-  "kube_service_cluster_plan_description": "Die mit diesem MKS-Cluster verknüpfte Service-Ebene.",
-  "kube_service_cluster_plan_description_link": "Mehr erfahren"
+  "kube_service_cluster_plan_description": "Die mit diesem MKS-Cluster verknüpfte Service-Ebene."
 }

@@ -13,17 +13,16 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { Check, XCircle, Clock12 } from 'lucide-react';
+import { Check, Clock12 } from 'lucide-react';
 import { Button } from '@datatr-ux/uxlib';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
 
-import { TClusterCreationForm } from '../useCusterCreationStepper';
 import { StepState } from '../useStep';
 import { cn, isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
 
-import { DeploymentMode } from '@/types';
+import { DeploymentMode, TClusterPlan } from '@/types';
 
 type Plan = {
   title: string;
@@ -31,39 +30,39 @@ type Plan = {
   description: string;
   content: string[];
   footer?: string;
-  value: TClusterCreationForm['plan'];
+  value: TClusterPlan;
 };
 
 const plans: Plan[] = [
   {
-    title: 'kube_add_plan_title_standard',
-    description: 'kube_add_plan_description_standard',
+    title: 'kube_add_plan_title_free',
+    description: 'kube_add_plan_description_free',
     content: [
-      'kube_add_plan_content_standard_control',
-      'kube_add_plan_content_standard_high_availability',
-      'kube_add_plan_content_standard_SLO',
-      'kube_add_plan_content_standard_auto_scaling',
-      'kube_add_plan_content_standard_ETCD',
-      'kube_add_plan_content_standard_version',
-      'kube_add_plan_content_standard_100',
+      'kube_add_plan_content_free_control',
+      'kube_add_plan_content_free_high_availability',
+      'kube_add_plan_content_free_SLO',
+      'kube_add_plan_content_free_auto_scaling',
+      'kube_add_plan_content_free_ETCD',
+      'kube_add_plan_content_free_version',
+      'kube_add_plan_content_free_100',
     ],
-    value: 'standard',
+    value: 'free',
     type: DeploymentMode.MONO_ZONE,
   },
   {
-    title: 'kube_add_plan_title_premium',
-    description: 'kube_add_plan_description_premium',
+    title: 'kube_add_plan_title_standard',
+    description: 'kube_add_plan_description_standard',
     content: [
-      'kube_add_plan_content_premium_3AZ_control_plane',
-      'kube_add_plan_content_premium_disponibility',
-      'kube_add_plan_content_premium_SLA',
-      'kube_add_plan_content_standard_auto_scaling',
-      'kube_add_plan_content_premium_ETCD',
-      'kube_add_plan_content_premium_version',
-      'kube_add_plan_content_premium_500',
+      'kube_add_plan_content_standard_3AZ_control_plane',
+      'kube_add_plan_content_standard_disponibility',
+      'kube_add_plan_content_standard_SLA',
+      'kube_add_plan_content_free_auto_scaling',
+      'kube_add_plan_content_standard_ETCD',
+      'kube_add_plan_content_standard_version',
+      'kube_add_plan_content_standard_500',
     ],
     type: DeploymentMode.MULTI_ZONES,
-    value: 'premium',
+    value: 'standard',
   },
 ];
 
@@ -72,12 +71,13 @@ const PlanTile = ({
   step,
   type,
 }: {
-  onSubmit: (plan: TClusterCreationForm['plan']) => void;
+  onSubmit: (plan: TClusterPlan) => void;
   step: StepState;
   type: DeploymentMode;
 }) => {
-  const [selected, setSelected] = useState<TClusterCreationForm['plan']>(
-    isMonoDeploymentZone(type) ? 'standard' : 'premium',
+  // TODO:  When both free & standard plans will be available for both deployment zones, update default value with "free"
+  const [selected, setSelected] = useState<TClusterPlan>(
+    isMonoDeploymentZone(type) ? 'free' : 'standard',
   );
   const { t } = useTranslation(['add', 'stepper']);
 
@@ -86,14 +86,14 @@ const PlanTile = ({
     onSubmit(selected);
   };
 
-  const planIsDisabled = (plan) =>
-    (isMonoDeploymentZone(type) && plan.value === 'premium') ||
-    (isMultiDeploymentZones(type) && plan.value === 'standard');
+  const planIsDisabled = (plan: TClusterPlan) =>
+    (isMonoDeploymentZone(type) && plan === 'standard') ||
+    (isMultiDeploymentZones(type) && plan === 'free');
 
   const getSortOrder = (typeRegion: string) => {
     const priority = {
-      [DeploymentMode.MULTI_ZONES]: 'premium',
-      [DeploymentMode.MONO_ZONE]: 'standard',
+      [DeploymentMode.MULTI_ZONES]: 'standard',
+      [DeploymentMode.MONO_ZONE]: 'free',
     };
     return priority[type]
       ? (a) => (a.value === priority[typeRegion] ? -1 : 1)
@@ -120,15 +120,15 @@ const PlanTile = ({
       <div className=" mt-6 grid grid-cols-1  lg:grid-cols-2  xl:grid-cols-3  gap-4">
         {!step.isLocked && (
           <>
-            {sortedPlans.map(({ content, ...plan }) => (
+            {sortedPlans.map((plan) => (
               <RadioTile
-                disabled={planIsDisabled(plan)}
+                disabled={planIsDisabled(plan.value)}
                 key={plan.value}
                 data-testid={`plan-tile-radio-tile-${plan.value}`}
                 name="plan-select"
                 tileClassName="h-full "
                 onChange={() =>
-                  !planIsDisabled(plan) && setSelected(plan.value)
+                  !planIsDisabled(plan.value) && setSelected(plan.value)
                 }
                 value={plan.value}
                 checked={selected === plan.value}
@@ -137,23 +137,24 @@ const PlanTile = ({
                   <PlanTile.Header
                     type={type}
                     value={plan.value}
-                    selected={!planIsDisabled(plan) && selected === plan.value}
+                    selected={
+                      !planIsDisabled(plan.value) && selected === plan.value
+                    }
                     title={plan.title}
                     description={plan.description}
-                    disabled={planIsDisabled(plan)}
+                    disabled={planIsDisabled(plan.value)}
                   />
                 )}
                 <RadioTile.Separator />
                 <div className="text-sm flex flex-col p-4">
                   <PlanTile.Content
-                    disabled={planIsDisabled(plan)}
-                    contents={content}
+                    disabled={planIsDisabled(plan.value)}
+                    contents={plan.content}
                   />
                 </div>
 
-                {!planIsDisabled(plan) && (
+                {!planIsDisabled(plan.value) && (
                   <PlanTile.Footer
-                    value={plan.value}
                     content={`kube_add_plan_footer_${plan.value}`}
                   />
                 )}
@@ -196,8 +197,12 @@ PlanTile.Banner = function PlanTileBanner({ type }: { type: DeploymentMode }) {
           className="block"
         >
           {isMultiDeploymentZones(type)
-            ? t('kube_add_plan_content_standard_3AZ_banner')
-            : t('kube_add_plan_content_premium_1AZ_banner')}
+            ? t('kube_add_plan_content_unavailable_3AZ_banner', {
+                plan: 'Free',
+              })
+            : t('kube_add_plan_content_unavailable_1AZ_banner', {
+                plan: 'Standard',
+              })}
         </OsdsText>
       </OsdsMessage>
     )
@@ -207,10 +212,15 @@ PlanTile.Banner = function PlanTileBanner({ type }: { type: DeploymentMode }) {
 PlanTile.LockedView = function PlanTileLockedView({
   value,
 }: {
-  value: string;
+  value: TClusterPlan;
 }) {
   const { t } = useTranslation(['add']);
-  const plan = useMemo(() => plans.find((p) => p.value === value), [value]);
+  const plan = useMemo(() => plans.find((p) => p.value === value), [
+    plans,
+    value,
+  ]);
+
+  if (!plan) return null;
 
   return (
     <RadioTile labelClassName="border-primary-100">
@@ -234,21 +244,14 @@ PlanTile.Header = function PlanTileHeader({
   title: string;
   description: string;
   disabled: boolean;
-  value: string;
+  value: TClusterPlan;
   type: DeploymentMode;
 }) {
   const { t } = useTranslation(['add']);
-
-  const renderWarningMessage = (condition, icon, messageKey, textClass) => {
-    if (!condition) return null;
-    const IconComponent = icon;
-    return (
-      <span className={`${textClass} inline-flex gap-1`}>
-        <IconComponent />
-        <span>{t(messageKey)}</span>
-      </span>
-    );
-  };
+  const displayWarningMessage =
+    disabled &&
+    ((value === 'free' && isMultiDeploymentZones(type)) ||
+      (value === 'standard' && isMonoDeploymentZone(type)));
 
   return (
     <div className=" px-6 py-4 flex-col w-full ">
@@ -256,7 +259,7 @@ PlanTile.Header = function PlanTileHeader({
         <h5 data-testid="plan-header" className="capitalize font-bold">
           {t(title)}
         </h5>
-        {value === 'premium' && (
+        {value === 'standard' && (
           <div className="flex items-baseline gap-3">
             <OsdsChip
               color={ODS_THEME_COLOR_INTENT.success}
@@ -270,17 +273,11 @@ PlanTile.Header = function PlanTileHeader({
       </div>
 
       <div className="mt-2 flex flex-col">
-        {renderWarningMessage(
-          disabled && value === 'premium' && isMonoDeploymentZone(type),
-          XCircle,
-          'kube_add_plan_no_available_plan',
-          'text-critical-500',
-        )}
-        {renderWarningMessage(
-          disabled && value === 'standard' && isMultiDeploymentZones(type),
-          Clock12,
-          'kube_add_plan_content_standard_very_soon',
-          'text-warning-500',
+        {displayWarningMessage && (
+          <span className="text-warning-500 inline-flex gap-1">
+            <Clock12 />
+            <span>{t('kube_add_plan_content_coming_very_soon')}</span>
+          </span>
         )}
         <span>{t(description)}</span>
       </div>
@@ -309,18 +306,12 @@ PlanTile.Content = function PlanTileContent({
   ));
 };
 
-PlanTile.Footer = function PlanTileFooter({
-  value,
-  content,
-}: {
-  value: string;
-  content: string;
-}) {
+PlanTile.Footer = function PlanTileFooter({ content }: { content: string }) {
   const { t } = useTranslation(['add', 'stepper']);
   return (
     <div className=" mt-auto w-full rounded-b-md border-none bg-neutral-100">
       <p className=" p-4 text-xl text-primary-600">
-        <strong data-testid={`plan-footer${value}`}>{t(content)}</strong>
+        <strong>{t(content)}</strong>
       </p>
     </div>
   );

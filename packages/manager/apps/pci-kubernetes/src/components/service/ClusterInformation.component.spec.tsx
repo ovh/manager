@@ -55,7 +55,7 @@ describe('ClusterInformation', () => {
       expect(
         screen.getByText(/kube_service_cluster_information/i),
       ).toBeInTheDocument();
-      expect(screen.getByText('kube_list_id')).toBeInTheDocument();
+      expect(screen.getByText('listing:kube_list_id')).toBeInTheDocument();
 
       expect(screen.getByText('Cluster1')).toBeInTheDocument();
       expect(
