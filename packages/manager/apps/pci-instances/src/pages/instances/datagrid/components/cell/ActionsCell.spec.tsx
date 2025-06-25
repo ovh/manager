@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { describe, vi } from 'vitest';
 import { ActionsCell, TActionsCellProps } from './ActionsCell.component';
 import { mockedInstance } from '@/__mocks__/instance/constants';
-import { TInstance } from '@/types/instance/entity.type';
+import { TAggregatedInstance } from '@/types/instance/entity.type';
 
 vi.mock('react-router-dom', () => ({
   useHref: () => '/start',
@@ -24,7 +24,7 @@ describe('Considering the ActionsCell component', () => {
   test('Should render grouped actions menu items with correct labels and hrefs', async () => {
     const user = userEvent.setup();
 
-    const instance: TInstance = {
+    const instance: TAggregatedInstance = {
       ...mockedInstance,
       actions: new Map([
         [
