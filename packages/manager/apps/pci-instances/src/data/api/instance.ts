@@ -1,8 +1,11 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import {
-  TInstanceDto,
+  TAggregatedInstanceDto,
   TRetrieveInstancesQueryParams,
 } from '@/types/instance/api.type';
+import { mapDtoToInstance } from './mapper/instance.mapper';
+import { TInstance } from '@/types/instance/entity.type';
+import { DeepReadonly } from '@/types/utils.type';
 
 type TInstanceAction =
   | 'delete'
@@ -35,7 +38,7 @@ export const getInstances = (
     searchField,
     searchValue,
   }: TRetrieveInstancesQueryParams,
-): Promise<TInstanceDto[]> =>
+): Promise<TAggregatedInstanceDto[]> =>
   v6
     .get(`/cloud/project/${projectId}/aggregated/instance`, {
       params: {
@@ -137,13 +140,28 @@ export const activateMonthlyBilling = (
     serviceName: projectId,
   });
 
-export const getInstance = ({
-  projectId,
-  instanceId,
-}: {
+export type TGetInstanceQueryParams = Array<
+  'withVolumes' | 'withBackups' | 'withNetworks' | 'withImage'
+>;
+
+type TGetInstanceArgs = DeepReadonly<{
   projectId: string;
   instanceId: string;
-}): Promise<TInstanceDto> =>
+  region: string | null;
+  params?: TGetInstanceQueryParams;
+}>;
+
+export const getInstance = async ({
+  projectId,
+  region,
+  instanceId,
+  params,
+}: TGetInstanceArgs): Promise<TInstance> =>
   v6
-    .get(`/cloud/project/${projectId}/aggregated/instance/${instanceId}`)
-    .then((response) => response.data);
+    .get(
+      `/cloud/project/${projectId}/region/${region}/instance/${instanceId}`,
+      {
+        params: params?.reduce((acc, key) => ({ ...acc, [key]: true }), {}),
+      },
+    )
+    .then((response) => mapDtoToInstance(response.data));

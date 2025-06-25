@@ -1,6 +1,6 @@
-import { TInstance } from '@/types/instance/entity.type';
+import { TAggregatedInstance } from '@/types/instance/entity.type';
 
-export const mockedInstance: TInstance = {
+export const mockedInstance: TAggregatedInstance = {
   id: '12345',
   name: 'foo',
   flavorId: '678910',
@@ -21,7 +21,7 @@ export const mockedInstance: TInstance = {
   isImageDeprecated: false,
 };
 
-export const mockedInstanceWithEmptyRegion: TInstance = {
+export const mockedInstanceWithEmptyRegion: TAggregatedInstance = {
   ...mockedInstance,
   region: '',
 };
