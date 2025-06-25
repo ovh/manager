@@ -18,7 +18,7 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constant';
-import { SuccessMessages } from '@/components/Messages/SuccessMessage.component';
+import { MessagesViewer } from '@/components/Messages/MessageViewer.component';
 import { OrganizationCell } from '../listing/DatagridCell.component';
 import { DisplayNameWithEditButton } from './DisplayName.component';
 import { SubscriptionTile } from './SubscriptionTile.component';
@@ -55,7 +55,7 @@ export default function DashboardPage() {
           ) && (
             <OdsMessage color="warning">{t('terminated_service')}</OdsMessage>
           )}
-          <SuccessMessages id={id} />
+          <MessagesViewer id={id} />
         </>
       }
       backLinkLabel={t('back_to_listing_label')}
