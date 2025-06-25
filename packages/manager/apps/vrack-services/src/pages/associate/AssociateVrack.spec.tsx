@@ -16,6 +16,7 @@ import {
   getButtonByLabel,
   assertDisabled,
   assertEnabled,
+  doActionOnElementUntil,
 } from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
@@ -60,9 +61,12 @@ describe('Vrack Services associate vrack test suite', () => {
       value: labels.associate.modalConfirmVrackAssociationButtonLabel,
     });
     await assertEnabled(associateButton);
-    await waitFor(() => userEvent.click(associateButton));
 
-    await assertModalVisibility({ container, isVisible: false });
+    const modal = container.querySelector('ods-modal');
+    await doActionOnElementUntil(
+      () => userEvent.click(associateButton),
+      () => expect(modal).not.toBeInTheDocument(),
+    );
   });
 
   it('from dashboard, should propose user to create vrack if no eligible vrack', async () => {
