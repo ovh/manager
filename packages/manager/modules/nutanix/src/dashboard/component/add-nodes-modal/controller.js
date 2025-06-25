@@ -1,4 +1,5 @@
 import {
+  ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
   MAX_NODES_BY_CLUSTER,
   PREFIX_TRACKING_NUTANIX_NUTANIX,
   PREFIX_TRACKING_NUTANIX_POPUP,
@@ -85,6 +86,7 @@ export default class {
 
     this.trackPage({
       name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-success::cluster::nodes::add-node-${this.nodeId}_success`,
+      level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
     });
     this.handleSuccess(this.generateSuccessMessage());
   }

@@ -1,5 +1,6 @@
 import { REDEPLOY_REGEX, TRACKING_PREFIX } from './constants';
 import { REDEPLOY_CONFIG_OPTIONS } from '../constants';
+import { ENTERPRISE_SOLUTIONS_LEVEL_2_CODE } from '../../../../constants';
 
 export default class RedeployConfirmController {
   /* @ngInject */
@@ -40,6 +41,7 @@ export default class RedeployConfirmController {
       .then(() => {
         return this.atInternet.trackPage({
           name: 'hpc::nutanix::cluster-redeploy-inprogress',
+          level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
         });
       });
   }

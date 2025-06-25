@@ -1,5 +1,6 @@
 import { UNINSTALL_PATTERN } from './constants';
 import {
+  ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
   NUTANIX_GUIDE_LINK,
   PREFIX_TRACKING_NUTANIX_NUTANIX,
   PREFIX_TRACKING_NUTANIX_NUTANIX_POPUP,
@@ -19,6 +20,7 @@ export default class {
   $onInit() {
     this.atInternet.trackPage({
       name: `${PREFIX_TRACKING_NUTANIX_NUTANIX_POPUP}::cluster::nodes::uninstall_node::${this.nodeId}`,
+      level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
     });
   }
 
@@ -32,6 +34,7 @@ export default class {
       .then(() => {
         this.atInternet.trackPage({
           name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-success::cluster::nodes::uninstall-node-${this.nodeId}_success`,
+          level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
         });
         this.handleSuccess(
           `${this.$translate.instant(
@@ -42,6 +45,7 @@ export default class {
       .catch(() => {
         this.atInternet.trackPage({
           name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-error::cluster::nodes::uninstall-node-${this.nodeId}_error`,
+          level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
         });
         this.handleError(
           this.$translate.instant(

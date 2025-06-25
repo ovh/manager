@@ -1,4 +1,5 @@
 import {
+  ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
   PREFIX_TRACKING_NUTANIX_DATAGRID,
   PREFIX_TRACKING_NUTANIX_NUTANIX,
 } from '../../../constants';
@@ -73,6 +74,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     atInternet: {
       rename: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::listing::cluster::nodes`,
+      level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
     },
   });
 };

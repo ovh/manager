@@ -2,6 +2,7 @@ import {
   PREFIX_TRACKING_NUTANIX_NUTANIX,
   PREFIX_TRACKING_NUTANIX_POPUP,
   PREFIX_TRACKING_NUTANIX_NUTANIX_POPUP,
+  ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
 } from '../../../constants';
 
 export default class NutanixDashboardReinstallNodeCtrl {
@@ -23,6 +24,7 @@ export default class NutanixDashboardReinstallNodeCtrl {
   $onInit() {
     this.atInternet.trackPage({
       name: `${PREFIX_TRACKING_NUTANIX_NUTANIX_POPUP}::cluster::nodes::reinstall_node::${this.nodeId}`,
+      level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
     });
   }
 
@@ -43,6 +45,7 @@ export default class NutanixDashboardReinstallNodeCtrl {
       .then(() => {
         this.atInternet.trackPage({
           name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-success::cluster::nodes::reinstall-node-${this.nodeId}_success`,
+          level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
         });
         this.handleSuccess(
           `${this.$translate.instant(
@@ -53,6 +56,7 @@ export default class NutanixDashboardReinstallNodeCtrl {
       .catch(() => {
         this.atInternet.trackPage({
           name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-error::cluster::nodes::reinstall-node-${this.nodeId}_error`,
+          level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
         });
         this.handleError(
           this.$translate.instant(
