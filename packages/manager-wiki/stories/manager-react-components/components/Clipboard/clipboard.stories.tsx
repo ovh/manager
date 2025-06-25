@@ -11,13 +11,30 @@ type Story = StoryObj<typeof Clipboard>;
 export const regular: Story = {
   args: {
     value: 'Value to copy to clipboard',
+    disabled: false,
+    loading: false,
+    masked: false,
   },
 };
 
 export const disabled: Story = {
   args: {
     value: 'Disabled clipboard',
-    isDisabled: true,
+    disabled: true,
+  },
+};
+
+export const loading: Story = {
+  args: {
+    value: '',
+    loading: true,
+  },
+};
+
+export const masked: Story = {
+  args: {
+    value: 'Secret Data',
+    masked: true,
   },
 };
 
