@@ -7,7 +7,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import UserProvider from '@/context/user/user.provider';
 import ReassuranceWording from '@/components/reassuranceWording/ReassuranceWording.component';
-import sideBackground from '@/assets/side_background.svg';
+import sideBackground from '@/assets/side_background.svg?url';
 import Header from '@/components/header/Header.component';
 
 export default function Layout() {
