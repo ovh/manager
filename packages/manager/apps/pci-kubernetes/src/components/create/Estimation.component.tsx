@@ -17,7 +17,7 @@ import { TClusterCreationForm } from '@/pages/new/useCusterCreationStepper';
 
 type EstimationProps = {
   nodePools?: NodePoolPrice[];
-  plan?: TClusterCreationForm['plan'];
+  plan: TClusterCreationForm['plan'];
 };
 
 const Estimation = ({ nodePools, plan }: EstimationProps) => {
@@ -57,7 +57,7 @@ const Estimation = ({ nodePools, plan }: EstimationProps) => {
         >
           <strong> {t('kube_common_cluster_estimation_price')}</strong>{' '}
           {t(
-            plan === 'premium'
+            plan === 'standard'
               ? 'kube_common_estimation_price'
               : 'kube_common_estimation_price_free',
           )}
