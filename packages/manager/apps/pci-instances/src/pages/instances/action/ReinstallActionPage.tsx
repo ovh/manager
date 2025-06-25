@@ -2,11 +2,11 @@ import { FC, useEffect, useState } from 'react';
 import { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useInstanceReinstallAction } from '@/data/hooks/instance/action/useInstanceAction';
-import { TInstanceDto } from '@/types/instance/api.type';
 import ActionModal from '@/components/actionModal/ActionModal.component';
 import ImageSelector from '@/components/imageSelector/ImageSelector.component';
 import { imagesRescueSelector } from '@/data/hooks/image/selector/image.selector';
 import { useImages } from '@/data/hooks/image/useImages';
+import { TInstanceActionModalViewModel } from './view-models/selectInstanceForActionModal';
 
 export type TReinstallActionPageProps = {
   title: string;
@@ -15,7 +15,7 @@ export type TReinstallActionPageProps = {
   onError: (error: unknown) => void;
   onSuccess: () => void;
   onModalClose: () => void;
-  instance?: TInstanceDto;
+  instance: TInstanceActionModalViewModel;
   isLoading: boolean;
 };
 

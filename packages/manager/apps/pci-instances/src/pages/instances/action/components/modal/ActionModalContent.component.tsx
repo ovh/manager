@@ -11,17 +11,14 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { isCustomUrlSection, replaceToSnakeCase } from '@/utils';
-import { DeepReadonly } from '@/types/utils.type';
 import { TSectionType } from '@/types/instance/action/action.type';
-import { TInstanceDto } from '@/types/instance/api.type';
+import { TInstanceActionModalViewModel } from '../../view-models/selectInstanceForActionModal';
 
-type TActionModalProps = DeepReadonly<
-  React.PropsWithChildren<{
-    type: TSectionType;
-    instance?: TInstanceDto;
-    isLoading: boolean;
-  }>
->;
+type TActionModalProps = React.PropsWithChildren<{
+  type: TSectionType;
+  instance: TInstanceActionModalViewModel;
+  isLoading: boolean;
+}>;
 
 export const ActionModalContent: FC<TActionModalProps> = ({
   type,
