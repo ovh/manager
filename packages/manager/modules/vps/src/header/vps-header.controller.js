@@ -1,4 +1,3 @@
-import includes from 'lodash/includes';
 import filter from 'lodash/filter';
 import map from 'lodash/map';
 import snakeCase from 'lodash/snakeCase';
@@ -17,7 +16,7 @@ export default class {
     CucFeatureAvailabilityService,
     CucProductsService,
     OvhApiMe,
-    VpsNotificationIpv6,
+    VpsNotificationService,
     constants,
   ) {
     this.$rootScope = $rootScope;
@@ -26,7 +25,7 @@ export default class {
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
     this.CucProductsService = CucProductsService;
     this.OvhApiMe = OvhApiMe;
-    this.VpsNotificationIpv6 = VpsNotificationIpv6;
+    this.VpsNotificationService = VpsNotificationService;
     this.constants = constants;
 
     this.description = this.serviceName;
@@ -36,7 +35,6 @@ export default class {
     };
     this.stopNotification = {
       autoRenew: true,
-      ipV6: true,
     };
   }
 
@@ -80,7 +78,7 @@ export default class {
   checkMessages(vps) {
     this.isExpired(vps);
     this.displayWarningForRescueMode(this.isInRescueMode);
-    this.checkIfStopNotification('ipV6', true, vps);
+    this.checkIsLockedStatus(vps);
   }
 
   isExpired(vps) {
@@ -110,46 +108,27 @@ export default class {
     }
   }
 
-  showIpV6Banner(version, ipv6) {
-    const oldVersion = includes(version, '2014') || includes(version, '2013');
-    const userAcknowledged = this.stopNotification.ipV6;
-    if (!userAcknowledged && !oldVersion && ipv6) {
+  checkIsLockedStatus({ lockStatus: { locked: isLocked } }) {
+    if (isLocked) {
       this.CucCloudMessage.info(
-        {
-          textHtml: this.$translate.instant('vps_configuration_ipV6_info_text'),
-          dismissed: this.stopNotification.ipV6,
-          dismiss: () => this.stopNotificationIpV6(),
-        },
-        'vps.detail.dashboard',
+        this.$translate.instant('vps_dashboard_service_locked'),
+        'vps.detail',
       );
     }
   }
 
   checkIfStopNotification(message, isArray, vps) {
     const item = vps.name;
-    return this.VpsNotificationIpv6.checkIfStopNotification(
+    return this.VpsNotificationService.checkIfStopNotification(
       STOP_NOTIFICATION_USER_PREF[message],
       isArray,
       item,
     )
       .then((showNotification) => {
         this.stopNotification[message] = showNotification;
-        this.showIpV6Banner(vps.version, vps.ipv6);
       })
       .catch(() => {
         this.stopNotification[message] = false;
       });
-  }
-
-  stopNotificationIpV6() {
-    this.stopNotification.ipV6 = true;
-    this.VpsNotificationIpv6.stopNotification(
-      STOP_NOTIFICATION_USER_PREF.ipV6,
-      this.vps.name,
-    ).catch(() =>
-      this.CucCloudMessage.error(
-        this.$translate.instant('vps_stop_bother_error'),
-      ),
-    );
   }
 }
