@@ -2,9 +2,9 @@ import { InfiniteData } from '@tanstack/react-query';
 import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.type';
 import {
   TAddress,
-  TInstance,
+  TAggregatedInstance,
   TInstanceAction,
-  TInstanceActions,
+  TAggregatedInstanceActions,
   TInstanceAddressType,
   TInstanceStatus,
   TInstanceStatusSeverity,
@@ -51,7 +51,9 @@ const getInstanceStatusSeverity = (
   }
 };
 
-const getInstanceTaskState = (taskState: string): TInstance['taskState'] =>
+const getInstanceTaskState = (
+  taskState: string,
+): TAggregatedInstance['taskState'] =>
   taskState.length > 0 ? taskState : null;
 
 const getInstanceStatus = (status: TInstanceStatusDto): TInstanceStatus => ({
@@ -62,7 +64,7 @@ const getInstanceStatus = (status: TInstanceStatusDto): TInstanceStatus => ({
 const getActionHrefByName = (
   projectUrl: string,
   name: TActionName,
-  { region, id }: Pick<TInstance, 'id' | 'region'>,
+  { region, id }: Pick<TAggregatedInstance, 'id' | 'region'>,
 ): TInstanceAction['link'] => {
   if (name === 'details') {
     return { path: id, isExternal: false };
@@ -167,8 +169,8 @@ const mapInstanceAddresses = (instance: TInstanceDto) =>
 const mapInstanceActions = (
   instance: TInstanceDto,
   projectUrl: string,
-): TInstanceActions =>
-  instance.actions.reduce<TInstanceActions>((acc, action) => {
+): TAggregatedInstanceActions =>
+  instance.actions.reduce<TAggregatedInstanceActions>((acc, action) => {
     const { group, name } = action;
     const newAction = {
       label: `pci_instances_list_action_${name}`,
@@ -178,13 +180,13 @@ const mapInstanceActions = (
     if (!foundAction) return acc.set(group, [newAction]);
     foundAction.push(newAction);
     return acc;
-  }, new Map() as TInstanceActions);
+  }, new Map() as TAggregatedInstanceActions);
 
 export const instancesSelector = (
   { pages }: InfiniteData<TInstanceDto[], number>,
   limit: number,
   projectUrl: string,
-): TInstance[] =>
+): TAggregatedInstance[] =>
   pages
     .flatMap((page) => (page.length > limit ? page.slice(0, limit) : page))
     .map((instanceDto) => ({

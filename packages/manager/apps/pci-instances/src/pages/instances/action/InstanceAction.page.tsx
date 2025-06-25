@@ -11,13 +11,13 @@ import NotFound from '@/pages/404/NotFound.page';
 import queryClient from '@/queryClient';
 import { isApiErrorResponse, replaceToSnakeCase } from '@/utils';
 import BaseInstanceActionPage from './BaseAction.page';
-import { useCachedInstanceAction } from '@/data/hooks/instance/action/useCachedInstanceAction';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import BackupActionPage from './BackupActionPage';
 import { RescueActionPage } from './RescueAction.page';
 import BillingMonthlyActionPage from './BillingMonthlyActionPage';
 import { useActionSection } from '@/hooks/instance/action/useActionSection';
 import ReinstallActionPage from './ReinstallActionPage';
+import { useInstanceActionModal } from './hooks/useInstanceActionModal';
 
 const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
@@ -32,11 +32,11 @@ const InstanceAction: FC = () => {
     [section],
   );
 
-  const { instance, isLoading } = useCachedInstanceAction(instanceId, section);
+  const { instance, isLoading } = useInstanceActionModal(instanceId, section);
 
   const executeSuccessCallback = useCallback((): void => {
     if (!instance) return;
-    const newInstance = { ...instance, pendingTask: true };
+    const newInstance = { id: instance.id, pendingTask: true };
     updateInstanceFromCache(queryClient, {
       projectId,
       instance: newInstance,
@@ -56,7 +56,7 @@ const InstanceAction: FC = () => {
           i18nKey={`pci_instances_actions_rescue_start_instance_info_message`}
           values={{
             name: instance?.name,
-            ip: instance?.addresses[0].ip,
+            ip: instance?.ip,
           }}
           ns={'actions'}
           components={[

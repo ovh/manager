@@ -2,12 +2,12 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { FC } from 'react';
 import { useHref } from 'react-router-dom';
-import { BaseTextCell } from '@/components/datagrid/cell/TextCell.component';
-import { LoadingCell } from '@/components/datagrid/cell/LoadingCell.component';
-import { TInstance } from '@/types/instance/entity.type';
+import { BaseTextCell } from '@/pages/instances/datagrid/components/cell/TextCell.component';
+import { LoadingCell } from '@/pages/instances/datagrid/components/cell/LoadingCell.component';
+import { TAggregatedInstance } from '@/types/instance/entity.type';
 
 type TNameIdCellProps = {
-  instance: TInstance;
+  instance: TAggregatedInstance;
   isLoading: boolean;
 };
 

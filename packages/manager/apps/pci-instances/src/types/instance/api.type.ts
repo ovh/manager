@@ -3,6 +3,7 @@ import {
   TActionName,
   TAddressType,
   TInstanceActionGroup,
+  TInstancePriceType,
   TStatus,
 } from './common.type';
 
@@ -57,3 +58,97 @@ export type TRetrieveInstancesQueryParams = DeepReadonly<{
   searchField?: string;
   searchValue?: string;
 }>;
+
+/**
+ *
+ *
+ *
+ * REWORK
+ *
+ *
+ *
+ *
+ */
+
+type TSubnetDto = {
+  id: string;
+  name: string;
+  gatewayIP: string;
+  network: {
+    id: string;
+    name: string;
+  };
+};
+
+type TAddressDto = {
+  ip: string;
+  version: number;
+  type: TInstanceAddressTypeDto;
+  subnet?: TSubnetDto;
+};
+
+type TRegionType = 'region' | 'localzone' | 'region-3-az';
+
+export type TVolumeDto = {
+  id: string;
+  name?: string;
+  size?: number;
+};
+
+type TFlavorSpecDto = {
+  value: number;
+  unit: string;
+};
+
+export type TFlavorDto = {
+  id: string;
+  name: string;
+  specs: {
+    vcores: TFlavorSpecDto;
+    ram: TFlavorSpecDto;
+    storage: TFlavorSpecDto;
+    bandwidth: {
+      public: TFlavorSpecDto;
+      private: TFlavorSpecDto;
+    };
+  };
+};
+
+type TPriceTypeDto = TInstancePriceType;
+
+type TInstancePriceDto = {
+  type: TPriceTypeDto;
+  value: number;
+  status: 'enabled' | 'available' | 'eligible';
+};
+
+type TImageDto = {
+  id: string;
+  name: string;
+  deprecated: boolean;
+};
+
+type TBackupDto = {
+  count: number;
+  lastBackup: string;
+};
+
+export type TInstanceDto2 = {
+  id: string;
+  name: string;
+  region: string;
+  regionType: TRegionType;
+  availabilityZone: string | null;
+  pendingTask: boolean;
+  taskState: string;
+  sshKey: string;
+  login: string;
+  addresses: TAddressDto[];
+  status: TInstanceStatusDto;
+  actions: TInstanceActionDto[];
+  volumes: TVolumeDto[];
+  flavor: TFlavorDto;
+  pricings: TInstancePriceDto[];
+  image?: TImageDto;
+  backups?: TBackupDto;
+};

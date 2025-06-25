@@ -15,7 +15,7 @@ import fp from 'lodash/fp';
 import { getInstances } from '@/data/api/instance';
 import { instancesQueryKey } from '@/utils';
 import { TInstanceDto } from '@/types/instance/api.type';
-import { TInstance } from '@/types/instance/entity.type';
+import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { instancesSelector } from './selectors/instances.selector';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { DeepReadonly } from '@/types/utils.type';
@@ -81,7 +81,7 @@ export const updateInstanceFromCache: TUpdateInstanceFromCache = (
   });
 };
 
-const getPendingTaskIds = (data?: TInstance[]): string[] =>
+const getPendingTaskIds = (data?: TAggregatedInstance[]): string[] =>
   data?.filter(({ pendingTask }) => pendingTask).map(({ id }) => id) ?? [];
 
 export const getInstanceById = (
@@ -107,7 +107,7 @@ export const getInstanceById = (
   }, undefined);
 };
 
-const getInconsistency = (data: TInstance[] | undefined): boolean =>
+const getInconsistency = (data: TAggregatedInstance[] | undefined): boolean =>
   !!data?.some((elt) => elt.status.label === 'UNKNOWN');
 
 export const useInstances = ({
@@ -154,11 +154,17 @@ export const useInstances = ({
   );
 
   const resetQueryCacheData = useCallback(
-    (cacheQueryKey: QueryKey, previousData: InfiniteData<TInstance[]>) => {
-      queryClient.setQueryData<InfiniteData<TInstance[]>>(cacheQueryKey, {
-        pages: previousData.pages.slice(0, 1),
-        pageParams: [0],
-      });
+    (
+      cacheQueryKey: QueryKey,
+      previousData: InfiniteData<TAggregatedInstance[]>,
+    ) => {
+      queryClient.setQueryData<InfiniteData<TAggregatedInstance[]>>(
+        cacheQueryKey,
+        {
+          pages: previousData.pages.slice(0, 1),
+          pageParams: [0],
+        },
+      );
     },
     [queryClient],
   );
@@ -181,9 +187,9 @@ export const useInstances = ({
       predicate: listQueryKeyPredicate(projectId),
     });
 
-    const queryData = queryClient.getQueryData<InfiniteData<TInstance[]>>(
-      initialQueryKey,
-    );
+    const queryData = queryClient.getQueryData<
+      InfiniteData<TAggregatedInstance[]>
+    >(initialQueryKey);
 
     if (listCachedQueries.length > 1) {
       queryClient.removeQueries({
@@ -201,9 +207,9 @@ export const useInstances = ({
   }, [invalidateQuery, projectId, queryClient, resetQueryCacheData]);
 
   useEffect(() => {
-    const queryData = queryClient.getQueryData<InfiniteData<TInstance[]>>(
-      queryKey,
-    );
+    const queryData = queryClient.getQueryData<
+      InfiniteData<TAggregatedInstance[]>
+    >(queryKey);
     if (queryData?.pageParams && queryData.pageParams.length > 1) {
       resetQueryCacheData(queryKey, queryData);
       invalidateQuery(queryKey);

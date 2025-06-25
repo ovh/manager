@@ -3,6 +3,9 @@ import {
   TInstanceDto,
   TRetrieveInstancesQueryParams,
 } from '@/types/instance/api.type';
+import { mockedInstanceDTO } from '@/__mocks__/instance/constants';
+import { mapInstanceDtoToInstance } from './mapper/instance.mapper';
+import { TInstance } from '@/types/instance/entity.type';
 
 type TInstanceAction =
   | 'delete'
@@ -147,3 +150,11 @@ export const getInstance = ({
   v6
     .get(`/cloud/project/${projectId}/aggregated/instance/${instanceId}`)
     .then((response) => response.data);
+
+export const getInstancev2 = async (): Promise<TInstance> => {
+  return new Promise((r) =>
+    setTimeout(() => r(mapInstanceDtoToInstance(mockedInstanceDTO)), 2000),
+  );
+};
+
+// Promise.resolve(mapInstanceDtoToInstance(mockedInstanceDTO));
