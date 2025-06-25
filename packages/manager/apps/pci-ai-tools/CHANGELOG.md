@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.8.0...@ovh-ux/manager-pci-ai-tools-app@1.8.1) (2025-06-25)
+
+
+### Bug Fixes
+
+* **pci-ai-tools:us:** remove hardcoded GRA call to Framework to make it dynamic ([31e0a16](https://github.com/ovh/manager/commit/31e0a16a798a1d75d24b2a203aea05951e67eb9c)), closes [#DATATR-2324](https://github.com/ovh/manager/issues/DATATR-2324)
+
+
+
+
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.7.1...@ovh-ux/manager-pci-ai-tools-app@1.8.0) (2025-06-23)
 
 
