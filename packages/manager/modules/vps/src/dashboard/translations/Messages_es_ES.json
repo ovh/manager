@@ -24,5 +24,7 @@
   "vps_dashboard_auto_migration_warning_part_1_without_date": "Le confirmamos que es posible migrar su VPS {{vps}} hacia la nueva gama en un clic.",
   "vps_dashboard_auto_migration_warning_part_1_with_date": "Su VPS {{vps}} será migrado automáticamente el {{date}}.",
   "vps_dashboard_auto_migration_warning_part_2": "Para más información sobre la migración, consulte esta página web:",
-  "vps_dashboard_migration_banner_link": "Migrar en cualquier momento haciendo clic aquí"
+  "vps_dashboard_migration_banner_link": "Migrar en cualquier momento haciendo clic aquí",
+  "vps_dashboard_state_locked": "Bloqueado",
+  "vps_dashboard_service_locked": "Su solución ha sido bloqueada por incumplimiento de nuestros Términos y Condiciones. Para desbloquearla, contacte con el equipo de soporte."
 }

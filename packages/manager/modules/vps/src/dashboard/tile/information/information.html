@@ -4,7 +4,10 @@
 >
     <oui-tile-definition term="{{ ::'vps_dashboard_state' | translate }}">
         <oui-tile-description>
-            <vps-state-info vps-state="$ctrl.vpsState"></vps-state-info>
+            <vps-state-info
+                vps-state="$ctrl.vpsState"
+                is-locked="$ctrl.vps.lockStatus.locked"
+            ></vps-state-info>
         </oui-tile-description>
     </oui-tile-definition>
     <oui-tile-definition

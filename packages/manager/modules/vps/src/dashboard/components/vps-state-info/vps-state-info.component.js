@@ -4,6 +4,7 @@ import controller from './vps-state-info.controller';
 export default {
   bindings: {
     vpsState: '<',
+    isLocked: '<',
   },
   controller,
   template,
