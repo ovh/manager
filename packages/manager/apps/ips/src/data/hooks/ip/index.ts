@@ -10,3 +10,5 @@ export * from './useIpHasAlerts';
 export * from './useUpdateIpReverse';
 export * from './useDeleteIpReverse';
 export * from './useUpdateIpGameFirewall';
+export * from './useIpHasForcedMitigation';
+export * from './useIpHasServiceAttached';
