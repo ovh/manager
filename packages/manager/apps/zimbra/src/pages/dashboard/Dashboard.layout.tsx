@@ -1,4 +1,4 @@
-import React, { Suspense, useContext } from 'react';
+import React, { Suspense, useContext, useMemo } from 'react';
 import { Outlet, useResolvedPath, useSearchParams } from 'react-router-dom';
 import {
   BaseLayout,
@@ -29,8 +29,12 @@ import {
 import { GUIDES_LIST, CHANGELOG_LINKS } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
 import { FEATURE_FLAGS } from '@/utils';
-import { FEATURE_AVAILABILITY } from '@/constants';
-import { useGenerateUrl, useOverridePage } from '@/hooks';
+import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
+import {
+  useAccountsStatistics,
+  useGenerateUrl,
+  useOverridePage,
+} from '@/hooks';
 import { useOrganization } from '@/data/hooks';
 import {
   AUTO_REPLY,
@@ -57,10 +61,18 @@ export const DashboardLayout: React.FC = () => {
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
   const basePath = useResolvedPath('').pathname;
+  const { proCount } = useAccountsStatistics();
 
   const { data: availability } = useFeatureAvailability([
     FEATURE_AVAILABILITY.PRO_BETA,
   ]);
+
+  const showProBetaBanner = useMemo(
+    () =>
+      proCount < MAX_PRO_ACCOUNTS &&
+      availability?.[FEATURE_AVAILABILITY.PRO_BETA],
+    [availability, proCount],
+  );
 
   const guideItems: GuideItem[] = [
     {
@@ -191,12 +203,9 @@ export const DashboardLayout: React.FC = () => {
       }
       message={
         // temporary fix margin even if empty
-        notifications.length ||
-        availability?.[FEATURE_AVAILABILITY.PRO_BETA] ? (
+        notifications.length || showProBetaBanner ? (
           <div className="flex flex-col gap-4">
-            {!!availability?.[FEATURE_AVAILABILITY.PRO_BETA] && (
-              <ProBetaBanner />
-            )}
+            {!!showProBetaBanner && <ProBetaBanner />}
             {!!notifications.length && <Notifications />}
           </div>
         ) : null

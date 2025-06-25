@@ -13,9 +13,13 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { EmailAccountItem } from './EmailAccountsDatagrid.component';
 import { usePlatform } from '@/data/hooks';
-import { useGenerateUrl } from '@/hooks';
+import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { ResourceStatus, ServiceBillingState } from '@/data/api';
+import {
+  ResourceStatus,
+  ServiceBillingState,
+  ZimbraPlanCodes,
+} from '@/data/api';
 import {
   CANCEL_SLOT,
   DELETE_EMAIL_ACCOUNT,
@@ -24,7 +28,7 @@ import {
   UNDO_CANCEL_SLOT,
   UPGRADE_SLOT,
 } from '@/tracking.constants';
-import { FEATURE_AVAILABILITY } from '@/contants';
+import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
 
 interface ActionButtonEmailAccountProps {
   item: EmailAccountItem;
@@ -37,6 +41,7 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
   const { t } = useTranslation('common');
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
+  const { proCount } = useAccountsStatistics();
   const { data: availability } = useFeatureAvailability([
     FEATURE_AVAILABILITY.PRO_BETA,
   ]);
@@ -105,7 +110,7 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
       actions: [UNDO_CANCEL_SLOT],
     });
     navigate(hrefUndoCancelSlot);
-  }
+  };
 
   const hrefUpgradeEmailAccount = useGenerateUrl(
     `./slot/${item?.slotId}/upgrade`,
@@ -169,7 +174,11 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
     });
   }
 
-  if (availability?.[FEATURE_AVAILABILITY.PRO_BETA]) {
+  if (
+    availability?.[FEATURE_AVAILABILITY.PRO_BETA] &&
+    item?.service?.planCode === ZimbraPlanCodes.ZIMBRA_STARTER &&
+    proCount < MAX_PRO_ACCOUNTS
+  ) {
     actionItems.push({
       id: actionItems.length + 1,
       onClick: handleUpgradeEmailClick,

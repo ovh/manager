@@ -25,39 +25,44 @@ import {
 } from '@ovhcloud/ods-components';
 import { useGenerateUrl } from '@/hooks';
 import { BACK_PREVIOUS_PAGE, UPGRADE_SLOT } from '@/tracking.constants';
-import { useAccount } from '@/data/hooks';
+import { useSlot } from '@/data/hooks';
 import { getZimbraPlatformAccountsQueryKey, ZimbraPlanCodes } from '@/data/api';
-import { ZimbraBetaLink, ZimbraEmailsLink } from '@/contants';
+import { ZimbraEmailsLink, ZimbraLabsLink } from '@/constants';
 import { useUpgradeMutation } from '@/data/hooks/account/useUpgradeMutation';
 
 export const UpgradeAccount = () => {
   const { platformId, slotId } = useParams();
   const { trackClick, trackPage } = useOvhTracking();
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccess, addError, clearNotifications } = useNotifications();
   const { t } = useTranslation(['accounts', 'common']);
   const navigate = useNavigate();
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
   const goBackUrl = useGenerateUrl('../../..', 'href');
-  const { data: account, isLoading } = useAccount();
+  const { data: slot, isLoading } = useSlot();
   const { upgradeService, isSending } = useUpgradeMutation({
-    onSuccess: () => {
+    onSuccess: (data) => {
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: UPGRADE_SLOT,
       });
+      clearNotifications();
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_account_upgrade_success_message')}
         </OdsText>,
         true,
       );
+      if (data?.order?.url) {
+        window.open(data.order.url, '_blank', 'noopener,noreferrer');
+      }
     },
     onError: (error: ApiError) => {
       trackPage({
         pageType: PageType.bannerError,
         pageName: UPGRADE_SLOT,
       });
+      clearNotifications();
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_account_upgrade_error_message', {
@@ -94,7 +99,7 @@ export const UpgradeAccount = () => {
       />
       <Subtitle className="mt-5">{t('common:upgrade_account_pro')}</Subtitle>
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-        {account?.currentState.email}
+        {slot?.currentState.email}
       </OdsText>
       <div className="flex flex-col gap-4 my-8">
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
@@ -102,7 +107,8 @@ export const UpgradeAccount = () => {
             t={t}
             i18nKey="zimbra_account_upgrade_new_offer"
             values={{
-              zimbra_emails_link: ZimbraEmailsLink[ovhSubsidiary],
+              zimbra_emails_link:
+                ZimbraEmailsLink[ovhSubsidiary] || ZimbraEmailsLink.DEFAULT,
             }}
             components={{
               Link: (
@@ -130,7 +136,7 @@ export const UpgradeAccount = () => {
             t={t}
             i18nKey="zimbra_account_upgrade_lab_page"
             values={{
-              zimbra_beta_link: ZimbraBetaLink[ovhSubsidiary],
+              zimbra_beta_link: ZimbraLabsLink,
             }}
             components={{
               Link: (
@@ -170,7 +176,7 @@ export const UpgradeAccount = () => {
             upgradeService({
               serviceName: slotId,
               planCode: ZimbraPlanCodes.ZIMBRA_PRO,
-              autoPay: true,
+              autoPay: false,
             })
           }
         />

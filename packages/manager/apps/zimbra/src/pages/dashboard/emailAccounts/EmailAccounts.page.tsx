@@ -13,8 +13,8 @@ import {
   ManagerText,
 } from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
-import { usePlatform, useOrganization } from '@/data/hooks';
-import { useOverridePage } from '@/hooks';
+import { usePlatform } from '@/data/hooks';
+import { useAccountsStatistics, useOverridePage } from '@/hooks';
 import { GUIDES_LIST } from '@/guides.constants';
 import { capitalize } from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -29,40 +29,30 @@ const switchStateEnum = {
 
 export const EmailAccounts = () => {
   const { t } = useTranslation(['accounts', 'common']);
-  const { data: platform, platformUrn } = usePlatform();
-  const { data: organisation } = useOrganization();
+  const { platformUrn } = usePlatform();
+  const {
+    accountsStatistics,
+    accountsConfigured,
+    accountsUnconfigured,
+  } = useAccountsStatistics();
 
   const isOverridedPage = useOverridePage();
   const [switchState, setSwitchState] = useState<keyof typeof switchStateEnum>(
     switchStateEnum.ACCOUNTS,
   );
 
-  const accountsStatistics: AccountStatistics[] = useMemo(() => {
-    return organisation
-      ? organisation.currentState?.accountsStatistics
-      : platform?.currentState?.accountsStatistics;
-  }, [organisation, platform]);
-
-  const { configured, unconfigured } = useMemo(() => {
-    return (accountsStatistics || []).reduce(
-      (acc, curr) => {
-        acc.configured += curr.configuredAccountsCount;
-        acc.unconfigured += curr.availableAccountsCount;
-        return acc;
-      },
-      { configured: 0, unconfigured: 0 },
-    );
-  }, [accountsStatistics]);
-
   useEffect(() => {
     // switch automatically to unconfigured accounts
     // if no configured accounts and slots available
-    if (configured === 0 && unconfigured > 0) {
+    if (accountsConfigured === 0 && accountsUnconfigured > 0) {
       setSwitchState(switchStateEnum.SLOTS);
-    } else if (switchState === switchStateEnum.SLOTS && unconfigured === 0) {
+    } else if (
+      switchState === switchStateEnum.SLOTS &&
+      accountsUnconfigured === 0
+    ) {
       setSwitchState(switchStateEnum.ACCOUNTS);
     }
-  }, [configured, unconfigured]);
+  }, [accountsConfigured, accountsUnconfigured]);
 
   const webmailUrl = GUIDES_LIST.webmail.url.DEFAULT;
 
@@ -126,7 +116,7 @@ export const EmailAccounts = () => {
               value={switchStateEnum.ACCOUNTS}
               onClick={() => setSwitchState(switchStateEnum.ACCOUNTS)}
             >
-              {t('zimbra_account_configured', { value: configured })}
+              {t('zimbra_account_configured', { value: accountsConfigured })}
             </OdsSwitchItem>
             <OdsSwitchItem
               data-testid="switch-slots"
@@ -134,7 +124,9 @@ export const EmailAccounts = () => {
               value={switchStateEnum.SLOTS}
               onClick={() => setSwitchState(switchStateEnum.SLOTS)}
             >
-              {t('zimbra_account_unconfigured', { value: unconfigured })}
+              {t('zimbra_account_unconfigured', {
+                value: accountsUnconfigured,
+              })}
             </OdsSwitchItem>
           </OdsSwitch>
           {switchState === switchStateEnum.ACCOUNTS ? (
