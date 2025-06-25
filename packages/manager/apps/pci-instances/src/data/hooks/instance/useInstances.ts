@@ -81,8 +81,10 @@ export const updateInstanceFromCache: TUpdateInstanceFromCache = (
   });
 };
 
-const getPendingTaskIds = (data?: TInstance[]): string[] =>
-  data?.filter(({ pendingTask }) => pendingTask).map(({ id }) => id) ?? [];
+const getPendingTaskIds = (data?: TInstance[]) =>
+  data
+    ?.filter(({ pendingTask }) => pendingTask)
+    .map(({ id, region }) => ({ instanceId: id, region })) ?? [];
 
 export const getInstanceById = (
   projectId: string,

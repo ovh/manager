@@ -37,7 +37,7 @@ import {
   shouldRetryAfter404Error,
   useInstancesPolling,
 } from '@/data/hooks/instance/polling/useInstancesPolling';
-import { TInstanceDto } from '@/types/instance/api.type';
+import { TPolledInstanceDto } from '@/types/instance/api.type';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { getPartialDeletedInstanceDto } from './datagrid.constants';
 
@@ -114,7 +114,7 @@ const DatagridComponent = ({
   });
 
   const handlePollingSuccess = useCallback(
-    (instance?: TInstanceDto) => {
+    (instance?: TPolledInstanceDto) => {
       if (!instance) return;
       const isDeleted = !instance.pendingTask && instance.status === 'DELETED';
       const deletedInstance = getPartialDeletedInstanceDto(instance.id);

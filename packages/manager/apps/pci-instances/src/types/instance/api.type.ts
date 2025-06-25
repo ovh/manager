@@ -120,3 +120,8 @@ export type TBaseInstanceDto = {
   pricings: TInstancePriceDto[];
   sshKey: string;
 };
+
+export type TPolledInstanceDto = Pick<
+  TBaseInstanceDto,
+  'id' | 'name' | 'status' | 'actions' | 'pendingTask' | 'taskState'
+>;

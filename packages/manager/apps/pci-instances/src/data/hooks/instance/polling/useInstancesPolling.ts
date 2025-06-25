@@ -7,25 +7,33 @@ import {
 } from '@tanstack/react-query';
 import { useCallback } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { getInstance } from '@/data/api/instance';
+import { getRegionInstance } from '@/data/api/instance';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { instancesQueryKey, isApiErrorResponse } from '@/utils';
-import { TInstanceDto } from '@/types/instance/api.type';
+import {
+  TBaseInstanceDto,
+  TPolledInstanceDto,
+} from '@/types/instance/api.type';
 
 export type TUseInstancesPollingQueryOptions = Pick<
-  UseQueryOptions<TInstanceDto>,
+  UseQueryOptions<TBaseInstanceDto>,
   'refetchInterval' | 'gcTime' | 'refetchIntervalInBackground' | 'retry'
 >;
 
 export type TUseInstancesPollingCallbacks = {
   onError?: (error: ApiError, pendingTaskId: string) => void;
-  onSuccess?: (data: TInstanceDto | undefined) => void;
+  onSuccess?: (data: TPolledInstanceDto | undefined) => void;
+};
+
+type TPendingTask = {
+  instanceId: string;
+  region: string;
 };
 
 const defaultQueryOptions: TUseInstancesPollingQueryOptions = {
   refetchIntervalInBackground: true,
   gcTime: 0,
-  refetchInterval: (query: Query<TInstanceDto>) =>
+  refetchInterval: (query: Query<TBaseInstanceDto>) =>
     query.state.error ? false : 3000,
 };
 
@@ -38,7 +46,7 @@ export const shouldRetryAfter404Error = (
     : failureCount < 3;
 
 export const useInstancesPolling = (
-  pendingTaskIds: string[],
+  pendingTaskIds: TPendingTask[],
   { onError, onSuccess }: TUseInstancesPollingCallbacks = {},
   options?: TUseInstancesPollingQueryOptions,
 ) => {
@@ -46,20 +54,41 @@ export const useInstancesPolling = (
   const queryOptions = options ?? {};
 
   const polledInstances = useQueries({
-    queries: pendingTaskIds.map((instanceId) => ({
-      queryKey: instancesQueryKey(projectId, ['instance', instanceId]),
+    queries: pendingTaskIds.map(({ instanceId, region }) => ({
+      queryKey: instancesQueryKey(projectId, [
+        'region',
+        region,
+        'instance',
+        instanceId,
+      ]),
       queryFn: () =>
-        getInstance({
+        getRegionInstance({
           projectId,
+          region,
           instanceId,
         }),
+      select: ({
+        id,
+        name,
+        status,
+        actions,
+        pendingTask,
+        taskState,
+      }: TBaseInstanceDto) => ({
+        id,
+        name,
+        status,
+        actions,
+        pendingTask,
+        taskState,
+      }),
       ...defaultQueryOptions,
       ...queryOptions,
     })),
     combine: useCallback(
-      (results: UseQueryResult<TInstanceDto>[]) =>
+      (results: UseQueryResult<TPolledInstanceDto>[]) =>
         results.map(({ data, error, isLoading }, index) => ({
-          id: pendingTaskIds[index],
+          id: pendingTaskIds[index].instanceId,
           error,
           isLoading,
           data,
