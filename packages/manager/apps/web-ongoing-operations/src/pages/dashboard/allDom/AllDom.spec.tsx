@@ -3,12 +3,18 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
-import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
+import {
+  useAuthorizationIam,
+  useFeatureAvailability,
+  useResourcesIcebergV6,
+} from '@ovh-ux/manager-react-components';
 import AllDom from '@/pages/dashboard/allDom/AllDom';
 import { serviceInfo } from '@/__mocks__/serviceInfo';
 import { useGetDomainInformation } from '@/hooks/data/query';
 import { wrapper } from '@/utils/test.provider';
-import { allDom } from '@/__mocks__/allDom';
+import { allDom, allDomIamResource } from '@/__mocks__/allDom';
+import { useGetIAMResourceAllDom } from '@/hooks/iam/iam';
+import { allDomFeatureAvailibility } from '@/constants';
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(() => null),
@@ -22,6 +28,10 @@ vi.mock('@/data/api/web-ongoing-operations', () => ({
 
 vi.mock('@/hooks/data/query', () => ({
   useGetDomainInformation: vi.fn(),
+}));
+
+vi.mock('@/hooks/iam/iam', () => ({
+  useGetIAMResourceAllDom: vi.fn(),
 }));
 
 describe('alldom datagrid', () => {
@@ -38,6 +48,18 @@ describe('alldom datagrid', () => {
 
     (useGetDomainInformation as jest.Mock).mockReturnValue({
       data: serviceInfo,
+    });
+
+    (useGetIAMResourceAllDom as jest.Mock).mockReturnValue({
+      data: allDomIamResource,
+    });
+
+    (useAuthorizationIam as jest.Mock).mockReturnValue({
+      isAuthorized: true,
+    });
+
+    (useFeatureAvailability as jest.Mock).mockReturnValue({
+      data: { [allDomFeatureAvailibility]: true },
     });
 
     const { getByTestId } = render(<AllDom />, { wrapper });

@@ -44,6 +44,8 @@ vi.mock(import('@ovh-ux/manager-react-components'), async (importOriginal) => {
   return {
     ...actual,
     useResourcesIcebergV6: vi.fn(),
+    useAuthorizationIam: vi.fn(),
+    useFeatureAvailability: vi.fn(),
   };
 });
 
