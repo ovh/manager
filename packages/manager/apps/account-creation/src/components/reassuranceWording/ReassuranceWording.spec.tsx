@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { Location } from 'react-router-dom';
 import * as ReactRouterDomApi from 'react-router-dom';
 import * as useReassuranceWordingApi from '@/hooks/reassuranceWording/useReassuranceWording';
-import ReassuranceWording from '@/pages/ReassuranceWording.component';
+import ReassuranceWording from '@/components/reassuranceWording/ReassuranceWording.component';
 import userContext, { UserContext } from '@/context/user/user.context';
 
 const renderComponent = (user: Partial<UserContext>) =>
@@ -104,59 +104,59 @@ describe('ReassuranceWording', () => {
       expect(descriptionElement).toHaveTextContent('generic_description');
     });
 
-    it('should display an info message when on info route for customer with corporation legal form', async () => {
-      mockLocation('/info');
+    it('should display an info message when on details route for customer with corporation legal form', async () => {
+      mockLocation('/details');
       renderComponent({ legalForm: 'corporation' });
 
       const titleElement = screen.getByTestId('reassurance_wording_title');
       const descriptionElement = screen.getByTestId(
         'reassurance_wording_description',
       );
-      expect(titleElement).toHaveTextContent('info_title_corporation');
+      expect(titleElement).toHaveTextContent('details_title_corporation');
       expect(descriptionElement).toHaveTextContent(
-        'info_description_corporation',
+        'details_description_corporation',
       );
     });
 
-    it('should display an info message when on info route for customer with individual legal form', async () => {
-      mockLocation('/info');
+    it('should display an info message when on details route for customer with individual legal form', async () => {
+      mockLocation('/details');
       renderComponent({ legalForm: 'individual' });
 
       const titleElement = screen.getByTestId('reassurance_wording_title');
       const descriptionElement = screen.getByTestId(
         'reassurance_wording_description',
       );
-      expect(titleElement).toHaveTextContent('info_title_individual');
+      expect(titleElement).toHaveTextContent('details_title_individual');
       expect(descriptionElement).toHaveTextContent(
-        'info_description_individual',
+        'details_description_individual',
       );
     });
 
-    it('should display an info message when on info route for customer with association legal form', async () => {
-      mockLocation('/info');
+    it('should display an info message when on details route for customer with association legal form', async () => {
+      mockLocation('/details');
       renderComponent({ legalForm: 'association' });
 
       const titleElement = screen.getByTestId('reassurance_wording_title');
       const descriptionElement = screen.getByTestId(
         'reassurance_wording_description',
       );
-      expect(titleElement).toHaveTextContent('info_title_association');
+      expect(titleElement).toHaveTextContent('details_title_association');
       expect(descriptionElement).toHaveTextContent(
-        'info_description_association',
+        'details_description_association',
       );
     });
 
-    it('should display an info message when on info route for customer with administration legal form', async () => {
-      mockLocation('/info');
+    it('should display an info message when on details route for customer with administration legal form', async () => {
+      mockLocation('/details');
       renderComponent({ legalForm: 'administration' });
 
       const titleElement = screen.getByTestId('reassurance_wording_title');
       const descriptionElement = screen.getByTestId(
         'reassurance_wording_description',
       );
-      expect(titleElement).toHaveTextContent('info_title_association');
+      expect(titleElement).toHaveTextContent('details_title_association');
       expect(descriptionElement).toHaveTextContent(
-        'info_description_association',
+        'details_description_association',
       );
     });
   });

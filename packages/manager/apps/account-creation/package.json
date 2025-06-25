@@ -18,7 +18,9 @@
     "test": "manager-test run"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.3.1",
+    "@hookform/resolvers": "^5.0.1",
+    "@ovh-ux/manager-common-translations": "^0.6.0",
+    "@ovh-ux/manager-config": "^8.5.0",
     "@ovh-ux/manager-core-api": "^0.12.0",
     "@ovh-ux/manager-core-utils": "^0.3.0",
     "@ovh-ux/manager-react-components": "^2.2.0",
@@ -35,11 +37,13 @@
     "i18next-http-backend": "^2.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.55.0",
     "react-i18next": "^14.0.5",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@ovh-ux/manager-tests-setup": "^0.1.0",
+    "@ovh-ux/manager-tests-setup": "^0.2.0",
     "@ovh-ux/manager-vite-config": "^0.10.1",
     "@tanstack/react-query-devtools": "^5.51.21",
     "tailwindcss": "^3.4.4",
