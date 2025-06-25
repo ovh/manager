@@ -4,32 +4,39 @@ import {
   TAddressType,
   TInstanceActionGroup,
   TStatus,
+  TRegionType,
+  TSubnet,
+  TFlavorSpec,
+  TImage,
+  TBackup,
 } from './common.type';
 
 export type TInstanceAddressTypeDto = TAddressType;
 
-export type TInstanceAddressDto = {
+type TAggregatedInstanceAddressDto = {
   ip: string;
   version: number;
   type: TInstanceAddressTypeDto;
   gatewayIp: string;
 };
 
-export type TInstanceVolumeDto = {
+export type TAggregatedInstanceVolumeDto = {
   id: string;
   name: string;
 };
 
+type TInstanceActionNameDto = TActionName;
+type TInstanceActionGroupDto = TInstanceActionGroup;
+
 export type TInstanceActionDto = {
   name: TInstanceActionNameDto;
-  group: TInstanceActionGroup;
+  group: TInstanceActionGroupDto;
 };
 
-export type TInstanceActionNameDto = TActionName;
 export type TInstanceStatusDto = TStatus;
 
-export type TInstanceDto = {
-  addresses: TInstanceAddressDto[];
+export type TAggregatedInstanceDto = {
+  addresses: TAggregatedInstanceAddressDto[];
   flavorId: string;
   flavorName: string;
   id: string;
@@ -38,7 +45,7 @@ export type TInstanceDto = {
   name: string;
   region: string;
   status: TInstanceStatusDto;
-  volumes: TInstanceVolumeDto[];
+  volumes: TAggregatedInstanceVolumeDto[];
   actions: TInstanceActionDto[];
   pendingTask: boolean;
   availabilityZone: string | null;
@@ -46,8 +53,8 @@ export type TInstanceDto = {
   isImageDeprecated: boolean;
 };
 
-export type TPartialInstanceDto = Pick<TInstanceDto, 'id'> &
-  Partial<TInstanceDto>;
+export type TPartialInstanceDto = Pick<TAggregatedInstanceDto, 'id'> &
+  Partial<TAggregatedInstanceDto>;
 
 export type TRetrieveInstancesQueryParams = DeepReadonly<{
   limit: number;
@@ -57,3 +64,72 @@ export type TRetrieveInstancesQueryParams = DeepReadonly<{
   searchField?: string;
   searchValue?: string;
 }>;
+
+type TInstanceSubnetDto = TSubnet;
+
+type TInstanceAddressDto = {
+  ip: string;
+  version: number;
+  type: TInstanceAddressTypeDto;
+  subnet?: TInstanceSubnetDto;
+};
+
+export type TInstanceVolumeDto = {
+  id: string;
+  name?: string;
+  size?: number;
+};
+
+type TInstanceRegionTypeDto = TRegionType;
+
+type TInstanceFlavorSpecDto = TFlavorSpec;
+
+type TInstanceFlavorDto = {
+  id: string;
+  name: string;
+  specs: {
+    cpu: TInstanceFlavorSpecDto;
+    ram: TInstanceFlavorSpecDto;
+    storage: TInstanceFlavorSpecDto;
+    bandwidth: {
+      public: TInstanceFlavorSpecDto;
+      private: TInstanceFlavorSpecDto;
+    };
+  };
+};
+
+export type TInstancePriceDto = {
+  type: 'hour' | 'month' | 'licence' | 'savingplans';
+  status: 'enabled' | 'available' | 'eligible';
+  includeVat: boolean;
+  price: {
+    currencyCode: string;
+    priceInUCents: number;
+    text: string;
+    value: number;
+  };
+};
+
+type TInstanceImageDto = TImage;
+
+type TInstanceBackupDto = TBackup;
+
+export type TInstanceDto = {
+  id: string;
+  name: string;
+  region: string;
+  regionType: TInstanceRegionTypeDto;
+  availabilityZone: string | null;
+  pendingTask: boolean;
+  taskState: string;
+  sshKey: string;
+  login?: string;
+  addresses: TInstanceAddressDto[];
+  status: TInstanceStatusDto;
+  actions: TInstanceActionDto[];
+  volumes?: TInstanceVolumeDto[];
+  flavor?: TInstanceFlavorDto;
+  pricings?: TInstancePriceDto[];
+  image?: TInstanceImageDto;
+  backups?: TInstanceBackupDto[];
+};

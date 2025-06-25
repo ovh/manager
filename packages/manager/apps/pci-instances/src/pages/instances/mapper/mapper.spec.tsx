@@ -1,15 +1,15 @@
 import { describe } from 'vitest';
 import { mapAddressesToListItems } from '.';
-import { TAddress } from '@/types/instance/entity.type';
+import { TAggregatedInstanceAddress } from '@/types/instance/entity.type';
 
 describe('Mapper functions', () => {
   describe('Considering the mapAddressesToListItems function', () => {
-    const fakeAddress1: TAddress = {
+    const fakeAddress1: TAggregatedInstanceAddress = {
       gatewayIp: '',
       ip: '123456',
       version: 1,
     };
-    const fakeAddress2: TAddress = {
+    const fakeAddress2: TAggregatedInstanceAddress = {
       gatewayIp: '',
       ip: '78910',
       version: 2,

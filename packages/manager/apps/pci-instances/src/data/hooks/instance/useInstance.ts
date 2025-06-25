@@ -1,23 +1,39 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import { getInstance } from '@/data/api/instance';
+import { getInstance, TGetInstanceQueryParams } from '@/data/api/instance';
 import { useProjectId } from '@/hooks/project/useProjectId';
-import { TInstanceDto } from '@/types/instance/api.type';
 import { instancesQueryKey } from '@/utils';
+import { TInstance } from '@/types/instance/entity.type';
+import { DeepReadonly } from '@/types/utils.type';
 
 export type TUseInstanceQueryOptions = Pick<
-  UseQueryOptions<TInstanceDto>,
+  UseQueryOptions<TInstance>,
   'enabled' | 'retry' | 'gcTime'
 >;
 
-export const useInstance = (
-  instanceId: string,
-  queryOptions: TUseInstanceQueryOptions,
-) => {
+type TUseInstanceArgs = DeepReadonly<{
+  region: string | null;
+  instanceId: string;
+  params?: TGetInstanceQueryParams;
+  queryOptions?: TUseInstanceQueryOptions;
+}>;
+
+export const useInstance = ({
+  region,
+  instanceId,
+  params,
+  queryOptions,
+}: TUseInstanceArgs) => {
   const projectId = useProjectId();
 
   return useQuery({
-    queryKey: instancesQueryKey(projectId, ['instance', instanceId]),
-    queryFn: () => getInstance({ projectId, instanceId }),
+    queryKey: instancesQueryKey(projectId, [
+      'region',
+      String(region),
+      'instance',
+      instanceId,
+      ...(params ?? []),
+    ]),
+    queryFn: () => getInstance({ projectId, region, instanceId, params }),
     ...queryOptions,
   });
 };

@@ -39,7 +39,6 @@ import {
 } from 'react-router-dom';
 import clsx from 'clsx';
 import NotFoundPage from '../404/NotFound.page';
-import DatagridComponent from '@/components/datagrid/Datagrid.component';
 import { useInstances } from '@/data/hooks/instance/useInstances';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { Spinner } from '@/components/spinner/Spinner.component';
@@ -47,6 +46,7 @@ import { SECTIONS } from '@/routes/routes';
 import { SearchNotifications } from '@/components/SearchNotifications/SearchNotifications';
 import { useActionSection } from '@/hooks/instance/action/useActionSection';
 import { CHANGELOG_LINKS } from '@/constants';
+import DatagridComponent from './datagrid/components/Datagrid.component';
 
 const initialSorting = {
   id: 'name',
