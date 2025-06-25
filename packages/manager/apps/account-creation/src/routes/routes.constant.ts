@@ -3,4 +3,5 @@ export const urls = {
   preferences: '/preferences',
   accountType: '/type',
   accountDetails: '/details',
+  company: '/company',
 };

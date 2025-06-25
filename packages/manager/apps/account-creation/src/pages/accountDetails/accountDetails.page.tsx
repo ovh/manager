@@ -54,7 +54,13 @@ export default function AccountDetailsPage() {
   // const { t: tLanguage } = useTranslation(NAMESPACES.LANGUAGE);
 
   type FormData = Partial<User> & { confirmSend?: boolean };
-  const { legalForm } = useUserContext();
+  const {
+    legalForm,
+    organisation,
+    companyNationalIdentificationNumber,
+    address,
+    city,
+  } = useUserContext();
   const { data: currentUser } = useMe();
 
   const header = {
@@ -111,6 +117,10 @@ export default function AccountDetailsPage() {
       language: rulesParams.language,
       phoneType: 'landline',
       phoneCountry: rulesParams.country,
+      organisation,
+      companyNationalIdentificationNumber,
+      address,
+      city,
     },
     mode: 'onTouched',
     resolver: zodResolver(zodSchema),
