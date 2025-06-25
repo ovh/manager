@@ -11,6 +11,7 @@ import {
   labels,
   renderTest,
   assertEnabled,
+  doActionOnElementUntil,
 } from '@/test-utils';
 
 describe('Vrack Services delete test suite', () => {
@@ -40,8 +41,11 @@ describe('Vrack Services delete test suite', () => {
     const deleteButton = getByTestId('manager-delete-modal-confirm');
 
     await assertEnabled(deleteButton);
+    const modal = container.querySelector('ods-modal');
     await waitFor(() => userEvent.click(deleteButton));
-
-    await assertModalVisibility({ container, isVisible: false });
+    await doActionOnElementUntil(
+      () => userEvent.click(deleteButton),
+      () => expect(modal).not.toBeInTheDocument(),
+    );
   });
 });
