@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LegalForm } from '@ovh-ux/manager-config';
+import { Country, LegalForm, Subsidiary } from '@ovh-ux/manager-config';
 import userContext from '@/context/user/user.context';
 import { useMe } from '@/data/hooks/useMe';
 import { urls } from '@/routes/routes.constant';
+import { Company } from '@/types/company';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -14,22 +15,60 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const { data: me, isFetched, error } = useMe({ retry: 0 });
   // We will need to add states for country and language to prefill the /info form
   const [legalForm, setLegalForm] = useState<LegalForm | undefined>(undefined);
+  const [ovhSubsidiary, setOvhSubsidiary] = useState<Subsidiary | undefined>(
+    undefined,
+  );
+  const [country, setCountry] = useState<Country | undefined>(undefined);
+  const [organisation, setOrganisation] = useState<string | undefined>(
+    undefined,
+  );
+  const [
+    companyNationalIdentificationNumber,
+    setCompanyNationalIdentificationNumber,
+  ] = useState<string | undefined>(undefined);
+  const [address, setAddress] = useState<string | undefined>(undefined);
+  const [city, setCity] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (isFetched) {
       if (error?.status === 401) {
         navigate(urls.preferences);
       } else {
-        setLegalForm(me?.legalform as LegalForm);
+        setLegalForm(me?.legalform);
+        setOvhSubsidiary(me?.ovhSubsidiary);
+        setCountry(me?.country as Country);
         navigate(urls.accountType);
       }
     }
   }, [isFetched]);
 
+  const setCompany = (company: Company) => {
+    setOrganisation(company.name);
+    setCompanyNationalIdentificationNumber(
+      company.secondaryCNIN || company.primaryCNIN,
+    );
+    if (company.address) {
+      setAddress(company.address);
+    }
+    if (company.city) {
+      setCity(company.city);
+    }
+  };
+
+  const context = {
+    legalForm,
+    setLegalForm,
+    ovhSubsidiary,
+    country,
+    organisation,
+    companyNationalIdentificationNumber,
+    address,
+    city,
+    setCompany,
+  };
+
   return (
-    <userContext.Provider value={{ legalForm, setLegalForm }}>
-      {children}
-    </userContext.Provider>
+    <userContext.Provider value={context}>{children}</userContext.Provider>
   );
 };
 

@@ -9,11 +9,12 @@ const PreferencesPage = lazy(() =>
   import('@/pages/preferences/preferences.page'),
 );
 const AccountTypePage = lazy(() =>
-  import('@/pages/accountType/accountType.page'),
+  import('@/pages/accountType/AccountType.page'),
 );
 const AccountDetailsPage = lazy(() =>
   import('@/pages/accountDetails/accountDetails.page'),
 );
+const CompanyPage = lazy(() => import('@/pages/company/Company.page'));
 
 export default (
   <Route
@@ -21,8 +22,8 @@ export default (
     Component={LayoutPage}
     errorElement={
       <ErrorBoundary
-        isPreloaderHide={true}
-        isRouteShellSync={true}
+        isPreloaderHide
+        isRouteShellSync
         redirectionApp="account-creation"
       />
     }
@@ -43,6 +44,16 @@ export default (
       handle={{
         tracking: {
           pageName: 'account-type',
+          pageType: PageType.funnel,
+        },
+      }}
+    />
+    <Route
+      path={urls.company}
+      Component={CompanyPage}
+      handle={{
+        tracking: {
+          pageName: 'company',
           pageType: PageType.funnel,
         },
       }}
