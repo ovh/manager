@@ -10,10 +10,19 @@ describe('common sapPassword & sapHanaPassword requirements', () => {
     ['WITHOUTLOWERCASE1!', false],
     ['withoutuppercase1!', false],
     ['withoutnumber!', false],
-    ['With2ConsecutiveSpecialCharacters!?', false],
+    ['With1TemplateSyntaxStart{%', false],
+    ['With1TemplateSyntaxEnd%}', false],
   ])('should be invalid for both SAP password types: %s', (input) => {
     expect(isValidSapPassword(input)).toBe(false);
     expect(isValidSapHanaPassword(input)).toBe(false);
+  });
+
+  test.each([
+    ['Password1!', true],
+    ['Password1!?+=/*%{}()[]', true],
+  ])('should be valid for both SAP password types: %s', (input) => {
+    expect(isValidSapPassword(input)).toBe(true);
+    expect(isValidSapHanaPassword(input)).toBe(true);
   });
 });
 
