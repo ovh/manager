@@ -1,8 +1,9 @@
 import { useLocation } from 'react-router-dom';
+import { LegalForm } from '@ovh-ux/manager-config';
 import { useUserContext } from '@/context/user/useUser';
 import { urls } from '@/routes/routes.constant';
 
-const getLegalFormKey = (legalForm: string): string => {
+const getLegalFormKey = (legalForm: LegalForm): LegalForm => {
   switch (legalForm) {
     case 'individual':
     case 'corporation':
