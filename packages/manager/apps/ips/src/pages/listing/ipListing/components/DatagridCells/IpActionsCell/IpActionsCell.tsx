@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
@@ -11,8 +11,9 @@ import { fromIpToId, ipFormatter } from '@/utils';
 import { IpTypeEnum } from '@/data/api';
 import {
   useGetIpdetails,
-  useGetProductService,
   useGetGameMitigation,
+  useIpHasForcedMitigation,
+  useIpHasServicesAttached,
 } from '@/data/hooks';
 
 export type IpActionsCellParams = {
@@ -48,23 +49,30 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const navigate = useNavigate();
   const { t, t: tcommon } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
   const isAdmin = useContext(ShellContext)
-    .environment.getUser()
+    .environment?.getUser()
     .auth?.roles?.includes('ADMIN');
 
-  const productServices = useGetProductService({
-    path: '/cloud/project',
-    category: 'CLOUD',
-  });
   const gameMitigationDetails = useGetGameMitigation({ ip: ipAddress });
 
-  const hasServiceAttached = useMemo(
-    () =>
-      !!ipDetails?.routedTo?.serviceName &&
-      productServices?.services?.some(
-        (service) => ipDetails.routedTo.serviceName === service.serviceName,
-      ),
-    [ipDetails?.routedTo?.serviceName, productServices],
-  );
+  const { hasForcedMitigation } = useIpHasForcedMitigation({
+    ip,
+  });
+
+  const {
+    hasServiceAttached: hasCloudServiceAttachedToIP,
+  } = useIpHasServicesAttached({
+    path: '/cloud/project',
+    category: 'CLOUD',
+    serviceName: ipDetails?.routedTo?.serviceName,
+  });
+
+  const {
+    hasServiceAttached: hasHousingServiceAttachedToIp,
+  } = useIpHasServicesAttached({
+    path: '/dedicated/housing',
+    category: 'HOUSING',
+    serviceName: ipDetails?.routedTo?.serviceName,
+  });
 
   const items: ActionMenuItem[] = [
     {
@@ -106,16 +114,27 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         ? t('listingActionEditDescription')
         : t('listingActionAddDescription'),
       onClick: () =>
-        navigate(urls.listingUpsertDescription.replace(urlDynamicParts.id, id)),
+        navigate(urls.upsertDescription.replace(urlDynamicParts.id, id)),
     },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
-      !hasServiceAttached &&
+      !hasCloudServiceAttachedToIP &&
       Boolean(gameMitigationDetails?.result?.length) && {
         id: 3,
         label: t('listingActionManageGameMitigation'),
         onClick: () =>
           navigate(urls.configureGameFirewall.replace(urlDynamicParts.id, id)),
+      },
+    !isGroup &&
+      ipaddr.IPv4.isIPv4(ipAddress) &&
+      !hasForcedMitigation &&
+      !hasHousingServiceAttachedToIp && {
+        id: 2,
+        label: t('listingActionConfigureEdgeNetworkFirewall'),
+        onClick: () =>
+          navigate(
+            urls.configureEdgeNetworkFirewall.replace(urlDynamicParts.id, id),
+          ),
       },
   ].filter(Boolean);
 

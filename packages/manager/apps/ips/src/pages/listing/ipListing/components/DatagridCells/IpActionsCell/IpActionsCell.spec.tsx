@@ -15,8 +15,18 @@ const useGetIpDetailsMock = vi.hoisted(() =>
   vi.fn(() => ({ ipDetails: undefined, isLoading: true })),
 );
 
+const useIpHasForcedMitigationMock = vi.hoisted(() =>
+  vi.fn(() => ({ hasForcedMitigation: true })),
+);
+
+const useIpHasServicesAttachedMock = vi.hoisted(() =>
+  vi.fn(() => ({ hasServiceAttached: true })),
+);
+
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
+  useIpHasForcedMitigation: useIpHasForcedMitigationMock,
+  useIpHasServicesAttached: useIpHasServicesAttachedMock,
 }));
 
 /** RENDER */
