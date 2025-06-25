@@ -139,4 +139,9 @@
 /packages/manager-cli @ovh/dev-manager-control-tower
 
 # Scripts
-/scripts @ovh/dev-manager-control-tower
+/scripts @ovh/devops-manager
+
+# Github and husky folder
+/.github @ovh/devops-manager
+/.github/CODEOWNERS @ovh/dev-manager-control-tower
+/.husky @ovh/devops-manager
