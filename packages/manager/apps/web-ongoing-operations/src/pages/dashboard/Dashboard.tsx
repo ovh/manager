@@ -13,11 +13,14 @@ import {
   GuideButton,
   GuideItem,
   Notifications,
+  useAuthorizationIam,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { GUIDES_LIST } from '@/guides.constants';
 import { getLanguageKey } from '@/utils/utils';
 import { urls } from '@/routes/routes.constant';
+import { useGetIAMResourceAllDom } from '@/hooks/iam/iam';
+import { iamGetAllDomAction } from '@/constants';
 
 export const DNS_OPERATIONS_TABLE_HEADER_DOMAIN = 'DNS';
 
@@ -25,6 +28,7 @@ export type DashboardTabItemProps = {
   name: string;
   title: string;
   to: string;
+  hide?: boolean;
 };
 
 export type DashboardLayoutProps = {
@@ -33,6 +37,7 @@ export type DashboardLayoutProps = {
 
 export default function DashboardPage() {
   const [activePanel, setActivePanel] = useState<string>('');
+  const [displayAllDom, setDisplayAllDom] = useState<boolean>(true);
   const location = useLocation();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation('dashboard');
@@ -47,6 +52,12 @@ export default function DashboardPage() {
       label: t('domain_operations_guides'),
     },
   ];
+  const { data: allDomIAMRessources } = useGetIAMResourceAllDom();
+  const urn = allDomIAMRessources?.[0]?.urn;
+  const { isAuthorized = false } = useAuthorizationIam(
+    [iamGetAllDomAction],
+    urn,
+  );
 
   const tabsList: DashboardTabItemProps[] = [
     {
@@ -63,8 +74,15 @@ export default function DashboardPage() {
       name: 'allDom',
       title: t('domain_operations_table_header_allDom'),
       to: useResolvedPath(urls.allDom).pathname,
+      hide: displayAllDom,
     },
   ];
+
+  useEffect(() => {
+    if (urn) {
+      setDisplayAllDom(!isAuthorized);
+    }
+  }, [urn, isAuthorized]);
 
   useEffect(() => {
     const activeTab = tabsList.find((tab) => tab.to === location.pathname);
@@ -85,21 +103,24 @@ export default function DashboardPage() {
       description={t('domain_operations_dashboard_info')}
       tabs={
         <OdsTabs>
-          {tabsList.map((tab: DashboardTabItemProps) => (
-            <NavLink
-              key={`osds-tab-bar-item-${tab.name}`}
-              to={tab.to}
-              className="no-underline"
-            >
-              <OdsTab
-                id={tab.name}
-                role="tab"
-                isSelected={activePanel === tab.name}
+          {tabsList.map((tab: DashboardTabItemProps) => {
+            if (tab.hide) return <></>;
+            return (
+              <NavLink
+                key={`osds-tab-bar-item-${tab.name}`}
+                to={tab.to}
+                className="no-underline"
               >
-                {tab.title}
-              </OdsTab>
-            </NavLink>
-          ))}
+                <OdsTab
+                  id={tab.name}
+                  role="tab"
+                  isSelected={activePanel === tab.name}
+                >
+                  {tab.title}
+                </OdsTab>
+              </NavLink>
+            );
+          })}
         </OdsTabs>
       }
       message={notifications.length ? <Notifications /> : null}

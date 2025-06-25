@@ -51,3 +51,4 @@ export const DNS_OPERATIONS = [
   'ZoneImport',
   'ZoneRestore',
 ];
+export const iamGetAllDomAction = 'domain:apiovh:alldom/get';
