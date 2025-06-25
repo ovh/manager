@@ -5,3 +5,5 @@ export const taskMeAllDom = ['me', 'task', 'allDom'];
 export const domainCreate = 'DomainCreate';
 export const domainIncomingTransfer = 'DomainIncomingTransfer';
 export const domainResourceDelete = 'DomainResourceDelete';
+
+export const iamGetAllDomAction = 'domain:apiovh:alldom/get';
