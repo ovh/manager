@@ -28,6 +28,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { RegionChipByType } from '@ovh-ux/manager-pci-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { DeploymentMode, TKube } from '@/types';
 import ClusterStatus from './ClusterStatus.component';
 import ClusterETCD from './ClusterETCD.component';
@@ -50,9 +51,13 @@ export type ClusterInformationProps = {
 export default function ClusterInformation({
   kubeDetail,
 }: Readonly<ClusterInformationProps>) {
-  const { t } = useTranslation('service');
-  const { t: tDetail } = useTranslation('listing');
-  const { t: tKube } = useTranslation('kube');
+  const { t } = useTranslation([
+    'service',
+    'listing',
+    'kube',
+    NAMESPACES.ONBOARDING,
+  ]);
+
   const { projectId } = useParams();
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
@@ -60,8 +65,7 @@ export default function ClusterInformation({
   const has3AZ = use3AZPlanAvailable();
 
   const planDocumentationLink =
-    PLAN_DOC_LINKS[ovhSubsidiary as keyof typeof PLAN_DOC_LINKS] ??
-    PLAN_DOC_LINKS.DEFAULT;
+    PLAN_DOC_LINKS[ovhSubsidiary] ?? PLAN_DOC_LINKS.DEFAULT;
 
   const { data: regionInformations } = useRegionInformations(
     projectId,
@@ -82,10 +86,10 @@ export default function ClusterInformation({
           level={ODS_TEXT_LEVEL.heading}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {t('kube_service_cluster_information')}
+          {t('service:kube_service_cluster_information')}
         </OsdsText>
         <OsdsDivider separator />
-        <TileLine label={tDetail('kube_list_id')}>
+        <TileLine label={t('listing:kube_list_id')}>
           <Clipboard aria-label="clipboard" value={kubeDetail.id} />
         </TileLine>
 
@@ -108,7 +112,7 @@ export default function ClusterInformation({
             color={ODS_THEME_COLOR_INTENT.text}
             hue={ODS_TEXT_COLOR_HUE._900}
           >
-            {tKube('kube_service_cluster_plan')}
+            {t('kube:kube_service_cluster_plan')}
           </OsdsText>
           <OsdsPopover>
             <span slot="popover-trigger">
@@ -125,10 +129,10 @@ export default function ClusterInformation({
                 color={ODS_THEME_COLOR_INTENT.text}
                 level={ODS_TEXT_LEVEL.body}
               >
-                {tKube('kube_service_cluster_plan_description')}
+                {t('kube:kube_service_cluster_plan_description')}
               </OsdsText>
               <Links
-                label={tKube('kube_service_cluster_plan_description_link')}
+                label={t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
                 type={LinkType.external}
                 target={OdsHTMLAnchorElementTarget._blank}
                 href={planDocumentationLink}
@@ -143,16 +147,16 @@ export default function ClusterInformation({
           level={ODS_TEXT_LEVEL.body}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {tKube(`kube_service_cluster_plan_${kubeDetail.plan}`)}
+          {t(`kube:kube_service_cluster_plan_${kubeDetail.plan}`)}
         </OsdsText>
 
         <OsdsDivider separator />
 
-        <TileLine label={t('kube_service_cluster_status')}>
+        <TileLine label={t('service:kube_service_cluster_status')}>
           <ClusterStatus status={kubeDetail.status} />
         </TileLine>
 
-        <TileLine label={t('kube_service_cluster_version')}>
+        <TileLine label={t('service:kube_service_cluster_version')}>
           <OsdsText
             className="mb-4"
             size={ODS_TEXT_SIZE._400}
@@ -166,14 +170,14 @@ export default function ClusterInformation({
           <TileLineLegacy title={<ClusterTile />} value={<ClusterETCD />} />
         )}
 
-        <TileLine label={t('kube_service_cluster_admission_plugins')}>
+        <TileLine label={t('service:kube_service_cluster_admission_plugins')}>
           <AdmissionPlugins
             plugins={kubeDetail.plugins}
             isProcessing={isProcessing(kubeDetail.status)}
           />
         </TileLine>
 
-        <TileLine label={t('kube_service_cluster_region')}>
+        <TileLine label={t('service:kube_service_cluster_region')}>
           <div className="flex gap-2 items-baseline">
             <OsdsText
               className="mb-4"
@@ -195,7 +199,7 @@ export default function ClusterInformation({
         </TileLine>
 
         {!isMultiDeploymentZones(regionInformations?.type) && (
-          <TileLine label={t('kube_service_cluster_nodes_url')}>
+          <TileLine label={t('service:kube_service_cluster_nodes_url')}>
             <Clipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
           </TileLine>
         )}

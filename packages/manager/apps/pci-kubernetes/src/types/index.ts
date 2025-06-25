@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { pluginData } from '@/api/data/plugins';
 import { isBase64 } from '@/helpers';
 
@@ -194,3 +195,7 @@ export enum DeploymentMode {
   MONO_ZONE = 'region',
   LOCAL_ZONE = 'localzone',
 }
+
+export type UrlRecord = { [Key in OvhSubsidiary]?: string } & {
+  DEFAULT: string;
+};
