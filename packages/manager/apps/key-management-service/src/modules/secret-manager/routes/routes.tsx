@@ -29,7 +29,7 @@ const SecretVersions = React.lazy(() =>
   import('@/modules/secret-manager/pages/dashboard/versions/Versions.page'),
 );
 const SecretCreate = React.lazy(() =>
-  import('@/modules/secret-manager/pages/Create.page'),
+  import('@/modules/secret-manager/pages/create/Create.page'),
 );
 
 export default (
