@@ -1,21 +1,21 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { Country, UserLocales } from '@ovh-ux/manager-config';
+import {
+  Country,
+  UserLocales,
+  Subsidiary,
+  LegalForm,
+  PhoneType,
+} from '@ovh-ux/manager-config';
 
 import { Rule } from '@/types/rule';
-import { Subsidiary } from '@/types/subsidiary';
 
 export type RulesParam = {
   country?: Country;
   language?: UserLocales;
   phoneCountry?: Country;
-  phoneType?: 'landline' | 'mobile';
+  phoneType?: PhoneType;
   ovhSubsidiary?: Subsidiary;
-  legalform?:
-    | 'administration'
-    | 'association'
-    | 'corporation'
-    | 'individual'
-    | 'personalcorporation';
+  legalform?: LegalForm;
 };
 
 /**
