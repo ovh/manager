@@ -1,5 +1,6 @@
 {
   "secret_manager": "Secret Manager",
   "path": "Path",
-  "version": "Version"
+  "version": "Version",
+  "create_secret": "Créer un secret"
 }

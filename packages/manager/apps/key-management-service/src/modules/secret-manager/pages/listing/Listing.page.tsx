@@ -1,7 +1,9 @@
 import React from 'react';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 import { BaseLayout, Datagrid } from '@ovh-ux/manager-react-components';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
 import {
@@ -12,6 +14,7 @@ import {
 import { SecretListingPageParams } from './listing.type';
 
 export default function SecretListingPage() {
+  const navigate = useNavigate();
   const { t } = useTranslation(['secret-manager/common', NAMESPACES.DASHBOARD]);
   const { domainId } = useParams<SecretListingPageParams>();
   const { data: secrets, isPending } = useSecretList(domainId);
@@ -42,6 +45,12 @@ export default function SecretListingPage() {
         totalItems={secrets.length}
         isLoading={isPending}
         contentAlignLeft
+        topbar={
+          <OdsButton
+            label={t('create_secret')}
+            onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.secretCreate)}
+          />
+        }
       />
     </BaseLayout>
   );

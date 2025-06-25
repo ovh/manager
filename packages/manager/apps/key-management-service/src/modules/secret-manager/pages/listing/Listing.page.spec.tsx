@@ -57,4 +57,21 @@ describe('Secrets listing test suite', () => {
     // TODO: Update the text when the detail page is implemented
     await assertTextVisibility('Secret Detail');
   });
+
+  it('should navigate to create a secret page on click on datagrid CTA', async () => {
+    const user = userEvent.setup();
+    const { container } = await renderPage();
+
+    const createSecretButton = await getOdsButtonByLabel({
+      container,
+      label: labels.secretManager.common.create_secret,
+    });
+
+    await act(() => user.click(createSecretButton));
+
+    await assertTextVisibility(labels.secretManager.create.title);
+    await assertTextVisibility(
+      labels.secretManager.create.region_section_title,
+    );
+  });
 });
