@@ -15,6 +15,7 @@ import {
   renderTest,
   assertDisabled,
   assertEnabled,
+  doActionOnElementUntil,
 } from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
@@ -133,8 +134,11 @@ describe('Vrack Services subnets page test suite', () => {
       inError: false,
     });
     await assertEnabled(submitButton);
-    await waitFor(() => userEvent.click(submitButton));
-    await assertModalVisibility({ container, isVisible: false });
+    const modal = container.querySelector('ods-modal');
+    await doActionOnElementUntil(
+      () => userEvent.click(submitButton),
+      () => expect(modal).not.toBeInTheDocument(),
+    );
   });
 
   it('should display an error if api fail to edit a subnet', async () => {
@@ -213,8 +217,10 @@ describe('Vrack Services subnets page test suite', () => {
       value: labels.actions.delete,
     });
     await assertEnabled(deleteButton);
-    await waitFor(() => userEvent.click(deleteButton));
-
-    await assertModalVisibility({ container, isVisible: false });
+    const modal = container.querySelector('ods-modal');
+    await doActionOnElementUntil(
+      () => userEvent.click(deleteButton),
+      () => expect(modal).not.toBeInTheDocument(),
+    );
   });
 });

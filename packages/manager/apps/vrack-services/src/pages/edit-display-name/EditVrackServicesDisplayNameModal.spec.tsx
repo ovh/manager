@@ -12,6 +12,7 @@ import {
   renderTest,
   getButtonByIcon,
   assertEnabled,
+  doActionOnElementUntil,
 } from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
@@ -48,7 +49,10 @@ describe('Vrack Services edit name test suite', () => {
       value: labels.actions.confirm,
     });
     await assertEnabled(modifyButton);
-    await waitFor(() => userEvent.click(modifyButton));
-    await assertModalVisibility({ container, isVisible: false });
+    const modal = container.querySelector('ods-modal');
+    await doActionOnElementUntil(
+      () => userEvent.click(modifyButton),
+      () => expect(modal).not.toBeInTheDocument(),
+    );
   });
 });
