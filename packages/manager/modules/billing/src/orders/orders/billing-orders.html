@@ -64,6 +64,7 @@
                         'oui-badge_warning': $value === 'documentsRequested'
                                            || $value === 'unknown',
                         'oui-badge_success': $value === 'delivered',
+                        'oui-badge_sold-out': $value === 'orderExpired'
                       }"
                     data-ng-bind="('orders_order_status_' + $value) | translate"
                 >
@@ -83,6 +84,7 @@
                     'oui-badge_warning': $value === 'documentsRequested'
                                        || $value === 'unknown',
                     'oui-badge_success': $value === 'delivered',
+                    'oui-badge_sold-out': $value === 'orderExpired'
                   }"
                 data-ng-bind="('orders_order_status_' + $value) | translate"
             >

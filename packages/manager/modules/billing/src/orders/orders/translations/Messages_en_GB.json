@@ -28,5 +28,6 @@
   "orders_search_input_title": "Search for my orders by ID. ",
   "orders_table_actions_tooltip": "More details about this order",
   "orders_order_action_retract": "Cancel the order",
-  "orders_tracking": "Order tracking"
+  "orders_tracking": "Order tracking",
+  "orders_order_status_orderExpired": "Order expired "
 }
