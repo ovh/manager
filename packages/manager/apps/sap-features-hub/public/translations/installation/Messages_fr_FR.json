@@ -48,7 +48,7 @@
   "system_subtitle": "Saisissez les détails de votre futur système SAP correspondant à vos besoins.",
   "system_sid_validation_message": "Un SID doit comporter 3 caractères alphanumériques en majuscule et commence par une lettre.",
   "system_password_sap_validation_message": "Le mot de passe doit contenir entre 10 et 30 caractères, incluant une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial excepté \\ (antislash), ' (simple guillemet), \" (double guillemet), ` (backtick), $ (dollar), et ne doit pas comporter les caractères spéciaux successifs {% ou %}",
-  "system_password_sap_hana_validation_message": "Le mot de passe doit contenir entre 10 et 30 caractères, incluant une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial parmi _ (tiret du bas), # (dièse), @ (arobase), $ (dollar), ! (point d'exclamation), ne doit pas commencer par un chiffre ou un tiret du bas (_), ni comporter les caractères spéciaux successifs {% ou %}",
+  "system_password_sap_hana_validation_message": "Le mot de passe doit contenir entre 10 et 30 caractères, incluant une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial parmi _ (tiret du bas), # (dièse), @ (arobase), $ (dollar), ! (point d'exclamation), et ne doit pas commencer par un chiffre ou un tiret du bas (_)",
   "system_password_sap_master_helper": "Sera utilisé pour tous les utilisateurs SAP demandés par l'installeur (DDIC, sapadm, etc.)",
   "system_cta": "Saisissez l'emplacement des sources SAP",
   "source_summary": "Sources d'installation",

@@ -2,6 +2,7 @@ type Rule = (password: string) => boolean;
 
 export const sapPasswordRules = {
   hasMinLength: (pwd: string) => pwd?.length >= 10,
+  doesNotExceedMaxLength: (pwd: string) => pwd?.length <= 30,
   hasLowerCase: (pwd: string) => /[a-z]/.test(pwd),
   hasUpperCase: (pwd: string) => /[A-Z]/.test(pwd),
   hasDigit: (pwd: string) => /\d/.test(pwd),
@@ -9,24 +10,29 @@ export const sapPasswordRules = {
   doesNotStartWithDigitOrUnderscore: (pwd: string) => !/^[0-9_]/.test(pwd),
   doesNotHaveTemplateSyntax: (pwd: string) => !/{%|%}/.test(pwd),
   doesNotHaveSapForbiddenChar: (pwd: string) => !/[\\'"`$]/.test(pwd),
-  hasRequiredSapHanaSpecialChar: (pwd: string) => /[_#@$!]/.test(pwd),
+  hasValidSapHanaSpecialChars: (pwd: string) => {
+    const hasRequiredSpecialChars = /[_#@$!]/.test(pwd);
+    const hasOnlyValidChars = /^[A-Za-z0-9_#@$!]*$/.test(pwd);
+    return hasRequiredSpecialChars && hasOnlyValidChars;
+  },
 };
 
 const baseRules: Rule[] = [
   sapPasswordRules.hasMinLength,
+  sapPasswordRules.doesNotExceedMaxLength,
   sapPasswordRules.hasLowerCase,
   sapPasswordRules.hasUpperCase,
   sapPasswordRules.hasDigit,
-  sapPasswordRules.doesNotHaveTemplateSyntax,
 ];
 const sapRules: Rule[] = [
   ...baseRules,
   sapPasswordRules.hasSpecialChar,
+  sapPasswordRules.doesNotHaveTemplateSyntax,
   sapPasswordRules.doesNotHaveSapForbiddenChar,
 ];
 const sapHanaRules: Rule[] = [
   ...baseRules,
-  sapPasswordRules.hasRequiredSapHanaSpecialChar,
+  sapPasswordRules.hasValidSapHanaSpecialChars,
   sapPasswordRules.doesNotStartWithDigitOrUnderscore,
 ];
 

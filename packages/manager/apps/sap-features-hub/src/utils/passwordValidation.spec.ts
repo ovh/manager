@@ -7,6 +7,7 @@ import {
 describe('common sapPassword & sapHanaPassword requirements', () => {
   test.each([
     ['Short123!', false],
+    ['ExceedMaxLengthOf30Chars!abcdef', false],
     ['WITHOUTLOWERCASE1!', false],
     ['withoutuppercase1!', false],
     ['withoutnumber!', false],
@@ -19,7 +20,7 @@ describe('common sapPassword & sapHanaPassword requirements', () => {
 
   test.each([
     ['Password1!', true],
-    ['Password1!?+=/*%{}()[]', true],
+    ['MaxLengthOf30Chars!abcdefghijk', true],
   ])('should be valid for both SAP password types: %s', (input) => {
     expect(isValidSapPassword(input)).toBe(true);
     expect(isValidSapHanaPassword(input)).toBe(true);
@@ -36,8 +37,9 @@ describe('isValidSapPassword test suite', () => {
     ['Password1$', false],
 
     ['Password1!', true],
-    ['1PasswordStartingWithDigit_', true],
-    ['_1PasswordStartingWithUnderscore', true],
+    ['Password1!?+=/*%{}()[]', true],
+    ['1StartingWithDigit_', true],
+    ['_1StartingWithUnderscore', true],
   ])(
     'should evaluate validity of SAP password %s as: %s',
     (input, expected) => {
@@ -48,15 +50,13 @@ describe('isValidSapPassword test suite', () => {
 
 describe('isValidSapHanaPassword test suite', () => {
   test.each([
-    ['1PasswordStartingWithDigit_', false],
-    ['_1PasswordStartingWithUnderscore', false],
-    ['Password1WithoutRequiredSpecialChar,?;.:/=+(){}[]&"\'`§°-€£%', false],
+    ['1StartingWithDigit_', false],
+    ['_1StartingWithUnderscore', false],
+    ['WithForbiddenChars1!?+=/*%}]', false],
+    ['WithoutRequiredSpecialChar?=+-', false],
 
     ['Password1!', true],
-    ['Password1_', true],
-    ['Password1#', true],
-    ['Password1@', true],
-    ['Password1$', true],
+    ['With5AllowedSpecialChars!_#@$', true],
   ])(
     'should evaluate validity of SAP_HANA password %s as: %s',
     (input, expected) => {
