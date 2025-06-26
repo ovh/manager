@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AlertCircle, ArrowRight } from 'lucide-react';
 import {
+  Alert,
+  AlertDescription,
   Button,
   Card,
   CardContent,
@@ -15,8 +17,6 @@ import {
   FormLabel,
   FormMessage,
   useToast,
-  Alert,
-  AlertDescription,
   Separator,
 } from '@datatr-ux/uxlib';
 import { useOrderFunnel } from './useOrderFunnel.hook';
@@ -43,6 +43,7 @@ import usePciProject from '@/hooks/api/project/usePciProject.hook';
 import OvhLink from '@/components/links/OvhLink.component';
 import { PlanCode } from '@/types/cloud/Project';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import ApiTerraformDialog from './ApiTerraformDialog.component';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
@@ -142,6 +143,16 @@ const OrderFunnel = ({
   };
 
   const classNameLabel = 'scroll-m-20 text-xl font-semibold';
+
+  const [isApiTerraformDialogOpen, setApiTerraformDialogOpen] = useState(false);
+  const [dialogData, setDialogData] = useState<ReturnType<
+    typeof useOrderFunnel
+  > | null>(null);
+
+  const handleApiTerraformDialog = () => {
+    setDialogData(model);
+    setApiTerraformDialogOpen(true);
+  };
 
   return (
     <>
@@ -419,7 +430,7 @@ const OrderFunnel = ({
                 />
               )}
             </CardContent>
-            <CardFooter className="flex justify-between">
+            <CardFooter className="flex flex-col gap-2 justify-between">
               <Button
                 data-testid="order-submit-button"
                 className="w-full"
@@ -427,6 +438,21 @@ const OrderFunnel = ({
               >
                 {t('orderButton')}
               </Button>
+              <Button
+                type="button"
+                className="w-full break-words whitespace-normal"
+                mode="ghost"
+                onClick={handleApiTerraformDialog}
+              >
+                {t('apiAndTerraformButton')}
+              </Button>
+              {isApiTerraformDialogOpen && (
+                <ApiTerraformDialog
+                  opened={isApiTerraformDialogOpen}
+                  onRequestClose={() => setApiTerraformDialogOpen(false)}
+                  dialogData={dialogData}
+                ></ApiTerraformDialog>
+              )}
             </CardFooter>
           </Card>
         </form>
