@@ -1,9 +1,9 @@
 export const state = {
-  name: 'sign-up.activity',
-  url: 'activity',
+  name: 'sign-up.identity',
+  url: 'identity',
   views: {
-    activity: {
-      component: 'ovhSignUpActivity',
+    identity: {
+      component: 'ovhSignUpIdentity',
     },
   },
   atInternet: {
