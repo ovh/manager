@@ -5,6 +5,7 @@ export const FEATURES = [
   'volumes:dashboard',
   'volumes:actions',
   'snapshot-policies',
+  'public-network',
 ];
 
 export default {
