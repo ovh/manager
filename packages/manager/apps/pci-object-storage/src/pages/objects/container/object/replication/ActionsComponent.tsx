@@ -18,6 +18,17 @@ export default function ActionsComponent({
 
   const items = [
     {
+      id: 1,
+      label: t(
+        'pci_projects_project_storages_containers_replication_list_data_grid_action_edit',
+      ),
+      onClick: () => {
+        navigate(
+          `./${replication.id}/edit?region=${searchParams.get('region')}`,
+        );
+      },
+    },
+    {
       id: 2,
       label: t(
         'pci_projects_project_storages_containers_replication_list_data_grid_action_delete',
