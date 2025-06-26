@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.12.2...@ovh-ux/manager-pci-object-storage-app@0.12.3) (2025-06-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4142] ([39f8337](https://github.com/ovh/manager/commit/39f833708d981b1aeba3d0c2aa49bfa3ff7c4345))
+
+
+
+
+
 ## [0.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.12.1...@ovh-ux/manager-pci-object-storage-app@0.12.2) (2025-06-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
