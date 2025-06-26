@@ -2,17 +2,17 @@ import { useState } from 'react';
 import { TLocalisation } from '@ovh-ux/manager-pci-common';
 import { useStep } from './useStep';
 import { TNetworkFormState } from './steps/NetworkClusterStep.component';
-import { UpdatePolicy } from '@/types';
+import { TClusterPlan, UpdatePolicy } from '@/types';
 
 import { NodePoolPrice } from '@/api/data/kubernetes';
 
 export type TClusterCreationForm = {
-  region: TLocalisation;
+  region: TLocalisation | null;
   version: string;
-  updatePolicy: UpdatePolicy;
-  network: TNetworkFormState;
+  updatePolicy: UpdatePolicy | null;
+  network: TNetworkFormState | null;
   nodePools?: NodePoolPrice[];
-  plan: 'standard' | 'premium';
+  plan: TClusterPlan | null;
   clusterName: string;
 };
 
@@ -97,7 +97,7 @@ export function useClusterCreationStepper(has3AZRegions = false) {
           planStep.unlock();
           [versionStep, networkStep, nodeStep, confirmStep].forEach(stepReset);
         },
-        submit: (plan: TClusterCreationForm['plan']) => {
+        submit: (plan: TClusterPlan) => {
           setForm((f) => ({
             ...f,
             plan,

@@ -584,7 +584,7 @@ export const useCreateKubernetesCluster = ({
   onSuccess,
 }: CreateClusterProps) => {
   const mutation = useMutation({
-    mutationFn: async (params: KubeClusterCreationParams) =>
+    mutationFn: (params: KubeClusterCreationParams) =>
       createKubernetesCluster(projectId, params),
     onError,
     onSuccess: async () => {

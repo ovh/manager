@@ -95,7 +95,7 @@ export function LocationStep({
     return clearNotifications;
   }, [clearNotifications, step.isLocked]);
 
-  const { isPending, addRegion } = useAddProjectRegion({
+  const { isPending, addRegion, error: regionError } = useAddProjectRegion({
     projectId,
     onSuccess: (data: TLocation) => {
       refreshRegionStatus();
@@ -127,9 +127,11 @@ export function LocationStep({
 
   return (
     <>
-      <div className="my-4">
-        <Notifications />
-      </div>
+      {regionError && (
+        <div className="my-4">
+          <Notifications />
+        </div>
+      )}
       <div className={clsx(step.isLocked && 'hidden')}>
         {has3AZ && (
           <>

@@ -291,7 +291,7 @@ export default function ResetClusterPage() {
                         )}
                         {isMultiDeploymentZones(regionInformations?.type) && (
                           <OsdsChip size={ODS_CHIP_SIZE.sm} inline>
-                            {t('add:kube_add_plan_content_standard_very_soon')}
+                            {t('add:kube_add_plan_content_coming_very_soon')}
                           </OsdsChip>
                         )}
                       </div>

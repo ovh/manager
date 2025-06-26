@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { Translation, useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -119,27 +119,34 @@ export default function NewPage() {
     tracking.trackClick({
       name: `${PAGE_PREFIX}::kubernetes::add::confirm`,
     });
-    createCluster({
-      name: stepper.form.clusterName,
-      region: stepper.form.region?.name,
-      version: stepper.form.version,
-      updatePolicy: stepper.form.updatePolicy,
-      ...(nodePoolEnabled && {
-        nodepools: stepper.form.nodePools.map(
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          ({ localisation: _1, monthlyPrice: _2, ...nodePool }) => nodePool,
-        ),
-      }),
-      privateNetworkId: stepper.form.network?.privateNetwork?.id || undefined,
-      loadBalancersSubnetId:
-        stepper.form.network?.loadBalancersSubnet?.id || undefined,
-      nodesSubnetId: stepper.form.network?.subnet?.id || undefined,
-      privateNetworkConfiguration: {
-        defaultVrackGateway: stepper.form.network?.gateway?.ip || '',
-        privateNetworkRoutingAsDefault:
-          stepper.form.network?.gateway?.isEnabled,
-      },
-    });
+
+    if (
+      stepper.form.plan &&
+      stepper.form.region?.name &&
+      stepper.form.updatePolicy &&
+      stepper.form.network
+    )
+      createCluster({
+        name: stepper.form.clusterName,
+        plan: stepper.form.plan,
+        region: stepper.form.region.name,
+        version: stepper.form.version,
+        updatePolicy: stepper.form.updatePolicy,
+        ...(nodePoolEnabled && {
+          nodepools: stepper.form.nodePools?.map(
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            ({ localisation: _1, monthlyPrice: _2, ...nodePool }) => nodePool,
+          ),
+        }),
+        privateNetworkId: stepper.form.network.privateNetwork?.id,
+        loadBalancersSubnetId: stepper.form.network.loadBalancersSubnet?.id,
+        nodesSubnetId: stepper.form.network.subnet?.id,
+        privateNetworkConfiguration: {
+          defaultVrackGateway: stepper.form.network.gateway?.ip || '',
+          privateNetworkRoutingAsDefault:
+            stepper.form.network.gateway?.isEnabled,
+        },
+      });
   };
 
   const allSteps = stepsConfig({
@@ -173,7 +180,9 @@ export default function NewPage() {
         <Headers title={t('kubernetes_add')} />
       </div>
       {/**  need to hide the global notif if opened * */}
-      {!stepper.location.step.isOpen && <Notifications />}
+      {(!stepper.location.step.isOpen || stepper.location.step.isChecked) && (
+        <Notifications />
+      )}
 
       <div className="mb-5 sticky top-0 z-50">
         <PciDiscoveryBanner project={project} />
