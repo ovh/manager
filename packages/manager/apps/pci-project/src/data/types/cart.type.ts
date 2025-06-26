@@ -82,6 +82,7 @@ export type CartSummary = {
   };
   contracts: CartContract[];
   projectItem?: { voucherConfiguration?: { value: string } };
+  readOnly: boolean;
 };
 
 export type CartDetail = {
@@ -112,3 +113,42 @@ export type CartContract = {
 export enum PaymentMean {
   FIDELITY_ACCOUNT = 'fidelityAccount',
 }
+
+export type AddOptionToCartResponse = {
+  cartId: string;
+  itemId: number;
+  prices: {
+    price: {
+      value: number;
+      currencyCode: string;
+      priceInUcents: number;
+      text: string;
+    };
+    label: string;
+  }[];
+  duration: string;
+  settings: {
+    cartId: string;
+    pricingMode: string;
+    subscription_id: number;
+    planCode: string;
+    quantity: number;
+  };
+  offerId: string | null;
+  options: unknown[];
+  productId: string;
+};
+
+export type TCheckoutResponse = {
+  contracts: CartContract[];
+  prices: {
+    originalWithoutTax: Price;
+    reduction: Price;
+    tax: Price;
+    withTax: Price;
+    withoutTax: Price;
+  };
+  details: CartDetail[];
+  orderId: number;
+  url: string;
+};

@@ -7,7 +7,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import {
   useFeatureAvailability,
   useNotifications,
@@ -23,11 +23,13 @@ import { FEATURE_AVAILABILITY, SUPPORT_URL } from '@/constants';
 export default function RemovePage() {
   const { t } = useTranslation('remove');
 
+  const { projectId: projectIdParam } = useParams();
+
   const navigate = useNavigate();
   const goBack = () => navigate('..');
 
   const [searchParams] = useSearchParams();
-  const projectId = searchParams.get('projectId') || '';
+  const projectId = projectIdParam || searchParams.get('projectId') || '';
   const serviceId = searchParams.get('serviceId') || '';
 
   const { addSuccess, addError } = useNotifications();
