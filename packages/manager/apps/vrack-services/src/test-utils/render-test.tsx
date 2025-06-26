@@ -22,7 +22,7 @@ import {
   NetworkConfigParams,
   getNetworkConfig,
 } from '@ovh-ux/manager-network-common';
-import { GetIamMocksParams, getIamMocks } from '@/data/mocks/iam';
+import { GetIamMocksParams, getIamMocks } from '../../__mocks__/iam';
 import { translations, labels } from './test-i18n';
 import { TestApp } from './TestApp';
 

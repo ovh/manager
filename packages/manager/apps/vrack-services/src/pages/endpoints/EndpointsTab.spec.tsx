@@ -4,7 +4,7 @@ import { waitFor, screen } from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import userEvent from '@testing-library/user-event';
 import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
-import { iamResourcesMocks } from '@/data/mocks/iam';
+import { iamResourcesMocks } from '../../../__mocks__';
 import {
   assertModalVisibility,
   getButtonByLabel,
