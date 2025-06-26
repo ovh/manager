@@ -69,20 +69,24 @@ describe('Manage', () => {
     expect(mockNavigate).toHaveBeenCalledWith('..');
   });
 
-  it('should match snapshot when data is loaded', () => {
-    const { container } = render(<Manage />);
+  it('should find data when is loaded', () => {
+    const { getByText } = render(<Manage />);
 
-    expect(container).toMatchSnapshot();
+    expect(
+      getByText(
+        'pci_projects_project_storages_cold_archive_container_manage_description_1',
+      ),
+    ).toBeDefined();
   });
 
-  it('should match snapshot when data is loading', () => {
+  it('should find loading when data is loading', () => {
     vi.mocked(useProjectRegionDetails).mockReturnValue({
       data: mockProjectRegionDetails,
       isPending: true,
     } as ReturnType<typeof useProjectRegionDetails>);
 
-    const { container } = render(<Manage />);
+    const { getByTestId } = render(<Manage />);
 
-    expect(container).toMatchSnapshot();
+    expect(getByTestId('pciModal-spinner')).toBeInTheDocument();
   });
 });

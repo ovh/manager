@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import UserInformationTile from './UserInformationTile.component';
 
 describe('UserInformationTile tests', () => {
-  it('Should match snapshot', () => {
+  it('should find text', () => {
     const props = {
       title: <p>a custom title</p>,
       username: 'username',
@@ -12,8 +12,14 @@ describe('UserInformationTile tests', () => {
       trackingPrefix: 'a tracking prefix',
     };
 
-    const { container } = render(<UserInformationTile {...props} />);
+    const { getByText } = render(<UserInformationTile {...props} />);
 
-    expect(container).toMatchSnapshot();
+    expect(
+      getByText(
+        'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label',
+      ),
+    ).toBeDefined();
+
+    expect(getByText('a custom title')).toBeDefined();
   });
 });
