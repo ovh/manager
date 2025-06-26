@@ -1,0 +1,10 @@
+{
+  "pci_projects_hds_status": "Certificação",
+  "pci_projects_hds_description": "Alojamento de dados de saúde e certificação HDS para este projeto. ",
+  "pci_projects_hds_description_link": "Consulte a página dedicada.",
+  "pci_projects_project_edit_hds_title": "Conformidade para o alojamento de dados de saúde e certificação HDS",
+  "pci_projects_project_edit_hds_description": "A OVHcloud propõe soluções seguras e conformes com as regulamentações relativas ao alojamento de dados de saúde em vários países europeus, como a França, a Alemanha, a Itália, o Reino Unido e a Polónia.",
+  "pci_projects_project_edit_hds_btn_validate": "Atualizar",
+  "pci_projects_project_edit_hds_btn_validate_status_success": "A certificação HDS foi corretamente ativada no seu projeto {{projectName}}",
+  "pci_projects_project_edit_hds_btn_validate_status_error": "Ocorreu um erro durante a certificação do projeto: {{ message }}"
+}
