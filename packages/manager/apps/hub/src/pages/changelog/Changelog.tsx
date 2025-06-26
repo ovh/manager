@@ -82,9 +82,6 @@ export default function Changelog() {
                 {t('changelog_subtitle_1')}
               </OsdsText>
             </div>
-            <div className="pt-6">
-              <RoadmapChangelogDatagrid />
-            </div>
             <div>
               <OsdsText
                 level={ODS_TEXT_LEVEL.body}
@@ -93,9 +90,7 @@ export default function Changelog() {
                 color={ODS_THEME_COLOR_INTENT.text}
               >
                 {t('changelog_paragraph_1')}
-              </OsdsText>
-            </div>
-            <div>
+              </OsdsText>{' '}
               <OsdsText
                 level={ODS_TEXT_LEVEL.body}
                 size={ODS_TEXT_SIZE._400}
@@ -105,53 +100,9 @@ export default function Changelog() {
                 {t('changelog_paragraph_2')}
               </OsdsText>
             </div>
-            <div>
-              <OsdsLink
-                role="link"
-                target={OdsHTMLAnchorElementTarget._blank}
-                rel={OdsHTMLAnchorElementRel.external}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                href={EXTERNAL_LINKS.CLOUD_CHANGELOG.url}
-                data-testid="changelog-cloud-link"
-                onClick={() => {
-                  trackClick(EXTERNAL_LINKS.CLOUD_CHANGELOG.tracking);
-                }}
-              >
-                {t(EXTERNAL_LINKS.CLOUD_CHANGELOG.label_key)}
-                <span slot="end">
-                  <OsdsIcon
-                    name={ODS_ICON_NAME.EXTERNAL_LINK}
-                    className="ml-1"
-                    size={ODS_ICON_SIZE.xxs}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                  />
-                </span>
-              </OsdsLink>
+            <div className="pt-6">
+              <RoadmapChangelogDatagrid />
             </div>
-            {!isRegionUS && (
-              <div>
-                <OsdsLink
-                  role="link"
-                  target={OdsHTMLAnchorElementTarget._blank}
-                  rel={OdsHTMLAnchorElementRel.external}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  href={EXTERNAL_LINKS.WEB_CHANGELOG.url}
-                  onClick={() => {
-                    trackClick(EXTERNAL_LINKS.WEB_CHANGELOG.tracking);
-                  }}
-                >
-                  {t(EXTERNAL_LINKS.WEB_CHANGELOG.label_key)}
-                  <span slot="end">
-                    <OsdsIcon
-                      name={ODS_ICON_NAME.EXTERNAL_LINK}
-                      className="ml-1"
-                      size={ODS_ICON_SIZE.xxs}
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                    />
-                  </span>
-                </OsdsLink>
-              </div>
-            )}
             <div className="pt-6">
               <OsdsText
                 level={ODS_TEXT_LEVEL.heading}
