@@ -143,11 +143,6 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
         {label}
       </div>
     ),
-    OdsButton: ({ label, ...props }: { label: string }) => (
-      <button data-testid="ods-button" {...props}>
-        {label}
-      </button>
-    ),
     OdsLink: ({ label, ...props }: { label: string }) => (
       <a data-testid="ods-link" {...props}>
         {label}
