@@ -110,3 +110,31 @@ export type TService = {
   serviceId: number;
   parentServiceId: number | null;
 };
+
+export type TServiceOption = TService;
+
+export type TCartServiceOption = {
+  mandatory: boolean;
+  exclusive: boolean;
+  productName: string;
+  planCode: string;
+  family: string;
+  productType: string;
+  prices: {
+    pricingMode: string;
+    description: string;
+    duration: string;
+    minimumRepeat: number;
+    minimumQuantity: number;
+    priceInUcents: number;
+    maximumQuantity: number | null;
+    interval: number;
+    capacities: string[];
+    maximumRepeat: number | null;
+    price: {
+      currencyCode: string;
+      text: string;
+      value: number;
+    };
+  }[];
+};
