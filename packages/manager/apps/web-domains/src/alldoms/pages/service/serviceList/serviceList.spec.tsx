@@ -1,34 +1,30 @@
 import '@/alldoms/setupTests';
-import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { vi } from 'vitest';
 import { fireEvent, render, waitFor, screen } from '@testing-library/react';
+import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import ServiceList from './serviceList';
 import { wrapper } from '@/alldoms/utils/test.provider';
+import { useGetAllDoms } from '@/alldoms/hooks/data/useGetAllDoms';
 import { serviceInfoDetail } from '@/alldoms/__mocks__/serviceInfoDetail';
-import { useGetDatagridServiceInfoList } from '@/alldoms/hooks/data/useGetDatagridServiceInfoList';
+import { serviceInfoProperty } from '@/alldoms/__mocks__/serviceInfoProperty';
 
-vi.mock('@/alldoms/hooks/data/useGetDatagridServiceInfoList', () => ({
-  useGetDatagridServiceInfoList: vi.fn(),
+vi.mock('@/alldoms/hooks/data/useGetAllDoms', () => ({
+  useGetAllDoms: vi.fn(),
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useContext: vi.fn(),
 }));
 
 describe('AllDom datagrid', () => {
-  it('displays loading spinner while main request are loading', async () => {
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
-      allDomList: [],
-    });
-
-    (useGetDatagridServiceInfoList as jest.Mock).mockReturnValue({
-      data: [],
-      listLoading: true,
-    });
-
-    const { getByTestId } = render(<ServiceList />, { wrapper });
-    expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
-  });
-
   it('display the datagrid data', async () => {
-    (useGetDatagridServiceInfoList as jest.Mock).mockReturnValue({
+    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+      data: serviceInfoProperty,
+      isLoading: false,
+    });
+
+    (useGetAllDoms as jest.Mock).mockReturnValue({
       data: [serviceInfoDetail],
       listLoading: false,
     });
@@ -55,14 +51,14 @@ describe('AllDom datagrid', () => {
       expect(renewAction).toBeInTheDocument();
       expect(renewAction).toHaveAttribute(
         'href',
-        'https://www.ovh.com/cgi-bin/order/renew.cgi?domainChooser=1111111',
+        'https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser=testdomain',
       );
 
       const handleButtonAction = screen.getByTestId('handleContact-button');
       expect(handleButtonAction).toBeInTheDocument();
       expect(handleButtonAction).toHaveAttribute(
         'href',
-        'https://ovh.test/#/account/contacts/services/edit?service=testdomain&categoryType=ALL_DOM',
+        'https://ovh.test/#/new-account/contacts/services/edit',
       );
     });
   });

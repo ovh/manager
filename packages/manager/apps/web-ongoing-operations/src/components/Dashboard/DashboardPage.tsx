@@ -4,18 +4,19 @@ import {
   Notification,
   useResourcesIcebergV6,
 } from '@ovh-ux/manager-react-components';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toASCII } from 'punycode';
 import { TOngoingOperations } from '@/types';
 import { useOngoingOperationDatagridColumns } from '@/hooks/useOngoingOperationDatagridColumns';
 import { ParentEnum } from '@/enum/parent.enum';
-import Loading from '@/components/Loading/Loading';
 
 interface DashboardPageProps {
   readonly parent: ParentEnum;
   readonly notifications: Notification[];
   readonly route: string;
   readonly queryKey: string[];
+  readonly id: string;
   readonly testID: string;
 }
 
@@ -24,10 +25,12 @@ export default function DashboardPage({
   notifications,
   route,
   queryKey,
+  id,
   testID,
 }: DashboardPageProps) {
+  const [searchInput, setSearchInput] = useState('');
   const { t: tError } = useTranslation('web-ongoing-operations/error');
-  const columns = useOngoingOperationDatagridColumns(parent);
+  const columns = useOngoingOperationDatagridColumns(id, parent);
 
   const {
     flattenData,
@@ -48,6 +51,18 @@ export default function DashboardPage({
     columns,
   });
 
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      search.setSearchInput(toASCII(searchInput.toLowerCase()));
+    }, 300);
+
+    return () => clearTimeout(debounce);
+  }, [searchInput]);
+
+  useEffect(() => {
+    search.onSearch(search.searchInput);
+  }, [search.searchInput]);
+
   if (isError) {
     return (
       <ErrorBanner
@@ -59,31 +74,26 @@ export default function DashboardPage({
     );
   }
 
-  if (isLoading) {
-    return (
-      <div data-testid="listing-page-spinner">
-        <Loading />
-      </div>
-    );
-  }
-
   return (
     <React.Suspense>
-      {flattenData && (
-        <div data-testid={testID}>
-          <Datagrid
-            columns={columns}
-            items={flattenData}
-            totalItems={totalCount || 0}
-            hasNextPage={hasNextPage && !isLoading}
-            onFetchNextPage={fetchNextPage}
-            sorting={sorting}
-            onSortChange={setSorting}
-            filters={filters}
-            search={search}
-          />
-        </div>
-      )}
+      <div data-testid={testID}>
+        <Datagrid
+          isLoading={isLoading}
+          columns={columns}
+          items={flattenData || []}
+          totalItems={totalCount || 0}
+          hasNextPage={hasNextPage && !isLoading}
+          onFetchNextPage={fetchNextPage}
+          sorting={sorting}
+          onSortChange={setSorting}
+          filters={filters}
+          search={{
+            searchInput,
+            setSearchInput,
+            onSearch: () => null,
+          }}
+        />
+      </div>
     </React.Suspense>
   );
 }
