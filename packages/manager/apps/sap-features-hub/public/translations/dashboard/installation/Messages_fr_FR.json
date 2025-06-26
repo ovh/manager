@@ -1,0 +1,21 @@
+{
+  "dashboard_installation_title": "Assistant de pré-installation SAP",
+  "dashboard_installation_description": "Rapport d'installation",
+  "dashboard_installation_generals_informations": "Informations générales",
+  "dashboard_installation_item_start_date": "Date de lancement",
+  "dashboard_installation_item_end_date": "Date de fin",
+  "dashboard_installation_item_application_version": "Version d'application",
+  "dashboard_installation_item_application_type": "Type d'application",
+  "dashboard_installation_item_deploiement_type": "Type de déploiement",
+  "dashboard_installation_progress_step_initialisation": "Initialisation des ressources temporaires dans votre service VMware on OVHcloud",
+  "dashboard_installation_progress_step_create_virtuals_machines": "Création des machines virtuelles",
+  "dashboard_installation_progress_step_sap_hana_install": "Installation de SAP HANA et configuration des options demandées",
+  "dashboard_installation_progress_step_sap_install": "Installation du système SAP et configuration des options demandées",
+  "dashboard_installation_progress_step_clean_resources": "Suppression des ressources temporaires dans votre service VMware on OVHcloud",
+  "dashboard_installation_progress_step_success": "Étape terminée avec succès",
+  "dashboard_installation_progress_step_failure": "Étape échouée",
+  "dashboard_installation_progress_step_pending": "Étape en cours d'éxécution",
+  "dashboard_installation_progress_step_waiting": "Étape en attente",
+  "dashboard_installation_progress_status_label": "Statut de l'installation",
+  "dashboard_installation_error_message": "Erreur à l'étape \"{{stepName}}\". Plus de détails ci-dessous."
+}
