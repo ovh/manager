@@ -108,6 +108,7 @@ export default function Listing() {
     <div>
       {!isTrustedZoneLoading && !isTrustedZone && (
         <OdsButton
+          data-testid="listing_create-project_button"
           variant={ODS_BUTTON_VARIANT.outline}
           icon={ODS_ICON_NAME.plus}
           size={ODS_BUTTON_SIZE.sm}

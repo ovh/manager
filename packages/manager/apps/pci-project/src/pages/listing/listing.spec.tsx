@@ -140,8 +140,9 @@ describe('listing page', () => {
 
     render(<Listing />, { wrapper });
 
-    expect(screen.getByTestId('ods-button')).toBeInTheDocument();
-    expect(screen.getByText('pci_projects_create_project')).toBeInTheDocument();
+    expect(
+      screen.getByTestId('listing_create-project_button'),
+    ).toBeInTheDocument();
   });
 
   it('does not display create project button when trusted zone is visible', () => {
@@ -159,7 +160,9 @@ describe('listing page', () => {
 
     render(<Listing />, { wrapper });
 
-    expect(screen.queryByTestId('ods-button')).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId('listing_create-project_button'),
+    ).not.toBeInTheDocument();
   });
 
   it('does not display create project button when trusted zone is loading', () => {
@@ -266,6 +269,8 @@ describe('listing page', () => {
 
     // The topbar should contain the create project button
     expect(screen.getByTestId('layout-topbar')).toBeInTheDocument();
-    expect(screen.getByTestId('ods-button')).toBeInTheDocument();
+    expect(
+      screen.getByTestId('listing_create-project_button'),
+    ).toBeInTheDocument();
   });
 });

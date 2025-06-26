@@ -16,6 +16,21 @@ export default mergeConfig(
         forks: { singleFork: true },
         threads: { singleThread: true },
       },
+      coverage: {
+        include: ['src'],
+        exclude: [
+          'src/**/*.type.*',
+          'src/**/*constants.ts',
+          'src/vite-*.ts',
+          'src/App.tsx',
+          'src/i18n.ts',
+          'src/index.tsx',
+          'src/pages/Layout.tsx',
+          'src/routes',
+          'src/queryClient.ts',
+          'src/wrapperRenders.tsx',
+        ],
+      },
     },
     resolve: {
       alias: {
