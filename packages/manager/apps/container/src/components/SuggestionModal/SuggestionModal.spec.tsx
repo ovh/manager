@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => ({
   href: 'https://fake-manager.com/manager/dedicated/#/account',
   user: {
     legalform: 'corporation',
-    ovhSubsidiary: 'FR',
+    country: 'FR',
     companyNationalIdentificationNumber: 'suggestedNIN',
     vat: 'suggestedVAT',
   },

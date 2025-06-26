@@ -8,7 +8,7 @@ describe('suggestionsHelpers', () => {
     it('should consider user not concerned by suggestions if they are not a corporation', () => {
       const user: Partial<User> = {
         legalform: 'individual',
-        ovhSubsidiary: 'FR',
+        country: 'FR',
       };
       expect(isUserConcernedBySuggestion(user as User)).toEqual(false);
     });
@@ -16,7 +16,7 @@ describe('suggestionsHelpers', () => {
     it('should consider user not concerned by suggestions if they are not on FR subsidiary', () => {
       const user: Partial<User> = {
         legalform: 'corporation',
-        ovhSubsidiary: 'GB',
+        country: 'GB',
       };
       expect(isUserConcernedBySuggestion(user as User)).toEqual(false);
     });
@@ -24,7 +24,7 @@ describe('suggestionsHelpers', () => {
     it('should consider user concerned by suggestions if their SIRET is not filled', () => {
       const user: Partial<User> = {
         legalform: 'corporation',
-        ovhSubsidiary: 'FR',
+        country: 'FR',
         vat: '123456789',
       };
       expect(isUserConcernedBySuggestion(user as User)).toEqual(true);
@@ -33,7 +33,7 @@ describe('suggestionsHelpers', () => {
     it('should consider user concerned by suggestions if their VAT number is not filled', () => {
       const user: Partial<User> = {
         legalform: 'corporation',
-        ovhSubsidiary: 'FR',
+        country: 'FR',
         companyNationalIdentificationNumber: 12345678901234,
       };
       expect(isUserConcernedBySuggestion(user as User)).toEqual(true);
