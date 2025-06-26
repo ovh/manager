@@ -143,7 +143,7 @@ export const useVolumePricing = (
     () =>
       model?.pricings.filter(
         (p) =>
-          p.regions.includes(region) && (!encryptionType || p.specs.encrypted),
+          p.regions.includes(region) && p.specs.encrypted === !!encryptionType,
       ) ?? null,
     [model, region, encryptionType],
   );
