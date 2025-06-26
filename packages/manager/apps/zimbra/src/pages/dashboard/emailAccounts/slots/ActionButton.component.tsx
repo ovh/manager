@@ -13,7 +13,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { SlotWithService, usePlatform } from '@/data/hooks';
-import { useGenerateUrl } from '@/hooks';
+import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import {
   CANCEL_SLOT,
@@ -21,8 +21,8 @@ import {
   UNDO_CANCEL_SLOT,
   UPGRADE_SLOT,
 } from '@/tracking.constants';
-import { ServiceBillingState } from '@/data/api';
-import { FEATURE_AVAILABILITY } from '@/contants';
+import { ServiceBillingState, ZimbraPlanCodes } from '@/data/api';
+import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
 
 interface ActionButtonSlotProps {
   item: SlotWithService;
@@ -33,6 +33,7 @@ export const ActionButtonSlot: React.FC<ActionButtonSlotProps> = ({ item }) => {
   const { t } = useTranslation('common');
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
+  const { proCount } = useAccountsStatistics();
   const { data: availability } = useFeatureAvailability([
     FEATURE_AVAILABILITY.PRO_BETA,
   ]);
@@ -125,7 +126,11 @@ export const ActionButtonSlot: React.FC<ActionButtonSlotProps> = ({ item }) => {
     });
   }
 
-  if (availability?.[FEATURE_AVAILABILITY.PRO_BETA]) {
+  if (
+    availability?.[FEATURE_AVAILABILITY.PRO_BETA] &&
+    item?.service?.planCode === ZimbraPlanCodes.ZIMBRA_STARTER &&
+    proCount < MAX_PRO_ACCOUNTS
+  ) {
     actionItems.push({
       id: actionItems.length + 1,
       onClick: handleUpgradeEmailClick,

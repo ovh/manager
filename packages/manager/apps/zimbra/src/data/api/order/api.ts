@@ -1,7 +1,10 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
-import { Order } from '@ovh-ux/manager-module-order';
-import { order, UpgradeServiceOrderParamsType } from './type';
+import {
+  order,
+  UpgradeServiceOrderParamsType,
+  UpgradeServiceOrderResponse,
+} from './type';
 
 // GET
 
@@ -25,7 +28,7 @@ export const postUpgradeServiceOrder = async ({
   planCode,
   autoPay = false,
 }: UpgradeServiceOrderParamsType) => {
-  const { data } = await v6.post<Order>(
+  const { data } = await v6.post<UpgradeServiceOrderResponse>(
     `/order/upgrade/zimbra/${serviceName}/${planCode}`,
     {
       autoPayWithPreferredPaymentMethod: autoPay,
