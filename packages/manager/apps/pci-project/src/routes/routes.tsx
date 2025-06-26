@@ -7,16 +7,14 @@ import { urls } from '@/routes/routes.constant';
 const LayoutPage = lazy(() => import('@/pages/layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing'));
 const RemovePage = lazy(() => import('@/pages/remove/Remove.page'));
-const DashboardPage = lazy(() => import('@/pages/dashboard'));
-const GeneralInfosPage = lazy(() =>
-  import('@/pages/dashboard/general-informations'),
-);
-const Tab2Page = lazy(() => import('@/pages/dashboard/tab2'));
+const DashboardPage = lazy(() => import('@/pages/dashboard/Dashboard.page'));
+const HomePage = lazy(() => import('@/pages/dashboard/home/Home.page'));
+const EditPage = lazy(() => import('@/pages/dashboard/edit/Edit.page'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding'));
 
 export default (
   <Route
-    path="/pci/projects"
+    path={urls.root}
     Component={LayoutPage}
     errorElement={
       <ErrorBoundary
@@ -49,25 +47,36 @@ export default (
     </Route>
     <Route path={urls.dashboard} Component={DashboardPage}>
       <Route
-        path=""
-        Component={GeneralInfosPage}
+        path={urls.home}
+        Component={HomePage}
         handle={{
           tracking: {
-            pageName: 'dashboard',
+            pageName: 'home',
             pageType: PageType.dashboard,
           },
         }}
       />
       <Route
-        path={urls.tab2}
-        Component={Tab2Page}
+        path={urls.edit}
+        Component={EditPage}
         handle={{
           tracking: {
-            pageName: 'tab2',
+            pageName: 'edit',
             pageType: PageType.dashboard,
           },
         }}
-      />
+      >
+        <Route
+          path={urls.remove}
+          Component={RemovePage}
+          handle={{
+            tracking: {
+              pageName: 'remove',
+              pageType: PageType.popup,
+            },
+          }}
+        />
+      </Route>
     </Route>
     <Route
       path={urls.onboarding}

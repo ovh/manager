@@ -61,6 +61,20 @@ export function useSetAsDefaultProject(options: {
   });
 }
 
+export function useUnFavProject(options: {
+  onSuccess: () => void;
+  onError: (error: ApiError) => void;
+}) {
+  return useMutation({
+    mutationFn: async () => unFavProject(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: getDefaultProjectQueryKey });
+      options.onSuccess();
+    },
+    onError: options.onError,
+  });
+}
+
 export function useRemoveProjectMutation(options: {
   onSuccess: () => void;
   onError: (error: ApiError) => void;
