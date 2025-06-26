@@ -10,6 +10,5 @@ export const useSecretList = (okmsId: string) => {
   return useQuery<Secret[], ErrorResponse>({
     queryKey: secretListQueryKey(okmsId),
     queryFn: () => getSecretList(okmsId),
-    placeholderData: [],
   });
 };
