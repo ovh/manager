@@ -9,10 +9,10 @@ const ListingPage = lazy(() => import('@/pages/listing/Listing'));
 const RemovePage = lazy(() => import('@/pages/remove/Remove.page'));
 const MainPage = lazy(() => import('@/pages/home/Header.page'));
 const HomePage = lazy(() => import('@/pages/home/Home.page'));
-const SettingsPage = lazy(() => import('@/pages/home/edit/Edit.page'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
 const CreationPage = lazy(() => import('@/pages/creation/Creation.page'));
 const CreatingPage = lazy(() => import('@/pages/creating/Creating.page'));
+const EditPage = lazy(() => import('@/pages/home/edit/Edit.page'));
 
 export default (
   <Route
@@ -72,20 +72,31 @@ export default (
         handle={{
           tracking: {
             pageName: 'home',
-            pageType: PageType.dashboard, // TODO: check if it's correct
+            pageType: PageType.dashboard,
           },
         }}
       />
       <Route
         path={urls.edit}
-        Component={SettingsPage}
+        Component={EditPage}
         handle={{
           tracking: {
-            pageName: 'settings',
-            pageType: PageType.dashboard, // TODO: check if it's correct
+            pageName: 'edit',
+            pageType: PageType.dashboard,
           },
         }}
-      />
+      >
+        <Route
+          path={urls.remove}
+          Component={RemovePage}
+          handle={{
+            tracking: {
+              pageName: 'remove',
+              pageType: PageType.popup,
+            },
+          }}
+        />
+      </Route>
     </Route>
     <Route
       path={urls.onboarding}
