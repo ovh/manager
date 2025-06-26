@@ -42,6 +42,8 @@ export type IpActionsCellParams = {
     display => nothing + parent IP
  */
 export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
+  const { shell } = React.useContext(ShellContext);
+  const [vrackPage, setVrackPage] = React.useState('');
   const { ipAddress, ipGroup, isGroup } = ipFormatter(ip);
   const parentId = fromIpToId(parentIpGroup || ipGroup);
   const id = fromIpToId(ipAddress);
@@ -73,6 +75,26 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     category: 'HOUSING',
     serviceName: ipDetails?.routedTo?.serviceName,
   });
+
+  React.useEffect(() => {
+    const fetchUrl = async () => {
+      try {
+        const response = await shell.navigation.getURL(
+          'dedicated',
+          `#/vrack/${ipDetails?.routedTo?.serviceName}`,
+          {},
+        );
+        setVrackPage(response as string);
+      } catch (error) {
+        setVrackPage('#');
+      }
+    };
+    fetchUrl();
+  }, [ipDetails?.routedTo?.serviceName]);
+
+  const goToVrackPage = () => {
+    window.top.location.href = vrackPage;
+  };
 
   const items: ActionMenuItem[] = [
     {
@@ -129,12 +151,18 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
       ipaddr.IPv4.isIPv4(ipAddress) &&
       !hasForcedMitigation &&
       !hasHousingServiceAttachedToIp && {
-        id: 2,
+        id: 4,
         label: t('listingActionConfigureEdgeNetworkFirewall'),
         onClick: () =>
           navigate(
             urls.configureEdgeNetworkFirewall.replace(urlDynamicParts.id, id),
           ),
+      },
+    ipaddr.IPv6.isIPv6(ipAddress) &&
+      ipDetails?.type === IpTypeEnum.VRACK && {
+        id: 5,
+        label: t('listingActionManageSubnetInVrack'),
+        onClick: () => goToVrackPage(),
       },
   ].filter(Boolean);
 
