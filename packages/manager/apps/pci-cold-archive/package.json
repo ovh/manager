@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-cold-archive-app",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "private": true,
   "description": "PCI Cold Archive react app",
   "type": "module",
