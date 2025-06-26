@@ -4,7 +4,7 @@
   "scalingStratActiveLabel": "Autoscaling włączony",
   "noScalingStratActiveLabel": "Autoscaling wyłączony",
   "replicasInputLabel": "Liczba replik, na których zostanie uruchomiona aplikacja",
-  "haInfoHelper": "Uruchom minimum 2 repliki, aby zyskać wysoką dostępność",
+  "haInfoHelper": "Uruchom minimum 2 repliki, aby uzyskać wysoką dostępność",
   "replicasMinInputLabel": "Minimalna liczba replik",
   "replicasMaxInputLabel": "Maksymalna liczba replik",
   "resourceTypeLabel": "Monitorowana metryka",
@@ -12,5 +12,5 @@
   "treshholderTargetLabel": "Próg uruchomienia (%)",
   "treshholderTargetInfo": "Wartość metryki, w procentach.",
   "scalingBillingInfo": "Pamiętaj, że wybrana liczba replik zwielokrotni pobrane zasoby o tę samą liczbę.",
-  "errorFormMinMaxRepField": "Minimalna liczba replik musi być mniejsza niż maksymalna liczba replik"
+  "errorFormMinMaxRepField": "Minimalna liczba replik musi być mniejsza niż maksymalna"
 }

@@ -14,7 +14,7 @@
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link": "Sprawdź ceny",
   "pci_projects_project_storages_containers_container_object_add_storage_class_standard": "Standard",
   "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Dla obiektów w tym trybie wdrożenia dostępne są tylko klasy magazynu Standard i Infrequent Access.",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Dla obiektów w tym trybie wdrożenia dostępne są tylko klasy przestrzeni dyskowej Standard i Infrequent Access.",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_storage_class": "klasach przestrzeni dyskowych",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_part_2": "i",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link_price": "cenach.",
