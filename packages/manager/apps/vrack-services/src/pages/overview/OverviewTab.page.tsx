@@ -7,22 +7,22 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { Outlet } from 'react-router-dom';
-import { ovhLocaleToI18next } from '@ovh-ux/manager-react-shell-client';
 import {
   DashboardTile,
   Region,
   ErrorBanner,
+  useFormatDate,
 } from '@ovh-ux/manager-react-components';
 import { useVrackService } from '@ovh-ux/manager-network-common';
-import { formatDateString } from '@/utils/date';
 import { VrackId } from '@/components/vrack-id/VrackId.component';
 import { DisplayName } from '@/components/display-name/DisplayName.component';
 import { ProductStatusChip } from '@/components/ProductStatusChip.component';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function OverviewTab() {
-  const { t, i18n } = useTranslation(TRANSLATION_NAMESPACES.dashboard);
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.dashboard);
   const { data: vrackServices, error, isLoading } = useVrackService();
+  const formatDate = useFormatDate();
 
   return error ? (
     <ErrorBanner error={error} />
@@ -80,10 +80,9 @@ export default function OverviewTab() {
                   label: t('createdAt'),
                   value: (
                     <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                      {formatDateString(
-                        vrackServices?.createdAt,
-                        ovhLocaleToI18next(i18n.language),
-                      )}
+                      {formatDate({
+                        date: vrackServices?.createdAt,
+                      })}
                     </OdsText>
                   ),
                 },
