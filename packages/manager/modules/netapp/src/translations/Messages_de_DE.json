@@ -39,5 +39,6 @@
   "netapp_location_us-west-lz-pao": "Nordamerika (USA – Westen – Palo Alto)",
   "netapp_location_us-west-lz-den": "Nordamerika (USA – Westen – Denver)",
   "netapp_location_us-east-lz-atl": "Nordamerika (USA – Osten – Atlanta)",
-  "netapp_location_eu-west-lz-mrs": "Europa (Frankreich – Marseille)"
+  "netapp_location_eu-west-lz-mrs": "Europa (Frankreich – Marseille)",
+  "netapp_location_eu-south-mil": "Europa (Italien – Mailand)"
 }

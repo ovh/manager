@@ -1,3 +1,7 @@
 {
-  "vrack_listing_action_delete": "Rezygnuję z usługi"
+  "vrack_listing_action_delete": "Rezygnuję z usługi",
+  "vrack_listing_columns_header_serviceName": "Usługa",
+  "vrack_listing_columns_header_description": "Opis",
+  "vrack_listing_columns_header_name": "Nazwa",
+  "vrack_listing_columns_header_state": "Status"
 }

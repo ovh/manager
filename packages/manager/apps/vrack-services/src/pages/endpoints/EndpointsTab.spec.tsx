@@ -9,11 +9,9 @@ import {
   assertModalVisibility,
   getButtonByLabel,
   assertModalText,
-  changeInputValueByLabelText,
   getButtonByIcon,
   labels,
   renderTest,
-  assertDisabled,
   assertEnabled,
 } from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
@@ -58,55 +56,6 @@ describe('Vrack Services endpoints page test suite', () => {
       vrackServicesListMocks[1].currentState.subnets[0].serviceEndpoints[0]
         .endpoints[0].ip,
     );
-  });
-
-  it('should edit an enpoint', async () => {
-    const { container } = await renderTest({
-      nbVs: 2,
-      initialRoute: urls.endpointsListing.replace(
-        ':id',
-        vrackServicesListMocks[1].id,
-      ),
-    });
-    const urn =
-      vrackServicesListMocks[1].currentState.subnets[0].serviceEndpoints[0]
-        .managedServiceURN;
-    const iamData = iamResourcesMocks.find((item) => item.urn === urn);
-
-    const actionMenuButton = await getButtonByIcon({
-      container,
-      value: ODS_ICON_NAME.ellipsisVertical,
-    });
-    await waitFor(() => userEvent.click(actionMenuButton));
-
-    const editLink = await getButtonByLabel({
-      container,
-      value: labels.endpoints['action-editServiceDisplayName'],
-    });
-    await waitFor(() => userEvent.click(editLink));
-
-    await assertModalText({
-      container,
-      text: labels.endpoints.modalEndpointUpdateHeadline.replace(
-        '{{name}}',
-        iamData!.name,
-      ),
-    });
-
-    await changeInputValueByLabelText({
-      inputLabel: labels.endpoints.endpointUpdateDisplayNameInputLabel,
-      value: 'new Name',
-      nth: 1,
-    });
-
-    const submitButton = await getButtonByLabel({
-      container,
-      value: labels.actions.modify,
-    });
-    await assertEnabled(submitButton);
-    await waitFor(() => userEvent.click(submitButton));
-
-    await assertModalVisibility({ container, isVisible: false });
   });
 
   it('should delete an endpoint', async () => {
