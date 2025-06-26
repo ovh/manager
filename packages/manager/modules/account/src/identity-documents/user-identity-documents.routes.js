@@ -9,6 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       value: ['.'],
     },
     resolve: {
+      kycStatus: /* @ngInject */ (getKycStatus) => getKycStatus(),
       needkyc: /* @ngInject */ (isKycFeatureAvailable, kycStatus) => {
         if (isKycFeatureAvailable) {
           return ['required', 'open'].includes(kycStatus.status);
