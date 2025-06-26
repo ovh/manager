@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import onboardingImage from './onboarding.svg';
+import onboardingImage from './onboarding.png';
 
 export default function SecretManagerOnboardingPage() {
   const { t } = useTranslation([
