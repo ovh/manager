@@ -38,8 +38,8 @@ export default function SecretListingPage() {
     <BaseLayout header={{ title: t('secret_manager') }}>
       <Datagrid
         columns={columns}
-        items={secrets}
-        totalItems={secrets.length}
+        items={secrets || []}
+        totalItems={secrets?.length}
         isLoading={isPending}
         contentAlignLeft
       />
