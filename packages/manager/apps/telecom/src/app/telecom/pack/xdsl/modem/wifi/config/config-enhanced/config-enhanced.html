@@ -1,0 +1,22 @@
+<div class="telecom-pack-xdsl-wifi-config-enhanced">
+    <wifi-features
+        is-loading="ConfigWifiEnhancedCtrl.loading.features"
+        mesh="ConfigWifiEnhancedCtrl.mesh"
+        onessid="ConfigWifiEnhancedCtrl.onessid"
+        can-update-mesh="ConfigWifiEnhancedCtrl.canUpdateMesh"
+        can-update-one-ssid="!ConfigWifiEnhancedCtrl.loading.ssid"
+        on-modem-property-change="ConfigWifiEnhancedCtrl.updateModemProperty(propertyName, updatedValue)"
+    ></wifi-features>
+    <radio-settings
+        is-loading="ConfigWifiEnhancedCtrl.loading.radio"
+        is-update-enabled="ConfigWifiEnhancedCtrl.canChangeWifiRadio && !ConfigWifiEnhancedCtrl.isUpdateInProgress"
+        radio-settings="ConfigWifiEnhancedCtrl.radioSettings"
+        on-submit="ConfigWifiEnhancedCtrl.onRadioSettingSubmit(radioSettingToSubmit)"
+    ></radio-settings>
+    <ssid-settings
+        is-loading="ConfigWifiEnhancedCtrl.loading.ssid"
+        is-update-enabled="ConfigWifiEnhancedCtrl.canChangeWifiSsid && !ConfigWifiEnhancedCtrl.isUpdateInProgress"
+        ssid-settings="ConfigWifiEnhancedCtrl.ssidSettings"
+        on-submit="ConfigWifiEnhancedCtrl.onSsidSettingSubmit(ssidSettingToSubmit)"
+    ></ssid-settings>
+</div>
