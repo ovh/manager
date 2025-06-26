@@ -1,0 +1,10 @@
+{
+  "pci_projects_hds_status": "Certificazione",
+  "pci_projects_hds_description": "Hosting di dati sanitari e certificazione HDS per questo progetto. ",
+  "pci_projects_hds_description_link": "Consulta la pagina dedicata.",
+  "pci_projects_project_edit_hds_title": "Conformità per l'hosting dei dati sanitari e certificazione HDS",
+  "pci_projects_project_edit_hds_description": "OVHcloud propone soluzioni sicure e conformi alle normative sull'hosting dei dati sanitari in diversi Paesi europei, tra cui Francia, Germania, Italia, Regno Unito e Polonia.",
+  "pci_projects_project_edit_hds_btn_validate": "Aggiorna",
+  "pci_projects_project_edit_hds_btn_validate_status_success": "La certificazione HDS è stata attivata correttamente sul tuo progetto {{projectName}}",
+  "pci_projects_project_edit_hds_btn_validate_status_error": "Si è verificato un errore durante la certificazione del progetto: {{ message }}"
+}
