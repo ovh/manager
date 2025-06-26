@@ -60,7 +60,6 @@ export default class EmailDomainEmailCtrl {
   }
 
   $onInit() {
-    this.delegationsIsAvailable = false;
     this.emailsDetails = [];
     this.emailIsUnavailable = true;
     this.userPreferences = null;
@@ -91,25 +90,17 @@ export default class EmailDomainEmailCtrl {
 
     this.$q
       .all({
-        user: this.WucUser.getUser(),
-        serviceInfos: this.WucEmails.getServiceInfos(
-          this.$stateParams.productId,
-        ),
         allDomains: this.WucEmails.getDomains(),
         quotas: this.WucEmails.getQuotas(this.$stateParams.productId),
         summary: this.WucEmails.getSummary(this.$stateParams.productId),
       })
-      .then(({ user, serviceInfos, allDomains, quotas, summary }) => {
+      .then(({ allDomains, quotas, summary }) => {
         this.webMailUrl = this.coreConfig.isRegion('EU')
           ? 'https://mail.ovh.net/'
           : null;
         this.webOMMUrl = this.coreConfig.isRegion('EU')
           ? 'https://omm.ovh.net/'
           : null;
-        this.delegationsIsAvailable = includes(
-          [serviceInfos.contactTech, serviceInfos.contactAdmin],
-          user.nichandle,
-        );
         this.domains = allDomains;
         this.quotas = quotas;
         this.summary = summary;
