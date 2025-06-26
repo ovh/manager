@@ -1,9 +1,16 @@
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
-import { urls } from '@/routes/routes.constant';
+
+export const ROADMAP_CHANGELOG_LINKS = {
+  changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
+  roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
+  'feature-request':
+    'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+};
 
 export const FEATURE_AVAILABILITY = {
   SAVINGS_PLAN: 'pci-savings-plan',
   DATABASES_ANALYTICS: 'pci-databases-analytics',
+  HDS: 'public-cloud:hds',
 };
 
 export const ITALY_AGREEMENT_TEXT = {
@@ -30,7 +37,12 @@ export type TFeatureState = {
   };
 };
 
-export const BASE_PROJECT_PATH = `#${urls.root}/${urls.project}`;
+export const PCI_HDS_ADDON = {
+  planCodeScope: 'certification.hds',
+  certifiedProject: 'publiccloud-certification-hds',
+};
+
+export const BASE_PROJECT_PATH = '#/pci/projects/:projectId';
 
 const OVH_CLOUD_URL = 'https://www.ovhcloud.com';
 const HDS_URL = 'enterprise/certification-conformity/hds/';
