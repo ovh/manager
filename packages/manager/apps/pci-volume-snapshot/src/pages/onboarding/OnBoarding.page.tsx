@@ -84,8 +84,8 @@ export default function OnBoardingPage() {
           onOrderButtonClick={() =>
             shell.navigation.navigateTo(
               'public-cloud',
-              `#/pci/projects/${projectId}/storages/blocks`,
-              {},
+              `#/pci/projects/${projectId}/storages/volume-backup/create`,
+              { volumeOption: 'volume_snapshot' },
             )
           }
         >
