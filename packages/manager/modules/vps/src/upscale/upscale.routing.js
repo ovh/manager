@@ -44,28 +44,30 @@ export default /* @ngInject */ function($stateProvider) {
         const current = catalog.plans.find(
           ({ planCode }) => planCode === stateVps.model.name,
         );
-        return VpsUpgradeService.getAvailableUpgrades(
-          serviceInfos.serviceId,
-        ).then((data) => [
-          ...data.map((option) => ({
-            ...option,
-            ...catalog.products.find(({ name }) => name === option.productName),
-          })),
-          {
-            ...current,
-            ...catalog.products.find(
-              ({ name }) => name === stateVps.model.name,
-            ),
-            prices: current.pricings.map((price) => ({
-              ...price,
-              price: {
-                currencyCode: connectedUser.currency.code,
-              },
-              pricingMode: price.mode,
-              priceInUcents: price.price,
+        return VpsUpgradeService.getAvailableUpgrades(serviceInfos.serviceId)
+          .then((data) => [
+            ...data.map((option) => ({
+              ...option,
+              ...catalog.products.find(
+                ({ name }) => name === option.productName,
+              ),
             })),
-          },
-        ]);
+            {
+              ...current,
+              ...catalog.products.find(
+                ({ name }) => name === stateVps.model.name,
+              ),
+              prices: current.pricings.map((price) => ({
+                ...price,
+                price: {
+                  currencyCode: connectedUser.currency.code,
+                },
+                pricingMode: price.mode,
+                priceInUcents: price.price,
+              })),
+            },
+          ])
+          .then((data) => data.filter((option) => option.name));
       },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('vps_upscale_title'),
