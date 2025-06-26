@@ -91,7 +91,9 @@ export default /* @ngInject */ (
             $scope.selected.options = getResetedOptions();
           } else {
             Alerter.alertFromSWS(
-              $translate.instant('license_upgrade_common_no_upgrade'),
+              $translate.instant('license_upgrade_common_no_upgrade', {
+                type: $scope.license.type,
+              }),
               'ERROR',
               $scope.alerts.upgrade,
             );
