@@ -1,9 +1,6 @@
-import filter from 'lodash/filter';
-import flatten from 'lodash/flatten';
 import get from 'lodash/get';
-import map from 'lodash/map';
 
-import { OLA_MODES } from '../ola.constants';
+import { OLA_MODES, OLA_PREVIEW_ID } from '../ola.constants';
 
 export default class {
   /* @ngInject */
@@ -31,69 +28,71 @@ export default class {
     this.olaModes = Object.values(OLA_MODES);
     this.isLoading = false;
 
-    this.configuration = {
-      mode:
-        this.ola.getCurrentMode() === OLA_MODES.DEFAULT
-          ? OLA_MODES.VRACK_AGGREGATION
-          : OLA_MODES.DEFAULT,
-    };
-    this.selectedInterfaces = [];
-    this.notAllowedInterfaces = filter(
-      this.interfaces,
+    this.configurationName = undefined;
+    this.targetInterfaceType = OLA_MODES.VRACK_AGGREGATION;
+
+    this.notAllowedInterfaces = this.interfaces.filter(
       (item) => item.hasFailoverIps() || item.hasVrack(),
     );
-    this.allowedInterfaces = this.interfaces.filter(
-      (i) => !this.notAllowedInterfaces.includes(i),
+
+    this.displayedInterfaces = this.interfaces.map((nic) => ({
+      id: nic.id,
+      name: nic.name,
+      type: nic.type,
+      mac: nic.mac,
+      displayedMacAdresses: nic.displayedMacAdresses,
+      uploadBandwidth: nic.isPublic()
+        ? this.specifications.bandwidth.OvhToInternet
+        : this.specifications.vrack.bandwidth,
+      downloadBandwidth: nic.isPublic()
+        ? this.specifications.connection
+        : this.specifications.vrack.bandwidth,
+    }));
+
+    const hasExistingVrackAggregation = this.interfaces.some(
+      (nic) => nic.type === OLA_MODES.VRACK_AGGREGATION,
     );
+    const previewBandwidth = hasExistingVrackAggregation
+      ? {
+          ...this.specifications.vrack.bandwidth,
+          value: this.specifications.vrack.bandwidth.value * 2,
+        }
+      : this.specifications.vrack.bandwidth;
+
+    this.previewAggregatedInterfaces = [
+      {
+        id: OLA_PREVIEW_ID,
+        name: OLA_PREVIEW_ID,
+        type: OLA_MODES.VRACK_AGGREGATION,
+        displayedMacAdresses: this.interfaces.reduce(
+          (adresses, nic) => adresses.concat(nic.displayedMacAdresses),
+          [],
+        ),
+        uploadBandwidth: previewBandwidth,
+        downloadBandwidth: previewBandwidth,
+      },
+    ];
+
+    this.hasObsoleteBandwithOption =
+      this.specifications.bandwidth.type !== 'included';
   }
 
-  selectAllRows() {
-    const datagrid = get(
-      this.ouiDatagridService,
-      'datagrids.olaConfigDatagrid',
-    );
-    if (datagrid) {
-      this.$timeout(() => {
-        datagrid.toggleAllRowsSelection(true);
-        datagrid.selectAllRows = true;
-      });
-    }
-  }
-
-  hasObsoleteBandwithOption() {
-    return this.specifications.bandwidth.type !== 'included';
-  }
-
-  isInterfaceSelectionValid() {
-    return [2, 4].includes(this.selectedInterfaces.length);
-  }
-
-  onRowSelect(selectedRows) {
-    this.selectedInterfaces = selectedRows;
-
-    if (this.configuration.mode === OLA_MODES.DEFAULT) {
-      this.networkInterfaces = flatten(
-        map(this.selectedInterfaces, ({ mac }) => mac.split(',')),
-      );
-    }
+  isAggregationValid() {
+    return this.notAllowedInterfaces.length === 0;
   }
 
   configureInterface() {
-    switch (this.configuration.mode) {
-      case OLA_MODES.VRACK_AGGREGATION:
-        return this.olaService.setPrivateAggregation(
-          this.serverName,
-          this.configuration.name,
-          this.selectedInterfaces,
-        );
-      case OLA_MODES.DEFAULT:
-        return this.olaService.setDefaultInterfaces(
-          this.serverName,
-          this.selectedInterfaces[0],
-        );
-      default:
-        return this.$q.when();
+    if (this.ola.getCurrentMode() !== OLA_MODES.VRACK_AGGREGATION) {
+      return this.olaService.setPrivateAggregation(
+        this.serverName,
+        this.configurationName,
+        this.interfaces,
+      );
     }
+    return this.olaService.setDefaultInterfaces(
+      this.serverName,
+      this.interfaces[0],
+    );
   }
 
   onFinish() {
