@@ -1,8 +1,8 @@
 {
-  "updateScalingTitle": "Aggiorna il dimensionamento dell'applicazione",
-  "updateScalingButtonCancel": "Annulla",
-  "updateScalingButtonConfirm": "Modifica",
+  "updateScalingTitle": "Aggiornare il dimensionamento dell'applicazione",
+  "updateScalingButtonCancel": "Annullare",
+  "updateScalingButtonConfirm": "Modificare",
   "updateScalingStratToastErrorTitle": "Errore",
   "updateScalingStratToastSuccessTitle": "Riuscito",
-  "updateScalingStratToastSuccessDescription": "Il criterio di dimensione dell'applicazione è stato aggiornato"
+  "updateScalingStratToastSuccessDescription": "La strategia di dimensionamento dell'applicazione è stata aggiornata"
 }

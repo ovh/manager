@@ -8,10 +8,10 @@
   "tableHeaderReplicas": "Repliki",
   "tableHeaderUpdateDate": "Data aktualizacji",
   "tableHeaderStatus": "Status",
-  "tableActionManage": "Administracja",
-  "tableActionStart": "Pierwsze kroki",
+  "tableActionManage": "Zarządzaj",
+  "tableActionStart": "Wyślij teraz",
   "tableActionStop": "Zatrzymaj",
   "tableActionDelete": "Usuń",
   "tableImagePartner": "Obraz dostarczony przez {{partner}}",
-  "tableReplic": "Liczba replik: {{rep }}"
+  "tableReplic": "Repliki: {{rep}}"
 }
