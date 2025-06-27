@@ -25,12 +25,12 @@
   "privateDatabase_dashboard_not_administrator_information": "Non sei l'amministratore di questo database.",
   "privateDatabase_dashboard_datacenter": "Datacenter",
   "privateDatabase_dashboard_datacenter_p19": "Parigi",
-  "privateDatabase_dashboard_datacenter_gra": "Gravelines",
-  "privateDatabase_dashboard_datacenter_gra2": "Gravelines 2",
-  "privateDatabase_dashboard_datacenter_gra1": "Gravelines 1",
-  "privateDatabase_dashboard_datacenter_gra3": "Gravelines 3",
-  "privateDatabase_dashboard_datacenter_bhs": "Beauharnois",
-  "privateDatabase_dashboard_datacenter_bhs1": "Beauharnois 1",
+  "privateDatabase_dashboard_datacenter_gra": "eu-west-gra",
+  "privateDatabase_dashboard_datacenter_gra2": "eu-west-gra",
+  "privateDatabase_dashboard_datacenter_gra1": "eu-west-gra",
+  "privateDatabase_dashboard_datacenter_gra3": "eu-west-gra",
+  "privateDatabase_dashboard_datacenter_bhs": "ca-east-bhs",
+  "privateDatabase_dashboard_datacenter_bhs1": "ca-east-bhs",
   "privateDatabase_dashboard_hostname": "Nome host",
   "privateDatabase_dashboard_hostname_tooltip": "Per accedere all’istanza utilizza il nome dell’host fornito: l’indirizzo IP associato potrebbe variare nel corso del tempo.",
   "privateDatabase_dashboard_host": "Host",
@@ -507,5 +507,7 @@
   "privateDatabase_order_sql_period_sub_title": "Per quanto tempo vuoi utilizzarla?",
   "privateDatabase_beta_status": "Beta",
   "privateDatabase_dashboard_version_valkey": "Valkey {{version}}",
-  "privateDatabase_configurations_general_valkey": "Configurazione generale di Valkey"
+  "privateDatabase_configurations_general_valkey": "Configurazione generale di Valkey",
+  "privateDatabase_dashboard_datacenter_eu-west-gra": "eu-west-gra",
+  "privateDatabase_dashboard_datacenter_ca-east-bhs": "ca-east-bhs"
 }
