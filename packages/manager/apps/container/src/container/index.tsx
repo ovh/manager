@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, lazy } from 'react';
 
 import LegacyContainer from '@/container/legacy';
 import NavReshuffleContainer from '@/container/nav-reshuffle';
@@ -8,7 +8,6 @@ import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
 import { ProgressProvider } from '@/context/progress';
 import CookiePolicy from '@/cookie-policy/CookiePolicy';
 import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
-import { ModalsProvider } from '@/context/modals';
 import LiveChat from '@/container/livechat/LiveChat.component';
 
 export default function Container(): JSX.Element {
@@ -46,11 +45,11 @@ export default function Container(): JSX.Element {
       <ProgressProvider>
         {isNavReshuffle ? (
           <ProductNavReshuffleProvider>
-            <NavReshuffleContainer />
+            <NavReshuffleContainer isCookiePolicyModalClosed={isCookiePolicyApplied}/>
           </ProductNavReshuffleProvider>
         ) : (
           <>
-            <LegacyContainer />
+            <LegacyContainer isCookiePolicyModalClosed={isCookiePolicyApplied}/>
           </>
         )}
         <Suspense fallback="">
@@ -63,7 +62,6 @@ export default function Container(): JSX.Element {
       <Suspense fallback="">
         <SSOAuthModal />
       </Suspense>
-      {isCookiePolicyApplied && <ModalsProvider />}
       <Suspense fallback="...">
         <CookiePolicy shell={shell} onValidate={cookiePolicyHandler} />
       </Suspense>

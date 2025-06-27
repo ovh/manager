@@ -95,6 +95,12 @@ export default class NewAccountFormController {
       })
       .finally(() => {
         this.loading = false;
+        this.isSiretAvailable = this.siretFieldIsAvailable();
+        this.$timeout(() => {
+          if (this.fieldToFocus) {
+            this.$anchorScroll(this.fieldToFocus);
+          }
+        });
       });
   }
 
@@ -406,7 +412,6 @@ export default class NewAccountFormController {
           this.coreConfig.setUserLocale(this.model.managerLanguage);
           window.parent.location.reload();
         } else if (this.onSubmit) {
-          this.$location.search('isUpdated', true);
           this.onSubmit();
         }
       })
@@ -519,6 +524,13 @@ export default class NewAccountFormController {
         });
       }
 
+      if (
+        rule.fieldName === FIELD_NAME_LIST.legalform ||
+        rule.fieldName === FIELD_NAME_LIST.country
+      ) {
+        this.isSiretAvailable = this.siretFieldIsAvailable();
+      }
+
       return this.updateRules();
     }
     return null;
@@ -530,22 +542,19 @@ export default class NewAccountFormController {
   }
 
   siretFieldIsAvailable() {
-    const isSiretEnterprise =
+    return (
       this.model.legalform === USER_TYPE_ENTERPRISE &&
-      this.model.country === 'FR';
-    if (
-      isSiretEnterprise &&
-      this.fieldToFocus &&
-      !this.model.companyNationalIdentificationNumber
-    ) {
-      this.$anchorScroll(this.fieldToFocus);
-    }
-    return isSiretEnterprise;
+      this.model.country === 'FR'
+    );
   }
 
   determineIsEditionDisabledByKyc(kycRequest) {
     this.isEditionDisabledByKyc =
       this.user.kycValidated ||
       [KYC_STATUS.OPEN, KYC_STATUS.OK].includes(kycRequest.status);
+  }
+
+  onDismiss() {
+    this.isUpdated = false;
   }
 }

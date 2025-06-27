@@ -50,7 +50,6 @@ const PaymentStatus = lazy(() =>
 const SiretBanner = lazy(() =>
   import('@/pages/dashboard/SiretBanner.component'),
 );
-const SiretModal = lazy(() => import('@/pages/dashboard/SiretModal.component'));
 const KycIndiaBanner = lazy(() =>
   import('@/pages/dashboard/KycIndiaBanner.component'),
 );
@@ -133,7 +132,6 @@ export default function Dashboard() {
                     <NotificationsEmailUnreachable />
                   </div>
                   <SiretBanner />
-                  <SiretModal />
                   <KycIndiaBanner />
                   <KycFraudBanner />
                   <HubDashboardSubtitle />
