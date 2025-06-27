@@ -5,3 +5,7 @@
 html {
   font-family: var(--ods-font-family-default);
 }
+
+.font-bold-class::part(text) {
+  @apply font-bold;
+}

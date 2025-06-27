@@ -1,8 +1,9 @@
 export const urls = {
-  root: '/',
+  root: '/pci/projects',
   onboarding: 'onboarding',
   listing: '',
-  dashboard: ':serviceName',
-  tab2: 'tab2',
+  dashboard: ':projectId',
+  home: '',
   remove: 'remove',
+  edit: 'edit',
 };

@@ -1,6 +1,9 @@
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 export const FEATURE_AVAILABILITY = {
   SAVINGS_PLAN: 'pci-savings-plan',
   DATABASES_ANALYTICS: 'pci-databases-analytics',
+  HDS: 'public-cloud:hds',
 };
 
 export type TFeatureStateDetail = {
@@ -14,6 +17,38 @@ export type TFeatureState = {
   [key: string]: {
     [key: string]: TFeatureStateDetail;
   };
+};
+
+export const PCI_HDS_ADDON = {
+  planCodeScope: 'certification.hds',
+  certifiedProject: 'publiccloud-certification-hds',
+};
+
+const OVH_CLOUD_URL = 'https://www.ovhcloud.com';
+const HDS_URL = 'enterprise/certification-conformity/hds/';
+
+type HdsInfo = { [key in OvhSubsidiary]: string };
+export const HDS_INFO: Partial<HdsInfo> = {
+  DEFAULT: `${OVH_CLOUD_URL}/en/${HDS_URL}`,
+  ASIA: `${OVH_CLOUD_URL}/asia/${HDS_URL}`,
+  AU: `${OVH_CLOUD_URL}/en-au/${HDS_URL}`,
+  CA: `${OVH_CLOUD_URL}/en-ca/${HDS_URL}`,
+  DE: `${OVH_CLOUD_URL}/de/${HDS_URL}`,
+  ES: `${OVH_CLOUD_URL}/es-es/${HDS_URL}`,
+  FR: `${OVH_CLOUD_URL}/fr/${HDS_URL}`,
+  GB: `${OVH_CLOUD_URL}/en-gb/${HDS_URL}`,
+  IE: `${OVH_CLOUD_URL}/en-ie/${HDS_URL}`,
+  IT: `${OVH_CLOUD_URL}/it/${HDS_URL}`,
+  MA: `${OVH_CLOUD_URL}/fr-ma/${HDS_URL}`,
+  NL: `${OVH_CLOUD_URL}/nl/${HDS_URL}`,
+  PL: `${OVH_CLOUD_URL}/pl/${HDS_URL}`,
+  PT: `${OVH_CLOUD_URL}/pt/${HDS_URL}`,
+  QC: `${OVH_CLOUD_URL}/fr-ca/${HDS_URL}`,
+  SG: `${OVH_CLOUD_URL}/en-sg/${HDS_URL}`,
+  SN: `${OVH_CLOUD_URL}/fr-sn/${HDS_URL}`,
+  TN: `${OVH_CLOUD_URL}/fr-tn/${HDS_URL}`,
+  WE: `${OVH_CLOUD_URL}/en/${HDS_URL}`,
+  WS: `${OVH_CLOUD_URL}/es/${HDS_URL}`,
 };
 
 export const BASE_PROJECT_PATH = '#/pci/projects/:projectId';
