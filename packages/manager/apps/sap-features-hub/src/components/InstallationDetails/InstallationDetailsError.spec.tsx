@@ -14,8 +14,8 @@ import {
 } from './InstallationDetailsError.component';
 
 const baseInstallation: InstallationDetails = {
-  ansibleSapHanaStatus: SAPInstallationStatus.pending,
-  ansibleSapSystemStatus: SAPInstallationStatus.pending,
+  sapHanaInstallationStatus: SAPInstallationStatus.pending,
+  sapSystemInstallationStatus: SAPInstallationStatus.pending,
   applicationType: 'ABAP',
   applicationVersion: '1.0.0',
   cleanStatus: SAPInstallationStatus.pending,
@@ -32,7 +32,7 @@ const baseInstallation: InstallationDetails = {
     id: '',
     urn: '',
   },
-  terraformStatus: SAPInstallationStatus.pending,
+  vmDeploymentStatus: SAPInstallationStatus.pending,
 };
 
 const testCases = [
@@ -40,11 +40,11 @@ const testCases = [
     step: 'all steps',
     installation: {
       ...baseInstallation,
-      ansibleSapHanaStatus: SAPInstallationStatus.failure,
-      ansibleSapSystemStatus: SAPInstallationStatus.failure,
+      sapHanaInstallationStatus: SAPInstallationStatus.failure,
+      sapSystemInstallationStatus: SAPInstallationStatus.failure,
       cleanStatus: SAPInstallationStatus.failure,
       gatewayStatus: SAPInstallationStatus.failure,
-      terraformStatus: SAPInstallationStatus.failure,
+      vmDeploymentStatus: SAPInstallationStatus.failure,
     },
     expected: 'dashboard_installation_progress_step_initialisation',
   },
