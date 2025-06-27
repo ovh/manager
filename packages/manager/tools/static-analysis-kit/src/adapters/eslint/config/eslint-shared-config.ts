@@ -8,6 +8,7 @@ import { a11yEslintConfig } from '../rules/eslint-a11y';
 import { reactEslintConfig } from '../rules/eslint-react';
 import { vitestEslintConfig } from '../rules/eslint-tests';
 import { complexityEslintConfig } from '../rules/eslint-complexity';
+import { tanStackQueryEslintConfig } from '../rules/eslint-tanstack';
 
 export const eslintSharedConfig: Linter.FlatConfig[] = [
   htmlEslintConfig,
@@ -19,4 +20,5 @@ export const eslintSharedConfig: Linter.FlatConfig[] = [
   reactEslintConfig,
   vitestEslintConfig,
   complexityEslintConfig,
+  tanStackQueryEslintConfig,
 ];

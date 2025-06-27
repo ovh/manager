@@ -1,4 +1,4 @@
-import type { Linter } from 'eslint';
+import { Linter } from 'eslint';
 import { complexityRules } from '../../../configs/complexity-config';
 
 export const complexityEslintConfig: Linter.FlatConfig = {
