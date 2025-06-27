@@ -9,14 +9,14 @@ import { ODS_INPUT_TYPE, ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepState } from '@/pages/new/hooks/useStep';
-import { useVolumePricing } from '@/api/hooks/useCatalog';
+import { TVolumeModel, useVolumePricing } from '@/api/hooks/useCatalog';
 import { EncryptionType } from '@/api/select/volume';
 
 interface VolumeNameStepProps {
   projectId: string;
   step: StepState;
   onSubmit: (volumeName: string) => void;
-  volumeType: string;
+  volumeType: TVolumeModel['name'];
   encryptionType: EncryptionType | null;
   region: string;
   volumeCapacity: number;

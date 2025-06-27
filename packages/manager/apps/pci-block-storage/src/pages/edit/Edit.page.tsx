@@ -45,44 +45,13 @@ import { TVolume, useUpdateVolume, useVolume } from '@/api/hooks/useVolume';
 import HidePreloader from '@/core/HidePreloader';
 import { useVolumeMaxSize } from '@/api/data/quota';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
-import { useVolumeCatalog, useVolumePricing } from '@/api/hooks/useCatalog';
+import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
 import ExternalLink from '@/components/ExternalLink';
-
-type TPriceProps = {
-  projectId: string;
-  volume: TVolume;
-  size: number;
-};
-const Price = ({ projectId, volume, size }: TPriceProps) => {
-  const { t } = useTranslation('add');
-  const { data: pricing } = useVolumePricing(
-    projectId,
-    volume.region,
-    volume.type,
-    volume.encryptionType,
-    size,
-  );
-
-  return (
-    !!pricing && (
-      <OsdsText
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
-        {t('pci_projects_project_storages_blocks_add_submit_price_text', {
-          price: pricing.monthlyPrice.value,
-        })}
-      </OsdsText>
-    )
-  );
-};
 
 type TFormState = {
   name: string;
   size: {
-    value: number;
     min: number;
     max: number;
   };
@@ -102,11 +71,6 @@ export default function EditPage() {
   const onClose = () => navigate('..');
   const backHref = useHref('..');
 
-  const [errorState, setErrorState] = useState({
-    isMinError: false,
-    isMaxError: false,
-  });
-
   const { projectId, volumeId } = useParams();
 
   const projectUrl = useProjectUrl('public-cloud');
@@ -114,11 +78,12 @@ export default function EditPage() {
   const { data: project } = useProject(projectId || '');
   const { translateMicroRegion } = useTranslatedMicroRegions();
 
+  const [size, setSize] = useState(VOLUME_MIN_SIZE);
   const {
     data: volume,
     isLoading: isLoadingVolume,
     isPending: isPendingVolume,
-  } = useVolume(projectId, volumeId);
+  } = useVolume(projectId, volumeId, size);
   const { data: catalog } = useVolumeCatalog(projectId);
   const { has3AZ } = useHas3AZRegion(projectId);
   const pciCommonProperties = usePCICommonContextFactory({ has3AZ });
@@ -135,7 +100,6 @@ export default function EditPage() {
   const [formState, setFormState] = useState<TFormState>({
     name: volume?.name,
     size: {
-      value: volume?.size || VOLUME_MIN_SIZE,
       min: VOLUME_MIN_SIZE,
       max: volumeMaxSize,
     },
@@ -147,7 +111,7 @@ export default function EditPage() {
     projectId,
     volumeToEdit: {
       name: formState.name,
-      size: formState.size.value,
+      size,
       bootable: formState.bootable,
     },
     originalVolume: volume,
@@ -209,7 +173,6 @@ export default function EditPage() {
       setFormState({
         name: volume.name,
         size: {
-          value: volume.size,
           min: volume.size,
           max: getMaxSize(volume),
         },
@@ -217,12 +180,19 @@ export default function EditPage() {
         isInitialized: true,
       });
     }
-  }, [volume, regionQuota]);
+  }, [volume?.name, volume?.size, volume?.bootable, regionQuota]);
 
   useEffect(() => {
-    const { min, max, value } = formState.size;
-    setErrorState({ isMinError: value < min, isMaxError: value > max });
-  }, [formState]);
+    if (volume?.size) setSize(volume.size);
+  }, [volume?.size]);
+
+  const errorState = useMemo(
+    () => ({
+      isMinError: size < formState.size.min,
+      isMaxError: size > formState.size.max,
+    }),
+    [formState.size, size],
+  );
 
   const onEdit = () => {
     if (formState.name && !errorState.isMaxError && !errorState.isMinError) {
@@ -376,9 +346,7 @@ export default function EditPage() {
                   color={ODS_THEME_COLOR_INTENT.primary}
                   variant={ODS_BUTTON_VARIANT.flat}
                   textAlign={ODS_BUTTON_TEXT_ALIGN.center}
-                  {...(formState.size.value <= formState.size.min
-                    ? { disabled: true }
-                    : {})}
+                  {...(size <= formState.size.min ? { disabled: true } : {})}
                 >
                   <OsdsIcon
                     size={ODS_ICON_SIZE.sm}
@@ -398,19 +366,13 @@ export default function EditPage() {
                   min={formState.size.min}
                   max={formState.size.max}
                   step={1}
-                  value={formState.size.value}
-                  default-value={formState.size.value}
+                  value={size}
+                  default-value={size}
                   size={ODS_INPUT_SIZE.md}
                   error={hasError}
-                  onOdsValueChange={(event) => {
-                    setFormState({
-                      ...formState,
-                      size: {
-                        ...formState.size,
-                        value: Number(event.detail.value),
-                      },
-                    });
-                  }}
+                  onOdsValueChange={(event) =>
+                    setSize(Number(event.detail.value))
+                  }
                   data-testid="editPage-input_volumeSize"
                 />
 
@@ -420,9 +382,7 @@ export default function EditPage() {
                   color={ODS_THEME_COLOR_INTENT.primary}
                   variant={ODS_BUTTON_VARIANT.flat}
                   textAlign={ODS_BUTTON_TEXT_ALIGN.center}
-                  {...(formState.size.value >= formState.size.max
-                    ? { disabled: true }
-                    : {})}
+                  {...(size >= formState.size.max ? { disabled: true } : {})}
                 >
                   <OsdsIcon
                     size={ODS_ICON_SIZE.sm}
@@ -448,11 +408,20 @@ export default function EditPage() {
 
           {!hasError && (
             <div className="mb-6">
-              <Price
-                projectId={projectId}
-                volume={volume}
-                size={formState.size.value}
-              />
+              {!!volume.monthlyPrice && (
+                <OsdsText
+                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                  color={ODS_THEME_COLOR_INTENT.text}
+                >
+                  {t(
+                    'add:pci_projects_project_storages_blocks_add_submit_price_text',
+                    {
+                      price: volume.monthlyPrice.value,
+                    },
+                  )}
+                </OsdsText>
+              )}
             </div>
           )}
 

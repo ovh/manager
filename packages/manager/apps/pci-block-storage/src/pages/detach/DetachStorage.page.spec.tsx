@@ -10,7 +10,6 @@ import {
   useDetachVolume,
   useVolume,
   UseVolumeResult,
-  TVolume,
 } from '@/api/hooks/useVolume';
 import { useAttachedInstances } from '@/api/hooks/useInstance';
 import { TAttachedInstance } from '@/api/select/instances';
@@ -81,7 +80,7 @@ describe('DetachStorage', () => {
     vi.mocked(useVolume).mockReturnValue({
       data: { name: 'Volume 1', attachedTo: ['i1', 'i2'] },
       isPending: false,
-    } as UseQueryResult<TVolume>);
+    } as ReturnType<typeof useVolume>);
 
     const { queryByText, getByText, getByTestId } = render(<DetachStorage />);
     expect(

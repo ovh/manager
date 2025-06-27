@@ -11,12 +11,12 @@ import { useNavigate } from 'react-router-dom';
 import { PciTrustedZoneBanner } from '@ovh-ux/manager-pci-common';
 import { TRegion } from '@/api/data/regions';
 import { EncryptionType } from '@/api/select/volume';
-import { useVolumePricing } from '@/api/hooks/useCatalog';
+import { TVolumeModel, useVolumePricing } from '@/api/hooks/useCatalog';
 
 interface ValidationStepProps {
   projectId: string;
   region: TRegion;
-  volumeType: string;
+  volumeType: TVolumeModel['name'];
   encryptionType: EncryptionType | null;
   volumeCapacity: number;
   onSubmit: () => void;

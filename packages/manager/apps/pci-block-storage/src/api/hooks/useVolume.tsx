@@ -1,9 +1,14 @@
 import { useCallback, useMemo } from 'react';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+import {
+  ColumnSort,
+  PaginationState,
+  useCatalogPrice,
+} from '@ovh-ux/manager-react-components';
 import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { pipe } from 'lodash/fp';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   addVolume,
   attachVolume,
@@ -25,6 +30,7 @@ import {
 import {
   mapVolumeAttach,
   mapVolumeEncryption,
+  mapVolumePricing,
   mapVolumeRegion,
   mapVolumeStatus,
   mapVolumeToAdd,
@@ -33,6 +39,8 @@ import {
   sortResults,
   TVolumeAttach,
   TVolumeEncryption,
+  TVolumePricing,
+  TVolumeRegion,
   TVolumeStatus,
   TVolumeToAdd,
 } from '@/api/select/volume';
@@ -118,16 +126,30 @@ export const getVolumeQuery = (projectId: string, volumeId: string) => ({
   enabled: !!volumeId,
 });
 
-export type UseVolumeResult = TVolume | undefined;
+export type UseVolumeResult =
+  | (TAPIVolume &
+      TVolumeAttach &
+      TVolumeEncryption &
+      TVolumeStatus &
+      TVolumeRegion &
+      TVolumePricing)
+  | undefined;
 
-export const useVolume = (projectId: string, volumeId: string) => {
+export const useVolume = (
+  projectId: string,
+  volumeId: string,
+  capacity?: number,
+) => {
   const [{ data, ...restQuery }, { data: catalogData }] = useQueries({
     queries: [
       getVolumeQuery(projectId, volumeId),
       getVolumeCatalogQuery(projectId),
     ],
   });
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(['common', 'add', NAMESPACES.BYTES]);
+  const { getFormattedCatalogPrice } = useCatalogPrice(6, {
+    hideTaxLabel: true,
+  });
 
   const select = useMemo(
     () =>
@@ -136,8 +158,9 @@ export const useVolume = (projectId: string, volumeId: string) => {
         mapVolumeEncryption(t, catalogData),
         mapVolumeStatus(t),
         mapVolumeRegion(t),
+        mapVolumePricing(catalogData, getFormattedCatalogPrice, t, capacity),
       ),
-    [catalogData, t],
+    [catalogData, t, getFormattedCatalogPrice, capacity],
   );
 
   return {
