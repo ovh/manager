@@ -115,7 +115,7 @@ export const RegionSelector = ({
   return (
     <div className="flex flex-col gap-3">
       <OdsText preset="heading-3">Select Region</OdsText>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
         {orderCatalogOKMS.plans[0].configurations[0].values.map((region) => (
           <RadioCard
             id={region}
@@ -123,16 +123,9 @@ export const RegionSelector = ({
             selected={selectedRegion}
             key={region}
             name="region"
-          >
-            <div className="flex flex-col">
-              <OdsText preset="heading-6">
-                <Region mode={'region'} name={region} />
-              </OdsText>
-              <OdsText preset="caption" className="leading-3">
-                {region}
-              </OdsText>
-            </div>
-          </RadioCard>
+            title={<Region mode={'region'} name={region} />}
+            subTitle={region}
+          />
         ))}
       </div>
       <DomainSelector
