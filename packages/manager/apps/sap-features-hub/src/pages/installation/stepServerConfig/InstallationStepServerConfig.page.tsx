@@ -293,7 +293,7 @@ export default function InstallationStepServerConfig() {
         />
         <Controller
           control={control}
-          name="passwordCrypted"
+          name="encryptPassword"
           render={({ field }) => (
             <RhfToggleField
               field={field}
