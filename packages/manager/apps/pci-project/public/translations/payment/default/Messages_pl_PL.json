@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_default_title": "Twój sposób płatności",
+  "pci_project_new_payment_default_explain_info": "Twój domyślny sposób płatności zostanie użyty do pokrycia należności za wykorzystanie projektu Public Cloud.  Dopóki nie skorzystasz z usługi, nie zostaniesz obciążony żadnymi kosztami.",
+  "pci_project_new_payment_default_method_use_others_payment_methods": "Zmień domyślny sposób płatności",
+  "pci_project_new_payment_default_method_badge_default": "Domyślnie",
+  "pci_project_new_payment_default_method_expiration_date": "Data wygaśnięcia {{formatDate}}"
+}
