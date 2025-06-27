@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   // make a redirect to the new url of ui route
   $urlRouterProvider.when(
     /^\/useraccount\/contacts\/[0-9]+$/,
-    ($location, $state) => {
+    ($location, $state, $window) => {
       const hasToken = has($location.search(), 'token');
       const requestTabAsked = get($location.search(), 'tab') === 'REQUESTS';
 
@@ -19,7 +19,8 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       const taskId = last($location.path().split('/'));
       const token = get($location.search(), 'token');
 
-      return $state.go('account.contacts.requests', { taskId, token });
+      $state.go('account.contacts.requests', { taskId, token });
+      return $window.reload();
     },
   );
 
