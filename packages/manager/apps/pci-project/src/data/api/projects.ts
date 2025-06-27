@@ -9,7 +9,40 @@ export const getProjects = async (): Promise<FetchResultV6<TProject>> => {
   return v6.get(`/cloud/project`, { headers });
 };
 
-/** Add commentMore actions
+/**
+ * Delete a project based on the region.
+ */
+export const removeProject = (params: {
+  projectId: string;
+  serviceId?: string;
+  isUs?: boolean;
+}): Promise<unknown> => {
+  const { projectId, serviceId, isUs = false } = params;
+
+  if (isUs) {
+    return v6.delete(`/services/${serviceId}`);
+  }
+  return v6.post(`cloud/project/${projectId}/terminate`);
+};
+
+export const setAsDefaultProject = async (projectId: string) => {
+  const { data } = await v6.post('me/preferences/manager', {
+    key: 'PUBLIC_CLOUD_DEFAULT_PROJECT',
+    value: JSON.stringify({ projectId }),
+  });
+
+  return data;
+};
+
+export const unFavProject = async (): Promise<unknown> => {
+  const { data } = await v6.delete(
+    'me/preferences/manager/PUBLIC_CLOUD_DEFAULT_PROJECT',
+  );
+
+  return data;
+};
+
+/**
  * Retrieves the user's default public cloud project preference.
  * @returns {Promise<{ projectId: string } | null>} The default project object or null if not set.
  */
