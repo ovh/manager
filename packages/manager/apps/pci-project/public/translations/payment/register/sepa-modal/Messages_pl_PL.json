@@ -1,0 +1,6 @@
+{
+  "ovh_payment_method_register_sepa_information_modal_title": "Konta bankowe w strefie SEPA",
+  "ovh_payment_method_register_sepa_information_modal_confirm": "Rozumiem",
+  "ovh_payment_method_register_sepa_information_modal_part_1": "Aby skonfigurować polecenie zapłaty, musisz posiadać konto bankowe w jednym z krajów należących do Jednolitego Obszaru Płatności w Euro, czyli <strong>strefy SEPA</strong>.",
+  "ovh_payment_method_register_sepa_information_modal_part_2": "Jeśli nie posiadasz tego typu konta, prosimy o wybranie innego sposobu płatności."
+}
