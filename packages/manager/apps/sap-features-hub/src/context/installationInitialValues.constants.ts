@@ -32,7 +32,7 @@ export const installationInitialValues: InstallationFormValues = {
   network: '',
   netmask: '',
   gateway: '',
-  passwordCrypted: false,
+  encryptPassword: false,
   thickDatastorePolicy: '',
   hanaServerOva: '',
   hanaServerDatastore: '',

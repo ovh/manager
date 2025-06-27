@@ -152,7 +152,7 @@ export const mockedFormSummary: { formSummary: StepSummary[] } = {
           label: l.server_config_input_thick_storage,
         },
         {
-          value: mock.passwordCrypted ? l.yes : l.no,
+          value: mock.encryptPassword ? l.yes : l.no,
           label: l.server_config_toggle_password_encryption,
         },
         { type: 'subtitle', label: LABELS.SAP_HANA },
