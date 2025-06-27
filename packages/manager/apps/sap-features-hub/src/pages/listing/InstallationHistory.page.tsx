@@ -7,7 +7,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
@@ -32,14 +32,13 @@ import { TRACKING } from '@/tracking.constants';
 export default function HistoryPage() {
   const { t } = useTranslation('listing');
   const { t: tInstallation } = useTranslation('installation');
+  const { t: tDashboard } = useTranslation('dashboard');
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
   const { data: installations, isLoading } = useInstallationHistory();
 
-  const header: HeadersProps = {
-    title: LABELS.SAP_HANA,
-  };
+  const header: HeadersProps = { title: t('sap_hub_history_list') };
 
   const columns: DatagridColumn<TSAPInstallation>[] = [
     {
@@ -113,18 +112,16 @@ export default function HistoryPage() {
         header={header}
         backLinkLabel={tInstallation('backlink_label')}
         onClickReturn={() => navigate(urls.dashboard)}
+        description={t('sap_hub_history_title')}
       >
-        <OdsText preset="heading-2" className="flex flex-col">
-          {t('sap_hub_history_title')}
-        </OdsText>
         <OdsButton
           variant={ODS_BUTTON_VARIANT.outline}
           onClick={() => {
             trackClick(TRACKING.wizard.start);
             navigate(urls.installationWizard);
           }}
-          label={t('sap_hub_history_run_installation')}
-          className="my-8"
+          label={tDashboard('blocks_start_wizard')}
+          className="mb-8"
         />
         {installations && (
           <Datagrid
