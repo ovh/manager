@@ -69,12 +69,3 @@ export type TNetworkCreationResponse = {
   startedAt: string | null;
   status: CreationStatus;
 };
-
-export type ErrorResponse = {
-  response?: {
-    data: {
-      message: string;
-    };
-  };
-  message?: string;
-};

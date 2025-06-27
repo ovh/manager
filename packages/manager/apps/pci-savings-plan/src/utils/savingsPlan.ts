@@ -5,8 +5,6 @@ import {
   InstanceTechnicalName,
   ResourceType,
 } from '@/types/CreatePlan.type';
-import { SavingsPlanPlanedChangeStatus, SavingsPlanService } from '@/types';
-import { SavingsPlanFlavorConsumption } from '@/types/savingsPlanConsumption.type';
 
 export const REGEX = '^[a-zA-Z0-9_-]{1,60}$';
 
@@ -74,11 +72,6 @@ export const getInstancesInformation = (t: TFunction): InstanceInfo[] => [
     label: t('resource_tabs_rancher'),
   },
 ];
-
-export const getActiveSavingsPlan = (savingsPlan: SavingsPlanService[]) =>
-  savingsPlan?.filter(
-    (plan) => plan.periodEndAction === SavingsPlanPlanedChangeStatus.REACTIVATE,
-  );
 
 // We don't have a better way to check that, api return only a specific code and not an id related to scope (instance, rancher),
 // So if we have number in the flavor (b3-8, c3-16) it's an instance else it's a Rancher

@@ -1,32 +1,32 @@
 import { z } from 'zod';
 
-export const currencySchema = z.object({
+const currencySchema = z.object({
   currencyCode: z.string(),
   priceInUcents: z.number().nullable(),
   text: z.string(),
   value: z.number(),
 });
 
-export const flatFeeDetailSchema = z.object({
+const flatFeeDetailSchema = z.object({
   id: z.string(),
   size: z.number(),
   totalPrice: currencySchema,
   unitPrice: currencySchema,
 });
 
-export const flatFeeSchema = z.object({
+const flatFeeSchema = z.object({
   details: z.array(flatFeeDetailSchema),
   totalPrice: currencySchema,
 });
 
-export const overQuotaSchema = z.object({
+const overQuotaSchema = z.object({
   ids: z.array(z.string()),
   quantity: z.number(),
   totalPrice: currencySchema,
   unitPrice: currencySchema,
 });
 
-export const feesSchema = z.object({
+const feesSchema = z.object({
   flatFee: flatFeeSchema,
   overQuota: overQuotaSchema,
   savedAmount: currencySchema,
@@ -44,7 +44,7 @@ export const periodSchema = z.object({
   utilization: z.string(),
 });
 
-export const subscriptionSchema = z.object({
+const subscriptionSchema = z.object({
   begin: z.string(),
   end: z.string(),
   id: z.string(),
