@@ -1,4 +1,3 @@
-import fs from 'fs';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { describe, it, vi, expect, beforeEach } from 'vitest';
