@@ -64,6 +64,7 @@ export type TInstance = DeepReadonly<{
 }>;
 
 export type TNetwork = TAddress & {
+  id: string;
   name: string;
   actions: TBaseAction[];
   flag?: string;

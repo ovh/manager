@@ -112,7 +112,7 @@ const Instance: FC = () => {
             </div>
           </div>
         </div>
-        <div className="mt-8">
+        <div className="mt-8 mb-8">
           <Notifications />
         </div>
         <GoBack />

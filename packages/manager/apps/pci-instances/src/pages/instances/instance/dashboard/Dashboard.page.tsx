@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Outlet } from 'react-router-dom';
 import InstanceGeneralDetails from '../component/InstanceGeneralDetails.component';
 import InstanceProperty from '../component/InstanceProperty.component';
 import Network from '../component/Network.component';
@@ -8,6 +9,7 @@ const Dashboard: FC = () => (
     <InstanceGeneralDetails />
     <InstanceProperty />
     <Network />
+    <Outlet />
   </div>
 );
 
