@@ -1,15 +1,9 @@
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useContext, useMemo } from 'react';
-import { ApiError } from '@ovh-ux/manager-core-api';
 import { FEATURE_AVAILABILITY, PCI_HDS_ADDON } from '@/constants';
-import {
-  addOptionToCart,
-  assignCart,
-  checkoutCart,
-  createCart,
-} from '@/data/api/cart';
+import { addOptionToCart, assignCart, createCart } from '@/data/api/cart';
 import {
   getCartServiceOption,
   getServiceId,
@@ -17,7 +11,6 @@ import {
 } from '@/data/api/services';
 import { getCartServiceOptionQueryKey } from '@/data/hooks/useServices';
 import { TCartServiceOption, TServiceOption } from '@/data/types/service.type';
-import { payWithRegisteredPaymentMean } from '@/data/api/payment';
 
 /**
  * Check if HDS feature availability is enabled

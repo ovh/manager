@@ -73,7 +73,7 @@ describe('ManagerBannerText', () => {
 
     const messageElement = screen
       .getByText('Test message')
-      .closest('[color="warning"]');
+      .closest('[data-color="warning"]');
     expect(messageElement).toBeInTheDocument();
   });
 
