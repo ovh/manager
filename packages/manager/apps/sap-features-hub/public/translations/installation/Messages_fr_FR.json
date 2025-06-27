@@ -91,7 +91,7 @@
   "server_config_error_vmware_ports": "Veuillez sélectionner un groupe de ports VMware.",
   "server_config_input_subnet_mask": "Masque de sous-réseau",
   "server_config_helper_subnet_mask": "Le masque de sous-réseau doit être au format IPv4",
-  "server_config_input_gateway_ip": "Passerelle par défault",
+  "server_config_input_gateway_ip": "Passerelle par défaut",
   "server_config_helper_gateway_ip": "La passerelle par défaut doit être au format IPv4",
   "server_config_input_thick_storage": "Politique de stockage Thick",
   "server_config_error_thick_storage": "Veuillez sélectionner une politique de stockage Thick.",

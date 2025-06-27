@@ -236,7 +236,7 @@ function GeneralInfos() {
             <Links
               data-testid={testIds.hubLinkAnalysisDocs}
               label={t('blocks_documentation')}
-              href={t('logs_analysis_and_extract')}
+              href={guides.logs_analysis_and_extract}
               target="_blank"
               type={LinkType.external}
               onClickReturn={() =>
@@ -256,7 +256,7 @@ function GeneralInfos() {
             <Links
               data-testid={testIds.hubLinkAnalysisGit}
               label={t('blocks_code_source')}
-              href="https://github.com/ovh/terraform-vsphere-sap-system/tree/master"
+              href="https://github.com/ovh/sap-logs-on-ovhcloud-logs-data-platform"
               target="_blank"
               type={LinkType.external}
               onClickReturn={() =>
@@ -285,7 +285,6 @@ function GeneralInfos() {
           />
         ))}
       </div>
-      <OdsText>{t('blocks_explanations')}</OdsText>
     </div>
   );
 }
