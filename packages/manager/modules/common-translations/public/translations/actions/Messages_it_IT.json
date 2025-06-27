@@ -46,5 +46,7 @@
   "modify_name": "Modifica il nome",
   "modify_name_success": "Il nome è stato modificato correttamente",
   "retry": "Riprova",
-  "start": "Comincia ora"
+  "start": "Comincia ora",
+  "modify_success": "{{ value }} è stato modificato correttamente",
+  "see_details": "Andare ai dettagli"
 }
