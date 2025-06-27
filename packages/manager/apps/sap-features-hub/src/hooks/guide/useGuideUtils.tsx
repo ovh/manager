@@ -4,6 +4,13 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 const docUrl = 'https://help.ovhcloud.com/csm';
 
+export const GUIDE_LINK_SOURCE_CODE = {
+  infrastructureAsCode:
+    'https://github.com/ovh/terraform-vsphere-sap-system/tree/master',
+  analysisAndExtract:
+    'https://github.com/ovh/sap-logs-on-ovhcloud-logs-data-platform',
+};
+
 type GuideLinks = { [key in CountryCode]: string };
 
 const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
