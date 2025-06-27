@@ -1,0 +1,6 @@
+{
+  "ovh_payment_method_register_sepa_information_modal_title": "SEPA zone bank accounts",
+  "ovh_payment_method_register_sepa_information_modal_confirm": "I understand",
+  "ovh_payment_method_register_sepa_information_modal_part_1": "You must have a bank account in a country within the Single Euro Payments Area <strong>(SEPA) zone</strong> to set up a standing order.",
+  "ovh_payment_method_register_sepa_information_modal_part_2": "If you do not have this type of account, we recommend choosing another payment method."
+}

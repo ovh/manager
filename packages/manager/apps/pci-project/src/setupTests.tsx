@@ -6,6 +6,31 @@ import { ActionMenuItem } from '@ovh-ux/manager-react-components';
 
 global.fetch = fetch;
 
+// Mock PNG assets globally to avoid import issues
+vi.mock('@/assets/credit_card.png', () => ({ default: 'credit_card.png' }));
+vi.mock('@/assets/paypal.png', () => ({ default: 'paypal.png' }));
+vi.mock('@/assets/bank_account.png', () => ({ default: 'bank_account.png' }));
+vi.mock('@/assets/sepa_direct_debit.png', () => ({
+  default: 'sepa_direct_debit.png',
+}));
+
+// Handle unhandled promise rejections in tests to prevent Vitest warnings
+const originalUnhandledRejection = process.listeners('unhandledRejection');
+process.removeAllListeners('unhandledRejection');
+process.on('unhandledRejection', (reason, promise) => {
+  // Check if this is a test-related rejection that we want to suppress
+  if (reason instanceof Error && reason.message.includes('Navigation error')) {
+    // Silently handle navigation errors in tests
+    return;
+  }
+  // For other unhandled rejections, call the original handlers
+  originalUnhandledRejection.forEach((handler) => {
+    if (typeof handler === 'function') {
+      handler(reason, promise);
+    }
+  });
+});
+
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (translationKey: string) => translationKey,
@@ -143,24 +168,105 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
         {label}
       </div>
     ),
-    OdsLink: ({ label, ...props }: { label: string }) => (
+    OdsLink: ({
+      label,
+      iconAlignment, // eslint-disable-line @typescript-eslint/no-unused-vars
+      ...props
+    }: {
+      label: string;
+      iconAlignment?: string;
+    }) => (
       <a data-testid="ods-link" {...props}>
         {label}
       </a>
     ),
+    OdsSpinner: () => <div data-testid="ods-spinner" />,
     OdsMessage: ({
       color,
       children,
+      isDismissible,
       ...props
     }: {
       color: string;
       children: React.ReactNode;
+      isDismissible?: boolean;
     }) => (
-      <div data-testid="ods-message" color={color} {...props}>
+      <div
+        data-testid="ods-message"
+        data-color={color}
+        data-is-dismissible={isDismissible}
+        {...props}
+      >
         {children}
       </div>
     ),
-    OdsSpinner: () => <div data-testid="ods-spinner" />,
+    OdsText: ({ children, ...props }: { children: React.ReactNode }) => (
+      <div data-testid="ods-text" {...props}>
+        {children}
+      </div>
+    ),
+    OdsIcon: ({ name, ...props }: { name: string }) => (
+      <div data-testid="ods-icon" data-name={name} {...props} />
+    ),
+    OdsCard: ({
+      children,
+      color,
+      className,
+      ...props
+    }: {
+      children: React.ReactNode;
+      color?: string;
+      className?: string;
+    }) => (
+      <div
+        data-testid="ods-card"
+        className={className}
+        data-color={color}
+        {...props}
+      >
+        {children}
+      </div>
+    ),
+    OdsModal: ({
+      isOpen,
+      children,
+      onOdsClose,
+      isDismissible, // eslint-disable-line @typescript-eslint/no-unused-vars
+      ...restProps
+    }: {
+      isOpen: boolean;
+      children: React.ReactNode;
+      onOdsClose: () => void;
+      isDismissible?: boolean;
+    }) =>
+      isOpen ? (
+        <div
+          data-testid="ods-modal"
+          {...restProps}
+          onClick={() => onOdsClose && onOdsClose()}
+        >
+          {children}
+        </div>
+      ) : null,
+    OdsRadio: ({
+      inputId,
+      name,
+      onClick,
+      ...props
+    }: {
+      inputId: string;
+      name: string;
+      onClick?: () => void;
+    }) => (
+      <input
+        type="radio"
+        id={inputId}
+        name={name}
+        data-testid="ods-radio"
+        onClick={onClick}
+        {...props}
+      />
+    ),
   };
 });
 

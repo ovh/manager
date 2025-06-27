@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_default_title": "Ihr Zahlungsmittel",
+  "pci_project_new_payment_default_explain_info": "Der Verbrauch Ihres Public Cloud-Projekts wird über Ihr unten angegebenes Standardzahlungsmittel abgerechnet. Es erfolgt keine Abbuchung oder Belastung, solange Sie keine Ressourcen o.ä. in Anspruch nehmen.",
+  "pci_project_new_payment_default_method_use_others_payment_methods": "Standardzahlungsmittel ändern",
+  "pci_project_new_payment_default_method_badge_default": "Standard",
+  "pci_project_new_payment_default_method_expiration_date": "Ablaufdatum {{formatDate}}"
+}
