@@ -85,7 +85,7 @@ export const getServerConfigFormData = ({
     'netmask',
     'gateway',
     'thickDatastorePolicy',
-    'passwordCrypted',
+    'encryptPassword',
     'hanaServerOva',
     'hanaServerDatastore',
     'applicationServerOva',
