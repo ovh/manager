@@ -21,7 +21,7 @@
   "pci_projects_project_storages_blocks_add_availability_zone": "Sélectionnez une zone de disponibilité",
   "pci_projects_project_storages_blocks_add_availability_zone_subtitle": "Le choix d'une zone de disponibilité est définitif, si vous voulez changer votre volume de zone, vous devrez le supprimer et le créer à nouveau dans la nouvelle zone souhaitée.",
   "pci_projects_project_storages_blocks_add_size_title": "Capacité du volume",
-  "pci_projects_project_storages_blocks_add_size_help": "La taille maximale dépend de votre quota disponible.",
+  "pci_projects_project_storages_blocks_add_size_help": "La taille maximale dépend de votre quota disponible. <Link>Vérifier mon quota</Link>",
   "pci_projects_project_storages_blocks_add_size_unit": "Go",
   "pci_projects_project_storages_blocks_add_size_bandwidth": "Bande passante : {{bandwidth}}",
   "pci_projects_project_storages_blocks_add_size_iops": "IOPS : {{iops}}",

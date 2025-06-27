@@ -8,7 +8,7 @@
   "pci_projects_project_storages_blocks_add_type_high-speed_description": "",
   "pci_projects_project_storages_blocks_add_type_price": "{{price}} GB/mês + IVA",
   "pci_projects_project_storages_blocks_add_size_title": "Capacidade do volume",
-  "pci_projects_project_storages_blocks_add_size_help": "O tamanho máximo depende do seu limite disponível.",
+  "pci_projects_project_storages_blocks_add_size_help": "O tamanho máximo depende do seu limite disponível. <Link>Verificar o meu limite</Link>",
   "pci_projects_project_storages_blocks_add_size_unit": "GB",
   "pci_projects_project_storages_blocks_add_name_title": "Nome do volume",
   "pci_projects_project_storages_blocks_add_submit_title": "Validação",
