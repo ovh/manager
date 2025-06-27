@@ -28,6 +28,7 @@ import {
 import ManagerBannerText from '@/components/ManagerBannerText';
 import useRedirectAfterProjectSelection from '@/hooks/useRedirectAfterProjectSelection';
 import { BASE_PROJECT_PATH } from '@/constants';
+import PaymentMethods from '@/components/payment/PaymentMethods';
 
 type ErrorResponse = {
   response?: {
@@ -140,6 +141,8 @@ export default function Listing() {
         <Notifications />
         <PciTrustedZoneBanner />
       </div>
+
+      <PaymentMethods />
 
       <React.Suspense>
         {columns && (
