@@ -18,5 +18,5 @@
   "dashboard_installation_progress_step_waiting": "Étape en attente",
   "dashboard_installation_progress_status_label": "Statut de l'installation",
   "dashboard_installation_error_message": "Erreur à l'étape \"{{stepName}}\". Plus de détails ci-dessous.",
-  "dashboard_installation_go_back_to_list": "Retour à la liste des installations"
+  "dashboard_installation_go_back_to_list": "Retour à la liste des pré-installations SAP"
 }
