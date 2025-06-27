@@ -21,7 +21,6 @@ import {
   PageLayout,
   PciGuidesHeader,
   Notifications,
-  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { TProject } from '@ovh-ux/manager-pci-common';
 import { GoBack } from '@/components/navigation/GoBack.component';
@@ -88,12 +87,10 @@ const Instance: FC = () => {
   return (
     <InstanceWrapper>
       <PageLayout>
-        {project && (
-          <Breadcrumb
-            projectLabel={project.description ?? ''}
-            items={[{ label: instance?.name ?? '' }]}
-          />
-        )}
+        <Breadcrumb
+          projectLabel={project.description ?? ''}
+          items={[{ label: instance?.name ?? '' }]}
+        />
         <div className="header mt-8">
           <div className="flex items-center justify-between">
             <div className="flex-[0.8]">
@@ -113,7 +110,7 @@ const Instance: FC = () => {
             </div>
           </div>
         </div>
-        <div className="mt-8">
+        <div className="mt-8 mb-8">
           <Notifications />
         </div>
         <GoBack />

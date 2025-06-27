@@ -5,12 +5,17 @@ import {
   QueryKey,
 } from '@tanstack/react-query';
 import {
+  attachNetworkToInstance,
   editInstanceName,
   getInstance,
   getRegionInstanceMock,
 } from '@/data/api/instance';
 import { useProjectId } from '@/hooks/project/useProjectId';
-import { TInstanceDetailDto, TInstanceDto } from '@/types/instance/api.type';
+import {
+  TInstanceDetailDto,
+  TInstanceDto,
+  TNetworkAttachedToInstanceDto,
+} from '@/types/instance/api.type';
 import { instancesQueryKey } from '@/utils';
 import { DeepReadonly } from '@/types/utils.type';
 import queryClient from '@/queryClient';
@@ -115,6 +120,30 @@ export const useEditInstanceName = ({
   return useMutation({
     mutationFn: ({ instanceName }: TEditInstanceNameDto) =>
       editInstanceName({ projectId, instanceId, instanceName }),
+    onSuccess,
+    onError,
+  });
+};
+
+export const useAttachNetworkToInstance = ({
+  projectId,
+  instanceId,
+  networkId,
+  callbacks = {},
+}: {
+  projectId: string;
+  instanceId: string;
+  networkId: string;
+  callbacks: DeepReadonly<{
+    onSuccess?: (data?: TNetworkAttachedToInstanceDto) => void;
+    onError?: (error: unknown) => void;
+  }>;
+}) => {
+  const { onSuccess, onError } = callbacks;
+
+  return useMutation({
+    mutationFn: () =>
+      attachNetworkToInstance({ projectId, instanceId, networkId }),
     onSuccess,
     onError,
   });

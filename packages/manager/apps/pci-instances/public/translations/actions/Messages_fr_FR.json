@@ -61,5 +61,11 @@
   "pci_instances_actions_instance_success_message": "Le statut de votre instance {{ name }} a bien été mis à jour",
   "pci_instances_actions_instance_network_change_dns": "Changer le reverse DNS",
   "pci_instances_actions_instance_network_activate_mitigation": "Activer/Désactiver la mitigation",
-  "pci_instances_actions_instance_network_firewall_settings": "Configurer le pare-feu"
+  "pci_instances_actions_instance_network_firewall_settings": "Configurer le pare-feu",
+  "pci_instances_actions_instance_network_network_settings": "Gérer les réseaux privés",
+  "pci_instances_actions_instance_network_network_attach": "Attacher un réseau",
+  "pci_instances_actions_instance_network_network_attach_title": "Attacher un ou des réseaux privés à votre instance",
+  "pci_instances_actions_instance_network_network_empty_message": "Vous ne possédez actuellement aucun réseau privé compatible auquel attacher cette instance.",
+  "pci_instances_actions_instance_network_network_attach_success_message": "Le réseau privé {{ network }} a été attaché à l'instance {{ instance }}.",
+  "pci_instances_actions_instance_network_network_attach_error_message": "Une erreur est survenue lors de la mise à jour de l'instance : {{ message }}"
 }
