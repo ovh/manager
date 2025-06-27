@@ -1,0 +1,246 @@
+import { Meta } from '@storybook/blocks';
+import { Links, LinkType } from '@ovh-ux/manager-react-components';
+import {
+  version,
+  devDependencies,
+} from '../../../manager-react-components/package.json';
+import mrcAddComponentImg from './images/mrc-adding-component.png'
+
+<Meta title="Manager React Components/Guidelines/New component ?" />
+
+# How to add a new component
+
+This guide will walk you through the process of creating and integrating a new component into the Manager React Components library.
+
+Correcting, adding new features on an existing component.
+
+## 📋 Github issues
+
+Before adding a new component, create a bug or add a new feature
+
+You have to go on the github issue page [here](https://github.com/ovh/manager/issues), then create a new issue :
+
+<img src={mrcAddComponentImg} alt="Create mrc issues" width="600" />
+
+Please fill the form : 
+
+- title
+- Component/Hook/utils/Other
+- description
+- When do you expect the component ?
+
+Its a must have if you have a mock up give by the design
+
+If you already have a Open PR, code sample or prototype, please share to us.
+
+## 🏗️ Component Structure
+
+A new component should follow this structure:
+
+```
+src/
+  components/
+    your-component/
+      __tests__
+          your-component.test.tsx
+      your-component.component.tsx
+      your-component.types.ts
+      index.ts
+```
+
+A new hook should follow this structure:
+
+```
+src/
+  hooks/
+    your-custom-hook/
+      __tests__
+           your-custom-hook.test.tsx
+      your-custom-hook.tsx
+      your-custom-hook.types.ts
+      index.ts
+```
+
+Adding story to manager-wiki
+
+```
+packages/manager-wiki/stories/managager-react-components/
+  components/
+    your-component/
+      overview.mdx
+      changelog.mdx
+      documentation.mdx
+      your-component.stories.ts
+```
+
+## 📝 Implementation Steps
+
+### 1. 🎯 Create Component Files
+
+First, create the necessary files in the correct directory:
+
+```tsx
+// your-component.component.tsx
+import { OdsText } from '@ovhcloud/ods-components/react';
+import { YourComponentProps } from './your-component.types';
+import { useYourComponent } from './your-component.utils';
+
+export const YourComponent = ({ prop1, prop2 }: YourComponentProps) => {
+  const { result } = useYourComponent(prop1, prop2);
+  
+  return (
+    <OdsText>
+      {result}
+    </OdsText>
+  );
+};
+```
+
+### 2. 📦 Define Types
+
+Create type definitions in `your-component.types.ts`:
+
+```tsx
+export interface YourComponentProps {
+  prop1: string;
+  prop2: number;
+  optionalProp?: boolean;
+}
+```
+### 5. 📚 Create Stories
+
+Create Storybook stories in `your-component.stories.tsx`:
+
+```tsx
+import { Meta, StoryObj } from '@storybook/react';
+import { YourComponent } from './your-component.component';
+
+const meta: Meta<typeof YourComponent> = {
+  title: 'Components/YourComponent',
+  component: YourComponent,
+  tags: ['autodocs'],
+  argTypes: {
+    prop1: { control: 'text' },
+    prop2: { control: 'number' },
+    optionalProp: { control: 'boolean' },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof YourComponent>;
+
+export const Default: Story = {
+  args: {
+    prop1: 'Example',
+    prop2: 42,
+  },
+};
+```
+
+### 6. ✅ Add Tests
+
+Create unit tests in `your-component.test.tsx`:
+
+```tsx
+import { render, screen } from '@testing-library/react';
+import { YourComponent } from './your-component.component';
+
+describe('YourComponent', () => {
+  it('renders correctly', () => {
+    render(<YourComponent prop1="test" prop2={42} />);
+    expect(screen.getByText('test - 42')).toBeInTheDocument();
+  });
+});
+```
+
+### 6. 📤 Export Component
+
+Add exports in `index.ts`:
+
+```tsx
+export { namedExport } from './your-component.component';
+export type { nameExportType } from './your-component.types';
+```
+
+> ❌ Do not export with `*`, it can cause issues during the library build
+
+## 🎨 Best Practices
+
+### Component Design
+
+- 🎯 Keep components focused and single-responsibility
+- 🔄 Use TypeScript for type safety
+- 📱 Ensure responsive design
+- ♿ Follow accessibility guidelines
+
+### Code Style
+
+- 📝 Use consistent naming conventions
+- 📚 Add JSDoc comments for documentation
+- 🧪 Write comprehensive tests
+- 🔍 Include error handling
+
+### Performance
+
+- ⚡ Optimize rendering performance
+- 📦 Minimize bundle size
+- 🔄 Use proper memoization
+- 🎯 Implement lazy loading when appropriate
+
+## 🔍 Code Review Checklist
+
+- [ ] Component follows the established structure
+- [ ] All necessary files are created
+- [ ] TypeScript types are properly defined
+- [ ] Unit tests are implemented
+- [ ] Storybook stories are created
+- [ ] Documentation is complete
+- [ ] Accessibility requirements are met
+- [ ] Performance is optimized
+- [ ] Code style guidelines are followed
+
+## 📚 Additional Resources
+
+- [React Documentation](https://reactjs.org/docs/getting-started.html)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [Storybook Documentation](https://storybook.js.org/docs/react/get-started/introduction)
+- [Testing Library Documentation](https://testing-library.com/docs/)
+
+## 🚀 Next Steps
+
+After creating your component:
+
+1. 📝 Update the component documentation
+2. 🔄 Create a pull request
+3. ✅ Request code review
+4. 🎯 Address review comments
+5. 📦 Prepare for release
+
+## ⚠️ Common Pitfalls
+
+- ❌ Avoid prop drilling
+- ❌ Don't forget error boundaries
+- ❌ Avoid unnecessary re-renders
+- ❌ Don't skip accessibility testing
+
+## 🔄 Version Control
+
+When committing your changes:
+
+```bash
+git checkout -b feat/MANAGER-#
+git add .
+git commit -m "feat(manager-react-components): add new YourComponent"
+git push origin feature/MANAGER-#
+```
+
+## 📈 Maintenance
+
+Regular maintenance tasks:
+
+- 🔄 Update dependencies
+- 📝 Update documentation
+- 🧪 Run test suite
+- 🔍 Review performance metrics
+
+Remember to follow the [semantic versioning](https://semver.org/) guidelines when making changes to existing components.

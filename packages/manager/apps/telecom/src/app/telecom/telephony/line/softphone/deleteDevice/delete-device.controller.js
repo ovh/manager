@@ -12,14 +12,12 @@ export default class DeleteModalController {
   deleteDevice() {
     this.deleting = true;
     this.softphoneService
-      .deleteDevice(this.billingAccount, this.serviceName, this.deviceId)
+      .deleteDevice(this.billingAccount, this.serviceName)
       .then(() => {
         this.goBack(true).then(() =>
           this.TucToast.success(
             this.$translate.instant(
-              `telephony_line_softphone_delete_${
-                this.deviceId ? 'device' : 'all_devices'
-              }_success`,
+              'telephony_line_softphone_delete_all_devices_success',
             ),
           ),
         );
@@ -28,9 +26,7 @@ export default class DeleteModalController {
         this.goBack(true).then(() =>
           this.TucToast.error(
             this.$translate.instant(
-              `telephony_line_softphone_delete_${
-                this.deviceId ? 'device' : 'all_devices'
-              }_error`,
+              'telephony_line_softphone_delete_all_devices_error',
               { error: data?.message },
             ),
           ),

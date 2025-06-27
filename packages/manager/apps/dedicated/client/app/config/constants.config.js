@@ -2491,10 +2491,6 @@ const changelogConfig = {
     links: links.infra_storage,
     chapters: ['Storage_backup', 'storage_backup', 'cda'],
   },
-  veeam_cloud_connect: {
-    links: links.backup_disaster,
-    chapters: ['Storage_backup', 'storage_backup', 'veeam-cloud-connect'],
-  },
   nutanix: {
     links: links.nutanix,
     chapters: ['Managed_baremetal', 'managed_baremetal', 'nutanix'],

@@ -23,6 +23,7 @@ import tasks from '../tasks';
 import interventions from '../intervention';
 import ipmi from '../ipmi';
 import netboot from '../netboot';
+import tagManager from './tag-manager';
 import trafficOrder from './traffic/order';
 import trafficCancel from './traffic/cancel';
 import trafficService from './traffic/traffic.service';
@@ -55,6 +56,7 @@ angular
     trafficOrder,
     trafficCancel,
     trafficService,
+    tagManager,
   ])
   .config(routing)
   .config(

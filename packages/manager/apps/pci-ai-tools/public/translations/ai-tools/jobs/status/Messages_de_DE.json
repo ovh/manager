@@ -1,15 +1,15 @@
 {
-  "status-DONE": "Abgeschlossen",
+  "status-DONE": "Beendet",
   "status-ERROR": "Fehler",
   "status-FAILED": "Fehlgeschlagen",
   "status-FINALIZING": "Abschluss",
   "status-INITIALIZING": "Initialisierung",
   "status-INTERRUPTED": "Unterbrochen",
   "status-INTERRUPTING": "Unterbrechung",
-  "status-PENDING": "Starten",
-  "status-QUEUED": "In Wartestellung",
+  "status-PENDING": "Start",
+  "status-QUEUED": "Ausstehend",
   "status-RUNNING": "Wird ausgeführt",
-  "status-RESTARTING": "Neustart wird ausgeführt",
+  "status-RESTARTING": "Neustart wird durchgeführt",
   "status-TIMEOUT": "Timeout",
   "status-SYNC_FAILED": "Synchronisierungsfehler"
 }

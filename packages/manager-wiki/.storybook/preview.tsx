@@ -57,6 +57,7 @@ const preview: Preview = {
           [
             'Introduction',
             "What's new",
+            'Guidelines',
             'Changelog',
             'components',
             'Content',
@@ -66,6 +67,11 @@ const preview: Preview = {
             'Typography',
             'Hooks',
             '*',
+          ],
+          'Guidelines',
+          [
+            'React Templates',
+            ['Listing page', 'Dashboard page', 'Onboarding page'],
           ],
           'Core',
           ['*', ['Overview', 'Changelog', '*']],

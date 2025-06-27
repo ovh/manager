@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-actions-menu",
-  "version": "5.1.3",
+  "version": "5.1.4",
   "description": "An actions menu gives the opportunity to group a set of actions available for a specific context under a single menu",
   "keywords": [
     "actions-menu",
@@ -33,7 +33,7 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.2"
+    "@ovh-ux/component-rollup-config": "^13.0.3"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-responsive-popover": "^6.0.0",

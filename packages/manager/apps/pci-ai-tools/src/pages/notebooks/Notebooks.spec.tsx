@@ -7,10 +7,19 @@ import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
 import Notebooks, { Loader } from './Notebooks.page';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 import * as notebookApi from '@/data/api/ai/notebook/notebook.api';
+import {
+  mockedFramework,
+  mockedFrameworkBis,
+} from '@/__tests__/helpers/mocks/capabilities/notebookFramework';
+import {
+  mockedCapabilitiesRegionBHS,
+  mockedCapabilitiesRegionGRA,
+} from '@/__tests__/helpers/mocks/capabilities/region';
 
 const NotebookProps = {
   params: {
     projectId: 'projectId',
+    quantum: '',
   },
   request: new Request('https://my-api.com/endpoint'),
 };
@@ -26,6 +35,14 @@ describe('Notebooks List page', () => {
       startNotebook: vi.fn((notebook) => notebook),
       stopNotebook: vi.fn((notebook) => notebook),
       deleteNotebook: vi.fn(),
+    }));
+
+    vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
+      getRegions: vi.fn(() => [
+        mockedCapabilitiesRegionBHS,
+        mockedCapabilitiesRegionGRA,
+      ]),
+      getFramework: vi.fn(() => [mockedFramework, mockedFrameworkBis]),
     }));
   });
 

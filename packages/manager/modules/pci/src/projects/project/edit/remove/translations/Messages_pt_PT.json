@@ -1,7 +1,7 @@
 {
   "pci_projects_project_edit_remove_title": "Cancelar projeto",
   "pci_projects_project_edit_remove_please_note": "Tenha em conta que todos os serviços, recursos, parâmetros e dados serão eliminados e não poderão ser recuperados posteriormente, à exceção dos IP Failovers, que terão estado “parking”.",
-  "pci_projects_project_edit_remove_submit": "Sim, cancelar",
+  "pci_projects_project_edit_remove_submit": "Sim, rescindir",
   "pci_projects_project_edit_remove_cancel": "Não, recusar",
   "pci_projects_project_edit_remove_error": "Ocorreu um erro ao eliminar o projeto: {{ error }}",
   "pci_projects_project_edit_remove_success": "Uma confirmação da eliminação foi enviada para o seu e-mail.",

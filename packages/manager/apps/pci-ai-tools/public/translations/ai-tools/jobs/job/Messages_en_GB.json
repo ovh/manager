@@ -12,14 +12,14 @@
   "jobToastErrorTitle": "Failed",
   "jobToastSuccessTitle": "Success",
   "deleteJobToastSuccessDescription": "The {{name}} job has been deleted",
-  "stopJobTitle": "Stop job",
+  "stopJobTitle": "Stop the job",
   "stopJobConfirmation": "Are you sure you want to stop the {{name}} job?",
   "stopJobButtonConfirm": "Stop",
   "stopJobToastSuccessDescription": "The {{name}} job has been stopped",
   "restartJobTitle": "Relaunch a new job",
-  "restartJobConfirmation": "You can launch a new job from the same parameters as another job. Do you want to relaunch a job that is identical to the {{name}} job?",
+  "restartJobConfirmation": "You can launch a new job using the same configuration as a another job. Do you want to relaunch a job that is identical to the {{name}} job?",
   "cliTitle": "Equivalent CLI command",
   "cliToastMessage": "Order copied",
   "restartJobButtonConfirm": "Relaunch",
-  "restartJobToastSuccessDescription": "The {{name}} job has been started"
+  "restartJobToastSuccessDescription": "The {{name}} job has been launched"
 }

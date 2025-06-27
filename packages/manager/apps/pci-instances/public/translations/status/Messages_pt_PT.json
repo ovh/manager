@@ -32,7 +32,7 @@
   "pci_instances_status_resuming": "Retoma em curso",
   "pci_instances_tooltip_content_status_shelved": "Apenas a snapshot é faturada.",
   "pci_instances_tooltip_content_status_shelved_offloaded": "$t(pci_instances_tooltip_content_status_shelved)",
-  "pci_instances_tooltip_content_status_shutoff": "A sua instância é sempre faturada mediante os recursos atribuídos.",
+  "pci_instances_tooltip_content_status_shutoff": "A sua instância é sempre faturada pelos recursos atribuídos.",
   "pci_instances_tooltip_content_status_paused": "$t(pci_instances_tooltip_content_status_shutoff)",
   "pci_instances_tooltip_content_status_suspended": "$t(pci_instances_tooltip_content_status_shutoff)"
 }

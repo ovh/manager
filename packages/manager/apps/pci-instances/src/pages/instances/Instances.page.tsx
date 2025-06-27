@@ -37,6 +37,7 @@ import {
   useHref,
   useRouteLoaderData,
 } from 'react-router-dom';
+import clsx from 'clsx';
 import NotFoundPage from '../404/NotFound.page';
 import DatagridComponent from '@/components/datagrid/Datagrid.component';
 import { useInstances } from '@/data/hooks/instance/useInstances';
@@ -91,16 +92,18 @@ const SearchBar = ({
 const Instances: FC = () => {
   const { t } = useTranslation(['list', 'common']);
 
-  const project = useRouteLoaderData('root') as TProject;
+  const project = useRouteLoaderData('root') as TProject | undefined;
   const createInstanceHref = useHref('./new');
   const [sorting, setSorting] = useState(initialSorting);
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(null);
   const section = useActionSection();
-  const routeLoaderData = useRouteLoaderData(section ?? '') as {
-    notFoundAction?: boolean;
-  };
+  const routeLoaderData = useRouteLoaderData(section ?? '') as
+    | {
+        notFoundAction?: boolean;
+      }
+    | undefined;
 
   const {
     data,
@@ -263,7 +266,7 @@ const Instances: FC = () => {
               </OsdsPopover>
             </div>
           </div>
-          <div className="my-5">
+          <div className={clsx({ 'mt-8': filters.length })}>
             <FilterList filters={filters} onRemoveFilter={removeFilter} />
           </div>
           <DatagridComponent

@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.30](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.11.29...@ovh-ux/manager-react-core-application@0.11.30) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-core-application
+
+
+
+
+
+## [0.11.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.11.28...@ovh-ux/manager-react-core-application@0.11.29) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-core-application
+
+
+
+
+
+## [0.11.28](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.11.27...@ovh-ux/manager-react-core-application@0.11.28) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-core-application
+
+
+
+
+
+## [0.11.27](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.11.26...@ovh-ux/manager-react-core-application@0.11.27) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-core-application
+
+
+
+
+
+## [0.11.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.11.25...@ovh-ux/manager-react-core-application@0.11.26) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-core-application
+
+
+
+
+
+## [0.11.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.11.24...@ovh-ux/manager-react-core-application@0.11.25) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-core-application
+
+
+
+
+
+## [0.11.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.11.23...@ovh-ux/manager-react-core-application@0.11.24) (2025-06-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-core-application
+
+
+
+
+
 ## [0.11.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.11.22...@ovh-ux/manager-react-core-application@0.11.23) (2025-05-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-core-application

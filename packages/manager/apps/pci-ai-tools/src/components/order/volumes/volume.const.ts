@@ -15,6 +15,6 @@ export const VOLUMES_CONFIG = {
   gitUrl: {
     min: 1,
     max: 50,
-    pattern: 'http(s)?://([w.:/-~]+)(.git)(/)?',
+    pattern: /\.git\/?$/,
   },
 };

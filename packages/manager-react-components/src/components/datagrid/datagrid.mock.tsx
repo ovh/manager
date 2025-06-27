@@ -9,6 +9,7 @@ export interface Item {
   label: string;
   price: number;
   status: string;
+  anotherStatus: string;
   iam: IamObject;
 }
 
@@ -158,6 +159,22 @@ export const columnsSearchAndFilters = [
     filterOptions: [
       { label: 'Status #0', value: 'Status #0' },
       { label: 'Status #1', value: 'Status #1' },
+    ],
+  },
+  {
+    id: 'anotherStatus',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.anotherStatus}</DataGridTextCell>;
+    },
+    label: 'anotherStatus',
+    isFilterable: true,
+    comparator: FilterCategories.Options,
+    filterOptions: [
+      {
+        label: 'anotherStatus #0000000000000000000000',
+        value: 'anotherStatus #0000000000000000000000',
+      },
+      { label: 'anotherStatus #1', value: 'anotherStatus #1' },
     ],
   },
 ];

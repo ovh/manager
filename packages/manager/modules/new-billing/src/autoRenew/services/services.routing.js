@@ -26,9 +26,6 @@ export default /* @ngInject */ ($stateProvider) => {
       billingServices: /* @ngInject */ (services) =>
         map(services.list.results, (service) => new BillingService(service)),
       canDisableAllDomains: /* @ngInject */ (services) => services.bulkDomains,
-      /* @ngInject */
-      defaultPaymentMean: (ovhPaymentMethod) =>
-        ovhPaymentMethod.getDefaultPaymentMethod(),
       disableAutorenewForDomains: /* @ngInject */ ($state) => () =>
         $state.go('billing.autorenew.services.disableDomainsBulk'),
       disableBulkAutorenew: /* @ngInject */ ($state) => (services) =>

@@ -1,0 +1,10 @@
+{
+  "manager_components_resource_tagging_manager_column_tag": "Tag",
+  "manager_components_resource_tagging_manager_column_tag_type": "Tag Type",
+  "manager_components_resource_tagging_manager_tag_type_custom": "Custom Type",
+  "manager_components_resource_tagging_manager_tag_type_ovhcloud": "OVHcloud Type",
+  "manager_components_resource_tagging_manager_action_assign_tag": "Assegnare un tag",
+  "manager_components_resource_tagging_manager_action_unassign_tag": "Eliminare",
+  "manager_components_resource_tagging_manager_action_tag_details": "Dettagli tag",
+  "manager_components_resource_tagging_manager_empty": "Nessun tag assegnato"
+}

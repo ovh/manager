@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.29.0...@ovh-ux/manager-react-components@2.29.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+# [2.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.28.0...@ovh-ux/manager-react-components@2.29.0) (2025-06-20)
+
+### Bug Fixes
+
+- **mrc:** white page when multiple FilterCategories.Options filters [#17449](https://github.com/ovh/manager/issues/17449) ([6ab5d58](https://github.com/ovh/manager/commit/6ab5d58f6a1d34127674068f166c4af5df62a4ed)), closes [#MANAGER-18548](https://github.com/ovh/manager/issues/MANAGER-18548)
+
+### Features
+
+- **docs:** add documentation react templates ([88fb974](https://github.com/ovh/manager/commit/88fb974fe31aa73aa47c340fc8b22c9da72b678b)), closes [#MANAGER-17263](https://github.com/ovh/manager/issues/MANAGER-17263)
+
+# [2.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.27.2...@ovh-ux/manager-react-components@2.28.0) (2025-06-12)
+
+### Features
+
+- **manager-react-component:** add service state badge component ([58f0ee8](https://github.com/ovh/manager/commit/58f0ee86dbca4507a3f4e114d9e3ec935d148dbc)), closes [#15090](https://github.com/ovh/manager/issues/15090)
+
+## [2.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.27.1...@ovh-ux/manager-react-components@2.27.2) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+## [2.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.27.0...@ovh-ux/manager-react-components@2.27.1) (2025-06-11)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 4075] ([3767ecc](https://github.com/ovh/manager/commit/3767ecc118a72aa312c3e3bc856454cb60c3f42a))
+- **i18n:** add missing translations [CDS 4087] ([1d5a0e2](https://github.com/ovh/manager/commit/1d5a0e2ec2f652734a31bfd19c502cab443e809a))
+- **i18n:** add missing translations [CDS 4094] ([ad15f88](https://github.com/ovh/manager/commit/ad15f88b3927485c9e2603541ff313808074b1b4))
+- **mrc:** fix onclick event on tags-list and export tags-modal ([18f56b7](https://github.com/ovh/manager/commit/18f56b76fb706f5aa244f2821a35f140ec8acad1)), closes [#MANAGER-18147](https://github.com/ovh/manager/issues/MANAGER-18147)
+
+# [2.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.26.0...@ovh-ux/manager-react-components@2.27.0) (2025-06-05)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 4072] ([d97c754](https://github.com/ovh/manager/commit/d97c754b1e9a593e50c3fa0ca4e6677cdec44b59))
+- **manager:** rename emitted CSS file to style.css in library output ([7d455bd](https://github.com/ovh/manager/commit/7d455bd9171596d64deb1e56ce47570fa7780fe8))
+- **mrc:** fix datagrid filter issue ([ff13f60](https://github.com/ovh/manager/commit/ff13f60936f1269fd09a68576fafd3b42fcc5a76)), closes [#MANAGER-18415](https://github.com/ovh/manager/issues/MANAGER-18415)
+
+### Features
+
+- generic lazy load approach ([ef1d158](https://github.com/ovh/manager/commit/ef1d158d0e4b90152dd092ce8b6ac819c31a72d2))
+- lazy load hooks translation ([5fc5531](https://github.com/ovh/manager/commit/5fc5531e4b06d33d440e2e7f0a4eb71287d5cd34))
+- manager applications handle default french fallback ([8e455f2](https://github.com/ovh/manager/commit/8e455f2e8aee8a2b6f8e74e7ac6fe4dbbd7b9e35))
+- **manager:** remove vite dependency from applications ([14fedc4](https://github.com/ovh/manager/commit/14fedc47e9463b2abdaa054b7a854b198916d155))
+- **mrc:** handle default french fallback ([3fdf5b8](https://github.com/ovh/manager/commit/3fdf5b8fda80f92253b6f1bcf9983d6cc23001c6))
+- **mrc:** lazy loading translation on different components ([7d8b968](https://github.com/ovh/manager/commit/7d8b968adb51f8dcd914b1af04bc47241438d27d))
+- **mrc:** tags-modal component ([95760e5](https://github.com/ovh/manager/commit/95760e51d9e36451b17e11c437962b9c0052b4b8)), closes [#MANAGER-18148](https://github.com/ovh/manager/issues/MANAGER-18148)
+- **mrc:** update mrc to use swc ([4c2daee](https://github.com/ovh/manager/commit/4c2daee8e6213bbd790aff39b5db7bb15aeee8e3))
+- **mrc:** update storybook configuration to use swc ([52e925b](https://github.com/ovh/manager/commit/52e925bc029c463b31cfe90b180b291db839ae56))
+
 # [2.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.25.0...@ovh-ux/manager-react-components@2.26.0) (2025-05-29)
 
 ### Bug Fixes

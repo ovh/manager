@@ -1,5 +1,3 @@
-import head from 'lodash/head';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('billing.autorenew.agreements.popup-agreement', {
     url: '/popup-agreement',
@@ -14,8 +12,6 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      activateAutorenew: /* @ngInject */ (BillingAutoRenew, nicRenew) => () =>
-        BillingAutoRenew.enableAutorenew(head(nicRenew.renewDays)),
       agreements: /* @ngInject */ (
         $transition$,
         UserAccountServicesAgreements,

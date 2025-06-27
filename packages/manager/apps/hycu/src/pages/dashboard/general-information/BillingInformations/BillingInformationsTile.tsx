@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigationGetUrl } from '@/hooks/shell/useNavigationGetUrl';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { ManagerLink } from '@/components/ManagerLink/ManagerLink.component';
@@ -23,7 +24,12 @@ import { TRACKING } from '@/tracking.constant';
 
 const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('hycu/dashboard');
+  const { t } = useTranslation([
+    'hycu/dashboard',
+    NAMESPACES.BILLING,
+    NAMESPACES.CONTACT,
+    NAMESPACES.DASHBOARD,
+  ]);
   const navigate = useNavigate();
 
   const { data: serviceDetails, isLoading } = useServiceDetails({
@@ -53,11 +59,11 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
 
   return (
     <DashboardTile
-      title={t('hycu_dashboard_subscription_title')}
+      title={t(`${NAMESPACES.BILLING}:subscription`)}
       items={[
         {
           id: 'renew',
-          label: t('hycu_dashboard_label_renew'),
+          label: t(`${NAMESPACES.BILLING}:automatic_renew`),
           value: isLoading ? (
             <OsdsSkeleton />
           ) : (
@@ -79,7 +85,7 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
         },
         {
           id: 'date_creation',
-          label: t('hycu_dashboard_field_label_date_creation'),
+          label: t(`${NAMESPACES.DASHBOARD}:creation_date`),
           value: isLoading ? (
             <OsdsSkeleton />
           ) : (
@@ -113,7 +119,7 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
         },
         {
           id: 'contact',
-          label: t('hycu_dashboard_field_label_contacts'),
+          label: t(`${NAMESPACES.CONTACT}:contacts`),
           value: (
             <div className="flex flex-col gap-4">
               <div>
@@ -125,7 +131,7 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
                       <Description key={contact.type}>{`${
                         contact.customerCode
                       } ${t(
-                        `hycu_dashboard_contact_type_${contact.type}`,
+                        `${NAMESPACES.CONTACT}:${contact.type}`,
                       )}`}</Description>
                     ))}
               </div>

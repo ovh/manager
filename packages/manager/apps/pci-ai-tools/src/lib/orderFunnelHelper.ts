@@ -1,5 +1,7 @@
 import ai from '@/types/AI';
 import {
+  AppOrderResult,
+  ImagePartnerApp,
   JobOrderResult,
   NotebookOrderResult,
   OrderVolumes,
@@ -125,4 +127,90 @@ export function getJobSpec(formResult: JobOrderResult) {
     });
   }
   return jobInfos;
+}
+
+export function getAppSpec(
+  formResult: AppOrderResult,
+  listAppPartner: ImagePartnerApp[],
+) {
+  const appResource: ai.ResourcesInput =
+    formResult.flavor.type === ai.capabilities.FlavorTypeEnum.cpu
+      ? {
+          flavor: formResult.flavor.id,
+          cpu: Number(formResult.resourcesQuantity),
+        }
+      : {
+          flavor: formResult.flavor.id,
+          gpu: Number(formResult.resourcesQuantity),
+        };
+
+  const appInfos: ai.app.AppSpecInput = {
+    resources: appResource,
+    name: formResult.appName,
+    image: formResult.version
+      ? `${formResult.image}:${formResult.version}`
+      : formResult.image,
+    region: formResult.region.id,
+    unsecureHttp: formResult.unsecureHttp,
+    labels: formResult.labels,
+    command: formResult.dockerCommand,
+  };
+
+  if (!formResult.version) {
+    appInfos.defaultHttpPort = Number(formResult.httpPort) || 8080;
+  }
+
+  if (formResult.version) {
+    appInfos.partnerId = listAppPartner?.find(
+      (app) => app.id === formResult.image,
+    )?.partnerId;
+  }
+
+  if (formResult.volumes.length > 0) {
+    appInfos.volumes = formResult.volumes.map((volume: OrderVolumes) => {
+      return {
+        cache: volume.cache,
+        mountPath: volume.mountPath,
+        permission: volume.permission,
+        volumeSource: volume.publicGit
+          ? {
+              publicGit: {
+                url: volume.publicGit.url,
+              },
+            }
+          : {
+              dataStore: {
+                alias: volume.dataStore.alias,
+                container: volume.dataStore.container,
+              },
+            },
+      };
+    });
+  }
+
+  if (formResult.scaling.autoScaling) {
+    appInfos.scalingStrategy = {
+      automatic: {
+        replicasMin: formResult.scaling.replicasMin,
+        replicasMax: formResult.scaling.replicasMax,
+        averageUsageTarget: formResult.scaling.averageUsageTarget,
+        resourceType: formResult.scaling.resourceType,
+      },
+    };
+  } else {
+    appInfos.scalingStrategy = {
+      fixed: {
+        replicas: formResult.scaling.replicas,
+      },
+    };
+  }
+
+  if (formResult.probe.path) {
+    appInfos.probe = {
+      path: formResult.probe.path,
+      port: formResult.probe.port,
+    };
+  }
+
+  return appInfos;
 }

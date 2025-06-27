@@ -38,7 +38,7 @@ export const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
 
   return (
     <DropdownMenuItem
-      className="cursor-pointer text-base text-blue-700 font-semibold focus:text-blue-700 focus:bg-[--ods-color-primary-100]"
+      className="cursor-pointer text-base text-blue-500 font-semibold focus:text-blue-500 focus:bg-[--ods-color-primary-100]"
       asChild
     >
       <a href={href} data-testid="actions-menu-item">
@@ -51,7 +51,12 @@ export const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
 export const ActionsMenu = ({ items }: TActionsMenuProps) => {
   return (
     <DropdownMenu modal={false}>
-      <DropdownMenuTrigger asChild disabled={!items.size}>
+      <DropdownMenuTrigger
+        // prevent default to avoid auto hiding the dropdown on mobile device
+        onTouchEnd={(e) => e.preventDefault()}
+        asChild
+        disabled={!items.size}
+      >
         <Button
           data-testid="actions-menu-button"
           className="size-9 p-0 text-primary border-primary border bg-background font-semibold hover:bg-primary-100 rounded-8 data-[state=open]:bg-[--ods-color-primary-100] focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"

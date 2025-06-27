@@ -29,5 +29,6 @@
   "private_database_order_clouddb_bill_success_link": "orden de pedido",
   "private_database_order_clouddb_bill_success_noCheckout": "El pedido se ha registrado. El producto se activará en unos instantes.",
   "private_database_order_clouddb_bill_success_checkout": "La <a href=\"{{url}}\" target=\"_blank\">orden de pedido</a> se ha generado correctamente. El producto se activará una vez que lo haya validado.",
-  "private_database_order_error": "Se ha producido un error al contratar la base de datos: {{message}}"
+  "private_database_order_error": "Se ha producido un error al contratar la base de datos: {{message}}",
+  "private_database_order_clouddb_server_version_valkey": "Valkey {{version}}"
 }

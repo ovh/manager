@@ -80,7 +80,6 @@
   "terminate_service_legacy_type_telephony_aliases": "Telephony",
   "terminate_service_legacy_type_telephony_lines": "Telephony",
   "terminate_service_legacy_type_telephony_trunks": "Telephony",
-  "terminate_service_legacy_type_veeamCloudConnect": "Veeam Cloud Connect",
   "terminate_service_legacy_type_vps": "Virtual private servers",
   "terminate_service_legacy_type_xdsl": "xDSL line",
   "terminate_service_legacy_type_kube": "Kubernetes",

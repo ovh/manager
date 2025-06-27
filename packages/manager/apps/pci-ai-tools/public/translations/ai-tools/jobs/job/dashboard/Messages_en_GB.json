@@ -10,11 +10,11 @@
   "cliCodeTitle": "You can relaunch the same job using these command lines in your ovhai CLI.",
   "cliEquivalentToastMessage": "Order copied",
   "durationTitle": "Operating time",
-  "jobIdLabel": "Job Id",
+  "jobIdLabel": "Job ID",
   "jobIdCopyToast": "Job ID copied",
   "deleteJobButton": "Delete job",
-  "accessTitle": "Http access",
-  "accessTooltip": "With HTTP access, you can be redirected from your browser to port 80 of the container, if it is still running. To access the web interface, you will need to log in.",
-  "grafanaTitle": "Consumption monitoring",
+  "accessTitle": "HTTP access",
+  "accessTooltip": "With HTTP access, you can be redirected from your browser to port 80 of the container, if it is still running. To access the web interface, you will need to authenticate.",
+  "grafanaTitle": "Usage monitoring",
   "grafanaButton": "Grafana dashboard"
 }

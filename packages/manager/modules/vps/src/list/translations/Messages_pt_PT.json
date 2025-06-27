@@ -1,0 +1,12 @@
+{
+  "vps_list_displayName": "Nome a ser apresentado",
+  "vps_list_name": "Nome",
+  "vps_list_model": "Modelo",
+  "vps_list_region": "Localização",
+  "vps_list_state": "Estado",
+  "vps_list_loadLocation_error": "Ocorreu um erro aquando da recuperação dos dados necessários à apresentação das informações de localização.",
+  "vps_list_popover_details": "Detalhes",
+  "vps_list_vcore": "vCores",
+  "vps_list_memory": "Memória",
+  "vps_list_disk": "Armazenamento"
+}

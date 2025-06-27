@@ -32,7 +32,7 @@
   "pci_instances_status_resuming": "Trwa wznawianie",
   "pci_instances_tooltip_content_status_shelved": "Fakturowane są tylko snapshoty.",
   "pci_instances_tooltip_content_status_shelved_offloaded": "$t(pci_instances_tooltip_content_status_shelved)",
-  "pci_instances_tooltip_content_status_shutoff": "Twoja instancja jest nadal rozliczana za przydzielone zasoby.",
+  "pci_instances_tooltip_content_status_shutoff": "Twoja instancja jest w dalszym ciągu fakturowana za przydzielone zasoby.",
   "pci_instances_tooltip_content_status_paused": "$t(pci_instances_tooltip_content_status_shutoff)",
   "pci_instances_tooltip_content_status_suspended": "$t(pci_instances_tooltip_content_status_shutoff)"
 }

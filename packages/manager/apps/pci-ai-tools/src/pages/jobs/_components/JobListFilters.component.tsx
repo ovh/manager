@@ -1,10 +1,14 @@
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import ai from '@/types/AI';
 import { FilterCategories } from '@/lib/filters';
 import JobStatusBadge from './JobStatusBadge.component';
+import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
 
 export const getFilters = () => {
+  const { projectId } = useParams();
   const { t: tRegions } = useTranslation('regions');
+  const regionQuery = useGetRegions(projectId);
   const { t } = useTranslation('ai-tools/jobs');
   return [
     {
@@ -21,9 +25,9 @@ export const getFilters = () => {
       id: 'spec.region',
       label: t('tableHeaderLocation'),
       comparators: FilterCategories.Options,
-      options: ['BHS', 'DE', 'GRA', 'SBG', 'UK', 'WAW'].map((region) => ({
-        label: tRegions(`region_${region}`),
-        value: region,
+      options: regionQuery?.data?.map((region) => ({
+        label: tRegions(`region_${region.id}`),
+        value: region.id,
       })),
     },
     {

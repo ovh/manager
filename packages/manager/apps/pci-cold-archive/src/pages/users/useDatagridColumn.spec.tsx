@@ -7,10 +7,4 @@ describe('useDatagridColumn tests', () => {
 
     expect(result.current.length).toEqual(5);
   });
-
-  it('Should match snapshot', () => {
-    const { result } = renderHook(() => useDatagridColumn());
-
-    expect(result.current).toMatchSnapshot();
-  });
 });

@@ -6,9 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     views: {
-      vpsContainer: {
-        component: 'managerListLayout',
-      },
+      vpsContainer: 'ovhManagerVpsList',
       vpsHeader: {
         component: 'ovhManagerAutoRenew2016DeploymentBanner',
         bindings: {

@@ -25,7 +25,7 @@ export default function LogsSubscriptions() {
 
   if (!currentLogKind) {
     return (
-      <div className="flex py-10">
+      <div className="flex py-8">
         <OdsSpinner size="md" data-testid="logCurrentLogKind-spinner" />
       </div>
     );
@@ -33,7 +33,7 @@ export default function LogsSubscriptions() {
 
   if (isLoading || isPending)
     return (
-      <div className="flex py-10">
+      <div className="flex py-8">
         <OdsSpinner size="md" data-testid="logSubscriptions-spinner" />
       </div>
     );
@@ -55,13 +55,13 @@ export default function LogsSubscriptions() {
     );
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <OdsText preset="heading-3">{t('log_subscription_list_title')}</OdsText>
       <div
         className={
           isZoomedIn
-            ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
-            : 'flex flex-col gap-6'
+            ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'
+            : 'flex flex-col gap-4'
         }
       >
         <SubscriptionEmpty />

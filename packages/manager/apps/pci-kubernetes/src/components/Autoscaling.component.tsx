@@ -72,6 +72,17 @@ export function Autoscaling({
   });
   const maxValue = isAntiAffinity ? ANTI_AFFINITY_MAX_NODES : NODE_RANGE.MAX;
 
+  // reset min node and max node if autoscaling is turned to off.
+  useEffect(() => {
+    if (!isAutoscale) {
+      setQuantity((q) => ({
+        ...q,
+        min: 0,
+        max: NODE_RANGE.MAX,
+      }));
+    }
+  }, [isAutoscale]);
+
   useEffect(() => {
     onChange?.({
       quantity,

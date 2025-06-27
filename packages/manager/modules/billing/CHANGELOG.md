@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.38.1...@ovh-ux/manager-billing@0.39.0) (2025-06-24)
+
+
+### Features
+
+* **billing:** rename zimbra service name on services page ([216e472](https://github.com/ovh/manager/commit/216e472733f56c4a3cf2cc368d53c6f72e18aec3)), closes [#MANAGER-17342](https://github.com/ovh/manager/issues/MANAGER-17342)
+
+
+
+
+
+## [0.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.38.0...@ovh-ux/manager-billing@0.38.1) (2025-06-20)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([351f285](https://github.com/ovh/manager/commit/351f285c817dc6c659aa18f227852c14710208ba))
+
+
+
+
+
+# [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.37.3...@ovh-ux/manager-billing@0.38.0) (2025-06-10)
+
+
+### Features
+
+* **veeam:** remove veeam cloud connect ([8ac3049](https://github.com/ovh/manager/commit/8ac3049049f8398114f6966441e8d8e583c57a04)), closes [#MANAGER-16416](https://github.com/ovh/manager/issues/MANAGER-16416)
+
+
+
+
+
 ## [0.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.37.2...@ovh-ux/manager-billing@0.37.3) (2025-06-02)
 
 

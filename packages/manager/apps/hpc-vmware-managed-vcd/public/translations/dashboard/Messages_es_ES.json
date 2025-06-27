@@ -48,10 +48,10 @@
   "managed_vcd_dashboard_contact_list_administrator": "{{code}} Administrador",
   "managed_vcd_dashboard_contact_list_billing": "{{code}} Facturación",
   "managed_vcd_dashboard_contact_list_technical": "{{code}} Técnico",
-  "managed_vcd_dashboard_password_modal_title": "Cambiar la contraseña",
-  "managed_vcd_dashboard_password_modal_subtitle": "¿Seguro/a que quiere cambiar la contraseña?",
-  "managed_vcd_dashboard_password_renew_success": "Recibirá un mensaje de correo electrónico para visualizar su contraseña",
-  "managed_vcd_dashboard_password_renew_error": "Se ha producido un error. Por favor, inténtelo de nuevo más tarde o contacte con el soporte para cambiar su contraseña de administrador.",
+  "managed_vcd_dashboard_password_modal_title": "Renovar la contraseña",
+  "managed_vcd_dashboard_password_modal_subtitle": "¿Seguro/a que quiere renovar la contraseña?",
+  "managed_vcd_dashboard_password_renew_success": "La solicitud de renovación de la contraseña de administrador se ha enviado correctamente. Recibirá un mensaje de correo electrónico con un enlace a su contraseña.",
+  "managed_vcd_dashboard_password_renew_error": "Se ha producido un error al renovar la contraseña de administrador. Por favor, vuelva a intentarlo más tarde o póngase en contacto con el servicio de atención al cliente.",
   "managed_vcd_dashboard_edit_modal_cta_validate": "Confirmar",
   "managed_vcd_dashboard_cancellation_tooltip": "Si desea dar de baja el servicio, contacte con nuestro equipo de soporte."
 }

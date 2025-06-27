@@ -1,4 +1,4 @@
-import apiClient from '@ovh-ux/manager-core-api';
+import { v6 } from '@ovh-ux/manager-core-api';
 import { ClusterRetention, Service, Stream } from '../types/dbaas/logs';
 
 /**
@@ -9,7 +9,7 @@ export const getLogRetention = async (
   clusterId: Stream['clusterId'],
   retentionId: Stream['retentionId'],
 ) => {
-  const { data } = await apiClient.v6.get<ClusterRetention>(
+  const { data } = await v6.get<ClusterRetention>(
     `/dbaas/logs/${serviceName}/cluster/${clusterId}/retention/${retentionId}`,
   );
   return data;

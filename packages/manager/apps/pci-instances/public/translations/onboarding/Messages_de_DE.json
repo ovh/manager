@@ -2,7 +2,7 @@
   "pci_instances_onboarding_not_created_message": "Sie haben noch keine Instanz erstellt.",
   "pci_instances_onboarding_content_message_1": "Wählen Sie aus unseren vielfältigen Modellen die passenden Instanzen aus und nutzen Sie die Flexibilität der Cloud, um ganz nach Bedarf zu wachsen.",
   "pci_instances_onboarding_content_message_2": "Suchen Sie sich aus unserem Katalog das für Sie passende Instanz-Modell aus. Bei unserer Sandbox Reihe werden die Ressourcen geteilt, die Reihe Guaranteed Resources bietet konstante Leistung für anspruchsvolle Anwendungen, GPU Instanzen sind ideal für parallele Rechenoperationen und IOPS Instanzen eignen sich für Datenbanken und Big Data.",
-  "pci_instances_onboarding_advice_message": "Sie haben jederzeit die Möglichkeit, die Kapazität Ihrer Instanzen nach Bedarf zu erhöhen. Sie können sich auch für Flex-Instanzen entscheiden, mit denen es außerdem möglich ist, die Kapazität zu verringern.",
+  "pci_instances_onboarding_advice_message": "Sie haben jederzeit die Möglichkeit, die Kapazität Ihrer Instanzen nach Bedarf zu erhöhen. Außerdem können Sie sich für Flex-Instanzen entscheiden, mit denen Sie die Kapazität auch reduzieren können.",
   "pci_instances_onboarding_guide_title": "Anleitung",
   "pci_instances_onboarding_create_instance_title": "Instanz im OVH Kundencenter erstellen",
   "pci_instances_onboarding_post_install_script_title": "Launching a script when an instance is created",

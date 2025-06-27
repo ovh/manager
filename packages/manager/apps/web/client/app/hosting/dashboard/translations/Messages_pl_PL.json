@@ -1152,7 +1152,7 @@
   "hosting_tab_BOOST_request_title": "Uruchamiasz opcję Boost dla Twojego hostingu.",
   "hosting_tab_BOOST_request_heading": "Wybierz ofertę",
   "hosting_tab_BOOST_request_description": "Opcja Boost pozwala zwiększyć tymczasowo wydajność hostingu. Cena obliczana jest według stawki dniowej, w zależności od Twoich potrzeb.",
-  "hosting_tab_BOOST_request_description_billing_new": "Opcja ta będzie fakturowana {{price}} netto za dzień użytkowania i w zależności od poziomu. Możesz ją wyłączyć lub zmienić, w górę lub w dół, w dowolnym momencie.",
+  "hosting_tab_BOOST_request_description_billing_new": "Opcja ta będzie fakturowana <strong>{{price}} netto za dzień użytkowania i w zależności od poziomu</strong>. Możesz ją wyłączyć lub zmienić, w górę lub w dół, w dowolnym momencie.",
   "hosting_tab_BOOST_request_description_payment_renew": "Będzie ona automatycznie odnawiana do momentu jej wyłączenia. Po dezaktywacji opcji faktura zostanie wystawiona za cały okres użytkowania. Kwota zostanie pobrana ze sposobu płatności wskazanego w sekcji „Płatności / Moje sposoby płatności” w Panelu klienta.",
   "hosting_tab_BOOST_request_activation": "Trwa aktywacja opcji Boost dla Twojej oferty...",
   "hosting_tab_BOOST_request_success": "Opcja Boost dla Twojego hostingu została włączona.",

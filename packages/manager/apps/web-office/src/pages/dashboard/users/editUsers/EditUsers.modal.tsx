@@ -7,19 +7,22 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import {
-  ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGenerateUrl } from '@/hooks';
 import { useUserDetail } from '@/data/hooks';
-import Modal from '@/components/modal/Modal.component';
 import queryClient from '@/queryClient';
 import { EDIT_USERS_FORM_SCHEMA } from '@/utils/formSchemas.utils';
 import {
@@ -33,9 +36,11 @@ import {
   putOfficeUserDetail,
 } from '@/data/api/users';
 import { UserParamsType } from '@/data/api/api.type';
+import { CANCEL, CONFIRM, EDIT_ACCOUNT } from '@/tracking.constants';
 
 export default function ModalEditUsers() {
   const { t } = useTranslation(['dashboard/users/edit', 'common']);
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
   const { serviceName: selectedServiceName } = useParams();
@@ -122,40 +127,44 @@ export default function ModalEditUsers() {
     },
   });
 
+  const tracking = (action: string) =>
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [EDIT_ACCOUNT, action],
+    });
+
   const handleSaveClick: SubmitHandler<{
     firstname: string;
     lastname: string;
     login: string;
-  }> = ({ firstname, lastname, login }) =>
+  }> = ({ firstname, lastname, login }) => {
+    tracking(CONFIRM);
     editUser({
       firstName: firstname,
       lastName: lastname,
       activationEmail: `${login}@${userDetail.activationEmail.split('@')[1]}`,
     });
+  };
 
   const handleCancelClick = () => {
+    tracking(CANCEL);
     onClose();
   };
   return (
     <Modal
-      isOpen
-      title={t('dashboard_users_edit_title')}
-      color={ODS_MODAL_COLOR.information}
-      onClose={onClose}
-      isDismissible
+      heading={t('dashboard_users_edit_title')}
+      type={ODS_MODAL_COLOR.information}
+      isOpen={true}
       isLoading={isLoading}
-      secondaryButton={{
-        label: t('common:cta_cancel'),
-        action: handleCancelClick,
-      }}
-      primaryButton={{
-        testid: 'edit-btn',
-        variant: ODS_BUTTON_VARIANT.default,
-        label: t('common:cta_confirm'),
-        isDisabled: !isDirty || !isValid,
-        isLoading: isSending,
-        action: handleSubmit(handleSaveClick),
-      }}
+      secondaryLabel={t('common:cta_cancel')}
+      onSecondaryButtonClick={handleCancelClick}
+      onDismiss={handleCancelClick}
+      primaryLabel={t('common:cta_confirm')}
+      isPrimaryButtonDisabled={!isDirty || !isValid}
+      onPrimaryButtonClick={handleSubmit(handleSaveClick)}
+      isPrimaryButtonLoading={isSending}
     >
       <form
         className="flex flex-col text-left gap-y-5"

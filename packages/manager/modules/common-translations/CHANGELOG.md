@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.9.0...@ovh-ux/manager-common-translations@0.9.1) (2025-06-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4128] ([2272617](https://github.com/ovh/manager/commit/2272617f3916a2588bd4cddbadeba7302b642fc3))
+
+
+
+
+
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.8.0...@ovh-ux/manager-common-translations@0.9.0) (2025-06-20)
+
+
+### Features
+
+* **common-translations:** add countries, services and actions common translations ([1842b2b](https://github.com/ovh/manager/commit/1842b2be899c26320867b4bf24cfce2a681742cd)), closes [#MANAGER-18750](https://github.com/ovh/manager/issues/MANAGER-18750)
+
+
+
+
+
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.7.0...@ovh-ux/manager-common-translations@0.8.0) (2025-06-05)
+
+
+### Features
+
+* add new common translations ([7ff8a5a](https://github.com/ovh/manager/commit/7ff8a5a43a2e70ec4311be8ea2647cba4f2f7af9)), closes [#MANAGER-17404](https://github.com/ovh/manager/issues/MANAGER-17404)
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.6.0...@ovh-ux/manager-common-translations@0.7.0) (2025-05-23)
 
 

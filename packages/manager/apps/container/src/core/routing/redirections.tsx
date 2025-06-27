@@ -81,6 +81,7 @@ export function Redirections(
         <Route index element={<Rewrite to="/telecom/telephony/" />} />
       </Route>
       <Route path="/orders" element={<Rewrite to="/telecom/orders" />} />
+      <Route path="/dedicated/metrics/*" element={<Rewrite to="/dedicated/dbaas/logs/*" />} />
       <Route path="/overTheBox">
         <Route
           path=":id/*"

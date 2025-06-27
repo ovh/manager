@@ -34,5 +34,5 @@
   "deleteContainerTitle": "Eliminare un container",
   "deleteContainerDescription": "Vuoi davvero eliminare questo container?",
   "disabledButtonTooltip": "Il notebook deve essere in stato “Arrestato”",
-  "disabledSyncButtonTooltip": "Il notebook deve essere in stato “In servizio” o “Sincronizzazione non riuscita”."
+  "disabledSyncButtonTooltip": "La sincronizzazione è possibile solo se lo stato è “In servizio” o “Sincronizzazione non riuscita”"
 }

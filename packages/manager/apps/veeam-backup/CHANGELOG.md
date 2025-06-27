@@ -3,6 +3,119 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.15.11...@ovh-ux/manager-veeam-backup-app@0.15.12) (2025-06-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4102] ([19c95b0](https://github.com/ovh/manager/commit/19c95b09ca3e36a3ab636c5973df4cc823c98d83)), closes [#MANAGER-18376](https://github.com/ovh/manager/issues/MANAGER-18376)
+
+
+
+
+
+## [0.15.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.15.10...@ovh-ux/manager-veeam-backup-app@0.15.11) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.15.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.15.9...@ovh-ux/manager-veeam-backup-app@0.15.10) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.15.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.15.8...@ovh-ux/manager-veeam-backup-app@0.15.9) (2025-06-18)
+
+
+### Bug Fixes
+
+* update svg import for svgr plugin ([91773fd](https://github.com/ovh/manager/commit/91773fde810627253d39739ad4ad8086f18619cf)), closes [#MANAGER-17397](https://github.com/ovh/manager/issues/MANAGER-17397)
+
+
+
+
+
+## [0.15.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.15.7...@ovh-ux/manager-veeam-backup-app@0.15.8) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.15.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.15.6...@ovh-ux/manager-veeam-backup-app@0.15.7) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.15.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.15.5...@ovh-ux/manager-veeam-backup-app@0.15.6) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.15.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.15.4...@ovh-ux/manager-veeam-backup-app@0.15.5) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.15.3...@ovh-ux/manager-veeam-backup-app@0.15.4) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.15.2...@ovh-ux/manager-veeam-backup-app@0.15.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.15.1...@ovh-ux/manager-veeam-backup-app@0.15.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.15.0...@ovh-ux/manager-veeam-backup-app@0.15.1) (2025-06-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.14.1...@ovh-ux/manager-veeam-backup-app@0.15.0) (2025-06-05)
+
+
+### Features
+
+* **manager:** remove vite dependency from applications ([14fedc4](https://github.com/ovh/manager/commit/14fedc47e9463b2abdaa054b7a854b198916d155))
+
+
+
+
+
 ## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.14.0...@ovh-ux/manager-veeam-backup-app@0.14.1) (2025-05-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app

@@ -146,7 +146,7 @@ export const MailingLists = () => {
   return (
     <div>
       <Outlet />
-      {platformUrn && !isOverridedPage && (
+      {!isOverridedPage && (
         <>
           <div className="flex flex-col items-start mb-6">
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>

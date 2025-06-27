@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 import ModalEditUsers from './EditUsers.modal';
@@ -39,7 +38,7 @@ describe('ModalEditUsers Component', () => {
     const inputFirstName = getByTestId('input-firstname');
     const inputLastName = getByTestId('input-lastname');
     const inputLogin = getByTestId('input-login');
-    const editButton = getByTestId('edit-btn');
+    const editButton = getByTestId('primary-button');
 
     expect(inputFirstName).toHaveAttribute('has-error', 'false');
     expect(inputLastName).toHaveAttribute('has-error', 'false');
@@ -82,7 +81,7 @@ describe('ModalEditUsers Component', () => {
     const inputFirstName = getByTestId('input-firstname');
     const inputLastName = getByTestId('input-lastname');
     const inputLogin = getByTestId('input-login');
-    const editButton = getByTestId('edit-btn');
+    const editButton = getByTestId('primary-button');
 
     expect(inputFirstName).toHaveAttribute('has-error', 'false');
     expect(inputLastName).toHaveAttribute('has-error', 'false');

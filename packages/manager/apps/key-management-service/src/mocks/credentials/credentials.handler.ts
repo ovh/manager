@@ -37,6 +37,22 @@ export const getCredentialsMock = ({
   },
 ];
 
+export type CreateCredentialsMockParams = {
+  fromCSR?: boolean;
+};
+
+export const createCredentialsMock = ({
+  fromCSR = false,
+}: CreateCredentialsMockParams): Handler[] => [
+  {
+    url: '/okms/resource/:okmsId/credential',
+    method: 'post',
+    response: { ...credentialMock[1], fromCSR },
+    status: 200,
+    api: 'v2',
+  },
+];
+
 export type DeleteCredentialsMockParams = {
   isCredentialDeleteKO?: boolean;
 };

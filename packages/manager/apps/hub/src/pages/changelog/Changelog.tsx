@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { BaseLayout, HeadersProps } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import {
   OsdsText,
   OsdsLink,
@@ -427,31 +427,38 @@ export default function Changelog() {
                       hue={ODS_TEXT_COLOR_HUE._400}
                       color={ODS_THEME_COLOR_INTENT.text}
                     >
-                      {t('changelog_tile_list_item_2')}{' '}
-                      <OsdsLink
-                        role="link"
-                        target={OdsHTMLAnchorElementTarget._blank}
-                        rel={OdsHTMLAnchorElementRel.external}
-                        color={ODS_THEME_COLOR_INTENT.primary}
-                        href={
-                          isRegionUS
-                            ? EXTERNAL_LINKS.HELPCENTER_US.url
-                            : EXTERNAL_LINKS.HELPCENTER.url
-                        }
-                        onClick={() => {
-                          trackClick(EXTERNAL_LINKS.BUG_BOUNTY.tracking);
+                      <Trans
+                        t={t}
+                        i18nKey="changelog_tile_list_item_2"
+                        components={{
+                          anchor: (
+                            <OsdsLink
+                              role="link"
+                              target={OdsHTMLAnchorElementTarget._blank}
+                              rel={OdsHTMLAnchorElementRel.external}
+                              color={ODS_THEME_COLOR_INTENT.primary}
+                              href={
+                                isRegionUS
+                                  ? EXTERNAL_LINKS.HELPCENTER_US.url
+                                  : EXTERNAL_LINKS.HELPCENTER.url
+                              }
+                              onClick={() => {
+                                trackClick(EXTERNAL_LINKS.HELPCENTER.tracking);
+                              }}
+                            ></OsdsLink>
+                          ),
+                          icon: (
+                            <span slot="end">
+                              <OsdsIcon
+                                name={ODS_ICON_NAME.EXTERNAL_LINK}
+                                className="ml-1"
+                                size={ODS_ICON_SIZE.xxs}
+                                color={ODS_THEME_COLOR_INTENT.primary}
+                              />
+                            </span>
+                          ),
                         }}
-                      >
-                        {t(EXTERNAL_LINKS.HELPCENTER.label_key)}{' '}
-                        <span slot="end">
-                          <OsdsIcon
-                            name={ODS_ICON_NAME.EXTERNAL_LINK}
-                            className="ml-1"
-                            size={ODS_ICON_SIZE.xxs}
-                            color={ODS_THEME_COLOR_INTENT.primary}
-                          />
-                        </span>
-                      </OsdsLink>
+                      ></Trans>
                     </OsdsText>
                   </li>
                   <li>
@@ -461,28 +468,34 @@ export default function Changelog() {
                       hue={ODS_TEXT_COLOR_HUE._400}
                       color={ODS_THEME_COLOR_INTENT.text}
                     >
-                      {t('changelog_tile_list_item_3')}{' '}
-                      <OsdsLink
-                        role="link"
-                        target={OdsHTMLAnchorElementTarget._blank}
-                        rel={OdsHTMLAnchorElementRel.external}
-                        color={ODS_THEME_COLOR_INTENT.primary}
-                        href={EXTERNAL_LINKS.BUG_BOUNTY.url}
-                        onClick={() => {
-                          trackClick(EXTERNAL_LINKS.BUG_BOUNTY.tracking);
+                      <Trans
+                        t={t}
+                        i18nKey="changelog_tile_list_item_3"
+                        components={{
+                          anchor: (
+                            <OsdsLink
+                              role="link"
+                              target={OdsHTMLAnchorElementTarget._blank}
+                              rel={OdsHTMLAnchorElementRel.external}
+                              color={ODS_THEME_COLOR_INTENT.primary}
+                              href={EXTERNAL_LINKS.BUG_BOUNTY.url}
+                              onClick={() => {
+                                trackClick(EXTERNAL_LINKS.BUG_BOUNTY.tracking);
+                              }}
+                            ></OsdsLink>
+                          ),
+                          icon: (
+                            <span slot="end">
+                              <OsdsIcon
+                                name={ODS_ICON_NAME.EXTERNAL_LINK}
+                                className="ml-1"
+                                size={ODS_ICON_SIZE.xxs}
+                                color={ODS_THEME_COLOR_INTENT.primary}
+                              />
+                            </span>
+                          ),
                         }}
-                      >
-                        {t(EXTERNAL_LINKS.BUG_BOUNTY.label_key)}
-                        <span slot="end">
-                          <OsdsIcon
-                            name={ODS_ICON_NAME.EXTERNAL_LINK}
-                            className="ml-1"
-                            size={ODS_ICON_SIZE.xxs}
-                            color={ODS_THEME_COLOR_INTENT.primary}
-                          />
-                        </span>
-                      </OsdsLink>{' '}
-                      {t('changelog_tile_list_item_3bis')}
+                      ></Trans>
                     </OsdsText>
                   </li>
                   <li>

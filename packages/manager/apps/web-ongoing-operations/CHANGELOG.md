@@ -3,6 +3,115 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.5.2...@ovh-ux/manager-web-ongoing-operations-app@1.6.0) (2025-06-23)
+
+
+### Features
+
+* **web-ongoing-operations:** filters added for operation and status in domain tab ([698e096](https://github.com/ovh/manager/commit/698e096457bdfae00a4f319b8ce043405eb41bb8)), closes [#MANAGER-17831](https://github.com/ovh/manager/issues/MANAGER-17831)
+* **web-ongoing-operations:** guide button ([265f90c](https://github.com/ovh/manager/commit/265f90c99271ec3fae05e736a38fe0fee73dcdc2)), closes [#MANAGER-18425](https://github.com/ovh/manager/issues/MANAGER-18425)
+* **web-ongoing-operations:** use of MRC formatted date ([b7d2389](https://github.com/ovh/manager/commit/b7d2389752f82d5e1e9183ce51da2938c9949a14)), closes [#MANAGER-18534](https://github.com/ovh/manager/issues/MANAGER-18534)
+
+
+
+
+
+## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.5.1...@ovh-ux/manager-web-ongoing-operations-app@1.5.2) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.5.0...@ovh-ux/manager-web-ongoing-operations-app@1.5.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.4.7...@ovh-ux/manager-web-ongoing-operations-app@1.5.0) (2025-06-17)
+
+
+### Features
+
+* **web-ongoing-operations:** add punycode ([961c041](https://github.com/ovh/manager/commit/961c0417443607a40405ee52e02e345a6dce2c52)), closes [#MANAGER-17373](https://github.com/ovh/manager/issues/MANAGER-17373)
+* **web-ongoing-operations:** react-router migration ([8cc3ff7](https://github.com/ovh/manager/commit/8cc3ff7bdc42a81067b3f1858c9662940ccc29e6)), closes [#MANAGER-18312](https://github.com/ovh/manager/issues/MANAGER-18312)
+* **web-ongoing-operations:** search added to domain and dns ([5cdc229](https://github.com/ovh/manager/commit/5cdc229885b3fa043b92d83e50f4f00db5ca3a61)), closes [#MANAGER-17832](https://github.com/ovh/manager/issues/MANAGER-17832)
+
+
+
+
+
+## [1.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.4.6...@ovh-ux/manager-web-ongoing-operations-app@1.4.7) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.4.5...@ovh-ux/manager-web-ongoing-operations-app@1.4.6) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.4.4...@ovh-ux/manager-web-ongoing-operations-app@1.4.5) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.4.3...@ovh-ux/manager-web-ongoing-operations-app@1.4.4) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.4.2...@ovh-ux/manager-web-ongoing-operations-app@1.4.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.4.1...@ovh-ux/manager-web-ongoing-operations-app@1.4.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.4.0...@ovh-ux/manager-web-ongoing-operations-app@1.4.1) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.3.4...@ovh-ux/manager-web-ongoing-operations-app@1.4.0) (2025-06-05)
+
+
+### Features
+
+* **manager:** remove vite dependency from applications ([14fedc4](https://github.com/ovh/manager/commit/14fedc47e9463b2abdaa054b7a854b198916d155))
+
+
+
+
+
 ## [1.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.3.3...@ovh-ux/manager-web-ongoing-operations-app@1.3.4) (2025-05-29)
 
 

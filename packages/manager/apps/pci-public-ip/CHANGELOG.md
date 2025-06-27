@@ -3,6 +3,103 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.18.2...@ovh-ux/manager-pci-public-ip-app@0.19.0) (2025-06-23)
+
+
+### Features
+
+* **pci-common:** use new config cards ([ddd6c33](https://github.com/ovh/manager/commit/ddd6c33ddc65543fee27e30a3c3f02f6b319f13b)), closes [#TAPC-3456](https://github.com/ovh/manager/issues/TAPC-3456)
+
+
+
+
+
+## [0.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.18.1...@ovh-ux/manager-pci-public-ip-app@0.18.2) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
+
+
+
+
+
+## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.18.0...@ovh-ux/manager-pci-public-ip-app@0.18.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
+
+
+
+
+
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.17.6...@ovh-ux/manager-pci-public-ip-app@0.18.0) (2025-06-17)
+
+
+### Features
+
+* **pci-public-ip:** enable button next if instance exist for selected region ([b8075d2](https://github.com/ovh/manager/commit/b8075d21a07c3409cb1bea46ca3e3d49be056213)), closes [#TAPC-3408](https://github.com/ovh/manager/issues/TAPC-3408)
+
+
+
+
+
+## [0.17.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.17.5...@ovh-ux/manager-pci-public-ip-app@0.17.6) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
+
+
+
+
+
+## [0.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.17.4...@ovh-ux/manager-pci-public-ip-app@0.17.5) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
+
+
+
+
+
+## [0.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.17.3...@ovh-ux/manager-pci-public-ip-app@0.17.4) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
+
+
+
+
+
+## [0.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.17.2...@ovh-ux/manager-pci-public-ip-app@0.17.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
+
+
+
+
+
+## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.17.1...@ovh-ux/manager-pci-public-ip-app@0.17.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
+
+
+
+
+
+## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.17.0...@ovh-ux/manager-pci-public-ip-app@0.17.1) (2025-06-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
+
+
+
+
+
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.16.3...@ovh-ux/manager-pci-public-ip-app@0.17.0) (2025-06-05)
+
+
+### Features
+
+* **manager:** remove vite dependency from applications ([14fedc4](https://github.com/ovh/manager/commit/14fedc47e9463b2abdaa054b7a854b198916d155))
+
+
+
+
+
 ## [0.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.16.2...@ovh-ux/manager-pci-public-ip-app@0.16.3) (2025-05-15)
 
 

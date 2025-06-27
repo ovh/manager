@@ -17,7 +17,7 @@ import {
 import { useTranslation } from 'react-i18next';
 
 type CreateCredentialConfirmationPrivateKeyProps = {
-  privateKey: string;
+  privateKey?: string;
   credentialId: string;
   isKeyDownloaded: boolean;
   setIsKeyDownloaded: Dispatch<SetStateAction<boolean>>;
@@ -30,6 +30,11 @@ const CreateCredentialConfirmationPrivateKey = ({
   setIsKeyDownloaded,
 }: CreateCredentialConfirmationPrivateKeyProps) => {
   const { t } = useTranslation('key-management-service/credential');
+
+  if (!privateKey) {
+    return null;
+  }
+
   return (
     <OdsCard className="p-4">
       <div className="flex flex-col w-full gap-4 md:gap-5">
@@ -38,7 +43,7 @@ const CreateCredentialConfirmationPrivateKey = ({
             'key_management_service_credential_create_confirmation_private-key_title',
           )}
         </Subtitle>
-        <OdsMessage color={ODS_MESSAGE_COLOR.warning}>
+        <OdsMessage color={ODS_MESSAGE_COLOR.warning} isDismissible={false}>
           {t(
             'key_management_service_credential_create_confirmation_private-key_warn',
           )}
@@ -56,12 +61,14 @@ const CreateCredentialConfirmationPrivateKey = ({
         />
         <OdsFormField className="flex flex-row items-center">
           <OdsCheckbox
+            data-testid="confirmation-private-key"
             name="confirmation-private-key"
             inputId="confirmation-private-key"
             isChecked={isKeyDownloaded}
             onOdsChange={() => setIsKeyDownloaded(!isKeyDownloaded)}
           />
           <label
+            data-testid="confirmation-private-key-label"
             className="ml-2 cursor-pointer"
             htmlFor="confirmation-private-key"
           >

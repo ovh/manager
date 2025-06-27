@@ -1,0 +1,8 @@
+{
+  "manager_components_resource_tagging_unassign_modal_title": "Remove a tag from your resource",
+  "manager_components_resource_tagging_unassign_modal_cancel": "Cancel",
+  "manager_components_resource_tagging_unassign_modal_unassign": "Confirm",
+  "manager_components_resource_tagging_unassign_modal_description": "Are you sure you want to remove the following tag(s) from the {{resourceName}} resource?",
+  "manager_components_resource_tagging_unassign_modal_success": "Tags removed!",
+  "manager_components_resource_tagging_unassign_modal_error": "Oops! Something went wrong. Please try again: <br> {{message}}<br> request_id: {{requestId}}"
+}

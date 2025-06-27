@@ -3,6 +3,167 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.8.1...@ovh-ux/manager-pci-ai-tools-app@1.8.2) (2025-06-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4135] ([f70f9c1](https://github.com/ovh/manager/commit/f70f9c1fe40dd8963b39457c8ad73e358a20e2d3))
+* **i18n:** add missing translations [CDS 4137] ([3239826](https://github.com/ovh/manager/commit/3239826012b0b92557da00829e506742376ebb71))
+* **i18n:** add missing translations [CDS 4138] ([114657a](https://github.com/ovh/manager/commit/114657a7191b1e4e73dd11acdd183075ac15938b))
+* **i18n:** add missing translations [CDS 4142] ([39f8337](https://github.com/ovh/manager/commit/39f833708d981b1aeba3d0c2aa49bfa3ff7c4345))
+
+
+
+
+
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.8.0...@ovh-ux/manager-pci-ai-tools-app@1.8.1) (2025-06-25)
+
+
+### Bug Fixes
+
+* **pci-ai-tools:us:** remove hardcoded GRA call to Framework to make it dynamic ([31e0a16](https://github.com/ovh/manager/commit/31e0a16a798a1d75d24b2a203aea05951e67eb9c)), closes [#DATATR-2324](https://github.com/ovh/manager/issues/DATATR-2324)
+
+
+
+
+
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.7.1...@ovh-ux/manager-pci-ai-tools-app@1.8.0) (2025-06-23)
+
+
+### Bug Fixes
+
+* **pci-ai-tools:notebooks:** remove hardcoded region to fix US issue in notebooks ([#17711](https://github.com/ovh/manager/issues/17711)) ([7f40509](https://github.com/ovh/manager/commit/7f4050987c58f04266d44b7ade0471b99f306845)), closes [#DATATR-2317](https://github.com/ovh/manager/issues/DATATR-2317)
+* **pci-ai-tools.dashboard:** count of notebooks after quantum split ([#17703](https://github.com/ovh/manager/issues/17703)) ([10170e8](https://github.com/ovh/manager/commit/10170e878ec04711853733a1f3a7c2f9c01ad6af)), closes [#DATATR-2316](https://github.com/ovh/manager/issues/DATATR-2316)
+
+
+### Features
+
+* **pci-ai-tools:** rework quantum auth flow and remove price link in dashboard ([#17692](https://github.com/ovh/manager/issues/17692)) ([22b4905](https://github.com/ovh/manager/commit/22b4905f0d22c6699eb9a898ba7338da8bc370a8)), closes [#DATATR-2314](https://github.com/ovh/manager/issues/DATATR-2314)
+
+
+
+
+
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.7.0...@ovh-ux/manager-pci-ai-tools-app@1.7.1) (2025-06-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4128] ([2272617](https://github.com/ovh/manager/commit/2272617f3916a2588bd4cddbadeba7302b642fc3))
+
+
+
+
+
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.6.0...@ovh-ux/manager-pci-ai-tools-app@1.7.0) (2025-06-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4106] ([b259112](https://github.com/ovh/manager/commit/b259112c38b66da9176e8f7f962c367071fd380c))
+* **i18n:** add missing translations [CDS 4113] ([be9c942](https://github.com/ovh/manager/commit/be9c9421f3e293cf914ad00f2f2c25f4da791efc))
+* **i18n:** add missing translations [CDS 4120] ([cf64c55](https://github.com/ovh/manager/commit/cf64c55dc192aeeeb8be6fa3a764243337c6d5b3))
+
+
+### Features
+
+* **manager-config:** added user related types ([76a0cb1](https://github.com/ovh/manager/commit/76a0cb1e34eba52f9d814023b784fccc4f502068)), closes [#MANAGER-17333](https://github.com/ovh/manager/issues/MANAGER-17333)
+
+
+
+
+
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.7...@ovh-ux/manager-pci-ai-tools-app@1.6.0) (2025-06-17)
+
+
+### Features
+
+* **pci-ai-tools:deploy:** new react version of AI Deploy ([25024a7](https://github.com/ovh/manager/commit/25024a70772049e0100ceb6b6ab67da9dc13703d)), closes [#DATATR-1976](https://github.com/ovh/manager/issues/DATATR-1976)
+
+
+
+
+
+## [1.5.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.6...@ovh-ux/manager-pci-ai-tools-app@1.5.7) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.5.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.5...@ovh-ux/manager-pci-ai-tools-app@1.5.6) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.4...@ovh-ux/manager-pci-ai-tools-app@1.5.5) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.3...@ovh-ux/manager-pci-ai-tools-app@1.5.4) (2025-06-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4087] ([1d5a0e2](https://github.com/ovh/manager/commit/1d5a0e2ec2f652734a31bfd19c502cab443e809a))
+
+
+
+
+
+## [1.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.2...@ovh-ux/manager-pci-ai-tools-app@1.5.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.1...@ovh-ux/manager-pci-ai-tools-app@1.5.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.5.0...@ovh-ux/manager-pci-ai-tools-app@1.5.1) (2025-06-09)
+
+
+### Bug Fixes
+
+* **pci-ai-tools:emulators:** add quantum section and emulators application ([c5f9ecc](https://github.com/ovh/manager/commit/c5f9ecc31db61e5ab2f44bf128c5e6581f58256e)), closes [#AIS-1189](https://github.com/ovh/manager/issues/AIS-1189)
+
+
+
+
+
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.4.0...@ovh-ux/manager-pci-ai-tools-app@1.5.0) (2025-06-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4061] ([775003c](https://github.com/ovh/manager/commit/775003c5bf8ceb7a287a8b6a1c8f57cfd7fa4263))
+* **i18n:** add missing translations [CDS 4062] ([d997316](https://github.com/ovh/manager/commit/d9973167aca8b32e3e47d68bf397c319651d4514))
+
+
+### Features
+
+* **manager:** remove vite dependency from applications ([14fedc4](https://github.com/ovh/manager/commit/14fedc47e9463b2abdaa054b7a854b198916d155))
+
+
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.3.1...@ovh-ux/manager-pci-ai-tools-app@1.4.0) (2025-06-02)
 
 

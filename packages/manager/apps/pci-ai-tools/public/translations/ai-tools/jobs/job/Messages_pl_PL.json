@@ -1,5 +1,5 @@
 {
-  "dashboardTab": "Schowek",
+  "dashboardTab": "Dashboard",
   "containerTab": "Kontenery",
   "publicGit": "Repozytoria Git",
   "logsTab": "Logi",
@@ -10,16 +10,16 @@
   "jobButtonCancel": "Anuluj",
   "deleteJobButtonConfirm": "Usuń",
   "jobToastErrorTitle": "Błąd",
-  "jobToastSuccessTitle": "Sukces",
+  "jobToastSuccessTitle": "Operacja zakończona pomyślnie",
   "deleteJobToastSuccessDescription": "Zadanie {{name}} zostało usunięte",
   "stopJobTitle": "Zatrzymaj zadanie",
   "stopJobConfirmation": "Czy na pewno chcesz zatrzymać zadanie {{name}}?",
   "stopJobButtonConfirm": "Zatrzymaj",
   "stopJobToastSuccessDescription": "Zadanie {{name}} zostało zatrzymane",
   "restartJobTitle": "Uruchom ponownie nowe zadanie",
-  "restartJobConfirmation": "Możesz uruchomić nowe zadanie, korzystając z tych samych ustawień, co inne zadanie. Czy chcesz ponownie uruchomić zadanie identyczne z zadaniem {{name}}?",
+  "restartJobConfirmation": "Możesz uruchomić nowe zadanie z takimi samymi ustawieniami jak wcześniej. Czy chcesz ponownie uruchomić zadanie identyczne jak zadanie {{name}}?",
   "cliTitle": "Równoważne polecenie CLI",
-  "cliToastMessage": "Skopiowano zamówienie",
-  "restartJobButtonConfirm": "Wznów",
+  "cliToastMessage": "Polecenie zostało skopiowane",
+  "restartJobButtonConfirm": "Uruchom ponownie",
   "restartJobToastSuccessDescription": "Zadanie {{name}} zostało uruchomione"
 }

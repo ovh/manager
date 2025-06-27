@@ -32,7 +32,7 @@ const Identities = () => {
   });
 
   return (
-    <div className="flex flex-col gap-8 min-w-9">
+    <div className="flex flex-col gap-4 min-w-9">
       <Users identities={userIdentities} />
       <UserGroups identities={groupsIdentities} />
       <ServiceAccounts identities={serviceAccountsIdentities} />

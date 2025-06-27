@@ -53,6 +53,9 @@ import {
   VERIFY_DOMAIN,
   ONBOARDING_CONFIGURE_DOMAIN,
   ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS,
+  CANCEL_SLOT,
+  UNDO_CANCEL_SLOT,
+  UPGRADE_SLOT,
 } from '@/tracking.constants';
 
 export type RouteHandle = {
@@ -107,6 +110,15 @@ const AddEmailAccountPage = React.lazy(() =>
 );
 const EmailAccountSettingsPage = React.lazy(() =>
   import('@/pages/dashboard/emailAccounts/EmailAccountForm.component'),
+);
+const CancelSlotPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/cancel/Cancel.modal'),
+);
+const UndoCancelSlotPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/undoCancel/UndoCancel.modal'),
+);
+const UpgradeAccountPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/upgrade/Upgrade.page'),
 );
 const AliasPage = React.lazy(() =>
   import('@/pages/dashboard/emailAccounts/settings/aliases/Aliases.page'),
@@ -415,6 +427,46 @@ export default (
             },
             breadcrumb: {
               label: 'common:add_email_account',
+            },
+          }}
+        />
+        <Route
+          path={'slot/:slotId/cancel'}
+          Component={CancelSlotPage}
+          handle={{
+            tracking: {
+              pageName: CANCEL_SLOT,
+              pageType: PageType.funnel,
+            },
+            breadcrumb: {
+              label: 'common:cancel_slot',
+            },
+          }}
+        />
+        <Route
+          path={'slot/:slotId/undo_cancel'}
+          Component={UndoCancelSlotPage}
+          handle={{
+            tracking: {
+              pageName: UNDO_CANCEL_SLOT,
+              pageType: PageType.funnel,
+            },
+            breadcrumb: {
+              label: 'common:undo_cancel_slot',
+            },
+          }}
+        />
+        <Route
+          path={'slot/:slotId/upgrade'}
+          Component={UpgradeAccountPage}
+          handle={{
+            isOverridePage: true,
+            tracking: {
+              pageName: UPGRADE_SLOT,
+              pageType: PageType.funnel,
+            },
+            breadcrumb: {
+              label: 'common:email_account_upgrade',
             },
           }}
         />

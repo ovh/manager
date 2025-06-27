@@ -6,6 +6,8 @@ import {
   PCI_FEATURES,
   DATABASE_UAPP_CONFIG,
   DATA_PLATFORM_CONFIG,
+  NOTEBOOKS_UAPP_CONFIG,
+  QUOTA_LIMIT_GUIDES,
 } from './project.constants';
 
 export default class ProjectController {
@@ -35,6 +37,9 @@ export default class ProjectController {
     this.PciProject = PciProject;
     this.CucCloudMessage = CucCloudMessage;
     this.CHANGELOG = CHANGELOG;
+    this.user = coreConfig.getUser();
+    this.quotaGuidesLink =
+      QUOTA_LIMIT_GUIDES[this.user.ovhSubsidiary] || QUOTA_LIMIT_GUIDES.DEFAULT;
 
     const filterByRegion = (list) =>
       list.filter(
@@ -56,6 +61,8 @@ export default class ProjectController {
     this.loadMessages();
     this.uAppActions = [];
     this.displayDatabaseLink();
+    this.displayNotebookLink();
+    this.displayDataplatformLink();
   }
 
   displayDatabaseLink() {
@@ -78,19 +85,39 @@ export default class ProjectController {
           ...DATABASE_UAPP_CONFIG,
           url,
         });
-        if (
-          this.pciFeatures.isFeatureAvailable(
-            PCI_FEATURES.PRODUCTS.DATA_PLATFORM,
-          )
-        ) {
-          this.uAppActions.push({
-            ...DATA_PLATFORM_CONFIG,
-            url: DATA_PLATFORM_CONFIG.url.replace(
-              '{projectId}',
-              this.projectId,
-            ),
-          });
-        }
+      });
+    }
+  }
+
+  displayDataplatformLink() {
+    // Add Dataplatform µApp link if feature is activated
+    if (
+      this.pciFeatures.isFeatureAvailable(PCI_FEATURES.PRODUCTS.DATA_PLATFORM)
+    ) {
+      // add new link for uApp
+      this.getUAppUrl(
+        DATA_PLATFORM_CONFIG.universe,
+        DATA_PLATFORM_CONFIG.url.replace('{projectId}', this.projectId),
+      ).then((url) => {
+        this.uAppActions.push({
+          ...DATA_PLATFORM_CONFIG,
+          url,
+        });
+      });
+    }
+  }
+
+  displayNotebookLink() {
+    // Add Noteboos µApp link if feature is activated
+    if (this.pciFeatures.isFeatureAvailable(PCI_FEATURES.PRODUCTS.NOTEBOOKS)) {
+      this.getUAppUrl(
+        NOTEBOOKS_UAPP_CONFIG.universe,
+        NOTEBOOKS_UAPP_CONFIG.url.replace('{projectId}', this.projectId),
+      ).then((url) => {
+        this.uAppActions.push({
+          ...NOTEBOOKS_UAPP_CONFIG,
+          url,
+        });
       });
     }
   }

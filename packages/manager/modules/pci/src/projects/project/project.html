@@ -74,8 +74,9 @@
                                 data-ng-if="$ctrl.projectQuotaAboveThreshold && !$ctrl.isDiscoveryProject"
                             >
                                 <p
+                                    class="oui-link_icon"
                                     data-translate="pci_projects_project_quota_threshold_warning_message"
-                                    data-translate-values="{ quotaUrl: $ctrl.getQuotaUrl() }"
+                                    data-translate-values="{ quotaUrl: $ctrl.getQuotaUrl(), quotaGuidesLink: $ctrl.quotaGuidesLink }"
                                 ></p>
                             </oui-message>
 

@@ -11,7 +11,7 @@ vi.mock('react-i18next', () => ({
 vi.mock('react-router-dom', () => ({
   useHref: vi.fn(),
 }));
-const mockVolume: TVolume = {
+const mockVolume = {
   id: '1',
   attachedTo: [],
   creationDate: '2022-01-01',
@@ -29,8 +29,8 @@ const mockVolume: TVolume = {
   canAttachInstance: true,
   canDetachInstance: false,
   maxAttachedInstances: 1,
-};
-const mockVolumeDetach: TVolume = {
+} as TVolume;
+const mockVolumeDetach = {
   id: '1',
   attachedTo: ['attach-1'],
   creationDate: '2022-01-01',
@@ -48,7 +48,7 @@ const mockVolumeDetach: TVolume = {
   canAttachInstance: false,
   canDetachInstance: true,
   maxAttachedInstances: 1,
-};
+} as TVolume;
 describe('ActionsComponent', () => {
   it('ActionsComponent renders correct button with correct links', () => {
     vi.mocked(useHref)

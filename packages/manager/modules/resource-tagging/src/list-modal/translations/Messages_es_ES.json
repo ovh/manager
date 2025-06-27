@@ -1,0 +1,6 @@
+{
+  "manager_components_resource_tagging_list_modal_title": "Etiquetas: {{resourceName}}",
+  "manager_components_resource_tagging_list_modal_search": "Buscar",
+  "manager_components_resource_tagging_list_modal_cancel": "Volver",
+  "manager_components_resource_tagging_list_modal_edit": "Gestionar las etiquetas"
+}

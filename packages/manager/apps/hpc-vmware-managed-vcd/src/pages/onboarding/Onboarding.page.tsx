@@ -4,7 +4,7 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
-import vmwareBroadcomOVHCloud from '@/assets/VmwareBroadcomxOVHcloud.svg';
+import vmwareBroadcomOVHCloud from '@/assets/VmwareBroadcomxOVHcloud.svg?url';
 import { TRACKING } from '@/tracking.constants';
 
 export default function Onboarding() {

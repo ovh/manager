@@ -2,9 +2,10 @@ import { useTranslation } from 'react-i18next';
 import { AlertCircle, ArrowRight } from 'lucide-react';
 import { Alert, AlertDescription, Button, Skeleton } from '@datatr-ux/uxlib';
 import OvhLink from '@/components/links/OvhLink.component';
-import A from '@/components/links/A.component';
 import usePciProject from '@/data/hooks/project/usePciProject.hook';
 import { PlanCode } from '@/configuration/project';
+import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
+import { DashboardRoadmapLinks } from '@/configuration/roadmap-changelog.constants';
 
 export const DashboardHeader = () => {
   const { t } = useTranslation('ai-tools/dashboard');
@@ -18,7 +19,10 @@ export const DashboardHeader = () => {
       data-testid="service-header-container"
       className="flex flex-col gap-2 mt-4 mb-6"
     >
-      <h2 data-testid="header-title">{t('title')}</h2>
+      <div className="flex flex-row justify-between">
+        <h2 data-testid="header-title">{t('title')}</h2>
+        <RoadmapChangelog links={DashboardRoadmapLinks} />
+      </div>
       {isProjectDiscoveryMode && (
         <Alert variant="warning">
           <AlertDescription className="text-base">
@@ -46,21 +50,12 @@ export const DashboardHeader = () => {
       )}
       <p>{t('paragraphe1')}</p>
       <p>{t('paragraphe2')}</p>
-
-      <A
-        href="https://www.ovhcloud.com/fr/public-cloud/prices/#ai-&-machine-learning"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {t('linkPrice')}
-        <ArrowRight className="size-4 inline ml-2" />
-      </A>
     </div>
   );
 };
 
 DashboardHeader.Skeleton = function ServiceHeaderSkeleton() {
-  const { t } = useTranslation('pci-ai-dashboard');
+  const { t } = useTranslation('ai-tools/dashboard');
   return (
     <div
       data-testid="dashboard-header-skeleton"

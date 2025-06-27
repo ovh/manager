@@ -806,12 +806,15 @@ export default class Server {
         urlParams: {
           serviceName,
         },
-        params: {
-          type: 'ovh',
-          mode: 'new',
-        },
       },
     );
+  }
+
+  getPersonalTemplatesList() {
+    // temporary, to be removed with all its dependencies starting from 7th of October 2025
+    return this.OvhHttp.get('/me/installationTemplate', {
+      rootPath: 'apiv6',
+    });
   }
 
   getPartitionSchemes(productId, templateName) {
@@ -843,9 +846,6 @@ export default class Server {
         urlParams: {
           template,
           partitionScheme,
-        },
-        params: {
-          type: 'ovh',
         },
       },
     );

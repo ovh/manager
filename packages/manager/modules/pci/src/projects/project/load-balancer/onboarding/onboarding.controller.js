@@ -3,14 +3,20 @@ import illustration from './assets/load-balancer.png';
 import {
   GUIDES,
   LOAD_BALANCER_CONFIGURE_TRACKING,
+  LOAD_BALANCER_LINKS,
   USING_LOAD_BALANCER_GUIDE_ID,
 } from '../load-balancer.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, PciLoadBalancerService) {
+  constructor($translate, PciLoadBalancerService, coreConfig) {
     this.$translate = $translate;
     this.PciLoadBalancerService = PciLoadBalancerService;
+    this.coreConfig = coreConfig;
+    this.user = coreConfig.getUser();
+    this.PciLoadBalancerGuides =
+      LOAD_BALANCER_LINKS[this.user.ovhSubsidiary] ||
+      LOAD_BALANCER_LINKS.DEFAULT;
   }
 
   $onInit() {

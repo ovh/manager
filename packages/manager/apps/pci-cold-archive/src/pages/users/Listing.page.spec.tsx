@@ -85,25 +85,16 @@ describe('ListingPage', () => {
     });
   });
 
-  it('should match snapshot when is loading false', async () => {
+  it('should find text when is loading false', async () => {
     vi.mocked(usePaginatedUsers).mockReturnValue({
       paginatedUsers: mockPaginatedUsers,
       isPending: false,
     } as ReturnType<typeof usePaginatedUsers>);
 
-    const { container } = render(<ListingPage />);
+    const { getByText } = render(<ListingPage />);
 
-    expect(container).toMatchSnapshot();
-  });
-
-  it('should match snapshot when is loading true', async () => {
-    vi.mocked(usePaginatedUsers).mockReturnValue({
-      paginatedUsers: mockPaginatedUsers,
-      isPending: true,
-    } as ReturnType<typeof usePaginatedUsers>);
-
-    const { container } = render(<ListingPage />);
-
-    expect(container).toMatchSnapshot();
+    expect(
+      getByText('pci_projects_project_storages_containers_users_title'),
+    ).toBeDefined();
   });
 });

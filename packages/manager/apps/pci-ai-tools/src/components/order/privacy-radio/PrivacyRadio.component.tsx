@@ -14,7 +14,6 @@ import { PrivacyEnum } from '@/types/orderFunnel';
 interface PrivacyRadioProps {
   value: string;
   onChange: (privacy: string) => void;
-  className?: string;
 }
 
 const PrivacyRadioInput = React.forwardRef<HTMLInputElement, PrivacyRadioProps>(

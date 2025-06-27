@@ -9,7 +9,7 @@
   "pci_projects_project_instances_backup_add_numInstances_label": "Liczba instancji do utworzenia",
   "pci_projects_project_instances_backup_add_numInstances_help": "Twój aktualny limit pozwala na utworzenie dla regionu {{region}} do {{ num }} instancji typu {{type}} {{ flavor }} jednocześnie.",
   "pci_projects_project_instances_backup_add_numInstances_quotaLink_label": "Sprawdź ustawione limity",
-  "pci_projects_project_instances_backup_add_same_numInstances_configuration": "Wszystkie instancje będą miały tę samą konfigurację i będą działać w tym samym regionie.",
+  "pci_projects_project_instances_backup_add_same_numInstances_configuration": "Wszystkie instancje będą miały tę samą konfigurację i będą działać w tej samej strefie dostępności.",
   "pci_projects_project_instances_backup_add_private_network_label": "Przypisana prywatna sieć",
   "pci_projects_project_instances_backup_add_private_network_none": "Brak",
   "pci_projects_project_instances_backup_add_billing_label": "Okres rozliczeniowy",

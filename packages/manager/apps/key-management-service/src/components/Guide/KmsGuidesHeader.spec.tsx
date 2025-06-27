@@ -7,7 +7,7 @@ import {
   UseFeatureAvailabilityResult,
 } from '@ovh-ux/manager-module-common-api';
 import KmsGuidesHeader from './KmsGuidesHeader';
-import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
+import { KMS_FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 import { GUIDE_LIST, SUPPORT_URL } from '@/hooks/guide/guidesLinks.constant';
 
 vi.mock('react-i18next', () => ({
@@ -57,8 +57,8 @@ describe('KMS Guides Header tests suite', () => {
     // setup
     vi.mocked(useFeatureAvailability).mockReturnValue({
       data: {
-        [FEATURES.KMIP_CONNECTION_GUIDE]: true,
-        [FEATURES.KMS_USAGE_GUIDE]: true,
+        [KMS_FEATURES.KMIP_CONNECTION_GUIDE]: true,
+        [KMS_FEATURES.KMS_USAGE_GUIDE]: true,
       },
     } as UseFeatureAvailabilityResult);
 
@@ -97,8 +97,8 @@ describe('KMS Guides Header tests suite', () => {
     // setup
     vi.mocked(useFeatureAvailability).mockReturnValue({
       data: {
-        [FEATURES.KMIP_CONNECTION_GUIDE]: false,
-        [FEATURES.KMS_USAGE_GUIDE]: false,
+        [KMS_FEATURES.KMIP_CONNECTION_GUIDE]: false,
+        [KMS_FEATURES.KMS_USAGE_GUIDE]: false,
       },
     } as UseFeatureAvailabilityResult);
 

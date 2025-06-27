@@ -1,4 +1,4 @@
-import { ResourceStatus } from '@/data/api';
+import { ResourceStatus, TaskStatus, ZimbraOffer } from '@/data/api';
 
 export type AccountType = {
   checksum: string;
@@ -32,17 +32,18 @@ export type AccountType = {
     lastName: string;
     organizationId: string;
     organizationLabel: string;
-    offer: string;
+    offer: keyof typeof ZimbraOffer;
     quota: {
       available: number;
       used: number;
     };
     updatedAt: string;
+    slotId: string;
   };
   currentTasks: {
     id: string;
     link: string;
-    status: 'ERROR' | '...';
+    status: keyof typeof TaskStatus;
     type: string;
   }[];
   id: string;
@@ -98,4 +99,5 @@ export type AccountBodyParamsType = {
   password?: string;
   responder?: string;
   offer?: string;
+  slotId?: string;
 };

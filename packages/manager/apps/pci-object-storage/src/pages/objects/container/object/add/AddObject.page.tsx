@@ -20,10 +20,10 @@ import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
   OBJECT_CONTAINER_MODE_MONO_ZONE,
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
-  OBJECT_CONTAINER_STORAGE_CLASS,
   STORAGE_CLASSES_LINK,
   STORAGE_PRICES_LINK,
   TRACKING_PREFIX,
+  ReplicationStorageClass,
 } from '@/constants';
 import LabelComponent from '@/components/Label.component';
 import FileInputComponent from '@/components/FileInput.component';
@@ -285,12 +285,12 @@ export default function AddObjectPage() {
                 {showHeighPerfStorageClass && (
                   <div className="flex items-center gap-4">
                     <OdsRadio
-                      value={OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE}
+                      value={ReplicationStorageClass.HIGH_PERF}
                       name="s3FileType"
                       inputId="s3FileType"
                       isChecked={
                         formState.storageClass ===
-                        OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE
+                        ReplicationStorageClass.HIGH_PERF
                       }
                       onOdsChange={(event) =>
                         updateStorageClass(event.detail.value)
@@ -308,12 +308,12 @@ export default function AddObjectPage() {
 
                 <div className="flex items-center gap-4">
                   <OdsRadio
-                    value={OBJECT_CONTAINER_STORAGE_CLASS.STANDARD}
+                    value={ReplicationStorageClass.STANDARD}
                     name="swiftFileType"
                     inputId="swiftFileType"
                     isChecked={
                       formState.storageClass ===
-                      OBJECT_CONTAINER_STORAGE_CLASS.STANDARD
+                      ReplicationStorageClass.STANDARD
                     }
                     onOdsChange={(event) =>
                       updateStorageClass(event.detail.value)
@@ -330,14 +330,12 @@ export default function AddObjectPage() {
 
                 <div className="flex items-center gap-4">
                   <OdsRadio
-                    value={
-                      OBJECT_CONTAINER_STORAGE_CLASS.STANDARD_INFREQUENT_ACCESS
-                    }
+                    value={ReplicationStorageClass.STANDARD_IA}
                     name="standardInfrequentAccess"
                     inputId="standardInfrequentAccess"
                     isChecked={
                       formState.storageClass ===
-                      OBJECT_CONTAINER_STORAGE_CLASS.STANDARD_INFREQUENT_ACCESS
+                      ReplicationStorageClass.STANDARD_IA
                     }
                     onOdsChange={(event) =>
                       updateStorageClass(event.detail.value)
@@ -365,12 +363,12 @@ export default function AddObjectPage() {
               <div className="flex flex-col gap-4">
                 <div className="flex items-center gap-4">
                   <OdsRadio
-                    value={OBJECT_CONTAINER_STORAGE_CLASS.STANDARD}
+                    value={ReplicationStorageClass.STANDARD}
                     name="swiftFileType"
                     inputId="swiftFileType"
                     isChecked={
                       formState.storageClass ===
-                      OBJECT_CONTAINER_STORAGE_CLASS.STANDARD
+                      ReplicationStorageClass.STANDARD
                     }
                     onOdsChange={(event) =>
                       updateStorageClass(event.detail.value)
@@ -387,12 +385,12 @@ export default function AddObjectPage() {
 
                 <div className="flex items-center gap-4">
                   <OdsRadio
-                    value={OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE}
+                    value={ReplicationStorageClass.HIGH_PERF}
                     name="s3FileType"
                     inputId="s3FileType"
                     isChecked={
                       formState.storageClass ===
-                      OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE
+                      ReplicationStorageClass.HIGH_PERF
                     }
                     onOdsChange={(event) =>
                       updateStorageClass(event.detail.value)

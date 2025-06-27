@@ -7,6 +7,7 @@ import * as authAPI from '@/data/api/ai/authorization.api';
 const AuthLayoutProps = {
   params: {
     projectId: 'projectId',
+    quantum: 'ai',
   },
   request: new Request('https://my-api.com/endpoint'),
 };

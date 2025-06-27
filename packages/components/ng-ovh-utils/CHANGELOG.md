@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.5.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.5.1...@ovh-ux/ng-ovh-utils@14.5.2) (2025-06-05)
+
+
+### Bug Fixes
+
+* **manager:** handle angular parts build after removing vite legacy that hoist babel ([cc7b23d](https://github.com/ovh/manager/commit/cc7b23d67ff8aef4361fab48944616a6dd6ab576))
+
+
+
+
+
 ## [14.5.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.5.0...@ovh-ux/ng-ovh-utils@14.5.1) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-utils

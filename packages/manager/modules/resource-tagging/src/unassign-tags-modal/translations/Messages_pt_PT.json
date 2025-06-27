@@ -1,0 +1,8 @@
+{
+  "manager_components_resource_tagging_unassign_modal_title": "Anular atribuição de uma(s) tag(s) ao recurso",
+  "manager_components_resource_tagging_unassign_modal_cancel": "Anular",
+  "manager_components_resource_tagging_unassign_modal_unassign": "Confirmar",
+  "manager_components_resource_tagging_unassign_modal_description": "Tem a certeza de que deseja anular a atribuição da(s) seguinte(s) tag(s) ao recurso {{resourceName}}?",
+  "manager_components_resource_tagging_unassign_modal_success": "A atribuição das tags foi anulada.",
+  "manager_components_resource_tagging_unassign_modal_error": "Ocorreu um problema. Tente novamente: <br> {{message}}<br> request_id: {{requestId}}"
+}

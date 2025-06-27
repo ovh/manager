@@ -127,6 +127,7 @@ export default function LiveChat({
      */
     if (chatbotOpen && chatType === null) {
       setChatType('Adrielly');
+      setChatState('open'); // initialize chat state to open
     }
 
     const livechatMessageEventHandler = async (
@@ -164,13 +165,14 @@ export default function LiveChat({
     }
   }, []);
 
+  // refetch auth token if the chat is open and the session_id is not set (on refresh)
   useEffect(() => {
-    if (chatType === 'SNOW' && !snowContext.session_id) {
+    if (chatType === 'SNOW' && !snowContext.session_id && chatState === 'open') {
       fetchAuthToken().then((token) => {
         setSnowContext((prev) => ({ ...prev, session_id: token }));
       });
     }
-  }, [chatType]);
+  }, [chatType, chatState]);
 
   if (region === 'US') return null;
 
@@ -181,6 +183,7 @@ export default function LiveChat({
       data-testid="live-chat-wrapper"
       className="absolute w-full h-full xl:h-fit xl:w-auto bottom-0 xl:bottom-2 right-0 xl:right-2 z-[960] flex flex-col justify-end pointer-events-none"
     >
+      {/* We don't check for chatState here, otherwise the sessions would be reset instead of shown again */}
       {chatType === 'Adrielly' && (
         <ChatDialog
           title="OVHcloud Chat"
@@ -215,7 +218,7 @@ export default function LiveChat({
               onClick={() => handleReduceChat(true)}
             >
               <OsdsIcon
-                name={ODS_ICON_NAME.SPEECH_BUBBLE_CONCEPT}
+                name={ODS_ICON_NAME.CLOSE}
                 size={ODS_ICON_SIZE.md}
                 className="m-2"
                 contrasted

@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.4.8...@ovh-ux/manager-pci-volume-snapshot-app@0.4.9) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+## [0.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.4.7...@ovh-ux/manager-pci-volume-snapshot-app@0.4.8) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+## [0.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.4.6...@ovh-ux/manager-pci-volume-snapshot-app@0.4.7) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+## [0.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.4.5...@ovh-ux/manager-pci-volume-snapshot-app@0.4.6) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+## [0.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.4.4...@ovh-ux/manager-pci-volume-snapshot-app@0.4.5) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+## [0.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.4.3...@ovh-ux/manager-pci-volume-snapshot-app@0.4.4) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+## [0.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.4.2...@ovh-ux/manager-pci-volume-snapshot-app@0.4.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.4.1...@ovh-ux/manager-pci-volume-snapshot-app@0.4.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.4.0...@ovh-ux/manager-pci-volume-snapshot-app@0.4.1) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.3.0...@ovh-ux/manager-pci-volume-snapshot-app@0.4.0) (2025-06-05)
+
+
+### Features
+
+* **manager:** remove vite dependency from applications ([14fedc4](https://github.com/ovh/manager/commit/14fedc47e9463b2abdaa054b7a854b198916d155))
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.2.2...@ovh-ux/manager-pci-volume-snapshot-app@0.3.0) (2025-06-02)
 
 

@@ -25,7 +25,7 @@ import { CredentialStatus } from '@/components/credential/credentialStatus/Crede
 import { TileValueDate } from '@/components/dashboard/tile-value-date/tileValueDate.component';
 import CredentialCreationMethod from '@/components/credential/credentialCreationMethod/credentialCreationMethod.component';
 import { getDownloadCredentialParameters } from '@/utils/credential/credentialDownload';
-import { ROUTES_URLS } from '@/routes/routes.constants';
+import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
 import { useOutletCredential } from '../Credential.page';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
 
@@ -129,7 +129,7 @@ const CredentialGeneralInformations = () => {
                 actionType: 'action',
                 actions: ['delete_access_certificate'],
               });
-              navigate(ROUTES_URLS.credentialDelete);
+              navigate(KMS_ROUTES_URIS.credentialDelete);
             }}
             urn={okms.iam.urn}
             label={t('key_management_service_credential_delete')}

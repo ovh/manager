@@ -38,21 +38,29 @@ const NoGatewayLinkedMessage = ({ network, gateways, type }: Props) => {
   const { t } = useTranslation(['network-add', 'service']);
   const projectURL = useProjectUrl('public-cloud');
   const privateNetworkURL = `${projectURL}/private-networks`;
-
+  const createPrivateGatewayURL = `${projectURL}/gateway/new`;
   const noNetwork = !network.length;
   const invalidGateway = gateways && !isValidGateway3AZ(type, gateways);
 
-  const messageText = useMemo(() => {
+  const content = useMemo(() => {
     if (noNetwork) {
-      return t('kubernetes_network_form_no_private_network');
+      return {
+        text: t('kubernetes_network_form_no_private_network'),
+        link: t('kubernetes_network_form_add'),
+        url: privateNetworkURL,
+      };
     }
     if (invalidGateway) {
-      return t('kubernetes_network_form_no_associated_gateway');
+      return {
+        text: t('kubernetes_network_form_no_associated_gateway'),
+        link: t('kubernetes_network_form_add_gateway'),
+        url: createPrivateGatewayURL,
+      };
     }
-    return '';
+    return null;
   }, [noNetwork, invalidGateway, t]);
 
-  if (!messageText) return null;
+  if (!content) return null;
 
   return (
     <OsdsMessage
@@ -66,14 +74,14 @@ const NoGatewayLinkedMessage = ({ network, gateways, type }: Props) => {
           size={TypographySize._400}
           color={ColorIntent.text}
         >
-          {messageText}{' '}
+          {content.text}{' '}
         </OsdsText>
         <OsdsLink
           target={AnchorTarget._blank}
           color={ColorIntent.primary}
-          href={privateNetworkURL}
+          href={content.url}
         >
-          {t('kubernetes_network_form_add')}
+          {content.link}
           <OsdsIcon
             className="ml-5"
             aria-hidden="true"

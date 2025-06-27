@@ -9,7 +9,7 @@
   "status-PENDING": "Arranque",
   "status-QUEUED": "Em espera",
   "status-RUNNING": "Em curso",
-  "status-RESTARTING": "Reinicialização em curso",
+  "status-RESTARTING": "Reboot em curso",
   "status-TIMEOUT": "Timeout",
   "status-SYNC_FAILED": "Falha de sincronização"
 }

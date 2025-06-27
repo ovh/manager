@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { OsdsButton, OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -14,7 +14,7 @@ import {
 } from '@ovh-ux/manager-pci-common';
 import { Subtitle } from '@ovh-ux/manager-react-components';
 import { StepState } from '@/pages/new/hooks/useStep';
-import { useVolumeCatalog } from '@/api/hooks/useCatalog';
+import { useVolumeRegions } from '@/api/hooks/useCatalog';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
 import { TRegion } from '@/api/data/regions';
 
@@ -30,7 +30,10 @@ export function LocationStep({
   onSubmit: parentSubmit,
 }: Readonly<LocationProps>) {
   const { t } = useTranslation(['stepper', 'add']);
-  const { data: volumeCatalog, isPending } = useVolumeCatalog(projectId);
+  const {
+    data: { deployments, regions },
+    isPending,
+  } = useVolumeRegions(projectId);
 
   const [
     selectedRegionGroup,
@@ -42,11 +45,9 @@ export function LocationStep({
   const selectedRegion = useMemo(
     () =>
       selectedLocalisation
-        ? volumeCatalog.regions.find(
-            (r) => r.name === selectedLocalisation.name,
-          )
+        ? regions.find((r) => r.name === selectedLocalisation.name)
         : null,
-    [volumeCatalog, selectedLocalisation],
+    [regions, selectedLocalisation],
   );
 
   const hasRegion = !!selectedLocalisation;
@@ -54,34 +55,33 @@ export function LocationStep({
   const { has3AZ } = useHas3AZRegion(projectId);
   const pciCommonProperties = usePCICommonContextFactory({ has3AZ });
 
-  const regions = useMemo(
+  const selectedDeploymentRegions = useMemo(
     () =>
       selectedRegionGroup
-        ? volumeCatalog?.regions.filter((r) =>
+        ? regions?.filter((r) =>
             r.filters.deployment.includes(selectedRegionGroup.name),
           )
-        : volumeCatalog?.regions,
-    [volumeCatalog, selectedRegionGroup],
+        : regions,
+    [regions, selectedRegionGroup],
   );
 
-  const deployments = useMemo(
+  const deploymentsWithPrice = useMemo(
     () =>
-      volumeCatalog?.filters.deployment.map<TDeployment>((d) => ({
-        name: d.name,
-        beta: d.tags.includes('is_new'),
-        comingSoon: d.tags.includes('coming_soon'),
+      deployments.map<TDeployment>((d) => ({
+        ...d,
+        price: d.monthlyPrice,
       })) || [],
-    [volumeCatalog],
+    [deployments],
   );
 
   const onSubmit = useCallback(() => {
     setSelectedRegionGroup(
-      volumeCatalog.filters.deployment.find(
+      deploymentsWithPrice.find(
         (g) => g.name === selectedRegion.filters.deployment[0],
       ),
     );
     parentSubmit(selectedRegion);
-  }, [volumeCatalog, selectedRegion, parentSubmit]);
+  }, [deploymentsWithPrice, selectedRegion, parentSubmit]);
 
   if (isPending) return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
 
@@ -92,7 +92,7 @@ export function LocationStep({
           name="deployment"
           value={selectedRegionGroup}
           onChange={setSelectedRegionGroup}
-          deployments={deployments}
+          deployments={deploymentsWithPrice}
           locked={step.isLocked}
         />
 
@@ -109,7 +109,8 @@ export function LocationStep({
               projectId={projectId}
               onSelectRegion={setSelectedLocalisation}
               regionFilter={(r) =>
-                r.isMacro || regions.some((r2) => r2.name === r.name)
+                r.isMacro ||
+                selectedDeploymentRegions.some((r2) => r2.name === r.name)
               }
             />
           </div>

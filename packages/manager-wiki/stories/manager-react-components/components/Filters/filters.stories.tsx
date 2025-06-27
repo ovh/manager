@@ -81,6 +81,18 @@ const FiltersStory = () => {
                   { label: 'Status #1', value: 'Status #1' },
                 ],
               },
+              {
+                id: 'anotherStatus',
+                label: 'anotherStatus',
+                comparators: FilterCategories.Options,
+                options: [
+                  {
+                    label: 'anotherStatus #0000000000000000000000',
+                    value: 'anotherStatus #0000000000000000000000',
+                  },
+                  { label: 'anotherStatus #1', value: 'anotherStatus #1' },
+                ],
+              },
             ]}
             onAddFilter={(addedFilter, column) => {
               addFilter({

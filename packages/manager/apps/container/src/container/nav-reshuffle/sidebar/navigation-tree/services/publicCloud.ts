@@ -454,6 +454,7 @@ pciNode.children = [
         id: 'pci-databases-analytics-analysis',
         idAttr: 'pci-databases-analytics-analysis-link',
         translation: 'sidebar_pci_analytics_data_analysis',
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         serviceType: 'CLOUD_PROJECT_DATABASE',
         routing: {
           application: 'public-cloud',
@@ -639,6 +640,31 @@ pciNode.children = [
         features: ['pci-ai-endpoints'],
         forceVisibility: true,
         tag: NodeTag.NEW,
+      },
+    ],
+  },
+  {
+    id: 'pci-quantum',
+    idAttr: 'pci-quantum-link',
+    universe: PUBLICCLOUD_UNIVERSE_ID,
+    translation: 'sidebar_pci_quantum',
+    features: [
+      'pci-quantum-emulators',
+    ],
+    forceVisibility: true,
+    children: [
+      {
+        id: 'pci-quantum-emulators',
+        idAttr: 'pci-quantum-emulators-link',
+        universe: PUBLICCLOUD_UNIVERSE_ID,
+        translation: 'sidebar_pci_quantum_emulators',
+        serviceType: 'CLOUD_PROJECT_QUANTUM_EMULATORS',
+        routing: {
+          application: 'public-cloud',
+          hash: '#/pci/projects/{projectId}/ai-ml/quantum/notebooks',
+        },
+        forceVisibility: true,
+        tag: NodeTag.NEW
       },
     ],
   },

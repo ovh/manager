@@ -10,10 +10,16 @@ import { serviceKeyMock } from '@/mocks/serviceKeys/serviceKeys.mock';
 import { labels } from '@/utils/tests/init.i18n';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { SERVICE_KEY_TEST_IDS } from './ServiceKey.constants';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
+
+const mockPageUrl = KMS_ROUTES_URLS.serviceKeyDashboard(
+  okmsMock[0].id,
+  serviceKeyMock[0].id,
+);
 
 describe('Service Key dashboard test suite', () => {
   it('should display an error if the API is KO', async () => {
-    await renderTestApp(`/${okmsMock[0].id}/keys/${serviceKeyMock[0].id}`, {
+    await renderTestApp(mockPageUrl, {
       isServiceKeyKO: true,
     });
 
@@ -24,7 +30,7 @@ describe('Service Key dashboard test suite', () => {
   });
 
   it('should display the kms dashboard page', async () => {
-    await renderTestApp(`/${okmsMock[0].id}/keys/${serviceKeyMock[0].id}`);
+    await renderTestApp(mockPageUrl);
 
     await waitFor(
       () =>
@@ -45,9 +51,7 @@ describe('Service Key dashboard test suite', () => {
 
   it('should open the edit dialog, modify the name, and confirm the changes', async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(
-      `/${okmsMock[0].id}/keys/${serviceKeyMock[0].id}`,
-    );
+    const { container } = await renderTestApp(mockPageUrl);
 
     await waitFor(
       () => expect(screen.getByTestId('truc')).toBeVisible(),

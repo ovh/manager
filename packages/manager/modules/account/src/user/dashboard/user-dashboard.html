@@ -78,6 +78,7 @@
                 <oui-tile-button
                     data-ng-repeat="shortcut in ::$ctrl.shortcuts track by $index"
                     data-href="{{:: shortcut.href }}"
+                    ng-click="$ctrl.onClickShortcut(shortcut)"
                     external="shortcut.isExternal"
                 >
                     <span

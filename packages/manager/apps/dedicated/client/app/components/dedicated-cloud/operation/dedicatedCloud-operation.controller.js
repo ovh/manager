@@ -57,16 +57,21 @@ export default class {
   }
 
   loadOperations({ offset, pageSize, sort }) {
+    const isCacheDisabled =
+      !!this.progressionFilter &&
+      !['done', 'canceled'].includes(this.progressionFilter);
+
     const paginationParams = {
       offset,
       pageSize,
       sort: sort.property,
       sortOrder: sort.dir === 1 ? 'ASC' : 'DESC',
       defaultFilterColumn: 'executionDate',
+      isCacheDisabled,
     };
-    // limitation to one year in case of too many data
+    // limitation to 6 months in case of too much data
     const executionDate = new Date();
-    executionDate.setFullYear(executionDate.getFullYear() - 1);
+    executionDate.setMonth(executionDate.getMonth() - 6);
     const urlParams = {
       state: this.progressionFilter,
       executionDate: executionDate.toISOString(),

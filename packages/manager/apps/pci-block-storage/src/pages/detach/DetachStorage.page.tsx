@@ -157,7 +157,7 @@ export default function DetachStorage() {
   const { t } = useTranslation('detach');
   const { addError, addSuccess } = useNotifications();
   const { data: volume } = useVolume(projectId, volumeId);
-  const onClose = () => navigate('..');
+  const onClose = () => navigate(`/pci/projects/${projectId}/storages/blocks`);
 
   const {
     data: instances,

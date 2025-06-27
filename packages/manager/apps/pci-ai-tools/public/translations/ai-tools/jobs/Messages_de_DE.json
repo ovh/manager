@@ -1,6 +1,6 @@
 {
   "title": "AI Training",
-  "createNewJob": "Einen Auftrag starten",
+  "createNewJob": "Einen Job starten",
   "tableHeaderName": "Name",
   "tableHeaderLocation": "Region",
   "tableHeaderImage": "Docker Image",

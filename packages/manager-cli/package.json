@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cli",
-  "version": "0.1.1",
+  "version": "0.3.0",
   "private": true,
   "description": "Manager CLI automation packages",
   "bugs": {
@@ -18,6 +18,10 @@
     "common-tests-config-migration": "node ./tests-migrate/common-tests-config-migration.mjs",
     "json-to-component-route-migration": "node ./routes-migrate/json-to-component-route-migration.mjs",
     "manager-cli": "node ./manager-cli.mjs",
+    "migrations-status": "node migrations-status/generate-migrations-status-reports.mjs",
+    "routes-migrations-status": "node migrations-status/steps/generate-routes-migrations-status-report.mjs",
+    "swc-migrations-status": "node migrations-status/steps/generate-swc-migrations-status-report.mjs",
+    "tests-migrations-status": "node migrations-status/steps/generate-tests-migrations-status-report.mjs",
     "transform-routes": "node routes/steps/transform-routes-cli.mjs",
     "update-routers-init": "node routes/steps/update-routers-init-cli.mjs"
   },
@@ -25,7 +29,7 @@
     "@babel/parser": "^7.27.0",
     "@babel/traverse": "^7.27.0",
     "@babel/types": "^7.27.0",
-    "@ovh-ux/manager-tests-setup": "^0.1.0",
+    "@ovh-ux/manager-tests-setup": "^0.2.0",
     "fast-glob": "^3.3.3"
   },
   "devDependencies": {

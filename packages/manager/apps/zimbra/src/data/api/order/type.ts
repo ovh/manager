@@ -5,6 +5,7 @@ import {
   OvhSubsidiary,
   CurrencyCode,
 } from '@ovh-ux/manager-react-components';
+import { ZimbraPlanCodes } from '../type';
 
 /* eslint-disable @typescript-eslint/no-namespace */
 export namespace order {
@@ -655,3 +656,9 @@ export namespace order {
     PERCENTAGE = 'percentage',
   }
 }
+
+export type UpgradeServiceOrderParamsType = {
+  serviceName: string;
+  planCode: ZimbraPlanCodes;
+  autoPay: boolean;
+};

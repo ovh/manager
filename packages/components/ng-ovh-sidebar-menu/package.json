@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-sidebar-menu",
-  "version": "10.5.3",
+  "version": "10.5.4",
   "description": "Manage and display a left menu tree",
   "keywords": [
     "angularjs",
@@ -40,7 +40,7 @@
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.2"
+    "@ovh-ux/component-rollup-config": "^13.0.3"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.12",

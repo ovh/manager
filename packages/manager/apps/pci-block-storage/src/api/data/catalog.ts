@@ -15,10 +15,10 @@ export type TVolumePricing = Pick<TAddon['pricings'][number], 'price'> & {
     name: string;
     bandwidth: {
       guaranteed: boolean;
+      /* in MB or MB/s */
       level: number;
+      /* in GB */
       max: number;
-      unit: string;
-      unlimited: boolean;
     } | null;
     volume: {
       iops: {
@@ -33,8 +33,10 @@ export type TVolumePricing = Pick<TAddon['pricings'][number], 'price'> & {
       };
     };
     maxAttachedInstances: number;
+    encrypted?: boolean;
   };
   areIOPSDynamic: boolean;
+  isBandwidthDynamic?: boolean;
 };
 
 export type TVolumeCatalogFilter = {

@@ -1152,7 +1152,7 @@
   "hosting_tab_BOOST_request_title": "Vous allez booster votre offre",
   "hosting_tab_BOOST_request_heading": "Veuillez sélectionner l'offre",
   "hosting_tab_BOOST_request_description": "L'option Boost permet à votre hébergement de bénéficier temporairement de performances supérieures, avec un tarif calculé à la journée selon vos besoins.",
-  "hosting_tab_BOOST_request_description_billing_new": "Cette option vous sera facturée {{price}} HT par jour d'utilisation et par pallier. Vous pourrez la désactiver ou changer de pallier, à la hausse ou à la baisse, à tout moment.",
+  "hosting_tab_BOOST_request_description_billing_new": "Cette option vous sera facturée <strong>{{price}} HT par jour d'utilisation et par palier</strong>. Vous pourrez la désactiver ou changer de palier, à la hausse ou à la baisse, à tout moment.",
   "hosting_tab_BOOST_request_description_payment_renew": "Elle sera conservée par tacite reconduction jusqu'à sa désactivation. Lors de sa désactivation, une facture sera établie pour toute la période d'utilisation. Son montant sera débité de votre moyen de paiement enregistré dans la section « Facturation / Mes moyens de paiement » de votre Espace Client.",
   "hosting_tab_BOOST_request_activation": "Le boost de votre offre est en cours d'activation ...",
   "hosting_tab_BOOST_request_success": "Le boost de votre offre a été activé avec succès.",

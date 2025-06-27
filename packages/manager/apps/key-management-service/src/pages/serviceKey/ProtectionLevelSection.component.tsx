@@ -43,7 +43,7 @@ export const ProtectionLevelSection: React.FC = () => {
   }, [catalog]);
 
   return (
-    <div className="flex flex-col gap-6 md:gap-8">
+    <div className="flex flex-col gap-3 md:gap-4">
       <Subtitle>
         {t('key_management_service_service-keys_create_protection_level_title')}
       </Subtitle>
@@ -56,7 +56,7 @@ export const ProtectionLevelSection: React.FC = () => {
         color={ODS_CARD_COLOR.primary}
         className="flex flex-col w-full h-fit px-3 pt-3"
       >
-        <div className="flex flex-col gap-6 pb-4 justify-center align-middle text-center">
+        <div className="flex flex-col gap-3 pb-4 justify-center align-middle text-center">
           <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
             {t(
               'key_management_service_service-keys_create_software_protection_title',

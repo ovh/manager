@@ -179,6 +179,23 @@
         >
             <form name="customConfig" novalidate>
                 <div class="mb-3">
+                    <h5 data-translate="nutanix_redeploy_gateway_CIDR"></h5>
+                    <p
+                        data-translate="nutanix_redeploy_prism_element_gateway_cidr_description"
+                    ></p>
+                    <oui-field>
+                        <input
+                            type="text"
+                            class="oui-input w-50"
+                            name="gatewayCidr"
+                            data-ng-model="$ctrl.config.gatewayCidr"
+                            data-ng-model-options="{ debounce: 500 }"
+                            data-ng-pattern="$ctrl.IPV4_BLOCK_REGEX"
+                            data-ng-change="$ctrl.onGatewayCidrChange(customConfig)"
+                        />
+                    </oui-field>
+                </div>
+                <div class="mb-3">
                     <h5
                         data-translate="nutanix_redeploy_custom_configuration_nodes"
                     ></h5>
@@ -404,23 +421,6 @@
                             data-ng-if="!customConfig.vlanId.$error.max && !customConfig.vlanId.$error.min"
                             data-translate="nutanix_redeploy_vlan_id_helper"
                         ></p>
-                    </oui-field>
-                </div>
-                <div class="mb-3">
-                    <h5 data-translate="nutanix_redeploy_gateway_CIDR"></h5>
-                    <p
-                        data-translate="nutanix_redeploy_prism_element_gateway_cidr_description"
-                    ></p>
-                    <oui-field>
-                        <input
-                            type="text"
-                            class="oui-input w-50"
-                            name="gatewayCidr"
-                            data-ng-model="$ctrl.config.gatewayCidr"
-                            data-ng-model-options="{ debounce: 500 }"
-                            data-ng-pattern="$ctrl.IPV4_BLOCK_REGEX"
-                            data-ng-change="$ctrl.onGatewayCidrChange(customConfig)"
-                        />
                     </oui-field>
                 </div>
                 <div class="mb-3">

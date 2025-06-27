@@ -78,6 +78,7 @@ export const ConfigureEmailAccounts: React.FC = () => {
     resolver: zodResolver(addEmailAccountsSchema),
     defaultValues: {
       accounts: [
+        // @TODO: remove offer when backend doesn't require that anymore
         { domain: domain?.currentState?.name, offer: ZimbraOffer.STARTER },
       ],
     },

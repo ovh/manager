@@ -1,5 +1,8 @@
 {
   "dedicatedCloud_USER_rights_management_by_datacenter": "Verwaltung der Rechte von <b>{{t0}}</b> nach Datacentern",
+  "dedicatedCloud_USER_rights_management_by_datacenter_user": "Verwaltung der Rechte des Nutzers {{t0}} nach Rechenzentrum",
+  "dedicatedCloud_USER_rights_management_by_datacenter_group": "Verwaltung der Rechte der Gruppe {{t0}} nach Rechenzentrum",
+  "dedicatedCloud_USER_rights_management_by_datacenter_role": "Verwaltung der Rechte der Rolle {{t0}} nach Rechenzentrum",
   "dedicatedCloud_USER_warning_line": "Die Änderung bestätigen oder verwerfen, die Sie an den Nutzerrechten vorgenommen haben.",
   "dedicatedCloud_datacenter_count": "Rechenzentrum",
   "dedicatedCloud_USER_access_vsphere": "vSphere Zugang",
@@ -48,13 +51,8 @@
   "dedicatedCloud_USER_right_vlan_readonly": "Nur lesender Zugriff",
   "dedicatedCloud_USER_right_vlan_MANAGER": "Ermöglicht die Verwaltung der Portgruppen des virtuellen Switch (Erstellung, Bearbeitung, Löschen). Nur für SDDC und die Pakete Hosted Private Cloud Premier.",
   "dedicatedCloud_USER_right_vlan_manager": "Ermöglicht die Verwaltung der Portgruppen des virtuellen Switch (Erstellung, Bearbeitung, Löschen). Nur für SDDC und die Pakete Hosted Private Cloud Premier.",
-  "dedicatedCloud_USER_right_resources": "Hinzufügen von Ressourcen",
-  "dedicatedCloud_USER_right_resources_help": "Recht, über das OVHcloud Plugin im vSphere Client zusätzliche Ressourcen hinzuzufügen",
-  "dedicatedCloud_USER_resource": "Hinzufügen von Ressourcen",
+  "dedicatedCloud_USER_resource": "Verwaltung der Hosts und Speicher",
   "dedicatedCloud_USER_VM_NETWORK_ROLE": "Zugang zum vmNetwork",
   "dedicatedCloud_USER_NETWORK_ROLE_EPCC": "Zugang zu V(x)LAN / GENEVE",
-  "dedicatedCloud_USER_NETWORK_ROLE_MBM": "Zugang zu den VLANs",
-  "dedicatedCloud_USER_rights_management_by_datacenter_user": "Verwaltung der Rechte des Nutzers {{t0}} nach Rechenzentrum",
-  "dedicatedCloud_USER_rights_management_by_datacenter_group": "Verwaltung der Rechte der Gruppe {{t0}} nach Rechenzentrum",
-  "dedicatedCloud_USER_rights_management_by_datacenter_role": "Verwaltung der Rechte der Rolle {{t0}} nach Rechenzentrum"
+  "dedicatedCloud_USER_NETWORK_ROLE_MBM": "Zugang zu den VLANs"
 }

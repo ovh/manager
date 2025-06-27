@@ -5,7 +5,7 @@ import { Environment, User } from '@ovh-ux/manager-config';
 import { renderWithShell } from '../__test-utils__/contextRenders';
 
 import Navbar from '../../container/legacy/navbar/Navbar';
-import { LegacyContainerProvider } from '../../container/legacy/context';
+import { LegacyContainerProvider } from '../../container/legacy/legacy.context';
 
 const server = setupServer(
   rest.get('/engine/2api/notification', (req, res, ctx) => {

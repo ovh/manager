@@ -3,6 +3,120 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.17.8...@ovh-ux/manager-pci-block-storage-app@0.18.0) (2025-06-23)
+
+
+### Features
+
+* **pci-block-storage:** add volume encryption ([9b2bac1](https://github.com/ovh/manager/commit/9b2bac18488f86975bf5038d0ade16006a279c3d)), closes [#TAPC-3456](https://github.com/ovh/manager/issues/TAPC-3456)
+* **pci-common:** use new config cards ([ddd6c33](https://github.com/ovh/manager/commit/ddd6c33ddc65543fee27e30a3c3f02f6b319f13b)), closes [#TAPC-3456](https://github.com/ovh/manager/issues/TAPC-3456)
+
+
+
+
+
+## [0.17.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.17.7...@ovh-ux/manager-pci-block-storage-app@0.17.8) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.17.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.17.6...@ovh-ux/manager-pci-block-storage-app@0.17.7) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.17.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.17.5...@ovh-ux/manager-pci-block-storage-app@0.17.6) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.17.4...@ovh-ux/manager-pci-block-storage-app@0.17.5) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.17.3...@ovh-ux/manager-pci-block-storage-app@0.17.4) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.17.2...@ovh-ux/manager-pci-block-storage-app@0.17.3) (2025-06-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4075] ([3767ecc](https://github.com/ovh/manager/commit/3767ecc118a72aa312c3e3bc856454cb60c3f42a))
+* **i18n:** add missing translations [CDS 4087] ([1d5a0e2](https://github.com/ovh/manager/commit/1d5a0e2ec2f652734a31bfd19c502cab443e809a))
+* **i18n:** add missing translations [CDS 4094] ([ad15f88](https://github.com/ovh/manager/commit/ad15f88b3927485c9e2603541ff313808074b1b4))
+
+
+
+
+
+## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.17.1...@ovh-ux/manager-pci-block-storage-app@0.17.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.17.0...@ovh-ux/manager-pci-block-storage-app@0.17.1) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.16.0...@ovh-ux/manager-pci-block-storage-app@0.17.0) (2025-06-11)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** remove double redirection on detach ([3cff09f](https://github.com/ovh/manager/commit/3cff09f2dd3f3bd9dc392ef870454e89118a24f3)), closes [#TAPC-4248](https://github.com/ovh/manager/issues/TAPC-4248)
+
+
+### Features
+
+* **pci-block-storage:** add minimum price in deployment tiles ([9e741d1](https://github.com/ovh/manager/commit/9e741d1c6cc1dd236d6fe2f3b75caa22dfcdc6c7)), closes [#TAPC-2887](https://github.com/ovh/manager/issues/TAPC-2887)
+* **pci-block-storage:** add refresh button ([539b423](https://github.com/ovh/manager/commit/539b423ed64d14586a0f143ac9f555eb11735e6b)), closes [#TAPC-4245](https://github.com/ovh/manager/issues/TAPC-4245)
+
+
+
+
+
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.15.0...@ovh-ux/manager-pci-block-storage-app@0.16.0) (2025-06-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4072] ([d97c754](https://github.com/ovh/manager/commit/d97c754b1e9a593e50c3fa0ca4e6677cdec44b59))
+
+
+### Features
+
+* **manager:** remove vite dependency from applications ([14fedc4](https://github.com/ovh/manager/commit/14fedc47e9463b2abdaa054b7a854b198916d155))
+
+
+
+
+
 # [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.14.0...@ovh-ux/manager-pci-block-storage-app@0.15.0) (2025-06-02)
 
 

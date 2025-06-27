@@ -1,4 +1,10 @@
 import i18next, { i18n, InitOptions } from 'i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
+import billing from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/billing/Messages_fr_FR.json';
+import contact from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/contact/Messages_fr_FR.json';
+import status from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/status/Messages_fr_FR.json';
+import commonDashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
 import common from '../../../public/translations/hycu/Messages_fr_FR.json';
 import dashboard from '../../../public/translations/hycu/dashboard/Messages_fr_FR.json';
 import listing from '../../../public/translations/hycu/listing/Messages_fr_FR.json';
@@ -19,6 +25,11 @@ function addTranslations() {
     .addResources(defaultLocale, 'hycu/order', order)
     .addResources(defaultLocale, 'hycu/terminate', terminate)
     .addResources(defaultLocale, 'hycu/edit-pack', editPack)
+    .addResources(defaultLocale, NAMESPACES.ACTIONS, actions)
+    .addResources(defaultLocale, NAMESPACES.BILLING, billing)
+    .addResources(defaultLocale, NAMESPACES.CONTACT, contact)
+    .addResources(defaultLocale, NAMESPACES.STATUS, status)
+    .addResources(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard)
     .use({
       type: 'postProcessor',
       name: 'normalize',
@@ -60,4 +71,9 @@ export const labels = {
   order,
   terminate,
   editPack,
+  actions,
+  billing,
+  contact,
+  status,
+  commonDashboard,
 };

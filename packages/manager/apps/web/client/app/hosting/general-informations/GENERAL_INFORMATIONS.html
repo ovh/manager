@@ -179,9 +179,30 @@
                     data-heading="{{ ::'hosting_dashboard_configuration' | translate}}"
                 >
                     <oui-tile-definition
-                        data-term="{{ ::'hosting_global_php_version' | translate }}"
                         data-ng-if="ovhConfig.isPhpEngine && !hosting.isCloudWeb"
                     >
+                        <oui-tile-term
+                            ><span
+                                data-translate="hosting_global_php_version"
+                            ></span
+                            ><button
+                                type="button"
+                                class="oui-popover-button"
+                                oui-popover
+                                oui-popover-scope="$ctrl"
+                                oui-popover-template="phpInformationLink.html"
+                                oui-popover-placement="right"
+                            ></button>
+                            <script
+                                type="text/ng-template"
+                                id="phpInformationLink.html"
+                            >
+                                <a class="oui-link_icon" href="{{ :: $ctrl.languagesVersionGuideUrl }}" target="_blank">
+                                    <span data-translate="hosting_dashboard_general_information_php_more_informations"></span>
+                                    <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                                  </a>
+                            </script>
+                        </oui-tile-term>
                         <oui-tile-description>
                             <span
                                 data-ng-bind="::ovhConfig.engineVersion"
@@ -771,6 +792,16 @@
                     >
                         <span
                             data-translate="hosting_dashboard_service_home_http"
+                        ></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        aria-label="{{ :: 'hosting_dashboard_general_information_languages_versions_availables' | translate }}"
+                        data-href="{{ $ctrl.languagesVersionGuideUrl }}"
+                        external
+                        data-on-click="$ctrl.sendTrackClick('web::hosting::go-to-http-access')"
+                    >
+                        <span
+                            data-translate="hosting_dashboard_general_information_languages_versions_availables"
                         ></span>
                     </oui-tile-button>
                 </oui-tile>

@@ -62,7 +62,7 @@ export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
 
   return (
     <OdsFormField>
-      <div slot="label">
+      <div slot="label" className="space-y-2 mb-2">
         <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
           {t(
             'key_management_service_service-keys_create_crypto_field_usage_title',
@@ -74,7 +74,7 @@ export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
           )}
         </OdsText>
       </div>
-      <div className="grid gap-3">
+      <div className="grid gap-2">
         {serviceKey?.operations.map((operation) => (
           <ServiceKeyOperationCheckbox
             name="serviceKeyOperation"

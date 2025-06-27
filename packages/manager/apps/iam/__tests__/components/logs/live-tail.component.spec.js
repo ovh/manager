@@ -74,6 +74,7 @@ describe('IAM logs live tail component tests suite', () => {
     );
     expect($ctrl.logKindsKeys).toEqual({
       default: ['message'],
+      access: ['message'],
     });
   });
 });

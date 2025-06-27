@@ -41,6 +41,8 @@ export const DATA_PLATFORM_GUIDE = {
     'https://www.ovhcloud.com/en-in/identity-security-operations/logs-data-platform/',
   WE:
     'https://www.ovhcloud.com/en-ie/identity-security-operations/logs-data-platform/',
+  US:
+    'https://us.ovhcloud.com/identity-security-operations/logs-data-platform/',
   WW:
     'https://www.ovhcloud.com/en/identity-security-operations/logs-data-platform/',
 };

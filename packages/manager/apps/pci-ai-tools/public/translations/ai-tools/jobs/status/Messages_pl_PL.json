@@ -1,15 +1,15 @@
 {
   "status-DONE": "Zakończone",
   "status-ERROR": "Błąd",
-  "status-FAILED": "Niepowodzenie",
+  "status-FAILED": "Błąd",
   "status-FINALIZING": "Zakończenie",
-  "status-INITIALIZING": "Utwórz klaster",
+  "status-INITIALIZING": "Rozpoczęte",
   "status-INTERRUPTED": "Przerwano",
   "status-INTERRUPTING": "Przerwa",
-  "status-PENDING": "Uruchamianie",
-  "status-QUEUED": "Oczekujące",
-  "status-RUNNING": "W trakcie",
+  "status-PENDING": "Uruchomienie",
+  "status-QUEUED": "Oczekujący",
+  "status-RUNNING": "W realizacji",
   "status-RESTARTING": "Trwa restart",
   "status-TIMEOUT": "Timeout",
-  "status-SYNC_FAILED": "Synchronizacja się nie powiodła"
+  "status-SYNC_FAILED": "Błąd synchronizacji"
 }

@@ -30,6 +30,8 @@ import {
 import {
   getCredentialsMock,
   GetCredentialsMockParams,
+  createCredentialsMock,
+  CreateCredentialsMockParams,
   deleteCredentialMock,
   DeleteCredentialsMockParams,
 } from '@/mocks/credentials/credentials.handler';
@@ -46,6 +48,8 @@ import {
   getReferenceMock,
   GetReferenceMockParams,
 } from '@/mocks/reference/reference.handler';
+import { getIdentityUserIds } from '@/mocks/identity/identityUserIds.handler';
+import { getIdentityUsers } from '@/mocks/identity/identityUsers.handler';
 
 let context: ShellContextType;
 let i18nValue: i18n;
@@ -60,7 +64,8 @@ export const renderTestApp = async (
     GetCatalogKmsMocksParams &
     GetReferenceMockParams &
     GetIamAuthorizationMockParams &
-    DeleteCredentialsMockParams = {},
+    DeleteCredentialsMockParams &
+    CreateCredentialsMockParams = {},
 ) => {
   global.server?.resetHandlers(
     ...toMswHandlers([
@@ -73,7 +78,10 @@ export const renderTestApp = async (
       ...getFeatureAvailabilityMocks(mockParams),
       ...getCatalogKmsMocks(mockParams),
       ...getReferenceMock(mockParams),
+      ...createCredentialsMock(mockParams),
       ...deleteCredentialMock(mockParams),
+      ...getIdentityUserIds(),
+      ...getIdentityUsers(),
     ]),
   );
 

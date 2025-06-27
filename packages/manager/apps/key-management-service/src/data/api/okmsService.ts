@@ -1,4 +1,4 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import { apiClient, v6 } from '@ovh-ux/manager-core-api';
 import { ServiceDetails } from '@ovh-ux/manager-react-components';
 
 export type UpdateOkmsNameParams = {

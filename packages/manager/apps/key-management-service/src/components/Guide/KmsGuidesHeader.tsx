@@ -8,7 +8,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
-import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
+import { KMS_FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 
 export default function KmsGuidesHeader() {
   const { t } = useTranslation('key-management-service/guide');
@@ -16,8 +16,8 @@ export default function KmsGuidesHeader() {
   const { trackClick } = useOvhTracking();
 
   const { data: features, isPending } = useFeatureAvailability([
-    FEATURES.KMS_USAGE_GUIDE,
-    FEATURES.KMIP_CONNECTION_GUIDE,
+    KMS_FEATURES.KMS_USAGE_GUIDE,
+    KMS_FEATURES.KMIP_CONNECTION_GUIDE,
   ]);
 
   const handleTrackClick = (action: string) => {
@@ -40,7 +40,7 @@ export default function KmsGuidesHeader() {
           dataTestid: 'guides_header_quick_start',
           onClick: () => handleTrackClick('go-to-quick-start-guide'),
         },
-        features?.[FEATURES.KMS_USAGE_GUIDE] && {
+        features?.[KMS_FEATURES.KMS_USAGE_GUIDE] && {
           id: 2,
           href: guideLinks?.usage,
           target: '_blank',
@@ -48,7 +48,7 @@ export default function KmsGuidesHeader() {
           dataTestid: 'guides_header_kms_usage',
           onClick: () => handleTrackClick('go-to-use-ovh-kms'),
         },
-        features?.[FEATURES.KMIP_CONNECTION_GUIDE] && {
+        features?.[KMS_FEATURES.KMIP_CONNECTION_GUIDE] && {
           id: 3,
           href: guideLinks?.kmip,
           target: '_blank',

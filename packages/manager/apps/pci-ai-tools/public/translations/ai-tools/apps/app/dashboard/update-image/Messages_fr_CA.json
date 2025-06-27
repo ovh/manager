@@ -1,0 +1,12 @@
+{
+  "updateImageTitle": "Modifier l'image",
+  "updateImageDesc1": "Vous pouvez mettre à jour l'image Docker de votre application afin de proposer une version toujours à jour de votre service. Les mises à jour sont incrémentales et sans coupure. Vous conservez votre configuration actuelle, tel que votre point de terminaison HTTP ou votre stratégie de déploiement.",
+  "updateImageDesc2": "Veillez à fournir un tag différent afin que la mise à jour de l'image Docker soit prise en compte.",
+  "fieldImageLabel": "Chemin d'accès de votre image Docker",
+  "imageInfo": "Renseigner le chemin d'accès de votre image Docker. Les images hébergées sur un registre privé ou public sont acceptées (GitHub, GitLab, DockerHub, ...)",
+  "updateImageButtonCancel": "Annuler",
+  "updateImageButtonConfirm": "Modifier",
+  "updateImageToastErrorTitle": "Une erreur est survenue",
+  "updateImageToastSuccessTitle": "Succés",
+  "updateImageToastSuccessDescription": "L'image a été mise à jour"
+}

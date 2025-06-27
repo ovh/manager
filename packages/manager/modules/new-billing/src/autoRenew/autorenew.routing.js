@@ -118,6 +118,9 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
                     data.models['services.billing.engagement.EndStrategyEnum']
                       ?.enum,
                 ),
+            /* @ngInject */
+            defaultPaymentMean: (ovhPaymentMethod) =>
+              ovhPaymentMethod.getDefaultPaymentMethod(),
           }
         : {},
     ),
