@@ -147,6 +147,35 @@ const initSnapshotList = (data: TCurrentUsage) => {
   };
 };
 
+const initRancherList = (data: TCurrentUsage) => {
+  if (!data.hourlyUsage.rancher.length) {
+    return {
+      rancherList: [],
+      snapshotsTotalPrice: 0,
+    };
+  }
+
+  const rancherList = data.hourlyUsage.rancher.flatMap((rancher) =>
+    rancher.details.map((r) => ({
+      ...r,
+      totalPrice: roundPrice(r.totalPrice.value),
+      name: rancher.reference,
+      region: rancher.region,
+    })),
+  );
+
+  const rancherTotalPrice = roundPrice(
+    data.hourlyUsage.rancher
+      .flatMap((rancher) => rancher.details)
+      .reduce((sum, rancher) => sum + roundPrice(rancher.totalPrice.value), 0),
+  );
+
+  return {
+    rancherList,
+    rancherTotalPrice,
+  };
+};
+
 const initVolumeList = (data: TCurrentUsage) => {
   if (!data?.hourlyUsage) {
     return {
@@ -361,6 +390,7 @@ export type TConsumptionDetail = {
   volumes: TVolume[];
   bandwidthByRegions: TInstanceBandWith[];
   privateRegistry: TResourceUsage[];
+  rancher: TResourceUsage[];
   kubernetesLoadBalancer: TResourceUsage[];
   training: TResourceUsage[];
   notebooks: TResourceUsage[];
@@ -381,6 +411,7 @@ export type TConsumptionDetail = {
       archiveStorage: number;
       snapshot: number;
       volume: number;
+      rancher: number;
       bandwidth: number;
       privateRegistry: number;
       kubernetesLoadBalancer: number;
@@ -412,6 +443,7 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   volumes: [],
   bandwidthByRegions: [],
   privateRegistry: [],
+  rancher: [],
   kubernetesLoadBalancer: [],
   training: [],
   notebooks: [],
@@ -432,6 +464,7 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
       archiveStorage: 0,
       snapshot: 0,
       volume: 0,
+      rancher: 0,
       bandwidth: 0,
       privateRegistry: 0,
       kubernetesLoadBalancer: 0,
@@ -504,7 +537,7 @@ export const getConsumptionDetails = (usage: TCurrentUsage) => {
   const { snapshotList, snapshotsTotalPrice } = initSnapshotList(usage);
   const { volumeList, volumesTotalPrice } = initVolumeList(usage);
   const { bandwidthList, bandwidthTotalPrice } = initInstanceBandwidth(usage);
-
+  const { rancherList, rancherTotalPrice } = initRancherList(usage);
   const totals = {
     hourly: {
       total: 0,
@@ -515,6 +548,7 @@ export const getConsumptionDetails = (usage: TCurrentUsage) => {
       snapshot: snapshotsTotalPrice,
       volume: volumesTotalPrice,
       bandwidth: bandwidthTotalPrice,
+      rancher: rancherTotalPrice,
     },
     monthly: {
       total: monthlyInstanceTotalPrice,
@@ -534,6 +568,7 @@ export const getConsumptionDetails = (usage: TCurrentUsage) => {
     objectStorages: objectStorageList,
     archiveStorages: archiveStorageList,
     snapshots: snapshotList,
+    rancher: rancherList,
     volumes: volumeList,
     bandwidthByRegions: bandwidthList,
     ...resources,
