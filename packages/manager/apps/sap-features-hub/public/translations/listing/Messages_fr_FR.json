@@ -1,7 +1,6 @@
 {
-  "sap_hub_history_title": "Historique",
+  "sap_hub_history_title": "Retrouvez la liste des pré-installations SAP réalisées ou en cours.",
   "sap_hub_history_list": "Liste des pré-installations SAP",
-  "sap_hub_history_run_installation": "Lancer l'installation",
   "sap_hub_history_installation_date": "Date",
   "sap_hub_history_application_version": "Version d'application",
   "sap_hub_history_application_type": "Type d'application",
