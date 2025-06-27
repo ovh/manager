@@ -1,7 +1,7 @@
 export const SERVER_CONFIG_PATTERNS = {
   vmName: /^[a-zA-Z0-9]([\w-]{1,62})[a-zA-Z0-9]$/,
   rootPassword: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^$\\"'`]{8,128}$/,
-  instanceNumber: /^\d{2}$/,
+  instanceNumber: /^(?:[0-8]\d|9[0-7])$/,
 };
 
 export const SERVER_CONFIG_LIMITS = {
