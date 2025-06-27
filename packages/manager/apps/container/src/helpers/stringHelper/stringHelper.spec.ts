@@ -1,4 +1,4 @@
-import { capitalize, truncate } from '@/helpers';
+import { capitalize, truncate, toScreamingSnakeCase } from '@/helpers';
 
 describe('stringHelpers', () => {
   describe('capitalize', () => {
@@ -23,6 +23,16 @@ describe('stringHelpers', () => {
 
     it('should return the original string if it is shorter than the specified length', () => {
       expect(truncate('foo', { length: 5 })).toEqual('foo');
+    });
+  });
+
+  describe('toScreamingSnakeCase', () => {
+    it('should return an empty string if the input is empty', () => {
+      expect(toScreamingSnakeCase('')).toEqual('');
+    });
+
+    it('should return a screaming snake case version of the input', () => {
+      expect(toScreamingSnakeCase('fooBar')).toEqual('FOO_BAR');
     });
   });
 });
