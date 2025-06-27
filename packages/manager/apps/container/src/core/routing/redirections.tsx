@@ -23,6 +23,10 @@ export function Redirections(
       {isNewAccountAvailable ? (
         <>
           <Route
+            path="/useraccount/contacts/*"
+            element={<Rewrite to="/account/contacts/*" />}
+          />
+          <Route
             path="/useraccount/*"
             element={<Rewrite to="/account/useraccount/*" />}
           />
