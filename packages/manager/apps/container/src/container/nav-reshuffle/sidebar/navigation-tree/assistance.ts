@@ -17,6 +17,18 @@ export const assistanceTree: Node = {
       isExternal: true,
       url: 'support',
       hasService: false,
+      region: ['EU', 'CA'],
+    },
+    {
+      id: 'tickets',
+      translation: 'sidebar_assistance_tickets',
+      isExternal: false,
+      routing: {
+        application: 'dedicated',
+        hash: '#/ticket',
+      },
+      hasService: false,
+      region: ['US'],
     },
     {
       id: 'roadmap_changelog',
@@ -42,11 +54,12 @@ export const assistanceTree: Node = {
       isExternal: true,
     },
     {
-      id: 'create_ticket',
+      id: 'createTicket',
       translation: 'sidebar_create_ticket',
       url: 'createTicket',
       hasService: false,
       isExternal: true,
+      region: ['EU', 'CA'],
     },
     {
       id: 'livechat',
