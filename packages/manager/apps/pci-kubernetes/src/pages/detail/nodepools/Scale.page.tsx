@@ -51,11 +51,11 @@ export default function ScalePage(): JSX.Element {
     if (pool) {
       setState({
         quantity: {
-          desired: pool?.desiredNodes,
-          min: pool?.minNodes,
-          max: pool?.maxNodes,
+          desired: pool.desiredNodes,
+          min: pool.minNodes,
+          max: pool.maxNodes,
         },
-        isAutoscale: pool?.autoscale,
+        isAutoscale: pool.autoscale,
       });
     }
   }, [pool]);
