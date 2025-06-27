@@ -1,9 +1,6 @@
-import filter from 'lodash/filter';
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
-import map from 'lodash/map';
 import partition from 'lodash/partition';
-import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 import values from 'lodash/values';
 
@@ -11,8 +8,8 @@ export default /* @ngInject */ function UserAccountSshService(
   OvhHttp,
   $q,
   coreURLBuilder,
+  iceberg,
 ) {
-  const CLOUD_CACHE_KEY = 'UNIVERS_DEDICATED_USER_ACCOUNT_SSH_CLOUD';
   const self = this;
 
   self.getAllSshKeyList = function getAllSshKeyList(_filter) {
@@ -51,81 +48,48 @@ export default /* @ngInject */ function UserAccountSshService(
   };
 
   self.getDedicatedSshList = function getDedicatedSshList() {
-    return OvhHttp.get('/me/sshKey', {
-      rootPath: 'apiv6',
-    }).then((keyNames) => {
-      const promises = map(keyNames, (keyName) =>
-        self.getDedicatedSshKey(keyName),
-      );
-      return $q.allSettled(promises);
-    });
-  };
-
-  self.getDedicatedSshKey = function getDedicatedSshKey(keyName) {
-    return OvhHttp.get('/me/sshKey/{keyName}', {
-      rootPath: 'apiv6',
-      urlParams: {
-        keyName,
-      },
-    }).then((key) => {
-      set(key, 'category', 'dedicated');
-      return key;
-    });
-  };
-
-  self.getCloudProjects = function getCloudProjects() {
-    return OvhHttp.get('/cloud/project', {
-      rootPath: 'apiv6',
-      cache: CLOUD_CACHE_KEY,
-      clearCache: false,
-    })
-      .then((projectIds) =>
-        $q.all(
-          map(projectIds, (projectId) =>
-            OvhHttp.get('/cloud/project/{serviceName}', {
-              rootPath: 'apiv6',
-              urlParams: {
-                serviceName: projectId,
-              },
-              cache: CLOUD_CACHE_KEY,
-              clearCache: false,
-            }),
-          ),
-        ),
-      )
-      .then((projects) =>
-        map(filter(projects, { status: 'ok' }), (project) => ({
-          id: project.project_id,
-          description: project.description,
+    return iceberg('/me/sshKey')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) =>
+        data.map((sshItem) => ({
+          ...sshItem,
+          category: 'dedicated',
         })),
       );
   };
 
-  self.getCloudSshList = function getCloudSshList() {
-    return self
-      .getCloudProjects()
-      .then((projects) => {
-        const promises = map(projects, (project) =>
-          OvhHttp.get('/cloud/project/{serviceName}/sshkey', {
-            rootPath: 'apiv6',
-            urlParams: {
-              serviceName: project.id,
-            },
-          }).then((keys) =>
-            map(keys, (key) => ({
-              serviceName: project.id,
-              serviceDescription: project.description,
-              category: 'cloud',
-              keyName: key.name,
-              key: key.publicKey,
-              id: key.id,
-              url: self.getSshCloudUrl(project.id),
-            })),
-          ),
-        );
-        return $q.allSettled(promises);
-      })
-      .then((keysByProjet) => flatten(keysByProjet));
+  self.getCloudSshList = async function getCloudSshList() {
+    const { data } = await iceberg('/cloud/project')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute().$promise;
+
+    const validProjects = data.filter((f) => f.status === 'ok');
+    const promises = validProjects.map(async (project) => {
+      const serviceName = project.project_id;
+
+      const keys = await OvhHttp.get('/cloud/project/{serviceName}/sshkey', {
+        rootPath: 'apiv6',
+        urlParams: { serviceName },
+      });
+
+      const url = self.getSshCloudUrl(serviceName);
+
+      return keys.map((key) => ({
+        serviceName,
+        serviceDescription: project.description,
+        category: 'cloud',
+        url,
+        id: key.id,
+        keyName: key.name,
+        key: key.publicKey,
+      }));
+    });
+
+    const results = await $q.all(promises);
+    return results.flat();
   };
 
   self.addDedicatedSshKey = function addDedicatedSshKey(sshkeyObj) {

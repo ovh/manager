@@ -113,7 +113,7 @@
             <tbody
                 data-ng-show="ctrlSsh.sshKeyList.length > 0 && !ctrlSsh.sshLoading"
             >
-                <tr data-ng-repeat="ssh in ctrlSsh.sshKeyList track by $index">
+                <tr data-ng-repeat="ssh in ctrlSsh.sshKeys track by $index">
                     <td>
                         <span data-ng-bind-html="ssh.keyName"></span>
                     </td>
