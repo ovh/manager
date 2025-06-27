@@ -25,7 +25,7 @@ const getServersExport = <T extends 'hana' | 'application'>({
       network: form.network,
       netmask: form.netmask,
       gateway: form.gateway,
-      passwordCrypted: form.passwordCrypted,
+      encryptPassword: form.encryptPassword,
       ovaTemplate:
         type === 'hana' ? form.hanaServerOva : form.applicationServerOva,
       datastoreName:

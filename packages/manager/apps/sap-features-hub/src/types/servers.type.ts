@@ -16,7 +16,7 @@ export type ServerConfigVM = HanaServer | ApplicationServer;
 // for JSON export
 type BaseExportProperties = Pick<
   CommonServerConfig,
-  'network' | 'netmask' | 'gateway' | 'passwordCrypted'
+  'network' | 'netmask' | 'gateway' | 'encryptPassword'
 > & {
   ovaTemplate: string;
   datastoreName: string;
