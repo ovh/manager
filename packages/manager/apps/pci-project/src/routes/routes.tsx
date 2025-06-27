@@ -11,7 +11,9 @@ const GeneralInfosPage = lazy(() =>
   import('@/pages/dashboard/general-informations'),
 );
 const Tab2Page = lazy(() => import('@/pages/dashboard/tab2'));
-const OnboardingPage = lazy(() => import('@/pages/onboarding'));
+const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const CreationPage = lazy(() => import('@/pages/creation/Creation.page'));
+const CreatingPage = lazy(() => import('@/pages/creating/Creating.page'));
 
 export default (
   <Route
@@ -32,6 +34,24 @@ export default (
         tracking: {
           pageName: 'listing',
           pageType: PageType.listing,
+        },
+      }}
+    />
+    <Route
+      path={urls.creation}
+      Component={CreationPage}
+      handle={{
+        tracking: {
+          pageType: PageType.funnel,
+        },
+      }}
+    />
+    <Route
+      path={urls.creating}
+      Component={CreatingPage}
+      handle={{
+        tracking: {
+          pageType: PageType.funnel,
         },
       }}
     />

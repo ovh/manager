@@ -5,3 +5,33 @@
 html {
   font-family: var(--ods-font-family-default);
 }
+
+/* Onboarding */
+ods-text.font-bold::part(text) {
+  font-weight: bold;
+}
+ods-text.disabled::part(text) {
+  opacity: 0.6;
+}
+
+.contracts-agreements .contract-link:not(:last-child) {
+  &::after {
+    color: var(--ods-color-primary-500);
+    content: ',';
+  }
+}
+.contracts-agreements .contract-link::part(link) {
+  padding: 0.2em;
+}
+
+.pci_project_onboarding_us {
+  position: relative;
+  min-height: 90vh;
+}
+.onboarding-us-img {
+  z-index: -1;
+  position: absolute;
+  top: 8vh;
+  right: -20vw;
+  width: 70vw;
+}
