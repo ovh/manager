@@ -1,0 +1,6 @@
+{
+  "ovh_payment_method_register_sepa_information_modal_title": "Contas bancárias zona SEPA",
+  "ovh_payment_method_register_sepa_information_modal_confirm": "Entendi",
+  "ovh_payment_method_register_sepa_information_modal_part_1": "Para implementar um débito direto, deve ser titular de uma conta bancária detida num país do Espaço Único de Pagamentos em Euros, <strong>a zona SEPA</strong>.",
+  "ovh_payment_method_register_sepa_information_modal_part_2": "Se não dispõe deste tipo de conta, sugerimos que escolha outro método de pagamento."
+}
