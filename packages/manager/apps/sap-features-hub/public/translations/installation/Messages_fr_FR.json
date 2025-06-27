@@ -35,6 +35,7 @@
   "service_input_vmware": "Service VMware on OVHcloud",
   "service_input_vdc": "Datacentre",
   "service_input_cluster": "Cluster",
+  "service_input_error_service_invalid": "Vous devez sélectionner un service actif pour continuer.",
   "service_input_error_no_cluster_available": "Vous devez sélectionner un datacentre contenant des hôtes pour continuer.",
   "deployment_summary": "Installation",
   "deployment_title": "Spécifiez l'installation souhaitée",
