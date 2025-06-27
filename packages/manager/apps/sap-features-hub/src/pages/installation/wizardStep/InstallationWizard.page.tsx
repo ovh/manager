@@ -77,6 +77,8 @@ export default function InstallationWizard() {
           serviceName: upload.data.serviceName,
           datacenterId: upload.data.datacenterId,
           clusterName: upload.data.clusterName,
+          applicationType: upload.data.applicationType,
+          applicationVersion: upload.data.applicationVersion,
           deploymentType: upload.data.deploymentType,
           network: upload.data.network,
           thickDatastorePolicy: upload.data.thickDatastorePolicy,
