@@ -342,7 +342,7 @@ export default function InstallationStepServerConfig() {
               field={field}
               label={t('server_config_input_ova_model')}
               placeholder={t('select_label')}
-              options={sapCapabilities.ovaTemplates}
+              options={ovaTemplates}
               isLoading={isLoadingQueries}
               isDisabled={isLoadingQueries || isSapCapabilitiesError}
               error={fieldState.error && t('server_config_error_ova_model')}
@@ -475,7 +475,7 @@ export default function InstallationStepServerConfig() {
               field={field}
               label={t('server_config_input_ova_model')}
               placeholder={t('select_label')}
-              options={sapCapabilities.ovaTemplates}
+              options={ovaTemplates}
               isLoading={isLoadingQueries}
               isDisabled={isLoadingQueries || isSapCapabilitiesError}
               error={fieldState.error && t('server_config_error_ova_model')}
