@@ -14,6 +14,7 @@
   "scripts": {
     "build": "tsc && vite build",
     "start": "tsc && vite",
+    "lint": "manager-lint --config eslint.config.mjs ./src",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },
@@ -52,6 +53,7 @@
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.10.1",
     "@tanstack/react-query-devtools": "^5.51.21",
+    "@ovh-ux/manager-static-analysis-kit": "^0.0.1",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
