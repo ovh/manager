@@ -58,5 +58,5 @@
   "pci_instances_actions_shelve_instance_confirmation_message": "Stai per sospendere l'istanza {{ name }}. Le risorse dedicate all'istanza Public Cloud verranno liberate ma l’IP verrà mantenuto. I dati del disco locale saranno salvati e la fatturazione verrà applicata solo allo storage utilizzato per questo fine. La durata dell'operazione varia in base alla dimensione del disco locale. È possibile riattivare l'istanza in qualsiasi momento.",
   "pci_instances_actions_shelve_instance_nota_message": "(1) Attenzione: per le istanze con fatturazione mensile, la fatturazione classica continuerà a essere applicata indipendentemente dallo stato del servizio.",
   "pci_instances_actions_instance_unavailable_action_error_message": "Questa azione non è disponibile per l’istanza {{ name }}",
-  "pci_instances_actions_instance_success_message": "Lo stato dell’istanza {{ name }} è stato aggiornato correttamente."
+  "pci_instances_actions_instance_success_message": "Lo stato della tua istanza {{ name }} è stato aggiornato correttamente."
 }
