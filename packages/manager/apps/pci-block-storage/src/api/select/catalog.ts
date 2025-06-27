@@ -8,10 +8,13 @@ import {
   TVolumePricing,
 } from '@/api/data/catalog';
 import { TRegion } from '@/api/data/regions';
+import { EncryptionType } from '@/api/select/volume';
+import { TAPIVolume } from '@/api/data/volume';
 
-export type TModelName = {
-  displayName: string;
-};
+export type TModelName = Readonly<{
+  name: Opaque<string, TModelName>;
+  displayName: Opaque<string, TModelName>;
+}>;
 type TVolumeModelWithName<T extends TVolumeAddon> = T & TModelName;
 
 export const mapVolumeModelName = <T extends TVolumeAddon>(
@@ -23,11 +26,33 @@ export const mapVolumeModelName = <T extends TVolumeAddon>(
 
   return (model: T): TVolumeModelWithName<T> => ({
     ...model,
-    displayName:
-      is3azRegion && model.name === 'classic-multiattach'
-        ? 'Classic 3AZ'
-        : model.name,
+    name: model.name as TModelName['name'],
+    displayName: (is3azRegion && model.name === 'classic-multiattach'
+      ? 'Classic 3AZ'
+      : model.name) as TModelName['displayName'],
   });
+};
+
+export type TModelAvailabilityZones = {
+  availabilityZonesCount: number | null;
+  showAvailabilityZones: boolean;
+};
+
+export const getAvailabilityZonesFromModelPricings = (
+  pricings: TVolumeAddon['pricings'],
+  is3azRegion: boolean | null,
+): TModelAvailabilityZones => {
+  const pricing = pricings[0];
+
+  let availabilityZonesCount: TModelAvailabilityZones['availabilityZonesCount'] = null;
+  if (is3azRegion) {
+    availabilityZonesCount = pricing.showAvailabilityZones ? 1 : 3;
+  }
+
+  return {
+    availabilityZonesCount,
+    showAvailabilityZones: pricing.showAvailabilityZones,
+  };
 };
 
 export type TModelPrice = {
@@ -45,8 +70,6 @@ export type TModelPrice = {
   areIOPSDynamic: boolean;
   bandwidth: string | null;
   isBandwidthDynamic: boolean;
-  availabilityZonesCount: number | null;
-  showAvailabilityZones: boolean;
   encrypted: boolean;
   capacity: {
     // in bytes
@@ -59,7 +82,6 @@ const formatSecondUnit = (value: string | number) => `${value}/s`;
 
 export const getPricingSpecsFromModelPricings = (
   pricings: TVolumeAddon['pricings'],
-  is3azRegion: boolean,
   formatCatalogPrice: (price: number) => string,
   t: TFunction<['add', 'common', typeof NAMESPACES.BYTES]>,
   capacity?: number,
@@ -115,11 +137,6 @@ export const getPricingSpecsFromModelPricings = (
     }
   }
 
-  let availabilityZonesCount: TModelPrice['availabilityZonesCount'] = null;
-  if (is3azRegion) {
-    availabilityZonesCount = pricing.showAvailabilityZones ? 1 : 3;
-  }
-
   return {
     hourlyPrice: {
       value: formatCatalogPrice(pricing.price * (capacity ?? 1)),
@@ -141,8 +158,6 @@ export const getPricingSpecsFromModelPricings = (
     areIOPSDynamic: pricing.areIOPSDynamic,
     bandwidth,
     isBandwidthDynamic: pricing.isBandwidthDynamic,
-    availabilityZonesCount,
-    showAvailabilityZones: pricing.showAvailabilityZones,
     encrypted: pricings.some((p) => p.specs.encrypted),
     capacity: {
       max: pricing.specs.volume.capacity.max * 10 ** 9,
@@ -151,7 +166,9 @@ export const getPricingSpecsFromModelPricings = (
   };
 };
 
-type TVolumeModelWithPriceSpecs<T extends TVolumeAddon> = T & TModelPrice;
+type TVolumeModelWithPriceSpecs<T extends TVolumeAddon> = T &
+  TModelPrice &
+  TModelAvailabilityZones;
 
 export const mapVolumeModelPriceSpecs = <T extends TVolumeAddon>(
   catalogRegions: TVolumeCatalog['regions'],
@@ -167,12 +184,51 @@ export const mapVolumeModelPriceSpecs = <T extends TVolumeAddon>(
     ...model,
     ...getPricingSpecsFromModelPricings(
       model.pricings,
-      is3azRegion,
       formatCatalogPrice,
       t,
       capacity,
     ),
+    ...getAvailabilityZonesFromModelPricings(model.pricings, is3azRegion),
   });
+};
+
+export const getVolumeModelPricings = (catalog: TVolumeCatalog | undefined) => (
+  filter: Partial<{
+    region: string;
+    modelName: TModelName['name'];
+    encryptionType: EncryptionType | null;
+    volumeType: TAPIVolume['type'];
+  }>,
+) => {
+  if (!catalog) return [];
+
+  let { models } = catalog;
+
+  if (filter.modelName) {
+    models = models.filter((m) => m.name === filter.modelName);
+  }
+
+  let pricings = models.flatMap((m) => m.pricings);
+
+  if (filter.region || filter.encryptionType || filter.volumeType) {
+    pricings = pricings.filter((p) => {
+      if (filter.region !== undefined && !p.regions.includes(filter.region))
+        return false;
+
+      if (
+        filter.encryptionType !== undefined &&
+        p.specs.encrypted !== !!filter.encryptionType
+      )
+        return false;
+
+      if (filter.volumeType !== undefined && p.specs.name !== filter.volumeType)
+        return false;
+
+      return true;
+    });
+  }
+
+  return pricings;
 };
 
 export type TModelAttach = {
