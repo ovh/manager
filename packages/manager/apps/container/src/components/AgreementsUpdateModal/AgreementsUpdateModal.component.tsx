@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   ODS_THEME_COLOR_HUE,
@@ -19,6 +19,18 @@ import {
 } from '@ovhcloud/ods-components';
 import { useApplication } from '@/context';
 import ovhCloudLogo from '@/assets/images/logo-ovhcloud.png';
+import { useCheckModalDisplay } from '@/hooks/modal/useModal';
+import { useTime } from '@/hooks/time/useTime';
+import { useCreatePreference } from '@/hooks/preferences/usePreferences';
+import {
+  ACCEPT_AGREEMENTS_IAM_ACTION,
+  AGREEMENTS_UPDATE_MODAL_FEATURE,
+  INTERVAL_BETWEEN_DISPLAY_IN_S,
+  MODAL_NAME,
+} from './AgreementsUpdateModal.constants';
+import { useAgreementsPageNavigationParam, usePendingAgreements } from '@/hooks/agreements/useAgreements';
+import { hasPendingAgreements } from '@/helpers/agreements/agreementsHelper';
+import { toScreamingSnakeCase } from '@/helpers';
 
 /*
  Lifecycle management:
@@ -27,21 +39,50 @@ import ovhCloudLogo from '@/assets/images/logo-ovhcloud.png';
   - Once we have the data, check if they allow the display of the modal (IAM authorized + at least one non-validated agreement), if the conditions are met, we show the modal, otherwise we switch to the next one
 */
 export default function AgreementsUpdateModal() {
-  const { shell } = useApplication();
-  const environment = shell.getPlugin('environment').getEnvironment();
-  const navigation = shell.getPlugin('navigation');
-
-  const billingAppName = 'billing';
-  const billingAppPath = `#/autorenew/agreements`;
-  const myContractsLink = navigation.getURL(billingAppName, billingAppPath);
-
   const { t } = useTranslation('agreements-update-modal');
-  const [showModal, setShowModal] = useState(true);
+  const { shell } = useApplication();
+  const navigation = shell.getPlugin('navigation');
+  const ux = shell.getPlugin('ux');
+
+  const { app, path } = useAgreementsPageNavigationParam();
+  const myContractsLink = navigation.getURL(app, path);
+
+  const preferenceKey = toScreamingSnakeCase(MODAL_NAME);
+
+  const shouldDisplayModal = useCheckModalDisplay(
+    usePendingAgreements,
+    hasPendingAgreements,
+    [AGREEMENTS_UPDATE_MODAL_FEATURE],
+    preferenceKey,
+    INTERVAL_BETWEEN_DISPLAY_IN_S,
+    undefined,
+    [myContractsLink],
+    undefined,
+    [ACCEPT_AGREEMENTS_IAM_ACTION],
+  );
+  const [showModal, setShowModal] = useState(shouldDisplayModal);
+  const { data: time } = useTime({ enabled: Boolean(shouldDisplayModal) });
+  const { mutate: updatePreference } = useCreatePreference(
+    preferenceKey,
+    false,
+  );
 
   const goToContractPage = () => {
     setShowModal(false);
-    navigation.navigateTo(billingAppName, billingAppPath);
+    navigation.navigateTo(app, path);
   };
+  
+  useEffect(() => {
+    if (shouldDisplayModal !== undefined) {
+      setShowModal(shouldDisplayModal);
+      if (shouldDisplayModal) {
+        updatePreference(time);
+      }
+      else {
+        ux.notifyModalActionDone(AgreementsUpdateModal.name);
+      }
+    }
+  }, [shouldDisplayModal]);
 
   return (
     showModal && (

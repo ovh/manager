@@ -134,6 +134,7 @@ export default class UserAccountInfosController {
   }
 
   onProfileUpdate() {
+    this.isUpdated = true;
     this.user = null;
     return this.$q.all({
       loadUserInfos: this.loadUserInfos(),
