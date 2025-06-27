@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 
 import { IFrameMessageBus } from '@ovh-ux/shell';
 import { IFrameAppRouter } from '@/core/routing';
@@ -15,8 +15,11 @@ import Preloader from '../common/Preloader';
 import usePreloader from '../common/Preloader/usePreloader';
 import useMfaEnrollment from '@/container/mfa-enrollment';
 import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
+import { ContainerProps } from '@/types/container';
 
-function NavReshuffleContainer(): JSX.Element {
+const ModalsContainer = lazy(() => import('@/components/ModalContainer/ModalsContainer'));
+
+function NavReshuffleContainer({ isCookiePolicyModalClosed }: ContainerProps): JSX.Element {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState(null);
   const shell = useShell();
@@ -58,6 +61,7 @@ function NavReshuffleContainer(): JSX.Element {
   return (
     <div className={style.navReshuffle}>
       <div ref={skipToTheMainContentSlot} />
+      {isCookiePolicyModalClosed && <ModalsContainer isPreloaderVisible={preloaderVisible} />}
       <div
         className={`${style.sidebar} ${
           isNavigationSidebarOpened ? '' : style.hidden
