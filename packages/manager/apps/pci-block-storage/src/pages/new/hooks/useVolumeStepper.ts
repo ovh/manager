@@ -3,7 +3,7 @@ import { Step, useStep } from '@/pages/new/hooks/useStep';
 import { TFormState } from '@/pages/new/form.type';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
 import { TRegion } from '@/api/data/regions';
-import { useVolumeCatalog } from '@/api/hooks/useCatalog';
+import { TVolumeModel, useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { EncryptionType } from '@/api/select/volume';
 
 export function useVolumeStepper(projectId: string) {
@@ -95,7 +95,7 @@ export function useVolumeStepper(projectId: string) {
         setForm((f) => ({ region: f.region }));
       },
       submit: (
-        volumeType: string,
+        volumeType: TVolumeModel['name'],
         showAvailabilityZones: boolean,
         encryptionType: EncryptionType | null,
       ) => {

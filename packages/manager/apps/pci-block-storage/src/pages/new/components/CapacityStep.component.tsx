@@ -26,7 +26,7 @@ import { StepState } from '@/pages/new/hooks/useStep';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
 import { useVolumeMaxSize } from '@/api/data/quota';
 import { TRegion } from '@/api/data/regions';
-import { useVolumePricing } from '@/api/hooks/useCatalog';
+import { TVolumeModel, useVolumePricing } from '@/api/hooks/useCatalog';
 import { EncryptionType } from '@/api/select/volume';
 
 export const VOLUME_MIN_SIZE = 10; // 10 Gio
@@ -35,7 +35,7 @@ export const VOLUME_UNLIMITED_QUOTA = -1; // Should be 10 * 1024 (but API is wro
 interface CapacityStepProps {
   projectId: string;
   region: TRegion;
-  volumeType: string;
+  volumeType: TVolumeModel['name'];
   encryptionType: EncryptionType | null;
   step: StepState;
   onSubmit: (volumeCapacity: number) => void;

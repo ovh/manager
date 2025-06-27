@@ -7,20 +7,18 @@ import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   getPricingSpecsFromModelPricings,
+  getVolumeModelPricings,
   mapFilterLeastPrice,
   mapFilterTags,
   mapVolumeModelAttach,
   mapVolumeModelName,
   mapVolumeModelPriceSpecs,
   TModelAttach,
+  TModelAvailabilityZones,
   TModelName,
   TModelPrice,
 } from '@/api/select/catalog';
-import {
-  getVolumeCatalog,
-  TVolumeAddon,
-  TVolumeCatalog,
-} from '@/api/data/catalog';
+import { getVolumeCatalog, TVolumeCatalog } from '@/api/data/catalog';
 import { EncryptionType } from '@/api/select/volume';
 
 export const getCatalogQuery = (ovhSubsidiary: string) => ({
@@ -80,8 +78,8 @@ export const useVolumeRegions = (projectId: string) => {
   };
 };
 
-export type TVolumeModel = Pick<TVolumeAddon, 'name'> &
-  TModelPrice &
+export type TVolumeModel = TModelPrice &
+  TModelAvailabilityZones &
   TModelName &
   TModelAttach;
 
@@ -123,7 +121,7 @@ export const useVolumeModels = (projectId: string, region: string) => {
 export const useVolumePricing = (
   projectId: string,
   region: string,
-  type: string,
+  modelName: TModelName['name'],
   encryptionType?: EncryptionType | null,
   capacity?: number,
 ) => {
@@ -134,18 +132,14 @@ export const useVolumePricing = (
 
   const { data, ...restQuery } = useQuery(getVolumeCatalogQuery(projectId));
 
-  const model = useMemo(
-    () => data?.models.find((m) => m.name === type) ?? null,
-    [data, type],
-  );
-
   const filteredPricings = useMemo(
     () =>
-      model?.pricings.filter(
-        (p) =>
-          p.regions.includes(region) && p.specs.encrypted === !!encryptionType,
-      ) ?? null,
-    [model, region, encryptionType],
+      getVolumeModelPricings(data)({
+        region,
+        modelName,
+        encryptionType,
+      }),
+    [data, region, modelName, encryptionType],
   );
 
   const is3azRegion = useMemo(
@@ -159,7 +153,6 @@ export const useVolumePricing = (
         filteredPricings !== null
           ? getPricingSpecsFromModelPricings(
               filteredPricings,
-              is3azRegion,
               getFormattedCatalogPrice,
               t,
               capacity,
