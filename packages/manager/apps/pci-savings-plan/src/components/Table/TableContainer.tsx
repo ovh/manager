@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   DataGridTextCell,
   Datagrid,
   DatagridColumn,
   useDatagridSearchParams,
 } from '@ovh-ux/manager-react-components';
+
 import { convertToDuration } from '@/utils/commercial-catalog/utils';
 
 import { SavingsPlanService } from '@/types/api.type';
@@ -21,23 +20,6 @@ type SortableKey = Pick<
   SavingsPlanService,
   'displayName' | 'endDate' | 'period' | 'periodEndDate'
 >;
-
-export const usePciUrl = () => {
-  const { projectId } = useParams();
-
-  const nav = useContext(ShellContext).shell.navigation;
-  const [url, setUrl] = useState('');
-
-  useEffect(() => {
-    nav
-      .getURL('public-cloud', `#/pci/projects/${projectId}`, {})
-      .then((data) => {
-        setUrl(data as string);
-      });
-  }, [projectId]);
-
-  return url;
-};
 
 export default function TableContainer({
   data,

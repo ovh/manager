@@ -115,10 +115,6 @@ export type CreatePlanFormProps = {
   isCreatePlanPending: boolean;
 };
 
-export const getDescriptionInstanceKey = (resource: string) => {
-  return `select_model_description_instance_${resource}`;
-};
-
 const CreatePlanForm: FC<CreatePlanFormProps> = ({
   instancesInfo,
   resources,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Params, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   OdsBreadcrumb,
@@ -8,11 +8,6 @@ import {
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 
 import { useProject } from '@ovh-ux/manager-pci-common';
-
-export type BreadcrumbHandleParams = {
-  data: unknown;
-  params: Params<string>;
-};
 
 const getPageName = (location: string, t: (key: string) => string) => {
   if (location.includes('new')) {

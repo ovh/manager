@@ -10,4 +10,3 @@ export type SavingsPlanConsumption = z.infer<
 >;
 export type SavingsPlanFlavorConsumption = z.infer<typeof flavorSchema>;
 export type SavingsPlanPeriodConsumption = z.infer<typeof periodSchema>;
-export type SavingsPlanPeriod = SavingsPlanConsumption['period'];

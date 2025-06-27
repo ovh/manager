@@ -21,7 +21,6 @@ import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
 import TabsDashboard from '@/components/Dashboard/TabsDashboard/TabsDashboard';
 
-import { CHANGELOG_LINKS } from '@/constants';
 import Header from '@/components/Header/Header';
 
 interface ListingTablePageProps {
@@ -31,23 +30,6 @@ interface ListingTablePageProps {
 interface ListingProps {
   refetchSavingsPlans: () => void;
 }
-
-export const formatDateString = (dateString: string, locale?: string) => {
-  const date = new Date(dateString);
-  return date.toString() !== 'Invalid Date'
-    ? date.toLocaleString(locale, {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-      })
-    : '-';
-};
-
-export const getMutationFilters = (filters: (string | number)[]) => ({
-  filters: { mutationKey: filters },
-});
 
 const ListingTablePage: React.FC<ListingTablePageProps> = ({
   data,
