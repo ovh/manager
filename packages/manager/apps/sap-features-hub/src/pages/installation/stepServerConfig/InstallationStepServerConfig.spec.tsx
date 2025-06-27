@@ -71,6 +71,8 @@ const initialContext: Partial<FormContextType> = {
       serviceName: '',
       datacenterId: null,
       clusterName: '',
+      applicationType: null,
+      applicationVersion: null,
       deploymentType: null,
     },
   },

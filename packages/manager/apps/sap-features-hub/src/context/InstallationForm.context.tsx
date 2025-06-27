@@ -22,6 +22,8 @@ type InitializationState = {
     | 'serviceName'
     | 'datacenterId'
     | 'clusterName'
+    | 'applicationType'
+    | 'applicationVersion'
     | 'deploymentType'
     | 'network'
     | 'thickDatastorePolicy'
@@ -55,6 +57,8 @@ const defaultInitializationState: InitializationState = {
     serviceName: '',
     datacenterId: null,
     clusterName: '',
+    applicationType: null,
+    applicationVersion: null,
     deploymentType: null,
     network: '',
     thickDatastorePolicy: '',

@@ -40,7 +40,7 @@ describe('getDefaultApplicationServer test suite', () => {
     { deploymentType: 'Standard', length: 1, roles: ['SCS'] },
     { deploymentType: 'Distributed', length: 2, roles: ['SCS', 'CI'] },
     {
-      deploymentType: 'High Availability',
+      deploymentType: 'High-Availability',
       length: 4,
       roles: ['SCS', 'ERS', 'CI', 'DI'],
     },
@@ -67,11 +67,11 @@ describe('isDefaultApplicationServer test suite', () => {
     { deploymentType: 'Distributed', serverIndex: 0, expected: true },
     { deploymentType: 'Distributed', serverIndex: 1, expected: true },
     { deploymentType: 'Distributed', serverIndex: 2, expected: false },
-    { deploymentType: 'High Availability', serverIndex: 0, expected: true },
-    { deploymentType: 'High Availability', serverIndex: 1, expected: true },
-    { deploymentType: 'High Availability', serverIndex: 2, expected: true },
-    { deploymentType: 'High Availability', serverIndex: 3, expected: true },
-    { deploymentType: 'High Availability', serverIndex: 4, expected: false },
+    { deploymentType: 'High-Availability', serverIndex: 0, expected: true },
+    { deploymentType: 'High-Availability', serverIndex: 1, expected: true },
+    { deploymentType: 'High-Availability', serverIndex: 2, expected: true },
+    { deploymentType: 'High-Availability', serverIndex: 3, expected: true },
+    { deploymentType: 'High-Availability', serverIndex: 4, expected: false },
   ];
 
   test.each(testCases)(
@@ -97,11 +97,11 @@ describe('isApplicationServerDeletable test suite', () => {
     { deploymentType: 'Distributed', serverIndex: 0, expected: false },
     { deploymentType: 'Distributed', serverIndex: 1, expected: false },
     { deploymentType: 'Distributed', serverIndex: 2, expected: true },
-    { deploymentType: 'High Availability', serverIndex: 0, expected: false },
-    { deploymentType: 'High Availability', serverIndex: 1, expected: false },
-    { deploymentType: 'High Availability', serverIndex: 2, expected: false },
-    { deploymentType: 'High Availability', serverIndex: 3, expected: true },
-    { deploymentType: 'High Availability', serverIndex: 4, expected: true },
+    { deploymentType: 'High-Availability', serverIndex: 0, expected: false },
+    { deploymentType: 'High-Availability', serverIndex: 1, expected: false },
+    { deploymentType: 'High-Availability', serverIndex: 2, expected: false },
+    { deploymentType: 'High-Availability', serverIndex: 3, expected: true },
+    { deploymentType: 'High-Availability', serverIndex: 4, expected: true },
   ];
 
   test.each(testCases)(
@@ -138,8 +138,8 @@ describe('isValidApplicationServerList test suite', () => {
     },
     {
       description: 'default server list',
-      deploymentType: 'High Availability',
-      applicationServers: getDefaultApplicationServers('High Availability'),
+      deploymentType: 'High-Availability',
+      applicationServers: getDefaultApplicationServers('High-Availability'),
       expected: true,
     },
     {
