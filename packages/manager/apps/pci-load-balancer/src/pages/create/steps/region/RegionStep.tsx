@@ -35,6 +35,7 @@ import { useTracking } from '@/pages/create/hooks/useTracking';
 import { useGetRegionPrivateNetworks } from '@/api/hook/useNetwork';
 import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
 import { useDeployments } from '@/api/hook/useDeployments/useDeployments';
+import GuideLink from '@/components/GuideLink/GuideLink.component';
 
 export type TRegionStepProps = {
   regions: TProductAvailabilityRegion[];
@@ -46,17 +47,6 @@ const REGION_3AZ_TYPE = 'region-3-az';
 
 const isRegionWith3AZ = (regions: TProductAvailabilityRegion[]) =>
   regions.some((region) => region.type === REGION_3AZ_TYPE);
-
-const GuideLink = ({
-  children,
-  href,
-}: Readonly<{ href: string; children?: string }>) => (
-  <Links
-    label={children}
-    href={href}
-    target={OdsHTMLAnchorElementTarget._blank}
-  />
-);
 
 export const RegionStep = ({
   regions,
