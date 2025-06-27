@@ -867,7 +867,7 @@ class DedicatedCloudService {
         rootPath: 'apiv6',
         urlParams: {
           serviceName,
-          networkAccessId: entry.id,
+          networkAccessId: entry.networkAccessId,
         },
         data: {
           description: entry.description,
