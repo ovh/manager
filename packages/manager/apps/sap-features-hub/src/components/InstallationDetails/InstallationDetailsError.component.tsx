@@ -16,9 +16,15 @@ export function getTranslationKeyOfStepInError(
 
   const steps = [
     { key: 'initialisation', status: installation?.gatewayStatus },
-    { key: 'create_virtuals_machines', status: installation?.terraformStatus },
-    { key: 'sap_hana_install', status: installation?.ansibleSapHanaStatus },
-    { key: 'sap_install', status: installation?.ansibleSapSystemStatus },
+    {
+      key: 'create_virtuals_machines',
+      status: installation?.vmDeploymentStatus,
+    },
+    {
+      key: 'sap_hana_install',
+      status: installation?.sapHanaInstallationStatus,
+    },
+    { key: 'sap_install', status: installation?.sapSystemInstallationStatus },
     { key: 'clean_resources', status: installation?.cleanStatus },
   ];
 

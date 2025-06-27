@@ -18,9 +18,9 @@ import { TGetInstallationTaskParams } from '@/data/api/sapInstallations';
 export function computeProgressPercentage(installation?: InstallationDetails) {
   const steps = [
     { status: installation?.gatewayStatus, value: 5 },
-    { status: installation?.terraformStatus, value: 25 },
-    { status: installation?.ansibleSapHanaStatus, value: 50 },
-    { status: installation?.ansibleSapSystemStatus, value: 95 },
+    { status: installation?.vmDeploymentStatus, value: 25 },
+    { status: installation?.sapHanaInstallationStatus, value: 50 },
+    { status: installation?.sapSystemInstallationStatus, value: 95 },
     { status: installation?.cleanStatus, value: 100 },
   ];
 
@@ -125,14 +125,16 @@ export const InstallationDetailsProgress = ({
           </OdsText>
         </div>
         <div className="flex gap-2 items-center">
-          <StepStatusIcon status={installationTaskDetails?.terraformStatus} />
+          <StepStatusIcon
+            status={installationTaskDetails?.vmDeploymentStatus}
+          />
           <OdsText>
             {t('dashboard_installation_progress_step_create_virtuals_machines')}
           </OdsText>
         </div>
         <div className="flex gap-2 items-center">
           <StepStatusIcon
-            status={installationTaskDetails?.ansibleSapHanaStatus}
+            status={installationTaskDetails?.sapHanaInstallationStatus}
           />
           <OdsText>
             {t('dashboard_installation_progress_step_sap_hana_install')}
@@ -140,7 +142,7 @@ export const InstallationDetailsProgress = ({
         </div>
         <div className="flex gap-2 items-center">
           <StepStatusIcon
-            status={installationTaskDetails?.ansibleSapSystemStatus}
+            status={installationTaskDetails?.sapSystemInstallationStatus}
           />
           <OdsText>
             {t('dashboard_installation_progress_step_sap_install')}
