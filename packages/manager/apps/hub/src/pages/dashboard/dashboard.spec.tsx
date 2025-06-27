@@ -20,7 +20,6 @@ import EnterpriseBillingSummary from '@/pages/dashboard/EnterpriseBillingSummary
 import PaymentStatus from '@/pages/dashboard/PaymentStatus.component';
 import Catalog from '@/pages/dashboard/Catalog.component';
 import SiretBanner from '@/pages/dashboard/SiretBanner.component';
-import SiretModal from '@/pages/dashboard/SiretModal.component';
 import KycIndiaBanner from '@/pages/dashboard/KycIndiaBanner.component';
 import KycFraudBanner from '@/pages/dashboard/KycFraudBanner.component';
 import NotificationsCarousel from '@/pages/dashboard/NotificationsCarousel.component';
@@ -103,7 +102,6 @@ const mocks: any = vi.hoisted(() => ({
     availability: {
       'billing:management': false,
       'hub:banner-hub-invite-customer-siret': true,
-      'hub:popup-hub-invite-customer-siret': true,
       'identity-documents': true,
       'procedures:fraud': true,
     },
@@ -354,7 +352,6 @@ describe('Layout.page', () => {
     expect(queryByTestId('banner_link')).not.toBeInTheDocument();
     expect(queryByTestId('notifications_carousel')).not.toBeInTheDocument();
     expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
-    expect(queryByTestId('siret_modal')).not.toBeInTheDocument();
     expect(queryByText('Payment Status')).not.toBeInTheDocument();
     expect(queryByText('Products')).not.toBeInTheDocument();
 
@@ -408,7 +405,6 @@ describe('Layout.page', () => {
     expect(welcome).not.toBeNull();
     expect(queryByTestId('notifications_carousel')).not.toBeNull();
     expect(getByTestId('siret_banner')).not.toBeNull();
-    expect(getByTestId('siret_modal')).not.toBeNull();
     expect(getByTestId('kyc_india_banner')).not.toBeNull();
     expect(getByTestId('kyc_fraud_banner')).not.toBeNull();
     expect(getByText('Support')).not.toBeNull();
@@ -419,11 +415,9 @@ describe('Layout.page', () => {
     const billingSummary = await findByTestId('billing_summary');
     const paymentStatus = await findByTestId('payment_status');
     const siretBanner = await findByTestId('siret_banner');
-    const siretModal = await findByTestId('siret_modal');
     expect(billingSummary).not.toBeNull();
     expect(paymentStatus).not.toBeNull();
     expect(siretBanner).not.toBeNull();
-    expect(siretModal).not.toBeNull();
   });
 
   it('should have correct css class if account sidebard is closed', async () => {
@@ -787,87 +781,6 @@ describe('Layout.page', () => {
       mocks.shellContext.environment.user.companyNationalIdentificationNumber = 99999;
       const { queryByTestId } = renderComponent(<SiretBanner />);
       expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
-    });
-  });
-
-  describe('SiretModal component', () => {
-    it('should render for french company without national company identification number', async () => {
-      mocks.shellContext.environment.user.companyNationalIdentificationNumber = null;
-      const { getByTestId, getByText } = renderComponent(<SiretModal />);
-      expect(getByTestId('siret_modal')).not.toBeNull();
-      expect(
-        getByText('manager_hub_dashboard_modal_siret_part_1'),
-      ).not.toBeNull();
-      expect(
-        getByText('manager_hub_dashboard_modal_siret_part_2'),
-      ).not.toBeNull();
-      expect(
-        getByText('manager_hub_dashboard_modal_siret_cancel'),
-      ).not.toBeNull();
-      expect(
-        getByText('manager_hub_dashboard_modal_siret_link'),
-      ).not.toBeNull();
-    });
-
-    it('should send tracking hit when displayed', async () => {
-      trackPageMock.mockReset();
-      renderComponent(<SiretModal />);
-
-      expect(trackPageMock).toHaveBeenCalledWith({
-        pageType: 'pop-up',
-        pageName: 'siret',
-      });
-    });
-
-    it('should send tracking hit when clicking on confirmation button', async () => {
-      trackClickMock.mockReset();
-      const { findByText } = renderComponent(<SiretModal />);
-      const confirmLink = await findByText(
-        'manager_hub_dashboard_modal_siret_link',
-      );
-      expect(confirmLink).not.toBeNull();
-      await act(() => fireEvent.click(confirmLink));
-
-      expect(trackClickMock).toHaveBeenCalledWith({
-        actionType: 'action',
-        actions: ['hub', 'add-siret-popup', 'confirm'],
-      });
-    });
-
-    it('should send tracking hit when clicking and close modal on cancellation button', async () => {
-      trackClickMock.mockReset();
-      const { findByText, queryByTestId } = renderComponent(<SiretModal />);
-      const cancelLink = await findByText(
-        'manager_hub_dashboard_modal_siret_cancel',
-      );
-      expect(cancelLink).not.toBeNull();
-      await act(() => fireEvent.click(cancelLink));
-
-      expect(trackClickMock).toHaveBeenCalledWith({
-        actionType: 'action',
-        actions: ['hub', 'add-siret-popup', 'cancel'],
-      });
-      expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
-    });
-
-    it('should not be displayed for non company customer', async () => {
-      mocks.shellContext.environment.user.legalform = 'individual';
-      const { queryByTestId } = renderComponent(<SiretModal />);
-      expect(queryByTestId('siret_modal')).not.toBeInTheDocument();
-    });
-
-    it('should not be displayed for customer not residing in France', async () => {
-      mocks.shellContext.environment.user.legalform = 'corporation';
-      mocks.shellContext.environment.user.country = 'GB';
-      const { queryByTestId } = renderComponent(<SiretModal />);
-      expect(queryByTestId('siret_modal')).not.toBeInTheDocument();
-    });
-
-    it('should not be displayed for french company with national company identification number', async () => {
-      mocks.shellContext.environment.user.country = 'FR';
-      mocks.shellContext.environment.user.companyNationalIdentificationNumber = 99999;
-      const { queryByTestId } = renderComponent(<SiretModal />);
-      expect(queryByTestId('siret_modal')).not.toBeInTheDocument();
     });
   });
 
