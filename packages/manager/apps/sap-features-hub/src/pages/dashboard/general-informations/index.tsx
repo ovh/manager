@@ -9,7 +9,9 @@ import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
-import useGuideUtils from '@/hooks/guide/useGuideUtils';
+import useGuideUtils, {
+  GUIDE_LINK_SOURCE_CODE,
+} from '@/hooks/guide/useGuideUtils';
 import { BACKUP_SAP_TITLE } from './general-informations.constants';
 import { TRACKING } from '@/tracking.constants';
 import { testIds } from '@/utils/testIds.constants';
@@ -90,7 +92,7 @@ function GeneralInfos() {
             <Links
               data-testid={testIds.hubLinkInfraAsCodeGit}
               label={t('blocks_code_source')}
-              href="https://github.com/ovh/terraform-vsphere-sap-system/tree/master"
+              href={GUIDE_LINK_SOURCE_CODE.infrastructureAsCode}
               target="_blank"
               type={LinkType.external}
               onClickReturn={() =>
@@ -236,7 +238,7 @@ function GeneralInfos() {
             <Links
               data-testid={testIds.hubLinkAnalysisDocs}
               label={t('blocks_documentation')}
-              href={t('logs_analysis_and_extract')}
+              href={guides.logs_analysis_and_extract}
               target="_blank"
               type={LinkType.external}
               onClickReturn={() =>
@@ -256,7 +258,7 @@ function GeneralInfos() {
             <Links
               data-testid={testIds.hubLinkAnalysisGit}
               label={t('blocks_code_source')}
-              href="https://github.com/ovh/terraform-vsphere-sap-system/tree/master"
+              href={GUIDE_LINK_SOURCE_CODE.analysisAndExtract}
               target="_blank"
               type={LinkType.external}
               onClickReturn={() =>
@@ -285,7 +287,6 @@ function GeneralInfos() {
           />
         ))}
       </div>
-      <OdsText>{t('blocks_explanations')}</OdsText>
     </div>
   );
 }
