@@ -44,8 +44,8 @@ describe('StepStatusIcon', () => {
 });
 
 const baseInstallation: InstallationDetails = {
-  ansibleSapHanaStatus: SAPInstallationStatus.pending,
-  ansibleSapSystemStatus: SAPInstallationStatus.pending,
+  sapHanaInstallationStatus: SAPInstallationStatus.pending,
+  sapSystemInstallationStatus: SAPInstallationStatus.pending,
   applicationType: 'ABAP',
   applicationVersion: '1.0.0',
   cleanStatus: SAPInstallationStatus.pending,
@@ -62,7 +62,7 @@ const baseInstallation: InstallationDetails = {
     id: '',
     urn: '',
   },
-  terraformStatus: SAPInstallationStatus.pending,
+  vmDeploymentStatus: SAPInstallationStatus.pending,
 };
 
 const testCases = [
@@ -75,26 +75,26 @@ const testCases = [
     expected: 100,
   },
   {
-    description: 'returns 95 when ansibleSapSystemStatus is SUCCESS',
+    description: 'returns 95 when sapSystemInstallationStatus is SUCCESS',
     installation: {
       ...baseInstallation,
-      ansibleSapSystemStatus: SAPInstallationStatus.success,
+      sapSystemInstallationStatus: SAPInstallationStatus.success,
     },
     expected: 95,
   },
   {
-    description: 'returns 50 when ansibleSapHanaStatus is SUCCESS',
+    description: 'returns 50 when sapHanaInstallationStatus is SUCCESS',
     installation: {
       ...baseInstallation,
-      ansibleSapHanaStatus: SAPInstallationStatus.success,
+      sapHanaInstallationStatus: SAPInstallationStatus.success,
     },
     expected: 50,
   },
   {
-    description: 'returns 25 when terraformStatus is SUCCESS',
+    description: 'returns 25 when vmDeploymentStatus is SUCCESS',
     installation: {
       ...baseInstallation,
-      terraformStatus: SAPInstallationStatus.success,
+      vmDeploymentStatus: SAPInstallationStatus.success,
     },
     expected: 25,
   },
@@ -116,8 +116,8 @@ const testCases = [
       'returns highest priority value when multiple statuses are SUCCESS',
     installation: {
       ...baseInstallation,
-      ansibleSapSystemStatus: SAPInstallationStatus.success,
-      terraformStatus: SAPInstallationStatus.success,
+      sapSystemInstallationStatus: SAPInstallationStatus.success,
+      vmDeploymentStatus: SAPInstallationStatus.success,
       gatewayStatus: SAPInstallationStatus.success,
     },
     expected: 95,
