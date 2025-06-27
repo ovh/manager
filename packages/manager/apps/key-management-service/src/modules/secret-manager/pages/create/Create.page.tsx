@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -28,6 +28,7 @@ import {
   SECRET_MANAGER_ROUTES_URLS,
   SECRET_MANAGER_SEARCH_PARAMS,
 } from '@secret-manager/routes/routes.constants';
+import { RegionSelector } from './RegionSelector.component';
 
 export default function SecretCreatePage() {
   const { t } = useTranslation([
@@ -38,9 +39,16 @@ export default function SecretCreatePage() {
   const navigate = useNavigate();
   const { addError } = useNotifications();
 
-  /* domain */
-  const [searchParams, setSearchParams] = useSearchParams();
-  const domainId = searchParams.get(SECRET_MANAGER_SEARCH_PARAMS.domainId);
+  /* domain from the secret list */
+  const [searchParams] = useSearchParams();
+  const backDomainId = searchParams.get(SECRET_MANAGER_SEARCH_PARAMS.domainId);
+
+  const backLink = backDomainId
+    ? useHref(SECRET_MANAGER_ROUTES_URLS.secretListing(backDomainId))
+    : useHref(SECRET_MANAGER_ROUTES_URLS.secretManagerRoot);
+
+  /* Selected Domain */
+  const [selectedDomainId, setSelectedDomainId] = useState<string>();
 
   /* Form */
   const pathSchema = UseSecretPathSchema();
@@ -53,6 +61,10 @@ export default function SecretCreatePage() {
     handleSubmit,
     formState: { isDirty, isValid, errors },
   } = useForm({
+    defaultValues: {
+      path: 'a/test',
+      data: '{"a": "a"}',
+    },
     mode: 'onTouched',
     resolver: zodResolver(secretSchema),
   });
@@ -60,7 +72,7 @@ export default function SecretCreatePage() {
   /* Submit */
   const { mutate: createSecret, isPending } = usePostSecret({
     onSuccess: ({ path }) =>
-      navigate(SECRET_MANAGER_ROUTES_URLS.secretDashboard(domainId, path)),
+      navigate(SECRET_MANAGER_ROUTES_URLS.secretDashboard(backDomainId, path)),
     onError: (error) => {
       addError(
         t(`${NAMESPACES.ERROR}:error_message`, {
@@ -72,7 +84,7 @@ export default function SecretCreatePage() {
 
   const handleConfirmClick: SubmitHandler<SecretSchema> = (formData) => {
     createSecret({
-      okmsId: domainId,
+      okmsId: backDomainId,
       data: {
         path: formData.path,
         version: { data: JSON.parse(formData.data) },
@@ -89,6 +101,10 @@ export default function SecretCreatePage() {
       >
         <div className="flex flex-col gap-5">
           <OdsText preset="heading-2">{t('region_section_title')}</OdsText>
+          <RegionSelector
+            selectedDomainId={selectedDomainId}
+            setSelectedDomainId={setSelectedDomainId}
+          />
         </div>
         <div className="flex flex-col gap-5">
           <OdsText preset="heading-2">{t('values_section_title')}</OdsText>
@@ -154,11 +170,11 @@ export default function SecretCreatePage() {
           <Links
             label={t('back', { ns: NAMESPACES.ACTIONS })}
             type={LinkType.back}
-            href={useHref(SECRET_MANAGER_ROUTES_URLS.secretListing(domainId))}
+            href={backLink}
           />
           <OdsButton
             type="submit"
-            isDisabled={!isDirty || !isValid}
+            isDisabled={!isDirty || !isValid || !selectedDomainId}
             isLoading={isPending}
             label={t('create', { ns: NAMESPACES.ACTIONS })}
           />
