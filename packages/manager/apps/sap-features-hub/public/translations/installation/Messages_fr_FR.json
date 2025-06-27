@@ -111,7 +111,7 @@
   "server_config_input_ipv4_address": "Adresse IPv4",
   "server_config_helper_ipv4_address": "L'adresse IP doit être au format IPv4.",
   "server_config_input_instance_number": "Numéro d'instance",
-  "server_config_helper_instance_number": "Le numéro d'instance doit être composé de 2 chiffres.",
+  "server_config_helper_instance_number": "Le numéro d'instance doit être compris entre 00 et 97.",
   "server_config_applications_servers": "Serveurs d'applications",
   "server_config_add_vm_cta": "Ajouter une VM",
   "server_config_error_DUPLICATED_NAME": "Chaque serveur d'application doit avoir un nom unique.",
