@@ -248,6 +248,7 @@ const mapInstanceNetworks = (
     const section = type === 'floating' ? 'public' : type;
     const foundNetwork = acc.get(section);
     const network: TNetwork = {
+      id: subnet.network.id,
       ip,
       version,
       name: subnet.network.name,
@@ -256,7 +257,10 @@ const mapInstanceNetworks = (
         type === 'floating'
           ? `pci_instances_dashboard_network_floating_title`
           : undefined,
-      actions: getNetworkActionHref(dedicatedUrl, projectId, ip),
+      actions:
+        type !== 'private'
+          ? getNetworkActionHref(dedicatedUrl, projectId, ip)
+          : [],
     };
 
     if (!foundNetwork) {
