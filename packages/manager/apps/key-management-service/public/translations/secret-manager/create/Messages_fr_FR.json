@@ -1,0 +1,15 @@
+{
+  "title": "Créer un secret",
+  "region_section_title": "1. Sélection de la région",
+  "values_section_title": "2. Configuration des valeurs",
+  "path_title": "Path",
+  "path_helper": "Pour créer une hiérarchie, utilisez des '/'. example: Prod/database/MySQL",
+  "path_error_allowed_characters": "Le path ne peut contenir que les caractères suivant: A-Z a-z 0-9 . _ : / = @ et -",
+  "path_error_structure": "Le path ne peut commencer ou finir par '/', ni contenir deux '/' à la suite.",
+  "values_title": "Valeurs",
+  "values_textarea_label": "Éditeur",
+  "values_error_invalid_json": "JSON non valide",
+  "custom_metadata_title": "Custom Metadata",
+  "metadata_title": "Paramétrages par défaut",
+  "paiement_section_title": "3. Moyen de paiement"
+}
