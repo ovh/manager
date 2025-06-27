@@ -22,8 +22,8 @@ export enum SAPInstallationStatus {
 }
 
 export type InstallationDetails = {
-  ansibleSapHanaStatus: SAPInstallationStatus;
-  ansibleSapSystemStatus: SAPInstallationStatus;
+  sapHanaInstallationStatus: SAPInstallationStatus;
+  sapSystemInstallationStatus: SAPInstallationStatus;
   applicationType: 'ABAP' | 'JAVA';
   applicationVersion: string;
   cleanStatus: SAPInstallationStatus;
@@ -37,5 +37,5 @@ export type InstallationDetails = {
   startTime: string;
   status: SAPInstallationStatus;
   taskId: string;
-  terraformStatus: SAPInstallationStatus;
+  vmDeploymentStatus: SAPInstallationStatus;
 };

@@ -41,8 +41,8 @@ export const useMockInstallationTaskDetailsOptions = ({
       return new Promise((resolve) => {
         // Generate fake data for InstallationDetails
         const mockData: InstallationDetails = {
-          ansibleSapHanaStatus: SAPInstallationStatus.failure,
-          ansibleSapSystemStatus: SAPInstallationStatus.failure,
+          sapHanaInstallationStatus: SAPInstallationStatus.failure,
+          sapSystemInstallationStatus: SAPInstallationStatus.failure,
           applicationType: 'ABAP',
           applicationVersion: '1.0.0',
           cleanStatus: SAPInstallationStatus.pending,
@@ -79,7 +79,7 @@ export const useMockInstallationTaskDetailsOptions = ({
           startTime: '2022-01-01T10:00:00',
           status: SAPInstallationStatus.pending,
           taskId: '789012',
-          terraformStatus: SAPInstallationStatus.success,
+          vmDeploymentStatus: SAPInstallationStatus.success,
         };
         setTimeout(() => {
           resolve({ data: mockData });
