@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { SelectField } from '@/components/Form/SelectField.component';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
-import {
-  APPLICATION_TYPES,
-  APPLICATION_VERSIONS,
-  DEPLOYMENT_TYPES,
-} from './installationStepDeployment.constants';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import InstallationFormLayout from '@/components/Form/FormLayout.component';
 import { DeploymentType } from '@/types/sapCapabilities.type';
@@ -17,6 +12,11 @@ import { useStepValidation } from '@/hooks/apiValidation/useApiValidation';
 import { mapFormDeploymentToStructured } from '@/mappers/stepFormMappers';
 import { DeploymentForm } from '@/types/form.type';
 import { useStateMessage } from '@/hooks/stateMessage/stateMessage';
+import { useSapCapabilities } from '@/hooks/sapCapabilities/useSapCapabilities';
+import {
+  getSelectDefaultValue,
+  getSelectLatestValue,
+} from '@/utils/selectValues';
 
 export default function InstallationStepDeployment() {
   const { t } = useTranslation('installation');
@@ -29,11 +29,15 @@ export default function InstallationStepDeployment() {
       deploymentType,
     },
     setValues,
-    initializationState: {
-      isPrefilled,
-      prefilledData: { deploymentType: prefilledDeployment },
-    },
+    initializationState: { isPrefilled, prefilledData },
   } = useInstallationFormContext();
+
+  const {
+    data: sapCapabilities,
+    isLoading: isLoadingSapCapabilities,
+    isError: isSapCapabilitiesError,
+  } = useSapCapabilities(serviceName);
+
   const { trackClick } = useOvhTracking();
 
   const {
@@ -47,9 +51,6 @@ export default function InstallationStepDeployment() {
     setValues((prev) => ({ ...prev, [name]: value }));
     clearServerErrorMessage();
   };
-
-  const isStepValid =
-    !!applicationVersion && !!applicationType && !!deploymentType;
 
   const {
     mutate: validate,
@@ -65,6 +66,16 @@ export default function InstallationStepDeployment() {
     },
   });
 
+  const formData = { deploymentType, applicationType, applicationVersion };
+  const isStepValid = Object.values(formData).every((value) => !!value);
+
+  const getLatestValue = (input: keyof DeploymentForm) =>
+    getSelectLatestValue({
+      isPrefilled,
+      value: formData[input],
+      prefilledValue: prefilledData[input],
+    });
+
   return (
     <InstallationFormLayout
       title={t('deployment_title')}
@@ -76,7 +87,7 @@ export default function InstallationStepDeployment() {
       serverErrorMessage={serverErrorMessage}
       onSubmit={() => {
         trackClick(TRACKING.installation.completeInformations);
-        validate({ applicationVersion, applicationType, deploymentType });
+        validate(formData);
       }}
       onPrevious={previousStep}
     >
@@ -84,28 +95,40 @@ export default function InstallationStepDeployment() {
         name="applicationVersion"
         label={t('deployment_input_application_version')}
         placeholder={t('select_label')}
-        options={APPLICATION_VERSIONS}
+        options={sapCapabilities?.applicationVersions}
+        isLoading={isLoadingSapCapabilities}
+        isDisabled={isLoadingSapCapabilities || isSapCapabilitiesError}
         handleChange={handleChange}
-        defaultValue={applicationVersion}
+        defaultValue={getSelectDefaultValue(
+          getLatestValue('applicationVersion'),
+          sapCapabilities?.applicationVersions,
+        )}
       />
       <SelectField
         name="applicationType"
         label={t('deployment_input_application_type')}
         placeholder={t('select_label')}
-        options={APPLICATION_TYPES}
+        options={sapCapabilities?.applicationTypes}
+        isLoading={isLoadingSapCapabilities}
+        isDisabled={isLoadingSapCapabilities || isSapCapabilitiesError}
         handleChange={handleChange}
-        defaultValue={applicationType}
+        defaultValue={getSelectDefaultValue(
+          getLatestValue('applicationType'),
+          sapCapabilities?.applicationTypes,
+        )}
       />
       <SelectField
         name="deploymentType"
         label={t('deployment_input_deployment_type')}
         placeholder={t('select_label')}
-        options={DEPLOYMENT_TYPES}
+        options={sapCapabilities?.deploymentTypes}
+        isLoading={isLoadingSapCapabilities}
+        isDisabled={isLoadingSapCapabilities || isSapCapabilitiesError}
         handleChange={(e) => {
           const newValue = e.detail.value as DeploymentType;
           if (newValue) {
             const hasChangedPrefilledValue =
-              isPrefilled && prefilledDeployment !== newValue;
+              isPrefilled && prefilledData.deploymentType !== newValue;
 
             if (!isPrefilled || hasChangedPrefilledValue) {
               setValues((prev) => ({
@@ -116,7 +139,10 @@ export default function InstallationStepDeployment() {
             }
           }
         }}
-        defaultValue={deploymentType}
+        defaultValue={getSelectDefaultValue(
+          getLatestValue('deploymentType'),
+          sapCapabilities?.deploymentTypes,
+        )}
       />
     </InstallationFormLayout>
   );
