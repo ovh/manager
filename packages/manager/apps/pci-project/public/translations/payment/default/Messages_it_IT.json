@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_default_title": "Il tuo metodo di pagamento",
+  "pci_project_new_payment_default_explain_info": "Questo metodo di pagamento predefinito verrà utilizzato per il saldo dei consumi del tuo progetto Public Cloud. Non vengono eseguiti addebiti o prelievi se non vengono utilizzate risorse.",
+  "pci_project_new_payment_default_method_use_others_payment_methods": "Modifica il metodo di pagamento predefinito",
+  "pci_project_new_payment_default_method_badge_default": "Predefinito",
+  "pci_project_new_payment_default_method_expiration_date": "Scadenza: {{formatDate}}"
+}

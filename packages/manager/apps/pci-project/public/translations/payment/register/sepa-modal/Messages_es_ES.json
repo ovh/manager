@@ -1,0 +1,6 @@
+{
+  "ovh_payment_method_register_sepa_information_modal_title": "Cuentas bancarias en zona SEPA",
+  "ovh_payment_method_register_sepa_information_modal_confirm": "Lo he entendido",
+  "ovh_payment_method_register_sepa_information_modal_part_1": "Para poder realizar un adeudo directo, debe disponer de una cuenta bancaria en un país de la Zona Única de Pagos en Euros, conocida como la <strong>zona SEPA</strong>.",
+  "ovh_payment_method_register_sepa_information_modal_part_2": "Si no dispone de este tipo de cuenta, le recomendamos que elija otra forma de pago."
+}
