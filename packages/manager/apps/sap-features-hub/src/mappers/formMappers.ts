@@ -77,7 +77,7 @@ const mapStructuredToForm = (
   network: form.hanaServers[0]?.network,
   netmask: form.hanaServers[0]?.netmask,
   gateway: form.hanaServers[0]?.gateway,
-  passwordCrypted: form.hanaServers[0]?.passwordCrypted,
+  encryptPassword: form.hanaServers[0]?.encryptPassword,
   thickDatastorePolicy: form.hanaServers[0]?.thickDatastorePolicy,
   hanaServerOva: form.hanaServers[0]?.ovaTemplate,
   hanaServerDatastore: form.hanaServers[0]?.datastoreName,
