@@ -37,10 +37,10 @@ function useVolumeEditData(
     if (!catalog || !volume) {
       return { region: null, pricing: null, has3Az: false };
     }
-    const catalogVolume =
-      catalog.models.find((addon) => addon.name === volume.type) || null;
-    const regionPricing = (catalogVolume?.pricings || []).find((p) =>
-      p.regions.includes(volume.region),
+    const regionPricing = (
+      catalog?.models.flatMap((m) => m.pricings) ?? []
+    ).find(
+      (p) => p.specs.name === volume.type && p.regions.includes(volume.region),
     );
     return {
       region: catalog.regions.find((r) => r.name === volume.region) || null,
