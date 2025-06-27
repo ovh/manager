@@ -2,6 +2,7 @@ import { v6 } from '@ovh-ux/manager-core-api';
 import {
   TInstanceDetailDto,
   TInstanceDto,
+  TNetworkAttachedToInstanceDto,
   TRetrieveInstancesQueryParams,
 } from '@/types/instance/api.type';
 
@@ -167,6 +168,7 @@ export const getRegionInstanceMock = ({
     .get(`/cloud/project/${projectId}/region/${region}/instance/${instanceId}`)
     .then(({ data }) => ({
       ...data,
+      id: '23372ac7-4144-4352-bafa-45a8a48137ac',
       regionType: 'region',
       image: {
         id: data.imageId,
@@ -329,4 +331,17 @@ export const editInstanceName = ({
 }): Promise<TInstanceDto> =>
   v6.put(instanceUrl(projectId, instanceId), {
     instanceName,
+  });
+
+export const attachNetworkToInstance = ({
+  projectId,
+  instanceId,
+  networkId,
+}: {
+  projectId: string;
+  instanceId: string;
+  networkId: string;
+}): Promise<TNetworkAttachedToInstanceDto> =>
+  v6.post(`/cloud/project/${projectId}/instance/${instanceId}/interface`, {
+    networkId,
   });

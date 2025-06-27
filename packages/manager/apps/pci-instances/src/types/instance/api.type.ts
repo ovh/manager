@@ -124,3 +124,8 @@ export type TInstanceDetailDto = {
   sshKey: string;
   login: string;
 };
+
+export type TNetworkAttachedToInstanceDto = DeepReadonly<{
+  id: string;
+  networkId: string;
+}>;
