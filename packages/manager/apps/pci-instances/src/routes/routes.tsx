@@ -137,6 +137,16 @@ const routes: RouteObject[] = [
             ...lazyRouteConfig(() =>
               import('@/pages/instances/instance/dashboard/Dashboard.page'),
             ),
+            children: [
+              {
+                path: 'attach-network',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/instances/instance/action/AttachNetwork.page'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: 'vnc',
