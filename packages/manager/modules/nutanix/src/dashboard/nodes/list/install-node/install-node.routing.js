@@ -30,5 +30,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .flat(),
       availableVersions: /* ngInject */ (cluster) => cluster.availableVersions,
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

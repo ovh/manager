@@ -1,12 +1,18 @@
-import { MAX_NODES_BY_CLUSTER } from '../../../constants';
+import {
+  ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
+  MAX_NODES_BY_CLUSTER,
+  PREFIX_TRACKING_NUTANIX_NUTANIX,
+  PREFIX_TRACKING_NUTANIX_POPUP,
+} from '../../../constants';
 
 export default class {
   /* @ngInject */
-  constructor($window, $translate, $locale) {
+  constructor($window, $translate, $locale, atInternet) {
     this.$translate = $translate;
     this.$window = $window;
     this.userLanguage = $locale.localeID.replace('_', '-');
     this.numberOfNodes = 1;
+    this.atInternet = atInternet;
 
     this.defineCustomErrorMessages();
   }
@@ -59,13 +65,29 @@ export default class {
     return `${successMessage}<a href="${orderExpressLink}" target="_blank" rel="nooponer">${helpLinkLabel}</a>`;
   }
 
+  onCancel() {
+    this.trackClick({
+      name: `${PREFIX_TRACKING_NUTANIX_POPUP}::button::order-nodes::cancel`,
+      type: 'action',
+    });
+    this.goBack();
+  }
+
   onSubmit() {
+    this.trackClick({
+      name: `${PREFIX_TRACKING_NUTANIX_POPUP}::button::order-nodes::confirm`,
+      type: 'action',
+    });
     if (this.cancelSubscriptionForm.$invalid) {
       return;
     }
 
     this.openExpressOrderTab();
 
+    this.trackPage({
+      name: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::banner-success::cluster::nodes::add-node-${this.nodeId}_success`,
+      level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
+    });
     this.handleSuccess(this.generateSuccessMessage());
   }
 
