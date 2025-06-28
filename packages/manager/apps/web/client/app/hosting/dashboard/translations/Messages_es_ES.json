@@ -1396,5 +1396,6 @@
   "hosting_tab_STATISTICS_series_unit_cnx_min": "conexiones/min.",
   "hosting_tab_STATISTICS_series_unit_sec_min": "s/min.",
   "hosting_tab_STATISTICS_series_unit_overload": "overload",
-  "hosting_dashboard_service_activate_email_tooltip": "Para crear una dirección de correo electrónico, es necesario asociar previamente un dominio al alojamiento."
+  "hosting_dashboard_service_activate_email_tooltip": "Para crear una dirección de correo electrónico, es necesario asociar previamente un dominio al alojamiento.",
+  "hosting_tab_SSL": "Certificados SSL"
 }

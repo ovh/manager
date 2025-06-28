@@ -17,6 +17,13 @@ const mocksHostingUrl = vi.hoisted(() => ({
   },
 }));
 
+vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@ovh-ux/manager-core-api')>()),
+  v6: {
+    put: vi.fn().mockResolvedValue({ data: {} }),
+  },
+}));
+
 vi.mock('axios', async (importActual) => {
   const actual = await importActual<typeof import('axios')>();
 
