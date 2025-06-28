@@ -15,4 +15,6 @@ export const NAMESPACES = {
   ONBOARDING: `${NAMESPACE_PREFIX}/onboarding`,
   CONTACT: `${NAMESPACE_PREFIX}/contact`,
   COUNTRIES: `${NAMESPACE_PREFIX}/countries`,
+  COUNTRY: `${NAMESPACE_PREFIX}/country`,
+  LANGUAGE: `${NAMESPACE_PREFIX}/language`,
 };
