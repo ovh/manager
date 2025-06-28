@@ -58,5 +58,5 @@
   "pci_instances_actions_shelve_instance_confirmation_message": "Sie sind im Begriff, Ihre Instanz {{ name }} auszusetzen. Die Ihrer Public Cloud Instanz vorbehaltenen Ressourcen werden freigegeben, ihre IP bleibt jedoch erhalten. Die Daten Ihrer lokalen Festplatte werden gespeichert. Nur der dafür verwendete Speicher wird Ihnen in Rechnung gestellt (1). Die Dauer des Vorgangs hängt von der Größe Ihrer lokalen Festplatte ab. Sie können Ihre Instanz jederzeit erneut aktivieren.",
   "pci_instances_actions_shelve_instance_nota_message": "(1) Bitte beachten Sie: Für monatlich berechnete Instanzen wird die übliche Abrechnung fortgesetzt, unabhängig vom Status der Dienstleistung.",
   "pci_instances_actions_instance_unavailable_action_error_message": "Diese Aktion ist für Ihre Instanz {{ name }} nicht verfügbar",
-  "pci_instances_actions_instance_success_message": "Der Status Ihrer Instanz {{ name }} wurde aktualisiert"
+  "pci_instances_actions_instance_success_message": "Der Status Ihrer Instanz {{ name }} wurde aktualisiert."
 }
