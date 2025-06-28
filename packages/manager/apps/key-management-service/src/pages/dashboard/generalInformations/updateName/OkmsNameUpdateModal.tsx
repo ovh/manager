@@ -1,28 +1,28 @@
-import {
-  UpdateNameModal,
-  useServiceDetails,
-} from '@ovh-ux/manager-react-components';
 import React from 'react';
+import { UpdateNameModal } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { useUpdateOkmsName } from '@/data/hooks/useUpdateOkmsName';
+import { KmsDashboardOutletContext } from '../../KmsDashboard.type';
 
 const OkmsNameUpdateModal = () => {
   const { t: tDashboard } = useTranslation('key-management-service/dashboard');
   const { t: tCredential } = useTranslation(
     'key-management-service/credential',
   );
-  const { okmsId } = useParams();
-  const { data: okmsServiceInfos, isLoading } = useServiceDetails({
-    resourceName: okmsId,
-  });
   const navigate = useNavigate();
+  const { okmsId } = useParams();
+  const contextValue = useOutletContext<KmsDashboardOutletContext>();
   const { updateKmsName, isPending, error } = useUpdateOkmsName({
     okmsId,
     onSuccess: () => {
       navigate('..');
     },
   });
+
+  if (!contextValue) {
+    return null;
+  }
 
   return (
     <UpdateNameModal
@@ -31,8 +31,8 @@ const OkmsNameUpdateModal = () => {
       inputLabel={tCredential(
         'key_management_service_credential_dashboard_name',
       )}
-      defaultValue={okmsServiceInfos?.data.resource.displayName}
-      isLoading={isLoading || isPending}
+      defaultValue={contextValue.okmsService?.resource?.displayName}
+      isLoading={isPending}
       error={error?.message}
       closeModal={() => {
         navigate('..');
