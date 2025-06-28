@@ -8,7 +8,6 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { RedirectionItem } from './Redirections.page';
 import { useGenerateUrl } from '@/hooks';
 import { usePlatform } from '@/data/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -20,6 +19,7 @@ import {
   EMAIL_ACCOUNT_DELETE_REDIRECTION,
   EMAIL_ACCOUNT_EDIT_REDIRECTION,
 } from '@/tracking.constants';
+import { RedirectionItem } from './Redirections.types';
 
 interface ActionButtonRedirectionAccountProps {
   item: RedirectionItem;
