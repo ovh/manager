@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsDatepicker,
   OsdsText,
@@ -15,6 +16,7 @@ import {
   ODS_MESSAGE_TYPE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { TRACKING } from '@/configuration/tracking.constants';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 import Metric from '@/components/Metric';
 import { useDateLocale } from '@/hooks/metric/useDateLocale.hook';
@@ -22,6 +24,7 @@ import { MetricData } from '@/types/cloud/project/database/metric';
 import getLocaleForDatePicker from '@/components//utils/getLocaleForDatepicker';
 
 export default function MetricPage() {
+  const { trackClick } = useOvhTracking();
   const { projectId } = useParams();
   const { t } = useTranslation('metric');
   const [selectedModel, setSelectedModel] = useState<string>(
@@ -60,6 +63,10 @@ export default function MetricPage() {
       : metricsData;
 
   const localDatePicker = getLocaleForDatePicker();
+
+  useEffect(() => {
+    trackClick(TRACKING.metrics.gotometricsClick);
+  }, []);
 
   return (
     <>
