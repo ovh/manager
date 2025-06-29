@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useVMwareServices } from '@/hooks/vmwareServices/useVMwareServices';
@@ -10,6 +10,9 @@ import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import InstallationFormLayout from '@/components/Form/FormLayout.component';
 import { getSelectDefaultValue } from '@/utils/selectValues';
 import { TRACKING } from '@/tracking.constants';
+import { useStepValidation } from '@/hooks/apiValidation/useApiValidation';
+import { mapFormInitialToStructured } from '@/mappers/stepFormMappers';
+import { useStateMessage } from '@/hooks/stateMessage/stateMessage';
 
 type ServiceNameData = {
   serviceName: string;
@@ -92,17 +95,46 @@ export default function InstallationInitialStep() {
     clusterName: cluster || '',
     clusterId: clusters?.find((c) => c?.name === cluster)?.clusterId || null,
   });
+  const {
+    stateMessage: serverErrorMessage,
+    setStateMessage: setServerErrorMessage,
+    clearMessage: clearServerErrorMessage,
+  } = useStateMessage();
+
+  const {
+    mutate: validate,
+    isPending: isValidationPending,
+  } = useStepValidation({
+    mapper: mapFormInitialToStructured,
+    serviceName,
+    onSuccess: () => {
+      initializeAndProceed(serviceName);
+    },
+    onError: (error) => {
+      setServerErrorMessage(error.response?.data?.message);
+    },
+  });
+
+  const handleSubmit = () => {
+    trackClick(TRACKING.installation.chooseDeployment);
+
+    validate({
+      serviceName,
+      datacenterId,
+      clusterName,
+    });
+  };
 
   return (
     <InstallationFormLayout
       title={t('service_title')}
       subtitle={t('service_subtitle')}
       submitLabel={t('service_cta')}
-      isSubmitDisabled={!isStepValid}
-      onSubmit={() => {
-        trackClick(TRACKING.installation.chooseDeployment);
-        initializeAndProceed(serviceName);
-      }}
+      serverErrorMessage={serverErrorMessage}
+      isSubmitDisabled={
+        !isStepValid || isValidationPending || !!serverErrorMessage
+      }
+      onSubmit={handleSubmit}
     >
       <SelectField
         name="serviceName"
@@ -118,6 +150,7 @@ export default function InstallationInitialStep() {
           serviceNames,
         )}
         handleChange={(e) => {
+          clearServerErrorMessage();
           setValues((prev) => ({
             ...prev,
             ...getServiceData(e.detail.value),
@@ -140,6 +173,7 @@ export default function InstallationInitialStep() {
           datacenterIds,
         )}
         handleChange={(e) => {
+          clearServerErrorMessage();
           setValues((prev) => ({
             ...prev,
             ...getDatacenterData(Number(e.detail.value)),
@@ -165,6 +199,7 @@ export default function InstallationInitialStep() {
           clusterNames,
         )}
         handleChange={(e) => {
+          clearServerErrorMessage();
           setValues((prev) => ({ ...prev, ...getClusterData(e.detail.value) }));
         }}
       />

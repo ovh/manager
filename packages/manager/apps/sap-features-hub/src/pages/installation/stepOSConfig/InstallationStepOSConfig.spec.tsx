@@ -1,7 +1,8 @@
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
-import { act, render, screen } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import InstallationStepOSConfig from './InstallationStepOSConfig.page';
@@ -15,6 +16,9 @@ import { InstallationFormValues } from '@/types/form.type';
 import { FormContextType } from '@/context/InstallationForm.context';
 
 const trackClickMock = vi.fn();
+const useMutateSpy = vi.fn();
+const navigateSpy = vi.fn();
+
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
   return {
@@ -25,7 +29,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
 
 vi.mock('react-router-dom', () => ({
   useLocation: () => ({ pathname: '/somewhere' }),
-  useNavigate: () => vi.fn(),
+  useNavigate: () => navigateSpy,
   useParams: () => ({ stepId: '1' }),
   useSearchParams: () => [new URLSearchParams(), vi.fn()],
 }));
@@ -40,13 +44,32 @@ vi.mock('@/context/InstallationForm.context', () => ({
   useInstallationFormContext: () => initialContext,
 }));
 
+vi.mock('@tanstack/react-query', async (importOriginal) => {
+  const original: typeof import('@tanstack/react-query') = await importOriginal();
+
+  return {
+    ...original,
+    useMutation: ({ onSuccess }: { onSuccess: () => unknown }) => ({
+      isPending: false,
+      mutate: useMutateSpy.mockImplementation(() => onSuccess()),
+    }),
+  };
+});
+
+const renderStepOSConfig = () =>
+  render(
+    <QueryClientProvider client={new QueryClient()}>
+      <InstallationStepOSConfig />
+    </QueryClientProvider>,
+  );
+
 describe('InstallationStepOSConfig page unit test suite', () => {
   it('should render field with correct titles and inputs', () => {
     vi.mock('@/context/InstallationForm.context', () => ({
       useInstallationFormContext: () => initialContext,
     }));
 
-    render(<InstallationStepOSConfig />);
+    renderStepOSConfig();
 
     const elements = [
       'os_config_title',
@@ -63,6 +86,31 @@ describe('InstallationStepOSConfig page unit test suite', () => {
       expect(screen.getByText(element)).toBeVisible(),
     );
   });
+
+  it('should track form submit', async () => {
+    vi.mock('@/context/InstallationForm.context', () => ({
+      useInstallationFormContext: () => ({
+        ...initialContext,
+        values: {
+          ...initialContext.values,
+          domainName: 'mydomain.test',
+        } as InstallationFormValues,
+      }),
+    }));
+
+    renderStepOSConfig();
+
+    const user = userEvent.setup();
+    const submitCta = screen.getByTestId(testIds.formSubmitCta);
+
+    expect(submitCta).toBeEnabled();
+    await act(() => user.click(submitCta));
+
+    waitFor(() => {
+      expect(useMutateSpy).toHaveBeenCalledOnce();
+      expect(navigateSpy).toHaveBeenCalledOnce();
+    });
+  });
 });
 
 describe('Tracking test suite', () => {
@@ -77,7 +125,7 @@ describe('Tracking test suite', () => {
       }),
     }));
 
-    render(<InstallationStepOSConfig />);
+    renderStepOSConfig();
 
     const user = userEvent.setup();
     const submitCta = screen.getByTestId(testIds.formSubmitCta);

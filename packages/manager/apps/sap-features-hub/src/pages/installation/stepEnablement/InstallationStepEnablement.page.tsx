@@ -16,6 +16,11 @@ import {
   FORM_LABELS,
 } from '@/constants/form.constants';
 import { TRACKING } from '@/tracking.constants';
+import { EnablementForm } from '@/types/form.type';
+import { mapFormEnablementToStructured } from '@/mappers/stepFormMappers';
+import { useStepValidation } from '@/hooks/apiValidation/useApiValidation';
+import { createRegisterWithHandler } from '@/utils/createRegisterWithHandler';
+import { useStateMessage } from '@/hooks/stateMessage/stateMessage';
 
 const triggerFilledInput = <T,>({
   getValues,
@@ -37,23 +42,28 @@ const triggerFilledInput = <T,>({
 export default function InstallationStepEnablement() {
   const { t } = useTranslation('installation');
   const { previousStep, nextStep } = useFormSteps();
-  const { values: formValues, setValues } = useInstallationFormContext();
+  const {
+    values: { serviceName, ...formValues },
+    setValues,
+  } = useInstallationFormContext();
   const { trackClick } = useOvhTracking();
+  const {
+    stateMessage: serverErrorMessage,
+    setStateMessage: setServerErrorMessage,
+    clearMessage: clearServerErrorMessage,
+  } = useStateMessage();
 
-  const defaultValues = useMemo(
-    () => ({
-      hasBackup: !!formValues.bucketBackint,
-      bucketBackint: formValues.bucketBackint ?? undefined,
-      hasLogsInLdpOvh: !!formValues.logsDataPlatform,
-      logsDataPlatform: formValues.logsDataPlatform ?? undefined,
-    }),
-    [formValues],
-  );
+  const defaultValues = {
+    hasBackup: !!formValues.bucketBackint,
+    bucketBackint: formValues.bucketBackint ?? undefined,
+    hasLogsInLdpOvh: !!formValues.logsDataPlatform,
+    logsDataPlatform: formValues.logsDataPlatform ?? undefined,
+  };
 
   const {
     getValues,
     trigger,
-    register,
+    register: baseRegister,
     unregister,
     watch,
     resetField,
@@ -66,6 +76,12 @@ export default function InstallationStepEnablement() {
     defaultValues,
     shouldUnregister: false,
   });
+
+  const register = createRegisterWithHandler(
+    baseRegister,
+    clearServerErrorMessage,
+  );
+
   const triggerFilledInputOfForm = (
     prefix: Path<z.infer<typeof ENABLEMENT_FORM_SCHEMA>>,
   ) =>
@@ -82,28 +98,46 @@ export default function InstallationStepEnablement() {
     if (defaultValues.logsDataPlatform) {
       triggerFilledInputOfForm('logsDataPlatform');
     }
-  }, [defaultValues]);
+  }, []);
 
   const { isValid } = formState;
 
   const [hasBackup, hasLogsInLdpOvh] = watch(['hasBackup', 'hasLogsInLdpOvh']);
 
+  const getEnablementFormValues = () => {
+    const values = getValues();
+    return {
+      bucketBackint: values.hasBackup ? values.bucketBackint : undefined,
+      logsDataPlatform: values.hasLogsInLdpOvh
+        ? values.logsDataPlatform
+        : undefined,
+    };
+  };
+
   const saveFormOnContext = () => {
-    setValues((prev) => {
-      const values = getValues();
-      return {
-        ...prev,
-        bucketBackint: values.hasBackup ? values.bucketBackint : undefined,
-        logsDataPlatform: values.hasLogsInLdpOvh
-          ? values.logsDataPlatform
-          : undefined,
-      };
-    });
+    setValues((prev) => ({
+      ...prev,
+      ...getEnablementFormValues(),
+    }));
   };
 
   useEffect(() => {
     return saveFormOnContext;
   }, []);
+
+  const {
+    mutate: validate,
+    isPending: isValidationPending,
+  } = useStepValidation<EnablementForm>({
+    mapper: mapFormEnablementToStructured,
+    serviceName,
+    onSuccess: () => {
+      nextStep();
+    },
+    onError: (error) => {
+      setServerErrorMessage(error.response.data.message);
+    },
+  });
 
   return (
     <FormProvider
@@ -121,10 +155,13 @@ export default function InstallationStepEnablement() {
         title={t('enablement_title')}
         subtitle={t('enablement_subtitle')}
         submitLabel={t('enablement_cta')}
-        isSubmitDisabled={!isValid}
+        isSubmitDisabled={
+          !isValid || !!serverErrorMessage || isValidationPending
+        }
+        serverErrorMessage={serverErrorMessage}
         onSubmit={() => {
           trackClick(TRACKING.installation.startSAPDeployment);
-          nextStep();
+          validate(getEnablementFormValues());
         }}
         onPrevious={previousStep}
       >

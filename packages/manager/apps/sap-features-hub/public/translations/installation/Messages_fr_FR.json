@@ -124,5 +124,6 @@
   "status_PENDING": "En attente",
   "status_REVOKED": "Révoqué",
   "status_FAILURE": "Erreur",
-  "status_STARTED": "En cours"
+  "status_STARTED": "En cours",
+  "installation_error_server_message": "Erreur lors de la soumission des informations. Message d'erreur : \"{{error}}\""
 }

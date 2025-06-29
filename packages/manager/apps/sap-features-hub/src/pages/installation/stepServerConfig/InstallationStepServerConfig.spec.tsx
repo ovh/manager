@@ -1,7 +1,7 @@
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, waitFor } from '@testing-library/react';
 import { describe, expect, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -13,6 +13,8 @@ import { installationInitialErrors } from '@/context/installationInitialValues.c
 import { mockedValues } from '@/mocks/installationForm.mock';
 
 const trackClickMock = vi.fn();
+const useMutateSpy = vi.fn();
+const navigateSpy = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
   return {
@@ -23,7 +25,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
 
 vi.mock('react-router-dom', () => ({
   useLocation: () => ({ pathname: '/somewhere' }),
-  useNavigate: () => vi.fn(),
+  useNavigate: () => navigateSpy,
   useParams: () => ({ stepId: '1' }),
   useSearchParams: () => [new URLSearchParams(), vi.fn()],
 }));
@@ -36,6 +38,18 @@ vi.mock('react-hook-form', async () => {
       ...original.useForm(),
       formState: { isValid: true },
       handleSubmit: (cb: () => void) => () => cb(),
+    }),
+  };
+});
+
+vi.mock('@tanstack/react-query', async (importOriginal) => {
+  const original: typeof import('@tanstack/react-query') = await importOriginal();
+
+  return {
+    ...original,
+    useMutation: ({ onSuccess }: { onSuccess: () => unknown }) => ({
+      isPending: false,
+      mutate: useMutateSpy.mockImplementation(() => onSuccess()),
     }),
   };
 });
@@ -99,6 +113,22 @@ describe('InstallationStepServerConfig page unit test suite', () => {
     ];
 
     elements.forEach((element) => expect(getByText(element)).toBeVisible());
+  });
+
+  it('should validate the form server side on submit', async () => {
+    renderComponent();
+
+    const user = userEvent.setup();
+    const submitCta = screen.getByTestId(testIds.formSubmitCta);
+
+    expect(submitCta).toBeEnabled();
+    expect(submitCta).not.toHaveAttribute('is-disabled', 'true');
+    await act(() => user.click(submitCta));
+
+    waitFor(() => {
+      expect(useMutateSpy).toHaveBeenCalledOnce();
+      expect(navigateSpy).toHaveBeenCalledOnce();
+    });
   });
 });
 

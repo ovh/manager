@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import {
   Controller,
+  ControllerRenderProps,
+  FieldValues,
   FormProvider,
   useFieldArray,
   useForm,
@@ -19,7 +21,11 @@ import { LABELS } from '@/utils/label.constants';
 import { FORM_LABELS } from '@/constants/form.constants';
 import { RhfSelectField } from '@/components/Fields/RhfSelectField.component';
 import { RhfToggleField } from '@/components/Fields/RhfToggleField.component';
-import { ServerConfigForm } from '@/types/form.type';
+import {
+  DeploymentForm,
+  InitializationForm,
+  ServerConfigForm,
+} from '@/types/form.type';
 import { FormAccordion } from '@/components/Form/FormAccordion.component';
 import { getServerConfigFormData } from '@/utils/formStepData';
 import { SERVER_CONFIG_LIMITS } from './installationStepServerConfig.constants';
@@ -40,6 +46,10 @@ import {
 } from '@/utils/selectValues';
 import { APPLICATION_SERVER_ROLES } from '@/utils/applicationServers.constants';
 import { TRACKING } from '@/tracking.constants';
+import { mapFormServerConfigToStructured } from '@/mappers/stepFormMappers';
+import { useStepValidation } from '@/hooks/apiValidation/useApiValidation';
+import { createRegisterWithHandler } from '@/utils/createRegisterWithHandler';
+import { useStateMessage } from '@/hooks/stateMessage/stateMessage';
 
 type FormData = z.output<typeof SERVER_CONFIG_SCHEMA>;
 
@@ -63,6 +73,11 @@ export default function InstallationStepServerConfig() {
     },
   } = useInstallationFormContext();
   const { trackClick } = useOvhTracking();
+  const {
+    stateMessage: serverErrorMessage,
+    setStateMessage: setServerErrorMessage,
+    clearMessage: clearServerErrorMessage,
+  } = useStateMessage();
 
   const {
     datacentrePortGroupQuery: {
@@ -164,7 +179,7 @@ export default function InstallationStepServerConfig() {
   };
 
   const {
-    register,
+    register: baseRegister,
     control,
     getValues,
     handleSubmit,
@@ -175,6 +190,43 @@ export default function InstallationStepServerConfig() {
     mode: 'onTouched',
     resolver: zodResolver(SERVER_CONFIG_SCHEMA),
     defaultValues,
+  });
+
+  const register = createRegisterWithHandler(
+    baseRegister,
+    clearServerErrorMessage,
+  );
+
+  const fieldWithHandler = <TFieldName extends string>(
+    field: ControllerRenderProps<FieldValues, TFieldName>,
+  ) => ({
+    ...field,
+    onChange: (...params: unknown[]) => {
+      field.onChange(...params);
+      clearServerErrorMessage();
+    },
+  });
+
+  const {
+    mutate: validate,
+    isPending: isValidationPending,
+  } = useStepValidation({
+    mapper: (
+      params: ServerConfigForm &
+        Pick<InitializationForm, 'datacenterId'> &
+        Pick<DeploymentForm, 'deploymentType'>,
+    ) => ({
+      ...mapFormServerConfigToStructured(params),
+      datacenterId: params.datacenterId,
+      deploymentType: params.deploymentType,
+    }),
+    serviceName,
+    onSuccess: () => {
+      nextStep();
+    },
+    onError: (error) => {
+      setServerErrorMessage(error.response.data.message);
+    },
   });
 
   const { fields: hanaServers } = useFieldArray({
@@ -233,20 +285,27 @@ export default function InstallationStepServerConfig() {
       <FormLayout
         title={t('server_config_title')}
         subtitle={t('server_config_subtitle')}
-        isSubmitDisabled={!formState.isValid}
+        isSubmitDisabled={
+          !formState.isValid || !!serverErrorMessage || isValidationPending
+        }
         submitLabel={t('server_config_cta')}
+        serverErrorMessage={serverErrorMessage}
         onSubmit={handleSubmit(() => {
           trackClick(TRACKING.installation.enableAdditionalFeatures);
-          nextStep();
+          validate({
+            ...(getValues() as ServerConfigForm),
+            deploymentType: values.deploymentType,
+            datacenterId: values.datacenterId,
+          });
         })}
         onPrevious={previousStep}
       >
         <Controller
-          control={control}
           name="network"
+          control={control}
           render={({ field, fieldState }) => (
             <RhfSelectField
-              field={field}
+              field={fieldWithHandler(field)}
               label={t('server_config_input_vmware_ports')}
               placeholder={t('select_label')}
               options={portGroup}
@@ -296,7 +355,7 @@ export default function InstallationStepServerConfig() {
           name="encryptPassword"
           render={({ field }) => (
             <RhfToggleField
-              field={field}
+              field={fieldWithHandler(field)}
               label={t('server_config_toggle_password_encryption')}
               tooltip={t('server_config_tooltip_password_encryption')}
             />
@@ -304,11 +363,11 @@ export default function InstallationStepServerConfig() {
         />
         <OdsText preset="heading-3">{LABELS.SAP_HANA}</OdsText>
         <Controller
-          control={control}
           name="hanaServerOva"
+          control={control}
           render={({ field, fieldState }) => (
             <RhfSelectField
-              field={field}
+              field={fieldWithHandler(field)}
               label={t('server_config_input_ova_model')}
               placeholder={t('select_label')}
               options={sapCapabilities.ovaTemplates}
@@ -319,11 +378,11 @@ export default function InstallationStepServerConfig() {
           )}
         />
         <Controller
-          control={control}
           name="hanaServerDatastore"
+          control={control}
           render={({ field, fieldState }) => (
             <RhfSelectField
-              field={field}
+              field={fieldWithHandler(field)}
               label={FORM_LABELS.datastore}
               placeholder={t('select_label')}
               options={datastoreNames}
@@ -437,11 +496,11 @@ export default function InstallationStepServerConfig() {
           {t('server_config_applications_servers')}
         </OdsText>
         <Controller
-          control={control}
           name="applicationServerOva"
+          control={control}
           render={({ field, fieldState }) => (
             <RhfSelectField
-              field={field}
+              field={fieldWithHandler(field)}
               label={t('server_config_input_ova_model')}
               placeholder={t('select_label')}
               options={sapCapabilities.ovaTemplates}
@@ -452,11 +511,11 @@ export default function InstallationStepServerConfig() {
           )}
         />
         <Controller
-          control={control}
           name="applicationServerDatastore"
+          control={control}
           render={({ field, fieldState }) => (
             <RhfSelectField
-              field={field}
+              field={fieldWithHandler(field)}
               label={FORM_LABELS.datastore}
               placeholder={t('select_label')}
               options={datastoreNames}
@@ -492,11 +551,11 @@ export default function InstallationStepServerConfig() {
                 />
               </RhfField>
               <Controller
-                control={control}
                 name={`applicationServers.${index}.role`}
+                control={control}
                 render={({ field }) => (
                   <RhfSelectField
-                    field={field}
+                    field={fieldWithHandler(field)}
                     label={t('role')}
                     placeholder={t('select_label')}
                     options={Array.from(APPLICATION_SERVER_ROLES)}

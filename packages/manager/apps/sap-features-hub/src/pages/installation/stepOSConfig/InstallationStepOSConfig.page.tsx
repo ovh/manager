@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   OdsInputChangeEvent,
@@ -20,12 +20,20 @@ import { isValidDomain, isValidInput } from '@/utils/formValidation';
 import { ToggleField } from '@/components/Form/ToggleField.component';
 import { HandleInputChangeProps } from '@/types/formChange.type';
 import { TRACKING } from '@/tracking.constants';
+import { useStepValidation } from '@/hooks/apiValidation/useApiValidation';
+import { mapFormOSConfigToStructured } from '@/mappers/stepFormMappers';
+import { useStateMessage } from '@/hooks/stateMessage/stateMessage';
 
 export default function InstallationStepOSConfig() {
   const { t } = useTranslation('installation');
   const { previousStep, nextStep } = useFormSteps();
   const {
-    values: formValues,
+    stateMessage: serverErrorMessage,
+    setStateMessage: setServerErrorMessage,
+    clearMessage: clearServerErrorMessage,
+  } = useStateMessage();
+  const {
+    values: { serviceName, ...formValues },
     errors: formErrors,
     setValues,
     setErrors,
@@ -33,34 +41,50 @@ export default function InstallationStepOSConfig() {
   const { trackClick } = useOvhTracking();
 
   const { values, errors } = getOSConfigFormData({
-    values: formValues,
+    values: { serviceName, ...formValues },
     errors: formErrors,
   });
 
-  const isStepValid = useMemo(
-    () => values.domainName && !errors.domainName && !errors.osLicense,
-    [values.domainName, errors.domainName, errors.osLicense],
-  );
+  const isStepValid =
+    !!values.domainName && !errors.domainName && !errors.osLicense;
 
   const handleValueChange = (e: OdsToggleChangeEvent | OdsInputChangeEvent) => {
     setValues((val) => ({ ...val, [e.detail.name]: e.detail.value }));
   };
   const handleChange = ({ e, error, isValid }: HandleInputChangeProps) => {
     handleValueChange(e);
+    clearServerErrorMessage();
     if (error) {
       setErrors((err) => ({ ...err, [e.detail.name]: isValid ? '' : error }));
     }
   };
+
+  const {
+    mutate: validate,
+    isPending: isValidationPending,
+  } = useStepValidation({
+    mapper: mapFormOSConfigToStructured,
+    serviceName,
+    onSuccess: () => {
+      nextStep();
+    },
+    onError: (error) => {
+      setServerErrorMessage(error.response.data.message);
+    },
+  });
 
   return (
     <FormLayout
       title={t('os_config_title')}
       subtitle={t('os_config_subtitle')}
       submitLabel={t('os_config_cta')}
-      isSubmitDisabled={!isStepValid}
+      isSubmitDisabled={
+        !!(!isStepValid || !!serverErrorMessage || isValidationPending)
+      }
+      serverErrorMessage={serverErrorMessage}
       onSubmit={() => {
         trackClick(TRACKING.installation.virtualMachines);
-        nextStep();
+        validate(values);
       }}
       onPrevious={previousStep}
     >
