@@ -35,12 +35,13 @@ export type TextInputData<T = string> = {
 
 export type InitializationForm = {
   serviceName: string;
-  serviceDisplayName: string;
+  serviceDisplayName?: string;
   datacenterId: number;
-  datacenterName: string;
+  datacenterName?: string;
   clusterName: string;
-  clusterId: number;
+  clusterId?: number;
 };
+
 export type DeploymentForm = {
   applicationVersion: string;
   applicationType: string;
