@@ -3,7 +3,7 @@ import reactPlugin from 'eslint-plugin-react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 // eslint-disable-next-line prettier/prettier
-import type { ESLint, Linter } from 'eslint';
+import { ESLint, Linter } from 'eslint';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import globals from 'globals';
 

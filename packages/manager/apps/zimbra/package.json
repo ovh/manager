@@ -15,6 +15,7 @@
     "build": "tsc && vite build",
     "start": "tsc && vite",
     "lint": "manager-lint --config eslint.config.mjs ./src",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },

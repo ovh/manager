@@ -1,5 +1,5 @@
 import storybook from 'eslint-plugin-storybook';
-import type { Linter } from 'eslint';
+import { Linter } from 'eslint';
 
 const overrides: Linter.FlatConfig = {
   files: ['**/*.stories.@(ts|tsx|js|jsx|mjs|cjs)'],

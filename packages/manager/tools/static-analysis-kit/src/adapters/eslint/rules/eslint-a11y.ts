@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import jsxA11y from 'eslint-plugin-jsx-a11y';
-import type { Linter } from 'eslint';
+import { Linter } from 'eslint';
 
 export const a11yEslintConfig: Linter.FlatConfig = {
   files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
