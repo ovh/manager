@@ -13,7 +13,7 @@ export const InstallationDetailsSummary = ({
   serviceName,
   taskId,
 }: Readonly<TGetInstallationTaskParams>) => {
-  const { t } = useTranslation('dashboard/installation');
+  const { t } = useTranslation(['dashboard/installation', 'installation']);
   const formatDate = useFormatDate();
 
   const {
@@ -25,14 +25,18 @@ export const InstallationDetailsSummary = ({
     () =>
       [
         {
-          label: t('dashboard_installation_item_start_date'),
+          label: t(
+            'dashboard/installation:dashboard_installation_item_start_date',
+          ),
           value: formatDate({
             date: installationTaskDetails?.startTime,
             format: 'PPp',
           }),
         },
         {
-          label: t('dashboard_installation_item_end_date'),
+          label: t(
+            'dashboard/installation:dashboard_installation_item_end_date',
+          ),
           value:
             installationTaskDetails?.endTime &&
             formatDate({
@@ -41,7 +45,7 @@ export const InstallationDetailsSummary = ({
             }),
         },
         {
-          label: LABELS.VMWARE_ON_OVHCLOUD_SERVICE,
+          label: t('installation:service_input_vmware'),
           value: serviceName,
         },
         {
@@ -53,15 +57,21 @@ export const InstallationDetailsSummary = ({
           value: installationTaskDetails?.sapHanaSid,
         },
         {
-          label: t('dashboard_installation_item_application_version'),
+          label: t(
+            'dashboard/installation:dashboard_installation_item_application_version',
+          ),
           value: installationTaskDetails?.applicationVersion,
         },
         {
-          label: t('dashboard_installation_item_application_type'),
+          label: t(
+            'dashboard/installation:dashboard_installation_item_application_type',
+          ),
           value: installationTaskDetails?.applicationType,
         },
         {
-          label: t('dashboard_installation_item_deploiement_type'),
+          label: t(
+            'dashboard/installation:dashboard_installation_item_deployment_type',
+          ),
           value: installationTaskDetails?.deploymentType,
         },
       ] as StepFieldData[],
@@ -71,7 +81,9 @@ export const InstallationDetailsSummary = ({
   return (
     <div className="flex flex-col gap-y-6">
       <OdsText preset="heading-3">
-        {t('dashboard_installation_generals_informations')}
+        {t(
+          'dashboard/installation:dashboard_installation_general_informations',
+        )}
       </OdsText>
       <div className="flex flex-col gap-y-1">
         {fields.map((field) => (
