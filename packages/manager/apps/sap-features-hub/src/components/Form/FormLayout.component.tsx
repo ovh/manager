@@ -1,5 +1,5 @@
 import React from 'react';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { testIds } from '@/utils/testIds.constants';
 
@@ -9,6 +9,7 @@ export type FormLayoutProps = {
   subtitle?: string | React.ReactNode;
   submitLabel: string;
   isSubmitDisabled?: boolean;
+  serverErrorMessage?: string;
   onPrevious?: () => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 } & Omit<React.FormHTMLAttributes<HTMLFormElement>, 'className'>;
@@ -19,6 +20,7 @@ export default function FormLayout({
   subtitle,
   submitLabel,
   isSubmitDisabled,
+  serverErrorMessage,
   onPrevious,
   onSubmit,
   ...rest
@@ -35,6 +37,13 @@ export default function FormLayout({
       <div className="flex flex-col gap-y-4 max-w-5xl">
         <OdsText preset="heading-2">{title}</OdsText>
         {subtitle && <OdsText>{subtitle}</OdsText>}
+        {serverErrorMessage && (
+          <OdsMessage color="critical">
+            {t('installation_error_server_message', {
+              error: serverErrorMessage,
+            })}
+          </OdsMessage>
+        )}
         {children}
       </div>
       <div className="flex gap-x-2">
