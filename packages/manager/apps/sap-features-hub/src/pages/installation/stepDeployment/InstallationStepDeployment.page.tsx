@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
@@ -13,12 +13,20 @@ import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import InstallationFormLayout from '@/components/Form/FormLayout.component';
 import { DeploymentType } from '@/types/sapCapabilities.type';
 import { TRACKING } from '@/tracking.constants';
+import { useStepValidation } from '@/hooks/apiValidation/useApiValidation';
+import { mapFormDeploymentToStructured } from '@/mappers/formMappers';
+import { DeploymentForm } from '@/types/form.type';
 
 export default function InstallationStepDeployment() {
   const { t } = useTranslation('installation');
   const { previousStep, nextStep } = useFormSteps();
   const {
-    values: { applicationVersion, applicationType, deploymentType },
+    values: {
+      serviceName,
+      applicationVersion,
+      applicationType,
+      deploymentType,
+    },
     setValues,
     initializationState: {
       isPrefilled,
@@ -27,25 +35,44 @@ export default function InstallationStepDeployment() {
   } = useInstallationFormContext();
   const { trackClick } = useOvhTracking();
 
-  const isStepValid = React.useMemo(
-    () => applicationVersion && applicationType && deploymentType,
-    [applicationVersion, applicationType, deploymentType],
+  const [serverErrorMessage, setServerErrorMessage] = useState<string>(
+    undefined,
   );
-
   const handleChange = (e: OdsInputChangeEvent) => {
     const { name, value } = e.detail;
     setValues((prev) => ({ ...prev, [name]: value }));
+    setServerErrorMessage(undefined);
   };
+
+  const isStepValid =
+    !!applicationVersion && !!applicationType && !!deploymentType;
+
+  const { mutate, isPending: isValidationPending } = useStepValidation<
+    DeploymentForm
+  >({
+    mapper: mapFormDeploymentToStructured,
+    serviceName,
+    onSuccess: () => {
+      nextStep();
+    },
+    onError: (error) => {
+      console.log({ error });
+      setServerErrorMessage(error.response.data.message);
+    },
+  });
 
   return (
     <InstallationFormLayout
       title={t('deployment_title')}
       subtitle={t('deployment_subtitle')}
       submitLabel={t('deployment_cta')}
-      isSubmitDisabled={!isStepValid}
+      isSubmitDisabled={
+        !isStepValid || !!isValidationPending || !!serverErrorMessage
+      }
+      serverErrorMessage={serverErrorMessage}
       onSubmit={() => {
         trackClick(TRACKING.installation.completeInformations);
-        nextStep();
+        mutate({ applicationVersion, applicationType, deploymentType });
       }}
       onPrevious={previousStep}
     >

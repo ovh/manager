@@ -1,49 +1,88 @@
 import {
   InstallationFormValues,
   StructuredInstallationForm,
+  EnablementForm,
+  InitializationForm,
+  DeploymentForm,
+  OSConfigForm,
+  ServerConfigForm,
+  SystemForm,
 } from '@/types/form.type';
 import { serverMappers } from './serverMappers';
 
-const mapFormToStructured = (
-  form: InstallationFormValues,
-): StructuredInstallationForm => ({
-  applicationServers: serverMappers.toExport({ form, type: 'application' }),
+export const mapFormEnablementToStructured = (form: EnablementForm) => ({
+  bucketBackint: form.bucketBackint ? { ...form.bucketBackint } : undefined,
+  logsDataPlatform: form.logsDataPlatform
+    ? { ...form.logsDataPlatform }
+    : undefined,
+});
+
+export const mapFormInitialToStructured = (form: InitializationForm) => ({
+  serviceName: form.serviceName,
+  vdcId: form.datacenterId.toString(),
+  clusterName: form.clusterName,
+});
+
+export const mapFormDeploymentToStructured = (form: DeploymentForm) => ({
   applicationType: form.applicationType,
   applicationVersion: form.applicationVersion,
-  bucketBackint: form.bucketBackint ? { ...form.bucketBackint } : undefined,
-  bucketSources: {
-    accessKey: form.accessKey,
-    endpoint: form.endpoint,
-    id: form.bucketId,
-    secretKey: form.secretKey,
-  },
-  clusterName: form.clusterName,
   deploymentType: form.deploymentType,
-  domainName: form.domainName,
+});
+
+export const mapFormServerConfigToStructured = (form: ServerConfigForm) => ({
+  applicationServers: serverMappers.toExport({ form, type: 'application' }),
+  hanaServers: serverMappers.toExport({ form, type: 'hana' }),
+});
+
+export const mapFormOSConfigToStructured = (form: OSConfigForm) => ({
   firewall: {
     applicationServers: form.firewallServer,
     centralServices: form.firewallService,
     hanaDatabase: form.firewallDatabase,
   },
-  hanaServers: serverMappers.toExport({ form, type: 'hana' }),
-  logsDataPlatform: form.logsDataPlatform
-    ? { ...form.logsDataPlatform }
-    : undefined,
+  domainName: form.domainName,
   osLicense: form.osLicense || undefined,
   osUpdate: form.osUpdate,
+});
+
+export const mapFormSystemInformationToStructured = (form: SystemForm) => ({
   passwords: {
     masterSap: form.masterSapPassword,
     masterSapHana: form.masterSapHanaPassword,
     sidadm: form.sidadmPassword,
     system: form.systemPassword,
   },
-  serviceName: form.serviceName,
   sids: {
     sapHanaSid: form.sapHanaSid,
     sapSid: form.sapSid,
   },
+});
+
+export const mapFormSourceInformationToStructured = (
+  form: Pick<
+    InstallationFormValues,
+    'accessKey' | 'endpoint' | 'bucketId' | 'secretKey'
+  >,
+) => ({
+  bucketSources: {
+    accessKey: form.accessKey,
+    endpoint: form.endpoint,
+    id: form.bucketId,
+    secretKey: form.secretKey,
+  },
+});
+
+const mapFormToStructured = (
+  form: InstallationFormValues,
+): StructuredInstallationForm => ({
+  ...mapFormInitialToStructured(form),
+  ...mapFormEnablementToStructured(form),
+  ...mapFormDeploymentToStructured(form),
+  ...mapFormServerConfigToStructured(form),
+  ...mapFormOSConfigToStructured(form),
+  ...mapFormSystemInformationToStructured(form),
+  ...mapFormSourceInformationToStructured(form),
   systemUsage: 'custom',
-  vdcId: form.datacenterId,
 });
 
 const mapStructuredToForm = (
@@ -51,7 +90,7 @@ const mapStructuredToForm = (
 ): InstallationFormValues => ({
   serviceName: form.serviceName,
   serviceDisplayName: '',
-  datacenterId: form.vdcId,
+  datacenterId: Number(form.vdcId),
   datacenterName: '',
   clusterName: form.clusterName,
   clusterId: null,

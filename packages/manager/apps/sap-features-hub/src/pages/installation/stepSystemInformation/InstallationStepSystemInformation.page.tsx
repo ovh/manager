@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
@@ -18,20 +18,24 @@ import {
 import FormLayout from '@/components/Form/FormLayout.component';
 import { FORM_LABELS } from '@/constants/form.constants';
 import { TRACKING } from '@/tracking.constants';
+import { mapFormSystemInformationToStructured } from '@/mappers/formMappers';
+import { useStepValidation } from '@/hooks/apiValidation/useApiValidation';
 
 export default function InstallationStepSystemInformation() {
   const { t } = useTranslation('installation');
   const { previousStep, nextStep } = useFormSteps();
   const {
-    values: formValues,
+    values: { serviceName, ...formValues },
     errors: formErrors,
     setValues,
     setErrors,
   } = useInstallationFormContext();
   const { trackClick } = useOvhTracking();
-
+  const [serverErrorMessage, setServerErrorMessage] = useState<string>(
+    undefined,
+  );
   const { values, errors } = getSystemFormData({
-    values: formValues,
+    values: { serviceName, ...formValues },
     errors: formErrors,
   });
 
@@ -42,6 +46,18 @@ export default function InstallationStepSystemInformation() {
     [values, errors],
   );
 
+  const { mutate, isPending: isValidationPending } = useStepValidation({
+    mapper: mapFormSystemInformationToStructured,
+    serviceName,
+    onSuccess: () => {
+      nextStep();
+    },
+    onError: (error) => {
+      console.log({ error });
+      setServerErrorMessage(error.response?.data.message);
+    },
+  });
+
   const sidRule = t('system_sid_validation_message');
 
   return (
@@ -49,10 +65,13 @@ export default function InstallationStepSystemInformation() {
       title={t('system_title')}
       subtitle={t('system_subtitle')}
       submitLabel={t('system_cta')}
-      isSubmitDisabled={!isStepValid}
+      isSubmitDisabled={
+        !!(!isStepValid || isValidationPending || !!serverErrorMessage)
+      }
+      serverErrorMessage={serverErrorMessage}
       onSubmit={() => {
         trackClick(TRACKING.installation.provideSources);
-        nextStep();
+        mutate(values);
       }}
       onPrevious={previousStep}
     >
@@ -64,6 +83,7 @@ export default function InstallationStepSystemInformation() {
           name={name}
           onOdsChange={(e) => {
             const isValid = isValidInput(e);
+            setServerErrorMessage(undefined);
             setValues((val) => ({ ...val, [name]: e.detail.value }));
             setErrors((err) => ({ ...err, [name]: isValid ? '' : sidRule }));
           }}
@@ -90,6 +110,7 @@ export default function InstallationStepSystemInformation() {
                   ? t('system_password_sap_hana_validation_message')
                   : t('system_password_sap_validation_message');
 
+              setServerErrorMessage(undefined);
               setValues((val) => ({ ...val, [name]: e.detail.value }));
               setErrors((err) => ({ ...err, [name]: isValid ? '' : rule }));
             }}

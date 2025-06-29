@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Controller,
   FormProvider,
@@ -40,6 +40,9 @@ import {
 } from '@/utils/selectValues';
 import { APPLICATION_SERVER_ROLES } from '@/utils/applicationServers.constants';
 import { TRACKING } from '@/tracking.constants';
+import { mapFormServerConfigToStructured } from '@/mappers/formMappers';
+import { useStepValidation } from '@/hooks/apiValidation/useApiValidation';
+import { createRegisterWithHandler } from '@/utils/createRegisterWithHandler';
 
 type FormData = z.output<typeof SERVER_CONFIG_SCHEMA>;
 
@@ -63,6 +66,7 @@ export default function InstallationStepServerConfig() {
     },
   } = useInstallationFormContext();
   const { trackClick } = useOvhTracking();
+  const [serverErrorMessage, setServerErrorMessage] = useState<string>();
 
   const {
     datacentrePortGroupQuery: {
@@ -164,7 +168,7 @@ export default function InstallationStepServerConfig() {
   };
 
   const {
-    register,
+    register: baseRegister,
     control,
     getValues,
     handleSubmit,
@@ -175,6 +179,24 @@ export default function InstallationStepServerConfig() {
     mode: 'onTouched',
     resolver: zodResolver(SERVER_CONFIG_SCHEMA),
     defaultValues,
+  });
+
+  const handleInputChange = () => {
+    setServerErrorMessage(undefined);
+  };
+
+  const register = createRegisterWithHandler(baseRegister, handleInputChange);
+
+  const { mutate, isPending: isValidationPending } = useStepValidation({
+    mapper: mapFormServerConfigToStructured,
+    serviceName,
+    onSuccess: () => {
+      nextStep();
+    },
+    onError: (error) => {
+      console.log({ error });
+      setServerErrorMessage(error.response.data.message);
+    },
   });
 
   const { fields: hanaServers } = useFieldArray({
@@ -233,11 +255,14 @@ export default function InstallationStepServerConfig() {
       <FormLayout
         title={t('server_config_title')}
         subtitle={t('server_config_subtitle')}
-        isSubmitDisabled={!formState.isValid}
+        isSubmitDisabled={
+          !formState.isValid || !!serverErrorMessage || isValidationPending
+        }
         submitLabel={t('server_config_cta')}
+        serverErrorMessage={serverErrorMessage}
         onSubmit={handleSubmit(() => {
           trackClick(TRACKING.installation.enableAdditionalFeatures);
-          nextStep();
+          mutate(values);
         })}
         onPrevious={previousStep}
       >

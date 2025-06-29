@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
@@ -15,20 +15,23 @@ import { isValidInput, isValidUrl } from '@/utils/formValidation';
 import FormLayout from '@/components/Form/FormLayout.component';
 import { HandleInputChangeProps } from '@/types/formChange.type';
 import { TRACKING } from '@/tracking.constants';
+import { SourceForm } from '@/types/form.type';
+import { mapFormSourceInformationToStructured } from '@/mappers/formMappers';
+import { useStepValidation } from '@/hooks/apiValidation/useApiValidation';
 
 export default function InstallationStepSourceInformation() {
   const { t } = useTranslation('installation');
   const { previousStep, nextStep } = useFormSteps();
   const {
-    values: formValues,
+    values: { serviceName, ...formValues },
     errors: formErrors,
     setValues,
     setErrors,
   } = useInstallationFormContext();
   const { trackClick } = useOvhTracking();
-
+  const [serverErrorMessage, setServerErrorMessage] = useState(undefined);
   const { values, errors } = getSourceFormData({
-    values: formValues,
+    values: { serviceName, ...formValues },
     errors: formErrors,
   });
 
@@ -40,6 +43,7 @@ export default function InstallationStepSourceInformation() {
   );
 
   const handleChange = ({ e, error, isValid }: HandleInputChangeProps) => {
+    setServerErrorMessage(undefined);
     const { name, value } = e.detail;
     setValues((val) => ({ ...val, [name]: value }));
     if (error) {
@@ -47,15 +51,32 @@ export default function InstallationStepSourceInformation() {
     }
   };
 
+  const { mutate, isPending: isValidationPending } = useStepValidation<
+    SourceForm
+  >({
+    mapper: mapFormSourceInformationToStructured,
+    serviceName,
+    onSuccess: () => {
+      nextStep();
+    },
+    onError: (error) => {
+      console.log({ error });
+      setServerErrorMessage(error.response?.data?.message);
+    },
+  });
+
   return (
     <FormLayout
       title={t('source_title')}
       subtitle={t('source_subtitle')}
       submitLabel={t('source_cta')}
-      isSubmitDisabled={!isStepValid}
+      isSubmitDisabled={
+        !isStepValid || !!serverErrorMessage || isValidationPending
+      }
+      serverErrorMessage={serverErrorMessage}
       onSubmit={() => {
         trackClick(TRACKING.installation.defineOsConfig);
-        nextStep();
+        mutate(values);
       }}
       onPrevious={previousStep}
     >
