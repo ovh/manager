@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 import { cwd } from 'process';
+import { importOrderConfig } from './import-order-config';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -25,6 +26,21 @@ const trivagoImportSortPluginPath = resolve(
   __dirname,
   '../../node_modules/@trivago/prettier-plugin-sort-imports/lib/src/index.js',
 );
+
+/**
+ * Glob patterns for files and folders to exclude from Prettier formatting.
+ * Applied to both Prettier CLI and editor integrations.
+ */
+export const prettierIgnorePatterns = [
+  '**/dist/**',
+  '**/custom-elements*/**',
+  '**/loader/**',
+  '**/react/**',
+  '**/vue/**',
+  '**/apps/container/**',
+  '**/apps/pci-databases-analytics/src/components/ui/**',
+  '**/apps/pci-databases-analytics/src/lib/utils.ts',
+];
 
 /**
  * Shared Prettier configuration used by both CLI and eslint-plugin-prettier.
@@ -58,30 +74,8 @@ export const prettierConfig = {
    * Custom import sorting rules (used by trivago plugin).
    * These control grouping and order of import blocks.
    */
-  importOrder: [
-    '^react$',                         // React always first
-    '^react(-dom|-router-dom)?$',      // React-related packages
-    '<THIRD_PARTY_MODULES>',           // External libraries
-    '^@ovhcloud/(.*)$',                // OVH ODS design system
-    '^@ovh-ux/(.*)$',                  // OVH shared components
-    '^@/(.*)$',                        // Aliased internal modules
-    '^[./]',                           // Relative imports last
-  ],
+  importOrder: importOrderConfig,
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
 };
 
-/**
- * Glob patterns for files and folders to exclude from Prettier formatting.
- * Applied to both Prettier CLI and editor integrations.
- */
-export const prettierIgnorePatterns = [
-  '**/dist/**',
-  '**/custom-elements*/**',
-  '**/loader/**',
-  '**/react/**',
-  '**/vue/**',
-  '**/apps/container/**',
-  '**/apps/pci-databases-analytics/src/components/ui/**',
-  '**/apps/pci-databases-analytics/src/lib/utils.ts',
-];
