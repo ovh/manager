@@ -18,6 +18,45 @@
     },
     "./eslint/storybook": {
       "import": "./dist/adapters/eslint/rules/eslint-storybook.js"
+    },
+    "./eslint/a11y": {
+      "import": "./dist/adapters/eslint/rules/eslint-a11y.js"
+    },
+    "./eslint/complexity": {
+      "import": "./dist/adapters/eslint/rules/eslint-complexity.js"
+    },
+    "./eslint/css": {
+      "import": "./dist/adapters/eslint/rules/eslint-css.js"
+    },
+    "./eslint/html": {
+      "import": "./dist/adapters/eslint/rules/eslint-html.js"
+    },
+    "./eslint/imports": {
+      "import": "./dist/adapters/eslint/rules/eslint-imports.js"
+    },
+    "./eslint/javascript": {
+      "import": "./dist/adapters/eslint/rules/eslint-javascript.js"
+    },
+    "./eslint/naming-conventions": {
+      "import": "./dist/adapters/eslint/rules/eslint-naming-conventions.js"
+    },
+    "./eslint/prettier": {
+      "import": "./dist/adapters/eslint/rules/eslint-prettier.js"
+    },
+    "./eslint/react": {
+      "import": "./dist/adapters/eslint/rules/eslint-react.js"
+    },
+    "./eslint/tailwind-jsx": {
+      "import": "./dist/adapters/eslint/rules/eslint-tailwind-jsx.js"
+    },
+    "./eslint/tanstack": {
+      "import": "./dist/adapters/eslint/rules/eslint-tanstack.js"
+    },
+    "./eslint/tests": {
+      "import": "./dist/adapters/eslint/rules/eslint-tests.js"
+    },
+    "./eslint/typescript": {
+      "import": "./dist/adapters/eslint/rules/eslint-typescript.js"
     }
   },
   "repository": {
