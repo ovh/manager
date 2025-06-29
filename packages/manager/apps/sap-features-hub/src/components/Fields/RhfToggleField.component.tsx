@@ -11,17 +11,17 @@ import {
   OdsToggleCustomEvent,
 } from '@ovhcloud/ods-components';
 
-type RhfToggleFieldProps = {
-  field: ControllerRenderProps<FieldValues, string>;
+type RhfToggleFieldProps<TFieldName extends string> = {
+  field: ControllerRenderProps<FieldValues, TFieldName>;
   label: string;
   tooltip?: string;
 };
 
-export const RhfToggleField = ({
+export const RhfToggleField = <TFieldName extends string>({
   field,
   label,
   tooltip,
-}: RhfToggleFieldProps) => {
+}: RhfToggleFieldProps<TFieldName>) => {
   const toggleId = `${field.name}-toggle`;
   return (
     <OdsFormField
