@@ -1,5 +1,5 @@
 import {
-  InstallationFormValues,
+  ServerConfigForm,
   StructuredInstallationForm,
 } from '@/types/form.type';
 import {
@@ -14,7 +14,7 @@ const getServersExport = <T extends 'hana' | 'application'>({
   form,
   type,
 }: {
-  form: InstallationFormValues;
+  form: ServerConfigForm;
   type: T;
 }): T extends 'hana' ? HanaServerExport[] : ApplicationServerExport[] => {
   const vms = type === 'hana' ? form.hanaServers : form.applicationServers;
