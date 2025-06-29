@@ -3,47 +3,27 @@ import {
   StructuredInstallationForm,
 } from '@/types/form.type';
 import { serverMappers } from './serverMappers';
+import {
+  mapFormInitialToStructured,
+  mapFormEnablementToStructured,
+  mapFormDeploymentToStructured,
+  mapFormServerConfigToStructured,
+  mapFormOSConfigToStructured,
+  mapFormSystemInformationToStructured,
+  mapFormSourceInformationToStructured,
+} from './stepFormMappers';
 
 const mapFormToStructured = (
   form: InstallationFormValues,
 ): StructuredInstallationForm => ({
-  applicationServers: serverMappers.toExport({ form, type: 'application' }),
-  applicationType: form.applicationType,
-  applicationVersion: form.applicationVersion,
-  bucketBackint: form.bucketBackint ? { ...form.bucketBackint } : undefined,
-  bucketSources: {
-    accessKey: form.accessKey,
-    endpoint: form.endpoint,
-    id: form.bucketId,
-    secretKey: form.secretKey,
-  },
-  clusterName: form.clusterName,
-  deploymentType: form.deploymentType,
-  domainName: form.domainName,
-  firewall: {
-    applicationServers: form.firewallServer,
-    centralServices: form.firewallService,
-    hanaDatabase: form.firewallDatabase,
-  },
-  hanaServers: serverMappers.toExport({ form, type: 'hana' }),
-  logsDataPlatform: form.logsDataPlatform
-    ? { ...form.logsDataPlatform }
-    : undefined,
-  osLicense: form.osLicense || undefined,
-  osUpdate: form.osUpdate,
-  passwords: {
-    masterSap: form.masterSapPassword,
-    masterSapHana: form.masterSapHanaPassword,
-    sidadm: form.sidadmPassword,
-    system: form.systemPassword,
-  },
-  serviceName: form.serviceName,
-  sids: {
-    sapHanaSid: form.sapHanaSid,
-    sapSid: form.sapSid,
-  },
+  ...mapFormInitialToStructured(form),
+  ...mapFormEnablementToStructured(form),
+  ...mapFormDeploymentToStructured(form),
+  ...mapFormServerConfigToStructured(form),
+  ...mapFormOSConfigToStructured(form),
+  ...mapFormSystemInformationToStructured(form),
+  ...mapFormSourceInformationToStructured(form),
   systemUsage: 'custom',
-  datacenterId: form.datacenterId,
 });
 
 const mapStructuredToForm = (

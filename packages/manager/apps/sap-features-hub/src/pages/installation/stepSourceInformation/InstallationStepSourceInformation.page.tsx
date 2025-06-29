@@ -16,20 +16,29 @@ import FormLayout from '@/components/Form/FormLayout.component';
 import { HandleInputChangeProps } from '@/types/formChange.type';
 import { TRACKING } from '@/tracking.constants';
 import { ENDPOINT_REGEX } from '@/constants/form.constants';
+import { SourceForm } from '@/types/form.type';
+import { mapFormSourceInformationToStructured } from '@/mappers/stepFormMappers';
+import { useStepValidation } from '@/hooks/apiValidation/useApiValidation';
+import { useStateMessage } from '@/hooks/stateMessage/stateMessage';
 
 export default function InstallationStepSourceInformation() {
   const { t } = useTranslation('installation');
   const { previousStep, nextStep } = useFormSteps();
   const {
-    values: formValues,
+    values: { serviceName, ...formValues },
     errors: formErrors,
     setValues,
     setErrors,
   } = useInstallationFormContext();
   const { trackClick } = useOvhTracking();
+  const {
+    stateMessage: serverErrorMessage,
+    setStateMessage: setServerErrorMessage,
+    clearMessage: clearServerErrorMessage,
+  } = useStateMessage();
 
   const { values, errors } = getSourceFormData({
-    values: formValues,
+    values: { serviceName, ...formValues },
     errors: formErrors,
   });
 
@@ -41,6 +50,7 @@ export default function InstallationStepSourceInformation() {
   );
 
   const handleChange = ({ e, error, isValid }: HandleInputChangeProps) => {
+    clearServerErrorMessage();
     const { name, value } = e.detail;
     setValues((val) => ({ ...val, [name]: value }));
     if (error) {
@@ -48,15 +58,32 @@ export default function InstallationStepSourceInformation() {
     }
   };
 
+  const {
+    mutate: validate,
+    isPending: isValidationPending,
+  } = useStepValidation<SourceForm>({
+    mapper: mapFormSourceInformationToStructured,
+    serviceName,
+    onSuccess: () => {
+      nextStep();
+    },
+    onError: (error) => {
+      setServerErrorMessage(error.response?.data?.message);
+    },
+  });
+
   return (
     <FormLayout
       title={t('source_title')}
       subtitle={t('source_subtitle')}
       submitLabel={t('source_cta')}
-      isSubmitDisabled={!isStepValid}
+      isSubmitDisabled={
+        !isStepValid || !!serverErrorMessage || isValidationPending
+      }
+      serverErrorMessage={serverErrorMessage}
       onSubmit={() => {
         trackClick(TRACKING.installation.defineOsConfig);
-        nextStep();
+        validate(values);
       }}
       onPrevious={previousStep}
     >

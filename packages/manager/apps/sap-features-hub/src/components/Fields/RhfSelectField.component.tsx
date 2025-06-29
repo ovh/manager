@@ -7,8 +7,8 @@ import {
 import { ControllerRenderProps, FieldValues } from 'react-hook-form';
 import { SelectOptionsProps } from '../Form/SelectField.component';
 
-type SelectFieldProps<T> = SelectOptionsProps<T> & {
-  field: ControllerRenderProps<FieldValues, string>;
+type SelectFieldProps<T, TFieldName extends string> = SelectOptionsProps<T> & {
+  field: ControllerRenderProps<FieldValues, TFieldName>;
   label: string;
   isDisabled?: boolean;
   isLoading?: boolean;
@@ -19,7 +19,7 @@ type SelectFieldProps<T> = SelectOptionsProps<T> & {
 const getFormattedValue = (value: unknown) =>
   typeof value === 'number' ? value : String(value);
 
-export const RhfSelectField = <T,>({
+export const RhfSelectField = <T, TFieldName extends string>({
   field,
   isDisabled = false,
   isLoading,
@@ -29,7 +29,7 @@ export const RhfSelectField = <T,>({
   optionValueKey,
   placeholder,
   error,
-}: SelectFieldProps<T>) => {
+}: SelectFieldProps<T, TFieldName>) => {
   const sanitizedOptions = options.map((opt) =>
     typeof opt === 'object'
       ? {
