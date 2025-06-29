@@ -3,6 +3,16 @@ import { Linter } from 'eslint';
 import js from '@eslint/js';
 import { jsFilesLoose } from '../../../configs/file-globs-config';
 
+/**
+ * ESLint Flat Config for standard JavaScript files.
+ *
+ * Applies:
+ * - ESLint's built-in recommended rules via `@eslint/js`
+ * - Supports both `.js` and `.jsx` files (loose JS pattern)
+ * - Configured for ECMAScript Modules (`sourceType: 'module'`)
+ *
+ * @see https://eslint.org/docs/latest/rules/
+ */
 export const javascriptEslintConfig: Linter.FlatConfig = {
   files: [jsFilesLoose],
   ignores: [],
@@ -13,6 +23,5 @@ export const javascriptEslintConfig: Linter.FlatConfig = {
   plugins: js.plugins,
   rules: {
     ...js.configs.recommended.rules,
-    // https://eslint.org/docs/latest/rules/
   },
 };

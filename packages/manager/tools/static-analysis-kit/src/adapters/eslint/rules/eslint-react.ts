@@ -2,12 +2,24 @@
 import reactPlugin from 'eslint-plugin-react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
-// eslint-disable-next-line prettier/prettier
 import { ESLint, Linter } from 'eslint';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import globals from 'globals';
 import { jsTsFiles } from '../../../configs/file-globs-config';
 
+/**
+ * ESLint Flat Config for React and React Hooks.
+ *
+ * This configuration applies:
+ * - Recommended React rules from `eslint-plugin-react`
+ * - Recommended rules for hooks from `eslint-plugin-react-hooks`
+ * - JSX support via `parserOptions.ecmaFeatures.jsx`
+ * - Browser global variables (e.g., `window`, `document`)
+ * - Auto-detect React version for compatibility
+ *
+ * @see https://www.npmjs.com/package/eslint-plugin-react
+ * @see https://www.npmjs.com/package/eslint-plugin-react-hooks
+ */
 export const reactEslintConfig: Linter.FlatConfig = {
   files: [jsTsFiles],
   plugins: {
@@ -26,14 +38,11 @@ export const reactEslintConfig: Linter.FlatConfig = {
   },
   settings: {
     react: {
-      version: 'detect', // Automatically detect React version
+      version: 'detect',
     },
   },
   rules: {
     ...reactPlugin.configs.recommended.rules,
     ...reactHooksPlugin.configs.recommended.rules,
-
-    // https://www.npmjs.com/package/eslint-plugin-react
-    // https://www.npmjs.com/package/eslint-plugin-react-hooks
   },
 };

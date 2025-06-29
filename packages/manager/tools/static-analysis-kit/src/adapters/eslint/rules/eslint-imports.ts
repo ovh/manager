@@ -1,10 +1,14 @@
 import js from '@eslint/js';
 import importPlugin from 'eslint-plugin-import';
-import tseslint from 'typescript-eslint';
+import tsEslint from 'typescript-eslint';
 import { Linter } from 'eslint';
 import { jsFiles, tsFiles } from '../../../configs/file-globs-config';
 
-// Shared import rules across JS and TS
+/**
+ * Shared import-related ESLint rules applied across both JavaScript and TypeScript.
+ *
+ * Includes cycle detection, discourages dynamic `require`, and disallows usage of core Node.js modules directly.
+ */
 const sharedImportRules: Record<string, Linter.RuleEntry | undefined> = {
   ...importPlugin.flatConfigs.recommended.rules,
   'import/no-cycle': ['error', {
@@ -17,22 +21,37 @@ const sharedImportRules: Record<string, Linter.RuleEntry | undefined> = {
   'import/no-nodejs-modules': 'warn',
 };
 
-// JavaScript-specific rules
+/**
+ * JavaScript-specific import rules.
+ * Enables base `no-unused-vars` since TypeScript version is not in use.
+ */
 const jsImportRules: Record<string, Linter.RuleEntry | undefined> = {
   ...sharedImportRules,
-  'no-unused-vars': 'warn', // enabled for JS
+  'no-unused-vars': 'warn',
 };
 
-// TypeScript-specific rules
+/**
+ * TypeScript-specific import rules.
+ * Disables base `no-unused-vars` in favor of the TypeScript-aware variant from `@typescript-eslint`.
+ */
 const tsImportRules: Record<string, Linter.RuleEntry | undefined> = {
   ...sharedImportRules,
-  'no-unused-vars': 'off', // disabled in favor of TS-aware version
+  'no-unused-vars': 'off',
   '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
 };
 
-// Final export: ESLint FlatConfig array
+/**
+ * ESLint Flat Config for managing import conventions, cycles, and unused rules
+ * for both JavaScript and TypeScript environments.
+ *
+ * - Uses `eslint-plugin-import` for best practices
+ * - Applies proper rules per language
+ * - Configures import resolver for TS files
+ *
+ * @see https://github.com/import-js/eslint-plugin-import
+ */
 export const importEslintConfig: Linter.FlatConfig[] = [
-  // JavaScript configuration
+  // JavaScript configuration block
   js.configs.recommended,
   importPlugin.flatConfigs.recommended,
   {
@@ -44,23 +63,21 @@ export const importEslintConfig: Linter.FlatConfig[] = [
     rules: jsImportRules,
   },
 
-  // TypeScript configuration
-  ...tseslint.config(
-    {
-      files: [tsFiles],
-      extends: [
-        importPlugin.flatConfigs.recommended,
-        importPlugin.flatConfigs.typescript,
-      ],
-      rules: tsImportRules,
-      settings: {
-        'import/resolver': {
-          typescript: {
-            alwaysTryTypes: true,
-          },
-          node: true,
+  // TypeScript configuration block
+  ...tsEslint.config({
+    files: [tsFiles],
+    extends: [
+      importPlugin.flatConfigs.recommended,
+      importPlugin.flatConfigs.typescript,
+    ],
+    rules: tsImportRules,
+    settings: {
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
         },
+        node: true,
       },
-    }
-  ),
+    },
+  }),
 ];

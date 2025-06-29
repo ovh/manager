@@ -10,6 +10,17 @@ type ExtendedFlatConfig = Linter.FlatConfig & {
   languageOptions?: Record<string, unknown>;
 };
 
+/**
+ * ESLint configuration for validating CSS files, including Tailwind CSS syntax.
+ *
+ * Uses `@eslint/css` plugin with `tailwind-csstree` custom parser to support Tailwind-specific syntax.
+ * Ensures clean and valid CSS, while integrating seamlessly into modern component-based workflows.
+ *
+ * Applies only to `.css` files.
+ *
+ * @see https://github.com/eslint/css?tab=readme-ov-file#rules
+ * @see https://github.com/francoismassart/tailwind-csstree
+ */
 export const cssEslintConfig: ExtendedFlatConfig = {
   files: [cssFiles],
   language: 'css/css',
@@ -21,6 +32,5 @@ export const cssEslintConfig: ExtendedFlatConfig = {
   },
   rules: {
     ...css.configs.recommended.rules,
-    // https://github.com/eslint/css?tab=readme-ov-file#rules
   },
 };

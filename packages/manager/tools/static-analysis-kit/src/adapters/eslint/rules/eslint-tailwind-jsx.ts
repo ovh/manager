@@ -3,6 +3,13 @@ import tailwindcss from 'eslint-plugin-tailwindcss';
 import { Linter } from 'eslint';
 import { jsxTsxFiles } from '../../../configs/file-globs-config';
 
+/**
+ * ESLint Flat Config for Tailwind CSS in JSX/TSX files.
+ *
+ * Applies `eslint-plugin-tailwindcss` recommended rules to React components using Tailwind.
+ *
+ * @see https://www.npmjs.com/package/eslint-plugin-tailwindcss
+ */
 export const tailwindJsxConfig: Linter.FlatConfig = {
   files: [jsxTsxFiles],
   plugins: {
@@ -10,6 +17,5 @@ export const tailwindJsxConfig: Linter.FlatConfig = {
   },
   rules: {
     ...tailwindcss.configs['flat/recommended'].rules,
-    // https://www.npmjs.com/package/eslint-plugin-tailwindcss
   },
 };
