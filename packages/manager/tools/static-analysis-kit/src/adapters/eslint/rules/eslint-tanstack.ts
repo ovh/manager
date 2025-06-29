@@ -1,8 +1,9 @@
 import { Linter } from 'eslint';
 import pluginQuery from '@tanstack/eslint-plugin-query';
+import { jsTsFiles } from '../../../configs/file-globs-config';
 
 export const tanStackQueryEslintConfig: Linter.FlatConfig = {
-  files: ['**/*.{ts,tsx,js,jsx}'],
+  files: [jsTsFiles],
   plugins: {
     '@tanstack/query': pluginQuery,
   },

@@ -1,8 +1,9 @@
 import storybook from 'eslint-plugin-storybook';
 import { Linter } from 'eslint';
+import { storyFiles } from '../../../configs/file-globs-config';
 
 const overrides: Linter.FlatConfig = {
-  files: ['**/*.stories.@(ts|tsx|js|jsx|mjs|cjs)'],
+  files: [storyFiles],
   rules: {
     'storybook/hierarchy-separator': 'error',
     // https://github.com/storybookjs/eslint-plugin-storybook

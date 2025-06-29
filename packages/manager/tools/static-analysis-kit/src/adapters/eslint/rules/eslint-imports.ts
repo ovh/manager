@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import importPlugin from 'eslint-plugin-import';
 import tseslint from 'typescript-eslint';
 import { Linter } from 'eslint';
+import { jsFiles, tsFiles } from '../../../configs/file-globs-config';
 
 // Shared import rules across JS and TS
 const sharedImportRules: Record<string, Linter.RuleEntry | undefined> = {
@@ -35,7 +36,7 @@ export const importEslintConfig: Linter.FlatConfig[] = [
   js.configs.recommended,
   importPlugin.flatConfigs.recommended,
   {
-    files: ['**/*.{js,mjs,cjs}'],
+    files: [jsFiles],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -46,7 +47,7 @@ export const importEslintConfig: Linter.FlatConfig[] = [
   // TypeScript configuration
   ...tseslint.config(
     {
-      files: ['**/*.{ts,tsx}'],
+      files: [tsFiles],
       extends: [
         importPlugin.flatConfigs.recommended,
         importPlugin.flatConfigs.typescript,

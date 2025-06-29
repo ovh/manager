@@ -1,9 +1,10 @@
 import { Linter } from 'eslint';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import js from '@eslint/js';
+import { jsFilesLoose } from '../../../configs/file-globs-config';
 
 export const javascriptEslintConfig: Linter.FlatConfig = {
-  files: ['**/*.js', '**/*.jsx'],
+  files: [jsFilesLoose],
   ignores: [],
   languageOptions: {
     ...js.languageOptions,

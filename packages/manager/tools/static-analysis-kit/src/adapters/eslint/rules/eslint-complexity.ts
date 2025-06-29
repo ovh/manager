@@ -1,8 +1,9 @@
 import { Linter } from 'eslint';
 import { complexityRules } from '../../../configs/complexity-config';
+import { jsTsFiles } from '../../../configs/file-globs-config';
 
 export const complexityEslintConfig: Linter.FlatConfig = {
-  files: ['**/*.{js,jsx,ts,tsx}'],
+  files: [jsTsFiles],
   rules: {
     // Cyclomatic complexity (complex branches in a function)
     'complexity': ['warn', complexityRules.maxStatements],

@@ -1,14 +1,15 @@
 import prettier from 'eslint-plugin-prettier';
 import { Linter } from 'eslint';
-import { prettierOptions, prettierIgnorePatterns } from '../../../configs/prettier-options.js';
+import { prettierConfig, prettierIgnorePatterns } from '../../../configs/prettier-config';
+import { commonTextFiles } from '../../../configs/file-globs-config';
 
 export const prettierEslintConfig: Linter.FlatConfig = {
-  files: ['**/*.{ts,tsx,js,jsx,json,yml,yaml,md}'],
+  files: [commonTextFiles],
   ignores: prettierIgnorePatterns,
   plugins: {
     prettier,
   },
   rules: {
-    'prettier/prettier': ['error', prettierOptions, { usePrettierrc: false }],
+    'prettier/prettier': ['error', prettierConfig, { usePrettierrc: false }],
   },
 };

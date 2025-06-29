@@ -1,9 +1,10 @@
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import { Linter } from 'eslint';
+import { tsFiles } from '../../../configs/file-globs-config';
 
 export const typescriptEslintConfig: Linter.FlatConfig = {
-  files: ['**/*.ts', '**/*.tsx'],
+  files: [tsFiles],
   ignores: [],
   languageOptions: {
     parser: tsParser,

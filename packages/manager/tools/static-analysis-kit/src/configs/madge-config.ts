@@ -1,33 +1,8 @@
+import { sharedExclusionPatterns } from './shared-exclusion-patterns';
+
 export const madgeDefaultOptions = {
   fileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  excludeRegExp: [
-    '.*node_modules/.*',
-    '.*target/.*',
-    '.*dist/.*',
-    '.*__mocks__/.*',
-    '.*_mock_/.*',
-    '.*mock*/.*',
-    '.*mocks/.*',
-    '.*public/.*',
-    '.*husky/.*',
-    '.*vscode/.*',
-    '.*idea/.*',
-    '.*next/.*',
-    '.*gitlab/.*',
-    '.*github/.*',
-    '.*eslint.*',
-    '.*jest.*',
-    '.*test*.*',
-    '.*Test*.*',
-    '.*spec.*',
-    '.*cucumber.*',
-    '.*hmr.*',
-    '.*config.*',
-    '.*babel.*',
-    '.*webpack.*',
-    '.*mock.*',
-    '.*.types.*',
-    '.*.svg',
-    '.*.d.ts.*',
-  ],
+  excludeRegExp: sharedExclusionPatterns.map((glob) =>
+    glob.replace(/\*\*/g, '.*').replace(/\*/g, '.*'),
+  ),
 };

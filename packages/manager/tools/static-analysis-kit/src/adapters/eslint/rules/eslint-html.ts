@@ -1,9 +1,10 @@
 import htmlPlugin from '@html-eslint/eslint-plugin';
 import htmlParser from '@html-eslint/parser';
 import { ESLint, Linter } from 'eslint';
+import { htmlFiles } from '../../../configs/file-globs-config';
 
 export const htmlEslintConfig: Linter.FlatConfig = {
-  files: ['**/*.html'],
+  files: [htmlFiles],
   ignores: [],
   plugins: {
     '@html-eslint': (htmlPlugin as unknown) as ESLint.Plugin,

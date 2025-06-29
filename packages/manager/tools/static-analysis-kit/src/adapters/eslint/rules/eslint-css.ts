@@ -3,6 +3,7 @@ import css from '@eslint/css';
 import { ESLint, Linter } from 'eslint';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { tailwind4 } from 'tailwind-csstree';
+import { cssFiles } from '../../../configs/file-globs-config';
 
 type ExtendedFlatConfig = Linter.FlatConfig & {
   language?: string;
@@ -10,7 +11,7 @@ type ExtendedFlatConfig = Linter.FlatConfig & {
 };
 
 export const cssEslintConfig: ExtendedFlatConfig = {
-  files: ['**/*.css'],
+  files: [cssFiles],
   language: 'css/css',
   languageOptions: {
     customSyntax: tailwind4,

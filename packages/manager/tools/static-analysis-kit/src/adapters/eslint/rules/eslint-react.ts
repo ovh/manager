@@ -6,9 +6,10 @@ import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import { ESLint, Linter } from 'eslint';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import globals from 'globals';
+import { jsTsFiles } from '../../../configs/file-globs-config';
 
 export const reactEslintConfig: Linter.FlatConfig = {
-  files: ['**/*.{js,jsx,ts,tsx}'],
+  files: [jsTsFiles],
   plugins: {
     react: reactPlugin as unknown as ESLint.Plugin,
     'react-hooks': reactHooksPlugin as unknown as ESLint.Plugin,

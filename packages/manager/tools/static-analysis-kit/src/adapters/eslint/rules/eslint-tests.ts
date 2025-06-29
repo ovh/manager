@@ -1,12 +1,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import vitest from '@vitest/eslint-plugin';
 import { ESLint, Linter } from 'eslint';
+import { testFiles } from '../../../configs/file-globs-config';
 
 export const vitestEslintConfig: Linter.FlatConfig = {
-  files: [
-    '**/*.{test,spec}.{ts,tsx,js,jsx}',
-    '**/__tests__/**/*.{ts,tsx,js,jsx}',
-  ],
+  files: testFiles,
   plugins: {
     vitest: (vitest as unknown) as ESLint.Plugin,
   },
