@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { OdsDivider } from '@ovhcloud/ods-components/react';
 import { DashboardTile, ManagerText } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useOrganization, usePlatform } from '@/data/hooks';
 import { Guide, GUIDES_LIST } from '@/guides.constants';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -11,7 +12,12 @@ import { capitalize } from '@/utils';
 import { useAccountsStatistics } from '@/hooks';
 
 export const GeneralInformations = () => {
-  const { t } = useTranslation(['dashboard', 'common']);
+  const { t } = useTranslation([
+    'dashboard',
+    'common',
+    NAMESPACES.STATUS,
+    NAMESPACES.DASHBOARD,
+  ]);
   const { platformUrn } = usePlatform();
   const { data: organisation } = useOrganization();
   const { accountsStatistics } = useAccountsStatistics();
@@ -108,7 +114,7 @@ export const GeneralInformations = () => {
       <div className="p-3">
         <DashboardTile
           data-testid="status"
-          title={t('common:status')}
+          title={t(`${NAMESPACES.STATUS}:status`)}
           items={itemsStatus}
         />
       </div>

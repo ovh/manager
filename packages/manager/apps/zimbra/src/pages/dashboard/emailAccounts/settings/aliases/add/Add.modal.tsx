@@ -25,6 +25,7 @@ import {
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useDomains, useAccount } from '@/data/hooks';
 import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
 import { Modal, Loading } from '@/components';
@@ -40,7 +41,11 @@ import { CANCEL, CONFIRM, EMAIL_ACCOUNT_ADD_ALIAS } from '@/tracking.constants';
 
 export const AddAliasModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation(['accounts/alias', 'common']);
+  const { t } = useTranslation([
+    'accounts/alias',
+    'common',
+    NAMESPACES.ACTIONS,
+  ]);
   const { platformId } = useParams();
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
@@ -161,12 +166,12 @@ export const AddAliasModal = () => {
       isLoading={isLoading}
       ref={modalRef}
       secondaryButton={{
-        label: t('common:cancel'),
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
         onClick: handleCancelClick,
       }}
       primaryButton={{
         testid: 'confirm-btn',
-        label: t('common:confirm'),
+        label: t(`${NAMESPACES.ACTIONS}:confirm`),
         isDisabled: !isDirty || !isValid,
         isLoading: isLoading || isSending,
         onClick: handleSubmit(handleConfirmClick),

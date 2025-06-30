@@ -23,6 +23,7 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl } from '@/hooks';
 import { BACK_PREVIOUS_PAGE, UPGRADE_SLOT } from '@/tracking.constants';
 import { useSlot } from '@/data/hooks';
@@ -34,7 +35,7 @@ export const UpgradeAccount = () => {
   const { platformId, slotId } = useParams();
   const { trackClick, trackPage } = useOvhTracking();
   const { addSuccess, addError, clearNotifications } = useNotifications();
-  const { t } = useTranslation(['accounts', 'common']);
+  const { t } = useTranslation(['accounts', 'common', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
@@ -163,7 +164,7 @@ export const UpgradeAccount = () => {
           variant={ODS_BUTTON_VARIANT.outline}
           isLoading={isLoading || isSending}
           data-testid="cancel-btn"
-          label={t('common:cancel')}
+          label={t(`${NAMESPACES.ACTIONS}:cancel`)}
           onClick={() => navigate(-1)}
         />
         <OdsButton

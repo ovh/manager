@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
@@ -15,6 +15,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useSlotWithService } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { Modal } from '@/components';
@@ -29,7 +30,7 @@ import { capitalize } from '@/utils';
 
 export const UndoCancelSlotModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation(['accounts', 'common']);
+  const { t } = useTranslation(['accounts', 'common', NAMESPACES.ACTIONS]);
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
   const format = useFormatDate();
@@ -112,11 +113,11 @@ export const UndoCancelSlotModal = () => {
       isDismissible
       isOpen
       secondaryButton={{
-        label: t('common:cancel'),
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
         onClick: handleUndoCancelClick,
       }}
       primaryButton={{
-        label: t('common:confirm'),
+        label: t(`${NAMESPACES.ACTIONS}:confirm`),
         onClick: handleSlotUndoCancelClick,
         isLoading: isSending || isLoading,
         testid: 'primary-btn',

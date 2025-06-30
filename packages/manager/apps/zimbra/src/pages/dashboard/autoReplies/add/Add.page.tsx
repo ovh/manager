@@ -38,6 +38,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useAccount, useAccounts, useDomains } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { AutoReplySchema, autoReplySchema } from '@/utils';
@@ -68,7 +69,12 @@ const durationChoices = [
 
 export const AddAutoReply = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation(['auto-replies/form', 'common']);
+  const { t } = useTranslation([
+    'auto-replies/form',
+    'common',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.FORM,
+  ]);
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const context = useContext(ShellContext);
@@ -252,7 +258,7 @@ export const AddAutoReply = () => {
         {t('zimbra_auto_replies_add_header')}
       </OdsText>
       <OdsText preset={ODS_TEXT_PRESET.caption}>
-        {t('common:form_mandatory_fields')}
+        {t(`${NAMESPACES.FORM}:mandatory_fields`)}
       </OdsText>
       {!accountId && (
         <Controller
@@ -505,7 +511,7 @@ export const AddAutoReply = () => {
           isDisabled={!isDirty || !isValid}
           isLoading={isSending}
           data-testid="confirm-btn"
-          label={t('common:confirm')}
+          label={t(`${NAMESPACES.ACTIONS}:confirm`)}
         ></OdsButton>
       </div>
     </form>

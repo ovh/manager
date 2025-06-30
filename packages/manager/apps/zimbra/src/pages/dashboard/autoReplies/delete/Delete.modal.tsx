@@ -6,6 +6,7 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ButtonType,
   PageLocation,
@@ -23,7 +24,7 @@ import {
 
 export const DeleteAutoReplyModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation(['auto-replies', 'common']);
+  const { t } = useTranslation(['auto-replies', 'common', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const { accountId, autoReplyId } = useParams();
 
@@ -104,12 +105,12 @@ export const DeleteAutoReplyModal = () => {
       isDismissible
       isOpen
       secondaryButton={{
-        label: t('common:cancel'),
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
         onClick: handleCancelClick,
         testid: 'cancel-btn',
       }}
       primaryButton={{
-        label: t('common:delete'),
+        label: t(`${NAMESPACES.ACTIONS}:delete`),
         onClick: handleDeleteClick,
         isLoading: isSending,
         testid: 'delete-btn',

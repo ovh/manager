@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import i18n from 'i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ZimbraOffer, ZimbraPlanCodes } from '@/data/api/type';
 
 const customErrorMap: z.ZodErrorMap = (error, ctx) => {
@@ -7,14 +8,18 @@ const customErrorMap: z.ZodErrorMap = (error, ctx) => {
     case z.ZodIssueCode.too_big:
       if (error.type === 'string') {
         return {
-          message: i18n?.t('common:form_max_chars', { value: error.maximum }),
+          message: i18n?.t(`${NAMESPACES.FORM}:error_max_chars`, {
+            value: error.maximum,
+          }),
         };
       }
       break;
     case z.ZodIssueCode.too_small:
       if (error.type === 'string') {
         return {
-          message: i18n?.t('common:form_min_chars', { value: error.minimum }),
+          message: i18n?.t(`${NAMESPACES.FORM}:error_min_chars`, {
+            value: error.minimum,
+          }),
         };
       }
       break;
@@ -30,7 +35,7 @@ const customErrorMap: z.ZodErrorMap = (error, ctx) => {
   }
 
   if (ctx.defaultError === 'Required' || ctx.defaultError === 'Invalid') {
-    return { message: i18n?.t('common:form_required_field') };
+    return { message: i18n?.t(`${NAMESPACES.FORM}:required_field`) };
   }
 
   return { message: ctx.defaultError };
@@ -103,7 +108,7 @@ export const date = z.date({ message: i18n?.t('common:form_valid_date') });
 
 export const requiredString = z
   .string()
-  .min(1, i18n?.t('common:form_required_field'));
+  .min(1, i18n?.t(`${NAMESPACES.FORM}:required_field`));
 
 export const withSlotId = z.object({
   slotId: z.string(),

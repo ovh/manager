@@ -18,6 +18,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   Breadcrumb,
   Loading,
@@ -96,7 +97,7 @@ export const DashboardLayout: React.FC = () => {
     {
       name: 'general_informations',
       trackingName: GENERAL_INFORMATIONS,
-      title: t('common:general_informations'),
+      title: t(`${NAMESPACES.DASHBOARD}:general_information`),
       to: useGenerateUrl(basePath, 'path'),
       pathMatchers: useComputePathMatchers([urls.dashboard]),
     },
@@ -168,7 +169,7 @@ export const DashboardLayout: React.FC = () => {
 
   return (
     <BaseLayout
-      breadcrumb={<Breadcrumb />}
+      breadcrumb={<Breadcrumb namespace={['common', NAMESPACES.DASHBOARD]} />}
       header={{
         title: 'Zimbra',
         headerButton: <GuideButton items={guideItems} />,

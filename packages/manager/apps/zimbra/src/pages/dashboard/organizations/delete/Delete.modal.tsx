@@ -16,6 +16,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useDomains, useOrganization } from '@/data/hooks';
 import {
   deleteZimbraPlatformOrganization,
@@ -27,7 +28,7 @@ import { CANCEL, CONFIRM, DELETE_ORGANIZATION } from '@/tracking.constants';
 
 export const DeleteOrganizationModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation(['organizations', 'common']);
+  const { t } = useTranslation(['organizations', 'common', NAMESPACES.ACTIONS]);
   const { platformId, organizationId } = useParams();
   const {
     data: organization,
@@ -112,12 +113,12 @@ export const DeleteOrganizationModal = () => {
       isDismissible
       isLoading={isOrganizationLoading || isDomainsLoading}
       secondaryButton={{
-        label: t('common:cancel'),
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
         onClick: handleCancelClick,
       }}
       primaryButton={{
         testid: 'delete-btn',
-        label: t('common:delete'),
+        label: t(`${NAMESPACES.ACTIONS}:delete`),
         onClick: handleDeleteClick,
         isLoading: isSending || isOrganizationLoading || isDomainsLoading,
         isDisabled: domains?.length > 0 || !organizationId,

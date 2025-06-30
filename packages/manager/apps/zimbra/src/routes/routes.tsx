@@ -2,6 +2,7 @@ import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { UIMatch, Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import NotFound from '@/pages/404';
 import OnboardingConfigureLayout from '@/pages/onboarding/configure/Configure.layout';
@@ -204,7 +205,7 @@ export default (
             pageType: PageType.dashboard,
           },
           breadcrumb: {
-            label: 'common:general_informations',
+            label: `${NAMESPACES.DASHBOARD}:general_information`,
           },
         }}
       />
