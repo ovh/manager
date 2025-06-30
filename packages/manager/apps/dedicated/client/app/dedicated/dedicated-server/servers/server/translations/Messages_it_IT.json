@@ -392,7 +392,7 @@
   "server_configuration_installation_ovh_step2_zp_name": "Nome del zpool (ZFS)",
   "server_configuration_installation_ovh_step2_raid": "RAID",
   "server_configuration_installation_ovh_step2_raid_help": "Il RAID (a partire dal RAID 1) permette di copiare dati su diversi hard disk per migliorare il backup del server in caso di problemi. Attenzione: il RAID 0 non salva i dati ed è quindi sconsigliato.",
-  "server_configuration_installation_ovh_step2_available_size": "Dimensione della partizione",
+  "server_configuration_installation_ovh_step2_available_size": "Dimensione utilizzabile",
   "server_configuration_installation_ovh_step2_available_size_help": "Questa dimensione rappresenta lo spazio che i tuoi dati possono occupare.",
   "server_configuration_installation_ovh_step2_size": "Spazio utilizzato ",
   "server_configuration_installation_ovh_step2_size_help": "Questo valore varia in base al RAID utilizzato. In caso di server con 2 hard disk, un RAID 1 duplica i dati di una partizione sui due dischi raddoppiando così lo spazio utilizzato. In caso di malfunzionamento di uno dei 2 dischi, i dati non vengono persi.",

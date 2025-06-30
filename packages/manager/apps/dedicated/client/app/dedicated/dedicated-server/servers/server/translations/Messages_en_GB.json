@@ -392,7 +392,7 @@
   "server_configuration_installation_ovh_step2_zp_name": "Zpool name (ZFS)",
   "server_configuration_installation_ovh_step2_raid": "RAID",
   "server_configuration_installation_ovh_step2_raid_help": "With RAID (starting from RAID 1), you can replicate data on multiple hard disks, to improve the server's data backup in the event of failure. Important: RAID 0 does not back up the data. For this reason, it is not recommended.",
-  "server_configuration_installation_ovh_step2_available_size": "Partition size",
+  "server_configuration_installation_ovh_step2_available_size": "Usable size",
   "server_configuration_installation_ovh_step2_available_size_help": "This size is the space that can be taken up by your data.",
   "server_configuration_installation_ovh_step2_size": "Space used",
   "server_configuration_installation_ovh_step2_size_help": "The sizes will vary depending on the RAID you use. If you have a server with 2 hard disks, a RAID 1 duplicates the data from a partition on to the 2 disks, doubling the space used as a result. If one of the 2 disks becomes faulty, the data is not lost.",

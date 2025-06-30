@@ -392,7 +392,7 @@
   "server_configuration_installation_ovh_step2_zp_name": "Nazwa zpool (ZFS)",
   "server_configuration_installation_ovh_step2_raid": "RAID",
   "server_configuration_installation_ovh_step2_raid_help": "RAID (począwszy od konfiguracji RAID 1) pozwala na replikowanie danych na kilku dyskach twardych, aby zabezpieczyć dane w przypadku awarii.  Uwaga: RAID 0 nie replikuje danych, nie jest on zatem zalecany.",
-  "server_configuration_installation_ovh_step2_available_size": "Rozmiar partycji",
+  "server_configuration_installation_ovh_step2_available_size": "Dostępna przestrzeń",
   "server_configuration_installation_ovh_step2_available_size_help": "Jest to rozmiar przestrzeni wykorzystywanej na dane.",
   "server_configuration_installation_ovh_step2_size": "Wykorzystana przestrzeń",
   "server_configuration_installation_ovh_step2_size_help": "Rozmiar ten zmienia się w zależności od używanej konfiguracji RAID. W przypadku serwera z 2 dyskami twardymi RAID 1 duplikuje dane z jednej partycji na 2 dyskach i tym samym podwaja wykorzystaną przestrzeń.  Jeśli jeden z dysków ulegnie awarii, dane nie zostaną utracone.",

@@ -398,7 +398,7 @@
   "server_configuration_installation_ovh_step2_zp_name": "Zpool-Name (ZFS)",
   "server_configuration_installation_ovh_step2_raid": "RAID",
   "server_configuration_installation_ovh_step2_raid_help": "Die RAID-Technologie (ab RAID-1-Modus aufwärts) erlaubt es, die Daten auf mehreren Festplatten gleichzeitig abzulegen, um die Datensicherheit des Servers bei einem Ausfall zu verbessern. Achtung: Der RAID-0-Modus dient nicht der Datensicherheit, von dessen Verwendung wird deshalb abgeraten.",
-  "server_configuration_installation_ovh_step2_available_size": "Größe der Partition",
+  "server_configuration_installation_ovh_step2_available_size": "Nutzbare Größe",
   "server_configuration_installation_ovh_step2_available_size_help": "Diese Größe legt den Speicherplatz fest, den Sie für Ihre Daten verwenden können.",
   "server_configuration_installation_ovh_step2_size": "Verbrauchter Speicherplatz",
   "server_configuration_installation_ovh_step2_size_help": "Diese Größe variiert abhängig vom verwendeten RAID-Modus. Bei einem Server mit 2 Festplatten im RAID 1 werden die Daten einer Partition auf beiden Festplatten dupliziert, wodurch sich der verwendete Speicherplatz verdoppelt. Wenn eine der beiden Festplatten ausfällt, sind die Daten jedoch nicht verloren.",
