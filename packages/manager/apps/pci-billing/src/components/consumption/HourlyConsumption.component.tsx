@@ -126,9 +126,9 @@ export default function HourlyConsumption({
       condition: !isTrustedZone,
     },
     {
-      key: 'aiEndpoint',
+      key: 'aiEndpoints',
       title: t('cpbc_hourly_ai_endpoints_title'),
-      component: <AiEndpointList resourcesUsage={consumption.aiEndpoint} />,
+      component: <AiEndpointList resourcesUsage={consumption.aiEndpoints} />,
     },
     {
       key: 'dataProcessing',
