@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
-import { Translation, useTranslation } from 'react-i18next';
+import { Trans, Translation, useTranslation } from 'react-i18next';
+
 import {
   Headers,
   useNotifications,
@@ -46,6 +47,7 @@ import { useVolumeMaxSize } from '@/api/data/quota';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
 import { useVolumeCatalog, useVolumePricing } from '@/api/hooks/useCatalog';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
+import ExternalLink from '@/components/ExternalLink';
 
 type TPriceProps = {
   projectId: string;
@@ -108,6 +110,7 @@ export default function EditPage() {
   const { projectId, volumeId } = useParams();
 
   const projectUrl = useProjectUrl('public-cloud');
+  const quotaUrl = `${projectUrl}/quota`;
   const { data: project } = useProject(projectId || '');
   const { translateMicroRegion } = useTranslatedMicroRegions();
 
@@ -485,9 +488,13 @@ export default function EditPage() {
             }
             className="block"
           >
-            {tVolumeEdit(
-              'pci_projects_project_storages_blocks_block_volume-edit_size_help',
-            )}
+            <Trans
+              t={tVolumeEdit}
+              i18nKey="pci_projects_project_storages_blocks_block_volume-edit_size_help"
+              components={{
+                Link: <ExternalLink href={quotaUrl} />,
+              }}
+            />
           </OsdsText>
 
           <div className="flex mt-8 gap-4">
