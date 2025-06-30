@@ -14,6 +14,7 @@ describe('HourlyConsumption', () => {
     coldArchive: [],
     bandwidthByRegions: [],
     privateRegistry: [],
+    aiEndpoints: [],
     kubernetesLoadBalancer: [],
     training: [],
     notebooks: [],
@@ -29,6 +30,7 @@ describe('HourlyConsumption', () => {
     totals: {
       total: 10.5,
       hourly: {
+        aiEndpoints: 10.5,
         instance: 10.5,
         snapshot: 5.25,
         volume: 7.75,

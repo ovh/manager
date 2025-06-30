@@ -18,5 +18,6 @@
   "cpbc_hourly_ai_deploy_title": "AI Deploy",
   "cpbc_cold_archive_detail_title": "Cold Archive",
   "cpbc_hourly_public_ip_title": "Public IP",
-  "cpbc_hourly_rancher_title": "Managed Rancher Service"
+  "cpbc_hourly_rancher_title": "Managed Rancher Service",
+  "cpbc_hourly_ai_endpoints_title": "AI Endpoints"
 }
