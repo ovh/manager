@@ -13,7 +13,6 @@ import {
   TrackingPluginType,
 } from '../plugin/tracking/tracking';
 import loggerPlugin from '../plugin/logger';
-import { LocationPlugin, TLocationPlugin } from '../plugin/location';
 
 function isStagingEnvironment() {
   return /\.dev$/.test(window.location.hostname);
@@ -79,10 +78,6 @@ export function initShell(environment: Environment): Shell {
     );
 
   shell.getPluginManager().registerPlugin('logger', loggerPlugin());
-
-  shell
-    .getPluginManager()
-    .registerPlugin('location', new LocationPlugin() as TLocationPlugin);
 
   return shell;
 }
