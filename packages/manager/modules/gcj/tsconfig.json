@@ -6,14 +6,20 @@
     "module": "ES2020",
     "outDir": "dist",
     "allowJs": false,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
+    "strict": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "Node",
     "isolatedModules": true,
     "declaration": true,
     "declarationDir": "./dist/types",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
+  "include": ["src/**/*", "*.spec.tsx"],
   "exclude": ["node_modules", "dist", "**/__tests__", "src/**/*.spec.ts*"]
 }
