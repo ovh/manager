@@ -11,7 +11,7 @@
   "dashboard_installation_progress_step_create_virtuals_machines": "Création des machines virtuelles",
   "dashboard_installation_progress_step_sap_hana_install": "Installation de SAP HANA et configuration des options demandées",
   "dashboard_installation_progress_step_sap_install": "Installation du système SAP et configuration des options demandées",
-  "dashboard_installation_progress_step_clean_resources": "Suppression des ressources temporaires dans votre service VMware on OVHcloud",
+  "dashboard_installation_progress_step_clean_resources": "Suppression des ressources temporaires dans votre infrastructure",
   "dashboard_installation_progress_step_success": "Étape terminée avec succès",
   "dashboard_installation_progress_step_failure": "Étape échouée",
   "dashboard_installation_progress_step_pending": "Étape en cours d'éxécution",

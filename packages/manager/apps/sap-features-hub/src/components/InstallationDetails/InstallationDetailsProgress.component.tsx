@@ -111,7 +111,7 @@ export const InstallationDetailsProgress = ({
           </OdsText>
           <div>
             {!isLoading && (
-              <InstallationStatus status={installationTaskDetails.status} />
+              <InstallationStatus status={installationTaskDetails?.status} />
             )}
           </div>
         </div>
