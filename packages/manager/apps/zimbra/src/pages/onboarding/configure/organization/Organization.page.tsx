@@ -23,6 +23,7 @@ import {
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useOrganizations } from '@/data/hooks';
 import { SimpleOrganizationSchema, simpleOrganizationSchema } from '@/utils';
 import {
@@ -38,7 +39,12 @@ import queryClient from '@/queryClient';
 import { Loading } from '@/components';
 
 export const ConfigureOrganization: React.FC = () => {
-  const { t } = useTranslation(['onboarding', 'organizations/form', 'common']);
+  const { t } = useTranslation([
+    'onboarding',
+    'organizations/form',
+    'common',
+    NAMESPACES.ACTIONS,
+  ]);
   const { trackClick, trackPage } = useOvhTracking();
   const { addError } = useNotifications();
   const { platformId } = useParams();
@@ -160,7 +166,7 @@ export const ConfigureOrganization: React.FC = () => {
         color={ODS_BUTTON_COLOR.primary}
         isDisabled={!isDirty || !isValid}
         isLoading={isSending}
-        label={`${t('common:next')} 1/3`}
+        label={`${t(`${NAMESPACES.ACTIONS}:next`)} 1/3`}
       ></OdsButton>
     </form>
   );
