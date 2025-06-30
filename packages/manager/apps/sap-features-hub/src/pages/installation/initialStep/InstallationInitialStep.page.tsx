@@ -34,7 +34,7 @@ export default function InstallationInitialStep() {
       isPrefilled,
       prefilledData: {
         serviceName: prefilledServiceName,
-        datacenterId: prefilledVdcId,
+        datacenterId: prefilledDatacenterId,
         clusterName: prefilledClusterName,
       },
     },
@@ -83,10 +83,10 @@ export default function InstallationInitialStep() {
     serviceDisplayName:
       services?.find((s) => s?.serviceName === service)?.displayName || '',
   });
-  const getDatacenterData = (vdcId: number | null): DatacenterData => ({
-    datacenterId: vdcId || null,
+  const getDatacenterData = (id: number | null): DatacenterData => ({
+    datacenterId: id || null,
     datacenterName:
-      datacentres?.find((vdc) => vdc?.datacenterId === vdcId)?.name || '',
+      datacentres?.find((d) => d?.datacenterId === id)?.name || '',
   });
   const getClusterData = (cluster: string | null): ClusterData => ({
     clusterName: cluster || '',
@@ -136,7 +136,7 @@ export default function InstallationInitialStep() {
         isDisabled={!serviceName || isLoadingDatacentres || isDatacentresError}
         isLoading={isLoadingDatacentres}
         defaultValue={getSelectDefaultValue(
-          isPrefilled ? prefilledVdcId : datacenterId,
+          isPrefilled ? prefilledDatacenterId : datacenterId,
           datacenterIds,
         )}
         handleChange={(e) => {
