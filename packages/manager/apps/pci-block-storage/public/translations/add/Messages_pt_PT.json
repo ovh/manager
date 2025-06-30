@@ -8,7 +8,7 @@
   "pci_projects_project_storages_blocks_add_type_high-speed_description": "",
   "pci_projects_project_storages_blocks_add_type_price": "{{price}} GB/mês + IVA",
   "pci_projects_project_storages_blocks_add_size_title": "Capacidade do volume",
-  "pci_projects_project_storages_blocks_add_size_help": "O tamanho máximo depende do seu limite disponível.",
+  "pci_projects_project_storages_blocks_add_size_help": "O tamanho máximo depende do seu limite disponível. <Link>Verificar o meu limite</Link>",
   "pci_projects_project_storages_blocks_add_size_unit": "GB",
   "pci_projects_project_storages_blocks_add_name_title": "Nome do volume",
   "pci_projects_project_storages_blocks_add_submit_title": "Validação",
@@ -43,5 +43,6 @@
   "pci_projects_project_storages_blocks_add_type_addon_iops_dynamic": "{{iops}} IOPS/GB até {{max}} IOPS{{separator}} ",
   "pci_projects_project_storages_blocks_add_type_multi_attach_banner": "É imperativo utilizar um sistema de ficheiros compatível com a gestão multi-anexo ou em cluster para os seus volumes quando várias instâncias são associadas a estes últimos. Sem esta configuração, os seus dados poderão ficar danificados. Para mais informações, <Link>consulte o nosso guia sobre a configuração dos volumes multi-anexo</Link>",
   "pci_projects_project_storages_blocks_add_type_subtitle_3AZ_link": "Saber mais sobre as especificidades dos serviços 3AZ",
-  "pci_projects_project_storages_blocks_add_encryption_description": "Ative a encriptação para adicionar uma camada de segurança aos seus volumes e assegurar a confidencialidade das suas informações."
+  "pci_projects_project_storages_blocks_add_encryption_description": "Ative a encriptação para adicionar uma camada de segurança aos seus volumes e assegurar a confidencialidade das suas informações.",
+  "pci_projects_project_storages_blocks_add_error_quota_exceeded": "Já não tem limite disponível para esta localização. Para continuar, <Link>aumente as suas quotas</Link>"
 }

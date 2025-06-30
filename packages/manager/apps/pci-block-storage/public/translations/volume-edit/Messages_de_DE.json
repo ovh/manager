@@ -3,7 +3,7 @@
   "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Volume-Typ",
   "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Volume-Name",
   "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Volume-Kapazität:",
-  "pci_projects_project_storages_blocks_block_volume-edit_size_help": "Die maximale Größe ist von Ihrem verfügbaren Quota abhängig.",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_help": "Die maximale Größe hängt von Ihrem verfügbaren Quota ab. <Link>Quota überprüfen</Link>",
   "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
   "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Bootfähig",
   "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Indem Sie ein Volume als bootfähig definieren, kann es für den Start Ihrer Instanz verwendet werden.",
