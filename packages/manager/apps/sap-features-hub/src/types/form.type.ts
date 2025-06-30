@@ -118,5 +118,5 @@ export type StructuredInstallationForm = {
     sapSid: string;
   };
   systemUsage: string;
-  vdcId: number;
+  datacenterId: number;
 };
