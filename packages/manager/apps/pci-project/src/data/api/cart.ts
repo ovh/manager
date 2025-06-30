@@ -23,12 +23,12 @@ const orderCloudProject = async (
     throw new AxiosError(`planCode ${planCode} not found`);
   }
 
-  // Find the correct offer & pricing (matching planCode & capacities = 'renew'
+  // Find the correct offer & pricing (matching planCode & capacities = 'renew')
   const renewPrice = cloudProjectOffer.prices.find((price) =>
     price.capacities.includes('renew'),
   );
   if (!renewPrice) {
-    throw new AxiosError(`could not found 'renew' price in product offer.`);
+    throw new AxiosError(`could not find 'renew' price in product offer.`);
   }
   const { duration, pricingMode } = renewPrice;
 
@@ -81,7 +81,7 @@ export const getSummary = async (cartId: string): Promise<CartSummary> => {
 };
 
 export const checkoutCart = async (cartId: string): Promise<CartSummary> => {
-  const { data: summary } = await v6.get<CartSummary>(
+  const { data: summary } = await v6.post<CartSummary>(
     `order/cart/${cartId}/checkout`,
   );
   if (summary.prices.withTax.value === 0) {

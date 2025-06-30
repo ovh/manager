@@ -86,6 +86,10 @@ vi.mock('@/data/hooks/useCart', async () => ({
   useFinalizeCart: vi.fn().mockReturnValue({ data: null }),
 }));
 
+vi.mock('@/pages/onboarding/DiscoveryGuard.component', () => ({
+  default: ({ children }: { children: ReactNode }) => <>{children}</>,
+}));
+
 describe('OnboardingPage', () => {
   describe('Regions others than US', () => {
     const wrapper = createCustomWrapper({ region: 'FR', ovhSubsidiary: 'FR' });
