@@ -1,4 +1,4 @@
 {
-  "terminate_managed_vcd_success": "The request to cancel your service has been processed. You’ll receive an email to confirm it.",
-  "terminate_managed_vcd_ftc_success": "The request to cancel your service has been processed. A confirmation email has been sent to you."
+  "terminate_managed_vcd_success": "The request to cancel your {{service}} service has been processed. You’ll receive an email to confirm it.",
+  "terminate_managed_vcd_ftc_success": "The request to cancel your {{service}} service has been processed. A confirmation email has been sent to you."
 }
