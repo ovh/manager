@@ -188,7 +188,7 @@ export const useVolumeEncryptions = () => {
         },
         {
           type: EncryptionType.OMK,
-          label: 'OVH Managed Key',
+          label: 'OVHcloud Managed Key',
         },
         {
           type: EncryptionType.CMK,
