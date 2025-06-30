@@ -43,7 +43,7 @@ const mapFormToStructured = (
     sapSid: form.sapSid,
   },
   systemUsage: 'custom',
-  vdcId: form.datacenterId,
+  datacenterId: form.datacenterId,
 });
 
 const mapStructuredToForm = (
@@ -51,7 +51,7 @@ const mapStructuredToForm = (
 ): InstallationFormValues => ({
   serviceName: form.serviceName,
   serviceDisplayName: '',
-  datacenterId: form.vdcId,
+  datacenterId: form.datacenterId,
   datacenterName: '',
   clusterName: form.clusterName,
   clusterId: null,
