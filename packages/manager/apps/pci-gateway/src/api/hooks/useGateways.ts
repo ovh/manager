@@ -15,7 +15,7 @@ export type TCreateGatewayParam = {
   regionName: string;
   networkId: string;
   subnetId: string;
-  onError: (error: string) => void;
+  onError: (error: unknown) => void;
   onSuccess: (op: TOperation) => void;
 };
 
