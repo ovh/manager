@@ -1,5 +1,5 @@
 export const urls = {
-  root: '/public-cloud/pci/projects',
+  root: '/pci/projects',
   onboarding: 'onboarding',
   listing: '',
   dashboard: ':resourceName',
