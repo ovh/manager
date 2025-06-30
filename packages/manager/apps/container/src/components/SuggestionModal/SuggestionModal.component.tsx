@@ -23,6 +23,8 @@ import {
   INTERVAL_BETWEEN_DISPLAY_IN_S,
   SIRET_MODAL_FEATURE,
   MODAL_NAME,
+  TRACKING_PREFIX,
+  TRACKING_CONTEXT,
 } from './SuggestionModal.constants';
 import { useTime } from '@/hooks/time/useTime';
 import { useCreatePreference } from '@/hooks/preferences/usePreferences';
@@ -34,6 +36,7 @@ const SuggestionModal: FC = () => {
   const environment = shell.getPlugin('environment').getEnvironment();
   const user = environment.getUser();
   const ux = shell.getPlugin('ux');
+  const tracking = shell.getPlugin('tracking');
 
   const preferenceKey = toScreamingSnakeCase(MODAL_NAME);
   const accountEditionLink = useSuggestionTargetUrl();
@@ -56,7 +59,7 @@ const SuggestionModal: FC = () => {
     false,
   );
   const { data } = useSuggestions(Boolean(shouldDisplayModal));
-  const suggestions: Suggestion[] = useMemo(() => 
+  const suggestions: Suggestion[] = useMemo(() =>
     (data as Suggestion[] | undefined)?.filter((suggestion: Suggestion) =>
       isSuggestionRelevant(suggestion, user),
     ) || [],
@@ -69,13 +72,21 @@ const SuggestionModal: FC = () => {
     // Update preference so the modal is not display until 30 days later, time for the update to be done on our side
     const DAYS_DELAY = 30;
     updatePreference(time + DAYS_DELAY * 24 * 60 * 60);
-    // @TODO: Handle tracking (ECAN-2228)
+    tracking.trackClick({
+      name: `${TRACKING_PREFIX}::pop-up::button::siret_update_informations::confirm`,
+      type: 'action',
+      ...TRACKING_CONTEXT,
+    });
   }, [ux, time]);
   const goToProfileEdition = useCallback(() => {
     setShowModal(false);
     // Update preference so the modal is not displayed until a day later
     updatePreference(time);
-    // @TODO: Handle tracking (ECAN-2228)
+    tracking.trackClick({
+      name: `${TRACKING_PREFIX}::pop-up::button::siret_update_informations::cancel`,
+      type: 'action',
+      ...TRACKING_CONTEXT,
+    });
     window.top.location.href = `${accountEditionLink}?fieldToFocus=ovh_form_content_activity`;
   }, [accountEditionLink, time]);
 
@@ -84,6 +95,12 @@ const SuggestionModal: FC = () => {
       setShowModal(shouldDisplayModal);
       if (!shouldDisplayModal) {
         ux.notifyModalActionDone(SuggestionModal.displayName);
+      } else {
+        // only trigger tracking if the modal is actually displayed and not skipped
+        tracking.trackPage({
+          name: `${TRACKING_PREFIX}::pop-up::siret_update_informations`,
+          ...TRACKING_CONTEXT,
+        })
       }
     }
   }, [shouldDisplayModal]);
