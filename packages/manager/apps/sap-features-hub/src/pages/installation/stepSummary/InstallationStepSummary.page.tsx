@@ -9,13 +9,10 @@ import FormLayout from '@/components/Form/FormLayout.component';
 import { FormStepSummary } from '@/components/Form/FormStepSummary.component';
 import { useFormSummary } from '@/hooks/formSummary/useFormSummary';
 import { testIds } from '@/utils/testIds.constants';
-import { useApiValidation } from '@/hooks/apiValidation/useApiValidation';
-import {
-  getSummaryBlob,
-  getSummaryFileName,
-  getSummaryJSON,
-} from '@/utils/summaryExport';
+import { useInstallationCreation } from '@/data/hooks/useInstallationCreation';
+import { getSummaryBlob, getSummaryFileName } from '@/utils/summaryExport';
 import { TRACKING } from '@/tracking.constants';
+import { formMappers } from '@/mappers/formMappers';
 
 export default function InstallationStepSummary() {
   const { t } = useTranslation('installation');
@@ -23,7 +20,7 @@ export default function InstallationStepSummary() {
   const { values } = useInstallationFormContext();
   const { formSummary } = useFormSummary(values);
   const { addError, clearNotifications } = useNotifications();
-  const { mutate: validateForm } = useApiValidation({
+  const { mutate: createInstallation } = useInstallationCreation({
     serviceName,
     onMutate: () => clearNotifications(),
     onError: (err) => {
@@ -58,7 +55,7 @@ export default function InstallationStepSummary() {
       submitLabel={t('summary_cta_submit')}
       onSubmit={() => {
         trackClick(TRACKING.installation.submitSummary('confirm'));
-        validateForm(getSummaryJSON(values));
+        createInstallation(formMappers.toStructured(values));
       }}
       onPrevious={() => {
         trackClick(TRACKING.installation.submitSummary('previous'));
