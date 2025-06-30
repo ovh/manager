@@ -39,9 +39,7 @@ export const RegionSelector = ({
     data: domains,
     error: okmsError,
     isLoading: isOkmsListLoading,
-  } = useOkmsList({
-    pageSize: 100,
-  });
+  } = useOkmsList();
 
   // domain from the secret list
   const [searchParams] = useSearchParams();
