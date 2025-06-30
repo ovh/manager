@@ -322,100 +322,6 @@ const OrderFunnel2 = ({
 
           <OrderSection
             cardMode={tileMode}
-            id="region"
-            title="Region"
-            description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam cumque nemo debitis cupiditate libero incidunt?"
-            className={cn('hidden', isAdvanced && 'block')}
-          >
-            <div>
-              <RadioGroup
-                className="flex flex-col md:grid grid-cols-3 justify-stretch gap-2 mb-4"
-                value={regionType}
-                onValueChange={setRegionType}
-              >
-                <RadioTile value="REGION-1-AZ" className="flex flex-col">
-                  <div className="flex gap-2">
-                    <h5>1-AZ Region</h5>
-                    <Badge className="bg-primary-400 text-white">1-AZ</Badge>
-                  </div>
-                  <Separator className="my-2" />
-                  <div className="flex flex-col h-full justify-between items-start gap-2">
-                    <p className="text-sm">
-                      Resilient and low cost deployment in 1 availability zone.
-                    </p>
-                    <div className="border border-neutral-300 p-2 hidden lg:block">
-                      <div className="border border-dashed border-primary relative p-5">
-                        <span className="absolute top-1 left-1 bg-primary-400 px-1 text-xs text-white font-semibold">
-                          AZ1
-                        </span>
-                        <Database className="text-primary-400 size-8" />
-                      </div>
-                    </div>
-                  </div>
-                </RadioTile>
-                <RadioTile value="REGION-3-AZ" className="flex flex-col">
-                  <div className="flex gap-2">
-                    <h5>3-AZ Region</h5>
-                    <Badge className="bg-primary-500 text-white">3-AZ</Badge>
-                  </div>
-                  <Separator className="my-2" />
-                  <div className="flex flex-col h-full justify-between items-start gap-2">
-                    <p className="text-sm">
-                      High resilience/high availability deployment for your
-                      critical applications across 3 availability zones.
-                    </p>
-                    <div className="border border-neutral-300 p-2 gap-1 hidden lg:flex flex-wrap">
-                      <div className="border border-dashed border-primary relative p-5">
-                        <span className="absolute top-1 left-1 bg-primary px-1 text-xs text-white font-semibold">
-                          AZ1
-                        </span>
-                        <Database className="text-primary-400" size={32} />
-                      </div>
-                      <div className="border border-dashed border-primary relative p-5">
-                        <span className="absolute top-1 left-1 bg-primary px-1 text-xs text-white font-semibold">
-                          AZ2
-                        </span>
-                        <Database className="text-primary-400" size={32} />
-                      </div>
-                      <div className="border border-dashed border-primary relative p-5">
-                        <span className="absolute top-1 left-1 bg-primary px-1 text-xs text-white font-semibold">
-                          AZ3
-                        </span>
-                        <Database className="text-primary-400" size={32} />
-                      </div>
-                    </div>
-                  </div>
-                </RadioTile>
-                <RadioTile value="LOCAL-ZONE" className="flex flex-col">
-                  <div className="flex gap-2">
-                    <h5>Local Zone</h5>
-                    <Badge className="bg-primary-200 text-text">
-                      Local Zone
-                    </Badge>
-                  </div>
-                  <Separator className="my-2" />
-                  <p className="text-sm">
-                    Deploy your applications as geographically close to your
-                    ysers as possible, for low latency and compliant data
-                    residency.
-                  </p>
-                </RadioTile>
-              </RadioGroup>
-              <RegionsSelect2
-                value={model.form.getValues('region')}
-                onChange={(newRegion) => {
-                  console.log(newRegion);
-                  model.form.setValue('region', newRegion);
-                }}
-                regions={model.lists.regions.filter((r) =>
-                  [regionType, '?'].includes(r.type),
-                )}
-              />
-            </div>
-          </OrderSection>
-
-          <OrderSection
-            cardMode={tileMode}
             id="engine"
             title="Engine"
             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro odit eum tempora."
@@ -519,6 +425,100 @@ const OrderFunnel2 = ({
                 </RadioTile>
               ))}
             </RadioGroup>
+          </OrderSection>
+
+          <OrderSection
+            cardMode={tileMode}
+            id="region"
+            title="Region"
+            description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam cumque nemo debitis cupiditate libero incidunt?"
+            className={cn('hidden', isAdvanced && 'block')}
+          >
+            <div>
+              <RadioGroup
+                className="flex flex-col md:grid grid-cols-3 justify-stretch gap-2 mb-4"
+                value={regionType}
+                onValueChange={setRegionType}
+              >
+                <RadioTile value="REGION-1-AZ" className="flex flex-col">
+                  <div className="flex gap-2">
+                    <h5>1-AZ Region</h5>
+                    <Badge className="bg-primary-400 text-white">1-AZ</Badge>
+                  </div>
+                  <Separator className="my-2" />
+                  <div className="flex flex-col h-full justify-between items-start gap-2">
+                    <p className="text-sm">
+                      Resilient and low cost deployment in 1 availability zone.
+                    </p>
+                    <div className="border border-neutral-300 p-2 hidden lg:block">
+                      <div className="border border-dashed border-primary relative p-5">
+                        <span className="absolute top-1 left-1 bg-primary-400 px-1 text-xs text-white font-semibold">
+                          AZ1
+                        </span>
+                        <Database className="text-primary-400 size-8" />
+                      </div>
+                    </div>
+                  </div>
+                </RadioTile>
+                <RadioTile value="REGION-3-AZ" className="flex flex-col">
+                  <div className="flex gap-2">
+                    <h5>3-AZ Region</h5>
+                    <Badge className="bg-primary-500 text-white">3-AZ</Badge>
+                  </div>
+                  <Separator className="my-2" />
+                  <div className="flex flex-col h-full justify-between items-start gap-2">
+                    <p className="text-sm">
+                      High resilience/high availability deployment for your
+                      critical applications across 3 availability zones.
+                    </p>
+                    <div className="border border-neutral-300 p-2 gap-1 hidden lg:flex flex-wrap">
+                      <div className="border border-dashed border-primary relative p-5">
+                        <span className="absolute top-1 left-1 bg-primary px-1 text-xs text-white font-semibold">
+                          AZ1
+                        </span>
+                        <Database className="text-primary-400" size={32} />
+                      </div>
+                      <div className="border border-dashed border-primary relative p-5">
+                        <span className="absolute top-1 left-1 bg-primary px-1 text-xs text-white font-semibold">
+                          AZ2
+                        </span>
+                        <Database className="text-primary-400" size={32} />
+                      </div>
+                      <div className="border border-dashed border-primary relative p-5">
+                        <span className="absolute top-1 left-1 bg-primary px-1 text-xs text-white font-semibold">
+                          AZ3
+                        </span>
+                        <Database className="text-primary-400" size={32} />
+                      </div>
+                    </div>
+                  </div>
+                </RadioTile>
+                <RadioTile value="LOCAL-ZONE" className="flex flex-col">
+                  <div className="flex gap-2">
+                    <h5>Local Zone</h5>
+                    <Badge className="bg-primary-200 text-text">
+                      Local Zone
+                    </Badge>
+                  </div>
+                  <Separator className="my-2" />
+                  <p className="text-sm">
+                    Deploy your applications as geographically close to your
+                    ysers as possible, for low latency and compliant data
+                    residency.
+                  </p>
+                </RadioTile>
+              </RadioGroup>
+              <RegionsSelect2
+                value={model.form.getValues('region')}
+                onChange={(newRegion) => {
+                  console.log(newRegion);
+                  model.form.setValue('region', newRegion);
+                }}
+                regions={model.lists.regions.filter((r) =>
+                  [regionType, '?'].includes(r.type),
+                )}
+              />
+            </div>
           </OrderSection>
 
           <OrderSection

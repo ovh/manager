@@ -18,6 +18,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Label,
 } from '@datatr-ux/uxlib';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import * as database from '@/types/cloud/project/database';
@@ -28,6 +29,7 @@ import { EngineIcon } from '@/components/engine-icon/EngineIcon.component';
 
 interface OrderSummaryProps {
   order: {
+    availability: database.Availability;
     engine: Engine;
     version: Version;
     plan: Plan;
@@ -172,9 +174,9 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
       {(order.flavor?.vcores > 0 || order.flavor?.ram.value > 0) && (
         <div>
           <div className="flex items-center pl-4 gap-2">
-          <Boxes className="size-4" />
-          <span>{t('summaryFieldClusterNodes', { count: order.nodes })}</span>
-        </div>
+            <Boxes className="size-4" />
+            <span>{t('summaryFieldClusterNodes', { count: order.nodes })}</span>
+          </div>
           {order.flavor.vcores > 0 && (
             <div className="flex items-center pl-4 gap-2">
               <Cpu className="size-4" />
@@ -250,6 +252,35 @@ const StorageDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     </div>
   );
 };
+
+const BackupDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  return (
+    <div className="flex items-start flex-col">
+      <Button
+        type="button"
+        className="h-auto p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
+      >
+        Backup
+      </Button>
+      <div>
+        <div className="flex items-center pl-4 gap-2">
+          <span>
+            Retention : {order.availability?.backups?.retentionDays} J
+          </span>
+          <Popover>
+            <PopoverTrigger>
+              <HelpCircle className="size-4" />
+            </PopoverTrigger>
+            <PopoverContent className="text-sm" side="left">
+              <p>La durée de rétention de vos backups dépend de votre offre</p>
+            </PopoverContent>
+          </Popover>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const NetworkDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   return (
@@ -327,6 +358,7 @@ const OrderSummary2 = ({ order, onSectionClicked }: OrderSummaryProps) => {
       {order.flavor?.storage && (
         <StorageDetails order={order} onSectionClicked={onSectionClicked} />
       )}
+      <BackupDetails order={order} />
       <NetworkDetails order={order} onSectionClicked={onSectionClicked} />
       <IpsDetails order={order} onSectionClicked={onSectionClicked} />
     </div>
