@@ -12,6 +12,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl } from '@/hooks';
 import { Modal } from '@/components';
 import {
@@ -28,7 +29,11 @@ import { useAlias } from '@/data/hooks';
 
 export const DeleteAlias = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation(['accounts/alias', 'common']);
+  const { t } = useTranslation([
+    'accounts/alias',
+    'common',
+    NAMESPACES.ACTIONS,
+  ]);
   const navigate = useNavigate();
   const { platformId, aliasId } = useParams();
   const { addError, addSuccess } = useNotifications();
@@ -102,11 +107,11 @@ export const DeleteAlias = () => {
       isDismissible
       isLoading={isLoading}
       secondaryButton={{
-        label: t('common:cancel'),
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
         onClick: handleCancelClick,
       }}
       primaryButton={{
-        label: t('common:delete'),
+        label: t(`${NAMESPACES.ACTIONS}:delete`),
         onClick: handleDeleteClick,
         isLoading: isDeleting,
         testid: 'delete-btn',

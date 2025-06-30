@@ -36,6 +36,7 @@ import {
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useDomains, useOrganizations } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import {
@@ -76,7 +77,7 @@ export const DomainForm = ({
   submitButtonLabel?: string;
   subtitle?: React.ReactNode;
 }) => {
-  const { t } = useTranslation(['domains/form', 'common']);
+  const { t } = useTranslation(['domains/form', 'common', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const { platformId } = useParams();
@@ -517,7 +518,7 @@ export const DomainForm = ({
           color={ODS_BUTTON_COLOR.primary}
           isDisabled={!isDirty || !isValid}
           isLoading={isSending}
-          label={submitButtonLabel || t('common:confirm')}
+          label={submitButtonLabel || t(`${NAMESPACES.ACTIONS}:confirm`)}
         ></OdsButton>
       </OdsFormField>
     </form>
