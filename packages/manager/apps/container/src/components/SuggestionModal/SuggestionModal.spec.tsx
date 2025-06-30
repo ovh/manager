@@ -54,6 +54,11 @@ vi.mock('@/context', () => ({
             return {
               notifyModalActionDone: vi.fn(),
             };
+          case 'tracking':
+            return {
+              trackClick: vi.fn(),
+              trackPage: vi.fn(),
+            };
         }
       },
     },
