@@ -12,6 +12,7 @@ import {
 import { useMutation } from '@tanstack/react-query';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal } from '@/components';
 import { useGenerateUrl } from '@/hooks';
 import {
@@ -23,7 +24,7 @@ import {
 
 export const DeleteOrganizationModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation(['redirections', 'common']);
+  const { t } = useTranslation(['redirections', 'common', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const { addSuccess, addError } = useNotifications();
   const { accountId, redirectionId } = useParams();
@@ -102,12 +103,12 @@ export const DeleteOrganizationModal = () => {
       onClose={onClose}
       secondaryButton={{
         testid: 'cancel-btn',
-        label: t('common:cancel'),
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
         onClick: handleCancelClick,
       }}
       primaryButton={{
         testid: 'delete-btn',
-        label: t('common:delete'),
+        label: t(`${NAMESPACES.ACTIONS}:delete`),
         onClick: handleConfirmClick,
         isLoading: isSending,
       }}

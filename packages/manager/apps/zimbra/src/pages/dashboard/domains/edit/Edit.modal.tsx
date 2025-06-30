@@ -23,6 +23,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useDomain, useOrganizations } from '@/data/hooks';
 import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
 import { getZimbraPlatformDomainsQueryKey, putZimbraDomain } from '@/data/api';
@@ -32,7 +33,7 @@ import { CANCEL, CONFIRM, EDIT_DOMAIN } from '@/tracking.constants';
 import { EditDomainSchema, editDomainSchema } from '@/utils';
 
 export const EditDomainModal = () => {
-  const { t } = useTranslation(['domains', 'common']);
+  const { t } = useTranslation(['domains', 'common', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const { trackClick, trackPage } = useOvhTracking();
   const { platformId, domainId } = useParams();
@@ -148,14 +149,14 @@ export const EditDomainModal = () => {
       isLoading={isLoadingDomain || isLoadingOrganizations}
       ref={modalRef}
       primaryButton={{
-        label: t('common:confirm'),
+        label: t(`${NAMESPACES.ACTIONS}:confirm`),
         onClick: handleSubmit(handleConfirmClick),
         isDisabled: !isDirty || !isValid,
         isLoading: isSending,
         testid: 'edit-btn',
       }}
       secondaryButton={{
-        label: t('common:cancel'),
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
         onClick: handleCancelClick,
         testid: 'cancel-btn',
       }}
