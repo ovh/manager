@@ -7,10 +7,16 @@ import {
   getVMwareSAPInstallationsRoute,
   getInstallationTaskDetailsRoute,
 } from '@/utils/apiRoutes.constants';
+import { StructuredInstallationForm } from '@/types/form.type';
 
 export type TGetInstallationTaskParams = {
   serviceName: string;
   taskId: string;
+};
+
+type TCreateInstallationParams = {
+  serviceName: string;
+  form: StructuredInstallationForm;
 };
 
 export const getSAPInstallations = async (
@@ -23,3 +29,9 @@ export const getInstallationTaskDetails = async ({
   taskId,
 }: TGetInstallationTaskParams): Promise<ApiResponse<InstallationDetails>> =>
   v6.get(getInstallationTaskDetailsRoute({ serviceName, taskId }));
+
+export const createInstallation = ({
+  serviceName,
+  form,
+}: TCreateInstallationParams): Promise<ApiResponse<string>> =>
+  v6.post(`/dedicatedCloud/${serviceName}/sap`, form);
