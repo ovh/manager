@@ -782,14 +782,9 @@
                                     }"
                                 >
                                     <span
-                                        data-ng-hide="$ctrl.isSetPartition(partition)"
-                                        data-ng-bind="installation.nbDiskUse"
+                                        data-ng-hide="$ctrl.isSetPartition(partition) || partition.fileSystem !== constants.warningSwap"
+                                        data-ng-bind="installation.nbDiskUse + ' x '"
                                     >
-                                    </span>
-                                    <span
-                                        data-ng-hide="$ctrl.isSetPartition(partition)"
-                                    >
-                                        x
                                     </span>
                                     <span
                                         data-ng-hide="$ctrl.isSetPartition(partition)"
@@ -1714,21 +1709,10 @@
                                     <td>
                                         <span
                                             data-ng-if="partition.fileSystem == constants.warningSwap"
-                                            data-ng-bind="installation.nbDiskUse"
+                                            data-ng-bind="installation.nbDiskUse + ' x '"
                                         >
                                         </span>
                                         <span
-                                            data-ng-if="partition.fileSystem == constants.warningSwap"
-                                        >
-                                            x
-                                        </span>
-                                        <span
-                                            data-ng-if="partition.fileSystem == constants.warningSwap"
-                                            data-ng-bind="$ctrl.getDisplaySize(partition.size)"
-                                        >
-                                        </span>
-                                        <span
-                                            data-ng-if="partition.fileSystem != constants.warningSwap"
                                             data-ng-bind="$ctrl.getDisplaySize(partition.size)"
                                         >
                                         </span>
