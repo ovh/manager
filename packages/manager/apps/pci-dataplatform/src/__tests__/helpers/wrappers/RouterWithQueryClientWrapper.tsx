@@ -149,6 +149,9 @@ export const RouterWithQueryClientWrapper = ({
         error: vi.fn(),
         debug: vi.fn(),
       },
+      location: {
+        getLocations: vi.fn(),
+      },
     },
   } as {
     shell: ShellClientApi;
