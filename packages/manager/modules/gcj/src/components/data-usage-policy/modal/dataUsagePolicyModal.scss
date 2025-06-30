@@ -1,0 +1,5 @@
+@media screen and (width >= 576px) {
+  ods-modal::part(dialog) {
+    max-height: calc(100% - 32px);
+  }
+}
