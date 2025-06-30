@@ -31,6 +31,6 @@ describe('MailingLists datagrid action menu', () => {
       commonTranslation.configure_delegation_mailing_list,
     );
 
-    expect(menuItems[3]).toHaveAttribute('label', commonTranslation.delete);
+    expect(menuItems[3]).toHaveAttribute('label', 'delete');
   });
 });

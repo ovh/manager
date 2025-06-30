@@ -8,6 +8,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl } from '@/hooks';
 import { usePlatform } from '@/data/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -29,7 +30,7 @@ export const ActionButtonRedirection: React.FC<ActionButtonRedirectionAccountPro
   item,
 }) => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
   const { accountId } = useParams();
@@ -64,7 +65,7 @@ export const ActionButtonRedirection: React.FC<ActionButtonRedirectionAccountPro
       onClick: handleEditRedirectionsClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.redirection.edit],
-      label: t('modify'),
+      label: t(`${NAMESPACES.ACTIONS}:modify`),
       hidden: !FEATURE_FLAGS.REDIRECTIONS_EDIT,
     },
     {
@@ -72,7 +73,7 @@ export const ActionButtonRedirection: React.FC<ActionButtonRedirectionAccountPro
       onClick: handleDeleteRedirectionsClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.redirection.delete],
-      label: t('delete'),
+      label: t(`${NAMESPACES.ACTIONS}:delete`),
       color: ODS_BUTTON_COLOR.critical,
     },
   ];

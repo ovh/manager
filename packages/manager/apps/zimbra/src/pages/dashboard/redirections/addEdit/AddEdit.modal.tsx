@@ -25,6 +25,7 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, Loading } from '@/components';
 import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
 import { useAccount, useDomains } from '@/data/hooks';
@@ -40,7 +41,11 @@ import {
 
 export const AddEditOrganizationModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation('redirections');
+  const { t } = useTranslation([
+    'redirections',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.FORM,
+  ]);
   const navigate = useNavigate();
   const { accountId, redirectionId } = useParams();
 
@@ -175,12 +180,12 @@ export const AddEditOrganizationModal = () => {
       onClose={onClose}
       secondaryButton={{
         testid: 'cancel-btn',
-        label: t('common:cancel'),
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
         onClick: handleCancelClick,
       }}
       primaryButton={{
         testid: 'confirm-btn',
-        label: t('common:confirm'),
+        label: t(`${NAMESPACES.ACTIONS}:confirm`),
         isDisabled: !isDirty || !isValid,
         isLoading: isLoadingDomains || isLoadingAccount || isSending,
         onClick: handleSubmit(handleConfirmClick),
@@ -196,7 +201,7 @@ export const AddEditOrganizationModal = () => {
           {t('zimbra_redirections_add_header')}
         </OdsText>
         <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t('common:form_mandatory_fields')}
+          {t(`${NAMESPACES.FORM}:mandatory_fields`)}
         </OdsText>
         <Controller
           control={control}

@@ -16,6 +16,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useAccount } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { Modal } from '@/components';
@@ -29,7 +30,7 @@ import { CANCEL, CONFIRM, DELETE_EMAIL_ACCOUNT } from '@/tracking.constants';
 export const DeleteEmailAccountModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
   const { platformId, accountId } = useParams();
-  const { t } = useTranslation(['accounts', 'common']);
+  const { t } = useTranslation(['accounts', 'common', NAMESPACES.ACTIONS]);
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
 
@@ -107,11 +108,11 @@ export const DeleteEmailAccountModal = () => {
       isDismissible
       isOpen
       secondaryButton={{
-        label: t('common:cancel'),
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
         onClick: handleCancelClick,
       }}
       primaryButton={{
-        label: t('common:delete'),
+        label: t(`${NAMESPACES.ACTIONS}:delete`),
         onClick: step === 1 ? () => setStep(2) : handleDeleteClick,
         isLoading: step === 1 ? false : isSending,
         testid: 'primary-btn',
