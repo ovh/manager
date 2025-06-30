@@ -1,16 +1,6 @@
 export const MOUNT_POINTS = 'defghijklmnopqrstuvwxyza';
 export const MAX_MOUNT_POINTS = 24;
 
-export const TEMPLATE_OS_SOFTWARE_RAID_LIST = {
-  1: [0],
-  2: [0, 1],
-  3: [0, 1, 5],
-  4: [0, 1, 5, 10],
-  5: [0, 1, 5, 6, 10],
-  6: [0, 1, 5, 6, 10],
-  7: [0, 1, 5, 6, 7, 10],
-};
-
 export const REINSTALL_API_CONSOLE_LINK = {
   EU:
     'https://eu.api.ovh.com/console/?section=%2Fdedicated%2Fserver&branch=v1#post-/dedicated/server/-serviceName-/reinstall',
@@ -113,7 +103,6 @@ export const EOL_PERSONAL_INSTALLATION_TEMPLATES_DOCUMENTATION_LINK = {
 export default {
   MOUNT_POINTS,
   MAX_MOUNT_POINTS,
-  TEMPLATE_OS_SOFTWARE_RAID_LIST,
   REINSTALL_API_CONSOLE_LINK,
   API_OS_INSTALLATION_DOCUMENTATION_LINK,
   EOL_PERSONAL_INSTALLATION_TEMPLATES_DOCUMENTATION_LINK,
