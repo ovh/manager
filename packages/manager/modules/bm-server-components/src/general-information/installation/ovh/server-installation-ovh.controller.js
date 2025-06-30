@@ -668,8 +668,7 @@ export default class ServerInstallationOvhCtrl {
               (remainingSize / this.$scope.installation.nbDiskUse) * 3;
             break;
           case this.$scope.constants.warningRaid10:
-            realRemainingSize =
-              remainingSize / (this.$scope.installation.nbDiskUse / 2);
+            realRemainingSize = remainingSize / ( this.$scope.installation.nbDiskUse / ( this.$scope.installation.nbDiskUse / 2 ));
             break;
           default:
             break;
@@ -1666,7 +1665,7 @@ export default class ServerInstallationOvhCtrl {
             set(
               option,
               'partition.realSize',
-              option.partition.size * (this.$scope.installation.nbDiskUse / 2),
+              option.partition.size * (this.$scope.installation.nbDiskUse / ( this.$scope.installation.nbDiskUse / 2 ) ),
             );
             break;
           default:
