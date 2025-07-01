@@ -87,6 +87,7 @@ export default class XdslAccessCtrl {
     this.linkMailSendingHelp = MAIL_SENDING_HELP;
     this.linkMailSendingGuide = MAIL_SENDING_GUIDE_URL;
     this.MAIL_SENDING_STATUS = MAIL_SENDING_STATUS;
+    this.ACCESS_TYPE = ACCESS_TYPE;
 
     this.$scope.loaders = {
       details: true,
