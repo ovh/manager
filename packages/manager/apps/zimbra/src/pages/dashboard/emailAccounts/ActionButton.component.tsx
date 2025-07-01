@@ -176,7 +176,7 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
 
   if (
     availability?.[FEATURE_AVAILABILITY.PRO_BETA] &&
-    item?.service?.planCode === ZimbraPlanCodes.ZIMBRA_STARTER &&
+    item?.service?.planCode !== ZimbraPlanCodes.ZIMBRA_PRO &&
     proCount < MAX_PRO_ACCOUNTS
   ) {
     actionItems.push({
