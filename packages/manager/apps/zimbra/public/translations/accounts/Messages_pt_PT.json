@@ -30,7 +30,7 @@
   "zimbra_slot_undo_cancel_modal_confirm": "Pretende reativar a renovação automática do seu serviço?",
   "zimbra_slot_modal_renew_date": "Fim do compromisso: {{ renewDate }}",
   "zimbra_account_delete_modal_content_step1": "Tem a certeza de que deseja eliminar a conta de e-mail <strong>{{ email }}</strong>?",
-  "zimbra_account_delete_modal_content_step2": "Tem a certeza de que quer eliminar esta conta de e-mail <strong>{{ email }}</strong>?",
+  "zimbra_account_delete_modal_content_step2": "Tem mesmo a certeza de que quer eliminar esta conta de e-mail <strong>{{ email }}</strong>?",
   "zimbra_account_delete_modal_warn_message": "Atenção: esta ação é irreversível e implica a eliminação dos dados.",
   "zimbra_account_upgrade_cta_back": "Voltar para as minhas contas de e-mail",
   "zimbra_account_upgrade_new_offer": "Lançamos em versão beta a nossa <Link href=\"{{ zimbra_emails_link }}\">nova oferta Zimbra Pro</Link>.",

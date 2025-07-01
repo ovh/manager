@@ -58,5 +58,5 @@
   "pci_instances_actions_shelve_instance_confirmation_message": "You are about to suspend the {{ name }} instance. The resources dedicated to your Public Cloud instance will be removed, but the IP address will remain. The data on your local disk will be stored, and only the storage used for this will be billed (1). The duration of the operation depends on the size of your local disk. You can reactivate your instance at any time.",
   "pci_instances_actions_shelve_instance_nota_message": "(1) Warning: For instances billed monthly, standard billing will continue regardless of the service status.",
   "pci_instances_actions_instance_unavailable_action_error_message": "This action is not available for the {{ name }} instance.",
-  "pci_instances_actions_instance_success_message": "The status of the {{ name }} instance has been updated."
+  "pci_instances_actions_instance_success_message": "The status of your {{ name }} instance has been updated"
 }

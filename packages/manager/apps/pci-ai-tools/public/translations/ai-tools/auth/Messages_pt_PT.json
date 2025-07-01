@@ -7,7 +7,7 @@
   "formActiveUserToastErrorTitle": "Erro",
   "formActiveUserToastSuccessTitle": "Sucesso",
   "formActiveUserToastSuccessDescription": "O seu projeto foi devidamente ativado",
-  "authQuantumActivateProjectButton": "Ativar o seu projeto Quântico",
-  "authQuantumDescription": "De modo a utilizar os serviços Quânticos da OVHcloud, deve autenticar-se antes de poder criar o seu primeiro emulador.",
+  "authQuantumActivateProjectButton": "Ativar o seu projeto quântico",
+  "authQuantumDescription": "De modo a utilizar os serviços quânticos da OVHcloud, deve autenticar-se antes de criar o seu primeiro emulador.",
   "quantumTitle": "Emuladores Quânticos"
 }
