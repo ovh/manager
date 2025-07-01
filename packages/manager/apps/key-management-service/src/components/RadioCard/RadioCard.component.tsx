@@ -1,12 +1,8 @@
-import React, { FC, ReactElement, ReactNode } from 'react';
+import React, { ChangeEventHandler, FC, ReactElement, ReactNode } from 'react';
 import clsx from 'clsx';
-import { OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
-import {
-  OdsRadioChangeEventDetail,
-  OdsRadioCustomEvent,
-} from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
 
-interface IRadioCard {
+type RadioCardProps = {
   id: string;
   name: string;
   selected: string;
@@ -15,10 +11,10 @@ interface IRadioCard {
   subTitle?: string | ReactElement;
   badges?: ReactElement;
   children?: ReactNode;
-  onChange: (event: OdsRadioCustomEvent<OdsRadioChangeEventDetail>) => void;
-}
+  onChange: ChangeEventHandler<HTMLInputElement>;
+};
 
-export const RadioCard: FC<IRadioCard> = ({
+export const RadioCard: FC<RadioCardProps> = ({
   children,
   id,
   name,
@@ -48,13 +44,16 @@ export const RadioCard: FC<IRadioCard> = ({
         {/* HEADER */}
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3">
-            <OdsRadio
-              inputId={id}
+            <input
+              type="radio"
+              data-testid={id}
+              id={id}
               value={id}
               name={name}
-              isChecked={isChecked}
-              onOdsChange={onChange}
-              isDisabled={isDisabled}
+              checked={isChecked}
+              onChange={onChange}
+              disabled={isDisabled}
+              className="self-start"
             />
             <div className="flex gap-1 flex-wrap">
               <OdsText preset="heading-6">{title}</OdsText>
