@@ -1,49 +1,48 @@
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import React from 'react';
-import { RouteObject } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
 
-const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
-  return {
-    lazy: async () => {
-      const { default: moduleDefault, ...moduleExports } = await importFn();
-      return {
-        Component: moduleDefault,
-        ...moduleExports,
-      };
-    },
-  };
-};
+const LayoutPage = React.lazy(() => import('@/pages/layout'));
+const DashboardPage = React.lazy(() => import('@/pages/dashboard/dashboard'));
+const RoadmapChangelogPage = React.lazy(() =>
+  import('@/pages/changelog/Changelog'),
+);
 
-export const Routes: any = [
-  {
-    path: '/',
-    ...lazyRouteConfig(() => import('@/pages/layout')),
-    children: [
-      {
-        path: '',
-        ...lazyRouteConfig(() => import('@/pages/dashboard/dashboard')),
-        handle: {
-          tracking: {
-            pageName: 'dashboard',
-            pageType: PageType.dashboard,
-          },
+export default (
+  <Route
+    path={'/'}
+    Component={LayoutPage}
+    id={'root'}
+    errorElement={
+      <ErrorBoundary
+        redirectionApp="hub-backup"
+        isPreloaderHide={true}
+        isRouteShellSync={true}
+      />
+    }
+  >
+    <Route
+      path={''}
+      Component={DashboardPage}
+      handle={{
+        tracking: {
+          pageName: 'dashboard',
+          pageType: PageType.dashboard,
         },
-      },
-      {
-        path: 'roadmap-changelog',
-        ...lazyRouteConfig(() => import('@/pages/changelog/Changelog')),
-        handle: {
-          tracking: {
-            pageName: 'roadmap-changelog',
-            pageType: PageType.onboarding,
-          },
+      }}
+    />
+    <Route
+      path={'roadmap-changelog'}
+      Component={RoadmapChangelogPage}
+      handle={{
+        tracking: {
+          pageName: 'roadmap-changelog',
+          pageType: PageType.onboarding,
         },
-      },
-    ],
-  },
-  {
-    path: '*',
-    element: <NotFound />,
-  },
-];
+      }}
+    />
+    <Route path={'*'} element={<NotFound />} />
+  </Route>
+);
