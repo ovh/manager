@@ -50,5 +50,8 @@
   "hosting_dashboard_ssl_regenerate_error": "Si è verificato un errore durante la rigenerazione di un certificato SSL.",
   "web_hosting_export_label": "Esporta in CSV",
   "web_hosting_export_success": "Il file è stato creato correttamente. Se il download non si avvia, è possibile scaricarlo manualmente.",
-  "web_hosting_export_download_manually": "Scarica qui"
+  "web_hosting_export_download_manually": "Scarica qui",
+  "san_ssl_title": "Domini associati al certificato SSL",
+  "san_ssl_message": "Disponi di {{n}} domini associati al certificato {{domain}}:",
+  "san_ssl_copy": "Copiare la lista negli appunti"
 }
