@@ -1,0 +1,145 @@
+import React, { useContext, useEffect, useState } from 'react';
+import {
+  DataGridTextCell,
+  Datagrid,
+  DatagridColumn,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import TagsListTopbar from './tagsListTopBar/tagsListTopbar.component';
+import { IamTagListItem } from '@/data/api/get-iam-tags';
+import TagTypeCell from './tagTypeCell/tagTypeCell.component';
+import TagsListActions from './tagsListActions/tagsListActions.component';
+import DatagridItemsCounter from '@/components/datagridItemsCounter/DatagridItemsCounter.component';
+import { useGetIamTags } from '@/data/hooks/useGetIamTags';
+import { TagManagerContext } from '../../tagsManagerContext';
+import { SortTagsParams, sortTags } from './utils/sortTags';
+
+const PAGE_SIZE = 10;
+
+export type TagsListDatagridProps = {
+  tagsList: IamTagListItem[];
+  isLoading: boolean;
+};
+
+export default function TagsListDatagrid() {
+  const [search, setSearch] = useState<string>(); // Needed for datagrid search
+  const [filter, setFilter] = useState<string>('');
+  const [filteredTags, setFilteredTags] = useState<IamTagListItem[]>([]);
+  const [paginatedTagList, setPaginatedTagList] = useState<IamTagListItem[]>(
+    [],
+  );
+  const [page, setPage] = useState(1);
+  const { t } = useTranslation(['tag-manager', NAMESPACES.ERROR]);
+  const { addError } = useNotifications();
+  const { isShowSystemChecked, isShowUnassignedResourcesChecked } = useContext(
+    TagManagerContext,
+  );
+
+  const columns: DatagridColumn<unknown>[] = [
+    {
+      id: 'name',
+      cell: (item: IamTagListItem) => (
+        <DataGridTextCell>{item.name}</DataGridTextCell>
+      ),
+      label: t('tag'),
+      type: FilterTypeCategories.String,
+      isSearchable: true,
+      isSortable: true,
+    },
+    {
+      id: 'count',
+      cell: (item: IamTagListItem) => (
+        <DataGridTextCell>{item.count}</DataGridTextCell>
+      ),
+      label: t('assignedResources'),
+      type: FilterTypeCategories.Numeric,
+      isSortable: true,
+    },
+    {
+      id: 'type',
+      label: t('tagType'),
+      cell: TagTypeCell,
+      isSortable: false,
+    },
+    {
+      id: 'actions',
+      label: t('actions'),
+      cell: TagsListActions,
+    },
+  ];
+
+  const { tags, isLoading, error, isError } = useGetIamTags({
+    internalTags: isShowSystemChecked,
+    unassignedResources: isShowUnassignedResourcesChecked,
+  });
+
+  useEffect(() => {
+    if (isError) {
+      addError(
+        t(`${NAMESPACES.ERROR}:error_message`, {
+          message: error?.response?.data?.message,
+        }),
+      );
+    }
+  }, [isError, error]);
+
+  useEffect(() => {
+    if (!tags?.list || tags?.list.length === 0) return;
+    const filtered = filter
+      ? tags?.list.filter((tag) => tag.name.includes(filter))
+      : tags?.list;
+
+    setFilteredTags(filtered);
+    setPaginatedTagList(filtered.slice(0, PAGE_SIZE * page));
+  }, [tags?.list, filter, page]);
+
+  const onSearch = (newSearch: string) => {
+    setFilter(newSearch);
+  };
+
+  const displayMoreTags = () => {
+    setPage(page + 1);
+  };
+
+  const sortItems = ({
+    id,
+    desc,
+  }: {
+    id: SortTagsParams['columnId'];
+    desc: boolean;
+  }) => {
+    const sorted = sortTags({ tags: filteredTags, columnId: id, desc });
+
+    setFilteredTags(sorted);
+    setPaginatedTagList(sorted.slice(0, PAGE_SIZE * page));
+  };
+
+  return (
+    <>
+      <Datagrid
+        topbar={<TagsListTopbar />}
+        columns={columns}
+        items={paginatedTagList}
+        totalItems={filteredTags.length}
+        hasNextPage={page * PAGE_SIZE < filteredTags?.length}
+        onFetchNextPage={displayMoreTags}
+        search={{
+          searchInput: search,
+          setSearchInput: setSearch,
+          onSearch,
+        }}
+        isLoading={isLoading}
+        numberOfLoadingRows={10}
+        onSortChange={sortItems}
+      />
+      <DatagridItemsCounter
+        currentPage={page}
+        pageSize={PAGE_SIZE}
+        totalItems={filteredTags.length}
+      />
+    </>
+  );
+}
