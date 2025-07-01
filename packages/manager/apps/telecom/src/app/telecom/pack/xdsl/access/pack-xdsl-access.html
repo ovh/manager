@@ -437,6 +437,7 @@
                                                 class="oui-button oui-button_secondary oui-button_icon-right oui-button_block"
                                                 data-ui-sref="telecom.packs.pack.move"
                                                 role="button"
+                                                data-ng-if="![$ctrl.ACCESS_TYPE.ftte, $ctrl.ACCESS_TYPE.ftto].includes(access.xdsl.accessType)"
                                             >
                                                 <span
                                                     data-translate="xdsl_details_button_move"
@@ -447,42 +448,6 @@
                                                 ></span>
                                             </button>
                                         </div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <!-- SUIVI COMMANDE -->
-                            <li class="oui-tile__item">
-                                <div class="oui-tile__definition">
-                                    <div
-                                        class="oui-tile__term"
-                                        data-translate="xdsl_details_followUp_label"
-                                    ></div>
-                                    <div class="oui-tile__description">
-                                        <div class="mb-3">
-                                            <p
-                                                class="text-default"
-                                                data-ng-class="{ 'description-title-fullHeight' : !$ctrl.actualOrder.doneDateLocale }"
-                                                data-translate="telecom_pack_xdsl_order_follow_up_step_name_{{$ctrl.actualOrder.name}}"
-                                            ></p>
-                                            <p
-                                                class="text-default"
-                                                data-ng-if="$ctrl.actualOrder.doneDateLocale"
-                                                data-ng-bind="$ctrl.actualOrder.doneDateLocale"
-                                            ></p>
-                                        </div>
-                                        <a
-                                            class="oui-button oui-button_icon-right oui-button_secondary oui-button_block"
-                                            data-ui-sref="telecom.packs.pack.xdsl.line.access-order"
-                                        >
-                                            <span
-                                                data-translate="xdsl_details_followUp_label_step_name_detail"
-                                            ></span>
-                                            <span
-                                                class="oui-icon oui-icon-chevron-right"
-                                                aria-hidden="true"
-                                            ></span>
-                                        </a>
                                     </div>
                                 </div>
                             </li>
