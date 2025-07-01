@@ -139,5 +139,6 @@
   "xdsl_detail_mail_sending_update_running": "Request to change email send status is being processed. Please wait.",
   "xdsl_detail_mail_sending_update_succeed": "Request to change email send status has been processed. We’re currently working on your request.",
   "xdsl_detail_mail_sending_update_failed": "An error has occurred changing email send status. {{error}}",
-  "xdsl_detail_mail_sending_guide": "Find out more"
+  "xdsl_detail_mail_sending_guide": "Find out more",
+  "xdsl_details_modem_profile_detail": "Profile {{ modemProfile }}"
 }

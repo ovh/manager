@@ -139,5 +139,6 @@
   "xdsl_detail_mail_sending_update_running": "Die Anfrage zur Änderung des E-Mail-Versands wird bearbeitet, bitte gedulden Sie sich einen Augenblick.",
   "xdsl_detail_mail_sending_update_succeed": "Die Anfrage zur Änderung des Versands wurde erfolgreich registriert und wird derzeit bearbeitet.",
   "xdsl_detail_mail_sending_update_failed": "Bei der Änderung des E-Mail-Versands ist ein Fehler aufgetreten. {{error}}",
-  "xdsl_detail_mail_sending_guide": "Mehr erfahren"
+  "xdsl_detail_mail_sending_guide": "Mehr erfahren",
+  "xdsl_details_modem_profile_detail": "Profil {{ modemProfile }}"
 }
