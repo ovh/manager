@@ -20,15 +20,17 @@ import {
   OdsTextarea,
 } from '@ovhcloud/ods-components/react';
 import {
-  UseSecretPathSchema,
+  useSecretPathSchema,
   UseSecretValueSchema,
 } from '@secret-manager/validation/secretSchema';
-import { usePostSecret } from '@secret-manager/data/hooks/usePostSecret';
 import {
   SECRET_MANAGER_ROUTES_URLS,
   SECRET_MANAGER_SEARCH_PARAMS,
 } from '@secret-manager/routes/routes.constants';
-import { RegionSelector } from './RegionSelector.component';
+import { secretListQueryKey } from '@secret-manager/data/api/secrets';
+import { useQueryClient } from '@tanstack/react-query';
+import { useCreateSecret } from '@secret-manager/data/hooks/useCreateSecret';
+import { DomainManagement } from './DomainManagement.component';
 
 export default function SecretCreatePage() {
   const { t } = useTranslation([
@@ -38,6 +40,7 @@ export default function SecretCreatePage() {
   ]);
   const navigate = useNavigate();
   const { addError } = useNotifications();
+  const queryClient = useQueryClient();
 
   /* domain from the secret list */
   const [searchParams] = useSearchParams();
@@ -51,7 +54,7 @@ export default function SecretCreatePage() {
   const [selectedDomainId, setSelectedDomainId] = useState<string>();
 
   /* Form */
-  const pathSchema = UseSecretPathSchema();
+  const pathSchema = useSecretPathSchema();
   const valueSchema = UseSecretValueSchema();
   const secretSchema = z.object({ path: pathSchema, data: valueSchema });
   type SecretSchema = z.infer<typeof secretSchema>;
@@ -61,35 +64,40 @@ export default function SecretCreatePage() {
     handleSubmit,
     formState: { isDirty, isValid, errors },
   } = useForm({
-    defaultValues: {
-      path: 'a/test',
-      data: '{"a": "a"}',
-    },
     mode: 'onTouched',
     resolver: zodResolver(secretSchema),
   });
 
   /* Submit */
-  const { mutate: createSecret, isPending } = usePostSecret({
-    onSuccess: ({ path }) =>
-      navigate(SECRET_MANAGER_ROUTES_URLS.secretDashboard(backDomainId, path)),
-    onError: (error) => {
+  const { mutateAsync: createSecret, isPending } = useCreateSecret();
+
+  const handleConfirmClick: SubmitHandler<SecretSchema> = async (formData) => {
+    try {
+      const result = await createSecret({
+        okmsId: selectedDomainId,
+        data: {
+          path: formData.path,
+          version: { data: JSON.parse(formData.data) },
+        },
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: secretListQueryKey(selectedDomainId),
+      });
+
+      navigate(
+        SECRET_MANAGER_ROUTES_URLS.secretDashboard(
+          selectedDomainId,
+          result.path,
+        ),
+      );
+    } catch (error) {
       addError(
         t(`${NAMESPACES.ERROR}:error_message`, {
           message: error.message,
         }),
       );
-    },
-  });
-
-  const handleConfirmClick: SubmitHandler<SecretSchema> = (formData) => {
-    createSecret({
-      okmsId: backDomainId,
-      data: {
-        path: formData.path,
-        version: { data: JSON.parse(formData.data) },
-      },
-    });
+    }
   };
 
   /* Render */
@@ -99,17 +107,14 @@ export default function SecretCreatePage() {
         className="flex flex-col gap-6"
         onSubmit={handleSubmit(handleConfirmClick)}
       >
-        <div className="flex flex-col gap-5">
-          <OdsText preset="heading-2">{t('region_section_title')}</OdsText>
-          <RegionSelector
-            selectedDomainId={selectedDomainId}
-            setSelectedDomainId={setSelectedDomainId}
-          />
-        </div>
+        <DomainManagement
+          selectedDomainId={selectedDomainId}
+          setSelectedDomainId={setSelectedDomainId}
+        />
         <div className="flex flex-col gap-5">
           <OdsText preset="heading-2">{t('values_section_title')}</OdsText>
           <div className="flex flex-col gap-3">
-            <OdsText preset="heading-3">{t('path_title')}</OdsText>
+            <OdsText preset="heading-4">{t('path_title')}</OdsText>
             <Controller
               name="path"
               control={control}
@@ -132,7 +137,7 @@ export default function SecretCreatePage() {
             />
           </div>
           <div className="flex flex-col gap-3">
-            <OdsText preset="heading-3">{t('values_title')}</OdsText>
+            <OdsText preset="heading-4">{t('values_title')}</OdsText>
             <Controller
               name="data"
               control={control}
@@ -157,10 +162,10 @@ export default function SecretCreatePage() {
             />
           </div>
           <div className="flex flex-col gap-3">
-            <OdsText preset="heading-3">{t('custom_metadata_title')}</OdsText>
+            <OdsText preset="heading-4">{t('custom_metadata_title')}</OdsText>
           </div>
           <div className="flex flex-col gap-3">
-            <OdsText preset="heading-3">{t('metadata_title')}</OdsText>
+            <OdsText preset="heading-4">{t('metadata_title')}</OdsText>
           </div>
         </div>
         <div className="flex flex-col gap-5">

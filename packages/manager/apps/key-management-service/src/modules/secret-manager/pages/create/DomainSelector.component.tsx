@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { TagsList, useServiceDetails } from '@ovh-ux/manager-react-components';
 import {
   OdsButton,
@@ -28,20 +29,22 @@ const DomainStatus = ({ id }: { id: string }) => {
   );
 };
 
-interface IDomainSelector {
+type DomainSelectorProps = {
   domains: OKMS[];
   selectedDomain: string;
   onDomainSelection: (domainId: string) => void;
-}
+};
 
 export const DomainSelector = ({
   domains,
   onDomainSelection,
   selectedDomain,
-}: IDomainSelector) => {
+}: DomainSelectorProps) => {
+  const { t } = useTranslation('secret-manager/create');
+
   return (
     <div className="flex flex-col gap-3">
-      <OdsText preset="heading-3">Select Domain</OdsText>
+      <OdsText preset="heading-4">{t('domain_selector_title')}</OdsText>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
         {domains.map((domain) => (
           <RadioCard
@@ -62,7 +65,7 @@ export const DomainSelector = ({
         ))}
       </div>
       <div className="flex flex-col">
-        <OdsButton label="create a new domain" />
+        <OdsButton label={t('domain_selector_create_domain')} />
       </div>
     </div>
   );

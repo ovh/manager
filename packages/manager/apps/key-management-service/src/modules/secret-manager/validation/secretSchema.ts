@@ -2,9 +2,7 @@ import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-// const PATH_REGEX = /^(?!\/)(?!.*\/\/)[a-zA-Z0-9_.:/=@-]*(?<!\/)$/;
-
-export const UseSecretPathSchema = () => {
+export const useSecretPathSchema = () => {
   // a secret path can't
   // - start with a '/'
   // - contain '//'
@@ -16,7 +14,7 @@ export const UseSecretPathSchema = () => {
   const { t } = useTranslation(['secret-manager:create', NAMESPACES.FORM]);
 
   const MIN_CHAR = 1;
-  const MAX_CHAR = 20;
+  const MAX_CHAR = 255;
 
   return z
     .string({ message: t('required_field', { ns: NAMESPACES.FORM }) })

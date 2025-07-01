@@ -35,9 +35,7 @@ export type PostSecretProps = {
   data: CreateSecretBody;
 };
 
-export const postSecretMutationKey = () => ['secrets', 'create'];
-
-export const postSecret = async ({
+export const createSecret = async ({
   okmsId,
   data: postData,
 }: PostSecretProps) => {
