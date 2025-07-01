@@ -121,6 +121,10 @@
     data-ng-if="$ctrl.noAvailableMeeting && !$ctrl.loading"
     data-translate="telecom_pack_migration_no_meeting_available"
 ></p>
+<p
+    data-ng-if="$ctrl.noAvailableMeeting && !$ctrl.loading && $ctrl.isPhoneCallAvailable"
+    data-translate="telecom_pack_migration_phone_call_for_new_meeting"
+></p>
 
 <div class="mt-5" data-ng-if="!$ctrl.loading.init">
     <a
