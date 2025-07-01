@@ -10,5 +10,11 @@
   "enable_deny_strategy_modal_description": "Tous les ports de jeu qui ont été définis sont protégés par le GAME firewall et désormais, tout le reste du trafic sera supprimé. Voulez-vous continuer?",
   "enable_deny_strategy_modal_title": "Activation de la stratégie « Refus par défaut »",
   "default_deny_strategy_enabled_success_message": "La politique par défaut de protection DDoS du GAME a changé en quelques instants.",
-  "default_deny_strategy_disabled_success_message": "La politique par défaut de protection DDoS du GAME va être désactivée dans quelques instants."
+  "default_deny_strategy_disabled_success_message": "La politique par défaut de protection DDoS du GAME va être désactivée dans quelques instants.",
+  "gameProtocolColumnLabel": "Protocole de jeu",
+  "startPortColumnLabel": "Port de démarrage (plage)",
+  "endPortColumnLabel": "Port final (plage)",
+  "ok-status": "Protégé",
+  "deleteRulePending-status": "En cours de suppression",
+  "createRulePending-status": "En cours de création"
 }
