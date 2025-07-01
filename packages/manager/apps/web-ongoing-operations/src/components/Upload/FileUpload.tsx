@@ -5,7 +5,11 @@ import {
   OdsFileRejectedEventDetail,
   OdsFileUploadCustomEvent,
 } from '@ovhcloud/ods-components';
-import { OdsFileUpload, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  OdsFileUpload,
+  OdsText,
+  OdsLink,
+} from '@ovhcloud/ods-components/react';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TArgument } from '@/types';
@@ -24,7 +28,7 @@ export default function FileUpload({
   const { t } = useTranslation('dashboard');
   const [uploadedFiles, setUploadedFiles] = useState<OdsFile[]>([]);
   const [errorUpload, setErrorUpload] = useState<string>('');
-  const { description, maximumSize, acceptedFormats } = argument;
+  const { description, maximumSize, acceptedFormats, template } = argument;
   const fileUploadFormat = useMemo(
     () =>
       acceptedFormats.map((acceptedFormat) => `.${acceptedFormat}`).join(', '),
@@ -34,9 +38,18 @@ export default function FileUpload({
 
   return (
     <div>
-      <OdsText className="block mb-3" preset={ODS_TEXT_PRESET.span}>
-        <strong>{description}</strong>
-      </OdsText>
+      <div>
+        <OdsText className="block mb-3" preset={ODS_TEXT_PRESET.span}>
+          <strong>{description}</strong>
+        </OdsText>
+        {template && (
+          <OdsText className="block mb-3" preset={ODS_TEXT_PRESET.span}>
+            {t('domain_operations_upload_file_template')}{' '}
+            <OdsLink href={template} label={template} />
+          </OdsText>
+        )}
+      </div>
+
       <OdsFileUpload
         onOdsChange={(
           e: OdsFileUploadCustomEvent<OdsFileChangeEventDetail>,
