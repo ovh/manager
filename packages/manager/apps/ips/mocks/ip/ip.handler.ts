@@ -7,7 +7,11 @@ import icebergIpListFull from './iceberg-get-ip-full';
 import ipDetails from './get-ip-details.json';
 import getIpReverseForBlock from './get-ip-reverse-for-block.json';
 import getIpv6ReverseForBlock from './get-ipv6-reverse-for-block.json';
-import { getIpGameFirewallResponse } from './get-ip-game-firewall';
+import {
+  getGameFirewallRuleListResponse,
+  getGameFirewallRuleResponse,
+  getIpGameFirewallResponse,
+} from './get-ip-game-firewall';
 import {
   IpAntihackType,
   IpEdgeFirewallStateEnum,
@@ -89,6 +93,17 @@ export const getIpsMocks = ({
   {
     url: '/ip/:ip/spam',
     response: (): IpSpamType[] => [],
+    api: 'v6',
+  },
+  {
+    url: '/ip/:ipGroup/game/:ip/rule/:ruleId',
+    response: (_: unknown, params: PathParams) =>
+      getGameFirewallRuleResponse(parseInt(params.ruleId as string, 10)),
+    api: 'v6',
+  },
+  {
+    url: '/ip/:ipGroup/game/:ip/rule',
+    response: () => getGameFirewallRuleListResponse,
     api: 'v6',
   },
   {
