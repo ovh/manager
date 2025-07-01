@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useArgs } from '@storybook/manager-api';
+import { useArgs } from '@storybook/preview-api';
 import { clsx } from 'clsx';
 import { TilesInputComponent } from '@ovh-ux/manager-react-components';
 import {
@@ -24,10 +24,18 @@ export default {
 const Template: any = (args) => {
   const [, updateArgs] = useArgs();
 
+  const handleInput = (country: TCountry) => {
+    try {
+      updateArgs({ value: country });
+    } catch (error) {
+      console.warn('Failed to update args:', error);
+    }
+  };
+
   return (
     <TilesInputComponent<TCountry, string, { continent: string; key: string }>
       {...args}
-      onInput={(country) => updateArgs({ value: country })}
+      onInput={handleInput}
     />
   );
 };
