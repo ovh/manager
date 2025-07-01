@@ -3,10 +3,11 @@ import {
   CONTAINER_ID_REGEX,
   BACKUP_KEY_LENGTH,
   ALPHANUMERIC_REGEX,
-  OVH_URL_REGEX,
   CERTIFICAT_REGEX,
   CONTAINER_ID_MIN_LENGTH,
   CONTAINER_ID_MAX_LENGTH,
+  LOGS_DATA_PLATFORM_REGEX,
+  ENDPOINT_REGEX,
 } from '../constants/form.constants';
 
 export const ENABLEMENT_BUCKET_BACKINT = z.object({
@@ -15,7 +16,10 @@ export const ENABLEMENT_BUCKET_BACKINT = z.object({
     .min(CONTAINER_ID_MIN_LENGTH)
     .max(CONTAINER_ID_MAX_LENGTH)
     .regex(CONTAINER_ID_REGEX),
-  endpoint: z.string().url(),
+  endpoint: z
+    .string()
+    .url()
+    .regex(ENDPOINT_REGEX),
   accessKey: z
     .string()
     .length(BACKUP_KEY_LENGTH)
@@ -30,7 +34,7 @@ export const ENABLEMENT_LOGS_DATA_PLATFORM = z.object({
   entrypoint: z
     .string()
     .url()
-    .regex(OVH_URL_REGEX),
+    .regex(LOGS_DATA_PLATFORM_REGEX),
   certificate: z
     .string()
     .trim()
